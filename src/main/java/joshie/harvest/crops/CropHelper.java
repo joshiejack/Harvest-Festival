@@ -45,7 +45,8 @@ public class CropHelper {
     }
 
     public static AxisAlignedBB getCropBoundingBox(IBlockAccess world, BlockPos pos, PlantSection section, boolean withered) {
-        CropData data = getTile(world, pos, section).getData();
+        TileWithered crop = getTile(world, pos, section);
+        CropData data = crop.getData();
         return data.getCrop().getStateHandler().getBoundingBox(world, pos, section, data.getStage(), withered);
     }
 

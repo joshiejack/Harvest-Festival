@@ -14,7 +14,7 @@ public class CropStateMapper extends StateMapperBase {
     @Override
     public Map<IBlockState, ModelResourceLocation> putStateModelLocations(Block blockIn) {
         for (IBlockState iblockstate : blockIn.getBlockState().getValidStates()) {
-            mapStateModelLocations.put(iblockstate, getModelResourceLocation(iblockstate));
+            //mapStateModelLocations.put(iblockstate, getModelResourceLocation(iblockstate));
         }
 
         for (Crop crop : Crop.REGISTRY.getValues()) {
@@ -31,11 +31,13 @@ public class CropStateMapper extends StateMapperBase {
     @Override
     protected ModelResourceLocation getModelResourceLocation(IBlockState state) {
         Map <IProperty<?>, Comparable<? >> map = Maps.newLinkedHashMap(state.getProperties());
+        map.remove(HFCrops.CROPS.property); //Remove the base property for rendering purposes
         return new ModelResourceLocation(Block.REGISTRY.getNameForObject(state.getBlock()), getPropertyString(map));
     }
 
     private ModelResourceLocation getCropResourceLocation(Crop crop, IBlockState state) {
         Map <IProperty<?>, Comparable<? >> map = Maps.newLinkedHashMap(state.getProperties());
+        map.remove(HFCrops.CROPS.property); //Remove the base property for rendering purposes
         return new ModelResourceLocation(crop.getRegistryName().getResourceDomain() + ":crops_block_" + crop.getRegistryName().getResourcePath(), this.getPropertyString(map));
     }
 }

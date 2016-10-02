@@ -119,6 +119,7 @@ public class HFCrops {
     @SideOnly(Side.CLIENT)
     public static void preInitClient() {
         ModelLoader.setCustomMeshDefinition(SEEDS, new MeshIdentical(SEEDS));
+        ModelLoader.setCustomStateMapper(CROPS, new CropStateMapper());
         ModelLoader.setCustomMeshDefinition(CROP, new FMLDefinition<Crop>(CROP, "crops", Crop.REGISTRY) {
             @Override
             public boolean shouldSkip(Crop crop) {
@@ -129,7 +130,6 @@ public class HFCrops {
 
     @SideOnly(Side.CLIENT)
     public static void initClient() {
-        ModelLoader.setCustomStateMapper(CROPS, new CropStateMapper());
         Minecraft.getMinecraft().getItemColors().registerItemColorHandler((stack, tintIndex) -> {
             Crop crop = HFCrops.SEEDS.getCropFromStack(stack);
             return crop != null ? crop.getColor() : -1;
@@ -198,6 +198,7 @@ public class HFCrops {
 
     private static void registerVanillaCrop(Block block, Crop crop) {
         HFApi.crops.registerCropProvider(new ItemStack(block), crop);
+        crop.setSkipRender();
         block.setCreativeTab(FARMING);
     }
 

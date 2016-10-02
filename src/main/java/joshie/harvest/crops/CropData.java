@@ -151,7 +151,7 @@ public class CropData {
 
     public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
         if (crop != null) {
-            nbt.setBoolean("IsDead", true);
+            nbt.setBoolean("IsDead", isDead);
             nbt.setString("CropResource", crop.getRegistryName().toString());
             nbt.setByte("CurrentStage", (byte) stage);
             nbt.setShort("DaysWithoutWater", (short) daysWithoutWater);

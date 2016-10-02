@@ -34,7 +34,7 @@ public class CropRegistry implements ICropRegistry {
 
     @Override
     public BlockStateContainer getStateContainer(PropertyInteger stages) {
-        return new BlockStateContainer(HFCrops.CROPS, stages);
+        return new BlockStateContainer(HFCrops.CROPS, HFCrops.CROPS.property, stages);
     }
 
     @Override

@@ -19,7 +19,7 @@ public class BiomesOPlenty {
 
     @SuppressWarnings("ConstantConditions")
     public static void init() {
-        DisableVanillaSeeds.BLACKLIST.add(turnip_seeds);
+        DisableVanillaSeeds.BLACKLIST.register(turnip_seeds);
         HFApi.crops.registerCropProvider(new ItemStack(turnip), HFCrops.TURNIP);
         Ingredient mushroomIngredient = Ingredient.INGREDIENTS.get("mushroom");
         HFApi.cooking.register(new ItemStack(mushroom, 1, 1), mushroomIngredient);

@@ -43,7 +43,7 @@ public class BlockGoddessWater extends BlockFluidClassic {
         if (!world.isRemote && entity instanceof EntityItem) {
             EntityItem item = ((EntityItem)entity);
             ItemStack stack = item.getEntityItem();
-            if (VALID_ITEMS.contains(stack)) {
+            if (VALID_ITEMS.contains(stack) || HFApi.crops.getCropFromStack(stack) != null) {
                 if (!GoddessHandler.spawnGoddess(world, entity, false, false)) {
                     if (item.getThrower() != null) {
                         EntityPlayer player = world.getPlayerEntityByName(item.getThrower());

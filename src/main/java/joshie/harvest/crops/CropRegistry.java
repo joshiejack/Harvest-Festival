@@ -7,7 +7,7 @@ import joshie.harvest.api.crops.IStateHandler.PlantSection;
 import joshie.harvest.core.util.HFApiImplementation;
 import joshie.harvest.core.util.holder.ItemStackHolder;
 import joshie.harvest.crops.block.BlockHFCrops;
-import joshie.harvest.crops.tile.TileCrop;
+import joshie.harvest.crops.tile.TileWithered;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
@@ -34,12 +34,19 @@ public class CropRegistry implements ICropRegistry {
 
     @Override
     public BlockStateContainer getStateContainer(PropertyInteger stages) {
-        return new BlockStateContainer(HFCrops.CROPS, stages);
+        return new BlockStateContainer(HFCrops.CROPS, HFCrops.CROPS.property, stages);
     }
 
     @Override
     public ItemStack getSeedStack(Crop crop, int amount) {
         ItemStack stack = HFCrops.SEEDS.getStackFromCrop(crop);
+        stack.stackSize = amount;
+        return stack;
+    }
+
+    @Override
+    public ItemStack getCropStack(Crop crop, int amount) {
+        ItemStack stack = HFCrops.CROP.getStackFromObject(crop);
         stack.stackSize = amount;
         return stack;
     }
@@ -78,8 +85,8 @@ public class CropRegistry implements ICropRegistry {
     public Crop getCropAtLocation(World world, BlockPos pos) {
         PlantSection section = BlockHFCrops.getSection(world.getBlockState(pos));
         if (section == null) return null;
-        if (section == PlantSection.BOTTOM) return ((TileCrop)world.getTileEntity(pos)).getData().getCrop();
-        else if (section == PlantSection.TOP) return ((TileCrop)world.getTileEntity(pos.down())).getData().getCrop();
+        if (section == PlantSection.BOTTOM) return ((TileWithered)world.getTileEntity(pos)).getData().getCrop();
+        else if (section == PlantSection.TOP) return ((TileWithered)world.getTileEntity(pos.down())).getData().getCrop();
         else return null;
     }
 
@@ -91,17 +98,17 @@ public class CropRegistry implements ICropRegistry {
         }
 
 
-        TileCrop tile = (TileCrop) world.getTileEntity(pos);
+        TileWithered tile = (TileWithered) world.getTileEntity(pos);
         tile.getData().setCrop(theCrop, stage);
         tile.saveAndRefresh();
     }
 
     @Override
-    public ItemStack harvestCrop(@Nullable EntityPlayer player, World world, BlockPos pos) {
-        TileCrop tile = world.getTileEntity(pos) instanceof TileCrop ? (TileCrop) world.getTileEntity(pos) : null;
+    public List<ItemStack> harvestCrop(@Nullable EntityPlayer player, World world, BlockPos pos) {
+        TileWithered tile = world.getTileEntity(pos) instanceof TileWithered ? (TileWithered) world.getTileEntity(pos) : null;
         if (tile != null) {
             CropData data = tile.getData();
-            ItemStack harvest = data.harvest(player, true);
+            List<ItemStack> harvest = data.harvest(player, true);
             if (harvest != null) {
                 if (data.getCrop().getRegrowStage() <= 0) {
                     if (!world.isRemote) {

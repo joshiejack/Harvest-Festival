@@ -23,7 +23,7 @@ import java.util.Random;
 
 public abstract class BlockHFEnum<B extends BlockHFEnum, E extends Enum<E> & IStringSerializable> extends BlockHFBase<B> {
     protected static PropertyEnum<?> temporary;
-    protected final PropertyEnum<E> property;
+    public final PropertyEnum<E> property;
     protected final Class<E> enumClass;
     protected final E[] values;
 

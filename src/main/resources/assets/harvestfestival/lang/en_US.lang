@@ -77,6 +77,7 @@ harvestfestival.crop.seeds=Seeds
 harvestfestival.crop.seeds.days=days
 harvestfestival.crop.seeds.useless=Bloody Useless Seeds
 harvestfestival.crop.seeds.corrupted=Corrupted Seeds, Yo!
+harvestfestival.crop.null.crop=Any
 harvestfestival.crop.beetroot=Beetroot
 harvestfestival.crop.cabbage=Cabbage
 harvestfestival.crop.carrot=Carrot
@@ -99,6 +100,8 @@ harvestfestival.crop.watermelon=Watermelon
 harvestfestival.crop.wheat=Wheat
 harvestfestival.crop.nether.wart=Nether Wart
 harvestfestival.crop.tutorial.turnip=Hardy Turnip
+harvestfestival.crop.hemp=Industrial Hemp
+harvestfestival.crop.hemp.tooltip=Requires light level 12+
 
 #General Items
 harvestfestival.general.shoot.bamboo=Bamboo Shoot
@@ -444,6 +447,10 @@ harvestfestival.weather.blizzard.set=Set weather to blizzard
 #NPC Tools
 harvestfestival.npctool.blue.feather=Blue Feather
 harvestfestival.npctool.npc.killer=Instant Entity Killer
+harvestfestival.npctool.calendar=How many years?
+harvestfestival.npctool.clock=Shop opens when?
+harvestfestival.npctool.weather=Weather, tomorrow?
+harvestfestival.npctool.gift=Gift held item!
 
 # NPC Names
 ## NOTE FOR TRANSLATORS, READ
@@ -480,13 +487,15 @@ harvestfestival.npc.girafi.name=Johan
 # in your own language, as these are just generic, do translate the quests
 # semi-literally though, as they are important so the user knows what to do,
 # but take liberty there to, just make sure the user still knows what they
-# have to do in order to complete the quest in question.
+# have to do in order to complete the quest in question. For many of the greetings you
+# can remove or add more, for the greetings like: harvestfestival.npc.goddess.greeting
+# you can add up to 32 greetings
 #Key-Codes for conversations
 # %1s = Money - Player has
-# %2 = Player's Romantic Interest's name
-# %3 = Entity's Romantic Interest's name
-# %4 = Players Name
-# %5 = NPC Name
+# %2s = Player's Romantic Interest's name
+# %3s = Entity's Romantic Interest's name
+# %4s = Players Name
+# %5s = NPC Name
 #Conversations
 #Error
 harvestfestival.npc.error=Unable to find the translation for the key: %s or the key %s
@@ -532,18 +541,33 @@ harvestfestival.npc.goddess.greeting3=Do you need anything else, my sweet?
 harvestfestival.npc.goddess.greeting4=Please don't take too much time, I cannot stay for very long.
 harvestfestival.npc.goddess.greeting5=What is it you need?
 harvestfestival.npc.goddess.greeting6=If you ever get lost and need another Carpenter just bring me more wood and I'll be glad to help.
-harvestfestival.npc.goddess.greeting7=Oh, it's so nice to see you again %4!
+harvestfestival.npc.goddess.greeting7=Oh, it's so nice to see you again %4$s!
 harvestfestival.npc.goddess.greeting8=Hey my darling, how have things been?
 harvestfestival.npc.goddess.greeting9=One day I'm sure the Harvest Sprites will return, it's been ever so lonely.
 harvestfestival.npc.goddess.greeting10=I really think you should be able to farm flowers, it's just not fair.
 harvestfestival.npc.goddess.greeting11=Oh where have you been, it's lovely to see you again.
-harvestfestival.npc.goddess.greeting12=Hello %4, are things going well for you?
+harvestfestival.npc.goddess.greeting12=Hello %4$s, are things going well for you?
 harvestfestival.npc.goddess.greeting13=Nature is really beautiful isn't it?
-harvestfestival.npc.goddess.greeting14=If you ever want to give any of your friends a gift, just sneak when talking to them!
-harvestfestival.npc.goddess.greeting15=If you fancy giving me a gift, the easiest way is to just throw an item in to my pond!
-harvestfestival.npc.goddess.greeting16=Hey sweety if you need to know tomorrow's weather just come and show me a compass!
+harvestfestival.npc.goddess.greeting14=If you fancy giving me a gift, the easiest way is to just throw an item in to my pond!
 harvestfestival.npc.goddess.marriage.reject=Sweety, I am not willing to be your sweety.
 harvestfestival.npc.goddess.marriage.accept=Well isn't this a surprise, my sweet. I will totally marry you!
+
+# Goddess Weather
+harvestfestival.npc.goddess.weather.sunny1=Oh sweety, tomorrow is looking like a lovely day of sunshine!
+harvestfestival.npc.goddess.weather.sunny2=It will be a gloriously sunny tomorrow!
+harvestfestival.npc.goddess.weather.sunny3=The sun will be shining all day tomorrow, it will be beautiful.
+harvestfestival.npc.goddess.weather.rain1=It will be a wet day tomorrow, no need to water your crops!
+harvestfestival.npc.goddess.weather.rain2=Clouds are looking pretty grey tomorrow, prepare for a drizzle.
+harvestfestival.npc.goddess.weather.rain3=Drip, drip drop, Little April shower, is what you can expect tomorrow!
+harvestfestival.npc.goddess.weather.typhoon1=Oh my tomorrow is looking dreadful, a typhoon is on it's way!
+harvestfestival.npc.goddess.weather.typhoon2=It is not looking good, you should stay inside tomorrow, as a typhoon will hit.
+harvestfestival.npc.goddess.weather.typhoon3=Tomorrow, is a terrible storm, a typhoon is coming to town!
+harvestfestival.npc.goddess.weather.snow1=It's looking like a verryyy cold day tomorrow, better wrap up warm for the snow!
+harvestfestival.npc.goddess.weather.snow2=I think tomorrow we'll all be frozen and singing, Do you wanna build a snowman?
+harvestfestival.npc.goddess.weather.snow3=The weather report for tomorrow, is freezing, looks look it will snow!
+harvestfestival.npc.goddess.weather.blizzard1=You might freeze tomorrow, the weather is dreadful, a blizzard is on it's way!
+harvestfestival.npc.goddess.weather.blizzard2=I've heard that an Abomasnow is coming tomorrow and he's bring a blizzard with him!
+harvestfestival.npc.goddess.weather.blizzard3=WOW, there's a Blizzard tomorrow, you better watch yourself.
 
 #Katlin
 harvestfestival.npc.katlin.greeting1=How have you been?
@@ -559,6 +583,7 @@ harvestfestival.npc.katlin.greeting10=Someday I'll make the best blanket you've 
 harvestfestival.npc.katlin.greeting11Good day youngun, what have you been up to?
 
 #Danieuru/Chylex
+harvestfestival.npc.daniel.shop=I'm open every day of the week except for Thursdays from 10:00 to 16:00.
 harvestfestival.npc.daniel.greeting1=I've always loved tinkering around since I was a child.
 harvestfestival.npc.daniel.greeting2=Tools really are my passion, they are a Hardcore Expansion to my life.
 harvestfestival.npc.daniel.greeting3=People call me crazy around here for believing in Dragons. They'll see them when they reach The End, and they'll no longer call me a fool.
@@ -567,15 +592,13 @@ harvestfestival.npc.daniel.greeting5=Did you know that I used to be an olympic s
 harvestfestival.npc.daniel.greeting6=Males, Females? Don't bother me, I like them all. Variety is the spice of life.
 harvestfestival.npc.daniel.greeting7=I've really taken a shine for Jenni and Yulif lately but neither seem to be all that interested.
 harvestfestival.npc.daniel.greeting8=If you need your tools repaired, just bring me the right material and tool.
-harvestfestival.npc.daniel.greeting9=If you ever need an upgrade, just bring me a 100% tool, some gold and something to upgrade it with.
+harvestfestival.npc.daniel.greeting9=If you ever need an upgrade, just bring me a 100%% tool, some gold and something to upgrade it with.
 harvestfestival.npc.daniel.greeting10=I've been to The End have you?
 harvestfestival.npc.daniel.greeting11=I became a blacksmith because I wanted to make my own tools, so I could get to the ender, it really was a life long dream.
 harvestfestival.npc.daniel.greeting12=If I could visit any country, hmm, I'd probably visit Czechia with Ashlee.
 harvestfestival.npc.daniel.greeting13=There's nothing I hate more than the ocean. I reckon it's related to my fascination with Ender.
-harvestfestival.npc.daniel.greeting14=I'm open every day of the week except for Thursdays from 10:00 to 16:00.
 harvestfestival.npc.daniel.marriage.reject=I'd rather spend my time polishing my tools than with you.
 harvestfestival.npc.daniel.marriage.accept=My tools can wait, we must get married at once!
-
 
 #Cloe
 harvestfestival.npc.cloe.greeting1=A good book, makes a girl happy.
@@ -594,6 +617,7 @@ harvestfestival.npc.cloe.marriage.reject=Why would i ever want to get married, i
 harvestfestival.npc.cloe.marriage.accept=I am ready to grow up, and spend my life with you.
 
 #Liara/ApsciLiara
+harvestfestival.npc.liara.shop=I'm afraid the café is only open from 9:30 until 17:00, but we're open every day of the week!
 harvestfestival.npc.liara.greeting1=I really love this weather, perfect time to bake a cake!
 harvestfestival.npc.liara.greeting2=Cooking is what I enjoy the most! I love seeing the smile on someone's face as they take their first bite of my delicious dishes!
 harvestfestival.npc.liara.greeting3=Are you feeling hungry? I'm always hungry, no wonder I like to cook so much.
@@ -609,7 +633,6 @@ harvestfestival.npc.liara.greeting12=When I went to cookery school, there was th
 harvestfestival.npc.liara.greeting13=I really do miss my parents, but losing them really made me want to focus on my cooking career.
 harvestfestival.npc.liara.greeting14=I've been passionate about cooking all my life, I remember when I was ten, I was selling cupcake and making 1000 gold a week! But now I'm so glad I finally get to open my own proper business.
 harvestfestival.npc.liara.greeting15=The café is open everyday! From half past nine in the morning to five in the evening.
-harvestfestival.npc.liara.greeting16=I'm afraid the café is only open from 9:30 until 17:00, but we're open every day of the week!
 harvestfestival.npc.liara.marriage.reject=The café is my home. I do not wish to live with you.
 harvestfestival.npc.liara.marriage.accept=Thank you, I will marry you, I will cook you many meals.
 
@@ -632,8 +655,8 @@ harvestfestival.npc.jade.greeting15=Remember that that grass and wheat need a si
 harvestfestival.npc.jade.marriage.reject=Marriage isn't something I'm after at this stage.
 harvestfestival.npc.jade.marriage.accept=Marriage is something I'm ready for, I accept.
 
-
 #Jenni/Othlon
+harvestfestival.npc.jenni.shop=Heya friend, just to remind you, we're open everyday except Wednesday and Sunday, from 9am to 5pm. Oh Saturdays we are only open from 11am to 3pm.
 harvestfestival.npc.jenni.greeting1=Hey my good friend, make sure to come to me if you need any general goods!
 harvestfestival.npc.jenni.greeting2=As much as I love my customers, I love my art so much more.
 harvestfestival.npc.jenni.greeting3=Don't tell anybody but I'm secretly a huge fan of Belly Dancing.
@@ -641,22 +664,20 @@ harvestfestival.npc.jenni.greeting4=Sometimes I wish I would open on Sundays, bu
 harvestfestival.npc.jenni.greeting5=Granny Katlin sure makes a mean soup!
 harvestfestival.npc.jenni.greeting6=My prices are the best in the town, noone can beat ol' jenni's bargains.
 harvestfestival.npc.jenni.greeting7=I couldn't help but notice you're from Australia. Oh, you aren't? Or are you?
-harvestfestival.npc.jenni.greeting8=Heya friend, just remind you, we're open everyday except Wednesday and Sunday, from 9am to 5pm. Oh Saturdays are 11am to 3pm though.
-harvestfestival.npc.jenni.greeting9=I'd have to say this store is my greatest accomplishment I am so proud.
-harvestfestival.npc.jenni.greeting10=Candice and I used to be a lot closer, but things changed. We're still living together because I just couldn't afford the rent for this place on my own.
-harvestfestival.npc.jenni.greeting11=In my spare time I love a bit of arts and crafts.
-harvestfestival.npc.jenni.greeting12=My favourite animals are pigs, and my favourite fruit are cherries.
-harvestfestival.npc.jenni.greeting13=My supplies are pretty limited, but one day I should be able to sell you more things.
+harvestfestival.npc.jenni.greeting8=I'd have to say this store is my greatest accomplishment I am so proud.
+harvestfestival.npc.jenni.greeting9=Candice and I used to be a lot closer, but things changed. We're still living together because I just couldn't afford the rent for this place on my own.
+harvestfestival.npc.jenni.greeting10=In my spare time I love a bit of arts and crafts.
+harvestfestival.npc.jenni.greeting11=My favourite animals are pigs, and my favourite fruit are cherries.
+harvestfestival.npc.jenni.greeting12=My supplies are pretty limited, but one day I should be able to sell you more things.
 harvestfestival.npc.jenni.marriage.reject=We're not quite there yet.
 harvestfestival.npc.jenni.marriage.accept=My dear friend, I am now your dear wife.
-
 
 #Jaimii
 harvestfestival.npc.jamie.greeting1=This is my town, and you remember that.
 harvestfestival.npc.jamie.greeting2=My family has won the town elections for the last 100 years.
 harvestfestival.npc.jamie.greeting3=My two girls are so precious to me, if you ever hurt either of them.
 harvestfestival.npc.jamie.greeting4=It's really hard being mayor, the people just love you too much.
-harvestfestival.npc.jamie.greeting5=Heya %4, have you seen my house, it's far too small.
+harvestfestival.npc.jamie.greeting5=Heya %4$s, have you seen my house, it's far too small.
 harvestfestival.npc.jamie.greeting6=In the future, I'll be hosting some contests, but for now, I'm just happy to run this town.
 harvestfestival.npc.jamie.greeting7=I'm not sure who put you in charge of building this town, I would have done a much better job.
 harvestfestival.npc.jamie.greeting8=My father always told me I would amount to everything. And look at me.
@@ -684,6 +705,7 @@ harvestfestival.npc.abi.greeting15=My parents told me not to talk to strangers..
 
 #Tiberius/WayofTime
 harvestfestival.npc.tiberius.time=Looks like you've been in this town for %s years.
+harvestfestival.npc.tiberius.first=This is your first year in the town! Why do you even need to ask.
 harvestfestival.npc.tiberius.greeting1=Time is a fascinating thing, one second it's going slow then the next hour it's passing by faster than light!
 harvestfestival.npc.tiberius.greeting2=When I was a child my favourite nursery rhyme was hickory dickory dock.
 harvestfestival.npc.tiberius.greeting3=What time is it?
@@ -709,7 +731,6 @@ harvestfestival.npc.jacob.greeting7=My grandpa was a great fisherman. He's what 
 harvestfestival.npc.jacob.marriage.reject=I'm really looking for one of the other fish in the sea.
 harvestfestival.npc.jacob.marriage.accept=You are my starfish, I cannot wait to be your husband.
 
-
 #Pokefenn
 harvestfestival.npc.fenn.greeting1=One day, I'm going to grow some vines, and you're going to climb them with me!
 harvestfestival.npc.fenn.greeting2=Don't be scared of me, I may be small but I know a lot! I know all about totems.
@@ -722,6 +743,7 @@ harvestfestival.npc.fenn.greeting8=I want to be a herboculturistarborist a whats
 harvestfestival.npc.fenn.greeting9=My favourite pokemon is bulbasaur.
 
 #Jim/SpitefulFox
+harvestfestival.npc.jim.shop=The Animal Ranch is open from 10am to 3pm. From Monday to Saturday.
 harvestfestival.npc.jim.greeting1=What's your favourite animal? Mine's the fox, the spiteful buggers.
 harvestfestival.npc.jim.greeting2=Remember you can always come see me, if you want your animals to have babies!
 harvestfestival.npc.jim.greeting3=Lately I've been tweaking how much I feed my chickens, it's been an educational experience.
@@ -734,19 +756,17 @@ harvestfestival.npc.jim.greeting9=If you feed your animals treats, eventually th
 harvestfestival.npc.jim.marriage.reject=I do not wish to get married.
 harvestfestival.npc.jim.marriage.accept=I have wished for this day for a long time. I will one hundred percent marry you.
 
-
 #Brandon/Cricket
+harvestfestival.npc.brandon.shop=If you ever need some mining materials, I'm open from Monday to Saturday, 11am to 4pm.
 harvestfestival.npc.brandon.greeting1=Whenever I'm down in the mines, I can't help but get excited when I come across some diamonds.
 harvestfestival.npc.brandon.greeting2=I don't know about you, but I've got insomnia every night, can never get to sleep... can always hear the dang crickets.
 harvestfestival.npc.brandon.greeting3=What's your favourite ice cream? Mine's Vanilla Plus. At least it used to be, until someone else stole it...
 harvestfestival.npc.brandon.greeting4=Do you ever get tired of mining? I never do. I'm always willing to trade if you ever get tired.
 harvestfestival.npc.brandon.greeting5=I'll never understand why people are afraid of the dark. There's nothing better than mining without seeing where you are going.
 harvestfestival.npc.brandon.greeting6=The other day when I was in the mines, I heard and saw this strange fire like creature. I wonder what it was?
-harvestfestival.npc.brandon.greeting7=If you ever need some mining materials, I'm open from Monday to Saturday, 11am to 4pm.
-harvestfestival.npc.brandon.greeting8=I'll let you in on a secret on how to mine more efficiently. If you jump then hit the rocks on your way down, you will smash them instantly! You'll even hit a bunch more rocks on your way down too. Oh this will also work to flatten farmland too.
+harvestfestival.npc.brandon.greeting7=I'll let you in on a secret on how to mine more efficiently. If you jump then hit the rocks on your way down, you will smash them instantly! You'll even hit a bunch more rocks on your way down too. Oh this will also work to flatten farmland too.
 harvestfestival.npc.brandon.marriage.reject=Do you really think I would marry someone like you?
 harvestfestival.npc.brandon.marriage.accept=I was hoping for someone better, but I'll marry you.
-
 
 #Tomas
 harvestfestival.npc.thomas.greeting1=I will save you from your sins.
@@ -762,21 +782,20 @@ harvestfestival.npc.candice.greeting1=I love my job, and sharing it with my frie
 harvestfestival.npc.candice.greeting2=Some people can just be real moos!
 harvestfestival.npc.candice.greeting3=Where the heck am I? What is this world?
 harvestfestival.npc.candice.greeting4=Come over here, I have something in my eye.
-harvestfestival.npc.candice.greeting5=Hello %4! I hope you're feeling well? You look so beautiful today!
+harvestfestival.npc.candice.greeting5=Hello %4$s! I hope you're feeling well? You look so beautiful today!
 harvestfestival.npc.candice.greeting6=Hey pretty, I've got a tip for you today. You don't need to water grass, it will grow anyway!
 harvestfestival.npc.candice.greeting7=Did you know that I normally work with Jim as a milkmaid?
 harvestfestival.npc.candice.marriage.reject=No chance, I'm not looking for marriage.
 harvestfestival.npc.candice.marriage.accept=You are so perfect! We will make the greatest couple, I accept your proposal!
 
-
 #Yulife
+harvestfestival.npc.yulif.shop=If yer looking for buildings, I'm afraid I'm only available 9am to 5:30pm, Sunday to Friday.
 harvestfestival.npc.yulif.greeting1=Building stuff is so time consuming, when will I get a break?
 harvestfestival.npc.yulif.greeting2=People treat me like a slave, no rest for the builder!
 harvestfestival.npc.yulif.greeting3=Have you seen Jim? Isn't he just?
 harvestfestival.npc.yulif.greeting4=I am tired of all this hard work, When will ya appreciate my buildings?
 harvestfestival.npc.yulif.greeting5=I am tired of wandering around, I am dying right now.
 harvestfestival.npc.yulif.greeting6=If ya get in my way, I can't build there.
-harvestfestival.npc.yulif.greeting7=If yer looking for buildings, I'm afraid I'm only available 9am to 5:30pm, Sunday to Friday.
 harvestfestival.npc.yulif.marriage.reject=Ehhh I'm not ready to get married.
 harvestfestival.npc.yulif.marriage.accept=Yer so kind, I'll be your husband.
 harvestfestival.npc.builder.build=Do not fret I am currently working on building the structure for the %s.
@@ -789,6 +808,7 @@ harvestfestival.npc.builder.basement.decorate=Just adding the finishing touches 
 harvestfestival.npc.builder.basement.movein=Don't mind me just helping everyone move in to the %s.
 
 #Ashlee
+harvestfestival.npc.ashlee.shop=If you ever need anything, just be sure to ask. But only from 5am to 11am, Monday through Saturday.
 harvestfestival.npc.ashlee.greeting1=I sure love plucking chickens!
 harvestfestival.npc.ashlee.greeting2=I am so tired, working with chickens is such hard work!
 harvestfestival.npc.ashlee.greeting3=From this day forward, I hope I can sleep better.
@@ -796,7 +816,6 @@ harvestfestival.npc.ashlee.greeting4=Most chicken handlers hate foxes, I love th
 harvestfestival.npc.ashlee.greeting5=Cluck, Cluck, Cluck Clucking. When will these chicks just shut the Cluck up!
 harvestfestival.npc.ashlee.greeting6=Feeding your chickens by hand will make you love them more, but it is more work.
 harvestfestival.npc.ashlee.greeting7=Chickens are happy to eat treats and chicken treats.
-harvestfestival.npc.ashlee.greeting8=If you ever need anything, just be sure to ask. But only from 5am to 11am, Monday through Saturday.
 harvestfestival.npc.ashlee.marriage.reject=Why would you even consider proposing?
 harvestfestival.npc.ashlee.marriage.accept=Woah, you are the best fox ever, I will marry you.
 
@@ -981,7 +1000,7 @@ harvestfestival.quest.tutorial.upgrading.question=Do you know how to upgrade too
 harvestfestival.quest.tutorial.upgrading.tutorial=@I do not know anything.
 harvestfestival.quest.tutorial.upgrading.skip=@I know everything.
 harvestfestival.quest.tutorial.upgrading.completed=That’s good then. I have some ore and a hammer for you.
-harvestfestival.quest.tutorial.upgrading.explain=That’s good then. I’ll be happy to teach you. The first step is to get your tools to the stage where they can even be upgraded. If you notice they have a percentage bar. When this is at 100% just bring them to me. I’ll also need some ore to work with, as well as payment for my services. I’ll work on them for a few days, then you can have your tools back fully upgraded. You might be asking me how to get the materials you’ll need. Well you’ll need to head down the mine, taking with you a hammer. You can find nodes down there which you can smash with a hammer to obtain ore. Anyway that’s about it. I hear Brandon the Miner has a gift for you though.
+harvestfestival.quest.tutorial.upgrading.explain=That’s good then. I’ll be happy to teach you. The first step is to get your tools to the stage where they can even be upgraded. If you notice they have a percentage bar. When this is at 100%% just bring them to me. I’ll also need some ore to work with, as well as payment for my services. I’ll work on them for a few days, then you can have your tools back fully upgraded. You might be asking me how to get the materials you’ll need. Well you’ll need to head down the mine, taking with you a hammer. You can find nodes down there which you can smash with a hammer to obtain ore. Anyway that’s about it. I hear Brandon the Miner has a gift for you though.
 harvestfestival.quest.tutorial.upgrading.reminder.visit=Remember Brandon the Miner wants to see you.
 harvestfestival.quest.tutorial.upgrading.complete=Ehhh hello there. I’ve just been down the mine, and well it was pretty terrible. Since you got me to this town, I may as well just give you the junk I found. Take it. I don’t want it.
 
@@ -1006,7 +1025,7 @@ harvestfestival.quest.trade.vanilla.milk=These bottles of milk sure look delicio
 harvestfestival.quest.trade.vanilla.wool=Your wool is so fine, it will make great clothes. Please take this wool, better for building with!
 
 # Blacksmith Upgrades
-harvestfestival.quest.trade.upgrade.level=Your tool is not at 100%! Please come back when it is.
+harvestfestival.quest.trade.upgrade.level=Your tool is not at 100%%! Please come back when it is.
 harvestfestival.quest.trade.upgrade.gold=To upgrade this tool it will cost you %s, please come back when you have enough.
 harvestfestival.quest.trade.upgrade.material=To upgrade this tool I’m going to need %1s %2s.
 harvestfestival.quest.trade.upgrade.accept=This I can do, please come back in 3 days to collect your upgraded tool.
@@ -1028,23 +1047,6 @@ harvestfestival.quest.trade.tools.reminder=Just letting you know, I do have some
 
 # Goddess Free Carpenter
 harvestfestival.quest.trade.carpenter.thanks=Thanks sweety, I'm happy to give you another Carpenter Blueprint.
-
-# Goddess Compass
-harvestfestival.quest.trade.weather.sunny1=Oh sweety, tomorrow is looking like a lovely day of sunshine!
-harvestfestival.quest.trade.weather.sunny2=It will be a gloriously sunny tomorrow!
-harvestfestival.quest.trade.weather.sunny3=The sun will be shining all day tomorrow, it will be beautiful.
-harvestfestival.quest.trade.weather.rain1=It will be a wet day tomorrow, no need to water your crops!
-harvestfestival.quest.trade.weather.rain2=Clouds are looking pretty grey tomorrow, prepare for a drizzle.
-harvestfestival.quest.trade.weather.rain3=Drip, drip drop, Little April shower, is what you can expect tomorrow!
-harvestfestival.quest.trade.weather.typhoon1=Oh my tomorrow is looking dreadful, a typhoon is on it's way!
-harvestfestival.quest.trade.weather.typhoon2=It is not looking good, you should stay inside tomorrow, as a typhoon will hit.
-harvestfestival.quest.trade.weather.typhoon3=Tomorrow, is a terrible storm, a typhoon is coming to town!
-harvestfestival.quest.trade.weather.snow1=It's looking like a verryyy cold day tomorrow, better wrap up warm for the snow!
-harvestfestival.quest.trade.weather.snow2=I think tomorrow we'll all be frozen and singing, Do you wanna build a snowman?
-harvestfestival.quest.trade.weather.snow3=The weather report for tomorrow, is freezing, looks look it will snow!
-harvestfestival.quest.trade.weather.blizzard1=You might freeze tomorrow, the weather is dreadful, a blizzard is on it's way!
-harvestfestival.quest.trade.weather.blizzard2=I've heard that an Abomasnow is coming tomorrow and he's bring a blizzard with him!
-harvestfestival.quest.trade.weather.blizzard3=WOW, there's a Blizzard tomorrow, you better watch yourself.
 
 ## Recipe Quests
 harvestfestival.quest.recipe.corn.baked.text=You've really made me comfortable, I'm happy to treat you to my secret recipe for Baked Corn.

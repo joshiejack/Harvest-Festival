@@ -9,6 +9,7 @@ import joshie.harvest.api.npc.gift.IGiftHandler;
 import joshie.harvest.api.npc.gift.IGiftHandler.Quality;
 import joshie.harvest.api.shops.IShop;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 
 import java.util.UUID;
 
@@ -50,10 +51,18 @@ public interface INPC {
      * @return the npc **/
     INPC setNoRespawn();
 
+    /** Makes the npc display a specific chat
+     *  @param stack the item to use as the icon
+     *  @param infoGreeting  the greeting handler to use**/
+    INPC setHasInfo(ItemStack stack, IGreeting infoGreeting);
+
     /** Allows you to add additional greetings to npcs
      *  @param greeting the greeting type
      *  @return the npc**/
     INPC addGreeting(IConditionalGreeting greeting);
+
+    /** Returns the resource name **/
+    ResourceLocation getResource();
 
     /** Returns the localised name for this NPC **/
     String getLocalizedName();

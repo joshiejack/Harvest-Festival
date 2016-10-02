@@ -12,6 +12,7 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.List;
 import java.util.Random;
 
 public class CropData {
@@ -20,6 +21,7 @@ public class CropData {
     private int stage = 1; //The stage it is currently at
     private int daysWithoutWater; //The number of days this crop has gone without water
     private boolean safe;
+    private boolean isDead;
 
     public CropData setCrop(Crop crop, int stage) {
         this.crop = crop;
@@ -30,7 +32,8 @@ public class CropData {
     //Returns false if the crop was withered
     public boolean newDay(World world, BlockPos pos) {
         //Stage 1, Check how long the plant has been without water, If it's more than 2 days kill it
-        if (crop == null || (crop.requiresWater() && daysWithoutWater > 2) || !crop.getGrowthHandler().canGrow(world, pos, crop)) {
+        if (isDead || crop == null || (crop.requiresWater() && daysWithoutWater > 2) || !crop.getGrowthHandler().canGrow(world, pos, crop)) {
+            isDead = true;
             return false;
         } else { //Stage 2: Now that we know, it has been watered, Update it's stage
             //If we aren't ticking randomly, Then increase the stage
@@ -107,8 +110,8 @@ public class CropData {
         else return world.setBlockToAir(pos);
     }
 
-    public ItemStack harvest(@Nullable EntityPlayer player, boolean doHarvest) {
-        if (crop == null) return null;
+    public List<ItemStack> harvest(@Nullable EntityPlayer player, boolean doHarvest) {
+        if (crop == null || crop.growsToSide() != null) return null;
         if (stage >= crop.getStages() || (crop.requiresSickle() && stage >= crop.getMinimumCut())) {
             int originalStage = stage;
             if (doHarvest) {
@@ -117,13 +120,17 @@ public class CropData {
                 }
             }
 
-            ItemStack ret = crop.getDropHandler().getDrop(crop, originalStage, rand);
-            if (ret != null && ret.getItem() != HFCrops.CROP) {
-                if (!ret.hasTagCompound()) ret.setTagCompound(new NBTTagCompound());
-                ret.getTagCompound().setBoolean("Sellable", true);
+            List<ItemStack> list = crop.getDropHandler().getDrops(crop, originalStage, rand);
+            if (list != null) {
+                for (ItemStack ret : list) {
+                    if (ret != null && ret.getItem() != HFCrops.CROP) {
+                        if (!ret.hasTagCompound()) ret.setTagCompound(new NBTTagCompound());
+                        ret.getTagCompound().setBoolean("Sellable", true);
+                    }
+                }
             }
 
-            return ret;
+            return list;
         } else return null;
     }
 
@@ -133,6 +140,7 @@ public class CropData {
 
     public void readFromNBT(NBTTagCompound nbt) {
         if (nbt.hasKey("CropResource")) {
+            isDead = nbt.getBoolean("IsDead");
             crop = Crop.REGISTRY.getValue(new ResourceLocation(nbt.getString("CropResource")));
             stage = nbt.getByte("CurrentStage");
             daysWithoutWater = nbt.getShort("DaysWithoutWater");
@@ -143,6 +151,7 @@ public class CropData {
 
     public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
         if (crop != null) {
+            nbt.setBoolean("IsDead", isDead);
             nbt.setString("CropResource", crop.getRegistryName().toString());
             nbt.setByte("CurrentStage", (byte) stage);
             nbt.setShort("DaysWithoutWater", (short) daysWithoutWater);

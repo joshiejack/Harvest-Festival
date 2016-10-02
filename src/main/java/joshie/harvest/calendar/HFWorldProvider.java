@@ -92,7 +92,10 @@ public class HFWorldProvider extends WorldProviderSurface {
                 r += (colour & 0xFF0000) >> 16;
                 g += (colour & 0x00FF00) >> 8;
                 b += colour & 0x0000FF;
-                divider++;
+                r += (original & 0xFF0000) >> 16;
+                g += (original & 0x00FF00) >> 8;
+                b += original & 0x0000FF;
+                divider+= 2;
             }
         }
 

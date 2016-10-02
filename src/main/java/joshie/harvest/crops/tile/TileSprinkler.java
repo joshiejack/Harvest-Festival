@@ -2,7 +2,7 @@ package joshie.harvest.crops.tile;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.core.base.tile.TileDaily;
-import joshie.harvest.core.network.PacketHandler;
+import joshie.harvest.core.helpers.MCServerHelper;
 import joshie.harvest.crops.HFCrops;
 import net.minecraft.client.Minecraft;
 import net.minecraft.nbt.NBTTagCompound;
@@ -62,7 +62,7 @@ public class TileSprinkler extends TileDaily implements ITickable {
                 tank.drainInternal(HFCrops.SPRINKLER_DRAIN_RATE, true);
                 hydrateSoil();
                 if (tank.getFluidAmount() <= 1) {
-                    PacketHandler.sendRefreshPacket(this);
+                    MCServerHelper.markTileForUpdate(this);
                 }
             }
         }

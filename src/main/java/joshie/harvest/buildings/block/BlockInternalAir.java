@@ -9,7 +9,9 @@ import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.core.util.Text;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -25,6 +27,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 
+import java.util.List;
+
+import static joshie.harvest.core.HFCore.DEBUG_MODE;
 import static joshie.harvest.core.helpers.InventoryHelper.ITEM_STACK;
 
 public class BlockInternalAir extends BlockHFBase<BlockInternalAir> {
@@ -64,6 +69,11 @@ public class BlockInternalAir extends BlockHFBase<BlockInternalAir> {
     @SideOnly(Side.CLIENT)
     public BlockRenderLayer getBlockLayer() {
         return BlockRenderLayer.CUTOUT_MIPPED;
+    }
+
+    @SideOnly(Side.CLIENT)
+    public void getSubBlocks(Item itemIn, CreativeTabs tab, List<ItemStack> list) {
+        if (DEBUG_MODE) list.add(new ItemStack(itemIn));
     }
 
     @Override

@@ -80,6 +80,15 @@ public abstract class ItemTool<I extends ItemTool> extends ItemHFBase<I> impleme
     }
 
     @Override
+    public boolean setLevel(ItemStack stack, double newLevel) {
+        if (newLevel < 0D || newLevel > 100D) return false;
+        else {
+            stack.getSubCompound("Data", true).setDouble("Level", newLevel);
+            return true;
+        }
+    }
+
+    @Override
     public ToolTier getTier(ItemStack stack) {
         int safe = Math.min(Math.max(0, stack.getItemDamage()), (ToolTier.values().length - 1));
         return ToolTier.values()[safe];
@@ -330,9 +339,6 @@ public abstract class ItemTool<I extends ItemTool> extends ItemHFBase<I> impleme
     public void getSubItems(Item item, CreativeTabs tab, List<ItemStack> list) {
         for (int i = 0; i < ToolTier.values().length; i++) {
             list.add(new ItemStack(item, 1, i));
-            ItemStack full = new ItemStack(item, 1, i);
-            full.getSubCompound("Data", true).setDouble("Level", 100D);
-            list.add(full);
         }
     }
 

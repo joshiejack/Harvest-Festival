@@ -3,7 +3,6 @@ package joshie.harvest.core.helpers;
 import gnu.trove.map.TIntObjectMap;
 import gnu.trove.map.hash.TIntObjectHashMap;
 import joshie.harvest.core.base.tile.TileHarvest;
-import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.core.util.holder.AbstractHolder;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
@@ -23,7 +22,7 @@ public class NBTHelper {
         world.setBlockState(pos, state, 2);
         TileHarvest tile2 = (TileHarvest) world.getTileEntity(pos);
         tile2.readFromNBT(data); //Copy over the data as we change the state
-        PacketHandler.sendRefreshPacket(tile2);
+        MCServerHelper.markTileForUpdate(tile2);
     }
 
     @SuppressWarnings("unchecked")

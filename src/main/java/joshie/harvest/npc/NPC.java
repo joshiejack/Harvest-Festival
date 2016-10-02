@@ -4,23 +4,23 @@ import joshie.harvest.api.buildings.Building;
 import joshie.harvest.api.buildings.BuildingLocation;
 import joshie.harvest.api.calendar.CalendarDate;
 import joshie.harvest.api.calendar.Season;
-import joshie.harvest.api.npc.IConditionalGreeting;
-import joshie.harvest.api.npc.INPC;
-import joshie.harvest.api.npc.INPCRegistry;
+import joshie.harvest.api.npc.*;
 import joshie.harvest.api.npc.INPCRegistry.Age;
 import joshie.harvest.api.npc.INPCRegistry.Gender;
-import joshie.harvest.api.npc.ISchedule;
 import joshie.harvest.api.npc.gift.IGiftHandler;
 import joshie.harvest.api.npc.gift.IGiftHandler.Quality;
 import joshie.harvest.api.shops.IShop;
 import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.core.util.Text;
-import joshie.harvest.npc.greeting.GreetingMultiple;
+import joshie.harvest.npc.entity.EntityNPC;
+import joshie.harvest.npc.greeting.GreetingShop;
+import joshie.harvest.npc.item.ItemNPCTool.NPCTool;
 import joshie.harvest.shops.Shop;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.common.registry.IForgeRegistryEntry;
 import org.apache.commons.lang3.text.WordUtils;
 
 import java.util.*;
@@ -29,10 +29,10 @@ import static joshie.harvest.api.npc.INPCRegistry.Age.ADULT;
 import static joshie.harvest.api.npc.INPCRegistry.Age.CHILD;
 import static joshie.harvest.core.lib.HFModInfo.*;
 
-public class NPC extends net.minecraftforge.fml.common.registry.IForgeRegistryEntry.Impl<NPC> implements INPC {
+public class NPC extends IForgeRegistryEntry.Impl<NPC> implements INPC {
     private final List<IConditionalGreeting> conditionals = new ArrayList<>(256);
     private final EnumMap<Location, BuildingLocation> locations;
-    private final GreetingMultiple npcGreetings;
+    private final String multipleLocalizationKey;
     private final String generalLocalizationKey;
     private final String localizationKey;
     private final ResourceLocation skin;
@@ -52,6 +52,8 @@ public class NPC extends net.minecraftforge.fml.common.registry.IForgeRegistryEn
     private Shop shop;
     private boolean doesRespawn;
     private boolean alex;
+    private IGreeting infoGreeting;
+    private ItemStack hasInfo;
 
     public NPC() {
         this(new ResourceLocation(MODID, "null"), INPCRegistry.Gender.MALE, INPCRegistry.Age.ADULT, new CalendarDate(1, Season.SPRING, 1), 0, 0);
@@ -65,12 +67,13 @@ public class NPC extends net.minecraftforge.fml.common.registry.IForgeRegistryEn
         this.height = 1F;
         this.birthday = birthday;
         this.doesRespawn = true;
+        this.hasInfo = null;
         this.insideColor = insideColor;
         this.outsideColor = outsideColor;
         this.localizationKey = MODID + ".npc." + name + ".";
         this.generalLocalizationKey = MODID + ".npc.generic." + age.name().toLowerCase(Locale.ENGLISH) + ".";
         this.skin = new ResourceLocation(MODID, "textures/entity/" + name + ".png");
-        this.npcGreetings = new GreetingMultiple(name + ".greeting");
+        this.multipleLocalizationKey = MODID + ".npc." + name + ".greeting";
         this.locations = new EnumMap<>(Location.class);
         this.uuid = UUID.nameUUIDFromBytes(resource.toString().getBytes());
         this.setRegistryName(resource);
@@ -95,6 +98,7 @@ public class NPC extends net.minecraftforge.fml.common.registry.IForgeRegistryEn
     @Override
     public INPC setShop(IShop shop) {
         this.shop = (Shop) shop;
+        setHasInfo(HFNPCs.TOOLS.getStackFromEnum(NPCTool.CLOCK), new GreetingShop(getRegistryName()));
         return this;
     }
 
@@ -131,6 +135,13 @@ public class NPC extends net.minecraftforge.fml.common.registry.IForgeRegistryEn
     @Override
     public INPC addGreeting(IConditionalGreeting greeting) {
         this.conditionals.add(greeting);
+        return this;
+    }
+
+    @Override
+    public INPC setHasInfo(ItemStack stack, IGreeting infoGreeting) {
+        this.hasInfo =stack;
+        this.infoGreeting = infoGreeting;
         return this;
     }
 
@@ -207,6 +218,12 @@ public class NPC extends net.minecraftforge.fml.common.registry.IForgeRegistryEn
         return Text.localize(getRegistryName().getResourceDomain() + ".npc." + getRegistryName().getResourcePath() + ".name");
     }
 
+    @SuppressWarnings("unchecked")
+    public String getInfoGreeting(EntityPlayer player, EntityNPC npc) {
+        if (infoGreeting == null) return null;
+        return infoGreeting.getLocalizedText(player, npc, npc.getNPC());
+    }
+
     public ResourceLocation getSkin() {
         return skin;
     }
@@ -223,17 +240,22 @@ public class NPC extends net.minecraftforge.fml.common.registry.IForgeRegistryEn
         return generalLocalizationKey;
     }
 
+    @Override
+    public ResourceLocation getResource() {
+        return getRegistryName();
+    }
+
     //Returns the script that this character should say at this point
+    @SuppressWarnings("unchecked")
     public String getGreeting(EntityPlayer player, EntityAgeable entity) {
         Collections.shuffle(conditionals);
         for (IConditionalGreeting greeting : conditionals) {
             if (greeting.canDisplay(player, entity, this) && player.worldObj.rand.nextDouble() * 100D < greeting.getDisplayChance()) {
-                if (greeting.getMaximumAlternatives() > 1) return Text.getRandomSpeech(player, entity, this, greeting, getRegistryName(), greeting.getUnlocalizedText(player, entity, this), greeting.getMaximumAlternatives());
-                else return greeting.getLocalizedText(player, entity, this, greeting.getUnlocalizedText(player, entity, this));
+                return greeting.getLocalizedText(player, entity, this);
             }
         }
 
-        return Text.getRandomSpeech(player, entity, this, npcGreetings, getRegistryName(), npcGreetings.getUnlocalizedText(player, entity, this), npcGreetings.getMaximumAlternatives());
+        return Text.getRandomSpeech(this, multipleLocalizationKey, 100);
     }
 
     @Override
@@ -241,6 +263,10 @@ public class NPC extends net.minecraftforge.fml.common.registry.IForgeRegistryEn
         if (gifts == null) return Quality.DECENT; //Always dislike burnt food
         if (stack.getItem() == HFCooking.MEAL && !stack.hasTagCompound()) return Quality.DISLIKE;
         return gifts.getQuality(stack);
+    }
+
+    public ItemStack hasInfo() {
+        return hasInfo;
     }
 
     public ISchedule getScheduler() {

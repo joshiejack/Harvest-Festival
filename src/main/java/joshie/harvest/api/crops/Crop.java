@@ -46,9 +46,10 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements IShippable {
     private int witheredColor;
     private int doubleStage;
     private int minCut;
+    private boolean skipRender;
 
     private Crop() {
-        this(new ResourceLocation("harvestfestival", "null_crop"), 0, 0, 3, 0);
+        this(new ResourceLocation("harvestfestival", "null_crop"), 0, 0, 3, 0xFFFFFF);
     }
 
     /**
@@ -79,6 +80,7 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements IShippable {
         this.dropHandler = null;
         this.growsToSide = null;
         this.type = EnumPlantType.Crop;
+        this.skipRender = false;
         this.setRegistryName(key);
         REGISTRY.register(this);
     }
@@ -130,9 +132,14 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements IShippable {
 
     /**
      * Make this crop require a sickle to be harvested
-     **/
-    public Crop setRequiresSickle() {
+     * Sets the minimum cut
+     * Used when a crop requires the sickle,
+     *  The crop will only be destroyable/harvestable
+     *  if it's below this stage
+     */
+    public Crop setRequiresSickle(int minCut) {
         this.requiresSickle = true;
+        this.minCut = minCut;
         return this;
     }
 
@@ -221,21 +228,20 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements IShippable {
         return this;
     }
 
-    /** Sets the minimum cut
-     * Used when a crop requires the sickle,
-     *  The crop will only be destroyable/harvestable
-     *  if it's below this stage
-     */
-    public Crop setMinimumCut(int cut) {
-        this.minCut = cut;
-        return this;
-    }
-
     /** Set the colour for this crop
      *  to render as when withered */
 
     public Crop setWitheredColor(int color) {
         this.witheredColor = color;
+        return this;
+    }
+
+    /**
+     * This crop doesn't need to load it's renders,
+     * It's blocks will be tinted as well
+     **/
+    public Crop setSkipRender() {
+        this.skipRender = true;
         return this;
     }
 
@@ -416,9 +422,11 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements IShippable {
      *  This crop as a stack
      **/
     public ItemStack getCropStack(int amount) {
-        ItemStack copy = item.copy();
-        copy.stackSize = amount;
-        return copy;
+        if (item != null) {
+            ItemStack copy = item.copy();
+            copy.stackSize = amount;
+            return item.copy();
+        } else return HFApi.crops.getCropStack(this, amount);
     }
 
     /**
@@ -447,6 +455,11 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements IShippable {
      **/
     public EnumPlantType getPlantType() {
         return type;
+    }
+
+    /** Whether to skip the render loading of this crop **/
+    public boolean skipLoadingRender() {
+        return skipRender;
     }
 
     /**

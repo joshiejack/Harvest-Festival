@@ -17,12 +17,13 @@ import joshie.harvest.crops.CropHelper;
 import joshie.harvest.crops.HFCrops;
 import joshie.harvest.crops.block.BlockHFCrops.CropType;
 import joshie.harvest.crops.tile.TileCrop;
-import joshie.harvest.crops.tile.TileCrop.TileWithered;
+import joshie.harvest.crops.tile.TileWithered;
 import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.particle.ParticleManager;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -52,20 +53,18 @@ import java.util.Random;
 
 import static joshie.harvest.api.crops.IStateHandler.PlantSection.BOTTOM;
 import static joshie.harvest.api.crops.IStateHandler.PlantSection.TOP;
-import static joshie.harvest.core.network.PacketHandler.sendRefreshPacket;
+import static joshie.harvest.core.helpers.MCServerHelper.markTileForUpdate;
 import static joshie.harvest.crops.CropHelper.WET_SOIL;
 import static joshie.harvest.crops.CropHelper.harvestCrop;
 import static joshie.harvest.crops.block.BlockHFCrops.CropType.*;
 
 public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements IPlantable, IGrowable, IAnimalFeeder {
        public enum CropType implements IStringSerializable {
-        FRESH(false, BOTTOM), WITHERED(false, BOTTOM), FRESH_DOUBLE(false, TOP), WITHERED_DOUBLE(true, TOP);
+        FRESH(BOTTOM), WITHERED(BOTTOM), FRESH_DOUBLE(TOP), WITHERED_DOUBLE(TOP);
 
-        private final boolean isWithered;
         private final PlantSection section;
 
-        CropType(boolean isWithered, PlantSection section) {
-            this.isWithered = isWithered;
+        CropType(PlantSection section) {
             this.section = section;
         }
 
@@ -75,7 +74,7 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
         }
 
         public boolean isWithered() {
-            return isWithered;
+            return this == WITHERED || this == WITHERED_DOUBLE;
         }
 
         public PlantSection getSection() {
@@ -214,7 +213,6 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
             return super.removedByPlayer(state, world, pos, player, willHarvest);
         }
 
-
         Crop crop = data.getCrop();
         int originalStage = data.getStage();
         boolean isSickle = player.getHeldItemMainhand() != null && player.getHeldItemMainhand().getItem() instanceof IBreakCrops;
@@ -222,6 +220,10 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
             if (section == BOTTOM) {
                 harvestCrop(player, world, pos);
             } else harvestCrop(player, world, pos.down());
+        }
+
+        if (crop.isCurrentlyDouble(data.getStage())) {
+            if (section == PlantSection.BOTTOM) CropHelper.onBottomBroken(pos.up(), getActualState(world.getBlockState(pos.up()), world, pos.up()));
         }
 
         if (isSickle && crop.getMinimumCut() != 0 && crop.requiresSickle() && originalStage >= crop.getMinimumCut()) {
@@ -272,7 +274,6 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
     @Override
     public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
         if (getEnumFromState(state) == CropType.WITHERED) return new ItemStack(Blocks.DEADBUSH); //It's Dead soo???
-
         CropData data = CropHelper.getCropDataAt(world, pos);
         return HFCrops.SEEDS.getStackFromCrop(data.getCrop());
     }
@@ -281,11 +282,7 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
     @Override
     public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos) {
         CropType stage = getEnumFromState(state);
-        if (stage.getSection() == TOP) {
-            return CropHelper.getBlockState(world, pos.down(), stage.getSection(), stage.isWithered());
-        } else  {
-            return CropHelper.getBlockState(world, pos, stage.getSection(), stage.isWithered());
-        }
+        return CropHelper.getBlockState(world, pos, stage.getSection(), stage.isWithered());
     }
 
     public static class RainingSoil {
@@ -365,7 +362,7 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
     }
 
     public boolean canGrow(World world, BlockPos pos, IBlockState state) {
-        TileCrop crop = getEnumFromState(state).section == TOP ? (TileCrop) world.getTileEntity(pos.down()): (TileCrop) world.getTileEntity(pos);
+        TileWithered crop = getEnumFromState(state).section == TOP ? (TileWithered) world.getTileEntity(pos.down()): (TileWithered) world.getTileEntity(pos);
         return crop.getData().getStage() < crop.getData().getCrop().getStages();
     }
 
@@ -380,10 +377,10 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
     //Apply the bonemeal and grow!
     @Override
     public void grow(World world, Random rand, BlockPos pos, IBlockState state) {
-        TileCrop crop = getEnumFromState(state).section == TOP ? (TileCrop) world.getTileEntity(pos.down()): (TileCrop) world.getTileEntity(pos);
+        TileWithered crop = getEnumFromState(state).section == TOP ? (TileWithered) world.getTileEntity(pos.down()): (TileWithered) world.getTileEntity(pos);
         crop.getData().grow(world, pos);
         crop.saveAndRefresh();
-        sendRefreshPacket(crop);
+        markTileForUpdate(crop);
     }
 
     @Override
@@ -410,12 +407,18 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
 
     @Override
     public TileEntity createTileEntity(World world, IBlockState state) {
-        return getEnumFromState(state).isWithered() ? new TileWithered() : new TileCrop();
+        return !getEnumFromState(state).isWithered() ? new TileCrop() : new TileWithered();
     }
 
     @Override
     public ItemBlockHF getItemBlock() {
         return null;
+    }
+
+    @SideOnly(Side.CLIENT)
+    @Override
+    public boolean addHitEffects(IBlockState state, World worldObj, RayTraceResult target, ParticleManager manager) {
+        return true;
     }
 
     @Override

@@ -8,6 +8,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
+import java.util.List;
 
 public interface ICropRegistry {
     /** Alternative if you don't want to implement ICropProvider **/
@@ -20,6 +21,9 @@ public interface ICropRegistry {
 
     /** Returns the crop as seeds **/
     ItemStack getSeedStack(Crop crop, int amount);
+
+    /** Returns the crop as a stack **/
+    ItemStack getCropStack(Crop crop, int amount);
 
     /** Fetch the crop at this location, will return null if there is no crop there
      *  @param world the world
@@ -42,7 +46,7 @@ public interface ICropRegistry {
      * @param world the world object
      * @param pos the crop position
      * @return the result of harvesting this crop */
-    ItemStack harvestCrop(@Nullable EntityPlayer player, World world, BlockPos pos);
+    List<ItemStack> harvestCrop(@Nullable EntityPlayer player, World world, BlockPos pos);
 
     /** Call this on blocks of soil to hydrate the soil, and the plant. Make sure you pass in the position of the soil
      * @param player  the player making the soil wet, can be null

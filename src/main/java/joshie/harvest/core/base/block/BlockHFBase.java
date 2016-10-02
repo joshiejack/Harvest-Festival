@@ -51,8 +51,13 @@ public abstract class BlockHFBase<B extends BlockHFBase> extends Block {
     @SuppressWarnings("unchecked")
     @Override
     public B setBlockUnbreakable() {
-        super.setBlockUnbreakable();
-        return (B) this;
+        return (B) super.setBlockUnbreakable();
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public B setHardness(float hardness) {
+        return (B) super.setHardness(hardness);
     }
 
     @Override

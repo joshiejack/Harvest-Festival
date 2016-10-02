@@ -1,12 +1,31 @@
+##0.5.6
+* Save the mine portal locations to the dimension, not level.dat
+* Fixed vanilla crops not changing colours when dying
+* Fixed inconsistent result of capability handler
+* Fixed gifting your last item leaving a ghost stack of size 0
+* Fixed decorative dirt breaking instantly
+* Fixed the command /hf returning empty line
+
+##0.5.5
+* Fixed too much winter fog showing up underground
+* Fixed how two tall crops render when breaking the bottom block
+* Fixed formatting errors causing crashes
+* Properly fixed not being able to skip the intro quest
+* Make entities avoid water if possible
+* Added Support for IE Hemp as a test
+
 ##0.5.4
 * Added config option for giving the cheat buildings instead of blueprints
 * Added a hardy turnip crop, that takes three days to grow and can grow in any season (Only available in the tutorial)
 * Added tooltip to animal spawners
 * Added days to grow tooltip to seeds
 * Added command to dump list of shops for CraftTweaker purposes (/hf shops)
-* Add command that makes all recipes learnt/unlearnt
+* Added command that makes all recipes learnt/unlearnt
 * Added signs to buildings that display the shops opening times
-* Add sounds when builder places blocks
+* Added buttons to the npcs chat, that allow you to ask for opening hours, or to gift them.
+* Added sounds when builder places blocks
+* Added simplified chinese localisation (credit to Neko)
+* Added command for setting a tools level (/hf tool [player] <level>)
 * Change the colour of leaves/grass for all seasons
 * Reverse the logic for crops being shippable. This may make existing crops unsellable.
 * Jade will trade shears for sickles, along with the buckets/hoes up until you get the blacksmith
@@ -22,13 +41,15 @@
 * Made buildings ungiftable
 * Clicking doors, gates, trapdoors, buttons or levers won't drop chickens
 * Yulif will now tell the player what he is building
+* Will no longer create a yulif when spawning in npcs
+* Hide [BuildingGen] items unless debug mode is on
+* Removed tools with 100% from creative
 * Fixed the goddess flower never despawning if dropped on land
 * Fixed you not being able to skip the carpenter quest
 * Fixed pumpkin/melon renders
 * Fixed grass only giving one fodder
 * Fixed grass being destroyed when cut
 * Fixed grass being purple when it dies
-* Fixed chicken eggs flying off like mad
 * Fixed potential crashes when a block tries to get my crops state
 * Fixed that a few achievements required itself to be unlocked
 * Fixed nests always producing small eggs for loved chickens
@@ -43,6 +64,7 @@
 * Fixed first- and third person render of rocks/branches
 * Fixed missing localisations for proposals
 * Fixed that indoor farmland was being set to wet on a rainy day
+* Fixed /hf time being able to set the worlds time to negative
 
 ##0.5.3
 * Jade will now swap hoes/buckets for hoes/watering cans from after the tutorial until you complete the blacksmith tutorial

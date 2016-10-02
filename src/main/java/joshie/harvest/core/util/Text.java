@@ -49,7 +49,7 @@ public class Text {
         } catch (Exception e) {}
 
         int random = 1 + (maximum >= 2? rand.nextInt(maximum): 0);
-        return format(text + random, data);
+        return data.length > 0 ?  format(text + random, data) : localize(text + random);
     }
 
     @SuppressWarnings("deprecation")

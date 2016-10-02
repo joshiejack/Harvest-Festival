@@ -705,6 +705,7 @@ harvestfestival.npc.abi.greeting15=My parents told me not to talk to strangers..
 
 #Tiberius/WayofTime
 harvestfestival.npc.tiberius.time=Looks like you've been in this town for %s years.
+harvestfestival.npc.tiberius.first=This is your first year in the town! Why do you even need to ask.
 harvestfestival.npc.tiberius.greeting1=Time is a fascinating thing, one second it's going slow then the next hour it's passing by faster than light!
 harvestfestival.npc.tiberius.greeting2=When I was a child my favourite nursery rhyme was hickory dickory dock.
 harvestfestival.npc.tiberius.greeting3=What time is it?

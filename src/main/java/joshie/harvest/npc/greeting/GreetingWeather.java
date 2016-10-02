@@ -17,6 +17,6 @@ public class GreetingWeather implements IGreeting {
     @SideOnly(Side.CLIENT)
     public String getLocalizedText(EntityPlayer player, EntityAgeable entity, INPC npc) {
         String weather = HFTrackers.<CalendarClient>getCalendar(player.worldObj).getTomorrowsWeather().name().toLowerCase(Locale.ENGLISH);
-        return Text.getRandomSpeech(npc, "harvesfestival.npc.goddess.weather." + weather, 32);
+        return Text.getRandomSpeech(npc, "harvestfestival.npc.goddess.weather." + weather, 32);
     }
 }

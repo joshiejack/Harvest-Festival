@@ -14,6 +14,7 @@ public class GreetingTime implements IGreeting {
     @SuppressWarnings("deprecation")
     public String getLocalizedText(EntityPlayer player, EntityAgeable ageable, INPC npc) {
         int years = CalendarHelper.getYearsPassed(HFTrackers.getClientPlayerTracker().getStats().getBirthday(), HFTrackers.getCalendar(MCClientHelper.getWorld()).getDate());
+        if (years <= 0) return I18n.translateToLocal("harvestfestival.npc.tiberius.first");
         return I18n.translateToLocalFormatted("harvestfestival.npc.tiberius.time", years);
     }
 }

@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Map;
 
 @HFEvents
-public class CommandManager extends CommandBase implements ICommand {
+public class CommandManager extends CommandBase {
     public static final CommandManager INSTANCE = new CommandManager();
     private final HashMap<String, AbstractHFCommand> commands = new HashMap<>();
 
@@ -92,7 +92,7 @@ public class CommandManager extends CommandBase implements ICommand {
     }
 
     //Attempt to process the command, throw wrong usage otherwise
-    private void processCommand(CommandEvent event, AbstractHFCommand command) throws CommandException, CommandNotFoundException, NumberInvalidException {
+    private void processCommand(CommandEvent event, AbstractHFCommand command) throws CommandException {
         String[] args = new String[event.getParameters().length - 1];
         System.arraycopy(event.getParameters(), 1, args, 0, args.length);
         if (!command.execute(FMLCommonHandler.instance().getMinecraftServerInstance(), event.getSender(), args)) {

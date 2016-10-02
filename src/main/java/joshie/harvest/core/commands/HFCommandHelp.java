@@ -77,6 +77,6 @@ public class HFCommandHelp extends AbstractHFCommand {
 
     @Override
     public String getUsage() {
-        return "";
+        return "/hf help";
     }
 }

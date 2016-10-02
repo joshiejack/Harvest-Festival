@@ -3,6 +3,7 @@
 * Fixed inconsistent result of capability handler
 * Fixed gifting your last item leaving a ghost stack of size 0
 * Fixed decorative dirt breaking instantly
+* Fixed the command /hf returning empty line
 
 ##0.5.5
 * Fixed too much winter fog showing up underground

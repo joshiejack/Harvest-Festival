@@ -109,7 +109,7 @@ public class HFNPCs {
     }
 
     public static void init() {
-        GODDESS.setLocation(HOME, GODDESS_POND, GODDESS_HOME).setHasInfo(TOOLS.getStackFromEnum(NPCTool.WEATHER), new GreetingWeather("goddess.weather"));
+        GODDESS.setLocation(HOME, GODDESS_POND, GODDESS_HOME).setHasInfo(TOOLS.getStackFromEnum(NPCTool.WEATHER), new GreetingWeather());
         ANIMAL_OWNER.setLocation(HOME, BARN, JIM_HOME).setLocation(WORK, BARN, JIM_HOME);
         CAFE_OWNER.setLocation(HOME, CAFE, LIARA_HOME).setLocation(WORK, CAFE, CAFE_TILL);
         SEED_OWNER.setLocation(HOME, CARPENTER, JADE_HOME).setLocation(WORK, CARPENTER, JADE_HOME);
@@ -128,7 +128,7 @@ public class HFNPCs {
         MILKMAID.setLocation(HOME, SUPERMARKET, CANDICE_HOME).setLocation(WORK, BARN, BARN_LEFT);
         POULTRY.setLocation(HOME, POULTRY_FARM, ASHLEE_HOME).setLocation(WORK, POULTRY_FARM, ASHLEE_HOME);
         TRADER.setLocation(HOME, TOWNHALL, TOWNHALL_RIGHT_WING).setLocation(WORK, SUPERMARKET, GIRAFI_HOME);
-        CLOCK_WORKER.setHasInfo(TOOLS.getStackFromEnum(NPCTool.CALENDAR), new GreetingTime("tiberius.time"));
+        CLOCK_WORKER.setHasInfo(TOOLS.getStackFromEnum(NPCTool.CALENDAR), new GreetingTime());
     }
 
     @SuppressWarnings("deprecation")

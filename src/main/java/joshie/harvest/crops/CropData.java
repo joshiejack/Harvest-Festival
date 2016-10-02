@@ -21,6 +21,7 @@ public class CropData {
     private int stage = 1; //The stage it is currently at
     private int daysWithoutWater; //The number of days this crop has gone without water
     private boolean safe;
+    private boolean isDead;
 
     public CropData setCrop(Crop crop, int stage) {
         this.crop = crop;
@@ -31,7 +32,8 @@ public class CropData {
     //Returns false if the crop was withered
     public boolean newDay(World world, BlockPos pos) {
         //Stage 1, Check how long the plant has been without water, If it's more than 2 days kill it
-        if (crop == null || (crop.requiresWater() && daysWithoutWater > 2) || !crop.getGrowthHandler().canGrow(world, pos, crop)) {
+        if (isDead || crop == null || (crop.requiresWater() && daysWithoutWater > 2) || !crop.getGrowthHandler().canGrow(world, pos, crop)) {
+            isDead = true;
             return false;
         } else { //Stage 2: Now that we know, it has been watered, Update it's stage
             //If we aren't ticking randomly, Then increase the stage
@@ -138,6 +140,7 @@ public class CropData {
 
     public void readFromNBT(NBTTagCompound nbt) {
         if (nbt.hasKey("CropResource")) {
+            isDead = nbt.getBoolean("IsDead");
             crop = Crop.REGISTRY.getValue(new ResourceLocation(nbt.getString("CropResource")));
             stage = nbt.getByte("CurrentStage");
             daysWithoutWater = nbt.getShort("DaysWithoutWater");
@@ -148,6 +151,7 @@ public class CropData {
 
     public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
         if (crop != null) {
+            nbt.setBoolean("IsDead", true);
             nbt.setString("CropResource", crop.getRegistryName().toString());
             nbt.setByte("CurrentStage", (byte) stage);
             nbt.setShort("DaysWithoutWater", (short) daysWithoutWater);

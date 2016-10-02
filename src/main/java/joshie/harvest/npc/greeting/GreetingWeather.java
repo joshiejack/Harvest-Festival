@@ -1,30 +1,22 @@
 package joshie.harvest.npc.greeting;
 
+import joshie.harvest.api.npc.IGreeting;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.calendar.CalendarClient;
 import joshie.harvest.core.handlers.HFTrackers;
+import joshie.harvest.core.util.Text;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.Locale;
 
-public class GreetingWeather extends GreetingSingle {
-    public GreetingWeather(String text) {
-        super(text);
-    }
-
-    @Override
-    @SuppressWarnings("deprecation")
-    public String getLocalizedText(EntityPlayer player, EntityAgeable ageable, INPC npc, String text) {
-        return getLocalized(HFTrackers.<CalendarClient>getCalendar(player.worldObj).getTomorrowsWeather().name().toLowerCase(Locale.ENGLISH) + (player.worldObj.rand.nextInt(3) + 1));
-    }
-
+public class GreetingWeather implements IGreeting {
     @SuppressWarnings("deprecation")
     @SideOnly(Side.CLIENT)
-    public String getLocalized(String text) {
-        return I18n.translateToLocal(getUnlocalizedText(null, null, null) + "." + text);
+    public String getLocalizedText(EntityPlayer player, EntityAgeable entity, INPC npc) {
+        String weather = HFTrackers.<CalendarClient>getCalendar(player.worldObj).getTomorrowsWeather().name().toLowerCase(Locale.ENGLISH);
+        return Text.getRandomSpeech(npc, "harvesfestival.npc.goddess.weather." + weather, 32);
     }
 }

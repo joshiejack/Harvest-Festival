@@ -18,7 +18,7 @@ public abstract class StateHandlerVanilla implements IStateHandler {
 
     @Override
     public ImmutableList<IBlockState> getValidStates() {
-        return null;
+        return block.getBlockState().getValidStates();
     }
 
     @Override

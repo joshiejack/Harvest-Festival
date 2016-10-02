@@ -49,7 +49,7 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements IShippable {
     private boolean skipRender;
 
     private Crop() {
-        this(new ResourceLocation("harvestfestival", "null_crop"), 0, 0, 3, 0);
+        this(new ResourceLocation("harvestfestival", "null_crop"), 0, 0, 3, 0xFFFFFF);
     }
 
     /**
@@ -237,7 +237,8 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements IShippable {
     }
 
     /**
-     * Make this crop need zero water to grow
+     * This crop doesn't need to load it's renders,
+     * It's blocks will be tinted as well
      **/
     public Crop setSkipRender() {
         this.skipRender = true;

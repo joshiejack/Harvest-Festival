@@ -1,5 +1,6 @@
 package joshie.harvest.core.helpers;
 
+import joshie.harvest.core.base.tile.TileHarvest;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -24,5 +25,9 @@ public class MCServerHelper {
 
     public static void markForUpdate(World world, BlockPos pos, int value) {
         markForUpdate(world, pos, world.getBlockState(pos), value);
+    }
+
+    public static void markTileForUpdate(TileHarvest tile) {
+        markForUpdate(tile.getWorld(), tile.getPos());
     }
 }

@@ -94,7 +94,7 @@ public class Shop implements IShop {
     }
 
     public String getWelcome(EntityPlayer player, EntityNPC npc) {
-        return Text.getRandomSpeech(player, npc, npc.getNPC(), null, resourceLocation, unlocalizedName + ".greeting", 10);
+        return Text.getRandomSpeech(npc.getNPC(), unlocalizedName + ".greeting", 100);
     }
 
     public List<IPurchasable> getContents(@Nonnull EntityPlayer player) {

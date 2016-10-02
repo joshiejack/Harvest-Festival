@@ -2,19 +2,14 @@ package joshie.harvest.core.util;
 
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
-import joshie.harvest.api.npc.IConditionalGreeting;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.npc.NPC;
 import joshie.harvest.npc.entity.EntityNPC;
-import net.minecraft.entity.EntityAgeable;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.translation.I18n;
 import org.apache.commons.lang3.tuple.Triple;
 
-import javax.annotation.Nullable;
 import java.util.Random;
-import java.util.concurrent.Callable;
 
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 
@@ -39,25 +34,22 @@ public class Text {
         return "en_US";
     }
 
-    public static String getRandomSpeech(EntityPlayer player, EntityAgeable ageable, INPC npc, @Nullable IConditionalGreeting greeting, final ResourceLocation resource, final String text, final int maximumAlternatives) {
+    public static String getRandomSpeech(INPC npc, final String text, final int maximumAlternatives, Object... data) {
         int maximum = 1;
         try {
-            final Triple<String, String, ResourceLocation> key = Triple.of(getLang(), text, resource);
-            maximum = TRANSLATION_CACHE.get(key, new Callable<Integer>() {
-                @Override
-                public Integer call() throws Exception {
-                    int i;
-                    for (i = 1; i <= maximumAlternatives; i++) {
-                        if (!canTranslate(text + i)) break;
-                    }
-
-                    return i - 1;
+            final Triple<String, String, ResourceLocation> key = Triple.of(getLang(), text, npc.getResource());
+            maximum = TRANSLATION_CACHE.get(key, () -> {
+                int i;
+                for (i = 1; i <= maximumAlternatives; i++) {
+                    if (!canTranslate(text + i)) break;
                 }
+
+                return i - 1;
             });
         } catch (Exception e) {}
 
         int random = 1 + (maximum >= 2? rand.nextInt(maximum): 0);
-        return greeting == null ? localize(text + random): greeting.getLocalizedText(player, ageable, npc, text + random);
+        return format(text + random, data);
     }
 
     @SuppressWarnings("deprecation")

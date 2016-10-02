@@ -77,6 +77,7 @@ harvestfestival.crop.seeds=Seeds
 harvestfestival.crop.seeds.days=days
 harvestfestival.crop.seeds.useless=Bloody Useless Seeds
 harvestfestival.crop.seeds.corrupted=Corrupted Seeds, Yo!
+harvestfestival.crop.null.crop=Any
 harvestfestival.crop.beetroot=Beetroot
 harvestfestival.crop.cabbage=Cabbage
 harvestfestival.crop.carrot=Carrot

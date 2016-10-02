@@ -28,14 +28,13 @@ public class ImmersiveEngineering {
     public static final ItemStack hemp_seeds = null;
 
     public static void preInit() {
-        STATE_HANDLER = new StateHandlerHemp();
+        STATE_HANDLER = new StateHandlerHemp(Block.REGISTRY.getObject(new ResourceLocation("immersiveengineering", "hemp")));
         HEMP = new Crop(new ResourceLocation(MODID, "hemp"), 1000L, 1L, 15, 0xB57449, SPRING, SUMMER, AUTUMN).setStateHandler(STATE_HANDLER).setSkipRender()
                 .setAnimalFoodType(null).setRequiresSickle(15).setGrowthHandler(new HempGrowthHandler()).setBecomesDouble(15).setRegrowStage(1);
     }
 
     @SuppressWarnings("ConstantConditions")
     public static void init() {
-        STATE_HANDLER.setBlock(Block.REGISTRY.getObject(new ResourceLocation("immersiveengineering", "hemp")));
         HEMP.setDropHandler(new DropHandlerHemp(hemp.getItem())).setItem(hemp);
         DisableVanillaSeeds.BLACKLIST.register(hemp_seeds);
         SqueezerRecipe.addRecipe(FluidRegistry.getFluidStack("plantoil", 750), new ItemStack(Blocks.WOOL), HFCrops.SEEDS, 6400);

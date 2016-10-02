@@ -19,7 +19,7 @@ public class CropStateMapper extends StateMapperBase {
 
         for (Crop crop : Crop.REGISTRY.getValues()) {
             if (crop == Crop.NULL_CROP) continue;
-            if (crop.getStateHandler().getValidStates() == null) continue;
+            if (crop.skipLoadingRender()) continue;
             for (IBlockState state : crop.getStateHandler().getValidStates()) {
                 mapStateModelLocations.put(state, getCropResourceLocation(crop, state));
             }

@@ -13,7 +13,7 @@ import net.minecraft.nbt.NBTTagCompound;
 
 import java.util.UUID;
 
-import static joshie.harvest.core.network.PacketHandler.sendRefreshPacket;
+import static joshie.harvest.core.helpers.MCServerHelper.markTileForUpdate;
 
 public class TileIncubator extends TileFillableSizedFaceable {
     private static final int MAX_FILL = 7;
@@ -63,7 +63,7 @@ public class TileIncubator extends TileFillableSizedFaceable {
                     }
                 }
 
-                sendRefreshPacket(this);
+                markTileForUpdate(this);
                 markDirty();
             }
         }

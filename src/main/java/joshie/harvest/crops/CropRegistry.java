@@ -7,7 +7,7 @@ import joshie.harvest.api.crops.IStateHandler.PlantSection;
 import joshie.harvest.core.util.HFApiImplementation;
 import joshie.harvest.core.util.holder.ItemStackHolder;
 import joshie.harvest.crops.block.BlockHFCrops;
-import joshie.harvest.crops.tile.TileCrop;
+import joshie.harvest.crops.tile.TileWithered;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
@@ -85,8 +85,8 @@ public class CropRegistry implements ICropRegistry {
     public Crop getCropAtLocation(World world, BlockPos pos) {
         PlantSection section = BlockHFCrops.getSection(world.getBlockState(pos));
         if (section == null) return null;
-        if (section == PlantSection.BOTTOM) return ((TileCrop)world.getTileEntity(pos)).getData().getCrop();
-        else if (section == PlantSection.TOP) return ((TileCrop)world.getTileEntity(pos.down())).getData().getCrop();
+        if (section == PlantSection.BOTTOM) return ((TileWithered)world.getTileEntity(pos)).getData().getCrop();
+        else if (section == PlantSection.TOP) return ((TileWithered)world.getTileEntity(pos.down())).getData().getCrop();
         else return null;
     }
 
@@ -98,14 +98,14 @@ public class CropRegistry implements ICropRegistry {
         }
 
 
-        TileCrop tile = (TileCrop) world.getTileEntity(pos);
+        TileWithered tile = (TileWithered) world.getTileEntity(pos);
         tile.getData().setCrop(theCrop, stage);
         tile.saveAndRefresh();
     }
 
     @Override
     public List<ItemStack> harvestCrop(@Nullable EntityPlayer player, World world, BlockPos pos) {
-        TileCrop tile = world.getTileEntity(pos) instanceof TileCrop ? (TileCrop) world.getTileEntity(pos) : null;
+        TileWithered tile = world.getTileEntity(pos) instanceof TileWithered ? (TileWithered) world.getTileEntity(pos) : null;
         if (tile != null) {
             CropData data = tile.getData();
             List<ItemStack> harvest = data.harvest(player, true);

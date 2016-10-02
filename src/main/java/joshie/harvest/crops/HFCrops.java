@@ -20,11 +20,14 @@ import joshie.harvest.crops.handlers.growth.GrowthHandlerNether;
 import joshie.harvest.crops.handlers.state.*;
 import joshie.harvest.crops.item.ItemCrop;
 import joshie.harvest.crops.item.ItemHFSeeds;
-import joshie.harvest.crops.tile.TileCrop;
-import joshie.harvest.crops.tile.TileCrop.TileWithered;
+import joshie.harvest.crops.tile.TileWithered;
 import joshie.harvest.crops.tile.TileSprinkler;
+import joshie.harvest.crops.tile.TileCrop;
 import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.color.BlockColors;
+import net.minecraft.client.renderer.color.IBlockColor;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -109,14 +112,13 @@ public class HFCrops {
         registerVanillaCrop(Items.NETHER_WART, NETHER_WART);
         HFApi.shipping.registerSellable(new ItemStack(Items.POISONOUS_POTATO), 1L);
 
-        RegistryHelper.registerTiles(TileCrop.class, TileWithered.class, TileSprinkler.class);
+        RegistryHelper.registerTiles(TileWithered.class, TileCrop.class, TileSprinkler.class);
         if (DISABLE_VANILLA_MOISTURE) Blocks.FARMLAND.setTickRandomly(false);
     }
 
     @SideOnly(Side.CLIENT)
     public static void preInitClient() {
         ModelLoader.setCustomMeshDefinition(SEEDS, new MeshIdentical(SEEDS));
-        ModelLoader.setCustomStateMapper(CROPS, new CropStateMapper());
         ModelLoader.setCustomMeshDefinition(CROP, new FMLDefinition<Crop>(CROP, "crops", Crop.REGISTRY) {
             @Override
             public boolean shouldSkip(Crop crop) {
@@ -127,21 +129,34 @@ public class HFCrops {
 
     @SideOnly(Side.CLIENT)
     public static void initClient() {
+        ModelLoader.setCustomStateMapper(CROPS, new CropStateMapper());
         Minecraft.getMinecraft().getItemColors().registerItemColorHandler((stack, tintIndex) -> {
             Crop crop = HFCrops.SEEDS.getCropFromStack(stack);
             return crop != null ? crop.getColor() : -1;
         }, SEEDS);
 
-        Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler((state, world, pos, tintIndex) -> {
+        BlockColors colors = Minecraft.getMinecraft().getBlockColors();
+        IBlockColor coloring = (state, world, pos, tintIndex) -> {
             if (world != null && pos != null) {
-                if (BlockHFCrops.isWithered(world.getBlockState(pos))) {
-                    CropData data = CropHelper.getCropDataAt(world, pos);
-                    return data != null? data.getCrop().getWitheredColor() : 0xA64DFF;
+                IBlockState actual = world.getBlockState(pos);
+                if (actual.getBlock() == HFCrops.CROPS) {
+                    if (BlockHFCrops.isWithered(actual)) {
+                        CropData data = CropHelper.getCropDataAt(world, pos);
+                        return data != null ? data.getCrop().getWitheredColor() : 0xA64DFF;
+                    }
                 }
             }
 
             return -1;
-        }, CROPS);
+        };
+
+        //Register all the normal blocks as using the tint index
+        colors.registerBlockColorHandler(coloring, CROPS);
+        for (Crop crop : Crop.REGISTRY) {
+            if (crop != Crop.NULL_CROP && crop.skipLoadingRender()) {
+                colors.registerBlockColorHandler(coloring, crop.getStateHandler().getValidStates().get(0).getBlock());
+            }
+        }
 
         //Register the models
         FMLDefinition.getDefinition("crops").registerEverything();
@@ -177,6 +192,7 @@ public class HFCrops {
 
     private static void registerVanillaCrop(Item item, Crop crop) {
         HFApi.crops.registerCropProvider(new ItemStack(item), crop);
+        crop.setSkipRender();
         item.setCreativeTab(FARMING);
     }
 

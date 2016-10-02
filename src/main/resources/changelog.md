@@ -1,5 +1,6 @@
 ##0.5.6
 * Save the mine portal locations to the dimension, not level.dat
+* Fixed vanilla crops not changing colours when dying
 * Fixed inconsistent result of capability handler
 * Fixed gifting your last item leaving a ghost stack of size 0
 * Fixed decorative dirt breaking instantly

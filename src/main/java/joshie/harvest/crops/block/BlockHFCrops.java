@@ -16,8 +16,8 @@ import joshie.harvest.crops.CropData;
 import joshie.harvest.crops.CropHelper;
 import joshie.harvest.crops.HFCrops;
 import joshie.harvest.crops.block.BlockHFCrops.CropType;
+import joshie.harvest.crops.tile.TileWithered;
 import joshie.harvest.crops.tile.TileCrop;
-import joshie.harvest.crops.tile.TileCrop.TileWithered;
 import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.SoundType;
@@ -52,20 +52,18 @@ import java.util.Random;
 
 import static joshie.harvest.api.crops.IStateHandler.PlantSection.BOTTOM;
 import static joshie.harvest.api.crops.IStateHandler.PlantSection.TOP;
-import static joshie.harvest.core.network.PacketHandler.sendRefreshPacket;
+import static joshie.harvest.core.helpers.MCServerHelper.markTileForUpdate;
 import static joshie.harvest.crops.CropHelper.WET_SOIL;
 import static joshie.harvest.crops.CropHelper.harvestCrop;
 import static joshie.harvest.crops.block.BlockHFCrops.CropType.*;
 
 public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements IPlantable, IGrowable, IAnimalFeeder {
        public enum CropType implements IStringSerializable {
-        FRESH(false, BOTTOM), WITHERED(false, BOTTOM), FRESH_DOUBLE(false, TOP), WITHERED_DOUBLE(true, TOP);
+        FRESH(BOTTOM), WITHERED(BOTTOM), FRESH_DOUBLE(TOP), WITHERED_DOUBLE(TOP);
 
-        private final boolean isWithered;
         private final PlantSection section;
 
-        CropType(boolean isWithered, PlantSection section) {
-            this.isWithered = isWithered;
+        CropType(PlantSection section) {
             this.section = section;
         }
 
@@ -75,7 +73,7 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
         }
 
         public boolean isWithered() {
-            return isWithered;
+            return this == WITHERED || this == WITHERED_DOUBLE;
         }
 
         public PlantSection getSection() {
@@ -363,7 +361,7 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
     }
 
     public boolean canGrow(World world, BlockPos pos, IBlockState state) {
-        TileCrop crop = getEnumFromState(state).section == TOP ? (TileCrop) world.getTileEntity(pos.down()): (TileCrop) world.getTileEntity(pos);
+        TileWithered crop = getEnumFromState(state).section == TOP ? (TileWithered) world.getTileEntity(pos.down()): (TileWithered) world.getTileEntity(pos);
         return crop.getData().getStage() < crop.getData().getCrop().getStages();
     }
 
@@ -378,10 +376,10 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
     //Apply the bonemeal and grow!
     @Override
     public void grow(World world, Random rand, BlockPos pos, IBlockState state) {
-        TileCrop crop = getEnumFromState(state).section == TOP ? (TileCrop) world.getTileEntity(pos.down()): (TileCrop) world.getTileEntity(pos);
+        TileWithered crop = getEnumFromState(state).section == TOP ? (TileWithered) world.getTileEntity(pos.down()): (TileWithered) world.getTileEntity(pos);
         crop.getData().grow(world, pos);
         crop.saveAndRefresh();
-        sendRefreshPacket(crop);
+        markTileForUpdate(crop);
     }
 
     @Override
@@ -408,7 +406,7 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
 
     @Override
     public TileEntity createTileEntity(World world, IBlockState state) {
-        return getEnumFromState(state).isWithered() ? new TileWithered() : new TileCrop();
+        return !getEnumFromState(state).isWithered() ? new TileCrop() : new TileWithered();
     }
 
     @Override

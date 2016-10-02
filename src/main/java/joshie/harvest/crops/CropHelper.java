@@ -6,7 +6,7 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.crops.IStateHandler.PlantSection;
 import joshie.harvest.core.helpers.SpawnItemHelper;
 import joshie.harvest.crops.block.BlockHFCrops;
-import joshie.harvest.crops.tile.TileCrop;
+import joshie.harvest.crops.tile.TileWithered;
 import net.minecraft.block.BlockFarmland;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -34,7 +34,7 @@ public class CropHelper {
     }
 
     public static IBlockState getBlockState(IBlockAccess world, BlockPos pos, PlantSection section, boolean withered) {
-        TileCrop crop = getTile(world, pos, section);
+        TileWithered crop = getTile(world, pos, section);
         if (section == PlantSection.TOP && crop == null) {
             IBlockState theState = RESERVE.getIfPresent(pos);
             return theState == null ? Blocks.GRASS.getDefaultState(): theState;
@@ -49,11 +49,11 @@ public class CropHelper {
         return data.getCrop().getStateHandler().getBoundingBox(world, pos, section, data.getStage(), withered);
     }
 
-    private static TileCrop getTile(IBlockAccess world, BlockPos pos, PlantSection section) {
-        if (section == BOTTOM) return (TileCrop) world.getTileEntity(pos);
+    private static TileWithered getTile(IBlockAccess world, BlockPos pos, PlantSection section) {
+        if (section == BOTTOM) return (TileWithered) world.getTileEntity(pos);
         else {
-            TileCrop down = ((TileCrop)world.getTileEntity(pos.down()));
-            return down == null ? (TileCrop) world.getTileEntity(pos): down;
+            TileWithered down = ((TileWithered)world.getTileEntity(pos.down()));
+            return down == null ? (TileWithered) world.getTileEntity(pos): down;
         }
     }
 
@@ -81,8 +81,8 @@ public class CropHelper {
     public static CropData getCropDataAt(IBlockAccess world, BlockPos pos) {
         PlantSection section = BlockHFCrops.getSection(world.getBlockState(pos));
         if (section == null) return null;
-        if (section == PlantSection.BOTTOM) return ((TileCrop)world.getTileEntity(pos)).getData();
-        else if (section == PlantSection.TOP) return ((TileCrop)world.getTileEntity(pos.down())).getData();
+        if (section == PlantSection.BOTTOM) return ((TileWithered)world.getTileEntity(pos)).getData();
+        else if (section == PlantSection.TOP) return ((TileWithered)world.getTileEntity(pos.down())).getData();
         else return null;
     }
 

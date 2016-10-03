@@ -8,6 +8,7 @@ import joshie.harvest.core.base.tile.TileFillableSizedFaceable;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.tools.ToolHelper;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
@@ -21,7 +22,7 @@ public class TileIncubator extends TileFillableSizedFaceable {
     private int relationship;
 
     @Override
-    public boolean onActivated(ItemStack held) {
+    public boolean onActivated(EntityPlayer player, ItemStack held) {
         if (ToolHelper.isEgg(held)) {
             if (fillAmount == 0) {
                 setFilled(HFApi.sizeable.getSize(held), MAX_FILL);
@@ -29,7 +30,7 @@ public class TileIncubator extends TileFillableSizedFaceable {
                 relationship = tag.getInteger("Relationship");
                 if (tag.hasKey("Owner")) {
                     owner = UUID.fromString(tag.getString("Owner"));
-                }
+                } else owner = EntityHelper.getPlayerUUID(player);
 
                 held.splitStack(1);
                 return true;

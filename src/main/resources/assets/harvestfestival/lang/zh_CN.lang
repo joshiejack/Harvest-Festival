@@ -25,10 +25,10 @@ harvestfestival.tooltip.flower=女神的召唤物
 harvestfestival.spawner.tooltip=按住shift键来产出宝宝
 harvestfestival.spawner.cow=奶牛
 harvestfestival.spawner.sheep=绵羊
-harvestfestival.spawner.chicken=鸡
+harvestfestival.spawner.chicken=母鸡
 entity.harvestfestival.cow.name=奶牛
 entity.harvestfestival.sheep.name=绵羊
-entity.harvestfestival.chicken.name=鸡
+entity.harvestfestival.chicken.name=母鸡
 #Animal Related Items
 harvestfestival.tool.milker=挤奶器
 harvestfestival.tool.brush=毛刷
@@ -58,8 +58,8 @@ harvestfestival.structures.church=教堂
 harvestfestival.structures.clockmaker=钟表作坊
 harvestfestival.structures.fishinghole=鱼塘
 harvestfestival.structures.fishinghut=钓鱼小屋
-harvestfestival.structures.goddesspond=瑶池
-harvestfestival.structures.mininghill=矿井
+harvestfestival.structures.goddesspond=女神池
+harvestfestival.structures.mininghill=采矿场
 harvestfestival.structures.mininghut=采矿小屋
 harvestfestival.structures.poultryfarm=养鸡场
 harvestfestival.structures.supermarket=杂货店
@@ -81,6 +81,7 @@ harvestfestival.crop.seeds=种子
 harvestfestival.crop.seeds.days=天
 harvestfestival.crop.seeds.useless=没用的种子
 harvestfestival.crop.seeds.corrupted=腐坏的种子, 哟!
+harvestfestival.crop.null.crop=Any
 harvestfestival.crop.beetroot=甜菜
 harvestfestival.crop.cabbage=卷心菜
 harvestfestival.crop.carrot=萝卜
@@ -103,6 +104,8 @@ harvestfestival.crop.watermelon=西瓜
 harvestfestival.crop.wheat=小麦
 harvestfestival.crop.nether.wart=地狱疣
 harvestfestival.crop.tutorial.turnip=白萝卜
+harvestfestival.crop.hemp=工业大麻
+harvestfestival.crop.hemp.tooltip=需求光照等级 12+
 
 #General Items
 harvestfestival.general.shoot.bamboo=竹笋
@@ -110,7 +113,7 @@ harvestfestival.general.mushroom.matsutake=松茸
 
 #Cookbook
 harvestfestival.utensils=厨具
-harvestfestival.cookbook=菜谱大全
+harvestfestival.cookbook=烹饪书
 harvestfestival.recipe.format=%s 食谱
 harvestfestival.recipe.invalid=垃圾食谱
 
@@ -148,19 +151,19 @@ harvestfestival.meal.egg.scrambled.description=开始炒蛋之前, 把加过盐�
 harvestfestival.meal.omelet=煎蛋卷
 harvestfestival.meal.omelet.description=香嫩可口的油煎蛋饼搭配牛奶简直是一份完美搭配的早餐, 其实不止是早餐, 包裹着不同馅料的热腾腾煎蛋卷, 在任何场合都能受到广大食客的欢迎.
 harvestfestival.meal.omelet.rice=蛋包饭
-harvestfestival.meal.omelet.rice.description=渗入了鲜美蛋液和淀粉香甜的米饭, 再用恰当的火候将其烹饪到恰到好处. 普通的煎蛋加普通的米饭的超级拍档却简直可以成为最佳主食.
+harvestfestival.meal.omelet.rice.description=渗入了鲜美蛋液和淀粉香甜的米饭, 再用适当的火候将其烹饪到恰到好处. 普通的煎蛋加普通的米饭的超级拍档却简直可以成为最佳主食.
 harvestfestival.meal.pancake=松饼
 harvestfestival.meal.pancake.description=松饼, 煎饼, 干锅糕, 这些被人们称为最受欢迎早餐的面食来自于美食之乡西君士坦丁堡.
 harvestfestival.meal.potsticker=锅贴
 harvestfestival.meal.potsticker.description=新鲜美味的蔬菜被包在饺皮之中煎炸, 让它的香味伴随着酥脆的饺皮得到升华.
 harvestfestival.meal.risotto=意式烩饭
-harvestfestival.meal.risotto.description=这种传统的意大利美食很好的把洋葱和西红柿的冲味和米饭的清淡融合, 成就了意式烩饭多汁浓厚的口感.
+harvestfestival.meal.risotto.description=这种传统的意大利美食很好的把洋葱和西红柿的冲味与米饭的清淡融合, 成就了意式烩饭多汁浓厚的口感.
 harvestfestival.meal.juice.pineapple=菠萝汁
-harvestfestival.meal.juice.pineapple.description=酸甜爽口, 深受大家喜爱的菠萝汁不仅解渴, 还能补充人体所需的各种维他命. 不过有些人则人觉得它不够甜而且闻起来也不是很吸引人.
+harvestfestival.meal.juice.pineapple.description=酸甜爽口, 深受大家喜爱的菠萝汁不仅解渴, 还能补充人体所需的各种维他命. 不过有些人则觉得它不够甜而且闻起来也不是很吸引人.
 harvestfestival.meal.juice.tomato=番茄汁
-harvestfestival.meal.juice.tomato.description=番茄汁的发明是因为其独特的口味可以代替橙汁无法替代的味道, 现代人则主要将它用于调制鸡尾酒.
+harvestfestival.meal.juice.tomato.description=番茄汁的发明是因为其独特的口味可以代替橙汁, 现代人则主要将它用于调制鸡尾酒.
 harvestfestival.meal.milk.strawberry=草莓牛奶
-harvestfestival.meal.milk.strawberry.description=加过糖的牛奶和草莓汁混合, 可以让人的味觉感受到极大的满足, 还可以促进消化. 而有些人则认为多加一些糖更适合这种饮料.
+harvestfestival.meal.milk.strawberry.description=加过糖的牛奶和草莓汁混合, 可以让人的味觉感受到极大的满足, 同时还可以促进消化. 而有些人则认为多加一些糖更适合这种饮料.
 harvestfestival.meal.juice.vegetable=蔬菜汁
 harvestfestival.meal.juice.vegetable.description=由不同蔬菜一起榨出的汁液, 通常都会加入番茄和香料. 虽然蔬菜常被用于制作沙拉, 不过沙拉却远不如蔬菜汁尝起来有口感.
 harvestfestival.meal.latte.vegetable=蔬菜拿铁
@@ -170,9 +173,9 @@ harvestfestival.meal.ketchup.description=浓厚又稠密, 番茄酱在调料界�
 harvestfestival.meal.butter=黄油
 harvestfestival.meal.butter.description=缓缓搅动乳制品, 将它大部分的脂肪和油抽离出来.不仅有利于保留奶制品的醇香, 而且可以长期保存.
 harvestfestival.meal.fishsticks=炸鱼柳
-harvestfestival.meal.fishsticks.description=有些肉切过之后更受欢迎, 就如切成条状或者饼状的鱼肉, 裹一层淀粉并油炸成诱人金黄色的炸鱼柳是一种深受欢迎的零食.
+harvestfestival.meal.fishsticks.description=有些肉切过之后更受欢迎, 就如切成条状或者饼状的鱼肉, 裹一层淀粉并油炸成诱人金黄色的炸鱼柳, 是一种深受欢迎的零食.
 harvestfestival.meal.salad=沙拉
-harvestfestival.meal.salad.description=相比肥美的肉类, 沙拉更具有酥脆清爽的口感. 在蘸料方面也有许多讲究, 就跟花园里的花儿一样繁多任人挑选搭配, 而有些人则喜欢加点食用油和细盐.
+harvestfestival.meal.salad.description=相比肥美的肉类, 沙拉具有酥脆清爽的口感. 在蘸料方面也有许多讲究, 就跟花园里的花儿一样繁多任人挑选搭配, 而有些人则喜欢加点食用油和细盐.
 harvestfestival.meal.sandwich=三明治
 harvestfestival.meal.sandwich.description=经典的便携式餐点, 所有需要爆肝或者熬夜的人都喜欢它. 很多人喜欢在三明治里加一些酱料, 让它变的多汁, 而有一些人喜欢加入一些酥脆的小吃来给松软的面包增加一丝口感.
 harvestfestival.meal.turnip.pickled=腌萝卜
@@ -184,11 +187,11 @@ harvestfestival.meal.sushi.description=醋渍米和海鲜搭配的经典日式�
 harvestfestival.meal.sashimi=生鱼片
 harvestfestival.meal.sashimi.description=这种看似简单的的鱼片需要细腻刀工切出粗细才能有完美的口感.
 harvestfestival.meal.sashimi.chirashi=生鱼片盖饭
-harvestfestival.meal.sashimi.chirashi.description=一碗上好的米饭铺好切片恰到好处的生鱼片, 这道看似简单的主食, 丰富的鱼类可以和米饭组成各种口味搭配.
+harvestfestival.meal.sashimi.chirashi.description=一碗上好的米饭铺好切片恰到好处的生鱼片, 这道看似简单的主食, 却能凭借鱼类的丰富性和米饭组成各种口味搭配.
 harvestfestival.meal.milk.hot=热牛奶
 harvestfestival.meal.milk.hot.description=将牛奶稍稍煮沸后, 热气腾腾的奶香扑鼻而来, 一杯热牛奶不仅能让你快速进入梦乡, 还能缓解胃部不适.
 harvestfestival.meal.chocolate.hot=热可可
-harvestfestival.meal.chocolate.hot.description=简直就像上帝恩赐的热饮一般, 巧克力和牛奶的搭配使它有了无可比拟的香醇. 很多人喜欢加一些糖.
+harvestfestival.meal.chocolate.hot.description=简直就像上帝恩赐的热饮一般, 巧克力和牛奶的搭配使它有了无可比拟的香醇. 而很多人喜欢加一些糖.
 harvestfestival.meal.stew.pumpkin=南瓜汤
 harvestfestival.meal.stew.pumpkin.description=传统的南瓜汤做法是把整个南瓜放在炉灶上从中间开始慢慢加热, 它的狂热粉丝都说, 南瓜汤就像是浓稠的液体南瓜派.
 harvestfestival.meal.stew.fish=炖鱼
@@ -202,7 +205,7 @@ harvestfestival.meal.potato.candied.description=地瓜营养丰富, 口味香甜
 harvestfestival.meal.dumplings=水饺
 harvestfestival.meal.dumplings.description=清脆爽口的蔬菜包裹在饺皮中水煮, 这种烹饪方法既快又能留住了蔬菜的味道.
 harvestfestival.meal.noodles=面条
-harvestfestival.meal.noodles.description=细面, 宽面, 磨碎小麦后制成各种形态的面条, 成为了很多食物搭配. 拌着酱料食用更具风味.
+harvestfestival.meal.noodles.description=细面, 宽面, 磨碎小麦后制成各种形态的面条, 能做为很多食物搭配. 拌着酱料食用更具风味.
 harvestfestival.meal.soup.rice=米糯汤
 harvestfestival.meal.soup.rice.description=把米磨成粉, 搓成块状放在沸水中, 这种看起来清淡汤料, 也是其他年糕衍生料理的基础料理.
 harvestfestival.meal.porridge=稀饭
@@ -331,14 +334,14 @@ harvestfestival.effect.exhaustion=虚脱
 harvestfestival.effect.cursed=诅咒
 
 #Treats
-harvestfestival.treat.cow=牛用药
-harvestfestival.treat.sheep=羊用药
-harvestfestival.treat.chicken=鸡用药
-harvestfestival.treat.horse=马用药
-harvestfestival.treat.pig=猪用药
-harvestfestival.treat.cat=猫用药
-harvestfestival.treat.dog=犬用药
-harvestfestival.treat.generic=通用药
+harvestfestival.treat.cow=牛用点心
+harvestfestival.treat.sheep=羊用点心
+harvestfestival.treat.chicken=鸡用点心
+harvestfestival.treat.horse=马用点心
+harvestfestival.treat.pig=猪用点心
+harvestfestival.treat.cat=猫用点心
+harvestfestival.treat.dog=犬用点心
+harvestfestival.treat.generic=通用点心
 
 #Blocks
 harvestfestival.cookware.fridge=冰箱
@@ -382,21 +385,21 @@ harvestfestival.rock.boulder.medium=中石块
 harvestfestival.rock.boulder.large=大石块
 
 #Mine Blocks
-harvestfestival.dirt=矿井地板
-harvestfestival.dirt.winter=矿井地板
-harvestfestival.dirt.decorative=矿井地板
-harvestfestival.dirt.decorative.winter=矿井地板
-harvestfestival.hole=矿坑
-harvestfestival.stone.real=矿井墙壁
-harvestfestival.stone.decorative=矿井墙壁
-harvestfestival.ladder.wood=矿井楼梯
+harvestfestival.dirt=采矿场地板
+harvestfestival.dirt.winter=采矿场地板
+harvestfestival.dirt.decorative=采矿场地板
+harvestfestival.dirt.decorative.winter=采矿场地板
+harvestfestival.hole=矿洞
+harvestfestival.stone.real=采矿场墙壁
+harvestfestival.stone.decorative=采矿场墙壁
+harvestfestival.ladder.wood=采矿场楼梯
 harvestfestival.ore.rock=岩石
 harvestfestival.ore.copper=铜矿堆
 harvestfestival.ore.silver=银矿堆
 harvestfestival.ore.gold=金矿堆
 harvestfestival.ore.mystril=秘银堆
 harvestfestival.ore.gem=宝石堆
-harvestfestival.portal=矿井入口
+harvestfestival.portal=采矿场入口
 
 #Mine Materials
 harvestfestival.material.junk=废矿石
@@ -419,16 +422,16 @@ entity.harvestfestival.dark_chick.name=暗黑小鸡
 #Mine Tools
 harvestfestival.miningtool.escape.rope=逃生绳
 
-tile.goddess.water.name=圣水
+tile.goddess.water.name=女神之泉
 
 #Seasons
 harvestfestival.season.spring=春季
 harvestfestival.season.summer=夏季
 harvestfestival.season.autumn=秋季
 harvestfestival.season.winter=冬季
-harvestfestival.season.nether=下界
-harvestfestival.season.end=缺失
-harvestfestival.calendar.date=%1s %2s日
+harvestfestival.season.nether=地狱
+harvestfestival.season.end=虚空
+harvestfestival.calendar.date=%1s %2s 日
 harvestfestival.calendar.monday=周一
 harvestfestival.calendar.tuesday=周二
 harvestfestival.calendar.wednesday=周三
@@ -448,10 +451,10 @@ harvestfestival.weather.blizzard.set=将天气设置为暴雪天
 #NPC Tools
 harvestfestival.npctool.blue.feather=蓝色羽毛
 harvestfestival.npctool.npc.killer=大宝剑
-harvestfestival.npctool.calendar=时间计算小工具
-harvestfestival.npctool.clock=商店营业时间查询小工具
-harvestfestival.npctool.weather=天气预报
-harvestfestival.npctool.gift=送礼小工具
+harvestfestival.npctool.calendar=年份
+harvestfestival.npctool.clock=营业时间
+harvestfestival.npctool.weather=天气情况
+harvestfestival.npctool.gift=送礼
 
 # NPC Names
 ## NOTE FOR TRANSLATORS, READ
@@ -488,7 +491,9 @@ harvestfestival.npc.girafi.name=Johan
 # in your own language, as these are just generic, do translate the quests
 # semi-literally though, as they are important so the user knows what to do,
 # but take liberty there to, just make sure the user still knows what they
-# have to do in order to complete the quest in question.
+# have to do in order to complete the quest in question. For many of the greetings you
+# can remove or add more, for the greetings like: harvestfestival.npc.goddess.greeting
+# you can add up to 32 greetings
 #Key-Codes for conversations
 # %1$s = Money - Player has
 # %2$s = Player's Romantic Interest's name
@@ -534,46 +539,45 @@ harvestfestival.npc.generic.elder.gift.terrible=你不要再给我送这么糟�
 harvestfestival.npc.generic.elder.gift.reject=不好意思啊年轻人, 但是我今天真的不能再收你的礼物了.
 
 #Goddess
-harvestfestival.npc.goddess.greeting1=你好吗, 亲爱的?
+harvestfestival.npc.goddess.greeting1=你好吗, 小宝贝?
 harvestfestival.npc.goddess.greeting2=今天真是适合下地干活!
-harvestfestival.npc.goddess.greeting3=我能为你做点什么吗, 亲爱的?
+harvestfestival.npc.goddess.greeting3=我能为你做点什么吗, 小宝贝?
 harvestfestival.npc.goddess.greeting4=不要花我太多时间哦, 我不能待太久.
 harvestfestival.npc.goddess.greeting5=你需要什么呢?
 harvestfestival.npc.goddess.greeting6=如果你不小心丢失了木工小屋图纸, 又想要一张新的, 只要再砍一点木头给我就行.
 harvestfestival.npc.goddess.greeting7=嗨, 我们又见面啦 %4$s!
-harvestfestival.npc.goddess.greeting8=亲爱的, 最近怎么样?
+harvestfestival.npc.goddess.greeting8=宝贝儿, 最近怎么样?
 harvestfestival.npc.goddess.greeting9=我保证总有一天精灵会回来的, 他们太孤单了.
 harvestfestival.npc.goddess.greeting10=我真的觉得你应该种一下花, 只种菜太不公平了.
 harvestfestival.npc.goddess.greeting11=最近去哪儿啦, 再见到你太开心了.
-harvestfestival.npc.goddess.greeting12=%4$s, 别来无恙?
-harvestfestival.npc.goddess.greeting13=大自然真是美丽啊, 不是吗?
+harvestfestival.npc.goddess.greeting12=%4$s, 别来无恙啊?
+harvestfestival.npc.goddess.greeting13=大自然真是如诗如画啊, 不是吗?
 harvestfestival.npc.goddess.greeting14=如果你想给我送礼物, 最简单的方法就是把东西丢进我的池塘!
-harvestfestival.npc.goddess.greeting15=亲爱的, 如果你想知道明天的天气, 只要给我看看指南针就行啦!
-harvestfestival.npc.goddess.marriage.reject=亲爱的, 我还不想成为你的亲爱的.
-harvestfestival.npc.goddess.marriage.accept=这算个惊喜吗亲爱的. 今天我就嫁给你!
+harvestfestival.npc.goddess.marriage.reject=小宝贝, 我还不想成为你的宝宝.
+harvestfestival.npc.goddess.marriage.accept=这算个惊喜吗宝贝. 今天我就嫁给你!
 
 # Goddess Weather
-harvestfestival.npc.goddess.weather.sunny1=哦 宝贝儿, 明天晴空万里哦!
+harvestfestival.npc.goddess.weather.sunny1=哦, 宝贝儿, 明天晴空万里哦!
 harvestfestival.npc.goddess.weather.sunny2=明天会是阳光充足的一天!
-harvestfestival.npc.goddess.weather.sunny3=明天一整天都会沐浴在阳光之下, 真的太棒啦.
-harvestfestival.npc.goddess.weather.rain1=明天会湿漉漉的 不用去给你的植物浇水了!
+harvestfestival.npc.goddess.weather.sunny3=明天一整天都能沐浴在阳光之下, 真的太棒啦.
+harvestfestival.npc.goddess.weather.rain1=明天会湿漉漉的, 不用去给你的植物浇水了!
 harvestfestival.npc.goddess.weather.rain2=明天的天空灰蒙蒙的呢, 准备好一场小雨吧.
 harvestfestival.npc.goddess.weather.rain3=滴, 滴答, 四月的春雨, 还有什么比这更令人期待呢!!
-harvestfestival.npc.goddess.weather.typhoon1=啊呀明天看起来真可怕, 一阵台风正在路上!
+harvestfestival.npc.goddess.weather.typhoon1=啊呀明天天气似乎很可怕, 一阵台风正在路上!
 harvestfestival.npc.goddess.weather.typhoon2=看起来不太好, 明天你应该宅在屋子里, 不然可能会被台风吹飞吧.
 harvestfestival.npc.goddess.weather.typhoon3=明天将会有一场暴风雨, 强烈的台风将会袭击镇子!
-harvestfestival.npc.goddess.weather.snow1=明天会变的超超超超级冷, 你最好多穿点衣服以防感冒!
-harvestfestival.npc.goddess.weather.snow2=我想明天可能会被冻僵, 还是你想出去堆雪人?
-harvestfestival.npc.goddess.weather.snow3=接下来是明天的天气预报, 天寒地冻, 看起来又是一场大雪!
+harvestfestival.npc.goddess.weather.snow1=明天会变的超超超超级冷, 最好多穿点衣服以防感冒!
+harvestfestival.npc.goddess.weather.snow2=我想明天可能会被冻僵, 如果你想出去堆雪人的话?
+harvestfestival.npc.goddess.weather.snow3=接下来播报一则明天的天气预报, 明天天气有大雪, 天寒地冻, 注意保暖!
 harvestfestival.npc.goddess.weather.blizzard1=明天的天气太可怕了, 一场暴风雪即将袭来!
-harvestfestival.npc.goddess.weather.blizzard2=请大家准备好大师球以便捕捉自带暴风雪的暴雪王!
+harvestfestival.npc.goddess.weather.blizzard2=或许你可以准备好大师球, 以便捕捉自带暴风雪的暴雪王!
 harvestfestival.npc.goddess.weather.blizzard3=哇, 明天有暴风雪, 照顾好自己哦.
 
 #Katlin
 harvestfestival.npc.katlin.greeting1=最近过得怎么样?
-harvestfestival.npc.katlin.greeting2=想当年... 啊, 你听腻了. 那么, 今天过得怎么样?
+harvestfestival.npc.katlin.greeting2=想当年... 啊, 你听腻了吗. 那么, 今天过得怎么样?
 harvestfestival.npc.katlin.greeting3=年轻人, 有些日子没见到你了. 你好呀.
-harvestfestival.npc.katlin.greeting4=现在我跟Tomas没有任何关系, 我觉得开心多了.
+harvestfestival.npc.katlin.greeting4=现在我跟Tomas已经没有任何关系了, 我觉得开心多了.
 harvestfestival.npc.katlin.greeting5=星期天早上从教堂礼拜回来之后, 我整个晚上都在织毯子.
 harvestfestival.npc.katlin.greeting6=想想当初啊, 现在可比以前, 好多了.
 harvestfestival.npc.katlin.greeting7=Liara从小父母双亡, 所以我抚养了她.
@@ -583,9 +587,10 @@ harvestfestival.npc.katlin.greeting10=总有一天我会拿出你从未见过的
 harvestfestival.npc.katlin.greeting11=你好啊年轻人, 最近都在忙些啥呢?
 
 #Danieuru/Chylex
+harvestfestival.npc.daniel.shop=我周四休息, 其余时间每天10:00到16:00都在这.
 harvestfestival.npc.daniel.greeting1=我从小就喜欢到处捣鼓东西.
 harvestfestival.npc.daniel.greeting2=工具就是我的动力, 它们就是我生命的意义所在.
-harvestfestival.npc.daniel.greeting3=周遭的人都因为我相信龙的存在而说我是个疯子. 但如果他们去过末路之地, 就不会这样觉得了.
+harvestfestival.npc.daniel.greeting3=周遭的人都因为我相信龙的存在而说我是个疯子. 但如果他们去过末路之地, 就不会这样说了.
 harvestfestival.npc.daniel.greeting4=如果我会做除了倒腾工具之外的事, 那肯定是屠龙.
 harvestfestival.npc.daniel.greeting5=你可知道我年轻时是个奥林匹克短跑运动员? 这个世界上没有人能超越我.
 harvestfestival.npc.daniel.greeting6=男的, 女的? 我不纠结, 因为我都喜欢. 包容的生活才有情调.
@@ -596,44 +601,43 @@ harvestfestival.npc.daniel.greeting10=我已经去过末路之地了, 你呢?
 harvestfestival.npc.daniel.greeting11=我之所以成为铁匠, 是因为我想亲手制作属于自己的工具, 这样我才能去末路之地, 这是我毕生的梦想.
 harvestfestival.npc.daniel.greeting12=如果我能去别的国家旅游, 嗯, 我觉得我想跟Ashlee一起去捷克.
 harvestfestival.npc.daniel.greeting13=我最讨厌海洋了. 这也许就是我迷恋末路之地的原因.
-harvestfestival.npc.daniel.greeting14=我周四休息, 其余时间每天10:00到16:00都在这.
 harvestfestival.npc.daniel.marriage.reject=我更想跟我的工具在一起.
 harvestfestival.npc.daniel.marriage.accept=时不我待, 我们现在就结婚吧!
 
 #Cloe
 harvestfestival.npc.cloe.greeting1=一本好书,可以让一个女孩开心.
-harvestfestival.npc.cloe.greeting2=我爸爸有时侯有点过分，我扛不住这些压力.
+harvestfestival.npc.cloe.greeting2=我爸爸有时侯有点过分，让我有点扛不住.
 harvestfestival.npc.cloe.greeting3=我有时不太理解那些小女生.
 harvestfestival.npc.cloe.greeting4=没有什么比一部恐怖电影更让我着迷了.
 harvestfestival.npc.cloe.greeting5=老实说, 我对未来有点迷茫.
 harvestfestival.npc.cloe.greeting6=这个世界已经乱套了, 我对他一点都不了解.
 harvestfestival.npc.cloe.greeting7=我五岁的时候就已经读了200本书.
-harvestfestival.npc.cloe.greeting8=我不能理解为什么Abii喜欢可爱的东西, 那太假了, 简直要把我逼疯.
+harvestfestival.npc.cloe.greeting8=我不能理解为什么Abi喜欢可爱的东西, 那太假了, 简直能把我逼疯.
 harvestfestival.npc.cloe.greeting9=我们是如此的渺小.
 harvestfestival.npc.cloe.greeting10=拜托不要告诉任何人.我喜欢企鹅，这我知道，我知道...
-harvestfestival.npc.cloe.greeting11=我的叔叔有点奇怪... 他把大部分的时间都花在办公桌上，不停的在工作，我不知道他在忙什么. 我想是他之前说过的改装. 也许有一天他能获得新生.
+harvestfestival.npc.cloe.greeting11=我的叔叔有点奇怪... 他把大部分的时间都花在办公桌上，不停的在工作，我不知道他在忙什么. 我想是他之前说过的改装. 也许有一天他能获得新生吧.
 harvestfestival.npc.cloe.greeting12=我不敢相信我妈妈选择了红队的勇气联盟.
 harvestfestival.npc.cloe.marriage.reject=我不想结婚, 这是在浪费时间.
 harvestfestival.npc.cloe.marriage.accept=我想我已经长大了, 愿与你共度余生.
 
 #Liara/ApsciLiara
+harvestfestival.npc.liara.shop=虽然我们咖啡店只在9:30到17:00营业, 但是我们每天都营业!
 harvestfestival.npc.liara.greeting1=我爱死这天气了, 非常适合做蛋糕!
 harvestfestival.npc.liara.greeting2=烹饪是我最享受的事情! 我喜欢人们在尝到我做的美食第一口时就面露微笑的感觉!
 harvestfestival.npc.liara.greeting3=你饿吗? 我老是饿, 也难怪我这么喜欢做料理.
 harvestfestival.npc.liara.greeting4=星期二一定要来咖啡店坐坐, 这里常会提供一些特别的东西.
 harvestfestival.npc.liara.greeting5=食物让这个世界维持转动, 也让我眼花缭乱.
-harvestfestival.npc.liara.greeting6=这世上没有什么能比一块巧克力更让一个女孩高兴了.
+harvestfestival.npc.liara.greeting6=这世上没有什么能比巧克力更让一个妹子高兴了.
 harvestfestival.npc.liara.greeting7=你不会相信，但是我真的非常沉迷，那些古怪的东西.
 harvestfestival.npc.liara.greeting8=如果你在寻找一些厨具，我这边星期天有出售.
 harvestfestival.npc.liara.greeting9=我每个星期，每个季节卖的食谱都不太一样哦.
 harvestfestival.npc.liara.greeting10=你知道吗，你可以在烤箱里烤肉.
-harvestfestival.npc.liara.greeting11=如果你需要我的建议，就读读食谱中的描述吧.通常它们会给予你一些什么会让食谱变得更好的小提示.
-harvestfestival.npc.liara.greeting12=我还在烹饪学校学习的时候，认识的一个名字以P开头的女孩,  她的料理真是太难吃了.
-harvestfestival.npc.liara.greeting13=我真的非常想我的父母, 但是失去他们让我更想专注于我的烹饪事业.
-harvestfestival.npc.liara.greeting14=我活了这么就都一直对烹饪非常持有热情， 我记得我十岁的时候, 我在卖蛋糕并且一个星期赚了1000G! 而现在我非常高兴我终于开启了适合我的事业.
+harvestfestival.npc.liara.greeting11=如果你需要我的建议，就读读食谱中的说明吧.通常它们会给予你一些什么会让食谱变得更好的小提示.
+harvestfestival.npc.liara.greeting12=我还在烹饪学校学习的时候，认识一个名字以P开头的女孩,  她的料理真是太难吃了.
+harvestfestival.npc.liara.greeting13=我真的非常想念我的父母, 但是失去他们却让我更想专注于我的烹饪事业.
+harvestfestival.npc.liara.greeting14=我平生都对烹饪非常持有热情， 我记得我十岁的时候, 我通过卖蛋糕在一个星期内赚了1000G. 而现在能经营自己喜欢的事业真的非常开心.
 harvestfestival.npc.liara.greeting15=咖啡店每天都营业! 从早上9:30到晚上17:00.
-harvestfestival.npc.liara.greeting16=虽然我们咖啡店只在9:30到17:00营业, 但是一个星期里我们每天都营业!
-harvestfestival.npc.liara.marriage.reject=咖啡店就是我家. 而且我想一个人住.
+harvestfestival.npc.liara.marriage.reject=咖啡店是我家. 不过我想一个人住.
 harvestfestival.npc.liara.marriage.accept=谢谢, 我愿意, 我会每天给你做好吃的料理.
 
 #Jade
@@ -642,48 +646,48 @@ harvestfestival.npc.jade.greeting2=天要塌啦, 天要塌啦!
 harvestfestival.npc.jade.greeting3=我想经营自己的农场, 但我哥却不允许!
 harvestfestival.npc.jade.greeting4=太多的人叫我恶魔, 但我其实是个非常好的女孩.
 harvestfestival.npc.jade.greeting5=我想养一只猫, 但是Yulif不喜欢它们.
-harvestfestival.npc.jade.greeting6=这会让我的房子变得非常狭窄, 已经没有更多的空间来移动了.
+harvestfestival.npc.jade.greeting6=我们家非常狭小, 简直没有更多的空间来移动了.
 harvestfestival.npc.jade.greeting7=如果你需要更多的种子, 就拿五朵花儿过来吧.
 harvestfestival.npc.jade.greeting8=我真的非常想去卖花, 但是听说种花要在以后的版本才更新, 等等, 我在说什么?
 harvestfestival.npc.jade.greeting9=我们家真的太拥挤了.
 harvestfestival.npc.jade.greeting10=你可能已经注意到周围这些石头，杂草和棍棒的铺设了,你可以打破这些来获得一些石头和原木. 不过你需要一个锤子或斧头.
-harvestfestival.npc.jade.greeting11=当你和人对话的时候, 你可以看到心, 心的样子跟他们有多喜欢你相关. 如果他们非常喜欢你,  你甚至可以跟他们结婚!!
-harvestfestival.npc.jade.greeting12=跟一个人搞好关系最快的方式就是给他们送礼物.  事实上如果你能让他们足够喜欢你, 他们还会还给你一些你也许用得上的东西!
+harvestfestival.npc.jade.greeting11=当你和人对话的时候, 你可以看到心, 心的样子跟他们与你的好感度相关. 如果他们非常喜欢你,  你甚至可以跟他们结婚!!
+harvestfestival.npc.jade.greeting12=跟一个人搞好关系最快的方式就是给他们送礼物.  事实上如果你能让他们足够喜欢你, 他们还会给你一些也许你用得上的东西!
 harvestfestival.npc.jade.greeting13=睡觉是种植庄稼最快的方法.
 harvestfestival.npc.jade.greeting14=我真的不知道为什么你不能给你的作物施肥. 也许将来有一天可以?
-harvestfestival.npc.jade.greeting15=要记住, 牧场和小麦需要镰刀才能收割.
+harvestfestival.npc.jade.greeting15=要记住, 牧草和小麦需要镰刀才能收割.
 harvestfestival.npc.jade.marriage.reject=我现在还不想考虑婚姻的问题.
 harvestfestival.npc.jade.marriage.accept=我考虑好了, 我愿意.
 
 #Jenni/Othlon
-harvestfestival.npc.jenni.greeting1=嘿 朋友, 如果你需要日常用品可以来找我!
+harvestfestival.npc.jenni.shop=嗨呀朋友, 只是个小提醒, 我们除了星期三和星期日每天都营业，每天早上9点到下午5点. 除了星期六是早上11点到下午3点.
+harvestfestival.npc.jenni.greeting1=嘿, 朋友, 如果你需要日用品可以来找我!
 harvestfestival.npc.jenni.greeting2=我有多爱我的顾客, 我就有多爱艺术.
 harvestfestival.npc.jenni.greeting3=不要告诉任何人我是个疯狂的肚皮舞迷这个秘密.
 harvestfestival.npc.jenni.greeting4=有时候我希望星期天也可以开业, 不过之后我发现这其实是个美丽的谎言.
 harvestfestival.npc.jenni.greeting5=凯特林奶奶真的是和蔼可亲!
 harvestfestival.npc.jenni.greeting6=我的商品售价是全镇子最便宜的.
 harvestfestival.npc.jenni.greeting7=我很在意你是不是来自澳大利亚. 哦, 是不是啊? 是不是?
-harvestfestival.npc.jenni.greeting8=嗨呀朋友, 只是个小提醒, 我们除了星期三和星期日每天都营业，从早上9点到下午5点.不过星期六是早上11点到下午3点.
-harvestfestival.npc.jenni.greeting9=这个家就是我最大的成就, 我非常自豪.
-harvestfestival.npc.jenni.greeting10=Candice和我曾经非常要好, 但是一切都变了. 我们之所以住在一起只是因为我无法单独负担这个地方的租金.
-harvestfestival.npc.jenni.greeting11=业余的时间我会做一些艺术手工品.
-harvestfestival.npc.jenni.greeting12=我最爱的动物是猪, 我最爱的水果是樱桃.
-harvestfestival.npc.jenni.greeting13=我的供应确实比较有限, 但有一天我一定能够卖给你更多的东西.
+harvestfestival.npc.jenni.greeting8=这个家就是我最大的成就, 我非常自豪.
+harvestfestival.npc.jenni.greeting9=Candice曾经跟我关系非常要好, 但是一切都变了. 我们之所以住在一起, 仅仅是因为我无法单独负担这个地方的租金.
+harvestfestival.npc.jenni.greeting10=业余的时间我会做一些艺术手工品.
+harvestfestival.npc.jenni.greeting11=我最爱的动物是猪, 最爱的水果是樱桃.
+harvestfestival.npc.jenni.greeting12=我的供应确实比较有限, 但总有一天我定能够卖给你更多的东西.
 harvestfestival.npc.jenni.marriage.reject=我们还没有好到那种程度.
 harvestfestival.npc.jenni.marriage.accept=我最亲爱的, 从现在起我就是你的老婆了.
 
 #Jaimii
 harvestfestival.npc.jamie.greeting1=这是我的地盘, 你给我记住了.
 harvestfestival.npc.jamie.greeting2=我的家族可是在过去100年里都赢得了市长选举.
-harvestfestival.npc.jamie.greeting3=我两个女儿对我来说非常珍贵, 如果你动他们一根毫毛试试.
-harvestfestival.npc.jamie.greeting4=当市长真难,人们都太爱我了.
+harvestfestival.npc.jamie.greeting3=我两个女儿对我来说非常珍贵, 你动他们一根毫毛试试.
+harvestfestival.npc.jamie.greeting4=当个市长真难,人们都太爱我了.
 harvestfestival.npc.jamie.greeting5=嗨呀 %4$s, 你看到我家了吗, 真的太小了.
-harvestfestival.npc.jamie.greeting6=不久的将来, 我一定会举办一些活动, 但是现在, 我很开心能治理小镇.
+harvestfestival.npc.jamie.greeting6=不久的将来, 我一定会举办一些活动, 但是现在, 我享受着治理小镇.
 harvestfestival.npc.jamie.greeting7=我都不知道是谁给你建造这座城市的权利, 我明明可以比你做的更好.
 harvestfestival.npc.jamie.greeting8=我父亲总是说我能做到每一件事. 果不出他所料.
 harvestfestival.npc.jamie.greeting9=我可以告诉你为什么Katlin伤了Tomas的心, 不过她到底是个无情的人, 不说也罢.
-harvestfestival.npc.jamie.greeting10=我的家族诞生了无数代的市长, 没人能比我的家族做得更好.
-harvestfestival.npc.jamie.greeting11=我不知道为什么我得给别人付钱. 那可是我的钱.
+harvestfestival.npc.jamie.greeting10=我们家族诞生了无数代的市长, 没人能比我们家族做得更好.
+harvestfestival.npc.jamie.greeting11=我不知道为什么我得付钱给别人. 这可是我的镇子.
 harvestfestival.npc.jamie.greeting12=真希望Cloe能早点长大. 她实在让我们家族蒙羞.
 
 #Abii
@@ -705,30 +709,31 @@ harvestfestival.npc.abi.greeting15=爸比妈咪不让我和陌生人说话...!
 
 #Tiberius/WayofTime
 harvestfestival.npc.tiberius.time=你来这个镇上已经%s年了.
+harvestfestival.npc.tiberius.first=你来这个小镇才一年! 这你都不记得.
 harvestfestival.npc.tiberius.greeting1=时间让人难以捉摸, 有时度日如年, 有时稍纵即逝!
 harvestfestival.npc.tiberius.greeting2=小时候我最喜欢的童谣是时钟的滴答滴.
 harvestfestival.npc.tiberius.greeting3=现在几点了?
 harvestfestival.npc.tiberius.greeting4=春天是我最喜欢的季节, 因为一年之计在于春!
 harvestfestival.npc.tiberius.greeting5=我不能理解为什么有人会怕血, 我有个朋友想去会一会血之使魔, 他差点就做到了, 只差一点点运气. 也许是时机未到吧.
-harvestfestival.npc.tiberius.greeting6=如果你知道我找到了使魔. 你一定会震惊的.
+harvestfestival.npc.tiberius.greeting6=如果你知道我找到了什么. 你一定会震惊的.
 harvestfestival.npc.tiberius.greeting7=我记得我上一次离乡是在Fenn还是个孩子的时候, 真的过了好久了.
 harvestfestival.npc.tiberius.greeting8=Fenn有时候确实非常调皮捣蛋. 真的应该管管他.
-harvestfestival.npc.tiberius.greeting9=我唯一能告诉你跟时间有关系的事情, 就是如果你在他们生日的时候给他们礼物, 他们会更喜欢你.
+harvestfestival.npc.tiberius.greeting9=我唯一能告诉你跟时间有关系的事情, 就是如果你在人们生日的时候给他们礼物, 他们会更喜欢你.
 harvestfestival.npc.tiberius.greeting10=你来这个镇上多久啦?
 harvestfestival.npc.tiberius.greeting11=我想我在古埃及的那段时光是最烦人的了.
 harvestfestival.npc.tiberius.marriage.reject=我还没想过要结婚.
 harvestfestival.npc.tiberius.marriage.accept=我准备好当你的老公了.
 
 #Jakob
-harvestfestival.npc.jacob.greeting1=钓鱼乃我使命, 雅各乃我姓名.
+harvestfestival.npc.jacob.greeting1=钓鱼乃吾使命, 雅各乃吾姓名.
 harvestfestival.npc.jacob.greeting2=吾志所向, 小丑鱼也!
 harvestfestival.npc.jacob.greeting3=溪谷垂钓, 岂不快哉.
 harvestfestival.npc.jacob.greeting4=愿天降甘霖. 今可, 明亦可!
-harvestfestival.npc.jacob.greeting5=我之惑也, 该从养殖?
+harvestfestival.npc.jacob.greeting5=吾之所惑, 是否该从养殖?
 harvestfestival.npc.jacob.greeting6=渔具? 尚未备妥.
-harvestfestival.npc.jacob.greeting7=从先祖之意, 继承家业.
-harvestfestival.npc.jacob.marriage.reject=我更喜欢鱼.
-harvestfestival.npc.jacob.marriage.accept=你就是我的海星, 我迫不及待想要成为你的老公了.
+harvestfestival.npc.jacob.greeting7=吾承先祖之意志而从渔.
+harvestfestival.npc.jacob.marriage.reject=吾更喜欢鱼.
+harvestfestival.npc.jacob.marriage.accept=汝乃吾之海星, 结契吧.
 
 #Pokefenn
 harvestfestival.npc.fenn.greeting1=总有一天, 我会种下一些葡萄树, 到时候你要和我一起去爬树!
@@ -742,27 +747,28 @@ harvestfestival.npc.fenn.greeting8=我长大了要成为宇宙一流的超级无
 harvestfestival.npc.fenn.greeting9=我最喜欢的宠物小精灵是妙蛙种子.
 
 #Jim/SpitefulFox
+harvestfestival.npc.jim.shop=养鸡场每周一到周六 10am 到 3pm 营业.
 harvestfestival.npc.jim.greeting1=你最喜欢的动物是什么? 我喜欢狐狸, 这些磨人的小妖精.
 harvestfestival.npc.jim.greeting2=如果你想要让你的动物生宝宝, 可以随时来找我!
 harvestfestival.npc.jim.greeting3=最近我一直在调整自己喂鸡的方法, 这是个有教育意义的经验.
 harvestfestival.npc.jim.greeting4=你知道, 这个世界有时就是这么荒谬,前不久我就看到一只松鼠在攻击一只长凳.
-harvestfestival.npc.jim.greeting5=Have you ever noticed how some countries, add 'u' to all their words, It's crazy if you ask me.
-harvestfestival.npc.jim.greeting6=当我骑在马上的时候, 生活简直不能更美好.
+harvestfestival.npc.jim.greeting5=不知道你有没有注意到, 有些国家每个单词都有'U', 简直丧心病狂.
+harvestfestival.npc.jim.greeting6=当我骑在马上的时候, 我觉得生活简直不能更美好.
 harvestfestival.npc.jim.greeting7=饲料槽一排可以放三个, 只要填满这些饲料槽 ,你的牛和羊饿的时候就会过来吃.
 harvestfestival.npc.jim.greeting8=你知道有些大家伙甚至会吃掉尚未成熟的牧草吗?
-harvestfestival.npc.jim.greeting9=如果你好好喂养你的那些动物, 他们也会回馈你更多的东西.
+harvestfestival.npc.jim.greeting9=如果你给你的动物喂食专用点心的话, 他们会有更多的副产品产出.
 harvestfestival.npc.jim.marriage.reject=我真的不想结婚.
 harvestfestival.npc.jim.marriage.accept=我想结婚有些日子了. 我会全心全意对你.
 
 #Brandon/Cricket
+harvestfestival.npc.brandon.shop=如果你需要一些挖掘材料，我从星期一到星期六营业，早上11点到下午4点.
 harvestfestival.npc.brandon.greeting1=每当我在下矿, 只要遇到钻石就不能抑制自己内心的兴奋.
 harvestfestival.npc.brandon.greeting2=我不知道你是会不会这样, 每天晚上都失眠, 老是能听到那些该死的蟋蟀的叫声.
 harvestfestival.npc.brandon.greeting3=你最喜欢什么冰淇淋? 我最喜欢大杯香草味. 至少在有人偷了我的冰淇淋之前是这样的...
 harvestfestival.npc.brandon.greeting4=你是否会厌倦采矿? 我永远不会. 如果你觉得采矿太累可以直接来跟我买.
 harvestfestival.npc.brandon.greeting5=我搞不懂那些人为什么那么惧怕黑暗. 采矿时看不见你会去到哪去的感觉真的太棒了.
-harvestfestival.npc.brandon.greeting6=那天我在矿井时,我看到了这如同火一般的奇怪生物. 不知道到底是什么啊?
-harvestfestival.npc.brandon.greeting7=如果你需要一些挖掘材料，我从星期一到星期六营业，早上11点到下午4点.
-harvestfestival.npc.brandon.greeting8=我来告诉你一个如何更有效挖矿的小技巧. 如果你跳起来落地之前击打矿石块, 你就可以瞬间把它敲碎! 使用下落攻击你甚至可以对一整片的矿石块进行击打. 这方法还可以用来压平翻好的耕地.
+harvestfestival.npc.brandon.greeting6=那天我在采矿场时,我看到了这如同火一般的奇怪生物. 不知道到底是什么啊?
+harvestfestival.npc.brandon.greeting8=我来告诉你一个如何更有效挖矿的小技巧. 如果你跳起来落地之前击打矿石块, 你就可以瞬间把它敲碎! 使用下落攻击你甚至可以对一整片的矿石块进行击打. 就跟你压平翻好的耕地一样.
 harvestfestival.npc.brandon.marriage.reject=你真的觉得我会跟像你这样的人结婚?
 harvestfestival.npc.brandon.marriage.accept=我倒希望会有更好的人, 不过我会跟你结婚.
 
@@ -781,24 +787,24 @@ harvestfestival.npc.candice.greeting2=有些人学牛叫能学得跟真的一样
 harvestfestival.npc.candice.greeting3=我在哪儿? 这个世界怎么了?
 harvestfestival.npc.candice.greeting4=过来一下, 我眼睛里进沙子了.
 harvestfestival.npc.candice.greeting5=你好 %4$s! 今天心情不错? 你今天看起来很漂亮!
-harvestfestival.npc.candice.greeting6=嗨, 美人儿, 告诉你个秘密. 你不需要给草浇水, 反正不管怎样他都会长! 一般人我不告诉他.
+harvestfestival.npc.candice.greeting6=嗨, 美人儿, 告诉你个秘密. 你不给牧草浇水, 他们也会生长的! 一般人我不告诉他.
 harvestfestival.npc.candice.greeting7=你知道我是个挤奶工而且常常和Jim一起工作吗?
 harvestfestival.npc.candice.marriage.reject=别想了, 我并不渴望婚姻.
 harvestfestival.npc.candice.marriage.accept=你是个好人! 我们会成为神仙眷侣, 我愿意!
 
 #Yulife
+harvestfestival.npc.yulif.shop=如果你是来找我盖房子, 很遗憾, 我只在周日到周五的每天上午9:00到下午5:30工作.
 harvestfestival.npc.yulif.greeting1=盖房子真是太花时间了, 啥时候我才能歇歇啊?
 harvestfestival.npc.yulif.greeting2=人们就像使唤一个苦工那样使唤我, 作为一个建筑师都没时间休息了!
 harvestfestival.npc.yulif.greeting3=你看见Jim了嘛? 他刚刚是不是在这?
 harvestfestival.npc.yulif.greeting4=我已经厌倦了做苦力了, 啥时候你才能欣赏一下我的建筑啊?
 harvestfestival.npc.yulif.greeting5=每天四处晃悠好无聊, 没有房子盖我要死了.
 harvestfestival.npc.yulif.greeting6=如果你挡住我的路, 我就没法在那建东西了.
-harvestfestival.npc.yulif.greeting7=如果你是来找我盖房子, 很遗憾, 我只在周日到周五的每天上午9:00到下午5:30工作.
 harvestfestival.npc.yulif.marriage.reject=嗯...我还没准备好要结婚.
 harvestfestival.npc.yulif.marriage.accept=你真好, 我愿意成为你的丈夫.
 harvestfestival.npc.builder.build=别疑惑, 我正在帮你盖 %s.
-harvestfestival.npc.builder.paint=我目前正在布置一些画, 比如这张 %s.
-harvestfestival.npc.builder.decorate=努力工作, 最后用%s来收尾!
+harvestfestival.npc.builder.paint=我目前正在布置一些壁画, 比如这张 %s.
+harvestfestival.npc.builder.decorate=正努力工作着呢, 还差%s来收尾!
 harvestfestival.npc.builder.movein=别在意我我只是在帮大家搬到%s里去.
 harvestfestival.npc.builder.basement.build=我现在看起来可能像疯了一样, 但是别怕, 只不过我在正在建造 %s 的地下室.
 harvestfestival.npc.builder.basement.paint=我正在把壁画挂到 %s 的地下室里.
@@ -806,14 +812,14 @@ harvestfestival.npc.builder.basement.decorate=等我插完火把 %s 就建完啦
 harvestfestival.npc.builder.basement.movein=别在意我我只是在帮大家搬到%s里去.
 
 #Ashlee
-harvestfestival.npc.ashlee.greeting1=我超爱收拾小鸡仔们!
-harvestfestival.npc.ashlee.greeting2=我好累, 和小鸡仔们一起工作真是太辛苦了!
+harvestfestival.npc.ashlee.shop=如果你需要点什么, 只需要来问我就行. 不过我只在周一到周六的早上5:00到11:00点工作.
+harvestfestival.npc.ashlee.greeting1=我炒鸡喜欢收拾小鸡!
+harvestfestival.npc.ashlee.greeting2=好累啊, 和小鸡一起真是痛并快乐着!
 harvestfestival.npc.ashlee.greeting3=希望从今天起, 我的睡眠质量能好一些.
-harvestfestival.npc.ashlee.greeting4=大部分养鸡人讨厌护理, 不过我很喜欢他们. 因为他们像我一样毛茸茸的!
-harvestfestival.npc.ashlee.greeting5=咯咯, 咯咯, 咯咯咯咯. 什么时候这些小鸡仔才能安分点闭上小嘴!
-harvestfestival.npc.ashlee.greeting6=亲手喂你的小鸡仔们能让你们感情更好, 不过这会更费功夫.
-harvestfestival.npc.ashlee.greeting7=鸡仔们很乐意持普通饲料和鸡饲料.
-harvestfestival.npc.ashlee.greeting8=如果你需要点什么, 只需要来问我就行. 不过我只在周一到周六的早上5:00到11:00点工作.
+harvestfestival.npc.ashlee.greeting4=大部分养鸡人讨厌狐狸, 不过我很喜欢他们. 因为他们像我一样毛茸茸的!
+harvestfestival.npc.ashlee.greeting5=咯咯, 咯咯, 咯咯咯咯. 什么时候这些小鸡才能安分点闭上小嘴!
+harvestfestival.npc.ashlee.greeting6=亲手喂你的小鸡能让你们感情更好, 虽然这会更费功夫.
+harvestfestival.npc.ashlee.greeting7=小鸡不管吃普通饲料还是鸡饲料都会很开心.
 harvestfestival.npc.ashlee.marriage.reject=你为什么会跟我求婚?
 harvestfestival.npc.ashlee.marriage.accept=哇, 你是我最棒的小狐狸, 我愿意跟你结婚.
 
@@ -822,10 +828,10 @@ harvestfestival.npc.girafi.greeting1=你好啊同志, 我是个卑微的商人, 
 harvestfestival.npc.girafi.greeting2=你好先生, 我计划我的下一次旅行有些日子了, 也许我会去丹麦.
 harvestfestival.npc.girafi.greeting3=再次见到你真的太好啦!
 harvestfestival.npc.girafi.greeting4=关于我的冒险经历, 我可以讲上整整一天! 我有没有跟你说过那次我抓住了一只乌贼然后...
-harvestfestival.npc.girafi.greeting5=哈罗, 金况入何?
+harvestfestival.npc.girafi.greeting5=哈罗, 金况如何?
 harvestfestival.npc.girafi.greeting6=我天, 再次见到你真的太开心了.
 harvestfestival.npc.girafi.greeting7=人有悲欢离合离合, 至少你让我多了些欢笑.
-harvestfestival.npc.girafi.marriage.reject=很高兴你这样说. 但是我对你没有那种感觉.
+harvestfestival.npc.girafi.marriage.reject=你是个好人. 但是我对你没感觉.
 harvestfestival.npc.girafi.marriage.accept=太好了, 跟你结婚一定很开心, 我会一直陪伴你.
 
 ###Shop greetings
@@ -853,7 +859,7 @@ harvestfestival.shop.poultry.greeting3=欢迎来到叽叽叽喳喳喳喳派对. 
 
 #Cafe
 harvestfestival.shop.cafe=咖啡店
-harvestfestival.shop.cafe.greeting1=客官! 您的菜来了~
+harvestfestival.shop.cafe.greeting1=料理准备好了, 来买吧~
 harvestfestival.shop.cafe.greeting2=这是菜单, 欢迎光临!
 harvestfestival.shop.cafe.greeting3=用餐时间到!
 
@@ -866,7 +872,7 @@ harvestfestival.shop.barn.greeting3=如果能养牛和羊, 谁还想去养小鸡
 #Blacksmith
 harvestfestival.shop.blacksmith=铁匠铺
 harvestfestival.shop.blacksmith.greeting1=来瞧瞧来看看咯, 十八般武器样样皆有!
-harvestfestival.shop.blacksmith.greeting2=出售趁手的工具一直都是一件很开心的事.
+harvestfestival.shop.blacksmith.greeting2=能出售趁手的工具, 我很开心.
 harvestfestival.shop.blacksmith.greeting3=需要点工具? 过来瞧瞧!
 
 #Carpenter
@@ -876,22 +882,22 @@ harvestfestival.shop.carpenter.greeting2=我刚刚得到很棒的建筑图纸.
 harvestfestival.shop.carpenter.greeting3=为你盖最棒的屋子!
 
 #Miner
-harvestfestival.shop.miner=矿工用品
+harvestfestival.shop.miner=矿用商品
 harvestfestival.shop.miner.greeting1=我这有一些稀有材料!
 harvestfestival.shop.miner.greeting2=来买点宝石吧!
-harvestfestival.shop.miner.greeting3=这有些材料!
+harvestfestival.shop.miner.greeting3=我这有些材料!
 
 #Blood Mage
-harvestfestival.shop.bloodmage=血魔法师
-harvestfestival.shop.bloodmage.greeting1=小崽子, 欢迎来到幽暗最深处.
+harvestfestival.shop.bloodmage=血魔
+harvestfestival.shop.bloodmage.greeting1=小崽子, 欢迎来到幽暗深处.
 harvestfestival.shop.bloodmage.greeting2=准备好了就睁大眼睛好好看看我的商品吧.
 harvestfestival.shop.bloodmage.greeting3=在这个黑暗又神秘的夜晚, 希望我的商品能让你眼前一亮.
 
 #Blood Mage
 harvestfestival.shop.baitshop=装备商店
-harvestfestival.shop.baitshop.greeting1=我们确实是在做生意, 一切建立在互惠互利的基础上.
-harvestfestival.shop.baitshop.greeting2=如果你想钓些鱼, 可以来我这边买点鱼竿.
-harvestfestival.shop.baitshop.greeting3=如果你愿意的话, 我这有鱼竿出售.
+harvestfestival.shop.baitshop.greeting1=我们只是在做生意, 一切建立在互惠互利的基础上.
+harvestfestival.shop.baitshop.greeting2=如果你想钓鱼, 可以来我这边买点鱼竿.
+harvestfestival.shop.baitshop.greeting3=如果你需要的话, 我这有鱼竿出售.
 
 #Miscellaneous
 harvestfestival.marriage=聘礼
@@ -903,10 +909,10 @@ harvestfestival.marriage.unlocked=未锁定
 #Intro
 harvestfestival.quest.tutorial.intro.hello=你好呀, 我认识你吗, 我们以前见过?
 harvestfestival.quest.tutorial.intro.question=[这是你第一次玩丰收物语吗?]
-harvestfestival.quest.tutorial.intro.tutorial=@我们没见过!
-harvestfestival.quest.tutorial.intro.skip=@我知道我在做什么
+harvestfestival.quest.tutorial.intro.tutorial=@是的!
+harvestfestival.quest.tutorial.intro.skip=@不是!
 harvestfestival.quest.tutorial.intro.completed=好吧, 那一定是我失忆了! 这里有一些花, 希望他们能让你忘记这里曾经发生的事...
-harvestfestival.quest.tutorial.intro.backstory=好吧, 初次见面. 我是Harvest Goddess. 我想跟你讲个小故事. 很久很久以前, 我们居住的土地上有一个繁华的小镇, 但是由于风暴侵袭, 居民们不得不离家出走, 背井离乡, 最近我听说他们归根落叶, 回到这里, 回到真正属于他们的地方, 但是他们需要帮助. 啊对了, 再过一阵我就会凭空消失, 不过没关系, 你可以随时用仙女花把我召唤出来. 每次我离开前都会给你留一朵. 就这样, 后会有期!
+harvestfestival.quest.tutorial.intro.backstory=好吧, 初次见面. 我是丰收女神. 跟你讲个小故事. 很久很久以前, 我们居住的土地上有一个繁华的小镇, 人们安居乐业, 四海升平, 直到那次风暴侵袭, 人们不得不离家出走, 背井离乡, 最近我听说他们归根落叶, 回到这里, 回到真正属于他们的地方, 但是他们需要帮助. 啊对了, 再过一阵我就会凭空消失, 不过没关系, 你可以随时用仙女花把我召唤出来. 每次我离开前都会给你留一朵. 就这样, 后会有期!
 
 #Carpenter
 harvestfestival.quest.tutorial.carpenter.wood.dozen=12个
@@ -914,42 +920,41 @@ harvestfestival.quest.tutorial.carpenter.wood.dozentwo=24个
 harvestfestival.quest.tutorial.carpenter.wood.stack=组
 harvestfestival.quest.tutorial.carpenter.wood.stackhalf=半组
 harvestfestival.quest.tutorial.carpenter.wood.stackquarter=四分之一组
-harvestfestival.quest.tutorial.carpenter.welcome=哦嗨亲爱的, 又见面啦. 关于怎么开始建设我们的镇子我有一点想法. 我听说有个叫Yulif的很棒的木匠, 他和他的妹妹正在寻找一个项目来承包, 小镇的建设可能正是他们要找的. Jade是一个热爱自然的妹子, 如果她能够作为助手来帮忙那简直完美. 我们现在可能需要的一些东西来吸引他们, 或许你可以给我带来 %s 的原木, 我会给你一些有用的东西作为报酬.
-harvestfestival.quest.tutorial.carpenter.reminder.wood=你好啊, 你是不是忘了我们的任务? 我们要吸引我们的第一批镇民来镇子里, 我现在需要%s的原木来启动我们的任务.
-harvestfestival.quest.tutorial.carpenter.thanks.build=完美! 这正是我需要的! 给你, 这是你需要的东西. 一张建筑的图纸, 选取一个区域, 选择图纸, 你就能看到一个建筑结构的效果预览. 如果Yulif还没有移居进镇子的话, 他就会出现并且立刻开始建设这所房子, 他可能需要一点时间来完成. 还有, 你可以同时安排多个建筑的建设计划, 但是在建完前面的建筑之前,Yulif是不会去建设下一所建筑的. 如果Yulif不小心发生什么不幸的话, 没关系 他将会在第二天重生并且重新投入工作! 这些就是我要交代的了, 那么我走了, 去建设木匠小屋吧. 啊, 对了, 差点忘了, 一旦完成了建设, Jade就会搬进来, 她一般喜欢在楼上待着. 你可以带一些花花去看望她, 她有一些作物种子, 并且跟你用花做交换!
+harvestfestival.quest.tutorial.carpenter.welcome=哦嗨亲爱的, 又见面啦. 我知道该怎么开始建设我们的镇子. 听说有个叫Yulif的很棒的木匠, 他和他的妹妹正在寻找项目承包, 他们要找的正是建筑相关的项目. Jade是一个热爱自然的妹子, 如果她能够作为助手来帮忙那简直完美. 不过我们现在需要一些东西来吸引他们, 或许你可以给我带来 %s 的原木, 我会给你一些有用的东西作为报酬.
+harvestfestival.quest.tutorial.carpenter.reminder.wood=你好啊, 你是不是忘了我们的任务? 我们要吸引我们的第一批居民来镇子里, 我现在需要%s的原木来启动我们的任务.
+harvestfestival.quest.tutorial.carpenter.thanks.build=完美! 这正是我需要的! 给你, 这是你需要的东西. 一张建筑的图纸, 选取一个区域, 选择图纸, 你就能看到一个建筑结构的建筑模型了. 如果Yulif还没有移居进镇子的话, 他就会出现并且立刻开始建设这所房子, 他可能需要花一点时间来完成. 还有, 你可以同时安排多个建筑的建设计划, 但是在建完前面的建筑之前,Yulif是不会去建设下一所建筑的. 如果Yulif不小心发生什么不幸的话, 没关系, 他将会在第二天重生并且重新投入工作! 我要交代的就这些了, 那么我走了, 去建设木匠小屋吧. 啊, 对了, 差点忘了, 一旦完成了建设, Jade就会搬进来, 她一般喜欢在楼上待着. 你可以带一些花花去看望她, 她有一些作物种子, 并且跟你用花做交换!
 harvestfestival.quest.tutorial.carpenter.reminder.carpenter=小宝贝, 我想你应该去见见Jade而不是我, 她在木工小屋的楼上, 带些花儿去. 如果你不小心丢掉了你木匠小屋的图纸, 那么就再带给我64个原木, 我会给你另一张图纸.
 harvestfestival.quest.tutorial.carpenter.reminder.give=幸亏还有一张图纸, 带上花去见见Jade吧, 她在小屋的楼上!
 harvestfestival.quest.tutorial.carpenter.reminder.flowers=初次见面, 我是Jade, 我正在想办法找一些花儿呢!
-harvestfestival.quest.tutorial.carpenter.thanks.flowers=嘿, 看起来你有一些花要给我! Harvest Goddess告诉了我很多关于你的事情, 我已经等不及要看看这个镇子是怎么发展起来的了! 我想Harvest Goddess很感激你帮助我们解围, 我觉得你应该去见见她. 但是稍后请记得回来找我, 我还有话要跟你说!
+harvestfestival.quest.tutorial.carpenter.thanks.flowers=嘿, 看起来你有一些花要给我! 女神告诉了我很多关于你的事情, 我已经等不及要看看这个镇子是怎么发展起来的了! 我想女神很感激你帮助我们解围, 我觉得你应该去见见她. 但是稍后请记得回来找我, 我还有话要跟你说!
 harvestfestival.quest.tutorial.carpenter.thanks.finish=做的好亲爱的, 我相信在你的帮助之下, 镇子的建设很快就会完成! 虽然完成建设可能需要花费你一些金币, 我很乐意给你这1000G作为你的起始资金, 希望你合理的消费它们. 另外,你该回去找Jade了, 再次感谢你的帮助. 哦, 对了, 如果你可以给我看看指南针的话, 我就能告诉你明天的天气.
 
 #Crops Tutorial
 harvestfestival.quest.tutorial.crops.intro=嘿! 我之前和你提到过, 我有些事情要告诉你! 那就是种田! 这在这之前有没有人教过你这个?
 harvestfestival.quest.tutorial.crops.question=你知道要怎么种田吗?
-harvestfestival.quest.tutorial.crops.tutorial=@我该怎么种田呢?
-harvestfestival.quest.tutorial.crops.skip=@我知道该怎么做!
-harvestfestival.quest.tutorial.crops.completed=好吧! 既然你已经知道怎么做了, 带上这些开始吧! 别忘了带些芜菁给Harvest Goddess.
-harvestfestival.quest.tutorial.crops.start=那就让我来教你怎么做吧! 耕种首先你要耕作一下土地, 耕作完之后,把一些种子种在上面. 记住了, 你的种子需要3*3的格子大小, 你还需要每天给他们浇水, 否则它们就会停止生长, 同时还需要注意在不同季节能够种植的作物也不同. 拿起你的锄头, 在农场地简单的右键就可以耕作土地了. 在你使用水壶浇灌作物之前, 记得给你的水壶打一些水. 拿着这些道具, 等你收获了9个芜菁之后再回来找我. 还有最后一条, 如果你想加快收获的话, 你可以通过睡眠来度过一天, 作物每天都在生长, 所以这是获得收获的最快的方法了!
-harvestfestival.quest.tutorial.crops.reminder.turnips=嘿怎么了, 看起来你还没有获得9个芜菁. 如果你粗心丢掉了你的锄头的话, 带给我一个石锄, 我很乐意再给你一个新的. 如果你需要水壶的话, 可以用桶来和我交换. 还有如果你还需要芜菁种子的花, 给我5朵小花就可以了!
+harvestfestival.quest.tutorial.crops.tutorial=@请教我怎么种!
+harvestfestival.quest.tutorial.crops.skip=@我都知道了!
+harvestfestival.quest.tutorial.crops.completed=好吧! 既然你已经知道怎么做了, 带上这些开始吧! 
+harvestfestival.quest.tutorial.crops.start=那就让我来教你怎么做吧! 耕种首先你要耕作一下土地, 耕作完之后,把一些种子种在上面. 记住了, 你的种子需要3*3的格子大小, 你还需要每天给他们浇水, 否则它们就会停止生长, 同时还需要注意在不同季节能够种植的作物也不同. 拿起你的锄头, 在农场地简单的右键就可以耕作土地了. 在你使用水壶浇灌作物之前, 记得给你的水壶打一些水. 拿着这些道具, 等你收获了9个白萝卜之后再回来找我. 还有最后一条, 如果你想加快收获的话, 你可以通过睡眠来度过一天, 作物每天都在生长, 所以这是获得收获的最快的方法了!
+harvestfestival.quest.tutorial.crops.reminder.turnips=嘿怎么了, 看起来你还没有获得9个白萝卜. 如果你粗心丢掉了你的锄头的话, 带给我一个石锄, 我很乐意再给你一个新的. 如果你需要水壶的话, 可以用桶来和我交换. 还有如果你还需要芜菁种子的花, 给我5朵小花就可以了!
 harvestfestival.quest.tutorial.crops.thanks.flowers=这些花真好看,拿着这些芜菁种子吧,作为给我这些花的谢礼.
 harvestfestival.quest.tutorial.crops.thanks.hoe=太好了, 拿着这个锄头吧.
 harvestfestival.quest.tutorial.crops.thanks.bucket=这正是我要的 ,这个水壶给你, 拿着吧.
-harvestfestival.quest.tutorial.crops.complete=哇哦, 这些芜菁被照顾的非常的好, 我真想把它们留下. 开玩笑的, 还给你. 我不想你把辛苦耕作的成果都浪费在我身上. 还有就是, 你可以出售你种植的作物来换取金币. 要卖东西的话需要一个出货箱. 你可以在我哥哥营业时间内找他买. 买东西的时候, 你只需要拿着你想出售货物对着它右键, 之后它们就会准备出售了. 第二天的早上你就会获得你应得的金币. 如果你不想用手一件一件的出售, 在出货箱上放一个漏斗, 把货物丢进漏斗它就会帮你放入出货箱了. 金币会付给安放漏斗的那个人! 如果你还需要种子, 我这里还有一些存货出售, 但我希望你能用五朵花跟我交换! 我建议你现在和我的哥哥聊一聊, 尽快建立起杂货店. 那里的商人可以提供比我更多的商品给你!
+harvestfestival.quest.tutorial.crops.complete=哇哦, 这些白萝卜被照顾的非常的好, 我真想把它们留下. 开玩笑的, 还给你. 我不想你把辛苦耕作的成果都浪费在我身上. 还有就是, 你可以出售你种植的作物来换取金币. 要卖东西的话需要一个出货箱. 你可以在我哥哥营业时间内找他买. 买东西的时候, 你只需要拿着你想出售货物对着它右键, 之后它们就会准备出售了. 第二天的早上你就会获得你应得的金币. 如果你不想用手一件一件的出售, 在出货箱上放一个漏斗, 把货物丢进漏斗它就会帮你放入出货箱了. 金币会付给安放漏斗的那个人! 如果你还需要种子, 我这里还有一些存货出售, 但我希望你能用五朵花跟我交换! 我建议你现在和我的哥哥聊一聊, 尽快建立起杂货店. 那里的商人可以提供比我更多的商品给你!
 
 #Chicken Care
 harvestfestival.quest.tutorial.chicken.reminder.talk=看来你已经建好了一个养鸡场. 或许你应该去找Ashlee聊聊.
-harvestfestival.quest.tutorial.chicken.reminder.poultry=嘿, 亲爱哒, 别忘了你想把你的养鸡场投入使用.
+harvestfestival.quest.tutorial.chicken.reminder.poultry=嘿, 亲爱哒, 别忘了把你的养鸡场投入使用.
 harvestfestival.quest.tutorial.chicken.start=我好喜欢这个地方, 这里真棒. 是吧, 狐狸先生?  我真想在这待久一点. 啊, 你好! 不好意思, 刚才没看到你在那, 我正在....额. 算了, 不要在意细节,  欢迎来到我的养鸡场! 我叫Ashlee.
-harvestfestival.quest.tutorial.chicken.question=你知道怎么照顾这些鸡仔吗?
+harvestfestival.quest.tutorial.chicken.question=你知道怎么照顾这些母鸡吗?
 harvestfestival.quest.tutorial.chicken.tutorial=@麻烦你告诉我!
 harvestfestival.quest.tutorial.chicken.skip=@给我东西就好了!
 harvestfestival.quest.tutorial.chicken.completed=哦那好吧, 你知道就好. 来拿着这只母鸡, 还有这些你用得上的东西.
-harvestfestival.quest.tutorial.chicken.throw=哦那好吧, 你知道就好. 来拿着这只鸡仔, 还有这些东西开始吧.
-harvestfestival.quest.tutorial.chicken.throw=啊哈所以你不知道咯? 首先你得喂养这些鸡仔! 如果你不这样做的话, 它们就会生病并且停止产出! 你可以手动喂鸡仔或者用这个饲料槽. 鸡仔们也跟人类一样需要一点点爱护. 为了表达你的爱, 请每天都把它举高高一次. 你对着他们右键来举高高这些鸡仔, 它们可喜欢这样了! 再次右键地面把它们放回地面. 用手动给鸡仔投食也更能体现你对它们的关爱. 心情好的母鸡会产出更大品质更好的蛋. 这里有一些鸡饲料. 能麻烦你喂养一下鸡仔们, 并展现对他们的爱吗? 做完这些之后再过来找我一下.
-harvestfestival.quest.tutorial.chicken.reminder.throw=还记得吗?我让你去举高高一下鸡仔, 并且喂它一些饲料.
+harvestfestival.quest.tutorial.chicken.throw=啊哈所以你不知道咯? 首先你得喂养这些母鸡! 如果你不这样做的话, 它们就会生病并且停止产出! 你可以手动喂母鸡或者使用这个饲料槽. 母鸡们也跟人类一样需要关爱. 为了表达你的爱, 请每天都把它举高高一次. 你对着他们右键来举高高这些母鸡, 它们可喜欢这样了! 再次右键地面把它们放回地面. 用手动给母鸡投食也更能体现你对它们的关爱. 心情好的母鸡会产出更大品质更好的蛋. 这里有一些鸡饲料. 能麻烦你喂养一下母鸡, 并展现对他们的爱吗? 做完这些之后再过来找我一下.
+harvestfestival.quest.tutorial.chicken.reminder.throw=还记得吗?我让你去举高高一下母鸡, 并且喂它一些饲料.
 harvestfestival.quest.tutorial.chicken.egg=做的好. 现在看起来你已经明白这么照顾这些母鸡了.跟之前提到的一样, 更开心的鸡更开心的蛋.但是要如何收获到这些蛋呢? 只需要放置一个鸡窝在附近. 理所当然的这些鸡就会下蛋. 它们一天只会生产一个蛋. 不过, 如果你没有喂他们吃东西的话, 他们就不会产蛋. 拿到蛋之后,别忘了把它们放到出货箱来赚钱. 我这有个鸡窝给你, 等你获得了一颗蛋之后再回来找我. 
 harvestfestival.quest.tutorial.chicken.reminder.egg=别忘了, 我还在等你给我一个蛋. 如果你需要一个新的鸡窝, 也可以从我这边买.
-harvestfestival.quest.tutorial.chicken.complete=为了奖励你的辛苦工作, 我要把这枚稀有蛋给你! 如果你想要更多稀有蛋的话, 就得好好照顾你的鸡仔们了. 啊对了, 可能还有些你不知道的事儿, 首先, 下雨的时候记得把你的鸡仔们送回养鸡场, 天气好的时候可以放他们出来玩耍, 还有个东西就是孵蛋器. 有了孵蛋器你就可以孵养自己的小鸡了. 你需要做的就是把一枚鸡蛋放入孵蛋器, 几天之后就该孵化了! 它们会生出继承双亲一半的好感度的鸡仔, 所以会比直接买的鸡仔更好培养. 顺便一提, 谢谢你帮我在这里开店.
+harvestfestival.quest.tutorial.chicken.complete=为了奖励你的辛苦工作, 我要给你这些稀有的大蛋! 如果你想要更多稀有的大蛋的话, 就得好好照顾你的母鸡了. 啊对了, 可能还有些你不知道的事儿, 首先, 下雨的时候记得把你的母鸡送回养鸡场, 天气好的时候可以放他们出来玩耍, 另外有个东西叫孵蛋器. 有了孵蛋器你就可以孵养自己的小鸡了. 你需要做的就是把一枚鸡蛋放入孵蛋器, 几天之后就该孵化了! 它们会生出继承双亲一半的好感度的小鸡, 所以会比直接买的母鸡更好培养. 顺便一提, 谢谢你帮我在这里开店.
 
 #Cow Care
 harvestfestival.quest.tutorial.cow.reminder.intro=看来你已经建好饲养场了, 该去找Jim谈谈了.
@@ -959,7 +964,6 @@ harvestfestival.quest.tutorial.cow.question=你知道怎么照顾牛牛吗?
 harvestfestival.quest.tutorial.cow.tutorial=@请指导我一下
 harvestfestival.quest.tutorial.cow.skip=@我已经知道了
 harvestfestival.quest.tutorial.cow.completed=哦是吗? 好吧来牵走这头牛. 拿上这些你用的上的道具.
-harvestfestival.quest.tutorial.cow.info=哦是吗? 好吧来牵走这头牛. 拿着这些可以帮助你的道具.
 harvestfestival.quest.tutorial.cow.info=哦是吗? 那我该教教你了. 总的来说很简单, 这些大兄弟需要被喂养和关爱, 然后为了保持健康他们还需要保持清洁. 你需要喂他们饲料, 用手喂养可以获得额外的加成, 也可以使用饲料槽. 按下右键陪它们说说话来展现你的爱, 直到他们冒爱心. 给他们刷毛的时候也一样, 只不过要用刷子亲手刷, 最好把他们刷的干干净净的. 去试试看吧, 喂一下奶牛并且刷干净它.
 harvestfestival.quest.tutorial.cow.reminder.talk=记住我之前说的, 陪奶牛说说话然后刷刷它.
 harvestfestival.quest.tutorial.cow.milk=干的不错, 看起来你已经知道怎么照顾你的奶牛了. 奶牛每天都会给你产牛奶. 拿起挤奶器右键奶牛直到你获得牛奶为止. 记住, 好感度越高它们能给你的牛奶也就越好越多. 那么, 现在去挤一些牛奶让我瞧瞧. 
@@ -968,8 +972,8 @@ harvestfestival.quest.tutorial.cow.complete=你做的很不错. 我有一些小�
 
 #General Store Introduction
 harvestfestival.quest.tutorial.supermarket.reminder.talk=或许你应该去找Candice或者Jenni聊聊, 你已经建好了杂货店.
-harvestfestival.quest.tutorial.supermarket.reminder.supermarket=温馨提示, 如果你需要更多的种子, 去建一个杂货店吧!
-harvestfestival.quest.tutorial.supermarket.welcome.owner=嘿, 我是这个杂货店的老板. 能搬到这个镇子感觉真不错. 我卖格式各样的商品, 从种子到巧克力都有. 有什么需要就告诉我. 我们的营业时间是每天的09:00 到 17:00, 但是周三和周末我们不营业. 周六的营业时间是 11:00 到 15:00. 看来你是我们的第一个客户啊, 来, 给你一个小奖品!
+harvestfestival.quest.tutorial.supermarket.reminder.supermarket=温馨提示, 如果你想要更多种种子, 去建一个杂货店吧!
+harvestfestival.quest.tutorial.supermarket.welcome.owner=嘿, 我是这个杂货店的老板. 能搬到这个镇子感觉真不错. 我卖各式各样的商品, 从种子到巧克力都有. 有什么需要就告诉我. 我们的营业时间是每天的09:00 到 17:00, 但是周三和周末我们不营业. 周六的营业时间是 11:00 到 15:00. 看来你是我们的第一个客户啊, 来, 给你一个小奖品!
 harvestfestival.quest.tutorial.supermarket.welcome.guest=我就说谁在那呢. 你好啊你小可爱. 我是Candice. 楼下的Jenni是这里的老板, 我只是这里的租客. 如果你需要商品除了周三和周末都可以找她, 09:00 到 17:00. 周六的 11:00 到 15:00 也开门. 对了, 她让我把这个交给你.
 
 #Cafe Cooking Lesson
@@ -978,7 +982,7 @@ harvestfestival.quest.tutorial.cafe.question=需要教你怎么做料理吗?
 harvestfestival.quest.tutorial.cafe.tutorial=@我很需要
 harvestfestival.quest.tutorial.cafe.skip=@其实我会
 harvestfestival.quest.tutorial.cafe.completed=那真是太棒了! 拿着这些东西下厨去吧.
-harvestfestival.quest.tutorial.cafe.explain=那真是太好了! 能教你做料理我也很开心. 你需要一整套厨具来做料理. 最基础的就是橱柜加菜刀的组合啦. 你还需要知道怎么弄到一份食谱. 我这里就能买到很多食谱, 不过我们还是从简单的腌芜菁开始吧. 右键食谱来来学习食谱. 然后食谱就会加到料理全书里. 选好厨具和食谱. 然后你就可以在你的右手边看到你所需要东西的列表了. 如果你手头有材料和厨具的话, 把所有材料放在厨具上, 然后点击烹饪. 然后它就应该开始烹饪了. 如果你没有使用你的橱柜! 你就只能用右键来切材料了. 如果你需要别的厨具, 也可以从我这边买到, 不过厨具只在周末出售. 最后还有一件事要说, 书里的食谱非常基础, 你应该按照常识加入别的食材, 说不定可以做出更棒的料理. 就这些啦.
+harvestfestival.quest.tutorial.cafe.explain=那真是太好了! 能教你做料理我也很开心. 你需要一整套厨具来做料理. 最经典的就是橱柜加菜刀的组合啦. 你还需要知道怎么弄到一份食谱. 我这里就能买到很多食谱, 不过我们还是从简单的腌芜菁开始吧. 右键食谱来来学习食谱. 然后食谱就会加到料理全书里. 选好厨具和食谱. 然后你就可以在你的右手边看到你所需要东西的列表了. 如果你手头有材料和厨具的话, 把所有材料放在厨具上, 然后点击烹饪. 然后它就应该开始烹饪了. 如果你没有使用你的橱柜! 你就只能用右键来切材料了. 如果你需要别的厨具, 也可以从我这边买到, 不过厨具只在周末出售. 最后还有一件事要说, 书里的食谱非常基础, 你应该按照常识加入别的食材, 说不定可以做出更棒的料理. 就这些啦.
 
 #Upgrading Tools Tutorial
 harvestfestival.quest.tutorial.upgrading.reminder.blacksmith.yulif=也许你应该去见见铁匠了.
@@ -1085,7 +1089,7 @@ achievement.harvestfestival.summon=女神的恩赐
 achievement.harvestfestival.summon.desc=召唤女神之花
 achievement.harvestfestival.visitor=故事的开端
 achievement.harvestfestival.visitor.desc=与Jade交谈
-achievement.harvestfestival.harvest=打开它!
+achievement.harvestfestival.harvest=挖起它!
 achievement.harvestfestival.harvest.desc=收获第一个芜菁
 achievement.harvestfestival.onion=在夏天
 achievement.harvestfestival.onion.desc=而我会做所有雪人想做的事
@@ -1099,12 +1103,12 @@ achievement.harvestfestival.egger=小鸡蛋
 achievement.harvestfestival.egger.desc=从母鸡身上获得第一个蛋
 achievement.harvestfestival.eggerLarge=彩蛋
 achievement.harvestfestival.eggerLarge.desc=这不是一个彩蛋
-achievement.harvestfestival.firstShipping=出货欢乐多!
+achievement.harvestfestival.firstShipping=出货咯!
 achievement.harvestfestival.firstShipping.desc=出货第一件物品
-achievement.harvestfestival.millionaire=川普的贷款
-achievement.harvestfestival.millionaire.desc=谁想成为百万富翁?
+achievement.harvestfestival.millionaire=大富翁
+achievement.harvestfestival.millionaire.desc=谁不想成为百万富翁?
 achievement.harvestfestival.theMine=往下走
-achievement.harvestfestival.theMine.desc=进入矿坑...
+achievement.harvestfestival.theMine.desc=进入采矿场...
 achievement.harvestfestival.killChick=一套带走!
 achievement.harvestfestival.killChick.desc=这很虚幻...
 achievement.harvestfestival.killChicken=长大了

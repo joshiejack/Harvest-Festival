@@ -8,6 +8,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.RandomPositionGenerator;
 import net.minecraft.pathfinding.Path;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 
@@ -15,6 +16,7 @@ public class EntityAIBuild extends EntityAIBase {
     private final EntityNPCBuilder npc;
     private int teleportTimer;
     private int buildingTimer;
+    private int stuckTimer;
 
     public EntityAIBuild(EntityNPCBuilder npc) {
         this.npc = npc;
@@ -23,7 +25,10 @@ public class EntityAIBuild extends EntityAIBase {
 
     @Override
     public boolean shouldExecute() {
-        return npc.getBuilding() != null;
+        if (npc.getBuilding() != null) {
+            npc.stepHeight = 1F;
+            return true;
+        } else return false;
     }
 
     @Override
@@ -34,18 +39,28 @@ public class EntityAIBuild extends EntityAIBase {
         } else return true;
     }
 
+    private void attemptToTeleportToSafety(BlockPos go) {
+        Vec3d vec = RandomPositionGenerator.findRandomTargetBlockTowards(npc, 3, 32, new Vec3d((double) go.getX() + 0.5D, (double) go.getY() + 1D, (double) go.getZ() + 0.5D));
+        if (vec != null) {
+            BlockPos pos = new BlockPos(vec);
+            if (EntityHelper.isSpawnable(npc.worldObj, pos) && EntityHelper.isSpawnable(npc.worldObj, pos.up()) && npc.worldObj.getBlockState(pos.down()).isSideSolid(npc.worldObj, pos.down(), EnumFacing.UP)) {
+                npc.setPositionAndUpdate(pos.getX() + 0.5D, pos.getY() + 1D, pos.getZ() + 0.5D);
+            }
+        }
+    }
+
     @Override
     public void updateTask() {
         BuildingStage building = npc.getBuilding();
         if (buildingTimer % building.getTickTime() == 0) {
             Placeable placeable = building.next();
             if (placeable != null) {
-                BlockPos go = building.getPos(placeable);
+                BlockPos go = building.getPos(building.previous());
                 double distance = npc.getDistanceSq(go);
                 boolean tooFar = distance >= building.getDistance(placeable);
                 if (tooFar) {
                     //Teleportation
-                    if (teleportTimer >= 100 || distance >= 256D) {
+                    if (teleportTimer >= 200 || distance >= 4096D) {
                         teleportTimer = 0;
                         npc.attemptTeleport(go.getX() + 0.5D, go.getY() + 1D, go.getZ() + 0.5D);
                         tooFar = false; //Force the placement of the block
@@ -67,19 +82,36 @@ public class EntityAIBuild extends EntityAIBase {
 
                 //If the NPC is close the where they need to build
                 if (!tooFar) {
-                    npc.getNavigator().setPath(npc.getNavigator().getPathToPos(go), 0.6F);
-                    if (building.build(npc.worldObj)) npc.resetSpawnHome();
+                    if (building.build(npc.worldObj)) {
+                        npc.getNavigator().setPath(npc.getNavigator().getPathToPos(go), 0.85D);
+                        stuckTimer = 0;
+                    } else {
+                        Vec3d vec = RandomPositionGenerator.findRandomTargetBlockTowards(npc, 1, 1, new Vec3d((double) go.getX() + 0.5D, (double) go.getY() + 1D, (double) go.getZ() + 0.5D));
+                        if (vec != null) {
+                            npc.getNavigator().setPath(npc.getNavigator().getPathToPos(new BlockPos(vec)), 0.85F);
+                        }
+
+
+                        stuckTimer++;
+                        if (stuckTimer >= 100) {
+                            stuckTimer = 0;
+                            attemptToTeleportToSafety(go);
+                        }
+                    }
+
+                    //Finish the building
                     if (building.isFinished()) {
                         npc.finishBuilding();
+                        npc.resetSpawnHome();
                     }
                 }
 
                 //If we're suffocating
+                BlockPos pos = new BlockPos(npc);
                 if (!npc.isInsideOfMaterial(Material.AIR)) {
-                    BlockPos pos = go.add(npc.worldObj.rand.nextInt(16) - 8, npc.worldObj.rand.nextInt(16), npc.worldObj.rand.nextInt(16) - 8);
-                    if (EntityHelper.isSpawnable(npc.worldObj, pos) && EntityHelper.isSpawnable(npc.worldObj, pos.up())) {
-                        npc.setPositionAndUpdate(go.getX() + 0.5D, go.getY() + 1D, go.getZ() + 0.5D);
-                    }
+                    attemptToTeleportToSafety(go);
+                } else if (npc.worldObj.getBlockState(pos).getBlock().isPassable(npc.worldObj, pos)) {
+                    npc.setJumping(true);
                 }
             }
         }

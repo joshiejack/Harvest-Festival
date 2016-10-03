@@ -12,12 +12,13 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 
+import javax.annotation.Nullable;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -33,24 +34,11 @@ public class CropHelper {
         RESERVE.put(pos, state);
     }
 
-    public static IBlockState getBlockState(IBlockAccess world, BlockPos pos, PlantSection section, boolean withered) {
-        TileWithered crop = getTile(world, pos, section);
-        if (section == PlantSection.TOP && crop == null) {
-            IBlockState theState = RESERVE.getIfPresent(pos);
-            return theState == null ? Blocks.GRASS.getDefaultState(): theState;
-        }
-
-        CropData data = crop.getData();
-        return data.getCrop().getStateHandler().getState(world, pos, section, data.getStage(), withered);
+    public static IBlockState getTempState(BlockPos pos) {
+        return RESERVE.getIfPresent(pos);
     }
 
-    public static AxisAlignedBB getCropBoundingBox(IBlockAccess world, BlockPos pos, PlantSection section, boolean withered) {
-        TileWithered crop = getTile(world, pos, section);
-        CropData data = crop.getData();
-        return data.getCrop().getStateHandler().getBoundingBox(world, pos, section, data.getStage(), withered);
-    }
-
-    private static TileWithered getTile(IBlockAccess world, BlockPos pos, PlantSection section) {
+    public static TileWithered getTile(IBlockAccess world, BlockPos pos, PlantSection section) {
         if (section == BOTTOM) return (TileWithered) world.getTileEntity(pos);
         else {
             TileWithered down = ((TileWithered)world.getTileEntity(pos.down()));
@@ -79,12 +67,18 @@ public class CropHelper {
         return list != null;
     }
 
+    @Nullable
     public static CropData getCropDataAt(IBlockAccess world, BlockPos pos) {
         PlantSection section = BlockHFCrops.getSection(world.getBlockState(pos));
-        if (section == null) return null;
-        if (section == PlantSection.BOTTOM) return ((TileWithered)world.getTileEntity(pos)).getData();
-        else if (section == PlantSection.TOP) return ((TileWithered)world.getTileEntity(pos.down())).getData();
-        else return null;
+        if (section == PlantSection.BOTTOM) {
+            TileEntity tile = world.getTileEntity(pos);
+            if (tile instanceof TileWithered) return ((TileWithered)tile).getData();
+        } else if (section == PlantSection.TOP) {
+            TileEntity tile = world.getTileEntity(pos.down());
+            if (tile instanceof TileWithered) return ((TileWithered)tile).getData();
+        }
+
+        return null;
     }
 
     public static boolean isRainingAt(World world, BlockPos pos) {

@@ -35,6 +35,7 @@ public class EntityNPCBuilder extends EntityNPCShopkeeper {
 
     public void finishBuilding() {
         ((TownDataServer)homeTown).finishBuilding(worldObj);
+        stepHeight = 0.7F; //Reset Step Height
     }
 
     @Override

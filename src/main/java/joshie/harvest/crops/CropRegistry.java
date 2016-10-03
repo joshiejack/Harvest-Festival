@@ -3,10 +3,8 @@ package joshie.harvest.crops;
 import joshie.harvest.api.crops.Crop;
 import joshie.harvest.api.crops.ICropProvider;
 import joshie.harvest.api.crops.ICropRegistry;
-import joshie.harvest.api.crops.IStateHandler.PlantSection;
 import joshie.harvest.core.util.HFApiImplementation;
 import joshie.harvest.core.util.holder.ItemStackHolder;
-import joshie.harvest.crops.block.BlockHFCrops;
 import joshie.harvest.crops.tile.TileWithered;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
@@ -83,11 +81,8 @@ public class CropRegistry implements ICropRegistry {
 
     @Override
     public Crop getCropAtLocation(World world, BlockPos pos) {
-        PlantSection section = BlockHFCrops.getSection(world.getBlockState(pos));
-        if (section == null) return null;
-        if (section == PlantSection.BOTTOM) return ((TileWithered)world.getTileEntity(pos)).getData().getCrop();
-        else if (section == PlantSection.TOP) return ((TileWithered)world.getTileEntity(pos.down())).getData().getCrop();
-        else return null;
+        CropData data = CropHelper.getCropDataAt(world, pos);
+        return data != null ? data.getCrop() : null;
     }
 
     @Override
@@ -97,10 +92,11 @@ public class CropRegistry implements ICropRegistry {
             world.setBlockState(pos.up(), HFCrops.CROPS.getStateFromEnum(FRESH_DOUBLE));
         }
 
-
         TileWithered tile = (TileWithered) world.getTileEntity(pos);
-        tile.getData().setCrop(theCrop, stage);
-        tile.saveAndRefresh();
+        if (tile != null) {
+            tile.getData().setCrop(theCrop, stage);
+            tile.saveAndRefresh();
+        }
     }
 
     @Override

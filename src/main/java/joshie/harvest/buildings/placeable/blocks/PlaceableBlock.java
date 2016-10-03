@@ -45,6 +45,10 @@ public class PlaceableBlock extends Placeable {
         return this;
     }
 
+    public boolean isBlocked(World world, BlockPos pos) {
+        return false;
+    }
+
     public Block getBlock() {
         return state.getBlock();
     }

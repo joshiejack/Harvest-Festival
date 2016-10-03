@@ -41,7 +41,6 @@ import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.UseHoeEvent;
-import net.minecraftforge.event.world.BlockEvent.BreakEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
@@ -164,11 +163,16 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
     }
 
     public boolean canStay(World world, BlockPos pos) {
-        Crop crop = HFApi.crops.getCropAtLocation(world, pos);
-        if (crop != null && crop.getGrowthHandler() != null) {
-            IBlockState down = world.getBlockState(pos.down());
-            return down.getBlock() == this || crop.getGrowthHandler().canSustainCrop(world, pos.down(), world.getBlockState(pos.down()), crop);
-        } else return false;
+        CropData data = CropHelper.getCropDataAt(world, pos);
+        if (data != null) {
+            Crop crop = data.getCrop();
+            if (crop.getGrowthHandler() != null) {
+                IBlockState down = world.getBlockState(pos.down());
+                return down.getBlock() == this || crop.getGrowthHandler().canSustainCrop(world, pos.down(), world.getBlockState(pos.down()), crop);
+            }
+        }
+
+        return false;
     }
 
     @Override
@@ -261,8 +265,8 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos) {
         CropType stage = getEnumFromState(state);
-        AxisAlignedBB aabb = CropHelper.getCropBoundingBox(world, pos, stage.getSection(), stage.isWithered());
-        return aabb != null ? aabb : CROP_AABB;
+        CropData data = CropHelper.getCropDataAt(world, pos);
+        return data != null ? data.getCrop().getStateHandler().getBoundingBox(world, pos, stage.getSection(), data.getStage(), stage.isWithered()) : CROP_AABB;
     }
 
     @SuppressWarnings("deprecation")
@@ -275,14 +279,21 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
     public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
         if (getEnumFromState(state) == CropType.WITHERED) return new ItemStack(Blocks.DEADBUSH); //It's Dead soo???
         CropData data = CropHelper.getCropDataAt(world, pos);
-        return HFCrops.SEEDS.getStackFromCrop(data.getCrop());
+        return data == null ? new ItemStack(Blocks.DEADBUSH) : HFCrops.SEEDS.getStackFromCrop(data.getCrop());
     }
 
     @SuppressWarnings("deprecation")
     @Override
     public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos) {
         CropType stage = getEnumFromState(state);
-        return CropHelper.getBlockState(world, pos, stage.getSection(), stage.isWithered());
+        TileWithered crop = CropHelper.getTile(world, pos, stage.getSection());
+        if (stage.getSection() == PlantSection.TOP && crop == null) {
+            IBlockState theState = CropHelper.getTempState(pos);
+            return theState == null ? Blocks.GRASS.getDefaultState(): theState;
+        }
+
+        if (crop != null) return crop.getData().getCrop().getStateHandler().getState(world, pos, stage.getSection(), crop.getData().getStage(), stage.isWithered());
+        else return Blocks.DEADBUSH.getDefaultState();
     }
 
     public static class RainingSoil {
@@ -323,14 +334,6 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
                 HFApi.tickable.addTickable(event.getWorld(), event.getPos(), HFApi.tickable.getTickableFromBlock(Blocks.FARMLAND));
             }
         }
-
-        @SubscribeEvent
-        public void onBlockBreak(BreakEvent event) {
-            IBlockState above = event.getWorld().getBlockState(event.getPos().up());
-            if (above .getBlock() == HFCrops.CROPS) {
-                //event.setCanceled(true);
-            }
-        }
     }
 
     @Override
@@ -352,7 +355,7 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
         if (HFCrops.ENABLE_BONEMEAL) {
             if (HFCrops.SEASONAL_BONEMEAL) {
                 CropData data = CropHelper.getCropDataAt(world, pos);
-                if (data.getCrop().getGrowthHandler().canGrow(world, pos, data.getCrop())) {
+                if (data != null && data.getCrop().getGrowthHandler().canGrow(world, pos, data.getCrop())) {
                     return canGrow(world, pos, state);
                 }
 
@@ -361,9 +364,11 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
         } else return false;
     }
 
-    public boolean canGrow(World world, BlockPos pos, IBlockState state) {
-        TileWithered crop = getEnumFromState(state).section == TOP ? (TileWithered) world.getTileEntity(pos.down()): (TileWithered) world.getTileEntity(pos);
-        return crop.getData().getStage() < crop.getData().getCrop().getStages();
+    private boolean canGrow(World world, BlockPos pos, IBlockState state) {
+        TileWithered crop = CropHelper.getTile(world, pos, getSection(state));
+        if (crop != null) {
+            return crop.getData().getStage() < crop.getData().getCrop().getStages();
+        } else return false;
     }
 
     /* Only called server side **/
@@ -377,22 +382,25 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
     //Apply the bonemeal and grow!
     @Override
     public void grow(World world, Random rand, BlockPos pos, IBlockState state) {
-        TileWithered crop = getEnumFromState(state).section == TOP ? (TileWithered) world.getTileEntity(pos.down()): (TileWithered) world.getTileEntity(pos);
-        crop.getData().grow(world, pos);
-        crop.saveAndRefresh();
-        markTileForUpdate(crop);
+        TileWithered crop = CropHelper.getTile(world, pos, getSection(state));
+        if (crop != null) {
+            crop.getData().grow(world, pos);
+            crop.saveAndRefresh();
+            markTileForUpdate(crop);
+        }
     }
 
     @Override
     public boolean feedAnimal(IAnimalTracked tracked, World world, BlockPos pos, IBlockState state) {
         if (HFApi.animals.canAnimalEatFoodType(tracked, AnimalFoodType.GRASS)) {
             CropData data = CropHelper.getCropDataAt(world, pos);
-            Crop theCrop = data.getCrop();
-            if (theCrop == HFCrops.GRASS) {
-                int stage = data.getStage();
-                if (stage > 5) {
-                    HFApi.crops.plantCrop(tracked.getData().getOwner(), world, pos, theCrop, stage - 5);
-                    return true;
+            if (data != null) {
+                if (data.getCrop() == HFCrops.GRASS) {
+                    int stage = data.getStage();
+                    if (stage > 5) {
+                        HFApi.crops.plantCrop(tracked.getData().getOwner(), world, pos, data.getCrop(), stage - 5);
+                        return true;
+                    }
                 }
             }
         }

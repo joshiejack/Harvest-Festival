@@ -7,13 +7,17 @@ import joshie.harvest.api.animals.IAnimalData;
 import joshie.harvest.api.animals.IAnimalTracked;
 import joshie.harvest.core.handlers.HFTrackers;
 import net.minecraft.entity.EntityAgeable;
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
+import net.minecraft.init.MobEffects;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 
@@ -42,6 +46,18 @@ public class EntityHarvestChicken extends EntityChicken implements IAnimalTracke
         tasks.addTask(6, new EntityAIWander(this, 1.0D));
         tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
         tasks.addTask(8, new EntityAILookIdle(this));
+    }
+
+    @Override
+    protected void applyEntityAttributes() {
+        super.applyEntityAttributes();
+        getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(20.0D);
+    }
+
+    @Override
+    public boolean attackEntityFrom(DamageSource source, float amount) {
+        addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 200, 0, true, false));
+        return super.attackEntityFrom(source, amount);
     }
 
     @Override

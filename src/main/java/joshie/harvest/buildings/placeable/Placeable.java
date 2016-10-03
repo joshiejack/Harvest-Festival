@@ -1,9 +1,7 @@
 package joshie.harvest.buildings.placeable;
 
-import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.core.util.Direction;
 import net.minecraft.block.BlockBush;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -36,7 +34,7 @@ public abstract class Placeable {
     }
 
     public boolean isBlocked(World world, BlockPos pos) {
-        return EntityHelper.getEntities(EntityLivingBase.class, world, pos, 0D, 0D).size() != 0;
+        return false;
     }
 
     private void clearBushes(World world, BlockPos pos) {
@@ -50,7 +48,7 @@ public abstract class Placeable {
         if (world.getBlockState(pos).getBlockHardness(world, pos) == -1F) return true;
         if (canPlace(stage)) {
             BlockPos transformed = getTransformedPosition(pos, direction);
-            clearBushes(world, transformed.up());
+            if (stage == ConstructionStage.BUILD) clearBushes(world, transformed.up());
             return place(world, transformed, direction, playSound);
         } else return false;
     }

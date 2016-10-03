@@ -13,10 +13,13 @@ import net.minecraft.entity.ai.*;
 import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
+import net.minecraft.init.MobEffects;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.pathfinding.PathNodeType;
+import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
@@ -52,6 +55,12 @@ public class EntityHarvestSheep extends EntitySheep implements IAnimalTracked {
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
         getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(60.0D);
+    }
+
+    @Override
+    public boolean attackEntityFrom(DamageSource source, float amount) {
+        addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 200, 0, true, false));
+        return super.attackEntityFrom(source, amount);
     }
 
     @Override

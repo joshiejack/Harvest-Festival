@@ -127,7 +127,7 @@ public abstract class EntityNPCHuman<E extends EntityNPCHuman> extends EntityNPC
 
     @Override
     public boolean attackEntityFrom(DamageSource source, float amount) {
-        addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 100, 0, true, false));
+        addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 200, 0, true, false));
         return super.attackEntityFrom(source, amount);
     }
 

@@ -17,9 +17,12 @@ import net.minecraft.entity.ai.*;
 import net.minecraft.entity.passive.EntityCow;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
+import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.pathfinding.PathNodeType;
+import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
@@ -50,6 +53,12 @@ public class EntityHarvestCow extends EntityCow implements IAnimalTracked, IMilk
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
         getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(50.0D);
+    }
+
+    @Override
+    public boolean attackEntityFrom(DamageSource source, float amount) {
+        addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 200, 0, true, false));
+        return super.attackEntityFrom(source, amount);
     }
 
     @Override

@@ -25,7 +25,10 @@ public class EntityAIBuild extends EntityAIBase {
 
     @Override
     public boolean shouldExecute() {
-        return npc.getBuilding() != null;
+        if (npc.getBuilding() != null) {
+            npc.stepHeight = 1F;
+            return true;
+        } else return false;
     }
 
     @Override
@@ -57,7 +60,7 @@ public class EntityAIBuild extends EntityAIBase {
                 boolean tooFar = distance >= building.getDistance(placeable);
                 if (tooFar) {
                     //Teleportation
-                    if (teleportTimer >= 200 || distance >= 512D) {
+                    if (teleportTimer >= 200 || distance >= 4096D) {
                         teleportTimer = 0;
                         npc.attemptTeleport(go.getX() + 0.5D, go.getY() + 1D, go.getZ() + 0.5D);
                         tooFar = false; //Force the placement of the block

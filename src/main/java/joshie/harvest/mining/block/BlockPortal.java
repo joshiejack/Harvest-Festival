@@ -27,7 +27,7 @@ import static joshie.harvest.mining.block.BlockPortal.Type.MINE;
 import static joshie.harvest.mining.block.BlockPortal.Type.OVERWORLD;
 
 
-public class BlockPortal extends BlockHFEnum<BlockPortal, Portal> {
+public class  BlockPortal extends BlockHFEnum<BlockPortal, Portal> {
     protected static final AxisAlignedBB AABB = new AxisAlignedBB(0.0625D, 0.0D, 0.0625D, 0.9375D, 1.0D, 0.9375D);
 
     public enum Portal implements IStringSerializable {

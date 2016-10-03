@@ -6,6 +6,8 @@
 * Fixed gifting your last item leaving a ghost stack of size 0
 * Fixed decorative dirt breaking instantly
 * Fixed the command /hf returning empty line
+* Fixed Blast resistance of mine dirt
+* Fixed bed restoring hunger without actually sleeping
 
 ##0.5.5
 * Fixed too much winter fog showing up underground

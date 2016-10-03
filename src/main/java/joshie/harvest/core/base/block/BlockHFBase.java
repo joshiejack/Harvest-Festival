@@ -60,6 +60,12 @@ public abstract class BlockHFBase<B extends BlockHFBase> extends Block {
         return (B) super.setHardness(hardness);
     }
 
+    @SuppressWarnings("unchecked")
+    @Override
+    public B setResistance(float value) {
+        return (B) super.setResistance(value);
+    }
+
     @Override
     public int getMetaFromState(IBlockState state) {
         return 0;

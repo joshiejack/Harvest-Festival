@@ -20,6 +20,7 @@ import net.minecraftforge.fml.relauncher.ReflectionHelper;
 
 import static joshie.harvest.animals.item.ItemAnimalTool.Tool.BRUSH;
 import static joshie.harvest.animals.item.ItemAnimalTool.Tool.MILKER;
+import static joshie.harvest.calendar.HFCalendar.TICKS_PER_DAY;
 import static joshie.harvest.cooking.item.ItemIngredients.Ingredient.OIL;
 import static joshie.harvest.npc.item.ItemNPCTool.NPCTool.BLUE_FEATHER;
 import static joshie.harvest.tools.HFTools.EXHAUSTION;
@@ -105,9 +106,11 @@ public class ToolHelper {
         @SubscribeEvent
         public void onWakeup(PlayerWakeUpEvent event) {
             EntityPlayer player = event.getEntityPlayer();
-            if (player.isPotionActive(EXHAUSTION)) player.removePotionEffect(EXHAUSTION);
-            if (player.isPotionActive(FATIGUE)) player.removePotionEffect(FATIGUE);
-            restoreHunger(player);
+            if (player.worldObj.getWorldTime() % TICKS_PER_DAY == 0) {
+                if (player.isPotionActive(EXHAUSTION)) player.removePotionEffect(EXHAUSTION);
+                if (player.isPotionActive(FATIGUE)) player.removePotionEffect(FATIGUE);
+                restoreHunger(player);
+            }
         }
     }
 

@@ -1,5 +1,6 @@
 package joshie.harvest.asm;
 
+import joshie.harvest.api.calendar.Season;
 import joshie.harvest.core.handlers.HFTrackers;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -26,7 +27,8 @@ public class BlockSnow extends net.minecraft.block.BlockSnow {
     private boolean dieSnow(World world, BlockPos pos) {
         if (!world.isRemote) {
             if (!world.provider.canSnowAt(pos, false)) {
-                return world.setBlockToAir(pos);
+                if (HFTrackers.getCalendar(world).getSeasonAtPos(world, pos) != Season.WINTER) return world.setBlockToAir(pos);
+                else return false;
             } else return false;
         } else return true;
     }

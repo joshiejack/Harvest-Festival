@@ -28,6 +28,7 @@ public class HFCalendar {
     public static boolean ENABLE_BLIZZARD;
     public static boolean ENABLE_DATE_HUD;
     public static boolean ENABLE_GOLD_HUD;
+    public static boolean SNOW_TICKER;
     public static int OVERWORLD_ID;
     public static boolean HIDE_CALENDAR_TEXTURE;
     public static boolean HIDE_GOLD_TEXTURE;
@@ -76,6 +77,7 @@ public class HFCalendar {
         Y_GOLD = getInteger("HUD > Gold Y", 0);
         ENABLE_DATE_HUD = getBoolean("HUD > Enable data", true);
         ENABLE_GOLD_HUD = getBoolean("HUD > Enable gold", true);
+        SNOW_TICKER = getBoolean("Remove snow faster", true);
     }
 
     public static void onServerStarting() {

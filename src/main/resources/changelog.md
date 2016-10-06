@@ -1,3 +1,7 @@
+##0.5.7
+* Improve the removal of snow.
+* If you notice lag, feel free to turn off "Remove snow faster" config option
+
 ##0.5.6
 * Save the mine portal locations to the dimension, not level.dat
 * Increased the chicken/sheep/cows health

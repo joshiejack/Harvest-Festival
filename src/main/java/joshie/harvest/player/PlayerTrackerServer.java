@@ -87,10 +87,13 @@ public class PlayerTrackerServer extends PlayerTracker {
     }
 
     public void syncPlayerStats(EntityPlayerMP player) {
-        quests.sync(player);
-        relationships.sync(player);
-        stats.sync(player);
-        tracking.sync(player);
+        //Only sync the stats if the player is online
+        if (player.connection != null && player.connection.netManager != null) {
+            quests.sync(player);
+            relationships.sync(player);
+            stats.sync(player);
+            tracking.sync(player);
+        }
     }
 
     public void readFromNBT(NBTTagCompound nbt) {

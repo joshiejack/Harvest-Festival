@@ -7,7 +7,6 @@ import joshie.harvest.api.core.Ore;
 import joshie.harvest.api.crops.Crop;
 import joshie.harvest.core.util.HFApiImplementation;
 import joshie.harvest.core.util.holder.HolderRegistry;
-import joshie.harvest.crops.HFCrops;
 import net.minecraft.item.ItemStack;
 
 @HFApiImplementation
@@ -36,9 +35,7 @@ public class ShippingRegistry implements IShippingRegistry {
         //Special case Crops
         Crop crop = HFApi.crops.getCropFromStack(stack);
         if (crop != null) {
-            if (crop.getCropStack(1).getItem() != HFCrops.CROP) {
-                return (stack.hasTagCompound() && stack.getTagCompound().hasKey("Sellable")) ? crop.getSellValue(stack) : 0L;
-            } else return crop.getSellValue(stack);
+            return crop.getSellValue(stack);
         }
 
         Long value = registry.getValueOf(stack);

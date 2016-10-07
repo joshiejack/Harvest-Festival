@@ -2,6 +2,7 @@
 * Improve the removal of snow.
 * If you notice lag, feel free to turn off "Remove snow faster" config option
 * Validate some things before syncing player stats
+* Make jade check for flower ore dictionary prefix
 * Fix bug where npcs don't gift recipes
 * Fix the beetroot state handler
 * Fix melons and pumpkins being unsellable

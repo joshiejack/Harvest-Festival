@@ -1,7 +1,10 @@
 package joshie.harvest.calendar;
 
 import joshie.harvest.api.HFApi;
+import joshie.harvest.api.calendar.Season;
+import joshie.harvest.api.calendar.Weather;
 import joshie.harvest.api.ticking.IDailyTickableBlock;
+import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.util.HFEvents;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
@@ -11,6 +14,7 @@ import net.minecraft.world.chunk.storage.ExtendedBlockStorage;
 import net.minecraftforge.event.world.ChunkDataEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
+import static net.minecraft.block.BlockSnow.LAYERS;
 import static net.minecraft.world.chunk.Chunk.NULL_BLOCK_STORAGE;
 
 @HFEvents
@@ -20,8 +24,20 @@ public class SnowLoader {
     public static boolean register() {
         if (HFCalendar.SNOW_TICKER) {
             SNOW_LAYER = (world, pos, state) -> {
-                if (world.rand.nextInt(3) < 2) {
-                    return !world.setBlockToAir(pos);
+                Calendar calendar = HFTrackers.getCalendar(world);
+                Season season = calendar.getDate().getSeason();
+                Weather weather = calendar.getTodaysWeather();
+                if (!weather.isSnow()) {
+                    if (season == Season.WINTER && !weather.isRain()) {
+                        if (weather == Weather.BLIZZARD) {
+                            int meta = state.getValue(LAYERS);
+                            if (meta < 3) {
+                                world.setBlockState(pos, state.withProperty(LAYERS, meta + 1), 2);
+                            }
+                        }
+                    } else if (world.rand.nextInt(3) < 2) {
+                        return !world.setBlockToAir(pos);
+                    }
                 }
 
                 return true;

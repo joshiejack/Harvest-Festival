@@ -1,6 +1,6 @@
 package joshie.harvest.core.util.holder;
 
-import joshie.harvest.core.base.item.ItemHFFML;
+import joshie.harvest.core.util.IFMLItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -10,15 +10,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FMLHolder extends AbstractItemHolder {
-    private final ItemHFFML item;
+    private final IFMLItem item;
     private final ResourceLocation resource;
 
     private FMLHolder(ItemStack stack) {
-        this.item = (ItemHFFML) stack.getItem();
+        this.item = (IFMLItem) stack.getItem();
         this.resource = item.getObjectFromStack(stack).getRegistryName();
     }
 
-    private FMLHolder(ItemHFFML item, ResourceLocation resource) {
+    private FMLHolder(IFMLItem item, ResourceLocation resource) {
         this.item = item;
         this.resource = resource;
     }
@@ -40,14 +40,14 @@ public class FMLHolder extends AbstractItemHolder {
     }
 
     public static FMLHolder readFromNBT(NBTTagCompound tag) {
-        ItemHFFML item = (ItemHFFML) Item.REGISTRY.getObject(new ResourceLocation(tag.getString("ItemName")));
+        IFMLItem item = (IFMLItem) Item.REGISTRY.getObject(new ResourceLocation(tag.getString("ItemName")));
         ResourceLocation resource = new ResourceLocation(tag.getString("Resource"));
         return new FMLHolder(item, resource);
     }
 
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound tag) {
-        tag.setString("ItemName", Item.REGISTRY.getNameForObject(item).toString());
+        tag.setString("ItemName", Item.REGISTRY.getNameForObject((Item)item).toString());
         tag.setString("Resource", resource.toString());
         return tag;
     }

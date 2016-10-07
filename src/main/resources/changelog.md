@@ -3,9 +3,11 @@
 * If you notice lag, feel free to turn off "Remove snow faster" config option
 * Validate some things before syncing player stats
 * Make jade check for flower ore dictionary prefix
+* Add a few ore dictionary registrations
 * Fix bug where npcs don't gift recipes
 * Fix the beetroot state handler
 * Fix melons and pumpkins being unsellable
+* Fix render of certain items in the recipe book
 
 ##0.5.6
 * Save the mine portal locations to the dimension, not level.dat

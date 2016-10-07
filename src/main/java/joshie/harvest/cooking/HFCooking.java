@@ -3,6 +3,7 @@ package joshie.harvest.cooking;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.cooking.block.BlockCookware;
 import joshie.harvest.cooking.item.*;
+import joshie.harvest.cooking.item.ItemIngredients.Ingredient;
 import joshie.harvest.cooking.recipe.RecipeMayo;
 import joshie.harvest.cooking.recipe.RecipeMeal;
 import joshie.harvest.cooking.recipe.RecipeStack;
@@ -16,6 +17,7 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.oredict.OreDictionary;
 
 import static joshie.harvest.cooking.item.ItemUtensil.Utensil.BLADE;
 import static joshie.harvest.cooking.item.ItemUtensil.Utensil.KNIFE;
@@ -41,6 +43,13 @@ public class HFCooking {
         HFApi.cooking.registerRecipeHandler(new RecipeMeal());
         HFApi.cooking.registerRecipeHandler(RecipeStack.INSTANCE);
         HFApi.cooking.registerKnife(new ItemStack(UTENSILS, 1, KNIFE.ordinal()));
+        OreDictionary.registerOre("foodOliveoil", INGREDIENTS.getStackFromEnum(Ingredient.OIL));
+        OreDictionary.registerOre("foodChocolatebar", INGREDIENTS.getStackFromEnum(Ingredient.CHOCOLATE));
+        OreDictionary.registerOre("foodButter", INGREDIENTS.getStackFromEnum(Ingredient.BUTTER));
+        OreDictionary.registerOre("foodFlour", INGREDIENTS.getStackFromEnum(Ingredient.FLOUR));
+        OreDictionary.registerOre("foodSalt", INGREDIENTS.getStackFromEnum(Ingredient.SALT));
+        OreDictionary.registerOre("foodKetchup", INGREDIENTS.getStackFromEnum(Ingredient.KETCHUP));
+        OreDictionary.registerOre("foodScrambledegg", INGREDIENTS.getStackFromEnum(Ingredient.EGG_SCRAMBLED));
         registerSounds("counter", "fridge", "frying_pan", "mixer", "oven", "oven_done", "oven_door", "pot", "recipe");
         registerTiles(TileFridge.class, TileFryingPan.class, TileCounter.class, TileMixer.class, TileOven.class, TilePot.class);
     }

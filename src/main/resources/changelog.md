@@ -1,3 +1,6 @@
+##0.5.8
+* Fix crash when attempting to make some recipes in the mixer
+
 ##0.5.7
 * Improve the removal of snow.
 * If you notice lag, feel free to turn off "Remove snow faster" config option

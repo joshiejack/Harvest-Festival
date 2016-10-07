@@ -22,7 +22,7 @@ public class GuiCookbook extends GuiScreen {
     public static final Set<Ingredient> ingredients = new HashSet<>();
     private final ArrayList<Runnable> runnables = new ArrayList<>();
     private static final int imageWidth = 154;
-    private static final int imageHeight = 204;
+    private static final int imageHeight = 202;
     static final int MAX_UTENSILS_DISPLAY = 5;
 
     private static Page page;
@@ -63,8 +63,8 @@ public class GuiCookbook extends GuiScreen {
                 if (PageRecipeList.get(tool).hasRecipes()) {
                     mc.getTextureManager().bindTexture(LEFT_GUI);
                     boolean hoverY = mouseY >= 16 + i * 36 && mouseY <= 50 + i * 36;
-                    int theY = page.getUtensil() == tool ? 66 : hoverX && hoverY ? 33: 0;
-                    drawTexture(308, 16 + i * 36, 0, theY, 26, 34);
+                    int theY = page.getUtensil() == tool ? 64 : hoverX && hoverY ? 32: 0;
+                    drawTexture(308, 16 + i * 36, 0, theY, 26, 32);
                     drawStack(308, 25 + i * 36, PageRecipeList.get(tool).getItem(), 1F);
                 }
             }

@@ -35,6 +35,8 @@ public class HFRecipes {
         addFryingPanRecipe("potsticker", 7, 1.42F, CABBAGE, ONION, FLOUR, OIL); //Jenni 10000RP
         addFryingPanRecipe("risotto", 10, 2.0F, TOMATO, ONION, RICEBALL, OIL); //Cloe 10000RP
 
+
+
         //Mixer
         addMixerRecipe("juice_pineapple", 2, 2.86F, PINEAPPLE).setOptionalIngredients(SALT, SUGAR); //Yulif 5000RP
         addMixerRecipe("juice_tomato", 6, 1.14F, TOMATO).setOptionalIngredients(SALT); //Shop

@@ -4,6 +4,7 @@ harvestfestival.tab.cooking=Harvest Festival - Cooking
 harvestfestival.tab.mining=Harvest Festival - Mining
 harvestfestival.tab.town=Harvest Festival - Township
 harvestfestival.tab.gathering=Harvest Festival - Gathering
+harvestfestival.tab.fishing=Harvest Festival - Fishing
 harvestfestival.mode.true=Harvest Festival was set to easy mode!
 harvestfestival.mode.false=Harvest Festival was set to hard mode!
 harvestfestival.check.head=On head after purchase.
@@ -272,6 +273,12 @@ harvestfestival.sizeable.matsutake=Matsutake Mushroom
 harvestfestival.sizeable.toadstool=Toadstool
 harvestfestival.sizeable.shiitake=Shiitake Mushroom
 harvestfestival.sizeable.yarn=Yarn
+
+#Fish
+harvestfestival.fish.angel=Angelfish
+harvestfestival.fish.angler=Anglerfish
+harvestfestival.fish.bass=Bass
+harvestfestival.fish.blaasop=Silver-Stripe Blaasop
 
 #Tools
 #Hoe

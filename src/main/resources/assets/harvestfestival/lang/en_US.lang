@@ -148,7 +148,7 @@ harvestfestival.meal.egg.scrambled.description=The key to light and fluffy scram
 harvestfestival.meal.omelet=Omelette
 harvestfestival.meal.omelet.description=This crisp and soft treatment of eggs with oil and milk is a breakfast classic, but depending on what’s rolled or folded within, can be a meal for any occasion.
 harvestfestival.meal.omelet.rice=Omurice
-harvestfestival.meal.omelet.rice.description=The slightly dried rice soaks up the egg mixture and its starches help bind omelettte rice together. This allows this dish to contain a wider range of ingredients then a simple omelet.
+harvestfestival.meal.omelet.rice.description=The slightly dried rice soaks up the egg mixture and its starches help bind omelette rice together. This allows this dish to contain a wider range of ingredients then a simple omelet.
 harvestfestival.meal.pancake=Pancake
 harvestfestival.meal.pancake.description=Pancakes, Flapjacks, Griddle Cakes, all names for the greatest prepared on demand breakfast bread invented west of Constantinople.
 harvestfestival.meal.potsticker=Potsticker
@@ -728,7 +728,6 @@ harvestfestival.npc.tiberius.marriage.reject=I'm not quite ready to marry yet.
 harvestfestival.npc.tiberius.marriage.accept=I am ready to become your husband.
 
 #Jakob
-harvestfestival.npc.jacob.shop=My bait shop is open tuesday-friday 1pm to 7pm.
 harvestfestival.npc.jacob.greeting1=Fishing is my game, Jacob is my name.
 harvestfestival.npc.jacob.greeting2=One day I will catch the elusive clownfish, I promise you!
 harvestfestival.npc.jacob.greeting3=There's nothing like just sitting and waiting for a fish to bite, so relaxing.

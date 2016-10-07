@@ -40,7 +40,7 @@ public class HFTab extends CreativeTabs {
 
     public HFTab(String label) {
         super(label);
-        setBackgroundImageName("hf.png");
+        setBackgroundImageName("minecraft/textures/gui/container/creative_inventory/tab_item_search.png");
         setNoTitle();
     }
 

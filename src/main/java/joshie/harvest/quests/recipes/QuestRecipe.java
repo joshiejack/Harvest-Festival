@@ -36,9 +36,15 @@ public class QuestRecipe extends Quest {
     @Override
     public String getLocalizedScript(EntityPlayer player, EntityLiving entity, INPC npc) {
         if (HFApi.relationships.getRelationship(player, npc.getUUID()) >= relationship) {
-            complete(player);
             return getLocalized("text");
         } else return null;
+    }
+
+    @Override
+    public void onChatClosed(EntityPlayer player, EntityLiving entity, INPC npc) {
+        if (HFApi.relationships.getRelationship(player, npc.getUUID()) >= relationship) {
+            complete(player);
+        }
     }
 
     @Override

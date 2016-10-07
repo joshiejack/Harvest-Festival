@@ -58,24 +58,28 @@ public class MiningHelper {
         }
     }
 
+    private static boolean isSpawnable(World world, BlockPos pos) {
+        return world.getBlockState(pos).getBlock().isPassable(world, pos);
+    }
+
     private static BlockPos modifySpawnAndPlayerRotation(WorldServer dim, BlockPos spawn, Entity entity) {
         IBlockState actual = HFMining.PORTAL.getActualState(dim.getBlockState(spawn), dim, spawn);
         if (actual.getBlock() == HFMining.PORTAL) {
             Portal portal = HFMining.PORTAL.getEnumFromState(actual);
-            for (int distance = 2; distance < 7; distance++) {
+            for (int distance = 2; distance < 9; distance++) {
                 if (portal.isEW()) {
-                    if (EntityHelper.isSpawnable(dim, spawn.north(distance))) {
+                    if (isSpawnable(dim, spawn.north(distance))) {
                         entity.rotationYaw = 180F;
                         return spawn.north(distance);
-                    } else if (EntityHelper.isSpawnable(dim, spawn.south(distance))) {
+                    } else if (isSpawnable(dim, spawn.south(distance))) {
                         entity.rotationYaw = 0F;
                         return spawn.south(distance);
                     }
                 } else {
-                    if (EntityHelper.isSpawnable(dim, spawn.east(distance))) {
+                    if (isSpawnable(dim, spawn.east(distance))) {
                         entity.rotationYaw = 270F;
                         return spawn.east(distance);
-                    } else if (EntityHelper.isSpawnable(dim, spawn.west(distance))) {
+                    } else if (isSpawnable(dim, spawn.west(distance))) {
                         entity.rotationYaw = 90F;
                         return spawn.west(distance);
                     }

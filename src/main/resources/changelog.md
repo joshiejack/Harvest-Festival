@@ -4,10 +4,13 @@
 * Validate some things before syncing player stats
 * Make jade check for flower ore dictionary prefix
 * Add a few ore dictionary registrations
+* Added name tags to the animal ranch/poultry farm
 * Fix bug where npcs don't gift recipes
 * Fix the beetroot state handler
 * Fix melons and pumpkins being unsellable
 * Fix render of certain items in the recipe book
+* Fix blood mage question button
+* Fix torches able to block entering a mine
 
 ##0.5.6
 * Save the mine portal locations to the dimension, not level.dat

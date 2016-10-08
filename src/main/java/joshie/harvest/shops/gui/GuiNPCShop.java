@@ -68,8 +68,8 @@ public class GuiNPCShop extends GuiNPCBase {
             down = mouseY >= 231 && mouseY <= 240 ? 17 : 0;
         }
 
-        if (start != 0) drawTexturedModalRect(x + 230, y + 45, 72 + up, 34, 14, 11);
-        if (start < getMaximumSize()) drawTexturedModalRect(x + 230, y + 210, 72 + down, 47, 14, 11);
+        if (start != 0) drawTexturedModalRect(x + 230, y + 45, 72 + up, 34, 14, 12);
+        if (start < getMaximumSize()) drawTexturedModalRect(x + 230, y + 210, 72 + down, 47, 14, 12);
         GlStateManager.disableBlend();
         GlStateManager.popMatrix();
     }
@@ -112,7 +112,7 @@ public class GuiNPCShop extends GuiNPCBase {
                 xOffset = 32;
             }
 
-            drawTexturedModalRect(x + posX, y + posY, xOffset, 32, 32, 32);
+            drawTexturedModalRect(x + posX, y + posY - 2, xOffset, 32, 32, 36);
             GlStateManager.enableBlend();
             mc.renderEngine.bindTexture(HFModInfo.ELEMENTS);
             drawTexturedModalRect(x99 + 59, y37 + 50, 244, 0, 12, 12);

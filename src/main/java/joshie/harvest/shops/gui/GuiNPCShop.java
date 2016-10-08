@@ -44,7 +44,7 @@ public class GuiNPCShop extends GuiNPCBase {
     }
 
     public void setStart(int i) {
-        start = Math.max(0, Math.min(contents.size() - getMax(), i));
+        start = Math.max(0, Math.min(getMaximumSize(), i));
     }
 
     @Override
@@ -69,7 +69,7 @@ public class GuiNPCShop extends GuiNPCBase {
         }
 
         if (start != 0) drawTexturedModalRect(x + 230, y + 45, 72 + up, 34, 14, 11);
-        if (start < contents.size() - (getMax())) drawTexturedModalRect(x + 230, y + 210, 72 + down, 47, 14, 11);
+        if (start < getMaximumSize()) drawTexturedModalRect(x + 230, y + 210, 72 + down, 47, 14, 11);
         GlStateManager.disableBlend();
         GlStateManager.popMatrix();
     }
@@ -189,7 +189,7 @@ public class GuiNPCShop extends GuiNPCBase {
             down = mouseY >= 231 && mouseY <= 240;
         }
 
-        if (down && start < contents.size() - getMax()) setStart(start + getIncrease());
+        if (down && start < getMaximumSize()) setStart(start + getIncrease());
         else if (up && start != 0) setStart(start - getIncrease());
     }
 
@@ -209,5 +209,11 @@ public class GuiNPCShop extends GuiNPCBase {
 
     public int getMax() {
         return 9;
+    }
+
+    private int getMaximumSize() {
+        int max = contents.size() - getMax();
+        max = max %2 == 0 ? max: max - 1;
+        return max;
     }
 }

@@ -1,3 +1,8 @@
+##0.6.0
+#Changes
+* New Shop GUI
+* Made shop scroll behave better
+
 ##0.5.8
 * Fix crash when attempting to make some recipes in the mixer
 

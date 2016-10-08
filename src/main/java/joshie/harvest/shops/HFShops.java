@@ -77,6 +77,7 @@ public class HFShops {
         BARN.addItem(new PurchasableEntity(EntityHarvestCow.class, 5000, HFAnimals.ANIMAL.getStackFromEnum(COW), true));
         BARN.addItem(3000, HFAnimals.TOOLS.getStackFromEnum(MIRACLE_POTION));
         BARN.addItem(500, HFAnimals.TROUGH.getStackFromEnum(WOOD));
+        BARN.addItem(250, new ItemStack(Items.NAME_TAG));
 
         BARN.addOpening(MONDAY, 10000, 15000).addOpening(TUESDAY, 10000, 15000).addOpening(WEDNESDAY, 10000, 15000);
         BARN.addOpening(THURSDAY, 10000, 15000).addOpening(FRIDAY, 10000, 15000).addOpening(SATURDAY, 10000, 15000);
@@ -173,6 +174,7 @@ public class HFShops {
         POULTRY.addItem(500, HFAnimals.TRAY.getStackFromEnum(FEEDER_EMPTY));
         POULTRY.addItem(1000, HFAnimals.TRAY.getStackFromEnum(NEST_EMPTY));
         POULTRY.addItem(7500, HFAnimals.SIZED.getStackFromEnum(INCUBATOR));
+        POULTRY.addItem(250, new ItemStack(Items.NAME_TAG));
 
         POULTRY.addOpening(MONDAY, 5000, 11000).addOpening(TUESDAY, 5000, 11000).addOpening(WEDNESDAY, 5000, 11000);
         POULTRY.addOpening(THURSDAY, 5000, 11000).addOpening(FRIDAY, 5000, 11000).addOpening(SATURDAY, 5000, 11000);

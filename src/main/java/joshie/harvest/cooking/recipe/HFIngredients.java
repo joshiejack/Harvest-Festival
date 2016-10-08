@@ -126,9 +126,7 @@ public class HFIngredients {
                 ItemStack stack = crop.getCropStack(1);
                 String name = getPrimaryCropName(stack);
                 if (name != null) {
-                    for (ItemStack item: OreDictionary.getOres(name)) {
-                        CookingAPI.INSTANCE.register(item, crop.getIngredient());
-                    }
+                    registerForOre(name, crop.getIngredient());
                 } else CookingAPI.INSTANCE.register(stack, crop.getIngredient());
             }
         }
@@ -142,9 +140,9 @@ public class HFIngredients {
         CookingAPI.INSTANCE.register(new ItemStack(Blocks.RED_MUSHROOM), RED_MUSHROOM);
 
         //Ingredients
-        CookingAPI.INSTANCE.register(HFCooking.INGREDIENTS.getStackFromEnum(ItemIngredients.Ingredient.CHOCOLATE), CHOCOLATE);
-        CookingAPI.INSTANCE.register(HFCooking.INGREDIENTS.getStackFromEnum(ItemIngredients.Ingredient.FLOUR), FLOUR);
-        CookingAPI.INSTANCE.register(HFCooking.INGREDIENTS.getStackFromEnum(ItemIngredients.Ingredient.OIL), OIL);
+        registerForOre("foodChocolatebar", CHOCOLATE);
+        registerForOre("foodFlour", FLOUR);
+        registerForOre("foodOliveoil", OIL);
         CookingAPI.INSTANCE.register(HFCooking.INGREDIENTS.getStackFromEnum(ItemIngredients.Ingredient.RICEBALL), RICEBALL);
 
         //Meals - Real
@@ -155,11 +153,12 @@ public class HFIngredients {
         CookingAPI.INSTANCE.register(CookingAPI.INSTANCE.getBestMeal("cookies"), COOKIES);
         CookingAPI.INSTANCE.register(CookingAPI.INSTANCE.getBestMeal("ketchup"), KETCHUP);
         //Meals - Alts
-        CookingAPI.INSTANCE.register(HFCooking.INGREDIENTS.getStackFromEnum(ItemIngredients.Ingredient.BUTTER), BUTTER);
+        registerForOre("foodButter", BUTTER);
+        registerForOre("foodScrambledegg", SCRAMBLED_EGG);
+        registerForOre("foodKetchup", KETCHUP);
         CookingAPI.INSTANCE.register(HFCooking.INGREDIENTS.getStackFromEnum(ItemIngredients.Ingredient.SASHIMI), SASHIMI);
-        CookingAPI.INSTANCE.register(HFCooking.INGREDIENTS.getStackFromEnum(ItemIngredients.Ingredient.EGG_SCRAMBLED), SCRAMBLED_EGG);
         CookingAPI.INSTANCE.register(HFCooking.INGREDIENTS.getStackFromEnum(ItemIngredients.Ingredient.COOKIES), COOKIES);
-        CookingAPI.INSTANCE.register(HFCooking.INGREDIENTS.getStackFromEnum(ItemIngredients.Ingredient.KETCHUP), KETCHUP);
+
         //Meals - Vanilla
         CookingAPI.INSTANCE.register(new ItemStack(Items.BREAD), BREAD);
         CookingAPI.INSTANCE.register(new ItemStack(Items.BAKED_POTATO), BAKED_POTATO);
@@ -175,7 +174,13 @@ public class HFIngredients {
         CookingAPI.INSTANCE.register(new ItemStack(Items.COOKED_RABBIT), RABBIT_COOKED);
 
         //Spices and Salts
-        CookingAPI.INSTANCE.register(HFCooking.INGREDIENTS.getStackFromEnum(ItemIngredients.Ingredient.SALT), SALT);
+        registerForOre("foodSalt", SALT);
         CookingAPI.INSTANCE.register(new ItemStack(Items.SUGAR), SUGAR);
+    }
+
+    private static void registerForOre(String ore, Ingredient ingredient) {
+        for (ItemStack item: OreDictionary.getOres(ore)) {
+            CookingAPI.INSTANCE.register(item, ingredient);
+        }
     }
 }

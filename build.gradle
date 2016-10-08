@@ -69,12 +69,22 @@ jar {
     }
 }
 
+task apiJar(type: Jar) {
+    from sourceSets.main.allSource
+    from sourceSets.main.output
+    include 'joshie/harvest/api/**/*'
+    classifier = 'api'
+}
+
+tasks.build.dependsOn apiJar
+
 publishing {
     tasks.publish.dependsOn 'build'
     publications {
         mavenJava(MavenPublication) {
             artifactId 'Harvest-Festival'
             artifact jar
+            artifact apiJar
         }
     }
     repositories {

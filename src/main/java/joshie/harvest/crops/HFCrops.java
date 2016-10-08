@@ -87,11 +87,11 @@ public class HFCrops {
     public static final Crop CARROT = registerCrop("carrot", 300L, 120L, 8, 0, 0, 0XF8AC33, AUTUMN).setItem(new ItemStack(Items.CARROT)).setStateHandler(new StateHandlerSeedFood(Blocks.CARROTS));
     public static final Crop SWEET_POTATO = registerCrop("sweet_potato", 300L, 120L, 6, 4, 0, 0XD82AAC, AUTUMN).setFoodStats(2, 0.35F).setStateHandler(new StateHandlerSweetPotato());
     public static final Crop GREEN_PEPPER = registerCrop("green_pepper", 150L, 40L, 8, 2, 3, 0x56D213, AUTUMN).setFoodStats(2, 0.5F).setStateHandler(new StateHandlerGreenPepper());
-    public static final Crop BEETROOT = registerCrop("beetroot", 250L, 75L, 8, 0, 0, 0x690000, AUTUMN).setItem(new ItemStack(Items.BEETROOT)).setStateHandler(new StateHandlerSeedFood(Blocks.BEETROOTS));
+    public static final Crop BEETROOT = registerCrop("beetroot", 250L, 75L, 8, 0, 0, 0x690000, AUTUMN).setItem(new ItemStack(Items.BEETROOT)).setStateHandler(new StateHandlerBeetroot());
 
     //Year Long Crops
     public static final Crop GRASS = registerCrop("grass", 500L, 1L, 11, 1, 0, 0x7AC958, SPRING, SUMMER, AUTUMN).setWitheredColor(0x7a5230).setAnimalFoodType(AnimalFoodType.GRASS).setDropHandler(new DropHandlerGrass()).setBecomesDouble(6).setHasAlternativeName().setRequiresSickle(6).setNoWaterRequirements().setStateHandler(new StateHandlerGrass());
-    public static final Crop WHEAT = registerCrop("wheat", 150L, 100L, 28, 0, 0, 0XEAC715, SPRING, SUMMER, AUTUMN).setItem(new ItemStack(Items.WHEAT)).setAnimalFoodType(AnimalFoodType.GRASS).setRequiresSickle(0).setStateHandler(new StateHandlerWheat());
+    public static final Crop WHEAT = registerCrop("wheat", 150L, 100L, 28, 0, 0, 0XEAC715, SPRING, SUMMER, AUTUMN).setIngredient(new Ingredient("wheat", 1, 0.1F)).setItem(new ItemStack(Items.WHEAT)).setAnimalFoodType(AnimalFoodType.GRASS).setRequiresSickle(0).setStateHandler(new StateHandlerWheat());
 
     //Nether Crops
     public static final Crop NETHER_WART = registerCrop("nether_wart", 25000L, 10L, 4, 1, 1, 0x8B0000).setItem(new ItemStack(Items.NETHER_WART)).setStateHandler(new StateHandlerNetherWart()).setPlantType(EnumPlantType.Nether).setNoWaterRequirements().setGrowthHandler(SOUL_SAND).setDropHandler(new DropHandlerNetherWart());
@@ -223,8 +223,6 @@ public class HFCrops {
     public static boolean DISABLE_VANILLA_HOE;
     public static boolean DISABLE_VANILLA_SEEDS;
     public static boolean DISABLE_VANILLA_MOISTURE;
-    public static boolean DISABLE_VILLAGER_FARMING;
-    public static boolean VANILLA_CROP_UNSELLABLE;
     public static int SPRINKLER_DRAIN_RATE;
     public static boolean VALIDATE_FARMLAND;
     private static boolean CROPS_DIE_CLIENT;
@@ -237,11 +235,9 @@ public class HFCrops {
         SEASONAL_BONEMEAL = getBoolean("Seasonal bonemeal", true, "If you have bonemeal enabled, with this setting active, bonemeal will only work when the crop is in season");
         DISABLE_VANILLA_SEEDS = getBoolean("Disable vanilla seeds", true, "If this is true, vanilla seeds will not plant their crops");
         DISABLE_VANILLA_HOE = getBoolean("Disable vanilla hoes", false, "If this is true, vanilla hoes will not till dirt");
-        DISABLE_VILLAGER_FARMING = getBoolean("Disable village farming ai", true);
         DISABLE_VANILLA_MOISTURE = getBoolean("Disable vanilla moisture", true, "If this is set to true then farmland will not automatically become wet, and must be watered, it will also not automatically revert to dirt. (Basically disables random ticks for farmland)");
         SPRINKLER_DRAIN_RATE = getInteger("Sprinkler's daily consumption", 250, "This number NEEDs to be a factor of 1000, Otherwise you'll have trouble refilling the sprinkler manually. Acceptable values are: 1, 2, 4, 5, 8, 10, 20, 25, 40, 50, 100, 125, 200, 250, 500, 1000");
         VALIDATE_FARMLAND = getBoolean("Check for farmland on chunk load", true, "Disable this if you think it will help...");
-        VANILLA_CROP_UNSELLABLE = getBoolean("Drops from vanilla crops not sellable", true);
         CROPS_DIE_CLIENT = getBoolean("Integrated Server > Crops die when not having been watered", true);
         CROPS_DIE_SERVER = getBoolean("Dedicated Server > Crops die when not having been watered", false);
     }

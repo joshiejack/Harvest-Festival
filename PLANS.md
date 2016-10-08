@@ -17,9 +17,6 @@ Stage 1 (0.5.0)
 Stage 2 (0.6.0) - Expansive Events
 * Jewels, Emeralds, Gems
 * More General Items + Additional Gathering Items
-* Flower Crops
-* Jewel Rocks
- -> Amethyst, Agate, Fluorite, Peridot, Topaz, Ruby, Sandrose, Moonstone, Alexandrite, Pink Diamond, Orichalc, Adamantite
 * Fishing
  -> Fishing Rods
 * Fruit Trees
@@ -38,6 +35,11 @@ Stage 3 (0.7.0) - Old Mcdonald
 * Mushroom House
 * Greenhouses
 * Maker Shed [Engineer|BluSunrize]
+ -> Yarn Maker
+ -> Cheese Maker
+ -> Mayonnaise Maker
+ -> Seed Maker
+ ---> Flower Crops
 * Library [Librarian|SkySom]
 
 Stage 4 (0.8.0) - Special Delivery

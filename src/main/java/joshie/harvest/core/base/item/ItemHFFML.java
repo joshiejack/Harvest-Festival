@@ -37,12 +37,14 @@ public abstract class ItemHFFML<I extends ItemHFFML, E extends Impl<E>> extends 
     @Override
     public abstract E getNullValue();
 
+    @Override
     public E getObjectFromStack(ItemStack stack) {
         int id = Math.max(0, Math.min(registry.getValues().size() - 1, stack.getItemDamage()));
         E e = registry.getValues().get(id);
         return e != null ? e: getNullValue();
     }
 
+    @Override
     public ItemStack getStackFromResource(ResourceLocation resource) {
         return new ItemStack(this, 1, registry.getValues().indexOf(registry.getValue(resource)));
     }

@@ -24,6 +24,8 @@ import net.minecraftforge.common.ForgeModContainer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import static joshie.harvest.calendar.SnowLoader.SNOW_LAYER;
+
 public class HFWorldProvider extends WorldProviderSurface {
     @SideOnly(Side.CLIENT)
     private IRenderHandler WEATHER_RENDERER;
@@ -207,6 +209,10 @@ public class HFWorldProvider extends WorldProviderSurface {
                         if (pos.getY() >= 0 && pos.getY() < 256 && worldObj.getLightFor(EnumSkyBlock.BLOCK, pos) < 10) {
                             IBlockState state = worldObj.getBlockState(pos);
                             if (state.getMaterial() == Material.AIR && Blocks.SNOW_LAYER.canPlaceBlockAt(worldObj, pos)) {
+                                if (SNOW_LAYER != null && !biome.isSnowyBiome()) {
+                                    HFApi.tickable.addTickable(worldObj, pos, SNOW_LAYER);
+                                }
+
                                 return true;
                             }
                         }

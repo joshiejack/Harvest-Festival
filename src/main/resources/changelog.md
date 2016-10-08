@@ -1,11 +1,36 @@
+##0.6.0
+#Changes
+* New Shop GUI
+* Made shop scroll behave better
+
+##0.5.8
+* Fix crash when attempting to make some recipes in the mixer
+
+##0.5.7
+* Improve the removal of snow.
+* If you notice lag, feel free to turn off "Remove snow faster" config option
+* Validate some things before syncing player stats
+* Make jade check for flower ore dictionary prefix
+* Add a few ore dictionary registrations
+* Added name tags to the animal ranch/poultry farm
+* Fix bug where npcs don't gift recipes
+* Fix the beetroot state handler
+* Fix melons and pumpkins being unsellable
+* Fix render of certain items in the recipe book
+* Fix blood mage question button
+* Fix torches able to block entering a mine
+
 ##0.5.6
 * Save the mine portal locations to the dimension, not level.dat
 * Increased the chicken/sheep/cows health
+* Fixed some potential crashes with crops and also with crops returning
 * Fixed vanilla crops not changing colours when dying
 * Fixed inconsistent result of capability handler
 * Fixed gifting your last item leaving a ghost stack of size 0
 * Fixed decorative dirt breaking instantly
 * Fixed the command /hf returning empty line
+* Fixed Blast resistance of mine dirt
+* Fixed bed restoring hunger without actually sleeping
 
 ##0.5.5
 * Fixed too much winter fog showing up underground

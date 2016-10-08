@@ -34,6 +34,7 @@ import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.oredict.OreDictionary;
 
 import static joshie.harvest.core.helpers.ConfigHelper.getBoolean;
 import static joshie.harvest.core.lib.HFModInfo.MODID;
@@ -57,6 +58,7 @@ public class HFCore {
         GODDESS.setBlock(GODDESS_WATER);
 
         //Register sellables
+        OreDictionary.registerOre("flowerGoddess", FLOWERS.getStackFromEnum(FlowerType.GODDESS));
         HFApi.shipping.registerSellable(new ItemStack(Items.FISH, 1, 0), 20L);
         HFApi.shipping.registerSellable(new ItemStack(Items.FISH, 1, 1), 60L);
         HFApi.shipping.registerSellable(new ItemStack(Items.FISH, 1, 2), 100L);

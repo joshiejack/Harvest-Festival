@@ -1,12 +1,15 @@
 package joshie.harvest.core;
 
 import joshie.harvest.api.HFApi;
+import joshie.harvest.api.core.ISizeable.Size;
 import joshie.harvest.core.util.ICreativeSorted;
 import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.util.HFLoader;
 import joshie.harvest.crops.HFCrops;
+import joshie.harvest.fishing.HFFishing;
+import joshie.harvest.fishing.item.ItemFish.Fish;
 import joshie.harvest.mining.HFMining;
 import joshie.harvest.tools.HFTools;
 import net.minecraft.creativetab.CreativeTabs;
@@ -30,6 +33,7 @@ public class HFTab extends CreativeTabs {
     public static final HFTab FARMING = new HFTab("farming");
     public static final HFTab COOKING = new HFTab("cooking");
     public static final HFTab GATHERING = new HFTab("gathering");
+    public static final HFTab FISHING = new HFTab("fishing");
     public static CreativeTabs[] tabs = new CreativeTabs[0];
 
     private ItemStack icon = new ItemStack(Items.GOLDEN_HOE);
@@ -112,5 +116,6 @@ public class HFTab extends CreativeTabs {
         HFTab.FARMING.setStack(HFCrops.STRAWBERRY.getCropStack(1));
         HFTab.COOKING.setStack(HFApi.cooking.getMeal("salad"));
         HFTab.GATHERING.setStack(new ItemStack(HFTools.AXE, 1, 0));
+        HFTab.FISHING.setStack(Fish.GOLD.getStack(HFFishing.FISH, Size.LARGE));
     }
 }

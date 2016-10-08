@@ -104,7 +104,7 @@ public class BlockSizedStorage extends BlockHFEnumRotatableTile<BlockSizedStorag
         else if (held != null) {
             TileEntity tile = world.getTileEntity(pos);
             if (tile instanceof TileFillableSized) {
-                return ((TileFillableSized)tile).onActivated(held);
+                return ((TileFillableSized)tile).onActivated(player, held);
             }
         }
 

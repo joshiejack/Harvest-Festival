@@ -120,17 +120,7 @@ public class CropData {
                 }
             }
 
-            List<ItemStack> list = crop.getDropHandler().getDrops(crop, originalStage, rand);
-            if (list != null) {
-                for (ItemStack ret : list) {
-                    if (ret != null && ret.getItem() != HFCrops.CROP) {
-                        if (!ret.hasTagCompound()) ret.setTagCompound(new NBTTagCompound());
-                        ret.getTagCompound().setBoolean("Sellable", true);
-                    }
-                }
-            }
-
-            return list;
+            return crop.getDropHandler().getDrops(crop, originalStage, rand);
         } else return null;
     }
 

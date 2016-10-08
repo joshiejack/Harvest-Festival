@@ -2,7 +2,6 @@ package joshie.harvest.core.handlers;
 
 import joshie.harvest.core.HFCore;
 import joshie.harvest.core.achievements.HFAchievements;
-import joshie.harvest.core.block.BlockFlower;
 import joshie.harvest.core.block.BlockFlower.FlowerType;
 import joshie.harvest.core.lib.HFSounds;
 import joshie.harvest.core.util.HFEvents;
@@ -11,7 +10,6 @@ import joshie.harvest.npc.NPC;
 import joshie.harvest.npc.NPCHelper;
 import joshie.harvest.npc.entity.EntityNPCGoddess;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockBush;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -25,6 +23,7 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.event.entity.item.ItemExpireEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -97,8 +96,8 @@ public class GoddessHandler {
         }
     }
 
-    private boolean isFlower(Block block) {
-        return block instanceof BlockBush || block instanceof BlockFlower;
+    private boolean isPlantlike(Block block) {
+        return block instanceof IPlantable;
     }
 
     private void checkFlower(World world, BlockPos pos, EntityPlayer player) {
@@ -117,13 +116,13 @@ public class GoddessHandler {
         xPlus = world.getBlockState(pos.add(1, 0, 0)).getBlock();
         zMinus = world.getBlockState(pos.add(0, 0, -1)).getBlock();
         zPlus = world.getBlockState(pos.add(0, 0, 1)).getBlock();
-        if (isFlower(xMinus))
+        if (isPlantlike(xMinus))
             flower++;
-        if (isFlower(xPlus))
+        if (isPlantlike(xPlus))
             flower++;
-        if (isFlower(zMinus))
+        if (isPlantlike(zMinus))
             flower++;
-        if (isFlower(zPlus))
+        if (isPlantlike(zPlus))
             flower++;
 
         if (water == 2 && flower == 2) {

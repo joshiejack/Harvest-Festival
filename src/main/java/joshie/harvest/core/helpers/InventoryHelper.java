@@ -1,7 +1,5 @@
 package joshie.harvest.core.helpers;
 
-import joshie.harvest.core.HFCore;
-import joshie.harvest.core.block.BlockFlower.FlowerType;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.*;
@@ -47,7 +45,14 @@ public class InventoryHelper {
         @Override
         public boolean matches(ItemStack stack, SearchType type) {
             if (type.equals(FLOWER)) {
-                return stack.getItem() == Item.getItemFromBlock(Blocks.RED_FLOWER) || stack.getItem() == Item.getItemFromBlock(Blocks.YELLOW_FLOWER) || HFCore.FLOWERS.getStackFromEnum(FlowerType.GODDESS).isItemEqual(stack);
+                if(stack.getItem() == Item.getItemFromBlock(Blocks.RED_FLOWER) || stack.getItem() == Item.getItemFromBlock(Blocks.YELLOW_FLOWER)) return true;
+                else {
+                    for (String name: getOreNames(stack)) {
+                        if (name.startsWith("flower")) return true;
+                    }
+
+                    return false;
+                }
             } else if (type.equals(HOE)) {
                 return stack.getItem() instanceof ItemHoe;
             } else if (type.equals(BUCKET)) {

@@ -2,6 +2,7 @@ package joshie.harvest.core.base.tile;
 
 import joshie.harvest.api.core.ISizeable.Size;
 import joshie.harvest.core.helpers.MCServerHelper;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
@@ -9,7 +10,7 @@ public abstract class TileFillableSized extends TileDaily {
     protected int fillAmount = 0;
     protected Size size = Size.MEDIUM;
 
-    public abstract boolean onActivated(ItemStack held);
+    public abstract boolean onActivated(EntityPlayer player, ItemStack held);
 
     public Size getSize() {
         if (size == null) {

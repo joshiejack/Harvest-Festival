@@ -1,10 +1,12 @@
-package joshie.harvest.core.util;
+package joshie.harvest.core.base.gui;
 
 import joshie.harvest.core.lib.HFModInfo;
-import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.resources.I18n;
+import net.minecraft.inventory.Container;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.input.Mouse;
 
@@ -13,19 +15,24 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public abstract class GuiBaseContainer extends GuiContainer {
+public abstract class GuiBase extends GuiScreen {
+    private Container container;
     protected boolean hasInventory;
-    private static ResourceLocation TEXTURE;
+    private ResourceLocation TEXTURE;
     private static final int nameHeight = 5;
     private static final int inventOffset = 3;
     private final ArrayList<String> tooltip = new ArrayList<>();
     private final String name;
+    public int xSize = 176;
+    public int ySize = 166;
+    protected int guiLeft;
+    protected int guiTop;
     protected int mouseX = 0;
     protected int mouseY = 0;
     protected int mouseWheel;
 
-    public GuiBaseContainer(ContainerBase container, String texture, int yOffset) {
-        super(container);
+    public GuiBase(ContainerBase container, String texture, int yOffset) {
+        this.container = container;
         TEXTURE = new ResourceLocation(HFModInfo.MODID, "textures/gui/" + texture + ".png");
         ySize += yOffset;
         xSize = 201;
@@ -33,6 +40,41 @@ public abstract class GuiBaseContainer extends GuiContainer {
     }
 
     @Override
+    public void initGui() {
+        super.initGui();
+        mc.thePlayer.openContainer = container;
+        guiLeft = (width - xSize) / 2;
+        guiTop = (height - ySize) / 2;
+    }
+
+    @Override
+    public void drawScreen(int mouseX, int mouseY, float partialTicks) {
+        drawDefaultBackground();
+        drawGuiContainerBackgroundLayer(partialTicks, mouseX, mouseY);
+        GlStateManager.disableRescaleNormal();
+        RenderHelper.disableStandardItemLighting();
+        GlStateManager.disableLighting();
+        GlStateManager.disableDepth();
+        super.drawScreen(mouseX, mouseY, partialTicks);
+        RenderHelper.enableGUIStandardItemLighting();
+        GlStateManager.pushMatrix();
+        GlStateManager.translate((float)guiLeft,(float)guiTop, 0.0F);
+        GlStateManager.enableRescaleNormal();
+        OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240.0F, 240.0F);
+        GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+        drawGuiContainerForegroundLayer(mouseX, mouseY);
+        RenderHelper.enableGUIStandardItemLighting();
+        GlStateManager.enableLighting();
+        GlStateManager.enableDepth();
+        RenderHelper.enableStandardItemLighting();
+    }
+
+    protected boolean isPointInRegion(int rectX, int rectY, int rectWidth, int rectHeight, int pointX, int pointY) {
+        pointX = pointX - guiLeft;
+        pointY = pointY - guiTop;
+        return pointX >= rectX - 1 && pointX < rectX + rectWidth + 1 && pointY >= rectY - 1 && pointY < rectY + rectHeight + 1;
+    }
+
     protected void drawGuiContainerForegroundLayer(int x, int y) {
         drawForeground(x, y);
         if (hasInventory) {
@@ -43,14 +85,11 @@ public abstract class GuiBaseContainer extends GuiContainer {
         tooltip.clear();
     }
 
-    @Override
     protected void drawGuiContainerBackgroundLayer(float f, int i, int j) {
         GlStateManager.color(1.0f, 1.0f, 1.0f, 1.0f);
         mc.renderEngine.bindTexture(TEXTURE);
-        int x = (width - xSize) / 2;
-        int y = (height - ySize) / 2;
-        drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
-        drawBackground(x, y);
+        drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
+        drawBackground(guiLeft, guiTop);
         drawTooltip(tooltip, i, j);
     }
 

@@ -25,6 +25,11 @@ public interface ICropRegistry {
     /** Returns the crop as a stack **/
     ItemStack getCropStack(Crop crop, int amount);
 
+    /** Register a seed, so that if the config disables it
+     *  the seed cannot be right clicked
+     *  @param item     the seeds */
+    void registerSeedForBlacklisting(ItemStack item);
+
     /** Fetch the crop at this location, will return null if there is no crop there
      *  @param world the world
      *  @param pos the block position

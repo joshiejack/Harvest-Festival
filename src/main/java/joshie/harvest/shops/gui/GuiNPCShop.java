@@ -55,7 +55,7 @@ public class GuiNPCShop extends GuiNPCBase {
         mc.renderEngine.bindTexture(gui_texture);
         drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
         if (overlay != null) overlay.renderOverlay(this, x, y, xSize, ySize);
-        ShopFontRenderer.render(this, x + 20, y + 16, shop.getLocalizedName(), false);
+        ShopFontRenderer.render(this, x + 20, y + 17, shop.getLocalizedName(), false);
         drawCoinage(x, y, stats.getGold());
         drawShelves(x, y);
         mc.renderEngine.bindTexture(shelve_texture);
@@ -129,7 +129,7 @@ public class GuiNPCShop extends GuiNPCBase {
 
     private void drawCoinage(int x, int y, long gold) {
         String formatted = String.valueOf(formatter.format(gold));
-        ShopFontRenderer.render(this, x + 210, y + 16, formatted, true);
+        ShopFontRenderer.render(this, x + 210, y + 17, formatted, true);
         GlStateManager.disableDepth();
         mc.renderEngine.bindTexture(HFModInfo.ELEMENTS);
         mc.ingameGUI.drawTexturedModalRect((x + 230) - 15, y + 15, 244, 0, 12, 12);

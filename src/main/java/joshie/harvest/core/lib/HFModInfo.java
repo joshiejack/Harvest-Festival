@@ -16,5 +16,5 @@ public class HFModInfo {
 
     
     public static final ResourceLocation ELEMENTS = new ResourceLocation(MODID, "textures/gui/gui_elements.png");
-    public static final ResourceLocation STARS = new ResourceLocation(MODID, "textures/gui/gui_stars.png");
+    public static final ResourceLocation TOOLELEMENTS = new ResourceLocation(MODID, "textures/gui/gui_toolelements.png");
 }

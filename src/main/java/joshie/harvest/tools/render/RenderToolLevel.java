@@ -58,7 +58,7 @@ public class RenderToolLevel {
             GuiUtils.drawGradientRect(zLevel, i1 - 3, j1 + k1 + 2, i1 + k + 3, j1 + k1 + 3, j2, j2);
 
             GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-            gui.mc.renderEngine.bindTexture(HFModInfo.STARS);
+            gui.mc.renderEngine.bindTexture(HFModInfo.TOOLELEMENTS);
             gui.drawTexturedModalRect(i1 - 1, j1 - 1, 0, 8, 52, 9);
             int posY = tier != null && tier.ordinal() >= ToolTier.MYSTRIL.ordinal() ? 26 : 17;
             int width = ((int)level >> 1) + 2;

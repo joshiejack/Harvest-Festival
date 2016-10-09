@@ -122,8 +122,8 @@ public class PageRecipe extends Page {
         //Cook Button
         GlStateManager.color(1F, 1F, 1F);
         gui.mc.getTextureManager().bindTexture(LEFT_GUI);
-        int y = mouseX >= 236 && mouseX <= 287 && mouseY >= 148 && mouseY <= 176 ? 133 : 101;
-        gui.drawTexture(232, 142, 0, y, 52, 32);
+        int y = mouseX >= 236 && mouseX <= 287 && mouseY >= 148 && mouseY <= 176 ? 135 : 101;
+        gui.drawTexture(200, 140, 0, y, 66, 34);
     }
 
     @Override

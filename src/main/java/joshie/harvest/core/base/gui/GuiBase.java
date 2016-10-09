@@ -50,7 +50,11 @@ public abstract class GuiBase extends GuiScreen {
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
         drawDefaultBackground();
-        drawGuiContainerBackgroundLayer(partialTicks, mouseX, mouseY);
+        GlStateManager.color(1.0f, 1.0f, 1.0f, 1.0f);
+        mc.renderEngine.bindTexture(TEXTURE);
+        drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
+        drawBackground(guiLeft, guiTop);
+        drawTooltip(tooltip, mouseX, mouseY);
         GlStateManager.disableRescaleNormal();
         RenderHelper.disableStandardItemLighting();
         GlStateManager.disableLighting();
@@ -62,7 +66,13 @@ public abstract class GuiBase extends GuiScreen {
         GlStateManager.enableRescaleNormal();
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240.0F, 240.0F);
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-        drawGuiContainerForegroundLayer(mouseX, mouseY);
+        drawForeground(mouseX, mouseY);
+        if (hasInventory) {
+            fontRendererObj.drawString(getName(), getX(), nameHeight, 4210752);
+            fontRendererObj.drawString(I18n.format("container.inventory"), 8, ySize - 96 + inventOffset, 4210752);
+        }
+
+        tooltip.clear();
         RenderHelper.enableGUIStandardItemLighting();
         GlStateManager.enableLighting();
         GlStateManager.enableDepth();
@@ -73,24 +83,6 @@ public abstract class GuiBase extends GuiScreen {
         pointX = pointX - guiLeft;
         pointY = pointY - guiTop;
         return pointX >= rectX - 1 && pointX < rectX + rectWidth + 1 && pointY >= rectY - 1 && pointY < rectY + rectHeight + 1;
-    }
-
-    protected void drawGuiContainerForegroundLayer(int x, int y) {
-        drawForeground(x, y);
-        if (hasInventory) {
-            fontRendererObj.drawString(getName(), getX(), nameHeight, 4210752);
-            fontRendererObj.drawString(I18n.format("container.inventory"), 8, ySize - 96 + inventOffset, 4210752);
-        }
-
-        tooltip.clear();
-    }
-
-    protected void drawGuiContainerBackgroundLayer(float f, int i, int j) {
-        GlStateManager.color(1.0f, 1.0f, 1.0f, 1.0f);
-        mc.renderEngine.bindTexture(TEXTURE);
-        drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
-        drawBackground(guiLeft, guiTop);
-        drawTooltip(tooltip, i, j);
     }
 
     public String getName() {

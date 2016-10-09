@@ -77,6 +77,7 @@ public abstract class GuiBase extends GuiScreen {
         GlStateManager.enableLighting();
         GlStateManager.enableDepth();
         RenderHelper.enableStandardItemLighting();
+        GlStateManager.popMatrix();
     }
 
     protected boolean isPointInRegion(int rectX, int rectY, int rectWidth, int rectHeight, int pointX, int pointY) {

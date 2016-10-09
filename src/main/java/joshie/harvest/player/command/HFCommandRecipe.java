@@ -4,7 +4,7 @@ import joshie.harvest.cooking.CookingAPI;
 import joshie.harvest.cooking.recipe.MealImpl;
 import joshie.harvest.core.commands.AbstractHFCommand;
 import joshie.harvest.core.commands.HFCommand;
-import joshie.harvest.core.handlers.HFTrackers;
+import joshie.harvest.core.HFTrackers;
 import joshie.harvest.player.PlayerTrackerServer;
 import joshie.harvest.player.tracking.TrackingServer;
 import net.minecraft.command.CommandBase;

@@ -5,7 +5,7 @@ import joshie.harvest.api.buildings.Building;
 import joshie.harvest.buildings.BuildingImpl;
 import joshie.harvest.buildings.BuildingRegistry;
 import joshie.harvest.buildings.BuildingStage;
-import joshie.harvest.core.handlers.HFTrackers;
+import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.helpers.NBTHelper;
 import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.core.util.Direction;

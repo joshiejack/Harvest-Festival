@@ -3,7 +3,7 @@ package joshie.harvest.town;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.buildings.BuildingImpl;
 import joshie.harvest.buildings.BuildingStage;
-import joshie.harvest.core.handlers.HFTrackers;
+import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.core.helpers.NBTHelper;
 import joshie.harvest.core.network.PacketHandler;

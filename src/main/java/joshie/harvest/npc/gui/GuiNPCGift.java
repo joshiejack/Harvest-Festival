@@ -3,7 +3,7 @@ package joshie.harvest.npc.gui;
 import joshie.harvest.HarvestFestival;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.npc.gift.IGiftHandler.Quality;
-import joshie.harvest.core.handlers.HFTrackers;
+import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.helpers.TextHelper;
 import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.npc.NPCRegistry;

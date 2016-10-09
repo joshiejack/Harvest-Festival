@@ -1,4 +1,4 @@
-package joshie.harvest.core.handlers;
+package joshie.harvest.core;
 
 import gnu.trove.map.TIntObjectMap;
 import gnu.trove.map.hash.TIntObjectHashMap;
@@ -7,6 +7,10 @@ import joshie.harvest.calendar.Calendar;
 import joshie.harvest.calendar.CalendarClient;
 import joshie.harvest.calendar.CalendarData;
 import joshie.harvest.calendar.CalendarServer;
+import joshie.harvest.core.handlers.ClientHandler;
+import joshie.harvest.core.handlers.ServerHandler;
+import joshie.harvest.core.handlers.SideHandler;
+import joshie.harvest.core.handlers.TickDailyServer;
 import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.mining.MineManager;

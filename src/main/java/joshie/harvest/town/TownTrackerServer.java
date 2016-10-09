@@ -4,7 +4,7 @@ import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
 import joshie.harvest.api.buildings.BuildingLocation;
 import joshie.harvest.buildings.HFBuildings;
-import joshie.harvest.core.handlers.HFTrackers;
+import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.core.util.Direction;
 import joshie.harvest.npc.HFNPCs;

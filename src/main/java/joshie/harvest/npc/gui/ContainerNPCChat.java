@@ -5,7 +5,7 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.api.quests.QuestQuestion;
-import joshie.harvest.core.handlers.HFTrackers;
+import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.base.gui.ContainerBase;
 import joshie.harvest.npc.entity.EntityNPC;
 import net.minecraft.entity.player.EntityPlayer;

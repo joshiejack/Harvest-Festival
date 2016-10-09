@@ -6,7 +6,7 @@ import joshie.harvest.calendar.CalendarServer;
 import joshie.harvest.calendar.HFCalendar;
 import joshie.harvest.core.commands.AbstractHFCommand;
 import joshie.harvest.core.commands.HFCommand;
-import joshie.harvest.core.handlers.HFTrackers;
+import joshie.harvest.core.HFTrackers;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.server.MinecraftServer;
 import org.apache.commons.lang3.StringUtils;

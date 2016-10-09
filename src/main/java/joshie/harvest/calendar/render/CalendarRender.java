@@ -6,7 +6,7 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.calendar.Weather;
 import joshie.harvest.calendar.CalendarHelper;
-import joshie.harvest.core.handlers.HFTrackers;
+import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.helpers.MCClientHelper;
 import joshie.harvest.core.util.annotations.HFEvents;
 import joshie.harvest.npc.gui.ContainerNPCChat;

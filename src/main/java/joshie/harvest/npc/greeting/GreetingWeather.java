@@ -3,7 +3,7 @@ package joshie.harvest.npc.greeting;
 import joshie.harvest.api.npc.IGreeting;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.calendar.CalendarClient;
-import joshie.harvest.core.handlers.HFTrackers;
+import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.helpers.TextHelper;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.player.EntityPlayer;

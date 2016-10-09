@@ -3,7 +3,7 @@ package joshie.harvest.cooking.gui;
 import joshie.harvest.api.cooking.Utensil;
 import joshie.harvest.cooking.CookingAPI;
 import joshie.harvest.cooking.recipe.MealImpl;
-import joshie.harvest.core.handlers.HFTrackers;
+import joshie.harvest.core.HFTrackers;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;

@@ -5,7 +5,7 @@ import joshie.harvest.cooking.recipe.HFRecipes;
 import joshie.harvest.cooking.recipe.MealImpl;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.item.ItemHFFML;
-import joshie.harvest.core.handlers.HFTrackers;
+import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.helpers.ChatHelper;
 import joshie.harvest.core.lib.HFSounds;
 import joshie.harvest.core.util.interfaces.ICreativeSorted;

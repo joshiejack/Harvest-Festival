@@ -3,7 +3,7 @@ package joshie.harvest.calendar;
 import gnu.trove.map.TIntObjectMap;
 import gnu.trove.map.hash.TIntObjectHashMap;
 import joshie.harvest.api.calendar.*;
-import joshie.harvest.core.handlers.HFTrackers;
+import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.util.annotations.HFApiImplementation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;

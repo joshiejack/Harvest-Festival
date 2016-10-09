@@ -6,7 +6,7 @@ import joshie.harvest.api.calendar.Weather;
 import joshie.harvest.calendar.packet.PacketSetCalendar;
 import joshie.harvest.calendar.packet.PacketSyncForecast;
 import joshie.harvest.calendar.packet.PacketSyncStrength;
-import joshie.harvest.core.handlers.HFTrackers;
+import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.network.PacketHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;

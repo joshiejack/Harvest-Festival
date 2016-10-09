@@ -427,15 +427,13 @@ harvestfestival.miningtool.escape.rope=Escape Rope
 
 #Goddess Water
 tile.goddess.water.name=Goddess Water
-fluid.goddess.water=Goddess Water
+fluid.goddess_water=Goddess Water
 
 #Seasons
 harvestfestival.season.spring=Spring
 harvestfestival.season.summer=Summer
 harvestfestival.season.autumn=Autumn
 harvestfestival.season.winter=Winter
-harvestfestival.season.nether=Infernal
-harvestfestival.season.end=Devoid
 harvestfestival.calendar.date=%1s %2s
 harvestfestival.calendar.monday=MON
 harvestfestival.calendar.tuesday=TUE

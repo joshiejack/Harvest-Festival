@@ -1,4 +1,4 @@
-package joshie.harvest.core;
+package joshie.harvest.core.loot;
 
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonObject;
@@ -38,7 +38,7 @@ public class SetEnum extends LootFunction {
     }
 
     public static class Serializer extends LootFunction.Serializer<SetEnum> {
-        protected Serializer() {
+        public Serializer() {
             super(new ResourceLocation("hf_set_enum"), SetEnum.class);
         }
 

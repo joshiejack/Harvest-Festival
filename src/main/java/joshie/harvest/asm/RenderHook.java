@@ -1,6 +1,6 @@
 package joshie.harvest.asm;
 
-import joshie.harvest.core.HFClientProxy;
+import joshie.harvest.core.proxy.HFClientProxy;
 import joshie.harvest.core.base.render.FakeEntityRenderer.EntityItemRenderer;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;

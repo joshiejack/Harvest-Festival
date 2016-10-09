@@ -5,7 +5,7 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.calendar.Weekday;
 import joshie.harvest.api.calendar.CalendarDate;
-import joshie.harvest.core.handlers.HFTrackers;
+import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.helpers.MCClientHelper;
 import joshie.harvest.core.network.Packet;
 import joshie.harvest.core.network.Packet.Side;

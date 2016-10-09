@@ -1,6 +1,6 @@
 package joshie.harvest.core.helpers;
 
-import joshie.harvest.core.HFClientProxy;
+import joshie.harvest.core.proxy.HFClientProxy;
 import joshie.harvest.core.base.render.FakeEntityRenderer;
 import joshie.harvest.core.base.render.FakeEntityRenderer.EntityItemRenderer;
 import joshie.harvest.npc.NPC;

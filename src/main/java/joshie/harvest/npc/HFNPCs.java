@@ -6,7 +6,7 @@ import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.npc.INPCRegistry.Age;
 import joshie.harvest.api.npc.INPCRegistry.Gender;
-import joshie.harvest.core.HFClientProxy;
+import joshie.harvest.core.proxy.HFClientProxy;
 import joshie.harvest.core.base.render.MeshIdentical;
 import joshie.harvest.core.lib.EntityIDs;
 import joshie.harvest.core.util.annotations.HFLoader;

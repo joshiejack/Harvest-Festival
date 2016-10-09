@@ -1,6 +1,6 @@
 package joshie.harvest.town;
 
-import joshie.harvest.core.handlers.HFTrackers;
+import joshie.harvest.core.HFTrackers;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -8,7 +8,7 @@ import net.minecraft.world.WorldServer;
 
 import java.util.UUID;
 
-import static joshie.harvest.core.handlers.HFTrackers.getTownTracker;
+import static joshie.harvest.core.HFTrackers.getTownTracker;
 
 public class TownHelper {
     @SuppressWarnings("unchecked")

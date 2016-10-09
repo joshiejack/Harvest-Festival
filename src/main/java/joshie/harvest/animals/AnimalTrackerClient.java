@@ -1,7 +1,7 @@
 package joshie.harvest.animals;
 
 import joshie.harvest.api.animals.IAnimalTracked;
-import joshie.harvest.core.handlers.HFTrackers;
+import joshie.harvest.core.HFTrackers;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 

@@ -2,7 +2,7 @@ package joshie.harvest.shops.gui;
 
 import joshie.harvest.api.shops.IPurchasable;
 import joshie.harvest.api.shops.IShopGuiOverlay;
-import joshie.harvest.core.handlers.HFTrackers;
+import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.helpers.StackHelper;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.network.PacketHandler;

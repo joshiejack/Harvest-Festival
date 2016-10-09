@@ -2,7 +2,7 @@ package joshie.harvest.shops.packet;
 
 import io.netty.buffer.ByteBuf;
 import joshie.harvest.api.shops.IPurchasable;
-import joshie.harvest.core.handlers.HFTrackers;
+import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.network.Packet;
 import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.core.network.PenguinPacket;

@@ -5,7 +5,7 @@ import joshie.harvest.animals.entity.EntityHarvestChicken;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.core.ISizeable.Size;
 import joshie.harvest.core.base.tile.TileFillableSizedFaceable;
-import joshie.harvest.core.handlers.HFTrackers;
+import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.tools.ToolHelper;
 import net.minecraft.entity.player.EntityPlayer;

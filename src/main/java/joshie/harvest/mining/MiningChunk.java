@@ -4,7 +4,7 @@ import com.google.common.collect.Lists;
 import gnu.trove.map.TIntObjectMap;
 import gnu.trove.map.hash.TIntObjectHashMap;
 import joshie.harvest.core.HFCore;
-import joshie.harvest.core.handlers.HFTrackers;
+import joshie.harvest.core.HFTrackers;
 import joshie.harvest.mining.entity.EntityDarkChick;
 import joshie.harvest.mining.entity.EntityDarkChicken;
 import joshie.harvest.mining.entity.EntityDarkCow;

@@ -2,7 +2,7 @@ package joshie.harvest.mining;
 
 import gnu.trove.map.TIntObjectMap;
 import gnu.trove.map.hash.TIntObjectHashMap;
-import joshie.harvest.core.handlers.HFTrackers;
+import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.helpers.NBTHelper;
 import joshie.harvest.core.util.annotations.HFEvents;
 import net.minecraft.block.state.IBlockState;

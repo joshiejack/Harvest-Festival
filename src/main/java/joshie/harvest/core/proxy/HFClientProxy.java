@@ -1,4 +1,4 @@
-package joshie.harvest.core;
+package joshie.harvest.core.proxy;
 
 import joshie.harvest.core.base.render.FakeEntityRenderer.EntityItemRenderer;
 import net.minecraft.item.Item;

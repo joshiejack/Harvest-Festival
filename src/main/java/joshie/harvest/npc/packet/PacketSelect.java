@@ -5,7 +5,7 @@ import joshie.harvest.HarvestFestival;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.api.quests.Quest.Selection;
 import joshie.harvest.core.handlers.GuiHandler;
-import joshie.harvest.core.handlers.HFTrackers;
+import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.network.Packet;
 import joshie.harvest.core.network.Packet.Side;
 import joshie.harvest.core.network.PenguinPacket;

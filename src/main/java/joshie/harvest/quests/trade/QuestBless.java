@@ -5,7 +5,7 @@ import joshie.harvest.api.calendar.CalendarDate;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.calendar.CalendarHelper;
-import joshie.harvest.core.handlers.HFTrackers;
+import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.lib.HFSounds;
 import joshie.harvest.tools.HFTools;
 import net.minecraft.entity.EntityLiving;

@@ -11,6 +11,8 @@ import joshie.harvest.core.handlers.GuiHandler;
 import joshie.harvest.core.helpers.RegistryHelper;
 import joshie.harvest.core.item.ItemSizeable;
 import joshie.harvest.core.base.render.SizeableDefinition;
+import joshie.harvest.core.loot.SetEnum;
+import joshie.harvest.core.loot.SetSizeable;
 import joshie.harvest.core.tile.TileShipping;
 import joshie.harvest.core.util.annotations.HFLoader;
 import net.minecraft.block.state.IBlockState;

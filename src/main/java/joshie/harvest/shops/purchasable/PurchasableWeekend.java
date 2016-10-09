@@ -1,7 +1,7 @@
 package joshie.harvest.shops.purchasable;
 
 import joshie.harvest.api.HFApi;
-import joshie.harvest.core.handlers.HFTrackers;
+import joshie.harvest.core.HFTrackers;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;

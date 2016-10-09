@@ -2,7 +2,7 @@ package joshie.harvest.npc.gui;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.CalendarDate;
-import joshie.harvest.core.handlers.HFTrackers;
+import joshie.harvest.core.HFTrackers;
 import joshie.harvest.npc.NPC;
 import joshie.harvest.npc.NPCRegistry;
 import joshie.harvest.npc.entity.EntityNPC;

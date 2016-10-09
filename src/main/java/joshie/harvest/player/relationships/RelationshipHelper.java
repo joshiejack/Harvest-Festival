@@ -1,7 +1,7 @@
 package joshie.harvest.player.relationships;
 
 import joshie.harvest.api.relations.IRelationships;
-import joshie.harvest.core.handlers.HFTrackers;
+import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.util.annotations.HFApiImplementation;
 import joshie.harvest.npc.HFNPCs;
 import net.minecraft.entity.player.EntityPlayer;

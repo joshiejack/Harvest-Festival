@@ -4,7 +4,7 @@ import joshie.harvest.api.calendar.Season;
 import joshie.harvest.calendar.CalendarHelper;
 import joshie.harvest.calendar.CalendarServer;
 import joshie.harvest.calendar.HFCalendar;
-import joshie.harvest.core.handlers.HFTrackers;
+import joshie.harvest.core.HFTrackers;
 import joshie.harvest.plugins.buttons.ButtonSeason.HFSeason;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.EnumActionResult;

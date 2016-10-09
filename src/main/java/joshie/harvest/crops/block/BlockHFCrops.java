@@ -9,7 +9,7 @@ import joshie.harvest.api.crops.IBreakCrops;
 import joshie.harvest.api.crops.IStateHandler.PlantSection;
 import joshie.harvest.core.base.block.BlockHFEnum;
 import joshie.harvest.core.base.item.ItemBlockHF;
-import joshie.harvest.core.handlers.HFTrackers;
+import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.util.annotations.HFEvents;
 import joshie.harvest.crops.CropData;

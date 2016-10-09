@@ -2,7 +2,7 @@ package joshie.harvest.buildings;
 
 import joshie.harvest.buildings.placeable.Placeable;
 import joshie.harvest.buildings.placeable.Placeable.ConstructionStage;
-import joshie.harvest.core.handlers.HFTrackers;
+import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.util.Direction;
 import joshie.harvest.town.TownDataServer;
 import joshie.harvest.town.TownHelper;

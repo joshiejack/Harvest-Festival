@@ -2,7 +2,7 @@ package joshie.harvest.town;
 
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
-import joshie.harvest.core.HFTracker;
+import joshie.harvest.core.util.HFTracker;
 import joshie.harvest.core.util.Direction;
 import joshie.harvest.npc.HFNPCs;
 import net.minecraft.entity.Entity;

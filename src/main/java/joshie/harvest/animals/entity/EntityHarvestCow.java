@@ -9,7 +9,7 @@ import joshie.harvest.api.animals.IMilkable;
 import joshie.harvest.api.core.ISizeable.Size;
 import joshie.harvest.core.HFCore;
 import joshie.harvest.core.achievements.HFAchievements;
-import joshie.harvest.core.handlers.HFTrackers;
+import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.helpers.SizeableHelper;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;

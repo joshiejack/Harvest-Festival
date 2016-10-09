@@ -1,6 +1,7 @@
-package joshie.harvest.core;
+package joshie.harvest.core.proxy;
 
 import joshie.harvest.HarvestFestival;
+import joshie.harvest.core.HFApiLoader;
 import joshie.harvest.core.helpers.ConfigHelper;
 import joshie.harvest.core.util.annotations.HFLoader;
 import net.minecraftforge.common.config.Configuration;

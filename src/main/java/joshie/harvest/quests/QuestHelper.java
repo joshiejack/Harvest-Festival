@@ -4,7 +4,7 @@ import joshie.harvest.api.animals.IAnimalTracked;
 import joshie.harvest.api.quests.IQuestHelper;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.api.quests.QuestQuestion;
-import joshie.harvest.core.handlers.HFTrackers;
+import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.core.helpers.SpawnItemHelper;
 import joshie.harvest.core.util.annotations.HFApiImplementation;

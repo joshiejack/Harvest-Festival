@@ -1,7 +1,7 @@
 package joshie.harvest.npc.gui;
 
 import joshie.harvest.core.handlers.GuiHandler;
-import joshie.harvest.core.handlers.HFTrackers;
+import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.core.helpers.TextHelper;
 import joshie.harvest.npc.NPCHelper;

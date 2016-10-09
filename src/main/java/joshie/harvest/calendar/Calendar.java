@@ -4,7 +4,7 @@ import joshie.harvest.api.calendar.CalendarDate;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.calendar.SeasonProvider;
 import joshie.harvest.api.calendar.Weather;
-import joshie.harvest.core.HFTracker;
+import joshie.harvest.core.util.HFTracker;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 

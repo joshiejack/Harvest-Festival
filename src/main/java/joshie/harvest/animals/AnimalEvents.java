@@ -2,7 +2,7 @@ package joshie.harvest.animals;
 
 import joshie.harvest.animals.item.ItemAnimalTool.Tool;
 import joshie.harvest.api.animals.IAnimalTracked;
-import joshie.harvest.core.handlers.HFTrackers;
+import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.helpers.InventoryHelper;
 import joshie.harvest.core.util.annotations.HFEvents;
 import net.minecraft.block.*;

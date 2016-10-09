@@ -1,7 +1,7 @@
 package joshie.harvest.npc.entity;
 
 import io.netty.buffer.ByteBuf;
-import joshie.harvest.core.handlers.HFTrackers;
+import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.helpers.NBTHelper;
 import joshie.harvest.npc.NPC;
 import joshie.harvest.npc.NPCHelper;

@@ -1,6 +1,6 @@
 package joshie.harvest.player;
 
-import joshie.harvest.core.handlers.HFTrackers;
+import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.core.util.annotations.HFEvents;
 import net.minecraft.entity.player.EntityPlayerMP;

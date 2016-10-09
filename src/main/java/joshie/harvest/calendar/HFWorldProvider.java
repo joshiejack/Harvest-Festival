@@ -4,7 +4,7 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.calendar.Weather;
 import joshie.harvest.calendar.render.WeatherRenderer;
-import joshie.harvest.core.handlers.HFTrackers;
+import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.helpers.MCClientHelper;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;

@@ -8,7 +8,7 @@ import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.calendar.CalendarHelper;
 import joshie.harvest.core.base.item.ItemTool;
-import joshie.harvest.core.handlers.HFTrackers;
+import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.helpers.InventoryHelper;
 import joshie.harvest.mining.HFMining;
 import joshie.harvest.mining.item.ItemMaterial.Material;

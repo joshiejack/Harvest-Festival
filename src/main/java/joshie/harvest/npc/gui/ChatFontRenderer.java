@@ -1,9 +1,8 @@
-package joshie.harvest.core.util;
+package joshie.harvest.npc.gui;
 
 import gnu.trove.map.TCharObjectMap;
 import gnu.trove.map.hash.TCharObjectHashMap;
 import joshie.harvest.core.lib.HFModInfo;
-import joshie.harvest.npc.gui.GuiNPCBase;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.ResourceLocation;

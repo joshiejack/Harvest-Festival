@@ -1,4 +1,4 @@
-package joshie.harvest.core.base;
+package joshie.harvest.core.base.render;
 
 import net.minecraft.client.renderer.ItemMeshDefinition;
 import net.minecraft.client.renderer.block.model.ModelBakery;

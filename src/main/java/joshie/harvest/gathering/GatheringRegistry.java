@@ -2,7 +2,7 @@ package joshie.harvest.gathering;
 
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.gathering.IGatheringRegistry;
-import joshie.harvest.core.util.HFApiImplementation;
+import joshie.harvest.core.util.annotations.HFApiImplementation;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.world.World;
 

@@ -4,7 +4,7 @@ import joshie.harvest.api.cooking.Ingredient;
 import joshie.harvest.api.cooking.Utensil;
 import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.cooking.item.ItemIngredients;
-import joshie.harvest.core.util.HFLoader;
+import joshie.harvest.core.util.annotations.HFLoader;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 

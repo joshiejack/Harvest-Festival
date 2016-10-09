@@ -5,7 +5,7 @@ import com.google.common.collect.Multiset;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.cooking.Ingredient;
 import joshie.harvest.cooking.HFCooking;
-import joshie.harvest.core.util.holder.ItemStackHolder;
+import joshie.harvest.core.util.holders.ItemStackHolder;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 

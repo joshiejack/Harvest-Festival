@@ -7,8 +7,8 @@ import joshie.harvest.calendar.*;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.MCClientHelper;
 import joshie.harvest.core.lib.HFModInfo;
-import joshie.harvest.core.util.HFEvents;
-import joshie.harvest.core.util.Text;
+import joshie.harvest.core.util.annotations.HFEvents;
+import joshie.harvest.core.helpers.TextHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.math.BlockPos;
@@ -102,7 +102,7 @@ public class CalendarHUD {
                     //Enlarge the Day
                     GlStateManager.pushMatrix();
                     GlStateManager.scale(1.4F, 1.4F, 1.4F);
-                    mc.fontRendererObj.drawStringWithShadow(Text.format("%1s %2s", season.getDisplayName(), (date.getDay() + 1)), (adjustedX / 1.4F) + 30, (adjustedY / 1.4F) + 7, 0xFFFFFFFF);
+                    mc.fontRendererObj.drawStringWithShadow(TextHelper.format("%1s %2s", season.getDisplayName(), (date.getDay() + 1)), (adjustedX / 1.4F) + 30, (adjustedY / 1.4F) + 7, 0xFFFFFFFF);
                     GlStateManager.popMatrix();
 
                     //Draw the time

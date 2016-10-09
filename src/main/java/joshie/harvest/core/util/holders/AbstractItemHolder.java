@@ -1,4 +1,4 @@
-package joshie.harvest.core.util.holder;
+package joshie.harvest.core.util.holders;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;

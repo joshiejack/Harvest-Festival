@@ -1,6 +1,6 @@
 package joshie.harvest.player.tracking;
 
-import joshie.harvest.core.util.holder.AbstractDataHolder;
+import joshie.harvest.core.util.holders.AbstractDataHolder;
 import joshie.harvest.api.crops.Crop;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;

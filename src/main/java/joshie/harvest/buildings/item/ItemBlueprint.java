@@ -9,8 +9,8 @@ import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.item.ItemHFFML;
 import joshie.harvest.core.helpers.ChatHelper;
 import joshie.harvest.core.util.Direction;
-import joshie.harvest.core.util.ICreativeSorted;
-import joshie.harvest.core.util.Text;
+import joshie.harvest.core.util.interfaces.ICreativeSorted;
+import joshie.harvest.core.helpers.TextHelper;
 import joshie.harvest.npc.entity.EntityNPCBuilder;
 import joshie.harvest.town.TownDataServer;
 import joshie.harvest.town.TownHelper;
@@ -75,11 +75,11 @@ public class ItemBlueprint extends ItemHFFML<ItemBlueprint, BuildingImpl> implem
 
                             stack.splitStack(1);
                             return new ActionResult<>(EnumActionResult.SUCCESS, stack);
-                        } else if (world.isRemote) ChatHelper.displayChat(TextFormatting.RED + Text.translate("town.failure") + " " + TextFormatting.WHITE + Text.translate("town.building"));
+                        } else if (world.isRemote) ChatHelper.displayChat(TextFormatting.RED + TextHelper.translate("town.failure") + " " + TextFormatting.WHITE + TextHelper.translate("town.building"));
                     }
-                } else if (world.isRemote) ChatHelper.displayChat(TextFormatting.RED + Text.translate("town.failure") + " " + TextFormatting.WHITE + Text.translate("town.permission"));
-            } else if (world.isRemote) ChatHelper.displayChat(TextFormatting.RED + Text.translate("town.failure") + " " + TextFormatting.WHITE + Text.translate("town.distance"));
-        } else if (world.isRemote) ChatHelper.displayChat(TextFormatting.RED + Text.translate("town.failure") + " " + TextFormatting.WHITE + Text.translate("town.dimension"));
+                } else if (world.isRemote) ChatHelper.displayChat(TextFormatting.RED + TextHelper.translate("town.failure") + " " + TextFormatting.WHITE + TextHelper.translate("town.permission"));
+            } else if (world.isRemote) ChatHelper.displayChat(TextFormatting.RED + TextHelper.translate("town.failure") + " " + TextFormatting.WHITE + TextHelper.translate("town.distance"));
+        } else if (world.isRemote) ChatHelper.displayChat(TextFormatting.RED + TextHelper.translate("town.failure") + " " + TextFormatting.WHITE + TextHelper.translate("town.dimension"));
         return new ActionResult<>(EnumActionResult.PASS, stack);
     }
 
@@ -90,7 +90,7 @@ public class ItemBlueprint extends ItemHFFML<ItemBlueprint, BuildingImpl> implem
 
     @Override
     public String getItemStackDisplayName(ItemStack stack) {
-        return Text.format("harvestfestival.structures.blueprint", getObjectFromStack(stack).getLocalisedName());
+        return TextHelper.format("harvestfestival.structures.blueprint", getObjectFromStack(stack).getLocalisedName());
     }
 
     @Override

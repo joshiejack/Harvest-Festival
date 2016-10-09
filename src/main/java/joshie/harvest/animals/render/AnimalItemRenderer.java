@@ -2,8 +2,8 @@ package joshie.harvest.animals.render;
 
 import joshie.harvest.animals.HFAnimals;
 import joshie.harvest.animals.item.ItemAnimalSpawner.Spawner;
-import joshie.harvest.core.render.FakeEntityRenderer.EntityItemRenderer;
-import joshie.harvest.core.render.FakeEntityRenderer.RenderPair;
+import joshie.harvest.core.base.render.FakeEntityRenderer.EntityItemRenderer;
+import joshie.harvest.core.base.render.FakeEntityRenderer.RenderPair;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.ForgeHooksClient;

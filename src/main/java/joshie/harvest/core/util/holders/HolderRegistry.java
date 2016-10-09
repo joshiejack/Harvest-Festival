@@ -1,4 +1,4 @@
-package joshie.harvest.core.util.holder;
+package joshie.harvest.core.util.holders;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
@@ -7,7 +7,7 @@ import joshie.harvest.api.core.Ore;
 import joshie.harvest.api.crops.ICropProvider;
 import joshie.harvest.core.HFCore;
 import joshie.harvest.core.item.ItemSizeable;
-import joshie.harvest.core.util.IFMLItem;
+import joshie.harvest.core.util.interfaces.IFMLItem;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

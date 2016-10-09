@@ -8,8 +8,8 @@ import joshie.harvest.buildings.render.RenderKey;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.item.ItemHFFML;
 import joshie.harvest.core.helpers.ChatHelper;
-import joshie.harvest.core.util.ICreativeSorted;
-import joshie.harvest.core.util.Text;
+import joshie.harvest.core.util.interfaces.ICreativeSorted;
+import joshie.harvest.core.helpers.TextHelper;
 import joshie.harvest.town.TownHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -48,9 +48,9 @@ public class ItemBuilding extends ItemHFFML<ItemBuilding, BuildingImpl> implemen
                         stack.splitStack(1);
                         return new ActionResult<>(building.generate(world, key.getPos(), key.getMirror(), key.getRotation()), stack);
                     }
-                } else if (world.isRemote) ChatHelper.displayChat(TextFormatting.RED + Text.translate("town.failure") + " " + TextFormatting.WHITE + Text.translate("town.permission"));
-            } else if (world.isRemote) ChatHelper.displayChat(TextFormatting.RED + Text.translate("town.failure") + " " + TextFormatting.WHITE + Text.translate("town.distance"));
-        } else if (world.isRemote) ChatHelper.displayChat(TextFormatting.RED + Text.translate("town.failure") + " " + TextFormatting.WHITE + Text.translate("town.dimension"));
+                } else if (world.isRemote) ChatHelper.displayChat(TextFormatting.RED + TextHelper.translate("town.failure") + " " + TextFormatting.WHITE + TextHelper.translate("town.permission"));
+            } else if (world.isRemote) ChatHelper.displayChat(TextFormatting.RED + TextHelper.translate("town.failure") + " " + TextFormatting.WHITE + TextHelper.translate("town.distance"));
+        } else if (world.isRemote) ChatHelper.displayChat(TextFormatting.RED + TextHelper.translate("town.failure") + " " + TextFormatting.WHITE + TextHelper.translate("town.dimension"));
         return new ActionResult<>(EnumActionResult.PASS, stack);
     }
 
@@ -61,7 +61,7 @@ public class ItemBuilding extends ItemHFFML<ItemBuilding, BuildingImpl> implemen
 
     @Override
     public String getItemStackDisplayName(ItemStack stack) {
-        return Text.format("harvestfestival.structures.spawn", getObjectFromStack(stack).getLocalisedName());
+        return TextHelper.format("harvestfestival.structures.spawn", getObjectFromStack(stack).getLocalisedName());
     }
 
     @Override

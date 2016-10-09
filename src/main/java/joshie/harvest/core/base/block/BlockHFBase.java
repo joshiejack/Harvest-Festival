@@ -2,7 +2,7 @@ package joshie.harvest.core.base.block;
 
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.item.ItemBlockHF;
-import joshie.harvest.core.util.Text;
+import joshie.harvest.core.helpers.TextHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -78,7 +78,7 @@ public abstract class BlockHFBase<B extends BlockHFBase> extends Block {
     public String getItemStackDisplayName(ItemStack stack) {
         String unlocalized = getUnlocalizedName();
         String name = stack.getItem().getUnlocalizedName(stack);
-        return Text.localizeFully(unlocalized + "." + name);
+        return TextHelper.localizeFully(unlocalized + "." + name);
     }
 
     public int getEntityLifeSpan(ItemStack itemStack, World world) {

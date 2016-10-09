@@ -5,7 +5,7 @@ import joshie.harvest.animals.tile.TileIncubator;
 import joshie.harvest.api.core.ISizeable.Size;
 import joshie.harvest.core.base.tile.TileFillableSized;
 import joshie.harvest.core.base.block.BlockHFEnumRotatableTile;
-import joshie.harvest.core.util.IFaceable;
+import joshie.harvest.core.util.interfaces.IFaceable;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;

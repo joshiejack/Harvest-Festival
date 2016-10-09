@@ -1,7 +1,7 @@
 package joshie.harvest.core.base.item;
 
 import joshie.harvest.core.HFTab;
-import joshie.harvest.core.util.Text;
+import joshie.harvest.core.helpers.TextHelper;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 
@@ -16,6 +16,6 @@ public class ItemSingle<I extends ItemSingle> extends ItemHFBase<I> {
 
     @Override
     public String getItemStackDisplayName(ItemStack stack) {
-        return Text.translate(super.getUnlocalizedName().replace("item.", ""));
+        return TextHelper.translate(super.getUnlocalizedName().replace("item.", ""));
     }
 }

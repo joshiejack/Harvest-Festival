@@ -1,4 +1,4 @@
-package joshie.harvest.core.util;
+package joshie.harvest.core.util.interfaces;
 
 import net.minecraft.util.EnumFacing;
 

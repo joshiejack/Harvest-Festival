@@ -1,7 +1,7 @@
 package joshie.harvest.cooking.gui;
 
 import joshie.harvest.api.cooking.Utensil;
-import joshie.harvest.core.util.Text;
+import joshie.harvest.core.helpers.TextHelper;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextFormatting;
@@ -41,11 +41,11 @@ public class PageUtensilList extends Page {
     public void draw(int mouseX, int mouseY) {
         boolean hoverX = mouseX >= 166 && mouseX <= 288;
         //Left
-        gui.drawString(45, 13, TextFormatting.BOLD + "" + TextFormatting.UNDERLINE + Text.translate("cookbook"));
-        gui.drawString(25, 25, StringEscapeUtils.unescapeJava(Text.translate("meal.intro")));
+        gui.drawString(45, 13, TextFormatting.BOLD + "" + TextFormatting.UNDERLINE + TextHelper.translate("cookbook"));
+        gui.drawString(25, 25, StringEscapeUtils.unescapeJava(TextHelper.translate("meal.intro")));
 
         //Right
-        gui.drawString(205, 13, TextFormatting.BOLD + "" + TextFormatting.UNDERLINE + Text.translate("utensils"));
+        gui.drawString(205, 13, TextFormatting.BOLD + "" + TextFormatting.UNDERLINE + TextHelper.translate("utensils"));
         for (int i = 0; i < pages.size(); i++) {
             ItemStack stack = pages.get(i).getItem();
             boolean hoverY = mouseY >= 21 + 31 * i && mouseY <= 21 + 31 * i + 30;

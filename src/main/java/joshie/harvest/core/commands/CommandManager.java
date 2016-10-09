@@ -2,7 +2,7 @@ package joshie.harvest.core.commands;
 
 import joshie.harvest.core.helpers.MCClientHelper;
 import joshie.harvest.core.lib.HFModInfo;
-import joshie.harvest.core.util.HFEvents;
+import joshie.harvest.core.util.annotations.HFEvents;
 import net.minecraft.command.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.server.MinecraftServer;

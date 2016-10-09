@@ -1,4 +1,4 @@
-package joshie.harvest.core.util;
+package joshie.harvest.core.util.annotations;
 
 
 import java.lang.annotation.ElementType;

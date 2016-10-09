@@ -11,7 +11,7 @@ import joshie.harvest.core.base.block.BlockHFEnum;
 import joshie.harvest.core.base.item.ItemBlockHF;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.lib.HFModInfo;
-import joshie.harvest.core.util.HFEvents;
+import joshie.harvest.core.util.annotations.HFEvents;
 import joshie.harvest.crops.CropData;
 import joshie.harvest.crops.CropHelper;
 import joshie.harvest.crops.HFCrops;

@@ -5,7 +5,7 @@ import joshie.harvest.api.quests.Quest.Selection;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.network.PacketHandler;
-import joshie.harvest.core.util.Text;
+import joshie.harvest.core.helpers.TextHelper;
 import joshie.harvest.npc.entity.EntityNPC;
 import joshie.harvest.npc.packet.PacketGift;
 import joshie.harvest.npc.packet.PacketInfo;
@@ -43,7 +43,7 @@ public class GuiNPCSelect extends GuiNPCBase {
             selected = 1;
             boolean optionStarted = false;
             for (int i = 0; i < text.length; i++) {
-                String original = Text.localize(text[i]);
+                String original = TextHelper.localize(text[i]);
                 String replaced = replace(original);
                 if (!original.equals(replaced)) {
                     if (!optionStarted) {

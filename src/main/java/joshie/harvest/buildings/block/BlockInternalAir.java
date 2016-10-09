@@ -6,7 +6,7 @@ import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.block.BlockHFBase;
 import joshie.harvest.core.helpers.InventoryHelper;
 import joshie.harvest.core.lib.CreativeSort;
-import joshie.harvest.core.util.Text;
+import joshie.harvest.core.helpers.TextHelper;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
@@ -39,7 +39,7 @@ public class BlockInternalAir extends BlockHFBase<BlockInternalAir> {
 
     @Override
     public String getItemStackDisplayName(ItemStack stack) {
-        return Text.localizeFully(getUnlocalizedName());
+        return TextHelper.localizeFully(getUnlocalizedName());
     }
 
     @Nullable

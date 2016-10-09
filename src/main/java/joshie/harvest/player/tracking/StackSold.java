@@ -1,6 +1,6 @@
 package joshie.harvest.player.tracking;
 
-import joshie.harvest.core.util.holder.AbstractDataHolder;
+import joshie.harvest.core.util.holders.AbstractDataHolder;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;

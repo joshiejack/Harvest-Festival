@@ -4,7 +4,7 @@ import joshie.harvest.core.HFCore;
 import joshie.harvest.core.achievements.HFAchievements;
 import joshie.harvest.core.block.BlockFlower.FlowerType;
 import joshie.harvest.core.lib.HFSounds;
-import joshie.harvest.core.util.HFEvents;
+import joshie.harvest.core.util.annotations.HFEvents;
 import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.npc.NPC;
 import joshie.harvest.npc.NPCHelper;

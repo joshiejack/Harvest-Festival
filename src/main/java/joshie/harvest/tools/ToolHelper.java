@@ -5,7 +5,7 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.core.ITiered;
 import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.core.helpers.EntityHelper;
-import joshie.harvest.core.util.HFEvents;
+import joshie.harvest.core.util.annotations.HFEvents;
 import joshie.harvest.npc.HFNPCs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;

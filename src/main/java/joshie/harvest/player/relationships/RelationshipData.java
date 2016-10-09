@@ -1,7 +1,7 @@
 package joshie.harvest.player.relationships;
 
 import joshie.harvest.core.achievements.HFAchievements;
-import joshie.harvest.core.util.Text;
+import joshie.harvest.core.helpers.TextHelper;
 import joshie.harvest.npc.HFNPCs;
 import net.minecraft.entity.player.EntityPlayer;
 
@@ -67,6 +67,6 @@ public abstract class RelationshipData {
     }
 
     public String getLover() {
-        return Text.translate("nolover");
+        return TextHelper.translate("nolover");
     }
 }

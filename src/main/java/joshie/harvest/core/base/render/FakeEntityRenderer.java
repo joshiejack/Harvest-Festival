@@ -1,8 +1,8 @@
-package joshie.harvest.core.render;
+package joshie.harvest.core.base.render;
 
 import gnu.trove.map.TIntObjectMap;
 import gnu.trove.map.hash.TIntObjectHashMap;
-import joshie.harvest.core.render.FakeEntityRenderer.EntityItemRenderer;
+import joshie.harvest.core.base.render.FakeEntityRenderer.EntityItemRenderer;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;

@@ -5,7 +5,6 @@ import joshie.harvest.core.base.gui.GuiBase;
 import joshie.harvest.core.helpers.StackHelper;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.network.PacketHandler;
-import joshie.harvest.core.util.ChatFontRenderer;
 import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.npc.entity.EntityNPC;
 import joshie.harvest.npc.item.ItemNPCTool.NPCTool;

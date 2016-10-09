@@ -1,6 +1,6 @@
 package joshie.harvest.animals;
 
-import joshie.harvest.core.util.HFLoader;
+import joshie.harvest.core.util.annotations.HFLoader;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.passive.EntityCow;

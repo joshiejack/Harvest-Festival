@@ -4,8 +4,8 @@ import joshie.harvest.api.core.ITiered;
 import joshie.harvest.core.HFCore;
 import joshie.harvest.core.helpers.InventoryHelper;
 import joshie.harvest.core.lib.CreativeSort;
-import joshie.harvest.core.util.ICreativeSorted;
-import joshie.harvest.core.util.Text;
+import joshie.harvest.core.util.interfaces.ICreativeSorted;
+import joshie.harvest.core.helpers.TextHelper;
 import joshie.harvest.mining.HFMining;
 import joshie.harvest.mining.item.ItemMaterial.Material;
 import joshie.harvest.tools.ToolHelper;
@@ -63,7 +63,7 @@ public abstract class ItemTool<I extends ItemTool> extends ItemHFBase<I> impleme
 
     @Override
     public String getItemStackDisplayName(ItemStack stack) {
-        return Text.localize(super.getUnlocalizedName().replace("item.", "") + "." + getTier(stack).name().toLowerCase(Locale.ENGLISH));
+        return TextHelper.localize(super.getUnlocalizedName().replace("item.", "") + "." + getTier(stack).name().toLowerCase(Locale.ENGLISH));
     }
 
     @Override

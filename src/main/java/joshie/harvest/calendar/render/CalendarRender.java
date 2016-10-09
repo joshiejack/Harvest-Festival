@@ -8,7 +8,7 @@ import joshie.harvest.api.calendar.Weather;
 import joshie.harvest.calendar.CalendarHelper;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.MCClientHelper;
-import joshie.harvest.core.util.HFEvents;
+import joshie.harvest.core.util.annotations.HFEvents;
 import joshie.harvest.npc.gui.ContainerNPCChat;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;

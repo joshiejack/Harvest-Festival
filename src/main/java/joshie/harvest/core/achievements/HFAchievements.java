@@ -7,7 +7,7 @@ import joshie.harvest.cooking.CookingHelper;
 import joshie.harvest.core.HFCore;
 import joshie.harvest.core.block.BlockFlower.FlowerType;
 import joshie.harvest.core.block.BlockStorage.Storage;
-import joshie.harvest.core.util.HFLoader;
+import joshie.harvest.core.util.annotations.HFLoader;
 import joshie.harvest.crops.HFCrops;
 import joshie.harvest.mining.HFMining;
 import joshie.harvest.mining.block.BlockOre.Ore;

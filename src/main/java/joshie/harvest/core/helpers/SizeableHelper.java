@@ -4,7 +4,7 @@ import joshie.harvest.animals.HFAnimals;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.IAnimalTracked;
 import joshie.harvest.api.core.ISizeable.Size;
-import joshie.harvest.core.lib.Sizeable;
+import joshie.harvest.core.util.Sizeable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 

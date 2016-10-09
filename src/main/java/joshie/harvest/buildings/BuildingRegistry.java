@@ -2,7 +2,7 @@ package joshie.harvest.buildings;
 
 import joshie.harvest.api.buildings.Building;
 import joshie.harvest.api.buildings.IBuildingRegistry;
-import joshie.harvest.core.util.HFApiImplementation;
+import joshie.harvest.core.util.annotations.HFApiImplementation;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.IForgeRegistry;
 import net.minecraftforge.fml.common.registry.RegistryBuilder;

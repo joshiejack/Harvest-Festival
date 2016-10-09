@@ -1,6 +1,6 @@
 package joshie.harvest.quests;
 
-import joshie.harvest.core.util.HFLoader;
+import joshie.harvest.core.util.annotations.HFLoader;
 
 import static joshie.harvest.core.helpers.ConfigHelper.getInteger;
 

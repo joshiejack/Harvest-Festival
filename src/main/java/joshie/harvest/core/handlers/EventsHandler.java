@@ -4,7 +4,7 @@ import joshie.harvest.animals.AnimalTrackerServer;
 import joshie.harvest.api.ticking.IDailyTickable;
 import joshie.harvest.calendar.CalendarServer;
 import joshie.harvest.core.helpers.MCServerHelper;
-import joshie.harvest.core.util.HFEvents;
+import joshie.harvest.core.util.annotations.HFEvents;
 import joshie.harvest.player.PlayerTrackerServer;
 import joshie.harvest.town.TownTrackerServer;
 import net.minecraft.client.gui.GuiMultiplayer;

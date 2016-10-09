@@ -4,7 +4,7 @@ import joshie.harvest.HarvestFestival;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.npc.gift.IGiftHandler.Quality;
 import joshie.harvest.core.handlers.HFTrackers;
-import joshie.harvest.core.util.Text;
+import joshie.harvest.core.helpers.TextHelper;
 import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.npc.NPCRegistry;
 import joshie.harvest.npc.entity.EntityNPC;
@@ -27,15 +27,15 @@ public class GuiNPCGift extends GuiNPCChat {
 
     @Override
     public String getScript() {
-        if (NPCRegistry.INSTANCE.getGifts().isBlacklisted(gift)) return Text.getSpeech(npc, "gift.no");
+        if (NPCRegistry.INSTANCE.getGifts().isBlacklisted(gift)) return TextHelper.getSpeech(npc, "gift.no");
         if (ToolHelper.isBlueFeather(gift)) {
             int relationship = HFApi.relationships.getRelationship(player, npc.getNPC().getUUID());
             if (relationship >= HFNPCs.MARRIAGE_REQUIREMENT && npc.getNPC().isMarriageCandidate()) {
-                return Text.getSpeech(npc, "marriage.accept");
-            } else return Text.getSpeech(npc, "marriage.reject");
+                return TextHelper.getSpeech(npc, "marriage.accept");
+            } else return TextHelper.getSpeech(npc, "marriage.reject");
         } else if (HFTrackers.getClientPlayerTracker().getRelationships().gift(player, npc.getNPC().getUUID(), value.getRelationPoints())) {
-            return Text.getSpeech(npc, "gift." + value.name().toLowerCase(Locale.ENGLISH));
-        } else return Text.getSpeech(npc, "gift.reject");
+            return TextHelper.getSpeech(npc, "gift." + value.name().toLowerCase(Locale.ENGLISH));
+        } else return TextHelper.getSpeech(npc, "gift.reject");
     }
 
     @Override

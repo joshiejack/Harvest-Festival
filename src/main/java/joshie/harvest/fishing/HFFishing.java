@@ -1,6 +1,6 @@
 package joshie.harvest.fishing;
 
-import joshie.harvest.core.util.HFLoader;
+import joshie.harvest.core.util.annotations.HFLoader;
 import joshie.harvest.fishing.condition.ConditionDaytime;
 import joshie.harvest.fishing.condition.ConditionLocation;
 import joshie.harvest.fishing.condition.ConditionSeason;

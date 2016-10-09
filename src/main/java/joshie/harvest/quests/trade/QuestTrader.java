@@ -6,7 +6,7 @@ import joshie.harvest.api.core.ISizeable.Size;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.core.HFCore;
-import joshie.harvest.core.lib.Sizeable;
+import joshie.harvest.core.util.Sizeable;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;

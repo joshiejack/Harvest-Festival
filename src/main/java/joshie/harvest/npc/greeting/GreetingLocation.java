@@ -5,7 +5,7 @@ import joshie.harvest.api.buildings.Building;
 import joshie.harvest.api.npc.IConditionalGreeting;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.buildings.BuildingImpl;
-import joshie.harvest.core.util.Text;
+import joshie.harvest.core.helpers.TextHelper;
 import joshie.harvest.npc.NPCHelper;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.player.EntityPlayer;
@@ -31,6 +31,6 @@ public class GreetingLocation implements IConditionalGreeting {
 
     @Override
     public String getLocalizedText(EntityPlayer player, EntityAgeable ageable, INPC npc) {
-        return Text.getRandomSpeech(npc, text, 10);
+        return TextHelper.getRandomSpeech(npc, text, 10);
     }
 }

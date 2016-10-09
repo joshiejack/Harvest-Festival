@@ -6,7 +6,7 @@ import joshie.harvest.api.core.ISizedProvider;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.item.ItemHFEnum;
 import joshie.harvest.core.lib.CreativeSort;
-import joshie.harvest.core.util.Text;
+import joshie.harvest.core.helpers.TextHelper;
 import joshie.harvest.fishing.item.ItemFish.Fish;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
@@ -54,9 +54,9 @@ public class ItemFish extends ItemHFEnum<ItemFish, Fish> implements IShippable, 
 
     @Override
     public String getItemStackDisplayName(ItemStack stack) {
-        String size = Text.translate("sizeable." + getSize(stack).name().toLowerCase(Locale.ENGLISH));
-        String name = Text.translate("fish." + getEnumFromStack(stack).getName());
-        String format = Text.translate("sizeable.format");
+        String size = TextHelper.translate("sizeable." + getSize(stack).name().toLowerCase(Locale.ENGLISH));
+        String name = TextHelper.translate("fish." + getEnumFromStack(stack).getName());
+        String format = TextHelper.translate("sizeable.format");
         return String.format(format, size, name);
     }
 

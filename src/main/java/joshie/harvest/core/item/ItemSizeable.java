@@ -6,8 +6,8 @@ import joshie.harvest.api.core.ISizedProvider;
 import joshie.harvest.core.base.item.ItemHFFML;
 import joshie.harvest.core.handlers.SizeableRegistry;
 import joshie.harvest.core.lib.CreativeSort;
-import joshie.harvest.core.lib.Sizeable;
-import joshie.harvest.core.util.Text;
+import joshie.harvest.core.util.Sizeable;
+import joshie.harvest.core.helpers.TextHelper;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -57,9 +57,9 @@ public class ItemSizeable extends ItemHFFML<ItemSizeable, Sizeable> implements I
     @Override
     public String getItemStackDisplayName(ItemStack stack) {
         Size sizeof = getSize(stack);
-        String size = Text.translate("sizeable." + sizeof.name().toLowerCase(Locale.ENGLISH));
-        String name = Text.translate("sizeable." + getObjectFromStack(stack).getUnlocalizedName());
-        String format = Text.translate("sizeable.format");
+        String size = TextHelper.translate("sizeable." + sizeof.name().toLowerCase(Locale.ENGLISH));
+        String name = TextHelper.translate("sizeable." + getObjectFromStack(stack).getUnlocalizedName());
+        String format = TextHelper.translate("sizeable.format");
         return String.format(format, size, name);
     }
 

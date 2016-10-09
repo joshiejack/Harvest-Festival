@@ -1,7 +1,7 @@
 package joshie.harvest.plugins.crafttweaker;
 
 import joshie.harvest.core.commands.CommandManager;
-import joshie.harvest.core.util.HFLoader;
+import joshie.harvest.core.util.annotations.HFLoader;
 import joshie.harvest.shops.command.HFCommandShops;
 import minetweaker.MineTweakerAPI;
 

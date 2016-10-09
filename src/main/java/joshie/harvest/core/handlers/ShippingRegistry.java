@@ -5,8 +5,8 @@ import joshie.harvest.api.core.IShippable;
 import joshie.harvest.api.core.IShippingRegistry;
 import joshie.harvest.api.core.Ore;
 import joshie.harvest.api.crops.Crop;
-import joshie.harvest.core.util.HFApiImplementation;
-import joshie.harvest.core.util.holder.HolderRegistry;
+import joshie.harvest.core.util.annotations.HFApiImplementation;
+import joshie.harvest.core.util.holders.HolderRegistry;
 import net.minecraft.item.ItemStack;
 
 @HFApiImplementation

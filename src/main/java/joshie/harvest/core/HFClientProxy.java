@@ -1,6 +1,6 @@
 package joshie.harvest.core;
 
-import joshie.harvest.core.render.FakeEntityRenderer.EntityItemRenderer;
+import joshie.harvest.core.base.render.FakeEntityRenderer.EntityItemRenderer;
 import net.minecraft.item.Item;
 
 import java.util.HashMap;

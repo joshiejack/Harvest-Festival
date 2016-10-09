@@ -1,9 +1,9 @@
-package joshie.harvest.core.render;
+package joshie.harvest.core.base.render;
 
 import joshie.harvest.api.core.ISizeable.Size;
 import joshie.harvest.core.HFCore;
 import joshie.harvest.core.handlers.SizeableRegistry;
-import joshie.harvest.core.lib.Sizeable;
+import joshie.harvest.core.util.Sizeable;
 import net.minecraft.client.renderer.ItemMeshDefinition;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;

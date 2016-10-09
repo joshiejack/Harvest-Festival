@@ -2,11 +2,11 @@ package joshie.harvest.core;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.core.ISizeable.Size;
-import joshie.harvest.core.util.ICreativeSorted;
+import joshie.harvest.core.util.interfaces.ICreativeSorted;
 import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.core.lib.HFModInfo;
-import joshie.harvest.core.util.HFLoader;
+import joshie.harvest.core.util.annotations.HFLoader;
 import joshie.harvest.crops.HFCrops;
 import joshie.harvest.fishing.HFFishing;
 import joshie.harvest.fishing.item.ItemFish.Fish;

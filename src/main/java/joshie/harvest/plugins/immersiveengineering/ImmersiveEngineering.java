@@ -3,7 +3,7 @@ package joshie.harvest.plugins.immersiveengineering;
 import blusunrize.immersiveengineering.api.crafting.SqueezerRecipe;
 import joshie.harvest.api.crops.Crop;
 import joshie.harvest.core.handlers.DisableHandler.DisableVanillaSeeds;
-import joshie.harvest.core.util.HFLoader;
+import joshie.harvest.core.util.annotations.HFLoader;
 import joshie.harvest.crops.HFCrops;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;

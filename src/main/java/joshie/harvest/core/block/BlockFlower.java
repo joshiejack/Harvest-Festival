@@ -5,7 +5,7 @@ import joshie.harvest.core.base.block.BlockHFEnum;
 import joshie.harvest.core.block.BlockFlower.FlowerType;
 import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.core.lib.HFModInfo;
-import joshie.harvest.core.util.Text;
+import joshie.harvest.core.helpers.TextHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -127,7 +127,7 @@ public class BlockFlower extends BlockHFEnum<BlockFlower, FlowerType> implements
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean flag) {
         if (getEnumFromMeta(stack.getItemDamage()) == FlowerType.GODDESS) {
-            list.add(Text.translate("tooltip.flower"));
+            list.add(TextHelper.translate("tooltip.flower"));
         }
     }
 

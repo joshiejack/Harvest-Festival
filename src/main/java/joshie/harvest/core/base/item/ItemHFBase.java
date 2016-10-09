@@ -2,7 +2,7 @@ package joshie.harvest.core.base.item;
 
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.lib.HFModInfo;
-import joshie.harvest.core.util.Text;
+import joshie.harvest.core.helpers.TextHelper;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -30,7 +30,7 @@ public abstract class ItemHFBase<I extends ItemHFBase> extends Item {
 
     @Override
     public String getItemStackDisplayName(ItemStack stack) {
-        return Text.localize(getUnlocalizedName());
+        return TextHelper.localize(getUnlocalizedName());
     }
 
     @Override

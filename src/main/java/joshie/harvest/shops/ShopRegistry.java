@@ -3,7 +3,7 @@ package joshie.harvest.shops;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.shops.IShop;
 import joshie.harvest.api.shops.IShopRegistry;
-import joshie.harvest.core.util.HFApiImplementation;
+import joshie.harvest.core.util.annotations.HFApiImplementation;
 import net.minecraft.util.ResourceLocation;
 
 import java.util.HashMap;

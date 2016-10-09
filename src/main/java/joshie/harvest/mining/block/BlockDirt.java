@@ -2,7 +2,7 @@ package joshie.harvest.mining.block;
 
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.block.BlockHFBase;
-import joshie.harvest.core.util.Text;
+import joshie.harvest.core.helpers.TextHelper;
 import joshie.harvest.mining.HFMining;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -63,13 +63,13 @@ public class BlockDirt extends BlockHFBase<BlockDirt> {
 
     @Override
     public String getItemStackDisplayName(ItemStack stack) {
-        return Text.localizeFully(getUnlocalizedName());
+        return TextHelper.localizeFully(getUnlocalizedName());
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean flag) {
-        if (stack.getItem() == Item.getItemFromBlock(HFMining.DIRT_DECORATIVE)) list.add(TextFormatting.YELLOW + Text.translate("tooltip.cosmetic"));
+        if (stack.getItem() == Item.getItemFromBlock(HFMining.DIRT_DECORATIVE)) list.add(TextFormatting.YELLOW + TextHelper.translate("tooltip.cosmetic"));
     }
 
     //TECHNICAL/

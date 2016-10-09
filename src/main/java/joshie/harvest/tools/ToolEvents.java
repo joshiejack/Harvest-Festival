@@ -2,7 +2,7 @@ package joshie.harvest.tools;
 
 import joshie.harvest.api.core.ITiered.ToolTier;
 import joshie.harvest.core.base.item.ItemTool;
-import joshie.harvest.core.util.HFEvents;
+import joshie.harvest.core.util.annotations.HFEvents;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.MobEffects;

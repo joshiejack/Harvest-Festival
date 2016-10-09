@@ -1,4 +1,4 @@
-package joshie.harvest.core.util;
+package joshie.harvest.core.helpers;
 
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
@@ -13,7 +13,7 @@ import java.util.Random;
 
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 
-public class Text {
+public class TextHelper {
     private static final Cache<Triple<String, String, ResourceLocation>, Integer> TRANSLATION_CACHE = CacheBuilder.newBuilder().build();
     private static final Random rand = new Random();
 

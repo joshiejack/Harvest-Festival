@@ -2,7 +2,7 @@ package joshie.harvest.npc.gift.init;
 
 import joshie.harvest.cooking.block.BlockCookware.Cookware;
 import joshie.harvest.cooking.item.ItemUtensil.Utensil;
-import joshie.harvest.core.util.HFLoader;
+import joshie.harvest.core.util.annotations.HFLoader;
 
 import static joshie.harvest.api.npc.gift.GiftCategory.*;
 import static joshie.harvest.cooking.HFCooking.*;

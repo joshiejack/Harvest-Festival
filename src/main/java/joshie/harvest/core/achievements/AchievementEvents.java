@@ -1,7 +1,7 @@
 package joshie.harvest.core.achievements;
 
 import joshie.harvest.core.helpers.InventoryHelper;
-import joshie.harvest.core.util.HFEvents;
+import joshie.harvest.core.util.annotations.HFEvents;
 import joshie.harvest.crops.HFCrops;
 import joshie.harvest.mining.HFMining;
 import joshie.harvest.mining.item.ItemMaterial.Material;

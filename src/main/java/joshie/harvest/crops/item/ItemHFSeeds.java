@@ -4,8 +4,8 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.crops.Crop;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.lib.CreativeSort;
-import joshie.harvest.core.util.ICreativeSorted;
-import joshie.harvest.core.util.Text;
+import joshie.harvest.core.util.interfaces.ICreativeSorted;
+import joshie.harvest.core.helpers.TextHelper;
 import joshie.harvest.crops.HFCrops;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -48,7 +48,7 @@ public class ItemHFSeeds extends ItemSeeds implements ICreativeSorted {
     @Override
     public String getItemStackDisplayName(ItemStack stack) {
         Crop crop = getCropFromStack(stack);
-        return (crop == null) ? Text.translate("crop.seeds.useless") : crop.getSeedsName();
+        return (crop == null) ? TextHelper.translate("crop.seeds.useless") : crop.getSeedsName();
     }
 
     @Override
@@ -56,9 +56,9 @@ public class ItemHFSeeds extends ItemSeeds implements ICreativeSorted {
     public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean debug) {
         Crop crop = getCropFromStack(stack);
         if (crop != null) {
-            if (crop.requiresSickle()) list.add("" + TextFormatting.AQUA + TextFormatting.ITALIC + Text.translate("crop.sickle"));
+            if (crop.requiresSickle()) list.add("" + TextFormatting.AQUA + TextFormatting.ITALIC + TextHelper.translate("crop.sickle"));
             crop.getGrowthHandler().addInformation(list, crop, debug);
-            list.add(crop.getStages() + " " + Text.translate("crop.seeds.days"));
+            list.add(crop.getStages() + " " + TextHelper.translate("crop.seeds.days"));
         }
     }
 

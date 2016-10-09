@@ -3,7 +3,7 @@ package joshie.harvest.mining.item;
 import joshie.harvest.api.core.IShippable;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.item.ItemHFEnum;
-import joshie.harvest.core.util.Text;
+import joshie.harvest.core.helpers.TextHelper;
 import joshie.harvest.mining.item.ItemMaterial.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -59,7 +59,7 @@ public class ItemMaterial extends ItemHFEnum<ItemMaterial, Material> implements 
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean flag) {
         if (getEnumFromStack(stack) == MYTHIC) {
-            list.add(Text.translate("tooltip.mythic_stone"));
+            list.add(TextHelper.translate("tooltip.mythic_stone"));
         }
     }
 

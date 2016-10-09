@@ -5,7 +5,7 @@ import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.NBTHelper;
 import joshie.harvest.core.network.Packet;
 import joshie.harvest.core.network.PenguinPacket;
-import joshie.harvest.core.util.holder.ItemStackHolder;
+import joshie.harvest.core.util.holders.ItemStackHolder;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.common.network.ByteBufUtils;

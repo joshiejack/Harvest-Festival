@@ -2,7 +2,7 @@ package joshie.harvest.plugins.immersiveengineering;
 
 import joshie.harvest.api.crops.Crop;
 import joshie.harvest.api.crops.GrowthHandler;
-import joshie.harvest.core.util.Text;
+import joshie.harvest.core.helpers.TextHelper;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
@@ -15,7 +15,7 @@ public class HempGrowthHandler extends GrowthHandler {
     @SideOnly(Side.CLIENT)
     @Override
     public void addInformation(List<String> list, Crop crop, boolean debug) {
-        list.add(TextFormatting.LIGHT_PURPLE  + "" + TextFormatting.ITALIC + Text.translate("crop.hemp.tooltip"));
+        list.add(TextFormatting.LIGHT_PURPLE  + "" + TextFormatting.ITALIC + TextHelper.translate("crop.hemp.tooltip"));
         super.addInformation(list, crop, debug);
     }
 

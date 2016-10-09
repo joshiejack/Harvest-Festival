@@ -3,7 +3,7 @@ package joshie.harvest.plugins;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.cooking.Ingredient;
 import joshie.harvest.core.handlers.DisableHandler.DisableVanillaSeeds;
-import joshie.harvest.core.util.HFLoader;
+import joshie.harvest.core.util.annotations.HFLoader;
 import joshie.harvest.crops.HFCrops;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;

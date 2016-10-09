@@ -11,7 +11,7 @@ import joshie.harvest.api.npc.gift.IGiftHandler;
 import joshie.harvest.api.npc.gift.IGiftHandler.Quality;
 import joshie.harvest.api.shops.IShop;
 import joshie.harvest.cooking.HFCooking;
-import joshie.harvest.core.util.Text;
+import joshie.harvest.core.helpers.TextHelper;
 import joshie.harvest.npc.entity.EntityNPC;
 import joshie.harvest.npc.greeting.GreetingShop;
 import joshie.harvest.npc.item.ItemNPCTool.NPCTool;
@@ -218,7 +218,7 @@ public class NPC extends IForgeRegistryEntry.Impl<NPC> implements INPC {
     //Returns the localized name of this character
     @Override
     public String getLocalizedName() {
-        return Text.localize(getRegistryName().getResourceDomain() + ".npc." + getRegistryName().getResourcePath() + ".name");
+        return TextHelper.localize(getRegistryName().getResourceDomain() + ".npc." + getRegistryName().getResourcePath() + ".name");
     }
 
     @SuppressWarnings("unchecked")
@@ -258,7 +258,7 @@ public class NPC extends IForgeRegistryEntry.Impl<NPC> implements INPC {
             }
         }
 
-        return Text.getRandomSpeech(this, multipleLocalizationKey, 100);
+        return TextHelper.getRandomSpeech(this, multipleLocalizationKey, 100);
     }
 
     @Override

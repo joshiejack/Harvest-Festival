@@ -1,7 +1,7 @@
 package joshie.harvest.core.base.item;
 
-import joshie.harvest.core.util.ICreativeSorted;
-import joshie.harvest.core.util.IFMLItem;
+import joshie.harvest.core.util.interfaces.ICreativeSorted;
+import joshie.harvest.core.util.interfaces.IFMLItem;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

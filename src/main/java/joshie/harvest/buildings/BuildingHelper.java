@@ -3,7 +3,7 @@ package joshie.harvest.buildings;
 import joshie.harvest.buildings.render.RenderKey;
 import joshie.harvest.core.helpers.ChatHelper;
 import joshie.harvest.core.helpers.EntityHelper;
-import joshie.harvest.core.util.Text;
+import joshie.harvest.core.helpers.TextHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
@@ -103,9 +103,9 @@ public class BuildingHelper {
                 if (!isAir(world, raytrace.getBlockPos()) && raytrace.sideHit == EnumFacing.UP) {
                     setPositionForPlayer(player, getCachedKey(player, pos, building));
                     if (world.isRemote) {
-                        ChatHelper.displayChat(TextFormatting.YELLOW + building.getLocalisedName() + TextFormatting.RESET + " " + Text.translate("town.preview") +  "\n-"
-                                + Text.translate("town.sneak") +" " +  TextFormatting.GREEN + "" + Text.translate("town.confirm") + "\n-"
-                                + TextFormatting.RESET + Text.translate("town.click") + " " + TextFormatting.RED + Text.translate("town.cancel"));
+                        ChatHelper.displayChat(TextFormatting.YELLOW + building.getLocalisedName() + TextFormatting.RESET + " " + TextHelper.translate("town.preview") +  "\n-"
+                                + TextHelper.translate("town.sneak") +" " +  TextFormatting.GREEN + "" + TextHelper.translate("town.confirm") + "\n-"
+                                + TextFormatting.RESET + TextHelper.translate("town.click") + " " + TextFormatting.RED + TextHelper.translate("town.cancel"));
                     }
                 }
 
@@ -114,7 +114,7 @@ public class BuildingHelper {
         } else {
             if (clicked) {
                 if (!player.isSneaking() && world.isRemote) {
-                    ChatHelper.displayChat(TextFormatting.RED + building.getLocalisedName() + " " + Text.translate("town.cancelled"));
+                    ChatHelper.displayChat(TextFormatting.RED + building.getLocalisedName() + " " + TextHelper.translate("town.cancelled"));
                 }
 
                 setPositionForPlayer(player, null);

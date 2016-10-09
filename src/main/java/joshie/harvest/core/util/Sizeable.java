@@ -1,4 +1,4 @@
-package joshie.harvest.core.lib;
+package joshie.harvest.core.util;
 
 import joshie.harvest.api.core.ISizeable.Size;
 import joshie.harvest.core.HFCore;

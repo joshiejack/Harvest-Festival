@@ -2,6 +2,7 @@ package joshie.harvest.core.util;
 
 import joshie.harvest.HarvestFestival;
 import joshie.harvest.core.helpers.ConfigHelper;
+import joshie.harvest.core.util.annotations.HFEvents;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraftforge.common.config.ConfigElement;

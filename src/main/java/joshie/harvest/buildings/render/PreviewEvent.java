@@ -6,7 +6,7 @@ import joshie.harvest.buildings.BuildingHelper;
 import joshie.harvest.buildings.BuildingImpl;
 import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.core.helpers.MCClientHelper;
-import joshie.harvest.core.util.HFEvents;
+import joshie.harvest.core.util.annotations.HFEvents;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.item.ItemStack;

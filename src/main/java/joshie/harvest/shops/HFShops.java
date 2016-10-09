@@ -14,7 +14,7 @@ import joshie.harvest.buildings.BuildingRegistry;
 import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.core.HFCore;
 import joshie.harvest.core.block.BlockStorage.Storage;
-import joshie.harvest.core.util.HFLoader;
+import joshie.harvest.core.util.annotations.HFLoader;
 import joshie.harvest.crops.HFCrops;
 import joshie.harvest.crops.block.BlockSprinkler.Sprinkler;
 import joshie.harvest.mining.HFMining;

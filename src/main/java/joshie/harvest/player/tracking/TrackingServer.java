@@ -6,7 +6,7 @@ import joshie.harvest.core.achievements.HFAchievements;
 import joshie.harvest.core.helpers.NBTHelper;
 import joshie.harvest.core.helpers.CollectionHelper;
 import joshie.harvest.core.network.PacketHandler;
-import joshie.harvest.core.util.holder.ItemStackHolder;
+import joshie.harvest.core.util.holders.ItemStackHolder;
 import joshie.harvest.player.PlayerTrackerServer;
 import joshie.harvest.player.packet.PacketSyncObtained;
 import joshie.harvest.player.packet.PacketSyncObtainedSet;

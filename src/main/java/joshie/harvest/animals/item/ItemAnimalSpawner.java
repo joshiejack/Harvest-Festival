@@ -8,7 +8,7 @@ import joshie.harvest.animals.item.ItemAnimalSpawner.Spawner;
 import joshie.harvest.api.animals.IAnimalTracked;
 import joshie.harvest.core.base.item.ItemHFEnum;
 import joshie.harvest.core.helpers.EntityHelper;
-import joshie.harvest.core.util.Text;
+import joshie.harvest.core.helpers.TextHelper;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.player.EntityPlayer;
@@ -74,7 +74,7 @@ public class ItemAnimalSpawner extends ItemHFEnum<ItemAnimalSpawner, Spawner> {
     @SideOnly(Side.CLIENT)
     @Override
     public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
-            tooltip.add(TextFormatting.AQUA + Text.translate("spawner.tooltip"));
+            tooltip.add(TextFormatting.AQUA + TextHelper.translate("spawner.tooltip"));
     }
 
     @SideOnly(Side.CLIENT)

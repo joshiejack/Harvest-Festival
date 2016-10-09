@@ -2,7 +2,7 @@ package joshie.harvest.gathering;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.core.block.BlockFlower.FlowerType;
-import joshie.harvest.core.util.HFLoader;
+import joshie.harvest.core.util.annotations.HFLoader;
 import joshie.harvest.gathering.block.BlockRock;
 import joshie.harvest.gathering.block.BlockWood;
 import joshie.harvest.core.HFCore;

@@ -8,8 +8,8 @@ import joshie.harvest.core.base.item.ItemHFFML;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.ChatHelper;
 import joshie.harvest.core.lib.HFSounds;
-import joshie.harvest.core.util.ICreativeSorted;
-import joshie.harvest.core.util.Text;
+import joshie.harvest.core.util.interfaces.ICreativeSorted;
+import joshie.harvest.core.helpers.TextHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
@@ -29,7 +29,7 @@ public class ItemRecipe extends ItemHFFML<ItemRecipe, MealImpl> implements ICrea
     @Override
     public String getItemStackDisplayName(ItemStack stack) {
         int id = Math.max(0, Math.min(CookingAPI.REGISTRY.getValues().size() - 1, stack.getItemDamage()));
-        return Text.format(MODID + ".recipe.format", CookingAPI.REGISTRY.getValues().get(id).getDisplayName());
+        return TextHelper.format(MODID + ".recipe.format", CookingAPI.REGISTRY.getValues().get(id).getDisplayName());
     }
 
     @Override
@@ -38,7 +38,7 @@ public class ItemRecipe extends ItemHFFML<ItemRecipe, MealImpl> implements ICrea
         if (recipe != null && HFTrackers.getPlayerTrackerFromPlayer(player).getTracking().learnRecipe(recipe)) {
             if (!player.capabilities.isCreativeMode) stack.stackSize--; //Decrease the stack
             world.playSound(player.posX, player.posY, player.posZ, HFSounds.RECIPE, SoundCategory.NEUTRAL, 0.8F, 1F, true);
-            if (world.isRemote) ChatHelper.displayChat(Text.translate("meal.learnt") + " " + TextFormatting.YELLOW + recipe.getDisplayName());
+            if (world.isRemote) ChatHelper.displayChat(TextHelper.translate("meal.learnt") + " " + TextFormatting.YELLOW + recipe.getDisplayName());
             return new ActionResult<>(EnumActionResult.SUCCESS, stack);
         }
 

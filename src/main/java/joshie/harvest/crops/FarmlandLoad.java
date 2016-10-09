@@ -1,7 +1,7 @@
 package joshie.harvest.crops;
 
 import joshie.harvest.api.HFApi;
-import joshie.harvest.core.util.HFEvents;
+import joshie.harvest.core.util.annotations.HFEvents;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;

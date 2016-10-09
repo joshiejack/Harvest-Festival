@@ -1,7 +1,7 @@
 package joshie.harvest.npc.gift.init;
 
 import joshie.harvest.core.block.BlockFlower.FlowerType;
-import joshie.harvest.core.util.HFLoader;
+import joshie.harvest.core.util.annotations.HFLoader;
 import joshie.harvest.gathering.block.BlockRock.Rock;
 import joshie.harvest.gathering.block.BlockWood.Wood;
 

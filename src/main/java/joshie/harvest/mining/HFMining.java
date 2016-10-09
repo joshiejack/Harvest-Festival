@@ -7,7 +7,7 @@ import joshie.harvest.animals.render.ModelHarvestSheep;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.core.helpers.RegistryHelper;
 import joshie.harvest.core.lib.EntityIDs;
-import joshie.harvest.core.util.HFLoader;
+import joshie.harvest.core.util.annotations.HFLoader;
 import joshie.harvest.mining.block.*;
 import joshie.harvest.mining.entity.EntityDarkChick;
 import joshie.harvest.mining.entity.EntityDarkChicken;

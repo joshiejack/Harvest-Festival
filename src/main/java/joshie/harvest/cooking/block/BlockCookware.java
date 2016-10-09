@@ -7,7 +7,7 @@ import joshie.harvest.cooking.tile.*;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.block.BlockHFEnumRotatableTile;
 import joshie.harvest.core.handlers.GuiHandler;
-import joshie.harvest.core.util.IFaceable;
+import joshie.harvest.core.util.interfaces.IFaceable;
 import joshie.harvest.tools.ToolHelper;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;

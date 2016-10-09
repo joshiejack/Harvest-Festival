@@ -1,4 +1,4 @@
-package joshie.harvest.core.util;
+package joshie.harvest.shops.gui;
 
 import gnu.trove.map.TCharObjectMap;
 import gnu.trove.map.hash.TCharObjectHashMap;

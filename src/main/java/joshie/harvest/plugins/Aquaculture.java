@@ -3,7 +3,7 @@ package joshie.harvest.plugins;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.cooking.Ingredient;
 import joshie.harvest.api.shops.IShop;
-import joshie.harvest.core.util.HFLoader;
+import joshie.harvest.core.util.annotations.HFLoader;
 import joshie.harvest.npc.HFNPCs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

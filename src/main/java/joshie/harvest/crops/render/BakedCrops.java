@@ -1,8 +1,8 @@
 package joshie.harvest.crops.render;
 
 import joshie.harvest.api.crops.Crop;
-import joshie.harvest.core.render.BakedHF;
-import joshie.harvest.core.util.HFEvents;
+import joshie.harvest.core.base.render.BakedHF;
+import joshie.harvest.core.util.annotations.HFEvents;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.client.renderer.block.model.IBakedModel;

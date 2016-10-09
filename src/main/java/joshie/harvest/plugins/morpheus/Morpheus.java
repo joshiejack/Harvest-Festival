@@ -1,7 +1,7 @@
 package joshie.harvest.plugins.morpheus;
 
 import joshie.harvest.core.HFCore;
-import joshie.harvest.core.util.HFLoader;
+import joshie.harvest.core.util.annotations.HFLoader;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import net.quetzi.morpheus.api.IMorpheusAPI;
 

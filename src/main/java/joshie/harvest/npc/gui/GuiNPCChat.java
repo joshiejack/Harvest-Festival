@@ -3,7 +3,7 @@ package joshie.harvest.npc.gui;
 import joshie.harvest.core.handlers.GuiHandler;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.network.PacketHandler;
-import joshie.harvest.core.util.Text;
+import joshie.harvest.core.helpers.TextHelper;
 import joshie.harvest.npc.NPCHelper;
 import joshie.harvest.npc.entity.EntityNPC;
 import joshie.harvest.npc.packet.PacketGift;
@@ -31,7 +31,7 @@ public class GuiNPCChat extends GuiNPCBase {
     private String format(String string) {
         if (string == null) return "FORGOT SOME TEXT DUMBASS";
         Stats stats = HFTrackers.getClientPlayerTracker().getStats();
-        String npcLover = npc.getLover() != null ? npc.getLover().getNPC().getLocalizedName() : Text.translate("nolover");
+        String npcLover = npc.getLover() != null ? npc.getLover().getNPC().getLocalizedName() : TextHelper.translate("nolover");
         String playerLover = HFTrackers.getClientPlayerTracker().getRelationships().getLover();
         return String.format(string, stats.getGold(), playerLover, npcLover, player.getDisplayNameString(), npc.getNPC().getLocalizedName());
     }

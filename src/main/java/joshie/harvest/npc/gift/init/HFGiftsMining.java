@@ -1,6 +1,6 @@
 package joshie.harvest.npc.gift.init;
 
-import joshie.harvest.core.util.HFLoader;
+import joshie.harvest.core.util.annotations.HFLoader;
 import joshie.harvest.mining.block.BlockOre.Ore;
 
 import static joshie.harvest.api.npc.gift.GiftCategory.*;

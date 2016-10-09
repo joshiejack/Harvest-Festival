@@ -2,8 +2,8 @@ package joshie.harvest.animals;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.*;
-import joshie.harvest.core.util.HFApiImplementation;
-import joshie.harvest.core.util.holder.HolderRegistry;
+import joshie.harvest.core.util.annotations.HFApiImplementation;
+import joshie.harvest.core.util.holders.HolderRegistry;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;

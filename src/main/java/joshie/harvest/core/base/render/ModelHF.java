@@ -1,4 +1,4 @@
-package joshie.harvest.core.render;
+package joshie.harvest.core.base.render;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;

@@ -1,8 +1,8 @@
 package joshie.harvest.core.base.item;
 
 import joshie.harvest.core.lib.CreativeSort;
-import joshie.harvest.core.util.ICreativeSorted;
-import joshie.harvest.core.util.Text;
+import joshie.harvest.core.util.interfaces.ICreativeSorted;
+import joshie.harvest.core.helpers.TextHelper;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -81,7 +81,7 @@ public abstract class ItemHFFoodEnum<I extends ItemHFFoodEnum, E extends Enum<E>
 
     @Override
     public String getItemStackDisplayName(ItemStack stack) {
-        return Text.translate(getUnlocalizedName(stack).replaceAll("(.)([A-Z])", "$1$2").toLowerCase(Locale.ENGLISH).replace("_", "."));
+        return TextHelper.translate(getUnlocalizedName(stack).replaceAll("(.)([A-Z])", "$1$2").toLowerCase(Locale.ENGLISH).replace("_", "."));
     }
 
     @Override

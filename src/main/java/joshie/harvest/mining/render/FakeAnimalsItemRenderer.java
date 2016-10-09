@@ -1,7 +1,7 @@
 package joshie.harvest.mining.render;
 
-import joshie.harvest.core.render.FakeEntityRenderer.EntityItemRenderer;
-import joshie.harvest.core.render.FakeEntityRenderer.RenderPair;
+import joshie.harvest.core.base.render.FakeEntityRenderer.EntityItemRenderer;
+import joshie.harvest.core.base.render.FakeEntityRenderer.RenderPair;
 import joshie.harvest.mining.HFMining;
 import joshie.harvest.mining.item.ItemDarkSpawner.DarkSpawner;
 import net.minecraft.client.model.ModelBase;

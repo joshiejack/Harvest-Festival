@@ -1,6 +1,6 @@
 package joshie.harvest.core.base.tile;
 
-import joshie.harvest.core.util.IFaceable;
+import joshie.harvest.core.util.interfaces.IFaceable;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 

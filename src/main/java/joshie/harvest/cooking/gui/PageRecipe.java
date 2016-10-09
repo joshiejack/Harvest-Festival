@@ -10,7 +10,7 @@ import joshie.harvest.cooking.recipe.MealImpl;
 import joshie.harvest.core.helpers.ChatHelper;
 import joshie.harvest.core.helpers.MCClientHelper;
 import joshie.harvest.core.network.PacketHandler;
-import joshie.harvest.core.util.Text;
+import joshie.harvest.core.helpers.TextHelper;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -86,7 +86,7 @@ public class PageRecipe extends Page {
         gui.drawString(left, 20, TextFormatting.BOLD + "" + TextFormatting.UNDERLINE + getRecipeName());
         gui.drawBox(25, 30, 110, 1, 0xFFB0A483);
         gui.drawBox(26, 31, 110, 1, 0xFF9C8C63);
-        gui.drawString(60, 35, TextFormatting.BOLD + Text.translate("meal.hunger"));
+        gui.drawString(60, 35, TextFormatting.BOLD + TextHelper.translate("meal.hunger"));
         gui.mc.getTextureManager().bindTexture(new ResourceLocation("textures/gui/icons.png"));
         int hunger = stack.getTagCompound().getInteger("FoodLevel");
         GlStateManager.color(1F, 1F, 1F);
@@ -104,14 +104,14 @@ public class PageRecipe extends Page {
 
         gui.drawBox(25, 60, 110, 1, 0xFFB0A483);
         gui.drawBox(26, 61, 110, 1, 0xFF9C8C63);
-        gui.drawString(25, 65, TextFormatting.BOLD + "" + TextFormatting.UNDERLINE + Text.translate("meal.description"));
-        gui.drawString(25, 78, Text.localize(description));
+        gui.drawString(25, 65, TextFormatting.BOLD + "" + TextFormatting.UNDERLINE + TextHelper.translate("meal.description"));
+        gui.drawString(25, 78, TextHelper.localize(description));
         gui.drawStack(22, 30, getItem(), 2F);
         //Bottom
 
         GlStateManager.enableAlpha();
         //Right Page
-        gui.drawString(190, 20, TextFormatting.BOLD + "" + TextFormatting.UNDERLINE + Text.translate("meal.recipe"));
+        gui.drawString(190, 20, TextFormatting.BOLD + "" + TextFormatting.UNDERLINE + TextHelper.translate("meal.recipe"));
         gui.drawBox(170, 30, 110, 1, 0xFFB0A483);
         gui.drawBox(171, 31, 110, 1, 0xFF9C8C63);
         GlStateManager.disableDepth();
@@ -136,9 +136,9 @@ public class PageRecipe extends Page {
                 if (result == PlaceIngredientResult.SUCCESS) {
                     PacketHandler.sendToServer(new PacketSelectRecipe(recipe));
                     MCClientHelper.getPlayer().closeScreen(); //Close this gui
-                    ChatHelper.displayChat(TextFormatting.GREEN + Text.translate("meal.success") + TextFormatting.WHITE + " " + Text.format("harvestfestival.meal.success.description", utensil, name));
-                } else ChatHelper.displayChat(TextFormatting.RED + Text.translate("meal." + result.name().toLowerCase(Locale.ENGLISH)) + TextFormatting.WHITE + "\n " + Text.format("harvestfestival.meal." + result.name().toLowerCase(Locale.ENGLISH) + ".description", utensil, name));
-            } else ChatHelper.displayChat(TextFormatting.RED + Text.translate("meal.missing") + TextFormatting.WHITE +  " " + Text.translate("meal.missing.description"));
+                    ChatHelper.displayChat(TextFormatting.GREEN + TextHelper.translate("meal.success") + TextFormatting.WHITE + " " + TextHelper.format("harvestfestival.meal.success.description", utensil, name));
+                } else ChatHelper.displayChat(TextFormatting.RED + TextHelper.translate("meal." + result.name().toLowerCase(Locale.ENGLISH)) + TextFormatting.WHITE + "\n " + TextHelper.format("harvestfestival.meal." + result.name().toLowerCase(Locale.ENGLISH) + ".description", utensil, name));
+            } else ChatHelper.displayChat(TextFormatting.RED + TextHelper.translate("meal.missing") + TextFormatting.WHITE +  " " + TextHelper.translate("meal.missing.description"));
 
             return true;
         } else return false;

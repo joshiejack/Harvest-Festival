@@ -1,6 +1,6 @@
-package joshie.harvest.core.util.holder;
+package joshie.harvest.core.util.holders;
 
-import joshie.harvest.core.util.IFMLItem;
+import joshie.harvest.core.util.interfaces.IFMLItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;

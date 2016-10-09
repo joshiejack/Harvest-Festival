@@ -3,7 +3,7 @@ package joshie.harvest.mining.block;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.block.BlockHFEnumCube;
 import joshie.harvest.core.lib.HFModInfo;
-import joshie.harvest.core.util.Text;
+import joshie.harvest.core.helpers.TextHelper;
 import joshie.harvest.mining.HFMining;
 import joshie.harvest.mining.block.BlockStone.Type;
 import net.minecraft.block.SoundType;
@@ -96,7 +96,7 @@ public class BlockStone extends BlockHFEnumCube<BlockStone, Type> {
     public String getItemStackDisplayName(ItemStack stack) {
         String unlocalized = getUnlocalizedName();
         String name = stack.getItemDamage() != 0 ? "decorative" : stack.getItem().getUnlocalizedName(stack);
-        return Text.localizeFully(unlocalized + "." + name);
+        return TextHelper.localizeFully(unlocalized + "." + name);
     }
 
     @Override
@@ -105,7 +105,7 @@ public class BlockStone extends BlockHFEnumCube<BlockStone, Type> {
         int adjusted = Math.max(0, Math.min(Type.values().length, stack.getItemDamage()));
         Type type = Type.values()[adjusted];
         if (type.isFake()) {
-            list.add(TextFormatting.YELLOW + Text.translate("tooltip.cosmetic"));
+            list.add(TextFormatting.YELLOW + TextHelper.translate("tooltip.cosmetic"));
         }
     }
 

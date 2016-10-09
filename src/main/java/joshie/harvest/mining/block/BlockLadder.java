@@ -2,7 +2,7 @@ package joshie.harvest.mining.block;
 
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.block.BlockHFEnumRotatableMeta;
-import joshie.harvest.core.util.Text;
+import joshie.harvest.core.helpers.TextHelper;
 import joshie.harvest.mining.block.BlockLadder.Ladder;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -68,14 +68,14 @@ public class BlockLadder extends BlockHFEnumRotatableMeta<BlockLadder, Ladder> {
     @Override
     public String getItemStackDisplayName(ItemStack stack) {
         String unlocalized = getUnlocalizedName();
-        return Text.localizeFully(unlocalized + ".wood");
+        return TextHelper.localizeFully(unlocalized + ".wood");
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean flag) {
         if (getEnumFromStack(stack) == DECORATIVE) {
-            list.add(TextFormatting.YELLOW + Text.translate("tooltip.cosmetic"));
+            list.add(TextFormatting.YELLOW + TextHelper.translate("tooltip.cosmetic"));
         }
     }
 

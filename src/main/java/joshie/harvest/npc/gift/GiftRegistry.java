@@ -2,8 +2,8 @@ package joshie.harvest.npc.gift;
 
 import joshie.harvest.api.npc.gift.GiftCategory;
 import joshie.harvest.api.npc.gift.IGiftRegistry;
-import joshie.harvest.core.util.holder.HolderRegistry;
-import joshie.harvest.core.util.holder.HolderRegistrySet;
+import joshie.harvest.core.util.holders.HolderRegistry;
+import joshie.harvest.core.util.holders.HolderRegistrySet;
 import net.minecraft.item.ItemStack;
 
 public class GiftRegistry implements IGiftRegistry {

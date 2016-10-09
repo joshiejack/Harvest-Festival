@@ -1,4 +1,4 @@
-package joshie.harvest.core.render;
+package joshie.harvest.core.base.render;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.BakedQuad;

@@ -2,7 +2,7 @@ package joshie.harvest.npc.gift.init;
 
 import joshie.harvest.animals.HFAnimals;
 import joshie.harvest.api.core.ISizeable.Size;
-import joshie.harvest.core.util.HFLoader;
+import joshie.harvest.core.util.annotations.HFLoader;
 
 import static joshie.harvest.animals.HFAnimals.*;
 import static joshie.harvest.api.npc.gift.GiftCategory.*;

@@ -1,7 +1,7 @@
 package joshie.harvest.cooking.item;
 
 import joshie.harvest.HarvestFestival;
-import joshie.harvest.core.util.ICreativeSorted;
+import joshie.harvest.core.util.interfaces.ICreativeSorted;
 import joshie.harvest.cooking.CookingHelper;
 import joshie.harvest.cooking.CookingAPI;
 import joshie.harvest.api.cooking.Ingredient;

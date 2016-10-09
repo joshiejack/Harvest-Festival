@@ -1,7 +1,7 @@
 package joshie.harvest.cooking.render;
 
 import joshie.harvest.api.cooking.Ingredient;
-import joshie.harvest.core.util.HFEvents;
+import joshie.harvest.core.util.annotations.HFEvents;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;

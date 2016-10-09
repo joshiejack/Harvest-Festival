@@ -1,7 +1,7 @@
 package joshie.harvest.mining.render;
 
-import joshie.harvest.core.render.BakedHF;
-import joshie.harvest.core.util.HFEvents;
+import joshie.harvest.core.base.render.BakedHF;
+import joshie.harvest.core.util.annotations.HFEvents;
 import joshie.harvest.mining.HFMining;
 import joshie.harvest.mining.block.BlockDirt;
 import joshie.harvest.mining.block.BlockDirt.TextureStyle;

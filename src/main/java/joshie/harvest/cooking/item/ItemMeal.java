@@ -9,7 +9,7 @@ import joshie.harvest.cooking.recipe.MealImpl;
 import joshie.harvest.core.HFCore;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.item.ItemHFFoodFML;
-import joshie.harvest.core.util.Text;
+import joshie.harvest.core.helpers.TextHelper;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
@@ -33,7 +33,7 @@ public class ItemMeal extends ItemHFFoodFML<ItemMeal, MealImpl> implements IAltI
     @Override
     public String getItemStackDisplayName(ItemStack stack) {
         MealImpl impl = stack.hasTagCompound() ? CookingAPI.REGISTRY.getValues().get(Math.max(0, Math.min(CookingAPI.REGISTRY.getValues().size(), stack.getItemDamage()))): null;
-        return impl != null ? impl.getDisplayName(): DARK_GRAY + Text.localize(Utensil.getUtensilFromIndex(stack.getItemDamage()).getUnlocalizedName());
+        return impl != null ? impl.getDisplayName(): DARK_GRAY + TextHelper.localize(Utensil.getUtensilFromIndex(stack.getItemDamage()).getUnlocalizedName());
     }
 
     @Override
@@ -51,10 +51,10 @@ public class ItemMeal extends ItemHFFoodFML<ItemMeal, MealImpl> implements IAltI
     public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean debug) {
         if (debug && HFCore.DEBUG_MODE) {
             if (stack.hasTagCompound()) {
-                list.add(Text.translate("meal.hunger") + " : " + stack.getTagCompound().getInteger("FoodLevel"));
-                list.add(Text.translate("meal.sat") + " : " + stack.getTagCompound().getFloat("FoodSaturation"));
-                list.add(Text.translate("meal.exhaust") + " : " + stack.getTagCompound().getInteger("FoodExhaustion"));
-                list.add(Text.translate("meal.sell") + " : " + stack.getTagCompound().getLong("SellValue"));
+                list.add(TextHelper.translate("meal.hunger") + " : " + stack.getTagCompound().getInteger("FoodLevel"));
+                list.add(TextHelper.translate("meal.sat") + " : " + stack.getTagCompound().getFloat("FoodSaturation"));
+                list.add(TextHelper.translate("meal.exhaust") + " : " + stack.getTagCompound().getInteger("FoodExhaustion"));
+                list.add(TextHelper.translate("meal.sell") + " : " + stack.getTagCompound().getLong("SellValue"));
             }
         }
     }

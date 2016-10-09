@@ -5,7 +5,7 @@ import joshie.harvest.api.ticking.IDailyTickableBlock;
 import joshie.harvest.api.ticking.IDailyTickableRegistry;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.handlers.TickDailyServer;
-import joshie.harvest.core.util.HFApiImplementation;
+import joshie.harvest.core.util.annotations.HFApiImplementation;
 import joshie.harvest.crops.CropHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;

@@ -6,7 +6,6 @@ import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.StackHelper;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.network.PacketHandler;
-import joshie.harvest.core.util.ShopFontRenderer;
 import joshie.harvest.npc.entity.EntityNPC;
 import joshie.harvest.npc.gui.GuiNPCBase;
 import joshie.harvest.player.stats.StatsClient;

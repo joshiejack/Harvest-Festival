@@ -3,7 +3,7 @@ package joshie.harvest.shops.purchasable;
 import joshie.harvest.api.animals.IAnimalTracked;
 import joshie.harvest.api.shops.IPurchasable;
 import joshie.harvest.core.helpers.EntityHelper;
-import joshie.harvest.core.util.Text;
+import joshie.harvest.core.helpers.TextHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
@@ -64,8 +64,8 @@ public class PurchasableEntity implements IPurchasable {
     public void addTooltip(List<String> list) {
         list.add(WHITE + product.getDisplayName());
         if (!lead) {
-            list.add(Text.translate("check.head"));
-        } else list.add(Text.translate("check.lead"));
+            list.add(TextHelper.translate("check.head"));
+        } else list.add(TextHelper.translate("check.lead"));
     }
 
     public EntityLiving createEntity(World world) {

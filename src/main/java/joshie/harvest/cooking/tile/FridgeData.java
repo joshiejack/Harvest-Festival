@@ -3,6 +3,7 @@ package joshie.harvest.cooking.tile;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.core.helpers.NBTHelper;
 import joshie.harvest.core.lib.HFSounds;
+import joshie.harvest.core.helpers.TextHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ItemStackHelper;
@@ -68,7 +69,7 @@ public class FridgeData implements IInventory {
 
     @Override
     public String getName() {
-        return joshie.harvest.core.util.Text.translate("cookware.fridge");
+        return TextHelper.translate("cookware.fridge");
     }
 
     @Override

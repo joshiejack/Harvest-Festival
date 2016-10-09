@@ -4,7 +4,7 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.core.base.item.ItemTool;
 import joshie.harvest.core.base.item.ItemToolChargeable;
 import joshie.harvest.core.base.item.ItemToolSmashing;
-import joshie.harvest.core.util.HFLoader;
+import joshie.harvest.core.util.annotations.HFLoader;
 import joshie.harvest.tools.item.*;
 import net.minecraft.potion.Potion;
 import net.minecraft.util.ResourceLocation;

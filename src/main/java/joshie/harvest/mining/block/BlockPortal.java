@@ -2,7 +2,7 @@ package joshie.harvest.mining.block;
 
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.block.BlockHFEnum;
-import joshie.harvest.core.util.Text;
+import joshie.harvest.core.helpers.TextHelper;
 import joshie.harvest.mining.MiningHelper;
 import joshie.harvest.mining.block.BlockPortal.Portal;
 import joshie.harvest.npc.entity.EntityNPC;
@@ -94,7 +94,7 @@ public class  BlockPortal extends BlockHFEnum<BlockPortal, Portal> {
 
     @Override
     public String getItemStackDisplayName(ItemStack stack) {
-        return Text.localizeFully(getUnlocalizedName());
+        return TextHelper.localizeFully(getUnlocalizedName());
     }
 
     @SuppressWarnings("deprecation")

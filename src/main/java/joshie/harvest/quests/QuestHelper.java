@@ -7,7 +7,7 @@ import joshie.harvest.api.quests.QuestQuestion;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.core.helpers.SpawnItemHelper;
-import joshie.harvest.core.util.HFApiImplementation;
+import joshie.harvest.core.util.annotations.HFApiImplementation;
 import joshie.harvest.player.PlayerTrackerServer;
 import joshie.harvest.quests.packet.PacketQuestCompleteEarly;
 import joshie.harvest.quests.packet.PacketQuestIncrease;

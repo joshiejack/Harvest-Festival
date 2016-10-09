@@ -425,7 +425,9 @@ entity.harvestfestival.dark_chick.name=Dark Chick
 #Mine Tools
 harvestfestival.miningtool.escape.rope=Escape Rope
 
+#Goddess Water
 tile.goddess.water.name=Goddess Water
+fluid.goddess.water=Goddess Water
 
 #Seasons
 harvestfestival.season.spring=Spring

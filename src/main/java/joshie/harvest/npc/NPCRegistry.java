@@ -4,7 +4,7 @@ import joshie.harvest.api.calendar.CalendarDate;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.npc.INPCRegistry;
-import joshie.harvest.core.util.HFApiImplementation;
+import joshie.harvest.core.util.annotations.HFApiImplementation;
 import joshie.harvest.npc.gift.GiftRegistry;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.IForgeRegistry;

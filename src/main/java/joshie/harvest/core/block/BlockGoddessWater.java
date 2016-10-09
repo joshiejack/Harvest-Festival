@@ -2,7 +2,7 @@ package joshie.harvest.core.block;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.core.handlers.GoddessHandler;
-import joshie.harvest.core.util.holder.HolderRegistrySet;
+import joshie.harvest.core.util.holders.HolderRegistrySet;
 import joshie.harvest.npc.HFNPCs;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;

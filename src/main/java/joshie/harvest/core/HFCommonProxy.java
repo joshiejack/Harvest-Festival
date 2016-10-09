@@ -2,7 +2,7 @@ package joshie.harvest.core;
 
 import joshie.harvest.HarvestFestival;
 import joshie.harvest.core.helpers.ConfigHelper;
-import joshie.harvest.core.util.HFLoader;
+import joshie.harvest.core.util.annotations.HFLoader;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.discovery.ASMDataTable;

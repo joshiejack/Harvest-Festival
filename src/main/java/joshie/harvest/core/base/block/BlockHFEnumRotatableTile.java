@@ -3,7 +3,7 @@ package joshie.harvest.core.base.block;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.core.lib.CreativeSort;
-import joshie.harvest.core.util.IFaceable;
+import joshie.harvest.core.util.interfaces.IFaceable;
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyDirection;

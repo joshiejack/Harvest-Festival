@@ -1,6 +1,6 @@
 package joshie.harvest.shops.purchasable;
 
-import joshie.harvest.core.util.Text;
+import joshie.harvest.core.helpers.TextHelper;
 import net.minecraft.item.ItemStack;
 
 import java.util.List;
@@ -16,7 +16,7 @@ public class PurchasableDecorative extends Purchasable {
     public void addTooltip(List<String> list) {
         for (ItemStack stack : stacks) {
             list.add(YELLOW + stack.getDisplayName());
-            list.add(Text.translate("tooltip.cosmetic"));
+            list.add(TextHelper.translate("tooltip.cosmetic"));
         }
     }
 }

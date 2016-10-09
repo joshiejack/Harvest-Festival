@@ -1,7 +1,7 @@
 package joshie.harvest.core.handlers;
 
 import joshie.harvest.core.HFCore;
-import joshie.harvest.core.util.HFEvents;
+import joshie.harvest.core.util.annotations.HFEvents;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;

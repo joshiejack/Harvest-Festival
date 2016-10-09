@@ -9,7 +9,7 @@ import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.cooking.item.ItemIngredients;
 import joshie.harvest.cooking.render.MappingEvent;
 import joshie.harvest.core.helpers.InventoryHelper;
-import joshie.harvest.core.util.HFLoader;
+import joshie.harvest.core.util.annotations.HFLoader;
 import joshie.harvest.crops.HFCrops;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;

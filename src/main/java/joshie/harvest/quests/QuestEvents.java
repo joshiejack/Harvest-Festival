@@ -2,7 +2,7 @@ package joshie.harvest.quests;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.quests.Quest;
-import joshie.harvest.core.util.HFEvents;
+import joshie.harvest.core.util.annotations.HFEvents;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;

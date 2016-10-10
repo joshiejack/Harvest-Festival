@@ -2,7 +2,7 @@ package joshie.harvest.cooking.gui;
 
 import joshie.harvest.cooking.tile.FridgeData;
 import joshie.harvest.cooking.tile.TileFridge;
-import joshie.harvest.core.util.ContainerBase;
+import joshie.harvest.core.base.gui.ContainerBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;

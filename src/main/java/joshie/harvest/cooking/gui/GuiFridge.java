@@ -1,8 +1,8 @@
 package joshie.harvest.cooking.gui;
 
 import joshie.harvest.cooking.tile.TileFridge;
-import joshie.harvest.core.util.ContainerBase.SlotHF;
-import joshie.harvest.core.util.GuiBaseContainer;
+import joshie.harvest.core.base.gui.ContainerBase.SlotHF;
+import joshie.harvest.core.base.gui.GuiBaseContainer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.GlStateManager;

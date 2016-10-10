@@ -1,4 +1,4 @@
-package joshie.harvest.core.util;
+package joshie.harvest.core.base.gui;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;

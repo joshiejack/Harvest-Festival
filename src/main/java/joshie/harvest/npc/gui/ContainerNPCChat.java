@@ -6,7 +6,7 @@ import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.api.quests.QuestQuestion;
 import joshie.harvest.core.handlers.HFTrackers;
-import joshie.harvest.core.util.ContainerBase;
+import joshie.harvest.core.base.gui.ContainerBase;
 import joshie.harvest.npc.entity.EntityNPC;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.EnumHand;

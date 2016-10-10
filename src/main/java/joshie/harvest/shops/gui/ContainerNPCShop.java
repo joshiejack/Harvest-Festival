@@ -1,6 +1,6 @@
 package joshie.harvest.shops.gui;
 
-import joshie.harvest.core.util.ContainerBase;
+import joshie.harvest.core.base.gui.ContainerBase;
 import joshie.harvest.npc.entity.EntityNPC;
 import net.minecraft.entity.player.EntityPlayer;
 

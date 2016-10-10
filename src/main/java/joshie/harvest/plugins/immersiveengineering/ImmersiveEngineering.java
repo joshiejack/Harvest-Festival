@@ -1,6 +1,5 @@
 package joshie.harvest.plugins.immersiveengineering;
 
-import blusunrize.immersiveengineering.api.crafting.SqueezerRecipe;
 import joshie.harvest.api.crops.Crop;
 import joshie.harvest.core.handlers.DisableHandler.DisableVanillaSeeds;
 import joshie.harvest.core.util.HFLoader;
@@ -10,7 +9,11 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.common.registry.GameRegistry.ItemStackHolder;
+
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 import static joshie.harvest.api.calendar.Season.*;
 import static joshie.harvest.core.lib.HFModInfo.MODID;
@@ -37,6 +40,12 @@ public class ImmersiveEngineering {
     public static void init() {
         HEMP.setDropHandler(new DropHandlerHemp(hemp.getItem())).setItem(hemp);
         DisableVanillaSeeds.BLACKLIST.register(hemp_seeds);
-        SqueezerRecipe.addRecipe(FluidRegistry.getFluidStack("plantoil", 750), new ItemStack(Blocks.WOOL), HFCrops.SEEDS, 6400);
+    }
+
+    @SuppressWarnings("unchecked")
+    public static void postInit() throws ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+        Class clazz = Class.forName("blusunrize.immersiveengineering.api.crafting.SqueezerRecipe");
+        Method method = clazz.getMethod("addRecipe", FluidStack.class, ItemStack.class, Object.class, int.class);
+        method.invoke(null, FluidRegistry.getFluidStack("plantoil", 750), new ItemStack(Blocks.WOOL), HFCrops.SEEDS, 6400);
     }
 }

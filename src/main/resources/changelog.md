@@ -1,3 +1,9 @@
+##0.5.9
+* Fix bug with JEI loading on npc gui
+* Fix goddess asking for 64 logs instead of a dozen
+* Fix jade giving you turnips instead of tutorial turnips when getting more seeds from the tutorial
+* Fix yulif not updating his text when a building is finished
+
 ##0.5.8
 * Fix crash when attempting to make some recipes in the mixer
 

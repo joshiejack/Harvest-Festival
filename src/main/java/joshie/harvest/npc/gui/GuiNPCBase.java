@@ -1,11 +1,11 @@
 package joshie.harvest.npc.gui;
 
 import joshie.harvest.api.HFApi;
+import joshie.harvest.core.base.gui.GuiBase;
 import joshie.harvest.core.helpers.StackHelper;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.core.util.ChatFontRenderer;
-import joshie.harvest.core.util.GuiBaseContainer;
 import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.npc.entity.EntityNPC;
 import joshie.harvest.npc.item.ItemNPCTool.NPCTool;
@@ -27,7 +27,7 @@ import net.minecraftforge.fml.client.config.GuiUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class GuiNPCBase extends GuiBaseContainer {
+public abstract class GuiNPCBase extends GuiBase {
     public static final ItemStack GIFT = HFNPCs.TOOLS.getStackFromEnum(NPCTool.GIFT);
     private static final ResourceLocation chatbox = new ResourceLocation(HFModInfo.MODID, "textures/gui/chatbox.png");
     protected final EntityNPC npc;

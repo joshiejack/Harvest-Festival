@@ -75,7 +75,7 @@ public class QuestCarpenter extends Quest {
                     return getLocalized("reminder.give");
                 } else {
                     attempted = true;
-                    return getLocalized("reminder.carpenter");
+                    return getLocalized("reminder.carpenter", getWoodAmount());
                 }
             } else if (npc == HFNPCs.SEED_OWNER) {
                 /*Jade thanks you for the flowers, she then proceeds

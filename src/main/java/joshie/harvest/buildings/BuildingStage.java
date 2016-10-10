@@ -77,6 +77,7 @@ public class BuildingStage {
                 index = 0;
 
                 TownHelper.getClosestTownToBlockPos(world, pos).addBuilding(world, building, direction, pos);
+                TownHelper.<TownDataServer>getClosestTownToBlockPos(world, pos).syncBuildings(world);
                 return true;
             }
 

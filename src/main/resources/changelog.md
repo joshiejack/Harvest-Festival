@@ -9,13 +9,12 @@
 #Fixes
 * My hoes will now work with BOP blocks
 * Made shop scroll behave better
-* Fixed JEI misbehaving with my npcs
 * Add used to upgrade tooltip to all ores
 
 ##0.5.9
 * Fix bug with JEI loading on npc gui
 * Fix goddess asking for 64 logs instead of a dozen
-* Fix jade giving you turnips instead of tutorial turnips when get
+* Fix jade giving you turnips instead of tutorial turnips when doing the tutorial
 * Fix yulif not updating his text when a building is finished
 
 ##0.5.8

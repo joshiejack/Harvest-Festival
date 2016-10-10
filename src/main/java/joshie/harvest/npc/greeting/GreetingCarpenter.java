@@ -3,6 +3,7 @@ package joshie.harvest.npc.greeting;
 import joshie.harvest.api.npc.IConditionalGreeting;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.buildings.BuildingStage;
+import joshie.harvest.buildings.placeable.Placeable.ConstructionStage;
 import joshie.harvest.npc.entity.EntityNPCBuilder;
 import joshie.harvest.town.TownHelper;
 import net.minecraft.entity.player.EntityPlayer;
@@ -25,7 +26,8 @@ public class GreetingCarpenter implements IConditionalGreeting<EntityNPCBuilder>
 
     @Override
     public boolean canDisplay(EntityPlayer player, EntityNPCBuilder builder, INPC npc) {
-        return TownHelper.getClosestTownToEntity(builder).getCurrentlyBuilding() != null;
+        BuildingStage stage = TownHelper.getClosestTownToEntity(builder).getCurrentlyBuilding();
+        return stage != null && stage.stage != ConstructionStage.FINISHED;
     }
 
     @Override

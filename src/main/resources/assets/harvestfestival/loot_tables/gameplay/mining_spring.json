@@ -8,7 +8,43 @@
           "type": "item",
           "name": "harvestfestival:materials",
           "entryName": "junk_ore",
-          "weight": 60
+          "weight": 100
+        },
+        {
+          "type": "item",
+          "name": "harvestfestival:materials",
+          "entryName": "adamantite",
+          "weight": 1,
+          "functions": [
+            {
+              "function": "hf_set_enum",
+              "enum": "adamantite"
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "harvestfestival:from",
+              "from": 10
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "harvestfestival:materials",
+          "entryName": "orichalc",
+          "weight": 1,
+          "functions": [
+            {
+              "function": "hf_set_enum",
+              "enum": "orichalc"
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "harvestfestival:from",
+              "from": 10
+            }
+          ]
         }
       ]
     }

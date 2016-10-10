@@ -11,6 +11,8 @@ import java.util.EnumMap;
 import java.util.NavigableMap;
 import java.util.TreeMap;
 
+import static joshie.harvest.api.calendar.Season.*;
+
 @HFApiImplementation
 public class GatheringRegistry implements IGatheringRegistry {
     public static final GatheringRegistry INSTANCE = new GatheringRegistry();
@@ -19,21 +21,29 @@ public class GatheringRegistry implements IGatheringRegistry {
     private GatheringRegistry() {}
 
     @Override
-    public void registerGathering(Season season, IBlockState state, double weight) {
-        WeightedState weightedState = gatherings.get(season);
-        if (weightedState == null) {
-            weightedState = new WeightedState();
-            gatherings.put(season, weightedState);
-        }
+    public void registerGathering(IBlockState state, double weight, Season... seasons) {
+        if (seasons == null || seasons.length == 0) seasons = new Season[] { SPRING, SUMMER, AUTUMN, WINTER };
+        for (Season season: seasons) {
+            WeightedState weightedState = gatherings.get(season);
+            if (weightedState == null) {
+                weightedState = new WeightedState();
+                gatherings.put(season, weightedState);
+            }
 
-        weightedState.add(state, weight);
+            weightedState.add(state, weight);
+        }
     }
 
     @Override
+    @Deprecated //TODO: Remove in 0.7+
+    public void registerGathering(Season season, IBlockState state, double weight) {
+        registerGathering(state, weight, season);
+    }
+
+    @Override
+    @Deprecated //TODO: Remove in 0.7+
     public void registerGathering(IBlockState state, double weight) {
-        for (Season season: Season.values()) {
-            registerGathering(season, state, weight);
-        }
+        registerGathering(state, weight, (Season[]) null);
     }
 
     @Override

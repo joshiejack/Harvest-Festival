@@ -14,6 +14,9 @@
     "oil": [{ "textures": { "layer0": "harvestfestival:items/oil" }}],
     "riceball": [{ "textures": { "layer0": "harvestfestival:items/riceball" }}],
     "salt": [{ "textures": { "layer0": "harvestfestival:items/salt" }}],
-    "sashimi": [{ "textures": { "layer0": "harvestfestival:items/meals/sashimi_alt" }}]
+    "sashimi": [{ "textures": { "layer0": "harvestfestival:items/meals/sashimi_alt" }}],
+    "curry_powder": [{ "textures": { "layer0": "harvestfestival:items/curry_powder" }}],
+    "dumpling_powder": [{ "textures": { "layer0": "harvestfestival:items/dumpling_powder" }}],
+    "wine": [{ "textures": { "layer0": "harvestfestival:items/wine" }}]
   }
 }

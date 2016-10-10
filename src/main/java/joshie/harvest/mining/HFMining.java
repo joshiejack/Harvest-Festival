@@ -50,6 +50,7 @@ public class HFMining {
         registerModEntity(EntityDarkSheep.class, "dark_sheep", EntityIDs.DARK_SHEEP, HarvestFestival.instance, 80, 3, true);
         registerModEntity(EntityDarkChicken.class, "dark_chicken", EntityIDs.DARK_CHICKEN, HarvestFestival.instance, 80, 3, true);
         registerModEntity(EntityDarkChick.class, "dark_chick", EntityIDs.DARK_CHICK, HarvestFestival.instance, 80, 3, true);
+        LootConditionManager.registerCondition(new From.Serializer());
         LootConditionManager.registerCondition(new Between.Serializer());
         LootConditionManager.registerCondition(new EndsIn.Serializer());
         LootConditionManager.registerCondition(new Exact.Serializer());

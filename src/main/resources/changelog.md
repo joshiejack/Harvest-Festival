@@ -1,7 +1,16 @@
 ##0.6.0
+#Additions
+* Added various gems as obtainable from the mine, selling for various values
+* Can be obtained rarely from junk rocks (higher chance in winter)
+* Can be obtained directly from jewel nodes
+* Added more items to the gathering system, for selling or recipes
 #Changes
 * New Shop GUI
+#Fixes
+* My hoes will now work with BOP blocks
 * Made shop scroll behave better
+* Fixed JEI misbehaving with my npcs
+* Add used to upgrade tooltip to all ores
 
 ##0.5.8
 * Fix crash when attempting to make some recipes in the mixer

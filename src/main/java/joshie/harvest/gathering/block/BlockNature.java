@@ -1,17 +1,16 @@
-package joshie.harvest.core.block;
+package joshie.harvest.gathering.block;
 
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.block.BlockHFEnum;
 import joshie.harvest.core.block.BlockFlower.FlowerType;
 import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.core.lib.HFModInfo;
-import joshie.harvest.core.helpers.TextHelper;
+import joshie.harvest.gathering.block.BlockNature.NaturalBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
@@ -26,36 +25,32 @@ import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.util.List;
 import java.util.Locale;
 
-import static net.minecraft.util.text.TextFormatting.AQUA;
 import static net.minecraftforge.common.EnumPlantType.Plains;
 
-public class BlockFlower extends BlockHFEnum<BlockFlower, FlowerType> implements IPlantable {
-    protected static final AxisAlignedBB FLOWER_AABB = new AxisAlignedBB(0.30000001192092896D, 0.0D, 0.30000001192092896D, 0.699999988079071D, 0.6000000238418579D, 0.699999988079071D);
+public class BlockNature extends BlockHFEnum<BlockNature, NaturalBlock> implements IPlantable {
+    protected static final AxisAlignedBB GRASS_AABB = new AxisAlignedBB(0.30000001192092896D, 0.0D, 0.30000001192092896D, 0.699999988079071D, 0.6000000238418579D, 0.699999988079071D);
 
-    public BlockFlower() {
-        super(Material.PLANTS, FlowerType.class, HFTab.GATHERING);
+    public BlockNature() {
+        super(Material.PLANTS, NaturalBlock.class, HFTab.GATHERING);
         setSoundType(SoundType.PLANT);
     }
 
-    public enum FlowerType implements IStringSerializable {
-        GODDESS(0L), WEED(1L), MOONDROP(60L), TOY(130L),
-        PINKCAT(70L), BLUE_MAGICGRASS(80L), RED_MAGICGRASS(200L);
+    public enum NaturalBlock implements IStringSerializable {
+        BLACK_GRASS(10L), YELLOW_GRASS(120L), ORANGE_GRASS(100L),
+        BLUE_GRASS(100L), GREEN_GRASS(100L), RED_GRASS(110L),
+        PURPLE_GRASS(120L), INDIGO_GRASS(100L), WHITE_GRASS(150L),
+        MATSUTAKE(350L), TOADSTOOL(100L), BAMBOO(50L), GRAPES(50L);
 
         private final long sell;
 
-        FlowerType(long sell) {
+        NaturalBlock(long sell) {
             this.sell = sell;
         }
 
         public long getSellValue() {
             return sell;
-        }
-
-        public boolean isColored() {
-            return this == WEED;
         }
 
         @Override
@@ -66,7 +61,7 @@ public class BlockFlower extends BlockHFEnum<BlockFlower, FlowerType> implements
 
     @Override
     public long getSellValue(ItemStack stack) {
-        return getEnumFromStack(stack) == FlowerType.WEED ? 1L : 0L;
+        return getEnumFromStack(stack).getSellValue();
     }
 
     @Override
@@ -105,7 +100,7 @@ public class BlockFlower extends BlockHFEnum<BlockFlower, FlowerType> implements
     @SuppressWarnings("deprecation")
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
-        return FLOWER_AABB;
+        return GRASS_AABB;
     }
 
     @SuppressWarnings("deprecation")
@@ -130,21 +125,7 @@ public class BlockFlower extends BlockHFEnum<BlockFlower, FlowerType> implements
     }
 
     @Override
-    public String getItemStackDisplayName(ItemStack stack) {
-        return getEnumFromMeta(stack.getItemDamage()) == FlowerType.GODDESS ? AQUA + super.getItemStackDisplayName(stack) : super.getItemStackDisplayName(stack);
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean flag) {
-        if (getEnumFromMeta(stack.getItemDamage()) == FlowerType.GODDESS) {
-            list.add(TextHelper.translate("tooltip.flower"));
-        }
-    }
-
-    @Override
     public int getSortValue(ItemStack stack) {
-        if (getEnumFromStack(stack) == FlowerType.GODDESS) return CreativeSort.TOOLS - 200;
         return CreativeSort.TOOLS - 100;
     }
 

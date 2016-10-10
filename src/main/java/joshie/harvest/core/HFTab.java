@@ -116,6 +116,6 @@ public class HFTab extends CreativeTabs {
         HFTab.FARMING.setStack(HFCrops.STRAWBERRY.getCropStack(1));
         HFTab.COOKING.setStack(HFApi.cooking.getMeal("salad"));
         HFTab.GATHERING.setStack(new ItemStack(HFTools.AXE, 1, 0));
-        HFTab.FISHING.setStack(Fish.GOLD.getStack(HFFishing.FISH, Size.LARGE));
+        HFTab.FISHING.setStack(Fish.PUPFISH.getStack(HFFishing.FISH, Size.LARGE));
     }
 }

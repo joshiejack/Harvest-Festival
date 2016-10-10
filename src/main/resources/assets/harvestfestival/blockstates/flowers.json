@@ -1,11 +1,20 @@
 {
+	"forge_marker": 1,
+	"defaults": {
+		"model": "minecraft:cross"
+	},
 	"variants": {
 		"flowertype=weed": [
-			{ "model": "harvestfestival:flowers/weed", "weight": 1 },
-			{ "model": "harvestfestival:flowers/weed1", "weight": 1 },
-			{ "model": "harvestfestival:flowers/weed2", "weight": 1 },
-			{ "model": "harvestfestival:flowers/weed3", "weight": 1 }
+			{ "model": "minecraft:tinted_cross", "textures": { "cross": "harvestfestival:blocks/weed" }, "weight": 1 },
+			{ "model": "minecraft:tinted_cross", "textures": { "cross": "harvestfestival:blocks/weed1" }, "weight": 1 },
+			{ "model": "minecraft:tinted_cross", "textures": { "cross": "harvestfestival:blocks/weed2" }, "weight": 1 },
+			{ "model": "minecraft:tinted_cross", "textures": { "cross": "harvestfestival:blocks/weed3" }, "weight": 1 }
 		],
-		"flowertype=goddess": { "model": "harvestfestival:flowers/goddess" }
+		"flowertype=goddess": { "model": "harvestfestival:flowers/goddess" },
+		"flowertype=moondrop": { "model": "harvestfestival:flowers/moondrop" },
+		"flowertype=toy": { "model": "harvestfestival:flowers/goddess" },
+		"flowertype=pinkcat": { "model": "harvestfestival:flowers/goddess" },
+		"flowertype=blue_magicgrass": { "model": "harvestfestival:flowers/goddess" },
+		"flowertype=red_magicgrass": { "model": "harvestfestival:flowers/goddess" }
 	}
 }

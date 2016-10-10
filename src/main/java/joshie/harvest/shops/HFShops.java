@@ -68,16 +68,16 @@ public class HFShops {
     
     private static void registerBarn() {
         BARN = HFApi.shops.newShop(new ResourceLocation(MODID, "barn"), HFNPCs.ANIMAL_OWNER);
-        BARN.addItem(10, HFAnimals.TREATS.getStackFromEnum(Treat.GENERIC));
-        BARN.addItem(30, HFAnimals.TREATS.getStackFromEnum(Treat.COW));
-        BARN.addItem(30, HFAnimals.TREATS.getStackFromEnum(Treat.SHEEP));
         BARN.addItem(20, HFCrops.GRASS.getCropStack(1));
         BARN.addItem(1000, HFAnimals.TOOLS.getStackFromEnum(MEDICINE));
-        BARN.addItem(new PurchasableEntity(EntityHarvestSheep.class, 4000, HFAnimals.ANIMAL.getStackFromEnum(SHEEP), true));
         BARN.addItem(new PurchasableEntity(EntityHarvestCow.class, 5000, HFAnimals.ANIMAL.getStackFromEnum(COW), true));
+        BARN.addItem(new PurchasableEntity(EntityHarvestSheep.class, 4000, HFAnimals.ANIMAL.getStackFromEnum(SHEEP), true));
         BARN.addItem(3000, HFAnimals.TOOLS.getStackFromEnum(MIRACLE_POTION));
         BARN.addItem(500, HFAnimals.TROUGH.getStackFromEnum(WOOD));
         BARN.addItem(250, new ItemStack(Items.NAME_TAG));
+        BARN.addItem(10, HFAnimals.TREATS.getStackFromEnum(Treat.GENERIC));
+        BARN.addItem(30, HFAnimals.TREATS.getStackFromEnum(Treat.COW));
+        BARN.addItem(30, HFAnimals.TREATS.getStackFromEnum(Treat.SHEEP));
 
         BARN.addOpening(MONDAY, 10000, 15000).addOpening(TUESDAY, 10000, 15000).addOpening(WEDNESDAY, 10000, 15000);
         BARN.addOpening(THURSDAY, 10000, 15000).addOpening(FRIDAY, 10000, 15000).addOpening(SATURDAY, 10000, 15000);
@@ -166,15 +166,15 @@ public class HFShops {
 
     private static void registerPoultry() {
         POULTRY = HFApi.shops.newShop(new ResourceLocation(MODID, "poultry"), HFNPCs.POULTRY);
-        POULTRY.addItem(new PurchasableEntity(EntityHarvestChicken.class, 1500, HFAnimals.ANIMAL.getStackFromEnum(CHICKEN), false));
-        POULTRY.addItem(1000, HFAnimals.TOOLS.getStackFromEnum(MEDICINE));
         POULTRY.addItem(10, HFAnimals.TOOLS.getStackFromEnum(CHICKEN_FEED));
+        POULTRY.addItem(1000, HFAnimals.TOOLS.getStackFromEnum(MEDICINE));
+        POULTRY.addItem(new PurchasableEntity(EntityHarvestChicken.class, 1500, HFAnimals.ANIMAL.getStackFromEnum(CHICKEN), false));
+        POULTRY.addItem(250, new ItemStack(Items.NAME_TAG));
         POULTRY.addItem(10, HFAnimals.TREATS.getStackFromEnum(Treat.GENERIC));
         POULTRY.addItem(30, HFAnimals.TREATS.getStackFromEnum(Treat.CHICKEN));
         POULTRY.addItem(500, HFAnimals.TRAY.getStackFromEnum(FEEDER_EMPTY));
         POULTRY.addItem(1000, HFAnimals.TRAY.getStackFromEnum(NEST_EMPTY));
         POULTRY.addItem(7500, HFAnimals.SIZED.getStackFromEnum(INCUBATOR));
-        POULTRY.addItem(250, new ItemStack(Items.NAME_TAG));
 
         POULTRY.addOpening(MONDAY, 5000, 11000).addOpening(TUESDAY, 5000, 11000).addOpening(WEDNESDAY, 5000, 11000);
         POULTRY.addOpening(THURSDAY, 5000, 11000).addOpening(FRIDAY, 5000, 11000).addOpening(SATURDAY, 5000, 11000);
@@ -188,13 +188,16 @@ public class HFShops {
             }
         }
 
-        SUPERMARKET.addItem(100, new ItemStack(Items.BREAD));
-        SUPERMARKET.addItem(50, HFCooking.INGREDIENTS.getStackFromEnum(FLOUR));
-        SUPERMARKET.addItem(100, HFCooking.INGREDIENTS.getStackFromEnum(CHOCOLATE));
-        SUPERMARKET.addItem(50, HFCooking.INGREDIENTS.getStackFromEnum(OIL));
-        SUPERMARKET.addItem(100, HFCooking.INGREDIENTS.getStackFromEnum(RICEBALL));
-        SUPERMARKET.addItem(25, HFCooking.INGREDIENTS.getStackFromEnum(SALT));
         SUPERMARKET.addItem(new PurchasableBlueFeather(1000, HFNPCs.TOOLS.getStackFromEnum(BLUE_FEATHER)));
+        SUPERMARKET.addItem(100, HFCooking.INGREDIENTS.getStackFromEnum(RICEBALL));
+        SUPERMARKET.addItem(100, new ItemStack(Items.BREAD));
+        SUPERMARKET.addItem(50, HFCooking.INGREDIENTS.getStackFromEnum(OIL));
+        SUPERMARKET.addItem(50, HFCooking.INGREDIENTS.getStackFromEnum(FLOUR));
+        SUPERMARKET.addItem(50, HFCooking.INGREDIENTS.getStackFromEnum(CURRY_POWDER));
+        SUPERMARKET.addItem(100, HFCooking.INGREDIENTS.getStackFromEnum(DUMPLING_POWDER));
+        SUPERMARKET.addItem(100, HFCooking.INGREDIENTS.getStackFromEnum(CHOCOLATE));
+        SUPERMARKET.addItem(300, HFCooking.INGREDIENTS.getStackFromEnum(WINE));
+        SUPERMARKET.addItem(25, HFCooking.INGREDIENTS.getStackFromEnum(SALT));
 
         SUPERMARKET.addOpening(MONDAY, 9000, 17000).addOpening(TUESDAY, 9000, 17000).addOpening(THURSDAY, 9000, 17000);
         SUPERMARKET.addOpening(FRIDAY, 9000, 17000).addOpening(SATURDAY, 11000, 15000);

@@ -104,10 +104,6 @@ harvestfestival.crop.tutorial.turnip=Hardy Turnip
 harvestfestival.crop.hemp=Industrial Hemp
 harvestfestival.crop.hemp.tooltip=Requires light level 12+
 
-#General Items
-harvestfestival.general.shoot.bamboo=Bamboo Shoot
-harvestfestival.general.mushroom.matsutake=Matsutake Mushroom
-
 #Cookbook
 harvestfestival.utensils=Utensils
 harvestfestival.cookbook=Recipe Book
@@ -252,6 +248,10 @@ harvestfestival.ingredient.riceball=Riceball
 harvestfestival.ingredient.salt=Salt
 harvestfestival.ingredient.flour=Flour
 harvestfestival.ingredient.chocolate=Chocolate
+harvestfestival.ingredient.curry.powder=Curry Powder
+harvestfestival.ingredient.dumpling.powder=Dumpling Powder
+harvestfestival.ingredient.wine=Wine
+
 
 #Utensils
 harvestfestival.utensil.blade=Mixer Blade
@@ -275,10 +275,44 @@ harvestfestival.sizeable.shiitake=Shiitake Mushroom
 harvestfestival.sizeable.yarn=Yarn
 
 #Fish
+harvestfestival.fish.minnow=Minnow
+harvestfestival.fish.salmon=Salmon
+harvestfestival.fish.tetra=Neon Tetra
+harvestfestival.fish.catfish=Catfish
+harvestfestival.fish.piranha=Piranha
+harvestfestival.fish.cod=Cod
+harvestfestival.fish.perch=Perch
+harvestfestival.fish.tuna=Tuna
+harvestfestival.fish.stingray=Sting Ray
+harvestfestival.fish.mantaray=Manta Ray
+harvestfestival.fish.electricray=Electric Ray
+harvestfestival.fish.damsel=Damselfish
 harvestfestival.fish.angel=Angelfish
-harvestfestival.fish.angler=Anglerfish
-harvestfestival.fish.bass=Bass
+harvestfestival.fish.puffer=Pufferfish
+harvestfestival.fish.gold=Goldfish
+harvestfestival.fish.siamese=Siamese Fightin' Fish
+harvestfestival.fish.koi=Koi
+harvestfestival.fish.butterfly=Butterflyfish
+harvestfestival.fish.tang=Blue Tang
+harvestfestival.fish.clown=Clownfish
+harvestfestival.fish.lamprey=Lamprey
+harvestfestival.fish.stargazer=Whitemargin Stargazer
 harvestfestival.fish.blaasop=Silver-Stripe Blaasop
+harvestfestival.fish.angler=Anglerfish
+harvestfestival.fish.herring=Red Herring
+harvestfestival.fish.trout=Rainbow Trout
+harvestfestival.fish.pupfish=Pupfish
+harvestfestival.fish.chub=Chub
+harvestfestival.fish.bowfin=Bowfin
+harvestfestival.fish.lungfish=Lungfish
+harvestfestival.fish.pickerel=Pickerel
+
+#Junk
+harvestfestival.junk.bones=Fish Bones
+harvestfestival.junk.boot=Boot
+harvestfestival.junk.can=Empty Can
+harvestfestival.junk.fossil=Fish Fossil
+harvestfestival.junk.treasure=Pirate Treasure
 
 #Tools
 #Hoe
@@ -371,9 +405,16 @@ harvestfestival.tray.large.chicken=Nest Box with Large Chicken Egg
 harvestfestival.tray.feeder.empty=Feeding Tray
 harvestfestival.tray.feeder.full=Feeding Tray with Food
 
+#Flowers
 harvestfestival.flowers.goddess=Goddess Flower
 harvestfestival.flowers.weed=Weed
+harvestfestival.flowers.blue.magicgrass=Blue Magicgrass
+harvestfestival.flowers.red.magicgrass=Red Magicgrass
+harvestfestival.flowers.moondrop=Moondrop Flower
+harvestfestival.flowers.toy=Toy Flower
+harvestfestival.flowers.pinkcat=Pinkcat Flower
 
+#Rocks and Branches
 harvestfestival.wood.branch.small=Small Branch
 harvestfestival.wood.branch.medium=Medium Branch
 harvestfestival.wood.branch.large=Large Branch
@@ -386,6 +427,21 @@ harvestfestival.rock.stone.large=Large Rock
 harvestfestival.rock.boulder.small=Small Boulder
 harvestfestival.rock.boulder.medium=Medium Boulder
 harvestfestival.rock.boulder.large=Large Boulder
+
+#Other Gathering Items
+harvestfestival.nature.bamboo=Bamboo Shoot
+harvestfestival.nature.grapes=Wild Grapes
+harvestfestival.nature.matsutake=Matsutake Mushroom
+harvestfestival.nature.toadstool=Toadstool
+harvestfestival.nature.black.grass=Black Grass
+harvestfestival.nature.blue.grass=Blue Grass
+harvestfestival.nature.green.grass=Green Grass
+harvestfestival.nature.indigo.grass=Indigo Grass
+harvestfestival.nature.orange.grass=Orange Grass
+harvestfestival.nature.purple.grass=Purple Grass
+harvestfestival.nature.red.grass=Red Grass
+harvestfestival.nature.white.grass=White Grass
+harvestfestival.nature.yellow.grass=Yellow Grass
 
 #Mine Blocks
 harvestfestival.dirt=Mine Floor
@@ -411,6 +467,18 @@ harvestfestival.material.silver=Silver Ore
 harvestfestival.material.gold=Gold Ore
 harvestfestival.material.mystril=Mystril Ore
 harvestfestival.material.mythic=Mythic Stone
+harvestfestival.material.adamantite=Adamantite
+harvestfestival.material.agate=Agate
+harvestfestival.material.alexandrite=Alexandrite
+harvestfestival.material.amethyst=Amethyst
+harvestfestival.material.fluorite=Fluorite
+harvestfestival.material.moon.stone=Moonstone
+harvestfestival.material.orichalc=Orichalc
+harvestfestival.material.peridot=Peridot
+harvestfestival.material.pink.diamond=Pink Diamond
+harvestfestival.material.ruby=Ruby
+harvestfestival.material.sand.rose=Sandrose
+harvestfestival.material.topaz=Topaz
 
 #Mine Mobs
 harvestfestival.darkspawner.cow=Dark Cow

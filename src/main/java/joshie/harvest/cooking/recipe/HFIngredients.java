@@ -11,6 +11,8 @@ import joshie.harvest.cooking.render.MappingEvent;
 import joshie.harvest.core.helpers.InventoryHelper;
 import joshie.harvest.core.util.annotations.HFLoader;
 import joshie.harvest.crops.HFCrops;
+import joshie.harvest.gathering.HFGathering;
+import joshie.harvest.gathering.block.BlockNature.NaturalBlock;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -47,6 +49,7 @@ public class HFIngredients {
     public static final Ingredient SCRAMBLED_EGG = new Ingredient("scrambled_egg", 11, 2.28F);
     public static final Ingredient COOKIES = new Ingredient("cookies", 4, 0.87F);
     public static final Ingredient KETCHUP = new Ingredient("ketchup", 1, 0.06F).setEatTime(0);
+    public static final Ingredient NOODLES = new Ingredient("noodles", 13, 2.27F).setEatTime(24);
 
     //Random Stuff
     public static final Ingredient APPLE = new Ingredient("apple", 4, 0.6F);
@@ -55,12 +58,19 @@ public class HFIngredients {
     public static final Ingredient FLOUR = new Ingredient("flour", 1, 0.2F);
     public static final Ingredient OIL = new Ingredient("oil", 0, 0.1F).setFluid(MappingEvent.OIL).setEatTime(-8);
     public static final Ingredient RICEBALL = new Ingredient("riceball", 1, 0.25F);
+    public static final Ingredient CURRY_POWDER = new Ingredient("curry_powder", 1, 0.1F).setEatTime(-4);
+    public static final Ingredient DUMPLING_POWDER = new Ingredient("dumpling_powder", 1, 0.2F).setEatTime(8);
+
     public static final Ingredient MILK = new Ingredient("milk", 1, 0.2F).setFluid(MappingEvent.MILK);
     public static final Ingredient MAYONNAISE = new Ingredient("mayonnaise", 1, 0.5F);
     public static final Ingredient BREAD = new Ingredient("bread", 5, 1.2F);
     public static final Ingredient RED_MUSHROOM = new Ingredient("red_mushroom", 4, 0.5F);
     public static final Ingredient BROWN_MUSHROOM = new Ingredient("brown_mushroom", 2, 0.7F);
     public static final Ingredient BAKED_POTATO = new Ingredient("baked_potato", 5, 1.2F);
+
+    //Gathered
+    public static final Ingredient BAMBOO = new Ingredient("bamboo", 2, 0.3F);
+    public static final Ingredient MATSUTAKE = new Ingredient("matsutake", 2, 0.7F);
 
     //Crops
     public static final Ingredient TURNIP = HFCrops.TURNIP.getIngredient();
@@ -94,7 +104,7 @@ public class HFIngredients {
 
     public static void preInit() {
         //Add ingredients to the categories
-        MUSHROOM.add(RED_MUSHROOM, BROWN_MUSHROOM);
+        MUSHROOM.add(RED_MUSHROOM, BROWN_MUSHROOM, MATSUTAKE);
         JUICE_VEGETABLE.add(TURNIP, CUCUMBER, CABBAGE, TOMATO, ONION, CARROT, SPINACH, GREEN_PEPPER);
         SALAD_INGREDIENT.add(CUCUMBER, CARROT, TOMATO, CABBAGE, BROWN_MUSHROOM);
         SANDWICH_INGREDIENT.add(CUCUMBER, TOMATO, MAYONNAISE, BROWN_MUSHROOM, BOILED_EGG);
@@ -138,12 +148,18 @@ public class HFIngredients {
         //Fungus
         CookingAPI.INSTANCE.register(new ItemStack(Blocks.BROWN_MUSHROOM), BROWN_MUSHROOM);
         CookingAPI.INSTANCE.register(new ItemStack(Blocks.RED_MUSHROOM), RED_MUSHROOM);
+        CookingAPI.INSTANCE.register(HFGathering.NATURE.getStackFromEnum(NaturalBlock.MATSUTAKE), MATSUTAKE);
+
+        //Other Plants
+        CookingAPI.INSTANCE.register(HFGathering.NATURE.getStackFromEnum(NaturalBlock.BAMBOO), BAMBOO);
 
         //Ingredients
         registerForOre("foodChocolatebar", CHOCOLATE);
         registerForOre("foodFlour", FLOUR);
         registerForOre("foodOliveoil", OIL);
         CookingAPI.INSTANCE.register(HFCooking.INGREDIENTS.getStackFromEnum(ItemIngredients.Ingredient.RICEBALL), RICEBALL);
+        CookingAPI.INSTANCE.register(HFCooking.INGREDIENTS.getStackFromEnum(ItemIngredients.Ingredient.CURRY_POWDER), CURRY_POWDER);
+        CookingAPI.INSTANCE.register(HFCooking.INGREDIENTS.getStackFromEnum(ItemIngredients.Ingredient.DUMPLING_POWDER), DUMPLING_POWDER);
 
         //Meals - Real
         CookingAPI.INSTANCE.register(CookingAPI.INSTANCE.getBestMeal("butter"), BUTTER);
@@ -152,6 +168,7 @@ public class HFIngredients {
         CookingAPI.INSTANCE.register(CookingAPI.INSTANCE.getBestMeal("egg_scrambled"), SCRAMBLED_EGG);
         CookingAPI.INSTANCE.register(CookingAPI.INSTANCE.getBestMeal("cookies"), COOKIES);
         CookingAPI.INSTANCE.register(CookingAPI.INSTANCE.getBestMeal("ketchup"), KETCHUP);
+        CookingAPI.INSTANCE.register(CookingAPI.INSTANCE.getBestMeal("noodles"), NOODLES);
         //Meals - Alts
         registerForOre("foodButter", BUTTER);
         registerForOre("foodScrambledegg", SCRAMBLED_EGG);

@@ -87,7 +87,7 @@ public class ItemFish extends ItemHFEnum<ItemFish, Fish> implements IShippable, 
     }
 
     public enum Fish implements IStringSerializable {
-        ANGEL, ANGLER, BASS, BLAASOP, BONELESS, BOWFIN, BUTTERFLY, CATFISH, CHUB, CLOWN, COD, DAMSEL, ELECTRICRAY, GOLD, HERRING, KOI, LAMPREY,
+        ANGEL, ANGLER, BLAASOP, BOWFIN, BUTTERFLY, CATFISH, CHUB, CLOWN, COD, DAMSEL, ELECTRICRAY, GOLD, HERRING, KOI, LAMPREY,
         LUNGFISH, MANTARAY, MINNOW, PERCH, PICKEREL,  PIRANHA, PUFFER, PUPFISH, SALMON, SIAMESE, STARGAZER, STINGRAY, TANG, TETRA, TROUT, TUNA;
 
         public ItemStack getStack(Item item, Size size) {

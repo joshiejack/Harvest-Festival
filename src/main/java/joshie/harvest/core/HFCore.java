@@ -65,7 +65,7 @@ public class HFCore {
         HFApi.shipping.registerSellable(new ItemStack(Items.FISH, 1, 1), 60L);
         HFApi.shipping.registerSellable(new ItemStack(Items.FISH, 1, 2), 100L);
         HFApi.shipping.registerSellable(new ItemStack(Items.FISH, 1, 3), 100L);
-        HFApi.shipping.registerSellable(new ItemStack(Items.BREAD), 85L);
+        HFApi.shipping.registerSellable(new ItemStack(Items.BREAD), 50L);
     }
 
     @SideOnly(Side.CLIENT)

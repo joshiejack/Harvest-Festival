@@ -4,9 +4,9 @@ import com.google.common.collect.Multimap;
 import joshie.harvest.core.base.item.ItemToolChargeable;
 import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.tools.ToolHelper;
-import joshie.harvest.crops.HFCrops;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockBush;
+import net.minecraft.block.BlockDirt;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
@@ -15,15 +15,14 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.entity.player.UseHoeEvent;
-import net.minecraftforge.fml.common.eventhandler.Event.Result;
+import net.minecraftforge.common.IPlantable;
 
 import javax.annotation.Nullable;
 import java.util.HashSet;
@@ -87,12 +86,44 @@ public class ItemHoe extends ItemToolChargeable {
         return multimap;
     }
 
-    private boolean canHoe(EntityPlayer player, ItemStack stack, World world, BlockPos pos) {
-        if (HFCrops.DISABLE_VANILLA_HOE) return true;
-        UseHoeEvent event = new UseHoeEvent(player, stack.copy(), world, pos);
-        event.setResult(Result.ALLOW); //Default to allow?
-        if (MinecraftForge.EVENT_BUS.post(event)) return false;
-        return event.getResult() != Result.DENY;
+    protected void setBlock(ItemStack stack, EntityPlayer player, World world, BlockPos pos, IBlockState state) {
+        doParticles(stack, player, world, pos);
+        if (!world.isRemote) {
+            world.setBlockState(pos, state, 11);
+            stack.damageItem(1, player);
+        }
+    }
+
+    public EnumActionResult getHoeResult(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumFacing facing) {
+        if (!playerIn.canPlayerEdit(pos.offset(facing), facing, stack)) {
+            return EnumActionResult.FAIL;
+        } else {
+            int hook = net.minecraftforge.event.ForgeEventFactory.onHoeUse(stack, playerIn, worldIn, pos);
+            if (hook != 0) return hook > 0 ? EnumActionResult.SUCCESS : EnumActionResult.FAIL;
+
+            IBlockState iblockstate = worldIn.getBlockState(pos);
+            Block block = iblockstate.getBlock();
+            boolean allowed = worldIn.isAirBlock(pos.up()) || worldIn.getBlockState(pos.up()).getBlock() instanceof IPlantable;
+            if (facing != EnumFacing.DOWN && allowed) {
+                if (block == Blocks.GRASS || block == Blocks.GRASS_PATH) {
+                    setBlock(stack, playerIn, worldIn, pos, Blocks.FARMLAND.getDefaultState());
+                    return EnumActionResult.SUCCESS;
+                }
+
+                if (block == Blocks.DIRT) {
+                    switch (iblockstate.getValue(BlockDirt.VARIANT)) {
+                        case DIRT:
+                            setBlock(stack, playerIn, worldIn, pos, Blocks.FARMLAND.getDefaultState());
+                            return EnumActionResult.SUCCESS;
+                        case COARSE_DIRT:
+                            setBlock(stack, playerIn, worldIn, pos, Blocks.DIRT.getDefaultState().withProperty(BlockDirt.VARIANT, BlockDirt.DirtType.DIRT));
+                            return EnumActionResult.SUCCESS;
+                    }
+                }
+            }
+
+            return EnumActionResult.PASS;
+        }
     }
 
     @Override
@@ -111,25 +142,17 @@ public class ItemHoe extends ItemToolChargeable {
             BlockPos pos = result.getBlockPos();
             EnumFacing front = EntityHelper.getFacingFromEntity(player);
             if (player.canPlayerEdit(pos.offset(front), front, stack)) {
-                Block initial = world.getBlockState(pos).getBlock();
-                if (!(world.isAirBlock(pos.up()) && (initial == Blocks.GRASS || initial == Blocks.DIRT))) {
+                IBlockState original = world.getBlockState(pos);
+                if (getHoeResult(stack, player, world, pos, EnumFacing.UP) == EnumActionResult.FAIL) {
                     return;
-                }
+                } else world.setBlockState(pos, original);
 
                 for (int x2 = getXMinus(tier, front, pos.getX()); x2 <= getXPlus(tier, front, pos.getX()); x2++) {
                     for (int z2 = getZMinus(tier, front, pos.getZ()); z2 <= getZPlus(tier, front, pos.getZ()); z2++) {
                         if (canUse(stack)) {
-                            BlockPos thePos = new BlockPos(x2, pos.getY(), z2);
-                            Block block = world.getBlockState(thePos).getBlock();
-                            if (world.isAirBlock(pos.up())) {
-                                if ((block == Blocks.GRASS || block == Blocks.DIRT)) {
-                                    if (!canHoe(player, stack, world, thePos)) continue;
-                                    doParticles(stack, player, world, thePos);
-                                    if (!world.isRemote) {
-                                        world.setBlockState(thePos, Blocks.FARMLAND.getDefaultState());
-                                    }
-                                }
-                            }
+                            BlockPos newPos = new BlockPos(x2, pos.getY(), z2);
+                            //if (newPos.equals(pos)) continue; //Don't redo the block we already did
+                            getHoeResult(stack, player, world, newPos, EnumFacing.UP);
                         }
                     }
                 }
@@ -141,7 +164,7 @@ public class ItemHoe extends ItemToolChargeable {
         displayParticle(world, pos, EnumParticleTypes.BLOCK_CRACK, Blocks.DIRT.getDefaultState());
         playSound(world, pos, SoundEvents.ITEM_HOE_TILL, SoundCategory.BLOCKS);
         ToolHelper.performTask(player, stack, getExhaustionRate(stack));
-        if (world.getBlockState(pos.up()).getBlock() instanceof BlockBush) {
+        if (world.getBlockState(pos.up()).getBlock() instanceof IPlantable) {
             world.setBlockToAir(pos.up());
         }
     }

@@ -18,7 +18,7 @@ public class HFRecipes {
 
     public static void preInit() {
         //Recipes ; http://fogu.com/hm4/farm/stamina_chart.htm for numbers
-        //Hunger = Stamina / 3.5F, Saturation = Stamina/17.5, Exhaustion = Fatigue * 2
+        //Hunger = Stamina / 3.5F, Saturation = Stamina/17.5
         //Frying Pan
         addFryingPanRecipe("pancake_savoury", 14, 2.86F, FLOUR, CABBAGE, OIL, EGG).setOptionalIngredients(ONION); //Jim 10000RP
         addFryingPanRecipe("fries_french", 4, 0.86F, POTATO, OIL).setOptionalIngredients(SALT); //Girafi 10000RP
@@ -34,6 +34,14 @@ public class HFRecipes {
         addFryingPanRecipe("pancake", 6, 1.14F, EGG, MILK, FLOUR, OIL).setOptionalIngredients(SUGAR, BUTTER);//Shop
         addFryingPanRecipe("potsticker", 7, 1.42F, CABBAGE, ONION, FLOUR, OIL); //Jenni 10000RP
         addFryingPanRecipe("risotto", 10, 2.0F, TOMATO, ONION, RICEBALL, OIL); //Cloe 10000RP
+        //Added in 0.6+
+        addFryingPanRecipe("stir_fry", 11, 2.29F, CABBAGE, OIL).setOptionalIngredients(ONION, CABBAGE, BAMBOO, MATSUTAKE, EGGPLANT, GREEN_PEPPER);
+        addFryingPanRecipe("rice_fried", 11, 2.29F, RICEBALL, OIL, EGG).setOptionalIngredients(CARROT, ONION, BAMBOO, GREEN_PEPPER, FISH);
+        addFryingPanRecipe("souffle_apple", 2, 0.46F);
+        addFryingPanRecipe("bread_curry", 9, 1.71F, BREAD, CURRY_POWDER, OIL);
+        addFryingPanRecipe("noodles_thick_fried", 17, 3.43F, NOODLES, OIL).setOptionalIngredients(CABBAGE, ONION, FISH, BAMBOO, CARROT, EGGPLANT);
+        addFryingPanRecipe("tempura", 6, 1.14F, EGG, FLOUR, OIL).setOptionalIngredients(EGGPLANT, GREEN_PEPPER, CARROT, CABBAGE, ONION);
+        addFryingPanRecipe("curry_dry", 7, 1.14F, RICEBALL, CURRY_POWDER).setOptionalIngredients(ONION, GREEN_PEPPER, FISH, POTATO, EGGPLANT, CARROT);
 
         //Mixer
         addMixerRecipe("juice_pineapple", 2, 2.86F, PINEAPPLE).setOptionalIngredients(SALT, SUGAR); //Yulif 5000RP

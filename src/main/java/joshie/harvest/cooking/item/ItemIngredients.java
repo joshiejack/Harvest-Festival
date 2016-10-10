@@ -16,17 +16,18 @@ import java.util.Locale;
 
 public class ItemIngredients extends ItemHFFoodEnum<ItemIngredients, Ingredient> implements IShippable {
     public enum Ingredient implements IStringSerializable {
-        BUTTER(false), KETCHUP(false), COOKIES(false), EGG_SCRAMBLED(false), SASHIMI(false),
-        FLOUR, OIL, RICEBALL, SALT, CHOCOLATE;
+        BUTTER(0L), KETCHUP(0L), COOKIES(0L), EGG_SCRAMBLED(0L), SASHIMI(0L),
+        FLOUR(25L), OIL(25L), RICEBALL(50L), SALT(25L), CHOCOLATE(50L),
+        CURRY_POWDER(25L), DUMPLING_POWDER(50L), WINE(150L);
 
-        private final boolean isReal;
+        private final long sell;
 
-        Ingredient() {
-            isReal = true;
+        Ingredient(long sell) {
+            this.sell = sell;
         }
 
-        Ingredient(boolean isReal) {
-            this.isReal = isReal;
+        public long getSellValue() {
+            return sell;
         }
 
         @Override
@@ -41,24 +42,12 @@ public class ItemIngredients extends ItemHFFoodEnum<ItemIngredients, Ingredient>
 
     @Override
     public long getSellValue(ItemStack stack) {
-        switch (getEnumFromStack(stack)) {
-            case FLOUR:
-                return 45;
-            case OIL:
-                return 45;
-            case RICEBALL:
-                return 85;
-            case SALT:
-                return 25;
-            case CHOCOLATE:
-                return 85;
-            default: return 0;
-        }
+        return getEnumFromStack(stack).getSellValue();
     }
 
     @Override
     public boolean shouldDisplayInCreative(Ingredient ingredient) {
-        return ingredient.isReal;
+        return ingredient.getSellValue() > 0L;
     }
 
     @Override

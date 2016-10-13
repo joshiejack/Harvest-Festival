@@ -49,13 +49,15 @@ public class QuestFlowerTrader extends QuestTrade {
     }
 
     @Override
-    public void onChatClosed(EntityPlayer player, EntityLiving entity, INPC npc) {
-        if (InventoryHelper.takeItemsIfHeld(player, SPECIAL, SearchType.FLOWER, 5) != null) {
-            Season season = HFApi.calendar.getSeasonAtCoordinates(player.worldObj, new BlockPos(player));
-            if (season == SPRING || season == SUMMER || season == AUTUMN) {
-                if (season == SPRING) rewardItem(player, HFCrops.TURNIP.getSeedStack(1));
-                else if (season == SUMMER) rewardItem(player, HFCrops.ONION.getSeedStack(1));
-                else rewardItem(player, HFCrops.CARROT.getSeedStack(1));
+    public void onChatClosed(EntityPlayer player, EntityLiving entity, INPC npc, boolean wasSneaking) {
+        for (int j = 0; j < (player.isSneaking() ? 10: 1); j++) {
+            if (InventoryHelper.takeItemsIfHeld(player, SPECIAL, SearchType.FLOWER, 5) != null) {
+                Season season = HFApi.calendar.getSeasonAtCoordinates(player.worldObj, new BlockPos(player));
+                if (season == SPRING || season == SUMMER || season == AUTUMN) {
+                    if (season == SPRING) rewardItem(player, HFCrops.TURNIP.getSeedStack(1));
+                    else if (season == SUMMER) rewardItem(player, HFCrops.ONION.getSeedStack(1));
+                    else rewardItem(player, HFCrops.CARROT.getSeedStack(1));
+                }
             }
         }
     }

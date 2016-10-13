@@ -45,7 +45,9 @@ public class QuestToolTrader extends QuestTrade {
 
     @Override
     public void onChatClosed(EntityPlayer player, EntityLiving entity, INPC npc) {
-        if (InventoryHelper.getHandItemIsIn(player, SPECIAL, SearchType.HOE) != null || InventoryHelper.getHandItemIsIn(player, SPECIAL, SearchType.BUCKET) != null) {
+        if (InventoryHelper.getHandItemIsIn(player, SPECIAL, SearchType.HOE) != null ||
+                InventoryHelper.getHandItemIsIn(player, SPECIAL, SearchType.BUCKET) != null ||
+                InventoryHelper.getHandItemIsIn(player, SPECIAL, SearchType.SHEARS) != null) {
             complete(player);
         }
     }

@@ -21,12 +21,14 @@ public class ContainerNPCChat extends ContainerBase {
     protected final EnumHand hand;
     private int nextGui = -1;
     private boolean open = false;
+    private boolean sneaking = false;
 
     public ContainerNPCChat(EntityPlayer player, EntityNPC npc, EnumHand hand, int nextGui) {
         this.npc = npc;
         this.hand = hand;
         this.nextGui = nextGui;
         this.open = true;
+        this.sneaking = player.isSneaking();
         //Call on opened
         Quest selection = HFTrackers.getPlayerTrackerFromPlayer(player).getQuests().getSelection(player, npc);
         if (selection == null && nextGui == -1) {
@@ -66,7 +68,7 @@ public class ContainerNPCChat extends ContainerBase {
                 Set<Quest> quests = HFApi.quests.getCurrentQuests(player);
                 for (Quest quest : quests) {
                     if (handlesScript(quest, npc.getNPC())) {
-                        quest.onChatClosed(player, npc, npc.getNPC());
+                        quest.onChatClosed(player, npc, npc.getNPC(), sneaking);
                     }
                 }
             }

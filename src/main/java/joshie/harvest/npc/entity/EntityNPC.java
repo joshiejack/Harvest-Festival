@@ -117,7 +117,7 @@ public abstract class EntityNPC<E extends EntityNPC> extends EntityAgeable imple
         boolean flag = held != null && held.getItem() == Items.SPAWN_EGG;
         if (!flag && isEntityAlive()) {
             if (!worldObj.isRemote) {
-                int guiID = NPCHelper.getGuiIDForNPC(this, worldObj, player, player.isSneaking() && held != null);
+                int guiID = NPCHelper.getGuiIDForNPC(this, worldObj, player);
                 int third = guiID == GIFT ? player.getActiveHand().ordinal() : -1;
                 player.openGui(HarvestFestival.instance, guiID, worldObj, getEntityId(), -1, third);
                 setTalking(player);

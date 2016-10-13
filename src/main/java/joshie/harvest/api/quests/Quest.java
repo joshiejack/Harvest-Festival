@@ -131,6 +131,11 @@ public abstract class Quest extends Impl<Quest> {
      *  @param player       the player
      *  @param entity       the npc entity
      *  @param npc          the npc instance**/
+    public void onChatClosed(EntityPlayer player, EntityLiving entity, INPC npc, boolean wasSneaking) {
+        onChatClosed(player, entity, npc);
+    }
+
+    @Deprecated
     public void onChatClosed(EntityPlayer player, EntityLiving entity, INPC npc) {}
 
     /** Called when the quest is completed

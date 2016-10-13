@@ -11,11 +11,6 @@ import javax.annotation.Nonnull;
 import static joshie.harvest.core.helpers.InventoryHelper.SearchType.*;
 
 public class InventoryHelper {
-    public static Item getHeldItem(EntityPlayer player) {
-        if (player.getHeldItemMainhand() == null) return null;
-        return player.getHeldItemMainhand().getItem();
-    }
-
     public enum SearchType {
         FLOWER, HOE, BUCKET, SHEARS
     }
@@ -67,6 +62,15 @@ public class InventoryHelper {
 
     private static <T> void takeItems(EntityPlayer player, T taking, int amount, Matcher<T> matcher) {
         int toTake = amount;
+        ItemStack offhand = player.inventory.offHandInventory[0];
+        if (offhand != null && matcher.matches(offhand, taking)) {
+            ItemStack taken = offhand.splitStack(toTake);
+            toTake -= taken.stackSize;
+            if (offhand.stackSize <= 0) player.inventory.offHandInventory[0] = null; //Clear
+            if (toTake <= 0) return; //No further processing neccessary
+        }
+
+        //Main Inventory
         for (int i = 0; i < player.inventory.mainInventory.length && toTake > 0; i++) {
             ItemStack stack = player.inventory.mainInventory[i];
             if (stack != null && matcher.matches(stack, taking)) {
@@ -96,12 +100,19 @@ public class InventoryHelper {
     }
 
     @SuppressWarnings("unchecked")
-    public static <S> EnumHand getHandItemIsIn(EntityPlayer player, Matcher matcher, S search, int... amount) {
+    private static <S> int getStackSizeOfHand(EntityPlayer player, Matcher<S> matcher, S search, EnumHand hand) {
+        ItemStack held = player.getHeldItem(hand);
+        if (held != null && matcher.matches(held, search)) {
+            return held.stackSize;
+        } else return 0;
+    }
+
+    @SuppressWarnings("unchecked")
+    public static <S> EnumHand getHandItemIsIn(EntityPlayer player, Matcher<S> matcher, S search, int... amount) {
+        int count = amount == null || amount.length == 0 ? 1 : amount[0];
         for (EnumHand hand: EnumHand.values()) {
-            int count = amount == null || amount.length == 0 ? 1 : amount[0];
-            ItemStack held = player.getHeldItem(hand);
-            if (held != null && matcher.matches(held, search)) {
-                if(held.stackSize >= count) {
+            if (getStackSizeOfHand(player, matcher, search, hand) != 0) {
+                if (getCount(player, search, matcher) >= count) {
                     return hand;
                 }
             }
@@ -110,11 +121,25 @@ public class InventoryHelper {
         return null;
     }
 
+    @SuppressWarnings("ConstantConditions")
+    private static int reduceHeld(EntityPlayer player, EnumHand hand, int amount) {
+        ItemStack held = player.getHeldItem(hand);
+        if (held.stackSize <= amount) {
+            int ret = held.stackSize;
+            player.setHeldItem(hand, null);
+            return ret;
+        } else {
+            held.stackSize -= amount;
+            return amount;
+        }
+    }
+
     @SuppressWarnings("unchecked")
     public static <S> EnumHand takeItemsIfHeld(EntityPlayer player, Matcher matcher, S search, int... amount) {
         int count = amount == null || amount.length == 0 ? 1 : amount[0];
         EnumHand ret = getHandItemIsIn(player, matcher, search, count);
         if (ret != null) {
+            count -= reduceHeld(player, ret, count); //Update the count
             takeItems(player, search, count, matcher);
             return ret;
         }
@@ -129,6 +154,11 @@ public class InventoryHelper {
             if (matcher.matches(item, taking)) {
                 count += item.stackSize;
             }
+        }
+
+        ItemStack offhand = player.inventory.offHandInventory[0];
+        if (offhand != null && matcher.matches(offhand, taking)) {
+            count += offhand.stackSize;
         }
 
         return count;

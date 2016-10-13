@@ -8,6 +8,7 @@ import joshie.harvest.core.block.BlockFlower.FlowerType;
 import joshie.harvest.core.block.BlockGoddessWater;
 import joshie.harvest.core.block.BlockStorage;
 import joshie.harvest.core.handlers.GuiHandler;
+import joshie.harvest.core.helpers.InventoryHelper;
 import joshie.harvest.core.helpers.RegistryHelper;
 import joshie.harvest.core.item.ItemSizeable;
 import joshie.harvest.core.base.render.SizeableDefinition;
@@ -15,6 +16,8 @@ import joshie.harvest.core.loot.SetEnum;
 import joshie.harvest.core.loot.SetSizeable;
 import joshie.harvest.core.tile.TileShipping;
 import joshie.harvest.core.util.annotations.HFLoader;
+import net.minecraft.block.BlockFlower.EnumFlowerColor;
+import net.minecraft.block.BlockFlower.EnumFlowerType;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.color.IBlockColor;
@@ -37,10 +40,12 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
+import org.apache.commons.lang3.text.WordUtils;
 
 import static joshie.harvest.core.helpers.ConfigHelper.getBoolean;
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 import static joshie.harvest.core.lib.LoadOrder.HFCORE;
+import static net.minecraft.block.BlockDoublePlant.EnumPlantType.*;
 
 @HFLoader(priority = HFCORE)
 public class HFCore {
@@ -61,11 +66,26 @@ public class HFCore {
 
         //Register sellables
         OreDictionary.registerOre("flowerGoddess", FLOWERS.getStackFromEnum(FlowerType.GODDESS));
+        registerIfNotRegistered("flowerSunflower", new ItemStack(Blocks.DOUBLE_PLANT, 1, SUNFLOWER.getMeta()));
+        registerIfNotRegistered("flowerLilac", new ItemStack(Blocks.DOUBLE_PLANT, 1, SYRINGA.getMeta()));
+        registerIfNotRegistered("flowerRose", new ItemStack(Blocks.DOUBLE_PLANT, 1, ROSE.getMeta()));
+        registerIfNotRegistered("flowerPeony", new ItemStack(Blocks.DOUBLE_PLANT, 1, PAEONIA.getMeta()));
+        registerIfNotRegistered("flowerDandelion", new ItemStack(Blocks.YELLOW_FLOWER));
+        for (EnumFlowerType type: EnumFlowerType.getTypes(EnumFlowerColor.RED)) {
+            registerIfNotRegistered("flower" + WordUtils.capitalize(type.getUnlocalizedName()), new ItemStack(Blocks.RED_FLOWER, 1, type.getMeta()));
+        }
+
         HFApi.shipping.registerSellable(new ItemStack(Items.FISH, 1, 0), 20L);
         HFApi.shipping.registerSellable(new ItemStack(Items.FISH, 1, 1), 60L);
         HFApi.shipping.registerSellable(new ItemStack(Items.FISH, 1, 2), 100L);
         HFApi.shipping.registerSellable(new ItemStack(Items.FISH, 1, 3), 100L);
         HFApi.shipping.registerSellable(new ItemStack(Items.BREAD), 50L);
+    }
+
+    private static void registerIfNotRegistered(String string, ItemStack stack) {
+        if (!InventoryHelper.isOreName(stack, string)) {
+            OreDictionary.registerOre(string, stack);
+        }
     }
 
     @SideOnly(Side.CLIENT)

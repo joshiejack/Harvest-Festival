@@ -63,7 +63,6 @@ public class HFCore {
         GODDESS.setBlock(GODDESS_WATER);
 
         //Register sellables
-        OreDictionary.registerOre("flowerGoddess", FLOWERS.getStackFromEnum(FlowerType.GODDESS));
         registerIfNotRegistered("flowerSunflower", new ItemStack(Blocks.DOUBLE_PLANT, 1, SUNFLOWER.getMeta()));
         registerIfNotRegistered("flowerLilac", new ItemStack(Blocks.DOUBLE_PLANT, 1, SYRINGA.getMeta()));
         registerIfNotRegistered("flowerRose", new ItemStack(Blocks.DOUBLE_PLANT, 1, ROSE.getMeta()));

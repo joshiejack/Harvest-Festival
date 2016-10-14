@@ -12,6 +12,7 @@ import joshie.harvest.core.util.Direction;
 import joshie.harvest.core.util.ICreativeSorted;
 import joshie.harvest.core.util.Text;
 import joshie.harvest.npc.entity.EntityNPCBuilder;
+import joshie.harvest.town.TownData;
 import joshie.harvest.town.TownDataServer;
 import joshie.harvest.town.TownHelper;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -52,7 +53,8 @@ public class ItemBlueprint extends ItemHFFML<ItemBlueprint, BuildingImpl> implem
             }
 
             BuildingImpl building = getObjectFromStack(stack);
-            if (building != null && (DEBUG_MODE || building.canHaveMultiple() || !TownHelper.getClosestTownToEntity(player).hasBuilding(building.getRegistryName()))) {
+            TownData town = TownHelper.getClosestTownToEntity(player);
+            if (building != null && (DEBUG_MODE || building.canHaveMultiple() || (!town.hasBuilding(building.getRegistryName()) && !town.isBuilding(building)))) {
                 if(player.canPlayerEdit(raytrace.getBlockPos(), EnumFacing.DOWN, stack)) {
                     if (!world.isRemote) {
                         TownHelper.ensureTownExists(world, raytrace.getBlockPos()); //Force a town to exist near where you clicked

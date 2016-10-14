@@ -1,4 +1,5 @@
 ##0.5.10
+* Changed rewards of seeds to give different crops based on seasons
 * Fixed jade not giving sickle for shears
 * Allow double flowers to count as flowers
 * Removed sneak clicking to gift (use the icon)

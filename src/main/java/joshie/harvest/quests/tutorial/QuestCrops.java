@@ -1,5 +1,7 @@
 package joshie.harvest.quests.tutorial;
 
+import joshie.harvest.api.HFApi;
+import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.Quest;
@@ -11,14 +13,17 @@ import joshie.harvest.quests.TutorialSelection;
 import joshie.harvest.tools.HFTools;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.math.BlockPos;
 
 import java.util.Set;
 
+import static joshie.harvest.api.calendar.Season.AUTUMN;
+import static joshie.harvest.api.calendar.Season.SUMMER;
 import static joshie.harvest.api.core.ITiered.ToolTier.BASIC;
 import static joshie.harvest.core.helpers.InventoryHelper.ITEM_STACK;
 import static joshie.harvest.core.helpers.InventoryHelper.SPECIAL;
-import static joshie.harvest.quests.Quests.TUTORIAL_CARPENTER;
 import static joshie.harvest.npc.HFNPCs.SEED_OWNER;
+import static joshie.harvest.quests.Quests.TUTORIAL_CARPENTER;
 
 @HFQuest("tutorial.crops")
 public class QuestCrops extends QuestQuestion {
@@ -123,6 +128,9 @@ public class QuestCrops extends QuestQuestion {
     @Override
     public void onQuestCompleted(EntityPlayer player) {
         rewardItem(player, HFTools.SICKLE.getStack(BASIC));
-        rewardItem(player, HFCrops.TURNIP.getSeedStack(3));
+        Season season = HFApi.calendar.getSeasonAtCoordinates(player.worldObj, new BlockPos(player));
+        if (season == SUMMER) rewardItem(player, HFCrops.ONION.getSeedStack(3));
+        else if (season == AUTUMN) rewardItem(player, HFCrops.CARROT.getSeedStack(3));
+        else rewardItem(player, HFCrops.TURNIP.getSeedStack(3));
     }
 }

@@ -1,3 +1,6 @@
+##0.5.11
+* Fixed jim not reminding you to feed your cow by hand during the tutorial
+
 ##0.5.10
 * Changed rewards of certain quests seeds to give different crops based on seasons
 * Fixed jade not giving sickle for shears

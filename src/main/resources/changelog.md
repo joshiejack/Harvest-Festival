@@ -11,6 +11,16 @@
 * Made shop scroll behave better
 * Add used to upgrade tooltip to all ores
 
+##0.5.10
+* Changed rewards of seeds to give different crops based on seasons
+* Fixed jade not giving sickle for shears
+* Allow double flowers to count as flowers
+* Removed sneak clicking to gift (use the icon)
+* Can now sneak click jade to trade for up to 10 seeds a time
+* Items in the offhand now count towards costs, and will be taken over items in the main inventory
+* Quests that required you to hold all the items before, will now check for one of the items being held
+  but they will take from everywhere in the inventory, prioritising what you are holding first.
+
 ##0.5.9
 * Fix bug with JEI loading on npc gui
 * Fix goddess asking for 64 logs instead of a dozen

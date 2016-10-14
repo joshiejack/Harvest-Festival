@@ -140,7 +140,7 @@ public class InventoryHelper {
         EnumHand ret = getHandItemIsIn(player, matcher, search, count);
         if (ret != null) {
             count -= reduceHeld(player, ret, count); //Update the count
-            takeItems(player, search, count, matcher);
+            if (count > 0) takeItems(player, search, count, matcher);
             return ret;
         }
 

@@ -1,5 +1,7 @@
 package joshie.harvest.quests.tutorial;
 
+import joshie.harvest.api.HFApi;
+import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.Quest;
@@ -9,9 +11,12 @@ import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.town.TownHelper;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.math.BlockPos;
 
 import java.util.Set;
 
+import static joshie.harvest.api.calendar.Season.AUTUMN;
+import static joshie.harvest.api.calendar.Season.SUMMER;
 import static joshie.harvest.quests.Quests.TUTORIAL_CROPS;
 import static joshie.harvest.npc.HFNPCs.*;
 
@@ -70,6 +75,9 @@ public class QuestSupermarket extends Quest {
 
     @Override
     public void onQuestCompleted(EntityPlayer player) {
-        rewardItem(player, HFCrops.POTATO.getSeedStack(5));
+        Season season = HFApi.calendar.getSeasonAtCoordinates(player.worldObj, new BlockPos(player));
+        if (season == SUMMER) rewardItem(player, HFCrops.TOMATO.getSeedStack(4));
+        else if (season == AUTUMN) rewardItem(player, HFCrops.EGGPLANT.getSeedStack(4));
+        else rewardItem(player, HFCrops.CUCUMBER.getSeedStack(4));
     }
 }

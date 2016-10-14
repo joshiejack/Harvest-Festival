@@ -40,7 +40,6 @@ public class QuestCowCare extends QuestQuestion {
     private static final int ACTION2 = 3;
     private static final int MILKER = 4;
     private static final int MILKING = 5;
-    private boolean attempted;
     private boolean hasFed;
     private boolean hasBrushed;
     private boolean hasMilked;

@@ -43,7 +43,7 @@ public class QuestFlowerTrader extends QuestTrade {
                 return getLocalized("complete.yes");
                 //Jade Informs the player that she doesn't have in stock this time of year
             } else return getLocalized("complete.no");
-        }
+        } else if (player.worldObj.rand.nextFloat() <= 0.05F) return getLocalized("reminder");
 
          return null;
     }

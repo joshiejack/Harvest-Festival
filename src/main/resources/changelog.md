@@ -1,5 +1,6 @@
 ##0.5.11
 * Fixed jim not reminding you to feed your cow by hand during the tutorial
+* Added a config option for 12 hour clock (by TehNut)
 
 ##0.5.10
 * Changed rewards of certain quests seeds to give different crops based on seasons

@@ -32,7 +32,21 @@ public class CalendarHUD {
     private String formatTime(int time) {
         int hour = time / 1000;
         int minute = (int) ((double) (time % 1000) / 20 * 1.2);
-        return (hour < 10 ? "0" + hour : hour) + ":" + (minute < 10 ? "0" + minute : minute);
+        if (HFCalendar.CLOCK_24H) {
+            return (hour < 10 ? "0" + hour : hour) + ":" + (minute < 10 ? "0" + minute : minute);
+        } else {
+            boolean pm = false;
+            if (hour > 12) {
+                hour = hour - 12;
+                pm = true;
+            }
+            if (hour == 12)
+                pm = true;
+            if (hour == 0)
+                hour = 12;
+
+            return (hour < 10 ? "0" + hour : hour) + ":" + (minute < 10 ? "0" + minute : minute) + (pm ? "PM" : "AM");
+        }
     }
 
     private boolean isHUDVisible() {

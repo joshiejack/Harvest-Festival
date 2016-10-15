@@ -36,6 +36,7 @@ public class HFCalendar {
     public static int Y_CALENDAR;
     public static int X_GOLD;
     public static int Y_GOLD;
+    public static boolean CLOCK_24H;
 
     public static void preInit() {
         DimensionType seasons = DimensionType.register("seasons", "seasons", OVERWORLD_ID, HFWorldProvider.class, true);
@@ -78,6 +79,7 @@ public class HFCalendar {
         ENABLE_DATE_HUD = getBoolean("HUD > Enable data", true);
         ENABLE_GOLD_HUD = getBoolean("HUD > Enable gold", true);
         SNOW_TICKER = getBoolean("Remove snow faster", true);
+        CLOCK_24H = getBoolean("24 hour clock", true);
     }
 
     public static void onServerStarting() {

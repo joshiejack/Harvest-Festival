@@ -1,7 +1,5 @@
 package joshie.harvest.core.handlers;
 
-import joshie.harvest.animals.AnimalTrackerServer;
-import joshie.harvest.api.ticking.IDailyTickable;
 import joshie.harvest.calendar.CalendarServer;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.helpers.MCServerHelper;
@@ -11,21 +9,16 @@ import joshie.harvest.town.TownTrackerServer;
 import net.minecraft.client.gui.GuiMultiplayer;
 import net.minecraft.client.gui.GuiWorldSelection;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.world.World;
 import net.minecraftforge.client.event.GuiOpenEvent;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerChangedDimensionEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
-import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
-import net.minecraftforge.fml.common.gameevent.TickEvent.ServerTickEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import static joshie.harvest.calendar.HFCalendar.TICKS_PER_DAY;
-
 @HFEvents
-public class EventsHandler {
+public class SyncHandler {
     @HFEvents
     public static class ClientReset {
         @SideOnly(Side.CLIENT)
@@ -37,35 +30,6 @@ public class EventsHandler {
         }
     }
 
-    //Server tick for new day
-    @SubscribeEvent
-    public void onTick(ServerTickEvent event) {
-        if (!OfflineTickHandler.BLOCKED) {
-            if (event.phase != Phase.END) return;
-            World overworld = FMLCommonHandler.instance().getMinecraftServerInstance().worldServers[0];
-            if (overworld.getWorldTime() % TICKS_PER_DAY == 1) {
-                HFTrackers.<CalendarServer>getCalendar(overworld).newDay(overworld);
-                for (PlayerTrackerServer player : HFTrackers.getPlayerTrackers()) {
-                    player.newDay();
-                }
-
-                AnimalTrackerServer.processQueue();
-                TickDailyServer.processQueue();
-                for (World world : FMLCommonHandler.instance().getMinecraftServerInstance().worldServers) {
-                    EventsHandler.newDay(world);
-                }
-            }
-        }
-    }
-
-    //New day
-    public static void newDay(final World world) {
-        HFTrackers.getTickables(world).newDay(IDailyTickable.Phase.PRE);
-        HFTrackers.<AnimalTrackerServer>getAnimalTracker(world).newDay();
-        HFTrackers.<TownTrackerServer>getTownTracker(world).newDay();
-        HFTrackers.getTickables(world).newDay(IDailyTickable.Phase.POST);
-        HFTrackers.markDirty(world);
-    }
 
     //Sync data on login
     @SubscribeEvent

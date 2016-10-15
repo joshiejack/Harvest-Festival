@@ -1,4 +1,4 @@
-package joshie.harvest.core.handlers;
+package joshie.harvest.core.registry;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.core.IShippable;

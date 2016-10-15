@@ -2,7 +2,7 @@ package joshie.harvest.core.util.holders;
 
 import joshie.harvest.api.core.ISizeable.Size;
 import joshie.harvest.core.HFCore;
-import joshie.harvest.core.handlers.SizeableRegistry;
+import joshie.harvest.core.registry.SizeableRegistry;
 import joshie.harvest.core.util.Sizeable;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;

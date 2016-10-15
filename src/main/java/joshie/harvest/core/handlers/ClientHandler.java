@@ -1,6 +1,7 @@
 package joshie.harvest.core.handlers;
 
 import joshie.harvest.animals.AnimalTrackerClient;
+import joshie.harvest.core.util.handlers.SideHandler;
 import joshie.harvest.town.TownTrackerClient;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;

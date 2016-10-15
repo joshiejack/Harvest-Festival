@@ -5,6 +5,7 @@ import joshie.harvest.api.crops.IStateHandler.PlantSection;
 import joshie.harvest.core.HFCore;
 import joshie.harvest.core.base.item.ItemTool;
 import joshie.harvest.core.helpers.EntityHelper;
+import joshie.harvest.core.util.handlers.SingleFluidHandler;
 import joshie.harvest.crops.block.BlockHFCrops;
 import joshie.harvest.tools.ToolHelper;
 import net.minecraft.block.Block;
@@ -22,9 +23,12 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IPlantable;
+import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.IFluidContainerItem;
+import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
+import net.minecraftforge.fluids.capability.IFluidHandler;
+import net.minecraftforge.fluids.capability.IFluidTankProperties;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -33,10 +37,22 @@ import java.util.HashSet;
 import java.util.List;
 
 //TODO: Change to capability
-@SuppressWarnings("deprecation")
-public class ItemWateringCan extends ItemTool<ItemWateringCan> implements IFluidContainerItem {
+public class ItemWateringCan extends ItemTool<ItemWateringCan> {
+    private static final double MAX_WATER = 128D;
+
     public ItemWateringCan() {
         super("watering_can", new HashSet<>());
+    }
+
+    @Override
+    public ICapabilityProvider initCapabilities(ItemStack stack, NBTTagCompound nbt) {
+        SingleFluidHandler handler = new SingleFluidHandler(stack, FluidRegistry.WATER, (int) MAX_WATER);
+        //TODO: Remove in 0.7+
+        if (stack.hasTagCompound() && stack.getTagCompound().hasKey("Water")) {
+            handler.fill(new FluidStack(FluidRegistry.WATER, stack.getTagCompound().getByte("Water")), true);
+        }
+
+        return handler;
     }
 
     @Override
@@ -89,69 +105,13 @@ public class ItemWateringCan extends ItemTool<ItemWateringCan> implements IFluid
 
     @Override
     public boolean showDurabilityBar(ItemStack stack) {
-        return stack.hasTagCompound();
+        return true;
     }
 
     @Override
     public double getDurabilityForDisplay(ItemStack stack) {
-        if (stack.hasTagCompound()) {
-            int water = stack.getTagCompound().getByte("Water");
-            return (128D - water) / 128D;
-        } else return 0D;
-    }
-
-    @Override
-    public FluidStack getFluid(ItemStack container) {
-        return container.hasTagCompound() ? new FluidStack(FluidRegistry.WATER, container.getTagCompound().getByte("Water")) : null;
-    }
-
-    @Override
-    public int getCapacity(ItemStack container) {
-        return container.hasTagCompound() ? container.getTagCompound().getByte("Water") : 0;
-    }
-
-    @Override
-    public int fill(ItemStack container, FluidStack resource, boolean doFill) {
-        if (resource == null || resource.getFluid() != FluidRegistry.WATER) {
-            return 0;
-        } else {
-            if (!container.hasTagCompound()) {
-                container.setTagCompound(new NBTTagCompound());
-            }
-
-            int current_capacity = container.getTagCompound().getByte("Water");
-            int max_fill_capacity = (Math.max(0, Byte.MAX_VALUE - current_capacity));
-            int amount_filled;
-            if (resource.amount >= max_fill_capacity) {
-                amount_filled = max_fill_capacity;
-            } else amount_filled = resource.amount;
-
-            int new_amount = (current_capacity + amount_filled);
-
-            if (doFill) {
-                container.getTagCompound().setByte("Water", (byte) new_amount);
-            }
-
-            return amount_filled;
-        }
-    }
-
-    @Override
-    public FluidStack drain(ItemStack container, int maxDrain, boolean doDrain) {
-        if (maxDrain == 1) {
-            if (container.hasTagCompound()) {
-                byte water = container.getTagCompound().getByte("Water");
-                if (water >= 1) {
-                    if (doDrain) {
-                        container.getTagCompound().setByte("Water", (byte) (water - 1));
-                    }
-
-                    return new FluidStack(FluidRegistry.WATER, 1);
-                } else return null;
-            }
-        }
-
-        return null;
+        int water = getCapacity(stack);
+        return (MAX_WATER - water) / MAX_WATER;
     }
 
     @Override
@@ -169,7 +129,7 @@ public class ItemWateringCan extends ItemTool<ItemWateringCan> implements IFluid
             playSound(world, pos, SoundEvents.ENTITY_GENERIC_SWIM, SoundCategory.NEUTRAL);
             ToolHelper.performTask(player, stack, getExhaustionRate(stack));
             if (!player.capabilities.isCreativeMode) {
-                drain(stack, 1, true);
+                getCapability(stack).drain(1, true);
             }
             return EnumActionResult.SUCCESS;
         } else return EnumActionResult.FAIL;
@@ -180,14 +140,24 @@ public class ItemWateringCan extends ItemTool<ItemWateringCan> implements IFluid
         if (rayTraceResult != null && rayTraceResult.typeOfHit == RayTraceResult.Type.BLOCK) {
             IBlockState state = world.getBlockState(rayTraceResult.getBlockPos());
             if (state.getMaterial() == Material.WATER) {
-                return fill(stack, new FluidStack(FluidRegistry.WATER, 128), true) > 0;
+                return getCapability(stack).fill(new FluidStack(FluidRegistry.WATER, 128), true) > 0;
             }
         }
 
         return false;
     }
 
-    protected void waterCrops(World world, EntityPlayer player, @Nullable RayTraceResult result, ItemStack stack, ToolTier tier) {
+    private IFluidHandler getCapability(ItemStack stack) {
+        return stack.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, EnumFacing.DOWN);
+    }
+
+    private int getCapacity(ItemStack stack) {
+        IFluidTankProperties properties = getCapability(stack).getTankProperties()[0];
+        if (properties.getContents() == null) return 0;
+        else return properties.getContents().amount;
+    }
+
+    private void waterCrops(World world, EntityPlayer player, @Nullable RayTraceResult result, ItemStack stack, ToolTier tier) {
         if (result != null) {
             BlockPos pos = result.getBlockPos();
             EnumFacing front = EntityHelper.getFacingFromEntity(player);
@@ -231,7 +201,7 @@ public class ItemWateringCan extends ItemTool<ItemWateringCan> implements IFluid
     public void getSubItems(Item item, CreativeTabs tab, List<ItemStack> list) {
         for (int i = 0; i < ToolTier.values().length; i++) {
             ItemStack unleveled = new ItemStack(item, 1, i);
-            fill(unleveled, new FluidStack(FluidRegistry.WATER, 128), true);
+            getCapability(unleveled).fill(new FluidStack(FluidRegistry.WATER, 128), true);
             list.add(unleveled);
         }
     }

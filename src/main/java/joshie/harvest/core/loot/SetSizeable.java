@@ -4,7 +4,7 @@ import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSerializationContext;
 import joshie.harvest.api.core.ISizeable.Size;
-import joshie.harvest.core.handlers.SizeableRegistry;
+import joshie.harvest.core.registry.SizeableRegistry;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.storage.loot.LootContext;

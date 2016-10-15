@@ -1,4 +1,4 @@
-package joshie.harvest.core.handlers;
+package joshie.harvest.core.registry;
 
 import joshie.harvest.api.core.ISizeable.Size;
 import joshie.harvest.api.core.ISizeableRegistry;

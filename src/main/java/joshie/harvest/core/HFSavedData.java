@@ -1,7 +1,7 @@
 package joshie.harvest.core;
 
 import joshie.harvest.animals.AnimalTrackerServer;
-import joshie.harvest.core.handlers.TickDailyServer;
+import joshie.harvest.core.handlers.DailyTickHandler;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.town.TownTrackerServer;
 import net.minecraft.nbt.NBTTagCompound;
@@ -12,7 +12,7 @@ public class HFSavedData extends WorldSavedData {
     public static final String DATA_NAME = HFModInfo.CAPNAME + "-Data";
 
     private final AnimalTrackerServer animals = new AnimalTrackerServer();
-    private final TickDailyServer ticking = new TickDailyServer();
+    private final DailyTickHandler ticking = new DailyTickHandler();
     private final TownTrackerServer towns = new TownTrackerServer();
 
     public HFSavedData(String string) {
@@ -29,7 +29,7 @@ public class HFSavedData extends WorldSavedData {
         return animals;
     }
 
-    public TickDailyServer getTickables() {
+    public DailyTickHandler getTickables() {
         return ticking;
     }
 

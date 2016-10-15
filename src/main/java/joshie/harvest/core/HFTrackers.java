@@ -9,8 +9,8 @@ import joshie.harvest.calendar.CalendarData;
 import joshie.harvest.calendar.CalendarServer;
 import joshie.harvest.core.handlers.ClientHandler;
 import joshie.harvest.core.handlers.ServerHandler;
-import joshie.harvest.core.handlers.SideHandler;
-import joshie.harvest.core.handlers.TickDailyServer;
+import joshie.harvest.core.util.handlers.SideHandler;
+import joshie.harvest.core.handlers.DailyTickHandler;
 import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.mining.MineManager;
@@ -87,7 +87,7 @@ public class HFTrackers {
         return (T) getHandler(world).getTownTracker();
     }
 
-    public static TickDailyServer getTickables(World world) {
+    public static DailyTickHandler getTickables(World world) {
         return getServer(world).getTickables();
     }
 

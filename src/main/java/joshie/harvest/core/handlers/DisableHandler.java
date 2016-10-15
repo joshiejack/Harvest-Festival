@@ -17,7 +17,7 @@ import static net.minecraft.init.Items.*;
 public class DisableHandler {
     /* Disables vanilla seeds from being able to be planted **/
     @HFEvents
-    public static class DisableVanillaSeeds {
+    public static class VanillaSeeds {
         public static final HolderRegistrySet BLACKLIST = new HolderRegistrySet();
 
         public static boolean register() {
@@ -45,7 +45,7 @@ public class DisableHandler {
 
     /* Disables vanilla eggs from spawning chickens **/
     @HFEvents
-    public static class DisableEggSpawning {
+    public static class EggSpawning {
         public static boolean register() { return DISABLE_SPAWN_CHICKEN; }
 
         @SubscribeEvent
@@ -61,7 +61,7 @@ public class DisableHandler {
 
     /* Disables the use of vanilla hoes **/
     @HFEvents
-    public static class DisableHoes {
+    public static class VanillaHoes {
         public static boolean register() { return DISABLE_VANILLA_HOE; }
 
         @SubscribeEvent

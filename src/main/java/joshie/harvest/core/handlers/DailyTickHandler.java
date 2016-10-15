@@ -15,7 +15,7 @@ import java.util.Iterator;
 import java.util.Map.Entry;
 import java.util.Set;
 
-public class TickDailyServer extends HFTracker {
+public class DailyTickHandler extends HFTracker {
     private static final Set<Runnable> queue = new HashSet<>();
     private final Set<IDailyTickable> priority = new HashSet<>();
     private final Set<IDailyTickable> tickables = new HashSet<>();

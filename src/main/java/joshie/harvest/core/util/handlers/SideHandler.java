@@ -1,4 +1,4 @@
-package joshie.harvest.core.handlers;
+package joshie.harvest.core.util.handlers;
 
 import joshie.harvest.animals.AnimalTracker;
 import joshie.harvest.town.TownTracker;

@@ -3,7 +3,7 @@ package joshie.harvest.crops;
 import joshie.harvest.api.crops.Crop;
 import joshie.harvest.api.crops.ICropProvider;
 import joshie.harvest.api.crops.ICropRegistry;
-import joshie.harvest.core.handlers.DisableHandler.DisableVanillaSeeds;
+import joshie.harvest.core.handlers.DisableHandler.VanillaSeeds;
 import joshie.harvest.core.util.annotations.HFApiImplementation;
 import joshie.harvest.core.util.holders.ItemStackHolder;
 import joshie.harvest.crops.tile.TileWithered;
@@ -52,7 +52,7 @@ public class CropRegistry implements ICropRegistry {
 
     @Override
     public void registerSeedForBlacklisting(ItemStack item) {
-        DisableVanillaSeeds.BLACKLIST.register(item);
+        VanillaSeeds.BLACKLIST.register(item);
     }
 
     @Override

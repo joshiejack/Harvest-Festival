@@ -6,6 +6,8 @@
 * Added more items to the gathering system, for selling or recipes
 #Changes
 * New Shop GUI
+* Crops will now be plantable on more than farmland,
+    however they will only grow on farmland when a mod adds support
 #Fixes
 * My hoes will now work with BOP blocks
 * Made shop scroll behave better

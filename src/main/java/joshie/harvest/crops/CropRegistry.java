@@ -3,6 +3,7 @@ package joshie.harvest.crops;
 import joshie.harvest.api.crops.Crop;
 import joshie.harvest.api.crops.ICropProvider;
 import joshie.harvest.api.crops.ICropRegistry;
+import joshie.harvest.api.crops.WateringHandler;
 import joshie.harvest.core.handlers.DisableHandler.VanillaSeeds;
 import joshie.harvest.core.util.annotations.HFApiImplementation;
 import joshie.harvest.core.util.holders.ItemStackHolder;
@@ -17,18 +18,16 @@ import net.minecraft.world.World;
 import net.minecraftforge.oredict.OreDictionary;
 
 import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 import java.util.Map.Entry;
 
-import static joshie.harvest.crops.CropHelper.*;
 import static joshie.harvest.crops.block.BlockHFCrops.CropType.FRESH;
 import static joshie.harvest.crops.block.BlockHFCrops.CropType.FRESH_DOUBLE;
 
 @HFApiImplementation
 public class CropRegistry implements ICropRegistry {
     public static final CropRegistry INSTANCE = new CropRegistry();
+    public final Set<WateringHandler> wateringHandlers = new HashSet<>();
     private final HashMap<ItemStackHolder, Crop> providers = new HashMap<>();
 
     @Override
@@ -125,13 +124,17 @@ public class CropRegistry implements ICropRegistry {
 
     @Override
     public boolean hydrateSoil(@Nullable EntityPlayer player, World world, BlockPos pos) {
-        boolean ret = false;
         IBlockState state = world.getBlockState(pos);
-        if (isSoil(state) && !isWetSoil(state)) {
-            world.setBlockState(pos, WET_SOIL);
-            ret = true;
+        WateringHandler checker = CropHelper.getWateringHandler(state);
+        if (checker != null) {
+            checker.water(world, pos);
         }
 
-        return ret;
+        return checker != null;
+    }
+
+    @Override
+    public void registerWateringHandler(WateringHandler handler) {
+        wateringHandlers.add(handler);
     }
 }

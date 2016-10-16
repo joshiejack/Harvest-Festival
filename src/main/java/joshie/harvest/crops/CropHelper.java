@@ -4,6 +4,7 @@ import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.crops.IStateHandler.PlantSection;
+import joshie.harvest.api.crops.WateringHandler;
 import joshie.harvest.core.helpers.SpawnItemHelper;
 import joshie.harvest.crops.block.BlockHFCrops;
 import joshie.harvest.crops.tile.TileWithered;
@@ -48,11 +49,17 @@ public class CropHelper {
 
     //Returns whether the farmland is hydrated
     public static boolean isWetSoil(IBlockState state) {
-        return state == WET_SOIL;
+        WateringHandler handler = getWateringHandler(state);
+        return handler != null && handler.isWet(state);
     }
 
-    public static boolean isSoil(IBlockState state) {
-        return state.getBlock() == Blocks.FARMLAND;
+    //Returns true if this is waterable
+    public static WateringHandler getWateringHandler(IBlockState state) {
+        for (WateringHandler checker: CropRegistry.INSTANCE.wateringHandlers) {
+            if (checker.canBeWatered(state)) return checker;
+        }
+
+        return null;
     }
 
     //Harvests the crop at this location

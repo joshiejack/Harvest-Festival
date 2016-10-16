@@ -22,6 +22,7 @@ public class GrowthHandlerNether extends GrowthHandler {
     }
 
     @Override
+    @Deprecated
     public boolean canSustainCrop(IBlockAccess world, BlockPos pos, IBlockState state, Crop crop) {
         return state.getBlock() == Blocks.SOUL_SAND && crop.getPlantType() == EnumPlantType.Nether;
     }

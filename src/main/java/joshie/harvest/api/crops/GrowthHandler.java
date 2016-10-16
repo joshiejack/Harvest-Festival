@@ -25,11 +25,7 @@ public abstract class GrowthHandler {
         }
     }
 
-    /** Returns true if this crop can stay on this soil
-     * @param world         the world
-     * @param pos           the position
-     * @param state         the state
-     * @param crop          the crop  **/
+    @Deprecated //TODO: Remove in 0.7
     public boolean canSustainCrop(IBlockAccess world, BlockPos pos, IBlockState state, Crop crop) {
         return state.getBlock() == Blocks.FARMLAND && crop.getPlantType() == EnumPlantType.Crop;
     }

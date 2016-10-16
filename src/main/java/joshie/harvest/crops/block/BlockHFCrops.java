@@ -168,7 +168,7 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
             Crop crop = data.getCrop();
             if (crop.getGrowthHandler() != null) {
                 IBlockState down = world.getBlockState(pos.down());
-                return down.getBlock() == this || crop.getGrowthHandler().canSustainCrop(world, pos.down(), world.getBlockState(pos.down()), crop);
+                return down.getBlock() == this || down.getBlock().canSustainPlant(down, world, pos, EnumFacing.UP, this) || crop.getGrowthHandler().canGrow(world, pos, crop);
             }
         }
 
@@ -338,14 +338,13 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
 
     @Override
     public EnumPlantType getPlantType(IBlockAccess world, BlockPos pos) {
-        return EnumPlantType.Crop;
+        CropData data = CropHelper.getCropDataAt(world, pos);
+        return data == null ? EnumPlantType.Crop : data.getCrop().getPlantType();
     }
 
     @Override
     public IBlockState getPlant(IBlockAccess world, BlockPos pos) {
-        IBlockState state = world.getBlockState(pos);
-        if (state.getBlock() != this) return getDefaultState();
-        return state;
+        return getActualState(world.getBlockState(pos), world, pos);
     }
 
     //Can Apply Bonemeal (Not Fully Grown)

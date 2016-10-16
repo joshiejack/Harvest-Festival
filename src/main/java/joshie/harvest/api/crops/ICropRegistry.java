@@ -11,7 +11,9 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 public interface ICropRegistry {
-    /** Alternative if you don't want to implement ICropProvider **/
+    /** Alternative if you don't want to implement ICropProvider
+     * @param stack     the item
+     * @param crop      the crop this provides**/
     void registerCropProvider(ItemStack stack, Crop crop);
 
     /** Return this crop this stack provides, or null if it provides none
@@ -64,4 +66,10 @@ public interface ICropRegistry {
      * @param stages  the maximum number of stages
      * @return the state container  */
     BlockStateContainer getStateContainer(PropertyInteger stages);
+
+    /** Register a watering handler, these are called to check
+     *  if something is considered water, and also by the watering can
+     *  and sprinkler in order to turn the blocks in to the correct form
+     *  @param handler  the watering handler **/
+    void registerWateringHandler(WateringHandler handler);
 }

@@ -4,10 +4,7 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.AnimalFoodType;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.cooking.Ingredient;
-import joshie.harvest.api.crops.Crop;
-import joshie.harvest.api.crops.DropHandler;
-import joshie.harvest.api.crops.GrowthHandler;
-import joshie.harvest.api.crops.IStateHandler;
+import joshie.harvest.api.crops.*;
 import joshie.harvest.core.base.render.FMLDefinition;
 import joshie.harvest.core.base.render.MeshIdentical;
 import joshie.harvest.core.helpers.RegistryHelper;
@@ -112,6 +109,7 @@ public class HFCrops {
         registerVanillaCrop(Items.MELON, WATERMELON);
         registerVanillaCrop(Blocks.PUMPKIN, PUMPKIN);
         registerVanillaCrop(Items.NETHER_WART, NETHER_WART);
+        HFApi.crops.registerWateringHandler(new WateringHandler());
         HFApi.shipping.registerSellable(new ItemStack(Items.POISONOUS_POTATO), 1L);
 
         RegistryHelper.registerTiles(TileWithered.class, TileCrop.class, TileSprinkler.class);

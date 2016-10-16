@@ -39,8 +39,10 @@ public class SpawnItemHelper {
     }
 
     public static void spawnXP(World world, int x, int y, int z, int amount) {
-        EntityXPOrb orb = new EntityXPOrb(world, x, y, z, amount);
-        world.spawnEntityInWorld(orb);
+        if (!world.isRemote) {
+            EntityXPOrb orb = new EntityXPOrb(world, x, y, z, amount);
+            world.spawnEntityInWorld(orb);
+        }
     }
     
     public static ItemStack spawnItem(World world, double x, double y, double z, ItemStack stack, boolean random, int lifespan, int delay, double motion) {

@@ -33,10 +33,6 @@ public abstract class Placeable {
         return stage == ConstructionStage.BUILD;
     }
 
-    public boolean isBlocked(World world, BlockPos pos) {
-        return false;
-    }
-
     private void clearBushes(World world, BlockPos pos) {
         if (world.getBlockState(pos).getBlock() instanceof BlockBush) {
             world.setBlockToAir(pos);

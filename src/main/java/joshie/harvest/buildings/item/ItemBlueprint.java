@@ -54,12 +54,12 @@ public class ItemBlueprint extends ItemHFFML<ItemBlueprint, BuildingImpl> implem
 
             BuildingImpl building = getObjectFromStack(stack);
             TownData town = TownHelper.getClosestTownToEntity(player);
-            if (building != null && (DEBUG_MODE || building.canHaveMultiple() || (!town.hasBuilding(building.getRegistryName()) && !town.isBuilding(building)))) {
-                if(player.canPlayerEdit(raytrace.getBlockPos(), EnumFacing.DOWN, stack)) {
-                    if (!world.isRemote) {
-                        TownHelper.ensureTownExists(world, raytrace.getBlockPos()); //Force a town to exist near where you clicked
-                    }
+            if(player.canPlayerEdit(raytrace.getBlockPos(), EnumFacing.DOWN, stack)) {
+                if (!world.isRemote) {
+                    TownHelper.ensureTownExists(world, raytrace.getBlockPos()); //Force a town to exist near where you clicked
+                }
 
+                if (building != null && (DEBUG_MODE || building.canHaveMultiple() || (!town.hasBuilding(building.getRegistryName()) && !town.isBuilding(building)))) {
                     RenderKey key = BuildingHelper.getPositioning(stack, world, raytrace, building, player, true);
                     if (key != null) {
                         if (!TownHelper.getClosestTownToBlockPos(world, key.getPos()).isBuilding(building)) {

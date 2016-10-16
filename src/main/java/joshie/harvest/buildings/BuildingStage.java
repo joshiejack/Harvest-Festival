@@ -76,12 +76,12 @@ public class BuildingStage {
                 stage = ConstructionStage.FINISHED;
                 index = 0;
 
+                basement = true;
                 TownHelper.getClosestTownToBlockPos(world, pos).addBuilding(world, building, direction, pos);
                 TownHelper.<TownDataServer>getClosestTownToBlockPos(world, pos).syncBuildings(world);
                 return true;
             }
 
-            basement = true; //Reset the basement
             TownHelper.<TownDataServer>getClosestTownToBlockPos(world, pos).syncBuildings(world);
         }
 

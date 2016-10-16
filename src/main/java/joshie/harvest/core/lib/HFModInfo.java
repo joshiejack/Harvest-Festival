@@ -13,6 +13,8 @@ public class HFModInfo {
     public static final String COMMANDNAME = "hf";
     public static final String GIFTPATH = "joshie.harvest.npc.gift.Gifts";
     public static final String SCHEDULEPATH = "joshie.harvest.npc.schedule.Schedule";
+    public static final String CROPSTATES = "joshie.harvest.crops.handlers.state.StateHandler";
+    public static final String DROPHANDLERS = "joshie.harvest.crops.handlers.drop.DropHandler";
 
     
     public static final ResourceLocation ELEMENTS = new ResourceLocation(MODID, "textures/gui/gui_elements.png");

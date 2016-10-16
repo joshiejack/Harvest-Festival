@@ -6,6 +6,7 @@ import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.cooking.Ingredient;
 import joshie.harvest.api.core.IShippable;
 import net.minecraft.block.Block;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -49,19 +50,25 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements IShippable {
     private boolean skipRender;
 
     private Crop() {
-        this(new ResourceLocation("harvestfestival", "null_crop"), 0, 0, 3, 0xFFFFFF);
+        this(new ResourceLocation("harvestfestival", "null_crop"));
     }
 
-    /**
-     * Constructor for crop
-     *
-     * @param key         the registry name for this crop
-     * @param cost        how much the seed costs
-     * @param sell        how much this sells for
-     * @param stages      how many stages this crop has
-     * @param color       the colour of the seed bag
-     * @param seasons     the seasons this crop grows in
-     */
+    public Crop(ResourceLocation key) {
+        this.seasons = new Season[] { Season.SPRING };
+        this.stages = 3;
+        this.foodType = AnimalFoodType.VEGETABLE;
+        this.bagColor = 0xFFFFFF;
+        this.witheredColor = 0xA64DFF;
+        this.stateHandler = new StateHandlerDefault(this);
+        this.growthHandler = SEASONAL;
+        this.needsWatering = true;
+        this.doubleStage = Integer.MAX_VALUE;
+        this.type = EnumPlantType.Crop;
+        this.setRegistryName(key);
+        REGISTRY.register(this);
+    }
+
+    @Deprecated
     public Crop(ResourceLocation key, long cost, long sell, int stages, int color, Season... seasons) {
         this.seasons = seasons;
         this.cost = cost;
@@ -83,6 +90,35 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements IShippable {
         this.skipRender = false;
         this.setRegistryName(key);
         REGISTRY.register(this);
+    }
+
+    /** Set how much this tree costs to buy and sell
+     * @param cost the cost
+     * @param sell the sell value**/
+    public Crop setGoldValues(long cost, long sell) {
+        this.cost = cost;
+        this.sell = sell;
+        return this;
+    }
+
+    /** Set the colour of the seeds
+     *  @param color the color */
+    public Crop setSeedColours(int color) {
+        this.bagColor = color;
+        return this;
+    }
+
+    /** Set the seasons this tree grows in **/
+    public Crop setSeasons(Season... seasons) {
+        this.seasons = seasons;
+        return this;
+    }
+
+    /** Set the growth lengths for this tree
+     * @param stages the number of stages **/
+    public Crop setStages(int stages) {
+        this.stages = stages;
+        return this;
     }
 
     /**
@@ -119,6 +155,13 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements IShippable {
             setFoodStats(food.getHealAmount(item), food.getSaturationModifier(item));
         }
 
+        return this;
+    }
+
+    /** Overloaded mehtod for setItem
+     *  @param item the item **/
+    public Crop setItem(Item item) {
+        setItem(new ItemStack(item));
         return this;
     }
 
@@ -243,13 +286,6 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements IShippable {
     public Crop setSkipRender() {
         this.skipRender = true;
         return this;
-    }
-
-    /**
-     * Return true if this crop uses an item other than HFCrop item
-     **/
-    public boolean hasItemAssigned() {
-        return item != null;
     }
 
     /**

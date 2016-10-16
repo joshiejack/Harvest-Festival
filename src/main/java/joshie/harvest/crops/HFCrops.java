@@ -5,7 +5,9 @@ import joshie.harvest.api.animals.AnimalFoodType;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.cooking.Ingredient;
 import joshie.harvest.api.crops.Crop;
+import joshie.harvest.api.crops.DropHandler;
 import joshie.harvest.api.crops.GrowthHandler;
+import joshie.harvest.api.crops.IStateHandler;
 import joshie.harvest.core.base.render.FMLDefinition;
 import joshie.harvest.core.base.render.MeshIdentical;
 import joshie.harvest.core.helpers.RegistryHelper;
@@ -15,7 +17,6 @@ import joshie.harvest.crops.block.BlockSprinkler;
 import joshie.harvest.crops.handlers.drop.DropHandlerGrass;
 import joshie.harvest.crops.handlers.drop.DropHandlerMelon;
 import joshie.harvest.crops.handlers.drop.DropHandlerNetherWart;
-import joshie.harvest.crops.handlers.drop.DropHandlerPotato;
 import joshie.harvest.crops.handlers.growth.GrowthHandlerNether;
 import joshie.harvest.crops.handlers.state.*;
 import joshie.harvest.crops.item.ItemCrop;
@@ -52,8 +53,9 @@ import static joshie.harvest.api.calendar.Season.*;
 import static joshie.harvest.core.HFTab.FARMING;
 import static joshie.harvest.core.helpers.ConfigHelper.getBoolean;
 import static joshie.harvest.core.helpers.ConfigHelper.getInteger;
-import static joshie.harvest.core.lib.HFModInfo.MODID;
+import static joshie.harvest.core.lib.HFModInfo.*;
 import static joshie.harvest.core.lib.LoadOrder.HFCROPS;
+import static net.minecraft.init.Blocks.POTATOES;
 
 @HFLoader(priority = HFCROPS)
 public class HFCrops {
@@ -67,11 +69,11 @@ public class HFCrops {
     public static final ItemCrop CROP = new ItemCrop().register("crops");
 
     //Spring Crops
-    public static final Crop TURNIP = registerCrop("turnip", 120L, 60L, 5, 0, 0, 0xFFFFFF, SPRING).setFoodStats(1, 0.4F).setStateHandler(new StateHandlerTurnip());
-    public static final Crop POTATO = registerCrop("potato", 150L, 80L, 8, 0, 0, 0xBE8D2B, SPRING).setItem(new ItemStack(Items.POTATO)).setDropHandler(new DropHandlerPotato()).setStateHandler(new StateHandlerSeedFood(Blocks.POTATOES));
-    public static final Crop CUCUMBER = registerCrop("cucumber", 200L, 60L, 10, 5, 0, 0x36B313, SPRING).setFoodStats(2, 0.25F).setAnimalFoodType(FRUIT).setStateHandler(new StateHandlerCucumber());
-    public static final Crop STRAWBERRY = registerCrop("strawberry", 150L, 30L, 9, 7, 1, 0xFF7BEA, SPRING).setFoodStats(3, 0.8F).setAnimalFoodType(FRUIT).setStateHandler(new StateHandlerStrawberry());
-    public static final Crop CABBAGE = registerCrop("cabbage", 500L, 250L, 15, 0, 3, 0x8FFF40, SPRING).setFoodStats(1, 0.5F).setStateHandler(new StateHandlerCabbage());
+    public static final Crop TURNIP = registerCrop("turnip").setGoldValues(120, 60).setStages(5).setSeedColours(0xFFFFFF).setFoodStats(1, 0.4F);
+    public static final Crop POTATO = registerCrop("potato").setGoldValues(150, 80).setStages(8).setSeedColours(0xBE8D2B).setItem(Items.POTATO).setStateHandler(new StateHandlerSeedFood(POTATOES));
+    public static final Crop CUCUMBER = registerCrop("cucumber").setGoldValues(100, 60).setStages(10).setRegrowStage(5).setSeedColours(0x36B313).setFoodStats(2, 0.25F).setAnimalFoodType(FRUIT);
+    public static final Crop STRAWBERRY = registerCrop("strawberry").setGoldValues(150, 30).setStages(9).setRegrowStage(7).setYearUnlocked(1).setSeedColours(0xFF7BEA).setFoodStats(3, 0.8F).setAnimalFoodType(FRUIT);
+    public static final Crop CABBAGE = registerCrop("cabbage").setGoldValues(500, 250).setStages(15).setYearUnlocked(3).setSeedColours(0x8FFF40).setFoodStats(1, 0.5F);
 
     //Summer Crops
     public static final Crop ONION = registerCrop("onion", 150L, 80L, 8, 0, 0, 0XDCC307, SUMMER).setFoodStats(1, 0.4F).setStateHandler(new StateHandlerOnion());
@@ -200,6 +202,22 @@ public class HFCrops {
         HFApi.crops.registerCropProvider(new ItemStack(block), crop);
         crop.setSkipRender();
         block.setCreativeTab(FARMING);
+    }
+
+    private static Crop registerCrop(String name) {
+        Crop crop = new Crop(new ResourceLocation(MODID, name));
+
+        //Atempt to add a state handler
+        try {
+            crop.setStateHandler((IStateHandler) Class.forName(CROPSTATES + WordUtils.capitalizeFully(name.replace("_", " ")).replace(" ", "")).newInstance());
+        } catch (IllegalAccessException | ClassNotFoundException | InstantiationException e) {/**/}
+
+        //Atempt to add a drop handler
+        try {
+            crop.setDropHandler((DropHandler) Class.forName(DROPHANDLERS + WordUtils.capitalizeFully(name.replace("_", " ")).replace(" ", "")).newInstance());
+        } catch (IllegalAccessException | ClassNotFoundException | InstantiationException e) {/**/}
+
+        return crop;
     }
 
     private static Crop registerCrop(String name, long cost, long sell, int stages, int regrow, int year, int color, Season... seasons) {

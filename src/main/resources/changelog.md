@@ -13,6 +13,18 @@
 * Made shop scroll behave better
 * Add used to upgrade tooltip to all ores
 
+##0.5.11
+* Fixed a crash with the shipping bin when loading worlds when a hopper is inserting items
+* Fixed removing blocks that aren't snow in winter
+* Fixed jim not reminding you to feed your cow by hand during the tutorial
+* Fixed accidentally giving xp on the client side
+* Fixed yulif always saying that he's working on the basement
+* Fixed the sign on yulif's building to have the correct opening hours
+* Added a bunch of random greetings to npcs
+* Added config options that disable drops from grass
+* Added config options that stop vanilla crops from dropping, growing or being harvestable
+* Added a config option for 12 hour clock (by TehNut)
+
 ##0.5.10
 * Changed rewards of certain quests seeds to give different crops based on seasons
 * Fixed jade not giving sickle for shears

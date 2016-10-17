@@ -30,13 +30,15 @@ public class SnowLoader {
                 if (!weather.isSnow()) {
                     if (season == Season.WINTER && !weather.isRain()) {
                         if (weather == Weather.BLIZZARD) {
-                            int meta = state.getValue(LAYERS);
-                            if (meta < 3) {
-                                world.setBlockState(pos, state.withProperty(LAYERS, meta + 1), 2);
-                            }
+                            if(world.getBlockState(pos).getBlock() == Blocks.SNOW_LAYER) {
+                                int meta = state.getValue(LAYERS);
+                                if (meta < 3) {
+                                    world.setBlockState(pos, state.withProperty(LAYERS, meta + 1), 2);
+                                }
+                            } else return false;
                         }
                     } else if (world.rand.nextInt(3) < 2) {
-                        return !world.setBlockToAir(pos);
+                        return world.getBlockState(pos).getBlock() == Blocks.SNOW_LAYER && !world.setBlockToAir(pos);
                     }
                 }
 

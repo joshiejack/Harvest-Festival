@@ -54,7 +54,10 @@ public class TileShipping extends TileFaceable {
             long sell = shipping.getSellValue(stack);
             if (sell > 0) {
                 if (!simulate && !getWorld().isRemote) {
-                    HFTrackers.<PlayerTrackerServer>getPlayerTracker(getWorld(), owner).getTracking().addForShipping(stack.copy());
+                    PlayerTrackerServer tracker = HFTrackers.getPlayerTracker(getWorld(), owner);
+                    if (tracker != null) {
+                        tracker.getTracking().addForShipping(stack.copy());
+                    } else return stack;
                 }
 
                 ItemStack copy = stack.copy();

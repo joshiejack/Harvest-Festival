@@ -1,5 +1,6 @@
 ##0.5.11
 * Fixed a crash with the shipping bin when loading worlds when a hopper is inserting items
+* Fixed removing blocks that aren't snow in winter
 * Fixed jim not reminding you to feed your cow by hand during the tutorial
 * Fixed accidentally giving xp on the client side
 * Fixed yulif always saying that he's working on the basement

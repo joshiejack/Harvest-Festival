@@ -21,7 +21,7 @@ public class SnowLoader {
         if (HFCalendar.SNOW_TICKER) {
             SNOW_LAYER = (world, pos, state) -> {
                 if (world.rand.nextInt(3) < 2) {
-                    return !world.setBlockToAir(pos);
+                    return world.getBlockState(pos).getBlock() == Blocks.SNOW_LAYER && !world.setBlockToAir(pos);
                 }
 
                 return true;

@@ -61,8 +61,11 @@ public class Shop implements IShop {
     @Override
     public IShop addItem(IPurchasable item) {
         if (item != null) {
-            this.contents.add(item);
-            REGISTRY.register(new ShopEntry(item).setRegistryName(Shop.getRegistryName(resourceLocation, item)));
+            ShopEntry entry = new ShopEntry(item).setRegistryName(Shop.getRegistryName(resourceLocation, item));
+            if (!REGISTRY.containsKey(entry.getRegistryName())) {
+                this.contents.add(item);
+                REGISTRY.register(entry);
+            }
         }
 
         return this;

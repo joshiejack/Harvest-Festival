@@ -64,10 +64,8 @@ public class ItemMeal extends ItemHFFoodFML<ItemMeal, MealImpl> implements IAltI
         if (stack.hasTagCompound() && entityLiving instanceof EntityPlayer) {
             EntityPlayer player = (EntityPlayer) entityLiving;
             if (!player.capabilities.isCreativeMode) --stack.stackSize;
-            int hunger = stack.getTagCompound().getInteger("FoodLevel");
-            float saturation = stack.getTagCompound().getFloat("FoodSaturation");
             float exhaustion = stack.getTagCompound().getFloat("FoodExhaustion");
-            player.getFoodStats().addStats(hunger, saturation);
+            player.getFoodStats().addStats(this, stack);
             player.getFoodStats().addExhaustion(exhaustion);
             world.playSound(null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_PLAYER_BURP, SoundCategory.PLAYERS, 0.5F, world.rand.nextFloat() * 0.1F + 0.9F);
 

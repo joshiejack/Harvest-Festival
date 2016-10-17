@@ -2,6 +2,7 @@ package joshie.harvest.plugins.immersiveengineering;
 
 import joshie.harvest.api.crops.Crop;
 import joshie.harvest.core.handlers.DisableHandler.DisableVanillaSeeds;
+import joshie.harvest.core.helpers.RegistryHelper;
 import joshie.harvest.core.util.HFLoader;
 import joshie.harvest.crops.HFCrops;
 import net.minecraft.block.Block;
@@ -17,6 +18,7 @@ import java.lang.reflect.Method;
 
 import static joshie.harvest.api.calendar.Season.*;
 import static joshie.harvest.core.lib.HFModInfo.MODID;
+import static joshie.harvest.crops.HFCrops.DISABLE_VANILLA_WHEAT_SEEDS;
 
 
 @HFLoader(mods = "immersiveengineering", priority = -1)
@@ -40,6 +42,7 @@ public class ImmersiveEngineering {
     public static void init() {
         HEMP.setDropHandler(new DropHandlerHemp(hemp.getItem())).setItem(hemp);
         DisableVanillaSeeds.BLACKLIST.register(hemp_seeds);
+        if (DISABLE_VANILLA_WHEAT_SEEDS) RegistryHelper.removeSeed(hemp_seeds);
     }
 
     @SuppressWarnings("unchecked")

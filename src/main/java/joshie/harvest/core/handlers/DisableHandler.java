@@ -2,19 +2,28 @@ package joshie.harvest.core.handlers;
 
 import joshie.harvest.core.util.annotations.HFEvents;
 import joshie.harvest.core.util.holders.HolderRegistrySet;
+import net.minecraft.block.Block;
 import net.minecraft.item.ItemHoe;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.UseHoeEvent;
+import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.fml.common.eventhandler.Event.Result;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import static joshie.harvest.animals.HFAnimals.DISABLE_SPAWN_CHICKEN;
-import static joshie.harvest.crops.HFCrops.DISABLE_VANILLA_HOE;
-import static joshie.harvest.crops.HFCrops.DISABLE_VANILLA_SEEDS;
+import static joshie.harvest.crops.HFCrops.*;
 import static net.minecraft.init.Items.*;
+import static net.minecraft.init.Items.CARROT;
+import static net.minecraft.init.Items.POTATO;
 
 public class DisableHandler {
+    //Crop Blocks
+    public static final Set<Block> CROPS = new HashSet<>();
+
     /* Disables vanilla seeds from being able to be planted **/
     @HFEvents
     public static class VanillaSeeds {
@@ -38,7 +47,34 @@ public class DisableHandler {
             if (held != null) {
                 if (BLACKLIST.contains(held)) {
                     event.setUseItem(Result.DENY);
+                    return; //Don't continue
                 }
+            }
+        }
+    }
+
+    /* Disables vanilla crops from growing **/
+    @HFEvents
+    public static class VanillaGrowth {
+        public static boolean register() { return DISABLE_VANILLA_GROWTH; }
+
+        @SubscribeEvent
+        public void onRightClickBlock(PlayerInteractEvent.RightClickBlock event) {
+            if (CROPS.contains(event.getWorld().getBlockState(event.getPos()).getBlock())) {
+                event.setUseItem(Result.DENY);
+            }
+        }
+    }
+
+    /* Disables vanilla crops from dropping **/
+    @HFEvents
+    public static class VanillaDrops {
+        public static boolean register() { return DISABLE_VANILLA_DROPS; }
+
+        @SubscribeEvent
+        public void onHarvestBlock(BlockEvent.HarvestDropsEvent event) {
+            if (CROPS.contains(event.getState().getBlock())) {
+                event.getDrops().clear();
             }
         }
     }

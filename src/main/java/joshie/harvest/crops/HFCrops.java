@@ -7,6 +7,7 @@ import joshie.harvest.api.cooking.Ingredient;
 import joshie.harvest.api.crops.*;
 import joshie.harvest.core.base.render.FMLDefinition;
 import joshie.harvest.core.base.render.MeshIdentical;
+import joshie.harvest.core.handlers.DisableHandler;
 import joshie.harvest.core.helpers.RegistryHelper;
 import joshie.harvest.core.util.annotations.HFLoader;
 import joshie.harvest.crops.block.BlockHFCrops;
@@ -102,17 +103,17 @@ public class HFCrops {
     public static void preInit() {
         //Register the crop serializer
         LootFunctionManager.registerFunction(new SetCropType.Serializer());
-        registerVanillaCrop(Items.WHEAT, WHEAT);
-        registerVanillaCrop(Items.CARROT, CARROT);
-        registerVanillaCrop(Items.POTATO, POTATO);
-        registerVanillaCrop(Items.BEETROOT, BEETROOT);
-        registerVanillaCrop(Items.MELON, WATERMELON);
-        registerVanillaCrop(Blocks.PUMPKIN, PUMPKIN);
-        registerVanillaCrop(Items.NETHER_WART, NETHER_WART);
+        registerVanillaCrop(Blocks.WHEAT, Items.WHEAT, WHEAT);
+        registerVanillaCrop(Blocks.CARROTS, Items.CARROT, CARROT);
+        registerVanillaCrop(Blocks.POTATOES, Items.POTATO, POTATO);
+        registerVanillaCrop(Blocks.BEETROOTS, Items.BEETROOT, BEETROOT);
+        registerVanillaCrop(Blocks.MELON_STEM, Items.MELON, WATERMELON);
+        registerVanillaCrop(Blocks.PUMPKIN_STEM, Blocks.PUMPKIN, PUMPKIN);
+        registerVanillaCrop(Blocks.NETHER_WART, Items.NETHER_WART, NETHER_WART);
         HFApi.crops.registerWateringHandler(new WateringHandler());
         HFApi.shipping.registerSellable(new ItemStack(Items.POISONOUS_POTATO), 1L);
-
         RegistryHelper.registerTiles(TileWithered.class, TileCrop.class, TileSprinkler.class);
+        if (DISABLE_VANILLA_WHEAT_SEEDS) RegistryHelper.removeSeed(new ItemStack(Items.WHEAT_SEEDS));
         if (DISABLE_VANILLA_MOISTURE) Blocks.FARMLAND.setTickRandomly(false);
     }
 
@@ -190,16 +191,24 @@ public class HFCrops {
         }
     }
 
-    private static void registerVanillaCrop(Item item, Crop crop) {
+    private static void registerVanillaCrop(Block cropBlock, Item item, Crop crop) {
         HFApi.crops.registerCropProvider(new ItemStack(item), crop);
         crop.setSkipRender();
         item.setCreativeTab(FARMING);
+        if (DISABLE_VANILLA_GROWTH || DISABLE_VANILLA_DROPS) DisableHandler.CROPS.add(cropBlock);
+        if (DISABLE_VANILLA_GROWTH) {
+            cropBlock.setTickRandomly(false);
+        }
     }
 
-    private static void registerVanillaCrop(Block block, Crop crop) {
+    private static void registerVanillaCrop(Block cropBlock, Block block, Crop crop) {
         HFApi.crops.registerCropProvider(new ItemStack(block), crop);
         crop.setSkipRender();
         block.setCreativeTab(FARMING);
+        if (DISABLE_VANILLA_GROWTH || DISABLE_VANILLA_DROPS) DisableHandler.CROPS.add(cropBlock);
+        if (DISABLE_VANILLA_GROWTH) {
+            cropBlock.setTickRandomly(false);
+        }
     }
 
     private static Crop registerCrop(String name) {
@@ -238,6 +247,9 @@ public class HFCrops {
     public static boolean ALWAYS_GROW;
     public static boolean DISABLE_VANILLA_HOE;
     public static boolean DISABLE_VANILLA_SEEDS;
+    public static boolean DISABLE_VANILLA_GROWTH;
+    public static boolean DISABLE_VANILLA_DROPS;
+    public static boolean DISABLE_VANILLA_WHEAT_SEEDS;
     public static boolean DISABLE_VANILLA_MOISTURE;
     public static int SPRINKLER_DRAIN_RATE;
     public static boolean VALIDATE_FARMLAND;
@@ -250,6 +262,9 @@ public class HFCrops {
         ENABLE_BONEMEAL = getBoolean("Enable bonemeal", false, "Enabling this will allow you to use bonemeal on plants to grow them.");
         SEASONAL_BONEMEAL = getBoolean("Seasonal bonemeal", true, "If you have bonemeal enabled, with this setting active, bonemeal will only work when the crop is in season");
         DISABLE_VANILLA_SEEDS = getBoolean("Disable vanilla seeds", true, "If this is true, vanilla seeds will not plant their crops");
+        DISABLE_VANILLA_GROWTH = getBoolean("Disable vanilla growth", true, "If this is true, vanilla crops will not grow");
+        DISABLE_VANILLA_DROPS = getBoolean("Disable vanilla drops", true, "If this is true, vanilla crops will not drop their items");
+        DISABLE_VANILLA_WHEAT_SEEDS = getBoolean("Disable seed drops from grass", true, "If this is true, grass will not drop wheat seeds");
         DISABLE_VANILLA_HOE = getBoolean("Disable vanilla hoes", false, "If this is true, vanilla hoes will not till dirt");
         DISABLE_VANILLA_MOISTURE = getBoolean("Disable vanilla moisture", true, "If this is set to true then farmland will not automatically become wet, and must be watered, it will also not automatically revert to dirt. (Basically disables random ticks for farmland)");
         SPRINKLER_DRAIN_RATE = getInteger("Sprinkler's daily consumption", 250, "This number NEEDs to be a factor of 1000, Otherwise you'll have trouble refilling the sprinkler manually. Acceptable values are: 1, 2, 4, 5, 8, 10, 20, 25, 40, 50, 100, 125, 200, 250, 500, 1000");

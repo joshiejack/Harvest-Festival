@@ -22,7 +22,7 @@ public class From extends FloorCondition {
 
     public static class Serializer extends LootCondition.Serializer<From> {
         public Serializer() {
-            super(new ResourceLocation(MODID, "between"), From.class);
+            super(new ResourceLocation(MODID, "from"), From.class);
         }
 
         public void serialize(JsonObject json, From value, JsonSerializationContext context) {

@@ -491,11 +491,11 @@ harvestfestival.npc.girafi.name=Johan
 # can remove or add more, for the greetings like: harvestfestival.npc.goddess.greeting
 # you can add up to 32 greetings
 #Key-Codes for conversations
-# %1s = Money - Player has
-# %2s = Player's Romantic Interest's name
-# %3s = Entity's Romantic Interest's name
-# %4s = Players Name
-# %5s = NPC Name
+# %1$s = Money - Player has
+# %2$s = Player's Romantic Interest's name
+# %3$s = Entity's Romantic Interest's name
+# %4$s = Players Name
+# %5$s = NPC Name
 #Conversations
 #Error
 harvestfestival.npc.error=Unable to find the translation for the key: %s or the key %s
@@ -551,6 +551,12 @@ harvestfestival.npc.goddess.greeting13=Nature is really beautiful isn't it?
 harvestfestival.npc.goddess.greeting14=If you fancy giving me a gift, the easiest way is to just throw an item in to my pond!
 harvestfestival.npc.goddess.marriage.reject=Sweety, I am not willing to be your sweety.
 harvestfestival.npc.goddess.marriage.accept=Well isn't this a surprise, my sweet. I will totally marry you!
+harvestfestival.npc.goddess.gift.awesome=This gift pleases me immensely.
+harvestfestival.npc.goddess.gift.good=This gift pleases me greatly.
+harvestfestival.npc.goddess.gift.decent=This gift pleases me.
+harvestfestival.npc.goddess.gift.dislike=This gift does not please me.
+harvestfestival.npc.goddess.gift.bad=This gift insults me.
+harvestfestival.npc.goddess.gift.terrible=How dare you insult me like this.
 
 # Goddess Weather
 harvestfestival.npc.goddess.weather.sunny1=Oh sweety, tomorrow is looking like a lovely day of sunshine!
@@ -581,6 +587,12 @@ harvestfestival.npc.katlin.greeting8=Tomas was my husband for 33 years, I do mis
 harvestfestival.npc.katlin.greeting9=When I was a little girl, my mother used to, well I probably shouldn't say.
 harvestfestival.npc.katlin.greeting10=Someday I'll make the best blanket you've ever seen.
 harvestfestival.npc.katlin.greeting11Good day youngun, what have you been up to?
+harvestfestival.npc.katlin.gift.awesome=You know your way to an old gals heart. This is just what I wanted.
+harvestfestival.npc.katlin.gift.good=For a youngster you give pretty good gifts.
+harvestfestival.npc.katlin.gift.decent=This is acceptable.
+harvestfestival.npc.katlin.gift.dislike=This is not acceptable.
+harvestfestival.npc.katlin.gift.bad=In my day, we gave people good gifts.
+harvestfestival.npc.katlin.gift.terrible=Are you trying to kill me? What an awful gift.
 
 #Danieuru/Chylex
 harvestfestival.npc.daniel.shop=I'm open every day of the week except for Thursdays from 10:00 to 16:00.
@@ -599,6 +611,12 @@ harvestfestival.npc.daniel.greeting12=If I could visit any country, hmm, I'd pro
 harvestfestival.npc.daniel.greeting13=There's nothing I hate more than the ocean. I reckon it's related to my fascination with Ender.
 harvestfestival.npc.daniel.marriage.reject=I'd rather spend my time polishing my tools than with you.
 harvestfestival.npc.daniel.marriage.accept=My tools can wait, we must get married at once!
+harvestfestival.npc.daniel.gift.awesome=And I thought the end was the best thing I experienced.
+harvestfestival.npc.daniel.gift.good=You give great gifts.
+harvestfestival.npc.daniel.gift.decent=It's alright.
+harvestfestival.npc.daniel.gift.dislike=It's not alright.
+harvestfestival.npc.daniel.gift.bad=You give bad gifts.
+harvestfestival.npc.daniel.gift.terrible=And I thought the rejection from Yulif was bad enough, now you give me this?
 
 #Cloe
 harvestfestival.npc.cloe.greeting1=A good book, makes a girl happy.
@@ -615,6 +633,12 @@ harvestfestival.npc.cloe.greeting11=My Uncle well he's a bit weird... He spends 
 harvestfestival.npc.cloe.greeting12=I can't believe my mother chose Team Valor.
 harvestfestival.npc.cloe.marriage.reject=Why would i ever want to get married, it's a waste of time.
 harvestfestival.npc.cloe.marriage.accept=I am ready to grow up, and spend my life with you.
+harvestfestival.npc.cloe.gift.awesome=You really are after my heart aren't you.
+harvestfestival.npc.cloe.gift.good=I appreciate the kind gift.
+harvestfestival.npc.cloe.gift.decent=Thanks.
+harvestfestival.npc.cloe.gift.dislike=Err, what?
+harvestfestival.npc.cloe.gift.bad=Err, no thanks...
+harvestfestival.npc.cloe.gift.terrible=I thought my parents were the worst, but nope it's you.
 
 #Liara/ApsciLiara
 harvestfestival.npc.liara.shop=I'm afraid the café is only open from 9:30 until 17:00, but we're open every day of the week!
@@ -635,6 +659,12 @@ harvestfestival.npc.liara.greeting14=I've been passionate about cooking all my l
 harvestfestival.npc.liara.greeting15=The café is open everyday! From half past nine in the morning to five in the evening.
 harvestfestival.npc.liara.marriage.reject=The café is my home. I do not wish to live with you.
 harvestfestival.npc.liara.marriage.accept=Thank you, I will marry you, I will cook you many meals.
+harvestfestival.npc.liara.gift.awesome=Thank you so so much, this will be remembered forever.
+harvestfestival.npc.liara.gift.good=Thank you very much.
+harvestfestival.npc.liara.gift.decent=Thank you.
+harvestfestival.npc.liara.gift.dislike=No thank you.
+harvestfestival.npc.liara.gift.bad=I do not enjoy this.
+harvestfestival.npc.liara.gift.terrible=I would thank you, but you have given me the worst thing anyone could give me. Goodbye.
 
 #Jade
 harvestfestival.npc.jade.greeting1=Hey! I just love going out in to the world, watch out for the sheep though!
@@ -653,6 +683,12 @@ harvestfestival.npc.jade.greeting13=I'm really not sure why you can't fertilise 
 harvestfestival.npc.jade.greeting14=Remember that that grass and wheat need a sickle in order to be harvested.
 harvestfestival.npc.jade.marriage.reject=Marriage isn't something I'm after at this stage.
 harvestfestival.npc.jade.marriage.accept=Marriage is something I'm ready for, I accept.
+harvestfestival.npc.jade.gift.awesome=It really is an awesome gift!
+harvestfestival.npc.jade.gift.good=What a good present!
+harvestfestival.npc.jade.gift.decent=I appreciate this.
+harvestfestival.npc.jade.gift.dislike=I can not appreciate this.
+harvestfestival.npc.jade.gift.bad=What a bad present!
+harvestfestival.npc.jade.gift.terrible=It really is a terrible gift!
 
 #Jenni/Othlon
 harvestfestival.npc.jenni.shop=Heya friend, just to remind you, we're open everyday except Wednesday and Sunday, from 9am to 5pm. Oh Saturdays we are only open from 11am to 3pm.
@@ -670,6 +706,12 @@ harvestfestival.npc.jenni.greeting11=My favourite animals are pigs, and my favou
 harvestfestival.npc.jenni.greeting12=My supplies are pretty limited, but one day I should be able to sell you more things.
 harvestfestival.npc.jenni.marriage.reject=We're not quite there yet.
 harvestfestival.npc.jenni.marriage.accept=My dear friend, I am now your dear wife.
+harvestfestival.npc.jenni.gift.awesome=My good friend this is just perfect, I love it.
+harvestfestival.npc.jenni.gift.good=You truly are a good friend.
+harvestfestival.npc.jenni.gift.decent=A good friend, you are.
+harvestfestival.npc.jenni.gift.dislike=Thanks my friend.
+harvestfestival.npc.jenni.gift.bad=You could have done better, but it's ok.
+harvestfestival.npc.jenni.gift.terrible=I did not think you could ever offend me, but you have now, why?
 
 #Jaimii
 harvestfestival.npc.jamie.greeting1=This is my town, and you remember that.
@@ -684,6 +726,12 @@ harvestfestival.npc.jamie.greeting9=I should probably tell you about how Katlin 
 harvestfestival.npc.jamie.greeting10=My family has been mayor for countless generations, noone could do this job better.
 harvestfestival.npc.jamie.greeting11=I'm not sure why I have to pay for all these things for others. It's my money.
 harvestfestival.npc.jamie.greeting12=I really hope Cloe grows up. She's really making my family look bad.
+harvestfestival.npc.jamie.gift.awesome=Finally you actually gave me something acceptable.
+harvestfestival.npc.jamie.gift.good=I guess it will do, just.
+harvestfestival.npc.jamie.gift.decent=And you think I like this?
+harvestfestival.npc.jamie.gift.dislike=You insult my family name with this gift.
+harvestfestival.npc.jamie.gift.bad=This is quite possibly one of the worst things you could have given me.
+harvestfestival.npc.jamie.gift.terrible=That's it, If I have full authority I would banish you from this town. You insult me, you insult my family, your tarnish this town. Do not try this ever again.
 
 #Abii
 harvestfestival.npc.abi.greeting1=Ooo, so cute. What's that? OMG!
@@ -701,6 +749,12 @@ harvestfestival.npc.abi.greeting12=I want a bunny rabbit, sooo cute.
 harvestfestival.npc.abi.greeting13=WOW you're really tall!
 harvestfestival.npc.abi.greeting14=Do you wanna play with me?
 harvestfestival.npc.abi.greeting15=My parents told me not to talk to strangers...!
+harvestfestival.npc.abi.gift.awesome=I LOVE it! I LOVE it! Thank you!
+harvestfestival.npc.abi.gift.good=Oooo, I really like this.
+harvestfestival.npc.abi.gift.decent=Aww, so nice.
+harvestfestival.npc.abi.gift.dislike=Hmm, not so nice.
+harvestfestival.npc.abi.gift.bad=Awww, I didn't want this.
+harvestfestival.npc.abi.gift.terrible=What? I HATE it, I HATE it. So mean!
 
 #Tiberius/WayofTime
 harvestfestival.npc.tiberius.time=Looks like you've been in this town for %s years.
@@ -716,8 +770,15 @@ harvestfestival.npc.tiberius.greeting8=Fenn can really be a lot of trouble some 
 harvestfestival.npc.tiberius.greeting9=The one thing I can tell you about time, is that if you gift someone on their birthday, they will like you even more.
 harvestfestival.npc.tiberius.greeting10=How long have you been in this town?
 harvestfestival.npc.tiberius.greeting11=I think I always found the Ancient Egyptian time period to be the most annoying.
+harvestfestival.npc.tiberius.greeting12=I'm hoping my brother will move to town one day, he has a fascination for bees.
 harvestfestival.npc.tiberius.marriage.reject=I'm not quite ready to marry yet.
 harvestfestival.npc.tiberius.marriage.accept=I am ready to become your husband.
+harvestfestival.npc.tiberius.gift.awesome=I find this a wonderful gift. There is nothing better in the world.
+harvestfestival.npc.tiberius.gift.good=This gift is very good.
+harvestfestival.npc.tiberius.gift.decent=You are kind.
+harvestfestival.npc.tiberius.gift.dislike=You are not so kind.
+harvestfestival.npc.tiberius.gift.bad=This gift is very bad.
+harvestfestival.npc.tiberius.gift.terrible=I find this a terrible gift. There is nothing worse in the world.
 
 #Jakob
 harvestfestival.npc.jacob.shop=My bait shop is open tuesday-friday 1pm to 7pm.
@@ -728,8 +789,18 @@ harvestfestival.npc.jacob.greeting4=I really hope it rains soon. Or is it now?
 harvestfestival.npc.jacob.greeting5=I've really been wondering if I should look in to mariculture.
 harvestfestival.npc.jacob.greeting6=Hey if you're looking for some fishing gear, I'm not quite ready to sell you anything.
 harvestfestival.npc.jacob.greeting7=My grandpa was a great fisherman. He's what inspired me to open my own tackle shop.
+harvestfestival.npc.jacob.greeting8=If I spent my whole life fishing, I would be happy.
+harvestfestival.npc.jacob.greeting9=If you hadn't realised by now, my passion is fishing.
+harvestfestival.npc.jacob.greeting10=I'm expecting you'll be able to catch new fish around her in the next few months.
+harvestfestival.npc.jacob.greeting11=Just keep swimming...
 harvestfestival.npc.jacob.marriage.reject=I'm really looking for one of the other fish in the sea.
 harvestfestival.npc.jacob.marriage.accept=You are my starfish, I cannot wait to be your husband.
+harvestfestival.npc.jacob.gift.awesome=Fishing is my passion. And you allowing me to continue with that. You are the best.
+harvestfestival.npc.jacob.gift.good=All things watery are good. Thank you.
+harvestfestival.npc.jacob.gift.decent=Thanks for the kind gift.
+harvestfestival.npc.jacob.gift.dislike=I'm not so sure about this one.
+harvestfestival.npc.jacob.gift.bad=I really don't like going underground.
+harvestfestival.npc.jacob.gift.terrible=Are you crazy? I would never ever want this.
 
 #Pokefenn
 harvestfestival.npc.fenn.greeting1=One day, I'm going to grow some vines, and you're going to climb them with me!
@@ -739,8 +810,17 @@ harvestfestival.npc.fenn.greeting4.greeting3=Have you heard of Minecraft? It's m
 harvestfestival.npc.fenn.greeting5=Good day!
 harvestfestival.npc.fenn.greeting6=Abi really scares me, have you met her?
 harvestfestival.npc.fenn.greeting7=I wish my dad would let me go outside more.
-harvestfestival.npc.fenn.greeting8=I want to be a herboculturistarborist a whatsit when I grow up!
+harvestfestival.npc.fenn.greeting8=I want to be a herboculturistarborist a whatsit when I grow up, maybe!
 harvestfestival.npc.fenn.greeting9=My favourite pokemon is bulbasaur.
+harvestfestival.npc.fenn.greeting10=I love playing with the little bugs!
+harvestfestival.npc.fenn.greeting11=Ohh, I remember I want to be a tree when I grow up!
+harvestfestival.npc.fenn.greeting12=I want my dad to make a tree house for me.
+harvestfestival.npc.fenn.gift.awesome=Woah!!!!!!! This... is... AMAZING!
+harvestfestival.npc.fenn.gift.good=Thanks! I loves it!
+harvestfestival.npc.fenn.gift.decent=Oo, I like it.
+harvestfestival.npc.fenn.gift.dislike=Hmmm, whyy.
+harvestfestival.npc.fenn.gift.bad=Whyyyy, I don't like it :(
+harvestfestival.npc.fenn.gift.terrible=No, no no, no nO NOO NOOOOO!!!! This is nooo!! Just no!
 
 #Jim/SpitefulFox
 harvestfestival.npc.jim.shop=The Animal Ranch is open from 10am to 3pm. From Monday to Saturday.
@@ -755,6 +835,12 @@ harvestfestival.npc.jim.greeting8=Did you know that large animals will eat your 
 harvestfestival.npc.jim.greeting9=If you feed your animals treats, eventually they'll make more things for you.
 harvestfestival.npc.jim.marriage.reject=I do not wish to get married.
 harvestfestival.npc.jim.marriage.accept=I have wished for this day for a long time. I will one hundred percent marry you.
+harvestfestival.npc.jim.gift.awesome=You are ridiculous. This is an amazing gift.
+harvestfestival.npc.jim.gift.good=I don't like to be spoilt, so this is a great gift.
+harvestfestival.npc.jim.gift.decent=This is a decent gift.
+harvestfestival.npc.jim.gift.dislike=I can't say that I fully like this gift.
+harvestfestival.npc.jim.gift.bad=This was not a good choice for a gift.
+harvestfestival.npc.jim.gift.terrible=If you knew me at all, you would not dare to give me this.
 
 #Brandon/Cricket
 harvestfestival.npc.brandon.shop=If you ever need some mining materials, I'm open from Monday to Saturday, 11am to 4pm.
@@ -765,17 +851,39 @@ harvestfestival.npc.brandon.greeting4=Do you ever get tired of mining? I never d
 harvestfestival.npc.brandon.greeting5=I'll never understand why people are afraid of the dark. There's nothing better than mining without seeing where you are going.
 harvestfestival.npc.brandon.greeting6=The other day when I was in the mines, I heard and saw this strange fire like creature. I wonder what it was?
 harvestfestival.npc.brandon.greeting7=I'll let you in on a secret on how to mine more efficiently. If you jump then hit the rocks on your way down, you will smash them instantly! You'll even hit a bunch more rocks on your way down too. Oh this will also work to flatten farmland too.
+harvestfestival.npc.brandon.greeting8=If you're ever stuck deep down in the mine, just use an escape rope to get out.
+harvestfestival.npc.brandon.greeting9=If I wasn't in to mining, I'd probably chisel three rocks. Not sure why three though.
+harvestfestival.npc.brandon.greeting10=Noone here seems to like me, any idea why?
+harvestfestival.npc.brandon.greeting11=I'm tired of the people in this town, I just want to escape.
+harvestfestival.npc.brandon.greeting12=Be careful when you're in the mine, there's some dangerous animals in there.
 harvestfestival.npc.brandon.marriage.reject=Do you really think I would marry someone like you?
 harvestfestival.npc.brandon.marriage.accept=I was hoping for someone better, but I'll marry you.
+harvestfestival.npc.brandon.gift.awesome=I couldn't thank you enough. I have been looking for a new pick for ages!
+harvestfestival.npc.brandon.gift.good=Mining gear is always something great to receive.
+harvestfestival.npc.brandon.gift.decent=Thanks, that was nice.
+harvestfestival.npc.brandon.gift.dislike=I guess that was nice.
+harvestfestival.npc.brandon.gift.bad=Did you not know? I hate nature.
+harvestfestival.npc.brandon.gift.terrible=Get away from me now. How dare you insult me with such a gift.
 
 #Tomas
 harvestfestival.npc.thomas.greeting1=I will save you from your sins.
-harvestfestival.npc.thomas.greeting2=Remember if you ever need anything cursed, blessed I will be happy to help.
+harvestfestival.npc.thomas.greeting2=Remember if you ever need any cursed tools blessed I will be happy to help.
 harvestfestival.npc.thomas.greeting3=Only he can save you now.
 harvestfestival.npc.thomas.greeting4=The lord's grace, is shining down upon you.
 harvestfestival.npc.thomas.greeting5=If you ever come across a cursed tool, bring it to me and I can bless it for 10000 Gold.
 harvestfestival.npc.thomas.greeting6=I can repair blessed tools for 1000 gold.
 harvestfestival.npc.thomas.greeting7=May god have mercy on you.
+harvestfestival.npc.thomas.greeting8=I believe I can fly.
+harvestfestival.npc.thomas.greeting9=Why did I ever marry that witch, katlin.
+harvestfestival.npc.thomas.greeting10=You should see the church on Sundays. It is quite packed.
+harvestfestival.npc.thomas.greeting11=I am so proud of Abi, my little girl. I think Cloe has a lot to learn from her.
+harvestfestival.npc.thomas.greeting12=The power of christ compels you!
+harvestfestival.npc.thomas.gift.awesome=What an explosive gift! This is just perfect. God loves you, child.
+harvestfestival.npc.thomas.gift.good=This is such a heavenly gift, thank you.
+harvestfestival.npc.thomas.gift.decent=Bless you my child.
+harvestfestival.npc.thomas.gift.dislike=This is, err, okay.
+harvestfestival.npc.thomas.gift.bad=You insult god with your gift!
+harvestfestival.npc.thomas.gift.terrible=I would condemn you to hell for such a gift, it is just not right.
 
 #Candice
 harvestfestival.npc.candice.greeting1=I love my job, and sharing it with my friends.
@@ -784,9 +892,20 @@ harvestfestival.npc.candice.greeting3=Where the heck am I? What is this world?
 harvestfestival.npc.candice.greeting4=Come over here, I have something in my eye.
 harvestfestival.npc.candice.greeting5=Hello %4$s! I hope you're feeling well? You look so beautiful today!
 harvestfestival.npc.candice.greeting6=Hey pretty, I've got a tip for you today. You don't need to water grass, it will grow anyway!
-harvestfestival.npc.candice.greeting7=Did you know that I normally work with Jim as a milkmaid?
+harvestfestival.npc.candice.greeting7=Did you know that I normally work with Jim as a milkmaid?.
+harvestfestival.npc.candice.greeting8=You'll probably want to give your animals different types of treats.
+harvestfestival.npc.candice.greeting9=You look confused? I'm pretty sure we have met before.
+harvestfestival.npc.candice.greeting10=I'm originally from Texas, what about you?
+harvestfestival.npc.candice.greeting11=Make sure to talk to people and make friends!
+harvestfestival.npc.candice.greeting12=If you ever need a should to cry on, I'm not it.
 harvestfestival.npc.candice.marriage.reject=No chance, I'm not looking for marriage.
 harvestfestival.npc.candice.marriage.accept=You are so perfect! We will make the greatest couple, I accept your proposal!
+harvestfestival.npc.candice.gift.awesome=Holy! You are beautiful. Absolutely amazing, just what I love.
+harvestfestival.npc.candice.gift.good=You know how to make a girl smile don't you?
+harvestfestival.npc.candice.gift.decent=Thanks beautiful.
+harvestfestival.npc.candice.gift.dislike=Umm, It will do.
+harvestfestival.npc.candice.gift.bad=Umm, I'm not quite sure this is what I wanted.
+harvestfestival.npc.candice.gift.terrible=I cannot belive you would ever give me this. Do you not like me?
 
 #Yulife
 harvestfestival.npc.yulif.shop=If yer looking for buildings, I'm afraid I'm only available 9am to 5:30pm, Sunday to Friday.
@@ -795,9 +914,23 @@ harvestfestival.npc.yulif.greeting2=People treat me like a slave, no rest for th
 harvestfestival.npc.yulif.greeting3=Have you seen Jim? Isn't he just?
 harvestfestival.npc.yulif.greeting4=I am tired of all this hard work, When will ya appreciate my buildings?
 harvestfestival.npc.yulif.greeting5=I am tired of wandering around, I am dying right now.
-harvestfestival.npc.yulif.greeting6=If ya get in my way, I can't build there.
+harvestfestival.npc.yulif.greeting6=I can always use new materials to help me build.
+harvestfestival.npc.yulif.greeting7=I've heard my wood and stone prices are crazy, but I consider them fair.
+harvestfestival.npc.yulif.greeting8=How have yer been getting on %2$s?
+harvestfestival.npc.yulif.greeting9=If you ever lose me, remember yer can always recall me with a new carpenter building.
+harvestfestival.npc.yulif.greeting10=I'll have more building for ya as our town grows.
+harvestfestival.npc.yulif.greeting11=If ya need to know when someone's open for business, just ask.
+harvestfestival.npc.yulif.greeting12=Sometimes I just push myself too much, too many project at once.
+harvestfestival.npc.yulif.greeting13=Jade may not like how I treat her sometimes, but ya just have to watch out for yer little sister, ya know?
 harvestfestival.npc.yulif.marriage.reject=Ehhh I'm not ready to get married.
 harvestfestival.npc.yulif.marriage.accept=Yer so kind, I'll be your husband.
+harvestfestival.npc.yulif.gift.awesome=How did ya know that this is what I would love. Thank yer.
+harvestfestival.npc.yulif.gift.good=Yer really know how to give good gifts.
+harvestfestival.npc.yulif.gift.decent=Thank yer.
+harvestfestival.npc.yulif.gift.dislike=Err, ok, thanks?
+harvestfestival.npc.yulif.gift.bad=Err, what? Why would I ever want this?
+harvestfestival.npc.yulif.gift.terrible=Damn, is this really what ya think I would like? Please don't talk to me.
+
 harvestfestival.npc.builder.build=Do not fret I am currently working on building the structure for the %s.
 harvestfestival.npc.builder.paint=I am currently placing up some paintings, and such for the %s.
 harvestfestival.npc.builder.decorate=Working hard, adding the finishing touches for the %s.
@@ -816,8 +949,18 @@ harvestfestival.npc.ashlee.greeting4=Most chicken handlers hate foxes, I love th
 harvestfestival.npc.ashlee.greeting5=Cluck, Cluck, Cluck Clucking. When will these chicks just shut the Cluck up!
 harvestfestival.npc.ashlee.greeting6=Feeding your chickens by hand will make you love them more, but it is more work.
 harvestfestival.npc.ashlee.greeting7=Chickens are happy to eat treats and chicken treats.
+harvestfestival.npc.ashlee.greeting8=The boys used to tease me at school, but looking at me now, surrounded by chicks!
+harvestfestival.npc.ashlee.greeting9=Incubators may be expensive but they're a great return on investment.
+harvestfestival.npc.ashlee.greeting10=The more treats you give an animal, the more they'll produce for you each day.
+harvestfestival.npc.ashlee.greeting11=Make sure to keep your chickens close to their nests, they won't wander far for them.
 harvestfestival.npc.ashlee.marriage.reject=Why would you even consider proposing?
 harvestfestival.npc.ashlee.marriage.accept=Woah, you are the best fox ever, I will marry you.
+harvestfestival.npc.ashlee.gift.awesome=You are a top fox, I love it with all my furry heart!
+harvestfestival.npc.ashlee.gift.good=This fox is happy to receive this.
+harvestfestival.npc.ashlee.gift.decent=Nice gift!
+harvestfestival.npc.ashlee.gift.dislike=Please don't give me this.
+harvestfestival.npc.ashlee.gift.bad=Why would you ever give me this?
+harvestfestival.npc.ashlee.gift.terrible=This gift is the worst thing I have ever received.
 
 #Girafi
 harvestfestival.npc.girafi.greeting1=Why hello fellow human, I am a humble trader, if you have any eggs, milk or wool I'll happily trade my own from the vanilla world!
@@ -827,8 +970,17 @@ harvestfestival.npc.girafi.greeting4=I could talk all day about my adventures ou
 harvestfestival.npc.girafi.greeting5=Hallo, hoe goes it?
 harvestfestival.npc.girafi.greeting6=Oh my, it's such a pleasure to see you once more.
 harvestfestival.npc.girafi.greeting7=Everyone has good days and bad days, you've just made my day great.
+harvestfestival.npc.girafi.greeting8=I am willing to trade for eggs, milk or wool, do not forget!
+harvestfestival.npc.girafi.greeting9=I have explored many biomes, in fact plenty of them indeed!
+harvestfestival.npc.girafi.greeting10=I could not me happier right now.
 harvestfestival.npc.girafi.marriage.reject=It has been a pleasure to know you. But I do not feel that way about you.
 harvestfestival.npc.girafi.marriage.accept=This is just wonderful, I will gladly marry you, and whisk you away somewhere far.
+harvestfestival.npc.girafi.gift.awesome=My, you absolutely know how to please a gentlemans senses. I can not thank you deeply enough.
+harvestfestival.npc.girafi.gift.good=You are a wonderful human being, thank you.
+harvestfestival.npc.girafi.gift.decent=This gift is good.
+harvestfestival.npc.girafi.gift.dislike=I am sorry, but this does not feel good.
+harvestfestival.npc.girafi.gift.bad=This gift is not something I would ever buy for myself.
+harvestfestival.npc.girafi.gift.terrible=This is possibly the last thing on earth I would ever consider owning. Do you hate me?
 
 ###Shop greetings
 # WARNING FOR SHOP NAMES:

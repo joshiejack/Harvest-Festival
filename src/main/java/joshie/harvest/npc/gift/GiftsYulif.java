@@ -17,16 +17,11 @@ public class GiftsYulif extends Gifts {
             return AWESOME;
         }
 
-        if (stack.getItem() == Items.SUGAR || stack.getItem() == Items.QUARTZ || stack.getItem() == Item.getItemFromBlock(Blocks.CAKE)) {
-            return GOOD;
-        }
+        if (stack.getItem() == Items.SUGAR || stack.getItem() == Items.QUARTZ || stack.getItem() == Item.getItemFromBlock(Blocks.CAKE)
+                ||  HFCrops.CORN.matches(stack) || HFCrops.PINEAPPLE.matches(stack)
+                ||  HFApi.npc.getGifts().isGiftType(stack, GiftCategory.CONSTRUCTION, GiftCategory.GATHERING)) {
 
-        if (HFCrops.CORN.matches(stack) || HFCrops.PINEAPPLE.matches(stack)) {
             return GOOD;
-        }
-
-        if (HFApi.npc.getGifts().isGiftType(stack, GiftCategory.CONSTRUCTION, GiftCategory.GATHERING)) {
-            return Quality.GOOD;
         }
 
         if (HFApi.npc.getGifts().isGiftType(stack, GiftCategory.FARMING)) {

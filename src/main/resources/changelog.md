@@ -4,6 +4,8 @@
 * Fixed jim not reminding you to feed your cow by hand during the tutorial
 * Fixed accidentally giving xp on the client side
 * Fixed yulif always saying that he's working on the basement
+* Fixed the sign on yulif's building to have the correct opening hours
+* Added a bunch of random greetings to npcs
 * Added config options that disable drops from grass
 * Added config options that stop vanilla crops from dropping, growing or being harvestable
 * Added a config option for 12 hour clock (by TehNut)

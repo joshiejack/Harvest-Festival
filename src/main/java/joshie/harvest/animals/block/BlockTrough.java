@@ -160,10 +160,11 @@ public class BlockTrough extends BlockHFEnumRotatableMeta<BlockTrough, Trough> i
     }
 
     @Override
-    public boolean feedAnimal(IAnimalTracked tracked, World world, BlockPos pos, IBlockState state) {
+    public boolean feedAnimal(IAnimalTracked tracked, World world, BlockPos pos, IBlockState state, boolean simulate) {
         if (HFApi.animals.canAnimalEatFoodType(tracked, AnimalFoodType.GRASS)) {
             TileTrough master = ((TileTrough) world.getTileEntity(pos)).getMaster();
             if (master.getFillAmount() > 0) {
+                if (simulate) return true;
                 master.adjustFill(-1);
                 //Good ol master block
                 return true;

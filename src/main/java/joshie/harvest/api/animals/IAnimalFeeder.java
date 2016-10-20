@@ -11,6 +11,7 @@ public interface IAnimalFeeder {
      * @param world         the world object
      * @param pos           the position of the feeder
      * @param state         the state of the block
+     * @param simulate      whether to actually feed the animal
      * @return  if the animal was fed */
-    boolean feedAnimal(IAnimalTracked tracked, World world, BlockPos pos, IBlockState state);
+    boolean feedAnimal(IAnimalTracked tracked, World world, BlockPos pos, IBlockState state, boolean simulate);
 }

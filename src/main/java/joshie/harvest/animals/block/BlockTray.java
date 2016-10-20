@@ -108,7 +108,6 @@ public class BlockTray extends BlockHFEnum<BlockTray, Tray> implements IAnimalFe
 
                     NBTTagCompound tag = drop.getSubCompound("Data", true);
                     tag.setInteger("Relationship", relationship);
-                    tag.setString("Owner", EntityHelper.getPlayerUUID(player).toString());
                     SpawnItemHelper.addToPlayerInventory(player, world, pos.getX(), pos.getY() + 1, pos.getZ(), drop);
                     world.setBlockState(pos, getStateFromEnum(NEST_EMPTY));
                     player.addStat(HFAchievements.egger);
@@ -130,14 +129,14 @@ public class BlockTray extends BlockHFEnum<BlockTray, Tray> implements IAnimalFe
     }
 
     @Override
-    public boolean feedAnimal(IAnimalTracked tracked, World world, BlockPos pos, IBlockState state) {
+    public boolean feedAnimal(IAnimalTracked tracked, World world, BlockPos pos, IBlockState state, boolean simulate) {
         if (getEnumFromState(state).isFeeder()) {
             if (HFApi.animals.canAnimalEatFoodType(tracked, AnimalFoodType.SEED)) {
                 TileFeeder feeder = ((TileFeeder) world.getTileEntity(pos));
                 if (feeder.getFillAmount() > 0) {
+                    if (simulate) return true;
                     feeder.adjustFill(-1);
                     tracked.getData().feed(null);
-
                     return true;
                 }
             }

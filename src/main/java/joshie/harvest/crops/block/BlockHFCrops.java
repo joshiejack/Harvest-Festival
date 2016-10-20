@@ -390,13 +390,14 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
     }
 
     @Override
-    public boolean feedAnimal(IAnimalTracked tracked, World world, BlockPos pos, IBlockState state) {
+    public boolean feedAnimal(IAnimalTracked tracked, World world, BlockPos pos, IBlockState state, boolean simulate) {
         if (HFApi.animals.canAnimalEatFoodType(tracked, AnimalFoodType.GRASS)) {
             CropData data = CropHelper.getCropDataAt(world, pos);
             if (data != null) {
                 if (data.getCrop() == HFCrops.GRASS) {
                     int stage = data.getStage();
                     if (stage > 5) {
+                        if (simulate) return true;
                         HFApi.crops.plantCrop(tracked.getData().getOwner(), world, pos, data.getCrop(), stage - 5);
                         return true;
                     }

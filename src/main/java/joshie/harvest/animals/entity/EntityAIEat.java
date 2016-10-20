@@ -39,7 +39,7 @@ public class EntityAIEat extends EntityAIBase {
         IBlockState state = animal.worldObj.getBlockState(position);
         Block block = state.getBlock();
         if (block instanceof IAnimalFeeder) {
-            if(((IAnimalFeeder) block).feedAnimal(tracked, animal.worldObj, position, state)) {
+            if(((IAnimalFeeder) block).feedAnimal(tracked, animal.worldObj, position, state, false)) {
                 wanderTick = 200;
             }
         }

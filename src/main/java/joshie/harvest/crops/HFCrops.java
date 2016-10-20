@@ -51,10 +51,12 @@ import java.util.List;
 import static joshie.harvest.api.animals.AnimalFoodType.FRUIT;
 import static joshie.harvest.api.calendar.Season.*;
 import static joshie.harvest.core.HFTab.FARMING;
+import static joshie.harvest.core.handlers.DisableHandler.BLACKLIST;
 import static joshie.harvest.core.helpers.ConfigHelper.getBoolean;
 import static joshie.harvest.core.helpers.ConfigHelper.getInteger;
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 import static joshie.harvest.core.lib.LoadOrder.HFCROPS;
+import static net.minecraft.init.Items.*;
 
 @HFLoader(priority = HFCROPS)
 public class HFCrops {
@@ -113,8 +115,15 @@ public class HFCrops {
         registerVanillaCrop(Blocks.NETHER_WART, Items.NETHER_WART, NETHER_WART);
         HFApi.shipping.registerSellable(new ItemStack(Items.POISONOUS_POTATO), 1L);
         RegistryHelper.registerTiles(TileWithered.class, TileCrop.class, TileSprinkler.class);
-        if (DISABLE_VANILLA_WHEAT_SEEDS) RegistryHelper.removeSeed(new ItemStack(Items.WHEAT_SEEDS));
         if (DISABLE_VANILLA_MOISTURE) Blocks.FARMLAND.setTickRandomly(false);
+        if (DISABLE_VANILLA_WHEAT_SEEDS || DISABLE_VANILLA_SEEDS) {
+            BLACKLIST.register(MELON_SEEDS);
+            BLACKLIST.register(PUMPKIN_SEEDS);
+            BLACKLIST.register(BEETROOT_SEEDS);
+            BLACKLIST.register(WHEAT_SEEDS);
+            BLACKLIST.register(CARROT);
+            BLACKLIST.register(POTATO);
+        }
     }
 
     @SideOnly(Side.CLIENT)

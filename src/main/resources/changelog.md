@@ -1,3 +1,8 @@
+##0.5.12
+* Fixed a potential crash with seed drops
+* Doubled the amount of fodder that is stored in troughs
+* Made chickens lay eggs more reliably
+
 ##0.5.11
 * Fixed a crash with the shipping bin when loading worlds when a hopper is inserting items
 * Fixed removing blocks that aren't snow in winter

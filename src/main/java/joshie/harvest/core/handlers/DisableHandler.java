@@ -3,6 +3,7 @@ package joshie.harvest.core.handlers;
 import joshie.harvest.core.util.HFEvents;
 import joshie.harvest.core.util.holder.HolderRegistrySet;
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.UseHoeEvent;
@@ -11,34 +12,22 @@ import net.minecraftforge.fml.common.eventhandler.Event.Result;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 import static joshie.harvest.animals.HFAnimals.DISABLE_SPAWN_CHICKEN;
 import static joshie.harvest.crops.HFCrops.*;
-import static net.minecraft.init.Items.*;
-import static net.minecraft.init.Items.CARROT;
-import static net.minecraft.init.Items.POTATO;
+import static net.minecraft.init.Items.EGG;
 
 public class DisableHandler {
     //Crop Blocks
     public static final Set<Block> CROPS = new HashSet<>();
+    public static final HolderRegistrySet BLACKLIST = new HolderRegistrySet();
 
     /* Disables vanilla seeds from being able to be planted **/
     @HFEvents
     public static class DisableVanillaSeeds {
-        public static final HolderRegistrySet BLACKLIST = new HolderRegistrySet();
-
-        public static boolean register() {
-            if (DISABLE_VANILLA_SEEDS) {
-                BLACKLIST.register(MELON_SEEDS);
-                BLACKLIST.register(PUMPKIN_SEEDS);
-                BLACKLIST.register(BEETROOT_SEEDS);
-                BLACKLIST.register(WHEAT_SEEDS);
-                BLACKLIST.register(CARROT);
-                BLACKLIST.register(POTATO);
-                return true;
-            } else return false;
-        }
+        public static boolean register() { return DISABLE_VANILLA_SEEDS; }
 
         @SubscribeEvent
         public void onRightClickBlock(PlayerInteractEvent.RightClickBlock event) {
@@ -103,6 +92,22 @@ public class DisableHandler {
         public void onUseHoe(UseHoeEvent event) {
             if (DISABLE_VANILLA_HOE) {
                 event.setCanceled(true);
+            }
+        }
+    }
+
+    /* Disables seeds from dropping from grass **/
+    @HFEvents
+    public static class SeedDrops {
+        public static boolean register() { return DISABLE_VANILLA_WHEAT_SEEDS; }
+
+        @SubscribeEvent
+        public void onItemDropping(BlockEvent.HarvestDropsEvent event) {
+            if (event.getState().getBlock() == Blocks.TALLGRASS || event.getState().getBlock() == Blocks.DOUBLE_PLANT) {
+                Iterator<ItemStack> it = event.getDrops().iterator();
+                while (it.hasNext()) {
+                    if (BLACKLIST.contains(it.next())) it.remove();
+                }
             }
         }
     }

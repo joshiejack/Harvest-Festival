@@ -2,7 +2,7 @@ package joshie.harvest.plugins;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.cooking.Ingredient;
-import joshie.harvest.core.handlers.DisableHandler.VanillaSeeds;
+import joshie.harvest.core.handlers.DisableHandler;
 import joshie.harvest.core.util.annotations.HFLoader;
 import joshie.harvest.crops.HFCrops;
 import net.minecraft.block.Block;
@@ -19,7 +19,7 @@ public class BiomesOPlenty {
 
     @SuppressWarnings("ConstantConditions")
     public static void init() {
-        VanillaSeeds.BLACKLIST.register(turnip_seeds);
+        DisableHandler.BLACKLIST.register(turnip_seeds);
         HFApi.crops.registerCropProvider(new ItemStack(turnip), HFCrops.TURNIP);
         Ingredient mushroomIngredient = Ingredient.INGREDIENTS.get("mushroom");
         HFApi.cooking.register(new ItemStack(mushroom, 1, 1), mushroomIngredient);

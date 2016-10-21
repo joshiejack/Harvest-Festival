@@ -9,6 +9,7 @@
 * Crops will now be plantable on more than farmland,
     however they will only grow on farmland when a mod adds support
 #Fixes
+* Gifting npcs on their birthday will now only work once on smp, instead of over multiple days
 * My hoes will now work with BOP blocks
 * Made shop scroll behave better
 * Add used to upgrade tooltip to all ores

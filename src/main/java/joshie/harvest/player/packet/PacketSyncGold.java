@@ -29,6 +29,6 @@ public class PacketSyncGold extends PenguinPacket {
 
     @Override
     public void handlePacket(EntityPlayer player) {
-        HFTrackers.getClientPlayerTracker().getStats().setGold(gold);
+        HFTrackers.getClientPlayerTracker().getStats().setGoldValue(gold);
     }
 }

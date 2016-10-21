@@ -34,12 +34,22 @@ public class EntityAILayEgg extends EntityAIBase {
 
     @Override
     public void updateTask() {
-        BlockPos position = new BlockPos(animal).add(animal.worldObj.rand.nextInt(6) - 3, animal.worldObj.rand.nextInt(3), animal.worldObj.rand.nextInt(6) - 3);
-        IBlockState state = animal.worldObj.getBlockState(position);
-        Block block = state.getBlock();
-        if (block instanceof INest) {
-            if(((INest) block).layEgg(tracked, animal.worldObj, position, state)) {
-                wanderTick = 200;
+        if (wanderTick %20 == 0) {
+            check:
+            for (int x = -5; x <= 5; x++) {
+                for (int z = -5; z <= 5; z++) {
+                    for (int y = 0; y <= 3; y++) {
+                        BlockPos position = new BlockPos(animal).add(x, y, z);
+                        IBlockState state = animal.worldObj.getBlockState(position);
+                        Block block = state.getBlock();
+                        if (block instanceof INest) {
+                            if (((INest) block).layEgg(tracked, animal.worldObj, position, state)) {
+                                wanderTick = 200;
+                                break check;
+                            }
+                        }
+                    }
+                }
             }
         }
 

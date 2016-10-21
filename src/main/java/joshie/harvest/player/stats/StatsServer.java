@@ -3,6 +3,7 @@ package joshie.harvest.player.stats;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.CalendarDate;
 import joshie.harvest.core.network.PacketHandler;
+import joshie.harvest.player.PlayerTrackerServer;
 import joshie.harvest.player.packet.PacketSyncBirthday;
 import joshie.harvest.player.packet.PacketSyncGold;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -15,6 +16,12 @@ import static joshie.harvest.api.calendar.Season.WINTER;
 
 
 public class StatsServer extends Stats {
+    private final PlayerTrackerServer master;
+
+    public StatsServer(PlayerTrackerServer master) {
+        this.master = master;
+    }
+
     private boolean isBirthdaySet() {
         return birthday.getSeason() != WINTER && birthday.getDay() != 0 && birthday.getYear() != 0;
     }
@@ -34,6 +41,11 @@ public class StatsServer extends Stats {
     public void setGold(@Nullable EntityPlayerMP player, long amount) {
         gold = amount;
         if (player != null) syncGold(player);
+    }
+
+    @Override
+    public void setGold(long amount) {
+        setGold(master.getAndCreatePlayer(), amount);
     }
     
     public void sync(EntityPlayerMP player) {

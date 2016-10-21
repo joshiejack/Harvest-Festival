@@ -1,9 +1,12 @@
 package joshie.harvest.player.relationships;
 
+import joshie.harvest.api.calendar.CalendarDate;
+import joshie.harvest.api.npc.NPCStatus;
 import joshie.harvest.core.achievements.HFAchievements;
 import joshie.harvest.core.helpers.NBTHelper;
 import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.npc.HFNPCs;
+import joshie.harvest.player.PlayerTrackerServer;
 import joshie.harvest.player.packet.PacketSyncGifted;
 import joshie.harvest.player.packet.PacketSyncMarriage;
 import joshie.harvest.player.packet.PacketSyncRelationship;
@@ -11,38 +14,56 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.nbt.NBTTagString;
 
 import javax.annotation.Nullable;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 public class RelationshipDataServer extends RelationshipData {
-    private Set<UUID> talked = new HashSet<>();
-    private Set<UUID> temp;
+    private final PlayerTrackerServer master;
 
-    public void newDay() {
-        talked = new HashSet<>();
-        temp = gifted; //Clone it
-        gifted = new HashSet<>();
+    public RelationshipDataServer(PlayerTrackerServer master) {
+        this.master = master;
+    }
+
+    public void newDay(CalendarDate yesterday, CalendarDate today) {
+        for (UUID uuid: status.keySet()) {
+            for (NPCStatus stat: NPCStatus.values()) {
+                if ((stat.isSeasonal() && yesterday.getSeason() != today.getSeason()) || !stat.isPermenant()) {
+                    status.get(uuid).remove(stat);
+                }
+            }
+        }
+    }
+
+    public boolean hasGivenBirthdayGift(UUID uuid) {
+        return status.get(uuid).contains(NPCStatus.BIRTHDAY_GIFT);
+    }
+
+    public void setHasGivenBirthdayGift(UUID uuid) {
+        status.get(uuid).add(NPCStatus.BIRTHDAY_GIFT);
     }
 
     @Override
     public void talkTo(EntityPlayer player, UUID key) {
-        if (!talked.contains(key)) {
-            affectRelationship(player, key, 100);
-            talked.add(key);
+        Collection<NPCStatus> statuses = status.get(key);
+        if (!statuses.contains(NPCStatus.TALKED)) {
+            statuses.add(NPCStatus.TALKED);
+            affectRelationship(key, 100);
         }
+
+        //Add this so we will always have a key for something
+        if (!statuses.contains(NPCStatus.MET)) statuses.add(NPCStatus.MET);
     }
 
     @Override
     public boolean gift(EntityPlayer player, UUID key, int amount) {
-        if (!gifted.contains(key)) {
+        Collection<NPCStatus> statuses = status.get(key);
+        if (!statuses.contains(NPCStatus.GIFTED)) {
             if (amount == 0) return true;
             syncGifted((EntityPlayerMP) player, key, true);
-            affectRelationship(player, key, amount);
-            gifted.add(key);
+            affectRelationship(key, amount);
+            statuses.add(NPCStatus.GIFTED);
             return true;
         }
 
@@ -50,11 +71,14 @@ public class RelationshipDataServer extends RelationshipData {
     }
 
     @Override
-    public void affectRelationship(EntityPlayer player, UUID key, int amount) {
+    public void affectRelationship(UUID key, int amount) {
         int newValue = Math.max(0, Math.min(HFNPCs.MARRIAGE_REQUIREMENT, getRelationship(key) + amount));
         relationships.put(key, newValue);
-        if (newValue >= 5000) player.addStat(HFAchievements.friend);
-        syncRelationship((EntityPlayerMP) player, key, newValue, true);
+        EntityPlayerMP player = master.getAndCreatePlayer();
+        if (player != null) {
+            if (newValue >= 5000) player.addStat(HFAchievements.friend);
+            syncRelationship(player, key, newValue, true);
+        }
     }
 
     @Override
@@ -67,26 +91,15 @@ public class RelationshipDataServer extends RelationshipData {
     }
 
     public void sync(EntityPlayerMP player) {
-        for (UUID key : marriedTo) {
-            syncMarriage(player, key, true);
-        }
-
         for (UUID key : relationships.keySet()) {
             syncRelationship(player, key, relationships.get(key), false);
         }
 
-        //
-        //IF we didn't clone yesterdays, then sync the current, otherwise, destroy yesterdays after syncing
-        if (temp == null) {
-            for (UUID key : gifted) {
-                syncGifted(player, key, true);
-            }
-        } else {
-            for (UUID key: temp) {
-                syncGifted(player, key, false);
-            }
 
-            temp = null;
+        for (UUID key: status.keySet()) {
+            Collection<NPCStatus> statuses = status.get(key);
+            syncGifted(player, key, statuses.contains(NPCStatus.GIFTED));
+            syncMarriage(player, key, statuses.contains(NPCStatus.MARRIED));
         }
     }
 
@@ -114,9 +127,28 @@ public class RelationshipDataServer extends RelationshipData {
             }
         }
 
-        talked = NBTHelper.readUUIDSet(nbt, "TalkedTo");
-        gifted = NBTHelper.readUUIDSet(nbt, "Gifted");
-        marriedTo = NBTHelper.readUUIDSet(nbt, "MarriedTo");
+        NBTTagList statusList = nbt.getTagList("Statuses", 10);
+        for (int i = 0; i < statusList.tagCount(); i++) {
+            NBTTagCompound tag = statusList.getCompoundTagAt(i);
+            if (tag.hasKey("UUID")) {
+                UUID key = UUID.fromString(tag.getString("UUID"));
+                Collection<NPCStatus> collection = status.get(key);
+                NBTTagList statuses = tag.getTagList("Status", 8);
+                for (int j = 0; j < statuses.tagCount(); j++) {
+                    collection.add(NPCStatus.valueOf(statuses.getStringTagAt(j)));
+                }
+            }
+        }
+
+        //TODO: Remove in 0.7
+        if (nbt.hasKey("TalkedTo") || nbt.hasKey("Gifted") || nbt.hasKey("MarriedTo")) {
+            Set<UUID> talked = NBTHelper.readUUIDSet(nbt, "TalkedTo");
+            Set<UUID> gifted = NBTHelper.readUUIDSet(nbt, "Gifted");
+            Set<UUID> marriedTo = NBTHelper.readUUIDSet(nbt, "MarriedTo");
+            for (UUID uuid: talked) status.get(uuid).add(NPCStatus.TALKED);
+            for (UUID uuid: gifted) status.get(uuid).add(NPCStatus.GIFTED);
+            for (UUID uuid: marriedTo) status.get(uuid).add(NPCStatus.MARRIED);
+        }
     }
 
     public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
@@ -131,9 +163,23 @@ public class RelationshipDataServer extends RelationshipData {
         }
 
         nbt.setTag("Relationships", relationList);
-        nbt.setTag("TalkedTo", NBTHelper.writeUUIDSet(talked));
-        nbt.setTag("Gifted", NBTHelper.writeUUIDSet(gifted));
-        nbt.setTag("MarriedTo", NBTHelper.writeUUIDSet(marriedTo));
+
+        //Save the Statuses
+        NBTTagList statusList = new NBTTagList();
+        for (UUID uuid: status.keySet()) {
+            NBTTagCompound tag = new NBTTagCompound();
+            tag.setString("UUID", uuid.toString());
+            NBTTagList list = new NBTTagList();
+            for (NPCStatus stat: status.get(uuid)) {
+                list.appendTag(new NBTTagString(stat.name()));
+            }
+
+            tag.setTag("Status", list);
+            statusList.appendTag(tag);
+        }
+
+        nbt.setTag("Statuses", statusList);
+
         return nbt;
     }
 }

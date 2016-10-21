@@ -85,7 +85,7 @@ public class AnimalData implements IAnimalData {
         }
 
         //Gets the adjusted relationship, 0-65k
-        int relationship = HFApi.relationships.getRelationship(owner, getUUID());
+        int relationship = HFApi.player.getRelationsForPlayer(owner).getRelationship(getUUID());
         double chance = (relationship / (double) HFNPCs.MAX_FRIENDSHIP) * 200;
         chance += healthiness;
         if (chance <= 1) {
@@ -301,7 +301,7 @@ public class AnimalData implements IAnimalData {
 
     private void affectRelationship(EntityPlayer player, int amount) {
         if (player != null) {
-            HFTrackers.getPlayerTrackerFromPlayer(player).getRelationships().affectRelationship(player, getUUID(), amount);
+            HFApi.player.getRelationsForPlayer(player).affectRelationship(getUUID(), amount);
         }
     }
 

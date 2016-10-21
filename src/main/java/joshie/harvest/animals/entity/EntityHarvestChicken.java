@@ -5,7 +5,6 @@ import io.netty.buffer.ByteBuf;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.IAnimalData;
 import joshie.harvest.api.animals.IAnimalTracked;
-import joshie.harvest.core.HFTrackers;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
@@ -94,7 +93,7 @@ public class EntityHarvestChicken extends EntityChicken implements IAnimalTracke
         if (toLovePlayer != null) {
             if (toLoveTicker >= 0) toLoveTicker--;
             else {
-                HFTrackers.getPlayerTrackerFromPlayer(toLovePlayer).getRelationships().affectRelationship(toLovePlayer, getUUID(), 100);
+                HFApi.player.getRelationsForPlayer(toLovePlayer).affectRelationship(getUUID(), 100);
                 toLovePlayer = null;
             }
         }

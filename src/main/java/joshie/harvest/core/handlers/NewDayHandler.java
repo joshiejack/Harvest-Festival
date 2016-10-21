@@ -1,6 +1,7 @@
 package joshie.harvest.core.handlers;
 
 import joshie.harvest.animals.AnimalTrackerServer;
+import joshie.harvest.api.calendar.CalendarDate;
 import joshie.harvest.api.ticking.IDailyTickable;
 import joshie.harvest.calendar.CalendarServer;
 import joshie.harvest.core.HFTrackers;
@@ -33,9 +34,12 @@ public class NewDayHandler {
             if (event.phase != Phase.END) return;
             World overworld = FMLCommonHandler.instance().getMinecraftServerInstance().worldServers[0];
             if (overworld.getWorldTime() % TICKS_PER_DAY == 1) {
+                CalendarServer calendar = HFTrackers.<CalendarServer>getCalendar(overworld);
+                CalendarDate yesterday = calendar.getDate();
                 HFTrackers.<CalendarServer>getCalendar(overworld).newDay(overworld);
+                CalendarDate today = calendar.getDate();
                 for (PlayerTrackerServer player : HFTrackers.getPlayerTrackers()) {
-                    player.newDay();
+                    player.newDay(yesterday, today);
                 }
 
                 AnimalTrackerServer.processQueue();

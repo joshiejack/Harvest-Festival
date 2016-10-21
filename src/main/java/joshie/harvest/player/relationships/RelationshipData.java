@@ -1,32 +1,30 @@
 package joshie.harvest.player.relationships;
 
+import com.google.common.collect.HashMultimap;
+import com.google.common.collect.Multimap;
+import joshie.harvest.api.npc.NPCStatus;
+import joshie.harvest.api.player.IRelations;
 import joshie.harvest.core.achievements.HFAchievements;
 import joshie.harvest.core.helpers.TextHelper;
 import joshie.harvest.npc.HFNPCs;
 import net.minecraft.entity.player.EntityPlayer;
 
 import javax.annotation.Nullable;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
-public abstract class RelationshipData {
+public abstract class RelationshipData implements IRelations {
     public void talkTo(EntityPlayer player, UUID key) {}
     public boolean gift(EntityPlayer player, UUID key, int amount) { return false; }
-    public void affectRelationship(EntityPlayer player, UUID key, int amount) {}
     public void copyRelationship(@Nullable EntityPlayer player, int adult, UUID baby, double percentage) {}
-    public void setRelationship(UUID key, int value) {}
-    public void setMarriageState(UUID key, boolean divorce) {}
 
     protected final HashMap<UUID, Integer> relationships = new HashMap<>();
-    protected Set<UUID> marriedTo = new HashSet<>();
-    protected Set<UUID> gifted = new HashSet<>();
+    protected final Multimap<UUID, NPCStatus> status = HashMultimap.create();
 
     public void clear(UUID key) {
         relationships.remove(key);
     }
 
+    @Override
     public int getRelationship(UUID key) {
         if (relationships.containsKey(key)) {
             return relationships.get(key);
@@ -40,15 +38,16 @@ public abstract class RelationshipData {
     //If we have the npc friendship requirement and we propose then we become married, if
     //We don't they shall hate us!
     public boolean propose(EntityPlayer player, UUID key) {
-        if (!marriedTo.contains(key)) {
+        Collection<NPCStatus> statuses = status.get(key);
+        if (!statuses.contains(NPCStatus.MARRIED)) {
             int value = getRelationship(key);
             if (value >= HFNPCs.MARRIAGE_REQUIREMENT) {
-                marriedTo.add(key);
+                statuses.add(NPCStatus.MARRIED);
                 player.addStat(HFAchievements.marriage);
-                affectRelationship(player, key, 1000);
+                affectRelationship(key, 1000);
                 return true;
             } else {
-                affectRelationship(player, key, -500);
+                affectRelationship(key, -500);
             }
         }
 

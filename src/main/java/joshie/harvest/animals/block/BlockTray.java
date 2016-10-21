@@ -104,7 +104,7 @@ public class BlockTray extends BlockHFEnum<BlockTray, Tray> implements IAnimalFe
                 if (!world.isRemote) {
                     ItemStack drop = nest.getDrop();
                     List<EntityHarvestChicken> chickens = EntityHelper.getEntities(EntityHarvestChicken.class, world, pos, 32D, 8D);
-                    int relationship = chickens.size() > 0 ? HFApi.relationships.getRelationship(player, chickens.get(0).getUUID()): 0;
+                    int relationship = chickens.size() > 0 ? HFApi.player.getRelationsForPlayer(player).getRelationship(chickens.get(0).getUUID()): 0;
 
                     NBTTagCompound tag = drop.getSubCompound("Data", true);
                     tag.setInteger("Relationship", relationship);
@@ -150,7 +150,7 @@ public class BlockTray extends BlockHFEnum<BlockTray, Tray> implements IAnimalFe
         EntityPlayer player = tracked.getData().getOwner();
         if (player != null && getEnumFromState(state) == NEST_EMPTY && tracked.getData().getType().getName().equals("chicken")) {
             Size size = null;
-            int relationship = HFApi.relationships.getRelationship(player, tracked.getUUID());
+            int relationship = HFApi.player.getRelationsForPlayer(player).getRelationship(tracked.getUUID());
             for (Size s : Size.values()) {
                 if (relationship >= s.getRelationshipRequirement()) size = s;
             }

@@ -146,7 +146,7 @@ public class TileTrough extends TileFillable {
     }
 
     private boolean hasRoomAndFill() {
-        if (fillAmount < (2 * size)) {
+        if (fillAmount < (4 * size)) {
             setFilled(getFillAmount() + 1);
             return true;
         }

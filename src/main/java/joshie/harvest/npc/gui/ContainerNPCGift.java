@@ -6,6 +6,8 @@ import joshie.harvest.core.HFTrackers;
 import joshie.harvest.npc.NPC;
 import joshie.harvest.npc.NPCRegistry;
 import joshie.harvest.npc.entity.EntityNPC;
+import joshie.harvest.player.PlayerTrackerServer;
+import joshie.harvest.player.relationships.RelationshipDataServer;
 import joshie.harvest.tools.ToolHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -24,17 +26,21 @@ public class ContainerNPCGift extends ContainerNPCChat {
                 if (NPCRegistry.INSTANCE.getGifts().isBlacklisted(gift)) return;
 
                 NPC theNpc = npc.getNPC();
-                int points = theNpc.getGiftValue(gift).getRelationPoints();
-                CalendarDate today = HFApi.calendar.getDate(player.worldObj);
-                if (today.isSameDay(theNpc.getBirthday())) {
-                    points *= 5;
-                }
-
+                RelationshipDataServer relationships = HFTrackers.<PlayerTrackerServer>getPlayerTrackerFromPlayer(player).getRelationships();
                 if (ToolHelper.isBlueFeather(gift)) {
-                    HFTrackers.getPlayerTrackerFromPlayer(player).getRelationships().propose(player, theNpc.getUUID());
-                }
+                    relationships.propose(player, theNpc.getUUID());
+                } else {
+                    int points = theNpc.getGiftValue(gift).getRelationPoints();
+                    if (!relationships.hasGivenBirthdayGift(theNpc.getUUID())) {
+                        CalendarDate today = HFApi.calendar.getDate(player.worldObj);
+                        if (today.isSameDay(theNpc.getBirthday())) {
+                            relationships.setHasGivenBirthdayGift(theNpc.getUUID());
+                            points *= 5;
+                        }
+                    }
 
-                HFTrackers.getPlayerTrackerFromPlayer(player).getRelationships().gift(player, theNpc.getUUID(), points);
+                    relationships.gift(player, theNpc.getUUID(), points);
+                }
                 if (gift != null) {
                     gift.splitStack(1);
                     if (gift.stackSize <= 0) {

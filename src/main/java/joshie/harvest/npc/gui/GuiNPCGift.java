@@ -29,7 +29,7 @@ public class GuiNPCGift extends GuiNPCChat {
     public String getScript() {
         if (NPCRegistry.INSTANCE.getGifts().isBlacklisted(gift)) return TextHelper.getSpeech(npc, "gift.no");
         if (ToolHelper.isBlueFeather(gift)) {
-            int relationship = HFApi.relationships.getRelationship(player, npc.getNPC().getUUID());
+            int relationship = HFApi.player.getRelationsForPlayer(player).getRelationship(npc.getNPC().getUUID());
             if (relationship >= HFNPCs.MARRIAGE_REQUIREMENT && npc.getNPC().isMarriageCandidate()) {
                 return TextHelper.getSpeech(npc, "marriage.accept");
             } else return TextHelper.getSpeech(npc, "marriage.reject");

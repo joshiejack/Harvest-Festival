@@ -10,7 +10,7 @@ public class StatsClient extends Stats {
         this.birthday = birthday;
     }
 
-    public void setGold(long gold) {
+    public void setGoldValue(long gold) {
         this.gold = gold;
     }
 }

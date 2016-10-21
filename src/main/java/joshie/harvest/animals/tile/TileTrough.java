@@ -129,7 +129,7 @@ public class TileTrough extends TileFillable {
             TileTrough master = getMaster();
             if (master != null) {
                 boolean processed = false;
-                for (int i = 0; i < 6 && held.stackSize > 0; i++) {
+                for (int i = 0; i < 12 && held.stackSize > 0; i++) {
                     if (held.stackSize >= 1) {
                         if (master.hasRoomAndFill()) {
                             held.splitStack(1);
@@ -146,8 +146,8 @@ public class TileTrough extends TileFillable {
     }
 
     private boolean hasRoomAndFill() {
-        if (fillAmount < (4 * size)) {
-            setFilled(getFillAmount() + 1);
+        if (fillAmount < (40 * size)) {
+            setFilled(getFillAmount() + 10);
             return true;
         }
 

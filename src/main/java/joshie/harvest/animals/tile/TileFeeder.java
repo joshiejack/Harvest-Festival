@@ -30,8 +30,8 @@ public class TileFeeder extends TileFillable {
     }
 
     private boolean hasRoomAndFill() {
-        if (fillAmount < 10) {
-            setFilled(getFillAmount() + 1);
+        if (fillAmount < 100) {
+            setFilled(getFillAmount() + 10);
             return true;
         }
 

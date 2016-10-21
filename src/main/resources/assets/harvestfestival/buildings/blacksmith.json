@@ -3156,8 +3156,8 @@
         "text": [
           "Blacksmith",
           "",
-          "Fri-Wed",
-          "10am-4pm"
+          "Repairs and",
+          "Upgrades"
         ],
         "state": {
           "name": "minecraft:wall_sign",

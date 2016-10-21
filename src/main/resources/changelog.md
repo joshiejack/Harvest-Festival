@@ -1,14 +1,22 @@
-##0.6.0
-#Additions
+###0.6.0
+##Additions
 * Added various gems as obtainable from the mine, selling for various values
 * Can be obtained rarely from junk rocks (higher chance in winter)
 * Can be obtained directly from jewel nodes
 * Added more items to the gathering system, for selling or recipes
-#Changes
+##Changes
+#Shops
 * New Shop GUI
+* Removed the Blacksmith's store
+* Moved the crop farming tools to the general store
+* Moved the animal farming tools to the animal ranch
+* Moved the sprinkler to the carpenters store
+* Fodder now costs 100 gold, but will last for 10 feeds
+* Chicken Feed now costs 50 gold, but will last for 10 feeds
+#Other
 * Crops will now be plantable on more than farmland,
     however they will only grow on farmland when a mod adds support
-#Fixes
+##Fixes
 * Gifting npcs on their birthday will now only work once on smp, instead of over multiple days
 * My hoes will now work with BOP blocks
 * Made shop scroll behave better

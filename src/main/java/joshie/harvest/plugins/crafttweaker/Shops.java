@@ -1,7 +1,7 @@
 package joshie.harvest.plugins.crafttweaker;
 
 import joshie.harvest.api.HFApi;
-import joshie.harvest.api.shops.IShop;
+import joshie.harvest.shops.Shop;
 import joshie.harvest.shops.purchasable.PurchasableBuilder;
 import minetweaker.MineTweakerAPI;
 import minetweaker.api.item.IItemStack;
@@ -21,24 +21,27 @@ public class Shops {
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     private static class AddPurchasable extends BaseUndoable {
-        protected final IShop shop;
+        protected final ResourceLocation resource;
+        protected final Shop shop;
         protected final ItemStack stack;
         protected final long cost;
 
         public AddPurchasable(String shop, ItemStack stack, long cost) {
-            this.shop = HFApi.shops.getShop(new ResourceLocation(shop));
+            this.resource = new ResourceLocation(shop);
+            this.shop = (Shop) HFApi.shops.getShop(resource);
             this.stack = stack;
             this.cost = cost;
         }
 
         @Override
         public String getDescription() {
-            return "Adding " + stack.getDisplayName() + " to the Carpenter's shop.";
+            if (shop == null) return "Could not find a shop called: " + resource.toString();
+            return "Adding " + stack.getDisplayName() + " to the " + shop.getLocalizedName();
         }
 
         @Override
         public void applyOnce() {
-            shop.addItem(cost, stack);
+            if (shop != null) shop.addItem(cost, stack);
         }
     }
 
@@ -67,7 +70,7 @@ public class Shops {
 
         @Override
         public void applyOnce() {
-            shop.addItem(new PurchasableBuilder(cost, stone, wood, stack));
+            if (shop != null) shop.addItem(new PurchasableBuilder(cost, stone, wood, stack));
         }
     }
 

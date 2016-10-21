@@ -11,6 +11,7 @@ import joshie.harvest.api.crops.Crop;
 import joshie.harvest.api.shops.IShop;
 import joshie.harvest.buildings.BuildingImpl;
 import joshie.harvest.buildings.BuildingRegistry;
+import joshie.harvest.calendar.CalendarHelper;
 import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.core.HFCore;
 import joshie.harvest.core.block.BlockStorage.Storage;
@@ -25,10 +26,12 @@ import joshie.harvest.mining.item.ItemMiningTool.MiningTool;
 import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.shops.purchasable.*;
 import joshie.harvest.tools.HFTools;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.World;
 
 import static joshie.harvest.animals.block.BlockSizedStorage.SizedStorage.INCUBATOR;
 import static joshie.harvest.animals.block.BlockTray.Tray.FEEDER_EMPTY;
@@ -49,7 +52,6 @@ import static joshie.harvest.npc.item.ItemNPCTool.NPCTool.BLUE_FEATHER;
 @HFLoader
 public class HFShops {
     public static IShop BARN;
-    public static IShop BLACKSMITH;
     public static IShop CAFE;
     public static IShop CARPENTER;
     public static IShop POULTRY;
@@ -58,7 +60,6 @@ public class HFShops {
 
     public static void postInit() {
         registerBarn();
-        registerBlacksmith();
         registerCafe();
         registerCarpenter();
         registerPoultry();
@@ -68,7 +69,10 @@ public class HFShops {
     
     private static void registerBarn() {
         BARN = HFApi.shops.newShop(new ResourceLocation(MODID, "barn"), HFNPCs.ANIMAL_OWNER);
-        BARN.addItem(20, HFCrops.GRASS.getCropStack(1));
+        BARN.addItem(800, HFAnimals.TOOLS.getStackFromEnum(BRUSH));
+        BARN.addItem(2000, HFAnimals.TOOLS.getStackFromEnum(MILKER));
+        BARN.addItem(1800, new ItemStack(Items.SHEARS));
+        BARN.addItem(100, HFCrops.GRASS.getCropStack(1));
         BARN.addItem(1000, HFAnimals.TOOLS.getStackFromEnum(MEDICINE));
         BARN.addItem(new PurchasableEntity(EntityHarvestCow.class, 5000, HFAnimals.ANIMAL.getStackFromEnum(COW), true));
         BARN.addItem(new PurchasableEntity(EntityHarvestSheep.class, 4000, HFAnimals.ANIMAL.getStackFromEnum(SHEEP), true));
@@ -81,25 +85,6 @@ public class HFShops {
 
         BARN.addOpening(MONDAY, 10000, 15000).addOpening(TUESDAY, 10000, 15000).addOpening(WEDNESDAY, 10000, 15000);
         BARN.addOpening(THURSDAY, 10000, 15000).addOpening(FRIDAY, 10000, 15000).addOpening(SATURDAY, 10000, 15000);
-    }
-
-    private static void registerBlacksmith() {
-        BLACKSMITH = HFApi.shops.newShop(new ResourceLocation(MODID, "blacksmith"), HFNPCs.TOOL_OWNER);
-        BLACKSMITH.addItem(800, HFAnimals.TOOLS.getStackFromEnum(BRUSH));
-        BLACKSMITH.addItem(2000, HFAnimals.TOOLS.getStackFromEnum(MILKER));
-        BLACKSMITH.addItem(1800, new ItemStack(Items.SHEARS));
-
-        //Allow the purchasing of special tools at the weekend, and special blocks
-        BLACKSMITH.addItem(250, HFTools.HOE.getStack(ToolTier.BASIC));
-        BLACKSMITH.addItem(250, HFTools.SICKLE.getStack(ToolTier.BASIC));
-        BLACKSMITH.addItem(500, HFTools.WATERING_CAN.getStack(ToolTier.BASIC));
-        BLACKSMITH.addItem(1000, HFTools.AXE.getStack(ToolTier.BASIC));
-        BLACKSMITH.addItem(1000, HFTools.HAMMER.getStack(ToolTier.BASIC));
-        BLACKSMITH.addItem(new PurchasableWeekend(100, HFCore.STORAGE.getStackFromEnum(Storage.SHIPPING)));
-        BLACKSMITH.addItem(new PurchasableYearWeekend(10000, HFCrops.SPRINKLER.getStackFromEnum(Sprinkler.WOOD), 1));
-
-        BLACKSMITH.addOpening(SUNDAY, 10000, 16000).addOpening(MONDAY, 10000, 16000).addOpening(TUESDAY, 10000, 16000);
-        BLACKSMITH.addOpening(WEDNESDAY, 10000, 16000).addOpening(FRIDAY, 10000, 16000).addOpening(SATURDAY, 10000, 16000);
     }
 
     private static void registerCafe() {
@@ -154,6 +139,14 @@ public class HFShops {
         }
 
         CARPENTER.addItem(new PurchasableBuilder(0, 16, 0, HFCore.STORAGE.getStackFromEnum(Storage.SHIPPING)));
+        CARPENTER.addItem(new PurchasableBuilder(10000L, 24, 6, HFCrops.SPRINKLER.getStackFromEnum(Sprinkler.WOOD)) {
+            @Override
+            public boolean canBuy(World world, EntityPlayer player) {
+                return HFApi.calendar.getDate(world).getWeekday().isWeekend() && CalendarHelper.haveYearsPassed(world, player, 1);
+            }
+
+        });
+
         CARPENTER.addItem(new PurchasableBuilder(100, 0, 0, new ItemStack(Blocks.LOG)));
         CARPENTER.addItem(new PurchasableBuilder(50, 0, 0, new ItemStack(Blocks.STONE)));
         if (!HFAnimals.CAN_SPAWN) {
@@ -166,7 +159,7 @@ public class HFShops {
 
     private static void registerPoultry() {
         POULTRY = HFApi.shops.newShop(new ResourceLocation(MODID, "poultry"), HFNPCs.POULTRY);
-        POULTRY.addItem(10, HFAnimals.TOOLS.getStackFromEnum(CHICKEN_FEED));
+        POULTRY.addItem(50, HFAnimals.TOOLS.getStackFromEnum(CHICKEN_FEED));
         POULTRY.addItem(1000, HFAnimals.TOOLS.getStackFromEnum(MEDICINE));
         POULTRY.addItem(new PurchasableEntity(EntityHarvestChicken.class, 1500, HFAnimals.ANIMAL.getStackFromEnum(CHICKEN), false));
         POULTRY.addItem(250, new ItemStack(Items.NAME_TAG));
@@ -182,6 +175,12 @@ public class HFShops {
 
     private static void registerSupermarket() {
         SUPERMARKET = HFApi.shops.newShop(new ResourceLocation(MODID, "general"), HFNPCs.GS_OWNER);
+        SUPERMARKET.addItem(250, HFTools.HOE.getStack(ToolTier.BASIC));
+        SUPERMARKET.addItem(250, HFTools.SICKLE.getStack(ToolTier.BASIC));
+        SUPERMARKET.addItem(500, HFTools.WATERING_CAN.getStack(ToolTier.BASIC));
+        SUPERMARKET.addItem(1000, HFTools.AXE.getStack(ToolTier.BASIC));
+        SUPERMARKET.addItem(1000, HFTools.HAMMER.getStack(ToolTier.BASIC));
+
         for (Crop crop : Crop.REGISTRY.getValues()) {
             if (crop != Crop.NULL_CROP) {
                 SUPERMARKET.addItem(new PurchasableCropSeeds(crop));

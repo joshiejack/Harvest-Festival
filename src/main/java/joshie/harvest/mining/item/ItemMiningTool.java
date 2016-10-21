@@ -2,6 +2,7 @@ package joshie.harvest.mining.item;
 
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.item.ItemHFEnum;
+import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.mining.HFMining;
 import joshie.harvest.mining.MiningHelper;
 import joshie.harvest.mining.item.ItemMiningTool.MiningTool;
@@ -36,5 +37,10 @@ public class ItemMiningTool extends ItemHFEnum<ItemMiningTool, MiningTool> {
             if (!world.isRemote) MiningHelper.teleportToOverworld(player); //Back we go!
             return new ActionResult<>(EnumActionResult.SUCCESS, stack);
         } else return new ActionResult<>(EnumActionResult.PASS, stack);
+    }
+
+    @Override
+    public int getSortValue(ItemStack stack) {
+        return CreativeSort.LAST;
     }
 }

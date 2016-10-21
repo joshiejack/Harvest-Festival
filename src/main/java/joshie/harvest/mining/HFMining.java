@@ -19,6 +19,8 @@ import joshie.harvest.mining.item.ItemMaterial;
 import joshie.harvest.mining.item.ItemMiningTool;
 import joshie.harvest.mining.loot.*;
 import joshie.harvest.mining.render.*;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.storage.loot.conditions.LootConditionManager;
 import net.minecraftforge.client.model.ModelLoader;
@@ -27,7 +29,10 @@ import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import static joshie.harvest.core.HFTab.MINING;
 import static joshie.harvest.core.helpers.ConfigHelper.getInteger;
+import static net.minecraft.init.Items.DIAMOND;
+import static net.minecraft.init.Items.EMERALD;
 import static net.minecraftforge.fml.common.registry.EntityRegistry.registerModEntity;
 
 @HFLoader
@@ -57,6 +62,8 @@ public class HFMining {
         LootConditionManager.registerCondition(new MultipleOf.Serializer());
         LootConditionManager.registerCondition(new Obtained.Serializer());
         HFApi.tickable.registerDailyTickableBlock(DIRT, new MiningTicker());
+        registerSellable(DIAMOND, 100L);
+        registerSellable(EMERALD, 80L);
     }
 
     @SideOnly(Side.CLIENT)
@@ -74,6 +81,11 @@ public class HFMining {
         FakeAnimalsItemRenderer.INSTANCE.register(DarkSpawner.SHEEP, "dark_sheep", new ModelHarvestSheep.Wooly());
         FakeAnimalsItemRenderer.INSTANCE.register(DarkSpawner.CHICKEN, "dark_chicken", new ModelHarvestChicken.Adult());
         FakeAnimalsItemRenderer.INSTANCE.register(DarkSpawner.CHICK, "dark_chick", new ModelHarvestChicken.Child());
+    }
+
+    private static void registerSellable(Item item, long value) {
+        HFApi.shipping.registerSellable(new ItemStack(item), value);
+        item.setCreativeTab(MINING);
     }
 
     public static int MINING_ID;

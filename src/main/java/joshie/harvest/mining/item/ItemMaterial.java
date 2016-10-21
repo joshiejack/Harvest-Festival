@@ -4,6 +4,7 @@ import joshie.harvest.api.core.IShippable;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.item.ItemHFEnum;
 import joshie.harvest.core.helpers.TextHelper;
+import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.mining.item.ItemMaterial.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -73,6 +74,6 @@ public class ItemMaterial extends ItemHFEnum<ItemMaterial, Material> implements 
 
     @Override
     public int getSortValue(ItemStack stack) {
-        return 40 + stack.getItemDamage();
+        return CreativeSort.NONE + stack.getItemDamage();
     }
 }

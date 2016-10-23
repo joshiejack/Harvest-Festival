@@ -25,6 +25,7 @@ public interface ICropRegistry {
     ItemStack getSeedStack(Crop crop, int amount);
 
     /** Returns the crop as a stack **/
+    @Deprecated
     ItemStack getCropStack(Crop crop, int amount);
 
     /** Register a seed, so that if the config disables it

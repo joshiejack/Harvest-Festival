@@ -24,7 +24,7 @@ public class Tree extends IForgeRegistryEntry.Impl<Tree> implements IShippable {
     public static final IForgeRegistry<Tree> REGISTRY = new RegistryBuilder<Tree>().setName(new ResourceLocation("harvestfestival", "trees")).setType(Tree.class).setIDRange(0, 32000).create();
     public static final GrowthHandler SEASONAL = new GrowthHandler() {};
     public static final DropHandler DROPS = new DropHandler();
-    public static final Tree NULL_CROP = new Tree();
+    public static final Tree NULL_TREE = new Tree();
 
     //Tree Data
     private final TObjectIntMap<TreeStage> stages;

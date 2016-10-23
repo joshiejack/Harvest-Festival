@@ -344,7 +344,7 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
 
     @Override
     public IBlockState getPlant(IBlockAccess world, BlockPos pos) {
-        return getActualState(world.getBlockState(pos), world, pos);
+        return getActualState(world.getBlockState(pos.down()), world, pos.down());
     }
 
     //Can Apply Bonemeal (Not Fully Grown)

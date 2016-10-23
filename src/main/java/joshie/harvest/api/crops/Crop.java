@@ -6,6 +6,7 @@ import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.cooking.Ingredient;
 import joshie.harvest.api.core.IShippable;
 import net.minecraft.block.Block;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
@@ -34,7 +35,9 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements IShippable {
     private boolean needsWatering;
     private boolean alternativeName;
     private boolean requiresSickle;
+    //TODO: Remove in 0.7+
     private int hunger;
+    //TODO: Remove in 0.7+
     private float saturation;
     private ItemStack item;
     private Season[] seasons;
@@ -64,6 +67,7 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements IShippable {
         this.needsWatering = true;
         this.doubleStage = Integer.MAX_VALUE;
         this.type = EnumPlantType.Crop;
+
         this.setRegistryName(key);
         REGISTRY.register(this);
     }
@@ -145,14 +149,13 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements IShippable {
         return this;
     }
 
-    /**
-     * Set the item this crop produces
-     **/
+    /** Set the item for this crop
+     *  @param item     the item to set this as**/
     public Crop setItem(ItemStack item) {
         this.item = item;
-        if (this.item.getItem() instanceof ItemFood) {
+        if (this.item != null && this.item.getItem() instanceof ItemFood) {
             ItemFood food = (ItemFood)this.item.getItem();
-            setFoodStats(food.getHealAmount(item), food.getSaturationModifier(item));
+            setIngredient(food.getHealAmount(item), food.getSaturationModifier(item));
         }
 
         return this;
@@ -204,26 +207,32 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements IShippable {
         return this;
     }
 
-    /**
-     * Set the food stats for this crop
-     * @param hunger    how much hunger to restore
-     * @param saturation how much saturation to fill
-     **/
+    //TODO: Remove in 0.7+
+    @Deprecated
     public Crop setFoodStats(int hunger, float saturation) {
         this.hunger = hunger;
         this.saturation = saturation;
-        String name = getRegistryName().getResourcePath();
-        if (Ingredient.INGREDIENTS.containsKey(name)) {
-            this.ingredient = Ingredient.INGREDIENTS.get(name);
-        } else this.ingredient = new Ingredient(name, hunger, saturation);
-        return this;
+        return setIngredient(hunger, saturation);
     }
 
     /**
      * Set the ingredient this crop counts as
      **/
+    @Deprecated
     public Crop setIngredient(Ingredient ingredient) {
         this.ingredient = ingredient;
+        return this;
+    }
+
+    /**
+     * Set the ingredient stats for this crop
+     **/
+    public Crop setIngredient(int hunger, float saturation) {
+        String name = getRegistryName().getResourcePath();
+        if (Ingredient.INGREDIENTS.containsKey(name)) {
+            this.ingredient = Ingredient.INGREDIENTS.get(name);
+        } else this.ingredient = new Ingredient(name, hunger, saturation);
+
         return this;
     }
 
@@ -433,16 +442,14 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements IShippable {
         return ingredient;
     }
 
-    /**
-     * The hunger this crop restores
-     **/
+    //TODO: Remove in 0.7+
+    @Deprecated
     public int getHunger() {
         return hunger;
     }
 
-    /**
-     * The saturation this crop fills
-     **/
+    //TODO: Remove in 0.7+
+    @Deprecated
     public float getSaturation() {
         return saturation;
     }
@@ -462,7 +469,7 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements IShippable {
             ItemStack copy = item.copy();
             copy.stackSize = amount;
             return item.copy();
-        } else return HFApi.crops.getCropStack(this, amount);
+        } else return new ItemStack(Items.CARROT);
     }
 
     /**

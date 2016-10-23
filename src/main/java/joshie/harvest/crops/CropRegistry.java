@@ -7,6 +7,7 @@ import joshie.harvest.api.crops.WateringHandler;
 import joshie.harvest.core.handlers.DisableHandler;
 import joshie.harvest.core.util.annotations.HFApiImplementation;
 import joshie.harvest.core.util.holders.ItemStackHolder;
+import joshie.harvest.crops.item.ItemCrop;
 import joshie.harvest.crops.tile.TileWithered;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
@@ -43,8 +44,13 @@ public class CropRegistry implements ICropRegistry {
     }
 
     @Override
+    @Deprecated
     public ItemStack getCropStack(Crop crop, int amount) {
-        ItemStack stack = HFCrops.CROP.getStackFromObject(crop);
+        for (ItemCrop.Crop crop1: ItemCrop.Crop.values()) {
+            if (crop1.getCrop() == crop) return HFCrops.CROP.getStackFromEnum(crop1, amount);
+        }
+
+        ItemStack stack = HFCrops.CROP.getStackFromEnum(ItemCrop.Crop.TURNIP);
         stack.stackSize = amount;
         return stack;
     }

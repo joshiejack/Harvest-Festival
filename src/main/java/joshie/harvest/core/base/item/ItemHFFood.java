@@ -5,10 +5,15 @@ import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.helpers.TextHelper;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.SoundEvents;
+import net.minecraft.item.EnumAction;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.*;
+import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -38,6 +43,40 @@ public class ItemHFFood<I extends ItemHFFood> extends ItemFood {
     @Override
     public String getUnlocalizedName() {
         return HFModInfo.MODID + "." + super.getUnlocalizedName().replace("item.", "");
+    }
+
+    @Override
+    public int getMaxItemUseDuration(ItemStack stack) {
+        return 32;
+    }
+
+    @Override
+    public EnumAction getItemUseAction(ItemStack stack) {
+        return EnumAction.EAT;
+    }
+
+    @Override
+    public ActionResult<ItemStack> onItemRightClick(ItemStack stack, World world, EntityPlayer player, EnumHand hand) {
+        if (player.canEat(false) && getHealAmount(stack) > 0) {
+            player.setActiveHand(hand);
+            return new ActionResult<>(EnumActionResult.SUCCESS, stack);
+        } else {
+            return new ActionResult<>(EnumActionResult.FAIL, stack);
+        }
+    }
+
+    @Override
+    public ItemStack onItemUseFinish(ItemStack stack, World world, EntityLivingBase entityLiving) {
+        if (entityLiving instanceof EntityPlayer) {
+            EntityPlayer player = (EntityPlayer) entityLiving;
+            if (!player.capabilities.isCreativeMode) --stack.stackSize;
+            player.getFoodStats().addStats(this, stack);
+            world.playSound(null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_PLAYER_BURP, SoundCategory.PLAYERS, 0.5F, world.rand.nextFloat() * 0.1F + 0.9F);
+
+            return stack;
+        }
+
+        return stack;
     }
 
     @SuppressWarnings("unchecked")

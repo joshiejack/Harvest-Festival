@@ -8,12 +8,13 @@ import joshie.harvest.calendar.CalendarClient;
 import joshie.harvest.calendar.CalendarData;
 import joshie.harvest.calendar.CalendarServer;
 import joshie.harvest.core.handlers.ClientHandler;
-import joshie.harvest.core.handlers.ServerHandler;
-import joshie.harvest.core.util.handlers.SideHandler;
 import joshie.harvest.core.handlers.DailyTickHandler;
+import joshie.harvest.core.handlers.ServerHandler;
 import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.core.lib.HFModInfo;
+import joshie.harvest.core.util.handlers.SideHandler;
 import joshie.harvest.mining.MineManager;
+import joshie.harvest.player.PlayerLoader;
 import joshie.harvest.player.PlayerTracker;
 import joshie.harvest.player.PlayerTrackerClient;
 import joshie.harvest.player.PlayerTrackerServer;
@@ -174,10 +175,14 @@ public class HFTrackers {
 
     @SuppressWarnings("unchecked")
     public static <P extends PlayerTracker> P getPlayerTracker(World world, UUID uuid) {
-        return world.isRemote ? (P) CLIENT_PLAYER : (P) SERVER_PLAYERS.get(uuid);
+        if (world.isRemote) return (P) CLIENT_PLAYER;
+        else {
+            P tracker = (P) SERVER_PLAYERS.get(uuid);
+            return tracker != null ? tracker: (P) PlayerLoader.getDataFromUUID(null, uuid);
+        }
     }
 
-    public static void setPlayerData(EntityPlayer player, PlayerTrackerServer data) {
-        SERVER_PLAYERS.put(EntityHelper.getPlayerUUID(player), data);
+    public static void setPlayerData(UUID uuid, PlayerTrackerServer data) {
+        SERVER_PLAYERS.put(uuid, data);
     }
 }

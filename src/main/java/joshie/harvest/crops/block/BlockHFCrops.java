@@ -2,14 +2,14 @@ package joshie.harvest.crops.block;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.AnimalFoodType;
+import joshie.harvest.api.animals.AnimalStats;
 import joshie.harvest.api.animals.IAnimalFeeder;
-import joshie.harvest.api.animals.IAnimalTracked;
 import joshie.harvest.api.crops.Crop;
 import joshie.harvest.api.crops.IBreakCrops;
 import joshie.harvest.api.crops.IStateHandler.PlantSection;
+import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.base.block.BlockHFEnum;
 import joshie.harvest.core.base.item.ItemBlockHF;
-import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.util.annotations.HFEvents;
 import joshie.harvest.crops.CropData;
@@ -390,15 +390,15 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
     }
 
     @Override
-    public boolean feedAnimal(IAnimalTracked tracked, World world, BlockPos pos, IBlockState state, boolean simulate) {
-        if (HFApi.animals.canAnimalEatFoodType(tracked, AnimalFoodType.GRASS)) {
+    public boolean feedAnimal(AnimalStats stats, World world, BlockPos pos, IBlockState state, boolean simulate) {
+        if (HFApi.animals.canAnimalEatFoodType(stats, AnimalFoodType.GRASS)) {
             CropData data = CropHelper.getCropDataAt(world, pos);
             if (data != null) {
                 if (data.getCrop() == HFCrops.GRASS) {
                     int stage = data.getStage();
                     if (stage > 5) {
                         if (simulate) return true;
-                        HFApi.crops.plantCrop(tracked.getData().getOwner(), world, pos, data.getCrop(), stage - 5);
+                        HFApi.crops.plantCrop(stats.getOwner(), world, pos, data.getCrop(), stage - 5);
                         return true;
                     }
                 }

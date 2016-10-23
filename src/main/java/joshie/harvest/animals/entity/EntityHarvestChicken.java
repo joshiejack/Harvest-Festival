@@ -1,10 +1,10 @@
 package joshie.harvest.animals.entity;
 
 import com.google.common.collect.Sets;
-import io.netty.buffer.ByteBuf;
+import joshie.harvest.animals.stats.AnimalStatsPoultry;
 import joshie.harvest.api.HFApi;
-import joshie.harvest.api.animals.IAnimalData;
-import joshie.harvest.api.animals.IAnimalTracked;
+import joshie.harvest.api.animals.AnimalStats;
+import joshie.harvest.core.helpers.EntityHelper;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
@@ -13,25 +13,27 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.EnumHand;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
+import net.minecraftforge.common.capabilities.Capability;
 
 import java.util.Set;
 
-public class EntityHarvestChicken extends EntityChicken implements IAnimalTracked<EntityHarvestChicken> {
+import static joshie.harvest.api.animals.IAnimalHandler.ANIMAL_STATS_CAPABILITY;
+import static joshie.harvest.calendar.HFCalendar.TWO_HOURS;
+
+public class EntityHarvestChicken extends EntityChicken {
     private static final Set<Item> TEMPTATION_ITEMS = Sets.newHashSet(Items.WHEAT_SEEDS, Items.MELON_SEEDS, Items.PUMPKIN_SEEDS, Items.BEETROOT_SEEDS);
-    private final IAnimalData data;
+    private final AnimalStats stats = new AnimalStatsPoultry();
     private EntityPlayer toLovePlayer;
     private int toLoveTicker;
 
     public EntityHarvestChicken(World world) {
         super(world);
         timeUntilNextEgg = Integer.MAX_VALUE;
-        data = HFApi.animals.newData(this, "chicken");
     }
 
     @Override
@@ -60,29 +62,6 @@ public class EntityHarvestChicken extends EntityChicken implements IAnimalTracke
     }
 
     @Override
-    public IAnimalData getData() {
-        return data;
-    }
-
-    @Override
-    public boolean processInteract(EntityPlayer player, EnumHand hand, ItemStack stack) {
-        if (stack != null) {
-            if (HFApi.animals.canEat(stack, data.getType().getFoodTypes())) {
-                if (data.isHungry()) {
-                    stack.splitStack(1);
-                    if (!worldObj.isRemote) data.feed(player);
-                }
-
-                return true;
-            }
-
-            return false;
-        }
-
-        return true;
-    }
-
-    @Override
     public EntityHarvestChicken createChild(EntityAgeable ageable) {
         return new EntityHarvestChicken(worldObj);
     }
@@ -93,9 +72,14 @@ public class EntityHarvestChicken extends EntityChicken implements IAnimalTracke
         if (toLovePlayer != null) {
             if (toLoveTicker >= 0) toLoveTicker--;
             else {
-                HFApi.player.getRelationsForPlayer(toLovePlayer).affectRelationship(getUUID(), 100);
+                HFApi.player.getRelationsForPlayer(toLovePlayer).affectRelationship(EntityHelper.getEntityUUID(this), 100);
                 toLovePlayer = null;
             }
+        }
+
+        //Outside
+        if (worldObj.getTotalWorldTime() %TWO_HOURS == 0 && !worldObj.isRaining()) {
+            //data.biHourlyTick();
         }
     }
 
@@ -105,26 +89,27 @@ public class EntityHarvestChicken extends EntityChicken implements IAnimalTracke
         toLoveTicker = 20;
     }
 
-    /*################### Data ############## */
     @Override
-    public void writeSpawnData(ByteBuf buffer) {
-        data.toBytes(buffer);
+    public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
+        return capability == ANIMAL_STATS_CAPABILITY || super.hasCapability(capability, facing);
     }
 
     @Override
-    public void readSpawnData(ByteBuf buffer) {
-        data.fromBytes(buffer);
+    @SuppressWarnings("unchecked")
+    public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
+        return capability == ANIMAL_STATS_CAPABILITY ? (T) stats : super.getCapability(capability, facing);
     }
 
     @Override
-    public void readEntityFromNBT(NBTTagCompound nbt) {
-        super.readEntityFromNBT(nbt);
-        data.readFromNBT(nbt);
+    public void writeEntityToNBT(NBTTagCompound compound) {
+        super.writeEntityToNBT(compound);
+        compound.setTag("Stats", stats.serializeNBT());
     }
 
     @Override
-    public void writeEntityToNBT(NBTTagCompound nbt) {
-        super.writeEntityToNBT(nbt);
-        data.writeToNBT(nbt);
+    @SuppressWarnings("unchecked")
+    public void readEntityFromNBT(NBTTagCompound compound) {
+        super.readEntityFromNBT(compound);
+        stats.deserializeNBT(compound.getCompoundTag("Stats"));
     }
 }

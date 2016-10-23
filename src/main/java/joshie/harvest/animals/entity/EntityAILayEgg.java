@@ -1,26 +1,23 @@
 package joshie.harvest.animals.entity;
 
-import joshie.harvest.api.animals.IAnimalTracked;
 import joshie.harvest.api.animals.INest;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.ai.EntityAIBase;
+import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.util.math.BlockPos;
 
-public class EntityAILayEgg extends EntityAIBase {
-    private final EntityHarvestChicken animal;
-    private final IAnimalTracked tracked;
+public class EntityAILayEgg extends EntityAIAnimal {
     private int wanderTick;
 
-    public EntityAILayEgg(IAnimalTracked<EntityHarvestChicken> animal) {
-        this.animal = animal.getAsEntity();
-        this.tracked = animal;
+    @SuppressWarnings("ConstantConditions")
+    public EntityAILayEgg(EntityAnimal animal) {
+        super(animal);
         this.setMutexBits(1);
     }
 
     @Override
     public boolean shouldExecute() {
-        if(!animal.isChild() && tracked.getData().canProduce() && !tracked.getData().isHungry()) {
+        if(!animal.isChild() && getStats().canProduce() && !getStats().isHungry()) {
             wanderTick--;
 
             return wanderTick <= 0;
@@ -43,7 +40,7 @@ public class EntityAILayEgg extends EntityAIBase {
                         IBlockState state = animal.worldObj.getBlockState(position);
                         Block block = state.getBlock();
                         if (block instanceof INest) {
-                            if (((INest) block).layEgg(tracked, animal.worldObj, position, state)) {
+                            if (((INest) block).layEgg(getStats(), animal.worldObj, position, state)) {
                                 wanderTick = 200;
                                 break check;
                             }

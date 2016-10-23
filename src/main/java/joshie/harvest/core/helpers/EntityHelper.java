@@ -1,5 +1,6 @@
 package joshie.harvest.core.helpers;
 
+import joshie.harvest.api.animals.AnimalStats;
 import joshie.harvest.core.util.HFTeleporter;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
@@ -23,9 +24,12 @@ import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
 
+import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+
+import static joshie.harvest.api.animals.IAnimalHandler.ANIMAL_STATS_CAPABILITY;
 
 public class EntityHelper {
     //Loops through all the animals in the specified dimension id
@@ -141,5 +145,15 @@ public class EntityHelper {
 
     public static boolean isSpawnable(World world, BlockPos pos) {
         return world.isAirBlock(pos);
+    }
+
+    @SuppressWarnings("ConstantConditions")
+    @Nullable
+    public static AnimalStats getStats(Entity target) {
+        if (target.hasCapability(ANIMAL_STATS_CAPABILITY, EnumFacing.DOWN)) {
+            return target.getCapability(ANIMAL_STATS_CAPABILITY, EnumFacing.DOWN);
+        }
+
+        return null;
     }
 }

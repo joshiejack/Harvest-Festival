@@ -3,13 +3,14 @@ package joshie.harvest.animals.block;
 import joshie.harvest.animals.block.BlockTrough.Trough;
 import joshie.harvest.animals.tile.TileTrough;
 import joshie.harvest.api.HFApi;
+import joshie.harvest.api.animals.AnimalAction;
 import joshie.harvest.api.animals.AnimalFoodType;
+import joshie.harvest.api.animals.AnimalStats;
 import joshie.harvest.api.animals.IAnimalFeeder;
-import joshie.harvest.api.animals.IAnimalTracked;
 import joshie.harvest.core.HFCore;
+import joshie.harvest.core.base.block.BlockHFEnumRotatableMeta;
 import joshie.harvest.core.base.tile.TileFillable;
 import joshie.harvest.core.lib.CreativeSort;
-import joshie.harvest.core.base.block.BlockHFEnumRotatableMeta;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
@@ -160,12 +161,13 @@ public class BlockTrough extends BlockHFEnumRotatableMeta<BlockTrough, Trough> i
     }
 
     @Override
-    public boolean feedAnimal(IAnimalTracked tracked, World world, BlockPos pos, IBlockState state, boolean simulate) {
-        if (HFApi.animals.canAnimalEatFoodType(tracked, AnimalFoodType.GRASS)) {
+    public boolean feedAnimal(AnimalStats stats, World world, BlockPos pos, IBlockState state, boolean simulate) {
+        if (HFApi.animals.canAnimalEatFoodType(stats, AnimalFoodType.GRASS)) {
             TileTrough master = ((TileTrough) world.getTileEntity(pos)).getMaster();
             if (master.getFillAmount() > 0) {
                 if (simulate) return true;
                 master.adjustFill(-1);
+                stats.performAction(world, null, null, AnimalAction.FEED);
                 //Good ol master block
                 return true;
             }

@@ -1,9 +1,14 @@
 package joshie.harvest.animals;
 
+import joshie.harvest.animals.packet.PacketSyncAnimal;
+import joshie.harvest.animals.stats.AnimalStatsHF;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.*;
+import joshie.harvest.core.helpers.EntityHelper;
+import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.core.util.annotations.HFApiImplementation;
 import joshie.harvest.core.util.holders.HolderRegistry;
+import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
@@ -32,8 +37,13 @@ public class AnimalRegistry implements IAnimalHandler {
     }
 
     @Override
-    public boolean canAnimalEatFoodType(IAnimalTracked tracked, AnimalFoodType type) {
-        for (AnimalFoodType t: tracked.getData().getType().getFoodTypes()) {
+    public AnimalStats newStats(IAnimalType type) {
+        return new AnimalStatsHF().setType(type);
+    }
+
+    @Override
+    public boolean canAnimalEatFoodType(AnimalStats stats, AnimalFoodType type) {
+        for (AnimalFoodType t: stats.getType().getFoodTypes()) {
             if (t == type) return true;
         }
 
@@ -49,18 +59,20 @@ public class AnimalRegistry implements IAnimalHandler {
         return false;
     }
 
-    @Override
-    public IAnimalData newData(IAnimalTracked animal, String type) {
-        return new AnimalData(animal, types.get(type));
-    }
-
-    @Override
-    public void registerType(String key, IAnimalType type) {
+    void registerType(String key, IAnimalType type) {
         types.put(key.toLowerCase(Locale.ENGLISH), type);
     }
 
     @Override
     public IAnimalType getTypeFromString(String string) {
         return types.get(string.toLowerCase(Locale.ENGLISH));
+    }
+
+    @Override
+    public void syncAnimalStats(EntityAnimal animal) {
+        AnimalStats stats = EntityHelper.getStats(animal);
+        if (stats != null) {
+            PacketHandler.sendToAllAround(new PacketSyncAnimal(animal.getEntityId(), stats), animal.dimension, animal.posX, animal.posY, animal.posZ, 178);
+        }
     }
 }

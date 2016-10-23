@@ -1,6 +1,6 @@
 package joshie.harvest.shops.purchasable;
 
-import joshie.harvest.api.animals.IAnimalTracked;
+import joshie.harvest.api.animals.AnimalStats;
 import joshie.harvest.api.shops.IPurchasable;
 import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.core.helpers.TextHelper;
@@ -94,7 +94,11 @@ public class PurchasableEntity implements IPurchasable {
                     player.connection.sendPacket(new SPacketSetPassengers(player));
                 } else {
                     theEntity.setLeashedToEntity(player, true);
-                    ((IAnimalTracked) theEntity).getData().setOwner(EntityHelper.getPlayerUUID(player));
+                    AnimalStats stats = EntityHelper.getStats(theEntity);
+                    if (stats != null) {
+                        stats.setOwner(EntityHelper.getPlayerUUID(player));
+                    }
+
                     player.worldObj.spawnEntityInWorld(theEntity);
                     player.connection.sendPacket(new SPacketEntityAttach(theEntity, theEntity.getLeashedToEntity()));
                 }

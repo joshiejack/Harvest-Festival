@@ -5,7 +5,7 @@ import joshie.harvest.animals.entity.EntityHarvestChicken;
 import joshie.harvest.animals.entity.EntityHarvestCow;
 import joshie.harvest.animals.entity.EntityHarvestSheep;
 import joshie.harvest.animals.item.ItemAnimalSpawner.Spawner;
-import joshie.harvest.api.animals.IAnimalTracked;
+import joshie.harvest.api.animals.AnimalStats;
 import joshie.harvest.core.base.item.ItemHFEnum;
 import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.core.helpers.TextHelper;
@@ -62,8 +62,11 @@ public class ItemAnimalSpawner extends ItemHFEnum<ItemAnimalSpawner, Spawner> {
             if (entity != null) {
                 if (player.isSneaking()) entity.setGrowingAge(-(int)(TICKS_PER_DAY * HFAnimals.AGING_TIMER));
                 entity.setPosition(pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5);
-                ((IAnimalTracked)entity).getData().setOwner(EntityHelper.getPlayerUUID(player));
-                world.spawnEntityInWorld(entity);
+                AnimalStats stats = EntityHelper.getStats(entity);
+                if (stats != null) {
+                    stats.setOwner(EntityHelper.getPlayerUUID(player));
+                    world.spawnEntityInWorld(entity);
+                }
             }
         }
 

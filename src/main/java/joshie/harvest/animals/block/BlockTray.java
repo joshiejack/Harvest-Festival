@@ -5,10 +5,7 @@ import joshie.harvest.animals.block.BlockTray.Tray;
 import joshie.harvest.animals.entity.EntityHarvestChicken;
 import joshie.harvest.animals.tile.TileFeeder;
 import joshie.harvest.api.HFApi;
-import joshie.harvest.api.animals.AnimalFoodType;
-import joshie.harvest.api.animals.IAnimalFeeder;
-import joshie.harvest.api.animals.IAnimalTracked;
-import joshie.harvest.api.animals.INest;
+import joshie.harvest.api.animals.*;
 import joshie.harvest.api.core.ISizeable.Size;
 import joshie.harvest.core.HFCore;
 import joshie.harvest.core.achievements.HFAchievements;
@@ -104,7 +101,7 @@ public class BlockTray extends BlockHFEnum<BlockTray, Tray> implements IAnimalFe
                 if (!world.isRemote) {
                     ItemStack drop = nest.getDrop();
                     List<EntityHarvestChicken> chickens = EntityHelper.getEntities(EntityHarvestChicken.class, world, pos, 32D, 8D);
-                    int relationship = chickens.size() > 0 ? HFApi.player.getRelationsForPlayer(player).getRelationship(chickens.get(0).getUUID()): 0;
+                    int relationship = chickens.size() > 0 ? HFApi.player.getRelationsForPlayer(player).getRelationship(EntityHelper.getEntityUUID(chickens.get(0))): 0;
 
                     NBTTagCompound tag = drop.getSubCompound("Data", true);
                     tag.setInteger("Relationship", relationship);
@@ -129,14 +126,14 @@ public class BlockTray extends BlockHFEnum<BlockTray, Tray> implements IAnimalFe
     }
 
     @Override
-    public boolean feedAnimal(IAnimalTracked tracked, World world, BlockPos pos, IBlockState state, boolean simulate) {
+    public boolean feedAnimal(AnimalStats stats, World world, BlockPos pos, IBlockState state, boolean simulate) {
         if (getEnumFromState(state).isFeeder()) {
-            if (HFApi.animals.canAnimalEatFoodType(tracked, AnimalFoodType.SEED)) {
+            if (HFApi.animals.canAnimalEatFoodType(stats, AnimalFoodType.SEED)) {
                 TileFeeder feeder = ((TileFeeder) world.getTileEntity(pos));
                 if (feeder.getFillAmount() > 0) {
                     if (simulate) return true;
                     feeder.adjustFill(-1);
-                    tracked.getData().feed(null);
+                    stats.performAction(world, null, null, AnimalAction.FEED);
                     return true;
                 }
             }
@@ -146,11 +143,11 @@ public class BlockTray extends BlockHFEnum<BlockTray, Tray> implements IAnimalFe
     }
 
     @Override
-    public boolean layEgg(IAnimalTracked tracked, World world, BlockPos pos, IBlockState state) {
-        EntityPlayer player = tracked.getData().getOwner();
-        if (player != null && getEnumFromState(state) == NEST_EMPTY && tracked.getData().getType().getName().equals("chicken")) {
+    public boolean layEgg(AnimalStats stats, World world, BlockPos pos, IBlockState state) {
+        EntityPlayer player = stats.getOwner();
+        if (player != null && getEnumFromState(state) == NEST_EMPTY && stats.getType().getName().equals("chicken")) {
             Size size = null;
-            int relationship = HFApi.player.getRelationsForPlayer(player).getRelationship(tracked.getUUID());
+            int relationship = HFApi.player.getRelationsForPlayer(player).getRelationship(EntityHelper.getEntityUUID(stats.getAnimal()));
             for (Size s : Size.values()) {
                 if (relationship >= s.getRelationshipRequirement()) size = s;
             }
@@ -158,8 +155,8 @@ public class BlockTray extends BlockHFEnum<BlockTray, Tray> implements IAnimalFe
             if (size == Size.SMALL) world.setBlockState(pos, getStateFromEnum(SMALL_CHICKEN));
             else if (size == Size.MEDIUM) world.setBlockState(pos, getStateFromEnum(MEDIUM_CHICKEN));
             else if (size == Size.LARGE) world.setBlockState(pos, getStateFromEnum(LARGE_CHICKEN));
-            EntityAnimal entity = tracked.getAsEntity();
-            tracked.getData().setProduced(1);
+            EntityAnimal entity = stats.getAnimal();
+            stats.setProduced(1);
             entity.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 1.0F, (entity.worldObj.rand.nextFloat() - entity.worldObj.rand.nextFloat()) * 0.2F + 1.0F);
             return true;
         }

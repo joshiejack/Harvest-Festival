@@ -1,6 +1,6 @@
 package joshie.harvest.core;
 
-import joshie.harvest.animals.AnimalTrackerServer;
+import joshie.harvest.animals.tracker.AnimalTrackerServer;
 import joshie.harvest.core.handlers.DailyTickHandler;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.town.TownTrackerServer;

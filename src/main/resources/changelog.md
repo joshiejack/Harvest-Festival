@@ -5,6 +5,11 @@
 * Can be obtained directly from jewel nodes
 * Added more items to the gathering system, for selling or recipes
 ##Changes
+#Animals
+* Animals now only get stressed every two hours they're left outside in the rain or at night
+* You will now get relationship points every two hours if an animal is outside in the day and it isn't raining
+* You will now lose relationship points every time you use medicine on an animal
+* You will now get more points from interactions with animals
 #Shops
 * New Shop GUI
 * Removed the Blacksmith's store

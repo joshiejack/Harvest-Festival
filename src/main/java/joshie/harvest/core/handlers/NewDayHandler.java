@@ -1,6 +1,7 @@
 package joshie.harvest.core.handlers;
 
-import joshie.harvest.animals.AnimalTrackerServer;
+import joshie.harvest.animals.HFAnimals;
+import joshie.harvest.animals.tracker.AnimalTrackerServer;
 import joshie.harvest.api.calendar.CalendarDate;
 import joshie.harvest.api.ticking.IDailyTickable;
 import joshie.harvest.calendar.CalendarServer;
@@ -15,6 +16,7 @@ import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
 import net.minecraftforge.fml.common.gameevent.TickEvent.ServerTickEvent;
 
 import static joshie.harvest.calendar.HFCalendar.TICKS_PER_DAY;
+import static joshie.harvest.calendar.HFCalendar.TWO_HOURS;
 
 @HFEvents
 public class NewDayHandler {
@@ -46,6 +48,13 @@ public class NewDayHandler {
                 DailyTickHandler.processQueue();
                 for (World world : FMLCommonHandler.instance().getMinecraftServerInstance().worldServers) {
                     newDay(world);
+                }
+            }
+
+            //Bihourly Tick
+            if (HFAnimals.OUTDOOR_HAPPINESS && overworld.getWorldTime() %TWO_HOURS == 0) {
+                for (World world : FMLCommonHandler.instance().getMinecraftServerInstance().worldServers) {
+                    HFTrackers.<AnimalTrackerServer>getAnimalTracker(world).biHourly();
                 }
             }
         }

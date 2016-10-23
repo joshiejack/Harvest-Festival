@@ -8,8 +8,13 @@ public class AnimalChicken extends AnimalAbstract {
     }
 
     @Override
-    public boolean getsDirty() {
-        return false;
+    public int getFeedByHandBonus() {
+        return 30;
+    }
+
+    @Override
+    public int getOutsideBonus() {
+        return 5;
     }
 
     @Override

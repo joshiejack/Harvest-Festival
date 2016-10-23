@@ -47,6 +47,11 @@ public class NBTHelper {
         return readCollection(HashSet.class, h, list);
     }
 
+    @SuppressWarnings("unchecked")
+    public static <H extends AbstractHolder> List<H> readList(Class<H> h, NBTTagList list) {
+        return readCollection(ArrayList.class, h, list);
+    }
+
     public static <C extends Collection<? extends AbstractHolder>> NBTTagList writeCollection(C set) {
         NBTTagList list = new NBTTagList();
         if (set != null) {

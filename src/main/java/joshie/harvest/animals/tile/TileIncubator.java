@@ -3,9 +3,10 @@ package joshie.harvest.animals.tile;
 import joshie.harvest.animals.HFAnimals;
 import joshie.harvest.animals.entity.EntityHarvestChicken;
 import joshie.harvest.api.HFApi;
+import joshie.harvest.api.animals.AnimalStats;
 import joshie.harvest.api.core.ISizeable.Size;
-import joshie.harvest.core.base.tile.TileFillableSizedFaceable;
 import joshie.harvest.core.HFTrackers;
+import joshie.harvest.core.base.tile.TileFillableSizedFaceable;
 import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.tools.ToolHelper;
 import net.minecraft.entity.player.EntityPlayer;
@@ -56,8 +57,11 @@ public class TileIncubator extends TileFillableSizedFaceable {
                         baby.setPositionAndUpdate(getPos().getX() + 3 * getWorld().rand.nextDouble(), getPos().getY() + getWorld().rand.nextDouble(), getPos().getZ() + 3 * getWorld().rand.nextDouble());
                         baby.setGrowingAge(-(24000 * HFAnimals.AGING_TIMER));
                         if (owner != null) {
-                            baby.getData().setOwner(owner);
-                            HFTrackers.getPlayerTracker(worldObj, owner).getRelationships().copyRelationship(EntityHelper.getPlayerFromUUID(owner), relationship, EntityHelper.getEntityUUID(baby), 50D);
+                            AnimalStats stats = EntityHelper.getStats(baby);
+                            if (stats != null) {
+                                stats.setOwner(owner);
+                                HFTrackers.getPlayerTracker(worldObj, owner).getRelationships().copyRelationship(EntityHelper.getPlayerFromUUID(owner), relationship, EntityHelper.getEntityUUID(baby), 50D);
+                            }
                         }
 
                         worldObj.spawnEntityInWorld(baby);

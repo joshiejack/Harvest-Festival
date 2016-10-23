@@ -1,7 +1,7 @@
 package joshie.harvest.animals.type;
 
 import joshie.harvest.api.animals.AnimalFoodType;
-import joshie.harvest.api.animals.IAnimalData;
+import joshie.harvest.api.animals.AnimalStats;
 import joshie.harvest.api.animals.IAnimalType;
 import joshie.harvest.api.calendar.CalendarDate;
 import net.minecraft.entity.passive.EntityAnimal;
@@ -48,10 +48,5 @@ public abstract class AnimalAbstract implements IAnimalType {
     }
 
     @Override
-    public void refreshProduct(IAnimalData data, EntityAnimal entity) {}
-
-    @Override
-    public boolean getsDirty() {
-        return true;
-    }
+    public void refreshProduct(AnimalStats stats, EntityAnimal entity) {}
 }

@@ -9,9 +9,6 @@ public interface IAnimalType {
     /** @return an array of food type this animal can consume **/
     AnimalFoodType[] getFoodTypes();
 
-    /** @return if this enable needs to be cleaned **/
-    boolean getsDirty();
-
     /** @return the minimum lifespan for this animal type **/
     int getMinLifespan();
     
@@ -21,13 +18,22 @@ public interface IAnimalType {
     /** @return the number of days between producing products **/
     int getDaysBetweenProduction();
     
-    /** @return how many generic treats this animal needs to up it's productivity **/
+    /** @return how many generic treats
+     *  this animal needs to up it's productivity **/
     int getGenericTreatCount();
     
-    /** @return jow many typed treats this animal needs to up it's productivity **/
+    /** @return how many typed treats
+     *  this animal needs to up it's productivity **/
     int getTypeTreatCount();
 
+    /** the relationship bonus for feeding by hand **/
+    int getFeedByHandBonus();
+
+    /** the relationship bonus for being outside in the sun **/
+    int getOutsideBonus();
+
     /** Called whenever an animal is reset to being able to produce again
-     * @param data tracking **/
-    void refreshProduct(IAnimalData data, EntityAnimal entity);
+     * @param stats     the stats
+     * @param entity    the animal**/
+    void refreshProduct(AnimalStats stats, EntityAnimal entity);
 }

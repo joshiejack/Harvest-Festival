@@ -1,7 +1,8 @@
 package joshie.harvest.animals.tile;
 
 import joshie.harvest.api.HFApi;
-import joshie.harvest.api.animals.IAnimalTracked;
+import joshie.harvest.api.animals.AnimalAction;
+import joshie.harvest.api.animals.AnimalStats;
 import joshie.harvest.core.base.tile.TileFillable;
 import joshie.harvest.core.helpers.EntityHelper;
 import net.minecraft.entity.passive.EntityAnimal;
@@ -166,12 +167,10 @@ public class TileTrough extends TileFillable {
     @Override
     public void newDay(Phase phase) {
         if (getMaster() == this) {
-            for (EntityAnimal animal : EntityHelper.getEntities(EntityAnimal.class, getWorld(), getPos(), 16D, 5D)) {
-                if (animal instanceof IAnimalTracked) { //Feed all the local animals
-                    IAnimalTracked tracked = ((IAnimalTracked) animal);
-                    if (tracked.getData().isHungry() && HFApi.animals.canAnimalEatFoodType(tracked, GRASS) && hasFoodAndFeed()) {
-                        tracked.getData().feed(null);
-                    }
+            for (EntityAnimal animal : EntityHelper.getEntities(EntityAnimal.class, getWorld(), getPos(), 32D, 5D)) {
+                AnimalStats stats = EntityHelper.getStats(animal);
+                if (stats != null && HFApi.animals.canAnimalEatFoodType(stats, GRASS) && hasFoodAndFeed()) {
+                    stats.performAction(getWorld(), null, null, AnimalAction.FEED);
                 }
             }
         }

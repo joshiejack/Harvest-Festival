@@ -12,12 +12,14 @@ import joshie.harvest.animals.item.ItemAnimalSpawner.Spawner;
 import joshie.harvest.animals.item.ItemAnimalTool;
 import joshie.harvest.animals.item.ItemAnimalTreat;
 import joshie.harvest.animals.render.*;
+import joshie.harvest.animals.stats.AnimalStatsHF;
 import joshie.harvest.animals.tile.TileFeeder;
 import joshie.harvest.animals.tile.TileIncubator;
 import joshie.harvest.animals.tile.TileTrough;
 import joshie.harvest.animals.type.AnimalChicken;
 import joshie.harvest.animals.type.AnimalCow;
 import joshie.harvest.animals.type.AnimalSheep;
+import joshie.harvest.api.animals.AnimalStats;
 import joshie.harvest.api.crops.Crop;
 import joshie.harvest.core.helpers.RegistryHelper;
 import joshie.harvest.core.lib.EntityIDs;
@@ -28,7 +30,12 @@ import net.minecraft.client.model.ModelChicken;
 import net.minecraft.client.model.ModelCow;
 import net.minecraft.client.model.ModelSheep2;
 import net.minecraft.init.Items;
+import net.minecraft.nbt.NBTBase;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.Capability.IStorage;
+import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -73,10 +80,22 @@ public class HFAnimals {
         registerFoodsAsType(SEED, Items.MELON_SEEDS, Items.WHEAT_SEEDS, Items.PUMPKIN_SEEDS);
         registerFoodsAsType(VEGETABLE, Items.CARROT);
         animals.registerFoodAsType(TOOLS.getStackFromEnum(CHICKEN_FEED), SEED);
-        animals.registerType("cow", new AnimalCow());
-        animals.registerType("sheep", new AnimalSheep());
-        animals.registerType("chicken", new AnimalChicken());
+        AnimalRegistry.INSTANCE.registerType("cow", new AnimalCow());
+        AnimalRegistry.INSTANCE.registerType("sheep", new AnimalSheep());
+        AnimalRegistry.INSTANCE.registerType("chicken", new AnimalChicken());
         registerTiles(TileIncubator.class, TileTrough.class, TileFeeder.class);
+        CapabilityManager.INSTANCE.register(AnimalStats.class, new IStorage<AnimalStats>() {
+            @Override
+            public NBTBase writeNBT(Capability<AnimalStats> capability, AnimalStats instance, EnumFacing side) {
+                return instance.serializeNBT();
+            }
+
+            @Override
+            @SuppressWarnings("unchecked")
+            public void readNBT(Capability<AnimalStats> capability, AnimalStats instance, EnumFacing side, NBTBase nbt) {
+                instance.deserializeNBT(nbt);
+            }
+        }, AnimalStatsHF::new);
     }
 
     @SideOnly(Side.CLIENT)
@@ -119,6 +138,7 @@ public class HFAnimals {
     public static int CHICKEN_TIMER;
     public static boolean OP_ANIMALS;
     public static boolean VANILLA_MODELS;
+    public static boolean OUTDOOR_HAPPINESS;
 
     public static void configure() {
         CAN_SPAWN = getBoolean("Enable animal natural spawning", true);
@@ -131,5 +151,6 @@ public class HFAnimals {
         AGING_TIMER = getInteger("Number of days animals take to mature", 14);
         OP_ANIMALS = getBoolean("Old Mcdonald had a farm", false);
         VANILLA_MODELS = getBoolean("Use vanilla models for animals", false);
+        OUTDOOR_HAPPINESS = getBoolean("Animals gain relationship when left outside", true);
     }
 }

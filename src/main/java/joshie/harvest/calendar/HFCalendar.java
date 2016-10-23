@@ -21,6 +21,7 @@ public class HFCalendar {
     public static int DAYS_PER_SEASON_INTEGRATED;
     private static int DAYS_PER_SEASON_DEDICATED;
     public static long TICKS_PER_DAY;
+    public static long TWO_HOURS;
     public static boolean ENABLE_SUNNY;
     public static boolean ENABLE_RAIN;
     public static boolean ENABLE_TYPHOON;
@@ -80,6 +81,7 @@ public class HFCalendar {
         ENABLE_GOLD_HUD = getBoolean("HUD > Enable gold", true);
         SNOW_TICKER = getBoolean("Remove snow faster", true);
         CLOCK_24H = getBoolean("24 hour clock", true);
+        TWO_HOURS = (TICKS_PER_DAY / 12);
     }
 
     public static void onServerStarting() {

@@ -1,16 +1,10 @@
 package joshie.harvest.animals.entity;
 
-import io.netty.buffer.ByteBuf;
-import joshie.harvest.animals.HFAnimals;
+import joshie.harvest.animals.stats.AnimalStatsHF;
+import joshie.harvest.animals.stats.AnimalStatsMilkable;
 import joshie.harvest.api.HFApi;
-import joshie.harvest.api.animals.IAnimalData;
-import joshie.harvest.api.animals.IAnimalTracked;
-import joshie.harvest.api.animals.IMilkable;
-import joshie.harvest.api.core.ISizeable.Size;
-import joshie.harvest.core.HFCore;
-import joshie.harvest.core.achievements.HFAchievements;
 import joshie.harvest.core.HFTrackers;
-import joshie.harvest.core.helpers.SizeableHelper;
+import joshie.harvest.core.helpers.EntityHelper;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
@@ -23,18 +17,21 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
+import net.minecraftforge.common.capabilities.Capability;
 
-public class EntityHarvestCow extends EntityCow implements IAnimalTracked, IMilkable {
-    private final IAnimalData data;
+import static joshie.harvest.api.animals.IAnimalHandler.ANIMAL_STATS_CAPABILITY;
+
+public class EntityHarvestCow extends EntityCow {
+    private final AnimalStatsHF stats = new AnimalStatsMilkable().setType(HFApi.animals.getTypeFromString("cow"));
 
     public EntityHarvestCow(World world) {
         super(world);
         setSize(1.4F, 1.4F);
         setPathPriority(PathNodeType.WATER, 0.0F);
-        data = HFApi.animals.newData(this, "cow");
     }
 
     @Override
@@ -62,54 +59,14 @@ public class EntityHarvestCow extends EntityCow implements IAnimalTracked, IMilk
     }
 
     @Override
-    public IAnimalData getData() {
-        return data;
-    }
-
-    @Override
-    public boolean canMilk() {
-        return !isChild() && data.canProduce();
-    }
-
-    @Override
-    public void milk(EntityPlayer player) {
-        ItemStack product = SizeableHelper.getMilk(player, this);
-        if (!player.inventory.addItemStackToInventory(product)) {
-            player.dropItem(product, false);
-        }
-
-        if (!worldObj.isRemote && !HFAnimals.OP_ANIMALS) {
-            data.setProduced(getData().getProductsPerDay());
-        }
-
-        player.addStat(HFAchievements.milker);
-        if (HFCore.SIZEABLE.getSize(product) == Size.LARGE) {
-            player.addStat(HFAchievements.milkerLarge);
-        }
-    }
-
-    @Override
     public boolean processInteract(EntityPlayer player, EnumHand hand, ItemStack stack) {
-        if (stack != null) {
-            if (HFApi.animals.canEat(stack, data.getType().getFoodTypes())) {
-                if (data.isHungry()) {
-                    stack.splitStack(1);
-                    if (!worldObj.isRemote) data.feed(player);
-                }
-
-                return true;
-            }
-
-            return false;
-        }
-
         if (worldObj.rand.nextFloat() < 0.33F) {
             SoundEvent s = getAmbientSound();
             if (s != null) {
                 playSound(s, 2F, getSoundPitch());
             }
 
-            HFTrackers.getPlayerTrackerFromPlayer(player).getRelationships().talkTo(player, getUUID());
+            HFTrackers.getPlayerTrackerFromPlayer(player).getRelationships().talkTo(player, EntityHelper.getEntityUUID(this));
             return true;
         }
 
@@ -121,26 +78,28 @@ public class EntityHarvestCow extends EntityCow implements IAnimalTracked, IMilk
         return new EntityHarvestCow(this.worldObj);
     }
 
-    /*################### Data ############## */
     @Override
-    public void writeSpawnData(ByteBuf buffer) {
-        data.toBytes(buffer);
+    public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
+        return capability == ANIMAL_STATS_CAPABILITY || super.hasCapability(capability, facing);
     }
 
     @Override
-    public void readSpawnData(ByteBuf buffer) {
-        data.fromBytes(buffer);
+    @SuppressWarnings("unchecked")
+    public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
+        return capability == ANIMAL_STATS_CAPABILITY ? (T) stats : super.getCapability(capability, facing);
     }
 
     @Override
-    public void readEntityFromNBT(NBTTagCompound nbt) {
-        super.readEntityFromNBT(nbt);
-        data.readFromNBT(nbt);
+    public void writeEntityToNBT(NBTTagCompound compound) {
+        super.writeEntityToNBT(compound);
+        compound.setTag("Stats", stats.serializeNBT());
     }
 
     @Override
-    public void writeEntityToNBT(NBTTagCompound nbt) {
-        super.writeEntityToNBT(nbt);
-        data.writeToNBT(nbt);
+    public void readEntityFromNBT(NBTTagCompound compound) {
+        super.readEntityFromNBT(compound);
+        if (compound.hasKey("Stats")) stats.deserializeNBT(compound.getCompoundTag("Stats"));
+        else if (compound.hasKey("CurrentLifespan")) stats.deserializeNBT(compound);
+        //TODO: Remove in 0.7+ ^^^....^^^^^
     }
 }

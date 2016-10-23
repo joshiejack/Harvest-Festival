@@ -1,11 +1,11 @@
 package joshie.harvest.animals.entity;
 
-import io.netty.buffer.ByteBuf;
+import joshie.harvest.animals.stats.AnimalStatsHF;
+import joshie.harvest.animals.stats.AnimalStatsLivestock;
 import joshie.harvest.animals.HFAnimals;
 import joshie.harvest.api.HFApi;
-import joshie.harvest.api.animals.IAnimalData;
-import joshie.harvest.api.animals.IAnimalTracked;
 import joshie.harvest.core.HFTrackers;
+import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.core.helpers.SizeableHelper;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -28,14 +28,13 @@ import net.minecraft.world.World;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EntityHarvestSheep extends EntitySheep implements IAnimalTracked {
-    private final IAnimalData data;
+public class EntityHarvestSheep extends EntitySheep {
+    private final AnimalStatsHF stats = new AnimalStatsLivestock().setType(HFApi.animals.getTypeFromString("sheep"));
 
     public EntityHarvestSheep(World world) {
         super(world);
         setSize(1.4F, 1.4F);
         setPathPriority(PathNodeType.WATER, 0.0F);
-        data = HFApi.animals.newData(this, "sheep");
     }
 
     @Override
@@ -64,32 +63,14 @@ public class EntityHarvestSheep extends EntitySheep implements IAnimalTracked {
     }
 
     @Override
-    public IAnimalData getData() {
-        return data;
-    }
-
-    @Override
     public boolean processInteract(EntityPlayer player, EnumHand hand, ItemStack stack) {
-        if (stack != null) {
-            if (HFApi.animals.canEat(stack, data.getType().getFoodTypes())) {
-                if (data.isHungry()) {
-                    stack.splitStack(1);
-                    if (!worldObj.isRemote) data.feed(player);
-                }
-
-                return true;
-            }
-
-            return false;
-        }
-
         if (worldObj.rand.nextFloat() < 0.33F) {
             SoundEvent s = getAmbientSound();
             if (s != null) {
                 playSound(s, 2F, getSoundPitch());
             }
 
-            HFTrackers.getPlayerTrackerFromPlayer(player).getRelationships().talkTo(player, getUUID());
+            HFTrackers.getPlayerTrackerFromPlayer(player).getRelationships().talkTo(player, EntityHelper.getEntityUUID(this));
             return true;
         }
 
@@ -102,11 +83,12 @@ public class EntityHarvestSheep extends EntitySheep implements IAnimalTracked {
         if (!isChild()) {
             EntityPlayer player = worldObj.getClosestPlayerToEntity(this, 178D);
             if (player != null) {
-                ItemStack product = SizeableHelper.getWool(player, this);
+                ItemStack product = SizeableHelper.getWool(player, this, stats);
                 ret.add(product);
                 if (!worldObj.isRemote && !HFAnimals.OP_ANIMALS) {
                     setSheared(true);
-                    data.setProduced(getData().getProductsPerDay());
+                    stats.setProduced(stats.getProductsPerDay());
+                    HFApi.player.getRelationsForPlayer(player).affectRelationship(EntityHelper.getEntityUUID(this), 10);
                 }
 
                 playSound(SoundEvents.ENTITY_SHEEP_SHEAR, 1.0F, 1.0F);
@@ -122,26 +104,15 @@ public class EntityHarvestSheep extends EntitySheep implements IAnimalTracked {
         return new EntityHarvestSheep(worldObj);
     }
 
-    /*################### Data ############## */
     @Override
-    public void writeSpawnData(ByteBuf buffer) {
-        data.toBytes(buffer);
+    public void writeEntityToNBT(NBTTagCompound compound) {
+        super.writeEntityToNBT(compound);
+        compound.setTag("Stats", stats.serializeNBT());
     }
 
     @Override
-    public void readSpawnData(ByteBuf buffer) {
-        data.fromBytes(buffer);
-    }
-
-    @Override
-    public void readEntityFromNBT(NBTTagCompound nbt) {
-        super.readEntityFromNBT(nbt);
-        data.readFromNBT(nbt);
-    }
-
-    @Override
-    public void writeEntityToNBT(NBTTagCompound nbt) {
-        super.writeEntityToNBT(nbt);
-        data.writeToNBT(nbt);
+    public void readEntityFromNBT(NBTTagCompound compound) {
+        super.readEntityFromNBT(compound);
+        stats.deserializeNBT(compound);
     }
 }

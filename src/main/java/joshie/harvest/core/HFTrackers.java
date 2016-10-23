@@ -2,7 +2,7 @@ package joshie.harvest.core;
 
 import gnu.trove.map.TIntObjectMap;
 import gnu.trove.map.hash.TIntObjectHashMap;
-import joshie.harvest.animals.AnimalTracker;
+import joshie.harvest.animals.tracker.AnimalTracker;
 import joshie.harvest.calendar.Calendar;
 import joshie.harvest.calendar.CalendarClient;
 import joshie.harvest.calendar.CalendarData;

@@ -1,8 +1,10 @@
 package joshie.harvest.animals.item;
 
 import joshie.harvest.animals.item.ItemAnimalTreat.Treat;
-import joshie.harvest.api.animals.IAnimalTracked;
+import joshie.harvest.api.animals.AnimalAction;
+import joshie.harvest.api.animals.AnimalStats;
 import joshie.harvest.core.base.item.ItemHFEnum;
+import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.core.lib.CreativeSort;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -27,14 +29,11 @@ public class ItemAnimalTreat extends ItemHFEnum<ItemAnimalTreat, Treat> {
     }
 
     @Override
+    @SuppressWarnings("ConstantConditions")
     public boolean itemInteractionForEntity(ItemStack stack, EntityPlayer player, EntityLivingBase target, EnumHand hand) {
-        if (target instanceof IAnimalTracked) {
-            if (!target.worldObj.isRemote) {
-                if (((IAnimalTracked) target).getData().treat(stack, player)) {
-                    stack.stackSize--;
-                }
-            }
-
+        AnimalStats stats = EntityHelper.getStats(target);
+        if (stats != null && stats.performAction(player.worldObj, player, stack, AnimalAction.TREAT)) {
+            stack.splitStack(1);
             return true;
         } else return false;
     }

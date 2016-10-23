@@ -8,6 +8,16 @@ public class AnimalCow extends AnimalAbstract {
     }
 
     @Override
+    public int getFeedByHandBonus() {
+        return 10;
+    }
+
+    @Override
+    public int getOutsideBonus() {
+        return 2;
+    }
+
+    @Override
     public int getDaysBetweenProduction() {
         return 1;
     }

@@ -315,6 +315,7 @@ harvestfestival.junk.fossil=Fish Fossil
 harvestfestival.junk.treasure=Pirate Treasure
 
 #Tools
+harvestfestival.tool.broken=[BROKEN]
 #Hoe
 harvestfestival.hoe.basic=Hoe
 harvestfestival.hoe.copper=Copper Hoe

@@ -27,7 +27,8 @@ public class RelationshipDataServer extends RelationshipData {
     }
 
     public void newDay(CalendarDate yesterday, CalendarDate today) {
-        for (UUID uuid: status.keySet()) {
+        Set<UUID> keys = new HashSet<>(status.keySet());
+        for (UUID uuid: keys) {
             for (NPCStatus stat: NPCStatus.values()) {
                 if ((stat.isSeasonal() && yesterday.getSeason() != today.getSeason()) || !stat.isPermenant()) {
                     status.get(uuid).remove(stat);

@@ -63,7 +63,8 @@ public abstract class ItemTool<I extends ItemTool> extends ItemHFBase<I> impleme
 
     @Override
     public String getItemStackDisplayName(ItemStack stack) {
-        return TextHelper.localize(super.getUnlocalizedName().replace("item.", "") + "." + getTier(stack).name().toLowerCase(Locale.ENGLISH));
+        String text = TextHelper.localize(super.getUnlocalizedName().replace("item.", "") + "." + getTier(stack).name().toLowerCase(Locale.ENGLISH));
+        return !canUse(stack) ? TextHelper.translate("tool.broken") + " " + text : text;
     }
 
     @Override
@@ -127,7 +128,7 @@ public abstract class ItemTool<I extends ItemTool> extends ItemHFBase<I> impleme
 
     @Override
     public boolean onBlockDestroyed(ItemStack stack, World worldIn, IBlockState state, BlockPos pos, EntityLivingBase entityLiving) {
-        if (canBeDamaged()) {
+        if (canUse(stack) && canBeDamaged()) {
             if (canLevel(stack, state)) {
                 ToolHelper.levelTool(stack);
             }
@@ -397,7 +398,6 @@ public abstract class ItemTool<I extends ItemTool> extends ItemHFBase<I> impleme
 
         return this.effectiveBlocks.contains(state.getBlock()) ? getEffiency(stack) : 1.0F;
     }
-
 
     @SideOnly(Side.CLIENT)
     @Override

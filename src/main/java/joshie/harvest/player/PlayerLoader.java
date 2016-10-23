@@ -29,15 +29,20 @@ public class PlayerLoader {
 
     public static PlayerTrackerServer getDataFromUUID(@Nullable EntityPlayerMP player, UUID uuid) {
         PlayerTrackerServer data = new PlayerTrackerServer(player, uuid);
-        File file = new File(getFolder(PLAYER_DIR), uuid + ".dat");
-        if (!file.exists() && player != null) file = new File(getFolder(PLAYER_DIR), EntityHelper.getLastKnownUUID(player) + ".dat");
-        if (file.exists()) {
-            try {
-                FileInputStream fileinputstream = new FileInputStream(file);
-                NBTTagCompound tag = CompressedStreamTools.readCompressed(fileinputstream);
-                fileinputstream.close();
-                data.readFromNBT(tag);
-            } catch (Exception e) { e.printStackTrace(); }
+        if (PLAYER_DIR != null) {
+            File file = new File(getFolder(PLAYER_DIR), uuid + ".dat");
+            if (!file.exists() && player != null)
+                file = new File(getFolder(PLAYER_DIR), EntityHelper.getLastKnownUUID(player) + ".dat");
+            if (file.exists()) {
+                try {
+                    FileInputStream fileinputstream = new FileInputStream(file);
+                    NBTTagCompound tag = CompressedStreamTools.readCompressed(fileinputstream);
+                    fileinputstream.close();
+                    data.readFromNBT(tag);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
         }
 
         HFTrackers.setPlayerData(uuid, data);

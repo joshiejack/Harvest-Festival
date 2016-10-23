@@ -1,3 +1,7 @@
+##0.5.13
+* Fixed potential crashes when loading player data in specific circumstances
+* Fixed Blacksmith saying he'll take zero more days when finishing repairing tools
+
 ##0.5.12
 * Fixed a potential crash with seed drops
 * Doubled the amount of fodder that is stored in troughs

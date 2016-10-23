@@ -9,13 +9,16 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
+import javax.annotation.Nullable;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.util.UUID;
 
 @HFEvents
 public class PlayerLoader {
-    private File getFolder(File playerDir) {
+    private static File PLAYER_DIR;
+    private static File getFolder(File playerDir) {
         File dir = new File(playerDir, "HF");
         if (!dir.exists()) {
             dir.mkdirs();
@@ -24,11 +27,10 @@ public class PlayerLoader {
         return dir;
     }
 
-    @SubscribeEvent
-    public void onPlayerLoad(PlayerEvent.LoadFromFile event) {
-        PlayerTrackerServer data = new PlayerTrackerServer((EntityPlayerMP)event.getEntityPlayer());
-        File file = new File(getFolder(event.getPlayerDirectory()), EntityHelper.getPlayerUUID(event.getEntityPlayer()) + ".dat");
-        if (!file.exists()) file = new File(getFolder(event.getPlayerDirectory()), EntityHelper.getLastKnownUUID(event.getEntityPlayer()) + ".dat");
+    public static PlayerTrackerServer getDataFromUUID(@Nullable EntityPlayerMP player, UUID uuid) {
+        PlayerTrackerServer data = new PlayerTrackerServer(player, uuid);
+        File file = new File(getFolder(PLAYER_DIR), uuid + ".dat");
+        if (!file.exists() && player != null) file = new File(getFolder(PLAYER_DIR), EntityHelper.getLastKnownUUID(player) + ".dat");
         if (file.exists()) {
             try {
                 FileInputStream fileinputstream = new FileInputStream(file);
@@ -38,7 +40,14 @@ public class PlayerLoader {
             } catch (Exception e) { e.printStackTrace(); }
         }
 
-        HFTrackers.setPlayerData(event.getEntityPlayer(), data);
+        HFTrackers.setPlayerData(uuid, data);
+        return data;
+    }
+
+    @SubscribeEvent
+    public void onPlayerLoad(PlayerEvent.LoadFromFile event) {
+        PLAYER_DIR = event.getPlayerDirectory(); //Refresh the directory
+        getDataFromUUID((EntityPlayerMP) event.getEntityPlayer(), EntityHelper.getPlayerUUID(event.getEntityPlayer()));
     }
 
     //Setup the Player

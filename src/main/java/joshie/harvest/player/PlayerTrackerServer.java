@@ -13,6 +13,7 @@ import joshie.harvest.player.tracking.TrackingServer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 
+import javax.annotation.Nullable;
 import java.util.UUID;
 
 public class PlayerTrackerServer extends PlayerTracker {
@@ -25,9 +26,9 @@ public class PlayerTrackerServer extends PlayerTracker {
     private EntityPlayerMP player; //No Direct calling, it's a cache value
     private final UUID uuid; //SHOULD NOT BE CALLED, EXCEPT BY GET AND CREATE PLAYER
 
-    public PlayerTrackerServer(EntityPlayerMP player) {
-        this.player = player;
-        uuid = EntityHelper.getPlayerUUID(player);
+    public PlayerTrackerServer(@Nullable EntityPlayerMP player, UUID uuid) {
+        this.uuid = uuid;
+        this.player = player != null ? player: getAndCreatePlayer();
         quests = new QuestDataServer(this);
         relationships = new RelationshipDataServer();
         stats = new StatsServer();

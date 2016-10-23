@@ -163,7 +163,7 @@ public class QuestUpgrade extends QuestTrade {
             } else return null;
         } else {
             CalendarDate today = HFApi.calendar.getDate(player.worldObj);
-            if (getDifference(date, today) >= 3) {
+            if (getDifference(date, today) >= days) {
                 return getLocalized("done", tool.getDisplayName());
             }
 

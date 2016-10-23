@@ -10,6 +10,6 @@ public interface IRelations {
 
     /** Returns the relationship value between this player and the relatable
      *  This is a value from 0-65535 (by default) but can be higher based on settings
-     *  @param key    the relatable to check the value of*/
+     *  @param key    the uuid to check the value of*/
     int getRelationship(UUID key);
 }

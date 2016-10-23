@@ -128,7 +128,7 @@ public class CalendarHUD {
             }
 
             if (HFCalendar.ENABLE_GOLD_HUD) {
-                String text = NumberFormat.getNumberInstance(Locale.ENGLISH).format(HFTrackers.getClientPlayerTracker().getStats().getGold());
+                String text = NumberFormat.getNumberInstance(Locale.ENGLISH).format(HFApi.player.getStatsForPlayer(MCClientHelper.getPlayer()).getGold());
                 float adjustedX = ((HFCalendar.X_GOLD / 100F) * maxWidth);
                 float adjustedY = ((HFCalendar.Y_GOLD / 100F) * maxHeight);
                 if (!HIDE_GOLD_TEXTURE) {

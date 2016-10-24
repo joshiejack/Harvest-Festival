@@ -3,24 +3,19 @@ package joshie.harvest.core.block;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.block.BlockHFEnum;
 import joshie.harvest.core.block.BlockFlower.FlowerType;
-import joshie.harvest.core.lib.CreativeSort;
-import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.helpers.TextHelper;
+import joshie.harvest.core.lib.CreativeSort;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.fml.relauncher.Side;
@@ -66,7 +61,7 @@ public class BlockFlower extends BlockHFEnum<BlockFlower, FlowerType> implements
 
     @Override
     public long getSellValue(ItemStack stack) {
-        return getEnumFromStack(stack) == FlowerType.WEED ? 1L : 0L;
+        return getEnumFromStack(stack).getSellValue();
     }
 
     @Override
@@ -146,13 +141,5 @@ public class BlockFlower extends BlockHFEnum<BlockFlower, FlowerType> implements
     public int getSortValue(ItemStack stack) {
         if (getEnumFromStack(stack) == FlowerType.GODDESS) return CreativeSort.TOOLS - 200;
         return CreativeSort.TOOLS - 100;
-    }
-
-    @SideOnly(Side.CLIENT)
-    @Override
-    public void registerModels(Item item, String name) {
-        for (int i = 0; i < values.length; i++) {
-            ModelLoader.setCustomModelResourceLocation(item, i, new ModelResourceLocation(new ResourceLocation(HFModInfo.MODID, property.getName() + "_" + getEnumFromMeta(i).getName()), "inventory"));
-        }
     }
 }

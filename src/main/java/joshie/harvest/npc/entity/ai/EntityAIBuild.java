@@ -17,6 +17,7 @@ public class EntityAIBuild extends EntityAIBase {
     private int teleportTimer;
     private int buildingTimer;
     private int stuckTimer;
+    private BlockPos prev;
 
     public EntityAIBuild(EntityNPCBuilder npc) {
         this.npc = npc;
@@ -66,7 +67,9 @@ public class EntityAIBuild extends EntityAIBase {
                         tooFar = false; //Force the placement of the block
                     }
 
-                    teleportTimer++;
+                    BlockPos current = new BlockPos(npc);
+                    teleportTimer += current.equals(prev) ? 10: 1;
+                    prev = current;
 
                     //Update the path
                     Path path = npc.getNavigator().getPathToPos(go);
@@ -95,6 +98,7 @@ public class EntityAIBuild extends EntityAIBase {
                         stuckTimer++;
                         if (stuckTimer >= 100) {
                             stuckTimer = 0;
+                            building.build(npc.worldObj);
                             attemptToTeleportToSafety(go);
                         }
                     }

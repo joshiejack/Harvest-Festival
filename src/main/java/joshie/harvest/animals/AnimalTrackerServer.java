@@ -6,6 +6,7 @@ import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.player.PlayerTracker;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.util.DamageSource;
+import net.minecraft.world.World;
 
 import java.util.HashSet;
 import java.util.Iterator;
@@ -36,16 +37,19 @@ public class AnimalTrackerServer extends AnimalTracker {
     }
 
     public void newDay() {
+        World world = getWorld();
         Iterator<AnimalData> iterator = animals.iterator();
         while (iterator.hasNext()) {
             AnimalData data = iterator.next(); //Only tick animals when owner in online
-            if (!data.newDay()) { //If the new day wasn't successful, remove the animal from your memory
-                EntityAnimal animal = data.getAnimal();
-                iterator.remove();
-                if (animal != null) {
-                    animal.attackEntityFrom(natural_causes, 1000F);
-                    for (PlayerTracker tracker : HFTrackers.getPlayerTrackers()) {
-                        tracker.getRelationships().clear(EntityHelper.getEntityUUID(animal));
+            EntityAnimal animal = data.getAnimal();
+            if (world.loadedEntityList.contains(animal)) {
+                if (animal == null || animal.isDead || !data.newDay()) { //If the new day wasn't successful, remove the animal from your memory
+                    iterator.remove();
+                    if (animal != null && !animal.isDead) {
+                        animal.attackEntityFrom(natural_causes, 1000F);
+                        for (PlayerTracker tracker : HFTrackers.getPlayerTrackers()) {
+                            tracker.getRelationships().clear(EntityHelper.getEntityUUID(animal));
+                        }
                     }
                 }
             }

@@ -1,3 +1,8 @@
+##0.5.14
+* Will no longer tick towns and animals if the chunks they're in are unloaded
+* Yulif will now build whenever his stuck timer reaches max
+* Yulif will now teleport faster if he hasn't moved at all
+
 ##0.5.13
 * Fixed potential crashes when loading player data in specific circumstances
 * Fixed Blacksmith saying he'll take zero more days when finishing repairing tools

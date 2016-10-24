@@ -72,27 +72,29 @@ public class TownDataServer extends TownData {
 
     @Override
     public void newDay(World world) {
-        gathering.newDay(world, buildings.values());
-        for (ResourceLocation villager: deadVillagers) {
-            NPC npc = NPCRegistry.REGISTRY.getValue(villager);
-            if (npc != HFNPCs.GODDESS) {
-                EntityNPCHuman entity = NPCHelper.getEntityForNPC(world, npc);
-                entity.setPosition(townCentre.getX(), townCentre.getY(), townCentre.getZ());
-                entity.resetSpawnHome();
-                BlockPos pos = entity.getHomeCoordinates();
-                int attempts = 0;
-                while (!EntityHelper.isSpawnable(world, pos) && attempts < 64) {
-                    pos = pos.add(world.rand.nextInt(16) - 8, world.rand.nextInt(8), world.rand.nextInt(16) - 8);
-                    attempts++;
+        if (world.isBlockLoaded(getTownCentre())) {
+            gathering.newDay(world, buildings.values());
+            for (ResourceLocation villager : deadVillagers) {
+                NPC npc = NPCRegistry.REGISTRY.getValue(villager);
+                if (npc != HFNPCs.GODDESS) {
+                    EntityNPCHuman entity = NPCHelper.getEntityForNPC(world, npc);
+                    entity.setPosition(townCentre.getX(), townCentre.getY(), townCentre.getZ());
+                    entity.resetSpawnHome();
+                    BlockPos pos = entity.getHomeCoordinates();
+                    int attempts = 0;
+                    while (!EntityHelper.isSpawnable(world, pos) && attempts < 64) {
+                        pos = pos.add(world.rand.nextInt(16) - 8, world.rand.nextInt(8), world.rand.nextInt(16) - 8);
+                        attempts++;
+                    }
+
+                    entity.setPositionAndUpdate(pos.getX(), pos.getY(), pos.getZ());
+                    if (npc == HFNPCs.BUILDER) entity.setUniqueId(getID()); //Keep the Unique ID the same
+                    world.spawnEntityInWorld(entity);
                 }
-
-                entity.setPositionAndUpdate(pos.getX(), pos.getY(), pos.getZ());
-                if (npc == HFNPCs.BUILDER) entity.setUniqueId(getID()); //Keep the Unique ID the same
-                world.spawnEntityInWorld(entity);
             }
-        }
 
-        deadVillagers = new HashSet<>(); //Reset the dead villagers
+            deadVillagers = new HashSet<>(); //Reset the dead villagers
+        }
     }
 
     @Override

@@ -14,6 +14,7 @@ import net.minecraft.util.math.Vec3d;
 
 public class EntityAIBuild extends EntityAIBase {
     private final EntityNPCBuilder npc;
+    private BlockPos prev;
     private int teleportTimer;
     private int buildingTimer;
     private int stuckTimer;
@@ -66,7 +67,9 @@ public class EntityAIBuild extends EntityAIBase {
                         tooFar = false; //Force the placement of the block
                     }
 
-                    teleportTimer++;
+                    BlockPos current = new BlockPos(npc);
+                    teleportTimer += current.equals(prev) ? 10: 1;
+                    prev = current;
 
                     //Update the path
                     Path path = npc.getNavigator().getPathToPos(go);
@@ -91,10 +94,10 @@ public class EntityAIBuild extends EntityAIBase {
                             npc.getNavigator().setPath(npc.getNavigator().getPathToPos(new BlockPos(vec)), 0.85F);
                         }
 
-
                         stuckTimer++;
                         if (stuckTimer >= 100) {
                             stuckTimer = 0;
+                            building.build(npc.worldObj);
                             attemptToTeleportToSafety(go);
                         }
                     }

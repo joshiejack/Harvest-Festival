@@ -99,7 +99,7 @@ public class QuestCrops extends QuestQuestion {
     }
 
     @Override
-    public void onChatClosed(EntityPlayer player, EntityLiving entity, INPC npc) {
+    public void onChatClosed(EntityPlayer player, EntityLiving entity, INPC npc, boolean wasSneaking) {
         if (isCompletedEarly || quest_stage == START) {
             rewardItem(player, HFTools.HOE.getStack(BASIC));
             rewardItem(player, HFTools.WATERING_CAN.getStack(BASIC));

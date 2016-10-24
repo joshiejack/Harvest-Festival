@@ -1,5 +1,6 @@
 package joshie.harvest.buildings.placeable.entities;
 
+import com.google.gson.annotations.Expose;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityHanging;
 import net.minecraft.entity.item.EntityPainting;
@@ -8,6 +9,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class PlaceablePainting extends PlaceableHanging {
+    @Expose
     private String painting;
 
     public PlaceablePainting() {}

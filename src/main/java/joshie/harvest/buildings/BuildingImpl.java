@@ -1,18 +1,14 @@
 package joshie.harvest.buildings;
 
+import com.google.gson.annotations.Expose;
 import joshie.harvest.api.buildings.Building;
 import joshie.harvest.api.buildings.ISpecialPurchaseRules;
 import joshie.harvest.buildings.placeable.Placeable;
 import joshie.harvest.buildings.placeable.Placeable.ConstructionStage;
-import joshie.harvest.buildings.placeable.blocks.PlaceableBlock;
-import joshie.harvest.buildings.placeable.blocks.PlaceableDecorative;
 import joshie.harvest.buildings.placeable.entities.PlaceableNPC;
-import joshie.harvest.town.TownHelper;
 import joshie.harvest.core.helpers.MCServerHelper;
-import joshie.harvest.core.util.Direction;
-import net.minecraft.block.*;
+import joshie.harvest.town.TownHelper;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.Mirror;
@@ -23,29 +19,29 @@ import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.IForgeRegistryEntry.Impl;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Locale;
 
 public class BuildingImpl extends Impl<BuildingImpl> implements Building {
-    //Components
-    private final transient HashMap<String, PlaceableNPC> npc_offsets = new HashMap<>();
-    private final transient ArrayList<PlaceableBlock> block_list = new ArrayList<>();
-    private transient ArrayList<Placeable> full_list = new ArrayList<>();
+    //Offsets
+    private final HashMap<String, PlaceableNPC> npc_offsets = new HashMap<>();
 
     //Costs and rules
-    private transient ISpecialPurchaseRules special = (w, p) -> true;
-    private transient String toLocalise = "";
-    private transient ResourceLocation[] requirements = new ResourceLocation[0];
-    private transient long cost = 1000L;
-    private transient int wood = 64;
-    private transient  int stone = 64;
-    private transient int offsetY = -1;
-    private transient long tickTime = 15L;
-    private transient int width;
-    private transient int length;
-    private transient boolean canHaveMultiple;
-    private transient boolean isPurchaseable = true;
+    private ISpecialPurchaseRules special = (w, p) -> true;
+    private String toLocalise = "";
+    private ResourceLocation[] requirements = new ResourceLocation[0];
+    private long cost = 1000L;
+    private int wood = 64;
+    private int stone = 64;
+    private int offsetY = -1;
+    private long tickTime = 15L;
+    private int width;
+    private int length;
+    private boolean canHaveMultiple;
+    private boolean isPurchaseable = true;
 
-    public Placeable[] components; //Set to null after loading
+    @Expose
+    public Placeable[] components;
 
     public BuildingImpl(){}
 
@@ -56,43 +52,19 @@ public class BuildingImpl extends Impl<BuildingImpl> implements Building {
         return this;
     }
 
-    public void initBuilding(BuildingImpl building) {
-        full_list = new ArrayList<>();
-        Collections.addAll(full_list, building.components);
-        for (Placeable placeable: full_list) {
-            addToList(placeable);
-        }
-
-        if (this.getRegistryName() != null) {
-            this.toLocalise = this.getRegistryName().getResourceDomain().toLowerCase(Locale.ENGLISH) + ".structures." + this.getRegistryName().getResourcePath().toLowerCase(Locale.ENGLISH);
-        }
-
-        this.components = null; //Wipe out my components
-     }
-
-    @SuppressWarnings("deprecation")
-    private boolean isValidBlock(Block block) {
-        return block.isFullCube(block.getDefaultState()) || block instanceof BlockStairs || block instanceof BlockSlab || block instanceof BlockPane || block instanceof BlockLeaves || block instanceof BlockFence || block instanceof BlockWall;
-    }
-
-    public void addToList(Placeable placeable) {
-        if (placeable instanceof PlaceableBlock) {
-            PlaceableBlock block = (PlaceableBlock) placeable;
-            if (block.getOffsetPos().getY() >= -getOffsetY()) {
-                if (block.getBlock() != Blocks.AIR) {
-                    if (!(block instanceof PlaceableDecorative) && isValidBlock(block.getBlock())) {
-                        block_list.add((PlaceableBlock) placeable);
-                    }
+    void initBuilding(BuildingImpl building) {
+        for (Placeable placeable: building.components) {
+            if (placeable instanceof PlaceableNPC) {
+                PlaceableNPC npc = ((PlaceableNPC)placeable);
+                String home = npc.getHomeString();
+                if (home != null) {
+                    npc_offsets.put(home, npc);
                 }
             }
         }
 
-        if (placeable instanceof PlaceableNPC) {
-            PlaceableNPC npc = ((PlaceableNPC)placeable);
-            String home = npc.getHomeString();
-            if (home != null) {
-                npc_offsets.put(home, npc);
-            }
+        if (this.getRegistryName() != null) {
+            this.toLocalise = this.getRegistryName().getResourceDomain().toLowerCase(Locale.ENGLISH) + ".structures." + this.getRegistryName().getResourcePath().toLowerCase(Locale.ENGLISH);
         }
     }
 
@@ -181,26 +153,25 @@ public class BuildingImpl extends Impl<BuildingImpl> implements Building {
 
     @Override
     public EnumActionResult generate(World world, BlockPos pos, Mirror mirror, Rotation rotation) {
-        if (!world.isRemote && full_list != null) {
-            Direction direction = Direction.withMirrorAndRotation(mirror, rotation);
-            for (Placeable placeable: full_list) placeable.place(world, pos, direction, ConstructionStage.BUILD, false);
-            for (Placeable placeable: full_list) placeable.place(world, pos, direction, ConstructionStage.DECORATE, false);
-            for (Placeable placeable: full_list) placeable.place(world, pos, direction, ConstructionStage.PAINT, false);
-            for (Placeable placeable: full_list) placeable.place(world, pos, direction, ConstructionStage.MOVEIN, false);
-            TownHelper.getClosestTownToBlockPos(world, pos).addBuilding(world, this, direction, pos);
-            MCServerHelper.markForUpdate(world, pos);
+        return generate(world, pos, rotation);
+    }
+
+    @Override
+    public EnumActionResult generate(World world, BlockPos pos, Rotation rotation) {
+        if (!world.isRemote) {
+            HFBuildings.loadBuilding(this);
+            if (components != null) {
+                for (Placeable placeable : components) placeable.place(world, pos, rotation, ConstructionStage.BUILD, false);
+                for (Placeable placeable : components) placeable.place(world, pos, rotation, ConstructionStage.DECORATE, false);
+                for (Placeable placeable : components) placeable.place(world, pos, rotation, ConstructionStage.PAINT, false);
+                for (Placeable placeable : components) placeable.place(world, pos, rotation, ConstructionStage.MOVEIN, false);
+                TownHelper.getClosestTownToBlockPos(world, pos).addBuilding(world, this, rotation, pos);
+                MCServerHelper.markForUpdate(world, pos);
+            }
         }
 
 
         return EnumActionResult.SUCCESS;
-    }
-
-    public List<Placeable> getFullList() {
-        return full_list;
-    }
-
-    public List<PlaceableBlock> getPreviewList() {
-        return block_list;
     }
 
     public PlaceableNPC getNPCOffset(String npc_location) {

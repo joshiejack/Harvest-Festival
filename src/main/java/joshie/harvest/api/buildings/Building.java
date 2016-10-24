@@ -58,8 +58,10 @@ public interface Building {
     /** Generates this building at the location
      * @param world the world obj
      * @param pos   the starting position
-     * @param mirror the mirroring to use
      * @param rotation the rotation to use
      * @return the result of attempting to generate a building here */
+    EnumActionResult generate(World world, BlockPos pos, Rotation rotation);
+
+    @Deprecated //TODO: Remove in 0.7+
     EnumActionResult generate(World world, BlockPos pos, Mirror mirror, Rotation rotation);
 }

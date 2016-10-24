@@ -1,15 +1,17 @@
 package joshie.harvest.buildings.placeable.blocks;
 
-import joshie.harvest.core.util.Direction;
+import com.google.gson.annotations.Expose;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntitySign;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 
 public class PlaceableSign extends PlaceableDecorative {
+    @Expose
     private TextComponentString[] text;
 
     public PlaceableSign() {}
@@ -22,7 +24,7 @@ public class PlaceableSign extends PlaceableDecorative {
     }
 
     @Override
-    public void postPlace (World world, BlockPos pos, Direction direction) {
+    public void postPlace (World world, BlockPos pos, Rotation rotation) {
         TileEntity tile = world.getTileEntity(pos);
         if (tile instanceof TileEntitySign) {
             for (int i = 0; i < 4; ++i) {

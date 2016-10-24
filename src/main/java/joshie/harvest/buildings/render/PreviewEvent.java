@@ -50,7 +50,7 @@ public class PreviewEvent {
             else {
                 RenderKey key = BuildingHelper.getPositioning(stack, world, raytrace, building, player, false);
                 if (key != null) {
-                    return CACHE.get(key, () -> new BuildingRenderer(new BuildingAccess(building, key.getMirror(), key.getRotation()), key)).setPosition(key.getPos());
+                    return CACHE.get(key, () -> new BuildingRenderer(new BuildingAccess(building, key.getRotation()), key)).setPosition(key.getPos());
                 }
             }
         }

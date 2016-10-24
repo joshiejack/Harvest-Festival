@@ -10,6 +10,9 @@
 * You will now get relationship points every two hours if an animal is outside in the day and it isn't raining
 * You will now lose relationship points every time you use medicine on an animal
 * You will now get more points from interactions with animals
+#Buildings
+* Optimised building save format, should be smaller size
+* Only load buildings in to RAM when they're rendered/built
 #Crops
 * Untied the crops from the registry for them, shouldn't affect anything
 #Shops

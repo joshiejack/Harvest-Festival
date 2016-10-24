@@ -11,26 +11,23 @@ import java.lang.reflect.Type;
 public class PlaceableAdapter implements JsonSerializer<Placeable>, JsonDeserializer<Placeable> {
     @Override
     public JsonElement serialize(Placeable src, Type typeOfSrc, JsonSerializationContext context) {
-        JsonObject result = new JsonObject();
-        result.add("type", new JsonPrimitive(src.getClass().getSimpleName()));
-        result.add("isBlock", new JsonPrimitive(src instanceof PlaceableBlock));
-        result.add("theData", context.serialize(src, src.getClass()));
+        JsonObject result = context.serialize(src, src.getClass()).getAsJsonObject();
+        String prefix = src instanceof PlaceableBlock ? "blocks." : "entities.";
+        if ((src.getClass() != PlaceableBlock.class)) {
+            result.add("type", new JsonPrimitive(prefix + src.getClass().getSimpleName()));
+        }
+
         return result;
     }
 
     @Override
     public Placeable deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
         JsonObject jsonObject = json.getAsJsonObject();
-        String type = jsonObject.get("type").getAsString(); //Compatiblity with previous books
-
-        String clazz = "";
-        boolean isBlock = jsonObject.get("isBlock").getAsBoolean();
-        if (type != null) {
-            clazz = HFModInfo.JAVAPATH + "buildings.placeable." + (isBlock ? "blocks." : "entities.") + type;
-        }
+        String type = jsonObject.has("type") ? jsonObject.get("type").getAsString() : "blocks.PlaceableBlock";
+        String clazz = HFModInfo.JAVAPATH + "buildings.placeable." + type;
 
         try {
-            Placeable placeable = context.deserialize(jsonObject.get("theData"), Class.forName(clazz));
+            Placeable placeable = context.deserialize(jsonObject, Class.forName(clazz));
             if (placeable == null) throw new NullPointerException(clazz);
             placeable.init(); //Init the placeable
             return placeable;

@@ -1,6 +1,5 @@
 package joshie.harvest.buildings.placeable.blocks;
 
-import joshie.harvest.core.util.Direction;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -8,6 +7,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityFlowerPot;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -15,15 +15,13 @@ import java.util.Random;
 
 
 public class PlaceableFlowerPot extends PlaceableDecorative {
-    private boolean canCactus;
-
     public PlaceableFlowerPot() {}
     public PlaceableFlowerPot(IBlockState state, int x, int y, int z) {
         super(state, x, y, z);
     }
 
     @Override
-    public void postPlace(World world, BlockPos pos, Direction direction) {
+    public void postPlace(World world, BlockPos pos, Rotation rotation) {
         TileEntity tile = world.getTileEntity(pos);
         if (tile instanceof TileEntityFlowerPot) {
             TileEntityFlowerPot pot = (TileEntityFlowerPot) tile;
@@ -67,10 +65,7 @@ public class PlaceableFlowerPot extends PlaceableDecorative {
                 block = Blocks.BROWN_MUSHROOM;
                 break;
             case 9:
-                if (canCactus) {
-                    block = Blocks.CACTUS;
-                } else block = Blocks.SAPLING;
-
+                block = Blocks.CACTUS;
                 meta = 5;
                 break;
             case 10:

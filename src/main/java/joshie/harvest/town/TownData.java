@@ -1,24 +1,25 @@
 package joshie.harvest.town;
 
-import joshie.harvest.api.buildings.BuildingLocation;
 import joshie.harvest.api.buildings.Building;
+import joshie.harvest.api.buildings.BuildingLocation;
 import joshie.harvest.buildings.BuildingImpl;
 import joshie.harvest.buildings.BuildingRegistry;
 import joshie.harvest.buildings.BuildingStage;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.helpers.NBTHelper;
 import joshie.harvest.core.network.PacketHandler;
-import joshie.harvest.core.util.Direction;
 import joshie.harvest.town.packet.PacketNewBuilding;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.util.Mirror;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Map;
+import java.util.UUID;
 
 public class TownData {
     public static final String CARPENTER_DOWNSTAIRS = "carpenter.downstairs";
@@ -120,11 +121,11 @@ public class TownData {
 
     public boolean isBuilding(BuildingImpl building) {
         if (building == null) return this.building.size() > 0;
-        return this.building.contains(new BuildingStage(building, BlockPos.ORIGIN, Mirror.NONE, Rotation.NONE));
+        return this.building.contains(new BuildingStage(building, BlockPos.ORIGIN, Rotation.NONE));
     }
     
-    public void addBuilding(World world, BuildingImpl building, Direction direction, BlockPos pos) {
-        TownBuilding newBuilding = new TownBuilding(building, direction, pos);
+    public void addBuilding(World world, BuildingImpl building, Rotation rotation, BlockPos pos) {
+        TownBuilding newBuilding = new TownBuilding(building, rotation, pos);
         buildings.put(BuildingRegistry.REGISTRY.getKey(building), newBuilding);
         PacketHandler.sendToDimension(world.provider.getDimension(), new PacketNewBuilding(uuid, newBuilding));
         HFTrackers.markDirty(world);
@@ -159,7 +160,7 @@ public class TownData {
         return building.getRealCoordinatesFor(location.getLocation());
     }
 
-    public Direction getFacingFor(ResourceLocation resource) {
+    public Rotation getFacingFor(ResourceLocation resource) {
         TownBuilding building = buildings.get(resource);
         if (building == null) return null;
         return building.getFacing();

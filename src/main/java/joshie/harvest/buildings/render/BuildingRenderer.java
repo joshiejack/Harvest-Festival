@@ -1,12 +1,6 @@
 package joshie.harvest.buildings.render;
 
 import joshie.harvest.buildings.BuildingImpl;
-import joshie.harvest.buildings.HFBuildings;
-import joshie.harvest.buildings.placeable.Placeable;
-import joshie.harvest.buildings.placeable.blocks.PlaceableBlock;
-import joshie.harvest.buildings.placeable.blocks.PlaceableDouble;
-import joshie.harvest.buildings.placeable.blocks.PlaceableDoubleOpposite;
-import joshie.harvest.core.util.Direction;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
@@ -14,12 +8,13 @@ import net.minecraft.client.renderer.RegionRenderCacheBuilder;
 import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.init.Blocks;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.Map.Entry;
 
 @SideOnly(Side.CLIENT)
 public class BuildingRenderer {
@@ -27,44 +22,22 @@ public class BuildingRenderer {
     private final RenderKey key;
     private BlockPos pos;
 
-    public BuildingRenderer(IBlockAccess world, RenderKey key) {
-        BuildingImpl building = key.getBuilding();
+    public BuildingRenderer(BuildingAccess world, RenderKey key) {
         this.key = key;
         this.pos = key.getPos();
         this.renderer = new RegionRenderCacheBuilder();
-        Direction direction = Direction.withMirrorAndRotation(key.getMirror(), key.getRotation());
         for (BlockRenderLayer layer: BlockRenderLayer.values()) {
             VertexBuffer buffer = renderer.getWorldRendererByLayer(layer);
             buffer.begin(7, DefaultVertexFormats.BLOCK);
-            if (HFBuildings.FULL_BUILDING_RENDER) {
-                for (Placeable placeable : building.getFullList()) {
-                    if (placeable.getY() >= -building.getOffsetY()) {
-                        if (placeable instanceof PlaceableBlock) {
-                            PlaceableBlock block = (PlaceableBlock) placeable;
-                            if (block.getBlock() == Blocks.AIR) continue;
-                            addRender(world, block, direction, layer, buffer);
-                        }
-                    }
-                }
-            } else {
-                for (PlaceableBlock block : building.getPreviewList()) {
-                    addRender(world, block, direction, layer, buffer);
-                }
+            for (Entry<BlockPos, IBlockState> placeable: world.getBlockMap().entrySet()) {
+                addRender(world, placeable.getValue(), placeable.getKey(), layer, buffer);
             }
         }
     }
 
-    private void addRender(IBlockAccess world, PlaceableBlock block, Direction direction, BlockRenderLayer layer, VertexBuffer buffer) {
-        IBlockState state = block.getTransformedState(direction);
+    private void addRender(IBlockAccess world, IBlockState state, BlockPos pos, BlockRenderLayer layer, VertexBuffer buffer) {
         if (state.getBlock().canRenderInLayer(state, layer)) {
-            Minecraft.getMinecraft().getBlockRendererDispatcher().renderBlock(state, block.transformBlockPos(direction), world, buffer);
-            if (block instanceof PlaceableDouble) {
-                state = state.getBlock().getStateFromMeta(8);
-                Minecraft.getMinecraft().getBlockRendererDispatcher().renderBlock(state, block.transformBlockPos(direction).up(), world, buffer);
-            } else if (block instanceof PlaceableDoubleOpposite) {
-                state = state.getBlock().getStateFromMeta(9);
-                Minecraft.getMinecraft().getBlockRendererDispatcher().renderBlock(state, block.transformBlockPos(direction).up(), world, buffer);
-            }
+            Minecraft.getMinecraft().getBlockRendererDispatcher().renderBlock(state, pos, world, buffer);
         }
     }
 

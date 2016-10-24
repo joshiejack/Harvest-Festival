@@ -7,7 +7,6 @@ import joshie.harvest.core.util.Direction;
 import joshie.harvest.town.TownDataServer;
 import joshie.harvest.town.TownHelper;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.Mirror;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
@@ -17,29 +16,30 @@ import net.minecraft.world.World;
  * to know their current progress through a building project **/
 public class BuildingStage {
     public BuildingImpl building;
-    public Direction direction;
+    public Rotation rotation;
     public ConstructionStage stage;
-    public boolean basement;
-    public int index;
+    private boolean basement;
+    private int index;
     public BlockPos pos;
 
     public BuildingStage(){}
-    public BuildingStage(BuildingImpl building, BlockPos pos, Mirror mirror, Rotation rotation) {
+    public BuildingStage(BuildingImpl building, BlockPos pos,  Rotation rotation) {
         this.building = building;
-        this.direction = Direction.withMirrorAndRotation(mirror, rotation);
+        this.rotation = rotation;
         this.stage = ConstructionStage.BUILD;
         this.index = 0;
         this.basement = true;
         this.pos = pos.add(0, building.getOffsetY(), 0);
+        HFBuildings.loadBuilding(building);
     }
 
     public Placeable next() {
-        return index < building.getFullList().size() ? building.getFullList().get(index): null;
+        return index < building.components.length ? building.components[index]: null;
     }
 
     public Placeable previous() {
         int position = index - 1;
-        return position >= 0 && position < building.getFullList().size() ? building.getFullList().get(position): null;
+        return position >= 0 && position < building.components.length ? building.components[position]: null;
     }
 
     public BuildingImpl getBuilding() {
@@ -51,8 +51,8 @@ public class BuildingStage {
     }
 
     public BlockPos getPos(Placeable placeable) {
-        if (placeable == null) return next().getTransformedPosition(pos, direction);
-        return placeable.getTransformedPosition(pos, direction);
+        if (placeable == null) return next().getTransformedPosition(pos, rotation);
+        return placeable.getTransformedPosition(pos, rotation);
     }
 
     public double getDistance(Placeable placeable) {
@@ -62,7 +62,7 @@ public class BuildingStage {
     private boolean increaseIndex(World world) {
         index++;
 
-        if (index >= building.getFullList().size()) {
+        if (index >= building.components.length) {
             if (stage == ConstructionStage.BUILD) {
                 stage = ConstructionStage.DECORATE;
                 index = 0;
@@ -77,7 +77,7 @@ public class BuildingStage {
                 index = 0;
 
                 basement = true;
-                TownHelper.getClosestTownToBlockPos(world, pos).addBuilding(world, building, direction, pos);
+                TownHelper.getClosestTownToBlockPos(world, pos).addBuilding(world, building, rotation, pos);
                 TownHelper.<TownDataServer>getClosestTownToBlockPos(world, pos).syncBuildings(world);
                 return true;
             }
@@ -99,9 +99,9 @@ public class BuildingStage {
     }
 
     public boolean build(World world) {
-        while (index < building.getFullList().size()) {
-            Placeable block = building.getFullList().get(index);
-            if (block.place(world, pos, direction, stage, true)) {
+        while (index < building.components.length) {
+            Placeable block = building.components[index];
+            if (block.place(world, pos, rotation, stage, true)) {
                 return increaseIndex(world);
             }
 
@@ -138,7 +138,12 @@ public class BuildingStage {
     public static BuildingStage readFromNBT(NBTTagCompound nbt) {
         BuildingStage stage = new BuildingStage();
         stage.building = BuildingRegistry.REGISTRY.getValue(new ResourceLocation(nbt.getString("CurrentlyBuilding")));
-        stage.direction = Direction.valueOf(nbt.getString("Direction"));
+        //TODO: Remove in 0.7+
+        if (nbt.hasKey("Direction")) {
+            Direction direction = Direction.valueOf(nbt.getString("Direction"));
+            stage.rotation = direction.getRotation();
+        } else stage.rotation = Rotation.valueOf(nbt.getString("Rotation"));
+
         stage.pos = new BlockPos(nbt.getInteger("BuildingX"), nbt.getInteger("BuildingY"), nbt.getInteger("BuildingZ"));
         stage.basement = nbt.getBoolean("Basement");
 
@@ -147,12 +152,13 @@ public class BuildingStage {
             stage.stage = ConstructionStage.values()[nbt.getInteger("Stage")];
         }
 
+        HFBuildings.loadBuilding(stage.building);
         return stage;
     }
 
     public void writeToNBT(NBTTagCompound nbt) {
         nbt.setString("CurrentlyBuilding", BuildingRegistry.REGISTRY.getKey(building).toString());
-        nbt.setString("Direction", direction.name());
+        nbt.setString("Rotation", rotation.name());
         nbt.setInteger("BuildingX", pos.getX());
         nbt.setInteger("BuildingY", pos.getY());
         nbt.setInteger("BuildingZ", pos.getZ());

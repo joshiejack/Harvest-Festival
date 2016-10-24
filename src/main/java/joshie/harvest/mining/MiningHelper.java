@@ -2,7 +2,6 @@ package joshie.harvest.mining;
 
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.helpers.EntityHelper;
-import joshie.harvest.core.util.Direction;
 import joshie.harvest.mining.block.BlockPortal.Portal;
 import joshie.harvest.town.TownTracker;
 import net.minecraft.block.state.IBlockState;
@@ -107,15 +106,15 @@ public class MiningHelper {
         int mineID = getMineID((int)entity.posZ >> 4);
         TownTracker tracker = HFTrackers.getTownTracker(DimensionManager.getWorld(0));
         BlockPos spawn = tracker.getCoordinatesForOverworldMine(entity, mineID);
-        Direction direction = tracker.getMineOrientation(mineID);
+        Rotation rotation = tracker.getMineOrientation(mineID);
         if (spawn == null) spawn = entity.worldObj.getSpawnPoint();
-        if (direction.getRotation() == Rotation.NONE) {
+        if (rotation == Rotation.NONE) {
             entity.rotationYaw = 90F;
-        } else if (direction.getRotation() == Rotation.CLOCKWISE_90) {
+        } else if (rotation == Rotation.CLOCKWISE_90) {
             entity.rotationYaw = 180F;
-        } else if (direction.getRotation() == Rotation.CLOCKWISE_180) {
+        } else if (rotation == Rotation.CLOCKWISE_180) {
             entity.rotationYaw = 270F;
-        } else if (direction.getRotation() == Rotation.COUNTERCLOCKWISE_90) {
+        } else if (rotation == Rotation.COUNTERCLOCKWISE_90) {
             entity.rotationYaw = 0F;
         }
 

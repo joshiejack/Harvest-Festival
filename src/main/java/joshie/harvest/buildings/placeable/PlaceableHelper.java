@@ -41,8 +41,6 @@ public class PlaceableHelper {
             return new PlaceableDecorative(state, x, y, z);
         } else if (block instanceof BlockAnvil) {
             return new PlaceableDecorative(state, x, y, z);
-        } else if (block instanceof BlockFurnace || block instanceof BlockEnderChest) {
-            return new PlaceableFurnace(state, x, y, z);
         } else if (block instanceof BlockLadder) {
             return new PlaceableDecorative(state, x, y, z);
         } else if (block instanceof BlockPumpkin) {

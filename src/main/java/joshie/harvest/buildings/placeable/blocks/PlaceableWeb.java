@@ -1,7 +1,7 @@
 package joshie.harvest.buildings.placeable.blocks;
 
-import joshie.harvest.core.util.Direction;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -12,7 +12,7 @@ public class PlaceableWeb extends PlaceableDecorative {
     }
 
     @Override
-    public void postPlace (World world, BlockPos pos, Direction direction) {
+    public void postPlace (World world, BlockPos pos, Rotation rotation) {
         if (world.rand.nextInt(3) != 0) world.setBlockToAir(pos);
     }
 }

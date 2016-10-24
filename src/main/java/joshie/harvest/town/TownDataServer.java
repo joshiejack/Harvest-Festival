@@ -16,7 +16,6 @@ import joshie.harvest.npc.entity.EntityNPCBuilder;
 import joshie.harvest.npc.entity.EntityNPCHuman;
 import joshie.harvest.town.packet.PacketSyncBuilding;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.Mirror;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
@@ -53,8 +52,8 @@ public class TownDataServer extends TownData {
         PacketHandler.sendToDimension(world.provider.getDimension(), new PacketSyncBuilding(getID(), this.building));
     }
 
-    public boolean setBuilding(World world, BuildingImpl building, BlockPos pos, Mirror mirror, Rotation rotation) {
-        BuildingStage stage = new BuildingStage(building, pos, mirror, rotation);
+    public boolean setBuilding(World world, BuildingImpl building, BlockPos pos, Rotation rotation) {
+        BuildingStage stage = new BuildingStage(building, pos, rotation);
         if (!this.building.contains(stage)) {
             this.building.addLast(stage);
             HFTrackers.markDirty(world);

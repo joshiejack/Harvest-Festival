@@ -4,13 +4,14 @@ import joshie.harvest.buildings.BuildingImpl;
 import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.buildings.placeable.Placeable;
 import joshie.harvest.buildings.placeable.blocks.PlaceableBlock;
-import joshie.harvest.core.util.Direction;
+import joshie.harvest.buildings.placeable.blocks.PlaceableDouble;
+import joshie.harvest.buildings.placeable.blocks.PlaceableDoubleOpposite;
+import net.minecraft.block.*;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Biomes;
 import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.Mirror;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -19,27 +20,43 @@ import net.minecraft.world.biome.Biome;
 
 import javax.annotation.Nullable;
 import java.util.HashMap;
+import java.util.Map;
 
 public class BuildingAccess implements IBlockAccess {
-    private final HashMap<BlockPos, IBlockState> mapping = new HashMap<>();
+    private final Map<BlockPos, IBlockState> mapping = new HashMap<>();
 
-    public BuildingAccess(BuildingImpl building, Mirror mirror, Rotation rotation) {
-        Direction direction = Direction.withMirrorAndRotation(mirror, rotation);
-        if (HFBuildings.FULL_BUILDING_RENDER) {
-            for (Placeable placeable : building.getFullList()) {
-                if (placeable.getY() >= -building.getOffsetY()) {
-                    if (placeable instanceof PlaceableBlock) {
-                        PlaceableBlock block = (PlaceableBlock) placeable;
-                        if (block.getBlock() == Blocks.AIR) continue;
-                        mapping.put(block.transformBlockPos(direction), block.getTransformedState(direction));
+    public BuildingAccess(BuildingImpl building, Rotation rotation) {
+        HFBuildings.loadBuilding(building);
+        for (Placeable placeable : building.components) {
+            if (placeable == null) continue;
+            if (placeable instanceof PlaceableBlock) {
+                PlaceableBlock block = (PlaceableBlock) placeable;
+                if (isValidBlock(block)) {
+                    IBlockState state = block.getTransformedState(rotation);
+                    BlockPos pos = block.transformBlockPos(rotation);
+                    mapping.put(pos, state);
+                    if (block instanceof PlaceableDouble) {
+                        mapping.put(pos.up(), state.getBlock().getStateFromMeta(8));
+                    } else if (block instanceof PlaceableDoubleOpposite) {
+                        mapping.put(pos.up(), state.getBlock().getStateFromMeta(9));
                     }
                 }
             }
-        } else {
-            for (PlaceableBlock block : building.getPreviewList()) {
-                mapping.put(block.transformBlockPos(direction), block.getTransformedState(direction));
-            }
         }
+    }
+
+    @SuppressWarnings("deprecation")
+    private boolean isValidBlock(PlaceableBlock placeable) {
+        if (placeable == null || placeable.getBlock() == null || placeable.getBlock() == Blocks.AIR) return false;
+        if (HFBuildings.FULL_BUILDING_RENDER) return true;
+        else {
+            Block block = placeable.getBlock();
+            return block.isFullCube(block.getDefaultState()) || block instanceof BlockStairs || block instanceof BlockSlab || block instanceof BlockPane || block instanceof BlockLeaves || block instanceof BlockFence || block instanceof BlockWall;
+        }
+    }
+
+    public Map<BlockPos, IBlockState> getBlockMap() {
+        return mapping;
     }
 
     @Nullable

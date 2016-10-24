@@ -1,32 +1,34 @@
 package joshie.harvest.buildings.placeable;
 
-import joshie.harvest.core.util.Direction;
+import com.google.gson.annotations.Expose;
 import net.minecraft.block.BlockBush;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public abstract class Placeable {
-    protected int x, y, z;
+    @Expose
+    protected BlockPos pos;
 
     public Placeable init() {
         return this;
     }
 
     public BlockPos getOffsetPos() {
-        return new BlockPos(x, y, z);
+        return pos;
     }
 
     public int getX() {
-        return x;
+        return pos.getX();
     }
 
     public int getY() {
-        return y;
+        return pos.getY();
     }
 
     public int getZ() {
-        return z;
+        return pos.getZ();
     }
 
     public boolean canPlace(ConstructionStage stage) {
@@ -40,38 +42,25 @@ public abstract class Placeable {
         }
     }
 
-    public boolean place(World world, BlockPos pos, Direction direction, ConstructionStage stage, boolean playSound) {
+    public boolean place(World world, BlockPos pos, Rotation rotation, ConstructionStage stage, boolean playSound) {
         if (world.getBlockState(pos).getBlockHardness(world, pos) == -1F) return true;
         if (canPlace(stage)) {
-            BlockPos transformed = getTransformedPosition(pos, direction);
+            BlockPos transformed = getTransformedPosition(pos, rotation);
             if (stage == ConstructionStage.BUILD) clearBushes(world, transformed.up());
-            return place(world, transformed, direction, playSound);
+            return place(world, transformed, rotation, playSound);
         } else return false;
     }
 
-    public BlockPos getTransformedPosition(BlockPos pos, Direction direction) {
-        BlockPos adjusted = transformBlockPos(direction);
+    public BlockPos getTransformedPosition(BlockPos pos, Rotation rotation) {
+        BlockPos adjusted = transformBlockPos(rotation);
         return new BlockPos(pos.getX() + adjusted.getX(), pos.getY() + adjusted.getY(), pos.getZ() + adjusted.getZ());
     }
 
-    public BlockPos transformBlockPos(Direction direction) {
+    public BlockPos transformBlockPos(Rotation rotation) {
         int i = getX();
         int j = getY();
         int k = getZ();
-        boolean flag = true;
-
-        switch (direction.getMirror()) {
-            case LEFT_RIGHT:
-                k = -k;
-                break;
-            case FRONT_BACK:
-                i = -i;
-                break;
-            default:
-                flag = false;
-        }
-
-        switch (direction.getRotation())  {
+        switch (rotation)  {
             case COUNTERCLOCKWISE_90:
                 return new BlockPos(k, j, -i);
             case CLOCKWISE_90:
@@ -79,11 +68,11 @@ public abstract class Placeable {
             case CLOCKWISE_180:
                 return new BlockPos(-i, j, -k);
             default:
-                return flag ? new BlockPos(i, j, k) : getOffsetPos();
+                return getOffsetPos();
         }
     }
 
-    public boolean place (World world, BlockPos pos, Direction direction, boolean playSound) {
+    public boolean place (World world, BlockPos pos, Rotation rotation, boolean playSound) {
         return false;
     }
 

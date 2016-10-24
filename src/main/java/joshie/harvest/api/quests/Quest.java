@@ -135,7 +135,7 @@ public abstract class Quest extends Impl<Quest> {
         onChatClosed(player, entity, npc);
     }
 
-    @Deprecated
+    @Deprecated //TODO: Remove in 0.7+
     public void onChatClosed(EntityPlayer player, EntityLiving entity, INPC npc) {}
 
     /** Called when the quest is completed

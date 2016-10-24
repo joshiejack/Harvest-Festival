@@ -6,7 +6,6 @@ import joshie.harvest.api.buildings.BuildingLocation;
 import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.network.PacketHandler;
-import joshie.harvest.core.util.Direction;
 import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.npc.entity.EntityNPCBuilder;
 import joshie.harvest.town.packet.PacketNewTown;
@@ -15,6 +14,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -22,7 +22,6 @@ import java.util.HashSet;
 import java.util.Map.Entry;
 import java.util.UUID;
 
-import static joshie.harvest.core.util.Direction.MN_R0;
 import static joshie.harvest.town.TownData.MINE_ENTRANCE;
 
 public class TownTrackerServer extends TownTracker {
@@ -52,11 +51,11 @@ public class TownTrackerServer extends TownTracker {
     }
 
     @Override
-    public Direction getMineOrientation(int mineID) {
+    public Rotation getMineOrientation(int mineID) {
         UUID uuid = townIDs.inverse().get(mineID);
-        if (uuid == null) return MN_R0;
+        if (uuid == null) return Rotation.NONE;
         TownData data = uuidMap.get(uuid);
-        if (data == null || !data.hasBuilding(MINE.getResource())) return Direction.MN_R0;
+        if (data == null || !data.hasBuilding(MINE.getResource())) return Rotation.NONE;
         return data.getFacingFor(MINE.getResource());
     }
 

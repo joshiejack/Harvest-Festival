@@ -8,26 +8,27 @@ import joshie.harvest.buildings.placeable.entities.PlaceableNPC;
 import joshie.harvest.core.helpers.NBTHelper;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 
 public class TownBuilding {
     public BuildingImpl building;
-    public Direction direction;
+    public Rotation rotation;
     public BlockPos pos;
 
     public TownBuilding() {}
-    public TownBuilding(BuildingImpl building, Direction direction, BlockPos pos) {
+    public TownBuilding(BuildingImpl building, Rotation rotation, BlockPos pos) {
         this.building = building;
-        this.direction = direction;
+        this.rotation = rotation;
         this.pos = pos;
     }
 
-    public Direction getFacing() {
-        return direction;
+    public Rotation getFacing() {
+        return rotation;
     }
 
     public BlockPos getRealCoordinatesFor(Placeable placeable) {
-        return placeable.getTransformedPosition(pos, direction);
+        return placeable.getTransformedPosition(pos, rotation);
     }
 
     public BlockPos getRealCoordinatesFor(String npc_location) {
@@ -38,13 +39,19 @@ public class TownBuilding {
 
     public void readFromNBT(NBTTagCompound nbt) {
         building = BuildingRegistry.REGISTRY.getValue(new ResourceLocation(nbt.getString("Building")));
-        direction = Direction.valueOf(nbt.getString("Direction"));
+
+        //TODO: Remove in 0.7+
+        if (nbt.hasKey("Direction")) {
+            Direction direction = Direction.valueOf(nbt.getString("Direction"));
+            rotation = direction.getRotation();
+        } else rotation = Rotation.valueOf(nbt.getString("Rotation"));
+
         pos = NBTHelper.readBlockPos("Building", nbt);
     }
 
     public void writeToNBT(NBTTagCompound nbt) {
         nbt.setString("Building", BuildingRegistry.REGISTRY.getKey(building).toString());
-        nbt.setString("Direction", direction.name());
+        nbt.setString("Rotation", rotation.name());
         NBTHelper.writeBlockPos("Building", nbt, pos);
     }
 }

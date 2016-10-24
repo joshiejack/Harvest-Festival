@@ -1,5 +1,6 @@
 package joshie.harvest.buildings.placeable.entities;
 
+import com.google.gson.annotations.Expose;
 import joshie.harvest.buildings.LootHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityHanging;
@@ -11,8 +12,11 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class PlaceableItemFrame extends PlaceableHanging {
+    @Expose
     private ResourceLocation chestType;
+    @Expose
     private ItemStack stack;
+    @Expose
     private int rotation;
 
     public PlaceableItemFrame() {}

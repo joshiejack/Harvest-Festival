@@ -71,7 +71,6 @@ public class BuildingHelper {
 
     private static RenderKey getCachedKey(EntityPlayer player, BlockPos pos, BuildingImpl building) {
         EnumFacing facing = EntityHelper.getFacingFromEntity(player).getOpposite();
-        Mirror mirror = Mirror.NONE;
         Rotation rotation = Rotation.NONE;
         if (facing == EnumFacing.NORTH) {
             rotation = Rotation.CLOCKWISE_90;
@@ -89,7 +88,7 @@ public class BuildingHelper {
         else if (facing == EnumFacing.SOUTH) pos = pos.offset(facing, length).offset(EnumFacing.WEST, width);
         else if (facing == EnumFacing.EAST) pos = pos.offset(facing, length).offset(EnumFacing.SOUTH, width);
         else if (facing == EnumFacing.WEST) pos = pos.offset(facing, length).offset(EnumFacing.NORTH, width);
-        return RenderKey.of(mirror, rotation, building, pos);
+        return RenderKey.of(rotation, building, pos);
     }
 
     @SuppressWarnings("deprecation")

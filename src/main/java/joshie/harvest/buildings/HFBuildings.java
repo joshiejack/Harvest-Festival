@@ -4,7 +4,6 @@ import com.google.gson.ExclusionStrategy;
 import com.google.gson.FieldAttributes;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import joshie.harvest.HarvestFestival;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.buildings.Building;
 import joshie.harvest.buildings.block.BlockInternalAir;
@@ -19,12 +18,12 @@ import joshie.harvest.core.util.annotations.HFLoader;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.registry.IForgeRegistryEntry.Impl;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.apache.logging.log4j.Level;
 
 import static joshie.harvest.core.helpers.ConfigHelper.getBoolean;
 import static joshie.harvest.core.lib.LoadOrder.HFBUILDING;
@@ -52,9 +51,7 @@ public class HFBuildings {
     public static final Building SUPERMARKET = registerBuilding("supermarket", 3000L, 192, 64).setRequirements("carpenter").setOffset(7, -10, 12).setTickTime(5);
     public static final Building TOWNHALL = registerBuilding("townhall", 32000L, 640, 256).setRequirements("blacksmith", "miningHill", "goddessPond").setOffset(10, -1, 17);
 
-    public static void preInit() {
-        HarvestFestival.LOGGER.log(Level.INFO, "Creating Harvest Festival Buildings!");
-    }
+    public static void preInit() {}
 
     @SideOnly(Side.CLIENT)
     public static void preInitClient() {
@@ -62,15 +59,11 @@ public class HFBuildings {
         ModelLoader.setCustomMeshDefinition(BLUEPRINTS, new MeshIdentical(BLUEPRINTS));
     }
 
-    //Reload the Building data at this stage
     public static void init() {
         HFApi.npc.getGifts().addToBlacklist(STRUCTURES, BLUEPRINTS);
         for (BuildingImpl building: BuildingRegistry.REGISTRY.getValues()) {
-            building.initBuilding(getBuilding(building.getRegistryName()));
+            building.initBuilding(getGson().fromJson(ResourceLoader.getJSONResource(building.getRegistryName(), "buildings"), BuildingImpl.class));
         }
-
-        //Clear out the unused Gson
-        gson = null;
     }
 
     @SideOnly(Side.CLIENT)
@@ -83,19 +76,20 @@ public class HFBuildings {
     }
 
     private static Gson gson; //Temporary
-    private static BuildingImpl getBuilding(ResourceLocation resource) {
-        return getGson().fromJson(ResourceLoader.getJSONResource(resource, "buildings"), BuildingImpl.class);
+    public static void loadBuilding(BuildingImpl building) {
+        building.components = (getGson().fromJson(ResourceLoader.getJSONResource(building.getRegistryName(), "buildings"), BuildingImpl.class)).components;
     }
 
     public static Gson getGson() {
         //Create the gson if it's null
         if (gson == null) {
-            GsonBuilder builder = new GsonBuilder().setPrettyPrinting().setExclusionStrategies(new SuperClassExclusionStrategy());
+            GsonBuilder builder = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().setExclusionStrategies(new SuperClassExclusionStrategy());
             builder.registerTypeAdapter(Placeable.class, new PlaceableAdapter());
             builder.registerTypeAdapter(IBlockState.class, new StateAdapter());
             builder.registerTypeAdapter(ItemStack.class, new StackAdapter());
             builder.registerTypeAdapter(ResourceLocation.class, new ResourceAdapter());
             builder.registerTypeAdapter(TextComponentString.class, new TextComponentAdapter());
+            builder.registerTypeAdapter(BlockPos.class, new BlockPosAdapter());
             gson = builder.create();
         }
 

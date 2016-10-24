@@ -1,16 +1,18 @@
 package joshie.harvest.buildings.placeable.blocks;
 
-import joshie.harvest.core.util.Direction;
+import com.google.gson.annotations.Expose;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 
 public class PlaceableChest extends PlaceableBlock {
+    @Expose
     private ResourceLocation chestType;
 
     public PlaceableChest() {}
@@ -25,7 +27,7 @@ public class PlaceableChest extends PlaceableBlock {
     }
 
     @Override
-    public void postPlace(World world, BlockPos pos, Direction direction) {
+    public void postPlace(World world, BlockPos pos, Rotation rotation) {
         TileEntity tile = world.getTileEntity(pos);
         if (chestType != null && tile instanceof TileEntityChest) {
             ((TileEntityChest)tile).setLootTable(chestType, world.rand.nextLong());

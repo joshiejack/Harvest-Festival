@@ -3,10 +3,10 @@ package joshie.harvest.town;
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 import joshie.harvest.core.util.HFTracker;
-import joshie.harvest.core.util.Direction;
 import joshie.harvest.npc.HFNPCs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 
 import java.util.HashMap;
@@ -55,7 +55,7 @@ public abstract class TownTracker extends HFTracker {
         return -1;
     }
 
-    public Direction getMineOrientation(int mineID) {
-        return Direction.MN_R0;
+    public Rotation getMineOrientation(int mineID) {
+        return Rotation.NONE;
     }
 }

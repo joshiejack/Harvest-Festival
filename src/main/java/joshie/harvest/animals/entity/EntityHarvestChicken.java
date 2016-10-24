@@ -23,7 +23,6 @@ import net.minecraftforge.common.capabilities.Capability;
 import java.util.Set;
 
 import static joshie.harvest.api.animals.IAnimalHandler.ANIMAL_STATS_CAPABILITY;
-import static joshie.harvest.calendar.HFCalendar.TWO_HOURS;
 
 public class EntityHarvestChicken extends EntityChicken {
     private static final Set<Item> TEMPTATION_ITEMS = Sets.newHashSet(Items.WHEAT_SEEDS, Items.MELON_SEEDS, Items.PUMPKIN_SEEDS, Items.BEETROOT_SEEDS);
@@ -75,11 +74,6 @@ public class EntityHarvestChicken extends EntityChicken {
                 HFApi.player.getRelationsForPlayer(toLovePlayer).affectRelationship(EntityHelper.getEntityUUID(this), 100);
                 toLovePlayer = null;
             }
-        }
-
-        //Outside
-        if (worldObj.getTotalWorldTime() %TWO_HOURS == 0 && !worldObj.isRaining()) {
-            //data.biHourlyTick();
         }
     }
 

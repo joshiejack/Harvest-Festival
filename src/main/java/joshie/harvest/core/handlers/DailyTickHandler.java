@@ -8,6 +8,7 @@ import joshie.harvest.core.util.HFTracker;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -43,13 +44,14 @@ public class DailyTickHandler extends HFTracker {
 
         //Tick the tickable blocks
         if (phase == Phase.PRE || phase == Phase.MINE) {
+            World world = getWorld();
             Iterator<Entry<BlockPos, IDailyTickableBlock>> position = blockTicks.entrySet().iterator();
             while (position.hasNext()) {
                 Entry<BlockPos, IDailyTickableBlock> entry = position.next();
                 BlockPos pos = entry.getKey();
                 if (pos == null) {
                     position.remove();
-                } else if (getWorld().isBlockLoaded(pos)) {
+                } else if (world.isBlockLoaded(pos)) {
                     IBlockState state = getWorld().getBlockState(pos);
                     IDailyTickableBlock tickable = entry.getValue();
                     if (tickable != null) {

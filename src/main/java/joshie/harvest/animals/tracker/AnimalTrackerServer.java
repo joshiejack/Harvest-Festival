@@ -6,6 +6,7 @@ import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.player.PlayerTracker;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.util.DamageSource;
+import net.minecraft.world.World;
 
 import java.util.*;
 import java.util.Map.Entry;
@@ -43,16 +44,19 @@ public class AnimalTrackerServer extends AnimalTracker {
     }
 
     public void newDay() {
+        World world = getWorld();
         Iterator<Entry<EntityAnimal, AnimalStats>> iterator = animals.entrySet().iterator();
         while (iterator.hasNext()) {
             Entry<EntityAnimal, AnimalStats> data = iterator.next(); //Only tick animals when owner in online
             EntityAnimal animal = data.getKey();
-            if (animal == null || animal.isDead || !data.getValue().newDay()) { //If the new day wasn't successful, remove the animal from your memory
-                iterator.remove();
-                if (animal != null && !animal.isDead) {
-                    animal.attackEntityFrom(natural_causes, 1000F);
-                    for (PlayerTracker tracker : HFTrackers.getPlayerTrackers()) {
-                        tracker.getRelationships().clear(EntityHelper.getEntityUUID(animal));
+            if (world.loadedEntityList.contains(animal)) {
+                if (animal == null || animal.isDead || !data.getValue().newDay()) { //If the new day wasn't successful, remove the animal from your memory
+                    iterator.remove();
+                    if (animal != null && !animal.isDead) {
+                        animal.attackEntityFrom(natural_causes, 1000F);
+                        for (PlayerTracker tracker : HFTrackers.getPlayerTrackers()) {
+                            tracker.getRelationships().clear(EntityHelper.getEntityUUID(animal));
+                        }
                     }
                 }
             }

@@ -1,9 +1,10 @@
 package joshie.harvest.animals.entity;
 
 import com.google.common.collect.Sets;
-import joshie.harvest.animals.stats.AnimalStatsPoultry;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.AnimalStats;
+import joshie.harvest.api.animals.IAnimalHandler.AnimalAI;
+import joshie.harvest.api.animals.IAnimalHandler.AnimalType;
 import joshie.harvest.core.helpers.EntityHelper;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -26,7 +27,7 @@ import static joshie.harvest.api.animals.IAnimalHandler.ANIMAL_STATS_CAPABILITY;
 
 public class EntityHarvestChicken extends EntityChicken {
     private static final Set<Item> TEMPTATION_ITEMS = Sets.newHashSet(Items.WHEAT_SEEDS, Items.MELON_SEEDS, Items.PUMPKIN_SEEDS, Items.BEETROOT_SEEDS);
-    private final AnimalStats stats = new AnimalStatsPoultry();
+    private final AnimalStats<NBTTagCompound> stats = HFApi.animals.newStats(AnimalType.POULTRY);
     private EntityPlayer toLovePlayer;
     private int toLoveTicker;
 
@@ -41,8 +42,8 @@ public class EntityHarvestChicken extends EntityChicken {
         tasks.addTask(1, new EntityAIPanic(this, 1.4D));
         tasks.addTask(3, new EntityAITempt(this, 1.0D, false, TEMPTATION_ITEMS));
         tasks.addTask(4, new EntityAIFollowParent(this, 1.1D));
-        tasks.addTask(5, new EntityAIEat(this));
-        tasks.addTask(5, new EntityAILayEgg(this));
+        HFApi.animals.getEntityAI(this, AnimalAI.EAT, true);
+        HFApi.animals.getEntityAI(this, AnimalAI.EGGS, true);
         tasks.addTask(6, new EntityAIWander(this, 1.0D));
         tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
         tasks.addTask(8, new EntityAILookIdle(this));
@@ -101,9 +102,10 @@ public class EntityHarvestChicken extends EntityChicken {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
     public void readEntityFromNBT(NBTTagCompound compound) {
         super.readEntityFromNBT(compound);
-        stats.deserializeNBT(compound.getCompoundTag("Stats"));
+        if (compound.hasKey("Stats")) stats.deserializeNBT(compound.getCompoundTag("Stats"));
+        //TODO: Remove in 0.7+
+        else if (compound.hasKey("CurrentLifespan")) stats.deserializeNBT(compound);
     }
 }

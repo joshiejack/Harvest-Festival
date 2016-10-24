@@ -1,4 +1,4 @@
-package joshie.harvest.animals.entity;
+package joshie.harvest.animals.entity.ai;
 
 import joshie.harvest.api.animals.AnimalStats;
 import joshie.harvest.core.helpers.EntityHelper;
@@ -7,6 +7,7 @@ import net.minecraft.entity.passive.EntityAnimal;
 
 public abstract class EntityAIAnimal extends EntityAIBase {
     protected final EntityAnimal animal;
+    protected int wanderTick;
     private AnimalStats stats;
 
     public EntityAIAnimal(EntityAnimal animal) {

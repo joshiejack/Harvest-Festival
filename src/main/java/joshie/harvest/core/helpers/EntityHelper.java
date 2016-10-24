@@ -20,7 +20,6 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.UsernameCache;
-import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
 
@@ -57,10 +56,6 @@ public class EntityHelper {
         }
 
         return null;
-    }
-
-    public static boolean isFakePlayer(EntityPlayer player) {
-        return player instanceof FakePlayer || player.getGameProfile().getName().equals("CoFH") || player.getGameProfile().getName().startsWith("[Thaumcraft");
     }
 
     public static <T extends Entity> List<T> getEntities(Class<? extends T> t, World world, BlockPos pos, double size, double ySize) {

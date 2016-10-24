@@ -1,12 +1,12 @@
 package joshie.harvest.animals.entity;
 
-import joshie.harvest.animals.stats.AnimalStatsHF;
-import joshie.harvest.animals.stats.AnimalStatsLivestock;
-import joshie.harvest.animals.HFAnimals;
 import joshie.harvest.api.HFApi;
+import joshie.harvest.api.animals.AnimalAction;
+import joshie.harvest.api.animals.AnimalStats;
+import joshie.harvest.api.animals.IAnimalHandler.AnimalAI;
+import joshie.harvest.api.animals.IAnimalHandler.AnimalType;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.helpers.EntityHelper;
-import joshie.harvest.core.helpers.SizeableHelper;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
@@ -29,7 +29,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EntityHarvestSheep extends EntitySheep {
-    private final AnimalStatsHF stats = new AnimalStatsLivestock().setType(HFApi.animals.getTypeFromString("sheep"));
+    private final AnimalStats<NBTTagCompound> stats = HFApi.animals.newStats(AnimalType.LIVESTOCK);
 
     public EntityHarvestSheep(World world) {
         super(world);
@@ -44,7 +44,7 @@ public class EntityHarvestSheep extends EntitySheep {
         tasks.addTask(1, new EntityAIPanic(this, 1.25D));
         tasks.addTask(3, new EntityAITempt(this, 1.1D, Items.WHEAT, false));
         tasks.addTask(4, new EntityAIFollowParent(this, 1.1D));
-        tasks.addTask(5, new EntityAIEat(this));
+        HFApi.animals.getEntityAI(this, AnimalAI.EAT, true);
         tasks.addTask(6, new EntityAIWander(this, 1.0D));
         tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
         tasks.addTask(8, new EntityAILookIdle(this));
@@ -83,16 +83,14 @@ public class EntityHarvestSheep extends EntitySheep {
         if (!isChild()) {
             EntityPlayer player = worldObj.getClosestPlayerToEntity(this, 178D);
             if (player != null) {
-                ItemStack product = SizeableHelper.getWool(player, this, stats);
-                ret.add(product);
-                if (!worldObj.isRemote && !HFAnimals.OP_ANIMALS) {
+                ret.add(stats.getType().getProduct(player, stats));
+                if (!worldObj.isRemote) {
                     setSheared(true);
                     stats.setProduced(stats.getProductsPerDay());
-                    HFApi.player.getRelationsForPlayer(player).affectRelationship(EntityHelper.getEntityUUID(this), 10);
+                    HFApi.player.getRelationsForPlayer(player).affectRelationship(EntityHelper.getEntityUUID(this), stats.getType().getRelationshipBonus(AnimalAction.CLAIM_PRODUCT));
                 }
 
                 playSound(SoundEvents.ENTITY_SHEEP_SHEAR, 1.0F, 1.0F);
-                return ret;
             }
         }
 
@@ -113,6 +111,8 @@ public class EntityHarvestSheep extends EntitySheep {
     @Override
     public void readEntityFromNBT(NBTTagCompound compound) {
         super.readEntityFromNBT(compound);
-        stats.deserializeNBT(compound);
+        if (compound.hasKey("Stats")) stats.deserializeNBT(compound.getCompoundTag("Stats"));
+        //TODO: Remove in 0.7+
+        else if (compound.hasKey("CurrentLifespan")) stats.deserializeNBT(compound);
     }
 }

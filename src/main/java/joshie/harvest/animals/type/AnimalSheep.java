@@ -1,23 +1,17 @@
 package joshie.harvest.animals.type;
 
+import joshie.harvest.api.animals.AnimalAction;
 import joshie.harvest.api.animals.AnimalStats;
+import joshie.harvest.core.helpers.SizeableHelper;
 import net.minecraft.entity.passive.EntityAnimal;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 
 import static joshie.harvest.api.animals.AnimalFoodType.GRASS;
 
 public class AnimalSheep extends AnimalAbstract {
     public AnimalSheep() {
         super("sheep", 8, 12, GRASS);
-    }
-
-    @Override
-    public int getFeedByHandBonus() {
-        return 30;
-    }
-
-    @Override
-    public int getOutsideBonus() {
-        return 3;
     }
 
     @Override
@@ -33,6 +27,21 @@ public class AnimalSheep extends AnimalAbstract {
     @Override
     public int getTypeTreatCount() {
         return 29;
+    }
+
+    @Override
+    public int getRelationshipBonus(AnimalAction action) {
+        switch (action) {
+            case FEED:          return 30;
+            case OUTSIDE:       return 3;
+        }
+
+        return super.getRelationshipBonus(action);
+    }
+
+    @Override
+    public ItemStack getProduct(EntityPlayer player, AnimalStats stats) {
+        return SizeableHelper.getWool(player, stats.getAnimal(), stats);
     }
 
     @Override

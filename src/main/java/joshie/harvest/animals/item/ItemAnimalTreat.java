@@ -1,8 +1,10 @@
 package joshie.harvest.animals.item;
 
+import joshie.harvest.animals.HFAnimals;
 import joshie.harvest.animals.item.ItemAnimalTreat.Treat;
 import joshie.harvest.api.animals.AnimalAction;
 import joshie.harvest.api.animals.AnimalStats;
+import joshie.harvest.api.animals.IAnimalType;
 import joshie.harvest.core.base.item.ItemHFEnum;
 import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.core.lib.CreativeSort;
@@ -16,7 +18,17 @@ import java.util.Locale;
 
 public class ItemAnimalTreat extends ItemHFEnum<ItemAnimalTreat, Treat> {
     public enum Treat implements IStringSerializable {
-        COW, SHEEP, CHICKEN, GENERIC;
+        COW(HFAnimals.COWS), SHEEP(HFAnimals.SHEEP), CHICKEN(HFAnimals.CHICKENS), GENERIC(null);
+
+        private final IAnimalType type;
+
+        Treat(IAnimalType type) {
+            this.type = type;
+        }
+
+        public IAnimalType getType() {
+            return type;
+        }
 
         @Override
         public String getName() {
@@ -32,7 +44,8 @@ public class ItemAnimalTreat extends ItemHFEnum<ItemAnimalTreat, Treat> {
     @SuppressWarnings("ConstantConditions")
     public boolean itemInteractionForEntity(ItemStack stack, EntityPlayer player, EntityLivingBase target, EnumHand hand) {
         AnimalStats stats = EntityHelper.getStats(target);
-        if (stats != null && stats.performAction(player.worldObj, player, stack, AnimalAction.TREAT)) {
+        AnimalAction action = getEnumFromStack(stack).getType() != null ? AnimalAction.TREAT_SPECIAL : AnimalAction.TREAT_GENERIC;
+        if (stats != null && stats.performAction(player.worldObj, player, stack, action)) {
             stack.splitStack(1);
             return true;
         } else return false;

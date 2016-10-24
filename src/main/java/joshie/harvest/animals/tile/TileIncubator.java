@@ -28,10 +28,19 @@ public class TileIncubator extends TileFillableSizedFaceable {
             if (fillAmount == 0) {
                 setFilled(HFApi.sizeable.getSize(held), MAX_FILL);
                 NBTTagCompound tag = held.getSubCompound("Data", true);
-                relationship = tag.getInteger("Relationship");
-                if (tag.hasKey("Owner")) {
-                    owner = UUID.fromString(tag.getString("Owner"));
-                } else owner = EntityHelper.getPlayerUUID(player);
+                //TODO: Remove in 0.7+
+                if (tag.hasKey("Relationship")) {
+                    relationship = tag.getInteger("Relationship");
+                    if (tag.hasKey("Owner")) {
+                        owner = UUID.fromString(tag.getString("Owner"));
+                    } else owner = EntityHelper.getPlayerUUID(player);
+                } else {
+                    owner = EntityHelper.getPlayerUUID(player);
+                    if (tag.hasKey("Mother")) {
+                        UUID mother = UUID.fromString(tag.getString("Mother"));
+                        relationship = HFApi.player.getRelationsForPlayer(player).getRelationship(mother);
+                    }
+                }
 
                 held.splitStack(1);
                 return true;

@@ -1,9 +1,8 @@
 package joshie.harvest.animals.block;
 
-import joshie.harvest.animals.HFAnimals;
 import joshie.harvest.animals.block.BlockTray.Tray;
-import joshie.harvest.animals.entity.EntityHarvestChicken;
 import joshie.harvest.animals.tile.TileFeeder;
+import joshie.harvest.animals.tile.TileNest;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.*;
 import joshie.harvest.api.core.ISizeable.Size;
@@ -38,7 +37,7 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Locale;
 
-import static joshie.harvest.animals.block.BlockTray.Tray.*;
+import static joshie.harvest.animals.block.BlockTray.Tray.NEST_EMPTY;
 
 public class BlockTray extends BlockHFEnum<BlockTray, Tray> implements IAnimalFeeder, INest {
     private static final AxisAlignedBB NEST_AABB = new AxisAlignedBB(0.15D, 0D, 0.15D, 0.85D, 0.35D, 0.85D);
@@ -46,17 +45,6 @@ public class BlockTray extends BlockHFEnum<BlockTray, Tray> implements IAnimalFe
 
     public enum Tray implements IStringSerializable {
         NEST_EMPTY, SMALL_CHICKEN, MEDIUM_CHICKEN, LARGE_CHICKEN, FEEDER_EMPTY, FEEDER_FULL;
-
-        public ItemStack getDrop() {
-            if (this == SMALL_CHICKEN) return HFAnimals.EGG.getStack(Size.SMALL);
-            else if (this == MEDIUM_CHICKEN) return HFAnimals.EGG.getStack(Size.MEDIUM);
-            else if (this == LARGE_CHICKEN) return HFAnimals.EGG.getStack(Size.LARGE);
-            else return null;
-        }
-
-        public boolean isEmpty() {
-            return this == NEST_EMPTY || this == FEEDER_EMPTY;
-        }
 
         public boolean isFeeder() {
             return this == FEEDER_EMPTY || this == FEEDER_FULL;
@@ -95,31 +83,32 @@ public class BlockTray extends BlockHFEnum<BlockTray, Tray> implements IAnimalFe
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack held, EnumFacing side, float hitX, float hitY, float hitZ) {
         if (player.isSneaking()) return false;
-        else if (held == null) {
-            Tray nest = getEnumFromState(state);
+        TileEntity tile = world.getTileEntity(pos);
+        if (held == null && tile instanceof TileNest) {
+            TileNest nest = (TileNest) tile;
             if (nest.getDrop() != null) {
-                if (!world.isRemote) {
-                    ItemStack drop = nest.getDrop();
-                    List<EntityHarvestChicken> chickens = EntityHelper.getEntities(EntityHarvestChicken.class, world, pos, 32D, 8D);
-                    int relationship = chickens.size() > 0 ? HFApi.player.getRelationsForPlayer(player).getRelationship(EntityHelper.getEntityUUID(chickens.get(0))): 0;
-
+                ItemStack drop = nest.getDrop().copy();
+                if (nest.getMother() != null) {
                     NBTTagCompound tag = drop.getSubCompound("Data", true);
-                    tag.setInteger("Relationship", relationship);
-                    SpawnItemHelper.addToPlayerInventory(player, world, pos.getX(), pos.getY() + 1, pos.getZ(), drop);
+                    tag.setString("Mother", nest.getMother().toString());
+                }
+
+                nest.clear();
+                SpawnItemHelper.addToPlayerInventory(player, world, pos.getX(), pos.getY() + 1, pos.getZ(), drop);
+
+                if (!world.isRemote) {
                     world.setBlockState(pos, getStateFromEnum(NEST_EMPTY));
-                    player.addStat(HFAchievements.egger);
-                    if (HFCore.SIZEABLE.getSize(drop) == Size.LARGE) {
-                        player.addStat(HFAchievements.eggerLarge);
-                    }
+                }
+
+                player.addStat(HFAchievements.egger);
+                if (HFApi.sizeable.getSize(drop) == Size.LARGE) {
+                    player.addStat(HFAchievements.eggerLarge);
                 }
 
                 return true;
             }
-        } else {
-            TileEntity tile = world.getTileEntity(pos);
-            if (tile instanceof TileFillable) {
-                return ((TileFillable)tile).onActivated(held);
-            }
+        } else if (tile instanceof TileFillable) {
+            return ((TileFillable)tile).onActivated(held);
         }
 
         return false;
@@ -130,7 +119,7 @@ public class BlockTray extends BlockHFEnum<BlockTray, Tray> implements IAnimalFe
         if (getEnumFromState(state).isFeeder()) {
             if (HFApi.animals.canAnimalEatFoodType(stats, AnimalFoodType.SEED)) {
                 TileFeeder feeder = ((TileFeeder) world.getTileEntity(pos));
-                if (feeder.getFillAmount() > 0) {
+                if (feeder != null && feeder.getFillAmount() > 0) {
                     if (simulate) return true;
                     feeder.adjustFill(-1);
                     stats.performAction(world, null, null, AnimalAction.FEED);
@@ -145,19 +134,15 @@ public class BlockTray extends BlockHFEnum<BlockTray, Tray> implements IAnimalFe
     @Override
     public boolean layEgg(AnimalStats stats, World world, BlockPos pos, IBlockState state) {
         EntityPlayer player = stats.getOwner();
-        if (player != null && getEnumFromState(state) == NEST_EMPTY && stats.getType().getName().equals("chicken")) {
-            Size size = null;
-            int relationship = HFApi.player.getRelationsForPlayer(player).getRelationship(EntityHelper.getEntityUUID(stats.getAnimal()));
-            for (Size s : Size.values()) {
-                if (relationship >= s.getRelationshipRequirement()) size = s;
+        TileEntity tile = world.getTileEntity(pos);
+        if (player != null && tile instanceof TileNest) {
+            if (!world.isRemote) {
+                ((TileNest) tile).setDrop(EntityHelper.getEntityUUID(stats.getAnimal()), stats.getType().getProduct(player, stats));
+                stats.setProduced(1); //Product one egg
             }
 
-            if (size == Size.SMALL) world.setBlockState(pos, getStateFromEnum(SMALL_CHICKEN));
-            else if (size == Size.MEDIUM) world.setBlockState(pos, getStateFromEnum(MEDIUM_CHICKEN));
-            else if (size == Size.LARGE) world.setBlockState(pos, getStateFromEnum(LARGE_CHICKEN));
-            EntityAnimal entity = stats.getAnimal();
-            stats.setProduced(1);
-            entity.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 1.0F, (entity.worldObj.rand.nextFloat() - entity.worldObj.rand.nextFloat()) * 0.2F + 1.0F);
+            EntityAnimal animal = stats.getAnimal();
+            animal.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 1.0F, (animal.worldObj.rand.nextFloat() - animal.worldObj.rand.nextFloat()) * 0.2F + 1.0F);
             return true;
         }
 
@@ -166,12 +151,12 @@ public class BlockTray extends BlockHFEnum<BlockTray, Tray> implements IAnimalFe
 
     @Override
     public boolean hasTileEntity(IBlockState state) {
-        return getEnumFromState(state).isFeeder();
+        return true;
     }
 
     @Override
     public TileEntity createTileEntity(World world, IBlockState state) {
-        return getEnumFromState(state).isFeeder() ? new TileFeeder() : null;
+        return getEnumFromState(state).isFeeder() ? new TileFeeder() : new TileNest();
     }
 
     @SuppressWarnings("deprecation")
@@ -182,6 +167,15 @@ public class BlockTray extends BlockHFEnum<BlockTray, Tray> implements IAnimalFe
             boolean isFilled = ((TileFeeder)tile).getFillAmount() > 0;
             if (isFilled) return getStateFromEnum(Tray.FEEDER_FULL);
             else return getStateFromEnum(Tray.FEEDER_EMPTY);
+        } else if (tile instanceof TileNest) {
+            TileNest nest = ((TileNest)tile);
+            if (nest.getDrop() == null) return getStateFromEnum(Tray.NEST_EMPTY);
+            else {
+                Size size = nest.getSize();
+                if (size == null || size == Size.SMALL) return getStateFromEnum(Tray.SMALL_CHICKEN);
+                else if (size == Size.MEDIUM) return getStateFromEnum(Tray.MEDIUM_CHICKEN);
+                else if (size == Size.LARGE) return getStateFromEnum(Tray.LARGE_CHICKEN);
+            }
         }
 
         return state;

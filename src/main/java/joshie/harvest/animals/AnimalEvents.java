@@ -14,7 +14,6 @@ import joshie.harvest.core.util.annotations.HFEvents;
 import net.minecraft.block.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.passive.EntityAnimal;
-import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
@@ -53,7 +52,7 @@ public class AnimalEvents {
 
     @SubscribeEvent
     public void onEntityInteract(EntityInteract event) {
-        AnimalStats stats = EntityHelper.getStats(event.getEntity());
+        AnimalStats stats = EntityHelper.getStats(event.getTarget());
         ItemStack stack = event.getItemStack();
         if (stats != null && stack != null) {
             if (HFApi.animals.canEat(stack, stats.getType().getFoodTypes()) && stats.performAction(event.getWorld(), event.getEntityPlayer(), stack, AnimalAction.FEED)) {
@@ -63,12 +62,12 @@ public class AnimalEvents {
         }
     }
 
-    /* When right clicking chickens, will throw any harvest chickens on your head **/
+    /* When right clicking poultry, will throw any poultry on your head **/
     @HFEvents
-    public static class PickupChicken {
-        public static boolean register() { return HFAnimals.PICKUP_CHICKENS; }
+    public static class PickupPoultry {
+        public static boolean register() { return HFAnimals.PICKUP_POULTRY; }
 
-        public boolean isChickenItem(EntityPlayer player) {
+        public boolean blocksPickup(EntityPlayer player) {
             return  InventoryHelper.getHandItemIsIn(player, ITEM_STACK, HFAnimals.TOOLS.getStackFromEnum(Tool.CHICKEN_FEED)) != null ||
                     InventoryHelper.getHandItemIsIn(player, ITEM_STACK, HFAnimals.TOOLS.getStackFromEnum(Tool.MEDICINE)) != null ||
                     InventoryHelper.getHandItemIsIn(player, ITEM, HFAnimals.TREATS) != null;
@@ -77,9 +76,10 @@ public class AnimalEvents {
         @SubscribeEvent
         public void onEntityInteract(PlayerInteractEvent.EntityInteract event) {
             EntityPlayer player = event.getEntityPlayer();
-            if (!player.isBeingRidden() && !isChickenItem(player)) {
+            if (!player.isBeingRidden() && !blocksPickup(player)) {
                 Entity entity = event.getTarget();
-                if (entity instanceof EntityChicken) {
+                AnimalStats stats = EntityHelper.getStats(entity);
+                if (stats != null && stats.performAction(player.worldObj, player, null, AnimalAction.TEST_MOUNT)) {
                     entity.startRiding(player, true);
                 }
             }
@@ -96,15 +96,13 @@ public class AnimalEvents {
             EntityPlayer player = event.getEntityPlayer();
             if (!forbidsDrop(event.getWorld().getBlockState(event.getPos()).getBlock())) {
                 for (Entity entity : player.getPassengers()) {
-                    if (entity instanceof EntityChicken) {
+                    AnimalStats stats = EntityHelper.getStats(entity);
+                    if (stats != null && stats.performAction(player.worldObj, player, null, AnimalAction.TEST_MOUNT)) {
                         entity.dismountRidingEntity();
                         entity.rotationPitch = player.rotationPitch;
                         entity.rotationYaw = player.rotationYaw;
                         entity.moveRelative(0F, 0.1F, 1.05F);
-                        AnimalStats stats = EntityHelper.getStats(entity);
-                        if (stats != null) {
-                            stats.performAction(player.worldObj, player, null, AnimalAction.DISMOUNT);
-                        }
+                        stats.performAction(player.worldObj, player, null, AnimalAction.DISMOUNT);
                     }
                 }
             }

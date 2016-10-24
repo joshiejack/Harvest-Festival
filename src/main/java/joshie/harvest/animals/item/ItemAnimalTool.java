@@ -5,12 +5,8 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.AnimalAction;
 import joshie.harvest.api.animals.AnimalStats;
 import joshie.harvest.api.core.IShippable;
-import joshie.harvest.api.core.ISizeable.Size;
-import joshie.harvest.core.HFCore;
-import joshie.harvest.core.achievements.HFAchievements;
 import joshie.harvest.core.base.item.ItemHFEnum;
 import joshie.harvest.core.helpers.EntityHelper;
-import joshie.harvest.core.helpers.SizeableHelper;
 import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.tools.ToolHelper;
 import net.minecraft.entity.EntityLivingBase;
@@ -80,15 +76,10 @@ public class ItemAnimalTool extends ItemHFEnum<ItemAnimalTool, Tool> implements 
             EntityPlayer player = (EntityPlayer) entityLiving;
             AnimalStats stats = milkables.get(player);
             if (stats != null) {
-                if (stats.performAction(world, player, held, AnimalAction.MILK)) {
-                    ItemStack product = SizeableHelper.getMilk(player, stats.getAnimal(), stats);
+                if (stats.performAction(world, player, held, AnimalAction.CLAIM_PRODUCT)) {
+                    ItemStack product = stats.getType().getProduct(player, stats);
                     if (!player.inventory.addItemStackToInventory(product)) {
                         player.dropItem(product, false);
-                    }
-
-                    player.addStat(HFAchievements.milker);
-                    if (HFCore.SIZEABLE.getSize(product) == Size.LARGE) {
-                        player.addStat(HFAchievements.milkerLarge);
                     }
 
                     int damage = getDamageForDisplay(held) + 1;
@@ -98,7 +89,7 @@ public class ItemAnimalTool extends ItemHFEnum<ItemAnimalTool, Tool> implements 
                         held.getSubCompound("Data", true).setInteger("Damage", damage);
                     }
 
-                    HFApi.player.getRelationsForPlayer(player).affectRelationship(EntityHelper.getEntityUUID(stats.getAnimal()), 10);
+                    HFApi.player.getRelationsForPlayer(player).affectRelationship(EntityHelper.getEntityUUID(stats.getAnimal()), stats.getType().getRelationshipBonus(AnimalAction.CLAIM_PRODUCT));
                     ToolHelper.consumeHunger(player, 4F);
                 }
             }
@@ -108,11 +99,12 @@ public class ItemAnimalTool extends ItemHFEnum<ItemAnimalTool, Tool> implements 
     }
 
     private boolean milk(EntityPlayer player, EnumHand hand, ItemStack stack, AnimalStats stats) {
-        if (stats.performAction(player.worldObj, player, stack, AnimalAction.TEST_MILK)) {
+        if (stats.performAction(player.worldObj, player, stack, AnimalAction.TEST_PRODUCT)) {
             milkables.put(player, stats);
             player.setActiveHand(hand);
             return true;
         }
+
         return false;
     }
 
@@ -172,6 +164,7 @@ public class ItemAnimalTool extends ItemHFEnum<ItemAnimalTool, Tool> implements 
                 return milk(player, hand, stack, stats);
             }
         }
+
         return false;
     }
 

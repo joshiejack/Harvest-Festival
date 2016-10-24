@@ -4,9 +4,12 @@ public enum AnimalAction {
     CLEAN,
     FEED,
     HEAL,
-    TREAT,
+    TREAT_SPECIAL,
+    TREAT_GENERIC,
     IMPREGNATE,
+    TEST_MOUNT,
     DISMOUNT,
-    TEST_MILK,
-    MILK
+    TEST_PRODUCT, //Called to check if this animal is ready to give its product
+    CLAIM_PRODUCT,
+    OUTSIDE
 }

@@ -1,7 +1,6 @@
 package joshie.harvest.animals.stats;
 
 import joshie.harvest.animals.HFAnimals;
-import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.AnimalAction;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.helpers.EntityHelper;
@@ -26,7 +25,7 @@ public class AnimalStatsLivestock extends AnimalStatsHF {
     private boolean isPregnant;
     private int daysPregnant;
     public AnimalStatsLivestock() {
-        this.type = HFApi.animals.getTypeFromString("cow");
+        this.type = HFAnimals.SHEEP;
     }
 
     @Override

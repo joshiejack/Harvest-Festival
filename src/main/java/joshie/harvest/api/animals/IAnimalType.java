@@ -1,6 +1,8 @@
 package joshie.harvest.api.animals;
 
 import net.minecraft.entity.passive.EntityAnimal;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 
 public interface IAnimalType {
     /** Return a simple name for this animal type **/
@@ -26,11 +28,13 @@ public interface IAnimalType {
      *  this animal needs to up it's productivity **/
     int getTypeTreatCount();
 
-    /** the relationship bonus for feeding by hand **/
-    int getFeedByHandBonus();
+    /** The relationship bonus based on the action
+     *  @param action the action
+     *  @return the points awarded**/
+    int getRelationshipBonus(AnimalAction action);
 
-    /** the relationship bonus for being outside in the sun **/
-    int getOutsideBonus();
+    /** @return the product that this animal produces **/
+    ItemStack getProduct(EntityPlayer player, AnimalStats stats);
 
     /** Called whenever an animal is reset to being able to produce again
      * @param stats     the stats

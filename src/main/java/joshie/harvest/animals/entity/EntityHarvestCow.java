@@ -1,8 +1,9 @@
 package joshie.harvest.animals.entity;
 
-import joshie.harvest.animals.stats.AnimalStatsHF;
-import joshie.harvest.animals.stats.AnimalStatsMilkable;
 import joshie.harvest.api.HFApi;
+import joshie.harvest.api.animals.AnimalStats;
+import joshie.harvest.api.animals.IAnimalHandler.AnimalAI;
+import joshie.harvest.api.animals.IAnimalHandler.AnimalType;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.helpers.EntityHelper;
 import net.minecraft.entity.EntityAgeable;
@@ -26,7 +27,7 @@ import net.minecraftforge.common.capabilities.Capability;
 import static joshie.harvest.api.animals.IAnimalHandler.ANIMAL_STATS_CAPABILITY;
 
 public class EntityHarvestCow extends EntityCow {
-    private final AnimalStatsHF stats = new AnimalStatsMilkable().setType(HFApi.animals.getTypeFromString("cow"));
+    private final AnimalStats<NBTTagCompound> stats = HFApi.animals.newStats(AnimalType.MILKABLE);
 
     public EntityHarvestCow(World world) {
         super(world);
@@ -40,7 +41,7 @@ public class EntityHarvestCow extends EntityCow {
         tasks.addTask(1, new EntityAIPanic(this, 2.0D));
         tasks.addTask(3, new EntityAITempt(this, 1.25D, Items.WHEAT, false));
         tasks.addTask(4, new EntityAIFollowParent(this, 1.25D));
-        tasks.addTask(5, new EntityAIEat(this));
+        HFApi.animals.getEntityAI(this, AnimalAI.EAT, true);
         tasks.addTask(6, new EntityAIWander(this, 1.0D));
         tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
         tasks.addTask(8, new EntityAILookIdle(this));
@@ -99,7 +100,7 @@ public class EntityHarvestCow extends EntityCow {
     public void readEntityFromNBT(NBTTagCompound compound) {
         super.readEntityFromNBT(compound);
         if (compound.hasKey("Stats")) stats.deserializeNBT(compound.getCompoundTag("Stats"));
+        //TODO: Remove in 0.7+
         else if (compound.hasKey("CurrentLifespan")) stats.deserializeNBT(compound);
-        //TODO: Remove in 0.7+ ^^^....^^^^^
     }
 }

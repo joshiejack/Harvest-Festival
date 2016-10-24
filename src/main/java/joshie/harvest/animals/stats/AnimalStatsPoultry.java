@@ -1,6 +1,6 @@
 package joshie.harvest.animals.stats;
 
-import joshie.harvest.api.HFApi;
+import joshie.harvest.animals.HFAnimals;
 import joshie.harvest.api.animals.AnimalAction;
 import joshie.harvest.api.animals.IAnimalType;
 import net.minecraft.entity.player.EntityPlayer;
@@ -15,7 +15,7 @@ public class AnimalStatsPoultry extends AnimalStatsHF {
     private boolean thrown; //Whether this animal has been thrown or not today, only affects chickens
 
     public AnimalStatsPoultry() {
-        this.type = HFApi.animals.getTypeFromString("chicken");
+        this.type = HFAnimals.CHICKENS;
     }
 
     @Override
@@ -31,10 +31,12 @@ public class AnimalStatsPoultry extends AnimalStatsHF {
 
     @Override
     public boolean performAction(@Nonnull World world, @Nullable EntityPlayer player, @Nullable ItemStack stack, AnimalAction action) {
-        if (action == AnimalAction.DISMOUNT) return dismount(player);
+        if (action == AnimalAction.TEST_MOUNT) return true;
+        else if (action == AnimalAction.DISMOUNT) return dismount(player);
         else return super.performAction(world, player, stack, action);
     }
 
+    @SuppressWarnings("ConstantConditions")
     private boolean dismount(@Nullable EntityPlayer player) {
         if (!thrown) {
             thrown = true;

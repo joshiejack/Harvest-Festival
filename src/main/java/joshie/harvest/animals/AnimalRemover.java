@@ -11,7 +11,7 @@ import net.minecraft.world.biome.Biome.SpawnListEntry;
 import java.util.Iterator;
 
 @HFLoader
-public class VanillaAnimalRemover {
+public class AnimalRemover {
     /* Disables vanilla cows, chickens and sheep from spawning naturally if spawning is disabled **/
     public static void complete() {
         if (!HFAnimals.CAN_SPAWN) {

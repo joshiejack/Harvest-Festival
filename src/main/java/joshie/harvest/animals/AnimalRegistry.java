@@ -1,25 +1,30 @@
 package joshie.harvest.animals;
 
+import joshie.harvest.animals.entity.ai.EntityAIEat;
+import joshie.harvest.animals.entity.ai.EntityAILayEgg;
 import joshie.harvest.animals.packet.PacketSyncAnimal;
 import joshie.harvest.animals.stats.AnimalStatsHF;
+import joshie.harvest.animals.stats.AnimalStatsLivestock;
+import joshie.harvest.animals.stats.AnimalStatsMilkable;
+import joshie.harvest.animals.stats.AnimalStatsPoultry;
 import joshie.harvest.api.HFApi;
-import joshie.harvest.api.animals.*;
+import joshie.harvest.api.animals.AnimalFoodType;
+import joshie.harvest.api.animals.AnimalStats;
+import joshie.harvest.api.animals.IAnimalHandler;
 import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.core.util.annotations.HFApiImplementation;
 import joshie.harvest.core.util.holders.HolderRegistry;
+import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.oredict.OreDictionary;
-
-import java.util.HashMap;
-import java.util.Locale;
 
 @HFApiImplementation
 public class AnimalRegistry implements IAnimalHandler {
     public static final AnimalRegistry INSTANCE = new AnimalRegistry();
-    private final HashMap<String, IAnimalType> types = new HashMap<>();
     private final HolderRegistry<AnimalFoodType> registry = new HolderRegistry<>();
 
     private AnimalRegistry() {}
@@ -34,11 +39,6 @@ public class AnimalRegistry implements IAnimalHandler {
     @Override
     public void registerFoodAsType(ItemStack stack, AnimalFoodType type) {
         registry.register(stack, type);
-    }
-
-    @Override
-    public AnimalStats newStats(IAnimalType type) {
-        return new AnimalStatsHF().setType(type);
     }
 
     @Override
@@ -59,13 +59,33 @@ public class AnimalRegistry implements IAnimalHandler {
         return false;
     }
 
-    void registerType(String key, IAnimalType type) {
-        types.put(key.toLowerCase(Locale.ENGLISH), type);
+    @Override
+    public AnimalStats<NBTTagCompound> newStats(AnimalType type) {
+        if (type == AnimalType.POULTRY) return new AnimalStatsPoultry();
+        else if (type == AnimalType.LIVESTOCK) return new AnimalStatsLivestock();
+        else if (type == AnimalType.MILKABLE) return new AnimalStatsMilkable();
+        else return new AnimalStatsHF();
     }
 
     @Override
-    public IAnimalType getTypeFromString(String string) {
-        return types.get(string.toLowerCase(Locale.ENGLISH));
+    public EntityAIBase getEntityAI(EntityAnimal animal, AnimalAI type, boolean add) {
+        if (type == AnimalAI.EAT) {
+            EntityAIBase eat = new EntityAIEat(animal);
+            if (add) {
+                animal.tasks.addTask(5, eat);
+            }
+
+            return eat;
+        } else if (type == AnimalAI.EGGS) {
+            EntityAILayEgg eat = new EntityAILayEgg(animal);
+            if (add) {
+                animal.tasks.addTask(5, eat);
+            }
+
+            return eat;
+        }
+
+        return null;
     }
 
     @Override

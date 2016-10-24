@@ -52,7 +52,7 @@ public class AnimalStatsHF implements AnimalStats<NBTTagCompound> {
     private boolean wasOutsideInSun;
 
     public AnimalStatsHF() {
-        this.type = HFApi.animals.getTypeFromString("chicken");
+        this.type = HFAnimals.CHICKENS;
     }
 
     /** Set the animal type
@@ -133,7 +133,7 @@ public class AnimalStatsHF implements AnimalStats<NBTTagCompound> {
         EntityPlayer owner = getOwner();
         if (owner != null && isOutsideInSun && wasOutsideInSun) {
             healthiness++;
-            affectRelationship(owner, type.getOutsideBonus());
+            affectRelationship(owner, type.getRelationshipBonus(AnimalAction.OUTSIDE));
         }
 
         //Mark the past value
@@ -293,14 +293,14 @@ public class AnimalStatsHF implements AnimalStats<NBTTagCompound> {
     public boolean performAction(@Nonnull World world, @Nullable EntityPlayer player, @Nullable ItemStack stack, AnimalAction action) {
         if (action == AnimalAction.FEED) return feed(world, player);
         else if (action == AnimalAction.HEAL) return heal(world, player);
-        return action == AnimalAction.TREAT && treat(world, player, stack);
+        return (action == AnimalAction.TREAT_SPECIAL || action == AnimalAction.TREAT_GENERIC) && treat(world, player, stack);
     }
 
     private boolean feed(@Nonnull World world, @Nullable EntityPlayer player) {
         if (daysNotFed >= 0) {
             if (!world.isRemote) {
                 daysNotFed = -1;
-                affectRelationship(player, type.getFeedByHandBonus());
+                affectRelationship(player, type.getRelationshipBonus(AnimalAction.FEED));
                 HFApi.animals.syncAnimalStats(animal);
             }
 
@@ -325,7 +325,7 @@ public class AnimalStatsHF implements AnimalStats<NBTTagCompound> {
     }
 
     void affectRelationship(EntityPlayer player, int amount) {
-        if (player != null) {
+        if (player != null && amount > 0) {
             HFApi.player.getRelationsForPlayer(player).affectRelationship(EntityHelper.getEntityUUID(animal), amount);
         }
     }
@@ -337,18 +337,18 @@ public class AnimalStatsHF implements AnimalStats<NBTTagCompound> {
             if (treated) {
                 if (!world.isRemote) {
                     genericTreats++;
-                    affectRelationship(player, 20);
-                    treated = !HFAnimals.OP_ANIMALS;
+                    affectRelationship(player, type.getRelationshipBonus(AnimalAction.TREAT_GENERIC));
+                    treated = true;
                 }
 
                 return true;
             } else {
-                treated = HFApi.animals.getTypeFromString(HFAnimals.TREATS.getEnumFromStack(stack).name()) == type;
+                treated = HFAnimals.TREATS.getEnumFromStack(stack).getType() == type;
                 if (treated) {
                     if (!world.isRemote) {
                         typeTreats++;
-                        affectRelationship(player, 30);
-                        treated = !HFAnimals.OP_ANIMALS;
+                        affectRelationship(player, type.getRelationshipBonus(AnimalAction.TREAT_SPECIAL));
+                        treated = true;
                     }
 
                     return true;

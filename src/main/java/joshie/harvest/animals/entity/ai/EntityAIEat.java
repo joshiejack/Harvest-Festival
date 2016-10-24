@@ -1,4 +1,4 @@
-package joshie.harvest.animals.entity;
+package joshie.harvest.animals.entity.ai;
 
 import joshie.harvest.api.animals.IAnimalFeeder;
 import net.minecraft.block.Block;
@@ -7,8 +7,6 @@ import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.util.math.BlockPos;
 
 public class EntityAIEat extends EntityAIAnimal {
-    private int wanderTick;
-
     public EntityAIEat(EntityAnimal animal) {
         super(animal);
         this.setMutexBits(1);

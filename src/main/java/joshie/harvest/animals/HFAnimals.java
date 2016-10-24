@@ -15,11 +15,13 @@ import joshie.harvest.animals.render.*;
 import joshie.harvest.animals.stats.AnimalStatsHF;
 import joshie.harvest.animals.tile.TileFeeder;
 import joshie.harvest.animals.tile.TileIncubator;
+import joshie.harvest.animals.tile.TileNest;
 import joshie.harvest.animals.tile.TileTrough;
 import joshie.harvest.animals.type.AnimalChicken;
 import joshie.harvest.animals.type.AnimalCow;
 import joshie.harvest.animals.type.AnimalSheep;
 import joshie.harvest.api.animals.AnimalStats;
+import joshie.harvest.api.animals.IAnimalType;
 import joshie.harvest.api.crops.Crop;
 import joshie.harvest.core.helpers.RegistryHelper;
 import joshie.harvest.core.lib.EntityIDs;
@@ -51,6 +53,11 @@ import static net.minecraftforge.fml.common.registry.EntityRegistry.registerModE
 
 @HFLoader
 public class HFAnimals {
+    //Types
+    public static final IAnimalType CHICKENS = new AnimalChicken();
+    public static final IAnimalType COWS = new AnimalCow();
+    public static final IAnimalType SHEEP = new AnimalSheep();
+
     //Animal Items
     public static final ItemAnimalSpawner ANIMAL = new ItemAnimalSpawner().register("animal");
     public static final ItemAnimalTool TOOLS = new ItemAnimalTool().register("tool_animal");
@@ -80,10 +87,7 @@ public class HFAnimals {
         registerFoodsAsType(SEED, Items.MELON_SEEDS, Items.WHEAT_SEEDS, Items.PUMPKIN_SEEDS);
         registerFoodsAsType(VEGETABLE, Items.CARROT);
         animals.registerFoodAsType(TOOLS.getStackFromEnum(CHICKEN_FEED), SEED);
-        AnimalRegistry.INSTANCE.registerType("cow", new AnimalCow());
-        AnimalRegistry.INSTANCE.registerType("sheep", new AnimalSheep());
-        AnimalRegistry.INSTANCE.registerType("chicken", new AnimalChicken());
-        registerTiles(TileIncubator.class, TileTrough.class, TileFeeder.class);
+        registerTiles(TileIncubator.class, TileTrough.class, TileFeeder.class, TileNest.class);
         CapabilityManager.INSTANCE.register(AnimalStats.class, new IStorage<AnimalStats>() {
             @Override
             public NBTBase writeNBT(Capability<AnimalStats> capability, AnimalStats instance, EnumFacing side) {
@@ -130,7 +134,7 @@ public class HFAnimals {
     //Configuration
     public static boolean CAN_SPAWN;
     public static boolean DISABLE_SPAWN_CHICKEN;
-    public static boolean PICKUP_CHICKENS;
+    public static boolean PICKUP_POULTRY;
     public static int MAX_LITTER_SIZE;
     public static int LITTER_EXTRA_CHANCE;
     public static int AGING_TIMER;
@@ -143,7 +147,7 @@ public class HFAnimals {
     public static void configure() {
         CAN_SPAWN = getBoolean("Enable animal natural spawning", true);
         DISABLE_SPAWN_CHICKEN = getBoolean("Disable vanilla chickens from eggs", false);
-        PICKUP_CHICKENS = getBoolean("Enable placing of chickens on your head", true);
+        PICKUP_POULTRY = getBoolean("Enable placing of chickens on your head", true);
         PREGNANCY_TIMER = getInteger("Pregnancy > Number of days", 7);
         CHICKEN_TIMER = HFAnimals.PREGNANCY_TIMER / 2;
         MAX_LITTER_SIZE = getInteger("Pregnancy > Max litter size", 5);

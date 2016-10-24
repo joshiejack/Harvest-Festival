@@ -1,5 +1,6 @@
 package joshie.harvest.animals.type;
 
+import joshie.harvest.api.animals.AnimalAction;
 import joshie.harvest.api.animals.AnimalFoodType;
 import joshie.harvest.api.animals.AnimalStats;
 import joshie.harvest.api.animals.IAnimalType;
@@ -46,6 +47,16 @@ public abstract class AnimalAbstract implements IAnimalType {
     public int getDaysBetweenProduction() {
         return 0;
     }
+
+    @Override
+    public int getRelationshipBonus(AnimalAction action) {
+        switch (action) {
+            case TREAT_SPECIAL: return 30;
+            case TREAT_GENERIC: return 20;
+            default:            return 0;
+        }
+    }
+
 
     @Override
     public void refreshProduct(AnimalStats stats, EntityAnimal entity) {}

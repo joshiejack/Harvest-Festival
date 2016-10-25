@@ -1,5 +1,6 @@
 package joshie.harvest.crops.handlers.state;
 
+import joshie.harvest.api.crops.Crop;
 import net.minecraft.block.BlockStem;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -25,7 +26,7 @@ public class StateHandlerPumpkin extends StateHandlerStem {
 
     @SuppressWarnings("deprecation")
     @Override
-    public IBlockState getState(IBlockAccess world, BlockPos pos, PlantSection section, int stage, boolean withered) {
+    public IBlockState getState(IBlockAccess world, BlockPos pos, PlantSection section, Crop crop, int stage, boolean withered) {
         int meta = getMetaFromStage(stage);
         IBlockState state = block.getDefaultState().withProperty(BlockStem.FACING, EnumFacing.UP).withProperty(BlockStem.AGE, meta);
         for (EnumFacing enumfacing : EnumFacing.Plane.HORIZONTAL)  {

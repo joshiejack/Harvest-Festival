@@ -32,7 +32,7 @@ public class ImmersiveEngineering {
 
     public static void preInit() {
         STATE_HANDLER = new StateHandlerHemp(Block.REGISTRY.getObject(new ResourceLocation("immersiveengineering", "hemp")));
-        HEMP = new Crop(new ResourceLocation(MODID, "hemp")).setGoldValues(1000, 1).setStages(15).setRegrowStage(1).setSeedColours(0xB57449).setSeasons(SPRING, SUMMER, AUTUMN).setStateHandler(STATE_HANDLER).setSkipRender()
+        HEMP = new Crop(new ResourceLocation(MODID, "hemp")).setValue(1000, 1).setStages(15).setRegrow(1).setSeedColours(0xB57449).setSeasons(SPRING, SUMMER, AUTUMN).setStateHandler(STATE_HANDLER).setSkipRender()
                 .setAnimalFoodType(null).setRequiresSickle(15).setGrowthHandler(new HempGrowthHandler()).setBecomesDouble(15);
     }
 

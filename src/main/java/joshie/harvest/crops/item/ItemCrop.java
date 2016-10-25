@@ -4,7 +4,7 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.core.IShippable;
 import joshie.harvest.core.base.item.ItemHFFoodEnum;
 import joshie.harvest.core.lib.CreativeSort;
-import joshie.harvest.crops.item.ItemCrop.Crop;
+import joshie.harvest.crops.item.ItemCrop.Crops;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.ResourceLocation;
@@ -13,9 +13,9 @@ import java.util.Locale;
 
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 
-public class ItemCrop extends ItemHFFoodEnum<ItemCrop, Crop> implements IShippable {
+public class ItemCrop extends ItemHFFoodEnum<ItemCrop, Crops> implements IShippable {
     public ItemCrop() {
-        super(Crop.class);
+        super(Crops.class);
     }
 
     @Override
@@ -46,11 +46,11 @@ public class ItemCrop extends ItemHFFoodEnum<ItemCrop, Crop> implements IShippab
     }
 
     @Override
-    public boolean shouldDisplayInCreative(Crop crop) {
+    public boolean shouldDisplayInCreative(Crops crop) {
         return crop.getCrop().getCropStack(1).getItem() == this;
     }
 
-    public enum Crop implements IStringSerializable {
+    public enum Crops implements IStringSerializable {
         /** Vanilla crops are included here although never used, so that those updating from 0.5 have no issue **/
         TURNIP(1, 0.4F), POTATO(0, 0F), CUCUMBER(2, 0.25F), STRAWBERRY(3, 0.8F), CABBAGE(1, 0.5F),
         ONION(1, 0.4F), TOMATO(3, 0.5F), CORN(2, 0.3F), PUMPKIN(0, 0F), PINEAPPLE(2, 0.84F), WATERMELON(0, 0F),
@@ -63,7 +63,7 @@ public class ItemCrop extends ItemHFFoodEnum<ItemCrop, Crop> implements IShippab
         private final int hunger;
         private final float saturation;
 
-        Crop(int hunger, float saturation) {
+        Crops(int hunger, float saturation) {
             cropLocation = new ResourceLocation(MODID, getName());
             this.hunger = hunger;
             this.saturation = saturation;

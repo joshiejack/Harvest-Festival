@@ -21,23 +21,28 @@ public abstract class TownTracker extends HFTracker {
     protected final HashMap<UUID, TownData> uuidMap = new HashMap<>();
     protected Set<TownData> townData = new HashSet<>();
 
-    public TownData getClosestTownToBlockPos(final BlockPos pos) {
+    private TownData getClosestTown(final BlockPos pos, boolean invalidateAll) {
         try {
-            closestCache.cleanUp();
+            if (invalidateAll) closestCache.invalidateAll();
             return closestCache.get(pos, ()-> {
-                    TownData closest = null;
-                    double thatTownDistance = Double.MAX_VALUE;
-                    for (TownData town: townData) {
-                        double thisTownDistance = town.getTownCentre().getDistance(pos.getX(), pos.getY(), pos.getZ());
-                        if (closest == null || thisTownDistance < thatTownDistance) {
-                            thatTownDistance = thisTownDistance;
-                            closest = town;
-                        }
+                TownData closest = null;
+                double thatTownDistance = Double.MAX_VALUE;
+                for (TownData town: townData) {
+                    double thisTownDistance = town.getTownCentre().getDistance(pos.getX(), pos.getY(), pos.getZ());
+                    if (closest == null || thisTownDistance < thatTownDistance) {
+                        thatTownDistance = thisTownDistance;
+                        closest = town;
                     }
+                }
 
-                    return thatTownDistance > HFNPCs.TOWN_DISTANCE || closest == null ? NULL_TOWN: closest;
+                return thatTownDistance > HFNPCs.TOWN_DISTANCE || closest == null ? NULL_TOWN: closest;
             });
         } catch (Exception e) { return NULL_TOWN; }
+    }
+
+    public TownData getClosestTownToBlockPos(final BlockPos pos) {
+        TownData data = getClosestTown(pos, false);
+        return data == NULL_TOWN ? getClosestTown(pos, true) : data;
     }
 
     public abstract TownData createNewTown(BlockPos blockPos, boolean builder);

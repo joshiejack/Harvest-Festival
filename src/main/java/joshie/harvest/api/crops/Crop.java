@@ -99,7 +99,7 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements IShippable, 
     /** Set how much this tree costs to buy and sell
      * @param cost the cost
      * @param sell the sell value**/
-    public Crop setGoldValues(long cost, long sell) {
+    public Crop setValue(long cost, long sell) {
         this.cost = cost;
         this.sell = sell;
         return this;
@@ -128,7 +128,7 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements IShippable, 
     /**
      * Set the year this crop is unlocked for purchased
      **/
-    public Crop setYearUnlocked(int year) {
+    public Crop setUnlocked(int year) {
         this.year = year;
         return this;
     }
@@ -136,7 +136,7 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements IShippable, 
     /**
      * Set the stage at which crops regrow to
      **/
-    public Crop setRegrowStage(int regrow) {
+    public Crop setRegrow(int regrow) {
         this.regrow = regrow;
         return this;
     }
@@ -173,6 +173,24 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements IShippable, 
      **/
     public Crop setStateHandler(IStateHandler handler) {
         this.stateHandler = handler;
+        return this;
+    }
+
+    /**
+     * Creates a state handler based on the passed in values
+     */
+    public Crop setStages(int... stages) {
+        this.stages = stages[stages.length - 1];
+        this.stateHandler = new StateHandlerBasic(stages);
+        return this;
+    }
+
+    /**
+     * Creates a state handler for this block, based on the passed in values
+     */
+    public Crop setStages(Block block, int... stages) {
+        this.stages = stages[stages.length - 1];
+        this.stateHandler = new StateHandlerBlock(block, stages);
         return this;
     }
 
@@ -526,8 +544,9 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements IShippable, 
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public IBlockState getPlant(IBlockAccess world, BlockPos pos) {
-        return getStateHandler().getState(world, pos, PlantSection.BOTTOM, 1, false);
+        return getStateHandler().getState(world, pos, PlantSection.BOTTOM, this, 1, false);
     }
 
     @Override

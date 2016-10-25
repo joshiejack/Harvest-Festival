@@ -7,7 +7,7 @@ import joshie.harvest.api.crops.WateringHandler;
 import joshie.harvest.core.handlers.DisableHandler;
 import joshie.harvest.core.util.annotations.HFApiImplementation;
 import joshie.harvest.core.util.holders.ItemStackHolder;
-import joshie.harvest.crops.item.ItemCrop;
+import joshie.harvest.crops.item.ItemCrop.Crops;
 import joshie.harvest.crops.tile.TileWithered;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
@@ -46,11 +46,11 @@ public class CropRegistry implements ICropRegistry {
     @Override
     @Deprecated //TODO: Remove in 0.7+
     public ItemStack getCropStack(Crop crop, int amount) {
-        for (ItemCrop.Crop crop1: ItemCrop.Crop.values()) {
+        for (Crops crop1: Crops.values()) {
             if (crop1.getCrop() == crop) return HFCrops.CROP.getStackFromEnum(crop1, amount);
         }
 
-        ItemStack stack = HFCrops.CROP.getStackFromEnum(ItemCrop.Crop.TURNIP);
+        ItemStack stack = HFCrops.CROP.getStackFromEnum(Crops.TURNIP);
         stack.stackSize = amount;
         return stack;
     }
@@ -132,12 +132,12 @@ public class CropRegistry implements ICropRegistry {
     @Override
     public boolean hydrateSoil(@Nullable EntityPlayer player, World world, BlockPos pos) {
         IBlockState state = world.getBlockState(pos);
-        WateringHandler checker = CropHelper.getWateringHandler(state);
-        if (checker != null) {
-            checker.water(world, pos);
+        WateringHandler checker = CropHelper.getWateringHandler(world, pos, state);
+        if (checker != null && !checker.isWet(world, pos, state)) {
+            return checker.water(world, pos, state);
         }
 
-        return checker != null;
+        return false;
     }
 
     @Override

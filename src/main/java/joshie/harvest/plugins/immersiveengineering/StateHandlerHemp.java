@@ -1,12 +1,13 @@
 package joshie.harvest.plugins.immersiveengineering;
 
-import joshie.harvest.crops.handlers.state.StateHandlerVanilla;
+import joshie.harvest.api.crops.Crop;
+import joshie.harvest.api.crops.StateHandlerBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 
-public class StateHandlerHemp extends StateHandlerVanilla {
+public class StateHandlerHemp extends StateHandlerBlock {
     public StateHandlerHemp(Block block) {
         super(block);
     }
@@ -20,7 +21,7 @@ public class StateHandlerHemp extends StateHandlerVanilla {
     }
 
     @Override
-    public IBlockState getState(IBlockAccess world, BlockPos pos, PlantSection section, int stage, boolean withered) {
+    public IBlockState getState(IBlockAccess world, BlockPos pos, PlantSection section, Crop crop, int stage, boolean withered) {
         if (section == PlantSection.TOP) return block.getStateFromMeta(5);
         return block.getStateFromMeta(getMetaFromStage(stage));
     }

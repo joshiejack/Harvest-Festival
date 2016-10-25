@@ -37,7 +37,8 @@ public class BakedCrops extends BakedHF {
             for (Crop crop: Crop.REGISTRY) {
                 if (crop != Crop.NULL_CROP) {
                     if (crop.skipLoadingRender()) {
-                        for (IBlockState state: crop.getStateHandler().getValidStates()) {
+                        for (Object object: crop.getStateHandler().getValidStates()) {
+                            IBlockState state = (IBlockState) object;
                             IBakedModel original = registry.getObject(getModelResourceLocation(state));
                             registry.putObject(getModelResourceLocation(state), new BakedCrops(original));
                         }

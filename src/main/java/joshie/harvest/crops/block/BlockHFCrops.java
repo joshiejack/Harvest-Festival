@@ -271,20 +271,20 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
         }
     }
 
-    @SuppressWarnings("deprecation")
     @Override
+    @SuppressWarnings("deprecation, unchecked")
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos) {
         CropType stage = getEnumFromState(state);
         CropData data = CropHelper.getCropDataAt(world, pos);
-        return data != null ? data.getCrop().getStateHandler().getBoundingBox(world, pos, stage.getSection(), data.getStage(), stage.isWithered()) : CROP_AABB;
+        return data != null ? data.getCrop().getStateHandler().getBoundingBox(world, pos, stage.getSection(), data.getCrop(), data.getStage(), stage.isWithered()) : CROP_AABB;
     }
 
-    @SuppressWarnings("deprecation")
     @Override
+    @SuppressWarnings("deprecation, unchecked")
     public AxisAlignedBB getCollisionBoundingBox(IBlockState state, World world, BlockPos pos) {
         CropType stage = getEnumFromState(state);
         CropData data = CropHelper.getCropDataAt(world, pos);
-        return data != null ? data.getCrop().getStateHandler().getCollisionBoundingBox(world, pos, stage.getSection(), data.getStage(), stage.isWithered()) : NULL_AABB;
+        return data != null ? data.getCrop().getStateHandler().getCollisionBoundingBox(world, pos, stage.getSection(), data.getCrop(), data.getStage(), stage.isWithered()) : NULL_AABB;
     }
 
     @Override
@@ -294,8 +294,8 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
         return data == null ? new ItemStack(Blocks.DEADBUSH) : HFCrops.SEEDS.getStackFromCrop(data.getCrop());
     }
 
-    @SuppressWarnings("deprecation")
     @Override
+    @SuppressWarnings("deprecation, unchecked")
     public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos) {
         CropType stage = getEnumFromState(state);
         TileWithered crop = CropHelper.getTile(world, pos, stage.getSection());
@@ -304,7 +304,7 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
             return theState == null ? Blocks.GRASS.getDefaultState(): theState;
         }
 
-        if (crop != null) return crop.getData().getCrop().getStateHandler().getState(world, pos, stage.getSection(), crop.getData().getStage(), stage.isWithered());
+        if (crop != null) return crop.getData().getCrop().getStateHandler().getState(world, pos, stage.getSection(), crop.getData().getCrop(), crop.getData().getStage(), stage.isWithered());
         else return Blocks.DEADBUSH.getDefaultState();
     }
 

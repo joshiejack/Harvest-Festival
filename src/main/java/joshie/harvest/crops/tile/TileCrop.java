@@ -6,6 +6,8 @@ import joshie.harvest.core.helpers.NBTHelper;
 import joshie.harvest.crops.CropHelper;
 import joshie.harvest.crops.HFCrops;
 import joshie.harvest.crops.block.BlockHFCrops.CropType;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
 import static joshie.harvest.core.helpers.MCServerHelper.markTileForUpdate;
 import static joshie.harvest.crops.CropHelper.isWetSoil;
@@ -20,7 +22,9 @@ public class TileCrop extends TileWithered implements IDailyTickable {
     public void newDay(Phase phase) {
         if (phase == Phase.PRE) {
             //Rain and soil check
-            if (data.getCrop().requiresWater() && (CropHelper.isRainingAt(getWorld(), getPos().up()) || isWetSoil(getWorld().getBlockState(getPos().down())))) {
+            World world = getWorld();
+            BlockPos pos = getPos().down();
+            if (data.getCrop().requiresWater() && (CropHelper.isRainingAt(getWorld(), getPos().up()) || isWetSoil(world, pos, world.getBlockState(pos)))) {
                 data.setHydrated(); //If today is raining, hydrate the crop automatically
             }
 

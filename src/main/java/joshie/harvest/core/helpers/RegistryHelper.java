@@ -79,7 +79,7 @@ public class RegistryHelper {
 
         //Atempt to add a growth handler
         try {
-            crop.setGrowthHandler((GrowthHandler) Class.forName(DROPHANDLERS + WordUtils.capitalizeFully(name.replace("_", " ")).replace(" ", "")).newInstance());
+            crop.setGrowthHandler((GrowthHandler) Class.forName(GROWTHHANDLERS + WordUtils.capitalizeFully(name.replace("_", " ")).replace(" ", "")).newInstance());
         } catch (IllegalAccessException | ClassNotFoundException | InstantiationException e) {/**/}
 
         //Atempt to add a state handler

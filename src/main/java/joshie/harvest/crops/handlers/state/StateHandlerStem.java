@@ -2,6 +2,7 @@ package joshie.harvest.crops.handlers.state;
 
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.crops.Crop;
+import joshie.harvest.api.crops.StateHandlerBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockStem;
 import net.minecraft.block.state.IBlockState;
@@ -10,7 +11,7 @@ import net.minecraft.world.IBlockAccess;
 
 import javax.annotation.Nullable;
 
-public abstract class StateHandlerStem extends StateHandlerVanilla {
+public abstract class StateHandlerStem extends StateHandlerBlock {
     public StateHandlerStem(Block block) {
         super(block);
     }

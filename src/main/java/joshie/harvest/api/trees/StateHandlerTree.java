@@ -10,7 +10,7 @@ import net.minecraft.world.IBlockAccess;
 import static net.minecraft.block.Block.FULL_BLOCK_AABB;
 import static net.minecraft.block.Block.NULL_AABB;
 
-public class StateHandlerTree extends StateHandlerDefault {
+public class StateHandlerTree extends StateHandlerDefault<Tree> {
     private final int stage1;
     private final int stage2;
     private final int stage3;
@@ -24,7 +24,7 @@ public class StateHandlerTree extends StateHandlerDefault {
 
     @SuppressWarnings("deprecation")
     @Override
-    public IBlockState getState(IBlockAccess world, BlockPos pos, PlantSection section, int stage, boolean withered) {
+    public IBlockState getState(IBlockAccess world, BlockPos pos, PlantSection section, Tree tree, int stage, boolean withered) {
         if (stage <= stage1) return getState(1);
         else if (stage <= stage2) return getState(2);
         else if (stage < stage3) return getState(3);
@@ -32,12 +32,12 @@ public class StateHandlerTree extends StateHandlerDefault {
     }
 
     @Override
-    public AxisAlignedBB getBoundingBox(IBlockAccess world, BlockPos pos, PlantSection section, int stage, boolean withered) {
+    public AxisAlignedBB getBoundingBox(IBlockAccess world, BlockPos pos, PlantSection section, Tree tree, int stage, boolean withered) {
         return stage >= stage2 ? FULL_BLOCK_AABB : CROP_AABB;
     }
 
     @Override
-    public AxisAlignedBB getCollisionBoundingBox(IBlockAccess world, BlockPos pos, PlantSection section, int stage, boolean withered) {
+    public AxisAlignedBB getCollisionBoundingBox(IBlockAccess world, BlockPos pos, PlantSection section, Tree tree, int stage, boolean withered) {
         return stage >= stage3 ? FULL_BLOCK_AABB : NULL_AABB;
     }
 }

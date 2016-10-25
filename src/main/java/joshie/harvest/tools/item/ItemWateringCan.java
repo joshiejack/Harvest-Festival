@@ -164,7 +164,7 @@ public class ItemWateringCan extends ItemTool<ItemWateringCan> {
             EnumFacing front = EntityHelper.getFacingFromEntity(player);
             IBlockState initialState = world.getBlockState(pos);
             Block initial = initialState.getBlock();
-            if (CropHelper.getWateringHandler(initialState) == null && (!(initial instanceof IPlantable))) {
+            if (CropHelper.getWateringHandler(world, pos, initialState) == null && (!(initial instanceof IPlantable))) {
                 return;
             }
 

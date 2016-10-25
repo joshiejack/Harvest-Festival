@@ -49,15 +49,15 @@ public class CropHelper {
     }
 
     //Returns whether the farmland is hydrated
-    public static boolean isWetSoil(IBlockState state) {
-        WateringHandler handler = getWateringHandler(state);
-        return handler != null && handler.isWet(state);
+    public static boolean isWetSoil(World world, BlockPos pos, IBlockState state) {
+        WateringHandler handler = getWateringHandler(world, pos, state);
+        return handler != null && handler.isWet(world, pos, state);
     }
 
     //Returns true if this is waterable
-    public static WateringHandler getWateringHandler(IBlockState state) {
+    public static WateringHandler getWateringHandler(World world, BlockPos pos, IBlockState state) {
         for (WateringHandler checker: CropRegistry.INSTANCE.wateringHandlers) {
-            if (checker.canBeWatered(state)) return checker;
+            if (checker.handlesState(world, pos, state)) return checker;
         }
 
         return null;

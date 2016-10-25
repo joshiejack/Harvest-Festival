@@ -11,7 +11,7 @@ import javax.annotation.Nullable;
 
 import static net.minecraft.block.Block.NULL_AABB;
 
-public interface IStateHandler {
+public interface IStateHandler<C extends Crop> {
     /** Returns a list of all valid states **/
     ImmutableList<IBlockState> getValidStates();
 
@@ -19,19 +19,21 @@ public interface IStateHandler {
      * @param world     the world
      * @param pos       the position
      * @param section   the plant section
+     * @param crop      the crop
      * @param stage     the stage
      * @param withered  if the crop is withered
      * @return the collision box */
-    AxisAlignedBB getBoundingBox(IBlockAccess world, BlockPos pos, PlantSection section, int stage, boolean withered);
+    AxisAlignedBB getBoundingBox(IBlockAccess world, BlockPos pos, PlantSection section, C crop, int stage, boolean withered);
 
     /** Returns the collision box for this crop
      * @param world     the world
      * @param pos       the position
      * @param section   the plant section
+     * @param crop      the crop
      * @param stage     the stage
      * @param withered  if the crop is withered
      * @return the collision box */
-    default AxisAlignedBB getCollisionBoundingBox(IBlockAccess world, BlockPos pos, PlantSection section, int stage, boolean withered) { return NULL_AABB; }
+    default AxisAlignedBB getCollisionBoundingBox(IBlockAccess world, BlockPos pos, PlantSection section, C crop, int stage, boolean withered) { return NULL_AABB; }
 
     /** Called to get the colur for this crop
      * @param world       the world object
@@ -41,7 +43,7 @@ public interface IStateHandler {
      * @param crop        the crop
      * @param withered    if the crop is withered
      * @return the colour, -1 if none */
-    default int getColor(IBlockAccess world, BlockPos pos, IBlockState renderState, @Nullable Season season, Crop crop, boolean withered) {
+    default int getColor(IBlockAccess world, BlockPos pos, IBlockState renderState, @Nullable Season season, C crop, boolean withered) {
         return withered ? 0xA64DFF : -1;
     }
 
@@ -49,10 +51,11 @@ public interface IStateHandler {
      * @param world     the world
      * @param pos       the position
      * @param section   the plant section
+     * @param crop      the crop
      * @param stage     the stage
      * @param withered  if the crop is withered
      * @return the collision box */
-    IBlockState getState(IBlockAccess world, BlockPos pos, PlantSection section, int stage, boolean withered);
+    IBlockState getState(IBlockAccess world, BlockPos pos, PlantSection section, C crop, int stage, boolean withered);
 
     enum PlantSection {
         TOP, BOTTOM

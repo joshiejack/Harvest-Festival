@@ -14,6 +14,7 @@ import joshie.harvest.crops.block.BlockHFCrops;
 import joshie.harvest.crops.block.BlockSprinkler;
 import joshie.harvest.crops.handlers.growth.GrowthHandlerNether;
 import joshie.harvest.crops.item.ItemCrop;
+import joshie.harvest.crops.item.ItemCrop.Crops;
 import joshie.harvest.crops.item.ItemHFSeeds;
 import joshie.harvest.crops.tile.TileCrop;
 import joshie.harvest.crops.tile.TileSprinkler;
@@ -56,52 +57,49 @@ public class HFCrops {
     public static final ItemCrop CROP = new ItemCrop().register("crops");
 
     //Spring Crops
-    public static final Crop TURNIP = registerCrop("turnip").setItem(getCropStack(ItemCrop.Crop.TURNIP)).setGoldValues(120, 60).setStages(5).setSeedColours(0xFFFFFF);
-    public static final Crop POTATO = registerCrop("potato").setItem(Items.POTATO).setGoldValues(150, 80).setStages(8).setSeedColours(0xBE8D2B);
-    public static final Crop CUCUMBER = registerCrop("cucumber").setItem(getCropStack(ItemCrop.Crop.CUCUMBER)).setGoldValues(100, 60).setStages(10).setRegrowStage(5).setSeedColours(0x36B313)
-                                            .setAnimalFoodType(FRUIT);
-    public static final Crop STRAWBERRY = registerCrop("strawberry").setItem(getCropStack(ItemCrop.Crop.STRAWBERRY)).setGoldValues(150, 30).setStages(9).setRegrowStage(7).setYearUnlocked(1).setSeedColours(0xFF7BEA)
-                                            .setAnimalFoodType(FRUIT);
-    public static final Crop CABBAGE = registerCrop("cabbage").setItem(getCropStack(ItemCrop.Crop.CABBAGE)).setGoldValues(500, 250).setStages(15).setYearUnlocked(3).setSeedColours(0x8FFF40);
+    public static final Crop TURNIP = registerCrop("turnip").setItem(getCropStack(Crops.TURNIP)).setValue(120, 60).setStages(2, 4, 5).setSeedColours(0xFFFFFF);
+    public static final Crop POTATO = registerCrop("potato").setItem(Items.POTATO).setValue(150, 80).setStages(Blocks.POTATOES, 1, 2, 3, 4, 5, 6, 7, 8).setSeedColours(0xBE8D2B);
+    public static final Crop CUCUMBER = registerCrop("cucumber").setItem(getCropStack(Crops.CUCUMBER)).setValue(100, 60).setStages(4, 7, 9, 10).setRegrow(5).setSeedColours(0x36B313).setAnimalFoodType(FRUIT);
+    public static final Crop STRAWBERRY = registerCrop("strawberry").setItem(getCropStack(Crops.STRAWBERRY)).setValue(150, 30).setStages(3, 6, 8, 9).setRegrow(7).setUnlocked(1).setSeedColours(0xFF7BEA).setAnimalFoodType(FRUIT);
+    public static final Crop CABBAGE = registerCrop("cabbage").setItem(getCropStack(Crops.CABBAGE)).setValue(500, 250).setStages(4, 9, 14, 15).setUnlocked(3).setSeedColours(0x8FFF40);
 
     //Summer Crops
-    public static final Crop ONION = registerCrop("onion").setItem(getCropStack(ItemCrop.Crop.ONION)).setGoldValues(150, 80).setStages(8).setSeedColours(0XDCC307).setSeasons(SUMMER);
-    public static final Crop TOMATO = registerCrop("tomato").setItem(getCropStack(ItemCrop.Crop.TOMATO)).setGoldValues(200, 60).setStages(10).setRegrowStage(7).setSeedColours(0XE60820).setSeasons(SUMMER)
-                                        .setAnimalFoodType(FRUIT);
-    public static final Crop CORN = registerCrop("corn").setItem(getCropStack(ItemCrop.Crop.CORN)).setGoldValues(300, 100).setStages(15).setRegrowStage(12).setSeedColours(0XD4BD45).setSeasons(SUMMER);
-    public static final Crop PUMPKIN = registerCrop("pumpkin").setItem(new ItemStack(Blocks.PUMPKIN)).setGoldValues(500, 125).setStages(15).setYearUnlocked(1).setSeedColours(0XE09A39).setSeasons(SUMMER)
-                                        .setIngredient(2, 0.3F).setGrowthHandler(new GrowthHandlerSide(Blocks.PUMPKIN));
-    public static final Crop PINEAPPLE = registerCrop("pineapple").setItem(getCropStack(ItemCrop.Crop.PINEAPPLE)).setGoldValues(1000, 500).setStages(21).setRegrowStage(5).setYearUnlocked(3).setSeedColours(0XD7CF00).setSeasons(SUMMER)
-                                        .setAnimalFoodType(FRUIT);
-    public static final Crop WATERMELON = registerCrop("watermelon").setItem(Items.MELON).setGoldValues(250, 20).setStages(11).setYearUnlocked(1).setSeedColours(0xc92b3e).setSeasons(SUMMER)
-                                        .setAnimalFoodType(FRUIT).setGrowthHandler(new GrowthHandlerSide(Blocks.MELON_BLOCK));
+    public static final Crop ONION = registerCrop("onion").setItem(getCropStack(Crops.ONION)).setValue(150, 80).setStages(3, 7, 8).setSeedColours(0XDCC307).setSeasons(SUMMER);
+    public static final Crop TOMATO = registerCrop("tomato").setItem(getCropStack(Crops.TOMATO)).setValue(200, 60).setStages(2, 4, 6, 9, 10).setRegrow(7).setSeedColours(0XE60820).setSeasons(SUMMER).setAnimalFoodType(FRUIT);
+    public static final Crop CORN = registerCrop("corn").setItem(getCropStack(Crops.CORN)).setValue(300, 100).setStages(3, 7, 11, 14, 15).setRegrow(12).setSeedColours(0XD4BD45).setSeasons(SUMMER);
+    public static final Crop PUMPKIN = registerCrop("pumpkin").setItem(new ItemStack(Blocks.PUMPKIN)).setValue(500, 125).setStages(15).setUnlocked(1).setSeedColours(0XE09A39)
+                                        .setSeasons(SUMMER).setIngredient(2, 0.3F).setGrowthHandler(new GrowthHandlerSide(Blocks.PUMPKIN));
+    public static final Crop PINEAPPLE = registerCrop("pineapple").setItem(getCropStack(Crops.PINEAPPLE)).setValue(1000, 500).setStages(5, 10, 15, 20, 21).setRegrow(5).setUnlocked(3).setSeedColours(0XD7CF00)
+                                        .setSeasons(SUMMER).setAnimalFoodType(FRUIT);
+    public static final Crop WATERMELON = registerCrop("watermelon").setItem(Items.MELON).setValue(250, 20).setStages(11).setUnlocked(1).setSeedColours(0xc92b3e)
+                                        .setSeasons(SUMMER).setAnimalFoodType(FRUIT).setGrowthHandler(new GrowthHandlerSide(Blocks.MELON_BLOCK));
     //Summer Trees
-    public static final Crop BANANA = registerTree("banana").setMaturity(55).setItem(getCropStack(ItemCrop.Crop.BANANA)).setGoldValues(2500, 300).setStages(32).setRegrowStage(51).setSeedColours(0xFFEF6A).setSeasons(SUMMER);
-    public static final Crop ORANGE = registerTree("orange").setMaturity(49).setItem(getCropStack(ItemCrop.Crop.ORANGE)).setGoldValues(2800, 200).setStages(35).setRegrowStage(46).setSeedColours(0xEDB325).setSeasons(SUMMER);
-    public static final Crop PEACH = registerTree("peach").setMaturity(36).setItem(getCropStack(ItemCrop.Crop.PEACH)).setGoldValues(3000, 250).setStages(25).setRegrowStage(33).setSeedColours(0xFFB0A5).setSeasons(SUMMER);
+    public static final Crop BANANA = registerTree("banana").setStageLength(9, 9, 14, 23).setFruitRegrow(4).setItem(getCropStack(Crops.BANANA)).setValue(2500, 300).setSeedColours(0xFFEF6A).setSeasons(SUMMER);
+    public static final Crop ORANGE = registerTree("orange").setStageLength(7, 16, 12, 14).setItem(getCropStack(Crops.ORANGE)).setValue(2800, 200).setSeedColours(0xEDB325).setSeasons(SUMMER);
+    public static final Crop PEACH = registerTree("peach").setStageLength(5, 10, 10, 11).setItem(getCropStack(Crops.PEACH)).setValue(3000, 250).setSeedColours(0xFFB0A5).setSeasons(SUMMER);
 
     //Autumn Crops
-    public static final Crop EGGPLANT = registerCrop("eggplant").setItem(getCropStack(ItemCrop.Crop.EGGPLANT)).setGoldValues(120, 80).setStages(10).setRegrowStage(7).setSeedColours(0XA25CC4).setSeasons(AUTUMN);
-    public static final Crop SPINACH = registerCrop("spinach").setItem(getCropStack(ItemCrop.Crop.SPINACH)).setGoldValues(200, 80).setStages(6).setYearUnlocked(1).setSeedColours(0X90AE15).setSeasons(AUTUMN);
-    public static final Crop CARROT = registerCrop("carrot").setItem(Items.CARROT).setGoldValues(300, 120).setStages(8).setSeedColours(0XF8AC33).setSeasons(AUTUMN);
-    public static final Crop SWEET_POTATO = registerCrop("sweet_potato").setItem(getCropStack(ItemCrop.Crop.SWEET_POTATO)).setGoldValues(300, 120).setStages(6).setRegrowStage(4).setSeedColours(0XD82AAC).setSeasons(AUTUMN);
-    public static final Crop GREEN_PEPPER = registerCrop("green_pepper").setItem(getCropStack(ItemCrop.Crop.GREEN_PEPPER)).setGoldValues(150, 40).setStages(8).setRegrowStage(2).setYearUnlocked(3).setSeedColours(0x56D213).setSeasons(AUTUMN);
-    public static final Crop BEETROOT = registerCrop("beetroot").setItem(Items.BEETROOT).setGoldValues(250, 75).setStages(8).setSeedColours(0x690000).setSeasons(AUTUMN);
+    public static final Crop EGGPLANT = registerCrop("eggplant").setItem(getCropStack(Crops.EGGPLANT)).setValue(120, 80).setStages(3, 6, 9, 10).setRegrow(7).setSeedColours(0XA25CC4).setSeasons(AUTUMN);
+    public static final Crop SPINACH = registerCrop("spinach").setItem(getCropStack(Crops.SPINACH)).setValue(200, 80).setStages(2, 5, 6).setUnlocked(1).setSeedColours(0X90AE15).setSeasons(AUTUMN);
+    public static final Crop CARROT = registerCrop("carrot").setItem(Items.CARROT).setValue(300, 120).setStages(Blocks.CARROTS, 1, 2, 3, 4, 5, 6, 7, 8).setSeedColours(0XF8AC33).setSeasons(AUTUMN);
+    public static final Crop SWEET_POTATO = registerCrop("sweet_potato").setItem(getCropStack(Crops.SWEET_POTATO)).setValue(300, 120).setStages(3, 5, 6).setRegrow(4).setSeedColours(0XD82AAC).setSeasons(AUTUMN);
+    public static final Crop GREEN_PEPPER = registerCrop("green_pepper").setItem(getCropStack(Crops.GREEN_PEPPER)).setValue(150, 40).setStages(2, 3, 5, 7, 8).setRegrow(2).setUnlocked(3).setSeedColours(0x56D213).setSeasons(AUTUMN);
+    public static final Crop BEETROOT = registerCrop("beetroot").setItem(Items.BEETROOT).setValue(250, 75).setStages(Blocks.BEETROOTS, 2, 5, 7, 8).setSeedColours(0x690000).setSeasons(AUTUMN);
 
     //Autumn Trees
-    public static final Crop APPLE = registerTree("apple").setMaturity(36).setItem(new ItemStack(Items.APPLE)).setGoldValues(1500, 100).setStages(25).setRegrowStage(33).setSeedColours(0xE73921).setSeasons(AUTUMN);
-    public static final Crop GRAPE = registerTree("grape").setMaturity(49).setItem(getCropStack(ItemCrop.Crop.GRAPE)).setGoldValues(2700, 200).setStages(35).setRegrowStage(46).setSeedColours(0xD58EF8).setSeasons(AUTUMN);
+    public static final Crop APPLE = registerTree("apple").setStageLength(5, 10, 10, 11).setItem(new ItemStack(Items.APPLE)).setValue(1500, 100).setSeedColours(0xE73921).setSeasons(AUTUMN);
+    public static final Crop GRAPE = registerTree("grape").setStageLength(7, 16, 12, 14).setItem(getCropStack(Crops.GRAPE)).setValue(2700, 200).setSeedColours(0xD58EF8).setSeasons(AUTUMN);
 
     //Year Long Crops
-    public static final Crop GRASS = registerCrop("grass").setItem(getCropStack(ItemCrop.Crop.GRASS)).setGoldValues(500, 1).setStages(11).setRegrowStage(1).setSeedColours(0x7AC958).setSeasons(SPRING, SUMMER, AUTUMN)
+    public static final Crop GRASS = registerCrop("grass").setItem(getCropStack(Crops.GRASS)).setValue(500, 1).setStages(11).setRegrow(1).setSeedColours(0x7AC958).setSeasons(SPRING, SUMMER, AUTUMN)
                                         .setAnimalFoodType(AnimalFoodType.GRASS).setBecomesDouble(6).setHasAlternativeName().setRequiresSickle(6).setNoWaterRequirements();
-    public static final Crop WHEAT = registerCrop("wheat").setItem(Items.WHEAT).setGoldValues(150, 100).setStages(28).setSeedColours(0XEAC715).setSeasons(SPRING, SUMMER, AUTUMN)
+    public static final Crop WHEAT = registerCrop("wheat").setItem(Items.WHEAT).setValue(150, 100).setStages(Blocks.WHEAT, 2, 5, 9, 12, 15, 20, 27, 28).setSeedColours(0XEAC715).setSeasons(SPRING, SUMMER, AUTUMN)
                                         .setIngredient(1, 0.1F).setAnimalFoodType(AnimalFoodType.GRASS).setRequiresSickle(0);
     //Nether Crops
-    public static final Crop NETHER_WART = registerCrop("nether_wart").setItem(Items.NETHER_WART).setGoldValues(25000, 10).setStages(4).setRegrowStage(1).setYearUnlocked(1).setSeedColours(0x8B0000)
+    public static final Crop NETHER_WART = registerCrop("nether_wart").setItem(Items.NETHER_WART).setValue(25000, 10).setStages(Blocks.NETHER_WART, 1, 2, 3, 4).setRegrow(1).setUnlocked(1).setSeedColours(0x8B0000)
                                             .setPlantType(EnumPlantType.Nether).setNoWaterRequirements().setGrowthHandler(SOUL_SAND);
     //Tutorial Crop
-    public static final Crop TUTORIAL = registerCrop("tutorial_turnip").setItem(getCropStack(ItemCrop.Crop.TUTORIAL_TURNIP)).setGoldValues(0, 1).setStages(3).setSeedColours(0xACA262).setSeasons(SPRING, SUMMER, AUTUMN, WINTER);
+    public static final Crop TUTORIAL = registerCrop("tutorial_turnip").setItem(getCropStack(Crops.TUTORIAL_TURNIP)).setValue(0, 1).setStages(1, 2, 3).setSeedColours(0xACA262).setSeasons(SPRING, SUMMER, AUTUMN, WINTER);
 
     @SuppressWarnings("unchecked")
     public static void preInit() {
@@ -175,12 +173,12 @@ public class HFCrops {
         colors.registerBlockColorHandler(coloring, CROPS);
         for (Crop crop : Crop.REGISTRY) {
             if (crop != Crop.NULL_CROP && crop.skipLoadingRender()) {
-                colors.registerBlockColorHandler(coloring, crop.getStateHandler().getValidStates().get(0).getBlock());
+                colors.registerBlockColorHandler(coloring, ((IBlockState)crop.getStateHandler().getValidStates().get(0)).getBlock());
             }
         }
     }
 
-    public static ItemStack getCropStack(ItemCrop.Crop crop) {
+    public static ItemStack getCropStack(Crops crop) {
         return CROP.getStackFromEnum(crop);
     }
 

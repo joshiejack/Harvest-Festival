@@ -9,7 +9,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 
-public class StateHandlerDefault implements IStateHandler {
+public class StateHandlerDefault<C extends Crop> implements IStateHandler<C> {
     public static final AxisAlignedBB CROP_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.5D, 1.0D);
     protected BlockStateContainer stateContainer;
     protected PropertyInteger stages;
@@ -34,12 +34,12 @@ public class StateHandlerDefault implements IStateHandler {
     }
 
     @Override
-    public AxisAlignedBB getBoundingBox(IBlockAccess world, BlockPos pos, PlantSection section, int stage, boolean withered) {
+    public AxisAlignedBB getBoundingBox(IBlockAccess world, BlockPos pos, PlantSection section, C crop, int stage, boolean withered) {
         return CROP_AABB;
     }
 
     @Override
-    public IBlockState getState(IBlockAccess world, BlockPos pos, PlantSection section, int stage, boolean withered) {
+    public IBlockState getState(IBlockAccess world, BlockPos pos, PlantSection section, C crop, int stage, boolean withered) {
         return getState(stage);
     }
 

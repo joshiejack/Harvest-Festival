@@ -37,7 +37,7 @@ public class StateHandlerGrass extends StateHandlerDefault {
     }
 
     @Override
-    public AxisAlignedBB getBoundingBox(IBlockAccess world, BlockPos pos, PlantSection section, int stage, boolean withered) {
+    public AxisAlignedBB getBoundingBox(IBlockAccess world, BlockPos pos, PlantSection section, Crop crop, int stage, boolean withered) {
         AxisAlignedBB ret;
         if (section == BOTTOM) {
             ret = CROP_AABB.get(stage);
@@ -49,7 +49,7 @@ public class StateHandlerGrass extends StateHandlerDefault {
     }
 
     @Override
-    public IBlockState getState(IBlockAccess world, BlockPos pos, PlantSection section, int stage, boolean withered) {
+    public IBlockState getState(IBlockAccess world, BlockPos pos, PlantSection section, Crop crop, int stage, boolean withered) {
         if (section == BOTTOM) {
             return getState(stage);
         } else {

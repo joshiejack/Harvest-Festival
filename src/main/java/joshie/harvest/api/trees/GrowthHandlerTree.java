@@ -1,5 +1,7 @@
 package joshie.harvest.api.trees;
 
+import joshie.harvest.api.HFApi;
+import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.crops.GrowthHandler;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
@@ -14,6 +16,7 @@ public class GrowthHandlerTree extends GrowthHandler<Tree> {
 
     @Override
     public int grow(World world, BlockPos pos, Tree tree, int stage) {
+        if(HFApi.calendar.getSeasonAtCoordinates(world, pos) == Season.WINTER) return stage; //Tree won't grow in winter
         //If we have reached the stage where we are a real tree
         //Then set the blocks in the world
         if (stage == tree.getStages()) {

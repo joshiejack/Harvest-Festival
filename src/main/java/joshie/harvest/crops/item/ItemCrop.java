@@ -55,7 +55,8 @@ public class ItemCrop extends ItemHFFoodEnum<ItemCrop, Crop> implements IShippab
         TURNIP(1, 0.4F), POTATO(0, 0F), CUCUMBER(2, 0.25F), STRAWBERRY(3, 0.8F), CABBAGE(1, 0.5F),
         ONION(1, 0.4F), TOMATO(3, 0.5F), CORN(2, 0.3F), PUMPKIN(0, 0F), PINEAPPLE(2, 0.84F), WATERMELON(0, 0F),
         EGGPLANT(3, 0.8F), SPINACH(1, 0.7F), CARROT(0, 0F), SWEET_POTATO(2, 0.35F), GREEN_PEPPER(2, 0.5F), BEETROOT(0, 0F),
-        GRASS(0, 0F), WHEAT(0, 0F), NETHER_WART(0, 0F), TUTORIAL_TURNIP(1, 0.1F);
+        GRASS(0, 0F), WHEAT(0, 0F), NETHER_WART(0, 0F), TUTORIAL_TURNIP(1, 0.1F),
+        BANANA(3, 0.4F), GRAPE(2, 0.5F), ORANGE(4, 0.3F), PEACH(4, 0.4F);
 
         private final ResourceLocation cropLocation;
         private joshie.harvest.api.crops.Crop crop;

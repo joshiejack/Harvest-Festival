@@ -2,10 +2,11 @@ package joshie.harvest.crops.item;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.crops.Crop;
+import joshie.harvest.api.trees.Tree;
 import joshie.harvest.core.HFTab;
+import joshie.harvest.core.helpers.TextHelper;
 import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.core.util.interfaces.ICreativeSorted;
-import joshie.harvest.core.helpers.TextHelper;
 import joshie.harvest.crops.HFCrops;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
@@ -54,12 +55,14 @@ public class ItemHFSeeds extends ItemSeeds implements ICreativeSorted {
 
     @Override
     @SideOnly(Side.CLIENT)
+    @SuppressWarnings("unchecked")
     public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean debug) {
         Crop crop = getCropFromStack(stack);
         if (crop != null) {
             if (crop.requiresSickle()) list.add("" + TextFormatting.AQUA + TextFormatting.ITALIC + TextHelper.translate("crop.sickle"));
             crop.getGrowthHandler().addInformation(list, crop, debug);
-            list.add(crop.getStages() + " " + TextHelper.translate("crop.seeds.days"));
+            int amount = crop instanceof Tree ? ((Tree)crop).getStagesToMaturity() : crop.getStages();
+            list.add(amount + " " + TextHelper.translate("crop.seeds.days"));
         }
     }
 
@@ -89,8 +92,9 @@ public class ItemHFSeeds extends ItemSeeds implements ICreativeSorted {
         }
     }
 
+    @SuppressWarnings("unchecked")
     private int plantSeedAt(EntityPlayer player, ItemStack stack, World world, BlockPos pos, EnumFacing facing, Crop crop, int planted, BlockPos original) {
-        if (player.canPlayerEdit(pos, facing, stack) && player.canPlayerEdit(pos.up(), facing, stack)) {
+        if (player.canPlayerEdit(pos, facing, stack) && player.canPlayerEdit(pos.up(), facing, stack) && world.isAirBlock(pos)) {
             IBlockState down = world.getBlockState(pos.down());
             if (crop.getGrowthHandler().canPlantSeedAt(world, pos, down, crop, original)) {
                 HFApi.crops.plantCrop(player, world, pos, crop, 1);

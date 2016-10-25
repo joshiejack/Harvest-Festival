@@ -14,20 +14,20 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 
-public abstract class GrowthHandler {
+public abstract class GrowthHandler<C extends Crop> {
     /** Add tooltips to the crops
      *  @param list         the tooltiplist
      *  @param crop         the crop
      *  @param debug        debug mode? **/
     @SideOnly(Side.CLIENT)
-    public void addInformation(List<String> list, Crop crop, boolean debug) {
+    public void addInformation(List<String> list, C crop, boolean debug) {
         for (Season season : crop.getSeasons()) {
             list.add(season.getDisplayName());
         }
     }
 
     @Deprecated //TODO: Remove in 0.7
-    public boolean canSustainCrop(IBlockAccess world, BlockPos pos, IBlockState state, Crop crop) {
+    public boolean canSustainCrop(IBlockAccess world, BlockPos pos, IBlockState state, C crop) {
         return state.getBlock() == Blocks.FARMLAND && crop.getPlantType() == EnumPlantType.Crop;
     }
 
@@ -37,7 +37,7 @@ public abstract class GrowthHandler {
      *  @param soil     the state of the block clicked on
      *  @param crop     the crop itself
      *  @param original the original position clicked**/
-    public boolean canPlantSeedAt(World world, BlockPos pos, IBlockState soil, Crop crop, BlockPos original) {
+    public boolean canPlantSeedAt(World world, BlockPos pos, IBlockState soil, C crop, BlockPos original) {
         return soil.getBlock().canSustainPlant(soil, world, pos, EnumFacing.UP, crop) && world.isAirBlock(pos.up());
     }
 
@@ -45,7 +45,12 @@ public abstract class GrowthHandler {
      *  @param world        the world
      *  @param pos          the position
      *  @param crop         the crop **/
-    public boolean canGrow(World world, BlockPos pos, Crop crop) {
+    public boolean canGrow(World world, BlockPos pos, C crop) {
+        return isCorrectSeason(world, pos, crop);
+    }
+
+    /** Helper method for matching up seasons **/
+    protected boolean isCorrectSeason(World world, BlockPos pos, C crop) {
         Season toMatch = HFApi.calendar.getSeasonAtCoordinates(world, pos);
         if (crop.getSeasons() == null) return false;
         for (Season season : crop.getSeasons()) {
@@ -59,17 +64,20 @@ public abstract class GrowthHandler {
      *  @param world    the world
      *  @param pos      the position
      *  @param crop     the crop
-     *  @param currentStage the stage the crop was at before growing
-     *  @param prevStage    the stage the crop is now at
-     *  @return return the stage the crop should now be at **/
-    public int grow(World world, BlockPos pos, Crop crop, int prevStage, int currentStage) {
-        return currentStage;
+     *  @param stage the stage the crop was at before growing
+     *  @return return the stage the crop should now be at, return 0 if this crop should be removed **/
+    public int grow(World world, BlockPos pos, C crop, int stage) {
+        if (stage < crop.getStages()) {
+            stage++;
+        }
+
+        return stage;
     }
 
     /** Return whether this crop can be harvested or not
      *  @param crop     the crop
      *  @param stage    the current stage of the grow**/
-    public boolean canHarvest(Crop crop, int stage) {
+    public boolean canHarvest(C crop, int stage) {
         return stage >= crop.getStages() || (crop.requiresSickle() && stage >= crop.getMinimumCut());
     }
 }

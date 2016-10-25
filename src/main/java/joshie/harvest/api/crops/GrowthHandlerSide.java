@@ -6,7 +6,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 @Deprecated //TODO: Will be moved out of the api in 0.7+, do NOT use
-public class GrowthHandlerSide extends GrowthHandler {
+public class GrowthHandlerSide extends GrowthHandler<Crop> {
     private final Block block;
 
     public GrowthHandlerSide(Block block) {
@@ -19,7 +19,7 @@ public class GrowthHandlerSide extends GrowthHandler {
     }
 
     @Override
-    public int grow(World world, BlockPos pos, Crop crop, int prevStage, int stage) {
+    public int grow(World world, BlockPos pos, Crop crop, int stage) {
         if (stage == crop.getStages()) {
             if (crop.getRegrowStage() > 0 && attemptToGrowToSide(world, pos)) {
                 return crop.getRegrowStage();

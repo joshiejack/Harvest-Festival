@@ -21,7 +21,6 @@ import net.minecraft.world.World;
 
 import java.util.Locale;
 
-import static joshie.harvest.api.core.ITiered.ToolTier.*;
 import static joshie.harvest.api.gathering.ISmashable.ToolType.HAMMER;
 
 public class BlockRock extends BlockHFSmashable<BlockRock, Rock> {
@@ -91,15 +90,7 @@ public class BlockRock extends BlockHFSmashable<BlockRock, Rock> {
 
     @Override
     public ToolTier getRequiredTier(IBlockState state) {
-        switch (getEnumFromState(state)) {
-            case STONE_SMALL: return BASIC;
-            case STONE_MEDIUM: return COPPER;
-            case STONE_LARGE: return SILVER;
-            case BOULDER_SMALL: return SILVER;
-            case BOULDER_MEDIUM: return GOLD;
-            case BOULDER_LARGE: return MYSTRIL;
-            default: return null;
-        }
+        return ToolTier.BASIC;
     }
 
     @SuppressWarnings("deprecation")

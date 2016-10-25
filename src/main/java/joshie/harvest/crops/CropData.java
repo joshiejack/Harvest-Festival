@@ -49,14 +49,9 @@ public class CropData {
         return true;
     }
 
+    @SuppressWarnings("unchecked")
     public void grow(World world, BlockPos pos) {
-        //Increase the stage of this crop
-        int prevStage = stage;
-        if (stage < crop.getStages()) {
-            stage++;
-        }
-
-        stage = getCrop().getGrowthHandler().grow(world, pos, crop, prevStage, stage);
+        stage = getCrop().getGrowthHandler().grow(world, pos, crop, stage);
         if (stage == 0) {
             world.setBlockToAir(pos);
         }

@@ -3,9 +3,11 @@ package joshie.harvest.crops;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.AnimalFoodType;
 import joshie.harvest.api.calendar.Season;
-import joshie.harvest.api.crops.*;
+import joshie.harvest.api.crops.Crop;
+import joshie.harvest.api.crops.GrowthHandler;
+import joshie.harvest.api.crops.GrowthHandlerSide;
+import joshie.harvest.api.crops.WateringHandler;
 import joshie.harvest.core.base.render.MeshIdentical;
-import joshie.harvest.core.handlers.DisableHandler;
 import joshie.harvest.core.helpers.RegistryHelper;
 import joshie.harvest.core.util.annotations.HFLoader;
 import joshie.harvest.crops.block.BlockHFCrops;
@@ -16,17 +18,14 @@ import joshie.harvest.crops.item.ItemHFSeeds;
 import joshie.harvest.crops.tile.TileCrop;
 import joshie.harvest.crops.tile.TileSprinkler;
 import joshie.harvest.crops.tile.TileWithered;
-import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.color.BlockColors;
 import net.minecraft.client.renderer.color.IBlockColor;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.storage.loot.functions.LootFunctionManager;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.EnumPlantType;
@@ -38,11 +37,10 @@ import org.apache.commons.lang3.text.WordUtils;
 
 import static joshie.harvest.api.animals.AnimalFoodType.FRUIT;
 import static joshie.harvest.api.calendar.Season.*;
-import static joshie.harvest.core.HFTab.FARMING;
 import static joshie.harvest.core.handlers.DisableHandler.BLACKLIST;
 import static joshie.harvest.core.helpers.ConfigHelper.getBoolean;
 import static joshie.harvest.core.helpers.ConfigHelper.getInteger;
-import static joshie.harvest.core.lib.HFModInfo.*;
+import static joshie.harvest.core.helpers.RegistryHelper.*;
 import static joshie.harvest.core.lib.LoadOrder.HFCROPS;
 import static net.minecraft.init.Items.*;
 
@@ -77,6 +75,10 @@ public class HFCrops {
                                         .setAnimalFoodType(FRUIT);
     public static final Crop WATERMELON = registerCrop("watermelon").setItem(Items.MELON).setGoldValues(250, 20).setStages(11).setYearUnlocked(1).setSeedColours(0xc92b3e).setSeasons(SUMMER)
                                         .setAnimalFoodType(FRUIT).setGrowthHandler(new GrowthHandlerSide(Blocks.MELON_BLOCK));
+    //Summer Trees
+    public static final Crop BANANA = registerTree("banana").setMaturity(55).setItem(getCropStack(ItemCrop.Crop.BANANA)).setGoldValues(2500, 300).setStages(32).setRegrowStage(51).setSeedColours(0xFFEF6A).setSeasons(SUMMER);
+    public static final Crop ORANGE = registerTree("orange").setMaturity(49).setItem(getCropStack(ItemCrop.Crop.ORANGE)).setGoldValues(2800, 200).setStages(35).setRegrowStage(46).setSeedColours(0xEDB325).setSeasons(SUMMER);
+    public static final Crop PEACH = registerTree("peach").setMaturity(36).setItem(getCropStack(ItemCrop.Crop.PEACH)).setGoldValues(3000, 250).setStages(25).setRegrowStage(33).setSeedColours(0xFFB0A5).setSeasons(SUMMER);
 
     //Autumn Crops
     public static final Crop EGGPLANT = registerCrop("eggplant").setItem(getCropStack(ItemCrop.Crop.EGGPLANT)).setGoldValues(120, 80).setStages(10).setRegrowStage(7).setSeedColours(0XA25CC4).setSeasons(AUTUMN);
@@ -85,6 +87,10 @@ public class HFCrops {
     public static final Crop SWEET_POTATO = registerCrop("sweet_potato").setItem(getCropStack(ItemCrop.Crop.SWEET_POTATO)).setGoldValues(300, 120).setStages(6).setRegrowStage(4).setSeedColours(0XD82AAC).setSeasons(AUTUMN);
     public static final Crop GREEN_PEPPER = registerCrop("green_pepper").setItem(getCropStack(ItemCrop.Crop.GREEN_PEPPER)).setGoldValues(150, 40).setStages(8).setRegrowStage(2).setYearUnlocked(3).setSeedColours(0x56D213).setSeasons(AUTUMN);
     public static final Crop BEETROOT = registerCrop("beetroot").setItem(Items.BEETROOT).setGoldValues(250, 75).setStages(8).setSeedColours(0x690000).setSeasons(AUTUMN);
+
+    //Autumn Trees
+    public static final Crop APPLE = registerTree("apple").setMaturity(36).setItem(new ItemStack(Items.APPLE)).setGoldValues(1500, 100).setStages(25).setRegrowStage(33).setSeedColours(0xE73921).setSeasons(AUTUMN);
+    public static final Crop GRAPE = registerTree("grape").setMaturity(49).setItem(getCropStack(ItemCrop.Crop.GRAPE)).setGoldValues(2700, 200).setStages(35).setRegrowStage(46).setSeedColours(0xD58EF8).setSeasons(AUTUMN);
 
     //Year Long Crops
     public static final Crop GRASS = registerCrop("grass").setItem(getCropStack(ItemCrop.Crop.GRASS)).setGoldValues(500, 1).setStages(11).setRegrowStage(1).setSeedColours(0x7AC958).setSeasons(SPRING, SUMMER, AUTUMN)
@@ -174,44 +180,8 @@ public class HFCrops {
         }
     }
 
-    private static void registerVanillaCrop(Block cropBlock, Item item, Crop crop) {
-        HFApi.crops.registerCropProvider(new ItemStack(item), crop);
-        crop.setSkipRender();
-        item.setCreativeTab(FARMING);
-        if (DISABLE_VANILLA_GROWTH || DISABLE_VANILLA_DROPS) DisableHandler.CROPS.add(cropBlock);
-        if (DISABLE_VANILLA_GROWTH) {
-            cropBlock.setTickRandomly(false);
-        }
-    }
-
-    private static void registerVanillaCrop(Block cropBlock, Block block, Crop crop) {
-        HFApi.crops.registerCropProvider(new ItemStack(block), crop);
-        crop.setSkipRender();
-        block.setCreativeTab(FARMING);
-        if (DISABLE_VANILLA_GROWTH || DISABLE_VANILLA_DROPS) DisableHandler.CROPS.add(cropBlock);
-        if (DISABLE_VANILLA_GROWTH) {
-            cropBlock.setTickRandomly(false);
-        }
-    }
-
-    private static ItemStack getCropStack(ItemCrop.Crop crop) {
+    public static ItemStack getCropStack(ItemCrop.Crop crop) {
         return CROP.getStackFromEnum(crop);
-    }
-
-    private static Crop registerCrop(String name) {
-        Crop crop = new Crop(new ResourceLocation(MODID, name));
-
-        //Atempt to add a state handler
-        try {
-            crop.setStateHandler((IStateHandler) Class.forName(CROPSTATES + WordUtils.capitalizeFully(name.replace("_", " ")).replace(" ", "")).newInstance());
-        } catch (IllegalAccessException | ClassNotFoundException | InstantiationException e) {/**/}
-
-        //Atempt to add a drop handler
-        try {
-            crop.setDropHandler((DropHandler) Class.forName(DROPHANDLERS + WordUtils.capitalizeFully(name.replace("_", " ")).replace(" ", "")).newInstance());
-        } catch (IllegalAccessException | ClassNotFoundException | InstantiationException e) {/**/}
-
-        return crop;
     }
 
     private static boolean isInDictionary(String name, ItemStack stack) {

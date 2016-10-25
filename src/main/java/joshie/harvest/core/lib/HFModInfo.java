@@ -15,6 +15,7 @@ public class HFModInfo {
     public static final String SCHEDULEPATH = "joshie.harvest.npc.schedule.Schedule";
     public static final String CROPSTATES = "joshie.harvest.crops.handlers.state.StateHandler";
     public static final String DROPHANDLERS = "joshie.harvest.crops.handlers.drop.DropHandler";
+    public static final String GROWTHHANDLERS = "joshie.harvest.crops.handlers.growth.GrowthHandler";
 
     
     public static final ResourceLocation ELEMENTS = new ResourceLocation(MODID, "textures/gui/gui_elements.png");

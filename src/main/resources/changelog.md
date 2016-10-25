@@ -28,6 +28,7 @@
 * Chicken Feed now costs 50 gold, but will last for 10 feeds
 #Tools
 * Tools will have [BROKEN] in front of their name, when they can't be used
+* Hammers will now be able to smash more tiers of rocks
 #Other
 * Crops will now be plantable on more than farmland,
     however they will only grow on farmland when a mod adds support

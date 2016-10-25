@@ -7,6 +7,7 @@ import joshie.harvest.api.animals.IAnimalFeeder;
 import joshie.harvest.api.crops.Crop;
 import joshie.harvest.api.crops.IBreakCrops;
 import joshie.harvest.api.crops.IStateHandler.PlantSection;
+import joshie.harvest.api.trees.Tree;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.base.block.BlockHFEnum;
 import joshie.harvest.core.base.item.ItemBlockHF;
@@ -25,6 +26,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.particle.ParticleManager;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
@@ -47,6 +49,7 @@ import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nullable;
 import java.util.Locale;
 import java.util.Random;
 
@@ -136,9 +139,16 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
         CropType stage = getEnumFromState(state);
         ItemStack held = player.getHeldItemMainhand();
         //If this crop is withered return 0
-
+        CropData data = CropHelper.getCropDataAt(world, pos);
+        if (data != null && data.getCrop() instanceof Tree) return 0.02F;
         if (held == null || (!(held.getItem() instanceof IBreakCrops))) return stage.isWithered() ? 0 : 0.75F;
         return ((IBreakCrops) held.getItem()).getStrengthVSCrops(player, world, pos, state, held);
+    }
+
+    @Override
+    public SoundType getSoundType(IBlockState state, World world, BlockPos pos, @Nullable Entity entity) {
+        CropData data = CropHelper.getCropDataAt(world, pos);
+        return data != null && data.getCrop() instanceof Tree ? SoundType.WOOD : getSoundType();
     }
 
     public static PlantSection getSection(IBlockState state) {

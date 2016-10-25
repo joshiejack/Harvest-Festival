@@ -52,7 +52,6 @@ public class HFIngredients {
     public static final Ingredient NOODLES = new Ingredient("noodles", 13, 2.27F).setEatTime(24);
 
     //Random Stuff
-    public static final Ingredient APPLE = new Ingredient("apple", 4, 0.6F);
     public static final Ingredient CHOCOLATE = new Ingredient("chocolate", 2, 0.5F);
     public static final Ingredient EGG = new Ingredient("egg", 1, 0.34F);
     public static final Ingredient FLOUR = new Ingredient("flour", 1, 0.2F);
@@ -91,6 +90,11 @@ public class HFIngredients {
     public static final Ingredient BEETROOT = HFCrops.BEETROOT.getIngredient();
     public static final Ingredient WATERMELON = HFCrops.WATERMELON.getIngredient();
     public static final Ingredient WHEAT = HFCrops.WHEAT.getIngredient();
+    public static final Ingredient APPLE = HFCrops.APPLE.getIngredient();
+    public static final Ingredient BANANA = HFCrops.BANANA.getIngredient();
+    public static final Ingredient GRAPE = HFCrops.GRAPE.getIngredient();
+    public static final Ingredient ORANGE = HFCrops.ORANGE.getIngredient();
+    public static final Ingredient PEACH = HFCrops.PEACH.getIngredient();
 
     //Meats
     public static final Ingredient CHICKEN = new Ingredient("chicken", 2, 0.6F);
@@ -142,7 +146,6 @@ public class HFIngredients {
         }
 
         //Fruits
-        CookingAPI.INSTANCE.register(new ItemStack(Items.APPLE), APPLE);
         CookingAPI.INSTANCE.register(new ItemStack(Blocks.MELON_BLOCK), WATERMELON);
 
         //Fungus

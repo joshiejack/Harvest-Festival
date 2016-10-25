@@ -11,7 +11,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 
-public class HempGrowthHandler extends GrowthHandler {
+public class HempGrowthHandler extends GrowthHandler<Crop> {
     @SideOnly(Side.CLIENT)
     @Override
     public void addInformation(List<String> list, Crop crop, boolean debug) {

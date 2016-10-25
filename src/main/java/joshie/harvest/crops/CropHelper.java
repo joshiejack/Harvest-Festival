@@ -3,6 +3,7 @@ package joshie.harvest.crops;
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 import joshie.harvest.api.HFApi;
+import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.crops.IStateHandler.PlantSection;
 import joshie.harvest.api.crops.WateringHandler;
 import joshie.harvest.core.helpers.SpawnItemHelper;
@@ -71,7 +72,7 @@ public class CropHelper {
             }
         }
 
-        return list != null;
+        return list != null && list.size() > 0;
     }
 
     @Nullable
@@ -83,6 +84,24 @@ public class CropHelper {
         } else if (section == PlantSection.TOP) {
             TileEntity tile = world.getTileEntity(pos.down());
             if (tile instanceof TileWithered) return ((TileWithered)tile).getData();
+        }
+
+        return null;
+    }
+
+    @Nullable
+    public static Season getSeasonAt(IBlockAccess world, BlockPos pos) {
+        PlantSection section = BlockHFCrops.getSection(world.getBlockState(pos));
+        if (section == PlantSection.BOTTOM) {
+            TileEntity tile = world.getTileEntity(pos);
+            if (tile != null) {
+                return HFApi.calendar.getSeasonAtCoordinates(tile.getWorld(), pos);
+            }
+        } else if (section == PlantSection.TOP) {
+            TileEntity tile = world.getTileEntity(pos.down());
+            if (tile != null) {
+                return HFApi.calendar.getSeasonAtCoordinates(tile.getWorld(), pos.down());
+            }
         }
 
         return null;

@@ -7,6 +7,7 @@ import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.core.util.interfaces.ICreativeSorted;
 import joshie.harvest.core.helpers.TextHelper;
 import joshie.harvest.crops.HFCrops;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -70,23 +71,9 @@ public class ItemHFSeeds extends ItemSeeds implements ICreativeSorted {
             Crop crop = getCropFromStack(stack);
             if (crop != null) {
                 int planted = 0;
-                if (player.isSneaking()) {
-                    planted = plantSeedAt(player, stack, world, pos, facing, crop, planted);
-                } else {
-                    labelTop:
-                    for (int x = pos.getX() - 1; x <= pos.getX() + 1; x++) {
-                        for (int z = pos.getZ() - 1; z <= pos.getZ() + 1; z++) {
-                            if (crop.growsToSide() == null || !((x == pos.getX() && z == pos.getZ()))) {
-                                planted = plantSeedAt(player, stack, world, new BlockPos(x, pos.getY(), z), facing, crop, planted);
-                            }
-
-                            if (planted < 0) {
-                                if (HFCrops.ALWAYS_GROW) {
-                                    planted = 2;
-                                    break labelTop;
-                                }
-                            }
-                        }
+                for (int x = -1; x <= 1; x++) {
+                    for (int z = -1; z <= 1; z++) {
+                        planted = plantSeedAt(player, stack, world, pos.add(x, 1, z), facing, crop, planted, pos.up());
                     }
                 }
 
@@ -102,23 +89,15 @@ public class ItemHFSeeds extends ItemSeeds implements ICreativeSorted {
         }
     }
 
-    private int plantSeedAt(EntityPlayer player, ItemStack stack, World world, BlockPos pos, EnumFacing facing, Crop crop, int planted) {
+    private int plantSeedAt(EntityPlayer player, ItemStack stack, World world, BlockPos pos, EnumFacing facing, Crop crop, int planted, BlockPos original) {
         if (player.canPlayerEdit(pos, facing, stack) && player.canPlayerEdit(pos.up(), facing, stack)) {
-            if (crop.getGrowthHandler().canSustainCrop(world, pos, world.getBlockState(pos), crop) && world.isAirBlock(pos.up())) {
-                if (!world.isRemote) {
-                    world.setBlockState(pos.up(), HFCrops.CROPS.getDefaultState(), 2);
-                }
-
-                HFApi.crops.plantCrop(player, world, pos.up(), crop, 1);
+            IBlockState down = world.getBlockState(pos.down());
+            if (crop.getGrowthHandler().canPlantSeedAt(world, pos, down, crop, original)) {
+                HFApi.crops.plantCrop(player, world, pos, crop, 1);
                 planted++;
-
-                if (HFCrops.ALWAYS_GROW) {
-                    if (planted >= 2) {
-                        return -1;
-                    }
-                }
             }
         }
+
         return planted;
     }
 

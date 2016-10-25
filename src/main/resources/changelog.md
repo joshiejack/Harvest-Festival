@@ -13,8 +13,11 @@
 #Buildings
 * Optimised building save format, should be smaller size
 * Only load buildings in to RAM when they're rendered/built
+#Calendar
+* Summers are more likely to be sunny (98% vs 95%), and typhoon chances are higher if sun fails (99% vs 75%)
 #Crops
 * Untied the crops from the registry for them, shouldn't affect anything
+* Melons and Pumpkins will no longer regrow, and will instead replace the crop
 #Shops
 * New Shop GUI
 * Removed the Blacksmith's store

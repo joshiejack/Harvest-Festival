@@ -183,7 +183,7 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
         else {
             PlantSection section = getSection(state);
             CropData data = CropHelper.getCropDataAt(world, pos);
-            if (data == null || data.getCrop().requiresSickle() || data.getCrop().growsToSide() != null) {
+            if (data == null || data.getCrop().requiresSickle()) {
                 return false;
             } else {
                 if (section == BOTTOM) {
@@ -271,8 +271,10 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
 
     @SuppressWarnings("deprecation")
     @Override
-    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, World worldIn, BlockPos pos) {
-        return NULL_AABB;
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState state, World world, BlockPos pos) {
+        CropType stage = getEnumFromState(state);
+        CropData data = CropHelper.getCropDataAt(world, pos);
+        return data != null ? data.getCrop().getStateHandler().getCollisionBoundingBox(world, pos, stage.getSection(), data.getStage(), stage.isWithered()) : NULL_AABB;
     }
 
     @Override

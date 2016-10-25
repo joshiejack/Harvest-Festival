@@ -44,7 +44,7 @@ public class CropRegistry implements ICropRegistry {
     }
 
     @Override
-    @Deprecated
+    @Deprecated //TODO: Remove in 0.7+
     public ItemStack getCropStack(Crop crop, int amount) {
         for (ItemCrop.Crop crop1: ItemCrop.Crop.values()) {
             if (crop1.getCrop() == crop) return HFCrops.CROP.getStackFromEnum(crop1, amount);
@@ -82,6 +82,7 @@ public class CropRegistry implements ICropRegistry {
 
     @Override
     public Crop getCropFromStack(ItemStack stack) {
+        //TODO: Remove in 0.7+
         if (stack.getItem() instanceof ICropProvider) {
             return ((ICropProvider)stack.getItem()).getCrop(stack);
         }
@@ -98,7 +99,7 @@ public class CropRegistry implements ICropRegistry {
 
     @Override
     public void plantCrop(@Nullable EntityPlayer player, World world, BlockPos pos, Crop theCrop, int stage) {
-        world.setBlockState(pos, HFCrops.CROPS.getStateFromEnum(FRESH));
+        world.setBlockState(pos, HFCrops.CROPS.getStateFromEnum(FRESH), 2);
         if (theCrop.isCurrentlyDouble(stage)) {
             world.setBlockState(pos.up(), HFCrops.CROPS.getStateFromEnum(FRESH_DOUBLE));
         }

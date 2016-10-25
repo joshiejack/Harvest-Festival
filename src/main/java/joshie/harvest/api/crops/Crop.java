@@ -5,20 +5,25 @@ import joshie.harvest.api.animals.AnimalFoodType;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.cooking.Ingredient;
 import joshie.harvest.api.core.IShippable;
+import joshie.harvest.api.crops.IStateHandler.PlantSection;
 import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.translation.I18n;
+import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.common.EnumPlantType;
+import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.fml.common.registry.IForgeRegistry;
 import net.minecraftforge.fml.common.registry.IForgeRegistryEntry;
 import net.minecraftforge.fml.common.registry.RegistryBuilder;
 import org.apache.commons.lang3.StringUtils;
 
-public class Crop extends IForgeRegistryEntry.Impl<Crop> implements IShippable {
+public class Crop extends IForgeRegistryEntry.Impl<Crop> implements IShippable, IPlantable {
     public static final IForgeRegistry<Crop> REGISTRY = new RegistryBuilder<Crop>().setName(new ResourceLocation("harvestfestival", "crops")).setType(Crop.class).setIDRange(0, 32000).create();
     public static final GrowthHandler SEASONAL = new GrowthHandler() {};
     public static final DropHandler DROPS = new DropHandler();
@@ -31,7 +36,6 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements IShippable {
     private AnimalFoodType foodType;
     private EnumPlantType type;
     private Ingredient ingredient;
-    private Block growsToSide;
     private boolean needsWatering;
     private boolean alternativeName;
     private boolean requiresSickle;
@@ -47,7 +51,6 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements IShippable {
     private int regrow;
     private int year;
     private int bagColor;
-    private int witheredColor;
     private int doubleStage;
     private int minCut;
     private boolean skipRender;
@@ -61,18 +64,16 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements IShippable {
         this.stages = 3;
         this.foodType = AnimalFoodType.VEGETABLE;
         this.bagColor = 0xFFFFFF;
-        this.witheredColor = 0xA64DFF;
         this.stateHandler = new StateHandlerDefault(this);
         this.growthHandler = SEASONAL;
         this.needsWatering = true;
         this.doubleStage = Integer.MAX_VALUE;
         this.type = EnumPlantType.Crop;
-
         this.setRegistryName(key);
         REGISTRY.register(this);
     }
 
-    @Deprecated
+    @Deprecated //TODO: Remove in 0.7+
     public Crop(ResourceLocation key, long cost, long sell, int stages, int color, Season... seasons) {
         this.seasons = seasons;
         this.cost = cost;
@@ -83,13 +84,12 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements IShippable {
         this.alternativeName = false;
         this.foodType = AnimalFoodType.VEGETABLE;
         this.bagColor = color;
-        this.witheredColor = 0xA64DFF;
         this.stateHandler = new StateHandlerDefault(this);
         this.growthHandler = SEASONAL;
         this.needsWatering = true;
         this.doubleStage = Integer.MAX_VALUE;
         this.dropHandler = null;
-        this.growsToSide = null;
+
         this.type = EnumPlantType.Crop;
         this.skipRender = false;
         this.setRegistryName(key);
@@ -215,9 +215,7 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements IShippable {
         return setIngredient(hunger, saturation);
     }
 
-    /**
-     * Set the ingredient this crop counts as
-     **/
+    //TODO: Remove in 0.7+
     @Deprecated
     public Crop setIngredient(Ingredient ingredient) {
         this.ingredient = ingredient;
@@ -271,20 +269,14 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements IShippable {
         return this;
     }
 
-    /**
-     * Set the block this grows on the side of it
-     * @param block the block to grow
-     **/
+    @Deprecated //TODO: Remove in 0.7+
     public Crop setGrowsToSide(Block block) {
-        this.growsToSide = block;
+        this.growthHandler = new GrowthHandlerSide(block);
         return this;
     }
 
-    /** Set the colour for this crop
-     *  to render as when withered */
-
+    @Deprecated //TODO: Remove in 0.7+
     public Crop setWitheredColor(int color) {
-        this.witheredColor = color;
         return this;
     }
 
@@ -391,11 +383,10 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements IShippable {
         return stage >= doubleStage;
     }
 
-    /**
-     * Return true if this crop grows to the side like pumpkins
-     * **/
+    ////TODO: Remove in 0.7+
+    @Deprecated //DO NOT CALL always null
     public Block growsToSide() {
-        return growsToSide;
+        return null;
     }
 
     /**
@@ -421,11 +412,10 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements IShippable {
         return bagColor;
     }
 
-    /**
-     * Return the colour modifier when this crop is withered
-     * **/
+    //TODO: Remove in 0.7+
+    @Deprecated
     public int getWitheredColor() {
-        return witheredColor;
+        return 0xA64DFF;
     }
 
     /**
@@ -529,6 +519,16 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements IShippable {
         String seeds = I18n.translateToLocal("harvestfestival.crop.seeds");
         String format = I18n.translateToLocal("harvestfestival.crop.seeds.format");
         return String.format(format, name, seeds);
+    }
+
+    @Override
+    public EnumPlantType getPlantType(IBlockAccess world, BlockPos pos) {
+        return getPlantType();
+    }
+
+    @Override
+    public IBlockState getPlant(IBlockAccess world, BlockPos pos) {
+        return getStateHandler().getState(world, pos, PlantSection.BOTTOM, 1, false);
     }
 
     @Override

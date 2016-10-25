@@ -2,12 +2,16 @@ package joshie.harvest.crops.handlers.state;
 
 import gnu.trove.map.TIntObjectMap;
 import gnu.trove.map.hash.TIntObjectHashMap;
+import joshie.harvest.api.calendar.Season;
+import joshie.harvest.api.crops.Crop;
 import joshie.harvest.api.crops.StateHandlerDefault;
 import joshie.harvest.crops.block.BlockHFCrops;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
+
+import javax.annotation.Nullable;
 
 import static joshie.harvest.api.crops.IStateHandler.PlantSection.BOTTOM;
 
@@ -25,6 +29,11 @@ public class StateHandlerGrass extends StateHandlerDefault {
                 CROP_AABB.put(i, new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.4D + (i * 0.1D), 1.0D));
             }
         }
+    }
+
+    @Override
+    public int getColor(IBlockAccess world, BlockPos pos, IBlockState renderState, @Nullable Season season, Crop crop, boolean withered) {
+        return withered ? 0x7a5230 : -1;
     }
 
     @Override

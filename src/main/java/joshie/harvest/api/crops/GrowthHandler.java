@@ -4,6 +4,7 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.Season;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -30,6 +31,16 @@ public abstract class GrowthHandler {
         return state.getBlock() == Blocks.FARMLAND && crop.getPlantType() == EnumPlantType.Crop;
     }
 
+    /** Returns true if this seed can be planted at this block position
+     *  @param world    the world
+     *  @param pos      the position to be planted
+     *  @param soil     the state of the block clicked on
+     *  @param crop     the crop itself
+     *  @param original the original position clicked**/
+    public boolean canPlantSeedAt(World world, BlockPos pos, IBlockState soil, Crop crop, BlockPos original) {
+        return soil.getBlock().canSustainPlant(soil, world, pos, EnumFacing.UP, crop) && world.isAirBlock(pos.up());
+    }
+
     /** Return true if this crop can't crop in this location
      *  @param world        the world
      *  @param pos          the position
@@ -42,5 +53,23 @@ public abstract class GrowthHandler {
         }
 
         return false;
+    }
+
+    /** Called when this crop changes a stage
+     *  @param world    the world
+     *  @param pos      the position
+     *  @param crop     the crop
+     *  @param currentStage the stage the crop was at before growing
+     *  @param prevStage    the stage the crop is now at
+     *  @return return the stage the crop should now be at **/
+    public int grow(World world, BlockPos pos, Crop crop, int prevStage, int currentStage) {
+        return currentStage;
+    }
+
+    /** Return whether this crop can be harvested or not
+     *  @param crop     the crop
+     *  @param stage    the current stage of the grow**/
+    public boolean canHarvest(Crop crop, int stage) {
+        return stage >= crop.getStages() || (crop.requiresSickle() && stage >= crop.getMinimumCut());
     }
 }

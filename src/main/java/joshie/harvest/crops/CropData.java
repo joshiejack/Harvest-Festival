@@ -51,37 +51,20 @@ public class CropData {
 
     public void grow(World world, BlockPos pos) {
         //Increase the stage of this crop
+        int prevStage = stage;
         if (stage < crop.getStages()) {
             stage++;
+        }
+
+        stage = getCrop().getGrowthHandler().grow(world, pos, crop, prevStage, stage);
+        if (stage == 0) {
+            world.setBlockToAir(pos);
         }
 
         //If the crop has become double add in the new block
         if (crop.isTurningToDouble(stage)) {
             world.setBlockState(pos.up(), HFCrops.CROPS.getStateFromEnum(CropType.FRESH_DOUBLE), 2);
         }
-
-        //If the crop grows a block to the side
-        if (crop.growsToSide() != null) {
-            if (stage == crop.getStages()) {
-                if (!attemptToGrowToSide(world, pos)) {
-                    stage--; //If we failed to grow, decrease the growth stage
-                }
-            }
-        }
-    }
-
-    @SuppressWarnings("deprecation")
-    private boolean attemptToGrowToSide(World world, BlockPos pos) {
-        if (world.isAirBlock(pos.add(1, 0, 0))) { //If it's air, then let's grow some shit
-            return world.setBlockState(pos.add(1, 0, 0), crop.growsToSide().getStateFromMeta(0), 2); //0 = x-
-        } else if (world.isAirBlock(pos.add(0, 0, -1))) {
-            return world.setBlockState(pos.add(0, 0, -1), crop.growsToSide().getStateFromMeta(1), 2); //1 = z+
-        } else if (world.isAirBlock(pos.add(0, 0, 1))) {
-            return world.setBlockState(pos.add(0, 0, 1), crop.growsToSide().getStateFromMeta(2), 2); //2 = z-
-        } else if (world.isAirBlock(pos.add(-1, 0, 0))) {
-            return world.setBlockState(pos.add(-1, 0, 0), crop.growsToSide().getStateFromMeta(2), 2); //3 = x-
-        }
-        return false;
     }
 
     public ResourceLocation getResource() {
@@ -111,17 +94,20 @@ public class CropData {
     }
 
     public List<ItemStack> harvest(@Nullable EntityPlayer player, boolean doHarvest) {
-        if (crop == null || crop.growsToSide() != null) return null;
-        if (stage >= crop.getStages() || (crop.requiresSickle() && stage >= crop.getMinimumCut())) {
-            int originalStage = stage;
-            if (doHarvest) {
-                if (crop.getRegrowStage() > 0) {
-                    stage = crop.getRegrowStage();
+        if (crop != null && crop.getGrowthHandler().canHarvest(crop, stage)) {
+            if (crop.getGrowthHandler().canHarvest(crop, stage)) {
+                int originalStage = stage;
+                if (doHarvest) {
+                    if (crop.getRegrowStage() > 0) {
+                        stage = crop.getRegrowStage();
+                    }
                 }
-            }
 
-            return crop.getDropHandler().getDrops(crop, originalStage, rand);
-        } else return null;
+                return crop.getDropHandler().getDrops(crop, originalStage, rand);
+            } else return null;
+        } else {
+            return null;
+        }
     }
 
     public void setHydrated() {

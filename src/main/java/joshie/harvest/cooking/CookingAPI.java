@@ -3,19 +3,19 @@ package joshie.harvest.cooking;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
+import joshie.harvest.api.HFApi;
 import joshie.harvest.api.cooking.CookingManager;
 import joshie.harvest.api.cooking.Ingredient;
 import joshie.harvest.api.cooking.RecipeHandler;
 import joshie.harvest.api.cooking.Utensil;
-import joshie.harvest.api.crops.ICropProvider;
 import joshie.harvest.cooking.recipe.MealBuilder;
 import joshie.harvest.cooking.recipe.MealImpl;
 import joshie.harvest.cooking.recipe.RecipeStack;
 import joshie.harvest.core.HFCore;
 import joshie.harvest.core.item.ItemSizeable;
 import joshie.harvest.core.util.annotations.HFApiImplementation;
-import joshie.harvest.core.util.interfaces.IFMLItem;
 import joshie.harvest.core.util.holders.*;
+import joshie.harvest.core.util.interfaces.IFMLItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -66,7 +66,7 @@ public class CookingAPI implements CookingManager {
     private AbstractItemHolder getHolder(ItemStack stack) {
         if (stack.getItemDamage() == OreDictionary.WILDCARD_VALUE) return ItemHolder.of(stack.getItem());
         else if (stack.getItem() instanceof ItemSizeable) return SizeableHolder.of(HFCore.SIZEABLE.getObjectFromStack(stack));
-        else if (stack.getItem() instanceof ICropProvider) return CropHolder.of(((ICropProvider)stack.getItem()).getCrop(stack));
+        else if (HFApi.crops.getCropFromStack(stack) != null) return CropHolder.of(HFApi.crops.getCropFromStack(stack));
         else if (stack.getItem() instanceof IFMLItem) return FMLHolder.of(stack);
         else return ItemStackHolder.of(stack);
     }

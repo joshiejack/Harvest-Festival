@@ -23,7 +23,7 @@ public class CalendarAPI implements CalendarManager {
     //Spring: Leaves 0x80B76C     | Grass NONE
     private CalendarAPI() {
         data.put(Season.SPRING, new SeasonData(Season.SPRING, 0x87CEFA, 0, 0x80B76C, 0.65D, 0.0F, 80D, 100D, 0D, 0D, 0D));
-        data.put(Season.SUMMER, new SeasonData(Season.SUMMER, 7972863, 0x4A9C2E, 0, 0.4D, 0.0011F, 95D, 75D, 100D, 0D, 0D));
+        data.put(Season.SUMMER, new SeasonData(Season.SUMMER, 7972863, 0x4A9C2E, 0, 0.4D, 0.0011F, 98D, 99D, 100D, 0D, 0D));
         data.put(Season.AUTUMN, new SeasonData(Season.AUTUMN, 0x8CBED6, 0xB25900, 0xFF9900, 1.08D, -0.07F, 50D, 100D, 0D, 0D, 0D));
         data.put(Season.WINTER, new SeasonData(Season.WINTER, 0xFFFFFF, 0xFFFFFF, 0xCCCCCC, 1.56D, -0.1375F, 45D, 0D, 0D, 90D, 100D));
     }

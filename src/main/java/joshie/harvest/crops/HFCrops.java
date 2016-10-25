@@ -2,6 +2,7 @@ package joshie.harvest.crops;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.AnimalFoodType;
+import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.crops.*;
 import joshie.harvest.core.base.render.MeshIdentical;
 import joshie.harvest.core.handlers.DisableHandler;
@@ -71,11 +72,11 @@ public class HFCrops {
                                         .setAnimalFoodType(FRUIT);
     public static final Crop CORN = registerCrop("corn").setItem(getCropStack(ItemCrop.Crop.CORN)).setGoldValues(300, 100).setStages(15).setRegrowStage(12).setSeedColours(0XD4BD45).setSeasons(SUMMER);
     public static final Crop PUMPKIN = registerCrop("pumpkin").setItem(new ItemStack(Blocks.PUMPKIN)).setGoldValues(500, 125).setStages(15).setYearUnlocked(1).setSeedColours(0XE09A39).setSeasons(SUMMER)
-                                        .setIngredient(2, 0.3F).setGrowsToSide(Blocks.PUMPKIN);
+                                        .setIngredient(2, 0.3F).setGrowthHandler(new GrowthHandlerSide(Blocks.PUMPKIN));
     public static final Crop PINEAPPLE = registerCrop("pineapple").setItem(getCropStack(ItemCrop.Crop.PINEAPPLE)).setGoldValues(1000, 500).setStages(21).setRegrowStage(5).setYearUnlocked(3).setSeedColours(0XD7CF00).setSeasons(SUMMER)
                                         .setAnimalFoodType(FRUIT);
-    public static final Crop WATERMELON = registerCrop("watermelon").setItem(Items.MELON).setGoldValues(250, 25).setStages(11).setYearUnlocked(1).setSeedColours(0xc92b3e).setSeasons(SUMMER)
-                                        .setAnimalFoodType(FRUIT).setGrowsToSide(Blocks.MELON_BLOCK);
+    public static final Crop WATERMELON = registerCrop("watermelon").setItem(Items.MELON).setGoldValues(250, 20).setStages(11).setYearUnlocked(1).setSeedColours(0xc92b3e).setSeasons(SUMMER)
+                                        .setAnimalFoodType(FRUIT).setGrowthHandler(new GrowthHandlerSide(Blocks.MELON_BLOCK));
 
     //Autumn Crops
     public static final Crop EGGPLANT = registerCrop("eggplant").setItem(getCropStack(ItemCrop.Crop.EGGPLANT)).setGoldValues(120, 80).setStages(10).setRegrowStage(7).setSeedColours(0XA25CC4).setSeasons(AUTUMN);
@@ -87,7 +88,7 @@ public class HFCrops {
 
     //Year Long Crops
     public static final Crop GRASS = registerCrop("grass").setItem(getCropStack(ItemCrop.Crop.GRASS)).setGoldValues(500, 1).setStages(11).setRegrowStage(1).setSeedColours(0x7AC958).setSeasons(SPRING, SUMMER, AUTUMN)
-                                        .setWitheredColor(0x7a5230).setAnimalFoodType(AnimalFoodType.GRASS).setBecomesDouble(6).setHasAlternativeName().setRequiresSickle(6).setNoWaterRequirements();
+                                        .setAnimalFoodType(AnimalFoodType.GRASS).setBecomesDouble(6).setHasAlternativeName().setRequiresSickle(6).setNoWaterRequirements();
     public static final Crop WHEAT = registerCrop("wheat").setItem(Items.WHEAT).setGoldValues(150, 100).setStages(28).setSeedColours(0XEAC715).setSeasons(SPRING, SUMMER, AUTUMN)
                                         .setIngredient(1, 0.1F).setAnimalFoodType(AnimalFoodType.GRASS).setRequiresSickle(0);
     //Nether Crops
@@ -129,6 +130,8 @@ public class HFCrops {
                 if (!isInDictionary(name, clone)) {
                     OreDictionary.registerOre(name, clone);
                 }
+
+                HFApi.crops.registerCropProvider(clone, crop);
             }
         }
     }
@@ -151,9 +154,10 @@ public class HFCrops {
             if (world != null && pos != null) {
                 IBlockState actual = world.getBlockState(pos);
                 if (actual.getBlock() == HFCrops.CROPS) {
-                    if (BlockHFCrops.isWithered(actual)) {
-                        CropData data = CropHelper.getCropDataAt(world, pos);
-                        return data != null ? data.getCrop().getWitheredColor() : 0xA64DFF;
+                    CropData data = CropHelper.getCropDataAt(world, pos);
+                    if (data != null) {
+                        Season season = CropHelper.getSeasonAt(world, pos);
+                        return data.getCrop().getStateHandler().getColor(world, pos, state, season, data.getCrop(), BlockHFCrops.isWithered(actual));
                     }
                 }
             }

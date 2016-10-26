@@ -62,9 +62,9 @@ public class HFShops {
         registerBarn();
         registerCafe();
         registerCarpenter();
+        registerMiner();
         registerPoultry();
         registerSupermarket();
-        registerMiner();
     }
     
     private static void registerBarn() {
@@ -157,6 +157,22 @@ public class HFShops {
         CARPENTER.addOpening(THURSDAY, 9000, 17500).addOpening(FRIDAY, 9000, 17500).addOpening(SUNDAY, 9000, 17500);
     }
 
+    private static void registerMiner() {
+        MINER = HFApi.shops.newShop(new ResourceLocation(MODID, "miner"), HFNPCs.MINER);
+        MINER.addItem(new PurchasableDecorative(1000, new ItemStack(HFMining.DIRT_DECORATIVE, 16, 0)));
+        MINER.addItem(new PurchasableDecorative(500, HFMining.LADDER.getStackFromEnum(Ladder.DECORATIVE)));
+        MINER.addItem(150, HFMining.MINING_TOOL.getStackFromEnum(MiningTool.ESCAPE_ROPE));
+
+        for (Type type: BlockStone.Type.values()) {
+            if (type.isFake()) {
+                MINER.addItem(new PurchasableDecorative(1000, new ItemStack(HFMining.STONE, 16, type.ordinal())));
+            }
+        }
+
+        MINER.addOpening(MONDAY, 11000, 16000).addOpening(TUESDAY, 11000, 16000).addOpening(WEDNESDAY, 11000, 16000); //You decide what time it will be open yoshie
+        MINER.addOpening(THURSDAY, 11000, 16000).addOpening(FRIDAY, 11000, 16000).addOpening(SATURDAY, 11000, 16000);
+    }
+
     private static void registerPoultry() {
         POULTRY = HFApi.shops.newShop(new ResourceLocation(MODID, "poultry"), HFNPCs.POULTRY);
         POULTRY.addItem(50, HFAnimals.TOOLS.getStackFromEnum(CHICKEN_FEED));
@@ -200,22 +216,6 @@ public class HFShops {
 
         SUPERMARKET.addOpening(MONDAY, 9000, 17000).addOpening(TUESDAY, 9000, 17000).addOpening(THURSDAY, 9000, 17000);
         SUPERMARKET.addOpening(FRIDAY, 9000, 17000).addOpening(SATURDAY, 11000, 15000);
-    }
-
-    private static void registerMiner() {
-        MINER = HFApi.shops.newShop(new ResourceLocation(MODID, "miner"), HFNPCs.MINER);
-        MINER.addItem(new PurchasableDecorative(1000, new ItemStack(HFMining.DIRT_DECORATIVE, 16, 0)));
-        MINER.addItem(new PurchasableDecorative(500, HFMining.LADDER.getStackFromEnum(Ladder.DECORATIVE)));
-        MINER.addItem(150, HFMining.MINING_TOOL.getStackFromEnum(MiningTool.ESCAPE_ROPE));
-
-        for (Type type: BlockStone.Type.values()) {
-            if (type.isFake()) {
-                MINER.addItem(new PurchasableDecorative(1000, new ItemStack(HFMining.STONE, 16, type.ordinal())));
-            }
-        }
-
-        MINER.addOpening(MONDAY, 11000, 16000).addOpening(TUESDAY, 11000, 16000).addOpening(WEDNESDAY, 11000, 16000); //You decide what time it will be open yoshie
-        MINER.addOpening(THURSDAY, 11000, 16000).addOpening(FRIDAY, 11000, 16000).addOpening(SATURDAY, 11000, 16000);
     }
 
     public static boolean TWENTY_FOUR_HOUR_SHOPPING;

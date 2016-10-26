@@ -110,7 +110,7 @@ public class BlockOre extends BlockHFSmashable<BlockOre, Ore> implements ISmasha
         }
 
         switch (ore) {
-            case ROCK: 
+            case ROCK:
                 return world.isRemote ? new ItemStack(this) : MiningHelper.getLoot(MINE_SPRING, world, player, luck);
             case COPPER:
                 return HFMining.MATERIALS.getStackFromEnum(ItemMaterial.Material.COPPER, 1 + world.rand.nextInt(5));

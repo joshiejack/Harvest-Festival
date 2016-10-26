@@ -17,10 +17,10 @@ public class StateHandlerWatermelon extends StateHandlerStem {
         if (stage == 1) return 0;
         else if (stage <= 2) return 1;
         else if (stage <= 3) return 2;
-        else if (stage <= 5) return 3;
-        else if (stage <= 6) return 4;
-        else if (stage <= 8) return 5;
-        else if (stage <= 10) return 6;
+        else if (stage <= 4) return 3;
+        else if (stage <= 5) return 4;
+        else if (stage <= 7) return 5;
+        else if (stage <= 9) return 6;
         else return 7;
     }
 

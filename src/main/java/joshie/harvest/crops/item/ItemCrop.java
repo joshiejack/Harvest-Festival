@@ -2,6 +2,7 @@ package joshie.harvest.crops.item;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.core.IShippable;
+import joshie.harvest.api.crops.Crop;
 import joshie.harvest.core.base.item.ItemHFFoodEnum;
 import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.crops.item.ItemCrop.Crops;
@@ -59,20 +60,20 @@ public class ItemCrop extends ItemHFFoodEnum<ItemCrop, Crops> implements IShippa
         BANANA(3, 0.4F), GRAPE(2, 0.5F), ORANGE(4, 0.3F), PEACH(4, 0.4F);
 
         private final ResourceLocation cropLocation;
-        private joshie.harvest.api.crops.Crop crop;
+        private Crop crop;
         private final int hunger;
         private final float saturation;
 
         Crops(int hunger, float saturation) {
-            cropLocation = new ResourceLocation(MODID, getName());
+            this.cropLocation = new ResourceLocation(MODID, getName());
             this.hunger = hunger;
             this.saturation = saturation;
         }
 
-        public joshie.harvest.api.crops.Crop getCrop() {
+        public Crop getCrop() {
             if (crop != null) return crop;
             else {
-                crop = joshie.harvest.api.crops.Crop.REGISTRY.getValue(cropLocation);
+                crop = Crop.REGISTRY.getValue(cropLocation);
                 return crop;
             }
         }

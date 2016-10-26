@@ -101,7 +101,10 @@ harvestfestival.crop.watermelon=Watermelon
 harvestfestival.crop.wheat=Wheat
 harvestfestival.crop.nether.wart=Nether Wart
 harvestfestival.crop.tutorial.turnip=Hardy Turnip
-harvestfestival.crop.hemp=Industrial Hemp
+harvestfestival.crop.banana=Banana
+harvestfestival.crop.orange=Orange
+harvestfestival.crop.peach=Peach
+harvestfestival.crop.grape=Grapes
 harvestfestival.crop.hemp.tooltip=Requires light level 12+
 
 #Cookbook

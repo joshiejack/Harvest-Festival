@@ -10,7 +10,9 @@ import joshie.harvest.api.crops.WateringHandler;
 import joshie.harvest.core.base.render.MeshIdentical;
 import joshie.harvest.core.helpers.RegistryHelper;
 import joshie.harvest.core.util.annotations.HFLoader;
+import joshie.harvest.crops.block.BlockFruit;
 import joshie.harvest.crops.block.BlockHFCrops;
+import joshie.harvest.crops.block.BlockLeavesTree;
 import joshie.harvest.crops.block.BlockSprinkler;
 import joshie.harvest.crops.handlers.growth.GrowthHandlerNether;
 import joshie.harvest.crops.item.ItemCrop;
@@ -47,9 +49,11 @@ import static net.minecraft.init.Items.*;
 
 @HFLoader(priority = HFCROPS)
 public class HFCrops {
-    //Crops and Custom Farmland
+    //Crops and Trees
     public static final BlockHFCrops CROPS = new BlockHFCrops().register("crops_block");
     public static final BlockSprinkler SPRINKLER = new BlockSprinkler().register("sprinkler");
+    public static final BlockFruit FRUITS = new BlockFruit().register("fruit");
+    public static final BlockLeavesTree LEAVES = new BlockLeavesTree().register("leaves");
     public static final GrowthHandler SOUL_SAND = new GrowthHandlerNether();
 
     //Seed Bag Item
@@ -69,7 +73,7 @@ public class HFCrops {
     public static final Crop CORN = registerCrop("corn").setItem(getCropStack(Crops.CORN)).setValue(300, 100).setStages(3, 7, 11, 14, 15).setRegrow(12).setSeedColours(0XD4BD45).setSeasons(SUMMER);
     public static final Crop PUMPKIN = registerCrop("pumpkin").setItem(new ItemStack(Blocks.PUMPKIN)).setValue(500, 125).setStages(15).setUnlocked(1).setSeedColours(0XE09A39)
                                         .setSeasons(SUMMER).setIngredient(2, 0.3F).setGrowthHandler(new GrowthHandlerSide(Blocks.PUMPKIN));
-    public static final Crop PINEAPPLE = registerCrop("pineapple").setItem(getCropStack(Crops.PINEAPPLE)).setValue(1000, 500).setStages(5, 10, 15, 20, 21).setRegrow(5).setUnlocked(3).setSeedColours(0XD7CF00)
+    public static final Crop PINEAPPLE = registerCrop("pineapple").setItem(getCropStack(Crops.PINEAPPLE)).setValue(1000, 500).setStages(5, 10, 15, 20, 21).setRegrow(16).setUnlocked(3).setSeedColours(0XD7CF00)
                                         .setSeasons(SUMMER).setAnimalFoodType(FRUIT);
     public static final Crop WATERMELON = registerCrop("watermelon").setItem(Items.MELON).setValue(250, 20).setStages(11).setUnlocked(1).setSeedColours(0xc92b3e)
                                         .setSeasons(SUMMER).setAnimalFoodType(FRUIT).setGrowthHandler(new GrowthHandlerSide(Blocks.MELON_BLOCK));
@@ -83,7 +87,7 @@ public class HFCrops {
     public static final Crop SPINACH = registerCrop("spinach").setItem(getCropStack(Crops.SPINACH)).setValue(200, 80).setStages(2, 5, 6).setUnlocked(1).setSeedColours(0X90AE15).setSeasons(AUTUMN);
     public static final Crop CARROT = registerCrop("carrot").setItem(Items.CARROT).setValue(300, 120).setStages(Blocks.CARROTS, 1, 2, 3, 4, 5, 6, 7, 8).setSeedColours(0XF8AC33).setSeasons(AUTUMN);
     public static final Crop SWEET_POTATO = registerCrop("sweet_potato").setItem(getCropStack(Crops.SWEET_POTATO)).setValue(300, 120).setStages(3, 5, 6).setRegrow(4).setSeedColours(0XD82AAC).setSeasons(AUTUMN);
-    public static final Crop GREEN_PEPPER = registerCrop("green_pepper").setItem(getCropStack(Crops.GREEN_PEPPER)).setValue(150, 40).setStages(2, 3, 5, 7, 8).setRegrow(2).setUnlocked(3).setSeedColours(0x56D213).setSeasons(AUTUMN);
+    public static final Crop GREEN_PEPPER = registerCrop("green_pepper").setItem(getCropStack(Crops.GREEN_PEPPER)).setValue(150, 40).setStages(2, 3, 5, 7, 8).setRegrow(6).setUnlocked(3).setSeedColours(0x56D213).setSeasons(AUTUMN);
     public static final Crop BEETROOT = registerCrop("beetroot").setItem(Items.BEETROOT).setValue(250, 75).setStages(Blocks.BEETROOTS, 2, 5, 7, 8).setSeedColours(0x690000).setSeasons(AUTUMN);
 
     //Autumn Trees

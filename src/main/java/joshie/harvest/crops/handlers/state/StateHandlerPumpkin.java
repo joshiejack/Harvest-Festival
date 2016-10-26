@@ -19,8 +19,8 @@ public class StateHandlerPumpkin extends StateHandlerStem {
         else if (stage <= 4) return 2;
         else if (stage <= 6) return 3;
         else if (stage <= 8) return 4;
-        else if (stage <= 12) return 5;
-        else if (stage <= 14) return 6;
+        else if (stage <= 11) return 5;
+        else if (stage <= 13) return 6;
         else return 7;
     }
 

@@ -20,13 +20,14 @@ public class GrowthHandlerSide extends GrowthHandler<Crop> {
 
     @Override
     public int grow(World world, BlockPos pos, Crop crop, int stage) {
-        if (stage == crop.getStages()) {
+        int newStage = super.grow(world, pos, crop, stage);
+        if (newStage == crop.getStages()) {
             if (crop.getRegrowStage() > 0 && attemptToGrowToSide(world, pos)) {
                 return crop.getRegrowStage();
             } else world.setBlockState(pos, block.getDefaultState());
         }
 
-        return stage;
+        return newStage;
     }
 
     @Override

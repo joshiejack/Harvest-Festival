@@ -24,7 +24,11 @@
     "beetroot": [{ "textures": { "layer0": "minecraft:items/beetroot" }}],
     "grass": [{ "textures": { "layer0": "harvestfestival:items/crops/grass" }}],
     "wheat": [{ "textures": { "layer0": "minecraft:items/wheat" }}],
-    "nether_wart": [{ "textures": { "layer0": "minecraft:items/meals/nether_wart" }}],
-    "tutorial_turnip": [{ "textures": { "layer0": "harvestfestival:items/crops/tutorial_turnip" }}]
+    "nether_wart": [{ "textures": { "layer0": "minecraft:items/nether_wart" }}],
+    "tutorial_turnip": [{ "textures": { "layer0": "harvestfestival:items/crops/tutorial_turnip" }}],
+    "orange": [{ "textures": { "layer0": "harvestfestival:items/crops/orange" }}],
+    "peach": [{ "textures": { "layer0": "harvestfestival:items/crops/peach" }}],
+    "banana": [{ "textures": { "layer0": "harvestfestival:items/crops/banana" }}],
+    "grape": [{ "textures": { "layer0": "harvestfestival:items/crops/grapes" }}]
   }
 }

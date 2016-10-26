@@ -1,0 +1,20 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "minecraft:leaves"
+  },
+  "variants": {
+    "fruit": {
+      "apple": { "textures": { "all": "minecraft:blocks/leaves_oak" }} ,
+      "apple_harvestable": { "textures": { "all": "harvestfestival:blocks/leaves_apple" }},
+      "orange": { "textures": { "all": "minecraft:blocks/leaves_oak" }},
+      "orange_harvestable": { "textures": { "all": "harvestfestival:blocks/leaves_orange" }},
+      "peach": { "textures": { "cross": "minecraft:blocks/leaves_oak" }},
+      "peach_harvestable": { "textures": { "all": "harvestfestival:blocks/leaves_peach" }},
+      "banana": { "textures": { "all": "minecraft:blocks/leaves_jungle" }},
+      "banana_harvestable": { "textures": { "all": "harvestfestival:blocks/leaves_banana" }},
+      "grape": { "textures": { "all": "minecraft:blocks/leaves_oak" }},
+      "grape_harvestable": { "textures": { "all": "minecraft:blocks/leaves_grape" }}
+    }
+  }
+}

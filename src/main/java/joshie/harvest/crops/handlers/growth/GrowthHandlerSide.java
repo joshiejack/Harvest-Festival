@@ -1,11 +1,12 @@
-package joshie.harvest.api.crops;
+package joshie.harvest.crops.handlers.growth;
 
+import joshie.harvest.api.crops.Crop;
+import joshie.harvest.api.crops.GrowthHandler;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-@Deprecated //TODO: Will be moved out of the api in 0.7+, do NOT use
 public class GrowthHandlerSide extends GrowthHandler<Crop> {
     private final Block block;
 

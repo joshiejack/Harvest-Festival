@@ -6,6 +6,7 @@ import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.cooking.Ingredient;
 import joshie.harvest.api.core.IShippable;
 import joshie.harvest.api.crops.IStateHandler.PlantSection;
+import joshie.harvest.crops.handlers.growth.GrowthHandlerSide;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Items;

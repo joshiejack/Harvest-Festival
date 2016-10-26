@@ -5,7 +5,7 @@ import joshie.harvest.api.animals.AnimalFoodType;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.crops.Crop;
 import joshie.harvest.api.crops.GrowthHandler;
-import joshie.harvest.api.crops.GrowthHandlerSide;
+import joshie.harvest.crops.handlers.growth.GrowthHandlerSide;
 import joshie.harvest.api.crops.WateringHandler;
 import joshie.harvest.core.base.render.MeshIdentical;
 import joshie.harvest.core.helpers.RegistryHelper;

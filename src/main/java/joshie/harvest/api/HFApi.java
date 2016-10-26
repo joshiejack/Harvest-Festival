@@ -14,7 +14,6 @@ import joshie.harvest.api.quests.IQuestHelper;
 import joshie.harvest.api.relations.IRelationships;
 import joshie.harvest.api.shops.IShopRegistry;
 import joshie.harvest.api.ticking.IDailyTickableRegistry;
-import joshie.harvest.api.trees.ITreeRegistry;
 
 /**
  * These are filled by HarvestFestival when it is loaded
@@ -34,5 +33,4 @@ public class HFApi {
     public static IShippingRegistry shipping = null;
     public static ISizeableRegistry sizeable = null;
     public static IDailyTickableRegistry tickable = null;
-    public static ITreeRegistry trees = null;
 }

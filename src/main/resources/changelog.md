@@ -1,10 +1,4 @@
 ###0.6.0
-##Additions
-* Added various gems as obtainable from the mine, selling for various values
-* Can be obtained rarely from junk rocks (higher chance in winter)
-* Can be obtained directly from jewel nodes
-* Added more items to the gathering system, for selling or recipes
-##Changes
 #Animals
 * Animals now only get stressed every two hours they're left outside in the rain or at night
 * You will now get relationship points every two hours if an animal is outside in the day and it isn't raining
@@ -18,6 +12,12 @@
 #Crops
 * Untied the crops from the registry for them, shouldn't affect anything
 * Melons and Pumpkins will no longer regrow, and will instead replace the crop
+#Gathering
+* More items will now spawn around the world (that sell for more than 1 gold!)
+#Mining
+* Added gems, some will drop from junk rocks, most will drop from the new gem ore
+* Reduced the amount of dark chicks, chickens and sheep that spawn
+* Mines will now have a greater chance of producing ore in winter
 #Shops
 * New Shop GUI
 * Removed the Blacksmith's store

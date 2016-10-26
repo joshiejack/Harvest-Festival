@@ -15,7 +15,7 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import static joshie.harvest.mining.MiningTicker.GOLD_FLOOR;
+import static joshie.harvest.mining.MiningHelper.GOLD_FLOOR;
 
 public class EntityDarkSheep extends EntityMob {
     public EntityDarkSheep(World world) {

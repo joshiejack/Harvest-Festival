@@ -1,8 +1,10 @@
 package joshie.harvest.mining;
 
+import joshie.harvest.api.calendar.Season;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.mining.block.BlockPortal.Portal;
+import joshie.harvest.mining.gen.MiningProvider;
 import joshie.harvest.town.TownTracker;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -22,12 +24,21 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
 
 import java.util.List;
+import java.util.Random;
 
 import static joshie.harvest.mining.HFMining.MINING_ID;
-import static joshie.harvest.mining.MineManager.CHUNK_BOUNDARY;
-import static joshie.harvest.mining.MiningTicker.MAX_FLOORS;
+import static joshie.harvest.mining.gen.MineManager.CHUNK_BOUNDARY;
 
 public class MiningHelper {
+    public static final int MYSTRIL_FLOOR = 150;
+    public static final int GOLD_FLOOR = 80;
+    public static final int SILVER_FLOOR = 40;
+    public static final double WORLD_HEIGHT = 256D;
+    public static final int MAX_Y = (int) WORLD_HEIGHT - 1;
+    public static final int FLOOR_HEIGHT = 6;
+    public static final int MAX_FLOORS = (int) Math.floor(WORLD_HEIGHT / FLOOR_HEIGHT);
+    public static final int MAX_LOOP = (int) WORLD_HEIGHT - FLOOR_HEIGHT;
+
     public static ItemStack getLoot(ResourceLocation loot, World world, EntityPlayer player, float luck) {
         LootContext.Builder lootcontext$builder = new LootContext.Builder((WorldServer) world);
         lootcontext$builder.withLuck(player.getLuck() + luck);
@@ -145,7 +156,11 @@ public class MiningHelper {
 
     public static int getFloor(int xPosition, int posY) {
         int chunkIndex = (int) Math.floor(((double)xPosition) / CHUNK_BOUNDARY);
-        int floorIndex = (int) (MAX_FLOORS - Math.floor(((double)posY) / MiningTicker.FLOOR_HEIGHT));
+        int floorIndex = (int) (MAX_FLOORS - Math.floor(((double)posY) / FLOOR_HEIGHT));
         return (chunkIndex * MAX_FLOORS) + floorIndex; //Floor
+    }
+
+    public static int getOreChance(Season season, Random rand) {
+        return season == Season.WINTER ? rand.nextInt(3) == 0 ? 8 + rand.nextInt(12) : 15 + rand.nextInt(10) : rand.nextInt(5) == 0 ? 10 + rand.nextInt(15) : 20 + rand.nextInt(15);
     }
 }

@@ -13,7 +13,7 @@ import joshie.harvest.core.handlers.ServerHandler;
 import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.util.handlers.SideHandler;
-import joshie.harvest.mining.MineManager;
+import joshie.harvest.mining.gen.MineManager;
 import joshie.harvest.player.PlayerLoader;
 import joshie.harvest.player.PlayerTracker;
 import joshie.harvest.player.PlayerTrackerClient;

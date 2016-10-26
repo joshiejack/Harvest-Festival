@@ -8,6 +8,7 @@ import joshie.harvest.api.core.IShippingRegistry;
 import joshie.harvest.api.core.ISizeableRegistry;
 import joshie.harvest.api.crops.ICropRegistry;
 import joshie.harvest.api.gathering.IGatheringRegistry;
+import joshie.harvest.api.mining.IMiningRegistry;
 import joshie.harvest.api.npc.INPCRegistry;
 import joshie.harvest.api.player.IPlayerHelper;
 import joshie.harvest.api.quests.IQuestHelper;
@@ -25,6 +26,7 @@ public class HFApi {
     public static ICropRegistry crops = null;
     public static CookingManager cooking = null;
     public static IGatheringRegistry gathering = null;
+    public static IMiningRegistry mining = null;
     public static INPCRegistry npc = null;
     public static IPlayerHelper player = null;
     public static IQuestHelper quests = null;

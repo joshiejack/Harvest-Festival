@@ -1,4 +1,4 @@
-package joshie.harvest.mining;
+package joshie.harvest.mining.gen;
 
 import gnu.trove.map.TIntObjectMap;
 import gnu.trove.map.hash.TIntObjectHashMap;

@@ -1,13 +1,10 @@
 package joshie.harvest.mining.block;
 
-import joshie.harvest.api.HFApi;
-import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.gathering.ISmashable;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.block.BlockHFSmashable;
 import joshie.harvest.core.base.item.ItemToolSmashing;
 import joshie.harvest.core.lib.CreativeSort;
-import joshie.harvest.core.lib.LootStrings;
 import joshie.harvest.mining.HFMining;
 import joshie.harvest.mining.MiningHelper;
 import joshie.harvest.mining.block.BlockOre.Ore;
@@ -21,7 +18,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.IStringSerializable;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -31,6 +27,7 @@ import net.minecraft.world.WorldServer;
 import java.util.Locale;
 
 import static joshie.harvest.api.gathering.ISmashable.ToolType.HAMMER;
+import static joshie.harvest.core.lib.LootStrings.MINE_SPRING;
 import static net.minecraft.block.material.Material.ROCK;
 
 public class BlockOre extends BlockHFSmashable<BlockOre, Ore> implements ISmashable {
@@ -113,11 +110,8 @@ public class BlockOre extends BlockHFSmashable<BlockOre, Ore> implements ISmasha
         }
 
         switch (ore) {
-            case ROCK: {
-                ResourceLocation loot = HFApi.calendar.getDate(world).getSeason() == Season.WINTER ? LootStrings.MINE_WINTER : LootStrings.MINE_SPRING;
-                return world.isRemote ? new ItemStack(this) : MiningHelper.getLoot(loot, world, player, luck);
-            }
-
+            case ROCK: 
+                return world.isRemote ? new ItemStack(this) : MiningHelper.getLoot(MINE_SPRING, world, player, luck);
             case COPPER:
                 return HFMining.MATERIALS.getStackFromEnum(ItemMaterial.Material.COPPER, 1 + world.rand.nextInt(5));
             case SILVER:

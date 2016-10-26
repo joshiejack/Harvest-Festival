@@ -16,7 +16,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
-import static joshie.harvest.mining.MiningTicker.SILVER_FLOOR;
+import static joshie.harvest.mining.MiningHelper.SILVER_FLOOR;
 
 public class EntityDarkChicken extends EntityMob {
     public float wingRotation;

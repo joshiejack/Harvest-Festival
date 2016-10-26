@@ -5,14 +5,17 @@ import joshie.harvest.animals.render.ModelHarvestChicken;
 import joshie.harvest.animals.render.ModelHarvestCow;
 import joshie.harvest.animals.render.ModelHarvestSheep;
 import joshie.harvest.api.HFApi;
+import joshie.harvest.api.mining.MiningContext;
 import joshie.harvest.core.helpers.RegistryHelper;
 import joshie.harvest.core.lib.EntityIDs;
 import joshie.harvest.core.util.annotations.HFLoader;
 import joshie.harvest.mining.block.*;
+import joshie.harvest.mining.block.BlockOre.Ore;
 import joshie.harvest.mining.entity.EntityDarkChick;
 import joshie.harvest.mining.entity.EntityDarkChicken;
 import joshie.harvest.mining.entity.EntityDarkCow;
 import joshie.harvest.mining.entity.EntityDarkSheep;
+import joshie.harvest.mining.gen.MiningProvider;
 import joshie.harvest.mining.item.ItemDarkSpawner;
 import joshie.harvest.mining.item.ItemDarkSpawner.DarkSpawner;
 import joshie.harvest.mining.item.ItemMaterial;
@@ -29,8 +32,14 @@ import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import static joshie.harvest.api.calendar.Season.*;
+import static joshie.harvest.core.HFCore.FLOWERS;
 import static joshie.harvest.core.HFTab.MINING;
+import static joshie.harvest.core.block.BlockFlower.FlowerType.WEED;
 import static joshie.harvest.core.helpers.ConfigHelper.getInteger;
+import static joshie.harvest.mining.MiningHelper.GOLD_FLOOR;
+import static joshie.harvest.mining.MiningHelper.MYSTRIL_FLOOR;
+import static joshie.harvest.mining.MiningHelper.SILVER_FLOOR;
 import static net.minecraft.init.Items.DIAMOND;
 import static net.minecraft.init.Items.EMERALD;
 import static net.minecraftforge.fml.common.registry.EntityRegistry.registerModEntity;
@@ -61,7 +70,6 @@ public class HFMining {
         LootConditionManager.registerCondition(new Exact.Serializer());
         LootConditionManager.registerCondition(new MultipleOf.Serializer());
         LootConditionManager.registerCondition(new Obtained.Serializer());
-        HFApi.tickable.registerDailyTickableBlock(DIRT, new MiningTicker());
         registerSellable(DIAMOND, 100L);
         registerSellable(EMERALD, 80L);
     }
@@ -81,6 +89,27 @@ public class HFMining {
         FakeAnimalsItemRenderer.INSTANCE.register(DarkSpawner.SHEEP, "dark_sheep", new ModelHarvestSheep.Wooly());
         FakeAnimalsItemRenderer.INSTANCE.register(DarkSpawner.CHICKEN, "dark_chicken", new ModelHarvestChicken.Adult());
         FakeAnimalsItemRenderer.INSTANCE.register(DarkSpawner.CHICK, "dark_chick", new ModelHarvestChicken.Child());
+    }
+
+    public static void init() {
+        //Spring, Summer, Autumn values
+        MiningContext all = new MiningContext(0);
+        MiningContext silver = new MiningContext(SILVER_FLOOR);
+        MiningContext gold = new MiningContext(GOLD_FLOOR);
+        MiningContext mystril = new MiningContext(MYSTRIL_FLOOR);
+        HFApi.mining.registerOre(all, FLOWERS.getStateFromEnum(WEED), 25D, SPRING, SUMMER, AUTUMN);
+        HFApi.mining.registerOre(all, ORE.getStateFromEnum(Ore.ROCK), 180D, SPRING, SUMMER, AUTUMN);
+        HFApi.mining.registerOre(all, ORE.getStateFromEnum(Ore.COPPER), 20D, SPRING, SUMMER, AUTUMN);
+        HFApi.mining.registerOre(silver, ORE.getStateFromEnum(Ore.SILVER), 15D, SPRING, SUMMER, AUTUMN);
+        HFApi.mining.registerOre(gold, ORE.getStateFromEnum(Ore.GOLD), 10D, SPRING, SUMMER, AUTUMN);
+        HFApi.mining.registerOre(mystril, ORE.getStateFromEnum(Ore.MYSTRIL), 5D, SPRING, SUMMER, AUTUMN);
+
+        //Winter values
+        HFApi.mining.registerOre(all, ORE.getStateFromEnum(Ore.ROCK), 150D, WINTER);
+        HFApi.mining.registerOre(all, ORE.getStateFromEnum(Ore.COPPER), 45D, WINTER);
+        HFApi.mining.registerOre(silver, ORE.getStateFromEnum(Ore.SILVER), 25D, WINTER);
+        HFApi.mining.registerOre(gold, ORE.getStateFromEnum(Ore.GOLD), 20D, WINTER);
+        HFApi.mining.registerOre(mystril, ORE.getStateFromEnum(Ore.MYSTRIL), 15D, WINTER);
     }
 
     private static void registerSellable(Item item, long value) {

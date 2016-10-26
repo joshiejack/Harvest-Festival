@@ -1,10 +1,15 @@
-package joshie.harvest.mining;
+package joshie.harvest.mining.gen;
 
 import com.google.common.collect.Lists;
 import gnu.trove.map.TIntObjectMap;
 import gnu.trove.map.hash.TIntObjectHashMap;
+import joshie.harvest.api.HFApi;
+import joshie.harvest.api.calendar.Season;
 import joshie.harvest.core.HFCore;
 import joshie.harvest.core.HFTrackers;
+import joshie.harvest.mining.HFMining;
+import joshie.harvest.mining.MiningHelper;
+import joshie.harvest.mining.MiningRegistry;
 import joshie.harvest.mining.entity.EntityDarkChick;
 import joshie.harvest.mining.entity.EntityDarkChicken;
 import joshie.harvest.mining.entity.EntityDarkCow;
@@ -26,9 +31,9 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Random;
 
-import static joshie.harvest.mining.MineManager.CHUNK_BOUNDARY;
-import static joshie.harvest.mining.MiningTicker.MAX_LOOP;
-import static joshie.harvest.mining.MiningTicker.MAX_Y;
+import static joshie.harvest.mining.MiningHelper.MAX_LOOP;
+import static joshie.harvest.mining.MiningHelper.MAX_Y;
+import static joshie.harvest.mining.gen.MineManager.CHUNK_BOUNDARY;
 
 public class MiningChunk implements IChunkGenerator {
     private final Random rand;
@@ -42,9 +47,9 @@ public class MiningChunk implements IChunkGenerator {
     protected static final List<Block> IRREPLACABLE = Lists.newArrayList();
 
     static {
-        MONSTERS.add(new Biome.SpawnListEntry(EntityDarkChick.class, 100, 1, 5));
-        MONSTERS.add(new Biome.SpawnListEntry(EntityDarkChicken.class, 50, 1, 3));
-        MONSTERS.add(new Biome.SpawnListEntry(EntityDarkSheep.class, 30, 1, 2));
+        MONSTERS.add(new Biome.SpawnListEntry(EntityDarkChick.class, 100, 1, 3));
+        MONSTERS.add(new Biome.SpawnListEntry(EntityDarkChicken.class, 50, 1, 2));
+        MONSTERS.add(new Biome.SpawnListEntry(EntityDarkSheep.class, 30, 1, 1));
         MONSTERS.add(new Biome.SpawnListEntry(EntityDarkCow.class, 15, 1, 1));
         IRREPLACABLE.add(ORE.getBlock());
         IRREPLACABLE.add(HFCore.FLOWERS);
@@ -53,13 +58,14 @@ public class MiningChunk implements IChunkGenerator {
     
     private final World worldObj;
     private Biome[] biomesForGeneration;
+    private Season season;
 
     public MiningChunk(World world, long seed) {
         this.worldObj = world;
         this.rand = new Random(seed);
     }
 
-    public void setBlockState(ChunkPrimer primer, int x, int y, int z, IBlockState state, int chunkX, int chunkZ) {
+    public void setBlockState(ChunkPrimer primer, int x, int y, int z, IBlockState state, int chunkX) {
         x = Math.min(15, Math.max(0, x));
         y = Math.min(MAX_Y, Math.max(0, y));
         z = Math.min(15, Math.max(0, z));
@@ -69,7 +75,10 @@ public class MiningChunk implements IChunkGenerator {
             if (primer.getBlockState(x, y, z).getBlock() != Blocks.LADDER && primer.getBlockState(x, y, z).getBlock() != PORTAL.getBlock()) {
                 primer.setBlockState(x, y, z, FLOORS);
                 if (primer.getBlockState(x, y + 1, z).getBlock() != Blocks.LADDER) {
-                    primer.setBlockState(x, y + 1, z, MiningTicker.getBlockState(rand, MiningHelper.getFloor(chunkX, y)));
+                    IBlockState theState = MiningRegistry.INSTANCE.getRandomStateForSeason(worldObj, MiningHelper.getFloor(chunkX, y), season);
+                    if (theState != null) {
+                        primer.setBlockState(x, y + 1, z, theState);
+                    }
                 }
             }
         } else {
@@ -88,7 +97,7 @@ public class MiningChunk implements IChunkGenerator {
     }
 
     private boolean isFloorWithPortal(int floor) {
-        return floor % MiningTicker.MAX_FLOORS == 1 || floor % MiningTicker.MAX_FLOORS == 0;
+        return floor % MiningHelper.MAX_FLOORS == 1 || floor % MiningHelper.MAX_FLOORS == 0;
     }
 
     private void setBlocksInChunk(int chunkX, int chunkZ, ChunkPrimer primer) {
@@ -96,13 +105,13 @@ public class MiningChunk implements IChunkGenerator {
         for (int i = 0; i < 16; i++) {
             for (int j = 0; j < 16; j++) {
                 for (int k = 0; k < MAX_Y; k++) {
-                    setBlockState(primer, i, k, j, WALLS, chunkX, chunkZ);
+                    setBlockState(primer, i, k, j, WALLS, chunkX);
                 }
             }
         }
 
         if (chunkX >= 0 && chunkZ >= 0) {
-            for (int chunkY = 0; chunkY < MAX_LOOP; chunkY += MiningTicker.FLOOR_HEIGHT) {
+            for (int chunkY = 0; chunkY < MAX_LOOP; chunkY += MiningHelper.FLOOR_HEIGHT) {
                 IBlockState[][] states = getMineGeneration(chunkX, chunkY, chunkZ);
                 rand.setSeed(getIndex(chunkX, chunkY, chunkZ) * worldObj.getSeed());
 
@@ -110,7 +119,7 @@ public class MiningChunk implements IChunkGenerator {
                 for (int i = 0; i < 16; i++) {
                     for (int j = 0; j < 16; j++) {
                         if (states[i][j] == FLOORS || states[i][j] == ORE) {
-                            setBlockState(primer, i, chunkY, j, states[i][j], chunkX, chunkZ);
+                            setBlockState(primer, i, chunkY, j, states[i][j], chunkX);
                             for (int k = 0; k < 3; k++) {
                                 int width = 1 + rand.nextInt(1);
                                 int length = 1 + rand.nextInt(1);
@@ -121,9 +130,9 @@ public class MiningChunk implements IChunkGenerator {
                                             BlockPos pos = new BlockPos(i + x4, chunkY, j + z4);
                                             BlockPos offset = pos.offset(enumFacing);
                                             if (x4 != z4 && getBlockState(primer, offset.getX(), offset.getY(), offset.getZ()) == states[i][j] && rand.nextBoolean()) {
-                                                setBlockState(primer, pos.getX(), chunkY, pos.getZ(), states[i][j], chunkX, chunkZ);
-                                                for (int y = 1; y <= MiningTicker.FLOOR_HEIGHT - 2; y++) {
-                                                    setBlockState(primer, pos.getX(), chunkY + y, pos.getZ(), AIR, chunkX, chunkZ);
+                                                setBlockState(primer, pos.getX(), chunkY, pos.getZ(), states[i][j], chunkX);
+                                                for (int y = 1; y <= MiningHelper.FLOOR_HEIGHT - 2; y++) {
+                                                    setBlockState(primer, pos.getX(), chunkY + y, pos.getZ(), AIR, chunkX);
                                                 }
 
                                                 break;
@@ -133,15 +142,15 @@ public class MiningChunk implements IChunkGenerator {
                                 }
                             }
 
-                            for (int y = 1; y <= MiningTicker.FLOOR_HEIGHT - 2; y++) {
-                                setBlockState(primer, i, chunkY + y, j, AIR, chunkX, chunkZ);
+                            for (int y = 1; y <= MiningHelper.FLOOR_HEIGHT - 2; y++) {
+                                setBlockState(primer, i, chunkY + y, j, AIR, chunkX);
                             }
                         }
                     }
                 }
 
                 //Set the ladders, On the floor below
-                int belowY = chunkY - MiningTicker.FLOOR_HEIGHT;
+                int belowY = chunkY - MiningHelper.FLOOR_HEIGHT;
                 IBlockState[][] below =  chunkY == 0 ? null : getMineGeneration(chunkX, belowY, chunkZ);
                 if (below != null) {
                     for (int i = 0; i < 16; i++) {
@@ -150,10 +159,10 @@ public class MiningChunk implements IChunkGenerator {
                                 Rotation rotation = Rotation.values()[rand.nextInt(Rotation.values().length)];
                                 IBlockState theState = HFMining.LADDER.withRotation(LADDER, rotation);
                                 if (getBlockState(primer, i, belowY, j).getBlock() != LADDER.getBlock())
-                                    setBlockState(primer, i, belowY, j, FLOORS, chunkX, chunkZ);
-                                for (int y = 1; y <= MiningTicker.FLOOR_HEIGHT; y++) {
-                                    setBlockState(primer, i, belowY + y, j, theState, chunkX, chunkZ);
-                                    setBlockState(primer, i, belowY + y + 4, j, AIR, chunkX, chunkZ);
+                                    setBlockState(primer, i, belowY, j, FLOORS, chunkX);
+                                for (int y = 1; y <= MiningHelper.FLOOR_HEIGHT; y++) {
+                                    setBlockState(primer, i, belowY + y, j, theState, chunkX);
+                                    setBlockState(primer, i, belowY + y + 4, j, AIR, chunkX);
                                 }
                             }
                         }
@@ -166,13 +175,13 @@ public class MiningChunk implements IChunkGenerator {
         for (int i = 0; i < 16; i++) {
             for (int j = 0; j < 16; j++) {
                 for (int k = 0; k < MAX_Y; k++) {
-                    setBlockState(primer, i, 251, j, WALLS, chunkX, chunkZ);
+                    setBlockState(primer, i, 251, j, WALLS, chunkX);
                 }
             }
         }
 
         //Place the Spawn Portals
-        for (int chunkY = 0; chunkY < MAX_LOOP; chunkY += MiningTicker.FLOOR_HEIGHT) {
+        for (int chunkY = 0; chunkY < MAX_LOOP; chunkY += MiningHelper.FLOOR_HEIGHT) {
             int mineID = MiningHelper.getMineID(chunkZ);
             int floor = MiningHelper.getFloor(chunkX, chunkY);
             if (floor != 0 && isFloorWithPortal(floor) && !MineManager.areCoordinatesGenerated(worldObj, mineID, floor)) {
@@ -200,24 +209,24 @@ public class MiningChunk implements IChunkGenerator {
     private void setXSpawn(int floor, ChunkPrimer primer, int x, int y, int z, int chunkX, int chunkZ) {
         int realX = (chunkX * 16) + x;
         int realZ = (chunkZ * 16) + z;
-        setBlockState(primer, x, y, z, PORTAL, chunkX, chunkZ);
-        setBlockState(primer, x - 1, y, z, PORTAL, chunkX, chunkZ);
-        setBlockState(primer, x + 1, y, z, PORTAL, chunkX, chunkZ);
-        setBlockState(primer, x, y + 1, z, PORTAL, chunkX, chunkZ);
-        setBlockState(primer, x - 1, y + 1, z, PORTAL, chunkX, chunkZ);
-        setBlockState(primer, x + 1, y + 1, z, PORTAL, chunkX, chunkZ);
+        setBlockState(primer, x, y, z, PORTAL, chunkX);
+        setBlockState(primer, x - 1, y, z, PORTAL, chunkX);
+        setBlockState(primer, x + 1, y, z, PORTAL, chunkX);
+        setBlockState(primer, x, y + 1, z, PORTAL, chunkX);
+        setBlockState(primer, x - 1, y + 1, z, PORTAL, chunkX);
+        setBlockState(primer, x + 1, y + 1, z, PORTAL, chunkX);
         HFTrackers.getMineManager(worldObj).setSpawnForMine(MiningHelper.getMineID(chunkZ), floor, realX, y, realZ);
     }
 
     private void setZSpawn(int floor, ChunkPrimer primer, int x, int y, int z, int chunkX, int chunkZ) {
         int realX = (chunkX * 16) + x;
         int realZ = (chunkZ * 16) + z;
-        setBlockState(primer, x, y, z, PORTAL, chunkX, chunkZ);
-        setBlockState(primer, x, y, z - 1, PORTAL, chunkX, chunkZ);
-        setBlockState(primer, x, y, z + 1, PORTAL, chunkX, chunkZ);
-        setBlockState(primer, x, y + 1, z, PORTAL, chunkX, chunkZ);
-        setBlockState(primer, x, y + 1, z - 1, PORTAL, chunkX, chunkZ);
-        setBlockState(primer, x, y + 1, z + 1, PORTAL, chunkX, chunkZ);
+        setBlockState(primer, x, y, z, PORTAL, chunkX);
+        setBlockState(primer, x, y, z - 1, PORTAL, chunkX);
+        setBlockState(primer, x, y, z + 1, PORTAL, chunkX);
+        setBlockState(primer, x, y + 1, z, PORTAL, chunkX);
+        setBlockState(primer, x, y + 1, z - 1, PORTAL, chunkX);
+        setBlockState(primer, x, y + 1, z + 1, PORTAL, chunkX);
         HFTrackers.getMineManager(worldObj).setSpawnForMine(MiningHelper.getMineID(chunkZ), floor, realX, y, realZ);
     }
 
@@ -254,7 +263,7 @@ public class MiningChunk implements IChunkGenerator {
 
     private int getIndex(int chunkX, int chunkY, int chunkZ) {
         int x = (int) Math.floor(chunkX / CHUNK_BOUNDARY); //3x3 Chunks
-        int y = (int) Math.floor(chunkY / MiningTicker.FLOOR_HEIGHT); // Height
+        int y = (int) Math.floor(chunkY / MiningHelper.FLOOR_HEIGHT); // Height
         int z = (int) Math.floor(chunkZ / CHUNK_BOUNDARY); //3x3 Chunks
         int result = x;
         result = 31 * result + z;
@@ -286,7 +295,7 @@ public class MiningChunk implements IChunkGenerator {
             int randXTime = 7 + rand.nextInt(10);
             int randZTime = 7 + rand.nextInt(10);
             int radius = 1 + rand.nextInt(3);
-            int oreChance = rand.nextInt(5) == 0 ? 10 + rand.nextInt(15) : 25 + rand.nextInt(25);
+            int oreChance = MiningHelper.getOreChance(season, rand);
             for (int k = 0; k < maxLoop; k++) {
                 if (first) {
                     first = false;
@@ -304,8 +313,8 @@ public class MiningChunk implements IChunkGenerator {
                     differenceZ = startZ > endZ ? startZ - endZ : endZ - startZ;
                 }
 
-                if (chunkY != 0 && MineManager.containsCoordinatesKey(getIndex(chunkX, chunkY - MiningTicker.FLOOR_HEIGHT, chunkZ))) {
-                    int below = getIndex(chunkX, chunkY - MiningTicker.FLOOR_HEIGHT, chunkZ);
+                if (chunkY != 0 && MineManager.containsCoordinatesKey(getIndex(chunkX, chunkY - MiningHelper.FLOOR_HEIGHT, chunkZ))) {
+                    int below = getIndex(chunkX, chunkY - MiningHelper.FLOOR_HEIGHT, chunkZ);
                     startX = MineManager.getCoordinates(below, 0);
                     startZ = MineManager.getCoordinates(below, 1);
                 }
@@ -478,6 +487,8 @@ public class MiningChunk implements IChunkGenerator {
         this.rand.setSeed((long) x * 341873128712L + (long) z * 132897987541L);
         ChunkPrimer chunkprimer = new ChunkPrimer();
         this.biomesForGeneration = this.worldObj.getBiomeProvider().getBiomes(this.biomesForGeneration, x * 16, z * 16, 16, 16);
+        this.season = HFApi.calendar.getDate(worldObj).getSeason();
+        if (this.season == null) season = Season.SPRING;
         this.setBlocksInChunk(x, z, chunkprimer);
         Chunk chunk = new Chunk(this.worldObj, chunkprimer, x, z);
         byte[] abyte = chunk.getBiomeArray();

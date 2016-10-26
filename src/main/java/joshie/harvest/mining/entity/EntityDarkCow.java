@@ -15,7 +15,7 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import static joshie.harvest.mining.MiningTicker.MYSTRIL_FLOOR;
+import static joshie.harvest.mining.MiningHelper.MYSTRIL_FLOOR;
 
 public class EntityDarkCow extends EntityMob {
     public EntityDarkCow(World world) {

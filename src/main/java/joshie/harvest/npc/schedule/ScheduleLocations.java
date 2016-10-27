@@ -7,7 +7,7 @@ import static joshie.harvest.buildings.HFBuildings.*;
 import static joshie.harvest.town.TownData.*;
 
 public class ScheduleLocations {
-    static final BuildingLocation POND = new BuildingLocation(FISHING_HOLE, FISHING_POND).withDistance(16D).withTime(1500L);
+    public static final BuildingLocation POND = new BuildingLocation(FISHING_HOLE, FISHING_POND).withDistance(16D).withTime(1500L);
     static final BuildingLocation PONDBACK = new BuildingLocation(FISHING_HOLE, FISHING_POND_BACK).withDistance(20D).withTime(1500L);
     static final BuildingLocation PONDLEFT = new BuildingLocation(FISHING_HOLE, FISHING_POND_LEFT).withDistance(20D).withTime(1500L);
     static final BuildingLocation PONDRIGHT = new BuildingLocation(FISHING_HOLE, FISHING_POND_RIGHT).withDistance(20D).withTime(1500L);

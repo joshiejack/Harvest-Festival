@@ -3,6 +3,9 @@ package joshie.harvest.fishing.condition;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSerializationContext;
+import joshie.harvest.npc.schedule.ScheduleLocations;
+import joshie.harvest.town.TownData;
+import joshie.harvest.town.TownHelper;
 import net.minecraft.util.JsonUtils;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -15,6 +18,7 @@ import net.minecraftforge.common.BiomeDictionary.Type;
 import java.util.Locale;
 
 import static joshie.harvest.core.lib.HFModInfo.MODID;
+import static joshie.harvest.town.TownTracker.NULL_TOWN;
 
 public class ConditionLocation extends AbstractCondition {
     private final WaterType location;
@@ -25,14 +29,23 @@ public class ConditionLocation extends AbstractCondition {
 
     @Override
     public boolean testCondition(World world, BlockPos pos) {
-        Biome biome = world.getBiome(pos);
-        if (location == WaterType.OCEAN) return BiomeDictionary.isBiomeOfType(biome, Type.OCEAN);
-        else if (location == WaterType.RIVER) return BiomeDictionary.isBiomeOfType(biome, Type.RIVER);
-        else return !BiomeDictionary.isBiomeOfType(biome, Type.OCEAN) && !BiomeDictionary.isBiomeOfType(biome, Type.RIVER);
+        if (location == WaterType.POND) {
+            TownData data = TownHelper.getClosestTownToBlockPos(world, pos);
+            if (data != NULL_TOWN) {
+                BlockPos position = data.getCoordinatesFor(ScheduleLocations.POND);
+                return position != null && position.getDistance(pos.getX(), pos.getY(), pos.getZ()) <= 32;
+            } else return false;
+        } else {
+            Biome biome = world.getBiome(pos);
+            if (location == WaterType.OCEAN) return BiomeDictionary.isBiomeOfType(biome, Type.OCEAN);
+            else if (location == WaterType.RIVER) return BiomeDictionary.isBiomeOfType(biome, Type.RIVER);
+            else
+                return !BiomeDictionary.isBiomeOfType(biome, Type.OCEAN) && !BiomeDictionary.isBiomeOfType(biome, Type.RIVER);
+        }
     }
 
     public enum WaterType {
-        OCEAN, LAKE, RIVER
+        OCEAN, LAKE, RIVER, POND
     }
 
     public static class Serializer extends LootCondition.Serializer<ConditionLocation> {

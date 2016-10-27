@@ -203,8 +203,14 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements IShippable, 
      *  if it's below this stage
      */
     public Crop setRequiresSickle(int minCut) {
-        this.requiresSickle = true;
-        this.minCut = minCut;
+        if (minCut <= - 1) {
+            this.requiresSickle = false;
+            this.minCut = 0;
+        } else {
+            this.requiresSickle = true;
+            this.minCut = minCut;
+        }
+
         return this;
     }
 
@@ -258,6 +264,14 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements IShippable, 
      **/
     public Crop setNoWaterRequirements() {
         this.needsWatering = false;
+        return this;
+    }
+
+    /**
+     * Make this crop need water to grow
+     **/
+    public Crop setWaterRequirements() {
+        this.needsWatering = true;
         return this;
     }
 

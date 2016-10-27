@@ -1,6 +1,7 @@
-package joshie.harvest.plugins.crafttweaker;
+package joshie.harvest.plugins.crafttweaker.handlers;
 
 import joshie.harvest.api.HFApi;
+import joshie.harvest.plugins.crafttweaker.base.BaseUndoable;
 import joshie.harvest.shops.Shop;
 import joshie.harvest.shops.purchasable.PurchasableBuilder;
 import minetweaker.MineTweakerAPI;
@@ -10,7 +11,7 @@ import net.minecraft.util.ResourceLocation;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 
-import static joshie.harvest.plugins.crafttweaker.BaseUndoable.asStack;
+import static joshie.harvest.plugins.crafttweaker.CraftTweaker.asStack;
 
 @ZenClass("mods.harvestfestival.Shops")
 public class Shops {

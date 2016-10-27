@@ -8,7 +8,7 @@ import joshie.harvest.api.quests.QuestQuestion;
 import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.mining.HFMining;
 import joshie.harvest.mining.item.ItemMaterial.Material;
-import joshie.harvest.quests.TutorialSelection;
+import joshie.harvest.quests.selection.TutorialSelection;
 import joshie.harvest.tools.HFTools;
 import joshie.harvest.town.TownHelper;
 import net.minecraft.entity.EntityLiving;

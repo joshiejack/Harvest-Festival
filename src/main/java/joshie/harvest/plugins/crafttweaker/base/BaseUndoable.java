@@ -1,9 +1,6 @@
-package joshie.harvest.plugins.crafttweaker;
+package joshie.harvest.plugins.crafttweaker.base;
 
 import minetweaker.IUndoableAction;
-import minetweaker.api.item.IIngredient;
-import minetweaker.api.oredict.IOreDictEntry;
-import net.minecraft.item.ItemStack;
 
 public abstract class BaseUndoable implements IUndoableAction {
     private boolean applied;
@@ -20,10 +17,14 @@ public abstract class BaseUndoable implements IUndoableAction {
 
     @Override
     public void apply() {
-        if (!applied) {
+        if (!isApplied()) {
             applied = true;
             applyOnce();
         }
+    }
+
+    public boolean isApplied() {
+        return applied;
     }
 
     public abstract void applyOnce();
@@ -41,14 +42,5 @@ public abstract class BaseUndoable implements IUndoableAction {
     @Override
     public Object getOverrideKey() {
         return null;
-    }
-
-    //Helpers
-    public static ItemStack asStack(IIngredient ingredient) {
-        return ingredient.getInternal() instanceof ItemStack ? (ItemStack) ingredient.getInternal() : null;
-    }
-
-    public static String asOre(IIngredient ingredient) {
-        return ingredient.getInternal() instanceof IOreDictEntry ? ((IOreDictEntry) ingredient).getName() : null;
     }
 }

@@ -18,6 +18,7 @@ import joshie.harvest.crops.handlers.growth.GrowthHandlerNether;
 import joshie.harvest.crops.item.ItemCrop;
 import joshie.harvest.crops.item.ItemCrop.Crops;
 import joshie.harvest.crops.item.ItemHFSeeds;
+import joshie.harvest.crops.loot.SetCropType;
 import joshie.harvest.crops.tile.TileCrop;
 import joshie.harvest.crops.tile.TileSprinkler;
 import joshie.harvest.crops.tile.TileWithered;

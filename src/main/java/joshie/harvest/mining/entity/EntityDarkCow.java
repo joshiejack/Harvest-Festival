@@ -54,7 +54,8 @@ public class EntityDarkCow extends EntityMob {
 
     @Override
     protected boolean isValidLightLevel() {
-        return MiningHelper.getFloor((int)posX >> 4, (int) posY) >= MYSTRIL_FLOOR;
+        int floor = MiningHelper.getFloor((int)posX >> 4, (int) posY);
+        return floor >= MYSTRIL_FLOOR && floor % 18 == 0;
     }
 
     @Override

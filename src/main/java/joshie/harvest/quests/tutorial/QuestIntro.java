@@ -5,7 +5,7 @@ import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.QuestQuestion;
 import joshie.harvest.core.HFCore;
 import joshie.harvest.quests.QuestHelper;
-import joshie.harvest.quests.TutorialSelection;
+import joshie.harvest.quests.selection.TutorialSelection;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;

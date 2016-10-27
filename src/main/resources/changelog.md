@@ -17,6 +17,7 @@
 #Mining
 * Added gems, some will drop from junk rocks, most will drop from the new gem ore
 * Reduced the amount of dark chicks, chickens and sheep that spawn
+* Dark chicks will now only appear on every 7th floor, chickens every 10th, sheep every 13th and cows every 18th
 * Mines will now have a greater chance of producing ore in winter
 #Shops
 * New Shop GUI

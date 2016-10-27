@@ -1,4 +1,4 @@
-package joshie.harvest.quests;
+package joshie.harvest.quests.selection;
 
 import joshie.harvest.api.quests.QuestQuestion;
 import joshie.harvest.api.quests.QuestQuestion.QuestSelection;

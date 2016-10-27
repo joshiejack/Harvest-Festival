@@ -9,7 +9,7 @@ import joshie.harvest.api.quests.QuestQuestion;
 import joshie.harvest.core.helpers.InventoryHelper;
 import joshie.harvest.core.helpers.InventoryHelper.SearchType;
 import joshie.harvest.crops.HFCrops;
-import joshie.harvest.quests.TutorialSelection;
+import joshie.harvest.quests.selection.TutorialSelection;
 import joshie.harvest.tools.HFTools;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;

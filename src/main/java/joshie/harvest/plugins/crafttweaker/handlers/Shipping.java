@@ -1,7 +1,8 @@
-package joshie.harvest.plugins.crafttweaker;
+package joshie.harvest.plugins.crafttweaker.handlers;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.core.Ore;
+import joshie.harvest.plugins.crafttweaker.base.BaseUndoable;
 import minetweaker.MineTweakerAPI;
 import minetweaker.api.item.IIngredient;
 import minetweaker.api.item.IItemStack;
@@ -9,6 +10,9 @@ import minetweaker.api.oredict.IOreDictEntry;
 import net.minecraft.item.ItemStack;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
+
+import static joshie.harvest.plugins.crafttweaker.CraftTweaker.asOre;
+import static joshie.harvest.plugins.crafttweaker.CraftTweaker.asStack;
 
 @ZenClass("mods.harvestfestival.Shipping")
 public class Shipping {

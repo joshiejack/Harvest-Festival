@@ -7,8 +7,8 @@ import joshie.harvest.api.core.ITiered.ToolTier;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.calendar.CalendarHelper;
-import joshie.harvest.core.base.item.ItemTool;
 import joshie.harvest.core.HFTrackers;
+import joshie.harvest.core.base.item.ItemTool;
 import joshie.harvest.core.helpers.InventoryHelper;
 import joshie.harvest.mining.HFMining;
 import joshie.harvest.mining.item.ItemMaterial.Material;
@@ -97,7 +97,7 @@ public class QuestUpgrade extends QuestTrade {
         }
     }
 
-    private ItemStack getUpgradeMaterial(ToolTier tier) {
+    private ItemStack getRepairMaterial(ToolTier tier) {
         switch (tier) {
             case BASIC:
                 return new ItemStack(Blocks.STONE);
@@ -133,7 +133,7 @@ public class QuestUpgrade extends QuestTrade {
             if (broken != null) {
                 long required = getCost(broken) / 10;
                 if (HFTrackers.getPlayerTrackerFromPlayer(player).getStats().getGold() < required) return getLocalized("repair.gold", required);
-                ItemStack material = getUpgradeMaterial(broken);
+                ItemStack material = getRepairMaterial(broken);
                 if (InventoryHelper.hasInInventory(player, ITEM_STACK, material)) {
                     return getLocalized("repair.start");
                 }
@@ -179,7 +179,7 @@ public class QuestUpgrade extends QuestTrade {
             if (broken != null) {
                 long required = getCost(broken) / 10;
                 if (HFTrackers.getPlayerTrackerFromPlayer(player).getStats().getGold() < required) return;
-                ItemStack material = getUpgradeMaterial(broken);
+                ItemStack material = getRepairMaterial(broken);
                 if (InventoryHelper.takeItemsInInventory(player, ITEM_STACK, material)) {
                     date = HFApi.calendar.getDate(player.worldObj).copy();
                     tool = player.getHeldItemMainhand().copy();

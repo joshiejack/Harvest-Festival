@@ -12,7 +12,7 @@ import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.core.helpers.InventoryHelper;
 import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.quests.Quests;
-import joshie.harvest.quests.TutorialSelection;
+import joshie.harvest.quests.selection.TutorialSelection;
 import joshie.harvest.town.TownHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;

@@ -26,6 +26,7 @@ public class CropData {
     public CropData setCrop(Crop crop, int stage) {
         this.crop = crop;
         this.stage = stage;
+        this.daysWithoutWater = 1;
         return this;
     }
 

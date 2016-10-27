@@ -1,4 +1,4 @@
-package joshie.harvest.crops;
+package joshie.harvest.crops.loot;
 
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonObject;
@@ -48,7 +48,7 @@ public class SetCropType extends LootFunction {
     }
 
     public static class Serializer extends LootFunction.Serializer<SetCropType> {
-        protected Serializer() {
+        public Serializer() {
             super(new ResourceLocation("hf_set_crop"), SetCropType.class);
         }
 

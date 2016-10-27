@@ -476,6 +476,11 @@ harvestfestival.ore.silver=银矿堆
 harvestfestival.ore.gold=金矿堆
 harvestfestival.ore.mystril=秘银堆
 harvestfestival.ore.gem=宝石堆
+harvestfestival.ore.diamond=钻石堆
+harvestfestival.ore.emerald=翡翠堆
+harvestfestival.ore.ruby=红宝石堆
+harvestfestival.ore.topaz=黄晶玉堆
+harvestfestival.ore.amethyst=紫水晶堆
 harvestfestival.portal=采矿场入口
 
 #Mine Materials

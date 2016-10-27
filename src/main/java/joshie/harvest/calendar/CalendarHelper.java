@@ -131,4 +131,11 @@ public class CalendarHelper {
             return original;
         }
     }
+
+    public static boolean isBetween(World world, int open, int close) {
+        long daytime = CalendarHelper.getTime(world); //0-23999 by default
+        int scaledOpening = CalendarHelper.getScaledTime(open);
+        int scaledClosing = CalendarHelper.getScaledTime(close);
+        return daytime >= scaledOpening && daytime <= scaledClosing;
+    }
 }

@@ -2,13 +2,22 @@
   "pools": [
     {
       "name": "main",
-      "rolls": 1,
+      "rolls": 3,
       "entries": [
         {
           "type": "item",
           "name": "harvestfestival:materials",
           "entryName": "junk_ore",
-          "weight": 100
+          "weight": 48,
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 0,
+                "max": 1
+              }
+            }
+          ]
         },
         {
           "type": "item",
@@ -19,6 +28,13 @@
             {
               "function": "hf_set_enum",
               "enum": "adamantite"
+            },
+            {
+              "function": "set_count",
+              "count": {
+                "min": 0,
+                "max": 1
+              }
             }
           ],
           "conditions": [
@@ -37,6 +53,13 @@
             {
               "function": "hf_set_enum",
               "enum": "orichalc"
+            },
+            {
+              "function": "set_count",
+              "count": {
+                "min": 0,
+                "max": 1
+              }
             }
           ],
           "conditions": [

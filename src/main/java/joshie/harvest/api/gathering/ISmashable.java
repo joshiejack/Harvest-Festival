@@ -7,6 +7,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+import java.util.List;
+
 import static joshie.harvest.api.core.ITiered.ToolTier.BASIC;
 import static net.minecraft.block.Block.spawnAsEntity;
 
@@ -37,11 +39,13 @@ public interface ISmashable {
         ToolTier required = getRequiredTier(state);
         if (required != null && tier.isGreaterThanOrEqualTo(required)) {
             float luck = tier.ordinal() * 0.25F;
-            ItemStack drop = getDrop(player, world, pos, state, luck);
-            if (drop != null) {
+            List<ItemStack> drops = getDrops(player, world, pos, state, luck);
+            if (drops.size() > 0) {
                 if (!world.isRemote) {
                     world.setBlockToAir(pos);
-                    spawnAsEntity(world, pos, drop);
+                    for (ItemStack drop: drops) {
+                        spawnAsEntity(world, pos, drop);
+                    }
                 }
 
                 return true;
@@ -51,12 +55,18 @@ public interface ISmashable {
         return false;
     }
 
+    @Deprecated
+    default ItemStack getDrop(EntityPlayer player, World world, BlockPos pos, IBlockState state, float luck) {
+        List<ItemStack> drops = getDrops(player, world, pos, state, luck);
+        return drops.size() > 0 ? drops.get(0) : null;
+    }
+
     /** The result of breaking this block
      * @param player    the player
      * @param world     the world object
      * @param pos       the position of the block
      * @param state     the block state
      * @param luck      the luck to apply
-     * @return the drop*/
-    ItemStack getDrop(EntityPlayer player, World world, BlockPos pos, IBlockState state, float luck);
+     * @return the drops */
+    List<ItemStack> getDrops(EntityPlayer player, World world, BlockPos pos, IBlockState state, float luck);
 }

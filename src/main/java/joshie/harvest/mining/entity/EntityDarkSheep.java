@@ -16,6 +16,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import static joshie.harvest.mining.MiningHelper.GOLD_FLOOR;
+import static joshie.harvest.mining.MiningHelper.SHEEP_FLOORS;
 
 public class EntityDarkSheep extends EntityMob {
     public EntityDarkSheep(World world) {
@@ -55,7 +56,7 @@ public class EntityDarkSheep extends EntityMob {
     @Override
     protected boolean isValidLightLevel() {
         int floor = MiningHelper.getFloor((int)posX >> 4, (int) posY);
-        return floor >= GOLD_FLOOR && floor % 13 == 0;
+        return floor >= GOLD_FLOOR && floor % SHEEP_FLOORS == 0;
     }
 
     @Override

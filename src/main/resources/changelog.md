@@ -16,8 +16,10 @@
 * More items will now spawn around the world (that sell for more than 1 gold!)
 #Mining
 * Added gems, some will drop from junk rocks, most will drop from the new gem ore
+* Added Gem, Diamond, Emerald, Ruby, Amethyst, Topaz nodes to the mine
 * Reduced the amount of dark chicks, chickens and sheep that spawn
 * Dark chicks will now only appear on every 7th floor, chickens every 10th, sheep every 13th and cows every 18th
+* There will now be a higher concentration of ores on the floors with the mobs
 * Mines will now have a greater chance of producing ore in winter
 #Shops
 * New Shop GUI

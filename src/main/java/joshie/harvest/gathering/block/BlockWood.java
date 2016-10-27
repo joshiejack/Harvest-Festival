@@ -19,6 +19,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Locale;
 
 import static joshie.harvest.api.core.ITiered.ToolTier.*;
@@ -83,16 +86,16 @@ public class BlockWood extends BlockHFSmashable<BlockWood, Wood> {
     }
 
     @Override
-    public ItemStack getDrop(EntityPlayer player, World world, BlockPos pos, IBlockState state, float luck) {
+    public List<ItemStack> getDrops(EntityPlayer player, World world, BlockPos pos, IBlockState state, float luck) {
         Wood type = getEnumFromState(state);
         switch (type) {
-            case BRANCH_SMALL: return new ItemStack(Blocks.LOG, 1);
-            case BRANCH_MEDIUM: return new ItemStack(Blocks.LOG, 2);
-            case BRANCH_LARGE: return new ItemStack(Blocks.LOG, 6);
-            case STUMP_SMALL: return new ItemStack(Blocks.LOG, 3);
-            case STUMP_MEDIUM: return new ItemStack(Blocks.LOG, 4);
-            case STUMP_LARGE: return new ItemStack(Blocks.LOG, 12);
-            default: return null;
+            case BRANCH_SMALL: return Collections.singletonList(new ItemStack(Blocks.LOG, 1));
+            case BRANCH_MEDIUM: return Collections.singletonList(new ItemStack(Blocks.LOG, 2));
+            case BRANCH_LARGE: return Collections.singletonList(new ItemStack(Blocks.LOG, 6));
+            case STUMP_SMALL: return Collections.singletonList(new ItemStack(Blocks.LOG, 3));
+            case STUMP_MEDIUM: return Collections.singletonList(new ItemStack(Blocks.LOG, 4));
+            case STUMP_LARGE: return Collections.singletonList(new ItemStack(Blocks.LOG, 12));
+            default: return new ArrayList<>();
         }
     }
 

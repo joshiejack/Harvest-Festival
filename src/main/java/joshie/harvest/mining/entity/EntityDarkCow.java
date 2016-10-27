@@ -15,6 +15,7 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+import static joshie.harvest.mining.MiningHelper.COW_FLOORS;
 import static joshie.harvest.mining.MiningHelper.MYSTRIL_FLOOR;
 
 public class EntityDarkCow extends EntityMob {
@@ -55,7 +56,7 @@ public class EntityDarkCow extends EntityMob {
     @Override
     protected boolean isValidLightLevel() {
         int floor = MiningHelper.getFloor((int)posX >> 4, (int) posY);
-        return floor >= MYSTRIL_FLOOR && floor % 18 == 0;
+        return floor >= MYSTRIL_FLOOR && floor % COW_FLOORS == 0;
     }
 
     @Override

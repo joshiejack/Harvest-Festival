@@ -2,17 +2,24 @@
   "pools": [
     {
       "name": "main",
-      "rolls": 1,
+      "rolls": 5,
       "entries": [
         {
           "type": "item",
           "name": "harvestfestival:materials",
-          "entryName": "agate",
+          "entryName": "agate_pre",
           "weight": 190,
           "functions": [
             {
               "function": "hf_set_enum",
               "enum": "agate"
+            },
+            {
+              "function": "set_count",
+              "count": {
+                "min": 0,
+                "max": 1
+              }
             }
           ],
           "conditions": [
@@ -26,12 +33,44 @@
         {
           "type": "item",
           "name": "harvestfestival:materials",
+          "entryName": "agate_post",
+          "weight": 190,
+          "functions": [
+            {
+              "function": "hf_set_enum",
+              "enum": "agate"
+            },
+            {
+              "function": "set_count",
+              "count": {
+                "min": 0,
+                "max": 1
+              }
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "harvestfestival:from",
+              "from": 101
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "harvestfestival:materials",
           "entryName": "amethyst",
           "weight": 200,
           "functions": [
             {
               "function": "hf_set_enum",
               "enum": "amethyst"
+            },
+            {
+              "function": "set_count",
+              "count": {
+                "min": 0,
+                "max": 1
+              }
             }
           ],
           "conditions": [
@@ -45,12 +84,19 @@
         {
           "type": "item",
           "name": "harvestfestival:materials",
-          "entryName": "fluorite",
+          "entryName": "fluorite_pre",
           "weight": 175,
           "functions": [
             {
               "function": "hf_set_enum",
               "enum": "fluorite"
+            },
+            {
+              "function": "set_count",
+              "count": {
+                "min": 0,
+                "max": 1
+              }
             }
           ],
           "conditions": [
@@ -64,12 +110,44 @@
         {
           "type": "item",
           "name": "harvestfestival:materials",
-          "entryName": "peridot",
+          "entryName": "fluorite_post",
+          "weight": 175,
+          "functions": [
+            {
+              "function": "hf_set_enum",
+              "enum": "fluorite"
+            },
+            {
+              "function": "set_count",
+              "count": {
+                "min": 0,
+                "max": 1
+              }
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "harvestfestival:from",
+              "from": 101
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "harvestfestival:materials",
+          "entryName": "peridot_pre",
           "weight": 160,
           "functions": [
             {
               "function": "hf_set_enum",
               "enum": "peridot"
+            },
+            {
+              "function": "set_count",
+              "count": {
+                "min": 0,
+                "max": 1
+              }
             }
           ],
           "conditions": [
@@ -83,12 +161,44 @@
         {
           "type": "item",
           "name": "harvestfestival:materials",
+          "entryName": "peridot_post",
+          "weight": 160,
+          "functions": [
+            {
+              "function": "hf_set_enum",
+              "enum": "peridot"
+            },
+            {
+              "function": "set_count",
+              "count": {
+                "min": 0,
+                "max": 1
+              }
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "harvestfestival:from",
+              "from": 101
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "harvestfestival:materials",
           "entryName": "ruby",
           "weight": 125,
           "functions": [
             {
               "function": "hf_set_enum",
               "enum": "ruby"
+            },
+            {
+              "function": "set_count",
+              "count": {
+                "min": 0,
+                "max": 1
+              }
             }
           ],
           "conditions": [
@@ -108,6 +218,13 @@
             {
               "function": "hf_set_enum",
               "enum": "peridot"
+            },
+            {
+              "function": "set_count",
+              "count": {
+                "min": 0,
+                "max": 1
+              }
             }
           ],
           "conditions": [
@@ -127,6 +244,13 @@
             {
               "function": "hf_set_enum",
               "enum": "alexandrite"
+            },
+            {
+              "function": "set_count",
+              "count": {
+                "min": 0,
+                "max": 1
+              }
             }
           ],
           "conditions": [
@@ -145,6 +269,15 @@
           "name": "minecraft:diamond",
           "entryName": "diamond",
           "weight": 80,
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 0,
+                "max": 1
+              }
+            }
+          ],
           "conditions": [
             {
               "condition": "harvestfestival:multiple",
@@ -161,6 +294,15 @@
           "name": "minecraft:emerald",
           "entryName": "emerald",
           "weight": 100,
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 0,
+                "max": 1
+              }
+            }
+          ],
           "conditions": [
             {
               "condition": "harvestfestival:between",
@@ -172,12 +314,19 @@
         {
           "type": "item",
           "name": "harvestfestival:materials",
-          "entryName": "moon_stone",
+          "entryName": "moon_stone_pre",
           "weight": 225,
           "functions": [
             {
               "function": "hf_set_enum",
               "enum": "moon_stone"
+            },
+            {
+              "function": "set_count",
+              "count": {
+                "min": 0,
+                "max": 1
+              }
             }
           ],
           "conditions": [
@@ -191,12 +340,44 @@
         {
           "type": "item",
           "name": "harvestfestival:materials",
-          "entryName": "sand_rose",
+          "entryName": "moon_stone_post",
+          "weight": 225,
+          "functions": [
+            {
+              "function": "hf_set_enum",
+              "enum": "moon_stone"
+            },
+            {
+              "function": "set_count",
+              "count": {
+                "min": 0,
+                "max": 1
+              }
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "harvestfestival:from",
+              "from": 101
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "harvestfestival:materials",
+          "entryName": "sand_rose_pre",
           "weight": 200,
           "functions": [
             {
               "function": "hf_set_enum",
               "enum": "sand_rose"
+            },
+            {
+              "function": "set_count",
+              "count": {
+                "min": 0,
+                "max": 1
+              }
             }
           ],
           "conditions": [
@@ -210,12 +391,44 @@
         {
           "type": "item",
           "name": "harvestfestival:materials",
+          "entryName": "sand_rose_post",
+          "weight": 200,
+          "functions": [
+            {
+              "function": "hf_set_enum",
+              "enum": "sand_rose"
+            },
+            {
+              "function": "set_count",
+              "count": {
+                "min": 0,
+                "max": 1
+              }
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "harvestfestival:from",
+              "from": 101
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "harvestfestival:materials",
           "entryName": "pink_diamond",
           "weight": 1,
           "functions": [
             {
               "function": "hf_set_enum",
               "enum": "pink_diamond"
+            },
+            {
+              "function": "set_count",
+              "count": {
+                "min": 0,
+                "max": 1
+              }
             }
           ],
           "conditions": [

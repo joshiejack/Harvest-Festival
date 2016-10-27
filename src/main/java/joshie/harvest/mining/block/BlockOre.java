@@ -8,13 +8,15 @@ import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.mining.HFMining;
 import joshie.harvest.mining.MiningHelper;
 import joshie.harvest.mining.block.BlockOre.Ore;
-import joshie.harvest.mining.item.ItemMaterial;
+import joshie.harvest.mining.item.ItemMaterial.Material;
 import joshie.harvest.tools.HFTools;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.IStringSerializable;
@@ -24,17 +26,23 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Locale;
 
 import static joshie.harvest.api.gathering.ISmashable.ToolType.HAMMER;
-import static joshie.harvest.core.lib.LootStrings.MINE_SPRING;
+import static joshie.harvest.core.lib.LootStrings.MINING;
+import static joshie.harvest.core.lib.LootStrings.MINING_GEMS;
 import static net.minecraft.block.material.Material.ROCK;
+import static net.minecraft.init.Items.DIAMOND;
 
 public class BlockOre extends BlockHFSmashable<BlockOre, Ore> implements ISmashable {
     private static final AxisAlignedBB COPPER_AABB = new AxisAlignedBB(0.1D, 0.0D, 0.1D, 0.9D, 0.8D, 0.9D);
 
     public enum Ore implements IStringSerializable {
-        ROCK, COPPER, SILVER, GOLD, MYSTRIL, /*GEM*/;
+        ROCK, COPPER, SILVER, GOLD, MYSTRIL, GEM,
+        EMERALD, DIAMOND, RUBY, AMETHYST, TOPAZ;
 
         @Override
         public String getName() {
@@ -78,12 +86,18 @@ public class BlockOre extends BlockHFSmashable<BlockOre, Ore> implements ISmasha
         switch (ore) {
             case ROCK:
             case COPPER:
+            case GEM:
                 return 1;
             case SILVER:
+            case TOPAZ:
+            case AMETHYST:
                 return 2;
             case GOLD:
+            case EMERALD:
+            case RUBY:
                 return 3;
             case MYSTRIL:
+            case DIAMOND:
                 return 4;
             default:
                 return 0;
@@ -100,8 +114,16 @@ public class BlockOre extends BlockHFSmashable<BlockOre, Ore> implements ISmasha
         }
     }
 
+    private static List<ItemStack> getRandomStack(World world, Material material, int bonus) {
+        return Collections.singletonList(HFMining.MATERIALS.getStackFromEnum(material, 1 + world.rand.nextInt(bonus)));
+    }
+
+    private static List<ItemStack> getRandomStack(World world, Item item, int bonus) {
+        return Collections.singletonList(new ItemStack(item, 1 + world.rand.nextInt(bonus)));
+    }
+
     @Override
-    public ItemStack getDrop(EntityPlayer player, World world, BlockPos pos, IBlockState state, float luck) {
+    public List<ItemStack> getDrops(EntityPlayer player, World world, BlockPos pos, IBlockState state, float luck) {
         Ore ore = getEnumFromState(state);
 
         if (world instanceof WorldServer) {
@@ -111,21 +133,29 @@ public class BlockOre extends BlockHFSmashable<BlockOre, Ore> implements ISmasha
 
         switch (ore) {
             case ROCK:
-                return world.isRemote ? new ItemStack(this) : MiningHelper.getLoot(MINE_SPRING, world, player, luck);
+                return world.isRemote ? Collections.singletonList(new ItemStack(this)): MiningHelper.getLoot(MINING, world, player, luck);
             case COPPER:
-                return HFMining.MATERIALS.getStackFromEnum(ItemMaterial.Material.COPPER, 1 + world.rand.nextInt(5));
+                return getRandomStack(world, Material.COPPER, 5);
             case SILVER:
-                return HFMining.MATERIALS.getStackFromEnum(ItemMaterial.Material.SILVER, 1 + world.rand.nextInt(3));
+                return getRandomStack(world, Material.SILVER, 4);
             case GOLD:
-                return HFMining.MATERIALS.getStackFromEnum(ItemMaterial.Material.GOLD, 1 + world.rand.nextInt(2));
+                return getRandomStack(world, Material.GOLD, 3);
             case MYSTRIL:
-                return HFMining.MATERIALS.getStackFromEnum(ItemMaterial.Material.MYSTRIL); /*
-            case GEM: {
-                ResourceLocation loot = HFTrackers.getCalendar(world).getSeasonAt(pos) == Season.WINTER ? LootStrings.MINE_WINTER_GEM : LootStrings.MINE_SPRING_GEM;
-                return MiningHelper.getLoot(loot, world, player, luck);
-            } */
+                return getRandomStack(world, Material.MYSTRIL, 3);
+            case EMERALD:
+                return getRandomStack(world, Items.EMERALD, 3);
+            case DIAMOND:
+                return world.rand.nextInt(512) == 0 ? getRandomStack(world, Material.PINK_DIAMOND, 1) : getRandomStack(world, DIAMOND, 3);
+            case RUBY:
+                return getRandomStack(world, Material.RUBY, 3);
+            case AMETHYST:
+                return getRandomStack(world, Material.AMETHYST, 3);
+            case TOPAZ:
+                return getRandomStack(world, Material.TOPAZ, 3);
+            case GEM:
+                return world.isRemote ? Collections.singletonList(new ItemStack(this)) : MiningHelper.getLoot(MINING_GEMS, world, player, luck);
             default:
-                return null;
+                return new ArrayList<>();
         }
     }
 

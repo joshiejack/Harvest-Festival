@@ -115,10 +115,8 @@ public class Shop implements IShop {
         if (HFShops.TWENTY_FOUR_HOUR_SHOPPING) return true;
         Weekday day = HFApi.calendar.getDate(world).getWeekday();
         for (OpeningHours hours: open.get(day)) {
-            long daytime = CalendarHelper.getTime(world); //0-23999 by default
-            int scaledOpening = CalendarHelper.getScaledTime(hours.open);
-            int scaledClosing = CalendarHelper.getScaledTime(hours.close);
-            boolean isOpen = daytime >= scaledOpening && daytime <= scaledClosing;
+
+            boolean isOpen = CalendarHelper.isBetween(world, hours.open, hours.close);
             if (isOpen && (player == null || getContents(player).size() > 0)) return true;
         }
 

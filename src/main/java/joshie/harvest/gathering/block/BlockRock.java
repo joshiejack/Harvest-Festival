@@ -19,6 +19,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Locale;
 
 import static joshie.harvest.api.gathering.ISmashable.ToolType.HAMMER;
@@ -76,15 +79,15 @@ public class BlockRock extends BlockHFSmashable<BlockRock, Rock> {
     }
 
     @Override
-    public ItemStack getDrop(EntityPlayer player, World world, BlockPos pos, IBlockState state, float luck) {
+    public List<ItemStack> getDrops(EntityPlayer player, World world, BlockPos pos, IBlockState state, float luck) {
         switch (getEnumFromState(state)) {
-            case STONE_SMALL: return new ItemStack(Blocks.STONE, 1);
-            case STONE_MEDIUM: return new ItemStack(Blocks.STONE, 2);
-            case STONE_LARGE: return new ItemStack(Blocks.STONE, 4);
-            case BOULDER_SMALL: return new ItemStack(Blocks.STONE, 3);
-            case BOULDER_MEDIUM: return new ItemStack(Blocks.STONE, 6);
-            case BOULDER_LARGE: return new ItemStack(Blocks.STONE, 12);
-            default: return null;
+            case STONE_SMALL: return Collections.singletonList(new ItemStack(Blocks.STONE, 1));
+            case STONE_MEDIUM: return Collections.singletonList(new ItemStack(Blocks.STONE, 2));
+            case STONE_LARGE: return Collections.singletonList(new ItemStack(Blocks.STONE, 4));
+            case BOULDER_SMALL: return Collections.singletonList(new ItemStack(Blocks.STONE, 3));
+            case BOULDER_MEDIUM: return Collections.singletonList(new ItemStack(Blocks.STONE, 6));
+            case BOULDER_LARGE: return Collections.singletonList(new ItemStack(Blocks.STONE, 12));
+            default: return new ArrayList<>();
         }
     }
 

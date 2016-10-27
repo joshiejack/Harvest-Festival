@@ -472,6 +472,11 @@ harvestfestival.ore.silver=Silver Node
 harvestfestival.ore.gold=Gold Node
 harvestfestival.ore.mystril=Mystril Node
 harvestfestival.ore.gem=Gem Node
+harvestfestival.ore.diamond=Diamond Node
+harvestfestival.ore.emerald=Emerald Node
+harvestfestival.ore.ruby=Ruby Node
+harvestfestival.ore.topaz=Topaz Node
+harvestfestival.ore.amethyst=Amethyst Node
 harvestfestival.portal=Mine Portal
 
 #Mine Materials

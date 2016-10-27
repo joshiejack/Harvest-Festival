@@ -47,8 +47,8 @@ public class MiningChunk implements IChunkGenerator {
     protected static final List<Block> IRREPLACABLE = Lists.newArrayList();
 
     static {
-        MONSTERS.add(new Biome.SpawnListEntry(EntityDarkChick.class, 100, 1, 3));
-        MONSTERS.add(new Biome.SpawnListEntry(EntityDarkChicken.class, 50, 1, 2));
+        MONSTERS.add(new Biome.SpawnListEntry(EntityDarkChick.class, 70, 1, 2));
+        MONSTERS.add(new Biome.SpawnListEntry(EntityDarkChicken.class, 50, 1, 1));
         MONSTERS.add(new Biome.SpawnListEntry(EntityDarkSheep.class, 30, 1, 1));
         MONSTERS.add(new Biome.SpawnListEntry(EntityDarkCow.class, 15, 1, 1));
         IRREPLACABLE.add(ORE.getBlock());
@@ -295,7 +295,7 @@ public class MiningChunk implements IChunkGenerator {
             int randXTime = 7 + rand.nextInt(10);
             int randZTime = 7 + rand.nextInt(10);
             int radius = 1 + rand.nextInt(3);
-            int oreChance = MiningHelper.getOreChance(season, rand);
+            int oreChance = MiningHelper.getOreChance(season, MiningHelper.getFloor(chunkX, chunkY), rand);
             for (int k = 0; k < maxLoop; k++) {
                 if (first) {
                     first = false;

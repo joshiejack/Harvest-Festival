@@ -94,6 +94,42 @@
       { "model": "harvestfestival:mine/ore_mystril", "weight": 1, "y": 90 },
       { "model": "harvestfestival:mine/ore_mystril", "weight": 1, "y": 180 },
       { "model": "harvestfestival:mine/ore_mystril", "weight": 1, "y": 270 }
+    ],
+    "ore=diamond": [
+      { "model": "harvestfestival:mine/ore_diamond", "weight": 1 },
+      { "model": "harvestfestival:mine/ore_diamond", "weight": 1, "y": 90 },
+      { "model": "harvestfestival:mine/ore_diamond", "weight": 1, "y": 180 },
+      { "model": "harvestfestival:mine/ore_diamond", "weight": 1, "y": 270 }
+    ],
+    "ore=emerald": [
+      { "model": "harvestfestival:mine/ore_emerald", "weight": 1 },
+      { "model": "harvestfestival:mine/ore_emerald", "weight": 1, "y": 90 },
+      { "model": "harvestfestival:mine/ore_emerald", "weight": 1, "y": 180 },
+      { "model": "harvestfestival:mine/ore_emerald", "weight": 1, "y": 270 }
+    ],
+    "ore=ruby": [
+      { "model": "harvestfestival:mine/ore_ruby", "weight": 1 },
+      { "model": "harvestfestival:mine/ore_ruby", "weight": 1, "y": 90 },
+      { "model": "harvestfestival:mine/ore_ruby", "weight": 1, "y": 180 },
+      { "model": "harvestfestival:mine/ore_ruby", "weight": 1, "y": 270 }
+    ],
+    "ore=amethyst": [
+      { "model": "harvestfestival:mine/ore_amethyst", "weight": 1 },
+      { "model": "harvestfestival:mine/ore_amethyst", "weight": 1, "y": 90 },
+      { "model": "harvestfestival:mine/ore_amethyst", "weight": 1, "y": 180 },
+      { "model": "harvestfestival:mine/ore_amethyst", "weight": 1, "y": 270 }
+    ],
+    "ore=topaz": [
+      { "model": "harvestfestival:mine/ore_topaz", "weight": 1 },
+      { "model": "harvestfestival:mine/ore_topaz", "weight": 1, "y": 90 },
+      { "model": "harvestfestival:mine/ore_topaz", "weight": 1, "y": 180 },
+      { "model": "harvestfestival:mine/ore_topaz", "weight": 1, "y": 270 }
+    ],
+    "ore=gem": [
+      { "model": "harvestfestival:mine/ore_gem", "weight": 1 },
+      { "model": "harvestfestival:mine/ore_gem", "weight": 1, "y": 90 },
+      { "model": "harvestfestival:mine/ore_gem", "weight": 1, "y": 180 },
+      { "model": "harvestfestival:mine/ore_gem", "weight": 1, "y": 270 }
     ]
   }
 }

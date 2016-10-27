@@ -16,6 +16,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
+import static joshie.harvest.mining.MiningHelper.CHICK_FLOORS;
+
 public class EntityDarkChick extends EntityMob {
     public float wingRotation;
     public float destPos;
@@ -60,7 +62,7 @@ public class EntityDarkChick extends EntityMob {
     @Override
     protected boolean isValidLightLevel() {
         int floor = MiningHelper.getFloor((int)posX >> 4, (int) posY);
-        return floor >= 10 && floor % 7 == 0;
+        return floor >= 10 && floor % CHICK_FLOORS == 0;
     }
 
     @Override

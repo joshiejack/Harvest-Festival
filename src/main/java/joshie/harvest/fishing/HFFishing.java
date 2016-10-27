@@ -3,7 +3,7 @@ package joshie.harvest.fishing;
 import joshie.harvest.HarvestFestival;
 import joshie.harvest.core.lib.EntityIDs;
 import joshie.harvest.core.util.annotations.HFLoader;
-import joshie.harvest.fishing.condition.ConditionDaytime;
+import joshie.harvest.fishing.condition.ConditionTime;
 import joshie.harvest.fishing.condition.ConditionLocation;
 import joshie.harvest.fishing.condition.ConditionSeason;
 import joshie.harvest.fishing.entity.EntityFishHookHF;
@@ -24,7 +24,7 @@ public class HFFishing {
     public static final ItemFishingRod FISHING_ROD = new ItemFishingRod().register("fishing_rod");
 
     public static void preInit(){
-        LootConditionManager.registerCondition(new ConditionDaytime.Serializer());
+        LootConditionManager.registerCondition(new ConditionTime.Serializer());
         LootConditionManager.registerCondition(new ConditionLocation.Serializer());
         LootConditionManager.registerCondition(new ConditionSeason.Serializer());
         EntityRegistry.registerModEntity(EntityFishHookHF.class, "hook", EntityIDs.FISHING, HarvestFestival.instance, 64, 5, true);

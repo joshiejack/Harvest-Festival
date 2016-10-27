@@ -26,6 +26,7 @@ import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import java.util.List;
 import java.util.Random;
 
+import static joshie.harvest.api.calendar.Season.WINTER;
 import static joshie.harvest.mining.HFMining.MINING_ID;
 import static joshie.harvest.mining.gen.MineManager.CHUNK_BOUNDARY;
 
@@ -38,13 +39,16 @@ public class MiningHelper {
     public static final int FLOOR_HEIGHT = 6;
     public static final int MAX_FLOORS = (int) Math.floor(WORLD_HEIGHT / FLOOR_HEIGHT);
     public static final int MAX_LOOP = (int) WORLD_HEIGHT - FLOOR_HEIGHT;
+    public static final int CHICK_FLOORS = 7;
+    public static final int CHICKEN_FLOORS = 10;
+    public static final int SHEEP_FLOORS = 13;
+    public static final int COW_FLOORS = 18;
 
-    public static ItemStack getLoot(ResourceLocation loot, World world, EntityPlayer player, float luck) {
+    public static List<ItemStack> getLoot(ResourceLocation loot, World world, EntityPlayer player, float luck) {
         LootContext.Builder lootcontext$builder = new LootContext.Builder((WorldServer) world);
         lootcontext$builder.withLuck(player.getLuck() + luck);
         lootcontext$builder.withPlayer(player);
-        List<ItemStack> stacks = world.getLootTableManager().getLootTableFromLocation(loot).generateLootForPools(world.rand, lootcontext$builder.build());
-        return stacks.size() > 0 ? stacks.get(0) : null;
+        return world.getLootTableManager().getLootTableFromLocation(loot).generateLootForPools(world.rand, lootcontext$builder.build());
     }
 
     public static int getMineID(int chunkZ) {
@@ -160,7 +164,23 @@ public class MiningHelper {
         return (chunkIndex * MAX_FLOORS) + floorIndex; //Floor
     }
 
-    public static int getOreChance(Season season, Random rand) {
-        return season == Season.WINTER ? rand.nextInt(3) == 0 ? 8 + rand.nextInt(12) : 15 + rand.nextInt(10) : rand.nextInt(5) == 0 ? 10 + rand.nextInt(15) : 20 + rand.nextInt(15);
+    public static int getOreChance(Season season, int floor, Random rand) {
+        int minimum = season == WINTER ? 8 : 10;
+        int maximum = season == WINTER ? 10: 15;
+        if (floor %COW_FLOORS == 0) {
+            minimum -= 5;
+            maximum -= 5;
+        } else if (floor %SHEEP_FLOORS == 0) {
+            minimum -= 3;
+            maximum -= 3;
+        } else if (floor %CHICKEN_FLOORS == 0) {
+            minimum -= 2;
+            maximum -= 2;
+        } else if (floor %CHICK_FLOORS == 0) {
+            minimum--;
+            maximum--;
+        }
+
+        return rand.nextInt(5) == 0 ? minimum + rand.nextInt(maximum) : minimum + 10 + rand.nextInt(maximum);
     }
 }

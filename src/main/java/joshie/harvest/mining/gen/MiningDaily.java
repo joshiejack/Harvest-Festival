@@ -42,8 +42,8 @@ public class MiningDaily {
         //Add new ores
         Season season = HFApi.calendar.getDate(world).getSeason();
         for (int loopY = 0; loopY < MAX_LOOP; loopY += MiningHelper.FLOOR_HEIGHT) {
-            int oreChance = MiningHelper.getOreChance(season, world.rand);
             int floor = MiningHelper.getFloor(chunk.xPosition, loopY);
+            int oreChance = MiningHelper.getOreChance(season, floor, world.rand);
             int y = loopY + 1;
             for (int x = 0; x < 16; x++) {
                 for (int z = 0; z < 16; z++) {

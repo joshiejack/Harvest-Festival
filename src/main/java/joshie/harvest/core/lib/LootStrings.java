@@ -32,8 +32,8 @@ public class LootStrings {
     public static final ResourceLocation BLACKSMITH_CHEST = register("chests/blacksmith");
     public static final ResourceLocation BLACKSMITH_FRAME = register("frames/blacksmith");
     public static final ResourceLocation BARN_FRAME = register("frames/barn");
-    public static final ResourceLocation MINE_SPRING = register("gameplay/mining_junk");
-    public static final ResourceLocation MINE_SPRING_GEM = register("gameplay/mining_gems");
+    public static final ResourceLocation MINING = register("gameplay/mining_junk");
+    public static final ResourceLocation MINING_GEMS = register("gameplay/mining_gems");
     public static final ResourceLocation FISHING_BASIC = register("gameplay/fishing_basic");
     public static final ResourceLocation FISHING_COPPER = register("gameplay/fishing_copper");
     public static final ResourceLocation FISHING_SILVER = register("gameplay/fishing_silver");

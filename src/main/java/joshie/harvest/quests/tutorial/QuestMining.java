@@ -5,6 +5,7 @@ import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.api.quests.QuestQuestion;
+import joshie.harvest.api.quests.Selection;
 import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.mining.HFMining;
 import joshie.harvest.mining.item.ItemMaterial.Material;
@@ -28,7 +29,7 @@ public class QuestMining extends QuestQuestion {
 
     public QuestMining() {
         super(new TutorialSelection("upgrading"));
-        setNPCs(BUILDER, GODDESS, ANIMAL_OWNER, GS_OWNER, SEED_OWNER, MILKMAID, TOOL_OWNER, MINER);
+        setNPCs(BUILDER, GODDESS, ANIMAL_OWNER, GS_OWNER, FLOWER_GIRL, MILKMAID, BLACKSMITH, MINER);
     }
 
     @Override
@@ -38,12 +39,12 @@ public class QuestMining extends QuestQuestion {
 
     @Override
     public Selection getSelection(EntityPlayer player, INPC npc) {
-        return npc == TOOL_OWNER ? super.getSelection(player, npc) : null;
+        return npc == BLACKSMITH ? super.getSelection(player, npc) : null;
     }
 
     @Override
     public String getLocalizedScript(EntityPlayer player, EntityLiving entity, INPC npc) {
-        if (quest_stage == BUILD && npc != TOOL_OWNER && player.worldObj.rand.nextFloat() < 0.25F) {
+        if (quest_stage == BUILD && npc != BLACKSMITH && player.worldObj.rand.nextFloat() < 0.25F) {
             String suffix = ((joshie.harvest.npc.NPC)npc).getRegistryName().getResourcePath();
             boolean blacksmith = TownHelper.getClosestTownToEntity(entity).hasBuilding(HFBuildings.BLACKSMITH);
             //They tell the player that they should go and visit the blacksmith
@@ -56,7 +57,7 @@ public class QuestMining extends QuestQuestion {
             //Builder, Goddess, Barn Owner, General Store Owner, Seed Owner and Milkmaid
             //All tell the player that they should probably get a mine and a blacksmith built
             return getLocalized("blacksmith." + suffix);
-        } else if  (npc == TOOL_OWNER) {
+        } else if  (npc == BLACKSMITH) {
             if (isCompletedEarly) {
                 return getLocalized("completed");
             } else if (quest_stage == BUILD) {
@@ -92,8 +93,8 @@ public class QuestMining extends QuestQuestion {
     }
 
     @Override
-    public void onChatClosed(EntityPlayer player, EntityLiving entity, INPC npc) {
-        if (npc == TOOL_OWNER) {
+    public void onChatClosed(EntityPlayer player, EntityLiving entity, INPC npc, boolean isSneaking) {
+        if (npc == BLACKSMITH) {
             if (isCompletedEarly || quest_stage == EXPLAIN) {
                 if (isCompletedEarly) complete(player);
                 else increaseStage(player);

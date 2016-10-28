@@ -22,7 +22,7 @@ import static joshie.harvest.api.calendar.Season.SUMMER;
 import static joshie.harvest.api.core.ITiered.ToolTier.BASIC;
 import static joshie.harvest.core.helpers.InventoryHelper.ITEM_STACK;
 import static joshie.harvest.core.helpers.InventoryHelper.SPECIAL;
-import static joshie.harvest.npc.HFNPCs.SEED_OWNER;
+import static joshie.harvest.npc.HFNPCs.FLOWER_GIRL;
 import static joshie.harvest.quests.Quests.TUTORIAL_CARPENTER;
 
 @HFQuest("tutorial.crops")
@@ -34,7 +34,7 @@ public class QuestCrops extends QuestQuestion {
 
     public QuestCrops() {
         super(new TutorialSelection("crops"));
-        setNPCs(SEED_OWNER);
+        setNPCs(FLOWER_GIRL);
     }
 
     @Override

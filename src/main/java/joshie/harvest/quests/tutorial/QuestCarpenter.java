@@ -27,7 +27,7 @@ public class QuestCarpenter extends Quest {
     private boolean attempted = false;
 
     public QuestCarpenter() {
-        setNPCs(GODDESS, BUILDER, SEED_OWNER);
+        setNPCs(GODDESS, BUILDER, FLOWER_GIRL);
     }
 
     @Override
@@ -77,7 +77,7 @@ public class QuestCarpenter extends Quest {
                     attempted = true;
                     return getLocalized("reminder.carpenter", getWoodAmount());
                 }
-            } else if (npc == HFNPCs.SEED_OWNER) {
+            } else if (npc == HFNPCs.FLOWER_GIRL) {
                 /*Jade thanks you for the flowers, she then proceeds
                   She then informs you that the goddess would like to see you again
                   She has a reward, She says to come back to see her after you have
@@ -100,7 +100,7 @@ public class QuestCarpenter extends Quest {
 
     /* Rewards Logic */
     @Override
-    public void onChatClosed(EntityPlayer player, EntityLiving entity, INPC npc) {
+    public void onChatClosed(EntityPlayer player, EntityLiving entity, INPC npc, boolean wasSneaking) {
         if (quest_stage == WELCOME && npc == HFNPCs.GODDESS) {
             increaseStage(player);
         } else if (quest_stage == LOGS && npc == HFNPCs.GODDESS) {
@@ -114,7 +114,7 @@ public class QuestCarpenter extends Quest {
                 if (attempted && InventoryHelper.takeItemsIfHeld(player, ORE_DICTIONARY, "logWood", HFQuests.LOGS_CARPENTER) != null) {
                     rewardItem(player, HFBuildings.CARPENTER.getBlueprint());
                 } else attempted = true;
-            } else if (npc == HFNPCs.SEED_OWNER){
+            } else if (npc == HFNPCs.FLOWER_GIRL){
                 if (InventoryHelper.takeItemsIfHeld(player, SPECIAL, FLOWER, 1) != null) {
                     increaseStage(player);
                 }

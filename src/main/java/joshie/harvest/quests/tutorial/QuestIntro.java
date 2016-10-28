@@ -27,10 +27,11 @@ public class QuestIntro extends QuestQuestion {
 
     @SideOnly(Side.CLIENT)
     public String getLocalizedScript(EntityPlayer player, EntityLiving entity, INPC npc) {
+        System.out.println(quest_stage);
         //The goddess says hello and asks if you are new
         if (isCompletedEarly) {
             return getLocalized("completed");
-        } else  if (quest_stage == HELLO) return getLocalized("hello");
+        } else if (quest_stage == HELLO) return getLocalized("hello");
         else if (quest_stage == BACKSTORY) {
             //The goddess gives you a back story about the world, she then lets the player
             //know that she will despawn after a while, but will leave a goddess flower behind
@@ -40,8 +41,9 @@ public class QuestIntro extends QuestQuestion {
     }
 
     @Override
-    public void onChatClosed(EntityPlayer player, EntityLiving entity, INPC npc) {
+    public void onChatClosed(EntityPlayer player, EntityLiving entity, INPC npc, boolean isSneaking) {
         if (isCompletedEarly) QuestHelper.INSTANCE.completeQuest(TUTORIAL_CARPENTER, player);
+        System.out.println("closed" + quest_stage);
         if (quest_stage == BACKSTORY || isCompletedEarly) {
             complete(player);
         }

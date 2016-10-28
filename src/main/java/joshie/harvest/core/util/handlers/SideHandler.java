@@ -1,7 +1,7 @@
 package joshie.harvest.core.util.handlers;
 
 import joshie.harvest.animals.tracker.AnimalTracker;
-import joshie.harvest.town.TownTracker;
+import joshie.harvest.town.tracker.TownTracker;
 import net.minecraft.world.World;
 
 public abstract class SideHandler {

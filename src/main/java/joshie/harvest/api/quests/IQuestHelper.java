@@ -1,5 +1,6 @@
 package joshie.harvest.api.quests;
 
+import joshie.harvest.api.npc.INPC;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 

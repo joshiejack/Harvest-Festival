@@ -2,12 +2,13 @@ package joshie.harvest.quests.trade;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.CalendarDate;
+import joshie.harvest.api.core.ITiered.ToolTier;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.calendar.CalendarHelper;
 import joshie.harvest.core.HFTrackers;
+import joshie.harvest.core.base.item.ItemTool;
 import joshie.harvest.core.lib.HFSounds;
-import joshie.harvest.tools.HFTools;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -17,7 +18,7 @@ import net.minecraft.util.SoundCategory;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import static joshie.harvest.api.core.ITiered.ToolTier.CURSED;
+import static joshie.harvest.api.core.ITiered.ToolTier.BLESSED;
 import static joshie.harvest.core.helpers.SpawnItemHelper.spawnXP;
 import static joshie.harvest.npc.HFNPCs.PRIEST;
 
@@ -25,12 +26,6 @@ import static joshie.harvest.npc.HFNPCs.PRIEST;
 @HFQuest("trade.cursed")
 public class QuestBless extends QuestTrade {
     private static final int TEST = 0;
-    private static final ItemStack hoe = HFTools.HOE.getStack(CURSED);
-    private static final ItemStack sickle = HFTools.SICKLE.getStack(CURSED);
-    private static final ItemStack watering = HFTools.WATERING_CAN.getStack(CURSED);
-    private static final ItemStack axe = HFTools.AXE.getStack(CURSED);
-    private static final ItemStack hammer = HFTools.HAMMER.getStack(CURSED);
-    private CalendarDate today;
     private CalendarDate date;
     private ItemStack tool;
 
@@ -49,7 +44,7 @@ public class QuestBless extends QuestTrade {
     public String getLocalizedScript(EntityPlayer player, EntityLiving entity, INPC npc) {
         if (quest_stage == TEST) {
             boolean hasGold = HFTrackers.getPlayerTrackerFromPlayer(player).getStats().getGold() >= 10000L;
-            boolean hasTool = isHolding(player, hoe) || isHolding(player, sickle) || isHolding(player, watering) || isHolding(player, axe) || isHolding(player, hammer);
+            boolean hasTool = isHolding(player);
             if (hasGold && hasTool) {
                 return getLocalized("accept");
             } else if (hasTool) {
@@ -66,15 +61,10 @@ public class QuestBless extends QuestTrade {
     }
 
     @Override
-    public void onChatOpened(EntityPlayer player, EntityLiving entity, INPC npc) {
-        today = HFApi.calendar.getDate(player.worldObj);
-    }
-
-    @Override
-    public void onChatClosed(EntityPlayer player, EntityLiving entity, INPC npc) {
+    public void onChatClosed(EntityPlayer player, EntityLiving entity, INPC npc, boolean isSneaking) {
         if (quest_stage == TEST) {
             boolean hasGold = HFTrackers.getPlayerTrackerFromPlayer(player).getStats().getGold() >= 10000L;
-            boolean hasTool = isHolding(player, hoe) || isHolding(player, sickle) || isHolding(player, watering) || isHolding(player, axe) || isHolding(player, hammer);
+            boolean hasTool = isHolding(player);
             if (hasGold && hasTool) {
                 increaseStage(player);
                 date = HFApi.calendar.getDate(player.worldObj).copy();
@@ -85,6 +75,7 @@ public class QuestBless extends QuestTrade {
                 takeHeldStack(player, 1);
             }
         } else {
+            CalendarDate today = HFApi.calendar.getDate(player.worldObj);
             if (getDifference(date, today) >= 3) {
                 complete(player);
                 player.worldObj.playSound(player, player.posX, player.posY, player.posZ, HFSounds.BLESS_TOOL, SoundCategory.NEUTRAL, 0.25F, 1F);
@@ -123,7 +114,16 @@ public class QuestBless extends QuestTrade {
         return nbt;
     }
 
-    private boolean isHolding(EntityPlayer player, ItemStack stack) {
-        return player.getHeldItemMainhand() != null && player.getHeldItemMainhand().getItem() == stack.getItem() && player.getHeldItemMainhand().getItemDamage() == stack.getItemDamage();
+    private boolean isHolding(EntityPlayer player) {
+        ItemStack held = player.getHeldItemMainhand();
+        if (held != null) {
+            if (held.getItem() instanceof ItemTool) {
+                ItemTool tool = ((ItemTool)held.getItem());
+                ToolTier tier = tool.getTier(held);
+                return tier == BLESSED;
+            }
+        }
+
+        return false;
     }
 }

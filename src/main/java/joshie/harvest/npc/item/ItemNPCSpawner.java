@@ -7,7 +7,7 @@ import joshie.harvest.npc.NPC;
 import joshie.harvest.npc.NPCHelper;
 import joshie.harvest.npc.NPCRegistry;
 import joshie.harvest.npc.entity.EntityNPC;
-import joshie.harvest.town.TownData;
+import joshie.harvest.town.data.TownData;
 import joshie.harvest.town.TownHelper;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.player.EntityPlayer;

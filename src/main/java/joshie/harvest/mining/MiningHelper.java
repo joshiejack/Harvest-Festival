@@ -5,7 +5,7 @@ import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.mining.block.BlockPortal.Portal;
 import joshie.harvest.mining.gen.MiningProvider;
-import joshie.harvest.town.TownTracker;
+import joshie.harvest.town.tracker.TownTracker;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;

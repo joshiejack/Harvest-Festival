@@ -3,7 +3,7 @@ package joshie.harvest.core;
 import joshie.harvest.animals.tracker.AnimalTrackerServer;
 import joshie.harvest.core.handlers.DailyTickHandler;
 import joshie.harvest.core.lib.HFModInfo;
-import joshie.harvest.town.TownTrackerServer;
+import joshie.harvest.town.tracker.TownTrackerServer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldSavedData;

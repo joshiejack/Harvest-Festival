@@ -19,12 +19,12 @@ import java.util.Set;
 
 import static joshie.harvest.api.calendar.Season.*;
 import static joshie.harvest.core.helpers.InventoryHelper.SPECIAL;
-import static joshie.harvest.npc.HFNPCs.SEED_OWNER;
+import static joshie.harvest.npc.HFNPCs.FLOWER_GIRL;
 
 @HFQuest("trade.seeds")
 public class QuestFlowerTrader extends QuestTrade {
     public QuestFlowerTrader() {
-        setNPCs(SEED_OWNER);
+        setNPCs(FLOWER_GIRL);
     }
 
     @Override

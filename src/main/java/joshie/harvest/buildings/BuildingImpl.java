@@ -8,6 +8,7 @@ import joshie.harvest.buildings.placeable.Placeable.ConstructionStage;
 import joshie.harvest.buildings.placeable.entities.PlaceableNPC;
 import joshie.harvest.core.helpers.MCServerHelper;
 import joshie.harvest.town.TownHelper;
+import joshie.harvest.town.data.TownDataServer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumActionResult;
@@ -165,7 +166,7 @@ public class BuildingImpl extends Impl<BuildingImpl> implements Building {
                 for (Placeable placeable : components) placeable.place(world, pos, rotation, ConstructionStage.DECORATE, false);
                 for (Placeable placeable : components) placeable.place(world, pos, rotation, ConstructionStage.PAINT, false);
                 for (Placeable placeable : components) placeable.place(world, pos, rotation, ConstructionStage.MOVEIN, false);
-                TownHelper.getClosestTownToBlockPos(world, pos).addBuilding(world, this, rotation, pos);
+                TownHelper.<TownDataServer>getClosestTownToBlockPos(world, pos).addBuilding(world, this, rotation, pos);
                 MCServerHelper.markForUpdate(world, pos);
             }
         }

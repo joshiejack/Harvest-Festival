@@ -7,10 +7,9 @@ import joshie.harvest.npc.NPC;
 import joshie.harvest.npc.NPCHelper;
 import joshie.harvest.npc.entity.ai.EntityAISchedule;
 import joshie.harvest.npc.entity.ai.EntityAITalkingTo;
-import joshie.harvest.town.TownData;
-import joshie.harvest.town.TownDataServer;
 import joshie.harvest.town.TownHelper;
-import joshie.harvest.town.TownTracker;
+import joshie.harvest.town.data.TownData;
+import joshie.harvest.town.data.TownDataServer;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIOpenDoor;
@@ -90,7 +89,7 @@ public abstract class EntityNPCHuman<E extends EntityNPCHuman> extends EntityNPC
         TownHelper.createTownIfDoesntExist(worldObj, new BlockPos(this)); //Force a town to exist near this entity
         this.homeTown = TownHelper.getClosestTownToEntity(this);
         //A town cannot exist without a builder
-        if (this.homeTown == TownTracker.NULL_TOWN) this.setDead();
+        if (this.homeTown == null) this.setDead();
         else {
             this.townID = homeTown.getID();
             this.spawned = homeTown.getCoordinatesFor(getNPC().getLocation(HOME));
@@ -102,7 +101,7 @@ public abstract class EntityNPCHuman<E extends EntityNPCHuman> extends EntityNPC
 
     public void setSpawnHome(TownData data) {
         this.homeTown = data;
-        if (this.homeTown == TownTracker.NULL_TOWN) this.setDead();
+        if (this.homeTown == null) this.setDead();
         else {
             this.townID = homeTown.getID();
             this.spawned = homeTown.getCoordinatesFor(getNPC().getLocation(HOME));

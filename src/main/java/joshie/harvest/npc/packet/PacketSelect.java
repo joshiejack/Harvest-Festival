@@ -3,14 +3,14 @@ package joshie.harvest.npc.packet;
 import io.netty.buffer.ByteBuf;
 import joshie.harvest.HarvestFestival;
 import joshie.harvest.api.quests.Quest;
-import joshie.harvest.api.quests.Quest.Selection;
+import joshie.harvest.api.quests.Selection;
 import joshie.harvest.core.handlers.GuiHandler;
-import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.network.Packet;
 import joshie.harvest.core.network.Packet.Side;
 import joshie.harvest.core.network.PenguinPacket;
 import joshie.harvest.npc.entity.EntityNPC;
 import joshie.harvest.npc.gui.ShopSelection;
+import joshie.harvest.quests.QuestHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.common.eventhandler.Event.Result;
 
@@ -50,7 +50,7 @@ public class PacketSelect extends PenguinPacket {
         EntityNPC npc = (EntityNPC) player.worldObj.getEntityByID(npcID);
         if (quest == -1) selection = SHOPS;
         else {
-            theQuest = HFTrackers.getPlayerTrackerFromPlayer(player).getQuests().getAQuest(Quest.REGISTRY.getValues().get(quest));
+            theQuest = QuestHelper.getSelectiomFromID(player, quest);
             selection = theQuest != null ? theQuest.getSelection(player, npc.getNPC()): null;
         }
 

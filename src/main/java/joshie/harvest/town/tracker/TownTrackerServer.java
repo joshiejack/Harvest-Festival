@@ -1,13 +1,13 @@
-package joshie.harvest.town;
+package joshie.harvest.town.tracker;
 
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
-import joshie.harvest.api.buildings.BuildingLocation;
-import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.npc.entity.EntityNPCBuilder;
+import joshie.harvest.town.data.TownData;
+import joshie.harvest.town.data.TownDataServer;
 import joshie.harvest.town.packet.PacketNewTown;
 import joshie.harvest.town.packet.PacketSyncTowns;
 import net.minecraft.entity.Entity;
@@ -22,20 +22,22 @@ import java.util.HashSet;
 import java.util.Map.Entry;
 import java.util.UUID;
 
-import static joshie.harvest.town.TownData.MINE_ENTRANCE;
+import static joshie.harvest.town.BuildingLocations.MINEENTRANCE;
 
-public class TownTrackerServer extends TownTracker {
-    private static final BuildingLocation MINE = new BuildingLocation(HFBuildings.MINING_HILL, MINE_ENTRANCE);
+public class TownTrackerServer extends TownTracker<TownDataServer> {
     private BiMap<UUID, Integer> townIDs = HashBiMap.create();
 
     public void newDay() {
-        for (TownData town: townData) {
+        for (TownDataServer town: townData) {
             town.newDay(getWorld());
         }
     }
 
     public void syncToPlayer(EntityPlayer player) {
         PacketHandler.sendToClient(new PacketSyncTowns(townData), player);
+        for (TownDataServer town: townData) {
+            town.getQuests().syncAllQuests();
+        }
     }
 
     @Override
@@ -45,8 +47,8 @@ public class TownTrackerServer extends TownTracker {
         if (uuid == null) return default_;
         TownData data = uuidMap.get(uuid);
         if (data == null) return default_;
-        if (!data.hasBuilding(MINE.getResource())) return data.getTownCentre();
-        BlockPos location = data.getCoordinatesFor(MINE);
+        if (!data.hasBuilding(MINEENTRANCE.getResource())) return data.getTownCentre();
+        BlockPos location = data.getCoordinatesFor(MINEENTRANCE);
         return location != null? location : data.getTownCentre();
     }
 
@@ -54,16 +56,16 @@ public class TownTrackerServer extends TownTracker {
     public Rotation getMineOrientation(int mineID) {
         UUID uuid = townIDs.inverse().get(mineID);
         if (uuid == null) return Rotation.NONE;
-        TownData data = uuidMap.get(uuid);
-        if (data == null || !data.hasBuilding(MINE.getResource())) return Rotation.NONE;
-        return data.getFacingFor(MINE.getResource());
+        TownDataServer data = uuidMap.get(uuid);
+        if (data == null || !data.hasBuilding(MINEENTRANCE.getResource())) return Rotation.NONE;
+        return data.getFacingFor(MINEENTRANCE.getResource());
     }
 
     @Override
     public int getMineIDFromCoordinates(BlockPos pos) {
         TownData data = getClosestTownToBlockPos(pos);
         if (data == null) return -1;
-        if (!data.hasBuilding(MINE.getResource())) return -1;
+        if (!data.hasBuilding(MINEENTRANCE.getResource())) return -1;
         if (townIDs.containsKey(data.getID())) {
             return townIDs.get(data.getID());
         } else return matchUUIDWithMineID(data.getID());
@@ -93,9 +95,9 @@ public class TownTrackerServer extends TownTracker {
     }
 
     @Override
-    public TownData createNewTown(BlockPos pos, boolean builder) {
+    public TownDataServer createNewTown(BlockPos pos, boolean builder) {
         World world = getWorld();
-        TownDataServer data = new TownDataServer(pos);
+        TownDataServer data = new TownDataServer(getDimension(), pos);
         if (builder) {
             EntityNPCBuilder creator = new EntityNPCBuilder(world);
             creator.setSpawnHome(data); //Set the spawn town
@@ -114,7 +116,7 @@ public class TownTrackerServer extends TownTracker {
     }
 
     public void readFromNBT(NBTTagCompound nbt) {
-        townData = new HashSet<>();
+        townData = new HashSet<>(); //Reset the data
         NBTTagList dimensionTowns = nbt.getTagList("Towns", 10);
         for (int j = 0; j < dimensionTowns.tagCount(); j++) {
             NBTTagCompound tag = dimensionTowns.getCompoundTagAt(j);

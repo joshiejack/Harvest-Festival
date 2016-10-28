@@ -10,7 +10,7 @@ import net.minecraft.world.World;
 
 import static joshie.harvest.api.calendar.Weekday.SUNDAY;
 import static joshie.harvest.api.npc.INPC.Location.HOME;
-import static joshie.harvest.npc.schedule.ScheduleLocations.*;
+import static joshie.harvest.town.BuildingLocations.*;
 
 public class ScheduleAshlee implements ISchedule {
     @Override

@@ -320,7 +320,7 @@ harvestfestival.junk.treasure=Pirate Treasure
 #Tools
 harvestfestival.tool.broken=[BROKEN]
 #Hoe
-harvestfestival.hoe.basic=Hoe
+harvestfestival.hoe.basic=Normal Hoe
 harvestfestival.hoe.copper=Copper Hoe
 harvestfestival.hoe.silver=Silver Hoe
 harvestfestival.hoe.gold=Gold Hoe
@@ -330,7 +330,7 @@ harvestfestival.hoe.blessed=Blessed Hoe
 harvestfestival.hoe.mythic=Mythic Hoe
 
 #Sickle
-harvestfestival.sickle.basic=Sickle
+harvestfestival.sickle.basic=Normal Sickle
 harvestfestival.sickle.copper=Copper Sickle
 harvestfestival.sickle.silver=Silver Sickle
 harvestfestival.sickle.gold=Gold Sickle
@@ -340,7 +340,7 @@ harvestfestival.sickle.blessed=Blessed Sickle
 harvestfestival.sickle.mythic=Mythic Sickle
 
 #Watering Can
-harvestfestival.wateringcan.basic=Watering Can
+harvestfestival.wateringcan.basic=Normal Watering Can
 harvestfestival.wateringcan.copper=Copper Watering Can
 harvestfestival.wateringcan.silver=Silver Watering Can
 harvestfestival.wateringcan.gold=Gold Watering Can
@@ -350,7 +350,7 @@ harvestfestival.wateringcan.blessed=Blessed Watering Can
 harvestfestival.wateringcan.mythic=Mythic Watering Can
 
 #Hammer
-harvestfestival.hammer.basic=Hammer
+harvestfestival.hammer.basic=Normal Hammer
 harvestfestival.hammer.copper=Copper Hammer
 harvestfestival.hammer.silver=Silver Hammer
 harvestfestival.hammer.gold=Gold Hammer
@@ -360,7 +360,7 @@ harvestfestival.hammer.blessed=Blessed Hammer
 harvestfestival.hammer.mythic=Mythic Hammer
 
 #Axe
-harvestfestival.axe.basic=Axe
+harvestfestival.axe.basic=Normal Axe
 harvestfestival.axe.copper=Copper Axe
 harvestfestival.axe.silver=Silver Axe
 harvestfestival.axe.gold=Gold Axe
@@ -370,7 +370,7 @@ harvestfestival.axe.blessed=Blessed Axe
 harvestfestival.axe.mythic=Mythic Axe
 
 #Fishing Rod
-harvestfestival.fishing.rod.basic=Fishing Rod
+harvestfestival.fishing.rod.basic=Normal Fishing Rod
 harvestfestival.fishing.rod.copper=Copper Fishing Rod
 harvestfestival.fishing.rod.silver=Silver Fishing Rod
 harvestfestival.fishing.rod.gold=Gold Fishing Rod
@@ -1319,6 +1319,9 @@ harvestfestival.quest.recipe.stew.text=Looking after Liara was a real chore. She
 harvestfestival.quest.recipe.milk.strawberry.text=What makes milk even nicer?
 harvestfestival.quest.recipe.toast.text=Yulif hasn't really taught me how to cook much yet. I do know how to make some toast though.
 harvestfestival.quest.recipe.latte.vegetable.text=I need to get rid of this unholy object fast. Please take it.
+
+## Meeting Quests
+harvestfestival.quest.meeting.jacob.text=Thanks a bunch for inviting me here, I'm glad to open my tackle shop for you. For all your hard work I'd like to give you this fishing rod.
 
 ###Achievements
 achievement.harvestfestival.summon=Goddess' Bounty

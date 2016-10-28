@@ -1,6 +1,7 @@
 package joshie.harvest.fishing;
 
 import joshie.harvest.HarvestFestival;
+import joshie.harvest.api.HFApi;
 import joshie.harvest.core.lib.EntityIDs;
 import joshie.harvest.core.util.annotations.HFLoader;
 import joshie.harvest.fishing.condition.ConditionTime;
@@ -29,6 +30,10 @@ public class HFFishing {
         LootConditionManager.registerCondition(new ConditionSeason.Serializer());
         EntityRegistry.registerModEntity(EntityFishHookHF.class, "hook", EntityIDs.FISHING, HarvestFestival.instance, 64, 5, true);
         EntityRegistry.instance().lookupModSpawn(EntityFishHookHF.class, false).setCustomSpawning(null, true);
+    }
+
+    public static void init() {
+        HFApi.npc.getGifts().addToBlacklist(FISHING_ROD);
     }
 
     @SideOnly(Side.CLIENT)

@@ -1,14 +1,15 @@
 package joshie.harvest.npc.gui;
 
-import joshie.harvest.core.handlers.GuiHandler;
 import joshie.harvest.core.HFTrackers;
-import joshie.harvest.core.network.PacketHandler;
+import joshie.harvest.core.handlers.GuiHandler;
 import joshie.harvest.core.helpers.TextHelper;
+import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.npc.NPCHelper;
 import joshie.harvest.npc.entity.EntityNPC;
 import joshie.harvest.npc.packet.PacketGift;
 import joshie.harvest.npc.packet.PacketInfo;
 import joshie.harvest.player.stats.Stats;
+import joshie.harvest.quests.QuestHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.text.TextFormatting;
@@ -171,7 +172,7 @@ public class GuiNPCChat extends GuiNPCBase {
         if (infoGreeting != null) return infoGreeting;
 
         //Scripts
-        String script = HFTrackers.getClientPlayerTracker().getQuests().getScript(player, npc);
+        String script = QuestHelper.getScript(player, npc);
         return script == null ? npc.getNPC().getGreeting(player, npc) : script;
     }
 }

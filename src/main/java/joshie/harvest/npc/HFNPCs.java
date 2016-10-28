@@ -6,9 +6,9 @@ import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.npc.INPCRegistry.Age;
 import joshie.harvest.api.npc.INPCRegistry.Gender;
-import joshie.harvest.core.proxy.HFClientProxy;
 import joshie.harvest.core.base.render.MeshIdentical;
 import joshie.harvest.core.lib.EntityIDs;
+import joshie.harvest.core.proxy.HFClientProxy;
 import joshie.harvest.core.util.annotations.HFLoader;
 import joshie.harvest.npc.entity.*;
 import joshie.harvest.npc.greeting.GreetingCarpenter;
@@ -33,17 +33,16 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import static joshie.harvest.api.calendar.Season.*;
 import static joshie.harvest.api.npc.INPC.Location.HOME;
-import static joshie.harvest.api.npc.INPC.Location.WORK;
+import static joshie.harvest.api.npc.INPC.Location.SHOP;
 import static joshie.harvest.api.npc.INPCRegistry.Age.*;
 import static joshie.harvest.api.npc.INPCRegistry.Gender.FEMALE;
 import static joshie.harvest.api.npc.INPCRegistry.Gender.MALE;
-import static joshie.harvest.buildings.HFBuildings.*;
 import static joshie.harvest.core.helpers.ConfigHelper.getDouble;
 import static joshie.harvest.core.helpers.ConfigHelper.getInteger;
 import static joshie.harvest.core.helpers.RegistryHelper.registerSounds;
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 import static joshie.harvest.core.lib.LoadOrder.HFNPCS;
-import static joshie.harvest.town.TownData.*;
+import static joshie.harvest.town.BuildingLocations.*;
 
 @HFLoader(priority = HFNPCS)
 public class HFNPCs {
@@ -52,8 +51,8 @@ public class HFNPCs {
     public static INPC ANIMAL_OWNER; // Owner of the Animal Barn     (BARN)
     public static INPC CAFE_OWNER; // Owner of the Cafe              (CAFE)
     public static INPC CAFE_GRANNY;// Granny of Cafe Owner           (CAFE)
-    public static INPC SEED_OWNER; // Sister of Yulif                (CARPENTER)
-    public static INPC TOOL_OWNER; // Blacksmith                     (BLACKSMITH)
+    public static INPC FLOWER_GIRL; // Sister of Yulif                (CARPENTER)
+    public static INPC BLACKSMITH; // Blacksmith                     (BLACKSMITH)
     public static INPC PRIEST; //Married to mayor                    (CHURCH)
     public static INPC MAYOR; //Married to priest                    (TOWNHALL)
     public static INPC DAUGHTER_1; //Daughter of Mayor and Priest    (TOWNHALL)
@@ -81,14 +80,14 @@ public class HFNPCs {
         GODDESS = register("goddess", FEMALE, ADULT, 8, SPRING, 0x8CEED3, 0x4EC485).setHeight(1.2F, 0.6F);
         ANIMAL_OWNER = register("jim", MALE, ADULT, 26, SPRING, 0xDE7245, 0x722B19);
         CAFE_OWNER = register("liara", FEMALE, ADULT, 17, SPRING, 0xBEC8EE, 0x8091D0);
-        SEED_OWNER = register("jade", FEMALE, ADULT, 14, SPRING, 0x653081, 0x361840);
+        FLOWER_GIRL = register("jade", FEMALE, ADULT, 14, SPRING, 0x653081, 0x361840);
         DAUGHTER_1 = register("cloe", FEMALE, ADULT, 3, SPRING, 0xFFFF99, 0xB2B200);
         PRIEST = register("thomas", MALE, ELDER, 9, SUMMER, 0x006666, 0x00B2B20);
         CLOCKMAKER_CHILD = register("fenn", MALE, CHILD, 25, SUMMER, 0x228C00, 0x003F00);
         CAFE_GRANNY = register("katlin", FEMALE, ELDER, 12, SUMMER, 0xDDDDDD, 0x777777);
         MAYOR = register("jamie", FEMALE, ELDER, 8, SUMMER, 0xA8AC9A, 0x3B636D);
         BUILDER = register("yulif", MALE, ADULT, 19, SUMMER, 0x313857, 0x121421).setIsBuilder();
-        TOOL_OWNER = register("daniel", MALE, ADULT, 1, WINTER, 0x613827, 0x23150E);
+        BLACKSMITH = register("daniel", MALE, ADULT, 1, WINTER, 0x613827, 0x23150E);
         DAUGHTER_2 = register("abi", FEMALE, CHILD, 27, WINTER, 0xFF99FF, 0xFF20FF);
         CLOCK_WORKER = register("tiberius", MALE, ADULT, 15, WINTER, 0x305A2E, 0x142419);
         GS_OWNER = register("jenni", FEMALE, ADULT, 7, WINTER, 0xDDD0AD, 0xE79043);
@@ -109,25 +108,25 @@ public class HFNPCs {
     }
 
     public static void init() {
-        GODDESS.setLocation(HOME, GODDESS_POND, GODDESS_HOME).setHasInfo(TOOLS.getStackFromEnum(NPCTool.WEATHER), new GreetingWeather());
-        ANIMAL_OWNER.setLocation(HOME, BARN, JIM_HOME).setLocation(WORK, BARN, JIM_HOME);
-        CAFE_OWNER.setLocation(HOME, CAFE, LIARA_HOME).setLocation(WORK, CAFE, CAFE_TILL);
-        SEED_OWNER.setLocation(HOME, CARPENTER, JADE_HOME).setLocation(WORK, CARPENTER, JADE_HOME);
-        DAUGHTER_1.setLocation(HOME, TOWNHALL, CLOE_HOME);
-        PRIEST.setLocation(HOME, TOWNHALL, TOWNHALL_ADULT_BEDROOM).setLocation(WORK, CHURCH, THOMAS);
-        CLOCKMAKER_CHILD.setLocation(HOME, CLOCKMAKER, FENN_HOME);
-        CAFE_GRANNY.setLocation(HOME, CAFE, KATLIN_HOME);
-        MAYOR.setLocation(HOME, TOWNHALL, JAMIE_HOME).setLocation(WORK, TOWNHALL, TOWNHALL_CENTRE);
-        BUILDER.setLocation(HOME, CARPENTER, CARPENTER_DOWNSTAIRS).setLocation(WORK, CARPENTER, CARPENTER_DOOR).addGreeting(new GreetingCarpenter());
-        TOOL_OWNER.setLocation(HOME, BLACKSMITH, DANIEL_HOME).setLocation(WORK, BLACKSMITH, DANIEL_HOME);
-        DAUGHTER_2.setLocation(HOME, TOWNHALL, ABI_HOME);
-        CLOCK_WORKER.setLocation(HOME, CLOCKMAKER, TIBERIUS_HOME);
-        GS_OWNER.setLocation(HOME, SUPERMARKET, JENNI_HOME).setLocation(WORK, SUPERMARKET, MARKET_TILL);
-        MINER.setLocation(HOME, MINING_HUT, BRANDON_HOME).setLocation(WORK, MINING_HUT, MINER_GRAVEL);
-        FISHERMAN.setLocation(HOME, FISHING_HUT, JACOB_HOME).addGreeting(new GreetingLocation(FISHING_HOLE, FISHING_POND));
-        MILKMAID.setLocation(HOME, SUPERMARKET, CANDICE_HOME).setLocation(WORK, BARN, BARN_LEFT);
-        POULTRY.setLocation(HOME, POULTRY_FARM, ASHLEE_HOME).setLocation(WORK, POULTRY_FARM, ASHLEE_HOME);
-        TRADER.setLocation(HOME, TOWNHALL, TOWNHALL_RIGHT_WING).setLocation(WORK, SUPERMARKET, GIRAFI_HOME);
+        GODDESS.setLocation(HOME, GODDESSFRONT).setHasInfo(TOOLS.getStackFromEnum(NPCTool.WEATHER), new GreetingWeather());
+        ANIMAL_OWNER.setLocation(HOME, BARNBUILDING).setLocation(SHOP, BARNBUILDING);
+        CAFE_OWNER.setLocation(HOME, CAFEBALCONY).setLocation(SHOP, CAFETILL);
+        FLOWER_GIRL.setLocation(HOME, CARPENTERUP).setLocation(SHOP, CARPENTERUP);
+        DAUGHTER_1.setLocation(HOME, TOWNHALLTEENBED);
+        PRIEST.setLocation(HOME, TOWNAHLLADULT);
+        CLOCKMAKER_CHILD.setLocation(HOME, CLOCKMAKERUPSTAIRS);
+        CAFE_GRANNY.setLocation(HOME, CAFEKITCHEN);
+        MAYOR.setLocation(HOME, TOWNHALLSTAGE);
+        BUILDER.setLocation(HOME, CARPENTERDOWN).setLocation(SHOP, CARPENTERFRONT).addGreeting(new GreetingCarpenter());
+        BLACKSMITH.setLocation(HOME,  BLACKSMITHFURNACE).setLocation(SHOP, BLACKSMITHFURNACE);
+        DAUGHTER_2.setLocation(HOME, TOWNHALLCHILDBED);
+        CLOCK_WORKER.setLocation(HOME, CLOCKMAKERDOWNSTAIRS);
+        GS_OWNER.setLocation(HOME, GENERALBASEMENTBACK).setLocation(SHOP, GENERALTILL);
+        MINER.setLocation(HOME, MINEHUTSIDE).setLocation(SHOP, MINEHUTGRAVEL);
+        FISHERMAN.setLocation(HOME, FISHINGHUTUPSTAIRS).setLocation(SHOP, FISHINGHUTDOWNSTAIRS).addGreeting(new GreetingLocation(POND));
+        MILKMAID.setLocation(HOME, GENERALBEDROOM).setLocation(SHOP, BARNLEFT);
+        POULTRY.setLocation(HOME, POULTRYBUILDING).setLocation(SHOP, POULTRYBUILDING);
+        TRADER.setLocation(HOME, TOWNHALLRIGHT).setLocation(SHOP, GENERALENTRANCE);
         CLOCK_WORKER.setHasInfo(TOOLS.getStackFromEnum(NPCTool.CALENDAR), new GreetingTime());
     }
 

@@ -109,6 +109,12 @@ public class NPC extends IForgeRegistryEntry.Impl<NPC> implements INPC {
     }
 
     @Override
+    public INPC setLocation(Location location, BuildingLocation building) {
+        this.locations.put(location, building);
+        return this;
+    }
+
+    @Override
     public INPC setAlexSkin() {
         this.alex = true;
         return this;

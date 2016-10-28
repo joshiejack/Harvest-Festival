@@ -6,7 +6,7 @@ import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.npc.NPC;
 import joshie.harvest.npc.entity.ai.EntityAIBuild;
 import joshie.harvest.npc.entity.ai.EntityAIWork;
-import joshie.harvest.town.TownDataServer;
+import joshie.harvest.town.data.TownDataServer;
 import joshie.harvest.town.TownHelper;
 import net.minecraft.world.World;
 

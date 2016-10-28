@@ -5,7 +5,7 @@ import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.helpers.MCServerHelper;
 import joshie.harvest.core.util.annotations.HFEvents;
 import joshie.harvest.player.PlayerTrackerServer;
-import joshie.harvest.town.TownTrackerServer;
+import joshie.harvest.town.tracker.TownTrackerServer;
 import net.minecraft.client.gui.GuiMultiplayer;
 import net.minecraft.client.gui.GuiWorldSelection;
 import net.minecraft.entity.player.EntityPlayerMP;

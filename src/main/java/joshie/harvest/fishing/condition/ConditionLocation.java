@@ -3,9 +3,9 @@ package joshie.harvest.fishing.condition;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSerializationContext;
-import joshie.harvest.npc.schedule.ScheduleLocations;
-import joshie.harvest.town.TownData;
+import joshie.harvest.town.BuildingLocations;
 import joshie.harvest.town.TownHelper;
+import joshie.harvest.town.data.TownData;
 import net.minecraft.util.JsonUtils;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -18,7 +18,6 @@ import net.minecraftforge.common.BiomeDictionary.Type;
 import java.util.Locale;
 
 import static joshie.harvest.core.lib.HFModInfo.MODID;
-import static joshie.harvest.town.TownTracker.NULL_TOWN;
 
 public class ConditionLocation extends AbstractCondition {
     private final WaterType location;
@@ -31,8 +30,8 @@ public class ConditionLocation extends AbstractCondition {
     public boolean testCondition(World world, BlockPos pos) {
         if (location == WaterType.POND) {
             TownData data = TownHelper.getClosestTownToBlockPos(world, pos);
-            if (data != NULL_TOWN) {
-                BlockPos position = data.getCoordinatesFor(ScheduleLocations.POND);
+            if (data != null) {
+                BlockPos position = data.getCoordinatesFor(BuildingLocations.POND);
                 return position != null && position.getDistance(pos.getX(), pos.getY(), pos.getZ()) <= 32;
             } else return false;
         } else {

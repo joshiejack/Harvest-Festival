@@ -5,9 +5,9 @@ import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.network.Packet;
 import joshie.harvest.core.network.Packet.Side;
 import joshie.harvest.core.network.PenguinPacket;
-import joshie.harvest.town.TownData;
-import joshie.harvest.town.TownDataClient;
-import joshie.harvest.town.TownTrackerClient;
+import joshie.harvest.town.data.TownDataClient;
+import joshie.harvest.town.data.TownDataServer;
+import joshie.harvest.town.tracker.TownTrackerClient;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -18,20 +18,21 @@ import java.util.Set;
 
 @Packet(Side.CLIENT)
 public class PacketSyncTowns extends PenguinPacket {
-    private Set<TownData> towns;
+    private Set<TownDataServer> servers;
+    private Set<TownDataClient> clients;
 
     public PacketSyncTowns(){}
-    public PacketSyncTowns(Set<TownData> townData) {
-        towns = townData;
+    public PacketSyncTowns(Set<TownDataServer> townData) {
+        servers = townData;
     }
 
     @Override
     public void toBytes(ByteBuf buf) {
         NBTTagCompound tag = new NBTTagCompound();
         NBTTagList list = new NBTTagList();
-        for (TownData town: towns) {
+        for (TownDataServer town: servers) {
             NBTTagCompound compound = new NBTTagCompound();
-            town.writeToNBT(compound);
+            town.writePacketNBT(compound);
             list.appendTag(compound);
         }
 
@@ -41,19 +42,19 @@ public class PacketSyncTowns extends PenguinPacket {
 
     @Override
     public void fromBytes(ByteBuf buf) {
-        towns = new HashSet<>();
+        clients = new HashSet<>();
         NBTTagCompound tag = ByteBufUtils.readTag(buf);
         NBTTagList list = tag.getTagList("Towns", 10);
         for (int i = 0; i < list.tagCount(); i++) {
             NBTTagCompound compound = list.getCompoundTagAt(i);
             TownDataClient town = new TownDataClient();
             town.readFromNBT(compound);
-            towns.add(town);
+            clients.add(town);
         }
     }
 
     @Override
     public void handlePacket(EntityPlayer player) {
-        HFTrackers.<TownTrackerClient>getTownTracker(player.worldObj).setTowns(towns);
+        HFTrackers.<TownTrackerClient>getTownTracker(player.worldObj).setTowns((Set<TownDataClient>)clients);
     }
 }

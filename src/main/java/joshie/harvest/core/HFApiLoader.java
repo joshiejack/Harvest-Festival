@@ -53,7 +53,7 @@ public class HFApiLoader {
             if (type.isAssignableFrom(clazz)) {
                 registry.register(clazz.newInstance().setRegistryName(resource));
             }
-        } catch (Exception e) {}
+        } catch (Exception e) { /**/}
     }
 
     public static void load(@Nonnull ASMDataTable asm, boolean isClient) {
@@ -107,7 +107,7 @@ public class HFApiLoader {
                         else MinecraftForge.EVENT_BUS.register(INSTANCE.get(null));
                     }
                 }
-            } catch (Exception e) {}
+            } catch (Exception e) {/**/}
         }
     }
 

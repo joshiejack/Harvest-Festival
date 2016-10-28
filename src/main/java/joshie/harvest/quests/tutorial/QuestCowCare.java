@@ -9,6 +9,7 @@ import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.api.quests.QuestQuestion;
+import joshie.harvest.api.quests.Selection;
 import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.core.HFCore;
 import joshie.harvest.core.helpers.InventoryHelper;

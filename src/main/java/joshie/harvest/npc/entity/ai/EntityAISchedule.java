@@ -12,7 +12,7 @@ import net.minecraft.pathfinding.Path;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 
-import static joshie.harvest.api.npc.INPC.Location.WORK;
+import static joshie.harvest.api.npc.INPC.Location.SHOP;
 
 public class EntityAISchedule extends EntityAIBase {
     private final EntityNPCHuman npc;
@@ -28,7 +28,7 @@ public class EntityAISchedule extends EntityAIBase {
     }
 
     private BuildingLocation getBuildingTarget(CalendarDate date) { //If the npcs shop is open, they should try to go their job
-        if (NPCHelper.isShopPreparingToOpen(npc.getNPC(), npc.worldObj)) return npc.getNPC().getLocation(WORK);
+        if (NPCHelper.isShopPreparingToOpen(npc.getNPC(), npc.worldObj)) return npc.getNPC().getLocation(SHOP);
         //Otherwise they will try to follow their own schedule
         return npc.getNPC().getScheduler().getTarget(npc.worldObj, npc, npc.getNPC(), date.getSeason(), date.getWeekday(), CalendarHelper.getTime(npc.worldObj));
     }

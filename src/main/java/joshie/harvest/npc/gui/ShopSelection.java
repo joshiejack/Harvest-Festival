@@ -3,7 +3,7 @@ package joshie.harvest.npc.gui;
 import joshie.harvest.HarvestFestival;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.quests.Quest;
-import joshie.harvest.api.quests.Quest.Selection;
+import joshie.harvest.api.quests.Selection;
 import joshie.harvest.core.handlers.GuiHandler;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;

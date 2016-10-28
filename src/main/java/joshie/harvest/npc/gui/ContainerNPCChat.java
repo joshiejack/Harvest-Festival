@@ -8,6 +8,7 @@ import joshie.harvest.api.quests.QuestQuestion;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.base.gui.ContainerBase;
 import joshie.harvest.npc.entity.EntityNPC;
+import joshie.harvest.quests.QuestHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.EnumHand;
 
@@ -29,14 +30,6 @@ public class ContainerNPCChat extends ContainerBase {
         this.nextGui = nextGui;
         this.open = true;
         this.sneaking = player.isSneaking();
-        //Call on opened
-        Quest selection = HFTrackers.getPlayerTrackerFromPlayer(player).getQuests().getSelection(player, npc);
-        if (selection == null && nextGui == -1) {
-            Set<Quest> quests = HFApi.quests.getCurrentQuests(player);
-            for (Quest quest : quests) {
-                quest.onChatOpened(player, npc, npc.getNPC());
-            }
-        }
     }
 
     private boolean handlesScript(Quest quest, INPC npc) {
@@ -60,7 +53,7 @@ public class ContainerNPCChat extends ContainerBase {
        if (open && nextGui >= -1) {
             open = false; //To cancel out infinite loop
 
-            Quest selection = HFTrackers.getPlayerTrackerFromPlayer(player).getQuests().getSelection(player, npc);
+            Quest selection = QuestHelper.getSelection(player, npc);
             if (!HFApi.quests.getCurrentQuests(player).contains(selection)) selection = null;
             if (selection instanceof QuestQuestion && ((QuestQuestion)selection).isCompletedEarly) selection = null;
             if (selection == null && nextGui == -1) {

@@ -18,7 +18,7 @@ import joshie.harvest.player.PlayerLoader;
 import joshie.harvest.player.PlayerTracker;
 import joshie.harvest.player.PlayerTrackerClient;
 import joshie.harvest.player.PlayerTrackerServer;
-import joshie.harvest.town.TownTracker;
+import joshie.harvest.town.tracker.TownTracker;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;

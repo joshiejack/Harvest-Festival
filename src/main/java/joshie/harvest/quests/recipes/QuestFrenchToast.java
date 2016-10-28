@@ -10,7 +10,7 @@ import java.util.Set;
 @HFQuest("recipe.toast.french")
 public class QuestFrenchToast extends QuestRecipe {
     public QuestFrenchToast() {
-        super("toast_french", HFNPCs.SEED_OWNER, 10000);
+        super("toast_french", HFNPCs.FLOWER_GIRL, 10000);
     }
 
     @Override

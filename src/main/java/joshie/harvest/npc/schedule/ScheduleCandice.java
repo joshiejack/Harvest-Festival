@@ -9,8 +9,8 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.world.World;
 
 import static joshie.harvest.api.npc.INPC.Location.HOME;
-import static joshie.harvest.npc.schedule.ScheduleLocations.BARNLEFT;
-import static joshie.harvest.npc.schedule.ScheduleLocations.PONDBACK;
+import static joshie.harvest.town.BuildingLocations.BARNLEFT;
+import static joshie.harvest.town.BuildingLocations.PONDBACK;
 
 public class ScheduleCandice implements ISchedule {
     @Override

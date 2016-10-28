@@ -10,7 +10,7 @@ import java.util.Set;
 @HFQuest("recipe.egg.scrambled")
 public class QuestScrambledEgg extends QuestRecipe {
     public QuestScrambledEgg() {
-        super("egg_scrambled", HFNPCs.TOOL_OWNER, 10000);
+        super("egg_scrambled", HFNPCs.BLACKSMITH, 10000);
     }
 
     @Override

@@ -1,14 +1,12 @@
-package joshie.harvest.player.quests;
+package joshie.harvest.quests.data;
 
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.quests.Quest;
-import joshie.harvest.core.network.PacketHandler;
-import joshie.harvest.player.PlayerTrackerServer;
+import joshie.harvest.core.HFTrackers;
+import joshie.harvest.core.util.interfaces.IQuestMaster;
 import joshie.harvest.quests.packet.PacketQuestCompleted;
-import joshie.harvest.quests.packet.PacketQuestSetAvailable;
 import joshie.harvest.quests.packet.PacketQuestSetCurrent;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.nbt.NBTTagString;
@@ -16,76 +14,71 @@ import net.minecraft.util.ResourceLocation;
 
 import java.util.HashSet;
 
-import static joshie.harvest.core.network.PacketHandler.sendToClient;
-
 public class QuestDataServer extends QuestData {
     private final HashSet<Quest> finished = new HashSet<>();
-    private final PlayerTrackerServer master;
+    private final IQuestMaster master;
 
-    public QuestDataServer(PlayerTrackerServer master) {
+    public QuestDataServer(IQuestMaster master) {
         this.master = master;
     }
 
-    //Called to start a quest, is called clientside, by the startquest packet
     @Override
     public boolean startQuest(Quest q) {
-        if (current.size() < 100 || !q.isRealQuest()) {
-            try {
-                Quest quest = q.getClass().newInstance().setRegistryName(q.getRegistryName()).setStage(0); //Set the current quest to your new
-                current.add(quest);
-                syncQuest(q, master.getAndCreatePlayer());
-            } catch (Exception ignored) {}
+        try {
+            Quest quest = q.getClass().newInstance().setRegistryName(q.getRegistryName()).setStage(0); //Set the current quest to your new
+            current.add(quest);
+            master.sync(null, new PacketQuestSetCurrent(quest));
             return true;
-        } else return false;
+        } catch (Exception ignored) { return false; }
     }
 
     //Quests should always REMOVE from the current quests, and add to the finished quests THEMSELVES
+    //Only the person who actually completed the quest, will get the reward
     @Override
-    public void markCompleted(Quest quest) {
+    public void markCompleted(EntityPlayer player, Quest quest, boolean rewards) {
         Quest localQuest = getAQuest(quest);
         if (localQuest != null) {
             finished.add(localQuest);
             current.remove(localQuest);
-            localQuest.onQuestCompleted(master.getAndCreatePlayer());
+            localQuest.onQuestCompleted(player);
         } else {
             finished.add(quest);
-            quest.onQuestCompleted(master.getAndCreatePlayer());
+            quest.onQuestCompleted(player);
         }
 
+        HFTrackers.markDirty(player.worldObj);
         //Sync everything
-        PacketHandler.sendToClient(new PacketQuestCompleted(quest), master.getAndCreatePlayer()); //Let the client claim too
-        sync(master.getAndCreatePlayer());
+        master.sync(player, new PacketQuestCompleted(quest, true)); //Let this player claim the reward
+        master.sync(null, new PacketQuestCompleted(quest, false)); //Let the server know this was completed
+        syncAllQuests();
     }
     
-    public void sync(EntityPlayerMP player) {
+    public void syncAllQuests() {
         for (Quest quest : Quest.REGISTRY.getValues()) {
-            syncQuest(quest, player);
+            syncQuest(quest);
         }
     }
 
-    public void syncQuest(Quest quest, EntityPlayerMP player) {
+    private void syncQuest(Quest quest) {
+        if (quest.getQuestType() != master.getQuestType()) return; //If we aren't the same quest type, we don't get counted
         //Check if the quest can be complete
         //If the quest isn't finished, do stuff
         if (!finished.contains(quest) || quest.isRepeatable()) {
             //If the quest is in the currently active list, mark it as current
             if (current.contains(quest)) {
                 //Send a packet, fetching the actual quest details that are saved, so we're update to date on the info
-                sendToClient(new PacketQuestSetCurrent(getAQuest(quest)), player);
+                master.sync(null, new PacketQuestSetCurrent(getAQuest(quest)));
             } else {
                 //Now the quests aren't in the current list has been determined, let's determine whether this quest is valid for being collected
-                //If the quest can be started, we should send it to client to be added to the available list
-                if (canStart(quest, master.getAndCreatePlayer(), current, finished)) {
-                    sendToClient(new PacketQuestSetAvailable(quest), player);
+                //If the quest can be started, we should enable the quest
+                if (canStart(quest, current, finished)) {
+                    startQuest(quest); //master.sync(new PacketQuestSetAvailable(quest));
                 }
             }
         }
     }
 
-    private boolean canStart(Quest quest, EntityPlayer player, HashSet<Quest> active, HashSet<Quest> finished) {
-        if (!quest.isRepeatable() && finished.contains(quest)) {
-            return false;
-        }
-
+    private boolean canStart(Quest quest, HashSet<Quest> active, HashSet<Quest> finished) {
         //Loops through all the active quests, if any of the quests are real and contain npcs that are used by this quest, we can not start it
         INPC[] npcs = quest.getNPCs();
         if (npcs != null) {
@@ -115,7 +108,7 @@ public class QuestDataServer extends QuestData {
                     Quest quest = q.getClass().newInstance().setRegistryName(q.getRegistryName());
                     quest.readFromNBT(tag);
                     current.add(quest);
-                } catch (Exception e) {}
+                } catch (InstantiationException | IllegalAccessException e){ /**/}
             }
         }
 

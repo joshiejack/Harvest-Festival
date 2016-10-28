@@ -1,6 +1,11 @@
 ###0.6.0
 #!Important
 * Removed a couple internal registries so it may warn you when joining a world, this can be safely ignored
+##NEW!
+#Fishing
+* Added fishing rods, obtainable when you meet jakob for the first time
+
+##Additions + Changes to existing features
 #Animals
 * Animals now only get stressed every two hours they're left outside in the rain or at night
 * You will now get relationship points every two hours if an animal is outside in the day and it isn't raining
@@ -14,6 +19,7 @@
 #Crops
 * Untied the crops from the registry for them, shouldn't affect anything
 * Melons and Pumpkins will no longer regrow, and will instead replace the crop
+* Crops will now be plantable on more than farmland, however they will only grow on farmland when a mod adds support
 #Gathering
 * More items will now spawn around the world (that sell for more than 1 gold!)
 #Mining
@@ -35,8 +41,6 @@
 #Tools
 * Tools will have [BROKEN] in front of their name, when they can't be used
 * Hammers will now be able to smash more tiers of rocks
-#Other
-* Crops will now be plantable on more than farmland, however they will only grow on farmland when a mod adds support
 ##Fixes
 * Gifting npcs on their birthday will now only work once on smp, instead of over multiple days
 * My hoes will now work with BOP blocks

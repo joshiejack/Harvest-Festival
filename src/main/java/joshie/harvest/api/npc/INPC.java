@@ -29,9 +29,13 @@ public interface INPC {
      *  @return the npc**/
     INPC setHeight(float height, float offset);
 
-    /** Marks this NPCs home as this building group, with this name
-     * @return the npc **/
+     @Deprecated
     INPC setLocation(Location location, Building building, String name);
+
+    /** Mark this NPCS home/work
+     ** @param location location type
+     * @param building the building location */
+    INPC setLocation(Location location, BuildingLocation building);
 
     /** Set whether this npc uses alex skin or not
      *  @return the npc */
@@ -94,6 +98,6 @@ public interface INPC {
     boolean isBuilder();
 
     enum Location {
-        HOME, WORK
+        HOME, SHOP
     }
 }

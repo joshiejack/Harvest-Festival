@@ -9,8 +9,8 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.world.World;
 
 import static joshie.harvest.api.npc.INPC.Location.HOME;
-import static joshie.harvest.npc.schedule.ScheduleLocations.GENERALBASEMENT;
-import static joshie.harvest.npc.schedule.ScheduleLocations.GODDESSBACKRIGHT;
+import static joshie.harvest.town.BuildingLocations.GENERALBASEMENT;
+import static joshie.harvest.town.BuildingLocations.GODDESSBACKRIGHT;
 
 public class ScheduleGirafi implements ISchedule {
     @Override

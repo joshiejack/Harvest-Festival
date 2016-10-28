@@ -6,6 +6,6 @@ import joshie.harvest.npc.HFNPCs;
 @HFQuest("recipe.toast")
 public class QuestToast extends QuestRecipe {
     public QuestToast() {
-        super("toast", HFNPCs.SEED_OWNER, 5000);
+        super("toast", HFNPCs.FLOWER_GIRL, 5000);
     }
 }

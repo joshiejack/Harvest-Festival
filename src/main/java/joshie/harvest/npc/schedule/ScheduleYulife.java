@@ -9,8 +9,8 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.world.World;
 
 import static joshie.harvest.api.npc.INPC.Location.HOME;
-import static joshie.harvest.npc.schedule.ScheduleLocations.CARPENTERFRONT;
-import static joshie.harvest.npc.schedule.ScheduleLocations.CARPENTERUP;
+import static joshie.harvest.town.BuildingLocations.CARPENTERFRONT;
+import static joshie.harvest.town.BuildingLocations.CARPENTERUP;
 
 public class ScheduleYulife implements ISchedule {
     @Override

@@ -26,7 +26,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import static joshie.harvest.core.helpers.InventoryHelper.ITEM_STACK;
 import static joshie.harvest.core.helpers.SpawnItemHelper.spawnXP;
-import static joshie.harvest.npc.HFNPCs.TOOL_OWNER;
+import static joshie.harvest.npc.HFNPCs.BLACKSMITH;
 
 
 @HFQuest("trade.upgrade")
@@ -37,7 +37,7 @@ public class QuestUpgrade extends QuestTrade {
     private int days;
 
     public QuestUpgrade() {
-        setNPCs(TOOL_OWNER);
+        setNPCs(BLACKSMITH);
     }
 
     private int getDifference(CalendarDate then, CalendarDate now) {

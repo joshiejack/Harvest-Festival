@@ -1,6 +1,6 @@
 package joshie.harvest.player;
 
-import joshie.harvest.player.quests.QuestData;
+import joshie.harvest.quests.data.QuestData;
 import joshie.harvest.player.relationships.RelationshipData;
 import joshie.harvest.player.stats.Stats;
 import joshie.harvest.player.tracking.Tracking;

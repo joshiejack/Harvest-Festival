@@ -1,8 +1,10 @@
 package joshie.harvest.quests.trade;
 
+import joshie.harvest.api.core.ITiered.ToolTier;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.core.HFTrackers;
+import joshie.harvest.core.base.item.ItemTool;
 import joshie.harvest.core.lib.HFSounds;
 import joshie.harvest.tools.HFTools;
 import net.minecraft.entity.EntityLiving;
@@ -20,12 +22,6 @@ import static joshie.harvest.npc.HFNPCs.PRIEST;
 
 @HFQuest("trade.bless")
 public class QuestPriestRepair extends QuestTrade {
-    private static final ItemStack hoe = HFTools.HOE.getStack(BLESSED);
-    private static final ItemStack sickle = HFTools.SICKLE.getStack(BLESSED);
-    private static final ItemStack watering = HFTools.WATERING_CAN.getStack(BLESSED);
-    private static final ItemStack axe = HFTools.AXE.getStack(BLESSED);
-    private static final ItemStack hammer = HFTools.HAMMER.getStack(BLESSED);
-
     public QuestPriestRepair() {
         setNPCs(PRIEST);
     }
@@ -34,7 +30,7 @@ public class QuestPriestRepair extends QuestTrade {
     @Override
     public String getLocalizedScript(EntityPlayer player, EntityLiving entity, INPC npc) {
         boolean hasGold = HFTrackers.getPlayerTrackerFromPlayer(player).getStats().getGold() >= 500;
-        boolean hasTool = isHolding(player, hoe) || isHolding(player, sickle) || isHolding(player, watering) || isHolding(player, axe) || isHolding(player, hammer);
+        boolean hasTool = isHolding(player);
         if (hasGold && hasTool) {
             ItemStack tool = player.getHeldItemMainhand(); //For translation reasons
             return getLocalized("done", tool.getDisplayName());
@@ -46,7 +42,7 @@ public class QuestPriestRepair extends QuestTrade {
     @Override
     public void onChatClosed(EntityPlayer player, EntityLiving entity, INPC npc) {
         boolean hasGold = HFTrackers.getPlayerTrackerFromPlayer(player).getStats().getGold() >= 500;
-        boolean hasTool = isHolding(player, hoe) || isHolding(player, sickle) || isHolding(player, watering) || isHolding(player, axe) || isHolding(player, hammer);
+        boolean hasTool = isHolding(player);
         if (hasGold && hasTool) {
             complete(player);
             player.worldObj.playSound(player, player.posX, player.posY, player.posZ, HFSounds.BLESS_TOOL, SoundCategory.NEUTRAL, 0.25F, 1F);
@@ -69,7 +65,16 @@ public class QuestPriestRepair extends QuestTrade {
         }
     }
 
-    private boolean isHolding(EntityPlayer player, ItemStack stack) {
-        return player.getHeldItemMainhand() != null && player.getHeldItemMainhand().getItem() == stack.getItem() && player.getHeldItemMainhand().getItemDamage() == stack.getItemDamage();
+    private boolean isHolding(EntityPlayer player) {
+        ItemStack held = player.getHeldItemMainhand();
+        if (held != null) {
+            if (held.getItem() instanceof ItemTool) {
+                ItemTool tool = ((ItemTool)held.getItem());
+                ToolTier tier = tool.getTier(held);
+                return held.getItem() != HFTools.WATERING_CAN && tier == BLESSED;
+            }
+        }
+
+        return false;
     }
 }

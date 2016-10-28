@@ -4,7 +4,7 @@ import joshie.harvest.buildings.placeable.Placeable;
 import joshie.harvest.buildings.placeable.Placeable.ConstructionStage;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.util.Direction;
-import joshie.harvest.town.TownDataServer;
+import joshie.harvest.town.data.TownDataServer;
 import joshie.harvest.town.TownHelper;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
@@ -77,8 +77,9 @@ public class BuildingStage {
                 index = 0;
 
                 basement = true;
-                TownHelper.getClosestTownToBlockPos(world, pos).addBuilding(world, building, rotation, pos);
-                TownHelper.<TownDataServer>getClosestTownToBlockPos(world, pos).syncBuildings(world);
+                TownDataServer data = TownHelper.getClosestTownToBlockPos(world, pos);
+                data.addBuilding(world, building, rotation, pos);
+                data.syncBuildings(world);
                 return true;
             }
 

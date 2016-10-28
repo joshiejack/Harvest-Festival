@@ -157,7 +157,11 @@ public class HFCrops {
             Crop crop = HFCrops.SEEDS.getCropFromStack(stack);
             return crop != null ? crop.getColor() : -1;
         }, SEEDS);
+    }
 
+    @SideOnly(Side.CLIENT)
+    @SuppressWarnings("unchecked")
+    public static void postInitClient() {
         BlockColors colors = Minecraft.getMinecraft().getBlockColors();
         IBlockColor coloring = (state, world, pos, tintIndex) -> {
             if (world != null && pos != null) {

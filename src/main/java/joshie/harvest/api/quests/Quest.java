@@ -12,7 +12,6 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.translation.I18n;
-import net.minecraftforge.fml.common.eventhandler.Event.Result;
 import net.minecraftforge.fml.common.registry.IForgeRegistry;
 import net.minecraftforge.fml.common.registry.IForgeRegistryEntry.Impl;
 import net.minecraftforge.fml.common.registry.RegistryBuilder;
@@ -26,13 +25,20 @@ public abstract class Quest extends Impl<Quest> {
     /** DO NOT MODIFY THE ENTRIES IN THE REGISTRY, ALWAYS MAKE A COPY OF THE QUESTS **/
     public static final IForgeRegistry<Quest> REGISTRY = new RegistryBuilder<Quest>().setName(new ResourceLocation("harvestfestival", "quests")).setType(Quest.class).setIDRange(0, 32000).create();
     public int quest_stage;
+    private QuestType type;
     private INPC[] npcs;
 
-    public Quest() {}
+    public Quest() {
+        this.type = QuestType.PLAYER;
+    }
 
     /** Returns a list of npcs that this quest lines uses */
     public final INPC[] getNPCs() {
         return npcs;
+    }
+
+    public final QuestType getQuestType() {
+        return type;
     }
 
     /** Called to check if this quest is able to be started, after all other checks are performed
@@ -50,9 +56,9 @@ public abstract class Quest extends Impl<Quest> {
         return false;
     }
 
-    /** Quests that return true here, count towards the quest limit,
-     *  You should return false for very simple quests, such as the default trader ones, or the blessing of tools
-     *  Returning true also means a quest cannot be started if a npc is already being used in that quest line */
+    /** Real quests are quests that take over a npcs chat,
+     *  as in there is no chance of them ever saying anything else other than the quest,
+     *  @return false for quests like greetings, recipes, traders etc where there is a condition for chatting */
     public boolean isRealQuest() {
         return true;
     }
@@ -61,6 +67,12 @@ public abstract class Quest extends Impl<Quest> {
      * @param npcs    the npcs **/
     public final Quest setNPCs(INPC... npcs) {
         this.npcs = npcs;
+        return this;
+    }
+
+    /** Set this quest as a town based quest**/
+    protected final Quest setTownQuest() {
+        this.type = QuestType.TOWN;
         return this;
     }
 
@@ -114,23 +126,11 @@ public abstract class Quest extends Impl<Quest> {
         return null;
     }
 
-    /** Called SERVER side only, when the stage changes
-     *  You are free to manipulate data here, as it gets synced to the client
-     * @param player        the player
-     * @param previous      the previous stage
-     * @param stage         the current stage */
-    public void onStageChanged(EntityPlayer player, int previous, int stage) {}
-
-    /** Called when chat opens
-     *  @param player       the player
-     *  @param entity       the npc entity
-     *  @param npc          the npc instance**/
-    public void onChatOpened(EntityPlayer player, EntityLiving entity, INPC npc) {}
-
     /** Called when chat closes
      *  @param player       the player
      *  @param entity       the npc entity
      *  @param npc          the npc instance**/
+    @SuppressWarnings("deprecated")
     public void onChatClosed(EntityPlayer player, EntityLiving entity, INPC npc, boolean wasSneaking) {
         onChatClosed(player, entity, npc);
     }
@@ -199,40 +199,4 @@ public abstract class Quest extends Impl<Quest> {
     public void onEntityInteract(EntityPlayer player, @Nullable ItemStack held, EnumHand hand, Entity target) {}
     public void onRightClickBlock(EntityPlayer player, BlockPos pos, EnumFacing face) {}
 
-    /** Used for selection menus **/
-    public static abstract class Selection<Q extends Quest> {
-        private final String[] lines;
-
-        public Selection(String title, String line1, String line2) {
-            this.lines = new String[3];
-            this.lines[0] = title;
-            this.lines[1] = line1;
-            this.lines[2] = line2;
-        }
-
-        public Selection(String title, String line1, String line2, String line3) {
-            this.lines = new String[4];
-            this.lines[0] = title;
-            this.lines[1] = line1;
-            this.lines[2] = line2;
-            this.lines[3] = line3;
-        }
-
-        /** Returns the unlocalised text **/
-        public final String[] getText() {
-            return lines;
-        }
-
-        /** Called when these options are selected
-         * @param player        the player interacting
-         * @param entity        the entity the player is interacting with
-         * @param npc           the npc associated with the entity
-         * @param option        which option they selected (1/2/3)
-         * @param quest         the quest object associated with this
-         * @return return what happens next,
-         *              return DENY to close the options menu
-         *              return ALLOW to open the npc chat window
-         *              return DEFAULT to do nothing */
-        public abstract Result onSelected(EntityPlayer player, EntityLiving entity, INPC npc, @Nullable Q quest, int option);
-    }
 }

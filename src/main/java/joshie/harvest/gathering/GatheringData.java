@@ -2,7 +2,7 @@ package joshie.harvest.gathering;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.Season;
-import joshie.harvest.town.TownBuilding;
+import joshie.harvest.town.data.TownBuilding;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;

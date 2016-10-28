@@ -5,7 +5,8 @@ import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.network.Packet;
 import joshie.harvest.core.network.Packet.Side;
 import joshie.harvest.core.network.PenguinPacket;
-import joshie.harvest.town.TownBuilding;
+import joshie.harvest.town.data.TownBuilding;
+import joshie.harvest.town.tracker.TownTrackerClient;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
@@ -40,6 +41,6 @@ public class PacketNewBuilding extends PenguinPacket {
 
     @Override
     public void handlePacket(EntityPlayer player) {
-        HFTrackers.getTownTracker(player.worldObj).getTownByID(uuid).addBuilding(building);
+        HFTrackers.<TownTrackerClient>getTownTracker(player.worldObj).getTownByID(uuid).addBuilding(building);
     }
 }

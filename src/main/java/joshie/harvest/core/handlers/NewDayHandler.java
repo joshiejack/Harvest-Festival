@@ -8,7 +8,7 @@ import joshie.harvest.calendar.CalendarServer;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.util.annotations.HFEvents;
 import joshie.harvest.player.PlayerTrackerServer;
-import joshie.harvest.town.TownTrackerServer;
+import joshie.harvest.town.tracker.TownTrackerServer;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;

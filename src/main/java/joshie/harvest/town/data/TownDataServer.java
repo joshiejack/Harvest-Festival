@@ -1,12 +1,15 @@
-package joshie.harvest.town;
+package joshie.harvest.town.data;
 
 import joshie.harvest.api.npc.INPC;
+import joshie.harvest.api.quests.QuestType;
 import joshie.harvest.buildings.BuildingImpl;
+import joshie.harvest.buildings.BuildingRegistry;
 import joshie.harvest.buildings.BuildingStage;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.core.helpers.NBTHelper;
 import joshie.harvest.core.network.PacketHandler;
+import joshie.harvest.core.util.interfaces.IQuestMaster;
 import joshie.harvest.gathering.GatheringData;
 import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.npc.NPC;
@@ -14,7 +17,11 @@ import joshie.harvest.npc.NPCHelper;
 import joshie.harvest.npc.NPCRegistry;
 import joshie.harvest.npc.entity.EntityNPCBuilder;
 import joshie.harvest.npc.entity.EntityNPCHuman;
+import joshie.harvest.quests.data.QuestDataServer;
+import joshie.harvest.quests.packet.PacketQuest;
+import joshie.harvest.town.packet.PacketNewBuilding;
 import joshie.harvest.town.packet.PacketSyncBuilding;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Rotation;
@@ -22,18 +29,38 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 
+import javax.annotation.Nullable;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
-public class TownDataServer extends TownData {
+public class TownDataServer extends TownData<QuestDataServer> implements IQuestMaster {
     public final GatheringData gathering = new GatheringData();
     private Set<ResourceLocation> deadVillagers = new HashSet<>();
+    private final QuestDataServer quests = new QuestDataServer(this);
+    private int dimension;
 
     public TownDataServer() {}
-    public TownDataServer(BlockPos pos) {
-        townCentre = pos;
-        uuid = UUID.randomUUID();
+    public TownDataServer(int dimension, BlockPos townCentre) {
+        this.dimension = dimension;
+        this.townCentre = townCentre;
+        this.uuid = UUID.randomUUID();
+    }
+
+    @Override
+    public QuestDataServer getQuests() {
+        return quests;
+    }
+
+    @Override
+    public QuestType getQuestType() {
+        return QuestType.TOWN;
+    }
+
+    @Override
+    public void sync(@Nullable EntityPlayer player, PacketQuest packet) {
+        if (player != null) PacketHandler.sendToClient(packet.setUUID(getID()), player);
+        else PacketHandler.sendToDimension(dimension, packet.setUUID(getID()));
     }
 
     public boolean isDead(INPC npc) {
@@ -69,7 +96,13 @@ public class TownDataServer extends TownData {
         HFTrackers.markDirty(world);
     }
 
-    @Override
+    public void addBuilding(World world, BuildingImpl building, Rotation rotation, BlockPos pos) {
+        TownBuilding newBuilding = new TownBuilding(building, rotation, pos);
+        buildings.put(BuildingRegistry.REGISTRY.getKey(building), newBuilding);
+        PacketHandler.sendToDimension(world.provider.getDimension(), new PacketNewBuilding(uuid, newBuilding));
+        HFTrackers.markDirty(world);
+    }
+
     public void newDay(World world) {
         if (world.isBlockLoaded(getTownCentre())) {
             gathering.newDay(world, buildings.values());
@@ -96,17 +129,32 @@ public class TownDataServer extends TownData {
         }
     }
 
+    public Rotation getFacingFor(ResourceLocation resource) {
+        TownBuilding building = buildings.get(resource);
+        if (building == null) return null;
+        return building.getFacing();
+    }
+
+    //Called to sync the data about this town to the client
+    public void writePacketNBT(NBTTagCompound nbt) {
+        super.writeToNBT(nbt);
+    }
+
     @Override
     public void readFromNBT(NBTTagCompound nbt) {
         super.readFromNBT(nbt);
+        quests.readFromNBT(nbt);
         gathering.readFromNBT(nbt);
+        dimension = nbt.getInteger("Dimension");
         deadVillagers = NBTHelper.readResourceSet(nbt, "DeadVillagers");
     }
 
     @Override
     public void writeToNBT(NBTTagCompound nbt) {
         super.writeToNBT(nbt);
+        quests.writeToNBT(nbt);
         gathering.writeToNBT(nbt);
+        nbt.setInteger("Dimension", dimension);
         nbt.setTag("DeadVillagers", NBTHelper.writeResourceSet(deadVillagers));
     }
 }

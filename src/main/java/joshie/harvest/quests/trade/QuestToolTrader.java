@@ -16,12 +16,12 @@ import java.util.Set;
 
 import static joshie.harvest.api.core.ITiered.ToolTier.BASIC;
 import static joshie.harvest.core.helpers.InventoryHelper.SPECIAL;
-import static joshie.harvest.npc.HFNPCs.SEED_OWNER;
+import static joshie.harvest.npc.HFNPCs.FLOWER_GIRL;
 
 @HFQuest("trade.tools")
 public class QuestToolTrader extends QuestTrade {
     public QuestToolTrader() {
-        setNPCs(SEED_OWNER);
+        setNPCs(FLOWER_GIRL);
     }
 
     @Override
@@ -44,7 +44,7 @@ public class QuestToolTrader extends QuestTrade {
     }
 
     @Override
-    public void onChatClosed(EntityPlayer player, EntityLiving entity, INPC npc) {
+    public void onChatClosed(EntityPlayer player, EntityLiving entity, INPC npc, boolean isSneaking) {
         if (InventoryHelper.getHandItemIsIn(player, SPECIAL, SearchType.HOE) != null ||
                 InventoryHelper.getHandItemIsIn(player, SPECIAL, SearchType.BUCKET) != null ||
                 InventoryHelper.getHandItemIsIn(player, SPECIAL, SearchType.SHEARS) != null) {

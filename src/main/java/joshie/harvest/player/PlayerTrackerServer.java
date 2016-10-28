@@ -2,20 +2,25 @@ package joshie.harvest.player;
 
 import joshie.harvest.api.calendar.CalendarDate;
 import joshie.harvest.api.calendar.Season;
+import joshie.harvest.api.quests.QuestType;
 import joshie.harvest.calendar.CalendarHelper;
 import joshie.harvest.core.achievements.HFAchievements;
 import joshie.harvest.core.helpers.EntityHelper;
-import joshie.harvest.player.quests.QuestDataServer;
+import joshie.harvest.core.network.PacketHandler;
+import joshie.harvest.core.util.interfaces.IQuestMaster;
 import joshie.harvest.player.relationships.RelationshipDataServer;
 import joshie.harvest.player.stats.StatsServer;
 import joshie.harvest.player.tracking.TrackingServer;
+import joshie.harvest.quests.data.QuestDataServer;
+import joshie.harvest.quests.packet.PacketQuest;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 
 import javax.annotation.Nullable;
 import java.util.UUID;
 
-public class PlayerTrackerServer extends PlayerTracker {
+public class PlayerTrackerServer extends PlayerTracker implements IQuestMaster {
     private final QuestDataServer quests;
     private final RelationshipDataServer relationships;
     private final StatsServer stats;
@@ -64,6 +69,22 @@ public class PlayerTrackerServer extends PlayerTracker {
         return stats;
     }
 
+    @Override
+    public QuestType getQuestType() {
+        return QuestType.PLAYER;
+    }
+
+    @Override
+    public void sync(EntityPlayer other, PacketQuest packet) {
+        if (other != null) PacketHandler.sendToClient(packet, other);
+        else {
+            EntityPlayerMP player = getAndCreatePlayer();
+            if (player != null && player.connection != null && player.connection.netManager != null) {
+                PacketHandler.sendToClient(packet, getAndCreatePlayer());
+            }
+        }
+    }
+
     public TrackingServer getTracking() {
         return tracking;
     }
@@ -88,7 +109,7 @@ public class PlayerTrackerServer extends PlayerTracker {
     public void syncPlayerStats(EntityPlayerMP player) {
         //Only sync the stats if the player is online
         if (player.connection != null && player.connection.netManager != null) {
-            quests.sync(player);
+            quests.syncAllQuests();
             relationships.sync(player);
             stats.sync(player);
             tracking.sync(player);

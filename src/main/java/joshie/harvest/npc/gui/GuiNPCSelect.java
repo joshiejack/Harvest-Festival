@@ -1,15 +1,15 @@
 package joshie.harvest.npc.gui;
 
 import joshie.harvest.api.quests.Quest;
-import joshie.harvest.api.quests.Quest.Selection;
-import joshie.harvest.core.HFTrackers;
+import joshie.harvest.api.quests.Selection;
+import joshie.harvest.core.helpers.TextHelper;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.network.PacketHandler;
-import joshie.harvest.core.helpers.TextHelper;
 import joshie.harvest.npc.entity.EntityNPC;
 import joshie.harvest.npc.packet.PacketGift;
 import joshie.harvest.npc.packet.PacketInfo;
 import joshie.harvest.npc.packet.PacketSelect;
+import joshie.harvest.quests.QuestHelper;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.EnumHand;
@@ -32,7 +32,7 @@ public class GuiNPCSelect extends GuiNPCBase {
         super(player, npc, EnumHand.MAIN_HAND, next);
         if (selectionType == -1) selection = SHOPS;
         else {
-            quest = HFTrackers.getClientPlayerTracker().getQuests().getAQuest(Quest.REGISTRY.getValues().get(selectionType));
+            quest = QuestHelper.getSelectiomFromID(player, selectionType);
             selection = quest != null ? quest.getSelection(player, npc.getNPC()): null;
         }
 

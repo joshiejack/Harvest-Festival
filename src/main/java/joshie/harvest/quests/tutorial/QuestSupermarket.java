@@ -25,7 +25,7 @@ public class QuestSupermarket extends Quest {
     private static final int START = 0;
 
     public QuestSupermarket() {
-        setNPCs(SEED_OWNER, GS_OWNER, MILKMAID);
+        setNPCs(FLOWER_GIRL, GS_OWNER, MILKMAID);
     }
 
     @Override
@@ -35,7 +35,7 @@ public class QuestSupermarket extends Quest {
 
     @Override
     public String getLocalizedScript(EntityPlayer player, EntityLiving entity, INPC npc) {
-        if (quest_stage == START && npc == SEED_OWNER) {
+        if (quest_stage == START && npc == FLOWER_GIRL) {
             if (player.worldObj.rand.nextFloat() < 0.15F) {
                 if (TownHelper.getClosestTownToEntity(entity).hasBuilding(HFBuildings.SUPERMARKET)) {
                     //If the supermarket exists
@@ -67,8 +67,8 @@ public class QuestSupermarket extends Quest {
     }
 
     @Override
-    public void onChatClosed(EntityPlayer player, EntityLiving entity, INPC npc) {
-        if (quest_stage == START && npc != HFNPCs.SEED_OWNER) {
+    public void onChatClosed(EntityPlayer player, EntityLiving entity, INPC npc, boolean wasSneaking) {
+        if (quest_stage == START && npc != HFNPCs.FLOWER_GIRL) {
             complete(player);
         }
     }

@@ -48,7 +48,7 @@ public class Crops {
 
         @Override
         public void applyOnce() {
-            new Crop(resource);
+            new Crop(resource).setSkipRender();
         }
     }
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

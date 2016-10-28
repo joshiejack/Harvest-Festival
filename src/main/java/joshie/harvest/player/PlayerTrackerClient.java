@@ -2,7 +2,7 @@ package joshie.harvest.player;
 
 import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.core.helpers.MCClientHelper;
-import joshie.harvest.player.quests.QuestDataClient;
+import joshie.harvest.quests.data.QuestDataClient;
 import joshie.harvest.player.relationships.RelationshipDataClient;
 import joshie.harvest.player.stats.StatsClient;
 import joshie.harvest.player.tracking.TrackingClient;

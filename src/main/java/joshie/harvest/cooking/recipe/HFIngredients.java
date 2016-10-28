@@ -1,14 +1,15 @@
 package joshie.harvest.cooking.recipe;
 
-import joshie.harvest.animals.HFAnimals;
 import joshie.harvest.api.cooking.Ingredient;
-import joshie.harvest.api.core.ISizeable.Size;
+import joshie.harvest.api.core.Size;
 import joshie.harvest.api.crops.Crop;
 import joshie.harvest.cooking.CookingAPI;
 import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.cooking.item.ItemIngredients;
 import joshie.harvest.cooking.render.MappingEvent;
+import joshie.harvest.core.HFCore;
 import joshie.harvest.core.helpers.InventoryHelper;
+import joshie.harvest.core.item.ItemSizeable.Sizeable;
 import joshie.harvest.core.util.annotations.HFLoader;
 import joshie.harvest.crops.HFCrops;
 import joshie.harvest.gathering.HFGathering;
@@ -130,9 +131,9 @@ public class HFIngredients {
         //Animal Products
         CookingAPI.INSTANCE.register(new ItemStack(Items.EGG), EGG);
         CookingAPI.INSTANCE.register(new ItemStack(Items.MILK_BUCKET), MILK);
-        CookingAPI.INSTANCE.register(HFAnimals.EGG.getStack(Size.SMALL), EGG);
-        CookingAPI.INSTANCE.register(HFAnimals.MILK.getStack(Size.SMALL), MILK);
-        CookingAPI.INSTANCE.register(HFAnimals.MAYONNAISE.getStack(Size.SMALL), MAYONNAISE);
+        CookingAPI.INSTANCE.register(HFCore.SIZEABLE.getStack(Sizeable.EGG, Size.SMALL), EGG);
+        CookingAPI.INSTANCE.register(HFCore.SIZEABLE.getStack(Sizeable.MILK, Size.SMALL), MILK);
+        CookingAPI.INSTANCE.register(HFCore.SIZEABLE.getStack(Sizeable.MAYONNAISE, Size.SMALL), MAYONNAISE);
 
         //Crops
         for (Crop crop: Crop.REGISTRY) {

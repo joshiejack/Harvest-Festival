@@ -4,13 +4,15 @@ import joshie.harvest.animals.HFAnimals;
 import joshie.harvest.animals.block.BlockTrough.Trough;
 import joshie.harvest.animals.entity.EntityHarvestCow;
 import joshie.harvest.animals.item.ItemAnimalTool.Tool;
-import joshie.harvest.api.core.ISizeable.Size;
+import joshie.harvest.api.core.Size;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.api.quests.QuestQuestion;
 import joshie.harvest.buildings.HFBuildings;
+import joshie.harvest.core.HFCore;
 import joshie.harvest.core.helpers.InventoryHelper;
+import joshie.harvest.core.item.ItemSizeable.Sizeable;
 import joshie.harvest.crops.HFCrops;
 import joshie.harvest.quests.selection.TutorialSelection;
 import joshie.harvest.tools.ToolHelper;
@@ -123,7 +125,7 @@ public class QuestCowCare extends QuestQuestion {
             You can autofeed larger animals with a trough, just simply place some fodder in it
             He then mentions that the animal ranch
             Is a great place to buy larger animals, and other things, so he suggests you build one */
-                if (InventoryHelper.getHandItemIsIn(player, ITEM_STACK, HFAnimals.MILK.getStack(Size.SMALL)) != null) {
+                if (InventoryHelper.getHandItemIsIn(player, ITEM_STACK, HFCore.SIZEABLE.getStack(Sizeable.MILK, Size.SMALL)) != null) {
                     return getLocalized("complete");
                 }
 
@@ -152,7 +154,7 @@ public class QuestCowCare extends QuestQuestion {
             increaseStage(player);
             rewardItem(player, HFAnimals.TOOLS.getStackFromEnum(Tool.MILKER));
         } else if (quest_stage == MILKING) {
-            if (InventoryHelper.getHandItemIsIn(player, ITEM_STACK, HFAnimals.MILK.getStack(Size.SMALL)) != null) {
+            if (InventoryHelper.getHandItemIsIn(player, ITEM_STACK, HFCore.SIZEABLE.getStack(Sizeable.MILK, Size.SMALL)) != null) {
                 complete(player);
             }
         }
@@ -160,7 +162,7 @@ public class QuestCowCare extends QuestQuestion {
 
     @Override
     public void onQuestCompleted(EntityPlayer player) {
-        rewardItem(player, HFAnimals.MILK.getStackOfSize(Size.LARGE, 3));
+        rewardItem(player, HFCore.SIZEABLE.getStackOfSize(Sizeable.MILK, Size.LARGE, 3));
         rewardItem(player, HFAnimals.TROUGH.getStackFromEnum(Trough.WOOD));
     }
 

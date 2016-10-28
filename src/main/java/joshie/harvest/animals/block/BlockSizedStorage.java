@@ -2,7 +2,7 @@ package joshie.harvest.animals.block;
 
 import joshie.harvest.animals.block.BlockSizedStorage.SizedStorage;
 import joshie.harvest.animals.tile.TileIncubator;
-import joshie.harvest.api.core.ISizeable.Size;
+import joshie.harvest.api.core.Size;
 import joshie.harvest.core.base.tile.TileFillableSized;
 import joshie.harvest.core.base.block.BlockHFEnumRotatableTile;
 import joshie.harvest.core.util.interfaces.IFaceable;

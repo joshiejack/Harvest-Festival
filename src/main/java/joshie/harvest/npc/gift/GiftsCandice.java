@@ -1,15 +1,15 @@
 package joshie.harvest.npc.gift;
 
-import joshie.harvest.animals.HFAnimals;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.npc.gift.GiftCategory;
+import joshie.harvest.tools.ToolHelper;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
 public class GiftsCandice extends Gifts {
     @Override
     public Quality getQuality(ItemStack stack) {
-        if (stack.getItem() == Items.MILK_BUCKET || HFAnimals.MILK.matches(stack)) {
+        if (stack.getItem() == Items.MILK_BUCKET || ToolHelper.isMilk(stack)) {
             return Quality.AWESOME;
         }
 

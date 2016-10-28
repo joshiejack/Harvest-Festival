@@ -25,8 +25,6 @@ import joshie.harvest.api.animals.IAnimalType;
 import joshie.harvest.api.crops.Crop;
 import joshie.harvest.core.helpers.RegistryHelper;
 import joshie.harvest.core.lib.EntityIDs;
-import joshie.harvest.core.registry.SizeableRegistry;
-import joshie.harvest.core.util.Sizeable;
 import joshie.harvest.core.util.annotations.HFLoader;
 import net.minecraft.client.model.ModelChicken;
 import net.minecraft.client.model.ModelCow;
@@ -69,10 +67,10 @@ public class HFAnimals {
     public static final BlockTray TRAY = new BlockTray().register("tray");
 
     //Sizeables
-    public static final Sizeable EGG = SizeableRegistry.INSTANCE.registerSizeable("egg", 50, 60, 80);
-    public static final Sizeable MILK = SizeableRegistry.INSTANCE.registerSizeable("milk", 100, 150, 200);
-    public static final Sizeable MAYONNAISE = SizeableRegistry.INSTANCE.registerSizeable("mayonnaise", 300, 400, 500);
-    public static final Sizeable WOOL = SizeableRegistry.INSTANCE.registerSizeable("wool", 100, 400, 500);
+    //public static final Sizeable EGG = SizeableRegistry.INSTANCE.registerSizeable("egg", 50, 60, 80);
+    //public static final Sizeable MILK = SizeableRegistry.INSTANCE.registerSizeable("milk", 100, 150, 200);
+    //public static final Sizeable MAYONNAISE = SizeableRegistry.INSTANCE.registerSizeable("mayonnaise", 300, 400, 500);
+    //public static final Sizeable WOOL = SizeableRegistry.INSTANCE.registerSizeable("wool", 100, 400, 500);
 
     @SuppressWarnings("unchecked")
     public static void preInit() {

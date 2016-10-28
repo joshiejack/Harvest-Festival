@@ -70,11 +70,11 @@ public class QuestUpgrade extends QuestTrade {
             case BASIC:
             case COPPER:
             case SILVER:
-                return 10;
+                return 20;
             case GOLD:
-                return 5;
+                return 10;
             case BLESSED:
-                return 1;
+                return 5;
             default:
                 return 0;
         }

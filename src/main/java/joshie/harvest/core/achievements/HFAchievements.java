@@ -1,12 +1,12 @@
 package joshie.harvest.core.achievements;
 
-import joshie.harvest.animals.HFAnimals;
 import joshie.harvest.api.HFApi;
-import joshie.harvest.api.core.ISizeable.Size;
+import joshie.harvest.api.core.Size;
 import joshie.harvest.cooking.CookingHelper;
 import joshie.harvest.core.HFCore;
 import joshie.harvest.core.block.BlockFlower.FlowerType;
 import joshie.harvest.core.block.BlockStorage.Storage;
+import joshie.harvest.core.item.ItemSizeable.Sizeable;
 import joshie.harvest.core.util.annotations.HFLoader;
 import joshie.harvest.crops.HFCrops;
 import joshie.harvest.mining.HFMining;
@@ -66,10 +66,10 @@ public class HFAchievements {
         harvest = addAchievement("harvest", 0, 4, HFCrops.TURNIP.getCropStack(1), summon);
         onion = addAchievement("onion", 0, 7, HFCrops.ONION.getCropStack(1), harvest);
         spinach = addAchievement("spinach", 0, 9, HFCrops.SPINACH.getCropStack(1), harvest);
-        milker = addAchievement("milker", -2, 6, HFAnimals.MILK.getStack(Size.SMALL), harvest);
-        egger = addAchievement("egger", 2, 6, HFAnimals.EGG.getStack(Size.SMALL), harvest);
-        milkerLarge = addAchievement("milkerLarge", -4, 6, HFAnimals.MILK.getStack(Size.LARGE), milker);
-        eggerLarge = addAchievement("eggerLarge", 4, 6, HFAnimals.EGG.getStack(Size.LARGE), egger);
+        milker = addAchievement("milker", -2, 6, HFCore.SIZEABLE.getStack(Sizeable.MILK, Size.SMALL), harvest);
+        egger = addAchievement("egger", 2, 6, HFCore.SIZEABLE.getStack(Sizeable.EGG, Size.SMALL), harvest);
+        milkerLarge = addAchievement("milkerLarge", -4, 6, HFCore.SIZEABLE.getStack(Sizeable.MILK, Size.LARGE), milker);
+        eggerLarge = addAchievement("eggerLarge", 4, 6, HFCore.SIZEABLE.getStack(Sizeable.EGG, Size.LARGE), egger);
         firstChristmas = addAchievement("firstChristmas", 2, -3, new ItemStack(Blocks.SAPLING, 1, 1), summon);
         birthday = addAchievement("birthday", 2, -5, new ItemStack(Items.CAKE), firstChristmas);
         firstShipping = addAchievement("firstShipping", -2, 3, HFCore.STORAGE.getStackFromEnum(Storage.SHIPPING), summon);

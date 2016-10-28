@@ -5,7 +5,7 @@ import joshie.harvest.animals.tile.TileFeeder;
 import joshie.harvest.animals.tile.TileNest;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.*;
-import joshie.harvest.api.core.ISizeable.Size;
+import joshie.harvest.api.core.Size;
 import joshie.harvest.core.HFCore;
 import joshie.harvest.core.achievements.HFAchievements;
 import joshie.harvest.core.base.block.BlockHFEnum;

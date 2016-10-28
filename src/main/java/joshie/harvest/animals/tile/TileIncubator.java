@@ -4,7 +4,7 @@ import joshie.harvest.animals.HFAnimals;
 import joshie.harvest.animals.entity.EntityHarvestChicken;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.AnimalStats;
-import joshie.harvest.api.core.ISizeable.Size;
+import joshie.harvest.api.core.Size;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.base.tile.TileFillableSizedFaceable;
 import joshie.harvest.core.helpers.EntityHelper;

@@ -1,7 +1,7 @@
 package joshie.harvest.animals.tile;
 
 import joshie.harvest.api.HFApi;
-import joshie.harvest.api.core.ISizeable.Size;
+import joshie.harvest.api.core.Size;
 import joshie.harvest.core.base.tile.TileHarvest;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;

@@ -1,6 +1,5 @@
 package joshie.harvest.api.core;
 
-import joshie.harvest.api.core.ISizeable.Size;
 import net.minecraft.item.ItemStack;
 
 /** This is for registering sizeable types **/

@@ -1,7 +1,7 @@
 package joshie.harvest.core;
 
 import joshie.harvest.api.HFApi;
-import joshie.harvest.api.core.ISizeable.Size;
+import joshie.harvest.api.core.Size;
 import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.core.lib.HFModInfo;

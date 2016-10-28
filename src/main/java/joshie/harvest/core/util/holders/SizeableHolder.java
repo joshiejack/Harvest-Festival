@@ -1,52 +1,54 @@
 package joshie.harvest.core.util.holders;
 
-import joshie.harvest.api.core.ISizeable.Size;
-import joshie.harvest.core.HFCore;
-import joshie.harvest.core.registry.SizeableRegistry;
-import joshie.harvest.core.util.Sizeable;
+import joshie.harvest.api.core.ISizedProvider;
+import joshie.harvest.api.core.Size;
+import joshie.harvest.core.base.item.ItemHFSizeable;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.ResourceLocation;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class SizeableHolder extends AbstractItemHolder {
-    private final Sizeable sizeable;
+    private final ItemStack stack;
+    private final ISizedProvider item;
+    private final Object object;
 
-    private SizeableHolder(Sizeable sizeable) {
-        this.sizeable = sizeable;
+    private SizeableHolder(ItemStack stack) {
+        this.stack = stack;
+        this.item = (ItemHFSizeable) stack.getItem();
+        this.object = this.item.getObject(stack);
     }
 
-    public static SizeableHolder of(Sizeable sizeable) {
-        return new SizeableHolder(sizeable);
+    public static SizeableHolder of(ItemStack stack) {
+        return new SizeableHolder(stack);
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public List<ItemStack> getMatchingStacks() {
         if (matchingStacks != null && matchingStacks.size() > 0) return matchingStacks;
         else {
             matchingStacks = new ArrayList<>();
-            matchingStacks.add(sizeable.getStack(Size.SMALL));
-            matchingStacks.add(sizeable.getStack(Size.MEDIUM));
-            matchingStacks.add(sizeable.getStack(Size.LARGE));
+            matchingStacks.add(item.getStackOfSize(object, Size.SMALL, 1));
+            matchingStacks.add(item.getStackOfSize(object, Size.MEDIUM, 1));
+            matchingStacks.add(item.getStackOfSize(object, Size.LARGE, 1));
             return matchingStacks;
         }
     }
 
     @Override
     public boolean matches(ItemStack stack) {
-        return HFCore.SIZEABLE.getObjectFromStack(stack) == sizeable;
+        return stack.getItem() == this.stack.getItem() && item.getObject(stack) == item.getObject(this.stack);
     }
 
     public static SizeableHolder readFromNBT(NBTTagCompound tag) {
-        return new SizeableHolder(SizeableRegistry.REGISTRY.getValue(new ResourceLocation(tag.getString("Sizeable"))));
+        return new SizeableHolder(ItemStack.loadItemStackFromNBT(tag));
     }
 
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound tag) {
-        tag.setString("Sizeable", SizeableRegistry.REGISTRY.getKey(sizeable).toString());
-        return tag;
+        return stack.writeToNBT(tag);
     }
 
     @Override
@@ -54,12 +56,15 @@ public class SizeableHolder extends AbstractItemHolder {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         SizeableHolder that = (SizeableHolder) o;
-        return sizeable != null ? sizeable.equals(that.sizeable) : that.sizeable == null;
+        if (item != null ? !item.equals(that.item) : that.item != null) return false;
+        return object != null ? object.equals(that.object) : that.object == null;
 
     }
 
     @Override
     public int hashCode() {
-        return sizeable != null ? sizeable.hashCode() : 0;
+        int result = item != null ? item.hashCode() : 0;
+        result = 31 * result + (object != null ? object.hashCode() : 0);
+        return result;
     }
 }

@@ -4,7 +4,9 @@ import joshie.harvest.animals.HFAnimals;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.core.ITiered;
 import joshie.harvest.cooking.HFCooking;
+import joshie.harvest.core.HFCore;
 import joshie.harvest.core.helpers.EntityHelper;
+import joshie.harvest.core.item.ItemSizeable.Sizeable;
 import joshie.harvest.core.util.annotations.HFEvents;
 import joshie.harvest.npc.HFNPCs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -40,7 +42,15 @@ public class ToolHelper {
     }
 
     public static boolean isEgg(ItemStack stack) {
-        return HFAnimals.EGG.matches(stack);
+        return stack.getItem() == HFCore.SIZEABLE && HFCore.SIZEABLE.getEnumFromStack(stack) == Sizeable.EGG;
+    }
+
+    public static boolean isMilk(ItemStack stack) {
+        return stack.getItem() == HFCore.SIZEABLE && HFCore.SIZEABLE.getEnumFromStack(stack) == Sizeable.MILK;
+    }
+
+    public static boolean isWool(ItemStack stack) {
+        return stack.getItem() == HFCore.SIZEABLE && HFCore.SIZEABLE.getEnumFromStack(stack) == Sizeable.WOOL;
     }
 
     public static boolean isOil(ItemStack stack) {

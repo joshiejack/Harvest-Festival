@@ -1,11 +1,12 @@
 package joshie.harvest.animals.type;
 
-import joshie.harvest.animals.HFAnimals;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.AnimalAction;
 import joshie.harvest.api.animals.AnimalStats;
-import joshie.harvest.api.core.ISizeable.Size;
+import joshie.harvest.api.core.Size;
+import joshie.harvest.core.HFCore;
 import joshie.harvest.core.helpers.EntityHelper;
+import joshie.harvest.core.item.ItemSizeable.Sizeable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 
@@ -34,7 +35,7 @@ public class AnimalChicken extends AnimalAbstract {
             if (relationship >= s.getRelationshipRequirement()) size = s;
         }
 
-        return HFAnimals.EGG.getStack(size);
+        return HFCore.SIZEABLE.getStack(Sizeable.EGG, size);
     }
 
     @Override

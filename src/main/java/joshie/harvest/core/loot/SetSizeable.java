@@ -3,8 +3,9 @@ package joshie.harvest.core.loot;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSerializationContext;
-import joshie.harvest.api.core.ISizeable.Size;
-import joshie.harvest.core.registry.SizeableRegistry;
+import joshie.harvest.api.core.ISizedProvider;
+import joshie.harvest.api.core.Size;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.storage.loot.LootContext;
@@ -14,22 +15,27 @@ import net.minecraft.world.storage.loot.functions.LootFunction;
 import java.util.Locale;
 import java.util.Random;
 
-import static joshie.harvest.core.lib.HFModInfo.MODID;
-
 
 public class SetSizeable extends LootFunction {
-    private final ResourceLocation resource;
+    private final ISizedProvider provider;
+    private final Object object;
     private final Size size;
 
-    public SetSizeable(LootCondition[] conditionsIn, String sizeable, String size) {
+    @SuppressWarnings("ConstantConditions")
+    public SetSizeable(LootCondition[] conditionsIn, String sizeable, String object, String size) {
         super(conditionsIn);
-        this.resource = new ResourceLocation(MODID, sizeable);
+        provider = (ISizedProvider)Item.REGISTRY.getObject(new ResourceLocation(sizeable));
+        this.object = provider.getObjectFromString(object);
         this.size = Size.valueOf(size.toUpperCase(Locale.ENGLISH));
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public ItemStack apply(ItemStack stack, Random rand, LootContext context) {
-        return SizeableRegistry.REGISTRY.getValue(resource).getStack(size);
+        if (stack.getItem() instanceof ISizedProvider) {
+            ISizedProvider provider = (ISizedProvider)stack.getItem();
+            return provider.getStackOfSize(object, size, 1);
+        } else return stack;
     }
 
     public static class Serializer extends LootFunction.Serializer<SetSizeable> {
@@ -38,12 +44,13 @@ public class SetSizeable extends LootFunction {
         }
 
         public void serialize(JsonObject object, SetSizeable functionClazz, JsonSerializationContext serializationContext) {
-            object.addProperty("resource", functionClazz.resource.toString());
+            object.addProperty("item", ((Item)functionClazz.provider).getRegistryName().toString());
+            object.addProperty("object", functionClazz.object.toString());
             object.addProperty("size", functionClazz.size.name());
         }
 
         public SetSizeable deserialize(JsonObject object, JsonDeserializationContext deserializationContext, LootCondition[] conditionsIn) {
-            return new SetSizeable(conditionsIn, object.get("resource").getAsString(), object.get("size").getAsString());
+            return new SetSizeable(conditionsIn, object.get("item").getAsString(), object.get("object").getAsString(), object.get("size").getAsString());
         }
     }
 }

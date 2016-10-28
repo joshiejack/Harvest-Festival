@@ -50,7 +50,8 @@
           "functions": [
             {
               "function": "hf_set_sizeable",
-              "resource": "egg",
+              "item": "harvestfestival:sizeable",
+              "object": "egg",
               "size": "small"
             },
             {

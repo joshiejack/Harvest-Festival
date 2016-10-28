@@ -3,13 +3,15 @@ package joshie.harvest.quests.tutorial;
 import joshie.harvest.animals.HFAnimals;
 import joshie.harvest.animals.entity.EntityHarvestChicken;
 import joshie.harvest.animals.item.ItemAnimalTool.Tool;
-import joshie.harvest.api.core.ISizeable.Size;
+import joshie.harvest.api.core.Size;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.api.quests.QuestQuestion;
 import joshie.harvest.buildings.HFBuildings;
+import joshie.harvest.core.HFCore;
 import joshie.harvest.core.helpers.InventoryHelper;
+import joshie.harvest.core.item.ItemSizeable.Sizeable;
 import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.quests.Quests;
 import joshie.harvest.quests.selection.TutorialSelection;
@@ -136,7 +138,7 @@ public class QuestChickenCare extends QuestQuestion {
                 She explains this is a valuable egg from the best of chickens, you'll have to take care
                 Of yours properly if you wish to look after it. She also heard that yulif had a spare cow
                 And that you should go talk to him if you want it */
-                if (InventoryHelper.getHandItemIsIn(player, ITEM_STACK, HFAnimals.EGG.getStack(Size.SMALL)) != null) {
+                if (InventoryHelper.getHandItemIsIn(player, ITEM_STACK, HFCore.SIZEABLE.getStack(Sizeable.EGG, Size.SMALL)) != null) {
                     return getLocalized("complete");
                 }
 
@@ -156,7 +158,7 @@ public class QuestChickenCare extends QuestQuestion {
             rewardEntity(player, "harvestfestival.chicken");
             rewardItem(player, new ItemStack(HFAnimals.TOOLS, 64, CHICKEN_FEED.ordinal()));
             rewardItem(player, HFAnimals.TRAY.getStackFromEnum(NEST_EMPTY));
-            rewardItem(player, HFAnimals.EGG.getStack(Size.LARGE));
+            rewardItem(player, HFCore.SIZEABLE.getStack(Sizeable.EGG, Size.LARGE));
         } else if (quest_stage == THROW) {
             increaseStage(player);
             rewardEntity(player, "harvestfestival.chicken");
@@ -165,16 +167,16 @@ public class QuestChickenCare extends QuestQuestion {
             increaseStage(player);
             rewardItem(player, HFAnimals.TRAY.getStackFromEnum(NEST_EMPTY));
         } else if (quest_stage == FINAL) {
-            if (InventoryHelper.getHandItemIsIn(player, ITEM_STACK, HFAnimals.EGG.getStack(Size.SMALL)) != null) {
+            if (InventoryHelper.getHandItemIsIn(player, ITEM_STACK, HFCore.SIZEABLE.getStack(Sizeable.EGG, Size.SMALL)) != null) {
                 complete(player);
-                rewardItem(player, HFAnimals.EGG.getStack(Size.LARGE));
+                rewardItem(player, HFCore.SIZEABLE.getStack(Sizeable.EGG, Size.LARGE));
             }
         }
     }
 
     @Override
     public void onQuestCompleted(EntityPlayer player) {
-        rewardItem(player, HFAnimals.EGG.getStackOfSize(Size.LARGE, 3));
+        rewardItem(player, HFCore.SIZEABLE.getStackOfSize(Sizeable.EGG, Size.LARGE, 3));
         rewardItem(player, HFAnimals.TRAY.getStackFromEnum(FEEDER_EMPTY));
     }
 

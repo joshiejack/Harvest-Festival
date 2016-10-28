@@ -111,15 +111,32 @@ public class MiningChunk implements IChunkGenerator {
         }
 
         if (chunkX >= 0 && chunkZ >= 0) {
+            boolean up = true;
+            int been = 0;
             for (int chunkY = 0; chunkY < MAX_LOOP; chunkY += MiningHelper.FLOOR_HEIGHT) {
                 IBlockState[][] states = getMineGeneration(chunkX, chunkY, chunkZ);
                 rand.setSeed(getIndex(chunkX, chunkY, chunkZ) * worldObj.getSeed());
 
                 //Set the floor blocks
+                int height = rand.nextInt(3);
                 for (int i = 0; i < 16; i++) {
                     for (int j = 0; j < 16; j++) {
                         if (states[i][j] == FLOORS || states[i][j] == ORE) {
                             setBlockState(primer, i, chunkY, j, states[i][j], chunkX);
+                            if (been >= 10 + rand.nextInt(16) && rand.nextInt(8) == 0) {
+                                if (up) height++;
+                                else height--;
+                                if (height > 2) {
+                                    height = 2;
+                                    up = false;
+                                } else if (height < 0) {
+                                    height = 0;
+                                    up = true;
+                                }
+
+                                been = 0;
+                            } else been++;
+
                             for (int k = 0; k < 3; k++) {
                                 int width = 1 + rand.nextInt(1);
                                 int length = 1 + rand.nextInt(1);
@@ -131,7 +148,7 @@ public class MiningChunk implements IChunkGenerator {
                                             BlockPos offset = pos.offset(enumFacing);
                                             if (x4 != z4 && getBlockState(primer, offset.getX(), offset.getY(), offset.getZ()) == states[i][j] && rand.nextBoolean()) {
                                                 setBlockState(primer, pos.getX(), chunkY, pos.getZ(), states[i][j], chunkX);
-                                                for (int y = 1; y <= MiningHelper.FLOOR_HEIGHT - 2; y++) {
+                                                for (int y = 1; y <= MiningHelper.FLOOR_HEIGHT - 4; y++) {
                                                     setBlockState(primer, pos.getX(), chunkY + y, pos.getZ(), AIR, chunkX);
                                                 }
 
@@ -142,7 +159,7 @@ public class MiningChunk implements IChunkGenerator {
                                 }
                             }
 
-                            for (int y = 1; y <= MiningHelper.FLOOR_HEIGHT - 2; y++) {
+                            for (int y = 1; y <= MiningHelper.FLOOR_HEIGHT - 1 - height; y++) {
                                 setBlockState(primer, i, chunkY + y, j, AIR, chunkX);
                             }
                         }
@@ -278,20 +295,20 @@ public class MiningChunk implements IChunkGenerator {
             IBlockState[][] blockStateMap = new IBlockState[CHUNK_BOUNDARY * 16][CHUNK_BOUNDARY * 16];
             boolean first = true;
             rand.setSeed(mapIndex * worldObj.getSeed());
-            int startX = 15 + rand.nextInt(85);
-            int endX = 15 + rand.nextInt(85);
-            int startZ = 15 + rand.nextInt(85);
-            int endZ = 15 + rand.nextInt(85);
-            int ladderDistance = 5 + rand.nextInt(25);
-            int differenceMin = 5 + rand.nextInt(15);
+            int startX = 15 + rand.nextInt(75);
+            int endX = 15 + rand.nextInt(75);
+            int startZ = 15 + rand.nextInt(75);
+            int endZ = 15 + rand.nextInt(75);
+            int ladderDistance = 5 + rand.nextInt(20);
+            int differenceMin = 5 + rand.nextInt(10);
             int endDistance = (differenceMin * 3) - 1;
             int maxLoop = 1 + rand.nextInt(5);
-            int endChangeChanceX = 15 + rand.nextInt(15);
-            int endChangeChanceZ = 15 + rand.nextInt(15);
-            int changeMinX = 10 + rand.nextInt(25);
-            int changeMinZ = 10 + rand.nextInt(25);
-            int randXChange = 5 + rand.nextInt(30);
-            int randZChange = 5 + rand.nextInt(30);
+            int endChangeChanceX = 10 + rand.nextInt(15);
+            int endChangeChanceZ = 10 + rand.nextInt(15);
+            int changeMinX = 10 + rand.nextInt(20);
+            int changeMinZ = 10 + rand.nextInt(20);
+            int randXChange = 5 + rand.nextInt(25);
+            int randZChange = 5 + rand.nextInt(25);
             int randXTime = 7 + rand.nextInt(10);
             int randZTime = 7 + rand.nextInt(10);
             int radius = 1 + rand.nextInt(3);

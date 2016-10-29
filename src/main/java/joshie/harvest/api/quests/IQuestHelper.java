@@ -1,6 +1,5 @@
 package joshie.harvest.api.quests;
 
-import joshie.harvest.api.npc.INPC;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 
@@ -22,12 +21,6 @@ public interface IQuestHelper {
      *  @param player   the player
      */
     void completeEarly(QuestQuestion quest, EntityPlayer player);
-
-    /** Takes an item from a players held items,
-     *  CALL ONE SIDE ONLY
-     *  @param player   the player to take from
-     *  @param amount   the amount to take from the stack*/
-    void takeHeldStack(EntityPlayer player, int amount);
 
     /** Rewards a player with an item, if called on the client side,
      *  the item will be validated against the quest to ensure it can be rewarded

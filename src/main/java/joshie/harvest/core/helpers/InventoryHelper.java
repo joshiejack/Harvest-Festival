@@ -1,5 +1,6 @@
 package joshie.harvest.core.helpers;
 
+import joshie.harvest.tools.ToolHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.*;
@@ -12,7 +13,7 @@ import static joshie.harvest.core.helpers.InventoryHelper.SearchType.*;
 
 public class InventoryHelper {
     public enum SearchType {
-        FLOWER, HOE, BUCKET, SHEARS
+        FLOWER, HOE, BUCKET, SHEARS, WOOL
     }
 
     public static final Matcher<String> ORE_DICTIONARY = new Matcher<String>() {
@@ -54,6 +55,8 @@ public class InventoryHelper {
                 return stack.getItem() instanceof ItemBucket;
             } else if (type.equals(SHEARS)) {
                 return stack.getItem() instanceof ItemShears;
+            } else if (type.equals(WOOL)) {
+                return ToolHelper.isWool(stack);
             }
 
             return false;

@@ -50,7 +50,7 @@ public class PacketSyncBuilding extends PenguinPacket {
         NBTTagCompound tag = ByteBufUtils.readTag(buf);
         NBTTagList list = tag.getTagList("Building", 10);
         for (int i = 0; i < list.tagCount(); i++) {
-            building.add( BuildingStage.readFromNBT(list.getCompoundTagAt(i)));
+            building.add(BuildingStage.readFromNBT(list.getCompoundTagAt(i)));
         }
     }
 

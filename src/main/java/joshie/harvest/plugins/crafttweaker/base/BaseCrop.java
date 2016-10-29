@@ -3,12 +3,14 @@ package joshie.harvest.plugins.crafttweaker.base;
 import joshie.harvest.api.crops.Crop;
 import net.minecraft.util.ResourceLocation;
 
+import static joshie.harvest.core.lib.HFModInfo.MODID;
+
 public abstract class BaseCrop extends BaseUndoable {
     protected final ResourceLocation resource;
 
     public BaseCrop(String name) {
         if (name.contains(":")) this.resource = new ResourceLocation(name);
-        else this.resource = new ResourceLocation("minetweaker3", name);
+        else this.resource = new ResourceLocation(MODID, name);
     }
 
     @Override

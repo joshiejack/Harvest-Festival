@@ -1,6 +1,7 @@
 package joshie.harvest.npc.gui;
 
 import joshie.harvest.api.quests.Quest;
+import joshie.harvest.api.quests.QuestType;
 import joshie.harvest.api.quests.Selection;
 import joshie.harvest.core.helpers.TextHelper;
 import joshie.harvest.core.lib.HFModInfo;
@@ -8,8 +9,10 @@ import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.npc.entity.EntityNPC;
 import joshie.harvest.npc.packet.PacketGift;
 import joshie.harvest.npc.packet.PacketInfo;
-import joshie.harvest.npc.packet.PacketSelect;
+import joshie.harvest.quests.packet.PacketQuestSelect;
 import joshie.harvest.quests.QuestHelper;
+import joshie.harvest.town.TownHelper;
+import joshie.harvest.town.data.TownData;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.EnumHand;
@@ -149,7 +152,10 @@ public class GuiNPCSelect extends GuiNPCBase {
 
     @SuppressWarnings("unchecked")
     private void select() {
-        PacketHandler.sendToServer(new PacketSelect(quest, npc, selected));
+        if (quest != null && quest.getQuestType() == QuestType.TOWN) {
+            TownData town = TownHelper.getClosestTownToEntity(npc);
+            PacketHandler.sendToServer(new PacketQuestSelect(quest, npc, selected).setUUID(town.getID()));
+        } else PacketHandler.sendToServer(new PacketQuestSelect(quest, npc, selected));
     }
 
 }

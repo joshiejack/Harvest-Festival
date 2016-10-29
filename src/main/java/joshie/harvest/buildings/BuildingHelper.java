@@ -1,13 +1,14 @@
 package joshie.harvest.buildings;
 
-import joshie.harvest.buildings.render.RenderKey;
+import joshie.harvest.buildings.render.BuildingKey;
 import joshie.harvest.core.helpers.ChatHelper;
 import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.core.helpers.TextHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.Mirror;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
@@ -15,6 +16,8 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 
+import java.util.List;
+import java.util.Locale;
 import java.util.WeakHashMap;
 
 public class BuildingHelper {
@@ -29,16 +32,24 @@ public class BuildingHelper {
         }
     }
 
+    @SuppressWarnings("all")
     public static RayTraceResult rayTrace(EntityPlayer player, double blockReachDistance, float partialTicks) {
         Vec3d vec3d = getPositionEyes(player, partialTicks);
         Vec3d vec3d1 = player.getLook(partialTicks);
         Vec3d vec3d2 = vec3d.addVector(vec3d1.xCoord * blockReachDistance, vec3d1.yCoord * blockReachDistance, vec3d1.zCoord * blockReachDistance);
-        return player.worldObj.rayTraceBlocks(vec3d, vec3d2, false, false, true);
+        RayTraceResult result = player.worldObj.rayTraceBlocks(vec3d, vec3d2, false, false, true);
+        return result.getBlockPos() == null ? null : result;
     }
 
-    private static final WeakHashMap<EntityPlayer, RenderKey> POSITIONS_SERVER = new WeakHashMap<>();
+    @SuppressWarnings("all")
+    public static BlockPos getBlockLookingAt(EntityPlayer player) {
+        RayTraceResult raytrace = BuildingHelper.rayTrace(player, 128, 0F);
+        return raytrace == null || raytrace.getBlockPos() == null ? null : raytrace.getBlockPos();
+    }
+
+    private static final WeakHashMap<EntityPlayer, BuildingKey> POSITIONS_SERVER = new WeakHashMap<>();
     private static final WeakHashMap<EntityPlayer, ItemStack> STACKS_SERVER = new WeakHashMap<>();
-    private static RenderKey POSITION_CLIENT;
+    private static BuildingKey POSITION_CLIENT;
     private static ItemStack STACK_CLIENT;
 
     private static void validateOrInvalidateStack(ItemStack stack, EntityPlayer player) {
@@ -55,12 +66,12 @@ public class BuildingHelper {
         }
     }
 
-    private static void setPositionForPlayer(EntityPlayer player, RenderKey pos) {
+    private static void setPositionForPlayer(EntityPlayer player, BuildingKey pos) {
         if (player.worldObj.isRemote) POSITION_CLIENT = pos;
         else POSITIONS_SERVER.put(player, pos);
     }
 
-    private static RenderKey getPositionForPlayer(EntityPlayer player) {
+    private static BuildingKey getPositionForPlayer(EntityPlayer player) {
         if (player.worldObj.isRemote) return POSITION_CLIENT;
         else return POSITIONS_SERVER.get(player);
     }
@@ -69,7 +80,7 @@ public class BuildingHelper {
         return world.isAirBlock(pos);
     }
 
-    private static RenderKey getCachedKey(EntityPlayer player, BlockPos pos, BuildingImpl building) {
+    private static BuildingKey getCachedKey(EntityPlayer player, BlockPos pos, BuildingImpl building) {
         EnumFacing facing = EntityHelper.getFacingFromEntity(player).getOpposite();
         Rotation rotation = Rotation.NONE;
         if (facing == EnumFacing.NORTH) {
@@ -88,15 +99,15 @@ public class BuildingHelper {
         else if (facing == EnumFacing.SOUTH) pos = pos.offset(facing, length).offset(EnumFacing.WEST, width);
         else if (facing == EnumFacing.EAST) pos = pos.offset(facing, length).offset(EnumFacing.SOUTH, width);
         else if (facing == EnumFacing.WEST) pos = pos.offset(facing, length).offset(EnumFacing.NORTH, width);
-        return RenderKey.of(rotation, building, pos);
+        return BuildingKey.of(rotation, building, pos);
     }
 
     @SuppressWarnings("deprecation")
-    public static RenderKey getPositioning(ItemStack stack, World world, RayTraceResult raytrace, BuildingImpl building, EntityPlayer player, boolean clicked) {
+    public static BuildingKey getPositioning(ItemStack stack, World world, RayTraceResult raytrace, BuildingImpl building, EntityPlayer player, boolean clicked) {
         validateOrInvalidateStack(stack, player);
         BlockPos pos = raytrace.getBlockPos().offset(raytrace.sideHit).up(building.getOffsetY());
         //Load the saved position
-        RenderKey key = getPositionForPlayer(player);
+        BuildingKey key = getPositionForPlayer(player);
         if (key == null) {
             if (clicked) {
                 if (!isAir(world, raytrace.getBlockPos()) && raytrace.sideHit == EnumFacing.UP) {
@@ -122,5 +133,20 @@ public class BuildingHelper {
         }
 
         return key == null ? raytrace.sideHit != EnumFacing.UP ? null : getCachedKey(player, pos, building) : key;
+    }
+
+    public static ActionResult<ItemStack> displayErrors(World world, ItemStack stack, List<BuildingError> errors) {
+        if (world.isRemote) {
+            StringBuilder builder = new StringBuilder();
+            for (int i = 0; i < errors.size(); i++) {
+                String string = TextFormatting.RED + TextHelper.translate("town.failure") + " " + TextFormatting.WHITE + TextHelper.translate("town." + errors.get(i).name().toLowerCase(Locale.ENGLISH));
+                builder.append(string);
+                if (i < errors.size() + 1) builder.append("\n");
+            }
+
+            ChatHelper.displayChat(builder.toString());
+        }
+
+        return new ActionResult<>(EnumActionResult.PASS, stack);
     }
 }

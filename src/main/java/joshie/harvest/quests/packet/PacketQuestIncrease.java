@@ -3,15 +3,13 @@ package joshie.harvest.quests.packet;
 import io.netty.buffer.ByteBuf;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.core.network.Packet;
+import joshie.harvest.core.network.Packet.Side;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 
-import static joshie.harvest.core.network.PacketHandler.sendToClient;
-import static joshie.harvest.core.network.PacketHandler.sendToDimension;
-
-@Packet
+@Packet(Side.CLIENT)
 public class PacketQuestIncrease extends PacketQuest {
     private Quest quest;
     private NBTTagCompound tag;
@@ -41,11 +39,7 @@ public class PacketQuestIncrease extends PacketQuest {
     public void handlePacket(EntityPlayer player) {
         Quest real = getQuestDataFromPlayer(player).getAQuest(quest);
         if (real != null) {
-            if (!player.worldObj.isRemote) {
-                real.quest_stage++;
-                if (uuid == null) sendToClient(new PacketQuestIncrease(real, real.writeToNBT(new NBTTagCompound())), player);
-                else sendToDimension(player.worldObj.provider.getDimension(), new PacketQuestIncrease(real, real.writeToNBT(new NBTTagCompound())).setUUID(uuid));
-            } else real.readFromNBT(tag);
+            real.readFromNBT(tag);
         }
     }
 }

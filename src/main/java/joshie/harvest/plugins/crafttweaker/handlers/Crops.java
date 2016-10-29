@@ -17,6 +17,7 @@ import stanhebben.zenscript.annotations.ZenMethod;
 
 import java.util.Locale;
 
+import static joshie.harvest.core.lib.HFModInfo.MODID;
 import static joshie.harvest.plugins.crafttweaker.CraftTweaker.asBlock;
 import static joshie.harvest.plugins.crafttweaker.CraftTweaker.asStack;
 
@@ -33,7 +34,7 @@ public class Crops {
 
 
         public Add(String name) {
-            this.resource = new ResourceLocation("minetweaker3", name);
+            this.resource = new ResourceLocation(MODID, name);
         }
 
         @Override

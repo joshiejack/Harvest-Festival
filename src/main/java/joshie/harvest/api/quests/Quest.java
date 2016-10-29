@@ -19,21 +19,24 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
-import java.util.Set;
+import java.util.*;
 
 public abstract class Quest extends Impl<Quest> {
     /** DO NOT MODIFY THE ENTRIES IN THE REGISTRY, ALWAYS MAKE A COPY OF THE QUESTS **/
     public static final IForgeRegistry<Quest> REGISTRY = new RegistryBuilder<Quest>().setName(new ResourceLocation("harvestfestival", "quests")).setType(Quest.class).setIDRange(0, 32000).create();
-    public int quest_stage;
+    private Set<INPC> npcs = new HashSet<>();
+    protected int quest_stage;
     private QuestType type;
-    private INPC[] npcs;
 
     public Quest() {
         this.type = QuestType.PLAYER;
     }
 
+    /** Called when this quest is registered initially **/
+    public void onRegistered() {}
+
     /** Returns a list of npcs that this quest lines uses */
-    public final INPC[] getNPCs() {
+    public Set<INPC> getNPCs() {
         return npcs;
     }
 
@@ -65,8 +68,8 @@ public abstract class Quest extends Impl<Quest> {
 
     /** Call this to set the npcs that handle this quest
      * @param npcs    the npcs **/
-    public final Quest setNPCs(INPC... npcs) {
-        this.npcs = npcs;
+    public Quest setNPCs(INPC... npcs) {
+        Collections.addAll(this.npcs, npcs);
         return this;
     }
 
@@ -77,7 +80,7 @@ public abstract class Quest extends Impl<Quest> {
     }
 
     /** Returns the stage of this quest **/
-    public final int getStage() {
+    public int getStage() {
         return quest_stage;
     }
 

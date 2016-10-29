@@ -29,8 +29,11 @@ public class EntityNPCBuilder extends EntityNPCShopkeeper {
     }
 
     public BuildingStage getBuilding() {
-        if (homeTown == null) homeTown = TownHelper.getClosestTownToEntity(this);
-        return homeTown != null ? homeTown.getCurrentlyBuilding() : null;
+        if (homeTown == null) {
+            homeTown = TownHelper.getClosestTownToEntity(this);
+        }
+
+        return homeTown.getCurrentlyBuilding();
     }
 
     public void finishBuilding() {

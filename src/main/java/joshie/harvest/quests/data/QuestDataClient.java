@@ -29,7 +29,7 @@ public class QuestDataClient extends QuestData {
 
     public String getScript(EntityPlayer player, EntityNPC npc) {
         for (Quest q : current) {
-            if (handlesScript(q, npc.getNPC())) {
+            if (q.getNPCs().contains(npc.getNPC())) {
                 String script = getScript(q, player, npc);
                 if (script != null) return script;
             }

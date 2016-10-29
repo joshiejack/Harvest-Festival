@@ -168,7 +168,6 @@ public abstract class GuiNPCBase extends GuiBase {
     }
 
     public void endChat() {
-        System.out.println("ENDED");
         PacketHandler.sendToServer(new PacketClose());
     }
 

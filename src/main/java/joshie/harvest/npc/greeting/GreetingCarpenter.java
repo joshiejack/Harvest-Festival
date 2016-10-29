@@ -18,7 +18,7 @@ public class GreetingCarpenter implements IConditionalGreeting<EntityNPCBuilder>
     public String getLocalizedText(EntityPlayer player, EntityNPCBuilder builder, INPC npc) {
         BuildingStage stage = TownHelper.getClosestTownToEntity(builder).getCurrentlyBuilding();
         String toLocalize;
-        if (stage.next().getOffsetPos().getY() > -stage.getBuilding().getOffsetY()) {
+        if (stage.isWorkingOnBasement()) {
             toLocalize = MODID + ".npc.builder.basement." + stage.getStage().name().toLowerCase(Locale.ENGLISH);
         } else toLocalize = MODID + ".npc.builder." + stage.getStage().name().toLowerCase(Locale.ENGLISH);
         return I18n.translateToLocalFormatted(toLocalize, stage.getBuilding().getLocalisedName());

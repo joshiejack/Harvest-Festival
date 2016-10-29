@@ -4,7 +4,7 @@ import joshie.harvest.buildings.BuildingHelper;
 import joshie.harvest.buildings.BuildingImpl;
 import joshie.harvest.buildings.BuildingRegistry;
 import joshie.harvest.buildings.HFBuildings;
-import joshie.harvest.buildings.render.RenderKey;
+import joshie.harvest.buildings.render.BuildingKey;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.item.ItemHFFML;
 import joshie.harvest.core.helpers.ChatHelper;
@@ -40,10 +40,10 @@ public class ItemBuilding extends ItemHFFML<ItemBuilding, BuildingImpl> implemen
             if (building != null && (DEBUG_MODE || building.canHaveMultiple() || !TownHelper.getClosestTownToEntity(player).hasBuilding(building.getRegistryName()))) {
                 if(player.canPlayerEdit(raytrace.getBlockPos(), EnumFacing.DOWN, stack)) {
                     if (!world.isRemote) {
-                        TownHelper.ensureTownExists(world, raytrace.getBlockPos()); //Force a town to exist near where you clicked
+                        TownHelper.ensureBuilderExists(world, raytrace.getBlockPos(), null); //Force a town to exist near where you clicked
                     }
 
-                    RenderKey key = BuildingHelper.getPositioning(stack, world, raytrace, building, player, true);
+                    BuildingKey key = BuildingHelper.getPositioning(stack, world, raytrace, building, player, true);
                     if (key != null) {
                         stack.splitStack(1);
                         return new ActionResult<>(building.generate(world, key.getPos(), key.getRotation()), stack);

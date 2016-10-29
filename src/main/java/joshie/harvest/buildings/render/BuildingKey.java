@@ -1,34 +1,31 @@
 package joshie.harvest.buildings.render;
 
 import joshie.harvest.buildings.BuildingImpl;
-import net.minecraft.util.Mirror;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import org.apache.commons.lang3.ObjectUtils;
 
 public class BuildingKey {
-    private final BlockPos pos;
-    private final Mirror mirror;
     private final Rotation rotation;
     private final BuildingImpl building;
+    private BlockPos pos;
 
-    public BuildingKey(BlockPos pos, Mirror mirror, Rotation rotation, BuildingImpl building) {
-        this.pos = pos;
-        this.mirror = mirror;
+    public BuildingKey(Rotation rotation, BuildingImpl building) {
         this.rotation = rotation;
         this.building = building;
     }
 
-    public static BuildingKey of(BlockPos pos, Mirror mirror, Rotation rotation, BuildingImpl building) {
-        return new BuildingKey(pos, mirror, rotation, building);
+    public static BuildingKey of(Rotation rotation, BuildingImpl building, BlockPos pos) {
+        return new BuildingKey(rotation, building).setPosition(pos);
+    }
+
+    public BuildingKey setPosition(BlockPos position) {
+        this.pos = position;
+        return this;
     }
 
     public BlockPos getPos() {
         return pos;
-    }
-
-    public Mirror getMirror() {
-        return mirror;
     }
 
     public Rotation getRotation() {
@@ -48,9 +45,7 @@ public class BuildingKey {
 
         if (obj instanceof BuildingKey) {
             final BuildingKey other = (BuildingKey) obj;
-            return ObjectUtils.equals(getPos(), other.getPos())
-                    && ObjectUtils.equals(getMirror(), other.getMirror())
-                    && ObjectUtils.equals(getRotation(), other.getRotation())
+            return ObjectUtils.equals(getRotation(), other.getRotation())
                     && ObjectUtils.equals(getBuilding(), other.getBuilding());
         }
 
@@ -59,9 +54,7 @@ public class BuildingKey {
 
     @Override
     public int hashCode() {
-        return (getPos() == null ? 0 : getPos().hashCode()) ^
-                (getMirror() == null ? 0 : getMirror().hashCode()) ^
-                (getRotation() == null ? 0 : getRotation().hashCode()) ^
+        return (getRotation() == null ? 0 : getRotation().hashCode()) ^
                 (getBuilding() == null ? 0 : getBuilding().hashCode());
     }
 }

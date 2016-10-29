@@ -1,18 +1,22 @@
 package joshie.harvest.shops.purchasable;
 
+import com.google.common.cache.Cache;
+import com.google.common.cache.CacheBuilder;
 import joshie.harvest.buildings.BuildingImpl;
 import joshie.harvest.buildings.BuildingRegistry;
 import joshie.harvest.buildings.HFBuildings;
-import joshie.harvest.core.HFTrackers;
 import joshie.harvest.town.TownHelper;
 import joshie.harvest.town.data.TownData;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
+
 public class PurchasableBuilding extends PurchasableBuilder {
+    private final Cache<EntityPlayer, TownData> closestCache = CacheBuilder.newBuilder().expireAfterWrite(1, TimeUnit.MINUTES).maximumSize(128).build();
     private final ResourceLocation resource;
     private final BuildingImpl building;
 
@@ -20,6 +24,12 @@ public class PurchasableBuilding extends PurchasableBuilder {
         super(building.getCost(), building.getWoodCount(), building.getStoneCount(), building.getRegistryName());
         this.building = building;
         this.resource = BuildingRegistry.REGISTRY.getKey(building);
+    }
+
+    private TownData getClosestTownToPlayer(EntityPlayer player) {
+        try {
+            return closestCache.get(player, () -> TownHelper.getClosestTownToEntity(player));
+        } catch (ExecutionException ex) { return null; }
     }
 
     @Override
@@ -36,7 +46,8 @@ public class PurchasableBuilding extends PurchasableBuilder {
 
     @Override
     public boolean canList(World world, EntityPlayer player) {
-        return !HFTrackers.getTownTracker(world).getClosestTownToBlockPos(new BlockPos(player)).hasBuilding(resource) && building.getRules().canBuy(world, player) && building.hasRequirements(player);
+        TownData town = getClosestTownToPlayer(player);
+        return town != null && !town.hasBuilding(resource) && building.getRules().canBuy(world, player) && building.hasRequirements(player);
     }
 
     @Override

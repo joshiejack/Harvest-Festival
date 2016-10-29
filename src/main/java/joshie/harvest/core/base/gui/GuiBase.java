@@ -1,6 +1,8 @@
 package joshie.harvest.core.base.gui;
 
+import joshie.harvest.core.helpers.MCClientHelper;
 import joshie.harvest.core.lib.HFModInfo;
+import joshie.harvest.npc.gui.ContainerNPCChat;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
@@ -45,6 +47,13 @@ public abstract class GuiBase extends GuiScreen {
         mc.thePlayer.openContainer = container;
         guiLeft = (width - xSize) / 2;
         guiTop = (height - ySize) / 2;
+    }
+
+    @Override
+    public void onGuiClosed() {
+        if (container instanceof ContainerNPCChat) {
+            container.onContainerClosed(MCClientHelper.getPlayer());
+        }
     }
 
     @Override

@@ -138,4 +138,10 @@ public class CalendarHelper {
         int scaledClosing = CalendarHelper.getScaledTime(close);
         return daytime >= scaledOpening && daytime <= scaledClosing;
     }
+
+    public static int getDays(CalendarDate then, CalendarDate now) {
+        int thenDays = getTotalDays(then);
+        int nowDays = getTotalDays(now);
+        return (nowDays - thenDays);
+    }
 }

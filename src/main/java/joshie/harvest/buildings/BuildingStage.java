@@ -89,7 +89,7 @@ public class BuildingStage {
         //Resync when we change
         if (basement) {
             Placeable placeable = next();
-            if (placeable.getOffsetPos().getY() > -getBuilding().getOffsetY()) {
+            if (placeable.getOffsetPos().getY() >= -getBuilding().getOffsetY()) {
                 basement = false;
                 HFTrackers.markDirty(world);
                 TownHelper.<TownDataServer>getClosestTownToBlockPos(world, pos).syncBuildings(world);
@@ -122,11 +122,14 @@ public class BuildingStage {
         return stage == ConstructionStage.FINISHED;
     }
 
+    public boolean isWorkingOnBasement() {
+        return basement;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         BuildingStage that = (BuildingStage) o;
         return building != null ? building.equals(that.building) : that.building == null;
     }

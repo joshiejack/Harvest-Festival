@@ -11,7 +11,6 @@ public class PacketClose extends PenguinPacket {
 
     @Override
     public void handlePacket(EntityPlayer player) {
-        System.out.println("CALLED AND CLOSING");
         player.closeScreen();
     }
 }

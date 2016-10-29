@@ -1,6 +1,5 @@
 package joshie.harvest.quests.data;
 
-import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.npc.entity.EntityNPC;
 import net.minecraft.entity.player.EntityPlayer;
@@ -14,27 +13,15 @@ public abstract class QuestData {
         return current;
     }
 
-    //Returns a selection maenu
+    //Returns a selection menu
     public Quest getSelection(EntityPlayer player, EntityNPC npc) {
         for (Quest q : current) {
-            if (handlesScript(q, npc.getNPC())) {
+            if (q.getNPCs().contains(npc.getNPC())) {
                 if (q.getSelection(player, npc.getNPC()) != null) return q;
             }
         }
 
         return null;
-    }
-
-    boolean handlesScript(Quest quest, INPC npc) {
-        INPC[] npcs = quest.getNPCs();
-        if (npcs == null) return false;
-        else {
-            for (INPC n: npcs) {
-                if (n.equals(npc)) return true;
-            }
-        }
-
-        return false;
     }
 
     public Quest getAQuest(Quest quest) {

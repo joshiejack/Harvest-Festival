@@ -67,6 +67,16 @@ public class TownDataServer extends TownData<QuestDataServer> implements IQuestM
         return deadVillagers.contains(((NPC)npc).getRegistryName());
     }
 
+    public void createNewBuilder(World world, BlockPos pos) {
+        if (!isDead(HFNPCs.BUILDER)) {
+            EntityNPCBuilder creator = new EntityNPCBuilder(world);
+            creator.setPositionAndUpdate(pos.getX(), pos.getY() + 1.5D, pos.getZ());
+            creator.setSpawnHome(this); //Set the spawn town
+            creator.setUniqueId(getID()); //Marking the builder as having the same data
+            world.spawnEntityInWorld(creator); //Towns owner now spawned
+        }
+    }
+
     public void markNPCDead(ResourceLocation name) {
         deadVillagers.add(name);
     }

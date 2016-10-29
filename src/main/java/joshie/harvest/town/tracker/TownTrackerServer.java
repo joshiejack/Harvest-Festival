@@ -4,8 +4,6 @@ import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.network.PacketHandler;
-import joshie.harvest.npc.HFNPCs;
-import joshie.harvest.npc.entity.EntityNPCBuilder;
 import joshie.harvest.town.data.TownData;
 import joshie.harvest.town.data.TownDataServer;
 import joshie.harvest.town.packet.PacketNewTown;
@@ -16,7 +14,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 
 import java.util.HashSet;
 import java.util.Map.Entry;
@@ -64,7 +61,6 @@ public class TownTrackerServer extends TownTracker<TownDataServer> {
     @Override
     public int getMineIDFromCoordinates(BlockPos pos) {
         TownData data = getClosestTownToBlockPos(pos);
-        if (data == null) return -1;
         if (!data.hasBuilding(MINEENTRANCE.getResource())) return -1;
         if (townIDs.containsKey(data.getID())) {
             return townIDs.get(data.getID());
@@ -83,34 +79,14 @@ public class TownTrackerServer extends TownTracker<TownDataServer> {
         return 0;
     }
 
-    public void createNewBuilder(BlockPos pos, TownDataServer data) {
-        if (!data.isDead(HFNPCs.BUILDER)) {
-            World world = getWorld();
-            EntityNPCBuilder creator = new EntityNPCBuilder(world);
-            creator.setPositionAndUpdate(pos.getX(), pos.getY() + 1.5D, pos.getZ());
-            creator.setSpawnHome(data); //Set the spawn town
-            creator.setUniqueId(data.getID()); //Marking the builder as having the same data
-            world.spawnEntityInWorld(creator); //Towns owner now spawned
-        }
-    }
-
     @Override
-    public TownDataServer createNewTown(BlockPos pos, boolean builder) {
-        World world = getWorld();
+    public TownDataServer createNewTown(BlockPos pos) {
         TownDataServer data = new TownDataServer(getDimension(), pos);
-        if (builder) {
-            EntityNPCBuilder creator = new EntityNPCBuilder(world);
-            creator.setSpawnHome(data); //Set the spawn town
-            creator.setUniqueId(data.getID()); //Marking the builder as having the same data
-            creator.setPositionAndUpdate(pos.getX(), pos.getY() + 1.5D, pos.getZ());
-            world.spawnEntityInWorld(creator); //Towns owner now spawned
-        }
-
         townData.add(data);
-        closestCache.invalidateAll(); //Reset the cache everytime we make a new town
         uuidMap.put(data.getID(), data);
         matchUUIDWithMineID(data.getID());
         PacketHandler.sendToDimension(getDimension(), new PacketNewTown(data)); //Sync to everyone on this dimension
+        data.getQuests().syncAllQuests(); //Sync the quests
         HFTrackers.markDirty(getDimension());
         return data;
     }

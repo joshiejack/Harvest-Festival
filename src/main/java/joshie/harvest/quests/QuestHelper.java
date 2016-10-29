@@ -14,7 +14,6 @@ import joshie.harvest.player.PlayerTrackerServer;
 import joshie.harvest.quests.packet.PacketQuestCompleteEarly;
 import joshie.harvest.quests.packet.PacketQuestIncrease;
 import joshie.harvest.town.TownHelper;
-import joshie.harvest.town.data.TownData;
 import joshie.harvest.town.data.TownDataClient;
 import joshie.harvest.town.data.TownDataServer;
 import net.minecraft.entity.Entity;
@@ -43,12 +42,7 @@ public class QuestHelper implements IQuestHelper {
     public void completeQuest(Quest quest, EntityPlayer player) {
         if (!player.worldObj.isRemote) {
             if (quest.getQuestType() == QuestType.PLAYER) HFTrackers.getPlayerTrackerFromPlayer(player).getQuests().markCompleted(player, quest, true);
-            else {
-                TownDataServer data = TownHelper.getClosestTownToEntity(player);
-                if (data != null) {
-                    data.getQuests().markCompleted(player, quest, true);
-                }
-            }
+            else TownHelper.getClosestTownToEntity(player).getQuests().markCompleted(player, quest, true);
         }
     }
 
@@ -58,9 +52,7 @@ public class QuestHelper implements IQuestHelper {
             if (quest.getQuestType() == QuestType.PLAYER) sendToClient(new PacketQuestCompleteEarly(quest), player);
             else {
                 TownDataServer data = TownHelper.getClosestTownToEntity(player);
-                if (data != null) {
-                    sendToDimension(player.worldObj.provider.getDimension(), new PacketQuestCompleteEarly(quest).setUUID(data.getID()));
-                }
+                sendToDimension(player.worldObj.provider.getDimension(), new PacketQuestCompleteEarly(quest).setUUID(data.getID()));
             }
         }
     }
@@ -68,13 +60,11 @@ public class QuestHelper implements IQuestHelper {
     @Override
     public void increaseStage(Quest quest, EntityPlayer player) {
         if (!player.worldObj.isRemote) {
-            quest.quest_stage++;
+            quest.setStage(quest.getStage() + 1);
             if (quest.getQuestType() == QuestType.PLAYER) sendToClient(new PacketQuestIncrease(quest, quest.writeToNBT(new NBTTagCompound())), player);
             else {
                 TownDataServer data = TownHelper.getClosestTownToEntity(player);
-                if (data != null) {
-                    sendToDimension(player.worldObj.provider.getDimension(), new PacketQuestIncrease(quest, quest.writeToNBT(new NBTTagCompound())).setUUID(data.getID()));
-                }
+                sendToDimension(player.worldObj.provider.getDimension(), new PacketQuestIncrease(quest, quest.writeToNBT(new NBTTagCompound())).setUUID(data.getID()));
             }
         }
     }
@@ -82,11 +72,6 @@ public class QuestHelper implements IQuestHelper {
     /**************************
      * REWARDS
      *****************************/
-    @Override
-    public void takeHeldStack(EntityPlayer player, int amount) {
-        player.inventory.decrStackSize(player.inventory.currentItem, amount);
-    }
-
     @Override
     public void rewardItem(Quest quest, EntityPlayer player, ItemStack stack) {
         SpawnItemHelper.addToPlayerInventory(player, stack);
@@ -126,11 +111,7 @@ public class QuestHelper implements IQuestHelper {
         if (isFakePlayer(player)) return EMPTY;
         Set<Quest> all = new HashSet<>();
         all.addAll(HFTrackers.getPlayerTrackerFromPlayer(player).getQuests().getCurrent());
-        TownData data = TownHelper.getClosestTownToEntity(player);
-        if (data != null) {
-            all.addAll(data.getQuests().getCurrent());
-        }
-
+        all.addAll(TownHelper.getClosestTownToEntity(player).getQuests().getCurrent());
         return all;
     }
 
@@ -144,27 +125,19 @@ public class QuestHelper implements IQuestHelper {
         String script = HFTrackers.getClientPlayerTracker().getQuests().getScript(player, npc);
         if (script != null) return script;
         else {
-            TownDataClient data = TownHelper.getClosestTownToEntity(player);
-            if (data != null) {
-                return data.getQuests().getScript(player, npc);
-            } else return null;
+            return TownHelper.<TownDataClient>getClosestTownToEntity(player).getQuests().getScript(player, npc);
         }
     }
 
     public static Quest getSelection(EntityPlayer player, EntityNPC npc) {
         Quest quest = HFTrackers.getPlayerTrackerFromPlayer(player).getQuests().getSelection(player, npc);
         if (quest != null) return quest;
-        else {
-            TownDataServer data = TownHelper.getClosestTownToEntity(player);
-            if (data != null) {
-                return data.getQuests().getSelection(player, npc);
-            } else return null;
-        }
+        else return TownHelper.getClosestTownToEntity(player).getQuests().getSelection(player, npc);
     }
 
     public static Quest getSelectiomFromID(EntityPlayer player, int selection) {
         Quest toFetch = Quest.REGISTRY.getValues().get(selection);
-        if (toFetch.getQuestType() == QuestType.PLAYER) return HFTrackers.getClientPlayerTracker().getQuests().getAQuest(toFetch);
+        if (toFetch.getQuestType() == QuestType.PLAYER) return HFTrackers.getPlayerTrackerFromPlayer(player).getQuests().getAQuest(toFetch);
         else return TownHelper.getClosestTownToEntity(player).getQuests().getAQuest(toFetch);
     }
 }

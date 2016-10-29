@@ -13,6 +13,7 @@ import net.minecraft.nbt.NBTTagString;
 import net.minecraft.util.ResourceLocation;
 
 import java.util.HashSet;
+import java.util.Set;
 
 public class QuestDataServer extends QuestData {
     private final HashSet<Quest> finished = new HashSet<>();
@@ -25,10 +26,12 @@ public class QuestDataServer extends QuestData {
     @Override
     public boolean startQuest(Quest q) {
         try {
-            Quest quest = q.getClass().newInstance().setRegistryName(q.getRegistryName()).setStage(0); //Set the current quest to your new
-            current.add(quest);
-            master.sync(null, new PacketQuestSetCurrent(quest));
-            return true;
+            if (!finished.contains(q) || q.isRepeatable()) {
+                Quest quest = q.getClass().newInstance().setRegistryName(q.getRegistryName()).setStage(0); //Set the current quest to your new
+                current.add(quest);
+                master.sync(null, new PacketQuestSetCurrent(quest));
+                return true;
+            } else return false;
         } catch (Exception ignored) { return false; }
     }
 
@@ -50,7 +53,7 @@ public class QuestDataServer extends QuestData {
         //Sync everything
         master.sync(player, new PacketQuestCompleted(quest, true)); //Let this player claim the reward
         master.sync(null, new PacketQuestCompleted(quest, false)); //Let the server know this was completed
-        syncAllQuests();
+        syncAllQuests(); //Update the world on these quests, everytime one is completed
     }
     
     public void syncAllQuests() {
@@ -80,7 +83,7 @@ public class QuestDataServer extends QuestData {
 
     private boolean canStart(Quest quest, HashSet<Quest> active, HashSet<Quest> finished) {
         //Loops through all the active quests, if any of the quests are real and contain npcs that are used by this quest, we can not start it
-        INPC[] npcs = quest.getNPCs();
+        Set<INPC> npcs = quest.getNPCs();
         if (npcs != null) {
             for (Quest a : active) {
                 if (a.isRealQuest()) {

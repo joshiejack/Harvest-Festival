@@ -23,7 +23,7 @@ import java.util.concurrent.TimeUnit;
 @HFEvents(Side.CLIENT)
 public class PreviewEvent {
     //Cache Values
-    public static final Cache<RenderKey, BuildingRenderer> CACHE = CacheBuilder.newBuilder().expireAfterWrite(5L, TimeUnit.MINUTES).maximumSize(64).build();
+    public static final Cache<BuildingKey, BuildingRenderer> CACHE = CacheBuilder.newBuilder().expireAfterWrite(5L, TimeUnit.MINUTES).maximumSize(64).build();
     private final BuildingVertexUploader vertexUploader = new BuildingVertexUploader();
     private static final float offset = 0.00390625F;
     private ItemStack held; //Cache the held itemstack
@@ -48,7 +48,7 @@ public class PreviewEvent {
             RayTraceResult raytrace = BuildingHelper.rayTrace(player, 128, 0F);
             if (raytrace == null || raytrace.getBlockPos() == null) return null;
             else {
-                RenderKey key = BuildingHelper.getPositioning(stack, world, raytrace, building, player, false);
+                BuildingKey key = BuildingHelper.getPositioning(stack, world, raytrace, building, player, false);
                 if (key != null) {
                     return CACHE.get(key, () -> new BuildingRenderer(new BuildingAccess(building, key.getRotation()), key)).setPosition(key.getPos());
                 }

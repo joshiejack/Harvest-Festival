@@ -19,10 +19,10 @@ import java.util.Map.Entry;
 @SideOnly(Side.CLIENT)
 public class BuildingRenderer {
     private final RegionRenderCacheBuilder renderer;
-    private final RenderKey key;
+    private final BuildingKey key;
     private BlockPos pos;
 
-    public BuildingRenderer(BuildingAccess world, RenderKey key) {
+    public BuildingRenderer(BuildingAccess world, BuildingKey key) {
         this.key = key;
         this.pos = key.getPos();
         this.renderer = new RegionRenderCacheBuilder();

@@ -1,9 +1,7 @@
 package joshie.harvest.town;
 
-import joshie.harvest.core.HFTrackers;
 import joshie.harvest.town.data.TownData;
 import joshie.harvest.town.data.TownDataServer;
-import joshie.harvest.town.tracker.TownTrackerServer;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -19,7 +17,6 @@ public class TownHelper {
         return (T) getTownTracker(world).getClosestTownToBlockPos(pos);
     }
 
-    /** Called from shops **/
     @SuppressWarnings("unchecked")
     public static <T extends TownData> T getClosestTownToEntity(EntityLivingBase entity) {
         return (T) getTownTracker(entity.worldObj).getClosestTownToBlockPos(new BlockPos(entity));
@@ -29,33 +26,12 @@ public class TownHelper {
         return getTownTracker(world).getTownByID(townID);
     }
 
-    public static boolean ensureTownExists(World world, BlockPos pos) {
-        boolean ret = true;
-        TownTrackerServer tracker = HFTrackers.getTownTracker(world);
-        TownData data = tracker.getClosestTownToBlockPos(pos);
-        if (data == null) {
-            data = tracker.createNewTown(pos, true);
-            ret = false; //Returning false because we spawned a builder
-        }
-
-        //Create a builder if one doesn't exist
-        if (data instanceof TownDataServer) {
-            TownDataServer server = (TownDataServer) data;
-            if(server.getBuilder((WorldServer) world) == null) {
-                tracker.createNewBuilder(pos, server);
-                return false; //Returning false because we spawned a builder
+    public static void ensureBuilderExists(World world, BlockPos pos, TownData original) {
+        if (!world.isRemote) {
+            TownDataServer data = (TownDataServer) original;
+            if (data.getBuilder((WorldServer) world) == null) {
+                data.createNewBuilder(world, pos);
             }
         }
-
-        return ret;
-    }
-
-    public static boolean createTownIfDoesntExist(World world, BlockPos pos) {
-        TownTrackerServer tracker = HFTrackers.getTownTracker(world);
-        TownData data = tracker.getClosestTownToBlockPos(pos);
-        if (data == null) {
-            tracker.createNewTown(pos, false);
-            return false;
-        } else return true;
     }
 }

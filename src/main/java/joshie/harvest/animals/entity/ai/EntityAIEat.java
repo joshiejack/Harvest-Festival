@@ -14,7 +14,7 @@ public class EntityAIEat extends EntityAIAnimal {
 
     @Override
     public boolean shouldExecute() {
-        if(getStats().isHungry()) {
+        if(getStats() != null && getStats().isHungry()) {
             wanderTick--;
             return wanderTick <= 0;
         } else return false;

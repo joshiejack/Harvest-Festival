@@ -41,6 +41,8 @@
 #Tools
 * Tools will have [BROKEN] in front of their name, when they can't be used
 * Hammers will now be able to smash more tiers of rocks
+* Fixed Hoes being half the durability they were meant to
+* Tools will now reach 100% before you use them all the way
 ##Fixes
 * Gifting npcs on their birthday will now only work once on smp, instead of over multiple days
 * My hoes will now work with BOP blocks

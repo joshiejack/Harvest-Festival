@@ -90,7 +90,6 @@ public class ItemHoe extends ItemToolChargeable {
         doParticles(stack, player, world, pos);
         if (!world.isRemote) {
             world.setBlockState(pos, state, 11);
-            stack.damageItem(1, player);
         }
     }
 
@@ -98,8 +97,14 @@ public class ItemHoe extends ItemToolChargeable {
         if (!playerIn.canPlayerEdit(pos.offset(facing), facing, stack)) {
             return EnumActionResult.FAIL;
         } else {
+            int original = stack.getItemDamage();
             int hook = net.minecraftforge.event.ForgeEventFactory.onHoeUse(stack, playerIn, worldIn, pos);
-            if (hook != 0) return hook > 0 ? EnumActionResult.SUCCESS : EnumActionResult.FAIL;
+            if (hook != 0) {
+                if (hook > 0) {
+                    stack.setItemDamage(original);
+                    return EnumActionResult.SUCCESS;
+                } else return EnumActionResult.FAIL;
+            }
 
             IBlockState iblockstate = worldIn.getBlockState(pos);
             Block block = iblockstate.getBlock();
@@ -128,11 +133,7 @@ public class ItemHoe extends ItemToolChargeable {
 
     @Override
     public void onUsingTick(ItemStack stack, EntityLivingBase player, int count) {
-        if (count <= 31995 && count % 16 == 0) {
-            if (canCharge(stack)) {
-                increaseCharge(stack, 1);
-            }
-        }
+        super.onUsingTick(stack, player, count);
     }
 
     @Override
@@ -141,17 +142,11 @@ public class ItemHoe extends ItemToolChargeable {
             EntityPlayer player = (EntityPlayer) entity;
             BlockPos pos = result.getBlockPos();
             EnumFacing front = EntityHelper.getFacingFromEntity(player);
-            if (player.canPlayerEdit(pos.offset(front), front, stack)) {
-                IBlockState original = world.getBlockState(pos);
-                if (getHoeResult(stack, player, world, pos, EnumFacing.UP) == EnumActionResult.FAIL) {
-                    return;
-                } else world.setBlockState(pos, original);
-
+            if (player.canPlayerEdit(pos.offset(front), front, stack) && canUse(stack)) {
                 for (int x2 = getXMinus(tier, front, pos.getX()); x2 <= getXPlus(tier, front, pos.getX()); x2++) {
                     for (int z2 = getZMinus(tier, front, pos.getZ()); z2 <= getZPlus(tier, front, pos.getZ()); z2++) {
                         if (canUse(stack)) {
                             BlockPos newPos = new BlockPos(x2, pos.getY(), z2);
-                            //if (newPos.equals(pos)) continue; //Don't redo the block we already did
                             getHoeResult(stack, player, world, newPos, EnumFacing.UP);
                         }
                     }

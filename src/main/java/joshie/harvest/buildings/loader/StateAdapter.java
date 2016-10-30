@@ -11,14 +11,19 @@ import java.lang.reflect.Type;
 public class StateAdapter implements JsonSerializer<IBlockState>, JsonDeserializer<IBlockState> {
     @Override
     public JsonElement serialize(IBlockState src, Type typeOfSrc, JsonSerializationContext context) {
-        return new JsonPrimitive(Block.REGISTRY.getNameForObject(src.getBlock()).toString() + " " + src.getBlock().getMetaFromState(src));
+        String text = Block.REGISTRY.getNameForObject(src.getBlock()).toString().replace("minecraft:", "");
+        int meta = src.getBlock().getMetaFromState(src);
+        if (meta != 0) text = text + " " + meta;
+        return new JsonPrimitive(text);
     }
 
     @SuppressWarnings("deprecation")
     @Override
     public IBlockState deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
         String[] state = json.getAsString().split(" ");
-        return Block.REGISTRY.getObject(new ResourceLocation(state[0])).getStateFromMeta(Integer.parseInt(state[1]));
+        ResourceLocation block = new ResourceLocation(state[0]);
+        int meta = state.length == 2 ? Integer.parseInt(state[1]) : 0;
+        return Block.REGISTRY.getObject(block).getStateFromMeta(meta);
     }
 }
 

@@ -1,11 +1,10 @@
 package joshie.harvest.core.base.item;
 
 import joshie.harvest.api.core.ITiered;
-import joshie.harvest.core.HFCore;
 import joshie.harvest.core.helpers.InventoryHelper;
+import joshie.harvest.core.helpers.TextHelper;
 import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.core.util.interfaces.ICreativeSorted;
-import joshie.harvest.core.helpers.TextHelper;
 import joshie.harvest.mining.HFMining;
 import joshie.harvest.mining.item.ItemMaterial.Material;
 import joshie.harvest.tools.ToolHelper;
@@ -114,7 +113,7 @@ public abstract class ItemTool<I extends ItemTool> extends ItemHFBase<I> impleme
     }
 
     public boolean canUse(ItemStack stack) {
-        return getDamageForDisplay(stack) + 1 < getMaximumToolDamage(stack) || !canBeDamaged();
+        return getDamageForDisplay(stack) + 1 <= getMaximumToolDamage(stack) || !canBeDamaged();
     }
 
     private boolean canLevel(ItemStack stack, IBlockState state) {
@@ -402,8 +401,8 @@ public abstract class ItemTool<I extends ItemTool> extends ItemHFBase<I> impleme
     @SideOnly(Side.CLIENT)
     @Override
     public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
-        if (advanced && HFCore.DEBUG_MODE) {
-            tooltip.add("Durability: " + getDamageForDisplay(stack));
+        if (advanced) {
+            tooltip.add("Damage: " + getDamageForDisplay(stack) + "/" + getMaximumToolDamage(stack));
             tooltip.add("Level: " + getLevel(stack));
         }
     }

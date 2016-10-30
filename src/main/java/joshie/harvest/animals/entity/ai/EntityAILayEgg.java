@@ -15,7 +15,7 @@ public class EntityAILayEgg extends EntityAIAnimal {
 
     @Override
     public boolean shouldExecute() {
-        if(!animal.isChild() && getStats().canProduce() && !getStats().isHungry()) {
+        if(!animal.isChild() && getStats() != null && getStats().canProduce() && !getStats().isHungry()) {
             wanderTick--;
 
             return wanderTick <= 0;

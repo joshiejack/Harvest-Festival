@@ -1,563 +1,561 @@
 {
   "components": [
     {
-      "state": "minecraft:vine 1",
+      "state": "vine 1",
       "pos": "4 0 9",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:vine 4",
+      "state": "vine 4",
       "pos": "4 0 11",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:vine 2",
+      "state": "vine 2",
       "pos": "5 0 10",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:sandstone 0",
+      "state": "sandstone",
       "pos": "5 0 6"
     },
     {
-      "state": "minecraft:sandstone 0",
+      "state": "sandstone",
       "pos": "5 0 5"
     },
     {
-      "state": "minecraft:sandstone 0",
+      "state": "sandstone",
       "pos": "6 0 5"
     },
     {
-      "state": "minecraft:sandstone 0",
+      "state": "sandstone",
       "pos": "6 0 6"
     },
     {
-      "state": "minecraft:sandstone 0",
+      "state": "sandstone",
       "pos": "6 0 7"
     },
     {
-      "state": "minecraft:sandstone 0",
+      "state": "sandstone",
       "pos": "7 0 7"
     },
     {
-      "state": "minecraft:sandstone 0",
+      "state": "sandstone",
       "pos": "7 0 6"
     },
     {
-      "state": "minecraft:sandstone 0",
+      "state": "sandstone",
       "pos": "7 0 5"
     },
     {
-      "state": "minecraft:sandstone 0",
+      "state": "sandstone",
       "pos": "8 0 6"
     },
     {
-      "state": "minecraft:sandstone 0",
+      "state": "sandstone",
       "pos": "4 1 5"
     },
     {
-      "state": "minecraft:sandstone 0",
+      "state": "sandstone",
       "pos": "4 1 6"
     },
     {
-      "state": "minecraft:vine 1",
+      "state": "vine 1",
       "pos": "4 1 9",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:vine 4",
+      "state": "vine 4",
       "pos": "4 1 11",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:vine 2",
+      "state": "vine 2",
       "pos": "5 1 10",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:sandstone 0",
+      "state": "sandstone",
       "pos": "5 1 7"
     },
     {
-      "state": "minecraft:sand 0",
+      "state": "sand",
       "pos": "5 1 6"
     },
     {
-      "state": "minecraft:sand 0",
+      "state": "sand",
       "pos": "5 1 5"
     },
     {
-      "state": "minecraft:sandstone 0",
+      "state": "sandstone",
       "pos": "5 1 4"
     },
     {
-      "state": "minecraft:sandstone 0",
+      "state": "sandstone",
       "pos": "6 1 4"
     },
     {
-      "state": "minecraft:sand 0",
+      "state": "sand",
       "pos": "6 1 5"
     },
     {
-      "state": "minecraft:sand 0",
+      "state": "sand",
       "pos": "6 1 6"
     },
     {
-      "state": "minecraft:sand 0",
+      "state": "sand",
       "pos": "6 1 7"
     },
     {
-      "state": "minecraft:sandstone 0",
+      "state": "sandstone",
       "pos": "6 1 8"
     },
     {
-      "state": "minecraft:sandstone 0",
+      "state": "sandstone",
       "pos": "7 1 8"
     },
     {
-      "state": "minecraft:sand 0",
+      "state": "sand",
       "pos": "7 1 7"
     },
     {
-      "state": "minecraft:sand 0",
+      "state": "sand",
       "pos": "7 1 6"
     },
     {
-      "state": "minecraft:sand 0",
+      "state": "sand",
       "pos": "7 1 5"
     },
     {
-      "state": "minecraft:sandstone 0",
+      "state": "sandstone",
       "pos": "7 1 4"
     },
     {
-      "state": "minecraft:sandstone 0",
+      "state": "sandstone",
       "pos": "8 1 5"
     },
     {
-      "state": "minecraft:sand 0",
+      "state": "sand",
       "pos": "8 1 6"
     },
     {
-      "state": "minecraft:sandstone 0",
+      "state": "sandstone",
       "pos": "8 1 7"
     },
     {
-      "state": "minecraft:sandstone 0",
+      "state": "sandstone",
       "pos": "9 1 6"
     },
     {
-      "state": "minecraft:sand 0",
+      "state": "sand",
       "pos": "4 2 5"
     },
     {
-      "state": "minecraft:sand 0",
+      "state": "sand",
       "pos": "4 2 6"
     },
     {
-      "state": "minecraft:vine 1",
+      "state": "vine 1",
       "pos": "4 2 9",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:vine 4",
+      "state": "vine 4",
       "pos": "4 2 11",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:vine 2",
+      "state": "vine 2",
       "pos": "5 2 10",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:sand 0",
+      "state": "sand",
       "pos": "5 2 7"
     },
     {
-      "state": "minecraft:water 0",
+      "state": "water",
       "pos": "5 2 6",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:water 0",
+      "state": "water",
       "pos": "5 2 5",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:sand 0",
+      "state": "sand",
       "pos": "5 2 4"
     },
     {
-      "state": "minecraft:sand 0",
+      "state": "sand",
       "pos": "6 2 4"
     },
     {
-      "state": "minecraft:water 0",
+      "state": "water",
       "pos": "6 2 5",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:water 0",
+      "state": "water",
       "pos": "6 2 6",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:water 0",
+      "state": "water",
       "pos": "6 2 7",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:sand 0",
+      "state": "sand",
       "pos": "6 2 8"
     },
     {
-      "state": "minecraft:sand 0",
+      "state": "sand",
       "pos": "7 2 8"
     },
     {
-      "state": "minecraft:water 0",
+      "state": "water",
       "pos": "7 2 7",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:water 0",
+      "state": "water",
       "pos": "7 2 6",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:water 0",
+      "state": "water",
       "pos": "7 2 5",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:sand 0",
+      "state": "sand",
       "pos": "7 2 4"
     },
     {
-      "state": "minecraft:sand 0",
+      "state": "sand",
       "pos": "8 2 5"
     },
     {
-      "state": "minecraft:water 0",
+      "state": "water",
       "pos": "8 2 6",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:sand 0",
+      "state": "sand",
       "pos": "8 2 7"
     },
     {
-      "state": "minecraft:sand 0",
+      "state": "sand",
       "pos": "9 2 6"
     },
     {
-      "state": "minecraft:grass 0",
+      "state": "grass",
       "pos": "3 3 7"
     },
     {
-      "state": "minecraft:grass 0",
+      "state": "grass",
       "pos": "3 3 6"
     },
     {
-      "state": "minecraft:grass 0",
+      "state": "grass",
       "pos": "3 3 5"
     },
     {
-      "state": "minecraft:grass 0",
+      "state": "grass",
       "pos": "4 3 3"
     },
     {
-      "state": "minecraft:grass 0",
+      "state": "grass",
       "pos": "4 3 4"
     },
     {
-      "state": "minecraft:water 0",
+      "state": "water",
       "pos": "4 3 5",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:water 0",
+      "state": "water",
       "pos": "4 3 6",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:grass 0",
+      "state": "grass",
       "pos": "4 3 7"
     },
     {
-      "state": "minecraft:vine 1",
+      "state": "vine 1",
       "pos": "4 3 9",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:log 1",
+      "state": "log 1",
       "pos": "4 3 10"
     },
     {
-      "state": "minecraft:vine 4",
+      "state": "vine 4",
       "pos": "4 3 11",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:vine 2",
+      "state": "vine 2",
       "pos": "5 3 10",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:grass 0",
+      "state": "grass",
       "pos": "5 3 8"
     },
     {
-      "state": "minecraft:water 0",
+      "state": "water",
       "pos": "5 3 7",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:water 0",
+      "state": "water",
       "pos": "5 3 6",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:water 0",
+      "state": "water",
       "pos": "5 3 5",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:water 0",
+      "state": "water",
       "pos": "5 3 4",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:grass 0",
+      "state": "grass",
       "pos": "5 3 3"
     },
     {
-      "state": "minecraft:grass 0",
+      "state": "grass",
       "pos": "6 3 3"
     },
     {
-      "state": "minecraft:water 0",
+      "state": "water",
       "pos": "6 3 4",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:water 0",
+      "state": "water",
       "pos": "6 3 5",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:water 0",
+      "state": "water",
       "pos": "6 3 6",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:water 0",
+      "state": "water",
       "pos": "6 3 7",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:water 0",
+      "state": "water",
       "pos": "6 3 8",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:grass 0",
+      "state": "grass",
       "pos": "6 3 9"
     },
     {
-      "state": "minecraft:grass 0",
+      "state": "grass",
       "pos": "7 3 9"
     },
     {
-      "state": "minecraft:water 0",
+      "state": "water",
       "pos": "7 3 8",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:water 0",
+      "state": "water",
       "pos": "7 3 7",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:water 0",
+      "state": "water",
       "pos": "7 3 6",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:water 0",
+      "state": "water",
       "pos": "7 3 5",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:water 0",
+      "state": "water",
       "pos": "7 3 4",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:grass 0",
+      "state": "grass",
       "pos": "7 3 3"
     },
     {
-      "state": "minecraft:grass 0",
+      "state": "grass",
       "pos": "8 3 3"
     },
     {
-      "state": "minecraft:grass 0",
+      "state": "grass",
       "pos": "8 3 4"
     },
     {
-      "state": "minecraft:water 0",
+      "state": "water",
       "pos": "8 3 5",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:water 0",
+      "state": "water",
       "pos": "8 3 6",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:water 0",
+      "state": "water",
       "pos": "8 3 7",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:grass 0",
+      "state": "grass",
       "pos": "8 3 8"
     },
     {
-      "state": "minecraft:grass 0",
+      "state": "grass",
       "pos": "9 3 8"
     },
     {
-      "state": "minecraft:grass 0",
+      "state": "grass",
       "pos": "9 3 7"
     },
     {
-      "state": "minecraft:water 0",
+      "state": "water",
       "pos": "9 3 6",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:grass 0",
+      "state": "grass",
       "pos": "9 3 5"
     },
     {
-      "state": "minecraft:grass 0",
+      "state": "grass",
       "pos": "9 3 4"
     },
     {
-      "state": "minecraft:grass 0",
+      "state": "grass",
       "pos": "10 3 4"
     },
     {
-      "state": "minecraft:grass 0",
+      "state": "grass",
       "pos": "10 3 5"
     },
     {
-      "state": "minecraft:grass 0",
+      "state": "grass",
       "pos": "10 3 6"
     },
     {
-      "state": "minecraft:grass 0",
+      "state": "grass",
       "pos": "10 3 7"
     },
     {
-      "state": "minecraft:grass 0",
+      "state": "grass",
       "pos": "10 3 8"
     },
     {
       "homeString": "pond.back",
       "npc": "",
       "pos": "0 4 7",
-      "type": "entities.PlaceableNPC"
+      "type": "entities.NPC"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "0 4 7"
     },
     {
-      "state": "minecraft:fence 0",
+      "state": "fence",
       "pos": "3 4 7"
     },
     {
-      "state": "minecraft:reeds 0",
+      "state": "reeds",
       "pos": "3 4 6",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:fence 0",
+      "state": "fence",
       "pos": "3 4 5"
     },
     {
-      "state": "minecraft:tallgrass 1",
+      "state": "tallgrass 1",
       "pos": "4 4 3"
     },
     {
-      "state": "minecraft:double_plant 5",
+      "state": "double_plant 5",
       "pos": "4 4 4",
-      "type": "blocks.PlaceableDouble"
+      "type": "blocks.Double"
     },
     {
-      "state": "minecraft:tallgrass 1",
+      "state": "tallgrass 1",
       "pos": "4 4 7"
     },
     {
-      "state": "minecraft:vine 1",
+      "state": "vine 1",
       "pos": "4 4 9",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:log 1",
+      "state": "log 1",
       "pos": "4 4 10"
     },
     {
-      "state": "minecraft:vine 4",
+      "state": "vine 4",
       "pos": "4 4 11",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:vine 2",
+      "state": "vine 2",
       "pos": "5 4 10",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:double_plant 3",
+      "state": "double_plant 3",
       "pos": "5 4 8",
-      "type": "blocks.PlaceableDouble"
+      "type": "blocks.Double"
     },
     {
-      "state": "minecraft:red_flower 3",
+      "state": "red_flower 3",
       "pos": "5 4 3",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
       "homeString": "pond.right",
       "npc": "",
       "pos": "6 4 0",
-      "type": "entities.PlaceableNPC"
+      "type": "entities.NPC"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "6 4 0"
     },
     {
-      "state": "minecraft:tallgrass 1",
+      "state": "tallgrass 1",
       "pos": "6 4 3"
     },
     {
-      "state": "minecraft:waterlily 0",
+      "state": "waterlily",
       "pos": "6 4 5",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:red_flower 1",
+      "state": "red_flower 1",
       "pos": "6 4 9",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:double_plant 0",
+      "state": "double_plant",
       "pos": "7 4 9",
-      "type": "blocks.PlaceableDouble"
+      "type": "blocks.Double"
     },
     {
       "text": [
@@ -566,21 +564,21 @@
         "",
         ""
       ],
-      "state": "minecraft:wall_sign 4",
+      "state": "wall_sign 4",
       "pos": "7 4 6",
-      "type": "blocks.PlaceableSign"
+      "type": "blocks.Sign"
     },
     {
-      "state": "minecraft:double_plant 1",
+      "state": "double_plant 1",
       "pos": "7 4 3",
-      "type": "blocks.PlaceableDouble"
+      "type": "blocks.Double"
     },
     {
-      "state": "minecraft:tallgrass 1",
+      "state": "tallgrass 1",
       "pos": "8 4 3"
     },
     {
-      "state": "minecraft:tallgrass 2",
+      "state": "tallgrass 2",
       "pos": "8 4 4"
     },
     {
@@ -590,12 +588,12 @@
         "",
         ""
       ],
-      "state": "minecraft:wall_sign 2",
+      "state": "wall_sign 2",
       "pos": "8 4 5",
-      "type": "blocks.PlaceableSign"
+      "type": "blocks.Sign"
     },
     {
-      "state": "minecraft:wooden_slab 9",
+      "state": "wooden_slab 9",
       "pos": "8 4 6"
     },
     {
@@ -605,19 +603,19 @@
         "",
         ""
       ],
-      "state": "minecraft:wall_sign 3",
+      "state": "wall_sign 3",
       "pos": "8 4 7",
-      "type": "blocks.PlaceableSign"
+      "type": "blocks.Sign"
     },
     {
-      "state": "minecraft:red_flower 6",
+      "state": "red_flower 6",
       "pos": "8 4 8",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:red_flower 3",
+      "state": "red_flower 3",
       "pos": "9 4 8",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
       "text": [
@@ -626,12 +624,12 @@
         "",
         ""
       ],
-      "state": "minecraft:wall_sign 3",
+      "state": "wall_sign 3",
       "pos": "9 4 7",
-      "type": "blocks.PlaceableSign"
+      "type": "blocks.Sign"
     },
     {
-      "state": "minecraft:spruce_stairs 4",
+      "state": "spruce_stairs 4",
       "pos": "9 4 6"
     },
     {
@@ -641,82 +639,80 @@
         "",
         ""
       ],
-      "state": "minecraft:wall_sign 2",
+      "state": "wall_sign 2",
       "pos": "9 4 5",
-      "type": "blocks.PlaceableSign"
+      "type": "blocks.Sign"
     },
     {
-      "state": "minecraft:tallgrass 1",
+      "state": "tallgrass 1",
       "pos": "9 4 4"
     },
     {
-      "state": "minecraft:tallgrass 2",
+      "state": "tallgrass 2",
       "pos": "10 4 4"
     },
     {
-      "state": "minecraft:red_flower 6",
+      "state": "red_flower 6",
       "pos": "10 4 5",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:spruce_stairs 1",
+      "state": "spruce_stairs 1",
       "pos": "10 4 6"
     },
     {
-      "state": "minecraft:tallgrass 1",
+      "state": "tallgrass 1",
       "pos": "10 4 7"
     },
     {
-      "state": "minecraft:tallgrass 2",
+      "state": "tallgrass 2",
       "pos": "10 4 8"
     },
     {
       "homeString": "pond.left",
       "npc": "",
       "pos": "11 4 11",
-      "type": "entities.PlaceableNPC"
+      "type": "entities.NPC"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "11 4 11"
     },
     {
-      "state": "minecraft:fence 0",
+      "state": "fence",
       "pos": "3 5 7"
     },
     {
-      "state": "minecraft:reeds 0",
+      "state": "reeds",
       "pos": "3 5 6",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:fence 0",
+      "state": "fence",
       "pos": "3 5 5"
     },
     {
-      "state": "minecraft:wooden_slab 1",
+      "state": "wooden_slab 1",
       "pos": "4 5 10"
     },
     {
       "homeString": "pond.pier",
       "npc": "",
       "pos": "8 5 6",
-      "type": "entities.PlaceableNPC"
+      "type": "entities.NPC"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "8 5 6"
     },
     {
-      "state": "minecraft:wooden_slab 1",
+      "state": "wooden_slab 1",
       "pos": "3 6 7"
     },
     {
-      "state": "minecraft:wooden_slab 1",
+      "state": "wooden_slab 1",
       "pos": "3 6 6"
     },
     {
-      "state": "minecraft:wooden_slab 1",
+      "state": "wooden_slab 1",
       "pos": "3 6 5"
     }
   ]

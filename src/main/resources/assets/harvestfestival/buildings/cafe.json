@@ -1,1701 +1,1629 @@
 {
   "components": [
     {
-      "state": "minecraft:planks 5",
+      "state": "planks 5",
       "pos": "0 0 1"
     },
     {
-      "state": "minecraft:planks 5",
+      "state": "planks 5",
       "pos": "0 0 5"
     },
     {
-      "state": "minecraft:planks 5",
+      "state": "planks 5",
       "pos": "0 0 9"
     },
     {
-      "state": "minecraft:planks 5",
+      "state": "planks 5",
       "pos": "0 0 13"
     },
     {
-      "state": "minecraft:planks 5",
+      "state": "planks 5",
       "pos": "1 0 14"
     },
     {
-      "state": "minecraft:log 1",
+      "state": "log 1",
       "pos": "1 0 13"
     },
     {
-      "state": "minecraft:stonebrick 0",
+      "state": "stonebrick",
       "pos": "1 0 12"
     },
     {
-      "state": "minecraft:stonebrick 0",
+      "state": "stonebrick",
       "pos": "1 0 11"
     },
     {
-      "state": "minecraft:stonebrick 0",
+      "state": "stonebrick",
       "pos": "1 0 10"
     },
     {
-      "state": "minecraft:log 1",
+      "state": "log 1",
       "pos": "1 0 9"
     },
     {
-      "state": "minecraft:stonebrick 0",
+      "state": "stonebrick",
       "pos": "1 0 8"
     },
     {
-      "state": "minecraft:stonebrick 1",
+      "state": "stonebrick 1",
       "pos": "1 0 7"
     },
     {
-      "state": "minecraft:stonebrick 0",
+      "state": "stonebrick",
       "pos": "1 0 6"
     },
     {
-      "state": "minecraft:log 1",
+      "state": "log 1",
       "pos": "1 0 5"
     },
     {
-      "state": "minecraft:stonebrick 0",
+      "state": "stonebrick",
       "pos": "1 0 4"
     },
     {
-      "state": "minecraft:stonebrick 0",
+      "state": "stonebrick",
       "pos": "1 0 3"
     },
     {
-      "state": "minecraft:stonebrick 0",
+      "state": "stonebrick",
       "pos": "1 0 2"
     },
     {
-      "state": "minecraft:log 1",
+      "state": "log 1",
       "pos": "1 0 1"
     },
     {
-      "state": "minecraft:planks 5",
+      "state": "planks 5",
       "pos": "1 0 0"
     },
     {
-      "state": "minecraft:stonebrick 0",
+      "state": "stonebrick",
       "pos": "2 0 1"
     },
     {
-      "state": "minecraft:stonebrick 0",
+      "state": "stonebrick",
       "pos": "2 0 2"
     },
     {
-      "state": "minecraft:stonebrick 2",
+      "state": "stonebrick 2",
       "pos": "2 0 3"
     },
     {
-      "state": "minecraft:stonebrick 2",
+      "state": "stonebrick 2",
       "pos": "2 0 4"
     },
     {
-      "state": "minecraft:stonebrick 2",
+      "state": "stonebrick 2",
       "pos": "2 0 5"
     },
     {
-      "state": "minecraft:stonebrick 1",
+      "state": "stonebrick 1",
       "pos": "2 0 6"
     },
     {
-      "state": "minecraft:stonebrick 1",
+      "state": "stonebrick 1",
       "pos": "2 0 7"
     },
     {
-      "state": "minecraft:stonebrick 1",
+      "state": "stonebrick 1",
       "pos": "2 0 8"
     },
     {
-      "state": "minecraft:stonebrick 0",
+      "state": "stonebrick",
       "pos": "2 0 9"
     },
     {
-      "state": "minecraft:stonebrick 2",
+      "state": "stonebrick 2",
       "pos": "2 0 10"
     },
     {
-      "state": "minecraft:stonebrick 0",
+      "state": "stonebrick",
       "pos": "2 0 11"
     },
     {
-      "state": "minecraft:stonebrick 0",
+      "state": "stonebrick",
       "pos": "2 0 12"
     },
     {
-      "state": "minecraft:stonebrick 0",
+      "state": "stonebrick",
       "pos": "2 0 13"
     },
     {
-      "state": "minecraft:stonebrick 1",
+      "state": "stonebrick 1",
       "pos": "3 0 13"
     },
     {
-      "state": "minecraft:stonebrick 2",
+      "state": "stonebrick 2",
       "pos": "3 0 12"
     },
     {
-      "state": "minecraft:stonebrick 0",
+      "state": "stonebrick",
       "pos": "3 0 11"
     },
     {
-      "state": "minecraft:stonebrick 0",
+      "state": "stonebrick",
       "pos": "3 0 10"
     },
     {
-      "state": "minecraft:stonebrick 2",
+      "state": "stonebrick 2",
       "pos": "3 0 9"
     },
     {
-      "state": "minecraft:stonebrick 0",
+      "state": "stonebrick",
       "pos": "3 0 8"
     },
     {
-      "state": "minecraft:stonebrick 1",
+      "state": "stonebrick 1",
       "pos": "3 0 7"
     },
     {
-      "state": "minecraft:stonebrick 1",
+      "state": "stonebrick 1",
       "pos": "3 0 6"
     },
     {
-      "state": "minecraft:stonebrick 1",
+      "state": "stonebrick 1",
       "pos": "3 0 5"
     },
     {
-      "state": "minecraft:stonebrick 0",
+      "state": "stonebrick",
       "pos": "3 0 4"
     },
     {
-      "state": "minecraft:stonebrick 0",
+      "state": "stonebrick",
       "pos": "3 0 3"
     },
     {
-      "state": "minecraft:stonebrick 1",
+      "state": "stonebrick 1",
       "pos": "3 0 2"
     },
     {
-      "state": "minecraft:stonebrick 0",
+      "state": "stonebrick",
       "pos": "3 0 1"
     },
     {
-      "state": "minecraft:stonebrick 1",
+      "state": "stonebrick 1",
       "pos": "4 0 1"
     },
     {
-      "state": "minecraft:stonebrick 2",
+      "state": "stonebrick 2",
       "pos": "4 0 2"
     },
     {
-      "state": "minecraft:stonebrick 0",
+      "state": "stonebrick",
       "pos": "4 0 3"
     },
     {
-      "state": "minecraft:stonebrick 1",
+      "state": "stonebrick 1",
       "pos": "4 0 4"
     },
     {
-      "state": "minecraft:stonebrick 1",
+      "state": "stonebrick 1",
       "pos": "4 0 5"
     },
     {
-      "state": "minecraft:stonebrick 0",
+      "state": "stonebrick",
       "pos": "4 0 6"
     },
     {
-      "state": "minecraft:stonebrick 0",
+      "state": "stonebrick",
       "pos": "4 0 7"
     },
     {
-      "state": "minecraft:stonebrick 0",
+      "state": "stonebrick",
       "pos": "4 0 8"
     },
     {
-      "state": "minecraft:stonebrick 0",
+      "state": "stonebrick",
       "pos": "4 0 9"
     },
     {
-      "state": "minecraft:stonebrick 0",
+      "state": "stonebrick",
       "pos": "4 0 10"
     },
     {
-      "state": "minecraft:stonebrick 0",
+      "state": "stonebrick",
       "pos": "4 0 11"
     },
     {
-      "state": "minecraft:stonebrick 1",
+      "state": "stonebrick 1",
       "pos": "4 0 12"
     },
     {
-      "state": "minecraft:stonebrick 0",
+      "state": "stonebrick",
       "pos": "4 0 13"
     },
     {
-      "state": "minecraft:planks 5",
+      "state": "planks 5",
       "pos": "5 0 14"
     },
     {
-      "state": "minecraft:log 1",
+      "state": "log 1",
       "pos": "5 0 13"
     },
     {
-      "state": "minecraft:stonebrick 1",
+      "state": "stonebrick 1",
       "pos": "5 0 12"
     },
     {
-      "state": "minecraft:stonebrick 0",
+      "state": "stonebrick",
       "pos": "5 0 11"
     },
     {
-      "state": "minecraft:stonebrick 1",
+      "state": "stonebrick 1",
       "pos": "5 0 10"
     },
     {
-      "state": "minecraft:log 1",
+      "state": "log 1",
       "pos": "5 0 9"
     },
     {
-      "state": "minecraft:stonebrick 0",
+      "state": "stonebrick",
       "pos": "5 0 8"
     },
     {
-      "state": "minecraft:stonebrick 2",
+      "state": "stonebrick 2",
       "pos": "5 0 7"
     },
     {
-      "state": "minecraft:stonebrick 0",
+      "state": "stonebrick",
       "pos": "5 0 6"
     },
     {
-      "state": "minecraft:log 1",
+      "state": "log 1",
       "pos": "5 0 5"
     },
     {
-      "state": "minecraft:stonebrick 0",
+      "state": "stonebrick",
       "pos": "5 0 4"
     },
     {
-      "state": "minecraft:stonebrick 2",
+      "state": "stonebrick 2",
       "pos": "5 0 3"
     },
     {
-      "state": "minecraft:stonebrick 2",
+      "state": "stonebrick 2",
       "pos": "5 0 2"
     },
     {
-      "state": "minecraft:log 1",
+      "state": "log 1",
       "pos": "5 0 1"
     },
     {
-      "state": "minecraft:planks 5",
+      "state": "planks 5",
       "pos": "5 0 0"
     },
     {
-      "state": "minecraft:stonebrick 0",
+      "state": "stonebrick",
       "pos": "6 0 1"
     },
     {
-      "state": "minecraft:stonebrick 0",
+      "state": "stonebrick",
       "pos": "6 0 2"
     },
     {
-      "state": "minecraft:stonebrick 2",
+      "state": "stonebrick 2",
       "pos": "6 0 3"
     },
     {
-      "state": "minecraft:stonebrick 0",
+      "state": "stonebrick",
       "pos": "6 0 4"
     },
     {
-      "state": "minecraft:stone_brick_stairs 3",
+      "state": "stone_brick_stairs 3",
       "pos": "6 0 5"
     },
     {
-      "state": "minecraft:stone_brick_stairs 1",
+      "state": "stone_brick_stairs 1",
       "pos": "6 0 6"
     },
     {
-      "state": "minecraft:stone_brick_stairs 1",
+      "state": "stone_brick_stairs 1",
       "pos": "6 0 7"
     },
     {
-      "state": "minecraft:stone_brick_stairs 2",
+      "state": "stone_brick_stairs 2",
       "pos": "6 0 8"
     },
     {
-      "state": "minecraft:stonebrick 0",
+      "state": "stonebrick",
       "pos": "6 0 9"
     },
     {
-      "state": "minecraft:stonebrick 0",
+      "state": "stonebrick",
       "pos": "6 0 10"
     },
     {
-      "state": "minecraft:stonebrick 1",
+      "state": "stonebrick 1",
       "pos": "6 0 11"
     },
     {
-      "state": "minecraft:stonebrick 0",
+      "state": "stonebrick",
       "pos": "6 0 12"
     },
     {
-      "state": "minecraft:stonebrick 0",
+      "state": "stonebrick",
       "pos": "6 0 13"
     },
     {
-      "state": "minecraft:stonebrick 0",
+      "state": "stonebrick",
       "pos": "7 0 13"
     },
     {
-      "state": "minecraft:stonebrick 0",
+      "state": "stonebrick",
       "pos": "7 0 12"
     },
     {
-      "state": "minecraft:stonebrick 1",
+      "state": "stonebrick 1",
       "pos": "7 0 11"
     },
     {
-      "state": "minecraft:stonebrick 0",
+      "state": "stonebrick",
       "pos": "7 0 10"
     },
     {
-      "state": "minecraft:stonebrick 0",
+      "state": "stonebrick",
       "pos": "7 0 9"
     },
     {
-      "state": "minecraft:stone_brick_stairs 2",
+      "state": "stone_brick_stairs 2",
       "pos": "7 0 8"
     },
     {
-      "state": "minecraft:stone_slab 5",
+      "state": "stone_slab 5",
       "pos": "7 0 7"
     },
     {
-      "state": "minecraft:stone_slab 5",
+      "state": "stone_slab 5",
       "pos": "7 0 6"
     },
     {
-      "state": "minecraft:stone_brick_stairs 3",
+      "state": "stone_brick_stairs 3",
       "pos": "7 0 5"
     },
     {
-      "state": "minecraft:stonebrick 0",
+      "state": "stonebrick",
       "pos": "7 0 4"
     },
     {
-      "state": "minecraft:stonebrick 0",
+      "state": "stonebrick",
       "pos": "7 0 3"
     },
     {
-      "state": "minecraft:stonebrick 0",
+      "state": "stonebrick",
       "pos": "7 0 2"
     },
     {
-      "state": "minecraft:stonebrick 0",
+      "state": "stonebrick",
       "pos": "7 0 1"
     },
     {
-      "state": "minecraft:stonebrick 2",
+      "state": "stonebrick 2",
       "pos": "8 0 1"
     },
     {
-      "state": "minecraft:stonebrick 0",
+      "state": "stonebrick",
       "pos": "8 0 2"
     },
     {
-      "state": "minecraft:stonebrick 0",
+      "state": "stonebrick",
       "pos": "8 0 3"
     },
     {
-      "state": "minecraft:stonebrick 0",
+      "state": "stonebrick",
       "pos": "8 0 4"
     },
     {
-      "state": "minecraft:stone_brick_stairs 3",
+      "state": "stone_brick_stairs 3",
       "pos": "8 0 5"
     },
     {
-      "state": "minecraft:stone_brick_stairs 0",
+      "state": "stone_brick_stairs",
       "pos": "8 0 6"
     },
     {
-      "state": "minecraft:stone_brick_stairs 0",
+      "state": "stone_brick_stairs",
       "pos": "8 0 7"
     },
     {
-      "state": "minecraft:stone_brick_stairs 2",
+      "state": "stone_brick_stairs 2",
       "pos": "8 0 8"
     },
     {
-      "state": "minecraft:stonebrick 1",
+      "state": "stonebrick 1",
       "pos": "8 0 9"
     },
     {
-      "state": "minecraft:stonebrick 2",
+      "state": "stonebrick 2",
       "pos": "8 0 10"
     },
     {
-      "state": "minecraft:stonebrick 1",
+      "state": "stonebrick 1",
       "pos": "8 0 11"
     },
     {
-      "state": "minecraft:stonebrick 0",
+      "state": "stonebrick",
       "pos": "8 0 12"
     },
     {
-      "state": "minecraft:stonebrick 0",
+      "state": "stonebrick",
       "pos": "8 0 13"
     },
     {
-      "state": "minecraft:planks 5",
+      "state": "planks 5",
       "pos": "9 0 14"
     },
     {
-      "state": "minecraft:log 1",
+      "state": "log 1",
       "pos": "9 0 13"
     },
     {
-      "state": "minecraft:stonebrick 0",
+      "state": "stonebrick",
       "pos": "9 0 12"
     },
     {
-      "state": "minecraft:stonebrick 0",
+      "state": "stonebrick",
       "pos": "9 0 11"
     },
     {
-      "state": "minecraft:stonebrick 2",
+      "state": "stonebrick 2",
       "pos": "9 0 10"
     },
     {
-      "state": "minecraft:log 1",
+      "state": "log 1",
       "pos": "9 0 9"
     },
     {
-      "state": "minecraft:planks 5",
+      "state": "planks 5",
       "pos": "9 0 8"
     },
     {
-      "state": "minecraft:stonebrick 0",
+      "state": "stonebrick",
       "pos": "9 0 7"
     },
     {
-      "state": "minecraft:stonebrick 2",
+      "state": "stonebrick 2",
       "pos": "9 0 6"
     },
     {
-      "state": "minecraft:stonebrick 0",
+      "state": "stonebrick",
       "pos": "9 0 5"
     },
     {
-      "state": "minecraft:stonebrick 2",
+      "state": "stonebrick 2",
       "pos": "9 0 4"
     },
     {
-      "state": "minecraft:stonebrick 1",
+      "state": "stonebrick 1",
       "pos": "9 0 3"
     },
     {
-      "state": "minecraft:stonebrick 1",
+      "state": "stonebrick 1",
       "pos": "9 0 2"
     },
     {
-      "state": "minecraft:stonebrick 1",
+      "state": "stonebrick 1",
       "pos": "9 0 1"
     },
     {
-      "state": "minecraft:planks 5",
+      "state": "planks 5",
       "pos": "10 0 9"
     },
     {
-      "state": "minecraft:planks 5",
+      "state": "planks 5",
       "pos": "10 0 13"
     },
     {
-      "state": "minecraft:dark_oak_stairs 0",
+      "state": "dark_oak_stairs",
       "pos": "0 1 1"
     },
     {
-      "state": "minecraft:trapdoor 14",
+      "state": "trapdoor 14",
       "pos": "0 1 2",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:trapdoor 14",
+      "state": "trapdoor 14",
       "pos": "0 1 3",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:trapdoor 14",
+      "state": "trapdoor 14",
       "pos": "0 1 4",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:dark_oak_stairs 0",
+      "state": "dark_oak_stairs",
       "pos": "0 1 5"
     },
     {
-      "state": "minecraft:trapdoor 14",
+      "state": "trapdoor 14",
       "pos": "0 1 6",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:trapdoor 14",
+      "state": "trapdoor 14",
       "pos": "0 1 7",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:trapdoor 14",
+      "state": "trapdoor 14",
       "pos": "0 1 8",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:dark_oak_stairs 0",
+      "state": "dark_oak_stairs",
       "pos": "0 1 9"
     },
     {
-      "state": "minecraft:trapdoor 14",
+      "state": "trapdoor 14",
       "pos": "0 1 10",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:trapdoor 14",
+      "state": "trapdoor 14",
       "pos": "0 1 11",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:trapdoor 14",
+      "state": "trapdoor 14",
       "pos": "0 1 12",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:dark_oak_stairs 0",
+      "state": "dark_oak_stairs",
       "pos": "0 1 13"
     },
     {
-      "state": "minecraft:dark_oak_stairs 3",
+      "state": "dark_oak_stairs 3",
       "pos": "1 1 14"
     },
     {
-      "state": "minecraft:log 1",
+      "state": "log 1",
       "pos": "1 1 13"
     },
     {
-      "state": "minecraft:stained_hardened_clay 14",
+      "state": "stained_hardened_clay 14",
       "pos": "1 1 12"
     },
     {
-      "state": "minecraft:stained_hardened_clay 14",
+      "state": "stained_hardened_clay 14",
       "pos": "1 1 11"
     },
     {
-      "state": "minecraft:stained_hardened_clay 14",
+      "state": "stained_hardened_clay 14",
       "pos": "1 1 10"
     },
     {
-      "state": "minecraft:log 1",
+      "state": "log 1",
       "pos": "1 1 9"
     },
     {
-      "state": "minecraft:stained_hardened_clay 14",
+      "state": "stained_hardened_clay 14",
       "pos": "1 1 8"
     },
     {
-      "state": "minecraft:stained_hardened_clay 14",
+      "state": "stained_hardened_clay 14",
       "pos": "1 1 7"
     },
     {
-      "state": "minecraft:stained_hardened_clay 14",
+      "state": "stained_hardened_clay 14",
       "pos": "1 1 6"
     },
     {
-      "state": "minecraft:log 1",
+      "state": "log 1",
       "pos": "1 1 5"
     },
     {
-      "state": "minecraft:stained_hardened_clay 14",
+      "state": "stained_hardened_clay 14",
       "pos": "1 1 4"
     },
     {
-      "state": "minecraft:stained_hardened_clay 14",
+      "state": "stained_hardened_clay 14",
       "pos": "1 1 3"
     },
     {
-      "state": "minecraft:stained_hardened_clay 14",
+      "state": "stained_hardened_clay 14",
       "pos": "1 1 2"
     },
     {
-      "state": "minecraft:log 1",
+      "state": "log 1",
       "pos": "1 1 1"
     },
     {
-      "state": "minecraft:dark_oak_stairs 2",
+      "state": "dark_oak_stairs 2",
       "pos": "1 1 0"
     },
     {
-      "state": "minecraft:trapdoor 12",
+      "state": "trapdoor 12",
       "pos": "2 1 0",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:stained_hardened_clay 14",
+      "state": "stained_hardened_clay 14",
       "pos": "2 1 1"
     },
     {
-      "state": "minecraft:stonebrick 0",
+      "state": "stonebrick",
       "pos": "2 1 2"
     },
     {
-      "state": "minecraft:stone_brick_stairs 3",
+      "state": "stone_brick_stairs 3",
       "pos": "2 1 3"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "2 1 4"
     },
     {
-      "state": "minecraft:fence 0",
+      "state": "fence",
       "pos": "2 1 5"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "2 1 6"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "2 1 7"
     },
     {
-      "state": "minecraft:spruce_stairs 6",
+      "state": "spruce_stairs 6",
       "pos": "2 1 8"
     },
     {
-      "state": "minecraft:stonebrick 0",
+      "state": "stonebrick",
       "pos": "2 1 9"
     },
     {
-      "state": "minecraft:spruce_stairs 5",
+      "state": "spruce_stairs 5",
       "pos": "2 1 10"
     },
     {
-      "state": "minecraft:spruce_stairs 5",
+      "state": "spruce_stairs 5",
       "pos": "2 1 11"
     },
     {
-      "state": "minecraft:spruce_stairs 6",
+      "state": "spruce_stairs 6",
       "pos": "2 1 12"
     },
     {
-      "state": "minecraft:stained_hardened_clay 14",
+      "state": "stained_hardened_clay 14",
       "pos": "2 1 13"
     },
     {
-      "state": "minecraft:trapdoor 13",
+      "state": "trapdoor 13",
       "pos": "2 1 14",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:trapdoor 13",
+      "state": "trapdoor 13",
       "pos": "3 1 14",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:stained_hardened_clay 14",
+      "state": "stained_hardened_clay 14",
       "pos": "3 1 13"
     },
     {
-      "state": "minecraft:lit_furnace 2",
+      "state": "lit_furnace 2",
       "pos": "3 1 12"
     },
     {
-      "state": "minecraft:carpet 14",
+      "state": "carpet 14",
       "pos": "3 1 11"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "3 1 10"
     },
     {
-      "state": "minecraft:wooden_door 1",
+      "state": "wooden_door 1",
       "pos": "3 1 9",
-      "type": "blocks.PlaceableDouble"
+      "type": "blocks.Double"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "3 1 8"
     },
     {
-      "state": "minecraft:carpet 14",
+      "state": "carpet 14",
       "pos": "3 1 7"
     },
     {
-      "state": "minecraft:carpet 14",
+      "state": "carpet 14",
       "pos": "3 1 6"
     },
     {
-      "state": "minecraft:carpet 14",
+      "state": "carpet 14",
       "pos": "3 1 5"
     },
     {
-      "state": "minecraft:carpet 14",
+      "state": "carpet 14",
       "pos": "3 1 4"
     },
     {
-      "state": "minecraft:fence 0",
+      "state": "fence",
       "pos": "3 1 3"
     },
     {
-      "state": "minecraft:stone_brick_stairs 5",
+      "state": "stone_brick_stairs 5",
       "pos": "3 1 2"
     },
     {
-      "state": "minecraft:stained_hardened_clay 14",
+      "state": "stained_hardened_clay 14",
       "pos": "3 1 1"
     },
     {
-      "state": "minecraft:trapdoor 12",
+      "state": "trapdoor 12",
       "pos": "3 1 0",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:trapdoor 12",
+      "state": "trapdoor 12",
       "pos": "4 1 0",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:stained_hardened_clay 14",
+      "state": "stained_hardened_clay 14",
       "pos": "4 1 1"
     },
     {
-      "state": "minecraft:flower_pot 0",
+      "state": "flower_pot",
       "pos": "4 1 2",
-      "type": "blocks.PlaceableFlowerPot"
+      "type": "blocks.FlowerPot"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "4 1 3"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "4 1 4"
     },
     {
-      "state": "minecraft:fence 0",
+      "state": "fence",
       "pos": "4 1 5"
     },
     {
       "homeString": "cafe.entrance",
       "npc": "",
       "pos": "4 1 6",
-      "type": "entities.PlaceableNPC"
+      "type": "entities.NPC"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "4 1 6"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "4 1 7"
     },
     {
-      "state": "minecraft:spruce_stairs 6",
+      "state": "spruce_stairs 6",
       "pos": "4 1 8"
     },
     {
-      "state": "minecraft:stonebrick 0",
+      "state": "stonebrick",
       "pos": "4 1 9"
     },
     {
-      "state": "minecraft:spruce_stairs 7",
+      "state": "spruce_stairs 7",
       "pos": "4 1 10"
     },
     {
-      "state": "minecraft:carpet 14",
+      "state": "carpet 14",
       "pos": "4 1 11"
     },
     {
-      "state": "minecraft:spruce_stairs 6",
+      "state": "spruce_stairs 6",
       "pos": "4 1 12"
     },
     {
-      "state": "minecraft:stained_hardened_clay 14",
+      "state": "stained_hardened_clay 14",
       "pos": "4 1 13"
     },
     {
-      "state": "minecraft:trapdoor 13",
+      "state": "trapdoor 13",
       "pos": "4 1 14",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:dark_oak_stairs 3",
+      "state": "dark_oak_stairs 3",
       "pos": "5 1 14"
     },
     {
-      "state": "minecraft:log 1",
+      "state": "log 1",
       "pos": "5 1 13"
     },
     {
-      "state": "minecraft:lit_furnace 2",
+      "state": "lit_furnace 2",
       "pos": "5 1 12"
     },
     {
-      "state": "minecraft:carpet 14",
+      "state": "carpet 14",
       "pos": "5 1 11"
     },
     {
-      "state": "minecraft:ladder 3",
+      "state": "ladder 3",
       "pos": "5 1 10",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:log 1",
+      "state": "log 1",
       "pos": "5 1 9"
     },
     {
-      "state": "minecraft:stained_hardened_clay 14",
+      "state": "stained_hardened_clay 14",
       "pos": "5 1 8"
     },
     {
-      "state": "minecraft:wooden_door 4",
+      "state": "wooden_door 4",
       "pos": "5 1 7",
-      "type": "blocks.PlaceableDouble"
+      "type": "blocks.Double"
     },
     {
-      "state": "minecraft:stained_hardened_clay 14",
+      "state": "stained_hardened_clay 14",
       "pos": "5 1 6"
     },
     {
-      "state": "minecraft:log 1",
+      "state": "log 1",
       "pos": "5 1 5"
     },
     {
-      "state": "minecraft:stained_hardened_clay 14",
+      "state": "stained_hardened_clay 14",
       "pos": "5 1 4"
     },
     {
-      "state": "minecraft:stained_hardened_clay 14",
+      "state": "stained_hardened_clay 14",
       "pos": "5 1 3"
     },
     {
-      "state": "minecraft:stained_hardened_clay 14",
+      "state": "stained_hardened_clay 14",
       "pos": "5 1 2"
     },
     {
-      "state": "minecraft:log 1",
+      "state": "log 1",
       "pos": "5 1 1"
     },
     {
-      "state": "minecraft:dark_oak_stairs 2",
+      "state": "dark_oak_stairs 2",
       "pos": "5 1 0"
     },
     {
-      "state": "minecraft:fence 0",
+      "state": "fence",
       "pos": "6 1 1"
     },
     {
-      "state": "minecraft:trapdoor 15",
+      "state": "trapdoor 15",
       "pos": "6 1 2",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
       "rotation": 0,
       "facing": "WEST",
       "pos": "6 1 2",
-      "type": "entities.PlaceableItemFrame"
+      "type": "entities.ItemFrame"
     },
     {
-      "state": "minecraft:trapdoor 7",
+      "state": "trapdoor 7",
       "pos": "6 1 3",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:trapdoor 15",
+      "state": "trapdoor 15",
       "pos": "6 1 4",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
       "rotation": 0,
       "facing": "WEST",
       "pos": "6 1 4",
-      "type": "entities.PlaceableItemFrame"
+      "type": "entities.ItemFrame"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "6 1 5"
     },
     {
-      "state": "minecraft:trapdoor 11",
+      "state": "trapdoor 11",
       "pos": "6 1 6",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "6 1 7"
     },
     {
-      "state": "minecraft:trapdoor 8",
+      "state": "trapdoor 8",
       "pos": "6 1 8",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:stained_hardened_clay 14",
+      "state": "stained_hardened_clay 14",
       "pos": "6 1 9"
     },
     {
-      "state": "minecraft:trapdoor 9",
+      "state": "trapdoor 9",
       "pos": "6 1 10",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:carpet 14",
+      "state": "carpet 14",
       "pos": "6 1 11"
     },
     {
-      "state": "minecraft:spruce_stairs 6",
+      "state": "spruce_stairs 6",
       "pos": "6 1 12"
     },
     {
-      "state": "minecraft:stained_hardened_clay 14",
+      "state": "stained_hardened_clay 14",
       "pos": "6 1 13"
     },
     {
-      "state": "minecraft:trapdoor 13",
+      "state": "trapdoor 13",
       "pos": "6 1 14",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:trapdoor 13",
+      "state": "trapdoor 13",
       "pos": "7 1 14",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:stained_hardened_clay 14",
+      "state": "stained_hardened_clay 14",
       "pos": "7 1 13"
     },
     {
-      "state": "minecraft:lit_furnace 2",
+      "state": "lit_furnace 2",
       "pos": "7 1 12"
     },
     {
-      "state": "minecraft:carpet 14",
+      "state": "carpet 14",
       "pos": "7 1 11"
     },
     {
-      "state": "minecraft:cauldron 3",
+      "state": "cauldron 3",
       "pos": "7 1 10"
     },
     {
-      "state": "minecraft:stained_hardened_clay 14",
+      "state": "stained_hardened_clay 14",
       "pos": "7 1 9"
     },
     {
-      "state": "minecraft:trapdoor 12",
+      "state": "trapdoor 12",
       "pos": "7 1 8",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "7 1 7"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "7 1 6"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "7 1 5"
     },
     {
-      "state": "minecraft:spruce_stairs 2",
+      "state": "spruce_stairs 2",
       "pos": "7 1 4"
     },
     {
-      "state": "minecraft:glass_pane 0",
+      "state": "glass_pane",
       "pos": "7 1 3"
     },
     {
-      "state": "minecraft:spruce_stairs 3",
+      "state": "spruce_stairs 3",
       "pos": "7 1 2"
     },
     {
-      "state": "minecraft:fence 0",
+      "state": "fence",
       "pos": "7 1 1"
     },
     {
-      "state": "minecraft:fence 0",
+      "state": "fence",
       "pos": "8 1 1"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "8 1 2"
     },
     {
       "rotation": 0,
       "facing": "EAST",
       "pos": "8 1 2",
-      "type": "entities.PlaceableItemFrame"
+      "type": "entities.ItemFrame"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "8 1 3"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "8 1 4"
     },
     {
       "rotation": 0,
       "facing": "EAST",
       "pos": "8 1 4",
-      "type": "entities.PlaceableItemFrame"
+      "type": "entities.ItemFrame"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "8 1 5"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "8 1 6"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "8 1 7"
     },
     {
-      "state": "minecraft:trapdoor 12",
+      "state": "trapdoor 12",
       "pos": "8 1 8",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:stained_hardened_clay 14",
+      "state": "stained_hardened_clay 14",
       "pos": "8 1 9"
     },
     {
-      "state": "minecraft:spruce_stairs 7",
+      "state": "spruce_stairs 7",
       "pos": "8 1 10"
     },
     {
-      "state": "minecraft:spruce_stairs 4",
+      "state": "spruce_stairs 4",
       "pos": "8 1 11"
     },
     {
-      "state": "minecraft:spruce_stairs 6",
+      "state": "spruce_stairs 6",
       "pos": "8 1 12"
     },
     {
-      "state": "minecraft:stained_hardened_clay 14",
+      "state": "stained_hardened_clay 14",
       "pos": "8 1 13"
     },
     {
-      "state": "minecraft:trapdoor 13",
+      "state": "trapdoor 13",
       "pos": "8 1 14",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:dark_oak_stairs 3",
+      "state": "dark_oak_stairs 3",
       "pos": "9 1 14"
     },
     {
-      "state": "minecraft:log 1",
+      "state": "log 1",
       "pos": "9 1 13"
     },
     {
-      "state": "minecraft:stained_hardened_clay 14",
+      "state": "stained_hardened_clay 14",
       "pos": "9 1 12"
     },
     {
-      "state": "minecraft:stained_hardened_clay 14",
+      "state": "stained_hardened_clay 14",
       "pos": "9 1 11"
     },
     {
-      "state": "minecraft:stained_hardened_clay 14",
+      "state": "stained_hardened_clay 14",
       "pos": "9 1 10"
     },
     {
-      "state": "minecraft:log 1",
+      "state": "log 1",
       "pos": "9 1 9"
     },
     {
-      "state": "minecraft:dark_oak_stairs 2",
+      "state": "dark_oak_stairs 2",
       "pos": "9 1 8"
     },
     {
-      "state": "minecraft:fence 0",
+      "state": "fence",
       "pos": "9 1 7"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "9 1 6"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "9 1 5"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "9 1 4"
     },
     {
       "homeString": "cafe.door",
       "npc": "",
       "pos": "9 1 3",
-      "type": "entities.PlaceableNPC"
+      "type": "entities.NPC"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "9 1 3"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "9 1 2"
     },
     {
-      "state": "minecraft:fence 0",
+      "state": "fence",
       "pos": "9 1 1"
     },
     {
-      "state": "minecraft:dark_oak_stairs 1",
+      "state": "dark_oak_stairs 1",
       "pos": "10 1 9"
     },
     {
-      "state": "minecraft:trapdoor 15",
+      "state": "trapdoor 15",
       "pos": "10 1 10",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:trapdoor 15",
+      "state": "trapdoor 15",
       "pos": "10 1 11",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:trapdoor 15",
+      "state": "trapdoor 15",
       "pos": "10 1 12",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:dark_oak_stairs 1",
+      "state": "dark_oak_stairs 1",
       "pos": "10 1 13"
     },
     {
-      "state": "minecraft:wooden_button 2",
+      "state": "wooden_button 2",
       "pos": "0 2 1",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:wooden_button 2",
+      "state": "wooden_button 2",
       "pos": "0 2 5",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:wooden_button 2",
+      "state": "wooden_button 2",
       "pos": "0 2 9",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:wooden_button 2",
+      "state": "wooden_button 2",
       "pos": "0 2 13",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:wooden_button 3",
+      "state": "wooden_button 3",
       "pos": "1 2 14",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:log 1",
+      "state": "log 1",
       "pos": "1 2 13"
     },
     {
-      "state": "minecraft:glass_pane 0",
+      "state": "glass_pane",
       "pos": "1 2 12"
     },
     {
-      "state": "minecraft:glass_pane 0",
+      "state": "glass_pane",
       "pos": "1 2 11"
     },
     {
-      "state": "minecraft:glass_pane 0",
+      "state": "glass_pane",
       "pos": "1 2 10"
     },
     {
-      "state": "minecraft:log 1",
+      "state": "log 1",
       "pos": "1 2 9"
     },
     {
-      "state": "minecraft:glass_pane 0",
+      "state": "glass_pane",
       "pos": "1 2 8"
     },
     {
-      "state": "minecraft:glass_pane 0",
+      "state": "glass_pane",
       "pos": "1 2 7"
     },
     {
-      "state": "minecraft:glass_pane 0",
+      "state": "glass_pane",
       "pos": "1 2 6"
     },
     {
-      "state": "minecraft:log 1",
+      "state": "log 1",
       "pos": "1 2 5"
     },
     {
-      "state": "minecraft:glass_pane 0",
+      "state": "glass_pane",
       "pos": "1 2 4"
     },
     {
-      "state": "minecraft:glass_pane 0",
+      "state": "glass_pane",
       "pos": "1 2 3"
     },
     {
-      "state": "minecraft:glass_pane 0",
+      "state": "glass_pane",
       "pos": "1 2 2"
     },
     {
-      "state": "minecraft:log 1",
+      "state": "log 1",
       "pos": "1 2 1"
     },
     {
-      "state": "minecraft:wooden_button 4",
+      "state": "wooden_button 4",
       "pos": "1 2 0",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:glass_pane 0",
+      "state": "glass_pane",
       "pos": "2 2 1"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "2 2 2"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "2 2 3"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "2 2 4"
     },
     {
-      "state": "minecraft:fence 0",
+      "state": "fence",
       "pos": "2 2 5"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "2 2 6"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "2 2 7"
     },
     {
-      "state": "minecraft:lever 4",
+      "state": "lever 4",
       "pos": "2 2 8",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:stonebrick 0",
+      "state": "stonebrick",
       "pos": "2 2 9"
     },
     {
-      "state": "minecraft:lever 11",
+      "state": "lever 11",
       "pos": "2 2 10",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:cake 2",
+      "state": "cake 2",
       "pos": "2 2 11",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "2 2 12"
     },
     {
-      "state": "minecraft:glass_pane 0",
+      "state": "glass_pane",
       "pos": "2 2 13"
     },
     {
-      "state": "minecraft:glass_pane 0",
+      "state": "glass_pane",
       "pos": "3 2 13"
     },
     {
-      "state": "minecraft:cobblestone_wall 0",
+      "state": "cobblestone_wall",
       "pos": "3 2 12"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "3 2 11"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "3 2 10"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "3 2 8"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "3 2 7"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "3 2 6"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "3 2 5"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "3 2 4"
     },
     {
-      "state": "minecraft:fence 0",
+      "state": "fence",
       "pos": "3 2 3"
     },
     {
-      "state": "minecraft:stone_brick_stairs 0",
+      "state": "stone_brick_stairs",
       "pos": "3 2 2"
     },
     {
-      "state": "minecraft:glass_pane 0",
+      "state": "glass_pane",
       "pos": "3 2 1"
     },
     {
-      "state": "minecraft:glass_pane 0",
+      "state": "glass_pane",
       "pos": "4 2 1"
     },
     {
-      "state": "minecraft:stonebrick 0",
+      "state": "stonebrick",
       "pos": "4 2 2"
     },
     {
-      "state": "minecraft:stone_brick_stairs 7",
+      "state": "stone_brick_stairs 7",
       "pos": "4 2 3"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "4 2 4"
     },
     {
-      "state": "minecraft:fence 0",
+      "state": "fence",
       "pos": "4 2 5"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "4 2 6"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "4 2 7"
     },
     {
-      "state": "minecraft:flower_pot 0",
+      "state": "flower_pot",
       "pos": "4 2 8",
-      "type": "blocks.PlaceableFlowerPot"
+      "type": "blocks.FlowerPot"
     },
     {
-      "state": "minecraft:stonebrick 1",
+      "state": "stonebrick 1",
       "pos": "4 2 9"
     },
     {
-      "state": "minecraft:flower_pot 0",
+      "state": "flower_pot",
       "pos": "4 2 10",
-      "type": "blocks.PlaceableFlowerPot"
+      "type": "blocks.FlowerPot"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "4 2 11"
     },
     {
-      "state": "minecraft:wooden_slab 9",
+      "state": "wooden_slab 9",
       "pos": "4 2 12"
     },
     {
-      "state": "minecraft:glass_pane 0",
+      "state": "glass_pane",
       "pos": "4 2 13"
     },
     {
-      "state": "minecraft:wooden_button 3",
+      "state": "wooden_button 3",
       "pos": "5 2 14",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:log 1",
+      "state": "log 1",
       "pos": "5 2 13"
     },
     {
-      "state": "minecraft:cobblestone_wall 0",
+      "state": "cobblestone_wall",
       "pos": "5 2 12"
     },
     {
       "homeString": "katlin",
       "npc": "harvestfestival:katlin",
       "pos": "5 2 11",
-      "type": "entities.PlaceableNPC"
+      "type": "entities.NPC"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "5 2 11"
     },
     {
-      "state": "minecraft:ladder 3",
+      "state": "ladder 3",
       "pos": "5 2 10",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:log 1",
+      "state": "log 1",
       "pos": "5 2 9"
     },
     {
-      "state": "minecraft:planks 1",
+      "state": "planks 1",
       "pos": "5 2 8"
     },
     {
-      "state": "minecraft:planks 1",
+      "state": "planks 1",
       "pos": "5 2 6"
     },
     {
-      "state": "minecraft:log 1",
+      "state": "log 1",
       "pos": "5 2 5"
     },
     {
-      "state": "minecraft:glass_pane 0",
+      "state": "glass_pane",
       "pos": "5 2 4"
     },
     {
-      "state": "minecraft:glass_pane 0",
+      "state": "glass_pane",
       "pos": "5 2 3"
     },
     {
-      "state": "minecraft:glass_pane 0",
+      "state": "glass_pane",
       "pos": "5 2 2"
     },
     {
-      "state": "minecraft:log 1",
+      "state": "log 1",
       "pos": "5 2 1"
     },
     {
-      "state": "minecraft:wooden_button 4",
+      "state": "wooden_button 4",
       "pos": "5 2 0",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:wooden_button 1",
+      "state": "wooden_button 1",
       "pos": "6 2 1",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "6 2 2"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "6 2 3"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "6 2 4"
     },
     {
-      "state": "minecraft:wooden_button 1",
+      "state": "wooden_button 1",
       "pos": "6 2 5",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:fence 0",
+      "state": "fence",
       "pos": "6 2 6"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "6 2 7"
     },
     {
-      "state": "minecraft:fence 0",
+      "state": "fence",
       "pos": "6 2 8"
     },
     {
-      "state": "minecraft:glass_pane 0",
+      "state": "glass_pane",
       "pos": "6 2 9"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "6 2 10"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "6 2 11"
     },
     {
-      "state": "minecraft:wooden_slab 9",
+      "state": "wooden_slab 9",
       "pos": "6 2 12"
     },
     {
-      "state": "minecraft:glass_pane 0",
+      "state": "glass_pane",
       "pos": "6 2 13"
     },
     {
-      "state": "minecraft:glass_pane 0",
+      "state": "glass_pane",
       "pos": "7 2 13"
     },
     {
-      "state": "minecraft:cobblestone_wall 0",
+      "state": "cobblestone_wall",
       "pos": "7 2 12"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "7 2 11"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "7 2 10"
     },
     {
-      "state": "minecraft:glass_pane 0",
+      "state": "glass_pane",
       "pos": "7 2 9"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "7 2 8"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "7 2 7"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "7 2 6"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "7 2 5"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "7 2 4"
     },
     {
-      "state": "minecraft:carpet 14",
+      "state": "carpet 14",
       "pos": "7 2 3"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "7 2 2"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "7 2 1"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "8 2 1"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "8 2 2"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "8 2 3"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "8 2 4"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "8 2 5"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "8 2 6"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "8 2 7"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "8 2 8"
     },
     {
-      "state": "minecraft:glass_pane 0",
+      "state": "glass_pane",
       "pos": "8 2 9"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "8 2 10"
     },
     {
-      "state": "minecraft:stone_pressure_plate 0",
+      "state": "stone_pressure_plate",
       "pos": "8 2 11"
     },
     {
-      "state": "minecraft:flower_pot 0",
+      "state": "flower_pot",
       "pos": "8 2 12",
-      "type": "blocks.PlaceableFlowerPot"
+      "type": "blocks.FlowerPot"
     },
     {
-      "state": "minecraft:glass_pane 0",
+      "state": "glass_pane",
       "pos": "8 2 13"
     },
     {
-      "state": "minecraft:wooden_button 3",
+      "state": "wooden_button 3",
       "pos": "9 2 14",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:log 1",
+      "state": "log 1",
       "pos": "9 2 13"
     },
     {
-      "state": "minecraft:glass_pane 0",
+      "state": "glass_pane",
       "pos": "9 2 12"
     },
     {
-      "state": "minecraft:glass_pane 0",
+      "state": "glass_pane",
       "pos": "9 2 11"
     },
     {
-      "state": "minecraft:glass_pane 0",
+      "state": "glass_pane",
       "pos": "9 2 10"
     },
     {
-      "state": "minecraft:log 1",
+      "state": "log 1",
       "pos": "9 2 9"
     },
     {
-      "state": "minecraft:wooden_button 4",
+      "state": "wooden_button 4",
       "pos": "9 2 8",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:fence 0",
+      "state": "fence",
       "pos": "9 2 7"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "9 2 6"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "9 2 5"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "9 2 4"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "9 2 3"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "9 2 2"
     },
     {
-      "state": "minecraft:fence 0",
+      "state": "fence",
       "pos": "9 2 1"
     },
     {
@@ -1705,155 +1633,149 @@
         "every day from",
         "9:30am to 5pm!"
       ],
-      "state": "minecraft:wall_sign 5",
+      "state": "wall_sign 5",
       "pos": "10 2 7",
-      "type": "blocks.PlaceableSign"
+      "type": "blocks.Sign"
     },
     {
-      "state": "minecraft:wooden_button 1",
+      "state": "wooden_button 1",
       "pos": "10 2 9",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:wooden_button 1",
+      "state": "wooden_button 1",
       "pos": "10 2 13",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:dark_oak_stairs 4",
+      "state": "dark_oak_stairs 4",
       "pos": "0 3 1"
     },
     {
-      "state": "minecraft:ladder 4",
+      "state": "ladder 4",
       "pos": "0 3 3",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:dark_oak_stairs 4",
+      "state": "dark_oak_stairs 4",
       "pos": "0 3 5"
     },
     {
-      "state": "minecraft:ladder 4",
+      "state": "ladder 4",
       "pos": "0 3 7",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:dark_oak_stairs 4",
+      "state": "dark_oak_stairs 4",
       "pos": "0 3 9"
     },
     {
-      "state": "minecraft:ladder 4",
+      "state": "ladder 4",
       "pos": "0 3 11",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:dark_oak_stairs 4",
+      "state": "dark_oak_stairs 4",
       "pos": "0 3 13"
     },
     {
-      "state": "minecraft:dark_oak_stairs 7",
+      "state": "dark_oak_stairs 7",
       "pos": "1 3 14"
     },
     {
-      "state": "minecraft:log 1",
+      "state": "log 1",
       "pos": "1 3 13"
     },
     {
-      "state": "minecraft:glass_pane 0",
+      "state": "glass_pane",
       "pos": "1 3 12"
     },
     {
-      "state": "minecraft:planks 1",
+      "state": "planks 1",
       "pos": "1 3 11"
     },
     {
-      "state": "minecraft:glass_pane 0",
+      "state": "glass_pane",
       "pos": "1 3 10"
     },
     {
-      "state": "minecraft:log 1",
+      "state": "log 1",
       "pos": "1 3 9"
     },
     {
-      "state": "minecraft:glass_pane 0",
+      "state": "glass_pane",
       "pos": "1 3 8"
     },
     {
-      "state": "minecraft:planks 1",
+      "state": "planks 1",
       "pos": "1 3 7"
     },
     {
-      "state": "minecraft:glass_pane 0",
+      "state": "glass_pane",
       "pos": "1 3 6"
     },
     {
-      "state": "minecraft:log 1",
+      "state": "log 1",
       "pos": "1 3 5"
     },
     {
-      "state": "minecraft:glass_pane 0",
+      "state": "glass_pane",
       "pos": "1 3 4"
     },
     {
-      "state": "minecraft:planks 1",
+      "state": "planks 1",
       "pos": "1 3 3"
     },
     {
-      "state": "minecraft:glass_pane 0",
+      "state": "glass_pane",
       "pos": "1 3 2"
     },
     {
-      "state": "minecraft:log 1",
+      "state": "log 1",
       "pos": "1 3 1"
     },
     {
-      "state": "minecraft:dark_oak_stairs 6",
+      "state": "dark_oak_stairs 6",
       "pos": "1 3 0"
     },
     {
-      "state": "minecraft:glass_pane 0",
+      "state": "glass_pane",
       "pos": "2 3 1"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "2 3 2"
     },
     {
-      "state": "minecraft:torch 1",
+      "state": "torch 1",
       "pos": "2 3 3",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "2 3 4"
     },
     {
-      "state": "minecraft:fence 0",
+      "state": "fence",
       "pos": "2 3 5"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "2 3 6"
     },
     {
-      "state": "minecraft:torch 1",
+      "state": "torch 1",
       "pos": "2 3 7",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "2 3 8"
     },
     {
-      "state": "minecraft:stonebrick 3",
+      "state": "stonebrick 3",
       "pos": "2 3 9"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "2 3 10"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "2 3 11"
     },
     {
@@ -1862,137 +1784,128 @@
       "rotation": 0,
       "facing": "EAST",
       "pos": "2 3 11",
-      "type": "entities.PlaceableItemFrame"
+      "type": "entities.ItemFrame"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "2 3 12"
     },
     {
-      "state": "minecraft:glass_pane 0",
+      "state": "glass_pane",
       "pos": "2 3 13"
     },
     {
-      "state": "minecraft:ladder 3",
+      "state": "ladder 3",
       "pos": "3 3 14",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:planks 1",
+      "state": "planks 1",
       "pos": "3 3 13"
     },
     {
-      "state": "minecraft:wooden_slab 1",
+      "state": "wooden_slab 1",
       "pos": "3 3 12"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "3 3 11"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "3 3 10"
     },
     {
       "painting": "Kebab",
       "facing": "SOUTH",
       "pos": "3 3 10",
-      "type": "entities.PlaceablePainting"
+      "type": "entities.Painting"
     },
     {
-      "state": "minecraft:stonebrick 0",
+      "state": "stonebrick",
       "pos": "3 3 9"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "3 3 8"
     },
     {
       "painting": "Alban",
       "facing": "NORTH",
       "pos": "3 3 8",
-      "type": "entities.PlaceablePainting"
+      "type": "entities.Painting"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "3 3 7"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "3 3 6"
     },
     {
-      "state": "minecraft:fence 0",
+      "state": "fence",
       "pos": "3 3 5"
     },
     {
-      "state": "minecraft:stone_brick_stairs 4",
+      "state": "stone_brick_stairs 4",
       "pos": "3 3 4"
     },
     {
-      "state": "minecraft:fence 0",
+      "state": "fence",
       "pos": "3 3 3"
     },
     {
-      "state": "minecraft:wooden_button 3",
+      "state": "wooden_button 3",
       "pos": "3 3 2",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:planks 1",
+      "state": "planks 1",
       "pos": "3 3 1"
     },
     {
-      "state": "minecraft:ladder 2",
+      "state": "ladder 2",
       "pos": "3 3 0",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:glass_pane 0",
+      "state": "glass_pane",
       "pos": "4 3 1"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "4 3 2"
     },
     {
-      "state": "minecraft:stone_brick_stairs 2",
+      "state": "stone_brick_stairs 2",
       "pos": "4 3 3"
     },
     {
-      "state": "minecraft:stone_brick_stairs 6",
+      "state": "stone_brick_stairs 6",
       "pos": "4 3 4"
     },
     {
-      "state": "minecraft:fence 0",
+      "state": "fence",
       "pos": "4 3 5"
     },
     {
-      "state": "minecraft:wooden_button 2",
+      "state": "wooden_button 2",
       "pos": "4 3 6",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "4 3 7"
     },
     {
       "painting": "Wasteland",
       "facing": "WEST",
       "pos": "4 3 7",
-      "type": "entities.PlaceablePainting"
+      "type": "entities.Painting"
     },
     {
-      "state": "minecraft:wooden_button 2",
+      "state": "wooden_button 2",
       "pos": "4 3 8",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:stonebrick 3",
+      "state": "stonebrick 3",
       "pos": "4 3 9"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "4 3 10"
     },
     {
@@ -2001,155 +1914,147 @@
       "rotation": 0,
       "facing": "SOUTH",
       "pos": "4 3 10",
-      "type": "entities.PlaceableItemFrame"
+      "type": "entities.ItemFrame"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "4 3 11"
     },
     {
-      "state": "minecraft:flower_pot 0",
+      "state": "flower_pot",
       "pos": "4 3 12",
-      "type": "blocks.PlaceableFlowerPot"
+      "type": "blocks.FlowerPot"
     },
     {
-      "state": "minecraft:glass_pane 0",
+      "state": "glass_pane",
       "pos": "4 3 13"
     },
     {
-      "state": "minecraft:dark_oak_stairs 7",
+      "state": "dark_oak_stairs 7",
       "pos": "5 3 14"
     },
     {
-      "state": "minecraft:log 1",
+      "state": "log 1",
       "pos": "5 3 13"
     },
     {
-      "state": "minecraft:wooden_slab 1",
+      "state": "wooden_slab 1",
       "pos": "5 3 12"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "5 3 11"
     },
     {
-      "state": "minecraft:ladder 3",
+      "state": "ladder 3",
       "pos": "5 3 10",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:log 1",
+      "state": "log 1",
       "pos": "5 3 9"
     },
     {
-      "state": "minecraft:planks 1",
+      "state": "planks 1",
       "pos": "5 3 8"
     },
     {
-      "state": "minecraft:planks 1",
+      "state": "planks 1",
       "pos": "5 3 7"
     },
     {
-      "state": "minecraft:planks 1",
+      "state": "planks 1",
       "pos": "5 3 6"
     },
     {
-      "state": "minecraft:log 1",
+      "state": "log 1",
       "pos": "5 3 5"
     },
     {
-      "state": "minecraft:glass_pane 0",
+      "state": "glass_pane",
       "pos": "5 3 4"
     },
     {
-      "state": "minecraft:planks 1",
+      "state": "planks 1",
       "pos": "5 3 3"
     },
     {
-      "state": "minecraft:glass_pane 0",
+      "state": "glass_pane",
       "pos": "5 3 2"
     },
     {
-      "state": "minecraft:log 1",
+      "state": "log 1",
       "pos": "5 3 1"
     },
     {
-      "state": "minecraft:dark_oak_stairs 6",
+      "state": "dark_oak_stairs 6",
       "pos": "5 3 0"
     },
     {
-      "state": "minecraft:dark_oak_stairs 5",
+      "state": "dark_oak_stairs 5",
       "pos": "6 3 1"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "6 3 2"
     },
     {
-      "state": "minecraft:torch 1",
+      "state": "torch 1",
       "pos": "6 3 3",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "6 3 4"
     },
     {
-      "state": "minecraft:dark_oak_stairs 5",
+      "state": "dark_oak_stairs 5",
       "pos": "6 3 5"
     },
     {
-      "state": "minecraft:spruce_stairs 2",
+      "state": "spruce_stairs 2",
       "pos": "6 3 6"
     },
     {
-      "state": "minecraft:spruce_stairs 1",
+      "state": "spruce_stairs 1",
       "pos": "6 3 7"
     },
     {
-      "state": "minecraft:spruce_stairs 3",
+      "state": "spruce_stairs 3",
       "pos": "6 3 8"
     },
     {
-      "state": "minecraft:glass_pane 0",
+      "state": "glass_pane",
       "pos": "6 3 9"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "6 3 10"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "6 3 11"
     },
     {
-      "state": "minecraft:flower_pot 0",
+      "state": "flower_pot",
       "pos": "6 3 12",
-      "type": "blocks.PlaceableFlowerPot"
+      "type": "blocks.FlowerPot"
     },
     {
-      "state": "minecraft:glass_pane 0",
+      "state": "glass_pane",
       "pos": "6 3 13"
     },
     {
-      "state": "minecraft:ladder 3",
+      "state": "ladder 3",
       "pos": "7 3 14",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:planks 1",
+      "state": "planks 1",
       "pos": "7 3 13"
     },
     {
-      "state": "minecraft:wooden_slab 1",
+      "state": "wooden_slab 1",
       "pos": "7 3 12"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "7 3 11"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "7 3 10"
     },
     {
@@ -2158,87 +2063,72 @@
       "rotation": 0,
       "facing": "SOUTH",
       "pos": "7 3 10",
-      "type": "entities.PlaceableItemFrame"
+      "type": "entities.ItemFrame"
     },
     {
-      "state": "minecraft:planks 1",
+      "state": "planks 1",
       "pos": "7 3 9"
     },
     {
-      "state": "minecraft:torch 4",
+      "state": "torch 4",
       "pos": "7 3 8",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "7 3 7"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "7 3 6"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "7 3 5"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "7 3 4"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "7 3 3"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "7 3 2"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "7 3 1"
     },
     {
-      "state": "minecraft:wooden_slab 13",
+      "state": "wooden_slab 13",
       "pos": "8 3 1"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "8 3 2"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "8 3 3"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "8 3 4"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "8 3 5"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "8 3 6"
     },
     {
-      "state": "minecraft:wooden_slab 13",
+      "state": "wooden_slab 13",
       "pos": "8 3 7"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "8 3 8"
     },
     {
-      "state": "minecraft:glass_pane 0",
+      "state": "glass_pane",
       "pos": "8 3 9"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "8 3 10"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "8 3 11"
     },
     {
@@ -2247,3317 +2137,3168 @@
       "rotation": 0,
       "facing": "WEST",
       "pos": "8 3 11",
-      "type": "entities.PlaceableItemFrame"
+      "type": "entities.ItemFrame"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "8 3 12"
     },
     {
-      "state": "minecraft:glass_pane 0",
+      "state": "glass_pane",
       "pos": "8 3 13"
     },
     {
-      "state": "minecraft:dark_oak_stairs 7",
+      "state": "dark_oak_stairs 7",
       "pos": "9 3 14"
     },
     {
-      "state": "minecraft:log 1",
+      "state": "log 1",
       "pos": "9 3 13"
     },
     {
-      "state": "minecraft:glass_pane 0",
+      "state": "glass_pane",
       "pos": "9 3 12"
     },
     {
-      "state": "minecraft:planks 1",
+      "state": "planks 1",
       "pos": "9 3 11"
     },
     {
-      "state": "minecraft:glass_pane 0",
+      "state": "glass_pane",
       "pos": "9 3 10"
     },
     {
-      "state": "minecraft:log 1",
+      "state": "log 1",
       "pos": "9 3 9"
     },
     {
-      "state": "minecraft:dark_oak_stairs 6",
+      "state": "dark_oak_stairs 6",
       "pos": "9 3 8"
     },
     {
-      "state": "minecraft:wooden_slab 5",
+      "state": "wooden_slab 5",
       "pos": "9 3 7"
     },
     {
-      "state": "minecraft:wooden_slab 13",
+      "state": "wooden_slab 13",
       "pos": "9 3 6"
     },
     {
-      "state": "minecraft:wooden_slab 13",
+      "state": "wooden_slab 13",
       "pos": "9 3 5"
     },
     {
-      "state": "minecraft:wooden_slab 13",
+      "state": "wooden_slab 13",
       "pos": "9 3 4"
     },
     {
-      "state": "minecraft:wooden_slab 13",
+      "state": "wooden_slab 13",
       "pos": "9 3 3"
     },
     {
-      "state": "minecraft:wooden_slab 13",
+      "state": "wooden_slab 13",
       "pos": "9 3 2"
     },
     {
-      "state": "minecraft:wooden_slab 5",
+      "state": "wooden_slab 5",
       "pos": "9 3 1"
     },
     {
-      "state": "minecraft:dark_oak_stairs 5",
+      "state": "dark_oak_stairs 5",
       "pos": "10 3 9"
     },
     {
-      "state": "minecraft:ladder 5",
+      "state": "ladder 5",
       "pos": "10 3 11",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:dark_oak_stairs 5",
+      "state": "dark_oak_stairs 5",
       "pos": "10 3 13"
     },
     {
-      "state": "minecraft:fence 0",
+      "state": "fence",
       "pos": "0 4 1"
     },
     {
-      "state": "minecraft:wooden_button 2",
+      "state": "wooden_button 2",
       "pos": "0 4 3",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:fence 0",
+      "state": "fence",
       "pos": "0 4 5"
     },
     {
-      "state": "minecraft:wooden_button 2",
+      "state": "wooden_button 2",
       "pos": "0 4 7",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:fence 0",
+      "state": "fence",
       "pos": "0 4 9"
     },
     {
-      "state": "minecraft:wooden_button 2",
+      "state": "wooden_button 2",
       "pos": "0 4 11",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:fence 0",
+      "state": "fence",
       "pos": "0 4 13"
     },
     {
-      "state": "minecraft:fence 0",
+      "state": "fence",
       "pos": "1 4 14"
     },
     {
-      "state": "minecraft:stained_hardened_clay 14",
+      "state": "stained_hardened_clay 14",
       "pos": "1 4 13"
     },
     {
-      "state": "minecraft:log 9",
+      "state": "log 9",
       "pos": "1 4 12"
     },
     {
-      "state": "minecraft:log 9",
+      "state": "log 9",
       "pos": "1 4 11"
     },
     {
-      "state": "minecraft:log 9",
+      "state": "log 9",
       "pos": "1 4 10"
     },
     {
-      "state": "minecraft:stained_hardened_clay 14",
+      "state": "stained_hardened_clay 14",
       "pos": "1 4 9"
     },
     {
-      "state": "minecraft:log 9",
+      "state": "log 9",
       "pos": "1 4 8"
     },
     {
-      "state": "minecraft:log 9",
+      "state": "log 9",
       "pos": "1 4 7"
     },
     {
-      "state": "minecraft:log 9",
+      "state": "log 9",
       "pos": "1 4 6"
     },
     {
-      "state": "minecraft:stained_hardened_clay 14",
+      "state": "stained_hardened_clay 14",
       "pos": "1 4 5"
     },
     {
-      "state": "minecraft:log 9",
+      "state": "log 9",
       "pos": "1 4 4"
     },
     {
-      "state": "minecraft:log 9",
+      "state": "log 9",
       "pos": "1 4 3"
     },
     {
-      "state": "minecraft:log 9",
+      "state": "log 9",
       "pos": "1 4 2"
     },
     {
-      "state": "minecraft:stained_hardened_clay 14",
+      "state": "stained_hardened_clay 14",
       "pos": "1 4 1"
     },
     {
-      "state": "minecraft:fence 0",
+      "state": "fence",
       "pos": "1 4 0"
     },
     {
-      "state": "minecraft:log 5",
+      "state": "log 5",
       "pos": "2 4 1"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "2 4 2"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "2 4 3"
     },
     {
-      "state": "minecraft:stone_brick_stairs 4",
+      "state": "stone_brick_stairs 4",
       "pos": "2 4 4"
     },
     {
-      "state": "minecraft:log 5",
+      "state": "log 5",
       "pos": "2 4 5"
     },
     {
-      "state": "minecraft:dark_oak_stairs 5",
+      "state": "dark_oak_stairs 5",
       "pos": "2 4 6"
     },
     {
-      "state": "minecraft:spruce_stairs 5",
+      "state": "spruce_stairs 5",
       "pos": "2 4 7"
     },
     {
-      "state": "minecraft:dark_oak_stairs 6",
+      "state": "dark_oak_stairs 6",
       "pos": "2 4 8"
     },
     {
-      "state": "minecraft:log 5",
+      "state": "log 5",
       "pos": "2 4 9"
     },
     {
-      "state": "minecraft:dark_oak_stairs 7",
+      "state": "dark_oak_stairs 7",
       "pos": "2 4 10"
     },
     {
-      "state": "minecraft:spruce_stairs 5",
+      "state": "spruce_stairs 5",
       "pos": "2 4 11"
     },
     {
-      "state": "minecraft:dark_oak_stairs 5",
+      "state": "dark_oak_stairs 5",
       "pos": "2 4 12"
     },
     {
-      "state": "minecraft:log 5",
+      "state": "log 5",
       "pos": "2 4 13"
     },
     {
-      "state": "minecraft:wooden_button 3",
+      "state": "wooden_button 3",
       "pos": "3 4 14",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:log 5",
+      "state": "log 5",
       "pos": "3 4 13"
     },
     {
-      "state": "minecraft:spruce_stairs 6",
+      "state": "spruce_stairs 6",
       "pos": "3 4 12"
     },
     {
-      "state": "minecraft:wooden_slab 13",
+      "state": "wooden_slab 13",
       "pos": "3 4 11"
     },
     {
-      "state": "minecraft:spruce_stairs 7",
+      "state": "spruce_stairs 7",
       "pos": "3 4 10"
     },
     {
-      "state": "minecraft:log 5",
+      "state": "log 5",
       "pos": "3 4 9"
     },
     {
-      "state": "minecraft:spruce_stairs 6",
+      "state": "spruce_stairs 6",
       "pos": "3 4 8"
     },
     {
-      "state": "minecraft:wooden_slab 13",
+      "state": "wooden_slab 13",
       "pos": "3 4 7"
     },
     {
-      "state": "minecraft:spruce_stairs 7",
+      "state": "spruce_stairs 7",
       "pos": "3 4 6"
     },
     {
-      "state": "minecraft:log 5",
+      "state": "log 5",
       "pos": "3 4 5"
     },
     {
-      "state": "minecraft:stone_brick_stairs 1",
+      "state": "stone_brick_stairs 1",
       "pos": "3 4 4"
     },
     {
-      "state": "minecraft:fence 0",
+      "state": "fence",
       "pos": "3 4 3"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "3 4 2"
     },
     {
-      "state": "minecraft:log 5",
+      "state": "log 5",
       "pos": "3 4 1"
     },
     {
-      "state": "minecraft:wooden_button 4",
+      "state": "wooden_button 4",
       "pos": "3 4 0",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:log 5",
+      "state": "log 5",
       "pos": "4 4 1"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "4 4 2"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "4 4 3"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "4 4 4"
     },
     {
-      "state": "minecraft:log 5",
+      "state": "log 5",
       "pos": "4 4 5"
     },
     {
-      "state": "minecraft:dark_oak_stairs 4",
+      "state": "dark_oak_stairs 4",
       "pos": "4 4 6"
     },
     {
-      "state": "minecraft:spruce_stairs 4",
+      "state": "spruce_stairs 4",
       "pos": "4 4 7"
     },
     {
-      "state": "minecraft:dark_oak_stairs 4",
+      "state": "dark_oak_stairs 4",
       "pos": "4 4 8"
     },
     {
-      "state": "minecraft:log 5",
+      "state": "log 5",
       "pos": "4 4 9"
     },
     {
-      "state": "minecraft:dark_oak_stairs 7",
+      "state": "dark_oak_stairs 7",
       "pos": "4 4 10"
     },
     {
-      "state": "minecraft:spruce_stairs 4",
+      "state": "spruce_stairs 4",
       "pos": "4 4 11"
     },
     {
-      "state": "minecraft:dark_oak_stairs 4",
+      "state": "dark_oak_stairs 4",
       "pos": "4 4 12"
     },
     {
-      "state": "minecraft:log 5",
+      "state": "log 5",
       "pos": "4 4 13"
     },
     {
-      "state": "minecraft:fence 0",
+      "state": "fence",
       "pos": "5 4 14"
     },
     {
-      "state": "minecraft:stained_hardened_clay 14",
+      "state": "stained_hardened_clay 14",
       "pos": "5 4 13"
     },
     {
-      "state": "minecraft:log 9",
+      "state": "log 9",
       "pos": "5 4 12"
     },
     {
-      "state": "minecraft:log 9",
+      "state": "log 9",
       "pos": "5 4 11"
     },
     {
-      "state": "minecraft:log 9",
+      "state": "log 9",
       "pos": "5 4 10"
     },
     {
-      "state": "minecraft:stained_hardened_clay 14",
+      "state": "stained_hardened_clay 14",
       "pos": "5 4 9"
     },
     {
-      "state": "minecraft:log 9",
+      "state": "log 9",
       "pos": "5 4 8"
     },
     {
-      "state": "minecraft:log 9",
+      "state": "log 9",
       "pos": "5 4 7"
     },
     {
-      "state": "minecraft:log 9",
+      "state": "log 9",
       "pos": "5 4 6"
     },
     {
-      "state": "minecraft:stained_hardened_clay 14",
+      "state": "stained_hardened_clay 14",
       "pos": "5 4 5"
     },
     {
-      "state": "minecraft:log 9",
+      "state": "log 9",
       "pos": "5 4 4"
     },
     {
-      "state": "minecraft:log 9",
+      "state": "log 9",
       "pos": "5 4 3"
     },
     {
-      "state": "minecraft:log 9",
+      "state": "log 9",
       "pos": "5 4 2"
     },
     {
-      "state": "minecraft:stained_hardened_clay 14",
+      "state": "stained_hardened_clay 14",
       "pos": "5 4 1"
     },
     {
-      "state": "minecraft:fence 0",
+      "state": "fence",
       "pos": "5 4 0"
     },
     {
-      "state": "minecraft:fence 0",
+      "state": "fence",
       "pos": "6 4 1"
     },
     {
-      "state": "minecraft:wooden_slab 13",
+      "state": "wooden_slab 13",
       "pos": "6 4 2"
     },
     {
-      "state": "minecraft:wooden_slab 13",
+      "state": "wooden_slab 13",
       "pos": "6 4 3"
     },
     {
-      "state": "minecraft:wooden_slab 13",
+      "state": "wooden_slab 13",
       "pos": "6 4 4"
     },
     {
-      "state": "minecraft:fence 0",
+      "state": "fence",
       "pos": "6 4 5"
     },
     {
-      "state": "minecraft:wooden_slab 13",
+      "state": "wooden_slab 13",
       "pos": "6 4 6"
     },
     {
-      "state": "minecraft:wooden_slab 13",
+      "state": "wooden_slab 13",
       "pos": "6 4 7"
     },
     {
-      "state": "minecraft:dark_oak_stairs 6",
+      "state": "dark_oak_stairs 6",
       "pos": "6 4 8"
     },
     {
-      "state": "minecraft:log 5",
+      "state": "log 5",
       "pos": "6 4 9"
     },
     {
-      "state": "minecraft:dark_oak_stairs 5",
+      "state": "dark_oak_stairs 5",
       "pos": "6 4 10"
     },
     {
-      "state": "minecraft:spruce_stairs 5",
+      "state": "spruce_stairs 5",
       "pos": "6 4 11"
     },
     {
-      "state": "minecraft:dark_oak_stairs 5",
+      "state": "dark_oak_stairs 5",
       "pos": "6 4 12"
     },
     {
-      "state": "minecraft:log 5",
+      "state": "log 5",
       "pos": "6 4 13"
     },
     {
-      "state": "minecraft:dark_oak_stairs 7",
+      "state": "dark_oak_stairs 7",
       "pos": "6 4 14"
     },
     {
-      "state": "minecraft:dark_oak_stairs 7",
+      "state": "dark_oak_stairs 7",
       "pos": "7 4 14"
     },
     {
-      "state": "minecraft:log 5",
+      "state": "log 5",
       "pos": "7 4 13"
     },
     {
-      "state": "minecraft:spruce_stairs 6",
+      "state": "spruce_stairs 6",
       "pos": "7 4 12"
     },
     {
-      "state": "minecraft:wooden_slab 13",
+      "state": "wooden_slab 13",
       "pos": "7 4 11"
     },
     {
-      "state": "minecraft:spruce_stairs 7",
+      "state": "spruce_stairs 7",
       "pos": "7 4 10"
     },
     {
-      "state": "minecraft:log 5",
+      "state": "log 5",
       "pos": "7 4 9"
     },
     {
-      "state": "minecraft:dark_oak_stairs 6",
+      "state": "dark_oak_stairs 6",
       "pos": "7 4 8"
     },
     {
-      "state": "minecraft:wooden_slab 5",
+      "state": "wooden_slab 5",
       "pos": "7 4 7"
     },
     {
-      "state": "minecraft:wooden_slab 9",
+      "state": "wooden_slab 9",
       "pos": "7 4 6"
     },
     {
-      "state": "minecraft:wooden_slab 13",
+      "state": "wooden_slab 13",
       "pos": "7 4 5"
     },
     {
-      "state": "minecraft:wooden_slab 13",
+      "state": "wooden_slab 13",
       "pos": "7 4 4"
     },
     {
-      "state": "minecraft:wooden_slab 13",
+      "state": "wooden_slab 13",
       "pos": "7 4 3"
     },
     {
-      "state": "minecraft:wooden_slab 9",
+      "state": "wooden_slab 9",
       "pos": "7 4 2"
     },
     {
-      "state": "minecraft:wooden_slab 5",
+      "state": "wooden_slab 5",
       "pos": "7 4 1"
     },
     {
-      "state": "minecraft:wooden_slab 5",
+      "state": "wooden_slab 5",
       "pos": "8 4 2"
     },
     {
-      "state": "minecraft:wooden_slab 1",
+      "state": "wooden_slab 1",
       "pos": "8 4 3"
     },
     {
-      "state": "minecraft:wooden_slab 1",
+      "state": "wooden_slab 1",
       "pos": "8 4 4"
     },
     {
-      "state": "minecraft:wooden_slab 1",
+      "state": "wooden_slab 1",
       "pos": "8 4 5"
     },
     {
-      "state": "minecraft:wooden_slab 5",
+      "state": "wooden_slab 5",
       "pos": "8 4 6"
     },
     {
-      "state": "minecraft:double_wooden_slab 5",
+      "state": "double_wooden_slab 5",
       "pos": "8 4 8"
     },
     {
-      "state": "minecraft:log 5",
+      "state": "log 5",
       "pos": "8 4 9"
     },
     {
-      "state": "minecraft:dark_oak_stairs 4",
+      "state": "dark_oak_stairs 4",
       "pos": "8 4 10"
     },
     {
-      "state": "minecraft:spruce_stairs 4",
+      "state": "spruce_stairs 4",
       "pos": "8 4 11"
     },
     {
-      "state": "minecraft:dark_oak_stairs 4",
+      "state": "dark_oak_stairs 4",
       "pos": "8 4 12"
     },
     {
-      "state": "minecraft:log 5",
+      "state": "log 5",
       "pos": "8 4 13"
     },
     {
-      "state": "minecraft:dark_oak_stairs 7",
+      "state": "dark_oak_stairs 7",
       "pos": "8 4 14"
     },
     {
-      "state": "minecraft:fence 0",
+      "state": "fence",
       "pos": "9 4 14"
     },
     {
-      "state": "minecraft:stained_hardened_clay 14",
+      "state": "stained_hardened_clay 14",
       "pos": "9 4 13"
     },
     {
-      "state": "minecraft:log 9",
+      "state": "log 9",
       "pos": "9 4 12"
     },
     {
-      "state": "minecraft:log 9",
+      "state": "log 9",
       "pos": "9 4 11"
     },
     {
-      "state": "minecraft:log 9",
+      "state": "log 9",
       "pos": "9 4 10"
     },
     {
-      "state": "minecraft:stained_hardened_clay 14",
+      "state": "stained_hardened_clay 14",
       "pos": "9 4 9"
     },
     {
-      "state": "minecraft:fence 0",
+      "state": "fence",
       "pos": "9 4 8"
     },
     {
-      "state": "minecraft:fence 0",
+      "state": "fence",
       "pos": "10 4 9"
     },
     {
-      "state": "minecraft:dark_oak_stairs 5",
+      "state": "dark_oak_stairs 5",
       "pos": "10 4 10"
     },
     {
-      "state": "minecraft:dark_oak_stairs 5",
+      "state": "dark_oak_stairs 5",
       "pos": "10 4 11"
     },
     {
-      "state": "minecraft:dark_oak_stairs 5",
+      "state": "dark_oak_stairs 5",
       "pos": "10 4 12"
     },
     {
-      "state": "minecraft:fence 0",
+      "state": "fence",
       "pos": "10 4 13"
     },
     {
-      "state": "minecraft:dark_oak_stairs 0",
+      "state": "dark_oak_stairs",
       "pos": "0 5 1"
     },
     {
-      "state": "minecraft:trapdoor 14",
+      "state": "trapdoor 14",
       "pos": "0 5 2",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:trapdoor 14",
+      "state": "trapdoor 14",
       "pos": "0 5 3",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:trapdoor 14",
+      "state": "trapdoor 14",
       "pos": "0 5 4",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:dark_oak_stairs 0",
+      "state": "dark_oak_stairs",
       "pos": "0 5 5"
     },
     {
-      "state": "minecraft:trapdoor 14",
+      "state": "trapdoor 14",
       "pos": "0 5 6",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:trapdoor 14",
+      "state": "trapdoor 14",
       "pos": "0 5 7",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:trapdoor 14",
+      "state": "trapdoor 14",
       "pos": "0 5 8",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:dark_oak_stairs 0",
+      "state": "dark_oak_stairs",
       "pos": "0 5 9"
     },
     {
-      "state": "minecraft:trapdoor 14",
+      "state": "trapdoor 14",
       "pos": "0 5 10",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:trapdoor 14",
+      "state": "trapdoor 14",
       "pos": "0 5 11",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:trapdoor 14",
+      "state": "trapdoor 14",
       "pos": "0 5 12",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:dark_oak_stairs 0",
+      "state": "dark_oak_stairs",
       "pos": "0 5 13"
     },
     {
-      "state": "minecraft:dark_oak_stairs 3",
+      "state": "dark_oak_stairs 3",
       "pos": "1 5 14"
     },
     {
-      "state": "minecraft:log 1",
+      "state": "log 1",
       "pos": "1 5 13"
     },
     {
-      "state": "minecraft:stained_hardened_clay 14",
+      "state": "stained_hardened_clay 14",
       "pos": "1 5 12"
     },
     {
-      "state": "minecraft:stained_hardened_clay 14",
+      "state": "stained_hardened_clay 14",
       "pos": "1 5 11"
     },
     {
-      "state": "minecraft:stained_hardened_clay 14",
+      "state": "stained_hardened_clay 14",
       "pos": "1 5 10"
     },
     {
-      "state": "minecraft:log 1",
+      "state": "log 1",
       "pos": "1 5 9"
     },
     {
-      "state": "minecraft:stained_hardened_clay 14",
+      "state": "stained_hardened_clay 14",
       "pos": "1 5 8"
     },
     {
-      "state": "minecraft:stained_hardened_clay 14",
+      "state": "stained_hardened_clay 14",
       "pos": "1 5 7"
     },
     {
-      "state": "minecraft:stained_hardened_clay 14",
+      "state": "stained_hardened_clay 14",
       "pos": "1 5 6"
     },
     {
-      "state": "minecraft:log 1",
+      "state": "log 1",
       "pos": "1 5 5"
     },
     {
-      "state": "minecraft:stained_hardened_clay 14",
+      "state": "stained_hardened_clay 14",
       "pos": "1 5 4"
     },
     {
-      "state": "minecraft:stained_hardened_clay 14",
+      "state": "stained_hardened_clay 14",
       "pos": "1 5 3"
     },
     {
-      "state": "minecraft:stained_hardened_clay 14",
+      "state": "stained_hardened_clay 14",
       "pos": "1 5 2"
     },
     {
-      "state": "minecraft:log 1",
+      "state": "log 1",
       "pos": "1 5 1"
     },
     {
-      "state": "minecraft:dark_oak_stairs 2",
+      "state": "dark_oak_stairs 2",
       "pos": "1 5 0"
     },
     {
-      "state": "minecraft:trapdoor 12",
+      "state": "trapdoor 12",
       "pos": "2 5 0",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:stained_hardened_clay 14",
+      "state": "stained_hardened_clay 14",
       "pos": "2 5 1"
     },
     {
-      "state": "minecraft:trapdoor 15",
+      "state": "trapdoor 15",
       "pos": "2 5 2",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:trapdoor 15",
+      "state": "trapdoor 15",
       "pos": "2 5 3",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:trapdoor 15",
+      "state": "trapdoor 15",
       "pos": "2 5 4",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:trapdoor 15",
+      "state": "trapdoor 15",
       "pos": "2 5 5",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:dark_oak_stairs 3",
+      "state": "dark_oak_stairs 3",
       "pos": "2 5 6"
     },
     {
-      "state": "minecraft:glass_pane 0",
+      "state": "glass_pane",
       "pos": "2 5 7"
     },
     {
-      "state": "minecraft:dark_oak_stairs 2",
+      "state": "dark_oak_stairs 2",
       "pos": "2 5 8"
     },
     {
-      "state": "minecraft:trapdoor 15",
+      "state": "trapdoor 15",
       "pos": "2 5 9",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:dark_oak_stairs 3",
+      "state": "dark_oak_stairs 3",
       "pos": "2 5 10"
     },
     {
-      "state": "minecraft:glass_pane 0",
+      "state": "glass_pane",
       "pos": "2 5 11"
     },
     {
-      "state": "minecraft:dark_oak_stairs 2",
+      "state": "dark_oak_stairs 2",
       "pos": "2 5 12"
     },
     {
-      "state": "minecraft:stained_hardened_clay 14",
+      "state": "stained_hardened_clay 14",
       "pos": "2 5 13"
     },
     {
-      "state": "minecraft:trapdoor 13",
+      "state": "trapdoor 13",
       "pos": "2 5 14",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:trapdoor 13",
+      "state": "trapdoor 13",
       "pos": "3 5 14",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:stained_hardened_clay 14",
+      "state": "stained_hardened_clay 14",
       "pos": "3 5 13"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "3 5 12"
     },
     {
       "rotation": 0,
       "facing": "EAST",
       "pos": "3 5 12",
-      "type": "entities.PlaceableItemFrame"
+      "type": "entities.ItemFrame"
     },
     {
       "homeString": "cafe.customer",
       "npc": "",
       "pos": "3 5 11",
-      "type": "entities.PlaceableNPC"
+      "type": "entities.NPC"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "3 5 11"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "3 5 10"
     },
     {
       "rotation": 0,
       "facing": "EAST",
       "pos": "3 5 10",
-      "type": "entities.PlaceableItemFrame"
+      "type": "entities.ItemFrame"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "3 5 9"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "3 5 8"
     },
     {
       "rotation": 0,
       "facing": "EAST",
       "pos": "3 5 8",
-      "type": "entities.PlaceableItemFrame"
+      "type": "entities.ItemFrame"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "3 5 7"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "3 5 6"
     },
     {
       "rotation": 0,
       "facing": "EAST",
       "pos": "3 5 6",
-      "type": "entities.PlaceableItemFrame"
+      "type": "entities.ItemFrame"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "3 5 5"
     },
     {
       "homeString": "cafe.stairs",
       "npc": "",
       "pos": "3 5 4",
-      "type": "entities.PlaceableNPC"
+      "type": "entities.NPC"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "3 5 4"
     },
     {
-      "state": "minecraft:stone_slab 5",
+      "state": "stone_slab 5",
       "pos": "3 5 3"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "3 5 2"
     },
     {
-      "state": "minecraft:stained_hardened_clay 14",
+      "state": "stained_hardened_clay 14",
       "pos": "3 5 1"
     },
     {
-      "state": "minecraft:trapdoor 12",
+      "state": "trapdoor 12",
       "pos": "3 5 0",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:trapdoor 12",
+      "state": "trapdoor 12",
       "pos": "4 5 0",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:stained_hardened_clay 14",
+      "state": "stained_hardened_clay 14",
       "pos": "4 5 1"
     },
     {
-      "state": "minecraft:trapdoor 14",
+      "state": "trapdoor 14",
       "pos": "4 5 2",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:trapdoor 14",
+      "state": "trapdoor 14",
       "pos": "4 5 3",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:trapdoor 14",
+      "state": "trapdoor 14",
       "pos": "4 5 4",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:dark_oak_stairs 4",
+      "state": "dark_oak_stairs 4",
       "pos": "4 5 5"
     },
     {
-      "state": "minecraft:trapdoor 8",
+      "state": "trapdoor 8",
       "pos": "4 5 6",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:dark_oak_stairs 4",
+      "state": "dark_oak_stairs 4",
       "pos": "4 5 7"
     },
     {
-      "state": "minecraft:dark_oak_stairs 4",
+      "state": "dark_oak_stairs 4",
       "pos": "4 5 8"
     },
     {
-      "state": "minecraft:dark_oak_stairs 4",
+      "state": "dark_oak_stairs 4",
       "pos": "4 5 9"
     },
     {
-      "state": "minecraft:trapdoor 6",
+      "state": "trapdoor 6",
       "pos": "4 5 10",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "4 5 11"
     },
     {
-      "state": "minecraft:trapdoor 14",
+      "state": "trapdoor 14",
       "pos": "4 5 12",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:stained_hardened_clay 14",
+      "state": "stained_hardened_clay 14",
       "pos": "4 5 13"
     },
     {
-      "state": "minecraft:trapdoor 13",
+      "state": "trapdoor 13",
       "pos": "4 5 14",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:dark_oak_stairs 3",
+      "state": "dark_oak_stairs 3",
       "pos": "5 5 14"
     },
     {
-      "state": "minecraft:log 1",
+      "state": "log 1",
       "pos": "5 5 13"
     },
     {
-      "state": "minecraft:stained_hardened_clay 14",
+      "state": "stained_hardened_clay 14",
       "pos": "5 5 12"
     },
     {
-      "state": "minecraft:wooden_door 0",
+      "state": "wooden_door",
       "pos": "5 5 11",
-      "type": "blocks.PlaceableDouble"
+      "type": "blocks.Double"
     },
     {
-      "state": "minecraft:stained_hardened_clay 14",
+      "state": "stained_hardened_clay 14",
       "pos": "5 5 10"
     },
     {
-      "state": "minecraft:log 1",
+      "state": "log 1",
       "pos": "5 5 9"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "5 5 8"
     },
     {
       "homeString": "cafe.till",
       "npc": "",
       "pos": "5 5 7",
-      "type": "entities.PlaceableNPC"
+      "type": "entities.NPC"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "5 5 7"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "5 5 6"
     },
     {
-      "state": "minecraft:log 1",
+      "state": "log 1",
       "pos": "5 5 5"
     },
     {
-      "state": "minecraft:stained_hardened_clay 14",
+      "state": "stained_hardened_clay 14",
       "pos": "5 5 4"
     },
     {
-      "state": "minecraft:stained_hardened_clay 14",
+      "state": "stained_hardened_clay 14",
       "pos": "5 5 3"
     },
     {
-      "state": "minecraft:stained_hardened_clay 14",
+      "state": "stained_hardened_clay 14",
       "pos": "5 5 2"
     },
     {
-      "state": "minecraft:log 1",
+      "state": "log 1",
       "pos": "5 5 1"
     },
     {
-      "state": "minecraft:dark_oak_stairs 2",
+      "state": "dark_oak_stairs 2",
       "pos": "5 5 0"
     },
     {
-      "state": "minecraft:dark_oak_stairs 1",
+      "state": "dark_oak_stairs 1",
       "pos": "6 5 1"
     },
     {
-      "state": "minecraft:trapdoor 7",
+      "state": "trapdoor 7",
       "pos": "6 5 2",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:trapdoor 7",
+      "state": "trapdoor 7",
       "pos": "6 5 3",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:trapdoor 7",
+      "state": "trapdoor 7",
       "pos": "6 5 4",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:dark_oak_stairs 1",
+      "state": "dark_oak_stairs 1",
       "pos": "6 5 5"
     },
     {
-      "state": "minecraft:log 1",
+      "state": "log 1",
       "pos": "6 5 6"
     },
     {
-      "state": "minecraft:stained_hardened_clay 14",
+      "state": "stained_hardened_clay 14",
       "pos": "6 5 7"
     },
     {
-      "state": "minecraft:log 1",
+      "state": "log 1",
       "pos": "6 5 8"
     },
     {
-      "state": "minecraft:flower_pot 0",
+      "state": "flower_pot",
       "pos": "6 5 9",
-      "type": "blocks.PlaceableFlowerPot"
+      "type": "blocks.FlowerPot"
     },
     {
-      "state": "minecraft:trapdoor 15",
+      "state": "trapdoor 15",
       "pos": "6 5 10",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "6 5 11"
     },
     {
-      "state": "minecraft:trapdoor 15",
+      "state": "trapdoor 15",
       "pos": "6 5 12",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:fence 0",
+      "state": "fence",
       "pos": "6 5 13"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "6 5 14"
     },
     {
-      "state": "minecraft:fence 0",
+      "state": "fence",
       "pos": "7 5 14"
     },
     {
-      "state": "minecraft:fence 0",
+      "state": "fence",
       "pos": "7 5 13"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "7 5 12"
     },
     {
       "homeString": "liara",
       "npc": "harvestfestival:liara",
       "pos": "7 5 11",
-      "type": "entities.PlaceableNPC"
+      "type": "entities.NPC"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "7 5 11"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "7 5 10"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "7 5 9"
     },
     {
-      "state": "minecraft:fence 0",
+      "state": "fence",
       "pos": "7 5 8"
     },
     {
-      "state": "minecraft:trapdoor 15",
+      "state": "trapdoor 15",
       "pos": "7 5 7",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:trapdoor 15",
+      "state": "trapdoor 15",
       "pos": "7 5 6",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:fence 0",
+      "state": "fence",
       "pos": "8 5 8"
     },
     {
-      "state": "minecraft:flower_pot 0",
+      "state": "flower_pot",
       "pos": "8 5 9",
-      "type": "blocks.PlaceableFlowerPot"
+      "type": "blocks.FlowerPot"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "8 5 10"
     },
     {
       "rotation": 0,
       "facing": "WEST",
       "pos": "8 5 10",
-      "type": "entities.PlaceableItemFrame"
+      "type": "entities.ItemFrame"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "8 5 11"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "8 5 12"
     },
     {
       "rotation": 0,
       "facing": "WEST",
       "pos": "8 5 12",
-      "type": "entities.PlaceableItemFrame"
+      "type": "entities.ItemFrame"
     },
     {
-      "state": "minecraft:flower_pot 0",
+      "state": "flower_pot",
       "pos": "8 5 13",
-      "type": "blocks.PlaceableFlowerPot"
+      "type": "blocks.FlowerPot"
     },
     {
-      "state": "minecraft:fence 0",
+      "state": "fence",
       "pos": "8 5 14"
     },
     {
-      "state": "minecraft:dark_oak_stairs 3",
+      "state": "dark_oak_stairs 3",
       "pos": "9 5 14"
     },
     {
-      "state": "minecraft:trapdoor 2",
+      "state": "trapdoor 2",
       "pos": "9 5 13",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:spruce_stairs 2",
+      "state": "spruce_stairs 2",
       "pos": "9 5 12"
     },
     {
-      "state": "minecraft:glass_pane 0",
+      "state": "glass_pane",
       "pos": "9 5 11"
     },
     {
-      "state": "minecraft:spruce_stairs 3",
+      "state": "spruce_stairs 3",
       "pos": "9 5 10"
     },
     {
-      "state": "minecraft:trapdoor 2",
+      "state": "trapdoor 2",
       "pos": "9 5 9",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:dark_oak_stairs 2",
+      "state": "dark_oak_stairs 2",
       "pos": "9 5 8"
     },
     {
-      "state": "minecraft:dark_oak_stairs 1",
+      "state": "dark_oak_stairs 1",
       "pos": "10 5 9"
     },
     {
-      "state": "minecraft:fence 0",
+      "state": "fence",
       "pos": "10 5 10"
     },
     {
       "rotation": 0,
       "facing": "EAST",
       "pos": "10 5 10",
-      "type": "entities.PlaceableItemFrame"
+      "type": "entities.ItemFrame"
     },
     {
-      "state": "minecraft:fence 0",
+      "state": "fence",
       "pos": "10 5 11"
     },
     {
-      "state": "minecraft:fence 0",
+      "state": "fence",
       "pos": "10 5 12"
     },
     {
       "rotation": 0,
       "facing": "EAST",
       "pos": "10 5 12",
-      "type": "entities.PlaceableItemFrame"
+      "type": "entities.ItemFrame"
     },
     {
-      "state": "minecraft:dark_oak_stairs 1",
+      "state": "dark_oak_stairs 1",
       "pos": "10 5 13"
     },
     {
-      "state": "minecraft:wooden_button 2",
+      "state": "wooden_button 2",
       "pos": "0 6 1",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:wooden_button 2",
+      "state": "wooden_button 2",
       "pos": "0 6 5",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:wooden_button 2",
+      "state": "wooden_button 2",
       "pos": "0 6 9",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:wooden_button 2",
+      "state": "wooden_button 2",
       "pos": "0 6 13",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:wooden_button 3",
+      "state": "wooden_button 3",
       "pos": "1 6 14",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:log 1",
+      "state": "log 1",
       "pos": "1 6 13"
     },
     {
-      "state": "minecraft:glass_pane 0",
+      "state": "glass_pane",
       "pos": "1 6 12"
     },
     {
-      "state": "minecraft:glass_pane 0",
+      "state": "glass_pane",
       "pos": "1 6 11"
     },
     {
-      "state": "minecraft:glass_pane 0",
+      "state": "glass_pane",
       "pos": "1 6 10"
     },
     {
-      "state": "minecraft:log 1",
+      "state": "log 1",
       "pos": "1 6 9"
     },
     {
-      "state": "minecraft:glass_pane 0",
+      "state": "glass_pane",
       "pos": "1 6 8"
     },
     {
-      "state": "minecraft:glass_pane 0",
+      "state": "glass_pane",
       "pos": "1 6 7"
     },
     {
-      "state": "minecraft:glass_pane 0",
+      "state": "glass_pane",
       "pos": "1 6 6"
     },
     {
-      "state": "minecraft:log 1",
+      "state": "log 1",
       "pos": "1 6 5"
     },
     {
-      "state": "minecraft:glass_pane 0",
+      "state": "glass_pane",
       "pos": "1 6 4"
     },
     {
-      "state": "minecraft:glass_pane 0",
+      "state": "glass_pane",
       "pos": "1 6 3"
     },
     {
-      "state": "minecraft:glass_pane 0",
+      "state": "glass_pane",
       "pos": "1 6 2"
     },
     {
-      "state": "minecraft:log 1",
+      "state": "log 1",
       "pos": "1 6 1"
     },
     {
-      "state": "minecraft:wooden_button 4",
+      "state": "wooden_button 4",
       "pos": "1 6 0",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:glass_pane 0",
+      "state": "glass_pane",
       "pos": "2 6 1"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "2 6 2"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "2 6 3"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "2 6 4"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "2 6 5"
     },
     {
       "painting": "Alban",
       "facing": "EAST",
       "pos": "2 6 5",
-      "type": "entities.PlaceablePainting"
+      "type": "entities.Painting"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "2 6 6"
     },
     {
-      "state": "minecraft:carpet 14",
+      "state": "carpet 14",
       "pos": "2 6 7"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "2 6 8"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "2 6 9"
     },
     {
       "painting": "Wanderer",
       "facing": "EAST",
       "pos": "2 6 9",
-      "type": "entities.PlaceablePainting"
+      "type": "entities.Painting"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "2 6 10"
     },
     {
-      "state": "minecraft:carpet 14",
+      "state": "carpet 14",
       "pos": "2 6 11"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "2 6 12"
     },
     {
-      "state": "minecraft:glass_pane 0",
+      "state": "glass_pane",
       "pos": "2 6 13"
     },
     {
-      "state": "minecraft:glass_pane 0",
+      "state": "glass_pane",
       "pos": "3 6 13"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "3 6 12"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "3 6 11"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "3 6 10"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "3 6 9"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "3 6 8"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "3 6 7"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "3 6 6"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "3 6 5"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "3 6 4"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "3 6 3"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "3 6 2"
     },
     {
-      "state": "minecraft:glass_pane 0",
+      "state": "glass_pane",
       "pos": "3 6 1"
     },
     {
-      "state": "minecraft:glass_pane 0",
+      "state": "glass_pane",
       "pos": "4 6 1"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "4 6 2"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "4 6 3"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "4 6 4"
     },
     {
-      "state": "minecraft:flower_pot 0",
+      "state": "flower_pot",
       "pos": "4 6 5",
-      "type": "blocks.PlaceableFlowerPot"
+      "type": "blocks.FlowerPot"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "4 6 6"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "4 6 7"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "4 6 8"
     },
     {
-      "state": "minecraft:flower_pot 0",
+      "state": "flower_pot",
       "pos": "4 6 9",
-      "type": "blocks.PlaceableFlowerPot"
+      "type": "blocks.FlowerPot"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "4 6 10"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "4 6 11"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "4 6 12"
     },
     {
-      "state": "minecraft:glass_pane 0",
+      "state": "glass_pane",
       "pos": "4 6 13"
     },
     {
-      "state": "minecraft:wooden_button 3",
+      "state": "wooden_button 3",
       "pos": "5 6 14",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:log 1",
+      "state": "log 1",
       "pos": "5 6 13"
     },
     {
-      "state": "minecraft:planks 1",
+      "state": "planks 1",
       "pos": "5 6 12"
     },
     {
-      "state": "minecraft:planks 1",
+      "state": "planks 1",
       "pos": "5 6 10"
     },
     {
-      "state": "minecraft:log 1",
+      "state": "log 1",
       "pos": "5 6 9"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "5 6 8"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "5 6 7"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "5 6 6"
     },
     {
-      "state": "minecraft:log 1",
+      "state": "log 1",
       "pos": "5 6 5"
     },
     {
-      "state": "minecraft:glass_pane 0",
+      "state": "glass_pane",
       "pos": "5 6 4"
     },
     {
-      "state": "minecraft:glass_pane 0",
+      "state": "glass_pane",
       "pos": "5 6 3"
     },
     {
-      "state": "minecraft:glass_pane 0",
+      "state": "glass_pane",
       "pos": "5 6 2"
     },
     {
-      "state": "minecraft:log 1",
+      "state": "log 1",
       "pos": "5 6 1"
     },
     {
-      "state": "minecraft:wooden_button 4",
+      "state": "wooden_button 4",
       "pos": "5 6 0",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:wooden_button 1",
+      "state": "wooden_button 1",
       "pos": "6 6 1",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:wooden_button 1",
+      "state": "wooden_button 1",
       "pos": "6 6 5",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:log 1",
+      "state": "log 1",
       "pos": "6 6 6"
     },
     {
-      "state": "minecraft:glass_pane 0",
+      "state": "glass_pane",
       "pos": "6 6 7"
     },
     {
-      "state": "minecraft:log 1",
+      "state": "log 1",
       "pos": "6 6 8"
     },
     {
-      "state": "minecraft:wooden_button 1",
+      "state": "wooden_button 1",
       "pos": "6 6 9",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:vine 2",
+      "state": "vine 2",
       "pos": "6 6 10",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "6 6 11"
     },
     {
-      "state": "minecraft:vine 2",
+      "state": "vine 2",
       "pos": "6 6 12",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:wooden_button 1",
+      "state": "wooden_button 1",
       "pos": "6 6 13",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "7 6 14"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "7 6 13"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "7 6 12"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "7 6 11"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "7 6 10"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "7 6 9"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "7 6 8"
     },
     {
-      "state": "minecraft:fence 0",
+      "state": "fence",
       "pos": "8 6 8"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "8 6 9"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "8 6 10"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "8 6 11"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "8 6 12"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "8 6 13"
     },
     {
-      "state": "minecraft:fence 0",
+      "state": "fence",
       "pos": "8 6 14"
     },
     {
-      "state": "minecraft:wooden_slab 13",
+      "state": "wooden_slab 13",
       "pos": "9 6 14"
     },
     {
-      "state": "minecraft:wooden_slab 13",
+      "state": "wooden_slab 13",
       "pos": "9 6 13"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "9 6 12"
     },
     {
-      "state": "minecraft:carpet 14",
+      "state": "carpet 14",
       "pos": "9 6 11"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "9 6 10"
     },
     {
-      "state": "minecraft:wooden_slab 13",
+      "state": "wooden_slab 13",
       "pos": "9 6 9"
     },
     {
-      "state": "minecraft:wooden_slab 13",
+      "state": "wooden_slab 13",
       "pos": "9 6 8"
     },
     {
-      "state": "minecraft:torch 5",
+      "state": "torch 5",
       "pos": "10 6 11",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:dark_oak_stairs 4",
+      "state": "dark_oak_stairs 4",
       "pos": "0 7 1"
     },
     {
-      "state": "minecraft:wooden_slab 13",
+      "state": "wooden_slab 13",
       "pos": "0 7 2"
     },
     {
-      "state": "minecraft:wooden_slab 13",
+      "state": "wooden_slab 13",
       "pos": "0 7 3"
     },
     {
-      "state": "minecraft:wooden_slab 13",
+      "state": "wooden_slab 13",
       "pos": "0 7 4"
     },
     {
-      "state": "minecraft:dark_oak_stairs 4",
+      "state": "dark_oak_stairs 4",
       "pos": "0 7 5"
     },
     {
-      "state": "minecraft:wooden_slab 13",
+      "state": "wooden_slab 13",
       "pos": "0 7 6"
     },
     {
-      "state": "minecraft:wooden_slab 13",
+      "state": "wooden_slab 13",
       "pos": "0 7 7"
     },
     {
-      "state": "minecraft:wooden_slab 13",
+      "state": "wooden_slab 13",
       "pos": "0 7 8"
     },
     {
-      "state": "minecraft:dark_oak_stairs 4",
+      "state": "dark_oak_stairs 4",
       "pos": "0 7 9"
     },
     {
-      "state": "minecraft:wooden_slab 13",
+      "state": "wooden_slab 13",
       "pos": "0 7 10"
     },
     {
-      "state": "minecraft:wooden_slab 13",
+      "state": "wooden_slab 13",
       "pos": "0 7 11"
     },
     {
-      "state": "minecraft:wooden_slab 13",
+      "state": "wooden_slab 13",
       "pos": "0 7 12"
     },
     {
-      "state": "minecraft:dark_oak_stairs 4",
+      "state": "dark_oak_stairs 4",
       "pos": "0 7 13"
     },
     {
-      "state": "minecraft:dark_oak_stairs 7",
+      "state": "dark_oak_stairs 7",
       "pos": "1 7 14"
     },
     {
-      "state": "minecraft:log 1",
+      "state": "log 1",
       "pos": "1 7 13"
     },
     {
-      "state": "minecraft:glass_pane 0",
+      "state": "glass_pane",
       "pos": "1 7 12"
     },
     {
-      "state": "minecraft:planks 1",
+      "state": "planks 1",
       "pos": "1 7 11"
     },
     {
-      "state": "minecraft:glass_pane 0",
+      "state": "glass_pane",
       "pos": "1 7 10"
     },
     {
-      "state": "minecraft:log 1",
+      "state": "log 1",
       "pos": "1 7 9"
     },
     {
-      "state": "minecraft:glass_pane 0",
+      "state": "glass_pane",
       "pos": "1 7 8"
     },
     {
-      "state": "minecraft:planks 1",
+      "state": "planks 1",
       "pos": "1 7 7"
     },
     {
-      "state": "minecraft:glass_pane 0",
+      "state": "glass_pane",
       "pos": "1 7 6"
     },
     {
-      "state": "minecraft:log 1",
+      "state": "log 1",
       "pos": "1 7 5"
     },
     {
-      "state": "minecraft:glass_pane 0",
+      "state": "glass_pane",
       "pos": "1 7 4"
     },
     {
-      "state": "minecraft:planks 1",
+      "state": "planks 1",
       "pos": "1 7 3"
     },
     {
-      "state": "minecraft:glass_pane 0",
+      "state": "glass_pane",
       "pos": "1 7 2"
     },
     {
-      "state": "minecraft:log 1",
+      "state": "log 1",
       "pos": "1 7 1"
     },
     {
-      "state": "minecraft:dark_oak_stairs 6",
+      "state": "dark_oak_stairs 6",
       "pos": "1 7 0"
     },
     {
-      "state": "minecraft:wooden_slab 13",
+      "state": "wooden_slab 13",
       "pos": "2 7 0"
     },
     {
-      "state": "minecraft:glass_pane 0",
+      "state": "glass_pane",
       "pos": "2 7 1"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "2 7 2"
     },
     {
-      "state": "minecraft:torch 1",
+      "state": "torch 1",
       "pos": "2 7 3",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "2 7 4"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "2 7 5"
     },
     {
       "painting": "Bomb",
       "facing": "EAST",
       "pos": "2 7 5",
-      "type": "entities.PlaceablePainting"
+      "type": "entities.Painting"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "2 7 6"
     },
     {
-      "state": "minecraft:torch 1",
+      "state": "torch 1",
       "pos": "2 7 7",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "2 7 8"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "2 7 9"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "2 7 10"
     },
     {
-      "state": "minecraft:torch 1",
+      "state": "torch 1",
       "pos": "2 7 11",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "2 7 12"
     },
     {
-      "state": "minecraft:glass_pane 0",
+      "state": "glass_pane",
       "pos": "2 7 13"
     },
     {
-      "state": "minecraft:wooden_slab 13",
+      "state": "wooden_slab 13",
       "pos": "2 7 14"
     },
     {
-      "state": "minecraft:wooden_slab 13",
+      "state": "wooden_slab 13",
       "pos": "3 7 14"
     },
     {
-      "state": "minecraft:planks 1",
+      "state": "planks 1",
       "pos": "3 7 13"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "3 7 12"
     },
     {
       "painting": "Wasteland",
       "facing": "NORTH",
       "pos": "3 7 12",
-      "type": "entities.PlaceablePainting"
+      "type": "entities.Painting"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "3 7 11"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "3 7 10"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "3 7 9"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "3 7 8"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "3 7 7"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "3 7 6"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "3 7 5"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "3 7 4"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "3 7 3"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "3 7 2"
     },
     {
       "painting": "Plant",
       "facing": "SOUTH",
       "pos": "3 7 2",
-      "type": "entities.PlaceablePainting"
+      "type": "entities.Painting"
     },
     {
-      "state": "minecraft:planks 1",
+      "state": "planks 1",
       "pos": "3 7 1"
     },
     {
-      "state": "minecraft:wooden_slab 13",
+      "state": "wooden_slab 13",
       "pos": "3 7 0"
     },
     {
-      "state": "minecraft:wooden_slab 13",
+      "state": "wooden_slab 13",
       "pos": "4 7 0"
     },
     {
-      "state": "minecraft:glass_pane 0",
+      "state": "glass_pane",
       "pos": "4 7 1"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "4 7 2"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "4 7 3"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "4 7 4"
     },
     {
-      "state": "minecraft:wooden_button 2",
+      "state": "wooden_button 2",
       "pos": "4 7 5",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "4 7 6"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "4 7 7"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "4 7 8"
     },
     {
-      "state": "minecraft:wooden_button 2",
+      "state": "wooden_button 2",
       "pos": "4 7 9",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "4 7 10"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "4 7 11"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "4 7 12"
     },
     {
-      "state": "minecraft:glass_pane 0",
+      "state": "glass_pane",
       "pos": "4 7 13"
     },
     {
-      "state": "minecraft:wooden_slab 13",
+      "state": "wooden_slab 13",
       "pos": "4 7 14"
     },
     {
-      "state": "minecraft:dark_oak_stairs 7",
+      "state": "dark_oak_stairs 7",
       "pos": "5 7 14"
     },
     {
-      "state": "minecraft:log 1",
+      "state": "log 1",
       "pos": "5 7 13"
     },
     {
-      "state": "minecraft:glass_pane 0",
+      "state": "glass_pane",
       "pos": "5 7 12"
     },
     {
-      "state": "minecraft:planks 1",
+      "state": "planks 1",
       "pos": "5 7 11"
     },
     {
-      "state": "minecraft:glass_pane 0",
+      "state": "glass_pane",
       "pos": "5 7 10"
     },
     {
-      "state": "minecraft:log 1",
+      "state": "log 1",
       "pos": "5 7 9"
     },
     {
-      "state": "minecraft:torch 2",
+      "state": "torch 2",
       "pos": "5 7 8",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "5 7 7"
     },
     {
-      "state": "minecraft:torch 2",
+      "state": "torch 2",
       "pos": "5 7 6",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:log 1",
+      "state": "log 1",
       "pos": "5 7 5"
     },
     {
-      "state": "minecraft:glass_pane 0",
+      "state": "glass_pane",
       "pos": "5 7 4"
     },
     {
-      "state": "minecraft:planks 1",
+      "state": "planks 1",
       "pos": "5 7 3"
     },
     {
-      "state": "minecraft:glass_pane 0",
+      "state": "glass_pane",
       "pos": "5 7 2"
     },
     {
-      "state": "minecraft:log 1",
+      "state": "log 1",
       "pos": "5 7 1"
     },
     {
-      "state": "minecraft:dark_oak_stairs 6",
+      "state": "dark_oak_stairs 6",
       "pos": "5 7 0"
     },
     {
-      "state": "minecraft:dark_oak_stairs 5",
+      "state": "dark_oak_stairs 5",
       "pos": "6 7 1"
     },
     {
-      "state": "minecraft:wooden_slab 13",
+      "state": "wooden_slab 13",
       "pos": "6 7 2"
     },
     {
-      "state": "minecraft:wooden_slab 13",
+      "state": "wooden_slab 13",
       "pos": "6 7 3"
     },
     {
-      "state": "minecraft:wooden_slab 13",
+      "state": "wooden_slab 13",
       "pos": "6 7 4"
     },
     {
-      "state": "minecraft:dark_oak_stairs 5",
+      "state": "dark_oak_stairs 5",
       "pos": "6 7 5"
     },
     {
-      "state": "minecraft:log 1",
+      "state": "log 1",
       "pos": "6 7 6"
     },
     {
-      "state": "minecraft:dark_oak_stairs 5",
+      "state": "dark_oak_stairs 5",
       "pos": "6 7 7"
     },
     {
-      "state": "minecraft:log 1",
+      "state": "log 1",
       "pos": "6 7 8"
     },
     {
-      "state": "minecraft:dark_oak_stairs 5",
+      "state": "dark_oak_stairs 5",
       "pos": "6 7 9"
     },
     {
-      "state": "minecraft:wooden_slab 13",
+      "state": "wooden_slab 13",
       "pos": "6 7 10"
     },
     {
-      "state": "minecraft:wooden_slab 13",
+      "state": "wooden_slab 13",
       "pos": "6 7 11"
     },
     {
-      "state": "minecraft:wooden_slab 13",
+      "state": "wooden_slab 13",
       "pos": "6 7 12"
     },
     {
-      "state": "minecraft:dark_oak_stairs 5",
+      "state": "dark_oak_stairs 5",
       "pos": "6 7 13"
     },
     {
-      "state": "minecraft:wooden_slab 13",
+      "state": "wooden_slab 13",
       "pos": "6 7 14"
     },
     {
-      "state": "minecraft:wooden_slab 13",
+      "state": "wooden_slab 13",
       "pos": "7 7 14"
     },
     {
-      "state": "minecraft:wooden_slab 9",
+      "state": "wooden_slab 9",
       "pos": "7 7 13"
     },
     {
-      "state": "minecraft:wooden_slab 13",
+      "state": "wooden_slab 13",
       "pos": "7 7 12"
     },
     {
-      "state": "minecraft:wooden_slab 13",
+      "state": "wooden_slab 13",
       "pos": "7 7 11"
     },
     {
-      "state": "minecraft:wooden_slab 13",
+      "state": "wooden_slab 13",
       "pos": "7 7 10"
     },
     {
-      "state": "minecraft:wooden_slab 9",
+      "state": "wooden_slab 9",
       "pos": "7 7 9"
     },
     {
-      "state": "minecraft:wooden_slab 13",
+      "state": "wooden_slab 13",
       "pos": "7 7 8"
     },
     {
-      "state": "minecraft:wooden_slab 5",
+      "state": "wooden_slab 5",
       "pos": "8 7 8"
     },
     {
-      "state": "minecraft:wooden_slab 5",
+      "state": "wooden_slab 5",
       "pos": "8 7 9"
     },
     {
-      "state": "minecraft:wooden_slab 9",
+      "state": "wooden_slab 9",
       "pos": "8 7 10"
     },
     {
-      "state": "minecraft:wooden_slab 9",
+      "state": "wooden_slab 9",
       "pos": "8 7 11"
     },
     {
-      "state": "minecraft:wooden_slab 9",
+      "state": "wooden_slab 9",
       "pos": "8 7 12"
     },
     {
-      "state": "minecraft:wooden_slab 5",
+      "state": "wooden_slab 5",
       "pos": "8 7 13"
     },
     {
-      "state": "minecraft:wooden_slab 5",
+      "state": "wooden_slab 5",
       "pos": "8 7 14"
     },
     {
-      "state": "minecraft:wooden_slab 5",
+      "state": "wooden_slab 5",
       "pos": "9 7 12"
     },
     {
-      "state": "minecraft:wooden_slab 5",
+      "state": "wooden_slab 5",
       "pos": "9 7 11"
     },
     {
-      "state": "minecraft:wooden_slab 5",
+      "state": "wooden_slab 5",
       "pos": "9 7 10"
     },
     {
-      "state": "minecraft:fence 0",
+      "state": "fence",
       "pos": "0 8 1"
     },
     {
-      "state": "minecraft:wooden_button 2",
+      "state": "wooden_button 2",
       "pos": "0 8 2",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:flower_pot 0",
+      "state": "flower_pot",
       "pos": "0 8 3",
-      "type": "blocks.PlaceableFlowerPot"
+      "type": "blocks.FlowerPot"
     },
     {
-      "state": "minecraft:wooden_button 2",
+      "state": "wooden_button 2",
       "pos": "0 8 4",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:fence 0",
+      "state": "fence",
       "pos": "0 8 5"
     },
     {
-      "state": "minecraft:wooden_button 2",
+      "state": "wooden_button 2",
       "pos": "0 8 6",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:flower_pot 0",
+      "state": "flower_pot",
       "pos": "0 8 7",
-      "type": "blocks.PlaceableFlowerPot"
+      "type": "blocks.FlowerPot"
     },
     {
-      "state": "minecraft:wooden_button 2",
+      "state": "wooden_button 2",
       "pos": "0 8 8",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:fence 0",
+      "state": "fence",
       "pos": "0 8 9"
     },
     {
-      "state": "minecraft:wooden_button 2",
+      "state": "wooden_button 2",
       "pos": "0 8 10",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:flower_pot 0",
+      "state": "flower_pot",
       "pos": "0 8 11",
-      "type": "blocks.PlaceableFlowerPot"
+      "type": "blocks.FlowerPot"
     },
     {
-      "state": "minecraft:wooden_button 2",
+      "state": "wooden_button 2",
       "pos": "0 8 12",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:fence 0",
+      "state": "fence",
       "pos": "0 8 13"
     },
     {
-      "state": "minecraft:fence 0",
+      "state": "fence",
       "pos": "1 8 14"
     },
     {
-      "state": "minecraft:stained_hardened_clay 14",
+      "state": "stained_hardened_clay 14",
       "pos": "1 8 13"
     },
     {
-      "state": "minecraft:log 9",
+      "state": "log 9",
       "pos": "1 8 12"
     },
     {
-      "state": "minecraft:glass_pane 0",
+      "state": "glass_pane",
       "pos": "1 8 11"
     },
     {
-      "state": "minecraft:log 9",
+      "state": "log 9",
       "pos": "1 8 10"
     },
     {
-      "state": "minecraft:stained_hardened_clay 14",
+      "state": "stained_hardened_clay 14",
       "pos": "1 8 9"
     },
     {
-      "state": "minecraft:log 9",
+      "state": "log 9",
       "pos": "1 8 8"
     },
     {
-      "state": "minecraft:glass_pane 0",
+      "state": "glass_pane",
       "pos": "1 8 7"
     },
     {
-      "state": "minecraft:log 9",
+      "state": "log 9",
       "pos": "1 8 6"
     },
     {
-      "state": "minecraft:stained_hardened_clay 14",
+      "state": "stained_hardened_clay 14",
       "pos": "1 8 5"
     },
     {
-      "state": "minecraft:log 9",
+      "state": "log 9",
       "pos": "1 8 4"
     },
     {
-      "state": "minecraft:glass_pane 0",
+      "state": "glass_pane",
       "pos": "1 8 3"
     },
     {
-      "state": "minecraft:log 9",
+      "state": "log 9",
       "pos": "1 8 2"
     },
     {
-      "state": "minecraft:stained_hardened_clay 14",
+      "state": "stained_hardened_clay 14",
       "pos": "1 8 1"
     },
     {
-      "state": "minecraft:fence 0",
+      "state": "fence",
       "pos": "1 8 0"
     },
     {
-      "state": "minecraft:wooden_button 4",
+      "state": "wooden_button 4",
       "pos": "2 8 0",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:log 5",
+      "state": "log 5",
       "pos": "2 8 1"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "2 8 2"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "2 8 3"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "2 8 4"
     },
     {
-      "state": "minecraft:trapdoor 15",
+      "state": "trapdoor 15",
       "pos": "2 8 5",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "2 8 6"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "2 8 7"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "2 8 8"
     },
     {
-      "state": "minecraft:trapdoor 15",
+      "state": "trapdoor 15",
       "pos": "2 8 9",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "2 8 10"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "2 8 11"
     },
     {
-      "state": "minecraft:log 5",
+      "state": "log 5",
       "pos": "2 8 13"
     },
     {
-      "state": "minecraft:wooden_button 3",
+      "state": "wooden_button 3",
       "pos": "2 8 14",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:flower_pot 0",
+      "state": "flower_pot",
       "pos": "3 8 14",
-      "type": "blocks.PlaceableFlowerPot"
+      "type": "blocks.FlowerPot"
     },
     {
-      "state": "minecraft:glass_pane 0",
+      "state": "glass_pane",
       "pos": "3 8 13"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "3 8 12"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "3 8 11"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "3 8 10"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "3 8 9"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "3 8 8"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "3 8 7"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "3 8 6"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "3 8 5"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "3 8 4"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "3 8 3"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "3 8 2"
     },
     {
-      "state": "minecraft:glass_pane 0",
+      "state": "glass_pane",
       "pos": "3 8 1"
     },
     {
-      "state": "minecraft:flower_pot 0",
+      "state": "flower_pot",
       "pos": "3 8 0",
-      "type": "blocks.PlaceableFlowerPot"
+      "type": "blocks.FlowerPot"
     },
     {
-      "state": "minecraft:wooden_button 4",
+      "state": "wooden_button 4",
       "pos": "4 8 0",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:log 5",
+      "state": "log 5",
       "pos": "4 8 1"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "4 8 2"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "4 8 3"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "4 8 4"
     },
     {
-      "state": "minecraft:trapdoor 14",
+      "state": "trapdoor 14",
       "pos": "4 8 5",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "4 8 6"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "4 8 7"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "4 8 8"
     },
     {
-      "state": "minecraft:trapdoor 14",
+      "state": "trapdoor 14",
       "pos": "4 8 9",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "4 8 10"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "4 8 11"
     },
     {
-      "state": "minecraft:log 5",
+      "state": "log 5",
       "pos": "4 8 13"
     },
     {
-      "state": "minecraft:wooden_button 3",
+      "state": "wooden_button 3",
       "pos": "4 8 14",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:fence 0",
+      "state": "fence",
       "pos": "5 8 14"
     },
     {
-      "state": "minecraft:stained_hardened_clay 14",
+      "state": "stained_hardened_clay 14",
       "pos": "5 8 13"
     },
     {
-      "state": "minecraft:log 9",
+      "state": "log 9",
       "pos": "5 8 12"
     },
     {
-      "state": "minecraft:log 9",
+      "state": "log 9",
       "pos": "5 8 11"
     },
     {
-      "state": "minecraft:log 9",
+      "state": "log 9",
       "pos": "5 8 10"
     },
     {
-      "state": "minecraft:stained_hardened_clay 14",
+      "state": "stained_hardened_clay 14",
       "pos": "5 8 9"
     },
     {
-      "state": "minecraft:spruce_stairs 4",
+      "state": "spruce_stairs 4",
       "pos": "5 8 8"
     },
     {
-      "state": "minecraft:spruce_stairs 4",
+      "state": "spruce_stairs 4",
       "pos": "5 8 7"
     },
     {
-      "state": "minecraft:spruce_stairs 4",
+      "state": "spruce_stairs 4",
       "pos": "5 8 6"
     },
     {
-      "state": "minecraft:stained_hardened_clay 14",
+      "state": "stained_hardened_clay 14",
       "pos": "5 8 5"
     },
     {
-      "state": "minecraft:log 9",
+      "state": "log 9",
       "pos": "5 8 4"
     },
     {
-      "state": "minecraft:glass_pane 0",
+      "state": "glass_pane",
       "pos": "5 8 3"
     },
     {
-      "state": "minecraft:log 9",
+      "state": "log 9",
       "pos": "5 8 2"
     },
     {
-      "state": "minecraft:stained_hardened_clay 14",
+      "state": "stained_hardened_clay 14",
       "pos": "5 8 1"
     },
     {
-      "state": "minecraft:fence 0",
+      "state": "fence",
       "pos": "5 8 0"
     },
     {
-      "state": "minecraft:fence 0",
+      "state": "fence",
       "pos": "6 8 1"
     },
     {
-      "state": "minecraft:wooden_button 1",
+      "state": "wooden_button 1",
       "pos": "6 8 2",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:flower_pot 0",
+      "state": "flower_pot",
       "pos": "6 8 3",
-      "type": "blocks.PlaceableFlowerPot"
+      "type": "blocks.FlowerPot"
     },
     {
-      "state": "minecraft:wooden_button 1",
+      "state": "wooden_button 1",
       "pos": "6 8 4",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:fence 0",
+      "state": "fence",
       "pos": "6 8 5"
     },
     {
-      "state": "minecraft:dark_oak_stairs 1",
+      "state": "dark_oak_stairs 1",
       "pos": "6 8 6"
     },
     {
-      "state": "minecraft:stained_hardened_clay 14",
+      "state": "stained_hardened_clay 14",
       "pos": "6 8 7"
     },
     {
-      "state": "minecraft:dark_oak_stairs 1",
+      "state": "dark_oak_stairs 1",
       "pos": "6 8 8"
     },
     {
-      "state": "minecraft:fence 0",
+      "state": "fence",
       "pos": "6 8 9"
     },
     {
-      "state": "minecraft:wooden_button 1",
+      "state": "wooden_button 1",
       "pos": "6 8 10",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:flower_pot 0",
+      "state": "flower_pot",
       "pos": "6 8 11",
-      "type": "blocks.PlaceableFlowerPot"
+      "type": "blocks.FlowerPot"
     },
     {
-      "state": "minecraft:wooden_button 1",
+      "state": "wooden_button 1",
       "pos": "6 8 12",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:fence 0",
+      "state": "fence",
       "pos": "6 8 13"
     },
     {
-      "state": "minecraft:trapdoor 15",
+      "state": "trapdoor 15",
       "pos": "7 8 7",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:dark_oak_stairs 0",
+      "state": "dark_oak_stairs",
       "pos": "0 9 1"
     },
     {
-      "state": "minecraft:wooden_slab 5",
+      "state": "wooden_slab 5",
       "pos": "0 9 2"
     },
     {
-      "state": "minecraft:wooden_slab 5",
+      "state": "wooden_slab 5",
       "pos": "0 9 3"
     },
     {
-      "state": "minecraft:wooden_slab 5",
+      "state": "wooden_slab 5",
       "pos": "0 9 4"
     },
     {
-      "state": "minecraft:dark_oak_stairs 0",
+      "state": "dark_oak_stairs",
       "pos": "0 9 5"
     },
     {
-      "state": "minecraft:wooden_slab 5",
+      "state": "wooden_slab 5",
       "pos": "0 9 6"
     },
     {
-      "state": "minecraft:wooden_slab 5",
+      "state": "wooden_slab 5",
       "pos": "0 9 7"
     },
     {
-      "state": "minecraft:wooden_slab 5",
+      "state": "wooden_slab 5",
       "pos": "0 9 8"
     },
     {
-      "state": "minecraft:dark_oak_stairs 0",
+      "state": "dark_oak_stairs",
       "pos": "0 9 9"
     },
     {
-      "state": "minecraft:wooden_slab 5",
+      "state": "wooden_slab 5",
       "pos": "0 9 10"
     },
     {
-      "state": "minecraft:wooden_slab 5",
+      "state": "wooden_slab 5",
       "pos": "0 9 11"
     },
     {
-      "state": "minecraft:wooden_slab 5",
+      "state": "wooden_slab 5",
       "pos": "0 9 12"
     },
     {
-      "state": "minecraft:dark_oak_stairs 0",
+      "state": "dark_oak_stairs",
       "pos": "0 9 13"
     },
     {
-      "state": "minecraft:dark_oak_stairs 0",
+      "state": "dark_oak_stairs",
       "pos": "1 9 14"
     },
     {
-      "state": "minecraft:dark_oak_stairs 5",
+      "state": "dark_oak_stairs 5",
       "pos": "1 9 13"
     },
     {
-      "state": "minecraft:spruce_stairs 0",
+      "state": "spruce_stairs",
       "pos": "1 9 12"
     },
     {
-      "state": "minecraft:spruce_stairs 0",
+      "state": "spruce_stairs",
       "pos": "1 9 11"
     },
     {
-      "state": "minecraft:spruce_stairs 0",
+      "state": "spruce_stairs",
       "pos": "1 9 10"
     },
     {
-      "state": "minecraft:dark_oak_stairs 5",
+      "state": "dark_oak_stairs 5",
       "pos": "1 9 9"
     },
     {
-      "state": "minecraft:spruce_stairs 0",
+      "state": "spruce_stairs",
       "pos": "1 9 8"
     },
     {
-      "state": "minecraft:spruce_stairs 0",
+      "state": "spruce_stairs",
       "pos": "1 9 7"
     },
     {
-      "state": "minecraft:spruce_stairs 0",
+      "state": "spruce_stairs",
       "pos": "1 9 6"
     },
     {
-      "state": "minecraft:dark_oak_stairs 5",
+      "state": "dark_oak_stairs 5",
       "pos": "1 9 5"
     },
     {
-      "state": "minecraft:spruce_stairs 0",
+      "state": "spruce_stairs",
       "pos": "1 9 4"
     },
     {
-      "state": "minecraft:spruce_stairs 0",
+      "state": "spruce_stairs",
       "pos": "1 9 3"
     },
     {
-      "state": "minecraft:spruce_stairs 0",
+      "state": "spruce_stairs",
       "pos": "1 9 2"
     },
     {
-      "state": "minecraft:dark_oak_stairs 5",
+      "state": "dark_oak_stairs 5",
       "pos": "1 9 1"
     },
     {
-      "state": "minecraft:dark_oak_stairs 0",
+      "state": "dark_oak_stairs",
       "pos": "1 9 0"
     },
     {
-      "state": "minecraft:dark_oak_stairs 5",
+      "state": "dark_oak_stairs 5",
       "pos": "2 9 0"
     },
     {
-      "state": "minecraft:dark_oak_stairs 1",
+      "state": "dark_oak_stairs 1",
       "pos": "2 9 1"
     },
     {
-      "state": "minecraft:spruce_stairs 5",
+      "state": "spruce_stairs 5",
       "pos": "2 9 2"
     },
     {
-      "state": "minecraft:spruce_stairs 5",
+      "state": "spruce_stairs 5",
       "pos": "2 9 3"
     },
     {
-      "state": "minecraft:spruce_stairs 5",
+      "state": "spruce_stairs 5",
       "pos": "2 9 4"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "2 9 5"
     },
     {
-      "state": "minecraft:spruce_stairs 5",
+      "state": "spruce_stairs 5",
       "pos": "2 9 6"
     },
     {
-      "state": "minecraft:spruce_stairs 5",
+      "state": "spruce_stairs 5",
       "pos": "2 9 7"
     },
     {
-      "state": "minecraft:spruce_stairs 5",
+      "state": "spruce_stairs 5",
       "pos": "2 9 8"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "2 9 9"
     },
     {
-      "state": "minecraft:spruce_stairs 5",
+      "state": "spruce_stairs 5",
       "pos": "2 9 10"
     },
     {
-      "state": "minecraft:spruce_stairs 5",
+      "state": "spruce_stairs 5",
       "pos": "2 9 11"
     },
     {
-      "state": "minecraft:spruce_stairs 5",
+      "state": "spruce_stairs 5",
       "pos": "2 9 12"
     },
     {
-      "state": "minecraft:dark_oak_stairs 1",
+      "state": "dark_oak_stairs 1",
       "pos": "2 9 13"
     },
     {
-      "state": "minecraft:dark_oak_stairs 5",
+      "state": "dark_oak_stairs 5",
       "pos": "2 9 14"
     },
     {
-      "state": "minecraft:wooden_button 3",
+      "state": "wooden_button 3",
       "pos": "3 9 14",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:log 5",
+      "state": "log 5",
       "pos": "3 9 13"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "3 9 11"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "3 9 10"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "3 9 9"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "3 9 8"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "3 9 7"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "3 9 6"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "3 9 5"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "3 9 4"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "3 9 3"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "3 9 2"
     },
     {
-      "state": "minecraft:log 5",
+      "state": "log 5",
       "pos": "3 9 1"
     },
     {
-      "state": "minecraft:wooden_button 4",
+      "state": "wooden_button 4",
       "pos": "3 9 0",
-      "type": "blocks.PlaceableDecorative"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "minecraft:dark_oak_stairs 4",
+      "state": "dark_oak_stairs 4",
       "pos": "4 9 0"
     },
     {
-      "state": "minecraft:dark_oak_stairs 0",
+      "state": "dark_oak_stairs",
       "pos": "4 9 1"
     },
     {
-      "state": "minecraft:spruce_stairs 4",
+      "state": "spruce_stairs 4",
       "pos": "4 9 2"
     },
     {
-      "state": "minecraft:spruce_stairs 4",
+      "state": "spruce_stairs 4",
       "pos": "4 9 3"
     },
     {
-      "state": "minecraft:spruce_stairs 4",
+      "state": "spruce_stairs 4",
       "pos": "4 9 4"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "4 9 5"
     },
     {
-      "state": "minecraft:spruce_stairs 4",
+      "state": "spruce_stairs 4",
       "pos": "4 9 6"
     },
     {
-      "state": "minecraft:spruce_stairs 4",
+      "state": "spruce_stairs 4",
       "pos": "4 9 7"
     },
     {
-      "state": "minecraft:spruce_stairs 4",
+      "state": "spruce_stairs 4",
       "pos": "4 9 8"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "4 9 9"
     },
     {
-      "state": "minecraft:spruce_stairs 4",
+      "state": "spruce_stairs 4",
       "pos": "4 9 10"
     },
     {
-      "state": "minecraft:spruce_stairs 4",
+      "state": "spruce_stairs 4",
       "pos": "4 9 11"
     },
     {
-      "state": "minecraft:spruce_stairs 4",
+      "state": "spruce_stairs 4",
       "pos": "4 9 12"
     },
     {
-      "state": "minecraft:dark_oak_stairs 0",
+      "state": "dark_oak_stairs",
       "pos": "4 9 13"
     },
     {
-      "state": "minecraft:dark_oak_stairs 4",
+      "state": "dark_oak_stairs 4",
       "pos": "4 9 14"
     },
     {
-      "state": "minecraft:dark_oak_stairs 1",
+      "state": "dark_oak_stairs 1",
       "pos": "5 9 14"
     },
     {
-      "state": "minecraft:dark_oak_stairs 4",
+      "state": "dark_oak_stairs 4",
       "pos": "5 9 13"
     },
     {
-      "state": "minecraft:spruce_stairs 1",
+      "state": "spruce_stairs 1",
       "pos": "5 9 12"
     },
     {
-      "state": "minecraft:spruce_stairs 1",
+      "state": "spruce_stairs 1",
       "pos": "5 9 11"
     },
     {
-      "state": "minecraft:spruce_stairs 1",
+      "state": "spruce_stairs 1",
       "pos": "5 9 10"
     },
     {
-      "state": "minecraft:dark_oak_stairs 4",
+      "state": "dark_oak_stairs 4",
       "pos": "5 9 9"
     },
     {
-      "state": "minecraft:spruce_stairs 1",
+      "state": "spruce_stairs 1",
       "pos": "5 9 8"
     },
     {
-      "state": "minecraft:spruce_stairs 1",
+      "state": "spruce_stairs 1",
       "pos": "5 9 7"
     },
     {
-      "state": "minecraft:spruce_stairs 1",
+      "state": "spruce_stairs 1",
       "pos": "5 9 6"
     },
     {
-      "state": "minecraft:dark_oak_stairs 4",
+      "state": "dark_oak_stairs 4",
       "pos": "5 9 5"
     },
     {
-      "state": "minecraft:spruce_stairs 1",
+      "state": "spruce_stairs 1",
       "pos": "5 9 4"
     },
     {
-      "state": "minecraft:spruce_stairs 1",
+      "state": "spruce_stairs 1",
       "pos": "5 9 3"
     },
     {
-      "state": "minecraft:spruce_stairs 1",
+      "state": "spruce_stairs 1",
       "pos": "5 9 2"
     },
     {
-      "state": "minecraft:dark_oak_stairs 4",
+      "state": "dark_oak_stairs 4",
       "pos": "5 9 1"
     },
     {
-      "state": "minecraft:dark_oak_stairs 1",
+      "state": "dark_oak_stairs 1",
       "pos": "5 9 0"
     },
     {
-      "state": "minecraft:dark_oak_stairs 1",
+      "state": "dark_oak_stairs 1",
       "pos": "6 9 1"
     },
     {
-      "state": "minecraft:wooden_slab 5",
+      "state": "wooden_slab 5",
       "pos": "6 9 2"
     },
     {
-      "state": "minecraft:wooden_slab 5",
+      "state": "wooden_slab 5",
       "pos": "6 9 3"
     },
     {
-      "state": "minecraft:wooden_slab 5",
+      "state": "wooden_slab 5",
       "pos": "6 9 4"
     },
     {
-      "state": "minecraft:dark_oak_stairs 1",
+      "state": "dark_oak_stairs 1",
       "pos": "6 9 5"
     },
     {
-      "state": "minecraft:wooden_slab 5",
+      "state": "wooden_slab 5",
       "pos": "6 9 6"
     },
     {
-      "state": "minecraft:wooden_slab 5",
+      "state": "wooden_slab 5",
       "pos": "6 9 7"
     },
     {
-      "state": "minecraft:wooden_slab 5",
+      "state": "wooden_slab 5",
       "pos": "6 9 8"
     },
     {
-      "state": "minecraft:dark_oak_stairs 1",
+      "state": "dark_oak_stairs 1",
       "pos": "6 9 9"
     },
     {
-      "state": "minecraft:wooden_slab 5",
+      "state": "wooden_slab 5",
       "pos": "6 9 10"
     },
     {
-      "state": "minecraft:wooden_slab 5",
+      "state": "wooden_slab 5",
       "pos": "6 9 11"
     },
     {
-      "state": "minecraft:wooden_slab 5",
+      "state": "wooden_slab 5",
       "pos": "6 9 12"
     },
     {
-      "state": "minecraft:dark_oak_stairs 1",
+      "state": "dark_oak_stairs 1",
       "pos": "6 9 13"
     },
     {
-      "state": "minecraft:dark_oak_stairs 0",
+      "state": "dark_oak_stairs",
       "pos": "1 10 13"
     },
     {
-      "state": "minecraft:dark_oak_stairs 0",
+      "state": "dark_oak_stairs",
       "pos": "1 10 9"
     },
     {
-      "state": "minecraft:dark_oak_stairs 0",
+      "state": "dark_oak_stairs",
       "pos": "1 10 5"
     },
     {
-      "state": "minecraft:dark_oak_stairs 0",
+      "state": "dark_oak_stairs",
       "pos": "1 10 1"
     },
     {
-      "state": "minecraft:dark_oak_stairs 0",
+      "state": "dark_oak_stairs",
       "pos": "2 10 0"
     },
     {
-      "state": "minecraft:dark_oak_stairs 5",
+      "state": "dark_oak_stairs 5",
       "pos": "2 10 1"
     },
     {
-      "state": "minecraft:spruce_stairs 0",
+      "state": "spruce_stairs",
       "pos": "2 10 2"
     },
     {
-      "state": "minecraft:spruce_stairs 0",
+      "state": "spruce_stairs",
       "pos": "2 10 3"
     },
     {
-      "state": "minecraft:spruce_stairs 0",
+      "state": "spruce_stairs",
       "pos": "2 10 4"
     },
     {
-      "state": "minecraft:dark_oak_stairs 5",
+      "state": "dark_oak_stairs 5",
       "pos": "2 10 5"
     },
     {
-      "state": "minecraft:spruce_stairs 0",
+      "state": "spruce_stairs",
       "pos": "2 10 6"
     },
     {
-      "state": "minecraft:spruce_stairs 0",
+      "state": "spruce_stairs",
       "pos": "2 10 7"
     },
     {
-      "state": "minecraft:spruce_stairs 0",
+      "state": "spruce_stairs",
       "pos": "2 10 8"
     },
     {
-      "state": "minecraft:dark_oak_stairs 5",
+      "state": "dark_oak_stairs 5",
       "pos": "2 10 9"
     },
     {
-      "state": "minecraft:spruce_stairs 0",
+      "state": "spruce_stairs",
       "pos": "2 10 10"
     },
     {
-      "state": "minecraft:spruce_stairs 0",
+      "state": "spruce_stairs",
       "pos": "2 10 11"
     },
     {
-      "state": "minecraft:spruce_stairs 0",
+      "state": "spruce_stairs",
       "pos": "2 10 12"
     },
     {
-      "state": "minecraft:dark_oak_stairs 5",
+      "state": "dark_oak_stairs 5",
       "pos": "2 10 13"
     },
     {
-      "state": "minecraft:dark_oak_stairs 0",
+      "state": "dark_oak_stairs",
       "pos": "2 10 14"
     },
     {
-      "state": "minecraft:wooden_slab 13",
+      "state": "wooden_slab 13",
       "pos": "3 10 14"
     },
     {
-      "state": "minecraft:dark_oak_stairs 7",
+      "state": "dark_oak_stairs 7",
       "pos": "3 10 13"
     },
     {
-      "state": "minecraft:wooden_slab 9",
+      "state": "wooden_slab 9",
       "pos": "3 10 12"
     },
     {
-      "state": "minecraft:wooden_slab 9",
+      "state": "wooden_slab 9",
       "pos": "3 10 11"
     },
     {
-      "state": "minecraft:wooden_slab 9",
+      "state": "wooden_slab 9",
       "pos": "3 10 10"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "3 10 9"
     },
     {
-      "state": "minecraft:wooden_slab 9",
+      "state": "wooden_slab 9",
       "pos": "3 10 8"
     },
     {
-      "state": "minecraft:wooden_slab 9",
+      "state": "wooden_slab 9",
       "pos": "3 10 7"
     },
     {
-      "state": "minecraft:wooden_slab 9",
+      "state": "wooden_slab 9",
       "pos": "3 10 6"
     },
     {
-      "state": "minecraft:air 0",
       "pos": "3 10 5"
     },
     {
-      "state": "minecraft:wooden_slab 9",
+      "state": "wooden_slab 9",
       "pos": "3 10 4"
     },
     {
-      "state": "minecraft:wooden_slab 9",
+      "state": "wooden_slab 9",
       "pos": "3 10 3"
     },
     {
-      "state": "minecraft:wooden_slab 9",
+      "state": "wooden_slab 9",
       "pos": "3 10 2"
     },
     {
-      "state": "minecraft:dark_oak_stairs 6",
+      "state": "dark_oak_stairs 6",
       "pos": "3 10 1"
     },
     {
-      "state": "minecraft:wooden_slab 13",
+      "state": "wooden_slab 13",
       "pos": "3 10 0"
     },
     {
-      "state": "minecraft:dark_oak_stairs 1",
+      "state": "dark_oak_stairs 1",
       "pos": "4 10 0"
     },
     {
-      "state": "minecraft:dark_oak_stairs 4",
+      "state": "dark_oak_stairs 4",
       "pos": "4 10 1"
     },
     {
-      "state": "minecraft:spruce_stairs 1",
+      "state": "spruce_stairs 1",
       "pos": "4 10 2"
     },
     {
-      "state": "minecraft:spruce_stairs 1",
+      "state": "spruce_stairs 1",
       "pos": "4 10 3"
     },
     {
-      "state": "minecraft:spruce_stairs 1",
+      "state": "spruce_stairs 1",
       "pos": "4 10 4"
     },
     {
-      "state": "minecraft:dark_oak_stairs 4",
+      "state": "dark_oak_stairs 4",
       "pos": "4 10 5"
     },
     {
-      "state": "minecraft:spruce_stairs 1",
+      "state": "spruce_stairs 1",
       "pos": "4 10 6"
     },
     {
-      "state": "minecraft:spruce_stairs 1",
+      "state": "spruce_stairs 1",
       "pos": "4 10 7"
     },
     {
-      "state": "minecraft:spruce_stairs 1",
+      "state": "spruce_stairs 1",
       "pos": "4 10 8"
     },
     {
-      "state": "minecraft:dark_oak_stairs 4",
+      "state": "dark_oak_stairs 4",
       "pos": "4 10 9"
     },
     {
-      "state": "minecraft:spruce_stairs 1",
+      "state": "spruce_stairs 1",
       "pos": "4 10 10"
     },
     {
-      "state": "minecraft:spruce_stairs 1",
+      "state": "spruce_stairs 1",
       "pos": "4 10 11"
     },
     {
-      "state": "minecraft:spruce_stairs 1",
+      "state": "spruce_stairs 1",
       "pos": "4 10 12"
     },
     {
-      "state": "minecraft:dark_oak_stairs 4",
+      "state": "dark_oak_stairs 4",
       "pos": "4 10 13"
     },
     {
-      "state": "minecraft:dark_oak_stairs 1",
+      "state": "dark_oak_stairs 1",
       "pos": "4 10 14"
     },
     {
-      "state": "minecraft:dark_oak_stairs 1",
+      "state": "dark_oak_stairs 1",
       "pos": "5 10 13"
     },
     {
-      "state": "minecraft:dark_oak_stairs 1",
+      "state": "dark_oak_stairs 1",
       "pos": "5 10 9"
     },
     {
-      "state": "minecraft:dark_oak_stairs 1",
+      "state": "dark_oak_stairs 1",
       "pos": "5 10 5"
     },
     {
-      "state": "minecraft:dark_oak_stairs 1",
+      "state": "dark_oak_stairs 1",
       "pos": "5 10 1"
     },
     {
-      "state": "minecraft:dark_oak_stairs 0",
+      "state": "dark_oak_stairs",
       "pos": "2 11 1"
     },
     {
-      "state": "minecraft:dark_oak_stairs 0",
+      "state": "dark_oak_stairs",
       "pos": "2 11 5"
     },
     {
-      "state": "minecraft:dark_oak_stairs 0",
+      "state": "dark_oak_stairs",
       "pos": "2 11 9"
     },
     {
-      "state": "minecraft:dark_oak_stairs 0",
+      "state": "dark_oak_stairs",
       "pos": "2 11 13"
     },
     {
-      "state": "minecraft:wooden_slab 5",
+      "state": "wooden_slab 5",
       "pos": "3 11 14"
     },
     {
-      "state": "minecraft:planks 5",
+      "state": "planks 5",
       "pos": "3 11 13"
     },
     {
-      "state": "minecraft:wooden_slab 1",
+      "state": "wooden_slab 1",
       "pos": "3 11 12"
     },
     {
-      "state": "minecraft:wooden_slab 1",
+      "state": "wooden_slab 1",
       "pos": "3 11 11"
     },
     {
-      "state": "minecraft:wooden_slab 1",
+      "state": "wooden_slab 1",
       "pos": "3 11 10"
     },
     {
-      "state": "minecraft:planks 5",
+      "state": "planks 5",
       "pos": "3 11 9"
     },
     {
-      "state": "minecraft:wooden_slab 1",
+      "state": "wooden_slab 1",
       "pos": "3 11 8"
     },
     {
-      "state": "minecraft:wooden_slab 1",
+      "state": "wooden_slab 1",
       "pos": "3 11 7"
     },
     {
-      "state": "minecraft:wooden_slab 1",
+      "state": "wooden_slab 1",
       "pos": "3 11 6"
     },
     {
-      "state": "minecraft:planks 5",
+      "state": "planks 5",
       "pos": "3 11 5"
     },
     {
-      "state": "minecraft:wooden_slab 1",
+      "state": "wooden_slab 1",
       "pos": "3 11 4"
     },
     {
-      "state": "minecraft:wooden_slab 1",
+      "state": "wooden_slab 1",
       "pos": "3 11 3"
     },
     {
-      "state": "minecraft:wooden_slab 1",
+      "state": "wooden_slab 1",
       "pos": "3 11 2"
     },
     {
-      "state": "minecraft:planks 5",
+      "state": "planks 5",
       "pos": "3 11 1"
     },
     {
-      "state": "minecraft:wooden_slab 5",
+      "state": "wooden_slab 5",
       "pos": "3 11 0"
     },
     {
-      "state": "minecraft:dark_oak_stairs 1",
+      "state": "dark_oak_stairs 1",
       "pos": "4 11 1"
     },
     {
-      "state": "minecraft:dark_oak_stairs 1",
+      "state": "dark_oak_stairs 1",
       "pos": "4 11 5"
     },
     {
-      "state": "minecraft:dark_oak_stairs 1",
+      "state": "dark_oak_stairs 1",
       "pos": "4 11 9"
     },
     {
-      "state": "minecraft:dark_oak_stairs 1",
+      "state": "dark_oak_stairs 1",
       "pos": "4 11 13"
     }
   ]

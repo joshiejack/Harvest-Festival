@@ -204,15 +204,15 @@ public class HFShops {
         }
 
         SUPERMARKET.addItem(new PurchasableBlueFeather(1000, HFNPCs.TOOLS.getStackFromEnum(BLUE_FEATHER)));
-        SUPERMARKET.addItem(100, HFCooking.INGREDIENTS.getStackFromEnum(RICEBALL));
+        SUPERMARKET.addItem(RICEBALL.getCost(), HFCooking.INGREDIENTS.getStackFromEnum(RICEBALL));
         SUPERMARKET.addItem(100, new ItemStack(Items.BREAD));
-        SUPERMARKET.addItem(50, HFCooking.INGREDIENTS.getStackFromEnum(OIL));
-        SUPERMARKET.addItem(50, HFCooking.INGREDIENTS.getStackFromEnum(FLOUR));
-        SUPERMARKET.addItem(50, HFCooking.INGREDIENTS.getStackFromEnum(CURRY_POWDER));
-        SUPERMARKET.addItem(100, HFCooking.INGREDIENTS.getStackFromEnum(DUMPLING_POWDER));
-        SUPERMARKET.addItem(100, HFCooking.INGREDIENTS.getStackFromEnum(CHOCOLATE));
-        SUPERMARKET.addItem(300, HFCooking.INGREDIENTS.getStackFromEnum(WINE));
-        SUPERMARKET.addItem(25, HFCooking.INGREDIENTS.getStackFromEnum(SALT));
+        SUPERMARKET.addItem(OIL.getCost(), HFCooking.INGREDIENTS.getStackFromEnum(OIL));
+        SUPERMARKET.addItem(FLOUR.getCost(), HFCooking.INGREDIENTS.getStackFromEnum(FLOUR));
+        SUPERMARKET.addItem(CURRY_POWDER.getCost(), HFCooking.INGREDIENTS.getStackFromEnum(CURRY_POWDER));
+        SUPERMARKET.addItem(DUMPLING_POWDER.getCost(), HFCooking.INGREDIENTS.getStackFromEnum(DUMPLING_POWDER));
+        SUPERMARKET.addItem(CHOCOLATE.getCost(), HFCooking.INGREDIENTS.getStackFromEnum(CHOCOLATE));
+        SUPERMARKET.addItem(WINE.getCost(), HFCooking.INGREDIENTS.getStackFromEnum(WINE));
+        SUPERMARKET.addItem(SALT.getCost(), HFCooking.INGREDIENTS.getStackFromEnum(SALT));
 
         SUPERMARKET.addOpening(MONDAY, 9000, 17000).addOpening(TUESDAY, 9000, 17000).addOpening(THURSDAY, 9000, 17000);
         SUPERMARKET.addOpening(FRIDAY, 9000, 17000).addOpening(SATURDAY, 11000, 15000);

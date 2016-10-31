@@ -3,6 +3,7 @@ package joshie.harvest.cooking.tile;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.cooking.IAltItem;
 import joshie.harvest.api.cooking.Utensil;
+import joshie.harvest.cooking.CookingAPI;
 import joshie.harvest.cooking.CookingHelper.PlaceIngredientResult;
 import joshie.harvest.core.achievements.HFAchievements;
 import joshie.harvest.core.base.tile.TileFaceable;
@@ -19,6 +20,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static joshie.harvest.cooking.CookingHelper.PlaceIngredientResult.SUCCESS;
 
@@ -34,7 +36,7 @@ public abstract class TileCooking extends TileFaceable {
     private boolean cooking;
     private short cookTimer = 0;
     private ArrayList<ItemStack> ingredients = new ArrayList<>();
-    protected ItemStack result;
+    protected List<ItemStack> result = new ArrayList<>();
     private int last;
 
     public final float[] rotations = new float[20];
@@ -59,11 +61,11 @@ public abstract class TileCooking extends TileFaceable {
     }
 
     public boolean isFinishedCooking() {
-        return result == null;
+        return result.size() > 0;
     }
 
-    public ItemStack getResult() {
-        return result != null ? result.copy() : result;
+    public List<ItemStack> getResult() {
+        return result;
     }
 
     public ArrayList<ItemStack> getIngredients() {
@@ -72,13 +74,16 @@ public abstract class TileCooking extends TileFaceable {
 
     //reset everything ready for the next cooking batch
     public void giveToPlayer(EntityPlayer player) {
-        ItemStack theItem = getResult();
-        if (theItem.hasTagCompound()) {
-            player.addStat(HFAchievements.cooking);
+        List<ItemStack> theItems = getResult();
+        for (ItemStack theItem: theItems) {
+            if (theItem.hasTagCompound()) {
+                player.addStat(HFAchievements.cooking);
+            }
+
+            SpawnItemHelper.addToPlayerInventory(player, theItem);
         }
 
-        SpawnItemHelper.addToPlayerInventory(player, theItem);
-        result = null; //Clear out the result
+        result.clear(); //Clear out the result
     }
 
     public void takeBackLastStack(EntityPlayer player) {
@@ -106,7 +111,7 @@ public abstract class TileCooking extends TileFaceable {
             if (cooking) {
                 cookTimer++;
                 if (cookTimer >= getCookingTime()) {
-                    result = HFApi.cooking.getResult(getUtensil(), ingredients);
+                    result.addAll(HFApi.cooking.getCookingResult(getUtensil(), ingredients));
                     cooking = false;
                     ingredients = new ArrayList<>();
                     cookTimer = 0;
@@ -139,8 +144,9 @@ public abstract class TileCooking extends TileFaceable {
         }
     }
 
+    //TODO: Register the new alts
     private ItemStack getRealIngredient(ItemStack stack) {
-        ItemStack alt = null;
+        ItemStack alt = CookingAPI.INSTANCE.getRealStackForItem(stack);
         if (stack.getItem() instanceof IAltItem) {
             alt = ((IAltItem)stack.getItem()).getAlternativeWhenCooking(stack);
         }
@@ -200,9 +206,14 @@ public abstract class TileCooking extends TileFaceable {
             }
         }
 
-        if (nbt.hasKey("Count")) {
-            result = StackHelper.getItemStackFromNBT(nbt);
-        } else result = null;
+        //Resulting item
+        result = new ArrayList<>();
+        if (nbt.hasKey("Result")) {
+            NBTTagList is = nbt.getTagList("Result", 10);
+            for (int i = 0; i < is.tagCount(); i++) {
+                result.add(StackHelper.getItemStackFromNBT(is.getCompoundTagAt(i)));
+            }
+        }
     }
 
     @Override
@@ -220,8 +231,14 @@ public abstract class TileCooking extends TileFaceable {
             nbt.setTag("IngredientsInside", is);
         }
 
-        if (result != null) {
-            StackHelper.writeItemStackToNBT(nbt, result);
+        //Write out the result items
+        if (result.size() > 0) {
+            NBTTagList is = new NBTTagList();
+            for (ItemStack ingredient : result) {
+                is.appendTag(StackHelper.writeItemStackToNBT(new NBTTagCompound(), ingredient));
+            }
+
+            nbt.setTag("Result", is);
         }
 
         return super.writeToNBT(nbt);

@@ -26,8 +26,11 @@ public class HFIngredients {
     //Categories
     public static final Ingredient MUSHROOM = new Ingredient("mushroom");
     public static final Ingredient JUICE_VEGETABLE = new Ingredient("vegetable_juice");
+    public static final Ingredient JUICE_FRUIT = new Ingredient("fruit_juice");
     public static final Ingredient SALAD_INGREDIENT = new Ingredient("salad_ingredient");
     public static final Ingredient SANDWICH_INGREDIENT = new Ingredient("sandwich_ingredient");
+    public static final Ingredient SANDWICH_FRUIT = new Ingredient("sandwich_fruit");
+    public static final Ingredient CAKE_FRUIT = new Ingredient("cake_fruit");
     public static final Ingredient SASHIMI_VEGETABLE = new Ingredient("sashimi_vegetable");
     public static final Ingredient FISH = new Ingredient("fish");
     public static final Ingredient MEAT = new Ingredient("meat");
@@ -40,37 +43,40 @@ public class HFIngredients {
     //Eat Time =
 
     //Seasonings
-    public static final Ingredient SALT = new Ingredient("salt", 0, 0.05F).setEatTime(0);
-    public static final Ingredient SUGAR = new Ingredient("sugar", 2, 0.05F).setEatTime(0);
+    public static final Ingredient SALT = new Ingredient("salt", 0, 0.8F).setSellValue(ItemIngredients.Ingredient.SALT.getCost()).setEatTime(0);
+    public static final Ingredient SUGAR = new Ingredient("sugar", 2, 0.1F).setEatTime(0);
 
     //Meals
-    public static final Ingredient BUTTER = new Ingredient("butter", 1, 0.06F).setEatTime(-8);
+    public static final Ingredient BUTTER = new Ingredient("butter", 1, 0.5F).setEatTime(-8);
     public static final Ingredient BOILED_EGG = new Ingredient("boiled_egg", 6, 1.14F);
     public static final Ingredient SASHIMI = new Ingredient("sashimi", 6, 1.26F);
     public static final Ingredient SCRAMBLED_EGG = new Ingredient("scrambled_egg", 11, 2.28F);
     public static final Ingredient COOKIES = new Ingredient("cookies", 4, 0.87F);
-    public static final Ingredient KETCHUP = new Ingredient("ketchup", 1, 0.06F).setEatTime(0);
+    public static final Ingredient KETCHUP = new Ingredient("ketchup", 1, 0.2F).setEatTime(0);
     public static final Ingredient NOODLES = new Ingredient("noodles", 13, 2.27F).setEatTime(24);
+    public static final Ingredient JAM = new Ingredient("jam", 2, 0.6F).setEatTime(0);
+    public static final Ingredient TEMPURA = new Ingredient("tempura", 6, 1.14F);
 
     //Random Stuff
-    public static final Ingredient CHOCOLATE = new Ingredient("chocolate", 2, 0.5F);
-    public static final Ingredient EGG = new Ingredient("egg", 1, 0.34F);
-    public static final Ingredient FLOUR = new Ingredient("flour", 1, 0.2F);
-    public static final Ingredient OIL = new Ingredient("oil", 0, 0.1F).setFluid(MappingEvent.OIL).setEatTime(-8);
-    public static final Ingredient RICEBALL = new Ingredient("riceball", 1, 0.25F);
-    public static final Ingredient CURRY_POWDER = new Ingredient("curry_powder", 1, 0.1F).setEatTime(-4);
-    public static final Ingredient DUMPLING_POWDER = new Ingredient("dumpling_powder", 1, 0.2F).setEatTime(8);
+    public static final Ingredient CHOCOLATE = new Ingredient("chocolate", 2, 1.2F);
+    public static final Ingredient EGG = new Ingredient("egg", 3, 0.8F);
+    public static final Ingredient FLOUR = new Ingredient("flour", 1, 0.6F).setSellValue(ItemIngredients.Ingredient.FLOUR.getCost());
+    public static final Ingredient OIL = new Ingredient("oil", 0, 0.2F).setSellValue(ItemIngredients.Ingredient.OIL.getCost()).setFluid(MappingEvent.OIL).setEatTime(-8);
+    public static final Ingredient RICEBALL = new Ingredient("riceball", 1, 0.2F).setSellValue(ItemIngredients.Ingredient.RICEBALL.getCost());
+    public static final Ingredient CURRY_POWDER = new Ingredient("curry_powder", 1, 0.2F).setEatTime(-4).setSellValue(ItemIngredients.Ingredient.CURRY_POWDER.getCost());
+    public static final Ingredient DUMPLING_POWDER = new Ingredient("dumpling_powder", 1, 0.2F).setEatTime(8).setSellValue(ItemIngredients.Ingredient.DUMPLING_POWDER.getCost());
+    public static final Ingredient WINE = new Ingredient("wine", 0, 0.8F).setSellValue(ItemIngredients.Ingredient.WINE.getCost()).setFluid(MappingEvent.WINE).setEatTime(-8);
 
-    public static final Ingredient MILK = new Ingredient("milk", 1, 0.2F).setFluid(MappingEvent.MILK);
-    public static final Ingredient MAYONNAISE = new Ingredient("mayonnaise", 1, 0.5F);
+    public static final Ingredient MILK = new Ingredient("milk", 2, 0.6F).setFluid(MappingEvent.MILK);
+    public static final Ingredient MAYONNAISE = new Ingredient("mayonnaise", 3, 1.0F);
     public static final Ingredient BREAD = new Ingredient("bread", 5, 1.2F);
     public static final Ingredient RED_MUSHROOM = new Ingredient("red_mushroom", 4, 0.5F);
-    public static final Ingredient BROWN_MUSHROOM = new Ingredient("brown_mushroom", 2, 0.7F);
+    public static final Ingredient BROWN_MUSHROOM = new Ingredient("brown_mushroom", 4, 1.2F);
     public static final Ingredient BAKED_POTATO = new Ingredient("baked_potato", 5, 1.2F);
 
     //Gathered
-    public static final Ingredient BAMBOO = new Ingredient("bamboo", 2, 0.3F);
-    public static final Ingredient MATSUTAKE = new Ingredient("matsutake", 2, 0.7F);
+    public static final Ingredient BAMBOO = new Ingredient("bamboo", 3, 1F);
+    public static final Ingredient MATSUTAKE = new Ingredient("matsutake", 4, 1.2F);
 
     //Crops
     public static final Ingredient TURNIP = HFCrops.TURNIP.getIngredient();
@@ -111,8 +117,11 @@ public class HFIngredients {
         //Add ingredients to the categories
         MUSHROOM.add(RED_MUSHROOM, BROWN_MUSHROOM, MATSUTAKE);
         JUICE_VEGETABLE.add(TURNIP, CUCUMBER, CABBAGE, TOMATO, ONION, CARROT, SPINACH, GREEN_PEPPER);
+        JUICE_FRUIT.add(STRAWBERRY, WATERMELON);
         SALAD_INGREDIENT.add(CUCUMBER, CARROT, TOMATO, CABBAGE, BROWN_MUSHROOM);
         SANDWICH_INGREDIENT.add(CUCUMBER, TOMATO, MAYONNAISE, BROWN_MUSHROOM, BOILED_EGG);
+        SANDWICH_FRUIT.add(ORANGE, BANANA, APPLE, STRAWBERRY, PEACH, PINEAPPLE);
+        CAKE_FRUIT.add(ORANGE, PINEAPPLE, STRAWBERRY, PEACH, GRAPE);
         SASHIMI_VEGETABLE.add(CUCUMBER, TOMATO, ONION, EGGPLANT);
         MEAT.add(CHICKEN, PORK, BEEF, MUTTON, RABBIT);
         FISH.add(SALMON, COD);
@@ -164,6 +173,7 @@ public class HFIngredients {
         CookingAPI.INSTANCE.register(HFCooking.INGREDIENTS.getStackFromEnum(ItemIngredients.Ingredient.RICEBALL), RICEBALL);
         CookingAPI.INSTANCE.register(HFCooking.INGREDIENTS.getStackFromEnum(ItemIngredients.Ingredient.CURRY_POWDER), CURRY_POWDER);
         CookingAPI.INSTANCE.register(HFCooking.INGREDIENTS.getStackFromEnum(ItemIngredients.Ingredient.DUMPLING_POWDER), DUMPLING_POWDER);
+        CookingAPI.INSTANCE.register(HFCooking.INGREDIENTS.getStackFromEnum(ItemIngredients.Ingredient.WINE), WINE);
 
         //Meals - Real
         CookingAPI.INSTANCE.register(CookingAPI.INSTANCE.getBestMeal("butter"), BUTTER);
@@ -173,6 +183,12 @@ public class HFIngredients {
         CookingAPI.INSTANCE.register(CookingAPI.INSTANCE.getBestMeal("cookies"), COOKIES);
         CookingAPI.INSTANCE.register(CookingAPI.INSTANCE.getBestMeal("ketchup"), KETCHUP);
         CookingAPI.INSTANCE.register(CookingAPI.INSTANCE.getBestMeal("noodles"), NOODLES);
+        CookingAPI.INSTANCE.register(CookingAPI.INSTANCE.getBestMeal("jam_strawberry"), JAM);
+        CookingAPI.INSTANCE.register(CookingAPI.INSTANCE.getBestMeal("jam_apple"), JAM);
+        CookingAPI.INSTANCE.register(CookingAPI.INSTANCE.getBestMeal("jam_grape"), JAM);
+        CookingAPI.INSTANCE.register(CookingAPI.INSTANCE.getBestMeal("marmalade"), JAM);
+        CookingAPI.INSTANCE.register(CookingAPI.INSTANCE.getBestMeal("tempura"), TEMPURA);
+
         //Meals - Alts
         registerForOre("foodButter", BUTTER);
         registerForOre("foodScrambledegg", SCRAMBLED_EGG);

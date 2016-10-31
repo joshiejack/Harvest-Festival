@@ -1,6 +1,6 @@
 package joshie.harvest.player.tracking;
 
-import joshie.harvest.cooking.recipe.MealImpl;
+import joshie.harvest.api.cooking.Recipe;
 import joshie.harvest.core.util.holders.ItemStackHolder;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -12,7 +12,7 @@ public class Tracking {
     protected Set<ItemStackHolder> obtained = new HashSet<>(); //Items that have been obtained
     protected Set<ResourceLocation> recipes = new HashSet<>(); //Recipe Learnt
 
-    public boolean learnRecipe(MealImpl recipe) {
+    public boolean learnRecipe(Recipe recipe) {
         if (recipe == null) {
             recipes.clear();
             return false;

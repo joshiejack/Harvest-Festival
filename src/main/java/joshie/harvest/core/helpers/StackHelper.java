@@ -201,4 +201,10 @@ public class StackHelper {
 
         return allStacks;
     }
+
+    public static ItemStack toStack(ItemStack stack, int size) {
+        ItemStack copy = stack.copy();
+        copy.stackSize = size;
+        return copy;
+    }
 }

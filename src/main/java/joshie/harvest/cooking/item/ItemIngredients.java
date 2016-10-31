@@ -15,14 +15,24 @@ import java.util.Locale;
 
 public class ItemIngredients extends ItemHFFoodEnum<ItemIngredients, Ingredient> implements IShippable {
     public enum Ingredient implements IStringSerializable {
-        BUTTER(0L), KETCHUP(0L), COOKIES(0L), EGG_SCRAMBLED(0L), SASHIMI(0L),
-        FLOUR(25L), OIL(25L), RICEBALL(50L), SALT(25L), CHOCOLATE(50L),
-        CURRY_POWDER(25L), DUMPLING_POWDER(50L), WINE(150L);
+        BUTTER, KETCHUP, COOKIES, EGG_SCRAMBLED, SASHIMI,
+        FLOUR(50L, 25L), OIL(50L, 25L), RICEBALL(100L, 50L), SALT(5L, 25L), CHOCOLATE(100L, 50L),
+        CURRY_POWDER(50L, 25L), DUMPLING_POWDER(100L, 50L), WINE(300L, 150L);
 
+        private final long cost;
         private final long sell;
 
-        Ingredient(long sell) {
+        Ingredient(long cost, long sell) {
+            this.cost = cost;
             this.sell = sell;
+        }
+
+        Ingredient() {
+            this(0L, 0L);
+        }
+
+        public long getCost() {
+            return cost;
         }
 
         public long getSellValue() {

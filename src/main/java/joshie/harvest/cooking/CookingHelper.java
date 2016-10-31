@@ -1,8 +1,10 @@
 package joshie.harvest.cooking;
 
 import joshie.harvest.api.cooking.Ingredient;
+import joshie.harvest.api.cooking.IngredientStack;
+import joshie.harvest.api.cooking.Recipe;
 import joshie.harvest.cooking.item.ItemCookbook;
-import joshie.harvest.cooking.recipe.MealImpl;
+import joshie.harvest.cooking.recipe.RecipeMaker;
 import joshie.harvest.cooking.tile.TileCooking;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -11,47 +13,36 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
-import static joshie.harvest.cooking.CookingHelper.PlaceIngredientResult.*;
+import static joshie.harvest.cooking.CookingHelper.PlaceIngredientResult.FAILURE;
+import static joshie.harvest.cooking.CookingHelper.PlaceIngredientResult.SUCCESS;
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 
 public class CookingHelper {
     public static ItemStack getRecipe(String name) {
-        MealImpl recipe = CookingAPI.REGISTRY.getValue(new ResourceLocation(MODID, name));
+        Recipe recipe = Recipe.REGISTRY.getValue(new ResourceLocation(MODID, name));
         return HFCooking.RECIPE.getStackFromObject(recipe);
     }
 
-    public static boolean hasIngredientInInventory(Set<Ingredient> ingredients, Ingredient ingredient) {
-        for (Ingredient inInventory: ingredients) {
-            if (ingredient.isEqual(inInventory)) return true;
-        }
-
-        return false;
-    }
-
-    public static boolean hasAllIngredients(MealImpl recipe, Set<Ingredient> ingredients) {
-        for (Ingredient ingredient: recipe.getRequiredIngredients()) {
-            if (!hasIngredientInInventory(ingredients, ingredient)) return false;
-        }
-
-        return true;
-    }
-
-    public static boolean hasAllIngredients(MealImpl recipe, EntityPlayer player) {
-        Set<Ingredient> ingredients = new HashSet<>();
+    public static boolean hasAllIngredients(Recipe recipe, EntityPlayer player) {
+        Set<IngredientStack> ingredients = new HashSet<>();
         for (ItemStack stack: player.inventory.mainInventory) {
             if (stack != null) {
-                ingredients.addAll(CookingAPI.INSTANCE.getCookingComponents(stack));
+                Ingredient ingredient = CookingAPI.INSTANCE.getCookingComponents(stack);
+                if (ingredient != null) {
+                    ingredients.add(new IngredientStack(ingredient, stack.stackSize));
+                }
             }
         }
 
         ingredients.remove(null); //Remove any nulls
-        return hasAllIngredients(recipe, ingredients);
+        return RecipeMaker.areAllRequiredInRecipe(recipe.getRequired(), ingredients);
     }
 
-    public static PlaceIngredientResult tryPlaceIngredients(EntityPlayer player, MealImpl recipe) {
+    public static PlaceIngredientResult tryPlaceIngredients(EntityPlayer player, Recipe recipe) {
         World world = player.worldObj;
         BlockPos pos = new BlockPos(player);
         int reach = player.capabilities.isCreativeMode ? 5 : 4;
@@ -63,7 +54,7 @@ public class CookingHelper {
                         TileCooking cooking = (TileCooking) tile;
                         PlaceIngredientResult result = cooking.hasPrerequisites();
                         if (result != SUCCESS) return result;
-                        if (cooking.getUtensil() == recipe.getRequiredTool() && cooking.getIngredients().size() == 0) {
+                        if (cooking.getUtensil() == recipe.getUtensil() && cooking.getIngredients().size() == 0) {
                             if (ItemCookbook.cook(cooking, player, recipe)) return SUCCESS;
                         }
                     }
@@ -72,6 +63,10 @@ public class CookingHelper {
         }
 
         return FAILURE;
+    }
+
+    public static ItemStack makeRecipe(Recipe recipe) {
+        return RecipeMaker.BUILDER.build(recipe, new ArrayList<>(recipe.getRequired())).get(0);
     }
 
     public enum PlaceIngredientResult {

@@ -175,9 +175,11 @@ public class BlockCookware extends BlockHFEnumRotatableTile<BlockCookware, Cookw
         TileEntity tile = world.getTileEntity(pos);
         if (tile instanceof TileCooking) {
             TileCooking cooking = (TileCooking) tile;
-            if (!cooking.isFinishedCooking()) {
-                cooking.giveToPlayer(player);
-                return true;
+            if (cooking.isFinishedCooking()) {
+                if (held == null || !ToolHelper.isKnife(held)) {
+                    cooking.giveToPlayer(player);
+                    return true;
+                }
             }  else if (held != null) {
                 if (ToolHelper.isKnife(held)) {
                     if (cookware == COUNTER || world.getTileEntity(pos.down()) instanceof TileCounter) {

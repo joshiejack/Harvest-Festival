@@ -14,31 +14,31 @@ public interface CookingManager {
     /** Registers a special recipe handler, called before the normal
      *  recipes are ever processed
      * @param handler   the handler */
+    @Deprecated //TODO: Remove in 0.7+
     void registerRecipeHandler(RecipeHandler handler);
+
+    /** Registers a cooking handler
+     * @param handler   the handler */
+    void registerCookingHandler(CookingHandler handler);
 
     /** Call this if you don't wish to implement IKnife,
      *  Use OreDictionary.WILDCARD_VALUE if metadata doesn't matter
      * @param stack the knife stack */
     void registerKnife(ItemStack stack);
 
-    /** Add this meal to the recipe registry,
-     *
-     * @param key            the resource path for this meal (i.e. harvestfestival:cookies)
-     * @param utensil        the utensil this meal requires
-     * @param hunger         how much hunger this meal fills
-     * @param saturation     how much saturation this meal provides
-     * @param eatTimer       how long this meal should take to eat
-     * @param ingredients    the ingredients for this recipe
-     * @return  the recipe that was added, where you can manipulate it further if neccessary
-     */
+    @Deprecated //TODO: Remove in 0.7+
     Meal addMeal(ResourceLocation key, Utensil utensil, int hunger, float saturation, int eatTimer, Ingredient... ingredients);
+
+    @Deprecated //TODO: Remove in 0.7+
+    void addRecipe(ItemStack output, Utensil utensil, Ingredient... ingredients);
 
     /** Add a recipe, with a custom stack output
      *  Use case for such thing is wheat > bread
-     * @param output    the output item
+     * @param key    the registry name
      * @param utensil   the utensil
+     * @param output    the resulting item
      * @param ingredients the ingredients */
-    void addRecipe(ItemStack output, Utensil utensil, Ingredient... ingredients);
+    Recipe addBasicRecipe(ResourceLocation key, Utensil utensil, ItemStack output, IngredientStack... ingredients);
 
     /** Returns true if this stack is an ingredient
      * @param  stack    the stack to validate **/
@@ -55,11 +55,14 @@ public interface CookingManager {
      * @return      a fluid, can be null */
     ResourceLocation getFluid(ItemStack ingredient);
 
+    @Deprecated //TODO: Remove in 0.7+
+    ItemStack getResult(Utensil utensil, List<ItemStack> ingredients);
+
     /** Returns a resulting itemstack for the ingredients input
      *  @param      utensil the utensil in use
      *  @param      ingredients the ingredients
      *  @return     the resulting item */
-    ItemStack getResult(Utensil utensil, List<ItemStack> ingredients);
+    List<ItemStack> getCookingResult(Utensil utensil, List<ItemStack> ingredients);
 
     /** Returns a default copy of this meal
      *  @param name     this is the resource path of the name, if it's a harvestfestival meal you can just use the name,

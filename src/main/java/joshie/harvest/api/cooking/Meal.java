@@ -2,6 +2,7 @@ package joshie.harvest.api.cooking;
 
 import net.minecraft.item.ItemStack;
 
+@Deprecated
 public interface Meal {
     /** Add optional ingredients as possible for a recipe
      * 

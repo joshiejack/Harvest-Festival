@@ -7,15 +7,18 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @SideOnly(Side.CLIENT)
 public class SpecialRendererCounter extends SpecialRendererCookware<TileCounter> {
     @Override
     protected void renderCookware(TileCounter tile) {
         ArrayList<ItemStack> ingredients = tile.getIngredients();
-        ItemStack result = tile.getResult();
-        if (result != null) {
-            renderResult(tile, result);
+        List<ItemStack> results = tile.getResult();
+        for (ItemStack result: results) {
+            if (result != null) {
+                renderResult(tile, result);
+            }
         }
 
         int max = ingredients.size();

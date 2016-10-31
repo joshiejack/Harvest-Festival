@@ -6,12 +6,13 @@ import java.util.*;
 
 public final class Ingredient {
     public static final Map<String, Ingredient> INGREDIENTS = new HashMap<>();
-    private final HashSet<Ingredient> equivalents = new HashSet<>();
+    private final Set<Ingredient> equivalents = new HashSet<>();
     private final String unlocalized;
     private int hunger;
     private float saturation;
     private float exhaustion;
     private int eatTime;
+    private long value;
     public ResourceLocation fluid;
 
     /** Creates a new ingredient type for usage in cooking
@@ -42,9 +43,27 @@ public final class Ingredient {
         INGREDIENTS.put(unlocalized, this);
     }
 
-    /** Add additional ingredients as equivalents,
-     *  You pretty much use this only on categories ingredients
-     * @param ingredients    the ingredients to add*/
+    /** Called whenever an itemstack is assigned to this ingredient
+     *  @param value sell value of the stack that was added **/
+    public void onStackAdded(long value) {
+        if (this.value == 0) this.value = value;
+    }
+
+    /** Set the sell value
+     * @param value how much it sells for **/
+    public Ingredient setSellValue(long value) {
+        this.value = value;
+        return this;
+    }
+
+    /** Returns the value of this ingredient
+     *  Based on the LOWEST value ingredient, used in the recipe */
+    public long getSellValue() {
+        return value;
+    }
+
+    /** Assign an equivalent ingredient to this basic ingredient
+     *  @param ingredients  the categories to add **/
     public Ingredient add(Ingredient... ingredients) {
         equivalents.addAll(Arrays.asList(ingredients));
         return this;
@@ -56,7 +75,7 @@ public final class Ingredient {
         return this;
     }
 
-    /** Set how much exhaustion this add/removes **/
+    @Deprecated //TODO: Remove in 0.7+
     public Ingredient setExhaustion(float exhaustion) {
         this.exhaustion = exhaustion;
         return this;
@@ -66,6 +85,11 @@ public final class Ingredient {
     public Ingredient setEatTime(int eatTime) {
         this.eatTime = eatTime;
         return this;
+    }
+
+    /** Return the categories this ingredient fits in to **/
+    public Set<Ingredient> getEquivalents() {
+        return equivalents;
     }
 
     public ResourceLocation getFluid() {
@@ -88,17 +112,12 @@ public final class Ingredient {
         return saturation;
     }
 
+    @Deprecated //TODO: Remove in 0.7+
     public float getExhaustion() {
         return exhaustion;
     }
 
-    /** With this if you are wanting to test for a category,
-     *  this instance should be the categories instance
-     *  and the ingredient should be the item you're checking
-     *  i.e. this class = juice_vegetable
-     *
-     * @param ingredient    the ingredient
-     * @return if they are equal **/
+    @Deprecated //TODO: Remove in 0.7+
     public boolean isEqual(Ingredient ingredient) {
         for (Ingredient i : equivalents) { //Return true if the item passed in matches this one
             if (i.getUnlocalized().equals(ingredient.getUnlocalized()))

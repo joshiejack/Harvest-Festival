@@ -1,10 +1,10 @@
 package joshie.harvest.player.tracking;
 
 import joshie.harvest.api.HFApi;
-import joshie.harvest.cooking.recipe.MealImpl;
+import joshie.harvest.api.cooking.Recipe;
 import joshie.harvest.core.achievements.HFAchievements;
-import joshie.harvest.core.helpers.NBTHelper;
 import joshie.harvest.core.helpers.CollectionHelper;
+import joshie.harvest.core.helpers.NBTHelper;
 import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.core.util.holders.ItemStackHolder;
 import joshie.harvest.player.PlayerTrackerServer;
@@ -27,7 +27,7 @@ public class TrackingServer extends Tracking {
     }
 
     @Override
-    public boolean learnRecipe(MealImpl recipe) {
+    public boolean learnRecipe(Recipe recipe) {
         if (super.learnRecipe(recipe)) {
             if (recipes.size() >= 50 && master.getAndCreatePlayer() != null) {
                 master.getAndCreatePlayer().addStat(HFAchievements.recipes);

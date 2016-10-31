@@ -16,6 +16,13 @@
 * Only load buildings in to RAM when they're rendered/built
 #Calendar
 * Summers are more likely to be sunny (98% vs 95%), and typhoon chances are higher if sun fails (99% vs 75%)
+#Cooking
+* Vanilla recipes will now show up in the cookbook
+* Added a bunch of a new recipes
+* Books will now have additional pages when you have a lot of recipes
+* Food stats have been rebalanced entirely, they're now calculated based on the basic ingredients with a modifier for certain meals
+* Sell costs for meals are now a bit lower and more rebalanced
+* You can now cook multiple meals at once, the cooking system was rewritten to allow for smarter utensils (i.e. putting two corn in an oven will make two baked corn)
 #Crops
 * Untied the crops from the registry for them, shouldn't affect anything
 * Melons and Pumpkins will no longer regrow, and will instead replace the crop
@@ -27,9 +34,10 @@
 * Added gems, some will drop from junk rocks, most will drop from the new gem ore
 * Added Gem, Diamond, Emerald, Ruby, Amethyst, Topaz nodes to the mine
 * Reduced the amount of dark chicks, chickens and sheep that spawn
-* Dark chicks will now only appear on every 7th floor, chickens every 10th, sheep every 13th and cows every 18th
+* Dark chicks will now only appear on every 7th floor, chickens every 11th, sheep every 13th and cows every 17th
 * There will now be a higher concentration of ores on the floors with the mobs
 * Mines will now have a greater chance of producing ore in winter
+* Copper will now only spawn from floor 10 and below, except in winter
 #Shops
 * New Shop GUI
 * Removed the Blacksmith's store

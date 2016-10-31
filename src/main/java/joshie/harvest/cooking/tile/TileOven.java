@@ -48,8 +48,11 @@ public class TileOven extends TileCookingTicking {
         if (giveTimer > 0) {
             giveTimer--;
             if (giveTimer <= 0) {
-                SpawnItemHelper.addToPlayerInventory(givePlayer, getResult());
-                result = null; //Clear out the result
+                for (ItemStack stack: getResult()) {
+                    SpawnItemHelper.addToPlayerInventory(givePlayer, stack);
+                }
+
+                result.clear(); //Clear out the result
                 givePlayer = null;
                 giveTimer = 0;
             }

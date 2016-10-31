@@ -34,15 +34,16 @@ public class MiningHelper {
     public static final int MYSTRIL_FLOOR = 150;
     public static final int GOLD_FLOOR = 80;
     public static final int SILVER_FLOOR = 40;
+    public static final int COPPER_FLOOR = 10;
     public static final double WORLD_HEIGHT = 256D;
     public static final int MAX_Y = (int) WORLD_HEIGHT - 1;
     public static final int FLOOR_HEIGHT = 6;
     public static final int MAX_FLOORS = (int) Math.floor(WORLD_HEIGHT / FLOOR_HEIGHT);
     public static final int MAX_LOOP = (int) WORLD_HEIGHT - FLOOR_HEIGHT;
     public static final int CHICK_FLOORS = 7;
-    public static final int CHICKEN_FLOORS = 10;
+    public static final int CHICKEN_FLOORS = 11;
     public static final int SHEEP_FLOORS = 13;
-    public static final int COW_FLOORS = 18;
+    public static final int COW_FLOORS = 17;
 
     public static List<ItemStack> getLoot(ResourceLocation loot, World world, EntityPlayer player, float luck) {
         LootContext.Builder lootcontext$builder = new LootContext.Builder((WorldServer) world);

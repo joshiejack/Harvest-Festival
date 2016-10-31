@@ -1,17 +1,19 @@
 package joshie.harvest.cooking.gui;
 
-import joshie.harvest.api.cooking.Ingredient;
+import joshie.harvest.api.cooking.IngredientStack;
+import joshie.harvest.api.cooking.Recipe;
 import joshie.harvest.api.cooking.Utensil;
 import joshie.harvest.cooking.CookingAPI;
 import joshie.harvest.cooking.CookingHelper;
 import joshie.harvest.cooking.CookingHelper.PlaceIngredientResult;
 import joshie.harvest.cooking.packet.PacketSelectRecipe;
-import joshie.harvest.cooking.recipe.MealImpl;
+import joshie.harvest.cooking.recipe.RecipeMaker;
 import joshie.harvest.core.helpers.ChatHelper;
 import joshie.harvest.core.helpers.MCClientHelper;
-import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.core.helpers.TextHelper;
+import joshie.harvest.core.network.PacketHandler;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
@@ -23,35 +25,37 @@ import java.util.Locale;
 
 import static joshie.harvest.cooking.gui.GuiCookbook.LEFT_GUI;
 import static joshie.harvest.cooking.gui.GuiCookbook.ingredients;
+import static joshie.harvest.cooking.recipe.HFRecipes.NULL_RECIPE;
 
 public class PageRecipe extends Page {
-    private static final HashMap<MealImpl, PageRecipe> recipeMap = new HashMap<>();
+    private static final HashMap<Recipe, PageRecipe> recipeMap = new HashMap<>();
     static {
         recipeMap.clear();
 
-        for (MealImpl recipe: CookingAPI.REGISTRY) {
+        for (Recipe recipe: Recipe.REGISTRY) {
+            if (recipe == NULL_RECIPE) continue;
             recipeMap.put(recipe, new PageRecipe(recipe));
         }
     }
 
-    public static PageRecipe of(MealImpl recipe) {
+    public static PageRecipe of(Recipe recipe) {
         return recipeMap.get(recipe);
     }
 
-    private final MealImpl recipe;
+    private final Recipe recipe;
     private final List<CyclingStack> list = new ArrayList<>();
-    private final ItemStack stack;
     private final String description;
+    private final ItemStack stack;
 
-    public PageRecipe(MealImpl recipe) {
+    public PageRecipe(Recipe recipe) {
         this.recipe = recipe;
-        this.stack = recipe.cook(recipe.getMeal());
+        this.stack = CookingHelper.makeRecipe(recipe);
         this.description = recipe.getRegistryName().getResourceDomain() + ".meal." + recipe.getRegistryName().getResourcePath().replace("_", ".") + ".description";
     }
 
     @Override
     public Page getOwner() {
-        return PageRecipeList.get(recipe.getRequiredTool());
+        return PageRecipeList.get(recipe.getUtensil());
     }
 
     public String getRecipeName() {
@@ -64,7 +68,7 @@ public class PageRecipe extends Page {
 
     @Override
     public Utensil getUtensil() {
-        return recipe.getRequiredTool();
+        return recipe.getUtensil();
     }
 
     @Override
@@ -72,8 +76,9 @@ public class PageRecipe extends Page {
         super.initGui(gui);
         list.clear();
         int x = 165;
-        for (int y = 0; y < recipe.getRequiredIngredients().length; y++) {
-            list.add(new CyclingStack(x, 35 + y * 16, recipe.getRequiredIngredients()[y]));
+        for (int y = 0; y < recipe.getRequired().size(); y++) {
+            IngredientStack stack = recipe.getRequired().get(y);
+            list.add(new CyclingStack(x, 35 + y * 16, stack));
         }
 
         return this;
@@ -88,7 +93,7 @@ public class PageRecipe extends Page {
         gui.drawBox(26, 31, 110, 1, 0xFF9C8C63);
         gui.drawString(60, 35, TextFormatting.BOLD + TextHelper.translate("meal.hunger"));
         gui.mc.getTextureManager().bindTexture(new ResourceLocation("textures/gui/icons.png"));
-        int hunger = stack.getTagCompound().getInteger("FoodLevel");
+        int hunger = stack.getItem() instanceof ItemFood ? ((ItemFood)stack.getItem()).getHealAmount(stack) : 0;
         GlStateManager.color(1F, 1F, 1F);
         for (int i = 0; i < hunger; i++) {
             if (i % 2 == 0) {
@@ -129,8 +134,8 @@ public class PageRecipe extends Page {
     @Override
     public boolean mouseClicked(int mouseX, int mouseY) {
         if(mouseX >= 236 && mouseX <= 287 && mouseY >= 148 && mouseY <= 176) {
-            if (CookingHelper.hasAllIngredients(recipe, GuiCookbook.ingredients)) {
-                String utensil = TextFormatting.YELLOW + PageRecipeList.get(recipe.getRequiredTool()).getItem().getDisplayName() + TextFormatting.RESET;
+            if (RecipeMaker.areAllRequiredInRecipe(recipe.getRequired(), GuiCookbook.ingredients)) {
+                String utensil = TextFormatting.YELLOW + PageRecipeList.get(recipe.getUtensil()).getItem().getDisplayName() + TextFormatting.RESET;
                 String name = TextFormatting.YELLOW + recipe.getDisplayName() + TextFormatting.RESET;
                 PlaceIngredientResult result = CookingHelper.tryPlaceIngredients(MCClientHelper.getPlayer(), recipe);
                 if (result == PlaceIngredientResult.SUCCESS) {
@@ -160,18 +165,18 @@ public class PageRecipe extends Page {
     public static class CyclingStack {
         private final int x;
         private final int y;
-        private final Ingredient ingredient;
+        private final IngredientStack ingredient;
         private List<ItemStack> stacks;
         private ItemStack stack;
         private int ticker;
         private int index;
 
         @SuppressWarnings("unchecked")
-        public CyclingStack(int x, int y, Ingredient ingredient) {
+        public CyclingStack(int x, int y, IngredientStack ingredient) {
             this.x = x;
             this.y = y;
-            this.stacks = CookingAPI.INSTANCE.getStacksForIngredient(ingredient);
             this.ingredient = ingredient;
+            this.stacks = CookingAPI.INSTANCE.getStacksForIngredient(ingredient.getIngredient());
         }
 
         public void render(GuiCookbook gui, int mouseX, int mouseY) {
@@ -185,7 +190,7 @@ public class PageRecipe extends Page {
                 }
 
                 gui.drawStack(x, y, stack, 1F);
-                boolean isInInventory = CookingHelper.hasIngredientInInventory(ingredients, ingredient);
+                boolean isInInventory = ingredient.isSame(ingredients);
                 TextFormatting formatting = isInInventory ? TextFormatting.DARK_GREEN : TextFormatting.RED;
                 gui.drawString(x + 20, y + 6, formatting + stack.getDisplayName());
                 GlStateManager.disableDepth();
@@ -199,7 +204,7 @@ public class PageRecipe extends Page {
                 } else ticker++;
 
                 GlStateManager.enableDepth();
-            } else stacks = CookingAPI.INSTANCE.getStacksForIngredient(ingredient);
+            } else stacks = CookingAPI.INSTANCE.getStacksForIngredient(ingredient.getIngredient());
         }
     }
 }

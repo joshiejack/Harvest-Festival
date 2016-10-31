@@ -444,18 +444,10 @@ harvestfestival.rock.boulder.large=Large Boulder
 
 #Other Gathering Items
 harvestfestival.nature.bamboo=Bamboo Shoot
-harvestfestival.nature.grapes=Wild Grapes
 harvestfestival.nature.matsutake=Matsutake Mushroom
-harvestfestival.nature.toadstool=Toadstool
-harvestfestival.nature.black.grass=Black Grass
-harvestfestival.nature.blue.grass=Blue Grass
-harvestfestival.nature.green.grass=Green Grass
-harvestfestival.nature.indigo.grass=Indigo Grass
-harvestfestival.nature.orange.grass=Orange Grass
-harvestfestival.nature.purple.grass=Purple Grass
-harvestfestival.nature.red.grass=Red Grass
-harvestfestival.nature.white.grass=White Grass
-harvestfestival.nature.yellow.grass=Yellow Grass
+harvestfestival.nature.mint=Mint
+harvestfestival.nature.chamomile=Chamomile
+harvestfestival.nature.lavendar=Lavendar
 
 #Mine Blocks
 harvestfestival.dirt=Mine Floor

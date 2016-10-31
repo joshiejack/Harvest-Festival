@@ -2,8 +2,8 @@ package joshie.harvest.cooking.render;
 
 import gnu.trove.map.TIntObjectMap;
 import gnu.trove.map.hash.TIntObjectHashMap;
+import joshie.harvest.api.cooking.Recipe;
 import joshie.harvest.api.cooking.Utensil;
-import joshie.harvest.cooking.recipe.MealImpl;
 import joshie.harvest.core.base.render.FMLDefinition;
 import joshie.harvest.core.util.interfaces.IFMLItem;
 import net.minecraft.client.renderer.block.model.ModelBakery;
@@ -12,10 +12,10 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.IForgeRegistry;
 
-public class MealDefinition extends FMLDefinition<MealImpl> {
+public class MealDefinition extends FMLDefinition<Recipe> {
     private final TIntObjectMap<ModelResourceLocation> burnt = new TIntObjectHashMap<>();
 
-    public MealDefinition(IFMLItem item, String name, IForgeRegistry<MealImpl> registry) {
+    public MealDefinition(IFMLItem item, String name, IForgeRegistry<Recipe> registry) {
         super(item, name, registry);
     }
 

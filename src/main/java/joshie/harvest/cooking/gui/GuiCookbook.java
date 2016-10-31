@@ -1,6 +1,7 @@
 package joshie.harvest.cooking.gui;
 
 import joshie.harvest.api.cooking.Ingredient;
+import joshie.harvest.api.cooking.IngredientStack;
 import joshie.harvest.api.cooking.Utensil;
 import joshie.harvest.cooking.CookingAPI;
 import joshie.harvest.core.helpers.MCClientHelper;
@@ -13,13 +14,16 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class GuiCookbook extends GuiScreen {
     public static final ResourceLocation LEFT_GUI = new ResourceLocation(HFModInfo.MODID, "textures/gui/book_cooking_left.png");
     public static final ResourceLocation RIGHT_GUI = new ResourceLocation(HFModInfo.MODID, "textures/gui/book_cooking_right.png");
     public static final PageUtensilList MASTER = new PageUtensilList();
-    public static final Set<Ingredient> ingredients = new HashSet<>();
+    public static final Set<IngredientStack> ingredients = new HashSet<>();
     private final ArrayList<Runnable> runnables = new ArrayList<>();
     private static final int imageWidth = 154;
     private static final int imageHeight = 202;
@@ -34,7 +38,10 @@ public class GuiCookbook extends GuiScreen {
         ingredients.clear();
         for (ItemStack stack: MCClientHelper.getPlayer().inventory.mainInventory) {
             if (stack != null) {
-                ingredients.addAll(CookingAPI.INSTANCE.getCookingComponents(stack));
+                Ingredient ingredient = CookingAPI.INSTANCE.getCookingComponents(stack);
+                if (ingredient != null) {
+                    ingredients.add(new IngredientStack(ingredient, stack.stackSize));
+                }
             }
         }
 

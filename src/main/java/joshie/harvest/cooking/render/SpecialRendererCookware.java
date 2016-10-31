@@ -19,6 +19,7 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL14;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType.FIXED;
 import static net.minecraft.client.renderer.texture.TextureMap.LOCATION_BLOCKS_TEXTURE;
@@ -38,9 +39,11 @@ public abstract class SpecialRendererCookware<T extends TileCooking> extends Til
 
     protected void renderCookware(T tile) {
         ArrayList<ItemStack> ingredients = tile.getIngredients();
-        ItemStack result = tile.getResult();
-        if (result != null) {
-            renderResult(tile, result);
+        List<ItemStack> results = tile.getResult();
+        if (results != null) {
+            for (ItemStack result: results) {
+                renderResult(tile, result);
+            }
         }
 
         int fluidId = 0;

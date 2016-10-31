@@ -38,10 +38,7 @@ public class BlockNature extends BlockHFEnum<BlockNature, NaturalBlock> implemen
     }
 
     public enum NaturalBlock implements IStringSerializable {
-        BLACK_GRASS(10L), YELLOW_GRASS(120L), ORANGE_GRASS(100L),
-        BLUE_GRASS(100L), GREEN_GRASS(100L), RED_GRASS(110L),
-        PURPLE_GRASS(120L), INDIGO_GRASS(100L), WHITE_GRASS(150L),
-        MATSUTAKE(350L), TOADSTOOL(100L), BAMBOO(50L), GRAPES(50L);
+        MATSUTAKE(350L), BAMBOO(50L), MINT(0L), CHAMOMILE(0L), LAVENDAR(0L);
 
         private final long sell;
 

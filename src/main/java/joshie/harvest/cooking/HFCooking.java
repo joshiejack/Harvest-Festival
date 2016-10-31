@@ -1,12 +1,12 @@
 package joshie.harvest.cooking;
 
 import joshie.harvest.api.HFApi;
+import joshie.harvest.api.cooking.Recipe;
 import joshie.harvest.cooking.block.BlockCookware;
 import joshie.harvest.cooking.item.*;
 import joshie.harvest.cooking.item.ItemIngredients.Ingredient;
+import joshie.harvest.cooking.recipe.RecipeMaker;
 import joshie.harvest.cooking.recipe.RecipeMayo;
-import joshie.harvest.cooking.recipe.RecipeMeal;
-import joshie.harvest.cooking.recipe.RecipeStack;
 import joshie.harvest.cooking.render.*;
 import joshie.harvest.cooking.tile.*;
 import joshie.harvest.core.base.render.FMLDefinition;
@@ -40,8 +40,7 @@ public class HFCooking {
     public static void preInit() {
         BLADE_STACK = UTENSILS.getStackFromEnum(BLADE);
         HFApi.cooking.registerRecipeHandler(new RecipeMayo());
-        HFApi.cooking.registerRecipeHandler(new RecipeMeal());
-        HFApi.cooking.registerRecipeHandler(RecipeStack.INSTANCE);
+        HFApi.cooking.registerCookingHandler(new RecipeMaker());
         HFApi.cooking.registerKnife(new ItemStack(UTENSILS, 1, KNIFE.ordinal()));
         OreDictionary.registerOre("foodOliveoil", INGREDIENTS.getStackFromEnum(Ingredient.OIL));
         OreDictionary.registerOre("foodChocolatebar", INGREDIENTS.getStackFromEnum(Ingredient.CHOCOLATE));
@@ -56,7 +55,13 @@ public class HFCooking {
 
     @SideOnly(Side.CLIENT)
     public static void preInitClient() {
-        ModelLoader.setCustomMeshDefinition(MEAL, new MealDefinition(MEAL, "meals", CookingAPI.REGISTRY));
+        ModelLoader.setCustomMeshDefinition(MEAL, new MealDefinition(MEAL, "meals", Recipe.REGISTRY) {
+            @Override
+            public boolean shouldSkip(Recipe recipe) {
+                return super.shouldSkip(recipe) || !recipe.supportsNBTData();
+            }
+        });
+
         ModelLoader.setCustomMeshDefinition(RECIPE, new MeshIdentical(RECIPE));
         ClientRegistry.bindTileEntitySpecialRenderer(TileFryingPan.class, new SpecialRendererFryingPan());
         ClientRegistry.bindTileEntitySpecialRenderer(TilePot.class, new SpecialRendererPot());

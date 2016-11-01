@@ -57,7 +57,7 @@ public class StatsServer extends Stats {
         PacketHandler.sendToClient(new PacketSyncBirthday(getBirthday()), player);
     }
     
-    private void syncGold(EntityPlayerMP player) {
+    public void syncGold(EntityPlayerMP player) {
         PacketHandler.sendToClient(new PacketSyncGold(getGold()), player);
     }
 

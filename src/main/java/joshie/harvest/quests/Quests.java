@@ -31,6 +31,6 @@ public class Quests {
     public static final Quest RECIPE_VEGETABLE_LATTE = QuestHelper.getQuest("recipe.latte.vegetable");
     public static final Quest RECIPE_BUTTER = QuestHelper.getQuest("recipe.butter");
 
-    public class TUTORIAL_BLACKSMITH {
-    }
+    //Seeds
+    public static final Quest SEEDS_STRAWBERRY = QuestHelper.getQuest("seeds.strawberry");
 }

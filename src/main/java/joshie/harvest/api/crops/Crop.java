@@ -2,6 +2,7 @@ package joshie.harvest.api.crops;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.AnimalFoodType;
+import joshie.harvest.api.buildings.ISpecialPurchaseRules;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.cooking.Ingredient;
 import joshie.harvest.api.core.IShippable;
@@ -28,12 +29,14 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements IShippable, 
     public static final IForgeRegistry<Crop> REGISTRY = new RegistryBuilder<Crop>().setName(new ResourceLocation("harvestfestival", "crops")).setType(Crop.class).setIDRange(0, 32000).create();
     public static final GrowthHandler SEASONAL = new GrowthHandler() {};
     public static final DropHandler DROPS = new DropHandler();
+    public static final ISpecialPurchaseRules RULES = (w, p) -> true;
     public static final Crop NULL_CROP = new Crop();
 
     //CropData
     private IStateHandler stateHandler;
     private GrowthHandler growthHandler;
     private DropHandler dropHandler;
+    private ISpecialPurchaseRules rules;
     private AnimalFoodType foodType;
     private EnumPlantType type;
     private Ingredient ingredient;
@@ -66,6 +69,8 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements IShippable, 
         this.foodType = AnimalFoodType.VEGETABLE;
         this.bagColor = 0xFFFFFF;
         this.stateHandler = new StateHandlerDefault(this);
+        this.dropHandler = Crop.DROPS;
+        this.rules = Crop.RULES;
         this.growthHandler = SEASONAL;
         this.needsWatering = true;
         this.doubleStage = Integer.MAX_VALUE;
@@ -89,8 +94,8 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements IShippable, 
         this.growthHandler = SEASONAL;
         this.needsWatering = true;
         this.doubleStage = Integer.MAX_VALUE;
-        this.dropHandler = null;
-
+        this.dropHandler = Crop.DROPS;
+        this.rules = Crop.RULES;
         this.type = EnumPlantType.Crop;
         this.skipRender = false;
         this.setRegistryName(key);
@@ -302,6 +307,15 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements IShippable, 
         return this;
     }
 
+    /**
+     * Set the purchase rules for this crop
+     * @param rules the rules to set
+     * **/
+    public Crop setPurchaseRules(ISpecialPurchaseRules rules) {
+        this.rules = rules;
+        return this;
+    }
+
     @Deprecated //TODO: Remove in 0.7+
     public Crop setGrowsToSide(Block block) {
         this.growthHandler = new GrowthHandlerSide(block);
@@ -499,7 +513,14 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements IShippable, 
      * What this crop drops
      **/
     public DropHandler getDropHandler() {
-        return dropHandler == null ? DROPS : dropHandler;
+        return dropHandler;
+    }
+
+    /**
+     * What this crop rules for purchase are
+     **/
+    public ISpecialPurchaseRules getRules() {
+        return rules;
     }
 
     /**

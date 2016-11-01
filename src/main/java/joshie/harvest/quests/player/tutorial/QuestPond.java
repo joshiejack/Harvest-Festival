@@ -1,5 +1,6 @@
 package joshie.harvest.quests.player.tutorial;
 
+import joshie.harvest.api.HFApi;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.Quest;
@@ -11,8 +12,9 @@ import net.minecraft.entity.player.EntityPlayer;
 
 import java.util.Set;
 
-import static joshie.harvest.quests.Quests.TUTORIAL_UPGRADING;
 import static joshie.harvest.npc.HFNPCs.GODDESS;
+import static joshie.harvest.quests.Quests.SEEDS_STRAWBERRY;
+import static joshie.harvest.quests.Quests.TUTORIAL_UPGRADING;
 
 @HFQuest("tutorial.pond")
 public class QuestPond extends Quest {
@@ -48,7 +50,9 @@ public class QuestPond extends Quest {
 
     @Override
     public void onQuestCompleted(EntityPlayer player) {
-        rewardItem(player, HFCrops.STRAWBERRY.getCropStack(64));
+        //Complete the quest for the town
+        HFApi.quests.completeQuest(SEEDS_STRAWBERRY, player);
+        rewardItem(player, HFCrops.STRAWBERRY.getCropStack(10));
         rewardGold(player, 5000);
     }
 }

@@ -21,6 +21,7 @@ public class QuestDataClient extends QuestData {
         }
 
         current.remove(quest);
+        finished.add(quest);
     }
 
     private String getScript(Quest quest, EntityPlayer player, EntityNPC entity) {

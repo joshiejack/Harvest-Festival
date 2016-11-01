@@ -46,7 +46,7 @@ public class SyncHandler {
     @SubscribeEvent
     public void onChangeDimension(PlayerChangedDimensionEvent event) {
         if (event.player instanceof EntityPlayerMP) {
-            HFTrackers.<TownTrackerServer>getTownTracker(MCServerHelper.getWorld(event.toDim)).syncToPlayer(event.player); //Resync the town data
+            HFTrackers.<TownTrackerServer>getTownTracker(MCServerHelper.getWorld(event.toDim)).syncToPlayer((EntityPlayerMP)event.player); //Resync the town data
         }
     }
 }

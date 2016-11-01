@@ -46,21 +46,21 @@ public class HFRecipes {
         addMixerRecipe("juice_pineapple", 1F, 1F, PINEAPPLE).setOptionalIngredients(SALT, SUGAR); //Yulif 5000RP
         addMixerRecipe("juice_tomato", 1F, 1F, TOMATO).setOptionalIngredients(SALT); //Shop
         addMixerRecipe("milk_strawberry", 1F, 1F, STRAWBERRY, MILK).setOptionalIngredients(SUGAR); //Candice 10000RP Recipe
-        addMixerRecipe("juice_vegetable", 1F, 1F, JUICE_VEGETABLE).setOptionalIngredients(CUCUMBER, ONION, CABBAGE, TOMATO, SPINACH, CARROT, GREEN_PEPPER, TURNIP, SALT);//Shop
-        addMixerRecipe("latte_vegetable", 1F, 1F, JUICE_VEGETABLE, MILK).setOptionalIngredients(CUCUMBER, ONION, CABBAGE, TOMATO, SPINACH, CARROT, GREEN_PEPPER, TURNIP, SALT); //Thomas 5000RP
-        addMixerRecipe("ketchup", 0.25F, 1F, TOMATO, ONION).setOptionalIngredients(SALT, SUGAR);//TODO: ALT >>>.setAlternativeTexture(INGREDIENTS.getStackFromEnum(ItemIngredients.Ingredient.KETCHUP));//Shop
-        addMixerRecipe("butter", false, 1F, 1F, MILK).setOptionalIngredients(SALT);//TODO:.setAlternativeTexture(INGREDIENTS.getStackFromEnum(ItemIngredients.Ingredient.BUTTER)); //Daniel 5000RP
+        addMixerRecipe("juice_vegetable", 1F, 1F, VEGETABLE_JUICE_BASE).setOptionalIngredients(CUCUMBER, ONION, CABBAGE, TOMATO, SPINACH, CARROT, GREEN_PEPPER, TURNIP, SALT);//Shop
+        addMixerRecipe("latte_vegetable", 1F, 1F, VEGETABLE_JUICE_BASE, MILK).setOptionalIngredients(CUCUMBER, ONION, CABBAGE, TOMATO, SPINACH, CARROT, GREEN_PEPPER, TURNIP, SALT); //Thomas 5000RP
+        addMixerRecipe("ketchup", 0.25F, 0.1F, TOMATO, ONION).setOptionalIngredients(SALT, SUGAR);//TODO: ALT >>>.setAlternativeTexture(INGREDIENTS.getStackFromEnum(ItemIngredients.Ingredient.KETCHUP));//Shop
+        addMixerRecipe("butter", false, 1F, 0.5F, MILK).setOptionalIngredients(SALT);//TODO:.setAlternativeTexture(INGREDIENTS.getStackFromEnum(ItemIngredients.Ingredient.BUTTER)); //Daniel 5000RP
         addMixerRecipe("fishsticks", false, 1F, 1F, FISH).setOptionalIngredients(SALT);//Jim 5000RP
         //Added in 0.6+
-        addMixerRecipe("juice_grape", 1F, 1F, GRAPE);
-        addMixerRecipe("juice_peach", 1F, 1F, PEACH);
-        addMixerRecipe("juice_banana", 1F, 1F, BANANA);
-        addMixerRecipe("juice_orange", 1F, 1F, ORANGE);
-        addMixerRecipe("juice_apple", 1F, 1F, APPLE);
-        addMixerRecipe("juice_fruit", 1F, 1F, JUICE_FRUIT).setOptionalIngredients(APPLE, BANANA, PEACH, BANANA, STRAWBERRY, WATERMELON, PINEAPPLE);
-        addMixerRecipe("latte_fruit", 1F, 1F, JUICE_FRUIT, MILK).setOptionalIngredients(APPLE, BANANA, PEACH, BANANA, STRAWBERRY, WATERMELON, PINEAPPLE);
-        addMixerRecipe("juice_mix", 1F, 1F, JUICE_FRUIT, JUICE_VEGETABLE).setOptionalIngredients(APPLE, BANANA, PINEAPPLE, PEACH, BANANA, STRAWBERRY, WATERMELON, CUCUMBER, ONION, CABBAGE, TOMATO, SPINACH, CARROT, GREEN_PEPPER, TURNIP, SALT);
-        addMixerRecipe("latte_mix", 1F, 1F, JUICE_FRUIT, JUICE_VEGETABLE, MILK).setOptionalIngredients(APPLE, BANANA, PINEAPPLE, PEACH, BANANA, STRAWBERRY, WATERMELON, CUCUMBER, ONION, CABBAGE, TOMATO, SPINACH, CARROT, GREEN_PEPPER, TURNIP, SALT);
+        addMixerRecipe("juice_grape", 1.5F, 1.2F, GRAPE);
+        addMixerRecipe("juice_peach", 1.5F, 1.2F, PEACH);
+        addMixerRecipe("juice_banana", 1.5F, 1.2F, BANANA);
+        addMixerRecipe("juice_orange", 1.5F, 1.2F, ORANGE);
+        addMixerRecipe("juice_apple", 1.5F, 1.2F, APPLE);
+        addMixerRecipe("juice_fruit", 0.5F, 0.5F, FRUIT_JUICE_BASE).setOptionalIngredients(FRUITS).setMaximumOptionalIngredients(5);
+        addMixerRecipe("latte_fruit", 0.4F, 0.6F, FRUIT_JUICE_BASE, MILK).setOptionalIngredients(FRUITS).setMaximumOptionalIngredients(5);
+        addMixerRecipe("juice_mix", 0.5F, 0.5F, FRUIT_JUICE_BASE, VEGETABLE_JUICE_BASE).setOptionalIngredients(FRUITS, VEGETABLE_JUICE_BASE, TURNIP, SALT).setMaximumOptionalIngredients(7);
+        addMixerRecipe("latte_mix", 0.4F, 0.6F, FRUIT_JUICE_BASE, VEGETABLE_JUICE_BASE, MILK).setOptionalIngredients(FRUITS, VEGETABLE_JUICE_BASE, SALT).setMaximumOptionalIngredients(7);
 
         //Vanilla Mix Recipes
         addMixerRecipe("beetroot_soup", new ItemStack(Items.BEETROOT_SOUP), BEETROOT, TOMATO, ONION, OIL);
@@ -69,13 +69,13 @@ public class HFRecipes {
         //Hand
         addNoUtensilRecipe("turnip_pickled", 1F, 1F, TURNIP).setOptionalIngredients(SALT); //Cafe Reward
         addNoUtensilRecipe("cucumber_pickled", 1F, 1F, CUCUMBER).setOptionalIngredients(SALT);//Shop
-        addNoUtensilRecipe("salad", 1F, 1F, SALAD_INGREDIENT).setOptionalIngredients(MUSHROOM, CUCUMBER, CABBAGE, TOMATO, CARROT, SALT); //Jenni 5000RP
-        addNoUtensilRecipe("sandwich", 1F, 1F, BREAD, SANDWICH_INGREDIENT).setOptionalIngredients(BUTTER, TOMATO, CUCUMBER, SALT, MAYONNAISE, MUSHROOM);//Shop
+        addNoUtensilRecipe("salad", 1F, 1F, SALAD_BASE).setOptionalIngredients(MUSHROOM, CUCUMBER, CABBAGE, TOMATO, CARROT, SALT); //Jenni 5000RP
+        addNoUtensilRecipe("sandwich", 1F, 1F, BREAD, SANDWICH_BASE).setOptionalIngredients(BUTTER, TOMATO, CUCUMBER, SALT, MAYONNAISE, MUSHROOM);//Shop
         addNoUtensilRecipe("sushi", 1F, 1F, SASHIMI, RICEBALL);//Shop
         addNoUtensilRecipe("sashimi", 1F, 1F, FISH);//TODO:.setAlternativeTexture(INGREDIENTS.getStackFromEnum(ItemIngredients.Ingredient.SASHIMI));//Shop
         addNoUtensilRecipe("sashimi_chirashi", 1F, 1F, SASHIMI, SCRAMBLED_EGG, RICEBALL, SASHIMI_VEGETABLE);//Shop
         //Added in 0.6+
-        addNoUtensilRecipe("sandwich_fruit", 1F, 1F, BREAD, SANDWICH_FRUIT).setOptionalIngredients(ORANGE, BANANA, APPLE, STRAWBERRY, PEACH, PINEAPPLE);
+        addNoUtensilRecipe("sandwich_fruit", 0.75F, 1F, BREAD, FRUITS).setOptionalIngredients(FRUITS).setMaximumOptionalIngredients(5);
         addNoUtensilRecipe("rice_bamboo", 1F, 1F, BAMBOO, RICEBALL);
         addNoUtensilRecipe("rice_matsutake", 1F, 1F, MATSUTAKE, RICEBALL);
         addNoUtensilRecipe("rice_mushroom", 1F, 1F, BROWN_MUSHROOM, RICEBALL);
@@ -90,7 +90,7 @@ public class HFRecipes {
         addPotRecipe("potato_candied", 1F, 1F, SWEET_POTATO).setOptionalIngredients(SUGAR); //Girafi 5000RP
         addPotRecipe("dumplings", true, 1F, 1F, CABBAGE, ONION, FLOUR, OIL).setOptionalIngredients(SUGAR); //Thomas 10000RP
         addPotRecipe("noodles", 1F, 1F, FLOUR).setOptionalIngredients(SALT); //Cloe 5000RP
-        addPotRecipe("soup_rice", 1F, 1F, RICEBALL); //Brandon 5000RP
+        addPotRecipe("soup_rice", 3F, 1F, RICEBALL); //Brandon 5000RP
         addPotRecipe("porridge", 1F, 1F, MILK, RICEBALL).setOptionalIngredients(SUGAR); //Katlin 5000RP
         addPotRecipe("egg_overrice", 1F, 1F, EGG, RICEBALL).setOptionalIngredients(SALT);//Shop
         addPotRecipe("stew", 1F, 1F, MILK, FLOUR).setOptionalIngredients(EGGPLANT, ONION, POTATO, CARROT, GREEN_PEPPER, FISH, SALT); //Katlin 10000RP
@@ -114,9 +114,9 @@ public class HFRecipes {
         addOvenRecipe("toast", 1F, 1F, BREAD).setOptionalIngredients(BUTTER); //Jade 5000RP
         addOvenRecipe("dinnerroll", 1F, 1F, EGG, MILK, BUTTER); //Tiberius 5000RP
         addOvenRecipe("doria", 1F, 1F, ONION, BUTTER, MILK, RICEBALL, FLOUR);//Shop
-        addOvenRecipe("cookies", 1F, 1F, EGG, FLOUR, BUTTER).setOptionalIngredients(SUGAR);//TODO.setAlternativeTexture(INGREDIENTS.getStackFromEnum(ItemIngredients.Ingredient.COOKIES)); //Liara 7500RP
-        addOvenRecipe("cookies_chocolate", 1F, 1F, COOKIES, CHOCOLATE); //Liara 10000RP
-        addOvenRecipe("cake_chocolate", 1F, 1F, EGG, FLOUR, BUTTER, CHOCOLATE).setOptionalIngredients(SUGAR, PINEAPPLE, APPLE, STRAWBERRY); //Yulif RP 100000
+        addOvenRecipe("cookies", 1F, 0.4F, EGG, FLOUR, BUTTER).setOptionalIngredients(SUGAR);//TODO.setAlternativeTexture(INGREDIENTS.getStackFromEnum(ItemIngredients.Ingredient.COOKIES)); //Liara 7500RP
+        addOvenRecipe("cookies_chocolate", 1F, 0.5F, COOKIES, CHOCOLATE); //Liara 10000RP
+        addOvenRecipe("cake_chocolate", 1F, 1F, EGG, FLOUR, BUTTER, CHOCOLATE).setOptionalIngredients(SUGAR, FRUITS); //Yulif RP 100000
         //Added in 0.6+
         addOvenRecipe("jam_bun", 1F, 1F, MILK, EGG, JAM);
         addOvenRecipe("sweet_potatoes", 1F, 1F, EGG, BUTTER, SWEET_POTATO);

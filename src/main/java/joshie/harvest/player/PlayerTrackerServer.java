@@ -98,7 +98,8 @@ public class PlayerTrackerServer extends PlayerTracker implements IQuestMaster {
             if (gold > 0) player.addStat(HFAchievements.firstShipping);
             stats.addGold(null, gold);
             if (stats.getGold() >= 1000000) player.addStat(HFAchievements.millionaire);
-            syncPlayerStats(player); //Resync everything
+            relationships.resetStatus(yesterday, player); //Reset the relationship status
+            stats.syncGold(player); //Resync the players gold
             if (today.getSeason() == Season.WINTER && today.getDay() == 25) player.addStat(HFAchievements.firstChristmas);
             if (CalendarHelper.getYearsPassed(stats.getBirthday(), today) >= 1) {
                 player.addStat(HFAchievements.birthday);
@@ -109,7 +110,7 @@ public class PlayerTrackerServer extends PlayerTracker implements IQuestMaster {
     public void syncPlayerStats(EntityPlayerMP player) {
         //Only sync the stats if the player is online
         if (player.connection != null && player.connection.netManager != null) {
-            quests.syncAllQuests();
+            quests.sync(player);
             relationships.sync(player);
             stats.sync(player);
             tracking.sync(player);

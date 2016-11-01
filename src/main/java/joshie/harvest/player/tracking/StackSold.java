@@ -23,6 +23,10 @@ public class StackSold extends AbstractDataHolder<StackSold> {
         return new StackSold(stack.getItem(), stack.getItemDamage(), stack.stackSize, sell);
     }
 
+    public int getAmount() {
+        return amount;
+    }
+
     public long getSellValue() {
         return sell;
     }
@@ -57,7 +61,6 @@ public class StackSold extends AbstractDataHolder<StackSold> {
         StackSold that = (StackSold) o;
         if (meta != that.meta) return false;
         return item != null ? item.equals(that.item) : that.item == null;
-
     }
 
     @Override

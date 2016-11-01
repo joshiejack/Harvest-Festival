@@ -1,6 +1,7 @@
 package joshie.harvest.core.helpers;
 
 import joshie.harvest.api.HFApi;
+import joshie.harvest.api.buildings.ISpecialPurchaseRules;
 import joshie.harvest.api.crops.Crop;
 import joshie.harvest.api.crops.DropHandler;
 import joshie.harvest.api.crops.GrowthHandler;
@@ -74,17 +75,26 @@ public class RegistryHelper {
     public static <C extends Crop> C addHandlersToCrop(String name, C crop) {
         //Atempt to add a drop handler
         try {
-            crop.setDropHandler((DropHandler) Class.forName(DROPHANDLERS + WordUtils.capitalizeFully(name.replace("_", " ")).replace(" ", "")).newInstance());
+            DropHandler handler = (DropHandler) Class.forName(DROPHANDLERS + WordUtils.capitalizeFully(name.replace("_", " ")).replace(" ", "")).newInstance();
+            if (handler != null) crop.setDropHandler(handler);
         } catch (IllegalAccessException | ClassNotFoundException | InstantiationException e) {/**/}
 
         //Atempt to add a growth handler
         try {
-            crop.setGrowthHandler((GrowthHandler) Class.forName(GROWTHHANDLERS + WordUtils.capitalizeFully(name.replace("_", " ")).replace(" ", "")).newInstance());
+            GrowthHandler handler = (GrowthHandler) Class.forName(GROWTHHANDLERS + WordUtils.capitalizeFully(name.replace("_", " ")).replace(" ", "")).newInstance();
+            if (handler != null) crop.setGrowthHandler(handler);
         } catch (IllegalAccessException | ClassNotFoundException | InstantiationException e) {/**/}
 
         //Atempt to add a state handler
         try {
-            crop.setStateHandler((IStateHandler) Class.forName(CROPSTATES + WordUtils.capitalizeFully(name.replace("_", " ")).replace(" ", "")).newInstance());
+            IStateHandler handler = (IStateHandler) Class.forName(CROPSTATES + WordUtils.capitalizeFully(name.replace("_", " ")).replace(" ", "")).newInstance();
+            if (handler != null) crop.setStateHandler(handler);
+        } catch (IllegalAccessException | ClassNotFoundException | InstantiationException e) {/**/}
+
+        //Atempt to add a rules handler
+        try {
+            ISpecialPurchaseRules handler = (ISpecialPurchaseRules) Class.forName(RULES + WordUtils.capitalizeFully(name.replace("_", " ")).replace(" ", "")).newInstance();
+            if (handler != null) crop.setPurchaseRules(handler);
         } catch (IllegalAccessException | ClassNotFoundException | InstantiationException e) {/**/}
 
         return crop;

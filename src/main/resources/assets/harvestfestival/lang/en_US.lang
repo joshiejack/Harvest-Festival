@@ -1237,7 +1237,7 @@ harvestfestival.quest.tutorial.upgrading.complete=Ehhh hello there. I’ve just 
 
 #Building the Goddess a Home
 harvestfestival.quest.tutorial.pond.please=You’ve done a remarkable job of bringing this town back together. I’m really happy to see it growing! I’d just love a permanent home here too. If you can build me one, then I have a reward for you.
-harvestfestival.quest.tutorial.pond.thanks=Your hard work getting this town back on its feet couldn’t be more appreciated. I couldn’t be more grateful for the home you have built me here either. To show my appreciation I’m to give you these wonderful strawberries. They’re my favourite! See you around!
+harvestfestival.quest.tutorial.pond.thanks=Your hard work getting this town back on its feet couldn’t be more appreciated. I couldn’t be more grateful for the home you have built me here either. To show my appreciation I’d like to give you to the world of strawberries. They’re my favourite! Jenni should be able to sell you some now too! See you around!
 
 ##Trading Quests
 # Priest Blessing Quest
@@ -1314,6 +1314,11 @@ harvestfestival.quest.recipe.latte.vegetable.text=I need to get rid of this unho
 
 ## Meeting Quests
 harvestfestival.quest.meeting.jacob.text=Thanks a bunch for inviting me here, I'm glad to open my tackle shop for you. For all your hard work I'd like to give you this fishing rod.
+
+## Seed Quests
+harvestfestival.quest.seeds.cabbage.complete=Wow it looks like you've shipped 1000 spring crops! That's amazing. I have some good news too, we've recently found someone who will be happy to supply the store with cabbage seeds. So make sure to check the store the next time you visit!
+harvestfestival.quest.seeds.pineapple.complete=Look at you, you've managed to ship 1000 summer crops! How incredible. Oh another thing Spongebob has decided to sponsor our store, and as a specialty we are now able to sell you pineapples!
+harvestfestival.quest.seeds.greenpepper.complete=I can't believe my eyes, you've shipped over 1000 autumn crops! You're insane. Before I forget, things have been going really well around here, and we've recently been able to find a supplier for green peppers. I'll be able to sell you them right away!
 
 ###Achievements
 achievement.harvestfestival.summon=Goddess' Bounty

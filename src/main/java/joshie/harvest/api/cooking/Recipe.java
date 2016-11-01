@@ -23,17 +23,24 @@ public class Recipe extends IForgeRegistryEntry.Impl<Recipe> implements Meal {
     private float saturation;
     private EnumAction action;
     private int eatTimer;
+    private int maximumOptional;
 
     public Recipe(Utensil utensil, IngredientStack... required) {
         this.utensil = utensil;
         this.action = EnumAction.EAT;
         this.eatTimer = 24;
+        this.maximumOptional = 20;
         Collections.addAll(this.required, required);
     }
 
     public Recipe setFoodStats(int hunger, float saturation) {
         this.hunger = hunger;
         this.saturation = saturation;
+        return this;
+    }
+
+    public Recipe setRequiredIngredients(IngredientStack... required) {
+        Collections.addAll(this.required, required);
         return this;
     }
 
@@ -60,6 +67,11 @@ public class Recipe extends IForgeRegistryEntry.Impl<Recipe> implements Meal {
         return this;
     }
 
+    public Recipe setMaximumOptionalIngredients(int maximum) {
+        this.maximumOptional = maximum;
+        return this;
+    }
+
     @Override
     public Meal setAlternativeTexture(ItemStack stack) {
         return this;
@@ -80,6 +92,10 @@ public class Recipe extends IForgeRegistryEntry.Impl<Recipe> implements Meal {
 
     public List<IngredientStack> getOptional() {
         return optional;
+    }
+
+    public int getMaximumOptionalIngredients() {
+        return maximumOptional;
     }
 
     public Utensil getUtensil() {

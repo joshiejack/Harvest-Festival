@@ -31,8 +31,8 @@ public final class IngredientStack {
     /** You should call this as the class being the required item
      *  And we're checking if the match this **/
     public boolean isSame(IngredientStack stack) {
-        for (Ingredient ingredient: stack.ingredient.getEquivalents()) {
-            if (getIngredient() == ingredient) return true;
+        for (Ingredient ingredient: getIngredient().getEquivalents()) {
+            if (stack.getIngredient() == ingredient) return true;
         }
 
         return false;
@@ -42,24 +42,11 @@ public final class IngredientStack {
     /** You should call this as the class being the required item
      *  And we're checking if the match this **/
     public boolean isSame(Collection<IngredientStack> stacks) {
+        int count = 0;
         for (IngredientStack stack: stacks) {
-            if (isSame(stack)) return true;
+            if (isSame(stack)) count++;
         }
 
-        return false;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        IngredientStack that = (IngredientStack) o;
-        return ingredient != null ? ingredient.equals(that.ingredient) : that.ingredient == null;
-
-    }
-
-    @Override
-    public int hashCode() {
-        return ingredient != null ? ingredient.hashCode() : 0;
+        return count >= stackSize;
     }
 }

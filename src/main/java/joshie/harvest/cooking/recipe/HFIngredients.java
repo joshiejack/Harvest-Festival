@@ -25,11 +25,11 @@ import static joshie.harvest.core.lib.LoadOrder.HFINGREDIENTS;
 public class HFIngredients {
     //Categories
     public static final Ingredient MUSHROOM = new Ingredient("mushroom");
-    public static final Ingredient JUICE_VEGETABLE = new Ingredient("vegetable_juice");
-    public static final Ingredient JUICE_FRUIT = new Ingredient("fruit_juice");
-    public static final Ingredient SALAD_INGREDIENT = new Ingredient("salad_ingredient");
-    public static final Ingredient SANDWICH_INGREDIENT = new Ingredient("sandwich_ingredient");
-    public static final Ingredient SANDWICH_FRUIT = new Ingredient("sandwich_fruit");
+    public static final Ingredient VEGETABLE_JUICE_BASE = new Ingredient("vegetable_juice");
+    public static final Ingredient FRUIT_JUICE_BASE = new Ingredient("fruit_juice");
+    public static final Ingredient SALAD_BASE = new Ingredient("salad_ingredient");
+    public static final Ingredient SANDWICH_BASE = new Ingredient("sandwich_ingredient");
+    public static final Ingredient FRUITS = new Ingredient("sandwich_fruit");
     public static final Ingredient CAKE_FRUIT = new Ingredient("cake_fruit");
     public static final Ingredient SASHIMI_VEGETABLE = new Ingredient("sashimi_vegetable");
     public static final Ingredient FISH = new Ingredient("fish");
@@ -71,12 +71,12 @@ public class HFIngredients {
     public static final Ingredient MAYONNAISE = new Ingredient("mayonnaise", 3, 1.0F);
     public static final Ingredient BREAD = new Ingredient("bread", 5, 1.2F);
     public static final Ingredient RED_MUSHROOM = new Ingredient("red_mushroom", 4, 0.5F);
-    public static final Ingredient BROWN_MUSHROOM = new Ingredient("brown_mushroom", 4, 1.2F);
-    public static final Ingredient BAKED_POTATO = new Ingredient("baked_potato", 5, 1.2F);
+    public static final Ingredient BROWN_MUSHROOM = new Ingredient("brown_mushroom", 4, 0.6F);
+    public static final Ingredient BAKED_POTATO = new Ingredient("baked_potato", 5, 0.8F);
 
     //Gathered
     public static final Ingredient BAMBOO = new Ingredient("bamboo", 3, 1F);
-    public static final Ingredient MATSUTAKE = new Ingredient("matsutake", 4, 1.2F);
+    public static final Ingredient MATSUTAKE = new Ingredient("matsutake", 4, 0.6F);
 
     //Crops
     public static final Ingredient TURNIP = HFCrops.TURNIP.getIngredient();
@@ -116,11 +116,11 @@ public class HFIngredients {
     public static void preInit() {
         //Add ingredients to the categories
         MUSHROOM.add(RED_MUSHROOM, BROWN_MUSHROOM, MATSUTAKE);
-        JUICE_VEGETABLE.add(TURNIP, CUCUMBER, CABBAGE, TOMATO, ONION, CARROT, SPINACH, GREEN_PEPPER);
-        JUICE_FRUIT.add(STRAWBERRY, WATERMELON);
-        SALAD_INGREDIENT.add(CUCUMBER, CARROT, TOMATO, CABBAGE, BROWN_MUSHROOM);
-        SANDWICH_INGREDIENT.add(CUCUMBER, TOMATO, MAYONNAISE, BROWN_MUSHROOM, BOILED_EGG);
-        SANDWICH_FRUIT.add(ORANGE, BANANA, APPLE, STRAWBERRY, PEACH, PINEAPPLE);
+        VEGETABLE_JUICE_BASE.add(TURNIP, CUCUMBER, CABBAGE, TOMATO, ONION, CARROT, SPINACH, GREEN_PEPPER);
+        FRUIT_JUICE_BASE.add(STRAWBERRY, WATERMELON);
+        SALAD_BASE.add(CUCUMBER, CARROT, TOMATO, CABBAGE, BROWN_MUSHROOM);
+        SANDWICH_BASE.add(CUCUMBER, TOMATO, MAYONNAISE, BROWN_MUSHROOM, BOILED_EGG);
+        FRUITS.add(ORANGE, BANANA, APPLE, STRAWBERRY, PEACH, PINEAPPLE, WATERMELON);
         CAKE_FRUIT.add(ORANGE, PINEAPPLE, STRAWBERRY, PEACH, GRAPE);
         SASHIMI_VEGETABLE.add(CUCUMBER, TOMATO, ONION, EGGPLANT);
         MEAT.add(CHICKEN, PORK, BEEF, MUTTON, RABBIT);

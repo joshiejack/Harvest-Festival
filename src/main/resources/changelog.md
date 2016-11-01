@@ -11,6 +11,7 @@
 * You will now get relationship points every two hours if an animal is outside in the day and it isn't raining
 * You will now lose relationship points every time you use medicine on an animal
 * You will now get more points from interactions with animals
+* Adjusted animal product sell values to be more balanced
 #Buildings
 * Optimised building save format, should be smaller size
 * Only load buildings in to RAM when they're rendered/built
@@ -27,6 +28,10 @@
 * Untied the crops from the registry for them, shouldn't affect anything
 * Melons and Pumpkins will no longer regrow, and will instead replace the crop
 * Crops will now be plantable on more than farmland, however they will only grow on farmland when a mod adds support
+* Rebalanced the prices/sell value and growth of some crops
+* Removed the year unlocks, and replace with quest based ones instead
+    * You will now unlock strawberries when you build the goddess pond
+    * You will now unlock cabbages when you have shipped 1000 spring crops, pineapples 1000 summer and green peppers 1000 autumn
 #Gathering
 * More items will now spawn around the world (that sell for more than 1 gold!)
 #Mining
@@ -56,6 +61,7 @@
 * My hoes will now work with BOP blocks
 * Made shop scroll behave better
 * Add used to upgrade tooltip to all ores
+* Fix missing crosshairs when exiting an npc gui
 
 ##0.5.11
 * Fixed a crash with the shipping bin when loading worlds when a hopper is inserting items

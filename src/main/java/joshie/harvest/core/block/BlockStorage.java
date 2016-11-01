@@ -4,6 +4,7 @@ import joshie.harvest.core.base.block.BlockHFEnumRotatableTile;
 import joshie.harvest.core.block.BlockStorage.Storage;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.helpers.EntityHelper;
+import joshie.harvest.core.helpers.StackHelper;
 import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.core.tile.TileShipping;
 import joshie.harvest.player.PlayerTrackerServer;
@@ -72,7 +73,7 @@ public class BlockStorage extends BlockHFEnumRotatableTile<BlockStorage, Storage
             long sell = shipping.getSellValue(held);
             if (sell > 0) {
                 if (!world.isRemote) {
-                    HFTrackers.<PlayerTrackerServer>getPlayerTrackerFromPlayer(player).getTracking().addForShipping(held.copy());
+                    HFTrackers.<PlayerTrackerServer>getPlayerTrackerFromPlayer(player).getTracking().addForShipping(StackHelper.toStack(held, 1));
                 }
 
                 held.splitStack(1);
@@ -93,7 +94,7 @@ public class BlockStorage extends BlockHFEnumRotatableTile<BlockStorage, Storage
                 long sell = shipping.getSellValue(stack);
                 if (sell > 0) {
                     if (!world.isRemote) {
-                        HFTrackers.<PlayerTrackerServer>getPlayerTrackerFromPlayer(player).getTracking().addForShipping(stack.copy());
+                        HFTrackers.<PlayerTrackerServer>getPlayerTrackerFromPlayer(player).getTracking().addForShipping(StackHelper.toStack(stack, 1));
                     }
 
                     stack.splitStack(1);

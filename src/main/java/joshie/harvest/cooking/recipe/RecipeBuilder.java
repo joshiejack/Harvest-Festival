@@ -28,16 +28,16 @@ public class RecipeBuilder {
         optional = toOptional.toList(recipe, ingredients);
         stackSize = 1; //Always create one recipe at least
         //We first always make one required item, and add all the optionals to it, as we already know we CAN make one item
-        Set<IngredientStack> removed = new HashSet<>();
-        for (IngredientStack stack: new ArrayList<>(required)) {
-            if (!removed.contains(stack)) {
-                removed.add(stack);
+        Set<Ingredient> removed = new HashSet<>();
+        for (IngredientStack stack: recipe.getRequired()) {
+            if (!removed.contains(stack.getIngredient())) {
+                removed.add(stack.getIngredient());
                 removeFromList(stack);
             }
         }
 
         //The next step is calculate the additional hunger, and saturation from the optional list
-        calculateHungerSaturationAndRemoveOptionals(new ArrayList<>(optional));
+        calculateHungerSaturationAndRemoveOptionals(recipe, new ArrayList<>(optional));
         //Now that we pretty much only have the spare items left in the required list
         //We need to work out how many items total we can make, as well as calculating any extra
         //To add to the last item in our stack
@@ -100,6 +100,26 @@ public class RecipeBuilder {
     }
 
     private void calculateActualHungerAndSaturationValues(Recipe recipe) {
+        //Add the leftover required ingredients
+        if (required.size() > 0) {
+            TObjectIntMap<Ingredient> added = new TObjectIntHashMap<>();
+            for (IngredientStack stack: required) {
+                Ingredient main = stack.getIngredient();
+                //If we haven't already added this ingredient, use the full value
+                if (!added.containsKey(main)) {
+                    hunger += (main.getHunger() / 2);
+                    saturation += (main.getSaturation() / 2);
+                    added.put(main, 0);
+                } else {
+                    //If we have already used this ingredient, let's get how many times we have
+                    int used = added.adjustOrPutValue(main, 1, 1);
+                    hunger += (((double)main.getHunger())/ (4 * used));
+                    saturation += ((main.getSaturation())/ (4 * used));
+                    //We're added less and less each time to hunger and saturation for each ingredient
+                }
+            }
+        }
+
         this.hunger = recipe.getHunger() + (int)((double)this.hunger / stackSize);
         this.saturation = recipe.getSaturation() + (this.saturation / stackSize);
     }
@@ -115,6 +135,21 @@ public class RecipeBuilder {
         this.stackSize += totalRecipesMade;
     }
 
+    private void removeFromList(IngredientStack required) {
+        //Search through the required set, and remove the first entry we find that matches
+        int removed = 0;
+        Iterator<IngredientStack> it = this.required.iterator();
+        while(it.hasNext()) {
+            if (required.isSame(it.next())) {
+                it.remove();
+                removed++;
+                if (removed >= required.getStackSize()) {
+                    break;
+                }
+            }
+        }
+    }
+
     private boolean areAllRequiredInRecipeAndRemove(List<IngredientStack> requiredSet) {
         //We have looped through the set, so we should now go through and remove from the required again
         for (IngredientStack required: requiredSet) {
@@ -123,19 +158,13 @@ public class RecipeBuilder {
 
         //Removed and cleared up the set so we carry on
         for (IngredientStack required: requiredSet) {
-            //Search through the required set, and remove the first entry we find that matches
-            Iterator<IngredientStack> it = this.required.iterator();
-            while(it.hasNext()) {
-                if (required.isSame(it.next())) {
-                    it.remove();
-                    break;
-                }
-            }
+            removeFromList(required);
         }
+
         return true;
     }
 
-    private void calculateHungerSaturationAndRemoveOptionals(List<IngredientStack> optionals) {
+    private void calculateHungerSaturationAndRemoveOptionals(Recipe recipe, List<IngredientStack> optionals) {
         float hunger = 0;
         float saturation = 0F;
         TObjectIntMap<Ingredient> added = new TObjectIntHashMap<>();
@@ -153,17 +182,13 @@ public class RecipeBuilder {
                 saturation += ((main.getSaturation())/ (4 * used));
                 //We're added less and less each time to hunger and saturation for each ingredient
             }
+
+            if (added.size() >= recipe.getMaximumOptionalIngredients()) break;
         }
 
-        for (IngredientStack stack: optionals) removeFromList(stack);
+        this.optional.clear();
         this.hunger = (int) Math.floor(hunger);
         this.saturation = saturation;
-    }
-
-    //Remove from both list to ensure we only ever use an ingredient stack once
-    private void removeFromList(IngredientStack stack) {
-        required.remove(stack);
-        optional.remove(stack);
     }
 
     private abstract class ListBuilder {

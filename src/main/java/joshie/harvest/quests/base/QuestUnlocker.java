@@ -30,7 +30,7 @@ public abstract class QuestUnlocker extends Quest {
             QuestData questData = getQuestData(player);
             for (QuestUnlocked unlocked : getQuests()) {
                 if (unlocked.getNPCs().contains(npc) && unlocked.canUnlock(player, entity, npc)) {
-                    questData.startQuest(unlocked);
+                    questData.startQuest(unlocked, true);
                 }
             }
         }

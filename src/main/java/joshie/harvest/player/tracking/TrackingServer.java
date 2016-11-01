@@ -17,9 +17,11 @@ import net.minecraft.nbt.NBTTagCompound;
 
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Set;
 
 public class TrackingServer extends Tracking {
-    private HashSet<StackSold> toBeShipped = new HashSet<>(); //What needs to be sold
+    private Set<StackSold> toBeShipped = new HashSet<>(); //What needs to be sold
+    private Set<StackSold> shipped = new HashSet<>();
     public final PlayerTrackerServer master;
 
     public TrackingServer(PlayerTrackerServer master) {
@@ -35,6 +37,10 @@ public class TrackingServer extends Tracking {
 
             return true;
         } else return false;
+    }
+
+    public Set<StackSold> getShipped() {
+        return shipped;
     }
 
     public void sync(EntityPlayerMP player) {
@@ -61,6 +67,7 @@ public class TrackingServer extends Tracking {
         while (forSale.hasNext()) {
             StackSold stack = forSale.next();
             sold += stack.getSellValue();
+            CollectionHelper.mergeCollection(stack, shipped); //Mark this item as having been shipped
             forSale.remove();
         }
 
@@ -71,12 +78,14 @@ public class TrackingServer extends Tracking {
         obtained = NBTHelper.readHashSet(ItemStackHolder.class, nbt.getTagList("ItemsObtained", 10));
         toBeShipped = NBTHelper.readHashSet(StackSold.class, nbt.getTagList("ToBeShipped", 10));
         recipes = NBTHelper.readResourceSet(nbt, "Recipes");
+        shipped = NBTHelper.readHashSet(StackSold.class, nbt.getTagList("Shipped", 10));
     }
 
     public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
         nbt.setTag("ItemsObtained", NBTHelper.writeCollection(obtained));
         nbt.setTag("ToBeShipped", NBTHelper.writeCollection(toBeShipped));
         nbt.setTag("Recipes", NBTHelper.writeResourceSet(recipes));
+        nbt.setTag("Shipped", NBTHelper.writeCollection(shipped));
         return nbt;
     }
 }

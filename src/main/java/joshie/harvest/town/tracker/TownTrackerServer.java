@@ -9,7 +9,7 @@ import joshie.harvest.town.data.TownDataServer;
 import joshie.harvest.town.packet.PacketNewTown;
 import joshie.harvest.town.packet.PacketSyncTowns;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.Rotation;
@@ -30,10 +30,10 @@ public class TownTrackerServer extends TownTracker<TownDataServer> {
         }
     }
 
-    public void syncToPlayer(EntityPlayer player) {
+    public void syncToPlayer(EntityPlayerMP player) {
         PacketHandler.sendToClient(new PacketSyncTowns(townData), player);
         for (TownDataServer town: townData) {
-            town.getQuests().syncAllQuests();
+            town.getQuests().sync(player);
         }
     }
 
@@ -86,7 +86,7 @@ public class TownTrackerServer extends TownTracker<TownDataServer> {
         uuidMap.put(data.getID(), data);
         matchUUIDWithMineID(data.getID());
         PacketHandler.sendToDimension(getDimension(), new PacketNewTown(data)); //Sync to everyone on this dimension
-        data.getQuests().syncAllQuests(); //Sync the quests
+        data.getQuests().sync(null);
         HFTrackers.markDirty(getDimension());
         return data;
     }

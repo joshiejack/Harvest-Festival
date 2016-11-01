@@ -114,7 +114,9 @@ public class ItemMeal extends ItemHFFoodFML<ItemMeal, Recipe> implements IShippa
         ArrayList<IngredientStack> stacks = new ArrayList<>();
         stacks.addAll(recipe.getRequired());
         if (recipe.getOptional().size() > 0)stacks.addAll(recipe.getOptional());
-        return RecipeMaker.BUILDER.build(recipe, stacks).get(0);
+        ItemStack stack = RecipeMaker.BUILDER.build(recipe, stacks).get(0);
+        stack.stackSize = 1;
+        return stack;
     }
 
     @Override

@@ -8,7 +8,6 @@ import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.npc.entity.EntityNPC;
 import joshie.harvest.npc.item.ItemNPCTool.NPCTool;
-import joshie.harvest.npc.packet.PacketClose;
 import joshie.harvest.npc.packet.PacketGift;
 import joshie.harvest.npc.packet.PacketInfo;
 import net.minecraft.client.gui.FontRenderer;
@@ -168,7 +167,7 @@ public abstract class GuiNPCBase extends GuiBase {
     }
 
     public void endChat() {
-        PacketHandler.sendToServer(new PacketClose());
+        mc.thePlayer.closeScreen();
     }
 
     //Tooltip

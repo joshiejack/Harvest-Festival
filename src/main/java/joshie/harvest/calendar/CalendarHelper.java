@@ -1,7 +1,6 @@
 package joshie.harvest.calendar;
 
 import gnu.trove.map.TIntIntMap;
-import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.CalendarDate;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.calendar.Weekday;
@@ -11,6 +10,7 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 
+import static joshie.harvest.api.HFApi.calendar;
 import static joshie.harvest.api.calendar.CalendarDate.DAYS_PER_SEASON;
 import static joshie.harvest.calendar.HFCalendar.TICKS_PER_DAY;
 
@@ -95,7 +95,7 @@ public class CalendarHelper {
 
     public static boolean haveYearsPassed(World world, EntityPlayer player, int year) {
         CalendarDate playersBirthday = HFTrackers.getPlayerTrackerFromPlayer(player).getStats().getBirthday();
-        CalendarDate date = HFApi.calendar.getDate(world);
+        CalendarDate date = calendar.getDate(world);
         return getYearsPassed(playersBirthday, date) >= year;
     }
 
@@ -106,8 +106,10 @@ public class CalendarHelper {
             worldserver.setWorldTime(worldTime);
         }
 
-        CalendarServer calendar = HFTrackers.getCalendar(server.worldServers[0]);
-        calendar.recalculateAndUpdate(server.worldServers[0]);
+        if (worldTime % TICKS_PER_DAY != 23999) {
+            CalendarServer calendar = HFTrackers.getCalendar(server.worldServers[0]);
+            calendar.recalculateAndUpdate(server.worldServers[0]);
+        }
     }
 
     public static int getBlendedColour(TIntIntMap map, int original, int additional) {

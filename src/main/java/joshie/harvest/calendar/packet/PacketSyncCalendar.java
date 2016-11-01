@@ -13,15 +13,15 @@ import joshie.harvest.core.network.PenguinPacket;
 import net.minecraft.entity.player.EntityPlayer;
 
 @Packet(Side.CLIENT)
-public class PacketSetCalendar extends PenguinPacket {
+public class PacketSyncCalendar extends PenguinPacket {
     private int daysPerSeason;
     private Weekday weekday;
     private int day;
     private Season season;
     private int year;
     
-    public PacketSetCalendar() {}
-    public PacketSetCalendar(CalendarDate date) {
+    public PacketSyncCalendar() {}
+    public PacketSyncCalendar(CalendarDate date) {
         this.daysPerSeason = CalendarDate.DAYS_PER_SEASON;
         this.weekday = date.getWeekday();
         this.day = date.getDay();

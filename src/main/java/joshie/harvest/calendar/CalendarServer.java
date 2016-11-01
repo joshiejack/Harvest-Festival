@@ -3,7 +3,7 @@ package joshie.harvest.calendar;
 import joshie.harvest.api.calendar.CalendarDate;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.calendar.Weather;
-import joshie.harvest.calendar.packet.PacketSetCalendar;
+import joshie.harvest.calendar.packet.PacketSyncCalendar;
 import joshie.harvest.calendar.packet.PacketSyncForecast;
 import joshie.harvest.calendar.packet.PacketSyncStrength;
 import joshie.harvest.core.HFTrackers;
@@ -27,6 +27,7 @@ public class CalendarServer extends Calendar {
     public void setWorld(CalendarData data, World world) {
         this.data = data;
         super.setWorld(world);
+        recalculateAndUpdate(world);
     }
 
     @Override
@@ -50,7 +51,7 @@ public class CalendarServer extends Calendar {
     }
 
     public void syncToPlayer(EntityPlayer player) {
-        PacketHandler.sendToClient(new PacketSetCalendar(DATE), player);
+        PacketHandler.sendToClient(new PacketSyncCalendar(DATE), player);
         PacketHandler.sendToClient(new PacketSyncForecast(forecast), player);
         PacketHandler.sendToClient(new PacketSyncStrength(rainStrength, stormStrength), player);
     }
@@ -62,7 +63,7 @@ public class CalendarServer extends Calendar {
 
     public void recalculateAndUpdate(World world) {
         recalculate(world); //Recalc first
-        PacketHandler.sendToEveryone(new PacketSetCalendar(DATE)); //Sync the new date
+        PacketHandler.sendToEveryone(new PacketSyncCalendar(DATE)); //Sync the new date
     }
 
     /* ############# Weather ################*/

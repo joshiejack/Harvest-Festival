@@ -2,6 +2,7 @@ package joshie.harvest.core.tile;
 
 import joshie.harvest.core.base.tile.TileFaceable;
 import joshie.harvest.core.HFTrackers;
+import joshie.harvest.core.helpers.StackHelper;
 import joshie.harvest.player.PlayerTrackerServer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -56,7 +57,7 @@ public class TileShipping extends TileFaceable {
                 if (!simulate && !getWorld().isRemote) {
                     PlayerTrackerServer tracker = HFTrackers.getPlayerTracker(getWorld(), owner);
                     if (tracker != null) {
-                        tracker.getTracking().addForShipping(stack.copy());
+                        tracker.getTracking().addForShipping(StackHelper.toStack(stack, 1));
                     } else return stack;
                 }
 

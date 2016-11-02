@@ -1,5 +1,6 @@
 package joshie.harvest.api.buildings;
 
+import joshie.harvest.api.core.ISpecialPurchaseRules;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.Mirror;

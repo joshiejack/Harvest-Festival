@@ -14,6 +14,6 @@ public class RecipeHF extends Recipe {
 
     @Override
     public ItemStack getStack() {
-        return new ItemStack(HFCooking.MEAL, 1, Recipe.REGISTRY.getValues().indexOf(this));
+        return HFCooking.MEAL.getStackFromRecipe(this);
     }
 }

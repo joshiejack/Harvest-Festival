@@ -1,17 +1,20 @@
 package joshie.harvest.town.data;
 
-import joshie.harvest.core.util.Direction;
 import joshie.harvest.buildings.BuildingImpl;
 import joshie.harvest.buildings.BuildingRegistry;
 import joshie.harvest.buildings.placeable.Placeable;
 import joshie.harvest.buildings.placeable.entities.PlaceableNPC;
 import joshie.harvest.core.helpers.NBTHelper;
+import joshie.harvest.core.util.Direction;
+import joshie.harvest.core.util.interfaces.INBTSerializableMap;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 
-public class TownBuilding {
+import java.util.Map;
+
+public class TownBuilding implements INBTSerializableMap<ResourceLocation, TownBuilding, NBTTagCompound> {
     public BuildingImpl building;
     public Rotation rotation;
     public BlockPos pos;
@@ -37,21 +40,28 @@ public class TownBuilding {
         return getRealCoordinatesFor(offsets);
     }
 
-    public void readFromNBT(NBTTagCompound nbt) {
-        building = BuildingRegistry.REGISTRY.getValue(new ResourceLocation(nbt.getString("Building")));
+    @Override
+    public void buildMap(Map<ResourceLocation, TownBuilding> map) {
+        map.put(BuildingRegistry.REGISTRY.getKey(building), this);
+    }
 
+    @Override
+    public void deserializeNBT(NBTTagCompound nbt) {
+        building = BuildingRegistry.REGISTRY.getValue(new ResourceLocation(nbt.getString("Building")));
+        pos = NBTHelper.readBlockPos("Building", nbt);
         //TODO: Remove in 0.7+
         if (nbt.hasKey("Direction")) {
             Direction direction = Direction.valueOf(nbt.getString("Direction"));
             rotation = direction.getRotation();
         } else rotation = Rotation.valueOf(nbt.getString("Rotation"));
-
-        pos = NBTHelper.readBlockPos("Building", nbt);
     }
 
-    public void writeToNBT(NBTTagCompound nbt) {
+    @Override
+    public NBTTagCompound serializeNBT() {
+        NBTTagCompound nbt = new NBTTagCompound();
         nbt.setString("Building", BuildingRegistry.REGISTRY.getKey(building).toString());
         nbt.setString("Rotation", rotation.name());
         NBTHelper.writeBlockPos("Building", nbt, pos);
+        return nbt;
     }
 }

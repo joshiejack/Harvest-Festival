@@ -7,6 +7,7 @@ import joshie.harvest.animals.block.BlockTrough;
 import joshie.harvest.animals.entity.EntityHarvestChicken;
 import joshie.harvest.animals.entity.EntityHarvestCow;
 import joshie.harvest.animals.entity.EntityHarvestSheep;
+import joshie.harvest.animals.item.ItemAnimalProduct;
 import joshie.harvest.animals.item.ItemAnimalSpawner;
 import joshie.harvest.animals.item.ItemAnimalSpawner.Spawner;
 import joshie.harvest.animals.item.ItemAnimalTool;
@@ -60,17 +61,12 @@ public class HFAnimals {
     public static final ItemAnimalSpawner ANIMAL = new ItemAnimalSpawner().register("animal");
     public static final ItemAnimalTool TOOLS = new ItemAnimalTool().register("tool_animal");
     public static final ItemAnimalTreat TREATS = new ItemAnimalTreat().register("treat");
+    public static final ItemAnimalProduct ANIMAL_PRODUCT = new ItemAnimalProduct().register("sizeable");
 
     //Animal Blocks
     public static final BlockTrough TROUGH = new BlockTrough().register("trough");
     public static final BlockSizedStorage SIZED = new BlockSizedStorage().register("sized");
     public static final BlockTray TRAY = new BlockTray().register("tray");
-
-    //Sizeables
-    //public static final Sizeable EGG = SizeableRegistry.INSTANCE.registerSizeable("egg", 50, 60, 80);
-    //public static final Sizeable MILK = SizeableRegistry.INSTANCE.registerSizeable("milk", 100, 150, 200);
-    //public static final Sizeable MAYONNAISE = SizeableRegistry.INSTANCE.registerSizeable("mayonnaise", 300, 400, 500);
-    //public static final Sizeable WOOL = SizeableRegistry.INSTANCE.registerSizeable("wool", 100, 400, 500);
 
     @SuppressWarnings("unchecked")
     public static void preInit() {

@@ -4,10 +4,11 @@ import joshie.harvest.api.cooking.IngredientStack;
 import joshie.harvest.api.cooking.Recipe;
 import joshie.harvest.api.cooking.Utensil;
 import joshie.harvest.api.core.IShippable;
-import joshie.harvest.cooking.recipe.HFRecipes;
+import joshie.harvest.cooking.item.ItemMeal.Meal;
+import joshie.harvest.cooking.recipe.RecipeHF;
 import joshie.harvest.cooking.recipe.RecipeMaker;
 import joshie.harvest.core.HFTab;
-import joshie.harvest.core.base.item.ItemHFFoodFML;
+import joshie.harvest.core.base.item.ItemHFFoodEnum;
 import joshie.harvest.core.helpers.TextHelper;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -21,22 +22,91 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.ArrayList;
+import java.util.EnumMap;
 import java.util.List;
+import java.util.Locale;
 
-import static joshie.harvest.cooking.recipe.RecipeBuilder.FOOD_LEVEL;
-import static joshie.harvest.cooking.recipe.RecipeBuilder.SATURATION_LEVEL;
-import static joshie.harvest.cooking.recipe.RecipeBuilder.SELL_VALUE;
+import static joshie.harvest.api.cooking.Utensil.*;
+import static joshie.harvest.cooking.recipe.RecipeBuilder.*;
+import static joshie.harvest.core.lib.HFModInfo.MODID;
 import static net.minecraft.util.text.TextFormatting.DARK_GRAY;
 
-public class ItemMeal extends ItemHFFoodFML<ItemMeal, Recipe> implements IShippable {
+public class ItemMeal extends ItemHFFoodEnum<ItemMeal, Meal> implements IShippable {
+    private static final EnumMap<Meal, Recipe> MEAL_TO_RECIPE = new EnumMap<>(Meal.class);
+    public static final String BURNT = "Burnt";
     public ItemMeal() {
-        super(Recipe.REGISTRY, HFTab.COOKING);
+        super(HFTab.COOKING, Meal.class);
+    }
+
+    public enum Meal implements IStringSerializable {
+        PANCAKE_SAVOURY, FRIES_FRENCH, POPCORN, CORNFLAKES, EGGPLANT_HAPPY, EGG_SCRAMBLED(true), OMELET, OMELET_RICE,
+        TOAST_FRENCH, DOUGHNUT, FISH_GRILLED, PANCAKE, POTSTICKER, RISOTTO, JUICE_PINEAPPLE, JUICE_TOMATO, MILK_STRAWBERRY,
+        JUICE_VEGETABLE, LATTE_VEGETABLE, KETCHUP(true), BUTTER(true), FISHSTICKS, TURNIP_PICKLED, CUCUMBER_PICKLED, SALAD, SANDWICH,
+        SUSHI, SASHIMI(true), SASHIMI_CHIRASHI, MILK_HOT, CHOCOLATE_HOT, EGG_BOILED, SPINACH_BOILED, POTATO_CANDIED, DUMPLINGS,
+        NOODLES, SOUP_RICE, PORRIDGE, EGG_OVERRICE, STEW, STEW_PUMPKIN, STEW_FISH, CORN_BAKED, RICEBALLS_TOASTED,
+        TOAST, DINNERROLL, DORIA, COOKIES(true), COOKIES_CHOCOLATE, CAKE_CHOCOLATE,
+        //0.6+ Meals
+        BURNT_COUNTER(COUNTER), BURNT_FRYING_PAN(FRYING_PAN), BURNT_MIXER(MIXER), BURNT_OVEN(OVEN), BURNT_POT(POT), //Burnt as separate metadata
+        STIR_FRY, RICE_FRIED, SOUFFLE_APPLE, BREAD_CURRY, NOODLES_THICK_FRIED, TEMPURA, CURRY_DRY,
+        JUICE_GRAPE, JUICE_PEACH, JUICE_BANANA, JUICE_ORANGE, JUICE_APPLE, JUICE_FRUIT, LATTE_FRUIT, JUICE_MIX, LATTE_MIX,
+        SANDWICH_FRUIT, RICE_BAMBOO, RICE_MATSUTAKE, RICE_MUSHROOM, BREAD_RAISIN, ICE_CREAM,
+        JAM_STRAWBERRY, JAM_APPLE, JAM_GRAPE, MARMALADE, NOODLES_TEMPURA, RICE_TEMPURA,
+        BUN_JAM, SWEET_POTATOES, CAKE, PIE_APPLE;
+
+        private final boolean hasAltTexture;
+        private final Utensil utensil;
+
+        Meal() {
+            this.hasAltTexture = false;
+            this.utensil = null;
+        }
+
+        Meal(boolean hasAltTexture) {
+            this.hasAltTexture = hasAltTexture;
+            this.utensil = null;
+        }
+
+        Meal (Utensil utensil) {
+            this.hasAltTexture = false;
+            this.utensil = utensil;
+        }
+
+        public boolean hasAltTexture() {
+            return hasAltTexture;
+        }
+
+        public Utensil getUtensil() {
+            return utensil;
+        }
+
+        @Override
+        public String getName() {
+            return name().toLowerCase(Locale.ENGLISH);
+        }
+    }
+
+    private Recipe getRecipeFromMeal(Meal meal) {
+        MEAL_TO_RECIPE.clear();
+        if (MEAL_TO_RECIPE.size() == 0) {
+            for (Meal ameal: Meal.values()) {
+                MEAL_TO_RECIPE.put(ameal, Recipe.REGISTRY.getValue(new ResourceLocation(MODID, ameal.getName())));
+            }
+        }
+
+        return MEAL_TO_RECIPE.get(meal);
+    }
+
+    public ItemStack getStackFromRecipe(RecipeHF recipeHF) {
+        Meal meal = Meal.valueOf(recipeHF.getRegistryName().getResourcePath().toUpperCase(Locale.ENGLISH));
+        return new ItemStack(this, 1, meal.ordinal());
     }
 
     @Override
     public String getItemStackDisplayName(ItemStack stack) {
-        Recipe impl = stack.hasTagCompound() ? Recipe.REGISTRY.getValues().get(Math.max(0, Math.min(Recipe.REGISTRY.getValues().size(), stack.getItemDamage()))): null;
-        return impl != null ? impl.getDisplayName(): DARK_GRAY + TextHelper.localize(Utensil.getUtensilFromIndex(stack.getItemDamage()).getUnlocalizedName());
+        Meal meal = getEnumFromStack(stack);
+        if (meal.getUtensil() != null) return DARK_GRAY + TextHelper.localize(meal.getUtensil().getUnlocalizedName());
+        Recipe impl = stack.hasTagCompound() ? getRecipeFromMeal(meal) : null;
+        return impl != null ? impl.getDisplayName() : "Corrupted Meal";
     }
 
     @Override
@@ -77,14 +147,14 @@ public class ItemMeal extends ItemHFFoodFML<ItemMeal, Recipe> implements IShippa
     @Override
     public int getMaxItemUseDuration(ItemStack stack) {
         if (stack.hasTagCompound()) {
-            return getObjectFromStack(stack).getEatTimer();
+            return getRecipeFromMeal(getEnumFromStack(stack)).getEatTimer();
         } else return super.getMaxItemUseDuration(stack);
     }
 
     @Override
     public EnumAction getItemUseAction(ItemStack stack) {
         if (stack.hasTagCompound()) {
-            return getObjectFromStack(stack).getAction();
+            return getRecipeFromMeal(getEnumFromStack(stack)).getAction();
         } else return EnumAction.NONE;
     }
 
@@ -99,43 +169,32 @@ public class ItemMeal extends ItemHFFoodFML<ItemMeal, Recipe> implements IShippa
     }
 
     @Override
-    public Recipe getNullValue() {
-        return HFRecipes.NULL_RECIPE;
-    }
-
-    @Override
     public long getSellValue(ItemStack stack) {
         if (stack.getTagCompound() == null) return 0;
         else return stack.getTagCompound().getLong("SellValue");
     }
 
     @Override
-    public ItemStack getCreativeStack(Item item, Recipe recipe) {
-        ArrayList<IngredientStack> stacks = new ArrayList<>();
-        stacks.addAll(recipe.getRequired());
-        if (recipe.getOptional().size() > 0)stacks.addAll(recipe.getOptional());
-        ItemStack stack = RecipeMaker.BUILDER.build(recipe, stacks).get(0);
-        stack.stackSize = 1;
-        return stack;
-    }
+    protected ItemStack getCreativeStack(Item item, Meal meal) {
+        Recipe recipe = getRecipeFromMeal(meal);
+        if (recipe != null) {
+            ArrayList<IngredientStack> stacks = new ArrayList<>();
+            stacks.addAll(recipe.getRequired());
+            if (recipe.getOptional().size() > 0) stacks.addAll(recipe.getOptional());
+            ItemStack stack = RecipeMaker.BUILDER.build(recipe, stacks).get(0);
+            stack.stackSize = 1;
+            return stack;
+        }
 
-    @Override
-    public ItemStack getStackFromObject(Recipe recipe) {
-        return getCreativeStack(this, recipe);
-    }
-
-    @Override
-    public ItemStack getStackFromResource(ResourceLocation resource) {
-        return getStackFromObject(registry.getValue(resource));
-    }
-
-    @Override
-    public boolean shouldDisplayInCreative(Recipe recipe) {
-        return recipe.supportsNBTData();
+        return null;
     }
 
     @Override
     public int getSortValue(ItemStack stack) {
         return 100;
     }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void registerModels(Item item, String name) {}
 }

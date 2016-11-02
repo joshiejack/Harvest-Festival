@@ -89,17 +89,16 @@ public abstract class ItemHFFoodEnum<I extends ItemHFFoodEnum, E extends Enum<E>
         return CreativeSort.NONE;
     }
 
-    public boolean shouldDisplayInCreative(E e) {
-        return true;
+    protected ItemStack getCreativeStack(Item item, E e) {
+        return new ItemStack(item, 1, e.ordinal());
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public void getSubItems(Item item, CreativeTabs tab, List<ItemStack> list) {
         for (E e: values) {
-            if (shouldDisplayInCreative(e)) {
-                list.add(new ItemStack(item, 1, e.ordinal()));
-            }
+            ItemStack stack = getCreativeStack(item, e);
+            if (stack != null) list.add(stack);
         }
     }
 

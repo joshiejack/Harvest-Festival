@@ -61,7 +61,7 @@ harvestfestival.structures.mininghut=Mining Hut
 harvestfestival.structures.poultryfarm=Poultry Farm
 harvestfestival.structures.supermarket=General Store
 harvestfestival.structures.townhall=Townhall
-harvestfestival.structures.shipping=Shipping Box
+harvestfestival.structures.festivals=Festival Grounds
 harvestfestival.structures.null=Invalid
 
 #Cheat Items (Translators don't bother tranlating these, I just use them to help with dev)
@@ -239,6 +239,25 @@ harvestfestival.meal.burnt.pot=Failed Pot Dish
 harvestfestival.meal.burnt.frying.pan=Failed Frying Pan Meal
 harvestfestival.meal.burnt.mixer=Failed Mixer Dish
 harvestfestival.meal.burnt.oven=Failed Oven Dish
+#0.6+ Meals
+harvestfestival.meal.jam.apple=Apple Jam
+harvestfestival.meal.jam.grape=Grape Jam
+harvestfestival.meal.jam.strawberry=Strawberry Jam
+harvestfestival.meal.marmalade=Marmalade
+harvestfestival.meal.noodles.tempura=Tempura Noodles
+harvestfestival.meal.rice.tempura=Tempura Rice
+harvestfestival.meal.juice.orange=Orange Juice
+harvestfestival.meal.juice.apple=Apple Juice
+harvestfestival.meal.juice.banana=Banana Juice
+harvestfestival.meal.juice.peach=Peach Juice
+harvestfestival.meal.juice.grape=Grape Juice
+harvestfestival.meal.juice.mix=Mixed Juice
+harvestfestival.meal.latte.mix=Mixed Latte
+harvestfestival.meal.latte.fruit=Fruit Latte
+harvestfestival.meal.sandwich.fruit=Fruit Sandwich
+harvestfestival.meal.bread.raisin=Raisin Bread
+harvestfestival.meal.bun.jam=Jam Bun
+harvestfestival.meal.cake=Cake
 
 #Ingredients
 harvestfestival.ingredient.butter=Butter
@@ -1235,10 +1254,6 @@ harvestfestival.quest.tutorial.upgrading.explain=That’s good then. I’ll be h
 harvestfestival.quest.tutorial.upgrading.reminder.visit=Remember Brandon the Miner wants to see you.
 harvestfestival.quest.tutorial.upgrading.complete=Ehhh hello there. I’ve just been down the mine, and well it was pretty terrible. Since you got me to this town, I may as well just give you the junk I found. Take it. I don’t want it.
 
-#Building the Goddess a Home
-harvestfestival.quest.tutorial.pond.please=You’ve done a remarkable job of bringing this town back together. I’m really happy to see it growing! I’d just love a permanent home here too. If you can build me one, then I have a reward for you.
-harvestfestival.quest.tutorial.pond.thanks=Your hard work getting this town back on its feet couldn’t be more appreciated. I couldn’t be more grateful for the home you have built me here either. To show my appreciation I’d like to give you to the world of strawberries. They’re my favourite! Jenni should be able to sell you some now too! See you around!
-
 ##Trading Quests
 # Priest Blessing Quest
 harvestfestival.quest.trade.cursed.accept=Thank you very much youngun, I can now bless your tools! It will take a little while, so come back in three days.
@@ -1319,6 +1334,10 @@ harvestfestival.quest.meeting.jacob.text=Thanks a bunch for inviting me here, I'
 harvestfestival.quest.seeds.cabbage.complete=Wow it looks like you've shipped 1000 spring crops! That's amazing. I have some good news too, we've recently found someone who will be happy to supply the store with cabbage seeds. So make sure to check the store the next time you visit!
 harvestfestival.quest.seeds.pineapple.complete=Look at you, you've managed to ship 1000 summer crops! How incredible. Oh another thing Spongebob has decided to sponsor our store, and as a specialty we are now able to sell you pineapples!
 harvestfestival.quest.seeds.greenpepper.complete=I can't believe my eyes, you've shipped over 1000 autumn crops! You're insane. Before I forget, things have been going really well around here, and we've recently been able to find a supplier for green peppers. I'll be able to sell you them right away!
+
+#Building the Goddess a Home
+harvestfestival.quest.seeds.strawberry.please=You’ve done a remarkable job of bringing this town back together. I’m really happy to see it growing! I’d just love a permanent home here too. If you can build me one, then I have a reward for you.
+harvestfestival.quest.seeds.strawberry.thanks=Your hard work getting this town back on its feet couldn’t be more appreciated. I couldn’t be more grateful for the home you have built me here either. To show my appreciation I’d like to give you to the world of strawberries. They’re my favourite! Jenni should be able to sell you some now too! See you around!
 
 ###Achievements
 achievement.harvestfestival.summon=Goddess' Bounty

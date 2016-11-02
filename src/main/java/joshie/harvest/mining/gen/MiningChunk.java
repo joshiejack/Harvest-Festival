@@ -142,7 +142,7 @@ public class MiningChunk implements IChunkGenerator {
                                 int length = 1 + rand.nextInt(1);
                                 for (int x4 = -width; x4 <= width; x4++) {
                                     for (int z4 = -length; z4 < length; z4++) {
-                                        for (EnumFacing enumFacing: EnumFacing.values()) {
+                                        for (EnumFacing enumFacing: EnumFacing.HORIZONTALS) {
                                             if (enumFacing == EnumFacing.DOWN || enumFacing == EnumFacing.UP) continue;
                                             BlockPos pos = new BlockPos(i + x4, chunkY, j + z4);
                                             BlockPos offset = pos.offset(enumFacing);
@@ -182,6 +182,22 @@ public class MiningChunk implements IChunkGenerator {
                                     setBlockState(primer, i, belowY + y + 4, j, AIR, chunkX);
                                 }
                             }
+
+                            //Experiemental
+                            /** Torches
+                            for (EnumFacing enumFacing: EnumFacing.HORIZONTALS) {
+                                //if (rand.nextInt(1) == 0) {
+                                BlockPos pos = new BlockPos(i, chunkY, j);
+                                BlockPos opposite = pos.offset(enumFacing);
+                                if (opposite.getX() <= 15 && opposite.getX() >= 0 && opposite.getZ() <= 15 && opposite.getZ() >= 0 &&
+                                        pos.getX() <= 15 && pos.getX() >= 0 && pos.getZ() <= 15 && pos.getZ() >= 0) {
+                                    if(primer.getBlockState(opposite.getX(), opposite.getY() + 2, opposite.getZ()) == WALLS &&
+                                            primer.getBlockState(pos.getX(), pos.getY() + 2, pos.getZ()) != WALLS) {
+                                        primer.setBlockState(pos.getX(), chunkY + 2, pos.getZ(), Blocks.TORCH.getDefaultState().withProperty(FACING, enumFacing.getOpposite()));
+                                    } //else setBlockState(primer, opposite.getX(), opposite.getY() + 2, opposite.getZ(), Blocks.COAL_BLOCK.getDefaultState(), chunkX);
+                                }
+                                //}
+                            } */
                         }
                     }
                 }
@@ -232,6 +248,17 @@ public class MiningChunk implements IChunkGenerator {
         setBlockState(primer, x, y + 1, z, PORTAL, chunkX);
         setBlockState(primer, x - 1, y + 1, z, PORTAL, chunkX);
         setBlockState(primer, x + 1, y + 1, z, PORTAL, chunkX);
+        /** Torches
+        for (int r = -2; r <= 2; r++) {
+            for (int s = -2; s <= 2; s++) {
+                for (int t = 0; t <= 2; t++) {
+                    if (getBlockState(primer, x + r, y + t, z + s).getBlock() == Blocks.TORCH) {
+                        setBlockState(primer, x + r, y + t, z + s, AIR, chunkX);
+                    }
+                }
+            }
+        } **/
+
         HFTrackers.getMineManager(worldObj).setSpawnForMine(MiningHelper.getMineID(chunkZ), floor, realX, y, realZ);
     }
 
@@ -244,6 +271,17 @@ public class MiningChunk implements IChunkGenerator {
         setBlockState(primer, x, y + 1, z, PORTAL, chunkX);
         setBlockState(primer, x, y + 1, z - 1, PORTAL, chunkX);
         setBlockState(primer, x, y + 1, z + 1, PORTAL, chunkX);
+        /** Torches
+        for (int r = -2; r <= 2; r++) {
+            for (int s = -2; s <= 2; s++) {
+                for (int t = 0; t <= 2; t++) {
+                    if (getBlockState(primer, x + r, y + t, z + s).getBlock() == Blocks.TORCH) {
+                        setBlockState(primer, x + r, y + t, z + s, AIR, chunkX);
+                    }
+                }
+            }
+        } */
+
         HFTrackers.getMineManager(worldObj).setSpawnForMine(MiningHelper.getMineID(chunkZ), floor, realX, y, realZ);
     }
 
@@ -300,15 +338,15 @@ public class MiningChunk implements IChunkGenerator {
             int startZ = 15 + rand.nextInt(75);
             int endZ = 15 + rand.nextInt(75);
             int ladderDistance = 5 + rand.nextInt(20);
-            int differenceMin = 5 + rand.nextInt(10);
+            int differenceMin = 5 + rand.nextInt(15);
             int endDistance = (differenceMin * 3) - 1;
             int maxLoop = 1 + rand.nextInt(5);
             int endChangeChanceX = 10 + rand.nextInt(15);
             int endChangeChanceZ = 10 + rand.nextInt(15);
-            int changeMinX = 10 + rand.nextInt(20);
-            int changeMinZ = 10 + rand.nextInt(20);
-            int randXChange = 5 + rand.nextInt(25);
-            int randZChange = 5 + rand.nextInt(25);
+            int changeMinX = 10 + rand.nextInt(25);
+            int changeMinZ = 10 + rand.nextInt(25);
+            int randXChange = 5 + rand.nextInt(30);
+            int randZChange = 5 + rand.nextInt(30);
             int randXTime = 7 + rand.nextInt(10);
             int randZTime = 7 + rand.nextInt(10);
             int radius = 1 + rand.nextInt(3);
@@ -501,17 +539,16 @@ public class MiningChunk implements IChunkGenerator {
 
     @Override
     public Chunk provideChunk(int x, int z) {
-        this.rand.setSeed((long) x * 341873128712L + (long) z * 132897987541L);
+        rand.setSeed((long) x * 341873128712L + (long) z * 132897987541L);
         ChunkPrimer chunkprimer = new ChunkPrimer();
-        this.biomesForGeneration = this.worldObj.getBiomeProvider().getBiomes(this.biomesForGeneration, x * 16, z * 16, 16, 16);
-        this.season = HFApi.calendar.getDate(worldObj).getSeason();
-        if (this.season == null) season = Season.SPRING;
-        this.setBlocksInChunk(x, z, chunkprimer);
-        Chunk chunk = new Chunk(this.worldObj, chunkprimer, x, z);
+        biomesForGeneration = this.worldObj.getBiomeProvider().getBiomes(biomesForGeneration, x * 16, z * 16, 16, 16);
+        season = HFApi.calendar.getDate(worldObj).getSeason();
+        if (season == null) season = Season.SPRING;
+        setBlocksInChunk(x, z, chunkprimer);
+        Chunk chunk = new Chunk(worldObj, chunkprimer, x, z);
         byte[] abyte = chunk.getBiomeArray();
-
         for (int i = 0; i < abyte.length; ++i) {
-            abyte[i] = (byte) Biome.getIdForBiome(this.biomesForGeneration[i]);
+            abyte[i] = (byte) Biome.getIdForBiome(biomesForGeneration[i]);
         }
 
         chunk.generateSkylightMap();
@@ -523,7 +560,7 @@ public class MiningChunk implements IChunkGenerator {
 
     @Override
     public boolean generateStructures(Chunk chunkIn, int x, int z) {
-        return false;
+        return true;
     }
 
     @Override

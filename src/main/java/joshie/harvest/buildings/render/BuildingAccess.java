@@ -27,6 +27,7 @@ public class BuildingAccess implements IBlockAccess {
 
     public BuildingAccess(BuildingImpl building, Rotation rotation) {
         HFBuildings.loadBuilding(building);
+        if (building.components == null) return;
         for (Placeable placeable : building.components) {
             if (placeable == null) continue;
             if (placeable instanceof PlaceableBlock) {

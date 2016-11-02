@@ -49,7 +49,7 @@ public class PageRecipeList extends Page {
         recipes = new ArrayList<>();
         for (ResourceLocation resource: HFTrackers.getClientPlayerTracker().getTracking().getLearntRecipes()) {
             Recipe recipe = Recipe.REGISTRY.getValue(resource);
-            if (recipe.getUtensil() == utensil) {
+            if (recipe != null && recipe.getUtensil() == utensil) {
                 recipes.add(PageRecipe.of(recipe));
             }
         }

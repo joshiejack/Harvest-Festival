@@ -16,6 +16,7 @@ public class TownDataClient extends TownData<QuestDataClient> {
 
     public void addBuilding(TownBuilding building) {
         buildings.put(BuildingRegistry.REGISTRY.getKey(building.building), building);
+        inhabitants.addAll(building.building.getInhabitants());
     }
 
     public void setBuilding(LinkedList<BuildingStage> building) {

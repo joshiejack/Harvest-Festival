@@ -25,6 +25,7 @@ import java.util.List;
 import static joshie.harvest.cooking.CookingHelper.PlaceIngredientResult.SUCCESS;
 
 public abstract class TileCooking extends TileFaceable {
+    public static final String IN_UTENSIL = "InUtensil";
     public abstract static class TileCookingTicking extends TileCooking implements ITickable {
         @Override
         public void update() {
@@ -86,9 +87,12 @@ public abstract class TileCooking extends TileFaceable {
         result.clear(); //Clear out the result
     }
 
+    @SuppressWarnings("ConstantConditions")
     public void takeBackLastStack(EntityPlayer player) {
         if (ingredients.size() > 0) {
-            SpawnItemHelper.addToPlayerInventory(player, ingredients.get(ingredients.size() - 1));
+            ItemStack stack = ingredients.get(ingredients.size() - 1);
+            if (stack.hasTagCompound()) stack.getTagCompound().removeTag(IN_UTENSIL);
+            SpawnItemHelper.addToPlayerInventory(player, stack);
             ingredients.remove(ingredients.size() - 1); //Remove the last stack
             if (worldObj.isRemote) return;
             this.last = this.ingredients.size();
@@ -127,6 +131,7 @@ public abstract class TileCooking extends TileFaceable {
     }
 
     //Returns true if this was a valid ingredient to add
+    @SuppressWarnings("ConstantConditions")
     public boolean addIngredient(ItemStack stack) {
         if (ingredients.size() >= 20) return false;
         if (hasPrerequisites() != SUCCESS) return false;
@@ -135,6 +140,12 @@ public abstract class TileCooking extends TileFaceable {
             if (worldObj.isRemote) return true;
             ItemStack clone = getRealIngredient(stack);
             clone.stackSize = 1;
+            if (!clone.hasTagCompound()) {
+                clone.setTagCompound(new NBTTagCompound());
+            }
+
+            clone.getTagCompound().setBoolean(IN_UTENSIL, true);
+
             this.last = this.ingredients.size();
             this.ingredients.add(clone);
             this.cooking = true;

@@ -1,4 +1,4 @@
-package joshie.harvest.api.buildings;
+package joshie.harvest.api.core;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;

@@ -7,6 +7,7 @@ import joshie.harvest.core.base.item.ItemHFFoodEnum;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.*;
 import net.minecraft.world.World;
@@ -15,9 +16,8 @@ import java.util.Locale;
 
 public class ItemIngredients extends ItemHFFoodEnum<ItemIngredients, Ingredient> implements IShippable {
     public enum Ingredient implements IStringSerializable {
-        BUTTER, KETCHUP, COOKIES, EGG_SCRAMBLED, SASHIMI,
-        FLOUR(50L, 25L), OIL(50L, 25L), RICEBALL(100L, 50L), SALT(5L, 25L), CHOCOLATE(100L, 50L),
-        CURRY_POWDER(50L, 25L), DUMPLING_POWDER(100L, 50L), WINE(300L, 150L);
+        CURRY_POWDER(50L, 25L), DUMPLING_POWDER(100L, 50L), WINE(200L, 150L), UNUSED1, UNUSED2,
+        FLOUR(50L, 25L), OIL(50L, 25L), RICEBALL(100L, 50L), SALT(5L, 25L), CHOCOLATE(100L, 50L);
 
         private final long cost;
         private final long sell;
@@ -55,8 +55,8 @@ public class ItemIngredients extends ItemHFFoodEnum<ItemIngredients, Ingredient>
     }
 
     @Override
-    public boolean shouldDisplayInCreative(Ingredient ingredient) {
-        return ingredient.getSellValue() > 0L;
+    protected ItemStack getCreativeStack(Item item, Ingredient ingredient) {
+        return ingredient.getSellValue() > 0L ? getStackFromEnum(ingredient) : null;
     }
 
     @Override

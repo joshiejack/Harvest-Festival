@@ -8,7 +8,6 @@ import joshie.harvest.core.network.PenguinPacket;
 import joshie.harvest.town.data.TownBuilding;
 import joshie.harvest.town.tracker.TownTrackerClient;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 
 import java.util.UUID;
@@ -27,16 +26,14 @@ public class PacketNewBuilding extends PenguinPacket {
     @Override
     public void toBytes(ByteBuf buf) {
         ByteBufUtils.writeUTF8String(buf, uuid.toString());
-        NBTTagCompound tag = new NBTTagCompound();
-        building.writeToNBT(tag);
-        ByteBufUtils.writeTag(buf, tag);
+        ByteBufUtils.writeTag(buf, building.serializeNBT());
     }
 
     @Override
     public void fromBytes(ByteBuf buf) {
         uuid = UUID.fromString(ByteBufUtils.readUTF8String(buf));
         building = new TownBuilding();
-        building.readFromNBT(ByteBufUtils.readTag(buf));
+        building.deserializeNBT(ByteBufUtils.readTag(buf));
     }
 
     @Override

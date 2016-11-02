@@ -1,9 +1,9 @@
 package joshie.harvest.animals.type;
 
+import joshie.harvest.animals.HFAnimals;
 import joshie.harvest.api.animals.AnimalAction;
 import joshie.harvest.api.animals.AnimalStats;
 import joshie.harvest.api.core.Size;
-import joshie.harvest.core.HFCore;
 import joshie.harvest.core.achievements.HFAchievements;
 import joshie.harvest.core.helpers.SizeableHelper;
 import net.minecraft.entity.player.EntityPlayer;
@@ -46,7 +46,7 @@ public class AnimalCow extends AnimalAbstract {
     public ItemStack getProduct(EntityPlayer player, AnimalStats stats) {
         ItemStack product = SizeableHelper.getMilk(player, stats.getAnimal(), stats);
         player.addStat(HFAchievements.milker);
-        if (HFCore.SIZEABLE.getSize(product) == Size.LARGE) {
+        if (HFAnimals.ANIMAL_PRODUCT.getSize(product) == Size.LARGE) {
             player.addStat(HFAchievements.milkerLarge);
         }
 

@@ -2,7 +2,9 @@ package joshie.harvest.cooking;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.cooking.*;
-import joshie.harvest.cooking.recipe.*;
+import joshie.harvest.cooking.recipe.RecipeHF;
+import joshie.harvest.cooking.recipe.RecipeMaker;
+import joshie.harvest.cooking.recipe.RecipeVanilla;
 import joshie.harvest.core.util.annotations.HFApiImplementation;
 import joshie.harvest.core.util.holders.HolderRegistry;
 import joshie.harvest.core.util.holders.HolderRegistryMulti;
@@ -18,7 +20,6 @@ import static joshie.harvest.core.lib.HFModInfo.MODID;
 
 @HFApiImplementation
 public class CookingAPI implements CookingManager {
-    //public static final IForgeRegistry<MealImpl> REGISTRY = new RegistryBuilder<MealImpl>().setName(new ResourceLocation("harvestfestival", "meals")).setType(MealImpl.class).setIDRange(0, 32000).create();
     public static final CookingAPI INSTANCE = new CookingAPI();
     private final Set<RecipeHandler> handlers = new HashSet<>();
     private final Set<ItemStackHolder> knives = new HashSet<>();
@@ -161,6 +162,8 @@ public class CookingAPI implements CookingManager {
     }
 
     @Override
+    @SuppressWarnings("ConstantConditions")
+    @Deprecated
     public ItemStack getResult(Utensil utensil, List<ItemStack> stacks) {
         //TODO Remove in 0.7+ from here
         //Convert all the stacks in to their relevant ingredients
@@ -179,8 +182,7 @@ public class CookingAPI implements CookingManager {
         }
 
         //TODO Remove in 0.7+ to here
-
-        return new ItemStack(HFCooking.MEAL, 1, utensil.getIndex());
+        return utensil.getBurntItem().copy();
     }
 
     @Override

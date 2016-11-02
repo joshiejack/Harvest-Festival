@@ -2,29 +2,39 @@ package joshie.harvest.cooking.render;
 
 import gnu.trove.map.TIntObjectMap;
 import gnu.trove.map.hash.TIntObjectHashMap;
-import joshie.harvest.api.cooking.Recipe;
-import joshie.harvest.api.cooking.Utensil;
-import joshie.harvest.core.base.render.FMLDefinition;
-import joshie.harvest.core.util.interfaces.IFMLItem;
+import joshie.harvest.cooking.HFCooking;
+import joshie.harvest.cooking.item.ItemMeal.Meal;
+import net.minecraft.client.renderer.ItemMeshDefinition;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.common.registry.IForgeRegistry;
 
-public class MealDefinition extends FMLDefinition<Recipe> {
-    private final TIntObjectMap<ModelResourceLocation> burnt = new TIntObjectHashMap<>();
+import static joshie.harvest.cooking.tile.TileCooking.IN_UTENSIL;
 
-    public MealDefinition(IFMLItem item, String name, IForgeRegistry<Recipe> registry) {
-        super(item, name, registry);
+public class MealDefinition implements ItemMeshDefinition {
+    private final TIntObjectMap<ModelResourceLocation> alts = new TIntObjectHashMap<>();
+    private final TIntObjectMap<ModelResourceLocation> meals = new TIntObjectHashMap<>();
+
+    public MealDefinition() {
+        Item item = HFCooking.MEAL;
+        //Register the normal meals
+        for (Meal meal: Meal.values()) {
+            ModelResourceLocation model = new ModelResourceLocation(item.getRegistryName(), meal.getName());
+            ModelBakery.registerItemVariants(item, model);
+            meals.put(meal.ordinal(), model);
+
+            //Check for alts
+            if (meal.hasAltTexture()) {
+                ModelResourceLocation altModel = new ModelResourceLocation(item.getRegistryName(), meal.getName() + "_alt");
+                ModelBakery.registerItemVariants(item, altModel);
+                alts.put(meal.ordinal(), altModel);
+            }
+        }
     }
 
-    public void registerBurnt(int damage, ModelResourceLocation resource) {
-        burnt.put(damage, resource);
-    }
-
-    public int getMetaFromStack(ItemStack stack) {
-        if (stack.getItemDamage() >= 0 && stack.getItemDamage() < Utensil.UTENSILS.length) {
+    private int getMealMetaFromStack(ItemStack stack) {
+        if (stack.getItemDamage() >= 0 && stack.getItemDamage() < Meal.values().length) {
             return stack.getItemDamage();
         }
 
@@ -32,23 +42,15 @@ public class MealDefinition extends FMLDefinition<Recipe> {
     }
 
     @Override
-    public void registerEverything() {
-        super.registerEverything();
-        //Register the burnt meals
-        for (int i = 0; i < Utensil.UTENSILS.length; i++) {
-            Utensil utensil = Utensil.getUtensilFromIndex(i);
-            ModelResourceLocation model = utensil.getModelForMeal();
-            ModelBakery.registerItemVariants((Item)item, model);
-            registerBurnt(utensil.getIndex(), model);
-        }
-    }
-
-    @Override
+    @SuppressWarnings("ConstantConditions")
     public ModelResourceLocation getModelLocation(ItemStack stack) {
         if (stack.hasTagCompound()) {
-            return super.getModelLocation(stack);
+            Meal meal = HFCooking.MEAL.getEnumFromStack(stack);
+            if (meal.hasAltTexture()) {
+                return stack.getTagCompound().hasKey(IN_UTENSIL) ? alts.get(getMealMetaFromStack(stack)) : meals.get(getMealMetaFromStack(stack));
+            }
         }
 
-        return burnt.get(getMetaFromStack(stack));
+        return meals.get(getMealMetaFromStack(stack));
     }
 }

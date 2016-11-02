@@ -2,7 +2,7 @@ package joshie.harvest.api.crops;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.AnimalFoodType;
-import joshie.harvest.api.buildings.ISpecialPurchaseRules;
+import joshie.harvest.api.core.ISpecialPurchaseRules;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.cooking.Ingredient;
 import joshie.harvest.api.core.IShippable;

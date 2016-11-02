@@ -6,6 +6,7 @@ import joshie.harvest.api.crops.Crop;
 import joshie.harvest.core.base.item.ItemHFFoodEnum;
 import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.crops.item.ItemCrop.Crops;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.ResourceLocation;
@@ -47,8 +48,8 @@ public class ItemCrop extends ItemHFFoodEnum<ItemCrop, Crops> implements IShippa
     }
 
     @Override
-    public boolean shouldDisplayInCreative(Crops crop) {
-        return crop.getCrop().getCropStack(1).getItem() == this;
+    protected ItemStack getCreativeStack(Item item, Crops crop) {
+        return crop.getCrop().getCropStack(1).getItem() == this ? getStackFromEnum(crop) : null;
     }
 
     public enum Crops implements IStringSerializable {

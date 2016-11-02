@@ -2,7 +2,7 @@ package joshie.harvest.buildings;
 
 import com.google.gson.annotations.Expose;
 import joshie.harvest.api.buildings.Building;
-import joshie.harvest.api.buildings.ISpecialPurchaseRules;
+import joshie.harvest.api.core.ISpecialPurchaseRules;
 import joshie.harvest.buildings.placeable.Placeable;
 import joshie.harvest.buildings.placeable.Placeable.ConstructionStage;
 import joshie.harvest.buildings.placeable.entities.PlaceableNPC;
@@ -20,12 +20,12 @@ import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.IForgeRegistryEntry.Impl;
 
-import java.util.HashMap;
-import java.util.Locale;
+import java.util.*;
 
 public class BuildingImpl extends Impl<BuildingImpl> implements Building {
     //Offsets
     private final HashMap<String, PlaceableNPC> npc_offsets = new HashMap<>();
+    private final Set<ResourceLocation> inhabitants = new HashSet<>();
 
     //Costs and rules
     private ISpecialPurchaseRules special = (w, p) -> true;
@@ -54,6 +54,7 @@ public class BuildingImpl extends Impl<BuildingImpl> implements Building {
     }
 
     void initBuilding(BuildingImpl building) {
+        if (building.components == null) return;
         for (Placeable placeable: building.components) {
             if (placeable instanceof PlaceableNPC) {
                 PlaceableNPC npc = ((PlaceableNPC)placeable);
@@ -61,12 +62,21 @@ public class BuildingImpl extends Impl<BuildingImpl> implements Building {
                 if (home != null) {
                     npc_offsets.put(home, npc);
                 }
+
+                //Add this npc as living in the building
+                if (npc.getNPC() != null) {
+                    inhabitants.add(new ResourceLocation(npc.getNPC()));
+                }
             }
         }
 
         if (this.getRegistryName() != null) {
             this.toLocalise = this.getRegistryName().getResourceDomain().toLowerCase(Locale.ENGLISH) + ".structures." + this.getRegistryName().getResourcePath().toLowerCase(Locale.ENGLISH);
         }
+    }
+
+    public Collection<? extends ResourceLocation> getInhabitants() {
+        return inhabitants;
     }
 
     private ResourceLocation getResourceFromName(String resource) {
@@ -188,7 +198,7 @@ public class BuildingImpl extends Impl<BuildingImpl> implements Building {
     }
 
     public boolean hasRequirements(EntityPlayer player) {
-        return TownHelper.getClosestTownToEntity(player).hasBuildings(requirements);
+        return requirements.length == 0 || TownHelper.getClosestTownToEntity(player).hasBuildings(requirements);
     }
 
     public int getLength() {

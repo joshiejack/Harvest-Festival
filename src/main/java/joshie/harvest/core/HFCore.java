@@ -10,7 +10,6 @@ import joshie.harvest.core.block.BlockStorage;
 import joshie.harvest.core.handlers.GuiHandler;
 import joshie.harvest.core.helpers.InventoryHelper;
 import joshie.harvest.core.helpers.RegistryHelper;
-import joshie.harvest.core.item.ItemSizeable;
 import joshie.harvest.core.loot.SetEnum;
 import joshie.harvest.core.loot.SetSizeable;
 import joshie.harvest.core.tile.TileShipping;
@@ -46,7 +45,6 @@ public class HFCore {
     public static final BlockGoddessWater GODDESS_WATER = new BlockGoddessWater(GODDESS).register("goddess_water");
     public static final BlockFlower FLOWERS = new BlockFlower().register("flowers");
     public static final BlockStorage STORAGE = new BlockStorage().register("storage");
-    public static final ItemSizeable SIZEABLE = new ItemSizeable().register("sizeable");
     public static final AxisAlignedBB FENCE_COLLISION =  new AxisAlignedBB(0D, 0D, 0D, 1D, 1.5D, 1D);
 
     @SuppressWarnings("unchecked")
@@ -67,10 +65,6 @@ public class HFCore {
             registerIfNotRegistered("flower" + WordUtils.capitalize(type.getUnlocalizedName()), new ItemStack(Blocks.RED_FLOWER, 1, type.getMeta()));
         }
 
-        HFApi.shipping.registerSellable(new ItemStack(Items.FISH, 1, 0), 20L);
-        HFApi.shipping.registerSellable(new ItemStack(Items.FISH, 1, 1), 60L);
-        HFApi.shipping.registerSellable(new ItemStack(Items.FISH, 1, 2), 100L);
-        HFApi.shipping.registerSellable(new ItemStack(Items.FISH, 1, 3), 100L);
         HFApi.shipping.registerSellable(new ItemStack(Items.BREAD), 50L);
     }
 

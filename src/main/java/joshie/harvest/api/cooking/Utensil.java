@@ -1,7 +1,7 @@
 package joshie.harvest.api.cooking;
 
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -20,6 +20,7 @@ public class Utensil {
 
     private final String label;
     private final int index;
+    private ItemStack burntItem;
 
     public Utensil(String label) {
         this(getNextID(), label);
@@ -40,11 +41,20 @@ public class Utensil {
         UTENSILS[index] = this;
     }
 
+    public Utensil setBurntItem(ItemStack burntItem) {
+        this.burntItem = burntItem;
+        return this;
+    }
+
+    public ItemStack getBurntItem() {
+        return burntItem;
+    }
+
     /** Return the resource location to use for this utensil
      *  when a recipe is burnt */
     @SideOnly(Side.CLIENT)
     public ModelResourceLocation getModelForMeal() {
-        return new ModelResourceLocation(new ResourceLocation("harvestfestival", "meals/burnt_" + label), "inventory");
+        return new ModelResourceLocation("harvestfestival:meal", "burnt_" + label);
     }
 
     /** Return the unlocalized name for this utensil when it's burnt **/

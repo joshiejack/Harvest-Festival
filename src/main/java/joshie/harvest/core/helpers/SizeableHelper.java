@@ -1,10 +1,10 @@
 package joshie.harvest.core.helpers;
 
+import joshie.harvest.animals.HFAnimals;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.AnimalStats;
 import joshie.harvest.api.core.Size;
-import joshie.harvest.core.HFCore;
-import joshie.harvest.core.item.ItemSizeable.Sizeable;
+import joshie.harvest.animals.item.ItemAnimalProduct.Sizeable;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -25,6 +25,6 @@ public class SizeableHelper {
             if (relationship >= s.getRelationshipRequirement()) size = s;
         }
         
-        return sizeable.getStackOfSize(HFCore.SIZEABLE, size, stats.getProductsPerDay());
+        return sizeable.getStackOfSize(HFAnimals.ANIMAL_PRODUCT, size, stats.getProductsPerDay());
     }
 }

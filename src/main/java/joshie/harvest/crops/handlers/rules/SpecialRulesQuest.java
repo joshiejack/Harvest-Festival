@@ -1,6 +1,6 @@
 package joshie.harvest.crops.handlers.rules;
 
-import joshie.harvest.api.buildings.ISpecialPurchaseRules;
+import joshie.harvest.api.core.ISpecialPurchaseRules;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.quests.QuestHelper;
 import joshie.harvest.town.TownHelper;

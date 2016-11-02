@@ -31,10 +31,11 @@ import static joshie.harvest.mining.HFMining.MINING_ID;
 import static joshie.harvest.mining.gen.MineManager.CHUNK_BOUNDARY;
 
 public class MiningHelper {
-    public static final int MYSTRIL_FLOOR = 150;
-    public static final int GOLD_FLOOR = 80;
-    public static final int SILVER_FLOOR = 40;
-    public static final int COPPER_FLOOR = 10;
+    public static final int MYSTRIL_FLOOR = 163;
+    public static final int GEM_FLOOR = 123;
+    public static final int GOLD_FLOOR = 83;
+    public static final int SILVER_FLOOR = 43;
+    public static final int COPPER_FLOOR = 3;
     public static final double WORLD_HEIGHT = 256D;
     public static final int MAX_Y = (int) WORLD_HEIGHT - 1;
     public static final int FLOOR_HEIGHT = 6;
@@ -166,22 +167,24 @@ public class MiningHelper {
     }
 
     public static int getOreChance(Season season, int floor, Random rand) {
-        int minimum = season == WINTER ? 8 : 10;
-        int maximum = season == WINTER ? 10: 15;
+        int lowerLimit = season == WINTER ? 8: 10;
+        int upperLimit = season == WINTER ? 16: 20;
+
+        int chance = season == WINTER ? 7 + rand.nextInt(9) : 10 + rand.nextInt(11);
         if (floor %COW_FLOORS == 0) {
-            minimum -= 5;
-            maximum -= 5;
+            chance -= 5;
         } else if (floor %SHEEP_FLOORS == 0) {
-            minimum -= 3;
-            maximum -= 3;
+            chance -= 3;
         } else if (floor %CHICKEN_FLOORS == 0) {
-            minimum -= 2;
-            maximum -= 2;
+            chance -= 2;
         } else if (floor %CHICK_FLOORS == 0) {
-            minimum--;
-            maximum--;
+            chance--;
         }
 
-        return rand.nextInt(5) == 0 ? minimum + rand.nextInt(maximum) : minimum + 10 + rand.nextInt(maximum);
+        //7 in winter < lowest, 15 max winter
+        //10 in spring < lowest, 20 max spring
+        if (chance >= upperLimit) chance = upperLimit;
+        if (chance <= lowerLimit) chance  = lowerLimit;
+        return chance;
     }
 }

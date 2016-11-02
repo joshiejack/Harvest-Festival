@@ -4,6 +4,7 @@ import joshie.harvest.api.cooking.Ingredient;
 import joshie.harvest.api.cooking.IngredientStack;
 import joshie.harvest.api.cooking.Recipe;
 import joshie.harvest.api.cooking.Utensil;
+import joshie.harvest.cooking.item.ItemMeal.Meal;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
@@ -67,48 +68,48 @@ public class RecipeHelper {
         return ret;
     }
     
-    public static Recipe addFryingPanRecipe(String mealname, float hungerModifier, float modifier, Ingredient... ingredients) {
-        return addRecipe(mealname, FRYING_PAN, hungerModifier, modifier, false, ingredients);
+    public static Recipe addFryingPanRecipe(Meal meal, float hungerModifier, float modifier, Ingredient... ingredients) {
+        return addRecipe(meal.getName(), FRYING_PAN, hungerModifier, modifier, false, ingredients);
     }
 
     public static void addFryingPanRecipe(String mealname, ItemStack result, Ingredient... ingredients) {
         addRecipe(mealname, result, FRYING_PAN, ingredients);
     }
-    
-    public static Recipe addMixerRecipe(String mealname, boolean isDrink, float hungerModifier, float modifier, Ingredient... ingredients) {
-        return addRecipe(mealname, MIXER, hungerModifier, modifier, isDrink, ingredients);
+
+    public static Recipe addMixerRecipe(Meal meal, boolean isDrink, float hungerModifier, float modifier, Ingredient... ingredients) {
+        return addRecipe(meal.getName(), MIXER, hungerModifier, modifier, isDrink, ingredients);
     }
     
-    public static Recipe addMixerRecipe(String mealname, float hungerModifier, float modifier, Ingredient... ingredients) {
-        return addRecipe(mealname, MIXER, hungerModifier, modifier, true, ingredients);
+    public static Recipe addMixerRecipe(Meal meal, float hungerModifier, float modifier, Ingredient... ingredients) {
+        return addRecipe(meal.getName(), MIXER, hungerModifier, modifier, true, ingredients);
     }
 
     public static void addMixerRecipe(String mealname, ItemStack result, Ingredient... ingredients) {
         addRecipe(mealname, result, MIXER, ingredients);
     }
     
-    public static Recipe addNoUtensilRecipe(String mealname, float hungerModifier, float modifier, Ingredient... ingredients) {
-        return addRecipe(mealname, COUNTER, hungerModifier, modifier, false, ingredients);
+    public static Recipe addNoUtensilRecipe(Meal meal, float hungerModifier, float modifier, Ingredient... ingredients) {
+        return addRecipe(meal.getName(), COUNTER, hungerModifier, modifier, false, ingredients);
     }
 
     public static void addNoUtensilRecipe(String mealname, ItemStack result, Ingredient... ingredients) {
         addRecipe(mealname, result, COUNTER, ingredients);
     }
     
-    public static Recipe addPotRecipe(String mealname, boolean isDrink, float hungerModifier, float modifier, Ingredient... ingredients) {
-        return addRecipe(mealname, POT, hungerModifier, modifier, isDrink, ingredients);
+    public static Recipe addPotRecipe(Meal meal, boolean isDrink, float hungerModifier, float modifier, Ingredient... ingredients) {
+        return addRecipe(meal.getName(), POT, hungerModifier, modifier, isDrink, ingredients);
     }
     
-    public static Recipe addPotRecipe(String mealname, float hungerModifier, float modifier, Ingredient... ingredients) {
-        return addRecipe(mealname, POT, hungerModifier, modifier, false, ingredients);
+    public static Recipe addPotRecipe(Meal meal, float hungerModifier, float modifier, Ingredient... ingredients) {
+        return addRecipe(meal.getName(), POT, hungerModifier, modifier, false, ingredients);
     }
 
     public static void addPotRecipe(String mealname, ItemStack result, Ingredient... ingredients) {
         addRecipe(mealname, result, POT, ingredients);
     }
     
-    public static Recipe addOvenRecipe(String mealname, float hungerModifier, float modifier, Ingredient... ingredients) {
-        return addRecipe(mealname, OVEN, hungerModifier, modifier, false, ingredients);
+    public static Recipe addOvenRecipe(Meal meal, float hungerModifier, float modifier, Ingredient... ingredients) {
+        return addRecipe(meal.getName(), OVEN, hungerModifier, modifier, false, ingredients);
     }
 
     public static void addOvenRecipe(String mealname, ItemStack result, Ingredient... ingredients) {

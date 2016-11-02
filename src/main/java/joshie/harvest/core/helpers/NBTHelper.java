@@ -4,6 +4,8 @@ import gnu.trove.map.TIntObjectMap;
 import gnu.trove.map.hash.TIntObjectHashMap;
 import joshie.harvest.core.base.tile.TileHarvest;
 import joshie.harvest.core.util.holders.AbstractHolder;
+import joshie.harvest.core.util.interfaces.INBTSerializableMap;
+import joshie.harvest.core.util.interfaces.INBTWriteable;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -14,6 +16,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 
 public class NBTHelper {
@@ -45,11 +48,6 @@ public class NBTHelper {
     @SuppressWarnings("unchecked")
     public static <H extends AbstractHolder> HashSet<H> readHashSet(Class<H> h, NBTTagList list) {
         return readCollection(HashSet.class, h, list);
-    }
-
-    @SuppressWarnings("unchecked")
-    public static <H extends AbstractHolder> List<H> readList(Class<H> h, NBTTagList list) {
-        return readCollection(ArrayList.class, h, list);
     }
 
     public static <C extends Collection<? extends AbstractHolder>> NBTTagList writeCollection(C set) {
@@ -171,15 +169,6 @@ public class NBTHelper {
         return set;
     }
 
-    public static NBTTagList writeUUIDSet(Set<UUID> resources) {
-        NBTTagList list = new NBTTagList();
-        for (UUID uuid: resources) {
-            list.appendTag(new NBTTagString(uuid.toString()));
-        }
-
-        return list;
-    }
-
     public static ItemStack readItemStack(NBTTagCompound nbt) {
         Item item = Item.getByNameOrId(nbt.getString("id"));
         if (item == null) return null; //DIE!
@@ -211,5 +200,50 @@ public class NBTHelper {
         }
 
         return nbt;
+    }
+
+    @SuppressWarnings("unchecked")
+    public static <R, T> void readMap(String name, Class<? extends INBTSerializableMap> clazz, Map<R, T> map, NBTTagCompound nbt) {
+        NBTTagList list = nbt.getTagList(name, 10);
+        for (int i = 0; i < list.tagCount(); i++) {
+            NBTTagCompound tag = list.getCompoundTagAt(i);
+            try {
+                INBTSerializableMap object = clazz.newInstance();
+                if (object != null) {
+                    object.deserializeNBT(tag);
+                    object.buildMap(map);
+                }
+            } catch (InstantiationException | IllegalAccessException ex) {}
+        }
+    }
+
+    public static <R, T extends INBTSerializableMap> void writeMap(String name, NBTTagCompound nbt, Map<R, T> map) {
+        NBTTagList list = new NBTTagList();
+        for (T entry: map.values()) {
+            list.appendTag(entry.serializeNBT());
+        }
+
+        nbt.setTag(name, list);
+    }
+
+    @SuppressWarnings("unchecked")
+    public static <L extends Collection, B> void readList(String name, Class<B> clazz, L list, NBTTagCompound nbt) {
+        try {
+            NBTTagList currently = nbt.getTagList(name, 10);
+            for (int i = 0; i < currently.tagCount(); i++) {
+                list.add(clazz.getMethod("readFromNBT", NBTTagCompound.class).invoke(null, currently.getCompoundTagAt(i)));
+            }
+        } catch (IllegalAccessException | NoSuchMethodException | InvocationTargetException ex) {/**/}
+    }
+
+    public static <T extends INBTWriteable> void writeList(String name, NBTTagCompound nbt, List<T> theList) {
+        NBTTagList list = new NBTTagList();
+        for (T entry: theList) {
+            NBTTagCompound tag = new NBTTagCompound();
+            entry.writeToNBT(tag);
+            list.appendTag(tag);
+        }
+
+        nbt.setTag(name, list);
     }
 }

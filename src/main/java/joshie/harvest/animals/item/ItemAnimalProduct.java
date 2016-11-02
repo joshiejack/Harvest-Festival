@@ -1,15 +1,15 @@
-package joshie.harvest.core.item;
+package joshie.harvest.animals.item;
 
 import joshie.harvest.api.core.IShippable;
 import joshie.harvest.core.base.item.ItemHFSizeable;
-import joshie.harvest.core.item.ItemSizeable.Sizeable;
+import joshie.harvest.animals.item.ItemAnimalProduct.Sizeable;
 import joshie.harvest.core.util.interfaces.ISizeable;
 import net.minecraft.util.IStringSerializable;
 
 import java.util.Locale;
 
-public class ItemSizeable extends ItemHFSizeable<ItemSizeable, Sizeable> implements IShippable {
-    public ItemSizeable() {
+public class ItemAnimalProduct extends ItemHFSizeable<ItemAnimalProduct, Sizeable> implements IShippable {
+    public ItemAnimalProduct() {
         super(Sizeable.class);
     }
 

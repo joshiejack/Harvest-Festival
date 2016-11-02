@@ -38,7 +38,7 @@ public class BlockNature extends BlockHFEnum<BlockNature, NaturalBlock> implemen
     }
 
     public enum NaturalBlock implements IStringSerializable {
-        MATSUTAKE(350L), BAMBOO(50L), MINT(0L), CHAMOMILE(0L), LAVENDAR(0L);
+        MATSUTAKE(350L), BAMBOO(50L), MINT(20L), CHAMOMILE(30L), LAVENDAR(40L);
 
         private final long sell;
 

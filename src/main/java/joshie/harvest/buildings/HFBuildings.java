@@ -12,6 +12,9 @@ import joshie.harvest.buildings.item.ItemBuilding;
 import joshie.harvest.buildings.item.ItemCheat;
 import joshie.harvest.buildings.loader.*;
 import joshie.harvest.buildings.placeable.Placeable;
+import joshie.harvest.buildings.special.SpecialRuleChurch;
+import joshie.harvest.buildings.special.SpecialRuleFestivals;
+import joshie.harvest.buildings.special.SpecialRuleTownhall;
 import joshie.harvest.core.base.render.FMLDefinition;
 import joshie.harvest.core.base.render.MeshIdentical;
 import joshie.harvest.core.util.annotations.HFLoader;
@@ -36,20 +39,22 @@ public class HFBuildings {
     public static final BlockInternalAir AIR = new BlockInternalAir().register("air");
 
     public static final BuildingImpl null_building = new BuildingImpl();
-    public static final Building BARN = registerBuilding("barn", 6000L, 100, 0).setRequirements("carpenter").setOffset(6, -1, 8);
-    public static final Building BLACKSMITH = registerBuilding("blacksmith", 7000L, 16, 160).setRequirements("supermarket", "barn", "poultryFarm").setOffset(3, -2, 6);
-    public static final Building CAFE = registerBuilding("cafe", 16000L, 200, 110).setRequirements("miningHill", "goddessPond").setOffset(7, -1, 10);
+    public static final Building BARN = registerBuilding("barn", 4000L, 100, 0).setRequirements("carpenter").setOffset(6, -1, 8);
+    public static final Building BLACKSMITH = registerBuilding("blacksmith", 9000L, 16, 160).setRequirements("supermarket", "barn", "poultryFarm").setOffset(3, -2, 6);
+    public static final Building CAFE = registerBuilding("cafe", 15000L, 200, 110).setRequirements("supermarket", "barn", "poultryFarm").setOffset(7, -1, 10);
     public static final Building CARPENTER = registerBuilding("carpenter", 0L, 0, 0).setSpecialRules((w, p) -> false).setOffset(3, -1, 8);
-    public static final Building CHURCH = registerBuilding("church", 20000L, 160, 128).setRequirements("miningHill", "goddessPond").setOffset(6, -1, 13);
-    public static final Building CLOCKMAKER = registerBuilding("clockmaker", 9600L, 120, 78).setRequirements("miningHill", "goddessPond").setOffset(3, -1, 10);
+    public static final Building CHURCH = registerBuilding("church", 30000L, 160, 128).setSpecialRules(new SpecialRuleChurch()).setOffset(6, -1, 13);
+    public static final Building CLOCKMAKER = registerBuilding("clockmaker", 20000L, 120, 78).setRequirements("goddessPond").setOffset(3, -1, 10);
     public static final Building FISHING_HOLE = registerBuilding("fishingHole", 3000L, 16, 0).setRequirements("fishingHut").setOffset(6, -4, 7);
-    public static final Building FISHING_HUT = registerBuilding("fishingHut", 12000L, 64, 0).setRequirements("miningHill", "goddessPond").setOffset(4, -1, 10);
-    public static final Building GODDESS_POND = registerBuilding("goddessPond", 500L, 16, 0).setRequirements("blacksmith").setOffset(11, -1, 20);
-    public static final Building MINING_HILL = registerBuilding("miningHill", 2000L, 0, 32).setRequirements("miningHut").setOffset(10, -3, 11);
+    public static final Building FISHING_HUT = registerBuilding("fishingHut", 12000L, 128, 0).setRequirements("supermarket", "barn", "poultryFarm").setOffset(4, -1, 10);
+    public static final Building GODDESS_POND = registerBuilding("goddessPond", 7000L, 32, 16).setRequirements("blacksmith").setOffset(11, -1, 20);
+    public static final Building MINING_HILL = registerBuilding("miningHill", 3000L, 8, 32).setRequirements("miningHut").setOffset(10, -3, 11);
     public static final Building MINING_HUT = registerBuilding("miningHut", 6000L, 64, 64).setRequirements("supermarket", "barn", "poultryFarm").setOffset(10, -1, 10);
-    public static final Building POULTRY_FARM = registerBuilding("poultryFarm", 4000L, 100, 0).setRequirements("carpenter").setOffset(4, -1, 12);
-    public static final Building SUPERMARKET = registerBuilding("supermarket", 3000L, 192, 64).setRequirements("carpenter").setOffset(7, -10, 12).setTickTime(5);
-    public static final Building TOWNHALL = registerBuilding("townhall", 32000L, 640, 256).setRequirements("blacksmith", "miningHill", "goddessPond").setOffset(10, -1, 17);
+    public static final Building POULTRY_FARM = registerBuilding("poultryFarm", 3000L, 100, 0).setRequirements("carpenter").setOffset(4, -1, 12);
+    public static final Building SUPERMARKET = registerBuilding("supermarket", 5000L, 100, 0).setRequirements("carpenter").setOffset(7, -10, 12).setTickTime(5);
+    public static final Building TOWNHALL = registerBuilding("townhall", 50000L, 640, 256).setSpecialRules(new SpecialRuleTownhall()).setOffset(10, -1, 17);
+    //0.6+ Buildings
+    public static final Building FESTIVALS = registerBuilding("festivals", 1000L, 64, 20).setSpecialRules(new SpecialRuleFestivals());
 
     public static void preInit() {}
 
@@ -77,7 +82,10 @@ public class HFBuildings {
 
     private static Gson gson; //Temporary
     public static void loadBuilding(BuildingImpl building) {
-        building.components = (getGson().fromJson(ResourceLoader.getJSONResource(building.getRegistryName(), "buildings"), BuildingImpl.class)).components;
+        BuildingImpl impl = (getGson().fromJson(ResourceLoader.getJSONResource(building.getRegistryName(), "buildings"), BuildingImpl.class));
+        if (impl != null) {
+            building.components = impl.components;
+        }
     }
 
     public static Gson getGson() {

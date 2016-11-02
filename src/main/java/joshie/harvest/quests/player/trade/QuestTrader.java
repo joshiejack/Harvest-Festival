@@ -1,11 +1,11 @@
 package joshie.harvest.quests.player.trade;
 
+import joshie.harvest.animals.HFAnimals;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.core.Size;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.quests.HFQuest;
-import joshie.harvest.core.HFCore;
-import joshie.harvest.core.item.ItemSizeable.Sizeable;
+import joshie.harvest.animals.item.ItemAnimalProduct.Sizeable;
 import joshie.harvest.quests.base.QuestTrade;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
@@ -50,7 +50,7 @@ public class QuestTrader extends QuestTrade {
                 int amount = held.stackSize;
                 if (size == Size.MEDIUM) amount *= 2;
                 else if (size == Size.LARGE) amount *= 3;
-                Sizeable sizeable = HFCore.SIZEABLE.getEnumFromStack(held);
+                Sizeable sizeable = HFAnimals.ANIMAL_PRODUCT.getEnumFromStack(held);
                 Item item = sizeable == Sizeable.EGG ? Items.EGG : sizeable == Sizeable.MILK ? Items.MILK_BUCKET : WOOL;
                 rewardItem(player, new ItemStack(item, amount));
             }
@@ -66,7 +66,7 @@ public class QuestTrader extends QuestTrade {
     }
 
     private boolean isHolding(ItemStack holding, Sizeable sizeable) {
-        return holding != null && holding.getItem() == HFCore.SIZEABLE && HFCore.SIZEABLE.getEnumFromStack(holding) == sizeable;
+        return holding != null && holding.getItem() == HFAnimals.ANIMAL_PRODUCT && HFAnimals.ANIMAL_PRODUCT.getEnumFromStack(holding) == sizeable;
     }
 
     private boolean isHoldingInEitherHand(EntityPlayer player, Sizeable sizeable) {

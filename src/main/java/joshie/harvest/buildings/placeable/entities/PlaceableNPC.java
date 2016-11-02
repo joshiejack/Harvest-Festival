@@ -24,6 +24,14 @@ public class PlaceableNPC extends PlaceableEntity {
         this.pos = new BlockPos(x, y, z);
     }
 
+    public String getHomeString() {
+        return homeString;
+    }
+
+    public String getNPC() {
+        return npc;
+    }
+
     @Override
     public boolean canPlace(ConstructionStage stage) {
         return stage == ConstructionStage.MOVEIN;
@@ -43,9 +51,5 @@ public class PlaceableNPC extends PlaceableEntity {
     public PlaceableNPC getCopyFromEntity(Entity e, int x, int y, int z) {
         EntityNPC npc = (EntityNPC) e;
         return new PlaceableNPC("", npc.getNPC().getRegistryName().toString(), x, y, z);
-    }
-
-    public String getHomeString() {
-        return homeString;
     }
 }

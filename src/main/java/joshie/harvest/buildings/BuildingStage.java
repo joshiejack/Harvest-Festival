@@ -4,6 +4,7 @@ import joshie.harvest.buildings.placeable.Placeable;
 import joshie.harvest.buildings.placeable.Placeable.ConstructionStage;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.util.Direction;
+import joshie.harvest.core.util.interfaces.INBTWriteable;
 import joshie.harvest.town.data.TownDataServer;
 import joshie.harvest.town.TownHelper;
 import net.minecraft.nbt.NBTTagCompound;
@@ -14,7 +15,7 @@ import net.minecraft.world.World;
 
 /** This data is used by the BuilderNPC, 
  * to know their current progress through a building project **/
-public class BuildingStage {
+public class BuildingStage implements INBTWriteable {
     public BuildingImpl building;
     public Rotation rotation;
     public ConstructionStage stage;
@@ -160,6 +161,7 @@ public class BuildingStage {
         return stage;
     }
 
+    @Override
     public void writeToNBT(NBTTagCompound nbt) {
         nbt.setString("CurrentlyBuilding", BuildingRegistry.REGISTRY.getKey(building).toString());
         nbt.setString("Rotation", rotation.name());

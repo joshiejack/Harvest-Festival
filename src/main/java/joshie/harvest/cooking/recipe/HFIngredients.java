@@ -1,25 +1,27 @@
 package joshie.harvest.cooking.recipe;
 
+import joshie.harvest.animals.item.ItemAnimalProduct.Sizeable;
 import joshie.harvest.api.cooking.Ingredient;
 import joshie.harvest.api.core.Size;
 import joshie.harvest.api.crops.Crop;
 import joshie.harvest.cooking.CookingAPI;
-import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.cooking.item.ItemIngredients;
+import joshie.harvest.cooking.item.ItemMeal.Meal;
 import joshie.harvest.cooking.render.MappingEvent;
-import joshie.harvest.core.HFCore;
 import joshie.harvest.core.helpers.InventoryHelper;
-import joshie.harvest.core.item.ItemSizeable.Sizeable;
 import joshie.harvest.core.util.annotations.HFLoader;
 import joshie.harvest.crops.HFCrops;
-import joshie.harvest.gathering.HFGathering;
 import joshie.harvest.gathering.block.BlockNature.NaturalBlock;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
+import static joshie.harvest.animals.HFAnimals.ANIMAL_PRODUCT;
+import static joshie.harvest.cooking.HFCooking.INGREDIENTS;
+import static joshie.harvest.cooking.HFCooking.MEAL;
 import static joshie.harvest.core.lib.LoadOrder.HFINGREDIENTS;
+import static joshie.harvest.gathering.HFGathering.NATURE;
 
 @HFLoader(priority = HFINGREDIENTS)
 public class HFIngredients {
@@ -140,9 +142,9 @@ public class HFIngredients {
         //Animal Products
         CookingAPI.INSTANCE.register(new ItemStack(Items.EGG), EGG);
         CookingAPI.INSTANCE.register(new ItemStack(Items.MILK_BUCKET), MILK);
-        CookingAPI.INSTANCE.register(HFCore.SIZEABLE.getStack(Sizeable.EGG, Size.SMALL), EGG);
-        CookingAPI.INSTANCE.register(HFCore.SIZEABLE.getStack(Sizeable.MILK, Size.SMALL), MILK);
-        CookingAPI.INSTANCE.register(HFCore.SIZEABLE.getStack(Sizeable.MAYONNAISE, Size.SMALL), MAYONNAISE);
+        CookingAPI.INSTANCE.register(ANIMAL_PRODUCT.getStack(Sizeable.EGG, Size.SMALL), EGG);
+        CookingAPI.INSTANCE.register(ANIMAL_PRODUCT.getStack(Sizeable.MILK, Size.SMALL), MILK);
+        CookingAPI.INSTANCE.register(ANIMAL_PRODUCT.getStack(Sizeable.MAYONNAISE, Size.SMALL), MAYONNAISE);
 
         //Crops
         for (Crop crop: Crop.REGISTRY) {
@@ -161,40 +163,35 @@ public class HFIngredients {
         //Fungus
         CookingAPI.INSTANCE.register(new ItemStack(Blocks.BROWN_MUSHROOM), BROWN_MUSHROOM);
         CookingAPI.INSTANCE.register(new ItemStack(Blocks.RED_MUSHROOM), RED_MUSHROOM);
-        CookingAPI.INSTANCE.register(HFGathering.NATURE.getStackFromEnum(NaturalBlock.MATSUTAKE), MATSUTAKE);
+        CookingAPI.INSTANCE.register(NATURE.getStackFromEnum(NaturalBlock.MATSUTAKE), MATSUTAKE);
 
         //Other Plants
-        CookingAPI.INSTANCE.register(HFGathering.NATURE.getStackFromEnum(NaturalBlock.BAMBOO), BAMBOO);
+        CookingAPI.INSTANCE.register(NATURE.getStackFromEnum(NaturalBlock.BAMBOO), BAMBOO);
 
         //Ingredients
         registerForOre("foodChocolatebar", CHOCOLATE);
         registerForOre("foodFlour", FLOUR);
         registerForOre("foodOliveoil", OIL);
-        CookingAPI.INSTANCE.register(HFCooking.INGREDIENTS.getStackFromEnum(ItemIngredients.Ingredient.RICEBALL), RICEBALL);
-        CookingAPI.INSTANCE.register(HFCooking.INGREDIENTS.getStackFromEnum(ItemIngredients.Ingredient.CURRY_POWDER), CURRY_POWDER);
-        CookingAPI.INSTANCE.register(HFCooking.INGREDIENTS.getStackFromEnum(ItemIngredients.Ingredient.DUMPLING_POWDER), DUMPLING_POWDER);
-        CookingAPI.INSTANCE.register(HFCooking.INGREDIENTS.getStackFromEnum(ItemIngredients.Ingredient.WINE), WINE);
+        CookingAPI.INSTANCE.register(INGREDIENTS.getStackFromEnum(ItemIngredients.Ingredient.RICEBALL), RICEBALL);
+        CookingAPI.INSTANCE.register(INGREDIENTS.getStackFromEnum(ItemIngredients.Ingredient.CURRY_POWDER), CURRY_POWDER);
+        CookingAPI.INSTANCE.register(INGREDIENTS.getStackFromEnum(ItemIngredients.Ingredient.DUMPLING_POWDER), DUMPLING_POWDER);
+        CookingAPI.INSTANCE.register(INGREDIENTS.getStackFromEnum(ItemIngredients.Ingredient.WINE), WINE);
 
         //Meals - Real
-        CookingAPI.INSTANCE.register(CookingAPI.INSTANCE.getBestMeal("butter"), BUTTER);
-        CookingAPI.INSTANCE.register(CookingAPI.INSTANCE.getBestMeal("egg_boiled"), BOILED_EGG);
-        CookingAPI.INSTANCE.register(CookingAPI.INSTANCE.getBestMeal("sashimi"), SASHIMI);
-        CookingAPI.INSTANCE.register(CookingAPI.INSTANCE.getBestMeal("egg_scrambled"), SCRAMBLED_EGG);
-        CookingAPI.INSTANCE.register(CookingAPI.INSTANCE.getBestMeal("cookies"), COOKIES);
-        CookingAPI.INSTANCE.register(CookingAPI.INSTANCE.getBestMeal("ketchup"), KETCHUP);
-        CookingAPI.INSTANCE.register(CookingAPI.INSTANCE.getBestMeal("noodles"), NOODLES);
-        CookingAPI.INSTANCE.register(CookingAPI.INSTANCE.getBestMeal("jam_strawberry"), JAM);
-        CookingAPI.INSTANCE.register(CookingAPI.INSTANCE.getBestMeal("jam_apple"), JAM);
-        CookingAPI.INSTANCE.register(CookingAPI.INSTANCE.getBestMeal("jam_grape"), JAM);
-        CookingAPI.INSTANCE.register(CookingAPI.INSTANCE.getBestMeal("marmalade"), JAM);
-        CookingAPI.INSTANCE.register(CookingAPI.INSTANCE.getBestMeal("tempura"), TEMPURA);
+        CookingAPI.INSTANCE.register(MEAL.getStackFromEnum(Meal.EGG_BOILED), BOILED_EGG);
+        CookingAPI.INSTANCE.register(MEAL.getStackFromEnum(Meal.SASHIMI), SASHIMI);
+        CookingAPI.INSTANCE.register(MEAL.getStackFromEnum(Meal.COOKIES), COOKIES);
+        CookingAPI.INSTANCE.register(MEAL.getStackFromEnum(Meal.NOODLES), NOODLES);
+        CookingAPI.INSTANCE.register(MEAL.getStackFromEnum(Meal.JAM_STRAWBERRY), JAM);
+        CookingAPI.INSTANCE.register(MEAL.getStackFromEnum(Meal.JAM_APPLE), JAM);
+        CookingAPI.INSTANCE.register(MEAL.getStackFromEnum(Meal.JAM_GRAPE), JAM);
+        CookingAPI.INSTANCE.register(MEAL.getStackFromEnum(Meal.MARMALADE), JAM);
+        CookingAPI.INSTANCE.register(MEAL.getStackFromEnum(Meal.TEMPURA), TEMPURA);
 
-        //Meals - Alts
+        //Meals that are registed as ores
         registerForOre("foodButter", BUTTER);
         registerForOre("foodScrambledegg", SCRAMBLED_EGG);
         registerForOre("foodKetchup", KETCHUP);
-        CookingAPI.INSTANCE.register(HFCooking.INGREDIENTS.getStackFromEnum(ItemIngredients.Ingredient.SASHIMI), SASHIMI);
-        CookingAPI.INSTANCE.register(HFCooking.INGREDIENTS.getStackFromEnum(ItemIngredients.Ingredient.COOKIES), COOKIES);
 
         //Meals - Vanilla
         CookingAPI.INSTANCE.register(new ItemStack(Items.BREAD), BREAD);

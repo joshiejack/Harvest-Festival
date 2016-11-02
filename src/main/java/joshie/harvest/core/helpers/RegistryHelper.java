@@ -1,7 +1,7 @@
 package joshie.harvest.core.helpers;
 
 import joshie.harvest.api.HFApi;
-import joshie.harvest.api.buildings.ISpecialPurchaseRules;
+import joshie.harvest.api.core.ISpecialPurchaseRules;
 import joshie.harvest.api.crops.Crop;
 import joshie.harvest.api.crops.DropHandler;
 import joshie.harvest.api.crops.GrowthHandler;

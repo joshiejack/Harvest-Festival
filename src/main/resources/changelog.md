@@ -15,6 +15,10 @@
 #Buildings
 * Optimised building save format, should be smaller size
 * Only load buildings in to RAM when they're rendered/built
+* Building costs increased slightly, buildings reshuffled order
+* You will now unlock the church when you have nine npcs in town
+* You will now unlock the townhall when you have built nine buildings
+* Added the "festival grounds building", can be purchased as soon as you have built poultry farm or animal ranch or general store
 #Calendar
 * Summers are more likely to be sunny (98% vs 95%), and typhoon chances are higher if sun fails (99% vs 75%)
 #Cooking
@@ -27,9 +31,10 @@
 #Crops
 * Untied the crops from the registry for them, shouldn't affect anything
 * Melons and Pumpkins will no longer regrow, and will instead replace the crop
-* Crops will now be plantable on more than farmland, however they will only grow on farmland when a mod adds support
-* Rebalanced the prices/sell value and growth of some crops
+* Crops will now be plantable on more than farmland, however they will only grow on things other than farmland when a mod adds support
+* Rebalanced the prices/sell value of all crops
 * Removed the year unlocks, and replace with quest based ones instead
+* Take note that once any player has completed the quest, the crops can be purchased by anyone in that town
     * You will now unlock strawberries when you build the goddess pond
     * You will now unlock cabbages when you have shipped 1000 spring crops, pineapples 1000 summer and green peppers 1000 autumn
 #Gathering
@@ -37,12 +42,15 @@
 #Mining
 * Adjusted mine generation slightly, should only affect newly generated ones
 * Added gems, some will drop from junk rocks, most will drop from the new gem ore
-* Added Gem, Diamond, Emerald, Ruby, Amethyst, Topaz nodes to the mine
+* Added Diamond, Emerald, Ruby, Amethyst, Topaz nodes to the mine
+* Added random gem nodes (Only appear in winter)
+* Ore nodes will now drop more than one more rarely
 * Reduced the amount of dark chicks, chickens and sheep that spawn
 * Dark chicks will now only appear on every 7th floor, chickens every 11th, sheep every 13th and cows every 17th
 * There will now be a higher concentration of ores on the floors with the mobs
 * Mines will now have a greater chance of producing ore in winter
-* Copper will now only spawn from floor 10 and below, except in winter
+* Copper will now only spawn from floor 3 and below, except in winter
+* The new tiers will now start when you go through a bottom portal instead of just before
 #Shops
 * New Shop GUI
 * Removed the Blacksmith's store

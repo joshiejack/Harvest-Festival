@@ -115,7 +115,13 @@ public class BlockOre extends BlockHFSmashable<BlockOre, Ore> implements ISmasha
     }
 
     private static List<ItemStack> getRandomStack(World world, Material material, int bonus) {
-        return Collections.singletonList(HFMining.MATERIALS.getStackFromEnum(material, 1 + world.rand.nextInt(bonus)));
+        while (bonus > 0) {
+            if (world.rand.nextInt(bonus) == 0)
+                return Collections.singletonList(HFMining.MATERIALS.getStackFromEnum(material, 1 + world.rand.nextInt(bonus)));
+            bonus--;
+        }
+
+        return Collections.singletonList(HFMining.MATERIALS.getStackFromEnum(material, 1));
     }
 
     private static List<ItemStack> getRandomStack(World world, Item item, int bonus) {
@@ -135,21 +141,21 @@ public class BlockOre extends BlockHFSmashable<BlockOre, Ore> implements ISmasha
             case ROCK:
                 return world.isRemote ? Collections.singletonList(new ItemStack(this)): MiningHelper.getLoot(MINING, world, player, luck);
             case COPPER:
-                return getRandomStack(world, Material.COPPER, 5);
+                return getRandomStack(world, Material.COPPER, 2);
             case SILVER:
-                return getRandomStack(world, Material.SILVER, 4);
+                return getRandomStack(world, Material.SILVER, 3);
             case GOLD:
-                return getRandomStack(world, Material.GOLD, 3);
+                return getRandomStack(world, Material.GOLD, 4);
             case MYSTRIL:
-                return getRandomStack(world, Material.MYSTRIL, 3);
+                return getRandomStack(world, Material.MYSTRIL, 5);
             case EMERALD:
                 return getRandomStack(world, Items.EMERALD, 3);
             case DIAMOND:
                 return world.rand.nextInt(512) == 0 ? getRandomStack(world, Material.PINK_DIAMOND, 1) : getRandomStack(world, DIAMOND, 3);
             case RUBY:
-                return getRandomStack(world, Material.RUBY, 3);
+                return getRandomStack(world, Material.RUBY, 4);
             case AMETHYST:
-                return getRandomStack(world, Material.AMETHYST, 3);
+                return getRandomStack(world, Material.AMETHYST, 4);
             case TOPAZ:
                 return getRandomStack(world, Material.TOPAZ, 3);
             case GEM:

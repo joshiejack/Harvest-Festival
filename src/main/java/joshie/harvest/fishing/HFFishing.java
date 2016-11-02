@@ -12,6 +12,8 @@ import joshie.harvest.fishing.item.ItemFish;
 import joshie.harvest.fishing.item.ItemFishingRod;
 import joshie.harvest.fishing.item.ItemJunk;
 import net.minecraft.client.renderer.entity.RenderFish;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
 import net.minecraft.world.storage.loot.conditions.LootConditionManager;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
@@ -30,6 +32,10 @@ public class HFFishing {
         LootConditionManager.registerCondition(new ConditionSeason.Serializer());
         EntityRegistry.registerModEntity(EntityFishHookHF.class, "hook", EntityIDs.FISHING, HarvestFestival.instance, 64, 5, true);
         EntityRegistry.instance().lookupModSpawn(EntityFishHookHF.class, false).setCustomSpawning(null, true);
+        HFApi.shipping.registerSellable(new ItemStack(Items.FISH, 1, 0), 10L);
+        HFApi.shipping.registerSellable(new ItemStack(Items.FISH, 1, 1), 30L);
+        HFApi.shipping.registerSellable(new ItemStack(Items.FISH, 1, 2), 50L);
+        HFApi.shipping.registerSellable(new ItemStack(Items.FISH, 1, 3), 100L);
     }
 
     public static void init() {

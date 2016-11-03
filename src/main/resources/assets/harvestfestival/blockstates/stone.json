@@ -14,6 +14,6 @@
     "type=decorative_green": { "model": "harvestfestival:mine/mine_wall3" },
     "type=decorative_blue": { "model": "harvestfestival:mine/mine_wall4" },
     "type=decorative_red": { "model": "harvestfestival:mine/mine_wall5" },
-    "type=hole": { "model": "harvestfestival:mine/mine_hole" }
+    "type=ladder_hole": { "model": "harvestfestival:mine/mine_hole" }
   }
 }

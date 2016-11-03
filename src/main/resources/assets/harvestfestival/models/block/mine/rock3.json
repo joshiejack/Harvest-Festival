@@ -1,7 +1,7 @@
 {
   "parent": "block/cube_all",
   "textures": {
-    "particle": "harvestfestival:blocks/rock0"
+    "particle": "harvestfestival:blocks/mine/rock0"
   },
   "elements": [
     {

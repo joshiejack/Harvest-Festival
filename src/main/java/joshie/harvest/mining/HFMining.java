@@ -111,7 +111,7 @@ public class HFMining {
 
         //Winter values
         HFApi.mining.registerOre(all, ORE.getStateFromEnum(Ore.ROCK), 320D, WINTER);
-        HFApi.mining.registerOre(all, ORE.getStateFromEnum(Ore.COPPER), 10D, WINTER);
+        HFApi.mining.registerOre(copper, ORE.getStateFromEnum(Ore.COPPER), 10D, WINTER);
         HFApi.mining.registerOre(copper, ORE.getStateFromEnum(Ore.GEM), 3D, WINTER);
         HFApi.mining.registerOre(silver, ORE.getStateFromEnum(Ore.SILVER), 6D, WINTER);
         HFApi.mining.registerOre(silver, ORE.getStateFromEnum(Ore.AMETHYST), 5D, WINTER);

@@ -1,9 +1,9 @@
 {
   "parent": "block/cube_all",
   "textures": {
-    "particle": "harvestfestival:blocks/ore_silver",
-    "base": "harvestfestival:blocks/rock_silver",
-    "ore": "harvestfestival:blocks/ore_silver"
+    "particle": "harvestfestival:blocks/mine/ore_silver",
+    "base": "harvestfestival:blocks/mine/rock_silver",
+    "ore": "harvestfestival:blocks/mine/ore_silver"
   },
   "elements": [
     {

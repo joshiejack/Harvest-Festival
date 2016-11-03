@@ -6,6 +6,11 @@ import joshie.harvest.core.helpers.MCServerHelper;
 
 public abstract class TileDaily extends TileHarvest implements IDailyTickable {
     @Override
+    public Phase[] getPhases() {
+        return new Phase[] { Phase.PRE };
+    }
+    
+    @Override
     public void validate() {
         super.validate();
         //Update the ticker

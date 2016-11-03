@@ -18,10 +18,10 @@ import joshie.harvest.core.block.BlockStorage.Storage;
 import joshie.harvest.core.util.annotations.HFLoader;
 import joshie.harvest.crops.HFCrops;
 import joshie.harvest.crops.block.BlockSprinkler.Sprinkler;
+import joshie.harvest.fishing.HFFishing;
+import joshie.harvest.fishing.item.ItemJunk.Junk;
 import joshie.harvest.mining.HFMining;
 import joshie.harvest.mining.block.BlockLadder.Ladder;
-import joshie.harvest.mining.block.BlockStone;
-import joshie.harvest.mining.block.BlockStone.Type;
 import joshie.harvest.mining.item.ItemMiningTool.MiningTool;
 import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.shops.purchasable.*;
@@ -57,6 +57,8 @@ public class HFShops {
     public static IShop POULTRY;
     public static IShop SUPERMARKET;
     public static IShop MINER;
+    //Added in 0.6+
+    public static IShop BAITSHOP;
 
     public static void postInit() {
         registerBarn();
@@ -65,6 +67,7 @@ public class HFShops {
         registerMiner();
         registerPoultry();
         registerSupermarket();
+        registerTackleshop();
     }
     
     private static void registerBarn() {
@@ -159,18 +162,10 @@ public class HFShops {
 
     private static void registerMiner() {
         MINER = HFApi.shops.newShop(new ResourceLocation(MODID, "miner"), HFNPCs.MINER);
-        MINER.addItem(new PurchasableDecorative(1000, new ItemStack(HFMining.DIRT_DECORATIVE, 16, 0)));
-        MINER.addItem(new PurchasableDecorative(500, HFMining.LADDER.getStackFromEnum(Ladder.DECORATIVE)));
+        MINER.addItem(new PurchasableDecorative(1000, HFMining.LADDER.getStackFromEnum(Ladder.DECORATIVE)));
         MINER.addItem(150, HFMining.MINING_TOOL.getStackFromEnum(MiningTool.ESCAPE_ROPE));
-
-        for (Type type: BlockStone.Type.values()) {
-            if (type.isFake()) {
-                MINER.addItem(new PurchasableDecorative(1000, new ItemStack(HFMining.STONE, 16, type.ordinal())));
-            }
-        }
-
-        MINER.addOpening(MONDAY, 11000, 16000).addOpening(TUESDAY, 11000, 16000).addOpening(WEDNESDAY, 11000, 16000); //You decide what time it will be open yoshie
-        MINER.addOpening(THURSDAY, 11000, 16000).addOpening(FRIDAY, 11000, 16000).addOpening(SATURDAY, 11000, 16000);
+        MINER.addOpening(MONDAY, 0, 24000).addOpening(TUESDAY, 0, 24000).addOpening(WEDNESDAY, 0, 24000);
+        MINER.addOpening(THURSDAY, 0, 24000).addOpening(FRIDAY, 0, 24000).addOpening(SATURDAY, 0, 24000).addOpening(SUNDAY, 0, 24000);
     }
 
     private static void registerPoultry() {
@@ -216,6 +211,13 @@ public class HFShops {
 
         SUPERMARKET.addOpening(MONDAY, 9000, 17000).addOpening(TUESDAY, 9000, 17000).addOpening(THURSDAY, 9000, 17000);
         SUPERMARKET.addOpening(FRIDAY, 9000, 17000).addOpening(SATURDAY, 11000, 15000);
+    }
+
+    private static void registerTackleshop() {
+        BAITSHOP = HFApi.shops.newShop(new ResourceLocation(MODID, "baitshop"), HFNPCs.FISHERMAN);
+        BAITSHOP.addItem(Junk.BAIT.getCost(), HFFishing.JUNK.getStackFromEnum(Junk.BAIT));
+        BAITSHOP.addItem(1000L, HFFishing.FISHING_ROD.getStack(ToolTier.BASIC));
+        BAITSHOP.addOpening(TUESDAY, 13000, 19000).addOpening(WEDNESDAY, 13000, 19000).addOpening(THURSDAY, 13000, 19000).addOpening(FRIDAY, 13000, 19000);
     }
 
     public static boolean TWENTY_FOUR_HOUR_SHOPPING;

@@ -7,12 +7,11 @@ import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.core.helpers.InventoryHelper;
 import joshie.harvest.core.helpers.InventoryHelper.SearchType;
-import joshie.harvest.quests.Quests;
 import joshie.harvest.crops.HFCrops;
+import joshie.harvest.quests.Quests;
 import joshie.harvest.quests.base.QuestTrade;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -37,7 +36,7 @@ public class QuestFlowerTrader extends QuestTrade {
     @Override
     public String getLocalizedScript(EntityPlayer player, EntityLiving entity, INPC npc) {
         if (InventoryHelper.getHandItemIsIn(player, SPECIAL, SearchType.FLOWER, 5) != null) {
-            Season season = HFApi.calendar.getSeasonAtCoordinates(player.worldObj, new BlockPos(player));
+            Season season = HFApi.calendar.getDate(player.worldObj).getSeason();
             if (season == SPRING || season == SUMMER || season == AUTUMN) {
                 //Jade informs the player that she will happily trade flowers
                 //For a bag of seeds
@@ -53,7 +52,7 @@ public class QuestFlowerTrader extends QuestTrade {
     public void onChatClosed(EntityPlayer player, EntityLiving entity, INPC npc, boolean wasSneaking) {
         for (int j = 0; j < (player.isSneaking() ? 10: 1); j++) {
             if (InventoryHelper.takeItemsIfHeld(player, SPECIAL, SearchType.FLOWER, 5) != null) {
-                Season season = HFApi.calendar.getSeasonAtCoordinates(player.worldObj, new BlockPos(player));
+                Season season = HFApi.calendar.getDate(player.worldObj).getSeason();
                 if (season == SPRING || season == SUMMER || season == AUTUMN) {
                     if (season == SPRING) rewardItem(player, HFCrops.TURNIP.getSeedStack(1));
                     else if (season == SUMMER) rewardItem(player, HFCrops.ONION.getSeedStack(1));

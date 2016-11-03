@@ -12,6 +12,7 @@
 * You will now lose relationship points every time you use medicine on an animal
 * You will now get more points from interactions with animals
 * Adjusted animal product sell values to be more balanced
+* Cows and sheep will now eat vanilla tall grass
 #Buildings
 * Optimised building save format, should be smaller size
 * Only load buildings in to RAM when they're rendered/built
@@ -29,6 +30,7 @@
 * Sell costs for meals are now a bit lower and more rebalanced
 * You can now cook multiple meals at once, the cooking system was rewritten to allow for smarter utensils (i.e. putting two corn in an oven will make two baked corn)
 #Crops
+* Sprinklers won't consume water on rainy days
 * Untied the crops from the registry for them, shouldn't affect anything
 * Melons and Pumpkins will no longer regrow, and will instead replace the crop
 * Crops will now be plantable on more than farmland, however they will only grow on things other than farmland when a mod adds support
@@ -40,6 +42,8 @@
 #Gathering
 * More items will now spawn around the world (that sell for more than 1 gold!)
 #Mining
+* You can now access the mine as soon as you have built a general store
+* There will now be some "hole blocks in the mine", you will need to right click these with a ladder to place one down, to go further down the mine
 * Adjusted mine generation slightly, should only affect newly generated ones
 * Added gems, some will drop from junk rocks, most will drop from the new gem ore
 * Added Diamond, Emerald, Ruby, Amethyst, Topaz nodes to the mine
@@ -49,11 +53,12 @@
 * Dark chicks will now only appear on every 7th floor, chickens every 11th, sheep every 13th and cows every 17th
 * There will now be a higher concentration of ores on the floors with the mobs
 * Mines will now have a greater chance of producing ore in winter
-* Copper will now only spawn from floor 3 and below, except in winter
+* Copper will now only spawn from floor 10 and below
 * The new tiers will now start when you go through a bottom portal instead of just before
 #Shops
 * New Shop GUI
 * Removed the Blacksmith's store
+* Miner store now only sells ladders and escape ropes
 * Moved the crop farming tools to the general store
 * Moved the animal farming tools to the animal ranch
 * Moved the sprinkler to the carpenters store

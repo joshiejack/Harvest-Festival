@@ -32,15 +32,8 @@ public class LootStrings {
     public static final ResourceLocation BLACKSMITH_CHEST = register("chests/blacksmith");
     public static final ResourceLocation BLACKSMITH_FRAME = register("frames/blacksmith");
     public static final ResourceLocation BARN_FRAME = register("frames/barn");
-    public static final ResourceLocation MINING = register("gameplay/mining_junk");
-    public static final ResourceLocation MINING_GEMS = register("gameplay/mining_gems");
-    public static final ResourceLocation FISHING_BASIC = register("gameplay/fishing_basic");
-    public static final ResourceLocation FISHING_COPPER = register("gameplay/fishing_copper");
-    public static final ResourceLocation FISHING_SILVER = register("gameplay/fishing_silver");
-    public static final ResourceLocation FISHING_GOLD = register("gameplay/fishing_gold");
-    public static final ResourceLocation FISHING_MYSTRIL = register("gameplay/fishing_mystril");
-    public static final ResourceLocation FISHING_CURSED = register("gameplay/fishing_cursed");
-    public static final ResourceLocation FISHING_MYTHIC = register("gameplay/fishing_mythic");
+    public static final ResourceLocation MINING = register("gameplay/mining/junk");
+    public static final ResourceLocation MINING_GEMS = register("gameplay/mining/gems");
 
     private static ResourceLocation register(String id) {
         return LootTableList.register(new ResourceLocation(HFModInfo.MODID, id));

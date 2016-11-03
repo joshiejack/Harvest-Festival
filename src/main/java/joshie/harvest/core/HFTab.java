@@ -1,8 +1,9 @@
 package joshie.harvest.core;
 
 import joshie.harvest.api.HFApi;
-import joshie.harvest.api.core.Size;
 import joshie.harvest.buildings.HFBuildings;
+import joshie.harvest.cooking.HFCooking;
+import joshie.harvest.cooking.item.ItemMeal.Meal;
 import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.util.annotations.HFLoader;
@@ -34,7 +35,6 @@ public class HFTab extends CreativeTabs {
     public static final HFTab COOKING = new HFTab("cooking");
     public static final HFTab GATHERING = new HFTab("gathering");
     public static final HFTab FISHING = new HFTab("fishing");
-    public static CreativeTabs[] tabs = new CreativeTabs[0];
 
     private ItemStack icon = new ItemStack(Items.GOLDEN_HOE);
 
@@ -114,8 +114,8 @@ public class HFTab extends CreativeTabs {
         HFTab.TOWN.setStack(new ItemStack(HFBuildings.STRUCTURES, 1, 0));
         HFTab.MINING.setStack(HFMining.MATERIALS.getStackFromEnum(ADAMANTITE));
         HFTab.FARMING.setStack(HFCrops.STRAWBERRY.getCropStack(1));
-        HFTab.COOKING.setStack(HFApi.cooking.getMeal("salad"));
+        HFTab.COOKING.setStack(HFCooking.MEAL.getStackFromEnum(Meal.SALAD));
         HFTab.GATHERING.setStack(new ItemStack(HFTools.AXE, 1, 0));
-        HFTab.FISHING.setStack(Fish.PUPFISH.getStack(HFFishing.FISH, Size.LARGE));
+        HFTab.FISHING.setStack(HFFishing.FISH.getStackFromEnum(Fish.PUPFISH));
     }
 }

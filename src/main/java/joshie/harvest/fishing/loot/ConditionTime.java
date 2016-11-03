@@ -1,4 +1,4 @@
-package joshie.harvest.fishing.condition;
+package joshie.harvest.fishing.loot;
 
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonObject;

@@ -1,5 +1,7 @@
 package joshie.harvest.mining;
 
+import gnu.trove.set.TIntSet;
+import gnu.trove.set.hash.TIntHashSet;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.helpers.EntityHelper;
@@ -35,7 +37,7 @@ public class MiningHelper {
     public static final int GEM_FLOOR = 123;
     public static final int GOLD_FLOOR = 83;
     public static final int SILVER_FLOOR = 43;
-    public static final int COPPER_FLOOR = 3;
+    public static final int COPPER_FLOOR = 10;
     public static final double WORLD_HEIGHT = 256D;
     public static final int MAX_Y = (int) WORLD_HEIGHT - 1;
     public static final int FLOOR_HEIGHT = 6;
@@ -45,6 +47,23 @@ public class MiningHelper {
     public static final int CHICKEN_FLOORS = 11;
     public static final int SHEEP_FLOORS = 13;
     public static final int COW_FLOORS = 17;
+    public static final TIntSet HOLE_FLOORS = new TIntHashSet();
+    static {
+        //1k to copper (1)
+        //2k to silver (2)
+        //4k to gold (4)
+        //8k to gem(8)
+        //15k to mystril (15)
+        addFloors(9); //Copper unlock, 1k
+        addFloors(27, 41);//Silver unlock, 2k
+        addFloors(51, 61, 71, 81); //Gold unlock, 4k
+        addFloors(83, 88, 93, 98, 103, 108, 113, 118); //Gem unlock, 8k
+        addFloors(124, 128, 129, 132, 133, 140, 143, 145, 149, 150, 152, 156, 157, 160, 161); //Mystril unlock, 15 floors
+    }
+
+    private static void addFloors(int... ints) {
+        HOLE_FLOORS.addAll(ints);
+    }
 
     public static List<ItemStack> getLoot(ResourceLocation loot, World world, EntityPlayer player, float luck) {
         LootContext.Builder lootcontext$builder = new LootContext.Builder((WorldServer) world);

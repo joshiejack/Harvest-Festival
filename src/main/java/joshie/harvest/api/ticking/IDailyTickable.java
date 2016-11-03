@@ -3,18 +3,17 @@ package joshie.harvest.api.ticking;
 
 /** This is a capability for ticking tile entities, and entities once daily **/
 public interface IDailyTickable {
-    /** Called when the day ticks over **/
-    void newDay(Phase phase);
+    /** The phase the tickable should run in **/
+    Phase[] getPhases();
 
-    /** Return true if this is a priority tickable and should get run first **/
-    default boolean isPriority() {
-        return false;
-    }
+    /** Called when the new day ticks over **/
+    void newDay();
 
-    /** The phases are whether this tick occurs before animals and town updates,
-     *  or if it occurs after they updated. The mine phase is used when randomly,
-     *  updating the mine, instead of when it changes over normally */
+    /** PRIORITY = occurs before tickable blocks tick
+     *  PRE = occurs after the tick blocks tick and before animals, and town ticks
+     *  POST = occurs after the animal and town ticks
+     *  LAST = occurs after the post stage*/
     enum Phase {
-        PRE, POST, MINE
+        PRIORITY, PRE, POST, LAST
     }
 }

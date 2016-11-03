@@ -2,16 +2,12 @@ package joshie.harvest.plugins;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.cooking.Ingredient;
-import joshie.harvest.api.shops.IShop;
 import joshie.harvest.core.util.annotations.HFLoader;
-import joshie.harvest.npc.HFNPCs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
 
-import static joshie.harvest.api.calendar.Weekday.*;
-import static joshie.harvest.core.lib.HFModInfo.MODID;
+import static joshie.harvest.shops.HFShops.BAITSHOP;
 
 @ObjectHolder("Aquaculture")
 @HFLoader(mods = "Aquaculture")
@@ -21,7 +17,6 @@ public class Aquaculture {
     public static final Item iron_fishing_rod = null;
     public static final Item gold_fishing_rod = null;
     public static final Item diamond_fishing_rod = null;
-    public static IShop BAITSHOP;
 
     private static boolean isFish(int damage) {
         return damage != 19 && damage != 17 && damage != 13 && damage != 18 && damage != 14 && damage != 15 && damage != 16;
@@ -75,11 +70,9 @@ public class Aquaculture {
             }
         }
 
-        BAITSHOP = HFApi.shops.newShop(new ResourceLocation(MODID, "baitshop"), HFNPCs.FISHERMAN);
         BAITSHOP.addItem(1000L, new ItemStack(fishing_rod));
         BAITSHOP.addItem(15000L, new ItemStack(iron_fishing_rod));
         BAITSHOP.addItem(25000L, new ItemStack(gold_fishing_rod));
         BAITSHOP.addItem(50000L, new ItemStack(diamond_fishing_rod));
-        BAITSHOP.addOpening(TUESDAY, 13000, 19000).addOpening(WEDNESDAY, 13000, 19000).addOpening(THURSDAY, 13000, 19000).addOpening(FRIDAY, 13000, 19000);
     }
 }

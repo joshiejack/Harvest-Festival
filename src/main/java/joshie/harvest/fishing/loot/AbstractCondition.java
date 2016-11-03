@@ -1,4 +1,4 @@
-package joshie.harvest.fishing.condition;
+package joshie.harvest.fishing.loot;
 
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;

@@ -44,7 +44,7 @@ public class EntityHarvestSheep extends EntitySheep {
         tasks.addTask(1, new EntityAIPanic(this, 1.25D));
         tasks.addTask(3, new EntityAITempt(this, 1.1D, Items.WHEAT, false));
         tasks.addTask(4, new EntityAIFollowParent(this, 1.1D));
-        HFApi.animals.getEntityAI(this, AnimalAI.EAT, true);
+        HFApi.animals.getEntityAI(this, AnimalAI.EAT_GRASS, true);
         tasks.addTask(6, new EntityAIWander(this, 1.0D));
         tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
         tasks.addTask(8, new EntityAILookIdle(this));

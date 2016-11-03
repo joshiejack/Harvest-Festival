@@ -21,7 +21,9 @@ public interface CalendarManager {
      * @param world     the world object **/
     CalendarDate getDate(World world);
 
-    /** Returns the date at this location
+    /** Returns the date at this location, you should only use this,
+     *  when you want to know the location based season, for example when greenhouses are added
+     *  then this will return the season of the greenhouse, use getDate(world).getSeason() for most purposes
      *  @param world the world to check
      *  @param pos the block position to check
      *  @return the season at these coordinates**/

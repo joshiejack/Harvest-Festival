@@ -328,6 +328,12 @@ harvestfestival.fish.chub=Chub
 harvestfestival.fish.bowfin=Bowfin
 harvestfestival.fish.lungfish=Lungfish
 harvestfestival.fish.pickerel=Pickerel
+harvestfestival.fish.anchovy=Rainbow Trout
+harvestfestival.fish.bass=Bass
+harvestfestival.fish.carp=Carp
+harvestfestival.fish.pike=Pike
+harvestfestival.fish.sardine=Sardine
+harvestfestival.fish.walleye=Walleye
 
 #Junk
 harvestfestival.junk.bones=Fish Bones
@@ -473,9 +479,10 @@ harvestfestival.dirt=Mine Floor
 harvestfestival.dirt.winter=Mine Floor
 harvestfestival.dirt.decorative=Mine Floor
 harvestfestival.dirt.decorative.winter=Mine Floor
-harvestfestival.hole=Mine Hole
 harvestfestival.stone.real=Mine Wall
 harvestfestival.stone.decorative=Mine Wall
+harvestfestival.stone.ladder.hole=Secret Passage???
+harvestfestival.stone.ladder.hole.whisper=Hmmm... It looks like there should be a way down here, perhaps if I try to place a ladder?
 harvestfestival.ladder.wood=Mine Ladder
 harvestfestival.ore.rock=Rock
 harvestfestival.ore.copper=Copper Node

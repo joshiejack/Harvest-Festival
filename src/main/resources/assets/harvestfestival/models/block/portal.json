@@ -2,7 +2,7 @@
   "parent": "block/block",
   "textures": {
     "particle": "harvestfestival:blocks/mine/portal_mine_tl",
-    "wall": "harvestfestival:blocks/mine_wall"
+    "wall": "harvestfestival:blocks/mine/mine_wall"
   },
   "elements": [
     {

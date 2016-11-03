@@ -1,4 +1,4 @@
-package joshie.harvest.player.command;
+package joshie.harvest.tools.command;
 
 import joshie.harvest.api.core.ITiered;
 import joshie.harvest.core.commands.AbstractHFCommand;

@@ -90,7 +90,7 @@ public class CropHelper {
     }
 
     @Nullable
-    public static Season getSeasonAt(IBlockAccess world, BlockPos pos) {
+    static Season getSeasonAt(IBlockAccess world, BlockPos pos) {
         PlantSection section = BlockHFCrops.getSection(world.getBlockState(pos));
         if (section == PlantSection.BOTTOM) {
             TileEntity tile = world.getTileEntity(pos);

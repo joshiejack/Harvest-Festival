@@ -1,7 +1,7 @@
 {
   "parent": "block/block",
   "textures": {
-    "particle": "harvestfestival:blocks/mine_wall",
+    "particle": "harvestfestival:blocks/mine/mine_wall",
     "tl": "harvestfestival:blocks/mine/dirt_outer",
     "tr": "harvestfestival:blocks/mine/dirt_outer",
     "bl": "harvestfestival:blocks/mine/dirt_outer",

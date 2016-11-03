@@ -1,9 +1,9 @@
 {
   "parent": "block/cube_all",
   "textures": {
-    "particle": "harvestfestival:blocks/ore_mystril",
-    "base": "harvestfestival:blocks/rock_mystril",
-    "ore": "harvestfestival:blocks/ore_mystril"
+    "particle": "harvestfestival:blocks/mine/ore_mystril",
+    "base": "harvestfestival:blocks/mine/rock_mystril",
+    "ore": "harvestfestival:blocks/mine/ore_mystril"
   },
   "elements": [
     {

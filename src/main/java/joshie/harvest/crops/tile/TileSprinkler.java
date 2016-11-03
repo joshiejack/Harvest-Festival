@@ -41,29 +41,31 @@ public class TileSprinkler extends TileDaily implements ITickable {
         }
     }
 
-    public void hydrateSoil() {
+    public boolean hydrateSoil() {
+        boolean ret = false;
         for (int x = -4; x <= 4; x++) {
             for (int z = -4; z <= 4; z++) {
                 for (int y = 0; y >= -1; y--) {
                     BlockPos position = new BlockPos(getPos().getX() + x, getPos().getY() + y, getPos().getZ() + z);
                     if (!position.equals(getPos())) {
-                        HFApi.crops.hydrateSoil(null, getWorld(), position);
+                        if(HFApi.crops.hydrateSoil(null, getWorld(), position) && !ret) {
+                            ret = true;
+                        }
                     }
                 }
             }
         }
+
+        return ret;
     }
 
     @Override
-    public void newDay(Phase phase) {
-        if (phase == Phase.PRE) {
-            if (tank.getFluidAmount() > 1) {
-                //Reduce the amount in the tank
-                tank.drainInternal(HFCrops.SPRINKLER_DRAIN_RATE, true);
-                hydrateSoil();
-                if (tank.getFluidAmount() <= 1) {
-                    MCServerHelper.markTileForUpdate(this);
-                }
+    public void newDay() {
+        if (tank.getFluidAmount() > 1) {
+            //Reduce the amount in the tank
+            if (hydrateSoil()) tank.drainInternal(HFCrops.SPRINKLER_DRAIN_RATE, true);
+            if (tank.getFluidAmount() <= 1) {
+                MCServerHelper.markTileForUpdate(this);
             }
         }
     }

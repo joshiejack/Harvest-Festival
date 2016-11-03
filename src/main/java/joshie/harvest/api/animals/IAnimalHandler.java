@@ -52,6 +52,6 @@ public interface IAnimalHandler {
     }
 
     enum AnimalAI {
-        EAT, EGGS
+        EAT, EAT_GRASS, EGGS
     }
 }

@@ -1,6 +1,7 @@
 package joshie.harvest.animals;
 
 import joshie.harvest.animals.entity.ai.EntityAIEat;
+import joshie.harvest.animals.entity.ai.EntityAIEatLivestock;
 import joshie.harvest.animals.entity.ai.EntityAILayEgg;
 import joshie.harvest.animals.packet.PacketSyncAnimal;
 import joshie.harvest.animals.stats.AnimalStatsHF;
@@ -78,6 +79,13 @@ public class AnimalRegistry implements IAnimalHandler {
             return eat;
         } else if (type == AnimalAI.EGGS) {
             EntityAILayEgg eat = new EntityAILayEgg(animal);
+            if (add) {
+                animal.tasks.addTask(5, eat);
+            }
+
+            return eat;
+        } else if (type == AnimalAI.EAT_GRASS) {
+            EntityAIBase eat = new EntityAIEatLivestock(animal);
             if (add) {
                 animal.tasks.addTask(5, eat);
             }

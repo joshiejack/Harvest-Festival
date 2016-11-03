@@ -1,13 +1,13 @@
 {
   "parent": "block/cube_all",
   "textures": {
-    "particle": "harvestfestival:blocks/rock_gem",
-    "base": "harvestfestival:blocks/rock_gem",
-    "ore_ruby": "harvestfestival:blocks/ore_ruby",
-    "ore_emerald": "harvestfestival:blocks/ore_emerald",
-    "ore_diamond": "harvestfestival:blocks/ore_diamond",
-    "ore_amethyst": "harvestfestival:blocks/ore_amethyst",
-    "ore_topaz": "harvestfestival:blocks/ore_topaz"
+    "particle": "harvestfestival:blocks/mine/rock_gem",
+    "base": "harvestfestival:blocks/mine/rock_gem",
+    "ore_ruby": "harvestfestival:blocks/mine/ore_ruby",
+    "ore_emerald": "harvestfestival:blocks/mine/ore_emerald",
+    "ore_diamond": "harvestfestival:blocks/mine/ore_diamond",
+    "ore_amethyst": "harvestfestival:blocks/mine/ore_amethyst",
+    "ore_topaz": "harvestfestival:blocks/mine/ore_topaz"
   },
   "elements": [
     {

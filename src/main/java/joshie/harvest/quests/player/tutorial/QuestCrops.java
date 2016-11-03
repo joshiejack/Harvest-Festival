@@ -13,7 +13,6 @@ import joshie.harvest.quests.selection.TutorialSelection;
 import joshie.harvest.tools.HFTools;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.math.BlockPos;
 
 import java.util.Set;
 
@@ -128,7 +127,7 @@ public class QuestCrops extends QuestQuestion {
     @Override
     public void onQuestCompleted(EntityPlayer player) {
         rewardItem(player, HFTools.SICKLE.getStack(BASIC));
-        Season season = HFApi.calendar.getSeasonAtCoordinates(player.worldObj, new BlockPos(player));
+        Season season = HFApi.calendar.getDate(player.worldObj).getSeason();
         if (season == SUMMER) rewardItem(player, HFCrops.ONION.getSeedStack(3));
         else if (season == AUTUMN) rewardItem(player, HFCrops.CARROT.getSeedStack(3));
         else rewardItem(player, HFCrops.TURNIP.getSeedStack(3));

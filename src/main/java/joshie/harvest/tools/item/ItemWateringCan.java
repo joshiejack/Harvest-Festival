@@ -37,7 +37,6 @@ import javax.annotation.Nullable;
 import java.util.HashSet;
 import java.util.List;
 
-//TODO: Change to capability
 public class ItemWateringCan extends ItemTool<ItemWateringCan> {
     private static final double MAX_WATER = 128D;
 

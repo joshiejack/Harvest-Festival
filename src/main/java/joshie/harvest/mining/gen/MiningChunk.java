@@ -10,6 +10,7 @@ import joshie.harvest.core.HFTrackers;
 import joshie.harvest.mining.HFMining;
 import joshie.harvest.mining.MiningHelper;
 import joshie.harvest.mining.MiningRegistry;
+import joshie.harvest.mining.block.BlockStone.Type;
 import joshie.harvest.mining.entity.EntityDarkChick;
 import joshie.harvest.mining.entity.EntityDarkChicken;
 import joshie.harvest.mining.entity.EntityDarkCow;
@@ -33,6 +34,7 @@ import java.util.Random;
 
 import static joshie.harvest.mining.MiningHelper.MAX_LOOP;
 import static joshie.harvest.mining.MiningHelper.MAX_Y;
+import static joshie.harvest.mining.MiningHelper.MYSTRIL_FLOOR;
 import static joshie.harvest.mining.gen.MineManager.CHUNK_BOUNDARY;
 
 public class MiningChunk implements IChunkGenerator {
@@ -43,6 +45,7 @@ public class MiningChunk implements IChunkGenerator {
     private static final IBlockState AIR = Blocks.AIR.getDefaultState();
     private static final IBlockState PORTAL = HFMining.PORTAL.getDefaultState();
     private static final IBlockState ORE = HFMining.ORE.getDefaultState();
+    private static final IBlockState LADDER_HOLE = HFMining.STONE.getStateFromEnum(Type.LADDER_HOLE);
     protected static final List<Biome.SpawnListEntry> MONSTERS = Lists.newArrayList();
     protected static final List<Block> IRREPLACABLE = Lists.newArrayList();
 
@@ -63,6 +66,10 @@ public class MiningChunk implements IChunkGenerator {
     public MiningChunk(World world, long seed) {
         this.worldObj = world;
         this.rand = new Random(seed);
+    }
+
+    public boolean isLadder(IBlockState state) {
+        return state.getBlock() == Blocks.LADDER || state == LADDER_HOLE;
     }
 
     public void setBlockState(ChunkPrimer primer, int x, int y, int z, IBlockState state, int chunkX) {
@@ -175,11 +182,16 @@ public class MiningChunk implements IChunkGenerator {
                             if (below[i][j] == LADDER) {
                                 Rotation rotation = Rotation.values()[rand.nextInt(Rotation.values().length)];
                                 IBlockState theState = HFMining.LADDER.withRotation(LADDER, rotation);
-                                if (getBlockState(primer, i, belowY, j).getBlock() != LADDER.getBlock())
+                                if (getBlockState(primer, i, belowY, j).getBlock() != LADDER.getBlock() && getBlockState(primer, i, belowY, j) != LADDER_HOLE)
                                     setBlockState(primer, i, belowY, j, FLOORS, chunkX);
                                 for (int y = 1; y <= MiningHelper.FLOOR_HEIGHT; y++) {
                                     setBlockState(primer, i, belowY + y, j, theState, chunkX);
                                     setBlockState(primer, i, belowY + y + 4, j, AIR, chunkX);
+                                }
+
+                                int floor = MiningHelper.getFloor(chunkX, belowY + MiningHelper.FLOOR_HEIGHT);
+                                if (MiningHelper.HOLE_FLOORS.contains(floor) || (floor > MYSTRIL_FLOOR && rand.nextInt(4) == 0)) {
+                                    setBlockState(primer, i, belowY + MiningHelper.FLOOR_HEIGHT, j, LADDER_HOLE, chunkX);
                                 }
                             }
 

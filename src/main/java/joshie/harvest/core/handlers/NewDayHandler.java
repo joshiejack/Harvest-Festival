@@ -22,10 +22,14 @@ import static joshie.harvest.calendar.HFCalendar.TWO_HOURS;
 public class NewDayHandler {
     //New day
     public static void newDay(final World world) {
-        HFTrackers.getTickables(world).newDay(IDailyTickable.Phase.PRE);
+        DailyTickHandler tickables = HFTrackers.getTickables(world);
+        tickables.processPhase(IDailyTickable.Phase.PRIORITY);
+        tickables.processBlocks();
+        tickables.processPhase(IDailyTickable.Phase.PRE);
         HFTrackers.<AnimalTrackerServer>getAnimalTracker(world).newDay();
         HFTrackers.<TownTrackerServer>getTownTracker(world).newDay();
-        HFTrackers.getTickables(world).newDay(IDailyTickable.Phase.POST);
+        tickables.processPhase(IDailyTickable.Phase.POST);
+        tickables.processPhase(IDailyTickable.Phase.LAST);
         HFTrackers.markDirty(world);
     }
 

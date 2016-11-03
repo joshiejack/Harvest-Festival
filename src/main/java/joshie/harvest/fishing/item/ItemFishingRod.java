@@ -1,14 +1,17 @@
 package joshie.harvest.fishing.item;
 
+import joshie.harvest.api.fishing.IWeightedItem;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.item.ItemTool;
-import joshie.harvest.core.lib.LootStrings;
+import joshie.harvest.fishing.HFFishing;
 import joshie.harvest.fishing.entity.EntityFishHookHF;
+import joshie.harvest.fishing.item.ItemFish.*;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.IItemPropertyGetter;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.stats.StatList;
 import net.minecraft.util.*;
 import net.minecraft.world.World;
@@ -18,10 +21,11 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.HashSet;
+import java.util.Random;
 
-import static net.minecraft.world.storage.loot.LootTableList.GAMEPLAY_FISHING;
+import static joshie.harvest.fishing.item.ItemFish.*;
 
-public class ItemFishingRod extends ItemTool<ItemFishingRod> {
+public class ItemFishingRod extends ItemTool<ItemFishingRod> implements IWeightedItem {
     public ItemFishingRod() {
         super("fishing_rod", new HashSet<>());
         setCreativeTab(HFTab.FISHING);
@@ -39,29 +43,52 @@ public class ItemFishingRod extends ItemTool<ItemFishingRod> {
         return true;
     }
 
-    public ResourceLocation getLootTable(ItemStack stack) {
-        if (stack == null) return GAMEPLAY_FISHING;
-        else {
-            switch (getTier(stack)) {
-                case BASIC:
-                    return LootStrings.FISHING_BASIC;
-                case COPPER:
-                    return LootStrings.FISHING_COPPER;
-                case SILVER:
-                    return LootStrings.FISHING_SILVER;
-                case GOLD:
-                    return LootStrings.FISHING_GOLD;
-                case MYSTRIL:
-                    return LootStrings.FISHING_MYSTRIL;
-                case CURSED:
-                case BLESSED:
-                    return LootStrings.FISHING_CURSED;
-                case MYTHIC:
-                    return LootStrings.FISHING_MYTHIC;
-                default:
-                    return GAMEPLAY_FISHING;
-            }
+    @Override
+    @SuppressWarnings("ConstantConditions")
+    public ItemStack getInWeightRange(Random rand, ItemStack held, ItemStack stack) {
+        if (!stack.hasTagCompound()) stack.setTagCompound(new NBTTagCompound());
+        Fish fish = HFFishing.FISH.getEnumFromStack(stack);
+        int min = 1, max = 1;
+        switch (getTier(held)) {
+            case BASIC:
+                min = SMALL_FISH;
+                max = SMALL_FISH;
+                break;
+            case COPPER:
+                min = SMALL_FISH;
+                max = MEDIUM_FISH;
+                break;
+            case SILVER:
+                min = SMALL_FISH;
+                max = LARGE_FISH;
+                break;
+            case GOLD:
+                min = SMALL_FISH;
+                max = GIANT_FISH;
+                break;
+            case MYSTRIL:
+                min = MEDIUM_FISH;
+                max = GIANT_FISH;
+                break;
+            case CURSED:
+            case BLESSED:
+                min = LARGE_FISH;
+                max = GIANT_FISH;
+                break;
+            case MYTHIC:
+                min = GIANT_FISH;
+                max = GIANT_FISH;
+                break;
         }
+
+        int size;
+        if (min == max) size = min;
+        else {
+            size = min + rand.nextInt(1 + (max - min));
+        }
+
+        stack.getTagCompound().setDouble(SIZE, fish.getLengthFromSizeOfFish(size));
+        return stack;
     }
 
     @Override

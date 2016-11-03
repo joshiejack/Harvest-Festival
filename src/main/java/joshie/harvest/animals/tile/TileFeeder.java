@@ -48,8 +48,14 @@ public class TileFeeder extends TileFillable {
         return false;
     }
 
+    //Feed animals from the night before, and feed them for today
     @Override
-    public void newDay(Phase phase) {
+    public Phase[] getPhases() {
+        return new Phase[] { Phase.PRE, Phase.POST };
+    }
+
+    @Override
+    public void newDay() {
         for (EntityAnimal animal : EntityHelper.getEntities(EntityAnimal.class, getWorld(), getPos(), 32D, 5D)) {
             AnimalStats stats = EntityHelper.getStats(animal);
             if (stats != null && HFApi.animals.canAnimalEatFoodType(stats, SEED) && hasFoodAndFeed()) {

@@ -16,7 +16,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
-import static joshie.harvest.mining.MiningHelper.CHICKEN_FLOORS;
 import static joshie.harvest.mining.MiningHelper.SILVER_FLOOR;
 
 public class EntityDarkChicken extends EntityMob {
@@ -30,6 +29,11 @@ public class EntityDarkChicken extends EntityMob {
         super(world);
         setSize(0.4F, 0.7F);
         setPathPriority(PathNodeType.WATER, 0.0F);
+    }
+
+    @Override
+    public int getMaxSpawnedInChunk() {
+        return 2;
     }
 
     @Override
@@ -63,7 +67,7 @@ public class EntityDarkChicken extends EntityMob {
     @Override
     protected boolean isValidLightLevel() {
         int floor = MiningHelper.getFloor((int)posX >> 4, (int) posY);
-        return ((floor >= SILVER_FLOOR && floor % CHICKEN_FLOORS == 0) || floor == SILVER_FLOOR);
+        return floor >= SILVER_FLOOR;
     }
 
     @Override

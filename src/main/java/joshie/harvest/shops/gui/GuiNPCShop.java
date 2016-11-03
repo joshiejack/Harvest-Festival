@@ -53,7 +53,10 @@ public class GuiNPCShop extends GuiNPCBase {
         GlStateManager.pushMatrix();
         GlStateManager.enableBlend();
         mc.renderEngine.bindTexture(gui_texture);
-        drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
+        if (contents.size() < 9) {
+            drawTexturedModalRect(x, y, 0, 0, xSize, (78 * (contents.size() / 2)));
+            drawTexturedModalRect(x, y + (78 * (contents.size() / 2)), 0, 228, xSize, 28);
+        } else drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
         if (overlay != null) overlay.renderOverlay(this, x, y, xSize, ySize);
         ShopFontRenderer.render(this, x + 20, y + 17, shop.getLocalizedName(), false);
         drawCoinage(x, y, stats.getGold());

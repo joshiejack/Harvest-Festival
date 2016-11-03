@@ -9,9 +9,12 @@ import joshie.harvest.core.helpers.MCClientHelper;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.util.annotations.HFEvents;
 import joshie.harvest.core.helpers.TextHelper;
+import joshie.harvest.mining.HFMining;
+import joshie.harvest.mining.MiningHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.client.event.GuiScreenEvent.KeyboardInputEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
@@ -101,6 +104,7 @@ public class CalendarHUD {
             if (HFCalendar.ENABLE_DATE_HUD && isHUDVisible()) {
                 Calendar calendar = HFTrackers.getCalendar(MCClientHelper.getWorld());
                 CalendarDate date = calendar.getDate();
+                boolean inMine = mc.theWorld.provider.getDimension() == HFMining.MINING_ID;
                 Season season = HFApi.calendar.getSeasonAtCoordinates(MCClientHelper.getWorld(), new BlockPos(MCClientHelper.getPlayer()));
                 if (season != null) {
                     SeasonData data = CalendarAPI.INSTANCE.getDataForSeason(season);
@@ -116,7 +120,8 @@ public class CalendarHUD {
                     //Enlarge the Day
                     GlStateManager.pushMatrix();
                     GlStateManager.scale(1.4F, 1.4F, 1.4F);
-                    mc.fontRendererObj.drawStringWithShadow(TextHelper.format("%1s %2s", season.getDisplayName(), (date.getDay() + 1)), (adjustedX / 1.4F) + 30, (adjustedY / 1.4F) + 7, 0xFFFFFFFF);
+                    String header = inMine ? TextFormatting.GRAY + TextHelper.format("harvestfestival.mine.format", "" + MiningHelper.getFloor(mc.thePlayer.chunkCoordX, (int)mc.thePlayer.posY)) : TextHelper.format("harvestfestival.calendar.date", season.getDisplayName(), (date.getDay() + 1));
+                    mc.fontRendererObj.drawStringWithShadow(header, (adjustedX / 1.4F) + 30, (adjustedY / 1.4F) + 7, 0xFFFFFFFF);
                     GlStateManager.popMatrix();
 
                     //Draw the time

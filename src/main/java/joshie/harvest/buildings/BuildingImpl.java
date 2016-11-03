@@ -54,7 +54,7 @@ public class BuildingImpl extends Impl<BuildingImpl> implements Building {
     }
 
     void initBuilding(BuildingImpl building) {
-        if (building != null && building.components == null) return;
+        if (building == null || building.components == null) return;
         for (Placeable placeable: building.components) {
             if (placeable instanceof PlaceableNPC) {
                 PlaceableNPC npc = ((PlaceableNPC)placeable);

@@ -122,7 +122,7 @@ public class HFNPCs {
         DAUGHTER_2.setLocation(HOME, TOWNHALLCHILDBED);
         CLOCK_WORKER.setLocation(HOME, CLOCKMAKERDOWNSTAIRS);
         GS_OWNER.setLocation(HOME, GENERALBASEMENTBACK).setLocation(SHOP, GENERALTILL);
-        MINER.setLocation(HOME, MINEHUTSIDE).setLocation(SHOP, MINEHUTGRAVEL);
+        //MINER.setLocation(HOME, MINEHUTSIDE).setLocation(SHOP, MINEHUTGRAVEL);
         FISHERMAN.setLocation(HOME, FISHINGHUTUPSTAIRS).setLocation(SHOP, FISHINGHUTDOWNSTAIRS).addGreeting(new GreetingLocation(POND));
         MILKMAID.setLocation(HOME, GENERALBEDROOM).setLocation(SHOP, BARNLEFT);
         POULTRY.setLocation(HOME, POULTRYBUILDING).setLocation(SHOP, POULTRYBUILDING);

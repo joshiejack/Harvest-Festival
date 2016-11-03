@@ -496,6 +496,7 @@ harvestfestival.ore.ruby=Ruby Node
 harvestfestival.ore.topaz=Topaz Node
 harvestfestival.ore.amethyst=Amethyst Node
 harvestfestival.portal=Mine Portal
+harvestfestival.mine.format=Floor %s
 
 #Mine Materials
 harvestfestival.material.junk=Junk Ore
@@ -539,7 +540,7 @@ harvestfestival.season.spring=Spring
 harvestfestival.season.summer=Summer
 harvestfestival.season.autumn=Autumn
 harvestfestival.season.winter=Winter
-harvestfestival.calendar.date=%1s %2s
+harvestfestival.calendar.date=%1$s %2$s
 harvestfestival.calendar.monday=MON
 harvestfestival.calendar.tuesday=TUE
 harvestfestival.calendar.wednesday=WED

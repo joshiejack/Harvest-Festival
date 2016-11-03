@@ -16,13 +16,17 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import static joshie.harvest.mining.MiningHelper.GOLD_FLOOR;
-import static joshie.harvest.mining.MiningHelper.SHEEP_FLOORS;
 
 public class EntityDarkSheep extends EntityMob {
     public EntityDarkSheep(World world) {
         super(world);
         setSize(1.4F, 1.4F);
         setPathPriority(PathNodeType.WATER, 0.0F);
+    }
+
+    @Override
+    public int getMaxSpawnedInChunk() {
+        return 1;
     }
 
     @Override
@@ -56,7 +60,7 @@ public class EntityDarkSheep extends EntityMob {
     @Override
     protected boolean isValidLightLevel() {
         int floor = MiningHelper.getFloor((int)posX >> 4, (int) posY);
-        return ((floor >= GOLD_FLOOR && floor % SHEEP_FLOORS == 0) || floor == GOLD_FLOOR);
+        return floor >= GOLD_FLOOR;
     }
 
     @Override

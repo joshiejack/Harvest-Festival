@@ -32,9 +32,7 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Random;
 
-import static joshie.harvest.mining.MiningHelper.MAX_LOOP;
-import static joshie.harvest.mining.MiningHelper.MAX_Y;
-import static joshie.harvest.mining.MiningHelper.MYSTRIL_FLOOR;
+import static joshie.harvest.mining.MiningHelper.*;
 import static joshie.harvest.mining.gen.MineManager.CHUNK_BOUNDARY;
 
 public class MiningChunk implements IChunkGenerator {

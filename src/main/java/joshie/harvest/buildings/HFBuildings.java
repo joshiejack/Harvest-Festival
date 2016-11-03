@@ -51,7 +51,7 @@ public class HFBuildings {
     public static final Building FISHING_HUT = registerBuilding("fishingHut", 12000L, 128, 0).setRequirements("supermarket", "barn", "poultryFarm").setOffset(4, -1, 10);
     public static final Building GODDESS_POND = registerBuilding("goddessPond", 7000L, 32, 16).setRequirements("blacksmith").setOffset(11, -1, 20);
     public static final Building MINING_HILL = registerBuilding("miningHill", 3000L, 8, 32).setRequirements("supermarket").setOffset(10, -3, 11);
-    public static final Building MINING_HUT = registerBuilding("miningHut", 6000L, 64, 64).setSpecialRules(NEVER).setOffset(10, -1, 10);
+    //public static final Building MINING_HUT = registerBuilding("miningHut", 6000L, 64, 64).setSpecialRules(NEVER).setOffset(10, -1, 10);
     public static final Building POULTRY_FARM = registerBuilding("poultryFarm", 3000L, 100, 0).setRequirements("carpenter").setOffset(4, -1, 12);
     public static final Building SUPERMARKET = registerBuilding("supermarket", 5000L, 100, 0).setRequirements("carpenter").setOffset(7, -10, 12).setTickTime(5);
     public static final Building TOWNHALL = registerBuilding("townhall", 50000L, 640, 256).setSpecialRules(new SpecialRuleTownhall()).setOffset(10, -1, 17);

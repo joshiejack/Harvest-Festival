@@ -97,7 +97,7 @@ public class MiningHelper {
         return world.getBlockState(pos).getBlock().isPassable(world, pos);
     }
 
-    private static BlockPos modifySpawnAndPlayerRotation(WorldServer dim, BlockPos spawn, Entity entity) {
+     public static BlockPos modifySpawnAndPlayerRotation(WorldServer dim, BlockPos spawn, Entity entity) {
         IBlockState actual = HFMining.PORTAL.getActualState(dim.getBlockState(spawn), dim, spawn);
         if (actual.getBlock() == HFMining.PORTAL) {
             Portal portal = HFMining.PORTAL.getEnumFromState(actual);
@@ -134,7 +134,9 @@ public class MiningHelper {
         MinecraftServer server = FMLCommonHandler.instance().getMinecraftServerInstance();
         WorldServer newWorld = server.worldServerForDimension(MINING_ID);
         preloadChunks(newWorld, mineID, 1);
-        BlockPos spawn = modifySpawnAndPlayerRotation(newWorld, ((MiningProvider)newWorld.provider).getSpawnCoordinateForMine(mineID, 1), entity);
+        MiningProvider provider = ((MiningProvider)newWorld.provider);
+        provider.onTeleportToMine(mineID); //Called to initiate after chunks are loaded
+        BlockPos spawn = modifySpawnAndPlayerRotation(newWorld, provider.getSpawnCoordinateForMine(mineID, 1), entity);
         return EntityHelper.teleport(entity, MINING_ID, spawn);
     }
 
@@ -165,7 +167,9 @@ public class MiningHelper {
         MinecraftServer server = FMLCommonHandler.instance().getMinecraftServerInstance();
         WorldServer newWorld = server.worldServerForDimension(MINING_ID);
         preloadChunks(newWorld, mineID, newFloor);
-        BlockPos spawn = modifySpawnAndPlayerRotation(newWorld, ((MiningProvider)newWorld.provider).getSpawnCoordinateForMine(mineID, newFloor), entity);
+        MiningProvider provider = ((MiningProvider)newWorld.provider);
+        provider.onTeleportToMine(mineID); //Called to initiate after chunks are loaded
+        BlockPos spawn = modifySpawnAndPlayerRotation(newWorld, provider.getSpawnCoordinateForMine(mineID, newFloor), entity);
         if (entity.timeUntilPortal == 0) {
             entity.timeUntilPortal = 100;
             if (entity instanceof EntityPlayerMP) {

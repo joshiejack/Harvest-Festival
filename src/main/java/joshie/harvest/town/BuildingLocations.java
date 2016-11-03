@@ -53,9 +53,9 @@ public class BuildingLocations {
     public static final BuildingLocation CARPENTERUP = new BuildingLocation(CARPENTER, "jade").withDistance(3D);
     public static final BuildingLocation CHURCHFRONT = new BuildingLocation(CHURCH, "church.door").withDistance(24D).withTime(1500L);
     public static final BuildingLocation MINEENTRANCE = new BuildingLocation(MINING_HILL, "mine.front").withDistance(24D).withTime(1500L);
-    public static final BuildingLocation MINEHUTENTRANCE = new BuildingLocation(MINING_HUT, "miner.door").withDistance(16D).withTime(1500L);
-    public static final BuildingLocation MINEHUTSIDE = new BuildingLocation(MINING_HUT, "brandon").withDistance(4D);
-    public static final BuildingLocation MINEHUTGRAVEL = new BuildingLocation(MINING_HUT, "miner.gravel").withDistance(4D);
+    //public static final BuildingLocation MINEHUTENTRANCE = new BuildingLocation(MINING_HUT, "miner.door").withDistance(16D).withTime(1500L);
+    //public static final BuildingLocation MINEHUTSIDE = new BuildingLocation(MINING_HUT, "brandon").withDistance(4D);
+    //public static final BuildingLocation MINEHUTGRAVEL = new BuildingLocation(MINING_HUT, "miner.gravel").withDistance(4D);
     public static final BuildingLocation CAFETILL = new BuildingLocation(CAFE, "cafe.till").withDistance(4D);
     public static final BuildingLocation CAFEFRONT = new BuildingLocation(CAFE, "cafe.entrance").withDistance(16D).withTime(1500L);
     public static final BuildingLocation CAFECUSTOMER = new BuildingLocation(CAFE, "cafe.customer").withDistance(16D).withTime(1500L);

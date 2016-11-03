@@ -1,35 +1,40 @@
-###0.6.0
-#!Important
+#0.6.0
+##!Important
 * Removed a couple internal registries so it may warn you when joining a world, this can be safely ignored
+
 ##NEW!
-#Fishing
+###Fishing
 * Added fishing rods, obtainable when you meet jakob for the first time
 
-##Additions + Changes to existing features
-#Animals
+#Additions + Changes to existing features
+###Animals
 * Animals now only get stressed every two hours they're left outside in the rain or at night
 * You will now get relationship points every two hours if an animal is outside in the day and it isn't raining
 * You will now lose relationship points every time you use medicine on an animal
 * You will now get more points from interactions with animals
 * Adjusted animal product sell values to be more balanced
 * Cows and sheep will now eat vanilla tall grass
-#Buildings
+
+###Buildings
 * Optimised building save format, should be smaller size
 * Only load buildings in to RAM when they're rendered/built
 * Building costs increased slightly, buildings reshuffled order
 * You will now unlock the church when you have nine npcs in town
 * You will now unlock the townhall when you have built nine buildings
 * Added the "festival grounds building", can be purchased as soon as you have built poultry farm or animal ranch or general store
-#Calendar
+
+###Calendar
 * Summers are more likely to be sunny (98% vs 95%), and typhoon chances are higher if sun fails (99% vs 75%)
-#Cooking
+
+###Cooking
 * Vanilla recipes will now show up in the cookbook
 * Added a bunch of a new recipes
 * Books will now have additional pages when you have a lot of recipes
 * Food stats have been rebalanced entirely, they're now calculated based on the basic ingredients with a modifier for certain meals
 * Sell costs for meals are now a bit lower and more rebalanced
 * You can now cook multiple meals at once, the cooking system was rewritten to allow for smarter utensils (i.e. putting two corn in an oven will make two baked corn)
-#Crops
+
+###Crops
 * Sprinklers won't consume water on rainy days
 * Untied the crops from the registry for them, shouldn't affect anything
 * Melons and Pumpkins will no longer regrow, and will instead replace the crop
@@ -39,9 +44,11 @@
 * Take note that once any player has completed the quest, the crops can be purchased by anyone in that town
     * You will now unlock strawberries when you build the goddess pond
     * You will now unlock cabbages when you have shipped 1000 spring crops, pineapples 1000 summer and green peppers 1000 autumn
-#Gathering
+
+###Gathering
 * More items will now spawn around the world (that sell for more than 1 gold!)
-#Mining
+
+###Mining
 * You can now access the mine as soon as you have built a general store
 * There will now be some "hole blocks in the mine", you will need to right click these with a ladder to place one down, to go further down the mine
 * Adjusted mine generation slightly, should only affect newly generated ones
@@ -50,12 +57,11 @@
 * Added random gem nodes (Only appear in winter)
 * Ore nodes will now drop more than one more rarely
 * Reduced the amount of dark chicks, chickens and sheep that spawn
-* Dark chicks will now only appear on every 7th floor, chickens every 11th, sheep every 13th and cows every 17th
-* There will now be a higher concentration of ores on the floors with the mobs
 * Mines will now have a greater chance of producing ore in winter
 * Copper will now only spawn from floor 10 and below
 * The new tiers will now start when you go through a bottom portal instead of just before
-#Shops
+
+###Shops
 * New Shop GUI
 * Removed the Blacksmith's store
 * Miner store now only sells ladders and escape ropes
@@ -64,12 +70,14 @@
 * Moved the sprinkler to the carpenters store
 * Fodder now costs 100 gold, but will last for 10 feeds
 * Chicken Feed now costs 50 gold, but will last for 10 feeds
-#Tools
+
+###Tools
 * Tools will have [BROKEN] in front of their name, when they can't be used
 * Hammers will now be able to smash more tiers of rocks
 * Fixed Hoes being half the durability they were meant to
 * Tools will now reach 100% before you use them all the way
-##Fixes
+
+####Fixes
 * Gifting npcs on their birthday will now only work once on smp, instead of over multiple days
 * My hoes will now work with BOP blocks
 * Made shop scroll behave better

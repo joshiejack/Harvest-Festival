@@ -15,14 +15,18 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import static joshie.harvest.mining.MiningHelper.COW_FLOORS;
-import static joshie.harvest.mining.MiningHelper.MYSTRIL_FLOOR;
+import static joshie.harvest.mining.MiningHelper.GEM_FLOOR;
 
 public class EntityDarkCow extends EntityMob {
     public EntityDarkCow(World world) {
         super(world);
         setSize(1.4F, 1.4F);
         setPathPriority(PathNodeType.WATER, 0.0F);
+    }
+
+    @Override
+    public int getMaxSpawnedInChunk() {
+        return 1;
     }
 
     @Override
@@ -56,7 +60,7 @@ public class EntityDarkCow extends EntityMob {
     @Override
     protected boolean isValidLightLevel() {
         int floor = MiningHelper.getFloor((int)posX >> 4, (int) posY);
-        return ((floor >= MYSTRIL_FLOOR && floor % COW_FLOORS == 0) || floor == MYSTRIL_FLOOR);
+        return floor >= GEM_FLOOR;
     }
 
     @Override

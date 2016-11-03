@@ -37,6 +37,10 @@ public class MiningProvider extends WorldProvider {
         return MineManager.areCoordinatesGenerated(worldObj, mineID, floor);
     }
 
+    public void onTeleportToMine(int mineID) {
+        HFTrackers.getMineManager(worldObj).onTeleportToMine(worldObj, mineID);
+    }
+
     @SideOnly(Side.CLIENT)
     public boolean isSkyColored() {
         return false;

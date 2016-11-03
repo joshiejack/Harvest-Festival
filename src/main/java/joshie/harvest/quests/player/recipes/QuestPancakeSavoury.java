@@ -11,7 +11,7 @@ import java.util.Set;
 @HFQuest("recipe.pancake.savoury")
 public class QuestPancakeSavoury extends QuestRecipe {
     public QuestPancakeSavoury() {
-        super("pancake_savoury", HFNPCs.ANIMAL_OWNER, 10000);
+        super("pancake_savoury", HFNPCs.BARN_OWNER, 10000);
     }
 
     @Override

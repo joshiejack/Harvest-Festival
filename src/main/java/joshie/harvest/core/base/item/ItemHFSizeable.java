@@ -112,42 +112,4 @@ public class ItemHFSizeable<I extends ItemHFEnum, E extends Enum<E> & IStringSer
             }
         }
     }
-
-    public enum Fish implements IStringSerializable {
-        ANGEL, ANGLER, BLAASOP, BOWFIN, BUTTERFLY, CATFISH, CHUB, CLOWN, COD, DAMSEL, ELECTRICRAY, GOLD, HERRING, KOI, LAMPREY,
-        LUNGFISH, MANTARAY, MINNOW, PERCH, PICKEREL, PIRANHA, PUFFER, PUPFISH, SALMON, SIAMESE, STARGAZER, STINGRAY, TANG, TETRA, TROUT, TUNA;
-
-        private final long small;
-        private final long medium;
-        private final long large;
-
-        Fish() {
-            this.small = 0;
-            this.medium = 0;
-            this.large = 0;
-        }
-
-        Fish(long small, long medium, long large) {
-            this.small = small;
-            this.medium = medium;
-            this.large = large;
-        }
-
-        public ItemStack getStack(Item item, Size size) {
-            return getStackOfSize(item, size, 1);
-        }
-
-        public ItemStack getStackOfSize(Item item, Size size, int stackSize) {
-            return new ItemStack(item, stackSize, (ordinal() * 3) + size.ordinal());
-        }
-
-        @Override
-        public String getName() {
-            return name().toLowerCase(Locale.ENGLISH);
-        }
-
-        public long getSellValue(Size size) {
-            return size == Size.SMALL ? small : size == Size.MEDIUM ? medium : large;
-        }
-    }
 }

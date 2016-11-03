@@ -3,9 +3,8 @@ package joshie.harvest.fishing.item;
 import joshie.harvest.api.fishing.IWeightedItem;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.item.ItemTool;
-import joshie.harvest.fishing.HFFishing;
+import joshie.harvest.core.util.interfaces.ILength;
 import joshie.harvest.fishing.entity.EntityFishHookHF;
-import joshie.harvest.fishing.item.ItemFish.*;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
@@ -47,47 +46,49 @@ public class ItemFishingRod extends ItemTool<ItemFishingRod> implements IWeighte
     @SuppressWarnings("ConstantConditions")
     public ItemStack getInWeightRange(Random rand, ItemStack held, ItemStack stack) {
         if (!stack.hasTagCompound()) stack.setTagCompound(new NBTTagCompound());
-        Fish fish = HFFishing.FISH.getEnumFromStack(stack);
-        int min = 1, max = 1;
-        switch (getTier(held)) {
-            case BASIC:
-                min = SMALL_FISH;
-                max = SMALL_FISH;
-                break;
-            case COPPER:
-                min = SMALL_FISH;
-                max = MEDIUM_FISH;
-                break;
-            case SILVER:
-                min = SMALL_FISH;
-                max = LARGE_FISH;
-                break;
-            case GOLD:
-                min = SMALL_FISH;
-                max = GIANT_FISH;
-                break;
-            case MYSTRIL:
-                min = MEDIUM_FISH;
-                max = GIANT_FISH;
-                break;
-            case CURSED:
-            case BLESSED:
-                min = LARGE_FISH;
-                max = GIANT_FISH;
-                break;
-            case MYTHIC:
-                min = GIANT_FISH;
-                max = GIANT_FISH;
-                break;
+        if (stack.getItem() instanceof ILength) {
+            int min = 1, max = 1;
+            switch (getTier(held)) {
+                case BASIC:
+                    min = SMALL_FISH;
+                    max = SMALL_FISH;
+                    break;
+                case COPPER:
+                    min = SMALL_FISH;
+                    max = MEDIUM_FISH;
+                    break;
+                case SILVER:
+                    min = SMALL_FISH;
+                    max = LARGE_FISH;
+                    break;
+                case GOLD:
+                    min = SMALL_FISH;
+                    max = GIANT_FISH;
+                    break;
+                case MYSTRIL:
+                    min = MEDIUM_FISH;
+                    max = GIANT_FISH;
+                    break;
+                case CURSED:
+                case BLESSED:
+                    min = LARGE_FISH;
+                    max = GIANT_FISH;
+                    break;
+                case MYTHIC:
+                    min = GIANT_FISH;
+                    max = GIANT_FISH;
+                    break;
+            }
+
+            int size;
+            if (min == max) size = min;
+            else {
+                size = min + rand.nextInt(1 + (max - min));
+            }
+
+            stack.getTagCompound().setDouble(SIZE, ((ILength) stack.getItem()).getLengthFromSizeOfFish(stack, size));
         }
 
-        int size;
-        if (min == max) size = min;
-        else {
-            size = min + rand.nextInt(1 + (max - min));
-        }
-
-        stack.getTagCompound().setDouble(SIZE, fish.getLengthFromSizeOfFish(size));
         return stack;
     }
 

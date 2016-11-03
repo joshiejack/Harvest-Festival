@@ -3,6 +3,7 @@ package joshie.harvest.fishing.item;
 import joshie.harvest.api.core.IShippable;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.item.ItemHFEnum;
+import joshie.harvest.core.util.interfaces.ILength;
 import joshie.harvest.fishing.item.ItemFish.Fish;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -13,7 +14,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.List;
 import java.util.Locale;
 
-public class ItemFish extends ItemHFEnum<ItemFish, Fish> implements IShippable {
+public class ItemFish extends ItemHFEnum<ItemFish, Fish> implements IShippable, ILength {
     public static final String SIZE = "Size";
 
     public ItemFish() {
@@ -35,6 +36,11 @@ public class ItemFish extends ItemHFEnum<ItemFish, Fish> implements IShippable {
         Fish fish = getEnumFromStack(stack);
         double weight = stack.hasTagCompound() ? stack.getTagCompound().getDouble(SIZE) : fish.getLengthFromSizeOfFish(SMALL_FISH);
         tooltip.add("Length: " + weight + "cm");
+    }
+
+    @Override
+    public double getLengthFromSizeOfFish(ItemStack stack, int size) {
+        return getEnumFromStack(stack).getLengthFromSizeOfFish(size);
     }
 
     public static final int SMALL_FISH = 1;

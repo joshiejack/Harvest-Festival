@@ -7,6 +7,6 @@ import joshie.harvest.quests.base.QuestRecipe;
 @HFQuest("recipe.dinnerroll")
 public class QuestDinnerroll extends QuestRecipe {
     public QuestDinnerroll() {
-        super("dinnerroll", HFNPCs.CLOCK_WORKER, 5000);
+        super("dinnerroll", HFNPCs.CLOCKMAKER, 5000);
     }
 }

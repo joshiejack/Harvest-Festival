@@ -11,7 +11,7 @@ import java.util.Set;
 @HFQuest("recipe.doughnut")
 public class QuestDoughnut extends QuestRecipe {
     public QuestDoughnut() {
-        super("doughnut", HFNPCs.CLOCK_WORKER, 10000);
+        super("doughnut", HFNPCs.CLOCKMAKER, 10000);
     }
 
     @Override

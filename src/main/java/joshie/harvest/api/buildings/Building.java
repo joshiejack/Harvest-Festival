@@ -1,6 +1,7 @@
 package joshie.harvest.api.buildings;
 
 import joshie.harvest.api.core.ISpecialPurchaseRules;
+import joshie.harvest.api.npc.INPC;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.Mirror;
@@ -28,6 +29,9 @@ public interface Building {
      * @param heightOffset the offset, ideally use negative number
      * @param length the length of the building*/
     Building setOffset(int width, int heightOffset, int length);
+
+    /** Set the npcs that live here **/
+    Building setInhabitants(INPC... npc);
 
     /** Allows multiple of this building **/
     Building setMultiple();

@@ -26,7 +26,7 @@ public class BloodMagic {
     public static IShop BLOODMAGE;
 
     public static void init() {
-        BLOODMAGE = HFApi.shops.newShop(new ResourceLocation(MODID, "bloodmage"), HFNPCs.CLOCK_WORKER);
+        BLOODMAGE = HFApi.shops.newShop(new ResourceLocation(MODID, "bloodmage"), HFNPCs.CLOCKMAKER);
         BLOODMAGE.addItem(100, new ItemStack(ItemSoulSnare));
         BLOODMAGE.addItem(150, new ItemStack(Items.ROTTEN_FLESH));
         BLOODMAGE.addItem(500, new ItemStack(Items.BONE));

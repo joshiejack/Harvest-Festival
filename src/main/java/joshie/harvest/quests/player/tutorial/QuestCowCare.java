@@ -30,7 +30,7 @@ import java.util.Set;
 
 import static joshie.harvest.animals.item.ItemAnimalTool.Tool.BRUSH;
 import static joshie.harvest.core.helpers.InventoryHelper.ITEM_STACK;
-import static joshie.harvest.npc.HFNPCs.ANIMAL_OWNER;
+import static joshie.harvest.npc.HFNPCs.BARN_OWNER;
 import static joshie.harvest.npc.HFNPCs.BUILDER;
 import static joshie.harvest.quests.Quests.TUTORIAL_CROPS;
 
@@ -48,7 +48,7 @@ public class QuestCowCare extends QuestQuestion {
 
     public QuestCowCare() {
         super(new TutorialSelection("cow"));
-        setNPCs(BUILDER, ANIMAL_OWNER);
+        setNPCs(BUILDER, BARN_OWNER);
     }
 
     @Override
@@ -75,7 +75,7 @@ public class QuestCowCare extends QuestQuestion {
 
     @Override
     public Selection getSelection(EntityPlayer player, INPC npc) {
-        return npc == ANIMAL_OWNER && quest_stage <= 0 ? selection : null;
+        return npc == BARN_OWNER && quest_stage <= 0 ? selection : null;
     }
 
     @Override
@@ -91,7 +91,7 @@ public class QuestCowCare extends QuestQuestion {
                 //So that you can get additional animals
                 return getLocalized("reminder.barn");
             } else return null;
-        } else if (npc == ANIMAL_OWNER) {
+        } else if (npc == BARN_OWNER) {
             if (isCompletedEarly) {
                 return getLocalized("completed");
             } else if (quest_stage == START) {

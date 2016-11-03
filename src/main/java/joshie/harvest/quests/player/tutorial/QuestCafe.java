@@ -15,8 +15,8 @@ import net.minecraft.item.ItemStack;
 
 import java.util.Set;
 
-import static joshie.harvest.quests.Quests.TUTORIAL_UPGRADING;
 import static joshie.harvest.npc.HFNPCs.CAFE_OWNER;
+import static joshie.harvest.quests.Quests.TUTORIAL_SUPERMARKET;
 
 @HFQuest("tutorial.cafe")
 public class QuestCafe extends QuestQuestion {
@@ -29,7 +29,7 @@ public class QuestCafe extends QuestQuestion {
 
     @Override
     public boolean canStartQuest(Set<Quest> active, Set<Quest> finished) {
-        return finished.contains(TUTORIAL_UPGRADING);
+        return finished.contains(TUTORIAL_SUPERMARKET);
     }
 
     @Override

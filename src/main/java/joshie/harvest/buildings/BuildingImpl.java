@@ -3,6 +3,7 @@ package joshie.harvest.buildings;
 import com.google.gson.annotations.Expose;
 import joshie.harvest.api.buildings.Building;
 import joshie.harvest.api.core.ISpecialPurchaseRules;
+import joshie.harvest.api.npc.INPC;
 import joshie.harvest.buildings.placeable.Placeable;
 import joshie.harvest.buildings.placeable.Placeable.ConstructionStage;
 import joshie.harvest.buildings.placeable.entities.PlaceableNPC;
@@ -62,11 +63,6 @@ public class BuildingImpl extends Impl<BuildingImpl> implements Building {
                 if (home != null) {
                     npc_offsets.put(home, npc);
                 }
-
-                //Add this npc as living in the building
-                if (npc.getNPC() != null) {
-                    inhabitants.add(new ResourceLocation(npc.getNPC()));
-                }
             }
         }
 
@@ -105,6 +101,15 @@ public class BuildingImpl extends Impl<BuildingImpl> implements Building {
         this.width = width;
         this.offsetY = offsetY;
         this.length = length;
+        return this;
+    }
+
+    @Override
+    public Building setInhabitants(INPC... npc) {
+        for (INPC inpc: npc) {
+            inhabitants.add(inpc.getResource());
+        }
+
         return this;
     }
 

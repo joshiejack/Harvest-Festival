@@ -894,6 +894,7 @@ harvestfestival.npc.tiberius.gift.bad=This gift is very bad.
 harvestfestival.npc.tiberius.gift.terrible=I find this a terrible gift. There is nothing worse in the world.
 
 #Jakob
+harvestfestival.npc.jacob.shop=If you're after some fishing gear, we're open Wednesday through Friday from one in the afternoon to seven in the evening.
 harvestfestival.npc.jacob.greeting1=Fishing is my game, Jacob is my name.
 harvestfestival.npc.jacob.greeting2=One day I will catch the elusive clownfish, I promise you!
 harvestfestival.npc.jacob.greeting3=There's nothing like just sitting and waiting for a fish to bite, so relaxing.
@@ -955,19 +956,19 @@ harvestfestival.npc.jim.gift.bad=This was not a good choice for a gift.
 harvestfestival.npc.jim.gift.terrible=If you knew me at all, you would not dare to give me this.
 
 #Brandon/Cricket
-harvestfestival.npc.brandon.shop=If you ever need some mining materials, I'm open from Monday to Saturday, 11am to 4pm.
+harvestfestival.npc.brandon.shop=If you ever need some mining equipment, I'm open from Monday to Saturday, 11am to 4pm.
 harvestfestival.npc.brandon.greeting1=Whenever I'm down in the mines, I can't help but get excited when I come across some diamonds.
 harvestfestival.npc.brandon.greeting2=I don't know about you, but I've got insomnia every night, can never get to sleep... can always hear the dang crickets.
 harvestfestival.npc.brandon.greeting3=What's your favourite ice cream? Mine's Vanilla Plus. At least it used to be, until someone else stole it...
-harvestfestival.npc.brandon.greeting4=Do you ever get tired of mining? I never do. I'm always willing to trade if you ever get tired.
+harvestfestival.npc.brandon.greeting4=Do you ever get tired of mining? I never do.
 harvestfestival.npc.brandon.greeting5=I'll never understand why people are afraid of the dark. There's nothing better than mining without seeing where you are going.
-harvestfestival.npc.brandon.greeting6=The other day when I was in the mines, I heard and saw this strange fire like creature. I wonder what it was?
+harvestfestival.npc.brandon.greeting6=Remember if you ever see a dark hole, these are cracks in the surface, you can probably squeeze a ladder down them.
 harvestfestival.npc.brandon.greeting7=I'll let you in on a secret on how to mine more efficiently. If you jump then hit the rocks on your way down, you will smash them instantly! You'll even hit a bunch more rocks on your way down too. Oh this will also work to flatten farmland too.
 harvestfestival.npc.brandon.greeting8=If you're ever stuck deep down in the mine, just use an escape rope to get out.
 harvestfestival.npc.brandon.greeting9=If I wasn't in to mining, I'd probably chisel three rocks. Not sure why three though.
-harvestfestival.npc.brandon.greeting10=Noone here seems to like me, any idea why?
-harvestfestival.npc.brandon.greeting11=I'm tired of the people in this town, I just want to escape.
-harvestfestival.npc.brandon.greeting12=Be careful when you're in the mine, there's some dangerous animals in there.
+harvestfestival.npc.brandon.greeting10=I got fed up of being hated in the town, now I spend all my time in the mines.
+harvestfestival.npc.brandon.greeting11=Be careful there's some dangerous animals in here.
+harvestfestival.npc.brandon.greeting12=I've seriously been considering leaving entirely, noone seems to like me.
 harvestfestival.npc.brandon.marriage.reject=Do you really think I would marry someone like you?
 harvestfestival.npc.brandon.marriage.accept=I was hoping for someone better, but I'll marry you.
 harvestfestival.npc.brandon.gift.awesome=I couldn't thank you enough. I have been looking for a new pick for ages!
@@ -1137,9 +1138,9 @@ harvestfestival.shop.carpenter.greeting3=Building the best buildings for you!
 
 #Miner
 harvestfestival.shop.miner=Miners' Wares
-harvestfestival.shop.miner.greeting1=I've got some rare materials right here!
-harvestfestival.shop.miner.greeting2=Come and get your rare gems!
-harvestfestival.shop.miner.greeting3=Minerals right here!
+harvestfestival.shop.miner.greeting1=Selling your mining essentials!
+harvestfestival.shop.miner.greeting2=Ever get stuck? Buy an escape rope right here!
+harvestfestival.shop.miner.greeting3=Can't seem to move on? Selling ladders to assist.
 
 #Blood Mage
 harvestfestival.shop.bloodmage=Blood Mage
@@ -1149,8 +1150,8 @@ harvestfestival.shop.bloodmage.greeting3=In this dark and mysterious night, I am
 
 #Blood Mage
 harvestfestival.shop.baitshop=Tackle Shop
-harvestfestival.shop.baitshop.greeting1=We're actually open for business, but only with the help from others.
-harvestfestival.shop.baitshop.greeting2=If you want some fish, then come buy some of my rods.
+harvestfestival.shop.baitshop.greeting1=So glad to finally be open for business, welcome.
+harvestfestival.shop.baitshop.greeting2=If you want some fish, then come buy some of gear.
 harvestfestival.shop.baitshop.greeting3=Come get your fishing rods here, if you please.
 
 #Miscellaneous
@@ -1246,12 +1247,12 @@ harvestfestival.quest.tutorial.upgrading.reminder.blacksmith.jenni=You should go
 harvestfestival.quest.tutorial.upgrading.reminder.blacksmith.candice=Hey there gorgeous, Danieru wanted to see you.
 harvestfestival.quest.tutorial.upgrading.reminder.blacksmith.jade=I heard a rumour that the Blacksmith was looking to talk to you about something.
 harvestfestival.quest.tutorial.upgrading.reminder.blacksmith.brandon=I do have something I’d like to give you, but you should go and see Danieru first.
-harvestfestival.quest.tutorial.upgrading.blacksmith.yulif=Ya should probably get a Blacksmith and a Mine built.
-harvestfestival.quest.tutorial.upgrading.blacksmith.goddess=Hey darling, I recommend getting a Mine and a Blacksmith built next.
-harvestfestival.quest.tutorial.upgrading.blacksmith.jim=A Blacksmith and a Mine would be a great investment.
-harvestfestival.quest.tutorial.upgrading.blacksmith.jenni=You should build a Blacksmith and a Mine.
-harvestfestival.quest.tutorial.upgrading.blacksmith.candice=I’d love to go down deep in a mine, and work some hard metal. So perhaps you could get a Blacksmith and a Mine built for me?
-harvestfestival.quest.tutorial.upgrading.blacksmith.jade=I heard a rumour that a Blacksmith and a Miner would love to move to town.
+harvestfestival.quest.tutorial.upgrading.blacksmith.yulif=Ya should probably get a Blacksmith built.
+harvestfestival.quest.tutorial.upgrading.blacksmith.goddess=Hey darling, I recommend getting a Blacksmith built next.
+harvestfestival.quest.tutorial.upgrading.blacksmith.jim=A Blacksmith would be a great investment.
+harvestfestival.quest.tutorial.upgrading.blacksmith.jenni=You should build a Blacksmith.
+harvestfestival.quest.tutorial.upgrading.blacksmith.candice=I’d love to work some hard metal. So perhaps you could get a Blacksmith built for me?
+harvestfestival.quest.tutorial.upgrading.blacksmith.jade=I heard a rumour that a Blacksmith would love to move to town.
 harvestfestival.quest.tutorial.upgrading.blacksmith.brandon=It's great to be here. I think you should invite Danieru the Blacksmith too.
 harvestfestival.quest.tutorial.upgrading.intro=If there is anywhere else I’d rather be than here, it’s in The End. Did I tell you about my adventures there. Oh wait, have we even met? I’m Danieru, the Blacksmith. Do you need any help?
 harvestfestival.quest.tutorial.upgrading.question=Do you know how to upgrade tools?
@@ -1260,7 +1261,7 @@ harvestfestival.quest.tutorial.upgrading.skip=@I know everything.
 harvestfestival.quest.tutorial.upgrading.completed=That’s good then. I have some ore and a hammer for you.
 harvestfestival.quest.tutorial.upgrading.explain=That’s good then. I’ll be happy to teach you. The first step is to get your tools to the stage where they can even be upgraded. If you notice they have a percentage bar. When this is at 100%% just bring them to me. I’ll also need some ore to work with, as well as payment for my services. I’ll work on them for a few days, then you can have your tools back fully upgraded. You might be asking me how to get the materials you’ll need. Well you’ll need to head down the mine, taking with you a hammer. You can find nodes down there which you can smash with a hammer to obtain ore. Anyway that’s about it. I hear Brandon the Miner has a gift for you though.
 harvestfestival.quest.tutorial.upgrading.reminder.visit=Remember Brandon the Miner wants to see you.
-harvestfestival.quest.tutorial.upgrading.complete=Ehhh hello there. I’ve just been down the mine, and well it was pretty terrible. Since you got me to this town, I may as well just give you the junk I found. Take it. I don’t want it.
+harvestfestival.quest.tutorial.upgrading.complete=Ehhh hello there. I’ve just been down the mine, and well it was pretty terrible. Since you brought me to this awful town, I may as well just thank you by giving you the junk I found. Take it. I don’t want it.
 
 ##Trading Quests
 # Priest Blessing Quest

@@ -301,7 +301,7 @@ public class EntityFishHookHF extends EntityFishHook {
                 lootcontext$builder.withLuck((float) EnchantmentHelper.getLuckOfSeaModifier(angler) + angler.getLuck());
                 lootcontext$builder.withLootedEntity(this);
                 lootcontext$builder.withPlayer(angler);
-                for (ItemStack itemstack : worldObj.getLootTableManager().getLootTableFromLocation(FishingHelper.getLootTable(this)).generateLootForPools(rand, lootcontext$builder.build())) {
+                for (ItemStack itemstack : worldObj.getLootTableManager().getLootTableFromLocation(FishingHelper.getFishingTable(worldObj, new BlockPos(this))).generateLootForPools(rand, lootcontext$builder.build())) {
                     EntityItem entityitem = new EntityItem(worldObj, posX, posY, posZ, itemstack);
                     double d0 = angler.posX - posX;
                     double d1 = angler.posY - posY;

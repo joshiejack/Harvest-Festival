@@ -22,19 +22,19 @@ import static joshie.harvest.quests.Quests.*;
 import static joshie.harvest.npc.HFNPCs.*;
 
 @HFQuest("tutorial.upgrading")
-public class QuestMining extends QuestQuestion {
+public class QuestUpgrading extends QuestQuestion {
     private static final int BUILD = 0;
     private static final int EXPLAIN = 1;
     private static final int FINISH = 2;
 
-    public QuestMining() {
+    public QuestUpgrading() {
         super(new TutorialSelection("upgrading"));
-        setNPCs(BUILDER, GODDESS, ANIMAL_OWNER, GS_OWNER, FLOWER_GIRL, MILKMAID, BLACKSMITH, MINER);
+        setNPCs(BUILDER, GODDESS, BARN_OWNER, GS_OWNER, FLOWER_GIRL, MILKMAID, BLACKSMITH, MINER);
     }
 
     @Override
     public boolean canStartQuest(Set<Quest> active, Set<Quest> finished) {
-        return finished.contains(TUTORIAL_COW) && finished.contains(TUTORIAL_CHICKEN) && finished.contains(TUTORIAL_SUPERMARKET);
+        return finished.contains(TUTORIAL_SUPERMARKET);
     }
 
     @Override

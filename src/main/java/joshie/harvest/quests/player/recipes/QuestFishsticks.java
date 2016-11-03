@@ -7,6 +7,6 @@ import joshie.harvest.quests.base.QuestRecipe;
 @HFQuest("recipe.fishsticks")
 public class QuestFishsticks extends QuestRecipe {
     public QuestFishsticks() {
-        super("fishsticks", HFNPCs.ANIMAL_OWNER, 5000);
+        super("fishsticks", HFNPCs.BARN_OWNER, 5000);
     }
 }

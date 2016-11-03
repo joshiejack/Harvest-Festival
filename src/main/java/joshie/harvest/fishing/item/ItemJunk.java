@@ -20,7 +20,7 @@ public class ItemJunk extends ItemHFEnum<ItemJunk, Junk> implements IShippable {
     }
 
     public enum Junk implements IStringSerializable {
-        CAN(1L), BOOT(1L), TREASURE(10000L), BONES(1L), FOSSIL(5000L), BAIT(10L, 1L);
+        CAN(1L), BOOT(1L), TREASURE(10000L), BONES(1L), FOSSIL(5000L), BAIT(25L, 1L);
 
         private final long cost;
         private final long sell;

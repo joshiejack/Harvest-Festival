@@ -19,6 +19,7 @@ import joshie.harvest.core.util.annotations.HFLoader;
 import joshie.harvest.crops.HFCrops;
 import joshie.harvest.crops.block.BlockSprinkler.Sprinkler;
 import joshie.harvest.fishing.HFFishing;
+import joshie.harvest.fishing.block.BlockFishing.FishingBlock;
 import joshie.harvest.fishing.item.ItemJunk.Junk;
 import joshie.harvest.mining.HFMining;
 import joshie.harvest.mining.block.BlockLadder.Ladder;
@@ -71,7 +72,7 @@ public class HFShops {
     }
     
     private static void registerBarn() {
-        BARN = HFApi.shops.newShop(new ResourceLocation(MODID, "barn"), HFNPCs.ANIMAL_OWNER);
+        BARN = HFApi.shops.newShop(new ResourceLocation(MODID, "barn"), HFNPCs.BARN_OWNER);
         BARN.addItem(800, HFAnimals.TOOLS.getStackFromEnum(BRUSH));
         BARN.addItem(2000, HFAnimals.TOOLS.getStackFromEnum(MILKER));
         BARN.addItem(1800, new ItemStack(Items.SHEARS));
@@ -162,10 +163,10 @@ public class HFShops {
 
     private static void registerMiner() {
         MINER = HFApi.shops.newShop(new ResourceLocation(MODID, "miner"), HFNPCs.MINER);
-        MINER.addItem(new PurchasableDecorative(1000, HFMining.LADDER.getStackFromEnum(Ladder.DECORATIVE)));
-        MINER.addItem(150, HFMining.MINING_TOOL.getStackFromEnum(MiningTool.ESCAPE_ROPE));
-        MINER.addOpening(MONDAY, 0, 24000).addOpening(TUESDAY, 0, 24000).addOpening(WEDNESDAY, 0, 24000);
-        MINER.addOpening(THURSDAY, 0, 24000).addOpening(FRIDAY, 0, 24000).addOpening(SATURDAY, 0, 24000).addOpening(SUNDAY, 0, 24000);
+        MINER.addItem(1000, HFMining.LADDER.getStackFromEnum(Ladder.DECORATIVE));
+        MINER.addItem(250, HFMining.MINING_TOOL.getStackFromEnum(MiningTool.ESCAPE_ROPE));
+        MINER.addOpening(MONDAY, 11000, 16000).addOpening(TUESDAY, 11000, 16000).addOpening(WEDNESDAY, 11000, 16000);
+        MINER.addOpening(THURSDAY, 11000, 16000).addOpening(FRIDAY, 11000, 16000).addOpening(SATURDAY, 11000, 16000);
     }
 
     private static void registerPoultry() {
@@ -217,6 +218,8 @@ public class HFShops {
         BAITSHOP = HFApi.shops.newShop(new ResourceLocation(MODID, "baitshop"), HFNPCs.FISHERMAN);
         BAITSHOP.addItem(Junk.BAIT.getCost(), HFFishing.JUNK.getStackFromEnum(Junk.BAIT));
         BAITSHOP.addItem(1000L, HFFishing.FISHING_ROD.getStack(ToolTier.BASIC));
+        BAITSHOP.addItem(1500L, HFFishing.FISHING_BLOCK.getStackFromEnum(FishingBlock.TRAP));
+        BAITSHOP.addItem(10000L, HFFishing.FISHING_BLOCK.getStackFromEnum(FishingBlock.HATCHERY));
         BAITSHOP.addOpening(TUESDAY, 13000, 19000).addOpening(WEDNESDAY, 13000, 19000).addOpening(THURSDAY, 13000, 19000).addOpening(FRIDAY, 13000, 19000);
     }
 

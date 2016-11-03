@@ -26,6 +26,7 @@ import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.oredict.OreDictionary;
 import org.apache.commons.lang3.text.WordUtils;
 
 import java.util.Locale;
@@ -117,6 +118,22 @@ public class RegistryHelper {
         if (HFCrops.DISABLE_VANILLA_GROWTH || HFCrops.DISABLE_VANILLA_DROPS) DisableHandler.CROPS.add(cropBlock);
         if (HFCrops.DISABLE_VANILLA_GROWTH) {
             cropBlock.setTickRandomly(false);
+        }
+    }
+
+    private static boolean isInDictionary(String name, ItemStack stack) {
+        for (ItemStack check: OreDictionary.getOres(name)) {
+            if (check.getItem() == stack.getItem() && (check.getItemDamage() == OreDictionary.WILDCARD_VALUE || check.getItemDamage() == stack.getItemDamage())) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public static void registerOreIfNotExists(String name, ItemStack clone) {
+        if (!isInDictionary(name, clone)) {
+            OreDictionary.registerOre(name, clone);
         }
     }
 }

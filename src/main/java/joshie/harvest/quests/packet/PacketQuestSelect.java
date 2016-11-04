@@ -8,14 +8,12 @@ import joshie.harvest.core.handlers.GuiHandler;
 import joshie.harvest.core.network.Packet;
 import joshie.harvest.core.network.Packet.Side;
 import joshie.harvest.npc.entity.EntityNPC;
-import joshie.harvest.npc.gui.ShopSelection;
 import joshie.harvest.quests.QuestHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.common.eventhandler.Event.Result;
 
 @Packet(Side.SERVER)
 public class PacketQuestSelect extends PacketQuest {
-    private static final Selection SHOPS = new ShopSelection();
     private int quest;
     private int npcID;
     private int selected;
@@ -50,7 +48,7 @@ public class PacketQuestSelect extends PacketQuest {
         Selection selection;
         EntityNPC npc = (EntityNPC) player.worldObj.getEntityByID(npcID);
         if (npc != null) {
-            if (quest == -1) selection = SHOPS;
+            if (quest == -1 && npc.getNPC().getShop() != null) selection = npc.getNPC().getShop().getSelection();
             else {
                 theQuest = QuestHelper.getSelectiomFromID(player, quest);
                 selection = theQuest != null ? theQuest.getSelection(player, npc.getNPC()) : null;

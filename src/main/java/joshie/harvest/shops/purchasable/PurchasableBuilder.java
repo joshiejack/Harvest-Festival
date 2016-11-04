@@ -10,6 +10,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.IForgeRegistry;
 
+import static joshie.harvest.core.helpers.InventoryHelper.ITEM_STACK;
 import static joshie.harvest.core.helpers.InventoryHelper.ORE_DICTIONARY;
 
 public class PurchasableBuilder extends PurchasableFML<BuildingImpl> {
@@ -22,7 +23,7 @@ public class PurchasableBuilder extends PurchasableFML<BuildingImpl> {
         super(cost, name);
         this.logs = logs;
         this.stone = stone;
-        this.resource = name.toString().replace(":", "_");
+        this.resource = ((cost >= 0) ? "buy: " : "sell: ") + name.toString().replace(":", "_");
     }
 
     public PurchasableBuilder(long cost, int logs, int stone, ItemStack stack) {
@@ -30,7 +31,7 @@ public class PurchasableBuilder extends PurchasableFML<BuildingImpl> {
         this.logs = logs;
         this.stone = stone;
         this.stack = stack;
-        this.resource = Purchasable.stackToString(stack);
+        this.resource = ((cost >= 0) ? "buy: " : "sell: ") + Purchasable.stackToString(stack);
     }
 
     @Override
@@ -57,9 +58,14 @@ public class PurchasableBuilder extends PurchasableFML<BuildingImpl> {
 
     @Override
     public boolean onPurchased(EntityPlayer player) {
-        InventoryHelper.takeItemsInInventory(player, ORE_DICTIONARY, "logWood", getLogCost());
-        InventoryHelper.takeItemsInInventory(player, ORE_DICTIONARY, "stone", getStoneCost());
-        return super.onPurchased(player);
+        if (getCost() < 0) {
+            return !InventoryHelper.hasInInventory(player, ITEM_STACK, getDisplayStack(), getDisplayStack().stackSize)
+                    || !InventoryHelper.takeItemsInInventory(player, ITEM_STACK, getDisplayStack(), getDisplayStack().stackSize);
+        } else {
+            InventoryHelper.takeItemsInInventory(player, ORE_DICTIONARY, "logWood", getLogCost());
+            InventoryHelper.takeItemsInInventory(player, ORE_DICTIONARY, "stone", getStoneCost());
+            return super.onPurchased(player);
+        }
     }
 
     public boolean isPurchaseable(World world, EntityPlayer player) {

@@ -97,10 +97,11 @@ public class ItemFishingRod extends ItemTool<ItemFishingRod> implements IWeighte
     @SuppressWarnings("ConstantConditions")
     public ActionResult<ItemStack> onItemRightClick(@Nonnull ItemStack stack, @Nonnull World world, EntityPlayer player, @Nonnull EnumHand hand) {
         if (player.fishEntity != null) {
-            int i = player.fishEntity.handleHookRetraction();
-            stack.damageItem(i, player);
+            player.fishEntity.handleHookRetraction();
+            stack.getSubCompound("Data", true).setInteger("Damage", getDamageForDisplay(stack) + 1);
             player.swingArm(hand);
-        } else {
+            return new ActionResult<>(EnumActionResult.SUCCESS, stack);
+        } else if (canUse(stack)) {
             world.playSound(null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_BOBBER_THROW, SoundCategory.NEUTRAL, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
             if (!world.isRemote) {
                 world.spawnEntityInWorld(new EntityFishHookHF(world, player));
@@ -108,8 +109,9 @@ public class ItemFishingRod extends ItemTool<ItemFishingRod> implements IWeighte
 
             player.swingArm(hand);
             player.addStat(StatList.getObjectUseStats(this));
+            return new ActionResult<>(EnumActionResult.SUCCESS, stack);
         }
 
-        return new ActionResult<>(EnumActionResult.SUCCESS, stack);
+        return new ActionResult<>(EnumActionResult.FAIL, stack);
     }
 }

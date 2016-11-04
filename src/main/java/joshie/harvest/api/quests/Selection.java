@@ -9,8 +9,9 @@ import javax.annotation.Nullable;
 
 /** Used for selection menus **/
 public abstract class Selection<Q extends Quest> {
-    private final String[] lines;
+    protected String[] lines;
 
+    public Selection() {}
     public Selection(String title, String line1, String line2) {
         this.lines = new String[3];
         this.lines[0] = title;
@@ -24,6 +25,10 @@ public abstract class Selection<Q extends Quest> {
         this.lines[1] = line1;
         this.lines[2] = line2;
         this.lines[3] = line3;
+    }
+
+    protected void setLines(String... lines) {
+        this.lines = lines;
     }
 
     /** Returns the unlocalised text **/

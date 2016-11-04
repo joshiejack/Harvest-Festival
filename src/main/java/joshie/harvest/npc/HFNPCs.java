@@ -101,7 +101,7 @@ public class HFNPCs {
         BUILDER.setLocation(HOME, CARPENTERDOWN).setLocation(SHOP, CARPENTERFRONT).addGreeting(new GreetingCarpenter());
         BLACKSMITH.setLocation(HOME,  BLACKSMITHFURNACE).setLocation(SHOP, BLACKSMITHFURNACE);
         DAUGHTER_2.setLocation(HOME, TOWNHALLCHILDBED);
-        CLOCKMAKER.setLocation(HOME, CLOCKMAKERDOWNSTAIRS);
+        CLOCKMAKER.setLocation(HOME, CLOCKMAKERDOWNSTAIRS).setHasInfo(TOOLS.getStackFromEnum(NPCTool.CALENDAR), new GreetingTime());
         GS_OWNER.setLocation(HOME, GENERALBASEMENTBACK).setLocation(SHOP, GENERALTILL);
         //MINER.setLocation(HOME, MINEHUTSIDE).setLocation(SHOP, MINEHUTGRAVEL);
         FISHERMAN.setLocation(HOME, FISHINGHUTUPSTAIRS).setLocation(SHOP, FISHINGHUTDOWNSTAIRS).addGreeting(new GreetingLocation(POND));

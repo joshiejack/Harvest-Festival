@@ -71,6 +71,7 @@
 * Moved the sprinkler to the carpenters store
 * Fodder now costs 100 gold, but will last for 10 feeds
 * Chicken Feed now costs 50 gold, but will last for 10 feeds
+* You are now able to sell some items to the stores
 
 ###Tools
 * Tools will have [BROKEN] in front of their name, when they can't be used
@@ -84,6 +85,7 @@
 * Made shop scroll behave better
 * Add used to upgrade tooltip to all ores
 * Fix missing crosshairs when exiting an npc gui
+* Fixed sickles always breaking blocks even when broken
 
 ##0.5.11
 * Fixed a crash with the shipping bin when loading worlds when a hopper is inserting items

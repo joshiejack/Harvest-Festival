@@ -46,7 +46,7 @@ public class ItemAxe extends ItemToolSmashing {
         if (canUse(stack)) {
             Material material = state.getMaterial();
             return material != Material.WOOD && material != Material.PLANTS && material != Material.VINE ? super.getStrVsBlock(stack, state) : this.getEffiency(stack);
-        } else return 0.1F;
+        } else return 0.05F;
     }
 
     @Override

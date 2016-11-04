@@ -229,16 +229,16 @@ public abstract class ItemTool<I extends ItemTool> extends ItemHFBase<I> impleme
         float effiency = 0F;
         switch (tier) {
             case BASIC:
-                effiency = 1.25F;
+                effiency = 1.5F;
                 break;
             case COPPER:
-                effiency = 2.5F;
+                effiency = 2F;
                 break;
             case SILVER:
-                effiency =  5F;
+                effiency =  4F;
                 break;
             case GOLD:
-                effiency =  7.5F;
+                effiency =  7F;
                 break;
             case MYSTRIL:
                 effiency =  10F;

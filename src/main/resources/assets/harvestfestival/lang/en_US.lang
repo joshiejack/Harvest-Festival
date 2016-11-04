@@ -1109,7 +1109,8 @@ harvestfestival.shop.general.greeting1=Welcome to the General Store, how may I h
 harvestfestival.shop.general.greeting2=We're always in stock, can I help?
 harvestfestival.shop.general.greeting3=This store is the best in town! What do you need?
 harvestfestival.shop.general.options=What do you want to do?
-harvestfestival.shop.general.options.shop=@Shop
+harvestfestival.shop.general.options.shop=@Buy
+harvestfestival.shop.general.options.sell=@Sell
 harvestfestival.shop.general.options.chat=@Chat
 
 #Poultry Farm
@@ -1123,6 +1124,12 @@ harvestfestival.shop.cafe=Café
 harvestfestival.shop.cafe.greeting1=Food come and get it! Yes?
 harvestfestival.shop.cafe.greeting2=Serving it all up, welcome!
 harvestfestival.shop.cafe.greeting3=Dinner's Up!
+
+#Cafe
+harvestfestival.shop.kitchen=Café Supplies
+harvestfestival.shop.kitchen.greeting1=I'm looking for a supplier for the kitchen, do you have anything?
+harvestfestival.shop.kitchen.greeting2=As always on a Friday we're looking for supplies for the café
+harvestfestival.shop.kitchen.greeting3=Always happy to buy some food, will come in handy
 
 #Animal Ranch
 harvestfestival.shop.barn=Animal Ranch
@@ -1143,10 +1150,10 @@ harvestfestival.shop.miner.greeting2=Ever get stuck? Buy an escape rope right he
 harvestfestival.shop.miner.greeting3=Can't seem to move on? Selling ladders to assist.
 
 #Blood Mage
-harvestfestival.shop.bloodmage=Blood Mage
+harvestfestival.shop.bloodmage=Dark Arts
 harvestfestival.shop.bloodmage.greeting1=Welcome dear child, to the darkest of places.
-harvestfestival.shop.bloodmage.greeting2=Prepare to have your eyes blown out of their sockets from the sight of my wares.
-harvestfestival.shop.bloodmage.greeting3=In this dark and mysterious night, I am happy to please your eyes with my goods.
+harvestfestival.shop.bloodmage.greeting2=Prepare to have your eyes blown out of their sockets for I delve in the darkest of magics.
+harvestfestival.shop.bloodmage.greeting3=In this dark and mysterious night, I am happy to please your eyes.
 
 #Blood Mage
 harvestfestival.shop.baitshop=Tackle Shop

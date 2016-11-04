@@ -1,6 +1,7 @@
 package joshie.harvest.shops.purchasable;
 
 import joshie.harvest.api.shops.IPurchasable;
+import joshie.harvest.core.helpers.InventoryHelper;
 import joshie.harvest.core.helpers.SpawnItemHelper;
 import joshie.harvest.core.helpers.MCClientHelper;
 import net.minecraft.entity.player.EntityPlayer;
@@ -10,6 +11,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
+
+import static joshie.harvest.core.helpers.InventoryHelper.ITEM_STACK;
 
 public class Purchasable implements IPurchasable {
     protected final ItemStack[] stacks;
@@ -24,13 +27,13 @@ public class Purchasable implements IPurchasable {
             builder.append(stackToString(stack));
         }
 
-        resource = builder.toString();
+        resource = ((cost >= 0) ? "buy: " : "sell: ") + builder.toString();
     }
 
     static String stackToString(ItemStack stack) {
-        String string = stack.getItem().getRegistryName().toString().replace(":", "_");
-        if (stack.getItemDamage() != 0) string = string + "_" + stack.getItemDamage();
-        if (stack.getTagCompound() != null) string = string + "_" + stack.getTagCompound().hashCode();
+        String string = stack.getItem().getRegistryName().toString();
+        if (stack.getItemDamage() != 0) string = string + " " + stack.getItemDamage();
+        if (stack.getTagCompound() != null) string = string + " " + stack.getTagCompound().hashCode();
         return string;
     }
 
@@ -56,8 +59,13 @@ public class Purchasable implements IPurchasable {
 
     @Override
     public boolean onPurchased(EntityPlayer player) {
-        for (ItemStack product : stacks) {
-            SpawnItemHelper.addToPlayerInventory(player, product.copy());
+        if (getCost() < 0) {
+            return !InventoryHelper.hasInInventory(player, ITEM_STACK, getDisplayStack(), getDisplayStack().stackSize)
+                    || !InventoryHelper.takeItemsInInventory(player, ITEM_STACK, getDisplayStack(), getDisplayStack().stackSize);
+        } else {
+            for (ItemStack product : stacks) {
+                SpawnItemHelper.addToPlayerInventory(player, product.copy());
+            }
         }
 
         return false;

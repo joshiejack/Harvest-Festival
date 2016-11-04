@@ -1,6 +1,7 @@
 package joshie.harvest.shops.purchasable;
 
 import joshie.harvest.api.shops.IPurchasable;
+import joshie.harvest.core.helpers.InventoryHelper;
 import joshie.harvest.core.helpers.SpawnItemHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
@@ -12,6 +13,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 
+import static joshie.harvest.core.helpers.InventoryHelper.ITEM_STACK;
 import static net.minecraft.util.text.TextFormatting.WHITE;
 
 public abstract class PurchasableFML<I extends IForgeRegistryEntry.Impl<I>> implements IPurchasable {
@@ -44,8 +46,13 @@ public abstract class PurchasableFML<I extends IForgeRegistryEntry.Impl<I>> impl
 
     @Override
     public boolean onPurchased(EntityPlayer player) {
-        SpawnItemHelper.addToPlayerInventory(player, getDisplayStack().copy());
-        return false;
+        if (getCost() < 0) {
+            return !InventoryHelper.hasInInventory(player, ITEM_STACK, getDisplayStack(), getDisplayStack().stackSize)
+                    || !InventoryHelper.takeItemsInInventory(player, ITEM_STACK, getDisplayStack(), getDisplayStack().stackSize);
+        } else {
+            SpawnItemHelper.addToPlayerInventory(player, getDisplayStack().copy());
+            return false;
+        }
     }
 
     @SideOnly(Side.CLIENT)
@@ -56,6 +63,6 @@ public abstract class PurchasableFML<I extends IForgeRegistryEntry.Impl<I>> impl
 
     @Override
     public String getPurchaseableID() {
-        return item.getRegistryName().toString().replace(":", "_");
+        return ((cost >= 0) ? "buy: " : "sell: ") + item.getRegistryName().toString().replace(":", "_");
     }
 }

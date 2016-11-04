@@ -164,7 +164,7 @@ public class GuiNPCChat extends GuiNPCBase {
     public String getScript() {
         //Shops
         if (NPCHelper.isShopOpen(npc.getNPC(), player.worldObj, player) && nextGui == GuiHandler.SHOP_OPTIONS) {
-            return npc.getNPC().getShop().getWelcome(player, npc);
+            return npc.getNPC().getShop().getWelcome(npc);
         }
 
         //Info Greeting

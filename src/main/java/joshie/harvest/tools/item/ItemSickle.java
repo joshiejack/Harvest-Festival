@@ -74,8 +74,10 @@ public class ItemSickle extends ItemTool<ItemHoe> implements IBreakCrops {
 
     @Override
     public float getStrVsBlock(ItemStack stack, IBlockState state) {
-        Material material = state.getMaterial();
-        return (state.getBlock() != Blocks.GRASS && material == Material.GRASS) || material == Material.LEAVES || material == Material.VINE ? 10F : super.getStrVsBlock(stack, state);
+        if (canUse(stack)) {
+            Material material = state.getMaterial();
+            return (state.getBlock() != Blocks.GRASS && material == Material.GRASS) || material == Material.LEAVES || material == Material.VINE ? 10F : super.getStrVsBlock(stack, state);
+        } else return 0.05F;
     }
 
     @Override

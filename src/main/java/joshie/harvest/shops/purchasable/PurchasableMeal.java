@@ -6,7 +6,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.IForgeRegistry;
 
-import static joshie.harvest.cooking.recipe.RecipeBuilder.SELL_VALUE;
+import static joshie.harvest.core.registry.ShippingRegistry.SELL_VALUE;
 
 public class PurchasableMeal extends PurchasableFML<Recipe> {
     private ItemStack stack;

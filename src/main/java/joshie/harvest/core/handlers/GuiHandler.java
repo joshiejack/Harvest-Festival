@@ -26,6 +26,8 @@ public class GuiHandler implements IGuiHandler {
     public static final int SHOP_WELCOME = 6;
     public static final int COOKBOOK = 7;
     public static final int NPC_INFO = 8;
+    public static final int SHOP_MENU_SELL = 9;
+    public static final int SHOP_BUILDER_SELL = 10;
 
     @Override
     public Object getServerGuiElement(int ID, EntityPlayer player, World world, int entityID, int nextGui, int hand) {
@@ -39,7 +41,10 @@ public class GuiHandler implements IGuiHandler {
             case SHOP_WELCOME:  return new ContainerNPCChat(player, (EntityNPC) world.getEntityByID(entityID), EnumHand.MAIN_HAND, SHOP_OPTIONS);
             case SHOP_OPTIONS:  return new ContainerNPCChat(player, (EntityNPC) world.getEntityByID(entityID), EnumHand.MAIN_HAND, nextGui);
             case SHOP_MENU:
-            case SHOP_BUILDER:  return new ContainerNPCShop((EntityNPC) world.getEntityByID(entityID));
+            case SHOP_MENU_SELL:
+            case SHOP_BUILDER:
+            case SHOP_BUILDER_SELL:
+                return new ContainerNPCShop((EntityNPC) world.getEntityByID(entityID));
             case GIFT:          return new ContainerNPCGift(player, (EntityNPC) world.getEntityByID(entityID), EnumHand.values()[hand], -1);
             case FRIDGE:        return new ContainerFridge(player, player.inventory, (TileFridge) world.getTileEntity(new BlockPos(entityID, nextGui, hand)));
             default:            return null;
@@ -60,8 +65,10 @@ public class GuiHandler implements IGuiHandler {
                 return new GuiNPCChat(player, (EntityNPC) world.getEntityByID(entityID), EnumHand.MAIN_HAND, nextGui, true);
             }
             case SHOP_WELCOME:  return new GuiNPCChat(player, (EntityNPC) world.getEntityByID(entityID), EnumHand.MAIN_HAND, SHOP_OPTIONS, false);
-            case SHOP_MENU:     return new GuiNPCShop(player, (EntityNPC) world.getEntityByID(entityID), -2);
-            case SHOP_BUILDER:  return new GuiNPCBuilderShop(player, (EntityNPC) world.getEntityByID(entityID));
+            case SHOP_MENU_SELL:
+            case SHOP_MENU:     return new GuiNPCShop(player, (EntityNPC) world.getEntityByID(entityID), -2, ID == SHOP_MENU_SELL);
+            case SHOP_BUILDER_SELL:
+            case SHOP_BUILDER:  return new GuiNPCBuilderShop(player, (EntityNPC) world.getEntityByID(entityID), ID == SHOP_BUILDER_SELL);
             case GIFT:          return new GuiNPCGift(player, (EntityNPC) world.getEntityByID(entityID), EnumHand.values()[hand]);
             case FRIDGE:        return new GuiFridge(player, player.inventory, (TileFridge) world.getTileEntity(new BlockPos(entityID, nextGui, hand)));
             case COOKBOOK:      return new GuiCookbook();

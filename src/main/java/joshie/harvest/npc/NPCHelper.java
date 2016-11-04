@@ -40,7 +40,7 @@ public class NPCHelper {
     public static boolean isShopOpen(NPC npc, World world, @Nullable EntityPlayer player) {
         Shop shop = npc.getShop();
         if (shop != null && shop.isOpen(world, player)) {
-            return (player != null && shop.getContents(player).size() > 0) || player == null;
+            return (player != null && (shop.getContents(player, false).size() > 0 || shop.getContents(player, true).size() > 0)) || player == null;
         }
 
         return false;

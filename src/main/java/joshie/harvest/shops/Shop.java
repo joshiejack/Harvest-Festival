@@ -9,47 +9,55 @@ import joshie.harvest.api.shops.IShopGuiOverlay;
 import joshie.harvest.calendar.CalendarHelper;
 import joshie.harvest.core.helpers.TextHelper;
 import joshie.harvest.npc.entity.EntityNPC;
+import joshie.harvest.shops.gui.ShopSelection;
 import joshie.harvest.shops.purchasable.Purchasable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.common.Loader;
-import net.minecraftforge.fml.common.registry.IForgeRegistry;
-import net.minecraftforge.fml.common.registry.IForgeRegistryEntry;
-import net.minecraftforge.fml.common.registry.RegistryBuilder;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Locale;
 
 public class Shop implements IShop {
-    public static final IForgeRegistry<ShopEntry> REGISTRY = new RegistryBuilder<ShopEntry>().setName(new ResourceLocation("harvestfestival", "shop_items")).setType(ShopEntry.class).setIDRange(0, 100000).create();
-    private final List<IPurchasable> contents = new ArrayList<>();
+    private final LinkedHashMap<String, IPurchasable> contents = new LinkedHashMap<>();
     private final HashMultimap<Weekday, OpeningHours> open = HashMultimap.create();
     public final ResourceLocation resourceLocation;
-    public final String unlocalizedName;
+    private final String unlocalizedName;
+    private ShopSelection selection;
     @SideOnly(Side.CLIENT)
     private IShopGuiOverlay overlay;
-
-    public static class ShopEntry extends IForgeRegistryEntry.Impl<ShopEntry> {
-        private final IPurchasable purchaseable;
-        public ShopEntry(IPurchasable purchaseable) {
-            this.purchaseable = purchaseable;
-        }
-
-        public IPurchasable getPurchaseable() {
-            return purchaseable;
-        }
-    }
+    private boolean canBuy;
+    private boolean canSell;
 
     public Shop(ResourceLocation resource) {
         resourceLocation = resource;
         unlocalizedName = resource.getResourceDomain() + ".shop." + resource.getResourcePath();
+    }
+
+    public IPurchasable getPurchasableFromID(String id) {
+        return contents.get(id);
+    }
+
+    public boolean canBuyFromShop() {
+        return canBuy;
+    }
+
+    public boolean canSellToShop() {
+        return canSell;
+    }
+
+    public ShopSelection getSelection() {
+        if (selection == null) {
+            selection = new ShopSelection(this); //Default selection
+        }
+
+        return selection;
     }
 
     @Override
@@ -61,18 +69,16 @@ public class Shop implements IShop {
     @Override
     public IShop addItem(IPurchasable item) {
         if (item != null) {
-            ShopEntry entry = new ShopEntry(item).setRegistryName(Shop.getRegistryName(resourceLocation, item));
-            if (!REGISTRY.containsKey(entry.getRegistryName())) {
-                this.contents.add(item);
-                REGISTRY.register(entry);
-            }
+            if (!canBuy && item.getCost() >= 0) canBuy = true;
+            if (!canSell && item.getCost() < 0) canSell = true;
+            contents.put(item.getPurchaseableID(), item);
         }
 
         return this;
     }
 
-    public static ResourceLocation getRegistryName(ResourceLocation resource, IPurchasable item) {
-        return new ResourceLocation(Loader.instance().activeModContainer().getModId().toLowerCase(Locale.ENGLISH) + ":" + resource.getResourcePath() + "_" + item.getPurchaseableID());
+    public static String getRegistryName(ResourceLocation resource, IPurchasable item) {
+        return resource + ":" + item.getPurchaseableID();
     }
 
     @Override
@@ -96,15 +102,17 @@ public class Shop implements IShop {
         return TextHelper.localize(unlocalizedName);
     }
 
-    public String getWelcome(EntityPlayer player, EntityNPC npc) {
+    public String getWelcome(EntityNPC npc) {
         return TextHelper.getRandomSpeech(npc.getNPC(), unlocalizedName + ".greeting", 100);
     }
 
-    public List<IPurchasable> getContents(@Nonnull EntityPlayer player) {
+    public List<IPurchasable> getContents(@Nonnull EntityPlayer player, boolean isSelling) {
         List<IPurchasable> contents = new ArrayList<>();
-        for (IPurchasable purchaseable : this.contents) {
-            if (purchaseable.canList(player.worldObj, player)) {
-                contents.add(purchaseable);
+        for (IPurchasable purchaseable : this.contents.values()) {
+            if ((purchaseable.getCost() < 0 && isSelling) || (purchaseable.getCost() >= 0 & !isSelling)) {
+                if (purchaseable.canList(player.worldObj, player)) {
+                    contents.add(purchaseable);
+                }
             }
         }
 
@@ -117,7 +125,7 @@ public class Shop implements IShop {
         for (OpeningHours hours: open.get(day)) {
 
             boolean isOpen = CalendarHelper.isBetween(world, hours.open, hours.close);
-            if (isOpen && (player == null || getContents(player).size() > 0)) return true;
+            if (isOpen && (player == null || getContents(player, false).size() > 0 || getContents(player, true).size() > 0)) return true;
         }
 
         return false;

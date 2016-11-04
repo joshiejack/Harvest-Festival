@@ -11,10 +11,11 @@ import net.minecraft.nbt.NBTTagCompound;
 
 import java.util.*;
 
+import static joshie.harvest.core.registry.ShippingRegistry.SELL_VALUE;
+
 public class RecipeBuilder {
     public static final String FOOD_LEVEL = "FoodLevel";
     public static final String SATURATION_LEVEL = "FoodSaturation";
-    public static final String SELL_VALUE = "SellValue";
     private List<IngredientStack> required;
     private List<IngredientStack> optional;
     private int hunger = 0;

@@ -12,6 +12,7 @@ import net.minecraft.item.ItemStack;
 @HFApiImplementation
 public class ShippingRegistry implements IShippingRegistry {
     public static final ShippingRegistry INSTANCE = new ShippingRegistry();
+    public static final String SELL_VALUE = "SellValue";
     private final HolderRegistry<Long> registry = new HolderRegistry<>();
 
     private ShippingRegistry() {}
@@ -27,7 +28,18 @@ public class ShippingRegistry implements IShippingRegistry {
     }
 
     @Override
+    @SuppressWarnings("ConstantConditions")
     public long getSellValue(ItemStack stack) {
+        //Per item override
+        if (stack.hasTagCompound()) {
+            return stack.getTagCompound().getLong(SELL_VALUE);
+        }
+
+        //Return the registry value first, so we can override
+        Long value = registry.getValueOf(stack);
+        if (value != null) return value;
+
+        //Shippables
         if (stack.getItem() instanceof IShippable) {
             return ((IShippable)stack.getItem()).getSellValue(stack);
         }
@@ -36,9 +48,6 @@ public class ShippingRegistry implements IShippingRegistry {
         Crop crop = HFApi.crops.getCropFromStack(stack);
         if (crop != null) {
             return crop.getSellValue(stack);
-        }
-
-        Long value = registry.getValueOf(stack);
-        return value == null ? 0L : value;
+        } else return 0L;
     }
 }

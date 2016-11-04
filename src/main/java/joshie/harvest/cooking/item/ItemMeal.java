@@ -3,7 +3,6 @@ package joshie.harvest.cooking.item;
 import joshie.harvest.api.cooking.IngredientStack;
 import joshie.harvest.api.cooking.Recipe;
 import joshie.harvest.api.cooking.Utensil;
-import joshie.harvest.api.core.IShippable;
 import joshie.harvest.cooking.item.ItemMeal.Meal;
 import joshie.harvest.cooking.recipe.RecipeHF;
 import joshie.harvest.cooking.recipe.RecipeMaker;
@@ -29,9 +28,10 @@ import java.util.Locale;
 import static joshie.harvest.api.cooking.Utensil.*;
 import static joshie.harvest.cooking.recipe.RecipeBuilder.*;
 import static joshie.harvest.core.lib.HFModInfo.MODID;
+import static joshie.harvest.core.registry.ShippingRegistry.SELL_VALUE;
 import static net.minecraft.util.text.TextFormatting.DARK_GRAY;
 
-public class ItemMeal extends ItemHFFoodEnum<ItemMeal, Meal> implements IShippable {
+public class ItemMeal extends ItemHFFoodEnum<ItemMeal, Meal> {
     private static final EnumMap<Meal, Recipe> MEAL_TO_RECIPE = new EnumMap<>(Meal.class);
     public static final String BURNT = "Burnt";
     public ItemMeal() {
@@ -166,12 +166,6 @@ public class ItemMeal extends ItemHFFoodEnum<ItemMeal, Meal> implements IShippab
         } else {
             return new ActionResult<>(EnumActionResult.FAIL, stack);
         }
-    }
-
-    @Override
-    public long getSellValue(ItemStack stack) {
-        if (stack.getTagCompound() == null) return 0;
-        else return stack.getTagCompound().getLong("SellValue");
     }
 
     @Override

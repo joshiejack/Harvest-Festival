@@ -6,6 +6,7 @@ import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.helpers.StackHelper;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.network.PacketHandler;
+import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.npc.entity.EntityNPC;
 import joshie.harvest.npc.gui.GuiNPCBase;
 import joshie.harvest.player.stats.StatsClient;
@@ -24,22 +25,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GuiNPCShop extends GuiNPCBase {
-    protected static final ResourceLocation gui_texture = new ResourceLocation(HFModInfo.MODID, "textures/gui/shop.png");
-    protected static final ResourceLocation shelve_texture = new ResourceLocation(HFModInfo.MODID, "textures/gui/shop_extra.png");
+    static final ResourceLocation gui_texture = new ResourceLocation(HFModInfo.MODID, "textures/gui/shop.png");
+    static final ResourceLocation shelve_texture = new ResourceLocation(HFModInfo.MODID, "textures/gui/shop_extra.png");
     protected final StatsClient stats;
-    protected final List<IPurchasable> contents;
-    protected final IShopGuiOverlay overlay;
+    final List<IPurchasable> contents;
+    private final IShopGuiOverlay overlay;
     protected final Shop shop;
+    protected final boolean selling;
     protected int start;
 
-    public GuiNPCShop(EntityPlayer player, EntityNPC npc, int nextGui) {
+    public GuiNPCShop(EntityPlayer player, EntityNPC npc, int nextGui, boolean isSelling) {
         super(player, npc, EnumHand.MAIN_HAND, nextGui);
 
         shop = npc.getNPC().getShop();
         if (shop == null || !shop.isOpen(player.worldObj, player)) player.closeScreen();
         overlay = shop.getGuiOverlay();
-        contents = shop.getContents(player);
+        contents = shop.getContents(player, isSelling);
         stats = HFTrackers.getClientPlayerTracker().getStats();
+        selling = isSelling;
     }
 
     public void setStart(int i) {
@@ -53,7 +56,7 @@ public class GuiNPCShop extends GuiNPCBase {
         GlStateManager.pushMatrix();
         GlStateManager.enableBlend();
         mc.renderEngine.bindTexture(gui_texture);
-        if (contents.size() < 9) {
+        if (contents.size() < 9 && (selling || npc.getNPC() != HFNPCs.BUILDER)) {
             drawTexturedModalRect(x, y, 0, 0, xSize,  40 + (37 * (contents.size() / 2)));
             drawTexturedModalRect(x, y + 40 + (37 * (contents.size() / 2)), 0, 228, xSize, 28);
         } else drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
@@ -90,7 +93,7 @@ public class GuiNPCShop extends GuiNPCBase {
             if (index > (getMax())) break;
             IPurchasable purchaseable = contents.get(i);
             ItemStack display = purchaseable.getDisplayStack();
-            long cost = purchaseable.getCost();
+            long cost = selling ? -purchaseable.getCost() : purchaseable.getCost();
             mc.renderEngine.bindTexture(shelve_texture);
             int indexPercent = index % 2;
             int indexDivide = index / 2;
@@ -175,8 +178,10 @@ public class GuiNPCShop extends GuiNPCBase {
                 if (stats.getGold() - purchaseable.getCost() >= 0) {
                     if (mouseY >= posY + 20 && mouseY <= posY + 52 && mouseX >= posX && mouseX <= posX + 32) {
                         for (int j = 0; j < (GuiScreen.isShiftKeyDown() ? 64: 1); j++) {
-                            PacketHandler.sendToServer(new PacketPurchaseItem(shop.resourceLocation, purchaseable));
+                            PacketHandler.sendToServer(new PacketPurchaseItem(shop, purchaseable));
                         }
+
+                        return; //Don't process further
                     }
                 }
 

@@ -17,8 +17,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GuiNPCBuilderShop extends GuiNPCShop {
-    public GuiNPCBuilderShop(EntityPlayer player, EntityNPC npc) {
-        super(player, npc, -2);
+    public GuiNPCBuilderShop(EntityPlayer player, EntityNPC npc, boolean isSelling) {
+        super(player, npc, -2, isSelling);
     }
 
     @Override
@@ -41,7 +41,7 @@ public class GuiNPCBuilderShop extends GuiNPCShop {
             if (index > 4) break;
             PurchasableBuilder purchaseable = (PurchasableBuilder) contents.get(i);
             ItemStack display = purchaseable.getDisplayStack();
-            long cost = purchaseable.getCost();
+            long cost = selling ? -purchaseable.getCost() : purchaseable.getCost();
             mc.renderEngine.bindTexture(shelve_texture);
 
             int posY = 41;
@@ -72,12 +72,16 @@ public class GuiNPCBuilderShop extends GuiNPCShop {
             mc.fontRendererObj.drawStringWithShadow(getCostAsString(cost), x + 148, y + 57 + (index * 34), 0xC39753);
 
             //Wood
-            StackHelper.drawStack(log, x + 56, y + 55 + (index * 34), 0.75F);
-            mc.fontRendererObj.drawStringWithShadow(getCostAsString(purchaseable.getLogCost()), x + 69, y + 57 + (index * 34), 0xC39753);
+            if (purchaseable.getLogCost() > 0) {
+                StackHelper.drawStack(log, x + 56, y + 55 + (index * 34), 0.75F);
+                mc.fontRendererObj.drawStringWithShadow(getCostAsString(purchaseable.getLogCost()), x + 69, y + 57 + (index * 34), 0xC39753);
+            }
 
             //Stone
-            StackHelper.drawStack(stone, x + 100, y + 55 + (index * 34), 0.75F);
-            mc.fontRendererObj.drawStringWithShadow(getCostAsString(purchaseable.getStoneCost()), x + 113, y + 57 + (index * 34), 0xC39753);
+            if (purchaseable.getStoneCost() > 0) {
+                StackHelper.drawStack(stone, x + 100, y + 55 + (index * 34), 0.75F);
+                mc.fontRendererObj.drawStringWithShadow(getCostAsString(purchaseable.getStoneCost()), x + 113, y + 57 + (index * 34), 0xC39753);
+            }
 
             mc.fontRendererObj.drawStringWithShadow(TextFormatting.BOLD + purchaseable.getName(), x + 60, y + 46 + (index * 34), 0xC39753);
 
@@ -100,7 +104,7 @@ public class GuiNPCBuilderShop extends GuiNPCShop {
                 long cost = purchaseable.getCost();
                 if (HFTrackers.getClientPlayerTracker().getStats().getGold() - cost >= 0) {
                     if (mouseY >= 61 + (index * 34) && mouseY <= 93 + (index * 34) && mouseX >= 190 && mouseX <= 222) {
-                        PacketHandler.sendToServer(new PacketPurchaseItem(shop.resourceLocation, purchaseable));
+                        PacketHandler.sendToServer(new PacketPurchaseItem(shop, purchaseable));
                     }
                 }
             }

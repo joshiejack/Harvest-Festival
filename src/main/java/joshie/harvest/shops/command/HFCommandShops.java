@@ -1,7 +1,7 @@
 package joshie.harvest.shops.command;
 
-import joshie.harvest.api.shops.IShop;
 import joshie.harvest.core.commands.AbstractHFCommand;
+import joshie.harvest.shops.Shop;
 import joshie.harvest.shops.ShopRegistry;
 import minetweaker.MineTweakerAPI;
 import net.minecraft.command.CommandException;
@@ -37,7 +37,7 @@ public class HFCommandShops extends AbstractHFCommand {
 
     private List<ResourceLocation> getShopList() {
         List<ResourceLocation> list = new ArrayList<>();
-        for (Map.Entry<ResourceLocation, IShop> entry : ShopRegistry.INSTANCE.shops.entrySet()) {
+        for (Map.Entry<ResourceLocation, Shop> entry : ShopRegistry.INSTANCE.shops.entrySet()) {
             list.add(entry.getKey());
             Collections.sort(list, (s1, s2) -> s1.toString().compareTo(s2.toString()));
         }

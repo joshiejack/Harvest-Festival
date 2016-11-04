@@ -41,7 +41,8 @@ public class StackSold extends AbstractDataHolder<StackSold> {
         Item item = Item.REGISTRY.getObject(new ResourceLocation(tag.getString("ItemName")));
         int meta = tag.getInteger("ItemMeta");
         int amount = tag.getInteger("SellAmount");
-        long sell = tag.getLong("SellValue");
+        //TODO: Remove in 0.7+ (first half)
+        long sell = tag.hasKey("SellValue") ? tag.getLong("SellValue") : tag.getLong("SellTotal");
         return new StackSold(item, meta, amount, sell);
     }
 
@@ -50,7 +51,7 @@ public class StackSold extends AbstractDataHolder<StackSold> {
         tag.setString("ItemName", Item.REGISTRY.getNameForObject(item).toString());
         tag.setInteger("ItemMeta", meta);
         tag.setInteger("SellAmount", amount);
-        tag.setLong("SellValue", sell);
+        tag.setLong("SellTotal", sell);
         return tag;
     }
 

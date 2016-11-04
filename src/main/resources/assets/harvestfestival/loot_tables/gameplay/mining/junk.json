@@ -8,7 +8,7 @@
           "type": "item",
           "name": "harvestfestival:materials",
           "entryName": "junk_ore",
-          "weight": 48,
+          "weight": 120,
           "functions": [
             {
               "function": "set_count",
@@ -23,7 +23,7 @@
           "type": "item",
           "name": "harvestfestival:materials",
           "entryName": "adamantite",
-          "weight": 1,
+          "weight": 10,
           "functions": [
             {
               "function": "hf_set_enum",
@@ -48,7 +48,7 @@
           "type": "item",
           "name": "harvestfestival:materials",
           "entryName": "orichalc",
-          "weight": 1,
+          "weight": 5,
           "functions": [
             {
               "function": "hf_set_enum",
@@ -73,11 +73,18 @@
           "type": "item",
           "name": "harvestfestival:materials",
           "entryName": "mythic_255",
-          "weight": 2,
+          "weight": 1,
           "functions": [
             {
               "function": "set_data",
               "data": 5
+            },
+            {
+              "function": "set_count",
+              "count": {
+                "min": 0,
+                "max": 1
+              }
             }
           ],
           "conditions": [
@@ -131,6 +138,13 @@
             {
               "function": "set_data",
               "data": 5
+            },
+            {
+              "function": "set_count",
+              "count": {
+                "min": 0,
+                "max": 1
+              }
             }
           ],
           "conditions": [
@@ -179,11 +193,18 @@
           "type": "item",
           "name": "harvestfestival:materials",
           "entryName": "mythic_65535",
-          "weight": 2,
+          "weight": 3,
           "functions": [
             {
               "function": "set_data",
               "data": 5
+            },
+            {
+              "function": "set_count",
+              "count": {
+                "min": 0,
+                "max": 1
+              }
             }
           ],
           "conditions": [
@@ -237,9 +258,20 @@
             {
               "function": "set_data",
               "data": 5
+            },
+            {
+              "function": "set_count",
+              "count": {
+                "min": 0,
+                "max": 1
+              }
             }
           ],
           "conditions": [
+            {
+              "condition": "harvestfestival:season",
+              "season": "winter"
+            },
             {
               "condition": "harvestfestival:exact",
               "value": 39
@@ -285,9 +317,20 @@
             {
               "function": "set_data",
               "data": 5
+            },
+            {
+              "function": "set_count",
+              "count": {
+                "min": 0,
+                "max": 1
+              }
             }
           ],
           "conditions": [
+            {
+              "condition": "harvestfestival:season",
+              "season": "winter"
+            },
             {
               "condition": "harvestfestival:exact",
               "value": 49
@@ -333,9 +376,20 @@
             {
               "function": "set_data",
               "data": 5
+            },
+            {
+              "function": "set_count",
+              "count": {
+                "min": 0,
+                "max": 1
+              }
             }
           ],
           "conditions": [
+            {
+              "condition": "harvestfestival:season",
+              "season": "winter"
+            },
             {
               "condition": "harvestfestival:exact",
               "value": 59
@@ -381,9 +435,20 @@
             {
               "function": "set_data",
               "data": 5
+            },
+            {
+              "function": "set_count",
+              "count": {
+                "min": 0,
+                "max": 1
+              }
             }
           ],
           "conditions": [
+            {
+              "condition": "harvestfestival:season",
+              "season": "winter"
+            },
             {
               "condition": "harvestfestival:exact",
               "value": 69
@@ -429,9 +494,20 @@
             {
               "function": "set_data",
               "data": 5
+            },
+            {
+              "function": "set_count",
+              "count": {
+                "min": 0,
+                "max": 1
+              }
             }
           ],
           "conditions": [
+            {
+              "condition": "harvestfestival:season",
+              "season": "winter"
+            },
             {
               "condition": "harvestfestival:exact",
               "value": 79
@@ -477,9 +553,20 @@
             {
               "function": "set_data",
               "data": 5
+            },
+            {
+              "function": "set_count",
+              "count": {
+                "min": 0,
+                "max": 1
+              }
             }
           ],
           "conditions": [
+            {
+              "condition": "harvestfestival:season",
+              "season": "winter"
+            },
             {
               "condition": "harvestfestival:exact",
               "value": 29

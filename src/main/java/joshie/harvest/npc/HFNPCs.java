@@ -47,25 +47,25 @@ import static joshie.harvest.town.BuildingLocations.*;
 @HFLoader(priority = HFNPCS)
 public class HFNPCs {
     public static final NPC NULL_NPC = new NPC();
-    public static INPC GODDESS; //The Goddess                        (SPAWN)
-    public static INPC BARN_OWNER; // Owner of the Animal Barn     (BARN)
-    public static INPC CAFE_OWNER; // Owner of the Cafe              (CAFE)
-    public static INPC CAFE_GRANNY;// Granny of Cafe Owner           (CAFE)
-    public static INPC FLOWER_GIRL; // Sister of Yulif                (CARPENTER)
-    public static INPC BLACKSMITH; // Blacksmith                     (BLACKSMITH)
-    public static INPC PRIEST; //Married to mayor                    (CHURCH)
-    public static INPC MAYOR; //Married to priest                    (TOWNHALL)
-    public static INPC DAUGHTER_1; //Daughter of Mayor and Priest    (TOWNHALL)
-    public static INPC DAUGHTER_2; //Daughter of Mayor and Priest    (TOWNHALL)
-    public static INPC CLOCKMAKER; //The clock worker              (CLOCKWORKERS)
-    public static INPC CLOCKMAKER_CHILD; // Clockmakers Child        (CLOCKWORKERS)
-    public static INPC GS_OWNER; //Owner of general store            (GENERAL STORE)
-    public static INPC MINER; //Works in the mines                   (MINING HUT)
-    public static INPC FISHERMAN; //Fisherman                        (FISHING HUT)
-    public static INPC MILKMAID; //Works in the Barn, Milking Cows   (GENERAL STORE)
-    public static INPC BUILDER; //Builds stuff for the players       (SPAWN)
-    public static INPC POULTRY; //Poultry Farm Owner                 (POULTRY FARM)
-    public static INPC TRADER; //Trader                              (GENERAL STORE)
+    public static final INPC GODDESS = register("goddess", FEMALE, ADULT, 8, SPRING, 0x8CEED3, 0x4EC485).setHeight(1.2F, 0.6F); //The Goddess                        (SPAWN)
+    public static final INPC BARN_OWNER = register("jim", MALE, ADULT, 26, SPRING, 0xDE7245, 0x722B19); // Owner of the Animal Barn             (BARN)
+    public static final INPC CAFE_OWNER = register("liara", FEMALE, ADULT, 17, SPRING, 0xBEC8EE, 0x8091D0); // Owner of the Cafe                (CAFE)
+    public static final INPC CAFE_GRANNY = register("katlin", FEMALE, ELDER, 12, SUMMER, 0xDDDDDD, 0x777777);// Granny of Cafe Owner            (CAFE)
+    public static final INPC FLOWER_GIRL = register("jade", FEMALE, ADULT, 14, SPRING, 0x653081, 0x361840); // Sister of Yulif                  (CARPENTER)
+    public static final INPC BLACKSMITH = register("daniel", MALE, ADULT, 1, WINTER, 0x613827, 0x23150E); // Blacksmith                         (BLACKSMITH)
+    public static final INPC PRIEST = register("thomas", MALE, ELDER, 9, SUMMER, 0x006666, 0x00B2B20); //Married to mayor                       (CHURCH)
+    public static final INPC MAYOR = register("jamie", FEMALE, ELDER, 8, SUMMER, 0xA8AC9A, 0x3B636D); //Married to priest                       (TOWNHALL)
+    public static final INPC DAUGHTER_1 = register("cloe", FEMALE, ADULT, 3, SPRING, 0xFFFF99, 0xB2B200); //Daughter of Mayor and Priest        (TOWNHALL)
+    public static final INPC DAUGHTER_2 = register("abi", FEMALE, CHILD, 27, WINTER, 0xFF99FF, 0xFF20FF); //Daughter of Mayor and Priest        (TOWNHALL)
+    public static final INPC CLOCKMAKER = register("tiberius", MALE, ADULT, 15, WINTER, 0x305A2E, 0x142419); //The clock worker                 (CLOCKWORKERS)
+    public static final INPC CLOCKMAKER_CHILD = register("fenn", MALE, CHILD, 25, SUMMER, 0x228C00, 0x003F00); // Clockmakers Child             (CLOCKWORKERS)
+    public static final INPC GS_OWNER = register("jenni", FEMALE, ADULT, 7, WINTER, 0xDDD0AD, 0xE79043); //Owner of general store               (GENERAL STORE)
+    public static final INPC MINER = register("brandon", MALE, ADULT, 13, AUTUMN, 0xC28D48, 0x5F5247); //Works in the mines                     (MINE)
+    public static final INPC FISHERMAN = register("jacob", MALE, ADULT, 28, AUTUMN, 0x7396FF, 0x0036D9); //Fisherman                            (FISHING HUT)
+    public static final INPC MILKMAID = register("candice", FEMALE, ADULT, 5, AUTUMN, 0xF65FAB, 0xF21985); //Works in the Barn, Milking Cows    (GENERAL STORE)
+    public static final INPC BUILDER = register("yulif", MALE, ADULT, 19, SUMMER, 0x313857, 0x121421).setIsBuilder(); //Builds stuff            (SPAWN)
+    public static final INPC POULTRY = register("ashlee", FEMALE, ADULT, 16, AUTUMN, 0xC62D2D, 0x571111); //Poultry Farm Owner                  (POULTRY FARM)
+    public static final INPC TRADER = register("girafi", MALE, ADULT, 2, AUTUMN,  0xFFFFFF, 0xC60C30); //Trader                                 (GENERAL STORE)
 
     //Item
     public static final ItemNPCSpawner SPAWNER_NPC = new ItemNPCSpawner().register("spawner_npc");
@@ -77,25 +77,6 @@ public class HFNPCs {
         EntityRegistry.registerModEntity(EntityNPCShopkeeper.class, "shopkeeper", EntityIDs.SHOPKEEPER, HarvestFestival.instance, 80, 3, true);
         EntityRegistry.registerModEntity(EntityNPCGoddess.class, "goddess", EntityIDs.GODDESS, HarvestFestival.instance, 80, 3, true);
         registerSounds("goddess", "blessing");
-        GODDESS = register("goddess", FEMALE, ADULT, 8, SPRING, 0x8CEED3, 0x4EC485).setHeight(1.2F, 0.6F);
-        BARN_OWNER = register("jim", MALE, ADULT, 26, SPRING, 0xDE7245, 0x722B19);
-        CAFE_OWNER = register("liara", FEMALE, ADULT, 17, SPRING, 0xBEC8EE, 0x8091D0);
-        FLOWER_GIRL = register("jade", FEMALE, ADULT, 14, SPRING, 0x653081, 0x361840);
-        DAUGHTER_1 = register("cloe", FEMALE, ADULT, 3, SPRING, 0xFFFF99, 0xB2B200);
-        PRIEST = register("thomas", MALE, ELDER, 9, SUMMER, 0x006666, 0x00B2B20);
-        CLOCKMAKER_CHILD = register("fenn", MALE, CHILD, 25, SUMMER, 0x228C00, 0x003F00);
-        CAFE_GRANNY = register("katlin", FEMALE, ELDER, 12, SUMMER, 0xDDDDDD, 0x777777);
-        MAYOR = register("jamie", FEMALE, ELDER, 8, SUMMER, 0xA8AC9A, 0x3B636D);
-        BUILDER = register("yulif", MALE, ADULT, 19, SUMMER, 0x313857, 0x121421).setIsBuilder();
-        BLACKSMITH = register("daniel", MALE, ADULT, 1, WINTER, 0x613827, 0x23150E);
-        DAUGHTER_2 = register("abi", FEMALE, CHILD, 27, WINTER, 0xFF99FF, 0xFF20FF);
-        CLOCKMAKER = register("tiberius", MALE, ADULT, 15, WINTER, 0x305A2E, 0x142419);
-        GS_OWNER = register("jenni", FEMALE, ADULT, 7, WINTER, 0xDDD0AD, 0xE79043);
-        MINER = register("brandon", MALE, ADULT, 13, AUTUMN, 0xC28D48, 0x5F5247);
-        FISHERMAN = register("jacob", MALE, ADULT, 28, AUTUMN, 0x7396FF, 0x0036D9);
-        MILKMAID = register("candice", FEMALE, ADULT, 5, AUTUMN, 0xF65FAB, 0xF21985);
-        POULTRY = register("ashlee", FEMALE, ADULT, 16, AUTUMN, 0xC62D2D, 0x571111);
-        TRADER = register("girafi", MALE, ADULT, 2, AUTUMN,  0xFFFFFF, 0xC60C30);
     }
 
     @SideOnly(Side.CLIENT)

@@ -1,6 +1,7 @@
 package joshie.harvest.tools;
 
 import joshie.harvest.api.core.ITiered.ToolTier;
+import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.base.item.ItemTool;
 import joshie.harvest.core.util.annotations.HFEvents;
 import net.minecraft.entity.player.EntityPlayer;
@@ -14,6 +15,7 @@ import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.BlockEvent.HarvestDropsEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.PlayerEvent.ItemPickupEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
 import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
 
@@ -98,6 +100,14 @@ public class ToolEvents {
             int level = player.getFoodStats().getFoodLevel();
             if (level > 2 && player.isPotionActive(EXHAUSTION)) player.removePotionEffect(EXHAUSTION);
             if (level > 6 && player.isPotionActive(FATIGUE)) player.removePotionEffect(FATIGUE);
+        }
+    }
+
+    @SubscribeEvent
+    public void onItemPickup(ItemPickupEvent event) {
+        ItemStack stack = event.pickedUp.getEntityItem();
+        if (stack.getItem() instanceof ItemTool) {
+            HFTrackers.getPlayerTrackerFromPlayer(event.player).getTracking().addAsObtained(stack);
         }
     }
 }

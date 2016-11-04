@@ -20,7 +20,7 @@ import static net.minecraft.util.text.TextFormatting.WHITE;
 
 public class ItemMaterial extends ItemHFEnum<ItemMaterial, Material> implements IShippable {
     public enum Material implements IStringSerializable {
-        JUNK(1L), COPPER(15L), SILVER(20L),  GOLD(25L), MYSTRIL(40L), MYTHIC(20000L),
+        JUNK(1L), COPPER(15L), SILVER(20L), GOLD(25L), MYSTRIL(40L), MYTHIC(20000L),
         ADAMANTITE(50L), AGATE(62L), ALEXANDRITE(10000L), AMETHYST(60L), FLUORITE(20L),
         MOON_STONE(25L), ORICHALC(50L), PERIDOT(35L), PINK_DIAMOND(10000L), RUBY(75L),
         SAND_ROSE(30L), TOPAZ(70L);

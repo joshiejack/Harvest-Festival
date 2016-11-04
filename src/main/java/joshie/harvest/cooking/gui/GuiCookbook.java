@@ -36,6 +36,7 @@ public class GuiCookbook extends GuiScreen {
     public GuiCookbook() {
         setPage(page == null ? MASTER : page);
         ingredients.clear();
+        //Add the player inventory
         for (ItemStack stack: MCClientHelper.getPlayer().inventory.mainInventory) {
             if (stack != null) {
                 Ingredient ingredient = CookingAPI.INSTANCE.getCookingComponents(stack);

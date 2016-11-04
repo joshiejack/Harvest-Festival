@@ -84,6 +84,7 @@ public class QuestBless extends QuestTrade {
     @Override
     public void onQuestCompleted(EntityPlayer player) {
         rewardItem(player, tool);
+        HFTrackers.getPlayerTrackerFromPlayer(player).getTracking().addAsObtained(tool);
         spawnXP(player.worldObj, (int)player.posX, (int)player.posY, (int)player.posZ, 5);
     }
 

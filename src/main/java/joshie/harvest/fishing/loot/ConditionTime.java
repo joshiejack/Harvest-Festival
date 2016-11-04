@@ -6,13 +6,14 @@ import com.google.gson.JsonSerializationContext;
 import joshie.harvest.calendar.CalendarHelper;
 import net.minecraft.util.JsonUtils;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.world.storage.loot.LootContext;
 import net.minecraft.world.storage.loot.conditions.LootCondition;
+
+import java.util.Random;
 
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 
-public class ConditionTime extends AbstractCondition {
+public class ConditionTime implements LootCondition {
     private final int from;
     private final int to;
 
@@ -22,8 +23,8 @@ public class ConditionTime extends AbstractCondition {
     }
 
     @Override
-    public boolean testCondition(World world, BlockPos pos) {
-        return CalendarHelper.isBetween(world, from, to);
+    public boolean testCondition(Random rand, LootContext context) {
+        return context.getLootedEntity() != null && CalendarHelper.isBetween(context.getLootedEntity().worldObj, from, to);
     }
 
     public static class Serializer extends LootCondition.Serializer<ConditionTime> {

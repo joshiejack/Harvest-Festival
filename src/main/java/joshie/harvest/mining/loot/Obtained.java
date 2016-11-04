@@ -20,7 +20,7 @@ public class Obtained implements LootCondition {
     private final ItemStack stack;
 
     public Obtained(Item item, int meta) {
-        this.stack = new ItemStack(item, meta);
+        this.stack = new ItemStack(item, 1, meta);
     }
 
     @Override

@@ -147,17 +147,17 @@ public class BlockOre extends BlockHFSmashable<BlockOre, Ore> implements ISmasha
             case GOLD:
                 return getRandomStack(world, Material.GOLD, 4);
             case MYSTRIL:
-                return getRandomStack(world, Material.MYSTRIL, 5);
+                return getRandomStack(world, Material.MYSTRIL, 3);
             case EMERALD:
-                return getRandomStack(world, Items.EMERALD, 3);
+                return getRandomStack(world, Items.EMERALD, 5);
             case DIAMOND:
                 return world.rand.nextInt(512) == 0 ? getRandomStack(world, Material.PINK_DIAMOND, 1) : getRandomStack(world, DIAMOND, 3);
             case RUBY:
-                return getRandomStack(world, Material.RUBY, 4);
+                return getRandomStack(world, Material.RUBY, 5);
             case AMETHYST:
-                return getRandomStack(world, Material.AMETHYST, 4);
+                return getRandomStack(world, Material.AMETHYST, 3);
             case TOPAZ:
-                return getRandomStack(world, Material.TOPAZ, 3);
+                return getRandomStack(world, Material.TOPAZ, 4);
             case GEM:
                 return world.isRemote ? Collections.singletonList(new ItemStack(this)) : MiningHelper.getLoot(MINING_GEMS, world, player, luck);
             default:

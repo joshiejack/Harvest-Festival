@@ -68,6 +68,7 @@ public class HFMining {
         LootConditionManager.registerCondition(new Exact.Serializer());
         LootConditionManager.registerCondition(new MultipleOf.Serializer());
         LootConditionManager.registerCondition(new Obtained.Serializer());
+        LootConditionManager.registerCondition(new Seasonal.Serializer());
         registerSellable(DIAMOND, 100L);
         registerSellable(EMERALD, 80L);
     }
@@ -121,6 +122,8 @@ public class HFMining {
         HFApi.mining.registerOre(gem, ORE.getStateFromEnum(Ore.EMERALD), 2D, WINTER);
         HFApi.mining.registerOre(mystril, ORE.getStateFromEnum(Ore.MYSTRIL), 5D, WINTER);
         HFApi.mining.registerOre(mystril, ORE.getStateFromEnum(Ore.DIAMOND), 1D, WINTER);
+
+        //Deeper and deeper values
     }
 
     private static void registerSellable(Item item, long value) {

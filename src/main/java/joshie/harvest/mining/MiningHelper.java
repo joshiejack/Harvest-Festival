@@ -33,9 +33,9 @@ import static joshie.harvest.mining.HFMining.MINING_ID;
 import static joshie.harvest.mining.gen.MineManager.CHUNK_BOUNDARY;
 
 public class MiningHelper {
-    public static final int MYSTRIL_FLOOR = 163;
-    public static final int GEM_FLOOR = 123;
-    public static final int GOLD_FLOOR = 83;
+    public static final int MYSTRIL_FLOOR = 169;
+    public static final int GEM_FLOOR = 127;
+    public static final int GOLD_FLOOR = 85;
     public static final int SILVER_FLOOR = 43;
     public static final int COPPER_FLOOR = 10;
     public static final double WORLD_HEIGHT = 256D;
@@ -57,8 +57,8 @@ public class MiningHelper {
         addFloors(9); //Copper unlock, 1k
         addFloors(27, 41);//Silver unlock, 2k
         addFloors(51, 61, 71, 81); //Gold unlock, 4k
-        addFloors(83, 88, 93, 98, 103, 108, 113, 118); //Gem unlock, 8k
-        addFloors(124, 128, 129, 132, 133, 140, 143, 145, 149, 150, 152, 156, 157, 160, 161); //Mystril unlock, 15 floors
+        addFloors(90, 95, 100, 105, 110, 115, 120, 125); //Gem unlock, 8k
+        addFloors(127, 129, 131, 133, 136, 140, 143, 145, 149, 150, 152, 156, 157, 163, 166); //Mystril unlock, 15 floors
     }
 
     private static void addFloors(int... ints) {

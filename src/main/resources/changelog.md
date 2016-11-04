@@ -49,6 +49,7 @@
 * More items will now spawn around the world (that sell for more than 1 gold!)
 
 ###Mining
+* Fixed cursed tools being unobtainable
 * You can now access the mine as soon as you have built a general store
 * There will now be some "hole blocks in the mine", you will need to right click these with a ladder to place one down, to go further down the mine
 * Adjusted mine generation slightly, should only affect newly generated ones

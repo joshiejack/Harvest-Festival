@@ -14,7 +14,7 @@
       "banana": { "textures": { "all": "minecraft:blocks/leaves_jungle" }},
       "banana_harvestable": { "textures": { "all": "harvestfestival:blocks/leaves_banana" }},
       "grape": { "textures": { "all": "minecraft:blocks/leaves_oak" }},
-      "grape_harvestable": { "textures": { "all": "minecraft:blocks/leaves_grape" }}
+      "grape_harvestable": { "textures": { "all": "harvestfestival:blocks/leaves_grape" }}
     }
   }
 }

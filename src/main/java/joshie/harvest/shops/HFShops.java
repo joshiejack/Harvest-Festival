@@ -27,6 +27,7 @@ import joshie.harvest.mining.block.BlockLadder.Ladder;
 import joshie.harvest.mining.item.ItemMiningTool.MiningTool;
 import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.shops.purchasable.*;
+import joshie.harvest.shops.rules.SpecialRulesKitchen;
 import joshie.harvest.tools.HFTools;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -56,7 +57,7 @@ import static joshie.harvest.npc.item.ItemNPCTool.NPCTool.BLUE_FEATHER;
 public class HFShops {
     public static final IShop BARN = HFApi.shops.newShop(new ResourceLocation(MODID, "barn"), HFNPCs.BARN_OWNER);
     public static final IShop CAFE = HFApi.shops.newShop(new ResourceLocation(MODID, "cafe"), HFNPCs.CAFE_OWNER);
-    public static final IShop KITCHEN = HFApi.shops.newShop(new ResourceLocation(MODID, "kitchen"), HFNPCs.CAFE_GRANNY);
+    public static final IShop KITCHEN = HFApi.shops.newShop(new ResourceLocation(MODID, "kitchen"), HFNPCs.CAFE_GRANNY).setSpecialPurchaseRules(new SpecialRulesKitchen());
     public static final IShop CARPENTER = HFApi.shops.newShop(new ResourceLocation(MODID, "carpenter"), HFNPCs.BUILDER);
     public static final IShop POULTRY = HFApi.shops.newShop(new ResourceLocation(MODID, "poultry"), HFNPCs.POULTRY);
     public static final IShop SUPERMARKET = HFApi.shops.newShop(new ResourceLocation(MODID, "general"), HFNPCs.GS_OWNER);
@@ -194,8 +195,8 @@ public class HFShops {
         CARPENTER.addItem(new PurchasableBuilder(0, 16, 0, HFCore.STORAGE.getStackFromEnum(Storage.SHIPPING)));
         CARPENTER.addItem(new PurchasableBuilder(10000L, 24, 6, HFCrops.SPRINKLER.getStackFromEnum(Sprinkler.WOOD)) {
             @Override
-            public boolean canBuy(World world, EntityPlayer player) {
-                return HFApi.calendar.getDate(world).getWeekday().isWeekend() && CalendarHelper.haveYearsPassed(world, player, 1);
+            public boolean canBuy(World world, EntityPlayer player, int amount) {
+                return amount == 1 && HFApi.calendar.getDate(world).getWeekday().isWeekend() && CalendarHelper.haveYearsPassed(world, player, 1);
             }
 
         });
@@ -245,17 +246,17 @@ public class HFShops {
     }
 
     private static void registerSupermarket() {
-        SUPERMARKET.addItem(250, HFTools.HOE.getStack(ToolTier.BASIC));
-        SUPERMARKET.addItem(250, HFTools.SICKLE.getStack(ToolTier.BASIC));
-        SUPERMARKET.addItem(500, HFTools.WATERING_CAN.getStack(ToolTier.BASIC));
-        SUPERMARKET.addItem(1000, HFTools.AXE.getStack(ToolTier.BASIC));
-        SUPERMARKET.addItem(1000, HFTools.HAMMER.getStack(ToolTier.BASIC));
-
         for (Crop crop : Crop.REGISTRY.getValues()) {
             if (crop != Crop.NULL_CROP) {
                 SUPERMARKET.addItem(new PurchasableCropSeeds(crop));
             }
         }
+
+        SUPERMARKET.addItem(250, HFTools.HOE.getStack(ToolTier.BASIC));
+        SUPERMARKET.addItem(250, HFTools.SICKLE.getStack(ToolTier.BASIC));
+        SUPERMARKET.addItem(500, HFTools.WATERING_CAN.getStack(ToolTier.BASIC));
+        SUPERMARKET.addItem(1000, HFTools.AXE.getStack(ToolTier.BASIC));
+        SUPERMARKET.addItem(1000, HFTools.HAMMER.getStack(ToolTier.BASIC));
 
         SUPERMARKET.addItem(new PurchasableBlueFeather(1000, HFNPCs.TOOLS.getStackFromEnum(BLUE_FEATHER)));
         SUPERMARKET.addItem(RICEBALL.getCost(), HFCooking.INGREDIENTS.getStackFromEnum(RICEBALL));

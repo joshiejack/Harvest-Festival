@@ -42,7 +42,7 @@ public class HFBuildings {
     public static final BlockInternalAir AIR = new BlockInternalAir().register("air");
 
     public static final BuildingImpl null_building = new BuildingImpl();
-    public static final ISpecialPurchaseRules NEVER = (w, p) -> false;
+    public static final ISpecialPurchaseRules NEVER = (w, p, a) -> false;
     public static final Building BARN = registerBuilding("barn", 4000L, 100, 0).setRequirements("carpenter").setInhabitants(HFNPCs.BARN_OWNER).setOffset(6, -1, 8);
     public static final Building BLACKSMITH = registerBuilding("blacksmith", 9000L, 16, 160).setRequirements("miningHill").setInhabitants(HFNPCs.BLACKSMITH).setOffset(3, -2, 6);
     public static final Building CAFE = registerBuilding("cafe", 15000L, 200, 110).setRequirements("supermarket").setInhabitants(HFNPCs.CAFE_OWNER, HFNPCs.CAFE_GRANNY).setOffset(7, -1, 10);

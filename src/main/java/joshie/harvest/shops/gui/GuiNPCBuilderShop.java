@@ -1,29 +1,13 @@
 package joshie.harvest.shops.gui;
 
-import joshie.harvest.core.HFTrackers;
-import joshie.harvest.core.helpers.StackHelper;
-import joshie.harvest.core.lib.HFModInfo;
-import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.npc.entity.EntityNPC;
-import joshie.harvest.shops.packet.PacketPurchaseItem;
-import joshie.harvest.shops.purchasable.PurchasableBuilder;
-import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.text.TextFormatting;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class GuiNPCBuilderShop extends GuiNPCShop {
     public GuiNPCBuilderShop(EntityPlayer player, EntityNPC npc, boolean isSelling) {
         super(player, npc, -2, isSelling);
-    }
-
-    @Override
-    public int getIncrease() {
-        return 1;
     }
 
     @Override
@@ -34,15 +18,14 @@ public class GuiNPCBuilderShop extends GuiNPCShop {
     private static final ItemStack log = new ItemStack(Blocks.LOG);
     private static final ItemStack stone = new ItemStack(Blocks.STONE);
 
-    @Override
-    protected void drawShelves(int x, int y) {
+    protected void drawShelves(int x, int y) { /*
         int index = 0;
         for (int i = start; i < contents.size(); i++) {
             if (index > 4) break;
             PurchasableBuilder purchaseable = (PurchasableBuilder) contents.get(i);
             ItemStack display = purchaseable.getDisplayStack();
             long cost = selling ? -purchaseable.getCost() : purchaseable.getCost();
-            mc.renderEngine.bindTexture(shelve_texture);
+            mc.renderEngine.bindTexture(SHOP_EXTRA);
 
             int posY = 41;
 
@@ -91,11 +74,11 @@ public class GuiNPCBuilderShop extends GuiNPCShop {
             if (index >= 10) {
                 break;
             }
-        }
+        } */
     }
 
     @Override
-    protected void onMouseClick(int x, int y) {
+    protected void onMouseClick(int x, int y) { /*
         int index = 0;
         for (int i = start; i < contents.size(); i++) {
             if (index > 4) break;
@@ -120,6 +103,6 @@ public class GuiNPCBuilderShop extends GuiNPCShop {
         }
 
         if (down && start < contents.size() - getMax()) setStart(start + getIncrease());
-        else if (up && start != 0) setStart(start - getIncrease());
+        else if (up && start != 0) setStart(start - getIncrease()); */
     }
 }

@@ -29,7 +29,7 @@ public class BuildingImpl extends Impl<BuildingImpl> implements Building {
     private final Set<ResourceLocation> inhabitants = new HashSet<>();
 
     //Costs and rules
-    private ISpecialPurchaseRules special = (w, p) -> true;
+    private ISpecialPurchaseRules special = (w, p, a) -> true;
     private String toLocalise = "";
     private ResourceLocation[] requirements = new ResourceLocation[0];
     private long cost = 1000L;

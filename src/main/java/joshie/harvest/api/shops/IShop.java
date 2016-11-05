@@ -1,9 +1,8 @@
 package joshie.harvest.api.shops;
 
 import joshie.harvest.api.calendar.Weekday;
+import joshie.harvest.api.core.ISpecialPurchaseRules;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 public interface IShop {
     /** Hours, auto adjusts based on difficulty instead of manually adding
@@ -21,8 +20,8 @@ public interface IShop {
      *  @param      stack the items you get for this purchase**/
     IShop addItem(long cost, ItemStack... stack);
 
-    /** Make sure you only call this on the client,
-     *  Allows you to render something over the background of your shop **/
-    @SideOnly(Side.CLIENT)
-    IShop setGuiOverlay(IShopGuiOverlay overlay);
+    /** Set special rules for being able to buy or sell from this shop
+     *  By default all shops are accessible at all times
+     *  @param rules the rules you want to set **/
+    IShop setSpecialPurchaseRules(ISpecialPurchaseRules rules);
 }

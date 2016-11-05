@@ -58,17 +58,18 @@ public abstract class GuiBase extends GuiScreen {
 
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
+
         drawDefaultBackground();
         GlStateManager.color(1.0f, 1.0f, 1.0f, 1.0f);
         mc.renderEngine.bindTexture(TEXTURE);
         drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
         drawBackground(guiLeft, guiTop);
+        super.drawScreen(mouseX, mouseY, partialTicks);
         drawTooltip(tooltip, mouseX, mouseY);
         GlStateManager.disableRescaleNormal();
         RenderHelper.disableStandardItemLighting();
         GlStateManager.disableLighting();
         GlStateManager.disableDepth();
-        super.drawScreen(mouseX, mouseY, partialTicks);
         RenderHelper.enableGUIStandardItemLighting();
         GlStateManager.pushMatrix();
         GlStateManager.translate((float)guiLeft,(float)guiTop, 0.0F);
@@ -110,7 +111,7 @@ public abstract class GuiBase extends GuiScreen {
         tooltip.addAll(list);
     }
     
-    private void drawTooltip(List<String> list, int x, int y) {
+    protected void drawTooltip(List<String> list, int x, int y) {
         if (!list.isEmpty()) {
             GlStateManager.disableRescaleNormal();
             RenderHelper.disableStandardItemLighting();

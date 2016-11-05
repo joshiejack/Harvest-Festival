@@ -7,7 +7,7 @@ import net.minecraft.world.World;
 
 public class SpecialRuleChurch implements ISpecialPurchaseRules {
     @Override
-    public boolean canBuy(World world, EntityPlayer player) {
-        return TownHelper.getClosestTownToEntity(player).getInhabitants().size() >= 9;
+    public boolean canBuy(World world, EntityPlayer player, int amount) {
+        return amount == 1 && TownHelper.getClosestTownToEntity(player).getInhabitants().size() >= 9;
     }
 }

@@ -30,13 +30,8 @@ public abstract class PurchasableFML<I extends IForgeRegistryEntry.Impl<I>> impl
     public abstract IForgeRegistry<I> getRegistry();
 
     @Override
-    public boolean canBuy(World world, EntityPlayer player) {
+    public boolean canBuy(World world, EntityPlayer player, int amount) {
         return true;
-    }
-
-    @Override
-    public boolean canList(World world, EntityPlayer player) {
-        return canBuy(world, player);
     }
 
     @Override
@@ -45,13 +40,11 @@ public abstract class PurchasableFML<I extends IForgeRegistryEntry.Impl<I>> impl
     }
 
     @Override
-    public boolean onPurchased(EntityPlayer player) {
+    public void onPurchased(EntityPlayer player) {
         if (getCost() < 0) {
-            return !InventoryHelper.hasInInventory(player, ITEM_STACK, getDisplayStack(), getDisplayStack().stackSize)
-                    || !InventoryHelper.takeItemsInInventory(player, ITEM_STACK, getDisplayStack(), getDisplayStack().stackSize);
+            InventoryHelper.takeItemsInInventory(player, ITEM_STACK, getDisplayStack(), getDisplayStack().stackSize);
         } else {
             SpawnItemHelper.addToPlayerInventory(player, getDisplayStack().copy());
-            return false;
         }
     }
 

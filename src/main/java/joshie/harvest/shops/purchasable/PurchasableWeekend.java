@@ -26,13 +26,13 @@ public class PurchasableWeekend extends Purchasable {
     }
 
     @Override
-    public boolean canBuy(World world, EntityPlayer player) {
-        return HFApi.calendar.getDate(world).getWeekday().isWeekend() && hasRequiredItem(player);
+    public boolean canBuy(World world, EntityPlayer player, int amount) {
+        return amount == 1 && HFApi.calendar.getDate(world).getWeekday().isWeekend() && hasRequiredItem(player);
     }
 
     @Override
-    public boolean onPurchased(EntityPlayer player) {
+    public void onPurchased(EntityPlayer player) {
         HFTrackers.getPlayerTrackerFromPlayer(player).getTracking().addAsObtained(stacks[0]);
-        return super.onPurchased(player);
+        super.onPurchased(player);
     }
 }

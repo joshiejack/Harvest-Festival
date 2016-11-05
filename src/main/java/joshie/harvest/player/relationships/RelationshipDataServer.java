@@ -53,7 +53,7 @@ public class RelationshipDataServer extends RelationshipData {
         if (!statuses.contains(NPCStatus.GIFTED)) {
             if (amount == 0) return true;
             syncStatus((EntityPlayerMP) player, key, NPCStatus.GIFTED, true);
-            affectRelationship(key, amount);
+            affectRelationship(key, 15000);
             statuses.add(NPCStatus.GIFTED);
             return true;
         }

@@ -24,7 +24,7 @@ public class SpecialRulesQuest implements ISpecialPurchaseRules {
     }
 
     @Override
-    public boolean canBuy(World world, EntityPlayer player) {
-        return TownHelper.getClosestTownToEntity(player).getQuests().getFinished().contains(getQuest());
+    public boolean canBuy(World world, EntityPlayer player, int amount) {
+        return amount == 1 && TownHelper.getClosestTownToEntity(player).getQuests().getFinished().contains(getQuest());
     }
 }

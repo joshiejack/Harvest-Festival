@@ -34,17 +34,12 @@ public class PurchasableCropSeeds implements IPurchasable {
     }
 
     @Override
-    public boolean canBuy(World world, EntityPlayer player) {
+    public boolean canBuy(World world, EntityPlayer player, int amount) {
         CalendarDate date = HFApi.calendar.getDate(world);
         if (!isCorrectSeason(date.getSeason())) return false;
         if (!crop.canPurchase()) return false;
         if (crop.getPurchaseYear() > 0 && !CalendarHelper.haveYearsPassed(world, player, crop.getPurchaseYear())) return false;
-        return crop.getRules().canBuy(world, player);
-    }
-
-    @Override
-    public boolean canList(World world, EntityPlayer player) {
-        return canBuy(world, player);
+        return crop.getRules().canBuy(world, player, amount);
     }
 
     @Override
@@ -64,9 +59,8 @@ public class PurchasableCropSeeds implements IPurchasable {
     }
 
     @Override
-    public boolean onPurchased(EntityPlayer player) {
+    public void onPurchased(EntityPlayer player) {
         SpawnItemHelper.addToPlayerInventory(player, crop.getSeedStack(1).copy());
-        return false;
     }
 
     @Override

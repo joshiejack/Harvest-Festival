@@ -37,17 +37,8 @@ public class PurchasableEntity implements IPurchasable {
     }
 
     @Override
-    public boolean canBuy(World world, EntityPlayer player) {
-        if (!lead) {
-            return player.getPassengers().size() == 0;
-        }
-
-        return true;
-    }
-
-    @Override
-    public boolean canList(World world, EntityPlayer player) {
-        return canBuy(world, player);
+    public boolean canBuy(World world, EntityPlayer player, int amount) {
+        return amount == 1 && (lead || player.getPassengers().size() == 0);
     }
 
     @Override
@@ -82,7 +73,7 @@ public class PurchasableEntity implements IPurchasable {
     }
 
     @Override
-    public boolean onPurchased(EntityPlayer aPlayer) {
+    public void onPurchased(EntityPlayer aPlayer) {
         if (!aPlayer.worldObj.isRemote) {
             EntityPlayerMP player = (EntityPlayerMP)aPlayer;
             EntityLiving theEntity = createEntity(player.worldObj);
@@ -104,8 +95,6 @@ public class PurchasableEntity implements IPurchasable {
                 }
             }
         }
-
-        return false;
     }
 
     @Override

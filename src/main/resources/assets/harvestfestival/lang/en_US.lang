@@ -1343,6 +1343,9 @@ harvestfestival.quest.recipe.milk.strawberry.text=What makes milk even nicer?
 harvestfestival.quest.recipe.toast.text=Yulif hasn't really taught me how to cook much yet. I do know how to make some toast though.
 harvestfestival.quest.recipe.latte.vegetable.text=I need to get rid of this unholy object fast. Please take it.
 
+## Friendship Quests
+harvestfestival.quest.friendship.katlin.kitchen.text=You have been really kind to me. I just don't know how to feel. You know, we recently lost our supplier for the kitchen, maybe you could take over the job? Just come and visit me on a Friday when the café isn't open, early in the morning or in the evening, then you can help me restock the kitchen. We're looking for things like meat, beetroot soup and cake.
+
 ## Meeting Quests
 harvestfestival.quest.meeting.jacob.text=Thanks a bunch for inviting me here, I'm glad to open my tackle shop for you. For all your hard work I'd like to give you this fishing rod.
 

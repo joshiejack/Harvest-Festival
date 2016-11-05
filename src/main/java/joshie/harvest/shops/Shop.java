@@ -3,9 +3,9 @@ package joshie.harvest.shops;
 import com.google.common.collect.HashMultimap;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.Weekday;
+import joshie.harvest.api.core.ISpecialPurchaseRules;
 import joshie.harvest.api.shops.IPurchasable;
 import joshie.harvest.api.shops.IShop;
-import joshie.harvest.api.shops.IShopGuiOverlay;
 import joshie.harvest.calendar.CalendarHelper;
 import joshie.harvest.core.helpers.TextHelper;
 import joshie.harvest.npc.entity.EntityNPC;
@@ -15,41 +15,44 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.util.ArrayList;
+import java.util.Collection;
 import java.util.LinkedHashMap;
-import java.util.List;
 
 public class Shop implements IShop {
+    public static final ISpecialPurchaseRules DEFAULT = (w, p, a) -> true;
     private final LinkedHashMap<String, IPurchasable> contents = new LinkedHashMap<>();
     private final HashMultimap<Weekday, OpeningHours> open = HashMultimap.create();
     public final ResourceLocation resourceLocation;
     private final String unlocalizedName;
+    private ISpecialPurchaseRules rules;
     private ShopSelection selection;
-    @SideOnly(Side.CLIENT)
-    private IShopGuiOverlay overlay;
     private boolean canBuy;
     private boolean canSell;
 
     public Shop(ResourceLocation resource) {
         resourceLocation = resource;
         unlocalizedName = resource.getResourceDomain() + ".shop." + resource.getResourcePath();
+        rules = DEFAULT;
     }
 
     public IPurchasable getPurchasableFromID(String id) {
         return contents.get(id);
     }
 
-    public boolean canBuyFromShop() {
-        return canBuy;
+    @Override
+    public IShop setSpecialPurchaseRules(ISpecialPurchaseRules rules) {
+        this.rules = rules;
+        return this;
     }
 
-    public boolean canSellToShop() {
-        return canSell;
+    public boolean canBuyFromShop(@Nullable EntityPlayer player) {
+        return player == null ? canBuy : rules.canBuy(player.worldObj, player, 1);
+    }
+
+    public boolean canSellToShop(@Nullable EntityPlayer player) {
+        return player == null ? canSell : rules.canBuy(player.worldObj, player, 1);
     }
 
     public ShopSelection getSelection() {
@@ -86,18 +89,6 @@ public class Shop implements IShop {
         return addItem(new Purchasable(cost, items));
     }
 
-    @SideOnly(Side.CLIENT)
-    @Override
-    public IShop setGuiOverlay(IShopGuiOverlay overlay) {
-        this.overlay = overlay;
-        return this;
-    }
-
-    @SideOnly(Side.CLIENT)
-    public IShopGuiOverlay getGuiOverlay() {
-        return overlay;
-    }
-
     public String getLocalizedName() {
         return TextHelper.localize(unlocalizedName);
     }
@@ -106,26 +97,16 @@ public class Shop implements IShop {
         return TextHelper.getRandomSpeech(npc.getNPC(), unlocalizedName + ".greeting", 100);
     }
 
-    public List<IPurchasable> getContents(@Nonnull EntityPlayer player, boolean isSelling) {
-        List<IPurchasable> contents = new ArrayList<>();
-        for (IPurchasable purchaseable : this.contents.values()) {
-            if ((purchaseable.getCost() < 0 && isSelling) || (purchaseable.getCost() >= 0 & !isSelling)) {
-                if (purchaseable.canList(player.worldObj, player)) {
-                    contents.add(purchaseable);
-                }
-            }
-        }
-
-        return contents;
+    public Collection<IPurchasable> getContents() {
+        return contents.values();
     }
 
     public boolean isOpen(World world, @Nullable EntityPlayer player) {
         if (HFShops.TWENTY_FOUR_HOUR_SHOPPING) return true;
         Weekday day = HFApi.calendar.getDate(world).getWeekday();
         for (OpeningHours hours: open.get(day)) {
-
             boolean isOpen = CalendarHelper.isBetween(world, hours.open, hours.close);
-            if (isOpen && (player == null || getContents(player, false).size() > 0 || getContents(player, true).size() > 0)) return true;
+            if (isOpen && (player == null || contents.size() > 0)) return true;
         }
 
         return false;

@@ -38,13 +38,12 @@ public class Purchasable implements IPurchasable {
     }
 
     @Override
-    public boolean canBuy(World world, EntityPlayer player) {
-        return true;
-    }
+    public boolean canBuy(World world, EntityPlayer player, int amount) {
+        if (getCost() < 0) {
+            return InventoryHelper.hasInInventory(player, ITEM_STACK, getDisplayStack(), (getDisplayStack().stackSize * amount));
+        }
 
-    @Override
-    public boolean canList(World world, EntityPlayer player) {
-        return canBuy(world, player);
+        return true;
     }
 
     @Override
@@ -58,17 +57,14 @@ public class Purchasable implements IPurchasable {
     }
 
     @Override
-    public boolean onPurchased(EntityPlayer player) {
+    public void onPurchased(EntityPlayer player) {
         if (getCost() < 0) {
-            return !InventoryHelper.hasInInventory(player, ITEM_STACK, getDisplayStack(), getDisplayStack().stackSize)
-                    || !InventoryHelper.takeItemsInInventory(player, ITEM_STACK, getDisplayStack(), getDisplayStack().stackSize);
+            InventoryHelper.takeItemsInInventory(player, ITEM_STACK, getDisplayStack(), getDisplayStack().stackSize);
         } else {
             for (ItemStack product : stacks) {
                 SpawnItemHelper.addToPlayerInventory(player, product.copy());
             }
         }
-
-        return false;
     }
 
     @SideOnly(Side.CLIENT)

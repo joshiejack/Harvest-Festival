@@ -30,6 +30,7 @@ public class Quests {
     public static final Quest RECIPE_FISH_FINGERS = QuestHelper.getQuest("recipe.fishsticks");
     public static final Quest RECIPE_VEGETABLE_LATTE = QuestHelper.getQuest("recipe.latte.vegetable");
     public static final Quest RECIPE_BUTTER = QuestHelper.getQuest("recipe.butter");
+    public static final Quest RECIPE_STEW = QuestHelper.getQuest("recipe.stew");
 
     //Seeds
     public static final Quest SEEDS_STRAWBERRY = QuestHelper.getQuest("seeds.strawberry");

@@ -13,7 +13,7 @@ public class SpecialRuleBuildings implements ISpecialPurchaseRules {
     }
 
     @Override
-    public boolean canBuy(World world, EntityPlayer player) {
-        return TownHelper.getClosestTownToEntity(player).getBuildings().size() >= 9;
+    public boolean canBuy(World world, EntityPlayer player, int amount) {
+        return amount == 1 && TownHelper.getClosestTownToEntity(player).getBuildings().size() >= 9;
     }
 }

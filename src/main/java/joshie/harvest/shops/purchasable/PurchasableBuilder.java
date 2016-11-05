@@ -10,7 +10,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.IForgeRegistry;
 
-import static joshie.harvest.core.helpers.InventoryHelper.ITEM_STACK;
 import static joshie.harvest.core.helpers.InventoryHelper.ORE_DICTIONARY;
 
 public class PurchasableBuilder extends PurchasableFML<BuildingImpl> {
@@ -40,10 +39,9 @@ public class PurchasableBuilder extends PurchasableFML<BuildingImpl> {
     }
 
     @Override
-    public boolean canBuy(World world, EntityPlayer player) {
-        if (!InventoryHelper.hasInInventory(player, ORE_DICTIONARY, "logWood", getLogCost())) return false;
-        if (!InventoryHelper.hasInInventory(player, ORE_DICTIONARY, "stone", getStoneCost())) return false;
-        return isPurchaseable(world, player);
+    public boolean canBuy(World world, EntityPlayer player, int amount) {
+        return amount==1 && InventoryHelper.hasInInventory(player, ORE_DICTIONARY, "logWood", getLogCost())
+                && InventoryHelper.hasInInventory(player, ORE_DICTIONARY, "stone", getStoneCost()) && isPurchaseable(world, player);
     }
 
     @Override
@@ -57,15 +55,10 @@ public class PurchasableBuilder extends PurchasableFML<BuildingImpl> {
     }
 
     @Override
-    public boolean onPurchased(EntityPlayer player) {
-        if (getCost() < 0) {
-            return !InventoryHelper.hasInInventory(player, ITEM_STACK, getDisplayStack(), getDisplayStack().stackSize)
-                    || !InventoryHelper.takeItemsInInventory(player, ITEM_STACK, getDisplayStack(), getDisplayStack().stackSize);
-        } else {
-            InventoryHelper.takeItemsInInventory(player, ORE_DICTIONARY, "logWood", getLogCost());
-            InventoryHelper.takeItemsInInventory(player, ORE_DICTIONARY, "stone", getStoneCost());
-            return super.onPurchased(player);
-        }
+    public void onPurchased(EntityPlayer player) {
+        InventoryHelper.takeItemsInInventory(player, ORE_DICTIONARY, "logWood", getLogCost());
+        InventoryHelper.takeItemsInInventory(player, ORE_DICTIONARY, "stone", getStoneCost());
+        super.onPurchased(player);
     }
 
     public boolean isPurchaseable(World world, EntityPlayer player) {

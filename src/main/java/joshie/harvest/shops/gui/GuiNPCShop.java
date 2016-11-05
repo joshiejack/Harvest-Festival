@@ -1,18 +1,18 @@
 package joshie.harvest.shops.gui;
 
 import joshie.harvest.api.shops.IPurchasable;
-import joshie.harvest.api.shops.IShopGuiOverlay;
 import joshie.harvest.core.HFTrackers;
+import joshie.harvest.core.helpers.MCClientHelper;
 import joshie.harvest.core.helpers.StackHelper;
 import joshie.harvest.core.lib.HFModInfo;
-import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.npc.entity.EntityNPC;
 import joshie.harvest.npc.gui.GuiNPCBase;
 import joshie.harvest.player.stats.StatsClient;
 import joshie.harvest.shops.Shop;
-import joshie.harvest.shops.packet.PacketPurchaseItem;
-import net.minecraft.client.gui.GuiScreen;
+import joshie.harvest.shops.gui.button.ButtonArrow;
+import joshie.harvest.shops.gui.button.ButtonListing;
+import joshie.harvest.shops.gui.button.ButtonListingSell;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -22,64 +22,147 @@ import net.minecraft.util.ResourceLocation;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class GuiNPCShop extends GuiNPCBase {
-    static final ResourceLocation gui_texture = new ResourceLocation(HFModInfo.MODID, "textures/gui/shop.png");
-    static final ResourceLocation shelve_texture = new ResourceLocation(HFModInfo.MODID, "textures/gui/shop_extra.png");
+    static final ResourceLocation SHOP_BACKGROUND = new ResourceLocation(HFModInfo.MODID, "textures/gui/shop.png");
+    public static final ResourceLocation SHOP_EXTRA = new ResourceLocation(HFModInfo.MODID, "textures/gui/shop_extra.png");
+    protected final List<IPurchasable> contents = new ArrayList<>();
     protected final StatsClient stats;
-    final List<IPurchasable> contents;
-    private final IShopGuiOverlay overlay;
+    private final EntityPlayer client;
     protected final Shop shop;
     protected final boolean selling;
     protected int start;
+    private int maxSize;
 
     public GuiNPCShop(EntityPlayer player, EntityNPC npc, int nextGui, boolean isSelling) {
         super(player, npc, EnumHand.MAIN_HAND, nextGui);
-
+        client = player;
         shop = npc.getNPC().getShop();
         if (shop == null || !shop.isOpen(player.worldObj, player)) player.closeScreen();
-        overlay = shop.getGuiOverlay();
-        contents = shop.getContents(player, isSelling);
         stats = HFTrackers.getClientPlayerTracker().getStats();
         selling = isSelling;
     }
 
+    @Override
+    public void initGui() {
+        super.initGui();
+        reload();
+        setStart(0);
+    }
+
+    @SuppressWarnings("all")
+    public void reload() {
+        contents.clear();
+        for (IPurchasable purchasable: shop.getContents()) {
+            if (purchasable.canList(client.worldObj, client)) {
+                contents.add(purchasable);
+            }
+        }
+
+        setStart(start);
+    }
+
+    public int getStart() {
+        return start;
+    }
+
+    public int getMaxSize() {
+        return maxSize;
+    }
+
+    public Shop getShop() {
+        return shop;
+    }
+
     public void setStart(int i) {
-        start = Math.max(0, Math.min(getMaximumSize(), i));
+        buttonList.clear();
+        //Up arrow
+        buttonList.add(new ButtonArrow(this, -1, 225, 0, guiLeft + 232, guiTop + 60) {
+            @Override
+            protected void updateVisiblity() {
+                visible = shop.getStart() != 0;
+            }
+        });
+
+        //Down arrow
+        buttonList.add(new ButtonArrow(this, +1, 242, 1, guiLeft + 232, guiTop + 210) {
+            @Override
+            protected void updateVisiblity() {
+                visible = shop.getStart() < shop.getMaxSize();
+            }
+        });
+
+        maxSize = contents.size() - getMax();
+        start = Math.max(0, Math.min(maxSize, i));
+        int id = start;
+        int position = 0;
+        int pPosition = 0;
+        Iterator<IPurchasable> it = contents.iterator();
+        while (it.hasNext() && id < start + 10) {
+            IPurchasable purchasable = it.next();
+            if (pPosition >= start && purchasable.canList(client.worldObj, client)) {
+                if (purchasable.getCost() < 0) buttonList.add(new ButtonListingSell(this, purchasable, id + 2, guiLeft + 28, 38 + guiTop + (20 * position)));
+                else buttonList.add(new ButtonListing(this, purchasable, id + 2, guiLeft + 28, 38 + guiTop + (20 * position)));
+                position++;
+                id++;
+            }
+
+            pPosition++;
+        }
+    }
+
+    protected void drawResizableBackground(int x, int y) {
+        mc.renderEngine.bindTexture(SHOP_BACKGROUND);
+        if (buttonList.size() < 10 && (selling || npc.getNPC() != HFNPCs.BUILDER)) {
+            drawTexturedModalRect(x, y, 0, 0, xSize,  40 + (37 * (buttonList.size())));
+            drawTexturedModalRect(x, y + 40 + (37 * (buttonList.size())), 0, 228, xSize, 28);
+        } else drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
     }
 
     @Override
     public void drawBackground(int x, int y) {
-        y += 20; //Add 20
-
         GlStateManager.pushMatrix();
         GlStateManager.enableBlend();
-        mc.renderEngine.bindTexture(gui_texture);
-        if (contents.size() < 9 && (selling || npc.getNPC() != HFNPCs.BUILDER)) {
-            drawTexturedModalRect(x, y, 0, 0, xSize,  40 + (37 * (contents.size() / 2)));
-            drawTexturedModalRect(x, y + 40 + (37 * (contents.size() / 2)), 0, 228, xSize, 28);
-        } else drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
-        if (overlay != null) overlay.renderOverlay(this, x, y, xSize, ySize);
-        ShopFontRenderer.render(this, x + 20, y + 17, shop.getLocalizedName(), false);
-        drawCoinage(x, y, stats.getGold());
-        drawShelves(x, y);
-        mc.renderEngine.bindTexture(shelve_texture);
+        drawResizableBackground(x, y);
+        ShopFontRenderer.render(this, x + 20, guiTop + 17, shop.getLocalizedName(), false);
+        drawCoinage(x, guiTop + 19, stats.getGold());
 
-        int up = 0;
-        int down = 0;
-        if (mouseX >= 231 && mouseX <= 242) {
-            up = mouseY >= 66 && mouseY <= 75 ? 17 : 0;
-            down = mouseY >= 231 && mouseY <= 240 ? 17 : 0;
-        }
-
-        if (start != 0) drawTexturedModalRect(x + 230, y + 45, 72 + up, 34, 14, 12);
-        if (start < getMaximumSize()) drawTexturedModalRect(x + 230, y + 210, 72 + down, 47, 14, 12);
+        drawPlayerInventory();
         GlStateManager.disableBlend();
         GlStateManager.popMatrix();
     }
 
-    protected String getCostAsString(long cost) {
+    private void drawPlayerInventory() {
+        if (selling) ShopFontRenderer.render(this, guiLeft + 250, guiTop + 27, "SELLING", false);
+        else ShopFontRenderer.render(this, guiLeft + 250, guiTop + 27, "BUYING", false);
+        mc.renderEngine.bindTexture(SHOP_EXTRA);
+        drawTexturedModalRect(guiLeft + 240, guiTop + 40, 0, 62, 100, 194);
+
+        int x2 = 0, y2 = 0;
+        boolean first = true;
+        ShopFontRenderer.render(this, guiLeft + 240, guiTop + 44, "Inventory", false);
+        for (ItemStack stack: MCClientHelper.getPlayer().inventory.mainInventory) {
+            if (stack != null) {
+                StackHelper.drawStack(stack, guiLeft + 253 + y2, guiTop + 61 + x2 * 18, 1F);
+            }
+            x2++;
+            if (x2 >= 9) {
+                x2 = 0;
+                if (first) {
+                    y2 += 22;
+                    first = false;
+                } else {
+                    y2 += 18;
+                }
+            }
+        }
+    }
+
+
+    public String getCostAsString(long cost) {
+        if (cost < 0) cost = -cost;
         if (cost < 1000) return "" + cost;
         long remainder = cost % 1000;
         int decimal = remainder == 0 ? 0 : remainder % 100 == 0 ? 1: remainder %10 == 0 ? 2: 3;
@@ -87,58 +170,14 @@ public class GuiNPCShop extends GuiNPCBase {
         return String.format("%." + decimal + "f%c", cost / Math.pow(1000, exp), "kMGTPE".charAt(exp-1));
     }
 
-    protected void drawShelves(int x, int y) {
-        int index = 0;
-        for (int i = start; i < contents.size(); i++) {
-            if (index > (getMax())) break;
-            IPurchasable purchaseable = contents.get(i);
-            ItemStack display = purchaseable.getDisplayStack();
-            long cost = selling ? -purchaseable.getCost() : purchaseable.getCost();
-            mc.renderEngine.bindTexture(shelve_texture);
-            int indexPercent = index % 2;
-            int indexDivide = index / 2;
-            int percent99 = indexPercent * 99;
-            int percent37 = indexDivide * 37;
-            int x99 = percent99 + x;
-            int y37 = y + percent37;
-
-            drawTexturedModalRect(x + 29 + (indexPercent * 101), y37 + 41, 0, 0, 160, 32);
-            int xOffset = 0;
-            int posY = 41 + percent37;
-            int posX = 98 + percent99;
-
-            if (mouseY >= posY + 23 && mouseY <= posY + 46 && mouseX >= posX - 63 && mouseX <= posX - 41) {
-                List<String> list = new ArrayList<>();
-                purchaseable.addTooltip(list);
-                addTooltip(list);
-            }
-
-            if (mouseY >= posY + 20 && mouseY <= posY + 52 && mouseX >= posX && mouseX <= posX + 28) {
-                xOffset = 32;
-            }
-
-            drawTexturedModalRect(x + posX, y + posY - 2, xOffset, 32, 32, 36);
-            GlStateManager.enableBlend();
-            mc.renderEngine.bindTexture(HFModInfo.ELEMENTS);
-            drawTexturedModalRect(x99 + 59, y37 + 50, 244, 0, 12, 12);
-
-            mc.fontRendererObj.drawStringWithShadow(getCostAsString(cost), x99 + 73, y37 + 53, 0xFFFFFF);
-            GlStateManager.color(1.0F, 1.0F, 1.0F);
-
-            StackHelper.drawStack(display, x99 + 36, y37 + 46, 1.4F);
-
-            index++;
-        }
-    }
-
     private static final DecimalFormat formatter = new DecimalFormat("#,###");
 
     private void drawCoinage(int x, int y, long gold) {
         String formatted = String.valueOf(formatter.format(gold));
-        ShopFontRenderer.render(this, x + 210, y + 17, formatted, true);
+        ShopFontRenderer.render(this, x + 220, y, formatted, true);
         GlStateManager.disableDepth();
         mc.renderEngine.bindTexture(HFModInfo.ELEMENTS);
-        mc.ingameGUI.drawTexturedModalRect((x + 230) - 15, y + 15, 244, 0, 12, 12);
+        mc.ingameGUI.drawTexturedModalRect((x + 224), y - 1, 244, 0, 12, 12);
         GlStateManager.enableDepth();
     }
 
@@ -161,43 +200,8 @@ public class GuiNPCShop extends GuiNPCBase {
         super.keyTyped(character, key);
     }
 
-    @Override
-    protected void onMouseClick(int x, int y) {
-        int index = 0;
-        for (int i = start; i < contents.size(); i++) {
-            if (index > (getMax())) break;
-            IPurchasable purchaseable = contents.get(i);
-            if (purchaseable.canBuy(player.worldObj, player)) {
-                int indexPercent = index % 2;
-                int indexDivide = index / 2;
-                int percent99 = indexPercent * 99;
-                int percent37 = indexDivide * 37;
-                int posY = 41 + percent37;
-                int posX = 98 + percent99;
-
-                if (stats.getGold() - purchaseable.getCost() >= 0) {
-                    if (mouseY >= posY + 20 && mouseY <= posY + 52 && mouseX >= posX && mouseX <= posX + 32) {
-                        for (int j = 0; j < (GuiScreen.isShiftKeyDown() ? 64: 1); j++) {
-                            PacketHandler.sendToServer(new PacketPurchaseItem(shop, purchaseable));
-                        }
-
-                        return; //Don't process further
-                    }
-                }
-
-                index++;
-            }
-        }
-
-        boolean up = false;
-        boolean down = false;
-        if (mouseX >= 231 && mouseX <= 242) {
-            up = mouseY >= 66 && mouseY <= 75;
-            down = mouseY >= 231 && mouseY <= 240;
-        }
-
-        if (down && start < getMaximumSize()) setStart(start + getIncrease());
-        else if (up && start != 0) setStart(start - getIncrease());
+    public void scroll(int amount) {
+        setStart(start + amount);
     }
 
     @Override
@@ -205,22 +209,12 @@ public class GuiNPCShop extends GuiNPCBase {
         super.handleMouseInput();
 
         if (mouseWheel != 0) {
-            if (mouseWheel < 0) setStart(start + getIncrease());
-            else setStart(start - getIncrease());
+            if (mouseWheel < 0) setStart(start + 1);
+            else setStart(start - 1);
         }
     }
 
-    public int getIncrease() {
-        return 2;
-    }
-
     public int getMax() {
-        return 9;
-    }
-
-    private int getMaximumSize() {
-        int max = contents.size() - getMax();
-        max = max %2 == 0 ? max: max - 1;
-        return max;
+        return 10;
     }
 }

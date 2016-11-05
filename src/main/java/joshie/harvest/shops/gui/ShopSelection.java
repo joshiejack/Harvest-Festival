@@ -15,21 +15,21 @@ public class ShopSelection extends Selection {
 
     public ShopSelection(Shop shop) {
         this.shop = shop;
-        if (shop.canBuyFromShop() && shop.canSellToShop()) {
+        if (shop.canBuyFromShop(null) && shop.canSellToShop(null)) {
             setLines("harvestfestival.shop.general.options", "harvestfestival.shop.general.options.shop", "harvestfestival.shop.general.options.sell", "harvestfestival.shop.general.options.chat");
-        } else if (shop.canBuyFromShop()) setLines("harvestfestival.shop.general.options", "harvestfestival.shop.general.options.shop", "harvestfestival.shop.general.options.chat");
-        else if (shop.canSellToShop()) setLines("harvestfestival.shop.general.options", "harvestfestival.shop.general.options.sell", "harvestfestival.shop.general.options.chat");
+        } else if (shop.canBuyFromShop(null)) setLines("harvestfestival.shop.general.options", "harvestfestival.shop.general.options.shop", "harvestfestival.shop.general.options.chat");
+        else if (shop.canSellToShop(null)) setLines("harvestfestival.shop.general.options", "harvestfestival.shop.general.options.sell", "harvestfestival.shop.general.options.chat");
     }
 
     /** Called when the option is selected **/
     @Override
     public Result onSelected(EntityPlayer player, EntityLiving entity, INPC npc, Quest quest, int option) {
         //If we are able to buy from this shop
-        if(shop.canBuyFromShop() && option == 1) {
+        if(shop.canBuyFromShop(player) && option == 1) {
             if (npc.isBuilder()) player.openGui(HarvestFestival.instance, GuiHandler.SHOP_BUILDER, player.worldObj, entity.getEntityId(), 0, 0);
             else player.openGui(HarvestFestival.instance, GuiHandler.SHOP_MENU, player.worldObj, entity.getEntityId(), 0, 0);
             return Result.DEFAULT;
-        } else if ((!shop.canBuyFromShop() && shop.canSellToShop() && option == 1) || option == 2) {
+        } else if ((!shop.canBuyFromShop(player) && shop.canSellToShop(player) && option == 1) || option == 2) {
             player.openGui(HarvestFestival.instance, GuiHandler.SHOP_MENU_SELL, player.worldObj, entity.getEntityId(), 0, 0);
             return Result.DEFAULT;
         }

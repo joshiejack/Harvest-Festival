@@ -29,7 +29,7 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements IShippable, 
     public static final IForgeRegistry<Crop> REGISTRY = new RegistryBuilder<Crop>().setName(new ResourceLocation("harvestfestival", "crops")).setType(Crop.class).setIDRange(0, 32000).create();
     public static final GrowthHandler SEASONAL = new GrowthHandler() {};
     public static final DropHandler DROPS = new DropHandler();
-    public static final ISpecialPurchaseRules RULES = (w, p) -> true;
+    public static final ISpecialPurchaseRules RULES = (w, p, a) -> true;
     public static final Crop NULL_CROP = new Crop();
 
     //CropData

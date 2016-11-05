@@ -9,8 +9,8 @@ import net.minecraft.world.World;
 
 public class SpecialRuleFestivals implements ISpecialPurchaseRules {
     @Override
-    public boolean canBuy(World world, EntityPlayer player) {
+    public boolean canBuy(World world, EntityPlayer player, int amount) {
         TownData data = TownHelper.getClosestTownToEntity(player);
-        return data.hasBuilding(HFBuildings.SUPERMARKET) || data.hasBuilding(HFBuildings.BARN) || data.hasBuilding(HFBuildings.POULTRY_FARM);
+        return amount == 1 && data.hasBuilding(HFBuildings.SUPERMARKET) || data.hasBuilding(HFBuildings.BARN) || data.hasBuilding(HFBuildings.POULTRY_FARM);
     }
 }

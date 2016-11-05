@@ -10,25 +10,29 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.List;
 
 public interface IPurchasable extends ISpecialPurchaseRules {
-    /** Whether this item shows up in the shop gui for purchase **/
-    boolean canList(World world, EntityPlayer player);
-    
-    /** The cost of this product **/
+    /** The purchaseables id, this needs to be a unique string **/
+    String getPurchaseableID();
+
+    /** This is whether the item can be listed in the shop
+     *  @param world the world object
+     *  @param player the player trying to buy**/
+    default boolean canList(World world, EntityPlayer player) { return getCost() < 0 || canBuy(world, player, 1); }
+
+    /** The total cost of this item **/
     long getCost();
 
-    /** This is the itemstack that gets displayed in the shop view **/
+    /** This is what this will be displayed as in the store **/
     ItemStack getDisplayStack();
-    
-    /** Called whenever this item is purchased
-     *  @param      player the player purchasing the item
-     *  @return     return true if the gui should close after a purchase **/
-    boolean onPurchased(EntityPlayer player);
 
-    /** Display tooltip for this item **/
+    /** Add tooltip information for this item **/
     @SideOnly(Side.CLIENT)
     void addTooltip(List<String> list);
 
-    /** The purchaseables id
-     *  This needs to be a unique string **/
-    String getPurchaseableID();
+    /** Called whenever this item is purchased by this player
+     * @param player    the player doing the purchasing **/
+    void onPurchased(EntityPlayer player);
+
+
+
+
 }

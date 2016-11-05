@@ -19,8 +19,8 @@ public class PurchasableBlueFeather extends Purchasable {
     }
     
     @Override
-    public boolean canBuy(World world, EntityPlayer player) {
-        return HFTrackers.getPlayerTrackerFromPlayer(player).getRelationships().isEllegibleToMarry();
+    public boolean canBuy(World world, EntityPlayer player, int amount) {
+        return amount == 1 && HFTrackers.getPlayerTrackerFromPlayer(player).getRelationships().isEllegibleToMarry();
     }
 
     @Override

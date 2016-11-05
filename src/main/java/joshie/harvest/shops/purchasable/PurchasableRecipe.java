@@ -21,9 +21,9 @@ public class PurchasableRecipe extends PurchasableMeal {
     }
 
     @Override
-    public boolean canBuy(World world, EntityPlayer player) {
+    public boolean canBuy(World world, EntityPlayer player, int amount) {
         CalendarDate date = HFApi.calendar.getDate(world);
-        return date.getWeekday() == weekday && date.getSeason() == season;
+        return amount == 1 && date.getWeekday() == weekday && date.getSeason() == season;
     }
 
     @Override

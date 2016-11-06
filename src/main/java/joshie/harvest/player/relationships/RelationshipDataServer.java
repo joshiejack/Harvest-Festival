@@ -25,7 +25,10 @@ public class RelationshipDataServer extends RelationshipData {
         this.master = master;
     }
 
-
+    public boolean hasMet(UUID key) {
+        Collection<NPCStatus> statuses = status.get(key);
+        return statuses.contains(NPCStatus.MET);
+    }
 
     public boolean hasGivenBirthdayGift(UUID uuid) {
         return status.get(uuid).contains(NPCStatus.BIRTHDAY_GIFT);

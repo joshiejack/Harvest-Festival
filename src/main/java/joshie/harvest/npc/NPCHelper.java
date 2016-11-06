@@ -2,8 +2,10 @@ package joshie.harvest.npc;
 
 import joshie.harvest.api.buildings.BuildingLocation;
 import joshie.harvest.api.npc.INPC;
+import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.handlers.GuiHandler;
 import joshie.harvest.npc.entity.*;
+import joshie.harvest.player.PlayerTrackerServer;
 import joshie.harvest.shops.Shop;
 import joshie.harvest.town.TownHelper;
 import net.minecraft.entity.EntityLivingBase;
@@ -37,9 +39,13 @@ public class NPCHelper {
         } else return (N) new EntityNPCVillager(world, npc);
     }
 
+    private static boolean canPlayerOpenShop(NPC npc, Shop shop, EntityPlayer player) {
+        return HFTrackers.<PlayerTrackerServer>getPlayerTrackerFromPlayer(player).getRelationships().hasMet(npc.getUUID()) && (shop.canBuyFromShop(player) || shop.canSellToShop(player));
+    }
+
     public static boolean isShopOpen(NPC npc, World world, @Nullable EntityPlayer player) {
         Shop shop = npc.getShop();
-        if (shop != null && shop.isOpen(world, player) && (player == null || (shop.canBuyFromShop(player) || shop.canSellToShop(player)))) {
+        if (shop != null && shop.isOpen(world, player) && (player == null || (canPlayerOpenShop(npc, shop, player)))) {
             return (player != null && (shop.getContents().size() > 0)) || player == null;
         }
 

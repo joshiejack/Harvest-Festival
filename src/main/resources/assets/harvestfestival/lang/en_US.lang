@@ -48,20 +48,33 @@ harvestfestival.town.cancelled=was cancelled
 harvestfestival.structures.blueprint=Blueprint: %s
 harvestfestival.structures.spawn=[SPAWN] %s
 harvestfestival.structures.barn=Animal Ranch
+harvestfestival.structures.barn.tooltip=Building an animal ranch allows you access to cows and sheep, simply chat with the owner for your first free cow.
 harvestfestival.structures.blacksmith=Blacksmith
+harvestfestival.structures.blacksmith.tooltip=The blacksmith is able to repair tools as well as upgrade them.
 harvestfestival.structures.cafe=Cafe
+harvestfestival.structures.cafe.tooltip=The cafe sells a bunch of food and recipes, they also sell kitchen utensils at the weekend.
 harvestfestival.structures.carpenter=Carpenter
+harvestfestival.structures.carpenter.tooltip=You can't even buy this, but hey a tooltip!
 harvestfestival.structures.church=Church
+harvestfestival.structures.church.tooltip=A great place for the npcs to gather, the priest can also bless cursed tools.
 harvestfestival.structures.clockmaker=Clockmaker
+harvestfestival.structures.clockmaker.tooltip=A timekeeper, or at least that's what he says...
 harvestfestival.structures.fishinghole=Fishing Hole
-harvestfestival.structures.fishinghut=Fishing Hut
+harvestfestival.structures.fishinghole.tooltip=Allows you to catch fish that you can't catch anywhere else!
+harvestfestival.structures.fishinghut=Tackle Shop
+harvestfestival.structures.fishinghut.tooltip=If you want to make some serious income from fishing, then this is what you'll need.
 harvestfestival.structures.goddesspond=Goddess Pond
-harvestfestival.structures.mininghill=Mining Hill
-harvestfestival.structures.mininghut=Mining Hut
+harvestfestival.structures.goddesspond.tooltip=Where the goddess prefers to live, you can toss any crop or plant in her waters and she'll spawn and accept that item as a gift.
+harvestfestival.structures.mininghill=Mine
+harvestfestival.structures.mininghill.tooltip=Here's where you can find all sorts of nodes, which you can sell for cash.
 harvestfestival.structures.poultryfarm=Poultry Farm
+harvestfestival.structures.poultryfarm.tooltip=Want to get started on chickens? Here's the place, simply chat with the owner for a free chicken.
 harvestfestival.structures.supermarket=General Store
+harvestfestival.structures.supermarket.tooltip=Selling all kinds of goods from tools, to seeds and cooking ingredients.
 harvestfestival.structures.townhall=Townhall
+harvestfestival.structures.townhall.tooltip=The ultimate hub, unlocks some events and other treats.
 harvestfestival.structures.festivals=Festival Grounds
+harvestfestival.structures.festivals.tooltip=This is where festivals will take place. Don't place anything on the grounds as it will get removed whenever a festival is near.
 harvestfestival.structures.null=Invalid
 
 #Cheat Items (Translators don't bother tranlating these, I just use them to help with dev)
@@ -1345,9 +1358,13 @@ harvestfestival.quest.recipe.latte.vegetable.text=I need to get rid of this unho
 
 ## Friendship Quests
 harvestfestival.quest.friendship.katlin.kitchen.text=You have been really kind to me. I just don't know how to feel. You know, we recently lost our supplier for the kitchen, maybe you could take over the job? Just come and visit me on a Friday when the café isn't open, early in the morning or in the evening, then you can help me restock the kitchen. We're looking for things like meat, beetroot soup and cake.
+harvestfestival.quest.friendship.yulif.sprinkler.text=Yer have been a really great friend lately. So great I'm able to sell ya sprinklers now, so take a look in ma store when you have a chance.
+harvestfestival.quest.friendship.jacob.hatchery.text=For making a fisherman happy, I've got some new stock in store so be suure to check her out.
+harvestfestival.quest.friendship.tiberius.dark.text=I think I'm finally starting to trust you. You should come and see me during the night on Wednesdays or Saturdays. I'm looking to buy some things...
 
 ## Meeting Quests
-harvestfestival.quest.meeting.jacob.text=Thanks a bunch for inviting me here, I'm glad to open my tackle shop for you. For all your hard work I'd like to give you this fishing rod.
+harvestfestival.quest.meeting.jacob.text=Nice to meet you %2$s, the name's jacob. From what I've heard you're interested in fishing, you know, I've just recently bought myself a new rod, I'd like you to have my old one here, please take care of her. I run this tackle shop, if you need anything please do pop by.
+harvestfestival.quest.meeting.katlin.text=Good day youngun. I'm Katlin but you can call me granny if you like. I help out my granddaughter Liara, mostly in the kitchen. I must thank you for letting her open shop up here, it's been her life long dream. I have some spare change, it isn't much but please do take it.
 
 ## Seed Quests
 harvestfestival.quest.seeds.cabbage.complete=Wow it looks like you've shipped 1000 spring crops! That's amazing. I have some good news too, we've recently found someone who will be happy to supply the store with cabbage seeds. So make sure to check the store the next time you visit!

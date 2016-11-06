@@ -11,7 +11,6 @@ import joshie.harvest.api.crops.Crop;
 import joshie.harvest.api.shops.IShop;
 import joshie.harvest.buildings.BuildingImpl;
 import joshie.harvest.buildings.BuildingRegistry;
-import joshie.harvest.calendar.CalendarHelper;
 import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.core.HFCore;
 import joshie.harvest.core.block.BlockStorage.Storage;
@@ -26,6 +25,7 @@ import joshie.harvest.mining.HFMining;
 import joshie.harvest.mining.block.BlockLadder.Ladder;
 import joshie.harvest.mining.item.ItemMiningTool.MiningTool;
 import joshie.harvest.npc.HFNPCs;
+import joshie.harvest.quests.Quests;
 import joshie.harvest.shops.purchasable.*;
 import joshie.harvest.shops.rules.SpecialRulesKitchen;
 import joshie.harvest.tools.HFTools;
@@ -195,10 +195,14 @@ public class HFShops {
         CARPENTER.addItem(new PurchasableBuilder(0, 16, 0, HFCore.STORAGE.getStackFromEnum(Storage.SHIPPING)));
         CARPENTER.addItem(new PurchasableBuilder(10000L, 24, 6, HFCrops.SPRINKLER.getStackFromEnum(Sprinkler.WOOD)) {
             @Override
-            public boolean canBuy(World world, EntityPlayer player, int amount) {
-                return amount == 1 && HFApi.calendar.getDate(world).getWeekday().isWeekend() && CalendarHelper.haveYearsPassed(world, player, 1);
+            public boolean canList(World world, EntityPlayer player) {
+                return HFApi.quests.hasCompleted(Quests.SPRINKLER, player);
             }
 
+            @Override
+            public boolean canBuy(World world, EntityPlayer player, int amount) {
+                return canList(world, player) && super.canBuy(world, player, amount);
+            }
         });
 
         CARPENTER.addItem(new PurchasableBuilder(10, 0, 0, new ItemStack(Blocks.LOG)));
@@ -278,6 +282,18 @@ public class HFShops {
         BAITSHOP.addItem(1000L, HFFishing.FISHING_ROD.getStack(ToolTier.BASIC));
         BAITSHOP.addItem(1500L, HFFishing.FISHING_BLOCK.getStackFromEnum(FishingBlock.TRAP));
         BAITSHOP.addItem(3000L, HFFishing.FISHING_BLOCK.getStackFromEnum(FishingBlock.HATCHERY));
+        BAITSHOP.addItem(new Purchasable(3000L, HFFishing.FISHING_BLOCK.getStackFromEnum(FishingBlock.HATCHERY)) {
+            @Override
+            public boolean canList(World world, EntityPlayer player) {
+                return HFApi.quests.hasCompleted(Quests.HATCHERY, player);
+            }
+
+            @Override
+            public boolean canBuy(World world, EntityPlayer player, int amount) {
+                return canList(world, player) && super.canBuy(world, player, amount);
+            }
+        });
+
 
         //Selling things to the carpenter
         BAITSHOP.addItem(-100, new ItemStack(Items.PRISMARINE_SHARD));

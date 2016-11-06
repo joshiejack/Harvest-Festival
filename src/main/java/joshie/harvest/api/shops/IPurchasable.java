@@ -21,6 +21,9 @@ public interface IPurchasable extends ISpecialPurchaseRules {
     /** The total cost of this item **/
     long getCost();
 
+    /** This is the display name for this item **/
+    default String getDisplayName() { return getDisplayStack().getDisplayName(); }
+
     /** This is what this will be displayed as in the store **/
     ItemStack getDisplayStack();
 

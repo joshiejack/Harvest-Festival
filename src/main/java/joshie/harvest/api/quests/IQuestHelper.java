@@ -6,6 +6,11 @@ import net.minecraft.item.ItemStack;
 import java.util.Set;
 
 public interface IQuestHelper {
+    /** Returns true if this quest is completed
+     *  @param quest    the quest
+     *  @param player   the player**/
+    boolean hasCompleted(Quest quest, EntityPlayer player);
+
     /** Increases the stage of the quest
      *  @param quest    the quest to sync
      *  @param player   the player syncing to*/

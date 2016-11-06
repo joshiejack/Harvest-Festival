@@ -25,12 +25,12 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class GuiNPCShop extends GuiNPCBase {
+public class GuiNPCShop<I extends IPurchasable> extends GuiNPCBase {
     static final ResourceLocation SHOP_BACKGROUND = new ResourceLocation(HFModInfo.MODID, "textures/gui/shop.png");
     public static final ResourceLocation SHOP_EXTRA = new ResourceLocation(HFModInfo.MODID, "textures/gui/shop_extra.png");
     protected final List<IPurchasable> contents = new ArrayList<>();
     protected final StatsClient stats;
-    private final EntityPlayer client;
+    protected final EntityPlayer client;
     protected final Shop shop;
     protected final boolean selling;
     protected int start;
@@ -56,12 +56,16 @@ public class GuiNPCShop extends GuiNPCBase {
     public void reload() {
         contents.clear();
         for (IPurchasable purchasable: shop.getContents()) {
-            if (purchasable.canList(client.worldObj, client)) {
+            if (isAllowedInShop(purchasable) && purchasable.canList(client.worldObj, client)) {
                 contents.add(purchasable);
             }
         }
 
         setStart(start);
+    }
+
+    protected boolean isAllowedInShop(IPurchasable purchasable) {
+        return (selling && purchasable.getCost() < 0) || (!selling && purchasable.getCost() >= 0);
     }
 
     public int getStart() {
@@ -76,6 +80,7 @@ public class GuiNPCShop extends GuiNPCBase {
         return shop;
     }
 
+    @SuppressWarnings("unchecked")
     public void setStart(int i) {
         buttonList.clear();
         //Up arrow
@@ -100,12 +105,14 @@ public class GuiNPCShop extends GuiNPCBase {
         int position = 0;
         int pPosition = 0;
         Iterator<IPurchasable> it = contents.iterator();
-        while (it.hasNext() && id < start + 10) {
+        while (it.hasNext() && position <= 180) {
             IPurchasable purchasable = it.next();
             if (pPosition >= start && purchasable.canList(client.worldObj, client)) {
-                if (purchasable.getCost() < 0) buttonList.add(new ButtonListingSell(this, purchasable, id + 2, guiLeft + 28, 38 + guiTop + (20 * position)));
-                else buttonList.add(new ButtonListing(this, purchasable, id + 2, guiLeft + 28, 38 + guiTop + (20 * position)));
-                position++;
+                if (purchasable.getCost() < 0) {
+                    buttonList.add(new ButtonListingSell(this, purchasable, id + 2, guiLeft + 28, 38 + guiTop + position));
+                    position += 20;
+                } else position += addButton((I)purchasable, id + 2, guiLeft + 28, 38 + guiTop + position, position);
+
                 id++;
             }
 
@@ -113,11 +120,20 @@ public class GuiNPCShop extends GuiNPCBase {
         }
     }
 
+    protected int addButton(I purchasable, int id, int left, int top, int space) {
+        if (space + 20 <= 200) {
+            buttonList.add(new ButtonListing(this, purchasable, id, left, top));
+        }
+
+        return 20;
+    }
+
     protected void drawResizableBackground(int x, int y) {
         mc.renderEngine.bindTexture(SHOP_BACKGROUND);
         if (buttonList.size() < 10 && (selling || npc.getNPC() != HFNPCs.BUILDER)) {
-            drawTexturedModalRect(x, y, 0, 0, xSize,  40 + (37 * (buttonList.size())));
-            drawTexturedModalRect(x, y + 40 + (37 * (buttonList.size())), 0, 228, xSize, 28);
+            drawTexturedModalRect(x, y - 12 + (20 * (buttonList.size())), 0, 228, xSize, 28);
+            drawTexturedModalRect(x, y, 0, 0, xSize, (20 * (buttonList.size())) - 2);
+
         } else drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
     }
 

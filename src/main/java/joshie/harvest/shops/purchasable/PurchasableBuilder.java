@@ -1,5 +1,6 @@
 package joshie.harvest.shops.purchasable;
 
+import joshie.harvest.api.shops.IPurchasableBuilder;
 import joshie.harvest.buildings.BuildingImpl;
 import joshie.harvest.buildings.BuildingRegistry;
 import joshie.harvest.buildings.HFBuildings;
@@ -9,10 +10,15 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.IForgeRegistry;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.List;
 
 import static joshie.harvest.core.helpers.InventoryHelper.ORE_DICTIONARY;
+import static net.minecraft.util.text.TextFormatting.WHITE;
 
-public class PurchasableBuilder extends PurchasableFML<BuildingImpl> {
+public class PurchasableBuilder extends PurchasableFML<BuildingImpl> implements IPurchasableBuilder {
     private final String resource;
     private ItemStack stack;
     private final int logs;
@@ -40,8 +46,8 @@ public class PurchasableBuilder extends PurchasableFML<BuildingImpl> {
 
     @Override
     public boolean canBuy(World world, EntityPlayer player, int amount) {
-        return amount==1 && InventoryHelper.hasInInventory(player, ORE_DICTIONARY, "logWood", getLogCost())
-                && InventoryHelper.hasInInventory(player, ORE_DICTIONARY, "stone", getStoneCost()) && isPurchaseable(world, player);
+        return InventoryHelper.hasInInventory(player, ORE_DICTIONARY, "logWood", (getLogCost() * amount))
+                && InventoryHelper.hasInInventory(player, ORE_DICTIONARY, "stone", (getStoneCost() * amount)) && isPurchaseable(world, player);
     }
 
     @Override
@@ -65,16 +71,25 @@ public class PurchasableBuilder extends PurchasableFML<BuildingImpl> {
         return true;
     }
 
+    @Override
     public int getLogCost() {
         return logs;
     }
 
+    @Override
     public int getStoneCost() {
         return stone;
     }
 
-    public String getName() {
+    @Override
+    public String getDisplayName() {
         return stack != null ? stack.getDisplayName() : getDisplayStack().getDisplayName();
+    }
+
+    @SideOnly(Side.CLIENT)
+    @Override
+    public void addTooltip(List<String> list) {
+        list.add(WHITE + getDisplayName());
     }
 
     @Override

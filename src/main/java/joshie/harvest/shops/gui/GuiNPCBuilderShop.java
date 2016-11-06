@@ -1,108 +1,71 @@
 package joshie.harvest.shops.gui;
 
+import joshie.harvest.api.shops.IPurchasable;
+import joshie.harvest.api.shops.IPurchasableBuilder;
 import joshie.harvest.npc.entity.EntityNPC;
+import joshie.harvest.shops.gui.button.ButtonListingBuilding;
+import joshie.harvest.shops.gui.button.ButtonListingItem;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.ItemStack;
 
-public class GuiNPCBuilderShop extends GuiNPCShop {
+public class GuiNPCBuilderShop extends GuiNPCShop<IPurchasableBuilder> {
     public GuiNPCBuilderShop(EntityPlayer player, EntityNPC npc, boolean isSelling) {
         super(player, npc, -2, isSelling);
     }
 
     @Override
-    public int getMax() {
-        return 5;
-    }
-
-    private static final ItemStack log = new ItemStack(Blocks.LOG);
-    private static final ItemStack stone = new ItemStack(Blocks.STONE);
-
-    protected void drawShelves(int x, int y) { /*
-        int index = 0;
-        for (int i = start; i < contents.size(); i++) {
-            if (index > 4) break;
-            PurchasableBuilder purchaseable = (PurchasableBuilder) contents.get(i);
-            ItemStack display = purchaseable.getDisplayStack();
-            long cost = selling ? -purchaseable.getCost() : purchaseable.getCost();
-            mc.renderEngine.bindTexture(SHOP_EXTRA);
-
-            int posY = 41;
-
-            drawTexturedModalRect(x + 29, y + posY + (index * 34), 0, 0, 32, 32);
-            drawTexturedModalRect(x + 29 + 32, y + posY + (index * 34), 32, 0, 32, 32);
-            drawTexturedModalRect(x + 29 + 64, y + posY + (index * 34), 32, 0, 32, 32);
-            drawTexturedModalRect(x + 29 + 96, y + posY + (index * 34), 32, 0, 32, 32);
-            drawTexturedModalRect(x + 29 + 128, y + posY + (index * 34), 32, 0, 32, 32);
-            drawTexturedModalRect(x + 29 + 160, y + posY + (index * 34), 64, 0, 32, 32);
-            int xOffset = 0;
-            int posX = 190;
-
-            if (mouseY >= posY + 26 + (index * 34) && mouseY <= posY + 46 + (index * 34) && mouseX >= 34 && mouseX <= 56) {
-                List<String> list = new ArrayList<>();
-                purchaseable.addTooltip(list);
-                addTooltip(list);
-            }
-
-            if (mouseY >= posY + 20 + (index * 34) && mouseY <= posY + 52 + (index * 34) && mouseX >= posX && mouseX <= posX + 32) {
-                xOffset = 32;
-            }
-
-            drawTexturedModalRect(x + posX, y + posY + (index * 34), xOffset, 32, 32, 32);
-            StackHelper.drawStack(display, x + 34, y + 46 + (index * 34), 1.4F);
-            mc.renderEngine.bindTexture(HFModInfo.ELEMENTS);
-            drawTexturedModalRect(x + 34 + 100, y + 54 + (index * 34), 244, 0, 12, 12);
-            mc.fontRendererObj.drawStringWithShadow(getCostAsString(cost), x + 148, y + 57 + (index * 34), 0xC39753);
-
-            //Wood
-            if (purchaseable.getLogCost() > 0) {
-                StackHelper.drawStack(log, x + 56, y + 55 + (index * 34), 0.75F);
-                mc.fontRendererObj.drawStringWithShadow(getCostAsString(purchaseable.getLogCost()), x + 69, y + 57 + (index * 34), 0xC39753);
-            }
-
-            //Stone
-            if (purchaseable.getStoneCost() > 0) {
-                StackHelper.drawStack(stone, x + 100, y + 55 + (index * 34), 0.75F);
-                mc.fontRendererObj.drawStringWithShadow(getCostAsString(purchaseable.getStoneCost()), x + 113, y + 57 + (index * 34), 0xC39753);
-            }
-
-            mc.fontRendererObj.drawStringWithShadow(TextFormatting.BOLD + purchaseable.getName(), x + 60, y + 46 + (index * 34), 0xC39753);
-
-            GlStateManager.color(1.0F, 1.0F, 1.0F);
-            index++;
-
-            if (index >= 10) {
-                break;
-            }
-        } */
+    public boolean isAllowedInShop(IPurchasable purchasable) {
+        return purchasable instanceof IPurchasableBuilder;
     }
 
     @Override
-    protected void onMouseClick(int x, int y) { /*
-        int index = 0;
-        for (int i = start; i < contents.size(); i++) {
-            if (index > 4) break;
-            PurchasableBuilder purchaseable = (PurchasableBuilder) contents.get(i);
-            if (purchaseable.canBuy(player.worldObj, player)) {
-                long cost = purchaseable.getCost();
-                if (HFTrackers.getClientPlayerTracker().getStats().getGold() - cost >= 0) {
-                    if (mouseY >= 61 + (index * 34) && mouseY <= 93 + (index * 34) && mouseX >= 190 && mouseX <= 222) {
-                        PacketHandler.sendToServer(new PacketPurchaseItem(shop, purchaseable));
-                    }
-                }
+    public int getMax() {
+        return 10;
+    }
+
+    @Override
+    public void reload() {
+        contents.clear();
+        for (IPurchasable purchasable: shop.getContents()) {
+            if (isAllowedInShop(purchasable) && purchasable.canList(client.worldObj, client)) {
+                contents.add(purchasable);
             }
-
-            index++;
         }
 
-        boolean up = false;
-        boolean down = false;
-        if (mouseX >= 231 && mouseX <= 242) {
-            up = mouseY >= 66 && mouseY <= 75;
-            down = mouseY >= 231 && mouseY <= 240;
+        contents.sort((s1, s2)-> {
+                int one = isGoldOnly((IPurchasableBuilder)s1) || isWoodOnly((IPurchasableBuilder)s1) || isStoneOnly((IPurchasableBuilder)s1) ? 1 : 0;
+                int two = isGoldOnly((IPurchasableBuilder)s2) || isWoodOnly((IPurchasableBuilder)s2) || isStoneOnly((IPurchasableBuilder)s2) ? 1 : 0;
+                return one > two ? 1 : one == two ? 0:  -1;
+
+        } );
+
+        setStart(start);
+    }
+
+    private boolean isGoldOnly(IPurchasableBuilder builder) {
+        return builder.getCost() != 0 && builder.getStoneCost() == 0 && builder.getLogCost() == 0;
+    }
+
+    private boolean isWoodOnly(IPurchasableBuilder builder) {
+        return builder.getLogCost() != 0 && builder.getStoneCost() == 0 && builder.getCost() == 0;
+    }
+
+    private boolean isStoneOnly(IPurchasableBuilder builder) {
+        return builder.getStoneCost() != 0 && builder.getLogCost() == 0 && builder.getCost() == 0;
+    }
+
+    @Override
+    protected int addButton(IPurchasableBuilder purchasable, int id, int left, int top, int space) {
+        if (isGoldOnly(purchasable)) return super.addButton(purchasable, id, left, top, space);
+        else if (isWoodOnly(purchasable)) {
+            if (space + 20 <= 200) buttonList.add(new ButtonListingItem(ButtonListingBuilding.log, purchasable.getLogCost(), this, purchasable, id, left, top));
+            return 20;
+        } else if (isStoneOnly(purchasable)) {
+            if (space + 20 <= 200) buttonList.add(new ButtonListingItem(ButtonListingBuilding.stone, purchasable.getStoneCost(), this, purchasable, id, left, top));
+            return 20;
+        } else if (space + 36 <= 200) {
+            buttonList.add(new ButtonListingBuilding(this, purchasable, id, left, top));
         }
 
-        if (down && start < contents.size() - getMax()) setStart(start + getIncrease());
-        else if (up && start != 0) setStart(start - getIncrease()); */
+        return 20;
     }
 }

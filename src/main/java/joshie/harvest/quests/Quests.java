@@ -13,6 +13,9 @@ public class Quests {
     public static final Quest TUTORIAL_UPGRADING = QuestHelper.getQuest("tutorial.upgrading");
     public static final Quest TUTORIAL_CAFE = QuestHelper.getQuest("tutorial.cafe");
 
+    //Meetings
+    public static final Quest MEET_KATLIN = QuestHelper.getQuest("meeting.katlin");
+
     //Recipes
     public static final Quest RECIPE_HOT_MILK = QuestHelper.getQuest("recipe.milk.hot");
     public static final Quest RECIPE_PINEAPPLE_JUICE = QuestHelper.getQuest("recipe.juice.pineapple");
@@ -31,7 +34,12 @@ public class Quests {
     public static final Quest RECIPE_VEGETABLE_LATTE = QuestHelper.getQuest("recipe.latte.vegetable");
     public static final Quest RECIPE_BUTTER = QuestHelper.getQuest("recipe.butter");
     public static final Quest RECIPE_STEW = QuestHelper.getQuest("recipe.stew");
+    public static final Quest RECIPE_CHOCOLATE_CAKE = QuestHelper.getQuest("recipe.cake.chocolate");
+    public static final Quest RECIPE_GRILLED_FISH = QuestHelper.getQuest("recipe.fish.grilled");
+    public static final Quest RECIPE_DOUGHNUT = QuestHelper.getQuest("recipe.doughnut");
 
     //Seeds
     public static final Quest SEEDS_STRAWBERRY = QuestHelper.getQuest("seeds.strawberry");
+    public static final Quest SPRINKLER = QuestHelper.getQuest("friendship.yulif.sprinkler");
+    public static final Quest HATCHERY = QuestHelper.getQuest("friendship.jacob.hatchery");
 }

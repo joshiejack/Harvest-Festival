@@ -1,9 +1,9 @@
 package joshie.harvest.crops.handlers.rules;
 
+import joshie.harvest.api.HFApi;
 import joshie.harvest.api.core.ISpecialPurchaseRules;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.quests.QuestHelper;
-import joshie.harvest.town.TownHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 
@@ -25,6 +25,6 @@ public class SpecialRulesQuest implements ISpecialPurchaseRules {
 
     @Override
     public boolean canBuy(World world, EntityPlayer player, int amount) {
-        return amount == 1 && TownHelper.getClosestTownToEntity(player).getQuests().getFinished().contains(getQuest());
+        return amount == 1 && HFApi.quests.hasCompleted(getQuest(), player);
     }
 }

@@ -16,6 +16,7 @@ import joshie.harvest.crops.block.BlockSprinkler;
 import joshie.harvest.crops.handlers.growth.GrowthHandlerNether;
 import joshie.harvest.crops.handlers.growth.GrowthHandlerSide;
 import joshie.harvest.crops.handlers.rules.SpecialRulesQuest;
+import joshie.harvest.crops.handlers.rules.SpecialRulesRanch;
 import joshie.harvest.crops.item.ItemCrop;
 import joshie.harvest.crops.item.ItemCrop.Crops;
 import joshie.harvest.crops.item.ItemHFSeeds;
@@ -104,7 +105,7 @@ public class HFCrops {
     public static final Crop GRASS = registerCrop("grass").setItem(getCropStack(Crops.GRASS)).setValue(500, 1).setStages(11).setRegrow(1).setSeedColours(0x7AC958).setSeasons(SPRING, SUMMER, AUTUMN)
                                         .setAnimalFoodType(AnimalFoodType.GRASS).setBecomesDouble(6).setHasAlternativeName().setRequiresSickle(6).setNoWaterRequirements();
     public static final Crop WHEAT = registerCrop("wheat").setItem(Items.WHEAT).setValue(150, 120).setStages(Blocks.WHEAT, 2, 5, 9, 12, 15, 20, 27, 28).setSeedColours(0XEAC715).setSeasons(SPRING, SUMMER, AUTUMN)
-                                        .setIngredient(1, 0.1F).setAnimalFoodType(AnimalFoodType.GRASS).setRequiresSickle(0);
+                                        .setIngredient(1, 0.1F).setAnimalFoodType(AnimalFoodType.GRASS).setRequiresSickle(0).setPurchaseRules(new SpecialRulesRanch());
     //Nether Crops
     public static final Crop NETHER_WART = registerCrop("nether_wart").setItem(Items.NETHER_WART).setValue(4000, 20).setStages(Blocks.NETHER_WART, 1, 2, 3, 4).setRegrow(1).setSeedColours(0x8B0000)
                                             .setPlantType(EnumPlantType.Nether).setNoWaterRequirements().setGrowthHandler(SOUL_SAND).setPurchaseRules(new SpecialRulesQuest("nether_wart"));

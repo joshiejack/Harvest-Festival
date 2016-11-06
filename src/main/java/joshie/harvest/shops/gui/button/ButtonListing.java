@@ -21,17 +21,18 @@ import java.util.List;
 
 import static joshie.harvest.shops.gui.GuiNPCShop.SHOP_EXTRA;
 
-public class ButtonListing extends GuiButton {
+public class ButtonListing<I extends IPurchasable> extends GuiButton {
     public static final int HOVER = 2;
-    private final GuiNPCShop shop;
-    protected final IPurchasable purchasable;
-    private int state;
+    protected final GuiNPCShop shop;
+    protected final I purchasable;
+    protected int state;
 
+    @SuppressWarnings("unchecked")
     public ButtonListing(GuiNPCShop shop, IPurchasable purchasable, int buttonId, int x, int y) {
-        super(buttonId, x, y, purchasable.getDisplayStack().getDisplayName());
+        super(buttonId, x, y, purchasable.getDisplayName());
         this.height = 18;
         this.shop = shop;
-        this.purchasable = purchasable;
+        this.purchasable = (I) purchasable;
     }
 
     @Override
@@ -50,8 +51,7 @@ public class ButtonListing extends GuiButton {
             GlStateManager.enableBlend();
             GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
             GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
-            drawTexturedModalRect(xPosition, yPosition, 0, state * 18, width / 2, height);
-            drawTexturedModalRect(xPosition + width / 2, yPosition, 200 - width / 2, state * 18, width / 2, height);
+            drawBackground();
             mouseDragged(mc, mouseX, mouseY);
             int j = 14737632;
 
@@ -63,14 +63,7 @@ public class ButtonListing extends GuiButton {
                 j = 16777120;
             }
 
-            StackHelper.drawStack(purchasable.getDisplayStack(), xPosition + 2, yPosition + 1, 1F);
-            drawString(fontrenderer, displayString, xPosition + 20, yPosition + (height - 8) / 2, j);
-            //Draw the cost
-            String cost = shop.getCostAsString(purchasable.getCost());
-            int width = fontrenderer.getStringWidth(cost);
-            mc.renderEngine.bindTexture(HFModInfo.ELEMENTS);
-            drawTexturedModalRect(xPosition + 195 - width - 14, (yPosition + (height - 8) / 2) - 2, 244, 0, 12, 12);
-            drawString(fontrenderer, cost, xPosition + 195 - width, yPosition + (height - 8) / 2, j);
+            drawForeground(mc, fontrenderer, j);
             GlStateManager.color(1.0F, 1.0F, 1.0F);
 
             if (originalState == HOVER) {
@@ -79,6 +72,22 @@ public class ButtonListing extends GuiButton {
                 shop.addTooltip(list);
             }
         }
+    }
+
+    protected void drawBackground() {
+        drawTexturedModalRect(xPosition, yPosition, 0, state * 18, width / 2, height);
+        drawTexturedModalRect(xPosition + width / 2, yPosition, 200 - width / 2, state * 18, width / 2, height);
+    }
+
+    protected void drawForeground(Minecraft mc, FontRenderer fontrenderer, int j) {
+        StackHelper.drawStack(purchasable.getDisplayStack(), xPosition + 2, yPosition + 1, 1F);
+        drawString(fontrenderer, displayString, xPosition + 20, yPosition + (height - 8) / 2, j);
+        //Draw the cost
+        String cost = shop.getCostAsString(purchasable.getCost());
+        int width = fontrenderer.getStringWidth(cost);
+        mc.renderEngine.bindTexture(HFModInfo.ELEMENTS);
+        drawTexturedModalRect(xPosition + 184, (yPosition + (height - 8) / 2) - 2, 244, 0, 12, 12);
+        drawString(fontrenderer, cost, xPosition + 180 - width, yPosition + (height - 8) / 2, j);
     }
 
     @Override
@@ -91,7 +100,6 @@ public class ButtonListing extends GuiButton {
         boolean purchased10 = GuiScreen.isShiftKeyDown() && canPurchase10();
         if (purchased10 || canPurchase1()) {
             PacketHandler.sendToServer(new PacketPurchaseItem(shop.getShop(), purchasable, purchased10 ? 10: 1));
-            shop.reload();
         }
     }
 

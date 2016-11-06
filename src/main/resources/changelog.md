@@ -62,6 +62,9 @@
 * Copper will now only spawn from floor 10 and below
 * The new tiers will now start when you go through a bottom portal instead of just before
 
+###Quests
+* Added a few more quests mostly related to friendship with the npcs
+
 ###Shops
 * New Shop GUI
 * Removed the Blacksmith's store

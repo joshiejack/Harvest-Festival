@@ -1,0 +1,214 @@
+{
+  "pools": [
+    {
+      "name": "main",
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "item",
+          "name": "harvestfestival:fish",
+          "entryName": "sardine",
+          "weight": 94,
+          "functions": [
+            {
+              "function": "hf_set_enum",
+              "enum": "sardine"
+            },
+            {
+              "function": "hf_set_weight"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "harvestfestival:fish",
+          "entryName": "anchovy",
+          "weight": 60,
+          "functions": [
+            {
+              "function": "hf_set_enum",
+              "enum": "anchovy"
+            },
+            {
+              "function": "hf_set_weight"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "harvestfestival:fish",
+          "entryName": "salmon",
+          "weight": 20,
+          "functions": [
+            {
+              "function": "hf_set_enum",
+              "enum": "salmon"
+            },
+            {
+              "function": "hf_set_weight"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "harvestfestival:fish",
+          "entryName": "damsel",
+          "weight": 10,
+          "functions": [
+            {
+              "function": "hf_set_enum",
+              "enum": "damsel"
+            },
+            {
+              "function": "hf_set_weight"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "harvestfestival:fish",
+          "entryName": "stargazer",
+          "weight": 5,
+          "functions": [
+            {
+              "function": "hf_set_enum",
+              "enum": "stargazer"
+            },
+            {
+              "function": "hf_set_weight"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "harvestfestival:fish",
+          "entryName": "clown",
+          "weight": 4,
+          "functions": [
+            {
+              "function": "hf_set_enum",
+              "enum": "clown"
+            },
+            {
+              "function": "hf_set_weight"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "harvestfestival:fish",
+          "entryName": "butterfly",
+          "weight": 3,
+          "functions": [
+            {
+              "function": "hf_set_enum",
+              "enum": "butterfly"
+            },
+            {
+              "function": "hf_set_weight"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "harvestfestival:fish",
+          "entryName": "tang",
+          "weight": 2,
+          "functions": [
+            {
+              "function": "hf_set_enum",
+              "enum": "tang"
+            },
+            {
+              "function": "hf_set_weight"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "harvestfestival:fish",
+          "entryName": "stingray",
+          "weight": 1,
+          "functions": [
+            {
+              "function": "hf_set_enum",
+              "enum": "stingray"
+            },
+            {
+              "function": "hf_set_weight"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "harvestfestival:fish",
+          "entryName": "puffer",
+          "weight": 1,
+          "functions": [
+            {
+              "function": "hf_set_enum",
+              "enum": "puffer"
+            },
+            {
+              "function": "hf_set_weight"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "harvestfestival:wood",
+          "entryName": "stick",
+          "weight": 15
+        },
+        {
+          "type": "item",
+          "name": "harvestfestival:junk",
+          "entryName": "can",
+          "weight": 5,
+          "functions": [
+            {
+              "function": "hf_set_enum",
+              "enum": "can"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "harvestfestival:junk",
+          "entryName": "bones",
+          "weight": 25,
+          "functions": [
+            {
+              "function": "hf_set_enum",
+              "enum": "bones"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "harvestfestival:junk",
+          "entryName": "boot",
+          "weight": 4,
+          "functions": [
+            {
+              "function": "hf_set_enum",
+              "enum": "boot"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "harvestfestival:junk",
+          "entryName": "treasure",
+          "weight": 1,
+          "functions": [
+            {
+              "function": "hf_set_enum",
+              "enum": "treasure"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

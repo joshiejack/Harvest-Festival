@@ -39,11 +39,9 @@
 * Untied the crops from the registry for them, shouldn't affect anything
 * Melons and Pumpkins will no longer regrow, and will instead replace the crop
 * Crops will now be plantable on more than farmland, however they will only grow on things other than farmland when a mod adds support
-* Rebalanced the prices/sell value of all crops
+* Rebalanced the crop prices and changed some stats
 * Removed the year unlocks, and replace with quest based ones instead
 * Take note that once any player has completed the quest, the crops can be purchased by anyone in that town
-    * You will now unlock strawberries when you build the goddess pond
-    * You will now unlock cabbages when you have shipped 1000 spring crops, pineapples 1000 summer and green peppers 1000 autumn
 
 ###Gathering
 * More items will now spawn around the world (that sell for more than 1 gold!)
@@ -62,7 +60,7 @@
 * Copper will now only spawn from floor 10 and below
 * The new tiers will now start when you go through a bottom portal instead of just before
 
-###Quests
+###NPCs
 * Added a few more quests mostly related to friendship with the npcs
 
 ###Shops

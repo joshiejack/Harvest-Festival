@@ -1,0 +1,172 @@
+{
+  "pools": [
+    {
+      "name": "main",
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "item",
+          "name": "harvestfestival:fish",
+          "entryName": "minnow",
+          "weight": 85,
+          "functions": [
+            {
+              "function": "hf_set_enum",
+              "enum": "minnow"
+            },
+            {
+              "function": "hf_set_weight"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "harvestfestival:fish",
+          "entryName": "chub",
+          "weight": 46,
+          "functions": [
+            {
+              "function": "hf_set_enum",
+              "enum": "chub"
+            },
+            {
+              "function": "hf_set_weight"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "harvestfestival:fish",
+          "entryName": "carp",
+          "weight": 28,
+          "functions": [
+            {
+              "function": "hf_set_enum",
+              "enum": "carp"
+            },
+            {
+              "function": "hf_set_weight"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "harvestfestival:fish",
+          "entryName": "perch",
+          "weight": 26,
+          "functions": [
+            {
+              "function": "hf_set_enum",
+              "enum": "perch"
+            },
+            {
+              "function": "hf_set_weight"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "harvestfestival:fish",
+          "entryName": "pupfish",
+          "weight": 7,
+          "functions": [
+            {
+              "function": "hf_set_enum",
+              "enum": "pupfish"
+            },
+            {
+              "function": "hf_set_weight"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "harvestfestival:fish",
+          "entryName": "bowfin",
+          "weight": 4,
+          "functions": [
+            {
+              "function": "hf_set_enum",
+              "enum": "bowfin"
+            },
+            {
+              "function": "hf_set_weight"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "harvestfestival:fish",
+          "entryName": "pickerel",
+          "weight": 3,
+          "functions": [
+            {
+              "function": "hf_set_enum",
+              "enum": "pickerel"
+            },
+            {
+              "function": "hf_set_weight"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "harvestfestival:fish",
+          "entryName": "lungfish",
+          "weight": 1,
+          "functions": [
+            {
+              "function": "hf_set_enum",
+              "enum": "lungfish"
+            },
+            {
+              "function": "hf_set_weight"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "harvestfestival:wood",
+          "entryName": "stick",
+          "weight": 15
+        },
+        {
+          "type": "item",
+          "name": "harvestfestival:junk",
+          "entryName": "can",
+          "weight": 20,
+          "functions": [
+            {
+              "function": "hf_set_enum",
+              "enum": "can"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "harvestfestival:junk",
+          "entryName": "bones",
+          "weight": 10,
+          "functions": [
+            {
+              "function": "hf_set_enum",
+              "enum": "bones"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "harvestfestival:junk",
+          "entryName": "boot",
+          "weight": 5,
+          "functions": [
+            {
+              "function": "hf_set_enum",
+              "enum": "boot"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

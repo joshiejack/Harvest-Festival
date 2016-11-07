@@ -7,23 +7,8 @@
         {
           "type": "item",
           "name": "harvestfestival:fish",
-          "entryName": "minnow",
-          "weight": 76,
-          "functions": [
-            {
-              "function": "hf_set_enum",
-              "enum": "minnow"
-            },
-            {
-              "function": "hf_set_weight"
-            }
-          ]
-        },
-        {
-          "type": "item",
-          "name": "harvestfestival:fish",
           "entryName": "chub",
-          "weight": 45,
+          "weight": 75,
           "functions": [
             {
               "function": "hf_set_enum",
@@ -38,7 +23,7 @@
           "type": "item",
           "name": "harvestfestival:fish",
           "entryName": "perch",
-          "weight": 38,
+          "weight": 58,
           "functions": [
             {
               "function": "hf_set_enum",
@@ -53,7 +38,7 @@
           "type": "item",
           "name": "harvestfestival:fish",
           "entryName": "trout",
-          "weight": 28,
+          "weight": 46,
           "functions": [
             {
               "function": "hf_set_enum",
@@ -68,7 +53,7 @@
           "type": "item",
           "name": "harvestfestival:fish",
           "entryName": "catfish",
-          "weight": 12,
+          "weight": 16,
           "functions": [
             {
               "function": "hf_set_enum",
@@ -83,7 +68,7 @@
           "type": "item",
           "name": "harvestfestival:fish",
           "entryName": "pike",
-          "weight": 1,
+          "weight": 5,
           "functions": [
             {
               "function": "hf_set_enum",

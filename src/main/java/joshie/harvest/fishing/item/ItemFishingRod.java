@@ -5,6 +5,7 @@ import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.item.ItemTool;
 import joshie.harvest.core.util.interfaces.ILength;
 import joshie.harvest.fishing.entity.EntityFishHookHF;
+import joshie.harvest.tools.ToolHelper;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
@@ -98,6 +99,7 @@ public class ItemFishingRod extends ItemTool<ItemFishingRod> implements IWeighte
     public ActionResult<ItemStack> onItemRightClick(@Nonnull ItemStack stack, @Nonnull World world, EntityPlayer player, @Nonnull EnumHand hand) {
         if (player.fishEntity != null) {
             player.fishEntity.handleHookRetraction();
+            ToolHelper.consumeHunger(player, getExhaustionRate(stack));
             stack.getSubCompound("Data", true).setInteger("Damage", getDamageForDisplay(stack) + 1);
             player.swingArm(hand);
             return new ActionResult<>(EnumActionResult.SUCCESS, stack);

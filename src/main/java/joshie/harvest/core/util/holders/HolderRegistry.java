@@ -1,7 +1,8 @@
 package joshie.harvest.core.util.holders;
 
-import com.google.common.collect.HashMultimap;
-import com.google.common.collect.Multimap;
+import com.google.common.base.Optional;
+import com.google.common.cache.Cache;
+import com.google.common.cache.CacheBuilder;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.core.Mod;
 import joshie.harvest.api.core.Ore;
@@ -12,66 +13,51 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
-import java.util.Collection;
 import java.util.HashMap;
+import java.util.Map.Entry;
+import java.util.concurrent.ExecutionException;
 
 public class HolderRegistry<R> {
     private final HashMap<AbstractItemHolder, R> registry = new HashMap<>();
-    private final Multimap<Item, AbstractItemHolder> keyMap = HashMultimap.create();
-
-    public void removeItem(Item item) {
-        keyMap.removeAll(item);
-    }
-
-    private void registerHolder(Item item, AbstractItemHolder holder, R r) {
-        keyMap.get(item).add(holder);
-        registry.put(holder, r);
-    }
+    private final Cache<ItemStackHolder, Optional<R>> itemToType = CacheBuilder.newBuilder().maximumSize(512).build();
+    private final Cache<ItemStackHolder, Boolean> itemToMatch = CacheBuilder.newBuilder().maximumSize(512).build();
 
     public void register(Object object, R r) {
-        if (object instanceof Item) registerHolder((Item)object, ItemHolder.of((Item)object), r);
-        if (object instanceof Block) {
-            ItemStack stack = new ItemStack((Block)object);
-            registerHolder(stack.getItem(), ItemHolder.of(stack.getItem()), r);
+        if (object instanceof Item) {
+            registry.put(ItemHolder.of((Item) object), r);
+        } else if (object instanceof Block) {
+            registry.put(ItemHolder.of(new ItemStack((Block)object).getItem()), r);
         } else if (object instanceof ItemStack) {
-            registerHolder(((ItemStack)object).getItem(), getHolder((ItemStack)object), r);
+            registry.put(getHolder((ItemStack)object), r);
         } else if (object instanceof Mod) {
-            Mod mod = (Mod) object;
-            ModHolder holder = ModHolder.of(mod.getMod());
-            for (Item item: Item.REGISTRY) {
-                if (item.getRegistryName().getResourceDomain().equals(mod.getMod())) {
-                    registerHolder(item, holder, r);
-                }
-            }
+            registry.put(ModHolder.of(((Mod) object).getMod()), r);
         } else if (object instanceof Ore) {
-            Ore ore = (Ore) object;
-            OreHolder holder = OreHolder.of(ore.getOre());
-            for (ItemStack stack: OreDictionary.getOres(ore.getOre())) {
-                registerHolder(stack.getItem(), holder, r);
-            }
+            registry.put(OreHolder.of(((Ore) object).getOre()), r);
         }
     }
 
     public boolean matches(ItemStack stack, R type) {
-        Collection<AbstractItemHolder> holders = keyMap.get(stack.getItem());
-        for (AbstractItemHolder holder: holders) {
-            if (holder.matches(stack) && matches(registry.get(holder), type)) {
-                return true;
-            }
-        }
+        try {
+            return itemToMatch.get(ItemStackHolder.of(stack), () -> {
+                for (Entry<AbstractItemHolder, R> entry: registry.entrySet()) {
+                    if (entry.getKey().matches(stack) && matches(entry.getValue(), type)) return true;
+                }
 
-        return false;
+                return false;
+            });
+        } catch (ExecutionException ex) { return false; }
     }
 
     public R getValueOf(ItemStack stack) {
-        Collection<AbstractItemHolder> holders = keyMap.get(stack.getItem());
-        for (AbstractItemHolder holder: holders) {
-            if (holder.matches(stack)) {
-                return registry.get(holder);
-            }
-        }
+        try {
+            return itemToType.get(ItemStackHolder.of(stack), () -> {
+                for (Entry<AbstractItemHolder, R> entry: registry.entrySet()) {
+                    if (entry.getKey().matches(stack)) return Optional.of(entry.getValue());
+                }
 
-        return null;
+                return Optional.absent();
+            }).orNull();
+        } catch (ExecutionException ex) { return null; }
     }
 
     public boolean matches(R external, R internal) {

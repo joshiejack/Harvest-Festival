@@ -7,23 +7,8 @@
         {
           "type": "item",
           "name": "harvestfestival:fish",
-          "entryName": "minnow",
-          "weight": 81,
-          "functions": [
-            {
-              "function": "hf_set_enum",
-              "enum": "minnow"
-            },
-            {
-              "function": "hf_set_weight"
-            }
-          ]
-        },
-        {
-          "type": "item",
-          "name": "harvestfestival:fish",
           "entryName": "chub",
-          "weight": 39,
+          "weight": 75,
           "functions": [
             {
               "function": "hf_set_enum",
@@ -38,7 +23,7 @@
           "type": "item",
           "name": "harvestfestival:fish",
           "entryName": "carp",
-          "weight": 27,
+          "weight": 55,
           "functions": [
             {
               "function": "hf_set_enum",
@@ -53,7 +38,7 @@
           "type": "item",
           "name": "harvestfestival:fish",
           "entryName": "perch",
-          "weight": 23,
+          "weight": 32,
           "functions": [
             {
               "function": "hf_set_enum",
@@ -68,7 +53,7 @@
           "type": "item",
           "name": "harvestfestival:fish",
           "entryName": "salmon",
-          "weight": 19,
+          "weight": 16,
           "functions": [
             {
               "function": "hf_set_enum",
@@ -83,7 +68,7 @@
           "type": "item",
           "name": "harvestfestival:fish",
           "entryName": "pupfish",
-          "weight": 6,
+          "weight": 10,
           "functions": [
             {
               "function": "hf_set_enum",
@@ -98,7 +83,7 @@
           "type": "item",
           "name": "harvestfestival:fish",
           "entryName": "bowfin",
-          "weight": 3,
+          "weight": 8,
           "functions": [
             {
               "function": "hf_set_enum",
@@ -113,7 +98,7 @@
           "type": "item",
           "name": "harvestfestival:fish",
           "entryName": "pickerel",
-          "weight": 2,
+          "weight": 4,
           "functions": [
             {
               "function": "hf_set_enum",

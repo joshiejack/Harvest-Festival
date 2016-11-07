@@ -87,6 +87,7 @@
 * Add used to upgrade tooltip to all ores
 * Fix missing crosshairs when exiting an npc gui
 * Fixed sickles always breaking blocks even when broken
+* Fixed bug where fodder could be placed in a fridge
 
 ##0.5.11
 * Fixed a crash with the shipping bin when loading worlds when a hopper is inserting items

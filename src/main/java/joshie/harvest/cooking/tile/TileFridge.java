@@ -27,7 +27,7 @@ public class TileFridge extends TileFaceable implements ITickable {
     protected final InvWrapper handler = new InvWrapper(data);
 
     public static boolean isValid(ItemStack stack) {
-        return stack.getItem() == HFCooking.MEAL || HFApi.cooking.isIngredient(stack) || stack.getItem() instanceof ItemFood;
+        return stack.getItem() == HFCooking.MEAL || HFApi.cooking.isIngredient(stack) || (stack.getItem() instanceof ItemFood && ((ItemFood)stack.getItem()).getHealAmount(stack) > 0);
     }
 
     public FridgeData getContents() {

@@ -349,11 +349,16 @@ harvestfestival.fish.sardine=Sardine
 harvestfestival.fish.walleye=Walleye
 
 #Junk
+harvestfestival.junk.bait=Bait
 harvestfestival.junk.bones=Fish Bones
 harvestfestival.junk.boot=Boot
 harvestfestival.junk.can=Empty Can
 harvestfestival.junk.fossil=Fish Fossil
 harvestfestival.junk.treasure=Pirate Treasure
+
+#Blocks
+harvestfestival.fishing.block.grap=Fish Trap
+harvestfestival.fishing.block.hatchery=Hatchery
 
 #Tools
 harvestfestival.tool.broken=[BROKEN]
@@ -1171,7 +1176,7 @@ harvestfestival.shop.bloodmage.greeting3=In this dark and mysterious night, I am
 #Blood Mage
 harvestfestival.shop.baitshop=Tackle Shop
 harvestfestival.shop.baitshop.greeting1=So glad to finally be open for business, welcome.
-harvestfestival.shop.baitshop.greeting2=If you want some fish, then come buy some of gear.
+harvestfestival.shop.baitshop.greeting2=If you want some fish, then come buy some of my gear.
 harvestfestival.shop.baitshop.greeting3=Come get your fishing rods here, if you please.
 
 #Miscellaneous

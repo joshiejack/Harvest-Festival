@@ -206,6 +206,12 @@
               "function": "hf_set_enum",
               "enum": "treasure"
             }
+          ],
+          "conditions": [
+            {
+              "condition": "harvestfestival:tier",
+              "level": 5
+            }
           ]
         }
       ]

@@ -176,6 +176,12 @@
               "function": "hf_set_enum",
               "enum": "fossil"
             }
+          ],
+          "conditions": [
+            {
+              "condition": "harvestfestival:tier",
+              "level": 5
+            }
           ]
         }
       ]

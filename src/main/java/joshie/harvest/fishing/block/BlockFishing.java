@@ -7,21 +7,43 @@ import joshie.harvest.fishing.block.BlockFishing.FishingBlock;
 import joshie.harvest.fishing.tile.TileHatchery;
 import joshie.harvest.fishing.tile.TileTrap;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.Locale;
 
+import static joshie.harvest.fishing.HFFishing.NO_WATER;
+import static net.minecraft.block.BlockLiquid.LEVEL;
+
 public class BlockFishing extends BlockHFEnum<BlockFishing, FishingBlock> {
     public BlockFishing() {
-        super(Material.WATER, FishingBlock.class, HFTab.FISHING);
+        super(Material.PISTON, FishingBlock.class, HFTab.FISHING);
+    }
+
+    @Override
+    protected BlockStateContainer createBlockState() {
+        if(property == null) return new BlockStateContainer(this, LEVEL, temporary);
+        return new BlockStateContainer(this, LEVEL, property);
+    }
+
+    @SideOnly(Side.CLIENT)
+    public boolean canRenderInLayer(BlockRenderLayer layer)  {
+        return layer == BlockRenderLayer.TRANSLUCENT;
+    }
+
+    @Override
+    public boolean isVisuallyOpaque() {
+        return false;
     }
 
     @Override
@@ -46,6 +68,13 @@ public class BlockFishing extends BlockHFEnum<BlockFishing, FishingBlock> {
             case HATCHERY:  return new TileHatchery();
             default:        return null;
         }
+    }
+
+    @SideOnly(Side.CLIENT)
+    @Override
+    public void registerModels(Item item, String name) {
+        ModelLoader.setCustomStateMapper(this, NO_WATER);
+        super.registerModels(item, name);
     }
 
     public enum FishingBlock implements IStringSerializable {

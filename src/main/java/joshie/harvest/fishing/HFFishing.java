@@ -17,8 +17,10 @@ import joshie.harvest.fishing.item.ItemJunk;
 import joshie.harvest.fishing.item.ItemJunk.Junk;
 import joshie.harvest.fishing.loot.ConditionTime;
 import joshie.harvest.fishing.loot.SetWeight;
+import joshie.harvest.fishing.render.SpecialRendererHatchery;
 import joshie.harvest.fishing.tile.TileHatchery;
 import joshie.harvest.fishing.tile.TileTrap;
+import net.minecraft.client.renderer.block.statemap.StateMap;
 import net.minecraft.client.renderer.entity.RenderFish;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemFishFood.FishType;
@@ -27,6 +29,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.storage.loot.LootTableList;
 import net.minecraft.world.storage.loot.conditions.LootConditionManager;
 import net.minecraft.world.storage.loot.functions.LootFunctionManager;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.relauncher.Side;
@@ -37,9 +40,11 @@ import static joshie.harvest.api.calendar.Season.*;
 import static joshie.harvest.core.helpers.RegistryHelper.registerOreIfNotExists;
 import static joshie.harvest.core.helpers.RegistryHelper.registerTiles;
 import static joshie.harvest.fishing.FishingHelper.WaterType.*;
+import static net.minecraft.block.BlockLiquid.LEVEL;
 
 @HFLoader
 public class HFFishing {
+    public static final StateMap NO_WATER = new StateMap.Builder().ignore(LEVEL).build();
     public static final ItemFish FISH = new ItemFish().register("fish");
     public static final ItemJunk JUNK = new ItemJunk().register("junk");
     public static final ItemFishingRod FISHING_ROD = new ItemFishingRod().register("fishing_rod");
@@ -56,8 +61,8 @@ public class HFFishing {
         HFApi.shipping.registerSellable(new ItemStack(Items.FISH, 1, 2), 50L);
         HFApi.shipping.registerSellable(new ItemStack(Items.FISH, 1, 3), 100L);
         HFApi.fishing.registerBait(JUNK.getStackFromEnum(Junk.BAIT));
-        FishingAPI.INSTANCE.breeding.register(Ore.of("fish"), 3);
         registerTiles(TileTrap.class, TileHatchery.class);
+        FishingAPI.INSTANCE.breeding.register(Ore.of("fish"), 3);
         //Register vanilla fish
         for (FishType fish: FishType.values()) {
             registerOreIfNotExists("fish", new ItemStack(Items.FISH, 1, fish.getMetadata()));
@@ -67,6 +72,11 @@ public class HFFishing {
         for (Fish fish: Fish.values()) {
             registerOreIfNotExists("fish", FISH.getStackFromEnum(fish));
         }
+    }
+
+    @SideOnly(Side.CLIENT)
+    public static void preInitClient() throws Exception {
+        RenderingRegistry.registerEntityRenderingHandler(EntityFishHookHF.class, RenderFish::new);
     }
 
     public static void init() {
@@ -90,8 +100,8 @@ public class HFFishing {
     }
 
     @SideOnly(Side.CLIENT)
-    public static void preInitClient() throws Exception {
-        RenderingRegistry.registerEntityRenderingHandler(EntityFishHookHF.class, RenderFish::new);
+    public static void initClient() {
+        ClientRegistry.bindTileEntitySpecialRenderer(TileHatchery.class, new SpecialRendererHatchery());
     }
 
     private static void registerLootTable(String id, WaterType type, Season season) {

@@ -303,8 +303,8 @@ public class HFShops {
         BAITSHOP.addItem(-50, new ItemStack(Items.FISH, 1, 2));
         BAITSHOP.addItem(-100, new ItemStack(Items.FISH, 1, 3));
         for (Fish fish: Fish.values()) {
-            long sell = (long)-Math.floor(fish.getSellValue(fish.getLengthFromSizeOfFish(MEDIUM_FISH)));
-            BAITSHOP.addItem(sell, HFFishing.FISH.getStackFromEnum(fish));
+            long sell = (fish.getSellValue(fish.getLengthFromSizeOfFish(MEDIUM_FISH))) - fish.getSellValue(fish.getLengthFromSizeOfFish(MEDIUM_FISH)) % 10;
+            BAITSHOP.addItem(new PurchasableObtained(sell, HFFishing.FISH.getStackFromEnum(fish)));
         }
 
         BAITSHOP.addOpening(TUESDAY, 13000, 19000).addOpening(WEDNESDAY, 13000, 19000).addOpening(THURSDAY, 13000, 19000).addOpening(FRIDAY, 13000, 19000);

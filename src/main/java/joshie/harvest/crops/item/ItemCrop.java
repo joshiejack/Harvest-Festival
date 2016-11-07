@@ -43,7 +43,7 @@ public class ItemCrop extends ItemHFFoodEnum<ItemCrop, Crops> implements IShippa
 
     @Override
     public String getItemStackDisplayName(ItemStack stack) {
-        joshie.harvest.api.crops.Crop crop = HFApi.crops.getCropFromStack(stack);
+        Crop crop = HFApi.crops.getCropFromStack(stack);
         return crop != null ? crop.getLocalizedName(true) : super.getItemStackDisplayName(stack);
     }
 

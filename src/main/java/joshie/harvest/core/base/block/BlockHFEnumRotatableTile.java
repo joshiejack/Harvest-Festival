@@ -52,16 +52,6 @@ public abstract class BlockHFEnumRotatableTile<B extends BlockHFEnumRotatableTil
     }
 
     @Override
-    public boolean isFullCube(IBlockState blockState) {
-        return false;
-    }
-
-    @Override
-    public boolean isOpaqueCube(IBlockState blockState) {
-        return false;
-    }
-
-    @Override
     public boolean isVisuallyOpaque() {
         return false;
     }

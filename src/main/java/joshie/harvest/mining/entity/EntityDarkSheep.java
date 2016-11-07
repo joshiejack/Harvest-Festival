@@ -34,14 +34,14 @@ public class EntityDarkSheep extends EntityMob {
         super.applyEntityAttributes();
         this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(20.0D);
         this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(3.0D);
-        this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.25D);
+        this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.15D);
     }
 
     @SuppressWarnings("unchecked")
     @Override
     protected void initEntityAI() {
         this.tasks.addTask(0, new EntityAISwimming(this));
-        this.tasks.addTask(4, new EntityAIAttackMelee(this, 1.0D, false));
+        this.tasks.addTask(4, new EntityAIAttackMelee(this, 0.0D, false));
         this.tasks.addTask(7, new EntityAIWander(this, 1.0D));
         this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
         this.tasks.addTask(8, new EntityAILookIdle(this));

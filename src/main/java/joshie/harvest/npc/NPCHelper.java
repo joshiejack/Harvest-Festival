@@ -40,7 +40,7 @@ public class NPCHelper {
     }
 
     private static boolean canPlayerOpenShop(NPC npc, Shop shop, EntityPlayer player) {
-        return HFTrackers.<PlayerTrackerServer>getPlayerTrackerFromPlayer(player).getRelationships().hasMet(npc.getUUID()) && (shop.canBuyFromShop(player) || shop.canSellToShop(player));
+        return (!player.worldObj.isRemote && HFTrackers.<PlayerTrackerServer>getPlayerTrackerFromPlayer(player).getRelationships().hasMet(npc.getUUID()) || player.worldObj.isRemote) && (shop.canBuyFromShop(player) || shop.canSellToShop(player));
     }
 
     public static boolean isShopOpen(NPC npc, World world, @Nullable EntityPlayer player) {

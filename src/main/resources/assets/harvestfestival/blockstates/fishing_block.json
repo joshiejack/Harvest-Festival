@@ -1,0 +1,6 @@
+{
+  "variants": {
+    "fishingblock=trap":  { "model": "harvestfestival:fish_trap" },
+    "fishingblock=hatchery":  { "model": "harvestfestival:hatchery" }
+  }
+}

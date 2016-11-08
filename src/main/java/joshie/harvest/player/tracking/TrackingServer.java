@@ -11,6 +11,8 @@ import joshie.harvest.player.PlayerTrackerServer;
 import joshie.harvest.player.packet.PacketSyncObtained;
 import joshie.harvest.player.packet.PacketSyncObtainedSet;
 import joshie.harvest.player.packet.PacketSyncRecipes;
+import joshie.harvest.quests.Quests;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -22,6 +24,7 @@ import java.util.Set;
 public class TrackingServer extends Tracking {
     private Set<StackSold> toBeShipped = new HashSet<>(); //What needs to be sold
     private Set<StackSold> shipped = new HashSet<>();
+    private int giftsGiven;
     public final PlayerTrackerServer master;
 
     public TrackingServer(PlayerTrackerServer master) {
@@ -31,8 +34,10 @@ public class TrackingServer extends Tracking {
     @Override
     public boolean learnRecipe(Recipe recipe) {
         if (super.learnRecipe(recipe)) {
-            if (recipes.size() >= 50 && master.getAndCreatePlayer() != null) {
-                master.getAndCreatePlayer().addStat(HFAchievements.recipes);
+            EntityPlayer player = master.getAndCreatePlayer();
+            if (recipes.size() >= 50 && player != null) {
+                player.addStat(HFAchievements.recipes);
+                HFApi.quests.completeQuestConditionally(Quests.SEEDS_TREES1, player);
             }
 
             return true;
@@ -46,6 +51,16 @@ public class TrackingServer extends Tracking {
     public void sync(EntityPlayerMP player) {
         PacketHandler.sendToClient(new PacketSyncObtainedSet(obtained), player);
         PacketHandler.sendToClient(new PacketSyncRecipes(recipes), player);
+    }
+
+    public void addGift() {
+        giftsGiven++;
+        if (giftsGiven >= 300) {
+            EntityPlayer player = master.getAndCreatePlayer();
+            if (player != null) {
+                HFApi.quests.completeQuestConditionally(Quests.SEEDS_SWEET_POTATO, player);
+            }
+        }
     }
 
     @Override
@@ -75,6 +90,7 @@ public class TrackingServer extends Tracking {
     }
 
     public void readFromNBT(NBTTagCompound nbt) {
+        giftsGiven = nbt.getInteger("GiftsGiven");
         obtained = NBTHelper.readHashSet(ItemStackHolder.class, nbt.getTagList("ItemsObtained", 10));
         toBeShipped = NBTHelper.readHashSet(StackSold.class, nbt.getTagList("ToBeShipped", 10));
         recipes = NBTHelper.readResourceSet(nbt, "Recipes");
@@ -82,6 +98,7 @@ public class TrackingServer extends Tracking {
     }
 
     public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
+        nbt.setInteger("GiftsGiven", giftsGiven);
         nbt.setTag("ItemsObtained", NBTHelper.writeCollection(obtained));
         nbt.setTag("ToBeShipped", NBTHelper.writeCollection(toBeShipped));
         nbt.setTag("Recipes", NBTHelper.writeResourceSet(recipes));

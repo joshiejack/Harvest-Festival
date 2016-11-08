@@ -4,5 +4,4 @@ import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.quests.base.QuestTown;
 
 @HFQuest("seeds.greenpepper")
-public class QuestNetherWart extends QuestTown {
-}
+public class QuestNetherWart extends QuestTown {}

@@ -11,6 +11,7 @@ import joshie.harvest.npc.NPC;
 import joshie.harvest.npc.NPCRegistry;
 import joshie.harvest.npc.entity.EntityNPCBuilder;
 import joshie.harvest.npc.entity.EntityNPCShopkeeper;
+import joshie.harvest.npc.entity.EntityNPCTrader;
 import joshie.harvest.npc.entity.EntityNPCVillager;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDoor;
@@ -61,6 +62,7 @@ public class CodeGeneratorBuildings {
         entityList.addAll(getEntities(EntityItemFrame.class, x1 + x, y1 + y, z1 + z));
         entityList.addAll(getEntities(EntityNPCVillager.class, x1 + x, y1 + y, z1 + z));
         entityList.addAll(getEntities(EntityNPCBuilder.class, x1 + x, y1 + y, z1 + z));
+        entityList.addAll(getEntities(EntityNPCTrader.class, x1 + x, y1 + y, z1 + z));
         entityList.addAll(getEntities(EntityNPCShopkeeper.class, x1 + x, y1 + y, z1 + z));
 
         BlockPos position = new BlockPos(x1 + x, y1 + y, z1 + z);

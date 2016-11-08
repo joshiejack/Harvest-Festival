@@ -48,7 +48,6 @@ public class NPC extends IForgeRegistryEntry.Impl<NPC> implements INPC {
     private float offset;
     private IGiftHandler gifts;
     private ISchedule schedule;
-    private boolean isBuilder;
     private Shop shop;
     private boolean doesRespawn;
     private boolean alex;
@@ -84,7 +83,6 @@ public class NPC extends IForgeRegistryEntry.Impl<NPC> implements INPC {
 
     @Override
     public INPC setIsBuilder() {
-        isBuilder = true;
         return this;
     }
 
@@ -204,7 +202,7 @@ public class NPC extends IForgeRegistryEntry.Impl<NPC> implements INPC {
 
     @Override
     public boolean isBuilder() {
-        return isBuilder;
+        return this == HFNPCs.BUILDER;
     }
 
     public Shop getShop() {

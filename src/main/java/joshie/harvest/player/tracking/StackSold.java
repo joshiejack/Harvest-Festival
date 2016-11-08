@@ -23,6 +23,10 @@ public class StackSold extends AbstractDataHolder<StackSold> {
         return new StackSold(stack.getItem(), stack.getItemDamage(), stack.stackSize, sell);
     }
 
+    public ItemStack getStack() {
+        return new ItemStack(item, amount, meta);
+    }
+
     public int getAmount() {
         return amount;
     }

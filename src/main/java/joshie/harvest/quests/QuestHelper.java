@@ -39,6 +39,14 @@ public class QuestHelper implements IQuestHelper {
     private QuestHelper() {}
 
     @Override
+    public void completeQuestConditionally(Quest quest, EntityPlayer player) {
+        if (!hasCompleted(quest, player)) {
+            if (quest.getQuestType() == QuestType.PLAYER) HFTrackers.getPlayerTrackerFromPlayer(player).getQuests().markCompleted(player, quest, false);
+            else TownHelper.getClosestTownToEntity(player).getQuests().markCompleted(player, quest, false);
+        }
+    }
+
+    @Override
     public void completeQuest(Quest quest, EntityPlayer player) {
         if (!player.worldObj.isRemote) {
             if (quest.getQuestType() == QuestType.PLAYER) HFTrackers.getPlayerTrackerFromPlayer(player).getQuests().markCompleted(player, quest, true);

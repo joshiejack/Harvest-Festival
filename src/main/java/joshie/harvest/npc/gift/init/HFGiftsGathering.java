@@ -13,19 +13,19 @@ import static joshie.harvest.gathering.HFGathering.WOOD;
 @HFLoader(priority = 0)
 public class HFGiftsGathering extends HFGiftsAbstract {
     public static void init() {
-        assignGeneric(FLOWERS.getStackFromEnum(FlowerType.WEED), CHEAP, NATURE, GATHERING);
-        assignGeneric(FLOWERS.getStackFromEnum(FlowerType.GODDESS), NATURE, PRETTY, GIRLY);
-        assignGeneric(WOOD.getStackFromEnum(Wood.BRANCH_SMALL), CHEAP, NATURE, CONSTRUCTION, GATHERING);
-        assignGeneric(WOOD.getStackFromEnum(Wood.BRANCH_MEDIUM), CHEAP, NATURE, CONSTRUCTION, GATHERING);
-        assignGeneric(WOOD.getStackFromEnum(Wood.BRANCH_LARGE), CHEAP, NATURE, CONSTRUCTION, GATHERING);
-        assignGeneric(WOOD.getStackFromEnum(Wood.STUMP_SMALL), CHEAP, NATURE, CONSTRUCTION, GATHERING);
-        assignGeneric(WOOD.getStackFromEnum(Wood.STUMP_MEDIUM), CHEAP, NATURE, CONSTRUCTION, GATHERING);
-        assignGeneric(WOOD.getStackFromEnum(Wood.STUMP_LARGE), CHEAP, NATURE, CONSTRUCTION, GATHERING);
-        assignGeneric(ROCK.getStackFromEnum(Rock.STONE_SMALL), CHEAP, NATURE, CONSTRUCTION, GATHERING);
-        assignGeneric(ROCK.getStackFromEnum(Rock.STONE_MEDIUM), CHEAP, NATURE, CONSTRUCTION, GATHERING);
-        assignGeneric(ROCK.getStackFromEnum(Rock.STONE_LARGE), CHEAP, NATURE, CONSTRUCTION, GATHERING);
-        assignGeneric(ROCK.getStackFromEnum(Rock.BOULDER_SMALL), CHEAP, NATURE, CONSTRUCTION, GATHERING);
-        assignGeneric(ROCK.getStackFromEnum(Rock.BOULDER_MEDIUM), CHEAP, NATURE, CONSTRUCTION, GATHERING);
-        assignGeneric(ROCK.getStackFromEnum(Rock.BOULDER_LARGE), CHEAP, NATURE, CONSTRUCTION, GATHERING);
+        assignGeneric(FLOWERS.getStackFromEnum(FlowerType.WEED), JUNK);
+        assignGeneric(FLOWERS.getStackFromEnum(FlowerType.GODDESS), FLOWER);
+        assignGeneric(WOOD.getStackFromEnum(Wood.BRANCH_SMALL), JUNK);
+        assignGeneric(WOOD.getStackFromEnum(Wood.BRANCH_MEDIUM), JUNK);
+        assignGeneric(WOOD.getStackFromEnum(Wood.BRANCH_LARGE), JUNK);
+        assignGeneric(WOOD.getStackFromEnum(Wood.STUMP_SMALL), JUNK);
+        assignGeneric(WOOD.getStackFromEnum(Wood.STUMP_MEDIUM), JUNK);
+        assignGeneric(WOOD.getStackFromEnum(Wood.STUMP_LARGE), JUNK);
+        assignGeneric(ROCK.getStackFromEnum(Rock.STONE_SMALL), JUNK);
+        assignGeneric(ROCK.getStackFromEnum(Rock.STONE_MEDIUM), JUNK);
+        assignGeneric(ROCK.getStackFromEnum(Rock.STONE_LARGE), JUNK);
+        assignGeneric(ROCK.getStackFromEnum(Rock.BOULDER_SMALL), JUNK);
+        assignGeneric(ROCK.getStackFromEnum(Rock.BOULDER_MEDIUM), JUNK);
+        assignGeneric(ROCK.getStackFromEnum(Rock.BOULDER_LARGE), JUNK);
     }
 }

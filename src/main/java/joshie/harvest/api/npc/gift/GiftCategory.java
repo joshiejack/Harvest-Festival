@@ -1,23 +1,20 @@
 package joshie.harvest.api.npc.gift;
 
 public enum GiftCategory {
-    CUTE,
-    SCARY,
-    MINING,
-    NATURE,
-    ANIMALS,
+    VEGETABLE,
+    FRUIT,
+    MINERAL,
+    MEAT,
+    ANIMAL,
+    JUNK,
+    FISH,
+    FLOWER,
+    BUILDING,
+    MONSTER,
+    GEM,
+    KNOWLEDGE,
+    PLANT,
+    SWEET,
     COOKING,
-    TOOLS,
-    WATERY,
-    PRETTY,
-    CHEAP,
-    FARMING,
-    CONSTRUCTION,
-    RARE,
-    GIRLY,
-    KNITTING,
-    TECHNOLOGY,
-    DANGER,
-    BATTLE,
-    GATHERING
+    MAGIC
 }

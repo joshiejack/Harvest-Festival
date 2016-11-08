@@ -1,13 +1,13 @@
 package joshie.harvest.core.achievements;
 
 import joshie.harvest.animals.HFAnimals;
+import joshie.harvest.animals.item.ItemAnimalProduct.Sizeable;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.core.Size;
 import joshie.harvest.cooking.CookingHelper;
 import joshie.harvest.core.HFCore;
 import joshie.harvest.core.block.BlockFlower.FlowerType;
 import joshie.harvest.core.block.BlockStorage.Storage;
-import joshie.harvest.animals.item.ItemAnimalProduct.Sizeable;
 import joshie.harvest.core.util.annotations.HFLoader;
 import joshie.harvest.crops.HFCrops;
 import joshie.harvest.mining.HFMining;
@@ -21,10 +21,6 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.Achievement;
 import net.minecraftforge.common.AchievementPage;
-import net.minecraftforge.fml.relauncher.ReflectionHelper;
-
-import java.lang.reflect.Field;
-import java.lang.reflect.Modifier;
 
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 import static joshie.harvest.core.lib.HFModInfo.MODNAME;
@@ -94,22 +90,5 @@ public class HFAchievements {
         achievement.registerStat();
         PAGE.getAchievements().add(achievement);
         return achievement;
-    }
-
-    /** Resetting the itemstack because it may have changed **/
-    public static void remap() throws Exception {
-        setFinalField(harvest, HFCrops.TURNIP.getCropStack(1));
-        setFinalField(onion, HFCrops.ONION.getCropStack(1));
-        setFinalField(spinach, HFCrops.SPINACH.getCropStack(1));
-        setFinalField(cooking, HFApi.cooking.getBestMeal("turnip_pickled"));
-    }
-
-    private static void setFinalField(Achievement achievement, ItemStack stack) throws Exception {
-        Field field = ReflectionHelper.findField(Achievement.class, "theItemStack", "field_75990_d");
-        field.setAccessible(true);
-        Field modifiersField = Field.class.getDeclaredField("modifiers");
-        modifiersField.setAccessible(true);
-        modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
-        field.set(achievement, stack);
     }
 }

@@ -4,13 +4,17 @@ import joshie.harvest.api.shops.IPurchasable;
 import joshie.harvest.core.helpers.InventoryHelper;
 import joshie.harvest.core.helpers.SpawnItemHelper;
 import joshie.harvest.core.helpers.MCClientHelper;
+import joshie.harvest.core.helpers.TextHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.apache.commons.lang3.text.WordUtils;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 
 import static joshie.harvest.core.helpers.InventoryHelper.ITEM_STACK;
 
@@ -18,6 +22,7 @@ public class Purchasable implements IPurchasable {
     protected final ItemStack[] stacks;
     private final String resource;
     private final long cost;
+    private String tooltip;
 
     public Purchasable(long cost, ItemStack... stacks) {
         this.cost = cost;
@@ -28,6 +33,11 @@ public class Purchasable implements IPurchasable {
         }
 
         resource = ((cost >= 0) ? "buy: " : "sell: ") + builder.toString();
+    }
+
+    public Purchasable addTooltip(String tooltip) {
+        this.tooltip = tooltip;
+        return this;
     }
 
     static String stackToString(ItemStack stack) {
@@ -72,6 +82,12 @@ public class Purchasable implements IPurchasable {
     public void addTooltip(List<String> list) {
         for (ItemStack stack : stacks) {
             if (stack != null) list.addAll(stack.getTooltip(MCClientHelper.getPlayer(), false));
+        }
+
+        if (this.tooltip != null) {
+            list.add("---------------------------");
+            String tooltip = WordUtils.wrap(TextHelper.localize(this.tooltip.toLowerCase(Locale.ENGLISH)), 40);
+            list.addAll(Arrays.asList(tooltip.split("\r\n")));
         }
     }
 

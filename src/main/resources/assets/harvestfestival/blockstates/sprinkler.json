@@ -1,5 +1,6 @@
 {
   "variants": {
-    "sprinkler=wood":  { "model": "harvestfestival:sprinkler" }
+    "sprinkler=iron":  { "model": "harvestfestival:sprinkler" },
+    "sprinkler=old":  { "model": "harvestfestival:sprinkler_old" }
   }
 }

@@ -24,7 +24,7 @@ public class ButtonListingItem extends ButtonListing<IPurchasableBuilder> {
         //Draw the cost
         String cost = shop.getCostAsString(this.cost);
         int width = fontrenderer.getStringWidth(cost);
-        StackHelper.drawStack(icon, xPosition + 194 - width, yPosition + 1, 1F);
+        StackHelper.drawStack(icon, xPosition + 188 - width, yPosition + 1, 1F);
         drawString(fontrenderer, cost, xPosition + 180 - width, yPosition + (height - 8) / 2, j);
     }
 }

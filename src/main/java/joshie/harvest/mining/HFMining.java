@@ -19,6 +19,7 @@ import joshie.harvest.mining.gen.MiningProvider;
 import joshie.harvest.mining.item.ItemDarkSpawner;
 import joshie.harvest.mining.item.ItemDarkSpawner.DarkSpawner;
 import joshie.harvest.mining.item.ItemMaterial;
+import joshie.harvest.mining.item.ItemMaterial.Material;
 import joshie.harvest.mining.item.ItemMiningTool;
 import joshie.harvest.mining.loot.*;
 import joshie.harvest.mining.render.*;
@@ -37,6 +38,7 @@ import static joshie.harvest.core.HFCore.FLOWERS;
 import static joshie.harvest.core.HFTab.MINING;
 import static joshie.harvest.core.block.BlockFlower.FlowerType.WEED;
 import static joshie.harvest.core.helpers.ConfigHelper.getInteger;
+import static joshie.harvest.core.helpers.RegistryHelper.registerOreIfNotExists;
 import static joshie.harvest.mining.MiningHelper.*;
 import static net.minecraft.init.Items.DIAMOND;
 import static net.minecraft.init.Items.EMERALD;
@@ -69,8 +71,12 @@ public class HFMining {
         LootConditionManager.registerCondition(new MultipleOf.Serializer());
         LootConditionManager.registerCondition(new Obtained.Serializer());
         LootConditionManager.registerCondition(new Seasonal.Serializer());
+        registerOreIfNotExists("gemRuby", MATERIALS.getStackFromEnum(Material.RUBY));
+        registerOreIfNotExists("gemTopaz", MATERIALS.getStackFromEnum(Material.TOPAZ));
+        registerOreIfNotExists("gemAmethyst", MATERIALS.getStackFromEnum(Material.AMETHYST));
         registerSellable(DIAMOND, 100L);
         registerSellable(EMERALD, 80L);
+
     }
 
     @SideOnly(Side.CLIENT)

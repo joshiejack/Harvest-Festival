@@ -167,6 +167,14 @@ public class InventoryHelper {
         return count;
     }
 
+    public static boolean isOreName(ItemStack stack, String... ore) {
+        for (String name: ore) {
+            if (isOreName(stack, name)) return true;
+        }
+
+        return false;
+    }
+
     public static boolean isOreName(ItemStack stack, String ore) {
         int[] ids = OreDictionary.getOreIDs(stack);
         for (int i: ids) {
@@ -176,6 +184,18 @@ public class InventoryHelper {
             }
         }
         
+        return false;
+    }
+
+    public static boolean startsWith(ItemStack stack, String ore) {
+        int[] ids = OreDictionary.getOreIDs(stack);
+        for (int i: ids) {
+            String name = OreDictionary.getOreName(i);
+            if (name.startsWith(ore)) {
+                return true;
+            }
+        }
+
         return false;
     }
 

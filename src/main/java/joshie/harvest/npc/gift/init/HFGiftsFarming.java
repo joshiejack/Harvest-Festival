@@ -1,40 +1,37 @@
 package joshie.harvest.npc.gift.init;
 
-import joshie.harvest.animals.HFAnimals;
-import joshie.harvest.api.core.Size;
 import joshie.harvest.animals.item.ItemAnimalProduct.Sizeable;
+import joshie.harvest.api.animals.AnimalFoodType;
+import joshie.harvest.api.core.Size;
+import joshie.harvest.api.crops.Crop;
 import joshie.harvest.core.util.annotations.HFLoader;
 
-import static joshie.harvest.animals.HFAnimals.*;
-import static joshie.harvest.api.npc.gift.GiftCategory.*;
 import static joshie.harvest.animals.HFAnimals.ANIMAL_PRODUCT;
-import static joshie.harvest.core.HFCore.STORAGE;
-import static joshie.harvest.crops.HFCrops.*;
+import static joshie.harvest.animals.HFAnimals.TREATS;
+import static joshie.harvest.api.npc.gift.GiftCategory.*;
 
 @HFLoader(priority = 0)
 public class HFGiftsFarming extends HFGiftsAbstract {
     public static void init() {
-        assignGeneric(SEEDS, FARMING);
-        assignGeneric(TRAY, FARMING);
-        assignGeneric(SIZED, FARMING);
-        assignGeneric(TROUGH, FARMING);
-        assignGeneric(STORAGE, FARMING);
-        assignGeneric(TREATS, FARMING, ANIMALS);
-        assignGeneric(HFAnimals.TOOLS, FARMING, ANIMALS);
-        assignGeneric(SPRINKLER, FARMING, TECHNOLOGY);
-        assignGeneric(CROP, FARMING, NATURE, COOKING);
-        assignGeneric(ANIMAL_PRODUCT.getStack(Sizeable.WOOL, Size.SMALL), FARMING, ANIMALS, KNITTING);
-        assignGeneric(ANIMAL_PRODUCT.getStack(Sizeable.WOOL, Size.MEDIUM), FARMING, ANIMALS, KNITTING);
-        assignGeneric(ANIMAL_PRODUCT.getStack(Sizeable.WOOL, Size.LARGE), FARMING, ANIMALS, KNITTING, RARE);
-        //Stuffs
-        assignGeneric(ANIMAL_PRODUCT.getStack(Sizeable.EGG, Size.SMALL), FARMING, ANIMALS, COOKING);
-        assignGeneric(ANIMAL_PRODUCT.getStack(Sizeable.EGG, Size.MEDIUM), FARMING, ANIMALS, COOKING);
-        assignGeneric(ANIMAL_PRODUCT.getStack(Sizeable.EGG, Size.LARGE), FARMING, ANIMALS, COOKING, RARE);
-        assignGeneric(ANIMAL_PRODUCT.getStack(Sizeable.MILK, Size.SMALL), FARMING, ANIMALS, COOKING);
-        assignGeneric(ANIMAL_PRODUCT.getStack(Sizeable.MILK, Size.MEDIUM), FARMING, ANIMALS, COOKING);
-        assignGeneric(ANIMAL_PRODUCT.getStack(Sizeable.MILK, Size.LARGE), FARMING, ANIMALS, COOKING, RARE);
-        assignGeneric(ANIMAL_PRODUCT.getStack(Sizeable.MAYONNAISE, Size.SMALL), FARMING, ANIMALS, COOKING);
-        assignGeneric(ANIMAL_PRODUCT.getStack(Sizeable.MAYONNAISE, Size.MEDIUM), FARMING, ANIMALS, COOKING);
-        assignGeneric(ANIMAL_PRODUCT.getStack(Sizeable.MAYONNAISE, Size.LARGE), FARMING, ANIMALS, COOKING, RARE);
+        assignGeneric(TREATS, JUNK);
+        assignGeneric(ANIMAL_PRODUCT.getStack(Sizeable.WOOL, Size.SMALL), ANIMAL);
+        assignGeneric(ANIMAL_PRODUCT.getStack(Sizeable.WOOL, Size.MEDIUM), ANIMAL);
+        assignGeneric(ANIMAL_PRODUCT.getStack(Sizeable.WOOL, Size.LARGE), ANIMAL);
+        assignGeneric(ANIMAL_PRODUCT.getStack(Sizeable.EGG, Size.SMALL), ANIMAL);
+        assignGeneric(ANIMAL_PRODUCT.getStack(Sizeable.EGG, Size.MEDIUM), ANIMAL);
+        assignGeneric(ANIMAL_PRODUCT.getStack(Sizeable.EGG, Size.LARGE), ANIMAL);
+        assignGeneric(ANIMAL_PRODUCT.getStack(Sizeable.MILK, Size.SMALL), ANIMAL);
+        assignGeneric(ANIMAL_PRODUCT.getStack(Sizeable.MILK, Size.MEDIUM), ANIMAL);
+        assignGeneric(ANIMAL_PRODUCT.getStack(Sizeable.MILK, Size.LARGE), ANIMAL);
+        assignGeneric(ANIMAL_PRODUCT.getStack(Sizeable.MAYONNAISE, Size.SMALL), ANIMAL, COOKING);
+        assignGeneric(ANIMAL_PRODUCT.getStack(Sizeable.MAYONNAISE, Size.MEDIUM), ANIMAL, COOKING);
+        assignGeneric(ANIMAL_PRODUCT.getStack(Sizeable.MAYONNAISE, Size.LARGE), ANIMAL, COOKING);
+    }
+
+    public static void postInit() {
+        for (Crop crop: joshie.harvest.api.crops.Crop.REGISTRY) {
+            if (crop != Crop.NULL_CROP)
+                assignGeneric(crop.getCropStack(1), crop.getFoodType() == AnimalFoodType.FRUIT ? FRUIT : crop.getFoodType() == AnimalFoodType.VEGETABLE ? VEGETABLE : PLANT);
+        }
     }
 }

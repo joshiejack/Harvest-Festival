@@ -6,6 +6,7 @@ import joshie.harvest.animals.entity.EntityHarvestCow;
 import joshie.harvest.animals.entity.EntityHarvestSheep;
 import joshie.harvest.animals.item.ItemAnimalTreat.Treat;
 import joshie.harvest.api.HFApi;
+import joshie.harvest.api.calendar.CalendarDate;
 import joshie.harvest.api.core.ITiered.ToolTier;
 import joshie.harvest.api.crops.Crop;
 import joshie.harvest.api.shops.IShop;
@@ -192,8 +193,16 @@ public class HFShops {
             }
         }
 
-        CARPENTER.addItem(new PurchasableBuilder(0, 16, 0, HFCore.STORAGE.getStackFromEnum(Storage.SHIPPING)));
-        CARPENTER.addItem(new PurchasableBuilder(10000L, 24, 6, HFCrops.SPRINKLER.getStackFromEnum(Sprinkler.WOOD)) {
+        CARPENTER.addItem(new PurchasableBuilder(0, 8, 0, HFCore.STORAGE.getStackFromEnum(Storage.SHIPPING)).addTooltip("storage.shipping.tooltip"));
+        CARPENTER.addItem(new PurchasableBuilder(3000L, 16, 0, HFCrops.SPRINKLER.getStackFromEnum(Sprinkler.OLD)) {
+            @Override
+            public boolean canList(World world, EntityPlayer player) {
+                CalendarDate date = HFApi.calendar.getDate(world);
+                return date.getYear() >= 1 || date.getSeason().ordinal() >= 1;
+            }
+        }.addTooltip("sprinkler.old.tooltip"));
+
+        CARPENTER.addItem(new PurchasableBuilder(10000L, 24, 6, HFCrops.SPRINKLER.getStackFromEnum(Sprinkler.IRON)) {
             @Override
             public boolean canList(World world, EntityPlayer player) {
                 return HFApi.quests.hasCompleted(Quests.SPRINKLER, player);

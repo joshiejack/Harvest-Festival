@@ -3,6 +3,7 @@ package joshie.harvest.shops.purchasable;
 import joshie.harvest.api.shops.IPurchasable;
 import joshie.harvest.core.helpers.InventoryHelper;
 import joshie.harvest.core.helpers.SpawnItemHelper;
+import joshie.harvest.core.helpers.TextHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
@@ -10,8 +11,11 @@ import net.minecraftforge.fml.common.registry.IForgeRegistry;
 import net.minecraftforge.fml.common.registry.IForgeRegistryEntry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.apache.commons.lang3.text.WordUtils;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 
 import static joshie.harvest.core.helpers.InventoryHelper.ITEM_STACK;
 import static net.minecraft.util.text.TextFormatting.WHITE;
@@ -19,6 +23,7 @@ import static net.minecraft.util.text.TextFormatting.WHITE;
 public abstract class PurchasableFML<I extends IForgeRegistryEntry.Impl<I>> implements IPurchasable {
     protected I item;
     private final long cost;
+    protected String tooltip;
 
     public PurchasableFML(long cost, ResourceLocation resource) {
         this.cost = cost;
@@ -28,6 +33,11 @@ public abstract class PurchasableFML<I extends IForgeRegistryEntry.Impl<I>> impl
     }
 
     public abstract IForgeRegistry<I> getRegistry();
+
+    public PurchasableFML addTooltip(String tooltip) {
+        this.tooltip = "harvestfestival." + tooltip;
+        return this;
+    }
 
     @Override
     public boolean canBuy(World world, EntityPlayer player, int amount) {
@@ -52,6 +62,11 @@ public abstract class PurchasableFML<I extends IForgeRegistryEntry.Impl<I>> impl
     @Override
     public void addTooltip(List<String> list) {
         list.add(WHITE + getDisplayStack().getDisplayName());
+        if (this.tooltip != null) {
+            list.add("---------------------------");
+            String tooltip = WordUtils.wrap(TextHelper.localize(this.tooltip.toLowerCase(Locale.ENGLISH)), 40);
+            list.addAll(Arrays.asList(tooltip.split("\r\n")));
+        }
     }
 
     @Override

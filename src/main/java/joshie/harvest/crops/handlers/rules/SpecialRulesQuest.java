@@ -25,6 +25,6 @@ public class SpecialRulesQuest implements ISpecialPurchaseRules {
 
     @Override
     public boolean canBuy(World world, EntityPlayer player, int amount) {
-        return amount == 1 && HFApi.quests.hasCompleted(getQuest(), player);
+        return HFApi.quests.hasCompleted(getQuest(), player);
     }
 }

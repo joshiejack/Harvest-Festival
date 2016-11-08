@@ -452,9 +452,12 @@ harvestfestival.cookware.baking=Baking Tray
 harvestfestival.cookware.steamer=Steamer
 
 harvestfestival.storage.shipping=Shipment Box
+harvestfestival.storage.shipping.tooltip=Every day at 6am the powers that be drop by and collect any items you place in here, along with payment.
 harvestfestival.sized.incubator=Incubator
 harvestfestival.trough.wood=Food Trough
-harvestfestival.sprinkler.wood=Sprinkler
+harvestfestival.sprinkler.iron=Sprinkler
+harvestfestival.sprinkler.old=Old Sprinkler
+harvestfestival.sprinkler.old.tooltip=This old piece of gear will water a 3x3 area every morning.
 harvestfestival.tray.nest.empty=Nest Box
 harvestfestival.tray.small.chicken=Nest Box with Small Chicken Egg
 harvestfestival.tray.medium.chicken=Nest Box with Medium Chicken Egg
@@ -1357,7 +1360,9 @@ harvestfestival.quest.recipe.salad.text=You've been a good friend, so take this.
 harvestfestival.quest.recipe.egg.scrambled.text=My mind is so confused on who to choose, you could say it's scrambled.
 harvestfestival.quest.recipe.soup.rice.text=I am obligated to give you this.
 harvestfestival.quest.recipe.stew.text=Looking after Liara was a real chore. She was a troublesome child. I couldn't find anything to calm her down. Until one day, I decided to just make a stew. And well since then she's been an angel. Perhaps sharing this recipe with others, will relax them too.
-harvestfestival.quest.recipe.milk.strawberry.text=What makes milk even nicer?
+harvestfestival.quest.recipe.icecream.text=How do you turn milk in to something even nicer?
+harvestfestival.quest.recipe.jam.strawberry.text=You've really buttered me up my dear, what else goes great on bread? Strawberry Jam of course!
+harvestfestival.quest.recipe.milk.strawberry.text=My dear you've been ever so kind, I have to treat you to the drink of the gods!
 harvestfestival.quest.recipe.toast.text=Yulif hasn't really taught me how to cook much yet. I do know how to make some toast though.
 harvestfestival.quest.recipe.latte.vegetable.text=I need to get rid of this unholy object fast. Please take it.
 
@@ -1366,19 +1371,22 @@ harvestfestival.quest.friendship.katlin.kitchen.text=You have been really kind t
 harvestfestival.quest.friendship.yulif.sprinkler.text=Yer have been a really great friend lately. So great I'm able to sell ya sprinklers now, so take a look in ma store when you have a chance.
 harvestfestival.quest.friendship.jacob.hatchery.text=For making a fisherman happy, I've got some new stock in store so be suure to check her out.
 harvestfestival.quest.friendship.tiberius.dark.text=I think I'm finally starting to trust you. You should come and see me during the night on Wednesdays or Saturdays. I'm looking to buy some things...
+harvestfestival.quest.friendship.goddess.strawberry.text=My dear things have been going really well between us, because of that I'll let you have the secret to strawberries! Jenni should be selling them in this town now, they are a spring crop though, so you may have to wait.
 
 ## Meeting Quests
 harvestfestival.quest.meeting.jacob.text=Nice to meet you %2$s, the name's jacob. From what I've heard you're interested in fishing, you know, I've just recently bought myself a new rod, I'd like you to have my old one here, please take care of her. I run this tackle shop, if you need anything please do pop by.
 harvestfestival.quest.meeting.katlin.text=Good day youngun. I'm Katlin but you can call me granny if you like. I help out my granddaughter Liara, mostly in the kitchen. I must thank you for letting her open shop up here, it's been her life long dream. I have some spare change, it isn't much but please do take it.
+harvestfestival.quest.meeting.johan.text=Good day. It is such a pleasure to meet you. The name is Johan. I'm normally here throughout the day but I travel back to my homeland at night. To let you know that if you ever need a bucket of milk, block of wool or some brown eggs, I'll happily trade for bottles of milk, plain wool or white eggs. I will see you around.
 
 ## Seed Quests
 harvestfestival.quest.seeds.cabbage.complete=Wow it looks like you've shipped 1000 spring crops! That's amazing. I have some good news too, we've recently found someone who will be happy to supply the store with cabbage seeds. So make sure to check the store the next time you visit!
 harvestfestival.quest.seeds.pineapple.complete=Look at you, you've managed to ship 1000 summer crops! How incredible. Oh another thing Spongebob has decided to sponsor our store, and as a specialty we are now able to sell you pineapples!
 harvestfestival.quest.seeds.greenpepper.complete=I can't believe my eyes, you've shipped over 1000 autumn crops! You're insane. Before I forget, things have been going really well around here, and we've recently been able to find a supplier for green peppers. I'll be able to sell you them right away!
+harvestfestival.quest.seeds.progress.complete=This town has really been growing, It's been a pleasure helping you achieve that. With that comes some wonderful news, I'm now able to stock beetroots in autumn, and melons in the summer seasons. Thanks again for your hard work.
 
 #Building the Goddess a Home
-harvestfestival.quest.seeds.strawberry.please=You’ve done a remarkable job of bringing this town back together. I’m really happy to see it growing! I’d just love a permanent home here too. If you can build me one, then I have a reward for you.
-harvestfestival.quest.seeds.strawberry.thanks=Your hard work getting this town back on its feet couldn’t be more appreciated. I couldn’t be more grateful for the home you have built me here either. To show my appreciation I’d like to give you to the world of strawberries. They’re my favourite! Jenni should be able to sell you some now too! See you around!
+harvestfestival.quest.building.goddess.please=You’ve done a remarkable job of bringing this town back together. I’m really happy to see it growing! I’d just love a permanent home here too. If you can build me one, then I have a reward for you.
+harvestfestival.quest.building.goddess.thanks=Your hard work getting this town back on its feet couldn’t be more appreciated. I couldn’t be more grateful for the home you have built me here either. To show my appreciation I’d like to give you a few strawberries and a small bonus to your funds!
 
 ###Achievements
 achievement.harvestfestival.summon=Goddess' Bounty

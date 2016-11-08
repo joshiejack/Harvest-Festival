@@ -69,4 +69,8 @@ public class HFCooking {
         ClientRegistry.bindTileEntitySpecialRenderer(TileOven.class, new SpecialRendererOven());
         ClientRegistry.bindTileEntitySpecialRenderer(TileFridge.class, new SpecialRendererFridge());
     }
+
+    public static void init() {
+        HFApi.npc.getGifts().addToBlacklist(RECIPE, COOKBOOK, UTENSILS);
+    }
 }

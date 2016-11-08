@@ -1,9 +1,9 @@
 package joshie.harvest.core.block;
 
-import joshie.harvest.api.HFApi;
+import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.handlers.GoddessHandler;
-import joshie.harvest.core.util.holders.HolderRegistrySet;
 import joshie.harvest.npc.HFNPCs;
+import joshie.harvest.npc.NPCRegistry;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
@@ -27,8 +27,6 @@ import java.util.List;
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 
 public class BlockGoddessWater extends BlockFluidClassic {
-    public static final HolderRegistrySet VALID_ITEMS = new HolderRegistrySet();
-
     public BlockGoddessWater(Fluid fluid) {
         super(fluid, Material.WATER);
     }
@@ -39,15 +37,16 @@ public class BlockGoddessWater extends BlockFluidClassic {
     }
 
     @Override
+    @SuppressWarnings("ConstantConditions")
     public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity) {
         if (!world.isRemote && entity instanceof EntityItem) {
             EntityItem item = ((EntityItem)entity);
             ItemStack stack = item.getEntityItem();
-            if (VALID_ITEMS.contains(stack) || HFApi.crops.getCropFromStack(stack) != null) {
+            if (!NPCRegistry.INSTANCE.getGifts().isBlacklisted(stack)) {
                 if (!GoddessHandler.spawnGoddess(world, entity, false, false)) {
                     if (item.getThrower() != null) {
                         EntityPlayer player = world.getPlayerEntityByName(item.getThrower());
-                        HFApi.relationships.adjustRelationship(player, HFNPCs.GODDESS.getUUID(), HFNPCs.GODDESS.getGiftValue(stack).getRelationPoints());
+                        HFTrackers.getPlayerTrackerFromPlayer(player).getRelationships().gift(player, HFNPCs.GODDESS.getUUID(), HFNPCs.GODDESS.getGiftValue(stack).getRelationPoints());
                     }
 
                     entity.setDead();

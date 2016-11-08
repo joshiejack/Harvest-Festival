@@ -45,15 +45,15 @@ public class QuestDataServer extends QuestData {
         if (localQuest != null) {
             finished.add(localQuest);
             current.remove(localQuest);
-            localQuest.onQuestCompleted(player);
+            if (rewards) localQuest.onQuestCompleted(player);
         } else {
             finished.add(quest);
-            quest.onQuestCompleted(player);
+            if (rewards) quest.onQuestCompleted(player);
         }
 
         HFTrackers.markDirty(player.worldObj);
         //Sync everything
-        master.sync(player, new PacketQuestCompleted(quest, true)); //Let this player claim the reward
+        if ((quest.getQuestType() == QuestType.PLAYER || quest.getQuestType() == QuestType.TOWN && rewards)) master.sync(player, new PacketQuestCompleted(quest, rewards)); //Let this player claim the reward
         if (quest.getQuestType() == QuestType.TOWN) master.sync(null, new PacketQuestCompleted(quest, false)); //Let the rest of the server know this was completed
         updateQuests(true); //Update the world on these quests, everytime one is completed
     }

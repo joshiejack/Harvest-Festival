@@ -2,8 +2,11 @@ package joshie.harvest.npc.gift;
 
 import joshie.harvest.api.npc.gift.GiftCategory;
 import joshie.harvest.api.npc.gift.IGiftRegistry;
+import joshie.harvest.core.base.item.ItemTool;
 import joshie.harvest.core.util.holders.HolderRegistry;
 import joshie.harvest.core.util.holders.HolderRegistrySet;
+import net.minecraft.item.ItemArmor;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 
 public class GiftRegistry implements IGiftRegistry {
@@ -22,6 +25,14 @@ public class GiftRegistry implements IGiftRegistry {
     };
 
     public boolean isBlacklisted(ItemStack stack) {
+        if (registry.getValueOf(stack) == null &&
+                (stack.getItem() instanceof ItemBlock ||
+                 stack.getItem() instanceof ItemTool ||
+                 stack.getItem() instanceof ItemArmor)) {
+
+            return true;
+        }
+
         return blacklist.contains(stack);
     }
 

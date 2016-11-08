@@ -11,11 +11,11 @@ import java.util.Set;
 @HFQuest("recipe.milk.strawberry")
 public class QuestStrawberryMilk extends QuestRecipe {
     public QuestStrawberryMilk() {
-        super("milk_strawberry", HFNPCs.MILKMAID, 10000);
+        super("milk_strawberry", HFNPCs.GODDESS, 10000);
     }
 
     @Override
     public boolean canStartQuest(Set<Quest> active, Set<Quest> finished) {
-        return finished.contains(Quests.RECIPE_HOT_MILK);
+        return finished.contains(Quests.RECIPE_STRAWBERRY_JAM);
     }
 }

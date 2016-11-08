@@ -5,6 +5,7 @@ import joshie.harvest.buildings.BuildingImpl;
 import joshie.harvest.buildings.BuildingRegistry;
 import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.core.helpers.InventoryHelper;
+import joshie.harvest.core.helpers.TextHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -12,8 +13,11 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.IForgeRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.apache.commons.lang3.text.WordUtils;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 
 import static joshie.harvest.core.helpers.InventoryHelper.ORE_DICTIONARY;
 import static net.minecraft.util.text.TextFormatting.WHITE;
@@ -90,6 +94,11 @@ public class PurchasableBuilder extends PurchasableFML<BuildingImpl> implements 
     @Override
     public void addTooltip(List<String> list) {
         list.add(WHITE + getDisplayName());
+        if (this.tooltip != null) {
+            list.add("---------------------------");
+            String tooltip = WordUtils.wrap(TextHelper.localize(this.tooltip.toLowerCase(Locale.ENGLISH)), 40);
+            list.addAll(Arrays.asList(tooltip.split("\r\n")));
+        }
     }
 
     @Override

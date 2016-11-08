@@ -37,9 +37,19 @@ public class Quests {
     public static final Quest RECIPE_CHOCOLATE_CAKE = QuestHelper.getQuest("recipe.cake.chocolate");
     public static final Quest RECIPE_GRILLED_FISH = QuestHelper.getQuest("recipe.fish.grilled");
     public static final Quest RECIPE_DOUGHNUT = QuestHelper.getQuest("recipe.doughnut");
+    public static final Quest RECIPE_STRAWBERRY_JAM = QuestHelper.getQuest("recipe.jam.strawberry");
+    public static final Quest RECIPE_STRAWBERRY_MILK = QuestHelper.getQuest("recipe.milk.strawberry");
+
+    //Buildings
+    public static final Quest BUILDING_CAFE = QuestHelper.getQuest("building.cafe");
+    public static final Quest BUILDING_BLACKSMITH = QuestHelper.getQuest("building.blacksmith");
+    public static final Quest BUILDING_FISHER = QuestHelper.getQuest("building.fisher");
+    public static final Quest BUILDING_FESTIVALS = QuestHelper.getQuest("building.festivals");
 
     //Seeds
     public static final Quest SEEDS_STRAWBERRY = QuestHelper.getQuest("seeds.strawberry");
-    public static final Quest SPRINKLER = QuestHelper.getQuest("friendship.yulif.sprinkler");
-    public static final Quest HATCHERY = QuestHelper.getQuest("friendship.jacob.hatchery");
+    public static final Quest SEEDS_SWEET_POTATO = QuestHelper.getQuest("seeds.sweetpotato");
+    public static final Quest SEEDS_TREES1 = QuestHelper.getQuest("seeds.trees1");
+    public static final Quest SPRINKLER = QuestHelper.getQuest("item.sprinkler");
+    public static final Quest HATCHERY = QuestHelper.getQuest("item.hatchery");
 }

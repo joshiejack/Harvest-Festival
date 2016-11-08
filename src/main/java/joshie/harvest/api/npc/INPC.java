@@ -19,8 +19,7 @@ public interface INPC {
      *  @return the npc**/
     INPC setShop(IShop shop);
 
-    /** Marks this NPC as a builder NPC
-     *  @return the npc **/
+    @Deprecated //TODO: Remove in 0.7+
     INPC setIsBuilder();
 
     /** Set the height of this npc for rendering purposes
@@ -94,7 +93,7 @@ public interface INPC {
     /** Returns true if this npc can be married **/
     boolean isMarriageCandidate();
 
-    /** Returns true if this npc is a builder **/
+    @Deprecated //TODO: Remove in 0.7+
     boolean isBuilder();
 
     enum Location {

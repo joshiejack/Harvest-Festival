@@ -4,6 +4,7 @@ import joshie.harvest.core.base.block.BlockHFEnum;
 import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.crops.block.BlockSprinkler.Sprinkler;
 import joshie.harvest.crops.tile.TileSprinkler;
+import joshie.harvest.crops.tile.TileSprinklerOld;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -22,8 +23,11 @@ import net.minecraftforge.fluids.FluidUtil;
 import javax.annotation.Nullable;
 import java.util.Locale;
 
+import static joshie.harvest.crops.HFCrops.SPRINKLER_DRAIN_RATE;
+
 public class BlockSprinkler extends BlockHFEnum<BlockSprinkler, Sprinkler> {
-    private static final AxisAlignedBB WOOD_AABB = new AxisAlignedBB(0.2D, 0D, 0.2D, 0.8D, 0.7D, 0.8D);
+    private static final AxisAlignedBB IRON_AABB = new AxisAlignedBB(0.2D, 0D, 0.2D, 0.8D, 0.7D, 0.8D);
+    private static final AxisAlignedBB OLD_AABB = new AxisAlignedBB(0.2D, 0D, 0.2D, 0.8D, 0.5D, 0.8D);
 
     public BlockSprinkler() {
         super(Material.WOOD, Sprinkler.class);
@@ -31,7 +35,7 @@ public class BlockSprinkler extends BlockHFEnum<BlockSprinkler, Sprinkler> {
     }
 
     public enum Sprinkler implements IStringSerializable {
-        WOOD;
+        IRON, OLD;
 
         @Override
         public String getName() {
@@ -42,7 +46,8 @@ public class BlockSprinkler extends BlockHFEnum<BlockSprinkler, Sprinkler> {
     @SuppressWarnings("deprecation")
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
-        return WOOD_AABB;
+        if (getEnumFromState(state) == Sprinkler.IRON) return IRON_AABB;
+        else return OLD_AABB;
     }
 
     @SuppressWarnings("deprecation")
@@ -53,6 +58,7 @@ public class BlockSprinkler extends BlockHFEnum<BlockSprinkler, Sprinkler> {
 
     @Override
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
+        if (SPRINKLER_DRAIN_RATE <= 0) return false;
         if (heldItem != null) {
             TileEntity tile = worldIn.getTileEntity(pos);
             if (tile instanceof TileSprinkler) {
@@ -63,12 +69,7 @@ public class BlockSprinkler extends BlockHFEnum<BlockSprinkler, Sprinkler> {
                         player.setHeldItem(hand, result);
                     }
 
-                    if (!worldIn.isRemote) {
-                        sprinkler.hydrateSoil();
-                    }
-
                     sprinkler.saveAndRefresh();
-
                     return true;
                 }
 
@@ -86,7 +87,7 @@ public class BlockSprinkler extends BlockHFEnum<BlockSprinkler, Sprinkler> {
 
     @Override
     public TileEntity createTileEntity(World world, IBlockState state) {
-        return new TileSprinkler();
+        return getEnumFromState(state) == Sprinkler.IRON ? new TileSprinkler() : new TileSprinklerOld();
     }
 
     @Override

@@ -30,7 +30,9 @@ public class NPCHelper {
 
     @SuppressWarnings("unchecked")
     public static <N extends EntityNPC> N getEntityForNPC(World world, NPC npc) {
-        if (npc.isBuilder()) {
+        if (npc == HFNPCs.TRADER) {
+            return (N) new EntityNPCTrader(world, npc);
+        } if (npc == HFNPCs.BUILDER) {
             return (N) new EntityNPCBuilder(world, npc);
         } else if (npc.getShop() != null) {
             return (N) new EntityNPCShopkeeper(world, npc);

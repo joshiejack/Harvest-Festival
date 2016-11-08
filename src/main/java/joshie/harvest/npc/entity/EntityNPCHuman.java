@@ -73,7 +73,7 @@ public abstract class EntityNPCHuman<E extends EntityNPCHuman> extends EntityNPC
     }
 
     @SuppressWarnings("unchecked")
-    private <T extends TownData> T getHomeTown() {
+    protected  <T extends TownData> T getHomeTown() {
         if (homeTown == null) {
             if (townID != null) homeTown = TownHelper.getTownByID(worldObj, townID);
             else {

@@ -90,7 +90,7 @@ public class HFRecipes {
         addNoUtensilRecipe(Meal.RICE_MATSUTAKE, 1F, 1F, MATSUTAKE, RICEBALL);
         addNoUtensilRecipe(Meal.RICE_MUSHROOM, 1F, 1F, BROWN_MUSHROOM, RICEBALL);
         addNoUtensilRecipe(Meal.BREAD_RAISIN, 1F, 1F, BREAD, GRAPE);
-        addNoUtensilRecipe(Meal.ICE_CREAM, 1F, 1F, MILK, EGG).setOptionalIngredients(PINEAPPLE, ORANGE, STRAWBERRY, GRAPE, PEACH, BANANA);
+        addNoUtensilRecipe(Meal.ICE_CREAM, 1F, 1F, MILK, EGG).setOptionalIngredients(PINEAPPLE, ORANGE, STRAWBERRY, GRAPE, PEACH, BANANA); //Candice 10000RP
     }
 
     private static void addPotRecipes() {
@@ -109,7 +109,7 @@ public class HFRecipes {
         addPotRecipe(Meal.STEW_PUMPKIN, 1F, 1F, PUMPKIN).setOptionalIngredients(SUGAR, SALT);//Shop
         addPotRecipe(Meal.STEW_FISH, 1F, 1F, FISH).setOptionalIngredients(SALT); //Jacob 5000RP
         //Added in 0.6+
-        addPotRecipe(Meal.JAM_STRAWBERRY, 1F, 1F, STRAWBERRY).setOptionalIngredients(WINE);
+        addPotRecipe(Meal.JAM_STRAWBERRY, 1F, 1F, STRAWBERRY).setOptionalIngredients(WINE); //Goddess 5000RP
         addPotRecipe(Meal.JAM_APPLE, 1F, 1F, APPLE).setOptionalIngredients(WINE);
         addPotRecipe(Meal.JAM_GRAPE, 1F, 1F, GRAPE).setOptionalIngredients(WINE);
         addPotRecipe(Meal.MARMALADE, 1F, 1F, ORANGE).setOptionalIngredients(WINE);

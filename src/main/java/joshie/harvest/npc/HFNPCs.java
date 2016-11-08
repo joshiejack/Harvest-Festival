@@ -63,7 +63,7 @@ public class HFNPCs {
     public static final INPC MINER = register("brandon", MALE, ADULT, 13, AUTUMN, 0xC28D48, 0x5F5247); //Works in the mines                     (MINE)
     public static final INPC FISHERMAN = register("jacob", MALE, ADULT, 28, AUTUMN, 0x7396FF, 0x0036D9); //Fisherman                            (FISHING HUT)
     public static final INPC MILKMAID = register("candice", FEMALE, ADULT, 5, AUTUMN, 0xF65FAB, 0xF21985); //Works in the Barn, Milking Cows    (GENERAL STORE)
-    public static final INPC BUILDER = register("yulif", MALE, ADULT, 19, SUMMER, 0x313857, 0x121421).setIsBuilder(); //Builds stuff            (SPAWN)
+    public static final INPC BUILDER = register("yulif", MALE, ADULT, 19, SUMMER, 0x313857, 0x121421); //Builds stuff            (SPAWN)
     public static final INPC POULTRY = register("ashlee", FEMALE, ADULT, 16, AUTUMN, 0xC62D2D, 0x571111); //Poultry Farm Owner                  (POULTRY FARM)
     public static final INPC TRADER = register("girafi", MALE, ADULT, 2, AUTUMN,  0xFFFFFF, 0xC60C30); //Trader                                 (GENERAL STORE)
 
@@ -76,6 +76,7 @@ public class HFNPCs {
         EntityRegistry.registerModEntity(EntityNPCBuilder.class, "builder", EntityIDs.BUILDER, HarvestFestival.instance, 80, 3, true);
         EntityRegistry.registerModEntity(EntityNPCShopkeeper.class, "shopkeeper", EntityIDs.SHOPKEEPER, HarvestFestival.instance, 80, 3, true);
         EntityRegistry.registerModEntity(EntityNPCGoddess.class, "goddess", EntityIDs.GODDESS, HarvestFestival.instance, 80, 3, true);
+        EntityRegistry.registerModEntity(EntityNPCTrader.class, "trader", EntityIDs.TRADER, HarvestFestival.instance, 80, 3, true);
         registerSounds("goddess", "blessing");
     }
 
@@ -86,6 +87,7 @@ public class HFNPCs {
         registerNPCRendering(EntityNPCBuilder.class);
         registerNPCRendering(EntityNPCShopkeeper.class);
         registerNPCRendering(EntityNPCGoddess.class);
+        registerNPCRendering(EntityNPCTrader.class);
     }
 
     public static void init() {

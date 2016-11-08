@@ -2,10 +2,6 @@
 ##!Important
 * Removed a couple internal registries so it may warn you when joining a world, this can be safely ignored
 
-##NEW!
-###Fishing
-* Added fishing rods, obtainable when you meet jakob for the first time
-
 #Additions + Changes to existing features
 ###Animals
 * Animals now only get stressed every two hours they're left outside in the rain or at night
@@ -35,13 +31,20 @@
 * You can now cook multiple meals at once, the cooking system was rewritten to allow for smarter utensils (i.e. putting two corn in an oven will make two baked corn)
 
 ###Crops
-* Sprinklers won't consume water on rainy days
+* Added Old Sprinkler, waters a 3x3 area available from the Carpenter from Summer 7
+* You now unlock the normal sprinkler by becoming friends with Yulif
+* Sprinklers won't consume water by default, can be reenabled in config
+* Sprinklers will only animate for 15 minutes in the morning
+* Sprinklers will only water crops in the morning, not as soon as you put water in them
 * Untied the crops from the registry for them, shouldn't affect anything
 * Melons and Pumpkins will no longer regrow, and will instead replace the crop
 * Crops will now be plantable on more than farmland, however they will only grow on things other than farmland when a mod adds support
 * Rebalanced the crop prices and changed some stats
 * Removed the year unlocks, and replace with quest based ones instead
 * Take note that once any player has completed the quest, the crops can be purchased by anyone in that town
+
+###Fishing - NEW!
+* Added fishing rods, obtainable when you meet jakob for the first time
 
 ###Gathering
 * More items will now spawn around the world (that sell for more than 1 gold!)
@@ -61,7 +64,11 @@
 * The new tiers will now start when you go through a bottom portal instead of just before
 
 ###NPCs
+* Blacklisted a bunch of things by default like weapons, armour, elytra as well as blacklisting blocks unless they have a gift value added from being gifted by default, unless a gift type is assigned to them
+* NPCs will now like or dislike more things than before
 * Added a few more quests mostly related to friendship with the npcs
+* Johan will die every day around 6pm, as he travels back home to trade
+* Throwing an item in to the goddess pond will now gift her that item, and summon her if it is giftable (instead of just adding RP)
 
 ###Shops
 * New Shop GUI

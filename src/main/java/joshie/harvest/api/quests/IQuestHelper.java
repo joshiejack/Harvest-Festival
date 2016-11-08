@@ -16,6 +16,9 @@ public interface IQuestHelper {
      *  @param player   the player syncing to*/
     void increaseStage(Quest quest, EntityPlayer player);
 
+    /** Completes a quest if it has never been completed before */
+    void completeQuestConditionally(Quest quest, EntityPlayer player);
+
     /** Completes a quest
      *  @param quest    the quest to mark as completed
      *  @param player   the player to complete the quest for**/

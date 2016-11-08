@@ -2,7 +2,6 @@ package joshie.harvest.core;
 
 import joshie.harvest.HarvestFestival;
 import joshie.harvest.api.HFApi;
-import joshie.harvest.api.core.Ore;
 import joshie.harvest.core.block.BlockFlower;
 import joshie.harvest.core.block.BlockFlower.FlowerType;
 import joshie.harvest.core.block.BlockGoddessWater;
@@ -79,6 +78,12 @@ public class HFCore {
         RegistryHelper.registerFluidBlockRendering(GODDESS_WATER, "goddess_water");
     }
 
+    public static void init() {
+        HFApi.npc.getGifts().addToBlacklist(Items.BUCKET, Items.LAVA_BUCKET, Items.WATER_BUCKET, Items.FLINT_AND_STEEL, Items.BOW, Items.ARROW, Items.MINECART, Items.CHEST_MINECART, Items.FURNACE_MINECART,
+                Items.BOAT, Items.ACACIA_BOAT, Items.BIRCH_BOAT, Items.DARK_OAK_BOAT, Items.JUNGLE_BOAT, Items.SPRUCE_BOAT, Items.FISHING_ROD, Items.SHEARS, Items.SPAWN_EGG, Items.TNT_MINECART,
+                Items.DIAMOND_HORSE_ARMOR, Items.GOLDEN_HORSE_ARMOR, Items.IRON_HORSE_ARMOR);
+    }
+
     @SideOnly(Side.CLIENT)
     public static void initClient() {
         Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler((state, worldIn, pos, tintIndex) -> {
@@ -90,21 +95,6 @@ public class HFCore {
         Minecraft.getMinecraft().getItemColors().registerItemColorHandler((stack, tintIndex) -> {
                 return HFCore.FLOWERS.getEnumFromMeta(stack.getItemDamage()).isColored() ? ColorizerFoliage.getFoliageColorBasic() : -1;
         }, HFCore.FLOWERS);
-    }
-
-    public static void postInit() {
-        BlockGoddessWater.VALID_ITEMS.register(Items.APPLE);
-        BlockGoddessWater.VALID_ITEMS.register(Blocks.WATERLILY);
-        BlockGoddessWater.VALID_ITEMS.register(Blocks.MELON_BLOCK);
-        BlockGoddessWater.VALID_ITEMS.register(Blocks.TALLGRASS);
-        BlockGoddessWater.VALID_ITEMS.register(Blocks.DOUBLE_PLANT);
-        BlockGoddessWater.VALID_ITEMS.register(Blocks.RED_FLOWER);
-        BlockGoddessWater.VALID_ITEMS.register(Blocks.YELLOW_FLOWER);
-        BlockGoddessWater.VALID_ITEMS.register(Ore.of("treeLeaves"));
-        BlockGoddessWater.VALID_ITEMS.register(Ore.of("treeSapling"));
-        BlockGoddessWater.VALID_ITEMS.register(Ore.of("vine"));
-        BlockGoddessWater.VALID_ITEMS.register(Ore.of("sugarcane"));
-        BlockGoddessWater.VALID_ITEMS.register(Ore.of("blockCactus"));
     }
 
     private static Fluid registerFluid(Fluid fluid) {

@@ -1,24 +1,22 @@
 package joshie.harvest.npc.gift;
 
 import joshie.harvest.api.HFApi;
-import joshie.harvest.api.npc.gift.GiftCategory;
-import net.minecraft.init.Items;
+import joshie.harvest.api.npc.gift.IGiftRegistry;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+
+import static joshie.harvest.api.npc.gift.GiftCategory.*;
 
 public class GiftsJade extends Gifts {
     @Override
     public Quality getQuality(ItemStack stack) {
-        if (stack.getItem() == Items.WHEAT_SEEDS) {
-            return Quality.AWESOME;
-        }
-
-        if (HFApi.npc.getGifts().isGiftType(stack, GiftCategory.FARMING)) {
-            return Quality.GOOD;
-        }
-
-        if (HFApi.npc.getGifts().isGiftType(stack, GiftCategory.MINING)) {
-            return Quality.BAD;
-        }
-        return Quality.DECENT;
+        IGiftRegistry registry = HFApi.npc.getGifts();
+        if (stack.getItem() == Item.getItemFromBlock(Blocks.YELLOW_FLOWER)) return Quality.AWESOME;
+        else if (registry.isGiftType(stack, FLOWER, VEGETABLE, FRUIT)) return Quality.GOOD;
+        else if (registry.isGiftType(stack, BUILDING)) return Quality.TERRIBLE;
+        else if (registry.isGiftType(stack, MINERAL)) return Quality.BAD;
+        else if (registry.isGiftType(stack, JUNK)) return Quality.DISLIKE;
+        else return super.getQuality(stack);
     }
 }

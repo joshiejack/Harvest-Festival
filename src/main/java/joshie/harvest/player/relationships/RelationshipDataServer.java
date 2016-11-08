@@ -58,6 +58,7 @@ public class RelationshipDataServer extends RelationshipData {
             syncStatus((EntityPlayerMP) player, key, NPCStatus.GIFTED, true);
             affectRelationship(key, 15000);
             statuses.add(NPCStatus.GIFTED);
+            master.getTracking().addGift();
             return true;
         }
 

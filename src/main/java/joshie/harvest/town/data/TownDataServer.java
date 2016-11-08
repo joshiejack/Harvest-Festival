@@ -5,6 +5,7 @@ import joshie.harvest.api.quests.QuestType;
 import joshie.harvest.buildings.BuildingImpl;
 import joshie.harvest.buildings.BuildingRegistry;
 import joshie.harvest.buildings.BuildingStage;
+import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.core.helpers.NBTHelper;
@@ -17,6 +18,7 @@ import joshie.harvest.npc.NPCHelper;
 import joshie.harvest.npc.NPCRegistry;
 import joshie.harvest.npc.entity.EntityNPCBuilder;
 import joshie.harvest.npc.entity.EntityNPCHuman;
+import joshie.harvest.quests.Quests;
 import joshie.harvest.quests.data.QuestDataServer;
 import joshie.harvest.quests.packet.PacketQuest;
 import joshie.harvest.town.packet.PacketNewBuilding;
@@ -157,6 +159,12 @@ public class TownDataServer extends TownData<QuestDataServer> implements IQuestM
         gathering.readFromNBT(nbt);
         dimension = nbt.getInteger("Dimension");
         deadVillagers = NBTHelper.readResourceSet(nbt, "DeadVillagers");
+        //TODO: Remove in 0.7+
+        if (!nbt.hasKey("CurrentQuests") && !nbt.hasKey("FinishedQuests")) {
+            if (buildings.containsKey(((BuildingImpl)HFBuildings.CAFE).getRegistryName())) quests.getFinished().add(Quests.BUILDING_CAFE);
+            if (buildings.containsKey(((BuildingImpl)HFBuildings.FISHING_HUT).getRegistryName())) quests.getFinished().add(Quests.BUILDING_FISHER);
+            if (buildings.containsKey(((BuildingImpl)HFBuildings.BLACKSMITH).getRegistryName())) quests.getFinished().add(Quests.BUILDING_BLACKSMITH);
+        }
     }
 
     @Override

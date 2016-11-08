@@ -1,10 +1,10 @@
 package joshie.harvest.quests.player.tutorial;
 
+import joshie.harvest.api.HFApi;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.QuestQuestion;
 import joshie.harvest.core.HFCore;
-import joshie.harvest.quests.QuestHelper;
 import joshie.harvest.quests.selection.TutorialSelection;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
@@ -41,7 +41,7 @@ public class QuestIntro extends QuestQuestion {
 
     @Override
     public void onChatClosed(EntityPlayer player, EntityLiving entity, INPC npc, boolean isSneaking) {
-        if (isCompletedEarly) QuestHelper.INSTANCE.completeQuest(TUTORIAL_CARPENTER, player);
+        if (isCompletedEarly) HFApi.quests.completeQuest(TUTORIAL_CARPENTER, player);
         if (quest_stage == BACKSTORY || isCompletedEarly) {
             complete(player);
         }

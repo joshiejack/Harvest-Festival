@@ -1,5 +1,6 @@
 package joshie.harvest.quests.player.tutorial;
 
+import joshie.harvest.api.HFApi;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.Quest;
@@ -8,6 +9,7 @@ import joshie.harvest.cooking.CookingHelper;
 import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.cooking.block.BlockCookware.Cookware;
 import joshie.harvest.cooking.item.ItemUtensil.Utensil;
+import joshie.harvest.quests.Quests;
 import joshie.harvest.quests.selection.TutorialSelection;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
@@ -68,6 +70,7 @@ public class QuestCafe extends QuestQuestion {
 
     @Override
     public void onQuestCompleted(EntityPlayer player) {
+        HFApi.quests.completeQuestConditionally(Quests.BUILDING_CAFE, player);
         rewardItem(player, HFCooking.UTENSILS.getStackFromEnum(Utensil.KNIFE));
         rewardItem(player, HFCooking.COOKWARE.getStackFromEnum(Cookware.COUNTER));
         rewardItem(player, new ItemStack(HFCooking.COOKBOOK));

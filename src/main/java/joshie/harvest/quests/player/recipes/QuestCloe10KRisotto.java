@@ -11,7 +11,7 @@ import java.util.Set;
 @HFQuest("recipe.risotto")
 public class QuestCloe10KRisotto extends QuestRecipe {
     public QuestCloe10KRisotto() {
-        super("risotto", HFNPCs.DAUGHTER_1, 10000);
+        super("risotto", HFNPCs.DAUGHTER_ADULT, 10000);
     }
 
     @Override

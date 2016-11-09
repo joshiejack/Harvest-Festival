@@ -49,6 +49,11 @@ public abstract class GuiNPCBase extends GuiBase {
         outside = npc.getNPC().getOutsideColor();
     }
 
+    @Override
+    public boolean doesGuiPauseGame() {
+        return false;
+    }
+
     public FontRenderer getFont() {
         return fontRendererObj;
     }

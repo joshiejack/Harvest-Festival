@@ -117,7 +117,7 @@ public class HFCrops {
     public static final Crop CORN = registerCrop("corn").setItem(getCropStack(Crops.CORN)).setValue(200, 30).setStages(3, 8, 12, 14, 15).setRegrow(12).setSeedColours(0XD4BD45)
                                         .setSeasons(SUMMER, AUTUMN).setPurchaseRules(new SpecialRulesQuest("corn"));
     public static final Crop NETHER_WART = registerCrop("nether_wart").setItem(Items.NETHER_WART).setValue(4000, 20).setStages(Blocks.NETHER_WART, 1, 2, 3, 4).setRegrow(1).setSeedColours(0x8B0000)
-                                            .setPlantType(EnumPlantType.Nether).setNoWaterRequirements().setGrowthHandler(SOUL_SAND).setPurchaseRules(new SpecialRulesQuest("nether_wart"));
+                                            .setPlantType(EnumPlantType.Nether).setNoWaterRequirements().setGrowthHandler(SOUL_SAND).setPurchaseRules(new SpecialRulesQuest("netherwart"));
     //Tutorial Crop
     public static final Crop TUTORIAL = registerCrop("tutorial_turnip").setItem(getCropStack(Crops.TUTORIAL_TURNIP)).setValue(0, 1).setStages(1, 2, 3).setSeedColours(0xACA262).setSeasons(SPRING, SUMMER, AUTUMN, WINTER);
 

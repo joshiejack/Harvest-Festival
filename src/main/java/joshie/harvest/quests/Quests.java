@@ -7,6 +7,7 @@ public class Quests {
     public static final Quest TUTORIAL_UPGRADING = QuestHelper.getQuest("tutorial.upgrading");
 
     //Quest order based on meeting npcs and relations
+    public static final Quest ABI_MEET = QuestHelper.getQuest("meeting.abi");
     public static final Quest ASHLEE_MEET = QuestHelper.getQuest("tutorial.chicken");
     public static final Quest ASHLEE_5K = QuestHelper.getQuest("recipe.corn.baked");
     public static final Quest BRANDON_5K = QuestHelper.getQuest("recipe.soup.rice");
@@ -29,6 +30,7 @@ public class Quests {
     public static final Quest JIM_5K = QuestHelper.getQuest("recipe.fishsticks");
     public static final Quest JOHAN_MEET = QuestHelper.getQuest("meeting.johan");
     public static final Quest JOHAN_5K = QuestHelper.getQuest("recipe.candied.potato");
+    public static final Quest JOHAN_10K = QuestHelper.getQuest("recipe.fries.french");
     public static final Quest KATLIN_MEET = QuestHelper.getQuest("meeting.katlin");
     public static final Quest KATLIN_5K = QuestHelper.getQuest("recipe.porridge");
     public static final Quest KATLIN_10K = QuestHelper.getQuest("recipe.stew");

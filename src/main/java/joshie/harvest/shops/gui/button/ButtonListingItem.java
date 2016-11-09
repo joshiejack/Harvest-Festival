@@ -1,17 +1,17 @@
 package joshie.harvest.shops.gui.button;
 
-import joshie.harvest.api.shops.IPurchasableBuilder;
+import joshie.harvest.api.shops.IPurchaseableMaterials;
 import joshie.harvest.core.helpers.StackHelper;
 import joshie.harvest.shops.gui.GuiNPCShop;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.item.ItemStack;
 
-public class ButtonListingItem extends ButtonListing<IPurchasableBuilder> {
+public class ButtonListingItem extends ButtonListing<IPurchaseableMaterials> {
     private final ItemStack icon;
     private final int cost;
 
-    public ButtonListingItem(ItemStack icon, int cost, GuiNPCShop shop, IPurchasableBuilder purchasable, int buttonId, int x, int y) {
+    public ButtonListingItem(ItemStack icon, int cost, GuiNPCShop shop, IPurchaseableMaterials purchasable, int buttonId, int x, int y) {
         super(shop, purchasable, buttonId, x, y);
         this.icon = icon;
         this.cost = cost;

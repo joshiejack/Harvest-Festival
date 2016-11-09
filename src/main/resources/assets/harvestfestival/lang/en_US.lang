@@ -456,6 +456,7 @@ harvestfestival.storage.shipping.tooltip=Every day at 6am the powers that be dro
 harvestfestival.sized.incubator=Incubator
 harvestfestival.trough.wood=Food Trough
 harvestfestival.sprinkler.iron=Sprinkler
+harvestfestival.sprinkler.iron.tooltip=With the advent of invention, this sparkly new sprinkler can water a 9x9 area.
 harvestfestival.sprinkler.old=Old Sprinkler
 harvestfestival.sprinkler.old.tooltip=This old piece of gear will water a 3x3 area every morning.
 harvestfestival.tray.nest.empty=Nest Box
@@ -1153,7 +1154,7 @@ harvestfestival.shop.cafe.greeting1=Food come and get it! Yes?
 harvestfestival.shop.cafe.greeting2=Serving it all up, welcome!
 harvestfestival.shop.cafe.greeting3=Dinner's Up!
 
-#Cafe
+#Kitchen Supplies
 harvestfestival.shop.kitchen=Café Supplies
 harvestfestival.shop.kitchen.greeting1=I'm looking for a supplier for the kitchen, do you have anything?
 harvestfestival.shop.kitchen.greeting2=As always on a Friday we're looking for supplies for the café
@@ -1183,11 +1184,17 @@ harvestfestival.shop.bloodmage.greeting1=Welcome dear child, to the darkest of p
 harvestfestival.shop.bloodmage.greeting2=Prepare to have your eyes blown out of their sockets for I delve in the darkest of magics.
 harvestfestival.shop.bloodmage.greeting3=In this dark and mysterious night, I am happy to please your eyes.
 
-#Blood Mage
+#Tackle Shop
 harvestfestival.shop.baitshop=Tackle Shop
 harvestfestival.shop.baitshop.greeting1=So glad to finally be open for business, welcome.
 harvestfestival.shop.baitshop.greeting2=If you want some fish, then come buy some of my gear.
 harvestfestival.shop.baitshop.greeting3=Come get your fishing rods here, if you please.
+
+#Trader
+harvestfestival.shop.trader=Café Supplies
+harvestfestival.shop.trader.greeting1=Good Morning, how may I help you?
+harvestfestival.shop.trader.greeting2=Looking to sell some feathers or leather, then I'm your man.
+harvestfestival.shop.trader.greeting3=Welcome, please do let yourself be served.
 
 #Miscellaneous
 harvestfestival.marriage=Gift for Marriage
@@ -1381,11 +1388,13 @@ harvestfestival.quest.friendship.jacob.hatchery.text=For making a fisherman happ
 harvestfestival.quest.friendship.tiberius.dark.text=I think I'm finally starting to trust you. You should come and see me during the night on Wednesdays or Saturdays. I'm looking to buy some things...
 harvestfestival.quest.friendship.goddess.strawberry.text=My dear things have been going really well between us, because of that I'll let you have the secret to strawberries! Jenni should be selling them in this town now, they are a spring crop though, so you may have to wait.
 harvestfestival.quest.friendship.jade.flowers.text=Oh hello %4$s it's nice to see you, I have some wonderful news, I've decided that I want to open a flower shop! But I'm having trouble getting stock! That's where you come in, I'll happily buy flowers from you now, just show me some and I'll pay you whatever I can afford that day.
+harvestfestival.quest.friendship.johan.vanilla.text=Why good day to you! It has been such a pleasure getting to know you. For being such a wonderful human I'm happy to start buying some special animal goods from you. However, I can only afford to purchase things from 6am to 10am. So please do remember if you can.
 
 ## Meeting Quests
 harvestfestival.quest.meeting.jacob.text=Nice to meet you %4$s, the name's jacob. From what I've heard you're interested in fishing, you know, I've just recently bought myself a new rod, I'd like you to have my old one here, please take care of her. I run this tackle shop, if you need anything please do pop by.
 harvestfestival.quest.meeting.katlin.text=Good day youngun. I'm Katlin but you can call me granny if you like. I help out my granddaughter Liara, mostly in the kitchen. I must thank you for letting her open shop up here, it's been her life long dream. I have some spare change, it isn't much but please do take it.
 harvestfestival.quest.meeting.johan.text=Good day. It is such a pleasure to meet you. The name is Johan. I'm normally here throughout the day but I travel back to my homeland at night. To let you know that if you ever need a bucket of milk, block of wool or some brown eggs, I'll happily trade for bottles of milk, plain wool or white eggs. I will see you around.
+harvestfestival.quest.meeting.abi.text=HELLLO BIG PERSON! I'm Abi!!!!! Wanna know what I got up today ^_^???? Welll I made COOOKIES!!!!!! Want some? They're so yummy!
 
 ## Seed Quests
 harvestfestival.quest.seeds.cabbage.complete=Wow it looks like you've shipped 1000 spring crops! That's amazing. I have some good news too, we've recently found someone who will be happy to supply the store with cabbage seeds. So make sure to check the store the next time you visit!

@@ -32,14 +32,14 @@ public class PacketPurchaseItem extends PenguinPacket {
     public void toBytes(ByteBuf buf) {
         ByteBufUtils.writeUTF8String(buf, shop.resourceLocation.toString());
         ByteBufUtils.writeUTF8String(buf, purchasable.getPurchaseableID());
-        buf.writeByte(amount);
+        buf.writeInt(amount);
     }
 
     @Override
     public void fromBytes(ByteBuf buf) {
         shop = ShopRegistry.INSTANCE.getShop(new ResourceLocation(ByteBufUtils.readUTF8String(buf)));
         purchasable = shop.getPurchasableFromID(ByteBufUtils.readUTF8String(buf));
-        amount =  buf.readByte();
+        amount =  buf.readInt();
     }
 
     @Override

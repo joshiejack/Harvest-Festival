@@ -1,11 +1,13 @@
 package joshie.harvest.shops.purchasable;
 
-import joshie.harvest.api.shops.IPurchasableBuilder;
+import joshie.harvest.api.shops.IPurchaseableMaterials;
+import joshie.harvest.api.shops.IRequirement;
 import joshie.harvest.buildings.BuildingImpl;
 import joshie.harvest.buildings.BuildingRegistry;
 import joshie.harvest.buildings.HFBuildings;
-import joshie.harvest.core.helpers.InventoryHelper;
 import joshie.harvest.core.helpers.TextHelper;
+import joshie.harvest.shops.requirement.Logs;
+import joshie.harvest.shops.requirement.Stone;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -19,28 +21,54 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
-import static joshie.harvest.core.helpers.InventoryHelper.ORE_DICTIONARY;
 import static net.minecraft.util.text.TextFormatting.WHITE;
 
-public class PurchasableBuilder extends PurchasableFML<BuildingImpl> implements IPurchasableBuilder {
+public class PurchasableBuilder extends PurchasableFML<BuildingImpl> implements IPurchaseableMaterials {
     private final String resource;
     private ItemStack stack;
-    private final int logs;
-    private final int stone;
+    private final IRequirement[] requirements;
 
     public PurchasableBuilder(long cost, int logs, int stone, ResourceLocation name) {
         super(cost, name);
-        this.logs = logs;
-        this.stone = stone;
+        if (logs != 0 && stone == 0) requirements = new IRequirement[] { Logs.of(logs) };
+        else if (logs == 0 && stone != 0) requirements = new IRequirement[] { Stone.of(stone) };
+        else requirements = new IRequirement[] { Logs.of(logs), Stone.of(stone) };
+        this.resource = ((cost >= 0) ? "buy: " : "sell: ") + name.toString().replace(":", "_");
+    }
+
+    public PurchasableBuilder(long cost, ResourceLocation name, IRequirement... requirements) {
+        super(cost, name);
+        this.requirements = requirements;
         this.resource = ((cost >= 0) ? "buy: " : "sell: ") + name.toString().replace(":", "_");
     }
 
     public PurchasableBuilder(long cost, int logs, int stone, ItemStack stack) {
         super(cost, null);
-        this.logs = logs;
-        this.stone = stone;
         this.stack = stack;
+        if (logs != 0 && stone == 0) requirements = new IRequirement[] { Logs.of(logs) };
+        else if (logs == 0 && stone != 0) requirements = new IRequirement[] { Stone.of(stone) };
+        else requirements = new IRequirement[] { Logs.of(logs), Stone.of(stone) };
         this.resource = ((cost >= 0) ? "buy: " : "sell: ") + Purchasable.stackToString(stack);
+    }
+
+    public PurchasableBuilder(long cost, ItemStack stack, IRequirement... requirements) {
+        super(cost, null);
+        this.stack = stack;
+        this.requirements = requirements;
+        this.resource = ((cost >= 0) ? "buy: " : "sell: ") + Purchasable.stackToString(stack);
+    }
+
+    private boolean isWoodOnly(long cost, int logs, int stone) {
+        return logs != 0 && stone == 0 && cost == 0;
+    }
+
+    private boolean isStoneOnly(long cost, int logs, int stone) {
+        return stone != 0 && logs == 0 && cost == 0;
+    }
+
+    @Override
+    public IRequirement[] getRequirements() {
+        return requirements;
     }
 
     @Override
@@ -50,8 +78,11 @@ public class PurchasableBuilder extends PurchasableFML<BuildingImpl> implements 
 
     @Override
     public boolean canBuy(World world, EntityPlayer player, int amount) {
-        return InventoryHelper.hasInInventory(player, ORE_DICTIONARY, "logWood", (getLogCost() * amount))
-                && InventoryHelper.hasInInventory(player, ORE_DICTIONARY, "stone", (getStoneCost() * amount)) && isPurchaseable(world, player);
+        for (IRequirement requirement: requirements) {
+            if (!requirement.isFulfilled(world, player, amount)) return false;
+        }
+
+        return isPurchaseable(world, player);
     }
 
     @Override
@@ -66,23 +97,15 @@ public class PurchasableBuilder extends PurchasableFML<BuildingImpl> implements 
 
     @Override
     public void onPurchased(EntityPlayer player) {
-        InventoryHelper.takeItemsInInventory(player, ORE_DICTIONARY, "logWood", getLogCost());
-        InventoryHelper.takeItemsInInventory(player, ORE_DICTIONARY, "stone", getStoneCost());
+        for (IRequirement requirement: requirements) {
+            requirement.onPurchased(player);
+        }
+
         super.onPurchased(player);
     }
 
     public boolean isPurchaseable(World world, EntityPlayer player) {
         return true;
-    }
-
-    @Override
-    public int getLogCost() {
-        return logs;
-    }
-
-    @Override
-    public int getStoneCost() {
-        return stone;
     }
 
     @Override

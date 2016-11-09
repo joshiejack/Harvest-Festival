@@ -26,6 +26,9 @@ public class ButtonListing<I extends IPurchasable> extends GuiButton {
     protected final GuiNPCShop shop;
     protected final I purchasable;
     protected int state;
+    private int hoverTimer;
+    private int stackSize = 1;
+    private boolean clicked;
 
     @SuppressWarnings("unchecked")
     public ButtonListing(GuiNPCShop shop, IPurchasable purchasable, int buttonId, int x, int y) {
@@ -91,25 +94,68 @@ public class ButtonListing<I extends IPurchasable> extends GuiButton {
     }
 
     @Override
-    public void playPressSound(SoundHandler soundHandlerIn) {
-        if (state == HOVER) super.playPressSound(soundHandlerIn);
+    public boolean mousePressed(Minecraft mc, int mouseX, int mouseY) {
+        clicked = super.mousePressed(mc, mouseX, mouseY);
+        return clicked;
+    }
+
+    @Override
+    protected void mouseDragged(Minecraft mc, int mouseX, int mouseY) {
+        if (clicked && hovered) {
+            if (hoverTimer == 0 || (hoverTimer %20 == 0 && GuiScreen.isCtrlKeyDown())) {
+                if (GuiScreen.isShiftKeyDown() && canPurchaseX(stackSize + 10)) {
+                    stackSize += 10;
+                    StatsClient stats = HFTrackers.getClientPlayerTracker().getStats();
+                    stats.setGoldValue(stats.getGold() - (purchasable.getCost() * 10));
+                    shop.updatePurchased(StackHelper.toStack(purchasable.getDisplayStack(), 10), 10);
+                    if (hoverTimer %40 == 1) playPressSound(mc.getSoundHandler());
+                } else if (canPurchaseX(stackSize + 1)) {
+                    stackSize++;
+                    shop.updatePurchased(purchasable.getDisplayStack(), 1);
+                    StatsClient stats = HFTrackers.getClientPlayerTracker().getStats();
+                    stats.setGoldValue(stats.getGold() - purchasable.getCost());
+                    if (hoverTimer %40 == 1) playPressSound(mc.getSoundHandler());
+                }
+
+                hoverTimer++;
+            }
+
+            if (GuiScreen.isCtrlKeyDown()) {
+                hoverTimer++;
+            }
+        } else {
+            hoverTimer = 0;
+            stackSize = 0;
+        }
     }
 
     @Override
     public void mouseReleased(int mouseX, int mouseY) {
-        boolean purchased10 = GuiScreen.isShiftKeyDown() && canPurchase10();
-        if (purchased10 || canPurchase1()) {
-            PacketHandler.sendToServer(new PacketPurchaseItem(shop.getShop(), purchasable, purchased10 ? 10: 1));
+        System.out.println(stackSize);
+        if (stackSize > 0) {
+            PacketHandler.sendToServer(new PacketPurchaseItem(shop.getShop(), purchasable, stackSize));
+            stackSize = 0; //Reset
         }
+
+        //Reset the clicking timer
+        clicked = false;
+    }
+
+    @Override
+    public void playPressSound(SoundHandler soundHandlerIn) {
+        if (state == HOVER) super.playPressSound(soundHandlerIn);
+    }
+
+    protected boolean canPurchaseX(int x) {
+        StatsClient stats = HFTrackers.getClientPlayerTracker().getStats();
+        return stats.getGold() - (purchasable.getCost() * x) >= 0 && purchasable.canBuy(MCClientHelper.getWorld(), MCClientHelper.getPlayer(), x);
     }
 
     protected boolean canPurchase10() {
-        StatsClient stats = HFTrackers.getClientPlayerTracker().getStats();
-        return stats.getGold() - (purchasable.getCost() * 10) >= 0 && purchasable.canBuy(MCClientHelper.getWorld(), MCClientHelper.getPlayer(), 10);
+        return canPurchaseX(10);
     }
 
     protected boolean canPurchase1() {
-        StatsClient stats = HFTrackers.getClientPlayerTracker().getStats();
-        return stats.getGold() - purchasable.getCost() >= 0 && purchasable.canBuy(MCClientHelper.getWorld(), MCClientHelper.getPlayer(), 1);
+        return canPurchaseX(1);
     }
 }

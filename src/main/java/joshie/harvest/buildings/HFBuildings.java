@@ -44,7 +44,7 @@ public class HFBuildings {
     public static final BuildingImpl null_building = new BuildingImpl();
     public static final ISpecialPurchaseRules NEVER = (w, p, a) -> false;
     public static final Building BARN = registerBuilding("barn", 4000L, 100, 0).setRequirements("carpenter").setInhabitants(HFNPCs.BARN_OWNER).setOffset(6, -1, 8);
-    public static final Building BLACKSMITH = registerBuilding("blacksmith", 9000L, 16, 160).setRequirements("miningHill").setInhabitants(HFNPCs.BLACKSMITH).setOffset(3, -2, 6);
+    public static final Building BLACKSMITH = registerBuilding("blacksmith").setRequirements("miningHill").setInhabitants(HFNPCs.BLACKSMITH).setOffset(3, -2, 6);
     public static final Building CAFE = registerBuilding("cafe", 15000L, 200, 110).setRequirements("supermarket").setInhabitants(HFNPCs.CAFE_OWNER, HFNPCs.CAFE_GRANNY).setOffset(7, -1, 10);
     public static final Building CARPENTER = registerBuilding("carpenter", 0L, 0, 0).setSpecialRules(NEVER).setInhabitants(HFNPCs.BUILDER, HFNPCs.FLOWER_GIRL).setOffset(3, -1, 8);
     public static final Building CHURCH = registerBuilding("church", 30000L, 160, 128).setSpecialRules(new SpecialRuleChurch()).setOffset(6, -1, 13);
@@ -55,7 +55,7 @@ public class HFBuildings {
     public static final Building MINING_HILL = registerBuilding("miningHill", 3000L, 8, 32).setRequirements("supermarket").setInhabitants(HFNPCs.MINER).setOffset(10, -3, 11);
     public static final Building POULTRY_FARM = registerBuilding("poultryFarm", 3000L, 100, 0).setRequirements("carpenter").setInhabitants(HFNPCs.POULTRY).setOffset(4, -1, 12);
     public static final Building SUPERMARKET = registerBuilding("supermarket", 5000L, 100, 0).setRequirements("carpenter").setInhabitants(HFNPCs.MILKMAID, HFNPCs.GS_OWNER).setOffset(7, -10, 12).setTickTime(5);
-    public static final Building TOWNHALL = registerBuilding("townhall", 50000L, 640, 256).setSpecialRules(new SpecialRuleBuildings(9)).setInhabitants(HFNPCs.MAYOR, HFNPCs.PRIEST, HFNPCs.DAUGHTER_1, HFNPCs.DAUGHTER_2).setOffset(10, -1, 17);
+    public static final Building TOWNHALL = registerBuilding("townhall", 50000L, 640, 256).setSpecialRules(new SpecialRuleBuildings(9)).setInhabitants(HFNPCs.MAYOR, HFNPCs.PRIEST, HFNPCs.DAUGHTER_ADULT, HFNPCs.DAUGHTER_CHILD).setOffset(10, -1, 17);
     //0.6+ Buildings
     public static final Building FESTIVALS = registerBuilding("festivals", 1000L, 64, 20).setSpecialRules(new SpecialRuleFestivals()).setInhabitants(HFNPCs.TRADER);
 
@@ -81,6 +81,10 @@ public class HFBuildings {
 
     private static Building registerBuilding(String building, long cost, int wood, int stone) {
         return HFApi.buildings.registerBuilding(new ResourceLocation("harvestfestival", building), cost, wood, stone);
+    }
+
+    private static Building registerBuilding(String building) {
+        return HFApi.buildings.registerBuilding(new ResourceLocation("harvestfestival", building));
     }
 
     private static Gson gson; //Temporary

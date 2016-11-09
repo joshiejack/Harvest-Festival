@@ -52,8 +52,8 @@ public class HFNPCs {
     public static final INPC BLACKSMITH = register("daniel", MALE, ADULT, 1, WINTER, 0x613827, 0x23150E); // Blacksmith                         (BLACKSMITH)
     public static final INPC PRIEST = register("thomas", MALE, ELDER, 9, SUMMER, 0x006666, 0x00B2B20); //Married to mayor                       (CHURCH)
     public static final INPC MAYOR = register("jamie", FEMALE, ELDER, 8, SUMMER, 0xA8AC9A, 0x3B636D); //Married to priest                       (TOWNHALL)
-    public static final INPC DAUGHTER_1 = register("cloe", FEMALE, ADULT, 3, SPRING, 0xFFFF99, 0xB2B200); //Daughter of Mayor and Priest        (TOWNHALL)
-    public static final INPC DAUGHTER_2 = register("abi", FEMALE, CHILD, 27, WINTER, 0xFF99FF, 0xFF20FF); //Daughter of Mayor and Priest        (TOWNHALL)
+    public static final INPC DAUGHTER_ADULT = register("cloe", FEMALE, ADULT, 3, SPRING, 0xFFFF99, 0xB2B200); //Daughter of Mayor and Priest        (TOWNHALL)
+    public static final INPC DAUGHTER_CHILD = register("abi", FEMALE, CHILD, 27, WINTER, 0xFF99FF, 0xFF20FF); //Daughter of Mayor and Priest        (TOWNHALL)
     public static final INPC CLOCKMAKER = register("tiberius", MALE, ADULT, 15, WINTER, 0x305A2E, 0x142419); //The clock worker                 (CLOCKWORKERS)
     public static final INPC CLOCKMAKER_CHILD = register("fenn", MALE, CHILD, 25, SUMMER, 0x228C00, 0x003F00); // Clockmakers Child             (CLOCKWORKERS)
     public static final INPC GS_OWNER = register("jenni", FEMALE, ADULT, 7, WINTER, 0xDDD0AD, 0xE79043); //Owner of general store               (GENERAL STORE)
@@ -92,14 +92,14 @@ public class HFNPCs {
         BARN_OWNER.setLocation(HOME, BARNBUILDING).setLocation(SHOP, BARNBUILDING);
         CAFE_OWNER.setLocation(HOME, CAFEBALCONY).setLocation(SHOP, CAFETILL);
         FLOWER_GIRL.setLocation(HOME, CARPENTERUP).setLocation(SHOP, CARPENTERUP).setHasInfo(TOOLS.getStackFromEnum(NPCTool.FLOWER), new GreetingFlowerBuyer());
-        DAUGHTER_1.setLocation(HOME, TOWNHALLTEENBED);
+        DAUGHTER_ADULT.setLocation(HOME, TOWNHALLTEENBED);
         PRIEST.setLocation(HOME, TOWNAHLLADULT);
         CLOCKMAKER_CHILD.setLocation(HOME, CLOCKMAKERUPSTAIRS);
         CAFE_GRANNY.setLocation(HOME, CAFEKITCHEN);
         MAYOR.setLocation(HOME, TOWNHALLSTAGE);
         BUILDER.setLocation(HOME, CARPENTERDOWN).setLocation(SHOP, CARPENTERFRONT).addGreeting(new GreetingCarpenter());
         BLACKSMITH.setLocation(HOME,  BLACKSMITHFURNACE).setLocation(SHOP, BLACKSMITHFURNACE);
-        DAUGHTER_2.setLocation(HOME, TOWNHALLCHILDBED);
+        DAUGHTER_CHILD.setLocation(HOME, TOWNHALLCHILDBED);
         CLOCKMAKER.setLocation(HOME, CLOCKMAKERDOWNSTAIRS).setHasInfo(TOOLS.getStackFromEnum(NPCTool.CALENDAR), new GreetingTime());
         GS_OWNER.setLocation(HOME, GENERALBASEMENTBACK).setLocation(SHOP, GENERALTILL);
         FISHERMAN.setLocation(HOME, FISHINGHUTUPSTAIRS).setLocation(SHOP, FISHINGHUTDOWNSTAIRS).addGreeting(new GreetingLocation(POND));

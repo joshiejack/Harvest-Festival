@@ -12,6 +12,7 @@ import joshie.harvest.api.crops.Crop;
 import joshie.harvest.api.shops.IShop;
 import joshie.harvest.buildings.BuildingImpl;
 import joshie.harvest.buildings.BuildingRegistry;
+import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.core.HFCore;
 import joshie.harvest.core.block.BlockStorage.Storage;
@@ -28,7 +29,10 @@ import joshie.harvest.mining.item.ItemMiningTool.MiningTool;
 import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.quests.Quests;
 import joshie.harvest.shops.purchasable.*;
-import joshie.harvest.shops.rules.SpecialRulesKitchen;
+import joshie.harvest.shops.requirement.Iron;
+import joshie.harvest.shops.requirement.Logs;
+import joshie.harvest.shops.requirement.Stone;
+import joshie.harvest.shops.rules.SpecialRulesFriendship;
 import joshie.harvest.tools.HFTools;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -58,7 +62,6 @@ import static joshie.harvest.npc.item.ItemNPCTool.NPCTool.BLUE_FEATHER;
 public class HFShops {
     public static final IShop BARN = HFApi.shops.newShop(new ResourceLocation(MODID, "barn"), HFNPCs.BARN_OWNER);
     public static final IShop CAFE = HFApi.shops.newShop(new ResourceLocation(MODID, "cafe"), HFNPCs.CAFE_OWNER);
-    public static final IShop KITCHEN = HFApi.shops.newShop(new ResourceLocation(MODID, "kitchen"), HFNPCs.CAFE_GRANNY).setSpecialPurchaseRules(new SpecialRulesKitchen());
     public static final IShop CARPENTER = HFApi.shops.newShop(new ResourceLocation(MODID, "carpenter"), HFNPCs.BUILDER);
     public static final IShop POULTRY = HFApi.shops.newShop(new ResourceLocation(MODID, "poultry"), HFNPCs.POULTRY);
     public static final IShop SUPERMARKET = HFApi.shops.newShop(new ResourceLocation(MODID, "general"), HFNPCs.GS_OWNER);
@@ -66,6 +69,8 @@ public class HFShops {
     //Added in 0.6+
     public static final IShop BLOODMAGE = HFApi.shops.newShop(new ResourceLocation(MODID, "bloodmage"), HFNPCs.CLOCKMAKER);
     public static final IShop BAITSHOP = HFApi.shops.newShop(new ResourceLocation(MODID, "baitshop"), HFNPCs.FISHERMAN);
+    public static final IShop KITCHEN = HFApi.shops.newShop(new ResourceLocation(MODID, "kitchen"), HFNPCs.CAFE_GRANNY).setSpecialPurchaseRules(new SpecialRulesFriendship(HFNPCs.CAFE_GRANNY, 15000));
+    public static final IShop TRADER = HFApi.shops.newShop(new ResourceLocation(MODID, "trader"), HFNPCs.TRADER).setSpecialPurchaseRules(new SpecialRulesFriendship(HFNPCs.TRADER, 15000));
 
     public static void postInit() {
         registerBarn();
@@ -77,6 +82,7 @@ public class HFShops {
         registerPoultry();
         registerSupermarket();
         registerTackleshop();
+        registerTrader();
     }
     
     private static void registerBarn() {
@@ -193,8 +199,9 @@ public class HFShops {
             }
         }
 
-        CARPENTER.addItem(new PurchasableBuilder(0, 8, 0, HFCore.STORAGE.getStackFromEnum(Storage.SHIPPING)).addTooltip("storage.shipping.tooltip"));
-        CARPENTER.addItem(new PurchasableBuilder(3000L, 16, 0, HFCrops.SPRINKLER.getStackFromEnum(Sprinkler.OLD)) {
+        CARPENTER.addItem(new PurchasableBuilding(9000L, HFBuildings.BLACKSMITH, Logs.of(32), Stone.of(244), Iron.of(16)));
+        CARPENTER.addItem(new PurchasableBuilder(0L, HFCore.STORAGE.getStackFromEnum(Storage.SHIPPING), Logs.of(8)).addTooltip("storage.shipping.tooltip"));
+        CARPENTER.addItem(new PurchasableBuilder(3000L, HFCrops.SPRINKLER.getStackFromEnum(Sprinkler.OLD), Logs.of(4)) {
             @Override
             public boolean canList(World world, EntityPlayer player) {
                 CalendarDate date = HFApi.calendar.getDate(world);
@@ -202,22 +209,22 @@ public class HFShops {
             }
         }.addTooltip("sprinkler.old.tooltip"));
 
-        CARPENTER.addItem(new PurchasableBuilder(10000L, 24, 6, HFCrops.SPRINKLER.getStackFromEnum(Sprinkler.IRON)) {
+        CARPENTER.addItem(new PurchasableBuilder(10000L, HFCrops.SPRINKLER.getStackFromEnum(Sprinkler.IRON), Logs.of(4), Iron.of(8)) {
             @Override
             public boolean canList(World world, EntityPlayer player) {
-                return HFApi.quests.hasCompleted(Quests.SPRINKLER, player);
+                return true;
             }
 
             @Override
             public boolean canBuy(World world, EntityPlayer player, int amount) {
                 return canList(world, player) && super.canBuy(world, player, amount);
             }
-        });
+        }.addTooltip("sprinkler.iron.tooltip"));
 
-        CARPENTER.addItem(new PurchasableBuilder(10, 0, 0, new ItemStack(Blocks.LOG)));
-        CARPENTER.addItem(new PurchasableBuilder(20, 0, 0, new ItemStack(Blocks.STONE)));
+        CARPENTER.addItem(new PurchasableBuilder(10, new ItemStack(Blocks.LOG)));
+        CARPENTER.addItem(new PurchasableBuilder(20, new ItemStack(Blocks.STONE)));
         if (!HFAnimals.CAN_SPAWN) {
-            CARPENTER.addItem(new PurchasableBuilder(500, 3, 0, new ItemStack(Items.BED)));
+            CARPENTER.addItem(new PurchasableBuilder(500, new ItemStack(Items.BED), Logs.of(3)));
         }
 
         //Selling things to the carpenter
@@ -317,6 +324,22 @@ public class HFShops {
         }
 
         BAITSHOP.addOpening(TUESDAY, 13000, 19000).addOpening(WEDNESDAY, 13000, 19000).addOpening(THURSDAY, 13000, 19000).addOpening(FRIDAY, 13000, 19000);
+    }
+
+    private static void registerTrader() {
+        TRADER.addItem(-50, new ItemStack(Items.MILK_BUCKET));
+        TRADER.addItem(-10, new ItemStack(Items.EGG));
+        TRADER.addItem(-30, new ItemStack(Items.LEATHER));
+        TRADER.addItem(-20, new ItemStack(Items.FEATHER));
+        TRADER.addItem(-20, new ItemStack(Items.RABBIT_HIDE));
+        TRADER.addItem(-5, new ItemStack(Items.STRING));
+        for (int i = 0; i < 16; i++) {
+            TRADER.addItem(-15, new ItemStack(Blocks.WOOL, 1, 0));
+        }
+
+        TRADER.addOpening(MONDAY, 6000, 10000).addOpening(TUESDAY, 6000, 10000).addOpening(WEDNESDAY, 6000, 10000).addOpening(THURSDAY, 6000, 10000)
+                .addOpening(FRIDAY, 6000, 10000).addOpening(SATURDAY, 6000, 10000).addOpening(SUNDAY, 6000, 10000);
+        HFNPCs.TRADER.setHasInfo(null, null); //Remove the opening times
     }
 
     public static boolean TWENTY_FOUR_HOUR_SHOPPING;

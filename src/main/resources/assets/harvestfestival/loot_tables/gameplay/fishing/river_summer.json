@@ -82,7 +82,7 @@
         {
           "type": "item",
           "name": "harvestfestival:fish",
-          "entryName": "pike",
+          "entryName": "angel",
           "weight": 3,
           "functions": [
             {
@@ -97,7 +97,7 @@
         {
           "type": "item",
           "name": "harvestfestival:fish",
-          "entryName": "pike",
+          "entryName": "piranha",
           "weight": 1,
           "functions": [
             {

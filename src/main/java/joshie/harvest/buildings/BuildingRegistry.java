@@ -25,6 +25,13 @@ public class BuildingRegistry implements IBuildingRegistry {
     }
 
     @Override
+    public Building registerBuilding(ResourceLocation resource) {
+        BuildingImpl building = new BuildingImpl().setRegistryName(resource);
+        REGISTRY.register(building);
+        return building;
+    }
+
+    @Override
     public Building registerBuilding(ResourceLocation resource, long cost, int wood, int stone) {
         BuildingImpl building = new BuildingImpl().setRegistryName(resource).setCosts(cost, wood, stone);
         REGISTRY.register(building);

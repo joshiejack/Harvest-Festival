@@ -5,7 +5,6 @@ import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.api.quests.Selection;
 import joshie.harvest.core.handlers.GuiHandler;
-import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.shops.Shop;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
@@ -27,8 +26,7 @@ public class ShopSelection extends Selection {
     public Result onSelected(EntityPlayer player, EntityLiving entity, INPC npc, Quest quest, int option) {
         //If we are able to buy from this shop
         if(shop.canBuyFromShop(player) && option == 1) {
-            if (npc == HFNPCs.BUILDER) player.openGui(HarvestFestival.instance, GuiHandler.SHOP_BUILDER, player.worldObj, entity.getEntityId(), 0, 0);
-            else player.openGui(HarvestFestival.instance, GuiHandler.SHOP_MENU, player.worldObj, entity.getEntityId(), 0, 0);
+            player.openGui(HarvestFestival.instance, GuiHandler.SHOP_MENU, player.worldObj, entity.getEntityId(), 0, 0);
             return Result.DEFAULT;
         } else if ((!shop.canBuyFromShop(player) && shop.canSellToShop(player) && option == 1) || option == 2) {
             player.openGui(HarvestFestival.instance, GuiHandler.SHOP_MENU_SELL, player.worldObj, entity.getEntityId(), 0, 0);

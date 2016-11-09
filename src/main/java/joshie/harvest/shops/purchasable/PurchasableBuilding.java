@@ -1,9 +1,10 @@
 package joshie.harvest.shops.purchasable;
 
-import com.google.common.cache.Cache;
-import com.google.common.cache.CacheBuilder;
+import joshie.harvest.api.buildings.Building;
+import joshie.harvest.api.shops.IRequirement;
 import joshie.harvest.buildings.BuildingImpl;
 import joshie.harvest.buildings.BuildingRegistry;
+import joshie.harvest.core.helpers.SpawnItemHelper;
 import joshie.harvest.core.helpers.TextHelper;
 import joshie.harvest.town.TownHelper;
 import joshie.harvest.town.data.TownData;
@@ -19,11 +20,8 @@ import org.apache.commons.lang3.text.WordUtils;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.TimeUnit;
 
 public class PurchasableBuilding extends PurchasableBuilder {
-    private final Cache<EntityPlayer, TownData> closestCache = CacheBuilder.newBuilder().expireAfterWrite(1, TimeUnit.MINUTES).maximumSize(128).build();
     private final ResourceLocation resource;
     private final BuildingImpl building;
     private final String tooltip;
@@ -35,15 +33,21 @@ public class PurchasableBuilding extends PurchasableBuilder {
         this.tooltip = resource.getResourceDomain() + ".structures." + resource.getResourcePath() + ".tooltip";
     }
 
-    private TownData getClosestTownToPlayer(EntityPlayer player) {
-        try {
-            return closestCache.get(player, () -> TownHelper.getClosestTownToEntity(player));
-        } catch (ExecutionException ex) { return null; }
+    public PurchasableBuilding(long cost, Building building, IRequirement... requirements) {
+        super(cost, ((BuildingImpl)building).getRegistryName(), requirements);
+        this.building = (BuildingImpl) building;
+        this.resource = BuildingRegistry.REGISTRY.getKey(this.building);
+        this.tooltip = resource.getResourceDomain() + ".structures." + resource.getResourcePath() + ".tooltip";
     }
 
     @Override
     public ItemStack getDisplayStack() {
         return building.getSpawner();
+    }
+
+    @Override
+    public void onPurchased(EntityPlayer player) {
+        SpawnItemHelper.addToPlayerInventory(player, building.getBlueprint());
     }
 
     @Override
@@ -60,8 +64,7 @@ public class PurchasableBuilding extends PurchasableBuilder {
 
     @Override
     public boolean canList(World world, EntityPlayer player) {
-        TownData town = getClosestTownToPlayer(player);
-        return town != null && !town.hasBuilding(resource) && building.getRules().canBuy(world, player, 1) && building.hasRequirements(player);
+        return (!TownHelper.getClosestTownToEntity(player).hasBuilding(resource) || building.canHaveMultiple()) && building.getRules().canBuy(world, player, 1) && building.hasRequirements(player);
     }
 
     @Override

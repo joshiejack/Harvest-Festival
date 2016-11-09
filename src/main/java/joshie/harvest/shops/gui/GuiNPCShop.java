@@ -1,6 +1,8 @@
 package joshie.harvest.shops.gui;
 
 import joshie.harvest.api.shops.IPurchasable;
+import joshie.harvest.api.shops.IPurchaseableMaterials;
+import joshie.harvest.api.shops.IRequirement;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.helpers.MCClientHelper;
 import joshie.harvest.core.helpers.StackHelper;
@@ -10,9 +12,7 @@ import joshie.harvest.npc.entity.EntityNPC;
 import joshie.harvest.npc.gui.GuiNPCBase;
 import joshie.harvest.player.stats.StatsClient;
 import joshie.harvest.shops.Shop;
-import joshie.harvest.shops.gui.button.ButtonArrow;
-import joshie.harvest.shops.gui.button.ButtonListing;
-import joshie.harvest.shops.gui.button.ButtonListingSell;
+import joshie.harvest.shops.gui.button.*;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -35,6 +35,7 @@ public class GuiNPCShop<I extends IPurchasable> extends GuiNPCBase {
     protected final boolean selling;
     protected int start;
     private int maxSize;
+    private ItemStack purchased;
 
     public GuiNPCShop(EntityPlayer player, EntityNPC npc, int nextGui, boolean isSelling) {
         super(player, npc, EnumHand.MAIN_HAND, nextGui);
@@ -52,6 +53,13 @@ public class GuiNPCShop<I extends IPurchasable> extends GuiNPCBase {
         setStart(0);
     }
 
+    private boolean isGoldOnly(IPurchasable purchasable) {
+        if (purchasable instanceof IPurchaseableMaterials) {
+            IPurchaseableMaterials builder = (IPurchaseableMaterials) purchasable;
+            return builder.getCost() != 0 && builder.getRequirements().length == 0;
+        } else return true;
+    }
+
     @SuppressWarnings("all")
     public void reload() {
         contents.clear();
@@ -60,6 +68,13 @@ public class GuiNPCShop<I extends IPurchasable> extends GuiNPCBase {
                 contents.add(purchasable);
             }
         }
+
+        contents.sort((s1, s2)-> {
+            int one = isGoldOnly((IPurchaseableMaterials)s1) || ((IPurchaseableMaterials)s1).getRequirements().length == 1 ? 1 : 0;
+            int two = isGoldOnly((IPurchaseableMaterials)s2) || ((IPurchaseableMaterials)s2).getRequirements().length == 1 ? 1 : 0;
+            return one > two ? 1 : one == two ? 0:  -1;
+
+        } );
 
         setStart(start);
     }
@@ -78,6 +93,15 @@ public class GuiNPCShop<I extends IPurchasable> extends GuiNPCBase {
 
     public Shop getShop() {
         return shop;
+    }
+
+    @Override
+    protected void onMouseClick(int mouseX, int mouseY) {
+        super.onMouseClick(mouseX, mouseY);
+        //TODO: Call this when i am able to, also please
+        //if (selectedButton == null) {
+            //updatePurchased(null, 0);
+        //}
     }
 
     @SuppressWarnings("unchecked")
@@ -120,9 +144,25 @@ public class GuiNPCShop<I extends IPurchasable> extends GuiNPCBase {
         }
     }
 
-    protected int addButton(I purchasable, int id, int left, int top, int space) {
-        if (space + 20 <= 200) {
-            buttonList.add(new ButtonListing(this, purchasable, id, left, top));
+    protected int addButton(IPurchasable purchasable, int id, int left, int top, int space) {
+        if (isGoldOnly(purchasable)) {
+            if (space + 20 <= 200) {
+                buttonList.add(new ButtonListing(this, purchasable, id, left, top));
+            }
+
+            return 20;
+        }
+
+        IPurchaseableMaterials builder = (IPurchaseableMaterials) purchasable;
+        if (builder.getRequirements().length == 1 && builder.getCost() == 0) {
+            if (space + 20 <= 200) {
+                IRequirement requirement = builder.getRequirements()[0];
+                buttonList.add(new ButtonListingItem(requirement.getIcon(), requirement.getCost(), this, builder, id, left, top));
+            }
+
+            return 20;
+        } else if (space + 36 <= 200) {
+            buttonList.add(new ButtonListingBuilding(this, builder, id, left, top));
         }
 
         return 20;
@@ -137,6 +177,13 @@ public class GuiNPCShop<I extends IPurchasable> extends GuiNPCBase {
         } else drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
     }
 
+    public void updatePurchased(ItemStack stack, int amount) {
+        if (stack == null) purchased = null;
+        else if (purchased == null || !purchased.isItemEqual(stack)) purchased = stack.copy();
+        else purchased.stackSize += amount;
+
+    }
+
     @Override
     public void drawBackground(int x, int y) {
         GlStateManager.pushMatrix();
@@ -144,7 +191,6 @@ public class GuiNPCShop<I extends IPurchasable> extends GuiNPCBase {
         drawResizableBackground(x, y);
         ShopFontRenderer.render(this, x + 20, guiTop + 17, shop.getLocalizedName(), false);
         drawCoinage(x, guiTop + 19, stats.getGold());
-
         drawPlayerInventory();
         GlStateManager.disableBlend();
         GlStateManager.popMatrix();
@@ -198,7 +244,11 @@ public class GuiNPCShop<I extends IPurchasable> extends GuiNPCBase {
     }
 
     @Override
-    public void drawForeground(int x, int y) {}
+    public void drawForeground(int x, int y) {
+        if (purchased != null) {
+            StackHelper.drawStack(purchased, mouseX, mouseY, 1F);
+        }
+    }
 
     @Override
     public void drawOverlay(int x, int y) {}

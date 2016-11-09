@@ -24,6 +24,7 @@ import java.util.List;
 public class ItemBuilding extends ItemHFFML<ItemBuilding, BuildingImpl> implements ICreativeSorted {
     public ItemBuilding() {
         super(BuildingRegistry.REGISTRY, HFTab.TOWN);
+        setMaxStackSize(1);
     }
 
     @Override

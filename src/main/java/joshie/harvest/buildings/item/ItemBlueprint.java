@@ -30,6 +30,7 @@ import java.util.List;
 public class ItemBlueprint extends ItemHFFML<ItemBlueprint, BuildingImpl> implements ICreativeSorted {
     public ItemBlueprint() {
         super(BuildingRegistry.REGISTRY, HFTab.TOWN);
+        setMaxStackSize(1);
     }
 
     @Override

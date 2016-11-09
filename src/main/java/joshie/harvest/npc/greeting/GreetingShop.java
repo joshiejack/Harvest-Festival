@@ -1,13 +1,13 @@
 package joshie.harvest.npc.greeting;
 
-import joshie.harvest.api.npc.IGreeting;
+import joshie.harvest.api.npc.IInfoButton;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.core.helpers.TextHelper;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 
-public class GreetingShop implements IGreeting {
+public class GreetingShop implements IInfoButton {
     private final String text;
 
     public GreetingShop(ResourceLocation resourceLocation) {

@@ -1,6 +1,6 @@
 package joshie.harvest.npc.greeting;
 
-import joshie.harvest.api.npc.IGreeting;
+import joshie.harvest.api.npc.IInfoButton;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.calendar.CalendarHelper;
 import joshie.harvest.core.HFTrackers;
@@ -9,7 +9,7 @@ import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.text.translation.I18n;
 
-public class GreetingTime implements IGreeting {
+public class GreetingTime implements IInfoButton {
     @Override
     @SuppressWarnings("deprecation")
     public String getLocalizedText(EntityPlayer player, EntityAgeable ageable, INPC npc) {

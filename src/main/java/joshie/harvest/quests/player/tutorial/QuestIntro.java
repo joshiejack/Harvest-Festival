@@ -13,7 +13,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import static joshie.harvest.npc.HFNPCs.GODDESS;
-import static joshie.harvest.quests.Quests.TUTORIAL_CARPENTER;
+import static joshie.harvest.quests.Quests.YULIF_MEET;
 
 @HFQuest("tutorial.intro")
 public class QuestIntro extends QuestQuestion {
@@ -41,7 +41,7 @@ public class QuestIntro extends QuestQuestion {
 
     @Override
     public void onChatClosed(EntityPlayer player, EntityLiving entity, INPC npc, boolean isSneaking) {
-        if (isCompletedEarly) HFApi.quests.completeQuest(TUTORIAL_CARPENTER, player);
+        if (isCompletedEarly) HFApi.quests.completeQuest(YULIF_MEET, player);
         if (quest_stage == BACKSTORY || isCompletedEarly) {
             complete(player);
         }

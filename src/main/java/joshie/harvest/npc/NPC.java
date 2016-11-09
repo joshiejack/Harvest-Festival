@@ -14,6 +14,7 @@ import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.core.helpers.TextHelper;
 import joshie.harvest.npc.entity.EntityNPC;
 import joshie.harvest.npc.greeting.GreetingShop;
+import joshie.harvest.npc.greeting.GreetingWrapper;
 import joshie.harvest.npc.item.ItemNPCTool.NPCTool;
 import joshie.harvest.shops.Shop;
 import net.minecraft.entity.EntityAgeable;
@@ -51,7 +52,7 @@ public class NPC extends IForgeRegistryEntry.Impl<NPC> implements INPC {
     private Shop shop;
     private boolean doesRespawn;
     private boolean alex;
-    private IGreeting infoGreeting;
+    private IInfoButton info;
     private ItemStack hasInfo;
 
     public NPC() {
@@ -144,9 +145,19 @@ public class NPC extends IForgeRegistryEntry.Impl<NPC> implements INPC {
 
     @Override
     public INPC setHasInfo(ItemStack stack, IGreeting infoGreeting) {
-        if (this.hasInfo == null || this.infoGreeting instanceof GreetingShop) {
+        if (this.hasInfo == null || this.info instanceof GreetingShop) {
             this.hasInfo = stack;
-            this.infoGreeting = infoGreeting;
+            this.info = new GreetingWrapper(infoGreeting);
+        }
+
+        return this;
+    }
+
+    @Override
+    public INPC setHasInfo(ItemStack stack, IInfoButton info) {
+        if (this.hasInfo == null || this.info instanceof GreetingShop) {
+            this.hasInfo = stack;
+            this.info = info;
         }
 
         return this;
@@ -227,8 +238,16 @@ public class NPC extends IForgeRegistryEntry.Impl<NPC> implements INPC {
 
     @SuppressWarnings("unchecked")
     public String getInfoGreeting(EntityPlayer player, EntityNPC npc) {
-        if (infoGreeting == null) return null;
-        return infoGreeting.getLocalizedText(player, npc, npc.getNPC());
+        if (info == null) return null;
+        return info.getLocalizedText(player, npc, npc.getNPC());
+    }
+
+    public boolean canDisplayInfo(EntityPlayer player) {
+        return info.canDisplay(this, player) && (getShop() == null || !getShop().isOpen(player.worldObj, player));
+    }
+
+    public boolean onClickedInfoButton(EntityPlayer player) {
+        return info != null && info.onClicked(this, player);
     }
 
     public ResourceLocation getSkin() {

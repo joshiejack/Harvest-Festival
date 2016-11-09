@@ -17,7 +17,7 @@ import java.util.Set;
 import static joshie.harvest.api.calendar.Season.AUTUMN;
 import static joshie.harvest.api.calendar.Season.SUMMER;
 import static joshie.harvest.npc.HFNPCs.*;
-import static joshie.harvest.quests.Quests.TUTORIAL_CROPS;
+import static joshie.harvest.quests.Quests.JADE_MEET;
 
 @HFQuest("tutorial.supermarket")
 public class QuestSupermarket extends Quest {
@@ -29,7 +29,7 @@ public class QuestSupermarket extends Quest {
 
     @Override
     public boolean canStartQuest(Set<Quest> active, Set<Quest> finished) {
-        return finished.contains(TUTORIAL_CROPS);
+        return finished.contains(JADE_MEET);
     }
 
     @Override

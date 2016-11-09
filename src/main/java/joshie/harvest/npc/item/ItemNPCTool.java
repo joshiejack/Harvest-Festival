@@ -15,14 +15,13 @@ import static net.minecraft.util.text.TextFormatting.AQUA;
 
 public class ItemNPCTool extends ItemHFEnum<ItemNPCTool, NPCTool> {
     public enum NPCTool implements IStringSerializable {
-        BLUE_FEATHER(true, false), NPC_KILLER(true, false), GIFT(false, true), CALENDAR(false, true), CLOCK(false, true), WEATHER(false, true);
+        BLUE_FEATHER(true), NPC_KILLER(true), GIFT(false), CALENDAR(false),
+        CLOCK(false), WEATHER(false), FLOWER(false);
 
-        public boolean colored;
-        public boolean visible;
+        public boolean real;
 
-        NPCTool(boolean colored, boolean hidden) {
-            this.colored = colored;
-            this.visible = !hidden;
+        NPCTool(boolean real) {
+            this.real = real;
         }
 
         @Override
@@ -47,7 +46,7 @@ public class ItemNPCTool extends ItemHFEnum<ItemNPCTool, NPCTool> {
 
     @Override
     public boolean shouldDisplayInCreative(NPCTool cheat) {
-        return cheat.visible;
+        return cheat.real;
     }
 
     @Override
@@ -57,7 +56,7 @@ public class ItemNPCTool extends ItemHFEnum<ItemNPCTool, NPCTool> {
 
     @Override
     public String getItemStackDisplayName(ItemStack stack) {
-        if (getEnumFromStack(stack).colored) return AQUA + super.getItemStackDisplayName(stack);
+        if (getEnumFromStack(stack).real) return AQUA + super.getItemStackDisplayName(stack);
         else return super.getItemStackDisplayName(stack);
     }
 }

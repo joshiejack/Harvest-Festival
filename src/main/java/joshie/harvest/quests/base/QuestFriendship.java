@@ -12,7 +12,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.Set;
 
 public abstract class QuestFriendship extends Quest {
-    private final int relationship;
+    protected final int relationship;
 
     public QuestFriendship(INPC npc, int relationship) {
         setNPCs(npc);
@@ -48,7 +48,6 @@ public abstract class QuestFriendship extends Quest {
     public void onQuestCompleted(EntityPlayer player) {
         ItemStack stack = getRewardStack();
         if (stack != null) rewardItem(player, stack);
-        rewardItem(player, getRewardStack());
     }
 
     protected ItemStack getRewardStack() { return null; }

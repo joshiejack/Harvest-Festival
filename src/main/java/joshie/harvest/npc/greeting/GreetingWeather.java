@@ -1,6 +1,6 @@
 package joshie.harvest.npc.greeting;
 
-import joshie.harvest.api.npc.IGreeting;
+import joshie.harvest.api.npc.IInfoButton;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.calendar.CalendarClient;
 import joshie.harvest.core.HFTrackers;
@@ -12,7 +12,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.Locale;
 
-public class GreetingWeather implements IGreeting {
+public class GreetingWeather implements IInfoButton {
     @SuppressWarnings("deprecation")
     @SideOnly(Side.CLIENT)
     public String getLocalizedText(EntityPlayer player, EntityAgeable entity, INPC npc) {

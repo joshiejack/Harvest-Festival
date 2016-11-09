@@ -9,7 +9,7 @@ import joshie.harvest.core.helpers.InventoryHelper;
 import joshie.harvest.core.helpers.InventoryHelper.SearchType;
 import joshie.harvest.crops.HFCrops;
 import joshie.harvest.quests.Quests;
-import joshie.harvest.quests.base.QuestTrade;
+import joshie.harvest.quests.base.QuestTradeTown;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.relauncher.Side;
@@ -22,14 +22,14 @@ import static joshie.harvest.core.helpers.InventoryHelper.SPECIAL;
 import static joshie.harvest.npc.HFNPCs.FLOWER_GIRL;
 
 @HFQuest("trade.seeds")
-public class QuestFlowerTrader extends QuestTrade {
+public class QuestFlowerTrader extends QuestTradeTown {
     public QuestFlowerTrader() {
         setNPCs(FLOWER_GIRL);
     }
 
     @Override
     public boolean canStartQuest(Set<Quest> active, Set<Quest> finished) {
-        return finished.contains(Quests.TUTORIAL_CROPS) && !finished.contains(Quests.TUTORIAL_SUPERMARKET);
+        return finished.contains(Quests.JADE_MEET) && !finished.contains(Quests.TUTORIAL_SUPERMARKET);
     }
 
     @SideOnly(Side.CLIENT)

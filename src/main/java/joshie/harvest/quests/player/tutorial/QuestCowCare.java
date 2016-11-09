@@ -32,7 +32,7 @@ import static joshie.harvest.animals.item.ItemAnimalTool.Tool.BRUSH;
 import static joshie.harvest.core.helpers.InventoryHelper.ITEM_STACK;
 import static joshie.harvest.npc.HFNPCs.BARN_OWNER;
 import static joshie.harvest.npc.HFNPCs.BUILDER;
-import static joshie.harvest.quests.Quests.TUTORIAL_CROPS;
+import static joshie.harvest.quests.Quests.JADE_MEET;
 
 @HFQuest("tutorial.cow")
 public class QuestCowCare extends QuestQuestion {
@@ -53,7 +53,7 @@ public class QuestCowCare extends QuestQuestion {
 
     @Override
     public boolean canStartQuest(Set<Quest> active, Set<Quest> finished) {
-        return finished.contains(TUTORIAL_CROPS);
+        return finished.contains(JADE_MEET);
     }
 
     @Override

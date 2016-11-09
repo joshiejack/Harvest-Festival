@@ -26,7 +26,7 @@ public class QuestGoddessCarpenter extends QuestTrade {
 
     @Override
     public boolean canStartQuest(Set<Quest> active, Set<Quest> finished) {
-        return finished.contains(Quests.TUTORIAL_CARPENTER);
+        return finished.contains(Quests.YULIF_MEET);
     }
 
     @SideOnly(Side.CLIENT)

@@ -93,7 +93,7 @@ public class HFCrops {
                                         .setSeasons(SUMMER).setPurchaseRules(TREES2);
 
     //Autumn Crops
-    public static final Crop EGGPLANT = registerCrop("eggplant").setItem(getCropStack(Crops.EGGPLANT)).setValue(320, 50).setUnlocked(2).setStages(3, 5, 7, 10).setRegrow(7).setSeedColours(0XA25CC4).setSeasons(AUTUMN);
+    public static final Crop EGGPLANT = registerCrop("eggplant").setItem(getCropStack(Crops.EGGPLANT)).setValue(320, 50).setUnlocked(2).setStages(3, 6, 9, 10).setRegrow(7).setSeedColours(0XA25CC4).setSeasons(AUTUMN);
     public static final Crop SPINACH = registerCrop("spinach").setItem(getCropStack(Crops.SPINACH)).setValue(200, 70).setStages(2, 5, 6).setSeedColours(0X90AE15).setSeasons(AUTUMN);
     public static final Crop CARROT = registerCrop("carrot").setItem(Items.CARROT).setValue(300, 120).setStages(Blocks.CARROTS, 1, 2, 3, 4, 5, 6, 7, 8).setSeedColours(0XF8AC33).setSeasons(AUTUMN);
     public static final Crop SWEET_POTATO = registerCrop("sweet_potato").setItem(getCropStack(Crops.SWEET_POTATO)).setValue(250, 40).setStages(3, 5, 6).setRegrow(4).setSeedColours(0XD82AAC)

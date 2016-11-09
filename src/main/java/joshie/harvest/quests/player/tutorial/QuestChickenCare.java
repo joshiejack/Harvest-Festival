@@ -54,7 +54,7 @@ public class QuestChickenCare extends QuestQuestion {
 
     @Override
     public boolean canStartQuest(Set<Quest> active, Set<Quest> finished) {
-        return finished.contains(Quests.TUTORIAL_CROPS);
+        return finished.contains(Quests.JADE_MEET);
     }
 
     @Override

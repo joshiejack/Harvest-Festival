@@ -20,7 +20,6 @@ import java.util.concurrent.ExecutionException;
 public class HolderRegistry<R> {
     private final HashMap<AbstractItemHolder, R> registry = new HashMap<>();
     private final Cache<ItemStackHolder, Optional<R>> itemToType = CacheBuilder.newBuilder().maximumSize(512).build();
-    private final Cache<ItemStackHolder, Boolean> itemToMatch = CacheBuilder.newBuilder().maximumSize(512).build();
 
     public void register(Object object, R r) {
         if (object instanceof Item) {
@@ -37,15 +36,7 @@ public class HolderRegistry<R> {
     }
 
     public boolean matches(ItemStack stack, R type) {
-        try {
-            return itemToMatch.get(ItemStackHolder.of(stack), () -> {
-                for (Entry<AbstractItemHolder, R> entry: registry.entrySet()) {
-                    if (entry.getKey().matches(stack) && matches(entry.getValue(), type)) return true;
-                }
-
-                return false;
-            });
-        } catch (ExecutionException ex) { return false; }
+        return matches(getValueOf(stack), type);
     }
 
     public R getValueOf(ItemStack stack) {

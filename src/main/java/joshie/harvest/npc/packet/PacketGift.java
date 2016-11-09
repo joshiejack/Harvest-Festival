@@ -6,6 +6,7 @@ import joshie.harvest.core.handlers.GuiHandler;
 import joshie.harvest.core.network.Packet;
 import joshie.harvest.core.network.Packet.Side;
 import joshie.harvest.core.network.PenguinPacket;
+import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.npc.entity.EntityNPC;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.EnumHand;
@@ -35,10 +36,12 @@ public class PacketGift extends PenguinPacket {
         EntityNPC npc = (EntityNPC) player.worldObj.getEntityByID(npcID);
         if (npc != null) {
             if (npc.isEntityAlive()) {
-                if (player.getHeldItemOffhand() != null) {
-                    player.openGui(HarvestFestival.instance, GuiHandler.GIFT, player.worldObj, npcID, -1, EnumHand.OFF_HAND.ordinal());
-                } else if (player.getHeldItemMainhand() != null) {
-                    player.openGui(HarvestFestival.instance, GuiHandler.GIFT, player.worldObj, npcID, -1, EnumHand.MAIN_HAND.ordinal());
+                if (npc.getNPC() != HFNPCs.GODDESS) {
+                    if (player.getHeldItemOffhand() != null) {
+                        player.openGui(HarvestFestival.instance, GuiHandler.GIFT, player.worldObj, npcID, -1, EnumHand.OFF_HAND.ordinal());
+                    } else if (player.getHeldItemMainhand() != null) {
+                        player.openGui(HarvestFestival.instance, GuiHandler.GIFT, player.worldObj, npcID, -1, EnumHand.MAIN_HAND.ordinal());
+                    }
                 }
 
                 npc.setTalking(player);

@@ -18,7 +18,7 @@ public class QuestRecipe extends QuestFriendship {
 
     @Override
     public boolean canStartQuest(Set<Quest> active, Set<Quest> finished) {
-        return finished.contains(Quests.TUTORIAL_CAFE);
+        return finished.contains(Quests.LIARA_MEET);
     }
 
     @Override

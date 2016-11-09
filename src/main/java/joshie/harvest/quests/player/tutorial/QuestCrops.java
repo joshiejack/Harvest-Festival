@@ -22,7 +22,7 @@ import static joshie.harvest.api.core.ITiered.ToolTier.BASIC;
 import static joshie.harvest.core.helpers.InventoryHelper.ITEM_STACK;
 import static joshie.harvest.core.helpers.InventoryHelper.SPECIAL;
 import static joshie.harvest.npc.HFNPCs.FLOWER_GIRL;
-import static joshie.harvest.quests.Quests.TUTORIAL_CARPENTER;
+import static joshie.harvest.quests.Quests.YULIF_MEET;
 
 @HFQuest("tutorial.crops")
 public class QuestCrops extends QuestQuestion {
@@ -38,7 +38,7 @@ public class QuestCrops extends QuestQuestion {
 
     @Override
     public boolean canStartQuest(Set<Quest> active, Set<Quest> finished) {
-        return finished.contains(TUTORIAL_CARPENTER);
+        return finished.contains(YULIF_MEET);
     }
 
     @Override

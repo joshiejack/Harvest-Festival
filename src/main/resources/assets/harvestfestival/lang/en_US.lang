@@ -585,6 +585,7 @@ harvestfestival.npctool.calendar=How many years?
 harvestfestival.npctool.clock=Shop opens when?
 harvestfestival.npctool.weather=Weather, tomorrow?
 harvestfestival.npctool.gift=Gift held item!
+harvestfestival.npctool.flower=Sell Flower!
 
 # NPC Names
 ## NOTE FOR TRANSLATORS, READ
@@ -801,6 +802,12 @@ harvestfestival.npc.liara.gift.bad=I do not enjoy this.
 harvestfestival.npc.liara.gift.terrible=I would thank you, but you have given me the worst thing anyone could give me. Goodbye.
 
 #Jade
+harvestfestival.npc.jade.buy1=These flowers are perfect for my collection, here take this small token.
+harvestfestival.npc.jade.buy2=You really are helping me out greatly to get my store setup.
+harvestfestival.npc.jade.buy3=Amazing, even more flowers!
+harvestfestival.npc.jade.buyno1=Umm, are you sure these are flowers?
+harvestfestival.npc.jade.buyno2=Not quite what I'm looking for, for my store.
+harvestfestival.npc.jade.buyno3=Yeah this is not a flower.
 harvestfestival.npc.jade.greeting1=Hey! I just love going out in to the world, watch out for the sheep though!
 harvestfestival.npc.jade.greeting2=The sky is falling, the sky is falling!
 harvestfestival.npc.jade.greeting3=I would just love to own a farm, but my brother is such a control freak!
@@ -1365,6 +1372,7 @@ harvestfestival.quest.recipe.jam.strawberry.text=You've really buttered me up my
 harvestfestival.quest.recipe.milk.strawberry.text=My dear you've been ever so kind, I have to treat you to the drink of the gods!
 harvestfestival.quest.recipe.toast.text=Yulif hasn't really taught me how to cook much yet. I do know how to make some toast though.
 harvestfestival.quest.recipe.latte.vegetable.text=I need to get rid of this unholy object fast. Please take it.
+harvestfestival.quest.recipe.jam.apple.text=Yulif may not approve, but you know what goes perfectly with toast? Some jam of course!
 
 ## Friendship Quests
 harvestfestival.quest.friendship.katlin.kitchen.text=You have been really kind to me. I just don't know how to feel. You know, we recently lost our supplier for the kitchen, maybe you could take over the job? Just come and visit me on a Friday when the café isn't open, early in the morning or in the evening, then you can help me restock the kitchen. We're looking for things like meat, beetroot soup and cake.
@@ -1372,9 +1380,10 @@ harvestfestival.quest.friendship.yulif.sprinkler.text=Yer have been a really gre
 harvestfestival.quest.friendship.jacob.hatchery.text=For making a fisherman happy, I've got some new stock in store so be suure to check her out.
 harvestfestival.quest.friendship.tiberius.dark.text=I think I'm finally starting to trust you. You should come and see me during the night on Wednesdays or Saturdays. I'm looking to buy some things...
 harvestfestival.quest.friendship.goddess.strawberry.text=My dear things have been going really well between us, because of that I'll let you have the secret to strawberries! Jenni should be selling them in this town now, they are a spring crop though, so you may have to wait.
+harvestfestival.quest.friendship.jade.flowers.text=Oh hello %4$s it's nice to see you, I have some wonderful news, I've decided that I want to open a flower shop! But I'm having trouble getting stock! That's where you come in, I'll happily buy flowers from you now, just show me some and I'll pay you whatever I can afford that day.
 
 ## Meeting Quests
-harvestfestival.quest.meeting.jacob.text=Nice to meet you %2$s, the name's jacob. From what I've heard you're interested in fishing, you know, I've just recently bought myself a new rod, I'd like you to have my old one here, please take care of her. I run this tackle shop, if you need anything please do pop by.
+harvestfestival.quest.meeting.jacob.text=Nice to meet you %4$s, the name's jacob. From what I've heard you're interested in fishing, you know, I've just recently bought myself a new rod, I'd like you to have my old one here, please take care of her. I run this tackle shop, if you need anything please do pop by.
 harvestfestival.quest.meeting.katlin.text=Good day youngun. I'm Katlin but you can call me granny if you like. I help out my granddaughter Liara, mostly in the kitchen. I must thank you for letting her open shop up here, it's been her life long dream. I have some spare change, it isn't much but please do take it.
 harvestfestival.quest.meeting.johan.text=Good day. It is such a pleasure to meet you. The name is Johan. I'm normally here throughout the day but I travel back to my homeland at night. To let you know that if you ever need a bucket of milk, block of wool or some brown eggs, I'll happily trade for bottles of milk, plain wool or white eggs. I will see you around.
 

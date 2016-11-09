@@ -27,7 +27,7 @@ public class QuestToolTrader extends QuestTrade {
 
     @Override
     public boolean canStartQuest(Set<Quest> active, Set<Quest> finished) {
-        return finished.contains(Quests.TUTORIAL_CROPS) && !finished.contains(Quests.TUTORIAL_UPGRADING);
+        return finished.contains(Quests.JADE_MEET) && !finished.contains(Quests.TUTORIAL_UPGRADING);
     }
 
     @SideOnly(Side.CLIENT)

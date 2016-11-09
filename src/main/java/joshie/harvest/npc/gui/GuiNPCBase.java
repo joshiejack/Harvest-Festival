@@ -153,7 +153,7 @@ public abstract class GuiNPCBase extends GuiBase {
     }
 
     private boolean displayInfo() {
-        return npc.getNPC().hasInfo() != null && (npc.getNPC().getShop() == null || !npc.getNPC().getShop().isOpen(player.worldObj, player));
+        return npc.getNPC().hasInfo() != null && npc.getNPC().canDisplayInfo(player);
     }
 
     public abstract void drawOverlay(int x, int y);

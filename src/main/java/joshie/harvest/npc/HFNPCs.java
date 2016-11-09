@@ -11,10 +11,7 @@ import joshie.harvest.core.lib.EntityIDs;
 import joshie.harvest.core.proxy.HFClientProxy;
 import joshie.harvest.core.util.annotations.HFLoader;
 import joshie.harvest.npc.entity.*;
-import joshie.harvest.npc.greeting.GreetingCarpenter;
-import joshie.harvest.npc.greeting.GreetingLocation;
-import joshie.harvest.npc.greeting.GreetingTime;
-import joshie.harvest.npc.greeting.GreetingWeather;
+import joshie.harvest.npc.greeting.*;
 import joshie.harvest.npc.item.ItemNPCSpawner;
 import joshie.harvest.npc.item.ItemNPCTool;
 import joshie.harvest.npc.item.ItemNPCTool.NPCTool;
@@ -94,7 +91,7 @@ public class HFNPCs {
         GODDESS.setLocation(HOME, GODDESSFRONT).setHasInfo(TOOLS.getStackFromEnum(NPCTool.WEATHER), new GreetingWeather());
         BARN_OWNER.setLocation(HOME, BARNBUILDING).setLocation(SHOP, BARNBUILDING);
         CAFE_OWNER.setLocation(HOME, CAFEBALCONY).setLocation(SHOP, CAFETILL);
-        FLOWER_GIRL.setLocation(HOME, CARPENTERUP).setLocation(SHOP, CARPENTERUP);
+        FLOWER_GIRL.setLocation(HOME, CARPENTERUP).setLocation(SHOP, CARPENTERUP).setHasInfo(TOOLS.getStackFromEnum(NPCTool.FLOWER), new GreetingFlowerBuyer());
         DAUGHTER_1.setLocation(HOME, TOWNHALLTEENBED);
         PRIEST.setLocation(HOME, TOWNAHLLADULT);
         CLOCKMAKER_CHILD.setLocation(HOME, CLOCKMAKERUPSTAIRS);
@@ -105,7 +102,6 @@ public class HFNPCs {
         DAUGHTER_2.setLocation(HOME, TOWNHALLCHILDBED);
         CLOCKMAKER.setLocation(HOME, CLOCKMAKERDOWNSTAIRS).setHasInfo(TOOLS.getStackFromEnum(NPCTool.CALENDAR), new GreetingTime());
         GS_OWNER.setLocation(HOME, GENERALBASEMENTBACK).setLocation(SHOP, GENERALTILL);
-        //MINER.setLocation(HOME, MINEHUTSIDE).setLocation(SHOP, MINEHUTGRAVEL);
         FISHERMAN.setLocation(HOME, FISHINGHUTUPSTAIRS).setLocation(SHOP, FISHINGHUTDOWNSTAIRS).addGreeting(new GreetingLocation(POND));
         MILKMAID.setLocation(HOME, GENERALBEDROOM).setLocation(SHOP, BARNLEFT);
         POULTRY.setLocation(HOME, POULTRYBUILDING).setLocation(SHOP, POULTRYBUILDING);

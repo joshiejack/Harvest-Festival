@@ -33,7 +33,9 @@ public class PacketInfo extends PenguinPacket {
     public void handlePacket(EntityPlayer player) {
         EntityNPC npc = (EntityNPC) player.worldObj.getEntityByID(npcID);
         if (npc != null) {
-            player.openGui(HarvestFestival.instance, GuiHandler.NPC_INFO, player.worldObj, npcID, -1, -1);
+            if(npc.getNPC().onClickedInfoButton(player)) {
+                player.openGui(HarvestFestival.instance, GuiHandler.NPC_INFO, player.worldObj, npcID, -1, -1);
+            }
         }
     }
 }

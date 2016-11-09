@@ -36,7 +36,7 @@ public class TileSprinkler extends TileDaily implements ITickable {
     @Override
     public void update() {
         if (worldObj.isRemote) {
-            if (tick % 15 == 0 && (SPRINKLER_DRAIN_RATE <= 0 || tank.getFluidAmount() > 1) && CalendarHelper.isBetween(worldObj, 6000, 6250)) {
+            if (tick % 15 == 0 && (SPRINKLER_DRAIN_RATE <= 0 || tank.getFluidAmount() > 1) && CalendarHelper.isBetween(worldObj, 6000, 6250) && !worldObj.isRaining()) {
                 int setting = (2 - Minecraft.getMinecraft().gameSettings.particleSetting);
                 for (int i = 0; i < setting * 32; i++) {
                     double one = getRandomDouble();

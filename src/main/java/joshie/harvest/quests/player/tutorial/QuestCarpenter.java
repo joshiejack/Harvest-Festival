@@ -16,7 +16,7 @@ import static joshie.harvest.core.helpers.InventoryHelper.ORE_DICTIONARY;
 import static joshie.harvest.core.helpers.InventoryHelper.SPECIAL;
 import static joshie.harvest.core.helpers.InventoryHelper.SearchType.FLOWER;
 import static joshie.harvest.npc.HFNPCs.*;
-import static joshie.harvest.quests.Quests.TUTORIAL_INTRO;
+import static joshie.harvest.quests.Quests.GODDESS_MEET;
 
 @HFQuest("tutorial.carpenter")
 public class QuestCarpenter extends Quest {
@@ -32,7 +32,7 @@ public class QuestCarpenter extends Quest {
 
     @Override
     public boolean canStartQuest(Set<Quest> active, Set<Quest> finished) {
-        return finished.contains(TUTORIAL_INTRO);
+        return finished.contains(GODDESS_MEET);
     }
 
     private String getWoodAmount() {

@@ -15,7 +15,7 @@ public abstract class QuestUnlockedTimer extends QuestUnlocked {
 
     @Override
     public boolean canUnlock(EntityPlayer player, EntityLiving entity, INPC npc) {
-        return CalendarHelper.getDays(lastCompletion, HFApi.calendar.getDate(player.worldObj)) >= 7;
+        return lastCompletion != null && CalendarHelper.getDays(lastCompletion, HFApi.calendar.getDate(player.worldObj)) >= 7;
     }
 
     @Override

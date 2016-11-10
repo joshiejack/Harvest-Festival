@@ -3,7 +3,7 @@ package joshie.harvest.plugins.crafttweaker.handlers;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.plugins.crafttweaker.base.BaseUndoable;
 import joshie.harvest.shops.Shop;
-import joshie.harvest.shops.purchasable.PurchasableBuilder;
+import joshie.harvest.shops.purchasable.PurchasableMaterials;
 import minetweaker.MineTweakerAPI;
 import minetweaker.api.item.IItemStack;
 import net.minecraft.item.ItemStack;
@@ -42,7 +42,7 @@ public class Shops {
 
         @Override
         public void applyOnce() {
-            if (shop != null) shop.addItem(cost, stack);
+            if (shop != null) shop.addPurchasable(cost, stack);
         }
     }
 
@@ -71,7 +71,7 @@ public class Shops {
 
         @Override
         public void applyOnce() {
-            if (shop != null) shop.addItem(new PurchasableBuilder(cost, stone, wood, stack));
+            if (shop != null) shop.addPurchasable(new PurchasableMaterials(cost, stone, wood, stack));
         }
     }
 

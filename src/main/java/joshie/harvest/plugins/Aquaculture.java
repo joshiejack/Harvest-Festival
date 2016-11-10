@@ -70,9 +70,9 @@ public class Aquaculture {
             }
         }
 
-        BAITSHOP.addItem(1000L, new ItemStack(fishing_rod));
-        BAITSHOP.addItem(15000L, new ItemStack(iron_fishing_rod));
-        BAITSHOP.addItem(25000L, new ItemStack(gold_fishing_rod));
-        BAITSHOP.addItem(50000L, new ItemStack(diamond_fishing_rod));
+        BAITSHOP.addPurchasable(1000L, new ItemStack(fishing_rod));
+        BAITSHOP.addPurchasable(15000L, new ItemStack(iron_fishing_rod));
+        BAITSHOP.addPurchasable(25000L, new ItemStack(gold_fishing_rod));
+        BAITSHOP.addPurchasable(50000L, new ItemStack(diamond_fishing_rod));
     }
 }

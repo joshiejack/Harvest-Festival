@@ -36,7 +36,7 @@ public interface Building {
     /** Allows multiple of this building **/
     Building setMultiple();
 
-    /** Mark a building as not purchaseable **/
+    @Deprecated //TODO: Remove in 0.7+
     Building setNoPurchase();
 
     /** Returns the localised name of this building **/
@@ -45,13 +45,16 @@ public interface Building {
     /** Returns the special rules for this building **/
     ISpecialPurchaseRules getRules();
 
-    /** How much gold this building costs **/
+    //TODO: Remove in 0.7+
+    @Deprecated
     long getCost();
 
-    /** How much wood this building costs **/
+    //TODO: Remove in 0.7+
+    @Deprecated
     int getWoodCount();
 
-    /** How much stone this building costs **/
+    //TODO: Remove in 0.7+
+    @Deprecated
     int getStoneCount();
 
     /**Returns this building as a blueprint */

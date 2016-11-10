@@ -6,8 +6,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 public class PurchasableObtained extends Purchasable {
-    public PurchasableObtained(long cost, ItemStack... stacks) {
-        super(cost, stacks);
+    public PurchasableObtained(long cost, ItemStack stack) {
+        super(cost, stack);
     }
 
     @Override

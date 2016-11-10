@@ -350,6 +350,7 @@ harvestfestival.fish.walleye=Walleye
 
 #Junk
 harvestfestival.junk.bait=Bait
+harvestfestival.junk.bait.tooltip=Required for fish traps, can also be attached to fishing rods to increase the chance of bites.
 harvestfestival.junk.bones=Fish Bones
 harvestfestival.junk.boot=Boot
 harvestfestival.junk.can=Empty Can
@@ -357,8 +358,11 @@ harvestfestival.junk.fossil=Fish Fossil
 harvestfestival.junk.treasure=Pirate Treasure
 
 #Blocks
-harvestfestival.fishing.block.grap=Fish Trap
+harvestfestival.fishing.block.trap=Fish Trap
+harvestfestival.fishing.block.trap.tooltip=Easy way to catch fish, just fill with bait, make sure it's surrounded by water on all sides and then check back the next day.
+harvestfestival.fishing.block.trap.baited=Baited Fish Trap
 harvestfestival.fishing.block.hatchery=Hatchery
+harvestfestival.fishing.block.hatchery.tooltip=Place on waters surface, ensuring all 8 blocks around are water. Place fish inside and over a few days, they will eventually multiply. Be careful though because when you take a fish out, there is a chance for it to break.
 
 #Tools
 harvestfestival.tool.broken=[BROKEN]
@@ -693,6 +697,8 @@ harvestfestival.npc.goddess.gift.decent=This gift pleases me.
 harvestfestival.npc.goddess.gift.dislike=This gift does not please me.
 harvestfestival.npc.goddess.gift.bad=This gift insults me.
 harvestfestival.npc.goddess.gift.terrible=How dare you insult me like this.
+harvestfestival.npc.goddess.gift.no=I'm afraid it would not be appropriate for me to accept this gift, it is far too valuable!
+harvestfestival.npc.goddess.gift.reject=Darling, I do appreciate but I cannot in good faith accept another gift today.
 
 # Goddess Weather
 harvestfestival.npc.goddess.weather.sunny1=Oh sweety, tomorrow is looking like a lovely day of sunshine!
@@ -729,6 +735,8 @@ harvestfestival.npc.katlin.gift.decent=This is acceptable.
 harvestfestival.npc.katlin.gift.dislike=This is not acceptable.
 harvestfestival.npc.katlin.gift.bad=In my day, we gave people good gifts.
 harvestfestival.npc.katlin.gift.terrible=Are you trying to kill me? What an awful gift.
+harvestfestival.npc.katlin.gift.no=Youngun I cannot take this gift, it holds too much value.
+harvestfestival.npc.katlin.gift.reject=You've already given me something today youngun.
 
 #Danieuru/Chylex
 harvestfestival.npc.daniel.shop=I'm open every day of the week except for Thursdays from 10:00 to 16:00.
@@ -777,11 +785,11 @@ harvestfestival.npc.cloe.gift.bad=Err, no thanks...
 harvestfestival.npc.cloe.gift.terrible=I thought my parents were the worst, but nope it's you.
 
 #Liara/ApsciLiara
-harvestfestival.npc.liara.shop=I'm afraid the café is only open from 9:30 until 17:00, but we're open every day of the week!
+harvestfestival.npc.liara.shop=I'm afraid the cafe is only open from 9:30 until 17:00, but we're open every day of the week!
 harvestfestival.npc.liara.greeting1=I really love this weather, perfect time to bake a cake!
 harvestfestival.npc.liara.greeting2=Cooking is what I enjoy the most! I love seeing the smile on someone's face as they take their first bite of my delicious dishes!
 harvestfestival.npc.liara.greeting3=Are you feeling hungry? I'm always hungry, no wonder I like to cook so much.
-harvestfestival.npc.liara.greeting4=Make sure to drop by the café on Tuesdays, there's always something special.
+harvestfestival.npc.liara.greeting4=Make sure to drop by the cafe on Tuesdays, there's always something special.
 harvestfestival.npc.liara.greeting5=Food makes the world go round, and it makes me giddy.
 harvestfestival.npc.liara.greeting6=There's nothing like a good ol piece of a chocolate to make a girl happy.
 harvestfestival.npc.liara.greeting7=You wouldn't believe it, but I'm really in to, well spacey stuff.
@@ -792,8 +800,8 @@ harvestfestival.npc.liara.greeting11=If you want my advice, read the description
 harvestfestival.npc.liara.greeting12=When I went to cookery school, there was this girl I knew, I think her name began with a p. She really was a terrible cook.
 harvestfestival.npc.liara.greeting13=I really do miss my parents, but losing them really made me want to focus on my cooking career.
 harvestfestival.npc.liara.greeting14=I've been passionate about cooking all my life, I remember when I was ten, I was selling cupcake and making 1000 gold a week! But now I'm so glad I finally get to open my own proper business.
-harvestfestival.npc.liara.greeting15=The café is open everyday! From half past nine in the morning to five in the evening.
-harvestfestival.npc.liara.marriage.reject=The café is my home. I do not wish to live with you.
+harvestfestival.npc.liara.greeting15=The cafe is open everyday! From half past nine in the morning to five in the evening.
+harvestfestival.npc.liara.marriage.reject=The cafe is my home. I do not wish to live with you.
 harvestfestival.npc.liara.marriage.accept=Thank you, I will marry you, I will cook you many meals.
 harvestfestival.npc.liara.gift.awesome=Thank you so so much, this will be remembered forever.
 harvestfestival.npc.liara.gift.good=Thank you very much.
@@ -1149,15 +1157,15 @@ harvestfestival.shop.poultry.greeting2=The Poultry Farm has been here for 300 ye
 harvestfestival.shop.poultry.greeting3=Welcome to Cluckety Cluck Cluck's Chicken Camp. How may I help?
 
 #Cafe
-harvestfestival.shop.cafe=Café
+harvestfestival.shop.cafe=Cafe
 harvestfestival.shop.cafe.greeting1=Food come and get it! Yes?
 harvestfestival.shop.cafe.greeting2=Serving it all up, welcome!
 harvestfestival.shop.cafe.greeting3=Dinner's Up!
 
 #Kitchen Supplies
-harvestfestival.shop.kitchen=Café Supplies
+harvestfestival.shop.kitchen=Cafe Supplies
 harvestfestival.shop.kitchen.greeting1=I'm looking for a supplier for the kitchen, do you have anything?
-harvestfestival.shop.kitchen.greeting2=As always on a Friday we're looking for supplies for the café
+harvestfestival.shop.kitchen.greeting2=As always on a Friday we're looking for supplies for the cafe
 harvestfestival.shop.kitchen.greeting3=Always happy to buy some food, will come in handy
 
 #Animal Ranch
@@ -1191,7 +1199,7 @@ harvestfestival.shop.baitshop.greeting2=If you want some fish, then come buy som
 harvestfestival.shop.baitshop.greeting3=Come get your fishing rods here, if you please.
 
 #Trader
-harvestfestival.shop.trader=Café Supplies
+harvestfestival.shop.trader=Cafe Supplies
 harvestfestival.shop.trader.greeting1=Good Morning, how may I help you?
 harvestfestival.shop.trader.greeting2=Looking to sell some feathers or leather, then I'm your man.
 harvestfestival.shop.trader.greeting3=Welcome, please do let yourself be served.
@@ -1274,7 +1282,7 @@ harvestfestival.quest.tutorial.supermarket.welcome.owner=Hey, I’m the owner of
 harvestfestival.quest.tutorial.supermarket.welcome.guest=I will surely find myself someone. Well hello there aren’t you just the cutest. I’m Candice. Jenni downstairs is the owner here, I’m just a tenant. If you need anything just go and see her everyday except Wednesday and Sunday, 09:00-17:00. She also opens on Saturdays from 11:00 to 15:00. She told me to give you this.
 
 #Cafe Cooking Lesson
-harvestfestival.quest.tutorial.cafe.welcome=Welcome to my Café. I am Liara the owner. Here we show a true passion for cooking and bring you the best food you can find. I’m happy to teach you how to cook if you don’t know how.
+harvestfestival.quest.tutorial.cafe.welcome=Welcome to my Cafe. I am Liara the owner. Here we show a true passion for cooking and bring you the best food you can find. I’m happy to teach you how to cook if you don’t know how.
 harvestfestival.quest.tutorial.cafe.question=Do you need to learn how to cook?
 harvestfestival.quest.tutorial.cafe.tutorial=@I do indeed
 harvestfestival.quest.tutorial.cafe.skip=@I can work it out
@@ -1382,7 +1390,7 @@ harvestfestival.quest.recipe.latte.vegetable.text=I need to get rid of this unho
 harvestfestival.quest.recipe.jam.apple.text=Yulif may not approve, but you know what goes perfectly with toast? Some jam of course!
 
 ## Friendship Quests
-harvestfestival.quest.friendship.katlin.kitchen.text=You have been really kind to me. I just don't know how to feel. You know, we recently lost our supplier for the kitchen, maybe you could take over the job? Just come and visit me on a Friday when the café isn't open, early in the morning or in the evening, then you can help me restock the kitchen. We're looking for things like meat, beetroot soup and cake.
+harvestfestival.quest.friendship.katlin.kitchen.text=You have been really kind to me. I just don't know how to feel. You know, we recently lost our supplier for the kitchen, maybe you could take over the job? Just come and visit me on a Friday when the cafe isn't open, early in the morning or in the evening, then you can help me restock the kitchen. We're looking for things like meat, beetroot soup and cake.
 harvestfestival.quest.friendship.yulif.sprinkler.text=Yer have been a really great friend lately. So great I'm able to sell ya sprinklers now, so take a look in ma store when you have a chance.
 harvestfestival.quest.friendship.jacob.hatchery.text=For making a fisherman happy, I've got some new stock in store so be suure to check her out.
 harvestfestival.quest.friendship.tiberius.dark.text=I think I'm finally starting to trust you. You should come and see me during the night on Wednesdays or Saturdays. I'm looking to buy some things...

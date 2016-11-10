@@ -86,7 +86,24 @@ public class Shop implements IShop {
 
     @Override
     public IShop addItem(long cost, ItemStack... items) {
-        return addItem(new Purchasable(cost, items));
+        return addItem(new Purchasable(cost, items[0]));
+    }
+
+    @Override
+    public IPurchasable addPurchasable(IPurchasable item) {
+        if (item != null) {
+            if (!canBuy && item.getCost() >= 0) canBuy = true;
+            if (!canSell && item.getCost() < 0) canSell = true;
+            contents.put(item.getPurchaseableID(), item);
+        }
+
+        return item;
+    }
+
+    @Override
+    public IPurchasable addPurchasable(long cost, ItemStack stack) {
+        IPurchasable purchasable = new Purchasable(cost, stack);
+        return addPurchasable(purchasable);
     }
 
     public String getLocalizedName() {

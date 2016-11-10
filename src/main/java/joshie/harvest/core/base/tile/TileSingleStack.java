@@ -9,6 +9,10 @@ public abstract class TileSingleStack extends TileDaily {
 
     public abstract boolean onRightClicked(EntityPlayer player, ItemStack place);
 
+    public ItemStack getStack() {
+        return stack;
+    }
+
     @Override
     public void readFromNBT(NBTTagCompound nbt) {
         super.readFromNBT(nbt);

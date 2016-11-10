@@ -31,7 +31,8 @@ public class BuildingRegistry implements IBuildingRegistry {
         return building;
     }
 
-    @Override
+    @Override //TODO: Remove in 0.7+
+    @Deprecated
     public Building registerBuilding(ResourceLocation resource, long cost, int wood, int stone) {
         BuildingImpl building = new BuildingImpl().setRegistryName(resource).setCosts(cost, wood, stone);
         REGISTRY.register(building);

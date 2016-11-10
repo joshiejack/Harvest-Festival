@@ -7,7 +7,6 @@ import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.helpers.MCClientHelper;
 import joshie.harvest.core.helpers.StackHelper;
 import joshie.harvest.core.lib.HFModInfo;
-import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.npc.entity.EntityNPC;
 import joshie.harvest.npc.gui.GuiNPCBase;
 import joshie.harvest.player.stats.StatsClient;
@@ -70,8 +69,8 @@ public class GuiNPCShop<I extends IPurchasable> extends GuiNPCBase {
         }
 
         contents.sort((s1, s2)-> {
-            int one = isGoldOnly((IPurchaseableMaterials)s1) || ((IPurchaseableMaterials)s1).getRequirements().length == 1 ? 1 : 0;
-            int two = isGoldOnly((IPurchaseableMaterials)s2) || ((IPurchaseableMaterials)s2).getRequirements().length == 1 ? 1 : 0;
+            int one = isGoldOnly((IPurchasable)s1) || ((IPurchaseableMaterials)s1).getRequirements().length == 1 ? 1 : 0;
+            int two = isGoldOnly((IPurchasable)s2) || ((IPurchaseableMaterials)s2).getRequirements().length == 1 ? 1 : 0;
             return one > two ? 1 : one == two ? 0:  -1;
 
         } );
@@ -170,7 +169,7 @@ public class GuiNPCShop<I extends IPurchasable> extends GuiNPCBase {
 
     protected void drawResizableBackground(int x, int y) {
         mc.renderEngine.bindTexture(SHOP_BACKGROUND);
-        if (buttonList.size() < 10 && (selling || npc.getNPC() != HFNPCs.BUILDER)) {
+        if (buttonList.size() < 10) {
             drawTexturedModalRect(x, y - 12 + (20 * (buttonList.size())), 0, 228, xSize, 28);
             drawTexturedModalRect(x, y, 0, 0, xSize, (20 * (buttonList.size())) - 2);
 

@@ -36,7 +36,8 @@ public class HolderRegistry<R> {
     }
 
     public boolean matches(ItemStack stack, R type) {
-        return matches(getValueOf(stack), type);
+        R value = getValueOf(stack);
+        return value != null && matches(value, type);
     }
 
     public R getValueOf(ItemStack stack) {

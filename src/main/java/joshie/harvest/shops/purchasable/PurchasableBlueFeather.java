@@ -23,15 +23,10 @@ public class PurchasableBlueFeather extends Purchasable {
         return amount == 1 && HFTrackers.getPlayerTrackerFromPlayer(player).getRelationships().isEllegibleToMarry();
     }
 
-    @Override
-    public ItemStack getDisplayStack() {
-        return stacks[0];
-    }
-
     @SideOnly(Side.CLIENT)
     @Override
     public void addTooltip(List<String> list) {
-        list.add(/*Text.WHITE + */stacks[0].getDisplayName());
+        list.add(/*Text.WHITE + */stack.getDisplayName());
         list.add(TextHelper.translate("marriage"));
         if (!HFTrackers.getClientPlayerTracker().getRelationships().isEllegibleToMarry()) {
         list.add(DARK_RED + TextHelper.translate("marriage.locked"));

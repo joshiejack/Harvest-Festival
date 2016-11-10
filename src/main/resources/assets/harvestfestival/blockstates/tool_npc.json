@@ -11,6 +11,7 @@
     "gift": [{ "textures": { "layer0": "harvestfestival:items/gift" }}],
     "clock": [{ "textures": { "layer0": "harvestfestival:items/clock" }}],
     "weather": [{ "textures": { "layer0": "harvestfestival:items/weather" }}],
-    "flower": [{ "textures": { "layer0": "minecraft:blocks/flower_rose" }}]
+    "flower": [{ "textures": { "layer0": "minecraft:blocks/flower_rose" }}],
+    "speech": [{ "textures": { "layer0": "harvestfestival:items/speech" }}]
   }
 }

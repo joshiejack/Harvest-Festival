@@ -85,6 +85,7 @@ public class ButtonListing<I extends IPurchasable> extends GuiButton {
     protected void drawForeground(Minecraft mc, FontRenderer fontrenderer, int j) {
         StackHelper.drawStack(purchasable.getDisplayStack(), xPosition + 2, yPosition + 1, 1F);
         drawString(fontrenderer, displayString, xPosition + 20, yPosition + (height - 8) / 2, j);
+        GlStateManager.color(1.0F, 1.0F, 1.0F);
         //Draw the cost
         String cost = shop.getCostAsString(purchasable.getCost());
         int width = fontrenderer.getStringWidth(cost);
@@ -131,7 +132,6 @@ public class ButtonListing<I extends IPurchasable> extends GuiButton {
 
     @Override
     public void mouseReleased(int mouseX, int mouseY) {
-        System.out.println(stackSize);
         if (stackSize > 0) {
             PacketHandler.sendToServer(new PacketPurchaseItem(shop.getShop(), purchasable, stackSize));
             stackSize = 0; //Reset

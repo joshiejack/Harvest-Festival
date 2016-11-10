@@ -32,7 +32,7 @@ public class PurchasableWeekend extends Purchasable {
 
     @Override
     public void onPurchased(EntityPlayer player) {
-        HFTrackers.getPlayerTrackerFromPlayer(player).getTracking().addAsObtained(stacks[0]);
+        HFTrackers.getPlayerTrackerFromPlayer(player).getTracking().addAsObtained(stack);
         super.onPurchased(player);
     }
 }

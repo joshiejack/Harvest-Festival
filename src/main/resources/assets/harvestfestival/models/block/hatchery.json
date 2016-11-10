@@ -1,7 +1,7 @@
 {
     "parent": "block/block",
     "textures": {
-        "particle": "harvestfestival:models/basket",
+        "particle": "harvestfestival:models/hatchery",
         "texture": "harvestfestival:models/hatchery",
         "water": "minecraft:blocks/water_overlay"
     },

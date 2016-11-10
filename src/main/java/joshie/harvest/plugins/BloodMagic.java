@@ -19,15 +19,15 @@ public class BloodMagic {
     public static final Item ItemSoulGem = null;
 
     public static void init() {
-        BLOODMAGE.addItem(100, new ItemStack(ItemSoulSnare));
-        BLOODMAGE.addItem(150, new ItemStack(Items.ROTTEN_FLESH));
-        BLOODMAGE.addItem(500, new ItemStack(Items.BONE));
-        BLOODMAGE.addItem(300, new ItemStack(Items.SPIDER_EYE));
-        BLOODMAGE.addItem(3000, PotionUtils.addPotionToItemStack(new ItemStack(Items.POTIONITEM), PotionTypes.REGENERATION));
-        BLOODMAGE.addItem(4000, PotionUtils.addPotionToItemStack(new ItemStack(Items.POTIONITEM), PotionTypes.LONG_REGENERATION));
-        BLOODMAGE.addItem(5000, PotionUtils.addPotionToItemStack(new ItemStack(Items.POTIONITEM), PotionTypes.STRONG_REGENERATION));
-        BLOODMAGE.addItem(1200, getSoulGem(32));
-        BLOODMAGE.addItem(2000, getSoulGem(64));
+        BLOODMAGE.addPurchasable(100, new ItemStack(ItemSoulSnare));
+        BLOODMAGE.addPurchasable(150, new ItemStack(Items.ROTTEN_FLESH));
+        BLOODMAGE.addPurchasable(500, new ItemStack(Items.BONE));
+        BLOODMAGE.addPurchasable(300, new ItemStack(Items.SPIDER_EYE));
+        BLOODMAGE.addPurchasable(3000, PotionUtils.addPotionToItemStack(new ItemStack(Items.POTIONITEM), PotionTypes.REGENERATION));
+        BLOODMAGE.addPurchasable(4000, PotionUtils.addPotionToItemStack(new ItemStack(Items.POTIONITEM), PotionTypes.LONG_REGENERATION));
+        BLOODMAGE.addPurchasable(5000, PotionUtils.addPotionToItemStack(new ItemStack(Items.POTIONITEM), PotionTypes.STRONG_REGENERATION));
+        BLOODMAGE.addPurchasable(1200, getSoulGem(32));
+        BLOODMAGE.addPurchasable(2000, getSoulGem(64));
 
         //Make NPCs Give 0 LP
         FMLInterModComms.sendMessage("BloodMagic", "sacrificeValue", "EntityNPCBuilder;0");

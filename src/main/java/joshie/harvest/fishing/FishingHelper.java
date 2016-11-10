@@ -36,7 +36,7 @@ public class FishingHelper {
         TownData data = TownHelper.getClosestTownToBlockPos(world, pos);
         BlockPos position = data.getCoordinatesFor(BuildingLocations.POND);
         WaterType type;
-        if (position != null && position.getDistance(pos.getX(), pos.getY(), pos.getZ()) <= 32) {
+        if (position != null && position.getDistance(pos.getX(), pos.getY(), pos.getZ()) <= 6) {
             type = WaterType.POND;
         } else {
             Biome biome = world.getBiome(pos);

@@ -3,10 +3,10 @@ package joshie.harvest.shops.purchasable;
 import joshie.harvest.api.shops.IPurchasable;
 import joshie.harvest.core.helpers.InventoryHelper;
 import joshie.harvest.core.helpers.SpawnItemHelper;
-import joshie.harvest.core.helpers.MCClientHelper;
 import joshie.harvest.core.helpers.TextHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -19,24 +19,19 @@ import java.util.Locale;
 import static joshie.harvest.core.helpers.InventoryHelper.ITEM_STACK;
 
 public class Purchasable implements IPurchasable {
-    protected final ItemStack[] stacks;
+    protected final ItemStack stack;
     private final String resource;
     private final long cost;
     private String tooltip;
 
-    public Purchasable(long cost, ItemStack... stacks) {
+    public Purchasable(long cost, ItemStack stack) {
         this.cost = cost;
-        this.stacks = stacks;
-        StringBuilder builder = new StringBuilder();
-        for (ItemStack stack: stacks) {
-            builder.append(stackToString(stack));
-        }
-
-        resource = ((cost >= 0) ? "buy: " : "sell: ") + builder.toString();
+        this.stack = stack;
+        this.resource = ((cost >= 0) ? "buy: " : "sell: ") + stackToString(stack);
     }
 
     public Purchasable addTooltip(String tooltip) {
-        this.tooltip = tooltip;
+        this.tooltip = "harvestfestival." + tooltip + ".tooltip";
         return this;
     }
 
@@ -63,7 +58,7 @@ public class Purchasable implements IPurchasable {
 
     @Override
     public ItemStack getDisplayStack() {
-        return stacks[0];
+        return stack;
     }
 
     @Override
@@ -71,24 +66,19 @@ public class Purchasable implements IPurchasable {
         if (getCost() < 0) {
             InventoryHelper.takeItemsInInventory(player, ITEM_STACK, getDisplayStack(), getDisplayStack().stackSize);
         } else {
-            for (ItemStack product : stacks) {
-                SpawnItemHelper.addToPlayerInventory(player, product.copy());
-            }
+            SpawnItemHelper.addToPlayerInventory(player, getDisplayStack());
         }
     }
 
     @SideOnly(Side.CLIENT)
     @Override
     public void addTooltip(List<String> list) {
-        for (ItemStack stack : stacks) {
-            if (stack != null) list.addAll(stack.getTooltip(MCClientHelper.getPlayer(), false));
-        }
-
         if (this.tooltip != null) {
+            list.add(TextFormatting.AQUA + getDisplayName());
             list.add("---------------------------");
             String tooltip = WordUtils.wrap(TextHelper.localize(this.tooltip.toLowerCase(Locale.ENGLISH)), 40);
             list.addAll(Arrays.asList(tooltip.split("\r\n")));
-        }
+        } else list.add(TextFormatting.WHITE + getDisplayName());
     }
 
     @Override

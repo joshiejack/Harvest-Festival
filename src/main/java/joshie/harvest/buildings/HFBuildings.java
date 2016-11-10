@@ -43,21 +43,21 @@ public class HFBuildings {
 
     public static final BuildingImpl null_building = new BuildingImpl();
     public static final ISpecialPurchaseRules NEVER = (w, p, a) -> false;
-    public static final Building BARN = registerBuilding("barn", 4000L, 100, 0).setRequirements("carpenter").setInhabitants(HFNPCs.BARN_OWNER).setOffset(6, -1, 8);
+    public static final Building BARN = registerBuilding("barn").setRequirements("carpenter").setInhabitants(HFNPCs.BARN_OWNER).setOffset(6, -1, 8);
     public static final Building BLACKSMITH = registerBuilding("blacksmith").setRequirements("miningHill").setInhabitants(HFNPCs.BLACKSMITH).setOffset(3, -2, 6);
-    public static final Building CAFE = registerBuilding("cafe", 15000L, 200, 110).setRequirements("supermarket").setInhabitants(HFNPCs.CAFE_OWNER, HFNPCs.CAFE_GRANNY).setOffset(7, -1, 10);
+    public static final Building CAFE = registerBuilding("cafe").setRequirements("supermarket").setInhabitants(HFNPCs.CAFE_OWNER, HFNPCs.CAFE_GRANNY).setOffset(7, -1, 10);
     public static final Building CARPENTER = registerBuilding("carpenter", 0L, 0, 0).setSpecialRules(NEVER).setInhabitants(HFNPCs.BUILDER, HFNPCs.FLOWER_GIRL).setOffset(3, -1, 8);
-    public static final Building CHURCH = registerBuilding("church", 30000L, 160, 128).setSpecialRules(new SpecialRuleChurch()).setOffset(6, -1, 13);
-    public static final Building CLOCKMAKER = registerBuilding("clockmaker", 20000L, 120, 78).setRequirements("festivals").setInhabitants(HFNPCs.CLOCKMAKER, CLOCKMAKER_CHILD).setOffset(3, -1, 10);
-    public static final Building FISHING_HOLE = registerBuilding("fishingHole", 3000L, 16, 0).setRequirements("fishingHut").setInhabitants(HFNPCs.FISHERMAN).setOffset(6, -4, 7);
-    public static final Building FISHING_HUT = registerBuilding("fishingHut", 12000L, 128, 0).setRequirements("barn", "poultryFarm").setOffset(4, -1, 10);
-    public static final Building GODDESS_POND = registerBuilding("goddessPond", 7000L, 32, 16).setSpecialRules(new SpecialRuleBuildings(5)).setInhabitants(HFNPCs.GODDESS).setOffset(11, -1, 20);
-    public static final Building MINING_HILL = registerBuilding("miningHill", 3000L, 8, 32).setRequirements("supermarket").setInhabitants(HFNPCs.MINER).setOffset(10, -3, 11);
-    public static final Building POULTRY_FARM = registerBuilding("poultryFarm", 3000L, 100, 0).setRequirements("carpenter").setInhabitants(HFNPCs.POULTRY).setOffset(4, -1, 12);
-    public static final Building SUPERMARKET = registerBuilding("supermarket", 5000L, 100, 0).setRequirements("carpenter").setInhabitants(HFNPCs.MILKMAID, HFNPCs.GS_OWNER).setOffset(7, -10, 12).setTickTime(5);
-    public static final Building TOWNHALL = registerBuilding("townhall", 50000L, 640, 256).setSpecialRules(new SpecialRuleBuildings(9)).setInhabitants(HFNPCs.MAYOR, HFNPCs.PRIEST, HFNPCs.DAUGHTER_ADULT, HFNPCs.DAUGHTER_CHILD).setOffset(10, -1, 17);
+    public static final Building CHURCH = registerBuilding("church").setSpecialRules(new SpecialRuleChurch()).setOffset(6, -1, 13);
+    public static final Building CLOCKMAKER = registerBuilding("clockmaker").setRequirements("festivals").setInhabitants(HFNPCs.CLOCKMAKER, CLOCKMAKER_CHILD).setOffset(3, -1, 10);
+    public static final Building FISHING_HOLE = registerBuilding("fishingHole").setRequirements("fishingHut").setInhabitants(HFNPCs.FISHERMAN).setOffset(6, -4, 7);
+    public static final Building FISHING_HUT = registerBuilding("fishingHut").setRequirements("barn", "poultryFarm").setOffset(4, -1, 10);
+    public static final Building GODDESS_POND = registerBuilding("goddessPond").setSpecialRules(new SpecialRuleBuildings(5)).setInhabitants(HFNPCs.GODDESS).setOffset(11, -1, 20);
+    public static final Building MINING_HILL = registerBuilding("miningHill").setRequirements("supermarket").setInhabitants(HFNPCs.MINER).setOffset(10, -3, 11);
+    public static final Building POULTRY_FARM = registerBuilding("poultryFarm").setRequirements("carpenter").setInhabitants(HFNPCs.POULTRY).setOffset(4, -1, 12);
+    public static final Building SUPERMARKET = registerBuilding("supermarket").setRequirements("carpenter").setInhabitants(HFNPCs.MILKMAID, HFNPCs.GS_OWNER).setOffset(7, -10, 12).setTickTime(5);
+    public static final Building TOWNHALL = registerBuilding("townhall").setSpecialRules(new SpecialRuleBuildings(9)).setInhabitants(HFNPCs.MAYOR, HFNPCs.PRIEST, HFNPCs.DAUGHTER_ADULT, HFNPCs.DAUGHTER_CHILD).setOffset(10, -1, 17);
     //0.6+ Buildings
-    public static final Building FESTIVALS = registerBuilding("festivals", 1000L, 64, 20).setSpecialRules(new SpecialRuleFestivals()).setInhabitants(HFNPCs.TRADER);
+    public static final Building FESTIVALS = registerBuilding("festivals").setSpecialRules(new SpecialRuleFestivals()).setInhabitants(HFNPCs.TRADER);
 
     public static void preInit() {}
 

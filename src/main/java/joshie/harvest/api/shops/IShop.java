@@ -12,12 +12,18 @@ public interface IShop {
     IShop addOpening(Weekday day, int opening, int closing);
 
     /** Adds a new purchaseable item to the shop
-     * @param item  the purchaseable **/
+     * @param purchasable  the purchaseable **/
+    IPurchasable addPurchasable(IPurchasable purchasable);
+
+    @Deprecated //TODO: Remove in 0.7+
     IShop addItem(IPurchasable item);
 
     /** Convenience method for basic items
      *  @param      cost how much this costs in gold
-     *  @param      stack the items you get for this purchase**/
+     *  @param      stack the item you get for this purchase**/
+    IPurchasable addPurchasable(long cost, ItemStack stack);
+
+    @Deprecated //TODO: Remove in 0.7+
     IShop addItem(long cost, ItemStack... stack);
 
     /** Set special rules for being able to buy or sell from this shop

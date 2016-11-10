@@ -21,17 +21,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
-public class PurchasableBuilding extends PurchasableBuilder {
+public class PurchasableBuilding extends PurchasableMaterials {
     private final ResourceLocation resource;
     private final BuildingImpl building;
     private final String tooltip;
-
-    public PurchasableBuilding(BuildingImpl building) {
-        super(building.getCost(), building.getWoodCount(), building.getStoneCount(), building.getRegistryName());
-        this.building = building;
-        this.resource = BuildingRegistry.REGISTRY.getKey(building);
-        this.tooltip = resource.getResourceDomain() + ".structures." + resource.getResourcePath() + ".tooltip";
-    }
 
     public PurchasableBuilding(long cost, Building building, IRequirement... requirements) {
         super(cost, ((BuildingImpl)building).getRegistryName(), requirements);

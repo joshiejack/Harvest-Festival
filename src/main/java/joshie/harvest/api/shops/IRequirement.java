@@ -1,34 +1,24 @@
 package joshie.harvest.api.shops;
 
-import joshie.harvest.core.helpers.InventoryHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-import static joshie.harvest.core.helpers.InventoryHelper.ITEM_STACK;
+public interface IRequirement {
+    /** Return the stack this requirement is represented by **/
+    ItemStack getIcon();
 
-public class IRequirement {
-    private final ItemStack icon;
-    protected final int cost;
+    /** Return how many items this requirement needs **/
+    int getCost();
 
-    public IRequirement(ItemStack icon, int cost) {
-        this.icon = icon;
-        this.cost = cost;
-    }
+    /** Can we fulfill the requirement
+     * @param world     the world
+     * @param player    the player
+     * @param amount    the amount
+     * @return */
+    boolean isFulfilled(World world, EntityPlayer player, int amount);
 
-    public ItemStack getIcon() {
-        return icon;
-    }
-
-    public int getCost() {
-        return cost;
-    }
-
-    public boolean isFulfilled(World world, EntityPlayer player, int amount) {
-        return InventoryHelper.hasInInventory(player, ITEM_STACK, icon, amount);
-    }
-
-    public void onPurchased(EntityPlayer player) {
-
-    }
+    /** Called when purchased
+     *  @param player   the player **/
+    void onPurchased(EntityPlayer player);
 }

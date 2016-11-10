@@ -35,7 +35,7 @@ public abstract class PurchasableFML<I extends IForgeRegistryEntry.Impl<I>> impl
     public abstract IForgeRegistry<I> getRegistry();
 
     public PurchasableFML addTooltip(String tooltip) {
-        this.tooltip = "harvestfestival." + tooltip;
+        this.tooltip = "harvestfestival." + tooltip + ".tooltip";
         return this;
     }
 

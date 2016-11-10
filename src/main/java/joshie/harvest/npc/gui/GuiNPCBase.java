@@ -75,7 +75,7 @@ public abstract class GuiNPCBase extends GuiBase {
         GlStateManager.popMatrix();
 
         mc.renderEngine.bindTexture(chatbox);
-        if (isHoldingItem()) {
+        if (isHoldingItem() && npc.getNPC() != HFNPCs.GODDESS) {
             //Drawing the icons
             //Render the outside of the gift tab
             if (!isPointInRegion(242, 156, 17, 19, npcMouseX, npcMouseY)) {
@@ -131,7 +131,7 @@ public abstract class GuiNPCBase extends GuiBase {
         npcMouseX = mouseX;
         npcMouseY = mouseY;
 
-        if (isHoldingItem() && hoveringGift())
+        if (isHoldingItem() && npc.getNPC() != HFNPCs.GODDESS && hoveringGift())
             renderToolTip(GIFT, mouseX, mouseY);
         if (displayInfo() && hoveringInfo())
             renderToolTip(npc.getNPC().hasInfo(), mouseX, mouseY);

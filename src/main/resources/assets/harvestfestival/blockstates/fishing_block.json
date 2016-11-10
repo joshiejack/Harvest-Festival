@@ -1,6 +1,11 @@
 {
+  "forge_marker": 1,
+  "defaults": {
+    "model": "cube_all"
+  },
   "variants": {
-    "fishingblock=trap":  { "model": "harvestfestival:fish_trap" },
+    "fishingblock=trap":  {"model": "harvestfestival:fish_trap" },
+    "fishingblock=trap_baited":  { "model": "harvestfestival:fish_trap_baited" },
     "fishingblock=hatchery":  { "model": "harvestfestival:hatchery" }
   }
 }

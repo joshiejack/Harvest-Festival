@@ -18,6 +18,7 @@ import joshie.harvest.fishing.item.ItemJunk.Junk;
 import joshie.harvest.fishing.loot.ConditionTime;
 import joshie.harvest.fishing.loot.SetWeight;
 import joshie.harvest.fishing.render.SpecialRendererHatchery;
+import joshie.harvest.fishing.render.SpecialRendererTrap;
 import joshie.harvest.fishing.tile.TileHatchery;
 import joshie.harvest.fishing.tile.TileTrap;
 import net.minecraft.client.renderer.block.statemap.StateMap;
@@ -102,6 +103,7 @@ public class HFFishing {
     @SideOnly(Side.CLIENT)
     public static void initClient() {
         ClientRegistry.bindTileEntitySpecialRenderer(TileHatchery.class, new SpecialRendererHatchery());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileTrap.class, new SpecialRendererTrap());
     }
 
     private static void registerLootTable(String id, WaterType type, Season season) {

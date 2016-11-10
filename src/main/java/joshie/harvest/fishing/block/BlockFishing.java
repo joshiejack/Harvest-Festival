@@ -13,8 +13,12 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.*;
+import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
@@ -37,8 +41,14 @@ public class BlockFishing extends BlockHFEnum<BlockFishing, FishingBlock> {
     }
 
     @SideOnly(Side.CLIENT)
-    public boolean canRenderInLayer(BlockRenderLayer layer)  {
-        return layer == BlockRenderLayer.TRANSLUCENT;
+    public boolean canRenderInLayer(IBlockState state, BlockRenderLayer layer) {
+        return getEnumFromState(state) == FishingBlock.HATCHERY ? layer == BlockRenderLayer.TRANSLUCENT: layer == BlockRenderLayer.CUTOUT_MIPPED;
+    }
+
+    @SuppressWarnings("deprecation")
+    @Override
+    public boolean isFullCube(IBlockState state) {
+        return getEnumFromState(state) != FishingBlock.HATCHERY;
     }
 
     @Override
@@ -57,6 +67,18 @@ public class BlockFishing extends BlockHFEnum<BlockFishing, FishingBlock> {
     }
 
     @Override
+    public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos) {
+        TileEntity tile = world.getTileEntity(pos);
+        if (tile instanceof TileTrap) {
+            TileTrap trap = ((TileTrap)tile);
+            if (trap.isBaited()) return getStateFromEnum(FishingBlock.TRAP_BAITED);
+            else return getStateFromEnum(FishingBlock.TRAP);
+        }
+
+        return state;
+    }
+
+    @Override
     public boolean hasTileEntity(IBlockState state) {
         return true;
     }
@@ -64,9 +86,10 @@ public class BlockFishing extends BlockHFEnum<BlockFishing, FishingBlock> {
     @Override
     public TileEntity createTileEntity(World world, IBlockState state) {
         switch (getEnumFromState(state)) {
-            case TRAP:      return new TileTrap();
-            case HATCHERY:  return new TileHatchery();
-            default:        return null;
+            case TRAP:
+            case TRAP_BAITED:   return new TileTrap();
+            case HATCHERY:      return new TileHatchery();
+            default:            return null;
         }
     }
 
@@ -78,7 +101,7 @@ public class BlockFishing extends BlockHFEnum<BlockFishing, FishingBlock> {
     }
 
     public enum FishingBlock implements IStringSerializable {
-        TRAP, HATCHERY;
+        TRAP, TRAP_BAITED, HATCHERY;
 
         @Override
         public String getName() {

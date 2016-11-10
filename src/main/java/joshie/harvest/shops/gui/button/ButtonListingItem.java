@@ -5,6 +5,7 @@ import joshie.harvest.core.helpers.StackHelper;
 import joshie.harvest.shops.gui.GuiNPCShop;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.item.ItemStack;
 
 public class ButtonListingItem extends ButtonListing<IPurchaseableMaterials> {
@@ -21,6 +22,7 @@ public class ButtonListingItem extends ButtonListing<IPurchaseableMaterials> {
     protected void drawForeground(Minecraft mc, FontRenderer fontrenderer, int j) {
         StackHelper.drawStack(purchasable.getDisplayStack(), xPosition + 2, yPosition + 1, 1F);
         drawString(fontrenderer, displayString, xPosition + 20, yPosition + (height - 8) / 2, j);
+        GlStateManager.color(1.0F, 1.0F, 1.0F);
         //Draw the cost
         String cost = shop.getCostAsString(this.cost);
         int width = fontrenderer.getStringWidth(cost);

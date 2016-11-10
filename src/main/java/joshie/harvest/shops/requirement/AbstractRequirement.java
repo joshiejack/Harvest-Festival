@@ -1,8 +1,9 @@
 package joshie.harvest.shops.requirement;
 
+import joshie.harvest.api.shops.IRequirement;
 import net.minecraft.item.ItemStack;
 
-public abstract class AbstractRequirement {
+public abstract class AbstractRequirement implements IRequirement {
     private final ItemStack icon;
     protected final int cost;
 

@@ -125,7 +125,7 @@ public class BuildingImpl extends Impl<BuildingImpl> implements Building {
         return this;
     }
 
-    @Override
+    @Override //TODO: Remove in 0.7+
     public Building setNoPurchase() {
         this.isPurchaseable = false;
         return this;
@@ -214,6 +214,7 @@ public class BuildingImpl extends Impl<BuildingImpl> implements Building {
         return width;
     }
 
+    @Deprecated //TODO: Remove in 0.7+
     public boolean canPurchase() {
         return isPurchaseable;
     }

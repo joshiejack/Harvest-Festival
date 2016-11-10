@@ -11,6 +11,7 @@ import joshie.harvest.shops.requirement.Stone;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.IForgeRegistry;
 import net.minecraftforge.fml.relauncher.Side;
@@ -21,14 +22,12 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
-import static net.minecraft.util.text.TextFormatting.WHITE;
-
-public class PurchasableBuilder extends PurchasableFML<BuildingImpl> implements IPurchaseableMaterials {
+public class PurchasableMaterials extends PurchasableFML<BuildingImpl> implements IPurchaseableMaterials {
     private final String resource;
     private ItemStack stack;
     private final IRequirement[] requirements;
 
-    public PurchasableBuilder(long cost, int logs, int stone, ResourceLocation name) {
+    public PurchasableMaterials(long cost, int logs, int stone, ResourceLocation name) {
         super(cost, name);
         if (logs != 0 && stone == 0) requirements = new IRequirement[] { Logs.of(logs) };
         else if (logs == 0 && stone != 0) requirements = new IRequirement[] { Stone.of(stone) };
@@ -36,13 +35,13 @@ public class PurchasableBuilder extends PurchasableFML<BuildingImpl> implements 
         this.resource = ((cost >= 0) ? "buy: " : "sell: ") + name.toString().replace(":", "_");
     }
 
-    public PurchasableBuilder(long cost, ResourceLocation name, IRequirement... requirements) {
+    public PurchasableMaterials(long cost, ResourceLocation name, IRequirement... requirements) {
         super(cost, name);
         this.requirements = requirements;
         this.resource = ((cost >= 0) ? "buy: " : "sell: ") + name.toString().replace(":", "_");
     }
 
-    public PurchasableBuilder(long cost, int logs, int stone, ItemStack stack) {
+    public PurchasableMaterials(long cost, int logs, int stone, ItemStack stack) {
         super(cost, null);
         this.stack = stack;
         if (logs != 0 && stone == 0) requirements = new IRequirement[] { Logs.of(logs) };
@@ -51,7 +50,7 @@ public class PurchasableBuilder extends PurchasableFML<BuildingImpl> implements 
         this.resource = ((cost >= 0) ? "buy: " : "sell: ") + Purchasable.stackToString(stack);
     }
 
-    public PurchasableBuilder(long cost, ItemStack stack, IRequirement... requirements) {
+    public PurchasableMaterials(long cost, ItemStack stack, IRequirement... requirements) {
         super(cost, null);
         this.stack = stack;
         this.requirements = requirements;
@@ -116,12 +115,12 @@ public class PurchasableBuilder extends PurchasableFML<BuildingImpl> implements 
     @SideOnly(Side.CLIENT)
     @Override
     public void addTooltip(List<String> list) {
-        list.add(WHITE + getDisplayName());
         if (this.tooltip != null) {
+            list.add(TextFormatting.AQUA + getDisplayName());
             list.add("---------------------------");
             String tooltip = WordUtils.wrap(TextHelper.localize(this.tooltip.toLowerCase(Locale.ENGLISH)), 40);
             list.addAll(Arrays.asList(tooltip.split("\r\n")));
-        }
+        } else list.add(TextFormatting.WHITE + getDisplayName());
     }
 
     @Override

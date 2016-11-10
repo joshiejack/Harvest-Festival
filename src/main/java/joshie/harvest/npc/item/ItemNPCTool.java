@@ -16,7 +16,7 @@ import static net.minecraft.util.text.TextFormatting.AQUA;
 public class ItemNPCTool extends ItemHFEnum<ItemNPCTool, NPCTool> {
     public enum NPCTool implements IStringSerializable {
         BLUE_FEATHER(true), NPC_KILLER(true), GIFT(false), CALENDAR(false),
-        CLOCK(false), WEATHER(false), FLOWER(false);
+        CLOCK(false), WEATHER(false), FLOWER(false), SPEECH(false);
 
         public boolean real;
 

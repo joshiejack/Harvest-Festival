@@ -86,6 +86,7 @@ harvestfestival.cheat.air.remover=[BuildingGen] Internal Air Remover
 
 #Crops
 harvestfestival.crop.sickle=Requires Sickle
+harvestfestival.crop.water=No Water Required
 harvestfestival.crop.seeds.format=%1s %2s
 harvestfestival.crop.seeds=Seeds
 harvestfestival.crop.seeds.days=days

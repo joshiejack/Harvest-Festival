@@ -60,6 +60,7 @@ public class ItemHFSeeds extends ItemSeeds implements ICreativeSorted {
         Crop crop = getCropFromStack(stack);
         if (crop != null) {
             if (crop.requiresSickle()) list.add("" + TextFormatting.AQUA + TextFormatting.ITALIC + TextHelper.translate("crop.sickle"));
+            if (!crop.requiresWater()) list.add("" + TextFormatting.BLUE + TextFormatting.ITALIC + TextHelper.translate("crop.water"));
             crop.getGrowthHandler().addInformation(list, crop, debug);
             int amount = crop instanceof Tree ? ((Tree)crop).getStagesToMaturity() : crop.getStages();
             list.add(amount + " " + TextHelper.translate("crop.seeds.days"));

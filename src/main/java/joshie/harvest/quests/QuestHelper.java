@@ -67,6 +67,7 @@ public class QuestHelper implements IQuestHelper {
 
     @Override
     public boolean hasCompleted(Quest quest, EntityPlayer player) {
+        if (quest == null) return false;
         if (quest.getQuestType() == QuestType.PLAYER) return HFTrackers.getPlayerTrackerFromPlayer(player).getQuests().getFinished().contains(quest);
         return TownHelper.getClosestTownToEntity(player).getQuests().getFinished().contains(quest);
     }

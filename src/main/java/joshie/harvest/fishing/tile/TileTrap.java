@@ -2,6 +2,7 @@ package joshie.harvest.fishing.tile;
 
 import joshie.harvest.core.base.tile.TileSingleStack;
 import joshie.harvest.core.helpers.FakePlayerHelper;
+import joshie.harvest.core.helpers.MCServerHelper;
 import joshie.harvest.core.helpers.SpawnItemHelper;
 import joshie.harvest.core.lib.LootStrings;
 import joshie.harvest.fishing.FishingAPI;
@@ -46,7 +47,7 @@ public class TileTrap extends TileSingleStack {
 
     @Override
     public void newDay() {
-        if (isSurroundedByWater(worldObj, getPos())) {
+        if (isSurroundedByWater(worldObj, pos)) {
             if (stack != null && FishingAPI.INSTANCE.isBait(stack)) {
                 LootContext.Builder lootcontext$builder = new LootContext.Builder((WorldServer) worldObj);
                 lootcontext$builder.withLootedEntity(FakePlayerHelper.getFakePlayerWithPosition((WorldServer) worldObj, getPos()));
@@ -54,8 +55,10 @@ public class TileTrap extends TileSingleStack {
                 for (ItemStack itemstack : worldObj.getLootTableManager().getLootTableFromLocation(getLootTable()).generateLootForPools(worldObj.rand, lootcontext$builder.build())) {
                     baited = false;
                     stack = itemstack.copy();
-                    saveAndRefresh();
                 }
+
+                saveAndRefresh();
+                MCServerHelper.markTileForUpdate(this);
             }
         }
     }

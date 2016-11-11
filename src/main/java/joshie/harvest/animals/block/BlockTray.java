@@ -37,6 +37,7 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Locale;
 
+import static joshie.harvest.animals.block.BlockTray.Tray.FEEDER_EMPTY;
 import static joshie.harvest.animals.block.BlockTray.Tray.NEST_EMPTY;
 
 public class BlockTray extends BlockHFEnum<BlockTray, Tray> implements IAnimalFeeder, INest {
@@ -183,7 +184,7 @@ public class BlockTray extends BlockHFEnum<BlockTray, Tray> implements IAnimalFe
 
     @Override
     protected boolean shouldDisplayInCreative(Tray tray) {
-        return true;
+        return tray == NEST_EMPTY || tray == FEEDER_EMPTY;
     }
 
     @Override

@@ -27,6 +27,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.Locale;
 
 import static joshie.harvest.fishing.HFFishing.NO_WATER;
+import static joshie.harvest.fishing.block.BlockFishing.FishingBlock.TRAP_BAITED;
 import static net.minecraft.block.BlockLiquid.LEVEL;
 
 public class BlockFishing extends BlockHFEnum<BlockFishing, FishingBlock> {
@@ -71,7 +72,7 @@ public class BlockFishing extends BlockHFEnum<BlockFishing, FishingBlock> {
         TileEntity tile = world.getTileEntity(pos);
         if (tile instanceof TileTrap) {
             TileTrap trap = ((TileTrap)tile);
-            if (trap.isBaited()) return getStateFromEnum(FishingBlock.TRAP_BAITED);
+            if (trap.isBaited()) return getStateFromEnum(TRAP_BAITED);
             else return getStateFromEnum(FishingBlock.TRAP);
         }
 
@@ -91,6 +92,11 @@ public class BlockFishing extends BlockHFEnum<BlockFishing, FishingBlock> {
             case HATCHERY:      return new TileHatchery();
             default:            return null;
         }
+    }
+
+    @Override
+    protected boolean shouldDisplayInCreative(FishingBlock block) {
+        return block != TRAP_BAITED;
     }
 
     @SideOnly(Side.CLIENT)

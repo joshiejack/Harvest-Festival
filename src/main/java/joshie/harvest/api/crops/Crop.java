@@ -509,7 +509,7 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements IPlantable {
             ItemStack copy = item.copy();
             copy.stackSize = amount;
             return item.copy();
-        } else return new ItemStack(Items.CARROT);
+        } else return new ItemStack(Items.BRICK);
     }
 
     /**

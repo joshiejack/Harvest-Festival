@@ -31,7 +31,7 @@ public class ShopInventory implements INBTSerializableMap<Shop, ShopInventory, N
 
     public StackSold onItemPurchasedFromShop(IPurchasable purchasable) {
         StackSold stack = StackSold.of(purchasable.getDisplayStack(), purchasable.getCost());
-        return CollectionHelper.mergeCollection(stack, soldToShop);
+        return CollectionHelper.mergeCollection(stack, purchasedFromShop);
     }
 
     public long getAdjustedSellToShopValue(IPurchasable purchasable) {
@@ -44,7 +44,7 @@ public class ShopInventory implements INBTSerializableMap<Shop, ShopInventory, N
 
     private int getAmountPurchased(IPurchasable purchasable) {
         StackSold comparable = StackSold.of(purchasable.getDisplayStack(), purchasable.getCost());
-        for (StackSold sold: soldToShop) {
+        for (StackSold sold: (purchasable.getCost() < 0) ? soldToShop : purchasedFromShop) {
             if (sold.equals(comparable)) return sold.getAmount();
 
         }

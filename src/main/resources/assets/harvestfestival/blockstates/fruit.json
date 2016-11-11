@@ -5,15 +5,15 @@
   },
   "variants": {
     "fruit": {
-      "apple": { "textures": { "cross": "minecraft:items/apple" }} ,
+      "apple": { "textures": { "cross": "minecraft:items/apple_maturing" }} ,
       "apple_harvestable": { "textures": { "cross": "minecraft:items/apple" }},
-      "orange": { "textures": { "cross": "harvestfestival:items/crops/orange" }},
+      "orange": { "textures": { "cross": "harvestfestival:items/crops/orange_maturing" }},
       "orange_harvestable": { "textures": { "cross": "harvestfestival:items/crops/orange" }},
-      "peach": { "textures": { "cross": "harvestfestival:items/crops/peach" }},
+      "peach": { "textures": { "cross": "harvestfestival:items/crops/peach_maturing" }},
       "peach_harvestable": { "textures": { "cross": "harvestfestival:items/crops/peach" }},
-      "banana": { "textures": { "cross": "harvestfestival:items/crops/banana" }},
+      "banana": { "textures": { "cross": "harvestfestival:items/crops/banana_maturing" }},
       "banana_harvestable": { "textures": { "cross": "harvestfestival:items/crops/banana" }},
-      "grape": { "textures": { "cross": "harvestfestival:items/crops/grape" }},
+      "grape": { "textures": { "cross": "harvestfestival:items/crops/grape_maturing" }},
       "grape_harvestable": { "textures": { "cross": "harvestfestival:items/crops/grape" }}
     }
   }

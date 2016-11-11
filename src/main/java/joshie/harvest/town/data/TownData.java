@@ -6,6 +6,7 @@ import joshie.harvest.buildings.BuildingImpl;
 import joshie.harvest.buildings.BuildingStage;
 import joshie.harvest.core.helpers.NBTHelper;
 import joshie.harvest.quests.data.QuestData;
+import joshie.harvest.shops.data.ShopData;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Rotation;
@@ -17,6 +18,7 @@ public abstract class TownData<Q extends QuestData> {
     protected Map<ResourceLocation, TownBuilding> buildings = new HashMap<>();
     protected LinkedList<BuildingStage> building = new LinkedList<>();
     protected final Set<ResourceLocation> inhabitants = new HashSet<>();
+    protected final ShopData shops = new ShopData();
     protected BlockPos townCentre;
     protected UUID uuid;
 
@@ -25,6 +27,10 @@ public abstract class TownData<Q extends QuestData> {
 
     public UUID getID() {
         return uuid;
+    }
+
+    public ShopData getShops() {
+        return shops;
     }
 
     public TownData setUUID(UUID UUID) {
@@ -79,6 +85,7 @@ public abstract class TownData<Q extends QuestData> {
     }
 
     public void readFromNBT(NBTTagCompound nbt) {
+        shops.readFromNBT(nbt);
         uuid = NBTHelper.readUUID("Town", nbt);
         townCentre = NBTHelper.readBlockPos("TownCentre", nbt);
         NBTHelper.readMap("TownBuildingList", TownBuilding.class, buildings, nbt);
@@ -89,6 +96,7 @@ public abstract class TownData<Q extends QuestData> {
     }
 
     public void writeToNBT(NBTTagCompound nbt) {
+        shops.writeToNBT(nbt);
         NBTHelper.writeBlockPos("TownCentre", nbt, townCentre);
         NBTHelper.writeUUID("Town", nbt, uuid);
         NBTHelper.writeMap("TownBuildingList", nbt, buildings);

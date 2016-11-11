@@ -31,6 +31,7 @@ public class PurchasableBuilding extends PurchasableMaterials {
         this.building = (BuildingImpl) building;
         this.resource = BuildingRegistry.REGISTRY.getKey(this.building);
         this.tooltip = resource.getResourceDomain() + ".structures." + resource.getResourcePath() + ".tooltip";
+        this.setStock(1);
     }
 
     @Override

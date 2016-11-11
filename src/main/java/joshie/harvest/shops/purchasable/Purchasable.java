@@ -23,6 +23,7 @@ public class Purchasable implements IPurchasable {
     private final String resource;
     private final long cost;
     private String tooltip;
+    private int stock;
 
     public Purchasable(long cost, ItemStack stack) {
         this.cost = cost;
@@ -32,6 +33,11 @@ public class Purchasable implements IPurchasable {
 
     public Purchasable addTooltip(String tooltip) {
         this.tooltip = "harvestfestival." + tooltip + ".tooltip";
+        return this;
+    }
+
+    public Purchasable setStock(int stock) {
+        this.stock = stock;
         return this;
     }
 
@@ -57,6 +63,11 @@ public class Purchasable implements IPurchasable {
     }
 
     @Override
+    public int getStock() {
+        return stock != 0 ? stock: getCost() < 0 ? 10 : Integer.MAX_VALUE;
+    }
+
+    @Override
     public ItemStack getDisplayStack() {
         return stack;
     }
@@ -66,7 +77,7 @@ public class Purchasable implements IPurchasable {
         if (getCost() < 0) {
             InventoryHelper.takeItemsInInventory(player, ITEM_STACK, getDisplayStack(), getDisplayStack().stackSize);
         } else {
-            SpawnItemHelper.addToPlayerInventory(player, getDisplayStack());
+            SpawnItemHelper.addToPlayerInventory(player, getDisplayStack().copy());
         }
     }
 

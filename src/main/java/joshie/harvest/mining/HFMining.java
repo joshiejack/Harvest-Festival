@@ -23,10 +23,8 @@ import joshie.harvest.mining.item.ItemMaterial.Material;
 import joshie.harvest.mining.item.ItemMiningTool;
 import joshie.harvest.mining.loot.*;
 import joshie.harvest.mining.render.*;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.storage.loot.conditions.LootConditionManager;
 import net.minecraftforge.client.model.ModelLoader;
@@ -34,7 +32,6 @@ import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.minecraftforge.oredict.OreDictionary;
 
 import static joshie.harvest.api.calendar.Season.*;
 import static joshie.harvest.core.HFCore.FLOWERS;
@@ -79,13 +76,6 @@ public class HFMining {
         registerOreIfNotExists("gemAmethyst", MATERIALS.getStackFromEnum(Material.AMETHYST));
         registerSellable(DIAMOND, 100L);
         registerSellable(EMERALD, 80L);
-
-        //Add smelting of five ores to one ingot
-        OreDictionary.registerOre("oreCopper", MATERIALS.getStackFromEnum(Material.COPPER));
-        OreDictionary.registerOre("oreSilver", MATERIALS.getStackFromEnum(Material.SILVER));
-        OreDictionary.registerOre("oreGold", MATERIALS.getStackFromEnum(Material.GOLD));
-        OreDictionary.registerOre("oreMystril", MATERIALS.getStackFromEnum(Material.MYSTRIL));
-        FurnaceRecipes.instance().addSmeltingRecipe(MATERIALS.getStackFromEnum(Material.GOLD), new ItemStack(Items.GOLD_INGOT), 1F);
     }
 
     @SideOnly(Side.CLIENT)

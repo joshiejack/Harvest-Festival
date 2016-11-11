@@ -57,14 +57,6 @@ public class PurchasableMaterials extends PurchasableFML<BuildingImpl> implement
         this.resource = ((cost >= 0) ? "buy: " : "sell: ") + Purchasable.stackToString(stack);
     }
 
-    private boolean isWoodOnly(long cost, int logs, int stone) {
-        return logs != 0 && stone == 0 && cost == 0;
-    }
-
-    private boolean isStoneOnly(long cost, int logs, int stone) {
-        return stone != 0 && logs == 0 && cost == 0;
-    }
-
     @Override
     public IRequirement[] getRequirements() {
         return requirements;

@@ -11,7 +11,9 @@ import joshie.harvest.npc.entity.EntityNPC;
 import joshie.harvest.npc.gui.GuiNPCBase;
 import joshie.harvest.player.stats.StatsClient;
 import joshie.harvest.shops.Shop;
+import joshie.harvest.shops.data.ShopData;
 import joshie.harvest.shops.gui.button.*;
+import joshie.harvest.town.TownHelper;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -31,7 +33,7 @@ public class GuiNPCShop<I extends IPurchasable> extends GuiNPCBase {
     protected final StatsClient stats;
     protected final EntityPlayer client;
     protected final Shop shop;
-    protected final boolean selling;
+    public final boolean selling;
     protected int start;
     private int maxSize;
     private ItemStack purchased;
@@ -127,20 +129,23 @@ public class GuiNPCShop<I extends IPurchasable> extends GuiNPCBase {
         int id = start;
         int position = 0;
         int pPosition = 0;
+        ShopData data = TownHelper.getClosestTownToEntity(MCClientHelper.getPlayer()).getShops();;
         Iterator<IPurchasable> it = contents.iterator();
         while (it.hasNext() && position <= 180) {
             IPurchasable purchasable = it.next();
-            if (pPosition >= start && purchasable.canList(client.worldObj, client)) {
+            if (pPosition >= start && purchasable.canList(client.worldObj, client) && data.canList(shop, purchasable)) {
                 if (purchasable.getCost() < 0) {
-                    buttonList.add(new ButtonListingSell(this, purchasable, id + 2, guiLeft + 28, 38 + guiTop + position));
+                    buttonList.add(new ButtonListing(this, purchasable, id + 2, guiLeft + 28, 38 + guiTop + position));
                     position += 20;
-                } else position += addButton((I)purchasable, id + 2, guiLeft + 28, 38 + guiTop + position, position);
+                } else position += addButton(purchasable, id + 2, guiLeft + 28, 38 + guiTop + position, position);
 
                 id++;
             }
 
             pPosition++;
         }
+
+        if (buttonList.size() == 2) buttonList.add(new ButtonListingOutOfStock(this, 3, guiLeft + 28, 38 + guiTop + position));
     }
 
     protected int addButton(IPurchasable purchasable, int id, int left, int top, int space) {
@@ -282,4 +287,6 @@ public class GuiNPCShop<I extends IPurchasable> extends GuiNPCBase {
     public int getMax() {
         return 10;
     }
+
+
 }

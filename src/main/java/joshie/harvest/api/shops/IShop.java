@@ -15,19 +15,21 @@ public interface IShop {
      * @param purchasable  the purchaseable **/
     IPurchasable addPurchasable(IPurchasable purchasable);
 
-    @Deprecated //TODO: Remove in 0.7+
-    IShop addItem(IPurchasable item);
-
     /** Convenience method for basic items
      *  @param      cost how much this costs in gold
      *  @param      stack the item you get for this purchase**/
     IPurchasable addPurchasable(long cost, ItemStack stack);
 
-    @Deprecated //TODO: Remove in 0.7+
-    IShop addItem(long cost, ItemStack... stack);
-
     /** Set special rules for being able to buy or sell from this shop
      *  By default all shops are accessible at all times
      *  @param rules the rules you want to set **/
     IShop setSpecialPurchaseRules(ISpecialPurchaseRules rules);
+
+    @Deprecated //TODO: Remove in 0.7+
+    IShop addItem(IPurchasable item);
+
+    @Deprecated //TODO: Remove in 0.7+
+    IShop addItem(long cost, ItemStack... stack);
+
+
 }

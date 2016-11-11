@@ -3,6 +3,7 @@ package joshie.harvest.shops.packet;
 import io.netty.buffer.ByteBuf;
 import joshie.harvest.api.shops.IPurchasable;
 import joshie.harvest.core.HFTrackers;
+import joshie.harvest.core.helpers.MCClientHelper;
 import joshie.harvest.core.network.Packet;
 import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.core.network.PenguinPacket;
@@ -10,6 +11,8 @@ import joshie.harvest.player.PlayerTrackerServer;
 import joshie.harvest.player.stats.StatsServer;
 import joshie.harvest.shops.Shop;
 import joshie.harvest.shops.ShopRegistry;
+import joshie.harvest.shops.data.ShopData;
+import joshie.harvest.town.TownHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.ResourceLocation;
@@ -52,17 +55,28 @@ public class PacketPurchaseItem extends PenguinPacket {
             }
         } else {
             //Purchase the item this many times
+            ShopData data = TownHelper.getClosestTownToEntity(player).getShops();
             for (int i = 0; i < amount; i++) {
-                purchasable.onPurchased(player);
+                data.onPurchasableHandled(player, shop, purchasable);
+            }
+
+            //If we can longer be listed, then refresh the gui
+            if (!data.canList(shop, purchasable)) {
+                MCClientHelper.initGui();
             }
         }
     }
 
     private boolean purchase(EntityPlayerMP player) {
         StatsServer stats = HFTrackers.<PlayerTrackerServer>getPlayerTrackerFromPlayer(player).getStats();
-        if (stats.getGold() -(purchasable.getCost() * amount) >= 0) {
-            stats.addGold(player, -(purchasable.getCost() * amount));
-            for (int i = 0; i < amount; i++) purchasable.onPurchased(player);
+        long cost = TownHelper.getClosestTownToEntity(player).getShops().getSellValue(shop, purchasable);
+        if (stats.getGold() -(cost * amount) >= 0) {
+            stats.addGold(player, -(cost * amount));
+            for (int i = 0; i < amount; i++) {
+                TownHelper.getClosestTownToEntity(player).getShops().onPurchasableHandled(player, shop, purchasable);
+            }
+
+            HFTrackers.markDirty(player.worldObj);
             return true;
         }
 

@@ -24,6 +24,7 @@ public abstract class PurchasableFML<I extends IForgeRegistryEntry.Impl<I>> impl
     protected I item;
     private final long cost;
     protected String tooltip;
+    private int stock;
 
     public PurchasableFML(long cost, ResourceLocation resource) {
         this.cost = cost;
@@ -37,6 +38,16 @@ public abstract class PurchasableFML<I extends IForgeRegistryEntry.Impl<I>> impl
     public PurchasableFML addTooltip(String tooltip) {
         this.tooltip = "harvestfestival." + tooltip + ".tooltip";
         return this;
+    }
+
+    public PurchasableFML setStock(int stock) {
+        this.stock = stock;
+        return this;
+    }
+
+    @Override
+    public int getStock() {
+        return stock != 0 ? stock: getCost() < 0 ? 10 : Integer.MAX_VALUE;
     }
 
     @Override

@@ -18,6 +18,7 @@ public class PurchasableRecipe extends PurchasableMeal {
         super(150, resource);
         this.season = season;
         this.weekday = weekday;
+        this.setStock(1);
     }
 
     @Override

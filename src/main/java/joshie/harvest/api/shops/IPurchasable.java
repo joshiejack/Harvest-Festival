@@ -21,6 +21,9 @@ public interface IPurchasable extends ISpecialPurchaseRules {
     /** The total cost of this item **/
     long getCost();
 
+    /** How many of this item be be purchased each day **/
+    default int getStock() { return getCost() < 0 ? 10 : Integer.MAX_VALUE; }
+
     /** This is the display name for this item **/
     default String getDisplayName() { return getDisplayStack().getDisplayName(); }
 
@@ -34,8 +37,4 @@ public interface IPurchasable extends ISpecialPurchaseRules {
     /** Called whenever this item is purchased by this player
      * @param player    the player doing the purchasing **/
     void onPurchased(EntityPlayer player);
-
-
-
-
 }

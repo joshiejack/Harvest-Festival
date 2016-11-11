@@ -118,6 +118,7 @@ public class TownDataServer extends TownData<QuestDataServer> implements IQuestM
 
     public void newDay(World world, Cache<BlockPos, Boolean> isFar) {
         if (world.isBlockLoaded(getTownCentre())) {
+            shops.newDay(uuid);
             gathering.newDay(world, townCentre, buildings.values(), isFar);
             for (ResourceLocation villager: deadVillagers) {
                 NPC npc = NPCRegistry.REGISTRY.getValue(villager);

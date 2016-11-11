@@ -94,37 +94,39 @@ public class ItemSickle extends ItemTool<ItemHoe> implements IBreakCrops {
 
     @Override
     public float getStrengthVSCrops(EntityPlayer player, World world, BlockPos pos, IBlockState state, ItemStack stack) {
-        if (!player.canPlayerEdit(pos, EnumFacing.DOWN, stack)) return 0F;
-        else {
-            EnumFacing front = EntityHelper.getFacingFromEntity(player);
-            Block initial = world.getBlockState(pos).getBlock();
-            if (!(initial instanceof BlockHFCrops)) {
-                return 0F;
-            }
+        if (canUse(stack)) {
+            if (!player.canPlayerEdit(pos, EnumFacing.DOWN, stack)) return 0F;
+            else {
+                EnumFacing front = EntityHelper.getFacingFromEntity(player);
+                Block initial = world.getBlockState(pos).getBlock();
+                if (!(initial instanceof BlockHFCrops)) {
+                    return 0F;
+                }
 
-            ToolTier tier = getTier(stack);
-            //Facing North, We Want East and West to be 1, left * this.left
-            for (int x2 = getXMinus(tier, front, pos.getX()); x2 <= getXPlus(tier, front, pos.getX()); x2++) {
-                for (int z2 = getZMinus(tier, front, pos.getZ()); z2 <= getZPlus(tier, front, pos.getZ()); z2++) {
-                    if (canUse(stack)) {
-                        BlockPos newPos = new BlockPos(x2, pos.getY(), z2);
-                        Block block = world.getBlockState(newPos).getBlock();
-                        if (block instanceof BlockHFCrops) {
-                            if (!world.isRemote && (!newPos.equals(pos))) {
-                                block.removedByPlayer(state, world, newPos, player, true);
+                ToolTier tier = getTier(stack);
+                //Facing North, We Want East and West to be 1, left * this.left
+                for (int x2 = getXMinus(tier, front, pos.getX()); x2 <= getXPlus(tier, front, pos.getX()); x2++) {
+                    for (int z2 = getZMinus(tier, front, pos.getZ()); z2 <= getZPlus(tier, front, pos.getZ()); z2++) {
+                        if (canUse(stack)) {
+                            BlockPos newPos = new BlockPos(x2, pos.getY(), z2);
+                            Block block = world.getBlockState(newPos).getBlock();
+                            if (block instanceof BlockHFCrops) {
+                                if (!world.isRemote && (!newPos.equals(pos))) {
+                                    block.removedByPlayer(state, world, newPos, player, true);
+                                }
+
+                                boolean isWithered = BlockHFCrops.isWithered(world.getBlockState(newPos));
+                                IBlockState particleState = isWithered ? Blocks.TALLGRASS.getDefaultState() : Blocks.CARROTS.getDefaultState();
+                                displayParticle(world, newPos, EnumParticleTypes.BLOCK_CRACK, particleState);
+                                playSound(world, newPos, SoundEvents.BLOCK_GRASS_BREAK, SoundCategory.BLOCKS);
+                                ToolHelper.performTask(player, stack, getExhaustionRate(stack));
                             }
-
-                            boolean isWithered = BlockHFCrops.isWithered(world.getBlockState(newPos));
-                            IBlockState particleState = isWithered ? Blocks.TALLGRASS.getDefaultState() : Blocks.CARROTS.getDefaultState();
-                            displayParticle(world, newPos, EnumParticleTypes.BLOCK_CRACK, particleState);
-                            playSound(world, newPos, SoundEvents.BLOCK_GRASS_BREAK, SoundCategory.BLOCKS);
-                            ToolHelper.performTask(player, stack, getExhaustionRate(stack));
                         }
                     }
                 }
             }
-        }
 
-        return 1F;
+            return 1F;
+        } else return 0.005F;
     }
 }

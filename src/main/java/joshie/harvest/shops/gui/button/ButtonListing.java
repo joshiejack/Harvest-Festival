@@ -7,8 +7,10 @@ import joshie.harvest.core.helpers.StackHelper;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.player.stats.StatsClient;
+import joshie.harvest.shops.data.ShopData;
 import joshie.harvest.shops.gui.GuiNPCShop;
 import joshie.harvest.shops.packet.PacketPurchaseItem;
+import joshie.harvest.town.TownHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.SoundHandler;
 import net.minecraft.client.gui.FontRenderer;
@@ -29,6 +31,7 @@ public class ButtonListing<I extends IPurchasable> extends GuiButton {
     private int hoverTimer;
     private int stackSize = 1;
     private boolean clicked;
+    private ShopData data;
 
     @SuppressWarnings("unchecked")
     public ButtonListing(GuiNPCShop shop, IPurchasable purchasable, int buttonId, int x, int y) {
@@ -36,6 +39,7 @@ public class ButtonListing<I extends IPurchasable> extends GuiButton {
         this.height = 18;
         this.shop = shop;
         this.purchasable = (I) purchasable;
+        this.data = TownHelper.getClosestTownToEntity(MCClientHelper.getPlayer()).getShops();
     }
 
     @Override
@@ -69,7 +73,7 @@ public class ButtonListing<I extends IPurchasable> extends GuiButton {
             drawForeground(mc, fontrenderer, j);
             GlStateManager.color(1.0F, 1.0F, 1.0F);
 
-            if (originalState == HOVER) {
+            if (originalState == HOVER && purchasable.getCost() >= 0) {
                 List<String> list = new ArrayList<>();
                 purchasable.addTooltip(list);
                 shop.addTooltip(list);
@@ -87,7 +91,7 @@ public class ButtonListing<I extends IPurchasable> extends GuiButton {
         drawString(fontrenderer, displayString, xPosition + 20, yPosition + (height - 8) / 2, j);
         GlStateManager.color(1.0F, 1.0F, 1.0F);
         //Draw the cost
-        String cost = shop.getCostAsString(purchasable.getCost());
+        String cost = shop.getCostAsString(data.getSellValue(shop.getShop(), purchasable));
         int width = fontrenderer.getStringWidth(cost);
         mc.renderEngine.bindTexture(HFModInfo.ELEMENTS);
         drawTexturedModalRect(xPosition + 184, (yPosition + (height - 8) / 2) - 2, 244, 0, 12, 12);
@@ -107,14 +111,14 @@ public class ButtonListing<I extends IPurchasable> extends GuiButton {
                 if (GuiScreen.isShiftKeyDown() && canPurchaseX(stackSize + 10)) {
                     stackSize += 10;
                     StatsClient stats = HFTrackers.getClientPlayerTracker().getStats();
-                    stats.setGoldValue(stats.getGold() - (purchasable.getCost() * 10));
-                    shop.updatePurchased(StackHelper.toStack(purchasable.getDisplayStack(), 10), 10);
+                    stats.setGoldValue(stats.getGold() - (data.getSellValue(shop.getShop(), purchasable) * 10));
+                    if (purchasable.getCost() >= 0) shop.updatePurchased(StackHelper.toStack(purchasable.getDisplayStack(), 10), 10);
                     if (hoverTimer %40 == 1) playPressSound(mc.getSoundHandler());
                 } else if (canPurchaseX(stackSize + 1)) {
                     stackSize++;
-                    shop.updatePurchased(purchasable.getDisplayStack(), 1);
+                    if (purchasable.getCost() >= 0) shop.updatePurchased(purchasable.getDisplayStack(), 1);
                     StatsClient stats = HFTrackers.getClientPlayerTracker().getStats();
-                    stats.setGoldValue(stats.getGold() - purchasable.getCost());
+                    stats.setGoldValue(stats.getGold() - data.getSellValue(shop.getShop(), purchasable));
                     if (hoverTimer %40 == 1) playPressSound(mc.getSoundHandler());
                 }
 
@@ -148,11 +152,7 @@ public class ButtonListing<I extends IPurchasable> extends GuiButton {
 
     protected boolean canPurchaseX(int x) {
         StatsClient stats = HFTrackers.getClientPlayerTracker().getStats();
-        return stats.getGold() - (purchasable.getCost() * x) >= 0 && purchasable.canBuy(MCClientHelper.getWorld(), MCClientHelper.getPlayer(), x);
-    }
-
-    protected boolean canPurchase10() {
-        return canPurchaseX(10);
+        return x <= purchasable.getStock() && stats.getGold() - (purchasable.getCost() * x) >= 0 && purchasable.canBuy(MCClientHelper.getWorld(), MCClientHelper.getPlayer(), x);
     }
 
     protected boolean canPurchase1() {

@@ -2,6 +2,7 @@ package joshie.harvest.shops.purchasable;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.core.HFTrackers;
+import joshie.harvest.core.helpers.MCClientHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -33,6 +34,7 @@ public class PurchasableWeekend extends Purchasable {
     @Override
     public void onPurchased(EntityPlayer player) {
         HFTrackers.getPlayerTrackerFromPlayer(player).getTracking().addAsObtained(stack);
+        if (player.worldObj.isRemote) MCClientHelper.initGui();
         super.onPurchased(player);
     }
 }

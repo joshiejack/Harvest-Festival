@@ -17,6 +17,11 @@ public class PurchasableBlueFeather extends Purchasable {
     public PurchasableBlueFeather(int cost, ItemStack stack) {
         super(cost, stack);
     }
+
+    @Override
+    public int getStock() {
+        return 1;
+    }
     
     @Override
     public boolean canBuy(World world, EntityPlayer player, int amount) {

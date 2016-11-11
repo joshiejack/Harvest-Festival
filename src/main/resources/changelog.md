@@ -81,7 +81,8 @@
 * Moved the sprinkler to the carpenters store
 * Fodder now costs 100 gold, but will last for 10 feeds
 * Chicken Feed now costs 50 gold, but will last for 10 feeds
-* You are now able to sell some items to the stores
+* You are now able to sell some items to the stores, but only a certain amount each day
+* Shops are now able to support a "stock value", aka how many items you can buy of this item each day
 
 ###Tools
 * Tools will have [BROKEN] in front of their name, when they can't be used

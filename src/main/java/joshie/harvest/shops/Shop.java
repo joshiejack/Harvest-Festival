@@ -30,11 +30,17 @@ public class Shop implements IShop {
     private ShopSelection selection;
     private boolean canBuy;
     private boolean canSell;
+    private long budget;
 
     public Shop(ResourceLocation resource) {
+        budget = 5000L;
         resourceLocation = resource;
         unlocalizedName = resource.getResourceDomain() + ".shop." + resource.getResourcePath();
         rules = DEFAULT;
+    }
+
+    public long getBudget() {
+        return budget;
     }
 
     public IPurchasable getPurchasableFromID(String id) {
@@ -42,7 +48,7 @@ public class Shop implements IShop {
     }
 
     @Override
-    public IShop setSpecialPurchaseRules(ISpecialPurchaseRules rules) {
+    public Shop setSpecialPurchaseRules(ISpecialPurchaseRules rules) {
         this.rules = rules;
         return this;
     }
@@ -102,8 +108,12 @@ public class Shop implements IShop {
 
     @Override
     public IPurchasable addPurchasable(long cost, ItemStack stack) {
-        IPurchasable purchasable = new Purchasable(cost, stack);
-        return addPurchasable(purchasable);
+        return addPurchasable(new Purchasable(cost, stack));
+    }
+
+    /** My own convenience **/
+    public IPurchasable addPurchasable(long cost, ItemStack stack, int stock) {
+        return addPurchasable(new Purchasable(cost, stack).setStock(stock));
     }
 
     public String getLocalizedName() {

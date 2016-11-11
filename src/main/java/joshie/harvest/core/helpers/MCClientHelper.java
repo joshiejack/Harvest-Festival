@@ -1,10 +1,8 @@
 package joshie.harvest.core.helpers;
 
 import joshie.harvest.core.network.PenguinPacketLocation;
-import joshie.harvest.shops.gui.GuiNPCShop;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
-import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -49,5 +47,11 @@ public class MCClientHelper {
 
     public static TileEntity getTile(PenguinPacketLocation message) {
         return getWorld().getTileEntity(message.pos);
+    }
+
+    public static void initGui() {
+        if (getMinecraft().currentScreen != null) {
+            getMinecraft().currentScreen.initGui();
+        }
     }
 }

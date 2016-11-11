@@ -35,6 +35,17 @@ public class StackSold extends AbstractDataHolder<StackSold> {
         return sell;
     }
 
+    public void reset() {
+        amount = 0;
+    }
+
+    public void depreciate() {
+        amount--;
+        if (amount <= 0) {
+            amount = 0;
+        }
+    }
+
     @Override
     public void merge(StackSold stack) {
         amount += stack.amount;

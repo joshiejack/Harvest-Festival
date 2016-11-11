@@ -1,8 +1,5 @@
-#en_US.lang by joshie and Yulife ;)
-#zh_CN.lang by Neko. 一只猫neko倾情汉化 =w=
-# 初翻: Neko Damekun Lychee
-# 校对 & 润色: Neko
 
+#en_US.lang by joshie and Yulife ;)
 harvestfestival.tab.farming=丰收物语 - 农耕
 harvestfestival.tab.cooking=丰收物语 - 烹饪
 harvestfestival.tab.mining=丰收物语 - 采矿
@@ -39,8 +36,8 @@ harvestfestival.tool.miracle.potion=奇迹药水
 
 #Buildings
 harvestfestival.town.failure=不能在此放置!
-harvestfestival.town.dimension=城镇只能在主世界建设, 请将他建设在主世界!
-harvestfestival.town.distance=每个城镇只能有一座同类型建筑, 请将他放置得远一些!
+harvestfestival.town.dimension=城镇只能在主世界建设, 请将它建设在主世界!
+harvestfestival.town.distance=每个城镇只能有一座同类型建筑, 请将它放置得远一些!
 harvestfestival.town.building=这种建筑正在准备建造中, 每个城镇只能有一座同类型建筑!
 harvestfestival.town.permission=你没有权限在此安放建筑.
 harvestfestival.town.preview=建筑模板已标示.
@@ -52,20 +49,33 @@ harvestfestival.town.cancelled=已取消
 harvestfestival.structures.blueprint=图纸: %s
 harvestfestival.structures.spawn=[生成] %s
 harvestfestival.structures.barn=饲养场
+harvestfestival.structures.barn.tooltip=做一个饲养场能让你养牛和羊, 和场主对话以获得你的第一头牛，哞.
 harvestfestival.structures.blacksmith=铁匠铺
+harvestfestival.structures.blacksmith.tooltip=在铁匠铺你能够修理工具以及进行升级.
 harvestfestival.structures.cafe=咖啡店
+harvestfestival.structures.cafe.tooltip=咖啡馆会卖食物和食谱, 周末他们还卖厨房用具.
 harvestfestival.structures.carpenter=木工小屋
+harvestfestival.structures.carpenter.tooltip=这玩意你买不了, 但我还是要写一个简介 o(*￣▽￣*)o !
 harvestfestival.structures.church=教堂
+harvestfestival.structures.church.tooltip=NPC聚会的好地方, 祭祀也可以祝福被诅咒的工具.
 harvestfestival.structures.clockmaker=钟表作坊
+harvestfestival.structures.clockmaker.tooltip=一个钟表, 至少他自己说是...
 harvestfestival.structures.fishinghole=鱼塘
+harvestfestival.structures.fishinghole.tooltip=在这你能捕到其他地方捕不到的鱼!
 harvestfestival.structures.fishinghut=钓鱼小屋
+harvestfestival.structures.fishinghut.tooltip=如果你想要巨额渔业收入, 那么这就是你需要的.
 harvestfestival.structures.goddesspond=女神池
+harvestfestival.structures.goddesspond.tooltip=这是女神喜欢生活的地方, 你可以把任何作物或植物扔进水里, 她会出现并接受你的礼物.
 harvestfestival.structures.mininghill=采矿场
-harvestfestival.structures.mininghut=采矿小屋
+harvestfestival.structures.mininghill.tooltip=在这里你可以找到各种各样的矿物堆, 你可以出售它们来换取现金.
 harvestfestival.structures.poultryfarm=养鸡场
+harvestfestival.structures.poultryfarm.tooltip=想开始养鸡吗? 在这和店主聊天以获得第一只鸡.
 harvestfestival.structures.supermarket=杂货店
+harvestfestival.structures.supermarket.tooltip=出售各种各样的工具、种子和烹饪原料.
 harvestfestival.structures.townhall=市政厅
-harvestfestival.structures.shipping=出货箱
+harvestfestival.structures.townhall.tooltip=终极的中心建筑, 解锁一些重大事件和其他食物.
+harvestfestival.structures.festivals=欢庆之地
+harvestfestival.structures.festivals.tooltip=这是举行节日的地方. 不要把任何东西放在地上, 因为每当节日来临它就会消失.
 harvestfestival.structures.null=无效
 
 #Cheat Items (Translators don't bother tranlating these, I just use them to help with dev)
@@ -77,6 +87,7 @@ harvestfestival.cheat.air.remover=[BuildingGen] Internal Air Remover
 
 #Crops
 harvestfestival.crop.sickle=需要使用镰刀收割
+harvestfestival.crop.water=No Water Required
 harvestfestival.crop.seeds.format=%1s %2s
 harvestfestival.crop.seeds=种子
 harvestfestival.crop.seeds.days=天
@@ -243,6 +254,25 @@ harvestfestival.meal.burnt.pot=失败的蒸煮料理
 harvestfestival.meal.burnt.frying.pan=失败的煎炒料理
 harvestfestival.meal.burnt.mixer=失败的搅拌料理
 harvestfestival.meal.burnt.oven=失败的烘焙料理
+#0.6+ Meals
+harvestfestival.meal.jam.apple=苹果酱
+harvestfestival.meal.jam.grape=葡萄酱 
+harvestfestival.meal.jam.strawberry=草莓酱
+harvestfestival.meal.marmalade=橘子酱
+harvestfestival.meal.noodles.tempura=天麸锣盖浇面
+harvestfestival.meal.rice.tempura=天麸锣饭
+harvestfestival.meal.juice.orange=橘子汁
+harvestfestival.meal.juice.apple=苹果汁
+harvestfestival.meal.juice.banana=香蕉汁
+harvestfestival.meal.juice.peach=桃汁
+harvestfestival.meal.juice.grape=葡萄汁
+harvestfestival.meal.juice.mix=混合果汁
+harvestfestival.meal.latte.mix=混合拿铁咖啡
+harvestfestival.meal.latte.fruit=果味拿铁
+harvestfestival.meal.sandwich.fruit=水果三明治
+harvestfestival.meal.bread.raisin=葡萄干面包
+harvestfestival.meal.bun.jam=果酱面包
+harvestfestival.meal.cake=蛋糕
 
 #Ingredients
 harvestfestival.ingredient.butter=黄油
@@ -313,13 +343,28 @@ harvestfestival.fish.chub=鲢鱼
 harvestfestival.fish.bowfin=弓鳍鱼
 harvestfestival.fish.lungfish=肺鱼
 harvestfestival.fish.pickerel=梭鱼
+harvestfestival.fish.anchovy=虹鳟鱼
+harvestfestival.fish.bass=鲈鱼
+harvestfestival.fish.carp=鲤鱼
+harvestfestival.fish.pike=梭鱼
+harvestfestival.fish.sardine=沙丁鱼
+harvestfestival.fish.walleye=玻璃梭鲈
 
 #Junk
+harvestfestival.junk.bait=鱼饵
+harvestfestival.junk.bait.tooltip=渔栅所需的鱼饵, 也可以附在钓竿上增加鱼儿咬钩几率.
 harvestfestival.junk.bones=鱼骨
 harvestfestival.junk.boot=皮靴
 harvestfestival.junk.can=空罐
 harvestfestival.junk.fossil=鱼化石
 harvestfestival.junk.treasure=海盗宝藏
+
+#Blocks
+harvestfestival.fishing.block.trap=渔栅
+harvestfestival.fishing.block.trap.tooltip=简单抓鱼器, 放满诱饵, 确保它是四面环水, 然后第二天回来看看你的收获.
+harvestfestival.fishing.block.trap.baited=有饵渔栅
+harvestfestival.fishing.block.hatchery=孵卵所
+harvestfestival.fishing.block.hatchery.tooltip=放在水的表面, 确保周围8个方块全是水. 鱼在几天内会成倍增加. 小心点当你把鱼拿出来时有机会损坏.
 
 #Tools
 harvestfestival.tool.broken=[损坏]
@@ -413,9 +458,13 @@ harvestfestival.cookware.baking=烤盘
 harvestfestival.cookware.steamer=蒸锅
 
 harvestfestival.storage.shipping=出货箱
+harvestfestival.storage.shipping.tooltip=每天六点, 你可以来这卖东西.
 harvestfestival.sized.incubator=孵化器
 harvestfestival.trough.wood=饲料槽
-harvestfestival.sprinkler.wood=洒水器
+harvestfestival.sprinkler.iron=洒水器
+harvestfestival.sprinkler.iron.tooltip=这个划时代的发明可以帮你很多, 这可以给9x9的地方浇水.
+harvestfestival.sprinkler.old=老化洒水器
+harvestfestival.sprinkler.old.tooltip=老化的洒水器只能浇3x3的地方.
 harvestfestival.tray.nest.empty=鸡窝
 harvestfestival.tray.small.chicken=带有小蛋的鸡窝
 harvestfestival.tray.medium.chicken=带有中蛋的鸡窝
@@ -448,27 +497,21 @@ harvestfestival.rock.boulder.large=大石块
 
 #Other Gathering Items
 harvestfestival.nature.bamboo=竹笋
-harvestfestival.nature.grapes=野葡萄
 harvestfestival.nature.matsutake=松茸
-harvestfestival.nature.toadstool=毒蘑菇
-harvestfestival.nature.black.grass=黑色草
-harvestfestival.nature.blue.grass=蓝色草
-harvestfestival.nature.green.grass=绿色草
-harvestfestival.nature.indigo.grass=青色草
-harvestfestival.nature.orange.grass=橙色草
-harvestfestival.nature.purple.grass=粉色草
-harvestfestival.nature.red.grass=红色草
-harvestfestival.nature.white.grass=白色草
-harvestfestival.nature.yellow.grass=黄色草
+harvestfestival.nature.mint=Mint
+harvestfestival.nature.chamomile=Chamomile
+harvestfestival.nature.lavendar=Lavendar
 
 #Mine Blocks
 harvestfestival.dirt=采矿场地板
 harvestfestival.dirt.winter=采矿场地板
 harvestfestival.dirt.decorative=采矿场地板
 harvestfestival.dirt.decorative.winter=采矿场地板
-harvestfestival.hole=矿洞
+
 harvestfestival.stone.real=采矿场墙壁
 harvestfestival.stone.decorative=采矿场墙壁
+harvestfestival.stone.ladder.hole=秘密通道? ? ?
+harvestfestival.stone.ladder.hole.whisper=嗯…看起来应该能下去, 如果我把梯子放下去?
 harvestfestival.ladder.wood=采矿场楼梯
 harvestfestival.ore.rock=岩石
 harvestfestival.ore.copper=铜矿堆
@@ -482,6 +525,7 @@ harvestfestival.ore.ruby=红宝石堆
 harvestfestival.ore.topaz=黄晶玉堆
 harvestfestival.ore.amethyst=紫水晶堆
 harvestfestival.portal=采矿场入口
+harvestfestival.mine.format=层 %s
 
 #Mine Materials
 harvestfestival.material.junk=废矿石
@@ -655,6 +699,8 @@ harvestfestival.npc.goddess.gift.decent=这件礼物让我开心.
 harvestfestival.npc.goddess.gift.dislike=这件礼物并不能让我开心.
 harvestfestival.npc.goddess.gift.bad=这礼物是在侮辱我.
 harvestfestival.npc.goddess.gift.terrible=你为什么要这样侮辱我.
+harvestfestival.npc.goddess.gift.no=恐怕我不适合接受这份礼物, 它太珍贵了!
+harvestfestival.npc.goddess.gift.reject=亲爱的, 我很喜欢它. 但是我今天实在不能接受礼物了.
 
 # Goddess Weather
 harvestfestival.npc.goddess.weather.sunny1=哦, 宝贝儿, 明天晴空万里哦!
@@ -691,6 +737,8 @@ harvestfestival.npc.katlin.gift.decent=这礼物还能接受.
 harvestfestival.npc.katlin.gift.dislike=这礼物不能接受.
 harvestfestival.npc.katlin.gift.bad=我们那个年代啊, 我们会给人们好礼物.
 harvestfestival.npc.katlin.gift.terrible=你这是要气死我啊? 真是一件可怕的礼物.
+harvestfestival.npc.katlin.gift.no=我不能收下它, 它太珍贵了.
+harvestfestival.npc.katlin.gift.reject=你今天已经送过我礼物了, 年轻人.
 
 #Danieuru/Chylex
 harvestfestival.npc.daniel.shop=我周四休息, 其余时间每天10:00到16:00都在这.
@@ -736,7 +784,7 @@ harvestfestival.npc.cloe.gift.good=谢谢你给我这么好的礼物.
 harvestfestival.npc.cloe.gift.decent=谢谢.
 harvestfestival.npc.cloe.gift.dislike=额, 什么?
 harvestfestival.npc.cloe.gift.bad=额, 不要了, 谢谢...
-harvestfestival.npc.cloe.gift.terrible=我现在觉得我爸妈不是最差劲的了, 是你.
+harvestfestival.npc.cloe.gift.terrible=我现在觉得我爸妈不是最差劲的了, 而是你.
 
 #Liara/ApsciLiara
 harvestfestival.npc.liara.shop=虽然我们咖啡店只在9:30到17:00营业, 但是我们每天都营业!
@@ -765,6 +813,12 @@ harvestfestival.npc.liara.gift.bad=我不喜欢这东西.
 harvestfestival.npc.liara.gift.terrible=我很想谢谢你, 但是你给了我这世上最差的东西. 再见.
 
 #Jade
+harvestfestival.npc.jade.buy1=这些花太美了, 收下我的感谢礼吧.
+harvestfestival.npc.jade.buy2=你真的为我建造商店帮助我很多.
+harvestfestival.npc.jade.buy3=棒呆了, 再来点吧!
+harvestfestival.npc.jade.buyno1=嗯,你确定这是花?
+harvestfestival.npc.jade.buyno2=这不是我所要为我的商店找的.东西
+harvestfestival.npc.jade.buyno3=嗯..这不是花.
 harvestfestival.npc.jade.greeting1=嘿! 世界这么大我想去看看, 哪怕只是去看看小羊!
 harvestfestival.npc.jade.greeting2=天要塌啦, 天要塌啦!
 harvestfestival.npc.jade.greeting3=我想经营自己的农场, 但我哥却不允许!
@@ -879,6 +933,7 @@ harvestfestival.npc.tiberius.gift.bad=这件礼物很差劲.
 harvestfestival.npc.tiberius.gift.terrible=我发现这是件很差的礼物. 这个世界上没有比这个更差的了.
 
 #Jakob
+harvestfestival.npc.jacob.shop=如果你想要点渔具的话, 我们从周三到周五在下午开门, 一直到到晚上7点.
 harvestfestival.npc.jacob.greeting1=钓鱼是我的使命, Jacob是我的姓名.
 harvestfestival.npc.jacob.greeting2=我发誓, 总有一天我要抓到小丑鱼!
 harvestfestival.npc.jacob.greeting3=没有什么比溪谷垂钓更让人放松的了, 不是吗.
@@ -1094,6 +1149,7 @@ harvestfestival.shop.general.greeting2=我们库存充盈, 要买点什么吗?
 harvestfestival.shop.general.greeting3=我们是镇上最好的杂货店! 您看看您需要什么?
 harvestfestival.shop.general.options=您想做什么?
 harvestfestival.shop.general.options.shop=@购物
+harvestfestival.shop.general.options.sell=@Sell
 harvestfestival.shop.general.options.chat=@闲聊
 
 #Poultry Farm
@@ -1107,6 +1163,12 @@ harvestfestival.shop.cafe=咖啡店
 harvestfestival.shop.cafe.greeting1=料理准备好了, 来买吧~
 harvestfestival.shop.cafe.greeting2=这是菜单, 欢迎光临!
 harvestfestival.shop.cafe.greeting3=用餐时间到!
+
+#Kitchen Supplies
+harvestfestival.shop.kitchen=厨房供应
+harvestfestival.shop.kitchen.greeting1=我在为厨房找一个供应商, 你有什么?
+harvestfestival.shop.kitchen.greeting2=周五我们也会为咖啡店置备一些东西
+harvestfestival.shop.kitchen.greeting3=我现在购买一些食物, 总会派上用场的.
 
 #Animal Ranch
 harvestfestival.shop.barn=饲养场
@@ -1132,11 +1194,17 @@ harvestfestival.shop.bloodmage.greeting1=小崽子, 欢迎来到幽暗深处.
 harvestfestival.shop.bloodmage.greeting2=准备好了就睁大眼睛好好看看我的商品吧.
 harvestfestival.shop.bloodmage.greeting3=在这个黑暗又神秘的夜晚, 希望我的商品能让你眼前一亮.
 
-#Blood Mage
+#Tackle Shop
 harvestfestival.shop.baitshop=装备商店
 harvestfestival.shop.baitshop.greeting1=我们只是在做生意, 一切建立在互惠互利的基础上.
 harvestfestival.shop.baitshop.greeting2=如果你想钓鱼, 可以来我这边买点鱼竿.
 harvestfestival.shop.baitshop.greeting3=如果你需要的话, 我这有鱼竿出售.
+
+#Trader
+harvestfestival.shop.trader=咖啡店供应
+harvestfestival.shop.trader.greeting1=早上好, 有什么我可以帮助你的地方吗?
+harvestfestival.shop.trader.greeting2=想出售一些羽毛或皮革吗, 那么我是你要找的人.
+harvestfestival.shop.trader.greeting3=欢迎, 请自便.
 
 #Miscellaneous
 harvestfestival.marriage=聘礼
@@ -1247,10 +1315,6 @@ harvestfestival.quest.tutorial.upgrading.explain=那也好. 能教你一些所�
 harvestfestival.quest.tutorial.upgrading.reminder.visit=记住, 矿工Brandon想见你.
 harvestfestival.quest.tutorial.upgrading.complete=额你好啊. 我刚刚下了矿, 那边真的是太糟糕了. 既然你邀请我来这个镇子, 那作为回报我也把我找到的这些废铜烂铁送给你. 拿着吧. 我不想留着它.
 
-#Building the Goddess a Home
-harvestfestival.quest.tutorial.pond.please=你已经为了这个镇子的复兴作出了巨大的贡献. 我真高兴看到了它的成长! 我想要在这里有个永远的家. 如果你能帮我建造一个的话, 我就会给你一份奖励.
-harvestfestival.quest.tutorial.pond.thanks=你对这个镇子恢复的贡献大家已经无法用语言来表达感谢. 对你给我建造家的事我也是. 所以为了表示我的感激, 我决定把这些草莓送给你. 这是我的最爱! 回见!
-
 ##Trading Quests
 # Priest Blessing Quest
 harvestfestival.quest.trade.cursed.accept=非常感谢, 年轻人, 我现在可以给你的工具进行祝福! 但这将花费一些时间, 三天之后回来找我.
@@ -1320,9 +1384,37 @@ harvestfestival.quest.recipe.salad.text=好兄弟, 拿着这个.
 harvestfestival.quest.recipe.egg.scrambled.text=我的心好乱, 就像这个炒蛋.
 harvestfestival.quest.recipe.soup.rice.text=有人叫我给你这个.
 harvestfestival.quest.recipe.stew.text=照顾Liara真的是很麻烦的一件事. 她自小是个捣蛋小恶魔. 没有什么东西可以让她不闹腾. 直到有一天, 我决定炖一种汤. 然后她就变成了小天使. 或许和别人分享这个食谱, 也会让他们放松身心.
+harvestfestival.quest.recipe.icecream.text=你是怎么把牛奶变的这么棒的?
+harvestfestival.quest.recipe.jam.strawberry.text=你可真会说话, 在面包上放点什么能让它变得更美味? 当然是草莓酱!
 harvestfestival.quest.recipe.milk.strawberry.text=是什么让牛奶更棒?
 harvestfestival.quest.recipe.toast.text=Yulif至今也没有怎么教过我做饭. 不过我还是知道怎么烤面包的.
 harvestfestival.quest.recipe.latte.vegetable.text=我得快点摆脱这个邪恶的东西. 求你拿着它.
+harvestfestival.quest.recipe.jam.apple.text=Yulif估计不同意, 但你知道吐司该放点什么吗? 当然是苹果酱的说!
+
+## Friendship Quests
+harvestfestival.quest.friendship.katlin.kitchen.text=你真的对我很好. 你知道的,最近,我们失去了我们的厨房供应商, 你可以接管吗? 周五咖啡馆不开放时来这, 清晨或傍晚都行, 你能帮我补充厨房的库存吗? 我们正需要诸如肉类、甜菜汤和蛋糕之类的. 
+harvestfestival.quest.friendship.yulif.sprinkler.text=你是我的好朋友. 正好我现在能出售洒水装置, 当你有空时可以看看我的商店.
+harvestfestival.quest.friendship.jacob.hatchery.text=为了让鱼儿幸福, 我想要弄点货物来看看.
+harvestfestival.quest.friendship.tiberius.dark.text=我信任你. 周三周六晚上来拜访我吧. 我想要买点东西...
+harvestfestival.quest.friendship.goddess.strawberry.text=亲爱的, 我们关系还不错, 所以我会让你了解草莓的秘密! 珍妮现在应该在这个小镇在出售草莓, 它们是春季作物,所以你可能需要等待.
+harvestfestival.quest.friendship.jade.flowers.text=你好哇%4$s 很高兴见到你, 我有些好消息要告诉你, 我要开一个花店了! 但我没货源啊! 你会帮我的吧, 只要我付得起, 你来多少我要多少.
+harvestfestival.quest.friendship.johan.vanilla.text=嗨! 我想买你一些动物产品. 但我只能在早上6点到早上10点间支付. 记清楚哦.
+
+## Meeting Quests
+harvestfestival.quest.meeting.jacob.text=很高兴见到你啊 %4$s, 我是Jacob. 听说你喜欢钓鱼, 我最近给我自己买了个新钓竿. 我很高兴你能接受我的旧钓竿, 还烦请照顾好它. 这个装备店是我开的, 如果你有需要就过来看看吧.
+harvestfestival.quest.meeting.katlin.text=年轻人你好啊. 我叫Katlin. 如果你愿意的话, 你可以叫我老奶奶. 我帮助我的孙女Liara, 但大多是在厨房里. 我必须谢谢你帮她开店, 这是她一生的梦想. 我只有这么些零钱, 但请收下它。
+harvestfestival.quest.meeting.johan.text=多美好的一天. 很高兴见到你. 我的名字是约翰. 我通常每天都在, 但我会在晚上回到我的故乡. 如果你需要一桶牛奶,羊毛块或一些棕鸡蛋, 我将很高兴和你交易一些牛奶瓶、纯羊毛或白蛋.
+harvestfestival.quest.meeting.abi.text=你好! 我是Abi!!!!! 想知道我今天得到什么了吗 ^_^????  哇哦,我做了曲奇诶!!!!!! 想要吗? 它们很美味哎!
+
+## Seed Quests
+harvestfestival.quest.seeds.cabbage.complete=你已经卖了1000个春季作物! 真令人惊叹. 我也有个好消息:我们现在供应白菜种子了!
+harvestfestival.quest.seeds.pineapple.complete=喔! 你已卖了1000个夏季作物了！ 而我们现在能卖给你菠萝啦!
+harvestfestival.quest.seeds.greenpepper.complete=我实在不敢相信自己的眼睛! 你已经卖了1000个秋季作物! 我们最近找到青椒供应商了, 我们可以终于卖给你的说. 
+harvestfestival.quest.seeds.progress.complete=这个城市真的是越来发展得越好, 帮你做到这一步真是我的荣幸. 来了一些好消息, 我现在能在秋天卖甜菜和在夏天卖西瓜. 再次感谢你的努力工作.
+
+#Building the Goddess a Home
+harvestfestival.quest.tutorial.pond.please=你已经为了这个镇子的复兴作出了巨大的贡献. 我真高兴看到了它的成长! 我想要在这里有个永远的家. 如果你能帮我建造一个的话, 我就会给你一份奖励.
+harvestfestival.quest.tutorial.pond.thanks=你对这个镇子恢复的贡献大家已经无法用语言来表达感谢. 对你给我建造家的事我也是. 所以为了表示我的感激, 我决定把这些草莓送给你. 这是我的最爱! 回见!
 
 ###Achievements
 achievement.harvestfestival.summon=女神的恩赐

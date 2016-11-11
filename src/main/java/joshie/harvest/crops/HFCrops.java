@@ -153,6 +153,7 @@ public class HFCrops {
                 String name = "crop" + WordUtils.capitalizeFully(crop.getRegistryName().getResourcePath(), '_').replace("_", "");
                 RegistryHelper.registerOreIfNotExists(name, clone);
                 HFApi.crops.registerCropProvider(clone, crop);
+                HFApi.shipping.registerSellable(clone, crop.getSellValue());
             }
         }
     }

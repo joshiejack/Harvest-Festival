@@ -1,8 +1,9 @@
 package joshie.harvest.core.base.item;
 
-import joshie.harvest.api.core.IShippable;
+import joshie.harvest.api.HFApi;
 import joshie.harvest.api.core.ISizedProvider;
 import joshie.harvest.api.core.Size;
+import joshie.harvest.core.HFTab;
 import joshie.harvest.core.helpers.TextHelper;
 import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.core.util.interfaces.ISizeable;
@@ -18,13 +19,21 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.List;
 import java.util.Locale;
 
-public class ItemHFSizeable<I extends ItemHFEnum, E extends Enum<E> & IStringSerializable & ISizeable> extends ItemHFEnum<I, E> implements IShippable, ISizedProvider<E> {
+public class ItemHFSizeable<I extends ItemHFEnum, E extends Enum<E> & IStringSerializable & ISizeable> extends ItemHFEnum<I, E> implements ISizedProvider<E> {
     public ItemHFSizeable(Class<E> clazz) {
-        super(clazz);
+        this(HFTab.FARMING, clazz);
     }
 
     public ItemHFSizeable(CreativeTabs tab, Class<E> clazz) {
         super(tab, clazz);
+        for (E e: values) {
+            for (Size size: Size.values()) {
+                long value = e.getSellValue(size);
+                if (value > 0L) {
+                    HFApi.shipping.registerSellable(getStack(e, size), value);
+                }
+            }
+        }
     }
 
     @Override
@@ -70,13 +79,6 @@ public class ItemHFSizeable<I extends ItemHFEnum, E extends Enum<E> & IStringSer
         }
 
         return values[0];
-    }
-
-    @Override
-    public long getSellValue(ItemStack stack) {
-        Size size = getSize(stack);
-        E e = getEnumFromStack(stack);
-        return e.getSellValue(size);
     }
 
     @Override

@@ -3,12 +3,11 @@ package joshie.harvest.cooking.tile;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.cooking.IAltItem;
 import joshie.harvest.api.cooking.Utensil;
-import joshie.harvest.cooking.CookingAPI;
 import joshie.harvest.cooking.CookingHelper.PlaceIngredientResult;
 import joshie.harvest.core.achievements.HFAchievements;
 import joshie.harvest.core.base.tile.TileFaceable;
-import joshie.harvest.core.helpers.SpawnItemHelper;
 import joshie.harvest.core.helpers.MCServerHelper;
+import joshie.harvest.core.helpers.SpawnItemHelper;
 import joshie.harvest.core.helpers.StackHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -157,7 +156,7 @@ public abstract class TileCooking extends TileFaceable {
 
     //TODO: Register the new alts
     private ItemStack getRealIngredient(ItemStack stack) {
-        ItemStack alt = CookingAPI.INSTANCE.getRealStackForItem(stack);
+        ItemStack alt = stack;
         if (stack.getItem() instanceof IAltItem) {
             alt = ((IAltItem)stack.getItem()).getAlternativeWhenCooking(stack);
         }

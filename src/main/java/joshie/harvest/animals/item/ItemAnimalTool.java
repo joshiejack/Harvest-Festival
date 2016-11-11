@@ -4,10 +4,10 @@ import joshie.harvest.animals.item.ItemAnimalTool.Tool;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.AnimalAction;
 import joshie.harvest.api.animals.AnimalStats;
-import joshie.harvest.api.core.IShippable;
 import joshie.harvest.core.base.item.ItemHFEnum;
 import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.core.lib.CreativeSort;
+import joshie.harvest.core.util.interfaces.ISellable;
 import joshie.harvest.tools.ToolHelper;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -26,15 +26,20 @@ import java.util.Locale;
 import static joshie.harvest.animals.item.ItemAnimalTool.Tool.*;
 import static net.minecraft.util.text.TextFormatting.AQUA;
 
-public class ItemAnimalTool extends ItemHFEnum<ItemAnimalTool, Tool> implements IShippable {
+public class ItemAnimalTool extends ItemHFEnum<ItemAnimalTool, Tool> {
     private static final double MAX_DAMAGE = 512;
-    public enum Tool implements IStringSerializable {
+    public enum Tool implements IStringSerializable, ISellable {
         MILKER(true), BRUSH(true), MEDICINE(false), CHICKEN_FEED(false), MIRACLE_POTION(false);
 
         private final boolean isDamageable;
 
         Tool(boolean isDamageable) {
             this.isDamageable = isDamageable;
+        }
+
+        @Override
+        public long getSellValue() {
+            return this == CHICKEN_FEED ? 1L : 0L;
         }
 
         @Override
@@ -45,11 +50,6 @@ public class ItemAnimalTool extends ItemHFEnum<ItemAnimalTool, Tool> implements 
 
     public ItemAnimalTool() {
         super(Tool.class);
-    }
-
-    @Override
-    public long getSellValue(ItemStack stack) {
-        return getEnumFromStack(stack) == CHICKEN_FEED ? 1 : 0;
     }
 
     @SideOnly(Side.CLIENT)

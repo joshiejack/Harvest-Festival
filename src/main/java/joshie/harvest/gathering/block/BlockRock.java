@@ -5,6 +5,7 @@ import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.block.BlockHFSmashable;
 import joshie.harvest.core.base.item.ItemToolSmashing;
 import joshie.harvest.core.lib.CreativeSort;
+import joshie.harvest.core.util.interfaces.ISellable;
 import joshie.harvest.gathering.block.BlockRock.Rock;
 import joshie.harvest.tools.HFTools;
 import net.minecraft.block.SoundType;
@@ -34,8 +35,13 @@ public class BlockRock extends BlockHFSmashable<BlockRock, Rock> {
     private static final AxisAlignedBB BOULDER_MEDIUM_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.35D, 1.0D);
     private static final AxisAlignedBB BOULDER_LARGE_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.6D, 1.0D);
 
-    public enum Rock implements IStringSerializable {
+    public enum Rock implements IStringSerializable, ISellable {
         STONE_SMALL, STONE_MEDIUM, STONE_LARGE, BOULDER_SMALL, BOULDER_MEDIUM, BOULDER_LARGE;
+
+        @Override
+        public long getSellValue() {
+            return 1L;
+        }
 
         @Override
         public String getName() {
@@ -47,11 +53,6 @@ public class BlockRock extends BlockHFSmashable<BlockRock, Rock> {
         super(Material.ROCK, Rock.class, HFTab.GATHERING);
         setHardness(1.5F);
         setSoundType(SoundType.STONE);
-    }
-
-    @Override
-    public long getSellValue(ItemStack stack) {
-        return 1L;
     }
 
     @SuppressWarnings("deprecation")

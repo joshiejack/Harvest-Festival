@@ -1,9 +1,9 @@
 package joshie.harvest.cooking.item;
 
-import joshie.harvest.api.core.IShippable;
 import joshie.harvest.cooking.item.ItemIngredients.Ingredient;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.item.ItemHFFoodEnum;
+import joshie.harvest.core.util.interfaces.ISellable;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
@@ -14,8 +14,8 @@ import net.minecraft.world.World;
 
 import java.util.Locale;
 
-public class ItemIngredients extends ItemHFFoodEnum<ItemIngredients, Ingredient> implements IShippable {
-    public enum Ingredient implements IStringSerializable {
+public class ItemIngredients extends ItemHFFoodEnum<ItemIngredients, Ingredient> {
+    public enum Ingredient implements IStringSerializable, ISellable {
         CURRY_POWDER(50L, 25L), DUMPLING_POWDER(100L, 50L), WINE(200L, 150L), UNUSED1, UNUSED2,
         FLOUR(50L, 25L), OIL(50L, 25L), RICEBALL(100L, 50L), SALT(5L, 25L), CHOCOLATE(100L, 50L);
 
@@ -35,6 +35,7 @@ public class ItemIngredients extends ItemHFFoodEnum<ItemIngredients, Ingredient>
             return cost;
         }
 
+        @Override
         public long getSellValue() {
             return sell;
         }
@@ -47,11 +48,6 @@ public class ItemIngredients extends ItemHFFoodEnum<ItemIngredients, Ingredient>
 
     public ItemIngredients() {
         super(HFTab.COOKING, Ingredient.class);
-    }
-
-    @Override
-    public long getSellValue(ItemStack stack) {
-        return getEnumFromStack(stack).getSellValue();
     }
 
     @Override

@@ -6,7 +6,6 @@ import joshie.harvest.cooking.recipe.RecipeHF;
 import joshie.harvest.cooking.recipe.RecipeMaker;
 import joshie.harvest.cooking.recipe.RecipeVanilla;
 import joshie.harvest.core.util.annotations.HFApiImplementation;
-import joshie.harvest.core.util.holders.HolderRegistry;
 import joshie.harvest.core.util.holders.HolderRegistryMulti;
 import joshie.harvest.core.util.holders.ItemStackHolder;
 import net.minecraft.item.ItemStack;
@@ -24,7 +23,6 @@ public class CookingAPI implements CookingManager {
     private final Set<RecipeHandler> handlers = new HashSet<>();
     private final Set<ItemStackHolder> knives = new HashSet<>();
     private final Set<CookingHandler> cookingHandlers = new HashSet<>();
-    private final HolderRegistry<ItemStack> alternatives = new HolderRegistry<>();
     private final HolderRegistryMulti<Ingredient> ingredientRegistry = new HolderRegistryMulti<Ingredient>() {
         @Override
         public boolean isEqual(Ingredient r1, Ingredient r2) {
@@ -43,11 +41,6 @@ public class CookingAPI implements CookingManager {
     //Return the stacks, doesn't need cache as the result is cached
     public List<ItemStack> getStacksForIngredient(Ingredient ingredient) {
         return ingredientRegistry.getStacksFor(ingredient);
-    }
-
-    public ItemStack getRealStackForItem(ItemStack stack) {
-        ItemStack ret = alternatives.getValueOf(stack);
-        return ret == null ? ret : stack;
     }
 
     @Override

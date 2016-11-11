@@ -1142,8 +1142,8 @@ harvestfestival.npc.girafi.gift.terrible=This is possibly the last thing on eart
 # a-z A-Z 0-9 , . ' é
 
 #General
-harvesfestival.shop.outof.true=Out of gold! Please come back later!
-harvesfestival.shop.outof.false=Out of stock! Please try again later!
+harvestfestival.shop.outof.true=Out of gold! Please come back later!
+harvestfestival.shop.outof.false=Out of stock! Please try again later!
 
 #General Store
 harvestfestival.shop.general=General Store

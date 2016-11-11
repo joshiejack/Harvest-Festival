@@ -15,6 +15,7 @@ import joshie.harvest.fishing.item.ItemFish.Fish;
 import joshie.harvest.fishing.item.ItemFishingRod;
 import joshie.harvest.fishing.item.ItemJunk;
 import joshie.harvest.fishing.item.ItemJunk.Junk;
+import joshie.harvest.fishing.loot.ConditionTier;
 import joshie.harvest.fishing.loot.ConditionTime;
 import joshie.harvest.fishing.loot.SetWeight;
 import joshie.harvest.fishing.render.SpecialRendererHatchery;
@@ -55,6 +56,7 @@ public class HFFishing {
     public static void preInit(){
         LootFunctionManager.registerFunction(new SetWeight.Serializer());
         LootConditionManager.registerCondition(new ConditionTime.Serializer());
+        LootConditionManager.registerCondition(new ConditionTier.Serializer());
         EntityRegistry.registerModEntity(EntityFishHookHF.class, "hook", EntityIDs.FISHING, HarvestFestival.instance, 64, 5, true);
         EntityRegistry.instance().lookupModSpawn(EntityFishHookHF.class, false).setCustomSpawning(null, true);
         HFApi.shipping.registerSellable(new ItemStack(Items.FISH, 1, 0), 10L);

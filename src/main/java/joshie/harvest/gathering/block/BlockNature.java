@@ -5,6 +5,7 @@ import joshie.harvest.core.base.block.BlockHFEnum;
 import joshie.harvest.core.block.BlockFlower.FlowerType;
 import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.core.lib.HFModInfo;
+import joshie.harvest.core.util.interfaces.ISellable;
 import joshie.harvest.gathering.block.BlockNature.NaturalBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -37,7 +38,7 @@ public class BlockNature extends BlockHFEnum<BlockNature, NaturalBlock> implemen
         setSoundType(SoundType.PLANT);
     }
 
-    public enum NaturalBlock implements IStringSerializable {
+    public enum NaturalBlock implements IStringSerializable, ISellable {
         MATSUTAKE(350L), BAMBOO(50L), MINT(20L), CHAMOMILE(30L), LAVENDAR(40L);
 
         private final long sell;
@@ -46,6 +47,7 @@ public class BlockNature extends BlockHFEnum<BlockNature, NaturalBlock> implemen
             this.sell = sell;
         }
 
+        @Override
         public long getSellValue() {
             return sell;
         }
@@ -54,11 +56,6 @@ public class BlockNature extends BlockHFEnum<BlockNature, NaturalBlock> implemen
         public String getName() {
             return toString().toLowerCase(Locale.ENGLISH);
         }
-    }
-
-    @Override
-    public long getSellValue(ItemStack stack) {
-        return getEnumFromStack(stack).getSellValue();
     }
 
     @Override

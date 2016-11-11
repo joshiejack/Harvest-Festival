@@ -1,10 +1,8 @@
 package joshie.harvest.core.registry;
 
-import joshie.harvest.api.HFApi;
 import joshie.harvest.api.core.IShippable;
 import joshie.harvest.api.core.IShippingRegistry;
 import joshie.harvest.api.core.Ore;
-import joshie.harvest.api.crops.Crop;
 import joshie.harvest.core.util.annotations.HFApiImplementation;
 import joshie.harvest.core.util.holders.HolderRegistry;
 import net.minecraft.item.ItemStack;
@@ -40,14 +38,11 @@ public class ShippingRegistry implements IShippingRegistry {
         if (value != null) return value;
 
         //Shippables
+        //TODO: Remove in 0.7+
         if (stack.getItem() instanceof IShippable) {
             return ((IShippable)stack.getItem()).getSellValue(stack);
         }
 
-        //Special case Crops
-        Crop crop = HFApi.crops.getCropFromStack(stack);
-        if (crop != null) {
-            return crop.getSellValue(stack);
-        } else return 0L;
+        return 0L;
     }
 }

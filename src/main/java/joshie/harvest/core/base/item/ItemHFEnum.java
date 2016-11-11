@@ -1,8 +1,11 @@
 package joshie.harvest.core.base.item;
 
+import joshie.harvest.api.HFApi;
+import joshie.harvest.core.HFTab;
 import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.core.util.interfaces.ICreativeSorted;
 import joshie.harvest.core.helpers.TextHelper;
+import joshie.harvest.core.util.interfaces.ISellable;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -21,11 +24,7 @@ public abstract class ItemHFEnum<I extends ItemHFEnum, E extends Enum<E> & IStri
     protected final String prefix;
 
     public ItemHFEnum(Class<E> clazz) {
-        super();
-        enumClass = clazz;
-        values = clazz.getEnumConstants();
-        prefix = clazz.getSimpleName().toLowerCase(Locale.ENGLISH);
-        setHasSubtypes(true);
+        this(HFTab.FARMING, clazz);
     }
 
     public ItemHFEnum(CreativeTabs tab, Class<E> clazz) {
@@ -34,6 +33,14 @@ public abstract class ItemHFEnum<I extends ItemHFEnum, E extends Enum<E> & IStri
         values = clazz.getEnumConstants();
         prefix = clazz.getSimpleName().toLowerCase(Locale.ENGLISH);
         setHasSubtypes(true);
+        if (values[0] instanceof ISellable) {
+            for (E e: values) {
+                long value = ((ISellable)e).getSellValue();
+                if (value > 0L) {
+                    HFApi.shipping.registerSellable(getStackFromEnum(e), value);
+                }
+            }
+        }
     }
 
     @Override

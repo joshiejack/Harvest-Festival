@@ -95,7 +95,6 @@ public class PageRecipeList extends Page {
             }
         }
 
-
         //Optionally draw the right hand side
         if (size >= 10) {
             boolean hoverX = mouseX >= 170 && mouseX <= 285;

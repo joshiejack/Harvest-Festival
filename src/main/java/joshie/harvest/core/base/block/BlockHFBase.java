@@ -89,10 +89,6 @@ public abstract class BlockHFBase<B extends BlockHFBase> extends Block {
         return 0;
     }
 
-    public long getSellValue(ItemStack stack) {
-        return 0L;
-    }
-
     @Override
     public String getUnlocalizedName() {
         return unlocalizedName;

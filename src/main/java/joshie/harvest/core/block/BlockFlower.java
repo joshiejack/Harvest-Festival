@@ -5,6 +5,7 @@ import joshie.harvest.core.base.block.BlockHFEnum;
 import joshie.harvest.core.block.BlockFlower.FlowerType;
 import joshie.harvest.core.helpers.TextHelper;
 import joshie.harvest.core.lib.CreativeSort;
+import joshie.harvest.core.util.interfaces.ISellable;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -35,7 +36,7 @@ public class BlockFlower extends BlockHFEnum<BlockFlower, FlowerType> implements
         setSoundType(SoundType.PLANT);
     }
 
-    public enum FlowerType implements IStringSerializable {
+    public enum FlowerType implements IStringSerializable, ISellable {
         GODDESS(0L), WEED(1L), MOONDROP(60L), TOY(130L),
         PINKCAT(70L), BLUE_MAGICGRASS(80L), RED_MAGICGRASS(200L);
 
@@ -45,6 +46,7 @@ public class BlockFlower extends BlockHFEnum<BlockFlower, FlowerType> implements
             this.sell = sell;
         }
 
+        @Override
         public long getSellValue() {
             return sell;
         }
@@ -57,11 +59,6 @@ public class BlockFlower extends BlockHFEnum<BlockFlower, FlowerType> implements
         public String getName() {
             return toString().toLowerCase(Locale.ENGLISH);
         }
-    }
-
-    @Override
-    public long getSellValue(ItemStack stack) {
-        return getEnumFromStack(stack).getSellValue();
     }
 
     @Override

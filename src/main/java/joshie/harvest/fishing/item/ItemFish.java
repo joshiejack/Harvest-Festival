@@ -1,9 +1,8 @@
 package joshie.harvest.fishing.item;
 
-import joshie.harvest.api.core.IShippable;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.item.ItemHFEnum;
-import joshie.harvest.core.util.interfaces.ILength;
+import joshie.harvest.core.util.interfaces.ISellable;
 import joshie.harvest.fishing.item.ItemFish.Fish;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -14,19 +13,11 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.List;
 import java.util.Locale;
 
-public class ItemFish extends ItemHFEnum<ItemFish, Fish> implements IShippable, ILength {
+public class ItemFish extends ItemHFEnum<ItemFish, Fish> {
     public static final String SIZE = "Size";
 
     public ItemFish() {
         super(HFTab.FISHING, Fish.class);
-    }
-
-    @Override
-    @SuppressWarnings("ConstantConditions")
-    public long getSellValue(ItemStack stack) {
-        Fish fish = getEnumFromStack(stack);
-        double weight = stack.hasTagCompound() ? stack.getTagCompound().getDouble(SIZE) : fish.getLengthFromSizeOfFish(SMALL_FISH);
-        return fish.getSellValue(weight);
     }
 
     @Override
@@ -38,7 +29,6 @@ public class ItemFish extends ItemHFEnum<ItemFish, Fish> implements IShippable, 
         tooltip.add("Length: " + weight + "cm");
     }
 
-    @Override
     public double getLengthFromSizeOfFish(ItemStack stack, int size) {
         return getEnumFromStack(stack).getLengthFromSizeOfFish(size);
     }
@@ -47,7 +37,7 @@ public class ItemFish extends ItemHFEnum<ItemFish, Fish> implements IShippable, 
     public static final int MEDIUM_FISH = 2;
     public static final int LARGE_FISH = 3;
     public static final int GIANT_FISH = 4;
-    public enum Fish implements IStringSerializable{
+    public enum Fish implements IStringSerializable, ISellable {
         ANCHOVY(30L, 2D, 40D), ANGEL(230, 5D, 15D), ANGLER(500, 20D, 100D), BASS(105L, 35D, 75D), BLAASOP(365L, 34D, 110D), BOWFIN(130L, 50D, 109D),
         BUTTERFLY(200L, 12D, 22D), CARP(60L, 35D, 105D), CATFISH(120L, 100D, 250D), CHUB(40L, 40D, 80D), CLOWN(170L, 10D, 18D), COD(50L, 5D, 200D),
         DAMSEL(105L, 3D, 5D), ELECTRICRAY(230L, 80D, 190D), GOLD(35L, 5D, 45D), HERRING(85L, 14D, 46D), KOI(280L, 25D, 90D), LAMPREY(100L, 13D, 100D),
@@ -83,6 +73,11 @@ public class ItemFish extends ItemHFEnum<ItemFish, Fish> implements IShippable, 
             if (size >= large) return (long)((double)sell * 1.5);
             else if (size >= medium) return (long)((double)sell * 1.25);
             else return sell;
+        }
+
+        @Override
+        public long getSellValue() {
+            return sell;
         }
 
         @Override

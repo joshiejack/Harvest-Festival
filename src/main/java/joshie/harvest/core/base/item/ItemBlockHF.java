@@ -1,6 +1,5 @@
 package joshie.harvest.core.base.item;
 
-import joshie.harvest.api.core.IShippable;
 import joshie.harvest.core.base.block.BlockHFBase;
 import joshie.harvest.core.util.interfaces.ICreativeSorted;
 import net.minecraft.item.ItemBlock;
@@ -13,7 +12,7 @@ import net.minecraftforge.fml.relauncher.Side;
 
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 
-public class ItemBlockHF extends ItemBlock implements ICreativeSorted, IShippable {
+public class ItemBlockHF extends ItemBlock implements ICreativeSorted {
     private final BlockHFBase block;
 
     public ItemBlockHF(BlockHFBase block) {
@@ -50,11 +49,6 @@ public class ItemBlockHF extends ItemBlock implements ICreativeSorted, IShippabl
     @Override
     public int getSortValue(ItemStack stack) {
         return block.getSortValue(stack);
-    }
-
-    @Override
-    public long getSellValue(ItemStack stack) {
-        return block.getSellValue(stack);
     }
 
     public void register(String name) {

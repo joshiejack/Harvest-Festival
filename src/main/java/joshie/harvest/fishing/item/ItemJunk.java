@@ -1,26 +1,20 @@
 package joshie.harvest.fishing.item;
 
-import joshie.harvest.api.core.IShippable;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.item.ItemHFEnum;
+import joshie.harvest.core.util.interfaces.ISellable;
 import joshie.harvest.fishing.item.ItemJunk.Junk;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
 
 import java.util.Locale;
 
-public class ItemJunk extends ItemHFEnum<ItemJunk, Junk> implements IShippable {
+public class ItemJunk extends ItemHFEnum<ItemJunk, Junk> {
     public ItemJunk() {
         super(HFTab.FISHING, Junk.class);
     }
 
-    @Override
-    public long getSellValue(ItemStack stack) {
-        return getEnumFromStack(stack).getSellValue();
-    }
-
-    public enum Junk implements IStringSerializable {
-        CAN(1L), BOOT(1L), TREASURE(10000L), BONES(1L), FOSSIL(5000L), BAIT(25L, 1L);
+    public enum Junk implements IStringSerializable, ISellable {
+        CAN(1L), BOOT(1L), TREASURE(10000L), BONES(1L), FOSSIL(5000L), BAIT(5L, 1L);
 
         private final long cost;
         private final long sell;
@@ -39,6 +33,7 @@ public class ItemJunk extends ItemHFEnum<ItemJunk, Junk> implements IShippable {
             return cost;
         }
 
+        @Override
         public long getSellValue() {
             return sell;
         }

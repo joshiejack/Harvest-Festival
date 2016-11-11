@@ -1,7 +1,6 @@
 package joshie.harvest.crops.item;
 
 import joshie.harvest.api.HFApi;
-import joshie.harvest.api.core.IShippable;
 import joshie.harvest.api.crops.Crop;
 import joshie.harvest.core.base.item.ItemHFFoodEnum;
 import joshie.harvest.core.lib.CreativeSort;
@@ -15,7 +14,7 @@ import java.util.Locale;
 
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 
-public class ItemCrop extends ItemHFFoodEnum<ItemCrop, Crops> implements IShippable {
+public class ItemCrop extends ItemHFFoodEnum<ItemCrop, Crops> {
     public ItemCrop() {
         super(Crops.class);
     }
@@ -23,12 +22,6 @@ public class ItemCrop extends ItemHFFoodEnum<ItemCrop, Crops> implements IShippa
     @Override
     public int getSortValue(ItemStack stack) {
         return CreativeSort.CROPS;
-    }
-
-    @Override
-    public long getSellValue(ItemStack stack) {
-        joshie.harvest.api.crops.Crop crop = HFApi.crops.getCropFromStack(stack);
-        return crop != null ? crop.getSellValue(stack) : 0L;
     }
 
     @Override

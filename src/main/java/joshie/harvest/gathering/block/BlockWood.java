@@ -5,6 +5,7 @@ import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.block.BlockHFSmashable;
 import joshie.harvest.core.base.item.ItemToolSmashing;
 import joshie.harvest.core.lib.CreativeSort;
+import joshie.harvest.core.util.interfaces.ISellable;
 import joshie.harvest.gathering.block.BlockWood.Wood;
 import joshie.harvest.tools.HFTools;
 import net.minecraft.block.SoundType;
@@ -35,8 +36,13 @@ public class BlockWood extends BlockHFSmashable<BlockWood, Wood> {
     private static final AxisAlignedBB STUMP_MEDIUM_AABB = new AxisAlignedBB(0.1D, 0.0D, 0.1D, 0.9D, 0.35D, 0.9D);
     private static final AxisAlignedBB STUMP_LARGE_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.5D, 1.0D);
 
-    public enum Wood implements IStringSerializable {
+    public enum Wood implements IStringSerializable, ISellable {
         BRANCH_SMALL, BRANCH_MEDIUM, BRANCH_LARGE, STUMP_SMALL, STUMP_MEDIUM, STUMP_LARGE;
+
+        @Override
+        public long getSellValue() {
+            return 1L;
+        }
 
         @Override
         public String getName() {
@@ -78,11 +84,6 @@ public class BlockWood extends BlockHFSmashable<BlockWood, Wood> {
     @Override
     public ItemToolSmashing getTool() {
         return HFTools.AXE;
-    }
-
-    @Override
-    public long getSellValue(ItemStack stack) {
-        return 1L;
     }
 
     @Override

@@ -2,10 +2,9 @@ package joshie.harvest.api.crops;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.AnimalFoodType;
-import joshie.harvest.api.core.ISpecialPurchaseRules;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.cooking.Ingredient;
-import joshie.harvest.api.core.IShippable;
+import joshie.harvest.api.core.ISpecialPurchaseRules;
 import joshie.harvest.api.crops.IStateHandler.PlantSection;
 import joshie.harvest.crops.handlers.growth.GrowthHandlerSide;
 import net.minecraft.block.Block;
@@ -25,7 +24,7 @@ import net.minecraftforge.fml.common.registry.IForgeRegistryEntry;
 import net.minecraftforge.fml.common.registry.RegistryBuilder;
 import org.apache.commons.lang3.StringUtils;
 
-public class Crop extends IForgeRegistryEntry.Impl<Crop> implements IShippable, IPlantable {
+public class Crop extends IForgeRegistryEntry.Impl<Crop> implements IPlantable {
     public static final IForgeRegistry<Crop> REGISTRY = new RegistryBuilder<Crop>().setName(new ResourceLocation("harvestfestival", "crops")).setType(Crop.class).setIDRange(0, 32000).create();
     public static final GrowthHandler SEASONAL = new GrowthHandler() {};
     public static final DropHandler DROPS = new DropHandler();
@@ -359,9 +358,13 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements IShippable, 
      * This is how much this crop well sell for at level 1.
      * If this crop cannot be sold return 0
      *
-     * @param stack the crop
      * @return the sell value in gold
      */
+    public long getSellValue() {
+        return sell;
+    }
+
+    @Deprecated //TODO: Remove in 0.7+
     public long getSellValue(ItemStack stack) {
         return sell;
     }

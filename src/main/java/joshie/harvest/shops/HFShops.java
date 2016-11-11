@@ -103,19 +103,19 @@ public class HFShops {
     private static void registerBloodmage() {
         BLOODMAGE.addPurchasable(-100, new ItemStack(Items.SLIME_BALL), 3);
         BLOODMAGE.addPurchasable(-150, new ItemStack(Items.BONE), 2);
-        BLOODMAGE.addPurchasable(-800, new ItemStack(Items.ENDER_PEARL), 1);
-        BLOODMAGE.addPurchasable(-300, new ItemStack(Items.GOLDEN_APPLE), 1);
+        BLOODMAGE.addPurchasable(-800, new ItemStack(Items.ENDER_PEARL), 4);
+        BLOODMAGE.addPurchasable(-300, new ItemStack(Items.GOLDEN_APPLE), 3);
         BLOODMAGE.addPurchasable(-50, new ItemStack(Items.ROTTEN_FLESH), 5);
-        BLOODMAGE.addPurchasable(-100, new ItemStack(Items.SPIDER_EYE), 2);
+        BLOODMAGE.addPurchasable(-100, new ItemStack(Items.SPIDER_EYE), 4);
         BLOODMAGE.addPurchasable(-30, new ItemStack(Items.POISONOUS_POTATO), 5);
-        BLOODMAGE.addPurchasable(-600, new ItemStack(Items.GHAST_TEAR), 1);
-        BLOODMAGE.addPurchasable(-150, new ItemStack(Items.FERMENTED_SPIDER_EYE), 1);
-        BLOODMAGE.addPurchasable(-700, new ItemStack(Items.BLAZE_ROD), 1);
-        BLOODMAGE.addPurchasable(-350, new ItemStack(Items.MAGMA_CREAM), 1);
+        BLOODMAGE.addPurchasable(-600, new ItemStack(Items.GHAST_TEAR), 6);
+        BLOODMAGE.addPurchasable(-150, new ItemStack(Items.FERMENTED_SPIDER_EYE), 5);
+        BLOODMAGE.addPurchasable(-700, new ItemStack(Items.BLAZE_ROD), 7);
+        BLOODMAGE.addPurchasable(-350, new ItemStack(Items.MAGMA_CREAM), 7);
         BLOODMAGE.addPurchasable(-50, new ItemStack(Items.SPECKLED_MELON), 5);
-        BLOODMAGE.addPurchasable(-150, new ItemStack(Items.GOLDEN_CARROT), 1);
+        BLOODMAGE.addPurchasable(-150, new ItemStack(Items.GOLDEN_CARROT), 5);
         BLOODMAGE.addPurchasable(-100, new ItemStack(Items.RABBIT_FOOT), 2);
-        BLOODMAGE.addPurchasable(-200, new ItemStack(Items.GUNPOWDER), 1);
+        BLOODMAGE.addPurchasable(-200, new ItemStack(Items.GUNPOWDER), 4);
         BLOODMAGE.addPurchasable(-30, new ItemStack(Items.REDSTONE));
         BLOODMAGE.addPurchasable(-50, new ItemStack(Items.GLOWSTONE_DUST), 5);
         BLOODMAGE.addOpening(WEDNESDAY, 19000, 24000).addOpening(WEDNESDAY, 0, 5000).addOpening(SATURDAY, 18000, 24000).addOpening(SATURDAY, 0, 3500);
@@ -181,7 +181,7 @@ public class HFShops {
         KITCHEN.addPurchasable(-80, new ItemStack(Items.MUSHROOM_STEW), 8);
         KITCHEN.addPurchasable(-80, new ItemStack(Items.MUTTON), 8);
         KITCHEN.addPurchasable(-100, new ItemStack(Items.COOKED_MUTTON), 4);
-        KITCHEN.addPurchasable(-500, new ItemStack(Items.BEETROOT_SOUP), 1);
+        KITCHEN.addPurchasable(-500, new ItemStack(Items.BEETROOT_SOUP), 2);
         KITCHEN.addPurchasable(-10, new ItemStack(Items.SUGAR), 20);
         KITCHEN.addPurchasable(-25, new ItemStack(Items.CHORUS_FRUIT), 15);
         KITCHEN.addOpening(FRIDAY, 6000, 9500).addOpening(FRIDAY, 17000, 20000);

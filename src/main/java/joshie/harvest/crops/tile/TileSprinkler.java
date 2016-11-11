@@ -73,6 +73,11 @@ public class TileSprinkler extends TileDaily implements ITickable {
     }
 
     @Override
+    public Phase[] getPhases() {
+        return new Phase[] { Phase.POST };
+    }
+
+    @Override
     public void newDay() {
         if (SPRINKLER_DRAIN_RATE <= 0 || tank.getFluidAmount() > 1) {
             //Reduce the amount in the tank

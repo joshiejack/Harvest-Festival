@@ -1,5 +1,6 @@
 package joshie.harvest.town.data;
 
+import com.google.common.cache.Cache;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.quests.QuestType;
 import joshie.harvest.buildings.BuildingImpl;
@@ -115,9 +116,9 @@ public class TownDataServer extends TownData<QuestDataServer> implements IQuestM
         HFTrackers.markDirty(world);
     }
 
-    public void newDay(World world) {
+    public void newDay(World world, Cache<BlockPos, Boolean> isFar) {
         if (world.isBlockLoaded(getTownCentre())) {
-            gathering.newDay(world, buildings.values());
+            gathering.newDay(world, townCentre, buildings.values(), isFar);
             for (ResourceLocation villager: deadVillagers) {
                 NPC npc = NPCRegistry.REGISTRY.getValue(villager);
                 if (npc != HFNPCs.GODDESS) {

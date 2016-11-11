@@ -1,5 +1,7 @@
 package joshie.harvest.town.tracker;
 
+import com.google.common.cache.Cache;
+import com.google.common.cache.CacheBuilder;
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
 import joshie.harvest.core.HFTrackers;
@@ -25,8 +27,9 @@ public class TownTrackerServer extends TownTracker<TownDataServer> {
     private BiMap<UUID, Integer> townIDs = HashBiMap.create();
 
     public void newDay() {
+        Cache<BlockPos, Boolean> isFar = CacheBuilder.newBuilder().build();
         for (TownDataServer town: townData) {
-            town.newDay(getWorld());
+            town.newDay(getWorld(), isFar);
         }
     }
 

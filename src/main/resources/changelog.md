@@ -42,12 +42,14 @@
 * Rebalanced the crop prices and changed some stats
 * Removed the year unlocks, and replace with quest based ones instead
 * Take note that once any player has completed the quest, the crops can be purchased by anyone in that town
+* When crops die, they chance a chance to turn in to weeds, wood, or rocks
 
 ###Fishing - NEW!
 * Added fishing rods, obtainable when you meet jakob for the first time
 
 ###Gathering
 * More items will now spawn around the world (that sell for more than 1 gold!)
+* Items will no longer spawn inside of towns, they will only spawn from 24 to 128 blocks away
 
 ###Mining
 * Fixed cursed tools being unobtainable

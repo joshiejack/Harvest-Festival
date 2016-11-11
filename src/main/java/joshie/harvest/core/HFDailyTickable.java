@@ -35,7 +35,9 @@ public class HFDailyTickable implements IDailyTickableRegistry {
                 } else {
                     if (state == WET_SOIL) world.setBlockState(pos, DRYING_SOIL, 2);
                     else if (state == DRYING_SOIL) world.setBlockState(pos, DRY_SOIL, 2);
-                    else if (state == DRY_SOIL && hasNoCrops(world, pos)) world.setBlockState(pos, Blocks.DIRT.getDefaultState(), 2);
+                    else if (state == DRY_SOIL && hasNoCrops(world, pos)) {
+                        world.setBlockState(pos, Blocks.DIRT.getDefaultState(), 2);
+                    }
                 }
 
                 return world.getBlockState(pos).getBlock() == DRY_SOIL.getBlock();

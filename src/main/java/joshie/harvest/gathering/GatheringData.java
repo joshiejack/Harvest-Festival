@@ -1,5 +1,6 @@
 package joshie.harvest.gathering;
 
+import com.google.common.cache.Cache;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.town.data.TownBuilding;
@@ -13,11 +14,12 @@ import net.minecraft.world.World;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.concurrent.ExecutionException;
 
 public class GatheringData {
     private Set<GatheringLocation> locations = new HashSet<>();
 
-    public void newDay(World world, Collection<TownBuilding> buildings) {
+    public void newDay(World world, BlockPos townCentre, Collection<TownBuilding> buildings, Cache<BlockPos, Boolean> isFar) {
         Set<GatheringLocation> previous = new HashSet<>(locations);
         locations = new HashSet<>();
         //Remove all previous locations
@@ -34,19 +36,31 @@ public class GatheringData {
 
         //Create some new spawn spots based on where we have buildings
         Season season = HFApi.calendar.getDate(world).getSeason();
-        for (TownBuilding building : buildings) {
-            int placed = 0;
-            for (int i = 0; i < 512 && placed < 15; i++) {
-                BlockPos pos = building.pos.add(32 - world.rand.nextInt(64), 8 - world.rand.nextInt(16), 32 - world.rand.nextInt(64));
-                if (world.isBlockLoaded(pos) && world.getBlockState(pos).getBlock() == Blocks.GRASS && world.isAirBlock(pos.up()) && world.canBlockSeeSky(pos.up())) {
-                    IBlockState random = HFApi.gathering.getRandomStateForSeason(world, season);
-                    if (random != null && world.setBlockState(pos.up(), random, 2)) {
-                        locations.add(new GatheringLocation(random, pos.up()));
-                        placed++;
-                    }
+        int placed = 0;
+
+        for (int i = 0; i < 2048 && placed < 256; i++) {
+            BlockPos pos = world.getTopSolidOrLiquidBlock(townCentre.add(128 - world.rand.nextInt(256), 64, 128 - world.rand.nextInt(256)));
+            if (world.isBlockLoaded(pos) && world.getBlockState(pos.down()).getBlock() == Blocks.GRASS && world.isAirBlock(pos) && world.canBlockSeeSky(pos) &&
+                    isAtLeast32BlocksAwayFromEverything(isFar, buildings, pos)) {
+                IBlockState random = HFApi.gathering.getRandomStateForSeason(world, season);
+                if (random != null && world.setBlockState(pos, random, 2)) {
+                    locations.add(new GatheringLocation(random, pos));
+                    placed++;
                 }
             }
         }
+    }
+
+    private boolean isAtLeast32BlocksAwayFromEverything(Cache<BlockPos, Boolean> isFar, Collection<TownBuilding> buildings, BlockPos pos) {
+        try {
+            return isFar.get(pos, () -> {
+                for (TownBuilding building: buildings) {
+                    if (building.pos.getDistance(pos.getX(), pos.getY(), pos.getZ()) < 24) return false;
+                }
+
+                return true;
+            });
+        } catch (ExecutionException ex) { return false; }
     }
 
     public void readFromNBT(NBTTagCompound nbt) {

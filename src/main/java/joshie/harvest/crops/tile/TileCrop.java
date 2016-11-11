@@ -2,10 +2,13 @@ package joshie.harvest.crops.tile;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.ticking.IDailyTickable;
+import joshie.harvest.core.HFCore;
+import joshie.harvest.core.block.BlockFlower.FlowerType;
 import joshie.harvest.core.helpers.NBTHelper;
 import joshie.harvest.crops.CropHelper;
 import joshie.harvest.crops.HFCrops;
 import joshie.harvest.crops.block.BlockHFCrops.CropType;
+import joshie.harvest.gathering.HFGathering;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -31,12 +34,21 @@ public class TileCrop extends TileWithered implements IDailyTickable {
         if (!data.newDay(getWorld(), getPos())) {
             if (HFCrops.CROPS_SHOULD_DIE) {
                 HFApi.tickable.removeTickable(worldObj, this);
-                if (data.getCrop().isCurrentlyDouble(data.getStage())) {
-                    getWorld().setBlockState(pos.up(), HFCrops.CROPS.getStateFromEnum(CropType.WITHERED_DOUBLE), 2);
-                }
+                if (world.rand.nextInt(4) == 0) {
+                    if (data.getCrop().isCurrentlyDouble(data.getStage())) world.setBlockToAir(pos.up());
+                    if (world.rand.nextInt(5) <= 1)
+                        world.setBlockState(getPos(), HFGathering.WOOD.getStateFromMeta(world.rand.nextInt(6)));
+                    else if (world.rand.nextInt(5) == 0)
+                        world.setBlockState(getPos(), HFGathering.ROCK.getStateFromMeta(world.rand.nextInt(6)));
+                    else world.setBlockState(getPos(), HFCore.FLOWERS.getStateFromEnum(FlowerType.WEED));
+                } else {
+                    if (data.getCrop().isCurrentlyDouble(data.getStage())) {
+                        getWorld().setBlockState(pos.up(), HFCrops.CROPS.getStateFromEnum(CropType.WITHERED_DOUBLE), 2);
+                    }
 
-                //Prepare to save old data
-                NBTHelper.copyTileData(this, getWorld(), getPos(), HFCrops.CROPS.getStateFromEnum(CropType.WITHERED));
+                    //Prepare to save old data
+                    NBTHelper.copyTileData(this, getWorld(), getPos(), HFCrops.CROPS.getStateFromEnum(CropType.WITHERED));
+                }
             }
         } else markTileForUpdate(this);
 

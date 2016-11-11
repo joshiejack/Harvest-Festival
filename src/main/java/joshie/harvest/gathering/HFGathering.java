@@ -23,29 +23,47 @@ public class HFGathering {
         //To init the blocks
     }
 
+    //256 Total
     public static void init() {
-        HFApi.gathering.registerGathering(WOOD.getStateFromEnum(BRANCH_SMALL), 8D);
-        HFApi.gathering.registerGathering(WOOD.getStateFromEnum(BRANCH_MEDIUM), 5D);
-        HFApi.gathering.registerGathering(WOOD.getStateFromEnum(BRANCH_LARGE), 3D);
-        HFApi.gathering.registerGathering(ROCK.getStateFromEnum(STONE_SMALL), 8D);
-        HFApi.gathering.registerGathering(ROCK.getStateFromEnum(STONE_MEDIUM), 5D);
-        HFApi.gathering.registerGathering(ROCK.getStateFromEnum(STONE_LARGE), 3D);
-        HFApi.gathering.registerGathering(WOOD.getStateFromEnum(STUMP_SMALL), 3D);
-        HFApi.gathering.registerGathering(WOOD.getStateFromEnum(STUMP_MEDIUM), 2D);
-        HFApi.gathering.registerGathering(WOOD.getStateFromEnum(STUMP_LARGE), 1D);
-        HFApi.gathering.registerGathering(ROCK.getStateFromEnum(BOULDER_SMALL), 3D);
-        HFApi.gathering.registerGathering(ROCK.getStateFromEnum(BOULDER_MEDIUM), 2D);
-        HFApi.gathering.registerGathering(ROCK.getStateFromEnum(BOULDER_LARGE), 1D);
-        HFApi.gathering.registerGathering(FLOWERS.getStateFromEnum(WEED), 10D, SPRING, SUMMER, AUTUMN);
-        HFApi.gathering.registerGathering(NATURE.getStateFromEnum(MINT), 1D, SUMMER, SUMMER, AUTUMN);
-        HFApi.gathering.registerGathering(NATURE.getStateFromEnum(CHAMOMILE), 1D, SPRING, SUMMER, AUTUMN);
-        HFApi.gathering.registerGathering(NATURE.getStateFromEnum(LAVENDAR), 1D, AUTUMN, WINTER);
-        HFApi.gathering.registerGathering(NATURE.getStateFromEnum(BAMBOO), 1D, SPRING);
-        HFApi.gathering.registerGathering(NATURE.getStateFromEnum(MATSUTAKE), 0.1D, AUTUMN);
-        HFApi.gathering.registerGathering(FLOWERS.getStateFromEnum(MOONDROP), 0.9D, SPRING);
-        HFApi.gathering.registerGathering(FLOWERS.getStateFromEnum(TOY), 0.35D, SPRING);
-        HFApi.gathering.registerGathering(FLOWERS.getStateFromEnum(PINKCAT), 0.8D, SUMMER);
-        HFApi.gathering.registerGathering(FLOWERS.getStateFromEnum(BLUE_MAGICGRASS), 0.7D, AUTUMN);
-        HFApi.gathering.registerGathering(FLOWERS.getStateFromEnum(RED_MAGICGRASS), 0.7D, AUTUMN);
+        //Seasons add up to 64
+        //Spring
+        HFApi.gathering.registerGathering(FLOWERS.getStateFromEnum(WEED), 18D, SPRING);
+        HFApi.gathering.registerGathering(FLOWERS.getStateFromEnum(MOONDROP), 7D, SPRING);
+        HFApi.gathering.registerGathering(FLOWERS.getStateFromEnum(TOY), 5D, SPRING);
+        HFApi.gathering.registerGathering(NATURE.getStateFromEnum(BAMBOO), 10D, SPRING);
+        HFApi.gathering.registerGathering(NATURE.getStateFromEnum(CHAMOMILE), 12D, SPRING);
+        HFApi.gathering.registerGathering(NATURE.getStateFromEnum(MINT), 12D, SPRING);
+
+        //Summer
+        HFApi.gathering.registerGathering(FLOWERS.getStateFromEnum(WEED), 20D, SUMMER);
+        HFApi.gathering.registerGathering(FLOWERS.getStateFromEnum(PINKCAT), 8D, SUMMER);
+        HFApi.gathering.registerGathering(NATURE.getStateFromEnum(CHAMOMILE), 17D, SUMMER);
+        HFApi.gathering.registerGathering(NATURE.getStateFromEnum(MINT), 19D, SUMMER);
+
+        //Autumn
+        HFApi.gathering.registerGathering(FLOWERS.getStateFromEnum(WEED), 18D, AUTUMN);
+        HFApi.gathering.registerGathering(FLOWERS.getStateFromEnum(BLUE_MAGICGRASS), 7D, AUTUMN);
+        HFApi.gathering.registerGathering(FLOWERS.getStateFromEnum(RED_MAGICGRASS), 2D, AUTUMN);
+        HFApi.gathering.registerGathering(NATURE.getStateFromEnum(MATSUTAKE), 4D, AUTUMN);
+        HFApi.gathering.registerGathering(NATURE.getStateFromEnum(LAVENDAR), 9D, AUTUMN);
+        HFApi.gathering.registerGathering(NATURE.getStateFromEnum(CHAMOMILE), 9D, AUTUMN);
+        HFApi.gathering.registerGathering(NATURE.getStateFromEnum(MINT), 12D, AUTUMN);
+
+        //Winter
+        HFApi.gathering.registerGathering(NATURE.getStateFromEnum(LAVENDAR), 64D, WINTER);
+
+        //All Seasons, Adds to 192
+        HFApi.gathering.registerGathering(WOOD.getStateFromEnum(BRANCH_SMALL), 27D);
+        HFApi.gathering.registerGathering(WOOD.getStateFromEnum(BRANCH_MEDIUM), 18D);
+        HFApi.gathering.registerGathering(WOOD.getStateFromEnum(BRANCH_LARGE), 10D);
+        HFApi.gathering.registerGathering(ROCK.getStateFromEnum(STONE_SMALL), 28D);
+        HFApi.gathering.registerGathering(ROCK.getStateFromEnum(STONE_MEDIUM), 13D);
+        HFApi.gathering.registerGathering(ROCK.getStateFromEnum(STONE_LARGE), 8D);
+        HFApi.gathering.registerGathering(WOOD.getStateFromEnum(STUMP_SMALL), 25D);
+        HFApi.gathering.registerGathering(WOOD.getStateFromEnum(STUMP_MEDIUM), 10D);
+        HFApi.gathering.registerGathering(WOOD.getStateFromEnum(STUMP_LARGE), 8D);
+        HFApi.gathering.registerGathering(ROCK.getStateFromEnum(BOULDER_SMALL), 28D);
+        HFApi.gathering.registerGathering(ROCK.getStateFromEnum(BOULDER_MEDIUM), 10D);
+        HFApi.gathering.registerGathering(ROCK.getStateFromEnum(BOULDER_LARGE), 7D);
     }
 }

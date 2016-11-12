@@ -187,6 +187,14 @@ public class InventoryHelper {
         return false;
     }
 
+    public static boolean startsWith(ItemStack stack, String... ore) {
+        for (String name: ore) {
+            if (startsWith(stack, name)) return true;
+        }
+
+        return false;
+    }
+
     public static boolean startsWith(ItemStack stack, String ore) {
         int[] ids = OreDictionary.getOreIDs(stack);
         for (int i: ids) {

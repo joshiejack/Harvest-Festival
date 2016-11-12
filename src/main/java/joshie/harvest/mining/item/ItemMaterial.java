@@ -2,17 +2,12 @@ package joshie.harvest.mining.item;
 
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.item.ItemHFEnum;
-import joshie.harvest.core.helpers.TextHelper;
 import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.core.util.interfaces.ISellable;
 import joshie.harvest.mining.item.ItemMaterial.Material;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.util.List;
 import java.util.Locale;
 
 import static net.minecraft.util.text.TextFormatting.GREEN;
@@ -57,14 +52,6 @@ public class ItemMaterial extends ItemHFEnum<ItemMaterial, Material> {
                 return GREEN + super.getItemStackDisplayName(stack);
             default:
                 return WHITE + super.getItemStackDisplayName(stack);
-        }
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean flag) {
-        if (getEnumFromStack(stack).isUpgrade()) {
-            list.add(TextHelper.translate("tooltip.mythic_stone"));
         }
     }
 

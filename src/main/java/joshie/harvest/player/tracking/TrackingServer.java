@@ -83,6 +83,7 @@ public class TrackingServer extends Tracking {
             StackSold stack = forSale.next();
             sold += stack.getSellValue();
             CollectionHelper.mergeCollection(stack, shipped); //Mark this item as having been shipped
+            addAsObtained(stack.getStack()); //Mark the item as having been collected
             forSale.remove();
         }
 

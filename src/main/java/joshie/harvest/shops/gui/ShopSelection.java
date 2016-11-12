@@ -28,15 +28,9 @@ public class ShopSelection extends Selection {
         if(shop.canBuyFromShop(player) && option == 1) {
             player.openGui(HarvestFestival.instance, GuiHandler.SHOP_MENU, player.worldObj, entity.getEntityId(), 0, 0);
             return Result.DEFAULT;
-        } else if ((!shop.canBuyFromShop(player) && shop.canSellToShop(player) && option == 1) || option == 2) {
+        } else if ((!shop.canBuyFromShop(player) && shop.canSellToShop(player) && option == 1) || (shop.canBuyFromShop(player) && shop.canSellToShop(player) && option == 2)) {
             player.openGui(HarvestFestival.instance, GuiHandler.SHOP_MENU_SELL, player.worldObj, entity.getEntityId(), 0, 0);
             return Result.DEFAULT;
-        }
-        if (option == 1) {
-
-            return Result.DEFAULT;
-        }
-
-        return Result.ALLOW;
+        } else return Result.ALLOW;
     }
 }

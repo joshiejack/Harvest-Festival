@@ -1,7 +1,9 @@
 package joshie.harvest.fishing.tile;
 
+import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.base.tile.TileSingleStack;
 import joshie.harvest.core.helpers.FakePlayerHelper;
+import joshie.harvest.core.helpers.InventoryHelper;
 import joshie.harvest.core.helpers.MCServerHelper;
 import joshie.harvest.core.helpers.SpawnItemHelper;
 import joshie.harvest.core.lib.LootStrings;
@@ -27,6 +29,10 @@ public class TileTrap extends TileSingleStack {
             saveAndRefresh();
             return true;
         } else if (stack != null && !FishingAPI.INSTANCE.isBait(stack)) {
+            if (InventoryHelper.isOreName(stack, "fish")) {
+                HFTrackers.getPlayerTrackerFromPlayer(player).getTracking().addAsObtained(stack);
+            }
+
             SpawnItemHelper.addToPlayerInventory(player, stack);
             baited = false;
             stack = null;

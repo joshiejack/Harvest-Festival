@@ -2,6 +2,7 @@ package joshie.harvest.core.base.block;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.core.HFTab;
+import joshie.harvest.core.base.item.ItemBlockHF;
 import joshie.harvest.core.util.interfaces.ISellable;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
@@ -37,17 +38,20 @@ public abstract class BlockHFEnum<B extends BlockHFEnum, E extends Enum<E> & ISt
         property = (PropertyEnum<E>) temporary;
         values = clazz.getEnumConstants();
         setDefaultState(blockState.getBaseState());
+
+        for (E e : values) {
+            setHarvestLevel(getToolType(e), getToolLevel(e), getStateFromEnum(e));
+        }
+    }
+
+    public void registerSellables(ItemBlockHF item) {
         if (values[0] instanceof ISellable) {
             for (E e: values) {
                 long value = ((ISellable)e).getSellValue();
                 if (value > 0L) {
-                    HFApi.shipping.registerSellable(getStackFromEnum(e), value);
+                    HFApi.shipping.registerSellable(new ItemStack(item, 1, e.ordinal()), value);
                 }
             }
-        }
-
-        for (E e : values) {
-            setHarvestLevel(getToolType(e), getToolLevel(e), getStateFromEnum(e));
         }
     }
 

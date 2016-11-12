@@ -2,7 +2,6 @@ package joshie.harvest.npc.gui;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.core.base.gui.GuiBase;
-import joshie.harvest.core.helpers.StackHelper;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.npc.HFNPCs;
@@ -26,7 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class GuiNPCBase extends GuiBase {
-    public static final ItemStack GIFT = HFNPCs.TOOLS.getStackFromEnum(NPCTool.GIFT);
+    private static final ItemStack GIFT = HFNPCs.TOOLS.getStackFromEnum(NPCTool.GIFT);
     private static final ResourceLocation chatbox = new ResourceLocation(HFModInfo.MODID, "textures/gui/chatbox.png");
     protected final EntityNPC npc;
     protected final EntityPlayer player;
@@ -86,7 +85,7 @@ public abstract class GuiNPCBase extends GuiBase {
             ChatFontRenderer.colorise(outside);
             drawTexturedModalRect(x + 241, y + 155, 237, 0, 19, 20); //Outside
             GlStateManager.color(1F, 1F, 1F);
-            StackHelper.drawStack(GIFT, x + 242, y + 157, 1F);
+            joshie.harvest.core.helpers.RenderHelper.drawStack(GIFT, x + 242, y + 157, 1F);
         }
 
         //Info section
@@ -100,12 +99,13 @@ public abstract class GuiNPCBase extends GuiBase {
             ChatFontRenderer.colorise(outside);
             drawTexturedModalRect(x + 241, y + 176, 237, 0, 19, 20); //Outside
             GlStateManager.color(1F, 1F, 1F);
-            StackHelper.drawStack(npc.getNPC().hasInfo(), x + 242, y + 178, 1F);
+            joshie.harvest.core.helpers.RenderHelper.drawStack(npc.getNPC().hasInfo(), x + 242, y + 178, 1F);
         }
     }
 
     private void drawHeart(int value) {
         GlStateManager.color(1F, 1F, 1F, 1F);
+        GlStateManager.disableLighting();
         int xPos = (int) (((double) value / HFNPCs.MAX_FRIENDSHIP) * 7);
         drawTexturedModalRect(240, 130, 0, 0, 25, 25);
         drawTexturedModalRect(240, 130, 25 + (25 * xPos), 0, 25, 25);
@@ -131,7 +131,7 @@ public abstract class GuiNPCBase extends GuiBase {
         npcMouseX = mouseX;
         npcMouseY = mouseY;
 
-        if (isHoldingItem() && npc.getNPC() != HFNPCs.GODDESS && hoveringGift())
+        if (npc.getNPC() != HFNPCs.GODDESS && isHoldingItem() && hoveringGift())
             renderToolTip(GIFT, mouseX, mouseY);
         if (displayInfo() && hoveringInfo())
             renderToolTip(npc.getNPC().hasInfo(), mouseX, mouseY);
@@ -145,19 +145,19 @@ public abstract class GuiNPCBase extends GuiBase {
             PacketHandler.sendToServer(new PacketInfo(npc));
     }
 
-    private boolean hoveringGift() {
+    boolean hoveringGift() {
         return isPointInRegion(242, 156, 17, 19, npcMouseX, npcMouseY);
     }
 
-    private boolean isHoldingItem() {
+    boolean isHoldingItem() {
         return player.getHeldItemMainhand() != null || player.getHeldItemOffhand() != null;
     }
 
-    private boolean hoveringInfo() {
+    boolean hoveringInfo() {
         return isPointInRegion(242, 177, 17, 19, npcMouseX, npcMouseY);
     }
 
-    private boolean displayInfo() {
+    boolean displayInfo() {
         return npc.getNPC().hasInfo() != null && npc.getNPC().canDisplayInfo(player);
     }
 

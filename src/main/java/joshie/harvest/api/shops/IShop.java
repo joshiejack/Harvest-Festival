@@ -20,10 +20,15 @@ public interface IShop {
      *  @param      stack the item you get for this purchase**/
     IPurchasable addPurchasable(long cost, ItemStack stack);
 
-    /** Set special rules for being able to buy or sell from this shop
+    /** Set special rules for being able to buy from this shop
      *  By default all shops are accessible at all times
      *  @param rules the rules you want to set **/
     IShop setSpecialPurchaseRules(ISpecialPurchaseRules rules);
+
+    /** Set special rules for being able to sell to this shop
+     *  By default all shops are accessible at all times
+     *  @param rules the rules you want to set **/
+    IShop setSpecialSellingRules(ISpecialPurchaseRules rules);
 
     @Deprecated //TODO: Remove in 0.7+
     IShop addItem(IPurchasable item);

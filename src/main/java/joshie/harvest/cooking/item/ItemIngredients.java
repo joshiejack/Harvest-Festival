@@ -16,8 +16,8 @@ import java.util.Locale;
 
 public class ItemIngredients extends ItemHFFoodEnum<ItemIngredients, Ingredient> {
     public enum Ingredient implements IStringSerializable, ISellable {
-        CURRY_POWDER(50L, 25L), DUMPLING_POWDER(100L, 50L), WINE(200L, 150L), UNUSED1, UNUSED2,
-        FLOUR(50L, 25L), OIL(50L, 25L), RICEBALL(100L, 50L), SALT(5L, 25L), CHOCOLATE(100L, 50L);
+        CURRY_POWDER(50L, 15L), DUMPLING_POWDER(100L, 25L), WINE(200L, 50L), UNUSED1, UNUSED2,
+        FLOUR(50L, 15L), OIL(50L, 15L), RICEBALL(100L, 25L), SALT(25L, 5L), CHOCOLATE(100L, 25L);
 
         private final long cost;
         private final long sell;

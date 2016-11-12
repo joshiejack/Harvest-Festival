@@ -4,6 +4,7 @@ import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.handlers.GuiHandler;
 import joshie.harvest.core.helpers.TextHelper;
 import joshie.harvest.core.network.PacketHandler;
+import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.npc.NPCHelper;
 import joshie.harvest.npc.entity.EntityNPC;
 import joshie.harvest.npc.packet.PacketGift;
@@ -140,9 +141,9 @@ public class GuiNPCChat extends GuiNPCBase {
 
     @Override
     protected void onMouseClick(int mouseX, int mouseY) {
-        if (isPointInRegion(242, 156, 17, 19, npcMouseX, npcMouseY))
+        if (npc.getNPC() != HFNPCs.GODDESS && isHoldingItem() && hoveringGift())
             PacketHandler.sendToServer(new PacketGift(npc));
-        else if (npc.getNPC().hasInfo() != null && isPointInRegion(242, 177, 17, 19, npcMouseX, npcMouseY))
+        else if (displayInfo() && hoveringInfo() && npc.getNPC().hasInfo() != null && isPointInRegion(242, 177, 17, 19, npcMouseX, npcMouseY))
             PacketHandler.sendToServer(new PacketInfo(npc));
         else nextChat();
     }

@@ -2,6 +2,7 @@ package joshie.harvest.shops.gui.button;
 
 import joshie.harvest.api.shops.IPurchaseableMaterials;
 import joshie.harvest.api.shops.IRequirement;
+import joshie.harvest.core.helpers.RenderHelper;
 import joshie.harvest.core.helpers.StackHelper;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.shops.gui.GuiNPCShop;
@@ -31,7 +32,7 @@ public class ButtonListingBuilding extends ButtonListing<IPurchaseableMaterials>
         //Names
         drawString(fontrenderer, StringUtils.left(displayString, 18), xPosition + 20, yPosition + (height - 8) / 2, j);
         GlStateManager.color(1.0F, 1.0F, 1.0F);
-        StackHelper.drawStack(purchasable.getDisplayStack(), xPosition + 2, yPosition + 1, 1F);
+        RenderHelper.drawStack(purchasable.getDisplayStack(), xPosition + 2, yPosition + 1, 1F);
         //Draw the cost
         if (purchasable.getCost() > 0) {
             String cost = shop.getCostAsString(purchasable.getCost());
@@ -44,7 +45,7 @@ public class ButtonListingBuilding extends ButtonListing<IPurchaseableMaterials>
         //Draw the requirements
         int index = 0;
         for (int i = theStacks.length - 1; i >= 0; i--) {
-            StackHelper.drawStack(theStacks[i], xPosition + 135 - (index * 18), yPosition + 3, 0.75F);
+            RenderHelper.drawStack(theStacks[i], xPosition + 135 - (index * 18), yPosition + 3, 0.75F);
             index++;
         }
     }

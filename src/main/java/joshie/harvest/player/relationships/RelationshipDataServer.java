@@ -25,10 +25,7 @@ public class RelationshipDataServer extends RelationshipData {
         this.master = master;
     }
 
-    public boolean hasMet(UUID key) {
-        Collection<NPCStatus> statuses = status.get(key);
-        return statuses.contains(NPCStatus.MET);
-    }
+
 
     public boolean hasGivenBirthdayGift(UUID uuid) {
         return status.get(uuid).contains(NPCStatus.BIRTHDAY_GIFT);
@@ -44,10 +41,14 @@ public class RelationshipDataServer extends RelationshipData {
         if (!statuses.contains(NPCStatus.TALKED)) {
             statuses.add(NPCStatus.TALKED);
             affectRelationship(key, 100);
+            syncStatus((EntityPlayerMP) player, key, NPCStatus.TALKED, true);
         }
 
         //Add this so we will always have a key for something
-        if (!statuses.contains(NPCStatus.MET)) statuses.add(NPCStatus.MET);
+        if (!statuses.contains(NPCStatus.MET)) {
+            statuses.add(NPCStatus.MET);
+            syncStatus((EntityPlayerMP) player, key, NPCStatus.MET, true);
+        }
     }
 
     @Override
@@ -55,9 +56,9 @@ public class RelationshipDataServer extends RelationshipData {
         Collection<NPCStatus> statuses = status.get(key);
         if (!statuses.contains(NPCStatus.GIFTED)) {
             if (amount == 0) return true;
-            syncStatus((EntityPlayerMP) player, key, NPCStatus.GIFTED, true);
             affectRelationship(key, amount);
             statuses.add(NPCStatus.GIFTED);
+            syncStatus((EntityPlayerMP) player, key, NPCStatus.GIFTED, true);
             master.getTracking().addGift();
             return true;
         }

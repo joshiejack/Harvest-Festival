@@ -55,7 +55,7 @@ public class GatheringData {
         try {
             return isFar.get(pos, () -> {
                 for (TownBuilding building: buildings) {
-                    if (building.pos.getDistance(pos.getX(), pos.getY(), pos.getZ()) < 24) return false;
+                    if (building.pos.getDistance(pos.getX(), pos.getY(), pos.getZ()) < 32) return false;
                 }
 
                 return true;

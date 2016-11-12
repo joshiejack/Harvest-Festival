@@ -4,6 +4,7 @@ import joshie.harvest.cooking.gui.ContainerFridge;
 import joshie.harvest.cooking.gui.GuiCookbook;
 import joshie.harvest.cooking.gui.GuiFridge;
 import joshie.harvest.cooking.tile.TileFridge;
+import joshie.harvest.core.gui.stats.GuiStats;
 import joshie.harvest.npc.NPCHelper;
 import joshie.harvest.npc.entity.EntityNPC;
 import joshie.harvest.npc.gui.*;
@@ -20,6 +21,7 @@ public class GuiHandler implements IGuiHandler {
     public static final int SHOP_MENU = 1;
     public static final int GIFT = 2;
     public static final int FRIDGE = 3;
+    public static final int STATS_BOOK = 4;
     public static final int SHOP_OPTIONS = 5;
     public static final int SHOP_WELCOME = 6;
     public static final int COOKBOOK = 7;
@@ -65,6 +67,7 @@ public class GuiHandler implements IGuiHandler {
             case GIFT:          return new GuiNPCGift(player, (EntityNPC) world.getEntityByID(entityID), EnumHand.values()[hand]);
             case FRIDGE:        return new GuiFridge(player, player.inventory, (TileFridge) world.getTileEntity(new BlockPos(entityID, nextGui, hand)));
             case COOKBOOK:      return new GuiCookbook();
+            case STATS_BOOK:    return new GuiStats();
             case SHOP_OPTIONS:    {
                 EntityNPC npc = (EntityNPC) world.getEntityByID(entityID);
                 if (NPCHelper.isShopOpen(npc.getNPC(), world, player)) {

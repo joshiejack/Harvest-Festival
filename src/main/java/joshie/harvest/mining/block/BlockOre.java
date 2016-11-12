@@ -2,6 +2,7 @@ package joshie.harvest.mining.block;
 
 import joshie.harvest.api.gathering.ISmashable;
 import joshie.harvest.core.HFTab;
+import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.base.block.BlockHFSmashable;
 import joshie.harvest.core.base.item.ItemToolSmashing;
 import joshie.harvest.core.lib.CreativeSort;
@@ -137,32 +138,52 @@ public class BlockOre extends BlockHFSmashable<BlockOre, Ore> implements ISmasha
             server.spawnParticle(EnumParticleTypes.BLOCK_CRACK, pos.getX(), pos.getY(), pos.getZ(), 10, 0.5D, 0.5D, 0.5D, 0.0D, Block.getStateId(Blocks.DIRT.getDefaultState()));
         }
 
+        List<ItemStack> drops;
         switch (ore) {
             case ROCK:
-                return world.isRemote ? Collections.singletonList(new ItemStack(this)): MiningHelper.getLoot(MINING, world, player, luck);
+                drops = world.isRemote ? Collections.singletonList(new ItemStack(this)): MiningHelper.getLoot(MINING, world, player, luck);
+                break;
             case COPPER:
-                return getRandomStack(world, Material.COPPER, 2);
+                drops = getRandomStack(world, Material.COPPER, 2);
+                break;
             case SILVER:
-                return getRandomStack(world, Material.SILVER, 3);
+                drops = getRandomStack(world, Material.SILVER, 3);
+                break;
             case GOLD:
-                return getRandomStack(world, Material.GOLD, 4);
+                drops = getRandomStack(world, Material.GOLD, 4);
+                break;
             case MYSTRIL:
-                return getRandomStack(world, Material.MYSTRIL, 3);
+                drops = getRandomStack(world, Material.MYSTRIL, 3);
+                break;
             case EMERALD:
-                return getRandomStack(world, Items.EMERALD, 5);
+                drops = getRandomStack(world, Items.EMERALD, 5);
+                break;
             case DIAMOND:
-                return world.rand.nextInt(512) == 0 ? getRandomStack(world, Material.PINK_DIAMOND, 1) : getRandomStack(world, DIAMOND, 3);
+                drops = world.rand.nextInt(512) == 0 ? getRandomStack(world, Material.PINK_DIAMOND, 1) : getRandomStack(world, DIAMOND, 3);
+                break;
             case RUBY:
-                return getRandomStack(world, Material.RUBY, 5);
+                drops = getRandomStack(world, Material.RUBY, 5);
+                break;
             case AMETHYST:
-                return getRandomStack(world, Material.AMETHYST, 3);
+                drops = getRandomStack(world, Material.AMETHYST, 3);
+                break;
             case TOPAZ:
-                return getRandomStack(world, Material.TOPAZ, 4);
+                drops = getRandomStack(world, Material.TOPAZ, 4);
+                break;
             case GEM:
-                return world.isRemote ? Collections.singletonList(new ItemStack(this)) : MiningHelper.getLoot(MINING_GEMS, world, player, luck);
+                drops = world.isRemote ? Collections.singletonList(new ItemStack(this)) : MiningHelper.getLoot(MINING_GEMS, world, player, luck);
+                break;
             default:
-                return new ArrayList<>();
+                drops = new ArrayList<>();
         }
+
+        if (!world.isRemote) {
+            for (ItemStack stack: drops) {
+                HFTrackers.getPlayerTrackerFromPlayer(player).getTracking().addAsObtained(stack);
+            }
+        }
+
+        return drops;
     }
 
     @Override

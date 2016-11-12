@@ -5,7 +5,6 @@ import joshie.harvest.api.cooking.IngredientStack;
 import joshie.harvest.api.cooking.Utensil;
 import joshie.harvest.cooking.CookingAPI;
 import joshie.harvest.core.helpers.MCClientHelper;
-import joshie.harvest.core.helpers.StackHelper;
 import joshie.harvest.core.lib.HFModInfo;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.GlStateManager;
@@ -30,10 +29,12 @@ public class GuiCookbook extends GuiScreen {
     static final int MAX_UTENSILS_DISPLAY = 5;
 
     private static Page page;
-    public int centreX;
-    public int centreY;
+    private int centreX;
+    private int centreY;
 
-    public GuiCookbook() {
+    @Override
+    public void initGui() {
+        super.initGui();
         setPage(page == null ? MASTER : page);
         ingredients.clear();
         //Add the player inventory
@@ -53,7 +54,7 @@ public class GuiCookbook extends GuiScreen {
     public void drawScreen(int x, int y, float partialTicks) {
         centreX = (width / 2) - imageWidth;
         centreY = (height - imageHeight) / 2;
-        int mouseX = x -centreX;
+        int mouseX = x - centreX;
         int mouseY = y - centreY;
         mc.getTextureManager().bindTexture(RIGHT_GUI);
         drawTexturedModalRect(centreX + imageWidth, centreY, 0, 0, imageWidth, imageHeight);
@@ -86,13 +87,13 @@ public class GuiCookbook extends GuiScreen {
             drawTexture(24, 168, 16, buttonY, 15, 10);
         }
 
-        runnables.forEach((r) -> r.run());
+        runnables.forEach(Runnable :: run);
     }
 
     @Override
     protected void mouseClicked(int x, int y, int mouseButton) throws IOException {
         super.mouseClicked(x, y, mouseButton);
-        int mouseX = x -centreX;
+        int mouseX = x - centreX;
         int mouseY = y - centreY;
         if (page.mouseClicked(mouseX, mouseY)) return;
         //Draw the utensil buttons
@@ -130,7 +131,7 @@ public class GuiCookbook extends GuiScreen {
     }
 
     void drawStack(int x, int y, ItemStack stack, float scale) {
-        StackHelper.drawStack(stack, centreX + x, centreY + y, scale);
+        joshie.harvest.core.helpers.RenderHelper.drawStack(stack, centreX + x, centreY + y, scale);
     }
 
     void drawTexture(int x, int y, int startX, int startY, int widthX, int heightY) {

@@ -29,6 +29,21 @@ public abstract class RelationshipData implements IRelations {
         relationships.remove(key);
     }
 
+    public boolean hasMet(UUID key) {
+        Collection<NPCStatus> statuses = status.get(key);
+        return statuses.contains(NPCStatus.MET);
+    }
+
+    public boolean hasGifted(UUID key) {
+        Collection<NPCStatus> statuses = status.get(key);
+        return statuses.contains(NPCStatus.GIFTED);
+    }
+
+    public boolean hasTalked(UUID key) {
+        Collection<NPCStatus> statuses = status.get(key);
+        return statuses.contains(NPCStatus.TALKED);
+    }
+
     public void newDay(CalendarDate yesterday, CalendarDate today) {
         Set<UUID> keys = new HashSet<>(status.keySet());
         for (UUID uuid: keys) {

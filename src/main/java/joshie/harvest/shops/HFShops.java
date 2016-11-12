@@ -64,9 +64,9 @@ public class HFShops {
     public static final Shop MINER = ShopRegistry.INSTANCE.newShop(new ResourceLocation(MODID, "miner"), HFNPCs.MINER);
     //Added in 0.6+
     public static final Shop BAITSHOP = ShopRegistry.INSTANCE.newShop(new ResourceLocation(MODID, "baitshop"), HFNPCs.FISHERMAN);
-    public static final Shop BLOODMAGE = ShopRegistry.INSTANCE.newShop(new ResourceLocation(MODID, "bloodmage"), HFNPCs.CLOCKMAKER).setSpecialPurchaseRules(new SpecialRulesFriendship(HFNPCs.CLOCKMAKER, 15000));
-    public static final Shop KITCHEN = ShopRegistry.INSTANCE.newShop(new ResourceLocation(MODID, "kitchen"), HFNPCs.CAFE_GRANNY).setSpecialPurchaseRules(new SpecialRulesFriendship(HFNPCs.CAFE_GRANNY, 15000));
-    public static final Shop TRADER = ShopRegistry.INSTANCE.newShop(new ResourceLocation(MODID, "trader"), HFNPCs.TRADER).setSpecialPurchaseRules(new SpecialRulesFriendship(HFNPCs.TRADER, 15000));
+    public static final Shop BLOODMAGE = ShopRegistry.INSTANCE.newShop(new ResourceLocation(MODID, "bloodmage"), HFNPCs.CLOCKMAKER).setSpecialSellingRules(new SpecialRulesFriendship(HFNPCs.CLOCKMAKER, 15000));
+    public static final Shop KITCHEN = ShopRegistry.INSTANCE.newShop(new ResourceLocation(MODID, "kitchen"), HFNPCs.CAFE_GRANNY).setSpecialSellingRules(new SpecialRulesFriendship(HFNPCs.CAFE_GRANNY, 15000));
+    public static final Shop TRADER = ShopRegistry.INSTANCE.newShop(new ResourceLocation(MODID, "trader"), HFNPCs.TRADER).setSpecialSellingRules(new SpecialRulesFriendship(HFNPCs.TRADER, 15000));
 
     public static void postInit() {
         registerBarn();
@@ -164,6 +164,7 @@ public class HFShops {
     }
 
     private static void registerCafeKitchen() {
+        KITCHEN.addPurchasable(-680, new ItemStack(Items.BREAD), 2);
         KITCHEN.addPurchasable(-50, new ItemStack(Blocks.BROWN_MUSHROOM), 5);
         KITCHEN.addPurchasable(-60, new ItemStack(Items.PORKCHOP), 3);
         KITCHEN.addPurchasable(-80, new ItemStack(Items.COOKED_PORKCHOP), 4);
@@ -236,12 +237,12 @@ public class HFShops {
         MINER.addPurchasable(1000, HFMining.LADDER.getStackFromEnum(Ladder.DECORATIVE), 3);
         MINER.addPurchasable(250, HFMining.MINING_TOOL.getStackFromEnum(MiningTool.ESCAPE_ROPE), 10);
         //Selling things to the mine
-        MINER.addPurchasable(-30, new ItemStack(Items.COAL, 1, 1));
-        MINER.addPurchasable(-15, new ItemStack(Items.GOLD_NUGGET));
-        MINER.addPurchasable(-50, new ItemStack(Items.COAL), 8);
-        MINER.addPurchasable(-60, new ItemStack(Items.QUARTZ), 8);
-        MINER.addPurchasable(-100, new ItemStack(Items.IRON_INGOT), 5);
-        MINER.addPurchasable(-140, new ItemStack(Items.GOLD_INGOT), 2);
+        MINER.addPurchasable(-10, new ItemStack(Items.COAL, 1, 1));
+        MINER.addPurchasable(-6, new ItemStack(Items.GOLD_NUGGET));
+        MINER.addPurchasable(-10, new ItemStack(Items.COAL));
+        MINER.addPurchasable(-20, new ItemStack(Items.QUARTZ));
+        MINER.addPurchasable(-40, new ItemStack(Items.IRON_INGOT), 8);
+        MINER.addPurchasable(-60, new ItemStack(Items.GOLD_INGOT), 5);
 
         MINER.addOpening(MONDAY, 11000, 16000).addOpening(TUESDAY, 11000, 16000).addOpening(WEDNESDAY, 11000, 16000);
         MINER.addOpening(THURSDAY, 11000, 16000).addOpening(FRIDAY, 11000, 16000).addOpening(SATURDAY, 11000, 16000);
@@ -277,7 +278,6 @@ public class HFShops {
 
         SUPERMARKET.addPurchasable(new PurchasableBlueFeather(1000, HFNPCs.TOOLS.getStackFromEnum(BLUE_FEATHER)));
         SUPERMARKET.addPurchasable(RICEBALL.getCost(), HFCooking.INGREDIENTS.getStackFromEnum(RICEBALL));
-        SUPERMARKET.addPurchasable(100, new ItemStack(Items.BREAD));
         SUPERMARKET.addPurchasable(OIL.getCost(), HFCooking.INGREDIENTS.getStackFromEnum(OIL));
         SUPERMARKET.addPurchasable(FLOUR.getCost(), HFCooking.INGREDIENTS.getStackFromEnum(FLOUR));
         SUPERMARKET.addPurchasable(CURRY_POWDER.getCost(), HFCooking.INGREDIENTS.getStackFromEnum(CURRY_POWDER));
@@ -285,6 +285,7 @@ public class HFShops {
         SUPERMARKET.addPurchasable(CHOCOLATE.getCost(), HFCooking.INGREDIENTS.getStackFromEnum(CHOCOLATE));
         SUPERMARKET.addPurchasable(WINE.getCost(), HFCooking.INGREDIENTS.getStackFromEnum(WINE));
         SUPERMARKET.addPurchasable(SALT.getCost(), HFCooking.INGREDIENTS.getStackFromEnum(SALT));
+        SUPERMARKET.addPurchasable(SALT.getCost(), new ItemStack(Items.SUGAR));
 
         SUPERMARKET.addOpening(MONDAY, 9000, 17000).addOpening(TUESDAY, 9000, 17000).addOpening(THURSDAY, 9000, 17000);
         SUPERMARKET.addOpening(FRIDAY, 9000, 17000).addOpening(SATURDAY, 11000, 15000);
@@ -293,7 +294,7 @@ public class HFShops {
     private static void registerTackleshop() {
         BAITSHOP.addPurchasable(new Purchasable(Junk.BAIT.getCost(), HFFishing.JUNK.getStackFromEnum(Junk.BAIT)).addTooltip("junk.bait"));
         BAITSHOP.addPurchasable(1000L, HFFishing.FISHING_ROD.getStack(ToolTier.BASIC), 1);
-        BAITSHOP.addPurchasable(new Purchasable(1500L, HFFishing.FISHING_BLOCK.getStackFromEnum(FishingBlock.TRAP)).setStock(10).addTooltip("fishing.block.trap"));
+        BAITSHOP.addPurchasable(new Purchasable(500L, HFFishing.FISHING_BLOCK.getStackFromEnum(FishingBlock.TRAP)).setStock(10).addTooltip("fishing.block.trap"));
         BAITSHOP.addPurchasable(new PurchasableMaterials(3000L, HFFishing.FISHING_BLOCK.getStackFromEnum(FishingBlock.HATCHERY), Logs.of(8), Wool.of(1)) {
             @Override
             public boolean canList(World world, EntityPlayer player) {

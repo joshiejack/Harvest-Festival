@@ -21,26 +21,22 @@ import java.util.Collection;
 import java.util.LinkedHashMap;
 
 public class Shop implements IShop {
-    public static final ISpecialPurchaseRules DEFAULT = (w, p, a) -> true;
+    private static final ISpecialPurchaseRules DEFAULT_TRUE = (w, p, a) -> true;
     private final LinkedHashMap<String, IPurchasable> contents = new LinkedHashMap<>();
     private final HashMultimap<Weekday, OpeningHours> open = HashMultimap.create();
     public final ResourceLocation resourceLocation;
     private final String unlocalizedName;
-    private ISpecialPurchaseRules rules;
+    private ISpecialPurchaseRules rulesBuying;
+    private ISpecialPurchaseRules rulesSelling;
     private ShopSelection selection;
     private boolean canBuy;
     private boolean canSell;
-    private long budget;
 
     public Shop(ResourceLocation resource) {
-        budget = 5000L;
         resourceLocation = resource;
         unlocalizedName = resource.getResourceDomain() + ".shop." + resource.getResourcePath();
-        rules = DEFAULT;
-    }
-
-    public long getBudget() {
-        return budget;
+        rulesBuying = DEFAULT_TRUE;
+        rulesSelling = DEFAULT_TRUE;
     }
 
     public IPurchasable getPurchasableFromID(String id) {
@@ -49,16 +45,22 @@ public class Shop implements IShop {
 
     @Override
     public Shop setSpecialPurchaseRules(ISpecialPurchaseRules rules) {
-        this.rules = rules;
+        this.rulesBuying = rules;
+        return this;
+    }
+
+    @Override
+    public Shop setSpecialSellingRules(ISpecialPurchaseRules rules) {
+        this.rulesSelling = rules;
         return this;
     }
 
     public boolean canBuyFromShop(@Nullable EntityPlayer player) {
-        return player == null ? canBuy : rules.canBuy(player.worldObj, player, 1);
+        return canBuy && (player == null || rulesBuying.canBuy(player.worldObj, player, 1));
     }
 
     public boolean canSellToShop(@Nullable EntityPlayer player) {
-        return player == null ? canSell : rules.canBuy(player.worldObj, player, 1);
+        return canSell && (player == null || rulesSelling.canBuy(player.worldObj, player, 1));
     }
 
     public ShopSelection getSelection() {

@@ -5,7 +5,7 @@ import joshie.harvest.api.shops.IPurchaseableMaterials;
 import joshie.harvest.api.shops.IRequirement;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.helpers.MCClientHelper;
-import joshie.harvest.core.helpers.StackHelper;
+import joshie.harvest.core.helpers.RenderHelper;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.npc.entity.EntityNPC;
 import joshie.harvest.npc.gui.GuiNPCBase;
@@ -211,7 +211,7 @@ public class GuiNPCShop<I extends IPurchasable> extends GuiNPCBase {
         ShopFontRenderer.render(this, guiLeft + 240, guiTop + 44, "Inventory", false);
         for (ItemStack stack: MCClientHelper.getPlayer().inventory.mainInventory) {
             if (stack != null) {
-                StackHelper.drawStack(stack, guiLeft + 253 + y2, guiTop + 61 + x2 * 18, 1F);
+                RenderHelper.drawStack(stack, guiLeft + 253 + y2, guiTop + 61 + x2 * 18, 1F);
             }
             x2++;
             if (x2 >= 9) {
@@ -250,7 +250,7 @@ public class GuiNPCShop<I extends IPurchasable> extends GuiNPCBase {
     @Override
     public void drawForeground(int x, int y) {
         if (purchased != null) {
-            StackHelper.drawStack(purchased, mouseX, mouseY, 1F);
+            RenderHelper.drawStack(purchased, mouseX, mouseY, 1F);
         }
     }
 

@@ -49,7 +49,7 @@
 
 ###Gathering
 * More items will now spawn around the world (that sell for more than 1 gold!)
-* Items will no longer spawn inside of towns, they will only spawn from 24 to 128 blocks away
+* Items will no longer spawn inside of towns, they will only spawn from 32 to 128 blocks away
 
 ###Mining
 * Fixed cursed tools being unobtainable

@@ -1,6 +1,7 @@
 package joshie.harvest.fishing.entity;
 
 import joshie.harvest.core.HFTrackers;
+import joshie.harvest.core.helpers.InventoryHelper;
 import joshie.harvest.fishing.FishingHelper;
 import joshie.harvest.fishing.HFFishing;
 import net.minecraft.block.Block;
@@ -305,7 +306,10 @@ public class EntityFishHookHF extends EntityFishHook {
                 lootcontext$builder.withPlayer(angler);
                 for (ItemStack itemstack : worldObj.getLootTableManager().getLootTableFromLocation(FishingHelper.getFishingTable(worldObj, new BlockPos(this))).generateLootForPools(rand, lootcontext$builder.build())) {
                     EntityItem entityitem = new EntityItem(worldObj, posX, posY, posZ, itemstack);
-                    HFTrackers.getPlayerTrackerFromPlayer(angler).getTracking().addAsObtained(itemstack);
+                    if (InventoryHelper.isOreName(itemstack, "fish")) {
+                        HFTrackers.getPlayerTrackerFromPlayer(angler).getTracking().addAsObtained(itemstack);
+                    }
+
                     double d0 = angler.posX - posX;
                     double d1 = angler.posY - posY;
                     double d2 = angler.posZ - posZ;

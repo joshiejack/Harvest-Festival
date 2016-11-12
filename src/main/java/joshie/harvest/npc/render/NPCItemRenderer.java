@@ -10,10 +10,15 @@ import joshie.harvest.npc.entity.EntityNPCVillager;
 import joshie.harvest.npc.render.NPCItemRenderer.NPCTile;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
+import net.minecraft.util.ResourceLocation;
 
 import javax.annotation.Nullable;
 
+import static joshie.harvest.core.lib.HFModInfo.MODID;
+
 public class NPCItemRenderer extends TileEntitySpecialRenderer<NPCTile> {
+    private static final ResourceLocation SHADOW = new ResourceLocation(MODID, "textures/entity/shadow.png");
+    public static boolean renderShadow;
     private final ModelNPC modelAlex;
     private final ModelNPC modelSteve;
     private EntityNPC fake;
@@ -38,7 +43,8 @@ public class NPCItemRenderer extends TileEntitySpecialRenderer<NPCTile> {
             GlStateManager.enableRescaleNormal();
             GlStateManager.scale(-1.0F, -1.0F, 1.0F);
             GlStateManager.translate(0.0F, -1.501F, 0.0F);
-            bindTexture(fake.npc.getSkin());
+            if (renderShadow) bindTexture(SHADOW);
+            else bindTexture(fake.npc.getSkin());
             ModelNPC model = fake.npc.isAlexSkin() ? modelAlex : modelSteve;
             model.isChild = fake.npc.getAge() == INPCRegistry.Age.CHILD;
             model.render(getNPC(), 0F, 0F, 0F, 0F, 0F, 0.0625F);

@@ -1,6 +1,7 @@
 package joshie.harvest.core.base.item;
 
 import joshie.harvest.core.base.block.BlockHFBase;
+import joshie.harvest.core.base.block.BlockHFEnum;
 import joshie.harvest.core.util.interfaces.ICreativeSorted;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
@@ -19,6 +20,9 @@ public class ItemBlockHF extends ItemBlock implements ICreativeSorted {
         super(block);
         this.block = block;
         setHasSubtypes(true);
+        if (block instanceof BlockHFEnum) {
+            ((BlockHFEnum)block).registerSellables(this);
+        }
     }
 
     @Override

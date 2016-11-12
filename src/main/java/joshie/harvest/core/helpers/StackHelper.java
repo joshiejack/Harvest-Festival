@@ -1,8 +1,5 @@
 package joshie.harvest.core.helpers;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -19,26 +16,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StackHelper {
-    @SideOnly(Side.CLIENT)
-    public static void drawStack(ItemStack stack, int left, int top, float size) {
-        GlStateManager.disableAlpha();
-        GlStateManager.pushMatrix();
-        GlStateManager.scale(size, size, size);
-        GlStateManager.disableLighting();
-        GlStateManager.color(1.0F, 1.0F, 1.0F); //Forge: Reset color in case Items change it.
-        GlStateManager.enableBlend(); //Forge: Make sure blend is enabled else tabs show a white border.
-        GlStateManager.enableLighting();
-        GlStateManager.enableRescaleNormal();
-        RenderHelper.enableGUIStandardItemLighting();
-        Minecraft mc = MCClientHelper.getMinecraft();
-        mc.getRenderItem().renderItemAndEffectIntoGUI(stack, (int) (left / size), (int) (top / size));
-        String display = stack.stackSize > 1 ? stack.stackSize + "" : "";
-        mc.getRenderItem().renderItemOverlayIntoGUI(mc.fontRendererObj, stack, (int) (left / size), (int) (top / size), display);
-        RenderHelper.disableStandardItemLighting();
-        GlStateManager.disableLighting();
-        GlStateManager.popMatrix();
-        GlStateManager.enableAlpha();
-    }
 
     public static ItemStack getStackFromString(String str) {
         if (str == null || str.equals("")) return null;

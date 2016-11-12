@@ -4,6 +4,7 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.cooking.IAltItem;
 import joshie.harvest.api.cooking.Utensil;
 import joshie.harvest.cooking.CookingHelper.PlaceIngredientResult;
+import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.achievements.HFAchievements;
 import joshie.harvest.core.base.tile.TileFaceable;
 import joshie.harvest.core.helpers.MCServerHelper;
@@ -80,6 +81,7 @@ public abstract class TileCooking extends TileFaceable {
                 player.addStat(HFAchievements.cooking);
             }
 
+            HFTrackers.getPlayerTrackerFromPlayer(player).getTracking().addAsObtained(theItem);
             SpawnItemHelper.addToPlayerInventory(player, theItem);
         }
 

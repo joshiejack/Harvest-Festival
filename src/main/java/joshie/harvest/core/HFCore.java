@@ -9,6 +9,7 @@ import joshie.harvest.core.block.BlockStorage;
 import joshie.harvest.core.handlers.GuiHandler;
 import joshie.harvest.core.helpers.InventoryHelper;
 import joshie.harvest.core.helpers.RegistryHelper;
+import joshie.harvest.core.item.ItemBook;
 import joshie.harvest.core.loot.SetEnum;
 import joshie.harvest.core.loot.SetSizeable;
 import joshie.harvest.core.tile.TileShipping;
@@ -41,6 +42,7 @@ import static net.minecraft.block.BlockDoublePlant.EnumPlantType.*;
 @HFLoader(priority = HFCORE)
 public class HFCore {
     public static final Fluid GODDESS = registerFluid(new Fluid("goddess_water", new ResourceLocation(MODID, "blocks/goddess_still"), new ResourceLocation(MODID, "blocks/goddess_flow")).setRarity(EnumRarity.RARE));
+    public static final ItemBook BOOK = new ItemBook().register("book");
     public static final BlockGoddessWater GODDESS_WATER = new BlockGoddessWater(GODDESS).register("goddess_water");
     public static final BlockFlower FLOWERS = new BlockFlower().register("flowers");
     public static final BlockStorage STORAGE = new BlockStorage().register("storage");
@@ -63,8 +65,6 @@ public class HFCore {
         for (EnumFlowerType type: EnumFlowerType.getTypes(EnumFlowerColor.RED)) {
             registerIfNotRegistered("flower" + WordUtils.capitalize(type.getUnlocalizedName()), new ItemStack(Blocks.RED_FLOWER, 1, type.getMeta()));
         }
-
-        HFApi.shipping.registerSellable(new ItemStack(Items.BREAD), 50L);
     }
 
     private static void registerIfNotRegistered(String string, ItemStack stack) {

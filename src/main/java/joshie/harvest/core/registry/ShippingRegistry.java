@@ -15,6 +15,10 @@ public class ShippingRegistry implements IShippingRegistry {
 
     private ShippingRegistry() {}
 
+    public HolderRegistry<Long> getRegistry() {
+        return registry;
+    }
+
     @Override
     public void registerSellable(ItemStack stack, long value) {
         registry.register(stack, value);

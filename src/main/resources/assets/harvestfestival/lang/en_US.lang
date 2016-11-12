@@ -15,7 +15,6 @@ hf.commands.help.header=--- Showing hf.help page %d of %d (/hf.help <page>) ---
 
 #Tooltips
 harvestfestival.tooltip.cosmetic=Cosmetic
-harvestfestival.tooltip.mythic_stone=Used to Upgrade
 harvestfestival.tooltip.flower=Caller of the Goddess
 
 #Animals
@@ -1492,3 +1491,12 @@ harvestfestival.subtitle.recipe=Recipe Learnt!
 
 #Config
 harvestfestival.config.tooltip=
+
+#Stats book
+harvestfestival.stats.collection=Collections
+harvestfestival.stats.fishing=Fishing
+harvestfestival.stats.cooking=Cooking
+harvestfestival.stats.shipping=Shipping
+harvestfestival.stats.mining=Mining
+harvestfestival.stats.relationships=Relationships
+harvestfestival.stats.npc=NPC Relations

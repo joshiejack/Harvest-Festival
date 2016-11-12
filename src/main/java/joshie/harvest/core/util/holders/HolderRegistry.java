@@ -12,12 +12,14 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map.Entry;
 import java.util.concurrent.ExecutionException;
 
 public class HolderRegistry<R> {
-    private final HashMap<AbstractItemHolder, R> registry = new HashMap<>();
+    private final LinkedHashMap<AbstractItemHolder, R> registry = new LinkedHashMap<>();
     private final Cache<ItemStackHolder, Optional<R>> itemToType = CacheBuilder.newBuilder().maximumSize(512).build();
 
     public void register(Object object, R r) {
@@ -39,6 +41,10 @@ public class HolderRegistry<R> {
         return value != null && matches(value, type);
     }
 
+    public R getValue(AbstractItemHolder holder) {
+        return registry.get(holder);
+    }
+
     public R getValueOf(ItemStack stack) {
         try {
             return itemToType.get(ItemStackHolder.of(stack), () -> {
@@ -49,6 +55,10 @@ public class HolderRegistry<R> {
                 return Optional.absent();
             }).orNull();
         } catch (ExecutionException ex) { return null; }
+    }
+
+    public List<AbstractItemHolder> getStacks() {
+        return new ArrayList<>(registry.keySet());
     }
 
     public boolean matches(R external, R internal) {

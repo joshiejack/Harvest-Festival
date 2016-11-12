@@ -32,19 +32,18 @@ public class BuildingHelper {
         }
     }
 
-    @SuppressWarnings("all")
     public static RayTraceResult rayTrace(EntityPlayer player, double blockReachDistance, float partialTicks) {
         Vec3d vec3d = getPositionEyes(player, partialTicks);
         Vec3d vec3d1 = player.getLook(partialTicks);
         Vec3d vec3d2 = vec3d.addVector(vec3d1.xCoord * blockReachDistance, vec3d1.yCoord * blockReachDistance, vec3d1.zCoord * blockReachDistance);
         RayTraceResult result = player.worldObj.rayTraceBlocks(vec3d, vec3d2, false, false, true);
-        return result.getBlockPos() == null ? null : result;
+        return result == null ? null : result;
     }
 
     @SuppressWarnings("all")
     public static BlockPos getBlockLookingAt(EntityPlayer player) {
         RayTraceResult raytrace = BuildingHelper.rayTrace(player, 128, 0F);
-        return raytrace == null || raytrace.getBlockPos() == null ? null : raytrace.getBlockPos();
+        return raytrace == null ? null : raytrace.getBlockPos();
     }
 
     private static final WeakHashMap<EntityPlayer, BuildingKey> POSITIONS_SERVER = new WeakHashMap<>();

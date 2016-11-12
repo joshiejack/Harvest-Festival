@@ -1,7 +1,10 @@
 package joshie.harvest.cooking.recipe;
 
+import joshie.harvest.animals.HFAnimals;
+import joshie.harvest.animals.item.ItemAnimalProduct.Sizeable;
 import joshie.harvest.api.cooking.Recipe;
 import joshie.harvest.api.cooking.Utensil;
+import joshie.harvest.api.core.Size;
 import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.cooking.item.ItemIngredients;
 import joshie.harvest.cooking.item.ItemMeal.Meal;
@@ -85,6 +88,7 @@ public class HFRecipes {
         addNoUtensilRecipe(Meal.SASHIMI, 1F, 1F, FISH);
         addNoUtensilRecipe(Meal.SASHIMI_CHIRASHI, 1F, 1F, SASHIMI, SCRAMBLED_EGG, RICEBALL, SASHIMI_VEGETABLE);//Shop
         //Added in 0.6+
+        addNoUtensilRecipe("mayonnaise", HFAnimals.ANIMAL_PRODUCT.getStack(Sizeable.MAYONNAISE, Size.MEDIUM), EGG);
         addNoUtensilRecipe(Meal.SANDWICH_FRUIT, 0.75F, 1F, BREAD, FRUITS).setOptionalIngredients(FRUITS).setMaximumOptionalIngredients(5);
         addNoUtensilRecipe(Meal.RICE_BAMBOO, 1F, 1F, BAMBOO, RICEBALL);
         addNoUtensilRecipe(Meal.RICE_MATSUTAKE, 1F, 1F, MATSUTAKE, RICEBALL);

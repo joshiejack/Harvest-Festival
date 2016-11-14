@@ -8,8 +8,11 @@ import joshie.harvest.cooking.recipe.RecipeMaker;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.base.gui.BookPage;
 import joshie.harvest.core.gui.stats.GuiStats;
+import joshie.harvest.core.gui.stats.button.ButtonNext;
+import joshie.harvest.core.gui.stats.button.ButtonPrevious;
 import joshie.harvest.core.gui.stats.collection.button.ButtonShipped;
 import net.minecraft.client.gui.GuiButton;
+import net.minecraft.client.gui.GuiLabel;
 import net.minecraft.item.ItemStack;
 
 import java.util.ArrayList;
@@ -25,14 +28,14 @@ public class PageCooking extends PageCollection {
     }
 
     @Override
-    public void initGui(GuiStats gui, List<GuiButton> buttonList) {
-        super.initGui(gui, buttonList); //Add the tabs
+    public void initGui(GuiStats gui, List<GuiButton> buttonList, List<GuiLabel> labelList) {
+        super.initGui(gui, buttonList, labelList); //Add the tabs
         List<Recipe> list = Recipe.REGISTRY.getValues();
         int j = 0;
         int k = 0;
         int l = 0;
         int added = 0;
-        for (int i = 0; added <= 144 && i < list.size(); i++) {
+        for (int i = start * 112; added < start * 112 + 112 && i < list.size(); i++) {
             Recipe recipe = list.get(i);
             ArrayList<IngredientStack> stacks = new ArrayList<>();
             stacks.addAll(recipe.getRequired());
@@ -55,6 +58,10 @@ public class PageCooking extends PageCollection {
             added++;
             buttonList.add(new ButtonShipped(gui, stack, value, obtained, buttonList.size(), l + 3 + k * 18, 24 + j * 18));
         }
+
+        int maxStart = list.size() / 112;
+        if (start < maxStart) buttonList.add(new ButtonNext(gui, buttonList.size(), 273, 172));
+        if (start != 0) buttonList.add(new ButtonPrevious(gui, buttonList.size(), 20, 172));
     }
 
     private boolean hasObtainedStack(ItemStack stack) {

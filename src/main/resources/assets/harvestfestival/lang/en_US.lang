@@ -1493,10 +1493,13 @@ harvestfestival.subtitle.recipe=Recipe Learnt!
 harvestfestival.config.tooltip=
 
 #Stats book
+harvestfestival.stats.next=Next Page
+harvestfestival.stats.previous=Previous Page
 harvestfestival.stats.collection=Collections
 harvestfestival.stats.fishing=Fishing
 harvestfestival.stats.cooking=Cooking
 harvestfestival.stats.shipping=Shipping
 harvestfestival.stats.mining=Mining
 harvestfestival.stats.relationships=Relationships
-harvestfestival.stats.npc=NPC Relations
+harvestfestival.stats.npc=NPCs
+harvestfestival.stats.animals=Animals

@@ -2,6 +2,7 @@ package joshie.harvest.animals.stats;
 
 import joshie.harvest.animals.HFAnimals;
 import joshie.harvest.api.animals.AnimalAction;
+import joshie.harvest.api.animals.AnimalTest;
 import joshie.harvest.api.animals.IAnimalType;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -30,9 +31,14 @@ public class AnimalStatsPoultry extends AnimalStatsHF {
     }
 
     @Override
+    public boolean performTest(AnimalTest test) {
+        if (test == AnimalTest.CAN_CARRY) return true;
+        else return super.performTest(test);
+    }
+
+    @Override
     public boolean performAction(@Nonnull World world, @Nullable EntityPlayer player, @Nullable ItemStack stack, AnimalAction action) {
-        if (action == AnimalAction.TEST_MOUNT) return true;
-        else if (action == AnimalAction.DISMOUNT) return dismount(player);
+        if (action == AnimalAction.DISMOUNT) return dismount(player);
         else return super.performAction(world, player, stack, action);
     }
 

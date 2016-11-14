@@ -41,9 +41,10 @@ public abstract class GuiBaseBook extends GuiScreen {
     @SuppressWarnings("unchecked")
     public void initGui() {
         buttonList.clear();
+        labelList.clear();
         guiLeft = (width - xSize) / 2;
         guiTop = (height - ySize) / 2;
-        page.initGui(this, buttonList); //Reinit the gui
+        page.initGui(this, buttonList, labelList); //Reinit the gui
     }
 
     @Override
@@ -62,8 +63,12 @@ public abstract class GuiBaseBook extends GuiScreen {
         runnables.forEach(Runnable :: run);
     }
 
+    public BookPage getPage() {
+        return GuiBaseBook.page;
+    }
+
     public void setPage(BookPage page) {
-        this.page = page;
+        GuiBaseBook.page = page;
         this.initGui();
     }
 

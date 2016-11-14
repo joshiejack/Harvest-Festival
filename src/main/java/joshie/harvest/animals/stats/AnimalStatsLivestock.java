@@ -2,6 +2,7 @@ package joshie.harvest.animals.stats;
 
 import joshie.harvest.animals.HFAnimals;
 import joshie.harvest.api.animals.AnimalAction;
+import joshie.harvest.api.animals.AnimalTest;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.player.PlayerTrackerServer;
@@ -65,6 +66,13 @@ public class AnimalStatsLivestock extends AnimalStatsHF {
         if (animal.isChild()) {
             animal.addGrowth(1200);
         }
+    }
+
+    @Override
+    public boolean performTest(AnimalTest test) {
+        if (test == AnimalTest.CAN_CLEAN) return true;
+        else if (test == AnimalTest.IS_CLEAN) return cleanliness == Byte.MAX_VALUE;
+        else return super.performTest(test);
     }
 
     @Override

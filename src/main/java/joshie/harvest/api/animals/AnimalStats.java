@@ -23,9 +23,6 @@ public interface AnimalStats<N extends NBTBase> extends INBTSerializable<N> {
     /** Returns the type this animal is **/
     IAnimalType getType();
 
-    /** Returns true if this animal is currently hungry **/
-    boolean isHungry();
-
     /** Returns products per day,
      * the amount of products this animal can make each day **/
     int getProductsPerDay();
@@ -57,6 +54,10 @@ public interface AnimalStats<N extends NBTBase> extends INBTSerializable<N> {
      *  @param action   the action itself
      *  @return true if it was successfully performed **/
     boolean performAction(@Nonnull World world, @Nullable EntityPlayer player, @Nullable ItemStack stack, AnimalAction action);
+
+    /** Performs a test on the animal
+     *  @param test     the test to perform**/
+    boolean performTest(AnimalTest test);
 
     /** Marks the animal as dead, ready to be removed next turn **/
     void setDead();

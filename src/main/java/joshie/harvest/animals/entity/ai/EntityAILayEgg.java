@@ -1,5 +1,6 @@
 package joshie.harvest.animals.entity.ai;
 
+import joshie.harvest.api.animals.AnimalTest;
 import joshie.harvest.api.animals.INest;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -15,7 +16,7 @@ public class EntityAILayEgg extends EntityAIAnimal {
 
     @Override
     public boolean shouldExecute() {
-        if(!animal.isChild() && getStats() != null && getStats().canProduce() && !getStats().isHungry()) {
+        if(!animal.isChild() && getStats() != null && getStats().canProduce() && getStats().performTest(AnimalTest.HAS_EATEN)) {
             wanderTick--;
 
             return wanderTick <= 0;

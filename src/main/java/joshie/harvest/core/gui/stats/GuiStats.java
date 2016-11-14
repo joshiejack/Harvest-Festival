@@ -5,7 +5,7 @@ import joshie.harvest.core.base.gui.GuiBaseBook;
 import joshie.harvest.core.gui.stats.button.ButtonTabLeft;
 import joshie.harvest.core.gui.stats.collection.page.PageFishing;
 import joshie.harvest.core.gui.stats.collection.page.PageShipping;
-import joshie.harvest.core.gui.stats.relations.page.PageNPC;
+import joshie.harvest.core.gui.stats.relations.page.PageAnimals;
 import net.minecraft.util.ResourceLocation;
 
 import static joshie.harvest.core.lib.HFModInfo.MODID;
@@ -24,7 +24,7 @@ public class GuiStats extends GuiBaseBook {
     public void initGui() {
         super.initGui();
         buttonList.add(new ButtonTabLeft(this, PageShipping.INSTANCE, buttonList.size(), -26, 32));
-        buttonList.add(new ButtonTabLeft(this, PageNPC.INSTANCE, buttonList.size(), -26, 64));
+        buttonList.add(new ButtonTabLeft(this, PageAnimals.INSTANCE, buttonList.size(), -26, 64));
     }
 
     @Override

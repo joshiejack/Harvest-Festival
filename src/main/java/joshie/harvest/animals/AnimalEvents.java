@@ -6,6 +6,7 @@ import joshie.harvest.animals.tracker.AnimalTrackerServer;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.AnimalAction;
 import joshie.harvest.api.animals.AnimalStats;
+import joshie.harvest.api.animals.AnimalTest;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.core.helpers.InventoryHelper;
@@ -79,7 +80,7 @@ public class AnimalEvents {
             if (!player.isBeingRidden() && !blocksPickup(player)) {
                 Entity entity = event.getTarget();
                 AnimalStats stats = EntityHelper.getStats(entity);
-                if (stats != null && stats.performAction(player.worldObj, player, null, AnimalAction.TEST_MOUNT)) {
+                if (stats != null && stats.performTest(AnimalTest.CAN_CARRY)) {
                     entity.startRiding(player, true);
                 }
             }
@@ -97,7 +98,7 @@ public class AnimalEvents {
             if (!forbidsDrop(event.getWorld().getBlockState(event.getPos()).getBlock())) {
                 for (Entity entity : player.getPassengers()) {
                     AnimalStats stats = EntityHelper.getStats(entity);
-                    if (stats != null && stats.performAction(player.worldObj, player, null, AnimalAction.TEST_MOUNT)) {
+                    if (stats != null && stats.performTest(AnimalTest.CAN_CARRY)) {
                         entity.dismountRidingEntity();
                         entity.rotationPitch = player.rotationPitch;
                         entity.rotationYaw = player.rotationYaw;

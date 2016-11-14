@@ -1,17 +1,13 @@
 package joshie.harvest.animals.entity.ai;
 
+import joshie.harvest.api.animals.AnimalTest;
 import joshie.harvest.api.animals.IAnimalFeeder;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockDoublePlant;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.passive.EntityAnimal;
-import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 
-import static net.minecraft.block.BlockDoublePlant.EnumPlantType.GRASS;
-
 public class EntityAIEat extends EntityAIAnimal {
-    private static final IBlockState DOUBLE_TALL_GRASS = Blocks.DOUBLE_PLANT.getDefaultState().withProperty(BlockDoublePlant.VARIANT, GRASS);
     public EntityAIEat(EntityAnimal animal) {
         super(animal);
         this.setMutexBits(1);
@@ -19,7 +15,7 @@ public class EntityAIEat extends EntityAIAnimal {
 
     @Override
     public boolean shouldExecute() {
-        if(getStats() != null && getStats().isHungry()) {
+        if(getStats() != null && !getStats().performTest(AnimalTest.HAS_EATEN)) {
             wanderTick--;
             return wanderTick <= 0;
         } else return false;
@@ -37,7 +33,7 @@ public class EntityAIEat extends EntityAIAnimal {
         Block block = state.getBlock();
         if (!attemptToEat(position, state, block)) {
             wanderTick--;
-            if (animal.worldObj.rand.nextDouble() < 0.005D || wanderTick < Short.MIN_VALUE || !getStats().isHungry()) {
+            if (animal.worldObj.rand.nextDouble() < 0.005D || wanderTick < Short.MIN_VALUE || getStats().performTest(AnimalTest.HAS_EATEN)) {
                 wanderTick = 200;
             }
         }

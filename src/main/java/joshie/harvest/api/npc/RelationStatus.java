@@ -1,6 +1,6 @@
 package joshie.harvest.api.npc;
 
-public enum NPCStatus {
+public enum RelationStatus {
     GIFTED,
     TALKED,
     BIRTHDAY_GIFT {

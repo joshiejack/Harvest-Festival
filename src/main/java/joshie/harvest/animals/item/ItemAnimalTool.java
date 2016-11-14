@@ -4,6 +4,7 @@ import joshie.harvest.animals.item.ItemAnimalTool.Tool;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.AnimalAction;
 import joshie.harvest.api.animals.AnimalStats;
+import joshie.harvest.api.animals.AnimalTest;
 import joshie.harvest.core.base.item.ItemHFEnum;
 import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.core.lib.CreativeSort;
@@ -98,8 +99,8 @@ public class ItemAnimalTool extends ItemHFEnum<ItemAnimalTool, Tool> {
         return held;
     }
 
-    private boolean milk(EntityPlayer player, EnumHand hand, ItemStack stack, AnimalStats stats) {
-        if (stats.performAction(player.worldObj, player, stack, AnimalAction.TEST_PRODUCT)) {
+    private boolean milk(EntityPlayer player, EnumHand hand, AnimalStats stats) {
+        if (stats.performTest(AnimalTest.CAN_MILK)) {
             milkables.put(player, stats);
             player.setActiveHand(hand);
             return true;
@@ -161,7 +162,7 @@ public class ItemAnimalTool extends ItemHFEnum<ItemAnimalTool, Tool> {
             } else if (tool == MIRACLE_POTION) {
                 return impregnate(player, stats, stack);
             } else if (tool == MILKER) {
-                return milk(player, hand, stack, stats);
+                return milk(player, hand, stats);
             }
         }
 

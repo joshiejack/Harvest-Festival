@@ -6,6 +6,7 @@ import joshie.harvest.animals.packet.PacketSyncAnimal;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.AnimalAction;
 import joshie.harvest.api.animals.AnimalStats;
+import joshie.harvest.api.animals.AnimalTest;
 import joshie.harvest.api.animals.IAnimalType;
 import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.npc.HFNPCs;
@@ -101,11 +102,6 @@ public class AnimalStatsHF implements AnimalStats<NBTTagCompound> {
 
     public void setDead() {
         this.hasDied = true;
-    }
-
-    @Override
-    public boolean isHungry() {
-        return daysNotFed >= 0;
     }
 
     @Override
@@ -287,6 +283,14 @@ public class AnimalStatsHF implements AnimalStats<NBTTagCompound> {
     public void setProduced(int amount) {
         producedProducts += amount;
         HFApi.animals.syncAnimalStats(animal);
+    }
+
+    @Override
+    public boolean performTest(AnimalTest test) {
+        if (test == AnimalTest.HAS_EATEN) return daysNotFed < 0;
+        else if (test == AnimalTest.IS_SICK) return isSick;
+        else if (test == AnimalTest.HAD_TREAT) return treated;
+        else return false;
     }
 
     @Override

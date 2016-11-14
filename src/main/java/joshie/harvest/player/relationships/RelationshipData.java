@@ -3,7 +3,7 @@ package joshie.harvest.player.relationships;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import joshie.harvest.api.calendar.CalendarDate;
-import joshie.harvest.api.npc.NPCStatus;
+import joshie.harvest.api.npc.RelationStatus;
 import joshie.harvest.api.player.IRelations;
 import joshie.harvest.core.achievements.HFAchievements;
 import joshie.harvest.core.helpers.NBTHelper;
@@ -23,31 +23,31 @@ public abstract class RelationshipData implements IRelations {
     public void copyRelationship(@Nullable EntityPlayer player, int adult, UUID baby, double percentage) {}
 
     protected final HashMap<UUID, Integer> relationships = new HashMap<>();
-    protected final Multimap<UUID, NPCStatus> status = HashMultimap.create();
+    protected final Multimap<UUID, RelationStatus> status = HashMultimap.create();
 
     public void clear(UUID key) {
         relationships.remove(key);
     }
 
     public boolean hasMet(UUID key) {
-        Collection<NPCStatus> statuses = status.get(key);
-        return statuses.contains(NPCStatus.MET);
+        Collection<RelationStatus> statuses = status.get(key);
+        return statuses.contains(RelationStatus.MET);
     }
 
     public boolean hasGifted(UUID key) {
-        Collection<NPCStatus> statuses = status.get(key);
-        return statuses.contains(NPCStatus.GIFTED);
+        Collection<RelationStatus> statuses = status.get(key);
+        return statuses.contains(RelationStatus.GIFTED);
     }
 
     public boolean hasTalked(UUID key) {
-        Collection<NPCStatus> statuses = status.get(key);
-        return statuses.contains(NPCStatus.TALKED);
+        Collection<RelationStatus> statuses = status.get(key);
+        return statuses.contains(RelationStatus.TALKED);
     }
 
     public void newDay(CalendarDate yesterday, CalendarDate today) {
         Set<UUID> keys = new HashSet<>(status.keySet());
         for (UUID uuid: keys) {
-            for (NPCStatus stat: NPCStatus.values()) {
+            for (RelationStatus stat: RelationStatus.values()) {
                 if ((stat.isSeasonal() && yesterday.getSeason() != today.getSeason()) || !stat.isPermenant()) {
                     status.get(uuid).remove(stat);
                 }
@@ -69,11 +69,11 @@ public abstract class RelationshipData implements IRelations {
     //If we have the npc friendship requirement and we propose then we become married, if
     //We don't they shall hate us!
     public boolean propose(EntityPlayer player, UUID key) {
-        Collection<NPCStatus> statuses = status.get(key);
-        if (!statuses.contains(NPCStatus.MARRIED)) {
+        Collection<RelationStatus> statuses = status.get(key);
+        if (!statuses.contains(RelationStatus.MARRIED)) {
             int value = getRelationship(key);
             if (value >= HFNPCs.MARRIAGE_REQUIREMENT) {
-                statuses.add(NPCStatus.MARRIED);
+                statuses.add(RelationStatus.MARRIED);
                 player.addStat(HFAchievements.marriage);
                 affectRelationship(key, 1000);
                 return true;
@@ -117,10 +117,10 @@ public abstract class RelationshipData implements IRelations {
             NBTTagCompound tag = statusList.getCompoundTagAt(i);
             if (tag.hasKey("UUID")) {
                 UUID key = UUID.fromString(tag.getString("UUID"));
-                Collection<NPCStatus> collection = status.get(key);
+                Collection<RelationStatus> collection = status.get(key);
                 NBTTagList statuses = tag.getTagList("Status", 8);
                 for (int j = 0; j < statuses.tagCount(); j++) {
-                    collection.add(NPCStatus.valueOf(statuses.getStringTagAt(j)));
+                    collection.add(RelationStatus.valueOf(statuses.getStringTagAt(j)));
                 }
             }
         }
@@ -130,9 +130,9 @@ public abstract class RelationshipData implements IRelations {
             Set<UUID> talked = NBTHelper.readUUIDSet(nbt, "TalkedTo");
             Set<UUID> gifted = NBTHelper.readUUIDSet(nbt, "Gifted");
             Set<UUID> marriedTo = NBTHelper.readUUIDSet(nbt, "MarriedTo");
-            for (UUID uuid: talked) status.get(uuid).add(NPCStatus.TALKED);
-            for (UUID uuid: gifted) status.get(uuid).add(NPCStatus.GIFTED);
-            for (UUID uuid: marriedTo) status.get(uuid).add(NPCStatus.MARRIED);
+            for (UUID uuid: talked) status.get(uuid).add(RelationStatus.TALKED);
+            for (UUID uuid: gifted) status.get(uuid).add(RelationStatus.GIFTED);
+            for (UUID uuid: marriedTo) status.get(uuid).add(RelationStatus.MARRIED);
         }
     }
 
@@ -155,7 +155,7 @@ public abstract class RelationshipData implements IRelations {
             NBTTagCompound tag = new NBTTagCompound();
             tag.setString("UUID", uuid.toString());
             NBTTagList list = new NBTTagList();
-            for (NPCStatus stat: status.get(uuid)) {
+            for (RelationStatus stat: status.get(uuid)) {
                 list.appendTag(new NBTTagString(stat.name()));
             }
 

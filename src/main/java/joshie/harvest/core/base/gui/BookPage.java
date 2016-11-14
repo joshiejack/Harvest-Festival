@@ -2,6 +2,7 @@ package joshie.harvest.core.base.gui;
 
 import joshie.harvest.core.helpers.TextHelper;
 import net.minecraft.client.gui.GuiButton;
+import net.minecraft.client.gui.GuiLabel;
 import net.minecraft.item.ItemStack;
 
 import java.util.List;
@@ -11,6 +12,7 @@ public class BookPage<G extends GuiBaseBook> {
     private final String name;
     private final String category;
     protected G gui;
+    public int start;
 
     public BookPage (String category, String name, ItemStack stack) {
         this.category = "harvestfestival.stats." + category;
@@ -30,7 +32,14 @@ public class BookPage<G extends GuiBaseBook> {
         return icon;
     }
 
-    public void initGui(G gui, List<GuiButton> buttonList) {
+    protected GuiLabel createLabel(String title, int id, int x, int y, int width, int height) {
+        GuiLabel label = new GuiLabel(gui.mc.fontRendererObj, id, x, y, width, height, 0xFFFFFFFF);
+        label.addLine(title);
+        label.setCentered();
+        return label;
+    }
+
+    public void initGui(G gui, List<GuiButton> buttonList, List<GuiLabel> labelList) {
         this.gui = gui;
     }
 }

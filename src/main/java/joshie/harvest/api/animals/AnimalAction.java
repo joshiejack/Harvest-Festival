@@ -1,15 +1,13 @@
 package joshie.harvest.api.animals;
 
 public enum AnimalAction {
-    CLEAN,
-    FEED,
-    HEAL,
-    TREAT_SPECIAL,
-    TREAT_GENERIC,
-    IMPREGNATE,
-    TEST_MOUNT,
-    DISMOUNT,
-    TEST_PRODUCT, //Called to check if this animal is ready to give its product
-    CLAIM_PRODUCT,
-    OUTSIDE
+    CLEAN, //Cleans the animal
+    FEED, //Feeds the animal
+    HEAL, //Heals the animal
+    TREAT_SPECIAL, //Treats the animal with their specific treat
+    TREAT_GENERIC, //Treats the animal with a generic treat
+    IMPREGNATE, //Impregnates the animal
+    DISMOUNT, //Called when an animal that was carried was dismounted
+    CLAIM_PRODUCT, //Gets the product
+    OUTSIDE //Used for adding a bonus to relationship for being outside
 }

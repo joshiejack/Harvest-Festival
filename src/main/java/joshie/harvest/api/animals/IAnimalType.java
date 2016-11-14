@@ -7,6 +7,9 @@ import net.minecraft.item.ItemStack;
 public interface IAnimalType {
     /** Return a simple name for this animal type **/
     String getName();
+
+    /** Return a stack to represent this animal in the relationships panel **/
+    ItemStack getIcon();
     
     /** @return an array of food type this animal can consume **/
     AnimalFoodType[] getFoodTypes();

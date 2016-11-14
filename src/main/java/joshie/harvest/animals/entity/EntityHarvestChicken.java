@@ -5,6 +5,7 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.AnimalStats;
 import joshie.harvest.api.animals.IAnimalHandler.AnimalAI;
 import joshie.harvest.api.animals.IAnimalHandler.AnimalType;
+import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.helpers.EntityHelper;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -72,8 +73,8 @@ public class EntityHarvestChicken extends EntityChicken {
         if (toLovePlayer != null) {
             if (toLoveTicker >= 0) toLoveTicker--;
             else {
-                HFApi.player.getRelationsForPlayer(toLovePlayer).affectRelationship(EntityHelper.getEntityUUID(this), 100);
-                toLovePlayer = null;
+                HFTrackers.getPlayerTrackerFromPlayer(toLovePlayer).getRelationships().talkTo(toLovePlayer, EntityHelper.getEntityUUID(this));
+                toLovePlayer = null; //Player no more!!!!!!!!
             }
         }
     }

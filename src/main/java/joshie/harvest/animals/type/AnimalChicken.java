@@ -1,6 +1,7 @@
 package joshie.harvest.animals.type;
 
 import joshie.harvest.animals.HFAnimals;
+import joshie.harvest.animals.item.ItemAnimalSpawner.Spawner;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.AnimalAction;
 import joshie.harvest.api.animals.AnimalStats;
@@ -15,6 +16,11 @@ import static joshie.harvest.api.animals.AnimalFoodType.SEED;
 public class AnimalChicken extends AnimalAbstract {
     public AnimalChicken() {
         super("chicken", 3, 10, SEED);
+    }
+
+    @Override
+    public ItemStack getIcon() {
+        return HFAnimals.ANIMAL.getStackFromEnum(Spawner.CHICKEN);
     }
 
     @Override

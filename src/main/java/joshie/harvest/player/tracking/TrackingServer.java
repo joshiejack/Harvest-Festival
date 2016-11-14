@@ -8,6 +8,7 @@ import joshie.harvest.core.helpers.NBTHelper;
 import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.core.util.holders.ItemStackHolder;
 import joshie.harvest.player.PlayerTrackerServer;
+import joshie.harvest.player.packet.PacketSyncNotes;
 import joshie.harvest.player.packet.PacketSyncObtained;
 import joshie.harvest.player.packet.PacketSyncObtainedSet;
 import joshie.harvest.player.packet.PacketSyncRecipes;
@@ -51,6 +52,7 @@ public class TrackingServer extends Tracking {
     public void sync(EntityPlayerMP player) {
         PacketHandler.sendToClient(new PacketSyncObtainedSet(obtained), player);
         PacketHandler.sendToClient(new PacketSyncRecipes(recipes), player);
+        PacketHandler.sendToClient(new PacketSyncNotes(notes), player);
     }
 
     public void addGift() {
@@ -96,6 +98,7 @@ public class TrackingServer extends Tracking {
         toBeShipped = NBTHelper.readHashSet(StackSold.class, nbt.getTagList("ToBeShipped", 10));
         recipes = NBTHelper.readResourceSet(nbt, "Recipes");
         shipped = NBTHelper.readHashSet(StackSold.class, nbt.getTagList("Shipped", 10));
+        notes = NBTHelper.readResourceSet(nbt, "Notes");
     }
 
     public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
@@ -104,6 +107,7 @@ public class TrackingServer extends Tracking {
         nbt.setTag("ToBeShipped", NBTHelper.writeCollection(toBeShipped));
         nbt.setTag("Recipes", NBTHelper.writeResourceSet(recipes));
         nbt.setTag("Shipped", NBTHelper.writeCollection(shipped));
+        nbt.setTag("Notes", NBTHelper.writeResourceSet(notes));
         return nbt;
     }
 }

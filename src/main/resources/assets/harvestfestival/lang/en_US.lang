@@ -1216,6 +1216,7 @@ harvestfestival.marriage.unlocked=UNLOCKED
 ###Quests
 ##Tutorial Quests
 #Intro
+harvestfestival.quest.tutorial.intro.title=Harvest Goddess
 harvestfestival.quest.tutorial.intro.hello=Hello my dear, I'm not sure if I recognise you, have we met?
 harvestfestival.quest.tutorial.intro.question=[Is this your first time Playing?]
 harvestfestival.quest.tutorial.intro.tutorial=@Yes it is!
@@ -1224,6 +1225,10 @@ harvestfestival.quest.tutorial.intro.completed=Well then I must have lost my mem
 harvestfestival.quest.tutorial.intro.backstory=Well then, nice to meet you. I am the Harvest Goddess. I'd like to tell you a little story. A long time ago, this land we live in was filled with a bustling village, the people there were removed from their homes by a crazy storm, and wiped out, now I hear that they want to return back home where they belong, but they need your help. Oh and just to let you know, I will poof after a while, you can always respawn me with the goddess flower. I'll leave you one everytime I leave. I think that's all I have to tell you for now, see you later!
 
 #Carpenter
+harvestfestival.quest.tutorial.carpenter.title=Carpentry
+harvestfestival.quest.tutorial.carpenter.description.logs=Show Harvest Goddess %s logs.
+harvestfestival.quest.tutorial.carpenter.description.jade=Build a Carpenter.\nShow Jade a flower.
+harvestfestival.quest.tutorial.carpenter.description.goddess=Talk to the Harvest Goddess.
 harvestfestival.quest.tutorial.carpenter.wood.dozen=a dozen
 harvestfestival.quest.tutorial.carpenter.wood.dozentwo=two dozen
 harvestfestival.quest.tutorial.carpenter.wood.stack=a stack of
@@ -1239,6 +1244,7 @@ harvestfestival.quest.tutorial.carpenter.thanks.flowers=Hey! Looks like you have
 harvestfestival.quest.tutorial.carpenter.thanks.finish=Well done dear, this town will be built in no time with you at the helm. Getting things done will probably cost you some money though, so I’m happy to give you a starting gift of 1000 gold. I hope you spend it wisely, anyway, you should be off to see Jade again now! Thanks for the help.
 
 #Crops Tutorial
+harvestfestival.quest.tutorial.crops.title=Crop Farming
 harvestfestival.quest.tutorial.crops.intro=Hey! As promised I have something to tell you about! Crop Farming. Has anyone ever taught you before?
 harvestfestival.quest.tutorial.crops.question=Do you know how to farm crops?
 harvestfestival.quest.tutorial.crops.tutorial=@How do I farm crops?
@@ -1252,6 +1258,7 @@ harvestfestival.quest.tutorial.crops.thanks.bucket=Just what I’m after, you ca
 harvestfestival.quest.tutorial.crops.complete=Wow you have done a fantastic job growing these hardy turnips, I am tempted to take them for myself. But you can keep them. I don’t want you to have wasted your time on me. I should probably tell you, that you can sell whatever you grow for gold. You’ll just need a shipping bin. If you want them you can buy them directly from my brother’s shop, when he’s open for business. To use them, all you have to do is right click with the item held in your hand, and they should be ready to be shipped. In the morning you’ll get gold for everything you ship. If you don’t want to ship everything by hand, just place a hopper next to the bin and it will happily insert. Profits go to whoever placed it! Just to let you know though, the turnips you've been growing aren't really worth much. You'll need to grow some others, which you can get from me, if you want to make more money. I do have a small supply but I’m happy to trade for five flowers at any time. I would suggest though that you talk to my brother and get the general store built as soon as possible. The people there should be able to sell you much more variety than I could ever! As a last reward, take this sickle. You'll need it to harvest some crops, and it is pretty effective at destroying dead ones!
 
 #Chicken Care
+harvestfestival.quest.tutorial.chicken.title=Foxie's Fowls
 harvestfestival.quest.tutorial.chicken.reminder.talk=Sweety it looks you’ve had a Poultry Farm built. You should go and talk to Ashlee.
 harvestfestival.quest.tutorial.chicken.reminder.poultry=Hey my dear, don’t forget you’re going to want a Poultry Farm.
 harvestfestival.quest.tutorial.chicken.start=I love this place. Isn’t it wonderful, Mr Fox? I hope I get to stay here for longer. Oh, hello! Sorry I didn’t see you there, I was just ehhh. Nevermind. Anyway, welcome to my Poultry Farm! My name is Ashlee.
@@ -1266,6 +1273,7 @@ harvestfestival.quest.tutorial.chicken.reminder.egg=Remember I’m after an egg 
 harvestfestival.quest.tutorial.chicken.complete=For your hard work, I’m happy to give you a rare egg! If you want to get more you’ll really have to take care of your chickens. Oh right, there’s also somethings else you may not know about yet, first thing, take your chickens inside when it's going to rain, and bring them out when it's sunny, also something else is the incubator. With an incubator you can hatch your own chickens. You just need to place an egg inside, wait a few days and then a chick should hatch! They’ll be born with half the relationship so it’s much better than just buying more. By the way, thanks for letting me open shop here.
 
 #Cow Care
+harvestfestival.quest.tutorial.cow.title=Daisy Duke
 harvestfestival.quest.tutorial.cow.reminder.intro=Looks like yer got the Animal Ranch built ya should go and talk to Jim.
 harvestfestival.quest.tutorial.cow.reminder.barn=I reckon yer should get an Animal Ranch built, so yer can learn about cows and sheep.
 harvestfestival.quest.tutorial.cow.start=I’m quite glad that you’ve invited me here. I’m Jim by the way, I run the Animal Ranch. As a thanks, I have a spare cow for you.
@@ -1280,12 +1288,14 @@ harvestfestival.quest.tutorial.cow.reminder.milk=Did you forget? I asked you to 
 harvestfestival.quest.tutorial.cow.complete=You’ve done a fine job there. I have some additional advice. For one your animals like to be outside when it's sunny and inside when it's rainy. And also to breed your animals just buy a Miracle Potion from me. It’ll impregnate your animals, and after a few days they’ll give birth to a baby, who’ll have half the relationship points of the parent. That’s all for now. Please do come again.
 
 #General Store Introduction
+harvestfestival.quest.tutorial.supermarket.title=Supermarket Sweep
 harvestfestival.quest.tutorial.supermarket.reminder.talk=You should probably go and talk to Candice or Jenni, now that you have the General Store built.
 harvestfestival.quest.tutorial.supermarket.reminder.supermarket=Just a friendly reminder, if you want more seeds, go and get a General Store built!
 harvestfestival.quest.tutorial.supermarket.welcome.owner=Hey, I’m the owner of this here General Store. It’s nice to move to town. I sell all kinds of wares from seeds to chocolate. If you need anything just ask me. Opening hours are Weekdays, 09:00-17:00, well except for Wednesday and Sunday when we’re closed. We’re also open for 4 hours on a Saturday from 11:00 to 15:00. It looks like you’re our first customer too, so here’s a reward!
 harvestfestival.quest.tutorial.supermarket.welcome.guest=I will surely find myself someone. Well hello there aren’t you just the cutest. I’m Candice. Jenni downstairs is the owner here, I’m just a tenant. If you need anything just go and see her everyday except Wednesday and Sunday, 09:00-17:00. She also opens on Saturdays from 11:00 to 15:00. She told me to give you this.
 
 #Cafe Cooking Lesson
+harvestfestival.quest.tutorial.cafe.title=Big Chef, Little Chef
 harvestfestival.quest.tutorial.cafe.welcome=Welcome to my Cafe. I am Liara the owner. Here we show a true passion for cooking and bring you the best food you can find. I’m happy to teach you how to cook if you don’t know how.
 harvestfestival.quest.tutorial.cafe.question=Do you need to learn how to cook?
 harvestfestival.quest.tutorial.cafe.tutorial=@I do indeed
@@ -1294,6 +1304,7 @@ harvestfestival.quest.tutorial.cafe.completed=Well that’s just awesome! I’m 
 harvestfestival.quest.tutorial.cafe.explain=Well that’s just awesome! I’m happy to teach you. To get started you are going to need some sort of utensil. The most basic one would be the kitchen counter in combo with a knife. You’ll also need to know how to prepare a recipe. You can buy a bunch from me, but here’s Pickled Turnip to start with. You’ll just have to add it to your knowledge with right click. To see it, just grab yourself a Recipe Book. Select the utensil and then the recipe. You’ll then be able to see a list of items on the right hand side that you will need. If you have the ingredients and the utensil in place, clicking cook will place all the ingredients in to the utensil. It should then start cooking. Unless you’re using a counter of course! Then you’ll need to chop with a right click instead. If you need additional cookware, I’m happy to sell them to you, but they’re only available at weekends. One last thing. The recipes in the book are the very basics, you should try experimenting with adding extra ingredients, and you might be able to make a better version. Thanks for your time.
 
 #Upgrading Tools Tutorial
+harvestfestival.quest.tutorial.upgrading.title=Tinker's Construct
 harvestfestival.quest.tutorial.upgrading.reminder.blacksmith.yulif=Ya should probably go and see the Blacksmith.
 harvestfestival.quest.tutorial.upgrading.reminder.blacksmith.goddess=Hey sweety, I hear the Blacksmith wants to see you.
 harvestfestival.quest.tutorial.upgrading.reminder.blacksmith.jim=Danieru told me he was interested in seeing you.
@@ -1401,6 +1412,7 @@ harvestfestival.quest.friendship.tiberius.dark.text=I think I'm finally starting
 harvestfestival.quest.friendship.goddess.strawberry.text=My dear things have been going really well between us, because of that I'll let you have the secret to strawberries! Jenni should be selling them in this town now, they are a spring crop though, so you may have to wait.
 harvestfestival.quest.friendship.jade.flowers.text=Oh hello %4$s it's nice to see you, I have some wonderful news, I've decided that I want to open a flower shop! But I'm having trouble getting stock! That's where you come in, I'll happily buy flowers from you now, just show me some and I'll pay you whatever I can afford that day.
 harvestfestival.quest.friendship.johan.vanilla.text=Why good day to you! It has been such a pleasure getting to know you. For being such a wonderful human I'm happy to start buying some special animal goods from you. However, I can only afford to purchase things from 6am to 10am. So please do remember if you can.
+harvestfestival.quest.friendship.danieru.notes.text=Becoming friends has been great, I've got some secrets to share with you about the rumoured cursed tools. Take this, I'll put it in your notebook for you.
 
 ## Meeting Quests
 harvestfestival.quest.meeting.jacob.text=Nice to meet you %4$s, the name's jacob. From what I've heard you're interested in fishing, you know, I've just recently bought myself a new rod, I'd like you to have my old one here, please take care of her. I run this tackle shop, if you need anything please do pop by.
@@ -1493,6 +1505,7 @@ harvestfestival.subtitle.recipe=Recipe Learnt!
 harvestfestival.config.tooltip=
 
 #Stats book
+harvestfestival.book.statistics=Knowledge
 harvestfestival.stats.next=Next Page
 harvestfestival.stats.previous=Previous Page
 harvestfestival.stats.collection=Collections
@@ -1503,3 +1516,18 @@ harvestfestival.stats.mining=Mining
 harvestfestival.stats.relationships=Relationships
 harvestfestival.stats.npc=NPCs
 harvestfestival.stats.animals=Animals
+harvestfestival.stats.farming=Farming
+harvestfestival.stats.activities=Activities
+harvestfestival.stats.town=Town & NPCs
+harvestfestival.stats.note=Notebook
+harvestfestival.stats.quests=Quests
+
+#Notes
+harvestfestival.note.blueprints.title=How to use blueprints
+harvestfestival.note.blueprints.description=When looking at a block with a blueprint in hand, you will see a ghost image of a building. Upon right clicking, this image will be frozen in place. You can then walk around it, to see if you have it positioned correctly. Right click to cancel the building or shift + right click to confirm its position. A builder will appear if one isn't found nearby, they will then get to work on the building right away.
+harvestfestival.note.shops.title=How to shop
+harvestfestival.note.shops.description=Different shops are only open at different times and on different days. You can ask shopkeepers when they're open when you chat to them, using the clock button in the lower right.\n\nYou can buy items from the shops by clicking the bar with the item you want, if you shift click you can purchase things in lots of 10. Holding ctrl and the mouse button down will rapidly purchase many items (combine with shift).
+
+#Secret Notes
+harvestfestival.note.secret.cursed.title=Secret of the Cursed Tools?
+harvestfestival.note.secret.cursed.description=There have been rumours that you can find these tools on the floors ending in 9 between 20 and 80 of the mines and only during the winter season. \n\nBut the rumours don't tell the whole story. Cursed Tools know what's going on, and will not trust themselves to anyone who does not own a full set of mystril tools.

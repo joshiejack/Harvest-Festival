@@ -25,6 +25,7 @@ public abstract class Quest extends Impl<Quest> {
     /** DO NOT MODIFY THE ENTRIES IN THE REGISTRY, ALWAYS MAKE A COPY OF THE QUESTS **/
     public static final IForgeRegistry<Quest> REGISTRY = new RegistryBuilder<Quest>().setName(new ResourceLocation("harvestfestival", "quests")).setType(Quest.class).setIDRange(0, 32000).create();
     private Set<INPC> npcs = new HashSet<>();
+    private INPC primary;
     protected int quest_stage;
     private QuestType type;
 
@@ -69,6 +70,7 @@ public abstract class Quest extends Impl<Quest> {
     /** Call this to set the npcs that handle this quest
      * @param npcs    the npcs **/
     public Quest setNPCs(INPC... npcs) {
+        primary = npcs[0];
         Collections.addAll(this.npcs, npcs);
         return this;
     }
@@ -98,6 +100,21 @@ public abstract class Quest extends Impl<Quest> {
     public final Quest setStage(int quest_stage) {
         this.quest_stage = quest_stage;
         return this;
+    }
+
+    /** The name of this quest line **/
+    public String getTitle() {
+        return I18n.translateToLocal(getRegistryName().getResourceDomain() + ".quest." + getRegistryName().getResourcePath() + ".title");
+    }
+
+    /** A very short description, of what the player is supposed to be doing at this stage **/
+    public String getDescription() {
+        return null;
+    }
+
+    /** Which npc the player is supposed to be interacting with at this point **/
+    public INPC getCurrentNPC() {
+        return primary;
     }
 
     /** Use this helper in conjunction with getLocalizedScript
@@ -201,5 +218,4 @@ public abstract class Quest extends Impl<Quest> {
     //You need to return the events that get handled, so that they will get called
     public void onEntityInteract(EntityPlayer player, @Nullable ItemStack held, EnumHand hand, Entity target) {}
     public void onRightClickBlock(EntityPlayer player, BlockPos pos, EnumFacing face) {}
-
 }

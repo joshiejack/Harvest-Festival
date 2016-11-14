@@ -13,11 +13,19 @@ public class TrackingClient extends Tracking {
         return recipes;
     }
 
+    public Set<ResourceLocation> getLearntNotes() {
+        return notes;
+    }
+
     public void setObtained(Set<ItemStackHolder> obtained) {
         this.obtained = obtained;
     }
 
     public void setRecipes(Set<ResourceLocation> recipes) {
         this.recipes = recipes;
+    }
+
+    public void setNotes(Set<ResourceLocation> notes) {
+        this.notes = notes;
     }
 }

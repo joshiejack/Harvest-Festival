@@ -14,6 +14,7 @@ public class Quests {
     public static final Quest CANDICE_5K = QuestHelper.getQuest("recipe.milk.hot");
     public static final Quest CLOE_5K = QuestHelper.getQuest("recipe.noodles");
     public static final Quest DANIERU_5K = QuestHelper.getQuest("recipe.butter");
+    public static final Quest DANIERU_10K = QuestHelper.getQuest("recipe.egg.scrambled");
     public static final Quest GODDESS_MEET = QuestHelper.getQuest("tutorial.intro");
     public static final Quest GODDESS_5K = QuestHelper.getQuest("recipe.jam.strawberry");
     public static final Quest GODDESS_10K = QuestHelper.getQuest("recipe.milk.strawberry");

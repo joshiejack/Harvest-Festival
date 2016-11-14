@@ -125,26 +125,28 @@ public class ItemAnimalTool extends ItemHFEnum<ItemAnimalTool, Tool> {
     }
 
     private boolean clean(EntityPlayer player, ItemStack held, EntityLivingBase animal, AnimalStats stats) {
-        boolean cleanable = stats.performAction(player.worldObj, player, held, AnimalAction.CLEAN);
-        if (cleanable) {
-            if (player.worldObj.isRemote) {
-                for (int j = 0; j < 30D; j++) {
-                    double d7 = (animal.posY - 0.5D) + animal.worldObj.rand.nextFloat();
-                    double d8 = (animal.posX - 0.5D) + animal.worldObj.rand.nextFloat();
-                    double d9 = (animal.posZ - 0.5D) + animal.worldObj.rand.nextFloat();
-                    animal.worldObj.spawnParticle(EnumParticleTypes.TOWN_AURA, d8, 1.0D + d7 - 0.125D, d9, 0, 0, 0);
+        if (stats.performTest(AnimalTest.CAN_CLEAN)) {
+            boolean cleaned = stats.performAction(player.worldObj, player, held, AnimalAction.CLEAN);
+            if (cleaned) {
+                if (player.worldObj.isRemote) {
+                    for (int j = 0; j < 30D; j++) {
+                        double d7 = (animal.posY - 0.5D) + animal.worldObj.rand.nextFloat();
+                        double d8 = (animal.posX - 0.5D) + animal.worldObj.rand.nextFloat();
+                        double d9 = (animal.posZ - 0.5D) + animal.worldObj.rand.nextFloat();
+                        animal.worldObj.spawnParticle(EnumParticleTypes.TOWN_AURA, d8, 1.0D + d7 - 0.125D, d9, 0, 0, 0);
+                    }
                 }
-            }
 
-            int damage = getDamageForDisplay(held) + 1;
-            if (damage >= MAX_DAMAGE) {
-                held.splitStack(1);
-            } else {
-                held.getSubCompound("Data", true).setInteger("Damage", damage);
-            }
+                int damage = getDamageForDisplay(held) + 1;
+                if (damage >= MAX_DAMAGE) {
+                    held.splitStack(1);
+                } else {
+                    held.getSubCompound("Data", true).setInteger("Damage", damage);
+                }
 
-            ToolHelper.consumeHunger(player, 4F);
-            return true;
+                ToolHelper.consumeHunger(player, 4F);
+                return true;
+            }
         }
 
         return false;

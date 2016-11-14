@@ -1,11 +1,14 @@
 package joshie.harvest.animals.entity;
 
+import joshie.harvest.animals.HFAnimals;
+import joshie.harvest.animals.item.ItemAnimalTool.Tool;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.AnimalStats;
 import joshie.harvest.api.animals.IAnimalHandler.AnimalAI;
 import joshie.harvest.api.animals.IAnimalHandler.AnimalType;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.helpers.EntityHelper;
+import joshie.harvest.core.helpers.InventoryHelper;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
@@ -67,8 +70,13 @@ public class EntityHarvestCow extends EntityCow {
                 playSound(s, 2F, getSoundPitch());
             }
 
-            HFTrackers.getPlayerTrackerFromPlayer(player).getRelationships().talkTo(player, EntityHelper.getEntityUUID(this));
-            return true;
+            if (hand == null ||
+                    (!InventoryHelper.ITEM_STACK.matches(stack, HFAnimals.TOOLS.getStackFromEnum(Tool.BRUSH)))
+                    && !InventoryHelper.ITEM_STACK.matches(stack, HFAnimals.TOOLS.getStackFromEnum(Tool.MILKER))
+                    && !InventoryHelper.ITEM_STACK.matches(stack, HFAnimals.TOOLS.getStackFromEnum(Tool.MEDICINE))) {
+                HFTrackers.getPlayerTrackerFromPlayer(player).getRelationships().talkTo(player, EntityHelper.getEntityUUID(this));
+                return true;
+            }
         }
 
         return false;

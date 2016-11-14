@@ -25,8 +25,8 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.util.FakePlayer;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 import static joshie.harvest.core.network.PacketHandler.sendToClient;
@@ -115,16 +115,16 @@ public class QuestHelper implements IQuestHelper {
         }
     }
 
-    private static final Set<Quest> EMPTY = new HashSet<>();
+    private static final List<Quest> EMPTY = new ArrayList<>();
 
     private boolean isFakePlayer(EntityPlayer player) {
         return player instanceof FakePlayer;
     }
 
     @Override
-    public Set<Quest> getCurrentQuests(EntityPlayer player) {
+    public List<Quest> getCurrentQuests(EntityPlayer player) {
         if (isFakePlayer(player)) return EMPTY;
-        Set<Quest> all = new HashSet<>();
+        List<Quest> all = new ArrayList<>();
         all.addAll(HFTrackers.getPlayerTrackerFromPlayer(player).getQuests().getCurrent());
         all.addAll(TownHelper.getClosestTownToEntity(player).getQuests().getCurrent());
         return all;

@@ -7,13 +7,13 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-import java.util.Set;
+import java.util.List;
 
 @HFEvents
 public class QuestEvents {
     @SubscribeEvent(priority = EventPriority.HIGH)
     public void onEntityInteract(PlayerInteractEvent.EntityInteract event) {
-        Set<Quest> quests = HFApi.quests.getCurrentQuests(event.getEntityPlayer());
+        List<Quest> quests = HFApi.quests.getCurrentQuests(event.getEntityPlayer());
         for (Quest quest : quests) {
             quest.onEntityInteract(event.getEntityPlayer(), event.getItemStack(), event.getHand(), event.getTarget());
         }
@@ -21,7 +21,7 @@ public class QuestEvents {
 
     @SubscribeEvent(priority = EventPriority.HIGH)
     public void onRightClickGround(PlayerInteractEvent.RightClickBlock event) {
-        Set<Quest> quests = HFApi.quests.getCurrentQuests(event.getEntityPlayer());
+        List<Quest> quests = HFApi.quests.getCurrentQuests(event.getEntityPlayer());
         for (Quest quest : quests) {
             quest.onRightClickBlock(event.getEntityPlayer(), event.getPos(), event.getFace());
         }

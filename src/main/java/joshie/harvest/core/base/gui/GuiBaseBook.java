@@ -59,6 +59,7 @@ public abstract class GuiBaseBook extends GuiScreen {
         runnables.clear();
         tooltip.clear();
         super.drawScreen(x, y, partialTicks);
+        page.drawScreen(x, y);
         drawTooltip(tooltip, x, y);
         runnables.forEach(Runnable :: run);
     }

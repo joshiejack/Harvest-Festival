@@ -1,9 +1,11 @@
 package joshie.harvest.core.base.gui;
 
 import joshie.harvest.core.helpers.TextHelper;
+import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiLabel;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.text.TextFormatting;
 
 import java.util.List;
 
@@ -11,6 +13,7 @@ public class BookPage<G extends GuiBaseBook> {
     private final ItemStack icon;
     private final String name;
     private final String category;
+    protected FontRenderer fontRenderer;
     protected G gui;
     public int start;
 
@@ -39,7 +42,19 @@ public class BookPage<G extends GuiBaseBook> {
         return label;
     }
 
+    protected void drawUnicodeFont(String displayString, int x, int y, int wrap) {
+        boolean flag = fontRenderer.getUnicodeFlag();
+        fontRenderer.setUnicodeFlag(true);
+        fontRenderer.drawSplitString(TextFormatting.BOLD + displayString, gui.guiLeft + x, gui.guiTop + y, wrap, 0x857754);
+        fontRenderer.setUnicodeFlag(flag);
+    }
+
     public void initGui(G gui, List<GuiButton> buttonList, List<GuiLabel> labelList) {
         this.gui = gui;
+        this.fontRenderer = gui.mc.fontRendererObj;
+    }
+
+    public void drawScreen(int x, int y) {
+
     }
 }

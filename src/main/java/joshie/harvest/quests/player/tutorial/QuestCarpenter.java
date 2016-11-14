@@ -4,7 +4,9 @@ import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.buildings.HFBuildings;
+import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.helpers.InventoryHelper;
+import joshie.harvest.knowledge.HFKnowledge;
 import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.quests.HFQuests;
 import net.minecraft.entity.EntityLiving;
@@ -42,6 +44,21 @@ public class QuestCarpenter extends Quest {
         else if (HFQuests.LOGS_CARPENTER == 32) return getLocalized("wood.stackhalf");
         else if (HFQuests.LOGS_CARPENTER == 16) return getLocalized("wood.stackquarter");
         else return "" + HFQuests.LOGS_CARPENTER;
+    }
+
+    @Override
+    public INPC getCurrentNPC() {
+        if (quest_stage == LOGS || quest_stage == FINISHED) return HFNPCs.GODDESS;
+        else if (quest_stage == SEED_CHAT) return HFNPCs.FLOWER_GIRL;
+        else return super.getCurrentNPC();
+    }
+
+    @Override
+    public String getDescription() {
+        if (quest_stage == LOGS) return getLocalized("description.logs", getWoodAmount());
+        else if (quest_stage == SEED_CHAT) return "description.jade";
+        else if (quest_stage == FINISHED) return "description.goddess";
+        else return super.getDescription();
     }
 
     @Override
@@ -105,6 +122,7 @@ public class QuestCarpenter extends Quest {
             increaseStage(player);
         } else if (quest_stage == LOGS && npc == HFNPCs.GODDESS) {
             if (InventoryHelper.takeItemsIfHeld(player, ORE_DICTIONARY, "logWood", HFQuests.LOGS_CARPENTER) != null) {
+                HFTrackers.getPlayerTrackerFromPlayer(player).getTracking().learnNote(HFKnowledge.BLUEPRINTS);
                 if (HFBuildings.CHEAT_BUILDINGS) rewardItem(player, HFBuildings.CARPENTER.getSpawner());
                 else rewardItem(player, HFBuildings.CARPENTER.getBlueprint());
                 increaseStage(player);
@@ -126,6 +144,7 @@ public class QuestCarpenter extends Quest {
 
     @Override
     public void onQuestCompleted(EntityPlayer player) {
+        HFTrackers.getPlayerTrackerFromPlayer(player).getTracking().learnNote(HFKnowledge.SHOPPING);
         rewardGold(player, 1000);
     }
 }

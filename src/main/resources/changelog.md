@@ -10,6 +10,7 @@
 * You will now get more points from interactions with animals
 * Adjusted animal product sell values to be more balanced
 * Cows and sheep will now eat vanilla tall grass
+* Cleaning will now stop working when the animal is fully cleaned
 
 ###Buildings
 * Optimised building save format, should be smaller size

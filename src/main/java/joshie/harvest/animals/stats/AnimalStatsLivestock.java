@@ -1,6 +1,7 @@
 package joshie.harvest.animals.stats;
 
 import joshie.harvest.animals.HFAnimals;
+import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.AnimalAction;
 import joshie.harvest.api.animals.AnimalTest;
 import joshie.harvest.core.HFTrackers;
@@ -88,11 +89,14 @@ public class AnimalStatsLivestock extends AnimalStatsHF {
                 cleanliness = (byte) Math.min(Byte.MAX_VALUE, cleanliness + 10);
                 if (cleanliness >= Byte.MAX_VALUE) {
                     affectRelationship(player, 30);
+                    HFApi.animals.syncAnimalStats(animal);
                 }
             }
+
+            return true;
         }
 
-        return true;
+        return false;
     }
 
     private boolean impregnate(EntityPlayer player) {
@@ -101,6 +105,7 @@ public class AnimalStatsLivestock extends AnimalStatsHF {
         daysPregnant = 0;
         isPregnant = true;
         affectRelationship(player, 200);
+        HFApi.animals.syncAnimalStats(animal);
         return true;
     }
 

@@ -3,7 +3,7 @@ package joshie.harvest.api.quests;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 
-import java.util.Set;
+import java.util.List;
 
 public interface IQuestHelper {
     /** Returns true if this quest is completed
@@ -53,5 +53,5 @@ public interface IQuestHelper {
     /** Returns all the quests, that need to be called for this EventType
      *  If there are none, the set will be empty
      * @param player    the player    */
-    Set<Quest> getCurrentQuests(EntityPlayer player);
+    List<Quest> getCurrentQuests(EntityPlayer player);
 }

@@ -1,5 +1,7 @@
 package joshie.harvest.animals.entity;
 
+import joshie.harvest.animals.HFAnimals;
+import joshie.harvest.animals.item.ItemAnimalTool.Tool;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.AnimalAction;
 import joshie.harvest.api.animals.AnimalStats;
@@ -7,6 +9,8 @@ import joshie.harvest.api.animals.IAnimalHandler.AnimalAI;
 import joshie.harvest.api.animals.IAnimalHandler.AnimalType;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.helpers.EntityHelper;
+import joshie.harvest.core.helpers.InventoryHelper;
+import joshie.harvest.core.helpers.InventoryHelper.SearchType;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
@@ -20,13 +24,17 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.common.capabilities.Capability;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static joshie.harvest.api.animals.IAnimalHandler.ANIMAL_STATS_CAPABILITY;
 
 public class EntityHarvestSheep extends EntitySheep {
     private final AnimalStats<NBTTagCompound> stats = HFApi.animals.newStats(AnimalType.LIVESTOCK);
@@ -70,8 +78,13 @@ public class EntityHarvestSheep extends EntitySheep {
                 playSound(s, 2F, getSoundPitch());
             }
 
-            HFTrackers.getPlayerTrackerFromPlayer(player).getRelationships().talkTo(player, EntityHelper.getEntityUUID(this));
-            return true;
+            if (hand == null ||
+                    (!InventoryHelper.ITEM_STACK.matches(stack, HFAnimals.TOOLS.getStackFromEnum(Tool.BRUSH)))
+                            && !InventoryHelper.SPECIAL.matches(stack, SearchType.SHEARS)
+                            && !InventoryHelper.ITEM_STACK.matches(stack, HFAnimals.TOOLS.getStackFromEnum(Tool.MEDICINE))) {
+                HFTrackers.getPlayerTrackerFromPlayer(player).getRelationships().talkTo(player, EntityHelper.getEntityUUID(this));
+                return true;
+            }
         }
 
         return true;
@@ -100,6 +113,17 @@ public class EntityHarvestSheep extends EntitySheep {
     @Override
     public EntitySheep createChild(EntityAgeable ageable) {
         return new EntityHarvestSheep(worldObj);
+    }
+
+    @Override
+    public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
+        return capability == ANIMAL_STATS_CAPABILITY || super.hasCapability(capability, facing);
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
+        return capability == ANIMAL_STATS_CAPABILITY ? (T) stats : super.getCapability(capability, facing);
     }
 
     @Override

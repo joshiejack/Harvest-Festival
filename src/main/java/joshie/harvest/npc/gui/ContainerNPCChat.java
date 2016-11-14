@@ -11,7 +11,7 @@ import joshie.harvest.quests.QuestHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.EnumHand;
 
-import java.util.Set;
+import java.util.List;
 
 import static joshie.harvest.core.handlers.GuiHandler.NPC;
 import static joshie.harvest.core.handlers.GuiHandler.SHOP_OPTIONS;
@@ -45,7 +45,7 @@ public class ContainerNPCChat extends ContainerBase {
             if (selection instanceof QuestQuestion && ((QuestQuestion)selection).isCompletedEarly) selection = null;
             if (selection == null && nextGui == -1) {
                 npc.setTalking(null);
-                Set<Quest> quests = HFApi.quests.getCurrentQuests(player);
+                List<Quest> quests = HFApi.quests.getCurrentQuests(player);
                 for (Quest quest : quests) {
                     if (quest.getNPCs().contains(npc.getNPC())) {
                         quest.onChatClosed(player, npc, npc.getNPC(), sneaking);

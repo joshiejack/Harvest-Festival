@@ -1,5 +1,7 @@
 package joshie.harvest.shops.purchasable;
 
+import joshie.harvest.api.HFApi;
+import joshie.harvest.api.knowledge.Note;
 import joshie.harvest.api.shops.IPurchasable;
 import joshie.harvest.core.helpers.InventoryHelper;
 import joshie.harvest.core.helpers.SpawnItemHelper;
@@ -24,6 +26,7 @@ public abstract class PurchasableFML<I extends IForgeRegistryEntry.Impl<I>> impl
     protected I item;
     private final long cost;
     protected String tooltip;
+    private Note note;
     private int stock;
 
     public PurchasableFML(long cost, ResourceLocation resource) {
@@ -37,6 +40,11 @@ public abstract class PurchasableFML<I extends IForgeRegistryEntry.Impl<I>> impl
 
     public PurchasableFML addTooltip(String tooltip) {
         this.tooltip = "harvestfestival." + tooltip + ".tooltip";
+        return this;
+    }
+
+    public PurchasableFML setNote(Note note) {
+        this.note = note;
         return this;
     }
 
@@ -67,6 +75,8 @@ public abstract class PurchasableFML<I extends IForgeRegistryEntry.Impl<I>> impl
         } else {
             SpawnItemHelper.addToPlayerInventory(player, getDisplayStack().copy());
         }
+
+        if (note != null) HFApi.player.getTrackingForPlayer(player).learnNote(note);
     }
 
     @SideOnly(Side.CLIENT)

@@ -6,7 +6,7 @@ import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.QuestQuestion;
 import joshie.harvest.core.HFCore;
 import joshie.harvest.core.HFTrackers;
-import joshie.harvest.knowledge.HFKnowledge;
+import joshie.harvest.knowledge.HFNotes;
 import joshie.harvest.quests.selection.TutorialSelection;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
@@ -45,7 +45,7 @@ public class QuestIntro extends QuestQuestion {
     public void onChatClosed(EntityPlayer player, EntityLiving entity, INPC npc, boolean isSneaking) {
         if (isCompletedEarly) {
             HFApi.quests.completeQuest(YULIF_MEET, player);
-            HFTrackers.getPlayerTrackerFromPlayer(player).getTracking().learnNote(HFKnowledge.BLUEPRINTS);
+            HFTrackers.getPlayerTrackerFromPlayer(player).getTracking().learnNote(HFNotes.BLUEPRINTS);
         } else if (quest_stage == BACKSTORY) {
             complete(player);
         }

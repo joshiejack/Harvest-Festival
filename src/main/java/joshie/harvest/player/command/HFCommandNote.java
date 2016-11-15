@@ -33,7 +33,7 @@ public class HFCommandNote extends AbstractHFCommand {
                 TrackingServer tracking = HFTrackers.<PlayerTrackerServer>getPlayerTrackerFromPlayer(player).getTracking();
                 String note = parameters[parameters.length - 1];
                 if (note.equals("all")) {
-                    for (Note message: Note.REGISTRY) {
+                    for (Note message: Note.REGISTRY.values()) {
                         tracking.learnNote(message);
                     }
 
@@ -45,7 +45,7 @@ public class HFCommandNote extends AbstractHFCommand {
                     return true;
                 } else {
                     if (!note.contains(":")) note = "harvestfestival:" + note;
-                    tracking.learnNote(Note.REGISTRY.getValue(new ResourceLocation(note)));
+                    tracking.learnNote(Note.REGISTRY.get(new ResourceLocation(note)));
                     tracking.sync(player);
                     return true;
                 }

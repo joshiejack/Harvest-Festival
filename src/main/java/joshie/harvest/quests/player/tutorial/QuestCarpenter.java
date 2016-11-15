@@ -1,16 +1,19 @@
 package joshie.harvest.quests.player.tutorial;
 
+import joshie.harvest.api.HFApi;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.helpers.InventoryHelper;
-import joshie.harvest.knowledge.HFKnowledge;
+import joshie.harvest.knowledge.HFNotes;
 import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.quests.HFQuests;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 
 import java.util.Set;
 
@@ -22,6 +25,8 @@ import static joshie.harvest.quests.Quests.GODDESS_MEET;
 
 @HFQuest("tutorial.carpenter")
 public class QuestCarpenter extends Quest {
+    private static final ItemStack GODDESS_STACK = HFApi.npc.getStackForNPC(HFNPCs.GODDESS);
+    private static final ItemStack FLOWER_GIRL_STACK = HFApi.npc.getStackForNPC(HFNPCs.FLOWER_GIRL);
     private static final int WELCOME = 0;
     private static final int LOGS = 1;
     private static final int SEED_CHAT = 2;
@@ -47,18 +52,18 @@ public class QuestCarpenter extends Quest {
     }
 
     @Override
-    public INPC getCurrentNPC() {
-        if (quest_stage == LOGS || quest_stage == FINISHED) return HFNPCs.GODDESS;
-        else if (quest_stage == SEED_CHAT) return HFNPCs.FLOWER_GIRL;
-        else return super.getCurrentNPC();
+    public ItemStack getCurrentIcon(World world, EntityPlayer player) {
+        if (quest_stage == LOGS || quest_stage == FINISHED) return GODDESS_STACK;
+        else if (quest_stage == SEED_CHAT) return FLOWER_GIRL_STACK;
+        else return super.getCurrentIcon(world, player);
     }
 
     @Override
-    public String getDescription() {
+    public String getDescription(World world, EntityPlayer player) {
         if (quest_stage == LOGS) return getLocalized("description.logs", getWoodAmount());
-        else if (quest_stage == SEED_CHAT) return "description.jade";
-        else if (quest_stage == FINISHED) return "description.goddess";
-        else return super.getDescription();
+        else if (quest_stage == SEED_CHAT) return getLocalized("description.jade");
+        else if (quest_stage == FINISHED) return getLocalized("description.goddess");
+        else return super.getDescription(world, player);
     }
 
     @Override
@@ -122,7 +127,7 @@ public class QuestCarpenter extends Quest {
             increaseStage(player);
         } else if (quest_stage == LOGS && npc == HFNPCs.GODDESS) {
             if (InventoryHelper.takeItemsIfHeld(player, ORE_DICTIONARY, "logWood", HFQuests.LOGS_CARPENTER) != null) {
-                HFTrackers.getPlayerTrackerFromPlayer(player).getTracking().learnNote(HFKnowledge.BLUEPRINTS);
+                HFTrackers.getPlayerTrackerFromPlayer(player).getTracking().learnNote(HFNotes.BLUEPRINTS);
                 if (HFBuildings.CHEAT_BUILDINGS) rewardItem(player, HFBuildings.CARPENTER.getSpawner());
                 else rewardItem(player, HFBuildings.CARPENTER.getBlueprint());
                 increaseStage(player);
@@ -144,7 +149,6 @@ public class QuestCarpenter extends Quest {
 
     @Override
     public void onQuestCompleted(EntityPlayer player) {
-        HFTrackers.getPlayerTrackerFromPlayer(player).getTracking().learnNote(HFKnowledge.SHOPPING);
         rewardGold(player, 1000);
     }
 }

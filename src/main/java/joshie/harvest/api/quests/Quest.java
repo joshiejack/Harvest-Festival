@@ -12,20 +12,23 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.translation.I18n;
+import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.IForgeRegistry;
-import net.minecraftforge.fml.common.registry.IForgeRegistryEntry.Impl;
+import net.minecraftforge.fml.common.registry.IForgeRegistryEntry;
 import net.minecraftforge.fml.common.registry.RegistryBuilder;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
-import java.util.*;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
-public abstract class Quest extends Impl<Quest> {
+public abstract class Quest extends IForgeRegistryEntry.Impl<Quest> {
     /** DO NOT MODIFY THE ENTRIES IN THE REGISTRY, ALWAYS MAKE A COPY OF THE QUESTS **/
     public static final IForgeRegistry<Quest> REGISTRY = new RegistryBuilder<Quest>().setName(new ResourceLocation("harvestfestival", "quests")).setType(Quest.class).setIDRange(0, 32000).create();
     private Set<INPC> npcs = new HashSet<>();
-    private INPC primary;
+    private ItemStack primary;
     protected int quest_stage;
     private QuestType type;
 
@@ -70,7 +73,7 @@ public abstract class Quest extends Impl<Quest> {
     /** Call this to set the npcs that handle this quest
      * @param npcs    the npcs **/
     public Quest setNPCs(INPC... npcs) {
-        primary = npcs[0];
+        primary = HFApi.npc.getStackForNPC(npcs[0]);
         Collections.addAll(this.npcs, npcs);
         return this;
     }
@@ -102,18 +105,26 @@ public abstract class Quest extends Impl<Quest> {
         return this;
     }
 
-    /** The name of this quest line **/
-    public String getTitle() {
-        return I18n.translateToLocal(getRegistryName().getResourceDomain() + ".quest." + getRegistryName().getResourcePath() + ".title");
+    protected String getPrefix() {
+        return getRegistryName().getResourceDomain() + ".quest." + getRegistryName().getResourcePath();
     }
 
-    /** A very short description, of what the player is supposed to be doing at this stage **/
-    public String getDescription() {
+    /** The name of this quest line **/
+    public String getTitle() {
+        return I18n.translateToLocal(getPrefix() + ".title");
+    }
+
+    /** A very short description, of what the player is supposed to be doing at this stage
+     * @param world the world
+     * @param player the player**/
+    @SideOnly(Side.CLIENT)
+    public String getDescription(World world, EntityPlayer player) {
         return null;
     }
 
     /** Which npc the player is supposed to be interacting with at this point **/
-    public INPC getCurrentNPC() {
+    @SideOnly(Side.CLIENT)
+    public ItemStack getCurrentIcon(World world, EntityPlayer player) {
         return primary;
     }
 
@@ -122,8 +133,8 @@ public abstract class Quest extends Impl<Quest> {
     @SuppressWarnings("deprecation")
     @SideOnly(Side.CLIENT)
     public String getLocalized(String quest, Object... format) {
-        if (format.length == 0) return I18n.translateToLocal(getRegistryName().getResourceDomain() + ".quest." + getRegistryName().getResourcePath() + "." + quest.replace("_", ""));
-        else return I18n.translateToLocalFormatted(getRegistryName().getResourceDomain() + ".quest." + getRegistryName().getResourcePath() + "." + quest.replace("_", ""), format);
+        if (format.length == 0) return I18n.translateToLocal(getPrefix() + "." + quest.replace("_", ""));
+        else return I18n.translateToLocalFormatted(getPrefix() + "." + quest.replace("_", ""), format);
     }
 
     /** Return the script, in a simple unlocalised form

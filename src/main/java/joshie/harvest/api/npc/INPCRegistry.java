@@ -2,6 +2,7 @@ package joshie.harvest.api.npc;
 
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.npc.gift.IGiftRegistry;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
 /** For registering and manipulating npcs **/
@@ -23,6 +24,10 @@ public interface INPCRegistry {
     /** This will return the instance of the gift registry
      * @return the npc gift registry **/
     IGiftRegistry getGifts();
+
+    /** Will return a stack representation of this npc
+     *  @param npc the npc **/
+    ItemStack getStackForNPC(INPC npc);
 
     enum Gender {
         MALE, FEMALE

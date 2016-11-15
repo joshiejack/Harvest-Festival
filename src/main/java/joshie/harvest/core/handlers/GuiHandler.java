@@ -1,10 +1,12 @@
 package joshie.harvest.core.handlers;
 
+import joshie.harvest.api.HFApi;
 import joshie.harvest.cooking.gui.ContainerFridge;
 import joshie.harvest.cooking.gui.GuiCookbook;
 import joshie.harvest.cooking.gui.GuiFridge;
 import joshie.harvest.cooking.tile.TileFridge;
-import joshie.harvest.knowledge.stats.GuiStats;
+import joshie.harvest.knowledge.HFNotes;
+import joshie.harvest.knowledge.gui.stats.GuiStats;
 import joshie.harvest.npc.NPCHelper;
 import joshie.harvest.npc.entity.EntityNPC;
 import joshie.harvest.npc.gui.*;
@@ -41,6 +43,7 @@ public class GuiHandler implements IGuiHandler {
             case SHOP_OPTIONS:  return new ContainerNPCChat(player, (EntityNPC) world.getEntityByID(entityID), EnumHand.MAIN_HAND, nextGui);
             case SHOP_MENU:
             case SHOP_MENU_SELL:
+                HFApi.player.getTrackingForPlayer(player).learnNote(HFNotes.SHOPPING);
                 return new ContainerNPCShop((EntityNPC) world.getEntityByID(entityID));
             case GIFT:          return new ContainerNPCGift(player, (EntityNPC) world.getEntityByID(entityID), EnumHand.values()[hand], -1);
             case FRIDGE:        return new ContainerFridge(player, player.inventory, (TileFridge) world.getTileEntity(new BlockPos(entityID, nextGui, hand)));
@@ -63,7 +66,9 @@ public class GuiHandler implements IGuiHandler {
             }
             case SHOP_WELCOME:  return new GuiNPCChat(player, (EntityNPC) world.getEntityByID(entityID), EnumHand.MAIN_HAND, SHOP_OPTIONS, false);
             case SHOP_MENU_SELL:
-            case SHOP_MENU:     return new GuiNPCShop(player, (EntityNPC) world.getEntityByID(entityID), -2, ID == SHOP_MENU_SELL);
+            case SHOP_MENU:
+                HFApi.player.getTrackingForPlayer(player).learnNote(HFNotes.SHOPPING);
+                return new GuiNPCShop(player, (EntityNPC) world.getEntityByID(entityID), -2, ID == SHOP_MENU_SELL);
             case GIFT:          return new GuiNPCGift(player, (EntityNPC) world.getEntityByID(entityID), EnumHand.values()[hand]);
             case FRIDGE:        return new GuiFridge(player, player.inventory, (TileFridge) world.getTileEntity(new BlockPos(entityID, nextGui, hand)));
             case COOKBOOK:      return new GuiCookbook();

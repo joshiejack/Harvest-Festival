@@ -7,10 +7,13 @@ import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.crops.HFCrops;
+import joshie.harvest.knowledge.HFNotes;
 import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.town.TownHelper;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 
 import java.util.Set;
 
@@ -21,15 +24,28 @@ import static joshie.harvest.quests.Quests.JADE_MEET;
 
 @HFQuest("tutorial.supermarket")
 public class QuestSupermarket extends Quest {
+    private static final ItemStack SUPERMARKET = HFBuildings.SUPERMARKET.getSpawner();
     private static final int START = 0;
 
     public QuestSupermarket() {
-        setNPCs(FLOWER_GIRL, GS_OWNER, MILKMAID);
+        setNPCs(GS_OWNER, MILKMAID, FLOWER_GIRL);
     }
 
     @Override
     public boolean canStartQuest(Set<Quest> active, Set<Quest> finished) {
         return finished.contains(JADE_MEET);
+    }
+
+    @Override
+    public String getDescription(World world, EntityPlayer player) {
+        if (!TownHelper.getClosestTownToEntity(player).hasBuilding(HFBuildings.SUPERMARKET)) return getLocalized("description.build");
+        else return getLocalized("description.visit");
+    }
+
+    @Override
+    public ItemStack getCurrentIcon(World world, EntityPlayer player) {
+        if (!TownHelper.getClosestTownToEntity(player).hasBuilding(HFBuildings.SUPERMARKET)) return SUPERMARKET;
+        else return super.getCurrentIcon(world, player);
     }
 
     @Override
@@ -74,6 +90,7 @@ public class QuestSupermarket extends Quest {
 
     @Override
     public void onQuestCompleted(EntityPlayer player) {
+        HFApi.player.getTrackingForPlayer(player).learnNote(HFNotes.SUPERMARKET);
         Season season = HFApi.calendar.getDate(player.worldObj).getSeason();
         if (season == SUMMER) rewardItem(player, HFCrops.TOMATO.getSeedStack(4));
         else if (season == AUTUMN) rewardItem(player, HFCrops.EGGPLANT.getSeedStack(4));

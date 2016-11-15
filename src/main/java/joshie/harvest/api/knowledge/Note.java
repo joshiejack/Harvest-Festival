@@ -2,23 +2,28 @@ package joshie.harvest.api.knowledge;
 
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.translation.I18n;
-import net.minecraftforge.fml.common.registry.IForgeRegistry;
-import net.minecraftforge.fml.common.registry.IForgeRegistryEntry;
-import net.minecraftforge.fml.common.registry.RegistryBuilder;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.commons.lang3.StringEscapeUtils;
 
-public class Note extends IForgeRegistryEntry.Impl<Note> {
-    public static final IForgeRegistry<Note> REGISTRY = new RegistryBuilder<Note>().setName(new ResourceLocation("harvestfestival", "notes")).setType(Note.class).setIDRange(0, 100000).create();
+import java.util.HashMap;
 
+public class Note {
+    public static final HashMap<ResourceLocation, Note> REGISTRY = new HashMap<>();
     private final Category category;
+    private final ResourceLocation resource;
+    private final String title;
+    private final String description;
     private boolean isSecret;
     @SideOnly(Side.CLIENT)
     private NoteRender render;
 
-    public Note(Category category) {
+    public Note(Category category, ResourceLocation resource) {
         this.category = category;
+        this.resource = resource;
+        this.title = resource.getResourceDomain() + ".note." + resource.getResourcePath() + ".title";
+        this.description = resource.getResourceDomain() + ".note." + resource.getResourcePath() + ".description";
+        REGISTRY.put(resource, this);
     }
 
     @SideOnly(Side.CLIENT)
@@ -30,6 +35,10 @@ public class Note extends IForgeRegistryEntry.Impl<Note> {
     public Note setSecretNote() {
         this.isSecret = true;
         return this;
+    }
+
+    public ResourceLocation getResource() {
+        return resource;
     }
 
     @SideOnly(Side.CLIENT)
@@ -46,10 +55,24 @@ public class Note extends IForgeRegistryEntry.Impl<Note> {
     }
 
     public String getDescription() {
-        return StringEscapeUtils.unescapeJava(I18n.translateToLocal(getRegistryName().getResourceDomain() + ".note." + getRegistryName().getResourcePath() + ".description"));
+        return StringEscapeUtils.unescapeJava(I18n.translateToLocal(description));
     }
 
     public String getTitle() {
-        return I18n.translateToLocal(getRegistryName().getResourceDomain() + ".note." + getRegistryName().getResourcePath() + ".title");
+        return I18n.translateToLocal(title);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Note note = (Note) o;
+        return resource != null ? resource.equals(note.resource) : note.resource == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        return resource != null ? resource.hashCode() : 0;
     }
 }

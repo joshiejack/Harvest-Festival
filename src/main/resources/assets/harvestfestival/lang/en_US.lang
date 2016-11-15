@@ -1245,6 +1245,9 @@ harvestfestival.quest.tutorial.carpenter.thanks.finish=Well done dear, this town
 
 #Crops Tutorial
 harvestfestival.quest.tutorial.crops.title=Crop Farming
+harvestfestival.quest.tutorial.crops.title.what=Mystery Gift?
+harvestfestival.quest.tutorial.crops.description.jade=Talk to Jade
+harvestfestival.quest.tutorial.crops.description.turnips=Grow nine Hardy Turnips.\nShow them to Jade.
 harvestfestival.quest.tutorial.crops.intro=Hey! As promised I have something to tell you about! Crop Farming. Has anyone ever taught you before?
 harvestfestival.quest.tutorial.crops.question=Do you know how to farm crops?
 harvestfestival.quest.tutorial.crops.tutorial=@How do I farm crops?
@@ -1289,6 +1292,8 @@ harvestfestival.quest.tutorial.cow.complete=You’ve done a fine job there. I ha
 
 #General Store Introduction
 harvestfestival.quest.tutorial.supermarket.title=Supermarket Sweep
+harvestfestival.quest.tutorial.supermarket.description.build=Build a General Store
+harvestfestival.quest.tutorial.supermarket.description.visit=Introduce yourself to Jenni
 harvestfestival.quest.tutorial.supermarket.reminder.talk=You should probably go and talk to Candice or Jenni, now that you have the General Store built.
 harvestfestival.quest.tutorial.supermarket.reminder.supermarket=Just a friendly reminder, if you want more seeds, go and get a General Store built!
 harvestfestival.quest.tutorial.supermarket.welcome.owner=Hey, I’m the owner of this here General Store. It’s nice to move to town. I sell all kinds of wares from seeds to chocolate. If you need anything just ask me. Opening hours are Weekdays, 09:00-17:00, well except for Wednesday and Sunday when we’re closed. We’re also open for 4 hours on a Saturday from 11:00 to 15:00. It looks like you’re our first customer too, so here’s a reward!
@@ -1519,14 +1524,26 @@ harvestfestival.stats.animals=Animals
 harvestfestival.stats.farming=Farming
 harvestfestival.stats.activities=Activities
 harvestfestival.stats.town=Town & NPCs
+harvestfestival.stats.other=Other
 harvestfestival.stats.note=Notebook
 harvestfestival.stats.quests=Quests
 
 #Notes
-harvestfestival.note.blueprints.title=How to use blueprints
+##Tutorial Notes
+harvestfestival.note.learnt=New Note Added!
+harvestfestival.note.discovered=Secret Note Discovered!
+harvestfestival.note.blueprints.title=Blueprints
 harvestfestival.note.blueprints.description=When looking at a block with a blueprint in hand, you will see a ghost image of a building. Upon right clicking, this image will be frozen in place. You can then walk around it, to see if you have it positioned correctly. Right click to cancel the building or shift + right click to confirm its position. A builder will appear if one isn't found nearby, they will then get to work on the building right away.
-harvestfestival.note.shops.title=How to shop
+harvestfestival.note.shops.title=Shops
 harvestfestival.note.shops.description=Different shops are only open at different times and on different days. You can ask shopkeepers when they're open when you chat to them, using the clock button in the lower right.\n\nYou can buy items from the shops by clicking the bar with the item you want, if you shift click you can purchase things in lots of 10. Holding ctrl and the mouse button down will rapidly purchase many items (combine with shift).
+harvestfestival.note.farming.title=Crop Farming
+harvestfestival.note.farming.description=To get started with farming crops use your hoe to till a 3x3 area of farmland. Next plant your seeds, clicking on the centre block. Now fill your watering can by right clicking any water source while holding it. Water your crops using a right click. Every day the crops will grow if they have been watered, so you'll need patience. You can sleep at any time to speed up their growth.
+harvestfestival.note.shipping.title=Shipping Basics
+harvestfestival.note.shipping.description=Every day at 6am, a mysterious invisible being will appear to take your items from the shipping box. They'll leave you a sum of gold, which you can then spend wisely.\nTo Place items in to be shipped either right click or drop the stack on top. You can also make use of hoppers. In this case the profit will go to the player who placed the shipping box.
+harvestfestival.note.sickle.title=Sickle
+harvestfestival.note.sickle.description=The sickle is a tool that is very effective at destroying crops, and other plant like matter. It is especially effective at destroying any of your crops that may end up dying from lack of water or season changes. \n\nSome crops such as grass or wheat require the use of the sickle in order to harvest their drops.
+harvestfestival.note.supermarket.title=General Store
+harvestfestival.note.supermarket.description=The General Store is where you can buy tools, seeds and some special ingredients for cooking. You can only buy the seeds for your current season (none in winter!). And you will unlock different seeds as you progress. Some require shipping x items, and some are unlocked after the first year, and others have more nuanced ways to unlock them for purchase.
 
 #Secret Notes
 harvestfestival.note.secret.cursed.title=Secret of the Cursed Tools?

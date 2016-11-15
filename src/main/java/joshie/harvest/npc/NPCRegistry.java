@@ -6,6 +6,7 @@ import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.npc.INPCRegistry;
 import joshie.harvest.core.util.annotations.HFApiImplementation;
 import joshie.harvest.npc.gift.GiftRegistry;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.IForgeRegistry;
 import net.minecraftforge.fml.common.registry.RegistryBuilder;
@@ -26,5 +27,10 @@ public class NPCRegistry implements INPCRegistry {
     @Override
     public GiftRegistry getGifts() {
         return gifts;
+    }
+
+    @Override
+    public ItemStack getStackForNPC(INPC npc) {
+        return HFNPCs.SPAWNER_NPC.getStackFromObject((NPC)npc);
     }
 }

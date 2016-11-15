@@ -2,6 +2,7 @@ package joshie.harvest.player;
 
 import joshie.harvest.api.player.IPlayerHelper;
 import joshie.harvest.api.player.IPlayerStats;
+import joshie.harvest.api.player.IPlayerTracking;
 import joshie.harvest.api.player.IRelations;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.util.annotations.HFApiImplementation;
@@ -19,5 +20,10 @@ public class PlayerHelper implements IPlayerHelper {
     @Override
     public IRelations getRelationsForPlayer(EntityPlayer player) {
         return HFTrackers.getPlayerTrackerFromPlayer(player).getRelationships();
+    }
+
+    @Override
+    public IPlayerTracking getTrackingForPlayer(EntityPlayer player) {
+        return HFTrackers.getPlayerTrackerFromPlayer(player).getTracking();
     }
 }

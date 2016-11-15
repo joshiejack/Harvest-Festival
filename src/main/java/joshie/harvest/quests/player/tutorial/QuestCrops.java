@@ -9,10 +9,13 @@ import joshie.harvest.api.quests.QuestQuestion;
 import joshie.harvest.core.helpers.InventoryHelper;
 import joshie.harvest.core.helpers.InventoryHelper.SearchType;
 import joshie.harvest.crops.HFCrops;
+import joshie.harvest.knowledge.HFNotes;
 import joshie.harvest.quests.selection.TutorialSelection;
 import joshie.harvest.tools.HFTools;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.text.translation.I18n;
+import net.minecraft.world.World;
 
 import java.util.Set;
 
@@ -39,6 +42,19 @@ public class QuestCrops extends QuestQuestion {
     @Override
     public boolean canStartQuest(Set<Quest> active, Set<Quest> finished) {
         return finished.contains(YULIF_MEET);
+    }
+
+    @Override
+    public String getTitle() {
+        if (quest_stage == INTRO) return I18n.translateToLocal(getRegistryName().getResourceDomain() + ".quest." + getRegistryName().getResourcePath() + ".title.what");
+        else return I18n.translateToLocal(getRegistryName().getResourceDomain() + ".quest." + getRegistryName().getResourcePath() + ".title");
+    }
+
+    @Override
+    public String getDescription(World world, EntityPlayer player) {
+        if (quest_stage == INTRO) return getLocalized("description.jade");
+        else if (quest_stage == TURNIPS) return getLocalized("description.turnips");
+        else return super.getDescription(world, player);
     }
 
     @Override
@@ -102,9 +118,12 @@ public class QuestCrops extends QuestQuestion {
         if (isCompletedEarly || quest_stage == START) {
             rewardItem(player, HFTools.HOE.getStack(BASIC));
             rewardItem(player, HFTools.WATERING_CAN.getStack(BASIC));
-            if (quest_stage == START) rewardItem(player, HFCrops.TUTORIAL.getSeedStack(3));
+            HFApi.player.getTrackingForPlayer(player).learnNote(HFNotes.CROP_FARMING);
             if (isCompletedEarly) complete(player);
-            if (quest_stage == START) increaseStage(player);
+            if (quest_stage == START) {
+                rewardItem(player, HFCrops.TUTORIAL.getSeedStack(3));
+                increaseStage(player);
+            }
         } else if (quest_stage == TURNIPS) {
             if (InventoryHelper.getHandItemIsIn(player, ITEM_STACK, HFCrops.TUTORIAL.getCropStack(9), 9) != null) {
                 complete(player);
@@ -126,6 +145,7 @@ public class QuestCrops extends QuestQuestion {
 
     @Override
     public void onQuestCompleted(EntityPlayer player) {
+        HFApi.player.getTrackingForPlayer(player).learnNote(HFNotes.SICKLE);
         rewardItem(player, HFTools.SICKLE.getStack(BASIC));
         Season season = HFApi.calendar.getDate(player.worldObj).getSeason();
         if (season == SUMMER) rewardItem(player, HFCrops.ONION.getSeedStack(3));

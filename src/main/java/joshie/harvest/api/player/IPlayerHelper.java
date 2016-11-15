@@ -12,4 +12,9 @@ public interface IPlayerHelper {
      *
      * @param player    the player*/
     IRelations getRelationsForPlayer(EntityPlayer player);
+
+    /** Get the tracking data for the player passed in
+     *
+     * @param player    the player*/
+    IPlayerTracking getTrackingForPlayer(EntityPlayer player);
 }

@@ -19,11 +19,11 @@ import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.common.registry.IForgeRegistryEntry.Impl;
+import net.minecraftforge.fml.common.registry.IForgeRegistryEntry;
 
 import java.util.*;
 
-public class BuildingImpl extends Impl<BuildingImpl> implements Building {
+public class BuildingImpl extends IForgeRegistryEntry.Impl<BuildingImpl> implements Building {
     //Offsets
     private final HashMap<String, PlaceableNPC> npc_offsets = new HashMap<>();
     private final Set<ResourceLocation> inhabitants = new HashSet<>();

@@ -3,7 +3,7 @@ package joshie.harvest.quests.player.friendship;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.core.HFTrackers;
-import joshie.harvest.knowledge.HFKnowledge;
+import joshie.harvest.knowledge.HFNotes;
 import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.quests.Quests;
 import joshie.harvest.quests.base.QuestFriendship;
@@ -24,6 +24,6 @@ public class QuestDanieru15KNotes extends QuestFriendship {
 
     @Override
     public void onQuestCompleted(EntityPlayer player) {
-        HFTrackers.getPlayerTrackerFromPlayer(player).getTracking().learnNote(HFKnowledge.SECRET_CURSED_TOOLS);
+        HFTrackers.getPlayerTrackerFromPlayer(player).getTracking().learnNote(HFNotes.SECRET_CURSED_TOOLS);
     }
 }

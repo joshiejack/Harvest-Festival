@@ -2,6 +2,7 @@ package joshie.harvest.player.tracking;
 
 import joshie.harvest.api.cooking.Recipe;
 import joshie.harvest.api.knowledge.Note;
+import joshie.harvest.api.player.IPlayerTracking;
 import joshie.harvest.core.util.holders.ItemStackHolder;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -9,7 +10,7 @@ import net.minecraft.util.ResourceLocation;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Tracking  {
+public class Tracking implements IPlayerTracking {
     protected Set<ItemStackHolder> obtained = new HashSet<>(); //Items that have been obtained
     protected Set<ResourceLocation> recipes = new HashSet<>(); //Recipe Learnt
     protected Set<ResourceLocation> notes = new HashSet<>();
@@ -21,11 +22,12 @@ public class Tracking  {
         } else return recipes.add(recipe.getRegistryName());
     }
 
+    @Override
     public boolean learnNote(Note note) {
         if (note == null) {
             notes.clear();
             return false;
-        } else return notes.add(note.getRegistryName());
+        } else return notes.add(note.getResource());
     }
 
     public void addAsObtained(ItemStack stack) {

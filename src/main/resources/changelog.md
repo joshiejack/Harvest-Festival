@@ -52,6 +52,13 @@
 * More items will now spawn around the world (that sell for more than 1 gold!)
 * Items will no longer spawn inside of towns, they will only spawn from 32 to 128 blocks away
 
+###Knowledge - NEW!
+* Added a knowledge book, things you can find inside are:
+  * Collections for Shipping, Fishing, Mining and Cooking
+  * Relationship Data for Animals and NPCs
+  * Notes page, where everything you learn from NPCs is kept track of
+  * Quest page, where you can see what quests you are currently working on
+
 ###Mining
 * Fixed cursed tools being unobtainable
 * You can now access the mine as soon as you have built a general store
@@ -69,7 +76,7 @@
 ###NPCs
 * Blacklisted a bunch of things by default like weapons, armour, elytra as well as blacklisting blocks unless they have a gift value added from being gifted by default, unless a gift type is assigned to them
 * NPCs will now like or dislike more things than before
-* Added a few more quests mostly related to friendship with the npcs
+* Added a few more quests mostly related to friendship with the npcs, that give you things like secret shops or secret notes!
 * Johan will die every day around 6pm, as he travels back home to trade
 * Throwing an item in to the goddess pond will now gift her that item, and summon her if it is giftable (instead of just adding RP)
 

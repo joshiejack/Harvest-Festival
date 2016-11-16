@@ -16,7 +16,6 @@ import joshie.harvest.quests.base.QuestTrade;
 import joshie.harvest.tools.HFTools;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -47,7 +46,7 @@ public class QuestUpgrade extends QuestTrade {
         return (nowDays - thenDays);
     }
 
-    private long getCost(ToolTier tier) {
+    public static long getCost(ToolTier tier) {
         switch (tier) {
             case BASIC:
                 return 1000;
@@ -57,6 +56,8 @@ public class QuestUpgrade extends QuestTrade {
                 return 5000;
             case GOLD:
                 return 10000;
+            case MYSTRIL:
+                return 25000;
             case BLESSED:
                 return 100000;
             case MYTHIC:
@@ -66,7 +67,7 @@ public class QuestUpgrade extends QuestTrade {
         }
     }
 
-    private int getRequired(ToolTier tier) {
+    public static int getRequired(ToolTier tier) {
         switch (tier) {
             case BASIC:
             case COPPER:
@@ -81,7 +82,7 @@ public class QuestUpgrade extends QuestTrade {
         }
     }
 
-    private int getMaterial(ToolTier tier) {
+    public static int getMaterial(ToolTier tier) {
         switch (tier) {
             case BASIC:
                 return Material.COPPER.ordinal();
@@ -98,10 +99,10 @@ public class QuestUpgrade extends QuestTrade {
         }
     }
 
-    private ItemStack getRepairMaterial(ToolTier tier) {
+    public static ItemStack getRepairMaterial(ToolTier tier) {
         switch (tier) {
             case BASIC:
-                return new ItemStack(Blocks.STONE);
+                return HFMining.MATERIALS.getStackFromEnum(Material.JUNK);
             case COPPER:
                 return HFMining.MATERIALS.getStackFromEnum(Material.COPPER);
             case SILVER:

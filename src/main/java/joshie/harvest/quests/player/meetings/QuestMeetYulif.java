@@ -1,4 +1,4 @@
-package joshie.harvest.quests.player.tutorial;
+package joshie.harvest.quests.player.meetings;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.npc.INPC;
@@ -24,7 +24,7 @@ import static joshie.harvest.npc.HFNPCs.*;
 import static joshie.harvest.quests.Quests.GODDESS_MEET;
 
 @HFQuest("tutorial.carpenter")
-public class QuestCarpenter extends Quest {
+public class QuestMeetYulif extends Quest {
     private static final ItemStack GODDESS_STACK = HFApi.npc.getStackForNPC(HFNPCs.GODDESS);
     private static final ItemStack FLOWER_GIRL_STACK = HFApi.npc.getStackForNPC(HFNPCs.FLOWER_GIRL);
     private static final int WELCOME = 0;
@@ -33,7 +33,7 @@ public class QuestCarpenter extends Quest {
     private static final int FINISHED = 3;
     private boolean attempted = false;
 
-    public QuestCarpenter() {
+    public QuestMeetYulif() {
         setNPCs(GODDESS, BUILDER, FLOWER_GIRL);
     }
 

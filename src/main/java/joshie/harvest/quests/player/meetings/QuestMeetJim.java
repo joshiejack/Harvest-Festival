@@ -1,9 +1,11 @@
-package joshie.harvest.quests.player.tutorial;
+package joshie.harvest.quests.player.meetings;
 
 import joshie.harvest.animals.HFAnimals;
 import joshie.harvest.animals.block.BlockTrough.Trough;
 import joshie.harvest.animals.entity.EntityHarvestCow;
+import joshie.harvest.animals.item.ItemAnimalProduct.Sizeable;
 import joshie.harvest.animals.item.ItemAnimalTool.Tool;
+import joshie.harvest.api.HFApi;
 import joshie.harvest.api.core.Size;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.quests.HFQuest;
@@ -12,8 +14,8 @@ import joshie.harvest.api.quests.QuestQuestion;
 import joshie.harvest.api.quests.Selection;
 import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.core.helpers.InventoryHelper;
-import joshie.harvest.animals.item.ItemAnimalProduct.Sizeable;
 import joshie.harvest.crops.HFCrops;
+import joshie.harvest.knowledge.HFNotes;
 import joshie.harvest.quests.selection.TutorialSelection;
 import joshie.harvest.tools.ToolHelper;
 import joshie.harvest.town.TownHelper;
@@ -32,10 +34,10 @@ import static joshie.harvest.animals.item.ItemAnimalTool.Tool.BRUSH;
 import static joshie.harvest.core.helpers.InventoryHelper.ITEM_STACK;
 import static joshie.harvest.npc.HFNPCs.BARN_OWNER;
 import static joshie.harvest.npc.HFNPCs.BUILDER;
-import static joshie.harvest.quests.Quests.JADE_MEET;
+import static joshie.harvest.quests.Quests.YULIF_MEET;
 
 @HFQuest("tutorial.cow")
-public class QuestCowCare extends QuestQuestion {
+public class QuestMeetJim extends QuestQuestion {
     private static final int START = 0;
     private static final int INFO = 1;
     private static final int ACTION1 = 2;
@@ -46,14 +48,14 @@ public class QuestCowCare extends QuestQuestion {
     private boolean hasBrushed;
     private boolean hasMilked;
 
-    public QuestCowCare() {
+    public QuestMeetJim() {
         super(new TutorialSelection("cow"));
         setNPCs(BUILDER, BARN_OWNER);
     }
 
     @Override
     public boolean canStartQuest(Set<Quest> active, Set<Quest> finished) {
-        return finished.contains(JADE_MEET);
+        return finished.contains(YULIF_MEET);
     }
 
     @Override
@@ -92,6 +94,7 @@ public class QuestCowCare extends QuestQuestion {
                 return getLocalized("reminder.barn");
             } else return null;
         } else if (npc == BARN_OWNER) {
+            if (!TownHelper.getClosestTownToEntity(entity).hasBuilding(HFBuildings.BARN)) return null;
             if (isCompletedEarly) {
                 return getLocalized("completed");
             } else if (quest_stage == START) {
@@ -139,7 +142,8 @@ public class QuestCowCare extends QuestQuestion {
     }
 
     @Override
-    public void onChatClosed(EntityPlayer player, EntityLiving entity, INPC npc) {
+    public void onChatClosed(EntityPlayer player, EntityLiving entity, INPC npc, boolean wasSneaking) {
+        if (!TownHelper.getClosestTownToEntity(entity).hasBuilding(HFBuildings.BARN)) return;
         if (isCompletedEarly || quest_stage == INFO) {
             if (isCompletedEarly) {
                 complete(player);
@@ -162,6 +166,9 @@ public class QuestCowCare extends QuestQuestion {
 
     @Override
     public void onQuestCompleted(EntityPlayer player) {
+        HFApi.player.getTrackingForPlayer(player).learnNote(HFNotes.COW_CARE);
+        HFApi.player.getTrackingForPlayer(player).learnNote(HFNotes.ANIMAL_HAPPINESS);
+        HFApi.player.getTrackingForPlayer(player).learnNote(HFNotes.ANIMAL_STRESS);
         rewardItem(player, HFAnimals.ANIMAL_PRODUCT.getStackOfSize(Sizeable.MILK, Size.LARGE, 3));
         rewardItem(player, HFAnimals.TROUGH.getStackFromEnum(Trough.WOOD));
     }

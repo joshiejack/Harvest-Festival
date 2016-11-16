@@ -2,6 +2,7 @@ package joshie.harvest.knowledge.gui.stats.notes.page;
 
 import joshie.harvest.api.knowledge.Category;
 import joshie.harvest.api.knowledge.Note;
+import joshie.harvest.api.knowledge.NoteRender;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.base.gui.BookPage;
 import joshie.harvest.knowledge.HFNotes;
@@ -20,6 +21,7 @@ import java.util.Iterator;
 import java.util.List;
 
 public class PageNotes extends BookPage<GuiStats> {
+
     public static Note note = HFNotes.BLUEPRINTS;
     private final List<Note> list;
 
@@ -75,11 +77,19 @@ public class PageNotes extends BookPage<GuiStats> {
         int maxStart = list.size() / 112;
         if (start < maxStart) buttonList.add(new ButtonNext(gui, buttonList.size(), 273, 172));
         if (start != 0) buttonList.add(new ButtonPrevious(gui, buttonList.size(), 20, 172));
+        if (note.getRender() != null) note.getRender().initRender(gui.mc, gui, gui.guiLeft, gui.guiTop);
     }
 
     @Override
     public void drawScreen(int x, int y) {
-        drawUnicodeFont(note.getDescription(), 165, 20, 125);
-        if (note.getRender() != null) note.getRender().drawScreen(gui.mc, gui, x, y,  gui.guiLeft, gui.guiTop);
+        drawUnicodeFont(note.getDescription(), 164, 20, 126);
+        NoteRender render = note.getRender();
+        if (render != null) {
+            if (!render.isInit()) {
+                render.initRender(gui.mc, gui, gui.guiLeft, gui.guiTop);
+            }
+
+            render.drawScreen(x, y);
+        }
     }
 }

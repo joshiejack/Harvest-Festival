@@ -85,8 +85,8 @@ public class HFShops {
     private static void registerBarn() {
         BARN.addPurchasable(100, HFCrops.GRASS.getCropStack(1));
         BARN.addPurchasable(1000, HFAnimals.TOOLS.getStackFromEnum(MEDICINE));
-        BARN.addPurchasable(new PurchasableEntity(EntityHarvestCow.class, 5000, HFAnimals.ANIMAL.getStackFromEnum(COW), true));
-        BARN.addPurchasable(new PurchasableEntity(EntityHarvestSheep.class, 4000, HFAnimals.ANIMAL.getStackFromEnum(SHEEP), true));
+        BARN.addPurchasable(new PurchasableEntity(EntityHarvestCow.class, 5000, HFAnimals.ANIMAL.getStackFromEnum(COW), true).setNote(HFNotes.COW_CARE));
+        BARN.addPurchasable(new PurchasableEntity(EntityHarvestSheep.class, 4000, HFAnimals.ANIMAL.getStackFromEnum(SHEEP), true).setNote(HFNotes.SHEEP_CARE));
         BARN.addPurchasable(3000, HFAnimals.TOOLS.getStackFromEnum(MIRACLE_POTION), 1);
         BARN.addPurchasable(500, HFAnimals.TROUGH.getStackFromEnum(WOOD), 3);
         BARN.addPurchasable(250, new ItemStack(Items.NAME_TAG));
@@ -252,7 +252,7 @@ public class HFShops {
     private static void registerPoultry() {
         POULTRY.addPurchasable(50, HFAnimals.TOOLS.getStackFromEnum(CHICKEN_FEED));
         POULTRY.addPurchasable(1000, HFAnimals.TOOLS.getStackFromEnum(MEDICINE));
-        POULTRY.addPurchasable(new PurchasableEntity(EntityHarvestChicken.class, 1500, HFAnimals.ANIMAL.getStackFromEnum(CHICKEN), false));
+        POULTRY.addPurchasable(new PurchasableEntity(EntityHarvestChicken.class, 1500, HFAnimals.ANIMAL.getStackFromEnum(CHICKEN), false).setNote(HFNotes.CHICKEN_CARE));
         POULTRY.addPurchasable(250, new ItemStack(Items.NAME_TAG));
         POULTRY.addPurchasable(10, HFAnimals.TREATS.getStackFromEnum(Treat.GENERIC));
         POULTRY.addPurchasable(30, HFAnimals.TREATS.getStackFromEnum(Treat.CHICKEN));

@@ -6,10 +6,10 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.commons.lang3.StringEscapeUtils;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 public class Note {
-    public static final HashMap<ResourceLocation, Note> REGISTRY = new HashMap<>();
+    public static final LinkedHashMap<ResourceLocation, Note> REGISTRY = new LinkedHashMap<>();
     private final Category category;
     private final ResourceLocation resource;
     private final String title;

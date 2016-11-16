@@ -1,9 +1,12 @@
 package joshie.harvest.shops.purchasable;
 
+import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.AnimalStats;
+import joshie.harvest.api.knowledge.Note;
 import joshie.harvest.api.shops.IPurchasable;
 import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.core.helpers.TextHelper;
+import joshie.harvest.knowledge.HFNotes;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
@@ -24,6 +27,7 @@ public class PurchasableEntity implements IPurchasable {
     private final Class<? extends Entity> eClass;
     private final long cost;
     private final boolean lead;
+    private Note note;
 
     /**
      * If lead is true, entity spawns with a lead, otherwise, entity spawns mounting the player
@@ -34,6 +38,11 @@ public class PurchasableEntity implements IPurchasable {
         this.cost = cost;
         this.lead = lead;
         this.resource = ((cost >= 0) ? "buy: " : "sell: ") + clazz.getSimpleName().toLowerCase(Locale.ENGLISH);
+    }
+
+    public PurchasableEntity setNote(Note note) {
+        this.note = note;
+        return this;
     }
 
     @Override
@@ -95,6 +104,10 @@ public class PurchasableEntity implements IPurchasable {
                 }
             }
         }
+
+        if (note != null) HFApi.player.getTrackingForPlayer(aPlayer).learnNote(note);
+        HFApi.player.getTrackingForPlayer(aPlayer).learnNote(HFNotes.ANIMAL_HAPPINESS);
+        HFApi.player.getTrackingForPlayer(aPlayer).learnNote(HFNotes.ANIMAL_STRESS);
     }
 
     @Override

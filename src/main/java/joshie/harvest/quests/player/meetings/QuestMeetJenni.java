@@ -1,4 +1,4 @@
-package joshie.harvest.quests.player.tutorial;
+package joshie.harvest.quests.player.meetings;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.Season;
@@ -23,12 +23,12 @@ import static joshie.harvest.npc.HFNPCs.*;
 import static joshie.harvest.quests.Quests.JADE_MEET;
 
 @HFQuest("tutorial.supermarket")
-public class QuestSupermarket extends Quest {
+public class QuestMeetJenni extends Quest {
     private static final ItemStack SUPERMARKET = HFBuildings.SUPERMARKET.getSpawner();
     private static final int START = 0;
 
-    public QuestSupermarket() {
-        setNPCs(GS_OWNER, MILKMAID, FLOWER_GIRL);
+    public QuestMeetJenni() {
+        setNPCs(GS_OWNER, FLOWER_GIRL);
     }
 
     @Override
@@ -63,19 +63,14 @@ public class QuestSupermarket extends Quest {
                 //So that they can expand collection
                 return getLocalized("reminder.supermarket");
             } else return null;
-        } else if (quest_stage == START && (npc == GS_OWNER || npc == MILKMAID)) {
+        } else if (quest_stage == START && npc == GS_OWNER) {
+            if (TownHelper.getClosestTownToEntity(entity).hasBuilding(HFBuildings.SUPERMARKET)) return null;
             //Jenni says hey there I'm the owner, welcome to the supermarket, here you can buy all kinds of things
             //From seeds to chocolate, If you need anything, just ask me
             //She then says we're open every weekday except wednesday from 9am to 5pm
             //We're also open on saturdays but only from 11am to 3pm
             //She says you're our first customer so here's a free gift
-
-            //If Candice, Jenni says welcome to the supermarket, jenni is the owner, I'm a guest!
-            //It's really lovely here, they sell seeds or even flour
-            //Even open on saturdays from 11am to 3pm, although normal openings are
-            //mon-tue,thu-fri 9am to 5pm
-            //She says jenni asked me to give you this as the first customer
-            return npc == HFNPCs.GS_OWNER ? getLocalized("welcome.owner") : getLocalized("welcome.guest");
+            return getLocalized("welcome.owner");
         }
 
         return null;
@@ -84,7 +79,9 @@ public class QuestSupermarket extends Quest {
     @Override
     public void onChatClosed(EntityPlayer player, EntityLiving entity, INPC npc, boolean wasSneaking) {
         if (quest_stage == START && npc != HFNPCs.FLOWER_GIRL) {
-            complete(player);
+            if (TownHelper.getClosestTownToEntity(entity).hasBuilding(HFBuildings.SUPERMARKET)) {
+                complete(player);
+            }
         }
     }
 

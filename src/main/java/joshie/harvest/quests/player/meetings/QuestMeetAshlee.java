@@ -1,8 +1,9 @@
-package joshie.harvest.quests.player.tutorial;
+package joshie.harvest.quests.player.meetings;
 
 import joshie.harvest.animals.HFAnimals;
 import joshie.harvest.animals.entity.EntityHarvestChicken;
 import joshie.harvest.animals.item.ItemAnimalTool.Tool;
+import joshie.harvest.api.HFApi;
 import joshie.harvest.api.core.Size;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.quests.HFQuest;
@@ -12,6 +13,7 @@ import joshie.harvest.api.quests.Selection;
 import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.core.helpers.InventoryHelper;
 import joshie.harvest.animals.item.ItemAnimalProduct.Sizeable;
+import joshie.harvest.knowledge.HFNotes;
 import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.quests.Quests;
 import joshie.harvest.quests.selection.TutorialSelection;
@@ -37,7 +39,7 @@ import static joshie.harvest.npc.HFNPCs.GODDESS;
 import static joshie.harvest.npc.HFNPCs.POULTRY;
 
 @HFQuest("tutorial.chicken")
-public class QuestChickenCare extends QuestQuestion {
+public class QuestMeetAshlee extends QuestQuestion {
     private static final int INTRO = 0;
     private static final int THROW = 1;
     private static final int ACTION1 = 2;
@@ -47,7 +49,7 @@ public class QuestChickenCare extends QuestQuestion {
     private boolean hasThrown;
     private boolean hasFed;
 
-    public QuestChickenCare() {
+    public QuestMeetAshlee() {
         super(new TutorialSelection("chicken"));
         setNPCs(GODDESS, POULTRY);
     }
@@ -103,6 +105,7 @@ public class QuestChickenCare extends QuestQuestion {
                 return getLocalized("reminder.poultry");
             } else return null;
         } else if (npc == HFNPCs.POULTRY) {
+            if (!TownHelper.getClosestTownToEntity(entity).hasBuilding(HFBuildings.POULTRY_FARM)) return null;
             if (isCompletedEarly) {
                 return getLocalized("completed");
             } else if (quest_stage == INTRO) {
@@ -152,7 +155,8 @@ public class QuestChickenCare extends QuestQuestion {
     }
 
     @Override
-    public void onChatClosed(EntityPlayer player, EntityLiving entity, INPC npc) {
+    public void onChatClosed(EntityPlayer player, EntityLiving entity, INPC npc, boolean wasSneaking) {
+        if (!TownHelper.getClosestTownToEntity(entity).hasBuilding(HFBuildings.POULTRY_FARM)) return;
         if (isCompletedEarly) {
             complete(player);
             rewardEntity(player, "harvestfestival.chicken");
@@ -176,6 +180,9 @@ public class QuestChickenCare extends QuestQuestion {
 
     @Override
     public void onQuestCompleted(EntityPlayer player) {
+        HFApi.player.getTrackingForPlayer(player).learnNote(HFNotes.CHICKEN_CARE);
+        HFApi.player.getTrackingForPlayer(player).learnNote(HFNotes.ANIMAL_HAPPINESS);
+        HFApi.player.getTrackingForPlayer(player).learnNote(HFNotes.ANIMAL_STRESS);
         rewardItem(player, HFAnimals.ANIMAL_PRODUCT.getStackOfSize(Sizeable.EGG, Size.LARGE, 3));
         rewardItem(player, HFAnimals.TRAY.getStackFromEnum(FEEDER_EMPTY));
     }

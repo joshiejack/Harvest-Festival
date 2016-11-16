@@ -4,6 +4,8 @@ import joshie.harvest.api.knowledge.Category;
 import joshie.harvest.api.knowledge.Note;
 import joshie.harvest.core.util.annotations.HFLoader;
 import joshie.harvest.knowledge.gui.stats.notes.render.NoteRenderCursedTools;
+import joshie.harvest.knowledge.gui.stats.notes.render.NoteRenderRepairing;
+import joshie.harvest.knowledge.gui.stats.notes.render.NoteRenderUpgrading;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -19,11 +21,21 @@ public class HFNotes {
     public static final Note SICKLE = registerNote(FARMING, "sickle");
     public static final Note SHIPPING = registerNote(OTHER, "shipping");
     public static final Note SUPERMARKET = registerNote(TOWNSHIP, "supermarket");
+    public static final Note CHICKEN_CARE = registerNote(FARMING, "care.chickens");
+    public static final Note COW_CARE = registerNote(FARMING, "care.cows");
+    public static final Note SHEEP_CARE = registerNote(FARMING, "care.sheep");
+    public static final Note ANIMAL_HAPPINESS = registerNote(FARMING, "care.happiness");
+    public static final Note ANIMAL_STRESS = registerNote(FARMING, "care.stress");
 
+    public static final Note MINING = registerNote(ACTIVITIES, "mining");
+    public static final Note UPGRADING = registerNote(TOWNSHIP, "upgrading");
+    public static final Note REPAIRING = registerNote(TOWNSHIP, "repairing");
     public static final Note SECRET_CURSED_TOOLS = registerNote(ACTIVITIES, "secret.cursed").setSecretNote();
 
     @SideOnly(Side.CLIENT)
     public static void preInitClient() {
+        UPGRADING.setRender(new NoteRenderUpgrading());
+        REPAIRING.setRender(new NoteRenderRepairing());
         SECRET_CURSED_TOOLS.setRender(new NoteRenderCursedTools());
     }
 

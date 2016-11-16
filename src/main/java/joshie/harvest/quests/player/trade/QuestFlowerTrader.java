@@ -29,7 +29,7 @@ public class QuestFlowerTrader extends QuestTradeTown {
 
     @Override
     public boolean canStartQuest(Set<Quest> active, Set<Quest> finished) {
-        return finished.contains(Quests.JADE_MEET) && !finished.contains(Quests.TUTORIAL_SUPERMARKET);
+        return finished.contains(Quests.JADE_MEET) && !finished.contains(Quests.JENNI_MEET);
     }
 
     @SideOnly(Side.CLIENT)

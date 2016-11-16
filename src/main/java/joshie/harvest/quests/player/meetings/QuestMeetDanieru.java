@@ -1,45 +1,58 @@
-package joshie.harvest.quests.player.tutorial;
+package joshie.harvest.quests.player.meetings;
 
-import joshie.harvest.api.core.ITiered.ToolTier;
+import joshie.harvest.api.HFApi;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.api.quests.QuestQuestion;
 import joshie.harvest.api.quests.Selection;
 import joshie.harvest.buildings.HFBuildings;
+import joshie.harvest.knowledge.HFNotes;
 import joshie.harvest.mining.HFMining;
 import joshie.harvest.mining.item.ItemMaterial.Material;
 import joshie.harvest.quests.selection.TutorialSelection;
-import joshie.harvest.tools.HFTools;
 import joshie.harvest.town.TownHelper;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 
 import java.util.Set;
 
-import static joshie.harvest.quests.Quests.*;
 import static joshie.harvest.npc.HFNPCs.*;
+import static joshie.harvest.quests.Quests.BRANDON_MEET;
 
 @HFQuest("tutorial.upgrading")
-public class QuestUpgrading extends QuestQuestion {
+public class QuestMeetDanieru extends QuestQuestion {
+    private static final ItemStack BLACKSMITH_STACK = HFBuildings.BLACKSMITH.getSpawner();
     private static final int BUILD = 0;
     private static final int EXPLAIN = 1;
-    private static final int FINISH = 2;
 
-    public QuestUpgrading() {
+    public QuestMeetDanieru() {
         super(new TutorialSelection("upgrading"));
-        setNPCs(BUILDER, GODDESS, BARN_OWNER, GS_OWNER, FLOWER_GIRL, MILKMAID, BLACKSMITH, MINER);
+        setNPCs(BLACKSMITH, BUILDER, GODDESS, BARN_OWNER, GS_OWNER, FLOWER_GIRL, MILKMAID, MINER);
     }
 
     @Override
     public boolean canStartQuest(Set<Quest> active, Set<Quest> finished) {
-        return finished.contains(TUTORIAL_SUPERMARKET);
+        return finished.contains(BRANDON_MEET);
     }
 
     @Override
     public Selection getSelection(EntityPlayer player, INPC npc) {
         return npc == BLACKSMITH ? super.getSelection(player, npc) : null;
+    }
+
+    @Override
+    public String getDescription(World world, EntityPlayer player) {
+        if (quest_stage == BUILD && !TownHelper.getClosestTownToEntity(player).hasBuilding(HFBuildings.BLACKSMITH)) return getLocalized("description.build");
+        else return super.getDescription(world, player);
+    }
+
+    @Override
+    public ItemStack getCurrentIcon(World world, EntityPlayer player) {
+        if (!TownHelper.getClosestTownToEntity(player).hasBuilding(HFBuildings.BLACKSMITH)) return BLACKSMITH_STACK;
+        else return super.getCurrentIcon(world, player);
     }
 
     @Override
@@ -58,6 +71,7 @@ public class QuestUpgrading extends QuestQuestion {
             //All tell the player that they should probably get a mine and a blacksmith built
             return getLocalized("blacksmith." + suffix);
         } else if  (npc == BLACKSMITH) {
+            if (!TownHelper.getClosestTownToEntity(entity).hasBuilding(HFBuildings.BLACKSMITH)) return null;
             if (isCompletedEarly) {
                 return getLocalized("completed");
             } else if (quest_stage == BUILD) {
@@ -75,18 +89,9 @@ public class QuestUpgrading extends QuestQuestion {
                 //You're probably going to be looking for ore rocks to do this
                 //You'll need a hammer (he gives you one) and the most efficient way to use it is to jump
                 //And then swing the hammer at the rocks as you fall down
-                //Anyway, I heard that the miner has just recently been mining and has some spare
-                //ore he would like to give, you should go visit him
+                //Gives the player copper ores
                 return getLocalized("explain");
-            } else if (quest_stage == FINISH) {
-                //Blacksmith reminds you to go and see the miner for some ore
-                //He also mentions that you can buy tools from him
-                return getLocalized("reminder.visit");
             }
-        } else if (npc == MINER && quest_stage == FINISH) {
-            //Brandon tells you he's just been on a recent trip down a mine
-            //He then says you can have this, he then gives the player 10 copper
-            return getLocalized("complete");
         }
 
         return null;
@@ -94,19 +99,17 @@ public class QuestUpgrading extends QuestQuestion {
 
     @Override
     public void onChatClosed(EntityPlayer player, EntityLiving entity, INPC npc, boolean isSneaking) {
-        if (npc == BLACKSMITH) {
-            if (isCompletedEarly || quest_stage == EXPLAIN) {
-                if (isCompletedEarly) complete(player);
-                else increaseStage(player);
-                rewardItem(player, HFTools.HAMMER.getStack(ToolTier.BASIC));
+        if (npc == BLACKSMITH && (isCompletedEarly || quest_stage == EXPLAIN)) {
+            if (TownHelper.getClosestTownToEntity(entity).hasBuilding(HFBuildings.BLACKSMITH)) {
+                complete(player);
             }
-        } else if (npc == MINER && quest_stage == FINISH) {
-            complete(player);
         }
     }
 
     @Override
     public void onQuestCompleted(EntityPlayer player) {
+        HFApi.player.getTrackingForPlayer(player).learnNote(HFNotes.UPGRADING);
+        HFApi.player.getTrackingForPlayer(player).learnNote(HFNotes.REPAIRING);
         rewardItem(player, new ItemStack(HFMining.MATERIALS, 10, Material.COPPER.ordinal()));
     }
 }

@@ -1,4 +1,4 @@
-package joshie.harvest.quests.player.tutorial;
+package joshie.harvest.quests.player.meetings;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.Season;
@@ -6,12 +6,14 @@ import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.api.quests.QuestQuestion;
+import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.core.helpers.InventoryHelper;
 import joshie.harvest.core.helpers.InventoryHelper.SearchType;
 import joshie.harvest.crops.HFCrops;
 import joshie.harvest.knowledge.HFNotes;
 import joshie.harvest.quests.selection.TutorialSelection;
 import joshie.harvest.tools.HFTools;
+import joshie.harvest.town.TownHelper;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.text.translation.I18n;
@@ -28,13 +30,13 @@ import static joshie.harvest.npc.HFNPCs.FLOWER_GIRL;
 import static joshie.harvest.quests.Quests.YULIF_MEET;
 
 @HFQuest("tutorial.crops")
-public class QuestCrops extends QuestQuestion {
+public class QuestMeetJade extends QuestQuestion {
     private static final int INTRO = 0;
     private static final int START = 1;
     private static final int TURNIPS = 2;
     private boolean attempted;
 
-    public QuestCrops() {
+    public QuestMeetJade() {
         super(new TutorialSelection("crops"));
         setNPCs(FLOWER_GIRL);
     }
@@ -59,6 +61,7 @@ public class QuestCrops extends QuestQuestion {
 
     @Override
     public String getLocalizedScript(EntityPlayer player, EntityLiving entity, INPC npc) {
+        if (!TownHelper.getClosestTownToEntity(entity).hasBuilding(HFBuildings.CARPENTER)) return null;
         if (isCompletedEarly) {
             return getLocalized("completed");
         } else if (quest_stage == INTRO) {
@@ -115,6 +118,7 @@ public class QuestCrops extends QuestQuestion {
 
     @Override
     public void onChatClosed(EntityPlayer player, EntityLiving entity, INPC npc, boolean wasSneaking) {
+        if (!TownHelper.getClosestTownToEntity(entity).hasBuilding(HFBuildings.CARPENTER)) return;
         if (isCompletedEarly || quest_stage == START) {
             rewardItem(player, HFTools.HOE.getStack(BASIC));
             rewardItem(player, HFTools.WATERING_CAN.getStack(BASIC));

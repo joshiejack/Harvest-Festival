@@ -1297,7 +1297,6 @@ harvestfestival.quest.tutorial.supermarket.description.visit=Introduce yourself 
 harvestfestival.quest.tutorial.supermarket.reminder.talk=You should probably go and talk to Candice or Jenni, now that you have the General Store built.
 harvestfestival.quest.tutorial.supermarket.reminder.supermarket=Just a friendly reminder, if you want more seeds, go and get a General Store built!
 harvestfestival.quest.tutorial.supermarket.welcome.owner=Hey, I’m the owner of this here General Store. It’s nice to move to town. I sell all kinds of wares from seeds to chocolate. If you need anything just ask me. Opening hours are Weekdays, 09:00-17:00, well except for Wednesday and Sunday when we’re closed. We’re also open for 4 hours on a Saturday from 11:00 to 15:00. It looks like you’re our first customer too, so here’s a reward!
-harvestfestival.quest.tutorial.supermarket.welcome.guest=I will surely find myself someone. Well hello there aren’t you just the cutest. I’m Candice. Jenni downstairs is the owner here, I’m just a tenant. If you need anything just go and see her everyday except Wednesday and Sunday, 09:00-17:00. She also opens on Saturdays from 11:00 to 15:00. She told me to give you this.
 
 #Cafe Cooking Lesson
 harvestfestival.quest.tutorial.cafe.title=Big Chef, Little Chef
@@ -1308,15 +1307,28 @@ harvestfestival.quest.tutorial.cafe.skip=@I can work it out
 harvestfestival.quest.tutorial.cafe.completed=Well that’s just awesome! I’m happy to give you these things to get started though.
 harvestfestival.quest.tutorial.cafe.explain=Well that’s just awesome! I’m happy to teach you. To get started you are going to need some sort of utensil. The most basic one would be the kitchen counter in combo with a knife. You’ll also need to know how to prepare a recipe. You can buy a bunch from me, but here’s Pickled Turnip to start with. You’ll just have to add it to your knowledge with right click. To see it, just grab yourself a Recipe Book. Select the utensil and then the recipe. You’ll then be able to see a list of items on the right hand side that you will need. If you have the ingredients and the utensil in place, clicking cook will place all the ingredients in to the utensil. It should then start cooking. Unless you’re using a counter of course! Then you’ll need to chop with a right click instead. If you need additional cookware, I’m happy to sell them to you, but they’re only available at weekends. One last thing. The recipes in the book are the very basics, you should try experimenting with adding extra ingredients, and you might be able to make a better version. Thanks for your time.
 
+#Mining Tutorial
+harvestfestival.quest.tutorial.mining.title=Miner's Delight
+harvestfestival.quest.tutorial.mining.description.ore=Show Brandon three Junk Ore
+harvestfestival.quest.tutorial.mining.intro=Ehh what are you doing here? The name's Brandon. I prefer to hang out here in the mines than in that town with those people. I guess it's nice to meet you. Do you need anything?
+harvestfestival.quest.tutorial.mining.explain=Well I should probably explain then if I must. I would explain it but all you have to do is to break the nodes you see hanging around the mine with a hammer. Although there are different kind of nodes such as copper or just plain rocks. I've had this old hammer of mine for a long time now, and it's just become a bit useless, I think you should have it. Prove to me that you can mine then I'll let you keep it. Go smash some plain rocks and bring me back three junk ore.
+harvestfestival.quest.tutorial.mining.complete=Ehhh, I guess that's a decent job you did there. I've got some more to give you but at least you understand the basics now. Should warn you that there are some rocks that are too strong for this hammer. You'll need better ones for that. I believe a Blacksmith could help you out with that.
+harvestfestival.quest.tutorial.mining.reminder=Just bring me three junk ore, to prove to me that you know how mining works.
+harvestfestival.quest.tutorial.mining.question=Got a clue about nodes and mining?
+harvestfestival.quest.tutorial.mining.tutorial=@Please help me!
+harvestfestival.quest.tutorial.mining.skip=@HAMMER TIME pls
+harvestfestival.quest.tutorial.mining.completed=Good for you. Take this hammer and junk then.
+
 #Upgrading Tools Tutorial
 harvestfestival.quest.tutorial.upgrading.title=Tinker's Construct
+harvestfestival.quest.tutorial.upgrading.description.build=Build a Blacksmith
 harvestfestival.quest.tutorial.upgrading.reminder.blacksmith.yulif=Ya should probably go and see the Blacksmith.
 harvestfestival.quest.tutorial.upgrading.reminder.blacksmith.goddess=Hey sweety, I hear the Blacksmith wants to see you.
 harvestfestival.quest.tutorial.upgrading.reminder.blacksmith.jim=Danieru told me he was interested in seeing you.
 harvestfestival.quest.tutorial.upgrading.reminder.blacksmith.jenni=You should go and talk to Danieru.
 harvestfestival.quest.tutorial.upgrading.reminder.blacksmith.candice=Hey there gorgeous, Danieru wanted to see you.
 harvestfestival.quest.tutorial.upgrading.reminder.blacksmith.jade=I heard a rumour that the Blacksmith was looking to talk to you about something.
-harvestfestival.quest.tutorial.upgrading.reminder.blacksmith.brandon=I do have something I’d like to give you, but you should go and see Danieru first.
+harvestfestival.quest.tutorial.upgrading.reminder.blacksmith.brandon=I have something I’d like to give you, but you should go and see Danieru first.
 harvestfestival.quest.tutorial.upgrading.blacksmith.yulif=Ya should probably get a Blacksmith built.
 harvestfestival.quest.tutorial.upgrading.blacksmith.goddess=Hey darling, I recommend getting a Blacksmith built next.
 harvestfestival.quest.tutorial.upgrading.blacksmith.jim=A Blacksmith would be a great investment.
@@ -1328,10 +1340,8 @@ harvestfestival.quest.tutorial.upgrading.intro=If there is anywhere else I’d r
 harvestfestival.quest.tutorial.upgrading.question=Do you know how to upgrade tools?
 harvestfestival.quest.tutorial.upgrading.tutorial=@I do not know anything.
 harvestfestival.quest.tutorial.upgrading.skip=@I know everything.
-harvestfestival.quest.tutorial.upgrading.completed=That’s good then. I have some ore and a hammer for you.
-harvestfestival.quest.tutorial.upgrading.explain=That’s good then. I’ll be happy to teach you. The first step is to get your tools to the stage where they can even be upgraded. If you notice they have a percentage bar. When this is at 100%% just bring them to me. I’ll also need some ore to work with, as well as payment for my services. I’ll work on them for a few days, then you can have your tools back fully upgraded. You might be asking me how to get the materials you’ll need. Well you’ll need to head down the mine, taking with you a hammer. You can find nodes down there which you can smash with a hammer to obtain ore. Anyway that’s about it. I hear Brandon the Miner has a gift for you though.
-harvestfestival.quest.tutorial.upgrading.reminder.visit=Remember Brandon the Miner wants to see you.
-harvestfestival.quest.tutorial.upgrading.complete=Ehhh hello there. I’ve just been down the mine, and well it was pretty terrible. Since you brought me to this awful town, I may as well just thank you by giving you the junk I found. Take it. I don’t want it.
+harvestfestival.quest.tutorial.upgrading.completed=That’s good then. I have some ore for you.
+harvestfestival.quest.tutorial.upgrading.explain=That’s good then. I’ll be happy to teach you. The first step is to get your tools to the stage where they can even be upgraded. If you notice they have a percentage bar. When this is at 100%% just bring them to me. I’ll also need some ore to work with, as well as payment for my services. I’ll work on them for a few days, then you can have your tools back fully upgraded. Anyway that’s about it. Actually, take these!.
 
 ##Trading Quests
 # Priest Blessing Quest
@@ -1424,6 +1434,7 @@ harvestfestival.quest.meeting.jacob.text=Nice to meet you %4$s, the name's jacob
 harvestfestival.quest.meeting.katlin.text=Good day youngun. I'm Katlin but you can call me granny if you like. I help out my granddaughter Liara, mostly in the kitchen. I must thank you for letting her open shop up here, it's been her life long dream. I have some spare change, it isn't much but please do take it.
 harvestfestival.quest.meeting.johan.text=Good day. It is such a pleasure to meet you. The name is Johan. I'm normally here throughout the day but I travel back to my homeland at night. To let you know that if you ever need a bucket of milk, block of wool or some brown eggs, I'll happily trade for bottles of milk, plain wool or white eggs. I will see you around.
 harvestfestival.quest.meeting.abi.text=HELLLO BIG PERSON! I'm Abi!!!!! Wanna know what I got up today ^_^???? Welll I made COOOKIES!!!!!! Want some? They're so yummy!
+harvestfestival.quest.meeting.candice.text=I will surely find myself someone. Well hello there aren’t you just the cutest. I’m Candice. Jenni downstairs is the owner here, I’m just a tenant. Nice to meet you! I'd love for you to have one of my favourite drinks!
 
 ## Seed Quests
 harvestfestival.quest.seeds.cabbage.complete=Wow it looks like you've shipped 1000 spring crops! That's amazing. I have some good news too, we've recently found someone who will be happy to supply the store with cabbage seeds. So make sure to check the store the next time you visit!
@@ -1544,6 +1555,22 @@ harvestfestival.note.sickle.title=Sickle
 harvestfestival.note.sickle.description=The sickle is a tool that is very effective at destroying crops, and other plant like matter. It is especially effective at destroying any of your crops that may end up dying from lack of water or season changes. \n\nSome crops such as grass or wheat require the use of the sickle in order to harvest their drops.
 harvestfestival.note.supermarket.title=General Store
 harvestfestival.note.supermarket.description=The General Store is where you can buy tools, seeds and some special ingredients for cooking. You can only buy the seeds for your current season (none in winter!). And you will unlock different seeds as you progress. Some require shipping x items, and some are unlocked after the first year, and others have more nuanced ways to unlock them for purchase.
+harvestfestival.note.care.chickens.title=Chickens
+harvestfestival.note.care.chickens.description=To make use of chickens you are going to want to feed them every day as well as picking them and putting them down. Chickens will eat chicken feed from your hand or from feed trays. You'll need a nest box if you wish for your chickens to lay eggs. They're fussy and don't like laying them on the ground. The better you care for chickens, the larger eggs they'll make.
+harvestfestival.note.care.cows.title=Cows
+harvestfestival.note.care.cows.description=Cows are larger livestock animal that can be milked for milk every day. They need to be fed fodder or wheat every day either by hand or through the use of troughs. They also need to be brushed and talked to stay clean and happy. If you want milk you will need to use a milker. Cows that like you more will allow you to collect larger milks from them,
+harvestfestival.note.care.sheep.title=Sheep
+harvestfestival.note.care.sheep.description=Sheep are larger animals that will grow wool once a week. Sheep like to eat fodder or wheat, which you can do by hand or using a trough. To stay clean and happy you should also brush and talk to them every day. You will need to use a pair of shears to harvest the wool from your sheep. The more a sheep likes you, the more wool you can collect.
+harvestfestival.note.care.happiness.title=Animal Happiness
+harvestfestival.note.care.happiness.description=Each animal you interact with has a particular amount that they like you. You can see this amount from the relationships tab of this book. The more they like you, the larger products they produce. You can gain relationship from talking to animals, giving them treats, cleaning them as well as making sure they're outside on sunny days. Hitting them or feeding incorrect treats will suffer a relationship penalty.
+harvestfestival.note.care.stress.title=Animal Stress & Health
+harvestfestival.note.care.stress.description=If you do not supply your animals with food, or cause them to become too stressed they will get sick. When they are sick they will not produce any products for you. If you feed them again, they will slowly gain health or you can use an animal medicine to heal them right away. Animals gain stress when they are left outside in the rain, so makes sure to bring them in on rainy days.
+harvestfestival.note.mining.title=Mining
+harvestfestival.note.mining.description=The Mine is a special place accessed via the Mining Hill, inside you can find all sorts of nodes which can be smashed with a hammer to obtain yourself ores and gems which can be sold for gold. Some nodes require higher tiers of hammers. The deeper down the mine you climb, the rarer the materials you will find. But you will also find more danger in the likes of dark animals from little chicks to ferocious cows.
+harvestfestival.note.upgrading.title=Upgrading Tools
+harvestfestival.note.upgrading.description=The Blacksmith is able to upgrade tools for you. He will need three days as well as a small fee and a small supply of ore.
+harvestfestival.note.repairing.title=Repairing Tools
+harvestfestival.note.repairing.description=The Blacksmith can repair tools for you. He'll take one day and requires ore and payment.
 
 #Secret Notes
 harvestfestival.note.secret.cursed.title=Secret of the Cursed Tools?

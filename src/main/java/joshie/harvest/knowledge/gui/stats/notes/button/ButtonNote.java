@@ -1,6 +1,7 @@
 package joshie.harvest.knowledge.gui.stats.notes.button;
 
 import joshie.harvest.api.knowledge.Note;
+import joshie.harvest.api.knowledge.NoteRender;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.helpers.RenderHelper;
 import joshie.harvest.knowledge.gui.stats.GuiStats;
@@ -61,7 +62,13 @@ public class ButtonNote extends ButtonBook {
 
     @Override
     public void mouseReleased(int mouseX, int mouseY) {
-        if (unlocked) PageNotes.setNote(note);
+        if (unlocked) {
+            PageNotes.setNote(note);
+            NoteRender render = note.getRender();
+            if (render != null) {
+                render.initRender(gui.mc, gui, gui.guiLeft, gui.guiTop);
+            }
+        }
     }
 
     @Override

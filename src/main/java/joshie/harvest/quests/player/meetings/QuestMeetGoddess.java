@@ -1,4 +1,4 @@
-package joshie.harvest.quests.player.tutorial;
+package joshie.harvest.quests.player.meetings;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.npc.INPC;
@@ -18,11 +18,11 @@ import static joshie.harvest.npc.HFNPCs.GODDESS;
 import static joshie.harvest.quests.Quests.YULIF_MEET;
 
 @HFQuest("tutorial.intro")
-public class QuestIntro extends QuestQuestion {
+public class QuestMeetGoddess extends QuestQuestion {
     private static final int HELLO = 0;
     private static final int BACKSTORY = 1;
 
-    public QuestIntro() {
+    public QuestMeetGoddess() {
         super(new TutorialSelection("intro"));
         setNPCs(GODDESS);
     }

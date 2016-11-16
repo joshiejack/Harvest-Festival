@@ -1,16 +1,18 @@
-package joshie.harvest.quests.player.tutorial;
+package joshie.harvest.quests.player.meetings;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.api.quests.QuestQuestion;
+import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.cooking.CookingHelper;
 import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.cooking.block.BlockCookware.Cookware;
 import joshie.harvest.cooking.item.ItemUtensil.Utensil;
 import joshie.harvest.quests.Quests;
 import joshie.harvest.quests.selection.TutorialSelection;
+import joshie.harvest.town.TownHelper;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -18,24 +20,25 @@ import net.minecraft.item.ItemStack;
 import java.util.Set;
 
 import static joshie.harvest.npc.HFNPCs.CAFE_OWNER;
-import static joshie.harvest.quests.Quests.TUTORIAL_SUPERMARKET;
+import static joshie.harvest.quests.Quests.JENNI_MEET;
 
 @HFQuest("tutorial.cafe")
-public class QuestCafe extends QuestQuestion {
+public class QuestMeetLiara extends QuestQuestion {
     private static final int WELCOME = 0;
     private static final int TUTORIAL = 1;
-    public QuestCafe() {
+    public QuestMeetLiara() {
         super(new TutorialSelection("cafe"));
         setNPCs(CAFE_OWNER);
     }
 
     @Override
     public boolean canStartQuest(Set<Quest> active, Set<Quest> finished) {
-        return finished.contains(TUTORIAL_SUPERMARKET);
+        return finished.contains(JENNI_MEET);
     }
 
     @Override
     public String getLocalizedScript(EntityPlayer player, EntityLiving entity, INPC npc) {
+        if (!TownHelper.getClosestTownToEntity(entity).hasBuilding(HFBuildings.CAFE)) return null;
         if (isCompletedEarly) {
             return getLocalized("completed");
         } else if (quest_stage == WELCOME) {
@@ -64,7 +67,9 @@ public class QuestCafe extends QuestQuestion {
     @Override
     public void onChatClosed(EntityPlayer player, EntityLiving entity, INPC npc) {
         if (isCompletedEarly || quest_stage == TUTORIAL) {
-            complete(player);
+            if (TownHelper.getClosestTownToEntity(entity).hasBuilding(HFBuildings.CAFE)) {
+                complete(player);
+            }
         }
     }
 

@@ -3,16 +3,16 @@ package joshie.harvest.quests;
 import joshie.harvest.api.quests.Quest;
 
 public class Quests {
-    public static final Quest TUTORIAL_SUPERMARKET = QuestHelper.getQuest("tutorial.supermarket");
-    public static final Quest TUTORIAL_UPGRADING = QuestHelper.getQuest("tutorial.upgrading");
-
-    //Quest order based on meeting npcs and relations
+   //Quest order based on meeting npcs and relations
     public static final Quest ABI_MEET = QuestHelper.getQuest("meeting.abi");
     public static final Quest ASHLEE_MEET = QuestHelper.getQuest("tutorial.chicken");
     public static final Quest ASHLEE_5K = QuestHelper.getQuest("recipe.corn.baked");
+    public static final Quest BRANDON_MEET = QuestHelper.getQuest("tutorial.mining");
     public static final Quest BRANDON_5K = QuestHelper.getQuest("recipe.soup.rice");
+    public static final Quest CANDICE_MEET = QuestHelper.getQuest("meeting.candice");
     public static final Quest CANDICE_5K = QuestHelper.getQuest("recipe.milk.hot");
     public static final Quest CLOE_5K = QuestHelper.getQuest("recipe.noodles");
+    public static final Quest DANIERU_MEET = QuestHelper.getQuest("tutorial.upgrading");
     public static final Quest DANIERU_5K = QuestHelper.getQuest("recipe.butter");
     public static final Quest DANIERU_10K = QuestHelper.getQuest("recipe.egg.scrambled");
     public static final Quest GODDESS_MEET = QuestHelper.getQuest("tutorial.intro");
@@ -26,6 +26,7 @@ public class Quests {
     public static final Quest JADE_10K = QuestHelper.getQuest("recipe.toast.french");
     public static final Quest JADE_15K = QuestHelper.getQuest("friendship.jade.flowers");
     public static final Quest JADE_20K = QuestHelper.getQuest("recipe.jam.apple");
+    public static final Quest JENNI_MEET = QuestHelper.getQuest("tutorial.supermarket");
     public static final Quest JENNI_5K = QuestHelper.getQuest("recipe.salad");
     public static final Quest JIM_MEET = QuestHelper.getQuest("tutorial.cow");
     public static final Quest JIM_5K = QuestHelper.getQuest("recipe.fishsticks");

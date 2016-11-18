@@ -1,5 +1,7 @@
 package joshie.harvest.quests.data;
 
+import joshie.harvest.api.HFApi;
+import joshie.harvest.api.calendar.CalendarDate;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.api.quests.QuestType;
@@ -13,13 +15,23 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 
 import javax.annotation.Nullable;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
+
+import static joshie.harvest.core.helpers.SerializeHelper.readMap;
+import static joshie.harvest.core.helpers.SerializeHelper.writeMap;
 
 public class QuestDataServer extends QuestData {
     private final IQuestMaster master;
+    private Map<Quest, CalendarDate> lastFinished = new HashMap<>();
 
     public QuestDataServer(IQuestMaster master) {
         this.master = master;
+    }
+
+    public CalendarDate getLastCompletionOfQuest(Quest quest) {
+        return lastFinished.get(quest);
     }
 
     @Override
@@ -37,19 +49,23 @@ public class QuestDataServer extends QuestData {
         } catch (Exception ignored) { return false; }
     }
 
+    private void finish(EntityPlayer player, Quest quest, boolean rewards) {
+        finished.add(quest);
+        if (rewards) quest.onQuestCompleted(player);
+        if (quest.isRepeatable() && quest.getDaysBetween() > 0) {
+            lastFinished.put(quest, HFApi.calendar.getDate(player.worldObj).copy());
+        }
+    }
+
     //Quests should always REMOVE from the current quests, and add to the finished quests THEMSELVES
     //Only the person who actually completed the quest, will get the reward
     @Override
     public void markCompleted(EntityPlayer player, Quest quest, boolean rewards) {
         Quest localQuest = getAQuest(quest);
         if (localQuest != null) {
-            finished.add(localQuest);
             current.remove(localQuest);
-            if (rewards) localQuest.onQuestCompleted(player);
-        } else {
-            finished.add(quest);
-            if (rewards) quest.onQuestCompleted(player);
-        }
+            finish(player, localQuest, rewards);
+        } else finish(player, quest, rewards);
 
         HFTrackers.markDirty(player.worldObj);
         //Sync everything
@@ -99,5 +115,17 @@ public class QuestDataServer extends QuestData {
         }
 
         return quest.canStartQuest(active, finished);
+    }
+
+    @Override
+    public void readFromNBT(NBTTagCompound nbt) {
+        super.readFromNBT(nbt);
+        lastFinished = readMap(Quest.class, CalendarDate.class, "LastQuest", nbt);
+    }
+
+    @Override
+    public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
+        writeMap(lastFinished, "LastQuest", nbt);
+        return super.writeToNBT(nbt);
     }
 }

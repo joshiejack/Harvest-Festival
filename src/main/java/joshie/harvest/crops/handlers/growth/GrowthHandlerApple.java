@@ -5,6 +5,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+@SuppressWarnings("unused")
 public class GrowthHandlerApple extends GrowthHandlerTree {
     @Override
     protected void growTree(World world, BlockPos pos) {

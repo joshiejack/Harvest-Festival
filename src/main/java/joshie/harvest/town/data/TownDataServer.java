@@ -1,12 +1,16 @@
 package joshie.harvest.town.data;
 
 import com.google.common.cache.Cache;
+import joshie.harvest.api.HFApi;
+import joshie.harvest.api.calendar.CalendarDate;
 import joshie.harvest.api.npc.INPC;
+import joshie.harvest.api.quests.Quest;
 import joshie.harvest.api.quests.QuestType;
 import joshie.harvest.buildings.BuildingImpl;
 import joshie.harvest.buildings.BuildingRegistry;
 import joshie.harvest.buildings.BuildingStage;
 import joshie.harvest.buildings.HFBuildings;
+import joshie.harvest.calendar.CalendarHelper;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.core.helpers.NBTHelper;
@@ -22,6 +26,7 @@ import joshie.harvest.npc.entity.EntityNPCHuman;
 import joshie.harvest.quests.Quests;
 import joshie.harvest.quests.data.QuestDataServer;
 import joshie.harvest.quests.packet.PacketQuest;
+import joshie.harvest.town.packet.PacketDailyQuest;
 import joshie.harvest.town.packet.PacketNewBuilding;
 import joshie.harvest.town.packet.PacketSyncBuilding;
 import net.minecraft.entity.player.EntityPlayer;
@@ -33,9 +38,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 
 import javax.annotation.Nullable;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 public class TownDataServer extends TownData<QuestDataServer> implements IQuestMaster {
     public final GatheringData gathering = new GatheringData();
@@ -116,10 +119,38 @@ public class TownDataServer extends TownData<QuestDataServer> implements IQuestM
         HFTrackers.markDirty(world);
     }
 
+    private boolean isRepeatable(World world, Quest quest) {
+        if (!quest.isRepeatable()) return false;
+        if (quest.getDaysBetween() == 0) return true;
+        else {
+            CalendarDate date = getQuests().getLastCompletionOfQuest(quest);
+            return date == null || CalendarHelper.getDays(date, HFApi.calendar.getDate(world)) >= quest.getDaysBetween();
+        }
+    }
+
+    private void generateNewDailyQuest(World world) {
+        List<Quest> quests = new ArrayList<>();
+        for (Quest quest: Quest.REGISTRY) {
+            if (isRepeatable(world, quest) || !getQuests().getFinished().contains(quest)) {
+                if (!getQuests().getCurrent().contains(quest)) {
+                    if (quest.canStartDailyQuest(world, townCentre)) {
+                        quests.add(quest);
+                    }
+                }
+            }
+        }
+
+        if (quests.size() > 0) {
+            dailyQuest = quests.get(world.rand.nextInt(quests.size()));
+            PacketHandler.sendToDimension(world.provider.getDimension(), new PacketDailyQuest(uuid, dailyQuest));
+        }
+    }
+
     public void newDay(World world, Cache<BlockPos, Boolean> isFar) {
         if (world.isBlockLoaded(getTownCentre())) {
             shops.newDay(uuid);
             gathering.newDay(world, townCentre, buildings.values(), isFar);
+            generateNewDailyQuest(world);
             for (ResourceLocation villager: deadVillagers) {
                 NPC npc = NPCRegistry.REGISTRY.getValue(villager);
                 if (npc != HFNPCs.GODDESS) {

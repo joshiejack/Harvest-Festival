@@ -27,12 +27,12 @@ import static joshie.harvest.gathering.HFGathering.NATURE;
 public class HFIngredients {
     //Categories
     public static final Ingredient MUSHROOM = new Ingredient("mushroom");
-    public static final Ingredient VEGETABLE_JUICE_BASE = new Ingredient("vegetable_juice");
-    public static final Ingredient FRUIT_JUICE_BASE = new Ingredient("fruit_juice");
+    public static final Ingredient VEGETABLE_JUICE_BASE = new Ingredient("juiceable_vegetable");
+    public static final Ingredient FRUIT_JUICE_BASE = new Ingredient("juiceable_fruit");
     public static final Ingredient SALAD_BASE = new Ingredient("salad_ingredient");
     public static final Ingredient SANDWICH_BASE = new Ingredient("sandwich_ingredient");
-    public static final Ingredient FRUITS = new Ingredient("sandwich_fruit");
-    public static final Ingredient CAKE_FRUIT = new Ingredient("cake_fruit");
+    public static final Ingredient FRUITS = new Ingredient("fruit_sandwich_ingredient");
+    public static final Ingredient CAKE_FRUIT = new Ingredient("cakeable_fruit");
     public static final Ingredient SASHIMI_VEGETABLE = new Ingredient("sashimi_vegetable");
     public static final Ingredient FISH = new Ingredient("fish");
     public static final Ingredient MEAT = new Ingredient("meat");

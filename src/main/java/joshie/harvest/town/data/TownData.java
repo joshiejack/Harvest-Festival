@@ -2,6 +2,7 @@ package joshie.harvest.town.data;
 
 import joshie.harvest.api.buildings.Building;
 import joshie.harvest.api.buildings.BuildingLocation;
+import joshie.harvest.api.quests.Quest;
 import joshie.harvest.buildings.BuildingImpl;
 import joshie.harvest.buildings.BuildingStage;
 import joshie.harvest.core.helpers.NBTHelper;
@@ -19,6 +20,7 @@ public abstract class TownData<Q extends QuestData> {
     protected LinkedList<BuildingStage> building = new LinkedList<>();
     protected final Set<ResourceLocation> inhabitants = new HashSet<>();
     protected final ShopData shops = new ShopData();
+    protected Quest dailyQuest;
     protected BlockPos townCentre;
     protected UUID uuid;
 
@@ -93,6 +95,8 @@ public abstract class TownData<Q extends QuestData> {
         for (TownBuilding building: buildings.values()) {
             inhabitants.addAll(building.building.getInhabitants());
         }
+
+        if (nbt.hasKey("DailyQuest")) dailyQuest = Quest.REGISTRY.getValue(new ResourceLocation(nbt.getString("DailyQuest")));
     }
 
     public void writeToNBT(NBTTagCompound nbt) {
@@ -101,6 +105,7 @@ public abstract class TownData<Q extends QuestData> {
         NBTHelper.writeUUID("Town", nbt, uuid);
         NBTHelper.writeMap("TownBuildingList", nbt, buildings);
         NBTHelper.writeList("CurrentlyBuilding", nbt, building);
+        if (dailyQuest != null) nbt.setString("DailyQuest", dailyQuest.toString());
     }
 
     @Override

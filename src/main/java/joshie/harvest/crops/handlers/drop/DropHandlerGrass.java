@@ -6,6 +6,7 @@ import net.minecraft.item.ItemStack;
 
 import java.util.Random;
 
+@SuppressWarnings("unused")
 public class DropHandlerGrass extends DropHandler {
     @Override
     public ItemStack getDrop(Crop crop, int stage, Random rand) {

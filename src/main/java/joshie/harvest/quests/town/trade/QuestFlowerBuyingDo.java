@@ -14,7 +14,7 @@ import java.util.Random;
 import java.util.Set;
 
 @HFQuest("trader.flowers")
-public class QuestFlowerBuyer extends QuestDummyTown {
+public class QuestFlowerBuyingDo extends QuestDummyTown {
     private CalendarDate lastCheck;
     private int value;
 

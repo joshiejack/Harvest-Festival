@@ -21,7 +21,7 @@ public class GiftsYulif extends Gifts {
     @Override
     public Quality getQuality(ItemStack stack) {
         IGiftRegistry registry = HFApi.npc.getGifts();
-        if (InventoryHelper.isOreName(stack, "cropMelon")) return AWESOME;
+        if (InventoryHelper.isOreName(stack, "cropWatermelon") || InventoryHelper.isOreName(stack, "cropMelon")) return AWESOME;
         else if (stack.getItem() == Items.SUGAR || InventoryHelper.isOreName(stack, "gemQuartz") || stack.getItem() == Item.getItemFromBlock(Blocks.CAKE) ||
                 (stack.getItem() == HFCooking.MEAL && isCake(HFCooking.MEAL.getEnumFromStack(stack))) || InventoryHelper.isOreName(stack, "cropCorn") ||
                 InventoryHelper.isOreName(stack, "cropPineapple") || registry.isGiftType(stack, BUILDING)) return Quality.GOOD;

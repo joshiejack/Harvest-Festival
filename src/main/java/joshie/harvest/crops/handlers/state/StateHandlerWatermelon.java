@@ -8,6 +8,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 
+@SuppressWarnings("unused")
 public class StateHandlerWatermelon extends StateHandlerStem {
     public StateHandlerWatermelon() {
         super(Blocks.MELON_STEM);

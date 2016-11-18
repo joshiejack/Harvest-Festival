@@ -76,7 +76,7 @@
     "juice_banana": [{ "textures": { "layer0": "harvestfestival:items/meals/juice_banana" }}],
     "juice_orange": [{ "textures": { "layer0": "harvestfestival:items/meals/juice_orange" }}],
     "juice_apple": [{ "textures": { "layer0": "harvestfestival:meals/juice_apple" }}],
-    "juice_fruit": [{ "textures": { "layer0": "harvestfestival:items/juice_fruit" }}],
+    "juice_fruit": [{ "textures": { "layer0": "harvestfestival:items/meals/juice_fruit" }}],
     "latte_fruit": [{ "textures": { "layer0": "harvestfestival:items/meals/latte_fruit" }}],
     "juice_mix": [{ "textures": { "layer0": "harvestfestival:items/meals/juice_mix" }}],
     "latte_mix": [{ "textures": { "layer0": "harvestfestival:items/meals/latte_mix" }}],

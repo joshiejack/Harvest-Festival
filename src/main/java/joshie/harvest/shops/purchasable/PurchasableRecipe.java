@@ -5,6 +5,7 @@ import joshie.harvest.api.calendar.CalendarDate;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.calendar.Weekday;
 import joshie.harvest.cooking.HFCooking;
+import joshie.harvest.knowledge.HFNotes;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -19,6 +20,7 @@ public class PurchasableRecipe extends PurchasableMeal {
         this.season = season;
         this.weekday = weekday;
         this.setStock(1);
+        this.setNote(HFNotes.RECIPES);
     }
 
     @Override

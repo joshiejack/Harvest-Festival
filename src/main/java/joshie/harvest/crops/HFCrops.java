@@ -156,6 +156,8 @@ public class HFCrops {
                 HFApi.shipping.registerSellable(clone, crop.getSellValue());
             }
         }
+
+        registerOreIfNotExists("cropWatermelon", new ItemStack(Blocks.MELON_BLOCK));
     }
 
     @SideOnly(Side.CLIENT)

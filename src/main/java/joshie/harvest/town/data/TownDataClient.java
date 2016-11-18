@@ -1,5 +1,6 @@
 package joshie.harvest.town.data;
 
+import joshie.harvest.api.quests.Quest;
 import joshie.harvest.buildings.BuildingRegistry;
 import joshie.harvest.buildings.BuildingStage;
 import joshie.harvest.quests.data.QuestDataClient;
@@ -21,5 +22,9 @@ public class TownDataClient extends TownData<QuestDataClient> {
 
     public void setBuilding(LinkedList<BuildingStage> building) {
         this.building = building;
+    }
+
+    public void setDailyQuest(Quest dailyQuest) {
+        this.dailyQuest = dailyQuest;
     }
 }

@@ -7,10 +7,12 @@ import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.calendar.CalendarHelper;
 import joshie.harvest.core.helpers.InventoryHelper;
 import joshie.harvest.npc.HFNPCs;
-import joshie.harvest.quests.base.QuestUnlockedTimer;
+import joshie.harvest.quests.base.QuestWeekly;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraftforge.fml.common.eventhandler.Event.Result;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -21,7 +23,7 @@ import static joshie.harvest.core.helpers.InventoryHelper.SPECIAL;
 import static joshie.harvest.core.helpers.InventoryHelper.SearchType.WOOL;
 
 @HFQuest("friendship.wooly")
-public class QuestWooly extends QuestUnlockedTimer {
+public class QuestWooly extends QuestWeekly {
     private Result success = Result.DEFAULT;
     private CalendarDate requested;
 
@@ -31,29 +33,27 @@ public class QuestWooly extends QuestUnlockedTimer {
     }
 
     @Override
-    protected int getDaysBetween() {
-        return 7;
+    public boolean canStartDailyQuest(World world, BlockPos pos) {
+        return HFApi.calendar.getWeather(world).isSnow() && super.canStartDailyQuest(world, pos);
     }
 
     @Override
-    public boolean canUnlock(EntityPlayer player, EntityLiving entity, INPC npc) {
-        return HFApi.calendar.getWeather(player.worldObj).isSnow() && super.canUnlock(player, entity, npc);
+    public String getDescription(World world, EntityPlayer player) {
+        return "Bring Jade some wool";
     }
 
     @Override
     @Nullable
     @SideOnly(Side.CLIENT)
     public String getLocalizedScript(EntityPlayer player, EntityLiving entity, INPC npc) {
-        if (requested == null) return "Damn it's been pretty cold lately, I could really use some new clothes, do you think you have any wool you can spare?";
-        else {
-            int days = CalendarHelper.getDays(requested, HFApi.calendar.getDate(player.worldObj));
-            if (days < getDaysBetween()) {
-                if (InventoryHelper.takeItemsIfHeld(player, SPECIAL, WOOL) != null) {
-                    return "Woah you are amazing, thanks for getting me this wool, now I can wrap up nice and warm for winter.";
-                } else if (player.worldObj.rand.nextFloat() < 0.05F) return "I'd love some wool so I can make some new clothes for winter";
-            } else {
-                return "Are you sure you actually care about me? You've taken way too long, I've got my own clothes now!";
-            }
+        if (requested == null) requested = HFApi.calendar.getDate(player.worldObj).copy();
+        int days = CalendarHelper.getDays(requested, HFApi.calendar.getDate(player.worldObj));
+        if (days < getDaysBetween()) {
+            if (InventoryHelper.takeItemsIfHeld(player, SPECIAL, WOOL) != null) {
+                return "Woah you are amazing, thanks for getting me this wool, now I can wrap up nice and warm for winter.";
+            } else if (player.worldObj.rand.nextFloat() < 0.05F) return "I'd love some wool so I can make some new clothes for winter";
+        } else {
+            return "Are you sure you actually care about me? You've taken way too long, I've got my own clothes now!";
         }
 
         return null;
@@ -63,17 +63,15 @@ public class QuestWooly extends QuestUnlockedTimer {
     @Override
     public void onChatClosed(EntityPlayer player, EntityLiving entity, INPC npc, boolean wasSneaking) {
         if (requested == null) requested = HFApi.calendar.getDate(player.worldObj).copy();
-        else {
-            int days = CalendarHelper.getDays(requested, HFApi.calendar.getDate(player.worldObj));
-            if (days < getDaysBetween()) {
-                if (InventoryHelper.takeItemsIfHeld(player,SPECIAL, WOOL) != null) {
-                    success = Result.ALLOW;
-                    complete(player);
-                }
-            } else {
-                success = Result.DENY;
+        int days = CalendarHelper.getDays(requested, HFApi.calendar.getDate(player.worldObj));
+        if (days < getDaysBetween()) {
+            if (InventoryHelper.takeItemsIfHeld(player,SPECIAL, WOOL) != null) {
+                success = Result.ALLOW;
                 complete(player);
             }
+        } else {
+            success = Result.DENY;
+            complete(player);
         }
     }
 

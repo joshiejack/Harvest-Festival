@@ -70,6 +70,18 @@ public abstract class Quest extends IForgeRegistryEntry.Impl<Quest> {
         return true;
     }
 
+    /** If this quest counts as a daily quest, and if it can currently be started
+     *  @return false for quests that can only be started via the quest board at a random chance **/
+    public boolean canStartDailyQuest(World world, BlockPos pos) {
+        return false;
+    }
+
+    /** This is only called for daily quests, if they are repeatable
+     *  This is how many days need to have passed before this quest can be repeated **/
+    public int getDaysBetween() {
+        return 0;
+    }
+
     /** Call this to set the npcs that handle this quest
      * @param npcs    the npcs **/
     public Quest setNPCs(INPC... npcs) {
@@ -115,10 +127,11 @@ public abstract class Quest extends IForgeRegistryEntry.Impl<Quest> {
     }
 
     /** A very short description, of what the player is supposed to be doing at this stage
+     *  If the player is null, then we are looking for the description that appears on the notice board, instead of in the book
      * @param world the world
      * @param player the player**/
     @SideOnly(Side.CLIENT)
-    public String getDescription(World world, EntityPlayer player) {
+    public String getDescription(World world, @Nullable EntityPlayer player) {
         return null;
     }
 

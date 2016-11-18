@@ -1,5 +1,7 @@
 package joshie.harvest.shops.purchasable;
 
+import joshie.harvest.api.HFApi;
+import joshie.harvest.api.knowledge.Note;
 import joshie.harvest.api.shops.IPurchasable;
 import joshie.harvest.core.helpers.InventoryHelper;
 import joshie.harvest.core.helpers.SpawnItemHelper;
@@ -24,6 +26,7 @@ public class Purchasable implements IPurchasable {
     private final long cost;
     private String tooltip;
     private int stock;
+    private Note note;
 
     public Purchasable(long cost, ItemStack stack) {
         this.cost = cost;
@@ -38,6 +41,11 @@ public class Purchasable implements IPurchasable {
 
     public Purchasable setStock(int stock) {
         this.stock = stock;
+        return this;
+    }
+
+    public Purchasable setNote(Note note) {
+        this.note = note;
         return this;
     }
 
@@ -79,6 +87,8 @@ public class Purchasable implements IPurchasable {
         } else {
             SpawnItemHelper.addToPlayerInventory(player, getDisplayStack().copy());
         }
+
+        if (note != null) HFApi.player.getTrackingForPlayer(player).learnNote(note);
     }
 
     @SideOnly(Side.CLIENT)

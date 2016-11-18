@@ -30,6 +30,7 @@ public class Tracking implements IPlayerTracking {
         } else return notes.add(note.getResource());
     }
 
+    @Override
     public void addAsObtained(ItemStack stack) {
         obtained.add(ItemStackHolder.of(stack));
     }

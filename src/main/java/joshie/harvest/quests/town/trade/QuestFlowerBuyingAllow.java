@@ -1,7 +1,7 @@
-package joshie.harvest.quests.town.friendship;
+package joshie.harvest.quests.town.trade;
 
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.quests.base.QuestDummyTown;
 
 @HFQuest("buyer.flowers")
-public class QuestAllowFlowerBuying extends QuestDummyTown {}
+public class QuestFlowerBuyingAllow extends QuestDummyTown {}

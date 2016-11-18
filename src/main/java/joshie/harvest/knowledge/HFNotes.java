@@ -29,6 +29,15 @@ public class HFNotes {
 
     public static final Note MINING = registerNote(ACTIVITIES, "mining");
     public static final Note UPGRADING = registerNote(TOWNSHIP, "upgrading");
+    public static final Note COOKING = registerNote(ACTIVITIES, "cooking");
+    public static final Note RECIPES = registerNote(ACTIVITIES, "recipes");
+    public static final Note RECIPE_BOOK = registerNote(ACTIVITIES, "counter");
+    public static final Note KITCHEN_COUNTER = registerNote(ACTIVITIES, "recipebook");
+    public static final Note FRIDGE = registerNote(ACTIVITIES, "fridge");
+    public static final Note OVEN = registerNote(ACTIVITIES, "oven");
+    public static final Note MIXER = registerNote(ACTIVITIES, "mixer");
+    public static final Note POTPAN = registerNote(ACTIVITIES, "potpan");
+
     public static final Note REPAIRING = registerNote(TOWNSHIP, "repairing");
     public static final Note SECRET_CURSED_TOOLS = registerNote(ACTIVITIES, "secret.cursed").setSecretNote();
 

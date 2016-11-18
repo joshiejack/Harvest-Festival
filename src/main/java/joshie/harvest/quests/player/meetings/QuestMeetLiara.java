@@ -10,6 +10,7 @@ import joshie.harvest.cooking.CookingHelper;
 import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.cooking.block.BlockCookware.Cookware;
 import joshie.harvest.cooking.item.ItemUtensil.Utensil;
+import joshie.harvest.knowledge.HFNotes;
 import joshie.harvest.quests.Quests;
 import joshie.harvest.quests.selection.TutorialSelection;
 import joshie.harvest.town.TownHelper;
@@ -80,5 +81,10 @@ public class QuestMeetLiara extends QuestQuestion {
         rewardItem(player, HFCooking.COOKWARE.getStackFromEnum(Cookware.COUNTER));
         rewardItem(player, new ItemStack(HFCooking.COOKBOOK));
         rewardItem(player, CookingHelper.getRecipe("turnip_pickled"));
+        HFApi.player.getTrackingForPlayer(player).addAsObtained(HFCooking.COOKWARE.getStackFromEnum(Cookware.COUNTER));
+        HFApi.player.getTrackingForPlayer(player).learnNote(HFNotes.RECIPES);
+        HFApi.player.getTrackingForPlayer(player).learnNote(HFNotes.RECIPE_BOOK);
+        HFApi.player.getTrackingForPlayer(player).learnNote(HFNotes.KITCHEN_COUNTER);
+        HFApi.player.getTrackingForPlayer(player).learnNote(HFNotes.COOKING);
     }
 }

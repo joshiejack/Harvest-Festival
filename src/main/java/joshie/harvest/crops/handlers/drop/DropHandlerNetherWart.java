@@ -7,6 +7,7 @@ import net.minecraft.item.ItemStack;
 
 import java.util.Random;
 
+@SuppressWarnings("unused")
 public class DropHandlerNetherWart extends DropHandler {
     @Override
     public ItemStack getDrop(Crop crop, int stage, Random rand) {

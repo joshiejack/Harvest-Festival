@@ -15,6 +15,7 @@ import javax.annotation.Nullable;
 
 import static joshie.harvest.api.crops.IStateHandler.PlantSection.BOTTOM;
 
+@SuppressWarnings("unused")
 public class StateHandlerGrass extends StateHandlerDefault {
     public final TIntObjectMap<AxisAlignedBB> CROP_AABB = new TIntObjectHashMap<>();
 

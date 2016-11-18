@@ -157,6 +157,8 @@ public class HFCrops {
             }
         }
 
+        registerOreIfNotExists("cropMelon", new ItemStack(Items.MELON));
+        registerOreIfNotExists("cropMelon", new ItemStack(Blocks.MELON_BLOCK));
         registerOreIfNotExists("cropWatermelon", new ItemStack(Blocks.MELON_BLOCK));
     }
 

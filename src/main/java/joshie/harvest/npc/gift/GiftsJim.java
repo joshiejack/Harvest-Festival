@@ -1,24 +1,25 @@
 package joshie.harvest.npc.gift;
 
-import joshie.harvest.api.HFApi;
+import joshie.harvest.api.core.Ore;
 import joshie.harvest.core.HFCore;
 import joshie.harvest.core.block.BlockFlower.FlowerType;
-import joshie.harvest.core.helpers.InventoryHelper;
+import joshie.harvest.mining.HFMining;
+import joshie.harvest.mining.item.ItemMaterial.Material;
 import net.minecraft.init.Items;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 
 import static joshie.harvest.api.npc.gift.GiftCategory.*;
 
+@SuppressWarnings("unused")
 public class GiftsJim extends Gifts {
-    @Override
-    public Quality getQuality(ItemStack stack) {
-        if (stack.getItem() == Items.STICK ||
-                (stack.getItem() == Item.getItemFromBlock(HFCore.FLOWERS) && HFCore.FLOWERS.getEnumFromStack(stack) == FlowerType.WEED)) return Quality.AWESOME;
-        else if (HFApi.npc.getGifts().isGiftType(stack, JUNK, ANIMAL)) return Quality.GOOD;
-        else if (HFApi.npc.getGifts().isGiftType(stack, GEM)) return Quality.TERRIBLE;
-        else if (InventoryHelper.isOreName(stack, "fish"))return Quality.BAD;
-        else if (HFApi.npc.getGifts().isGiftType(stack, MAGIC))return Quality.DISLIKE;
-        else return super.getQuality(stack);
+    public GiftsJim() {
+        stackRegistry.register(Items.STICK, Quality.AWESOME);
+        stackRegistry.register(HFCore.FLOWERS.getStackFromEnum(FlowerType.WEED), Quality.AWESOME);
+        categoryRegistry.put(JUNK, Quality.GOOD);
+        categoryRegistry.put(ANIMAL, Quality.GOOD);
+        categoryRegistry.put(MAGIC, Quality.DISLIKE);
+        stackRegistry.register(Ore.of("fish"), Quality.BAD);
+        stackRegistry.register(HFMining.MATERIALS.getStackFromEnum(Material.ALEXANDRITE), Quality.TERRIBLE);
+        stackRegistry.register(HFMining.MATERIALS.getStackFromEnum(Material.PINK_DIAMOND), Quality.TERRIBLE);
+        categoryRegistry.put(GEM, Quality.TERRIBLE);
     }
 }

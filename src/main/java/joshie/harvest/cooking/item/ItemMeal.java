@@ -105,7 +105,7 @@ public class ItemMeal extends ItemHFFoodEnum<ItemMeal, Meal> {
     public String getItemStackDisplayName(ItemStack stack) {
         Meal meal = getEnumFromStack(stack);
         if (meal.getUtensil() != null) return DARK_GRAY + TextHelper.localize(meal.getUtensil().getUnlocalizedName());
-        Recipe impl = stack.hasTagCompound() ? getRecipeFromMeal(meal) : null;
+        Recipe impl = getRecipeFromMeal(meal);
         return impl != null ? impl.getDisplayName() : "Corrupted Meal";
     }
 

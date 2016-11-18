@@ -118,7 +118,7 @@ public class HFGiftsVanillaBlocks extends HFGiftsAbstract {
         assignGeneric(QUARTZ_STAIRS, BUILDING);
         assignGeneric(STAINED_HARDENED_CLAY, BUILDING);
         assignGeneric(HAY_BLOCK, ANIMAL);
-        assignGeneric(CARPET, ANIMAL, BUILDING);
+        assignGeneric(CARPET, BUILDING);
         assignGeneric(HARDENED_CLAY, BUILDING);
         assignGeneric(COAL_BLOCK, BUILDING);
         assignGeneric(PACKED_ICE, SWEET);

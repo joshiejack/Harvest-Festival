@@ -1,8 +1,5 @@
 package joshie.harvest.core.util.holders;
 
-import com.google.common.base.Optional;
-import com.google.common.cache.Cache;
-import com.google.common.cache.CacheBuilder;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.core.Mod;
 import joshie.harvest.api.core.Ore;
@@ -15,12 +12,11 @@ import net.minecraftforge.oredict.OreDictionary;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
-import java.util.concurrent.ExecutionException;
 
 public class HolderRegistry<R> {
     private final LinkedHashMap<AbstractItemHolder, R> registry = new LinkedHashMap<>();
-    private final Cache<ItemStackHolder, Optional<R>> itemToType = CacheBuilder.newBuilder().maximumSize(512).build();
 
     public void register(Object object, R r) {
         if (object instanceof Item) {
@@ -46,15 +42,22 @@ public class HolderRegistry<R> {
     }
 
     public R getValueOf(ItemStack stack) {
-        try {
-            return itemToType.get(ItemStackHolder.of(stack), () -> {
-                for (Entry<AbstractItemHolder, R> entry: registry.entrySet()) {
-                    if (entry.getKey().matches(stack)) return Optional.of(entry.getValue());
-                }
+        for (Entry<AbstractItemHolder, R> entry: registry.entrySet()) {
+            if (entry.getKey().matches(stack)) return entry.getValue();
+        }
 
-                return Optional.absent();
-            }).orNull();
-        } catch (ExecutionException ex) { return null; }
+        return null;
+    }
+
+    public List<ItemStack> getStacksFor(R ingredient) {
+        ArrayList<ItemStack> result = new ArrayList<>();
+        for (Map.Entry<AbstractItemHolder, R> entry : registry.entrySet()) {
+            if (matches(ingredient, entry.getValue())) {
+                result.addAll(entry.getKey().getMatchingStacks());
+            }
+        }
+
+        return result;
     }
 
     public List<AbstractItemHolder> getStacks() {

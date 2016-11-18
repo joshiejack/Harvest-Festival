@@ -12,7 +12,17 @@ import static joshie.harvest.api.npc.gift.GiftCategory.*;
 import static joshie.harvest.api.npc.gift.IGiftHandler.Quality.AWESOME;
 import static joshie.harvest.api.npc.gift.IGiftHandler.Quality.GOOD;
 
+@SuppressWarnings("unused")
 public class GiftsTiberius extends Gifts {
+    public GiftsTiberius() {
+        categoryRegistry.put(MAGIC, Quality.GOOD);
+        categoryRegistry.put(KNOWLEDGE, Quality.GOOD);
+        categoryRegistry.put(MONSTER, Quality.GOOD);
+        categoryRegistry.put(SWEET, Quality.BAD);
+        categoryRegistry.put(FLOWER, Quality.TERRIBLE);
+    }
+
+
     @Override
     public Quality getQuality(ItemStack stack) {
         IGiftRegistry registry = HFApi.npc.getGifts();
@@ -22,9 +32,6 @@ public class GiftsTiberius extends Gifts {
             }
 
             return GOOD;
-        } else if (registry.isGiftType(stack, MAGIC, KNOWLEDGE, MONSTER)) return GOOD;
-        else if (registry.isGiftType(stack, FLOWER)) return Quality.TERRIBLE;
-        else if (registry.isGiftType(stack, SWEET)) return Quality.BAD;
-        else return super.getQuality(stack);
+        }  else return super.getQuality(stack);
     }
 }

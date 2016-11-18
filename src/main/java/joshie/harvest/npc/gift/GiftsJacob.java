@@ -1,24 +1,22 @@
 package joshie.harvest.npc.gift;
 
-import joshie.harvest.api.HFApi;
-import joshie.harvest.api.npc.gift.IGiftRegistry;
-import joshie.harvest.core.helpers.InventoryHelper;
+import joshie.harvest.api.core.Ore;
 import joshie.harvest.fishing.HFFishing;
 import joshie.harvest.fishing.item.ItemFish.Fish;
 import joshie.harvest.mining.HFMining;
-import net.minecraft.item.ItemStack;
 
 import static joshie.harvest.api.npc.gift.GiftCategory.*;
 
+@SuppressWarnings("unused")
 public class GiftsJacob extends Gifts {
-    @Override
-    public Quality getQuality(ItemStack stack) {
-        IGiftRegistry registry = HFApi.npc.getGifts();
-        if (stack.getItem() == HFFishing.FISH && HFFishing.FISH.getEnumFromStack(stack) == Fish.MANTARAY) return Quality.AWESOME;
-        else if (InventoryHelper.isOreName(stack, "fish")) return Quality.GOOD;
-        else if (stack.getItem() == HFMining.MATERIALS) return Quality.TERRIBLE;
-        else if (registry.isGiftType(stack, MINERAL, GEM)) return Quality.BAD;
-        else if (registry.isGiftType(stack, KNOWLEDGE, JUNK, FLOWER)) return Quality.DISLIKE;
-        else return super.getQuality(stack);
+    public GiftsJacob() {
+        stackRegistry.register(HFFishing.FISH.getStackFromEnum(Fish.MANTARAY), Quality.AWESOME);
+        stackRegistry.register(Ore.of("fish"), Quality.GOOD);
+        categoryRegistry.put(KNOWLEDGE, Quality.DISLIKE);
+        categoryRegistry.put(JUNK, Quality.DISLIKE);
+        categoryRegistry.put(FLOWER, Quality.DISLIKE);
+        categoryRegistry.put(MINERAL, Quality.BAD);
+        categoryRegistry.put(GEM, Quality.BAD);
+        stackRegistry.register(HFMining.MATERIALS, Quality.TERRIBLE);
     }
 }

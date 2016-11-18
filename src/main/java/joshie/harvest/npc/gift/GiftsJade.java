@@ -1,22 +1,20 @@
 package joshie.harvest.npc.gift;
 
-import joshie.harvest.api.HFApi;
-import joshie.harvest.api.npc.gift.IGiftRegistry;
+import joshie.harvest.mining.HFMining;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 
 import static joshie.harvest.api.npc.gift.GiftCategory.*;
 
+@SuppressWarnings("unused")
 public class GiftsJade extends Gifts {
-    @Override
-    public Quality getQuality(ItemStack stack) {
-        IGiftRegistry registry = HFApi.npc.getGifts();
-        if (stack.getItem() == Item.getItemFromBlock(Blocks.YELLOW_FLOWER)) return Quality.AWESOME;
-        else if (registry.isGiftType(stack, FLOWER, VEGETABLE, FRUIT)) return Quality.GOOD;
-        else if (registry.isGiftType(stack, BUILDING)) return Quality.TERRIBLE;
-        else if (registry.isGiftType(stack, MINERAL)) return Quality.BAD;
-        else if (registry.isGiftType(stack, JUNK)) return Quality.DISLIKE;
-        else return super.getQuality(stack);
+    public GiftsJade() {
+        stackRegistry.register(Blocks.YELLOW_FLOWER, Quality.AWESOME);
+        categoryRegistry.put(FLOWER, Quality.GOOD);
+        categoryRegistry.put(VEGETABLE, Quality.GOOD);
+        categoryRegistry.put(FRUIT, Quality.GOOD);
+        categoryRegistry.put(JUNK, Quality.DISLIKE);
+        categoryRegistry.put(MINERAL, Quality.BAD);
+        categoryRegistry.put(BUILDING, Quality.TERRIBLE);
+        stackRegistry.register(HFMining.MATERIALS, Quality.TERRIBLE);
     }
 }

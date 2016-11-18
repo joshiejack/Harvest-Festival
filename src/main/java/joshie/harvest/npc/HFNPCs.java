@@ -107,6 +107,11 @@ public class HFNPCs {
         POULTRY.setLocation(HOME, POULTRYBUILDING).setLocation(SHOP, POULTRYBUILDING);
         TRADER.setLocation(HOME, TOWNHALLRIGHT).setLocation(SHOP, GENERALENTRANCE);
         CLOCKMAKER.setHasInfo(TOOLS.getStackFromEnum(NPCTool.CALENDAR), new GreetingTime());
+        for (NPC npc: NPCRegistry.REGISTRY) {
+            if (npc != NULL_NPC) {
+                npc.setupGifts();
+            }
+        }
     }
 
     @SuppressWarnings("deprecation")

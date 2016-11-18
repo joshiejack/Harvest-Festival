@@ -1,21 +1,22 @@
 package joshie.harvest.npc.gift;
 
-import joshie.harvest.api.HFApi;
-import joshie.harvest.api.npc.gift.IGiftRegistry;
-import joshie.harvest.core.helpers.InventoryHelper;
-import net.minecraft.item.ItemStack;
+import joshie.harvest.api.core.Ore;
 
 import static joshie.harvest.api.npc.gift.GiftCategory.*;
 
+@SuppressWarnings("unused")
 public class GiftsAshlee extends Gifts {
-    @Override
-    public Quality getQuality(ItemStack stack) {
-        IGiftRegistry registry = HFApi.npc.getGifts();
-        if (InventoryHelper.isOreName(stack, "gemDiamond", "gemEmerald", "gemRuby", "gemAmethyst", "gemTopaz")) return Quality.AWESOME;
-        else if (registry.isGiftType(stack, ANIMAL, FRUIT, VEGETABLE)) return Quality.GOOD;
-        else if (registry.isGiftType(stack, MEAT)) return Quality.TERRIBLE;
-        else if (registry.isGiftType(stack, SWEET)) return Quality.BAD;
-        else if (registry.isGiftType(stack, JUNK)) return Quality.DISLIKE;
-        else return super.getQuality(stack);
+    public GiftsAshlee() {
+        stackRegistry.register(Ore.of("gemDiamond"), Quality.AWESOME);
+        stackRegistry.register(Ore.of("gemEmerald"), Quality.AWESOME);
+        stackRegistry.register(Ore.of("gemRuby"), Quality.AWESOME);
+        stackRegistry.register(Ore.of("gemAmethyst"), Quality.AWESOME);
+        stackRegistry.register(Ore.of("gemTopaz"), Quality.AWESOME);
+        categoryRegistry.put(ANIMAL, Quality.GOOD);
+        categoryRegistry.put(FRUIT, Quality.GOOD);
+        categoryRegistry.put(VEGETABLE, Quality.GOOD);
+        categoryRegistry.put(JUNK, Quality.DISLIKE);
+        categoryRegistry.put(SWEET, Quality.BAD);
+        categoryRegistry.put(MEAT, Quality.TERRIBLE);
     }
 }

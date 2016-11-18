@@ -47,7 +47,7 @@ public class BuildingLocations {
     public static final BuildingLocation GENERALBASEMENTBACK = new BuildingLocation(SUPERMARKET, "jenni").withDistance(8D);
     public static final BuildingLocation GENERALENTRANCE = new BuildingLocation(SUPERMARKET, "girafi").withDistance(8D);
     public static final BuildingLocation GENERALBEDROOM = new BuildingLocation(SUPERMARKET, "candice").withDistance(8D);
-    public static final BuildingLocation GENERALTILL = new BuildingLocation(SUPERMARKET, "market.till").withDistance(4D);
+    public static final BuildingLocation GENERALTILL = new BuildingLocation(SUPERMARKET, "market.till").withDistance(3D);
     public static final BuildingLocation CARPENTERFRONT = new BuildingLocation(CARPENTER, "carpenter.door").withDistance(24D).withTime(1500L);
     public static final BuildingLocation CARPENTERDOWN = new BuildingLocation(CARPENTER, "carpenter.downstairs").withDistance(3D);
     public static final BuildingLocation CARPENTERUP = new BuildingLocation(CARPENTER, "jade").withDistance(3D);

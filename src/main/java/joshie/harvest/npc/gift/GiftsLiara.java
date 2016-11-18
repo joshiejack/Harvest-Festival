@@ -1,31 +1,34 @@
 package joshie.harvest.npc.gift;
 
-import joshie.harvest.api.HFApi;
-import joshie.harvest.api.npc.gift.IGiftRegistry;
+import joshie.harvest.api.core.Ore;
 import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.cooking.item.ItemIngredients.Ingredient;
 import joshie.harvest.cooking.item.ItemMeal.Meal;
-import joshie.harvest.core.helpers.InventoryHelper;
+import joshie.harvest.mining.HFMining;
+import joshie.harvest.mining.item.ItemMaterial.Material;
 import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
 
 import static joshie.harvest.api.npc.gift.GiftCategory.*;
-import static joshie.harvest.npc.gift.GiftsKatlin.isWoolLikeItem;
 
+@SuppressWarnings("unused")
 public class GiftsLiara extends Gifts {
-    private boolean isChocolate(Meal meal) {
-        return meal == Meal.COOKIES_CHOCOLATE || meal == Meal.CAKE_CHOCOLATE || meal == Meal.CHOCOLATE_HOT;
-    }
-
-    @Override
-    public Quality getQuality(ItemStack stack) {
-        IGiftRegistry registry = HFApi.npc.getGifts();
-        if ((stack.getItem() == HFCooking.INGREDIENTS && stack.getItemDamage() == Ingredient.CHOCOLATE.ordinal()) ||
-                (stack.getItem() == HFCooking.MEAL && isChocolate(HFCooking.MEAL.getEnumFromStack(stack)))) return Quality.AWESOME;
-        else if (InventoryHelper.isOreName(stack, "dyeBrown") || registry.isGiftType(stack, FRUIT, VEGETABLE, MEAT, ANIMAL)) return Quality.GOOD;
-        else if (InventoryHelper.isOreName(stack, "string") || stack.getItem() == Items.SPIDER_EYE || stack.getItem() == Items.FERMENTED_SPIDER_EYE) return Quality.TERRIBLE;
-        else if (isWoolLikeItem(stack)) return Quality.BAD;
-        else if (registry.isGiftType(stack, FLOWER, GEM)) return Quality.DISLIKE;
-        else return super.getQuality(stack);
+    public GiftsLiara() {
+        stackRegistry.register(HFCooking.INGREDIENTS.getStackFromEnum(Ingredient.CHOCOLATE), Quality.AWESOME);
+        stackRegistry.register(HFCooking.MEAL.getStackFromEnum(Meal.CAKE_CHOCOLATE), Quality.AWESOME);
+        stackRegistry.register(HFCooking.MEAL.getStackFromEnum(Meal.CHOCOLATE_HOT), Quality.AWESOME);
+        stackRegistry.register(HFCooking.MEAL.getStackFromEnum(Meal.COOKIES_CHOCOLATE), Quality.AWESOME);
+        categoryRegistry.put(FRUIT, Quality.GOOD);
+        categoryRegistry.put(VEGETABLE, Quality.GOOD);
+        categoryRegistry.put(MEAT, Quality.GOOD);
+        categoryRegistry.put(ANIMAL, Quality.GOOD);
+        stackRegistry.register(Ore.of("dyeBrown"), Quality.GOOD);
+        stackRegistry.register(HFMining.MATERIALS.getStackFromEnum(Material.ALEXANDRITE), Quality.DECENT);
+        stackRegistry.register(HFMining.MATERIALS.getStackFromEnum(Material.PINK_DIAMOND), Quality.DECENT);
+        categoryRegistry.put(FLOWER, Quality.DISLIKE);
+        categoryRegistry.put(GEM, Quality.DISLIKE);
+        registerWoolLikeItems(Quality.BAD);
+        stackRegistry.register(Ore.of("string"), Quality.TERRIBLE);
+        stackRegistry.register(Items.SPIDER_EYE, Quality.TERRIBLE);
+        stackRegistry.register(Items.FERMENTED_SPIDER_EYE, Quality.TERRIBLE);
     }
 }

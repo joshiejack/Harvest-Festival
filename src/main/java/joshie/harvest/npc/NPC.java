@@ -77,7 +77,6 @@ public class NPC extends IForgeRegistryEntry.Impl<NPC> implements INPC {
         this.locations = new EnumMap<>(Location.class);
         this.uuid = UUID.nameUUIDFromBytes(resource.toString().getBytes());
         this.setRegistryName(resource);
-        this.setupGifts();
         this.setupSchedules();
         NPCRegistry.REGISTRY.register(this);
     }
@@ -163,7 +162,7 @@ public class NPC extends IForgeRegistryEntry.Impl<NPC> implements INPC {
         return this;
     }
 
-    public void setupGifts() {
+    void setupGifts() {
         if (getRegistryName().getResourceDomain().equals(MODID)) {
             try {
                 this.gifts = (IGiftHandler) Class.forName(GIFTPATH + WordUtils.capitalize(getRegistryName().getResourcePath())).newInstance();

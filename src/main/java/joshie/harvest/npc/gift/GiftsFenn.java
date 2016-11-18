@@ -1,27 +1,28 @@
 package joshie.harvest.npc.gift;
 
-import joshie.harvest.api.HFApi;
-import joshie.harvest.api.npc.gift.IGiftRegistry;
-import joshie.harvest.core.helpers.InventoryHelper;
-import joshie.harvest.crops.HFCrops;
-import joshie.harvest.crops.item.ItemCrop.Crops;
-import net.minecraft.item.ItemStack;
+import joshie.harvest.api.core.Ore;
+import joshie.harvest.mining.HFMining;
+import joshie.harvest.mining.item.ItemMaterial.Material;
 
 import static joshie.harvest.api.npc.gift.GiftCategory.*;
 
+@SuppressWarnings("unused")
 public class GiftsFenn extends Gifts {
-    private boolean isPinkCrop(Crops crops) {
-        return crops == Crops.SWEET_POTATO || crops == Crops.BEETROOT || crops == Crops.GRAPE || crops == Crops.PEACH || crops == Crops.TURNIP;
-    }
-
-    @Override
-    public Quality getQuality(ItemStack stack) {
-        IGiftRegistry registry = HFApi.npc.getGifts();
-        if (InventoryHelper.isOreName(stack, "vine") || InventoryHelper.isOreName(stack, "treeLeaves")) return Quality.AWESOME;
-        else if (registry.isGiftType(stack, PLANT)) return Quality.GOOD;
-        else if (stack.getItem() == HFCrops.CROP && isPinkCrop(HFCrops.CROP.getEnumFromStack(stack))) return Quality.TERRIBLE;
-        else if (registry.isGiftType(stack, SWEET, COOKING)) return Quality.BAD;
-        else if (registry.isGiftType(stack, GEM, MONSTER, JUNK)) return Quality.DISLIKE;
-        else return super.getQuality(stack);
+    public GiftsFenn() {
+        stackRegistry.register(Ore.of("vine"), Quality.AWESOME);
+        stackRegistry.register(Ore.of("treeLeaves"), Quality.AWESOME);
+        categoryRegistry.put(PLANT, Quality.GOOD);
+        stackRegistry.register(HFMining.MATERIALS.getStackFromEnum(Material.ALEXANDRITE), Quality.DECENT);
+        stackRegistry.register(HFMining.MATERIALS.getStackFromEnum(Material.PINK_DIAMOND), Quality.DECENT);
+        categoryRegistry.put(GEM, Quality.DISLIKE);
+        categoryRegistry.put(MONSTER, Quality.DISLIKE);
+        categoryRegistry.put(JUNK, Quality.DISLIKE);
+        categoryRegistry.put(SWEET, Quality.BAD);
+        categoryRegistry.put(COOKING, Quality.BAD);
+        stackRegistry.register(Ore.of("cropSweetPotato"), Quality.TERRIBLE);
+        stackRegistry.register(Ore.of("cropBeetroot"), Quality.TERRIBLE);
+        stackRegistry.register(Ore.of("cropGrape"), Quality.TERRIBLE);
+        stackRegistry.register(Ore.of("cropPeach"), Quality.TERRIBLE);
+        stackRegistry.register(Ore.of("cropTurnip"), Quality.TERRIBLE);
     }
 }

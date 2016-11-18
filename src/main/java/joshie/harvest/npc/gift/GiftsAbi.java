@@ -1,31 +1,27 @@
 package joshie.harvest.npc.gift;
 
-import joshie.harvest.api.HFApi;
-import joshie.harvest.api.npc.gift.GiftCategory;
-import joshie.harvest.api.npc.gift.IGiftRegistry;
+import joshie.harvest.api.core.Ore;
 import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.cooking.item.ItemMeal.Meal;
-import joshie.harvest.core.helpers.InventoryHelper;
 import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
 
-import static joshie.harvest.api.npc.gift.GiftCategory.MONSTER;
+import static joshie.harvest.api.npc.gift.GiftCategory.SWEET;
 import static joshie.harvest.api.npc.gift.GiftCategory.VEGETABLE;
 
+@SuppressWarnings("unused")
 public class GiftsAbi extends Gifts {
-    private boolean isCookies(Meal meal) {
-        return meal == Meal.COOKIES || meal == Meal.COOKIES_CHOCOLATE;
-    }
-
-    @Override
-    public Quality getQuality(ItemStack stack) {
-        IGiftRegistry registry = HFApi.npc.getGifts();
-        if (stack.getItem() == Items.SUGAR || stack.getItem() == Items.COOKIE ||
-                (stack.getItem() == HFCooking.MEAL && isCookies(HFCooking.MEAL.getEnumFromStack(stack)))) return Quality.AWESOME;
-        else if (registry.isGiftType(stack, GiftCategory.SWEET)) return Quality.GOOD;
-        else if (stack.getItem() == Items.ROTTEN_FLESH || stack.getItem() == Items.SKULL || InventoryHelper.isOreName(stack, "bone")) return Quality.TERRIBLE;
-        else if (stack.getItem() == Items.MAGMA_CREAM || InventoryHelper.isOreName(stack, "leather") || InventoryHelper.isOreName(stack, "slimeball")) return Quality.BAD;
-        else if (registry.isGiftType(stack, MONSTER, VEGETABLE)) return Quality.DISLIKE;
-        else return super.getQuality(stack);
+    public GiftsAbi() {
+        stackRegistry.register(Items.SUGAR, Quality.AWESOME);
+        stackRegistry.register(Items.COOKIE, Quality.AWESOME);
+        stackRegistry.register(HFCooking.MEAL.getStackFromEnum(Meal.COOKIES), Quality.AWESOME);
+        stackRegistry.register(HFCooking.MEAL.getStackFromEnum(Meal.COOKIES_CHOCOLATE), Quality.AWESOME);
+        categoryRegistry.put(SWEET, Quality.GOOD);
+        categoryRegistry.put(VEGETABLE, Quality.DISLIKE);
+        stackRegistry.register(Ore.of("leather"), Quality.BAD);
+        stackRegistry.register(Items.MAGMA_CREAM, Quality.TERRIBLE);
+        stackRegistry.register(Items.ROTTEN_FLESH, Quality.TERRIBLE);
+        stackRegistry.register(Items.SKULL, Quality.TERRIBLE);
+        stackRegistry.register(Ore.of("bone"), Quality.TERRIBLE);
+        stackRegistry.register(Ore.of("slimeball"), Quality.TERRIBLE);
     }
 }

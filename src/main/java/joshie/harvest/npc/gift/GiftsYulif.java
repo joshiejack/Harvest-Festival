@@ -1,33 +1,31 @@
 package joshie.harvest.npc.gift;
 
-import joshie.harvest.api.HFApi;
-import joshie.harvest.api.npc.gift.IGiftRegistry;
+import joshie.harvest.api.core.Ore;
 import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.cooking.item.ItemMeal.Meal;
-import joshie.harvest.core.helpers.InventoryHelper;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 
 import static joshie.harvest.api.npc.gift.GiftCategory.*;
-import static joshie.harvest.api.npc.gift.IGiftHandler.Quality.AWESOME;
 
+@SuppressWarnings("unused")
 public class GiftsYulif extends Gifts {
-    private boolean isCake(Meal meal) {
-        return meal == Meal.CAKE || meal == Meal.CAKE_CHOCOLATE;
-    }
-
-    @Override
-    public Quality getQuality(ItemStack stack) {
-        IGiftRegistry registry = HFApi.npc.getGifts();
-        if (InventoryHelper.isOreName(stack, "cropWatermelon") || InventoryHelper.isOreName(stack, "cropMelon")) return AWESOME;
-        else if (stack.getItem() == Items.SUGAR || InventoryHelper.isOreName(stack, "gemQuartz") || stack.getItem() == Item.getItemFromBlock(Blocks.CAKE) ||
-                (stack.getItem() == HFCooking.MEAL && isCake(HFCooking.MEAL.getEnumFromStack(stack))) || InventoryHelper.isOreName(stack, "cropCorn") ||
-                InventoryHelper.isOreName(stack, "cropPineapple") || registry.isGiftType(stack, BUILDING)) return Quality.GOOD;
-        else if (InventoryHelper.isOreName(stack, "cropCarrot") || InventoryHelper.isOreName(stack, "cropWheat")) return Quality.TERRIBLE;
-        else if (registry.isGiftType(stack, VEGETABLE, PLANT)) return Quality.BAD;
-        else if (registry.isGiftType(stack, MONSTER, ANIMAL, FLOWER)) return Quality.DISLIKE;
-        else return super.getQuality(stack);
+    public GiftsYulif() {
+        stackRegistry.register(Ore.of("cropWatermelon"), Quality.AWESOME);
+        stackRegistry.register(Ore.of("gemQuartz"), Quality.GOOD);
+        stackRegistry.register(Ore.of("cropCorn"), Quality.GOOD);
+        stackRegistry.register(Ore.of("cropPineapple"), Quality.GOOD);
+        stackRegistry.register(Items.SUGAR, Quality.GOOD);
+        stackRegistry.register(Items.CAKE, Quality.GOOD);
+        stackRegistry.register(HFCooking.MEAL.getStackFromEnum(Meal.CAKE), Quality.GOOD);
+        stackRegistry.register(HFCooking.MEAL.getStackFromEnum(Meal.CAKE_CHOCOLATE), Quality.GOOD);
+        stackRegistry.register(Items.CAKE, Quality.GOOD);
+        categoryRegistry.put(BUILDING, Quality.GOOD);
+        categoryRegistry.put(MONSTER, Quality.DISLIKE);
+        categoryRegistry.put(ANIMAL, Quality.DISLIKE);
+        categoryRegistry.put(FLOWER, Quality.DISLIKE);
+        categoryRegistry.put(VEGETABLE, Quality.BAD);
+        categoryRegistry.put(PLANT, Quality.BAD);
+        stackRegistry.register(Ore.of("cropCarrot"), Quality.TERRIBLE);
+        stackRegistry.register(Ore.of("cropWheat"), Quality.TERRIBLE);
     }
 }

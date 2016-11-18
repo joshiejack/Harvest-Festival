@@ -1,29 +1,32 @@
 package joshie.harvest.npc.gift;
 
-import joshie.harvest.api.HFApi;
-import joshie.harvest.api.npc.gift.IGiftRegistry;
+import joshie.harvest.animals.HFAnimals;
+import joshie.harvest.animals.item.ItemAnimalProduct.Sizeable;
+import joshie.harvest.api.core.Ore;
+import joshie.harvest.api.core.Size;
 import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.cooking.item.ItemMeal.Meal;
-import joshie.harvest.tools.ToolHelper;
 import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
 
 import static joshie.harvest.api.npc.gift.GiftCategory.*;
 
+@SuppressWarnings("unused")
 public class GiftsCandice extends Gifts {
-    private boolean isDrinkWithMilk(Meal meal) {
-        return meal == Meal.MILK_HOT || meal == Meal.MILK_STRAWBERRY || meal == Meal.LATTE_MIX || meal == Meal.LATTE_FRUIT || meal == Meal.LATTE_VEGETABLE;
-    }
-
-    @Override
-    public Quality getQuality(ItemStack stack) {
-        IGiftRegistry registry = HFApi.npc.getGifts();
-        if (stack.getItem() == Items.MILK_BUCKET || ToolHelper.isMilk(stack) ||
-                (stack.getItem() == HFCooking.MEAL && isDrinkWithMilk(HFCooking.MEAL.getEnumFromStack(stack))))return Quality.AWESOME;
-        else if (registry.isGiftType(stack, ANIMAL)) return Quality.GOOD;
-        else if (stack.getItem() == Items.APPLE || stack.getItem() == Items.GOLDEN_APPLE || stack.getItem() == Items.MELON) return Quality.TERRIBLE;
-        else if (registry.isGiftType(stack, FRUIT)) return Quality.BAD;
-        else if (registry.isGiftType(stack, SWEET)) return Quality.DISLIKE;
-        return super.getQuality(stack);
+    public GiftsCandice() {
+        stackRegistry.register(HFAnimals.ANIMAL_PRODUCT.getStack(Sizeable.MILK, Size.SMALL), Quality.AWESOME);
+        stackRegistry.register(HFAnimals.ANIMAL_PRODUCT.getStack(Sizeable.MILK, Size.MEDIUM), Quality.AWESOME);
+        stackRegistry.register(HFAnimals.ANIMAL_PRODUCT.getStack(Sizeable.MILK, Size.LARGE), Quality.AWESOME);
+        stackRegistry.register(HFCooking.MEAL.getStackFromEnum(Meal.MILK_HOT), Quality.AWESOME);
+        stackRegistry.register(HFCooking.MEAL.getStackFromEnum(Meal.MILK_STRAWBERRY), Quality.AWESOME);
+        stackRegistry.register(HFCooking.MEAL.getStackFromEnum(Meal.LATTE_MIX), Quality.AWESOME);
+        stackRegistry.register(HFCooking.MEAL.getStackFromEnum(Meal.LATTE_FRUIT), Quality.AWESOME);
+        stackRegistry.register(HFCooking.MEAL.getStackFromEnum(Meal.LATTE_VEGETABLE), Quality.AWESOME);
+        stackRegistry.register(Items.MILK_BUCKET, Quality.AWESOME);
+        categoryRegistry.put(ANIMAL, Quality.GOOD);
+        categoryRegistry.put(SWEET, Quality.DISLIKE);
+        categoryRegistry.put(FRUIT, Quality.BAD);
+        stackRegistry.register(Items.GOLDEN_APPLE, Quality.TERRIBLE);
+        stackRegistry.register(Ore.of("cropApple"), Quality.TERRIBLE);
+        stackRegistry.register(Ore.of("cropWatermelon"), Quality.TERRIBLE);
     }
 }

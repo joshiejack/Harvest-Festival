@@ -24,6 +24,10 @@ public class GiftRegistry implements IGiftRegistry {
         }
     };
 
+    public HolderRegistry<GiftCategory[]> getRegistry() {
+        return registry;
+    }
+
     public boolean isBlacklisted(ItemStack stack) {
         if (registry.getValueOf(stack) == null &&
                 (stack.getItem() instanceof ItemBlock ||

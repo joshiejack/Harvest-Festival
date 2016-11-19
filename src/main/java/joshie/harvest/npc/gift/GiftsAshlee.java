@@ -1,6 +1,8 @@
 package joshie.harvest.npc.gift;
 
 import joshie.harvest.api.core.Ore;
+import joshie.harvest.mining.HFMining;
+import joshie.harvest.mining.item.ItemMaterial.Material;
 
 import static joshie.harvest.api.npc.gift.GiftCategory.*;
 
@@ -12,6 +14,8 @@ public class GiftsAshlee extends Gifts {
         stackRegistry.register(Ore.of("gemRuby"), Quality.AWESOME);
         stackRegistry.register(Ore.of("gemAmethyst"), Quality.AWESOME);
         stackRegistry.register(Ore.of("gemTopaz"), Quality.AWESOME);
+        stackRegistry.register(HFMining.MATERIALS.getStackFromEnum(Material.ALEXANDRITE), Quality.AWESOME);
+        stackRegistry.register(HFMining.MATERIALS.getStackFromEnum(Material.PINK_DIAMOND), Quality.AWESOME);
         categoryRegistry.put(ANIMAL, Quality.GOOD);
         categoryRegistry.put(FRUIT, Quality.GOOD);
         categoryRegistry.put(VEGETABLE, Quality.GOOD);

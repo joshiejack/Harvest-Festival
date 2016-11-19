@@ -101,8 +101,11 @@ public class TownTrackerServer extends TownTracker<TownDataServer> {
             NBTTagCompound tag = dimensionTowns.getCompoundTagAt(j);
             TownDataServer theData = new TownDataServer();
             theData.readFromNBT(tag);
-            uuidMap.put(theData.getID(), theData);
-            townData.add(theData);
+
+            if (theData.getTownCentre().getY() > 0) {
+                uuidMap.put(theData.getID(), theData);
+                townData.add(theData);
+            }
         }
 
         townIDs = HashBiMap.create();

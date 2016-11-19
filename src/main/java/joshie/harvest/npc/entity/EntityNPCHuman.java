@@ -123,9 +123,11 @@ public abstract class EntityNPCHuman<E extends EntityNPCHuman> extends EntityNPC
 
     @Override
     public boolean attackEntityFrom(@Nonnull DamageSource source, float amount) {
-        addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 200, 0, true, false));
-        if (source.getSourceOfDamage() instanceof EntityPlayer) {
-            HFApi.player.getRelationsForPlayer(((EntityPlayer)source.getSourceOfDamage())).affectRelationship(npc.getUUID(), -10);
+        if (source != DamageSource.outOfWorld) {
+            addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 200, 0, true, false));
+            if (source.getSourceOfDamage() instanceof EntityPlayer) {
+                HFApi.player.getRelationsForPlayer(((EntityPlayer) source.getSourceOfDamage())).affectRelationship(npc.getUUID(), -10);
+            }
         }
 
         return super.attackEntityFrom(source, amount);

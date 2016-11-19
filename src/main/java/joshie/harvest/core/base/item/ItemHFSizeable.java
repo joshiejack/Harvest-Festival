@@ -19,7 +19,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.List;
 import java.util.Locale;
 
-public class ItemHFSizeable<I extends ItemHFEnum, E extends Enum<E> & IStringSerializable & ISizeable> extends ItemHFEnum<I, E> implements ISizedProvider<E> {
+public class ItemHFSizeable<I extends ItemHFFoodEnum, E extends Enum<E> & IStringSerializable & ISizeable> extends ItemHFFoodEnum<I, E> implements ISizedProvider<E> {
     public ItemHFSizeable(Class<E> clazz) {
         this(HFTab.FARMING, clazz);
     }

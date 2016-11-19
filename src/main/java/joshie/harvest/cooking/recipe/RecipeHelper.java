@@ -35,8 +35,8 @@ public class RecipeHelper {
             }
         }
 
-        hunger = (int)Math.max(1, hunger * hungerModifier);
-        saturation = Math.max(0.2F, saturation * modifier);
+        hunger = (int)Math.min(20, Math.max(1, hunger * hungerModifier));
+        saturation = Math.min(1.6F, Math.max(0.2F, saturation * modifier));
 
         //Add the recipe
         Recipe recipe = new RecipeHF(utensil, hunger, saturation, toIngredientStacks(ingredients)).setEatTimer(eatTimer);

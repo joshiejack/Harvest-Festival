@@ -25,13 +25,13 @@ import java.util.HashMap;
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 
 @HFCommand
-public class CommandExportRecipe extends AbstractHFCommand {
+public class CommandExportIngredient extends AbstractHFCommand {
     public static HashMap<Recipe, String> DESCRIPTIONS = new HashMap<>();
     public static HashMap<Recipe, String> INFO_OVERRIDE = new HashMap();
 
     @Override
     public String getCommandName() {
-        return "export-recipe";
+        return "export-ingredient";
     }
 
     private Recipe getRecipeFromStack(ItemStack stack) {
@@ -52,10 +52,6 @@ public class CommandExportRecipe extends AbstractHFCommand {
         ArrayList<IngredientStack> stacks = new ArrayList<>();
         stacks.addAll(recipe.getRequired());
         ItemStack stack = RecipeMaker.BUILDER.build(recipe, stacks).get(0);
-        return getHunger(stack);
-    }
-
-    public static int getHunger(ItemStack stack) {
         if (stack.getItem() instanceof ItemFood) {
             return ((ItemFood)(stack.getItem())).getHealAmount(stack);
         }

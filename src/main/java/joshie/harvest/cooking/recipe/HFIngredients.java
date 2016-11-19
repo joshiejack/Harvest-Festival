@@ -49,25 +49,25 @@ public class HFIngredients {
     public static final Ingredient SUGAR = new Ingredient("sugar", 2, 0.1F).setEatTime(0);
 
     //Meals
-    public static final Ingredient BUTTER = new Ingredient("butter", 1, 0.5F).setEatTime(-8);
-    public static final Ingredient BOILED_EGG = new Ingredient("boiled_egg", 6, 1.14F);
-    public static final Ingredient SASHIMI = new Ingredient("sashimi", 6, 1.26F);
-    public static final Ingredient SCRAMBLED_EGG = new Ingredient("scrambled_egg", 11, 2.28F);
-    public static final Ingredient COOKIES = new Ingredient("cookies", 4, 0.87F);
+    public static final Ingredient BUTTER = new Ingredient("butter", 1, 0.9F).setEatTime(-8);
+    public static final Ingredient BOILED_EGG = new Ingredient("boiled_egg", 4, 1.12F);
+    public static final Ingredient SASHIMI = new Ingredient("sashimi", 5, 0.4F);
+    public static final Ingredient SCRAMBLED_EGG = new Ingredient("scrambled_egg", 4, 1.5F);
+    public static final Ingredient COOKIES = new Ingredient("cookies", 7, 0.76F);
     public static final Ingredient KETCHUP = new Ingredient("ketchup", 1, 0.2F).setEatTime(0);
-    public static final Ingredient NOODLES = new Ingredient("noodles", 13, 2.27F).setEatTime(24);
-    public static final Ingredient JAM = new Ingredient("jam", 2, 0.6F).setEatTime(0);
-    public static final Ingredient TEMPURA = new Ingredient("tempura", 6, 1.14F);
+    public static final Ingredient NOODLES = new Ingredient("noodles", 2, 0.9F).setEatTime(24);
+    public static final Ingredient JAM = new Ingredient("jam", 4, 0.54F).setEatTime(0);
+    public static final Ingredient TEMPURA = new Ingredient("tempura", 4, 1.6F);
 
     //Random Stuff
-    public static final Ingredient CHOCOLATE = new Ingredient("chocolate", 2, 1.2F);
+    public static final Ingredient CHOCOLATE = new Ingredient("chocolate", 3, 0.5F);
     public static final Ingredient EGG = new Ingredient("egg", 3, 0.8F);
     public static final Ingredient FLOUR = new Ingredient("flour", 1, 0.6F).setSellValue(ItemIngredients.Ingredient.FLOUR.getCost());
     public static final Ingredient OIL = new Ingredient("oil", 0, 0.2F).setSellValue(ItemIngredients.Ingredient.OIL.getCost()).setFluid(MappingEvent.OIL).setEatTime(-8);
-    public static final Ingredient RICEBALL = new Ingredient("riceball", 1, 0.2F).setSellValue(ItemIngredients.Ingredient.RICEBALL.getCost());
+    public static final Ingredient RICEBALL = new Ingredient("riceball", 1, 0.25F).setSellValue(ItemIngredients.Ingredient.RICEBALL.getCost());
     public static final Ingredient CURRY_POWDER = new Ingredient("curry_powder", 1, 0.2F).setEatTime(-4).setSellValue(ItemIngredients.Ingredient.CURRY_POWDER.getCost());
     public static final Ingredient DUMPLING_POWDER = new Ingredient("dumpling_powder", 1, 0.2F).setEatTime(8).setSellValue(ItemIngredients.Ingredient.DUMPLING_POWDER.getCost());
-    public static final Ingredient WINE = new Ingredient("wine", 0, 0.8F).setSellValue(ItemIngredients.Ingredient.WINE.getCost()).setFluid(MappingEvent.WINE).setEatTime(-8);
+    public static final Ingredient WINE = new Ingredient("wine", 2, 0.8F).setSellValue(ItemIngredients.Ingredient.WINE.getCost()).setFluid(MappingEvent.WINE).setEatTime(-8);
 
     public static final Ingredient MILK = new Ingredient("milk", 2, 0.6F).setFluid(MappingEvent.MILK);
     public static final Ingredient MAYONNAISE = new Ingredient("mayonnaise", 3, 1.0F);

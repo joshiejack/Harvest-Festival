@@ -3,6 +3,7 @@ package joshie.harvest.animals.item;
 import joshie.harvest.animals.item.ItemAnimalProduct.Sizeable;
 import joshie.harvest.core.base.item.ItemHFSizeable;
 import joshie.harvest.core.util.interfaces.ISizeable;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
 
 import java.util.Locale;
@@ -10,6 +11,33 @@ import java.util.Locale;
 public class ItemAnimalProduct extends ItemHFSizeable<ItemAnimalProduct, Sizeable> {
     public ItemAnimalProduct() {
         super(Sizeable.class);
+    }
+
+    @Override
+    public int getHealAmount(ItemStack stack) {
+        switch (getEnumFromStack(stack)) {
+            case EGG:
+            case MAYONNAISE:
+                return 3;
+            case MILK:
+                return 2;
+            default:
+                return 0;
+        }
+    }
+
+    @Override
+    public float getSaturationModifier(ItemStack stack) {
+        switch (getEnumFromStack(stack)) {
+            case EGG:
+                return 0.8F;
+            case MAYONNAISE:
+                return 1.0F;
+            case MILK:
+                return 0.6F;
+            default:
+                return 0;
+        }
     }
 
     public enum Sizeable implements IStringSerializable, ISizeable {

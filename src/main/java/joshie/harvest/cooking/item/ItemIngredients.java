@@ -63,7 +63,13 @@ public class ItemIngredients extends ItemHFFoodEnum<ItemIngredients, Ingredient>
     @Override
     public int getHealAmount(ItemStack stack) {
         switch (getEnumFromStack(stack)) {
-            case RICEBALL: return 1;
+            case CURRY_POWDER:
+            case DUMPLING_POWDER:
+            case FLOUR:
+            case RICEBALL:
+                return 1;
+            case WINE:
+                return 2;
             case CHOCOLATE: return 3;
             default: return 0;
         }
@@ -74,6 +80,13 @@ public class ItemIngredients extends ItemHFFoodEnum<ItemIngredients, Ingredient>
         switch (getEnumFromStack(stack)) {
             case RICEBALL: return 0.25F;
             case CHOCOLATE: return 0.5F;
+            case CURRY_POWDER:
+            case DUMPLING_POWDER:
+                return 0.2F;
+            case FLOUR:
+                return 0.6F;
+            case WINE:
+                return 0.8F;
             default: return 0F;
         }
     }

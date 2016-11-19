@@ -83,7 +83,6 @@ public class RecipeBuilder {
     }
 
     private void calculateCostsBasedOnEverything(Recipe recipe) {
-        //System.out.println("Calculating costs");
         long sell = 0L;
         for (IngredientStack stack: recipe.getRequired()) {
             long internal = stack.getIngredient().getSellValue();

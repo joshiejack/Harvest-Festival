@@ -4,8 +4,6 @@ import joshie.harvest.api.core.Ore;
 import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.cooking.item.ItemIngredients.Ingredient;
 import joshie.harvest.cooking.item.ItemMeal.Meal;
-import joshie.harvest.mining.HFMining;
-import joshie.harvest.mining.item.ItemMaterial.Material;
 import net.minecraft.init.Items;
 
 import static joshie.harvest.api.npc.gift.GiftCategory.*;
@@ -22,8 +20,6 @@ public class GiftsLiara extends Gifts {
         categoryRegistry.put(MEAT, Quality.GOOD);
         categoryRegistry.put(ANIMAL, Quality.GOOD);
         stackRegistry.register(Ore.of("dyeBrown"), Quality.GOOD);
-        stackRegistry.register(HFMining.MATERIALS.getStackFromEnum(Material.ALEXANDRITE), Quality.DECENT);
-        stackRegistry.register(HFMining.MATERIALS.getStackFromEnum(Material.PINK_DIAMOND), Quality.DECENT);
         categoryRegistry.put(FLOWER, Quality.DISLIKE);
         categoryRegistry.put(GEM, Quality.DISLIKE);
         registerWoolLikeItems(Quality.BAD);

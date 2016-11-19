@@ -33,7 +33,6 @@ import static net.minecraft.util.text.TextFormatting.DARK_GRAY;
 
 public class ItemMeal extends ItemHFFoodEnum<ItemMeal, Meal> {
     private static final EnumMap<Meal, Recipe> MEAL_TO_RECIPE = new EnumMap<>(Meal.class);
-    public static final String BURNT = "Burnt";
     public ItemMeal() {
         super(HFTab.COOKING, Meal.class);
     }

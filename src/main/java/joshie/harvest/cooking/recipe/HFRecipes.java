@@ -60,7 +60,7 @@ public class HFRecipes {
         addMixerRecipe(Meal.MILK_STRAWBERRY, 1F, 1F, STRAWBERRY, MILK).setOptionalIngredients(SUGAR); //Goddess 10000RP Recipe
         addMixerRecipe(Meal.JUICE_VEGETABLE, 1F, 1F, VEGETABLE_JUICE_BASE).setOptionalIngredients(CUCUMBER, ONION, CABBAGE, TOMATO, SPINACH, CARROT, GREEN_PEPPER, TURNIP, SALT);//Shop
         addMixerRecipe(Meal.LATTE_VEGETABLE, 1F, 1F, VEGETABLE_JUICE_BASE, MILK).setOptionalIngredients(CUCUMBER, ONION, CABBAGE, TOMATO, SPINACH, CARROT, GREEN_PEPPER, TURNIP, SALT); //Thomas 5000RP
-        addMixerRecipe(Meal.KETCHUP, 0.25F, 0.1F, TOMATO, ONION).setOptionalIngredients(SALT, SUGAR);
+        addMixerRecipe(Meal.KETCHUP, 0.25F, 0.1F, TOMATO, ONION).setOptionalIngredients(SALT, SUGAR); //Shop
         addMixerRecipe(Meal.BUTTER, false, 1F, 0.5F, MILK).setOptionalIngredients(SALT); //Daniel 5000RP
         addMixerRecipe(Meal.FISHSTICKS, false, 1F, 1F, FISH).setOptionalIngredients(SALT);//Jim 5000RP
         //Added in 0.6+
@@ -85,7 +85,7 @@ public class HFRecipes {
         addNoUtensilRecipe(Meal.SALAD, 1F, 1F, SALAD_BASE).setOptionalIngredients(MUSHROOM, CUCUMBER, CABBAGE, TOMATO, CARROT, SALT); //Jenni 5000RP
         addNoUtensilRecipe(Meal.SANDWICH, 1F, 1F, BREAD, SANDWICH_BASE).setOptionalIngredients(BUTTER, TOMATO, CUCUMBER, SALT, MAYONNAISE, MUSHROOM);//Shop
         addNoUtensilRecipe(Meal.SUSHI, 1F, 1F, SASHIMI, RICEBALL);//Shop
-        addNoUtensilRecipe(Meal.SASHIMI, 1F, 1F, FISH);
+        addNoUtensilRecipe(Meal.SASHIMI, 1F, 1F, FISH); //Shop
         addNoUtensilRecipe(Meal.SASHIMI_CHIRASHI, 1F, 1F, SASHIMI, SCRAMBLED_EGG, RICEBALL, SASHIMI_VEGETABLE);//Shop
         //Added in 0.6+
         addNoUtensilRecipe("mayonnaise", HFAnimals.ANIMAL_PRODUCT.getStack(Sizeable.MAYONNAISE, Size.MEDIUM), EGG);
@@ -131,14 +131,14 @@ public class HFRecipes {
         addOvenRecipe(Meal.TOAST, 1F, 1F, BREAD).setOptionalIngredients(BUTTER); //Jade 5000RP
         addOvenRecipe(Meal.DINNERROLL, 1F, 1F, EGG, MILK, BUTTER); //Tiberius 5000RP
         addOvenRecipe(Meal.DORIA, 1F, 1F, ONION, BUTTER, MILK, RICEBALL, FLOUR);//Shop
-        addOvenRecipe(Meal.COOKIES, 1F, 0.4F, EGG, FLOUR, BUTTER).setOptionalIngredients(SUGAR);
+        addOvenRecipe(Meal.COOKIES, 1F, 0.4F, EGG, FLOUR, BUTTER).setOptionalIngredients(SUGAR); //Liara 7500RP
         addOvenRecipe(Meal.COOKIES_CHOCOLATE, 1F, 0.5F, COOKIES, CHOCOLATE); //Liara 10000RP
         addOvenRecipe(Meal.CAKE_CHOCOLATE, 1F, 1F, EGG, FLOUR, BUTTER, CHOCOLATE).setOptionalIngredients(SUGAR, FRUITS); //Yulif RP 100000
         //Added in 0.6+
         addOvenRecipe(Meal.BUN_JAM, 1F, 1F, MILK, EGG, JAM); //Jade 25000RP
         addOvenRecipe(Meal.SWEET_POTATOES, 1F, 1F, EGG, BUTTER, SWEET_POTATO);
         addOvenRecipe(Meal.CAKE, 1F, 1F, EGG, FLOUR, BUTTER, CAKE_FRUIT).setOptionalIngredients(ORANGE, PINEAPPLE, STRAWBERRY, PEACH, GRAPE);
-        addOvenRecipe(Meal.PIE_APPLE, 1F, 1F, APPLE, EGG, BUTTER, FLOUR); //TODO: Katlin 20000RP
+        addOvenRecipe(Meal.PIE_APPLE, 1F, 1F, APPLE, EGG, BUTTER, FLOUR); //Katlin 20000RP
         //Vanilla style
         addOvenRecipe("bread", new ItemStack(Items.BREAD), FLOUR);
         addOvenRecipe("baked_potato", new ItemStack(Items.BAKED_POTATO), POTATO);

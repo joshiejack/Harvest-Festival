@@ -60,11 +60,13 @@ public abstract class QuestData {
             for (int i = 0; i < list.tagCount(); i++) {
                 NBTTagCompound tag = list.getCompoundTagAt(i);
                 Quest q = Quest.REGISTRY.getValue(new ResourceLocation(tag.getString("QuestID")));
-                try {
-                    Quest quest = q.getClass().newInstance().setRegistryName(q.getRegistryName());
-                    quest.readFromNBT(tag);
-                    current.add(quest);
-                } catch (InstantiationException | IllegalAccessException e){ /**/}
+                if (q != null) {
+                    try {
+                        Quest quest = q.getClass().newInstance().setRegistryName(q.getRegistryName());
+                        quest.readFromNBT(tag);
+                        current.add(quest);
+                    } catch (InstantiationException | IllegalAccessException e) { /**/}
+                }
             }
         }
 

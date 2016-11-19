@@ -11,7 +11,10 @@ import static joshie.harvest.api.npc.gift.GiftCategory.*;
 public class GiftsJacob extends Gifts {
     public GiftsJacob() {
         stackRegistry.register(HFFishing.FISH.getStackFromEnum(Fish.MANTARAY), Quality.AWESOME);
+        stackRegistry.register(HFFishing.FISH.getStackFromEnum(Fish.ELECTRICRAY), Quality.AWESOME);
+        stackRegistry.register(HFFishing.FISH.getStackFromEnum(Fish.STINGRAY), Quality.AWESOME);
         stackRegistry.register(Ore.of("fish"), Quality.GOOD);
+        categoryRegistry.put(FISH, Quality.GOOD);
         categoryRegistry.put(KNOWLEDGE, Quality.DISLIKE);
         categoryRegistry.put(JUNK, Quality.DISLIKE);
         categoryRegistry.put(FLOWER, Quality.DISLIKE);

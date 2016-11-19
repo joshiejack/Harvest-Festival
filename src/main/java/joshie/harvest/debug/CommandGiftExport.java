@@ -25,46 +25,53 @@ public class CommandGiftExport extends AbstractHFCommand {
         return "export-gifts";
     }
 
+    public static StringBuilder getGifts(ItemStack stack) {
+        if (!NPCRegistry.INSTANCE.getGifts().isBlacklisted(stack)) {
+            HashMultimap<Quality, NPC> qualities = HashMultimap.create();
+            for (NPC npc : NPCRegistry.REGISTRY) {
+                if (npc == HFNPCs.NULL_NPC) continue;
+                Quality quality = npc.getGiftValue(stack);
+                qualities.get(quality).add(npc);
+            }
+
+            StringBuilder builder = new StringBuilder();
+            builder.append("==Gifts==\n");
+            builder.append("{{Gifts");
+            for (Quality quality: Quality.values()) {
+                if (qualities.get(quality).size() > 0) {
+                    builder.append("|");
+                    builder.append(quality.name().toLowerCase());
+                    builder.append("=");
+
+                    List<NPC> list = new ArrayList<>(qualities.get(quality));
+                    Collections.sort(list, (o1, o2) -> {
+                        return o1.getLocalizedName().compareTo(o2.getLocalizedName());
+                    });
+
+                    boolean first = false;
+                    for (NPC npc: list) {
+                        if (!first) first = true;
+                        else builder.append(",");
+                        builder.append(npc.getLocalizedName());
+                    }
+
+                    builder.append("\n");
+                }
+            }
+
+            builder.append("}}");
+            return builder;
+        }
+
+        return Debug.none();
+    }
+
     @Override
     public boolean execute(MinecraftServer server, ICommandSender sender, String[] parameters) throws CommandNotFoundException, NumberInvalidException {
         if (sender instanceof EntityPlayer) {
             ItemStack stack = ((EntityPlayer)sender).getHeldItemMainhand();
             if (stack != null) {
-                if (!NPCRegistry.INSTANCE.getGifts().isBlacklisted(stack)) {
-                    HashMultimap<Quality, NPC> qualities = HashMultimap.create();
-                    for (NPC npc : NPCRegistry.REGISTRY) {
-                        if (npc == HFNPCs.NULL_NPC) continue;
-                        Quality quality = npc.getGiftValue(stack);
-                        qualities.get(quality).add(npc);
-                    }
-
-                    StringBuilder builder = new StringBuilder();
-                    builder.append("{{Gifts");
-                    for (Quality quality: Quality.values()) {
-                        if (qualities.get(quality).size() > 0) {
-                            builder.append("|");
-                            builder.append(quality.name().toLowerCase());
-                            builder.append("=");
-
-                            List<NPC> list = new ArrayList<>(qualities.get(quality));
-                            Collections.sort(list, (o1, o2) -> {
-                                return o1.getLocalizedName().compareTo(o2.getLocalizedName());
-                            });
-
-                            boolean first = false;
-                            for (NPC npc: list) {
-                                if (!first) first = true;
-                                else builder.append(",");
-                                builder.append(npc.getLocalizedName());
-                            }
-
-                            builder.append("\n");
-                        }
-                    }
-
-                    builder.append("}}");
-                    //System.out.println(builder.toString());
-                }
+                Debug.save(getGifts(stack));
             }
         }
 

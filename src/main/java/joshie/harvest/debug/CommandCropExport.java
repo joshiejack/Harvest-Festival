@@ -3,10 +3,6 @@ package joshie.harvest.debug;
 import com.google.common.collect.HashMultimap;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.Season;
-import joshie.harvest.api.cooking.Ingredient;
-import joshie.harvest.api.cooking.IngredientStack;
-import joshie.harvest.api.cooking.Recipe;
-import joshie.harvest.api.cooking.Utensil;
 import joshie.harvest.api.crops.Crop;
 import joshie.harvest.api.crops.StateHandlerBasic;
 import joshie.harvest.api.crops.StateHandlerBlock;
@@ -193,69 +189,8 @@ public class CommandCropExport extends AbstractHFCommand {
                         }
                     }
 
-                    builder.append("}}");
-
-                    //RECIPES!!!!!!!
-                    if (crop.getIngredient() != null) {
-                        builder.append("\n==Recipes==\n" +
-                                "{| class=\"wikitable sortable\"\n" +
-                                "!Image\n" +
-                                "!Name\n" +
-                                "!Utensil\n" +
-                                "!Required\n" +
-                                "!Optional\n" +
-                                "!Recipe From\n" +
-                                "|-");
-                        IngredientStack istacks = new IngredientStack(crop.getIngredient());
-                        for (Recipe recipe : Recipe.REGISTRY) {
-                            boolean doThis = false;
-                            for (IngredientStack iStack : recipe.getRequired()) {
-                                if (iStack.isSame(istacks)) {
-                                    doThis = true;
-                                    break;
-                                }
-                            }
-
-                            if (doThis) {
-                                builder.append("\n|[[File:");
-                                builder.append(recipe.getDisplayName());
-                                builder.append(".png]]");
-                                builder.append("\n|[[");
-                                builder.append(recipe.getDisplayName());
-                                builder.append("]]");
-                                builder.append("\n|[[File:");
-                                String label = ReflectionHelper.getPrivateValue(Utensil.class, recipe.getUtensil(), "label");
-                                builder.append(WordUtils.capitalize(label.replace("_", " ")).replace(" ", "_"));
-                                builder.append(".png|link=");
-                                builder.append(WordUtils.capitalize(label.replace("_", " ")));
-                                builder.append("]]");
-                                builder.append("\n|");
-                                for (IngredientStack required: recipe.getRequired()) {
-                                    Ingredient ingredient = required.getIngredient();
-                                    builder.append("{{name|");
-                                    builder.append(WordUtils.capitalize(ingredient.getUnlocalized().replace("_", " ")));
-                                    builder.append("}}");
-                                }
-
-                                if (recipe.getOptional().size() == 0) {
-                                    builder.append("\n|N/A");
-                                } else {
-                                    builder.append("\n|");
-                                    for (IngredientStack required: recipe.getOptional()) {
-                                        Ingredient ingredient = required.getIngredient();
-                                        builder.append("{{name|");
-                                        builder.append(WordUtils.capitalize(ingredient.getUnlocalized().replace("_", " ")));
-                                        builder.append("}}");
-                                    }
-                                }
-
-                                builder.append("\n|EDIT ME\n" +
-                                        "|-");
-                            }
-                        }
-
-                        builder.append("\n|}");
-                    }
+                    builder.append("}}\n");
+                    builder.append(CommandExportUsageInRecipes.getExport(crop.getCropStack(1)));
 
                     builder.append("\n" +
                             "{{NavboxCrop}}[[Category:");
@@ -263,7 +198,7 @@ public class CommandCropExport extends AbstractHFCommand {
                         builder.append(WordUtils.capitalize(crop.getSeasons()[0].name().toLowerCase()));
                     } else builder.append("Multi Seasonal");
                     builder.append(" crops]]");
-                    //System.out.println(builder.toString());
+                    Debug.save(builder);
                 }
             }
         }

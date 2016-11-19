@@ -22,7 +22,6 @@ public class HFGiftsVanillaItems extends HFGiftsAbstract {
         assignGeneric(STRING, ANIMAL);
         assignGeneric(FEATHER, ANIMAL);
         assignGeneric(GUNPOWDER, MONSTER);
-        assignGeneric(WHEAT, VEGETABLE);
         assignGeneric(BREAD, COOKING);
         assignGeneric(FLINT, MINERAL);
         assignGeneric(PORKCHOP, MEAT);
@@ -85,8 +84,6 @@ public class HFGiftsVanillaItems extends HFGiftsAbstract {
         assignGeneric(WRITTEN_BOOK, KNOWLEDGE);
         assignGeneric(EMERALD, GEM);
         assignGeneric(FLOWER_POT, FLOWER);
-        assignGeneric(CARROT, VEGETABLE);
-        assignGeneric(POTATO, VEGETABLE);
         assignGeneric(BAKED_POTATO, VEGETABLE, COOKING);
         assignGeneric(POISONOUS_POTATO, VEGETABLE, MONSTER);
         assignGeneric(GOLDEN_CARROT, VEGETABLE, MINERAL);
@@ -117,7 +114,6 @@ public class HFGiftsVanillaItems extends HFGiftsAbstract {
         assignGeneric(PRISMARINE_CRYSTALS, GEM);
         assignGeneric(CHORUS_FRUIT, FRUIT);
         assignGeneric(CHORUS_FRUIT_POPPED, FRUIT);
-        assignGeneric(BEETROOT, FRUIT);
         assignGeneric(BEETROOT_SOUP, COOKING);
     }
 }

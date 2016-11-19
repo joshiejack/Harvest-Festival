@@ -86,11 +86,11 @@ public class HFCrops {
     private static final SpecialRulesQuest TREES1 = new SpecialRulesQuest("trees1");
     private static final SpecialRulesQuest TREES2 = new SpecialRulesQuest("trees2");
     public static final Crop BANANA = registerTree("banana").setStageLength(9, 9, 14, 23).setFruitRegrow(4).setItem(getCropStack(Crops.BANANA)).setValue(2500, 300).setSeedColours(0xFFEF6A)
-                                        .setSeasons(SUMMER).setPurchaseRules(TREES2);
+                                        .setSeasons(SUMMER).setPurchaseRules(TREES2).setAnimalFoodType(AnimalFoodType.FRUIT);
     public static final Crop ORANGE = registerTree("orange").setStageLength(7, 16, 12, 14).setItem(getCropStack(Crops.ORANGE)).setValue(2800, 200).setSeedColours(0xEDB325)
-                                        .setSeasons(SUMMER).setPurchaseRules(TREES1);
+                                        .setSeasons(SUMMER).setPurchaseRules(TREES1).setAnimalFoodType(AnimalFoodType.FRUIT);
     public static final Crop PEACH = registerTree("peach").setStageLength(5, 10, 10, 11).setItem(getCropStack(Crops.PEACH)).setValue(3000, 250).setSeedColours(0xFFB0A5)
-                                        .setSeasons(SUMMER).setPurchaseRules(TREES2);
+                                        .setSeasons(SUMMER).setPurchaseRules(TREES2).setAnimalFoodType(AnimalFoodType.FRUIT);
 
     //Autumn Crops
     public static final Crop EGGPLANT = registerCrop("eggplant").setItem(getCropStack(Crops.EGGPLANT)).setValue(1580, 70).setUnlocked(2).setStages(3, 6, 9, 10).setRegrow(7).setSeedColours(0XA25CC4).setSeasons(AUTUMN);
@@ -105,9 +105,9 @@ public class HFCrops {
 
     //Autumn Trees
     public static final Crop APPLE = registerTree("apple").setStageLength(5, 10, 10, 11).setItem(new ItemStack(Items.APPLE)).setValue(1500, 100).setSeedColours(0xE73921)
-                                        .setSeasons(AUTUMN).setPurchaseRules(TREES1);
+                                        .setSeasons(AUTUMN).setPurchaseRules(TREES1).setAnimalFoodType(AnimalFoodType.FRUIT);
     public static final Crop GRAPE = registerTree("grape").setStageLength(7, 16, 12, 14).setItem(getCropStack(Crops.GRAPE)).setValue(2700, 200).setSeedColours(0xD58EF8)
-                                        .setSeasons(AUTUMN).setPurchaseRules(TREES2);
+                                        .setSeasons(AUTUMN).setPurchaseRules(TREES2).setAnimalFoodType(AnimalFoodType.FRUIT);
 
     //Year Long Crops
     public static final Crop GRASS = registerCrop("grass").setItem(getCropStack(Crops.GRASS)).setValue(500, 1).setStages(11).setRegrow(1).setSeedColours(0x7AC958).setSeasons(SPRING, SUMMER, AUTUMN)

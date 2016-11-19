@@ -7,8 +7,6 @@ import joshie.harvest.api.core.Size;
 import joshie.harvest.api.npc.gift.GiftCategory;
 import joshie.harvest.api.npc.gift.IGiftHandler;
 import joshie.harvest.core.util.holders.HolderRegistry;
-import joshie.harvest.mining.HFMining;
-import joshie.harvest.mining.item.ItemMaterial.Material;
 import joshie.harvest.npc.NPCRegistry;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -23,21 +21,19 @@ public class Gifts implements IGiftHandler {
     final EnumMap<GiftCategory, Quality> categoryRegistry = new EnumMap<>(GiftCategory.class);
 
     public Gifts() {
-        stackRegistry.register(HFMining.MATERIALS.getStackFromEnum(Material.ALEXANDRITE), Quality.AWESOME);
-        stackRegistry.register(HFMining.MATERIALS.getStackFromEnum(Material.PINK_DIAMOND), Quality.AWESOME);
         categoryRegistry.put(GEM, Quality.GOOD);
         categoryRegistry.put(FLOWER, Quality.GOOD);
         categoryRegistry.put(COOKING, Quality.GOOD);
         categoryRegistry.put(SWEET, Quality.GOOD);
         categoryRegistry.put(MEAT, Quality.DECENT);
-        categoryRegistry.put(FISH, Quality.DECENT);
         categoryRegistry.put(VEGETABLE, Quality.DECENT);
         categoryRegistry.put(FRUIT, Quality.DECENT);
         categoryRegistry.put(ANIMAL, Quality.DECENT);
         categoryRegistry.put(KNOWLEDGE, Quality.DECENT);
         categoryRegistry.put(MAGIC, Quality.DECENT);
+        categoryRegistry.put(FISH, Quality.DISLIKE);
         categoryRegistry.put(PLANT, Quality.DISLIKE);
-        categoryRegistry.put(MINERAL, Quality.DISLIKE);
+        categoryRegistry.put(MINERAL, Quality.BAD);
         categoryRegistry.put(BUILDING, Quality.BAD);
         categoryRegistry.put(MONSTER, Quality.BAD);
         categoryRegistry.put(JUNK, Quality.BAD);

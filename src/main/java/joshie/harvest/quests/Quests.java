@@ -36,6 +36,7 @@ public class Quests {
     public static final Quest KATLIN_MEET = QuestHelper.getQuest("meeting.katlin");
     public static final Quest KATLIN_5K = QuestHelper.getQuest("recipe.porridge");
     public static final Quest KATLIN_10K = QuestHelper.getQuest("recipe.stew");
+    public static final Quest KATLIN_15K = QuestHelper.getQuest("friendship.katlin.kitchen");
     public static final Quest LIARA_MEET = QuestHelper.getQuest("tutorial.cafe");
     public static final Quest LIARA_5K = QuestHelper.getQuest("recipe.chocolate.hot");
     public static final Quest LIARA_7K = QuestHelper.getQuest("recipe.cookies");

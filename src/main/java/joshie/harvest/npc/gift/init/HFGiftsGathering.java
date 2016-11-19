@@ -15,6 +15,11 @@ public class HFGiftsGathering extends HFGiftsAbstract {
     public static void init() {
         assignGeneric(FLOWERS.getStackFromEnum(FlowerType.WEED), JUNK);
         assignGeneric(FLOWERS.getStackFromEnum(FlowerType.GODDESS), FLOWER);
+        assignGeneric(FLOWERS.getStackFromEnum(FlowerType.PINKCAT), FLOWER);
+        assignGeneric(FLOWERS.getStackFromEnum(FlowerType.TOY), FLOWER);
+        assignGeneric(FLOWERS.getStackFromEnum(FlowerType.BLUE_MAGICGRASS), FLOWER);
+        assignGeneric(FLOWERS.getStackFromEnum(FlowerType.MOONDROP), FLOWER);
+        assignGeneric(FLOWERS.getStackFromEnum(FlowerType.RED_MAGICGRASS), FLOWER);
         assignGeneric(WOOD.getStackFromEnum(Wood.BRANCH_SMALL), JUNK);
         assignGeneric(WOOD.getStackFromEnum(Wood.BRANCH_MEDIUM), JUNK);
         assignGeneric(WOOD.getStackFromEnum(Wood.BRANCH_LARGE), JUNK);

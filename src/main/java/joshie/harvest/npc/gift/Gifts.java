@@ -54,16 +54,16 @@ public class Gifts implements IGiftHandler {
         Quality itemQuality = stackRegistry.getValueOf(stack);
         if (itemQuality != null) return itemQuality;
 
-        Quality highest = Quality.TERRIBLE;
+        Quality lowest = Quality.AWESOME;
         GiftCategory[] categories = NPCRegistry.INSTANCE.getGifts().getRegistry().getValueOf(stack);
         if (categories == null) return Quality.DECENT;
         for (GiftCategory category: categories) {
             Quality quality = categoryRegistry.get(category);
-            if (quality.getRelationPoints() > highest.getRelationPoints()) {
-                highest = quality;
+            if (quality.getRelationPoints() < lowest.getRelationPoints()) {
+                lowest = quality;
             }
         }
 
-        return highest;
+        return lowest;
     }
 }

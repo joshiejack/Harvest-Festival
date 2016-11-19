@@ -14,6 +14,9 @@ public class GiftsBrandon extends Gifts {
         categoryRegistry.put(MINERAL, Quality.GOOD);
         categoryRegistry.put(PLANT, Quality.DISLIKE);
         categoryRegistry.put(FLOWER, Quality.DISLIKE);
+        categoryRegistry.put(SWEET, Quality.DISLIKE);
+        categoryRegistry.put(FRUIT, Quality.DISLIKE);
+        categoryRegistry.put(FISH, Quality.BAD);
         stackRegistry.register(Ore.of("flower"), Quality.BAD);
         stackRegistry.register(Ore.of("treeSapling"), Quality.TERRIBLE);
     }

@@ -93,7 +93,7 @@ public class CommandGiftExportNPC extends AbstractHFCommand {
                             List<ItemStack> stacks = NPCRegistry.INSTANCE.getGifts().getRegistry().getStacksFor(new GiftCategory[] { category });
                             builder.append("|-\n" +
                                     "| [[File:" + WordUtils.capitalize(category.name().toLowerCase()) + " Category.png|48px|center]]\n" +
-                                    "|''[[Gifting#" + WordUtils.capitalize(category.name().toLowerCase()) + "|" + WordUtils.capitalize(category.name().toLowerCase()) + "|48px|center]]''\n" +
+                                    "|''[[Gifting#" + WordUtils.capitalize(category.name().toLowerCase()) + "|" + WordUtils.capitalize(category.name().toLowerCase()) + "]]''\n" +
                                     "|''");
 
                             if (initial) {
@@ -107,7 +107,7 @@ public class CommandGiftExportNPC extends AbstractHFCommand {
 
                         for (ItemStack stack: stackRegistry.getStacksFor(quality)) {
                             builder.append("|-\n" +
-                                    "|[[File:" + stack.getDisplayName() + ".png|center]]\n" +
+                                    "|[[File:" + stack.getDisplayName() + ".png|48px|center]]\n" +
                                     "|[[" + stack.getDisplayName() + "]]\n" +
                                     "|\n" +
                                     "|\n");

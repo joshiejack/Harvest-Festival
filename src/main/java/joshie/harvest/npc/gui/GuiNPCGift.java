@@ -16,6 +16,7 @@ import net.minecraft.util.EnumHand;
 import java.util.Locale;
 
 public class GuiNPCGift extends GuiNPCChat {
+    public static ItemStack GODDESS_GIFT;
     private final ItemStack gift;
     private final Quality value;
 
@@ -23,6 +24,12 @@ public class GuiNPCGift extends GuiNPCChat {
         super(player, npc, hand, -1, false);
         gift = player.getHeldItem(hand).copy();
         value = npc.getNPC().getGiftValue(gift);
+    }
+
+    public GuiNPCGift(EntityPlayer player, EntityNPC npc, EnumHand hand, ItemStack gift) {
+        super(player, npc, hand, -1, false);
+        this.gift = gift;
+        this.value = npc.getNPC().getGiftValue(gift);
     }
 
     @Override
@@ -33,7 +40,7 @@ public class GuiNPCGift extends GuiNPCChat {
             if (relationship >= HFNPCs.MARRIAGE_REQUIREMENT && npc.getNPC().isMarriageCandidate()) {
                 return TextHelper.getSpeech(npc, "marriage.accept");
             } else return TextHelper.getSpeech(npc, "marriage.reject");
-        } else if (HFTrackers.getClientPlayerTracker().getRelationships().gift(player, npc.getNPC().getUUID(), value.getRelationPoints())) {
+        } else if (GODDESS_GIFT != null || HFTrackers.getClientPlayerTracker().getRelationships().gift(player, npc.getNPC().getUUID(), value.getRelationPoints())) {
             return TextHelper.getSpeech(npc, "gift." + value.name().toLowerCase(Locale.ENGLISH));
         } else return TextHelper.getSpeech(npc, "gift.reject");
     }
@@ -41,7 +48,7 @@ public class GuiNPCGift extends GuiNPCChat {
     @Override
     public void endChat() {
         player.closeScreen();
-
+        GODDESS_GIFT = null; //Reset
         if (nextGui != -1) {
             player.openGui(HarvestFestival.instance, nextGui, player.worldObj, npc.getEntityId(), 0, -1);
         }

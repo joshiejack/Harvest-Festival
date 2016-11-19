@@ -78,7 +78,7 @@
 * NPCs will now like or dislike more things than before
 * Added a few more quests mostly related to friendship with the npcs, that give you things like secret shops or secret notes!
 * Johan will die every day around 6pm, as he travels back home to trade
-* Throwing an item in to the goddess pond will now gift her that item, and summon her if it is giftable (instead of just adding RP)
+* Throwing an item in to the goddess pond will now gift her that item, and summon her (instead of just adding RP) (So be careful)
 
 ###Shops
 * New Shop GUI
@@ -97,6 +97,7 @@
 * Hammers will now be able to smash more tiers of rocks
 * Fixed Hoes being half the durability they were meant to
 * Tools will now reach 100% before you use them all the way
+* Change Basic tools repair material to Junk Ore
 
 ####Fixes
 * Gifting npcs on their birthday will now only work once on smp, instead of over multiple days

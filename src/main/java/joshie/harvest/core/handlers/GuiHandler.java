@@ -29,6 +29,7 @@ public class GuiHandler implements IGuiHandler {
     public static final int COOKBOOK = 7;
     public static final int NPC_INFO = 8;
     public static final int SHOP_MENU_SELL = 9;
+    public static final int GIFT_GODDESS = 10;
 
     @Override
     public Object getServerGuiElement(int ID, EntityPlayer player, World world, int entityID, int nextGui, int hand) {
@@ -70,6 +71,7 @@ public class GuiHandler implements IGuiHandler {
                 HFApi.player.getTrackingForPlayer(player).learnNote(HFNotes.SHOPPING);
                 return new GuiNPCShop(player, (EntityNPC) world.getEntityByID(entityID), -2, ID == SHOP_MENU_SELL);
             case GIFT:          return new GuiNPCGift(player, (EntityNPC) world.getEntityByID(entityID), EnumHand.values()[hand]);
+            case GIFT_GODDESS:  return new GuiNPCGift(player, (EntityNPC) world.getEntityByID(entityID), EnumHand.values()[hand], GuiNPCGift.GODDESS_GIFT);
             case FRIDGE:        return new GuiFridge(player, player.inventory, (TileFridge) world.getTileEntity(new BlockPos(entityID, nextGui, hand)));
             case COOKBOOK:      return new GuiCookbook();
             case STATS_BOOK:    return new GuiStats();

@@ -2,8 +2,12 @@ package joshie.harvest.core.block;
 
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.handlers.GoddessHandler;
+import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.npc.NPCRegistry;
+import joshie.harvest.npc.entity.EntityNPCGoddess;
+import joshie.harvest.npc.packet.PacketGoddessGift;
+import joshie.harvest.player.relationships.RelationshipData;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
@@ -13,6 +17,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.BlockFluidClassic;
@@ -46,7 +51,18 @@ public class BlockGoddessWater extends BlockFluidClassic {
                 if (!GoddessHandler.spawnGoddess(world, entity, false, false)) {
                     if (item.getThrower() != null) {
                         EntityPlayer player = world.getPlayerEntityByName(item.getThrower());
-                        HFTrackers.getPlayerTrackerFromPlayer(player).getRelationships().gift(player, HFNPCs.GODDESS.getUUID(), HFNPCs.GODDESS.getGiftValue(stack).getRelationPoints());
+                        RelationshipData data = HFTrackers.getPlayerTrackerFromPlayer(player).getRelationships();
+                        if (!data.hasGifted(HFNPCs.GODDESS.getUUID())) {
+                            HFTrackers.getPlayerTrackerFromPlayer(player).getRelationships().gift(player, HFNPCs.GODDESS.getUUID(), HFNPCs.GODDESS.getGiftValue(stack).getRelationPoints());
+                            double x = item.posX;
+                            double y = item.posY;
+                            double z = item.posZ;
+                            List<EntityNPCGoddess> npcs = world.getEntitiesWithinAABB(EntityNPCGoddess.class,
+                                    new AxisAlignedBB(x - 0.5F, y - 0.5F, z - 0.5F, x + 0.5F, y + 0.5F, z + 0.5F).expand(32D, 32D, 32D));
+                            if (npcs.size() >= 1) {
+                                PacketHandler.sendToClient(new PacketGoddessGift(npcs.get(0), stack), player);
+                            }
+                        }
                     }
 
                     entity.setDead();

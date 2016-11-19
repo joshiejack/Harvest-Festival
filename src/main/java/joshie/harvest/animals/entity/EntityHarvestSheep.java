@@ -9,21 +9,17 @@ import joshie.harvest.api.animals.IAnimalHandler.AnimalAI;
 import joshie.harvest.api.animals.IAnimalHandler.AnimalType;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.helpers.EntityHelper;
-import joshie.harvest.core.helpers.InventoryHelper;
-import joshie.harvest.core.helpers.InventoryHelper.SearchType;
+import joshie.harvest.player.relationships.RelationshipData;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
-import net.minecraft.init.MobEffects;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.pathfinding.PathNodeType;
-import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundEvent;
@@ -31,13 +27,19 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import static joshie.harvest.api.animals.IAnimalHandler.ANIMAL_STATS_CAPABILITY;
+import static joshie.harvest.core.helpers.InventoryHelper.ITEM;
+import static joshie.harvest.core.helpers.InventoryHelper.ITEM_STACK;
 
 public class EntityHarvestSheep extends EntitySheep {
     private final AnimalStats<NBTTagCompound> stats = HFApi.animals.newStats(AnimalType.LIVESTOCK);
+    private static ItemStack[] stacks;
 
     public EntityHarvestSheep(World world) {
         super(world);
@@ -64,33 +66,39 @@ public class EntityHarvestSheep extends EntitySheep {
         getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(60.0D);
     }
 
-    @Override
-    public boolean attackEntityFrom(DamageSource source, float amount) {
-        addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 200, 0, true, false));
-        return super.attackEntityFrom(source, amount);
+    private static ItemStack[] getStacks() {
+        if (stacks != null) return stacks;
+        stacks = new ItemStack[] {
+                HFAnimals.TOOLS.getStackFromEnum(Tool.BRUSH),
+                HFAnimals.TOOLS.getStackFromEnum(Tool.MEDICINE),
+                HFAnimals.TOOLS.getStackFromEnum(Tool.MIRACLE_POTION)
+        };
+
+        return stacks;
     }
 
     @Override
-    public boolean processInteract(EntityPlayer player, EnumHand hand, ItemStack stack) {
-        if (worldObj.rand.nextFloat() < 0.33F) {
-            SoundEvent s = getAmbientSound();
-            if (s != null) {
-                playSound(s, 2F, getSoundPitch());
-            }
-
-            if (hand == null ||
-                    (!InventoryHelper.ITEM_STACK.matches(stack, HFAnimals.TOOLS.getStackFromEnum(Tool.BRUSH)))
-                            && !InventoryHelper.SPECIAL.matches(stack, SearchType.SHEARS)
-                            && !InventoryHelper.ITEM_STACK.matches(stack, HFAnimals.TOOLS.getStackFromEnum(Tool.MEDICINE))) {
+    public boolean processInteract(@Nullable EntityPlayer player, @Nullable EnumHand hand, ItemStack stack) {
+        if (player == null) return false;
+        boolean special = ITEM_STACK.matchesAny(stack, getStacks()) || ITEM.matchesAny(stack, HFAnimals.TREATS, Items.SHEARS);
+        if (stack == null || !special) {
+            RelationshipData data = HFTrackers.getPlayerTrackerFromPlayer(player).getRelationships();
+            UUID uuid = EntityHelper.getEntityUUID(this);
+            if (data.hasTalked(uuid)) return false;
+            else {
                 HFTrackers.getPlayerTrackerFromPlayer(player).getRelationships().talkTo(player, EntityHelper.getEntityUUID(this));
+                SoundEvent s = getAmbientSound();
+                if (s != null) {
+                    playSound(s, 2F, getSoundPitch());
+                }
+
                 return true;
             }
-        }
-
-        return true;
+        } else return true;
     }
 
     @Override
+    @Nonnull
     public List<ItemStack> onSheared(ItemStack item, net.minecraft.world.IBlockAccess world, BlockPos pos, int fortune) {
         List<ItemStack> ret = new ArrayList<>();
         if (!isChild()) {

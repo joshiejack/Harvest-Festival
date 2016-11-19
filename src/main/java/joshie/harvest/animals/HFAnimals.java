@@ -11,6 +11,7 @@ import joshie.harvest.animals.item.ItemAnimalProduct;
 import joshie.harvest.animals.item.ItemAnimalSpawner;
 import joshie.harvest.animals.item.ItemAnimalSpawner.Spawner;
 import joshie.harvest.animals.item.ItemAnimalTool;
+import joshie.harvest.animals.item.ItemAnimalTool.Tool;
 import joshie.harvest.animals.item.ItemAnimalTreat;
 import joshie.harvest.animals.render.*;
 import joshie.harvest.animals.stats.AnimalStatsHF;
@@ -21,6 +22,7 @@ import joshie.harvest.animals.tile.TileTrough;
 import joshie.harvest.animals.type.AnimalChicken;
 import joshie.harvest.animals.type.AnimalCow;
 import joshie.harvest.animals.type.AnimalSheep;
+import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.AnimalStats;
 import joshie.harvest.api.animals.IAnimalType;
 import joshie.harvest.api.crops.Crop;
@@ -94,6 +96,9 @@ public class HFAnimals {
                 instance.deserializeNBT(nbt);
             }
         }, AnimalStatsHF::new);
+
+        HFApi.npc.getGifts().addToBlacklist(TOOLS.getStackFromEnum(Tool.MILKER), TOOLS.getStackFromEnum(Tool.BRUSH),
+                                            TOOLS.getStackFromEnum(Tool.MEDICINE), TOOLS.getStackFromEnum(Tool.MIRACLE_POTION), Items.SHEARS);
     }
 
     @SideOnly(Side.CLIENT)

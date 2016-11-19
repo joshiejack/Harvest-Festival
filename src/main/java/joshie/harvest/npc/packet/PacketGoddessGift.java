@@ -42,7 +42,6 @@ public class PacketGoddessGift extends PenguinPacket {
     public void handlePacket(EntityPlayer player) {
         EntityNPC npc = (EntityNPC) player.worldObj.getEntityByID(npcID);
         if (npc != null) {
-            System.out.println(npc);
             if (npc.isEntityAlive()) {
                 if (npc.getNPC() == HFNPCs.GODDESS) {
                     GuiNPCGift.GODDESS_GIFT = stack;

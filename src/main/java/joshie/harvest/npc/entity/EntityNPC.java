@@ -20,6 +20,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import static joshie.harvest.core.handlers.GuiHandler.GIFT;
@@ -159,7 +160,8 @@ public abstract class EntityNPC<E extends EntityNPC> extends EntityAgeable imple
 
     @SuppressWarnings("unchecked")
     @Override
-    public EntityAgeable createChild(EntityAgeable ageable) {
+    @Nonnull
+    public EntityAgeable createChild(@Nonnull EntityAgeable ageable) {
         return getNewEntity((E)ageable);
     }
 }

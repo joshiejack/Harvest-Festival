@@ -117,7 +117,7 @@ public class ButtonRelationsAnimal extends ButtonBook {
         drawStack(isTreated, HFAnimals.TREATS.getStackFromEnum(Treat.GENERIC), 95, -5);
         drawStack(petted, PETTED, 105, -5);
         drawStack(eaten, getFoodForAnimal(type), 115, -5);
-        drawStack(collected, product, 114, 4, 0.75F);
+        drawStack(!collected, product, 114, 4, 0.75F);
         RenderHelper.drawStack(stack, xPosition + 4, yPosition + 1, 1F);
     }
 

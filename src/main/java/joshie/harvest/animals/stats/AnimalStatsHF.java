@@ -10,18 +10,22 @@ import joshie.harvest.api.animals.AnimalTest;
 import joshie.harvest.api.animals.IAnimalType;
 import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.npc.HFNPCs;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.ReflectionHelper;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.lang.ref.WeakReference;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Random;
 import java.util.UUID;
 
@@ -328,35 +332,47 @@ public class AnimalStatsHF implements AnimalStats<NBTTagCompound> {
         } else return false;
     }
 
-    void affectRelationship(EntityPlayer player, int amount) {
-        if (player != null && amount > 0) {
+    @Override
+    public void affectRelationship(EntityPlayer player, int amount) {
+        if (player != null && amount != 0) {
             HFApi.player.getRelationsForPlayer(player).affectRelationship(EntityHelper.getEntityUUID(animal), amount);
+            if (amount < 0) {
+                try {
+                    ReflectionHelper.findMethod(EntityLivingBase.class, null, new String[]{"playHurtSound"}, DamageSource.class).invoke(animal, DamageSource.starve);
+                } catch (IllegalAccessException | InvocationTargetException ex) { ex.printStackTrace(); }
+            }
         }
+    }
+
+    private void treat(EntityPlayer player, AnimalAction action) {
+        treated = true;
+        affectRelationship(player, type.getRelationshipBonus(action));
+        HFApi.animals.syncAnimalStats(animal);
     }
 
     private boolean treat(@Nonnull World world, @Nullable EntityPlayer player, @Nullable ItemStack stack) {
         if (stack == null) return false;
         if (!treated) {
-            treated = HFAnimals.TREATS.getEnumFromStack(stack) == Treat.GENERIC;
-            if (treated) {
+            if (HFAnimals.TREATS.getEnumFromStack(stack) == Treat.GENERIC) {
                 if (!world.isRemote) {
                     genericTreats++;
-                    affectRelationship(player, type.getRelationshipBonus(AnimalAction.TREAT_GENERIC));
-                    treated = true;
+                    treat(player, AnimalAction.TREAT_GENERIC);
+                }
+
+                return true;
+            } else if (HFAnimals.TREATS.getEnumFromStack(stack).getType() == type) {
+                if (!world.isRemote) {
+                    typeTreats++;
+                    treat(player, AnimalAction.TREAT_SPECIAL);
                 }
 
                 return true;
             } else {
-                treated = HFAnimals.TREATS.getEnumFromStack(stack).getType() == type;
-                if (treated) {
-                    if (!world.isRemote) {
-                        typeTreats++;
-                        affectRelationship(player, type.getRelationshipBonus(AnimalAction.TREAT_SPECIAL));
-                        treated = true;
-                    }
-
-                    return true;
+                if (!world.isRemote) {
+                    treat(player, AnimalAction.TREAT_INCORRECT);
                 }
+
+                return true;
             }
         }
 

@@ -8,6 +8,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraftforge.oredict.OreDictionary;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 import static joshie.harvest.core.helpers.InventoryHelper.SearchType.*;
 
@@ -219,5 +220,16 @@ public class InventoryHelper {
 
     public abstract static class Matcher<T> {
         public abstract boolean matches(@Nonnull ItemStack stack, T t);
+
+
+        @SafeVarargs
+        public final boolean matchesAny(@Nullable ItemStack stack, T... t) {
+            if (stack == null) return false;
+            for (T value: t) {
+                if (matches(stack, value)) return true;
+            }
+
+            return false;
+        }
     }
 }

@@ -13,6 +13,7 @@ import joshie.harvest.player.packet.PacketSyncStatusReset;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.EnumParticleTypes;
 
 import javax.annotation.Nullable;
 import java.util.Collection;
@@ -73,7 +74,8 @@ public class RelationshipDataServer extends RelationshipData {
         EntityPlayerMP player = master.getAndCreatePlayer();
         if (player != null) {
             if (newValue >= 5000) player.addStat(HFAchievements.friend);
-            syncRelationship(player, key, newValue, true);
+            EnumParticleTypes particle = amount == 0 ? null : amount <= -1 ? EnumParticleTypes.DAMAGE_INDICATOR : EnumParticleTypes.HEART;
+            syncRelationship(player, key, newValue, particle);
         }
     }
 
@@ -82,7 +84,7 @@ public class RelationshipDataServer extends RelationshipData {
         int newValue = (int)(adult * (percentage / 100D));
         relationships.put(baby, newValue);
         if (player != null) {
-            syncRelationship((EntityPlayerMP) player, baby, newValue, true);
+            syncRelationship((EntityPlayerMP) player, baby, newValue, null);
         }
     }
 
@@ -90,7 +92,7 @@ public class RelationshipDataServer extends RelationshipData {
         PacketHandler.sendToClient(new PacketSyncRelationsConnect(writeToNBT(new NBTTagCompound())), player);
     }
 
-    public void syncRelationship(EntityPlayerMP player, UUID key, int value, boolean particles) {
+    public void syncRelationship(EntityPlayerMP player, UUID key, int value, EnumParticleTypes particles) {
         PacketHandler.sendToClient(new PacketSyncRelationship(key, value, particles), player);
     }
 

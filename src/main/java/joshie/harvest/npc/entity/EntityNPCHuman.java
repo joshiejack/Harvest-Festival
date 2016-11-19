@@ -1,6 +1,7 @@
 package joshie.harvest.npc.entity;
 
 import io.netty.buffer.ByteBuf;
+import joshie.harvest.api.HFApi;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.helpers.NBTHelper;
 import joshie.harvest.npc.NPC;
@@ -25,24 +26,25 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 
+import javax.annotation.Nonnull;
 import java.util.UUID;
 
 import static joshie.harvest.api.npc.INPC.Location.HOME;
 
 public abstract class EntityNPCHuman<E extends EntityNPCHuman> extends EntityNPC<E> {
-    protected BlockPos spawned;
-    protected TownData homeTown;
-    protected UUID townID;
+    private BlockPos spawned;
+    private UUID townID;
+    TownData homeTown;
 
-    public EntityNPCHuman(World world) {
+    EntityNPCHuman(World world) {
         super(world);
     }
 
-    public EntityNPCHuman(World world, NPC npc) {
+    EntityNPCHuman(World world, NPC npc) {
         super(world, npc);
     }
 
-    public EntityNPCHuman(E entity) {
+    EntityNPCHuman(E entity) {
         super(entity);
     }
 
@@ -73,7 +75,7 @@ public abstract class EntityNPCHuman<E extends EntityNPCHuman> extends EntityNPC
     }
 
     @SuppressWarnings("unchecked")
-    protected  <T extends TownData> T getHomeTown() {
+     <T extends TownData> T getHomeTown() {
         if (homeTown == null) {
             if (townID != null) homeTown = TownHelper.getTownByID(worldObj, townID);
             else {
@@ -107,7 +109,7 @@ public abstract class EntityNPCHuman<E extends EntityNPCHuman> extends EntityNPC
     }
 
     @Override
-    public void onDeath(DamageSource cause) {
+    public void onDeath(@Nonnull DamageSource cause) {
         if (!worldObj.isRemote && this.posY >= -32D) {
             //Respawn a new bugger
             if (npc.respawns()) {
@@ -120,8 +122,12 @@ public abstract class EntityNPCHuman<E extends EntityNPCHuman> extends EntityNPC
     }
 
     @Override
-    public boolean attackEntityFrom(DamageSource source, float amount) {
+    public boolean attackEntityFrom(@Nonnull DamageSource source, float amount) {
         addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 200, 0, true, false));
+        if (source.getSourceOfDamage() instanceof EntityPlayer) {
+            HFApi.player.getRelationsForPlayer(((EntityPlayer)source.getSourceOfDamage())).affectRelationship(npc.getUUID(), -10);
+        }
+
         return super.attackEntityFrom(source, amount);
     }
 

@@ -4,6 +4,7 @@ import io.netty.buffer.ByteBuf;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.network.Packet;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.EnumParticleTypes;
 
 import java.util.UUID;
 
@@ -12,8 +13,7 @@ public class PacketSyncRelationship extends PacketRelationship {
     private int value;
 
     public PacketSyncRelationship() {}
-
-    public PacketSyncRelationship(UUID uuid, int value, boolean particles) {
+    public PacketSyncRelationship(UUID uuid, int value, EnumParticleTypes particles) {
         super(uuid, particles);
         this.value = value;
     }

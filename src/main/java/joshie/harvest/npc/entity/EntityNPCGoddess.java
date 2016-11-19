@@ -11,8 +11,6 @@ import joshie.harvest.npc.entity.ai.EntityAISwim;
 import joshie.harvest.npc.entity.ai.EntityAITalkingTo;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.ai.EntityAIOpenDoor;
-import net.minecraft.entity.ai.EntityAIRestrictOpenDoor;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
@@ -22,10 +20,13 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
+import javax.annotation.Nonnull;
+
 public class EntityNPCGoddess extends EntityNPC<EntityNPCGoddess> {
     private boolean flower;
     private int lastTalk = 1200;
 
+    @SuppressWarnings("unused")
     public EntityNPCGoddess(World world) {
         this(world, (NPC) HFNPCs.GODDESS);
     }
@@ -36,7 +37,7 @@ public class EntityNPCGoddess extends EntityNPC<EntityNPCGoddess> {
         setEntityInvulnerable(true);
     }
 
-    public EntityNPCGoddess(EntityNPCGoddess entity) {
+    private EntityNPCGoddess(EntityNPCGoddess entity) {
         this(entity.worldObj, entity.npc);
         npc = entity.getNPC();
         lover = entity.lover;
@@ -51,7 +52,7 @@ public class EntityNPCGoddess extends EntityNPC<EntityNPCGoddess> {
     public void fall(float distance, float damageMultiplier) {}
 
     @Override
-    protected void updateFallState(double y, boolean onGroundIn, IBlockState state, BlockPos pos) {}
+    protected void updateFallState(double y, boolean onGroundIn, @Nonnull IBlockState state, @Nonnull BlockPos pos) {}
 
     @Override
     public boolean canBreatheUnderwater() {

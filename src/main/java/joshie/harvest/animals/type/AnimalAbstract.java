@@ -53,6 +53,7 @@ public abstract class AnimalAbstract implements IAnimalType {
         switch (action) {
             case TREAT_SPECIAL: return 30;
             case TREAT_GENERIC: return 20;
+            case TREAT_INCORRECT: return -50;
             default:            return 0;
         }
     }

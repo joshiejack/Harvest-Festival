@@ -13,11 +13,12 @@ public class EntityNPCTrader extends EntityNPCShopkeeper {
         super(world, (NPC) npc);
     }
 
+    @SuppressWarnings("unused")
     public EntityNPCTrader(World world) {
         super(world, (NPC) HFNPCs.TRADER);
     }
 
-    public EntityNPCTrader(EntityNPCTrader entity) {
+    private EntityNPCTrader(EntityNPCTrader entity) {
         super(entity);
     }
 

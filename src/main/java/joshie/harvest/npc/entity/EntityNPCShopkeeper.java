@@ -5,6 +5,7 @@ import joshie.harvest.npc.entity.ai.EntityAIWork;
 import net.minecraft.world.World;
 
 public class EntityNPCShopkeeper extends EntityNPCHuman<EntityNPCShopkeeper> {
+    @SuppressWarnings("unused")
     public EntityNPCShopkeeper(World world) {
         super(world);
     }

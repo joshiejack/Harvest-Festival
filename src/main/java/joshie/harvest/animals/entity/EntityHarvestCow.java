@@ -8,29 +8,31 @@ import joshie.harvest.api.animals.IAnimalHandler.AnimalAI;
 import joshie.harvest.api.animals.IAnimalHandler.AnimalType;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.helpers.EntityHelper;
-import joshie.harvest.core.helpers.InventoryHelper;
+import joshie.harvest.player.relationships.RelationshipData;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.passive.EntityCow;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
-import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.pathfinding.PathNodeType;
-import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 
+import java.util.UUID;
+
 import static joshie.harvest.api.animals.IAnimalHandler.ANIMAL_STATS_CAPABILITY;
+import static joshie.harvest.core.helpers.InventoryHelper.ITEM;
+import static joshie.harvest.core.helpers.InventoryHelper.ITEM_STACK;
 
 public class EntityHarvestCow extends EntityCow {
     private final AnimalStats<NBTTagCompound> stats = HFApi.animals.newStats(AnimalType.MILKABLE);
+    private static ItemStack[] stacks;
 
     public EntityHarvestCow(World world) {
         super(world);
@@ -56,30 +58,36 @@ public class EntityHarvestCow extends EntityCow {
         getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(50.0D);
     }
 
-    @Override
-    public boolean attackEntityFrom(DamageSource source, float amount) {
-        addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 200, 0, true, false));
-        return super.attackEntityFrom(source, amount);
+    private static ItemStack[] getStacks() {
+        if (stacks != null) return stacks;
+        stacks = new ItemStack[] {
+                HFAnimals.TOOLS.getStackFromEnum(Tool.BRUSH),
+                HFAnimals.TOOLS.getStackFromEnum(Tool.MILKER),
+                HFAnimals.TOOLS.getStackFromEnum(Tool.MEDICINE),
+                HFAnimals.TOOLS.getStackFromEnum(Tool.MIRACLE_POTION)
+        };
+
+        return stacks;
     }
 
     @Override
     public boolean processInteract(EntityPlayer player, EnumHand hand, ItemStack stack) {
-        if (worldObj.rand.nextFloat() < 0.33F) {
-            SoundEvent s = getAmbientSound();
-            if (s != null) {
-                playSound(s, 2F, getSoundPitch());
-            }
-
-            if (hand == null ||
-                    (!InventoryHelper.ITEM_STACK.matches(stack, HFAnimals.TOOLS.getStackFromEnum(Tool.BRUSH)))
-                    && !InventoryHelper.ITEM_STACK.matches(stack, HFAnimals.TOOLS.getStackFromEnum(Tool.MILKER))
-                    && !InventoryHelper.ITEM_STACK.matches(stack, HFAnimals.TOOLS.getStackFromEnum(Tool.MEDICINE))) {
+        if (player == null) return false;
+        boolean special = ITEM_STACK.matchesAny(stack, getStacks()) || ITEM.matchesAny(stack, HFAnimals.TREATS);
+        if (stack == null || !special) {
+            RelationshipData data = HFTrackers.getPlayerTrackerFromPlayer(player).getRelationships();
+            UUID uuid = EntityHelper.getEntityUUID(this);
+            if (data.hasTalked(uuid)) return false;
+            else {
                 HFTrackers.getPlayerTrackerFromPlayer(player).getRelationships().talkTo(player, EntityHelper.getEntityUUID(this));
+                SoundEvent s = getAmbientSound();
+                if (s != null) {
+                    playSound(s, 2F, getSoundPitch());
+                }
+
                 return true;
             }
-        }
-
-        return false;
+        } else return true;
     }
 
     @Override

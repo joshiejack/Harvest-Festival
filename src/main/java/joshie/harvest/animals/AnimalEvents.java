@@ -9,16 +9,19 @@ import joshie.harvest.api.animals.AnimalStats;
 import joshie.harvest.api.animals.AnimalTest;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.helpers.EntityHelper;
-import joshie.harvest.core.helpers.InventoryHelper;
 import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.core.util.annotations.HFEvents;
 import net.minecraft.block.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.PotionEffect;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
+import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.EntityInteract;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
@@ -63,15 +66,44 @@ public class AnimalEvents {
         }
     }
 
+    @SubscribeEvent
+    public void onEntityAttackedByPlayer(AttackEntityEvent event) {
+        AnimalStats stats = EntityHelper.getStats(event.getTarget());
+        if (stats != null) {
+            stats.affectRelationship(event.getEntityPlayer(), -10);
+        }
+    }
+
+    @SubscribeEvent
+    public void onEntityAttacked(LivingAttackEvent event) {
+        AnimalStats stats = EntityHelper.getStats(event.getEntityLiving());
+        if (stats != null) {
+            event.getEntityLiving().addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 200, 0, true, false));
+        }
+    }
+
     /* When right clicking poultry, will throw any poultry on your head **/
     @HFEvents
     public static class PickupPoultry {
         public static boolean register() { return HFAnimals.PICKUP_POULTRY; }
+        private ItemStack[] stacks;
 
-        public boolean blocksPickup(EntityPlayer player) {
-            return  InventoryHelper.getHandItemIsIn(player, ITEM_STACK, HFAnimals.TOOLS.getStackFromEnum(Tool.CHICKEN_FEED)) != null ||
-                    InventoryHelper.getHandItemIsIn(player, ITEM_STACK, HFAnimals.TOOLS.getStackFromEnum(Tool.MEDICINE)) != null ||
-                    InventoryHelper.getHandItemIsIn(player, ITEM, HFAnimals.TREATS) != null;
+        private ItemStack[] getStacks() {
+            if (stacks != null) return stacks;
+            stacks = new ItemStack[] {
+                    HFAnimals.TOOLS.getStackFromEnum(Tool.CHICKEN_FEED),
+                    HFAnimals.TOOLS.getStackFromEnum(Tool.MEDICINE)
+            };
+
+            return stacks;
+        }
+
+        private boolean isHolding(ItemStack stack) {
+            return ITEM_STACK.matchesAny(stack, getStacks()) || ITEM.matchesAny(stack, HFAnimals.TREATS);
+        }
+
+        boolean blocksPickup(EntityPlayer player) {
+            return isHolding(player.getHeldItemMainhand()) || isHolding(player.getHeldItemOffhand());
         }
 
         @SubscribeEvent

@@ -11,6 +11,7 @@
 * Adjusted animal product sell values to be more balanced
 * Cows and sheep will now eat vanilla tall grass
 * Cleaning will now stop working when the animal is fully cleaned
+* Feeding animals incorrect treats or hitting them will cause a relationship penalty
 
 ###Buildings
 * Optimised building save format, should be smaller size

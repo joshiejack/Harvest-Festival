@@ -47,6 +47,13 @@ public interface AnimalStats<N extends NBTBase> extends INBTSerializable<N> {
     /** Set the owner of this animal **/
     void setOwner(@Nonnull UUID uuid);
 
+    /** Affects the relationship with this player,
+     *  It's a handy shortcut instead of calliing the relationship
+     *  helper for the animals
+     * @param player    the player
+     * @param amount    the amount */
+    void affectRelationship(EntityPlayer player, int amount);
+
     /** Perform an action on this animal
      *  @param world    the world object, should never be null
      *  @param player   the player performing the action, can be null

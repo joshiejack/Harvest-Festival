@@ -10,6 +10,7 @@ import joshie.harvest.core.commands.HFCommand;
 import net.minecraft.command.CommandNotFoundException;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.command.NumberInvalidException;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
@@ -102,6 +103,13 @@ public class CommandExportUsageInRecipes extends AbstractHFCommand {
 
     @Override
     public boolean execute(MinecraftServer server, ICommandSender sender, String[] parameters) throws CommandNotFoundException, NumberInvalidException {
-        return false;
+        if (sender instanceof EntityPlayer) {
+            ItemStack stack = ((EntityPlayer) sender).getHeldItemMainhand();
+            if (stack != null) {
+                Debug.save(getExport(stack));
+            }
+        }
+
+        return true;
     }
 }

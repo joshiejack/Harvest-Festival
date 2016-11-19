@@ -23,6 +23,6 @@ public class GiftsAbi extends Gifts {
         stackRegistry.register(Items.SKULL, Quality.TERRIBLE);
         stackRegistry.register(Ore.of("bone"), Quality.TERRIBLE);
         stackRegistry.register(Ore.of("slimeball"), Quality.TERRIBLE);
-        stackRegistry.register(MEAL.getStackFromEnum(Meal.PORRIDGE), Quality.AWESOME);
+        stackRegistry.register(MEAL.getStackFromEnum(Meal.PORRIDGE), Quality.TERRIBLE);
     }
 }

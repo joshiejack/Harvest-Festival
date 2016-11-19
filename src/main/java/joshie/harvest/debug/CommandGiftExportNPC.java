@@ -61,7 +61,7 @@ public class CommandGiftExportNPC extends AbstractHFCommand {
                         builder.append("\n{{quote|");
                         builder.append(TextHelper.getSpeech(npc, "gift." + quality.name().toLowerCase(Locale.ENGLISH)));
                         builder.append("}} \n" +
-                                "{| class=\"wikitable sortable\" id=\"roundedborder\" style=\"width:65%; min-width:500px;\"");
+                                "{| class=\"wikitable\" id=\"roundedborder\" style=\"width:65%; min-width:500px;\"");
                         builder.append("\n!Image\n" +
                                 "!Gift Type\n" +
                                 "!Description\n" +

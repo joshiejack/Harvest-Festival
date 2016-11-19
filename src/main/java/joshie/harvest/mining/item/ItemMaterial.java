@@ -26,8 +26,8 @@ public class ItemMaterial extends ItemHFEnum<ItemMaterial, Material> {
             this.sell = sell;
         }
 
-        public boolean isUpgrade() {
-            return ordinal() >= COPPER.ordinal() && ordinal() <= MYTHIC.ordinal();
+        public boolean isOre() {
+            return ordinal() >= JUNK.ordinal() && ordinal() <= MYTHIC.ordinal();
         }
 
         @Override

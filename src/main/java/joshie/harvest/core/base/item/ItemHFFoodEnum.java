@@ -43,6 +43,10 @@ public abstract class ItemHFFoodEnum<I extends ItemHFFoodEnum, E extends Enum<E>
         }
     }
 
+    public E[] getValues() {
+        return values;
+    }
+
     @Override
     @SuppressWarnings("unchecked")
     public I setUnlocalizedName(String name) {

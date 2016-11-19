@@ -4,8 +4,10 @@ import joshie.harvest.api.cooking.Recipe;
 import joshie.harvest.cooking.item.ItemMeal.Meal;
 import joshie.harvest.core.util.annotations.HFLoader;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.TextFormatting;
 
-import java.io.PrintWriter;
+import javax.annotation.Nonnull;
+import java.io.*;
 
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 
@@ -107,11 +109,11 @@ public class Debug {
         registerOverride("flour", "Flour is a cooking recipe made in the [[Mixer]]. You can also purchase flour from the [[General Store]] for {{gold|50}} which is much cheaper than turning your expensive [[Wheat]] in to flour.");
     }
 
-    public static void save(StringBuilder builder) {
+    public static void save(@Nonnull StringBuilder builder) {
         try {
-            PrintWriter writer = new PrintWriter("export.txt", "UTF-8");
-            writer.write(builder.toString());
-            writer.close();
+            Writer out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("export.rtf"), "UTF-16"));
+            out.write(TextFormatting.getTextWithoutFormattingCodes(builder.toString()));
+            out.close();
         } catch (Exception e) {
             e.printStackTrace();
         }

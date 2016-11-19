@@ -85,16 +85,19 @@ public class RecipeBuilder {
     private void calculateCostsBasedOnEverything(Recipe recipe) {
         long sell = 0L;
         for (IngredientStack stack: recipe.getRequired()) {
-            long internal = stack.getIngredient().getSellValue();
-            if (internal == 0) {
-                for (Ingredient ingredient: stack.getIngredient().getEquivalents()) {
-                    if (internal == 0 || ingredient.getSellValue() < internal) {
-                        internal = ingredient.getSellValue();
+            if (stack.getIngredient() == HFIngredients.BREAD) sell += 50L;
+            else {
+                long internal = stack.getIngredient().getSellValue();
+                if (internal == 0) {
+                    for (Ingredient ingredient : stack.getIngredient().getEquivalents()) {
+                        if (internal == 0 || (ingredient.getSellValue() != 0 && ingredient.getSellValue() < internal)) {
+                            internal = ingredient.getSellValue();
+                        }
                     }
-                }
 
-                sell += internal;
-            } else sell += stack.getIngredient().getSellValue();
+                    sell += internal;
+                } else sell += stack.getIngredient().getSellValue();
+            }
         }
 
         this.cost = (long)(sell * 1.12);

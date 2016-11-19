@@ -52,7 +52,7 @@ public class HFIngredients {
     public static final Ingredient BUTTER = new Ingredient("butter", 1, 0.9F).setEatTime(-8);
     public static final Ingredient BOILED_EGG = new Ingredient("boiled_egg", 4, 1.12F);
     public static final Ingredient SASHIMI = new Ingredient("sashimi", 5, 0.4F);
-    public static final Ingredient SCRAMBLED_EGG = new Ingredient("scrambled_egg", 4, 1.5F);
+    public static final Ingredient SCRAMBLED_EGG = new Ingredient("scrambled_eggs", 4, 1.5F);
     public static final Ingredient COOKIES = new Ingredient("cookies", 7, 0.76F);
     public static final Ingredient KETCHUP = new Ingredient("ketchup", 1, 0.2F).setEatTime(0);
     public static final Ingredient NOODLES = new Ingredient("noodles", 2, 0.9F).setEatTime(24);

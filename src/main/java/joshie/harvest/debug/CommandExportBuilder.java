@@ -79,24 +79,24 @@ public class CommandExportBuilder extends CommandExportHeld {
     protected void export(ItemStack stack, String... parameters) {
         List<String> strings = Lists.newArrayList(parameters);
         StringBuilder builder = new StringBuilder();
-        if (strings.contains("ingredient")) {
+        if (strings.contains("ingredient") || strings.contains("all")) {
             builder.append(getPurchasable(stack));
             builder.append("\n");
         }
 
-        if (strings.contains("gifts")) {
+        if (strings.contains("gifts") || strings.contains("all")) {
             builder.append(CommandGiftExport.getGifts(stack));
             builder.append("\n");
         }
 
-        if (strings.contains("recipes")) {
+        if (strings.contains("recipes") || strings.contains("all")) {
             builder.append(CommandExportUsageInRecipes.getExport(stack));
             builder.append("\n");
         }
 
         String name = getNavboxName(parameters);
         if (name != null) {
-            builder.append(name);
+            builder.append("{{" + name + "}}");
         }
 
         Debug.save(builder);

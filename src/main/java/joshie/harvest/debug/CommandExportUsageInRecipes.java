@@ -70,7 +70,9 @@ public class CommandExportUsageInRecipes extends AbstractHFCommand {
                     for (IngredientStack required : recipe.getRequired()) {
                         Ingredient ingredient = required.getIngredient();
                         builder.append("{{name|");
-                        builder.append(WordUtils.capitalize(ingredient.getUnlocalized().replace("_", " ")));
+                        if (required.isSame(istacks)) {
+                            builder.append(WordUtils.capitalize(exporting.getDisplayName()));
+                        } else builder.append(WordUtils.capitalize(ingredient.getUnlocalized().replace("_", " ")));
                         builder.append("}}");
                     }
 

@@ -21,7 +21,7 @@ public class RecipeHelper {
             if (internalHunger == 0) {
                 float internalSaturation = 0F;
                 for (Ingredient test : ingredient.getEquivalents()) {
-                    if (internalHunger == 0 || test.getHunger() < internalHunger) {
+                    if (internalHunger == 0 || (test.getSellValue() != 0) && test.getHunger() < internalHunger) {
                         internalHunger = test.getHunger();
                         internalSaturation = test.getSaturation();
                     }

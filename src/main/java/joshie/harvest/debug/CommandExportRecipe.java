@@ -123,8 +123,7 @@ public class CommandExportRecipe extends AbstractHFCommand {
                         "}}");
                 String override = INFO_OVERRIDE.containsKey(recipe) ? INFO_OVERRIDE.get(recipe) :
                         recipe.getDisplayName() + " is a cooking recipe made in the [[" + getUtensilName(recipe.getUtensil()) + "]].";
-                builder.append("\n" +
-                        "\n" + override + "\n" +
+                builder.append("\n" + override + "\n" +
                         "\n" +
                         "==Stats==\n" +
                         "{| class=\"wikitable\"\n" +

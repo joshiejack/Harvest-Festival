@@ -19,7 +19,7 @@ import static joshie.harvest.cooking.recipe.RecipeHelper.*;
 public class HFRecipes {
     public static final Recipe NULL_RECIPE = new Recipe(Utensil.COUNTER);
 
-    public static void preInit() {
+    public static void init() {
         addFryingPanRecipes();
         addMixerRecipes();
         addNoUtensilRecipes();
@@ -103,7 +103,7 @@ public class HFRecipes {
         addPotRecipe(Meal.CHOCOLATE_HOT, true, 1.4F, 1.4F, MILK, CHOCOLATE).setOptionalIngredients(SUGAR); //Liara 5000RP
         addPotRecipe(Meal.EGG_BOILED, 1.5F, 1.4F, EGG).setOptionalIngredients(SALT);//Shop
         addPotRecipe(Meal.SPINACH_BOILED, 2F, 1.2F, SPINACH);//Shop
-        addPotRecipe(Meal.POTATO_CANDIED, 1.5F, 2F, SWEET_POTATO).setOptionalIngredients(SUGAR); //Girafi 5000RP
+        addPotRecipe(Meal.POTATO_CANDIED, 3F, 2F, SWEET_POTATO).setOptionalIngredients(SUGAR); //Girafi 5000RP
         addPotRecipe(Meal.DUMPLINGS, 1.1F, 1.1F, CABBAGE, ONION, FLOUR, OIL).setOptionalIngredients(SUGAR); //Thomas 10000RP
         addPotRecipe(Meal.NOODLES, 2F, 1.5F, FLOUR).setOptionalIngredients(SALT); //Cloe 5000RP
         addPotRecipe(Meal.SOUP_RICE, 3F, 1.2F, RICEBALL); //Brandon 5000RP

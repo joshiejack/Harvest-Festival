@@ -2,6 +2,7 @@ package joshie.harvest.cooking.recipe;
 
 import joshie.harvest.animals.HFAnimals;
 import joshie.harvest.animals.item.ItemAnimalProduct.Sizeable;
+import joshie.harvest.api.HFApi;
 import joshie.harvest.api.cooking.Recipe;
 import joshie.harvest.api.cooking.Utensil;
 import joshie.harvest.api.core.Size;
@@ -25,6 +26,19 @@ public class HFRecipes {
         addNoUtensilRecipes();
         addPotRecipes();
         addOvenRecipes();
+
+        //Register the base meals as shippable
+        HFApi.shipping.registerSellable(HFCooking.MEAL.getStackFromEnum(Meal.BUTTER), 100L);
+        HFApi.shipping.registerSellable(HFCooking.MEAL.getStackFromEnum(Meal.EGG_BOILED), 56L);
+        HFApi.shipping.registerSellable(HFCooking.MEAL.getStackFromEnum(Meal.SASHIMI), 11L);
+        HFApi.shipping.registerSellable(HFCooking.MEAL.getStackFromEnum(Meal.EGG_SCRAMBLED), 112L);
+        HFApi.shipping.registerSellable(HFCooking.MEAL.getStackFromEnum(Meal.KETCHUP), 212L);
+        HFApi.shipping.registerSellable(HFCooking.MEAL.getStackFromEnum(Meal.NOODLES), 56L);
+        HFApi.shipping.registerSellable(HFCooking.MEAL.getStackFromEnum(Meal.JAM_GRAPE), 224L);
+        HFApi.shipping.registerSellable(HFCooking.MEAL.getStackFromEnum(Meal.JAM_STRAWBERRY), 44L);
+        HFApi.shipping.registerSellable(HFCooking.MEAL.getStackFromEnum(Meal.JAM_APPLE), 112L);
+        HFApi.shipping.registerSellable(HFCooking.MEAL.getStackFromEnum(Meal.COOKIES), 224L);
+        HFApi.shipping.registerSellable(HFCooking.MEAL.getStackFromEnum(Meal.TEMPURA), 168L);
     }
 
        private static void addFryingPanRecipes() {

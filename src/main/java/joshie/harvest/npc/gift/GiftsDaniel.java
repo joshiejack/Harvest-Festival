@@ -2,6 +2,7 @@ package joshie.harvest.npc.gift;
 
 import joshie.harvest.api.core.Ore;
 import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
 
 import static joshie.harvest.api.npc.gift.GiftCategory.*;
 
@@ -13,7 +14,8 @@ public class GiftsDaniel extends Gifts {
         categoryRegistry.put(MINERAL, Quality.GOOD);
         categoryRegistry.put(MONSTER, Quality.DECENT);
         categoryRegistry.put(MAGIC, Quality.DISLIKE);
-        categoryRegistry.put(FISH, Quality.BAD);
-        stackRegistry.register(Ore.of("fish"), Quality.TERRIBLE);
+        stackRegistry.register(new ItemStack(Items.COOKED_FISH, 1, 0), Quality.BAD);
+        stackRegistry.register(new ItemStack(Items.COOKED_FISH, 1, 1), Quality.BAD);
+        categoryRegistry.put(FISH, Quality.TERRIBLE);
     }
 }

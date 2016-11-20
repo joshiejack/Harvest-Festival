@@ -84,16 +84,16 @@ public class RecipeHelper {
         return addRecipe(meal.getName(), MIXER, hungerModifier, modifier, true, ingredients);
     }
 
-    public static void addMixerRecipe(String mealname, ItemStack result, Ingredient... ingredients) {
-        addRecipe(mealname, result, MIXER, ingredients);
+    public static Recipe addMixerRecipe(String mealname, ItemStack result, Ingredient... ingredients) {
+        return addRecipe(mealname, result, MIXER, ingredients);
     }
     
     public static Recipe addNoUtensilRecipe(Meal meal, float hungerModifier, float modifier, Ingredient... ingredients) {
         return addRecipe(meal.getName(), COUNTER, hungerModifier, modifier, false, ingredients);
     }
 
-    public static void addNoUtensilRecipe(String mealname, ItemStack result, Ingredient... ingredients) {
-        addRecipe(mealname, result, COUNTER, ingredients);
+    public static Recipe addNoUtensilRecipe(String mealname, ItemStack result, Ingredient... ingredients) {
+        return addRecipe(mealname, result, COUNTER, ingredients);
     }
     
     public static Recipe addPotRecipe(Meal meal, boolean isDrink, float hungerModifier, float modifier, Ingredient... ingredients) {
@@ -104,15 +104,15 @@ public class RecipeHelper {
         return addRecipe(meal.getName(), POT, hungerModifier, modifier, false, ingredients);
     }
 
-    public static void addPotRecipe(String mealname, ItemStack result, Ingredient... ingredients) {
-        addRecipe(mealname, result, POT, ingredients);
+    public static Recipe addPotRecipe(String mealname, ItemStack result, Ingredient... ingredients) {
+        return addRecipe(mealname, result, POT, ingredients);
     }
     
     public static Recipe addOvenRecipe(Meal meal, float hungerModifier, float modifier, Ingredient... ingredients) {
         return addRecipe(meal.getName(), OVEN, hungerModifier, modifier, false, ingredients);
     }
 
-    public static void addOvenRecipe(String mealname, ItemStack result, Ingredient... ingredients) {
-        addRecipe(mealname, result, OVEN, ingredients);
+    public static Recipe addOvenRecipe(String mealname, ItemStack result, Ingredient... ingredients) {
+        return addRecipe(mealname, result, OVEN, ingredients);
     }
 }

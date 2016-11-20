@@ -9,6 +9,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Set;
 
 public abstract class QuestFriendship extends Quest {
@@ -46,8 +48,16 @@ public abstract class QuestFriendship extends Quest {
 
     @Override
     public void onQuestCompleted(EntityPlayer player) {
-        ItemStack stack = getRewardStack();
-        if (stack != null) rewardItem(player, stack);
+        List<ItemStack> stacks = getRewardStacks();
+        if (stacks != null) {
+            for (ItemStack stack: stacks) {
+                rewardItem(player, stack);
+            }
+        }
+    }
+
+    protected List<ItemStack> getRewardStacks() {
+        return getRewardStack() != null ? Collections.singletonList(getRewardStack()) : null;
     }
 
     protected ItemStack getRewardStack() { return null; }

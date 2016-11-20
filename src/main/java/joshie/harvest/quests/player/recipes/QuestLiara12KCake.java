@@ -8,14 +8,14 @@ import joshie.harvest.quests.base.QuestRecipe;
 
 import java.util.Set;
 
-@HFQuest("recipe.jam.apple")
-public class QuestJade20KAppleJam extends QuestRecipe {
-    public QuestJade20KAppleJam() {
-        super("jam_apple", HFNPCs.FLOWER_GIRL, 20000);
+@HFQuest("recipe.cookies")
+public class QuestLiara12KCake extends QuestRecipe {
+    public QuestLiara12KCake() {
+        super("cake", HFNPCs.CAFE_OWNER, 12500);
     }
 
     @Override
     public boolean canStartQuest(Set<Quest> active, Set<Quest> finished) {
-        return finished.contains(Quests.JADE_15K);
+        return finished.contains(Quests.LIARA_10K);
     }
 }

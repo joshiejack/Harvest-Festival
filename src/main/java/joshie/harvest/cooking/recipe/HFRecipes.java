@@ -64,7 +64,7 @@ public class HFRecipes {
         addFryingPanRecipe(Meal.BREAD_CURRY, 1.1F, 1F, BREAD, CURRY_POWDER, OIL);
         addFryingPanRecipe(Meal.NOODLES_THICK_FRIED, 1.2F, 1F, NOODLES, OIL).setOptionalIngredients(CABBAGE, ONION, FISH, BAMBOO, CARROT, EGGPLANT);
         addFryingPanRecipe(Meal.TEMPURA, 1.2F, 1F, EGG, FLOUR, OIL).setOptionalIngredients(EGGPLANT, GREEN_PEPPER, CARROT, CABBAGE, ONION);
-        addFryingPanRecipe(Meal.CURRY_DRY, 1.2F, 1F, RICEBALL, CURRY_POWDER).setOptionalIngredients(ONION, GREEN_PEPPER, FISH, POTATO, EGGPLANT, CARROT);
+        addFryingPanRecipe(Meal.CURRY_DRY, 1.2F, 1F, RICEBALL, CURRY_POWDER).setOptionalIngredients(ONION, GREEN_PEPPER, FISH, POTATO, EGGPLANT, CARROT);//Ashlee 20000RP
     }
 
     private static void addMixerRecipes() {
@@ -78,18 +78,18 @@ public class HFRecipes {
         addMixerRecipe(Meal.BUTTER, false, 0.9F, 1.5F, MILK).setOptionalIngredients(SALT); //Daniel 5000RP
         addMixerRecipe(Meal.FISHSTICKS, false, 2F, 1.1F, FISH).setOptionalIngredients(SALT);//Jim 5000RP
         //Added in 0.6+
-        addMixerRecipe(Meal.JUICE_GRAPE, 1.5F, 1.2F, GRAPE);
-        addMixerRecipe(Meal.JUICE_PEACH, 1.5F, 1.2F, PEACH);
-        addMixerRecipe(Meal.JUICE_BANANA, 1.5F, 1.2F, BANANA);
-        addMixerRecipe(Meal.JUICE_ORANGE, 1.5F, 1.2F, ORANGE);
-        addMixerRecipe(Meal.JUICE_APPLE, 1.5F, 1.2F, APPLE);
+        addMixerRecipe(Meal.JUICE_GRAPE, 1.5F, 1.2F, GRAPE); //Ship grapes
+        addMixerRecipe(Meal.JUICE_PEACH, 1.5F, 1.2F, PEACH); //Ship a peach
+        addMixerRecipe(Meal.JUICE_BANANA, 1.5F, 1.2F, BANANA); //Ship a banana
+        addMixerRecipe(Meal.JUICE_ORANGE, 1.5F, 1.2F, ORANGE); //Ship an orange
+        addMixerRecipe(Meal.JUICE_APPLE, 1.5F, 1.2F, APPLE); //Ship an apple
         addMixerRecipe(Meal.JUICE_FRUIT, 1.05F, 0.5F, FRUIT_JUICE_BASE).setOptionalIngredients(FRUITS).setMaximumOptionalIngredients(5);
         addMixerRecipe(Meal.LATTE_FRUIT, 1.04F, 0.6F, FRUIT_JUICE_BASE, MILK).setOptionalIngredients(FRUITS).setMaximumOptionalIngredients(5);
         addMixerRecipe(Meal.JUICE_MIX, 0.5F, 0.5F, FRUIT_JUICE_BASE, VEGETABLE_JUICE_BASE).setOptionalIngredients(FRUITS, VEGETABLE_JUICE_BASE, TURNIP, SALT).setMaximumOptionalIngredients(7);
         addMixerRecipe(Meal.LATTE_MIX, 1.05F, 0.6F, FRUIT_JUICE_BASE, VEGETABLE_JUICE_BASE, MILK).setOptionalIngredients(FRUITS, VEGETABLE_JUICE_BASE, SALT).setMaximumOptionalIngredients(7);
         //Vanilla style
-        addMixerRecipe("beetroot_soup", new ItemStack(Items.BEETROOT_SOUP), BEETROOT, TOMATO, ONION, OIL);
-        addMixerRecipe("flour", HFCooking.INGREDIENTS.getStackFromEnum(ItemIngredients.Ingredient.FLOUR), WHEAT);
+        addMixerRecipe("beetroot_soup", new ItemStack(Items.BEETROOT_SOUP), BEETROOT, TOMATO, ONION, OIL).setDefault();
+        addMixerRecipe("flour", HFCooking.INGREDIENTS.getStackFromEnum(ItemIngredients.Ingredient.FLOUR), WHEAT).setDefault();
     }
 
     private static void addNoUtensilRecipes() {
@@ -134,8 +134,8 @@ public class HFRecipes {
         addPotRecipe(Meal.NOODLES_TEMPURA, 1.1F, 0.9F, TEMPURA, NOODLES);
         addPotRecipe(Meal.RICE_TEMPURA, 1.1F, 0.9F, TEMPURA, RICEBALL);
         //Vanilla style
-        addPotRecipe("rabbit_stew", new ItemStack(Items.RABBIT_STEW), BAKED_POTATO, CARROT, RABBIT_COOKED, MUSHROOM);
-        addPotRecipe("brown_mushroom", new ItemStack(Items.MUSHROOM_STEW), RED_MUSHROOM, BROWN_MUSHROOM);
+        addPotRecipe("rabbit_stew", new ItemStack(Items.RABBIT_STEW), BAKED_POTATO, CARROT, RABBIT_COOKED, MUSHROOM).setDefault();
+        addPotRecipe("brown_mushroom", new ItemStack(Items.MUSHROOM_STEW), RED_MUSHROOM, BROWN_MUSHROOM).setDefault();
     }
 
     private static void addOvenRecipes() {
@@ -150,19 +150,19 @@ public class HFRecipes {
         addOvenRecipe(Meal.CAKE_CHOCOLATE, 1.3F, 1.1F, EGG, FLOUR, BUTTER, CHOCOLATE).setOptionalIngredients(SUGAR, FRUITS); //Yulif RP 100000
         //Added in 0.6+
         addOvenRecipe(Meal.BUN_JAM, 1.1F, 1.2F, MILK, EGG, JAM); //Jade 25000RP
-        addOvenRecipe(Meal.SWEET_POTATOES, 1.4F, 1.3F, EGG, BUTTER, SWEET_POTATO);
-        addOvenRecipe(Meal.CAKE, 1.3F, 1.1F, EGG, FLOUR, BUTTER, CAKE_FRUIT).setOptionalIngredients(ORANGE, PINEAPPLE, STRAWBERRY, PEACH, GRAPE);
+        addOvenRecipe(Meal.SWEET_POTATOES, 1.4F, 1.3F, EGG, BUTTER, SWEET_POTATO);//Shop
+        addOvenRecipe(Meal.CAKE, 1.3F, 1.1F, EGG, FLOUR, BUTTER, CAKE_FRUIT).setOptionalIngredients(ORANGE, PINEAPPLE, STRAWBERRY, PEACH, GRAPE); //Liara 12500RP
         addOvenRecipe(Meal.PIE_APPLE, 1.2F, 1.1F, APPLE, EGG, BUTTER, FLOUR); //Katlin 20000RP
         //Vanilla style
-        addOvenRecipe("bread", new ItemStack(Items.BREAD), FLOUR);
-        addOvenRecipe("baked_potato", new ItemStack(Items.BAKED_POTATO), POTATO);
-        addOvenRecipe("cooked_chicken", new ItemStack(Items.COOKED_CHICKEN), CHICKEN);
-        addOvenRecipe("cooked_beef", new ItemStack(Items.COOKED_BEEF), BEEF);
-        addOvenRecipe("cooked_pork", new ItemStack(Items.COOKED_PORKCHOP), PORK);
-        addOvenRecipe("cooked_mutton", new ItemStack(Items.COOKED_MUTTON), MUTTON);
-        addOvenRecipe("cooked_rabbit", new ItemStack(Items.COOKED_RABBIT), RABBIT);
-        addOvenRecipe("cooked_cod", new ItemStack(Items.COOKED_FISH, 1, 0), COD);
-        addOvenRecipe("cooked_salmon", new ItemStack(Items.COOKED_FISH, 1, 1), SALMON);
-        addOvenRecipe("pumpkin_pie", new ItemStack(Items.PUMPKIN_PIE), PUMPKIN, SUGAR, EGG);
+        addOvenRecipe("bread", new ItemStack(Items.BREAD), FLOUR).setDefault();
+        addOvenRecipe("baked_potato", new ItemStack(Items.BAKED_POTATO), POTATO).setDefault();
+        addOvenRecipe("cooked_chicken", new ItemStack(Items.COOKED_CHICKEN), CHICKEN).setDefault();
+        addOvenRecipe("cooked_beef", new ItemStack(Items.COOKED_BEEF), BEEF).setDefault();
+        addOvenRecipe("cooked_pork", new ItemStack(Items.COOKED_PORKCHOP), PORK).setDefault();
+        addOvenRecipe("cooked_mutton", new ItemStack(Items.COOKED_MUTTON), MUTTON).setDefault();
+        addOvenRecipe("cooked_rabbit", new ItemStack(Items.COOKED_RABBIT), RABBIT).setDefault();
+        addOvenRecipe("cooked_cod", new ItemStack(Items.COOKED_FISH, 1, 0), COD).setDefault();
+        addOvenRecipe("cooked_salmon", new ItemStack(Items.COOKED_FISH, 1, 1), SALMON).setDefault();
+        addOvenRecipe("pumpkin_pie", new ItemStack(Items.PUMPKIN_PIE), PUMPKIN, SUGAR, EGG).setDefault();
     }
 }

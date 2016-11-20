@@ -7,14 +7,19 @@ public class Quests {
     public static final Quest ABI_MEET = QuestHelper.getQuest("meeting.abi");
     public static final Quest ASHLEE_MEET = QuestHelper.getQuest("tutorial.chicken");
     public static final Quest ASHLEE_5K = QuestHelper.getQuest("recipe.corn.baked");
+    public static final Quest ASHLEE_10K = QuestHelper.getQuest("recipe.popcorn");
+    public static final Quest ASHLEE_15K = QuestHelper.getQuest("friendship.ashlee.notes");
     public static final Quest BRANDON_MEET = QuestHelper.getQuest("tutorial.mining");
     public static final Quest BRANDON_5K = QuestHelper.getQuest("recipe.soup.rice");
     public static final Quest CANDICE_MEET = QuestHelper.getQuest("meeting.candice");
     public static final Quest CANDICE_5K = QuestHelper.getQuest("recipe.milk.hot");
+    public static final Quest CANDICE_10K = QuestHelper.getQuest("recipe.icecream");
+    public static final Quest CANDICE_15K = QuestHelper.getQuest("friendship.candice.notes");
     public static final Quest CLOE_5K = QuestHelper.getQuest("recipe.noodles");
     public static final Quest DANIERU_MEET = QuestHelper.getQuest("tutorial.upgrading");
     public static final Quest DANIERU_5K = QuestHelper.getQuest("recipe.butter");
     public static final Quest DANIERU_10K = QuestHelper.getQuest("recipe.egg.scrambled");
+    public static final Quest DANIERU_15K = QuestHelper.getQuest("friendship.danieru.notes");
     public static final Quest GODDESS_MEET = QuestHelper.getQuest("tutorial.intro");
     public static final Quest GODDESS_5K = QuestHelper.getQuest("recipe.jam.strawberry");
     public static final Quest GODDESS_10K = QuestHelper.getQuest("recipe.milk.strawberry");
@@ -40,12 +45,15 @@ public class Quests {
     public static final Quest LIARA_MEET = QuestHelper.getQuest("tutorial.cafe");
     public static final Quest LIARA_5K = QuestHelper.getQuest("recipe.chocolate.hot");
     public static final Quest LIARA_7K = QuestHelper.getQuest("recipe.cookies");
+    public static final Quest LIARA_10K = QuestHelper.getQuest("recipe.cookies.chocolate");
     public static final Quest TIBERIUS_5K = QuestHelper.getQuest("recipe.dinnerroll");
     public static final Quest TIBERIUS_10K = QuestHelper.getQuest("recipe.doughnut");
+    public static final Quest TIBERIUS_15K = QuestHelper.getQuest("friendship.tiberius.dark");
     public static final Quest YULIF_MEET = QuestHelper.getQuest("tutorial.carpenter");
     public static final Quest TOMAS_5K = QuestHelper.getQuest("recipe.latte.vegetable");
     public static final Quest YULIF_5K = QuestHelper.getQuest("recipe.juice.pineapple");
     public static final Quest YULIF_10K = QuestHelper.getQuest("recipe.cake.chocolate");
+    public static final Quest YULIF_15K = QuestHelper.getQuest("friendship.yulif.sprinkler");
 
     //Buildings
     public static final Quest BUILDING_CAFE = QuestHelper.getQuest("building.cafe");

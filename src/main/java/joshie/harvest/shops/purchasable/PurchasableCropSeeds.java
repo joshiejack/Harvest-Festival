@@ -60,7 +60,8 @@ public class PurchasableCropSeeds implements IPurchasable {
 
     @Override
     public void onPurchased(EntityPlayer player) {
-        SpawnItemHelper.addToPlayerInventory(player, crop.getSeedStack(1).copy());
+        ItemStack seeds = crop.getSeedStack(1);
+        SpawnItemHelper.addToPlayerInventory(player, seeds.copy());
     }
 
     @Override

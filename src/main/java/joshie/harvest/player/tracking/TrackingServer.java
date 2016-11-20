@@ -99,6 +99,13 @@ public class TrackingServer extends Tracking {
         recipes = NBTHelper.readResourceSet(nbt, "Recipes");
         shipped = NBTHelper.readHashSet(StackSold.class, nbt.getTagList("Shipped", 10));
         notes = NBTHelper.readResourceSet(nbt, "Notes");
+
+        //Learn all the default recipes
+        for (Recipe recipe: Recipe.REGISTRY) {
+            if (recipe.isDefault() && !recipes.contains(recipe.getRegistryName())) {
+                recipes.add(recipe.getRegistryName());
+            }
+        }
     }
 
     public NBTTagCompound writeToNBT(NBTTagCompound nbt) {

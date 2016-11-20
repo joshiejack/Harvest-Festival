@@ -150,15 +150,28 @@ public class HFShops {
         CAFE.addPurchasable(new PurchasableRecipe(SUMMER, SUNDAY, new ResourceLocation(MODID, "cornflakes")));
         CAFE.addPurchasable(new PurchasableRecipe(SUMMER, MONDAY, new ResourceLocation(MODID, "ketchup")));
         CAFE.addPurchasable(new PurchasableRecipe(SUMMER, TUESDAY, new ResourceLocation(MODID, "stew_pumpkin")));
+        CAFE.addPurchasable(new PurchasableRecipe(SUMMER, WEDNESDAY, new ResourceLocation(MODID, "rice_fried")));
         CAFE.addPurchasable(new PurchasableRecipe(SUMMER, THURSDAY, new ResourceLocation(MODID, "doria")));
+        CAFE.addPurchasable(new PurchasableRecipe(SUMMER, FRIDAY, new ResourceLocation(MODID, "juice_fruit")));
+        CAFE.addPurchasable(new PurchasableRecipe(AUTUMN, MONDAY, new ResourceLocation(MODID, "sweet_potatoes")));
         CAFE.addPurchasable(new PurchasableRecipe(AUTUMN, TUESDAY, new ResourceLocation(MODID, "eggplant_happy")));
         CAFE.addPurchasable(new PurchasableRecipe(AUTUMN, WEDNESDAY, new ResourceLocation(MODID, "sandwich")));
+        CAFE.addPurchasable(new PurchasableRecipe(AUTUMN, THURSDAY, new ResourceLocation(MODID, "sandwich_fruit")));
+        CAFE.addPurchasable(new PurchasableRecipe(AUTUMN, FRIDAY, new ResourceLocation(MODID, "latte_fruit")));
         CAFE.addPurchasable(new PurchasableRecipe(AUTUMN, SATURDAY, new ResourceLocation(MODID, "spinach_boiled")));
         CAFE.addPurchasable(new PurchasableRecipe(AUTUMN, SUNDAY, new ResourceLocation(MODID, "riceballs_toasted")));
         CAFE.addPurchasable(new PurchasableRecipe(WINTER, MONDAY, new ResourceLocation(MODID, "omelet")));
         CAFE.addPurchasable(new PurchasableRecipe(WINTER, TUESDAY, new ResourceLocation(MODID, "egg_boiled")));
         CAFE.addPurchasable(new PurchasableRecipe(WINTER, WEDNESDAY, new ResourceLocation(MODID, "egg_overrice")));
+        CAFE.addPurchasable(new PurchasableRecipe(WINTER, THURSDAY, new ResourceLocation(MODID, "juice_mix")));
         CAFE.addPurchasable(new PurchasableRecipe(WINTER, FRIDAY, new ResourceLocation(MODID, "pancake")));
+        CAFE.addPurchasable(new PurchasableRecipe(WINTER, SATURDAY, new ResourceLocation(MODID, "rice_matsutake")));
+        CAFE.addPurchasable(new PurchasableRecipe(WINTER, SUNDAY, new ResourceLocation(MODID, "rice_mushroom")));
+        CAFE.addPurchasable(new PurchasableRecipeShipped(new ResourceLocation(MODID, "juice_grape"), HFCrops.GRAPE));
+        CAFE.addPurchasable(new PurchasableRecipeShipped(new ResourceLocation(MODID, "juice_apple"), HFCrops.APPLE));
+        CAFE.addPurchasable(new PurchasableRecipeShipped(new ResourceLocation(MODID, "juice_orange"), HFCrops.ORANGE));
+        CAFE.addPurchasable(new PurchasableRecipeShipped(new ResourceLocation(MODID, "juice_banana"), HFCrops.BANANA));
+        CAFE.addPurchasable(new PurchasableRecipeShipped(new ResourceLocation(MODID, "juice_peach"), HFCrops.PEACH));
 
         CAFE.addOpening(MONDAY, 9500, 17000).addOpening(TUESDAY, 9500, 17000).addOpening(WEDNESDAY, 9500, 17000).addOpening(THURSDAY, 9500, 17000);
         CAFE.addOpening(FRIDAY, 9500, 17000).addOpening(SATURDAY, 9500, 17000).addOpening(SUNDAY, 9500, 17000);

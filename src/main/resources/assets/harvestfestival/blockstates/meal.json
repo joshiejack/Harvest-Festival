@@ -33,7 +33,7 @@
     "fishsticks": [{ "textures": { "layer0": "harvestfestival:items/meals/fishsticks" }}],
     "fries_french": [{ "textures": { "layer0": "harvestfestival:items/meals/fries_french" }}],
     "juice_pineapple": [{ "textures": { "layer0": "harvestfestival:items/meals/juice_pineapple" }}],
-    "juice_tomato": [{ "textures": { "layer0": "harvestfestival:items/juice_tomato" }}],
+    "juice_tomato": [{ "textures": { "layer0": "harvestfestival:items/meals/juice_tomato" }}],
     "juice_vegetable": [{ "textures": { "layer0": "harvestfestival:items/meals/juice_vegetable" }}],
     "ketchup": [{ "textures": { "layer0": "harvestfestival:items/meals/ketchup" }}],
     "latte_vegetable": [{ "textures": { "layer0": "harvestfestival:items/meals/latte_vegetable" }}],

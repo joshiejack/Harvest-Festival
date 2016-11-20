@@ -1021,11 +1021,11 @@ harvestfestival.npc.brandon.greeting11=Be careful there's some dangerous animals
 harvestfestival.npc.brandon.greeting12=I've seriously been considering leaving entirely, noone seems to like me.
 harvestfestival.npc.brandon.marriage.reject=Do you really think I would marry someone like you?
 harvestfestival.npc.brandon.marriage.accept=I was hoping for someone better, but I'll marry you.
-harvestfestival.npc.brandon.gift.awesome=I couldn't thank you enough. I have been looking for a new pick for ages!
-harvestfestival.npc.brandon.gift.good=Mining gear is always something great to receive.
+harvestfestival.npc.brandon.gift.awesome=I couldn't thank you enough. I have been looking for these for ages!
+harvestfestival.npc.brandon.gift.good=This stuff is always something great to receive.
 harvestfestival.npc.brandon.gift.decent=Thanks, that was nice.
 harvestfestival.npc.brandon.gift.dislike=I guess that was nice.
-harvestfestival.npc.brandon.gift.bad=Did you not know? I hate nature.
+harvestfestival.npc.brandon.gift.bad=Did you not know? I hate this stuff.
 harvestfestival.npc.brandon.gift.terrible=Get away from me now. How dare you insult me with such a gift.
 
 #Tomas
@@ -1402,6 +1402,7 @@ harvestfestival.quest.recipe.corn.baked.text=You've really made me comfortable, 
 harvestfestival.quest.recipe.butter.text=I'll let you in on a little secret on what makes my tools so awesome, I coat them in a little Butter.
 harvestfestival.quest.recipe.potato.candied.text=Why sir, it has been just splending getting to know you. I am happy to share with you a family recipe.
 harvestfestival.quest.recipe.cake.chocolate.text=It's been great getting to know, really has. Now this one is a sure winner, have a slice of cake.
+harvestfestival.quest.recipe.cookies.text=Cookies are a great source of happiness, so I'd like to let you know how to make some.
 harvestfestival.quest.recipe.cookies.chocolate.text=You know what makes cookies even better? A little bit of chocolate.
 harvestfestival.quest.recipe.dinnerroll.text=It's been a real pleasure getting to know. I've got a recipe for you that Fenn just loves.
 harvestfestival.quest.recipe.doughnut.text=Without a doubt you are now one of my favourite people, I've another recipe, this time it's my favourite.
@@ -1430,7 +1431,13 @@ harvestfestival.quest.recipe.jam.strawberry.text=You've really buttered me up my
 harvestfestival.quest.recipe.milk.strawberry.text=My dear you've been ever so kind, I have to treat you to the drink of the gods!
 harvestfestival.quest.recipe.toast.text=Yulif hasn't really taught me how to cook much yet. I do know how to make some toast though.
 harvestfestival.quest.recipe.latte.vegetable.text=I need to get rid of this unholy object fast. Please take it.
-harvestfestival.quest.recipe.jam.apple.text=Yulif may not approve, but you know what goes perfectly with toast? Some jam of course!
+harvestfestival.quest.recipe.apple.text=Yulif may not approve, but you know what goes perfectly with toast? Double jam of course! Or perhaps some marmalade?
+harvestfestival.quest.recipe.curry.dry.text=Mr fox is feeling rather dry and appreciates your love, so the curry is on me tonight!
+harvestfestival.quest.recipe.cake.text=Thought I'd step my baking game up, been working really hard on this recipe, so I hope you like it.
+harvestfestival.quest.recipe.latte.mix.text=Every day you get more and more stunning it really is amazing, Please just come over here and give me a peck! Oh right, I found this in my drawer, I thought you should take it. It's my family recipe.
+harvestfestival.quest.recipe.souffle.apple.text=Getting to know you even more has been great again. I found this recipe hanging around, not sure I like it, but you can have it.
+harvestfestival.quest.recipe.bread.raisin.text=The dark arts have been keeping me busy, I have an experiment I am working I can't wait to show. In the mean time take this evil recipe.
+harvestfestival.quest.recipe.mayonnaise.text=You know that I love eggs as much as I like you? Well this should help you get much greater buck out of your eggs.
 
 ## Friendship Quests
 harvestfestival.quest.friendship.katlin.kitchen.text=You have been really kind to me. I just don't know how to feel. You know, we recently lost our supplier for the kitchen, maybe you could take over the job? Just come and visit me on a Friday when the cafe isn't open, early in the morning or in the evening, then you can help me restock the kitchen. We're looking for things like meat, beetroot soup and cake.
@@ -1441,6 +1448,8 @@ harvestfestival.quest.friendship.goddess.strawberry.text=My dear things have bee
 harvestfestival.quest.friendship.jade.flowers.text=Oh hello %4$s it's nice to see you, I have some wonderful news, I've decided that I want to open a flower shop! But I'm having trouble getting stock! That's where you come in, I'll happily buy flowers from you now, just show me some and I'll pay you whatever I can afford that day.
 harvestfestival.quest.friendship.johan.vanilla.text=Why good day to you! It has been such a pleasure getting to know you. For being such a wonderful human I'm happy to start buying some special animal goods from you. However, I can only afford to purchase things from 6am to 10am. So please do remember if you can.
 harvestfestival.quest.friendship.danieru.notes.text=Becoming friends has been great, I've got some secrets to share with you about the rumoured cursed tools. Take this, I'll put it in your notebook for you.
+harvestfestival.quest.friendship.ashlee.notes.text=You've treated me like noone else has, despite my craziness. To thank you I'd like you to have these secret notes I've been working on.
+harvestfestival.quest.friendship.candice.notes.text=You just couldn't be more beautiful today. You know I'm the master of flirting right? Well I have some tips I'd love to share with such a gorgeous person like yourself!
 
 ## Meeting Quests
 harvestfestival.quest.meeting.jacob.text=Nice to meet you %4$s, the name's jacob. From what I've heard you're interested in fishing, you know, I've just recently bought myself a new rod, I'd like you to have my old one here, please take care of her. I run this tackle shop, if you need anything please do pop by.

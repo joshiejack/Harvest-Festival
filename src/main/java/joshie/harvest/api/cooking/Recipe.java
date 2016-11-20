@@ -24,6 +24,7 @@ public class Recipe extends IForgeRegistryEntry.Impl<Recipe> implements Meal {
     private EnumAction action;
     private int eatTimer;
     private int maximumOptional;
+    private boolean isLearntByDefault;
 
     public Recipe(Utensil utensil, IngredientStack... required) {
         this.utensil = utensil;
@@ -31,6 +32,10 @@ public class Recipe extends IForgeRegistryEntry.Impl<Recipe> implements Meal {
         this.eatTimer = 24;
         this.maximumOptional = 20;
         Collections.addAll(this.required, required);
+    }
+
+    public void setDefault() {
+        isLearntByDefault = true;
     }
 
     public Recipe setFoodStats(int hunger, float saturation) {
@@ -84,6 +89,10 @@ public class Recipe extends IForgeRegistryEntry.Impl<Recipe> implements Meal {
 
     public String getDisplayName() {
         return I18n.translateToLocal(getRegistryName().getResourceDomain() + ".meal." + getRegistryName().getResourcePath().replace("_", "."));
+    }
+
+    public boolean isDefault() {
+        return isLearntByDefault;
     }
 
     public List<IngredientStack> getRequired() {

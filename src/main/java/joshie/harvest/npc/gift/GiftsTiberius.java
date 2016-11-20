@@ -2,6 +2,7 @@ package joshie.harvest.npc.gift;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.npc.gift.IGiftRegistry;
+import joshie.harvest.cooking.item.ItemMeal.Meal;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemPotion;
 import net.minecraft.item.ItemStack;
@@ -11,6 +12,7 @@ import net.minecraft.potion.PotionUtils;
 import static joshie.harvest.api.npc.gift.GiftCategory.*;
 import static joshie.harvest.api.npc.gift.IGiftHandler.Quality.AWESOME;
 import static joshie.harvest.api.npc.gift.IGiftHandler.Quality.GOOD;
+import static joshie.harvest.cooking.HFCooking.MEAL;
 
 @SuppressWarnings("unused")
 public class GiftsTiberius extends Gifts {
@@ -20,6 +22,7 @@ public class GiftsTiberius extends Gifts {
         categoryRegistry.put(MONSTER, Quality.GOOD);
         categoryRegistry.put(SWEET, Quality.BAD);
         categoryRegistry.put(FLOWER, Quality.TERRIBLE);
+        stackRegistry.register(MEAL.getStackFromEnum(Meal.DOUGHNUT), Quality.GOOD);
     }
 
 

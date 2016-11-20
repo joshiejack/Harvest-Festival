@@ -15,7 +15,7 @@ public class GiftsJim extends Gifts {
         categoryRegistry.put(JUNK, Quality.GOOD);
         categoryRegistry.put(ANIMAL, Quality.GOOD);
         categoryRegistry.put(MAGIC, Quality.DISLIKE);
-        stackRegistry.register(Ore.of("fish"), Quality.BAD);
+        categoryRegistry.put(FISH, Quality.BAD);
         categoryRegistry.put(GEM, Quality.TERRIBLE);
     }
 }

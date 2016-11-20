@@ -80,6 +80,7 @@
 * Added a few more quests mostly related to friendship with the npcs, that give you things like secret shops or secret notes!
 * Johan will die every day around 6pm, as he travels back home to trade
 * Throwing an item in to the goddess pond will now gift her that item, and summon her (instead of just adding RP) (So be careful)
+* Gifting NPCS gifts they don't like won't make them hate you so much
 
 ###Shops
 * New Shop GUI

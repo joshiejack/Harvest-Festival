@@ -24,7 +24,7 @@ public class GiftsJamie extends Gifts {
     public Quality getQuality(ItemStack stack) {
         long sell = HFApi.shipping.getSellValue(stack);
         Quality quality = super.getQuality(stack);
-        if (quality == GOOD) {
+        if (quality == Quality.GOOD || quality == Quality.AWESOME) {
             return quality;
         } else {
             if (sell <= 1) return Quality.TERRIBLE;

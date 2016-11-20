@@ -1,6 +1,7 @@
 package joshie.harvest.npc.gui;
 
 import joshie.harvest.api.HFApi;
+import joshie.harvest.api.player.RelationshipType;
 import joshie.harvest.core.base.gui.GuiBase;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.network.PacketHandler;
@@ -106,7 +107,7 @@ public abstract class GuiNPCBase extends GuiBase {
     private void drawHeart(int value) {
         GlStateManager.color(1F, 1F, 1F, 1F);
         GlStateManager.disableLighting();
-        int xPos = (int) (((double) value / HFNPCs.MAX_FRIENDSHIP) * 7);
+        int xPos = (int) (((double) value / RelationshipType.NPC.getMaximumRP()) * 7);
         drawTexturedModalRect(240, 130, 0, 0, 25, 25);
         drawTexturedModalRect(240, 130, 25 + (25 * xPos), 0, 25, 25);
     }

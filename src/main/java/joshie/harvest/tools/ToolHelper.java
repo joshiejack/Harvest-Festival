@@ -1,13 +1,12 @@
 package joshie.harvest.tools;
 
 import joshie.harvest.animals.HFAnimals;
+import joshie.harvest.animals.item.ItemAnimalProduct.Sizeable;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.core.ITiered;
 import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.core.helpers.EntityHelper;
-import joshie.harvest.animals.item.ItemAnimalProduct.Sizeable;
 import joshie.harvest.core.util.annotations.HFEvents;
-import joshie.harvest.npc.HFNPCs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemStack;
@@ -23,7 +22,6 @@ import static joshie.harvest.animals.item.ItemAnimalTool.Tool.BRUSH;
 import static joshie.harvest.animals.item.ItemAnimalTool.Tool.MILKER;
 import static joshie.harvest.calendar.HFCalendar.TICKS_PER_DAY;
 import static joshie.harvest.cooking.item.ItemIngredients.Ingredient.OIL;
-import static joshie.harvest.npc.item.ItemNPCTool.NPCTool.BLUE_FEATHER;
 import static joshie.harvest.tools.HFTools.EXHAUSTION;
 import static joshie.harvest.tools.HFTools.FATIGUE;
 
@@ -36,8 +34,10 @@ public class ToolHelper {
         return HFAnimals.TOOLS.getEnumFromStack(stack) == BRUSH;
     }
 
+    //TODO: Reenable in 1.0 when I readd marriage
     public static boolean isBlueFeather(ItemStack stack) {
-        return HFNPCs.TOOLS.getEnumFromStack(stack) == BLUE_FEATHER;
+        return false;
+        //return HFNPCs.TOOLS.getEnumFromStack(stack) == BLUE_FEATHER;
     }
 
     public static boolean isEgg(ItemStack stack) {

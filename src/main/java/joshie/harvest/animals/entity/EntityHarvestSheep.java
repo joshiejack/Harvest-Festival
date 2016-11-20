@@ -7,6 +7,7 @@ import joshie.harvest.api.animals.AnimalAction;
 import joshie.harvest.api.animals.AnimalStats;
 import joshie.harvest.api.animals.IAnimalHandler.AnimalAI;
 import joshie.harvest.api.animals.IAnimalHandler.AnimalType;
+import joshie.harvest.api.player.RelationshipType;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.player.relationships.RelationshipData;
@@ -86,7 +87,7 @@ public class EntityHarvestSheep extends EntitySheep {
             UUID uuid = EntityHelper.getEntityUUID(this);
             if (data.hasTalked(uuid)) return false;
             else {
-                HFTrackers.getPlayerTrackerFromPlayer(player).getRelationships().talkTo(player, EntityHelper.getEntityUUID(this));
+                HFTrackers.getPlayerTrackerFromPlayer(player).getRelationships().talkTo(RelationshipType.ANIMAL, player, EntityHelper.getEntityUUID(this));
                 SoundEvent s = getAmbientSound();
                 if (s != null) {
                     playSound(s, 2F, getSoundPitch());
@@ -108,7 +109,7 @@ public class EntityHarvestSheep extends EntitySheep {
                 if (!worldObj.isRemote) {
                     setSheared(true);
                     stats.setProduced(stats.getProductsPerDay());
-                    HFApi.player.getRelationsForPlayer(player).affectRelationship(EntityHelper.getEntityUUID(this), stats.getType().getRelationshipBonus(AnimalAction.CLAIM_PRODUCT));
+                    HFApi.player.getRelationsForPlayer(player).affectRelationship(RelationshipType.ANIMAL, EntityHelper.getEntityUUID(this), stats.getType().getRelationshipBonus(AnimalAction.CLAIM_PRODUCT));
                 }
 
                 playSound(SoundEvents.ENTITY_SHEEP_SHEAR, 1.0F, 1.0F);

@@ -12,6 +12,7 @@
 * Cows and sheep will now eat vanilla tall grass
 * Cleaning will now stop working when the animal is fully cleaned
 * Feeding animals incorrect treats or hitting them will cause a relationship penalty
+* Changed relationship maximum to 27,000RP
 
 ###Buildings
 * Optimised building save format, should be smaller size
@@ -81,6 +82,8 @@
 * Johan will die every day around 6pm, as he travels back home to trade
 * Throwing an item in to the goddess pond will now gift her that item, and summon her (instead of just adding RP) (So be careful)
 * Gifting NPCS gifts they don't like won't make them hate you so much
+* Changed relationship maximum to 50,000RP
+* Disabled the blue feather until i do marriage properly, there's no benefit and it didn't really even work properly
 
 ###Shops
 * New Shop GUI

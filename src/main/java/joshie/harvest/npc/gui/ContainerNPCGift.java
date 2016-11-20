@@ -8,7 +8,6 @@ import joshie.harvest.npc.NPCRegistry;
 import joshie.harvest.npc.entity.EntityNPC;
 import joshie.harvest.player.PlayerTrackerServer;
 import joshie.harvest.player.relationships.RelationshipDataServer;
-import joshie.harvest.tools.ToolHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
@@ -27,9 +26,11 @@ public class ContainerNPCGift extends ContainerNPCChat {
 
                 NPC theNpc = npc.getNPC();
                 RelationshipDataServer relationships = HFTrackers.<PlayerTrackerServer>getPlayerTrackerFromPlayer(player).getRelationships();
-                if (ToolHelper.isBlueFeather(gift)) {
+
+                //TODO: Reenable in 1.0 when I readd marriage
+                /*if (ToolHelper.isBlueFeather(gift)) {
                     relationships.propose(player, theNpc.getUUID());
-                } else {
+                } else { */
                     int points = theNpc.getGiftValue(gift).getRelationPoints();
                     if (!relationships.hasGivenBirthdayGift(theNpc.getUUID())) {
                         CalendarDate today = HFApi.calendar.getDate(player.worldObj);
@@ -40,7 +41,7 @@ public class ContainerNPCGift extends ContainerNPCChat {
                     }
 
                     relationships.gift(player, theNpc.getUUID(), points);
-                }
+                //}
                 if (gift != null) {
                     gift.splitStack(1);
                     if (gift.stackSize <= 0) {

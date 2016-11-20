@@ -6,6 +6,7 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.AnimalStats;
 import joshie.harvest.api.animals.IAnimalHandler.AnimalAI;
 import joshie.harvest.api.animals.IAnimalHandler.AnimalType;
+import joshie.harvest.api.player.RelationshipType;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.player.relationships.RelationshipData;
@@ -79,7 +80,7 @@ public class EntityHarvestCow extends EntityCow {
             UUID uuid = EntityHelper.getEntityUUID(this);
             if (data.hasTalked(uuid)) return false;
             else {
-                HFTrackers.getPlayerTrackerFromPlayer(player).getRelationships().talkTo(player, EntityHelper.getEntityUUID(this));
+                HFTrackers.getPlayerTrackerFromPlayer(player).getRelationships().talkTo(RelationshipType.ANIMAL, player, EntityHelper.getEntityUUID(this));
                 SoundEvent s = getAmbientSound();
                 if (s != null) {
                     playSound(s, 2F, getSoundPitch());

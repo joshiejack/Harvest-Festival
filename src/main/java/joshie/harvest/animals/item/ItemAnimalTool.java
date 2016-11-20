@@ -5,6 +5,7 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.AnimalAction;
 import joshie.harvest.api.animals.AnimalStats;
 import joshie.harvest.api.animals.AnimalTest;
+import joshie.harvest.api.player.RelationshipType;
 import joshie.harvest.core.base.item.ItemHFEnum;
 import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.core.lib.CreativeSort;
@@ -90,7 +91,7 @@ public class ItemAnimalTool extends ItemHFEnum<ItemAnimalTool, Tool> {
                         held.getSubCompound("Data", true).setInteger("Damage", damage);
                     }
 
-                    HFApi.player.getRelationsForPlayer(player).affectRelationship(EntityHelper.getEntityUUID(stats.getAnimal()), stats.getType().getRelationshipBonus(AnimalAction.CLAIM_PRODUCT));
+                    HFApi.player.getRelationsForPlayer(player).affectRelationship(RelationshipType.ANIMAL, EntityHelper.getEntityUUID(stats.getAnimal()), stats.getType().getRelationshipBonus(AnimalAction.CLAIM_PRODUCT));
                     ToolHelper.consumeHunger(player, 4F);
                 }
             }

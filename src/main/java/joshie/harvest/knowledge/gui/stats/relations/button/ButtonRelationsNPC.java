@@ -1,9 +1,10 @@
 package joshie.harvest.knowledge.gui.stats.relations.button;
 
+import joshie.harvest.api.player.RelationshipType;
 import joshie.harvest.core.HFTrackers;
+import joshie.harvest.core.helpers.RenderHelper;
 import joshie.harvest.knowledge.gui.stats.GuiStats;
 import joshie.harvest.knowledge.gui.stats.button.ButtonBook;
-import joshie.harvest.core.helpers.RenderHelper;
 import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.npc.NPC;
 import joshie.harvest.npc.item.ItemNPCTool.NPCTool;
@@ -13,8 +14,6 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
-
-import static joshie.harvest.npc.HFNPCs.MAX_FRIENDSHIP;
 
 public class ButtonRelationsNPC extends ButtonBook {
     private static final ResourceLocation HEARTS = new ResourceLocation("textures/gui/icons.png");
@@ -55,7 +54,7 @@ public class ButtonRelationsNPC extends ButtonBook {
             GlStateManager.color(1.0F, 1.0F, 1.0F);
 
             //Draw hearts
-            int hearts = (int)((((double)relationship)/MAX_FRIENDSHIP) * 10);
+            int hearts = (int)((((double)relationship)/ RelationshipType.NPC.getMaximumRP()) * 10);
             mc.getTextureManager().bindTexture(HEARTS);
             for (int i = 0; i < 10; i++) {
                 drawTexturedModalRect(xPosition + 15 + 10 * i, yPosition + 6, 16, 0, 9, 9);

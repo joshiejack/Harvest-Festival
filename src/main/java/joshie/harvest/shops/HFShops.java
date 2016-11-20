@@ -53,7 +53,6 @@ import static joshie.harvest.cooking.item.ItemUtensil.Utensil.KNIFE;
 import static joshie.harvest.core.helpers.ConfigHelper.getBoolean;
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 import static joshie.harvest.fishing.item.ItemFish.MEDIUM_FISH;
-import static joshie.harvest.npc.item.ItemNPCTool.NPCTool.BLUE_FEATHER;
 
 @HFLoader
 public class HFShops {
@@ -290,7 +289,8 @@ public class HFShops {
         SUPERMARKET.addPurchasable(1000, HFTools.AXE.getStack(ToolTier.BASIC), 1);
         SUPERMARKET.addPurchasable(1000, HFTools.HAMMER.getStack(ToolTier.BASIC), 1);
 
-        SUPERMARKET.addPurchasable(new PurchasableBlueFeather(1000, HFNPCs.TOOLS.getStackFromEnum(BLUE_FEATHER)));
+        //TODO: Reenable in 1.0 when I readd marriage
+        //SUPERMARKET.addPurchasable(new PurchasableBlueFeather(1000, HFNPCs.TOOLS.getStackFromEnum(BLUE_FEATHER)));
         SUPERMARKET.addPurchasable(RICEBALL.getCost(), HFCooking.INGREDIENTS.getStackFromEnum(RICEBALL));
         SUPERMARKET.addPurchasable(OIL.getCost(), HFCooking.INGREDIENTS.getStackFromEnum(OIL));
         SUPERMARKET.addPurchasable(FLOUR.getCost(), HFCooking.INGREDIENTS.getStackFromEnum(FLOUR));

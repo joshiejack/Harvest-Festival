@@ -8,8 +8,8 @@ import joshie.harvest.api.animals.AnimalAction;
 import joshie.harvest.api.animals.AnimalStats;
 import joshie.harvest.api.animals.AnimalTest;
 import joshie.harvest.api.animals.IAnimalType;
+import joshie.harvest.api.player.RelationshipType;
 import joshie.harvest.core.helpers.EntityHelper;
-import joshie.harvest.npc.HFNPCs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
@@ -93,9 +93,9 @@ public class AnimalStatsHF implements AnimalStats<NBTTagCompound> {
             return Math.max(1, 45 - daysNotFed * 3);
         }
 
-        //Gets the adjusted relationship, 0-65k
+        //Gets the adjusted relationship, 0-35k
         int relationship = HFApi.player.getRelationsForPlayer(owner).getRelationship(EntityHelper.getEntityUUID(animal));
-        double chance = (relationship / (double) HFNPCs.MAX_FRIENDSHIP) * 200;
+        double chance = (relationship / (double) RelationshipType.ANIMAL.getMaximumRP()) * 200;
         chance += healthiness;
         if (chance <= 1) {
             chance = 1D;
@@ -335,7 +335,7 @@ public class AnimalStatsHF implements AnimalStats<NBTTagCompound> {
     @Override
     public void affectRelationship(EntityPlayer player, int amount) {
         if (player != null && amount != 0) {
-            HFApi.player.getRelationsForPlayer(player).affectRelationship(EntityHelper.getEntityUUID(animal), amount);
+            HFApi.player.getRelationsForPlayer(player).affectRelationship(RelationshipType.ANIMAL, EntityHelper.getEntityUUID(animal), amount);
             if (amount < 0) {
                 try {
                     ReflectionHelper.findMethod(EntityLivingBase.class, null, new String[]{"playHurtSound"}, DamageSource.class).invoke(animal, DamageSource.starve);

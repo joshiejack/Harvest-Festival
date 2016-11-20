@@ -3,6 +3,7 @@ package joshie.harvest.quests.town.friendship;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.CalendarDate;
 import joshie.harvest.api.npc.INPC;
+import joshie.harvest.api.player.RelationshipType;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.calendar.CalendarHelper;
 import joshie.harvest.core.helpers.InventoryHelper;
@@ -78,8 +79,8 @@ public class QuestWooly extends QuestWeekly {
     @Override
     public void onQuestCompleted(EntityPlayer player) {
         super.onQuestCompleted(player); //Call the super
-        if (success == Result.ALLOW) HFApi.player.getRelationsForPlayer(player).affectRelationship(HFNPCs.FLOWER_GIRL.getUUID(), 500);
-         else if (success == Result.DENY) HFApi.player.getRelationsForPlayer(player).affectRelationship(HFNPCs.FLOWER_GIRL.getUUID(), -100);
+        if (success == Result.ALLOW) HFApi.player.getRelationsForPlayer(player).affectRelationship(RelationshipType.NPC, HFNPCs.FLOWER_GIRL.getUUID(), 500);
+         else if (success == Result.DENY) HFApi.player.getRelationsForPlayer(player).affectRelationship(RelationshipType.NPC, HFNPCs.FLOWER_GIRL.getUUID(), -100);
     }
 
     @Override

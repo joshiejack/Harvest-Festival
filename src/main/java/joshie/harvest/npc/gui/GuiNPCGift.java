@@ -1,14 +1,11 @@
 package joshie.harvest.npc.gui;
 
 import joshie.harvest.HarvestFestival;
-import joshie.harvest.api.HFApi;
 import joshie.harvest.api.npc.gift.IGiftHandler.Quality;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.helpers.TextHelper;
-import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.npc.NPCRegistry;
 import joshie.harvest.npc.entity.EntityNPC;
-import joshie.harvest.tools.ToolHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
@@ -35,12 +32,14 @@ public class GuiNPCGift extends GuiNPCChat {
     @Override
     public String getScript() {
         if (NPCRegistry.INSTANCE.getGifts().isBlacklisted(gift)) return TextHelper.getSpeech(npc, "gift.no");
+        //TODO: Reenable in 1.0 when I readd marriage
+        /*
         if (ToolHelper.isBlueFeather(gift)) {
             int relationship = HFApi.player.getRelationsForPlayer(player).getRelationship(npc.getNPC().getUUID());
-            if (relationship >= HFNPCs.MARRIAGE_REQUIREMENT && npc.getNPC().isMarriageCandidate()) {
+            if (relationship >= HFNPCs.MAX_FRIENDSHIP && npc.getNPC().isMarriageCandidate()) {
                 return TextHelper.getSpeech(npc, "marriage.accept");
             } else return TextHelper.getSpeech(npc, "marriage.reject");
-        } else if (GODDESS_GIFT != null || HFTrackers.getClientPlayerTracker().getRelationships().gift(player, npc.getNPC().getUUID(), value.getRelationPoints())) {
+        } else */if (GODDESS_GIFT != null || HFTrackers.getClientPlayerTracker().getRelationships().gift(player, npc.getNPC().getUUID(), value.getRelationPoints())) {
             return TextHelper.getSpeech(npc, "gift." + value.name().toLowerCase(Locale.ENGLISH));
         } else return TextHelper.getSpeech(npc, "gift.reject");
     }

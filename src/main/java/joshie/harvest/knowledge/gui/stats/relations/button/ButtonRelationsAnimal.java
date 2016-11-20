@@ -7,14 +7,15 @@ import joshie.harvest.api.animals.AnimalFoodType;
 import joshie.harvest.api.animals.AnimalStats;
 import joshie.harvest.api.animals.AnimalTest;
 import joshie.harvest.api.animals.IAnimalType;
+import joshie.harvest.api.player.RelationshipType;
 import joshie.harvest.core.HFTrackers;
-import joshie.harvest.knowledge.gui.stats.GuiStats;
-import joshie.harvest.knowledge.gui.stats.button.ButtonBook;
 import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.core.helpers.MCClientHelper;
 import joshie.harvest.core.helpers.RenderHelper;
 import joshie.harvest.crops.HFCrops;
 import joshie.harvest.crops.item.ItemCrop.Crops;
+import joshie.harvest.knowledge.gui.stats.GuiStats;
+import joshie.harvest.knowledge.gui.stats.button.ButtonBook;
 import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.npc.item.ItemNPCTool.NPCTool;
 import joshie.harvest.player.relationships.RelationshipDataClient;
@@ -27,8 +28,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
 
 import java.util.UUID;
-
-import static joshie.harvest.npc.HFNPCs.MAX_FRIENDSHIP;
 
 public class ButtonRelationsAnimal extends ButtonBook {
     private static final ResourceLocation HEARTS = new ResourceLocation("textures/gui/icons.png");
@@ -98,7 +97,7 @@ public class ButtonRelationsAnimal extends ButtonBook {
             GlStateManager.color(1.0F, 1.0F, 1.0F);
 
             //Draw hearts
-            int hearts = (int)((((double)relationship)/MAX_FRIENDSHIP) * 9);
+            int hearts = (int)((((double)relationship)/ RelationshipType.ANIMAL.getMaximumRP()) * 9);
             mc.getTextureManager().bindTexture(HEARTS);
             for (int i = 0; i < 9; i++) {
                 drawTexturedModalRect(xPosition + 24 + 10 * i, yPosition + 6, 16, 0, 9, 9);

@@ -2,9 +2,9 @@ package joshie.harvest.player.relationships;
 
 import joshie.harvest.api.calendar.CalendarDate;
 import joshie.harvest.api.npc.RelationStatus;
+import joshie.harvest.api.player.RelationshipType;
 import joshie.harvest.core.achievements.HFAchievements;
 import joshie.harvest.core.network.PacketHandler;
-import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.player.PlayerTrackerServer;
 import joshie.harvest.player.packet.PacketSyncGifted;
 import joshie.harvest.player.packet.PacketSyncRelationsConnect;
@@ -37,11 +37,11 @@ public class RelationshipDataServer extends RelationshipData {
     }
 
     @Override
-    public void talkTo(EntityPlayer player, UUID key) {
+    public void talkTo(RelationshipType type, EntityPlayer player, UUID key) {
         Collection<RelationStatus> statuses = status.get(key);
         if (!statuses.contains(RelationStatus.TALKED)) {
             statuses.add(RelationStatus.TALKED);
-            affectRelationship(key, 100);
+            affectRelationship(type, key, 100);
             syncStatus((EntityPlayerMP) player, key, RelationStatus.TALKED, true);
         }
 
@@ -57,7 +57,7 @@ public class RelationshipDataServer extends RelationshipData {
         Collection<RelationStatus> statuses = status.get(key);
         if (!statuses.contains(RelationStatus.GIFTED)) {
             if (amount == 0) return true;
-            affectRelationship(key, amount);
+            affectRelationship(RelationshipType.NPC, key, amount);
             statuses.add(RelationStatus.GIFTED);
             syncStatus((EntityPlayerMP) player, key, RelationStatus.GIFTED, true);
             master.getTracking().addGift();
@@ -68,12 +68,12 @@ public class RelationshipDataServer extends RelationshipData {
     }
 
     @Override
-    public void affectRelationship(UUID key, int amount) {
-        int newValue = Math.max(0, Math.min(HFNPCs.MARRIAGE_REQUIREMENT, getRelationship(key) + amount));
+    public void affectRelationship(RelationshipType type, UUID key, int amount) {
+        int newValue = Math.max(0, Math.min(type.getMaximumRP(), getRelationship(key) + amount));
         relationships.put(key, newValue);
         EntityPlayerMP player = master.getAndCreatePlayer();
         if (player != null) {
-            if (newValue >= 5000) player.addStat(HFAchievements.friend);
+            if (type == RelationshipType.NPC && newValue >= 5000) player.addStat(HFAchievements.friend);
             EnumParticleTypes particle = amount == 0 ? null : amount <= -1 ? EnumParticleTypes.DAMAGE_INDICATOR : EnumParticleTypes.HEART;
             syncRelationship(player, key, newValue, particle);
         }

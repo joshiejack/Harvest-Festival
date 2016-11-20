@@ -2,6 +2,7 @@ package joshie.harvest.npc.entity;
 
 import io.netty.buffer.ByteBuf;
 import joshie.harvest.api.HFApi;
+import joshie.harvest.api.player.RelationshipType;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.helpers.NBTHelper;
 import joshie.harvest.npc.NPC;
@@ -126,7 +127,7 @@ public abstract class EntityNPCHuman<E extends EntityNPCHuman> extends EntityNPC
         if (source != DamageSource.outOfWorld) {
             addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 200, 0, true, false));
             if (source.getSourceOfDamage() instanceof EntityPlayer) {
-                HFApi.player.getRelationsForPlayer(((EntityPlayer) source.getSourceOfDamage())).affectRelationship(npc.getUUID(), -10);
+                HFApi.player.getRelationsForPlayer(((EntityPlayer) source.getSourceOfDamage())).affectRelationship(RelationshipType.NPC, npc.getUUID(), -10);
             }
         }
 

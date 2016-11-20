@@ -5,10 +5,9 @@ import com.google.common.collect.Multimap;
 import joshie.harvest.api.calendar.CalendarDate;
 import joshie.harvest.api.npc.RelationStatus;
 import joshie.harvest.api.player.IRelations;
-import joshie.harvest.core.achievements.HFAchievements;
+import joshie.harvest.api.player.RelationshipType;
 import joshie.harvest.core.helpers.NBTHelper;
 import joshie.harvest.core.helpers.TextHelper;
-import joshie.harvest.npc.HFNPCs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -18,7 +17,7 @@ import javax.annotation.Nullable;
 import java.util.*;
 
 public abstract class RelationshipData implements IRelations {
-    public void talkTo(EntityPlayer player, UUID key) {}
+    public void talkTo(RelationshipType type, EntityPlayer player, UUID key) {}
     public boolean gift(EntityPlayer player, UUID key, int amount) { return false; }
     public void copyRelationship(@Nullable EntityPlayer player, int adult, UUID baby, double percentage) {}
 
@@ -68,6 +67,8 @@ public abstract class RelationshipData implements IRelations {
 
     //If we have the npc friendship requirement and we propose then we become married, if
     //We don't they shall hate us!
+    //TODO: Reenable in 1.0 when I readd marriage
+    /*
     public boolean propose(EntityPlayer player, UUID key) {
         Collection<RelationStatus> statuses = status.get(key);
         if (!statuses.contains(RelationStatus.MARRIED)) {
@@ -94,7 +95,7 @@ public abstract class RelationshipData implements IRelations {
         }
 
         return false;
-    }
+    }*/
 
     public String getLover() {
         return TextHelper.translate("nolover");

@@ -35,6 +35,8 @@ public class Quests {
     public static final Quest JENNI_5K = QuestHelper.getQuest("recipe.salad");
     public static final Quest JIM_MEET = QuestHelper.getQuest("tutorial.cow");
     public static final Quest JIM_5K = QuestHelper.getQuest("recipe.fishsticks");
+    public static final Quest JIM_10K = QuestHelper.getQuest("recipe.pancake.savoury");
+    public static final Quest JIM_15K = QuestHelper.getQuest("friendship.jim.notes");
     public static final Quest JOHAN_MEET = QuestHelper.getQuest("meeting.johan");
     public static final Quest JOHAN_5K = QuestHelper.getQuest("recipe.candied.potato");
     public static final Quest JOHAN_10K = QuestHelper.getQuest("recipe.fries.french");

@@ -44,6 +44,7 @@ public class QuestMeetGoddess extends QuestQuestion {
     @Override
     public void onChatClosed(EntityPlayer player, EntityLiving entity, INPC npc, boolean isSneaking) {
         if (isCompletedEarly) {
+            complete(player);
             HFApi.quests.completeQuest(YULIF_MEET, player);
             HFTrackers.getPlayerTrackerFromPlayer(player).getTracking().learnNote(HFNotes.BLUEPRINTS);
         } else if (quest_stage == BACKSTORY) {

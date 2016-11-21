@@ -174,7 +174,7 @@ public class QuestUpgrade extends QuestTrade {
     }
 
     @Override
-    public void onChatClosed(EntityPlayer player, EntityLiving entity, INPC npc) {
+    public void onChatClosed(EntityPlayer player, EntityLiving entity, INPC npc, boolean wasSneaking) {
         if (quest_stage == TEST) {
             //Repairing
             ToolTier broken = isHoldingBrokenTool(player);

@@ -51,11 +51,11 @@ public class AnimalChicken extends AnimalAbstract {
 
     @Override
     public int getGenericTreatCount() {
-        return 2;
+        return 5;
     }
 
     @Override
     public int getTypeTreatCount() {
-        return 29;
+        return 26;
     }
 }

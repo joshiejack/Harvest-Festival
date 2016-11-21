@@ -32,6 +32,7 @@ public class Debug {
     }
 
     public static void postInit() {
+        register(Meal.BREAD_CURRY, "20,000RP with [[Jim]]"); //Jim 20000RP
         register(Meal.PANCAKE_SAVOURY, "10,000RP with [[Jim]]"); //Jim 10000RP
         register(Meal.FRIES_FRENCH, "10,000RP with [[Johan]]"); //Girafi 10000RP
         register(Meal.POPCORN, "10,000RP with [[Ashlee]]"); //Ashlee 10000RP

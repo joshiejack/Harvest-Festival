@@ -9,6 +9,7 @@ import joshie.harvest.crops.HFCrops;
 import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.quests.base.QuestTown;
 import joshie.harvest.town.TownHelper;
+import joshie.harvest.town.data.TownData;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 
@@ -22,11 +23,12 @@ public class QuestGoddessPond extends QuestTown {
 
     @Override
     public String getLocalizedScript(EntityPlayer player, EntityLiving entity, INPC npc) {
-        if (TownHelper.getClosestTownToEntity(entity).hasBuilding(HFBuildings.GODDESS_POND)) {
+        TownData data = TownHelper.getClosestTownToEntity(player);
+        if (data.hasBuilding(HFBuildings.GODDESS_POND)) {
             return getLocalized("thanks");
         }
 
-        return player.worldObj.rand.nextDouble() <= 0.1D ? getLocalized("please") : null;
+        return player.worldObj.rand.nextDouble() <= 0.1D && data.getBuildings().size() >= 5 ? getLocalized("please") : null;
     }
 
     @Override

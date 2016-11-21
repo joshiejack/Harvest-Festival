@@ -29,7 +29,7 @@ public class AnimalStatsMilkable extends AnimalStatsLivestock {
 
     private boolean milk(@Nonnull World world, @Nullable EntityPlayer player) {
         if (player == null) return false;
-        if (!world.isRemote && !HFAnimals.OP_ANIMALS) {
+        if (!world.isRemote) {
             setProduced(getProductsPerDay());
         }
 

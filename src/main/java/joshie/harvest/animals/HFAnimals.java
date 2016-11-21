@@ -152,7 +152,6 @@ public class HFAnimals {
         MAX_LITTER_SIZE = getInteger("Pregnancy > Max litter size", 5);
         LITTER_EXTRA_CHANCE = getInteger("Pregnancy > Chance of extra birth", 4);
         AGING_TIMER = getInteger("Number of days animals take to mature", 14);
-        OP_ANIMALS = getBoolean("Old Mcdonald had a farm", false);
         VANILLA_MODELS = getBoolean("Use vanilla models for animals", false);
         OUTDOOR_HAPPINESS = getBoolean("Animals gain relationship when left outside", true);
     }

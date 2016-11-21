@@ -1385,8 +1385,11 @@ harvestfestival.quest.trade.upgrade.repair.start=This I can do, please come back
 
 # Jade Seed Trades
 harvestfestival.quest.trade.seeds.reminder=If you ever need more seeds, just bring me another five flowers.
-harvestfestival.quest.trade.seeds.complete.yes=Thanks for the flowers, here have a bag of seeds.
+harvestfestival.quest.trade.seeds.complete.yes1=Thanks for the flowers, here have a bag of seeds.
+harvestfestival.quest.trade.seeds.complete.yes2=Your flower supplying skills are appreciate, have some more seeds.
+harvestfestival.quest.trade.seeds.complete.yes3=These flowers are perfect, take some seeds!
 harvestfestival.quest.trade.seeds.complete.no=I’m sorry but I don’t have any seeds to spare this time of year.
+harvestfestival.quest.trade.seeds.return=I'm so sorry but I'm out of stock of seeds for now. I should get a fresh supply in %s days.
 
 # Jade Tools Trades
 harvestfestival.quest.trade.tools.hoe=Thanks for the hoe! I have one of my own here for you.
@@ -1438,6 +1441,7 @@ harvestfestival.quest.recipe.latte.mix.text=Every day you get more and more stun
 harvestfestival.quest.recipe.souffle.apple.text=Getting to know you even more has been great again. I found this recipe hanging around, not sure I like it, but you can have it.
 harvestfestival.quest.recipe.bread.raisin.text=The dark arts have been keeping me busy, I have an experiment I am working I can't wait to show. In the mean time take this evil recipe.
 harvestfestival.quest.recipe.mayonnaise.text=You know that I love eggs as much as I like you? Well this should help you get much greater buck out of your eggs.
+harvestfestival.quest.recipe.bread.curry.text=A guide to the creation of the best curry bread is what I give you for being a fantastic friend.
 
 ## Friendship Quests
 harvestfestival.quest.friendship.katlin.kitchen.text=You have been really kind to me. I just don't know how to feel. You know, we recently lost our supplier for the kitchen, maybe you could take over the job? Just come and visit me on a Friday when the cafe isn't open, early in the morning or in the evening, then you can help me restock the kitchen. We're looking for things like meat, beetroot soup and cake.
@@ -1450,6 +1454,7 @@ harvestfestival.quest.friendship.johan.vanilla.text=Why good day to you! It has 
 harvestfestival.quest.friendship.danieru.notes.text=Becoming friends has been great, I've got some secrets to share with you about the rumoured cursed tools. Take this, I'll put it in your notebook for you.
 harvestfestival.quest.friendship.ashlee.notes.text=You've treated me like noone else has, despite my craziness. To thank you I'd like you to have these secret notes I've been working on.
 harvestfestival.quest.friendship.candice.notes.text=You just couldn't be more beautiful today. You know I'm the master of flirting right? Well I have some tips I'd love to share with such a gorgeous person like yourself!
+harvestfestival.quest.friendship.jim.notes.text=I've recently taken part in some research of my own to find out what it takes to make your livestock more productive. As a good friend of mine I am happy to share it with you.
 
 ## Meeting Quests
 harvestfestival.quest.meeting.jacob.text=Nice to meet you %4$s, the name's jacob. From what I've heard you're interested in fishing, you know, I've just recently bought myself a new rod, I'd like you to have my old one here, please take care of her. I run this tackle shop, if you need anything please do pop by.
@@ -1613,3 +1618,7 @@ harvestfestival.note.potpan.description=In order to use either of the pot or the
 #Secret Notes
 harvestfestival.note.secret.cursed.title=Secret of the Cursed Tools?
 harvestfestival.note.secret.cursed.description=There have been rumours that you can find these tools on the floors ending in 9 between 20 and 80 of the mines and only during the winter season. \n\nBut the rumours don't tell the whole story. Cursed Tools know what's going on, and will not trust themselves to anyone who does not own a full set of mystril tools.
+harvestfestival.note.secret.chickens.title=Secret Guide to Increasing Egg Production
+harvestfestival.note.secret.chickens.description=Dear diary, I have recently discovered a secret way in order to get my chickens to lay more eggs throughout the day. It all comes down to how many treats you feed them. I've learnt that the magic number is five generic treats and twenty-six chicken treats. Each time I've fed them this, they've produced an extra egg per day. The limit appears to be five. Please tell noone. Yours Ashlee.
+harvestfestival.note.secret.livestock.title=Secret Guide to Increasing Egg Production
+harvestfestival.note.secret.livestock.description=Greatest sir it is with deepest pride and greatest pleasure that I am able to inform you of my research on the production habits of livestock. I have learnt in my research that it will take exactly 7 generic treats and 24 cow treats to make cows more productive, producing up to 5 milk a day, while sheep require 2 generic and 29 sheep treats to produce more wool.

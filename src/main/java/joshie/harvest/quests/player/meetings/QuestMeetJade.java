@@ -6,6 +6,7 @@ import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.api.quests.QuestQuestion;
+import joshie.harvest.api.quests.Selection;
 import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.core.helpers.InventoryHelper;
 import joshie.harvest.core.helpers.InventoryHelper.SearchType;
@@ -44,6 +45,12 @@ public class QuestMeetJade extends QuestQuestion {
     @Override
     public boolean canStartQuest(Set<Quest> active, Set<Quest> finished) {
         return finished.contains(YULIF_MEET);
+    }
+
+    @Override
+    public Selection getSelection(EntityPlayer player, INPC npc) {
+        if (!TownHelper.getClosestTownToEntity(player).hasBuilding(HFBuildings.CARPENTER)) return null;
+        return quest_stage <= 0 ? selection : null;
     }
 
     @Override

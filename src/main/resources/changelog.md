@@ -85,6 +85,11 @@
 * Changed relationship maximum to 50,000RP
 * Disabled the blue feather until i do marriage properly, there's no benefit and it didn't really even work properly
 
+###Jade
+* Jade will now properly stop giving you free seeds when general store is built
+* Jade will now only give you up to 10 seeds every 5 days
+* Jade will now sometimes give you hardy turnip seeds instead of a normal crop
+
 ###Shops
 * New Shop GUI
 * Removed the Blacksmith's store

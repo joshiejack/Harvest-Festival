@@ -13,7 +13,6 @@ import joshie.harvest.api.mining.IMiningRegistry;
 import joshie.harvest.api.npc.INPCRegistry;
 import joshie.harvest.api.player.IPlayerHelper;
 import joshie.harvest.api.quests.IQuestHelper;
-import joshie.harvest.api.relations.IRelationships;
 import joshie.harvest.api.shops.IShopRegistry;
 import joshie.harvest.api.ticking.IDailyTickableRegistry;
 
@@ -32,7 +31,6 @@ public class HFApi {
     public static INPCRegistry npc = null;
     public static IPlayerHelper player = null;
     public static IQuestHelper quests = null;
-    public static IRelationships relationships = null;
     public static IShopRegistry shops = null;
     public static IShippingRegistry shipping = null;
     public static ISizeableRegistry sizeable = null;

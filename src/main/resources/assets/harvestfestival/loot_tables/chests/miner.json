@@ -2,7 +2,7 @@
   "pools": [
     {
       "name": "miner",
-      "rolls": 3,
+      "rolls": 5,
       "entries": [
         {
           "type": "item",

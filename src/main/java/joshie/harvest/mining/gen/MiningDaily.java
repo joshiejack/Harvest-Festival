@@ -21,6 +21,7 @@ import static joshie.harvest.mining.MiningHelper.MAX_LOOP;
 import static net.minecraft.world.chunk.Chunk.NULL_BLOCK_STORAGE;
 
 @HFEvents
+@SuppressWarnings("unused")
 public class MiningDaily {
     private void removeOresAndSpawnNew(World world, Chunk chunk) {
         ExtendedBlockStorage[] array = chunk.getBlockStorageArray();

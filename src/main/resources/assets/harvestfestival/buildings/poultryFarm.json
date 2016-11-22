@@ -1381,10 +1381,10 @@
     },
     {
       "text": [
-        "Foxie\u0027s Fowl",
-        "",
-        "05:00 - 11:00",
-        "Mon-Sat"
+        "translate:harvestfestival.shop.poultry",
+        "translate:harvestfestival.shop.poultry.sign1",
+        "translate:harvestfestival.shop.poultry.sign2",
+        "translate:harvestfestival.shop.poultry.sign3"
       ],
       "state": "wall_sign 5",
       "pos": "12 4 4",

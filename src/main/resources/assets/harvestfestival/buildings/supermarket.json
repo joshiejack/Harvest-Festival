@@ -4684,10 +4684,10 @@
     },
     {
       "text": [
-        "Jenni\u0027s Bargains",
-        "Mon-Tue Thu-Fri",
-        "09:00-17:00",
-        "Sat 11:00-15:00"
+        "translate:harvestfestival.shop.general",
+        "translate:harvestfestival.shop.general.sign1",
+        "translate:harvestfestival.shop.general.sign2",
+        "translate:harvestfestival.shop.general.sign3"
       ],
       "state": "wall_sign 5",
       "pos": "12 11 12",

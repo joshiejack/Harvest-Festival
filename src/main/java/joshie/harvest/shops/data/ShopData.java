@@ -7,6 +7,7 @@ import joshie.harvest.shops.Shop;
 import joshie.harvest.shops.packet.PacketSyncSold;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.world.World;
 
 import java.util.HashMap;
 import java.util.UUID;
@@ -34,10 +35,10 @@ public class ShopData {
         }
     }
 
-    public void newDay(UUID uuid) {
+    public void newDay(World world, UUID uuid) {
         data.values().stream().forEach(ShopInventory::newDay);
         //Update all clients on the new values for this shop
-        PacketHandler.sendToEveryone(new PacketSyncSold(uuid, writeToNBT(new NBTTagCompound())));
+        PacketHandler.sendToDimension(world.provider.getDimension(), new PacketSyncSold(uuid, writeToNBT(new NBTTagCompound())));
     }
 
     public void readFromNBT(NBTTagCompound nbt) {

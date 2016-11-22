@@ -12,10 +12,7 @@ import joshie.harvest.town.TownHelper;
 import joshie.harvest.town.data.TownDataServer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.Mirror;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.Rotation;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
@@ -66,9 +63,7 @@ public class BuildingImpl extends IForgeRegistryEntry.Impl<BuildingImpl> impleme
             }
         }
 
-        if (this.getRegistryName() != null) {
-            this.toLocalise = this.getRegistryName().getResourceDomain().toLowerCase(Locale.ENGLISH) + ".structures." + this.getRegistryName().getResourcePath().toLowerCase(Locale.ENGLISH);
-        }
+        toLocalise = getRegistryName().getResourceDomain().toLowerCase(Locale.ENGLISH) + ".structures." + this.getRegistryName().getResourcePath().toLowerCase(Locale.ENGLISH);
     }
 
     public Collection<? extends ResourceLocation> getInhabitants() {
@@ -144,6 +139,10 @@ public class BuildingImpl extends IForgeRegistryEntry.Impl<BuildingImpl> impleme
     @SuppressWarnings("deprecation")
     @Override
     public String getLocalisedName() {
+        if (StringUtils.isNullOrEmpty(toLocalise)) {
+            this.toLocalise = this.getRegistryName().getResourceDomain().toLowerCase(Locale.ENGLISH) + ".structures." + this.getRegistryName().getResourcePath().toLowerCase(Locale.ENGLISH);
+        }
+
         return I18n.translateToLocal(toLocalise);
     }
 

@@ -24,7 +24,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.registry.IForgeRegistryEntry.Impl;
 import net.minecraftforge.fml.relauncher.Side;
@@ -32,7 +32,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import static joshie.harvest.core.helpers.ConfigHelper.getBoolean;
 import static joshie.harvest.core.lib.LoadOrder.HFBUILDING;
-import static joshie.harvest.npc.HFNPCs.*;
+import static joshie.harvest.npc.HFNPCs.CLOCKMAKER_CHILD;
 
 @HFLoader(priority = HFBUILDING)
 public class HFBuildings {
@@ -103,7 +103,7 @@ public class HFBuildings {
             builder.registerTypeAdapter(IBlockState.class, new StateAdapter());
             builder.registerTypeAdapter(ItemStack.class, new StackAdapter());
             builder.registerTypeAdapter(ResourceLocation.class, new ResourceAdapter());
-            builder.registerTypeAdapter(TextComponentString.class, new TextComponentAdapter());
+            builder.registerTypeAdapter(ITextComponent.class, new TextComponentAdapter());
             builder.registerTypeAdapter(BlockPos.class, new BlockPosAdapter());
             gson = builder.create();
         }

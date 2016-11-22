@@ -6,18 +6,37 @@ import gnu.trove.set.TIntSet;
 import gnu.trove.set.hash.TIntHashSet;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.helpers.NBTHelper;
+import joshie.harvest.core.lib.LootStrings;
 import joshie.harvest.core.util.annotations.HFEvents;
+import joshie.harvest.mining.HFMining;
 import joshie.harvest.mining.MiningHelper;
 import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.npc.NPC;
 import joshie.harvest.npc.NPCHelper;
 import joshie.harvest.npc.entity.EntityNPC;
+import net.minecraft.block.BlockChest;
+import net.minecraft.block.BlockStandingSign;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.Entity;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntityChest;
+import net.minecraft.tileentity.TileEntitySign;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldSavedData;
 import net.minecraft.world.WorldServer;
+
+import javax.annotation.Nonnull;
+import java.util.Random;
+
+import static joshie.harvest.core.helpers.EntityHelper.isSpawnable;
 
 @HFEvents
 public class MineManager extends WorldSavedData {
@@ -32,7 +51,7 @@ public class MineManager extends WorldSavedData {
     }
 
     @Override
-    public void readFromNBT(NBTTagCompound tag) {
+    public void readFromNBT(@Nonnull NBTTagCompound tag) {
         portalCoordinates = NBTHelper.readPositionCollection(tag.getTagList("PortalCoordinates", 10));
         if (tag.hasKey("GeneratedMiner")) {
             generated = new TIntHashSet(tag.getIntArray("GeneratedMiner"));
@@ -40,18 +59,74 @@ public class MineManager extends WorldSavedData {
     }
 
     @Override
-    public NBTTagCompound writeToNBT(NBTTagCompound tag) {
+    @Nonnull
+    public NBTTagCompound writeToNBT(@Nonnull NBTTagCompound tag) {
         tag.setTag("PortalCoordinates", NBTHelper.writePositionCollection(portalCoordinates));
         tag.setIntArray("GeneratedMiner", generated.toArray());
         return tag;
     }
 
-    public void onTeleportToMine(World world, int mineID) {
+    private BlockPos modifyNPCPosition(WorldServer dim, BlockPos spawn, Entity entity) {
+        IBlockState actual = HFMining.PORTAL.getActualState(dim.getBlockState(spawn), dim, spawn);
+        if (actual.getBlock() == HFMining.PORTAL) {
+            Random rand = dim.rand;
+            for (int i = 0; i < 512; i++) {
+                BlockPos pos = spawn.add(rand.nextInt(51) - 25, 0, rand.nextInt(51) - 25);
+                if (isSpawnable(dim, pos)) return pos;
+            }
+        }
+
+        return MiningHelper.modifySpawnAndEntityRotation(dim, spawn, entity);
+    }
+
+    void onTeleportToMine(World world, int mineID) {
         if (!generated.contains(mineID)) {
-            BlockPos pos = getSpawnCoordinateForMine(mineID, 1);
             EntityNPC entity = NPCHelper.getEntityForNPC(world, (NPC) HFNPCs.MINER);
-            pos = MiningHelper.modifySpawnAndPlayerRotation((WorldServer)world, pos, entity);
-            entity.setPosition(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5);
+            BlockPos pos = modifyNPCPosition((WorldServer)world, getSpawnCoordinateForMine(mineID, 1), entity);
+            entity.setPosition(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5);
+            entity.setHeldItem(EnumHand.MAIN_HAND, new ItemStack(Blocks.TORCH));
+            entity.setHeldItem(EnumHand.OFF_HAND, new ItemStack(Items.IRON_PICKAXE));
+            boolean foundTorch = false;
+            boolean foundChest = false;
+            boolean foundSign = false;
+            for (int i = 0; i < 128; i++) {
+                BlockPos torch = pos.add(world.rand.nextInt(7) - 3, 0, world.rand.nextInt(7));
+                if (torch.equals(pos)) continue;
+                if (!foundTorch && isSpawnable(world, torch)) {
+                    world.setBlockState(torch, Blocks.TORCH.getDefaultState(), 3);
+                    foundTorch = true;
+                } else if (!foundChest && isSpawnable(world, torch)) {
+                    EnumFacing facing = EnumFacing.HORIZONTALS[world.rand.nextInt(EnumFacing.HORIZONTALS.length)];
+                    if (!world.isAirBlock(torch.east())) facing = EnumFacing.WEST;
+                    else if (!world.isAirBlock(torch.west())) facing = EnumFacing.EAST;
+                    else if (!world.isAirBlock(torch.north())) facing = EnumFacing.SOUTH;
+                    else if (!world.isAirBlock(torch.south())) facing = EnumFacing.NORTH;
+                    world.setBlockState(torch, Blocks.CHEST.getDefaultState().withProperty(BlockChest.FACING, facing));
+                    TileEntity chest = world.getTileEntity(torch);
+                    if (chest instanceof TileEntityChest) {
+                        ((TileEntityChest)chest).setLootTable(LootStrings.MINING_CHEST, world.rand.nextLong());
+                    }
+
+                    foundChest = true;
+                } else if (!foundSign && isSpawnable(world, torch)) {
+                    world.setBlockState(torch, Blocks.STANDING_SIGN.getDefaultState().withProperty(BlockStandingSign.ROTATION, world.rand.nextInt(16)));
+                    TileEntity tile = world.getTileEntity(torch);
+                    if (tile instanceof TileEntitySign) {
+                        TileEntitySign sign = ((TileEntitySign) tile);
+                        sign.signText[0] = new TextComponentTranslation("harvestfestival.shop.miner");
+                        sign.signText[1] = new TextComponentTranslation("harvestfestival.shop.miner.sign1");
+                        sign.signText[2] = new TextComponentTranslation("harvestfestival.shop.miner.sign2");
+                        sign.signText[3] = new TextComponentTranslation("harvestfestival.shop.miner.sign3");
+                        sign.markDirty();
+                        IBlockState state = world.getBlockState(sign.getPos());
+                        world.notifyBlockUpdate(sign.getPos(), state, state, 3);
+                    }
+                    foundSign = true;
+                }
+
+                if (foundChest && foundTorch && foundSign) break;
+            }
+
             entity.resetSpawnHome();
             world.spawnEntityInWorld(entity);
             generated.add(mineID);

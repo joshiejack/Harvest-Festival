@@ -637,10 +637,10 @@
     },
     {
       "text": [
-        "Tackle Shop",
-        "1pm-7pm",
-        "",
-        "Tuesday-Friday"
+        "translate:harvestfestival.shop.baitshop",
+        "translate:harvestfestival.shop.baitshop.sign1",
+        "translate:harvestfestival.shop.baitshop.sign2",
+        "translate:harvestfestival.shop.baitshop.sign3"
       ],
       "state": "wall_sign 2",
       "pos": "8 2 1",

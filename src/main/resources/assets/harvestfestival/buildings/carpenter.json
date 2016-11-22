@@ -647,10 +647,10 @@
     },
     {
       "text": [
-        "Yulif\u0027s Carpenter",
-        "09:00-17:30",
-        "",
-        "Sun-Fri"
+        "translate:harvestfestival.shop.carpenter",
+        "translate:harvestfestival.shop.carpenter.sign1",
+        "translate:harvestfestival.shop.carpenter.sign2",
+        "translate:harvestfestival.shop.carpenter.sign3"
       ],
       "state": "wall_sign 5",
       "pos": "8 2 2",

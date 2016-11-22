@@ -10,6 +10,8 @@ import net.minecraft.world.chunk.IChunkGenerator;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nonnull;
+
 import static joshie.harvest.mining.HFMining.MINE_WORLD;
 
 public class MiningProvider extends WorldProvider {
@@ -20,11 +22,13 @@ public class MiningProvider extends WorldProvider {
     }
 
     @Override
+    @Nonnull
     public IChunkGenerator createChunkGenerator() {
         return new MiningChunk(worldObj, worldObj.getSeed());
     }
 
     @Override
+    @Nonnull
     public BlockPos getSpawnCoordinate() {
         return getSpawnCoordinateForMine(0, 1);
     }
@@ -57,6 +61,7 @@ public class MiningProvider extends WorldProvider {
     }
 
     @Override
+    @Nonnull
     public DimensionType getDimensionType() {
         return MINE_WORLD;
     }

@@ -7,19 +7,18 @@ import net.minecraft.tileentity.TileEntitySign;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 
 public class PlaceableSign extends PlaceableDecorative {
     @Expose
-    private TextComponentString[] text;
+    private ITextComponent[] text;
 
     public PlaceableSign() {}
     public PlaceableSign(IBlockState state, int x, int y, int z, ITextComponent... text) {
         super(state, x, y, z);
-        this.text = new TextComponentString[text.length];
+        this.text = new ITextComponent[text.length];
         for (int i = 0; i < text.length; i++) {
-            this.text[i] = (TextComponentString) text[i];
+            this.text[i] = text[i];
         }
     }
 

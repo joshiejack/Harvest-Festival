@@ -984,10 +984,10 @@
     },
     {
       "text": [
-        "Blacksmith",
-        "Repairs and",
-        "Upgrades",
-        "ALWAYS OPEN!"
+        "translate:harvestfestival.shop.blacksmith",
+        "translate:harvestfestival.shop.blacksmith.sign1",
+        "translate:harvestfestival.shop.blacksmith.sign2",
+        "translate:harvestfestival.shop.blacksmith.sign3"
       ],
       "state": "wall_sign 5",
       "pos": "6 4 3",

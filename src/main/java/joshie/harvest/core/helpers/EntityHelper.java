@@ -62,6 +62,7 @@ public class EntityHelper {
         return world.getEntitiesWithinAABB(t, new AxisAlignedBB(pos.getX() - 0.5F, pos.getY() - 0.5F, pos.getZ() - 0.5F, pos.getX() + 0.5F, pos.getY() + 0.5F, pos.getZ() + 0.5F).expand(size, ySize, size));
     }
 
+    @SuppressWarnings("ConstantConditions")
     public static boolean teleport(Entity entity, int dimension, BlockPos spawn) {
         MinecraftServer server = FMLCommonHandler.instance().getMinecraftServerInstance();
         WorldServer oldWorld = server.worldServerForDimension(entity.getEntityWorld().provider.getDimension());
@@ -132,14 +133,14 @@ public class EntityHelper {
         return EntityPlayer.getUUID(player.getGameProfile());
     }
 
+    public static boolean isSpawnable(World world, BlockPos pos) {
+        return world.getBlockState(pos).getBlock().isPassable(world, pos);
+    }
+
     public static EntityPlayer getPlayerFromSource(DamageSource source) {
         if (source.getEntity() instanceof EntityPlayer) return ((EntityPlayer)source.getEntity());
         else if (source.getSourceOfDamage() instanceof EntityPlayer) return ((EntityPlayer)source.getSourceOfDamage());
         else return null;
-    }
-
-    public static boolean isSpawnable(World world, BlockPos pos) {
-        return world.isAirBlock(pos);
     }
 
     @SuppressWarnings("ConstantConditions")

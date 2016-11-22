@@ -1628,10 +1628,10 @@
     },
     {
       "text": [
-        "Liara\u0027s Café",
-        "We\u0027re open ",
-        "every day from",
-        "9:30am to 5pm!"
+        "translate:harvestfestival.shop.cafe",
+        "translate:harvestfestival.shop.cafe.sign1",
+        "translate:harvestfestival.shop.cafe.sign2",
+        "translate:harvestfestival.shop.cafe.sign3"
       ],
       "state": "wall_sign 5",
       "pos": "10 2 7",

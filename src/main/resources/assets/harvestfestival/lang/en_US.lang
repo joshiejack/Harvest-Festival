@@ -1158,8 +1158,11 @@ harvestfestival.shop.outof.true=Out of gold! Please come back later!
 harvestfestival.shop.outof.false=Out of stock! Please try again later!
 
 #General Store
-harvestfestival.shop.general=General Store
-harvestfestival.shop.general.greeting1=Welcome to the General Store, how may I help you?
+harvestfestival.shop.general=Jenni's Bargains
+harvestfestival.shop.general.sign1=Mon-Tue Thu-Fri
+harvestfestival.shop.general.sign2=09:00-17:00
+harvestfestival.shop.general.sign3=Sat 11:00-15:00
+harvestfestival.shop.general.greeting1=Welcome to Jenni's Bargains General Store, how may I help you?
 harvestfestival.shop.general.greeting2=We're always in stock, can I help?
 harvestfestival.shop.general.greeting3=This store is the best in town! What do you need?
 harvestfestival.shop.general.options=What do you want to do?
@@ -1168,13 +1171,25 @@ harvestfestival.shop.general.options.sell=@Sell
 harvestfestival.shop.general.options.chat=@Chat
 
 #Poultry Farm
-harvestfestival.shop.poultry=Poultry Farm
+harvestfestival.shop.poultry=Foxie's Fowls
+harvestfestival.shop.poultry.sign1=
+harvestfestival.shop.poultry.sign2=05:00 - 11:00
+harvestfestival.shop.poultry.sign3=Mon-Sat
 harvestfestival.shop.poultry.greeting1=Chickens provide essentials for us, what can I help you with?
 harvestfestival.shop.poultry.greeting2=The Poultry Farm has been here for 300 years, what do you desire?
 harvestfestival.shop.poultry.greeting3=Welcome to Cluckety Cluck Cluck's Chicken Camp. How may I help?
 
+#Blacksmith
+harvestfestival.shop.blacksmith=Blacksmith
+harvestfestival.shop.blacksmith.sign1=Repairs and
+harvestfestival.shop.blacksmith.sign2=Upgrades
+harvestfestival.shop.blacksmith.sign3=ALWAYS OPEN!
+
 #Cafe
-harvestfestival.shop.cafe=Cafe
+harvestfestival.shop.cafe=Liara's Cafe
+harvestfestival.shop.cafe.sign1=We're open
+harvestfestival.shop.cafe.sign2=every day from
+harvestfestival.shop.cafe.sign3=9:30am to 5pm!
 harvestfestival.shop.cafe.greeting1=Food come and get it! Yes?
 harvestfestival.shop.cafe.greeting2=Serving it all up, welcome!
 harvestfestival.shop.cafe.greeting3=Dinner's Up!
@@ -1187,18 +1202,27 @@ harvestfestival.shop.kitchen.greeting3=Always happy to buy some food, will come 
 
 #Animal Ranch
 harvestfestival.shop.barn=Animal Ranch
+harvestfestival.shop.barn.sign1=Open Monday to...
+harvestfestival.shop.barn.sign2=Saturday from...
+harvestfestival.shop.barn.sign3=10am to 3pm
 harvestfestival.shop.barn.greeting1=We don't just sell animals, we sell em strong!
 harvestfestival.shop.barn.greeting2=Welcome to the ranch, do you need anything?
 harvestfestival.shop.barn.greeting3=Who needs chickens? When you can have cows and sheep!
 
 #Carpenter
-harvestfestival.shop.carpenter=Carpenter
+harvestfestival.shop.carpenter=Yulif's Carpentry
+harvestfestival.shop.carpenter.sign1=09:00-17:30
+harvestfestival.shop.carpenter.sign2=
+harvestfestival.shop.carpenter.sign3=Sun-Fri
 harvestfestival.shop.carpenter.greeting1=Looking for a new building, let me help you.
 harvestfestival.shop.carpenter.greeting2=I've got the best blueprints around.
 harvestfestival.shop.carpenter.greeting3=Building the best buildings for you!
 
 #Miner
 harvestfestival.shop.miner=Miners' Wares
+harvestfestival.shop.miner.sign1=Selling goods
+harvestfestival.shop.miner.sign2=Monday-Saturday
+harvestfestival.shop.miner.sign3=11am to 4pm.
 harvestfestival.shop.miner.greeting1=Selling your mining essentials!
 harvestfestival.shop.miner.greeting2=Ever get stuck? Buy an escape rope right here!
 harvestfestival.shop.miner.greeting3=Can't seem to move on? Selling ladders to assist.
@@ -1211,12 +1235,15 @@ harvestfestival.shop.bloodmage.greeting3=In this dark and mysterious night, I am
 
 #Tackle Shop
 harvestfestival.shop.baitshop=Tackle Shop
+harvestfestival.shop.baitshop.sign1=1pm-7pm
+harvestfestival.shop.baitshop.sign2=
+harvestfestival.shop.baitshop.sign3=Tuesday-Friday
 harvestfestival.shop.baitshop.greeting1=So glad to finally be open for business, welcome.
 harvestfestival.shop.baitshop.greeting2=If you want some fish, then come buy some of my gear.
 harvestfestival.shop.baitshop.greeting3=Come get your fishing rods here, if you please.
 
 #Trader
-harvestfestival.shop.trader=Cafe Supplies
+harvestfestival.shop.trader=Trader Johan's
 harvestfestival.shop.trader.greeting1=Good Morning, how may I help you?
 harvestfestival.shop.trader.greeting2=Looking to sell some feathers or leather, then I'm your man.
 harvestfestival.shop.trader.greeting3=Welcome, please do let yourself be served.

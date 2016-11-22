@@ -69,7 +69,7 @@ public class TownDataServer extends TownData<QuestDataServer> implements IQuestM
         else PacketHandler.sendToDimension(dimension, packet.setUUID(getID()));
     }
 
-    public boolean isDead(INPC npc) {
+    private boolean isDead(INPC npc) {
         return deadVillagers.contains(((NPC)npc).getRegistryName());
     }
 
@@ -148,7 +148,7 @@ public class TownDataServer extends TownData<QuestDataServer> implements IQuestM
 
     public void newDay(World world, Cache<BlockPos, Boolean> isFar) {
         if (world.isBlockLoaded(getTownCentre())) {
-            shops.newDay(uuid);
+            shops.newDay(world, uuid);
             gathering.newDay(world, townCentre, buildings.values(), isFar);
             generateNewDailyQuest(world);
             for (ResourceLocation villager: deadVillagers) {

@@ -28,6 +28,7 @@ import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.chunk.IChunkGenerator;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Random;
@@ -35,6 +36,7 @@ import java.util.Random;
 import static joshie.harvest.mining.MiningHelper.*;
 import static joshie.harvest.mining.gen.MineManager.CHUNK_BOUNDARY;
 
+@SuppressWarnings("synthetic-access")
 public class MiningChunk implements IChunkGenerator {
     private final Random rand;
     private static final IBlockState WALLS = HFMining.STONE.getDefaultState();
@@ -44,8 +46,8 @@ public class MiningChunk implements IChunkGenerator {
     private static final IBlockState PORTAL = HFMining.PORTAL.getDefaultState();
     private static final IBlockState ORE = HFMining.ORE.getDefaultState();
     private static final IBlockState LADDER_HOLE = HFMining.STONE.getStateFromEnum(Type.LADDER_HOLE);
-    protected static final List<Biome.SpawnListEntry> MONSTERS = Lists.newArrayList();
-    protected static final List<Block> IRREPLACABLE = Lists.newArrayList();
+    private static final List<Biome.SpawnListEntry> MONSTERS = Lists.newArrayList();
+    private static final List<Block> IRREPLACABLE = Lists.newArrayList();
 
     static {
         MONSTERS.add(new Biome.SpawnListEntry(EntityDarkChick.class, 70, 1, 2));
@@ -64,10 +66,6 @@ public class MiningChunk implements IChunkGenerator {
     public MiningChunk(World world, long seed) {
         this.worldObj = world;
         this.rand = new Random(seed);
-    }
-
-    public boolean isLadder(IBlockState state) {
-        return state.getBlock() == Blocks.LADDER || state == LADDER_HOLE;
     }
 
     public void setBlockState(ChunkPrimer primer, int x, int y, int z, IBlockState state, int chunkX) {
@@ -192,22 +190,6 @@ public class MiningChunk implements IChunkGenerator {
                                     setBlockState(primer, i, belowY + MiningHelper.FLOOR_HEIGHT, j, LADDER_HOLE, chunkX);
                                 }
                             }
-
-                            //Experiemental
-                            /** Torches
-                            for (EnumFacing enumFacing: EnumFacing.HORIZONTALS) {
-                                //if (rand.nextInt(1) == 0) {
-                                BlockPos pos = new BlockPos(i, chunkY, j);
-                                BlockPos opposite = pos.offset(enumFacing);
-                                if (opposite.getX() <= 15 && opposite.getX() >= 0 && opposite.getZ() <= 15 && opposite.getZ() >= 0 &&
-                                        pos.getX() <= 15 && pos.getX() >= 0 && pos.getZ() <= 15 && pos.getZ() >= 0) {
-                                    if(primer.getBlockState(opposite.getX(), opposite.getY() + 2, opposite.getZ()) == WALLS &&
-                                            primer.getBlockState(pos.getX(), pos.getY() + 2, pos.getZ()) != WALLS) {
-                                        primer.setBlockState(pos.getX(), chunkY + 2, pos.getZ(), Blocks.TORCH.getDefaultState().withProperty(FACING, enumFacing.getOpposite()));
-                                    } //else setBlockState(primer, opposite.getX(), opposite.getY() + 2, opposite.getZ(), Blocks.COAL_BLOCK.getDefaultState(), chunkX);
-                                }
-                                //}
-                            } */
                         }
                     }
                 }
@@ -336,6 +318,8 @@ public class MiningChunk implements IChunkGenerator {
         return result;
     }
 
+    @SuppressWarnings("complexity")
+    @Nonnull
     private IBlockState[][] getMineGeneration(int chunkX, int chunkY, int chunkZ) {
         int mapIndex = getIndex(chunkX, chunkY, chunkZ);
         //Put if absent
@@ -385,8 +369,7 @@ public class MiningChunk implements IChunkGenerator {
                 }
 
 
-                if (startX == -1 || endX == -1 || startZ == -1 || endZ == -1) {
-                } else {
+                if (!(startX == -1 || endX == -1 || startZ == -1 || endZ == -1)) {
                     //Fill in the starting position with a true boolean
                     blockStateMap[startX][startZ] = FLOORS; //Mark as floor
                     //Mark a random circle radius around
@@ -548,6 +531,7 @@ public class MiningChunk implements IChunkGenerator {
     }
 
     @Override
+    @Nonnull
     public Chunk provideChunk(int x, int z) {
         rand.setSeed((long) x * 341873128712L + (long) z * 132897987541L);
         ChunkPrimer chunkprimer = new ChunkPrimer();
@@ -569,22 +553,23 @@ public class MiningChunk implements IChunkGenerator {
     public void populate(int x, int z) {}
 
     @Override
-    public boolean generateStructures(Chunk chunkIn, int x, int z) {
+    public boolean generateStructures(@Nonnull Chunk chunkIn, int x, int z) {
         return true;
     }
 
     @Override
-    public List<Biome.SpawnListEntry> getPossibleCreatures(EnumCreatureType creatureType, BlockPos pos) {
+    @Nonnull
+    public List<Biome.SpawnListEntry> getPossibleCreatures(@Nonnull EnumCreatureType creatureType, @Nonnull BlockPos pos) {
         if (creatureType == EnumCreatureType.MONSTER) {
             return MONSTERS;
         } else return this.worldObj.getBiome(pos).getSpawnableList(creatureType);
     }
 
     @Nullable
-    public BlockPos getStrongholdGen(World worldIn, String structureName, BlockPos position) {
+    public BlockPos getStrongholdGen(@Nonnull World worldIn, @Nonnull String structureName, @Nonnull BlockPos position) {
         return null;
     }
 
     @Override
-    public void recreateStructures(Chunk chunkIn, int x, int z) {}
+    public void recreateStructures(@Nonnull Chunk chunkIn, int x, int z) {}
 }

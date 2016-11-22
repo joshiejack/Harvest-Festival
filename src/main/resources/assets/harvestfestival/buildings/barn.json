@@ -1574,10 +1574,10 @@
     },
     {
       "text": [
-        "Animal Ranch",
-        "Open Monday to...",
-        "Saturday from...",
-        "10am to 3pm"
+        "translate:harvestfestival.shop.barn",
+        "translate:harvestfestival.shop.barn.sign1",
+        "translate:harvestfestival.shop.barn.sign2",
+        "translate:harvestfestival.shop.barn.sign3"
       ],
       "state": "wall_sign 5",
       "pos": "8 3 6",

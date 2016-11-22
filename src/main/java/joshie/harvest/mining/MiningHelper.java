@@ -33,20 +33,20 @@ import static joshie.harvest.mining.HFMining.MINING_ID;
 import static joshie.harvest.mining.gen.MineManager.CHUNK_BOUNDARY;
 
 public class MiningHelper {
+    private static final double WORLD_HEIGHT = 256D;
+    private static final int CHICK_FLOORS = 7;
+    private static final int CHICKEN_FLOORS = 11;
+    private static final int SHEEP_FLOORS = 13;
+    private static final int COW_FLOORS = 17;
     public static final int MYSTRIL_FLOOR = 169;
     public static final int GEM_FLOOR = 127;
     public static final int GOLD_FLOOR = 85;
     public static final int SILVER_FLOOR = 43;
     public static final int COPPER_FLOOR = 10;
-    public static final double WORLD_HEIGHT = 256D;
     public static final int MAX_Y = (int) WORLD_HEIGHT - 1;
     public static final int FLOOR_HEIGHT = 6;
     public static final int MAX_FLOORS = (int) Math.floor(WORLD_HEIGHT / FLOOR_HEIGHT);
     public static final int MAX_LOOP = (int) WORLD_HEIGHT - FLOOR_HEIGHT;
-    public static final int CHICK_FLOORS = 7;
-    public static final int CHICKEN_FLOORS = 11;
-    public static final int SHEEP_FLOORS = 13;
-    public static final int COW_FLOORS = 17;
     public static final TIntSet HOLE_FLOORS = new TIntHashSet();
     static {
         //1k to copper (1)
@@ -93,28 +93,24 @@ public class MiningHelper {
         }
     }
 
-    private static boolean isSpawnable(World world, BlockPos pos) {
-        return world.getBlockState(pos).getBlock().isPassable(world, pos);
-    }
-
-     public static BlockPos modifySpawnAndPlayerRotation(WorldServer dim, BlockPos spawn, Entity entity) {
+    public static BlockPos modifySpawnAndEntityRotation(WorldServer dim, BlockPos spawn, Entity entity) {
         IBlockState actual = HFMining.PORTAL.getActualState(dim.getBlockState(spawn), dim, spawn);
         if (actual.getBlock() == HFMining.PORTAL) {
             Portal portal = HFMining.PORTAL.getEnumFromState(actual);
             for (int distance = 2; distance < 9; distance++) {
                 if (portal.isEW()) {
-                    if (isSpawnable(dim, spawn.north(distance))) {
+                    if (EntityHelper.isSpawnable(dim, spawn.north(distance))) {
                         entity.rotationYaw = 180F;
                         return spawn.north(distance);
-                    } else if (isSpawnable(dim, spawn.south(distance))) {
+                    } else if (EntityHelper.isSpawnable(dim, spawn.south(distance))) {
                         entity.rotationYaw = 0F;
                         return spawn.south(distance);
                     }
                 } else {
-                    if (isSpawnable(dim, spawn.east(distance))) {
+                    if (EntityHelper.isSpawnable(dim, spawn.east(distance))) {
                         entity.rotationYaw = 270F;
                         return spawn.east(distance);
-                    } else if (isSpawnable(dim, spawn.west(distance))) {
+                    } else if (EntityHelper.isSpawnable(dim, spawn.west(distance))) {
                         entity.rotationYaw = 90F;
                         return spawn.west(distance);
                     }
@@ -136,7 +132,7 @@ public class MiningHelper {
         preloadChunks(newWorld, mineID, 1);
         MiningProvider provider = ((MiningProvider)newWorld.provider);
         provider.onTeleportToMine(mineID); //Called to initiate after chunks are loaded
-        BlockPos spawn = modifySpawnAndPlayerRotation(newWorld, provider.getSpawnCoordinateForMine(mineID, 1), entity);
+        BlockPos spawn = modifySpawnAndEntityRotation(newWorld, provider.getSpawnCoordinateForMine(mineID, 1), entity);
         return EntityHelper.teleport(entity, MINING_ID, spawn);
     }
 
@@ -169,7 +165,7 @@ public class MiningHelper {
         preloadChunks(newWorld, mineID, newFloor);
         MiningProvider provider = ((MiningProvider)newWorld.provider);
         provider.onTeleportToMine(mineID); //Called to initiate after chunks are loaded
-        BlockPos spawn = modifySpawnAndPlayerRotation(newWorld, provider.getSpawnCoordinateForMine(mineID, newFloor), entity);
+        BlockPos spawn = modifySpawnAndEntityRotation(newWorld, provider.getSpawnCoordinateForMine(mineID, newFloor), entity);
         if (entity.timeUntilPortal == 0) {
             entity.timeUntilPortal = 100;
             if (entity instanceof EntityPlayerMP) {

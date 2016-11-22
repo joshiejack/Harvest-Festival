@@ -50,7 +50,7 @@ public class QuestTrees2 extends QuestTown {
 
     @Override
     public boolean canStartQuest(Set<Quest> active, Set<Quest> finished) {
-        return finished.contains(Quests.SEEDS_TREES1);
+        return finished.contains(Quests.SELL_TREES);
     }
 
     @Nullable

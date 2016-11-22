@@ -38,7 +38,7 @@ public class TrackingServer extends Tracking {
             EntityPlayer player = master.getAndCreatePlayer();
             if (recipes.size() >= 50 && player != null) {
                 player.addStat(HFAchievements.recipes);
-                HFApi.quests.completeQuestConditionally(Quests.SEEDS_TREES1, player);
+                HFApi.quests.completeQuestConditionally(Quests.SELL_TREES, player);
             }
 
             return true;
@@ -60,7 +60,7 @@ public class TrackingServer extends Tracking {
         if (giftsGiven >= 300) {
             EntityPlayer player = master.getAndCreatePlayer();
             if (player != null) {
-                HFApi.quests.completeQuestConditionally(Quests.SEEDS_SWEET_POTATO, player);
+                HFApi.quests.completeQuestConditionally(Quests.SELL_SWEET_POTATO, player);
             }
         }
     }

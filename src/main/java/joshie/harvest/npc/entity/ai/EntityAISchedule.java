@@ -28,7 +28,7 @@ public class EntityAISchedule extends EntityAIBase {
     }
 
     private BuildingLocation getBuildingTarget(CalendarDate date) { //If the npcs shop is open, they should try to go their job
-        if (NPCHelper.isShopPreparingToOpen(npc.getNPC(), npc.worldObj)) return npc.getNPC().getLocation(SHOP);
+        if (NPCHelper.isShopPreparingToOpen(npc, npc.worldObj)) return npc.getNPC().getLocation(SHOP);
         //Otherwise they will try to follow their own schedule
         return npc.getNPC().getScheduler().getTarget(npc.worldObj, npc, npc.getNPC(), date.getSeason(), date.getWeekday(), CalendarHelper.getTime(npc.worldObj));
     }

@@ -23,6 +23,6 @@ public class QuestGoddess15KStrawberries extends QuestFriendship {
 
     @Override
     public void onQuestCompleted(EntityPlayer player) {
-        HFApi.quests.completeQuestConditionally(Quests.SEEDS_STRAWBERRY, player);
+        HFApi.quests.completeQuestConditionally(Quests.SELL_STRAWBERRY, player);
     }
 }

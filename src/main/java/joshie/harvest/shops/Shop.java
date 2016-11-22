@@ -3,7 +3,7 @@ package joshie.harvest.shops;
 import com.google.common.collect.HashMultimap;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.Weekday;
-import joshie.harvest.api.core.ISpecialPurchaseRules;
+import joshie.harvest.api.core.ISpecialRules;
 import joshie.harvest.api.shops.IPurchasable;
 import joshie.harvest.api.shops.IShop;
 import joshie.harvest.calendar.CalendarHelper;
@@ -21,13 +21,13 @@ import java.util.Collection;
 import java.util.LinkedHashMap;
 
 public class Shop implements IShop {
-    private static final ISpecialPurchaseRules DEFAULT_TRUE = (w, p, a) -> true;
+    private static final ISpecialRules DEFAULT_TRUE = (w, p, a) -> true;
     private final LinkedHashMap<String, IPurchasable> contents = new LinkedHashMap<>();
     private final HashMultimap<Weekday, OpeningHours> open = HashMultimap.create();
     public final ResourceLocation resourceLocation;
     private final String unlocalizedName;
-    private ISpecialPurchaseRules rulesBuying;
-    private ISpecialPurchaseRules rulesSelling;
+    private ISpecialRules rulesBuying;
+    private ISpecialRules rulesSelling;
     private ShopSelection selection;
     private boolean canBuy;
     private boolean canSell;
@@ -44,23 +44,23 @@ public class Shop implements IShop {
     }
 
     @Override
-    public Shop setSpecialPurchaseRules(ISpecialPurchaseRules rules) {
+    public Shop setSpecialPurchaseRules(ISpecialRules rules) {
         this.rulesBuying = rules;
         return this;
     }
 
     @Override
-    public Shop setSpecialSellingRules(ISpecialPurchaseRules rules) {
+    public Shop setSpecialSellingRules(ISpecialRules rules) {
         this.rulesSelling = rules;
         return this;
     }
 
     public boolean canBuyFromShop(@Nullable EntityPlayer player) {
-        return canBuy && (player == null || rulesBuying.canBuy(player.worldObj, player, 1));
+        return canBuy && (player == null || rulesBuying.canDo(player.worldObj, player, 1));
     }
 
     public boolean canSellToShop(@Nullable EntityPlayer player) {
-        return canSell && (player == null || rulesSelling.canBuy(player.worldObj, player, 1));
+        return canSell && (player == null || rulesSelling.canDo(player.worldObj, player, 1));
     }
 
     public ShopSelection getSelection() {
@@ -72,8 +72,8 @@ public class Shop implements IShop {
     }
 
     @Override
-    public IShop addOpening(Weekday day, int opening, int closing) {
-        open.get(day).add(new OpeningHours(opening, closing));
+    public IShop addConditionalOpening(ISpecialRules rules, Weekday day, int opening, int closing) {
+        open.get(day).add(new OpeningHours(rules, opening, closing));
         return this;
     }
 
@@ -130,24 +130,27 @@ public class Shop implements IShop {
         return contents.values();
     }
 
-    public boolean isOpen(World world, @Nullable EntityPlayer player) {
+    @SuppressWarnings("unchecked")
+    public boolean isOpen(World world, EntityNPC npc, @Nullable EntityPlayer player) {
         if (HFShops.TWENTY_FOUR_HOUR_SHOPPING) return true;
         Weekday day = HFApi.calendar.getDate(world).getWeekday();
         for (OpeningHours hours: open.get(day)) {
-            boolean isOpen = CalendarHelper.isBetween(world, hours.open, hours.close);
+            boolean isOpen = CalendarHelper.isBetween(world, hours.open, hours.close) &&
+                    (hours.rules == null || hours.rules.canDo(world, npc, 0));
             if (isOpen && (player == null || contents.size() > 0)) return true;
         }
 
         return false;
     }
 
-    public boolean isPreparingToOpen(World world) {
+    @SuppressWarnings("unchecked")
+    public boolean isPreparingToOpen(World world, EntityNPC npc) {
         if (HFShops.TWENTY_FOUR_HOUR_SHOPPING) return false;
         Weekday day = HFApi.calendar.getDate(world).getWeekday();
         for (OpeningHours hours: open.get(day)) {
             long daytime = CalendarHelper.getTime(world); //0-23999 by default
             int hourHalfBeforeWork = fix(CalendarHelper.getScaledTime(hours.open) - 1500);
-            if(daytime >= hourHalfBeforeWork) return true;
+            if(daytime >= hourHalfBeforeWork && (hours.rules == null || hours.rules.canDo(world, npc, 0))) return true;
         }
 
         return false;
@@ -163,10 +166,12 @@ public class Shop implements IShop {
      * 18000 = 6PM
      * etc. */
     private static class OpeningHours {
+        private final ISpecialRules rules;
         private final int open;
         private final int close;
 
-        OpeningHours(int open, int close) {
+        OpeningHours(ISpecialRules rules, int open, int close) {
+            this.rules = rules;
             this.open = open;
             this.close = close;
         }

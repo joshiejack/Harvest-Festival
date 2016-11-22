@@ -48,7 +48,7 @@ public class HFRecipes {
         addFryingPanRecipe(Meal.POPCORN, 3F, 1F, CORN).setOptionalIngredients(BUTTER, SALT); //Ashlee 10000RP
         addFryingPanRecipe(Meal.CORNFLAKES, 1.1F, 0.8F, CORN, MILK).setOptionalIngredients(SUGAR); //Shop
         addFryingPanRecipe(Meal.EGGPLANT_HAPPY, 1.5F, 1.2F, EGGPLANT).setOptionalIngredients(SUGAR);//Shop
-        addFryingPanRecipe(Meal.EGG_SCRAMBLED, 1.5F, 1.5F, EGG, OIL).setOptionalIngredients(BUTTER, MAYONNAISE, SALT);//TODO: Alt >>>.setAlternativeTexture(INGREDIENTS.getStackFromEnum(ItemIngredients.Ingredient.EGG_SCRAMBLED)); //Daniel 10000RP
+        addFryingPanRecipe(Meal.EGG_SCRAMBLED, 1.5F, 1.5F, EGG, OIL).setOptionalIngredients(BUTTER, MAYONNAISE, SALT); //Daniel 10000RP
         addFryingPanRecipe(Meal.OMELET, 1.2F, 1.1F, EGG, OIL, MILK).setOptionalIngredients(SALT);//Shop
         addFryingPanRecipe(Meal.OMELET_RICE, 1.15F, 1.1F, EGG, MILK, OIL, RICEBALL).setOptionalIngredients(CABBAGE, ONION, MUSHROOM, GREEN_PEPPER, SALT); //Brandon 10000RP
         addFryingPanRecipe(Meal.TOAST_FRENCH, 1.2F, 1.2F, EGG, BREAD, OIL, SUGAR).setOptionalIngredients(BUTTER); //Jade 10000RP
@@ -58,12 +58,12 @@ public class HFRecipes {
         addFryingPanRecipe(Meal.POTSTICKER, 1.5F, 2F, CABBAGE, ONION, FLOUR, OIL); //Jenni 10000RP
         addFryingPanRecipe(Meal.RISOTTO, 1.5F, 1.5F, TOMATO, ONION, RICEBALL, OIL); //Cloe 10000RP
         //Added in 0.6+
-        addFryingPanRecipe(Meal.STIR_FRY, 1.2F, 1F, CABBAGE, OIL).setOptionalIngredients(ONION, CABBAGE, BAMBOO, MATSUTAKE, EGGPLANT, GREEN_PEPPER);
-        addFryingPanRecipe(Meal.RICE_FRIED, 1.5F, 1F, RICEBALL, OIL, EGG).setOptionalIngredients(CARROT, ONION, BAMBOO, GREEN_PEPPER, FISH);
-        addFryingPanRecipe(Meal.SOUFFLE_APPLE, 2F, 1F, APPLE);
-        addFryingPanRecipe(Meal.BREAD_CURRY, 1.1F, 1F, BREAD, CURRY_POWDER, OIL);
-        addFryingPanRecipe(Meal.NOODLES_THICK_FRIED, 1.2F, 1F, NOODLES, OIL).setOptionalIngredients(CABBAGE, ONION, FISH, BAMBOO, CARROT, EGGPLANT);
-        addFryingPanRecipe(Meal.TEMPURA, 1.2F, 1F, EGG, FLOUR, OIL).setOptionalIngredients(EGGPLANT, GREEN_PEPPER, CARROT, CABBAGE, ONION);
+        addFryingPanRecipe(Meal.STIR_FRY, 1.2F, 1F, CABBAGE, OIL).setOptionalIngredients(ONION, CABBAGE, BAMBOO, MATSUTAKE, EGGPLANT, GREEN_PEPPER); //Jenni 20000RP
+        addFryingPanRecipe(Meal.RICE_FRIED, 1.5F, 1F, RICEBALL, OIL, EGG).setOptionalIngredients(CARROT, ONION, BAMBOO, GREEN_PEPPER, FISH);//Shops
+        addFryingPanRecipe(Meal.SOUFFLE_APPLE, 2F, 1F, APPLE);//Yulif 20000RP
+        addFryingPanRecipe(Meal.BREAD_CURRY, 1.1F, 1F, BREAD, CURRY_POWDER, OIL);//Jim 20000RP
+        addFryingPanRecipe(Meal.NOODLES_THICK_FRIED, 1.2F, 1F, NOODLES, OIL).setOptionalIngredients(CABBAGE, ONION, FISH, BAMBOO, CARROT, EGGPLANT); //Cloe 20000RP
+        addFryingPanRecipe(Meal.TEMPURA, 1.2F, 1F, EGG, FLOUR, OIL).setOptionalIngredients(EGGPLANT, GREEN_PEPPER, CARROT, CABBAGE, ONION); //Liara 17500RP
         addFryingPanRecipe(Meal.CURRY_DRY, 1.2F, 1F, RICEBALL, CURRY_POWDER).setOptionalIngredients(ONION, GREEN_PEPPER, FISH, POTATO, EGGPLANT, CARROT);//Ashlee 20000RP
     }
 
@@ -83,10 +83,10 @@ public class HFRecipes {
         addMixerRecipe(Meal.JUICE_BANANA, 1.5F, 1.2F, BANANA); //Ship a banana
         addMixerRecipe(Meal.JUICE_ORANGE, 1.5F, 1.2F, ORANGE); //Ship an orange
         addMixerRecipe(Meal.JUICE_APPLE, 1.5F, 1.2F, APPLE); //Ship an apple
-        addMixerRecipe(Meal.JUICE_FRUIT, 1.05F, 0.5F, FRUIT_JUICE_BASE).setOptionalIngredients(FRUITS).setMaximumOptionalIngredients(5);
-        addMixerRecipe(Meal.LATTE_FRUIT, 1.04F, 0.6F, FRUIT_JUICE_BASE, MILK).setOptionalIngredients(FRUITS).setMaximumOptionalIngredients(5);
-        addMixerRecipe(Meal.JUICE_MIX, 0.5F, 0.5F, FRUIT_JUICE_BASE, VEGETABLE_JUICE_BASE).setOptionalIngredients(FRUITS, VEGETABLE_JUICE_BASE, TURNIP, SALT).setMaximumOptionalIngredients(7);
-        addMixerRecipe(Meal.LATTE_MIX, 1.05F, 0.6F, FRUIT_JUICE_BASE, VEGETABLE_JUICE_BASE, MILK).setOptionalIngredients(FRUITS, VEGETABLE_JUICE_BASE, SALT).setMaximumOptionalIngredients(7);
+        addMixerRecipe(Meal.JUICE_FRUIT, 1.05F, 0.5F, FRUIT_JUICE_BASE).setOptionalIngredients(FRUITS).setMaximumOptionalIngredients(5); //Shops
+        addMixerRecipe(Meal.LATTE_FRUIT, 1.04F, 0.6F, FRUIT_JUICE_BASE, MILK).setOptionalIngredients(FRUITS).setMaximumOptionalIngredients(5); //Tomas 20000RP
+        addMixerRecipe(Meal.JUICE_MIX, 0.5F, 0.5F, FRUIT_JUICE_BASE, VEGETABLE_JUICE_BASE).setOptionalIngredients(FRUITS, VEGETABLE_JUICE_BASE, TURNIP, SALT).setMaximumOptionalIngredients(7); //Shops
+        addMixerRecipe(Meal.LATTE_MIX, 1.05F, 0.6F, FRUIT_JUICE_BASE, VEGETABLE_JUICE_BASE, MILK).setOptionalIngredients(FRUITS, VEGETABLE_JUICE_BASE, SALT).setMaximumOptionalIngredients(7);//Candice 20000RP
         //Vanilla style
         addMixerRecipe("beetroot_soup", new ItemStack(Items.BEETROOT_SOUP), BEETROOT, TOMATO, ONION, OIL).setDefault();
         addMixerRecipe("flour", HFCooking.INGREDIENTS.getStackFromEnum(ItemIngredients.Ingredient.FLOUR), WHEAT).setDefault();
@@ -102,12 +102,12 @@ public class HFRecipes {
         addNoUtensilRecipe(Meal.SASHIMI, 2.5F, 2F, FISH); //Shop
         addNoUtensilRecipe(Meal.SASHIMI_CHIRASHI, 1.1F, 0.9F, SASHIMI, SCRAMBLED_EGG, RICEBALL, SASHIMI_VEGETABLE);//Shop
         //Added in 0.6+
-        addNoUtensilRecipe("mayonnaise", HFAnimals.ANIMAL_PRODUCT.getStack(Sizeable.MAYONNAISE, Size.MEDIUM), EGG);
-        addNoUtensilRecipe(Meal.SANDWICH_FRUIT, 1.05F, 1F, BREAD, FRUITS).setOptionalIngredients(FRUITS).setMaximumOptionalIngredients(5);
-        addNoUtensilRecipe(Meal.RICE_BAMBOO, 2F, 1.5F, BAMBOO, RICEBALL);
-        addNoUtensilRecipe(Meal.RICE_MATSUTAKE, 2F, 1.5F, MATSUTAKE, RICEBALL);
-        addNoUtensilRecipe(Meal.RICE_MUSHROOM, 2F, 1.5F, BROWN_MUSHROOM, RICEBALL);
-        addNoUtensilRecipe(Meal.BREAD_RAISIN, 1.2F, 1.2F, BREAD, GRAPE);
+        addNoUtensilRecipe("mayonnaise", HFAnimals.ANIMAL_PRODUCT.getStack(Sizeable.MAYONNAISE, Size.MEDIUM), EGG);//Danieru 20000RP
+        addNoUtensilRecipe(Meal.SANDWICH_FRUIT, 1.05F, 1F, BREAD, FRUITS).setOptionalIngredients(FRUITS).setMaximumOptionalIngredients(5);//Shops
+        addNoUtensilRecipe(Meal.RICE_BAMBOO, 2F, 1.5F, BAMBOO, RICEBALL);//Brandon
+        addNoUtensilRecipe(Meal.RICE_MATSUTAKE, 2F, 1.5F, MATSUTAKE, RICEBALL);//Shops
+        addNoUtensilRecipe(Meal.RICE_MUSHROOM, 2F, 1.5F, BROWN_MUSHROOM, RICEBALL);//Shops
+        addNoUtensilRecipe(Meal.BREAD_RAISIN, 1.2F, 1.2F, BREAD, GRAPE);//Tiberius
         addNoUtensilRecipe(Meal.ICE_CREAM, 1.8F, 0.8F, MILK, EGG).setOptionalIngredients(PINEAPPLE, ORANGE, STRAWBERRY, GRAPE, PEACH, BANANA); //Candice 10000RP
     }
 
@@ -129,10 +129,10 @@ public class HFRecipes {
         //Added in 0.6+
         addPotRecipe(Meal.JAM_STRAWBERRY, 1.5F, 0.9F, STRAWBERRY).setOptionalIngredients(WINE); //Goddess 5000RP
         addPotRecipe(Meal.JAM_APPLE, 1.5F, 0.9F, APPLE).setOptionalIngredients(WINE); //Jade 20000RP
-        addPotRecipe(Meal.JAM_GRAPE, 1.5F, 0.9F, GRAPE).setOptionalIngredients(WINE);
-        addPotRecipe(Meal.MARMALADE, 1.5F, 0.9F, ORANGE).setOptionalIngredients(WINE);
-        addPotRecipe(Meal.NOODLES_TEMPURA, 1.1F, 0.9F, TEMPURA, NOODLES);
-        addPotRecipe(Meal.RICE_TEMPURA, 1.1F, 0.9F, TEMPURA, RICEBALL);
+        addPotRecipe(Meal.JAM_GRAPE, 1.5F, 0.9F, GRAPE).setOptionalIngredients(WINE);//Jade 20000RP
+        addPotRecipe(Meal.MARMALADE, 1.5F, 0.9F, ORANGE).setOptionalIngredients(WINE);//Jade 20000RP
+        addPotRecipe(Meal.NOODLES_TEMPURA, 1.1F, 0.9F, TEMPURA, NOODLES);//Liara 22500RP
+        addPotRecipe(Meal.RICE_TEMPURA, 1.1F, 0.9F, TEMPURA, RICEBALL);//Liara 20000RP
         //Vanilla style
         addPotRecipe("rabbit_stew", new ItemStack(Items.RABBIT_STEW), BAKED_POTATO, CARROT, RABBIT_COOKED, MUSHROOM).setDefault();
         addPotRecipe("brown_mushroom", new ItemStack(Items.MUSHROOM_STEW), RED_MUSHROOM, BROWN_MUSHROOM).setDefault();

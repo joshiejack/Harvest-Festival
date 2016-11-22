@@ -45,21 +45,21 @@ public class NPCHelper {
         return (!player.worldObj.isRemote && HFTrackers.<PlayerTrackerServer>getPlayerTrackerFromPlayer(player).getRelationships().hasMet(npc.getUUID()) || player.worldObj.isRemote) && (shop.canBuyFromShop(player) || shop.canSellToShop(player));
     }
 
-    public static boolean isShopOpen(NPC npc, World world, @Nullable EntityPlayer player) {
-        Shop shop = npc.getShop();
-        if (shop != null && shop.isOpen(world, player) && (player == null || (canPlayerOpenShop(npc, shop, player)))) {
+    public static boolean isShopOpen(EntityNPC npc, World world, @Nullable EntityPlayer player) {
+        Shop shop = npc.getNPC().getShop();
+        if (shop != null && shop.isOpen(world, npc, player) && (player == null || (canPlayerOpenShop(npc.getNPC(), shop, player)))) {
             return (player != null && (shop.getContents().size() > 0)) || player == null;
         }
 
         return false;
     }
 
-    public static boolean isShopPreparingToOpen(NPC npc, World world) {
-        Shop shop = npc.getShop();
-        return shop != null && shop.isPreparingToOpen(world);
+    public static boolean isShopPreparingToOpen(EntityNPC npc, World world) {
+        Shop shop = npc.getNPC().getShop();
+        return shop != null && shop.isPreparingToOpen(world, npc);
     }
 
     public static int getGuiIDForNPC(EntityNPC npc, World world, EntityPlayer player) {
-        return !npc.isBusy() && isShopOpen(npc.getNPC(), world, player) ? GuiHandler.SHOP_WELCOME: GuiHandler.NPC;
+        return !npc.isBusy() && isShopOpen(npc, world, player) ? GuiHandler.SHOP_WELCOME: GuiHandler.NPC;
     }
 }

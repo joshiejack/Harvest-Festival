@@ -153,7 +153,7 @@ public class ButtonListing<I extends IPurchasable> extends GuiButton {
 
     protected boolean canPurchaseX(int x) {
         StatsClient stats = HFTrackers.getClientPlayerTracker().getStats();
-        return x <= purchasable.getStock() && stats.getGold() - (purchasable.getCost() * x) >= 0 && purchasable.canBuy(MCClientHelper.getWorld(), MCClientHelper.getPlayer(), x);
+        return x <= purchasable.getStock() && stats.getGold() - (purchasable.getCost() * x) >= 0 && purchasable.canDo(MCClientHelper.getWorld(), MCClientHelper.getPlayer(), x);
     }
 
     protected boolean canPurchase1() {

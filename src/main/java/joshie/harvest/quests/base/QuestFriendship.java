@@ -48,7 +48,7 @@ public abstract class QuestFriendship extends Quest {
 
     @Override
     public void onQuestCompleted(EntityPlayer player) {
-        List<ItemStack> stacks = getRewardStacks();
+        List<ItemStack> stacks = getRewardStacks(player);
         if (stacks != null) {
             for (ItemStack stack: stacks) {
                 rewardItem(player, stack);
@@ -56,7 +56,7 @@ public abstract class QuestFriendship extends Quest {
         }
     }
 
-    protected List<ItemStack> getRewardStacks() {
+    protected List<ItemStack> getRewardStacks(EntityPlayer player) {
         return getRewardStack() != null ? Collections.singletonList(getRewardStack()) : null;
     }
 

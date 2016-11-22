@@ -49,7 +49,7 @@ public class Debug {
         register(Meal.RISOTTO, "10,000RP with [[Cloe]]"); //Cloe 10000RP
         register(Meal.CURRY_DRY, "20,000RP with [[Ashlee]]"); //Ashlee 20000RP
         register(Meal.SOUFFLE_APPLE, "20,000RP with [[Yulif]]"); //Yulif 20000RP
-        register(Meal.BREAD_RAISIN, "20,000RP with [[Tiberius]"); //Tiberius 20000RP
+        register(Meal.BREAD_RAISIN, "20,000RP with [[Tiberius]]"); //Tiberius 20000RP
 
         register(Meal.JUICE_PINEAPPLE, "5000RP with [[Yulif]]"); //Yulif 5000RP
         register(Meal.JUICE_TOMATO, "[[Cafe]] on Saturdays in [[Summer]]"); //Shop
@@ -95,6 +95,7 @@ public class Debug {
         register(Meal.JAM_STRAWBERRY, "5000RP with [[Harvest Goddess]]"); //Goddess 5000RP
         register(Meal.JAM_APPLE, "20,000RP with [[Jade]]"); //Jade 20000RP
         register(Meal.JAM_GRAPE, "20,000RP with [[Jade]]"); //Jade 20000RP
+        register(Meal.MARMALADE, "20,000RP with [[Jade]]"); //Jade 20000RP
         register(Meal.RICE_MATSUTAKE, "[[Cafe]] on Saturdays in [[Winter]]");
         register(Meal.RICE_MUSHROOM, "[[Cafe]] on Sundays in [[Winter]]");
         register(Meal.RICE_FRIED, "[[Cafe]] on Wednesdays in [[Summer]]");
@@ -123,6 +124,16 @@ public class Debug {
         register("cooked_cod", "N/A");
         register("cooked_salmon", "N/A");
         register("pumpkin_pie", "N/A");
+        register("beetroot_soup", "N/A");
+        register("flour", "N/A");
+
+        register(Meal.TEMPURA, "17,500RP with [[Liara]]"); //Liara 17500RP
+        register(Meal.RICE_TEMPURA, "20,000RP with [[Liara]]"); //Liara 20000RP
+        register(Meal.NOODLES_TEMPURA, "22,500RP with [[Liara]]"); //Liara 22500RP
+        register(Meal.STIR_FRY, "20,000RP with [[Jenni]]"); //Jenni 20000RP
+        register(Meal.RICE_BAMBOO, "20,000RP with [[Brandon]]"); //Brandon 20000RP
+        register(Meal.NOODLES_THICK_FRIED, "20,000RP with [[Cloe]]"); //Cloe 20000RP
+        register(Meal.LATTE_FRUIT, "20,000RP with [[Tomas]]"); //Tomas 20000RP
 
         registerOverride("flour", "Flour is a cooking recipe made in the [[Mixer]]. You can also purchase flour from the [[General Store]] for {{gold|50}} which is much cheaper than turning your expensive [[Wheat]] in to flour.");
     }

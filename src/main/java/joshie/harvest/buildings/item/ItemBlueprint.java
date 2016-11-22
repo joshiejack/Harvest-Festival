@@ -67,41 +67,6 @@ public class ItemBlueprint extends ItemHFFML<ItemBlueprint, BuildingImpl> implem
         //Process the errors for the player
         if (errors.size() == 0) return new ActionResult<>(EnumActionResult.SUCCESS, stack);
         else return BuildingHelper.displayErrors(world, stack, errors);
-
-
-        /*if (world.provider.getDimension() == 0) {
-            RayTraceResult raytrace = BuildingHelper.rayTrace(player, 128, 0F);
-            if (raytrace == null || raytrace.getBlockPos() == null) {
-                return new ActionResult<>(EnumActionResult.PASS, stack);
-            }
-
-            BuildingImpl building = getObjectFromStack(stack);
-            TownData town = TownHelper.getClosestTownToEntity(player);
-            if(player.canPlayerEdit(raytrace.getBlockPos(), EnumFacing.DOWN, stack)) {
-                if (!world.isRemote) TownHelper.ensureBuilderExists(world, raytrace.getBlockPos()); //Force a town to exist near where you clicked
-                if (building != null && (DEBUG_MODE || building.canHaveMultiple() || (!town.hasBuilding(building.getRegistryName()) && !town.isBuilding(building)))) {
-                    BuildingKey key = BuildingHelper.getPositioning(stack, world, raytrace, building, player, true);
-                    if (key != null) {
-                        if (!TownHelper.getClosestTownToBlockPos(world, key.getPos()).isBuilding(building)) {
-                            if (!world.isRemote) {
-                                Rotation rotation = key.getRotation();
-                                EntityNPCBuilder builder = TownHelper.<TownDataServer>getClosestTownToEntity(player).getBuilder((WorldServer) world);
-                                BlockPos pos = key.getPos();
-                                if (builder != null && !TownHelper.getClosestTownToEntity(player).hasBuilding(building.getRegistryName())) {
-                                    if (TownHelper.<TownDataServer>getClosestTownToBlockPos(world, pos).setBuilding(world, building, pos.down(building.getOffsetY()), rotation)) {
-                                        if (builder.getBuilding() == null) builder.setPosition(pos.getX(), pos.up().getY(), pos.getZ()); //Teleport the builder to the position
-                                    }
-                                }
-                            }
-
-                            stack.splitStack(1);
-                            return new ActionResult<>(EnumActionResult.SUCCESS, stack);
-                        } else if (world.isRemote) ChatHelper.displayChat(TextFormatting.RED + TextHelper.translate("town.failure") + " " + TextFormatting.WHITE + TextHelper.translate("town.building"));
-                    }
-                } else if (world.isRemote) ChatHelper.displayChat(TextFormatting.RED + TextHelper.translate("town.failure") + " " + TextFormatting.WHITE + TextHelper.translate("town.permission"));
-            } else if (world.isRemote) ChatHelper.displayChat(TextFormatting.RED + TextHelper.translate("town.failure") + " " + TextFormatting.WHITE + TextHelper.translate("town.distance"));
-        } else if (world.isRemote) ChatHelper.displayChat(TextFormatting.RED + TextHelper.translate("town.failure") + " " + TextFormatting.WHITE + TextHelper.translate("town.dimension"));
-        return new ActionResult<>(EnumActionResult.PASS, stack); */
     }
 
     @Override

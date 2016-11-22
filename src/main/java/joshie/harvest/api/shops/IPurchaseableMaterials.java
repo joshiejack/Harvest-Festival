@@ -10,7 +10,7 @@ public interface IPurchaseableMaterials extends IPurchasable {
     /** This is whether the item can be listed in the shop
      *  @param world the world object
      *  @param player the player trying to buy**/
-    default boolean canList(World world, EntityPlayer player) { return getCost() < 0 || canBuy(world, player, 1); }
+    default boolean canList(World world, EntityPlayer player) { return getCost() < 0 || canDo(world, player, 1); }
 
     /** Returns a list of requirements to be displayed for this purchasable **/
     IRequirement[] getRequirements();

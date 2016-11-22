@@ -1,7 +1,7 @@
 package joshie.harvest.core.helpers;
 
 import joshie.harvest.api.HFApi;
-import joshie.harvest.api.core.ISpecialPurchaseRules;
+import joshie.harvest.api.core.ISpecialRules;
 import joshie.harvest.api.crops.Crop;
 import joshie.harvest.api.crops.DropHandler;
 import joshie.harvest.api.crops.GrowthHandler;
@@ -94,7 +94,7 @@ public class RegistryHelper {
 
         //Atempt to add a rules handler
         try {
-            ISpecialPurchaseRules handler = (ISpecialPurchaseRules) Class.forName(RULES + WordUtils.capitalizeFully(name.replace("_", " ")).replace(" ", "")).newInstance();
+            ISpecialRules handler = (ISpecialRules) Class.forName(RULES + WordUtils.capitalizeFully(name.replace("_", " ")).replace(" ", "")).newInstance();
             if (handler != null) crop.setPurchaseRules(handler);
         } catch (IllegalAccessException | ClassNotFoundException | InstantiationException e) {/**/}
 

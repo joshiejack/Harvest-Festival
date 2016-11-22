@@ -7,6 +7,7 @@ import joshie.harvest.cooking.CookingHelper;
 import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.quests.Quests;
 import joshie.harvest.quests.base.QuestRecipe;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 
 import java.util.List;
@@ -28,7 +29,7 @@ public class QuestJade20KJam extends QuestRecipe {
     }
 
     @Override
-    protected List<ItemStack> getRewardStacks() {
+    protected List<ItemStack> getRewardStacks(EntityPlayer player) {
         return Lists.newArrayList(CookingHelper.getRecipe(recipe), CookingHelper.getRecipe(recipe2), CookingHelper.getRecipe(recipe3));
     }
 }

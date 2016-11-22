@@ -1,17 +1,18 @@
 package joshie.harvest.quests.player.friendship;
 
-import joshie.harvest.api.HFApi;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.Quest;
+import joshie.harvest.fishing.HFFishing;
+import joshie.harvest.fishing.block.BlockFishing.FishingBlock;
 import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.quests.Quests;
-import joshie.harvest.quests.base.QuestFriendship;
-import net.minecraft.entity.player.EntityPlayer;
+import joshie.harvest.quests.base.QuestFriendshipStore;
+import net.minecraft.item.ItemStack;
 
 import java.util.Set;
 
 @HFQuest("friendship.jacob.hatchery")
-public class QuestJacob15KHatchery extends QuestFriendship {
+public class QuestJacob15KHatchery extends QuestFriendshipStore {
     public QuestJacob15KHatchery() {
         super(HFNPCs.FISHERMAN, 15000);
     }
@@ -22,8 +23,12 @@ public class QuestJacob15KHatchery extends QuestFriendship {
     }
 
     @Override
-    public void onQuestCompleted(EntityPlayer player) {
-        super.onQuestCompleted(player);
-        HFApi.quests.completeQuestConditionally(Quests.HATCHERY, player);
+    protected Quest getQuest() {
+        return Quests.SELL_HATCHERY;
+    }
+
+    @Override
+    protected ItemStack getRewardStack() {
+        return HFFishing.FISHING_BLOCK.getStackFromEnum(FishingBlock.HATCHERY);
     }
 }

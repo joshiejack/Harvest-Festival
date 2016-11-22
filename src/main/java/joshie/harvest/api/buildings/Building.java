@@ -1,20 +1,24 @@
 package joshie.harvest.api.buildings;
 
-import joshie.harvest.api.core.ISpecialPurchaseRules;
+import joshie.harvest.api.core.ISpecialRules;
 import joshie.harvest.api.npc.INPC;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.Mirror;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 /** Building interaction **/
 public interface Building {
+    /** Resource name **/
+    ResourceLocation getResource();
+
     /** This will add some special purchasing rules for the building in question
      * @param rules the special rules
      * @return the building  */
-    Building setSpecialRules(ISpecialPurchaseRules rules);
+    Building setSpecialRules(ISpecialRules rules);
 
     /** Set the requirements for this building
      * @param requirements the building requirements **/
@@ -43,7 +47,7 @@ public interface Building {
     String getLocalisedName();
 
     /** Returns the special rules for this building **/
-    ISpecialPurchaseRules getRules();
+    ISpecialRules getRules();
 
     //TODO: Remove in 0.7+
     @Deprecated

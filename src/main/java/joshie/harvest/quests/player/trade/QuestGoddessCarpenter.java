@@ -36,7 +36,7 @@ public class QuestGoddessCarpenter extends QuestTrade {
     }
 
     @Override
-    public void onChatClosed(EntityPlayer player, EntityLiving entity, INPC npc) {
+    public void onChatClosed(EntityPlayer player, EntityLiving entity, INPC npc, boolean wasSneaking) {
         if (InventoryHelper.takeItemsIfHeld(player, ORE_DICTIONARY, "logWood", HFQuests.LOGS_CARPENTER) != null) {
             if (HFBuildings.CHEAT_BUILDINGS) rewardItem(player, HFBuildings.CARPENTER.getSpawner());
             else rewardItem(player, HFBuildings.CARPENTER.getBlueprint());

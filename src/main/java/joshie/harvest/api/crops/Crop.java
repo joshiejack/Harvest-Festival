@@ -4,7 +4,7 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.AnimalFoodType;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.cooking.Ingredient;
-import joshie.harvest.api.core.ISpecialPurchaseRules;
+import joshie.harvest.api.core.ISpecialRules;
 import joshie.harvest.api.crops.IStateHandler.PlantSection;
 import joshie.harvest.crops.handlers.growth.GrowthHandlerSide;
 import net.minecraft.block.Block;
@@ -28,14 +28,14 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements IPlantable {
     public static final IForgeRegistry<Crop> REGISTRY = new RegistryBuilder<Crop>().setName(new ResourceLocation("harvestfestival", "crops")).setType(Crop.class).setIDRange(0, 32000).create();
     public static final GrowthHandler SEASONAL = new GrowthHandler() {};
     public static final DropHandler DROPS = new DropHandler();
-    public static final ISpecialPurchaseRules RULES = (w, p, a) -> true;
+    public static final ISpecialRules RULES = (w, p, a) -> true;
     public static final Crop NULL_CROP = new Crop();
 
     //CropData
     private IStateHandler stateHandler;
     private GrowthHandler growthHandler;
     private DropHandler dropHandler;
-    private ISpecialPurchaseRules rules;
+    private ISpecialRules rules;
     private AnimalFoodType foodType;
     private EnumPlantType type;
     private Ingredient ingredient;
@@ -310,7 +310,7 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements IPlantable {
      * Set the purchase rules for this crop
      * @param rules the rules to set
      * **/
-    public Crop setPurchaseRules(ISpecialPurchaseRules rules) {
+    public Crop setPurchaseRules(ISpecialRules rules) {
         this.rules = rules;
         return this;
     }
@@ -522,7 +522,7 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements IPlantable {
     /**
      * What this crop rules for purchase are
      **/
-    public ISpecialPurchaseRules getRules() {
+    public ISpecialRules getRules() {
         return rules;
     }
 

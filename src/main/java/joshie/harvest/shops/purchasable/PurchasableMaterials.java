@@ -68,12 +68,12 @@ public class PurchasableMaterials extends PurchasableFML<BuildingImpl> implement
     }
 
     @Override
-    public boolean canBuy(World world, EntityPlayer player, int amount) {
+    public boolean canDo(World world, EntityPlayer player, int amount) {
         for (IRequirement requirement: requirements) {
             if (!requirement.isFulfilled(world, player, amount)) return false;
         }
 
-        return isPurchaseable(world, player);
+        return isPurchasable(world, player);
     }
 
     @Override
@@ -95,7 +95,7 @@ public class PurchasableMaterials extends PurchasableFML<BuildingImpl> implement
         super.onPurchased(player);
     }
 
-    public boolean isPurchaseable(World world, EntityPlayer player) {
+    public boolean isPurchasable(World world, EntityPlayer player) {
         return true;
     }
 

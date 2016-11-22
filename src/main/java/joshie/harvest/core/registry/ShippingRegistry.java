@@ -30,7 +30,7 @@ public class ShippingRegistry implements IShippingRegistry {
     }
 
     @Override
-    @SuppressWarnings("ConstantConditions")
+    @SuppressWarnings("ConstantConditions, deprecation")
     public long getSellValue(ItemStack stack) {
         //Per item override
         if (stack.hasTagCompound()) {

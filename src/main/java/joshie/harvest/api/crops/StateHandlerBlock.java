@@ -28,6 +28,7 @@ public class StateHandlerBlock implements IStateHandler<Crop> {
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public IBlockState getState(IBlockAccess world, BlockPos pos, PlantSection section, Crop crop, int stage, boolean withered) {
         for (int i = 0; i < values.length; i++) {
             if (stage <= values[i]) return block.getStateFromMeta(i);

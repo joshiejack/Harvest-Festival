@@ -1,11 +1,13 @@
 package joshie.harvest.quests.player.trade;
 
+import joshie.harvest.api.HFApi;
 import joshie.harvest.api.core.ITiered.ToolTier;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.base.item.ItemTool;
 import joshie.harvest.core.lib.HFSounds;
+import joshie.harvest.quests.Quests;
 import joshie.harvest.quests.base.QuestTrade;
 import joshie.harvest.tools.HFTools;
 import net.minecraft.entity.EntityLiving;
@@ -29,20 +31,23 @@ public class QuestPriestRepair extends QuestTrade {
 
     @SideOnly(Side.CLIENT)
     @Override
+    @SuppressWarnings("ConstantConditions")
     public String getLocalizedScript(EntityPlayer player, EntityLiving entity, INPC npc) {
-        boolean hasGold = HFTrackers.getPlayerTrackerFromPlayer(player).getStats().getGold() >= 500;
+        long cost = HFApi.quests.hasCompleted(Quests.TOMAS_15K, player) ? 1000 : 2500;
+        boolean hasGold = HFTrackers.getPlayerTrackerFromPlayer(player).getStats().getGold() >= cost;
         boolean hasTool = isHolding(player);
         if (hasGold && hasTool) {
             ItemStack tool = player.getHeldItemMainhand(); //For translation reasons
             return getLocalized("done", tool.getDisplayName());
         } else if (hasTool) {
-            return getLocalized("gold");
-        } else return null;
+            return getLocalized("gold", cost);
+        } else return player.worldObj.rand.nextDouble() <= 0.05D ? getLocalized("reminder", cost) : null;
     }
 
     @Override
-    public void onChatClosed(EntityPlayer player, EntityLiving entity, INPC npc) {
-        boolean hasGold = HFTrackers.getPlayerTrackerFromPlayer(player).getStats().getGold() >= 500;
+    public void onChatClosed(EntityPlayer player, EntityLiving entity, INPC npc, boolean wasSneaking) {
+        long cost = HFApi.quests.hasCompleted(Quests.TOMAS_15K, player) ? 1000 : 2500;
+        boolean hasGold = HFTrackers.getPlayerTrackerFromPlayer(player).getStats().getGold() >= cost;
         boolean hasTool = isHolding(player);
         if (hasGold && hasTool) {
             complete(player);
@@ -56,10 +61,11 @@ public class QuestPriestRepair extends QuestTrade {
     @Override
     public void onQuestCompleted(EntityPlayer player) {
         if (player.getHeldItemMainhand() != null) {
+            long cost = HFApi.quests.hasCompleted(Quests.TOMAS_15K, player) ? 1000 : 2500;
             ItemStack stack = player.getHeldItemMainhand().copy();
             ItemStack tool = new ItemStack(stack.getItem(), 1, stack.getItemDamage());
             tool.getSubCompound("Data", true).setDouble("Level", stack.getSubCompound("Data", true).getDouble("Level"));
-            rewardGold(player, -500L);
+            rewardGold(player, -cost);
             takeHeldStack(player, 1);
             rewardItem(player, tool);
             spawnXP(player.worldObj, (int) player.posX, (int) player.posY, (int) player.posZ, 5);

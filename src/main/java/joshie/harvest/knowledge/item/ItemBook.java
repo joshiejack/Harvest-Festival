@@ -2,8 +2,8 @@ package joshie.harvest.knowledge.item;
 
 import joshie.harvest.HarvestFestival;
 import joshie.harvest.core.base.item.ItemHFEnum;
-import joshie.harvest.knowledge.item.ItemBook.Book;
 import joshie.harvest.core.util.interfaces.ICreativeSorted;
+import joshie.harvest.knowledge.item.ItemBook.Book;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;

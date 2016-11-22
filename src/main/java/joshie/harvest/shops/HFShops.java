@@ -23,6 +23,7 @@ import joshie.harvest.fishing.item.ItemJunk.Junk;
 import joshie.harvest.knowledge.HFNotes;
 import joshie.harvest.mining.HFMining;
 import joshie.harvest.mining.block.BlockLadder.Ladder;
+import joshie.harvest.mining.item.ItemMaterial.Material;
 import joshie.harvest.mining.item.ItemMiningTool.MiningTool;
 import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.quests.Quests;
@@ -128,6 +129,10 @@ public class HFShops {
         CAFE.addPurchasable(new PurchasableMeal(250, new ResourceLocation(MODID, "juice_pineapple")).setStock(5));
         CAFE.addPurchasable(new PurchasableMeal(250, new ResourceLocation(MODID, "corn_baked")).setStock(5));
         CAFE.addPurchasable(new PurchasableMeal(300, new ResourceLocation(MODID, "ice_cream")).setStock(10));
+        //Add three random meals
+        CAFE.addPurchasable(new PurchasableRandomMeal(5));
+        CAFE.addPurchasable(new PurchasableRandomMeal(13));
+        CAFE.addPurchasable(new PurchasableRandomMeal(17));
 
         //Allow the purchasing of cookware at the weekends
         CAFE.addPurchasable(new PurchasableWeekend(25, new ItemStack(COOKBOOK)).setStock(1).setNote(HFNotes.RECIPE_BOOK));
@@ -228,7 +233,7 @@ public class HFShops {
         CARPENTER.addPurchasable(new PurchasableMaterials(10000L, HFCrops.SPRINKLER.getStackFromEnum(Sprinkler.IRON), Logs.of(4), Silver.of(8)) {
             @Override
             public boolean canList(World world, EntityPlayer player) {
-                return HFApi.quests.hasCompleted(Quests.SPRINKLER, player) && TownHelper.getClosestTownToEntity(player).hasBuilding(HFBuildings.MINING_HILL);
+                return HFApi.quests.hasCompleted(Quests.SELL_SPRINKLER, player) && TownHelper.getClosestTownToEntity(player).hasBuilding(HFBuildings.MINING_HILL);
             }
         }.setStock(3).addTooltip("sprinkler.iron.tooltip"));
 
@@ -249,6 +254,12 @@ public class HFShops {
     private static void registerMiner() {
         MINER.addPurchasable(1000, HFMining.LADDER.getStackFromEnum(Ladder.DECORATIVE), 3);
         MINER.addPurchasable(250, HFMining.MINING_TOOL.getStackFromEnum(MiningTool.ESCAPE_ROPE), 10);
+        MINER.addPurchasable(new PurchasableObtained(200, HFMining.MATERIALS.getStackFromEnum(Material.COPPER)));
+        MINER.addPurchasable(new PurchasableObtained(300, HFMining.MATERIALS.getStackFromEnum(Material.SILVER)));
+        MINER.addPurchasable(new PurchasableObtained(400, HFMining.MATERIALS.getStackFromEnum(Material.GOLD)));
+        MINER.addPurchasable(new PurchasableOre(150, new ItemStack(Items.COAL)));
+        MINER.addPurchasable(new PurchasableOre(400, new ItemStack(Items.IRON_INGOT)));
+        MINER.addPurchasable(new PurchasableOre(600, new ItemStack(Items.GOLD_INGOT)));
         //Selling things to the mine
         MINER.addPurchasable(-10, new ItemStack(Items.COAL, 1, 1));
         MINER.addPurchasable(-6, new ItemStack(Items.GOLD_NUGGET));
@@ -303,6 +314,7 @@ public class HFShops {
 
         SUPERMARKET.addOpening(MONDAY, 9000, 17000).addOpening(TUESDAY, 9000, 17000).addOpening(THURSDAY, 9000, 17000);
         SUPERMARKET.addOpening(FRIDAY, 9000, 17000).addOpening(SATURDAY, 11000, 15000);
+        SUPERMARKET.addConditionalOpening((w,e,i) -> TownHelper.getClosestTownToEntity(e).getQuests().getFinished().contains(Quests.OPEN_WEDNESDAYS), WEDNESDAY, 9000, 17000);
     }
 
     private static void registerTackleshop() {
@@ -312,7 +324,7 @@ public class HFShops {
         BAITSHOP.addPurchasable(new PurchasableMaterials(3000L, HFFishing.FISHING_BLOCK.getStackFromEnum(FishingBlock.HATCHERY), Logs.of(8), Wool.of(1)) {
             @Override
             public boolean canList(World world, EntityPlayer player) {
-                return HFApi.quests.hasCompleted(Quests.HATCHERY, player);
+                return HFApi.quests.hasCompleted(Quests.SELL_HATCHERY, player);
             }
         }.setStock(1).addTooltip("fishing.block.hatchery"));
 

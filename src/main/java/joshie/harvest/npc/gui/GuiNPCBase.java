@@ -132,18 +132,26 @@ public abstract class GuiNPCBase extends GuiBase {
         npcMouseX = mouseX;
         npcMouseY = mouseY;
 
-        if (npc.getNPC() != HFNPCs.GODDESS && isHoldingItem() && hoveringGift())
-            renderToolTip(GIFT, mouseX, mouseY);
-        if (displayInfo() && hoveringInfo())
-            renderToolTip(npc.getNPC().hasInfo(), mouseX, mouseY);
+        if (isChat()) {
+            if (npc.getNPC() != HFNPCs.GODDESS && isHoldingItem() && hoveringGift())
+                renderToolTip(GIFT, mouseX, mouseY);
+            if (displayInfo() && hoveringInfo())
+                renderToolTip(npc.getNPC().hasInfo(), mouseX, mouseY);
+        }
+    }
+
+    protected boolean isChat() {
+        return true;
     }
 
     //Perform the mouse clicks
     protected void onMouseClick(int mouseX, int mouseY) {
-        if (isHoldingItem() && hoveringGift())
-            PacketHandler.sendToServer(new PacketGift(npc));
-        else if (displayInfo() && hoveringInfo())
-            PacketHandler.sendToServer(new PacketInfo(npc));
+        if (isChat()) {
+            if (isHoldingItem() && hoveringGift())
+                PacketHandler.sendToServer(new PacketGift(npc));
+            else if (displayInfo() && hoveringInfo())
+                PacketHandler.sendToServer(new PacketInfo(npc));
+        }
     }
 
     boolean hoveringGift() {
@@ -159,7 +167,7 @@ public abstract class GuiNPCBase extends GuiBase {
     }
 
     boolean displayInfo() {
-        return npc.getNPC().hasInfo() != null && npc.getNPC().canDisplayInfo(player);
+        return npc.getNPC().hasInfo() != null && npc.getNPC().canDisplayInfo(npc, player);
     }
 
     public abstract void drawOverlay(int x, int y);

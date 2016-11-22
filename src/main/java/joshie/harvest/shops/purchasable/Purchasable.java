@@ -57,7 +57,7 @@ public class Purchasable implements IPurchasable {
     }
 
     @Override
-    public boolean canBuy(World world, EntityPlayer player, int amount) {
+    public boolean canDo(World world, EntityPlayer player, int amount) {
         if (getCost() < 0) {
             return InventoryHelper.hasInInventory(player, ITEM_STACK, getDisplayStack(), (getDisplayStack().stackSize * amount));
         }

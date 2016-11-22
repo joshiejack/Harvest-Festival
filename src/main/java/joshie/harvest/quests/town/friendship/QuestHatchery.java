@@ -1,4 +1,4 @@
-package joshie.harvest.quests.town.items;
+package joshie.harvest.quests.town.friendship;
 
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.quests.base.QuestDummyTown;

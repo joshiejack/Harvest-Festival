@@ -604,6 +604,8 @@ harvestfestival.npctool.clock=Shop opens when?
 harvestfestival.npctool.weather=Weather, tomorrow?
 harvestfestival.npctool.gift=Gift held item!
 harvestfestival.npctool.flower=Sell Flower!
+harvestfestival.npctool.gift.special=Special Gift!
+harvestfestival.npctool.gift.special.tooltip=A special gift love Cloe.
 
 # NPC Names
 ## NOTE FOR TRANSLATORS, READ
@@ -798,7 +800,7 @@ harvestfestival.npc.cloe.gift.bad=Err, no thanks...
 harvestfestival.npc.cloe.gift.terrible=I thought my parents were the worst, but nope it's you.
 
 #Liara/ApsciLiara
-harvestfestival.npc.liara.shop=I'm afraid the cafe is only open from 9:30 until 17:00, but we're open every day of the week!
+harvestfestival.npc.liara.shop=I'm afraid the cafe is only open from half past nine in the morning to five in the evening, but we're open every day of the week!
 harvestfestival.npc.liara.greeting1=I really love this weather, perfect time to bake a cake!
 harvestfestival.npc.liara.greeting2=Cooking is what I enjoy the most! I love seeing the smile on someone's face as they take their first bite of my delicious dishes!
 harvestfestival.npc.liara.greeting3=Are you feeling hungry? I'm always hungry, no wonder I like to cook so much.
@@ -813,7 +815,6 @@ harvestfestival.npc.liara.greeting11=If you want my advice, read the description
 harvestfestival.npc.liara.greeting12=When I went to cookery school, there was this girl I knew, I think her name began with a p. She really was a terrible cook.
 harvestfestival.npc.liara.greeting13=I really do miss my parents, but losing them really made me want to focus on my cooking career.
 harvestfestival.npc.liara.greeting14=I've been passionate about cooking all my life, I remember when I was ten, I was selling cupcake and making 1000 gold a week! But now I'm so glad I finally get to open my own proper business.
-harvestfestival.npc.liara.greeting15=The cafe is open everyday! From half past nine in the morning to five in the evening.
 harvestfestival.npc.liara.marriage.reject=The cafe is my home. I do not wish to live with you.
 harvestfestival.npc.liara.marriage.accept=Thank you, I will marry you, I will cook you many meals.
 harvestfestival.npc.liara.gift.awesome=Thank you so so much, this will be remembered forever.
@@ -855,6 +856,7 @@ harvestfestival.npc.jade.gift.terrible=It really is a terrible gift!
 
 #Jenni/Othlon
 harvestfestival.npc.jenni.shop=Heya friend, just to remind you, we're open everyday except Wednesday and Sunday, from 9am to 5pm. Oh Saturdays we are only open from 11am to 3pm.
+harvestfestival.npc.jenni.shop.wednesday=Heya friend, just to remind you, we're now open every day except for Sunday, from 9am to 5pm. Oh Saturdays we are only open from 11am to 3pm.
 harvestfestival.npc.jenni.greeting1=Hey my good friend, make sure to come to me if you need any general goods!
 harvestfestival.npc.jenni.greeting2=As much as I love my customers, I love my art so much more.
 harvestfestival.npc.jenni.greeting3=Don't tell anybody but I'm secretly a huge fan of Belly Dancing.
@@ -1033,8 +1035,6 @@ harvestfestival.npc.thomas.greeting1=I will save you from your sins.
 harvestfestival.npc.thomas.greeting2=Remember if you ever need any cursed tools, blessed I will be happy to help.
 harvestfestival.npc.thomas.greeting3=Only he can save you now.
 harvestfestival.npc.thomas.greeting4=The lord's grace, is shining down upon you.
-harvestfestival.npc.thomas.greeting5=If you ever come across a cursed tool, bring it to me and I can bless it for 10000 Gold.
-harvestfestival.npc.thomas.greeting6=I can repair blessed tools for 1000 gold.
 harvestfestival.npc.thomas.greeting7=May god have mercy on you.
 harvestfestival.npc.thomas.greeting8=I believe I can fly.
 harvestfestival.npc.thomas.greeting9=Why did I ever marry that witch, katlin.
@@ -1358,13 +1358,15 @@ harvestfestival.quest.tutorial.upgrading.explain=That’s good then. I’ll be h
 
 ##Trading Quests
 # Priest Blessing Quest
+harvestfestival.quest.trade.cursed.reminder=If you ever come across a cursed tool, bring it to me and I can bless it for %s Gold.
 harvestfestival.quest.trade.cursed.accept=Thank you very much youngun, I can now bless your tools! It will take a little while, so come back in three days.
-harvestfestival.quest.trade.cursed.gold=Ahh I see you have a cursed tool! For a small fee of 10000 Gold I can bless it for you and remove that curse.
+harvestfestival.quest.trade.cursed.gold=Ahh I see you have a cursed tool! For a small fee of %s Gold I can bless it for you and remove that curse.
 harvestfestival.quest.trade.cursed.wait=It's nice to see you, the blessing of your tools is going well, it will take a little bit longer, please come back in %s days
 harvestfestival.quest.trade.cursed.done=Your %s is now ready! All blessed for you! Here take it!
 
 # Priest Repair Quests
-harvestfestival.quest.trade.bless.repair.gold=Looks like you have a blessed tool. I can repair this for a small sum of 500 Gold.
+harvestfestival.quest.trade.bless.repair.reminder=I can repair blessed tools for %s gold.
+harvestfestival.quest.trade.bless.repair.gold=Looks like you have a blessed tool. I can repair this for a small sum of %s Gold.
 harvestfestival.quest.trade.bless.repair.done=And with all the almighty power I hearby bless your %s once again and restore it's powers.
 
 # Trader Johan Quests
@@ -1442,11 +1444,20 @@ harvestfestival.quest.recipe.souffle.apple.text=Getting to know you even more ha
 harvestfestival.quest.recipe.bread.raisin.text=The dark arts have been keeping me busy, I have an experiment I am working I can't wait to show. In the mean time take this evil recipe.
 harvestfestival.quest.recipe.mayonnaise.text=You know that I love eggs as much as I like you? Well this should help you get much greater buck out of your eggs.
 harvestfestival.quest.recipe.bread.curry.text=A guide to the creation of the best curry bread is what I give you for being a fantastic friend.
+harvestfestival.quest.recipe.tempura.text=I've been practicing my cooking so much lately, really want to make this Cafe serve the best food I can. This is a new recipe I've been working on, as a good friend I'd love for you to check it out.
+harvestfestival.quest.recipe.tempura.rice.text=Do you remember the last recipe I gave you? Well I've been working hard and I've made a few improvements so I'd love for you to try this one out too.
+harvestfestival.quest.recipe.tempura.noodles.text=I really hope you've been enjoying my Tempura recipes. I've got another one for such a great friend!
+harvestfestival.quest.recipe.stir.fry.text=You've been really been stirring my heart up lately. Please enjoy this, my good friend.
+harvestfestival.quest.recipe.rice.bamboo.text=As friends things are going well. I'd really like to share with a new rice dish ^_^.
+harvestfestival.quest.recipe.noodles.thick.fried.text=I have really started to master this cooking thing? You know the noodles I started off with? Well I thought I'd improve upon that. Take a look!
+harvestfestival.quest.recipe.latte.fruit.text=I have discovered another unholy object. Take it from me now.
 
 ## Friendship Quests
 harvestfestival.quest.friendship.katlin.kitchen.text=You have been really kind to me. I just don't know how to feel. You know, we recently lost our supplier for the kitchen, maybe you could take over the job? Just come and visit me on a Friday when the cafe isn't open, early in the morning or in the evening, then you can help me restock the kitchen. We're looking for things like meat, beetroot soup and cake.
 harvestfestival.quest.friendship.yulif.sprinkler.text=Yer have been a really great friend lately. So great I'm able to sell ya sprinklers now, so take a look in ma store when you have a chance.
+harvestfestival.quest.friendship.yulif.sprinkler.item=Yer been a really good friend. So great I'd love to just give ya one of my sprinklers on the house.
 harvestfestival.quest.friendship.jacob.hatchery.text=For making a fisherman happy, I've got some new stock in store so be suure to check her out.
+harvestfestival.quest.friendship.jacob.hatchery.item=For making a great fisher happy, I've got a spare hatchery for you to check out. Be kind to her.
 harvestfestival.quest.friendship.tiberius.dark.text=I think I'm finally starting to trust you. You should come and see me during the night on Wednesdays or Saturdays. I'm looking to buy some things...
 harvestfestival.quest.friendship.goddess.strawberry.text=My dear things have been going really well between us, because of that I'll let you have the secret to strawberries! Jenni should be selling them in this town now, they are a spring crop though, so you may have to wait.
 harvestfestival.quest.friendship.jade.flowers.text=Oh hello %4$s it's nice to see you, I have some wonderful news, I've decided that I want to open a flower shop! But I'm having trouble getting stock! That's where you come in, I'll happily buy flowers from you now, just show me some and I'll pay you whatever I can afford that day.
@@ -1455,13 +1466,28 @@ harvestfestival.quest.friendship.danieru.notes.text=Becoming friends has been gr
 harvestfestival.quest.friendship.ashlee.notes.text=You've treated me like noone else has, despite my craziness. To thank you I'd like you to have these secret notes I've been working on.
 harvestfestival.quest.friendship.candice.notes.text=You just couldn't be more beautiful today. You know I'm the master of flirting right? Well I have some tips I'd love to share with such a gorgeous person like yourself!
 harvestfestival.quest.friendship.jim.notes.text=I've recently taken part in some research of my own to find out what it takes to make your livestock more productive. As a good friend of mine I am happy to share it with you.
+harvestfestival.quest.friendship.liara.meals.text=You've really been ever so kind, by becoming my friend you've encouraged me to try out new things. From now on I'll be selling three new dishes each day in the Cafe, so be sure to check them out!
+harvestfestival.quest.friendship.liara.meals.item=You've been really kind, so I'd really like to give you a few of my dishes to try out.
+harvestfestival.quest.friendship.jenni.wednesday.text=My good friend it has been astounding getting to know you. You've really helped keep my business open, and demand has grown so much that I am happy to announce that we will now be open on Wednesdays!
+harvestfestival.quest.friendship.jenni.wednesday.item=My good friend, you have really helped my business grow, I'd love for you to have a pair of some fantastic seeds for your services.
+harvestfestival.quest.friendship.brandon.ore.text=I guess you've been pretty decent to me, unlike everyone else. I should probably let you start buying things I've mined in the overworld.
+harvestfestival.quest.friendship.brandon.ore.item=You've been fairly decent. I recently went mining in the overworld, you should take this junk I found.
+harvestfestival.quest.friendship.cloe.gift.text=I'm really happy to have gotten to know you. My mother always told me to avoid hanging out with what she calls "riff-raff". She may seem to play well, but honestly I don't think she even likes you still. It's just her job you know, got to do what please the crowd. But thanks, you've made me understand humanity better, and how wrong she really is. To thank you I'd really like to give you this gift.
+harvestfestival.quest.friendship.abii.cookies.text=Wanna know what I got up today ^_^???? Welll I made COOOKIES!!!!!! Want some? They're so yummy!
+harvestfestival.quest.friendship.abii.parents.text=Oooo it's you! My family been really happy lately, you've made them all smile for being so nice to me :D
+harvestfestival.quest.friendship.abii.town.text=I have some fantastic news for you tall one! I went around and talked with everyone...... Wellll..... They all must like you more now, I said so many nices things :D
+harvestfestival.quest.friendship.fenn.salad.text=My dad and me been working in da kitchen all day, you should try some of these yummy foods.
+harvestfestival.quest.friendship.fenn.parents.text=Dad's been smiling so much lately, He's so glad I foundly found a friend in you.
+harvestfestival.quest.friendship.fenn.plants.text=Guess what!!!! I went foraging today with Dad, and look what we found! You should have some!!
+harvestfestival.quest.tomas.cheaper.text=You've become a wonderful human towards me. For your sanctity I am now happy to grace you with a much cheaper price for a blessing.
 
 ## Meeting Quests
 harvestfestival.quest.meeting.jacob.text=Nice to meet you %4$s, the name's jacob. From what I've heard you're interested in fishing, you know, I've just recently bought myself a new rod, I'd like you to have my old one here, please take care of her. I run this tackle shop, if you need anything please do pop by.
 harvestfestival.quest.meeting.katlin.text=Good day youngun. I'm Katlin but you can call me granny if you like. I help out my granddaughter Liara, mostly in the kitchen. I must thank you for letting her open shop up here, it's been her life long dream. I have some spare change, it isn't much but please do take it.
 harvestfestival.quest.meeting.johan.text=Good day. It is such a pleasure to meet you. The name is Johan. I'm normally here throughout the day but I travel back to my homeland at night. To let you know that if you ever need a bucket of milk, block of wool or some brown eggs, I'll happily trade for bottles of milk, plain wool or white eggs. I will see you around.
-harvestfestival.quest.meeting.abi.text=HELLLO BIG PERSON! I'm Abii!!!!! Wanna know what I got up today ^_^???? Welll I made COOOKIES!!!!!! Want some? They're so yummy!
+harvestfestival.quest.meeting.abi.text=HELLLO BIG PERSON! I'm Abii!!!!! Never seen you before :D
 harvestfestival.quest.meeting.candice.text=I will surely find myself someone. Well hello there aren’t you just the cutest. I’m Candice. Jenni downstairs is the owner here, I’m just a tenant. Nice to meet you! I'd love for you to have one of my favourite drinks!
+harvestfestival.quest.meeting.fenn.text=Oooo hello there! Fenn's the name, vines are the game.
 
 ## Seed Quests
 harvestfestival.quest.seeds.cabbage.complete=Wow it looks like you've shipped 1000 spring crops! That's amazing. I have some good news too, we've recently found someone who will be happy to supply the store with cabbage seeds. So make sure to check the store the next time you visit!
@@ -1472,6 +1498,10 @@ harvestfestival.quest.seeds.progress.complete=This town has really been growing,
 #Building the Goddess a Home
 harvestfestival.quest.building.goddess.please=You’ve done a remarkable job of bringing this town back together. I’m really happy to see it growing! I’d just love a permanent home here too. If you can build me one, then I have a reward for you.
 harvestfestival.quest.building.goddess.thanks=Your hard work getting this town back on its feet couldn’t be more appreciated. I couldn’t be more grateful for the home you have built me here either. To show my appreciation I’d like to give you a few strawberries and a small bonus to your funds!
+
+##Schedule Quests
+#Sunday Baking!
+harvestfestival.schedule.katlin.baking.cake=Youngun today is a graceful day, I've been hard at work baking, so I'd like for you to have some of my baked goods.
 
 ###Achievements
 achievement.harvestfestival.summon=Goddess' Bounty

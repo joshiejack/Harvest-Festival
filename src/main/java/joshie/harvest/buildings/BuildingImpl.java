@@ -2,7 +2,7 @@ package joshie.harvest.buildings;
 
 import com.google.gson.annotations.Expose;
 import joshie.harvest.api.buildings.Building;
-import joshie.harvest.api.core.ISpecialPurchaseRules;
+import joshie.harvest.api.core.ISpecialRules;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.buildings.placeable.Placeable;
 import joshie.harvest.buildings.placeable.Placeable.ConstructionStage;
@@ -29,7 +29,7 @@ public class BuildingImpl extends IForgeRegistryEntry.Impl<BuildingImpl> impleme
     private final Set<ResourceLocation> inhabitants = new HashSet<>();
 
     //Costs and rules
-    private ISpecialPurchaseRules special = (w, p, a) -> true;
+    private ISpecialRules special = (w, p, a) -> true;
     private String toLocalise = "";
     private ResourceLocation[] requirements = new ResourceLocation[0];
     private long cost = 1000L;
@@ -81,6 +81,11 @@ public class BuildingImpl extends IForgeRegistryEntry.Impl<BuildingImpl> impleme
     }
 
     @Override
+    public ResourceLocation getResource() {
+        return getRegistryName();
+    }
+
+    @Override
     public Building setRequirements(String... requirements) {
         this.requirements = new ResourceLocation[requirements.length];
         for (int i = 0; i < requirements.length; i++) {
@@ -114,7 +119,7 @@ public class BuildingImpl extends IForgeRegistryEntry.Impl<BuildingImpl> impleme
     }
 
     @Override
-    public Building setSpecialRules(ISpecialPurchaseRules special) {
+    public Building setSpecialRules(ISpecialRules special) {
         this.special = special;
         return this;
     }
@@ -132,7 +137,7 @@ public class BuildingImpl extends IForgeRegistryEntry.Impl<BuildingImpl> impleme
     }
 
     @Override
-    public ISpecialPurchaseRules getRules() {
+    public ISpecialRules getRules() {
         return special;
     }
 

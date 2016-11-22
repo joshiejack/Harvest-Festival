@@ -40,7 +40,8 @@ public class QuestTrader extends QuestTrade {
     }
 
     @Override
-    public void onChatClosed(EntityPlayer player, EntityLiving entity, INPC npc) {
+    @SuppressWarnings("ConstantConditions")
+    public void onChatClosed(EntityPlayer player, EntityLiving entity, INPC npc, boolean wasSneaking) {
         if (isHoldingAnyAtAll(player)) {
             EnumHand hand = isHoldingAny(player, EnumHand.MAIN_HAND) ? EnumHand.MAIN_HAND: EnumHand.OFF_HAND;
             if (player.getHeldItem(hand) != null) {

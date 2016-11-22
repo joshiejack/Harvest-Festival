@@ -6,7 +6,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.buildings.Building;
-import joshie.harvest.api.core.ISpecialPurchaseRules;
+import joshie.harvest.api.core.ISpecialRules;
 import joshie.harvest.buildings.block.BlockInternalAir;
 import joshie.harvest.buildings.item.ItemBlueprint;
 import joshie.harvest.buildings.item.ItemBuilding;
@@ -42,7 +42,7 @@ public class HFBuildings {
     public static final BlockInternalAir AIR = new BlockInternalAir().register("air");
 
     public static final BuildingImpl null_building = new BuildingImpl();
-    public static final ISpecialPurchaseRules NEVER = (w, p, a) -> false;
+    public static final ISpecialRules NEVER = (w, p, a) -> false;
     public static final Building BARN = registerBuilding("barn").setRequirements("carpenter").setInhabitants(HFNPCs.BARN_OWNER).setOffset(6, -1, 8);
     public static final Building BLACKSMITH = registerBuilding("blacksmith").setRequirements("miningHill").setInhabitants(HFNPCs.BLACKSMITH).setOffset(3, -2, 6);
     public static final Building CAFE = registerBuilding("cafe").setRequirements("supermarket").setInhabitants(HFNPCs.CAFE_OWNER, HFNPCs.CAFE_GRANNY).setOffset(7, -1, 10);

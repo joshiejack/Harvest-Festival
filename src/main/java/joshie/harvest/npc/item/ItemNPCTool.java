@@ -2,18 +2,31 @@ package joshie.harvest.npc.item;
 
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.item.ItemHFEnum;
+import joshie.harvest.core.helpers.SpawnItemHelper;
+import joshie.harvest.core.helpers.TextHelper;
+import joshie.harvest.mining.MiningHelper;
 import joshie.harvest.npc.item.ItemNPCTool.NPCTool;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.IStringSerializable;
+import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
+import java.util.List;
 import java.util.Locale;
 
+import static joshie.harvest.core.lib.LootStrings.MINING_GEMS;
 import static joshie.harvest.npc.item.ItemNPCTool.NPCTool.NPC_KILLER;
 import static net.minecraft.util.text.TextFormatting.AQUA;
+import static net.minecraft.util.text.TextFormatting.GOLD;
 
 public class ItemNPCTool extends ItemHFEnum<ItemNPCTool, NPCTool> {
+    public static final String SPECIAL = "Gift";
     public enum NPCTool implements IStringSerializable {
         BLUE_FEATHER, NPC_KILLER, GIFT, CALENDAR,
         CLOCK, WEATHER, FLOWER, SPEECH;
@@ -53,8 +66,32 @@ public class ItemNPCTool extends ItemHFEnum<ItemNPCTool, NPCTool> {
     }
 
     @Override
+    @SuppressWarnings("ConstantConditions")
     public String getItemStackDisplayName(ItemStack stack) {
-        if (getEnumFromStack(stack).isReal()) return AQUA + super.getItemStackDisplayName(stack);
+        if (stack.hasTagCompound() && stack.getTagCompound().hasKey(SPECIAL)) return GOLD + TextHelper.translate("npctool.gift.special");
+        else if (getEnumFromStack(stack).isReal()) return AQUA + super.getItemStackDisplayName(stack);
         else return super.getItemStackDisplayName(stack);
+    }
+
+    @SideOnly(Side.CLIENT)
+    @Override
+    @SuppressWarnings("ConstantConditions")
+    public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
+        if (stack.hasTagCompound() && stack.getTagCompound().hasKey(SPECIAL)) {
+            tooltip.add(TextHelper.translate("npctool.gift.special.tooltip"));
+        }
+    }
+
+    @Override
+    public ActionResult<ItemStack> onItemRightClick(ItemStack held, World world, EntityPlayer player, EnumHand hand) {
+        if (held.hasTagCompound() && held.getTagCompound().hasKey(SPECIAL)) {
+            if (!world.isRemote) {
+                for (ItemStack stack: MiningHelper.getLoot(MINING_GEMS, world, player, 3F)) {
+                    SpawnItemHelper.spawnByEntity(player, stack);
+                }
+            }
+
+            return new ActionResult<>(EnumActionResult.SUCCESS, held);
+        } else return super.onItemRightClick(held, world, player, hand);
     }
 }

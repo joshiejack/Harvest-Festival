@@ -9,6 +9,7 @@ import joshie.harvest.calendar.CalendarHelper;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.base.item.ItemTool;
 import joshie.harvest.core.lib.HFSounds;
+import joshie.harvest.quests.Quests;
 import joshie.harvest.quests.base.QuestTrade;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
@@ -38,13 +39,14 @@ public class QuestBless extends QuestTrade {
     @Override
     public String getLocalizedScript(EntityPlayer player, EntityLiving entity, INPC npc) {
         if (quest_stage == TEST) {
-            boolean hasGold = HFTrackers.getPlayerTrackerFromPlayer(player).getStats().getGold() >= 10000L;
+            long cost = HFApi.quests.hasCompleted(Quests.TOMAS_15K, player) ? 10000 : 25000;
+            boolean hasGold = HFTrackers.getPlayerTrackerFromPlayer(player).getStats().getGold() >= cost;
             boolean hasTool = isHolding(player);
             if (hasGold && hasTool) {
                 return getLocalized("accept");
             } else if (hasTool) {
-                return getLocalized("gold");
-            } else return null;
+                return getLocalized("gold", cost);
+            } else return player.worldObj.rand.nextDouble() <= 0.05D ? getLocalized("reminder", cost) : null;
         } else {
             CalendarDate today = HFApi.calendar.getDate(player.worldObj);
             if (CalendarHelper.getDays(date, today) >= 3) {
@@ -58,7 +60,8 @@ public class QuestBless extends QuestTrade {
     @Override
     public void onChatClosed(EntityPlayer player, EntityLiving entity, INPC npc, boolean isSneaking) {
         if (quest_stage == TEST) {
-            boolean hasGold = HFTrackers.getPlayerTrackerFromPlayer(player).getStats().getGold() >= 10000L;
+            long cost = HFApi.quests.hasCompleted(Quests.TOMAS_15K, player) ? 10000 : 25000;
+            boolean hasGold = HFTrackers.getPlayerTrackerFromPlayer(player).getStats().getGold() >= cost;
             boolean hasTool = isHolding(player);
             if (hasGold && hasTool) {
                 increaseStage(player);
@@ -66,7 +69,7 @@ public class QuestBless extends QuestTrade {
                 ItemStack stack = player.getHeldItemMainhand().copy();
                 tool = new ItemStack(stack.getItem(), 1, stack.getItemDamage() + 1);
                 tool.setTagCompound(stack.getTagCompound().copy());
-                rewardGold(player, -10000L);
+                rewardGold(player, -cost);
                 takeHeldStack(player, 1);
             }
         } else {

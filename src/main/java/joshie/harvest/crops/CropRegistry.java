@@ -81,6 +81,7 @@ public class CropRegistry implements ICropRegistry {
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public Crop getCropFromStack(ItemStack stack) {
         //TODO: Remove in 0.7+
         if (stack.getItem() instanceof ICropProvider) {

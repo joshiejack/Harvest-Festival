@@ -23,9 +23,9 @@ import static joshie.harvest.core.helpers.InventoryHelper.ITEM_STACK;
 import static net.minecraft.util.text.TextFormatting.WHITE;
 
 public abstract class PurchasableFML<I extends IForgeRegistryEntry.Impl<I>> implements IPurchasable {
-    protected I item;
     private final long cost;
     protected String tooltip;
+    protected I item;
     private Note note;
     private int stock;
 
@@ -59,7 +59,7 @@ public abstract class PurchasableFML<I extends IForgeRegistryEntry.Impl<I>> impl
     }
 
     @Override
-    public boolean canBuy(World world, EntityPlayer player, int amount) {
+    public boolean canDo(World world, EntityPlayer player, int amount) {
         return true;
     }
 

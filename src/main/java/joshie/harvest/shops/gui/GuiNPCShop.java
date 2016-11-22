@@ -42,7 +42,7 @@ public class GuiNPCShop<I extends IPurchasable> extends GuiNPCBase {
         super(player, npc, EnumHand.MAIN_HAND, nextGui);
         client = player;
         shop = npc.getNPC().getShop();
-        if (shop == null || !shop.isOpen(player.worldObj, player)) player.closeScreen();
+        if (shop == null || !shop.isOpen(player.worldObj, npc, player)) player.closeScreen();
         stats = HFTrackers.getClientPlayerTracker().getStats();
         selling = isSelling;
     }
@@ -52,6 +52,11 @@ public class GuiNPCShop<I extends IPurchasable> extends GuiNPCBase {
         super.initGui();
         reload();
         setStart(0);
+    }
+
+    @Override
+    protected boolean isChat() {
+        return false;
     }
 
     private boolean isGoldOnly(IPurchasable purchasable) {

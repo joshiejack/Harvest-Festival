@@ -77,7 +77,7 @@ public class GuiHandler implements IGuiHandler {
             case STATS_BOOK:    return new GuiStats();
             case SHOP_OPTIONS:    {
                 EntityNPC npc = (EntityNPC) world.getEntityByID(entityID);
-                if (NPCHelper.isShopOpen(npc.getNPC(), world, player)) {
+                if (NPCHelper.isShopOpen(npc, world, player)) {
                     return new GuiNPCSelect(player, npc, nextGui, -1);
                 } else return new GuiNPCChat(player, npc, EnumHand.MAIN_HAND, nextGui, false);
             }

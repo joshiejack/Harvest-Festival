@@ -93,7 +93,7 @@
 ###Shops
 * New Shop GUI
 * Removed the Blacksmith's store
-* Miner store now only sells ladders and escape ropes
+* Miner store now sells ladders and escape ropes, and will also sell copper, silver and gold once you have mined some
 * Moved the crop farming tools to the general store
 * Moved the animal farming tools to the animal ranch
 * Moved the sprinkler to the carpenters store

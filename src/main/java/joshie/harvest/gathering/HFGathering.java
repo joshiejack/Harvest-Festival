@@ -24,6 +24,7 @@ public class HFGathering {
     }
 
     //256 Total
+    @SuppressWarnings("deprecation")
     public static void init() {
         //Seasons add up to 64
         //Spring

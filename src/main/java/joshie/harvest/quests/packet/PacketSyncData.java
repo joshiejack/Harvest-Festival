@@ -10,12 +10,12 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 
 @Packet(Side.CLIENT)
-public class PacketQuestIncrease extends PacketQuest {
+public class PacketSyncData extends PacketQuest {
     private Quest quest;
     private NBTTagCompound tag;
 
-    public PacketQuestIncrease() {}
-    public PacketQuestIncrease(Quest quest, NBTTagCompound tag) {
+    public PacketSyncData() {}
+    public PacketSyncData(Quest quest, NBTTagCompound tag) {
         this.quest = quest;
         this.tag = tag;
     }

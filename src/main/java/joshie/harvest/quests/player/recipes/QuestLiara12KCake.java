@@ -8,7 +8,7 @@ import joshie.harvest.quests.base.QuestRecipe;
 
 import java.util.Set;
 
-@HFQuest("recipe.cookies")
+@HFQuest("recipe.cake")
 public class QuestLiara12KCake extends QuestRecipe {
     public QuestLiara12KCake() {
         super("cake", HFNPCs.CAFE_OWNER, 12500);

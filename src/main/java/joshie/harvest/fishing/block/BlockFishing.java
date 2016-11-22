@@ -68,6 +68,7 @@ public class BlockFishing extends BlockHFEnum<BlockFishing, FishingBlock> {
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos) {
         TileEntity tile = world.getTileEntity(pos);
         if (tile instanceof TileTrap) {

@@ -101,6 +101,7 @@ public class NPC extends IForgeRegistryEntry.Impl<NPC> implements INPC {
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public INPC setLocation(Location location, Building building, String home_location) {
         this.locations.put(location, new BuildingLocation(building, home_location));
         return this;
@@ -143,6 +144,7 @@ public class NPC extends IForgeRegistryEntry.Impl<NPC> implements INPC {
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public INPC setHasInfo(ItemStack stack, IGreeting infoGreeting) {
         if (this.hasInfo == null || this.info instanceof GreetingShop) {
             this.hasInfo = stack;
@@ -211,6 +213,7 @@ public class NPC extends IForgeRegistryEntry.Impl<NPC> implements INPC {
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public boolean isBuilder() {
         return this == HFNPCs.BUILDER;
     }
@@ -241,8 +244,8 @@ public class NPC extends IForgeRegistryEntry.Impl<NPC> implements INPC {
         return info.getLocalizedText(player, npc, npc.getNPC());
     }
 
-    public boolean canDisplayInfo(EntityPlayer player) {
-        return info.canDisplay(this, player) && (getShop() == null || !getShop().isOpen(player.worldObj, player));
+    public boolean canDisplayInfo(EntityNPC npc, EntityPlayer player) {
+        return info.canDisplay(this, player) && (getShop() == null || !getShop().isOpen(player.worldObj, npc, player));
     }
 
     public boolean onClickedInfoButton(EntityPlayer player) {

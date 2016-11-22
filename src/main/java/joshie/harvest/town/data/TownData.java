@@ -40,6 +40,10 @@ public abstract class TownData<Q extends QuestData> {
         return this;
     }
 
+    public TownBuilding getBuilding(Building supermarket) {
+        return buildings.get(supermarket.getResource());
+    }
+
     /** Building currently being worked on **/
     public BuildingStage getCurrentlyBuilding() {
         return building.size() > 0 ? building.getFirst() : null;

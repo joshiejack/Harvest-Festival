@@ -20,7 +20,7 @@ public class PurchasableRecipeShipped extends PurchasableMeal {
     }
 
     @Override
-    public boolean canBuy(World world, EntityPlayer player, int amount) {
+    public boolean canDo(World world, EntityPlayer player, int amount) {
         return HFTrackers.getPlayerTrackerFromPlayer(player).getTracking().hasObtainedItem(crop.getCropStack(1));
     }
 

@@ -1,4 +1,4 @@
-package joshie.harvest.quests.town.friendship;
+package joshie.harvest.quests.town.tasks;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.CalendarDate;

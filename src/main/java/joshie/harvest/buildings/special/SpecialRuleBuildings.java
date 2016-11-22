@@ -1,11 +1,11 @@
 package joshie.harvest.buildings.special;
 
-import joshie.harvest.api.core.ISpecialPurchaseRules;
+import joshie.harvest.api.core.ISpecialRules;
 import joshie.harvest.town.TownHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 
-public class SpecialRuleBuildings implements ISpecialPurchaseRules {
+public class SpecialRuleBuildings implements ISpecialRules<EntityPlayer> {
     private final int amount;
 
     public SpecialRuleBuildings(int amount) {
@@ -13,7 +13,7 @@ public class SpecialRuleBuildings implements ISpecialPurchaseRules {
     }
 
     @Override
-    public boolean canBuy(World world, EntityPlayer player, int amount) {
+    public boolean canDo(World world, EntityPlayer player, int amount) {
         return amount == 1 && TownHelper.getClosestTownToEntity(player).getBuildings().size() >= 9;
     }
 }

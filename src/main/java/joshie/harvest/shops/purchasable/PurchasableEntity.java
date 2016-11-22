@@ -46,7 +46,7 @@ public class PurchasableEntity implements IPurchasable {
     }
 
     @Override
-    public boolean canBuy(World world, EntityPlayer player, int amount) {
+    public boolean canDo(World world, EntityPlayer player, int amount) {
         return amount == 1 && (lead || player.getPassengers().size() == 0);
     }
 

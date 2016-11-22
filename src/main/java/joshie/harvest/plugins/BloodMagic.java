@@ -18,6 +18,7 @@ public class BloodMagic {
     public static final Item ItemSoulSnare = null;
     public static final Item ItemSoulGem = null;
 
+    @SuppressWarnings("ConstantConditions")
     public static void init() {
         BLOODMAGE.addPurchasable(100, new ItemStack(ItemSoulSnare));
         BLOODMAGE.addPurchasable(150, new ItemStack(Items.ROTTEN_FLESH));
@@ -34,8 +35,10 @@ public class BloodMagic {
         FMLInterModComms.sendMessage("BloodMagic", "sacrificeValue", "EntityNPCGoddess;0");
         FMLInterModComms.sendMessage("BloodMagic", "sacrificeValue", "EntityNPCShopkeeper;0");
         FMLInterModComms.sendMessage("BloodMagic", "sacrificeValue", "EntityNPCVillager;0");
+        FMLInterModComms.sendMessage("BloodMagic", "sacrificeValue", "EntityNPCTrader;0");
     }
 
+    @SuppressWarnings("ConstantConditions")
     private static ItemStack getSoulGem(int amount) {
         ItemStack stack = new ItemStack(ItemSoulGem);
         stack.setTagCompound(new NBTTagCompound());

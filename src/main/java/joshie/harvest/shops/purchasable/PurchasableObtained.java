@@ -12,7 +12,6 @@ public class PurchasableObtained extends Purchasable {
 
     @Override
     public boolean canList(World world, EntityPlayer player) {
-        return super.canList(world, player) &&
-                HFTrackers.getPlayerTrackerFromPlayer(player).getTracking().hasObtainedItem(getDisplayStack());
+        return super.canList(world, player) && HFTrackers.getPlayerTrackerFromPlayer(player).getTracking().hasObtainedItem(getDisplayStack());
     }
 }

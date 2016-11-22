@@ -48,7 +48,7 @@ public class PacketPurchaseItem extends PenguinPacket {
     @Override
     public void handlePacket(EntityPlayer player) {
         if (!player.worldObj.isRemote) {
-            if (purchasable.canBuy(player.worldObj, player, amount)) {
+            if (purchasable.canDo(player.worldObj, player, amount)) {
                 if (purchase((EntityPlayerMP)player)) {
                     PacketHandler.sendToClient(new PacketPurchaseItem(shop, purchasable, amount), player); //Send the packet back
                 }

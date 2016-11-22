@@ -21,6 +21,7 @@ public class StateHandlerHemp extends StateHandlerBlock {
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public IBlockState getState(IBlockAccess world, BlockPos pos, PlantSection section, Crop crop, int stage, boolean withered) {
         if (section == PlantSection.TOP) return block.getStateFromMeta(5);
         return block.getStateFromMeta(getMetaFromStage(stage));

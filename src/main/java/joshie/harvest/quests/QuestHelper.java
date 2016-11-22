@@ -12,7 +12,7 @@ import joshie.harvest.core.util.annotations.HFApiImplementation;
 import joshie.harvest.npc.entity.EntityNPC;
 import joshie.harvest.player.PlayerTrackerServer;
 import joshie.harvest.quests.packet.PacketQuestCompleteEarly;
-import joshie.harvest.quests.packet.PacketQuestIncrease;
+import joshie.harvest.quests.packet.PacketSyncData;
 import joshie.harvest.town.TownHelper;
 import joshie.harvest.town.data.TownDataClient;
 import joshie.harvest.town.data.TownDataServer;
@@ -76,10 +76,21 @@ public class QuestHelper implements IQuestHelper {
     public void increaseStage(Quest quest, EntityPlayer player) {
         if (!player.worldObj.isRemote) {
             quest.setStage(quest.getStage() + 1);
-            if (quest.getQuestType() == QuestType.PLAYER) sendToClient(new PacketQuestIncrease(quest, quest.writeToNBT(new NBTTagCompound())), player);
+            if (quest.getQuestType() == QuestType.PLAYER) sendToClient(new PacketSyncData(quest, quest.writeToNBT(new NBTTagCompound())), player);
             else {
                 TownDataServer data = TownHelper.getClosestTownToEntity(player);
-                sendToDimension(player.worldObj.provider.getDimension(), new PacketQuestIncrease(quest, quest.writeToNBT(new NBTTagCompound())).setUUID(data.getID()));
+                sendToDimension(player.worldObj.provider.getDimension(), new PacketSyncData(quest, quest.writeToNBT(new NBTTagCompound())).setUUID(data.getID()));
+            }
+        }
+    }
+
+    @Override
+    public void syncData(Quest quest, EntityPlayer player) {
+        if (!player.worldObj.isRemote) {
+            if (quest.getQuestType() == QuestType.PLAYER) sendToClient(new PacketSyncData(quest, quest.writeToNBT(new NBTTagCompound())), player);
+            else {
+                TownDataServer data = TownHelper.getClosestTownToEntity(player);
+                sendToDimension(player.worldObj.provider.getDimension(), new PacketSyncData(quest, quest.writeToNBT(new NBTTagCompound())).setUUID(data.getID()));
             }
         }
     }

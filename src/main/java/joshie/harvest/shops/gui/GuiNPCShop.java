@@ -85,7 +85,7 @@ public class GuiNPCShop<I extends IPurchasable> extends GuiNPCBase {
         setStart(start);
     }
 
-    protected boolean isAllowedInShop(IPurchasable purchasable) {
+    private boolean isAllowedInShop(IPurchasable purchasable) {
         return (selling && purchasable.getCost() < 0) || (!selling && purchasable.getCost() >= 0);
     }
 
@@ -93,7 +93,7 @@ public class GuiNPCShop<I extends IPurchasable> extends GuiNPCBase {
         return start;
     }
 
-    public int getMaxSize() {
+    private int getMaxSize() {
         return maxSize;
     }
 
@@ -105,9 +105,9 @@ public class GuiNPCShop<I extends IPurchasable> extends GuiNPCBase {
     protected void onMouseClick(int mouseX, int mouseY) {
         super.onMouseClick(mouseX, mouseY);
         //TODO: Call this when i am able to, also please
-        //if (selectedButton == null) {
-            //updatePurchased(null, 0);
-        //}
+        if (selectedButton == null) {
+            updatePurchased(null, 0);
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -153,7 +153,7 @@ public class GuiNPCShop<I extends IPurchasable> extends GuiNPCBase {
         if (buttonList.size() == 2) buttonList.add(new ButtonListingOutOfStock(this, 3, guiLeft + 28, 38 + guiTop + position));
     }
 
-    protected int addButton(IPurchasable purchasable, int id, int left, int top, int space) {
+    private int addButton(IPurchasable purchasable, int id, int left, int top, int space) {
         if (isGoldOnly(purchasable)) {
             if (space + 20 <= 200) {
                 buttonList.add(new ButtonListing(this, purchasable, id, left, top));
@@ -177,7 +177,7 @@ public class GuiNPCShop<I extends IPurchasable> extends GuiNPCBase {
         return 20;
     }
 
-    protected void drawResizableBackground(int x, int y) {
+    private void drawResizableBackground(int x, int y) {
         mc.renderEngine.bindTexture(SHOP_BACKGROUND);
         if (buttonList.size() < 10) {
             drawTexturedModalRect(x, y - 12 + (20 * (buttonList.size())), 0, 228, xSize, 28);
@@ -190,7 +190,12 @@ public class GuiNPCShop<I extends IPurchasable> extends GuiNPCBase {
         if (stack == null) purchased = null;
         else if (purchased == null || !purchased.isItemEqual(stack)) purchased = stack.copy();
         else purchased.stackSize += amount;
+    }
 
+    @Override
+    protected void drawTooltip(List<String> list, int x, int y) {
+        if (purchased == null) super.drawTooltip(list, x, y);
+        else super.drawTooltip(list, x + 16, y + 16);
     }
 
     @Override

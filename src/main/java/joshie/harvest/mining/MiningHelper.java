@@ -133,6 +133,7 @@ public class MiningHelper {
         MiningProvider provider = ((MiningProvider)newWorld.provider);
         provider.onTeleportToMine(mineID); //Called to initiate after chunks are loaded
         BlockPos spawn = modifySpawnAndEntityRotation(newWorld, provider.getSpawnCoordinateForMine(mineID, 1), entity);
+        newWorld.notifyBlockUpdate(spawn, newWorld.getBlockState(spawn), newWorld.getBlockState(spawn), 3);
         return EntityHelper.teleport(entity, MINING_ID, spawn);
     }
 

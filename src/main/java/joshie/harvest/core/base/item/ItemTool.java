@@ -29,13 +29,14 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nonnull;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
 public abstract class ItemTool<I extends ItemTool> extends ItemHFBase<I> implements ITiered, ICreativeSorted {
     private final Set<Block> effectiveBlocks;
-    protected final String toolClass;
+    final String toolClass;
     /**
      * Create a tool
      */
@@ -56,6 +57,7 @@ public abstract class ItemTool<I extends ItemTool> extends ItemHFBase<I> impleme
     }
 
     @Override
+    @Nonnull
     public String getUnlocalizedName(ItemStack stack) {
         return super.getUnlocalizedName(stack) + "_" + getTier(stack).name().toLowerCase(Locale.ENGLISH);
     }
@@ -112,11 +114,11 @@ public abstract class ItemTool<I extends ItemTool> extends ItemHFBase<I> impleme
         return stack.getSubCompound("Data", true).getInteger("Damage");
     }
 
-    public boolean canUse(ItemStack stack) {
+    protected boolean canUse(ItemStack stack) {
         return getDamageForDisplay(stack) + 1 <= getMaximumToolDamage(stack) || !canBeDamaged();
     }
 
-    private boolean canLevel(ItemStack stack, IBlockState state) {
+    protected boolean canLevel(ItemStack stack, IBlockState state) {
         for (String type : getToolClasses(stack)) {
             if (state.getBlock().isToolEffective(type, state))
                 return true;
@@ -139,6 +141,7 @@ public abstract class ItemTool<I extends ItemTool> extends ItemHFBase<I> impleme
     }
 
     @Override
+    @Nonnull
     public EnumAction getItemUseAction(ItemStack stack) {
         return EnumAction.BOW;
     }
@@ -156,7 +159,7 @@ public abstract class ItemTool<I extends ItemTool> extends ItemHFBase<I> impleme
         return 0;
     }
 
-    public float getExhaustionRate(ItemStack stack) {
+    protected float getExhaustionRate(ItemStack stack) {
         ToolTier tier = getTier(stack);
         switch (tier) {
             case BASIC:
@@ -179,7 +182,7 @@ public abstract class ItemTool<I extends ItemTool> extends ItemHFBase<I> impleme
         }
     }
 
-    public double getLevelIncrease(ItemStack stack) {
+    private double getLevelIncrease(ItemStack stack) {
         ToolTier tier = getTier(stack);
         switch (tier) {
             case BASIC:
@@ -201,7 +204,7 @@ public abstract class ItemTool<I extends ItemTool> extends ItemHFBase<I> impleme
         }
     }
 
-    public int getMaximumToolDamage(ItemStack stack) {
+    private int getMaximumToolDamage(ItemStack stack) {
         ToolTier tier = getTier(stack);
         switch (tier) {
             case BASIC:
@@ -224,7 +227,7 @@ public abstract class ItemTool<I extends ItemTool> extends ItemHFBase<I> impleme
         }
     }
 
-    public float getEffiency(ItemStack stack) {
+    protected float getEffiency(ItemStack stack) {
         ToolTier tier = getTier(stack);
         float effiency = 0F;
         switch (tier) {
@@ -232,7 +235,7 @@ public abstract class ItemTool<I extends ItemTool> extends ItemHFBase<I> impleme
                 effiency = 1.5F;
                 break;
             case COPPER:
-                effiency = 2F;
+                effiency = 2.5F;
                 break;
             case SILVER:
                 effiency =  4F;
@@ -257,7 +260,7 @@ public abstract class ItemTool<I extends ItemTool> extends ItemHFBase<I> impleme
 
     @Override
     @SuppressWarnings("deprecation")
-    public int getHarvestLevel(ItemStack stack, String toolClass) {
+    public int getHarvestLevel(ItemStack stack, @Nonnull String toolClass) {
         if (!toolClass.equals(this.toolClass)) return 0;
         if (!canUse(stack)) return 0;
         ToolTier tier = getTier(stack);
@@ -336,7 +339,7 @@ public abstract class ItemTool<I extends ItemTool> extends ItemHFBase<I> impleme
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubItems(Item item, CreativeTabs tab, List<ItemStack> list) {
+    public void getSubItems(@Nonnull Item item, CreativeTabs tab, List<ItemStack> list) {
         for (int i = 0; i < ToolTier.values().length; i++) {
             list.add(new ItemStack(item, 1, i));
         }
@@ -384,6 +387,7 @@ public abstract class ItemTool<I extends ItemTool> extends ItemHFBase<I> impleme
     }
 
     @Override
+    @Nonnull
     public Set<String> getToolClasses(ItemStack stack) {
         return toolClass != null ? com.google.common.collect.ImmutableSet.of(toolClass) : super.getToolClasses(stack);
     }

@@ -85,7 +85,6 @@ public class ItemMeal extends ItemHFFoodEnum<ItemMeal, Meal> {
     }
 
     private Recipe getRecipeFromMeal(Meal meal) {
-        MEAL_TO_RECIPE.clear();
         if (MEAL_TO_RECIPE.size() == 0) {
             for (Meal ameal: Meal.values()) {
                 MEAL_TO_RECIPE.put(ameal, Recipe.REGISTRY.getValue(new ResourceLocation(MODID, ameal.getName())));
@@ -146,14 +145,16 @@ public class ItemMeal extends ItemHFFoodEnum<ItemMeal, Meal> {
     @Override
     public int getMaxItemUseDuration(ItemStack stack) {
         if (stack.hasTagCompound()) {
-            return getRecipeFromMeal(getEnumFromStack(stack)).getEatTimer();
-        } else return super.getMaxItemUseDuration(stack);
+            Recipe recipe = getRecipeFromMeal(getEnumFromStack(stack));
+            return recipe == null ? 32 : recipe.getEatTimer();
+        } else return 32;
     }
 
     @Override
     public EnumAction getItemUseAction(ItemStack stack) {
         if (stack.hasTagCompound()) {
-            return getRecipeFromMeal(getEnumFromStack(stack)).getAction();
+            Recipe recipe = getRecipeFromMeal(getEnumFromStack(stack));
+            return recipe == null ? EnumAction.NONE : recipe.getAction();
         } else return EnumAction.NONE;
     }
 

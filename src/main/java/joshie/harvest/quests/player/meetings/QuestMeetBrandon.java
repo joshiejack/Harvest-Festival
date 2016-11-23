@@ -83,6 +83,7 @@ public class QuestMeetBrandon extends QuestQuestion {
     @Override
     public void onQuestCompleted(EntityPlayer player) {
         HFApi.player.getTrackingForPlayer(player).learnNote(HFNotes.MINING);
+        HFApi.player.getTrackingForPlayer(player).learnNote(HFNotes.HAMMER);
         rewardItem(player, new ItemStack(HFMining.MATERIALS, 10, Material.JUNK.ordinal()));
     }
 }

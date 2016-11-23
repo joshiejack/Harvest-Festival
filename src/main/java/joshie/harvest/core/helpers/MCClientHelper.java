@@ -3,12 +3,16 @@ package joshie.harvest.core.helpers;
 import joshie.harvest.core.network.PenguinPacketLocation;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
+import net.minecraft.client.multiplayer.PlayerControllerMP;
+import net.minecraft.entity.Entity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import javax.annotation.Nonnull;
 
 @SideOnly(Side.CLIENT)
 public class MCClientHelper {
@@ -53,5 +57,17 @@ public class MCClientHelper {
         if (getMinecraft().currentScreen != null) {
             getMinecraft().currentScreen.initGui();
         }
+    }
+
+    @Nonnull
+    @SuppressWarnings("ConstantConditions")
+    public static PlayerControllerMP getPlayerController() {
+        return Minecraft.getMinecraft().playerController;
+    }
+
+    @Nonnull
+    @SuppressWarnings("ConstantConditions")
+    public static Entity getRenderViewEntity() {
+        return Minecraft.getMinecraft().getRenderViewEntity();
     }
 }

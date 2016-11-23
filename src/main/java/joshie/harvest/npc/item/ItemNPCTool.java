@@ -29,7 +29,7 @@ public class ItemNPCTool extends ItemHFEnum<ItemNPCTool, NPCTool> {
     public static final String SPECIAL = "Gift";
     public enum NPCTool implements IStringSerializable {
         BLUE_FEATHER, NPC_KILLER, GIFT, CALENDAR,
-        CLOCK, WEATHER, FLOWER, SPEECH;
+        CLOCK, WEATHER, FLOWER, SPEECH, STATISTICS;
 
         public boolean isReal() {
             return this == NPC_KILLER;

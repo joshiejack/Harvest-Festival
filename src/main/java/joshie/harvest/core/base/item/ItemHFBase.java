@@ -1,8 +1,8 @@
 package joshie.harvest.core.base.item;
 
 import joshie.harvest.core.HFTab;
-import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.helpers.TextHelper;
+import joshie.harvest.core.lib.HFModInfo;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -14,6 +14,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,6 +35,7 @@ public abstract class ItemHFBase<I extends ItemHFBase> extends Item {
     }
 
     @Override
+    @Nonnull
     public String getUnlocalizedName() {
         return HFModInfo.MODID + "." + super.getUnlocalizedName().replace("item.", "");
     }

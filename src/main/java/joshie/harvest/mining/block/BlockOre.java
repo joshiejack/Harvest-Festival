@@ -27,6 +27,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 
+import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -60,7 +61,7 @@ public class BlockOre extends BlockHFSmashable<BlockOre, Ore> implements ISmasha
     //Return 0.75F if the plant isn't withered, otherwise, unbreakable!!!
     @Override
     @SuppressWarnings("deprecation")
-    public float getPlayerRelativeBlockHardness(IBlockState state, EntityPlayer player, World world, BlockPos pos) {
+    public float getPlayerRelativeBlockHardness(IBlockState state, @Nonnull EntityPlayer player, @Nonnull World world, @Nonnull BlockPos pos) {
         return (player.getHeldItemMainhand() != null && player.getHeldItemMainhand().getItem() == HFTools.HAMMER)
                 ? ((HFTools.HAMMER.getTier(player.getHeldItemMainhand()).ordinal() + 1) * 0.05F)
                    - (getToolLevel(getEnumFromState(state)) * 0.025F): -1F;
@@ -68,6 +69,7 @@ public class BlockOre extends BlockHFSmashable<BlockOre, Ore> implements ISmasha
 
     @SuppressWarnings("deprecation")
     @Override
+    @Nonnull
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
         return COPPER_AABB;
     }

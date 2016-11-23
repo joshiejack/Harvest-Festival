@@ -3,7 +3,6 @@ package joshie.harvest.tools;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.core.base.item.ItemTool;
 import joshie.harvest.core.base.item.ItemToolChargeable;
-import joshie.harvest.core.base.item.ItemToolSmashing;
 import joshie.harvest.core.util.annotations.HFLoader;
 import joshie.harvest.tools.item.*;
 import net.minecraft.potion.Potion;
@@ -18,8 +17,8 @@ import static net.minecraft.entity.SharedMonsterAttributes.*;
 
 @HFLoader
 public class HFTools {
-    public static final ItemToolSmashing HAMMER = new ItemHammer().register("hammer");
-    public static final ItemToolSmashing AXE = new ItemAxe().register("axe");
+    public static final ItemHammer HAMMER = new ItemHammer().register("hammer");
+    public static final ItemAxe AXE = new ItemAxe().register("axe");
 
     //Farming Tools
     public static final ItemTool SICKLE = new ItemSickle().register("sickle");

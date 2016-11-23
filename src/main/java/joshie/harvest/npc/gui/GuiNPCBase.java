@@ -27,6 +27,7 @@ import java.util.List;
 
 public abstract class GuiNPCBase extends GuiBase {
     private static final ItemStack GIFT = HFNPCs.TOOLS.getStackFromEnum(NPCTool.GIFT);
+    private static final ItemStack BOOK = HFNPCs.TOOLS.getStackFromEnum(NPCTool.STATISTICS);
     private static final ResourceLocation chatbox = new ResourceLocation(HFModInfo.MODID, "textures/gui/chatbox.png");
     protected final EntityNPC npc;
     protected final EntityPlayer player;
@@ -75,7 +76,7 @@ public abstract class GuiNPCBase extends GuiBase {
         GlStateManager.popMatrix();
 
         mc.renderEngine.bindTexture(chatbox);
-        if (isHoldingItem() && npc.getNPC() != HFNPCs.GODDESS) {
+        if (npc.getNPC() == HFNPCs.GODDESS || isHoldingItem()) {
             //Drawing the icons
             //Render the outside of the gift tab
             if (!isPointInRegion(242, 156, 17, 19, npcMouseX, npcMouseY)) {
@@ -86,7 +87,7 @@ public abstract class GuiNPCBase extends GuiBase {
             ChatFontRenderer.colorise(outside);
             drawTexturedModalRect(x + 241, y + 155, 237, 0, 19, 20); //Outside
             GlStateManager.color(1F, 1F, 1F);
-            joshie.harvest.core.helpers.RenderHelper.drawStack(GIFT, x + 242, y + 157, 1F);
+            joshie.harvest.core.helpers.RenderHelper.drawStack(npc.getNPC() == HFNPCs.GODDESS ? BOOK : GIFT, x + 242, y + 157, 1F);
         }
 
         //Info section
@@ -133,8 +134,8 @@ public abstract class GuiNPCBase extends GuiBase {
         npcMouseY = mouseY;
 
         if (isChat()) {
-            if (npc.getNPC() != HFNPCs.GODDESS && isHoldingItem() && hoveringGift())
-                renderToolTip(GIFT, mouseX, mouseY);
+            if ((npc.getNPC() == HFNPCs.GODDESS || isHoldingItem()) && hoveringGift())
+                renderToolTip(npc.getNPC() == HFNPCs.GODDESS ? BOOK : GIFT, mouseX, mouseY);
             if (displayInfo() && hoveringInfo())
                 renderToolTip(npc.getNPC().hasInfo(), mouseX, mouseY);
         }
@@ -147,7 +148,7 @@ public abstract class GuiNPCBase extends GuiBase {
     //Perform the mouse clicks
     protected void onMouseClick(int mouseX, int mouseY) {
         if (isChat()) {
-            if (isHoldingItem() && hoveringGift())
+            if ((npc.getNPC() == HFNPCs.GODDESS || isHoldingItem()) && hoveringGift())
                 PacketHandler.sendToServer(new PacketGift(npc));
             else if (displayInfo() && hoveringInfo())
                 PacketHandler.sendToServer(new PacketInfo(npc));

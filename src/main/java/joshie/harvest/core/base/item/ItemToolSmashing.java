@@ -14,14 +14,16 @@ import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+import javax.annotation.Nonnull;
 import java.util.Set;
 
-public abstract class ItemToolSmashing extends ItemTool<ItemToolSmashing> {
+public abstract class ItemToolSmashing<I extends ItemToolSmashing> extends ItemTool<I> {
     public ItemToolSmashing(String toolClass, Set<Block> effective) {
         super(toolClass, effective);
     }
 
     @Override
+    @Nonnull
     public EnumAction getItemUseAction(ItemStack stack) {
         return EnumAction.NONE;
     }

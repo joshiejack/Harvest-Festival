@@ -121,6 +121,7 @@ public class MineManager extends WorldSavedData {
                         IBlockState state = world.getBlockState(sign.getPos());
                         world.notifyBlockUpdate(sign.getPos(), state, state, 3);
                     }
+
                     foundSign = true;
                 }
 

@@ -410,6 +410,8 @@ harvestfestival.wateringcan.blessed=Blessed Watering Can
 harvestfestival.wateringcan.mythic=Mythic Watering Can
 
 #Hammer
+harvestfestival.hammer.tooltip.dimensions=Mines a %sx%sx%s area of stone
+harvestfestival.hammer.tooltip.titles=(Width, Height, Depth)
 harvestfestival.hammer.basic=Normal Hammer
 harvestfestival.hammer.copper=Copper Hammer
 harvestfestival.hammer.silver=Silver Hammer
@@ -420,6 +422,8 @@ harvestfestival.hammer.blessed=Blessed Hammer
 harvestfestival.hammer.mythic=Mythic Hammer
 
 #Axe
+harvestfestival.axe.tooltip.sneak=Sneak to chop normally
+harvestfestival.axe.tooltip.chops=Chops a Tree in %s hits
 harvestfestival.axe.basic=Normal Axe
 harvestfestival.axe.copper=Copper Axe
 harvestfestival.axe.silver=Silver Axe
@@ -606,6 +610,7 @@ harvestfestival.npctool.gift=Gift held item!
 harvestfestival.npctool.flower=Sell Flower!
 harvestfestival.npctool.gift.special=Special Gift!
 harvestfestival.npctool.gift.special.tooltip=A special gift love Cloe.
+harvestfestival.npctool.statistics=Ask for knowledge?
 
 # NPC Names
 ## NOTE FOR TRANSLATORS, READ
@@ -960,11 +965,11 @@ harvestfestival.npc.jacob.greeting10=It's sure nice having some new fish to catc
 harvestfestival.npc.jacob.greeting11=Just keep swimming...
 harvestfestival.npc.jacob.marriage.reject=I'm really looking for one of the other fish in the sea.
 harvestfestival.npc.jacob.marriage.accept=You are my starfish, I cannot wait to be your husband.
-harvestfestival.npc.jacob.gift.awesome=Fishing is my passion. And you allowing me to continue with that. You are the best.
-harvestfestival.npc.jacob.gift.good=All things watery are good. Thank you.
+harvestfestival.npc.jacob.gift.awesome=Fishing is my passion, and you really know exactly what I want.
+harvestfestival.npc.jacob.gift.good=All things like this are good. Thank you.
 harvestfestival.npc.jacob.gift.decent=Thanks for the kind gift.
 harvestfestival.npc.jacob.gift.dislike=I'm not so sure about this one.
-harvestfestival.npc.jacob.gift.bad=I really don't like going underground.
+harvestfestival.npc.jacob.gift.bad=I really don't like what you just gave me.
 harvestfestival.npc.jacob.gift.terrible=Are you crazy? I would never ever want this.
 
 #Pokefenn
@@ -1210,7 +1215,7 @@ harvestfestival.shop.barn.greeting2=Welcome to the ranch, do you need anything?
 harvestfestival.shop.barn.greeting3=Who needs chickens? When you can have cows and sheep!
 
 #Carpenter
-harvestfestival.shop.carpenter=Yulif's Carpentry
+harvestfestival.shop.carpenter=Carpenter
 harvestfestival.shop.carpenter.sign1=09:00-17:30
 harvestfestival.shop.carpenter.sign2=
 harvestfestival.shop.carpenter.sign3=Sun-Fri
@@ -1671,6 +1676,10 @@ harvestfestival.note.mixer.title=Mixer
 harvestfestival.note.mixer.description=The mixer needs to be placed on top of a counter space in order to function. It's mostly used to make all kinds of juices, so you should try experimenting placing in fruit or vegetables and seeing what you get out of it.
 harvestfestival.note.potpan.title=Pot & Frying Pan
 harvestfestival.note.potpan.description=In order to use either of the pot or the frying pan you are going to first need to get yourself an oven. They both need the oven to act as a heat source in order to function.
+harvestfestival.note.hammer.title=Hammer
+harvestfestival.note.hammer.description=Hammers are mainly used for breaking the rocks in the mine. The different tiers are able to break different levels of nodes. So be sure to upgrade when you can! Hammers can also break the rocks you find lying around, and sometimes turn them in to pure stone. You can also use hammers to mine through stone, where the higher tiers will have an area of effect, breaking more blocks for you.
+harvestfestival.note.axe.title=Axe
+harvestfestival.note.axe.description=The axe is used for collecting wood. It can turn the branches and stumps you see in to logs at different tiers. You can also use the axes to fell whole trees. You will need to break the bottom block of a tree various time depending on the axe tier. Then eventually it will chop the entire tree down for you. You can sneak if you wish to chop just down one piece of wood.
 
 #Secret Notes
 harvestfestival.note.secret.cursed.title=Secret of the Cursed Tools?

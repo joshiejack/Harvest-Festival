@@ -20,11 +20,11 @@ public class MCServerHelper {
         markForUpdate(world, pos, world.getBlockState(pos));
     }
 
-    public static void markForUpdate(World world, BlockPos pos, IBlockState state) {
+    private static void markForUpdate(World world, BlockPos pos, IBlockState state) {
         markForUpdate(world, pos, state, 2);
     }
 
-    public static void markForUpdate(World world, BlockPos pos, IBlockState state, int value) {
+    private static void markForUpdate(World world, BlockPos pos, IBlockState state, int value) {
         world.notifyBlockUpdate(pos, state, state, value);
     }
 

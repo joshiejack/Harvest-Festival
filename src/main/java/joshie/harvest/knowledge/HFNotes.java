@@ -27,6 +27,8 @@ public class HFNotes {
     public static final Note ANIMAL_HAPPINESS = registerNote(FARMING, "care.happiness");
     public static final Note ANIMAL_STRESS = registerNote(FARMING, "care.stress");
 
+    public static final Note HAMMER = registerNote(ACTIVITIES, "hammer");
+    public static final Note AXE = registerNote(ACTIVITIES, "axe");
     public static final Note MINING = registerNote(ACTIVITIES, "mining");
     public static final Note UPGRADING = registerNote(TOWNSHIP, "upgrading");
     public static final Note COOKING = registerNote(ACTIVITIES, "cooking");

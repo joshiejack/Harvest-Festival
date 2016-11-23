@@ -20,8 +20,8 @@ public class HFGiftsVanillaBlocks extends HFGiftsAbstract {
         assignGeneric(GOLD_ORE, MINERAL);
         assignGeneric(IRON_ORE, MINERAL);
         assignGeneric(COAL_ORE, MINERAL);
-        assignGeneric(LOG, PLANT, BUILDING);
-        assignGeneric(LOG2, PLANT, BUILDING);
+        assignGeneric(LOG, BUILDING);
+        assignGeneric(LOG2, BUILDING);
         assignGeneric(LEAVES, PLANT);
         assignGeneric(LEAVES2, PLANT);
         assignGeneric(SPONGE, ANIMAL);

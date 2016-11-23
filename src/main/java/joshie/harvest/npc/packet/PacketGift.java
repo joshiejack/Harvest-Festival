@@ -3,9 +3,12 @@ package joshie.harvest.npc.packet;
 import io.netty.buffer.ByteBuf;
 import joshie.harvest.HarvestFestival;
 import joshie.harvest.core.handlers.GuiHandler;
+import joshie.harvest.core.helpers.SpawnItemHelper;
 import joshie.harvest.core.network.Packet;
 import joshie.harvest.core.network.Packet.Side;
 import joshie.harvest.core.network.PenguinPacket;
+import joshie.harvest.knowledge.HFKnowledge;
+import joshie.harvest.knowledge.item.ItemBook.Book;
 import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.npc.entity.EntityNPC;
 import net.minecraft.entity.player.EntityPlayer;
@@ -42,6 +45,8 @@ public class PacketGift extends PenguinPacket {
                     } else if (player.getHeldItemMainhand() != null) {
                         player.openGui(HarvestFestival.instance, GuiHandler.GIFT, player.worldObj, npcID, -1, EnumHand.MAIN_HAND.ordinal());
                     }
+                } else {
+                    SpawnItemHelper.spawnByEntity(player, HFKnowledge.BOOK.getStackFromEnum(Book.STATISTICS));
                 }
 
                 npc.setTalking(player);

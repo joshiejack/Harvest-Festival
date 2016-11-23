@@ -141,9 +141,9 @@ public class GuiNPCChat extends GuiNPCBase {
 
     @Override
     protected void onMouseClick(int mouseX, int mouseY) {
-        if (npc.getNPC() != HFNPCs.GODDESS && isHoldingItem() && hoveringGift())
+        if ((npc.getNPC() == HFNPCs.GODDESS || isHoldingItem()) && hoveringGift())
             PacketHandler.sendToServer(new PacketGift(npc));
-        else if (displayInfo() && hoveringInfo() && npc.getNPC().hasInfo() != null && isPointInRegion(242, 177, 17, 19, npcMouseX, npcMouseY))
+        else if (displayInfo() && hoveringInfo() && npc.getNPC().hasInfo() != null)
             PacketHandler.sendToServer(new PacketInfo(npc));
         else nextChat();
     }

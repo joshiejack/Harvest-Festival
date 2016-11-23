@@ -31,9 +31,9 @@ public class HFTools {
             .registerPotionAttributeModifier(MOVEMENT_SPEED, "8107BC5D-5CF8-4030-440C-314C1E160890", -0.50000000596046448D, 2)
             .registerPotionAttributeModifier(ATTACK_SPEED, "8107BC5D-5CF8-4030-440C-314C1E160891", -0.50000000596046448D, 2);
     public static final Potion CURSED = registerPotion("cursed", 0x660000, 2, 0)
-            .registerPotionAttributeModifier(MAX_HEALTH, "FB353E1C-4180-4865-B01B-BCCE9785ACA3", -0.18D, 2)
-            .registerPotionAttributeModifier(MOVEMENT_SPEED, "8107BD5E-7CF8-4030-441C-514C1F160890", -0.02500000596046448D, 2)
-            .registerPotionAttributeModifier(ATTACK_DAMAGE, "8107BD5F-4CF8-4030-441D-534C1F140890", -0.15000000596046448D, 2);
+            .registerPotionAttributeModifier(MAX_HEALTH, "FB353E1C-4180-4865-B01B-BCCE9785ACA3", -0.33D, 2)
+            .registerPotionAttributeModifier(MOVEMENT_SPEED, "8107BD5E-7CF8-4030-441C-514C1F160890", -0.03000000596046448D, 2)
+            .registerPotionAttributeModifier(ATTACK_DAMAGE, "8107BD5F-4CF8-4030-441D-534C1F140890", -0.20000000596046448D, 2);
 
     public static void preInit() {
         registerSounds("smash_rock", "smash_wood");

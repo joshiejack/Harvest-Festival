@@ -112,7 +112,7 @@ public class ItemAxe extends ItemToolSmashing<ItemAxe> {
         tag.removeTag("Block"); //Remove the data now we're chopping
         tag.removeTag("Times"); //Remove the data now we're chopping
         if(player.worldObj.isRemote) return true;
-        MinecraftForge.EVENT_BUS.register(new ChopTree(pos, player));
+        MinecraftForge.EVENT_BUS.register(new ChopTree(pos, player, stack));
         return true;
     }
 

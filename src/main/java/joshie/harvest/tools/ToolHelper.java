@@ -19,22 +19,18 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
 
 import static joshie.harvest.animals.item.ItemAnimalTool.Tool.BRUSH;
-import static joshie.harvest.animals.item.ItemAnimalTool.Tool.MILKER;
 import static joshie.harvest.calendar.HFCalendar.TICKS_PER_DAY;
 import static joshie.harvest.cooking.item.ItemIngredients.Ingredient.OIL;
 import static joshie.harvest.tools.HFTools.EXHAUSTION;
 import static joshie.harvest.tools.HFTools.FATIGUE;
 
 public class ToolHelper {
-    public static boolean isMilker(ItemStack stack) {
-        return HFAnimals.TOOLS.getEnumFromStack(stack) == MILKER;
-    }
-
     public static boolean isBrush(ItemStack stack) {
         return HFAnimals.TOOLS.getEnumFromStack(stack) == BRUSH;
     }
 
     //TODO: Reenable in 1.0 when I readd marriage
+    @SuppressWarnings("unused")
     public static boolean isBlueFeather(ItemStack stack) {
         return false;
         //return HFNPCs.TOOLS.getEnumFromStack(stack) == BLUE_FEATHER;
@@ -42,10 +38,6 @@ public class ToolHelper {
 
     public static boolean isEgg(ItemStack stack) {
         return stack.getItem() == HFAnimals.ANIMAL_PRODUCT && HFAnimals.ANIMAL_PRODUCT.getEnumFromStack(stack) == Sizeable.EGG;
-    }
-
-    public static boolean isMilk(ItemStack stack) {
-        return stack.getItem() == HFAnimals.ANIMAL_PRODUCT && HFAnimals.ANIMAL_PRODUCT.getEnumFromStack(stack) == Sizeable.MILK;
     }
 
     public static boolean isWool(ItemStack stack) {
@@ -77,6 +69,7 @@ public class ToolHelper {
         stack.getSubCompound("Data", true).setInteger("Damage", stack.getSubCompound("Data", true).getInteger("Damage") + 1);
     }
 
+    @SuppressWarnings("ConstantConditions")
     public static void consumeHunger(EntityPlayer player, float amount) {
         if (player == null) return; //No null players allowed
         int level = player.getFoodStats().getFoodLevel();
@@ -109,6 +102,7 @@ public class ToolHelper {
     }
 
     @HFEvents
+    @SuppressWarnings("unused")
     public static class RestoreHungerOnSleep {
         public static boolean register() { return HFTools.RESTORE_HUNGER_ON_SLEEP; }
 
@@ -123,7 +117,7 @@ public class ToolHelper {
         }
     }
 
-    public static void restoreHunger(EntityPlayer player) {
+    private static void restoreHunger(EntityPlayer player) {
         ReflectionHelper.setPrivateValue(FoodStats.class, player.getFoodStats(), 20, "foodLevel", "field_75127_a");
         ReflectionHelper.setPrivateValue(FoodStats.class, player.getFoodStats(), 5F, "foodSaturationLevel", "field_75125_b");
         ReflectionHelper.setPrivateValue(FoodStats.class, player.getFoodStats(), 0, "foodExhaustionLevel", "field_75126_c");

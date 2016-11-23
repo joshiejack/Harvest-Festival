@@ -118,7 +118,7 @@ public abstract class ItemTool<I extends ItemTool> extends ItemHFBase<I> impleme
         return getDamageForDisplay(stack) + 1 <= getMaximumToolDamage(stack) || !canBeDamaged();
     }
 
-    protected boolean canLevel(ItemStack stack, IBlockState state) {
+    public boolean canLevel(ItemStack stack, IBlockState state) {
         for (String type : getToolClasses(stack)) {
             if (state.getBlock().isToolEffective(type, state))
                 return true;
@@ -159,7 +159,7 @@ public abstract class ItemTool<I extends ItemTool> extends ItemHFBase<I> impleme
         return 0;
     }
 
-    protected float getExhaustionRate(ItemStack stack) {
+    public float getExhaustionRate(ItemStack stack) {
         ToolTier tier = getTier(stack);
         switch (tier) {
             case BASIC:
@@ -172,7 +172,7 @@ public abstract class ItemTool<I extends ItemTool> extends ItemHFBase<I> impleme
             case MYSTRIL:
                 return 1.5F;
             case CURSED:
-                return 10F;
+                return 25F;
             case BLESSED:
                 return 1F;
             case MYTHIC:

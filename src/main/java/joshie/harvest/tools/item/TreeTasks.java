@@ -2,10 +2,14 @@ package joshie.harvest.tools.item;
 
 import com.google.common.collect.Lists;
 import gnu.trove.set.hash.THashSet;
+import joshie.harvest.api.core.ITiered.ToolTier;
 import joshie.harvest.core.helpers.EntityHelper;
+import joshie.harvest.tools.HFTools;
+import joshie.harvest.tools.ToolHelper;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -45,12 +49,14 @@ class TreeTasks {
     static class ChopTree {
         private final World world;
         private final EntityPlayer player;
-        private Queue<BlockPos> blocks = Lists.newLinkedList();
-        private Set<BlockPos> visited = new THashSet<>();
+        private final ItemStack stack;
+        private final Queue<BlockPos> blocks = Lists.newLinkedList();
+        private final Set<BlockPos> visited = new THashSet<>();
 
-        ChopTree(BlockPos start, EntityPlayer player) {
+        ChopTree(BlockPos start, EntityPlayer player, ItemStack stack) {
             this.world = player.getEntityWorld();
             this.player = player;
+            this.stack = stack;
             this.blocks.add(start);
         }
 
@@ -88,6 +94,8 @@ class TreeTasks {
                     }
                 }
 
+                if (HFTools.AXE.getTier(stack) == ToolTier.CURSED) ToolHelper.consumeHunger(player, HFTools.AXE.getExhaustionRate(stack));
+                if (HFTools.AXE.canLevel(stack, state)) ToolHelper.levelTool(stack);
                 world.destroyBlock(pos, true); //Destroy the block and collect the drop near the player
                 EntityHelper.getEntities(EntityItem.class, world, pos, 1D, 1D).stream().forEach((e) -> e.setPositionAndUpdate(player.posX, player.posY, player.posZ));
                 remaining--;

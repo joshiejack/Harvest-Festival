@@ -81,14 +81,14 @@ public class ItemHammer extends ItemToolSmashing<ItemHammer> {
     @Override
     public boolean onBlockDestroyed(ItemStack stack, World worldIn, IBlockState state, BlockPos position, EntityLivingBase entityLiving) {
         if (entityLiving instanceof EntityPlayer) {
+            EntityPlayer player = (EntityPlayer) entityLiving;
             if (canUse(stack) && canBeDamaged()) {
-                if (canLevel(stack, state)) {
-                    ToolHelper.levelTool(stack);
-                }
-
+                if (canLevel(stack, state)) ToolHelper.levelTool(stack);
                 stack.getSubCompound("Data", true).setInteger("Damage", getDamageForDisplay(stack) + 1);
-                for (BlockPos pos : getBlocks(worldIn, position, (EntityPlayer) entityLiving, stack)) {
+                for (BlockPos pos : getBlocks(worldIn, position, player, stack)) {
+                    if (getTier(stack) == ToolTier.CURSED) ToolHelper.consumeHunger(player, getExhaustionRate(stack));
                     worldIn.destroyBlock(pos, true);
+                    if (canLevel(stack, state)) ToolHelper.levelTool(stack);
                     EntityHelper.getEntities(EntityItem.class, worldIn, pos, 1D, 1D).stream().forEach((e) -> e.setPositionAndUpdate(entityLiving.posX, entityLiving.posY, entityLiving.posZ));
                 }
             }

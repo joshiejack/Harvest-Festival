@@ -26,8 +26,10 @@ import static joshie.harvest.tools.HFTools.EXHAUSTION;
 import static joshie.harvest.tools.HFTools.FATIGUE;
 
 @HFEvents
+@SuppressWarnings("unused")
 public class ToolEvents {
     @HFEvents
+    @SuppressWarnings("unused")
     public static class AttackFainting {
         public static boolean register() { return HFTools.ATTACK_FAINTING; }
 
@@ -38,6 +40,7 @@ public class ToolEvents {
     }
 
     @HFEvents
+    @SuppressWarnings("unused")
     public static class BreakFainting {
         public static boolean register() { return HFTools.BLOCK_FAINTING; }
 
@@ -48,6 +51,7 @@ public class ToolEvents {
     }
 
     @HFEvents
+    @SuppressWarnings("unused")
     public static class CursedTools {
         @SubscribeEvent
         public void openContainer(PlayerTickEvent event) {
@@ -59,12 +63,15 @@ public class ToolEvents {
                         if (((ItemTool) stack.getItem()).getTier(stack) == ToolTier.CURSED) {
                             added.add(stack.getItem());
                             level++;
+                            if (level >= 3) {
+                                break;
+                            }
                         }
                     }
                 }
 
                 if (level > 0) {
-                    event.player.addPotionEffect(new PotionEffect(HFTools.CURSED, 200, level - 1, true, false));
+                    event.player.addPotionEffect(new PotionEffect(HFTools.CURSED, 200, Math.min(3, level) - 1, true, false));
                 }
             }
         }

@@ -11,7 +11,7 @@ import joshie.harvest.api.player.RelationshipType;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.core.helpers.MCClientHelper;
-import joshie.harvest.core.helpers.RenderHelper;
+import joshie.harvest.core.helpers.StackRenderHelper;
 import joshie.harvest.crops.HFCrops;
 import joshie.harvest.crops.item.ItemCrop.Crops;
 import joshie.harvest.knowledge.gui.stats.GuiStats;
@@ -117,7 +117,7 @@ public class ButtonRelationsAnimal extends ButtonBook {
         drawStack(petted, PETTED, 105, -5);
         drawStack(eaten, getFoodForAnimal(type), 115, -5);
         drawStack(!collected, product, 114, 4, 0.75F);
-        RenderHelper.drawStack(stack, xPosition + 4, yPosition + 1, 1F);
+        StackRenderHelper.drawStack(stack, xPosition + 4, yPosition + 1, 1F);
     }
 
     private void drawStack(boolean value, ItemStack icon, int x, int y) {
@@ -125,8 +125,8 @@ public class ButtonRelationsAnimal extends ButtonBook {
     }
 
     private void drawStack(boolean value, ItemStack icon, int x, int y, float scale) {
-        if (!value) RenderHelper.drawGreyStack(icon, xPosition + x, yPosition + y, scale);
-        else RenderHelper.drawStack(icon, xPosition + x, yPosition + y, scale);
+        if (!value) StackRenderHelper.drawGreyStack(icon, xPosition + x, yPosition + y, scale);
+        else StackRenderHelper.drawStack(icon, xPosition + x, yPosition + y, scale);
     }
 
     private ItemStack getFoodForAnimal(IAnimalType type) {

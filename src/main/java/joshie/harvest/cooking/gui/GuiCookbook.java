@@ -5,6 +5,7 @@ import joshie.harvest.api.cooking.IngredientStack;
 import joshie.harvest.api.cooking.Utensil;
 import joshie.harvest.cooking.CookingAPI;
 import joshie.harvest.core.helpers.MCClientHelper;
+import joshie.harvest.core.helpers.StackRenderHelper;
 import joshie.harvest.core.lib.HFModInfo;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.GlStateManager;
@@ -131,7 +132,7 @@ public class GuiCookbook extends GuiScreen {
     }
 
     void drawStack(int x, int y, ItemStack stack, float scale) {
-        joshie.harvest.core.helpers.RenderHelper.drawStack(stack, centreX + x, centreY + y, scale);
+        StackRenderHelper.drawStack(stack, centreX + x, centreY + y, scale);
     }
 
     void drawTexture(int x, int y, int startX, int startY, int widthX, int heightY) {

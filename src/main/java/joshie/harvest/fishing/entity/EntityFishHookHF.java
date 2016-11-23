@@ -24,9 +24,16 @@ import net.minecraft.world.storage.loot.LootContext;
 import java.util.List;
 
 public class EntityFishHookHF extends EntityFishHook {
+    //TODO: Line changed by me
+    private int tickTimer;
+    private int tier;
+
     @SuppressWarnings("ConstantConditions")
-    public EntityFishHookHF(World world, EntityPlayer player) {
+    //TODO: Line changed by me
+    public EntityFishHookHF(World world, EntityPlayer player, int tier, int bait) {
         super(world, player);
+        this.tickTimer = tier * (bait > 0 ? 2: 1);
+        this.tier = tier;
     }
 
     @SuppressWarnings("unused")
@@ -48,6 +55,7 @@ public class EntityFishHookHF extends EntityFishHook {
             }
         } else {
             ItemStack itemstack = angler.getHeldItemMainhand();
+                                                                                                    //TODO: Line changed by me
             if (angler.isDead || !angler.isEntityAlive() || itemstack == null || itemstack.getItem() != HFFishing.FISHING_ROD || getDistanceSqToEntity(angler) > 1024.0D) {
                 setDead();
                 angler.fishEntity = null;
@@ -112,8 +120,7 @@ public class EntityFishHookHF extends EntityFishHook {
                 List<Entity> list = worldObj.getEntitiesWithinAABBExcludingEntity(this, getEntityBoundingBox().addCoord(motionX, motionY, motionZ).expandXyz(1.0D));
                 double d0 = 0.0D;
 
-                for (int j = 0; j < list.size(); ++j) {
-                    Entity entity1 = list.get(j);
+                for (Entity entity1: list) {
                     if (func_189739_a(entity1) && (entity1 != angler || ticksInAir >= 5)) {
                         AxisAlignedBB axisalignedbb1 = entity1.getEntityBoundingBox().expandXyz(0.30000001192092896D);
                         RayTraceResult raytraceresult1 = axisalignedbb1.calculateIntercept(vec3d1, vec3d);
@@ -185,18 +192,17 @@ public class EntityFishHookHF extends EntityFishHook {
 
                 if (!worldObj.isRemote && d5 > 0.0D) {
                     WorldServer worldserver = (WorldServer) worldObj;
-                    int i1 = 1;
+                    int i1 = tickTimer; //TODO: Line changed by me
                     BlockPos blockpos = (new BlockPos(this)).up();
 
                     if (rand.nextFloat() < 0.25F && worldObj.isRainingAt(blockpos)) {
-                        i1 = 2;
+                        i1 += 2;
                     }
 
                     if (rand.nextFloat() < 0.5F && !worldObj.canSeeSky(blockpos)) {
                         --i1;
                     }
 
-                    ticksCatchable = 1000;//Debug
                     if (ticksCatchable > 0) {
                         --ticksCatchable;
 
@@ -230,8 +236,8 @@ public class EntityFishHookHF extends EntityFishHook {
 
                                 float f = f8 * 0.04F;
                                 float f1 = f10 * 0.04F;
-                                worldserver.spawnParticle(EnumParticleTypes.WATER_WAKE, d13, d15, d16, 0, (double) f1, 0.01D, (double) (-f), 1.0D, new int[0]);
-                                worldserver.spawnParticle(EnumParticleTypes.WATER_WAKE, d13, d15, d16, 0, (double) (-f1), 0.01D, (double) f, 1.0D, new int[0]);
+                                worldserver.spawnParticle(EnumParticleTypes.WATER_WAKE, d13, d15, d16, 0, (double) f1, 0.01D, (double) (-f), 1.0D);
+                                worldserver.spawnParticle(EnumParticleTypes.WATER_WAKE, d13, d15, d16, 0, (double) (-f1), 0.01D, (double) f, 1.0D);
                             }
                         }
                     } else if (ticksCaughtDelay > 0) {
@@ -300,12 +306,15 @@ public class EntityFishHookHF extends EntityFishHook {
                 worldObj.setEntityState(this, (byte) 31);
                 i = caughtEntity instanceof EntityItem ? 3 : 5;
             } else if (ticksCatchable > 0) {
+                //TODO: Line changed by me
                 LootContext.Builder lootcontext$builder = new LootContext.Builder((WorldServer) worldObj);
-                lootcontext$builder.withLuck((float) EnchantmentHelper.getLuckOfSeaModifier(angler) + angler.getLuck());
+                lootcontext$builder.withLuck((float) EnchantmentHelper.getLuckOfSeaModifier(angler) + angler.getLuck() + tier);
                 lootcontext$builder.withLootedEntity(this);
                 lootcontext$builder.withPlayer(angler);
+                //TODO: Line changed by me
                 for (ItemStack itemstack : worldObj.getLootTableManager().getLootTableFromLocation(FishingHelper.getFishingTable(worldObj, new BlockPos(this))).generateLootForPools(rand, lootcontext$builder.build())) {
                     EntityItem entityitem = new EntityItem(worldObj, posX, posY, posZ, itemstack);
+                    //TODO: Line changed by me
                     if (InventoryHelper.isOreName(itemstack, "fish")) {
                         HFTrackers.getPlayerTrackerFromPlayer(angler).getTracking().addAsObtained(itemstack);
                     }

@@ -3,6 +3,7 @@ package joshie.harvest.npc.gui;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.player.RelationshipType;
 import joshie.harvest.core.base.gui.GuiBase;
+import joshie.harvest.core.helpers.StackRenderHelper;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.npc.HFNPCs;
@@ -87,7 +88,7 @@ public abstract class GuiNPCBase extends GuiBase {
             ChatFontRenderer.colorise(outside);
             drawTexturedModalRect(x + 241, y + 155, 237, 0, 19, 20); //Outside
             GlStateManager.color(1F, 1F, 1F);
-            joshie.harvest.core.helpers.RenderHelper.drawStack(npc.getNPC() == HFNPCs.GODDESS ? BOOK : GIFT, x + 242, y + 157, 1F);
+            StackRenderHelper.drawStack(npc.getNPC() == HFNPCs.GODDESS ? BOOK : GIFT, x + 242, y + 157, 1F);
         }
 
         //Info section
@@ -101,7 +102,7 @@ public abstract class GuiNPCBase extends GuiBase {
             ChatFontRenderer.colorise(outside);
             drawTexturedModalRect(x + 241, y + 176, 237, 0, 19, 20); //Outside
             GlStateManager.color(1F, 1F, 1F);
-            joshie.harvest.core.helpers.RenderHelper.drawStack(npc.getNPC().hasInfo(), x + 242, y + 178, 1F);
+            StackRenderHelper.drawStack(npc.getNPC().hasInfo(), x + 242, y + 178, 1F);
         }
     }
 

@@ -2,7 +2,7 @@ package joshie.harvest.knowledge.gui.stats.relations.button;
 
 import joshie.harvest.api.player.RelationshipType;
 import joshie.harvest.core.HFTrackers;
-import joshie.harvest.core.helpers.RenderHelper;
+import joshie.harvest.core.helpers.StackRenderHelper;
 import joshie.harvest.knowledge.gui.stats.GuiStats;
 import joshie.harvest.knowledge.gui.stats.button.ButtonBook;
 import joshie.harvest.npc.HFNPCs;
@@ -67,16 +67,16 @@ public class ButtonRelationsNPC extends ButtonBook {
 
     private void drawForeground() {
         if (!talked) {
-            RenderHelper.drawGreyStack(TALK, xPosition + 100, yPosition - 2, 0.5F);
-        } else RenderHelper.drawStack(TALK, xPosition + 100, yPosition - 2, 0.5F);
+            StackRenderHelper.drawGreyStack(TALK, xPosition + 100, yPosition - 2, 0.5F);
+        } else StackRenderHelper.drawStack(TALK, xPosition + 100, yPosition - 2, 0.5F);
 
         if (!gifted) {
-            RenderHelper.drawGreyStack(GIFT, xPosition + 110, yPosition - 2, 0.5F);
-        } else RenderHelper.drawStack(GIFT, xPosition + 110, yPosition - 2, 0.5F);
+            StackRenderHelper.drawGreyStack(GIFT, xPosition + 110, yPosition - 2, 0.5F);
+        } else StackRenderHelper.drawStack(GIFT, xPosition + 110, yPosition - 2, 0.5F);
 
         if (!met) {
-            RenderHelper.drawGreyStack(stack, xPosition, yPosition, 1F);
-        } else RenderHelper.drawStack(stack, xPosition, yPosition, 1F);
+            StackRenderHelper.drawGreyStack(stack, xPosition, yPosition, 1F);
+        } else StackRenderHelper.drawStack(stack, xPosition, yPosition, 1F);
     }
 
     @Override

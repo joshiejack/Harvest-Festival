@@ -2,7 +2,7 @@ package joshie.harvest.knowledge.gui.stats.button;
 
 import joshie.harvest.core.base.gui.BookPage;
 import joshie.harvest.knowledge.gui.stats.GuiStats;
-import joshie.harvest.core.helpers.RenderHelper;
+import joshie.harvest.core.helpers.StackRenderHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.item.ItemStack;
@@ -35,7 +35,7 @@ public class ButtonTab extends ButtonBook<GuiStats> {
             GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
             GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
             drawTexturedModalRect(xPosition, yPosition, xTexture, state * 32, width, height);
-            RenderHelper.drawStack(icon, xStack, yPosition + 8, 1F);
+            StackRenderHelper.drawStack(icon, xStack, yPosition + 8, 1F);
             if (hovered) gui.addTooltip(displayString);
             GlStateManager.color(1.0F, 1.0F, 1.0F);
         }

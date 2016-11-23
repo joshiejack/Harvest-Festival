@@ -3,7 +3,7 @@ package joshie.harvest.knowledge.gui.stats.notes.button;
 import joshie.harvest.api.knowledge.Note;
 import joshie.harvest.api.knowledge.NoteRender;
 import joshie.harvest.core.HFTrackers;
-import joshie.harvest.core.helpers.RenderHelper;
+import joshie.harvest.core.helpers.StackRenderHelper;
 import joshie.harvest.knowledge.gui.stats.GuiStats;
 import joshie.harvest.knowledge.gui.stats.button.ButtonBook;
 import joshie.harvest.knowledge.gui.stats.notes.page.PageNotes;
@@ -56,8 +56,8 @@ public class ButtonNote extends ButtonBook {
 
     private void drawForeground() {
         if (!unlocked) {
-            RenderHelper.drawGreyStack(stack, xPosition, yPosition, 1F);
-        } else RenderHelper.drawStack(stack, xPosition, yPosition, 1F);
+            StackRenderHelper.drawGreyStack(stack, xPosition, yPosition, 1F);
+        } else StackRenderHelper.drawStack(stack, xPosition, yPosition, 1F);
     }
 
     @Override

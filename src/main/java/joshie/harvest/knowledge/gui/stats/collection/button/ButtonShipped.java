@@ -2,7 +2,7 @@ package joshie.harvest.knowledge.gui.stats.collection.button;
 
 import joshie.harvest.knowledge.gui.stats.GuiStats;
 import joshie.harvest.knowledge.gui.stats.button.ButtonBook;
-import joshie.harvest.core.helpers.RenderHelper;
+import joshie.harvest.core.helpers.StackRenderHelper;
 import joshie.harvest.core.util.holders.AbstractItemHolder;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
@@ -73,8 +73,8 @@ public class ButtonShipped extends ButtonBook {
         if (stack == null || hoverTimer %100 == 0) updateStack();
         hoverTimer++;
         if (!obtained) {
-            RenderHelper.drawGreyStack(stack, xPosition, yPosition, 1F);
-        } else RenderHelper.drawStack(stack, xPosition, yPosition, 1F);
+            StackRenderHelper.drawGreyStack(stack, xPosition, yPosition, 1F);
+        } else StackRenderHelper.drawStack(stack, xPosition, yPosition, 1F);
     }
 
     @Override

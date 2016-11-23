@@ -15,6 +15,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 
 @HFEvents(Side.CLIENT)
+@SuppressWarnings("unused")
 public class RenderToolLevel {
     @SubscribeEvent
     public void onTooltipRender(RenderTooltipEvent.PostText event) {

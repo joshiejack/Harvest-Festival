@@ -1,7 +1,7 @@
 package joshie.harvest.shops.gui.button;
 
 import joshie.harvest.api.shops.IPurchaseableMaterials;
-import joshie.harvest.core.helpers.RenderHelper;
+import joshie.harvest.core.helpers.StackRenderHelper;
 import joshie.harvest.shops.gui.GuiNPCShop;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
@@ -20,13 +20,13 @@ public class ButtonListingItem extends ButtonListing<IPurchaseableMaterials> {
 
     @Override
     protected void drawForeground(Minecraft mc, FontRenderer fontrenderer, int j) {
-        RenderHelper.drawStack(purchasable.getDisplayStack(), xPosition + 2, yPosition + 1, 1F);
+        StackRenderHelper.drawStack(purchasable.getDisplayStack(), xPosition + 2, yPosition + 1, 1F);
         drawString(fontrenderer, displayString, xPosition + 20, yPosition + (height - 8) / 2, j);
         GlStateManager.color(1.0F, 1.0F, 1.0F);
         //Draw the cost
         String cost = shop.getCostAsString(this.cost);
         int width = fontrenderer.getStringWidth(cost);
-        RenderHelper.drawStack(icon, xPosition + 188 - width, yPosition + 1, 1F);
+        StackRenderHelper.drawStack(icon, xPosition + 188 - width, yPosition + 1, 1F);
         drawString(fontrenderer, cost, xPosition + 180 - width, yPosition + (height - 8) / 2, j);
     }
 }

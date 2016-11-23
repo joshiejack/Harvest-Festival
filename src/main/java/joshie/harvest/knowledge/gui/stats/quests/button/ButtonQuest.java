@@ -2,7 +2,7 @@ package joshie.harvest.knowledge.gui.stats.quests.button;
 
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.core.helpers.MCClientHelper;
-import joshie.harvest.core.helpers.RenderHelper;
+import joshie.harvest.core.helpers.StackRenderHelper;
 import joshie.harvest.knowledge.gui.stats.GuiStats;
 import joshie.harvest.knowledge.gui.stats.button.ButtonBook;
 import net.minecraft.client.Minecraft;
@@ -46,7 +46,7 @@ public class ButtonQuest extends ButtonBook {
     }
 
     private void drawForeground() {
-        RenderHelper.drawStack(stack, xPosition + 2, yPosition + 1, 1F);
+        StackRenderHelper.drawStack(stack, xPosition + 2, yPosition + 1, 1F);
     }
 
     @Override

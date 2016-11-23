@@ -2,13 +2,17 @@ package joshie.harvest.fishing.item;
 
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.item.ItemTool;
+import joshie.harvest.core.helpers.SpawnItemHelper;
+import joshie.harvest.fishing.HFFishing;
 import joshie.harvest.fishing.entity.EntityFishHookHF;
+import joshie.harvest.fishing.item.ItemJunk.Junk;
 import joshie.harvest.tools.ToolHelper;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.IItemPropertyGetter;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.stats.StatList;
 import net.minecraft.util.*;
 import net.minecraft.world.World;
@@ -33,6 +37,30 @@ public class ItemFishingRod extends ItemTool<ItemFishingRod> {
         });
     }
 
+    public int getBaitAmount(ItemStack stack) {
+        return stack.hasTagCompound() ? stack.getTagCompound().getInteger("Bait") : 0;
+    }
+
+    boolean addBait(ItemStack rod, ItemStack bait) {
+        NBTTagCompound tag = rod.hasTagCompound() ? rod.getTagCompound() : new NBTTagCompound();
+        int existing = tag.getInteger("Bait");
+        if (existing + bait.stackSize > 999) return false;
+        tag.setInteger("Bait", existing + bait.stackSize);
+        return true;
+    }
+
+    private void removeBait(EntityPlayer player, ItemStack rod, int amount, boolean returning) {
+        NBTTagCompound tag = rod.hasTagCompound() ? rod.getTagCompound() : new NBTTagCompound();
+        int existing = tag.getInteger("Bait");
+        int newValue = existing - amount;
+        if (newValue < 0) tag.removeTag("Bait");
+        else tag.setInteger("Bait", newValue);
+        if (returning && existing > 0) {
+            ItemStack bait = HFFishing.JUNK.getStackFromEnum(Junk.BAIT, newValue < 0 ? amount + newValue : amount);
+            SpawnItemHelper.addToPlayerInventory(player, bait);
+        }
+    }
+
     @SideOnly(Side.CLIENT)
     @Override
     public boolean isFull3D() {
@@ -44,19 +72,23 @@ public class ItemFishingRod extends ItemTool<ItemFishingRod> {
     @SuppressWarnings("ConstantConditions")
     public ActionResult<ItemStack> onItemRightClick(@Nonnull ItemStack stack, @Nonnull World world, EntityPlayer player, @Nonnull EnumHand hand) {
         if (player.fishEntity != null) {
-            player.fishEntity.handleHookRetraction();
+            if (player.fishEntity.handleHookRetraction() != 0) removeBait(player, stack, 1, false);
             ToolHelper.consumeHunger(player, getExhaustionRate(stack));
             stack.getSubCompound("Data", true).setInteger("Damage", getDamageForDisplay(stack) + 1);
             player.swingArm(hand);
             return new ActionResult<>(EnumActionResult.SUCCESS, stack);
         } else if (canUse(stack)) {
-            world.playSound(null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_BOBBER_THROW, SoundCategory.NEUTRAL, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
-            if (!world.isRemote) {
-                world.spawnEntityInWorld(new EntityFishHookHF(world, player));
-            }
+            if (player.isSneaking()) {
+                removeBait(player, stack, 64, true);
+            } else {
+                world.playSound(null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_BOBBER_THROW, SoundCategory.NEUTRAL, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
+                if (!world.isRemote) {
+                    world.spawnEntityInWorld(new EntityFishHookHF(world, player, getTier(stack).getToolLevel(), getBaitAmount(stack)));
+                }
 
-            player.swingArm(hand);
-            player.addStat(StatList.getObjectUseStats(this));
+                player.swingArm(hand);
+                player.addStat(StatList.getObjectUseStats(this));
+            }
             return new ActionResult<>(EnumActionResult.SUCCESS, stack);
         }
 

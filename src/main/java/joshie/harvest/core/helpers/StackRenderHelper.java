@@ -24,7 +24,7 @@ import javax.annotation.Nullable;
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 
 @SideOnly(Side.CLIENT)
-public class RenderHelper {
+public class StackRenderHelper {
     public static final TextureManager textureManager = MCClientHelper.getMinecraft().getTextureManager();
     private static final ResourceLocation RES_ITEM_GLINT = new ResourceLocation(MODID, "textures/gui/shadow.png");
 

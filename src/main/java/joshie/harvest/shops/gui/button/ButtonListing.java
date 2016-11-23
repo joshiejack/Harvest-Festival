@@ -3,7 +3,7 @@ package joshie.harvest.shops.gui.button;
 import joshie.harvest.api.shops.IPurchasable;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.helpers.MCClientHelper;
-import joshie.harvest.core.helpers.RenderHelper;
+import joshie.harvest.core.helpers.StackRenderHelper;
 import joshie.harvest.core.helpers.StackHelper;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.network.PacketHandler;
@@ -88,7 +88,7 @@ public class ButtonListing<I extends IPurchasable> extends GuiButton {
     }
 
     protected void drawForeground(Minecraft mc, FontRenderer fontrenderer, int j) {
-        RenderHelper.drawStack(purchasable.getDisplayStack(), xPosition + 2, yPosition + 1, 1F);
+        StackRenderHelper.drawStack(purchasable.getDisplayStack(), xPosition + 2, yPosition + 1, 1F);
         drawString(fontrenderer, displayString, xPosition + 20, yPosition + (height - 8) / 2, j);
         GlStateManager.color(1.0F, 1.0F, 1.0F);
         //Draw the cost

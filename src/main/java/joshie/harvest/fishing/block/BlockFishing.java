@@ -2,8 +2,10 @@ package joshie.harvest.fishing.block;
 
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.block.BlockHFEnum;
+import joshie.harvest.core.base.item.ItemBlockHF;
 import joshie.harvest.core.base.tile.TileSingleStack;
 import joshie.harvest.fishing.block.BlockFishing.FishingBlock;
+import joshie.harvest.fishing.item.ItemBlockFishing;
 import joshie.harvest.fishing.tile.TileHatchery;
 import joshie.harvest.fishing.tile.TileTrap;
 import net.minecraft.block.material.Material;
@@ -39,6 +41,11 @@ public class BlockFishing extends BlockHFEnum<BlockFishing, FishingBlock> {
     protected BlockStateContainer createBlockState() {
         if(property == null) return new BlockStateContainer(this, LEVEL, temporary);
         return new BlockStateContainer(this, LEVEL, property);
+    }
+
+    @Override
+    public ItemBlockHF getItemBlock() {
+        return new ItemBlockFishing(this);
     }
 
     @SideOnly(Side.CLIENT)

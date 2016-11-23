@@ -11,12 +11,14 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 
+import javax.annotation.Nonnull;
+
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 
-public class ItemBlockHF extends ItemBlock implements ICreativeSorted {
-    private final BlockHFBase block;
+public class ItemBlockHF<B extends BlockHFBase> extends ItemBlock implements ICreativeSorted {
+    private final B block;
 
-    public ItemBlockHF(BlockHFBase block) {
+    public ItemBlockHF(B block) {
         super(block);
         this.block = block;
         setHasSubtypes(true);
@@ -26,12 +28,14 @@ public class ItemBlockHF extends ItemBlock implements ICreativeSorted {
     }
 
     @Override
+    @Nonnull
     public String getItemStackDisplayName(ItemStack stack) {
         return block.getItemStackDisplayName(stack);
     }
 
     @Override
-    public BlockHFBase getBlock() {
+    @Nonnull
+    public B getBlock() {
         return block;
     }
 
@@ -46,6 +50,7 @@ public class ItemBlockHF extends ItemBlock implements ICreativeSorted {
     }
 
     @Override
+    @Nonnull
     public String getUnlocalizedName(ItemStack stack) {
         return block.getUnlocalizedName(stack);
     }

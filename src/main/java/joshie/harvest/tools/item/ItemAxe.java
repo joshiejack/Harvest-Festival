@@ -190,6 +190,7 @@ public class ItemAxe extends ItemToolSmashing<ItemAxe> {
     @Override
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean flag) {
+        super.addInformation(stack, player, list, flag);
         list.add(TextFormatting.AQUA + "" + TextFormatting.ITALIC + TextHelper.translate("axe.tooltip.sneak"));
         list.add(TextFormatting.GREEN + TextHelper.formatHF("axe.tooltip.chops", getTimes(stack) + 1));
     }

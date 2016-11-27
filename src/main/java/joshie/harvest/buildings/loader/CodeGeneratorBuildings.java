@@ -1,12 +1,12 @@
 package joshie.harvest.buildings.loader;
 
-import joshie.harvest.buildings.BuildingImpl;
 import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.buildings.placeable.Placeable;
 import joshie.harvest.buildings.placeable.PlaceableHelper;
 import joshie.harvest.buildings.placeable.blocks.PlaceableBlock;
 import joshie.harvest.buildings.placeable.blocks.PlaceableChest;
 import joshie.harvest.buildings.placeable.entities.PlaceableNPC;
+import joshie.harvest.core.util.HFTemplate;
 import joshie.harvest.npc.NPC;
 import joshie.harvest.npc.NPCRegistry;
 import joshie.harvest.npc.entity.EntityNPCBuilder;
@@ -125,14 +125,9 @@ public class CodeGeneratorBuildings {
                 }
             }
 
-            BuildingImpl building = new BuildingImpl();
-            building.components = new Placeable[ret.size()];
-            for (int j = 0; j < ret.size(); j++) {
-                building.components[j] = ret.get(j);
-            }
-
+            HFTemplate template = new HFTemplate(ret);
             try {
-                String json = HFBuildings.getGson().toJson(building);
+                String json = HFBuildings.getGson().toJson(template);
                 PrintWriter writer = new PrintWriter("building.json", "UTF-8");
                 writer.write(json);
                 writer.close();

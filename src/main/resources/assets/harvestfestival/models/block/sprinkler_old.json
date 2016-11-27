@@ -1,5 +1,12 @@
 {
     "parent": "block/block",
+    "display": {
+        "gui": {
+            "rotation": [ 30, 225, 0 ],
+            "translation": [ 0, 6, 0],
+            "scale":[ 1.5, 1.5, 1.5 ]
+        }
+    },
     "textures": {
         "particle": "harvestfestival:models/sprinkler_old",
         "texture": "harvestfestival:models/sprinkler_old"

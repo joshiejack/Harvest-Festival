@@ -1,6 +1,5 @@
 package joshie.harvest.buildings;
 
-import com.google.gson.annotations.Expose;
 import joshie.harvest.api.buildings.Building;
 import joshie.harvest.api.core.ISpecialRules;
 import joshie.harvest.api.npc.INPC;
@@ -8,6 +7,7 @@ import joshie.harvest.buildings.placeable.Placeable;
 import joshie.harvest.buildings.placeable.Placeable.ConstructionStage;
 import joshie.harvest.buildings.placeable.entities.PlaceableNPC;
 import joshie.harvest.core.helpers.MCServerHelper;
+import joshie.harvest.core.util.HFTemplate;
 import joshie.harvest.town.TownHelper;
 import joshie.harvest.town.data.TownDataServer;
 import net.minecraft.entity.player.EntityPlayer;
@@ -38,8 +38,6 @@ public class BuildingImpl extends IForgeRegistryEntry.Impl<BuildingImpl> impleme
     private int length;
     private boolean canHaveMultiple;
     private boolean isPurchaseable = true;
-
-    @Expose
     public Placeable[] components;
 
     public BuildingImpl(){}
@@ -51,9 +49,9 @@ public class BuildingImpl extends IForgeRegistryEntry.Impl<BuildingImpl> impleme
         return this;
     }
 
-    void initBuilding(BuildingImpl building) {
-        if (building == null || building.components == null) return;
-        for (Placeable placeable: building.components) {
+    void initBuilding(HFTemplate building) {
+        if (building == null || building.getComponents() == null) return;
+        for (Placeable placeable: building.getComponents()) {
             if (placeable instanceof PlaceableNPC) {
                 PlaceableNPC npc = ((PlaceableNPC)placeable);
                 String home = npc.getHomeString();

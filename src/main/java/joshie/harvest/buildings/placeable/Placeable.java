@@ -43,9 +43,9 @@ public abstract class Placeable {
     }
 
     public boolean place(World world, BlockPos pos, Rotation rotation, ConstructionStage stage, boolean playSound) {
-        if (world.getBlockState(pos).getBlockHardness(world, pos) == -1F) return true;
+        BlockPos transformed = getTransformedPosition(pos, rotation);
+        if (world.getBlockState(transformed).getBlockHardness(world, transformed) == -1F) return true;
         if (canPlace(stage)) {
-            BlockPos transformed = getTransformedPosition(pos, rotation);
             if (stage == ConstructionStage.BUILD) clearBushes(world, transformed.up());
             return place(world, transformed, rotation, playSound);
         } else return false;

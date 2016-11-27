@@ -42,7 +42,7 @@ public class RenderToolBreak {
         EntityPlayer player = MCClientHelper.getPlayer();
         World world = player.worldObj;
         ItemStack tool = player.getHeldItemMainhand();
-        if (tool != null && tool.getItem() == HFTools.HAMMER) {
+        if (tool != null && tool.getItem() == HFTools.HAMMER && HFTools.HAMMER.canUse(tool)) {
             Entity renderEntity = MCClientHelper.getRenderViewEntity();
             double distance = controller.getBlockReachDistance();
             RayTraceResult rayTraceResult = renderEntity.rayTrace(distance, event.getPartialTicks());

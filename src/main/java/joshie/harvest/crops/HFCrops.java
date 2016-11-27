@@ -9,10 +9,7 @@ import joshie.harvest.api.crops.WateringHandler;
 import joshie.harvest.core.base.render.MeshIdentical;
 import joshie.harvest.core.helpers.RegistryHelper;
 import joshie.harvest.core.util.annotations.HFLoader;
-import joshie.harvest.crops.block.BlockFruit;
-import joshie.harvest.crops.block.BlockHFCrops;
-import joshie.harvest.crops.block.BlockLeavesTree;
-import joshie.harvest.crops.block.BlockSprinkler;
+import joshie.harvest.crops.block.*;
 import joshie.harvest.crops.handlers.growth.GrowthHandlerNether;
 import joshie.harvest.crops.handlers.growth.GrowthHandlerSide;
 import joshie.harvest.crops.handlers.rules.SpecialRulesQuest;
@@ -21,12 +18,10 @@ import joshie.harvest.crops.item.ItemCrop;
 import joshie.harvest.crops.item.ItemCrop.Crops;
 import joshie.harvest.crops.item.ItemHFSeeds;
 import joshie.harvest.crops.loot.SetCropType;
-import joshie.harvest.crops.tile.TileCrop;
-import joshie.harvest.crops.tile.TileSprinkler;
-import joshie.harvest.crops.tile.TileSprinklerOld;
-import joshie.harvest.crops.tile.TileWithered;
+import joshie.harvest.crops.tile.*;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.block.statemap.StateMap;
 import net.minecraft.client.renderer.color.BlockColors;
 import net.minecraft.client.renderer.color.IBlockColor;
 import net.minecraft.init.Blocks;
@@ -48,15 +43,19 @@ import static joshie.harvest.core.helpers.ConfigHelper.getBoolean;
 import static joshie.harvest.core.helpers.ConfigHelper.getInteger;
 import static joshie.harvest.core.helpers.RegistryHelper.*;
 import static joshie.harvest.core.lib.LoadOrder.HFCROPS;
+import static net.minecraft.block.BlockLeaves.CHECK_DECAY;
+import static net.minecraft.block.BlockLeaves.DECAYABLE;
 import static net.minecraft.init.Items.*;
 
 @HFLoader(priority = HFCROPS)
 public class HFCrops {
+    public static final StateMap NO_LEAVES = new StateMap.Builder().ignore(CHECK_DECAY, DECAYABLE).build();
     //Crops and Trees
     public static final BlockHFCrops CROPS = new BlockHFCrops().register("crops_block");
     public static final BlockSprinkler SPRINKLER = new BlockSprinkler().register("sprinkler");
     public static final BlockFruit FRUITS = new BlockFruit().register("fruit");
-    public static final BlockLeavesTree LEAVES = new BlockLeavesTree().register("leaves");
+    public static final BlockLeavesFruit LEAVES_FRUIT = new BlockLeavesFruit().register("leaves_fruit");
+    public static final BlockLeavesTropical LEAVES_TROPICAL = new BlockLeavesTropical().register("leaves_tropical");
     public static final GrowthHandler SOUL_SAND = new GrowthHandlerNether();
 
     //Seed Bag Item
@@ -134,7 +133,7 @@ public class HFCrops {
         registerVanillaCrop(Blocks.NETHER_WART, Items.NETHER_WART, NETHER_WART);
         HFApi.crops.registerWateringHandler(new WateringHandler());
         HFApi.shipping.registerSellable(new ItemStack(Items.POISONOUS_POTATO), 1L);
-        RegistryHelper.registerTiles(TileWithered.class, TileCrop.class, TileSprinkler.class, TileSprinklerOld.class);
+        RegistryHelper.registerTiles(TileWithered.class, TileCrop.class, TileSprinkler.class, TileSprinklerOld.class, TileFruit.class);
         if (DISABLE_VANILLA_MOISTURE) Blocks.FARMLAND.setTickRandomly(false);
         if (DISABLE_VANILLA_WHEAT_SEEDS || DISABLE_VANILLA_SEEDS) {
             BLACKLIST.register(MELON_SEEDS);

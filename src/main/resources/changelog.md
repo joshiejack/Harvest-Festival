@@ -13,6 +13,7 @@
 * Cleaning will now stop working when the animal is fully cleaned
 * Feeding animals incorrect treats or hitting them will cause a relationship penalty
 * Changed relationship maximum to 27,000RP
+* Cows, Chickens and Sheep should be a little smarter, and try to find a location that's inside when it's raining, night or winter, and go outside when its day, sunny and not winter
 
 ###Buildings
 * Optimised building save format, should be smaller size
@@ -103,7 +104,16 @@
 ###Tools
 * Tools will have [BROKEN] in front of their name, when they can't be used
 * Hammers will now be able to smash more tiers of rocks
-* Fixed Hoes being half the durability they were meant to
+* Fixed Hoes being half the durability of other tools
+* Rebalanced max damage
+    * Basic = 128
+    * Copper = 256
+    * Silver = 768
+    * Gold = 1152
+    * Mystril = 3456
+    * Cursed = Gold
+    * Blessed = 6912
+    * Mythic = 13824
 * Tools will now reach 100% before you use them all the way
 * Change Basic tools repair material to Junk Ore
 * Hammers will now mine larger areas of stone

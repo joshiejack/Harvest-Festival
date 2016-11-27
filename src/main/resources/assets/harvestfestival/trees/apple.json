@@ -1,0 +1,352 @@
+{
+  "components": [
+    {
+      "state": "log",
+      "pos": "2 0 3"
+    },
+    {
+      "state": "log",
+      "pos": "2 1 3"
+    },
+    {
+      "state": "harvestfestival:leaves_fruit",
+      "pos": "1 2 5"
+    },
+    {
+      "state": "harvestfestival:leaves_fruit",
+      "pos": "1 2 4"
+    },
+    {
+      "state": "harvestfestival:leaves_fruit",
+      "pos": "1 2 2"
+    },
+    {
+      "state": "harvestfestival:leaves_fruit",
+      "pos": "2 2 1"
+    },
+    {
+      "state": "log 8",
+      "pos": "2 2 2"
+    },
+    {
+      "state": "log",
+      "pos": "2 2 3"
+    },
+    {
+      "state": "log 8",
+      "pos": "2 2 4"
+    },
+    {
+      "state": "harvestfestival:leaves_fruit",
+      "pos": "2 2 5"
+    },
+    {
+      "state": "harvestfestival:leaves_fruit",
+      "pos": "2 2 6"
+    },
+    {
+      "state": "harvestfestival:leaves_fruit",
+      "pos": "3 2 4"
+    },
+    {
+      "state": "harvestfestival:leaves_fruit",
+      "pos": "3 2 3"
+    },
+    {
+      "state": "harvestfestival:leaves_fruit",
+      "pos": "3 2 2"
+    },
+    {
+      "state": "harvestfestival:leaves_fruit",
+      "pos": "4 2 3"
+    },
+    {
+      "state": "harvestfestival:leaves_fruit",
+      "pos": "0 3 2"
+    },
+    {
+      "state": "harvestfestival:leaves_fruit",
+      "pos": "1 3 6"
+    },
+    {
+      "state": "harvestfestival:leaves_fruit",
+      "pos": "1 3 5"
+    },
+    {
+      "state": "harvestfestival:leaves_fruit",
+      "pos": "1 3 4"
+    },
+    {
+      "state": "harvestfestival:leaves_fruit",
+      "pos": "1 3 3"
+    },
+    {
+      "state": "harvestfestival:leaves_fruit",
+      "pos": "1 3 2"
+    },
+    {
+      "state": "harvestfestival:leaves_fruit",
+      "pos": "1 3 1"
+    },
+    {
+      "state": "harvestfestival:leaves_fruit",
+      "pos": "2 3 0"
+    },
+    {
+      "state": "log 8",
+      "pos": "2 3 1"
+    },
+    {
+      "state": "log",
+      "pos": "2 3 3"
+    },
+    {
+      "state": "harvestfestival:leaves_fruit",
+      "pos": "2 3 4"
+    },
+    {
+      "state": "log 8",
+      "pos": "2 3 5"
+    },
+    {
+      "state": "log 8",
+      "pos": "2 3 6"
+    },
+    {
+      "state": "harvestfestival:leaves_fruit",
+      "pos": "2 3 7"
+    },
+    {
+      "state": "harvestfestival:leaves_fruit",
+      "pos": "3 3 6"
+    },
+    {
+      "state": "harvestfestival:leaves_fruit",
+      "pos": "3 3 5"
+    },
+    {
+      "state": "harvestfestival:leaves_fruit",
+      "pos": "3 3 4"
+    },
+    {
+      "state": "harvestfestival:leaves_fruit",
+      "pos": "3 3 3"
+    },
+    {
+      "state": "harvestfestival:leaves_fruit",
+      "pos": "3 3 2"
+    },
+    {
+      "state": "harvestfestival:leaves_fruit",
+      "pos": "4 3 2"
+    },
+    {
+      "state": "harvestfestival:leaves_fruit",
+      "pos": "4 3 3"
+    },
+    {
+      "state": "harvestfestival:leaves_fruit",
+      "pos": "4 3 4"
+    },
+    {
+      "state": "harvestfestival:leaves_fruit",
+      "pos": "0 4 2"
+    },
+    {
+      "state": "harvestfestival:leaves_fruit",
+      "pos": "0 4 3"
+    },
+    {
+      "state": "harvestfestival:leaves_fruit",
+      "pos": "1 4 4"
+    },
+    {
+      "state": "harvestfestival:leaves_fruit",
+      "pos": "1 4 3"
+    },
+    {
+      "state": "harvestfestival:leaves_fruit",
+      "pos": "1 4 2"
+    },
+    {
+      "state": "log",
+      "pos": "2 4 3"
+    },
+    {
+      "state": "harvestfestival:leaves_fruit",
+      "pos": "2 4 4"
+    },
+    {
+      "state": "harvestfestival:leaves_fruit",
+      "pos": "2 4 5"
+    },
+    {
+      "state": "harvestfestival:leaves_fruit",
+      "pos": "2 4 6"
+    },
+    {
+      "state": "harvestfestival:leaves_fruit",
+      "pos": "3 4 4"
+    },
+    {
+      "state": "harvestfestival:leaves_fruit",
+      "pos": "3 4 3"
+    },
+    {
+      "state": "harvestfestival:leaves_fruit",
+      "pos": "3 4 2"
+    },
+    {
+      "state": "harvestfestival:leaves_fruit",
+      "pos": "3 4 1"
+    },
+    {
+      "state": "harvestfestival:leaves_fruit",
+      "pos": "4 4 2"
+    },
+    {
+      "state": "harvestfestival:leaves_fruit",
+      "pos": "4 4 4"
+    },
+    {
+      "state": "harvestfestival:leaves_fruit",
+      "pos": "0 5 2"
+    },
+    {
+      "state": "harvestfestival:leaves_fruit",
+      "pos": "1 5 5"
+    },
+    {
+      "state": "harvestfestival:leaves_fruit",
+      "pos": "1 5 4"
+    },
+    {
+      "state": "harvestfestival:leaves_fruit",
+      "pos": "1 5 2"
+    },
+    {
+      "state": "harvestfestival:leaves_fruit",
+      "pos": "1 5 1"
+    },
+    {
+      "state": "harvestfestival:leaves_fruit",
+      "pos": "2 5 1"
+    },
+    {
+      "state": "log 8",
+      "pos": "2 5 2"
+    },
+    {
+      "state": "log",
+      "pos": "2 5 3"
+    },
+    {
+      "state": "log 8",
+      "pos": "2 5 4"
+    },
+    {
+      "state": "harvestfestival:leaves_fruit",
+      "pos": "2 5 5"
+    },
+    {
+      "state": "harvestfestival:leaves_fruit",
+      "pos": "3 5 5"
+    },
+    {
+      "state": "harvestfestival:leaves_fruit",
+      "pos": "3 5 4"
+    },
+    {
+      "state": "harvestfestival:leaves_fruit",
+      "pos": "3 5 3"
+    },
+    {
+      "state": "harvestfestival:leaves_fruit",
+      "pos": "3 5 2"
+    },
+    {
+      "state": "harvestfestival:leaves_fruit",
+      "pos": "4 5 2"
+    },
+    {
+      "state": "harvestfestival:leaves_fruit",
+      "pos": "4 5 3"
+    },
+    {
+      "state": "harvestfestival:leaves_fruit",
+      "pos": "1 6 3"
+    },
+    {
+      "state": "harvestfestival:leaves_fruit",
+      "pos": "1 6 2"
+    },
+    {
+      "state": "harvestfestival:leaves_fruit",
+      "pos": "1 6 1"
+    },
+    {
+      "state": "harvestfestival:leaves_fruit",
+      "pos": "2 6 1"
+    },
+    {
+      "state": "log",
+      "pos": "2 6 2"
+    },
+    {
+      "state": "harvestfestival:leaves_fruit",
+      "pos": "2 6 3"
+    },
+    {
+      "state": "harvestfestival:leaves_fruit",
+      "pos": "2 6 4"
+    },
+    {
+      "state": "harvestfestival:leaves_fruit",
+      "pos": "2 6 5"
+    },
+    {
+      "state": "harvestfestival:leaves_fruit",
+      "pos": "3 6 4"
+    },
+    {
+      "state": "harvestfestival:leaves_fruit",
+      "pos": "3 6 2"
+    },
+    {
+      "state": "harvestfestival:leaves_fruit",
+      "pos": "3 6 1"
+    },
+    {
+      "state": "harvestfestival:leaves_fruit",
+      "pos": "1 7 3"
+    },
+    {
+      "state": "harvestfestival:leaves_fruit",
+      "pos": "2 7 1"
+    },
+    {
+      "state": "harvestfestival:leaves_fruit",
+      "pos": "2 7 2"
+    },
+    {
+      "state": "harvestfestival:leaves_fruit",
+      "pos": "2 7 3"
+    },
+    {
+      "state": "harvestfestival:leaves_fruit",
+      "pos": "2 7 4"
+    },
+    {
+      "state": "harvestfestival:leaves_fruit",
+      "pos": "3 7 3"
+    },
+    {
+      "state": "harvestfestival:leaves_fruit",
+      "pos": "3 7 2"
+    },
+    {
+      "state": "harvestfestival:leaves_fruit",
+      "pos": "2 8 2"
+    }
+  ]
+}

@@ -2,12 +2,10 @@ package joshie.harvest.tools.item;
 
 import com.google.common.collect.Lists;
 import gnu.trove.set.hash.THashSet;
-import joshie.harvest.api.core.ITiered.ToolTier;
-import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.tools.HFTools;
 import joshie.harvest.tools.ToolHelper;
+import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
@@ -17,8 +15,12 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.WorldTickEvent;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Queue;
 import java.util.Set;
+
+import static net.minecraft.block.Block.spawnAsEntity;
 
 class TreeTasks {
     static class TreeReplace {
@@ -65,6 +67,7 @@ class TreeTasks {
             if(event.world.provider.getDimension() != world.provider.getDimension()) return;
             BlockPos pos;
             int remaining = 4;
+            List<ItemStack> drops = new ArrayList();
             while(remaining > 0) {
                 if(blocks.isEmpty()) {
                     MinecraftForge.EVENT_BUS.unregister(this);
@@ -74,15 +77,13 @@ class TreeTasks {
                 pos = blocks.remove();
                 if(!visited.add(pos)) continue;
                 IBlockState state = world.getBlockState(pos);
-                if (state.getBlock().isLeaves(state, world, pos)) {
-                    state.getBlock().beginLeavesDecay(state, world, pos);
-                    continue;
-                }
-
-                if (!state.getBlock().isWood(world, pos)) continue;
+                Block block = state.getBlock();
+                if (!block.isWood(world, pos)) continue;
                 for(EnumFacing facing : new EnumFacing[]{ EnumFacing.NORTH, EnumFacing.EAST, EnumFacing.SOUTH, EnumFacing.WEST }) {
                     BlockPos pos2 = pos.offset(facing);
-                    if(!visited.contains(pos2)) blocks.add(pos2);
+                    if(!visited.contains(pos2)) {
+                        blocks.add(pos2);
+                    }
                 }
 
                 for(int x = 0; x < 3; x++) {
@@ -94,11 +95,18 @@ class TreeTasks {
                     }
                 }
 
-                if (HFTools.AXE.getTier(stack) == ToolTier.CURSED) ToolHelper.consumeHunger(player, HFTools.AXE.getExhaustionRate(stack));
-                if (HFTools.AXE.canLevel(stack, state)) ToolHelper.levelTool(stack);
-                world.destroyBlock(pos, true); //Destroy the block and collect the drop near the player
-                EntityHelper.getEntities(EntityItem.class, world, pos, 1D, 1D).stream().forEach((e) -> e.setPositionAndUpdate(player.posX, player.posY, player.posZ));
-                remaining--;
+                if (HFTools.AXE.canUse(stack)) {
+                    ToolHelper.performTask(player, stack, HFTools.AXE);
+                    ToolHelper.collectDrops(world, pos, state, player, drops);
+                    world.setBlockToAir(pos); //No particles
+                    remaining--;
+                } else MinecraftForge.EVENT_BUS.unregister(this);
+            }
+
+            //Target
+            BlockPos target = new BlockPos(player);
+            for (ItemStack item : drops) {
+                spawnAsEntity(world, target, item);
             }
         }
     }

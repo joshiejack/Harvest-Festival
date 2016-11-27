@@ -26,6 +26,7 @@ import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nonnull;
 import java.util.Locale;
 
 import static net.minecraftforge.common.EnumPlantType.Plains;
@@ -59,12 +60,12 @@ public class BlockNature extends BlockHFEnum<BlockNature, NaturalBlock> implemen
     }
 
     @Override
-    public boolean canPlaceBlockAt(World world, BlockPos pos) {
+    public boolean canPlaceBlockAt(@Nonnull World world, @Nonnull BlockPos pos) {
         IBlockState soil = world.getBlockState(pos.down());
         return super.canPlaceBlockAt(world, pos) && canBlockStay(world, pos.down(), soil);
     }
 
-    protected boolean canSustainBush(IBlockState state) {
+    private boolean canSustainBush(IBlockState state) {
         return state.getMaterial() == Material.GROUND;
     }
 
@@ -75,14 +76,14 @@ public class BlockNature extends BlockHFEnum<BlockNature, NaturalBlock> implemen
         checkAndDropBlock(world, pos, state);
     }
 
-    protected void checkAndDropBlock(World world, BlockPos pos, IBlockState state) {
+    private void checkAndDropBlock(World world, BlockPos pos, IBlockState state) {
         if (!canBlockStay(world, pos, state)) {
             dropBlockAsItem(world, pos, state, 0);
             world.setBlockToAir(pos);
         }
     }
 
-    public boolean canBlockStay(World world, BlockPos pos, IBlockState state) {
+    private boolean canBlockStay(World world, BlockPos pos, IBlockState state) {
         if (state.getBlock() == this) {
             IBlockState soil = world.getBlockState(pos.down());
             return soil.getBlock().canSustainPlant(soil, world, pos.down(), net.minecraft.util.EnumFacing.UP, this);
@@ -93,13 +94,14 @@ public class BlockNature extends BlockHFEnum<BlockNature, NaturalBlock> implemen
 
     @SuppressWarnings("deprecation")
     @Override
+    @Nonnull
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
         return GRASS_AABB;
     }
 
     @SuppressWarnings("deprecation")
     @Override
-    public AxisAlignedBB getCollisionBoundingBox(IBlockState state, World world, BlockPos pos) {
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState state, @Nonnull World world, @Nonnull BlockPos pos) {
         return NULL_AABB;
     }
 

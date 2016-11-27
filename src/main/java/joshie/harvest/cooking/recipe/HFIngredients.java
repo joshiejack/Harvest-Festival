@@ -11,6 +11,9 @@ import joshie.harvest.cooking.render.MappingEvent;
 import joshie.harvest.core.helpers.InventoryHelper;
 import joshie.harvest.core.util.annotations.HFLoader;
 import joshie.harvest.crops.HFCrops;
+import joshie.harvest.fishing.HFFishing;
+import joshie.harvest.fishing.item.ItemFish;
+import joshie.harvest.fishing.item.ItemFish.Fish;
 import joshie.harvest.gathering.block.BlockNature.NaturalBlock;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -206,6 +209,13 @@ public class HFIngredients {
         CookingAPI.INSTANCE.register(new ItemStack(Items.PORKCHOP), PORK);
         CookingAPI.INSTANCE.register(new ItemStack(Items.MUTTON), MUTTON);
         CookingAPI.INSTANCE.register(new ItemStack(Items.COOKED_RABBIT), RABBIT_COOKED);
+        CookingAPI.INSTANCE.register(HFFishing.FISH.getStackFromEnum(Fish.COD), COD);
+        CookingAPI.INSTANCE.register(HFFishing.FISH.getStackFromEnum(Fish.SALMON), SALMON);
+        for (Fish fish: ItemFish.Fish.values()) {
+            if (!(fish.isPoisonous() || fish == Fish.COD || fish == Fish.SALMON)) {
+                CookingAPI.INSTANCE.register(HFFishing.FISH.getStackFromEnum(fish), FISH);
+            }
+        }
 
         //Spices and Salts
         registerForOre("foodSalt", SALT);

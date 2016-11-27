@@ -158,7 +158,7 @@ public class ItemHoe extends ItemToolChargeable {
     private void doParticles(ItemStack stack, EntityPlayer player, World world, BlockPos pos) {
         displayParticle(world, pos, EnumParticleTypes.BLOCK_CRACK, Blocks.DIRT.getDefaultState());
         playSound(world, pos, SoundEvents.ITEM_HOE_TILL, SoundCategory.BLOCKS);
-        ToolHelper.performTask(player, stack, getExhaustionRate(stack));
+        ToolHelper.performTask(player, stack, this);
         if (world.getBlockState(pos.up()).getBlock() instanceof IPlantable) {
             world.setBlockToAir(pos.up());
         }

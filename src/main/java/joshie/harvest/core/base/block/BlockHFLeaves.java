@@ -4,6 +4,7 @@ import joshie.harvest.core.HFTab;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
@@ -16,15 +17,18 @@ import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.IShearable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
+import static joshie.harvest.crops.HFCrops.NO_LEAVES;
 import static net.minecraft.block.BlockLeaves.CHECK_DECAY;
 import static net.minecraft.block.BlockLeaves.DECAYABLE;
 
@@ -47,7 +51,13 @@ public abstract class BlockHFLeaves<B extends BlockHFLeaves, E extends Enum<E> &
     }
 
     @Override
-    public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
+    protected BlockStateContainer createBlockState() {
+        if(property == null) return new BlockStateContainer(this, temporary, CHECK_DECAY, DECAYABLE);
+        return new BlockStateContainer(this, property, CHECK_DECAY, DECAYABLE);
+    }
+
+    @Override
+    public void breakBlock(@Nonnull World worldIn, @Nonnull BlockPos pos, @Nonnull IBlockState state) {
         int k = pos.getX();
         int l = pos.getY();
         int i1 = pos.getZ();
@@ -149,6 +159,37 @@ public abstract class BlockHFLeaves<B extends BlockHFLeaves, E extends Enum<E> &
         worldIn.setBlockToAir(pos);
     }
 
+    @Override
+    protected ItemStack createStackedBlock(@Nonnull IBlockState state) {
+        return new ItemStack(this, 1, getEnumFromState(state).ordinal());
+    }
+
+    @Override
+    public IBlockState getStateFromMeta(int meta) {
+        return this.getDefaultState().withProperty(property, getEnumFromMeta(meta)).withProperty(DECAYABLE, (meta & 4) == 0).withProperty(CHECK_DECAY, (meta & 8) > 0);
+    }
+
+    @Override
+    public int damageDropped(IBlockState state) {
+        return super.getMetaFromState(state);
+    }
+
+    @Override
+    public int getMetaFromState(IBlockState state) {
+        int i = 0;
+        i = i | super.getMetaFromState(state);
+
+        if (!(state.getValue(DECAYABLE))) {
+            i |= 4;
+        }
+
+        if (state.getValue(CHECK_DECAY)) {
+            i |= 8;
+        }
+
+        return i;
+    }
+
     @SideOnly(Side.CLIENT)
     @Override
     public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
@@ -205,12 +246,20 @@ public abstract class BlockHFLeaves<B extends BlockHFLeaves, E extends Enum<E> &
 
     @SideOnly(Side.CLIENT)
     @Override
-    public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
+    @SuppressWarnings("deprecation")
+    public boolean shouldSideBeRendered(IBlockState blockState, @Nonnull IBlockAccess blockAccess, @Nonnull BlockPos pos, EnumFacing side) {
         return !(!leavesFancy && blockAccess.getBlockState(pos.offset(side)).getBlock() == this) && super.shouldSideBeRendered(blockState, blockAccess, pos, side);
     }
 
     @Override
     public List<ItemStack> onSheared(ItemStack item, IBlockAccess world, BlockPos pos, int fortune) {
-        return Collections.singletonList(new ItemStack(this, 1, getMetaFromState(world.getBlockState(pos))));
+        return Collections.singletonList(new ItemStack(this, 1, super.getMetaFromState(world.getBlockState(pos))));
+    }
+
+    @SideOnly(Side.CLIENT)
+    @Override
+    public void registerModels(Item item, String name) {
+        ModelLoader.setCustomStateMapper(this, NO_LEAVES);
+        super.registerModels(item, name);
     }
 }

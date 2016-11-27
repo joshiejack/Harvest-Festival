@@ -29,6 +29,31 @@ public abstract class ItemToolSmashing<I extends ItemToolSmashing> extends ItemT
     }
 
     @Override
+    public float getExhaustionRate(ItemStack stack) {
+        ToolTier tier = getTier(stack);
+        switch (tier) {
+            case BASIC:
+                return 3F;
+            case COPPER:
+                return 1.25F;
+            case SILVER:
+                return 0.333F;
+            case GOLD:
+                return 0.222F;
+            case MYSTRIL:
+                return 0.055F;
+            case CURSED:
+                return 25F;
+            case BLESSED:
+                return 0.02F;
+            case MYTHIC:
+                return 0.005F;
+            default:
+                return 1F;
+        }
+    }
+
+    @Override
     public int getFront(ToolTier tier) {
         switch (tier) {
             case BASIC:
@@ -82,7 +107,7 @@ public abstract class ItemToolSmashing<I extends ItemToolSmashing> extends ItemT
                     ISmashable smashable = ((ISmashable) state.getBlock());
                     if (smashable.getToolType() == getToolType()) {
                         if (smashable.smashBlock(player, world, pos, state, tier)) {
-                            ToolHelper.performTask(player, stack, getExhaustionRate(stack));
+                            ToolHelper.performTask(player, stack, this);
                             if (!world.isRemote) {
                                 onBlockDestroyed(stack, world, state, pos, player);
                             }

@@ -7,6 +7,7 @@ import joshie.harvest.buildings.loader.CodeGeneratorBuildings;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.item.ItemHFEnum;
 import joshie.harvest.core.helpers.ChatHelper;
+import joshie.harvest.core.helpers.MCClientHelper;
 import joshie.harvest.core.lib.CreativeSort;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -112,7 +113,7 @@ public class ItemCheat extends ItemHFEnum<ItemCheat, Cheat> {
 
     @Override
     public boolean shouldDisplayInCreative(Cheat cheat) {
-        return DEBUG_MODE;
+        return DEBUG_MODE || MCClientHelper.getPlayer().getName().equals("joshiejack");
     }
 
     @Override

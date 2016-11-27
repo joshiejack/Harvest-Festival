@@ -119,7 +119,7 @@ public class ItemSickle extends ItemTool<ItemHoe> implements IBreakCrops {
                                 IBlockState particleState = isWithered ? Blocks.TALLGRASS.getDefaultState() : Blocks.CARROTS.getDefaultState();
                                 displayParticle(world, newPos, EnumParticleTypes.BLOCK_CRACK, particleState);
                                 playSound(world, newPos, SoundEvents.BLOCK_GRASS_BREAK, SoundCategory.BLOCKS);
-                                ToolHelper.performTask(player, stack, getExhaustionRate(stack));
+                                ToolHelper.performTask(player, stack, this);
                             }
                         }
                     }

@@ -18,6 +18,7 @@ import joshie.harvest.buildings.special.SpecialRuleChurch;
 import joshie.harvest.buildings.special.SpecialRuleFestivals;
 import joshie.harvest.core.base.render.FMLDefinition;
 import joshie.harvest.core.base.render.MeshIdentical;
+import joshie.harvest.core.util.HFTemplate;
 import joshie.harvest.core.util.annotations.HFLoader;
 import joshie.harvest.npc.HFNPCs;
 import net.minecraft.block.state.IBlockState;
@@ -70,7 +71,7 @@ public class HFBuildings {
     public static void init() {
         HFApi.npc.getGifts().addToBlacklist(STRUCTURES, BLUEPRINTS);
         for (BuildingImpl building: BuildingRegistry.REGISTRY.getValues()) {
-            building.initBuilding(getGson().fromJson(ResourceLoader.getJSONResource(building.getRegistryName(), "buildings"), BuildingImpl.class));
+            building.initBuilding(getGson().fromJson(ResourceLoader.getJSONResource(building.getRegistryName(), "buildings"), HFTemplate.class));
         }
     }
 
@@ -89,9 +90,9 @@ public class HFBuildings {
 
     private static Gson gson; //Temporary
     public static void loadBuilding(BuildingImpl building) {
-        BuildingImpl impl = (getGson().fromJson(ResourceLoader.getJSONResource(building.getRegistryName(), "buildings"), BuildingImpl.class));
-        if (impl != null) {
-            building.components = impl.components;
+        HFTemplate template = (getGson().fromJson(ResourceLoader.getJSONResource(building.getRegistryName(), "buildings"), HFTemplate.class));
+        if (template != null) {
+            building.components = template.getComponents();
         }
     }
 

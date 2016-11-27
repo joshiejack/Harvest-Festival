@@ -1,19 +1,23 @@
 package joshie.harvest.fishing.item;
 
 import joshie.harvest.core.HFTab;
-import joshie.harvest.core.base.item.ItemHFEnum;
+import joshie.harvest.core.base.item.ItemHFFoodEnum;
+import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.core.util.interfaces.ISellable;
 import joshie.harvest.fishing.item.ItemFish.Fish;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.IStringSerializable;
+import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 import java.util.Locale;
 
-public class ItemFish extends ItemHFEnum<ItemFish, Fish> {
+public class ItemFish extends ItemHFFoodEnum<ItemFish, Fish> {
     public static final String SIZE = "Size";
 
     public ItemFish() {
@@ -31,6 +35,32 @@ public class ItemFish extends ItemHFEnum<ItemFish, Fish> {
 
     public double getLengthFromSizeOfFish(ItemStack stack, int size) {
         return getEnumFromStack(stack).getLengthFromSizeOfFish(size);
+    }
+
+    @Override
+    public int getHealAmount(ItemStack stack) {
+        return getEnumFromStack(stack).getFoodAmount();
+    }
+
+    @Override
+    public float getSaturationModifier(ItemStack stack) {
+        return 0.6F;
+    }
+
+    @Override
+    protected void onFoodEaten(ItemStack stack, World worldIn, EntityPlayer player) {
+        if (getEnumFromStack(stack).isPoisonous()) {
+            player.addPotionEffect(new PotionEffect(MobEffects.POISON, 1200, 3));
+            player.addPotionEffect(new PotionEffect(MobEffects.HUNGER, 300, 2));
+            player.addPotionEffect(new PotionEffect(MobEffects.NAUSEA, 300, 1));
+        }
+
+        super.onFoodEaten(stack, worldIn, player);
+    }
+
+    @Override
+    public int getSortValue(ItemStack stack) {
+        return CreativeSort.LAST;
     }
 
     public static final int SMALL_FISH = 1;
@@ -51,6 +81,7 @@ public class ItemFish extends ItemHFEnum<ItemFish, Fish> {
         private final double medium;
         private final double large;
         private final double giant;
+        private final int amount;
 
         Fish(long sell, double min, double max) {
             this.sell = sell;
@@ -58,6 +89,15 @@ public class ItemFish extends ItemHFEnum<ItemFish, Fish> {
             this.medium = min + (max - min) * (1/3);
             this.large = this.medium * 2;
             this.giant = max;
+            this.amount = (int) Math.min(10, Math.max(1, min / 10D));
+        }
+
+        public boolean isPoisonous() {
+            return this == BLAASOP || this == LAMPREY || this == PUFFER || this == STARGAZER || this == STINGRAY;
+        }
+
+        public int getFoodAmount() {
+            return amount;
         }
 
         public double getLengthFromSizeOfFish(int size) {

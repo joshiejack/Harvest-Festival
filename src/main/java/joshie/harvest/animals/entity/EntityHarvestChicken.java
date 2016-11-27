@@ -1,6 +1,7 @@
 package joshie.harvest.animals.entity;
 
 import com.google.common.collect.Sets;
+import joshie.harvest.animals.entity.ai.EntityAIFindShelterOrSun;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.AnimalStats;
 import joshie.harvest.api.animals.IAnimalHandler.AnimalAI;
@@ -40,6 +41,7 @@ public class EntityHarvestChicken extends EntityChicken {
         tasks.addTask(0, new EntityAISwimming(this));
         tasks.addTask(1, new EntityAIPanic(this, 1.4D));
         tasks.addTask(3, new EntityAITempt(this, 1.0D, false, TEMPTATION_ITEMS));
+        tasks.addTask(3, new EntityAIFindShelterOrSun(this));
         tasks.addTask(4, new EntityAIFollowParent(this, 1.1D));
         HFApi.animals.getEntityAI(this, AnimalAI.EAT, true);
         HFApi.animals.getEntityAI(this, AnimalAI.EGGS, true);

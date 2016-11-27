@@ -22,7 +22,7 @@ public class BuildingRenderer {
     private final BuildingKey key;
     private BlockPos pos;
 
-    public BuildingRenderer(BuildingAccess world, BuildingKey key) {
+    BuildingRenderer(BuildingAccess world, BuildingKey key) {
         this.key = key;
         this.pos = key.getPos();
         this.renderer = new RegionRenderCacheBuilder();

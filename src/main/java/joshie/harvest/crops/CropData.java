@@ -89,6 +89,7 @@ public class CropData {
         else return world.setBlockToAir(pos);
     }
 
+    @SuppressWarnings("unchecked")
     public List<ItemStack> harvest(@Nullable EntityPlayer player, boolean doHarvest) {
         if (crop != null && crop.getGrowthHandler().canHarvest(crop, stage)) {
             if (crop.getGrowthHandler().canHarvest(crop, stage)) {

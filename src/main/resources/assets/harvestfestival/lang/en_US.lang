@@ -120,6 +120,30 @@ harvestfestival.crop.peach=Peach
 harvestfestival.crop.grape=Grapes
 harvestfestival.crop.hemp.tooltip=Requires light level 12+
 
+#Trees
+##Fruit
+harvestfestival.fruit.apple=Immature Apple
+harvestfestival.fruit.apple.harvestable=Mature Apple
+harvestfestival.fruit.banana=Immature Banana
+harvestfestival.fruit.banana.harvestable=Mature Banana
+harvestfestival.fruit.grape=Immature Grapes
+harvestfestival.fruit.grape.harvestable=Mature Grapes
+harvestfestival.fruit.orange=Immature Orange
+harvestfestival.fruit.orange.harvestable=Mature Orange
+harvestfestival.fruit.peach=Immature Peach
+harvestfestival.fruit.peach.harvestable=Mature Peach
+##Leaves
+harvestfestival.leaves.fruit.apple=Apple Leaves
+harvestfestival.leaves.fruit.apple.harvestable=Flowering Apple Leaves
+harvestfestival.leaves.tropical.banana=Banana Leaves
+harvestfestival.leaves.tropical.banana.harvestable=Flowering Banana
+harvestfestival.leaves.fruit.grape=Grape Leaves
+harvestfestival.leaves.fruit.grape.harvestable=Flowering Grape Leaves
+harvestfestival.leaves.fruit.orange=Orange Leaves
+harvestfestival.leaves.fruit.orange.harvestable=Flowering Orange Leaves
+harvestfestival.leaves.fruit.peach=Peach Leaves
+harvestfestival.leaves.fruit.peach.harvestable=Flowering Peach Leaves
+
 #Cookbook
 harvestfestival.utensils=Utensils
 harvestfestival.cookbook=Recipe Book
@@ -354,7 +378,7 @@ harvestfestival.fish.chub=Chub
 harvestfestival.fish.bowfin=Bowfin
 harvestfestival.fish.lungfish=Lungfish
 harvestfestival.fish.pickerel=Pickerel
-harvestfestival.fish.anchovy=Rainbow Trout
+harvestfestival.fish.anchovy=Anchovy
 harvestfestival.fish.bass=Bass
 harvestfestival.fish.carp=Carp
 harvestfestival.fish.pike=Pike
@@ -511,7 +535,7 @@ harvestfestival.rock.boulder.medium=Medium Boulder
 harvestfestival.rock.boulder.large=Large Boulder
 
 #Other Gathering Items
-harvestfestival.nature.bamboo=Bamboo Shoot
+harvestfestival.nature.bamboo=Bamboo
 harvestfestival.nature.matsutake=Matsutake Mushroom
 harvestfestival.nature.mint=Mint
 harvestfestival.nature.chamomile=Chamomile
@@ -611,6 +635,9 @@ harvestfestival.npctool.flower=Sell Flower!
 harvestfestival.npctool.gift.special=Special Gift!
 harvestfestival.npctool.gift.special.tooltip=A special gift love Cloe.
 harvestfestival.npctool.statistics=Ask for knowledge?
+
+#Quest Baoard
+harvestfestival.quest.block.board=Quest Board
 
 # NPC Names
 ## NOTE FOR TRANSLATORS, READ

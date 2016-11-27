@@ -17,7 +17,6 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.inventory.EntityEquipmentSlot;
@@ -32,8 +31,11 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nonnull;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+
+import static net.minecraft.block.Block.spawnAsEntity;
 
 public class ItemHammer extends ItemToolSmashing<ItemHammer> {
     private static final Set<Block> EFFECTIVE_ON = Sets.newHashSet(Blocks.ACTIVATOR_RAIL, Blocks.COAL_ORE, Blocks.COBBLESTONE, Blocks.DETECTOR_RAIL, Blocks.DIAMOND_BLOCK, Blocks.DIAMOND_ORE, Blocks.DOUBLE_STONE_SLAB, Blocks.GOLDEN_RAIL, Blocks.GOLD_BLOCK, Blocks.GOLD_ORE, Blocks.ICE, Blocks.IRON_BLOCK, Blocks.IRON_ORE, Blocks.LAPIS_BLOCK, Blocks.LAPIS_ORE, Blocks.LIT_REDSTONE_ORE, Blocks.MOSSY_COBBLESTONE, Blocks.NETHERRACK, Blocks.PACKED_ICE, Blocks.RAIL, Blocks.REDSTONE_ORE, Blocks.SANDSTONE, Blocks.RED_SANDSTONE, Blocks.STONE, Blocks.STONE_SLAB, Blocks.STONE_BUTTON, Blocks.STONE_PRESSURE_PLATE);
@@ -84,12 +86,18 @@ public class ItemHammer extends ItemToolSmashing<ItemHammer> {
             EntityPlayer player = (EntityPlayer) entityLiving;
             if (canUse(stack) && canBeDamaged()) {
                 if (canLevel(stack, state)) ToolHelper.levelTool(stack);
-                stack.getSubCompound("Data", true).setInteger("Damage", getDamageForDisplay(stack) + 1);
+                ArrayList<ItemStack> drops = new ArrayList<>();
                 for (BlockPos pos : getBlocks(worldIn, position, player, stack)) {
-                    if (getTier(stack) == ToolTier.CURSED) ToolHelper.consumeHunger(player, getExhaustionRate(stack));
-                    worldIn.destroyBlock(pos, true);
-                    if (canLevel(stack, state)) ToolHelper.levelTool(stack);
-                    EntityHelper.getEntities(EntityItem.class, worldIn, pos, 1D, 1D).stream().forEach((e) -> e.setPositionAndUpdate(entityLiving.posX, entityLiving.posY, entityLiving.posZ));
+                    if (canUse(stack) && canBeDamaged()) {
+                        ToolHelper.performTask(player, stack, this);
+                        ToolHelper.collectDrops(worldIn, pos, worldIn.getBlockState(pos), player, drops);
+                        worldIn.setBlockToAir(pos); //No particles
+                    } else break; //Exist since we can't damage anymore
+                }
+
+                BlockPos target = new BlockPos(player);
+                for (ItemStack item : drops) {
+                    spawnAsEntity(worldIn, target, item);
                 }
             }
 
@@ -100,9 +108,9 @@ public class ItemHammer extends ItemToolSmashing<ItemHammer> {
     @SuppressWarnings("ConstantConditions")
     public ImmutableList<BlockPos> getBlocks(World world, BlockPos position, EntityPlayer player, ItemStack tool) {
         ToolTier tier = getTier(tool);
-        if (tier == ToolTier.BASIC) return ImmutableList.of();
         IBlockState state = world.getBlockState(position);
         if (state.getBlock() != Blocks.STONE) return ImmutableList.of();
+        if (tier == ToolTier.BASIC || player.isSneaking()) return ImmutableList.of(position);
 
         RayTraceResult rt = rayTrace(world, player, true);
         if (rt == null || !position.equals(rt.getBlockPos())) {
@@ -160,7 +168,7 @@ public class ItemHammer extends ItemToolSmashing<ItemHammer> {
     public boolean onSmashed(EntityPlayer player, ItemStack stack, ToolTier tier, int harvestLevel, World world, BlockPos pos, IBlockState state) {
         if (canUse(stack)) {
             if (state.getBlock() == Blocks.FARMLAND) {
-                ToolHelper.performTask(player, stack, getExhaustionRate(stack));
+                ToolHelper.performTask(player, stack, this);
                 return world.setBlockState(pos, Blocks.DIRT.getDefaultState());
             }
         }
@@ -190,9 +198,10 @@ public class ItemHammer extends ItemToolSmashing<ItemHammer> {
     @Override
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean flag) {
+        super.addInformation(stack, player, list, flag);
         ToolTier tier = getTier(stack);
         int width = getWidthAndHeight(tier) == 0 ? 1 : 3;
-        int height = getWidthAndHeight(tier) == 0 ? 2 : 3;
+        int height = tier == ToolTier.BASIC ? 1: getWidthAndHeight(tier) == 0 ? 2 : 3;
         int depth = getDepth(tier) + 1;
         list.add(TextFormatting.AQUA + "" + TextFormatting.ITALIC + TextHelper.translate("hammer.tooltip.titles"));
         list.add(TextFormatting.GOLD + TextHelper.formatHF("hammer.tooltip.dimensions", width, height, depth));

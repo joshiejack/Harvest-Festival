@@ -19,7 +19,7 @@ public class GrowthHandlerTree extends GrowthHandler<Tree> {
         if(HFApi.calendar.getSeasonAtCoordinates(world, pos) == Season.WINTER) return stage; //Tree won't grow in winter
         //If we have reached the stage where we are a real tree
         //Then set the blocks in the world
-        if (stage == tree.getStages()) {
+        if (stage == tree.getStages() - 1) {
             growTree(world, pos);
         }
 

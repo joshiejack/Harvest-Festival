@@ -127,7 +127,7 @@ public class ItemWateringCan extends ItemTool<ItemWateringCan> {
         if (HFApi.crops.hydrateSoil(player, world, pos)) {
             displayParticle(world, pos, EnumParticleTypes.WATER_SPLASH, Blocks.WATER.getDefaultState());
             playSound(world, pos, SoundEvents.ENTITY_GENERIC_SWIM, SoundCategory.NEUTRAL);
-            ToolHelper.performTask(player, stack, getExhaustionRate(stack));
+            ToolHelper.performTask(player, stack, this);
             if (!player.capabilities.isCreativeMode) {
                 getCapability(stack).drain(1, true);
             }

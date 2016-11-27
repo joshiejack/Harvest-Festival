@@ -111,10 +111,15 @@ public abstract class ItemTool<I extends ItemTool> extends ItemHFBase<I> impleme
     }
 
     public int getDamageForDisplay(ItemStack stack) {
-        return stack.getSubCompound("Data", true).getInteger("Damage");
+        int display = stack.getSubCompound("Data", true).getInteger("Damage");
+        int max = getMaximumToolDamage(stack);
+        if (display > max) {
+            stack.getSubCompound("Data", true).setInteger("Damage", max);
+            return max;
+        } else return display;
     }
 
-    protected boolean canUse(ItemStack stack) {
+    public boolean canUse(ItemStack stack) {
         return getDamageForDisplay(stack) + 1 <= getMaximumToolDamage(stack) || !canBeDamaged();
     }
 
@@ -204,24 +209,24 @@ public abstract class ItemTool<I extends ItemTool> extends ItemHFBase<I> impleme
         }
     }
 
-    private int getMaximumToolDamage(ItemStack stack) {
+    public int getMaximumToolDamage(ItemStack stack) {
         ToolTier tier = getTier(stack);
         switch (tier) {
             case BASIC:
-                return 256;
+                return 128;
             case COPPER:
-                return 512;
+                return 256;
             case SILVER:
-                return 1024;
+                return 768;
             case GOLD:
-                return 2048;
+                return 1152;
             case MYSTRIL:
-                return 4096;
+                return 3456;
             case CURSED:
             case BLESSED:
-                return 8192;
+                return 6912;
             case MYTHIC:
-                return 16384;
+                return 13824;
             default:
                 return 0;
         }

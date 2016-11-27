@@ -1,20 +1,36 @@
 package joshie.harvest.crops.handlers.growth;
 
-import joshie.harvest.api.trees.GrowthHandlerTree;
-import net.minecraft.init.Blocks;
+import joshie.harvest.crops.HFCrops;
+import joshie.harvest.crops.block.BlockFruit.Fruit;
+import joshie.harvest.crops.block.BlockLeavesTropical.LeavesTropical;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 
 @SuppressWarnings("unused")
-public class GrowthHandlerBanana extends GrowthHandlerTree {
-    @Override
-    protected void growTree(World world, BlockPos pos) {
-        world.setBlockState(pos.up(), Blocks.LOG.getDefaultState());
+public class GrowthHandlerBanana extends GrowthHandlerHFTree {
+    public GrowthHandlerBanana() {
+        super(Fruit.BANANA);
     }
 
     @Override
-    protected void growFruit(World world, BlockPos pos) {
-        //Make sure to check how much fruit is on the tree before growing any more
-        world.setBlockState(pos.east(), Blocks.FURNACE.getDefaultState());
+    protected boolean isLeaves(IBlockState state) {
+        return state.getBlock() == HFCrops.LEAVES_TROPICAL && HFCrops.LEAVES_TROPICAL.getEnumFromState(state) == LeavesTropical.BANANA;
+    }
+
+    @Override
+    protected BlockPos getAdjustedPositionBasedOnRotation(BlockPos pos, Rotation rotation) {
+        switch (rotation) {
+            case NONE:
+                return pos.west(4).north(4);
+            case CLOCKWISE_90:
+                return pos.north(4).east(4);
+            case CLOCKWISE_180:
+                return pos.east(4).south(4);
+            case COUNTERCLOCKWISE_90:
+                return pos.south(4).west(4);
+            default:
+                return pos;
+        }
     }
 }

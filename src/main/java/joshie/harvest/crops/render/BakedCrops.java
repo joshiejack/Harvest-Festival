@@ -17,6 +17,7 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings("unused")
 public class BakedCrops extends BakedHF {
     public BakedCrops(IBakedModel parent) {
         super(parent);
@@ -30,6 +31,7 @@ public class BakedCrops extends BakedHF {
     }
 
     @HFEvents
+    @SuppressWarnings("unused")
     public static class TintedMapper extends DefaultStateMapper {
         @SubscribeEvent
         public void onBaking(ModelBakeEvent event) {

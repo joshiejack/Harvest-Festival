@@ -28,6 +28,8 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.world.ColorizerFoliage;
+import net.minecraft.world.biome.BiomeColorHelper;
 import net.minecraft.world.storage.loot.functions.LootFunctionManager;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.EnumPlantType;
@@ -177,6 +179,12 @@ public class HFCrops {
             Crop crop = HFCrops.SEEDS.getCropFromStack(stack);
             return crop != null ? crop.getColor() : -1;
         }, SEEDS);
+
+        Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler((state, worldIn, pos, tintIndex) -> {
+            {
+                return tintIndex == 0 ? (worldIn != null && pos != null ? BiomeColorHelper.getFoliageColorAtPos(worldIn, pos) : ColorizerFoliage.getFoliageColorBasic()) : -1;
+            }
+        }, LEAVES_FRUIT);
     }
 
     @SideOnly(Side.CLIENT)

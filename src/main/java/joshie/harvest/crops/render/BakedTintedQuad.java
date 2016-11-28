@@ -10,6 +10,6 @@ import java.util.Arrays;
 @SideOnly(Side.CLIENT)
 public class BakedTintedQuad extends BakedQuad {
     public BakedTintedQuad(BakedQuad quad) {
-        super(Arrays.copyOf(quad.getVertexData(), quad.getVertexData().length), 0, FaceBakery.getFacingFromVertexData(quad.getVertexData()), quad.getSprite(), quad.shouldApplyDiffuseLighting(), quad.getFormat());
+        super(Arrays.copyOf(quad.getVertexData(), quad.getVertexData().length), 1, FaceBakery.getFacingFromVertexData(quad.getVertexData()), quad.getSprite(), quad.shouldApplyDiffuseLighting(), quad.getFormat());
     }
 }

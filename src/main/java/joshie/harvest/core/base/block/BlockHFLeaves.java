@@ -1,6 +1,7 @@
 package joshie.harvest.core.base.block;
 
 import joshie.harvest.core.HFTab;
+import joshie.harvest.core.helpers.MCClientHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -33,7 +34,6 @@ import static net.minecraft.block.BlockLeaves.CHECK_DECAY;
 import static net.minecraft.block.BlockLeaves.DECAYABLE;
 
 public abstract class BlockHFLeaves<B extends BlockHFLeaves, E extends Enum<E> & IStringSerializable> extends BlockHFEnum<B, E> implements IShearable {
-    private boolean leavesFancy;
     private int[] surroundings;
 
     //Main Constructor
@@ -219,7 +219,7 @@ public abstract class BlockHFLeaves<B extends BlockHFLeaves, E extends Enum<E> &
 
     @SideOnly(Side.CLIENT)
     public BlockRenderLayer getBlockLayer() {
-        return this.leavesFancy ? BlockRenderLayer.CUTOUT_MIPPED : BlockRenderLayer.SOLID;
+        return BlockRenderLayer.CUTOUT_MIPPED;
     }
 
     @Override
@@ -248,7 +248,7 @@ public abstract class BlockHFLeaves<B extends BlockHFLeaves, E extends Enum<E> &
     @Override
     @SuppressWarnings("deprecation")
     public boolean shouldSideBeRendered(IBlockState blockState, @Nonnull IBlockAccess blockAccess, @Nonnull BlockPos pos, EnumFacing side) {
-        return !(!leavesFancy && blockAccess.getBlockState(pos.offset(side)).getBlock() == this) && super.shouldSideBeRendered(blockState, blockAccess, pos, side);
+        return !(!MCClientHelper.getMinecraft().gameSettings.fancyGraphics && blockAccess.getBlockState(pos.offset(side)).getBlock() == this) && super.shouldSideBeRendered(blockState, blockAccess, pos, side);
     }
 
     @Override

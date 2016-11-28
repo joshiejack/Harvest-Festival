@@ -1,0 +1,13 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "minecraft:tinted_cross"
+  },
+  "variants": {
+    "stage": {
+      "1": { "textures": { "cross": "harvestfestival:blocks/crops/orange_seeds" }},
+      "2": { "textures": { "cross": "harvestfestival:blocks/crops/orange_sapling" }},
+      "3": { "model": "harvestfestival:crops/orange_juvenile" }
+    }
+  }
+}

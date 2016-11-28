@@ -63,12 +63,11 @@ public class BlockFlower extends BlockHFEnum<BlockFlower, FlowerType> implements
 
     @Override
     public boolean canPlaceBlockAt(World world, BlockPos pos) {
-        IBlockState soil = world.getBlockState(pos.down());
-        return super.canPlaceBlockAt(world, pos) && canBlockStay(world, pos.down(), soil);
+        return super.canPlaceBlockAt(world, pos) && canBlockStay(world, pos, world.getBlockState(pos));
     }
 
     protected boolean canSustainBush(IBlockState state) {
-        return state.getMaterial() == Material.GROUND;
+        return state.getMaterial() == Material.GROUND || state.getMaterial() == Material.GRASS;
     }
 
     @SuppressWarnings("deprecation")
@@ -91,7 +90,7 @@ public class BlockFlower extends BlockHFEnum<BlockFlower, FlowerType> implements
             return soil.getBlock().canSustainPlant(soil, world, pos.down(), net.minecraft.util.EnumFacing.UP, this);
         }
 
-        return this.canSustainBush(world.getBlockState(pos.down()));
+        return canSustainBush(world.getBlockState(pos.down()));
     }
 
     @SuppressWarnings("deprecation")

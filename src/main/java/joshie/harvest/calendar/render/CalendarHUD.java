@@ -13,6 +13,7 @@ import joshie.harvest.mining.HFMining;
 import joshie.harvest.mining.MiningHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.client.event.GuiScreenEvent.KeyboardInputEvent;
@@ -26,9 +27,11 @@ import java.text.NumberFormat;
 import java.util.Locale;
 
 import static joshie.harvest.calendar.HFCalendar.HIDE_GOLD_TEXTURE;
+import static joshie.harvest.core.lib.HFModInfo.MODID;
 
 @HFEvents(Side.CLIENT)
 public class CalendarHUD {
+    private static final ResourceLocation MINE_HUD = new ResourceLocation(MODID, "textures/hud/mine.png");
     public static boolean editingCalendar;
     public static boolean editingGold;
 
@@ -113,7 +116,7 @@ public class CalendarHUD {
                     float adjustedX = ((HFCalendar.X_CALENDAR / 100F) * maxWidth);
                     float adjustedY = ((HFCalendar.Y_CALENDAR / 100F) * maxHeight);
                     if (!HFCalendar.HIDE_CALENDAR_TEXTURE) {
-                        mc.renderEngine.bindTexture(data.getResource());
+                        mc.renderEngine.bindTexture(inMine ? MINE_HUD : data.getResource());
                         mc.ingameGUI.drawTexturedModalRect(adjustedX - 44, adjustedY - 35, 0, 0, 256, 110);
                     }
 

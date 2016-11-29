@@ -403,7 +403,18 @@ harvestfestival.fishing.block.hatchery.tooltip=Place on waters surface, ensuring
 
 #Tools
 harvestfestival.tool.broken=[BROKEN]
+harvestfestival.tool.discharge=Resetting tool to normal charge level!
+harvestfestival.tool.charge=Increasing tool level to %s
 #Hoe
+harvestfestival.hoe.tooltip.charge.basic=Normal Charge Level (1x1)
+harvestfestival.hoe.tooltip.charge.copper=Copper Charge Level (1x2)
+harvestfestival.hoe.tooltip.charge.silver=Silver Charge Level (1x3)
+harvestfestival.hoe.tooltip.charge.gold=Gold Charge Level (1x4)
+harvestfestival.hoe.tooltip.charge.mystril=Mystril Charge Level (1x6)
+harvestfestival.hoe.tooltip.charge.cursed=Cursed/Blessed Charge Level (3x12)
+harvestfestival.hoe.tooltip.charge.mythic=Mythic Charge Level (5x18)
+harvestfestival.hoe.tooltip.charge=Hold right click to charge
+harvestfestival.hoe.tooltip.discharge=Sneak + right click to reset
 harvestfestival.hoe.basic=Normal Hoe
 harvestfestival.hoe.copper=Copper Hoe
 harvestfestival.hoe.silver=Silver Hoe

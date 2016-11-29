@@ -3,6 +3,7 @@ package joshie.harvest.tools.item;
 import com.google.common.collect.Multimap;
 import joshie.harvest.core.base.item.ItemToolChargeable;
 import joshie.harvest.core.helpers.EntityHelper;
+import joshie.harvest.core.helpers.TextHelper;
 import joshie.harvest.tools.ToolHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirt;
@@ -21,11 +22,16 @@ import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IPlantable;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Locale;
 
 public class ItemHoe extends ItemToolChargeable {
     public ItemHoe() {
@@ -162,5 +168,26 @@ public class ItemHoe extends ItemToolChargeable {
         if (world.getBlockState(pos.up()).getBlock() instanceof IPlantable) {
             world.setBlockToAir(pos.up());
         }
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean flag) {
+        super.addInformation(stack, player, list, flag);
+        int charge = getCharge(stack);
+        ToolTier tier = LEVEL_TO_TIER.get(charge);
+        ToolTier thisTier = getTier(stack);
+        list.add(TextFormatting.GOLD + TextHelper.translate("hoe.tooltip.charge." + tier.name().toLowerCase(Locale.ENGLISH)));
+        list.add("-------");
+        if (charge < thisTier.getToolLevel()) list.add(TextFormatting.AQUA + "" + TextFormatting.ITALIC + TextHelper.translate("hoe.tooltip.charge"));
+        if (charge != 0) list.add(TextFormatting.RED + "" + TextFormatting.ITALIC + TextHelper.translate("hoe.tooltip.discharge"));
+    }
+
+    @Override
+    protected String getLevelName(ItemStack stack, int charges) {
+        int maximum = getMaxCharge(stack);
+        int charge = getCharge(stack);
+        int newCharge = Math.min(maximum, charge + charges);
+        return charge == newCharge ? null : TextHelper.translate("hoe.tooltip.charge." + LEVEL_TO_TIER.get(newCharge).name().toLowerCase(Locale.ENGLISH));
     }
 }

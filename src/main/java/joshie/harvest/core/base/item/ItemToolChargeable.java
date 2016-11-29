@@ -3,6 +3,7 @@ package joshie.harvest.core.base.item;
 import gnu.trove.map.TIntObjectMap;
 import gnu.trove.map.hash.TIntObjectHashMap;
 import joshie.harvest.core.helpers.ChatHelper;
+import joshie.harvest.core.helpers.TextHelper;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -12,6 +13,7 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
@@ -58,7 +60,7 @@ public class ItemToolChargeable extends ItemTool<ItemToolChargeable> {
         if (tier != ToolTier.BASIC && canUse(stack)) {
             if (playerIn.isSneaking()) {
                 setCharge(stack, 0);
-                if (world.isRemote) ChatHelper.displayChat("Resetting tool to level 0");
+                if (world.isRemote) ChatHelper.displayChat(TextFormatting.RED + TextHelper.translate("tool.discharge"));
             } else if (getCharge(stack) < getMaxCharge(stack)) playerIn.setActiveHand(hand);
             else onPlayerStoppedUsing(stack, world, playerIn, 32000);
             return new ActionResult<>(EnumActionResult.SUCCESS, stack);
@@ -78,7 +80,7 @@ public class ItemToolChargeable extends ItemTool<ItemToolChargeable> {
         return passed / 20;
     }
 
-    private String getLevelName(ItemStack stack, int charges) {
+    protected String getLevelName(ItemStack stack, int charges) {
         int maximum = getMaxCharge(stack);
         int charge = getCharge(stack);
         int newCharge = Math.min(maximum, charge + charges);
@@ -91,7 +93,7 @@ public class ItemToolChargeable extends ItemTool<ItemToolChargeable> {
             if (player.worldObj.isRemote) {
                 String name =  getLevelName(stack, getCharges(count));
                 if (name != null) {
-                    ChatHelper.displayChat("Increasing tool level to " + name);
+                    ChatHelper.displayChat(TextFormatting.GREEN + TextHelper.formatHF("tool.charge", name));
                 }
             }
         }

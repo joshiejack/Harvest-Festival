@@ -12,6 +12,7 @@ import joshie.harvest.core.base.render.FakeEntityRenderer.EntityItemRenderer;
 import joshie.harvest.core.handlers.DisableHandler;
 import joshie.harvest.core.proxy.HFClientProxy;
 import joshie.harvest.crops.HFCrops;
+import joshie.harvest.crops.handlers.drop.DropHandlerTree;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -71,7 +72,7 @@ public class RegistryHelper {
     }
 
     public static Tree registerTree(String name) {
-        return addHandlersToCrop(name, new Tree(new ResourceLocation(MODID, name)));
+        return addHandlersToCrop(name, (Tree) new Tree(new ResourceLocation(MODID, name)).setDropHandler(new DropHandlerTree()));
     }
 
     public static <C extends Crop> C addHandlersToCrop(String name, C crop) {

@@ -14,10 +14,12 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
@@ -58,6 +60,12 @@ public class BlockFruit extends BlockHFEnum<BlockFruit, Fruit> {
     }
 
     @Override
+    @SuppressWarnings("deprecation, unchecked")
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState state, @Nonnull World world, @Nonnull BlockPos pos) {
+        return NULL_AABB;
+    }
+
+    @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
         Fruit fruit = getEnumFromState(state);
         world.setBlockToAir(pos);
@@ -66,7 +74,8 @@ public class BlockFruit extends BlockHFEnum<BlockFruit, Fruit> {
     }
 
     @Override
-    public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
+    @Nonnull
+    public List<ItemStack> getDrops(@Nonnull IBlockAccess world, @Nonnull BlockPos pos, @Nonnull IBlockState state, int fortune) {
         List<ItemStack> ret = new ArrayList<>();
         Fruit fruit = getEnumFromState(state);
         ret.add(fruit.getCrop().getCropStack(1));
@@ -79,7 +88,8 @@ public class BlockFruit extends BlockHFEnum<BlockFruit, Fruit> {
     }
 
     @Override
-    public TileEntity createTileEntity(World world, IBlockState state) {
+    @Nonnull
+    public TileEntity createTileEntity(@Nonnull World world, @Nonnull IBlockState state) {
         return new TileFruit();
     }
 }

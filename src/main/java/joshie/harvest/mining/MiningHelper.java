@@ -72,6 +72,10 @@ public class MiningHelper {
         return world.getLootTableManager().getLootTableFromLocation(loot).generateLootForPools(world.rand, lootcontext$builder.build());
     }
 
+    public static int getMineID(BlockPos pos) {
+        return getMineID(pos.getZ() >> 4);
+    }
+
     public static int getMineID(int chunkZ) {
         return (int)Math.floor(chunkZ / CHUNK_BOUNDARY);
     }
@@ -178,6 +182,10 @@ public class MiningHelper {
 
         //Teleport complete
         return true;
+    }
+
+    public static int getFloor(BlockPos pos) {
+        return getFloor(pos.getX() >> 4, pos.getY());
     }
 
     public static int getFloor(int xPosition, int posY) {

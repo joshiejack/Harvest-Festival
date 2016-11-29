@@ -6,6 +6,7 @@ import joshie.harvest.api.npc.INPC;
 import joshie.harvest.buildings.placeable.Placeable;
 import joshie.harvest.buildings.placeable.Placeable.ConstructionStage;
 import joshie.harvest.buildings.placeable.entities.PlaceableNPC;
+import joshie.harvest.buildings.render.BuildingKey;
 import joshie.harvest.core.helpers.MCServerHelper;
 import joshie.harvest.core.util.HFTemplate;
 import joshie.harvest.town.TownHelper;
@@ -142,6 +143,10 @@ public class BuildingImpl extends IForgeRegistryEntry.Impl<BuildingImpl> impleme
         }
 
         return I18n.translateToLocal(toLocalise);
+    }
+
+    public boolean isSuitableLocation(BuildingKey key) {
+        return true;
     }
 
     @Override

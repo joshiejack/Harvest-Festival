@@ -193,7 +193,7 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
         else {
             PlantSection section = getSection(state);
             CropData data = CropHelper.getCropDataAt(world, pos);
-            if (data == null || data.getCrop().requiresSickle()) {
+            if (data == null || data.getCrop().requiresSickle() || data.getCrop() instanceof Tree) {
                 return false;
             } else {
                 if (section == BOTTOM) {

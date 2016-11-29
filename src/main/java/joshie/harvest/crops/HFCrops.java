@@ -19,13 +19,17 @@ import joshie.harvest.crops.item.ItemCrop.Crops;
 import joshie.harvest.crops.item.ItemHFSeeds;
 import joshie.harvest.crops.loot.SetCropType;
 import joshie.harvest.crops.tile.*;
+import net.minecraft.block.BlockOldLog;
+import net.minecraft.block.BlockPlanks.EnumType;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.statemap.StateMap;
 import net.minecraft.client.renderer.color.BlockColors;
 import net.minecraft.client.renderer.color.IBlockColor;
+import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.ColorizerFoliage;
@@ -86,7 +90,8 @@ public class HFCrops {
     //Summer Trees
     private static final SpecialRulesQuest TREES1 = new SpecialRulesQuest("trees1");
     private static final SpecialRulesQuest TREES2 = new SpecialRulesQuest("trees2");
-    public static final Crop BANANA = registerTree("banana").setStageLength(9, 9, 14, 23).setFruitRegrow(4).setItem(getCropStack(Crops.BANANA)).setValue(2500, 300).setSeedColours(0xFFEF6A)
+    public static final Crop BANANA = registerTree("banana").setLogs(Blocks.LOG.getDefaultState().withProperty(BlockOldLog.VARIANT, EnumType.JUNGLE)).setStageLength(9, 9, 14, 23).setFruitRegrow(4)
+                                        .setItem(getCropStack(Crops.BANANA)).setValue(2500, 300).setSeedColours(0xFFEF6A)
                                         .setSeasons(SUMMER).setPurchaseRules(TREES2).setAnimalFoodType(AnimalFoodType.FRUIT);
     public static final Crop ORANGE = registerTree("orange").setStageLength(7, 16, 12, 14).setItem(getCropStack(Crops.ORANGE)).setValue(2800, 200).setSeedColours(0xEDB325)
                                         .setSeasons(SUMMER).setPurchaseRules(TREES1).setAnimalFoodType(AnimalFoodType.FRUIT);
@@ -180,11 +185,12 @@ public class HFCrops {
             return crop != null ? crop.getColor() : -1;
         }, SEEDS);
 
-        Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler((state, worldIn, pos, tintIndex) -> {
-            {
-                return tintIndex == 0 ? (worldIn != null && pos != null ? BiomeColorHelper.getFoliageColorAtPos(worldIn, pos) : ColorizerFoliage.getFoliageColorBasic()) : -1;
-            }
-        }, LEAVES_FRUIT);
+        IBlockColor block = (state, worldIn, pos, tintIndex) -> tintIndex == 0 ? (worldIn != null && pos != null ? BiomeColorHelper.getFoliageColorAtPos(worldIn, pos) : ColorizerFoliage.getFoliageColorBasic()) : -1;
+        IItemColor item = (stack, index) -> ColorizerFoliage.getFoliageColorBasic();
+        Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler(block, LEAVES_FRUIT);
+        Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler(block, LEAVES_TROPICAL);
+        Minecraft.getMinecraft().getItemColors().registerItemColorHandler(item, Item.getItemFromBlock(LEAVES_FRUIT));
+        Minecraft.getMinecraft().getItemColors().registerItemColorHandler(item, Item.getItemFromBlock(LEAVES_TROPICAL));
     }
 
     @SideOnly(Side.CLIENT)

@@ -4,10 +4,12 @@ import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.block.BlockHFEnumRotatableMeta;
 import joshie.harvest.core.helpers.TextHelper;
 import joshie.harvest.mining.block.BlockLadder.Ladder;
+import joshie.harvest.mining.tile.TileElevator;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -17,6 +19,8 @@ import net.minecraft.world.World;
 import javax.annotation.Nonnull;
 import java.util.Locale;
 
+import static joshie.harvest.mining.block.BlockLadder.Ladder.DECORATIVE;
+import static joshie.harvest.mining.block.BlockLadder.Ladder.ELEVATOR;
 import static joshie.harvest.mining.block.BlockLadder.Ladder.WOOD;
 
 public class BlockLadder extends BlockHFEnumRotatableMeta<BlockLadder, Ladder> {
@@ -26,7 +30,11 @@ public class BlockLadder extends BlockHFEnumRotatableMeta<BlockLadder, Ladder> {
     private static final AxisAlignedBB LADDER_NORTH_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.8125D, 1.0D, 1.0D, 1.0D);
 
     public enum Ladder implements IStringSerializable {
-        WOOD, DECORATIVE;
+        WOOD, DECORATIVE, ELEVATOR;
+
+        public boolean isLadder() {
+            return this == WOOD || this == DECORATIVE;
+        }
 
         @Override
         public String getName() {
@@ -41,7 +49,7 @@ public class BlockLadder extends BlockHFEnumRotatableMeta<BlockLadder, Ladder> {
     @SuppressWarnings("deprecation")
     @Override
     public float getBlockHardness(IBlockState state, World world, BlockPos pos) {
-        return getEnumFromState(state) == WOOD ? -1F: 4F;
+        return getEnumFromState(state) == DECORATIVE ? 1F: -1F;
     }
 
     @SuppressWarnings("deprecation")
@@ -68,7 +76,23 @@ public class BlockLadder extends BlockHFEnumRotatableMeta<BlockLadder, Ladder> {
     }
 
     @Override
+    protected boolean shouldDisplayInCreative(Ladder ladder) {
+        return ladder != WOOD;
+    }
+
+    @Override
     public boolean isLadder(IBlockState state, IBlockAccess world, BlockPos pos, EntityLivingBase entity) {
-        return true;
+        return getEnumFromState(state).isLadder();
+    }
+
+    @Override
+    public boolean hasTileEntity(IBlockState state) {
+        return getEnumFromState(state) == ELEVATOR;
+    }
+
+    @Override
+    @Nonnull
+    public TileEntity createTileEntity(@Nonnull World world, @Nonnull IBlockState state) {
+        return new TileElevator();
     }
 }

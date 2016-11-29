@@ -112,10 +112,8 @@ public class BakedLeaves extends BakedHF {
             TextureAtlasSprite spriteJungle = Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite("harvestfestival:blocks/leaves_jungle_black");
             for (LeavesTropical leaves: LeavesTropical.values()) {
                 IBlockState state = HFCrops.LEAVES_TROPICAL.getStateFromEnum(leaves);
-                registry.putObject(getModelResourceLocation(state), new BakedLeaves(registry.getObject(getModelResourceLocation(state)), oak, leaves.getSeason(), spriteJungle));
+                registry.putObject(getModelResourceLocation(state), new BakedLeaves(registry.getObject(getModelResourceLocation(state)), jungle, leaves.getSeason(), spriteJungle));
             }
-
-            if (oak == null) throw new NullPointerException("Oak was null");
         }
     }
 }

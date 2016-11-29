@@ -608,6 +608,12 @@ entity.harvestfestival.dark_chick.name=Dark Chick
 
 #Mine Tools
 harvestfestival.miningtool.escape.rope=Escape Rope
+harvestfestival.miningtool.elevator.cable=Elevator Cable
+harvestfestival.miningtool.elevator.junk=Normal Elevator
+harvestfestival.miningtool.elevator.copper=Copper Elevator
+harvestfestival.miningtool.elevator.silver=Silver Elevator
+harvestfestival.miningtool.elevator.gold=Gold Elevator
+harvestfestival.miningtool.elevator.Mystril=Mystril Elevator
 
 #Goddess Water
 tile.goddess.water.name=Goddess Water
@@ -1718,6 +1724,8 @@ harvestfestival.note.hammer.title=Hammer
 harvestfestival.note.hammer.description=Hammers are mainly used for breaking the rocks in the mine. The different tiers are able to break different levels of nodes. So be sure to upgrade when you can! Hammers can also break the rocks you find lying around, and sometimes turn them in to pure stone. You can also use hammers to mine through stone, where the higher tiers will have an area of effect, breaking more blocks for you.
 harvestfestival.note.axe.title=Axe
 harvestfestival.note.axe.description=The axe is used for collecting wood. It can turn the branches and stumps you see in to logs at different tiers. You can also use the axes to fell whole trees. You will need to break the bottom block of a tree various time depending on the axe tier. Then eventually it will chop the entire tree down for you. You can sneak if you wish to chop just down one piece of wood.
+harvestfestival.note.elevator.title=Elevators
+harvestfestival.note.elevator.description=Elevators allow you to warp between floors of the mine. They aren't so simple as they require a bit of setup. Place two elevators on the floors you wish to travel between. (On the walls). Work out how many cables you will need, this is based on the distance between the floors. Then simply right click the cable on the first elevator, then on the second. They will then be linked and you can move between floors.
 
 #Secret Notes
 harvestfestival.note.secret.cursed.title=Secret of the Cursed Tools?

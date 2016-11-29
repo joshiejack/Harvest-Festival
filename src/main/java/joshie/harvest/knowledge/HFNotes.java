@@ -39,6 +39,7 @@ public class HFNotes {
     public static final Note OVEN = registerNote(ACTIVITIES, "oven");
     public static final Note MIXER = registerNote(ACTIVITIES, "mixer");
     public static final Note POTPAN = registerNote(ACTIVITIES, "potpan");
+    public static final Note ELEVATOR = registerNote(ACTIVITIES, "elevator");
 
     public static final Note REPAIRING = registerNote(TOWNSHIP, "repairing");
     public static final Note SECRET_CURSED_TOOLS = registerNote(ACTIVITIES, "secret.cursed").setSecretNote();

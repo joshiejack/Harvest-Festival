@@ -254,6 +254,12 @@ public class HFShops {
     private static void registerMiner() {
         MINER.addPurchasable(1000, HFMining.LADDER.getStackFromEnum(Ladder.DECORATIVE), 3);
         MINER.addPurchasable(250, HFMining.MINING_TOOL.getStackFromEnum(MiningTool.ESCAPE_ROPE), 10);
+        MINER.addPurchasable(new PurchasableObtainedMaterial(200, HFMining.MINING_TOOL.getStackFromEnum(MiningTool.ELEVATOR_CABLE), Material.JUNK, 1));
+        MINER.addPurchasable(new PurchasableObtainedMaterial(1000, HFMining.MINING_TOOL.getStackFromEnum(MiningTool.ELEVATOR_JUNK), Material.JUNK, 10));
+        MINER.addPurchasable(new PurchasableObtainedMaterial(2000, HFMining.MINING_TOOL.getStackFromEnum(MiningTool.ELEVATOR_COPPER), Material.COPPER, 20));
+        MINER.addPurchasable(new PurchasableObtainedMaterial(4000, HFMining.MINING_TOOL.getStackFromEnum(MiningTool.ELEVATOR_SILVER), Material.SILVER, 20));
+        MINER.addPurchasable(new PurchasableObtainedMaterial(80000, HFMining.MINING_TOOL.getStackFromEnum(MiningTool.ELEVATOR_GOLD), Material.GOLD, 30));
+        MINER.addPurchasable(new PurchasableObtainedMaterial(20000, HFMining.MINING_TOOL.getStackFromEnum(MiningTool.ELEVATOR_MYSTRIL), Material.MYSTRIL, 30));
         MINER.addPurchasable(new PurchasableObtained(200, HFMining.MATERIALS.getStackFromEnum(Material.COPPER)));
         MINER.addPurchasable(new PurchasableObtained(300, HFMining.MATERIALS.getStackFromEnum(Material.SILVER)));
         MINER.addPurchasable(new PurchasableObtained(400, HFMining.MATERIALS.getStackFromEnum(Material.GOLD)));

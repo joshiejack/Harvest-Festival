@@ -160,6 +160,10 @@ public class MiningHelper {
         return EntityHelper.teleport(entity, 0, spawn);
     }
 
+    public static void teleportToCoordinates(Entity entity, BlockPos spawn) {
+        entity.setPosition(spawn.getX() + 0.5D, spawn.getY(), spawn.getZ() + 0.5D);
+    }
+
     public static boolean teleportBetweenMine(Entity entity) {
         int mineID = MiningHelper.getMineID((int)entity.posZ >> 4); //Current Mine
         int floor = getFloor((int)entity.posX >> 4, (int) entity.posY); //Current Floor
@@ -214,5 +218,11 @@ public class MiningHelper {
         if (chance >= upperLimit) chance = upperLimit;
         if (chance <= lowerLimit) chance  = lowerLimit;
         return chance;
+    }
+
+    public static int getDifference(BlockPos link1, BlockPos pos) {
+        int floor1 = MiningHelper.getFloor(link1);
+        int floor2 = MiningHelper.getFloor(pos);
+        return floor1 >= floor2 ? floor1 - floor2 : floor2 - floor1;
     }
 }

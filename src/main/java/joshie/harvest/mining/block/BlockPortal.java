@@ -111,7 +111,7 @@ public class  BlockPortal extends BlockHFEnum<BlockPortal, Portal> {
             return other.getLightValue(world, pos);
         }
 
-        return getEnumFromState(state).isMine() ? 15: 0;
+        return getEnumFromState(getActualState(state, world, pos)).isMine() ? 15: 0;
     }
 
     @Override

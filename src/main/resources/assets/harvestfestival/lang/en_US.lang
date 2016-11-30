@@ -609,11 +609,9 @@ entity.harvestfestival.dark_chick.name=Dark Chick
 #Mine Tools
 harvestfestival.miningtool.escape.rope=Escape Rope
 harvestfestival.miningtool.elevator.cable=Elevator Cable
-harvestfestival.miningtool.elevator.junk=Normal Elevator
-harvestfestival.miningtool.elevator.copper=Copper Elevator
-harvestfestival.miningtool.elevator.silver=Silver Elevator
-harvestfestival.miningtool.elevator.gold=Gold Elevator
-harvestfestival.miningtool.elevator.Mystril=Mystril Elevator
+harvestfestival.miningtool.elevator.placer=Elevator
+harvestfestival.elevator.to=Elevator to
+harvestfestival.elevator.none=NOWHERE
 
 #Goddess Water
 tile.goddess.water.name=Goddess Water

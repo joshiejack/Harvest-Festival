@@ -54,6 +54,7 @@ public class HFMining {
     public static final BlockDirt DIRT_DECORATIVE = new BlockDirt().setHardness(0.5F).register("dirt_decorative");
     public static final BlockLadder LADDER = new BlockLadder().register("ladder");
     public static final BlockPortal PORTAL = new BlockPortal().setBlockUnbreakable().register("portal");
+    public static final BlockElevator ELEVATOR = new BlockElevator().setBlockUnbreakable().register("elevator");
     public static final ItemMaterial MATERIALS = new ItemMaterial().register("materials");
     public static final ItemDarkSpawner DARK_SPAWNER = new ItemDarkSpawner().register("dark_spawner");
     public static final ItemMiningTool MINING_TOOL = new ItemMiningTool().register("tool_mining");

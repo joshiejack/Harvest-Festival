@@ -9,7 +9,7 @@ import net.minecraft.world.World;
 import static joshie.harvest.core.helpers.InventoryHelper.ITEM_STACK;
 
 public class Materials extends AbstractRequirement {
-    private Materials(Material material, int cost) {
+    protected Materials(Material material, int cost) {
         super(HFMining.MATERIALS.getStackFromEnum(material), cost);
     }
 

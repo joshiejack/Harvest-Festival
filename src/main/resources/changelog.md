@@ -70,6 +70,7 @@
 * Added gems, some will drop from junk rocks, most will drop from the new gem ore
 * Added Diamond, Emerald, Ruby, Amethyst, Topaz nodes to the mine
 * Added random gem nodes (Only appear in winter)
+* Added Elevators for the mine. Allows you to teleport down to deeper depths instantly (for a setup cost!)
 * Ore nodes will now drop more than one more rarely
 * Reduced the amount of dark chicks, chickens and sheep that spawn
 * Mines will now have a greater chance of producing ore in winter

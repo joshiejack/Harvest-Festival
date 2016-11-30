@@ -5,29 +5,35 @@ import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.item.ItemHFEnum;
 import joshie.harvest.core.helpers.ChatHelper;
 import joshie.harvest.core.lib.CreativeSort;
+import joshie.harvest.core.util.interfaces.IFaceable;
 import joshie.harvest.mining.HFMining;
 import joshie.harvest.mining.MiningHelper;
-import joshie.harvest.mining.block.BlockLadder.Ladder;
+import joshie.harvest.mining.block.BlockElevator.Elevator;
 import joshie.harvest.mining.item.ItemMiningTool.MiningTool;
 import joshie.harvest.mining.tile.TileElevator;
+import net.minecraft.block.BlockNewLog;
+import net.minecraft.block.BlockPlanks;
+import net.minecraft.block.BlockPlanks.EnumType;
+import net.minecraft.block.BlockWallSign;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntitySign;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
 import java.util.Locale;
 
-import static joshie.harvest.mining.MiningHelper.*;
-
 public class ItemMiningTool extends ItemHFEnum<ItemMiningTool, MiningTool> {
     public enum MiningTool implements IStringSerializable {
-        ESCAPE_ROPE(64), ELEVATOR_CABLE(42), ELEVATOR_JUNK(1), ELEVATOR_COPPER(1), ELEVATOR_SILVER(1), ELEVATOR_GOLD(1), ELEVATOR_MYSTRIL(1);
+        ESCAPE_ROPE(64), ELEVATOR_CABLE(42), ELEVATOR_PLACER(1);
 
         private int maxSize;
 
@@ -55,11 +61,7 @@ public class ItemMiningTool extends ItemHFEnum<ItemMiningTool, MiningTool> {
     }
 
     private MiningTool getPlacerRequiredForFloor(int floor) {
-        if (floor < COPPER_FLOOR) return MiningTool.ELEVATOR_JUNK;
-        else if (floor < SILVER_FLOOR) return MiningTool.ELEVATOR_COPPER;
-        else if (floor < GOLD_FLOOR) return MiningTool.ELEVATOR_SILVER;
-        else if (floor < MYSTRIL_FLOOR) return MiningTool.ELEVATOR_GOLD;
-        else return MiningTool.ELEVATOR_MYSTRIL;
+        return MiningTool.ELEVATOR_PLACER;
     }
 
     private boolean isMineWall(World world, BlockPos pos) {
@@ -79,10 +81,10 @@ public class ItemMiningTool extends ItemHFEnum<ItemMiningTool, MiningTool> {
     }
 
     private boolean isElevator(World world, BlockPos pos) {
-        IBlockState state = world.getBlockState(pos);
-        return state.getBlock() == HFMining.LADDER && HFMining.LADDER.getEnumFromState(state) == Ladder.ELEVATOR;
+        return world.getBlockState(pos).getBlock() == HFMining.ELEVATOR;
     }
 
+    @SuppressWarnings("ConstantConditions")
     private void link(World world, BlockPos pos, ItemStack stack) {
         NBTTagCompound link = stack.getSubCompound("LinkData", true);
         if (!link.hasKey("Link1")) {
@@ -98,14 +100,11 @@ public class ItemMiningTool extends ItemHFEnum<ItemMiningTool, MiningTool> {
                     int floor1 = MiningHelper.getFloor(link1);
                     int floor2 = MiningHelper.getFloor(pos);
                     if (floor1 != floor2) {
-                        int difference = floor1 >= floor2 ? floor1 - floor2 : floor2 - floor1;
+                        int difference = MiningHelper.getDifference(link1, pos);
                         if (stack.stackSize - difference >= 0) {
                             //Message that you have successfully linked the elevators
                             ChatHelper.displayChat("Successfully linked elevator on floor " + floor1 + " with elevator on floor " + floor2);
-                            TileElevator elevator1 = (TileElevator) world.getTileEntity(link1);
-                            TileElevator elevator2 = (TileElevator) world.getTileEntity(pos);
-                            elevator1.setTwin(pos);
-                            elevator2.setTwin(link1);
+                            ((TileElevator) world.getTileEntity(pos)).setTwin(link1);
                             stack.splitStack(difference);
                             //Remove the link
                             link.removeTag("Link1");
@@ -135,11 +134,12 @@ public class ItemMiningTool extends ItemHFEnum<ItemMiningTool, MiningTool> {
         if (world.provider.getDimension() == HFMining.MINING_ID) {
             MiningTool tool = getEnumFromStack(stack);
             if (tool == MiningTool.ELEVATOR_CABLE) {
-                RayTraceResult raytrace = BuildingHelper.rayTrace(player, 3.5D, 0F);
+                RayTraceResult raytrace = BuildingHelper.rayTrace(player, 5D, 0F);
                 if (raytrace == null || (raytrace.sideHit == EnumFacing.DOWN || raytrace.sideHit == EnumFacing.UP)) return new ActionResult<>(EnumActionResult.PASS, stack); //We didn't ind what we want
                 BlockPos pos = raytrace.getBlockPos();
                 if (isElevator(world, pos)) {
-                    link(world, pos, stack);
+                    if (isElevator(world, pos.down())) link(world, pos.down(), stack);
+                    else link(world, pos, stack);
                 }
 
                 return new ActionResult<>(EnumActionResult.SUCCESS, stack);
@@ -149,15 +149,34 @@ public class ItemMiningTool extends ItemHFEnum<ItemMiningTool, MiningTool> {
                         MiningHelper.teleportToOverworld(player); //Back we go!
                 return new ActionResult<>(EnumActionResult.SUCCESS, stack);
             } else {
-                RayTraceResult raytrace = BuildingHelper.rayTrace(player, 3.5D, 0F);
+                RayTraceResult raytrace = BuildingHelper.rayTrace(player, 5D, 0F);
                 if (raytrace == null || (raytrace.sideHit == EnumFacing.DOWN || raytrace.sideHit == EnumFacing.UP)) return new ActionResult<>(EnumActionResult.PASS, stack); //We didn't ind what we want
                 BlockPos pos = raytrace.getBlockPos();
                 if (isMineWall(world, pos) && isMineWall(world, pos.up()) && hasMineFloorBelow(world, pos)) {
                     int floor = MiningHelper.getFloor(pos);
                     MiningTool required = getPlacerRequiredForFloor(floor);
                     if (tool.ordinal() >= required.ordinal()) {
-                        world.setBlockState(pos, HFMining.LADDER.getStateFromEnum(Ladder.ELEVATOR));
-                        world.setBlockState(pos.up(), Blocks.AIR.getDefaultState());
+                        world.setBlockState(pos, HFMining.ELEVATOR.getStateFromPlacer(tool));
+                        world.setBlockState(pos.up(), HFMining.ELEVATOR.getStateFromEnum(Elevator.EMPTY));
+                        world.setBlockState(pos.up(2), Blocks.LOG2.getDefaultState().withProperty(BlockNewLog.VARIANT, EnumType.DARK_OAK));
+                        world.setBlockState(pos.up(2).offset(raytrace.sideHit), Blocks.WALL_SIGN.getDefaultState().withProperty(BlockWallSign.FACING, raytrace.sideHit));
+                        world.setBlockState(pos.down().offset(raytrace.sideHit), Blocks.PLANKS.getDefaultState().withProperty(BlockPlanks.VARIANT, EnumType.DARK_OAK));
+                        world.setBlockState(pos.offset(raytrace.sideHit), Blocks.WOODEN_PRESSURE_PLATE.getDefaultState());
+                        TileEntity tile = world.getTileEntity(pos);
+                        if (tile instanceof IFaceable) {
+                            ((IFaceable) tile).setFacing(raytrace.sideHit);
+                        }
+
+                        TileEntity tile2 = world.getTileEntity(pos.up(2).offset(raytrace.sideHit));
+                        if (tile2 instanceof TileEntitySign) {
+                            TileEntitySign sign = ((TileEntitySign)tile2);
+                            sign.signText[1] = new TextComponentTranslation("harvestfestival.elevator.to");
+                            sign.signText[2] = new TextComponentTranslation("harvestfestival.elevator.none");
+                            sign.markDirty();
+                            IBlockState state = world.getBlockState(sign.getPos());
+                            world.notifyBlockUpdate(sign.getPos(), state, state, 3);
+                        }
+
                         stack.splitStack(1); //Reduce the stack size
                     } else ChatHelper.displayChat("Need the mining tool " + required);
                 }

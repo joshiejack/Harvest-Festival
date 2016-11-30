@@ -43,7 +43,7 @@ public class TileIncubator extends TileFillableSizedFaceable {
     @Override
     public void newDay(Phase phase) {
         if (phase == Phase.PRE) {
-            if (fillAmount > 0) {
+            if (fillAmount > 0 && owner != null) {
                 fillAmount--;
 
                 if (fillAmount == 0) {
@@ -55,13 +55,12 @@ public class TileIncubator extends TileFillableSizedFaceable {
                         EntityHarvestChicken baby = new EntityHarvestChicken(worldObj);
                         baby.setPositionAndUpdate(getPos().getX() + 3 * getWorld().rand.nextDouble(), getPos().getY() + getWorld().rand.nextDouble(), getPos().getZ() + 3 * getWorld().rand.nextDouble());
                         baby.setGrowingAge(-(24000 * HFAnimals.AGING_TIMER));
-                        if (owner != null) {
-                            baby.getData().setOwner(owner);
-                            HFTrackers.getPlayerTracker(worldObj, owner).getRelationships().copyRelationship(EntityHelper.getPlayerFromUUID(owner), relationship, EntityHelper.getEntityUUID(baby), 50D);
-                        }
-
+                        baby.getData().setOwner(owner);
+                        HFTrackers.getPlayerTracker(worldObj, owner).getRelationships().copyRelationship(EntityHelper.getPlayerFromUUID(owner), relationship, EntityHelper.getEntityUUID(baby), 50D);
                         worldObj.spawnEntityInWorld(baby);
                     }
+
+                    owner = null; //Clear out the owner after hatching a chick
                 }
 
                 markTileForUpdate(this);

@@ -1,3 +1,14 @@
+##0.5.15
+* Add CraftTweaker support for adding shops to npcs that have none already
+* Add CraftTweaker support for removing items from shops
+* Add CraftTweaker support for adjusting values of items in shops
+* Changed the id system for shops, ignore the warning about missing registries
+* Changed how the hoe charges up and allow it to work with other mods soil
+* Fix crosshairs randomly dissappearing
+* Fix world time not updating when reloading a server
+* Fix jade still giving you seeds after the general store is built
+* Potentially fix the chick apocalypse?
+
 ##0.5.14
 * Will no longer tick towns and animals if the chunks they're in are unloaded
 * Yulif will now build whenever his stuck timer reaches max

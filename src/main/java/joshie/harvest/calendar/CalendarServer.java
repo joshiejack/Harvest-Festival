@@ -27,6 +27,7 @@ public class CalendarServer extends Calendar {
     public void setWorld(CalendarData data, World world) {
         this.data = data;
         super.setWorld(world);
+        recalculateAndUpdate(world);
     }
 
     @Override

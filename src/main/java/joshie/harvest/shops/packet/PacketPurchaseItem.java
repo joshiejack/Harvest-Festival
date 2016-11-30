@@ -9,51 +9,51 @@ import joshie.harvest.core.network.PenguinPacket;
 import joshie.harvest.player.PlayerTrackerServer;
 import joshie.harvest.player.stats.StatsServer;
 import joshie.harvest.shops.Shop;
+import joshie.harvest.shops.ShopRegistry;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.common.network.ByteBufUtils;
 
 @Packet
 public class PacketPurchaseItem extends PenguinPacket {
-    private int purchaseable_id;
+    private IPurchasable purchasable;
+    private Shop shop;
 
     public PacketPurchaseItem() {}
-    public PacketPurchaseItem(ResourceLocation resourceLocation, IPurchasable purchaseable) {
-        ResourceLocation shop = Shop.getRegistryName(resourceLocation, purchaseable);
-        purchaseable_id = Shop.REGISTRY.getValues().indexOf(Shop.REGISTRY.getValue(shop));
-    }
-
-    public PacketPurchaseItem(int purchaseable_id) {
-        this.purchaseable_id = purchaseable_id;
+    public PacketPurchaseItem(Shop shop, IPurchasable purchasable) {
+        this.shop = shop;
+        this.purchasable = purchasable;
     }
 
     @Override
     public void toBytes(ByteBuf buf) {
-        buf.writeInt(purchaseable_id);
+        ByteBufUtils.writeUTF8String(buf, shop.resourceLocation.toString());
+        ByteBufUtils.writeUTF8String(buf, purchasable.getPurchaseableID());
     }
 
     @Override
     public void fromBytes(ByteBuf buf) {
-        purchaseable_id = buf.readInt();
+        shop = ShopRegistry.INSTANCE.getShop(new ResourceLocation(ByteBufUtils.readUTF8String(buf)));
+        purchasable = shop.getPurchasableFromID(ByteBufUtils.readUTF8String(buf));
     }
 
     @Override
     public void handlePacket(EntityPlayer player) {
-        IPurchasable purchaseable = Shop.REGISTRY.getValues().get(purchaseable_id).getPurchaseable();
         if (!player.worldObj.isRemote) {
-            if (purchaseable.canBuy(player.worldObj, player)) {
-                if (purchase((EntityPlayerMP)player, purchaseable_id, purchaseable, purchaseable.getCost())) {
+            if (purchasable.canBuy(player.worldObj, player)) {
+                if (purchase((EntityPlayerMP)player, shop, purchasable, purchasable.getCost())) {
                     player.closeScreen();
                 }
             }
-        } else purchaseable.onPurchased(player);
+        } else purchasable.onPurchased(player);
     }
 
-    private boolean purchase(EntityPlayerMP player, int purchaseable_id, IPurchasable purchaseable, long cost) {
+    private boolean purchase(EntityPlayerMP player, Shop shop, IPurchasable purchaseable, long cost) {
         StatsServer stats = HFTrackers.<PlayerTrackerServer>getPlayerTrackerFromPlayer(player).getStats();
         if (stats.getGold() - cost >= 0) {
             stats.addGold(player, -cost);
-            PacketHandler.sendToClient(new PacketPurchaseItem(purchaseable_id), player); //Send the packet back
+            PacketHandler.sendToClient(new PacketPurchaseItem(shop, purchaseable), player); //Send the packet back
             return purchaseable.onPurchased(player);
         }
 

@@ -19,7 +19,7 @@ public class Shipping {
         }
     }
 
-    private static class Add extends BaseUndoable {
+    private static class Add extends BaseOnce {
         private final long sellValue;
         private ItemStack stack;
         private Ore ore;

@@ -5,8 +5,10 @@ import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.Quest;
+import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.InventoryHelper;
 import joshie.harvest.core.helpers.InventoryHelper.SearchType;
+import joshie.harvest.player.PlayerTrackerServer;
 import joshie.harvest.quests.Quests;
 import joshie.harvest.crops.HFCrops;
 import net.minecraft.entity.EntityLiving;
@@ -58,6 +60,13 @@ public class QuestFlowerTrader extends QuestTrade {
                     else if (season == SUMMER) rewardItem(player, HFCrops.ONION.getSeedStack(1));
                     else rewardItem(player, HFCrops.CARROT.getSeedStack(1));
                 }
+            }
+        }
+
+        //Force complete this, if we've gotten to the supermarket
+        if (!player.worldObj.isRemote) {
+            if (HFTrackers.<PlayerTrackerServer>getPlayerTrackerFromPlayer(player).getQuests().hasCompleted(Quests.TUTORIAL_SUPERMARKET)) {
+                complete(player);
             }
         }
     }

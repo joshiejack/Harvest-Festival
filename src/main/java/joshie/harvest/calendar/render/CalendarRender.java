@@ -9,7 +9,7 @@ import joshie.harvest.calendar.CalendarHelper;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.MCClientHelper;
 import joshie.harvest.core.util.HFEvents;
-import joshie.harvest.npc.gui.ContainerNPCChat;
+import joshie.harvest.npc.gui.GuiNPCBase;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.math.BlockPos;
@@ -34,7 +34,7 @@ public class CalendarRender {
     @SubscribeEvent
     public void onRenderOverlay(RenderGameOverlayEvent.Pre event) {
         if (event.getType() == ElementType.CROSSHAIRS) {
-            if (MCClientHelper.getPlayer().openContainer instanceof ContainerNPCChat) {
+            if (Minecraft.getMinecraft().currentScreen instanceof GuiNPCBase) {
                 event.setCanceled(true);
             }
         }

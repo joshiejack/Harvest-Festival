@@ -15,37 +15,20 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.Loader;
-import net.minecraftforge.fml.common.registry.IForgeRegistry;
-import net.minecraftforge.fml.common.registry.IForgeRegistryEntry;
-import net.minecraftforge.fml.common.registry.RegistryBuilder;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
 
 public class Shop implements IShop {
-    public static final IForgeRegistry<ShopEntry> REGISTRY = new RegistryBuilder<ShopEntry>().setName(new ResourceLocation("harvestfestival", "shop_items")).setType(ShopEntry.class).setIDRange(0, 100000).create();
-    private final List<IPurchasable> contents = new ArrayList<>();
+    private final LinkedHashMap<String, IPurchasable> contents = new LinkedHashMap<>();
     private final HashMultimap<Weekday, OpeningHours> open = HashMultimap.create();
     public final ResourceLocation resourceLocation;
     public final String unlocalizedName;
     @SideOnly(Side.CLIENT)
     private IShopGuiOverlay overlay;
-
-    public static class ShopEntry extends IForgeRegistryEntry.Impl<ShopEntry> {
-        private final IPurchasable purchaseable;
-        public ShopEntry(IPurchasable purchaseable) {
-            this.purchaseable = purchaseable;
-        }
-
-        public IPurchasable getPurchaseable() {
-            return purchaseable;
-        }
-    }
 
     public Shop(ResourceLocation resource) {
         resourceLocation = resource;
@@ -58,14 +41,44 @@ public class Shop implements IShop {
         return this;
     }
 
+    public IPurchasable getPurchasableFromID(String string) {
+        return contents.get(string);
+    }
+
+    public IPurchasable removeItem(ItemStack stack) {
+        for (IPurchasable check: contents.values()) {
+            if (check.getDisplayStack() != null && check.getDisplayStack().isItemEqual(stack)) {
+                return check;
+            }
+        }
+
+        return null;
+    }
+
+    public IPurchasable removeItem(String id) {
+        for (IPurchasable check: contents.values()) {
+            if (check.getPurchaseableID() != null && check.getPurchaseableID().equals(id)) {
+                return check;
+            }
+        }
+
+        return null;
+    }
+
+    public void removeItem(IPurchasable item) {
+        if (item != null) {
+            contents.remove(item.getPurchaseableID());
+        }
+    }
+
+    public Set<String> getIDs() {
+        return contents.keySet();
+    }
+
     @Override
     public IShop addItem(IPurchasable item) {
         if (item != null) {
-            ShopEntry entry = new ShopEntry(item).setRegistryName(Shop.getRegistryName(resourceLocation, item));
-            if (!REGISTRY.containsKey(entry.getRegistryName())) {
-                this.contents.add(item);
-                REGISTRY.register(entry);
-            }
+            contents.put(item.getPurchaseableID(), item);
         }
 
         return this;
@@ -102,7 +115,7 @@ public class Shop implements IShop {
 
     public List<IPurchasable> getContents(@Nonnull EntityPlayer player) {
         List<IPurchasable> contents = new ArrayList<>();
-        for (IPurchasable purchaseable : this.contents) {
+        for (IPurchasable purchaseable : this.contents.values()) {
             if (purchaseable.canList(player.worldObj, player)) {
                 contents.add(purchaseable);
             }

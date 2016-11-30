@@ -2,7 +2,9 @@ package joshie.harvest.plugins.crafttweaker;
 
 import joshie.harvest.core.commands.CommandManager;
 import joshie.harvest.core.util.HFLoader;
-import joshie.harvest.shops.command.HFCommandShops;
+import joshie.harvest.plugins.crafttweaker.command.HFCommandNPC;
+import joshie.harvest.plugins.crafttweaker.command.HFCommandPurchasable;
+import joshie.harvest.plugins.crafttweaker.command.HFCommandShops;
 import minetweaker.MineTweakerAPI;
 
 @HFLoader(mods = "MineTweaker3")
@@ -11,5 +13,7 @@ public class CraftTweaker {
         MineTweakerAPI.registerClass(Shipping.class);
         MineTweakerAPI.registerClass(Shops.class);
         CommandManager.INSTANCE.registerCommand(new HFCommandShops());
+        CommandManager.INSTANCE.registerCommand(new HFCommandPurchasable());
+        CommandManager.INSTANCE.registerCommand(new HFCommandNPC());
     }
 }

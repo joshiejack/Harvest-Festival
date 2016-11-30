@@ -5,7 +5,7 @@ import minetweaker.api.item.IIngredient;
 import minetweaker.api.oredict.IOreDictEntry;
 import net.minecraft.item.ItemStack;
 
-public abstract class BaseUndoable implements IUndoableAction {
+public abstract class BaseOnce implements IUndoableAction {
     private boolean applied;
 
     @Override
@@ -13,7 +13,20 @@ public abstract class BaseUndoable implements IUndoableAction {
         return true;
     }
 
+    @Override
+    public void undo() {}
+
     public abstract String getDescription();
+
+    @Override
+    public void apply() {
+        if (!applied) {
+            applied = true;
+            applyOnce();
+        }
+    }
+
+    public abstract void applyOnce();
 
     @Override
     public String describe() {

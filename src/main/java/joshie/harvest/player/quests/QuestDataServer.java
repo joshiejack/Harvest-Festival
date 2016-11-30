@@ -26,6 +26,10 @@ public class QuestDataServer extends QuestData {
         this.master = master;
     }
 
+    public boolean hasCompleted(Quest quest) {
+        return finished.contains(quest);
+    }
+
     //Called to start a quest, is called clientside, by the startquest packet
     @Override
     public boolean startQuest(Quest q) {

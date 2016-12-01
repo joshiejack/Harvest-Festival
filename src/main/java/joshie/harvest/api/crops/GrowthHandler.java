@@ -2,8 +2,8 @@ package joshie.harvest.api.crops;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.Season;
+import net.minecraft.block.BlockFarmland;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -31,7 +31,7 @@ public abstract class GrowthHandler {
      * @param state         the state
      * @param crop          the crop  **/
     public boolean canSustainCrop(IBlockAccess world, BlockPos pos, IBlockState state, Crop crop) {
-        return state.getBlock() == Blocks.FARMLAND && crop.getPlantType() == EnumPlantType.Crop;
+        return state.getBlock() instanceof BlockFarmland && crop.getPlantType() == EnumPlantType.Crop;
     }
 
     /** Return true if this crop can't crop in this location

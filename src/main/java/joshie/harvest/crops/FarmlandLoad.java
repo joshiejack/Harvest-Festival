@@ -2,6 +2,8 @@ package joshie.harvest.crops;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.core.util.HFEvents;
+import net.minecraft.block.BlockFarmland;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -26,7 +28,8 @@ public class FarmlandLoad {
                 for (int y = 0; y < 256; y++) {
                     ExtendedBlockStorage extendedblockstorage = array[y >> 4];
                     if (extendedblockstorage != NULL_BLOCK_STORAGE) {
-                        if (extendedblockstorage.get(x, y & 15, z).getBlock() == Blocks.FARMLAND) {
+                        IBlockState state = extendedblockstorage.get(x, y & 15, z);
+                        if (state.getBlock() instanceof BlockFarmland) {
                             BlockPos pos = new BlockPos((chunk.xPosition * 16) + x, y, (chunk.zPosition * 16) + z);
                             HFApi.tickable.addTickable(world, pos, HFApi.tickable.getTickableFromBlock(Blocks.FARMLAND));
                         }

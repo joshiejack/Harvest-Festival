@@ -6,6 +6,7 @@ import joshie.harvest.api.shops.IShop;
 import joshie.harvest.npc.NPC;
 import joshie.harvest.npc.NPCRegistry;
 import joshie.harvest.npc.entity.EntityNPC;
+import joshie.harvest.shops.HFShops;
 import joshie.harvest.shops.Shop;
 import joshie.harvest.shops.ShopRegistry;
 import joshie.harvest.shops.purchasable.Purchasable;
@@ -260,7 +261,54 @@ public class Shops {
         @Override
         public void undo() {
             ((Shop)shop).removeItem(wrapper);
-            ((Shop)shop).addItem(purchasable);
+            shop.addItem(purchasable);
+        }
+    }
+
+    @ZenMethod
+    public static void adjustCarpenter(String id, int logs, int stone, long cost) {
+        MineTweakerAPI.apply(new AdjustCarpenter(id, logs, stone, cost));
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    private static class AdjustCarpenter extends BaseUndoable {
+        protected final IShop shop;
+        protected final String id;
+        protected final long cost;
+        protected final int wood;
+        protected final int stone;
+        protected PurchasableBuilder purchasable;
+        protected PurchasableWrapperCarpenter wrapper;
+
+        public AdjustCarpenter(String id, int wood, int stone, long cost) {
+            this.shop = HFShops.CARPENTER;
+            this.id = id;
+            this.wood = wood;
+            this.stone = stone;
+            this.cost = cost;
+        }
+
+        @Override
+        public String getDescription() {
+            return "Adjusting value of  " + id;
+        }
+
+        @Override
+        public void apply() {
+            purchasable = (PurchasableBuilder)((Shop)shop).removeItem(id);
+            wrapper = new PurchasableWrapperCarpenter(purchasable, wood, stone, cost);
+            shop.addItem(wrapper);
+        }
+
+        @Override
+        public boolean canUndo() {
+            return purchasable != null;
+        }
+
+        @Override
+        public void undo() {
+            ((Shop)shop).removeItem(wrapper);
+            shop.addItem(purchasable);
         }
     }
 }

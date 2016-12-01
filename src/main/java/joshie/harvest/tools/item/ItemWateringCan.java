@@ -8,6 +8,7 @@ import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.crops.block.BlockHFCrops;
 import joshie.harvest.tools.ToolHelper;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockFarmland;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
@@ -192,7 +193,7 @@ public class ItemWateringCan extends ItemTool<ItemWateringCan> implements IFluid
             BlockPos pos = result.getBlockPos();
             EnumFacing front = EntityHelper.getFacingFromEntity(player);
             Block initial = world.getBlockState(pos).getBlock();
-            if ((initial != Blocks.FARMLAND) && (!(initial instanceof IPlantable))) {
+            if ((!(initial instanceof BlockFarmland)) && (!(initial instanceof IPlantable))) {
                 return;
             }
 
@@ -207,7 +208,7 @@ public class ItemWateringCan extends ItemTool<ItemWateringCan> implements IFluid
                             if (section != null) {
                                 int down = section == PlantSection.BOTTOM ? 1 : 2;
                                 hydrate(player, stack, world, position.down(down));
-                            } else if (state.getBlock() == Blocks.FARMLAND) {
+                            } else if (state.getBlock() instanceof BlockFarmland) {
                                 hydrate(player, stack, world, position);
                             }
                         }

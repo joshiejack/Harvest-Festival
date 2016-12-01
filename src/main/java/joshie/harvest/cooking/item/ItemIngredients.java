@@ -4,12 +4,13 @@ import joshie.harvest.api.core.IShippable;
 import joshie.harvest.cooking.item.ItemIngredients.Ingredient;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.item.ItemHFFoodEnum;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.SoundEvents;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.*;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.IStringSerializable;
 import net.minecraft.world.World;
 
 import java.util.Locale;
@@ -87,20 +88,6 @@ public class ItemIngredients extends ItemHFFoodEnum<ItemIngredients, Ingredient>
             case CHOCOLATE: return 0.5F;
             default: return 0F;
         }
-    }
-
-    @Override
-    public ItemStack onItemUseFinish(ItemStack stack, World world, EntityLivingBase entityLiving) {
-        if (entityLiving instanceof EntityPlayer) {
-            EntityPlayer player = (EntityPlayer) entityLiving;
-            if (!player.capabilities.isCreativeMode) --stack.stackSize;
-            player.getFoodStats().addStats(getHealAmount(stack), getSaturationModifier(stack));
-            world.playSound(null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_PLAYER_BURP, SoundCategory.PLAYERS, 0.5F, world.rand.nextFloat() * 0.1F + 0.9F);
-
-            return stack;
-        }
-
-        return stack;
     }
 
     @Override

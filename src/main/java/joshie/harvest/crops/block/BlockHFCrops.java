@@ -19,6 +19,7 @@ import joshie.harvest.crops.block.BlockHFCrops.CropType;
 import joshie.harvest.crops.tile.TileCrop;
 import joshie.harvest.crops.tile.TileWithered;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockFarmland;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -53,7 +54,6 @@ import java.util.Random;
 import static joshie.harvest.api.crops.IStateHandler.PlantSection.BOTTOM;
 import static joshie.harvest.api.crops.IStateHandler.PlantSection.TOP;
 import static joshie.harvest.core.helpers.MCServerHelper.markTileForUpdate;
-import static joshie.harvest.crops.CropHelper.WET_SOIL;
 import static joshie.harvest.crops.CropHelper.harvestCrop;
 import static joshie.harvest.crops.block.BlockHFCrops.CropType.*;
 
@@ -311,8 +311,9 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
             if (event.world != world) return;
             boolean remove = existence >= 30;
             if (remove) {
-                if (world.getBlockState(pos).getBlock() == Blocks.FARMLAND) {
-                    world.setBlockState(pos, WET_SOIL);
+                IBlockState state = world.getBlockState(pos);
+                if (state.getBlock() instanceof BlockFarmland) {
+                    world.setBlockState(pos, state.withProperty(BlockFarmland.MOISTURE, 7));
                 }
 
                 MinecraftForge.EVENT_BUS.unregister(this);
@@ -331,7 +332,10 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
                     MinecraftForge.EVENT_BUS.register(new RainingSoil(event.getWorld(), event.getPos()));
                 }
 
-                HFApi.tickable.addTickable(event.getWorld(), event.getPos(), HFApi.tickable.getTickableFromBlock(Blocks.FARMLAND));
+                IBlockState state = event.getWorld().getBlockState(event.getPos());
+                if (state.getBlock() instanceof BlockFarmland) {
+                    HFApi.tickable.addTickable(event.getWorld(), event.getPos(), HFApi.tickable.getTickableFromBlock(Blocks.FARMLAND));
+                }
             }
         }
     }

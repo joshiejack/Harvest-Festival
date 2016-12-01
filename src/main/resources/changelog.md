@@ -4,9 +4,12 @@
 * Add CraftTweaker support for adjusting values of items in shops
 * Changed the id system for shops, ignore the warning about missing registries
 * Changed how the hoe charges up and allow it to work with other mods soil
+* Support for planting my crops/no moisture on soil that extends BlockFarmland
 * Fix crosshairs randomly dissappearing
+* Fix applecore support for chocolate
 * Fix world time not updating when reloading a server
 * Fix jade still giving you seeds after the general store is built
+* Only check the date on seeds if they require more than a year
 * Potentially fix the chick apocalypse?
 
 ##0.5.14

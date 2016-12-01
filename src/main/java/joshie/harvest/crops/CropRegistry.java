@@ -6,6 +6,7 @@ import joshie.harvest.api.crops.ICropRegistry;
 import joshie.harvest.core.util.HFApiImplementation;
 import joshie.harvest.core.util.holder.ItemStackHolder;
 import joshie.harvest.crops.tile.TileWithered;
+import net.minecraft.block.BlockFarmland;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
@@ -121,8 +122,8 @@ public class CropRegistry implements ICropRegistry {
     public boolean hydrateSoil(@Nullable EntityPlayer player, World world, BlockPos pos) {
         boolean ret = false;
         IBlockState state = world.getBlockState(pos);
-        if (isSoil(state) && !isWetSoil(state)) {
-            world.setBlockState(pos, WET_SOIL);
+        if (!isWetSoil(state)) {
+            world.setBlockState(pos, state.withProperty(BlockFarmland.MOISTURE, 7));
             ret = true;
         }
 

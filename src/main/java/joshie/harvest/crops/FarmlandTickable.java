@@ -18,7 +18,7 @@ public class FarmlandTickable implements IDailyTickableBlock {
     public boolean newDay(World world, BlockPos pos, IBlockState state) {
         if (CropHelper.isRainingAt(world, pos.up(2))) {
             if (!CropHelper.isWetSoil(state)) world.setBlockState(pos, state.withProperty(BlockFarmland.MOISTURE, 7), 2);
-        } else {
+        } else if (CropHelper.isSoil(state)) {
             int moisture = state.getValue(BlockFarmland.MOISTURE);
             if (moisture == 7) world.setBlockState(pos, state.withProperty(BlockFarmland.MOISTURE, 3), 2);
             else if (moisture == 3) world.setBlockState(pos, state.withProperty(BlockFarmland.MOISTURE, 0), 2);

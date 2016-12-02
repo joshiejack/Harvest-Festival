@@ -47,6 +47,10 @@ public class CropHelper {
         return state.getBlock() instanceof BlockFarmland && state.getValue(BlockFarmland.MOISTURE) == 7;
     }
 
+    public static boolean isSoil(IBlockState state) {
+        return state.getBlock() instanceof BlockFarmland;
+    }
+
     //Harvests the crop at this location
     public static boolean harvestCrop(EntityPlayer player, World world, BlockPos pos) {
         List<ItemStack> list = HFApi.crops.harvestCrop(player, world, pos);

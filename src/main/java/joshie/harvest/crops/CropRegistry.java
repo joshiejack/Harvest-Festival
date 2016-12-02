@@ -122,7 +122,7 @@ public class CropRegistry implements ICropRegistry {
     public boolean hydrateSoil(@Nullable EntityPlayer player, World world, BlockPos pos) {
         boolean ret = false;
         IBlockState state = world.getBlockState(pos);
-        if (!isWetSoil(state)) {
+        if (isSoil(state) && !isWetSoil(state)) {
             world.setBlockState(pos, state.withProperty(BlockFarmland.MOISTURE, 7));
             ret = true;
         }

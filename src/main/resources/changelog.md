@@ -9,6 +9,7 @@
 * Fix applecore support for chocolate
 * Fix world time not updating when reloading a server
 * Fix jade still giving you seeds after the general store is built
+* Fix building render bug when mod is used in conjunction with Psi
 * Only check the date on seeds if they require more than a year
 * Potentially fix the chick apocalypse?
 

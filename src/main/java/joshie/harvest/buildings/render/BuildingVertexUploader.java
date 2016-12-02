@@ -1,8 +1,11 @@
 package joshie.harvest.buildings.render;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.WorldVertexBufferUploader;
+import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.vertex.VertexFormat;
 import net.minecraft.client.renderer.vertex.VertexFormatElement;
 import net.minecraftforge.fml.relauncher.Side;
@@ -15,6 +18,9 @@ import java.util.List;
 public class BuildingVertexUploader extends WorldVertexBufferUploader {
     @Override
     public void draw(VertexBuffer vertexBufferIn) {
+        GlStateManager.enableTexture2D();
+        OpenGlHelper.setActiveTexture(OpenGlHelper.defaultTexUnit);
+        Minecraft.getMinecraft().getTextureManager().bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
         if (vertexBufferIn.getVertexCount() > 0) {
             VertexFormat vertexformat = vertexBufferIn.getVertexFormat();
             int i = vertexformat.getNextOffset();
@@ -26,7 +32,6 @@ public class BuildingVertexUploader extends WorldVertexBufferUploader {
                 list.get(j).getUsage().preDraw(vertexformat, j, i, bytebuffer);
             }
 
-            GlStateManager.enableTexture2D();
             GlStateManager.glDrawArrays(vertexBufferIn.getDrawMode(), 0, vertexBufferIn.getVertexCount());
             int i1 = 0;
 

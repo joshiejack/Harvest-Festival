@@ -1,11 +1,14 @@
 package joshie.harvest.plugins.crafttweaker;
 
 import joshie.harvest.api.calendar.Weekday;
+import joshie.harvest.api.npc.IGreeting;
 import joshie.harvest.api.shops.IPurchasable;
 import joshie.harvest.api.shops.IShop;
+import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.npc.NPC;
 import joshie.harvest.npc.NPCRegistry;
 import joshie.harvest.npc.entity.EntityNPC;
+import joshie.harvest.npc.item.ItemNPCTool.NPCTool;
 import joshie.harvest.shops.HFShops;
 import joshie.harvest.shops.Shop;
 import joshie.harvest.shops.ShopRegistry;
@@ -16,9 +19,11 @@ import minetweaker.api.item.IItemStack;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import stanhebben.zenscript.annotations.Optional;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 
+import javax.annotation.Nullable;
 import java.util.Locale;
 
 import static joshie.harvest.api.HFApi.shops;
@@ -28,8 +33,8 @@ import static joshie.harvest.plugins.crafttweaker.BaseOnce.asStack;
 @ZenClass("mods.harvestfestival.Shops")
 public class Shops {
     @ZenMethod
-    public static void addShopToNPC(String npc, String shop, String greeting, String openinghours) {
-        MineTweakerAPI.apply(new AddShop(npc, shop, greeting, openinghours));
+    public static void addShopToNPC(String npc, String shop, String greeting, String openinghours, @Optional String hoursText) {
+        MineTweakerAPI.apply(new AddShop(npc, shop, greeting, openinghours, hoursText));
     }
 
     private static class AddShop extends BaseUndoable {
@@ -38,14 +43,18 @@ public class Shops {
         private final String npc;
         private final String greeting;
         private final String openinghours;
+        private IGreeting hours;
         private Shop shop;
 
-        public AddShop(String npc, String shop, String greeting, String openinghours) {
+        public AddShop(String npc, String shop, String greeting, String openinghours, @Nullable String hoursText) {
             this.resource = new ResourceLocation("MineTweaker3", shop.toLowerCase());
             this.name = shop;
             this.npc = npc;
             this.greeting = greeting;
             this.openinghours = openinghours;
+            if (hoursText != null) {
+                this.hours = new GreetingShopTime(hoursText);
+            }
         }
 
         @Override
@@ -71,6 +80,10 @@ public class Shops {
 
                 theNPC.setShop(shop);
                 theNPC.setHasInfo(null, null);
+                if (hours != null) {
+                    theNPC.setHasInfo(HFNPCs.TOOLS.getStackFromEnum(NPCTool.CLOCK), hours);
+                }
+
                 ShopRegistry.INSTANCE.shops.put(resource, shop);
                 String[] hours = openinghours.replace(" ", "").split(";");
                 for (String time: hours) {

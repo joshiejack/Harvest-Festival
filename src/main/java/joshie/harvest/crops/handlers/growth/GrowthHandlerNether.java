@@ -16,7 +16,7 @@ public class GrowthHandlerNether extends GrowthHandler<Crop> {
     public void addInformation(List<String> list, Crop crop, boolean debug) {
         list.add(TextFormatting.RED + "Nether");
     }
-    
+
     @Override
     public boolean canGrow(World world, BlockPos pos, Crop crop) {
         return world.provider.getDimension() == -1;

@@ -17,6 +17,7 @@ import joshie.harvest.crops.CropData;
 import joshie.harvest.crops.CropHelper;
 import joshie.harvest.crops.HFCrops;
 import joshie.harvest.crops.block.BlockHFCrops.CropType;
+import joshie.harvest.crops.handlers.WateringTickHandler.Ticker;
 import joshie.harvest.crops.tile.TileCrop;
 import joshie.harvest.crops.tile.TileWithered;
 import net.minecraft.block.Block;
@@ -56,7 +57,6 @@ import java.util.Random;
 import static joshie.harvest.api.crops.IStateHandler.PlantSection.BOTTOM;
 import static joshie.harvest.api.crops.IStateHandler.PlantSection.TOP;
 import static joshie.harvest.core.helpers.MCServerHelper.markTileForUpdate;
-import static joshie.harvest.crops.CropHelper.WET_SOIL;
 import static joshie.harvest.crops.CropHelper.harvestCrop;
 import static joshie.harvest.crops.block.BlockHFCrops.CropType.*;
 
@@ -310,10 +310,12 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
 
     public static class RainingSoil {
         private int existence;
+        private final EntityPlayer player;
         private final World world;
         private final BlockPos pos;
 
-        public RainingSoil(World world, BlockPos pos) {
+        public RainingSoil(EntityPlayer player, World world, BlockPos pos) {
+            this.player = player;
             this.world = world;
             this.pos = pos;
         }
@@ -323,10 +325,7 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
             if (event.world != world) return;
             boolean remove = existence >= 30;
             if (remove) {
-                if (world.getBlockState(pos).getBlock() == Blocks.FARMLAND) {
-                    world.setBlockState(pos, WET_SOIL);
-                }
-
+                HFApi.crops.hydrateSoil(player, world, pos);
                 MinecraftForge.EVENT_BUS.unregister(this);
             }
 
@@ -340,10 +339,13 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
         public void onDirtTilled(UseHoeEvent event) {
             if (!event.getWorld().isRemote && !event.isCanceled()) {
                 if (HFTrackers.getCalendar(event.getWorld()).getTodaysWeather().isRain() && CropHelper.isRainingAt(event.getWorld(), event.getPos().up(2))) {
-                    MinecraftForge.EVENT_BUS.register(new RainingSoil(event.getWorld(), event.getPos()));
+                    MinecraftForge.EVENT_BUS.register(new RainingSoil(event.getEntityPlayer(), event.getWorld(), event.getPos()));
                 }
 
-                HFApi.tickable.addTickable(event.getWorld(), event.getPos(), HFApi.tickable.getTickableFromBlock(Blocks.FARMLAND));
+                IBlockState state = event.getWorld().getBlockState(event.getPos());
+                if (CropHelper.getWateringHandler(event.getWorld(), event.getPos(), state) != null) {
+                    HFApi.tickable.addTickable(event.getWorld(), event.getPos(), Ticker.INSTANCE);
+                }
             }
         }
     }

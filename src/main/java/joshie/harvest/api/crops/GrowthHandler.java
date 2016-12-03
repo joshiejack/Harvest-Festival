@@ -3,12 +3,9 @@ package joshie.harvest.api.crops;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.Season;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -24,11 +21,6 @@ public abstract class GrowthHandler<C extends Crop> {
         for (Season season : crop.getSeasons()) {
             list.add(season.getDisplayName());
         }
-    }
-
-    @Deprecated //TODO: Remove in 0.7
-    public boolean canSustainCrop(IBlockAccess world, BlockPos pos, IBlockState state, C crop) {
-        return state.getBlock() == Blocks.FARMLAND && crop.getPlantType() == EnumPlantType.Crop;
     }
 
     /** Returns true if this seed can be planted at this block position

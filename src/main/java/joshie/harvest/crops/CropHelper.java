@@ -9,10 +9,8 @@ import joshie.harvest.api.crops.WateringHandler;
 import joshie.harvest.core.helpers.SpawnItemHelper;
 import joshie.harvest.crops.block.BlockHFCrops;
 import joshie.harvest.crops.tile.TileWithered;
-import net.minecraft.block.BlockFarmland;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
@@ -27,9 +25,6 @@ import java.util.concurrent.TimeUnit;
 import static joshie.harvest.api.crops.IStateHandler.PlantSection.BOTTOM;
 
 public class CropHelper {
-    public static final IBlockState WET_SOIL = Blocks.FARMLAND.getDefaultState().withProperty(BlockFarmland.MOISTURE, 7);
-    public static final IBlockState DRYING_SOIL = Blocks.FARMLAND.getDefaultState().withProperty(BlockFarmland.MOISTURE, 3);
-    public static final IBlockState DRY_SOIL = Blocks.FARMLAND.getDefaultState().withProperty(BlockFarmland.MOISTURE, 0);
     private static final Cache<BlockPos, IBlockState> RESERVE = CacheBuilder.newBuilder().expireAfterAccess(100, TimeUnit.MILLISECONDS).maximumSize(64).build();
 
     public static void onBottomBroken(BlockPos pos, IBlockState state) {

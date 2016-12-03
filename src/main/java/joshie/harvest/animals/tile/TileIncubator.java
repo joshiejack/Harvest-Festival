@@ -52,7 +52,7 @@ public class TileIncubator extends TileFillableSizedFaceable {
 
     @Override
     public void newDay() {
-        if (fillAmount > 0) {
+        if (fillAmount > 0 && owner != null) {
             fillAmount--;
 
             if (fillAmount == 0) {
@@ -74,6 +74,8 @@ public class TileIncubator extends TileFillableSizedFaceable {
 
                     worldObj.spawnEntityInWorld(baby);
                 }
+
+                owner = null; //Clear out owner
             }
 
             markTileForUpdate(this);

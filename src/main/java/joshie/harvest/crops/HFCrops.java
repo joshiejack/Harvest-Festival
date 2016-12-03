@@ -19,6 +19,7 @@ import joshie.harvest.crops.item.ItemCrop.Crops;
 import joshie.harvest.crops.item.ItemHFSeeds;
 import joshie.harvest.crops.loot.SetCropType;
 import joshie.harvest.crops.tile.*;
+import net.minecraft.block.BlockFarmland;
 import net.minecraft.block.BlockOldLog;
 import net.minecraft.block.BlockPlanks.EnumType;
 import net.minecraft.block.state.IBlockState;
@@ -166,6 +167,7 @@ public class HFCrops {
         registerOreIfNotExists("cropMelon", new ItemStack(Items.MELON));
         registerOreIfNotExists("cropMelon", new ItemStack(Blocks.MELON_BLOCK));
         registerOreIfNotExists("cropWatermelon", new ItemStack(Blocks.MELON_BLOCK));
+        HFApi.crops.registerFarmlandToDirtMapping(Blocks.FARMLAND.getDefaultState().withProperty(BlockFarmland.MOISTURE, 0), Blocks.DIRT.getDefaultState());
     }
 
     @SideOnly(Side.CLIENT)
@@ -236,7 +238,6 @@ public class HFCrops {
     public static boolean DISABLE_VANILLA_WHEAT_SEEDS;
     public static boolean DISABLE_VANILLA_MOISTURE;
     public static int SPRINKLER_DRAIN_RATE;
-    public static boolean VALIDATE_FARMLAND;
     private static boolean CROPS_DIE_CLIENT;
     private static boolean CROPS_DIE_SERVER;
     public static boolean CROPS_SHOULD_DIE;
@@ -252,7 +253,6 @@ public class HFCrops {
         DISABLE_VANILLA_HOE = getBoolean("Disable vanilla hoes", false, "If this is true, vanilla hoes will not till dirt");
         DISABLE_VANILLA_MOISTURE = getBoolean("Disable vanilla moisture", true, "If this is set to true then farmland will not automatically become wet, and must be watered, it will also not automatically revert to dirt. (Basically disables random ticks for farmland)");
         SPRINKLER_DRAIN_RATE = getInteger("Sprinkler's daily water consumption", 0, "This number NEEDs to be a factor of 1000, Otherwise you'll have trouble refilling the sprinkler manually. Acceptable values are: 1, 2, 4, 5, 8, 10, 20, 25, 40, 50, 100, 125, 200, 250, 500, 1000");
-        VALIDATE_FARMLAND = getBoolean("Check for farmland on chunk load", true, "Disable this if you think it will help...");
         CROPS_DIE_CLIENT = getBoolean("Integrated Server > Crops die when not having been watered", true);
         CROPS_DIE_SERVER = getBoolean("Dedicated Server > Crops die when not having been watered", false);
     }

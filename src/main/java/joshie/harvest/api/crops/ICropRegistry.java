@@ -2,6 +2,7 @@ package joshie.harvest.api.crops;
 
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
@@ -73,4 +74,9 @@ public interface ICropRegistry {
      *  and sprinkler in order to turn the blocks in to the correct form
      *  @param handler  the watering handler **/
     void registerWateringHandler(WateringHandler handler);
+
+    /** Register a farmland to dirt mapping
+     *  @param farmland     the farmland block
+     *  @param dirt         the block this becomes when it 'dies'**/
+    void registerFarmlandToDirtMapping(IBlockState farmland, IBlockState dirt);
 }

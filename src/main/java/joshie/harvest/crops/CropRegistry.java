@@ -29,6 +29,7 @@ import static joshie.harvest.crops.block.BlockHFCrops.CropType.FRESH_DOUBLE;
 public class CropRegistry implements ICropRegistry {
     public static final CropRegistry INSTANCE = new CropRegistry();
     public final Set<WateringHandler> wateringHandlers = new HashSet<>();
+    public final HashMap<IBlockState, IBlockState> farmlandToDirtMap = new HashMap<>();
     private final HashMap<ItemStackHolder, Crop> providers = new HashMap<>();
 
     @Override
@@ -135,7 +136,7 @@ public class CropRegistry implements ICropRegistry {
         IBlockState state = world.getBlockState(pos);
         WateringHandler checker = CropHelper.getWateringHandler(world, pos, state);
         if (checker != null && !checker.isWet(world, pos, state)) {
-            return checker.water(world, pos, state);
+            return checker.hydrate(world, pos, state);
         }
 
         return false;
@@ -144,5 +145,10 @@ public class CropRegistry implements ICropRegistry {
     @Override
     public void registerWateringHandler(WateringHandler handler) {
         wateringHandlers.add(handler);
+    }
+
+    @Override
+    public void registerFarmlandToDirtMapping(IBlockState farmland, IBlockState dirt) {
+        farmlandToDirtMap.put(farmland, dirt);
     }
 }

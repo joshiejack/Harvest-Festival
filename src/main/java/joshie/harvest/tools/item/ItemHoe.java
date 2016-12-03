@@ -25,6 +25,9 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IPlantable;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.entity.player.UseHoeEvent;
+import net.minecraftforge.fml.common.eventhandler.Event.Result;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -99,15 +102,26 @@ public class ItemHoe extends ItemToolChargeable {
         }
     }
 
+    private int onHoeUse(ItemStack stack, EntityPlayer player, World worldIn, BlockPos pos) {
+        UseHoeEvent event = new UseHoeEvent(player, stack, worldIn, pos);
+        if (MinecraftForge.EVENT_BUS.post(event)) return -1;
+        if (event.getResult() == Result.ALLOW) {
+            displayParticle(worldIn, pos, EnumParticleTypes.BLOCK_CRACK, Blocks.DIRT.getDefaultState());
+            playSound(worldIn, pos, SoundEvents.ITEM_HOE_TILL, SoundCategory.BLOCKS);
+            ToolHelper.performTask(player, stack, this);
+            return 1;
+        }
+
+        return 0;
+    }
+
     public EnumActionResult getHoeResult(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumFacing facing) {
         if (!playerIn.canPlayerEdit(pos.offset(facing), facing, stack)) {
             return EnumActionResult.FAIL;
         } else {
-            int original = stack.getItemDamage();
-            int hook = net.minecraftforge.event.ForgeEventFactory.onHoeUse(stack, playerIn, worldIn, pos);
+            int hook = onHoeUse(stack, playerIn, worldIn, pos);
             if (hook != 0) {
                 if (hook > 0) {
-                    stack.setItemDamage(original);
                     return EnumActionResult.SUCCESS;
                 } else return EnumActionResult.FAIL;
             }

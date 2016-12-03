@@ -3,12 +3,14 @@ package joshie.harvest.tools.item;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Multimap;
 import com.google.common.collect.Sets;
+import joshie.harvest.api.crops.WateringHandler;
 import joshie.harvest.api.gathering.ISmashable.ToolType;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.item.ItemToolSmashing;
 import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.core.helpers.TextHelper;
 import joshie.harvest.core.lib.HFSounds;
+import joshie.harvest.crops.CropHelper;
 import joshie.harvest.tools.ToolHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -167,9 +169,11 @@ public class ItemHammer extends ItemToolSmashing<ItemHammer> {
     @Override
     public boolean onSmashed(EntityPlayer player, ItemStack stack, ToolTier tier, int harvestLevel, World world, BlockPos pos, IBlockState state) {
         if (canUse(stack)) {
-            if (state.getBlock() == Blocks.FARMLAND) {
+            WateringHandler handler = CropHelper.getWateringHandler(world, pos, state);
+            if (handler != null) {
                 ToolHelper.performTask(player, stack, this);
-                return world.setBlockState(pos, Blocks.DIRT.getDefaultState());
+                handler.dehydrate(world, pos, state);
+                return true;
             }
         }
 

@@ -5,7 +5,7 @@ import joshie.harvest.api.animals.AnimalFoodType;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.crops.Crop;
 import joshie.harvest.plugins.crafttweaker.base.BaseCrop;
-import joshie.harvest.plugins.crafttweaker.base.BaseUndoable;
+import joshie.harvest.plugins.crafttweaker.base.BaseOnce;
 import minetweaker.MineTweakerAPI;
 import minetweaker.api.item.IItemStack;
 import net.minecraft.block.Block;
@@ -29,7 +29,7 @@ public class Crops {
         MineTweakerAPI.apply(new Add(name));
     }
 
-    private static class Add extends BaseUndoable {
+    private static class Add extends BaseOnce {
         private final ResourceLocation resource;
 
 

@@ -10,12 +10,16 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
 
+import static joshie.harvest.crops.HFCrops.DISABLE_VANILLA_MOISTURE;
+
 @ObjectHolder("BiomesOPlenty")
 @HFLoader(mods = "BiomesOPlenty")
 public class BiomesOPlenty {
     public static final Item turnip_seeds = null;
     public static final Item turnip = null;
     public static final Block mushroom = null;
+    public static final Block farmland_0 = null;
+    public static final Block farmland_1 = null;
 
     @SuppressWarnings("ConstantConditions")
     public static void init() {
@@ -24,5 +28,12 @@ public class BiomesOPlenty {
         Ingredient mushroomIngredient = Ingredient.INGREDIENTS.get("mushroom");
         HFApi.cooking.register(new ItemStack(mushroom, 1, 1), mushroomIngredient);
         HFApi.cooking.register(new ItemStack(mushroom, 1, 4), mushroomIngredient);
+        if (DISABLE_VANILLA_MOISTURE) {
+            farmland_0.setTickRandomly(false);
+            farmland_1.setTickRandomly(false);
+         }
+
+        //TODO: Register BOP Farmland to dirt (need to add bop as lib possibly?)
+        //HFApi.crops.registerFarmlandToDirtMapping(Blocks.FARMLAND.getDefaultState().withProperty(BlockFarmland.MOISTURE, 0), Blocks.DIRT.getDefaultState());
     }
 }

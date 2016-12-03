@@ -1,12 +1,17 @@
 package joshie.harvest.plugins.crafttweaker;
 
+import joshie.harvest.api.shops.IRequirement;
 import joshie.harvest.core.commands.CommandManager;
 import joshie.harvest.core.helpers.ConfigHelper;
 import joshie.harvest.core.util.annotations.HFLoader;
+import joshie.harvest.plugins.crafttweaker.command.HFCommandNPC;
+import joshie.harvest.plugins.crafttweaker.command.HFCommandPurchasable;
+import joshie.harvest.plugins.crafttweaker.command.HFCommandShops;
 import joshie.harvest.plugins.crafttweaker.handlers.Crops;
 import joshie.harvest.plugins.crafttweaker.handlers.Shipping;
 import joshie.harvest.plugins.crafttweaker.handlers.Shops;
-import joshie.harvest.shops.command.HFCommandShops;
+import joshie.harvest.plugins.crafttweaker.wrappers.RequirementItemWrapper;
+import joshie.harvest.plugins.crafttweaker.wrappers.RequirementOreWrapper;
 import minetweaker.MineTweakerAPI;
 import minetweaker.MineTweakerImplementationAPI;
 import minetweaker.api.item.IIngredient;
@@ -19,6 +24,7 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 
 import java.io.File;
+import java.util.ArrayList;
 
 @HFLoader(mods = "MineTweaker3")
 public class CraftTweaker {
@@ -40,6 +46,8 @@ public class CraftTweaker {
 
         MineTweakerAPI.registerClass(Shipping.class);
         MineTweakerAPI.registerClass(Shops.class);
+        CommandManager.INSTANCE.registerCommand(new HFCommandNPC());
+        CommandManager.INSTANCE.registerCommand(new HFCommandPurchasable());
         CommandManager.INSTANCE.registerCommand(new HFCommandShops());
     }
 
@@ -57,5 +65,24 @@ public class CraftTweaker {
 
     public static String asOre(IIngredient ingredient) {
         return ingredient.getInternal() instanceof IOreDictEntry ? ((IOreDictEntry) ingredient).getName() : null;
+    }
+
+    public static IRequirement[] asRequirements(IIngredient[] ingredients) {
+        if (ingredients == null) return null;
+        ArrayList<IRequirement> stacks = new ArrayList<>();
+        for (int i = 0; i < ingredients.length; i++) {
+            IIngredient ingredient = ingredients[i];
+            if (ingredient instanceof IOreDictEntry) {
+                stacks.add(new RequirementOreWrapper(asOre(ingredient), ingredient.getAmount()));
+            } else if (ingredient.getInternal() instanceof ItemStack) {
+                stacks.add(new RequirementItemWrapper(asStack(ingredient), ingredient.getAmount()));
+            }
+        }
+
+        return stacks.toArray(new IRequirement[stacks.size()]);
+    }
+
+    public static void logError(String message) {
+        MineTweakerAPI.logError(message);
     }
 }

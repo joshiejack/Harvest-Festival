@@ -5,7 +5,7 @@ import net.minecraft.util.ResourceLocation;
 
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 
-public abstract class BaseCrop extends BaseUndoable {
+public abstract class BaseCrop extends BaseOnce {
     protected final ResourceLocation resource;
 
     public BaseCrop(String name) {

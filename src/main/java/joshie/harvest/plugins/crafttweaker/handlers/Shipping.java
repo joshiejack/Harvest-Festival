@@ -2,7 +2,7 @@ package joshie.harvest.plugins.crafttweaker.handlers;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.core.Ore;
-import joshie.harvest.plugins.crafttweaker.base.BaseUndoable;
+import joshie.harvest.plugins.crafttweaker.base.BaseOnce;
 import minetweaker.MineTweakerAPI;
 import minetweaker.api.item.IIngredient;
 import minetweaker.api.item.IItemStack;
@@ -23,7 +23,7 @@ public class Shipping {
         }
     }
 
-    private static class Add extends BaseUndoable {
+    private static class Add extends BaseOnce {
         private final long sellValue;
         private ItemStack stack;
         private Ore ore;

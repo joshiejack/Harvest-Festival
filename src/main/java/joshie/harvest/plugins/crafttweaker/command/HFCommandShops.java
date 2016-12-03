@@ -1,4 +1,4 @@
-package joshie.harvest.shops.command;
+package joshie.harvest.plugins.crafttweaker.command;
 
 import joshie.harvest.core.commands.AbstractHFCommand;
 import joshie.harvest.shops.Shop;
@@ -19,12 +19,12 @@ public class HFCommandShops extends AbstractHFCommand {
 
     @Override
     public String getCommandName() {
-        return "shops";
+        return "shoplist";
     }
 
     @Override
     public String getUsage() {
-        return "/hf shops";
+        return "/hf shoplist";
     }
 
     @Override

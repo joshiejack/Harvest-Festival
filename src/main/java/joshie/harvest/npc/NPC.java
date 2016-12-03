@@ -156,11 +156,8 @@ public class NPC extends IForgeRegistryEntry.Impl<NPC> implements INPC {
 
     @Override
     public INPC setHasInfo(ItemStack stack, IInfoButton info) {
-        if (this.hasInfo == null || this.info instanceof GreetingShop) {
-            this.hasInfo = stack;
-            this.info = info;
-        }
-
+        this.hasInfo = stack;
+        this.info = info;
         return this;
     }
 

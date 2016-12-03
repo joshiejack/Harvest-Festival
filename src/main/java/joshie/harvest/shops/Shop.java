@@ -19,6 +19,7 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 import java.util.Collection;
 import java.util.LinkedHashMap;
+import java.util.Set;
 
 public class Shop implements IShop {
     private static final ISpecialRules DEFAULT_TRUE = (w, p, a) -> true;
@@ -77,6 +78,10 @@ public class Shop implements IShop {
         return this;
     }
 
+    public void removeItem(IPurchasable item) {
+        if (item != null) contents.remove(item.getPurchaseableID());
+    }
+
     @Override
     public IShop addItem(IPurchasable item) {
         if (item != null) {
@@ -124,6 +129,10 @@ public class Shop implements IShop {
 
     public String getWelcome(EntityNPC npc) {
         return TextHelper.getRandomSpeech(npc.getNPC(), unlocalizedName + ".greeting", 100);
+    }
+
+    public Set<String> getPurchasableIDs() {
+        return contents.keySet();
     }
 
     public Collection<IPurchasable> getContents() {

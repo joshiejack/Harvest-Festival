@@ -97,8 +97,8 @@ public class Shops {
             };
 
             npc.setShop(shop);
-            if (hours == null) npc.setHasInfo(null, null);
-            else npc.setHasInfo(HFNPCs.TOOLS.getStackFromEnum(NPCTool.CLOCK), hours);
+            npc.setHasInfo(null, null);
+            if (hours != null) npc.setHasInfo(HFNPCs.TOOLS.getStackFromEnum(NPCTool.CLOCK), hours);
             ShopRegistry.INSTANCE.shops.put(resource, shop);
             String[] hours = openinghours.replace(" ", "").split(";");
             for (String time: hours) processTimeString(time);

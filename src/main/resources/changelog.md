@@ -1,3 +1,6 @@
+##0.5.16
+* Fix missing localisation for some CT support
+
 ##0.5.15
 * Add CraftTweaker support for adding shops to npcs that have none already
 * Add CraftTweaker support for removing items from shops

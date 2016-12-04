@@ -10,7 +10,7 @@ harvestfestival.check.head=On head after purchase.
 harvestfestival.check.lead=On lead after purchase.
 
 #Commands
-hf.commands.help.header=--- Showing hf.help page %d of %d (/hf.help <page>) ---
+hf.commands.help.header=--- Showing HF help page %d of %d (/hf help <page>) ---
 
 #Tooltips
 harvestfestival.tooltip.cosmetic=Cosmetic

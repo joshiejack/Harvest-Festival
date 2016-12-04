@@ -17,12 +17,12 @@ public class HFCommandNPC extends AbstractHFCommand {
 
     @Override
     public String getCommandName() {
-        return "npclist";
+        return "npcs";
     }
 
     @Override
     public String getUsage() {
-        return "/hf npclist";
+        return "/hf npcs";
     }
 
     @Override

@@ -51,6 +51,9 @@ public abstract class ItemTool<I extends ItemTool> extends ItemHFBase<I> impleme
         return new ItemStack(this, 1, tier.ordinal());
     }
 
+    @Override //Forbid the damage from being affected
+    public void setDamage(ItemStack stack, int damage) {}
+
     @Override
     public int getSortValue(ItemStack stack) {
         return CreativeSort.TOOLS + getTier(stack).ordinal();

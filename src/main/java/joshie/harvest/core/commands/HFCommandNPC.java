@@ -12,7 +12,7 @@ import net.minecraft.util.text.TextComponentString;
 public class HFCommandNPC extends AbstractHFCommand {
     @Override
     public String getCommandName() {
-        return "npc";
+        return "npclist";
     }
 
     @Override

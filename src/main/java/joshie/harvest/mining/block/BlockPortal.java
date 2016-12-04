@@ -39,6 +39,10 @@ public class  BlockPortal extends BlockHFEnum<BlockPortal, Portal> {
         STONE_TL, STONE_TM, STONE_TR, STONE_BL, STONE_BM, STONE_BR,
         STONE_TL_EW, STONE_TM_EW, STONE_TR_EW, STONE_BL_EW, STONE_BM_EW, STONE_BR_EW;
 
+        public boolean isCentre() {
+            return this == MINE_BM || this == MINE_BM_EW || this == INTERNAL_BM || this == INTERNAL_BM_EW;
+        }
+
         public boolean isMine() {
             return ordinal() <= MINE_BR_EW.ordinal();
         }

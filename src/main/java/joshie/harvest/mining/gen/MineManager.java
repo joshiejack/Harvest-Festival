@@ -37,6 +37,7 @@ import javax.annotation.Nonnull;
 import java.util.Random;
 
 import static joshie.harvest.core.helpers.EntityHelper.isSpawnable;
+import static joshie.harvest.mining.MiningHelper.MAX_FLOORS;
 
 @HFEvents
 public class MineManager extends WorldSavedData {
@@ -82,7 +83,7 @@ public class MineManager extends WorldSavedData {
     void onTeleportToMine(World world, int mineID) {
         if (!generated.contains(mineID)) {
             EntityNPC entity = NPCHelper.getEntityForNPC(world, (NPC) HFNPCs.MINER);
-            BlockPos pos = modifyNPCPosition((WorldServer)world, getSpawnCoordinateForMine(mineID, 1), entity);
+            BlockPos pos = modifyNPCPosition((WorldServer)world, getSpawnCoordinateForMine(world, mineID, 1), entity);
             entity.setPosition(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5);
             entity.setHeldItem(EnumHand.MAIN_HAND, new ItemStack(Blocks.TORCH));
             entity.setHeldItem(EnumHand.OFF_HAND, new ItemStack(Items.IRON_PICKAXE));
@@ -140,9 +141,20 @@ public class MineManager extends WorldSavedData {
         return HFTrackers.getMineManager(world).getCoordinateMap(mineID).containsKey(floor);
     }
 
-    BlockPos getSpawnCoordinateForMine(int mineID, int floor) {
+    public BlockPos getSpawnCoordinateForMine(World world, int mineID, int floor) {
         BlockPos ret = getCoordinateMap(mineID).get(floor);
         if (ret == null) {
+            BlockPos pos = new BlockPos(Math.floor(floor / MAX_FLOORS) * CHUNK_BOUNDARY * 16, (floor - 1) % MAX_FLOORS == 0 ? 247 : 1, mineID * CHUNK_BOUNDARY * 16);
+            for (int x = 0; x < 16 * CHUNK_BOUNDARY; x++) {
+                for (int z = 0; z < 16 * CHUNK_BOUNDARY; z++) {
+                    BlockPos toCheck = pos.add(x, 0, z);
+                    IBlockState state = world.getBlockState(toCheck);
+                    if (state.getBlock() == HFMining.PORTAL && state.getActualState(world, toCheck).getValue(HFMining.PORTAL.property).isCentre()) {
+                        return toCheck;
+                    }
+                }
+            }
+
             return new BlockPos(0, 254, mineID * CHUNK_BOUNDARY * 16);
         }
 

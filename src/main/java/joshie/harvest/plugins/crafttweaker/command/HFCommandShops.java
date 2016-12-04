@@ -39,8 +39,9 @@ public class HFCommandShops extends AbstractHFCommand {
         List<ResourceLocation> list = new ArrayList<>();
         for (Map.Entry<ResourceLocation, Shop> entry : ShopRegistry.INSTANCE.shops.entrySet()) {
             list.add(entry.getKey());
-            Collections.sort(list, (s1, s2) -> s1.toString().compareTo(s2.toString()));
         }
+
+        Collections.sort(list, (s1, s2) -> s1.toString().compareTo(s2.toString()));
         return list;
     }
 }

@@ -35,7 +35,7 @@ public class MiningProvider extends WorldProvider {
     }
 
     public BlockPos getSpawnCoordinateForMine(int mineID, int floor) {
-        return HFTrackers.getMineManager(worldObj).getSpawnCoordinateForMine(mineID, floor);
+        return HFTrackers.getMineManager(worldObj).getSpawnCoordinateForMine(worldObj, mineID, floor);
     }
 
     public boolean areCoordinatesGenerated(int mineID, int floor) {

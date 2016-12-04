@@ -1,4 +1,4 @@
-package joshie.harvest.plugins.crafttweaker;
+package joshie.harvest.plugins.crafttweaker.wrapper;
 
 import joshie.harvest.shops.purchasable.PurchasableBuilder;
 import net.minecraft.entity.player.EntityPlayer;

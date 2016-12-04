@@ -1,7 +1,8 @@
-package joshie.harvest.plugins.crafttweaker;
+package joshie.harvest.plugins.crafttweaker.handler;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.core.Ore;
+import joshie.harvest.plugins.crafttweaker.base.BaseOnce;
 import minetweaker.MineTweakerAPI;
 import minetweaker.api.item.IIngredient;
 import minetweaker.api.item.IItemStack;

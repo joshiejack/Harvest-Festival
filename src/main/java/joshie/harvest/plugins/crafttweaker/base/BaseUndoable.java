@@ -1,4 +1,4 @@
-package joshie.harvest.plugins.crafttweaker;
+package joshie.harvest.plugins.crafttweaker.base;
 
 import minetweaker.IUndoableAction;
 import minetweaker.api.item.IIngredient;

@@ -1,14 +1,14 @@
-package joshie.harvest.plugins.crafttweaker;
+package joshie.harvest.plugins.crafttweaker.wrapper;
 
 import joshie.harvest.api.npc.IGreeting;
 import joshie.harvest.api.npc.INPC;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.player.EntityPlayer;
 
-public class GreetingShopTime implements IGreeting {
+public class GreetingWrapper implements IGreeting {
     private final String text;
 
-    public GreetingShopTime(String text) {
+    public GreetingWrapper(String text) {
         this.text = text;
     }
 

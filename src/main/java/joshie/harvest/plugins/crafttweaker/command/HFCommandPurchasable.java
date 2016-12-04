@@ -12,12 +12,12 @@ import net.minecraft.util.text.TextComponentString;
 public class HFCommandPurchasable extends AbstractHFCommand {
     @Override
     public String getCommandName() {
-        return "shopitems";
+        return "items";
     }
 
     @Override
     public String getUsage() {
-        return "/hf shopitems [shopid]";
+        return "/hf items [shopid]";
     }
 
     @Override

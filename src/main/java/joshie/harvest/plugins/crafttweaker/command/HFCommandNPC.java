@@ -7,7 +7,6 @@ import minetweaker.MineTweakerAPI;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextComponentString;
 
 import java.util.ArrayList;
@@ -18,12 +17,12 @@ public class HFCommandNPC extends AbstractHFCommand {
 
     @Override
     public String getCommandName() {
-        return "npclist";
+        return "npcs";
     }
 
     @Override
     public String getUsage() {
-        return "/hf npclist";
+        return "/hf npcs";
     }
 
     @Override
@@ -34,13 +33,13 @@ public class HFCommandNPC extends AbstractHFCommand {
         return true;
     }
 
-    private List<ResourceLocation> getShopList() {
-        List<ResourceLocation> list = new ArrayList<>();
+    private List<String> getShopList() {
+        List<String> list = new ArrayList<>();
         for (NPC npc: NPCRegistry.REGISTRY.getValues()) {
-            list.add(npc.getRegistryName());
-            Collections.sort(list, (s1, s2) -> s1.toString().compareTo(s2.toString()));
+            list.add(npc.getLocalizedName() + " = " + npc.getRegistryName());
         }
 
+        Collections.sort(list, String::compareTo);
         return list;
     }
 }

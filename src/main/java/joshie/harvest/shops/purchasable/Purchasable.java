@@ -31,7 +31,7 @@ public class Purchasable implements IPurchasable {
     public Purchasable(long cost, ItemStack stack) {
         this.cost = cost;
         this.stack = stack;
-        this.resource = ((cost >= 0) ? "buy: " : "sell: ") + stackToString(stack);
+        this.resource = ((cost >= 0) ? "buy" : "sell") + "[" + stackToString(stack) + "]";
     }
 
     public Purchasable addTooltip(String tooltip) {
@@ -52,8 +52,8 @@ public class Purchasable implements IPurchasable {
     static String stackToString(ItemStack stack) {
         if (stack == null) return "null";
         String string = stack.getItem().getRegistryName().toString();
-        if (stack.getItemDamage() != 0) string = string + " " + stack.getItemDamage();
-        if (stack.getTagCompound() != null) string = string + " " + stack.getTagCompound().hashCode();
+        if (stack.getItemDamage() != 0) string = string + "_" + stack.getItemDamage();
+        if (stack.getTagCompound() != null) string = string + "_" + stack.getTagCompound().hashCode();
         return string;
     }
 

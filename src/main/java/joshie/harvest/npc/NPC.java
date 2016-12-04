@@ -146,11 +146,8 @@ public class NPC extends IForgeRegistryEntry.Impl<NPC> implements INPC {
     @Override
     @SuppressWarnings("deprecation")
     public INPC setHasInfo(ItemStack stack, IGreeting infoGreeting) {
-        if (this.hasInfo == null || this.info instanceof GreetingShop) {
-            this.hasInfo = stack;
-            this.info = new GreetingWrapper(infoGreeting);
-        }
-
+        this.hasInfo = stack;
+        this.info = new GreetingWrapper(infoGreeting);
         return this;
     }
 

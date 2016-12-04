@@ -195,8 +195,9 @@ public class Shops {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     @ZenMethod
     @SuppressWarnings("unused")
-    public static void removePurchasable(String shop, String id) {
+    public static void removePurchasable(String shop, String input) {
         Shop theShop = ShopRegistry.INSTANCE.getShop(new ResourceLocation(shop));
+        String id = fixPurchasableID(input);
         if (theShop == null) CraftTweaker.logError(String.format("No shop with the id %s could be found. Use /hf shoplist for a list of ids", shop));
         else if (theShop.getPurchasableFromID(id) == null) CraftTweaker.logError(String.format("No purchasable with the id %s could be found in " + theShop.getLocalizedName(), id));
         else MineTweakerAPI.apply(new RemovePurchasable(theShop, theShop.getPurchasableFromID(id)));
@@ -233,8 +234,9 @@ public class Shops {
 
     @ZenMethod
     @SuppressWarnings("unused")
-    public static void adjustPurchasable(String shop, String id, long cost, @Optional IItemStack[] materials) {
+    public static void adjustPurchasable(String shop, String input, long cost, @Optional IItemStack[] materials) {
         Shop theShop = ShopRegistry.INSTANCE.getShop(new ResourceLocation(shop));
+        String id = fixPurchasableID(input);
         if (theShop == null) CraftTweaker.logError(String.format("No shop with the id %s could be found. Use /hf shoplist for a list of ids", shop));
         else if (theShop.getPurchasableFromID(id) == null) CraftTweaker.logError(String.format("No purchasable with the id %s could be found in " + theShop.getLocalizedName(), id));
         else MineTweakerAPI.apply(new AdjustPurchasable(theShop, theShop.getPurchasableFromID(id), cost, CraftTweaker.asRequirements(materials)));
@@ -283,7 +285,8 @@ public class Shops {
     @ZenMethod
     @SuppressWarnings("unused")
     @Deprecated //TODO: Remove in 0.7+
-    public static void adjustCarpenter(String id, int logs, int stone, long cost) {
+    public static void adjustCarpenter(String input, int logs, int stone, long cost) {
+        String id = fixPurchasableID(input);
         if (HFShops.CARPENTER.getPurchasableFromID(id) == null) CraftTweaker.logError(String.format("No purchasable with the id %s could be found in " + HFShops.CARPENTER, id));
         else if (!(HFShops.CARPENTER.getPurchasableFromID(id) instanceof PurchasableWrapperMaterials)) CraftTweaker.logError(String.format("The item %s did not originall accept materials, you cannot adjust the values", id));
         else MineTweakerAPI.apply(new AdjustCarpenter(HFShops.CARPENTER.getPurchasableFromID(id), cost, logs, stone));
@@ -306,5 +309,10 @@ public class Shops {
             wrapper = new PurchasableWrapperMaterials((PurchasableWrapperMaterials)purchasable, wood, stone, cost);
             shop.addItem(wrapper);
         }
+    }
+
+    private static String fixPurchasableID(String id) {
+        if (!id.startsWith("buy") || !id.startsWith("sell")) return "buy[" + id + "]";
+        else return id;
     }
 }

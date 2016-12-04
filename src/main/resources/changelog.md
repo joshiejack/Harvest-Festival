@@ -86,7 +86,6 @@
 * Gifting NPCS gifts they don't like won't make them hate you so much
 * Changed relationship maximum to 50,000RP
 * Disabled the blue feather until i do marriage properly, there's no benefit and it didn't really even work properly
-* Jade will now properly stop giving you free seeds when general store is built
 * Jade will now only give you up to 10 seeds every 5 days
 * Jade will now sometimes give you hardy turnip seeds instead of a normal crop
 
@@ -105,7 +104,6 @@
 ###Tools
 * Tools will have [BROKEN] in front of their name, when they can't be used
 * Hammers will now be able to smash more tiers of rocks
-* Fixed Hoes being half the durability of other tools
 * Rebalanced max damage
     * Basic = 128
     * Copper = 256
@@ -122,7 +120,6 @@
 
 ####Fixes
 * Gifting npcs on their birthday will now only work once on smp, instead of over multiple days
-* My hoes will now work with BOP blocks
 * Made shop scroll behave better
 * Add used to upgrade tooltip to all ores
 * Fix missing crosshairs when exiting an npc gui

@@ -60,11 +60,11 @@ public class CraftTweaker {
 
     //Helpers
     public static ItemStack asStack(IIngredient ingredient) {
-        return ingredient.getInternal() instanceof ItemStack ? (ItemStack) ingredient.getInternal() : null;
+        return ingredient != null && ingredient.getInternal() instanceof ItemStack ? (ItemStack) ingredient.getInternal() : null;
     }
 
     public static String asOre(IIngredient ingredient) {
-        return ingredient.getInternal() instanceof IOreDictEntry ? ((IOreDictEntry) ingredient).getName() : null;
+        return ingredient != null && ingredient.getInternal() instanceof IOreDictEntry ? ((IOreDictEntry) ingredient).getName() : null;
     }
 
     public static IRequirement[] asRequirements(IIngredient[] ingredients) {

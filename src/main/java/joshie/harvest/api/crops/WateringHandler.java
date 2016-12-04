@@ -1,5 +1,6 @@
 package joshie.harvest.api.crops;
 
+import joshie.harvest.crops.CropRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFarmland;
 import net.minecraft.block.state.IBlockState;
@@ -51,7 +52,10 @@ public class WateringHandler {
         int moisture = state.getValue(BlockFarmland.MOISTURE);
         if (moisture == WET_SOIL) world.setBlockState(pos, state.withProperty(BlockFarmland.MOISTURE, DRYING_SOIL), 2);
         else if (moisture == DRYING_SOIL) world.setBlockState(pos, state.withProperty(BlockFarmland.MOISTURE, DRY_SOIL), 2);
-        else if (moisture == DRY_SOIL && hasNoCrops(world, pos)) world.setBlockState(pos, Blocks.DIRT.getDefaultState(), 2);
+        else if (moisture == DRY_SOIL && hasNoCrops(world, pos)) {
+            IBlockState dirt = CropRegistry.INSTANCE.farmlandToDirtMap.get(state);
+            world.setBlockState(pos, dirt != null ? dirt : Blocks.DIRT.getDefaultState(), 2);
+        }
     }
 
     /** Checks if there is anything above the block **/

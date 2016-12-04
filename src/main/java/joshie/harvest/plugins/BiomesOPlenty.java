@@ -14,12 +14,14 @@ import static joshie.harvest.crops.HFCrops.DISABLE_VANILLA_MOISTURE;
 
 @ObjectHolder("BiomesOPlenty")
 @HFLoader(mods = "BiomesOPlenty")
+@SuppressWarnings("unused")
 public class BiomesOPlenty {
     public static final Item turnip_seeds = null;
     public static final Item turnip = null;
     public static final Block mushroom = null;
     public static final Block farmland_0 = null;
     public static final Block farmland_1 = null;
+    public static final Block dirt = null;
 
     @SuppressWarnings("ConstantConditions")
     public static void init() {
@@ -33,7 +35,8 @@ public class BiomesOPlenty {
             farmland_1.setTickRandomly(false);
          }
 
-        //TODO: Register BOP Farmland to dirt (need to add bop as lib possibly?)
-        //HFApi.crops.registerFarmlandToDirtMapping(Blocks.FARMLAND.getDefaultState().withProperty(BlockFarmland.MOISTURE, 0), Blocks.DIRT.getDefaultState());
+        HFApi.crops.registerFarmlandToDirtMapping(farmland_0.getStateFromMeta(0), dirt.getStateFromMeta(0));
+        HFApi.crops.registerFarmlandToDirtMapping(farmland_0.getStateFromMeta(8), dirt.getStateFromMeta(1));
+        HFApi.crops.registerFarmlandToDirtMapping(farmland_1.getStateFromMeta(0), dirt.getStateFromMeta(2));
     }
 }

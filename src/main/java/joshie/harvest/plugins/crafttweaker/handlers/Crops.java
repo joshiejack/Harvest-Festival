@@ -4,6 +4,7 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.AnimalFoodType;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.crops.Crop;
+import joshie.harvest.plugins.crafttweaker.CraftTweaker;
 import joshie.harvest.plugins.crafttweaker.base.BaseCrop;
 import joshie.harvest.plugins.crafttweaker.base.BaseOnce;
 import minetweaker.MineTweakerAPI;
@@ -25,6 +26,7 @@ import static joshie.harvest.plugins.crafttweaker.CraftTweaker.asStack;
 public class Crops {
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     @ZenMethod
+    @SuppressWarnings("unused")
     public static void addCrop(String name) {
         MineTweakerAPI.apply(new Add(name));
     }
@@ -55,8 +57,11 @@ public class Crops {
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     @ZenMethod
+    @SuppressWarnings("unused")
     public static void setDrop(String name, IItemStack drop) {
-        MineTweakerAPI.apply(new SetDrop(name, asStack(drop)));
+        ItemStack stack = asStack(drop);
+        if (stack == null) CraftTweaker.logError(String.format("Could not set the drop for %s as the stack item was null", name));
+        else MineTweakerAPI.apply(new SetDrop(name, stack));
     }
 
     private static class SetDrop extends BaseCrop {
@@ -83,11 +88,15 @@ public class Crops {
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     @ZenMethod
+    @SuppressWarnings("unused")
     public static void setStages(String name, IItemStack block, int[] stages) {
-        MineTweakerAPI.apply(new SetStages(name, asBlock(block), stages));
+        Block theBlock = asBlock(block);
+        if (theBlock == null) CraftTweaker.logError(String.format("Could not set the drop for %s as the stack item was null or not a block", name));
+        else MineTweakerAPI.apply(new SetStages(name, theBlock, stages));
     }
 
     @ZenMethod
+    @SuppressWarnings("unused")
     public static void setStages(String name, int[] stages) {
         MineTweakerAPI.apply(new SetStages(name, stages));
     }
@@ -123,6 +132,7 @@ public class Crops {
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     @ZenMethod
+    @SuppressWarnings("unused")
     public static void setSeasons(String name, String[] seasons) {
         MineTweakerAPI.apply(new SetSeason(name, seasons));
     }
@@ -152,6 +162,7 @@ public class Crops {
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     @ZenMethod
+    @SuppressWarnings("unused")
     public static void setValue(String name, long cost, long sell) {
         MineTweakerAPI.apply(new SetValue(name, cost, sell));
     }
@@ -181,6 +192,7 @@ public class Crops {
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     @ZenMethod
+    @SuppressWarnings("unused")
     public static void setSeedColor(String name, String hex) {
         MineTweakerAPI.apply(new SetColor(name, hex));
     }
@@ -207,6 +219,7 @@ public class Crops {
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     @ZenMethod
+    @SuppressWarnings("unused")
     public static void setRegrow(String name, int stage) {
         MineTweakerAPI.apply(new SetRegrow(name, stage));
     }
@@ -233,6 +246,7 @@ public class Crops {
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     @ZenMethod
+    @SuppressWarnings("unused")
     public static void setFoodType(String name, String type) {
         MineTweakerAPI.apply(new SetFoodType(name, type));
     }
@@ -259,6 +273,7 @@ public class Crops {
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     @ZenMethod
+    @SuppressWarnings("unused")
     public static void setYearUnlocked(String name, int year) {
         MineTweakerAPI.apply(new SetUnlocked(name, year));
     }
@@ -285,6 +300,7 @@ public class Crops {
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     @ZenMethod //If you use a value that is -1 or lower, it removes the requirement
+    @SuppressWarnings("unused")
     public static void setRequiresSickle(String name, int minCut) {
         MineTweakerAPI.apply(new SetSickle(name, minCut));
     }
@@ -311,6 +327,7 @@ public class Crops {
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     @ZenMethod
+    @SuppressWarnings("unused")
     public static void setPlantType(String name, String type) {
         MineTweakerAPI.apply(new SetPlantType(name, type));
     }
@@ -337,6 +354,7 @@ public class Crops {
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     @ZenMethod
+    @SuppressWarnings("unused")
     public static void setWaterRequirements(String name, boolean value) {
         MineTweakerAPI.apply(new SetWaterRequirements(name, value));
     }

@@ -92,6 +92,6 @@ public abstract class PurchasableFML<I extends IForgeRegistryEntry.Impl<I>> impl
 
     @Override
     public String getPurchaseableID() {
-        return ((cost >= 0) ? "buy: " : "sell: ") + item.getRegistryName().toString().replace(":", "_");
+        return ((cost >= 0) ? "buy" : "sell") + "[" + item.getRegistryName().toString().replace(":", "_") + "]";
     }
 }

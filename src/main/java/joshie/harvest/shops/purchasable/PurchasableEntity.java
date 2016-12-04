@@ -37,7 +37,7 @@ public class PurchasableEntity implements IPurchasable {
         this.eClass = clazz;
         this.cost = cost;
         this.lead = lead;
-        this.resource = ((cost >= 0) ? "buy: " : "sell: ") + clazz.getSimpleName().toLowerCase(Locale.ENGLISH);
+        this.resource = ((cost >= 0) ? "buy" : "sell") + "[" + clazz.getSimpleName().toLowerCase(Locale.ENGLISH) + "]";
     }
 
     public PurchasableEntity setNote(Note note) {

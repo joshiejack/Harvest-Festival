@@ -28,7 +28,7 @@ public class PurchasableRandomMeal extends PurchasableMeal {
 
     @Override
     public String getPurchaseableID() {
-        return "buy:random:" + seedAdjustment;
+        return "buy[random_" + seedAdjustment + "]";
     }
 
     @Override

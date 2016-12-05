@@ -1,3 +1,7 @@
+##0.5.17
+* Happy New Year!
+* Fix a potential crash with farmland when it's raining (after it turned to dirt!)
+
 ##0.5.16
 * Fix missing localisation for some CT support
 

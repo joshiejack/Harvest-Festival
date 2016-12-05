@@ -32,13 +32,13 @@ public class PurchasableMaterials extends PurchasableFML<BuildingImpl> implement
         if (logs != 0 && stone == 0) requirements = new IRequirement[] { Logs.of(logs) };
         else if (logs == 0 && stone != 0) requirements = new IRequirement[] { Stone.of(stone) };
         else requirements = new IRequirement[] { Logs.of(logs), Stone.of(stone) };
-        this.resource = ((cost >= 0) ? "buy" : "sell") + "[" + name.toString().replace(":", "_") + "]";
+        this.resource = ((cost >= 0) ? "buy:" : "sell:") + name.toString().replace(":", "_");
     }
 
     public PurchasableMaterials(long cost, ResourceLocation name, IRequirement... requirements) {
         super(cost, name);
         this.requirements = requirements;
-        this.resource = ((cost >= 0) ? "buy" : "sell") + "[" + name.toString().replace(":", "_") + "]";
+        this.resource = ((cost >= 0) ? "buy:" : "sell:") + name.toString().replace(":", "_");
     }
 
     public PurchasableMaterials(long cost, int logs, int stone, ItemStack stack) {
@@ -47,14 +47,14 @@ public class PurchasableMaterials extends PurchasableFML<BuildingImpl> implement
         if (logs != 0 && stone == 0) requirements = new IRequirement[] { Logs.of(logs) };
         else if (logs == 0 && stone != 0) requirements = new IRequirement[] { Stone.of(stone) };
         else requirements = new IRequirement[] { Logs.of(logs), Stone.of(stone) };
-        this.resource = ((cost >= 0) ? "buy" : "sell") + "[" + Purchasable.stackToString(stack) + "]";
+        this.resource = ((cost >= 0) ? "buy:" : "sell:") + Purchasable.stackToString(stack);
     }
 
     public PurchasableMaterials(long cost, ItemStack stack, IRequirement... requirements) {
         super(cost, null);
         this.stack = stack;
         this.requirements = requirements;
-        this.resource = ((cost >= 0) ? "buy" : "sell") + "[" + Purchasable.stackToString(stack) + "]";
+        this.resource = ((cost >= 0) ? "buy:" : "sell:") + Purchasable.stackToString(stack);
     }
 
     @Override

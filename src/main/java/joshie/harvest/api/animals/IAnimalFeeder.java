@@ -8,7 +8,7 @@ import net.minecraft.world.World;
 /** Implement this on blocks that are able to feed animals **/
 public interface IAnimalFeeder {
     /** Call this to feed the animal, returns true if it was possible
-     * @param animal       the animal to be fed
+     * @param stats       the animal to be fed
      * @param world         the world object
      * @param pos           the position of the feeder
      * @param state         the state of the block

@@ -1,7 +1,6 @@
 package joshie.harvest.animals.tile;
 
 import joshie.harvest.api.HFApi;
-import joshie.harvest.api.animals.AnimalAction;
 import joshie.harvest.api.animals.AnimalStats;
 import joshie.harvest.core.base.tile.TileFillable;
 import joshie.harvest.core.helpers.EntityHelper;
@@ -13,7 +12,7 @@ import static joshie.harvest.api.animals.AnimalFoodType.SEED;
 public class TileFeeder extends TileFillable {
     @Override
     public boolean onActivated(ItemStack held) {
-        if (HFApi.animals.canEat(held, SEED)) {
+        if (held != null && HFApi.animals.canEat(held, SEED)) {
             boolean processed = false;
             for (int i = 0; i < 10 && held.stackSize > 0; i++) {
                 if (held.stackSize >= 1) {
@@ -59,7 +58,7 @@ public class TileFeeder extends TileFillable {
         for (EntityAnimal animal : EntityHelper.getEntities(EntityAnimal.class, getWorld(), getPos(), 32D, 5D)) {
             AnimalStats stats = EntityHelper.getStats(animal);
             if (stats != null && HFApi.animals.canAnimalEatFoodType(stats, SEED) && hasFoodAndFeed()) {
-                stats.performAction(getWorld(), null, null, AnimalAction.FEED);
+                //stats.performAction(getWorld(), null, null, AnimalAction.FEED);
             }
         }
     }

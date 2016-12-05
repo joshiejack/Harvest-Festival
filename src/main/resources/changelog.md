@@ -14,6 +14,8 @@
 * Feeding animals incorrect treats or hitting them will cause a relationship penalty
 * Changed relationship maximum to 27,000RP
 * Cows, Chickens and Sheep should be a little smarter, and try to find a location that's inside when it's raining, night or winter, and go outside when its day, sunny and not winter
+* Animals will now search for feeding trays/troughs/feeding trays within a 64 block radius, so ensure they can access them
+* Change collision of nests and feeding trays
 
 ###Buildings
 * Optimised building save format, should be smaller size

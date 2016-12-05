@@ -16,9 +16,13 @@ public class EntityAIEatLivestock extends EntityAIEat {
     }
 
     @Override
-    protected boolean isEdible(IBlockState state) {
+    boolean isEdible(BlockPos pos, IBlockState state) {
         Block block = state.getBlock();
-        return block == Blocks.TALLGRASS || block == Blocks.TALLGRASS && state.getValue(BlockDoublePlant.VARIANT) == EnumPlantType.GRASS || super.isEdible(state);
+        if (block == Blocks.TALLGRASS || (block == Blocks.TALLGRASS && state.getValue(BlockDoublePlant.VARIANT) == EnumPlantType.GRASS)) {
+            return animal.getDistance(pos.getX(), pos.getY(), pos.getZ()) <= 1D;
+        }
+
+        return super.isEdible(pos, state);
     }
 
     protected void eat(BlockPos pos, IBlockState state) {

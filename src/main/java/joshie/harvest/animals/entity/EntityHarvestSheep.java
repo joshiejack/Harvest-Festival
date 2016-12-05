@@ -53,11 +53,11 @@ public class EntityHarvestSheep extends EntitySheep {
     protected void initEntityAI() {
         entityAIEatGrass = new EntityAIEatGrass(this);
         tasks.addTask(0, new EntityAISwimming(this));
-        tasks.addTask(1, new EntityAIPanic(this, 1.25D));
-        tasks.addTask(3, new EntityAITempt(this, 1.1D, Items.WHEAT, false));
-        tasks.addTask(3, new EntityAIFindShelterOrSun(this));
-        tasks.addTask(4, new EntityAIFollowParent(this, 1.1D));
-        tasks.addTask(5, new EntityAIEatLivestock(this));
+        tasks.addTask(1, new EntityAIPanic(this, 2.0D));
+        tasks.addTask(2, new EntityAITempt(this, 1.25D, Items.WHEAT, false));
+        tasks.addTask(3, new EntityAIFollowParent(this, 1.25D));
+        tasks.addTask(4, new EntityAIEatLivestock(this));
+        tasks.addTask(5, new EntityAIFindShelterOrSun(this));
         tasks.addTask(6, new EntityAIWander(this, 1.0D));
         tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
         tasks.addTask(8, new EntityAILookIdle(this));

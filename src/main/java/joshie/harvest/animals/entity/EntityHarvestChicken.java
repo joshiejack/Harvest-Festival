@@ -41,14 +41,14 @@ public class EntityHarvestChicken extends EntityChicken {
     protected void initEntityAI()  {
         tasks.addTask(0, new EntityAISwimming(this));
         tasks.addTask(1, new EntityAIPanic(this, 1.4D));
-        tasks.addTask(3, new EntityAITempt(this, 1.0D, false, TEMPTATION_ITEMS));
-        tasks.addTask(3, new EntityAIFindShelterOrSun(this));
-        tasks.addTask(4, new EntityAIFollowParent(this, 1.1D));
-        tasks.addTask(5, new EntityAIEat(this));
+        tasks.addTask(2, new EntityAITempt(this, 1.0D, false, TEMPTATION_ITEMS));
+        tasks.addTask(3, new EntityAIFollowParent(this, 1.1D));
+        tasks.addTask(4, new EntityAIEat(this));
         tasks.addTask(5, new EntityAILayEgg(this));
-        tasks.addTask(6, new EntityAIWander(this, 1.0D));
-        tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
-        tasks.addTask(8, new EntityAILookIdle(this));
+        tasks.addTask(6, new EntityAIFindShelterOrSun(this));
+        tasks.addTask(7, new EntityAIWander(this, 1.0D));
+        tasks.addTask(8, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
+        tasks.addTask(9, new EntityAILookIdle(this));
     }
 
     @Override

@@ -93,10 +93,6 @@ public class Shop implements IShop {
         return this;
     }
 
-    public static String getRegistryName(ResourceLocation resource, IPurchasable item) {
-        return resource + ":" + item.getPurchaseableID();
-    }
-
     @Override
     public IShop addItem(long cost, ItemStack... items) {
         return addItem(new Purchasable(cost, items[0]));

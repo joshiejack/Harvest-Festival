@@ -241,7 +241,6 @@ public class AnimalStatsHF implements AnimalStats<NBTTagCompound> {
             }
 
             updatePregnancy();
-
             sendToEveryone(new PacketSyncAnimal(animal.getEntityId(), this));
             return true;
         } else return false;

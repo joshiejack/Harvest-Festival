@@ -312,7 +312,7 @@ public class Shops {
     }
 
     private static String fixPurchasableID(String id) {
-        if (!id.startsWith("buy") || !id.startsWith("sell")) return "buy[" + id + "]";
+        if (!id.startsWith("buy") || !id.startsWith("sell")) return "buy:" + id;
         else return id;
     }
 }

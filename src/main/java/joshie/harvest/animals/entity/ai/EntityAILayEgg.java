@@ -2,7 +2,6 @@ package joshie.harvest.animals.entity.ai;
 
 import joshie.harvest.api.animals.AnimalTest;
 import joshie.harvest.api.animals.INest;
-import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.util.math.BlockPos;
@@ -27,7 +26,7 @@ public class EntityAILayEgg extends EntityAIAnimal {
             isReadyToLayEgg = getStats() != null && getStats().canProduce() && getStats().performTest(AnimalTest.HAS_EATEN);
         }
 
-        return false;
+        return isReadyToLayEgg && super.shouldExecute();
     }
 
     @Override
@@ -37,18 +36,12 @@ public class EntityAILayEgg extends EntityAIAnimal {
 
     @Override
     public void updateTask() {
-        System.out.println("Chicken looking for egg nest?");
-
         super.updateTask();
-        animal.getLookHelper().setLookPosition((double)destinationBlock.getX() + 0.5D, (double)(destinationBlock.getY() + 1), (double)destinationBlock.getZ() + 0.5D, 10.0F, (float)animal.getVerticalFaceSpeed());
-
+        World world = animal.worldObj;
         if (getIsAboveDestination()) {
-            World world = animal.worldObj;
-            BlockPos blockpos = destinationBlock.up();
-            IBlockState iblockstate = world.getBlockState(blockpos);
-            Block block = iblockstate.getBlock();
-            if (currentTask == 1 && iblockstate.getBlock() instanceof INest) {
-                ((INest) block).layEgg(getStats(), animal.worldObj, blockpos, iblockstate);
+            if (currentTask == 1 && isEmptyNest(world, destinationBlock.up())) {
+                IBlockState iblockstate = world.getBlockState(destinationBlock.up());
+                ((INest)iblockstate.getBlock()).layEgg(getStats(), world, destinationBlock.up(), iblockstate);
             }
 
             currentTask = -1;
@@ -58,8 +51,7 @@ public class EntityAILayEgg extends EntityAIAnimal {
 
     @Override
     protected boolean shouldMoveTo(@Nonnull World worldIn, @Nonnull BlockPos pos) {
-        IBlockState iblockstate = worldIn.getBlockState(pos.up());
-        if (iblockstate.getBlock() instanceof INest) {
+        if (animal.getDistance(pos.getX(), pos.getY(), pos.getZ()) <= 32D && isEmptyNest(worldIn, pos.up())) {
             if (isReadyToLayEgg && (currentTask == 1 || currentTask < 0)) {
                 currentTask = 1;
                 return true;
@@ -67,6 +59,11 @@ public class EntityAILayEgg extends EntityAIAnimal {
         }
 
         return false;
+    }
+
+    private boolean isEmptyNest(World world, BlockPos pos) {
+        IBlockState state = world.getBlockState(pos);
+        return state.getBlock() instanceof INest && ((INest)state.getBlock()).isNest(getStats(), world, pos, state);
     }
 
     /*

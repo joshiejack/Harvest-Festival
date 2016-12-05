@@ -38,14 +38,14 @@ public class PacketSyncAnimal extends PenguinPacket {
     public void fromBytes(ByteBuf buf) {
         id = buf.readInt();
         if (buf.readBoolean()) {
-            this.tag = ByteBufUtils.readTag(buf);
+            tag = ByteBufUtils.readTag(buf);
         }
     }
 
     @Override
     @SuppressWarnings("unchecked, ConstantConditions")
     public void handlePacket(EntityPlayer player) {
-        EntityAnimal animal = (EntityAnimal) MCClientHelper.getWorld().getEntityByID(id);
+        EntityAnimal animal = getEntityAsAnimal();
         if (animal != null) {
             AnimalStats stats = EntityHelper.getStats(animal);
             if (stats != null) {

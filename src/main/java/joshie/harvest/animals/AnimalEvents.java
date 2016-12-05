@@ -15,6 +15,7 @@ import net.minecraft.block.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
@@ -99,7 +100,7 @@ public class AnimalEvents {
         }
 
         private boolean isHolding(ItemStack stack) {
-            return ITEM_STACK.matchesAny(stack, getStacks()) || ITEM.matchesAny(stack, HFAnimals.TREATS);
+            return ITEM_STACK.matchesAny(stack, getStacks()) || ITEM.matchesAny(stack, HFAnimals.TREATS, Items.NAME_TAG);
         }
 
         boolean blocksPickup(EntityPlayer player) {

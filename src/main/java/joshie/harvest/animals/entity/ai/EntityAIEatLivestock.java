@@ -15,6 +15,28 @@ public class EntityAIEatLivestock extends EntityAIEat {
         super(animal);
     }
 
+    @Override
+    protected boolean isEdible(IBlockState state) {
+        Block block = state.getBlock();
+        return block == Blocks.TALLGRASS || block == Blocks.TALLGRASS && state.getValue(BlockDoublePlant.VARIANT) == EnumPlantType.GRASS || super.isEdible(state);
+    }
+
+    protected void eat(BlockPos pos, IBlockState state) {
+        Block block = state.getBlock();
+        if (block == Blocks.TALLGRASS) {
+            getStats().performAction(animal.worldObj, null, null, AnimalAction.FEED);
+            animal.worldObj.setBlockToAir(pos);
+        } else if (block == Blocks.TALLGRASS && state.getValue(BlockDoublePlant.VARIANT) == EnumPlantType.GRASS) {
+            getStats().performAction(animal.worldObj, null, null, AnimalAction.FEED);
+            animal.worldObj.setBlockToAir(pos);
+            if (state.getValue(BlockDoublePlant.HALF) == EnumBlockHalf.LOWER) {
+                animal.worldObj.setBlockToAir(pos.up());
+            } else animal.worldObj.setBlockToAir(pos.down());
+        } else super.eat(pos, state);
+    }
+
+    /**
+    @Override
     protected boolean attemptToEat(BlockPos position, IBlockState state, Block block) {
         if (block == Blocks.TALLGRASS) {
             getStats().performAction(animal.worldObj, null, null, AnimalAction.FEED);
@@ -29,5 +51,5 @@ public class EntityAIEatLivestock extends EntityAIEat {
 
             return true;
         } else return super.attemptToEat(position, state, block);
-    }
+    } **/
 }

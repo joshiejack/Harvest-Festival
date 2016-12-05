@@ -157,6 +157,9 @@ public class HFShops {
         CAFE.addPurchasable(new PurchasableRecipe(SUMMER, WEDNESDAY, new ResourceLocation(MODID, "rice_fried")));
         CAFE.addPurchasable(new PurchasableRecipe(SUMMER, THURSDAY, new ResourceLocation(MODID, "doria")));
         CAFE.addPurchasable(new PurchasableRecipe(SUMMER, FRIDAY, new ResourceLocation(MODID, "juice_fruit")));
+        CAFE.addPurchasable(new PurchasableRecipe(SUMMER, SATURDAY, new ResourceLocation(MODID, "salad_herb")));
+        CAFE.addPurchasable(new PurchasableRecipe(SUMMER, SUNDAY, new ResourceLocation(MODID, "soup_herb")));
+        CAFE.addPurchasable(new PurchasableRecipe(SUMMER, SUNDAY, new ResourceLocation(MODID, "sandwich_herb")));
         CAFE.addPurchasable(new PurchasableRecipe(AUTUMN, MONDAY, new ResourceLocation(MODID, "sweet_potatoes")));
         CAFE.addPurchasable(new PurchasableRecipe(AUTUMN, TUESDAY, new ResourceLocation(MODID, "eggplant_happy")));
         CAFE.addPurchasable(new PurchasableRecipe(AUTUMN, WEDNESDAY, new ResourceLocation(MODID, "sandwich")));

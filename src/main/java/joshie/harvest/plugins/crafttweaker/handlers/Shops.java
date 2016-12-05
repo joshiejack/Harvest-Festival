@@ -288,7 +288,7 @@ public class Shops {
     public static void adjustCarpenter(String input, int logs, int stone, long cost) {
         String id = fixPurchasableID(input);
         if (HFShops.CARPENTER.getPurchasableFromID(id) == null) CraftTweaker.logError(String.format("No purchasable with the id %s could be found in " + HFShops.CARPENTER, id));
-        else if (!(HFShops.CARPENTER.getPurchasableFromID(id) instanceof PurchasableWrapperMaterials)) CraftTweaker.logError(String.format("The item %s did not originall accept materials, you cannot adjust the values", id));
+        else if (!(HFShops.CARPENTER.getPurchasableFromID(id) instanceof PurchasableWrapperMaterials)) CraftTweaker.logError(String.format("The item %s did not originally accept materials, you cannot adjust the values", id));
         else MineTweakerAPI.apply(new AdjustCarpenter(HFShops.CARPENTER.getPurchasableFromID(id), cost, logs, stone));
     }
 

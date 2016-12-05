@@ -38,6 +38,7 @@ public interface IAnimalHandler {
      *  @param add      if this is true, the ai will be added to the tasks list with its default value
      *  @return the entity ai itself, or null if the ai type was't found */
     @Nullable
+    @Deprecated //TODO: Remove in 0.7+
     EntityAIBase getEntityAI(EntityAnimal animal, AnimalAI type, boolean add);
 
     /** Syncs the animal to everyone nearby,

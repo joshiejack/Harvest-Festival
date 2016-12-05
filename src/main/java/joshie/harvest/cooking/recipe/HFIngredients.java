@@ -14,6 +14,7 @@ import joshie.harvest.crops.HFCrops;
 import joshie.harvest.fishing.HFFishing;
 import joshie.harvest.fishing.item.ItemFish;
 import joshie.harvest.fishing.item.ItemFish.Fish;
+import joshie.harvest.gathering.HFGathering;
 import joshie.harvest.gathering.block.BlockNature.NaturalBlock;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -39,6 +40,7 @@ public class HFIngredients {
     public static final Ingredient SASHIMI_VEGETABLE = new Ingredient("sashimi_vegetable");
     public static final Ingredient FISH = new Ingredient("fish");
     public static final Ingredient MEAT = new Ingredient("meat");
+    public static final Ingredient HERB = new Ingredient("herb");
 
     //Formula
     //Cost = Shop/Sell Price += Give or Take
@@ -82,6 +84,9 @@ public class HFIngredients {
     //Gathered
     public static final Ingredient BAMBOO = new Ingredient("bamboo", 3, 1F);
     public static final Ingredient MATSUTAKE = new Ingredient("matsutake", 4, 0.6F);
+    public static final Ingredient CHAMOMILE = new Ingredient("chamomile", 1, 0.3F);
+    public static final Ingredient MINT = new Ingredient("mint", 1, 0.3F);
+    public static final Ingredient LAVENDAR = new Ingredient("lavendar", 1, 0.3F);
 
     //Crops
     public static final Ingredient TURNIP = HFCrops.TURNIP.getIngredient();
@@ -130,6 +135,7 @@ public class HFIngredients {
         SASHIMI_VEGETABLE.add(CUCUMBER, TOMATO, ONION, EGGPLANT);
         MEAT.add(CHICKEN, PORK, BEEF, MUTTON, RABBIT);
         FISH.add(SALMON, COD);
+        HERB.add(CHAMOMILE, MINT, LAVENDAR);
     }
 
     private static String getPrimaryCropName(ItemStack stack) {
@@ -170,6 +176,9 @@ public class HFIngredients {
 
         //Other Plants
         CookingAPI.INSTANCE.register(NATURE.getStackFromEnum(NaturalBlock.BAMBOO), BAMBOO);
+        CookingAPI.INSTANCE.register(HFGathering.NATURE.getStackFromEnum(NaturalBlock.CHAMOMILE), CHAMOMILE);
+        CookingAPI.INSTANCE.register(HFGathering.NATURE.getStackFromEnum(NaturalBlock.MINT), MINT);
+        CookingAPI.INSTANCE.register(HFGathering.NATURE.getStackFromEnum(NaturalBlock.LAVENDAR), LAVENDAR);
 
         //Ingredients
         registerForOre("foodChocolatebar", CHOCOLATE);

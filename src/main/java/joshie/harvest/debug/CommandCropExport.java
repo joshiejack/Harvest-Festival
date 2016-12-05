@@ -205,9 +205,4 @@ public class CommandCropExport extends AbstractHFCommand {
 
         return true;
     }
-
-    @Override
-    public String getUsage() {
-        return "";
-    }
 }

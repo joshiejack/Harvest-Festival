@@ -11,7 +11,9 @@ public abstract class AbstractHFCommand implements Comparable<Object> {
     public abstract String getCommandName();
 
     /** Return the usage **/
-    public abstract String getUsage();
+    public String getUsage() {
+        return "/hf " + getCommandName();
+    }
 
     /** Execute this command
      * @param server        the minecraft server

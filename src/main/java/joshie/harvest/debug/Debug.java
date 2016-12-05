@@ -72,6 +72,9 @@ public class Debug {
         register(Meal.TURNIP_PICKLED, "Completing [[Cafe Tutorial]]"); //Cafe Reward
         register(Meal.CUCUMBER_PICKLED, "[[Cafe]] on Fridays in [[Spring]]");//Shop
         register(Meal.SALAD, "5000RP with [[Jenni]]"); //Jenni 5000RP
+        register(Meal.SALAD_HERB, "[[Cafe]] on Saturdays in [[Summer]]"); //Shop
+        register(Meal.SOUP_HERB, "[[Cafe]] on Sundays in [[Summer]]"); //Shop
+        register(Meal.SANDWICH_HERB, "[[Cafe]] on Sundays in [[Summer]]"); //Shop
         register(Meal.SANDWICH, "[[Cafe]] on Wednesdays in [[Autumn]]");//Shop
         register(Meal.SANDWICH_FRUIT, "[[Cafe]] on Thursdays in [[Autumn]]");//Shop
         register(Meal.SUSHI, "[[Cafe]] on Tuesdays in [[Spring]]");//Shop

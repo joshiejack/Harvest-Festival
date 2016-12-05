@@ -1,11 +1,11 @@
 package joshie.harvest.animals.entity;
 
 import joshie.harvest.animals.HFAnimals;
+import joshie.harvest.animals.entity.ai.EntityAIEatLivestock;
 import joshie.harvest.animals.entity.ai.EntityAIFindShelterOrSun;
 import joshie.harvest.animals.item.ItemAnimalTool.Tool;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.AnimalStats;
-import joshie.harvest.api.animals.IAnimalHandler.AnimalAI;
 import joshie.harvest.api.animals.IAnimalHandler.AnimalType;
 import joshie.harvest.api.player.RelationshipType;
 import joshie.harvest.core.HFTrackers;
@@ -49,7 +49,7 @@ public class EntityHarvestCow extends EntityCow {
         tasks.addTask(3, new EntityAITempt(this, 1.25D, Items.WHEAT, false));
         tasks.addTask(3, new EntityAIFindShelterOrSun(this));
         tasks.addTask(4, new EntityAIFollowParent(this, 1.25D));
-        HFApi.animals.getEntityAI(this, AnimalAI.EAT_GRASS, true);
+        tasks.addTask(5, new EntityAIEatLivestock(this));
         tasks.addTask(6, new EntityAIWander(this, 1.0D));
         tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
         tasks.addTask(8, new EntityAILookIdle(this));

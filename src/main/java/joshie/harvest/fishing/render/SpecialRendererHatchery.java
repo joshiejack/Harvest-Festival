@@ -7,12 +7,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nonnull;
 import java.util.List;
 
 @SideOnly(Side.CLIENT)
 public class SpecialRendererHatchery extends TileSpecialRendererItem<TileHatchery> {
     @Override
-    public void renderTileEntityAt(TileHatchery tile, double x, double y, double z, float tick, int destroyStage) {
+    public void renderTileEntityAt(@Nonnull TileHatchery tile, double x, double y, double z, float tick, int destroyStage) {
         GlStateManager.pushMatrix();
         GlStateManager.translate(x, y, z);
         List<ItemStack> fish = tile.getFish();

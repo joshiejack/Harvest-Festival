@@ -108,7 +108,9 @@ public class HFRecipes {
         addNoUtensilRecipe(Meal.RICE_MATSUTAKE, 2F, 1.5F, MATSUTAKE, RICEBALL);//Shops
         addNoUtensilRecipe(Meal.RICE_MUSHROOM, 2F, 1.5F, BROWN_MUSHROOM, RICEBALL);//Shops
         addNoUtensilRecipe(Meal.BREAD_RAISIN, 1.2F, 1.2F, BREAD, GRAPE);//Tiberius
-        addNoUtensilRecipe(Meal.ICE_CREAM, 1.8F, 0.8F, MILK, EGG).setOptionalIngredients(PINEAPPLE, ORANGE, STRAWBERRY, GRAPE, PEACH, BANANA); //Candice 10000RP
+        addNoUtensilRecipe(Meal.ICE_CREAM, 1.8F, 0.8F, MILK, EGG).setOptionalIngredients(PINEAPPLE, ORANGE, STRAWBERRY, GRAPE, PEACH, BANANA); //Candice 10000RP#
+        addNoUtensilRecipe(Meal.SALAD_HERB, 1F, 1.3F, MINT, CHAMOMILE, LAVENDAR); //Shop
+        addNoUtensilRecipe(Meal.SANDWICH_HERB, 1.05F, 1.1F, BREAD, MINT, CHAMOMILE, LAVENDAR); //Shop
     }
 
     private static void addPotRecipes() {
@@ -133,6 +135,7 @@ public class HFRecipes {
         addPotRecipe(Meal.MARMALADE, 1.5F, 0.9F, ORANGE).setOptionalIngredients(WINE);//Jade 20000RP
         addPotRecipe(Meal.NOODLES_TEMPURA, 1.1F, 0.9F, TEMPURA, NOODLES);//Liara 22500RP
         addPotRecipe(Meal.RICE_TEMPURA, 1.1F, 0.9F, TEMPURA, RICEBALL);//Liara 20000RP
+        addPotRecipe(Meal.SOUP_HERB, 1.1F, 1.1F, CHAMOMILE, ONION).setOptionalIngredients(MINT, LAVENDAR);//Shops
         //Vanilla style
         addPotRecipe("rabbit_stew", new ItemStack(Items.RABBIT_STEW), BAKED_POTATO, CARROT, RABBIT_COOKED, MUSHROOM).setDefault();
         addPotRecipe("brown_mushroom", new ItemStack(Items.MUSHROOM_STEW), RED_MUSHROOM, BROWN_MUSHROOM).setDefault();

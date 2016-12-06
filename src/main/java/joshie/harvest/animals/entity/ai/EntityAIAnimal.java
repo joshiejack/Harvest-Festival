@@ -8,7 +8,6 @@ import net.minecraft.util.math.BlockPos;
 
 public abstract class EntityAIAnimal extends EntityAIMoveToBlock {
     protected final EntityAnimal animal;
-    protected int wanderTick;
     private AnimalStats stats;
 
     public EntityAIAnimal(EntityAnimal animal) {
@@ -22,7 +21,7 @@ public abstract class EntityAIAnimal extends EntityAIMoveToBlock {
             --runDelay;
             return false;
         } else {
-            runDelay = 10;//200 + animal.getRNG().nextInt(200);
+            runDelay = 200 + animal.getRNG().nextInt(200);
             return searchForDestination();
         }
     }

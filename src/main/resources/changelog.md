@@ -46,7 +46,7 @@
 * Melons and Pumpkins will no longer regrow, and will instead replace the crop
 * Crops will now be plantable on more than farmland, however they will only grow on things other than farmland when a mod adds support
 * Rebalanced the crop prices and changed some stats
-* Removed the year unlocks, and replace with quest based ones instead
+* Changed how/when some crops are unlocked
 * Take note that once any player has completed the quest, the crops can be purchased by anyone in that town
 * When crops die, they chance a chance to turn in to weeds, wood, or rocks
 

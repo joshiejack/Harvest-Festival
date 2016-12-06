@@ -40,7 +40,7 @@ public class EntityAIEat extends EntityAIAnimal {
         World world = animal.worldObj;
         if (animal.getDistance(destinationBlock.getX(), destinationBlock.getY(), destinationBlock.getZ()) <= 1D) {
             animal.getLookHelper().setLookPosition((double)destinationBlock.getX() + 0.5D, (double)(destinationBlock.getY()), (double)destinationBlock.getZ() + 0.5D, 10.0F, (float)animal.getVerticalFaceSpeed());
-            if (eatTimer == 0) eatTimer = 20;
+            if (eatTimer == 0) eatTimer = 50;
             else eatTimer--;
 
             if (eatTimer <= 0) {

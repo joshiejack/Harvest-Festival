@@ -14,6 +14,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nonnull;
 import java.util.List;
 
 public class PurchasableCropSeeds implements IPurchasable {
@@ -34,7 +35,8 @@ public class PurchasableCropSeeds implements IPurchasable {
     }
 
     @Override
-    public boolean canDo(World world, EntityPlayer player, int amount) {
+    @SuppressWarnings("unchecked")
+    public boolean canDo(@Nonnull World world, @Nonnull EntityPlayer player, int amount) {
         CalendarDate date = HFApi.calendar.getDate(world);
         if (!isCorrectSeason(date.getSeason())) return false;
         if (!crop.canPurchase()) return false;

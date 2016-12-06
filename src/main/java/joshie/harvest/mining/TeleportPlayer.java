@@ -1,93 +1,81 @@
 package joshie.harvest.mining;
 
 import joshie.harvest.core.helpers.ChatHelper;
-import joshie.harvest.mining.render.ElevatorRender;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.gameevent.TickEvent.WorldTickEvent;
 
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
 
 public class TeleportPlayer {
-    public static final Set<EntityPlayer> TELEPORTING = new HashSet<>();
-    private static final HashMap<EntityPlayer, TeleportPlayer> TELEPORTS = new HashMap<>();
+    public static final HashMap<EntityPlayer, TeleportPlayer> TELEPORTS = new HashMap<>();
+    public static TeleportPlayer TELEPORTING_CLIENT;
     private final EntityPlayer player;
     private final World world;
     private final BlockPos origin;
     private final BlockPos pos;
     private final EnumFacing facing;
-    private long lastUpdate;
-    private int timer;
+    private long startTime;
+    private long targetTime;
 
     public TeleportPlayer(BlockPos origin, EntityPlayer player, EnumFacing facing, BlockPos pos, int floors) {
         this.player = player;
         this.world = player.worldObj;
         this.pos = pos;
-        this.timer = Math.min(600, Math.max(60, 15 * floors));
+        this.startTime = player.worldObj.getTotalWorldTime();
+        this.targetTime = startTime + Math.min(600, Math.max(60, 15 * floors));
         this.facing = facing;
         this.origin = origin;
-        if (this.world.isRemote) ElevatorRender.ELEVATOR = true;
-        else TELEPORTING.add(player);
     }
 
     public static void initiate(EntityPlayer player, BlockPos twin, EnumFacing facing, BlockPos location) {
-        if (player.worldObj.isRemote) ElevatorRender.ELEVATOR = true;
-        else TELEPORTING.add(player);
-
         //For removing when no longer colliding
         TeleportPlayer ticker = new TeleportPlayer(twin, player, facing, location, MiningHelper.getDifference(twin, location));
-        MinecraftForge.EVENT_BUS.register(ticker);
-        TELEPORTS.put(player, ticker);
+        if (player.worldObj.isRemote) {
+            TELEPORTING_CLIENT = ticker;
+            MinecraftForge.EVENT_BUS.register(ticker);
+        } else TELEPORTS.put(player, ticker);
     }
 
     public static void onCollide(EntityPlayer player) {
-        TeleportPlayer teleporter = TELEPORTS.get(player);
-        if (teleporter != null) {
-            teleporter.onCollisionTick();
+        if (player.worldObj.isRemote) {
+            if (TELEPORTING_CLIENT != null) TELEPORTING_CLIENT.onCollisionTick();
+        } else {
+            TeleportPlayer teleporter = TELEPORTS.get(player);
+            if (teleporter != null) {
+                teleporter.onCollisionTick();
+            }
         }
     }
 
     //Clear up everything
     private void finish() {
-        MinecraftForge.EVENT_BUS.unregister(this);
-        if (world.isRemote) ElevatorRender.ELEVATOR = false;
-        else TELEPORTS.remove(player);
+        if (!world.isRemote) TELEPORTS.remove(player);
+        else TELEPORTING_CLIENT = null;
     }
 
-    @SubscribeEvent
-    public void onWorldTick(WorldTickEvent event) {
-        if (event.world.provider.getDimension() == HFMining.MINING_ID) {
-            if (event.world.getTotalWorldTime() - lastUpdate > 1) {
-                finish();
+    private void onCollisionTick() {
+        if (world.isRemote) {
+            long timer = targetTime - world.getTotalWorldTime();
+            if (timer % 20 == 0 || world.getTotalWorldTime() - 1 == startTime)  ChatHelper.displayChat("Please wait for " + (int)Math.ceil((double)timer / 20D) + " seconds...");
+        }
+
+        if (world.getTotalWorldTime() >= targetTime) {
+            finish();
+            float yaw = facing == EnumFacing.WEST ? 90F : facing == EnumFacing.EAST ? -90F: facing == EnumFacing.NORTH ? 180F : -180F;
+            MiningHelper.teleportToCoordinates(player, pos, yaw);
+            if (world.isRemote) {
+                ChatHelper.displayChat("You have reached your destination!");
             }
         }
     }
 
-    private void onCollisionTick() {
-        if (world.getTotalWorldTime() == lastUpdate) return;
-        lastUpdate = world.getTotalWorldTime();
-        if (world.isRemote && timer %20 == 0)
-            ChatHelper.displayChat("Please wait for " + timer / 20 + " seconds...");
-
-        timer--;
-        if (timer <= 0) {
-            finish(); //Unregister everything
-            MiningHelper.teleportToCoordinates(player, pos);
-            player.rotationYaw = facing.getHorizontalAngle();
-            if (world.isRemote) {
-                ElevatorRender.ELEVATOR = false;
-                ChatHelper.displayChat("You have reached your destination!");
-            } else TELEPORTING.remove(player);
-        }
-    }
-
-    public static boolean isTeleporting(EntityPlayer player) {
-        return player.worldObj.isRemote ? ElevatorRender.ELEVATOR : TELEPORTING.contains(player);
+    public static boolean isTeleporting(EntityPlayer player, BlockPos target) {
+        if (!player.worldObj.isRemote) {
+            TeleportPlayer teleport = TELEPORTS.get(player);
+            return teleport != null && teleport.pos.equals(target);
+        } else return TELEPORTING_CLIENT != null && TELEPORTING_CLIENT.pos.equals(target);
     }
 }

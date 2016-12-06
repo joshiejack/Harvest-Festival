@@ -48,6 +48,7 @@ public class MiningHelper {
     public static final int MAX_FLOORS = (int) Math.floor(WORLD_HEIGHT / FLOOR_HEIGHT);
     public static final int MAX_LOOP = (int) WORLD_HEIGHT - FLOOR_HEIGHT;
     public static final TIntSet HOLE_FLOORS = new TIntHashSet();
+
     static {
         //1k to copper (1)
         //2k to silver (2)
@@ -77,11 +78,11 @@ public class MiningHelper {
     }
 
     public static int getMineID(int chunkZ) {
-        return (int)Math.floor(chunkZ / CHUNK_BOUNDARY);
+        return (int) Math.floor(chunkZ / CHUNK_BOUNDARY);
     }
 
     private static void preloadChunks(WorldServer worldServer, int mineID, int floor) {
-        MiningProvider provider = ((MiningProvider)worldServer.provider);
+        MiningProvider provider = ((MiningProvider) worldServer.provider);
         if (!provider.areCoordinatesGenerated(mineID, floor)) {
             int xStart = (int) Math.floor((floor - 1) / MAX_FLOORS);
             for (int x = xStart * CHUNK_BOUNDARY; x < (xStart * CHUNK_BOUNDARY) + CHUNK_BOUNDARY; x++) {
@@ -134,7 +135,7 @@ public class MiningHelper {
         MinecraftServer server = FMLCommonHandler.instance().getMinecraftServerInstance();
         WorldServer newWorld = server.worldServerForDimension(MINING_ID);
         preloadChunks(newWorld, mineID, 1);
-        MiningProvider provider = ((MiningProvider)newWorld.provider);
+        MiningProvider provider = ((MiningProvider) newWorld.provider);
         provider.onTeleportToMine(mineID); //Called to initiate after chunks are loaded
         BlockPos spawn = modifySpawnAndEntityRotation(newWorld, provider.getSpawnCoordinateForMine(mineID, 1), entity);
         newWorld.notifyBlockUpdate(spawn, newWorld.getBlockState(spawn), newWorld.getBlockState(spawn), 3);
@@ -142,7 +143,7 @@ public class MiningHelper {
     }
 
     public static boolean teleportToOverworld(Entity entity) {
-        int mineID = getMineID((int)entity.posZ >> 4);
+        int mineID = getMineID((int) entity.posZ >> 4);
         TownTracker tracker = HFTrackers.getTownTracker(DimensionManager.getWorld(0));
         BlockPos spawn = tracker.getCoordinatesForOverworldMine(entity, mineID);
         Rotation rotation = tracker.getMineOrientation(mineID);
@@ -160,19 +161,24 @@ public class MiningHelper {
         return EntityHelper.teleport(entity, 0, spawn);
     }
 
-    public static void teleportToCoordinates(Entity entity, BlockPos spawn) {
-        entity.setPosition(spawn.getX() + 0.5D, spawn.getY(), spawn.getZ() + 0.5D);
+    public static void teleportToCoordinates(Entity entity, BlockPos spawn, float yaw) {
+        if (entity instanceof EntityPlayerMP) {
+            ReflectionHelper.setPrivateValue(EntityPlayerMP.class, (EntityPlayerMP) entity, true, "invulnerableDimensionChange", "field_184851_cj");
+            ((EntityPlayerMP) entity).connection.setPlayerLocation(spawn.getX() + 0.5D, spawn.getY(), spawn.getZ() + 0.5D, yaw, entity.rotationPitch);
+        } else {
+            entity.setLocationAndAngles(spawn.getX() + 0.5D, spawn.getY(), spawn.getZ() + 0.5D, yaw, entity.rotationPitch);
+        }
     }
 
     public static boolean teleportBetweenMine(Entity entity) {
-        int mineID = MiningHelper.getMineID((int)entity.posZ >> 4); //Current Mine
-        int floor = getFloor((int)entity.posX >> 4, (int) entity.posY); //Current Floor
+        int mineID = MiningHelper.getMineID((int) entity.posZ >> 4); //Current Mine
+        int floor = getFloor((int) entity.posX >> 4, (int) entity.posY); //Current Floor
         boolean top = floor % MAX_FLOORS == 1;
         int newFloor = top ? floor - 1 : floor + 1;
         MinecraftServer server = FMLCommonHandler.instance().getMinecraftServerInstance();
         WorldServer newWorld = server.worldServerForDimension(MINING_ID);
         preloadChunks(newWorld, mineID, newFloor);
-        MiningProvider provider = ((MiningProvider)newWorld.provider);
+        MiningProvider provider = ((MiningProvider) newWorld.provider);
         provider.onTeleportToMine(mineID); //Called to initiate after chunks are loaded
         BlockPos spawn = modifySpawnAndEntityRotation(newWorld, provider.getSpawnCoordinateForMine(mineID, newFloor), entity);
         if (entity.timeUntilPortal == 0) {
@@ -193,30 +199,30 @@ public class MiningHelper {
     }
 
     public static int getFloor(int xPosition, int posY) {
-        int chunkIndex = (int) Math.floor(((double)xPosition) / CHUNK_BOUNDARY);
-        int floorIndex = (int) (MAX_FLOORS - Math.floor(((double)posY) / FLOOR_HEIGHT));
+        int chunkIndex = (int) Math.floor(((double) xPosition) / CHUNK_BOUNDARY);
+        int floorIndex = (int) (MAX_FLOORS - Math.floor(((double) posY) / FLOOR_HEIGHT));
         return (chunkIndex * MAX_FLOORS) + floorIndex; //Floor
     }
 
     public static int getOreChance(Season season, int floor, Random rand) {
-        int lowerLimit = season == WINTER ? 8: 10;
-        int upperLimit = season == WINTER ? 16: 20;
+        int lowerLimit = season == WINTER ? 8 : 10;
+        int upperLimit = season == WINTER ? 16 : 20;
 
         int chance = season == WINTER ? 7 + rand.nextInt(9) : 10 + rand.nextInt(11);
-        if (floor %COW_FLOORS == 0) {
+        if (floor % COW_FLOORS == 0) {
             chance -= 5;
-        } else if (floor %SHEEP_FLOORS == 0) {
+        } else if (floor % SHEEP_FLOORS == 0) {
             chance -= 3;
-        } else if (floor %CHICKEN_FLOORS == 0) {
+        } else if (floor % CHICKEN_FLOORS == 0) {
             chance -= 2;
-        } else if (floor %CHICK_FLOORS == 0) {
+        } else if (floor % CHICK_FLOORS == 0) {
             chance--;
         }
 
         //7 in winter < lowest, 15 max winter
         //10 in spring < lowest, 20 max spring
         if (chance >= upperLimit) chance = upperLimit;
-        if (chance <= lowerLimit) chance  = lowerLimit;
+        if (chance <= lowerLimit) chance = lowerLimit;
         return chance;
     }
 

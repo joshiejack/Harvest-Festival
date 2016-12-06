@@ -47,10 +47,11 @@ public class TownDataServer extends TownData<QuestDataServer> implements IQuestM
     private int dimension;
 
     public TownDataServer() {}
-    public TownDataServer(int dimension, BlockPos townCentre) {
+    public TownDataServer(int dimension, BlockPos townCentre, CalendarDate date) {
         this.dimension = dimension;
         this.townCentre = townCentre;
         this.uuid = UUID.randomUUID();
+        this.birthday = date.copy();
     }
 
     @Override

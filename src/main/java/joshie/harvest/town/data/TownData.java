@@ -2,6 +2,8 @@ package joshie.harvest.town.data;
 
 import joshie.harvest.api.buildings.Building;
 import joshie.harvest.api.buildings.BuildingLocation;
+import joshie.harvest.api.calendar.CalendarDate;
+import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.buildings.BuildingImpl;
 import joshie.harvest.buildings.BuildingStage;
@@ -20,6 +22,7 @@ public abstract class TownData<Q extends QuestData> {
     protected LinkedList<BuildingStage> building = new LinkedList<>();
     protected final Set<ResourceLocation> inhabitants = new HashSet<>();
     protected final ShopData shops = new ShopData();
+    protected CalendarDate birthday;
     protected Quest dailyQuest;
     protected BlockPos townCentre;
     protected UUID uuid;
@@ -27,17 +30,16 @@ public abstract class TownData<Q extends QuestData> {
     /** Overriden to actually return what we should **/
     public abstract Q getQuests();
 
+    public CalendarDate getBirthday() {
+        return birthday;
+    }
+
     public UUID getID() {
         return uuid;
     }
 
     public ShopData getShops() {
         return shops;
-    }
-
-    public TownData setUUID(UUID UUID) {
-        uuid = UUID;
-        return this;
     }
 
     public TownBuilding getBuilding(Building supermarket) {
@@ -91,6 +93,8 @@ public abstract class TownData<Q extends QuestData> {
     }
 
     public void readFromNBT(NBTTagCompound nbt) {
+        if (nbt.hasKey("Created")) birthday = CalendarDate.fromNBT(nbt.getCompoundTag("Created"));
+        else birthday = new CalendarDate(1, Season.SPRING, 1);
         shops.readFromNBT(nbt);
         uuid = NBTHelper.readUUID("Town", nbt);
         townCentre = NBTHelper.readBlockPos("TownCentre", nbt);
@@ -104,6 +108,7 @@ public abstract class TownData<Q extends QuestData> {
     }
 
     public void writeToNBT(NBTTagCompound nbt) {
+        nbt.setTag("Created", birthday.toNBT());
         shops.writeToNBT(nbt);
         NBTHelper.writeBlockPos("TownCentre", nbt, townCentre);
         NBTHelper.writeUUID("Town", nbt, uuid);

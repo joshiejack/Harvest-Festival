@@ -12,6 +12,7 @@ import javax.annotation.Nonnull;
 public class EntityAILayEgg extends EntityAIAnimal {
     private boolean isReadyToLayEgg;
     private int currentTask;
+    private int eggTimer;
 
     @SuppressWarnings("ConstantConditions")
     public EntityAILayEgg(EntityAnimal animal) {
@@ -39,13 +40,18 @@ public class EntityAILayEgg extends EntityAIAnimal {
         super.updateTask();
         World world = animal.worldObj;
         if (getIsAboveDestination()) {
-            if (currentTask == 1 && isEmptyNest(world, destinationBlock.up())) {
-                IBlockState iblockstate = world.getBlockState(destinationBlock.up());
-                ((INest)iblockstate.getBlock()).layEgg(getStats(), world, destinationBlock.up(), iblockstate);
-            }
+            if (eggTimer == 0) eggTimer = 100;
+            else eggTimer--;
 
-            currentTask = -1;
-            runDelay = 10;
+            if (eggTimer <= 0) {
+                if (currentTask == 1 && isEmptyNest(world, destinationBlock.up())) {
+                    IBlockState iblockstate = world.getBlockState(destinationBlock.up());
+                    ((INest) iblockstate.getBlock()).layEgg(getStats(), world, destinationBlock.up(), iblockstate);
+                }
+
+                currentTask = -1;
+                runDelay = 10;
+            }
         }
     }
 

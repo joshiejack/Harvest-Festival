@@ -612,7 +612,8 @@ entity.harvestfestival.dark_chick.name=Dark Chick
 #Mine Tools
 harvestfestival.miningtool.escape.rope=Escape Rope
 harvestfestival.miningtool.elevator.cable=Elevator Cable
-harvestfestival.miningtool.elevator.placer=Elevator
+harvestfestival.elevator.empty=Elevator
+harvestfestival.elevator.junk=Elevator
 harvestfestival.elevator.to=Elevator to
 harvestfestival.elevator.none=NOWHERE
 

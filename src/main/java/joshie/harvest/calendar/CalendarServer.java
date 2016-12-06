@@ -127,6 +127,11 @@ public class CalendarServer extends Calendar {
     }
 
     public void readFromNBT(NBTTagCompound nbt) {
+        if (nbt.hasKey("Date")) {
+            CalendarDate date = CalendarDate.fromNBT(nbt.getCompoundTag("Date"));
+            DATE.setDay(date.getDay()).setWeekday(date.getWeekday()).setSeason(date.getSeason()).setYear(date.getYear());
+        }
+
         rainStrength = nbt.getFloat("Rain");
         stormStrength = nbt.getFloat("Storm");
         for (int i = 0; i < 7; i++) {
@@ -138,6 +143,7 @@ public class CalendarServer extends Calendar {
     }
 
     public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
+        nbt.setTag("Date", DATE.toNBT());
         nbt.setFloat("Rain", rainStrength);
         nbt.setFloat("Storm", stormStrength);
         for (int i = 0; i < 7; i++) {

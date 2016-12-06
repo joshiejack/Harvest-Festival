@@ -5,6 +5,7 @@ import joshie.harvest.api.calendar.CalendarDate;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.calendar.Weekday;
 import joshie.harvest.core.HFTrackers;
+import joshie.harvest.town.TownHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.World;
@@ -78,7 +79,7 @@ public class CalendarHelper {
         int years_passed = current_total_days / one_year; 
         int birthday_years = birthday_total_days / one_year;
                 
-        return years_passed - birthday_years;
+        return Math.max(0, years_passed - birthday_years);
     }
 
     public static long getTime(int day, Season season, int year) {
@@ -94,9 +95,9 @@ public class CalendarHelper {
     }
 
     public static boolean haveYearsPassed(World world, EntityPlayer player, int year) {
-        CalendarDate playersBirthday = HFTrackers.getPlayerTrackerFromPlayer(player).getStats().getBirthday();
+        CalendarDate townBirthday = TownHelper.getClosestTownToEntity(player).getBirthday();
         CalendarDate date = calendar.getDate(world);
-        return getYearsPassed(playersBirthday, date) >= year;
+        return getYearsPassed(townBirthday, date) >= year;
     }
 
     public static void setWorldTime(MinecraftServer server, long worldTime) {

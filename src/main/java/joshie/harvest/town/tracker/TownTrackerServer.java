@@ -4,6 +4,7 @@ import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
+import joshie.harvest.api.HFApi;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.town.data.TownData;
@@ -84,7 +85,7 @@ public class TownTrackerServer extends TownTracker<TownDataServer> {
 
     @Override
     public TownDataServer createNewTown(BlockPos pos) {
-        TownDataServer data = new TownDataServer(getDimension(), pos);
+        TownDataServer data = new TownDataServer(getDimension(), pos, HFApi.calendar.getDate(getWorld()));
         townData.add(data);
         uuidMap.put(data.getID(), data);
         matchUUIDWithMineID(data.getID());

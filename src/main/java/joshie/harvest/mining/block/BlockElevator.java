@@ -2,12 +2,13 @@ package joshie.harvest.mining.block;
 
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.block.BlockHFEnumRotatableTile;
+import joshie.harvest.core.base.item.ItemBlockHF;
 import joshie.harvest.core.helpers.ChatHelper;
 import joshie.harvest.mining.HFMining;
 import joshie.harvest.mining.MiningHelper;
 import joshie.harvest.mining.TeleportPlayer;
 import joshie.harvest.mining.block.BlockElevator.Elevator;
-import joshie.harvest.mining.item.ItemMiningTool.MiningTool;
+import joshie.harvest.mining.item.ItemBlockElevator;
 import joshie.harvest.mining.tile.TileElevator;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -41,6 +42,11 @@ public class BlockElevator extends BlockHFEnumRotatableTile<BlockElevator, Eleva
         super(Material.WOOD, Elevator.class, HFTab.MINING);
     }
 
+    @Override
+    public ItemBlockHF getItemBlock() {
+        return new ItemBlockElevator(this);
+    }
+
     private TileElevator getElevator(World world, BlockPos pos, IBlockState state) {
         Elevator elevator = getEnumFromState(state);
         if (elevator == Elevator.EMPTY) {
@@ -66,7 +72,7 @@ public class BlockElevator extends BlockHFEnumRotatableTile<BlockElevator, Eleva
 
     @Override
     public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity) {
-        if (entity instanceof EntityPlayer) {
+        if (entity instanceof EntityPlayer && getEnumFromState(state) == Elevator.JUNK) {
             TileElevator elevator = getElevator(world, pos, state);
             if (elevator != null) {
                 BlockPos twin = elevator.getTwin();
@@ -74,14 +80,20 @@ public class BlockElevator extends BlockHFEnumRotatableTile<BlockElevator, Eleva
                     ChatHelper.displayChat("This elevator is not currently linked to another one");
                 } else {
                     EntityPlayer player = (EntityPlayer) entity;
-                    if (!isTeleporting(player)) {
-                        TileEntity target = world.getTileEntity(twin);
+                    TileEntity target = world.getTileEntity(twin);
+                    if (!world.isRemote) {
                         if (target instanceof TileElevator) {
                             EnumFacing facing = ((TileElevator) target).getFacing();
                             BlockPos location = twin.offset(facing);
-                            TeleportPlayer.initiate(player, pos, facing, location);
+                            if (!isTeleporting(player, location)) {
+                                TeleportPlayer.initiate(player, pos, facing, location);
+                            } else TeleportPlayer.onCollide(player);
                         }
-                    } else TeleportPlayer.onCollide(player);
+                    } else {
+                        if (!isTeleporting(player, twin)) {
+                            TeleportPlayer.initiate(player, pos, EnumFacing.NORTH, twin);
+                        } else TeleportPlayer.onCollide(player);
+                    }
                 }
             }
         }
@@ -115,13 +127,9 @@ public class BlockElevator extends BlockHFEnumRotatableTile<BlockElevator, Eleva
         super.breakBlock(world, pos, state);
     }
 
-    public IBlockState getStateFromPlacer(MiningTool tool) {
-        return getStateFromEnum(Elevator.JUNK);
-    }
-
     @Override
-    protected boolean shouldDisplayInCreative(Elevator ladder) {
-        return false;
+    protected boolean shouldDisplayInCreative(Elevator elevator) {
+        return elevator == Elevator.JUNK;
     }
 
     @Override

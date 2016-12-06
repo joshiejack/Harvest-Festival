@@ -22,6 +22,7 @@ import joshie.harvest.fishing.item.ItemFish.Fish;
 import joshie.harvest.fishing.item.ItemJunk.Junk;
 import joshie.harvest.knowledge.HFNotes;
 import joshie.harvest.mining.HFMining;
+import joshie.harvest.mining.block.BlockElevator.Elevator;
 import joshie.harvest.mining.block.BlockLadder.Ladder;
 import joshie.harvest.mining.item.ItemMaterial.Material;
 import joshie.harvest.mining.item.ItemMiningTool.MiningTool;
@@ -258,7 +259,7 @@ public class HFShops {
         MINER.addPurchasable(1000, HFMining.LADDER.getStackFromEnum(Ladder.DECORATIVE), 3);
         MINER.addPurchasable(250, HFMining.MINING_TOOL.getStackFromEnum(MiningTool.ESCAPE_ROPE), 10);
         MINER.addPurchasable(new PurchasableObtainedMaterial(50, HFMining.MINING_TOOL.getStackFromEnum(MiningTool.ELEVATOR_CABLE), Copper.of(1)));
-        MINER.addPurchasable(new PurchasableObtainedMaterial(1000, HFMining.MINING_TOOL.getStackFromEnum(MiningTool.ELEVATOR_PLACER), Logs.of(3), Copper.of(2), Adamantite.of(1)));
+        MINER.addPurchasable(new PurchasableObtainedMaterial(1000, HFMining.ELEVATOR.getStackFromEnum(Elevator.JUNK), Logs.of(3), Copper.of(2), Adamantite.of(1)));
         MINER.addPurchasable(new PurchasableObtained(200, HFMining.MATERIALS.getStackFromEnum(Material.COPPER)));
         MINER.addPurchasable(new PurchasableObtained(300, HFMining.MATERIALS.getStackFromEnum(Material.SILVER)));
         MINER.addPurchasable(new PurchasableObtained(400, HFMining.MATERIALS.getStackFromEnum(Material.GOLD)));

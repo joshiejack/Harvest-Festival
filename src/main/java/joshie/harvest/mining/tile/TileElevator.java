@@ -25,10 +25,12 @@ public class TileElevator extends TileFaceable {
     }
 
     public void onBreakBlock() {
-        TileElevator elevator = (TileElevator) worldObj.getTileEntity(twin);
-        if (elevator != null) {
-            elevator.twin = null;
-            elevator.markDirty();
+        if (twin != null) {
+            TileElevator elevator = (TileElevator) worldObj.getTileEntity(twin);
+            if (elevator != null) {
+                elevator.twin = null;
+                elevator.markDirty();
+            }
         }
     }
 
@@ -39,9 +41,9 @@ public class TileElevator extends TileFaceable {
             elevator.markDirty();
 
             //Update the sign above the linked block
-            TileEntity tile = worldObj.getTileEntity(twin.up(2).offset(getFacing()));
+            TileEntity tile = worldObj.getTileEntity(twin.up(2).offset(elevator.getFacing()));
             if (tile instanceof TileEntitySign) {
-                TileEntitySign sign = ((TileEntitySign)tile);
+                TileEntitySign sign = ((TileEntitySign) tile);
                 sign.signText[1] = new TextComponentTranslation("harvestfestival.elevator.to");
                 sign.signText[2] = new TextComponentString("" + MiningHelper.getFloor(pos));
                 sign.markDirty();
@@ -56,7 +58,7 @@ public class TileElevator extends TileFaceable {
         //Update the sign above this block
         TileEntity tile = worldObj.getTileEntity(pos.up(2).offset(getFacing()));
         if (tile instanceof TileEntitySign) {
-            TileEntitySign sign = ((TileEntitySign)tile);
+            TileEntitySign sign = ((TileEntitySign) tile);
             sign.signText[1] = new TextComponentTranslation("harvestfestival.elevator.to");
             sign.signText[2] = new TextComponentString("" + MiningHelper.getFloor(twin));
             sign.markDirty();

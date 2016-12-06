@@ -18,6 +18,7 @@ import joshie.harvest.mining.entity.EntityDarkSheep;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EnumCreatureType;
+import net.minecraft.entity.passive.EntityBat;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.Rotation;
@@ -54,6 +55,7 @@ public class MiningChunk implements IChunkGenerator {
         MONSTERS.add(new Biome.SpawnListEntry(EntityDarkChicken.class, 50, 1, 1));
         MONSTERS.add(new Biome.SpawnListEntry(EntityDarkSheep.class, 30, 1, 1));
         MONSTERS.add(new Biome.SpawnListEntry(EntityDarkCow.class, 15, 1, 1));
+        MONSTERS.add(new Biome.SpawnListEntry(EntityBat.class, 1, 1, 1));
         IRREPLACABLE.add(ORE.getBlock());
         IRREPLACABLE.add(HFCore.FLOWERS);
         IRREPLACABLE.add(HFMining.PORTAL);

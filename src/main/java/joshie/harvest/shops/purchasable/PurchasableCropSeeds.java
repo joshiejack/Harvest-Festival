@@ -38,7 +38,7 @@ public class PurchasableCropSeeds implements IPurchasable {
         CalendarDate date = HFApi.calendar.getDate(world);
         if (!isCorrectSeason(date.getSeason())) return false;
         if (!crop.canPurchase()) return false;
-        if(crop.getPurchaseYear() > 0 && !CalendarHelper.haveYearsPassed(world, player, crop.getPurchaseYear())) return false;
+        if(crop.getPurchaseYear() > 0) return CalendarHelper.haveYearsPassed(world, player, crop.getPurchaseYear());
         else return true;
     }
 

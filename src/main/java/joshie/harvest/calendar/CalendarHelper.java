@@ -78,7 +78,7 @@ public class CalendarHelper {
         int years_passed = current_total_days / one_year; 
         int birthday_years = birthday_total_days / one_year;
                 
-        return years_passed - birthday_years;
+        return Math.max(0, years_passed - birthday_years);
     }
 
     public static long getTime(int day, Season season, int year) {

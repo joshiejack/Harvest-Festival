@@ -332,10 +332,7 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
                     MinecraftForge.EVENT_BUS.register(new RainingSoil(event.getWorld(), event.getPos()));
                 }
 
-                IBlockState state = event.getWorld().getBlockState(event.getPos());
-                if (state.getBlock() instanceof BlockFarmland) {
-                    HFApi.tickable.addTickable(event.getWorld(), event.getPos(), HFApi.tickable.getTickableFromBlock(Blocks.FARMLAND));
-                }
+                HFApi.tickable.addTickable(event.getWorld(), event.getPos(), HFApi.tickable.getTickableFromBlock(Blocks.FARMLAND));
             }
         }
     }

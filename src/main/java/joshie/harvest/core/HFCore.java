@@ -35,6 +35,7 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
+import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
@@ -54,6 +55,11 @@ public class HFCore {
     public static final ItemSizeable SIZEABLE = new ItemSizeable().register("sizeable");
     public static final AxisAlignedBB FENCE_COLLISION =  new AxisAlignedBB(0D, 0D, 0D, 1D, 1.5D, 1D);
 
+    public static EnumFlowerType[] getTypes(EnumFlowerColor flowerColor) {
+        EnumFlowerType[][] TYPES_FOR_BLOCK = ReflectionHelper.getPrivateValue(EnumFlowerType.class, null, "TYPES_FOR_BLOCK");
+        return TYPES_FOR_BLOCK[flowerColor.ordinal()];
+    }
+
     @SuppressWarnings("unchecked")
     public static void preInit() {
         NetworkRegistry.INSTANCE.registerGuiHandler(HarvestFestival.instance, new GuiHandler());
@@ -68,7 +74,7 @@ public class HFCore {
         registerIfNotRegistered("flowerRose", new ItemStack(Blocks.DOUBLE_PLANT, 1, ROSE.getMeta()));
         registerIfNotRegistered("flowerPeony", new ItemStack(Blocks.DOUBLE_PLANT, 1, PAEONIA.getMeta()));
         registerIfNotRegistered("flowerDandelion", new ItemStack(Blocks.YELLOW_FLOWER));
-        for (EnumFlowerType type: EnumFlowerType.getTypes(EnumFlowerColor.RED)) {
+        for (EnumFlowerType type: getTypes(EnumFlowerColor.RED)) {
             registerIfNotRegistered("flower" + WordUtils.capitalize(type.getUnlocalizedName()), new ItemStack(Blocks.RED_FLOWER, 1, type.getMeta()));
         }
 

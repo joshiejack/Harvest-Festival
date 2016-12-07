@@ -47,9 +47,6 @@ public abstract class ItemTool<I extends ItemTool> extends ItemHFBase<I> impleme
         this.toolClass = toolClass;
     }
 
-    @Override //Forbid the damage from being affected
-    public void setDamage(ItemStack stack, int damage) {}
-
     public ItemStack getStack(ToolTier tier) {
         return new ItemStack(this, 1, tier.ordinal());
     }

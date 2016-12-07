@@ -1,3 +1,8 @@
+##0.5.18
+* Fix bugs accidentally introduced aka...
+* Fix farmland not dehydrating each day
+* Fix blacksmith not upgrading tools
+
 ##0.5.17
 * Happy New Year!
 * Fix a potential crash with farmland when it's raining (after it turned to dirt!)

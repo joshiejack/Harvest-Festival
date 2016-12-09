@@ -1,3 +1,7 @@
+##0.5.19
+* Fix potential crash when breaking double blocks
+* Fix potential crash when being killed while gifting an item
+
 ##0.5.18
 * Fix bugs accidentally introduced aka...
 * Fix farmland not dehydrating each day

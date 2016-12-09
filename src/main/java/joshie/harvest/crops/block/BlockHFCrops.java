@@ -227,7 +227,12 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
         }
 
         if (crop.isCurrentlyDouble(data.getStage())) {
-            if (section == PlantSection.BOTTOM) CropHelper.onBottomBroken(pos.up(), getActualState(world.getBlockState(pos.up()), world, pos.up()));
+            if (section == PlantSection.BOTTOM) {
+                IBlockState stateUp = world.getBlockState(pos.up());
+                if (stateUp.getBlock() == this) {
+                    CropHelper.onBottomBroken(pos.up(), getActualState(stateUp, world, pos.up()));
+                }
+            }
         }
 
         if (isSickle && crop.getMinimumCut() != 0 && crop.requiresSickle() && originalStage >= crop.getMinimumCut()) {

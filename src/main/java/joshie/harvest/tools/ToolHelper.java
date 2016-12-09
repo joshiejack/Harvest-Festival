@@ -27,7 +27,6 @@ import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.ibm.icu.impl.duration.impl.DataRecord.EGender.F;
 import static joshie.harvest.animals.item.ItemAnimalTool.Tool.BRUSH;
 import static joshie.harvest.calendar.HFCalendar.TICKS_PER_DAY;
 import static joshie.harvest.cooking.item.ItemIngredients.Ingredient.OIL;
@@ -140,7 +139,7 @@ public class ToolHelper {
     public static void collectDrops(World world, BlockPos pos, IBlockState state, EntityPlayer player, List<ItemStack> drops) {
         Block block = state.getBlock();
         List<ItemStack> blockDrops;
-        if (state.getBlock().canSilkHarvest(world, pos, state, player)) {
+        if (block.canSilkHarvest(world, pos, state, player)) {
             Item item = Item.getItemFromBlock(block);
             blockDrops = new ArrayList<>();
             if (item != null) {
@@ -152,7 +151,7 @@ public class ToolHelper {
                 drops.add(new ItemStack(item, 1, meta));
             }
 
-            ForgeEventFactory.fireBlockHarvesting(blockDrops, world, pos, state, 0, F, true, player);
+            ForgeEventFactory.fireBlockHarvesting(blockDrops, world, pos, state, 0, 1F, true, player);
             drops.addAll(blockDrops); //Add all the drops to our list
         } else {
             blockDrops = block.getDrops(world, pos, state, 0);

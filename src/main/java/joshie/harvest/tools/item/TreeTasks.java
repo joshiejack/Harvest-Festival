@@ -67,7 +67,7 @@ class TreeTasks {
             if(event.world.provider.getDimension() != world.provider.getDimension()) return;
             BlockPos pos;
             int remaining = 4;
-            List<ItemStack> drops = new ArrayList();
+            List<ItemStack> drops = new ArrayList<>();
             while(remaining > 0) {
                 if(blocks.isEmpty()) {
                     MinecraftForge.EVENT_BUS.unregister(this);

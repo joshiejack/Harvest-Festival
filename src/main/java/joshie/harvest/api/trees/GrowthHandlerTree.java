@@ -46,7 +46,7 @@ public class GrowthHandlerTree extends GrowthHandler<Tree> {
 
     @Override
     public boolean canHarvest(Tree tree, int stage) {
-        return false;
+        return stage >= tree.getStages();
     }
 
     /** Grow the tree, setting the blocks

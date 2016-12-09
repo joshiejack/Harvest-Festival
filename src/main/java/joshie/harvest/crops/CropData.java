@@ -100,6 +100,7 @@ public class CropData {
                     }
                 }
 
+                System.out.println(crop.getDropHandler());
                 return crop.getDropHandler().getDrops(crop, originalStage, rand);
             } else return null;
         } else {

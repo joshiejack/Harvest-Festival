@@ -50,6 +50,7 @@ import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Locale;
 import java.util.Random;
@@ -216,7 +217,7 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
     }
 
     @Override
-    public boolean removedByPlayer(IBlockState state, World world, BlockPos pos, EntityPlayer player, boolean willHarvest) {
+    public boolean removedByPlayer(@Nonnull IBlockState state, @Nonnull World world, @Nonnull BlockPos pos, @Nonnull EntityPlayer player, boolean willHarvest) {
         CropType stage = getEnumFromState(state);
         if (stage == CropType.WITHERED || stage == CropType.WITHERED_DOUBLE)
             return world.setBlockToAir(pos); //JUST KILL IT IF WITHERED
@@ -237,7 +238,12 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
         }
 
         if (crop.isCurrentlyDouble(data.getStage())) {
-            if (section == PlantSection.BOTTOM) CropHelper.onBottomBroken(pos.up(), getActualState(world.getBlockState(pos.up()), world, pos.up()));
+            if (section == PlantSection.BOTTOM) {
+                IBlockState stateUp = world.getBlockState(pos.up());
+                if (stateUp.getBlock() == this) {
+                    CropHelper.onBottomBroken(pos.up(), getActualState(stateUp, world, pos.up()));
+                }
+            }
         }
 
         if (isSickle && crop.getMinimumCut() != 0 && crop.requiresSickle() && originalStage >= crop.getMinimumCut()) {
@@ -248,7 +254,7 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
     }
 
     @Override
-    public void breakBlock(World world, BlockPos pos, IBlockState state) {
+    public void breakBlock(@Nonnull World world, @Nonnull BlockPos pos, @Nonnull IBlockState state) {
         CropType stage = getEnumFromState(state);
         if (stage == FRESH || stage == CropType.WITHERED) {
             CropData data = CropHelper.getCropDataAt(world, pos);
@@ -273,6 +279,7 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
 
     @Override
     @SuppressWarnings("deprecation, unchecked")
+    @Nonnull
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos) {
         CropType stage = getEnumFromState(state);
         CropData data = CropHelper.getCropDataAt(world, pos);
@@ -281,14 +288,14 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
 
     @Override
     @SuppressWarnings("deprecation, unchecked")
-    public AxisAlignedBB getCollisionBoundingBox(IBlockState state, World world, BlockPos pos) {
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState state, @Nonnull World world, @Nonnull BlockPos pos) {
         CropType stage = getEnumFromState(state);
         CropData data = CropHelper.getCropDataAt(world, pos);
         return data != null ? data.getCrop().getStateHandler().getCollisionBoundingBox(world, pos, stage.getSection(), data.getCrop(), data.getStage(), stage.isWithered()) : NULL_AABB;
     }
 
     @Override
-    public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
+    public ItemStack getPickBlock(@Nonnull IBlockState state, RayTraceResult target, @Nonnull World world, @Nonnull BlockPos pos, EntityPlayer player) {
         if (getEnumFromState(state) == CropType.WITHERED) return new ItemStack(Blocks.DEADBUSH); //It's Dead soo???
         CropData data = CropHelper.getCropDataAt(world, pos);
         return data == null ? new ItemStack(Blocks.DEADBUSH) : HFCrops.SEEDS.getStackFromCrop(data.getCrop());
@@ -296,7 +303,8 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
 
     @Override
     @SuppressWarnings("deprecation, unchecked")
-    public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos) {
+    @Nonnull
+    public IBlockState getActualState(@Nonnull IBlockState state, IBlockAccess world, BlockPos pos) {
         CropType stage = getEnumFromState(state);
         TileWithered crop = CropHelper.getTile(world, pos, stage.getSection());
         if (stage.getSection() == PlantSection.TOP && crop == null) {
@@ -308,13 +316,13 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
         else return Blocks.DEADBUSH.getDefaultState();
     }
 
-    public static class RainingSoil {
+    private static class RainingSoil {
         private int existence;
         private final EntityPlayer player;
         private final World world;
         private final BlockPos pos;
 
-        public RainingSoil(EntityPlayer player, World world, BlockPos pos) {
+        RainingSoil(EntityPlayer player, World world, BlockPos pos) {
             this.player = player;
             this.world = world;
             this.pos = pos;
@@ -334,6 +342,7 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
     }
 
     @HFEvents
+    @SuppressWarnings("unused")
     public static class EventHandler {
         @SubscribeEvent(priority = EventPriority.LOWEST, receiveCanceled = true)
         public void onDirtTilled(UseHoeEvent event) {
@@ -342,10 +351,7 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
                     MinecraftForge.EVENT_BUS.register(new RainingSoil(event.getEntityPlayer(), event.getWorld(), event.getPos()));
                 }
 
-                IBlockState state = event.getWorld().getBlockState(event.getPos());
-                if (CropHelper.getWateringHandler(event.getWorld(), event.getPos(), state) != null) {
-                    HFApi.tickable.addTickable(event.getWorld(), event.getPos(), Ticker.INSTANCE);
-                }
+                HFApi.tickable.addTickable(event.getWorld(), event.getPos(), Ticker.INSTANCE);
             }
         }
     }
@@ -363,7 +369,7 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
 
     //Can Apply Bonemeal (Not Fully Grown)
     @Override
-    public boolean canGrow(World world, BlockPos pos, IBlockState state, boolean isClient) {
+    public boolean canGrow(@Nonnull World world, @Nonnull BlockPos pos, @Nonnull IBlockState state, boolean isClient) {
         if (getEnumFromState(state) == CropType.WITHERED) return false; //It's dead it can't grow...
         if (HFCrops.ENABLE_BONEMEAL) {
             if (HFCrops.SEASONAL_BONEMEAL) {
@@ -387,14 +393,14 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
     /* Only called server side **/
     //Whether the bonemeal has been used and we should call the function below to make the plant grow
     @Override
-    public boolean canUseBonemeal(World world, Random rand, BlockPos pos, IBlockState state) {
+    public boolean canUseBonemeal(@Nonnull World world, @Nonnull Random rand, @Nonnull BlockPos pos, @Nonnull IBlockState state) {
         return true;
     }
 
     /* Only called server side **/
     //Apply the bonemeal and grow!
     @Override
-    public void grow(World world, Random rand, BlockPos pos, IBlockState state) {
+    public void grow(@Nonnull World world, @Nonnull Random rand, @Nonnull BlockPos pos, @Nonnull IBlockState state) {
         TileWithered crop = CropHelper.getTile(world, pos, getSection(state));
         if (crop != null) {
             crop.getData().grow(world, pos);
@@ -428,7 +434,8 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
     }
 
     @Override
-    public TileEntity createTileEntity(World world, IBlockState state) {
+    @Nonnull
+    public TileEntity createTileEntity(@Nonnull World world, @Nonnull IBlockState state) {
         return !getEnumFromState(state).isWithered() ? new TileCrop() : new TileWithered();
     }
 

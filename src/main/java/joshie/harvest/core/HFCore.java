@@ -28,6 +28,7 @@ import net.minecraft.world.storage.loot.functions.LootFunctionManager;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
+import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
@@ -60,7 +61,7 @@ public class HFCore {
         registerIfNotRegistered("flowerRose", new ItemStack(Blocks.DOUBLE_PLANT, 1, ROSE.getMeta()));
         registerIfNotRegistered("flowerPeony", new ItemStack(Blocks.DOUBLE_PLANT, 1, PAEONIA.getMeta()));
         registerIfNotRegistered("flowerDandelion", new ItemStack(Blocks.YELLOW_FLOWER));
-        for (EnumFlowerType type: EnumFlowerType.getTypes(EnumFlowerColor.RED)) {
+        for (EnumFlowerType type: getTypes(EnumFlowerColor.RED)) {
             registerIfNotRegistered("flower" + WordUtils.capitalize(type.getUnlocalizedName()), new ItemStack(Blocks.RED_FLOWER, 1, type.getMeta()));
         }
     }
@@ -98,6 +99,11 @@ public class HFCore {
     private static Fluid registerFluid(Fluid fluid) {
         FluidRegistry.registerFluid(fluid);
         return fluid;
+    }
+
+    private static EnumFlowerType[] getTypes(EnumFlowerColor flowerColor) {
+        EnumFlowerType[][] TYPES_FOR_BLOCK = ReflectionHelper.getPrivateValue(EnumFlowerType.class, null, "TYPES_FOR_BLOCK");
+        return TYPES_FOR_BLOCK[flowerColor.ordinal()];
     }
 
     //Configure

@@ -1,81 +1,118 @@
 package joshie.harvest.mining;
 
 import joshie.harvest.core.helpers.ChatHelper;
+import joshie.harvest.core.helpers.TextHelper;
+import joshie.harvest.mining.tile.TileElevator;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent.WorldTickEvent;
 
+import javax.annotation.Nullable;
 import java.util.HashMap;
 
 public class TeleportPlayer {
-    public static final HashMap<EntityPlayer, TeleportPlayer> TELEPORTS = new HashMap<>();
-    public static TeleportPlayer TELEPORTING_CLIENT;
-    private final EntityPlayer player;
-    private final World world;
-    private final BlockPos origin;
-    private final BlockPos pos;
-    private final EnumFacing facing;
-    private long startTime;
-    private long targetTime;
+    private static HashMap<EntityPlayer, TeleportTicker> SERVER_TICKER = new HashMap<>();
+    private static TeleportTicker CLIENT_TICKER;
 
-    public TeleportPlayer(BlockPos origin, EntityPlayer player, EnumFacing facing, BlockPos pos, int floors) {
-        this.player = player;
-        this.world = player.worldObj;
-        this.pos = pos;
-        this.startTime = player.worldObj.getTotalWorldTime();
-        this.targetTime = startTime + Math.min(600, Math.max(60, 15 * floors));
-        this.facing = facing;
-        this.origin = origin;
-    }
-
-    public static void initiate(EntityPlayer player, BlockPos twin, EnumFacing facing, BlockPos location) {
-        //For removing when no longer colliding
-        TeleportPlayer ticker = new TeleportPlayer(twin, player, facing, location, MiningHelper.getDifference(twin, location));
-        if (player.worldObj.isRemote) {
-            TELEPORTING_CLIENT = ticker;
-            MinecraftForge.EVENT_BUS.register(ticker);
-        } else TELEPORTS.put(player, ticker);
-    }
-
-    public static void onCollide(EntityPlayer player) {
-        if (player.worldObj.isRemote) {
-            if (TELEPORTING_CLIENT != null) TELEPORTING_CLIENT.onCollisionTick();
-        } else {
-            TeleportPlayer teleporter = TELEPORTS.get(player);
-            if (teleporter != null) {
-                teleporter.onCollisionTick();
-            }
-        }
-    }
-
-    //Clear up everything
-    private void finish() {
-        if (!world.isRemote) TELEPORTS.remove(player);
-        else TELEPORTING_CLIENT = null;
-    }
-
-    private void onCollisionTick() {
-        if (world.isRemote) {
-            long timer = targetTime - world.getTotalWorldTime();
-            if (timer % 20 == 0 || world.getTotalWorldTime() - 1 == startTime)  ChatHelper.displayChat("Please wait for " + (int)Math.ceil((double)timer / 20D) + " seconds...");
-        }
-
-        if (world.getTotalWorldTime() >= targetTime) {
-            finish();
-            float yaw = facing == EnumFacing.WEST ? 90F : facing == EnumFacing.EAST ? -90F: facing == EnumFacing.NORTH ? 180F : -180F;
-            MiningHelper.teleportToCoordinates(player, pos, yaw);
-            if (world.isRemote) {
-                ChatHelper.displayChat("You have reached your destination!");
-            }
-        }
-    }
-
-    public static boolean isTeleporting(EntityPlayer player, BlockPos target) {
+    public static boolean isTeleportTargetSetTo(EntityPlayer player, BlockPos target) {
         if (!player.worldObj.isRemote) {
-            TeleportPlayer teleport = TELEPORTS.get(player);
-            return teleport != null && teleport.pos.equals(target);
-        } else return TELEPORTING_CLIENT != null && TELEPORTING_CLIENT.pos.equals(target);
+            TeleportTicker teleport = SERVER_TICKER.get(player);
+            return teleport != null && teleport.location.equals(target);
+        } else return CLIENT_TICKER != null && CLIENT_TICKER.location.equals(target);
+    }
+
+    public static void setTeleportTargetTo(EntityPlayer player, BlockPos twin, TileEntity target, BlockPos origin) {
+        TeleportTicker ticker = new TeleportTicker(player, twin, target, origin);
+        if (!player.worldObj.isRemote) {
+            SERVER_TICKER.put(player, ticker);
+        } else CLIENT_TICKER = ticker;
+
+
+        MinecraftForge.EVENT_BUS.register(ticker);
+    }
+
+    private static void clearTeleportTarget(EntityPlayer player) {
+        if (!player.worldObj.isRemote) SERVER_TICKER.remove(player);
+        else CLIENT_TICKER = null;
+    }
+
+    private static class TeleportTicker {
+        private final EntityPlayer player;
+        private final BlockPos location;
+        private final TileElevator target;
+        private final BlockPos origin;
+        private long worldTime;
+        private int counter;
+
+        TeleportTicker(EntityPlayer player, BlockPos twin, @Nullable TileEntity target, BlockPos origin) {
+            this.player = player;
+            this.location = twin;
+            this.target = target instanceof TileElevator ? (TileElevator) target : null;
+            this.origin = origin;
+            int floors = MiningHelper.getDifference(twin, origin);
+            this.counter = Math.min(600, Math.max(60, 15 * floors));
+        }
+
+        private void finishOrCancelTeleport() {
+            MinecraftForge.EVENT_BUS.unregister(this);
+            clearTeleportTarget(player);
+            if (counter <= 30 && player.worldObj.isRemote) {
+                ChatHelper.displayChat(TextHelper.translate("elevator.done"));
+            }
+        }
+
+        @SubscribeEvent
+        public void onWorldTick(WorldTickEvent event) {
+            if (isCollidingWithOrigin()) {
+                if (worldTime != 0 && player.worldObj.getTotalWorldTime() == worldTime) return;
+                else worldTime = player.worldObj.getTotalWorldTime();
+
+                counter--;
+                if (counter > 0 && player.worldObj.isRemote && counter %20 == 0) {
+                    ChatHelper.displayChat(TextHelper.formatHF("elevator.wait", (int) Math.floor(counter / 20)));
+                }
+
+                if (counter <= 0) {
+                    finishOrCancelTeleport();
+                    if (!player.worldObj.isRemote) {
+                        if (target != null) {
+                            EnumFacing facing = target.getFacing();
+                            float yaw = facing == EnumFacing.WEST ? 90F : facing == EnumFacing.EAST ? -90F : facing == EnumFacing.NORTH ? 180F : 0F;
+                            MiningHelper.teleportToCoordinates(player, location.offset(facing), yaw);
+                        }
+                    }
+                }
+            } else finishOrCancelTeleport();
+        }
+
+        private boolean isCollidingWithOrigin() {
+            AxisAlignedBB axisalignedbb = player.getEntityBoundingBox();
+            BlockPos.PooledMutableBlockPos blockpos$pooledmutableblockpos = BlockPos.PooledMutableBlockPos.retain(axisalignedbb.minX + 0.001D, axisalignedbb.minY + 0.001D, axisalignedbb.minZ + 0.001D);
+            BlockPos.PooledMutableBlockPos blockpos$pooledmutableblockpos1 = BlockPos.PooledMutableBlockPos.retain(axisalignedbb.maxX - 0.001D, axisalignedbb.maxY - 0.001D, axisalignedbb.maxZ - 0.001D);
+            BlockPos.PooledMutableBlockPos blockpos$pooledmutableblockpos2 = BlockPos.PooledMutableBlockPos.retain();
+            if (player.worldObj.isAreaLoaded(blockpos$pooledmutableblockpos, blockpos$pooledmutableblockpos1)) {
+                for (int i = blockpos$pooledmutableblockpos.getX(); i <= blockpos$pooledmutableblockpos1.getX(); ++i) {
+                    for (int j = blockpos$pooledmutableblockpos.getY(); j <= blockpos$pooledmutableblockpos1.getY(); ++j) {
+                        for (int k = blockpos$pooledmutableblockpos.getZ(); k <= blockpos$pooledmutableblockpos1.getZ(); ++k) {
+                            blockpos$pooledmutableblockpos2.setPos(i, j, k);
+
+                            if (blockpos$pooledmutableblockpos2.equals(origin) || blockpos$pooledmutableblockpos2.equals(origin.up())) {
+                                return true;
+                            }
+                        }
+                    }
+                }
+            }
+
+            blockpos$pooledmutableblockpos.release();
+            blockpos$pooledmutableblockpos1.release();
+            blockpos$pooledmutableblockpos2.release();
+            return false;
+        }
     }
 }

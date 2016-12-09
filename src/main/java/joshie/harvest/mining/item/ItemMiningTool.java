@@ -5,6 +5,7 @@ import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.item.ItemHFEnum;
 import joshie.harvest.core.helpers.ChatHelper;
 import joshie.harvest.core.helpers.InventoryHelper;
+import joshie.harvest.core.helpers.TextHelper;
 import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.mining.HFMining;
 import joshie.harvest.mining.MiningHelper;
@@ -16,9 +17,13 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nonnull;
+import java.util.List;
 import java.util.Locale;
 
 import static joshie.harvest.core.helpers.InventoryHelper.ITEM_STACK;
@@ -65,7 +70,7 @@ public class ItemMiningTool extends ItemHFEnum<ItemMiningTool, MiningTool> {
         if (!link.hasKey("Link1")) {
             link.setLong("Link1", pos.toLong());
             //Message that you set the first link coordinates
-            ChatHelper.displayChat("Started link on ");
+            ChatHelper.displayChat(TextHelper.formatHF("elevator.start", MiningHelper.getFloor(pos)));
         } else {
             BlockPos link1 = BlockPos.fromLong(link.getLong("Link1"));
             if (!link1.equals(pos)) {
@@ -79,25 +84,24 @@ public class ItemMiningTool extends ItemHFEnum<ItemMiningTool, MiningTool> {
                         int amount = InventoryHelper.getCount(player, stack, ITEM_STACK);
                         if (amount - cost >= 0) {
                             //Message that you have successfully linked the elevators
-                            ChatHelper.displayChat("Successfully linked elevator on floor " + floor1 + " with elevator on floor " + floor2);
+                            ChatHelper.displayChat(TextHelper.formatHF("elevator.success", floor1, floor2));
                             ((TileElevator) world.getTileEntity(pos)).setTwin(link1);
                             InventoryHelper.takeItemsInInventory(player, ITEM_STACK, stack, amount);
                             //Remove the link
                             link.removeTag("Link1");
                         } else {
                             //Message that you need a total of DIFFERENCE ropes to perform the link
-                            ChatHelper.displayChat("You need " + cost + " cables to link these elevators");
+                            ChatHelper.displayChat(TextHelper.formatHF("elevator.cost", cost));
                         }
-                    } else ChatHelper.displayChat("Elevators cannot be linked to the same floor");
+                    } else ChatHelper.displayChat(TextHelper.translate("elevator.cannot.floor"));
                 } else {
                     //Message that elevators can't transfer between mines
-                    ChatHelper.displayChat("Elevators will only work in the same mine");
+                    ChatHelper.displayChat(TextHelper.translate("elevator.cannot.mine"));
                 }
 
             } // Error that you can't link identical items
-            else {
-                ChatHelper.displayChat("Elevators cannot be linked to themselves");
-            }
+            else ChatHelper.displayChat(TextHelper.translate("elevator.cannot.self"));
+
         }
     }
 
@@ -130,5 +134,10 @@ public class ItemMiningTool extends ItemHFEnum<ItemMiningTool, MiningTool> {
     @Override
     public int getSortValue(ItemStack stack) {
         return CreativeSort.LAST;
+    }
+
+    @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
+        if (getEnumFromStack(stack) == MiningTool.ELEVATOR_CABLE) tooltip.add(TextFormatting.AQUA + TextHelper.translate("elevator.tooltip"));
     }
 }

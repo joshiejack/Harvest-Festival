@@ -4,9 +4,9 @@ import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.block.BlockHFEnumRotatableTile;
 import joshie.harvest.core.base.item.ItemBlockHF;
 import joshie.harvest.core.helpers.ChatHelper;
+import joshie.harvest.core.helpers.TextHelper;
 import joshie.harvest.mining.HFMining;
 import joshie.harvest.mining.MiningHelper;
-import joshie.harvest.mining.TeleportPlayer;
 import joshie.harvest.mining.block.BlockElevator.Elevator;
 import joshie.harvest.mining.item.ItemBlockElevator;
 import joshie.harvest.mining.tile.TileElevator;
@@ -26,7 +26,8 @@ import net.minecraft.world.World;
 import javax.annotation.Nonnull;
 import java.util.Locale;
 
-import static joshie.harvest.mining.TeleportPlayer.isTeleporting;
+import static joshie.harvest.mining.TeleportPlayer.isTeleportTargetSetTo;
+import static joshie.harvest.mining.TeleportPlayer.setTeleportTargetTo;
 
 public class BlockElevator extends BlockHFEnumRotatableTile<BlockElevator, Elevator> {
     public enum Elevator implements IStringSerializable {
@@ -77,22 +78,12 @@ public class BlockElevator extends BlockHFEnumRotatableTile<BlockElevator, Eleva
             if (elevator != null) {
                 BlockPos twin = elevator.getTwin();
                 if (twin == null) {
-                    ChatHelper.displayChat("This elevator is not currently linked to another one");
+                    if (world.isRemote) ChatHelper.displayChat(TextHelper.translate("elevator.link"));
                 } else {
                     EntityPlayer player = (EntityPlayer) entity;
                     TileEntity target = world.getTileEntity(twin);
-                    if (!world.isRemote) {
-                        if (target instanceof TileElevator) {
-                            EnumFacing facing = ((TileElevator) target).getFacing();
-                            BlockPos location = twin.offset(facing);
-                            if (!isTeleporting(player, location)) {
-                                TeleportPlayer.initiate(player, pos, facing, location);
-                            } else TeleportPlayer.onCollide(player);
-                        }
-                    } else {
-                        if (!isTeleporting(player, twin)) {
-                            TeleportPlayer.initiate(player, pos, EnumFacing.NORTH, twin);
-                        } else TeleportPlayer.onCollide(player);
+                    if (!isTeleportTargetSetTo(player, twin)) {
+                        setTeleportTargetTo(player, twin, target, pos);
                     }
                 }
             }
@@ -106,9 +97,9 @@ public class BlockElevator extends BlockHFEnumRotatableTile<BlockElevator, Eleva
             if (heldItem != null && heldItem.getItem() == HFMining.MINING_TOOL) return false;
             BlockPos twin = elevator.getTwin();
             if (twin == null) {
-                ChatHelper.displayChat("This elevator is not currently linked to another one");
+                if (world.isRemote) ChatHelper.displayChat(TextHelper.translate("elevator.link"));
             } else {
-                ChatHelper.displayChat("This elevator will take you to floor " + MiningHelper.getFloor(twin));
+                ChatHelper.displayChat(TextHelper.formatHF("elevator.go", MiningHelper.getFloor(twin)));
             }
 
             return true;

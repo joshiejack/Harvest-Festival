@@ -22,7 +22,7 @@ public class ContainerNPCGift extends ContainerNPCChat {
         if (!player.worldObj.isRemote) {
             if (HFTrackers.getPlayerTrackerFromPlayer(player).getRelationships().gift(player, npc.getNPC().getUUID(), 0)) {
                 ItemStack gift = player.getHeldItem(hand);
-                if (NPCRegistry.INSTANCE.getGifts().isBlacklisted(gift)) return;
+                if (gift == null || NPCRegistry.INSTANCE.getGifts().isBlacklisted(gift)) return;
 
                 NPC theNpc = npc.getNPC();
                 RelationshipDataServer relationships = HFTrackers.<PlayerTrackerServer>getPlayerTrackerFromPlayer(player).getRelationships();

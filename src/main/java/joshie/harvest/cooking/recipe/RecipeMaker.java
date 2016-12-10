@@ -17,8 +17,17 @@ public class RecipeMaker implements CookingHandler {
     @Nullable
     @Override
     public List<ItemStack> getResult(Utensil utensil, List<ItemStack> stacks, List<IngredientStack> ingredients) {
+        //Loop the recipes once, checking if we only have the allowed
         for (Recipe recipe: Recipe.REGISTRY) {
-            List<ItemStack> ret = findRecipe(utensil, recipe, ingredients);
+            List<ItemStack> ret = findRecipe(utensil, recipe, ingredients, true);
+            if (ret != null) {
+                return ret;
+            }
+        }
+
+        //Next loop again, this time allowing for other ingredients
+        for (Recipe recipe: Recipe.REGISTRY) {
+            List<ItemStack> ret = findRecipe(utensil, recipe, ingredients, false);
             if (ret != null) {
                 return ret;
             }
@@ -27,11 +36,17 @@ public class RecipeMaker implements CookingHandler {
         return null;
     }
 
-    private List<ItemStack> findRecipe(Utensil utensil, Recipe recipe, List<IngredientStack> ingredients) {
+    private List<ItemStack> findRecipe(Utensil utensil, Recipe recipe, List<IngredientStack> ingredients, boolean onlyRequiredAllowed) {
         if (recipe.getUtensil() != utensil) return null;
+        if (onlyRequiredAllowed && areOnlyRequiredInRecipe(recipe.getRequired(), ingredients)) return null;
         if (!areIngredientsAllowedInRecipe(recipe, ingredients)) return null;
         if (!areAllRequiredInRecipe(recipe.getRequired(), ingredients)) return null;
         return BUILDER.build(recipe, ingredients);
+    }
+
+    private static boolean areOnlyRequiredInRecipe(Collection<IngredientStack> requiredSet, Collection<IngredientStack> ingredients) {
+        for (IngredientStack ingredient: ingredients) if (ingredient.isSame(requiredSet))  return false;
+        return true; //Return true because they were all in the recipe!
     }
 
     public static boolean areAllRequiredInRecipe(Collection<IngredientStack> requiredSet, Collection<IngredientStack> ingredients) {

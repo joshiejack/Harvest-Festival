@@ -127,6 +127,7 @@ public class AnimalStatsLivestock extends AnimalStatsHF {
             baby.getCapability(ANIMAL_STATS_CAPABILITY, EnumFacing.DOWN).setOwner(o_uuid);
             int parent = HFTrackers.<PlayerTrackerServer>getPlayerTracker(animal.worldObj, o_uuid).getRelationships().getRelationship(EntityHelper.getEntityUUID(animal));
             HFTrackers.getPlayerTracker(animal.worldObj, o_uuid).getRelationships().copyRelationship(getOwner(), parent, EntityHelper.getEntityUUID(baby), 50D);
+            animal.worldObj.spawnEntityInWorld(baby);
         }
     }
 

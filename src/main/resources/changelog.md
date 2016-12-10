@@ -1,3 +1,7 @@
+##0.5.20
+* Fix animals not giving birth
+* Fix ketchup being uncookable
+
 ##0.5.19
 * Fix potential crash when breaking double blocks
 * Fix potential crash when being killed while gifting an item

@@ -39,8 +39,8 @@ public class HFRecipes {
         addMixerRecipe("juice_pineapple", 2, 2.86F, PINEAPPLE).setOptionalIngredients(SALT, SUGAR); //Yulif 5000RP
         addMixerRecipe("juice_tomato", 6, 1.14F, TOMATO).setOptionalIngredients(SALT); //Shop
         addMixerRecipe("milk_strawberry", 9, 1.72F, STRAWBERRY, MILK).setOptionalIngredients(SUGAR); //Candice 10000RP Recipe
-        addMixerRecipe("juice_vegetable", 6, 1.14F, JUICE_VEGETABLE).setOptionalIngredients(CUCUMBER, ONION, CABBAGE, TOMATO, SPINACH, CARROT, GREEN_PEPPER, TURNIP, SALT);//Shop
-        addMixerRecipe("latte_vegetable", 9, 1.72F, JUICE_VEGETABLE, MILK).setOptionalIngredients(CUCUMBER, ONION, CABBAGE, TOMATO, SPINACH, CARROT, GREEN_PEPPER, TURNIP, SALT); //Thomas 5000RP
+        addMixerRecipe("juice_vegetable", 6, 1.14F, JUICE_VEGETABLE).setOptionalIngredients(CUCUMBER, ONION, CABBAGE, SPINACH, CARROT, GREEN_PEPPER, TURNIP, SALT);//Shop
+        addMixerRecipe("latte_vegetable", 9, 1.72F, JUICE_VEGETABLE, MILK).setOptionalIngredients(CUCUMBER, ONION, CABBAGE, SPINACH, CARROT, GREEN_PEPPER, TURNIP, SALT); //Thomas 5000RP
         addMixerRecipe("ketchup", 1, 0.06F, TOMATO, ONION).setOptionalIngredients(SALT, SUGAR).setAlternativeTexture(INGREDIENTS.getStackFromEnum(ItemIngredients.Ingredient.KETCHUP));//Shop
         addMixerRecipe("butter", false, 1, 0.06F, MILK).setOptionalIngredients(SALT).setAlternativeTexture(INGREDIENTS.getStackFromEnum(ItemIngredients.Ingredient.BUTTER)); //Daniel 5000RP
         addMixerRecipe("fishsticks", false, 1, 0.28F, FISH).setOptionalIngredients(SALT);//Jim 5000RP

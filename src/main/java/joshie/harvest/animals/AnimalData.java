@@ -377,6 +377,7 @@ public class AnimalData implements IAnimalData {
             ((IAnimalTracked)baby).getData().setOwner(o_uuid);
             int parent = HFTrackers.<PlayerTrackerServer>getPlayerTracker(animal.worldObj, o_uuid).getRelationships().getRelationship(getUUID());
             HFTrackers.getPlayerTracker(animal.worldObj, o_uuid).getRelationships().copyRelationship(getOwner(), parent, ((IAnimalTracked)baby).getUUID(), 50D);
+            animal.worldObj.spawnEntityInWorld(baby);
         }
     }
 

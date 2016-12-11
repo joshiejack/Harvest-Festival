@@ -161,10 +161,6 @@ public class GuiCookbook extends GuiScreen {
             j2 -= 28 + k;
         }
 
-        if (k2 + i1 + 6 > this.height) {
-            k2 = this.height - i1 - 6;
-        }
-
         i1 = ((stacks.size() / 6) + 1) * 16;
         this.zLevel = 300.0F;
         itemRender.zLevel = 300.0F;

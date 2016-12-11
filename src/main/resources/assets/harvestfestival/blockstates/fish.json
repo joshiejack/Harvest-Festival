@@ -36,6 +36,12 @@
     "tang": [{ "textures": { "layer0": "harvestfestival:items/fish/tang" }}],
     "tetra": [{ "textures": { "layer0": "harvestfestival:items/fish/tetra" }}],
     "trout": [{ "textures": { "layer0": "harvestfestival:items/fish/trout" }}],
-    "tuna": [{ "textures": { "layer0": "harvestfestival:items/fish/tuna" }}]
+    "tuna": [{ "textures": { "layer0": "harvestfestival:items/fish/tuna" }}],
+    "anchovy": [{ "textures": { "layer0": "harvestfestival:items/fish/anchovy" }}],
+    "bass": [{ "textures": { "layer0": "harvestfestival:items/fish/bass" }}],
+    "carp": [{ "textures": { "layer0": "harvestfestival:items/fish/carp" }}],
+    "pike": [{ "textures": { "layer0": "harvestfestival:items/fish/pike" }}],
+    "sardine": [{ "textures": { "layer0": "harvestfestival:items/fish/sardine" }}],
+    "walleye": [{ "textures": { "layer0": "harvestfestival:items/fish/walleye" }}]
   }
 }

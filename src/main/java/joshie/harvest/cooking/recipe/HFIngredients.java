@@ -221,7 +221,7 @@ public class HFIngredients {
         CookingAPI.INSTANCE.register(HFFishing.FISH.getStackFromEnum(Fish.COD), COD);
         CookingAPI.INSTANCE.register(HFFishing.FISH.getStackFromEnum(Fish.SALMON), SALMON);
         for (Fish fish: ItemFish.Fish.values()) {
-            if (!(fish.isPoisonous() || fish == Fish.COD || fish == Fish.SALMON)) {
+            if (!(fish.isUncookable() || fish == Fish.COD || fish == Fish.SALMON)) {
                 CookingAPI.INSTANCE.register(HFFishing.FISH.getStackFromEnum(fish), FISH);
             }
         }

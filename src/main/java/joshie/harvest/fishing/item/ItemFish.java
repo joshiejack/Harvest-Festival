@@ -96,6 +96,10 @@ public class ItemFish extends ItemHFFoodEnum<ItemFish, Fish> {
             return this == BLAASOP || this == LAMPREY || this == PUFFER || this == STARGAZER || this == STINGRAY;
         }
 
+        public boolean isUncookable() {
+            return isPoisonous() || this == TETRA || this == CLOWN || this == BUTTERFLY || this == ANGEL || this == SIAMESE || this == TANG;
+        }
+
         public int getFoodAmount() {
             return amount;
         }

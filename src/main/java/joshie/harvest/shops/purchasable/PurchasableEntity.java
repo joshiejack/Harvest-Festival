@@ -88,16 +88,12 @@ public class PurchasableEntity implements IPurchasable {
             EntityLiving theEntity = createEntity(player.worldObj);
             if (theEntity != null) {
                 theEntity.setPosition(player.posX, player.posY, player.posZ);
-                if (!lead) {
-                    theEntity.startRiding(player, true);
-                    player.worldObj.spawnEntityInWorld(theEntity);
-                    player.connection.sendPacket(new SPacketSetPassengers(player));
-                } else {
-                    theEntity.setLeashedToEntity(player, true);
-                    ((IAnimalTracked) theEntity).getData().setOwner(EntityHelper.getPlayerUUID(player));
-                    player.worldObj.spawnEntityInWorld(theEntity);
-                    player.connection.sendPacket(new SPacketEntityAttach(theEntity, theEntity.getLeashedToEntity()));
-                }
+                if (!lead) theEntity.startRiding(player, true);
+                else theEntity.setLeashedToEntity(player, true);
+                ((IAnimalTracked) theEntity).getData().setOwner(EntityHelper.getPlayerUUID(player));
+                player.worldObj.spawnEntityInWorld(theEntity);
+                if (!lead) player.connection.sendPacket(new SPacketSetPassengers(player));
+                else player.connection.sendPacket(new SPacketEntityAttach(theEntity, theEntity.getLeashedToEntity()));
             }
         }
 

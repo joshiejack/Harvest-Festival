@@ -1,3 +1,6 @@
+##0.5.21
+* Fix store bought chickens not being able to lay eggs
+
 ##0.5.20
 * Fix animals not giving birth
 * Fix ketchup being uncookable

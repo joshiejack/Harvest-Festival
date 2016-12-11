@@ -42,22 +42,30 @@ public class RenderToolBreak {
         EntityPlayer player = MCClientHelper.getPlayer();
         World world = player.worldObj;
         ItemStack tool = player.getHeldItemMainhand();
-        if (tool != null && tool.getItem() == HFTools.HAMMER && HFTools.HAMMER.canUse(tool)) {
+        if (tool != null && (tool.getItem() == HFTools.HAMMER || tool.getItem() == HFTools.HOE)) {
             Entity renderEntity = MCClientHelper.getRenderViewEntity();
             double distance = controller.getBlockReachDistance();
             RayTraceResult rayTraceResult = renderEntity.rayTrace(distance, event.getPartialTicks());
-            if(rayTraceResult != null) {
-                ImmutableList<BlockPos> extraBlocks = HFTools.HAMMER.getBlocks(world, rayTraceResult.getBlockPos(), player, tool);
-                for(BlockPos pos : extraBlocks) {
-                    event.getContext().drawSelectionBox(player, new RayTraceResult(new Vec3d(0, 0, 0), EnumFacing.UP, pos), 0, event.getPartialTicks());
-                }
-
-                if(controller.getIsHittingBlock()) {
-                    drawBlockDamageTexture(MCClientHelper.getMinecraft().renderGlobal, controller,
-                            Tessellator.getInstance(),  Tessellator.getInstance().getBuffer(),
-                            player, event.getPartialTicks(), world, extraBlocks);
+            if (rayTraceResult != null) {
+                if (tool.getItem() == HFTools.HAMMER && HFTools.HAMMER.canUse(tool)) {
+                    ImmutableList<BlockPos> extraBlocks = HFTools.HAMMER.getBlocks(world, rayTraceResult.getBlockPos(), player, tool);
+                    drawSelection(event.getContext(), extraBlocks, player, event.getPartialTicks());
+                    if (controller.getIsHittingBlock()) {
+                        drawBlockDamageTexture(MCClientHelper.getMinecraft().renderGlobal, controller,
+                                Tessellator.getInstance(), Tessellator.getInstance().getBuffer(),
+                                player, event.getPartialTicks(), world, extraBlocks);
+                    }
+                } else if (tool.getItem() == HFTools.HOE && HFTools.HOE.canUse(tool)) {
+                    drawSelection(event.getContext(), HFTools.HOE.getBlocks(world, rayTraceResult.getBlockPos(), player, tool), player, event.getPartialTicks());
                 }
             }
+        }
+    }
+
+
+    private void drawSelection(RenderGlobal render, ImmutableList<BlockPos> extraBlocks, EntityPlayer player, float ticks) {
+        for (BlockPos pos : extraBlocks) {
+            render.drawSelectionBox(player, new RayTraceResult(new Vec3d(0, 0, 0), EnumFacing.UP, pos), 0, ticks);
         }
     }
 

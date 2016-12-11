@@ -19,7 +19,7 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 import java.util.Set;
 
-public class ItemToolChargeable extends ItemTool<ItemToolChargeable> {
+public class ItemToolChargeable<I extends ItemToolChargeable> extends ItemTool<I> {
     public static final TIntObjectMap<ToolTier> LEVEL_TO_TIER = new TIntObjectHashMap<>();
     static {
         for (ToolTier tier: ToolTier.values()) {

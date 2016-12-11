@@ -159,4 +159,18 @@ public class ToolHelper {
             drops.addAll(blockDrops); //Add all the drops to our list
         }
     }
+
+    public static ItemStack getStackFromBlockState(IBlockState state) {
+        Item item = Item.getItemFromBlock(state.getBlock());
+        if (item == null) {
+            return null;
+        } else {
+            int i = 0;
+            if (item.getHasSubtypes())  {
+                i = state.getBlock().getMetaFromState(state);
+            }
+
+            return new ItemStack(item, 1, i);
+        }
+    }
 }

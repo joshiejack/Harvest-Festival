@@ -3,6 +3,7 @@ package joshie.harvest.tools.item;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Multimap;
 import com.google.common.collect.Sets;
+import joshie.harvest.api.core.Ore;
 import joshie.harvest.api.crops.WateringHandler;
 import joshie.harvest.api.gathering.ISmashable.ToolType;
 import joshie.harvest.core.HFTab;
@@ -10,6 +11,7 @@ import joshie.harvest.core.base.item.ItemToolSmashing;
 import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.core.helpers.TextHelper;
 import joshie.harvest.core.lib.HFSounds;
+import joshie.harvest.core.util.holders.HolderRegistrySet;
 import joshie.harvest.crops.CropHelper;
 import joshie.harvest.tools.ToolHelper;
 import net.minecraft.block.Block;
@@ -42,10 +44,14 @@ import static net.minecraft.block.Block.spawnAsEntity;
 public class ItemHammer extends ItemToolSmashing<ItemHammer> {
     private static final Set<Block> EFFECTIVE_ON = Sets.newHashSet(Blocks.ACTIVATOR_RAIL, Blocks.COAL_ORE, Blocks.COBBLESTONE, Blocks.DETECTOR_RAIL, Blocks.DIAMOND_BLOCK, Blocks.DIAMOND_ORE, Blocks.DOUBLE_STONE_SLAB, Blocks.GOLDEN_RAIL, Blocks.GOLD_BLOCK, Blocks.GOLD_ORE, Blocks.ICE, Blocks.IRON_BLOCK, Blocks.IRON_ORE, Blocks.LAPIS_BLOCK, Blocks.LAPIS_ORE, Blocks.LIT_REDSTONE_ORE, Blocks.MOSSY_COBBLESTONE, Blocks.NETHERRACK, Blocks.PACKED_ICE, Blocks.RAIL, Blocks.REDSTONE_ORE, Blocks.SANDSTONE, Blocks.RED_SANDSTONE, Blocks.STONE, Blocks.STONE_SLAB, Blocks.STONE_BUTTON, Blocks.STONE_PRESSURE_PLATE);
     private static final double[] ATTACK_DAMAGES = new double[] { 3D, 3.5D, 4D, 4.5D, 5D, 5.5D, 5.5D, 6D};
+    private HolderRegistrySet blocks = new HolderRegistrySet();
 
     public ItemHammer() {
         super("pickaxe", EFFECTIVE_ON);
         setCreativeTab(HFTab.MINING);
+        blocks.register(Ore.of("stone"));
+        blocks.register(Ore.of("blockLimestone"));
+        blocks.register(Ore.of("blockMarble"));
     }
 
     @Override
@@ -111,7 +117,9 @@ public class ItemHammer extends ItemToolSmashing<ItemHammer> {
     public ImmutableList<BlockPos> getBlocks(World world, BlockPos position, EntityPlayer player, ItemStack tool) {
         ToolTier tier = getTier(tool);
         IBlockState state = world.getBlockState(position);
-        if (state.getBlock() != Blocks.STONE) return ImmutableList.of();
+        ItemStack stackState = ToolHelper.getStackFromBlockState(state);
+        if (stackState == null) return ImmutableList.of();
+        if (!blocks.contains(stackState)) return ImmutableList.of();
         if (tier == ToolTier.BASIC || player.isSneaking()) return ImmutableList.of(position);
 
         RayTraceResult rt = rayTrace(world, player, true);

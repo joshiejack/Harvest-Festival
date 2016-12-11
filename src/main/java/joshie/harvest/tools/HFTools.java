@@ -2,7 +2,6 @@ package joshie.harvest.tools;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.core.base.item.ItemTool;
-import joshie.harvest.core.base.item.ItemToolChargeable;
 import joshie.harvest.core.util.annotations.HFLoader;
 import joshie.harvest.tools.item.*;
 import net.minecraft.potion.Potion;
@@ -22,7 +21,7 @@ public class HFTools {
 
     //Farming Tools
     public static final ItemTool SICKLE = new ItemSickle().register("sickle");
-    public static final ItemToolChargeable HOE = new ItemHoe().register("hoe");
+    public static final ItemHoe HOE = new ItemHoe().register("hoe");
     public static final ItemWateringCan WATERING_CAN = new ItemWateringCan().register("wateringcan");
 
     //Potion Effects

@@ -1,5 +1,6 @@
 package joshie.harvest.tools.item;
 
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Multimap;
 import joshie.harvest.core.base.item.ItemToolChargeable;
 import joshie.harvest.core.helpers.EntityHelper;
@@ -36,7 +37,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 
-public class ItemHoe extends ItemToolChargeable {
+public class ItemHoe extends ItemToolChargeable<ItemHoe> {
     public ItemHoe() {
         super("hoe", new HashSet<>());
     }
@@ -151,9 +152,29 @@ public class ItemHoe extends ItemToolChargeable {
         }
     }
 
-    @Override
-    public void onUsingTick(ItemStack stack, EntityLivingBase player, int count) {
-        super.onUsingTick(stack, player, count);
+    @SuppressWarnings("ConstantConditions")
+    public ImmutableList<BlockPos> getBlocks(World world, BlockPos pos, EntityPlayer player, ItemStack tool) {
+        ToolTier tier = getTier(tool);
+        if (tier == ToolTier.BASIC || player.isSneaking()) return ImmutableList.of(pos);
+
+        RayTraceResult rt = rayTrace(world, player, true);
+        if (rt == null || !pos.equals(rt.getBlockPos())) {
+            rt = rayTrace(world, player, false);
+            if (rt == null || !pos.equals(rt.getBlockPos())) {
+                return ImmutableList.of();
+            }
+        }
+
+        tier = getChargeTier(getCharge(tool));
+        EnumFacing front = EntityHelper.getFacingFromEntity(player);
+        ImmutableList.Builder<BlockPos> builder = ImmutableList.builder();
+        for (int x2 = getXMinus(tier, front, pos.getX()); x2 <= getXPlus(tier, front, pos.getX()); x2++) {
+            for (int z2 = getZMinus(tier, front, pos.getZ()); z2 <= getZPlus(tier, front, pos.getZ()); z2++) {
+                builder.add(new BlockPos(x2, pos.getY(), z2));
+            }
+        }
+
+        return builder.build();
     }
 
     @Override

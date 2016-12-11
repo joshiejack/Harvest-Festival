@@ -123,9 +123,10 @@ public abstract class GuiNPCBase extends GuiBase {
             drawHeart(HFApi.player.getRelationsForPlayer(player).getRelationship(npc.getNPC().getUUID()));
         }
 
+        GlStateManager.color(1F, 1F, 1F);
+        RenderHelper.enableGUIStandardItemLighting();
         drawOverlay(x, y);
         fontRendererObj.setUnicodeFlag(originalFlag);
-
     }
 
     @Override

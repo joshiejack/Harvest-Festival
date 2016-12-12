@@ -26,8 +26,8 @@ import static joshie.harvest.core.lib.HFModInfo.MODID;
 
 @HFCommand
 public class CommandExportRecipe extends AbstractHFCommand {
-    public static HashMap<Recipe, String> DESCRIPTIONS = new HashMap<>();
-    public static HashMap<Recipe, String> INFO_OVERRIDE = new HashMap();
+    static HashMap<Recipe, String> DESCRIPTIONS = new HashMap<>();
+    static HashMap<Recipe, String> INFO_OVERRIDE = new HashMap<>();
 
     @Override
     public String getCommandName() {
@@ -55,7 +55,7 @@ public class CommandExportRecipe extends AbstractHFCommand {
         return getHunger(stack);
     }
 
-    public static int getHunger(ItemStack stack) {
+    static int getHunger(ItemStack stack) {
         if (stack.getItem() instanceof ItemFood) {
             return ((ItemFood)(stack.getItem())).getHealAmount(stack);
         }

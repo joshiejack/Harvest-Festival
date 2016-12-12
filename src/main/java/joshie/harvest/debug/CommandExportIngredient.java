@@ -25,9 +25,10 @@ import java.util.HashMap;
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 
 @HFCommand
+@SuppressWarnings("unused")
 public class CommandExportIngredient extends AbstractHFCommand {
     public static HashMap<Recipe, String> DESCRIPTIONS = new HashMap<>();
-    public static HashMap<Recipe, String> INFO_OVERRIDE = new HashMap();
+    public static HashMap<Recipe, String> INFO_OVERRIDE = new HashMap<>();
 
     @Override
     public String getCommandName() {

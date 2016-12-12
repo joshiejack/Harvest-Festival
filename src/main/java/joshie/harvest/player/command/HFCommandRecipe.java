@@ -14,6 +14,7 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ResourceLocation;
 
 @HFCommand
+@SuppressWarnings("unused")
 public class HFCommandRecipe extends AbstractHFCommand {
     @Override
     public String getCommandName() {

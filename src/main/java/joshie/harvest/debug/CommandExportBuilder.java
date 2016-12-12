@@ -11,6 +11,7 @@ import net.minecraft.item.ItemStack;
 import java.util.List;
 
 @HFCommand
+@SuppressWarnings("unused")
 public class CommandExportBuilder extends CommandExportHeld {
     @Override
     public String getCommandName() {

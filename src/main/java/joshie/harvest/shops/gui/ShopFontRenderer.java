@@ -11,6 +11,7 @@ import net.minecraft.util.ResourceLocation;
 
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 
+@SuppressWarnings("ConstantConditions")
 public class ShopFontRenderer {
     private static final FontRenderer INSTANCE;
     private static final TCharSet ACCEPTED = new TCharHashSet();
@@ -60,7 +61,11 @@ public class ShopFontRenderer {
         if (rightAligned) {
             x -= INSTANCE.getStringWidth(text);
             y++;
-        } else x += 5;
-        return renderAsHF( text, x, y, rightAligned ? 1F : 1.5F);
+        } else {
+            x += 5;
+            y += 3;
+        }
+
+        return renderAsHF( text, x, y, rightAligned ? 1F : 1.1F);
     }
 }

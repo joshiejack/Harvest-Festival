@@ -27,6 +27,7 @@ import java.util.Collections;
 import java.util.List;
 
 @HFCommand
+@SuppressWarnings("unused")
 public class CommandCropExport extends AbstractHFCommand {
     @Override
     public String getCommandName() {

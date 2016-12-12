@@ -13,6 +13,7 @@ import java.util.Collections;
 import java.util.List;
 
 @HFCommand
+@SuppressWarnings("unused")
 public class CommandExportMiningList extends CommandExportHeld {
     @Override
     public String getCommandName() {

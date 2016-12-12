@@ -74,7 +74,7 @@ public class QuestDataServer extends QuestData {
         updateQuests(true); //Update the world on these quests, everytime one is completed
     }
     
-    public void updateQuests(boolean sync) {
+    private void updateQuests(boolean sync) {
         for (Quest quest : Quest.REGISTRY.getValues()) {
             updateQuests(quest, sync);
         }

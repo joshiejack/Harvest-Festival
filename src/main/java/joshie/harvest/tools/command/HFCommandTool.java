@@ -11,6 +11,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
 
 @HFCommand
+@SuppressWarnings("unused")
 public class HFCommandTool extends AbstractHFCommand {
     @Override
     public String getCommandName() {

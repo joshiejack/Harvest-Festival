@@ -5,9 +5,11 @@ import joshie.harvest.api.calendar.CalendarDate;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.crops.Crop;
 import joshie.harvest.api.shops.IPurchasable;
+import joshie.harvest.api.trees.Tree;
 import joshie.harvest.calendar.CalendarHelper;
 import joshie.harvest.core.helpers.MCClientHelper;
 import joshie.harvest.core.helpers.SpawnItemHelper;
+import joshie.harvest.core.helpers.TextHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -58,6 +60,11 @@ public class PurchasableCropSeeds implements IPurchasable {
     @Override
     public void addTooltip(List<String> list) {
         list.addAll(getDisplayStack().getTooltip(MCClientHelper.getPlayer(), false));
+        list.remove(list.size() - 1); //Remove info about days
+        list.add("--------------------");
+        int amount = crop instanceof Tree ? ((Tree)crop).getStagesToMaturity() : crop.getStages();
+        list.add(TextHelper.formatHF("crop.seeds.shop.days", amount));
+        if (crop.getRegrowStage() > 0) list.add(TextHelper.formatHF("crop.seeds.shop.regrow", (crop.getStages() - crop.getRegrowStage())));
     }
 
     @Override

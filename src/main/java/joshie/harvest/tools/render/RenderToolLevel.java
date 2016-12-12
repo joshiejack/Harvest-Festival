@@ -18,6 +18,7 @@ import net.minecraftforge.fml.relauncher.Side;
 @SuppressWarnings("unused")
 public class RenderToolLevel {
     @SubscribeEvent
+    @SuppressWarnings("ConstantConditions")
     public void onTooltipRender(RenderTooltipEvent.PostText event) {
         if (event.getStack() == null || Minecraft.getMinecraft().currentScreen == null) return; //Do nothing if stack is null
         ItemStack stack = event.getStack();

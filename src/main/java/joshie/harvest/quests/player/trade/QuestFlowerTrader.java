@@ -100,7 +100,7 @@ public class QuestFlowerTrader extends QuestTrade {
         if (HFApi.quests.hasCompleted(Quests.JENNI_MEET, player)) {
             complete(player);
         }
-    }
+}
 
     @Override
     public void readFromNBT(NBTTagCompound nbt) {

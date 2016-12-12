@@ -19,6 +19,7 @@ import org.apache.commons.lang3.text.WordUtils;
 import static joshie.harvest.debug.CommandExportRecipe.DESCRIPTIONS;
 
 @HFCommand
+@SuppressWarnings("unused")
 public class CommandExportUsageInRecipes extends AbstractHFCommand {
     @Override
     public String getCommandName() {

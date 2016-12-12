@@ -49,12 +49,12 @@ public class HFTools {
     }
 
     //Configuration
-    public static float EXHAUSTION_AMOUNT;
-    public static boolean RESTORE_HUNGER_ON_SLEEP;
-    public static boolean RESTORE_HUNGER_ON_FAINTING;
-    public static boolean HF_CONSUME_HUNGER;
-    public static boolean ATTACK_FAINTING;
-    public static boolean BLOCK_FAINTING;
+    static float EXHAUSTION_AMOUNT;
+    static boolean RESTORE_HUNGER_ON_SLEEP;
+    static boolean RESTORE_HUNGER_ON_FAINTING;
+    static boolean HF_CONSUME_HUNGER;
+    static boolean ATTACK_FAINTING;
+    static boolean BLOCK_FAINTING;
 
     public static void configure() {
         EXHAUSTION_AMOUNT = 4F / getInteger("Actions per half haunch", 27);

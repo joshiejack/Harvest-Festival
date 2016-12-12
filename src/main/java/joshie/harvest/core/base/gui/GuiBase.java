@@ -58,7 +58,6 @@ public abstract class GuiBase extends GuiScreen {
 
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
-
         drawDefaultBackground();
         GlStateManager.color(1.0f, 1.0f, 1.0f, 1.0f);
         mc.renderEngine.bindTexture(TEXTURE);

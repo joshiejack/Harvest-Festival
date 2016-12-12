@@ -14,6 +14,7 @@ import java.util.Collections;
 import java.util.List;
 
 @HFCommand
+@SuppressWarnings("unused")
 public class CommandExportAnimalsList extends CommandExportHeld {
     @Override
     public String getCommandName() {

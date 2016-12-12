@@ -12,6 +12,7 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
 
 @HFCommand
+@SuppressWarnings("unused")
 public class HFCommandGold extends AbstractHFCommand {
     @Override
     public String getCommandName() {

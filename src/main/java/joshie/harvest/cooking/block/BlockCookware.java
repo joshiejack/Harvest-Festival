@@ -7,6 +7,7 @@ import joshie.harvest.cooking.tile.*;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.block.BlockHFEnumRotatableTile;
 import joshie.harvest.core.handlers.GuiHandler;
+import joshie.harvest.core.helpers.SpawnItemHelper;
 import joshie.harvest.core.util.interfaces.IFaceable;
 import joshie.harvest.tools.ToolHelper;
 import net.minecraft.block.SoundType;
@@ -15,6 +16,7 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -24,13 +26,13 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nonnull;
 import java.util.Locale;
 
 import static joshie.harvest.cooking.block.BlockCookware.Cookware.*;
@@ -70,7 +72,7 @@ public class BlockCookware extends BlockHFEnumRotatableTile<BlockCookware, Cookw
 
     @Override
     @SideOnly(Side.CLIENT)
-    public boolean canRenderInLayer(IBlockState state, BlockRenderLayer layer) {
+    public boolean canRenderInLayer(IBlockState state, @Nonnull BlockRenderLayer layer) {
         Cookware cookware = getEnumFromState(state); //Yayayayayyayayayyayyyyyyyyyyyyyyyyyyyyyyyyyyaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaayya
         return cookware != FRIDGE_TOP && (cookware == MIXER ? layer == BlockRenderLayer.TRANSLUCENT : layer == BlockRenderLayer.CUTOUT_MIPPED);
     }
@@ -82,6 +84,7 @@ public class BlockCookware extends BlockHFEnumRotatableTile<BlockCookware, Cookw
 
     @SuppressWarnings("deprecation")
     @Override
+    @Nonnull
     public Material getMaterial(IBlockState state) {
         return getEnumFromState(state) == COUNTER ? Material.WOOD : super.getMaterial(state);
     }
@@ -89,7 +92,7 @@ public class BlockCookware extends BlockHFEnumRotatableTile<BlockCookware, Cookw
     @Override
     @SideOnly(Side.CLIENT)
     @SuppressWarnings("deprecation")
-    public boolean shouldSideBeRendered(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing side) {
+    public boolean shouldSideBeRendered(IBlockState state, @Nonnull IBlockAccess world, @Nonnull BlockPos pos, EnumFacing side) {
         if (getEnumFromState(state) == FRIDGE) {
             AxisAlignedBB axisalignedbb = state.getBoundingBox(world, pos);
             switch (side) {
@@ -135,6 +138,7 @@ public class BlockCookware extends BlockHFEnumRotatableTile<BlockCookware, Cookw
 
     @SuppressWarnings("deprecation")
     @Override
+    @Nonnull
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos) {
         Cookware cookware = getEnumFromState(state);
         switch (cookware) {
@@ -208,7 +212,7 @@ public class BlockCookware extends BlockHFEnumRotatableTile<BlockCookware, Cookw
         return false;
     }
 
-    public static boolean isCookware(ItemStack stack) {
+    private static boolean isCookware(ItemStack stack) {
         if (cookware == null) cookware = Item.getItemFromBlock(HFCooking.COOKWARE);
         return stack.getItem() == cookware;
     }
@@ -222,25 +226,27 @@ public class BlockCookware extends BlockHFEnumRotatableTile<BlockCookware, Cookw
     }
 
     @Override
-    public void onBlockExploded(World world, BlockPos pos, Explosion explosion) {
-        try {
-            Cookware cookware = getEnumFromBlockPos(world, pos);
-            if (cookware == FRIDGE_TOP) {
-                world.setBlockToAir(pos.down());
-            } else if (cookware == FRIDGE) {
-                world.setBlockToAir(pos.up());
-            }
-        } catch (Exception e) { e.printStackTrace(); }
-    }
-
-    @Override
-    public void breakBlock(World world, BlockPos pos, IBlockState state) {
+    public void breakBlock(@Nonnull World world, @Nonnull BlockPos pos, @Nonnull IBlockState state) {
         Cookware cookware = getEnumFromState(state);
         if (cookware == FRIDGE_TOP) {
             world.setBlockToAir(pos.down());
         } else if (cookware == FRIDGE) {
             world.setBlockToAir(pos.up());
         }
+
+        TileEntity tile = world.getTileEntity(pos);
+        if (tile instanceof TileCooking) {
+            TileCooking cooking = ((TileCooking)tile);
+            SpawnItemHelper.spawnItemStack(world, pos, cooking.getIngredients());
+            SpawnItemHelper.spawnItemStack(world, pos, cooking.getResult());
+            world.updateComparatorOutputLevel(pos, this);
+        } else if (tile instanceof TileFridge) {
+            TileFridge fridge = ((TileFridge)tile);
+            InventoryHelper.dropInventoryItems(world, pos, fridge.getContents());
+            world.updateComparatorOutputLevel(pos, this);
+        }
+
+        super.breakBlock(world, pos, state);
     }
 
     @Override
@@ -298,7 +304,8 @@ public class BlockCookware extends BlockHFEnumRotatableTile<BlockCookware, Cookw
     }
 
     @Override
-    public TileEntity createTileEntity(World world, IBlockState state) {
+    @SuppressWarnings("all")
+    public TileEntity createTileEntity(@Nonnull World world, @Nonnull IBlockState state) {
         Cookware cookware = getEnumFromState(state);
         switch (cookware) {
             case FRIDGE:

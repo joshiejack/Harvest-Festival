@@ -33,7 +33,7 @@ public abstract class TileCooking extends TileFaceable {
         }
     }
 
-    public static final int COOK_TIMER = 100;
+    private static final int COOK_TIMER = 100;
     private boolean cooking;
     private short cookTimer = 0;
     private ArrayList<ItemStack> ingredients = new ArrayList<>();
@@ -69,7 +69,7 @@ public abstract class TileCooking extends TileFaceable {
         return result;
     }
 
-    public ArrayList<ItemStack> getIngredients() {
+    public List<ItemStack> getIngredients() {
         return ingredients;
     }
 

@@ -6,8 +6,11 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.items.ItemHandlerHelper;
+
+import java.util.List;
 
 public class SpawnItemHelper {
     public static void addToPlayerInventory(EntityPlayer player, ItemStack stack) {
@@ -59,6 +62,14 @@ public class SpawnItemHelper {
             EntityItem entityitem = new EntityItem(world, (double) x + d0, (double) y + d1, (double) z + d2, stack);
             entityitem.setPickupDelay(10);
             world.spawnEntityInWorld(entityitem);
+        }
+    }
+
+    public static void spawnItemStack(World world, BlockPos pos, List<ItemStack> stacks) {
+        for (ItemStack stack: stacks) {
+            if (stack != null) {
+                net.minecraft.inventory.InventoryHelper.spawnItemStack(world, pos.getX(), pos.getY(), pos.getZ(), stack);
+            }
         }
     }
 }

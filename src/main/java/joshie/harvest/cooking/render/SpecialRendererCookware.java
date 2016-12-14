@@ -18,7 +18,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL14;
 
-import java.util.ArrayList;
+import javax.annotation.Nullable;
 import java.util.List;
 
 import static net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType.FIXED;
@@ -27,10 +27,10 @@ import static net.minecraft.client.renderer.vertex.DefaultVertexFormats.POSITION
 
 @SideOnly(Side.CLIENT)
 public abstract class SpecialRendererCookware<T extends TileCooking> extends TileEntitySpecialRenderer<T> {
-    public static final Minecraft MINECRAFT = Minecraft.getMinecraft();
+    private static final Minecraft MINECRAFT = Minecraft.getMinecraft();
 
     @Override
-    public void renderTileEntityAt(T tile, double x, double y, double z, float tick, int destroyStage) {
+    public void renderTileEntityAt(@Nullable T tile, double x, double y, double z, float tick, int destroyStage) {
         GlStateManager.pushMatrix();
         GlStateManager.translate(x, y, z);
         renderCookware(tile);
@@ -38,7 +38,7 @@ public abstract class SpecialRendererCookware<T extends TileCooking> extends Til
     }
 
     protected void renderCookware(T tile) {
-        ArrayList<ItemStack> ingredients = tile.getIngredients();
+        List<ItemStack> ingredients = tile.getIngredients();
         List<ItemStack> results = tile.getResult();
         if (results != null) {
             for (ItemStack result: results) {
@@ -69,7 +69,7 @@ public abstract class SpecialRendererCookware<T extends TileCooking> extends Til
         translateResult(isBlock);
     }
 
-    protected void renderIngredient(ItemStack stack, float position, float rotation, float offset1, float offset2) {
+    void renderIngredient(ItemStack stack, float position, float rotation, float offset1, float offset2) {
         GlStateManager.pushMatrix();
         RenderHelper.disableStandardItemLighting();
         GlStateManager.enableBlend();
@@ -91,7 +91,7 @@ public abstract class SpecialRendererCookware<T extends TileCooking> extends Til
         GlStateManager.popMatrix();
     }
 
-    protected void renderResult(T t, ItemStack stack) {
+    void renderResult(T t, ItemStack stack) {
         GlStateManager.pushMatrix();
         RenderHelper.disableStandardItemLighting();
         GlStateManager.enableBlend();
@@ -113,7 +113,8 @@ public abstract class SpecialRendererCookware<T extends TileCooking> extends Til
         GlStateManager.popMatrix();
     }
 
-    protected void renderFluidPlane(ResourceLocation fluid, float x, float y, float z, float size) {
+    @SuppressWarnings("ConstantConditions")
+    void renderFluidPlane(ResourceLocation fluid, float x, float y, float z, float size) {
         GlStateManager.pushMatrix();
         GlStateManager.translate(x, y, z);
         RenderHelper.disableStandardItemLighting();
@@ -143,7 +144,8 @@ public abstract class SpecialRendererCookware<T extends TileCooking> extends Til
         GlStateManager.popMatrix();
     }
 
-    protected void renderFluidCube(ResourceLocation fluid, float x, float y, float z, float size) {
+    @SuppressWarnings("ConstantConditions")
+    void renderFluidCube(ResourceLocation fluid, float x, float y, float z, float size) {
         GlStateManager.pushMatrix();
         GlStateManager.translate(x, y, z);
         RenderHelper.disableStandardItemLighting();

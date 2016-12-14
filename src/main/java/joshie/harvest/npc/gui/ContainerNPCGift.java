@@ -1,5 +1,6 @@
 package joshie.harvest.npc.gui;
 
+import joshie.harvest.HarvestFestival;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.CalendarDate;
 import joshie.harvest.core.HFTrackers;
@@ -42,12 +43,16 @@ public class ContainerNPCGift extends ContainerNPCChat {
 
                     relationships.gift(player, theNpc.getUUID(), points);
                 //}
-                if (gift != null) {
-                    gift.splitStack(1);
-                    if (gift.stackSize <= 0) {
-                        player.setHeldItem(hand, null);
-                    }
+
+                gift.splitStack(1);
+                if (gift.stackSize <= 0) {
+                    player.setHeldItem(hand, null);
                 }
+            }
+
+            //On closure
+            if (nextGui != -1) {
+                player.openGui(HarvestFestival.instance, nextGui, player.worldObj, npc.getEntityId(), 0, -1);
             }
         }
     }

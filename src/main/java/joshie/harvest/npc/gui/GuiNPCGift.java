@@ -1,6 +1,5 @@
 package joshie.harvest.npc.gui;
 
-import joshie.harvest.HarvestFestival;
 import joshie.harvest.api.npc.gift.IGiftHandler.Quality;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.helpers.TextHelper;
@@ -48,8 +47,5 @@ public class GuiNPCGift extends GuiNPCChat {
     public void endChat() {
         player.closeScreen();
         GODDESS_GIFT = null; //Reset
-        if (nextGui != -1) {
-            player.openGui(HarvestFestival.instance, nextGui, player.worldObj, npc.getEntityId(), 0, -1);
-        }
     }
 }

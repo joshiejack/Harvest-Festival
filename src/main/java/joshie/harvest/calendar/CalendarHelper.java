@@ -91,7 +91,7 @@ public class CalendarHelper {
     }
     
     public static int getScaledTime(int time) {
-        return (int) ((time / 24000D) * TICKS_PER_DAY);
+        return (int) ((time / TICKS_PER_DAY) * 24000D);
     }
 
     public static boolean haveYearsPassed(World world, EntityPlayer player, int year) {

@@ -23,8 +23,6 @@ import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-import static joshie.harvest.core.handlers.GuiHandler.GIFT;
-
 public abstract class EntityNPC<E extends EntityNPC> extends EntityAgeable implements IEntityAdditionalSpawnData {
     protected NPC npc;
     protected EntityNPC lover;
@@ -119,8 +117,7 @@ public abstract class EntityNPC<E extends EntityNPC> extends EntityAgeable imple
         if (!flag && isEntityAlive()) {
             if (!worldObj.isRemote) {
                 int guiID = NPCHelper.getGuiIDForNPC(this, worldObj, player);
-                int third = guiID == GIFT ? player.getActiveHand().ordinal() : -1;
-                player.openGui(HarvestFestival.instance, guiID, worldObj, getEntityId(), -1, third);
+                player.openGui(HarvestFestival.instance, guiID, worldObj, getEntityId(), -1, -1);
                 setTalking(player);
             }
 

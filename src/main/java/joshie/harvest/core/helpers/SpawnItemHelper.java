@@ -7,35 +7,16 @@ import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import net.minecraftforge.items.ItemHandlerHelper;
 
 public class SpawnItemHelper {
     public static void addToPlayerInventory(EntityPlayer player, ItemStack stack) {
-        addToPlayerInventory(player, player.worldObj, (int)player.posX, (int)player.posY, (int)player.posZ, stack);
-    }
-
-    public static void addToPlayerInventory(EntityPlayer player, World world, int x, int y, int z, ItemStack stack) {
-        if (!player.inventory.addItemStackToInventory(stack)) {
-            if (!world.isRemote) {
-                SpawnItemHelper.spawnItem(world, x, y + 1, z, stack);
-            }
-        }
+        ItemHandlerHelper.giveItemToPlayer(player, stack.copy());
     }
     
     //Items Spawned by entities last 1 day
     public static void spawnByEntity(Entity entity, ItemStack stack) {
         spawnItem(entity.worldObj, entity.posX, entity.posY, entity.posZ, stack, false, (int) HFCalendar.TICKS_PER_DAY, 0, 0);
-    }
-
-    public static void spawnItem(World world, int x, int y, int z, ItemStack stack, boolean random) {
-        spawnItem(world, x, y, z, stack, random, 0);
-    }
-
-    public static void spawnItem(World world, int x, int y, int z, ItemStack stack) {
-        spawnItem(world, x, y, z, stack, true);
-    }
-
-    public static void spawnItem(World world, int x, int y, int z, ItemStack stack, boolean random, int lifespan) {
-        spawnItem(world, x, y, z, stack, random, lifespan, 10, 0);
     }
 
     public static void spawnXP(World world, int x, int y, int z, int amount) {
@@ -45,7 +26,7 @@ public class SpawnItemHelper {
         }
     }
     
-    public static ItemStack spawnItem(World world, double x, double y, double z, ItemStack stack, boolean random, int lifespan, int delay, double motion) {
+    private static ItemStack spawnItem(World world, double x, double y, double z, ItemStack stack, boolean random, int lifespan, int delay, double motion) {
         if (!world.isRemote) {
             float f = 0.7F;
             double d0 = random ? world.rand.nextFloat() * f + (1.0F - f) * 0.5D : 0.5D;

@@ -1,3 +1,7 @@
+##0.5.22
+* Fix incorrect time when ticks per days is increased
+* Fix kitchen utensils not dropping items when broken
+
 ##0.5.21
 * Fix store bought chickens not being able to lay eggs
 

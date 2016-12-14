@@ -15,6 +15,7 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -34,6 +35,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.Locale;
 
 import static joshie.harvest.cooking.block.BlockCookware.Cookware.*;
+import static net.minecraft.inventory.InventoryHelper.spawnItemStack;
 import static net.minecraft.util.EnumFacing.*;
 
 public class BlockCookware extends BlockHFEnumRotatableTile<BlockCookware, Cookware> {
@@ -239,6 +241,29 @@ public class BlockCookware extends BlockHFEnumRotatableTile<BlockCookware, Cookw
         } else if (cookware == FRIDGE) {
             world.setBlockToAir(pos.up());
         }
+
+        //Spawn the items in world
+        TileEntity tileentity = world.getTileEntity(pos);
+        if (tileentity instanceof TileCooking) {
+            TileCooking cooking = ((TileCooking)tileentity);
+            for (ItemStack stack: cooking.getIngredients()) {
+                if (stack != null) {
+                    spawnItemStack(world, pos.getX(), pos.getY(), pos.getZ(), stack);
+                }
+            }
+
+            if (cooking.getResult() != null) {
+                spawnItemStack(world, pos.getX(), pos.getY(), pos.getZ(), cooking.getResult());
+            }
+
+            world.updateComparatorOutputLevel(pos, this);
+        } else if (tileentity instanceof TileFridge) {
+            TileFridge fridge = ((TileFridge)tileentity);
+            InventoryHelper.dropInventoryItems(world, pos, fridge.getContents());
+            world.updateComparatorOutputLevel(pos, this);
+        }
+
+        super.breakBlock(world, pos, state);
     }
 
     @Override

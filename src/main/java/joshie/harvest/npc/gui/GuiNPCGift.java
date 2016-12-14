@@ -1,6 +1,5 @@
 package joshie.harvest.npc.gui;
 
-import joshie.harvest.HarvestFestival;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.npc.gift.IGiftHandler.Quality;
 import joshie.harvest.core.handlers.HFTrackers;
@@ -41,9 +40,5 @@ public class GuiNPCGift extends GuiNPCChat {
     @Override
     public void endChat() {
         player.closeScreen();
-
-        if (nextGui != -1) {
-            player.openGui(HarvestFestival.instance, nextGui, player.worldObj, npc.getEntityId(), 0, -1);
-        }
     }
 }

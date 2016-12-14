@@ -32,7 +32,7 @@ public class CalendarHelper {
         return getWeekday(getElapsedDays(time));
     }
 
-    public static void setDate(World world, CalendarDate date) {
+    static void setDate(World world, CalendarDate date) {
         long time = world.getWorldTime();
         Season previous = date.getSeason();
         date.setWeekday(getWeekday(time)).setDay(getDay(time)).setSeason(getSeason(time)).setYear(getYear(time));
@@ -90,7 +90,7 @@ public class CalendarHelper {
     }
     
     public static int getScaledTime(int time) {
-        return (int) ((time / 24000D) * TICKS_PER_DAY);
+        return (int) ((time / TICKS_PER_DAY) * 24000D);
     }
 
     public static boolean haveYearsPassed(World world, EntityPlayer player, int year) {

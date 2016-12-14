@@ -56,7 +56,7 @@ public class HFCore {
     public static final AxisAlignedBB FENCE_COLLISION =  new AxisAlignedBB(0D, 0D, 0D, 1D, 1.5D, 1D);
 
     public static EnumFlowerType[] getTypes(EnumFlowerColor flowerColor) {
-        EnumFlowerType[][] TYPES_FOR_BLOCK = ReflectionHelper.getPrivateValue(EnumFlowerType.class, null, "TYPES_FOR_BLOCK");
+        EnumFlowerType[][] TYPES_FOR_BLOCK = ReflectionHelper.getPrivateValue(EnumFlowerType.class, null, "TYPES_FOR_BLOCK", "field_176981_k");
         return TYPES_FOR_BLOCK[flowerColor.ordinal()];
     }
 

@@ -102,7 +102,7 @@ public class HFCore {
     }
 
     private static EnumFlowerType[] getTypes(EnumFlowerColor flowerColor) {
-        EnumFlowerType[][] TYPES_FOR_BLOCK = ReflectionHelper.getPrivateValue(EnumFlowerType.class, null, "TYPES_FOR_BLOCK");
+        EnumFlowerType[][] TYPES_FOR_BLOCK = ReflectionHelper.getPrivateValue(EnumFlowerType.class, null, "TYPES_FOR_BLOCK", "field_176981_k");
         return TYPES_FOR_BLOCK[flowerColor.ordinal()];
     }
 

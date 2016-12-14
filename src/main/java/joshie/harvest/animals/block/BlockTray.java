@@ -91,7 +91,7 @@ public class BlockTray extends BlockHFEnum<BlockTray, Tray> implements IAnimalFe
                 }
 
                 nest.clear();
-                SpawnItemHelper.addToPlayerInventory(player, world, pos.getX(), pos.getY() + 1, pos.getZ(), drop);
+                SpawnItemHelper.addToPlayerInventory(player, drop);
 
                 if (!world.isRemote) {
                     world.setBlockState(pos, getStateFromEnum(NEST_EMPTY));

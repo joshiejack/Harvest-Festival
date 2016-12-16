@@ -4,6 +4,7 @@ import joshie.harvest.core.util.HFEvents;
 import joshie.harvest.core.util.holder.HolderRegistrySet;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemHoe;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.UseHoeEvent;
@@ -90,7 +91,7 @@ public class DisableHandler {
 
         @SubscribeEvent
         public void onUseHoe(UseHoeEvent event) {
-            if (DISABLE_VANILLA_HOE) {
+            if (DISABLE_VANILLA_HOE && event.getCurrent().getItem() instanceof ItemHoe) {
                 event.setCanceled(true);
             }
         }

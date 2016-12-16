@@ -88,7 +88,7 @@ public class HFCrops {
     public static final Crop EGGPLANT = registerCrop("eggplant", 120L, 80L, 10, 7, 0, 0XA25CC4, AUTUMN).setFoodStats(3, 1.1F).setStateHandler(new StateHandlerEggplant());
     public static final Crop SPINACH = registerCrop("spinach", 200L, 80L, 6, 0, 1, 0X90AE15, AUTUMN).setFoodStats(2, 1.0F).setStateHandler(new StateHandlerSpinach());
     public static final Crop CARROT = registerCrop("carrot", 300L, 120L, 8, 0, 0, 0XF8AC33, AUTUMN).setItem(new ItemStack(Items.CARROT)).setStateHandler(new StateHandlerSeedFood(Blocks.CARROTS));
-    public static final Crop SWEET_POTATO = registerCrop("sweet_potato", 300L, 120L, 6, 4, 0, 0XD82AAC, AUTUMN).setFoodStats(2, 0.35F).setStateHandler(new StateHandlerSweetPotato());
+    public static final Crop SWEET_POTATO = registerCrop("sweet_potato", 300L, 60L, 6, 4, 0, 0XD82AAC, AUTUMN).setFoodStats(2, 0.35F).setStateHandler(new StateHandlerSweetPotato());
     public static final Crop GREEN_PEPPER = registerCrop("green_pepper", 150L, 40L, 8, 2, 3, 0x56D213, AUTUMN).setFoodStats(2, 0.5F).setStateHandler(new StateHandlerGreenPepper());
     public static final Crop BEETROOT = registerCrop("beetroot", 250L, 75L, 8, 0, 0, 0x690000, AUTUMN).setItem(new ItemStack(Items.BEETROOT)).setStateHandler(new StateHandlerBeetroot());
 
@@ -237,7 +237,7 @@ public class HFCrops {
     //Configure
     public static boolean SEASONAL_BONEMEAL;
     public static boolean ENABLE_BONEMEAL;
-    public static boolean ALWAYS_GROW;
+    public static boolean GROWS_DAILY;
     public static boolean DISABLE_VANILLA_HOE;
     public static boolean DISABLE_VANILLA_SEEDS;
     public static boolean DISABLE_VANILLA_GROWTH;
@@ -251,7 +251,7 @@ public class HFCrops {
     public static boolean CROPS_SHOULD_DIE;
 
     public static void configure() {
-        ALWAYS_GROW = getBoolean("Crops always grow", false, "This setting when set to true, will make crops grow based on random tick instead of day by day, Take note that this also affects the number of seeds a crop bag will plant. It will only plant 3 seeds instead of a 3x3");
+        GROWS_DAILY = getBoolean("Crops grow daily", true, "This setting when set to true, will make crops grow based on day by day instead of based on random ticks");
         ENABLE_BONEMEAL = getBoolean("Enable bonemeal", false, "Enabling this will allow you to use bonemeal on plants to grow them.");
         SEASONAL_BONEMEAL = getBoolean("Seasonal bonemeal", true, "If you have bonemeal enabled, with this setting active, bonemeal will only work when the crop is in season");
         DISABLE_VANILLA_SEEDS = getBoolean("Disable vanilla seeds", true, "If this is true, vanilla seeds will not plant their crops");

@@ -284,8 +284,8 @@ public class Shops {
     public static void adjustCarpenter(String id, int logs, int stone, long cost) {
         Shop shop = (Shop) HFShops.CARPENTER;
         if (shop.getPurchasableFromID(id) == null) CraftTweaker.logError(String.format("No purchasable with the id %s could be found in " + HFShops.CARPENTER, id));
-        else if (!(shop.getPurchasableFromID(id) instanceof PurchasableBuilder)) CraftTweaker.logError(String.format("The item %s did not originall accept materials, you cannot adjust the values", id));
-        else MineTweakerAPI.apply(new AdjustCarpenter(shop.getPurchasableFromID(id), cost, logs, stone));
+        else if (!(shop.getPurchasableFromID(id) instanceof PurchasableBuilder)) CraftTweaker.logError(String.format("The item %s did not originaly accept materials, you cannot adjust the values", id));
+        else MineTweakerAPI.apply(new AdjustCarpenter((PurchasableBuilder)shop.getPurchasableFromID(id), cost, logs, stone));
     }
 
     private static class AdjustCarpenter extends AdjustPurchasable {
@@ -295,8 +295,9 @@ public class Shops {
         PurchasableWrapperCarpenter wrapper;
 
         @SuppressWarnings("unchecked")
-        AdjustCarpenter(IPurchasable purchasable, long cost, int wood, int stone) {
+        AdjustCarpenter(PurchasableBuilder purchasable, long cost, int wood, int stone) {
             super((Shop) HFShops.CARPENTER, purchasable, cost);
+            this.purchasable = purchasable;
             this.wood = wood;
             this.stone = stone;
         }

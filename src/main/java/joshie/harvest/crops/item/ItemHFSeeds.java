@@ -73,18 +73,10 @@ public class ItemHFSeeds extends ItemSeeds implements ICreativeSorted {
                 if (player.isSneaking()) {
                     planted = plantSeedAt(player, stack, world, pos, facing, crop, planted);
                 } else {
-                    labelTop:
                     for (int x = pos.getX() - 1; x <= pos.getX() + 1; x++) {
                         for (int z = pos.getZ() - 1; z <= pos.getZ() + 1; z++) {
                             if (crop.growsToSide() == null || !((x == pos.getX() && z == pos.getZ()))) {
                                 planted = plantSeedAt(player, stack, world, new BlockPos(x, pos.getY(), z), facing, crop, planted);
-                            }
-
-                            if (planted < 0) {
-                                if (HFCrops.ALWAYS_GROW) {
-                                    planted = 2;
-                                    break labelTop;
-                                }
                             }
                         }
                     }
@@ -111,14 +103,9 @@ public class ItemHFSeeds extends ItemSeeds implements ICreativeSorted {
 
                 HFApi.crops.plantCrop(player, world, pos.up(), crop, 1);
                 planted++;
-
-                if (HFCrops.ALWAYS_GROW) {
-                    if (planted >= 2) {
-                        return -1;
-                    }
-                }
             }
         }
+
         return planted;
     }
 

@@ -81,9 +81,9 @@ public class HFCommonProxy {
         for (Class c : LIST) {
             try {
                 Method configure = c.getMethod("configure");
-                setCategory(c.getSimpleName().replace("HF", ""));
                 try {
                     config.load();
+                    setCategory(c.getSimpleName().replace("HF", ""));
                     configure.invoke(null);
                 } catch (IllegalAccessException | InvocationTargetException e) {
                     e.printStackTrace();

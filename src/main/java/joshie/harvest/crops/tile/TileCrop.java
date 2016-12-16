@@ -42,7 +42,7 @@ public class TileCrop extends TileWithered implements IDailyTickable {
 
 
             //Mark the crop as dirty
-            markDirty();
+            saveAndRefresh();
         }
     }
 

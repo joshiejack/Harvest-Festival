@@ -1,6 +1,8 @@
 ##0.5.22
+* Halve the sell cost of Sweet Potatoes
 * Fix incorrect time when ticks per days is increased
 * Fix kitchen utensils not dropping items when broken
+* Fix disabling of vanilla hoes affecting HF hoes
 
 ##0.5.21
 * Fix store bought chickens not being able to lay eggs

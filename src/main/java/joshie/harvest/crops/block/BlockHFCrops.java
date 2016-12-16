@@ -87,7 +87,7 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
         super(Material.PLANTS, CropType.class, null);
         setBlockUnbreakable();
         setSoundType(SoundType.GROUND);
-        setTickRandomly(HFCrops.ALWAYS_GROW);
+        if (!HFCrops.GROWS_DAILY) setTickRandomly(true);
         disableStats();
     }
 
@@ -115,15 +115,13 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
     //Only called if crops are set to tick randomly
     @Override
     public void updateTick(World world, BlockPos pos, IBlockState state, Random rand) {
-        if (!world.isRemote) {
-            if (HFCrops.ALWAYS_GROW) {
-                CropType stage = getEnumFromState(state);
-                if (stage == CropType.WITHERED) return; //If withered do nothing
-                if (world.getLightFromNeighbors(pos.up()) >= 9) {
-                    if (rand.nextInt(20) == 0) {
-                        //We are Growing!
-                        grow(world, rand, pos, state);
-                    }
+        if (!HFCrops.GROWS_DAILY && !world.isRemote) {
+            CropType stage = getEnumFromState(state);
+            if (stage == CropType.WITHERED) return; //If withered do nothing
+            if (world.getLightFromNeighbors(pos.up()) >= 9) {
+                if (rand.nextInt(20) == 0) {
+                    //We are Growing!
+                    grow(world, rand, pos, state);
                 }
             }
         }

@@ -37,7 +37,7 @@ public class CropData {
             return false;
         } else { //Stage 2: Now that we know, it has been watered, Update it's stage
             //If we aren't ticking randomly, Then increase the stage
-            if (!HFCrops.ALWAYS_GROW) {
+            if (HFCrops.GROWS_DAILY) {
                 if (daysWithoutWater == 0 || !crop.requiresWater()) {
                     grow(world, pos);
                 }

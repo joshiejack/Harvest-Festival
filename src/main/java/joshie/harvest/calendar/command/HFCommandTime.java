@@ -8,6 +8,7 @@ import net.minecraft.command.ICommandSender;
 import net.minecraft.server.MinecraftServer;
 
 @HFCommand
+@SuppressWarnings("unused")
 public class HFCommandTime extends AbstractHFCommand {
     @Override
     public String getCommandName() {

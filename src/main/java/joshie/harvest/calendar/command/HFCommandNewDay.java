@@ -9,6 +9,7 @@ import net.minecraft.server.MinecraftServer;
 import static joshie.harvest.calendar.HFCalendar.TICKS_PER_DAY;
 
 @HFCommand
+@SuppressWarnings("unused")
 public class HFCommandNewDay extends AbstractHFCommand {
     @Override
     public String getCommandName() {

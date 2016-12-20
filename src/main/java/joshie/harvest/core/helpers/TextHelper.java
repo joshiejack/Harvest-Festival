@@ -46,7 +46,7 @@ public class TextHelper {
 
                 return i - 1;
             });
-        } catch (Exception e) {}
+        } catch (Exception e) {/**/}
 
         int random = 1 + (maximum >= 2? rand.nextInt(maximum): 0);
         return data.length > 0 ?  format(text + random, data) : localize(text + random);
@@ -57,6 +57,7 @@ public class TextHelper {
         return I18n.translateToLocalFormatted(key, data);
     }
 
+    @SuppressWarnings("deprecation")
     public static String formatHF(String key, Object... data) {
         return I18n.translateToLocalFormatted(MODID + "." + key, data);
     }
@@ -82,7 +83,7 @@ public class TextHelper {
     }
 
     @SuppressWarnings("deprecation")
-    public static boolean canTranslate(String key) {
+    private static boolean canTranslate(String key) {
         return I18n.canTranslate(key);
     }
 }

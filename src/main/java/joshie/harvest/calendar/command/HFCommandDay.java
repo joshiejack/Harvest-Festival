@@ -13,6 +13,7 @@ import net.minecraft.server.MinecraftServer;
 import static joshie.harvest.api.calendar.CalendarDate.DAYS_PER_SEASON;
 
 @HFCommand
+@SuppressWarnings("unused")
 public class HFCommandDay extends AbstractHFCommand {
     @Override
     public String getCommandName() {

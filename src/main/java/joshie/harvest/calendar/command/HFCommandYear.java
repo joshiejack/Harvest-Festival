@@ -11,6 +11,7 @@ import net.minecraft.command.ICommandSender;
 import net.minecraft.server.MinecraftServer;
 
 @HFCommand
+@SuppressWarnings("unused")
 public class HFCommandYear extends AbstractHFCommand {
     @Override
     public String getCommandName() {

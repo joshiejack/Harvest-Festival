@@ -156,7 +156,7 @@ public abstract class TileCooking extends TileFaceable {
         }
     }
 
-    //TODO: Register the new alts
+    @SuppressWarnings("deprecation")
     private ItemStack getRealIngredient(ItemStack stack) {
         ItemStack alt = stack;
         if (stack.getItem() instanceof IAltItem) {

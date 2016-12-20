@@ -10,6 +10,7 @@ import net.minecraft.server.MinecraftServer;
 import org.apache.commons.lang3.StringUtils;
 
 @HFCommand
+@SuppressWarnings("unused")
 public class HFCommandWeather extends AbstractHFCommand {
     @Override
     public String getCommandName() {

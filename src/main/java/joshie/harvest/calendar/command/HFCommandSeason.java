@@ -12,6 +12,7 @@ import net.minecraft.server.MinecraftServer;
 import org.apache.commons.lang3.StringUtils;
 
 @HFCommand
+@SuppressWarnings("unused")
 public class HFCommandSeason extends AbstractHFCommand {
     @Override
     public String getCommandName() {

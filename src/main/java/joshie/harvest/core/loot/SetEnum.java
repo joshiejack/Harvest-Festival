@@ -6,6 +6,7 @@ import com.google.gson.JsonSerializationContext;
 import joshie.harvest.core.base.block.BlockHFEnum;
 import joshie.harvest.core.base.item.ItemBlockHF;
 import joshie.harvest.core.base.item.ItemHFEnum;
+import joshie.harvest.core.base.item.ItemHFFoodEnum;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.storage.loot.LootContext;
@@ -24,7 +25,11 @@ public class SetEnum extends LootFunction {
     }
 
     public ItemStack apply(ItemStack stack, Random rand, LootContext context) {
-        if (stack.getItem() instanceof ItemHFEnum) {
+        if (stack.getItem() instanceof ItemHFFoodEnum) {
+            ItemStack ret = ((ItemHFFoodEnum)stack.getItem()).getStackFromEnumString(name);
+            ret.stackSize = stack.stackSize; ///Update the size
+            return ret;
+        } else if (stack.getItem() instanceof ItemHFEnum) {
             ItemStack ret = ((ItemHFEnum)stack.getItem()).getStackFromEnumString(name);
             ret.stackSize = stack.stackSize; ///Update the size
             return ret;

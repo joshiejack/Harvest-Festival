@@ -10,6 +10,8 @@ import joshie.harvest.knowledge.gui.stats.GuiStats;
 import joshie.harvest.npc.NPCHelper;
 import joshie.harvest.npc.entity.EntityNPC;
 import joshie.harvest.npc.gui.*;
+import joshie.harvest.quests.gui.ContainerQuestBoard;
+import joshie.harvest.quests.gui.GuiQuestBoard;
 import joshie.harvest.shops.gui.ContainerNPCShop;
 import joshie.harvest.shops.gui.GuiNPCShop;
 import net.minecraft.entity.player.EntityPlayer;
@@ -30,6 +32,7 @@ public class GuiHandler implements IGuiHandler {
     public static final int NPC_INFO = 8;
     public static final int SHOP_MENU_SELL = 9;
     public static final int GIFT_GODDESS = 10;
+    public static final int QUEST_BOARD = 11;
 
     @Override
     public Object getServerGuiElement(int ID, EntityPlayer player, World world, int entityID, int nextGui, int hand) {
@@ -48,6 +51,7 @@ public class GuiHandler implements IGuiHandler {
                 return new ContainerNPCShop((EntityNPC) world.getEntityByID(entityID));
             case GIFT:          return new ContainerNPCGift(player, (EntityNPC) world.getEntityByID(entityID), EnumHand.values()[hand], -1);
             case FRIDGE:        return new ContainerFridge(player, player.inventory, (TileFridge) world.getTileEntity(new BlockPos(entityID, nextGui, hand)));
+            case QUEST_BOARD:   return new ContainerQuestBoard(player, player.inventory);
             default:            return null;
         }
     }
@@ -73,6 +77,7 @@ public class GuiHandler implements IGuiHandler {
             case GIFT:          return new GuiNPCGift(player, (EntityNPC) world.getEntityByID(entityID), EnumHand.values()[hand]);
             case GIFT_GODDESS:  return new GuiNPCGift(player, (EntityNPC) world.getEntityByID(entityID), EnumHand.values()[hand], GuiNPCGift.GODDESS_GIFT);
             case FRIDGE:        return new GuiFridge(player, player.inventory, (TileFridge) world.getTileEntity(new BlockPos(entityID, nextGui, hand)));
+            case QUEST_BOARD:   return new GuiQuestBoard(player, player.inventory);
             case COOKBOOK:      return new GuiCookbook();
             case STATS_BOOK:    return new GuiStats();
             case SHOP_OPTIONS:    {

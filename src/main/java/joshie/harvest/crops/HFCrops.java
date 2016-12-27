@@ -52,7 +52,6 @@ import static joshie.harvest.core.helpers.RegistryHelper.*;
 import static joshie.harvest.core.lib.LoadOrder.HFCROPS;
 import static net.minecraft.block.BlockLeaves.CHECK_DECAY;
 import static net.minecraft.block.BlockLeaves.DECAYABLE;
-import static net.minecraft.init.Items.*;
 
 @HFLoader(priority = HFCROPS)
 public class HFCrops {
@@ -144,12 +143,12 @@ public class HFCrops {
         RegistryHelper.registerTiles(TileWithered.class, TileCrop.class, TileSprinkler.class, TileSprinklerOld.class, TileFruit.class);
         if (DISABLE_VANILLA_MOISTURE) Blocks.FARMLAND.setTickRandomly(false);
         if (DISABLE_VANILLA_WHEAT_SEEDS || DISABLE_VANILLA_SEEDS) {
-            BLACKLIST.register(MELON_SEEDS);
-            BLACKLIST.register(PUMPKIN_SEEDS);
-            BLACKLIST.register(BEETROOT_SEEDS);
-            BLACKLIST.register(WHEAT_SEEDS);
-            BLACKLIST.register(CARROT);
-            BLACKLIST.register(POTATO);
+            BLACKLIST.register(Items.MELON_SEEDS);
+            BLACKLIST.register(Items.PUMPKIN_SEEDS);
+            BLACKLIST.register(Items.BEETROOT_SEEDS);
+            BLACKLIST.register(Items.WHEAT_SEEDS);
+            BLACKLIST.register(Items.CARROT);
+            BLACKLIST.register(Items.POTATO);
         }
 
         //Register everything in the ore dictionary

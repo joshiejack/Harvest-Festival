@@ -4,6 +4,7 @@ import joshie.harvest.cooking.tile.FridgeData;
 import joshie.harvest.cooking.tile.TileFridge;
 import joshie.harvest.core.base.gui.ContainerBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
@@ -11,7 +12,7 @@ import net.minecraft.item.ItemStack;
 public class ContainerFridge extends ContainerBase {
     private final TileFridge fridge;
 
-    public ContainerFridge(EntityPlayer player, IInventory inventory, TileFridge fridge) {
+    public ContainerFridge(EntityPlayer player, InventoryPlayer inventory, TileFridge fridge) {
         this.fridge = fridge;
         fridge.getContents().openInventory(player);
         for (int i = 0; i < 6; i++) {
@@ -23,17 +24,7 @@ public class ContainerFridge extends ContainerBase {
         bindPlayerInventory(inventory, 56);
     }
 
-    private void bindPlayerInventory(IInventory playerInventory, int yOffset) {
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 9; j++) {
-                addSlotToContainer(new Slot(playerInventory, j + i * 9 + 9, 8 + j * 18, 84 + i * 18 + yOffset));
-            }
-        }
 
-        for (int i = 0; i < 9; i++) {
-            addSlotToContainer(new Slot(playerInventory, i, 8 + i * 18, 142 + yOffset));
-        }
-    }
 
     @Override
     public int getMaximumStorage(int size) {

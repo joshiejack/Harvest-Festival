@@ -7,14 +7,14 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
+import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Slot;
 import net.minecraft.util.ResourceLocation;
 
 public class GuiFridge extends GuiBaseContainer {
     private FridgeFont font;
 
-    public GuiFridge(EntityPlayer player, IInventory playerInv, TileFridge fridge) {
+    public GuiFridge(EntityPlayer player, InventoryPlayer playerInv, TileFridge fridge) {
         super(new ContainerFridge(player, playerInv, fridge), "fridge", 56);
     }
 

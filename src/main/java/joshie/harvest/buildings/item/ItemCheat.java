@@ -1,11 +1,13 @@
 package joshie.harvest.buildings.item;
 
+import joshie.harvest.HarvestFestival;
 import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.buildings.block.BlockInternalAir;
 import joshie.harvest.buildings.item.ItemCheat.Cheat;
 import joshie.harvest.buildings.loader.CodeGeneratorBuildings;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.item.ItemHFEnum;
+import joshie.harvest.core.handlers.GuiHandler;
 import joshie.harvest.core.helpers.ChatHelper;
 import joshie.harvest.core.helpers.MCClientHelper;
 import joshie.harvest.core.lib.CreativeSort;
@@ -45,6 +47,7 @@ public class ItemCheat extends ItemHFEnum<ItemCheat, Cheat> {
 
     @Override
     public EnumActionResult onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+        player.openGui(HarvestFestival.instance, GuiHandler.QUEST_BOARD, world, 0, 0, 0);
         int damage = stack.getItemDamage();
         if (damage == COORD_SETTER.ordinal()) {
             if (player.isSneaking()) {
@@ -113,7 +116,8 @@ public class ItemCheat extends ItemHFEnum<ItemCheat, Cheat> {
 
     @Override
     public boolean shouldDisplayInCreative(Cheat cheat) {
-        return DEBUG_MODE || MCClientHelper.getPlayer().getName().equals("joshiejack");
+        EntityPlayer player = MCClientHelper.getPlayer();
+        return DEBUG_MODE || (player != null && player.getName().equals("joshiejack"));
     }
 
     @Override

@@ -78,7 +78,6 @@ public class QuestWooly extends QuestWeekly {
 
     @Override
     public void onQuestCompleted(EntityPlayer player) {
-        super.onQuestCompleted(player); //Call the super
         if (success == Result.ALLOW) HFApi.player.getRelationsForPlayer(player).affectRelationship(RelationshipType.NPC, HFNPCs.FLOWER_GIRL.getUUID(), 500);
          else if (success == Result.DENY) HFApi.player.getRelationsForPlayer(player).affectRelationship(RelationshipType.NPC, HFNPCs.FLOWER_GIRL.getUUID(), -100);
     }

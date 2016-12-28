@@ -169,7 +169,7 @@ public class ItemMeal extends ItemHFFoodEnum<ItemMeal, Meal> {
     }
 
     @Override
-    protected ItemStack getCreativeStack(Item item, Meal meal) {
+    public ItemStack getCreativeStack(Item item, Meal meal) {
         Recipe recipe = getRecipeFromMeal(meal);
         if (recipe != null) {
             ArrayList<IngredientStack> stacks = new ArrayList<>();

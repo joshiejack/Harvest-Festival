@@ -30,6 +30,10 @@ public abstract class TownData<Q extends QuestData> {
     /** Overriden to actually return what we should **/
     public abstract Q getQuests();
 
+    public Quest getDailyQuest() {
+        return dailyQuest;
+    }
+
     public CalendarDate getBirthday() {
         return birthday;
     }

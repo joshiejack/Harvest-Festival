@@ -15,7 +15,7 @@ import joshie.harvest.core.helpers.StackRenderHelper;
 import joshie.harvest.crops.HFCrops;
 import joshie.harvest.crops.item.ItemCrop.Crops;
 import joshie.harvest.knowledge.gui.stats.GuiStats;
-import joshie.harvest.knowledge.gui.stats.button.ButtonBook;
+import joshie.harvest.core.base.gui.ButtonBook;
 import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.npc.item.ItemNPCTool.NPCTool;
 import joshie.harvest.player.relationships.RelationshipDataClient;

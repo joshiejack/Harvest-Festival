@@ -48,7 +48,7 @@ public class QuestCollect extends QuestDaily {
     }
 
     private Crop getValidCrop(Crop crop) {
-        return crop == HFCrops.TUTORIAL || crop.getIngredient() == null ? HFCrops.TURNIP : crop;
+        return crop == HFCrops.GRASS || crop == HFCrops.TUTORIAL || crop.getIngredient() == null ? HFCrops.TURNIP : crop;
     }
 
     @Override

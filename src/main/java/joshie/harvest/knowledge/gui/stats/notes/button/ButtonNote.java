@@ -5,7 +5,7 @@ import joshie.harvest.api.knowledge.NoteRender;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.helpers.StackRenderHelper;
 import joshie.harvest.knowledge.gui.stats.GuiStats;
-import joshie.harvest.knowledge.gui.stats.button.ButtonBook;
+import joshie.harvest.core.base.gui.ButtonBook;
 import joshie.harvest.knowledge.gui.stats.notes.page.PageNotes;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.SoundHandler;

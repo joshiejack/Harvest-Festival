@@ -4,7 +4,7 @@ import joshie.harvest.api.quests.Quest;
 import joshie.harvest.core.helpers.MCClientHelper;
 import joshie.harvest.core.helpers.StackRenderHelper;
 import joshie.harvest.knowledge.gui.stats.GuiStats;
-import joshie.harvest.knowledge.gui.stats.button.ButtonBook;
+import joshie.harvest.core.base.gui.ButtonBook;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.EntityPlayer;

@@ -4,7 +4,7 @@ import joshie.harvest.api.player.RelationshipType;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.helpers.StackRenderHelper;
 import joshie.harvest.knowledge.gui.stats.GuiStats;
-import joshie.harvest.knowledge.gui.stats.button.ButtonBook;
+import joshie.harvest.core.base.gui.ButtonBook;
 import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.npc.NPC;
 import joshie.harvest.npc.item.ItemNPCTool.NPCTool;

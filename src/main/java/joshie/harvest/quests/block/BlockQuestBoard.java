@@ -89,6 +89,11 @@ public class BlockQuestBoard extends BlockHFEnumRotatableMeta<BlockQuestBoard, Q
     }
 
     @Override
+    protected boolean shouldDisplayInCreative(QuestBlock block) {
+        return block == QuestBlock.BOARD;
+    }
+
+    @Override
     public boolean hasTileEntity(IBlockState state) {
         return true;
     }

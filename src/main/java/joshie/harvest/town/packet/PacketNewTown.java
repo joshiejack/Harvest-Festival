@@ -14,9 +14,10 @@ import net.minecraftforge.fml.common.network.ByteBufUtils;
 
 @Packet(Side.CLIENT)
 public class PacketNewTown extends PenguinPacket {
-    public PacketNewTown() {}
     private TownData data;
 
+    @SuppressWarnings("unused")
+    public PacketNewTown() {}
     public PacketNewTown(TownData data) {
         this.data = data;
     }

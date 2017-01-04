@@ -13,6 +13,7 @@ import net.minecraftforge.fml.common.network.ByteBufUtils;
 public class PacketQuestSetCurrent extends PacketQuest<QuestDataClient> {
     private Quest quest;
 
+    @SuppressWarnings("unused")
     public PacketQuestSetCurrent() {}
     public PacketQuestSetCurrent(Quest quest) {
         this.quest = quest;

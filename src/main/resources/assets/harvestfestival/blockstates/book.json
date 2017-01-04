@@ -1,0 +1,10 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "transform": "forge:default-item",
+    "model": "forge:item-layer"
+  },
+  "variants": {
+    "statistics": [{ "textures": { "layer0": "harvestfestival:items/book_knowledge" }}]
+  }
+}

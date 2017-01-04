@@ -13,6 +13,7 @@ import net.minecraftforge.fml.common.network.ByteBufUtils;
 public class PacketQuestCompleteEarly extends PacketQuest {
     private Quest quest;
 
+    @SuppressWarnings("unused")
     public PacketQuestCompleteEarly() {}
     public PacketQuestCompleteEarly(Quest quest) {
         this.quest = quest;
@@ -32,7 +33,7 @@ public class PacketQuestCompleteEarly extends PacketQuest {
 
     @Override
     public void handlePacket(EntityPlayer player) {
-        QuestQuestion real = (QuestQuestion) getQuestDataFromPlayer(player).getAQuest(quest);
+        QuestQuestion real = getQuestDataFromPlayer(player).getAQuest(quest);
         if (real != null) {
             real.isCompletedEarly = true;
         }

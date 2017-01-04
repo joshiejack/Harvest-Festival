@@ -21,6 +21,7 @@ public class PacketSyncTowns extends PenguinPacket {
     private Set<TownDataServer> servers;
     private Set<TownDataClient> clients;
 
+    @SuppressWarnings("unused")
     public PacketSyncTowns(){}
     public PacketSyncTowns(Set<TownDataServer> townData) {
         servers = townData;

@@ -18,6 +18,7 @@ public class PacketDailyQuest extends PenguinPacket {
     private UUID uuid;
     private Quest quest;
 
+    @SuppressWarnings("unused")
     public PacketDailyQuest() {}
     public PacketDailyQuest(UUID uuid, Quest quest) {
         this.uuid = uuid;

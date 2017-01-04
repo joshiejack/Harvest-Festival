@@ -672,6 +672,7 @@ harvestfestival.npctool.statistics=Ask for knowledge?
 
 #Quest Baoard
 harvestfestival.quest.block.board=Quest Board
+harvestfestival.quest.block.active=Quest Board
 
 # NPC Names
 ## NOTE FOR TRANSLATORS, READ
@@ -1595,6 +1596,25 @@ harvestfestival.quest.building.goddess.thanks=Your hard work getting this town b
 #Sunday Baking!
 harvestfestival.schedule.katlin.baking.cake=Youngun today is a graceful day, I've been hard at work baking, so I'd like for you to have some of my baked goods.
 
+## Help Wanted Quests
+#Crop Collecting
+harvestfestival.quest.collect.crops.title=Missing Ingredients
+harvestfestival.quest.collect.crops.desc=Bring Granny Katlin %1$s %2$s
+harvestfestival.quest.collect.crops.task=I'm looking for an ingredient for something I'd love to cook. Could you bring me \n %1$s %2$s please.\n- Katlin\n\n- Free Meal\n- Katlin will be grateful
+harvestfestival.quest.collect.crops.complete1=Thanks youngun, this will make a great meal. As promised here's something I cooked recently.
+harvestfestival.quest.collect.crops.complete2=Youngun this is greatly appreciated. I've made a meal I've love to share with you.
+harvestfestival.quest.collect.crops.complete3=Take this home cooked meal as a thank you for delivering the ingredients I needed.
+#Slaying Mine
+## Help Wanted Quests
+harvestfestival.quest.none=No quests currently available\n\nTry again tomorrow
+harvestfestival.quest.slay.title=Dark Destruction
+harvestfestival.quest.slay.desc=Kill %1$s %2$s
+harvestfestival.quest.slay.talk=Talk to Brandon
+harvestfestival.quest.slay.task=The mines have become infested lately. It's hard to work down there. Could you perhaps kill \n %1$s %2$s please.\n- Brandon\n\n- 1000G each\n- Brandon will be grateful
+harvestfestival.quest.slay.complete1=I guess that was helpful of you, here take a payment.
+harvestfestival.quest.slay.complete2=Good on you for clearing some mobs out of the mine. I've some gold to spare.
+harvestfestival.quest.slay.complete3=Thanks for helping clear the mine. Take this.
+
 ###Achievements
 achievement.harvestfestival.summon=Goddess' Bounty
 achievement.harvestfestival.summon.desc=Summon a goddess flower
@@ -1670,7 +1690,7 @@ harvestfestival.subtitle.recipe=Recipe Learnt!
 harvestfestival.config.tooltip=
 
 #Stats book
-harvestfestival.book.statistics=Knowledge
+harvestfestival.book.statistics=Farming for Dummies
 harvestfestival.stats.next=Next Page
 harvestfestival.stats.previous=Previous Page
 harvestfestival.stats.collection=Collections

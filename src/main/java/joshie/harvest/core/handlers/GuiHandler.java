@@ -77,7 +77,7 @@ public class GuiHandler implements IGuiHandler {
             case GIFT:          return new GuiNPCGift(player, (EntityNPC) world.getEntityByID(entityID), EnumHand.values()[hand]);
             case GIFT_GODDESS:  return new GuiNPCGift(player, (EntityNPC) world.getEntityByID(entityID), EnumHand.values()[hand], GuiNPCGift.GODDESS_GIFT);
             case FRIDGE:        return new GuiFridge(player, player.inventory, (TileFridge) world.getTileEntity(new BlockPos(entityID, nextGui, hand)));
-            case QUEST_BOARD:   return new GuiQuestBoard(player, player.inventory);
+            case QUEST_BOARD:   return new GuiQuestBoard(new BlockPos(entityID, nextGui, hand), player, player.inventory);
             case COOKBOOK:      return new GuiCookbook();
             case STATS_BOOK:    return new GuiStats();
             case SHOP_OPTIONS:    {

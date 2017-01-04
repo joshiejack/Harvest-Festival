@@ -8,58 +8,65 @@ import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.cooking.item.ItemMeal.Meal;
 import joshie.harvest.core.helpers.InventoryHelper;
+import joshie.harvest.core.helpers.TextHelper;
+import joshie.harvest.crops.HFCrops;
 import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.quests.base.QuestDaily;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.commons.lang3.text.WordUtils;
 
 import javax.annotation.Nullable;
-import java.util.Random;
 
 import static joshie.harvest.core.helpers.InventoryHelper.ORE_DICTIONARY;
 
 @HFQuest("collect.crops")
 public class QuestCollect extends QuestDaily {
-    private Random rand = new Random();
-
     public QuestCollect() {
         setNPCs(HFNPCs.CAFE_GRANNY);
         setTownQuest();
     }
 
+    private Crop crop = HFCrops.TURNIP;
+    private int amount = 1;
+
     @Override
     public String getDescription(World world, @Nullable EntityPlayer player) {
-        rand.setSeed(HFApi.calendar.getDate(world).hashCode());
-        int amount = 1 + rand.nextInt(10);
-        Crop crop = Crop.REGISTRY.getValues().get(rand.nextInt(Crop.REGISTRY.getValues().size()));
-        if (player != null) return "Bring katlin " + amount + " " + crop.getLocalizedName(true);
+        if (player != null) return getLocalized("desc", amount, crop.getLocalizedName(true));
         else {
-            return "I'm looking for an ingredient for something I'd love to cook. Could you bring me \n" + amount + " " + crop.getLocalizedName(true) + " please.\n- Katlin\n\n- Free Meal\n- Katlin will be grateful";
+            rand.setSeed(HFApi.calendar.getDate(world).hashCode());
+            amount = 1 + rand.nextInt(10);
+            crop = getValidCrop(Crop.REGISTRY.getValues().get(rand.nextInt(Crop.REGISTRY.getValues().size())));
+            return getLocalized("task", amount, crop.getLocalizedName(true));
         }
+    }
+
+    private Crop getValidCrop(Crop crop) {
+        return crop == HFCrops.TUTORIAL || crop.getIngredient() == null ? HFCrops.TURNIP : crop;
     }
 
     @Override
     @Nullable
     @SideOnly(Side.CLIENT)
     public String getLocalizedScript(EntityPlayer player, EntityLiving entity, INPC npc) {
-        rand.setSeed(HFApi.calendar.getDate(player.worldObj).hashCode());
-        int amount = 1 + rand.nextInt(10);
-        Crop crop = Crop.REGISTRY.getValues().get(rand.nextInt(Crop.REGISTRY.getValues().size()));
-        return "Bring me " + amount + " " + crop.getLocalizedName(true);
+        String name = "crop" + WordUtils.capitalizeFully(crop.getRegistryName().getResourcePath(), '_').replace("_", "");
+        if (InventoryHelper.getHandItemIsIn(player, ORE_DICTIONARY, name, amount) != null) {
+            return TextHelper.getRandomSpeech(npc, "harvestfestival.quest.collect.crops.complete", 32);
+        }
+
+        return null;
     }
 
     @Override
     public void onChatClosed(EntityPlayer player, EntityLiving entity, INPC npc, boolean wasSneaking) {
-        rand.setSeed(HFApi.calendar.getDate(player.worldObj).hashCode());
-        int amount = 1 + rand.nextInt(10);
-        Crop crop = Crop.REGISTRY.getValues().get(rand.nextInt(Crop.REGISTRY.getValues().size()));
         String name = "crop" + WordUtils.capitalizeFully(crop.getRegistryName().getResourcePath(), '_').replace("_", "");
-        if (InventoryHelper.hasInInventory(player, ORE_DICTIONARY, name, amount)) {
+        if (InventoryHelper.takeItemsIfHeld(player, ORE_DICTIONARY, name, amount) != null) {
             complete(player);
         }
     }
@@ -73,5 +80,19 @@ public class QuestCollect extends QuestDaily {
         }
 
         rewardItem(player, stack);
+    }
+
+    @Override
+    public void readFromNBT(NBTTagCompound nbt) {
+        super.readFromNBT(nbt);
+        amount = nbt.getByte("TargetAmount");
+        crop = Crop.REGISTRY.getValue(new ResourceLocation(nbt.getString("TargetCrop")));
+    }
+
+    @Override
+    public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
+        nbt.setByte("TargetAmount", (byte) amount);
+        nbt.setString("TargetCrop", crop.getRegistryName().toString());
+        return super.writeToNBT(nbt);
     }
 }

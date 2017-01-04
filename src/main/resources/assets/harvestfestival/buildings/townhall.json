@@ -3714,7 +3714,7 @@
       "pos": "2 3 9"
     },
     {
-      "state": "vine 2",
+      "state": "harvestfestival:quest_block 5",
       "pos": "2 3 10",
       "type": "blocks.Decorative"
     },

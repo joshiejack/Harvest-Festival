@@ -22,6 +22,7 @@ public class PacketSyncBuilding extends PenguinPacket {
     private UUID town;
     private LinkedList<BuildingStage> building;
 
+    @SuppressWarnings("unused")
     public PacketSyncBuilding(){}
     public PacketSyncBuilding(UUID town, LinkedList<BuildingStage> building) {
         this.town = town;

@@ -18,6 +18,7 @@ public class PacketQuestSelect extends PacketQuest {
     private int npcID;
     private int selected;
 
+    @SuppressWarnings("unused")
     public PacketQuestSelect() {}
     public PacketQuestSelect(Quest quest, EntityNPC npc, int selected) {
         this.quest = Quest.REGISTRY.getValues().indexOf(quest);

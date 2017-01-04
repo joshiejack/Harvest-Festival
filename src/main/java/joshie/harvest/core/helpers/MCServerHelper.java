@@ -6,6 +6,7 @@ import joshie.harvest.core.network.PacketRefresh;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
@@ -30,6 +31,13 @@ public class MCServerHelper {
 
     public static void markForUpdate(World world, BlockPos pos, int value) {
         markForUpdate(world, pos, world.getBlockState(pos), value);
+    }
+
+    public static void markTileForUpdate(World world, BlockPos pos) {
+        TileEntity tile = world.getTileEntity(pos);
+        if (tile instanceof TileHarvest) {
+            markTileForUpdate((TileHarvest)tile);
+        }
     }
 
     public static void markTileForUpdate(TileHarvest tile) {

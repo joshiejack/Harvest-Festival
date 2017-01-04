@@ -1,14 +1,22 @@
 package joshie.harvest.quests.gui;
 
+import joshie.harvest.api.quests.Quest;
 import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.quests.packet.PacketQuestStart;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.math.BlockPos;
 
 public class GuiButtonStartQuest extends GuiButton {
-    public GuiButtonStartQuest(int buttonId, int x, int y) {
+    private BlockPos pos;
+    private Quest quest;
+
+    public GuiButtonStartQuest(BlockPos pos, Quest quest, int buttonId, int x, int y) {
         super(buttonId, x, y, "");
+        this.pos = pos;
+        this.quest = quest;
         width = 70;
         height = 30;
     }
@@ -30,6 +38,6 @@ public class GuiButtonStartQuest extends GuiButton {
 
     @Override
     public void mouseReleased(int mouseX, int mouseY) {
-        PacketHandler.sendToServer(new PacketQuestStart());
+        PacketHandler.sendToServer(new PacketQuestStart(pos, quest, quest.writeToNBT(new NBTTagCompound())));
     }
 }

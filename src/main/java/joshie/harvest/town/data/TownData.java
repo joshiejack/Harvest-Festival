@@ -118,7 +118,7 @@ public abstract class TownData<Q extends QuestData> {
         NBTHelper.writeUUID("Town", nbt, uuid);
         NBTHelper.writeMap("TownBuildingList", nbt, buildings);
         NBTHelper.writeList("CurrentlyBuilding", nbt, building);
-        if (dailyQuest != null) nbt.setString("DailyQuest", dailyQuest.toString());
+        if (dailyQuest != null) nbt.setString("DailyQuest", dailyQuest.getRegistryName().toString());
     }
 
     @Override

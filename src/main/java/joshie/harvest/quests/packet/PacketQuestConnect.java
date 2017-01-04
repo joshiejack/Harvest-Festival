@@ -11,6 +11,7 @@ import net.minecraftforge.fml.common.network.ByteBufUtils;
 public class PacketQuestConnect extends PacketQuest {
     private NBTTagCompound tag;
 
+    @SuppressWarnings("unused")
     public PacketQuestConnect() {}
     public PacketQuestConnect(NBTTagCompound tag) {
         this.tag = tag;

@@ -14,10 +14,11 @@ import java.util.UUID;
 
 @Packet(Side.CLIENT)
 public class PacketNewBuilding extends PenguinPacket {
-    public PacketNewBuilding() {}
     private UUID uuid;
     private TownBuilding building;
 
+    @SuppressWarnings("unused")
+    public PacketNewBuilding() {}
     public PacketNewBuilding(UUID uuid, TownBuilding building) {
         this.uuid = uuid;
         this.building = building;

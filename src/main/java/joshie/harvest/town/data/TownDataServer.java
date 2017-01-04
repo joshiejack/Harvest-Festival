@@ -129,7 +129,7 @@ public class TownDataServer extends TownData<QuestDataServer> implements IQuestM
         }
     }
 
-    private void generateNewDailyQuest(World world) {
+    public void generateNewDailyQuest(World world) {
         List<Quest> quests = new ArrayList<>();
         for (Quest quest: Quest.REGISTRY) {
             if (isRepeatable(world, quest) || !getQuests().getFinished().contains(quest)) {
@@ -143,8 +143,9 @@ public class TownDataServer extends TownData<QuestDataServer> implements IQuestM
 
         if (quests.size() > 0) {
             dailyQuest = quests.get(world.rand.nextInt(quests.size()));
-            PacketHandler.sendToDimension(world.provider.getDimension(), new PacketDailyQuest(uuid, dailyQuest));
-        }
+        } else dailyQuest = null;
+
+        PacketHandler.sendToDimension(world.provider.getDimension(), new PacketDailyQuest(uuid, dailyQuest));
     }
 
     public void newDay(World world, Cache<BlockPos, Boolean> isFar) {

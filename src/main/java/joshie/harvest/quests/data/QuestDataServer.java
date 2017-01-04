@@ -35,10 +35,14 @@ public class QuestDataServer extends QuestData {
     }
 
     @Override
-    public boolean startQuest(Quest q, boolean sync) {
+    public boolean startQuest(Quest q, boolean sync, @Nullable NBTTagCompound tag) {
         try {
             if (!finished.contains(q) || q.isRepeatable()) {
                 Quest quest = q.getClass().newInstance().setRegistryName(q.getRegistryName()).setStage(0); //Set the current quest to your new
+                if (tag != null) { //Default information
+                    quest.readFromNBT(tag);
+                }
+
                 current.add(quest);
                 if (sync ) {
                     master.sync(null, new PacketQuestSetCurrent(quest));
@@ -92,7 +96,7 @@ public class QuestDataServer extends QuestData {
         if (!finished.contains(quest) || quest.isRepeatable()) {
             //If we aren't already working on this quest, and we can start it, then start the quest
             if (!current.contains(quest) && canStart(quest, current, finished)) {
-                startQuest(quest, sync);
+                startQuest(quest, sync, null);
             }
         }
     }

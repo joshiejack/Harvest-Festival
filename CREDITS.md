@@ -2,6 +2,7 @@
 Milk, Watering Cans, Wool, Bush, Ores > VapourDrive
 Mine Materials > VapourDrive, Balduran (http://balduranne.deviantart.com/)
 Dust Overlays > Balduran (http://balduranne.deviantart.com/)
+Fossil, Wine > Poppy
 Seasons HUD > CyanideX
 
 ## Buildings

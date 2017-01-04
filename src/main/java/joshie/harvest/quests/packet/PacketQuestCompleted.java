@@ -13,6 +13,7 @@ public class PacketQuestCompleted extends PacketQuest {
     private Quest quest;
     private boolean rewards;
 
+    @SuppressWarnings("unused")
     public PacketQuestCompleted() {}
     public PacketQuestCompleted(Quest quest, boolean rewards) {
         this.quest = quest;

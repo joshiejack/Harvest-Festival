@@ -244,7 +244,6 @@ public abstract class Quest extends IForgeRegistryEntry.Impl<Quest> {
     /****
      * EVENTS - Called automatically from vanilla events or npc specific ones
      ****/
-    //You need to return the events that get handled, so that they will get called
     public void onEntityInteract(EntityPlayer player, @Nullable ItemStack held, EnumHand hand, Entity target) {}
     public void onRightClickBlock(EntityPlayer player, BlockPos pos, EnumFacing face) {}
 }

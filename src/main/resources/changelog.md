@@ -91,6 +91,10 @@
 * Jade will now only give you up to 10 seeds every 5 days
 * Jade will now sometimes give you hardy turnip seeds instead of a normal crop
 
+###Quests
+* Added a quest board, which comes when you have the townhall, you can purchase a new one from carpenter when townhall is built
+* Added random delivery and slaying quests available from the quest board object
+
 ###Shops
 * New Shop GUI
 * Removed the Blacksmith's store

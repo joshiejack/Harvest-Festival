@@ -8,6 +8,7 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.nbt.NBTTagString;
 import net.minecraft.util.ResourceLocation;
 
+import javax.annotation.Nullable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -34,16 +35,17 @@ public abstract class QuestData {
         return null;
     }
 
-    public Quest getAQuest(Quest quest) {
+    @SuppressWarnings("unchecked")
+    public <Q extends Quest> Q getAQuest(Quest quest) {
         //Create the quest if it doesn't exist
         if (!quest.isRealQuest() && !current.contains(quest)) {
-            startQuest(quest, false);
+            startQuest(quest, false, null);
         }
 
         //Search the quests for the real version
         for (Quest q : current) {
             if (q.equals(quest)) {
-                return q;
+                return (Q) q;
             }
         }
 
@@ -52,7 +54,7 @@ public abstract class QuestData {
     }
 
     public abstract void markCompleted(EntityPlayer player, Quest quest, boolean rewards);
-    public boolean startQuest(Quest quest, boolean sync) { return false; }
+    public boolean startQuest(Quest quest, boolean sync, @Nullable NBTTagCompound tag) { return false; }
 
     public void readFromNBT(NBTTagCompound nbt) {
         if (nbt.hasKey("CurrentQuests")) {

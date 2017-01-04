@@ -37,7 +37,7 @@ public class PacketQuest<Q extends QuestData> extends PenguinPacket {
     }
 
     @SuppressWarnings("unchecked")
-    public Q getQuestDataFromPlayer(EntityPlayer player) {
+    Q getQuestDataFromPlayer(EntityPlayer player) {
         if (uuid == null) return (Q) HFTrackers.getPlayerTrackerFromPlayer(player).getQuests();
         else return (Q) HFTrackers.getTownTracker(player.worldObj).getTownByID(uuid).getQuests();
     }

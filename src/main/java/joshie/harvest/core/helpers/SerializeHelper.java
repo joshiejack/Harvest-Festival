@@ -23,9 +23,10 @@ public class SerializeHelper {
     public static <K, V>void writeMap(Map<K, V> map, String name, NBTTagCompound tag) {
         NBTTagList list = new NBTTagList();
         for (Entry<K, V> entry: map.entrySet()) {
+            if (entry == null) continue;
             NBTTagCompound nbt = new NBTTagCompound();
-            ADAPTERS.get(entry.getKey().getClass()).writeToNBT(entry.getKey(), nbt);
-            ADAPTERS.get(entry.getValue().getClass()).writeToNBT(entry.getValue(), nbt);
+            ADAPTERS.get(Quest.class).writeToNBT(entry.getKey(), nbt);
+            ADAPTERS.get(CalendarDate.class).writeToNBT(entry.getValue(), nbt);
             list.appendTag(nbt);
         }
 

@@ -45,7 +45,7 @@ import org.apache.commons.lang3.text.WordUtils;
 
 import static joshie.harvest.api.animals.AnimalFoodType.FRUIT;
 import static joshie.harvest.api.calendar.Season.*;
-import static joshie.harvest.core.handlers.DisableHandler.BLACKLIST;
+import static joshie.harvest.core.handlers.DisableHandler.SEEDS_BLACKLIST;
 import static joshie.harvest.core.helpers.ConfigHelper.getBoolean;
 import static joshie.harvest.core.helpers.ConfigHelper.getInteger;
 import static joshie.harvest.core.helpers.RegistryHelper.*;
@@ -143,12 +143,12 @@ public class HFCrops {
         RegistryHelper.registerTiles(TileWithered.class, TileCrop.class, TileSprinkler.class, TileSprinklerOld.class, TileFruit.class);
         if (DISABLE_VANILLA_MOISTURE) Blocks.FARMLAND.setTickRandomly(false);
         if (DISABLE_VANILLA_WHEAT_SEEDS || DISABLE_VANILLA_SEEDS) {
-            BLACKLIST.register(Items.MELON_SEEDS);
-            BLACKLIST.register(Items.PUMPKIN_SEEDS);
-            BLACKLIST.register(Items.BEETROOT_SEEDS);
-            BLACKLIST.register(Items.WHEAT_SEEDS);
-            BLACKLIST.register(Items.CARROT);
-            BLACKLIST.register(Items.POTATO);
+            SEEDS_BLACKLIST.register(Items.MELON_SEEDS);
+            SEEDS_BLACKLIST.register(Items.PUMPKIN_SEEDS);
+            SEEDS_BLACKLIST.register(Items.BEETROOT_SEEDS);
+            SEEDS_BLACKLIST.register(Items.WHEAT_SEEDS);
+            SEEDS_BLACKLIST.register(Items.CARROT);
+            SEEDS_BLACKLIST.register(Items.POTATO);
         }
 
         //Register everything in the ore dictionary

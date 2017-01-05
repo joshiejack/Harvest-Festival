@@ -23,7 +23,8 @@ import static net.minecraft.init.Items.EGG;
 public class DisableHandler {
     //Crop Blocks
     public static final Set<Block> CROPS = new HashSet<>();
-    public static final HolderRegistrySet BLACKLIST = new HolderRegistrySet();
+    public static final HolderRegistrySet SEEDS_BLACKLIST = new HolderRegistrySet();
+    public static final HolderRegistrySet HOE_BLACKLIST = new HolderRegistrySet();
 
     /* Disables vanilla seeds from being able to be planted **/
     @HFEvents
@@ -34,7 +35,7 @@ public class DisableHandler {
         public void onRightClickBlock(PlayerInteractEvent.RightClickBlock event) {
             ItemStack held = event.getItemStack();
             if (held != null) {
-                if (BLACKLIST.contains(held)) {
+                if (SEEDS_BLACKLIST.contains(held)) {
                     event.setUseItem(Result.DENY);
                     return; //Don't continue
                 }
@@ -91,7 +92,7 @@ public class DisableHandler {
 
         @SubscribeEvent
         public void onUseHoe(UseHoeEvent event) {
-            if (DISABLE_VANILLA_HOE && event.getCurrent().getItem() instanceof ItemHoe) {
+            if (DISABLE_VANILLA_HOE && (event.getCurrent().getItem() instanceof ItemHoe || HOE_BLACKLIST.contains(event.getCurrent()))) {
                 event.setCanceled(true);
             }
         }
@@ -107,7 +108,7 @@ public class DisableHandler {
             if (event.getState().getBlock() == Blocks.TALLGRASS || event.getState().getBlock() == Blocks.DOUBLE_PLANT) {
                 Iterator<ItemStack> it = event.getDrops().iterator();
                 while (it.hasNext()) {
-                    if (BLACKLIST.contains(it.next())) it.remove();
+                    if (SEEDS_BLACKLIST.contains(it.next())) it.remove();
                 }
             }
         }

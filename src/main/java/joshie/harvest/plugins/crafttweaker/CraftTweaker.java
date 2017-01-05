@@ -7,6 +7,7 @@ import joshie.harvest.core.util.annotations.HFLoader;
 import joshie.harvest.plugins.crafttweaker.command.HFCommandNPC;
 import joshie.harvest.plugins.crafttweaker.command.HFCommandPurchasable;
 import joshie.harvest.plugins.crafttweaker.command.HFCommandShops;
+import joshie.harvest.plugins.crafttweaker.handlers.Blacklist;
 import joshie.harvest.plugins.crafttweaker.handlers.Crops;
 import joshie.harvest.plugins.crafttweaker.handlers.Shipping;
 import joshie.harvest.plugins.crafttweaker.handlers.Shops;
@@ -44,6 +45,7 @@ public class CraftTweaker {
             MineTweakerImplementationAPI.reload();
         } else { /**/ }
 
+        MineTweakerAPI.registerClass(Blacklist.class);
         MineTweakerAPI.registerClass(Shipping.class);
         MineTweakerAPI.registerClass(Shops.class);
         CommandManager.INSTANCE.registerCommand(new HFCommandNPC());

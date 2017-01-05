@@ -21,6 +21,37 @@ public class HolderRegistrySet {
         setMap.get(item).add(holder);
     }
 
+    private void unregisterHolder(Item item, AbstractItemHolder holder) {
+        setMap.remove(item, holder);
+        if (setMap.get(item).size() == 0) {
+            setMap.removeAll(item);
+        }
+    }
+
+    public void unregister(Object object) {
+        if (object instanceof Item) unregisterHolder((Item)object, ItemHolder.of((Item)object));
+        if (object instanceof Block) {
+            ItemStack stack = new ItemStack((Block)object);
+            unregisterHolder(stack.getItem(), ItemHolder.of(stack.getItem()));
+        } else if (object instanceof ItemStack) {
+            unregisterHolder(((ItemStack)object).getItem(), getHolder((ItemStack)object));
+        } else if (object instanceof Mod) {
+            Mod mod = (Mod) object;
+            ModHolder holder = ModHolder.of(mod.getMod());
+            for (Item item: Item.REGISTRY) {
+                if (item.getRegistryName().getResourceDomain().equals(mod.getMod())) {
+                    unregisterHolder(item, holder);
+                }
+            }
+        } else if (object instanceof Ore) {
+            Ore ore = (Ore) object;
+            OreHolder holder = OreHolder.of(ore.getOre());
+            for (ItemStack stack: OreDictionary.getOres(ore.getOre())) {
+                unregisterHolder(stack.getItem(), holder);
+            }
+        }
+    }
+
     public void register(Object object) {
         if (object instanceof Item) registerHolder((Item)object, ItemHolder.of((Item)object));
         if (object instanceof Block) {

@@ -58,7 +58,7 @@ public class CropRegistry implements ICropRegistry {
 
     @Override
     public void registerSeedForBlacklisting(ItemStack item) {
-        DisableHandler.BLACKLIST.register(item);
+        DisableHandler.SEEDS_BLACKLIST.register(item);
     }
 
     @Override

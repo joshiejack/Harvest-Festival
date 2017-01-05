@@ -28,6 +28,10 @@
 ###Calendar
 * Summers are more likely to be sunny (98% vs 95%), and typhoon chances are higher if sun fails (99% vs 75%)
 
+###CraftTweaker
+* Add support for blacklisting hoes/seeds
+* Add support for adding modded crops
+
 ###Cooking
 * Vanilla recipes will now show up in the cookbook
 * Added a bunch of a new recipes

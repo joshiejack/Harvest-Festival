@@ -2,6 +2,7 @@ package joshie.harvest.npc;
 
 import joshie.harvest.api.buildings.BuildingLocation;
 import joshie.harvest.api.npc.INPC;
+import joshie.harvest.calendar.CalendarHelper;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.handlers.GuiHandler;
 import joshie.harvest.npc.entity.*;
@@ -46,6 +47,7 @@ public class NPCHelper {
     }
 
     public static boolean isShopOpen(EntityNPC npc, World world, @Nullable EntityPlayer player) {
+        if (CalendarHelper.isHoliday(world)) return false; //If it's a holiday the shop is not open
         Shop shop = npc.getNPC().getShop();
         if (shop != null && shop.isOpen(world, npc, player) && (player == null || (canPlayerOpenShop(npc.getNPC(), shop, player)))) {
             return (player != null && (shop.getContents().size() > 0)) || player == null;
@@ -55,6 +57,7 @@ public class NPCHelper {
     }
 
     public static boolean isShopPreparingToOpen(EntityNPC npc, World world) {
+        if (CalendarHelper.isHoliday(world)) return false; //If it's a holiday the shop is not open
         Shop shop = npc.getNPC().getShop();
         return shop != null && shop.isPreparingToOpen(world, npc);
     }

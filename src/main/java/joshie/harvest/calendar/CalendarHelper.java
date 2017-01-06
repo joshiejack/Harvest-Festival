@@ -1,9 +1,11 @@
 package joshie.harvest.calendar;
 
 import gnu.trove.map.TIntIntMap;
+import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.CalendarDate;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.calendar.Weekday;
+import joshie.harvest.calendar.data.CalendarServer;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.town.TownHelper;
 import net.minecraft.entity.player.EntityPlayer;
@@ -21,6 +23,10 @@ public class CalendarHelper {
     static {
         SEASONS = Season.class.getEnumConstants();
         DAYS = Weekday.class.getEnumConstants();
+    }
+
+    public static boolean isHoliday(World world) {
+        return HolidayRegistry.INSTANCE.isHoliday(HFApi.calendar.getDate(world));
     }
 
     private static Weekday getWeekday(int days) {

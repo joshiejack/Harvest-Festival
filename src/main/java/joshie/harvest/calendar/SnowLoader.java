@@ -4,6 +4,7 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.calendar.Weather;
 import joshie.harvest.api.ticking.IDailyTickableBlock;
+import joshie.harvest.calendar.data.Calendar;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.util.annotations.HFEvents;
 import net.minecraft.init.Blocks;

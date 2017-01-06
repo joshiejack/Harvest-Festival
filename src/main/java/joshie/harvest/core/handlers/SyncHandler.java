@@ -1,6 +1,6 @@
 package joshie.harvest.core.handlers;
 
-import joshie.harvest.calendar.CalendarServer;
+import joshie.harvest.calendar.data.CalendarServer;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.helpers.MCServerHelper;
 import joshie.harvest.core.util.annotations.HFEvents;

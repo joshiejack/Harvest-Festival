@@ -3,6 +3,8 @@ package joshie.harvest.calendar;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.CalendarDate;
 import joshie.harvest.api.calendar.SeasonProvider;
+import joshie.harvest.calendar.provider.HFWorldProvider;
+import joshie.harvest.calendar.provider.SeasonProviderHidden;
 import joshie.harvest.core.helpers.ConfigHelper;
 import joshie.harvest.core.util.annotations.HFLoader;
 import net.minecraft.server.MinecraftServer;

@@ -1,7 +1,7 @@
 package joshie.harvest.plugins.buttons;
 
 import joshie.harvest.api.calendar.Weather;
-import joshie.harvest.calendar.CalendarServer;
+import joshie.harvest.calendar.data.CalendarServer;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.plugins.buttons.ButtonWeather.WeatherModes;
 import net.minecraft.entity.player.EntityPlayerMP;

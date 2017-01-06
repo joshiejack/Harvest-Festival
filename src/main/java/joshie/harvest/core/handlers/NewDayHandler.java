@@ -4,7 +4,7 @@ import joshie.harvest.animals.HFAnimals;
 import joshie.harvest.animals.tracker.AnimalTrackerServer;
 import joshie.harvest.api.calendar.CalendarDate;
 import joshie.harvest.api.ticking.IDailyTickable;
-import joshie.harvest.calendar.CalendarServer;
+import joshie.harvest.calendar.data.CalendarServer;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.util.annotations.HFEvents;
 import joshie.harvest.player.PlayerTrackerServer;

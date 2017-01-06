@@ -172,6 +172,11 @@ public class TownDataServer extends TownData<QuestDataServer> implements IQuestM
                 }
             }
 
+            //Update the buildings
+            for (TownBuilding building: buildings.values()) {
+                building.building.newDay(world, building.pos, building.rotation);
+            }
+
             deadVillagers = new HashSet<>(); //Reset the dead villagers
         }
     }

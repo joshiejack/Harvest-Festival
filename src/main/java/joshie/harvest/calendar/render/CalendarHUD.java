@@ -4,6 +4,8 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.CalendarDate;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.calendar.*;
+import joshie.harvest.calendar.data.Calendar;
+import joshie.harvest.calendar.data.SeasonData;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.helpers.MCClientHelper;
 import joshie.harvest.core.lib.HFModInfo;

@@ -1,4 +1,4 @@
-package joshie.harvest.calendar;
+package joshie.harvest.calendar.data;
 
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.calendar.Weather;

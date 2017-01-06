@@ -1,7 +1,7 @@
 package joshie.harvest.calendar.command;
 
 import joshie.harvest.api.calendar.Weather;
-import joshie.harvest.calendar.CalendarServer;
+import joshie.harvest.calendar.data.CalendarServer;
 import joshie.harvest.core.commands.AbstractHFCommand;
 import joshie.harvest.core.commands.HFCommand;
 import joshie.harvest.core.HFTrackers;

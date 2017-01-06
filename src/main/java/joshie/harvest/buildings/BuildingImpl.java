@@ -221,6 +221,10 @@ public class BuildingImpl extends IForgeRegistryEntry.Impl<BuildingImpl> impleme
         return width;
     }
 
+    public void newDay(World world, BlockPos pos, Rotation rotation) {
+        //Called when the day passed over
+    }
+
     @Deprecated //TODO: Remove in 0.7+
     public boolean canPurchase() {
         return isPurchaseable;

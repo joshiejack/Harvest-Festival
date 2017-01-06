@@ -2,7 +2,7 @@ package joshie.harvest.calendar.packet;
 
 import io.netty.buffer.ByteBuf;
 import joshie.harvest.api.calendar.Weather;
-import joshie.harvest.calendar.CalendarClient;
+import joshie.harvest.calendar.data.CalendarClient;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.network.Packet;
 import joshie.harvest.core.network.PenguinPacket;

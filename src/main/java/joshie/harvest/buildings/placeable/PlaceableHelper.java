@@ -23,7 +23,7 @@ public class PlaceableHelper {
         Block block = state.getBlock();
         if (block instanceof joshie.harvest.mining.block.BlockPortal) {
             return new PlaceableMoveIn(state, x, y, z);
-        } else if (block == HFBuildings.AIR) {
+        } else if (block == HFBuildings.AIR || block == Blocks.GOLD_BLOCK) {
             return new PlaceableBlock(Blocks.AIR.getDefaultState(), x, y, z);
         } else if (block instanceof BlockTorch) {
             return new PlaceableDecorative(state, x, y, z);

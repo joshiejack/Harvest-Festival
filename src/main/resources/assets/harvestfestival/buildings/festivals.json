@@ -1,0 +1,6335 @@
+{
+  "components": [
+    {
+      "state": "grass",
+      "pos": "0 0 10"
+    },
+    {
+      "state": "grass",
+      "pos": "0 0 11"
+    },
+    {
+      "state": "grass",
+      "pos": "1 0 13"
+    },
+    {
+      "state": "grass",
+      "pos": "1 0 12"
+    },
+    {
+      "state": "grass",
+      "pos": "1 0 11"
+    },
+    {
+      "state": "grass",
+      "pos": "1 0 10"
+    },
+    {
+      "state": "grass",
+      "pos": "2 0 8"
+    },
+    {
+      "state": "grass",
+      "pos": "2 0 9"
+    },
+    {
+      "state": "grass",
+      "pos": "2 0 10"
+    },
+    {
+      "state": "grass",
+      "pos": "2 0 11"
+    },
+    {
+      "state": "grass",
+      "pos": "2 0 12"
+    },
+    {
+      "state": "grass",
+      "pos": "2 0 13"
+    },
+    {
+      "state": "grass",
+      "pos": "2 0 14"
+    },
+    {
+      "state": "grass",
+      "pos": "2 0 15"
+    },
+    {
+      "state": "grass",
+      "pos": "2 0 16"
+    },
+    {
+      "state": "grass",
+      "pos": "2 0 17"
+    },
+    {
+      "state": "grass",
+      "pos": "2 0 21"
+    },
+    {
+      "state": "grass",
+      "pos": "2 0 22"
+    },
+    {
+      "state": "grass",
+      "pos": "3 0 23"
+    },
+    {
+      "state": "dirt",
+      "pos": "3 0 22"
+    },
+    {
+      "state": "grass",
+      "pos": "3 0 21"
+    },
+    {
+      "state": "grass",
+      "pos": "3 0 20"
+    },
+    {
+      "state": "grass",
+      "pos": "3 0 19"
+    },
+    {
+      "state": "grass",
+      "pos": "3 0 18"
+    },
+    {
+      "state": "grass",
+      "pos": "3 0 17"
+    },
+    {
+      "state": "dirt",
+      "pos": "3 0 16"
+    },
+    {
+      "state": "grass",
+      "pos": "3 0 15"
+    },
+    {
+      "state": "grass",
+      "pos": "3 0 14"
+    },
+    {
+      "state": "grass",
+      "pos": "3 0 13"
+    },
+    {
+      "state": "grass",
+      "pos": "3 0 12"
+    },
+    {
+      "state": "grass",
+      "pos": "3 0 11"
+    },
+    {
+      "state": "grass",
+      "pos": "3 0 10"
+    },
+    {
+      "state": "grass",
+      "pos": "3 0 9"
+    },
+    {
+      "state": "grass",
+      "pos": "3 0 8"
+    },
+    {
+      "state": "grass",
+      "pos": "4 0 8"
+    },
+    {
+      "state": "grass",
+      "pos": "4 0 9"
+    },
+    {
+      "state": "grass",
+      "pos": "4 0 10"
+    },
+    {
+      "state": "grass",
+      "pos": "4 0 11"
+    },
+    {
+      "state": "grass",
+      "pos": "4 0 12"
+    },
+    {
+      "state": "grass",
+      "pos": "4 0 13"
+    },
+    {
+      "state": "grass",
+      "pos": "4 0 14"
+    },
+    {
+      "state": "grass",
+      "pos": "4 0 15"
+    },
+    {
+      "state": "grass",
+      "pos": "4 0 16"
+    },
+    {
+      "state": "grass",
+      "pos": "4 0 17"
+    },
+    {
+      "state": "grass",
+      "pos": "4 0 18"
+    },
+    {
+      "state": "grass",
+      "pos": "4 0 19"
+    },
+    {
+      "state": "grass",
+      "pos": "4 0 20"
+    },
+    {
+      "state": "grass",
+      "pos": "4 0 21"
+    },
+    {
+      "state": "grass",
+      "pos": "4 0 22"
+    },
+    {
+      "state": "grass",
+      "pos": "4 0 23"
+    },
+    {
+      "state": "grass",
+      "pos": "4 0 24"
+    },
+    {
+      "state": "grass",
+      "pos": "4 0 25"
+    },
+    {
+      "state": "grass",
+      "pos": "4 0 28"
+    },
+    {
+      "state": "grass",
+      "pos": "5 0 30"
+    },
+    {
+      "state": "grass",
+      "pos": "5 0 29"
+    },
+    {
+      "state": "grass",
+      "pos": "5 0 28"
+    },
+    {
+      "state": "grass",
+      "pos": "5 0 27"
+    },
+    {
+      "state": "grass",
+      "pos": "5 0 26"
+    },
+    {
+      "state": "grass",
+      "pos": "5 0 25"
+    },
+    {
+      "state": "grass",
+      "pos": "5 0 24"
+    },
+    {
+      "state": "grass",
+      "pos": "5 0 23"
+    },
+    {
+      "state": "grass",
+      "pos": "5 0 22"
+    },
+    {
+      "state": "grass",
+      "pos": "5 0 21"
+    },
+    {
+      "state": "grass",
+      "pos": "5 0 20"
+    },
+    {
+      "state": "grass",
+      "pos": "5 0 19"
+    },
+    {
+      "state": "grass",
+      "pos": "5 0 18"
+    },
+    {
+      "state": "grass",
+      "pos": "5 0 17"
+    },
+    {
+      "state": "grass",
+      "pos": "5 0 16"
+    },
+    {
+      "state": "grass",
+      "pos": "5 0 15"
+    },
+    {
+      "state": "grass",
+      "pos": "5 0 14"
+    },
+    {
+      "state": "grass",
+      "pos": "5 0 13"
+    },
+    {
+      "state": "grass",
+      "pos": "5 0 12"
+    },
+    {
+      "state": "grass",
+      "pos": "5 0 11"
+    },
+    {
+      "state": "grass",
+      "pos": "5 0 10"
+    },
+    {
+      "state": "grass",
+      "pos": "5 0 9"
+    },
+    {
+      "state": "grass",
+      "pos": "5 0 8"
+    },
+    {
+      "state": "grass",
+      "pos": "5 0 7"
+    },
+    {
+      "state": "grass",
+      "pos": "6 0 6"
+    },
+    {
+      "state": "grass",
+      "pos": "6 0 7"
+    },
+    {
+      "state": "grass",
+      "pos": "6 0 8"
+    },
+    {
+      "state": "grass",
+      "pos": "6 0 9"
+    },
+    {
+      "state": "grass",
+      "pos": "6 0 10"
+    },
+    {
+      "state": "grass",
+      "pos": "6 0 11"
+    },
+    {
+      "state": "grass",
+      "pos": "6 0 12"
+    },
+    {
+      "state": "grass",
+      "pos": "6 0 13"
+    },
+    {
+      "state": "grass",
+      "pos": "6 0 14"
+    },
+    {
+      "state": "grass",
+      "pos": "6 0 15"
+    },
+    {
+      "state": "grass",
+      "pos": "6 0 16"
+    },
+    {
+      "state": "grass",
+      "pos": "6 0 17"
+    },
+    {
+      "state": "grass",
+      "pos": "6 0 18"
+    },
+    {
+      "state": "grass",
+      "pos": "6 0 19"
+    },
+    {
+      "state": "grass",
+      "pos": "6 0 20"
+    },
+    {
+      "state": "grass",
+      "pos": "6 0 21"
+    },
+    {
+      "state": "grass",
+      "pos": "6 0 22"
+    },
+    {
+      "state": "grass",
+      "pos": "6 0 23"
+    },
+    {
+      "state": "grass",
+      "pos": "6 0 24"
+    },
+    {
+      "state": "grass",
+      "pos": "6 0 25"
+    },
+    {
+      "state": "grass",
+      "pos": "6 0 26"
+    },
+    {
+      "state": "grass",
+      "pos": "6 0 27"
+    },
+    {
+      "state": "dirt",
+      "pos": "6 0 28"
+    },
+    {
+      "state": "grass",
+      "pos": "6 0 29"
+    },
+    {
+      "state": "grass",
+      "pos": "7 0 29"
+    },
+    {
+      "state": "grass",
+      "pos": "7 0 28"
+    },
+    {
+      "state": "grass",
+      "pos": "7 0 27"
+    },
+    {
+      "state": "grass",
+      "pos": "7 0 26"
+    },
+    {
+      "state": "grass",
+      "pos": "7 0 25"
+    },
+    {
+      "state": "grass",
+      "pos": "7 0 24"
+    },
+    {
+      "state": "grass",
+      "pos": "7 0 23"
+    },
+    {
+      "state": "grass",
+      "pos": "7 0 22"
+    },
+    {
+      "state": "grass",
+      "pos": "7 0 21"
+    },
+    {
+      "state": "grass",
+      "pos": "7 0 20"
+    },
+    {
+      "state": "grass",
+      "pos": "7 0 19"
+    },
+    {
+      "state": "grass",
+      "pos": "7 0 18"
+    },
+    {
+      "state": "grass",
+      "pos": "7 0 17"
+    },
+    {
+      "state": "grass",
+      "pos": "7 0 16"
+    },
+    {
+      "state": "grass",
+      "pos": "7 0 15"
+    },
+    {
+      "state": "grass",
+      "pos": "7 0 14"
+    },
+    {
+      "state": "grass",
+      "pos": "7 0 13"
+    },
+    {
+      "state": "grass",
+      "pos": "7 0 12"
+    },
+    {
+      "state": "grass",
+      "pos": "7 0 11"
+    },
+    {
+      "state": "grass",
+      "pos": "7 0 10"
+    },
+    {
+      "state": "grass",
+      "pos": "7 0 9"
+    },
+    {
+      "state": "grass",
+      "pos": "7 0 8"
+    },
+    {
+      "state": "grass",
+      "pos": "7 0 7"
+    },
+    {
+      "state": "grass",
+      "pos": "7 0 6"
+    },
+    {
+      "state": "grass",
+      "pos": "8 0 6"
+    },
+    {
+      "state": "grass",
+      "pos": "8 0 7"
+    },
+    {
+      "state": "grass",
+      "pos": "8 0 8"
+    },
+    {
+      "state": "grass",
+      "pos": "8 0 9"
+    },
+    {
+      "state": "grass",
+      "pos": "8 0 10"
+    },
+    {
+      "state": "grass",
+      "pos": "8 0 11"
+    },
+    {
+      "state": "grass",
+      "pos": "8 0 12"
+    },
+    {
+      "state": "grass",
+      "pos": "8 0 13"
+    },
+    {
+      "state": "grass",
+      "pos": "8 0 14"
+    },
+    {
+      "state": "grass",
+      "pos": "8 0 15"
+    },
+    {
+      "state": "grass",
+      "pos": "8 0 16"
+    },
+    {
+      "state": "grass",
+      "pos": "8 0 17"
+    },
+    {
+      "state": "grass",
+      "pos": "8 0 18"
+    },
+    {
+      "state": "grass",
+      "pos": "8 0 19"
+    },
+    {
+      "state": "grass",
+      "pos": "8 0 20"
+    },
+    {
+      "state": "grass",
+      "pos": "8 0 21"
+    },
+    {
+      "state": "grass",
+      "pos": "8 0 22"
+    },
+    {
+      "state": "grass",
+      "pos": "8 0 23"
+    },
+    {
+      "state": "grass",
+      "pos": "8 0 24"
+    },
+    {
+      "state": "grass",
+      "pos": "8 0 25"
+    },
+    {
+      "state": "grass",
+      "pos": "8 0 26"
+    },
+    {
+      "state": "grass",
+      "pos": "8 0 27"
+    },
+    {
+      "state": "grass",
+      "pos": "8 0 28"
+    },
+    {
+      "state": "grass",
+      "pos": "9 0 28"
+    },
+    {
+      "state": "grass",
+      "pos": "9 0 27"
+    },
+    {
+      "state": "grass",
+      "pos": "9 0 26"
+    },
+    {
+      "state": "grass",
+      "pos": "9 0 25"
+    },
+    {
+      "state": "grass",
+      "pos": "9 0 24"
+    },
+    {
+      "state": "grass",
+      "pos": "9 0 23"
+    },
+    {
+      "state": "grass",
+      "pos": "9 0 22"
+    },
+    {
+      "state": "grass",
+      "pos": "9 0 21"
+    },
+    {
+      "state": "grass",
+      "pos": "9 0 20"
+    },
+    {
+      "state": "grass",
+      "pos": "9 0 19"
+    },
+    {
+      "state": "grass",
+      "pos": "9 0 18"
+    },
+    {
+      "state": "grass",
+      "pos": "9 0 17"
+    },
+    {
+      "state": "grass",
+      "pos": "9 0 16"
+    },
+    {
+      "state": "grass",
+      "pos": "9 0 15"
+    },
+    {
+      "state": "grass",
+      "pos": "9 0 14"
+    },
+    {
+      "state": "grass",
+      "pos": "9 0 13"
+    },
+    {
+      "state": "grass",
+      "pos": "9 0 12"
+    },
+    {
+      "state": "grass",
+      "pos": "9 0 11"
+    },
+    {
+      "state": "grass",
+      "pos": "9 0 10"
+    },
+    {
+      "state": "grass",
+      "pos": "9 0 9"
+    },
+    {
+      "state": "grass",
+      "pos": "9 0 8"
+    },
+    {
+      "state": "grass",
+      "pos": "9 0 7"
+    },
+    {
+      "state": "grass",
+      "pos": "9 0 6"
+    },
+    {
+      "state": "grass",
+      "pos": "9 0 5"
+    },
+    {
+      "state": "grass",
+      "pos": "10 0 3"
+    },
+    {
+      "state": "dirt",
+      "pos": "10 0 4"
+    },
+    {
+      "state": "dirt",
+      "pos": "10 0 5"
+    },
+    {
+      "state": "grass",
+      "pos": "10 0 6"
+    },
+    {
+      "state": "grass",
+      "pos": "10 0 7"
+    },
+    {
+      "state": "grass",
+      "pos": "10 0 8"
+    },
+    {
+      "state": "grass",
+      "pos": "10 0 9"
+    },
+    {
+      "state": "grass",
+      "pos": "10 0 10"
+    },
+    {
+      "state": "grass",
+      "pos": "10 0 11"
+    },
+    {
+      "state": "grass",
+      "pos": "10 0 12"
+    },
+    {
+      "state": "grass",
+      "pos": "10 0 13"
+    },
+    {
+      "state": "grass",
+      "pos": "10 0 14"
+    },
+    {
+      "state": "grass",
+      "pos": "10 0 15"
+    },
+    {
+      "state": "grass",
+      "pos": "10 0 16"
+    },
+    {
+      "state": "grass",
+      "pos": "10 0 17"
+    },
+    {
+      "state": "grass",
+      "pos": "10 0 18"
+    },
+    {
+      "state": "grass",
+      "pos": "10 0 19"
+    },
+    {
+      "state": "grass",
+      "pos": "10 0 20"
+    },
+    {
+      "state": "grass",
+      "pos": "10 0 21"
+    },
+    {
+      "state": "grass",
+      "pos": "10 0 22"
+    },
+    {
+      "state": "grass",
+      "pos": "10 0 23"
+    },
+    {
+      "state": "grass",
+      "pos": "10 0 24"
+    },
+    {
+      "state": "grass",
+      "pos": "10 0 25"
+    },
+    {
+      "state": "grass",
+      "pos": "10 0 26"
+    },
+    {
+      "state": "grass",
+      "pos": "10 0 27"
+    },
+    {
+      "state": "grass",
+      "pos": "10 0 28"
+    },
+    {
+      "state": "grass",
+      "pos": "11 0 28"
+    },
+    {
+      "state": "grass",
+      "pos": "11 0 27"
+    },
+    {
+      "state": "grass",
+      "pos": "11 0 26"
+    },
+    {
+      "state": "grass",
+      "pos": "11 0 25"
+    },
+    {
+      "state": "grass",
+      "pos": "11 0 24"
+    },
+    {
+      "state": "grass",
+      "pos": "11 0 23"
+    },
+    {
+      "state": "grass",
+      "pos": "11 0 22"
+    },
+    {
+      "state": "grass",
+      "pos": "11 0 21"
+    },
+    {
+      "state": "grass",
+      "pos": "11 0 20"
+    },
+    {
+      "state": "grass",
+      "pos": "11 0 19"
+    },
+    {
+      "state": "grass",
+      "pos": "11 0 18"
+    },
+    {
+      "state": "grass",
+      "pos": "11 0 17"
+    },
+    {
+      "state": "grass",
+      "pos": "11 0 16"
+    },
+    {
+      "state": "grass",
+      "pos": "11 0 15"
+    },
+    {
+      "state": "grass",
+      "pos": "11 0 14"
+    },
+    {
+      "state": "grass",
+      "pos": "11 0 13"
+    },
+    {
+      "state": "grass",
+      "pos": "11 0 12"
+    },
+    {
+      "state": "grass",
+      "pos": "11 0 11"
+    },
+    {
+      "state": "grass",
+      "pos": "11 0 10"
+    },
+    {
+      "state": "grass",
+      "pos": "11 0 9"
+    },
+    {
+      "state": "grass",
+      "pos": "11 0 8"
+    },
+    {
+      "state": "grass",
+      "pos": "11 0 7"
+    },
+    {
+      "state": "grass",
+      "pos": "11 0 6"
+    },
+    {
+      "state": "dirt",
+      "pos": "11 0 5"
+    },
+    {
+      "state": "dirt",
+      "pos": "11 0 4"
+    },
+    {
+      "state": "grass",
+      "pos": "11 0 3"
+    },
+    {
+      "state": "grass",
+      "pos": "12 0 1"
+    },
+    {
+      "state": "grass",
+      "pos": "12 0 2"
+    },
+    {
+      "state": "grass",
+      "pos": "12 0 3"
+    },
+    {
+      "state": "grass",
+      "pos": "12 0 4"
+    },
+    {
+      "state": "grass",
+      "pos": "12 0 5"
+    },
+    {
+      "state": "grass",
+      "pos": "12 0 6"
+    },
+    {
+      "state": "grass",
+      "pos": "12 0 7"
+    },
+    {
+      "state": "grass",
+      "pos": "12 0 8"
+    },
+    {
+      "state": "grass",
+      "pos": "12 0 9"
+    },
+    {
+      "state": "grass",
+      "pos": "12 0 10"
+    },
+    {
+      "state": "grass",
+      "pos": "12 0 11"
+    },
+    {
+      "state": "grass",
+      "pos": "12 0 12"
+    },
+    {
+      "state": "dirt",
+      "pos": "12 0 13"
+    },
+    {
+      "state": "dirt",
+      "pos": "12 0 14"
+    },
+    {
+      "state": "dirt",
+      "pos": "12 0 15"
+    },
+    {
+      "state": "grass",
+      "pos": "12 0 16"
+    },
+    {
+      "state": "grass",
+      "pos": "12 0 17"
+    },
+    {
+      "state": "grass",
+      "pos": "12 0 18"
+    },
+    {
+      "state": "grass",
+      "pos": "12 0 19"
+    },
+    {
+      "state": "grass",
+      "pos": "12 0 20"
+    },
+    {
+      "state": "grass",
+      "pos": "12 0 21"
+    },
+    {
+      "state": "grass",
+      "pos": "12 0 22"
+    },
+    {
+      "state": "grass",
+      "pos": "12 0 23"
+    },
+    {
+      "state": "grass",
+      "pos": "12 0 24"
+    },
+    {
+      "state": "grass",
+      "pos": "12 0 25"
+    },
+    {
+      "state": "grass",
+      "pos": "12 0 26"
+    },
+    {
+      "state": "grass",
+      "pos": "12 0 27"
+    },
+    {
+      "state": "grass",
+      "pos": "12 0 28"
+    },
+    {
+      "state": "grass",
+      "pos": "13 0 27"
+    },
+    {
+      "state": "grass",
+      "pos": "13 0 26"
+    },
+    {
+      "state": "grass",
+      "pos": "13 0 25"
+    },
+    {
+      "state": "grass",
+      "pos": "13 0 24"
+    },
+    {
+      "state": "grass",
+      "pos": "13 0 23"
+    },
+    {
+      "state": "grass",
+      "pos": "13 0 22"
+    },
+    {
+      "state": "grass",
+      "pos": "13 0 21"
+    },
+    {
+      "state": "grass",
+      "pos": "13 0 20"
+    },
+    {
+      "state": "grass",
+      "pos": "13 0 19"
+    },
+    {
+      "state": "grass",
+      "pos": "13 0 18"
+    },
+    {
+      "state": "grass",
+      "pos": "13 0 17"
+    },
+    {
+      "state": "grass",
+      "pos": "13 0 16"
+    },
+    {
+      "state": "grass",
+      "pos": "13 0 15"
+    },
+    {
+      "state": "grass",
+      "pos": "13 0 14"
+    },
+    {
+      "state": "grass",
+      "pos": "13 0 13"
+    },
+    {
+      "state": "grass",
+      "pos": "13 0 12"
+    },
+    {
+      "state": "grass",
+      "pos": "13 0 11"
+    },
+    {
+      "state": "grass",
+      "pos": "13 0 10"
+    },
+    {
+      "state": "grass",
+      "pos": "13 0 9"
+    },
+    {
+      "state": "grass",
+      "pos": "13 0 8"
+    },
+    {
+      "state": "grass",
+      "pos": "13 0 7"
+    },
+    {
+      "state": "grass",
+      "pos": "13 0 6"
+    },
+    {
+      "state": "grass",
+      "pos": "13 0 5"
+    },
+    {
+      "state": "grass",
+      "pos": "13 0 4"
+    },
+    {
+      "state": "grass",
+      "pos": "13 0 3"
+    },
+    {
+      "state": "grass",
+      "pos": "13 0 2"
+    },
+    {
+      "state": "grass",
+      "pos": "13 0 1"
+    },
+    {
+      "state": "grass",
+      "pos": "14 0 1"
+    },
+    {
+      "state": "grass",
+      "pos": "14 0 2"
+    },
+    {
+      "state": "grass",
+      "pos": "14 0 3"
+    },
+    {
+      "state": "grass",
+      "pos": "14 0 4"
+    },
+    {
+      "state": "grass",
+      "pos": "14 0 5"
+    },
+    {
+      "state": "grass",
+      "pos": "14 0 6"
+    },
+    {
+      "state": "grass",
+      "pos": "14 0 7"
+    },
+    {
+      "state": "grass",
+      "pos": "14 0 8"
+    },
+    {
+      "state": "grass",
+      "pos": "14 0 9"
+    },
+    {
+      "state": "grass",
+      "pos": "14 0 10"
+    },
+    {
+      "state": "grass",
+      "pos": "14 0 11"
+    },
+    {
+      "state": "grass",
+      "pos": "14 0 12"
+    },
+    {
+      "state": "log 9",
+      "pos": "14 0 13"
+    },
+    {
+      "state": "log 9",
+      "pos": "14 0 14"
+    },
+    {
+      "state": "log 9",
+      "pos": "14 0 15"
+    },
+    {
+      "state": "grass",
+      "pos": "14 0 16"
+    },
+    {
+      "state": "grass",
+      "pos": "14 0 17"
+    },
+    {
+      "state": "grass",
+      "pos": "14 0 18"
+    },
+    {
+      "state": "grass",
+      "pos": "14 0 19"
+    },
+    {
+      "state": "grass",
+      "pos": "14 0 20"
+    },
+    {
+      "state": "grass",
+      "pos": "14 0 21"
+    },
+    {
+      "state": "grass",
+      "pos": "14 0 22"
+    },
+    {
+      "state": "grass",
+      "pos": "14 0 23"
+    },
+    {
+      "state": "grass",
+      "pos": "14 0 24"
+    },
+    {
+      "state": "dirt",
+      "pos": "14 0 25"
+    },
+    {
+      "state": "grass",
+      "pos": "14 0 26"
+    },
+    {
+      "state": "grass",
+      "pos": "15 0 26"
+    },
+    {
+      "state": "grass",
+      "pos": "15 0 25"
+    },
+    {
+      "state": "grass",
+      "pos": "15 0 24"
+    },
+    {
+      "state": "grass",
+      "pos": "15 0 23"
+    },
+    {
+      "state": "grass",
+      "pos": "15 0 22"
+    },
+    {
+      "state": "grass",
+      "pos": "15 0 21"
+    },
+    {
+      "state": "grass",
+      "pos": "15 0 20"
+    },
+    {
+      "state": "grass",
+      "pos": "15 0 19"
+    },
+    {
+      "state": "grass",
+      "pos": "15 0 18"
+    },
+    {
+      "state": "grass",
+      "pos": "15 0 17"
+    },
+    {
+      "state": "grass",
+      "pos": "15 0 16"
+    },
+    {
+      "state": "grass_path",
+      "pos": "15 0 15"
+    },
+    {
+      "state": "grass_path",
+      "pos": "15 0 14"
+    },
+    {
+      "state": "grass_path",
+      "pos": "15 0 13"
+    },
+    {
+      "state": "grass",
+      "pos": "15 0 12"
+    },
+    {
+      "state": "grass",
+      "pos": "15 0 11"
+    },
+    {
+      "state": "grass",
+      "pos": "15 0 10"
+    },
+    {
+      "state": "grass",
+      "pos": "15 0 9"
+    },
+    {
+      "state": "grass",
+      "pos": "15 0 8"
+    },
+    {
+      "state": "grass",
+      "pos": "15 0 7"
+    },
+    {
+      "state": "grass",
+      "pos": "15 0 6"
+    },
+    {
+      "state": "grass",
+      "pos": "15 0 5"
+    },
+    {
+      "state": "grass",
+      "pos": "15 0 4"
+    },
+    {
+      "state": "grass",
+      "pos": "15 0 3"
+    },
+    {
+      "state": "grass",
+      "pos": "15 0 2"
+    },
+    {
+      "state": "dirt",
+      "pos": "15 0 1"
+    },
+    {
+      "state": "grass",
+      "pos": "16 0 1"
+    },
+    {
+      "state": "grass_path",
+      "pos": "16 0 2"
+    },
+    {
+      "state": "grass",
+      "pos": "16 0 3"
+    },
+    {
+      "state": "grass",
+      "pos": "16 0 4"
+    },
+    {
+      "state": "grass",
+      "pos": "16 0 5"
+    },
+    {
+      "state": "grass",
+      "pos": "16 0 6"
+    },
+    {
+      "state": "grass",
+      "pos": "16 0 7"
+    },
+    {
+      "state": "grass",
+      "pos": "16 0 8"
+    },
+    {
+      "state": "grass",
+      "pos": "16 0 9"
+    },
+    {
+      "state": "grass",
+      "pos": "16 0 10"
+    },
+    {
+      "state": "grass",
+      "pos": "16 0 11"
+    },
+    {
+      "state": "grass",
+      "pos": "16 0 12"
+    },
+    {
+      "state": "grass_path",
+      "pos": "16 0 13"
+    },
+    {
+      "state": "grass_path",
+      "pos": "16 0 14"
+    },
+    {
+      "state": "grass_path",
+      "pos": "16 0 15"
+    },
+    {
+      "state": "grass",
+      "pos": "16 0 16"
+    },
+    {
+      "state": "grass",
+      "pos": "16 0 17"
+    },
+    {
+      "state": "grass",
+      "pos": "16 0 18"
+    },
+    {
+      "state": "grass",
+      "pos": "16 0 19"
+    },
+    {
+      "state": "grass",
+      "pos": "16 0 20"
+    },
+    {
+      "state": "grass",
+      "pos": "16 0 21"
+    },
+    {
+      "state": "dirt",
+      "pos": "16 0 22"
+    },
+    {
+      "state": "dirt",
+      "pos": "16 0 23"
+    },
+    {
+      "state": "grass",
+      "pos": "16 0 24"
+    },
+    {
+      "state": "grass",
+      "pos": "17 0 23"
+    },
+    {
+      "state": "grass",
+      "pos": "17 0 22"
+    },
+    {
+      "state": "grass",
+      "pos": "17 0 21"
+    },
+    {
+      "state": "grass",
+      "pos": "17 0 20"
+    },
+    {
+      "state": "grass",
+      "pos": "17 0 19"
+    },
+    {
+      "state": "grass",
+      "pos": "17 0 18"
+    },
+    {
+      "state": "grass",
+      "pos": "17 0 17"
+    },
+    {
+      "state": "grass",
+      "pos": "17 0 16"
+    },
+    {
+      "state": "grass",
+      "pos": "17 0 15"
+    },
+    {
+      "state": "grass_path",
+      "pos": "17 0 14"
+    },
+    {
+      "state": "grass_path",
+      "pos": "17 0 13"
+    },
+    {
+      "state": "grass",
+      "pos": "17 0 12"
+    },
+    {
+      "state": "grass",
+      "pos": "17 0 11"
+    },
+    {
+      "state": "grass",
+      "pos": "17 0 10"
+    },
+    {
+      "state": "grass",
+      "pos": "17 0 9"
+    },
+    {
+      "state": "grass",
+      "pos": "17 0 8"
+    },
+    {
+      "state": "grass",
+      "pos": "17 0 7"
+    },
+    {
+      "state": "grass",
+      "pos": "17 0 6"
+    },
+    {
+      "state": "grass",
+      "pos": "17 0 5"
+    },
+    {
+      "state": "grass_path",
+      "pos": "17 0 4"
+    },
+    {
+      "state": "grass_path",
+      "pos": "17 0 3"
+    },
+    {
+      "state": "grass_path",
+      "pos": "17 0 2"
+    },
+    {
+      "state": "grass",
+      "pos": "17 0 1"
+    },
+    {
+      "state": "dirt",
+      "pos": "18 0 1"
+    },
+    {
+      "state": "grass",
+      "pos": "18 0 2"
+    },
+    {
+      "state": "grass_path",
+      "pos": "18 0 3"
+    },
+    {
+      "state": "grass_path",
+      "pos": "18 0 4"
+    },
+    {
+      "state": "grass_path",
+      "pos": "18 0 5"
+    },
+    {
+      "state": "grass",
+      "pos": "18 0 6"
+    },
+    {
+      "state": "grass",
+      "pos": "18 0 7"
+    },
+    {
+      "state": "grass",
+      "pos": "18 0 8"
+    },
+    {
+      "state": "grass",
+      "pos": "18 0 9"
+    },
+    {
+      "state": "grass",
+      "pos": "18 0 10"
+    },
+    {
+      "state": "grass",
+      "pos": "18 0 11"
+    },
+    {
+      "state": "grass_path",
+      "pos": "18 0 12"
+    },
+    {
+      "state": "grass_path",
+      "pos": "18 0 13"
+    },
+    {
+      "state": "grass",
+      "pos": "18 0 14"
+    },
+    {
+      "state": "grass",
+      "pos": "18 0 15"
+    },
+    {
+      "state": "grass",
+      "pos": "18 0 16"
+    },
+    {
+      "state": "grass",
+      "pos": "18 0 17"
+    },
+    {
+      "state": "grass",
+      "pos": "18 0 18"
+    },
+    {
+      "state": "grass",
+      "pos": "18 0 19"
+    },
+    {
+      "state": "grass",
+      "pos": "18 0 20"
+    },
+    {
+      "state": "grass",
+      "pos": "18 0 21"
+    },
+    {
+      "state": "grass",
+      "pos": "18 0 22"
+    },
+    {
+      "state": "grass",
+      "pos": "18 0 23"
+    },
+    {
+      "state": "grass",
+      "pos": "19 0 22"
+    },
+    {
+      "state": "grass",
+      "pos": "19 0 21"
+    },
+    {
+      "state": "grass",
+      "pos": "19 0 20"
+    },
+    {
+      "state": "grass",
+      "pos": "19 0 19"
+    },
+    {
+      "state": "grass",
+      "pos": "19 0 18"
+    },
+    {
+      "state": "grass",
+      "pos": "19 0 17"
+    },
+    {
+      "state": "grass",
+      "pos": "19 0 16"
+    },
+    {
+      "state": "grass",
+      "pos": "19 0 15"
+    },
+    {
+      "state": "grass",
+      "pos": "19 0 14"
+    },
+    {
+      "state": "grass_path",
+      "pos": "19 0 13"
+    },
+    {
+      "state": "grass_path",
+      "pos": "19 0 12"
+    },
+    {
+      "state": "grass",
+      "pos": "19 0 11"
+    },
+    {
+      "state": "grass",
+      "pos": "19 0 10"
+    },
+    {
+      "state": "grass",
+      "pos": "19 0 9"
+    },
+    {
+      "state": "grass",
+      "pos": "19 0 8"
+    },
+    {
+      "state": "grass",
+      "pos": "19 0 7"
+    },
+    {
+      "state": "grass",
+      "pos": "19 0 6"
+    },
+    {
+      "state": "grass_path",
+      "pos": "19 0 5"
+    },
+    {
+      "state": "grass",
+      "pos": "19 0 4"
+    },
+    {
+      "state": "grass",
+      "pos": "19 0 3"
+    },
+    {
+      "state": "grass",
+      "pos": "19 0 2"
+    },
+    {
+      "state": "grass",
+      "pos": "20 0 3"
+    },
+    {
+      "state": "grass",
+      "pos": "20 0 4"
+    },
+    {
+      "state": "grass_path",
+      "pos": "20 0 5"
+    },
+    {
+      "state": "grass_path",
+      "pos": "20 0 6"
+    },
+    {
+      "state": "grass",
+      "pos": "20 0 7"
+    },
+    {
+      "state": "grass",
+      "pos": "20 0 8"
+    },
+    {
+      "state": "grass",
+      "pos": "20 0 9"
+    },
+    {
+      "state": "grass",
+      "pos": "20 0 10"
+    },
+    {
+      "state": "grass",
+      "pos": "20 0 11"
+    },
+    {
+      "state": "grass_path",
+      "pos": "20 0 12"
+    },
+    {
+      "state": "grass",
+      "pos": "20 0 13"
+    },
+    {
+      "state": "grass",
+      "pos": "20 0 14"
+    },
+    {
+      "state": "grass",
+      "pos": "20 0 15"
+    },
+    {
+      "state": "grass",
+      "pos": "20 0 16"
+    },
+    {
+      "state": "grass",
+      "pos": "20 0 17"
+    },
+    {
+      "state": "grass",
+      "pos": "20 0 18"
+    },
+    {
+      "state": "grass",
+      "pos": "20 0 19"
+    },
+    {
+      "state": "grass",
+      "pos": "20 0 20"
+    },
+    {
+      "state": "grass",
+      "pos": "20 0 21"
+    },
+    {
+      "state": "dirt",
+      "pos": "20 0 22"
+    },
+    {
+      "state": "grass",
+      "pos": "20 0 23"
+    },
+    {
+      "state": "grass",
+      "pos": "21 0 23"
+    },
+    {
+      "state": "grass",
+      "pos": "21 0 22"
+    },
+    {
+      "state": "grass",
+      "pos": "21 0 21"
+    },
+    {
+      "state": "grass",
+      "pos": "21 0 20"
+    },
+    {
+      "state": "grass",
+      "pos": "21 0 19"
+    },
+    {
+      "state": "grass",
+      "pos": "21 0 18"
+    },
+    {
+      "state": "grass",
+      "pos": "21 0 17"
+    },
+    {
+      "state": "grass",
+      "pos": "21 0 16"
+    },
+    {
+      "state": "grass",
+      "pos": "21 0 15"
+    },
+    {
+      "state": "grass",
+      "pos": "21 0 14"
+    },
+    {
+      "state": "grass",
+      "pos": "21 0 13"
+    },
+    {
+      "state": "grass_path",
+      "pos": "21 0 12"
+    },
+    {
+      "state": "grass_path",
+      "pos": "21 0 11"
+    },
+    {
+      "state": "grass",
+      "pos": "21 0 10"
+    },
+    {
+      "state": "grass",
+      "pos": "21 0 9"
+    },
+    {
+      "state": "grass_path",
+      "pos": "21 0 8"
+    },
+    {
+      "state": "grass_path",
+      "pos": "21 0 7"
+    },
+    {
+      "state": "grass_path",
+      "pos": "21 0 6"
+    },
+    {
+      "state": "grass",
+      "pos": "21 0 5"
+    },
+    {
+      "state": "grass",
+      "pos": "21 0 4"
+    },
+    {
+      "state": "dirt",
+      "pos": "21 0 3"
+    },
+    {
+      "state": "grass",
+      "pos": "21 0 2"
+    },
+    {
+      "state": "grass",
+      "pos": "22 0 2"
+    },
+    {
+      "state": "dirt",
+      "pos": "22 0 3"
+    },
+    {
+      "state": "grass",
+      "pos": "22 0 4"
+    },
+    {
+      "state": "grass",
+      "pos": "22 0 5"
+    },
+    {
+      "state": "grass",
+      "pos": "22 0 6"
+    },
+    {
+      "state": "grass_path",
+      "pos": "22 0 7"
+    },
+    {
+      "state": "grass_path",
+      "pos": "22 0 8"
+    },
+    {
+      "state": "grass_path",
+      "pos": "22 0 9"
+    },
+    {
+      "state": "grass_path",
+      "pos": "22 0 10"
+    },
+    {
+      "state": "grass_path",
+      "pos": "22 0 11"
+    },
+    {
+      "state": "grass",
+      "pos": "22 0 12"
+    },
+    {
+      "state": "grass",
+      "pos": "22 0 13"
+    },
+    {
+      "state": "grass",
+      "pos": "22 0 14"
+    },
+    {
+      "state": "grass",
+      "pos": "22 0 15"
+    },
+    {
+      "state": "grass",
+      "pos": "22 0 16"
+    },
+    {
+      "state": "grass",
+      "pos": "22 0 17"
+    },
+    {
+      "state": "grass",
+      "pos": "22 0 18"
+    },
+    {
+      "state": "grass",
+      "pos": "22 0 19"
+    },
+    {
+      "state": "grass",
+      "pos": "22 0 20"
+    },
+    {
+      "state": "grass",
+      "pos": "22 0 21"
+    },
+    {
+      "state": "grass",
+      "pos": "22 0 22"
+    },
+    {
+      "state": "grass",
+      "pos": "22 0 23"
+    },
+    {
+      "state": "grass",
+      "pos": "22 0 24"
+    },
+    {
+      "state": "grass",
+      "pos": "23 0 25"
+    },
+    {
+      "state": "grass",
+      "pos": "23 0 24"
+    },
+    {
+      "state": "grass",
+      "pos": "23 0 23"
+    },
+    {
+      "state": "dirt",
+      "pos": "23 0 22"
+    },
+    {
+      "state": "grass",
+      "pos": "23 0 21"
+    },
+    {
+      "state": "grass",
+      "pos": "23 0 20"
+    },
+    {
+      "state": "grass",
+      "pos": "23 0 19"
+    },
+    {
+      "state": "grass",
+      "pos": "23 0 18"
+    },
+    {
+      "state": "grass",
+      "pos": "23 0 17"
+    },
+    {
+      "state": "grass",
+      "pos": "23 0 16"
+    },
+    {
+      "state": "grass",
+      "pos": "23 0 15"
+    },
+    {
+      "state": "grass",
+      "pos": "23 0 14"
+    },
+    {
+      "state": "grass",
+      "pos": "23 0 13"
+    },
+    {
+      "state": "grass",
+      "pos": "23 0 12"
+    },
+    {
+      "state": "grass_path",
+      "pos": "23 0 11"
+    },
+    {
+      "state": "grass_path",
+      "pos": "23 0 10"
+    },
+    {
+      "state": "grass_path",
+      "pos": "23 0 9"
+    },
+    {
+      "state": "grass_path",
+      "pos": "23 0 8"
+    },
+    {
+      "state": "grass",
+      "pos": "23 0 7"
+    },
+    {
+      "state": "grass",
+      "pos": "23 0 6"
+    },
+    {
+      "state": "grass",
+      "pos": "23 0 5"
+    },
+    {
+      "state": "grass",
+      "pos": "23 0 4"
+    },
+    {
+      "state": "grass",
+      "pos": "23 0 3"
+    },
+    {
+      "state": "grass",
+      "pos": "23 0 2"
+    },
+    {
+      "state": "dirt",
+      "pos": "23 0 1"
+    },
+    {
+      "state": "grass",
+      "pos": "23 0 0"
+    },
+    {
+      "state": "grass",
+      "pos": "24 0 1"
+    },
+    {
+      "state": "grass",
+      "pos": "24 0 2"
+    },
+    {
+      "state": "grass",
+      "pos": "24 0 3"
+    },
+    {
+      "state": "grass",
+      "pos": "24 0 4"
+    },
+    {
+      "state": "grass",
+      "pos": "24 0 5"
+    },
+    {
+      "state": "grass",
+      "pos": "24 0 6"
+    },
+    {
+      "state": "grass",
+      "pos": "24 0 7"
+    },
+    {
+      "state": "grass",
+      "pos": "24 0 8"
+    },
+    {
+      "state": "grass",
+      "pos": "24 0 9"
+    },
+    {
+      "state": "grass_path",
+      "pos": "24 0 10"
+    },
+    {
+      "state": "grass_path",
+      "pos": "24 0 11"
+    },
+    {
+      "state": "grass_path",
+      "pos": "24 0 12"
+    },
+    {
+      "state": "grass",
+      "pos": "24 0 13"
+    },
+    {
+      "state": "grass",
+      "pos": "24 0 14"
+    },
+    {
+      "state": "grass",
+      "pos": "24 0 15"
+    },
+    {
+      "state": "grass",
+      "pos": "24 0 16"
+    },
+    {
+      "state": "grass",
+      "pos": "24 0 17"
+    },
+    {
+      "state": "grass",
+      "pos": "24 0 18"
+    },
+    {
+      "state": "grass",
+      "pos": "24 0 19"
+    },
+    {
+      "state": "grass",
+      "pos": "24 0 20"
+    },
+    {
+      "state": "grass",
+      "pos": "24 0 21"
+    },
+    {
+      "state": "grass",
+      "pos": "24 0 22"
+    },
+    {
+      "state": "grass",
+      "pos": "24 0 23"
+    },
+    {
+      "state": "grass",
+      "pos": "24 0 24"
+    },
+    {
+      "state": "grass",
+      "pos": "24 0 25"
+    },
+    {
+      "state": "grass",
+      "pos": "24 0 26"
+    },
+    {
+      "state": "grass",
+      "pos": "24 0 27"
+    },
+    {
+      "state": "grass",
+      "pos": "25 0 28"
+    },
+    {
+      "state": "grass",
+      "pos": "25 0 27"
+    },
+    {
+      "state": "grass",
+      "pos": "25 0 26"
+    },
+    {
+      "state": "grass",
+      "pos": "25 0 25"
+    },
+    {
+      "state": "grass",
+      "pos": "25 0 24"
+    },
+    {
+      "state": "grass",
+      "pos": "25 0 23"
+    },
+    {
+      "state": "grass",
+      "pos": "25 0 22"
+    },
+    {
+      "state": "grass",
+      "pos": "25 0 21"
+    },
+    {
+      "state": "grass",
+      "pos": "25 0 20"
+    },
+    {
+      "state": "grass",
+      "pos": "25 0 19"
+    },
+    {
+      "state": "grass",
+      "pos": "25 0 18"
+    },
+    {
+      "state": "grass",
+      "pos": "25 0 17"
+    },
+    {
+      "state": "grass",
+      "pos": "25 0 16"
+    },
+    {
+      "state": "grass",
+      "pos": "25 0 15"
+    },
+    {
+      "state": "grass",
+      "pos": "25 0 14"
+    },
+    {
+      "state": "grass",
+      "pos": "25 0 13"
+    },
+    {
+      "state": "grass_path",
+      "pos": "25 0 12"
+    },
+    {
+      "state": "grass_path",
+      "pos": "25 0 11"
+    },
+    {
+      "state": "grass_path",
+      "pos": "25 0 10"
+    },
+    {
+      "state": "grass",
+      "pos": "25 0 9"
+    },
+    {
+      "state": "grass",
+      "pos": "25 0 8"
+    },
+    {
+      "state": "grass",
+      "pos": "25 0 7"
+    },
+    {
+      "state": "grass",
+      "pos": "25 0 6"
+    },
+    {
+      "state": "grass",
+      "pos": "25 0 5"
+    },
+    {
+      "state": "grass",
+      "pos": "25 0 4"
+    },
+    {
+      "state": "grass",
+      "pos": "25 0 3"
+    },
+    {
+      "state": "grass",
+      "pos": "25 0 2"
+    },
+    {
+      "state": "grass",
+      "pos": "25 0 1"
+    },
+    {
+      "state": "grass",
+      "pos": "26 0 1"
+    },
+    {
+      "state": "grass",
+      "pos": "26 0 2"
+    },
+    {
+      "state": "grass",
+      "pos": "26 0 3"
+    },
+    {
+      "state": "grass",
+      "pos": "26 0 4"
+    },
+    {
+      "state": "grass",
+      "pos": "26 0 5"
+    },
+    {
+      "state": "grass",
+      "pos": "26 0 6"
+    },
+    {
+      "state": "grass",
+      "pos": "26 0 7"
+    },
+    {
+      "state": "grass",
+      "pos": "26 0 8"
+    },
+    {
+      "state": "grass",
+      "pos": "26 0 9"
+    },
+    {
+      "state": "grass",
+      "pos": "26 0 10"
+    },
+    {
+      "state": "grass_path",
+      "pos": "26 0 11"
+    },
+    {
+      "state": "grass_path",
+      "pos": "26 0 12"
+    },
+    {
+      "state": "grass_path",
+      "pos": "26 0 13"
+    },
+    {
+      "state": "grass",
+      "pos": "26 0 14"
+    },
+    {
+      "state": "grass",
+      "pos": "26 0 15"
+    },
+    {
+      "state": "grass",
+      "pos": "26 0 16"
+    },
+    {
+      "state": "grass",
+      "pos": "26 0 17"
+    },
+    {
+      "state": "grass",
+      "pos": "26 0 18"
+    },
+    {
+      "state": "grass",
+      "pos": "26 0 19"
+    },
+    {
+      "state": "grass",
+      "pos": "26 0 20"
+    },
+    {
+      "state": "grass",
+      "pos": "26 0 21"
+    },
+    {
+      "state": "grass",
+      "pos": "26 0 22"
+    },
+    {
+      "state": "grass",
+      "pos": "26 0 23"
+    },
+    {
+      "state": "grass",
+      "pos": "26 0 24"
+    },
+    {
+      "state": "grass",
+      "pos": "26 0 25"
+    },
+    {
+      "state": "grass",
+      "pos": "26 0 26"
+    },
+    {
+      "state": "grass",
+      "pos": "26 0 27"
+    },
+    {
+      "state": "grass",
+      "pos": "26 0 28"
+    },
+    {
+      "state": "grass",
+      "pos": "26 0 29"
+    },
+    {
+      "state": "grass",
+      "pos": "27 0 30"
+    },
+    {
+      "state": "grass",
+      "pos": "27 0 29"
+    },
+    {
+      "state": "grass",
+      "pos": "27 0 28"
+    },
+    {
+      "state": "grass",
+      "pos": "27 0 27"
+    },
+    {
+      "state": "grass",
+      "pos": "27 0 26"
+    },
+    {
+      "state": "grass",
+      "pos": "27 0 25"
+    },
+    {
+      "state": "grass",
+      "pos": "27 0 24"
+    },
+    {
+      "state": "grass",
+      "pos": "27 0 23"
+    },
+    {
+      "state": "grass",
+      "pos": "27 0 22"
+    },
+    {
+      "state": "grass",
+      "pos": "27 0 21"
+    },
+    {
+      "state": "grass",
+      "pos": "27 0 20"
+    },
+    {
+      "state": "grass",
+      "pos": "27 0 19"
+    },
+    {
+      "state": "grass",
+      "pos": "27 0 18"
+    },
+    {
+      "state": "grass",
+      "pos": "27 0 17"
+    },
+    {
+      "state": "grass",
+      "pos": "27 0 16"
+    },
+    {
+      "state": "grass",
+      "pos": "27 0 15"
+    },
+    {
+      "state": "grass_path",
+      "pos": "27 0 14"
+    },
+    {
+      "state": "grass_path",
+      "pos": "27 0 13"
+    },
+    {
+      "state": "grass_path",
+      "pos": "27 0 12"
+    },
+    {
+      "state": "grass",
+      "pos": "27 0 11"
+    },
+    {
+      "state": "dirt",
+      "pos": "27 0 10"
+    },
+    {
+      "state": "grass",
+      "pos": "27 0 9"
+    },
+    {
+      "state": "grass",
+      "pos": "27 0 8"
+    },
+    {
+      "state": "grass",
+      "pos": "27 0 7"
+    },
+    {
+      "state": "grass",
+      "pos": "27 0 6"
+    },
+    {
+      "state": "grass",
+      "pos": "27 0 5"
+    },
+    {
+      "state": "grass",
+      "pos": "27 0 4"
+    },
+    {
+      "state": "grass",
+      "pos": "27 0 3"
+    },
+    {
+      "state": "grass",
+      "pos": "27 0 2"
+    },
+    {
+      "state": "grass",
+      "pos": "27 0 1"
+    },
+    {
+      "state": "grass",
+      "pos": "27 0 0"
+    },
+    {
+      "state": "grass",
+      "pos": "28 0 1"
+    },
+    {
+      "state": "grass",
+      "pos": "28 0 2"
+    },
+    {
+      "state": "grass",
+      "pos": "28 0 3"
+    },
+    {
+      "state": "grass",
+      "pos": "28 0 4"
+    },
+    {
+      "state": "grass",
+      "pos": "28 0 5"
+    },
+    {
+      "state": "grass",
+      "pos": "28 0 6"
+    },
+    {
+      "state": "grass",
+      "pos": "28 0 7"
+    },
+    {
+      "state": "grass",
+      "pos": "28 0 8"
+    },
+    {
+      "state": "grass",
+      "pos": "28 0 9"
+    },
+    {
+      "state": "grass",
+      "pos": "28 0 10"
+    },
+    {
+      "state": "grass",
+      "pos": "28 0 11"
+    },
+    {
+      "state": "grass",
+      "pos": "28 0 12"
+    },
+    {
+      "state": "grass_path",
+      "pos": "28 0 13"
+    },
+    {
+      "state": "grass_path",
+      "pos": "28 0 14"
+    },
+    {
+      "state": "grass",
+      "pos": "28 0 15"
+    },
+    {
+      "state": "grass",
+      "pos": "28 0 16"
+    },
+    {
+      "state": "grass",
+      "pos": "28 0 17"
+    },
+    {
+      "state": "grass",
+      "pos": "28 0 18"
+    },
+    {
+      "state": "grass",
+      "pos": "28 0 19"
+    },
+    {
+      "state": "grass",
+      "pos": "28 0 20"
+    },
+    {
+      "state": "grass",
+      "pos": "28 0 21"
+    },
+    {
+      "state": "grass",
+      "pos": "28 0 22"
+    },
+    {
+      "state": "grass",
+      "pos": "28 0 23"
+    },
+    {
+      "state": "grass",
+      "pos": "28 0 24"
+    },
+    {
+      "state": "grass",
+      "pos": "28 0 25"
+    },
+    {
+      "state": "grass",
+      "pos": "28 0 26"
+    },
+    {
+      "state": "grass",
+      "pos": "28 0 27"
+    },
+    {
+      "state": "grass",
+      "pos": "28 0 28"
+    },
+    {
+      "state": "grass",
+      "pos": "28 0 29"
+    },
+    {
+      "state": "grass",
+      "pos": "28 0 30"
+    },
+    {
+      "state": "grass",
+      "pos": "29 0 30"
+    },
+    {
+      "state": "grass",
+      "pos": "29 0 29"
+    },
+    {
+      "state": "grass",
+      "pos": "29 0 28"
+    },
+    {
+      "state": "grass",
+      "pos": "29 0 27"
+    },
+    {
+      "state": "grass",
+      "pos": "29 0 26"
+    },
+    {
+      "state": "grass",
+      "pos": "29 0 25"
+    },
+    {
+      "state": "grass",
+      "pos": "29 0 24"
+    },
+    {
+      "state": "grass",
+      "pos": "29 0 23"
+    },
+    {
+      "state": "grass",
+      "pos": "29 0 22"
+    },
+    {
+      "state": "grass",
+      "pos": "29 0 21"
+    },
+    {
+      "state": "grass",
+      "pos": "29 0 20"
+    },
+    {
+      "state": "grass",
+      "pos": "29 0 19"
+    },
+    {
+      "state": "grass",
+      "pos": "29 0 18"
+    },
+    {
+      "state": "grass",
+      "pos": "29 0 17"
+    },
+    {
+      "state": "grass",
+      "pos": "29 0 16"
+    },
+    {
+      "state": "grass_path",
+      "pos": "29 0 15"
+    },
+    {
+      "state": "grass_path",
+      "pos": "29 0 14"
+    },
+    {
+      "state": "grass",
+      "pos": "29 0 13"
+    },
+    {
+      "state": "grass",
+      "pos": "29 0 12"
+    },
+    {
+      "state": "grass",
+      "pos": "29 0 11"
+    },
+    {
+      "state": "grass",
+      "pos": "29 0 10"
+    },
+    {
+      "state": "grass",
+      "pos": "29 0 9"
+    },
+    {
+      "state": "grass",
+      "pos": "29 0 8"
+    },
+    {
+      "state": "grass",
+      "pos": "29 0 7"
+    },
+    {
+      "state": "grass",
+      "pos": "29 0 6"
+    },
+    {
+      "state": "grass",
+      "pos": "29 0 5"
+    },
+    {
+      "state": "grass",
+      "pos": "29 0 4"
+    },
+    {
+      "state": "grass",
+      "pos": "29 0 3"
+    },
+    {
+      "state": "grass",
+      "pos": "29 0 2"
+    },
+    {
+      "state": "grass",
+      "pos": "29 0 1"
+    },
+    {
+      "state": "grass",
+      "pos": "30 0 1"
+    },
+    {
+      "state": "dirt",
+      "pos": "30 0 2"
+    },
+    {
+      "state": "grass",
+      "pos": "30 0 3"
+    },
+    {
+      "state": "grass",
+      "pos": "30 0 4"
+    },
+    {
+      "state": "grass",
+      "pos": "30 0 5"
+    },
+    {
+      "state": "grass",
+      "pos": "30 0 6"
+    },
+    {
+      "state": "grass",
+      "pos": "30 0 7"
+    },
+    {
+      "state": "grass",
+      "pos": "30 0 8"
+    },
+    {
+      "state": "grass",
+      "pos": "30 0 9"
+    },
+    {
+      "state": "grass",
+      "pos": "30 0 10"
+    },
+    {
+      "state": "grass",
+      "pos": "30 0 11"
+    },
+    {
+      "state": "grass",
+      "pos": "30 0 12"
+    },
+    {
+      "state": "grass",
+      "pos": "30 0 13"
+    },
+    {
+      "state": "grass_path",
+      "pos": "30 0 14"
+    },
+    {
+      "state": "grass_path",
+      "pos": "30 0 15"
+    },
+    {
+      "state": "grass",
+      "pos": "30 0 16"
+    },
+    {
+      "state": "grass",
+      "pos": "30 0 17"
+    },
+    {
+      "state": "grass",
+      "pos": "30 0 18"
+    },
+    {
+      "state": "grass",
+      "pos": "30 0 19"
+    },
+    {
+      "state": "grass",
+      "pos": "30 0 20"
+    },
+    {
+      "state": "grass",
+      "pos": "30 0 21"
+    },
+    {
+      "state": "grass",
+      "pos": "30 0 22"
+    },
+    {
+      "state": "grass",
+      "pos": "30 0 23"
+    },
+    {
+      "state": "grass",
+      "pos": "30 0 24"
+    },
+    {
+      "state": "grass",
+      "pos": "30 0 25"
+    },
+    {
+      "state": "grass",
+      "pos": "30 0 26"
+    },
+    {
+      "state": "grass",
+      "pos": "30 0 27"
+    },
+    {
+      "state": "grass",
+      "pos": "30 0 28"
+    },
+    {
+      "state": "dirt",
+      "pos": "30 0 29"
+    },
+    {
+      "state": "grass",
+      "pos": "31 0 28"
+    },
+    {
+      "state": "grass",
+      "pos": "31 0 27"
+    },
+    {
+      "state": "grass",
+      "pos": "31 0 26"
+    },
+    {
+      "state": "grass",
+      "pos": "31 0 25"
+    },
+    {
+      "state": "dirt",
+      "pos": "31 0 24"
+    },
+    {
+      "state": "grass",
+      "pos": "31 0 23"
+    },
+    {
+      "state": "grass",
+      "pos": "31 0 22"
+    },
+    {
+      "state": "dirt",
+      "pos": "31 0 21"
+    },
+    {
+      "state": "grass",
+      "pos": "31 0 20"
+    },
+    {
+      "state": "grass",
+      "pos": "31 0 19"
+    },
+    {
+      "state": "grass",
+      "pos": "31 0 18"
+    },
+    {
+      "state": "grass",
+      "pos": "31 0 17"
+    },
+    {
+      "state": "dirt",
+      "pos": "31 0 16"
+    },
+    {
+      "state": "grass",
+      "pos": "31 0 15"
+    },
+    {
+      "state": "grass",
+      "pos": "31 0 14"
+    },
+    {
+      "state": "dirt",
+      "pos": "31 0 13"
+    },
+    {
+      "state": "grass",
+      "pos": "31 0 12"
+    },
+    {
+      "state": "grass",
+      "pos": "31 0 11"
+    },
+    {
+      "state": "grass",
+      "pos": "31 0 10"
+    },
+    {
+      "state": "grass",
+      "pos": "31 0 9"
+    },
+    {
+      "state": "grass",
+      "pos": "31 0 8"
+    },
+    {
+      "state": "grass",
+      "pos": "31 0 7"
+    },
+    {
+      "state": "grass",
+      "pos": "31 0 6"
+    },
+    {
+      "state": "grass",
+      "pos": "31 0 5"
+    },
+    {
+      "state": "grass",
+      "pos": "31 0 4"
+    },
+    {
+      "state": "grass",
+      "pos": "31 0 3"
+    },
+    {
+      "state": "grass",
+      "pos": "31 0 2"
+    },
+    {
+      "state": "grass",
+      "pos": "31 0 1"
+    },
+    {
+      "state": "grass",
+      "pos": "32 0 2"
+    },
+    {
+      "state": "grass",
+      "pos": "32 0 3"
+    },
+    {
+      "state": "grass",
+      "pos": "32 0 4"
+    },
+    {
+      "state": "grass",
+      "pos": "32 0 5"
+    },
+    {
+      "state": "grass",
+      "pos": "32 0 6"
+    },
+    {
+      "state": "grass",
+      "pos": "32 0 7"
+    },
+    {
+      "state": "grass",
+      "pos": "32 0 8"
+    },
+    {
+      "state": "grass",
+      "pos": "32 0 9"
+    },
+    {
+      "state": "grass",
+      "pos": "32 0 10"
+    },
+    {
+      "state": "grass",
+      "pos": "32 0 11"
+    },
+    {
+      "state": "grass",
+      "pos": "32 0 16"
+    },
+    {
+      "state": "dirt",
+      "pos": "32 0 17"
+    },
+    {
+      "state": "grass",
+      "pos": "32 0 18"
+    },
+    {
+      "state": "grass",
+      "pos": "32 0 19"
+    },
+    {
+      "state": "grass",
+      "pos": "32 0 24"
+    },
+    {
+      "state": "grass",
+      "pos": "32 0 26"
+    },
+    {
+      "state": "grass",
+      "pos": "33 0 17"
+    },
+    {
+      "state": "grass",
+      "pos": "33 0 10"
+    },
+    {
+      "state": "dirt",
+      "pos": "33 0 9"
+    },
+    {
+      "state": "grass",
+      "pos": "33 0 8"
+    },
+    {
+      "state": "grass",
+      "pos": "33 0 7"
+    },
+    {
+      "state": "grass",
+      "pos": "33 0 6"
+    },
+    {
+      "state": "grass",
+      "pos": "33 0 5"
+    },
+    {
+      "state": "grass",
+      "pos": "33 0 4"
+    },
+    {
+      "state": "grass",
+      "pos": "33 0 3"
+    },
+    {
+      "state": "grass",
+      "pos": "34 0 4"
+    },
+    {
+      "state": "grass",
+      "pos": "34 0 5"
+    },
+    {
+      "state": "grass",
+      "pos": "34 0 6"
+    },
+    {
+      "state": "dirt",
+      "pos": "34 0 7"
+    },
+    {
+      "state": "grass",
+      "pos": "34 0 8"
+    },
+    {
+      "state": "grass",
+      "pos": "34 0 9"
+    },
+    {
+      "state": "grass",
+      "pos": "35 0 10"
+    },
+    {
+      "state": "grass",
+      "pos": "35 0 9"
+    },
+    {
+      "state": "grass",
+      "pos": "35 0 8"
+    },
+    {
+      "state": "grass",
+      "pos": "35 0 7"
+    },
+    {
+      "state": "grass",
+      "pos": "35 0 6"
+    },
+    {
+      "state": "grass",
+      "pos": "36 0 7"
+    },
+    {
+      "state": "dirt",
+      "pos": "36 0 8"
+    },
+    {
+      "state": "dirt",
+      "pos": "36 0 9"
+    },
+    {
+      "state": "grass",
+      "pos": "36 0 10"
+    },
+    {
+      "state": "grass",
+      "pos": "37 0 9"
+    },
+    {
+      "state": "leaves2 5",
+      "pos": "0 1 10"
+    },
+    {
+      "state": "leaves2 5",
+      "pos": "0 1 11"
+    },
+    {
+      "state": "leaves 6",
+      "pos": "1 1 13"
+    },
+    {
+      "state": "leaves 5",
+      "pos": "1 1 12"
+    },
+    {
+      "state": "leaves2 5",
+      "pos": "1 1 11"
+    },
+    {
+      "state": "leaves 5",
+      "pos": "1 1 10"
+    },
+    {
+      "state": "leaves 5",
+      "pos": "2 1 8"
+    },
+    {
+      "state": "leaves 6",
+      "pos": "2 1 9"
+    },
+    {
+      "state": "leaves 6",
+      "pos": "2 1 10"
+    },
+    {
+      "state": "leaves 6",
+      "pos": "2 1 11"
+    },
+    {
+      "state": "leaves 6",
+      "pos": "2 1 12"
+    },
+    {
+      "state": "leaves 5",
+      "pos": "2 1 13"
+    },
+    {
+      "state": "leaves 6",
+      "pos": "2 1 14"
+    },
+    {
+      "state": "leaves 14",
+      "pos": "2 1 15"
+    },
+    {
+      "state": "leaves2 13",
+      "pos": "2 1 16"
+    },
+    {
+      "state": "leaves 13",
+      "pos": "2 1 17"
+    },
+    {
+      "state": "leaves2 5",
+      "pos": "2 1 21"
+    },
+    {
+      "state": "leaves 5",
+      "pos": "2 1 22"
+    },
+    {
+      "state": "leaves 14",
+      "pos": "3 1 23"
+    },
+    {
+      "state": "log 1",
+      "pos": "3 1 22"
+    },
+    {
+      "state": "spruce_fence",
+      "pos": "3 1 21"
+    },
+    {
+      "state": "spruce_fence",
+      "pos": "3 1 20"
+    },
+    {
+      "state": "spruce_fence",
+      "pos": "3 1 19"
+    },
+    {
+      "state": "spruce_fence",
+      "pos": "3 1 18"
+    },
+    {
+      "state": "spruce_fence",
+      "pos": "3 1 17"
+    },
+    {
+      "state": "log 1",
+      "pos": "3 1 16"
+    },
+    {
+      "state": "leaves2 13",
+      "pos": "3 1 15"
+    },
+    {
+      "state": "leaves 5",
+      "pos": "3 1 12"
+    },
+    {
+      "state": "leaves 5",
+      "pos": "3 1 10"
+    },
+    {
+      "state": "leaves 6",
+      "pos": "3 1 9"
+    },
+    {
+      "state": "leaves 6",
+      "pos": "3 1 8"
+    },
+    {
+      "state": "leaves 5",
+      "pos": "4 1 8"
+    },
+    {
+      "state": "leaves2 13",
+      "pos": "4 1 16"
+    },
+    {
+      "state": "leaves2 13",
+      "pos": "4 1 17"
+    },
+    {
+      "state": "leaves2 5",
+      "pos": "4 1 20"
+    },
+    {
+      "state": "leaves2 5",
+      "pos": "4 1 21"
+    },
+    {
+      "state": "leaves 5",
+      "pos": "4 1 22"
+    },
+    {
+      "state": "leaves 14",
+      "pos": "4 1 23"
+    },
+    {
+      "state": "leaves 6",
+      "pos": "4 1 24"
+    },
+    {
+      "state": "leaves 5",
+      "pos": "4 1 25"
+    },
+    {
+      "state": "leaves 5",
+      "pos": "4 1 28"
+    },
+    {
+      "state": "leaves2 5",
+      "pos": "5 1 30"
+    },
+    {
+      "state": "leaves2 5",
+      "pos": "5 1 29"
+    },
+    {
+      "state": "leaves 5",
+      "pos": "5 1 28"
+    },
+    {
+      "state": "leaves 5",
+      "pos": "5 1 27"
+    },
+    {
+      "state": "leaves 5",
+      "pos": "5 1 26"
+    },
+    {
+      "state": "leaves 6",
+      "pos": "5 1 25"
+    },
+    {
+      "state": "leaves 5",
+      "pos": "5 1 22"
+    },
+    {
+      "state": "leaves 5",
+      "pos": "5 1 21"
+    },
+    {
+      "state": "leaves2 5",
+      "pos": "5 1 17"
+    },
+    {
+      "state": "leaves2 5",
+      "pos": "5 1 9"
+    },
+    {
+      "state": "leaves 5",
+      "pos": "5 1 8"
+    },
+    {
+      "state": "leaves 6",
+      "pos": "5 1 7"
+    },
+    {
+      "state": "leaves2 13",
+      "pos": "6 1 6"
+    },
+    {
+      "state": "leaves 5",
+      "pos": "6 1 7"
+    },
+    {
+      "state": "leaves 6",
+      "pos": "6 1 8"
+    },
+    {
+      "state": "spruce_fence",
+      "pos": "6 1 9"
+    },
+    {
+      "state": "leaves 14",
+      "pos": "6 1 26"
+    },
+    {
+      "state": "leaves 14",
+      "pos": "6 1 27"
+    },
+    {
+      "state": "log 9",
+      "pos": "6 1 28"
+    },
+    {
+      "state": "leaves2 5",
+      "pos": "6 1 29"
+    },
+    {
+      "state": "leaves2 5",
+      "pos": "7 1 29"
+    },
+    {
+      "state": "spruce_fence",
+      "pos": "7 1 28"
+    },
+    {
+      "state": "leaves2 5",
+      "pos": "7 1 27"
+    },
+    {
+      "homeString": "park.back.lamps",
+      "npc": "",
+      "pos": "7 1 13",
+      "type": "entities.NPC"
+    },
+    {
+      "pos": "7 1 13"
+    },
+    {
+      "state": "leaves 5",
+      "pos": "7 1 8"
+    },
+    {
+      "state": "leaves 6",
+      "pos": "7 1 7"
+    },
+    {
+      "state": "leaves2 13",
+      "pos": "7 1 6"
+    },
+    {
+      "state": "leaves 14",
+      "pos": "8 1 6"
+    },
+    {
+      "state": "leaves 5",
+      "pos": "8 1 7"
+    },
+    {
+      "state": "spruce_fence",
+      "pos": "8 1 28"
+    },
+    {
+      "state": "spruce_fence",
+      "pos": "9 1 28"
+    },
+    {
+      "state": "leaves 6",
+      "pos": "9 1 7"
+    },
+    {
+      "state": "leaves 14",
+      "pos": "9 1 6"
+    },
+    {
+      "state": "leaves 6",
+      "pos": "9 1 5"
+    },
+    {
+      "state": "leaves 6",
+      "pos": "10 1 3"
+    },
+    {
+      "state": "log2 1",
+      "pos": "10 1 4"
+    },
+    {
+      "state": "log2 1",
+      "pos": "10 1 5"
+    },
+    {
+      "state": "leaves 6",
+      "pos": "10 1 6"
+    },
+    {
+      "state": "leaves 6",
+      "pos": "10 1 7"
+    },
+    {
+      "state": "leaves 12",
+      "pos": "10 1 8"
+    },
+    {
+      "homeString": "park.back.left",
+      "npc": "",
+      "pos": "10 1 22",
+      "type": "entities.NPC"
+    },
+    {
+      "pos": "10 1 22"
+    },
+    {
+      "state": "spruce_fence",
+      "pos": "10 1 28"
+    },
+    {
+      "state": "spruce_fence",
+      "pos": "11 1 28"
+    },
+    {
+      "state": "leaves 12",
+      "pos": "11 1 8"
+    },
+    {
+      "state": "leaves 4",
+      "pos": "11 1 7"
+    },
+    {
+      "state": "leaves 6",
+      "pos": "11 1 6"
+    },
+    {
+      "state": "log2 1",
+      "pos": "11 1 5"
+    },
+    {
+      "state": "log2 1",
+      "pos": "11 1 4"
+    },
+    {
+      "state": "spruce_fence",
+      "pos": "11 1 3"
+    },
+    {
+      "state": "leaves 14",
+      "pos": "12 1 1"
+    },
+    {
+      "state": "spruce_fence",
+      "pos": "12 1 2"
+    },
+    {
+      "state": "spruce_fence",
+      "pos": "12 1 3"
+    },
+    {
+      "state": "leaves 14",
+      "pos": "12 1 4"
+    },
+    {
+      "state": "leaves 14",
+      "pos": "12 1 5"
+    },
+    {
+      "state": "leaves 14",
+      "pos": "12 1 6"
+    },
+    {
+      "state": "leaves 14",
+      "pos": "12 1 7"
+    },
+    {
+      "state": "leaves 5",
+      "pos": "12 1 8"
+    },
+    {
+      "state": "spruce_fence",
+      "pos": "12 1 12"
+    },
+    {
+      "state": "log 9",
+      "pos": "12 1 13"
+    },
+    {
+      "state": "log 9",
+      "pos": "12 1 14"
+    },
+    {
+      "state": "log 9",
+      "pos": "12 1 15"
+    },
+    {
+      "state": "spruce_fence",
+      "pos": "12 1 16"
+    },
+    {
+      "state": "spruce_fence",
+      "pos": "12 1 27"
+    },
+    {
+      "state": "spruce_fence",
+      "pos": "12 1 28"
+    },
+    {
+      "state": "spruce_fence",
+      "pos": "13 1 27"
+    },
+    {
+      "state": "spruce_fence",
+      "pos": "13 1 26"
+    },
+    {
+      "state": "leaves 5",
+      "pos": "13 1 25"
+    },
+    {
+      "pos": "13 1 16"
+    },
+    {
+      "pos": "13 1 15"
+    },
+    {
+      "homeString": "girafi",
+      "npc": "harvestfestival:girafi",
+      "pos": "13 1 14",
+      "type": "entities.NPC"
+    },
+    {
+      "pos": "13 1 14"
+    },
+    {
+      "pos": "13 1 13"
+    },
+    {
+      "pos": "13 1 12"
+    },
+    {
+      "state": "leaves 4",
+      "pos": "13 1 6"
+    },
+    {
+      "state": "leaves 14",
+      "pos": "13 1 5"
+    },
+    {
+      "state": "spruce_fence",
+      "pos": "13 1 2"
+    },
+    {
+      "state": "spruce_fence",
+      "pos": "13 1 1"
+    },
+    {
+      "state": "spruce_fence",
+      "pos": "14 1 1"
+    },
+    {
+      "state": "dark_oak_stairs 6",
+      "pos": "14 1 12"
+    },
+    {
+      "state": "trapdoor 9",
+      "pos": "14 1 13",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "trapdoor 9",
+      "pos": "14 1 14",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "trapdoor 8",
+      "pos": "14 1 15",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "dark_oak_stairs 7",
+      "pos": "14 1 16"
+    },
+    {
+      "state": "leaves2 5",
+      "pos": "14 1 24"
+    },
+    {
+      "state": "log 1",
+      "pos": "14 1 25"
+    },
+    {
+      "state": "spruce_fence",
+      "pos": "14 1 26"
+    },
+    {
+      "state": "leaves 5",
+      "pos": "15 1 26"
+    },
+    {
+      "state": "leaves 14",
+      "pos": "15 1 25"
+    },
+    {
+      "state": "log 1",
+      "pos": "15 1 1"
+    },
+    {
+      "pos": "16 1 1"
+    },
+    {
+      "homeString": "park.oak",
+      "npc": "",
+      "pos": "16 1 5",
+      "type": "entities.NPC"
+    },
+    {
+      "pos": "16 1 5"
+    },
+    {
+      "state": "log 1",
+      "pos": "16 1 22"
+    },
+    {
+      "state": "log 9",
+      "pos": "16 1 23"
+    },
+    {
+      "state": "leaves 6",
+      "pos": "16 1 24"
+    },
+    {
+      "state": "leaves 14",
+      "pos": "17 1 23"
+    },
+    {
+      "state": "leaves 14",
+      "pos": "17 1 22"
+    },
+    {
+      "state": "leaves 13",
+      "pos": "17 1 21"
+    },
+    {
+      "homeString": "park.customer",
+      "npc": "",
+      "pos": "17 1 15",
+      "type": "entities.NPC"
+    },
+    {
+      "pos": "17 1 15"
+    },
+    {
+      "text": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "state": "wall_sign 3",
+      "pos": "17 1 11",
+      "type": "blocks.Sign"
+    },
+    {
+      "state": "dark_oak_stairs 1",
+      "pos": "17 1 10"
+    },
+    {
+      "state": "dark_oak_stairs 1",
+      "pos": "17 1 9"
+    },
+    {
+      "text": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "state": "wall_sign 2",
+      "pos": "17 1 8",
+      "type": "blocks.Sign"
+    },
+    {
+      "pos": "17 1 1"
+    },
+    {
+      "state": "log 1",
+      "pos": "18 1 1"
+    },
+    {
+      "state": "spruce_fence",
+      "pos": "18 1 2"
+    },
+    {
+      "state": "spruce_fence",
+      "pos": "18 1 9"
+    },
+    {
+      "state": "spruce_fence",
+      "pos": "18 1 10"
+    },
+    {
+      "state": "leaves 13",
+      "pos": "18 1 20"
+    },
+    {
+      "state": "leaves 14",
+      "pos": "18 1 21"
+    },
+    {
+      "state": "leaves 4",
+      "pos": "18 1 22"
+    },
+    {
+      "state": "leaves 4",
+      "pos": "18 1 23"
+    },
+    {
+      "state": "leaves 14",
+      "pos": "19 1 22"
+    },
+    {
+      "state": "leaves 13",
+      "pos": "19 1 21"
+    },
+    {
+      "text": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "state": "wall_sign 3",
+      "pos": "19 1 11",
+      "type": "blocks.Sign"
+    },
+    {
+      "state": "dark_oak_stairs",
+      "pos": "19 1 10"
+    },
+    {
+      "state": "dark_oak_stairs",
+      "pos": "19 1 9"
+    },
+    {
+      "text": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "state": "wall_sign 2",
+      "pos": "19 1 8",
+      "type": "blocks.Sign"
+    },
+    {
+      "state": "spruce_fence",
+      "pos": "19 1 3"
+    },
+    {
+      "state": "spruce_fence",
+      "pos": "19 1 2"
+    },
+    {
+      "state": "spruce_fence",
+      "pos": "20 1 3"
+    },
+    {
+      "state": "leaves 14",
+      "pos": "20 1 4"
+    },
+    {
+      "homeString": "park.table",
+      "npc": "",
+      "pos": "20 1 10",
+      "type": "entities.NPC"
+    },
+    {
+      "pos": "20 1 10"
+    },
+    {
+      "state": "log 1",
+      "pos": "20 1 22"
+    },
+    {
+      "state": "leaves 6",
+      "pos": "20 1 23"
+    },
+    {
+      "state": "leaves 6",
+      "pos": "21 1 23"
+    },
+    {
+      "state": "dark_oak_stairs 2",
+      "pos": "21 1 22"
+    },
+    {
+      "state": "leaves 13",
+      "pos": "21 1 5"
+    },
+    {
+      "state": "leaves 14",
+      "pos": "21 1 4"
+    },
+    {
+      "state": "log 1",
+      "pos": "21 1 3"
+    },
+    {
+      "state": "leaves 12",
+      "pos": "21 1 2"
+    },
+    {
+      "state": "leaves 6",
+      "pos": "22 1 2"
+    },
+    {
+      "state": "log 1",
+      "pos": "22 1 3"
+    },
+    {
+      "state": "leaves 5",
+      "pos": "22 1 4"
+    },
+    {
+      "homeString": "park.bench",
+      "npc": "",
+      "pos": "22 1 20",
+      "type": "entities.NPC"
+    },
+    {
+      "pos": "22 1 20"
+    },
+    {
+      "state": "dark_oak_stairs 2",
+      "pos": "22 1 22"
+    },
+    {
+      "state": "leaves 6",
+      "pos": "22 1 23"
+    },
+    {
+      "state": "leaves 6",
+      "pos": "22 1 24"
+    },
+    {
+      "state": "leaves 4",
+      "pos": "23 1 25"
+    },
+    {
+      "state": "leaves 4",
+      "pos": "23 1 24"
+    },
+    {
+      "state": "leaves 6",
+      "pos": "23 1 23"
+    },
+    {
+      "state": "log 1",
+      "pos": "23 1 22"
+    },
+    {
+      "homeString": "park.centre",
+      "npc": "",
+      "pos": "23 1 15",
+      "type": "entities.NPC"
+    },
+    {
+      "pos": "23 1 15"
+    },
+    {
+      "state": "leaves 4",
+      "pos": "23 1 4"
+    },
+    {
+      "state": "leaves 5",
+      "pos": "23 1 3"
+    },
+    {
+      "state": "leaves 5",
+      "pos": "23 1 2"
+    },
+    {
+      "state": "log 1",
+      "pos": "23 1 1"
+    },
+    {
+      "state": "leaves 6",
+      "pos": "23 1 0"
+    },
+    {
+      "state": "leaves 13",
+      "pos": "24 1 1"
+    },
+    {
+      "state": "leaves 5",
+      "pos": "24 1 2"
+    },
+    {
+      "state": "leaves 13",
+      "pos": "24 1 8"
+    },
+    {
+      "state": "leaves 5",
+      "pos": "24 1 23"
+    },
+    {
+      "state": "spruce_fence",
+      "pos": "24 1 25"
+    },
+    {
+      "state": "leaves 4",
+      "pos": "24 1 26"
+    },
+    {
+      "state": "leaves 4",
+      "pos": "24 1 27"
+    },
+    {
+      "state": "leaves 4",
+      "pos": "25 1 28"
+    },
+    {
+      "state": "leaves 6",
+      "pos": "25 1 27"
+    },
+    {
+      "state": "leaves 6",
+      "pos": "25 1 26"
+    },
+    {
+      "state": "leaves 14",
+      "pos": "25 1 9"
+    },
+    {
+      "state": "leaves 14",
+      "pos": "25 1 8"
+    },
+    {
+      "state": "leaves 5",
+      "pos": "25 1 7"
+    },
+    {
+      "state": "leaves 4",
+      "pos": "25 1 1"
+    },
+    {
+      "state": "leaves 14",
+      "pos": "26 1 1"
+    },
+    {
+      "state": "leaves 4",
+      "pos": "26 1 8"
+    },
+    {
+      "state": "leaves 4",
+      "pos": "26 1 9"
+    },
+    {
+      "state": "leaves 4",
+      "pos": "26 1 10"
+    },
+    {
+      "state": "leaves 4",
+      "pos": "26 1 28"
+    },
+    {
+      "state": "leaves 4",
+      "pos": "26 1 29"
+    },
+    {
+      "state": "leaves 4",
+      "pos": "27 1 30"
+    },
+    {
+      "state": "leaves 4",
+      "pos": "27 1 29"
+    },
+    {
+      "state": "leaves 12",
+      "pos": "27 1 11"
+    },
+    {
+      "state": "log 1",
+      "pos": "27 1 10"
+    },
+    {
+      "state": "leaves 12",
+      "pos": "27 1 9"
+    },
+    {
+      "state": "leaves 14",
+      "pos": "27 1 2"
+    },
+    {
+      "state": "leaves 14",
+      "pos": "27 1 1"
+    },
+    {
+      "state": "leaves 4",
+      "pos": "27 1 0"
+    },
+    {
+      "state": "leaves 12",
+      "pos": "28 1 1"
+    },
+    {
+      "state": "leaves 14",
+      "pos": "28 1 2"
+    },
+    {
+      "state": "leaves 12",
+      "pos": "28 1 10"
+    },
+    {
+      "state": "leaves 13",
+      "pos": "28 1 11"
+    },
+    {
+      "homeString": "park.bush",
+      "npc": "",
+      "pos": "28 1 12",
+      "type": "entities.NPC"
+    },
+    {
+      "pos": "28 1 12"
+    },
+    {
+      "homeString": "park.left",
+      "npc": "",
+      "pos": "28 1 26",
+      "type": "entities.NPC"
+    },
+    {
+      "pos": "28 1 26"
+    },
+    {
+      "state": "leaves 4",
+      "pos": "28 1 29"
+    },
+    {
+      "state": "leaves 12",
+      "pos": "28 1 30"
+    },
+    {
+      "state": "leaves 5",
+      "pos": "29 1 30"
+    },
+    {
+      "state": "leaves 5",
+      "pos": "29 1 29"
+    },
+    {
+      "state": "leaves 5",
+      "pos": "29 1 24"
+    },
+    {
+      "homeString": "park.bottom",
+      "npc": "",
+      "pos": "29 1 20",
+      "type": "entities.NPC"
+    },
+    {
+      "pos": "29 1 20"
+    },
+    {
+      "homeString": "park.spruce",
+      "npc": "",
+      "pos": "29 1 6",
+      "type": "entities.NPC"
+    },
+    {
+      "pos": "29 1 6"
+    },
+    {
+      "state": "leaves 14",
+      "pos": "29 1 2"
+    },
+    {
+      "state": "leaves 12",
+      "pos": "29 1 1"
+    },
+    {
+      "state": "leaves 12",
+      "pos": "30 1 1"
+    },
+    {
+      "state": "log 1",
+      "pos": "30 1 2"
+    },
+    {
+      "state": "leaves 14",
+      "pos": "30 1 3"
+    },
+    {
+      "state": "leaves 12",
+      "pos": "30 1 17"
+    },
+    {
+      "state": "leaves 5",
+      "pos": "30 1 24"
+    },
+    {
+      "state": "leaves 4",
+      "pos": "30 1 25"
+    },
+    {
+      "state": "leaves 5",
+      "pos": "30 1 28"
+    },
+    {
+      "state": "log 1",
+      "pos": "30 1 29"
+    },
+    {
+      "state": "leaves 6",
+      "pos": "31 1 29"
+    },
+    {
+      "state": "leaves 6",
+      "pos": "31 1 28"
+    },
+    {
+      "state": "leaves 12",
+      "pos": "31 1 27"
+    },
+    {
+      "state": "leaves 4",
+      "pos": "31 1 26"
+    },
+    {
+      "state": "leaves 4",
+      "pos": "31 1 25"
+    },
+    {
+      "state": "log 1",
+      "pos": "31 1 24"
+    },
+    {
+      "state": "leaves 12",
+      "pos": "31 1 23"
+    },
+    {
+      "state": "leaves 12",
+      "pos": "31 1 22"
+    },
+    {
+      "state": "log 1",
+      "pos": "31 1 21"
+    },
+    {
+      "state": "spruce_fence",
+      "pos": "31 1 20"
+    },
+    {
+      "state": "spruce_fence",
+      "pos": "31 1 19"
+    },
+    {
+      "state": "log 1",
+      "pos": "31 1 16"
+    },
+    {
+      "pos": "31 1 15"
+    },
+    {
+      "pos": "31 1 14"
+    },
+    {
+      "state": "log 1",
+      "pos": "31 1 13"
+    },
+    {
+      "state": "spruce_fence",
+      "pos": "31 1 12"
+    },
+    {
+      "state": "spruce_fence",
+      "pos": "31 1 11"
+    },
+    {
+      "state": "spruce_fence",
+      "pos": "31 1 2"
+    },
+    {
+      "state": "leaves 12",
+      "pos": "31 1 1"
+    },
+    {
+      "state": "spruce_fence",
+      "pos": "32 1 2"
+    },
+    {
+      "state": "spruce_fence",
+      "pos": "32 1 3"
+    },
+    {
+      "state": "leaves 12",
+      "pos": "32 1 8"
+    },
+    {
+      "state": "spruce_fence",
+      "pos": "32 1 10"
+    },
+    {
+      "state": "spruce_fence",
+      "pos": "32 1 11"
+    },
+    {
+      "state": "leaves 13",
+      "pos": "32 1 16"
+    },
+    {
+      "state": "log 9",
+      "pos": "32 1 17"
+    },
+    {
+      "state": "spruce_fence",
+      "pos": "32 1 18"
+    },
+    {
+      "state": "spruce_fence",
+      "pos": "32 1 19"
+    },
+    {
+      "state": "leaves 4",
+      "pos": "32 1 24"
+    },
+    {
+      "state": "leaves 4",
+      "pos": "32 1 26"
+    },
+    {
+      "state": "leaves 6",
+      "pos": "32 1 28"
+    },
+    {
+      "state": "leaves 6",
+      "pos": "33 1 17"
+    },
+    {
+      "state": "spruce_fence",
+      "pos": "33 1 10"
+    },
+    {
+      "state": "log 1",
+      "pos": "33 1 9"
+    },
+    {
+      "state": "leaves 12",
+      "pos": "33 1 8"
+    },
+    {
+      "state": "spruce_fence",
+      "pos": "33 1 4"
+    },
+    {
+      "state": "spruce_fence",
+      "pos": "33 1 3"
+    },
+    {
+      "state": "spruce_fence",
+      "pos": "34 1 4"
+    },
+    {
+      "state": "spruce_fence",
+      "pos": "34 1 5"
+    },
+    {
+      "state": "spruce_fence",
+      "pos": "34 1 6"
+    },
+    {
+      "state": "log 1",
+      "pos": "34 1 7"
+    },
+    {
+      "state": "leaves 12",
+      "pos": "34 1 8"
+    },
+    {
+      "state": "leaves 12",
+      "pos": "34 1 9"
+    },
+    {
+      "homeString": "park.entrance",
+      "npc": "",
+      "pos": "34 1 14",
+      "type": "entities.NPC"
+    },
+    {
+      "pos": "34 1 14"
+    },
+    {
+      "state": "leaves 5",
+      "pos": "35 1 10"
+    },
+    {
+      "state": "leaves 14",
+      "pos": "35 1 9"
+    },
+    {
+      "state": "leaves 12",
+      "pos": "35 1 8"
+    },
+    {
+      "state": "leaves 13",
+      "pos": "35 1 7"
+    },
+    {
+      "state": "leaves 14",
+      "pos": "35 1 6"
+    },
+    {
+      "state": "leaves 5",
+      "pos": "36 1 7"
+    },
+    {
+      "state": "log 9",
+      "pos": "36 1 8"
+    },
+    {
+      "state": "log 9",
+      "pos": "36 1 9"
+    },
+    {
+      "state": "leaves 6",
+      "pos": "36 1 10"
+    },
+    {
+      "state": "leaves 4",
+      "pos": "37 1 9"
+    },
+    {
+      "state": "leaves2 5",
+      "pos": "1 2 11"
+    },
+    {
+      "state": "leaves 5",
+      "pos": "2 2 10"
+    },
+    {
+      "state": "leaves 5",
+      "pos": "2 2 12"
+    },
+    {
+      "state": "leaves 5",
+      "pos": "2 2 13"
+    },
+    {
+      "pos": "2 2 14"
+    },
+    {
+      "pos": "2 2 15"
+    },
+    {
+      "state": "leaves2 5",
+      "pos": "2 2 22"
+    },
+    {
+      "state": "log 1",
+      "pos": "3 2 22"
+    },
+    {
+      "state": "leaves2 5",
+      "pos": "3 2 21"
+    },
+    {
+      "pos": "3 2 20"
+    },
+    {
+      "state": "torch 5",
+      "pos": "3 2 19",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "leaves 5",
+      "pos": "3 2 18"
+    },
+    {
+      "state": "leaves 13",
+      "pos": "3 2 17"
+    },
+    {
+      "state": "log 1",
+      "pos": "3 2 16"
+    },
+    {
+      "pos": "3 2 9"
+    },
+    {
+      "pos": "4 2 8"
+    },
+    {
+      "state": "trapdoor 11",
+      "pos": "4 2 16",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "leaves2 5",
+      "pos": "4 2 21"
+    },
+    {
+      "state": "leaves2 5",
+      "pos": "4 2 22"
+    },
+    {
+      "pos": "4 2 23"
+    },
+    {
+      "state": "leaves 5",
+      "pos": "4 2 24"
+    },
+    {
+      "state": "leaves2 5",
+      "pos": "5 2 28"
+    },
+    {
+      "pos": "5 2 25"
+    },
+    {
+      "pos": "5 2 8"
+    },
+    {
+      "state": "leaves2 5",
+      "pos": "6 2 7"
+    },
+    {
+      "state": "leaves2 5",
+      "pos": "6 2 8"
+    },
+    {
+      "state": "spruce_fence",
+      "pos": "6 2 9"
+    },
+    {
+      "pos": "6 2 26"
+    },
+    {
+      "state": "leaves 5",
+      "pos": "6 2 28"
+    },
+    {
+      "state": "leaves2 5",
+      "pos": "7 2 28"
+    },
+    {
+      "pos": "7 2 27"
+    },
+    {
+      "state": "leaves2 5",
+      "pos": "7 2 8"
+    },
+    {
+      "state": "leaves2 5",
+      "pos": "7 2 7"
+    },
+    {
+      "pos": "8 2 7"
+    },
+    {
+      "pos": "8 2 28"
+    },
+    {
+      "pos": "9 2 28"
+    },
+    {
+      "pos": "9 2 7"
+    },
+    {
+      "state": "log2 1",
+      "pos": "10 2 4"
+    },
+    {
+      "state": "log2 1",
+      "pos": "10 2 5"
+    },
+    {
+      "pos": "10 2 6"
+    },
+    {
+      "state": "torch 5",
+      "pos": "10 2 28",
+      "type": "blocks.Decorative"
+    },
+    {
+      "pos": "11 2 28"
+    },
+    {
+      "state": "leaves 4",
+      "pos": "11 2 6"
+    },
+    {
+      "state": "log2 1",
+      "pos": "11 2 5"
+    },
+    {
+      "state": "log2 1",
+      "pos": "11 2 4"
+    },
+    {
+      "pos": "12 2 2"
+    },
+    {
+      "pos": "12 2 3"
+    },
+    {
+      "state": "leaves 14",
+      "pos": "12 2 5"
+    },
+    {
+      "state": "leaves 5",
+      "pos": "12 2 6"
+    },
+    {
+      "state": "spruce_fence",
+      "pos": "12 2 12"
+    },
+    {
+      "pos": "12 2 13"
+    },
+    {
+      "pos": "12 2 14"
+    },
+    {
+      "pos": "12 2 15"
+    },
+    {
+      "state": "spruce_fence",
+      "pos": "12 2 16"
+    },
+    {
+      "pos": "12 2 27"
+    },
+    {
+      "pos": "12 2 28"
+    },
+    {
+      "pos": "13 2 27"
+    },
+    {
+      "state": "torch 5",
+      "pos": "13 2 26",
+      "type": "blocks.Decorative"
+    },
+    {
+      "pos": "13 2 16"
+    },
+    {
+      "pos": "13 2 15"
+    },
+    {
+      "pos": "13 2 14"
+    },
+    {
+      "pos": "13 2 13"
+    },
+    {
+      "pos": "13 2 12"
+    },
+    {
+      "state": "torch 5",
+      "pos": "13 2 2",
+      "type": "blocks.Decorative"
+    },
+    {
+      "pos": "13 2 1"
+    },
+    {
+      "pos": "14 2 1"
+    },
+    {
+      "state": "spruce_fence",
+      "pos": "14 2 12"
+    },
+    {
+      "pos": "14 2 13"
+    },
+    {
+      "pos": "14 2 14"
+    },
+    {
+      "pos": "14 2 15"
+    },
+    {
+      "state": "spruce_fence",
+      "pos": "14 2 16"
+    },
+    {
+      "state": "leaves2 5",
+      "pos": "14 2 25"
+    },
+    {
+      "pos": "14 2 26"
+    },
+    {
+      "pos": "15 2 25"
+    },
+    {
+      "state": "leaves 14",
+      "pos": "15 2 22"
+    },
+    {
+      "state": "spruce_fence",
+      "pos": "15 2 1"
+    },
+    {
+      "pos": "16 2 1"
+    },
+    {
+      "state": "trapdoor 10",
+      "pos": "16 2 21",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "log 1",
+      "pos": "16 2 22"
+    },
+    {
+      "pos": "16 2 24"
+    },
+    {
+      "state": "leaves 4",
+      "pos": "17 2 23"
+    },
+    {
+      "state": "leaves2 5",
+      "pos": "17 2 22"
+    },
+    {
+      "pos": "17 2 1"
+    },
+    {
+      "state": "spruce_fence",
+      "pos": "18 2 1"
+    },
+    {
+      "pos": "18 2 2"
+    },
+    {
+      "state": "carpet 12",
+      "pos": "18 2 9"
+    },
+    {
+      "state": "carpet 12",
+      "pos": "18 2 10"
+    },
+    {
+      "state": "leaves2 5",
+      "pos": "18 2 22"
+    },
+    {
+      "pos": "19 2 22"
+    },
+    {
+      "pos": "19 2 3"
+    },
+    {
+      "pos": "20 2 3"
+    },
+    {
+      "pos": "20 2 23"
+    },
+    {
+      "pos": "21 2 23"
+    },
+    {
+      "state": "leaves 12",
+      "pos": "21 2 3"
+    },
+    {
+      "state": "leaves 4",
+      "pos": "22 2 2"
+    },
+    {
+      "state": "log 1",
+      "pos": "22 2 3"
+    },
+    {
+      "state": "leaves 4",
+      "pos": "22 2 4"
+    },
+    {
+      "pos": "22 2 23"
+    },
+    {
+      "pos": "23 2 25"
+    },
+    {
+      "pos": "23 2 24"
+    },
+    {
+      "state": "leaves 5",
+      "pos": "23 2 23"
+    },
+    {
+      "state": "leaves 4",
+      "pos": "23 2 3"
+    },
+    {
+      "state": "leaves 6",
+      "pos": "23 2 1"
+    },
+    {
+      "pos": "24 2 1"
+    },
+    {
+      "state": "spruce_fence",
+      "pos": "24 2 25"
+    },
+    {
+      "pos": "24 2 26"
+    },
+    {
+      "state": "leaves 6",
+      "pos": "25 2 28"
+    },
+    {
+      "pos": "25 2 27"
+    },
+    {
+      "pos": "25 2 26"
+    },
+    {
+      "state": "leaves 12",
+      "pos": "25 2 8"
+    },
+    {
+      "pos": "25 2 1"
+    },
+    {
+      "pos": "26 2 1"
+    },
+    {
+      "state": "leaves 5",
+      "pos": "26 2 9"
+    },
+    {
+      "pos": "26 2 28"
+    },
+    {
+      "pos": "26 2 29"
+    },
+    {
+      "pos": "27 2 29"
+    },
+    {
+      "state": "leaves 13",
+      "pos": "27 2 10"
+    },
+    {
+      "state": "leaves 13",
+      "pos": "27 2 1"
+    },
+    {
+      "pos": "28 2 2"
+    },
+    {
+      "pos": "28 2 29"
+    },
+    {
+      "state": "leaves 4",
+      "pos": "28 2 30"
+    },
+    {
+      "state": "leaves 4",
+      "pos": "29 2 29"
+    },
+    {
+      "state": "leaves 14",
+      "pos": "29 2 2"
+    },
+    {
+      "state": "leaves 12",
+      "pos": "30 2 1"
+    },
+    {
+      "state": "log 1",
+      "pos": "30 2 2"
+    },
+    {
+      "state": "leaves 4",
+      "pos": "30 2 24"
+    },
+    {
+      "pos": "30 2 25"
+    },
+    {
+      "state": "leaves 4",
+      "pos": "30 2 28"
+    },
+    {
+      "state": "leaves 6",
+      "pos": "30 2 29"
+    },
+    {
+      "pos": "31 2 27"
+    },
+    {
+      "pos": "31 2 26"
+    },
+    {
+      "state": "leaves 12",
+      "pos": "31 2 24"
+    },
+    {
+      "state": "leaves 13",
+      "pos": "31 2 23"
+    },
+    {
+      "state": "leaves 13",
+      "pos": "31 2 21"
+    },
+    {
+      "state": "torch 5",
+      "pos": "31 2 20",
+      "type": "blocks.Decorative"
+    },
+    {
+      "pos": "31 2 19"
+    },
+    {
+      "state": "leaves 13",
+      "pos": "31 2 17"
+    },
+    {
+      "state": "spruce_fence",
+      "pos": "31 2 16"
+    },
+    {
+      "pos": "31 2 15"
+    },
+    {
+      "pos": "31 2 14"
+    },
+    {
+      "state": "spruce_fence",
+      "pos": "31 2 13"
+    },
+    {
+      "pos": "31 2 12"
+    },
+    {
+      "pos": "31 2 11"
+    },
+    {
+      "pos": "31 2 2"
+    },
+    {
+      "pos": "32 2 2"
+    },
+    {
+      "pos": "32 2 3"
+    },
+    {
+      "pos": "32 2 10"
+    },
+    {
+      "state": "torch 5",
+      "pos": "32 2 11",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "leaves 5",
+      "pos": "32 2 17"
+    },
+    {
+      "pos": "32 2 18"
+    },
+    {
+      "pos": "32 2 19"
+    },
+    {
+      "state": "leaves 12",
+      "pos": "33 2 9"
+    },
+    {
+      "state": "torch 5",
+      "pos": "33 2 4",
+      "type": "blocks.Decorative"
+    },
+    {
+      "pos": "33 2 3"
+    },
+    {
+      "pos": "34 2 4"
+    },
+    {
+      "pos": "34 2 5"
+    },
+    {
+      "pos": "34 2 6"
+    },
+    {
+      "state": "leaves 12",
+      "pos": "34 2 7"
+    },
+    {
+      "pos": "34 2 8"
+    },
+    {
+      "state": "leaves 13",
+      "pos": "35 2 8"
+    },
+    {
+      "state": "leaves 12",
+      "pos": "35 2 7"
+    },
+    {
+      "state": "leaves 5",
+      "pos": "36 2 9"
+    },
+    {
+      "state": "leaves2 5",
+      "pos": "1 3 16"
+    },
+    {
+      "state": "leaves2 5",
+      "pos": "2 3 15"
+    },
+    {
+      "state": "leaves 5",
+      "pos": "2 3 16"
+    },
+    {
+      "state": "leaves2 5",
+      "pos": "3 3 22"
+    },
+    {
+      "state": "leaves2 13",
+      "pos": "3 3 17"
+    },
+    {
+      "state": "log 1",
+      "pos": "3 3 16"
+    },
+    {
+      "state": "trapdoor 12",
+      "pos": "4 3 15",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "glowstone",
+      "pos": "4 3 16"
+    },
+    {
+      "state": "trapdoor 13",
+      "pos": "4 3 17",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "trapdoor 15",
+      "pos": "5 3 16",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "spruce_fence",
+      "pos": "6 3 9"
+    },
+    {
+      "state": "log2 1",
+      "pos": "9 3 4"
+    },
+    {
+      "state": "log2 1",
+      "pos": "9 3 3"
+    },
+    {
+      "state": "log2 1",
+      "pos": "10 3 4"
+    },
+    {
+      "state": "log2 1",
+      "pos": "10 3 5"
+    },
+    {
+      "state": "log2 1",
+      "pos": "10 3 6"
+    },
+    {
+      "state": "log2 1",
+      "pos": "11 3 5"
+    },
+    {
+      "state": "log2 1",
+      "pos": "11 3 4"
+    },
+    {
+      "state": "log2 1",
+      "pos": "12 3 3"
+    },
+    {
+      "state": "log2 1",
+      "pos": "12 3 5"
+    },
+    {
+      "state": "spruce_fence",
+      "pos": "12 3 12"
+    },
+    {
+      "state": "log 9",
+      "pos": "12 3 13"
+    },
+    {
+      "state": "log 9",
+      "pos": "12 3 14"
+    },
+    {
+      "state": "log 9",
+      "pos": "12 3 15"
+    },
+    {
+      "state": "spruce_fence",
+      "pos": "12 3 16"
+    },
+    {
+      "pos": "13 3 16"
+    },
+    {
+      "pos": "13 3 15"
+    },
+    {
+      "pos": "13 3 14"
+    },
+    {
+      "pos": "13 3 13"
+    },
+    {
+      "pos": "13 3 12"
+    },
+    {
+      "state": "spruce_fence",
+      "pos": "14 3 12"
+    },
+    {
+      "pos": "14 3 13"
+    },
+    {
+      "pos": "14 3 14"
+    },
+    {
+      "pos": "14 3 15"
+    },
+    {
+      "state": "spruce_fence",
+      "pos": "14 3 16"
+    },
+    {
+      "state": "trapdoor 14",
+      "pos": "15 3 21",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "spruce_fence",
+      "pos": "15 3 1"
+    },
+    {
+      "pos": "16 3 1"
+    },
+    {
+      "state": "trapdoor 4",
+      "pos": "16 3 20",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "glowstone",
+      "pos": "16 3 21"
+    },
+    {
+      "state": "log 1",
+      "pos": "16 3 22"
+    },
+    {
+      "state": "leaves 5",
+      "pos": "16 3 23"
+    },
+    {
+      "state": "trapdoor 7",
+      "pos": "17 3 21",
+      "type": "blocks.Decorative"
+    },
+    {
+      "pos": "17 3 1"
+    },
+    {
+      "state": "spruce_fence",
+      "pos": "18 3 1"
+    },
+    {
+      "state": "leaves 4",
+      "pos": "22 3 3"
+    },
+    {
+      "state": "spruce_fence",
+      "pos": "24 3 25"
+    },
+    {
+      "state": "leaves 1",
+      "pos": "29 3 2"
+    },
+    {
+      "state": "leaves 1",
+      "pos": "30 3 1"
+    },
+    {
+      "state": "log 1",
+      "pos": "30 3 2"
+    },
+    {
+      "state": "leaves 1",
+      "pos": "30 3 3"
+    },
+    {
+      "state": "spruce_fence",
+      "pos": "31 3 16"
+    },
+    {
+      "pos": "31 3 15"
+    },
+    {
+      "pos": "31 3 14"
+    },
+    {
+      "state": "spruce_fence",
+      "pos": "31 3 13"
+    },
+    {
+      "state": "leaves 1",
+      "pos": "31 3 2"
+    },
+    {
+      "state": "leaves 5",
+      "pos": "2 4 16"
+    },
+    {
+      "state": "leaves2 13",
+      "pos": "3 4 17"
+    },
+    {
+      "state": "log 1",
+      "pos": "3 4 16"
+    },
+    {
+      "state": "leaves 5",
+      "pos": "3 4 15"
+    },
+    {
+      "state": "spruce_fence",
+      "pos": "4 4 16"
+    },
+    {
+      "state": "spruce_fence",
+      "pos": "6 4 9"
+    },
+    {
+      "state": "log2 1",
+      "pos": "9 4 4"
+    },
+    {
+      "state": "log2 1",
+      "pos": "9 4 3"
+    },
+    {
+      "state": "log2 1",
+      "pos": "10 4 4"
+    },
+    {
+      "state": "log2 1",
+      "pos": "10 4 5"
+    },
+    {
+      "state": "log2 1",
+      "pos": "10 4 6"
+    },
+    {
+      "state": "wooden_slab 5",
+      "pos": "11 4 16"
+    },
+    {
+      "state": "wooden_slab 5",
+      "pos": "11 4 15"
+    },
+    {
+      "state": "wooden_slab 5",
+      "pos": "11 4 14"
+    },
+    {
+      "state": "wooden_slab 5",
+      "pos": "11 4 13"
+    },
+    {
+      "state": "wooden_slab 5",
+      "pos": "11 4 12"
+    },
+    {
+      "state": "log2 1",
+      "pos": "11 4 5"
+    },
+    {
+      "state": "log2 1",
+      "pos": "11 4 4"
+    },
+    {
+      "state": "log2 1",
+      "pos": "12 4 3"
+    },
+    {
+      "state": "log2 1",
+      "pos": "12 4 5"
+    },
+    {
+      "state": "log2 1",
+      "pos": "12 4 6"
+    },
+    {
+      "state": "wooden_slab 5",
+      "pos": "12 4 11"
+    },
+    {
+      "state": "wool 14",
+      "pos": "12 4 12"
+    },
+    {
+      "state": "wool 14",
+      "pos": "12 4 13"
+    },
+    {
+      "state": "wool 14",
+      "pos": "12 4 14"
+    },
+    {
+      "state": "wool",
+      "pos": "12 4 15"
+    },
+    {
+      "state": "wool 14",
+      "pos": "12 4 16"
+    },
+    {
+      "state": "wooden_slab 5",
+      "pos": "12 4 17"
+    },
+    {
+      "state": "wooden_slab 5",
+      "pos": "13 4 17"
+    },
+    {
+      "state": "wool",
+      "pos": "13 4 16"
+    },
+    {
+      "state": "wool",
+      "pos": "13 4 15"
+    },
+    {
+      "state": "wool",
+      "pos": "13 4 14"
+    },
+    {
+      "state": "wool",
+      "pos": "13 4 13"
+    },
+    {
+      "state": "wool",
+      "pos": "13 4 12"
+    },
+    {
+      "state": "wooden_slab 5",
+      "pos": "13 4 11"
+    },
+    {
+      "state": "dark_oak_stairs",
+      "pos": "14 4 1"
+    },
+    {
+      "state": "wooden_slab 5",
+      "pos": "14 4 11"
+    },
+    {
+      "state": "wool 14",
+      "pos": "14 4 12"
+    },
+    {
+      "state": "wool 14",
+      "pos": "14 4 13"
+    },
+    {
+      "state": "wool 14",
+      "pos": "14 4 14"
+    },
+    {
+      "state": "wool",
+      "pos": "14 4 15"
+    },
+    {
+      "state": "wool 14",
+      "pos": "14 4 16"
+    },
+    {
+      "state": "wooden_slab 5",
+      "pos": "14 4 17"
+    },
+    {
+      "state": "leaves 14",
+      "pos": "15 4 22"
+    },
+    {
+      "state": "wooden_slab 5",
+      "pos": "15 4 16"
+    },
+    {
+      "state": "wooden_slab 5",
+      "pos": "15 4 15"
+    },
+    {
+      "state": "wooden_slab 5",
+      "pos": "15 4 14"
+    },
+    {
+      "state": "wooden_slab 5",
+      "pos": "15 4 13"
+    },
+    {
+      "state": "wooden_slab 5",
+      "pos": "15 4 12"
+    },
+    {
+      "state": "dark_oak_stairs 5",
+      "pos": "15 4 1"
+    },
+    {
+      "pos": "16 4 1"
+    },
+    {
+      "state": "spruce_fence",
+      "pos": "16 4 21"
+    },
+    {
+      "state": "log 1",
+      "pos": "16 4 22"
+    },
+    {
+      "state": "leaves 14",
+      "pos": "16 4 23"
+    },
+    {
+      "state": "leaves 5",
+      "pos": "17 4 22"
+    },
+    {
+      "pos": "17 4 1"
+    },
+    {
+      "state": "dark_oak_stairs 4",
+      "pos": "18 4 1"
+    },
+    {
+      "state": "dark_oak_stairs 1",
+      "pos": "19 4 1"
+    },
+    {
+      "state": "trapdoor 6",
+      "pos": "23 4 25",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "trapdoor 4",
+      "pos": "24 4 24",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "glowstone",
+      "pos": "24 4 25"
+    },
+    {
+      "state": "trapdoor 5",
+      "pos": "24 4 26",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "trapdoor 7",
+      "pos": "25 4 25",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "leaves 1",
+      "pos": "28 4 1"
+    },
+    {
+      "state": "leaves 1",
+      "pos": "28 4 2"
+    },
+    {
+      "state": "leaves 1",
+      "pos": "28 4 3"
+    },
+    {
+      "state": "leaves 1",
+      "pos": "29 4 4"
+    },
+    {
+      "state": "leaves 1",
+      "pos": "29 4 3"
+    },
+    {
+      "state": "leaves 1",
+      "pos": "29 4 2"
+    },
+    {
+      "state": "leaves 1",
+      "pos": "29 4 1"
+    },
+    {
+      "state": "leaves 1",
+      "pos": "29 4 0"
+    },
+    {
+      "state": "leaves 1",
+      "pos": "30 4 0"
+    },
+    {
+      "state": "leaves 1",
+      "pos": "30 4 1"
+    },
+    {
+      "state": "log 1",
+      "pos": "30 4 2"
+    },
+    {
+      "state": "leaves 1",
+      "pos": "30 4 3"
+    },
+    {
+      "state": "leaves 1",
+      "pos": "30 4 4"
+    },
+    {
+      "state": "dark_oak_stairs 3",
+      "pos": "31 4 17"
+    },
+    {
+      "state": "dark_oak_stairs 6",
+      "pos": "31 4 16"
+    },
+    {
+      "pos": "31 4 15"
+    },
+    {
+      "pos": "31 4 14"
+    },
+    {
+      "state": "dark_oak_stairs 7",
+      "pos": "31 4 13"
+    },
+    {
+      "state": "dark_oak_stairs 2",
+      "pos": "31 4 12"
+    },
+    {
+      "state": "leaves 1",
+      "pos": "31 4 4"
+    },
+    {
+      "state": "leaves 1",
+      "pos": "31 4 3"
+    },
+    {
+      "state": "leaves 1",
+      "pos": "31 4 2"
+    },
+    {
+      "state": "leaves 1",
+      "pos": "31 4 1"
+    },
+    {
+      "state": "leaves 1",
+      "pos": "31 4 0"
+    },
+    {
+      "state": "leaves 1",
+      "pos": "32 4 1"
+    },
+    {
+      "state": "leaves 1",
+      "pos": "32 4 2"
+    },
+    {
+      "state": "leaves 1",
+      "pos": "32 4 3"
+    },
+    {
+      "state": "leaves2 13",
+      "pos": "3 5 16"
+    },
+    {
+      "state": "trapdoor 6",
+      "pos": "5 5 9",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "trapdoor 12",
+      "pos": "6 5 8",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "glowstone",
+      "pos": "6 5 9"
+    },
+    {
+      "state": "trapdoor 5",
+      "pos": "6 5 10",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "trapdoor 7",
+      "pos": "7 5 9",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "log2 1",
+      "pos": "9 5 4"
+    },
+    {
+      "state": "log2 1",
+      "pos": "9 5 3"
+    },
+    {
+      "state": "log2 1",
+      "pos": "10 5 4"
+    },
+    {
+      "state": "log2 1",
+      "pos": "10 5 5"
+    },
+    {
+      "state": "log2 1",
+      "pos": "10 5 6"
+    },
+    {
+      "state": "leaves 5",
+      "pos": "10 5 7"
+    },
+    {
+      "state": "leaves 5",
+      "pos": "11 5 6"
+    },
+    {
+      "state": "log2 1",
+      "pos": "11 5 5"
+    },
+    {
+      "state": "log2 1",
+      "pos": "11 5 4"
+    },
+    {
+      "state": "log2 1",
+      "pos": "12 5 3"
+    },
+    {
+      "state": "log2 1",
+      "pos": "12 5 4"
+    },
+    {
+      "state": "log2 1",
+      "pos": "12 5 5"
+    },
+    {
+      "state": "log2 1",
+      "pos": "12 5 6"
+    },
+    {
+      "state": "leaves 5",
+      "pos": "12 5 7"
+    },
+    {
+      "state": "leaves 6",
+      "pos": "13 5 6"
+    },
+    {
+      "state": "leaves 5",
+      "pos": "13 5 5"
+    },
+    {
+      "state": "leaves 5",
+      "pos": "13 5 4"
+    },
+    {
+      "state": "dark_oak_stairs",
+      "pos": "15 5 1"
+    },
+    {
+      "state": "dark_oak_stairs 5",
+      "pos": "16 5 1"
+    },
+    {
+      "state": "leaves 5",
+      "pos": "16 5 22"
+    },
+    {
+      "state": "dark_oak_stairs 4",
+      "pos": "17 5 1"
+    },
+    {
+      "state": "dark_oak_stairs 1",
+      "pos": "18 5 1"
+    },
+    {
+      "state": "trapdoor",
+      "pos": "24 5 25",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "leaves 1",
+      "pos": "29 5 2"
+    },
+    {
+      "state": "leaves 1",
+      "pos": "30 5 1"
+    },
+    {
+      "state": "log 1",
+      "pos": "30 5 2"
+    },
+    {
+      "state": "leaves 1",
+      "pos": "30 5 3"
+    },
+    {
+      "state": "dark_oak_stairs 3",
+      "pos": "31 5 16"
+    },
+    {
+      "state": "dark_oak_stairs 6",
+      "pos": "31 5 15"
+    },
+    {
+      "state": "dark_oak_stairs 7",
+      "pos": "31 5 14"
+    },
+    {
+      "state": "dark_oak_stairs 2",
+      "pos": "31 5 13"
+    },
+    {
+      "state": "leaves 1",
+      "pos": "31 5 2"
+    },
+    {
+      "state": "trapdoor 1",
+      "pos": "6 6 9",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "7 6 5"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "7 6 4"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "7 6 3"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "7 6 2"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "8 6 1"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "8 6 2"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "8 6 3"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "8 6 4"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "8 6 5"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "8 6 6"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "8 6 7"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "9 6 8"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "9 6 7"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "9 6 6"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "9 6 5"
+    },
+    {
+      "state": "log2 1",
+      "pos": "9 6 4"
+    },
+    {
+      "state": "log2 1",
+      "pos": "9 6 3"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "9 6 2"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "9 6 1"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "10 6 1"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "10 6 2"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "10 6 3"
+    },
+    {
+      "state": "log2 1",
+      "pos": "10 6 4"
+    },
+    {
+      "state": "log2 1",
+      "pos": "10 6 5"
+    },
+    {
+      "state": "log2 1",
+      "pos": "10 6 6"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "10 6 7"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "10 6 8"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "11 6 8"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "11 6 7"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "11 6 6"
+    },
+    {
+      "state": "log2 1",
+      "pos": "11 6 5"
+    },
+    {
+      "state": "log2 1",
+      "pos": "11 6 4"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "11 6 3"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "11 6 2"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "11 6 1"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "12 6 1"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "12 6 2"
+    },
+    {
+      "state": "log2 1",
+      "pos": "12 6 3"
+    },
+    {
+      "state": "log2 1",
+      "pos": "12 6 4"
+    },
+    {
+      "state": "log2 1",
+      "pos": "12 6 5"
+    },
+    {
+      "state": "log2 1",
+      "pos": "12 6 6"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "12 6 7"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "12 6 8"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "13 6 8"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "13 6 7"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "13 6 6"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "13 6 5"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "13 6 4"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "13 6 3"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "13 6 2"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "13 6 1"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "14 6 2"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "14 6 3"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "14 6 4"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "14 6 5"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "14 6 6"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "14 6 7"
+    },
+    {
+      "state": "dark_oak_stairs",
+      "pos": "16 6 1"
+    },
+    {
+      "state": "dark_oak_stairs 1",
+      "pos": "17 6 1"
+    },
+    {
+      "state": "log 1",
+      "pos": "30 6 2"
+    },
+    {
+      "state": "dark_oak_stairs 3",
+      "pos": "31 6 15"
+    },
+    {
+      "state": "dark_oak_stairs 2",
+      "pos": "31 6 14"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "7 7 6"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "7 7 5"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "7 7 4"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "7 7 3"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "7 7 2"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "8 7 1"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "8 7 2"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "8 7 3"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "8 7 4"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "8 7 5"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "8 7 6"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "8 7 7"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "8 7 8"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "9 7 8"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "9 7 7"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "9 7 6"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "9 7 5"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "9 7 4"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "9 7 3"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "9 7 2"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "9 7 1"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "10 7 1"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "10 7 2"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "10 7 3"
+    },
+    {
+      "state": "log2 1",
+      "pos": "10 7 4"
+    },
+    {
+      "state": "log2 1",
+      "pos": "10 7 5"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "10 7 6"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "10 7 7"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "10 7 8"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "11 7 8"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "11 7 7"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "11 7 6"
+    },
+    {
+      "state": "log2 1",
+      "pos": "11 7 5"
+    },
+    {
+      "state": "log2 1",
+      "pos": "11 7 4"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "11 7 3"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "11 7 2"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "11 7 1"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "12 7 1"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "12 7 2"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "12 7 3"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "12 7 4"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "12 7 5"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "12 7 6"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "12 7 7"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "12 7 8"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "13 7 7"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "13 7 6"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "13 7 5"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "13 7 4"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "13 7 3"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "13 7 2"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "14 7 2"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "14 7 3"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "14 7 4"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "14 7 5"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "14 7 6"
+    },
+    {
+      "state": "leaves 1",
+      "pos": "29 7 2"
+    },
+    {
+      "state": "leaves 1",
+      "pos": "30 7 1"
+    },
+    {
+      "state": "log 1",
+      "pos": "30 7 2"
+    },
+    {
+      "state": "leaves 1",
+      "pos": "30 7 3"
+    },
+    {
+      "state": "leaves 1",
+      "pos": "31 7 2"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "8 8 4"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "8 8 5"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "9 8 6"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "9 8 5"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "9 8 4"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "9 8 3"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "10 8 2"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "10 8 3"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "10 8 4"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "10 8 5"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "10 8 6"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "10 8 7"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "11 8 7"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "11 8 6"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "11 8 5"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "11 8 4"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "11 8 3"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "11 8 2"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "12 8 3"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "12 8 4"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "12 8 5"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "12 8 6"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "13 8 5"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "13 8 4"
+    },
+    {
+      "state": "leaves 1",
+      "pos": "30 8 2"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "10 9 4"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "10 9 5"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "11 9 5"
+    },
+    {
+      "state": "leaves2 1",
+      "pos": "11 9 4"
+    }
+  ]
+}

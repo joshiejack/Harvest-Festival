@@ -1,4 +1,4 @@
-package joshie.harvest.calendar;
+package joshie.harvest.calendar.data;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.WorldSavedData;

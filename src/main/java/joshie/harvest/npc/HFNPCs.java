@@ -100,11 +100,11 @@ public class HFNPCs {
         BLACKSMITH.setLocation(HOME,  BLACKSMITHFURNACE).setLocation(SHOP, BLACKSMITHFURNACE);
         DAUGHTER_CHILD.setLocation(HOME, TOWNHALLCHILDBED);
         CLOCKMAKER.setLocation(HOME, CLOCKMAKERDOWNSTAIRS).setHasInfo(TOOLS.getStackFromEnum(NPCTool.CALENDAR), new GreetingTime());
-        GS_OWNER.setLocation(HOME, GENERALBASEMENTBACK).setLocation(SHOP, GENERALTILL).setHasInfo(HFNPCs.TOOLS.getStackFromEnum(NPCTool.CLOCK), new GreetingShop(GS_OWNER.getResource()));
+        GS_OWNER.setLocation(HOME, GENERALBEDROOM).setLocation(SHOP, GENERALTILL).setHasInfo(HFNPCs.TOOLS.getStackFromEnum(NPCTool.CLOCK), new GreetingShop(GS_OWNER.getResource()));
         FISHERMAN.setLocation(HOME, FISHINGHUTUPSTAIRS).setLocation(SHOP, FISHINGHUTDOWNSTAIRS).addGreeting(new GreetingLocation(POND));
-        MILKMAID.setLocation(HOME, GENERALBEDROOM).setLocation(SHOP, BARNLEFT);
+        MILKMAID.setLocation(HOME, GENERALBED).setLocation(SHOP, BARNLEFT);
         POULTRY.setLocation(HOME, POULTRYBUILDING).setLocation(SHOP, POULTRYBUILDING);
-        TRADER.setLocation(HOME, TOWNHALLRIGHT).setLocation(SHOP, GENERALENTRANCE);
+        TRADER.setLocation(HOME, TOWNHALLRIGHT).setLocation(SHOP, GENERALCUSTOMER);
         CLOCKMAKER.setHasInfo(TOOLS.getStackFromEnum(NPCTool.CALENDAR), new GreetingTime());
         for (NPC npc: NPCRegistry.REGISTRY) {
             if (npc != NULL_NPC) {

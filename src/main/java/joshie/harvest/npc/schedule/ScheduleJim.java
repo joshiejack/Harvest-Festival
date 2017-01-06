@@ -16,7 +16,7 @@ public class ScheduleJim implements ISchedule {
     @Override
     public BuildingLocation getTarget(World world, EntityLiving entity, INPC npc, Season season, Weekday day, long time) {
         if (time >= 5000L && time <= 7000L) return CAFEFRONT;
-        else if (time >= 7000L && time <= 9000L) return day == SUNDAY ? CAFECUSTOMER : GENERALFRONT;
+        else if (time >= 7000L && time <= 9000L) return day == SUNDAY ? CAFECUSTOMER : GENERALCUSTOMER;
         return npc.getLocation(HOME);
     }
 }

@@ -9,13 +9,13 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.world.World;
 
 import static joshie.harvest.api.npc.INPC.Location.HOME;
-import static joshie.harvest.town.BuildingLocations.GENERALBASEMENT;
+import static joshie.harvest.town.BuildingLocations.GENERALCUSTOMER;
 import static joshie.harvest.town.BuildingLocations.GODDESSBACKRIGHT;
 
 public class ScheduleGirafi implements ISchedule {
     @Override
     public BuildingLocation getTarget(World world, EntityLiving entity, INPC npc, Season season, Weekday day, long time) {
-        if (time >= 9000L && time <= 17000L) return GENERALBASEMENT;
+        if (time >= 9000L && time <= 17000L) return GENERALCUSTOMER;
         else if (time >= 23000L && time <= 24000L) return GODDESSBACKRIGHT;
         else return npc.getLocation(HOME);
     }

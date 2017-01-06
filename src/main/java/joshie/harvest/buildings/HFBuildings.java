@@ -55,7 +55,7 @@ public class HFBuildings {
     public static final Building GODDESS_POND = registerBuilding("goddessPond").setSpecialRules(new SpecialRuleBuildings(5)).setInhabitants(HFNPCs.GODDESS).setOffset(11, -1, 20);
     public static final Building MINING_HILL = registerBuilding("miningHill").setRequirements("supermarket").setInhabitants(HFNPCs.MINER).setOffset(10, -3, 11);
     public static final Building POULTRY_FARM = registerBuilding("poultryFarm").setRequirements("carpenter").setInhabitants(HFNPCs.POULTRY).setOffset(4, -1, 12);
-    public static final Building SUPERMARKET = registerBuilding("supermarket").setRequirements("carpenter").setInhabitants(HFNPCs.MILKMAID, HFNPCs.GS_OWNER).setOffset(7, -10, 12).setTickTime(5);
+    public static final Building SUPERMARKET = registerBuilding("supermarket").setRequirements("carpenter").setInhabitants(HFNPCs.MILKMAID, HFNPCs.GS_OWNER).setOffset(7, -1, 12).setTickTime(5);
     public static final Building TOWNHALL = registerBuilding("townhall").setSpecialRules(new SpecialRuleBuildings(9)).setInhabitants(HFNPCs.MAYOR, HFNPCs.PRIEST, HFNPCs.DAUGHTER_ADULT, HFNPCs.DAUGHTER_CHILD).setOffset(10, -1, 17);
     //0.6+ Buildings
     public static final Building FESTIVALS = registerBuilding("festivals").setSpecialRules(new SpecialRuleFestivals()).setInhabitants(HFNPCs.TRADER);

@@ -14,7 +14,6 @@ import joshie.harvest.npc.entity.*;
 import joshie.harvest.npc.greeting.*;
 import joshie.harvest.npc.item.ItemNPCSpawner;
 import joshie.harvest.npc.item.ItemNPCTool;
-import joshie.harvest.npc.item.ItemNPCTool.NPCTool;
 import joshie.harvest.npc.render.NPCItemRenderer;
 import joshie.harvest.npc.render.NPCItemRenderer.NPCTile;
 import joshie.harvest.npc.render.RenderNPC;
@@ -87,10 +86,10 @@ public class HFNPCs {
     }
 
     public static void init() {
-        GODDESS.setLocation(HOME, GODDESSFRONT).setHasInfo(TOOLS.getStackFromEnum(NPCTool.WEATHER), new GreetingWeather());
+        GODDESS.setLocation(HOME, GODDESSFRONT).setHasInfo(new GreetingWeather());
         BARN_OWNER.setLocation(HOME, BARNBUILDING).setLocation(SHOP, BARNBUILDING);
         CAFE_OWNER.setLocation(HOME, CAFEBALCONY).setLocation(SHOP, CAFETILL);
-        FLOWER_GIRL.setLocation(HOME, CARPENTERUP).setLocation(SHOP, CARPENTERUP).setHasInfo(TOOLS.getStackFromEnum(NPCTool.FLOWER), new GreetingFlowerBuyer());
+        FLOWER_GIRL.setLocation(HOME, CARPENTERUP).setLocation(SHOP, CARPENTERUP).setHasInfo(new GreetingFlowerBuyer());
         DAUGHTER_ADULT.setLocation(HOME, TOWNHALLTEENBED);
         PRIEST.setLocation(HOME, TOWNAHLLADULT);
         CLOCKMAKER_CHILD.setLocation(HOME, CLOCKMAKERUPSTAIRS);
@@ -99,13 +98,13 @@ public class HFNPCs {
         BUILDER.setLocation(HOME, CARPENTERDOWN).setLocation(SHOP, CARPENTERFRONT).addGreeting(new GreetingCarpenter());
         BLACKSMITH.setLocation(HOME,  BLACKSMITHFURNACE).setLocation(SHOP, BLACKSMITHFURNACE);
         DAUGHTER_CHILD.setLocation(HOME, TOWNHALLCHILDBED);
-        CLOCKMAKER.setLocation(HOME, CLOCKMAKERDOWNSTAIRS).setHasInfo(TOOLS.getStackFromEnum(NPCTool.CALENDAR), new GreetingTime());
-        GS_OWNER.setLocation(HOME, GENERALBEDROOM).setLocation(SHOP, GENERALTILL).setHasInfo(HFNPCs.TOOLS.getStackFromEnum(NPCTool.CLOCK), new GreetingShop(GS_OWNER.getResource()));
+        CLOCKMAKER.setLocation(HOME, CLOCKMAKERDOWNSTAIRS).setHasInfo(new GreetingTime());
+        GS_OWNER.setLocation(HOME, GENERALBEDROOM).setLocation(SHOP, GENERALTILL).setHasInfo(new GreetingSupermarket(GS_OWNER.getResource()));
         FISHERMAN.setLocation(HOME, FISHINGHUTUPSTAIRS).setLocation(SHOP, FISHINGHUTDOWNSTAIRS).addGreeting(new GreetingLocation(POND));
         MILKMAID.setLocation(HOME, GENERALBED).setLocation(SHOP, BARNLEFT);
         POULTRY.setLocation(HOME, POULTRYBUILDING).setLocation(SHOP, POULTRYBUILDING);
         TRADER.setLocation(HOME, TOWNHALLRIGHT).setLocation(SHOP, GENERALCUSTOMER);
-        CLOCKMAKER.setHasInfo(TOOLS.getStackFromEnum(NPCTool.CALENDAR), new GreetingTime());
+        CLOCKMAKER.setHasInfo(new GreetingTime());
         for (NPC npc: NPCRegistry.REGISTRY) {
             if (npc != NULL_NPC) {
                 npc.setupGifts();

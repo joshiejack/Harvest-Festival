@@ -58,9 +58,8 @@ public interface INPC {
     INPC setHasInfo(ItemStack stack, IGreeting infoGreeting);
 
     /** Makes the npc display a specific chat
-     *  @param stack the item to use as the icon
      *  @param info  the info handler to use**/
-    INPC setHasInfo(ItemStack stack, IInfoButton info);
+    INPC setHasInfo(IInfoButton info);
 
     /** Allows you to add additional greetings to npcs
      *  @param greeting the greeting type

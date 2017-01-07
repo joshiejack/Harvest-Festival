@@ -18,7 +18,8 @@ public class HFModInfo {
     public static final String GROWTHHANDLERS = "joshie.harvest.crops.handlers.growth.GrowthHandler";
     public static final String RULES = "joshie.harvest.crops.handlers.rules.SpecialRules";
 
-    
+    //Textures
     public static final ResourceLocation ELEMENTS = new ResourceLocation(MODID, "textures/gui/gui_elements.png");
     public static final ResourceLocation TOOLELEMENTS = new ResourceLocation(MODID, "textures/gui/gui_toolelements.png");
+    public static final ResourceLocation ICONS = new ResourceLocation(MODID, "textures/gui/icons.png");
 }

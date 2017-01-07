@@ -3,24 +3,22 @@ package joshie.harvest.knowledge.gui.stats.notes.button;
 import joshie.harvest.api.knowledge.Note;
 import joshie.harvest.api.knowledge.NoteRender;
 import joshie.harvest.core.HFTrackers;
-import joshie.harvest.core.helpers.StackRenderHelper;
-import joshie.harvest.knowledge.gui.stats.GuiStats;
 import joshie.harvest.core.base.gui.ButtonBook;
+import joshie.harvest.core.lib.HFModInfo;
+import joshie.harvest.knowledge.gui.stats.GuiStats;
 import joshie.harvest.knowledge.gui.stats.notes.page.PageNotes;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.SoundHandler;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextFormatting;
 
+import javax.annotation.Nonnull;
+
 public class ButtonNote extends ButtonBook {
-    private static final ItemStack NOTE_SECRET = new ItemStack(Items.GOLD_INGOT);
-    private static final ItemStack NOTE_NORMAL = new ItemStack(Items.IRON_INGOT);
     private final GuiStats gui;
     private final Note note;
     private String title;
-    private ItemStack stack;
+    private int xNote;
     private boolean unlocked;
 
     @SuppressWarnings("unchecked")
@@ -31,12 +29,12 @@ public class ButtonNote extends ButtonBook {
         this.height = 16;
         this.note = note;
         this.title = note.isSecret() ? TextFormatting.AQUA + note.getTitle() : note.getTitle();
-        this.stack = note.isSecret() ? NOTE_SECRET : NOTE_NORMAL;
         this.unlocked = HFTrackers.getClientPlayerTracker().getTracking().getLearntNotes().contains(note.getResource());
+        this.xNote = !unlocked ? 32: note.isSecret() ? 16 : 0;
     }
 
     @Override
-    public void drawButton(Minecraft mc, int mouseX, int mouseY) {
+    public void drawButton(@Nonnull Minecraft mc, int mouseX, int mouseY) {
         if (visible) {
             GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
             hovered = mouseX >= xPosition && mouseY >= yPosition && mouseX < xPosition + width && mouseY < yPosition + height;
@@ -55,9 +53,9 @@ public class ButtonNote extends ButtonBook {
     }
 
     private void drawForeground() {
-        if (!unlocked) {
-            StackRenderHelper.drawGreyStack(stack, xPosition, yPosition, 1F);
-        } else StackRenderHelper.drawStack(stack, xPosition, yPosition, 1F);
+        GlStateManager.color(1F, 1F, 1F);
+        gui.mc.getTextureManager().bindTexture(HFModInfo.ICONS);
+        gui.drawTexturedModalRect(xPosition, yPosition, xNote, 32, 16, 16);
     }
 
     @Override

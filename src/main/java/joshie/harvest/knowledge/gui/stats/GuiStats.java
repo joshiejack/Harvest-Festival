@@ -2,11 +2,12 @@ package joshie.harvest.knowledge.gui.stats;
 
 import joshie.harvest.core.base.gui.BookPage;
 import joshie.harvest.core.base.gui.GuiBaseBook;
+import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.knowledge.gui.stats.button.ButtonTabLeft;
 import joshie.harvest.knowledge.gui.stats.collection.page.PageShipping;
 import joshie.harvest.knowledge.gui.stats.notes.page.PageTown;
 import joshie.harvest.knowledge.gui.stats.quests.page.PageQuests;
-import joshie.harvest.knowledge.gui.stats.relations.page.PageAnimals;
+import joshie.harvest.knowledge.gui.stats.relations.page.PageNPC;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -34,11 +35,23 @@ public class GuiStats extends GuiBaseBook {
         buttonList.add(new ButtonTabLeft(this, PageShipping.INSTANCE, buttonList.size(), -26, 32) {
             @Override
             public BookPage getNewPage() { return collection; }
+
+            @Override
+            public void drawIcon() {
+                gui.mc.getTextureManager().bindTexture(HFModInfo.ICONS);
+                gui.drawTexturedModalRect(xStack, yPosition + 8, 0, 16, 16, 16);
+            }
         });
 
-        buttonList.add(new ButtonTabLeft(this, PageAnimals.INSTANCE, buttonList.size(), -26, 66){
+        buttonList.add(new ButtonTabLeft(this, PageNPC.INSTANCE, buttonList.size(), -26, 66){
             @Override
             public BookPage getNewPage() { return relationships; }
+
+            @Override
+            public void drawIcon() {
+                gui.mc.getTextureManager().bindTexture(HFModInfo.ICONS);
+                gui.drawTexturedModalRect(xStack, yPosition + 8, 16, 16, 16, 16);
+            }
         });
 
         buttonList.add(new ButtonTabLeft(this, PageTown.INSTANCE, buttonList.size(), -26, 100) {

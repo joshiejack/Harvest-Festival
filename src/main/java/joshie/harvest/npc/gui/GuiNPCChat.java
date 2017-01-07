@@ -143,7 +143,7 @@ public class GuiNPCChat extends GuiNPCBase {
     protected void onMouseClick(int mouseX, int mouseY) {
         if ((npc.getNPC() == HFNPCs.GODDESS || isHoldingItem()) && hoveringGift())
             PacketHandler.sendToServer(new PacketGift(npc));
-        else if (displayInfo() && hoveringInfo() && npc.getNPC().hasInfo() != null)
+        else if (displayInfo() && hoveringInfo() && npc.getNPC().hasInfo())
             PacketHandler.sendToServer(new PacketInfo(npc));
         else nextChat();
     }

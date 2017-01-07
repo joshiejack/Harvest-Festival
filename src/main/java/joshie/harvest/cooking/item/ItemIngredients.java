@@ -5,6 +5,7 @@ import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.item.ItemHFFoodEnum;
 import joshie.harvest.core.util.interfaces.ISellable;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.EnumAction;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
@@ -36,6 +37,10 @@ public class ItemIngredients extends ItemHFFoodEnum<ItemIngredients, Ingredient>
             return cost;
         }
 
+        public boolean isDrink() {
+            return this == WINE || this == OIL;
+        }
+
         @Override
         public long getSellValue() {
             return sell;
@@ -59,6 +64,11 @@ public class ItemIngredients extends ItemHFFoodEnum<ItemIngredients, Ingredient>
     @Override
     public int getMaxItemUseDuration(ItemStack stack) {
         return 16;
+    }
+
+    @Override
+    public EnumAction getItemUseAction(ItemStack stack) {
+        return getEnumFromStack(stack).isDrink() ? EnumAction.DRINK : EnumAction.EAT;
     }
 
     @Override

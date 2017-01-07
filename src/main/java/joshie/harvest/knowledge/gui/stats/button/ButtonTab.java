@@ -12,7 +12,7 @@ public class ButtonTab extends ButtonBook<GuiStats> {
     protected final BookPage page;
     private final ItemStack icon;
     private final int xTexture;
-    private final int xStack;
+    protected final int xStack;
 
     @SuppressWarnings("unchecked")
     public ButtonTab(GuiStats gui, BookPage page, int buttonId, int x, int y, String string, int xTexture, int xStack) {
@@ -23,6 +23,10 @@ public class ButtonTab extends ButtonBook<GuiStats> {
         this.height = 32;
         this.xTexture = xTexture;
         this.xStack = xPosition + xStack;
+    }
+
+    public void drawIcon() {
+        StackRenderHelper.drawStack(getIcon(), xStack, yPosition + 8, 1F);
     }
 
     public ItemStack getIcon() {
@@ -40,7 +44,7 @@ public class ButtonTab extends ButtonBook<GuiStats> {
             GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
             GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
             drawTexturedModalRect(xPosition, yPosition, xTexture, state * 32, width, height);
-            StackRenderHelper.drawStack(getIcon(), xStack, yPosition + 8, 1F);
+            drawIcon();
             if (hovered) gui.addTooltip(displayString);
             GlStateManager.color(1.0F, 1.0F, 1.0F);
         }

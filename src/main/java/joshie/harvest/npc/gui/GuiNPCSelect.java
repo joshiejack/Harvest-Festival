@@ -130,7 +130,7 @@ public class GuiNPCSelect extends GuiNPCBase {
     public void onMouseClick(int mouseX, int mouseY) {
         if (isPointInRegion(242, 156, 17, 19, npcMouseX, npcMouseY))
             PacketHandler.sendToServer(new PacketGift(npc));
-        else if (npc.getNPC().hasInfo() != null && isPointInRegion(242, 177, 17, 19, npcMouseX, npcMouseY))
+        else if (npc.getNPC().hasInfo() && isPointInRegion(242, 177, 17, 19, npcMouseX, npcMouseY))
             PacketHandler.sendToServer(new PacketInfo(npc));
         else if (selection != null) {
             if (mouseY >= 156 && mouseY <= 164 && isValidOption(0)) {

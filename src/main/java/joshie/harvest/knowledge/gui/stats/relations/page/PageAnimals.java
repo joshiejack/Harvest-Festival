@@ -10,6 +10,7 @@ import joshie.harvest.knowledge.gui.stats.button.ButtonPrevious;
 import joshie.harvest.knowledge.gui.stats.relations.button.ButtonRelationsAnimal;
 import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.core.helpers.MCClientHelper;
+import joshie.harvest.knowledge.gui.stats.relations.button.ButtonRelationsAnimalNull;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiLabel;
 import net.minecraft.entity.passive.EntityAnimal;
@@ -52,6 +53,7 @@ public class PageAnimals extends PageRelationship {
             }
         }
 
+        if (buttonList.size() == 2) buttonList.add(new ButtonRelationsAnimalNull(gui, buttonList.size(), 16 + x * 144, 26 + y * 25));
         if (start < (list.size() / 12)) buttonList.add(new ButtonNext(gui, buttonList.size(), 273, 172));
         if (start != 0) buttonList.add(new ButtonPrevious(gui, buttonList.size(), 20, 172));
     }

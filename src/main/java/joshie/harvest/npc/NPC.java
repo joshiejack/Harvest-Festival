@@ -15,13 +15,15 @@ import joshie.harvest.core.helpers.TextHelper;
 import joshie.harvest.npc.entity.EntityNPC;
 import joshie.harvest.npc.greeting.GreetingShop;
 import joshie.harvest.npc.greeting.GreetingWrapper;
-import joshie.harvest.npc.item.ItemNPCTool.NPCTool;
 import joshie.harvest.shops.Shop;
+import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.IForgeRegistryEntry;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.commons.lang3.text.WordUtils;
 
 import java.util.*;
@@ -53,7 +55,6 @@ public class NPC extends IForgeRegistryEntry.Impl<NPC> implements INPC {
     private boolean doesRespawn;
     private boolean alex;
     private IInfoButton info;
-    private ItemStack hasInfo;
 
     public NPC() {
         this(new ResourceLocation(MODID, "null"), INPCRegistry.Gender.MALE, INPCRegistry.Age.ADULT, new CalendarDate(1, Season.SPRING, 1), 0, 0);
@@ -67,7 +68,6 @@ public class NPC extends IForgeRegistryEntry.Impl<NPC> implements INPC {
         this.height = 1F;
         this.birthday = birthday;
         this.doesRespawn = true;
-        this.hasInfo = null;
         this.insideColor = insideColor;
         this.outsideColor = outsideColor;
         this.localizationKey = MODID + ".npc." + name + ".";
@@ -96,7 +96,7 @@ public class NPC extends IForgeRegistryEntry.Impl<NPC> implements INPC {
     @Override
     public INPC setShop(IShop shop) {
         this.shop = (Shop) shop;
-        setHasInfo(HFNPCs.TOOLS.getStackFromEnum(NPCTool.CLOCK), new GreetingShop(getRegistryName()));
+        setHasInfo(new GreetingShop(getRegistryName()));
         return this;
     }
 
@@ -146,14 +146,12 @@ public class NPC extends IForgeRegistryEntry.Impl<NPC> implements INPC {
     @Override
     @SuppressWarnings("deprecation")
     public INPC setHasInfo(ItemStack stack, IGreeting infoGreeting) {
-        this.hasInfo = stack;
         this.info = new GreetingWrapper(infoGreeting);
         return this;
     }
 
     @Override
-    public INPC setHasInfo(ItemStack stack, IInfoButton info) {
-        this.hasInfo = stack;
+    public INPC setHasInfo(IInfoButton info) {
         this.info = info;
         return this;
     }
@@ -287,8 +285,17 @@ public class NPC extends IForgeRegistryEntry.Impl<NPC> implements INPC {
         return gifts.getQuality(stack);
     }
 
-    public ItemStack hasInfo() {
-        return hasInfo;
+    public boolean hasInfo() {
+        return info != null;
+    }
+
+    public String getInfoTooltip() {
+        return info.getTooltip();
+    }
+
+    @SideOnly(Side.CLIENT)
+    public void drawInfo(GuiScreen screen, int x, int y) {
+        info.drawIcon(screen, x, y);
     }
 
     public ISchedule getScheduler() {

@@ -13,6 +13,7 @@ import static joshie.harvest.cooking.gui.GuiCookbook.LEFT_GUI;
 import static joshie.harvest.cooking.gui.GuiCookbook.RIGHT_GUI;
 
 public abstract class GuiBaseBook extends GuiScreen {
+
     private final ArrayList<Runnable> runnables = new ArrayList<>();
     private final ArrayList<String> tooltip = new ArrayList<>();
     private final ResourceLocation left;

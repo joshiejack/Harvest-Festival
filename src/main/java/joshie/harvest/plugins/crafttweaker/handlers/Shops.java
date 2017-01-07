@@ -4,11 +4,9 @@ import joshie.harvest.api.calendar.Weekday;
 import joshie.harvest.api.npc.IGreeting;
 import joshie.harvest.api.shops.IPurchasable;
 import joshie.harvest.api.shops.IRequirement;
-import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.npc.NPC;
 import joshie.harvest.npc.NPCRegistry;
 import joshie.harvest.npc.entity.EntityNPC;
-import joshie.harvest.npc.item.ItemNPCTool.NPCTool;
 import joshie.harvest.plugins.crafttweaker.CraftTweaker;
 import joshie.harvest.plugins.crafttweaker.base.BaseUndoable;
 import joshie.harvest.plugins.crafttweaker.wrappers.GreetingShopWrapper;
@@ -99,7 +97,7 @@ public class Shops {
 
             npc.setShop(shop);
             if (hours == null) npc.setHasInfo(null, null);
-            else npc.setHasInfo(HFNPCs.TOOLS.getStackFromEnum(NPCTool.CLOCK), hours);
+            else npc.setHasInfo(null, hours);
             ShopRegistry.INSTANCE.shops.put(resource, shop);
             String[] hours = openinghours.replace(" ", "").split(";");
             for (String time: hours) processTimeString(time);

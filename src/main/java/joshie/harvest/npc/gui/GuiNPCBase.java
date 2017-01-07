@@ -3,12 +3,11 @@ package joshie.harvest.npc.gui;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.player.RelationshipType;
 import joshie.harvest.core.base.gui.GuiBase;
-import joshie.harvest.core.helpers.StackRenderHelper;
+import joshie.harvest.core.helpers.TextHelper;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.npc.entity.EntityNPC;
-import joshie.harvest.npc.item.ItemNPCTool.NPCTool;
 import joshie.harvest.npc.packet.PacketGift;
 import joshie.harvest.npc.packet.PacketInfo;
 import net.minecraft.client.gui.FontRenderer;
@@ -23,12 +22,12 @@ import net.minecraftforge.client.event.RenderTooltipEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.config.GuiUtils;
 
+import javax.annotation.Nonnull;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public abstract class GuiNPCBase extends GuiBase {
-    private static final ItemStack GIFT = HFNPCs.TOOLS.getStackFromEnum(NPCTool.GIFT);
-    private static final ItemStack BOOK = HFNPCs.TOOLS.getStackFromEnum(NPCTool.STATISTICS);
     private static final ResourceLocation chatbox = new ResourceLocation(HFModInfo.MODID, "textures/gui/chatbox.png");
     protected final EntityNPC npc;
     protected final EntityPlayer player;
@@ -76,8 +75,8 @@ public abstract class GuiNPCBase extends GuiBase {
         GlStateManager.color(1F, 1F, 1F, 1F);
         GlStateManager.popMatrix();
 
-        mc.renderEngine.bindTexture(chatbox);
         if (npc.getNPC() == HFNPCs.GODDESS || isHoldingItem()) {
+            mc.renderEngine.bindTexture(chatbox);
             //Drawing the icons
             //Render the outside of the gift tab
             if (!isPointInRegion(242, 156, 17, 19, npcMouseX, npcMouseY)) {
@@ -88,7 +87,9 @@ public abstract class GuiNPCBase extends GuiBase {
             ChatFontRenderer.colorise(outside);
             drawTexturedModalRect(x + 241, y + 155, 237, 0, 19, 20); //Outside
             GlStateManager.color(1F, 1F, 1F);
-            StackRenderHelper.drawStack(npc.getNPC() == HFNPCs.GODDESS ? BOOK : GIFT, x + 242, y + 157, 1F);
+            mc.renderEngine.bindTexture(HFModInfo.ICONS);
+            int textureX = npc.getNPC() == HFNPCs.GODDESS ? 64 : 0;
+            drawTexturedModalRect(x + 242, y + 157, textureX, 0, 16, 16);
         }
 
         //Info section
@@ -102,7 +103,7 @@ public abstract class GuiNPCBase extends GuiBase {
             ChatFontRenderer.colorise(outside);
             drawTexturedModalRect(x + 241, y + 176, 237, 0, 19, 20); //Outside
             GlStateManager.color(1F, 1F, 1F);
-            StackRenderHelper.drawStack(npc.getNPC().hasInfo(), x + 242, y + 178, 1F);
+            npc.getNPC().drawInfo(this, x + 242, y + 178);
         }
     }
 
@@ -136,10 +137,13 @@ public abstract class GuiNPCBase extends GuiBase {
         npcMouseY = mouseY;
 
         if (isChat()) {
-            if ((npc.getNPC() == HFNPCs.GODDESS || isHoldingItem()) && hoveringGift())
-                renderToolTip(npc.getNPC() == HFNPCs.GODDESS ? BOOK : GIFT, mouseX, mouseY);
-            if (displayInfo() && hoveringInfo())
-                renderToolTip(npc.getNPC().hasInfo(), mouseX, mouseY);
+            if ((npc.getNPC() == HFNPCs.GODDESS || isHoldingItem()) && hoveringGift()) {
+                String translate = npc.getNPC() == HFNPCs.GODDESS ? "npc.tooltip.book" : "npc.tooltip.gift";
+                drawTooltip(Collections.singletonList(TextHelper.translate(translate)), mouseX, mouseY);
+            } if (displayInfo() && hoveringInfo()) {
+                String translate = npc.getNPC().getInfoTooltip();
+                drawTooltip(Collections.singletonList(TextHelper.localize(translate)), mouseX, mouseY);
+            }
         }
     }
 
@@ -170,7 +174,7 @@ public abstract class GuiNPCBase extends GuiBase {
     }
 
     boolean displayInfo() {
-        return npc.getNPC().hasInfo() != null && npc.getNPC().canDisplayInfo(npc, player);
+        return npc.getNPC().hasInfo() && npc.getNPC().canDisplayInfo(npc, player);
     }
 
     public abstract void drawOverlay(int x, int y);
@@ -189,7 +193,7 @@ public abstract class GuiNPCBase extends GuiBase {
 
     //Tooltip
     @Override
-    protected void renderToolTip(ItemStack stack, int x, int y) {
+    protected void renderToolTip(@Nonnull ItemStack stack, int x, int y) {
         List<String> textLines = stack.getTooltip(this.mc.thePlayer, false);
         for (int i = 0; i < textLines.size(); ++i) {
             if (i == 0) {

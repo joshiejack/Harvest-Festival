@@ -7,6 +7,7 @@ import joshie.harvest.knowledge.gui.stats.GuiStats;
 import joshie.harvest.knowledge.gui.stats.button.ButtonNext;
 import joshie.harvest.knowledge.gui.stats.button.ButtonPrevious;
 import joshie.harvest.knowledge.gui.stats.quests.button.ButtonQuest;
+import joshie.harvest.knowledge.gui.stats.quests.button.ButtonQuestNull;
 import joshie.harvest.quests.QuestHelper;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiLabel;
@@ -50,6 +51,7 @@ public class PageQuests extends BookPage<GuiStats> {
             }
         }
 
+        if (buttonList.size() == 0) buttonList.add(new ButtonQuestNull(gui, buttonList.size(), 16 + x * 144, 26 + y * 25));
         if (start < list.size() / 12) buttonList.add(new ButtonNext(gui, buttonList.size(), 273, 172));
         if (start != 0) buttonList.add(new ButtonPrevious(gui, buttonList.size(), 20, 172));
     }

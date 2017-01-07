@@ -208,7 +208,7 @@ public class HFShops {
         KITCHEN.addPurchasable(-10, new ItemStack(Items.SUGAR), 20);
         KITCHEN.addPurchasable(-25, new ItemStack(Items.CHORUS_FRUIT), 15);
         KITCHEN.addOpening(FRIDAY, 6000, 9500).addOpening(FRIDAY, 17000, 20000);
-        HFNPCs.CAFE_GRANNY.setHasInfo(null, null); //Remove the opening times from the granny, it's a bonus
+        HFNPCs.CAFE_GRANNY.setHasInfo(null); //Remove the opening times from the granny, it's a bonus
     }
 
     private static void registerCarpenter() {
@@ -363,7 +363,7 @@ public class HFShops {
 
         TRADER.addOpening(MONDAY, 6000, 10000).addOpening(TUESDAY, 6000, 10000).addOpening(WEDNESDAY, 6000, 10000).addOpening(THURSDAY, 6000, 10000);
         TRADER.addOpening(FRIDAY, 6000, 10000).addOpening(SATURDAY, 6000, 10000).addOpening(SUNDAY, 6000, 10000);
-        HFNPCs.TRADER.setHasInfo(null, null); //Remove the opening times
+        HFNPCs.TRADER.setHasInfo(null); //Remove the opening times
     }
 
     public static boolean TWENTY_FOUR_HOUR_SHOPPING;

@@ -661,18 +661,22 @@ harvestfestival.weather.blizzard.set=Set weather to blizzard
 #NPC Tools
 harvestfestival.npctool.blue.feather=Blue Feather
 harvestfestival.npctool.npc.killer=Instant Entity Killer
-harvestfestival.npctool.calendar=How many years?
-harvestfestival.npctool.clock=Shop opens when?
-harvestfestival.npctool.weather=Weather, tomorrow?
-harvestfestival.npctool.gift=Gift held item!
-harvestfestival.npctool.flower=Sell Flower!
 harvestfestival.npctool.gift.special=Special Gift!
 harvestfestival.npctool.gift.special.tooltip=A special gift love Cloe.
-harvestfestival.npctool.statistics=Ask for knowledge?
+
 
 #Quest Baoard
 harvestfestival.quest.block.board=Quest Board
 harvestfestival.quest.block.active=Quest Board
+
+#NPC Tooltips
+harvestfestival.npc.tooltip.calendar=How many years?
+harvestfestival.npc.tooltip.clock=Shop opens when?
+harvestfestival.npc.tooltip.weather=Weather, tomorrow?
+harvestfestival.npc.tooltip.gift=Gift held item!
+harvestfestival.npc.tooltip.flower=Sell Flower!
+harvestfestival.npc.tooltip.statistics=Ask for knowledge?
+
 
 # NPC Names
 ## NOTE FOR TRANSLATORS, READ

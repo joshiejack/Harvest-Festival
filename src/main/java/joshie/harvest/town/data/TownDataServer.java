@@ -6,8 +6,7 @@ import joshie.harvest.api.calendar.CalendarDate;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.api.quests.QuestType;
-import joshie.harvest.buildings.BuildingImpl;
-import joshie.harvest.buildings.BuildingRegistry;
+import joshie.harvest.api.buildings.Building;
 import joshie.harvest.buildings.BuildingStage;
 import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.calendar.CalendarHelper;
@@ -96,7 +95,7 @@ public class TownDataServer extends TownData<QuestDataServer> implements IQuestM
         PacketHandler.sendToDimension(world.provider.getDimension(), new PacketSyncBuilding(getID(), this.building));
     }
 
-    public boolean setBuilding(World world, BuildingImpl building, BlockPos pos, Rotation rotation) {
+    public boolean setBuilding(World world, Building building, BlockPos pos, Rotation rotation) {
         BuildingStage stage = new BuildingStage(building, pos, rotation);
         if (!this.building.contains(stage)) {
             this.building.addLast(stage);
@@ -113,9 +112,9 @@ public class TownDataServer extends TownData<QuestDataServer> implements IQuestM
         HFTrackers.markDirty(world);
     }
 
-    public void addBuilding(World world, BuildingImpl building, Rotation rotation, BlockPos pos) {
+    public void addBuilding(World world, Building building, Rotation rotation, BlockPos pos) {
         TownBuilding newBuilding = new TownBuilding(building, rotation, pos);
-        buildings.put(BuildingRegistry.REGISTRY.getKey(building), newBuilding);
+        buildings.put(Building.REGISTRY.getKey(building), newBuilding);
         PacketHandler.sendToDimension(world.provider.getDimension(), new PacketNewBuilding(uuid, newBuilding));
         HFTrackers.markDirty(world);
     }
@@ -148,7 +147,7 @@ public class TownDataServer extends TownData<QuestDataServer> implements IQuestM
         PacketHandler.sendToDimension(world.provider.getDimension(), new PacketDailyQuest(uuid, dailyQuest));
     }
 
-    public void newDay(World world, Cache<BlockPos, Boolean> isFar) {
+    public void newDay(World world, Cache<BlockPos, Boolean> isFar, CalendarDate today, CalendarDate yesterday) {
         if (world.isBlockLoaded(getTownCentre())) {
             shops.newDay(world, uuid);
             gathering.newDay(world, townCentre, buildings.values(), isFar);
@@ -174,7 +173,7 @@ public class TownDataServer extends TownData<QuestDataServer> implements IQuestM
 
             //Update the buildings
             for (TownBuilding building: buildings.values()) {
-                building.building.newDay(world, building.pos, building.rotation);
+                building.building.newDay(world, building.pos, building.rotation, today, yesterday);
             }
 
             deadVillagers = new HashSet<>(); //Reset the dead villagers
@@ -201,9 +200,9 @@ public class TownDataServer extends TownData<QuestDataServer> implements IQuestM
         deadVillagers = NBTHelper.readResourceSet(nbt, "DeadVillagers");
         //TODO: Remove in 0.7+
         if (!nbt.hasKey("CurrentQuests") && !nbt.hasKey("FinishedQuests")) {
-            if (buildings.containsKey(((BuildingImpl)HFBuildings.CAFE).getRegistryName())) quests.getFinished().add(Quests.BUILDING_CAFE);
-            if (buildings.containsKey(((BuildingImpl)HFBuildings.FISHING_HUT).getRegistryName())) quests.getFinished().add(Quests.BUILDING_FISHER);
-            if (buildings.containsKey(((BuildingImpl)HFBuildings.BLACKSMITH).getRegistryName())) quests.getFinished().add(Quests.BUILDING_BLACKSMITH);
+            if (buildings.containsKey(HFBuildings.CAFE.getRegistryName())) quests.getFinished().add(Quests.BUILDING_CAFE);
+            if (buildings.containsKey(HFBuildings.FISHING_HUT.getRegistryName())) quests.getFinished().add(Quests.BUILDING_FISHER);
+            if (buildings.containsKey(HFBuildings.BLACKSMITH.getRegistryName())) quests.getFinished().add(Quests.BUILDING_BLACKSMITH);
         }
     }
 

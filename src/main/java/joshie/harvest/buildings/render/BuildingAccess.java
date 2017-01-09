@@ -1,11 +1,13 @@
 package joshie.harvest.buildings.render;
 
-import joshie.harvest.buildings.BuildingImpl;
+import joshie.harvest.api.buildings.Building;
+import joshie.harvest.buildings.BuildingRegistry;
 import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.buildings.placeable.Placeable;
 import joshie.harvest.buildings.placeable.blocks.PlaceableBlock;
 import joshie.harvest.buildings.placeable.blocks.PlaceableDouble;
 import joshie.harvest.buildings.placeable.blocks.PlaceableDoubleOpposite;
+import joshie.harvest.core.util.HFTemplate;
 import net.minecraft.block.*;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Biomes;
@@ -25,10 +27,11 @@ import java.util.Map;
 public class BuildingAccess implements IBlockAccess {
     private final Map<BlockPos, IBlockState> mapping = new HashMap<>();
 
-    public BuildingAccess(BuildingImpl building, Rotation rotation) {
-        HFBuildings.loadBuilding(building);
-        if (building.components == null) return;
-        for (Placeable placeable : building.components) {
+    public BuildingAccess(Building building, Rotation rotation) {
+        //HFBuildings.loadBuilding(building);
+        HFTemplate template = BuildingRegistry.INSTANCE.getTemplateForBuilding(building);
+        if (template.getComponents() == null) return;
+        for (Placeable placeable : template.getComponents()) {
             if (placeable == null) continue;
             if (placeable instanceof PlaceableBlock) {
                 PlaceableBlock block = (PlaceableBlock) placeable;

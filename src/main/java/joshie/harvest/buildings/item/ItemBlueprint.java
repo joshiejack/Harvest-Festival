@@ -1,6 +1,7 @@
 package joshie.harvest.buildings.item;
 
 import joshie.harvest.buildings.*;
+import joshie.harvest.api.buildings.Building;
 import joshie.harvest.buildings.render.BuildingKey;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.item.ItemHFFML;
@@ -27,9 +28,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ItemBlueprint extends ItemHFFML<ItemBlueprint, BuildingImpl> implements ICreativeSorted {
+public class ItemBlueprint extends ItemHFFML<ItemBlueprint, Building> implements ICreativeSorted {
     public ItemBlueprint() {
-        super(BuildingRegistry.REGISTRY, HFTab.TOWN);
+        super(Building.REGISTRY, HFTab.TOWN);
         setMaxStackSize(1);
     }
 
@@ -43,7 +44,7 @@ public class ItemBlueprint extends ItemHFFML<ItemBlueprint, BuildingImpl> implem
         List<BuildingError> errors = new ArrayList<>();
         if (world.provider.getDimension() != 0) errors.add(BuildingError.DIMENSION);
         else {
-            BuildingImpl building = getObjectFromStack(stack);
+            Building building = getObjectFromStack(stack);
             RayTraceResult raytrace = BuildingHelper.rayTrace(player, 128D, 0F);
             if (raytrace == null || building == null) return new ActionResult<>(EnumActionResult.PASS, stack); //Skip the rest of this
             BlockPos pos = raytrace.getBlockPos();
@@ -70,7 +71,7 @@ public class ItemBlueprint extends ItemHFFML<ItemBlueprint, BuildingImpl> implem
     }
 
     @Override
-    public BuildingImpl getNullValue() {
+    public Building getNullValue() {
         return HFBuildings.null_building;
     }
 
@@ -86,7 +87,7 @@ public class ItemBlueprint extends ItemHFFML<ItemBlueprint, BuildingImpl> implem
 
     @SideOnly(Side.CLIENT)
     public void registerModels(Item item, String name) {
-        for (BuildingImpl building: registry) {
+        for (Building building: registry) {
             ModelLoader.setCustomModelResourceLocation(item, registry.getValues().indexOf(building), new ModelResourceLocation(getRegistryName(), "inventory"));
         }
     }

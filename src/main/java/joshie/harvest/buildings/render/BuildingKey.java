@@ -1,21 +1,21 @@
 package joshie.harvest.buildings.render;
 
-import joshie.harvest.buildings.BuildingImpl;
+import joshie.harvest.api.buildings.Building;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import org.apache.commons.lang3.ObjectUtils;
 
 public class BuildingKey {
     private final Rotation rotation;
-    private final BuildingImpl building;
+    private final Building building;
     private BlockPos pos;
 
-    public BuildingKey(Rotation rotation, BuildingImpl building) {
+    public BuildingKey(Rotation rotation, Building building) {
         this.rotation = rotation;
         this.building = building;
     }
 
-    public static BuildingKey of(Rotation rotation, BuildingImpl building, BlockPos pos) {
+    public static BuildingKey of(Rotation rotation, Building building, BlockPos pos) {
         return new BuildingKey(rotation, building).setPosition(pos);
     }
 
@@ -32,7 +32,7 @@ public class BuildingKey {
         return rotation;
     }
 
-    public BuildingImpl getBuilding() {
+    public Building getBuilding() {
         return building;
     }
 

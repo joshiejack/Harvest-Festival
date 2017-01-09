@@ -2,18 +2,22 @@ package joshie.harvest.calendar;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.CalendarDate;
+import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.calendar.SeasonProvider;
 import joshie.harvest.calendar.provider.HFWorldProvider;
 import joshie.harvest.calendar.provider.SeasonProviderHidden;
 import joshie.harvest.core.helpers.ConfigHelper;
 import joshie.harvest.core.util.annotations.HFLoader;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.DimensionType;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 
+import static joshie.harvest.api.calendar.Season.AUTUMN;
 import static joshie.harvest.core.helpers.ConfigHelper.*;
+import static joshie.harvest.core.lib.HFModInfo.MODID;
 import static joshie.harvest.core.lib.LoadOrder.HFCALENDAR;
 
 @HFLoader(priority = HFCALENDAR)
@@ -45,6 +49,7 @@ public class HFCalendar {
         DimensionType seasons = DimensionType.register("seasons", "seasons", OVERWORLD_ID, HFWorldProvider.class, true);
         DimensionManager.unregisterDimension(0);
         DimensionManager.registerDimension(0, seasons);
+        registerHoliday("harvest_festival", 9, AUTUMN);
         HFApi.calendar.registerSeasonProvider(1, HIDDEN);
         HFApi.calendar.registerSeasonProvider(-1, HIDDEN);
     }
@@ -59,6 +64,10 @@ public class HFCalendar {
         setInteger("HUD > Gold Y", Y_GOLD);
         setBoolean("HUD > Gold Hide Texture", HIDE_GOLD_TEXTURE);
         CONFIG.save();
+    }
+
+    private static void registerHoliday(String name, int day, Season season) {
+        HFApi.calendar.registerHoliday(new ResourceLocation(MODID, name), new CalendarDate().setDay(day).setSeason(season));
     }
 
     //Configuration

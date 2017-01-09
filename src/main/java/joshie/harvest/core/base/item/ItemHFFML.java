@@ -40,7 +40,7 @@ public abstract class ItemHFFML<I extends ItemHFFML, E extends Impl<E>> extends 
     @Override
     public E getObjectFromStack(ItemStack stack) {
         int id = Math.max(0, Math.min(registry.getValues().size() - 1, stack.getItemDamage()));
-        E e = registry.getValues().get(id);
+        E e = registry.getValues().size() == 0 ? null : registry.getValues().get(id);
         return e != null ? e: getNullValue();
     }
 

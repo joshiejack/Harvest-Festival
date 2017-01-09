@@ -1,6 +1,6 @@
 package joshie.harvest.town.data;
 
-import joshie.harvest.buildings.BuildingImpl;
+import joshie.harvest.api.buildings.Building;
 import joshie.harvest.buildings.BuildingRegistry;
 import joshie.harvest.buildings.placeable.Placeable;
 import joshie.harvest.buildings.placeable.entities.PlaceableNPC;
@@ -15,12 +15,12 @@ import net.minecraft.util.math.BlockPos;
 import java.util.Map;
 
 public class TownBuilding implements INBTSerializableMap<ResourceLocation, TownBuilding, NBTTagCompound> {
-    public BuildingImpl building;
+    public Building building;
     public Rotation rotation;
     public BlockPos pos;
 
     public TownBuilding() {}
-    public TownBuilding(BuildingImpl building, Rotation rotation, BlockPos pos) {
+    public TownBuilding(Building building, Rotation rotation, BlockPos pos) {
         this.building = building;
         this.rotation = rotation;
         this.pos = pos;
@@ -35,19 +35,19 @@ public class TownBuilding implements INBTSerializableMap<ResourceLocation, TownB
     }
 
     public BlockPos getRealCoordinatesFor(String npc_location) {
-        PlaceableNPC offsets = building.getNPCOffset(npc_location);
+        PlaceableNPC offsets = BuildingRegistry.INSTANCE.getTemplateForBuilding(building).getNPCOffset(npc_location);
         if (offsets == null) return null;
         return getRealCoordinatesFor(offsets);
     }
 
     @Override
     public void buildMap(Map<ResourceLocation, TownBuilding> map) {
-        map.put(BuildingRegistry.REGISTRY.getKey(building), this);
+        map.put(Building.REGISTRY.getKey(building), this);
     }
 
     @Override
     public void deserializeNBT(NBTTagCompound nbt) {
-        building = BuildingRegistry.REGISTRY.getValue(new ResourceLocation(nbt.getString("Building")));
+        building = Building.REGISTRY.getValue(new ResourceLocation(nbt.getString("Building")));
         pos = NBTHelper.readBlockPos("Building", nbt);
         //TODO: Remove in 0.7+
         if (nbt.hasKey("Direction")) {
@@ -59,7 +59,7 @@ public class TownBuilding implements INBTSerializableMap<ResourceLocation, TownB
     @Override
     public NBTTagCompound serializeNBT() {
         NBTTagCompound nbt = new NBTTagCompound();
-        nbt.setString("Building", BuildingRegistry.REGISTRY.getKey(building).toString());
+        nbt.setString("Building", Building.REGISTRY.getKey(building).toString());
         nbt.setString("Rotation", rotation.name());
         NBTHelper.writeBlockPos("Building", nbt, pos);
         return nbt;

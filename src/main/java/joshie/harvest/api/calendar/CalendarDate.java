@@ -28,7 +28,7 @@ public class CalendarDate {
 
     /** The day gets scaled to fit in to the 30 scale mark **/
     public boolean isSameDay(CalendarDate date) {
-        int day = (int)Math.ceil((date.getDay() / DAYS_PER_SEASON) * 30);
+        int day = 1 + (int)Math.ceil(((double)date.getDay() / DAYS_PER_SEASON) * 30);
         return day == this.getDay() && date.getSeason() == this.getSeason();
     }
 

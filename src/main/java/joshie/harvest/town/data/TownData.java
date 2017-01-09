@@ -5,7 +5,6 @@ import joshie.harvest.api.buildings.BuildingLocation;
 import joshie.harvest.api.calendar.CalendarDate;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.quests.Quest;
-import joshie.harvest.buildings.BuildingImpl;
 import joshie.harvest.buildings.BuildingStage;
 import joshie.harvest.core.helpers.NBTHelper;
 import joshie.harvest.quests.data.QuestData;
@@ -46,8 +45,8 @@ public abstract class TownData<Q extends QuestData> {
         return shops;
     }
 
-    public TownBuilding getBuilding(Building supermarket) {
-        return buildings.get(supermarket.getResource());
+    public TownBuilding getBuilding(Building building) {
+        return buildings.get(building.getRegistryName());
     }
 
     /** Building currently being worked on **/
@@ -56,7 +55,7 @@ public abstract class TownData<Q extends QuestData> {
     }
 
     /** If this building is being built currently **/
-    public boolean isBuilding(BuildingImpl building) {
+    public boolean isBuilding(Building building) {
         if (building == null) return this.building.size() > 0;
         return this.building.contains(new BuildingStage(building, BlockPos.ORIGIN, Rotation.NONE));
     }
@@ -66,7 +65,7 @@ public abstract class TownData<Q extends QuestData> {
     }
 
     public boolean hasBuilding(Building building) {
-        return buildings.get(((BuildingImpl)building).getRegistryName()) != null;
+        return buildings.get(building.getRegistryName()) != null;
     }
 
     public boolean hasBuildings(ResourceLocation[] buildings) {

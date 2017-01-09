@@ -1,10 +1,15 @@
 package joshie.harvest.buildings.item;
 
-import joshie.harvest.buildings.*;
+import joshie.harvest.api.buildings.Building;
+import joshie.harvest.buildings.BuildingError;
+import joshie.harvest.buildings.BuildingHelper;
+import joshie.harvest.buildings.BuildingRegistry;
+import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.buildings.render.BuildingKey;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.item.ItemHFFML;
 import joshie.harvest.core.helpers.TextHelper;
+import joshie.harvest.core.util.HFTemplate;
 import joshie.harvest.core.util.interfaces.ICreativeSorted;
 import joshie.harvest.town.TownHelper;
 import joshie.harvest.town.data.TownData;
@@ -21,9 +26,9 @@ import net.minecraft.world.World;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ItemBuilding extends ItemHFFML<ItemBuilding, BuildingImpl> implements ICreativeSorted {
+public class ItemBuilding extends ItemHFFML<ItemBuilding, Building> implements ICreativeSorted {
     public ItemBuilding() {
-        super(BuildingRegistry.REGISTRY, HFTab.TOWN);
+        super(Building.REGISTRY, HFTab.TOWN);
         setMaxStackSize(1);
     }
 
@@ -32,7 +37,7 @@ public class ItemBuilding extends ItemHFFML<ItemBuilding, BuildingImpl> implemen
         List<BuildingError> errors = new ArrayList<>();
         if (world.provider.getDimension() != 0) errors.add(BuildingError.DIMENSION);
         else {
-            BuildingImpl building = getObjectFromStack(stack);
+            Building building = getObjectFromStack(stack);
             RayTraceResult raytrace = BuildingHelper.rayTrace(player, 128D, 0F);
             if (raytrace == null || building == null) return new ActionResult<>(EnumActionResult.PASS, stack); //Skip the rest of this
             BlockPos pos = raytrace.getBlockPos();
@@ -43,7 +48,8 @@ public class ItemBuilding extends ItemHFFML<ItemBuilding, BuildingImpl> implemen
                     BuildingKey key = BuildingHelper.getPositioning(stack, world, raytrace, building, player, true);
                     if (key != null) {
                         if (!world.isRemote) {
-                            building.generate(world, key.getPos(), key.getRotation());
+                            HFTemplate template = BuildingRegistry.INSTANCE.getTemplateForBuilding(building);
+                            template.placeBlocks(world, key.getPos(), key.getRotation(), building);
                         }
 
                         stack.splitStack(1); //Decrease the stack size
@@ -84,7 +90,7 @@ public class ItemBuilding extends ItemHFFML<ItemBuilding, BuildingImpl> implemen
     }
 
     @Override
-    public BuildingImpl getNullValue() {
+    public Building getNullValue() {
         return HFBuildings.null_building;
     }
 

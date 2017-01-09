@@ -1,4 +1,4 @@
-package joshie.harvest.buildings;
+package joshie.harvest.core.util;
 
 import net.minecraft.util.ResourceLocation;
 import org.apache.commons.io.IOUtils;

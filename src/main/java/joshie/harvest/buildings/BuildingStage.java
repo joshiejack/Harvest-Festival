@@ -1,12 +1,14 @@
 package joshie.harvest.buildings;
 
+import joshie.harvest.api.buildings.Building;
 import joshie.harvest.buildings.placeable.Placeable;
 import joshie.harvest.buildings.placeable.Placeable.ConstructionStage;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.util.Direction;
+import joshie.harvest.core.util.HFTemplate;
 import joshie.harvest.core.util.interfaces.INBTWriteable;
-import joshie.harvest.town.data.TownDataServer;
 import joshie.harvest.town.TownHelper;
+import joshie.harvest.town.data.TownDataServer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Rotation;
@@ -16,7 +18,8 @@ import net.minecraft.world.World;
 /** This data is used by the BuilderNPC, 
  * to know their current progress through a building project **/
 public class BuildingStage implements INBTWriteable {
-    public BuildingImpl building;
+    public Building building;
+    private HFTemplate template;
     public Rotation rotation;
     public ConstructionStage stage;
     private boolean basement;
@@ -24,26 +27,27 @@ public class BuildingStage implements INBTWriteable {
     public BlockPos pos;
 
     public BuildingStage(){}
-    public BuildingStage(BuildingImpl building, BlockPos pos,  Rotation rotation) {
+    public BuildingStage(Building building, BlockPos pos, Rotation rotation) {
         this.building = building;
+        this.template = BuildingRegistry.INSTANCE.getTemplateForBuilding(building);
         this.rotation = rotation;
         this.stage = ConstructionStage.BUILD;
         this.index = 0;
         this.basement = true;
         this.pos = pos.add(0, building.getOffsetY(), 0);
-        HFBuildings.loadBuilding(building);
+        //HFBuildings.loadBuilding(building);
     }
 
     public Placeable next() {
-        return index < building.components.length ? building.components[index]: null;
+        return index < template.getComponents().length ? template.getComponents()[index]: null;
     }
 
     public Placeable previous() {
         int position = index - 1;
-        return position >= 0 && position < building.components.length ? building.components[position]: null;
+        return position >= 0 && position < template.getComponents().length ? template.getComponents()[position]: null;
     }
 
-    public BuildingImpl getBuilding() {
+    public Building getBuilding() {
         return building;
     }
 
@@ -63,7 +67,7 @@ public class BuildingStage implements INBTWriteable {
     private boolean increaseIndex(World world) {
         index++;
 
-        if (index >= building.components.length) {
+        if (index >= template.getComponents().length) {
             if (stage == ConstructionStage.BUILD) {
                 stage = ConstructionStage.DECORATE;
                 index = 0;
@@ -101,8 +105,8 @@ public class BuildingStage implements INBTWriteable {
     }
 
     public boolean build(World world) {
-        while (index < building.components.length) {
-            Placeable block = building.components[index];
+        while (index < template.getComponents().length) {
+            Placeable block = template.getComponents()[index];
             if (block.place(world, pos, rotation, stage, true)) {
                 return increaseIndex(world);
             }
@@ -142,7 +146,8 @@ public class BuildingStage implements INBTWriteable {
 
     public static BuildingStage readFromNBT(NBTTagCompound nbt) {
         BuildingStage stage = new BuildingStage();
-        stage.building = BuildingRegistry.REGISTRY.getValue(new ResourceLocation(nbt.getString("CurrentlyBuilding")));
+        stage.building = Building.REGISTRY.getValue(new ResourceLocation(nbt.getString("CurrentlyBuilding")));
+        stage.template = BuildingRegistry.INSTANCE.getTemplateForBuilding(stage.building);
         //TODO: Remove in 0.7+
         if (nbt.hasKey("Direction")) {
             Direction direction = Direction.valueOf(nbt.getString("Direction"));
@@ -157,13 +162,12 @@ public class BuildingStage implements INBTWriteable {
             stage.stage = ConstructionStage.values()[nbt.getInteger("Stage")];
         }
 
-        HFBuildings.loadBuilding(stage.building);
         return stage;
     }
 
     @Override
     public void writeToNBT(NBTTagCompound nbt) {
-        nbt.setString("CurrentlyBuilding", BuildingRegistry.REGISTRY.getKey(building).toString());
+        nbt.setString("CurrentlyBuilding", Building.REGISTRY.getKey(building).toString());
         nbt.setString("Rotation", rotation.name());
         nbt.setInteger("BuildingX", pos.getX());
         nbt.setInteger("BuildingY", pos.getY());

@@ -79,6 +79,16 @@ public class PlaceableBlock extends Placeable {
         return result;
     }
 
+    @Override
+    public final void remove(World world, BlockPos pos, Rotation rotation, ConstructionStage stage) {
+        if (canPlace(stage)) {
+            BlockPos transformed = getTransformedPosition(pos, rotation);
+            if (world.getBlockState(transformed) == getTransformedState(rotation)) {
+                world.setBlockToAir(transformed);
+            }
+        }
+    }
+
     public void postPlace (World world, BlockPos pos, Rotation rotation) {}
 
     @Override

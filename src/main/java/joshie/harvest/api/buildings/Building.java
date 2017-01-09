@@ -1,79 +1,158 @@
 package joshie.harvest.api.buildings;
 
+import joshie.harvest.api.HFApi;
+import joshie.harvest.api.calendar.CalendarDate;
 import joshie.harvest.api.core.ISpecialRules;
 import joshie.harvest.api.npc.INPC;
+import joshie.harvest.buildings.render.BuildingKey;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.Mirror;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Rotation;
+import net.minecraft.util.StringUtils;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.registry.IForgeRegistry;
+import net.minecraftforge.fml.common.registry.IForgeRegistryEntry;
+import net.minecraftforge.fml.common.registry.RegistryBuilder;
 
-/** Building interaction **/
-public interface Building {
-    /** Resource name **/
-    ResourceLocation getResource();
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Locale;
+import java.util.Set;
 
-    /** This will add some special purchasing rules for the building in question
-     * @param rules the special rules
-     * @return the building  */
-    Building setSpecialRules(ISpecialRules rules);
+public class Building extends IForgeRegistryEntry.Impl<Building> {
+    public static final IForgeRegistry<Building> REGISTRY = new RegistryBuilder<Building>().setName(new ResourceLocation("harvestfestival", "buildings")).setType(Building.class).setIDRange(0, 32000).create();
+    //Offsets
+    private final Set<ResourceLocation> inhabitants = new HashSet<>();
 
-    /** Set the requirements for this building
-     * @param requirements the building requirements **/
-    Building setRequirements(String... requirements);
+    //Costs and rules
+    private ISpecialRules special = (w, p, a) -> true;
+    private String toLocalise = "";
+    private ResourceLocation[] requirements = new ResourceLocation[0];
+    private int offsetY = -1;
+    private long tickTime = 15L;
+    private int width;
+    private int length;
+    private boolean canHaveMultiple;
 
-    /** This is the ticks between a builder placing a block, defaults to 20
-     * @param time the ticks*/
-    Building setTickTime(long time);
+    public Building(){}
 
-    /** This is the y offset to place the building at, defaults to -1
-     * @param width the width of the building
-     * @param heightOffset the offset, ideally use negative number
-     * @param length the length of the building*/
-    Building setOffset(int width, int heightOffset, int length);
+    public void initBuilding() {
+        toLocalise = getRegistryName().getResourceDomain().toLowerCase(Locale.ENGLISH) + ".structures." + this.getRegistryName().getResourcePath().toLowerCase(Locale.ENGLISH);
+    }
 
-    /** Set the npcs that live here **/
-    Building setInhabitants(INPC... npc);
+    public Collection<? extends ResourceLocation> getInhabitants() {
+        return inhabitants;
+    }
 
-    /** Allows multiple of this building **/
-    Building setMultiple();
+    private ResourceLocation getResourceFromName(String resource) {
+        if (resource.contains(":")) return new ResourceLocation(resource);
+        else return new ResourceLocation("harvestfestival", resource);
+    }
 
-    @Deprecated //TODO: Remove in 0.7+
-    Building setNoPurchase();
+    public Building setRequirements(String... requirements) {
+        this.requirements = new ResourceLocation[requirements.length];
+        for (int i = 0; i < requirements.length; i++) {
+            this.requirements[i] = getResourceFromName(requirements[i]);
+        }
 
-    /** Returns the localised name of this building **/
-    String getLocalisedName();
+        return this;
+    }
 
-    /** Returns the special rules for this building **/
-    ISpecialRules getRules();
+    public Building setTickTime(long time) {
+        this.tickTime = time;
+        return this;
+    }
 
-    //TODO: Remove in 0.7+
-    @Deprecated
-    long getCost();
+    public Building setOffset(int width, int offsetY, int length) {
+        this.width = width;
+        this.offsetY = offsetY;
+        this.length = length;
+        return this;
+    }
 
-    //TODO: Remove in 0.7+
-    @Deprecated
-    int getWoodCount();
+    public Building setInhabitants(INPC... npc) {
+        for (INPC inpc: npc) {
+            inhabitants.add(inpc.getResource());
+        }
 
-    //TODO: Remove in 0.7+
-    @Deprecated
-    int getStoneCount();
+        return this;
+    }
 
-    /**Returns this building as a blueprint */
-    ItemStack getBlueprint();
+    public Building setSpecialRules(ISpecialRules special) {
+        this.special = special;
+        return this;
+    }
 
-    /**Returns this building as a spawn building */
-    ItemStack getSpawner();
+    @SuppressWarnings("unused")
+    public Building setMultiple() {
+        this.canHaveMultiple = true;
+        return this;
+    }
 
-    /** Generates this building at the location
-     * @param world the world obj
-     * @param pos   the starting position
-     * @param rotation the rotation to use
-     * @return the result of attempting to generate a building here */
-    EnumActionResult generate(World world, BlockPos pos, Rotation rotation);
+    public ISpecialRules getRules() {
+        return special;
+    }
 
-    @Deprecated //TODO: Remove in 0.7+
-    EnumActionResult generate(World world, BlockPos pos, Mirror mirror, Rotation rotation);
+    @SuppressWarnings("deprecation")
+    public String getLocalisedName() {
+        if (StringUtils.isNullOrEmpty(toLocalise)) {
+            this.toLocalise = this.getRegistryName().getResourceDomain().toLowerCase(Locale.ENGLISH) + ".structures." + this.getRegistryName().getResourcePath().toLowerCase(Locale.ENGLISH);
+        }
+
+        return I18n.translateToLocal(toLocalise);
+    }
+
+    @SuppressWarnings("unused")
+    public boolean isSuitableLocation(BuildingKey key) {
+        return true;
+    }
+
+    public ItemStack getBlueprint() {
+        return HFApi.buildings.getBlueprint(this);
+    }
+
+    public ItemStack getSpawner() {
+        return HFApi.buildings.getSpawner(this);
+    }
+
+    public long getTickTime() {
+        return tickTime;
+    }
+
+    public int getOffsetY() {
+        return offsetY;
+    }
+
+    public boolean hasRequirements(EntityPlayer player) {
+        return requirements.length == 0 || HFApi.town.doesClosestTownHaveBuildings(player, requirements);
+    }
+
+    public int getLength() {
+        return length;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public void newDay(World world, BlockPos pos, Rotation rotation, CalendarDate today, CalendarDate yesterday) {
+        //Called when the day passed over
+    }
+
+    public boolean canHaveMultiple() {
+        return canHaveMultiple;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        return o instanceof Building && getRegistryName() != null && getRegistryName().equals(((Building) o).getRegistryName());
+    }
+
+    @Override
+    public int hashCode() {
+        return getRegistryName() == null? 0 : getRegistryName().hashCode();
+    }
 }

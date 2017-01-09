@@ -1,6 +1,6 @@
 package joshie.harvest.buildings.render;
 
-import joshie.harvest.buildings.BuildingImpl;
+import joshie.harvest.api.buildings.Building;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
@@ -46,7 +46,7 @@ public class BuildingRenderer {
         return this;
     }
 
-    public BuildingImpl getBuilding() {
+    public Building getBuilding() {
         return key.getBuilding();
     }
 

@@ -1,5 +1,6 @@
 package joshie.harvest.api.calendar;
 
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -33,4 +34,9 @@ public interface CalendarManager {
     /** Return todays weather
      * @param world a world object **/
     Weather getWeather(World world);
+
+    /** Register a holiday
+     *  @param name the registry name for the holiday
+     *  @param date the date this holiday occurs (will be fit in to a 30 day calendar)**/
+    void registerHoliday(ResourceLocation name, CalendarDate date);
 }

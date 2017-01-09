@@ -14,9 +14,11 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.ChunkCache;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.chunk.Chunk;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -36,10 +38,10 @@ public class CropHelper {
     }
 
     public static TileWithered getTile(IBlockAccess world, BlockPos pos, PlantSection section) {
-        if (section == BOTTOM) return (TileWithered) world.getTileEntity(pos);
+        if (section == BOTTOM) return (TileWithered) (world instanceof ChunkCache ? ((ChunkCache)world).func_190300_a(pos, Chunk.EnumCreateEntityType.CHECK) : world.getTileEntity(pos));
         else {
-            TileWithered down = ((TileWithered)world.getTileEntity(pos.down()));
-            return down == null ? (TileWithered) world.getTileEntity(pos): down;
+            TileWithered down = ((TileWithered)(world instanceof ChunkCache ? ((ChunkCache)world).func_190300_a(pos.down(), Chunk.EnumCreateEntityType.CHECK) : world.getTileEntity(pos.down())));
+            return down == null ? (TileWithered) (world instanceof ChunkCache ? ((ChunkCache)world).func_190300_a(pos, Chunk.EnumCreateEntityType.CHECK) : world.getTileEntity(pos)): down;
         }
     }
 

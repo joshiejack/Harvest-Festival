@@ -21,13 +21,13 @@ import static joshie.harvest.calendar.HFCalendar.TWO_HOURS;
 @HFEvents
 public class NewDayHandler {
     //New day
-    public static void newDay(final World world) {
+    public static void newDay(final World world, CalendarDate today, CalendarDate yesterday) {
         DailyTickHandler tickables = HFTrackers.getTickables(world);
         tickables.processPhase(IDailyTickable.Phase.PRIORITY);
         tickables.processBlocks();
         tickables.processPhase(IDailyTickable.Phase.PRE);
         HFTrackers.<AnimalTrackerServer>getAnimalTracker(world).newDay();
-        HFTrackers.<TownTrackerServer>getTownTracker(world).newDay();
+        HFTrackers.<TownTrackerServer>getTownTracker(world).newDay(today, yesterday);
         tickables.processPhase(IDailyTickable.Phase.POST);
         tickables.processPhase(IDailyTickable.Phase.LAST);
         HFTrackers.markDirty(world);
@@ -41,9 +41,9 @@ public class NewDayHandler {
             World overworld = FMLCommonHandler.instance().getMinecraftServerInstance().worldServers[0];
             if (overworld.getWorldTime() % TICKS_PER_DAY == 1) {
                 CalendarServer calendar = HFTrackers.<CalendarServer>getCalendar(overworld);
-                CalendarDate yesterday = calendar.getDate();
+                CalendarDate yesterday = calendar.getDate().copy();
                 HFTrackers.<CalendarServer>getCalendar(overworld).newDay(overworld);
-                CalendarDate today = calendar.getDate();
+                CalendarDate today = calendar.getDate().copy();
                 for (PlayerTrackerServer player : HFTrackers.getPlayerTrackers()) {
                     player.newDay(yesterday, today);
                 }
@@ -51,7 +51,7 @@ public class NewDayHandler {
                 AnimalTrackerServer.processQueue();
                 DailyTickHandler.processQueue();
                 for (World world : FMLCommonHandler.instance().getMinecraftServerInstance().worldServers) {
-                    newDay(world);
+                    newDay(world, today, yesterday);
                 }
             }
 

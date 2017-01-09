@@ -21,8 +21,10 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.ChunkCache;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraft.world.chunk.Chunk;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -118,10 +120,15 @@ public class BlockSizedStorage extends BlockHFEnumRotatableTile<BlockSizedStorag
 
     @Override
     public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos) {
-        TileFillableSized tile = (TileFillableSized) world.getTileEntity(pos);
-        boolean isFilled = tile.getFillAmount() > 0;
-        IBlockState theState = isFilled ? state.withProperty(FILL, Fill.getFillFromSize(tile.getSize())) : state.withProperty(FILL, EMPTY);
-        return super.getActualState(theState, world, pos);
+        TileEntity tile = world instanceof ChunkCache ? ((ChunkCache)world).func_190300_a(pos, Chunk.EnumCreateEntityType.CHECK) : world.getTileEntity(pos);
+        if (tile instanceof TileFillableSized) {
+            TileFillableSized sized = (TileFillableSized) tile;
+            boolean isFilled = sized.getFillAmount() > 0;
+            IBlockState theState = isFilled ? state.withProperty(FILL, Fill.getFillFromSize(sized.getSize())) : state.withProperty(FILL, EMPTY);
+            return super.getActualState(theState, world, pos);
+        }
+
+        return super.getActualState(state, world, pos);
     }
 
     @SideOnly(Side.CLIENT)

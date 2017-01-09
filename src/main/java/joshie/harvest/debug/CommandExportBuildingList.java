@@ -1,7 +1,6 @@
 package joshie.harvest.debug;
 
-import joshie.harvest.buildings.BuildingImpl;
-import joshie.harvest.buildings.BuildingRegistry;
+import joshie.harvest.api.buildings.Building;
 import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.core.commands.HFCommand;
 import net.minecraft.item.ItemStack;
@@ -36,7 +35,7 @@ public class CommandExportBuildingList extends CommandExportHeld {
                 "!" + CAT2 + "\n|");
 
         List<String> list = new ArrayList<>();
-        for (BuildingImpl building: BuildingRegistry.REGISTRY) {
+        for (Building building: Building.REGISTRY) {
             if (building != HFBuildings.null_building) {
                 list.add(building.getLocalisedName());
             }

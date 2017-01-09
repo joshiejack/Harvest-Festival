@@ -2,40 +2,39 @@ package joshie.harvest.buildings;
 
 import joshie.harvest.api.buildings.Building;
 import joshie.harvest.api.buildings.IBuildingRegistry;
+import joshie.harvest.core.util.HFTemplate;
+import joshie.harvest.core.util.ResourceLoader;
 import joshie.harvest.core.util.annotations.HFApiImplementation;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.common.registry.IForgeRegistry;
-import net.minecraftforge.fml.common.registry.RegistryBuilder;
+import net.minecraft.item.ItemStack;
+
+import java.util.HashMap;
+
+import static joshie.harvest.buildings.HFBuildings.getGson;
 
 @HFApiImplementation
 public class BuildingRegistry implements IBuildingRegistry {
-    public static final IForgeRegistry<BuildingImpl> REGISTRY = new RegistryBuilder<BuildingImpl>().setName(new ResourceLocation("harvestfestival", "buildings")).setType(BuildingImpl.class).setIDRange(0, 32000).create();
     public static final BuildingRegistry INSTANCE = new BuildingRegistry();
+    private HashMap<Building, HFTemplate> instructions = new HashMap<>();
 
     private BuildingRegistry() {}
 
     @Override
-    public Building getBuildingFromName(ResourceLocation name) {
-        return REGISTRY.getValue(name);
+    public ItemStack getBlueprint(Building building) {
+        return HFBuildings.BLUEPRINTS.getStackFromObject(building);
     }
 
     @Override
-    public ResourceLocation getNameForBuilding(Building building) {
-        return REGISTRY.getKey((BuildingImpl)building);
+    public ItemStack getSpawner(Building building) {
+        return HFBuildings.STRUCTURES.getStackFromObject(building);
     }
 
-    @Override
-    public Building registerBuilding(ResourceLocation resource) {
-        BuildingImpl building = new BuildingImpl().setRegistryName(resource);
-        REGISTRY.register(building);
-        return building;
-    }
+    public HFTemplate getTemplateForBuilding(Building building) {
+        HFTemplate template = instructions.get(building);
+        if (template == null) {
+            template = (getGson().fromJson(ResourceLoader.getJSONResource(building.getRegistryName(), "buildings"), HFTemplate.class));
+            instructions.put(building, template);
+        }
 
-    @Override //TODO: Remove in 0.7+
-    @Deprecated
-    public Building registerBuilding(ResourceLocation resource, long cost, int wood, int stone) {
-        BuildingImpl building = new BuildingImpl().setRegistryName(resource).setCosts(cost, wood, stone);
-        REGISTRY.register(building);
-        return building;
+        return template;
     }
 }

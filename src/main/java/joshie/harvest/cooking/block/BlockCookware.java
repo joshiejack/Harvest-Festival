@@ -26,8 +26,10 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.ChunkCache;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraft.world.chunk.Chunk;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -264,7 +266,7 @@ public class BlockCookware extends BlockHFEnumRotatableTile<BlockCookware, Cookw
         IBlockState ret = super.getActualState(state, world, pos);
         Cookware cookware = getEnumFromState(ret);
         if (cookware == OVEN_OFF || cookware == OVEN_ON) {
-            TileEntity tile = world.getTileEntity(pos.up());
+            TileEntity tile = world instanceof ChunkCache ? ((ChunkCache)world).func_190300_a(pos.up(), Chunk.EnumCreateEntityType.CHECK) : world.getTileEntity(pos.up());
             if (tile instanceof TileHeatable) {
                 if (((TileHeatable)tile).isCooking()) {
                     return ret.withProperty(property, OVEN_ON);

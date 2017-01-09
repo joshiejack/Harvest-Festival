@@ -1,19 +1,37 @@
 package joshie.harvest.calendar;
 
 import joshie.harvest.api.calendar.CalendarDate;
+import net.minecraft.util.ResourceLocation;
 
-import java.util.HashSet;
-import java.util.Set;
+import javax.annotation.Nullable;
+import java.util.HashMap;
+import java.util.Map.Entry;
+
+import static joshie.harvest.core.lib.HFModInfo.MODID;
 
 public class HolidayRegistry {
     public static final HolidayRegistry INSTANCE = new HolidayRegistry();
-    private final Set<CalendarDate> holidays = new HashSet<>();
+    private final HashMap<ResourceLocation, CalendarDate> holidays = new HashMap<>();
+    private static final ResourceLocation NONE = new ResourceLocation(MODID, "none");
 
-    public boolean isHoliday(CalendarDate date) {
-        for (CalendarDate holiday : holidays) {
+    boolean isHoliday(CalendarDate date) {
+        for (CalendarDate holiday : holidays.values()) {
             if (holiday.isSameDay(date)) return true;
         }
 
         return false;
+    }
+
+    @Nullable
+    public ResourceLocation getHoliday(CalendarDate date) {
+        for (Entry<ResourceLocation, CalendarDate> entry : holidays.entrySet()) {
+            if (entry.getValue().isSameDay(date)) return entry.getKey();
+        }
+
+        return NONE;
+    }
+
+    public void register(ResourceLocation name, CalendarDate date) {
+        holidays.put(name, date);
     }
 }

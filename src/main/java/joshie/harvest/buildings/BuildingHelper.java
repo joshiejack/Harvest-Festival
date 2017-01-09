@@ -1,5 +1,6 @@
 package joshie.harvest.buildings;
 
+import joshie.harvest.api.buildings.Building;
 import joshie.harvest.buildings.render.BuildingKey;
 import joshie.harvest.core.helpers.ChatHelper;
 import joshie.harvest.core.helpers.EntityHelper;
@@ -79,7 +80,7 @@ public class BuildingHelper {
         return world.isAirBlock(pos);
     }
 
-    private static BuildingKey getCachedKey(EntityPlayer player, BlockPos pos, BuildingImpl building) {
+    private static BuildingKey getCachedKey(EntityPlayer player, BlockPos pos, Building building) {
         EnumFacing facing = EntityHelper.getFacingFromEntity(player).getOpposite();
         Rotation rotation = Rotation.NONE;
         if (facing == EnumFacing.NORTH) {
@@ -102,7 +103,7 @@ public class BuildingHelper {
     }
 
     @SuppressWarnings("deprecation")
-    public static BuildingKey getPositioning(ItemStack stack, World world, RayTraceResult raytrace, BuildingImpl building, EntityPlayer player, boolean clicked) {
+    public static BuildingKey getPositioning(ItemStack stack, World world, RayTraceResult raytrace, Building building, EntityPlayer player, boolean clicked) {
         validateOrInvalidateStack(stack, player);
         BlockPos pos = raytrace.getBlockPos().offset(raytrace.sideHit).up(building.getOffsetY());
         //Load the saved position

@@ -8,6 +8,7 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.buildings.Building;
 import joshie.harvest.api.core.ISpecialRules;
 import joshie.harvest.buildings.block.BlockInternalAir;
+import joshie.harvest.buildings.building.BuildingFestival;
 import joshie.harvest.buildings.item.ItemBlueprint;
 import joshie.harvest.buildings.item.ItemBuilding;
 import joshie.harvest.buildings.item.ItemCheat;
@@ -18,7 +19,6 @@ import joshie.harvest.buildings.special.SpecialRuleChurch;
 import joshie.harvest.buildings.special.SpecialRuleFestivals;
 import joshie.harvest.core.base.render.FMLDefinition;
 import joshie.harvest.core.base.render.MeshIdentical;
-import joshie.harvest.core.util.HFTemplate;
 import joshie.harvest.core.util.annotations.HFLoader;
 import joshie.harvest.npc.HFNPCs;
 import net.minecraft.block.state.IBlockState;
@@ -36,18 +36,19 @@ import static joshie.harvest.core.lib.LoadOrder.HFBUILDING;
 import static joshie.harvest.npc.HFNPCs.CLOCKMAKER_CHILD;
 
 @HFLoader(priority = HFBUILDING)
+@SuppressWarnings("unchecked")
 public class HFBuildings {
     public static final ItemBuilding STRUCTURES = new ItemBuilding().register("structures");
     public static final ItemBlueprint BLUEPRINTS = new ItemBlueprint().register("blueprint");
     public static final ItemCheat CHEAT = new ItemCheat().register("cheat");
     public static final BlockInternalAir AIR = new BlockInternalAir().register("air");
 
-    public static final BuildingImpl null_building = new BuildingImpl();
-    public static final ISpecialRules NEVER = (w, p, a) -> false;
+    private static final ISpecialRules NEVER = (w, p, a) -> false;
+    public static final Building null_building = new Building();
     public static final Building BARN = registerBuilding("barn").setRequirements("carpenter").setInhabitants(HFNPCs.BARN_OWNER).setOffset(6, -1, 8);
     public static final Building BLACKSMITH = registerBuilding("blacksmith").setRequirements("miningHill").setInhabitants(HFNPCs.BLACKSMITH).setOffset(3, -2, 6);
     public static final Building CAFE = registerBuilding("cafe").setRequirements("supermarket").setInhabitants(HFNPCs.CAFE_OWNER, HFNPCs.CAFE_GRANNY).setOffset(7, -1, 10);
-    public static final Building CARPENTER = registerBuilding("carpenter", 0L, 0, 0).setSpecialRules(NEVER).setInhabitants(HFNPCs.BUILDER, HFNPCs.FLOWER_GIRL).setOffset(3, -1, 8);
+    public static final Building CARPENTER = registerBuilding("carpenter").setSpecialRules(NEVER).setInhabitants(HFNPCs.BUILDER, HFNPCs.FLOWER_GIRL).setOffset(3, -1, 8);
     public static final Building CHURCH = registerBuilding("church").setSpecialRules(new SpecialRuleChurch()).setOffset(6, -1, 13);
     public static final Building CLOCKMAKER = registerBuilding("clockmaker").setRequirements("festivals").setInhabitants(HFNPCs.CLOCKMAKER, CLOCKMAKER_CHILD).setOffset(3, -1, 10);
     public static final Building FISHING_HOLE = registerBuilding("fishingHole").setRequirements("fishingHut").setInhabitants(HFNPCs.FISHERMAN).setOffset(6, -4, 7);
@@ -58,20 +59,21 @@ public class HFBuildings {
     public static final Building SUPERMARKET = registerBuilding("supermarket").setRequirements("carpenter").setInhabitants(HFNPCs.MILKMAID, HFNPCs.GS_OWNER).setOffset(7, -1, 12).setTickTime(5);
     public static final Building TOWNHALL = registerBuilding("townhall").setSpecialRules(new SpecialRuleBuildings(9)).setInhabitants(HFNPCs.MAYOR, HFNPCs.PRIEST, HFNPCs.DAUGHTER_ADULT, HFNPCs.DAUGHTER_CHILD).setOffset(10, -1, 17);
     //0.6+ Buildings
-    public static final Building FESTIVALS = registerBuilding("festivals").setSpecialRules(new SpecialRuleFestivals()).setInhabitants(HFNPCs.TRADER).setOffset(14, -1, 32);
+    public static final Building FESTIVALS = registerBuilding("festivals", BuildingFestival.class).setSpecialRules(new SpecialRuleFestivals()).setInhabitants(HFNPCs.TRADER).setOffset(14, -1, 32);
 
     public static void preInit() {}
 
     @SideOnly(Side.CLIENT)
     public static void preInitClient() {
-        ModelLoader.setCustomMeshDefinition(STRUCTURES, new FMLDefinition<>(STRUCTURES, "buildings", BuildingRegistry.REGISTRY));
+        ModelLoader.setCustomMeshDefinition(STRUCTURES, new FMLDefinition<>(STRUCTURES, "buildings", Building.REGISTRY));
         ModelLoader.setCustomMeshDefinition(BLUEPRINTS, new MeshIdentical(BLUEPRINTS));
     }
 
     public static void init() {
         HFApi.npc.getGifts().addToBlacklist(STRUCTURES, BLUEPRINTS);
-        for (BuildingImpl building: BuildingRegistry.REGISTRY.getValues()) {
-            building.initBuilding(getGson().fromJson(ResourceLoader.getJSONResource(building.getRegistryName(), "buildings"), HFTemplate.class));
+        for (Building building: Building.REGISTRY.getValues()) {
+            building.initBuilding(); //Init the building localisation
+            BuildingRegistry.INSTANCE.getTemplateForBuilding(building).initTemplate();
         }
     }
 
@@ -80,22 +82,20 @@ public class HFBuildings {
         FMLDefinition.getDefinition("buildings").registerEverything();
     }
 
-    private static Building registerBuilding(String building, long cost, int wood, int stone) {
-        return HFApi.buildings.registerBuilding(new ResourceLocation("harvestfestival", building), cost, wood, stone);
-    }
+    @SuppressWarnings("unchecked")
+    private static <B extends Building> B registerBuilding(String name, Class<B>... clazzes) {
+        Class<B> clazz = clazzes.length == 1 ? clazzes[0] : null;
+        Building building = null;
+        try {
+            if (clazz != null) building = clazz.newInstance().setRegistryName(new ResourceLocation("harvestfestival", name));
+        } catch (InstantiationException | IllegalAccessException ex) { /**/}
 
-    private static Building registerBuilding(String building) {
-        return HFApi.buildings.registerBuilding(new ResourceLocation("harvestfestival", building));
+        if (building == null)  building = new Building().setRegistryName(new ResourceLocation("harvestfestival", name));
+        Building.REGISTRY.register(building); //Register the building!
+        return (B) building;
     }
 
     private static Gson gson; //Temporary
-    public static void loadBuilding(BuildingImpl building) {
-        HFTemplate template = (getGson().fromJson(ResourceLoader.getJSONResource(building.getRegistryName(), "buildings"), HFTemplate.class));
-        if (template != null) {
-            building.components = template.getComponents();
-        }
-    }
-
     public static Gson getGson() {
         //Create the gson if it's null
         if (gson == null) {

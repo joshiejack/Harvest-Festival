@@ -2,8 +2,6 @@ package joshie.harvest.shops.purchasable;
 
 import joshie.harvest.api.buildings.Building;
 import joshie.harvest.api.shops.IRequirement;
-import joshie.harvest.buildings.BuildingImpl;
-import joshie.harvest.buildings.BuildingRegistry;
 import joshie.harvest.core.helpers.SpawnItemHelper;
 import joshie.harvest.core.helpers.TextHelper;
 import joshie.harvest.town.TownHelper;
@@ -23,13 +21,13 @@ import java.util.Locale;
 
 public class PurchasableBuilding extends PurchasableMaterials {
     private final ResourceLocation resource;
-    private final BuildingImpl building;
+    private final Building building;
     private final String tooltip;
 
     public PurchasableBuilding(long cost, Building building, IRequirement... requirements) {
-        super(cost, ((BuildingImpl)building).getRegistryName(), requirements);
-        this.building = (BuildingImpl) building;
-        this.resource = BuildingRegistry.REGISTRY.getKey(this.building);
+        super(cost, building.getRegistryName(), requirements);
+        this.building = building;
+        this.resource = Building.REGISTRY.getKey(this.building);
         this.tooltip = resource.getResourceDomain() + ".structures." + resource.getResourcePath() + ".tooltip";
         this.setStock(1);
     }

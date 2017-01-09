@@ -3,7 +3,7 @@ package joshie.harvest.buildings.render;
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 import joshie.harvest.buildings.BuildingHelper;
-import joshie.harvest.buildings.BuildingImpl;
+import joshie.harvest.api.buildings.Building;
 import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.core.helpers.MCClientHelper;
 import joshie.harvest.core.util.annotations.HFEvents;
@@ -27,7 +27,7 @@ public class PreviewEvent {
     private final BuildingVertexUploader vertexUploader = new BuildingVertexUploader();
     private static final float offset = 0.00390625F;
     private ItemStack held; //Cache the held itemstack
-    private BuildingImpl building; //Cache the building value
+    private Building building; //Cache the building value
 
     private BuildingRenderer getRenderer(World world, EntityPlayerSP player) throws ExecutionException {
         if (player == null) return null;

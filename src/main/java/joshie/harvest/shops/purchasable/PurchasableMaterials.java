@@ -2,8 +2,7 @@ package joshie.harvest.shops.purchasable;
 
 import joshie.harvest.api.shops.IPurchaseableMaterials;
 import joshie.harvest.api.shops.IRequirement;
-import joshie.harvest.buildings.BuildingImpl;
-import joshie.harvest.buildings.BuildingRegistry;
+import joshie.harvest.api.buildings.Building;
 import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.core.helpers.TextHelper;
 import joshie.harvest.shops.requirement.Logs;
@@ -22,7 +21,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
-public class PurchasableMaterials extends PurchasableFML<BuildingImpl> implements IPurchaseableMaterials {
+public class PurchasableMaterials extends PurchasableFML<Building> implements IPurchaseableMaterials {
     private final String resource;
     private ItemStack stack;
     private final IRequirement[] requirements;
@@ -63,8 +62,8 @@ public class PurchasableMaterials extends PurchasableFML<BuildingImpl> implement
     }
 
     @Override
-    public IForgeRegistry<BuildingImpl> getRegistry() {
-        return BuildingRegistry.REGISTRY;
+    public IForgeRegistry<Building> getRegistry() {
+        return Building.REGISTRY;
     }
 
     @Override

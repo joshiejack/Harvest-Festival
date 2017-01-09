@@ -1,7 +1,7 @@
 package joshie.harvest.crops.handlers.growth;
 
 import joshie.harvest.api.trees.GrowthHandlerTree;
-import joshie.harvest.buildings.ResourceLoader;
+import joshie.harvest.core.util.ResourceLoader;
 import joshie.harvest.core.util.HFTemplate;
 import joshie.harvest.crops.HFCrops;
 import joshie.harvest.crops.block.BlockFruit.Fruit;
@@ -26,7 +26,7 @@ public abstract class GrowthHandlerHFTree extends GrowthHandlerTree {
     @Override
     protected void growTree(World world, BlockPos pos) {
         Rotation rotation = Rotation.values()[world.rand.nextInt(Rotation.values().length)];
-        template.placeBlocks(world, getAdjustedPositionBasedOnRotation(pos, rotation), rotation);
+        template.placeBlocks(world, getAdjustedPositionBasedOnRotation(pos, rotation), rotation, null);
     }
 
     protected abstract BlockPos getAdjustedPositionBasedOnRotation(BlockPos pos, Rotation rotation);

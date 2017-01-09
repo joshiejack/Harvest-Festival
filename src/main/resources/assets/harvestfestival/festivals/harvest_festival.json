@@ -949,7 +949,7 @@
       "pos": "12 0 13"
     },
     {
-      "state": "dirt",
+      "state": "grass",
       "pos": "12 0 14"
     },
     {
@@ -1157,7 +1157,7 @@
       "pos": "14 0 10"
     },
     {
-      "state": "grass",
+      "state": "dirt",
       "pos": "14 0 11"
     },
     {
@@ -1181,7 +1181,7 @@
       "pos": "14 0 16"
     },
     {
-      "state": "grass",
+      "state": "dirt",
       "pos": "14 0 17"
     },
     {
@@ -1325,7 +1325,7 @@
       "pos": "15 0 1"
     },
     {
-      "state": "grass_path",
+      "state": "grass",
       "pos": "16 0 1"
     },
     {
@@ -1509,7 +1509,7 @@
       "pos": "17 0 2"
     },
     {
-      "state": "grass_path",
+      "state": "grass",
       "pos": "17 0 1"
     },
     {
@@ -2125,23 +2125,23 @@
       "pos": "24 0 17"
     },
     {
-      "state": "grass",
+      "state": "dirt",
       "pos": "24 0 18"
     },
     {
-      "state": "grass",
+      "state": "dirt",
       "pos": "24 0 19"
     },
     {
-      "state": "grass",
+      "state": "dirt",
       "pos": "24 0 20"
     },
     {
-      "state": "grass",
+      "state": "dirt",
       "pos": "24 0 21"
     },
     {
-      "state": "grass",
+      "state": "dirt",
       "pos": "24 0 22"
     },
     {
@@ -2189,7 +2189,7 @@
       "pos": "25 0 23"
     },
     {
-      "state": "grass",
+      "state": "dirt",
       "pos": "25 0 22"
     },
     {
@@ -2361,7 +2361,7 @@
       "pos": "26 0 21"
     },
     {
-      "state": "grass",
+      "state": "dirt",
       "pos": "26 0 22"
     },
     {
@@ -2425,7 +2425,7 @@
       "pos": "27 0 23"
     },
     {
-      "state": "grass",
+      "state": "dirt",
       "pos": "27 0 22"
     },
     {
@@ -2485,7 +2485,7 @@
       "pos": "27 0 8"
     },
     {
-      "state": "grass",
+      "state": "dirt",
       "pos": "27 0 7"
     },
     {
@@ -2585,23 +2585,23 @@
       "pos": "28 0 17"
     },
     {
-      "state": "grass",
+      "state": "dirt",
       "pos": "28 0 18"
     },
     {
-      "state": "grass",
+      "state": "dirt",
       "pos": "28 0 19"
     },
     {
-      "state": "grass",
+      "state": "dirt",
       "pos": "28 0 20"
     },
     {
-      "state": "grass",
+      "state": "dirt",
       "pos": "28 0 21"
     },
     {
-      "state": "grass",
+      "state": "dirt",
       "pos": "28 0 22"
     },
     {
@@ -2925,11 +2925,11 @@
       "pos": "31 0 16"
     },
     {
-      "state": "grass_path",
+      "state": "grass",
       "pos": "31 0 15"
     },
     {
-      "state": "grass_path",
+      "state": "grass",
       "pos": "31 0 14"
     },
     {
@@ -3405,15 +3405,6 @@
       "pos": "7 1 27"
     },
     {
-      "homeString": "park.back.lamps",
-      "npc": "",
-      "pos": "7 1 13",
-      "type": "entities.NPC"
-    },
-    {
-      "pos": "7 1 13"
-    },
-    {
       "state": "leaves 5",
       "pos": "7 1 8"
     },
@@ -3442,7 +3433,7 @@
       "pos": "9 1 28"
     },
     {
-      "state": "leaves 6",
+      "state": "leaves 14",
       "pos": "9 1 7"
     },
     {
@@ -3470,21 +3461,12 @@
       "pos": "10 1 6"
     },
     {
-      "state": "leaves 6",
+      "state": "leaves 14",
       "pos": "10 1 7"
     },
     {
       "state": "leaves 12",
       "pos": "10 1 8"
-    },
-    {
-      "homeString": "park.back.left",
-      "npc": "",
-      "pos": "10 1 22",
-      "type": "entities.NPC"
-    },
-    {
-      "pos": "10 1 22"
     },
     {
       "state": "spruce_fence",
@@ -3499,7 +3481,7 @@
       "pos": "11 1 8"
     },
     {
-      "state": "leaves 4",
+      "state": "leaves 12",
       "pos": "11 1 7"
     },
     {
@@ -3547,7 +3529,7 @@
       "pos": "12 1 7"
     },
     {
-      "state": "leaves 5",
+      "state": "leaves 13",
       "pos": "12 1 8"
     },
     {
@@ -3571,13 +3553,12 @@
       "pos": "13 1 25"
     },
     {
-      "homeString": "girafi",
-      "npc": "harvestfestival:girafi",
-      "pos": "13 1 14",
-      "type": "entities.NPC"
+      "state": "spruce_stairs 4",
+      "pos": "13 1 17"
     },
     {
-      "pos": "13 1 14"
+      "state": "spruce_stairs 4",
+      "pos": "13 1 11"
     },
     {
       "state": "leaves 4",
@@ -3600,6 +3581,42 @@
       "pos": "14 1 1"
     },
     {
+      "state": "spruce_stairs 2",
+      "pos": "14 1 10"
+    },
+    {
+      "state": "log 1",
+      "pos": "14 1 11"
+    },
+    {
+      "state": "spruce_stairs 1",
+      "pos": "14 1 12"
+    },
+    {
+      "state": "dark_oak_stairs 5",
+      "pos": "14 1 13"
+    },
+    {
+      "state": "dark_oak_stairs 5",
+      "pos": "14 1 14"
+    },
+    {
+      "state": "dark_oak_stairs 5",
+      "pos": "14 1 15"
+    },
+    {
+      "state": "spruce_stairs 1",
+      "pos": "14 1 16"
+    },
+    {
+      "state": "log 1",
+      "pos": "14 1 17"
+    },
+    {
+      "state": "spruce_stairs 3",
+      "pos": "14 1 18"
+    },
+    {
       "state": "leaves2 5",
       "pos": "14 1 24"
     },
@@ -3620,17 +3637,19 @@
       "pos": "15 1 25"
     },
     {
+      "state": "spruce_stairs 1",
+      "pos": "15 1 17"
+    },
+    {
+      "state": "spruce_stairs 1",
+      "pos": "15 1 11"
+    },
+    {
       "state": "log 1",
       "pos": "15 1 1"
     },
     {
-      "homeString": "park.oak",
-      "npc": "",
-      "pos": "16 1 5",
-      "type": "entities.NPC"
-    },
-    {
-      "pos": "16 1 5"
+      "pos": "16 1 1"
     },
     {
       "state": "log 1",
@@ -3657,13 +3676,7 @@
       "pos": "17 1 21"
     },
     {
-      "homeString": "park.customer",
-      "npc": "",
-      "pos": "17 1 15",
-      "type": "entities.NPC"
-    },
-    {
-      "pos": "17 1 15"
+      "pos": "17 1 1"
     },
     {
       "state": "log 1",
@@ -3714,24 +3727,15 @@
       "pos": "20 1 4"
     },
     {
-      "homeString": "park.table",
-      "npc": "",
-      "pos": "20 1 10",
-      "type": "entities.NPC"
-    },
-    {
-      "pos": "20 1 10"
-    },
-    {
       "state": "log 1",
       "pos": "20 1 22"
     },
     {
-      "state": "leaves 6",
+      "state": "leaves 14",
       "pos": "20 1 23"
     },
     {
-      "state": "leaves 6",
+      "state": "leaves 14",
       "pos": "21 1 23"
     },
     {
@@ -3767,36 +3771,35 @@
       "pos": "22 1 4"
     },
     {
-      "homeString": "park.bench",
-      "npc": "",
-      "pos": "22 1 20",
-      "type": "entities.NPC"
+      "state": "dark_oak_stairs 3",
+      "pos": "22 1 5"
     },
     {
-      "pos": "22 1 20"
+      "state": "spruce_fence",
+      "pos": "22 1 6"
     },
     {
       "state": "dark_oak_stairs 2",
       "pos": "22 1 22"
     },
     {
-      "state": "leaves 6",
+      "state": "leaves 14",
       "pos": "22 1 23"
     },
     {
-      "state": "leaves 6",
+      "state": "leaves 14",
       "pos": "22 1 24"
     },
     {
-      "state": "leaves 4",
+      "state": "leaves 12",
       "pos": "23 1 25"
     },
     {
-      "state": "leaves 4",
+      "state": "leaves 12",
       "pos": "23 1 24"
     },
     {
-      "state": "leaves 6",
+      "state": "leaves 14",
       "pos": "23 1 23"
     },
     {
@@ -3804,20 +3807,34 @@
       "pos": "23 1 22"
     },
     {
-      "homeString": "park.centre",
-      "npc": "",
-      "pos": "23 1 15",
-      "type": "entities.NPC"
+      "state": "trapdoor 6",
+      "pos": "23 1 21",
+      "type": "blocks.Decorative"
     },
     {
-      "pos": "23 1 15"
+      "state": "trapdoor 6",
+      "pos": "23 1 20",
+      "type": "blocks.Decorative"
     },
     {
-      "state": "leaves 4",
+      "state": "trapdoor 6",
+      "pos": "23 1 19",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "spruce_fence",
+      "pos": "23 1 6"
+    },
+    {
+      "state": "dark_oak_stairs 3",
+      "pos": "23 1 5"
+    },
+    {
+      "state": "leaves 12",
       "pos": "23 1 4"
     },
     {
-      "state": "leaves 5",
+      "state": "leaves 13",
       "pos": "23 1 3"
     },
     {
@@ -3841,11 +3858,53 @@
       "pos": "24 1 2"
     },
     {
+      "text": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "state": "wall_sign 4",
+      "pos": "24 1 4",
+      "type": "blocks.Sign"
+    },
+    {
+      "text": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "state": "wall_sign 5",
+      "pos": "24 1 5",
+      "type": "blocks.Sign"
+    },
+    {
       "state": "leaves 13",
       "pos": "24 1 8"
     },
     {
-      "state": "leaves 5",
+      "state": "log 1",
+      "pos": "24 1 18"
+    },
+    {
+      "state": "planks 1",
+      "pos": "24 1 19"
+    },
+    {
+      "state": "planks 1",
+      "pos": "24 1 20"
+    },
+    {
+      "state": "planks 1",
+      "pos": "24 1 21"
+    },
+    {
+      "state": "log 1",
+      "pos": "24 1 22"
+    },
+    {
+      "state": "leaves 13",
       "pos": "24 1 23"
     },
     {
@@ -3853,7 +3912,7 @@
       "pos": "24 1 25"
     },
     {
-      "state": "leaves 4",
+      "state": "leaves 12",
       "pos": "24 1 26"
     },
     {
@@ -3869,17 +3928,21 @@
       "pos": "25 1 27"
     },
     {
-      "state": "leaves 6",
+      "state": "leaves 14",
       "pos": "25 1 26"
     },
     {
-      "homeString": "park.stall",
-      "npc": "",
-      "pos": "25 1 20",
-      "type": "entities.NPC"
+      "state": "trapdoor 5",
+      "pos": "25 1 23",
+      "type": "blocks.Decorative"
     },
     {
-      "pos": "25 1 20"
+      "state": "planks 1",
+      "pos": "25 1 22"
+    },
+    {
+      "state": "spruce_stairs 6",
+      "pos": "25 1 18"
     },
     {
       "state": "leaves 14",
@@ -3890,8 +3953,20 @@
       "pos": "25 1 8"
     },
     {
-      "state": "leaves 5",
+      "state": "leaves 13",
       "pos": "25 1 7"
+    },
+    {
+      "state": "dark_oak_stairs 2",
+      "pos": "25 1 4"
+    },
+    {
+      "state": "spruce_fence",
+      "pos": "25 1 3"
+    },
+    {
+      "state": "dark_oak_stairs 3",
+      "pos": "25 1 2"
     },
     {
       "state": "leaves 4",
@@ -3902,16 +3977,61 @@
       "pos": "26 1 1"
     },
     {
-      "state": "leaves 4",
+      "state": "dark_oak_stairs 3",
+      "pos": "26 1 2"
+    },
+    {
+      "state": "spruce_fence",
+      "pos": "26 1 3"
+    },
+    {
+      "state": "dark_oak_stairs 2",
+      "pos": "26 1 4"
+    },
+    {
+      "state": "spruce_fence",
+      "pos": "26 1 6"
+    },
+    {
+      "state": "dark_oak_stairs 2",
+      "pos": "26 1 7"
+    },
+    {
+      "state": "leaves 12",
       "pos": "26 1 8"
     },
     {
-      "state": "leaves 4",
+      "state": "leaves 12",
       "pos": "26 1 9"
     },
     {
-      "state": "leaves 4",
+      "state": "leaves 12",
       "pos": "26 1 10"
+    },
+    {
+      "state": "spruce_stairs 6",
+      "pos": "26 1 18"
+    },
+    {
+      "state": "spruce_stairs 5",
+      "pos": "26 1 19"
+    },
+    {
+      "state": "spruce_stairs 5",
+      "pos": "26 1 20"
+    },
+    {
+      "state": "spruce_stairs 5",
+      "pos": "26 1 21"
+    },
+    {
+      "state": "planks 1",
+      "pos": "26 1 22"
+    },
+    {
+      "state": "trapdoor 5",
+      "pos": "26 1 23",
+      "type": "blocks.Decorative"
     },
     {
       "state": "leaves 4",
@@ -3930,6 +4050,15 @@
       "pos": "27 1 29"
     },
     {
+      "state": "trapdoor 5",
+      "pos": "27 1 23",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "planks 1",
+      "pos": "27 1 22"
+    },
+    {
       "state": "leaves 12",
       "pos": "27 1 11"
     },
@@ -3940,6 +4069,25 @@
     {
       "state": "leaves 12",
       "pos": "27 1 9"
+    },
+    {
+      "state": "dark_oak_stairs 1",
+      "pos": "27 1 8"
+    },
+    {
+      "state": "log 1",
+      "pos": "27 1 7"
+    },
+    {
+      "text": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "state": "wall_sign 5",
+      "pos": "27 1 4",
+      "type": "blocks.Sign"
     },
     {
       "state": "leaves 14",
@@ -3962,6 +4110,14 @@
       "pos": "28 1 2"
     },
     {
+      "state": "spruce_fence",
+      "pos": "28 1 8"
+    },
+    {
+      "state": "dark_oak_stairs 2",
+      "pos": "28 1 9"
+    },
+    {
       "state": "leaves 12",
       "pos": "28 1 10"
     },
@@ -3970,22 +4126,24 @@
       "pos": "28 1 11"
     },
     {
-      "homeString": "park.bush",
-      "npc": "",
-      "pos": "28 1 12",
-      "type": "entities.NPC"
+      "state": "log 1",
+      "pos": "28 1 18"
     },
     {
-      "pos": "28 1 12"
+      "state": "planks 1",
+      "pos": "28 1 19"
     },
     {
-      "homeString": "park.left",
-      "npc": "",
-      "pos": "28 1 26",
-      "type": "entities.NPC"
+      "state": "planks 1",
+      "pos": "28 1 20"
     },
     {
-      "pos": "28 1 26"
+      "state": "planks 1",
+      "pos": "28 1 21"
+    },
+    {
+      "state": "log 1",
+      "pos": "28 1 22"
     },
     {
       "state": "leaves 4",
@@ -4004,26 +4162,46 @@
       "pos": "29 1 29"
     },
     {
-      "state": "leaves 5",
+      "state": "leaves 13",
       "pos": "29 1 24"
     },
     {
-      "homeString": "park.bottom",
-      "npc": "",
+      "state": "trapdoor 7",
+      "pos": "29 1 21",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "trapdoor 7",
       "pos": "29 1 20",
-      "type": "entities.NPC"
+      "type": "blocks.Decorative"
     },
     {
-      "pos": "29 1 20"
+      "state": "trapdoor 15",
+      "pos": "29 1 19",
+      "type": "blocks.Decorative"
     },
     {
-      "homeString": "park.spruce",
-      "npc": "",
-      "pos": "29 1 6",
-      "type": "entities.NPC"
+      "text": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "state": "wall_sign 5",
+      "pos": "29 1 9",
+      "type": "blocks.Sign"
     },
     {
-      "pos": "29 1 6"
+      "state": "spruce_stairs 5",
+      "pos": "29 1 5"
+    },
+    {
+      "state": "wooden_slab 9",
+      "pos": "29 1 4"
+    },
+    {
+      "state": "wooden_slab 9",
+      "pos": "29 1 3"
     },
     {
       "state": "leaves 14",
@@ -4046,24 +4224,31 @@
       "pos": "30 1 3"
     },
     {
-      "homeString": "park.cafe",
-      "npc": "",
-      "pos": "30 1 4",
-      "type": "entities.NPC"
+      "state": "wooden_slab 9",
+      "pos": "30 1 5"
     },
     {
-      "pos": "30 1 4"
+      "state": "spruce_fence",
+      "pos": "30 1 8"
+    },
+    {
+      "state": "spruce_fence",
+      "pos": "30 1 9"
+    },
+    {
+      "state": "spruce_fence",
+      "pos": "30 1 10"
     },
     {
       "state": "leaves 12",
       "pos": "30 1 17"
     },
     {
-      "state": "leaves 5",
+      "state": "leaves 13",
       "pos": "30 1 24"
     },
     {
-      "state": "leaves 4",
+      "state": "leaves 12",
       "pos": "30 1 25"
     },
     {
@@ -4087,11 +4272,11 @@
       "pos": "31 1 27"
     },
     {
-      "state": "leaves 4",
+      "state": "leaves 12",
       "pos": "31 1 26"
     },
     {
-      "state": "leaves 4",
+      "state": "leaves 12",
       "pos": "31 1 25"
     },
     {
@@ -4123,6 +4308,12 @@
       "pos": "31 1 16"
     },
     {
+      "pos": "31 1 15"
+    },
+    {
+      "pos": "31 1 14"
+    },
+    {
       "state": "log 1",
       "pos": "31 1 13"
     },
@@ -4133,6 +4324,33 @@
     {
       "state": "spruce_fence",
       "pos": "31 1 11"
+    },
+    {
+      "state": "dark_oak_stairs",
+      "pos": "31 1 10"
+    },
+    {
+      "state": "dark_oak_stairs",
+      "pos": "31 1 9"
+    },
+    {
+      "state": "dark_oak_stairs",
+      "pos": "31 1 8"
+    },
+    {
+      "text": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "state": "wall_sign 2",
+      "pos": "31 1 7",
+      "type": "blocks.Sign"
+    },
+    {
+      "state": "spruce_stairs 4",
+      "pos": "31 1 5"
     },
     {
       "state": "spruce_fence",
@@ -4149,6 +4367,10 @@
     {
       "state": "spruce_fence",
       "pos": "32 1 3"
+    },
+    {
+      "state": "wooden_slab 9",
+      "pos": "32 1 5"
     },
     {
       "state": "leaves 12",
@@ -4179,7 +4401,7 @@
       "pos": "32 1 19"
     },
     {
-      "state": "leaves 4",
+      "state": "leaves 12",
       "pos": "32 1 24"
     },
     {
@@ -4205,6 +4427,10 @@
     {
       "state": "leaves 12",
       "pos": "33 1 8"
+    },
+    {
+      "state": "spruce_stairs 4",
+      "pos": "33 1 5"
     },
     {
       "state": "spruce_fence",
@@ -4237,15 +4463,6 @@
     {
       "state": "leaves 12",
       "pos": "34 1 9"
-    },
-    {
-      "homeString": "park.entrance",
-      "npc": "",
-      "pos": "34 1 14",
-      "type": "entities.NPC"
-    },
-    {
-      "pos": "34 1 14"
     },
     {
       "state": "leaves 5",
@@ -4483,6 +4700,34 @@
       "type": "blocks.Decorative"
     },
     {
+      "state": "spruce_stairs 7",
+      "pos": "13 2 17"
+    },
+    {
+      "state": "log 9",
+      "pos": "13 2 16"
+    },
+    {
+      "state": "log 9",
+      "pos": "13 2 15"
+    },
+    {
+      "state": "log 9",
+      "pos": "13 2 14"
+    },
+    {
+      "state": "log 9",
+      "pos": "13 2 13"
+    },
+    {
+      "state": "log 9",
+      "pos": "13 2 12"
+    },
+    {
+      "state": "spruce_stairs 6",
+      "pos": "13 2 11"
+    },
+    {
       "state": "torch 5",
       "pos": "13 2 2",
       "type": "blocks.Decorative"
@@ -4492,6 +4737,29 @@
     },
     {
       "pos": "14 2 1"
+    },
+    {
+      "state": "log 1",
+      "pos": "14 2 11"
+    },
+    {
+      "state": "anvil 2",
+      "pos": "14 2 13",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "anvil 2",
+      "pos": "14 2 14",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "anvil 2",
+      "pos": "14 2 15",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "log 1",
+      "pos": "14 2 17"
     },
     {
       "state": "leaves2 5",
@@ -4580,6 +4848,10 @@
       "pos": "22 2 4"
     },
     {
+      "state": "carpet 12",
+      "pos": "22 2 6"
+    },
+    {
       "pos": "22 2 23"
     },
     {
@@ -4589,11 +4861,25 @@
       "pos": "23 2 24"
     },
     {
-      "state": "leaves 5",
+      "state": "leaves 13",
       "pos": "23 2 23"
     },
     {
-      "state": "leaves 4",
+      "state": "wooden_button 2",
+      "pos": "23 2 22",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "wooden_button 2",
+      "pos": "23 2 18",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "carpet 12",
+      "pos": "23 2 6"
+    },
+    {
+      "state": "leaves 12",
       "pos": "23 2 3"
     },
     {
@@ -4602,6 +4888,32 @@
     },
     {
       "pos": "24 2 1"
+    },
+    {
+      "state": "wooden_button 4",
+      "pos": "24 2 17",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "log 1",
+      "pos": "24 2 18"
+    },
+    {
+      "state": "dark_oak_stairs 7",
+      "pos": "24 2 19"
+    },
+    {
+      "state": "dark_oak_stairs 6",
+      "pos": "24 2 21"
+    },
+    {
+      "state": "log 1",
+      "pos": "24 2 22"
+    },
+    {
+      "state": "wooden_button 3",
+      "pos": "24 2 23",
+      "type": "blocks.Decorative"
     },
     {
       "state": "spruce_fence",
@@ -4621,8 +4933,16 @@
       "pos": "25 2 26"
     },
     {
+      "state": "dark_oak_stairs 5",
+      "pos": "25 2 22"
+    },
+    {
       "state": "leaves 12",
       "pos": "25 2 8"
+    },
+    {
+      "state": "carpet 12",
+      "pos": "25 2 3"
     },
     {
       "pos": "25 2 1"
@@ -4631,8 +4951,20 @@
       "pos": "26 2 1"
     },
     {
-      "state": "leaves 5",
+      "state": "carpet 12",
+      "pos": "26 2 3"
+    },
+    {
+      "state": "carpet 12",
+      "pos": "26 2 6"
+    },
+    {
+      "state": "leaves 13",
       "pos": "26 2 9"
+    },
+    {
+      "state": "spruce_fence",
+      "pos": "26 2 18"
     },
     {
       "pos": "26 2 28"
@@ -4644,15 +4976,50 @@
       "pos": "27 2 29"
     },
     {
+      "state": "dark_oak_stairs 4",
+      "pos": "27 2 22"
+    },
+    {
       "state": "leaves 13",
       "pos": "27 2 10"
+    },
+    {
+      "state": "log 1",
+      "pos": "27 2 7"
     },
     {
       "state": "leaves 13",
       "pos": "27 2 1"
     },
     {
-      "pos": "28 2 2"
+      "state": "carpet 12",
+      "pos": "28 2 8"
+    },
+    {
+      "state": "wooden_button 4",
+      "pos": "28 2 17",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "log 1",
+      "pos": "28 2 18"
+    },
+    {
+      "state": "dark_oak_stairs 7",
+      "pos": "28 2 19"
+    },
+    {
+      "state": "dark_oak_stairs 6",
+      "pos": "28 2 21"
+    },
+    {
+      "state": "log 1",
+      "pos": "28 2 22"
+    },
+    {
+      "state": "wooden_button 3",
+      "pos": "28 2 23",
+      "type": "blocks.Decorative"
     },
     {
       "pos": "28 2 29"
@@ -4664,6 +5031,20 @@
     {
       "state": "leaves 4",
       "pos": "29 2 29"
+    },
+    {
+      "state": "wooden_button 1",
+      "pos": "29 2 22",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "wooden_button 1",
+      "pos": "29 2 18",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "spruce_fence",
+      "pos": "29 2 5"
     },
     {
       "state": "leaves 14",
@@ -4678,7 +5059,19 @@
       "pos": "30 2 2"
     },
     {
-      "state": "leaves 4",
+      "state": "carpet 12",
+      "pos": "30 2 8"
+    },
+    {
+      "state": "carpet 12",
+      "pos": "30 2 9"
+    },
+    {
+      "state": "carpet 12",
+      "pos": "30 2 10"
+    },
+    {
+      "state": "leaves 12",
       "pos": "30 2 24"
     },
     {
@@ -4743,6 +5136,10 @@
       "pos": "31 2 11"
     },
     {
+      "state": "spruce_fence",
+      "pos": "31 2 5"
+    },
+    {
       "pos": "31 2 2"
     },
     {
@@ -4760,7 +5157,7 @@
       "type": "blocks.Decorative"
     },
     {
-      "state": "leaves 5",
+      "state": "leaves 13",
       "pos": "32 2 17"
     },
     {
@@ -4893,6 +5290,22 @@
       "pos": "12 3 5"
     },
     {
+      "state": "spruce_stairs",
+      "pos": "13 3 17"
+    },
+    {
+      "state": "spruce_stairs",
+      "pos": "13 3 11"
+    },
+    {
+      "state": "spruce_stairs 1",
+      "pos": "14 3 11"
+    },
+    {
+      "state": "spruce_stairs 1",
+      "pos": "14 3 17"
+    },
+    {
       "state": "trapdoor 14",
       "pos": "15 3 21",
       "type": "blocks.Decorative"
@@ -4938,8 +5351,80 @@
       "pos": "22 3 3"
     },
     {
+      "state": "log 1",
+      "pos": "24 3 18"
+    },
+    {
+      "state": "planks 1",
+      "pos": "24 3 19"
+    },
+    {
+      "state": "planks 1",
+      "pos": "24 3 20"
+    },
+    {
+      "state": "planks 1",
+      "pos": "24 3 21"
+    },
+    {
+      "state": "log 1",
+      "pos": "24 3 22"
+    },
+    {
       "state": "spruce_fence",
       "pos": "24 3 25"
+    },
+    {
+      "state": "spruce_stairs 5",
+      "pos": "25 3 22"
+    },
+    {
+      "state": "spruce_fence",
+      "pos": "26 3 18"
+    },
+    {
+      "state": "spruce_stairs 4",
+      "pos": "27 3 22"
+    },
+    {
+      "state": "log 1",
+      "pos": "27 3 7"
+    },
+    {
+      "state": "dark_oak_stairs 4",
+      "pos": "28 3 3"
+    },
+    {
+      "state": "dark_oak_stairs 4",
+      "pos": "28 3 4"
+    },
+    {
+      "state": "dark_oak_stairs 7",
+      "pos": "28 3 5"
+    },
+    {
+      "state": "log 1",
+      "pos": "28 3 18"
+    },
+    {
+      "state": "planks 1",
+      "pos": "28 3 19"
+    },
+    {
+      "state": "planks 1",
+      "pos": "28 3 20"
+    },
+    {
+      "state": "planks 1",
+      "pos": "28 3 21"
+    },
+    {
+      "state": "log 1",
+      "pos": "28 3 22"
+    },
+    {
+      "state": "dark_oak_stairs 7",
+      "pos": "29 3 5"
     },
     {
       "state": "leaves 1",
@@ -4958,6 +5443,10 @@
       "pos": "30 3 3"
     },
     {
+      "state": "dark_oak_stairs 7",
+      "pos": "30 3 5"
+    },
+    {
       "state": "spruce_fence",
       "pos": "31 3 16"
     },
@@ -4972,8 +5461,16 @@
       "pos": "31 3 13"
     },
     {
+      "state": "dark_oak_stairs 7",
+      "pos": "31 3 5"
+    },
+    {
       "state": "leaves 1",
       "pos": "31 3 2"
+    },
+    {
+      "state": "dark_oak_stairs 5",
+      "pos": "32 3 5"
     },
     {
       "state": "leaves 5",
@@ -5087,6 +5584,42 @@
       "type": "blocks.Decorative"
     },
     {
+      "state": "wooden_slab 5",
+      "pos": "23 4 22"
+    },
+    {
+      "state": "wooden_slab 5",
+      "pos": "23 4 18"
+    },
+    {
+      "state": "wooden_slab 5",
+      "pos": "24 4 17"
+    },
+    {
+      "state": "dark_oak_stairs",
+      "pos": "24 4 18"
+    },
+    {
+      "state": "dark_oak_stairs",
+      "pos": "24 4 19"
+    },
+    {
+      "state": "dark_oak_stairs",
+      "pos": "24 4 20"
+    },
+    {
+      "state": "dark_oak_stairs",
+      "pos": "24 4 21"
+    },
+    {
+      "state": "dark_oak_stairs",
+      "pos": "24 4 22"
+    },
+    {
+      "state": "wooden_slab 5",
+      "pos": "24 4 23"
+    },
+    {
       "state": "trapdoor 4",
       "pos": "24 4 24",
       "type": "blocks.Decorative"
@@ -5106,6 +5639,34 @@
       "type": "blocks.Decorative"
     },
     {
+      "state": "dark_oak_stairs 5",
+      "pos": "25 4 22"
+    },
+    {
+      "state": "dark_oak_stairs 5",
+      "pos": "25 4 18"
+    },
+    {
+      "state": "spruce_fence",
+      "pos": "26 4 18"
+    },
+    {
+      "state": "wooden_slab 1",
+      "pos": "26 4 22"
+    },
+    {
+      "state": "dark_oak_stairs 4",
+      "pos": "27 4 22"
+    },
+    {
+      "state": "dark_oak_stairs 4",
+      "pos": "27 4 18"
+    },
+    {
+      "state": "log 1",
+      "pos": "27 4 7"
+    },
+    {
       "state": "leaves 1",
       "pos": "28 4 1"
     },
@@ -5118,11 +5679,59 @@
       "pos": "28 4 3"
     },
     {
+      "state": "dark_oak_stairs",
+      "pos": "28 4 4"
+    },
+    {
+      "state": "dark_oak_stairs 3",
+      "pos": "28 4 5"
+    },
+    {
+      "state": "wooden_slab 5",
+      "pos": "28 4 17"
+    },
+    {
+      "state": "dark_oak_stairs 1",
+      "pos": "28 4 18"
+    },
+    {
+      "state": "dark_oak_stairs 1",
+      "pos": "28 4 19"
+    },
+    {
+      "state": "dark_oak_stairs 1",
+      "pos": "28 4 20"
+    },
+    {
+      "state": "dark_oak_stairs 1",
+      "pos": "28 4 21"
+    },
+    {
+      "state": "dark_oak_stairs 1",
+      "pos": "28 4 22"
+    },
+    {
+      "state": "wooden_slab 5",
+      "pos": "28 4 23"
+    },
+    {
+      "state": "wooden_slab 5",
+      "pos": "29 4 22"
+    },
+    {
+      "state": "wooden_slab 5",
+      "pos": "29 4 18"
+    },
+    {
+      "state": "spruce_stairs 3",
+      "pos": "29 4 5"
+    },
+    {
       "state": "leaves 1",
       "pos": "29 4 4"
     },
     {
-      "state": "leaves 1",
+      "state": "leaves 9",
       "pos": "29 4 3"
     },
     {
@@ -5159,6 +5768,10 @@
     },
     {
       "state": "dark_oak_stairs 3",
+      "pos": "30 4 5"
+    },
+    {
+      "state": "dark_oak_stairs 3",
       "pos": "31 4 17"
     },
     {
@@ -5178,6 +5791,10 @@
     {
       "state": "dark_oak_stairs 2",
       "pos": "31 4 12"
+    },
+    {
+      "state": "spruce_stairs 3",
+      "pos": "31 4 5"
     },
     {
       "state": "leaves 1",
@@ -5210,6 +5827,10 @@
     {
       "state": "leaves 1",
       "pos": "32 4 3"
+    },
+    {
+      "state": "dark_oak_stairs 1",
+      "pos": "32 4 5"
     },
     {
       "state": "leaves2 13",
@@ -5260,7 +5881,7 @@
       "pos": "10 5 6"
     },
     {
-      "state": "leaves 5",
+      "state": "leaves 13",
       "pos": "10 5 7"
     },
     {
@@ -5292,7 +5913,7 @@
       "pos": "12 5 6"
     },
     {
-      "state": "leaves 5",
+      "state": "leaves 13",
       "pos": "12 5 7"
     },
     {
@@ -5330,6 +5951,78 @@
     {
       "state": "trapdoor",
       "pos": "24 5 25",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "dark_oak_stairs",
+      "pos": "25 5 22"
+    },
+    {
+      "state": "dark_oak_stairs",
+      "pos": "25 5 21"
+    },
+    {
+      "state": "dark_oak_stairs",
+      "pos": "25 5 20"
+    },
+    {
+      "state": "dark_oak_stairs",
+      "pos": "25 5 19"
+    },
+    {
+      "state": "dark_oak_stairs",
+      "pos": "25 5 18"
+    },
+    {
+      "state": "trapdoor 6",
+      "pos": "26 5 7",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "double_wooden_slab 5",
+      "pos": "26 5 18"
+    },
+    {
+      "state": "wooden_slab 13",
+      "pos": "26 5 22"
+    },
+    {
+      "state": "dark_oak_stairs 1",
+      "pos": "27 5 22"
+    },
+    {
+      "state": "dark_oak_stairs 1",
+      "pos": "27 5 21"
+    },
+    {
+      "state": "dark_oak_stairs 1",
+      "pos": "27 5 20"
+    },
+    {
+      "state": "dark_oak_stairs 1",
+      "pos": "27 5 19"
+    },
+    {
+      "state": "dark_oak_stairs 1",
+      "pos": "27 5 18"
+    },
+    {
+      "state": "trapdoor 5",
+      "pos": "27 5 8",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "glowstone",
+      "pos": "27 5 7"
+    },
+    {
+      "state": "trapdoor 4",
+      "pos": "27 5 6",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "trapdoor 7",
+      "pos": "28 5 7",
       "type": "blocks.Decorative"
     },
     {
@@ -5608,6 +6301,31 @@
     {
       "state": "dark_oak_stairs 1",
       "pos": "17 6 1"
+    },
+    {
+      "state": "wooden_slab 5",
+      "pos": "26 6 18"
+    },
+    {
+      "state": "wooden_slab 5",
+      "pos": "26 6 19"
+    },
+    {
+      "state": "wooden_slab 5",
+      "pos": "26 6 20"
+    },
+    {
+      "state": "wooden_slab 5",
+      "pos": "26 6 21"
+    },
+    {
+      "state": "wooden_slab 5",
+      "pos": "26 6 22"
+    },
+    {
+      "state": "trapdoor",
+      "pos": "27 6 7",
+      "type": "blocks.Decorative"
     },
     {
       "state": "log 1",

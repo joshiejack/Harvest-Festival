@@ -1,7 +1,7 @@
 package joshie.harvest.quests.player.meetings;
 
 import joshie.harvest.api.HFApi;
-import joshie.harvest.api.npc.INPC;
+import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.QuestQuestion;
 import joshie.harvest.core.HFCore;
@@ -14,7 +14,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import static joshie.harvest.npc.HFNPCs.GODDESS;
+import static joshie.harvest.npcs.HFNPCs.GODDESS;
 import static joshie.harvest.quests.Quests.YULIF_MEET;
 
 @HFQuest("tutorial.intro")
@@ -28,7 +28,7 @@ public class QuestMeetGoddess extends QuestQuestion {
     }
 
     @SideOnly(Side.CLIENT)
-    public String getLocalizedScript(EntityPlayer player, EntityLiving entity, INPC npc) {
+    public String getLocalizedScript(EntityPlayer player, EntityLiving entity, NPC npc) {
         //The goddess says hello and asks if you are new
         if (isCompletedEarly) {
             return getLocalized("completed");
@@ -42,7 +42,7 @@ public class QuestMeetGoddess extends QuestQuestion {
     }
 
     @Override
-    public void onChatClosed(EntityPlayer player, EntityLiving entity, INPC npc, boolean isSneaking) {
+    public void onChatClosed(EntityPlayer player, EntityLiving entity, NPC npc, boolean isSneaking) {
         if (isCompletedEarly) {
             complete(player);
             HFApi.quests.completeQuest(YULIF_MEET, player);

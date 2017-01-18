@@ -2,7 +2,7 @@ package joshie.harvest.quests.data;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.CalendarDate;
-import joshie.harvest.api.npc.INPC;
+import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.api.quests.QuestType;
 import joshie.harvest.core.HFTrackers;
@@ -13,7 +13,9 @@ import joshie.harvest.quests.packet.PacketQuestSetCurrent;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.world.World;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.Map;
@@ -53,25 +55,25 @@ public class QuestDataServer extends QuestData {
         } catch (Exception ignored) { return false; }
     }
 
-    private void finish(EntityPlayer player, Quest quest, boolean rewards) {
+    private void finish(@Nonnull World world, @Nullable EntityPlayer player, Quest quest, boolean rewards) {
         finished.add(quest);
-        if (rewards) quest.onQuestCompleted(player);
+        if (rewards && player != null) quest.onQuestCompleted(player);
         if (quest.isRepeatable() && quest.getDaysBetween() > 0) {
-            lastFinished.put(quest, HFApi.calendar.getDate(player.worldObj).copy());
+            lastFinished.put(quest, HFApi.calendar.getDate(world).copy());
         }
     }
 
     //Quests should always REMOVE from the current quests, and add to the finished quests THEMSELVES
     //Only the person who actually completed the quest, will get the reward
     @Override
-    public void markCompleted(EntityPlayer player, Quest quest, boolean rewards) {
+    public void markCompleted(@Nonnull World world, @Nullable EntityPlayer player, Quest quest, boolean rewards) {
         Quest localQuest = getAQuest(quest);
         if (localQuest != null) {
             current.remove(localQuest);
-            finish(player, localQuest, rewards);
-        } else finish(player, quest, rewards);
+            finish(world, player, localQuest, rewards);
+        } else finish(world, player, quest, rewards);
 
-        HFTrackers.markDirty(player.worldObj);
+        HFTrackers.markDirty(world);
         //Sync everything
         if ((quest.getQuestType() == QuestType.PLAYER || quest.getQuestType() == QuestType.TOWN && rewards)) master.sync(player, new PacketQuestCompleted(quest, rewards)); //Let this player claim the reward
         if (quest.getQuestType() == QuestType.TOWN) master.sync(null, new PacketQuestCompleted(quest, false)); //Let the rest of the server know this was completed
@@ -103,12 +105,12 @@ public class QuestDataServer extends QuestData {
 
     private boolean canStart(Quest quest, Set<Quest> active, Set<Quest> finished) {
         //Loops through all the active quests, if any of the quests are real and contain npcs that are used by this quest, we can not start it
-        Set<INPC> npcs = quest.getNPCs();
+        Set<NPC> npcs = quest.getNPCs();
         if (npcs != null) {
             for (Quest a : active) {
                 if (a.isRealQuest()) {
-                    for (INPC npc : npcs) {
-                        for (INPC n : a.getNPCs()) {
+                    for (NPC npc : npcs) {
+                        for (NPC n : a.getNPCs()) {
                             if (n.equals(npc)) {
                                 return false;
                             }

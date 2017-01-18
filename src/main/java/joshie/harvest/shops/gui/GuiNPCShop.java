@@ -7,10 +7,11 @@ import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.helpers.MCClientHelper;
 import joshie.harvest.core.helpers.StackRenderHelper;
 import joshie.harvest.core.lib.HFModInfo;
-import joshie.harvest.npc.entity.EntityNPC;
-import joshie.harvest.npc.gui.GuiNPCBase;
+import joshie.harvest.npcs.NPCHelper;
+import joshie.harvest.npcs.entity.EntityNPC;
+import joshie.harvest.npcs.gui.GuiNPCBase;
 import joshie.harvest.player.stats.StatsClient;
-import joshie.harvest.shops.Shop;
+import joshie.harvest.api.shops.Shop;
 import joshie.harvest.shops.data.ShopData;
 import joshie.harvest.shops.gui.button.*;
 import joshie.harvest.town.TownHelper;
@@ -41,8 +42,8 @@ public class GuiNPCShop<I extends IPurchasable> extends GuiNPCBase {
     public GuiNPCShop(EntityPlayer player, EntityNPC npc, int nextGui, boolean isSelling) {
         super(player, npc, EnumHand.MAIN_HAND, nextGui);
         client = player;
-        shop = npc.getNPC().getShop();
-        if (shop == null || !shop.isOpen(player.worldObj, npc, player)) player.closeScreen();
+        shop = npc.getNPC().getShop(player.worldObj);
+        if (shop == null || !NPCHelper.isShopOpen(npc.worldObj, npc, null, npc.getNPC().getShop(npc.worldObj))) player.closeScreen();
         stats = HFTrackers.getClientPlayerTracker().getStats();
         selling = isSelling;
     }

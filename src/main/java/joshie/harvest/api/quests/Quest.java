@@ -1,7 +1,7 @@
 package joshie.harvest.api.quests;
 
 import joshie.harvest.api.HFApi;
-import joshie.harvest.api.npc.INPC;
+import joshie.harvest.api.npc.NPC;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
@@ -13,6 +13,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.registry.IForgeRegistry;
 import net.minecraftforge.fml.common.registry.IForgeRegistryEntry;
 import net.minecraftforge.fml.common.registry.RegistryBuilder;
@@ -27,7 +28,7 @@ import java.util.Set;
 public abstract class Quest extends IForgeRegistryEntry.Impl<Quest> {
     /** DO NOT MODIFY THE ENTRIES IN THE REGISTRY, ALWAYS MAKE A COPY OF THE QUESTS **/
     public static final IForgeRegistry<Quest> REGISTRY = new RegistryBuilder<Quest>().setName(new ResourceLocation("harvestfestival", "quests")).setType(Quest.class).setIDRange(0, 32000).create();
-    private Set<INPC> npcs = new HashSet<>();
+    private Set<NPC> npcs = new HashSet<>();
     private ItemStack primary;
     protected int quest_stage;
     private QuestType type;
@@ -39,8 +40,16 @@ public abstract class Quest extends IForgeRegistryEntry.Impl<Quest> {
     /** Called when this quest is registered initially **/
     public void onRegistered() {}
 
+    /** Return the priority of the quest,
+     *  Ideally you should leave this as normal
+     *  Except for quests such as festivals.
+     *  This way festivals will take priority. */
+    public EventPriority getPriority() {
+        return EventPriority.NORMAL;
+    }
+
     /** Returns a list of npcs that this quest lines uses */
-    public Set<INPC> getNPCs() {
+    public Set<NPC> getNPCs() {
         return npcs;
     }
 
@@ -84,10 +93,16 @@ public abstract class Quest extends IForgeRegistryEntry.Impl<Quest> {
 
     /** Call this to set the npcs that handle this quest
      * @param npcs    the npcs **/
-    public Quest setNPCs(INPC... npcs) {
+    public Quest setNPCs(NPC... npcs) {
         primary = HFApi.npc.getStackForNPC(npcs[0]);
         Collections.addAll(this.npcs, npcs);
         return this;
+    }
+
+    /** Called to check if this npc is used
+     *  @param npc the npc **/
+    public boolean isNPCUsed(NPC npc) {
+        return getNPCs().contains(npc);
     }
 
     /** Set this quest as a town based quest**/
@@ -164,14 +179,14 @@ public abstract class Quest extends IForgeRegistryEntry.Impl<Quest> {
      * @return  the script*/
     @Nullable
     @SideOnly(Side.CLIENT)
-    public String getLocalizedScript(EntityPlayer player, EntityLiving entity, INPC npc) {
+    public String getLocalizedScript(EntityPlayer player, EntityLiving entity, NPC npc) {
         return null;
     }
 
     /** This is used when you want the quest to have options to select from
      *  You can return this based on the stage */
     @Nullable
-    public Selection getSelection(EntityPlayer player, INPC npc) {
+    public Selection getSelection(EntityPlayer player, NPC npc) {
         return null;
     }
 
@@ -180,12 +195,12 @@ public abstract class Quest extends IForgeRegistryEntry.Impl<Quest> {
      *  @param entity       the npc entity
      *  @param npc          the npc instance**/
     @SuppressWarnings("deprecated")
-    public void onChatClosed(EntityPlayer player, EntityLiving entity, INPC npc, boolean wasSneaking) {
+    public void onChatClosed(EntityPlayer player, EntityLiving entity, NPC npc, boolean wasSneaking) {
         onChatClosed(player, entity, npc);
     }
 
     @Deprecated //TODO: Remove in 0.7+
-    public void onChatClosed(EntityPlayer player, EntityLiving entity, INPC npc) {}
+    public void onChatClosed(EntityPlayer player, EntityLiving entity, NPC npc) {}
 
     /** Called when the quest is completed
      *  @param player       the player that completed the quest **/
@@ -244,6 +259,6 @@ public abstract class Quest extends IForgeRegistryEntry.Impl<Quest> {
     /****
      * EVENTS - Called automatically from vanilla events or npc specific ones
      ****/
-    public void onEntityInteract(EntityPlayer player, @Nullable ItemStack held, EnumHand hand, Entity target) {}
-    public void onRightClickBlock(EntityPlayer player, BlockPos pos, EnumFacing face) {}
+    public boolean onEntityInteract(EntityPlayer player, @Nullable ItemStack held, EnumHand hand, Entity target) { return false; }
+    public boolean onRightClickBlock(EntityPlayer player, BlockPos pos, EnumFacing face) { return false; }
 }

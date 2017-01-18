@@ -1,9 +1,9 @@
 package joshie.harvest.quests.town.seeds;
 
-import joshie.harvest.api.npc.INPC;
+import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.Quest;
-import joshie.harvest.npc.HFNPCs;
+import joshie.harvest.npcs.HFNPCs;
 import joshie.harvest.quests.Quests;
 import joshie.harvest.quests.base.QuestTown;
 import net.minecraft.entity.EntityLiving;
@@ -28,12 +28,12 @@ public class QuestProgress extends QuestTown {
 
     @Nullable
     @SideOnly(Side.CLIENT)
-    public String getLocalizedScript(EntityPlayer player, EntityLiving entity, INPC npc) {
+    public String getLocalizedScript(EntityPlayer player, EntityLiving entity, NPC npc) {
         return "complete";
     }
 
     @Override
-    public void onChatClosed(EntityPlayer player, EntityLiving entity, INPC npc, boolean wasSneaking) {
+    public void onChatClosed(EntityPlayer player, EntityLiving entity, NPC npc, boolean wasSneaking) {
         complete(player);
     }
 }

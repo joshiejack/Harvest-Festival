@@ -1,10 +1,10 @@
 package joshie.harvest.buildings.placeable.entities;
 
 import com.google.gson.annotations.Expose;
-import joshie.harvest.npc.NPC;
-import joshie.harvest.npc.NPCHelper;
-import joshie.harvest.npc.NPCRegistry;
-import joshie.harvest.npc.entity.EntityNPC;
+import joshie.harvest.api.npc.NPC;
+import joshie.harvest.npcs.NPCHelper;
+import joshie.harvest.npcs.NPCRegistry;
+import joshie.harvest.npcs.entity.EntityNPC;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Rotation;

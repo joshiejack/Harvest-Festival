@@ -57,6 +57,11 @@ public class CalendarAPI implements CalendarManager {
     }
 
     @Override
+    public boolean isHoliday(World world) {
+        return HolidayRegistry.INSTANCE.isHoliday(getDate(world));
+    }
+
+    @Override
     public CalendarDate getDate(World world) {
         return HFTrackers.getCalendar(world).getDate();
     }

@@ -1,6 +1,6 @@
 package joshie.harvest.core.helpers;
 
-import joshie.harvest.npc.render.NPCItemRenderer;
+import joshie.harvest.npcs.render.NPCItemRenderer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderItem;

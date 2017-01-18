@@ -5,7 +5,7 @@ import joshie.harvest.core.base.block.BlockHFEnum;
 import joshie.harvest.core.helpers.TextHelper;
 import joshie.harvest.mining.MiningHelper;
 import joshie.harvest.mining.block.BlockPortal.Portal;
-import joshie.harvest.npc.entity.EntityNPC;
+import joshie.harvest.npcs.entity.EntityNPC;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;

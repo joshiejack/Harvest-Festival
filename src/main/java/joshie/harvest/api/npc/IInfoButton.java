@@ -1,5 +1,6 @@
 package joshie.harvest.api.npc;
 
+import joshie.harvest.api.npc.greeting.IGreeting;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.player.EntityPlayer;
@@ -12,11 +13,11 @@ public interface IInfoButton<E extends EntityAgeable> extends IGreeting<E> {
     default String getDisplayName(ItemStack stack) { return stack.getDisplayName(); }
 
     /** If this button can be displayed currently **/
-    default boolean canDisplay(INPC npc, EntityPlayer player) { return true; }
+    default boolean canDisplay(NPC npc, EntityPlayer player) { return true; }
 
     /** Called serverside when this button is clicked
      *  @return true if we should open a new chat window **/
-    default boolean onClicked(INPC npc, EntityPlayer player) { return true; }
+    default boolean onClicked(NPC npc, EntityPlayer player) { return true; }
 
     /** Called to draw the info button **/
     @SideOnly(Side.CLIENT)

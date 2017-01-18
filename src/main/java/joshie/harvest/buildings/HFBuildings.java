@@ -20,7 +20,7 @@ import joshie.harvest.buildings.special.SpecialRuleFestivals;
 import joshie.harvest.core.base.render.FMLDefinition;
 import joshie.harvest.core.base.render.MeshIdentical;
 import joshie.harvest.core.util.annotations.HFLoader;
-import joshie.harvest.npc.HFNPCs;
+import joshie.harvest.npcs.HFNPCs;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -31,9 +31,11 @@ import net.minecraftforge.fml.common.registry.IForgeRegistryEntry.Impl;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import java.lang.reflect.InvocationTargetException;
+
 import static joshie.harvest.core.helpers.ConfigHelper.getBoolean;
 import static joshie.harvest.core.lib.LoadOrder.HFBUILDING;
-import static joshie.harvest.npc.HFNPCs.CLOCKMAKER_CHILD;
+import static joshie.harvest.npcs.HFNPCs.CLOCKMAKER_CHILD;
 
 @HFLoader(priority = HFBUILDING)
 @SuppressWarnings("unchecked")
@@ -87,10 +89,10 @@ public class HFBuildings {
         Class<B> clazz = clazzes.length == 1 ? clazzes[0] : null;
         Building building = null;
         try {
-            if (clazz != null) building = clazz.newInstance().setRegistryName(new ResourceLocation("harvestfestival", name));
-        } catch (InstantiationException | IllegalAccessException ex) { /**/}
+            if (clazz != null) building = clazz.getConstructor(ResourceLocation.class).newInstance(new ResourceLocation("harvestfestival", name));
+        } catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException ex) { /**/}
 
-        if (building == null)  building = new Building().setRegistryName(new ResourceLocation("harvestfestival", name));
+        if (building == null)  building = new Building(new ResourceLocation("harvestfestival", name));
         Building.REGISTRY.register(building); //Register the building!
         return (B) building;
     }

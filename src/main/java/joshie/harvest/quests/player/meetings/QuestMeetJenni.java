@@ -2,7 +2,7 @@ package joshie.harvest.quests.player.meetings;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.Season;
-import joshie.harvest.api.npc.INPC;
+import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.buildings.HFBuildings;
@@ -10,7 +10,7 @@ import joshie.harvest.core.helpers.InventoryHelper;
 import joshie.harvest.core.helpers.InventoryHelper.SearchType;
 import joshie.harvest.crops.HFCrops;
 import joshie.harvest.knowledge.HFNotes;
-import joshie.harvest.npc.HFNPCs;
+import joshie.harvest.npcs.HFNPCs;
 import joshie.harvest.town.TownHelper;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
@@ -22,7 +22,8 @@ import java.util.Set;
 import static joshie.harvest.api.calendar.Season.AUTUMN;
 import static joshie.harvest.api.calendar.Season.SUMMER;
 import static joshie.harvest.core.helpers.InventoryHelper.SPECIAL;
-import static joshie.harvest.npc.HFNPCs.*;
+import static joshie.harvest.npcs.HFNPCs.FLOWER_GIRL;
+import static joshie.harvest.npcs.HFNPCs.GS_OWNER;
 import static joshie.harvest.quests.Quests.JADE_MEET;
 
 @HFQuest("tutorial.supermarket")
@@ -52,7 +53,7 @@ public class QuestMeetJenni extends Quest {
     }
 
     @Override
-    public String getLocalizedScript(EntityPlayer player, EntityLiving entity, INPC npc) {
+    public String getLocalizedScript(EntityPlayer player, EntityLiving entity, NPC npc) {
         if (quest_stage == START && npc == FLOWER_GIRL) {
             if (player.worldObj.rand.nextFloat() < 0.15F && (InventoryHelper.getHandItemIsIn(player, SPECIAL, SearchType.FLOWER, 5) == null)) {
                 if (TownHelper.getClosestTownToEntity(entity).hasBuilding(HFBuildings.SUPERMARKET)) {
@@ -80,7 +81,7 @@ public class QuestMeetJenni extends Quest {
     }
 
     @Override
-    public void onChatClosed(EntityPlayer player, EntityLiving entity, INPC npc, boolean wasSneaking) {
+    public void onChatClosed(EntityPlayer player, EntityLiving entity, NPC npc, boolean wasSneaking) {
         if (quest_stage == START && npc != HFNPCs.FLOWER_GIRL) {
             if (TownHelper.getClosestTownToEntity(entity).hasBuilding(HFBuildings.SUPERMARKET)) {
                 complete(player);

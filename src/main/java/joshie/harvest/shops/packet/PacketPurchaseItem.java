@@ -2,6 +2,7 @@ package joshie.harvest.shops.packet;
 
 import io.netty.buffer.ByteBuf;
 import joshie.harvest.api.shops.IPurchasable;
+import joshie.harvest.api.shops.Shop;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.helpers.MCClientHelper;
 import joshie.harvest.core.network.Packet;
@@ -9,8 +10,6 @@ import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.core.network.PenguinPacket;
 import joshie.harvest.player.PlayerTrackerServer;
 import joshie.harvest.player.stats.StatsServer;
-import joshie.harvest.shops.Shop;
-import joshie.harvest.shops.ShopRegistry;
 import joshie.harvest.shops.data.ShopData;
 import joshie.harvest.town.TownHelper;
 import net.minecraft.entity.player.EntityPlayer;
@@ -40,7 +39,7 @@ public class PacketPurchaseItem extends PenguinPacket {
 
     @Override
     public void fromBytes(ByteBuf buf) {
-        shop = ShopRegistry.INSTANCE.getShop(new ResourceLocation(ByteBufUtils.readUTF8String(buf)));
+        shop = Shop.REGISTRY.get(new ResourceLocation(ByteBufUtils.readUTF8String(buf)));
         purchasable = shop.getPurchasableFromID(ByteBufUtils.readUTF8String(buf));
         amount =  buf.readInt();
     }

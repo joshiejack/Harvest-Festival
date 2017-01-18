@@ -3,14 +3,14 @@ package joshie.harvest.quests.player.schedule;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.CalendarDate;
 import joshie.harvest.api.calendar.Weekday;
-import joshie.harvest.api.npc.INPC;
+import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.calendar.CalendarHelper;
 import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.cooking.item.ItemMeal.Meal;
-import joshie.harvest.npc.HFNPCs;
+import joshie.harvest.npcs.HFNPCs;
 import joshie.harvest.quests.Quests;
 import joshie.harvest.town.TownHelper;
 import net.minecraft.entity.EntityLiving;
@@ -42,7 +42,7 @@ public class QuestKatlinSundayBakingFreeCake extends Quest  {
 
     @Nullable
     @SideOnly(Side.CLIENT)
-    public String getLocalizedScript(EntityPlayer player, EntityLiving entity, INPC npc) {
+    public String getLocalizedScript(EntityPlayer player, EntityLiving entity, NPC npc) {
         if (!TownHelper.getClosestTownToEntity(player).hasBuilding(HFBuildings.CHURCH)) return null;
         CalendarDate today = HFApi.calendar.getDate(player.worldObj);
         if (today.getWeekday() == Weekday.SUNDAY) {
@@ -60,7 +60,7 @@ public class QuestKatlinSundayBakingFreeCake extends Quest  {
     }
 
     @Override
-    public void onChatClosed(EntityPlayer player, EntityLiving entity, INPC npc, boolean wasSneaking) {
+    public void onChatClosed(EntityPlayer player, EntityLiving entity, NPC npc, boolean wasSneaking) {
         if (!TownHelper.getClosestTownToEntity(player).hasBuilding(HFBuildings.CHURCH)) return;
         CalendarDate today = HFApi.calendar.getDate(player.worldObj);
         if (today.getWeekday() == Weekday.SUNDAY) {

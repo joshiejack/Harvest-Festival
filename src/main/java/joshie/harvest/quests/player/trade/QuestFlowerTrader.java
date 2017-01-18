@@ -3,7 +3,7 @@ package joshie.harvest.quests.player.trade;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.CalendarDate;
 import joshie.harvest.api.calendar.Season;
-import joshie.harvest.api.npc.INPC;
+import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.calendar.CalendarHelper;
@@ -22,7 +22,7 @@ import java.util.Set;
 
 import static joshie.harvest.api.calendar.Season.*;
 import static joshie.harvest.core.helpers.InventoryHelper.SPECIAL;
-import static joshie.harvest.npc.HFNPCs.FLOWER_GIRL;
+import static joshie.harvest.npcs.HFNPCs.FLOWER_GIRL;
 
 @HFQuest("trade.seeds")
 public class QuestFlowerTrader extends QuestTrade {
@@ -40,7 +40,7 @@ public class QuestFlowerTrader extends QuestTrade {
 
     @SideOnly(Side.CLIENT)
     @Override
-    public String getLocalizedScript(EntityPlayer player, EntityLiving entity, INPC npc) {
+    public String getLocalizedScript(EntityPlayer player, EntityLiving entity, NPC npc) {
         if (InventoryHelper.getHandItemIsIn(player, SPECIAL, SearchType.FLOWER, 5) != null) {
             CalendarDate today = HFApi.calendar.getDate(player.worldObj);
             int days = date == null ? 5 : CalendarHelper.getDays(date, today);
@@ -60,7 +60,7 @@ public class QuestFlowerTrader extends QuestTrade {
     }
 
     @Override
-    public void onChatClosed(EntityPlayer player, EntityLiving entity, INPC npc, boolean wasSneaking) {
+    public void onChatClosed(EntityPlayer player, EntityLiving entity, NPC npc, boolean wasSneaking) {
         CalendarDate today = HFApi.calendar.getDate(player.worldObj);
         int days = date == null ? 5 : CalendarHelper.getDays(date, today);
         if (date != null && received > 0 && days >= 5) {

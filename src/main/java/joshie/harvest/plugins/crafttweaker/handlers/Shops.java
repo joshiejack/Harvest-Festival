@@ -1,20 +1,18 @@
 package joshie.harvest.plugins.crafttweaker.handlers;
 
 import joshie.harvest.api.calendar.Weekday;
-import joshie.harvest.api.npc.IGreeting;
+import joshie.harvest.api.npc.IInfoButton;
+import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.shops.IPurchasable;
 import joshie.harvest.api.shops.IRequirement;
-import joshie.harvest.npc.NPC;
-import joshie.harvest.npc.NPCRegistry;
-import joshie.harvest.npc.entity.EntityNPC;
+import joshie.harvest.api.shops.Shop;
+import joshie.harvest.npcs.NPCRegistry;
 import joshie.harvest.plugins.crafttweaker.CraftTweaker;
 import joshie.harvest.plugins.crafttweaker.base.BaseUndoable;
 import joshie.harvest.plugins.crafttweaker.wrappers.GreetingShopWrapper;
 import joshie.harvest.plugins.crafttweaker.wrappers.PurchasableWrapper;
 import joshie.harvest.plugins.crafttweaker.wrappers.PurchasableWrapperMaterials;
 import joshie.harvest.shops.HFShops;
-import joshie.harvest.shops.Shop;
-import joshie.harvest.shops.ShopRegistry;
 import joshie.harvest.shops.purchasable.Purchasable;
 import joshie.harvest.shops.purchasable.PurchasableMaterials;
 import minetweaker.MineTweakerAPI;
@@ -43,8 +41,8 @@ public class Shops {
     public static void addShopToNPC(String npc, String shop, String greeting, String openinghours, @Optional String hoursText) {
         NPC theNPC = NPCRegistry.REGISTRY.getValue(new ResourceLocation(MODID, npc));
         if (theNPC == null) CraftTweaker.logError(String.format("No NPC with the id %s could be found. Use /hf npclist for a list of ids", npc));
-        else if (theNPC.getShop() != null) CraftTweaker.logError(String.format("Attempted to add a shop to %s when they already have a shop", theNPC.getLocalizedName()));
-        else if (ShopRegistry.INSTANCE.shops.containsKey(new ResourceLocation("MineTweaker3", shop.toLowerCase()))) CraftTweaker.logError(String.format("Attempted to add a shop with a duplicate id: %s", "MineTweaker3:" + shop.toLowerCase()));
+        else if (theNPC.isShopkeeper()) CraftTweaker.logError(String.format("Attempted to add a shop to %s when they already have a shop", theNPC.getLocalizedName()));
+        else if (Shop.REGISTRY.containsKey(new ResourceLocation("MineTweaker3", shop.toLowerCase()))) CraftTweaker.logError(String.format("Attempted to add a shop with a duplicate id: %s", "MineTweaker3:" + shop.toLowerCase()));
         else MineTweakerAPI.apply(new AddShop(theNPC, shop, greeting, openinghours, hoursText));
     }
 
@@ -54,7 +52,7 @@ public class Shops {
         private final NPC npc;
         private final String greeting;
         private final String openinghours;
-        private IGreeting hours;
+        private IInfoButton hours;
         private Shop shop;
 
         AddShop(NPC npc, String shop, String greeting, String openinghours, @Nullable String hoursText) {
@@ -90,15 +88,15 @@ public class Shops {
                 }
 
                 @Override
-                public String getWelcome(EntityNPC npc) {
+                public String getWelcome(NPC npc) {
                     return greeting;
                 }
             };
 
             npc.setShop(shop);
-            if (hours == null) npc.setHasInfo(null, null);
-            else npc.setHasInfo(null, hours);
-            ShopRegistry.INSTANCE.shops.put(resource, shop);
+            if (hours == null) npc.setHasInfo(null);
+            else npc.setHasInfo(hours);
+            Shop.REGISTRY.put(resource, shop);
             String[] hours = openinghours.replace(" ", "").split(";");
             for (String time: hours) processTimeString(time);
         }
@@ -111,8 +109,8 @@ public class Shops {
         @Override
         public void undo() {
             npc.setShop(null);
-            npc.setHasInfo(null, null);
-            ShopRegistry.INSTANCE.shops.remove(resource);
+            npc.setHasInfo(null);
+            Shop.REGISTRY.remove(resource);
         }
     }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -122,7 +120,7 @@ public class Shops {
     @ZenMethod
     @SuppressWarnings("unused")
     public static void addPurchasable(String shop, IItemStack sellable, long cost, @Optional IIngredient[] materials) {
-        Shop theShop = ShopRegistry.INSTANCE.getShop(new ResourceLocation(shop));
+        Shop theShop = Shop.REGISTRY.get(new ResourceLocation(shop));
         if (theShop == null) CraftTweaker.logError(String.format("No shop with the id %s could be found. Use /hf shoplist for a list of ids", shop));
         MineTweakerAPI.apply(new AddPurchasable(theShop, asStack(sellable), cost, CraftTweaker.asRequirements(materials)));
     }
@@ -194,7 +192,7 @@ public class Shops {
     @ZenMethod
     @SuppressWarnings("unused")
     public static void removePurchasable(String shop, String input) {
-        Shop theShop = ShopRegistry.INSTANCE.getShop(new ResourceLocation(shop));
+        Shop theShop = Shop.REGISTRY.get(new ResourceLocation(shop));
         String id = fixPurchasableID(input);
         if (theShop == null) CraftTweaker.logError(String.format("No shop with the id %s could be found. Use /hf shoplist for a list of ids", shop));
         else if (theShop.getPurchasableFromID(id) == null) CraftTweaker.logError(String.format("No purchasable with the id %s could be found in " + theShop.getLocalizedName(), id));
@@ -233,7 +231,7 @@ public class Shops {
     @ZenMethod
     @SuppressWarnings("unused")
     public static void adjustPurchasable(String shop, String input, long cost, @Optional IItemStack[] materials) {
-        Shop theShop = ShopRegistry.INSTANCE.getShop(new ResourceLocation(shop));
+        Shop theShop = Shop.REGISTRY.get(new ResourceLocation(shop));
         String id = fixPurchasableID(input);
         if (theShop == null) CraftTweaker.logError(String.format("No shop with the id %s could be found. Use /hf shoplist for a list of ids", shop));
         else if (theShop.getPurchasableFromID(id) == null) CraftTweaker.logError(String.format("No purchasable with the id %s could be found in " + theShop.getLocalizedName(), id));

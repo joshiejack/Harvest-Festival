@@ -3,9 +3,8 @@ package joshie.harvest.debug;
 import com.google.common.collect.Lists;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.shops.IPurchasable;
+import joshie.harvest.api.shops.Shop;
 import joshie.harvest.core.commands.HFCommand;
-import joshie.harvest.shops.Shop;
-import joshie.harvest.shops.ShopRegistry;
 import net.minecraft.item.ItemStack;
 
 import java.util.List;
@@ -25,7 +24,7 @@ public class CommandExportBuilder extends CommandExportHeld {
 
 
     private String getStore(ItemStack stack) {
-        for (Shop shop: ShopRegistry.INSTANCE.shops.values()) {
+        for (Shop shop: Shop.REGISTRY.values()) {
             for (IPurchasable purchasable: shop.getContents()) {
                 if (purchasable.getDisplayStack().isItemEqual(stack)) {
                     return shop.getLocalizedName();
@@ -37,7 +36,7 @@ public class CommandExportBuilder extends CommandExportHeld {
     }
 
     private long getCost(ItemStack stack) {
-        for (Shop shop: ShopRegistry.INSTANCE.shops.values()) {
+        for (Shop shop: Shop.REGISTRY.values()) {
             for (IPurchasable purchasable: shop.getContents()) {
                 if (purchasable.getDisplayStack().isItemEqual(stack)) {
                     return purchasable.getCost();

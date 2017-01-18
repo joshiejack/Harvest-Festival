@@ -1,10 +1,13 @@
 package joshie.harvest.quests.data;
 
 import joshie.harvest.api.quests.Quest;
-import joshie.harvest.npc.entity.EntityNPC;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 @SideOnly(Side.CLIENT)
 public class QuestDataClient extends QuestData {
@@ -14,28 +17,13 @@ public class QuestDataClient extends QuestData {
     
     //Removes the quest from the current and available lists
     @Override
-    public void markCompleted(EntityPlayer player, Quest quest, boolean rewards) {
+    public void markCompleted(@Nonnull World world, @Nullable EntityPlayer player, Quest quest, boolean rewards) {
         Quest aQuest = getAQuest(quest);
-        if (aQuest != null && rewards) {
+        if (aQuest != null && rewards && player != null) {
             aQuest.onQuestCompleted(player);
         }
 
         current.remove(quest);
         finished.add(quest);
-    }
-
-    private String getScript(Quest quest, EntityPlayer player, EntityNPC entity) {
-        return quest.getLocalizedScript(player, entity, entity.getNPC());
-    }
-
-    public String getScript(EntityPlayer player, EntityNPC npc) {
-        for (Quest q : current) {
-            if (q.getNPCs().contains(npc.getNPC())) {
-                String script = getScript(q, player, npc);
-                if (script != null) return script;
-            }
-        }
-
-        return null;
     }
 }

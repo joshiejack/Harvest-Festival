@@ -2,7 +2,7 @@ package joshie.harvest.quests.town.tasks;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.crops.Crop;
-import joshie.harvest.api.npc.INPC;
+import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.player.RelationshipType;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.cooking.HFCooking;
@@ -10,7 +10,7 @@ import joshie.harvest.cooking.item.ItemMeal.Meal;
 import joshie.harvest.core.helpers.InventoryHelper;
 import joshie.harvest.core.helpers.TextHelper;
 import joshie.harvest.crops.HFCrops;
-import joshie.harvest.npc.HFNPCs;
+import joshie.harvest.npcs.HFNPCs;
 import joshie.harvest.quests.base.QuestDaily;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
@@ -54,7 +54,7 @@ public class QuestCollect extends QuestDaily {
     @Override
     @Nullable
     @SideOnly(Side.CLIENT)
-    public String getLocalizedScript(EntityPlayer player, EntityLiving entity, INPC npc) {
+    public String getLocalizedScript(EntityPlayer player, EntityLiving entity, NPC npc) {
         String name = "crop" + WordUtils.capitalizeFully(crop.getRegistryName().getResourcePath(), '_').replace("_", "");
         if (InventoryHelper.getHandItemIsIn(player, ORE_DICTIONARY, name, amount) != null) {
             return TextHelper.getRandomSpeech(npc, "harvestfestival.quest.collect.crops.complete", 32);
@@ -64,7 +64,7 @@ public class QuestCollect extends QuestDaily {
     }
 
     @Override
-    public void onChatClosed(EntityPlayer player, EntityLiving entity, INPC npc, boolean wasSneaking) {
+    public void onChatClosed(EntityPlayer player, EntityLiving entity, NPC npc, boolean wasSneaking) {
         String name = "crop" + WordUtils.capitalizeFully(crop.getRegistryName().getResourcePath(), '_').replace("_", "");
         if (InventoryHelper.takeItemsIfHeld(player, ORE_DICTIONARY, name, amount) != null) {
             complete(player);

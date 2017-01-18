@@ -1,19 +1,17 @@
 package joshie.harvest.plugins.crafttweaker.wrappers;
 
-import joshie.harvest.api.npc.IGreeting;
-import joshie.harvest.api.npc.INPC;
+import joshie.harvest.api.npc.NPC;
+import joshie.harvest.api.npc.greeting.GreetingShop;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.player.EntityPlayer;
 
-public class GreetingShopWrapper implements IGreeting {
-    private final String text;
-
+public class GreetingShopWrapper extends GreetingShop {
     public GreetingShopWrapper(String text) {
-        this.text = text;
+        super(text);
     }
 
     @Override
-    public String getLocalizedText(EntityPlayer player, EntityAgeable ageable, INPC npc) {
+    public String getLocalizedText(EntityPlayer player, EntityAgeable ageable, NPC npc) {
         return text;
     }
 }

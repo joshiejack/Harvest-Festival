@@ -1,19 +1,19 @@
 package joshie.harvest.quests.town.building;
 
 import joshie.harvest.api.HFApi;
-import joshie.harvest.api.npc.INPC;
+import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.player.RelationshipType;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.crops.HFCrops;
-import joshie.harvest.npc.HFNPCs;
+import joshie.harvest.npcs.HFNPCs;
 import joshie.harvest.quests.base.QuestTown;
 import joshie.harvest.town.TownHelper;
 import joshie.harvest.town.data.TownData;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 
-import static joshie.harvest.npc.HFNPCs.GODDESS;
+import static joshie.harvest.npcs.HFNPCs.GODDESS;
 
 @HFQuest("building.goddess")
 public class QuestGoddessPond extends QuestTown {
@@ -22,7 +22,7 @@ public class QuestGoddessPond extends QuestTown {
     }
 
     @Override
-    public String getLocalizedScript(EntityPlayer player, EntityLiving entity, INPC npc) {
+    public String getLocalizedScript(EntityPlayer player, EntityLiving entity, NPC npc) {
         TownData data = TownHelper.getClosestTownToEntity(player);
         if (data.hasBuilding(HFBuildings.GODDESS_POND)) {
             return getLocalized("thanks");
@@ -32,7 +32,7 @@ public class QuestGoddessPond extends QuestTown {
     }
 
     @Override
-    public void onChatClosed(EntityPlayer player, EntityLiving entity, INPC npc, boolean wasSneaking) {
+    public void onChatClosed(EntityPlayer player, EntityLiving entity, NPC npc, boolean wasSneaking) {
         if (TownHelper.getClosestTownToEntity(entity).hasBuilding(HFBuildings.GODDESS_POND)) {
             complete(player);
         }

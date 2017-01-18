@@ -3,7 +3,7 @@ package joshie.harvest.api.buildings;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.CalendarDate;
 import joshie.harvest.api.core.ISpecialRules;
-import joshie.harvest.api.npc.INPC;
+import joshie.harvest.api.npc.NPC;
 import joshie.harvest.buildings.render.BuildingKey;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -37,7 +37,11 @@ public class Building extends IForgeRegistryEntry.Impl<Building> {
     private int length;
     private boolean canHaveMultiple;
 
-    public Building(){}
+    public Building() {}
+    public Building(ResourceLocation resource){
+        this.setRegistryName(resource);
+        REGISTRY.register(this);
+    }
 
     public void initBuilding() {
         toLocalise = getRegistryName().getResourceDomain().toLowerCase(Locale.ENGLISH) + ".structures." + this.getRegistryName().getResourcePath().toLowerCase(Locale.ENGLISH);
@@ -73,9 +77,9 @@ public class Building extends IForgeRegistryEntry.Impl<Building> {
         return this;
     }
 
-    public Building setInhabitants(INPC... npc) {
-        for (INPC inpc: npc) {
-            inhabitants.add(inpc.getResource());
+    public Building setInhabitants(NPC... npcs) {
+        for (NPC npc: npcs) {
+            inhabitants.add(npc.getRegistryName());
         }
 
         return this;

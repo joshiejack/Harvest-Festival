@@ -10,7 +10,7 @@ import javax.annotation.Nonnull;
 public interface ISpecialRules<E extends EntityLivingBase> {
     /** Whether this can currently be done/bought
      *  @param world    the world object
-     *  @param player   the player object
+     *  @param entity   the player object
      *  @param amount   the amount of times attempting to perform this/buy this item **/
-    boolean canDo(@Nonnull World world, @Nonnull E player, int amount);
+    boolean canDo(@Nonnull World world, @Nonnull E entity, int amount);
 }

@@ -2,19 +2,19 @@ package joshie.harvest.quests.player.meetings;
 
 import joshie.harvest.animals.HFAnimals;
 import joshie.harvest.animals.entity.EntityHarvestChicken;
+import joshie.harvest.animals.item.ItemAnimalProduct.Sizeable;
 import joshie.harvest.animals.item.ItemAnimalTool.Tool;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.core.Size;
-import joshie.harvest.api.npc.INPC;
+import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.api.quests.QuestQuestion;
 import joshie.harvest.api.quests.Selection;
 import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.core.helpers.InventoryHelper;
-import joshie.harvest.animals.item.ItemAnimalProduct.Sizeable;
 import joshie.harvest.knowledge.HFNotes;
-import joshie.harvest.npc.HFNPCs;
+import joshie.harvest.npcs.HFNPCs;
 import joshie.harvest.quests.Quests;
 import joshie.harvest.quests.selection.TutorialSelection;
 import joshie.harvest.town.TownHelper;
@@ -35,8 +35,8 @@ import static joshie.harvest.animals.block.BlockTray.Tray.FEEDER_EMPTY;
 import static joshie.harvest.animals.block.BlockTray.Tray.NEST_EMPTY;
 import static joshie.harvest.animals.item.ItemAnimalTool.Tool.CHICKEN_FEED;
 import static joshie.harvest.core.helpers.InventoryHelper.ITEM_STACK;
-import static joshie.harvest.npc.HFNPCs.GODDESS;
-import static joshie.harvest.npc.HFNPCs.POULTRY;
+import static joshie.harvest.npcs.HFNPCs.GODDESS;
+import static joshie.harvest.npcs.HFNPCs.POULTRY;
 
 @HFQuest("tutorial.chicken")
 public class QuestMeetAshlee extends QuestQuestion {
@@ -60,7 +60,7 @@ public class QuestMeetAshlee extends QuestQuestion {
     }
 
     @Override
-    public void onEntityInteract(EntityPlayer player, @Nullable ItemStack held, EnumHand hand, Entity target) {
+    public boolean onEntityInteract(EntityPlayer player, @Nullable ItemStack held, EnumHand hand, Entity target) {
         if (!hasFed && (quest_stage == ACTION1 || quest_stage == ACTION2)) {
             if (target instanceof EntityChicken) {
                 if (held != null) {
@@ -69,30 +69,36 @@ public class QuestMeetAshlee extends QuestQuestion {
                     }
 
                     increaseStage(player);
+                    return true;
                 }
             }
         }
+
+        return false;
     }
 
     @Override
-    public void onRightClickBlock(EntityPlayer player, BlockPos pos, EnumFacing face) {
+    public boolean onRightClickBlock(EntityPlayer player, BlockPos pos, EnumFacing face) {
         if (!hasThrown && (quest_stage == ACTION1 || quest_stage == ACTION2)) {
             for (Entity entity: player.getPassengers()) {
                 if (entity instanceof EntityHarvestChicken) {
                     hasThrown = true; //You have now thrown!
                     increaseStage(player);
+                    return true;
                 }
             }
         }
+
+        return false;
     }
 
     @Override
-    public Selection getSelection(EntityPlayer player, INPC npc) {
+    public Selection getSelection(EntityPlayer player, NPC npc) {
         return npc == POULTRY && quest_stage <= 0 ? selection : null;
     }
 
     @Override
-    public String getLocalizedScript(EntityPlayer player, EntityLiving entity, INPC npc) {
+    public String getLocalizedScript(EntityPlayer player, EntityLiving entity, NPC npc) {
         if (npc == HFNPCs.GODDESS) {
             if (player.worldObj.rand.nextFloat() < 0.15F) {
                 if (TownHelper.getClosestTownToEntity(entity).hasBuilding(HFBuildings.POULTRY_FARM)) {
@@ -155,7 +161,7 @@ public class QuestMeetAshlee extends QuestQuestion {
     }
 
     @Override
-    public void onChatClosed(EntityPlayer player, EntityLiving entity, INPC npc, boolean wasSneaking) {
+    public void onChatClosed(EntityPlayer player, EntityLiving entity, NPC npc, boolean wasSneaking) {
         if (!TownHelper.getClosestTownToEntity(entity).hasBuilding(HFBuildings.POULTRY_FARM)) return;
         if (isCompletedEarly) {
             complete(player);

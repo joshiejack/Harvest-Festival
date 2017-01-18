@@ -1,6 +1,6 @@
 package joshie.harvest.quests.base;
 
-import joshie.harvest.api.npc.INPC;
+import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.cooking.CookingHelper;
 import joshie.harvest.quests.Quests;
@@ -11,7 +11,7 @@ import java.util.Set;
 public class QuestRecipe extends QuestFriendship {
     protected final String recipe;
 
-    public QuestRecipe(String recipe, INPC npc, int relationship) {
+    public QuestRecipe(String recipe, NPC npc, int relationship) {
         super(npc, relationship);
         this.recipe = recipe;
     }

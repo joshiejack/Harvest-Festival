@@ -1,14 +1,14 @@
 package joshie.harvest.quests.player.meetings;
 
 import joshie.harvest.api.HFApi;
-import joshie.harvest.api.npc.INPC;
+import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.helpers.InventoryHelper;
 import joshie.harvest.knowledge.HFNotes;
-import joshie.harvest.npc.HFNPCs;
+import joshie.harvest.npcs.HFNPCs;
 import joshie.harvest.quests.HFQuests;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
@@ -20,7 +20,7 @@ import java.util.Set;
 import static joshie.harvest.core.helpers.InventoryHelper.ORE_DICTIONARY;
 import static joshie.harvest.core.helpers.InventoryHelper.SPECIAL;
 import static joshie.harvest.core.helpers.InventoryHelper.SearchType.FLOWER;
-import static joshie.harvest.npc.HFNPCs.*;
+import static joshie.harvest.npcs.HFNPCs.*;
 import static joshie.harvest.quests.Quests.GODDESS_MEET;
 
 @HFQuest("tutorial.carpenter")
@@ -67,7 +67,7 @@ public class QuestMeetYulif extends Quest {
     }
 
     @Override
-    public String getLocalizedScript(EntityPlayer player, EntityLiving entity, INPC npc) {
+    public String getLocalizedScript(EntityPlayer player, EntityLiving entity, NPC npc) {
         if (quest_stage == WELCOME && npc == HFNPCs.GODDESS) {
             return getLocalized("welcome", getWoodAmount());
         } else if (quest_stage == LOGS && npc == HFNPCs.GODDESS) {
@@ -122,7 +122,7 @@ public class QuestMeetYulif extends Quest {
 
     /* Rewards Logic */
     @Override
-    public void onChatClosed(EntityPlayer player, EntityLiving entity, INPC npc, boolean wasSneaking) {
+    public void onChatClosed(EntityPlayer player, EntityLiving entity, NPC npc, boolean wasSneaking) {
         if (quest_stage == WELCOME && npc == HFNPCs.GODDESS) {
             increaseStage(player);
         } else if (quest_stage == LOGS && npc == HFNPCs.GODDESS) {

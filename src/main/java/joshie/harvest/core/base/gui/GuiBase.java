@@ -2,7 +2,7 @@ package joshie.harvest.core.base.gui;
 
 import joshie.harvest.core.helpers.MCClientHelper;
 import joshie.harvest.core.lib.HFModInfo;
-import joshie.harvest.npc.gui.ContainerNPCChat;
+import joshie.harvest.npcs.gui.ContainerNPCChat;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;

@@ -1,5 +1,6 @@
 package joshie.harvest.quests;
 
+import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.AnimalStats;
 import joshie.harvest.api.quests.IQuestHelper;
 import joshie.harvest.api.quests.Quest;
@@ -9,12 +10,11 @@ import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.core.helpers.SpawnItemHelper;
 import joshie.harvest.core.util.annotations.HFApiImplementation;
-import joshie.harvest.npc.entity.EntityNPC;
+import joshie.harvest.npcs.entity.EntityNPC;
 import joshie.harvest.player.PlayerTrackerServer;
 import joshie.harvest.quests.packet.PacketQuestCompleteEarly;
 import joshie.harvest.quests.packet.PacketSyncData;
 import joshie.harvest.town.TownHelper;
-import joshie.harvest.town.data.TownDataClient;
 import joshie.harvest.town.data.TownDataServer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
@@ -26,6 +26,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.util.FakePlayer;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static joshie.harvest.core.lib.HFModInfo.MODID;
@@ -41,16 +42,16 @@ public class QuestHelper implements IQuestHelper {
     @Override
     public void completeQuestConditionally(Quest quest, EntityPlayer player) {
         if (!hasCompleted(quest, player)) {
-            if (quest.getQuestType() == QuestType.PLAYER) HFTrackers.getPlayerTrackerFromPlayer(player).getQuests().markCompleted(player, quest, false);
-            else TownHelper.getClosestTownToEntity(player).getQuests().markCompleted(player, quest, false);
+            if (quest.getQuestType() == QuestType.PLAYER) HFTrackers.getPlayerTrackerFromPlayer(player).getQuests().markCompleted(player.worldObj, player, quest, false);
+            else TownHelper.getClosestTownToEntity(player).getQuests().markCompleted(player.worldObj, player, quest, false);
         }
     }
 
     @Override
     public void completeQuest(Quest quest, EntityPlayer player) {
         if (!player.worldObj.isRemote) {
-            if (quest.getQuestType() == QuestType.PLAYER) HFTrackers.getPlayerTrackerFromPlayer(player).getQuests().markCompleted(player, quest, true);
-            else TownHelper.getClosestTownToEntity(player).getQuests().markCompleted(player, quest, true);
+            if (quest.getQuestType() == QuestType.PLAYER) HFTrackers.getPlayerTrackerFromPlayer(player).getQuests().markCompleted(player.worldObj, player, quest, true);
+            else TownHelper.getClosestTownToEntity(player).getQuests().markCompleted(player.worldObj, player, quest, true);
         }
     }
 
@@ -138,6 +139,7 @@ public class QuestHelper implements IQuestHelper {
         List<Quest> all = new ArrayList<>();
         all.addAll(HFTrackers.getPlayerTrackerFromPlayer(player).getQuests().getCurrent());
         all.addAll(TownHelper.getClosestTownToEntity(player).getQuests().getCurrent());
+        Collections.sort(all, ((o1, o2) -> { return o1.getPriority().compareTo(o2.getPriority()); }));
         return all;
     }
 
@@ -148,17 +150,26 @@ public class QuestHelper implements IQuestHelper {
     }
 
     public static String getScript(EntityPlayer player, EntityNPC npc) {
-        String script = HFTrackers.getClientPlayerTracker().getQuests().getScript(player, npc);
-        if (script != null) return script;
-        else {
-            return TownHelper.<TownDataClient>getClosestTownToEntity(player).getQuests().getScript(player, npc);
+        List<Quest> quests = HFApi.quests.getCurrentQuests(player);
+        for (Quest q : quests) {
+            if (q.getNPCs().contains(npc.getNPC())) {
+                String script = q.getLocalizedScript(player, npc, npc.getNPC());
+                if (script != null) return script;
+            }
         }
+
+        return null;
     }
 
     public static Quest getSelection(EntityPlayer player, EntityNPC npc) {
-        Quest quest = HFTrackers.getPlayerTrackerFromPlayer(player).getQuests().getSelection(player, npc);
-        if (quest != null) return quest;
-        else return TownHelper.getClosestTownToEntity(player).getQuests().getSelection(player, npc);
+        List<Quest> quests = HFApi.quests.getCurrentQuests(player);
+        for (Quest q : quests) {
+            if (q.getNPCs().contains(npc.getNPC())) {
+                if (q.getSelection(player, npc.getNPC()) != null) return q;
+            }
+        }
+
+        return null;
     }
 
     public static Quest getSelectiomFromID(EntityPlayer player, int selection) {

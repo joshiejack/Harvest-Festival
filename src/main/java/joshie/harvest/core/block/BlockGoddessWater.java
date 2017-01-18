@@ -3,10 +3,11 @@ package joshie.harvest.core.block;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.handlers.GoddessHandler;
 import joshie.harvest.core.network.PacketHandler;
-import joshie.harvest.npc.HFNPCs;
-import joshie.harvest.npc.NPCRegistry;
-import joshie.harvest.npc.entity.EntityNPCGoddess;
-import joshie.harvest.npc.packet.PacketGoddessGift;
+import joshie.harvest.npcs.HFNPCs;
+import joshie.harvest.npcs.NPCHelper;
+import joshie.harvest.npcs.NPCRegistry;
+import joshie.harvest.npcs.entity.EntityNPCGoddess;
+import joshie.harvest.npcs.packet.PacketGoddessGift;
 import joshie.harvest.player.relationships.RelationshipData;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -53,7 +54,7 @@ public class BlockGoddessWater extends BlockFluidClassic {
                         EntityPlayer player = world.getPlayerEntityByName(item.getThrower());
                         RelationshipData data = HFTrackers.getPlayerTrackerFromPlayer(player).getRelationships();
                         if (!data.hasGifted(HFNPCs.GODDESS.getUUID())) {
-                            HFTrackers.getPlayerTrackerFromPlayer(player).getRelationships().gift(player, HFNPCs.GODDESS.getUUID(), HFNPCs.GODDESS.getGiftValue(stack).getRelationPoints());
+                            HFTrackers.getPlayerTrackerFromPlayer(player).getRelationships().gift(player, HFNPCs.GODDESS.getUUID(), NPCHelper.getGiftValue(HFNPCs.GODDESS, stack).getRelationPoints());
                             double x = item.posX;
                             double y = item.posY;
                             double z = item.posZ;

@@ -1,12 +1,11 @@
 package joshie.harvest.shops.data;
 
-import joshie.harvest.api.HFApi;
 import joshie.harvest.api.shops.IPurchasable;
+import joshie.harvest.api.shops.Shop;
 import joshie.harvest.core.helpers.CollectionHelper;
 import joshie.harvest.core.helpers.NBTHelper;
 import joshie.harvest.core.util.interfaces.INBTSerializableMap;
 import joshie.harvest.player.tracking.StackSold;
-import joshie.harvest.shops.Shop;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 
@@ -64,7 +63,7 @@ public class ShopInventory implements INBTSerializableMap<Shop, ShopInventory, N
 
     @Override
     public void deserializeNBT(NBTTagCompound nbt) {
-        shop = (Shop) HFApi.shops.getShop(new ResourceLocation(nbt.getString("Shop")));
+        shop = Shop.REGISTRY.get(new ResourceLocation(nbt.getString("Shop")));
         soldToShop = NBTHelper.readHashSet(StackSold.class, nbt.getTagList("Purchased", 10));
         purchasedFromShop = NBTHelper.readHashSet(StackSold.class, nbt.getTagList("Sold", 10));
     }

@@ -2,11 +2,11 @@ package joshie.harvest.town.data;
 
 import com.google.common.cache.Cache;
 import joshie.harvest.api.HFApi;
+import joshie.harvest.api.buildings.Building;
 import joshie.harvest.api.calendar.CalendarDate;
-import joshie.harvest.api.npc.INPC;
+import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.api.quests.QuestType;
-import joshie.harvest.api.buildings.Building;
 import joshie.harvest.buildings.BuildingStage;
 import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.calendar.CalendarHelper;
@@ -16,12 +16,11 @@ import joshie.harvest.core.helpers.NBTHelper;
 import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.core.util.interfaces.IQuestMaster;
 import joshie.harvest.gathering.GatheringData;
-import joshie.harvest.npc.HFNPCs;
-import joshie.harvest.npc.NPC;
-import joshie.harvest.npc.NPCHelper;
-import joshie.harvest.npc.NPCRegistry;
-import joshie.harvest.npc.entity.EntityNPCBuilder;
-import joshie.harvest.npc.entity.EntityNPCHuman;
+import joshie.harvest.npcs.HFNPCs;
+import joshie.harvest.npcs.NPCHelper;
+import joshie.harvest.npcs.NPCRegistry;
+import joshie.harvest.npcs.entity.EntityNPCBuilder;
+import joshie.harvest.npcs.entity.EntityNPCHuman;
 import joshie.harvest.quests.Quests;
 import joshie.harvest.quests.data.QuestDataServer;
 import joshie.harvest.quests.packet.PacketQuest;
@@ -69,7 +68,7 @@ public class TownDataServer extends TownData<QuestDataServer> implements IQuestM
         else PacketHandler.sendToDimension(dimension, packet.setUUID(getID()));
     }
 
-    private boolean isDead(INPC npc) {
+    private boolean isDead(NPC npc) {
         return deadVillagers.contains(((NPC)npc).getRegistryName());
     }
 

@@ -1,11 +1,11 @@
 package joshie.harvest.shops.gui;
 
 import joshie.harvest.HarvestFestival;
-import joshie.harvest.api.npc.INPC;
+import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.api.quests.Selection;
 import joshie.harvest.core.handlers.GuiHandler;
-import joshie.harvest.shops.Shop;
+import joshie.harvest.api.shops.Shop;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.common.eventhandler.Event.Result;
@@ -23,7 +23,7 @@ public class ShopSelection extends Selection {
 
     /** Called when the option is selected **/
     @Override
-    public Result onSelected(EntityPlayer player, EntityLiving entity, INPC npc, Quest quest, int option) {
+    public Result onSelected(EntityPlayer player, EntityLiving entity, NPC npc, Quest quest, int option) {
         //If we are able to buy from this shop
         if(shop.canBuyFromShop(player) && option == 1) {
             player.openGui(HarvestFestival.instance, GuiHandler.SHOP_MENU, player.worldObj, entity.getEntityId(), 0, 0);

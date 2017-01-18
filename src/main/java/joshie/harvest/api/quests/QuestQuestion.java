@@ -1,7 +1,7 @@
 package joshie.harvest.api.quests;
 
 import joshie.harvest.api.HFApi;
-import joshie.harvest.api.npc.INPC;
+import joshie.harvest.api.npc.NPC;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
@@ -22,7 +22,7 @@ public abstract class QuestQuestion extends Quest {
     }
 
     @Override
-    public Selection getSelection(EntityPlayer player, INPC npc) {
+    public Selection getSelection(EntityPlayer player, NPC npc) {
         return quest_stage <= 0 ? selection : null;
     }
 
@@ -49,7 +49,7 @@ public abstract class QuestQuestion extends Quest {
         }
 
         @Override
-        public Result onSelected(EntityPlayer player, EntityLiving entity, INPC npc, QuestQuestion quest, int option) {
+        public Result onSelected(EntityPlayer player, EntityLiving entity, NPC npc, QuestQuestion quest, int option) {
             if (option == 1) { //If it's our first time, start tutorials
                 quest.increaseStage(player);
             } else { //If it's not then give the player the essentials to get started

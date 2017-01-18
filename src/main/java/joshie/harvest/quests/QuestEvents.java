@@ -16,7 +16,7 @@ public class QuestEvents {
     public void onEntityInteract(PlayerInteractEvent.EntityInteract event) {
         List<Quest> quests = HFApi.quests.getCurrentQuests(event.getEntityPlayer());
         for (Quest quest : quests) {
-            quest.onEntityInteract(event.getEntityPlayer(), event.getItemStack(), event.getHand(), event.getTarget());
+            if (quest.onEntityInteract(event.getEntityPlayer(), event.getItemStack(), event.getHand(), event.getTarget())) break;
         }
     }
 
@@ -24,7 +24,7 @@ public class QuestEvents {
     public void onRightClickGround(PlayerInteractEvent.RightClickBlock event) {
         List<Quest> quests = HFApi.quests.getCurrentQuests(event.getEntityPlayer());
         for (Quest quest : quests) {
-            quest.onRightClickBlock(event.getEntityPlayer(), event.getPos(), event.getFace());
+            if(quest.onRightClickBlock(event.getEntityPlayer(), event.getPos(), event.getFace())) break;
         }
     }
 }

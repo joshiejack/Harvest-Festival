@@ -1,7 +1,7 @@
 package joshie.harvest.quests.player.meetings;
 
 import joshie.harvest.api.HFApi;
-import joshie.harvest.api.npc.INPC;
+import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.api.quests.QuestQuestion;
@@ -20,7 +20,7 @@ import net.minecraft.item.ItemStack;
 
 import java.util.Set;
 
-import static joshie.harvest.npc.HFNPCs.CAFE_OWNER;
+import static joshie.harvest.npcs.HFNPCs.CAFE_OWNER;
 import static joshie.harvest.quests.Quests.JENNI_MEET;
 
 @HFQuest("tutorial.cafe")
@@ -38,7 +38,7 @@ public class QuestMeetLiara extends QuestQuestion {
     }
 
     @Override
-    public String getLocalizedScript(EntityPlayer player, EntityLiving entity, INPC npc) {
+    public String getLocalizedScript(EntityPlayer player, EntityLiving entity, NPC npc) {
         if (!TownHelper.getClosestTownToEntity(entity).hasBuilding(HFBuildings.CAFE)) return null;
         if (isCompletedEarly) {
             return getLocalized("completed");
@@ -66,7 +66,7 @@ public class QuestMeetLiara extends QuestQuestion {
     }
 
     @Override
-    public void onChatClosed(EntityPlayer player, EntityLiving entity, INPC npc) {
+    public void onChatClosed(EntityPlayer player, EntityLiving entity, NPC npc) {
         if (isCompletedEarly || quest_stage == TUTORIAL) {
             if (TownHelper.getClosestTownToEntity(entity).hasBuilding(HFBuildings.CAFE)) {
                 complete(player);

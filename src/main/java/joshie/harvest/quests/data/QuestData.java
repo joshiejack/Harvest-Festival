@@ -1,16 +1,16 @@
 package joshie.harvest.quests.data;
 
 import joshie.harvest.api.quests.Quest;
-import joshie.harvest.npc.entity.EntityNPC;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.nbt.NBTTagString;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.World;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public abstract class QuestData {
     protected final Set<Quest> current = new HashSet<>();
@@ -22,17 +22,6 @@ public abstract class QuestData {
 
     public Set<Quest> getFinished() {
         return finished;
-    }
-
-    //Returns a selection menu
-    public Quest getSelection(EntityPlayer player, EntityNPC npc) {
-        for (Quest q : current) {
-            if (q.getNPCs().contains(npc.getNPC())) {
-                if (q.getSelection(player, npc.getNPC()) != null) return q;
-            }
-        }
-
-        return null;
     }
 
     @SuppressWarnings("unchecked")
@@ -53,7 +42,7 @@ public abstract class QuestData {
 
     }
 
-    public abstract void markCompleted(EntityPlayer player, Quest quest, boolean rewards);
+    public abstract void markCompleted(@Nonnull World world, @Nullable EntityPlayer player, Quest quest, boolean rewards);
     public boolean startQuest(Quest quest, boolean sync, @Nullable NBTTagCompound tag) { return false; }
 
     public void readFromNBT(NBTTagCompound nbt) {

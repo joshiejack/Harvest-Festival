@@ -4,7 +4,7 @@ import com.google.common.collect.Lists;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.cooking.CookingHelper;
-import joshie.harvest.npc.HFNPCs;
+import joshie.harvest.npcs.HFNPCs;
 import joshie.harvest.quests.Quests;
 import joshie.harvest.quests.base.QuestRecipe;
 import net.minecraft.entity.player.EntityPlayer;

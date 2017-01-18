@@ -1,7 +1,7 @@
 package joshie.harvest.quests.base;
 
 import joshie.harvest.api.HFApi;
-import joshie.harvest.api.npc.INPC;
+import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.quests.Quest;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
@@ -16,7 +16,7 @@ import java.util.Set;
 public abstract class QuestFriendship extends Quest {
     protected final int relationship;
 
-    public QuestFriendship(INPC npc, int relationship) {
+    public QuestFriendship(NPC npc, int relationship) {
         setNPCs(npc);
         this.relationship = relationship;
     }
@@ -33,14 +33,14 @@ public abstract class QuestFriendship extends Quest {
 
     @SideOnly(Side.CLIENT)
     @Override
-    public String getLocalizedScript(EntityPlayer player, EntityLiving entity, INPC npc) {
+    public String getLocalizedScript(EntityPlayer player, EntityLiving entity, NPC npc) {
         if (HFApi.player.getRelationsForPlayer(player).getRelationship(npc.getUUID()) >= relationship) {
             return getLocalized("text");
         } else return null;
     }
 
     @Override
-    public void onChatClosed(EntityPlayer player, EntityLiving entity, INPC npc, boolean isSneaking) {
+    public void onChatClosed(EntityPlayer player, EntityLiving entity, NPC npc, boolean isSneaking) {
         if (HFApi.player.getRelationsForPlayer(player).getRelationship(npc.getUUID()) >= relationship) {
             complete(player);
         }

@@ -2,12 +2,12 @@ package joshie.harvest.quests.town.seeds;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.CalendarDate;
-import joshie.harvest.api.npc.INPC;
+import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.helpers.InventoryHelper;
-import joshie.harvest.npc.HFNPCs;
+import joshie.harvest.npcs.HFNPCs;
 import joshie.harvest.player.PlayerTrackerServer;
 import joshie.harvest.player.tracking.StackSold;
 import joshie.harvest.quests.Quests;
@@ -55,12 +55,12 @@ public class QuestTrees2 extends QuestTown {
 
     @Nullable
     @SideOnly(Side.CLIENT)
-    public String getLocalizedScript(EntityPlayer player, EntityLiving entity, INPC npc) {
+    public String getLocalizedScript(EntityPlayer player, EntityLiving entity, NPC npc) {
         return quest_stage >= FINISHED ? getLocalized("complete") : null;
     }
 
     @Override
-    public void onChatClosed(EntityPlayer player, EntityLiving entity, INPC npc, boolean wasSneaking) {
+    public void onChatClosed(EntityPlayer player, EntityLiving entity, NPC npc, boolean wasSneaking) {
         if (quest_stage == FINISHED) complete(player);
         if (!player.worldObj.isRemote && quest_stage == START) {
             int totalCrops = getTotalCrops(HFApi.calendar.getDate(player.worldObj), player);

@@ -5,9 +5,9 @@ import joshie.harvest.knowledge.gui.stats.GuiStats;
 import joshie.harvest.knowledge.gui.stats.button.ButtonNext;
 import joshie.harvest.knowledge.gui.stats.button.ButtonPrevious;
 import joshie.harvest.knowledge.gui.stats.relations.button.ButtonRelationsNPC;
-import joshie.harvest.npc.HFNPCs;
-import joshie.harvest.npc.NPC;
-import joshie.harvest.npc.NPCRegistry;
+import joshie.harvest.npcs.HFNPCs;
+import joshie.harvest.api.npc.NPC;
+import joshie.harvest.npcs.NPCRegistry;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiLabel;
 

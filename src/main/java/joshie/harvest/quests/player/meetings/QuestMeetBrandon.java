@@ -2,7 +2,7 @@ package joshie.harvest.quests.player.meetings;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.core.ITiered.ToolTier;
-import joshie.harvest.api.npc.INPC;
+import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.api.quests.QuestQuestion;
@@ -21,8 +21,8 @@ import net.minecraft.world.World;
 import java.util.Set;
 
 import static joshie.harvest.core.helpers.InventoryHelper.ITEM_STACK;
-import static joshie.harvest.npc.HFNPCs.BLACKSMITH;
-import static joshie.harvest.npc.HFNPCs.MINER;
+import static joshie.harvest.npcs.HFNPCs.BLACKSMITH;
+import static joshie.harvest.npcs.HFNPCs.MINER;
 import static joshie.harvest.quests.Quests.JENNI_MEET;
 
 @HFQuest("tutorial.mining")
@@ -42,7 +42,7 @@ public class QuestMeetBrandon extends QuestQuestion {
     }
 
     @Override
-    public Selection getSelection(EntityPlayer player, INPC npc) {
+    public Selection getSelection(EntityPlayer player, NPC npc) {
         return npc == BLACKSMITH ? super.getSelection(player, npc) : null;
     }
 
@@ -53,7 +53,7 @@ public class QuestMeetBrandon extends QuestQuestion {
     }
 
     @Override
-    public String getLocalizedScript(EntityPlayer player, EntityLiving entity, INPC npc) {
+    public String getLocalizedScript(EntityPlayer player, EntityLiving entity, NPC npc) {
         if (isCompletedEarly) {
             return getLocalized("completed");
         } else if (quest_stage == BUILD) {
@@ -72,7 +72,7 @@ public class QuestMeetBrandon extends QuestQuestion {
     }
 
     @Override
-    public void onChatClosed(EntityPlayer player, EntityLiving entity, INPC npc, boolean isSneaking) {
+    public void onChatClosed(EntityPlayer player, EntityLiving entity, NPC npc, boolean isSneaking) {
         if (isCompletedEarly) rewardItem(player, HFTools.HAMMER.getStack(ToolTier.BASIC));
         else if (quest_stage == EXPLAIN) increaseStage(player);
         if (isCompletedEarly || (quest_stage == ORE && InventoryHelper.getHandItemIsIn(player, ITEM_STACK, HFMining.MATERIALS.getStackFromEnum(Material.JUNK), 3) != null)) {

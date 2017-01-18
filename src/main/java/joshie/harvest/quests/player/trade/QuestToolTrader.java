@@ -1,6 +1,6 @@
 package joshie.harvest.quests.player.trade;
 
-import joshie.harvest.api.npc.INPC;
+import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.core.helpers.InventoryHelper;
@@ -17,7 +17,7 @@ import java.util.Set;
 
 import static joshie.harvest.api.core.ITiered.ToolTier.BASIC;
 import static joshie.harvest.core.helpers.InventoryHelper.SPECIAL;
-import static joshie.harvest.npc.HFNPCs.FLOWER_GIRL;
+import static joshie.harvest.npcs.HFNPCs.FLOWER_GIRL;
 
 @HFQuest("trade.tools")
 public class QuestToolTrader extends QuestTrade {
@@ -32,7 +32,7 @@ public class QuestToolTrader extends QuestTrade {
 
     @SideOnly(Side.CLIENT)
     @Override
-    public String getLocalizedScript(EntityPlayer player, EntityLiving entity, INPC npc) {
+    public String getLocalizedScript(EntityPlayer player, EntityLiving entity, NPC npc) {
         if (InventoryHelper.getHandItemIsIn(player, SPECIAL, SearchType.HOE) != null) {
             return getLocalized("hoe");
         } else if (InventoryHelper.getHandItemIsIn(player, SPECIAL, SearchType.BUCKET) != null) {
@@ -45,7 +45,7 @@ public class QuestToolTrader extends QuestTrade {
     }
 
     @Override
-    public void onChatClosed(EntityPlayer player, EntityLiving entity, INPC npc, boolean isSneaking) {
+    public void onChatClosed(EntityPlayer player, EntityLiving entity, NPC npc, boolean isSneaking) {
         if (InventoryHelper.getHandItemIsIn(player, SPECIAL, SearchType.HOE) != null ||
                 InventoryHelper.getHandItemIsIn(player, SPECIAL, SearchType.BUCKET) != null ||
                 InventoryHelper.getHandItemIsIn(player, SPECIAL, SearchType.SHEARS) != null) {

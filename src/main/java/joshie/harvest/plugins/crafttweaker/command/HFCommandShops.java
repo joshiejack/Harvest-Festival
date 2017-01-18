@@ -1,8 +1,7 @@
 package joshie.harvest.plugins.crafttweaker.command;
 
+import joshie.harvest.api.shops.Shop;
 import joshie.harvest.core.commands.AbstractHFCommand;
-import joshie.harvest.shops.Shop;
-import joshie.harvest.shops.ShopRegistry;
 import minetweaker.MineTweakerAPI;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
@@ -19,12 +18,12 @@ public class HFCommandShops extends AbstractHFCommand {
 
     @Override
     public String getCommandName() {
-        return "shops";
+        return "REGISTRY";
     }
 
     @Override
     public String getUsage() {
-        return "/hf shops";
+        return "/hf REGISTRY";
     }
 
     @Override
@@ -37,7 +36,7 @@ public class HFCommandShops extends AbstractHFCommand {
 
     private List<ResourceLocation> getShopList() {
         List<ResourceLocation> list = new ArrayList<>();
-        for (Map.Entry<ResourceLocation, Shop> entry : ShopRegistry.INSTANCE.shops.entrySet()) {
+        for (Map.Entry<ResourceLocation, Shop> entry : Shop.REGISTRY.entrySet()) {
             list.add(entry.getKey());
         }
 

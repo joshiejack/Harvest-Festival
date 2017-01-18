@@ -1,7 +1,7 @@
 package joshie.harvest.town.tracker;
 
 import joshie.harvest.core.util.HFTracker;
-import joshie.harvest.npc.HFNPCs;
+import joshie.harvest.npcs.HFNPCs;
 import joshie.harvest.town.data.TownData;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;

@@ -9,7 +9,7 @@ import joshie.harvest.calendar.CalendarHelper;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.helpers.MCClientHelper;
 import joshie.harvest.core.util.annotations.HFEvents;
-import joshie.harvest.npc.gui.GuiNPCBase;
+import joshie.harvest.npcs.gui.GuiNPCBase;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.math.BlockPos;

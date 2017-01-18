@@ -1,7 +1,7 @@
 package joshie.harvest.quests.player.meetings;
 
 import joshie.harvest.api.HFApi;
-import joshie.harvest.api.npc.INPC;
+import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.api.quests.QuestQuestion;
@@ -19,7 +19,7 @@ import net.minecraft.world.World;
 
 import java.util.Set;
 
-import static joshie.harvest.npc.HFNPCs.*;
+import static joshie.harvest.npcs.HFNPCs.*;
 import static joshie.harvest.quests.Quests.BRANDON_MEET;
 
 @HFQuest("tutorial.upgrading")
@@ -39,7 +39,7 @@ public class QuestMeetDanieru extends QuestQuestion {
     }
 
     @Override
-    public Selection getSelection(EntityPlayer player, INPC npc) {
+    public Selection getSelection(EntityPlayer player, NPC npc) {
         return npc == BLACKSMITH ? super.getSelection(player, npc) : null;
     }
 
@@ -56,9 +56,9 @@ public class QuestMeetDanieru extends QuestQuestion {
     }
 
     @Override
-    public String getLocalizedScript(EntityPlayer player, EntityLiving entity, INPC npc) {
+    public String getLocalizedScript(EntityPlayer player, EntityLiving entity, NPC npc) {
         if (quest_stage == BUILD && npc != BLACKSMITH && player.worldObj.rand.nextFloat() < 0.25F) {
-            String suffix = ((joshie.harvest.npc.NPC)npc).getRegistryName().getResourcePath();
+            String suffix = ((NPC)npc).getRegistryName().getResourcePath();
             boolean blacksmith = TownHelper.getClosestTownToEntity(entity).hasBuilding(HFBuildings.BLACKSMITH);
             //They tell the player that they should go and visit the blacksmith
             //They should all have a slight variation
@@ -98,7 +98,7 @@ public class QuestMeetDanieru extends QuestQuestion {
     }
 
     @Override
-    public void onChatClosed(EntityPlayer player, EntityLiving entity, INPC npc, boolean isSneaking) {
+    public void onChatClosed(EntityPlayer player, EntityLiving entity, NPC npc, boolean isSneaking) {
         if (npc == BLACKSMITH && (isCompletedEarly || quest_stage == EXPLAIN)) {
             if (TownHelper.getClosestTownToEntity(entity).hasBuilding(HFBuildings.BLACKSMITH)) {
                 complete(player);

@@ -2,9 +2,8 @@ package joshie.harvest.core.helpers;
 
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
-import joshie.harvest.api.npc.INPC;
-import joshie.harvest.npc.NPC;
-import joshie.harvest.npc.entity.EntityNPC;
+import joshie.harvest.api.npc.NPC;
+import joshie.harvest.npcs.entity.EntityNPC;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.translation.I18n;
 import org.apache.commons.lang3.tuple.Triple;
@@ -34,10 +33,10 @@ public class TextHelper {
         return "en_US";
     }
 
-    public static String getRandomSpeech(INPC npc, final String text, final int maximumAlternatives, Object... data) {
+    public static String getRandomSpeech(NPC npc, final String text, final int maximumAlternatives, Object... data) {
         int maximum = 1;
         try {
-            final Triple<String, String, ResourceLocation> key = Triple.of(getLang(), text, npc.getResource());
+            final Triple<String, String, ResourceLocation> key = Triple.of(getLang(), text, npc.getRegistryName());
             maximum = TRANSLATION_CACHE.get(key, () -> {
                 int i;
                 for (i = 1; i <= maximumAlternatives; i++) {

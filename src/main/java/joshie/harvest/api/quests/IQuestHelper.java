@@ -55,8 +55,8 @@ public interface IQuestHelper {
      * @param entity    the entity */
     void rewardEntity(Quest quest, EntityPlayer player, String entity);
 
-    /** Returns all the quests, that need to be called for this EventType
-     *  If there are none, the set will be empty
+    /** Returns all the quests sorted by priority
+     *  If there are none, the list will be empty
      * @param player    the player    */
     List<Quest> getCurrentQuests(EntityPlayer player);
 }

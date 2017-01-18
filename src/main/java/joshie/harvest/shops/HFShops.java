@@ -9,6 +9,8 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.CalendarDate;
 import joshie.harvest.api.core.ITiered.ToolTier;
 import joshie.harvest.api.crops.Crop;
+import joshie.harvest.api.npc.NPC;
+import joshie.harvest.api.shops.Shop;
 import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.core.HFCore;
@@ -26,7 +28,7 @@ import joshie.harvest.mining.block.BlockElevator.Elevator;
 import joshie.harvest.mining.block.BlockLadder.Ladder;
 import joshie.harvest.mining.item.ItemMaterial.Material;
 import joshie.harvest.mining.item.ItemMiningTool.MiningTool;
-import joshie.harvest.npc.HFNPCs;
+import joshie.harvest.npcs.HFNPCs;
 import joshie.harvest.quests.Quests;
 import joshie.harvest.shops.purchasable.*;
 import joshie.harvest.shops.requirement.*;
@@ -39,6 +41,8 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+
+import javax.annotation.Nullable;
 
 import static joshie.harvest.animals.block.BlockSizedStorage.SizedStorage.INCUBATOR;
 import static joshie.harvest.animals.block.BlockTray.Tray.FEEDER_EMPTY;
@@ -58,18 +62,20 @@ import static joshie.harvest.fishing.item.ItemFish.MEDIUM_FISH;
 
 @HFLoader
 public class HFShops {
-    public static final Shop BARN = ShopRegistry.INSTANCE.newShop(new ResourceLocation(MODID, "barn"), HFNPCs.BARN_OWNER);
-    public static final Shop CAFE = ShopRegistry.INSTANCE.newShop(new ResourceLocation(MODID, "cafe"), HFNPCs.CAFE_OWNER);
-    public static final Shop CARPENTER = ShopRegistry.INSTANCE.newShop(new ResourceLocation(MODID, "carpenter"), HFNPCs.BUILDER);
-    public static final Shop POULTRY = ShopRegistry.INSTANCE.newShop(new ResourceLocation(MODID, "poultry"), HFNPCs.POULTRY);
-    public static final Shop SUPERMARKET = ShopRegistry.INSTANCE.newShop(new ResourceLocation(MODID, "general"), HFNPCs.GS_OWNER);
-    public static final Shop MINER = ShopRegistry.INSTANCE.newShop(new ResourceLocation(MODID, "miner"), HFNPCs.MINER);
+    public static final Shop BARN = newShop(new ResourceLocation(MODID, "barn"), HFNPCs.BARN_OWNER);
+    public static final Shop CAFE = newShop(new ResourceLocation(MODID, "cafe"), HFNPCs.CAFE_OWNER);
+    public static final Shop CARPENTER = newShop(new ResourceLocation(MODID, "carpenter"), HFNPCs.BUILDER);
+    public static final Shop POULTRY = newShop(new ResourceLocation(MODID, "poultry"), HFNPCs.POULTRY);
+    public static final Shop SUPERMARKET = newShop(new ResourceLocation(MODID, "general"), HFNPCs.GS_OWNER);
+    public static final Shop MINER = newShop(new ResourceLocation(MODID, "miner"), HFNPCs.MINER);
     //Added in 0.6+
-    public static final Shop BAITSHOP = ShopRegistry.INSTANCE.newShop(new ResourceLocation(MODID, "baitshop"), HFNPCs.FISHERMAN);
-    public static final Shop BLOODMAGE = ShopRegistry.INSTANCE.newShop(new ResourceLocation(MODID, "bloodmage"), HFNPCs.CLOCKMAKER).setSpecialSellingRules(new SpecialRulesFriendship(HFNPCs.CLOCKMAKER, 15000));
-    public static final Shop KITCHEN = ShopRegistry.INSTANCE.newShop(new ResourceLocation(MODID, "kitchen"), HFNPCs.CAFE_GRANNY).setSpecialSellingRules(new SpecialRulesFriendship(HFNPCs.CAFE_GRANNY, 15000));
-    public static final Shop TRADER = ShopRegistry.INSTANCE.newShop(new ResourceLocation(MODID, "trader"), HFNPCs.TRADER).setSpecialSellingRules(new SpecialRulesFriendship(HFNPCs.TRADER, 15000));
+    public static final Shop BAITSHOP = newShop(new ResourceLocation(MODID, "baitshop"), HFNPCs.FISHERMAN);
+    public static final Shop BLOODMAGE = newShop(new ResourceLocation(MODID, "bloodmage"), HFNPCs.CLOCKMAKER).setSpecialSellingRules(new SpecialRulesFriendship(HFNPCs.CLOCKMAKER, 15000));
+    public static final Shop KITCHEN = newShop(new ResourceLocation(MODID, "kitchen"), HFNPCs.CAFE_GRANNY).setSpecialSellingRules(new SpecialRulesFriendship(HFNPCs.CAFE_GRANNY, 15000));
+    public static final Shop TRADER = newShop(new ResourceLocation(MODID, "trader"), HFNPCs.TRADER).setSpecialSellingRules(new SpecialRulesFriendship(HFNPCs.TRADER, 15000));
+    public static final Shop COOKING = newShop(new ResourceLocation(MODID, "cooking"), null).setOpensOnHolidays();
 
+    @SuppressWarnings("unused")
     public static void postInit() {
         registerBarn();
         registerBloodmage();
@@ -81,6 +87,9 @@ public class HFShops {
         registerSupermarket();
         registerTackleshop();
         registerTrader();
+
+        //Event specific
+        registerCooking();
     }
     
     private static void registerBarn() {
@@ -364,6 +373,21 @@ public class HFShops {
         TRADER.addOpening(MONDAY, 6000, 10000).addOpening(TUESDAY, 6000, 10000).addOpening(WEDNESDAY, 6000, 10000).addOpening(THURSDAY, 6000, 10000);
         TRADER.addOpening(FRIDAY, 6000, 10000).addOpening(SATURDAY, 6000, 10000).addOpening(SUNDAY, 6000, 10000);
         HFNPCs.TRADER.setHasInfo(null); //Remove the opening times
+    }
+
+    private static void registerCooking() {
+        COOKING.addPurchasable(100, new ItemStack(Items.CAKE));
+        COOKING.addOpening(MONDAY, 6000, 18000).addOpening(TUESDAY, 6000, 18000).addOpening(WEDNESDAY, 6000, 18000).addOpening(THURSDAY, 6000, 18000)
+                .addOpening(FRIDAY, 6000, 18000).addOpening(SATURDAY, 6000, 18000).addOpening(SUNDAY, 6000, 18000);
+    }
+
+    private static Shop newShop(ResourceLocation resource, @Nullable NPC npc) {
+        Shop shop = new Shop(resource);
+        if (npc != null) {
+            npc.setShop(shop);
+        }
+
+        return shop;
     }
 
     public static boolean TWENTY_FOUR_HOUR_SHOPPING;

@@ -36,6 +36,6 @@ public class PacketQuestCompleted extends PacketQuest {
 
     @Override
     public void handlePacket(EntityPlayer player) {
-        getQuestDataFromPlayer(player).markCompleted(player, quest, rewards);
+        getQuestDataFromPlayer(player).markCompleted(player.worldObj, player, quest, rewards);
     }
 }

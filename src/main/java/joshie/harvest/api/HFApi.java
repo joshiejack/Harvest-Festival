@@ -10,10 +10,10 @@ import joshie.harvest.api.crops.ICropRegistry;
 import joshie.harvest.api.fishing.FishingManager;
 import joshie.harvest.api.gathering.IGatheringRegistry;
 import joshie.harvest.api.mining.IMiningRegistry;
-import joshie.harvest.api.npc.INPCRegistry;
+import joshie.harvest.api.npc.INPCHelper;
 import joshie.harvest.api.player.IPlayerHelper;
 import joshie.harvest.api.quests.IQuestHelper;
-import joshie.harvest.api.shops.IShopRegistry;
+import joshie.harvest.api.shops.IShopHelper;
 import joshie.harvest.api.ticking.IDailyTickableRegistry;
 import joshie.harvest.api.town.TownManager;
 
@@ -29,11 +29,11 @@ public class HFApi {
     public static FishingManager fishing = null;
     public static IGatheringRegistry gathering = null;
     public static IMiningRegistry mining = null;
-    public static INPCRegistry npc = null;
+    public static INPCHelper npc = null;
     public static IPlayerHelper player = null;
     public static IQuestHelper quests = null;
-    public static IShopRegistry shops = null;
     public static IShippingRegistry shipping = null;
+    public static IShopHelper shops = null;
     public static ISizeableRegistry sizeable = null;
     public static IDailyTickableRegistry tickable = null;
     public static TownManager town = null;

@@ -39,4 +39,8 @@ public interface CalendarManager {
      *  @param name the registry name for the holiday
      *  @param date the date this holiday occurs (will be fit in to a 30 day calendar)**/
     void registerHoliday(ResourceLocation name, CalendarDate date);
+
+    /** If today is a holiday
+     *  @param world the world**/
+    boolean isHoliday(World world);
 }

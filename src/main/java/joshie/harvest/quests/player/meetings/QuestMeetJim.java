@@ -7,7 +7,7 @@ import joshie.harvest.animals.item.ItemAnimalProduct.Sizeable;
 import joshie.harvest.animals.item.ItemAnimalTool.Tool;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.core.Size;
-import joshie.harvest.api.npc.INPC;
+import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.api.quests.QuestQuestion;
@@ -32,8 +32,8 @@ import java.util.Set;
 
 import static joshie.harvest.animals.item.ItemAnimalTool.Tool.BRUSH;
 import static joshie.harvest.core.helpers.InventoryHelper.ITEM_STACK;
-import static joshie.harvest.npc.HFNPCs.BARN_OWNER;
-import static joshie.harvest.npc.HFNPCs.BUILDER;
+import static joshie.harvest.npcs.HFNPCs.BARN_OWNER;
+import static joshie.harvest.npcs.HFNPCs.BUILDER;
 import static joshie.harvest.quests.Quests.YULIF_MEET;
 
 @HFQuest("tutorial.cow")
@@ -59,29 +59,33 @@ public class QuestMeetJim extends QuestQuestion {
     }
 
     @Override
-    public void onEntityInteract(EntityPlayer player, @Nullable ItemStack held, EnumHand hand, Entity target) {
+    public boolean onEntityInteract(EntityPlayer player, @Nullable ItemStack held, EnumHand hand, Entity target) {
         if (quest_stage == ACTION1 || quest_stage == ACTION2) {
             if (target instanceof EntityHarvestCow) {
                 if (held != null) {
                     if (!hasFed && held.isItemEqual(HFCrops.GRASS.getCropStack(1))) {
                         hasFed = true;
                         increaseStage(player);
+                        return true;
                     } else if (!hasBrushed && ToolHelper.isBrush(held)) {
                         hasBrushed = true;
                         increaseStage(player);
+                        return true;
                     }
                 }
             }
         }
+
+        return false;
     }
 
     @Override
-    public Selection getSelection(EntityPlayer player, INPC npc) {
+    public Selection getSelection(EntityPlayer player, NPC npc) {
         return npc == BARN_OWNER && quest_stage <= 0 ? selection : null;
     }
 
     @Override
-    public String getLocalizedScript(EntityPlayer player, EntityLiving entity, INPC npc) {
+    public String getLocalizedScript(EntityPlayer player, EntityLiving entity, NPC npc) {
         if (npc == BUILDER) {
             if (player.worldObj.rand.nextFloat() < 0.15F) {
                 if (TownHelper.getClosestTownToEntity(entity).hasBuilding(HFBuildings.BARN)) {
@@ -142,7 +146,7 @@ public class QuestMeetJim extends QuestQuestion {
     }
 
     @Override
-    public void onChatClosed(EntityPlayer player, EntityLiving entity, INPC npc, boolean wasSneaking) {
+    public void onChatClosed(EntityPlayer player, EntityLiving entity, NPC npc, boolean wasSneaking) {
         if (!TownHelper.getClosestTownToEntity(entity).hasBuilding(HFBuildings.BARN)) return;
         if (isCompletedEarly || quest_stage == INFO) {
             if (isCompletedEarly) {

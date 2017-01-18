@@ -1,12 +1,12 @@
 package joshie.harvest.quests.town.tasks;
 
 import joshie.harvest.api.HFApi;
-import joshie.harvest.api.npc.INPC;
+import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.player.RelationshipType;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.core.helpers.TextHelper;
-import joshie.harvest.npc.HFNPCs;
+import joshie.harvest.npcs.HFNPCs;
 import joshie.harvest.quests.base.QuestDaily;
 import joshie.harvest.town.TownHelper;
 import net.minecraft.entity.Entity;
@@ -96,7 +96,7 @@ public class QuestSlay extends QuestDaily {
     @Override
     @Nullable
     @SideOnly(Side.CLIENT)
-    public String getLocalizedScript(EntityPlayer player, EntityLiving entity, INPC npc) {
+    public String getLocalizedScript(EntityPlayer player, EntityLiving entity, NPC npc) {
         if (targetAmount != 0 && counter >= targetAmount) {
             return TextHelper.getRandomSpeech(npc, "harvestfestival.quest.slay.complete", 32);
         }
@@ -105,7 +105,7 @@ public class QuestSlay extends QuestDaily {
     }
 
     @Override
-    public void onChatClosed(EntityPlayer player, EntityLiving entity, INPC npc, boolean wasSneaking) {
+    public void onChatClosed(EntityPlayer player, EntityLiving entity, NPC npc, boolean wasSneaking) {
         if (targetAmount != 0 && counter >= targetAmount) {
             complete(player);
         }

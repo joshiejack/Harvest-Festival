@@ -3,7 +3,7 @@ package joshie.harvest.quests.player.trade;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.CalendarDate;
 import joshie.harvest.api.core.ITiered.ToolTier;
-import joshie.harvest.api.npc.INPC;
+import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.calendar.CalendarHelper;
 import joshie.harvest.core.HFTrackers;
@@ -22,7 +22,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import static joshie.harvest.api.core.ITiered.ToolTier.BLESSED;
 import static joshie.harvest.core.helpers.SpawnItemHelper.spawnXP;
-import static joshie.harvest.npc.HFNPCs.PRIEST;
+import static joshie.harvest.npcs.HFNPCs.PRIEST;
 
 
 @HFQuest("trade.cursed")
@@ -37,7 +37,7 @@ public class QuestBless extends QuestTrade {
 
     @SideOnly(Side.CLIENT)
     @Override
-    public String getLocalizedScript(EntityPlayer player, EntityLiving entity, INPC npc) {
+    public String getLocalizedScript(EntityPlayer player, EntityLiving entity, NPC npc) {
         if (quest_stage == TEST) {
             long cost = HFApi.quests.hasCompleted(Quests.TOMAS_15K, player) ? 10000 : 25000;
             boolean hasGold = HFTrackers.getPlayerTrackerFromPlayer(player).getStats().getGold() >= cost;
@@ -58,7 +58,7 @@ public class QuestBless extends QuestTrade {
     }
 
     @Override
-    public void onChatClosed(EntityPlayer player, EntityLiving entity, INPC npc, boolean isSneaking) {
+    public void onChatClosed(EntityPlayer player, EntityLiving entity, NPC npc, boolean isSneaking) {
         if (quest_stage == TEST) {
             long cost = HFApi.quests.hasCompleted(Quests.TOMAS_15K, player) ? 10000 : 25000;
             boolean hasGold = HFTrackers.getPlayerTrackerFromPlayer(player).getStats().getGold() >= cost;

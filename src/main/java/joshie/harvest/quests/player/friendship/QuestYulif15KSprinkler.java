@@ -4,7 +4,7 @@ import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.crops.HFCrops;
 import joshie.harvest.crops.block.BlockSprinkler.Sprinkler;
-import joshie.harvest.npc.HFNPCs;
+import joshie.harvest.npcs.HFNPCs;
 import joshie.harvest.quests.Quests;
 import joshie.harvest.quests.base.QuestFriendshipStore;
 import net.minecraft.item.ItemStack;

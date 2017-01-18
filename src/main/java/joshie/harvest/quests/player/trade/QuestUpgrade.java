@@ -4,7 +4,7 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.CalendarDate;
 import joshie.harvest.api.core.ITiered;
 import joshie.harvest.api.core.ITiered.ToolTier;
-import joshie.harvest.api.npc.INPC;
+import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.calendar.CalendarHelper;
 import joshie.harvest.core.HFTrackers;
@@ -26,7 +26,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import static joshie.harvest.core.helpers.InventoryHelper.ITEM_STACK;
 import static joshie.harvest.core.helpers.SpawnItemHelper.spawnXP;
-import static joshie.harvest.npc.HFNPCs.BLACKSMITH;
+import static joshie.harvest.npcs.HFNPCs.BLACKSMITH;
 
 
 @HFQuest("trade.upgrade")
@@ -128,7 +128,7 @@ public class QuestUpgrade extends QuestTrade {
 
     @SideOnly(Side.CLIENT)
     @Override
-    public String getLocalizedScript(EntityPlayer player, EntityLiving entity, INPC npc) {
+    public String getLocalizedScript(EntityPlayer player, EntityLiving entity, NPC npc) {
         if (quest_stage == TEST) {
             //Repairing
             ToolTier broken = isHoldingBrokenTool(player);
@@ -174,7 +174,7 @@ public class QuestUpgrade extends QuestTrade {
     }
 
     @Override
-    public void onChatClosed(EntityPlayer player, EntityLiving entity, INPC npc, boolean wasSneaking) {
+    public void onChatClosed(EntityPlayer player, EntityLiving entity, NPC npc, boolean wasSneaking) {
         if (quest_stage == TEST) {
             //Repairing
             ToolTier broken = isHoldingBrokenTool(player);

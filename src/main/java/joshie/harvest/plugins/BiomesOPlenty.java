@@ -23,7 +23,7 @@ public class BiomesOPlenty {
     public static final Block farmland_1 = null;
     public static final Block dirt = null;
 
-    @SuppressWarnings("ConstantConditions")
+    @SuppressWarnings("ConstantConditions, deprecation")
     public static void init() {
         DisableHandler.SEEDS_BLACKLIST.register(turnip_seeds);
         HFApi.crops.registerCropProvider(new ItemStack(turnip), HFCrops.TURNIP);

@@ -1,7 +1,7 @@
 package joshie.harvest.quests.base;
 
 import joshie.harvest.api.buildings.Building;
-import joshie.harvest.api.npc.INPC;
+import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.town.TownHelper;
 import joshie.harvest.town.data.TownData;
@@ -13,7 +13,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class QuestMeeting extends Quest {
     private final Building building;
 
-    public QuestMeeting(Building building, INPC npc) {
+    public QuestMeeting(Building building, NPC npc) {
         this.building = building;
         setNPCs(npc);
     }
@@ -25,7 +25,7 @@ public class QuestMeeting extends Quest {
 
     @SideOnly(Side.CLIENT)
     @Override
-    public String getLocalizedScript(EntityPlayer player, EntityLiving entity, INPC npc) {
+    public String getLocalizedScript(EntityPlayer player, EntityLiving entity, NPC npc) {
         TownData data = TownHelper.getClosestTownToEntity(entity);
         if (data.hasBuilding(building)) {
             return getLocalized("text");
@@ -33,7 +33,7 @@ public class QuestMeeting extends Quest {
     }
 
     @Override
-    public void onChatClosed(EntityPlayer player, EntityLiving entity, INPC npc, boolean wasSneaking) {
+    public void onChatClosed(EntityPlayer player, EntityLiving entity, NPC npc, boolean wasSneaking) {
         TownData data = TownHelper.getClosestTownToEntity(entity);
         if (data.hasBuilding(building)) {
             complete(player);

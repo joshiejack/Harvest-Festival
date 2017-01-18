@@ -15,13 +15,14 @@ import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 
-import static joshie.harvest.api.calendar.Season.AUTUMN;
+import static joshie.harvest.api.calendar.Season.SPRING;
 import static joshie.harvest.core.helpers.ConfigHelper.*;
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 import static joshie.harvest.core.lib.LoadOrder.HFCALENDAR;
 
 @HFLoader(priority = HFCALENDAR)
 public class HFCalendar {
+    public static final ResourceLocation COOKING_FESTIVAL = registerHoliday("cooking", 22, SPRING);
     private static final SeasonProvider HIDDEN = new SeasonProviderHidden();
     public static Configuration CONFIG;
     public static int DAYS_PER_SEASON_INTEGRATED;
@@ -49,7 +50,6 @@ public class HFCalendar {
         DimensionType seasons = DimensionType.register("seasons", "seasons", OVERWORLD_ID, HFWorldProvider.class, true);
         DimensionManager.unregisterDimension(0);
         DimensionManager.registerDimension(0, seasons);
-        registerHoliday("harvest_festival", 9, AUTUMN);
         HFApi.calendar.registerSeasonProvider(1, HIDDEN);
         HFApi.calendar.registerSeasonProvider(-1, HIDDEN);
     }
@@ -66,8 +66,10 @@ public class HFCalendar {
         CONFIG.save();
     }
 
-    private static void registerHoliday(String name, int day, Season season) {
-        HFApi.calendar.registerHoliday(new ResourceLocation(MODID, name), new CalendarDate().setDay(day).setSeason(season));
+    private static ResourceLocation registerHoliday(String name, int day, Season season) {
+        ResourceLocation resource = new ResourceLocation(MODID, name);
+        HFApi.calendar.registerHoliday(resource, new CalendarDate().setDay(day).setSeason(season));
+        return resource;
     }
 
     //Configuration

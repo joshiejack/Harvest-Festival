@@ -1,8 +1,8 @@
 package joshie.harvest.plugins.crafttweaker.command;
 
 import joshie.harvest.core.commands.AbstractHFCommand;
-import joshie.harvest.npc.NPC;
-import joshie.harvest.npc.NPCRegistry;
+import joshie.harvest.api.npc.NPC;
+import joshie.harvest.npcs.NPCRegistry;
 import minetweaker.MineTweakerAPI;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;

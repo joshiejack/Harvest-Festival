@@ -3,7 +3,7 @@ package joshie.harvest.calendar;
 import joshie.harvest.api.calendar.CalendarDate;
 import net.minecraft.util.ResourceLocation;
 
-import javax.annotation.Nullable;
+import javax.annotation.Nonnull;
 import java.util.HashMap;
 import java.util.Map.Entry;
 
@@ -22,7 +22,7 @@ public class HolidayRegistry {
         return false;
     }
 
-    @Nullable
+    @Nonnull
     public ResourceLocation getHoliday(CalendarDate date) {
         for (Entry<ResourceLocation, CalendarDate> entry : holidays.entrySet()) {
             if (entry.getValue().isSameDay(date)) return entry.getKey();

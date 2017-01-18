@@ -5,7 +5,7 @@ import joshie.harvest.api.cooking.Recipe;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.cooking.CookingHelper;
-import joshie.harvest.npc.HFNPCs;
+import joshie.harvest.npcs.HFNPCs;
 import joshie.harvest.quests.Quests;
 import joshie.harvest.quests.base.QuestFriendshipStore;
 import net.minecraft.entity.player.EntityPlayer;

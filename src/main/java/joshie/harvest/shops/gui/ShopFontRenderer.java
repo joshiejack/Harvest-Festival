@@ -2,7 +2,7 @@ package joshie.harvest.shops.gui;
 
 import gnu.trove.set.TCharSet;
 import gnu.trove.set.hash.TCharHashSet;
-import joshie.harvest.npc.gui.GuiNPCBase;
+import joshie.harvest.npcs.gui.GuiNPCBase;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.GlStateManager;

@@ -1,6 +1,6 @@
 package joshie.harvest.core.commands;
 
-import joshie.harvest.npc.entity.EntityNPC;
+import joshie.harvest.npcs.entity.EntityNPC;
 import net.minecraft.command.CommandNotFoundException;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.command.NumberInvalidException;

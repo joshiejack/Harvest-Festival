@@ -4,7 +4,7 @@ import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.cooking.item.ItemMeal.Meal;
-import joshie.harvest.npc.HFNPCs;
+import joshie.harvest.npcs.HFNPCs;
 import joshie.harvest.quests.base.QuestMeeting;
 import net.minecraft.entity.player.EntityPlayer;
 

@@ -16,9 +16,9 @@ import static joshie.harvest.town.BuildingLocations.*;
 public class ScheduleLiara implements ISchedule {
     @Override
     public BuildingLocation getTarget(World world, EntityLiving entity, NPC npc, Season season, Weekday day, long time) {
-        if (time >= 5000L && time <= 7000L) return PONDRIGHT;
+        if (time >= 5000L && time <= 7000L) return FISHING_POND_RIGHT;
         else if (time >= 7000L && time <= 17000L) return day == SUNDAY ? CHURCHINSIDE : CAFEFRONT;
-        else if (time >= 20000L && time <= 22000L) return GODDESSFRONTLEFT;
+        else if (time >= 20000L && time <= 22000L) return GODDESS_POND_FRONT_LEFT;
         else return npc.getLocation(HOME);
     }
 }

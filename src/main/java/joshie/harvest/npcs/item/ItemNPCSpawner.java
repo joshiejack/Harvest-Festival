@@ -63,7 +63,7 @@ public class ItemNPCSpawner extends ItemHFFML<ItemNPCSpawner, NPC> {
 
     @Override
     public NPC getNullValue() {
-        return HFNPCs.NULL_NPC;
+        return NPC.NULL_NPC;
     }
 
     @SideOnly(Side.CLIENT)

@@ -9,15 +9,15 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.world.World;
 
 import static joshie.harvest.api.npc.NPC.Location.HOME;
-import static joshie.harvest.town.BuildingLocations.BARNLEFT;
-import static joshie.harvest.town.BuildingLocations.PONDBACK;
+import static joshie.harvest.town.BuildingLocations.BARN_LEFT_PEN;
+import static joshie.harvest.town.BuildingLocations.FISHING_POND_BACK;
 
 @SuppressWarnings("unused")
 public class ScheduleCandice implements ISchedule {
     @Override
     public BuildingLocation getTarget(World world, EntityLiving entity, NPC npc, Season season, Weekday day, long time) {
-        if (time >= 9000L && time <= 17000L) return BARNLEFT;
-        else if (time >= 22000L && time <= 24000L) return PONDBACK;
+        if (time >= 9000L && time <= 17000L) return BARN_LEFT_PEN;
+        else if (time >= 22000L && time <= 24000L) return FISHING_POND_BACK;
         else return npc.getLocation(HOME);
     }
 }

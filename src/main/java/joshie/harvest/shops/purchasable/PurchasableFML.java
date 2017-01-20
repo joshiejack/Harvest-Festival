@@ -23,7 +23,7 @@ import static joshie.harvest.core.helpers.InventoryHelper.ITEM_STACK;
 import static net.minecraft.util.text.TextFormatting.WHITE;
 
 public abstract class PurchasableFML<I extends IForgeRegistryEntry.Impl<I>> implements IPurchasable {
-    private final long cost;
+    protected long cost;
     protected String tooltip;
     protected I item;
     private Note note;

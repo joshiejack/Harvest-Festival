@@ -17,7 +17,7 @@ public class ScheduleCloe implements ISchedule {
     @Override
     public BuildingLocation getTarget(World world, EntityLiving entity, NPC npc, Season season, Weekday day, long time) {
         if (time >= 7000L && time <= 10000L) return day == SUNDAY ? CHURCHPEWFRONTRIGHT : CAFEKITCHEN;
-        else if (time >= 10000L && time <= 11000L) return BARNRIGHT;
+        else if (time >= 10000L && time <= 11000L) return BARN_RIGHT_PEN;
         else if (time >= 12000L && time <= 15000L) return TOWNHALLRIGHT;
         else return npc.getLocation(HOME);
     }

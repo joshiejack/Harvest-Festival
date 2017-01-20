@@ -18,12 +18,12 @@ public class HFCommandShops extends AbstractHFCommand {
 
     @Override
     public String getCommandName() {
-        return "REGISTRY";
+        return "shops";
     }
 
     @Override
     public String getUsage() {
-        return "/hf REGISTRY";
+        return "/hf shops";
     }
 
     @Override

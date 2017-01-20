@@ -12,7 +12,7 @@ import static joshie.harvest.core.lib.HFModInfo.MODID;
 public class HolidayRegistry {
     public static final HolidayRegistry INSTANCE = new HolidayRegistry();
     private final HashMap<ResourceLocation, CalendarDate> holidays = new HashMap<>();
-    private static final ResourceLocation NONE = new ResourceLocation(MODID, "none");
+    public static final ResourceLocation NONE = new ResourceLocation(MODID, "none");
 
     boolean isHoliday(CalendarDate date) {
         for (CalendarDate holiday : holidays.values()) {

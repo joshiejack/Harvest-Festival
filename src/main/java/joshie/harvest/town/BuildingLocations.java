@@ -6,22 +6,22 @@ import static joshie.harvest.buildings.HFBuildings.*;
 
 @SuppressWarnings("all")
 public class BuildingLocations {
-    public static final BuildingLocation FISHINGHUTUPSTAIRS = new BuildingLocation(FISHING_HUT, "fisher.upstairs").withDistance(8D);
-    public static final BuildingLocation FISHINGHUTDOWNSTAIRS = new BuildingLocation(FISHING_HUT, "jacob").withDistance(8D);
-    public static final BuildingLocation POND = new BuildingLocation(FISHING_HOLE, "pond.pier").withDistance(16D).withTime(1500L);
-    public static final BuildingLocation PONDBACK = new BuildingLocation(FISHING_HOLE, "pond.back").withDistance(20D).withTime(1500L);
-    public static final BuildingLocation PONDLEFT = new BuildingLocation(FISHING_HOLE, "pond.left").withDistance(20D).withTime(1500L);
-    public static final BuildingLocation PONDRIGHT = new BuildingLocation(FISHING_HOLE, "pond.right").withDistance(20D).withTime(1500L);
-    public static final BuildingLocation GODDESSBACKRIGHT = new BuildingLocation(GODDESS_POND, "goddess.right.back").withDistance(24D).withTime(1500L);
-    public static final BuildingLocation GODDESSFRONT = new BuildingLocation(GODDESS_POND, "goddess.front").withDistance(24D).withTime(1500L);
-    public static final BuildingLocation GODDESSFRONTLEFT = new BuildingLocation(GODDESS_POND, "goddess.left").withDistance(24D).withTime(1500L);
-    public static final BuildingLocation GODDESSFRONTRIGHT = new BuildingLocation(GODDESS_POND, "goddess.right").withDistance(24D).withTime(1500L);
-    public static final BuildingLocation BARNBUILDING = new BuildingLocation(BARN, "jim").withDistance(8D);
-    public static final BuildingLocation BARNLEFT = new BuildingLocation(BARN, "barn.left").withDistance(8D);
-    public static final BuildingLocation BARNDOOR = new BuildingLocation(BARN, "barn.door").withDistance(20D);
-    public static final BuildingLocation BARNRIGHT = new BuildingLocation(BARN, "barn.right").withDistance(20D);
-    public static final BuildingLocation POULTRYBUILDING = new BuildingLocation(POULTRY_FARM, "ashlee").withDistance(8D);
-    public static final BuildingLocation POULTRYDOOR = new BuildingLocation(POULTRY_FARM, "poultry.door").withDistance(20D);
+    public static final BuildingLocation FISHING_HUT_UPSTAIRS = new BuildingLocation(FISHING_HUT, "fisher.upstairs").withDistance(8D);
+    public static final BuildingLocation FISHING_HUT_DOWNSTAIRS = new BuildingLocation(FISHING_HUT, "jacob").withDistance(8D);
+    public static final BuildingLocation FISHING_POND_PIER = new BuildingLocation(FISHING_HOLE, "pond.pier").withDistance(16D).withTime(1500L);
+    public static final BuildingLocation FISHING_POND_BACK = new BuildingLocation(FISHING_HOLE, "pond.back").withDistance(20D).withTime(1500L);
+    public static final BuildingLocation FISHING_POND_LEFT = new BuildingLocation(FISHING_HOLE, "pond.left").withDistance(20D).withTime(1500L);
+    public static final BuildingLocation FISHING_POND_RIGHT = new BuildingLocation(FISHING_HOLE, "pond.right").withDistance(20D).withTime(1500L);
+    public static final BuildingLocation GODDESS_POND_BACK_RIGHT = new BuildingLocation(GODDESS_POND, "goddess.right.back").withDistance(24D).withTime(1500L);
+    public static final BuildingLocation GODDESS_POND_FRONT = new BuildingLocation(GODDESS_POND, "goddess.front").withDistance(24D).withTime(1500L);
+    public static final BuildingLocation GODDESS_POND_FRONT_LEFT = new BuildingLocation(GODDESS_POND, "goddess.left").withDistance(24D).withTime(1500L);
+    public static final BuildingLocation GODDESS_POND_FRONT_RIGHT = new BuildingLocation(GODDESS_POND, "goddess.right").withDistance(24D).withTime(1500L);
+    public static final BuildingLocation BARN_INSIDE = new BuildingLocation(BARN, "jim").withDistance(8D);
+    public static final BuildingLocation BARN_LEFT_PEN = new BuildingLocation(BARN, "barn.left").withDistance(8D);
+    public static final BuildingLocation BARN_DOOR = new BuildingLocation(BARN, "barn.door").withDistance(20D);
+    public static final BuildingLocation BARN_RIGHT_PEN = new BuildingLocation(BARN, "barn.right").withDistance(20D);
+    public static final BuildingLocation POULTRY_CENTRE = new BuildingLocation(POULTRY_FARM, "ashlee").withDistance(8D);
+    public static final BuildingLocation POULTRY_DOOR = new BuildingLocation(POULTRY_FARM, "poultry.door").withDistance(20D);
     public static final BuildingLocation TOWNHALLLEFT = new BuildingLocation(TOWNHALL, "townhall.wing.left").withDistance(10D);
     public static final BuildingLocation TOWNHALLRIGHT = new BuildingLocation(TOWNHALL, "townhall.wing.right").withDistance(10D);
     public static final BuildingLocation TOWNHALLENTRANCE = new BuildingLocation(TOWNHALL, "townhall.door").withDistance(10D);
@@ -49,9 +49,6 @@ public class BuildingLocations {
     public static final BuildingLocation CARPENTERUP = new BuildingLocation(CARPENTER, "jade").withDistance(3D);
     public static final BuildingLocation CHURCHFRONT = new BuildingLocation(CHURCH, "church.door").withDistance(24D).withTime(1500L);
     public static final BuildingLocation MINEENTRANCE = new BuildingLocation(MINING_HILL, "mine.front").withDistance(24D).withTime(1500L);
-    //public static final BuildingLocation MINEHUTENTRANCE = new BuildingLocation(MINING_HUT, "miner.door").withDistance(16D).withTime(1500L);
-    //public static final BuildingLocation MINEHUTSIDE = new BuildingLocation(MINING_HUT, "brandon").withDistance(4D);
-    //public static final BuildingLocation MINEHUTGRAVEL = new BuildingLocation(MINING_HUT, "miner.gravel").withDistance(4D);
     public static final BuildingLocation CAFETILL = new BuildingLocation(CAFE, "cafe.till").withDistance(4D);
     public static final BuildingLocation CAFEFRONT = new BuildingLocation(CAFE, "cafe.entrance").withDistance(16D).withTime(1500L);
     public static final BuildingLocation CAFECUSTOMER = new BuildingLocation(CAFE, "cafe.customer").withDistance(16D).withTime(1500L);

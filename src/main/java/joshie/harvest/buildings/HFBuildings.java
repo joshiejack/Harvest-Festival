@@ -93,7 +93,6 @@ public class HFBuildings {
         } catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException ex) { /**/}
 
         if (building == null)  building = new Building(new ResourceLocation("harvestfestival", name));
-        Building.REGISTRY.register(building); //Register the building!
         return (B) building;
     }
 

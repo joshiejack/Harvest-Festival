@@ -9,7 +9,6 @@ import joshie.harvest.api.crops.StateHandlerBlock;
 import joshie.harvest.api.npc.gift.IGiftHandler.Quality;
 import joshie.harvest.core.commands.AbstractHFCommand;
 import joshie.harvest.core.commands.HFCommand;
-import joshie.harvest.npcs.HFNPCs;
 import joshie.harvest.api.npc.NPC;
 import joshie.harvest.npcs.NPCRegistry;
 import net.minecraft.command.CommandNotFoundException;
@@ -161,7 +160,7 @@ public class CommandCropExport extends AbstractHFCommand {
                     //GIFTS!
                     HashMultimap<Quality, NPC> qualities = HashMultimap.create();
                     for (NPC npc : NPCRegistry.REGISTRY) {
-                        if (npc == HFNPCs.NULL_NPC) continue;
+                        if (npc == NPC.NULL_NPC) continue;
                         Quality quality = npc.getGiftValue(stack);
                         qualities.get(quality).add(npc);
                     }

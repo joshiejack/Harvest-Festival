@@ -3,7 +3,6 @@ package joshie.harvest.npcs.entity.ai;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.buildings.BuildingLocation;
 import joshie.harvest.api.calendar.CalendarDate;
-import joshie.harvest.api.npc.NPC.Location;
 import joshie.harvest.calendar.CalendarHelper;
 import joshie.harvest.npcs.NPCHelper;
 import joshie.harvest.npcs.entity.EntityNPCHuman;
@@ -26,9 +25,7 @@ public class EntityAISchedule extends EntityAIBase {
         this.setMutexBits(1);
     }
 
-    private BuildingLocation getBuildingTarget(CalendarDate date) { //If the npcs shop is open, they should try to go their job
-        if (NPCHelper.isShopPreparingToOpen(npc, npc.worldObj)) return npc.getNPC().getLocation(Location.SHOP);
-        //Otherwise they will try to follow their own schedule
+    private BuildingLocation getBuildingTarget(CalendarDate date) {
         return npc.getNPC().getScheduler().getTarget(npc.worldObj, npc, npc.getNPC(), date.getSeason(), date.getWeekday(), CalendarHelper.getTime(npc.worldObj));
     }
 
@@ -72,7 +69,7 @@ public class EntityAISchedule extends EntityAIBase {
                 if (!blockTarget.equals(prevTarget)) teleportTimer = 0;
                 else teleportTimer++;
                 prevTarget = blockTarget;
-                if (teleportTimer >= 600) {
+                if (teleportTimer >= 1000) {
                     teleportTimer = 0;
                     npc.attemptTeleport(blockTarget.getX() + 0.5D, blockTarget.getY() + 1D, blockTarget.getZ() + 0.5D);
                 }

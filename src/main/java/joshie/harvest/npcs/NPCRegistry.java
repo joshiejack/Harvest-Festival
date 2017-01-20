@@ -1,10 +1,13 @@
 package joshie.harvest.npcs;
 
 import joshie.harvest.api.npc.INPCHelper;
+import joshie.harvest.api.npc.ISchedule;
 import joshie.harvest.api.npc.NPC;
+import joshie.harvest.api.npc.ScheduleBuilder;
 import joshie.harvest.core.helpers.TextHelper;
 import joshie.harvest.core.util.annotations.HFApiImplementation;
 import joshie.harvest.npcs.gift.GiftRegistry;
+import joshie.harvest.npcs.schedule.Schedule;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.IForgeRegistry;
@@ -31,5 +34,10 @@ public class NPCRegistry implements INPCHelper {
     @Override
     public String getRandomSpeech(NPC npc, String text, int maximumAlternatives, Object... data) {
         return TextHelper.getRandomSpeech(npc, text, maximumAlternatives, data);
+    }
+
+    @Override
+    public ISchedule buildSchedule(ScheduleBuilder builder) {
+        return new Schedule(builder);
     }
 }

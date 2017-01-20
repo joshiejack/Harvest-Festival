@@ -19,7 +19,7 @@ public class ScheduleTiberius implements ISchedule {
         if (time >= 8000L && time <= 10000L) return day == SUNDAY ? CHURCHPEWBACKTRIGHT : CAFECUSTOMER;
         else if (time >= 10000L && time <= 11000L) return CAFEBALCONY;
         else if (time >= 12000L && time <= 15000L) return TOWNHALLRIGHT;
-        else if (time >= 16000L && time <= 18000L) return PONDLEFT;
+        else if (time >= 16000L && time <= 18000L) return FISHING_POND_LEFT;
         else return npc.getLocation(HOME);
     }
 }

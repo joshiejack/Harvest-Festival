@@ -21,6 +21,10 @@ public interface INPCHelper {
      *  @param data any additional data to be formatted **/
     String getRandomSpeech(NPC npc, final String text, final int maximumAlternatives, Object... data);
 
+    /** Called from the schedule builder to build it
+     *  @param builder the builder object **/
+    ISchedule buildSchedule(ScheduleBuilder builder);
+
     enum Gender {
         MALE, FEMALE
     }

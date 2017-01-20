@@ -75,11 +75,6 @@ public class NPCHelper {
         return false;
     }
 
-    public static boolean isShopPreparingToOpen(EntityNPC npc, World world) {
-        Shop shop = npc.getNPC().getShop(world);
-        return shop != null && shop.getOpeningHandler().isPreparingToOpen(world, npc, shop);
-    }
-
     public static int getGuiIDForNPC(EntityNPC npc, World world, EntityPlayer player) {
         return !npc.isBusy() && isShopOpen(npc, world, player) ? GuiHandler.SHOP_WELCOME: GuiHandler.NPC;
     }

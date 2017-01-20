@@ -7,6 +7,7 @@ import joshie.harvest.api.npc.INPCHelper.Age;
 import joshie.harvest.api.npc.INPCHelper.Gender;
 import joshie.harvest.api.npc.ISchedule;
 import joshie.harvest.api.npc.NPC;
+import joshie.harvest.api.npc.ScheduleBuilder;
 import joshie.harvest.api.npc.gift.IGiftHandler;
 import joshie.harvest.core.base.render.MeshIdentical;
 import joshie.harvest.core.lib.EntityIDs;
@@ -16,7 +17,7 @@ import joshie.harvest.npcs.entity.*;
 import joshie.harvest.npcs.greeting.*;
 import joshie.harvest.npcs.item.ItemNPCSpawner;
 import joshie.harvest.npcs.item.ItemNPCTool;
-import joshie.harvest.npcs.npc.NPCGranny;
+import joshie.harvest.npcs.npc.NPCHolidayStore;
 import joshie.harvest.npcs.render.NPCItemRenderer;
 import joshie.harvest.npcs.render.NPCItemRenderer.NPCTile;
 import joshie.harvest.npcs.render.RenderNPC;
@@ -34,6 +35,8 @@ import org.apache.commons.lang3.text.WordUtils;
 import java.lang.reflect.InvocationTargetException;
 
 import static joshie.harvest.api.calendar.Season.*;
+import static joshie.harvest.api.calendar.Weekday.MONDAY;
+import static joshie.harvest.api.calendar.Weekday.SUNDAY;
 import static joshie.harvest.api.npc.INPCHelper.Age.*;
 import static joshie.harvest.api.npc.INPCHelper.Gender.FEMALE;
 import static joshie.harvest.api.npc.INPCHelper.Gender.MALE;
@@ -48,7 +51,6 @@ import static joshie.harvest.town.BuildingLocations.*;
 @HFLoader(priority = HFNPCS)
 @SuppressWarnings("unchecked")
 public class HFNPCs {
-    public static final NPC NULL_NPC = new NPC();
     public static final NPC GODDESS = register("goddess", FEMALE, ADULT, 8, SPRING, 0x8CEED3, 0x4EC485).setHeight(1.2F, 0.6F); //The Goddess                        (SPAWN)
     public static final NPC BUILDER = register("yulif", MALE, ADULT, 19, SUMMER, 0x313857, 0x121421); //Builds stuff            (SPAWN)
     public static final NPC FLOWER_GIRL = register("jade", FEMALE, ADULT, 14, SPRING, 0x653081, 0x361840); // Sister of Yulif                  (CARPENTER)
@@ -59,8 +61,8 @@ public class HFNPCs {
     public static final NPC TRADER = register("girafi", MALE, ADULT, 2, AUTUMN,  0xFFFFFF, 0xC60C30); //Trader                                 (GENERAL STORE)
     public static final NPC FISHERMAN = register("jacob", MALE, ADULT, 28, AUTUMN, 0x7396FF, 0x0036D9); //Fisherman                            (FISHING HUT)
     public static final NPC MINER = register("brandon", MALE, ADULT, 13, AUTUMN, 0xC28D48, 0x5F5247); //Works in the mines                     (MINE)
-    public static final NPC CAFE_OWNER = register("liara", FEMALE, ADULT, 17, SPRING, 0xBEC8EE, 0x8091D0); // Owner of the Cafe                (CAFE)
-    public static final NPC CAFE_GRANNY = register("katlin", FEMALE, ELDER, 12, SUMMER, 0xDDDDDD, 0x777777, NPCGranny.class);// Granny of Cafe Owner            (CAFE)
+    public static final NPC CAFE_OWNER = register("liara", FEMALE, ADULT, 17, SPRING, 0xBEC8EE, 0x8091D0, NPCHolidayStore.class); // Owner of the Cafe                (CAFE)
+    public static final NPC CAFE_GRANNY = register("katlin", FEMALE, ELDER, 12, SUMMER, 0xDDDDDD, 0x777777, NPCHolidayStore.class);// Granny of Cafe Owner            (CAFE)
     public static final NPC BLACKSMITH = register("daniel", MALE, ADULT, 1, WINTER, 0x613827, 0x23150E); // Blacksmith                         (BLACKSMITH)
     public static final NPC CLOCKMAKER = register("tiberius", MALE, ADULT, 15, WINTER, 0x305A2E, 0x142419); //The clock worker                 (CLOCKWORKERS)
     public static final NPC CLOCKMAKER_CHILD = register("fenn", MALE, CHILD, 25, SUMMER, 0x228C00, 0x003F00); // Clockmakers Child             (CLOCKWORKERS)
@@ -93,8 +95,8 @@ public class HFNPCs {
     }
 
     public static void init() {
-        GODDESS.setLocation(HOME, GODDESSFRONT).setHasInfo(new GreetingWeather());
-        BARN_OWNER.setLocation(HOME, BARNBUILDING).setLocation(SHOP, BARNBUILDING);
+        GODDESS.setLocation(HOME, GODDESS_POND_FRONT).setHasInfo(new GreetingWeather());
+        BARN_OWNER.setLocation(HOME, BARN_INSIDE).setLocation(SHOP, BARN_INSIDE);
         CAFE_OWNER.setLocation(HOME, CAFEBALCONY).setLocation(SHOP, CAFETILL);
         FLOWER_GIRL.setLocation(HOME, CARPENTERUP).setLocation(SHOP, CARPENTERUP).setHasInfo(new GreetingFlowerBuyer());
         DAUGHTER_ADULT.setLocation(HOME, TOWNHALLTEENBED);
@@ -104,16 +106,32 @@ public class HFNPCs {
         MAYOR.setLocation(HOME, TOWNHALLSTAGE);
         BUILDER.setLocation(HOME, CARPENTERDOWN).setLocation(SHOP, CARPENTERFRONT).addGreeting(new GreetingCarpenter());
         BLACKSMITH.setLocation(HOME,  BLACKSMITHFURNACE).setLocation(SHOP, BLACKSMITHFURNACE);
+
+        ScheduleBuilder.create(DAUGHTER_CHILD, TOWNHALLCHILDBED)
+                        .add(SPRING, MONDAY, 0L, TOWNHALLCHILDBED)
+                        .add(SPRING, MONDAY, 8000L, BARN_DOOR)
+                        .add(SPRING, MONDAY, 10000L, POULTRY_DOOR)
+                        .add(SPRING, MONDAY, 12000L, TOWNHALLLEFT)
+                        .add(SPRING, MONDAY, 15000L, TOWNHALLCHILDBED)
+                        .add(SPRING, SUNDAY, 0L, TOWNHALLCHILDBED)
+                        .add(SPRING, SUNDAY, 8000L, CHURCHPEWFRONTLEFT)
+                        .add(SPRING, SUNDAY, 10000L, POULTRY_DOOR)
+                        .add(SPRING, SUNDAY, 12000L, BARN_DOOR)
+                        .add(SPRING, SUNDAY, 14000L, TOWNHALLLEFT)
+                        .add(SPRING, SUNDAY, 15000L, TOWNHALLCHILDBED)
+                        .build();
+
+
         DAUGHTER_CHILD.setLocation(HOME, TOWNHALLCHILDBED);
         CLOCKMAKER.setLocation(HOME, CLOCKMAKERDOWNSTAIRS).setHasInfo(new GreetingTime());
         GS_OWNER.setLocation(HOME, GENERALBEDROOM).setLocation(SHOP, GENERALTILL).setHasInfo(new GreetingSupermarket(GS_OWNER.getRegistryName()));
-        FISHERMAN.setLocation(HOME, FISHINGHUTUPSTAIRS).setLocation(SHOP, FISHINGHUTDOWNSTAIRS).addGreeting(new GreetingLocation(POND));
-        MILKMAID.setLocation(HOME, GENERALBED).setLocation(SHOP, BARNLEFT);
-        POULTRY.setLocation(HOME, POULTRYBUILDING).setLocation(SHOP, POULTRYBUILDING);
+        FISHERMAN.setLocation(HOME, FISHING_HUT_UPSTAIRS).setLocation(SHOP, FISHING_HUT_DOWNSTAIRS).addGreeting(new GreetingLocation(FISHING_POND_PIER));
+        MILKMAID.setLocation(HOME, GENERALBED).setLocation(SHOP, BARN_LEFT_PEN);
+        POULTRY.setLocation(HOME, POULTRY_CENTRE).setLocation(SHOP, POULTRY_CENTRE);
         TRADER.setLocation(HOME, TOWNHALLRIGHT).setLocation(SHOP, GENERALCUSTOMER);
         CLOCKMAKER.setHasInfo(new GreetingTime());
         for (NPC npc: NPCRegistry.REGISTRY) {
-            if (npc != NULL_NPC) {
+            if (npc != NPC.NULL_NPC) {
                 setupGifts(npc);
                 setupSchedules(npc);
             }
@@ -131,7 +149,7 @@ public class HFNPCs {
     }
 
     private static void setupSchedules(NPC npc) {
-        npc.setScheduleHandler(new ISchedule() {});
+        if (npc.getScheduler() == null) npc.setScheduleHandler(new ISchedule() {});
         if (npc.getRegistryName().getResourceDomain().equals(MODID)) {
             try {
                 ISchedule schedule = (ISchedule) Class.forName(SCHEDULEPATH + WordUtils.capitalize(npc.getRegistryName().getResourcePath())).newInstance();

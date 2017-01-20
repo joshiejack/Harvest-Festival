@@ -10,9 +10,9 @@ import joshie.harvest.api.npc.gift.IGiftHandler;
 import joshie.harvest.api.npc.gift.IGiftHandler.Quality;
 import joshie.harvest.api.npc.greeting.GreetingShop;
 import joshie.harvest.api.npc.greeting.IConditionalGreeting;
+import joshie.harvest.api.shops.Shop;
 import joshie.harvest.npcs.HFNPCs;
 import joshie.harvest.npcs.NPCRegistry;
-import joshie.harvest.api.shops.Shop;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.player.EntityPlayer;
@@ -30,6 +30,7 @@ import static joshie.harvest.api.npc.INPCHelper.Age.ADULT;
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 
 public class NPC extends IForgeRegistryEntry.Impl<NPC> {
+    public static final NPC NULL_NPC = new NPC();
     private final List<IConditionalGreeting> conditionals = new ArrayList<>(256);
     private final EnumMap<Location, BuildingLocation> locations;
     private final String multipleLocalizationKey;
@@ -53,7 +54,7 @@ public class NPC extends IForgeRegistryEntry.Impl<NPC> {
     private boolean alex;
     private IInfoButton info;
 
-    public NPC() {
+    private NPC() {
         this(new ResourceLocation(MODID, "null"), INPCHelper.Gender.MALE, INPCHelper.Age.ADULT, new CalendarDate(1, Season.SPRING, 1), 0, 0);
     }
 

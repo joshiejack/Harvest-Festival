@@ -1,6 +1,9 @@
 package joshie.harvest.npcs.entity.ai;
 
-import joshie.harvest.api.npc.NPC.Location;
+import joshie.harvest.api.HFApi;
+import joshie.harvest.api.buildings.BuildingLocation;
+import joshie.harvest.api.calendar.CalendarDate;
+import joshie.harvest.calendar.CalendarHelper;
 import joshie.harvest.npcs.NPCHelper;
 import joshie.harvest.npcs.entity.EntityNPCShopkeeper;
 import net.minecraft.entity.ai.EntityAIBase;
@@ -17,10 +20,14 @@ public class EntityAIWork extends EntityAIBase {
         this.setMutexBits(1);
     }
 
+    private BuildingLocation getBuildingTarget(CalendarDate date) {
+        return npc.getNPC().getScheduler().getTarget(npc.worldObj, npc, npc.getNPC(), date.getSeason(), date.getWeekday(), CalendarHelper.getTime(npc.worldObj));
+    }
+
     @Override
     public boolean shouldExecute() {
         if(npc.getNPC().getShop(npc.worldObj) != null && NPCHelper.isShopOpen(npc.worldObj, npc, null, npc.getNPC().getShop(npc.worldObj))) {
-            target = NPCHelper.getCoordinatesForLocation(npc, npc.getNPC().getLocation(Location.SHOP));
+            target = NPCHelper.getCoordinatesForLocation(npc, getBuildingTarget(HFApi.calendar.getDate(npc.worldObj)));
             return target != null;
         } else return false;
     }

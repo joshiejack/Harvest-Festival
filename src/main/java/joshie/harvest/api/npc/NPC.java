@@ -32,7 +32,6 @@ import static joshie.harvest.core.lib.HFModInfo.MODID;
 public class NPC extends IForgeRegistryEntry.Impl<NPC> {
     public static final NPC NULL_NPC = new NPC();
     private final List<IConditionalGreeting> conditionals = new ArrayList<>(256);
-    private final EnumMap<Location, BuildingLocation> locations;
     private final String multipleLocalizationKey;
     private final String generalLocalizationKey;
     private final String localizationKey;
@@ -45,6 +44,7 @@ public class NPC extends IForgeRegistryEntry.Impl<NPC> {
     private final int insideColor;
     private final int outsideColor;
 
+    private BuildingLocation home;
     private float height;
     private float offset;
     private IGiftHandler gifts;
@@ -83,7 +83,6 @@ public class NPC extends IForgeRegistryEntry.Impl<NPC> {
         this.generalLocalizationKey = MODID + ".npc.generic." + age.name().toLowerCase(Locale.ENGLISH) + ".";
         this.skin = new ResourceLocation(MODID, "textures/entity/" + name + ".png");
         this.multipleLocalizationKey = MODID + ".npc." + name + ".greeting";
-        this.locations = new EnumMap<>(Location.class);
         this.uuid = UUID.nameUUIDFromBytes(resource.toString().getBytes());
         this.setRegistryName(resource);
         NPCRegistry.REGISTRY.register(this);
@@ -98,11 +97,6 @@ public class NPC extends IForgeRegistryEntry.Impl<NPC> {
     public NPC setShop(Shop shop) {
         this.shop = shop;
         setHasInfo(new GreetingShop(getRegistryName()));
-        return this;
-    }
-
-    public NPC setLocation(Location location, BuildingLocation building) {
-        this.locations.put(location, building);
         return this;
     }
 
@@ -136,12 +130,21 @@ public class NPC extends IForgeRegistryEntry.Impl<NPC> {
         return this;
     }
 
+    public NPC setHome(BuildingLocation location) {
+        this.home = location;
+        return this;
+    }
+
     public Age getAge() {
         return age;
     }
 
     public Gender getGender() {
         return gender;
+    }
+
+    public BuildingLocation getHome() {
+        return home;
     }
 
     public boolean isMarriageCandidate() {
@@ -162,7 +165,7 @@ public class NPC extends IForgeRegistryEntry.Impl<NPC> {
 
     @SuppressWarnings("deprecation")
     public boolean isBuilder() {
-        return this == HFNPCs.BUILDER;
+        return this == HFNPCs.CARPENTER;
     }
 
     public Shop getShop(World world) {
@@ -175,10 +178,6 @@ public class NPC extends IForgeRegistryEntry.Impl<NPC> {
 
     public CalendarDate getBirthday() {
         return birthday;
-    }
-
-    public BuildingLocation getLocation(Location residence) {
-        return locations.get(residence);
     }
 
     @SuppressWarnings("deprecation")

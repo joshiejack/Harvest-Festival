@@ -20,6 +20,7 @@ public class ScheduleBuilder {
     private ScheduleBuilder(NPC npc, BuildingLocation default_) {
         this.npc = npc;
         this.default_ = default_;
+        this.npc.setHome(default_);
         MinecraftForge.EVENT_BUS.post(new ScheduleEvent.Pre(npc, this));
     }
 

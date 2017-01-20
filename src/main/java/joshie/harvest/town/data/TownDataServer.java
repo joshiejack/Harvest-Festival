@@ -73,7 +73,7 @@ public class TownDataServer extends TownData<QuestDataServer> implements IQuestM
     }
 
     public void createNewBuilder(World world, BlockPos pos) {
-        if (!isDead(HFNPCs.BUILDER)) {
+        if (!isDead(HFNPCs.CARPENTER)) {
             EntityNPCBuilder creator = new EntityNPCBuilder(world);
             creator.setPositionAndUpdate(pos.getX(), pos.getY() + 1.5D, pos.getZ());
             creator.setSpawnHome(this); //Set the spawn town
@@ -165,7 +165,7 @@ public class TownDataServer extends TownData<QuestDataServer> implements IQuestM
                     }
 
                     entity.setPositionAndUpdate(pos.getX(), pos.getY(), pos.getZ());
-                    if (npc == HFNPCs.BUILDER) entity.setUniqueId(getID()); //Keep the Unique ID the same
+                    if (npc == HFNPCs.CARPENTER) entity.setUniqueId(getID()); //Keep the Unique ID the same
                     world.spawnEntityInWorld(entity);
                 }
             }

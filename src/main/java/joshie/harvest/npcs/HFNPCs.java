@@ -9,6 +9,7 @@ import joshie.harvest.api.npc.ISchedule;
 import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.npc.ScheduleBuilder;
 import joshie.harvest.api.npc.gift.IGiftHandler;
+import joshie.harvest.calendar.HFCalendar;
 import joshie.harvest.core.base.render.MeshIdentical;
 import joshie.harvest.core.lib.EntityIDs;
 import joshie.harvest.core.proxy.HFClientProxy;
@@ -21,6 +22,7 @@ import joshie.harvest.npcs.npc.NPCHolidayStore;
 import joshie.harvest.npcs.render.NPCItemRenderer;
 import joshie.harvest.npcs.render.NPCItemRenderer.NPCTile;
 import joshie.harvest.npcs.render.RenderNPC;
+import joshie.harvest.npcs.schedule.ScheduleEmpty;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.ForgeHooksClient;
@@ -35,13 +37,10 @@ import org.apache.commons.lang3.text.WordUtils;
 import java.lang.reflect.InvocationTargetException;
 
 import static joshie.harvest.api.calendar.Season.*;
-import static joshie.harvest.api.calendar.Weekday.MONDAY;
-import static joshie.harvest.api.calendar.Weekday.SUNDAY;
+import static joshie.harvest.api.calendar.Weekday.*;
 import static joshie.harvest.api.npc.INPCHelper.Age.*;
 import static joshie.harvest.api.npc.INPCHelper.Gender.FEMALE;
 import static joshie.harvest.api.npc.INPCHelper.Gender.MALE;
-import static joshie.harvest.api.npc.NPC.Location.HOME;
-import static joshie.harvest.api.npc.NPC.Location.SHOP;
 import static joshie.harvest.core.helpers.ConfigHelper.getDouble;
 import static joshie.harvest.core.helpers.RegistryHelper.registerSounds;
 import static joshie.harvest.core.lib.HFModInfo.*;
@@ -52,7 +51,7 @@ import static joshie.harvest.town.BuildingLocations.*;
 @SuppressWarnings("unchecked")
 public class HFNPCs {
     public static final NPC GODDESS = register("goddess", FEMALE, ADULT, 8, SPRING, 0x8CEED3, 0x4EC485).setHeight(1.2F, 0.6F); //The Goddess                        (SPAWN)
-    public static final NPC BUILDER = register("yulif", MALE, ADULT, 19, SUMMER, 0x313857, 0x121421); //Builds stuff            (SPAWN)
+    public static final NPC CARPENTER = register("yulif", MALE, ADULT, 19, SUMMER, 0x313857, 0x121421); //Builds stuff            (SPAWN)
     public static final NPC FLOWER_GIRL = register("jade", FEMALE, ADULT, 14, SPRING, 0x653081, 0x361840); // Sister of Yulif                  (CARPENTER)
     public static final NPC GS_OWNER = register("jenni", FEMALE, ADULT, 7, WINTER, 0xDDD0AD, 0xE79043); //Owner of general store               (GENERAL STORE)
     public static final NPC MILKMAID = register("candice", FEMALE, ADULT, 5, AUTUMN, 0xF65FAB, 0xF21985); //Works in the Barn, Milking Cows    (GENERAL STORE)
@@ -95,41 +94,65 @@ public class HFNPCs {
     }
 
     public static void init() {
-        GODDESS.setLocation(HOME, GODDESS_POND_FRONT).setHasInfo(new GreetingWeather());
-        BARN_OWNER.setLocation(HOME, BARN_INSIDE).setLocation(SHOP, BARN_INSIDE);
-        CAFE_OWNER.setLocation(HOME, CAFEBALCONY).setLocation(SHOP, CAFETILL);
-        FLOWER_GIRL.setLocation(HOME, CARPENTERUP).setLocation(SHOP, CARPENTERUP).setHasInfo(new GreetingFlowerBuyer());
-        DAUGHTER_ADULT.setLocation(HOME, TOWNHALLTEENBED);
-        PRIEST.setLocation(HOME, TOWNAHLLADULT);
-        CLOCKMAKER_CHILD.setLocation(HOME, CLOCKMAKERUPSTAIRS);
-        CAFE_GRANNY.setLocation(HOME, CAFEKITCHEN);
-        MAYOR.setLocation(HOME, TOWNHALLSTAGE);
-        BUILDER.setLocation(HOME, CARPENTERDOWN).setLocation(SHOP, CARPENTERFRONT).addGreeting(new GreetingCarpenter());
-        BLACKSMITH.setLocation(HOME,  BLACKSMITHFURNACE).setLocation(SHOP, BLACKSMITHFURNACE);
-
-        ScheduleBuilder.create(DAUGHTER_CHILD, TOWNHALLCHILDBED)
-                        .add(SPRING, MONDAY, 0L, TOWNHALLCHILDBED)
-                        .add(SPRING, MONDAY, 8000L, BARN_DOOR)
-                        .add(SPRING, MONDAY, 10000L, POULTRY_DOOR)
-                        .add(SPRING, MONDAY, 12000L, TOWNHALLLEFT)
-                        .add(SPRING, MONDAY, 15000L, TOWNHALLCHILDBED)
-                        .add(SPRING, SUNDAY, 0L, TOWNHALLCHILDBED)
-                        .add(SPRING, SUNDAY, 8000L, CHURCHPEWFRONTLEFT)
-                        .add(SPRING, SUNDAY, 10000L, POULTRY_DOOR)
-                        .add(SPRING, SUNDAY, 12000L, BARN_DOOR)
-                        .add(SPRING, SUNDAY, 14000L, TOWNHALLLEFT)
-                        .add(SPRING, SUNDAY, 15000L, TOWNHALLCHILDBED)
+        GODDESS.setHasInfo(new GreetingWeather());
+        CARPENTER.setHome(CARPENTER_DOWNSTAIRS).addGreeting(new GreetingCarpenter());
+        FLOWER_GIRL.setHome(CARPENTER_UPSTAIRS).setHasInfo(new GreetingFlowerBuyer());
+        GS_OWNER.setHome(GENERAL_BEDROOM).setHasInfo(new GreetingSupermarket(GS_OWNER.getRegistryName())); //WORKS AT GENERAL TILL
+        MILKMAID.setHome(GENERAL_BED); //WORKS AT BARN_LEFT_PEN
+        BARN_OWNER.setHome(BARN_INSIDE);
+        POULTRY.setHome(POULTRY_CENTRE);
+        FISHERMAN.setHome(FISHING_HUT_UPSTAIRS).addGreeting(new GreetingLocation(FISHING_POND_PIER)); //WORKS FISHING_HUT_DOWNSTAIRS
+        CAFE_OWNER.setHome(CAFE_BALCONY); //CAFETILL WORK
+        ScheduleBuilder.create(CAFE_GRANNY, CAFE_KITCHEN)
+                        .add(SPRING, SUNDAY, 0L, CAFE_KITCHEN)
+                        .add(SPRING, SUNDAY, 5000L, CHURCH_PEW_CENTRE)
+                        .add(SPRING, SUNDAY, 17000L, FISHING_POND_RIGHT)
+                        .add(SPRING, SUNDAY, 20000L, CAFE_KITCHEN)
+                        .add(SPRING, MONDAY, 0L, CAFE_KITCHEN)
+                        .add(SPRING, MONDAY, 5000L, GODDESS_POND_FRONT_LEFT)
+                        .add(SPRING, MONDAY, 6500L, CAFE_FRONT)
+                        .add(SPRING, MONDAY, 17000L, FISHING_POND_RIGHT)
+                        .add(SPRING, MONDAY, 19000L, CAFE_KITCHEN)
+                        .add(SPRING, FRIDAY, 0L, CAFE_KITCHEN)
+                        .add(SPRING, FRIDAY, 9500L, GODDESS_POND_FRONT_LEFT)
+                        .add(SPRING, FRIDAY, 14000L, CAFE_FRONT)
+                        .add(SPRING, FRIDAY, 16000L, CAFE_KITCHEN)
+                        .add(SPRING, FRIDAY, 20000L, FISHING_POND_RIGHT)
+                        .add(SPRING, FRIDAY, 22000L, CAFE_KITCHEN)
+                        .add(SPRING, SATURDAY, 0L, CAFE_KITCHEN)
+                        .add(SPRING, SATURDAY, 6000L, GODDESS_POND_FRONT_LEFT)
+                        .add(SPRING, SATURDAY, 10000L, CAFE_FRONT)
+                        .add(SPRING, SATURDAY, 15000L, CAFE_KITCHEN)
+                        .add(SPRING, SATURDAY, 17000L, FISHING_POND_RIGHT)
+                        .add(SPRING, SATURDAY, 19000L, CAFE_KITCHEN)
+                        .add(HFCalendar.COOKING_FESTIVAL, 0L, CAFE_KITCHEN)
+                        .add(HFCalendar.COOKING_FESTIVAL, 5000L, PARK_CAFE)
+                        .add(HFCalendar.COOKING_FESTIVAL, 18000L, CAFE_KITCHEN)
                         .build();
 
 
-        DAUGHTER_CHILD.setLocation(HOME, TOWNHALLCHILDBED);
-        CLOCKMAKER.setLocation(HOME, CLOCKMAKERDOWNSTAIRS).setHasInfo(new GreetingTime());
-        GS_OWNER.setLocation(HOME, GENERALBEDROOM).setLocation(SHOP, GENERALTILL).setHasInfo(new GreetingSupermarket(GS_OWNER.getRegistryName()));
-        FISHERMAN.setLocation(HOME, FISHING_HUT_UPSTAIRS).setLocation(SHOP, FISHING_HUT_DOWNSTAIRS).addGreeting(new GreetingLocation(FISHING_POND_PIER));
-        MILKMAID.setLocation(HOME, GENERALBED).setLocation(SHOP, BARN_LEFT_PEN);
-        POULTRY.setLocation(HOME, POULTRY_CENTRE).setLocation(SHOP, POULTRY_CENTRE);
-        TRADER.setLocation(HOME, TOWNHALLRIGHT).setLocation(SHOP, GENERALCUSTOMER);
-        CLOCKMAKER.setHasInfo(new GreetingTime());
+        BLACKSMITH.setHome(BLACKSMITH_FURNACE);
+        CLOCKMAKER.setHome(CLOCKMAKER_DOWNSTAIRS).setHasInfo(new GreetingTime());
+        CLOCKMAKER_CHILD.setHome(CLOCKMAKER_UPSTAIRS);
+        PRIEST.setHome(TOWNHALL_ADULT_BED);
+        MAYOR.setHome(TOWNHALL_STAGE);
+        DAUGHTER_ADULT.setHome(TOWNHALL_TEEN_BED);
+        ScheduleBuilder.create(DAUGHTER_CHILD, TOWNHALL_CHILD_BED)
+                        .add(SPRING, SUNDAY, 0L, TOWNHALL_CHILD_BED)
+                        .add(SPRING, SUNDAY, 8000L, CHURCH_PEW_FRONT_LEFT)
+                        .add(SPRING, SUNDAY, 10000L, POULTRY_DOOR)
+                        .add(SPRING, SUNDAY, 12000L, BARN_DOOR)
+                        .add(SPRING, SUNDAY, 14000L, TOWNHALL_LEFT)
+                        .add(SPRING, SUNDAY, 15000L, TOWNHALL_CHILD_BED)
+                        .add(SPRING, MONDAY, 0L, TOWNHALL_CHILD_BED)
+                        .add(SPRING, MONDAY, 8000L, BARN_DOOR)
+                        .add(SPRING, MONDAY, 10000L, POULTRY_DOOR)
+                        .add(SPRING, MONDAY, 12000L, TOWNHALL_LEFT)
+                        .add(SPRING, MONDAY, 15000L, TOWNHALL_CHILD_BED)
+                        .build();
+
+        TRADER.setHome(TOWNHALL_RIGHT); //WORKS IN THE PARK AT 'GIRAFI'
+
         for (NPC npc: NPCRegistry.REGISTRY) {
             if (npc != NPC.NULL_NPC) {
                 setupGifts(npc);
@@ -144,17 +167,17 @@ public class HFNPCs {
             try {
                 IGiftHandler handler = (IGiftHandler) Class.forName(GIFTPATH + WordUtils.capitalize(npc.getRegistryName().getResourcePath())).newInstance();
                 if (handler != null) npc.setGiftHandler(handler);
-            } catch (Exception e) { /**/}
+            } catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {/**/}
         }
     }
 
     private static void setupSchedules(NPC npc) {
-        if (npc.getScheduler() == null) npc.setScheduleHandler(new ISchedule() {});
+        if (npc.getScheduler() == null) npc.setScheduleHandler(ScheduleEmpty.INSTANCE);
         if (npc.getRegistryName().getResourceDomain().equals(MODID)) {
             try {
                 ISchedule schedule = (ISchedule) Class.forName(SCHEDULEPATH + WordUtils.capitalize(npc.getRegistryName().getResourcePath())).newInstance();
                 if (schedule != null) npc.setScheduleHandler(schedule);
-            } catch (Exception e) {}
+            } catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {/**/}
         }
     }
 

@@ -11,7 +11,7 @@ import java.util.Set;
 @HFQuest("recipe.cake.chocolate")
 public class QuestYulif10KChocolateCake extends QuestRecipe {
     public QuestYulif10KChocolateCake() {
-        super("cake_chocolate", HFNPCs.BUILDER, 10000);
+        super("cake_chocolate", HFNPCs.CARPENTER, 10000);
     }
 
     @Override

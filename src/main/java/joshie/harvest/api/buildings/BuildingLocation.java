@@ -6,27 +6,17 @@ public class BuildingLocation {
     private final ResourceLocation building;
     private final String location;
     private final double distance;
-    private final long time;
 
     public BuildingLocation(Building building, String location) {
         this.building = Building.REGISTRY.getKey(building);
         this.location = location;
         this.distance = 5D;
-        this.time = 500L;
     }
 
     private BuildingLocation(BuildingLocation location, double distance) {
         this.building = location.building;
         this.location = location.location;
         this.distance = distance;
-        this.time = location.time;
-    }
-
-    private BuildingLocation(BuildingLocation location, long time) {
-        this.building = location.building;
-        this.location = location.location;
-        this.distance = location.distance;
-        this.time = time;
     }
 
     public BuildingLocation withDistance(double distance) {
@@ -34,17 +24,8 @@ public class BuildingLocation {
         else return new BuildingLocation(this, distance);
     }
 
-    public BuildingLocation withTime(long time) {
-        if (this.time == time) return this;
-        else return new BuildingLocation(this, time);
-    }
-
     public double getDistanceRequired() {
         return distance;
-    }
-
-    public long getTimeToTry() {
-        return time;
     }
 
     public ResourceLocation getResource() {

@@ -15,7 +15,7 @@ public class EntityNPCBuilder extends EntityNPCShopkeeper {
     }
 
     public EntityNPCBuilder(World world) {
-        super(world, HFNPCs.BUILDER);
+        super(world, HFNPCs.CARPENTER);
     }
 
     public EntityNPCBuilder(EntityNPCBuilder entity) {

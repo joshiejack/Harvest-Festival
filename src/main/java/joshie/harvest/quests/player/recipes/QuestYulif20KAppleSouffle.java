@@ -11,7 +11,7 @@ import java.util.Set;
 @HFQuest("recipe.souffle.apple")
 public class QuestYulif20KAppleSouffle extends QuestRecipe {
     public QuestYulif20KAppleSouffle() {
-        super("souffle_apple", HFNPCs.BUILDER, 20000);
+        super("souffle_apple", HFNPCs.CARPENTER, 20000);
     }
 
     @Override

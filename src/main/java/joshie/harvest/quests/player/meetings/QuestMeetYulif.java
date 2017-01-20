@@ -34,7 +34,7 @@ public class QuestMeetYulif extends Quest {
     private boolean attempted = false;
 
     public QuestMeetYulif() {
-        setNPCs(GODDESS, BUILDER, FLOWER_GIRL);
+        setNPCs(GODDESS, CARPENTER, FLOWER_GIRL);
     }
 
     @Override

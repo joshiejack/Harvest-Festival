@@ -30,8 +30,6 @@ import net.minecraftforge.fml.common.network.ByteBufUtils;
 import javax.annotation.Nonnull;
 import java.util.UUID;
 
-import static joshie.harvest.api.npc.NPC.Location.HOME;
-
 public abstract class EntityNPCHuman<E extends EntityNPCHuman> extends EntityNPC<E> {
     private BlockPos spawned;
     private UUID townID;
@@ -91,7 +89,7 @@ public abstract class EntityNPCHuman<E extends EntityNPCHuman> extends EntityNPC
     public void resetSpawnHome() {
         this.homeTown = TownHelper.getClosestTownToEntity(this);
         this.townID = homeTown.getID();
-        this.spawned = homeTown.getCoordinatesFor(getNPC().getLocation(HOME));
+        this.spawned = homeTown.getCoordinatesFor(getNPC().getHome());
         if (this.spawned == null) {
             this.spawned = new BlockPos(this);
         }
@@ -102,7 +100,7 @@ public abstract class EntityNPCHuman<E extends EntityNPCHuman> extends EntityNPC
         if (this.homeTown == null) this.setDead();
         else {
             this.townID = homeTown.getID();
-            this.spawned = homeTown.getCoordinatesFor(getNPC().getLocation(HOME));
+            this.spawned = homeTown.getCoordinatesFor(getNPC().getHome());
             if (this.spawned == null) {
                 this.spawned = new BlockPos(this);
             }

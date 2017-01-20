@@ -70,7 +70,7 @@ import static joshie.harvest.fishing.item.ItemFish.MEDIUM_FISH;
 public class HFShops {
     public static final Shop BARN = newShop(new ResourceLocation(MODID, "barn"), HFNPCs.BARN_OWNER);
     public static final Shop CAFE = newShop(new ResourceLocation(MODID, "cafe"), HFNPCs.CAFE_OWNER);
-    public static final Shop CARPENTER = newShop(new ResourceLocation(MODID, "carpenter"), HFNPCs.BUILDER);
+    public static final Shop CARPENTER = newShop(new ResourceLocation(MODID, "carpenter"), HFNPCs.CARPENTER);
     public static final Shop POULTRY = newShop(new ResourceLocation(MODID, "poultry"), HFNPCs.POULTRY);
     public static final Shop SUPERMARKET = newShop(new ResourceLocation(MODID, "general"), HFNPCs.GS_OWNER);
     public static final Shop MINER = newShop(new ResourceLocation(MODID, "miner"), HFNPCs.MINER);

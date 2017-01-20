@@ -8,18 +8,16 @@ import joshie.harvest.api.npc.NPC;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.world.World;
 
-import static joshie.harvest.api.npc.NPC.Location.HOME;
-import static joshie.harvest.town.BuildingLocations.CARPENTERFRONT;
-import static joshie.harvest.town.BuildingLocations.TOWNHALLTEEN;
+import static joshie.harvest.town.BuildingLocations.*;
 
 @SuppressWarnings("unused")
 public class ScheduleJade implements ISchedule {
     @Override
     public BuildingLocation getTarget(World world, EntityLiving entity, NPC npc, Season season, Weekday day, long time) {
-        if (time >= 5000L && time <= 9000L) return TOWNHALLTEEN;
-        else if (time >= 9000L && time <= 17000L) return CARPENTERFRONT;
+        if (time >= 5000L && time <= 9000L) return TOWNHALL_TEEN;
+        else if (time >= 9000L && time <= 17000L) return CARPENTER_FRONT;
         else {
-            return npc.getLocation(HOME);
+            return CARPENTER_UPSTAIRS;
         }
     }
 }

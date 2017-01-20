@@ -15,8 +15,8 @@ public class ScheduleJenni implements ISchedule {
     @Override
     public BuildingLocation getTarget(World world, EntityLiving entity, NPC npc, Season season, Weekday day, long time) {
         if (time >= 9000L && time < 19000L) return GENERALGARDEN;
-        else if (time >= 19000L && time < 22000L) return CAFEKITCHEN;
+        else if (time >= 19000L && time < 22000L) return CAFE_KITCHEN;
         else if (time >= 22000L && time < 24000L) return FISHING_POND_BACK;
-        else return GENERALBED;
+        else return GENERAL_BED;
     }
 }

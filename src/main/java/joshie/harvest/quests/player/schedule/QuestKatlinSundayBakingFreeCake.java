@@ -45,7 +45,8 @@ public class QuestKatlinSundayBakingFreeCake extends Quest  {
     public String getLocalizedScript(EntityPlayer player, EntityLiving entity, NPC npc) {
         if (!TownHelper.getClosestTownToEntity(player).hasBuilding(HFBuildings.CHURCH)) return null;
         CalendarDate today = HFApi.calendar.getDate(player.worldObj);
-        if (today.getWeekday() == Weekday.SUNDAY) {
+        long daytime = CalendarHelper.getTime(player.worldObj);
+        if (today.getWeekday() == Weekday.SUNDAY && daytime >= 7000L && daytime <= 17000L) {
             if (date == null || CalendarHelper.getDays(date, today) >= 7) {
                 return getLocalized("cake");
             }
@@ -63,7 +64,8 @@ public class QuestKatlinSundayBakingFreeCake extends Quest  {
     public void onChatClosed(EntityPlayer player, EntityLiving entity, NPC npc, boolean wasSneaking) {
         if (!TownHelper.getClosestTownToEntity(player).hasBuilding(HFBuildings.CHURCH)) return;
         CalendarDate today = HFApi.calendar.getDate(player.worldObj);
-        if (today.getWeekday() == Weekday.SUNDAY) {
+        long daytime = CalendarHelper.getTime(player.worldObj);
+        if (today.getWeekday() == Weekday.SUNDAY && daytime >= 7000L && daytime <= 17000L) {
             if (date == null || CalendarHelper.getDays(date, today) >= 7) {
                 date = today.copy(); //Save the date we received this
                 syncData(player); //Sync the new data

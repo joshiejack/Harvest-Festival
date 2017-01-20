@@ -4,13 +4,13 @@ import joshie.harvest.api.buildings.BuildingLocation;
 import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.npc.gift.IGiftHandler.Quality;
 import joshie.harvest.api.quests.Selection;
+import joshie.harvest.api.shops.Shop;
 import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.handlers.GuiHandler;
 import joshie.harvest.npcs.entity.*;
 import joshie.harvest.player.PlayerTrackerServer;
 import joshie.harvest.shops.HFShops;
-import joshie.harvest.api.shops.Shop;
 import joshie.harvest.shops.gui.ShopSelection;
 import joshie.harvest.town.TownHelper;
 import net.minecraft.entity.EntityAgeable;
@@ -22,8 +22,6 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 import java.util.HashMap;
-
-import static joshie.harvest.api.npc.NPC.Location.HOME;
 
 public class NPCHelper {
     private static final HashMap<Shop, ShopSelection> selections = new HashMap<>();
@@ -45,15 +43,15 @@ public class NPCHelper {
 
     public static BlockPos getHomeForEntity(EntityNPC entity) {
         NPC npc = entity.getNPC();
-        if (npc.getLocation(HOME) == null) return null;
-        return TownHelper.getClosestTownToEntity(entity).getCoordinatesFor(npc.getLocation(HOME));
+        if (npc.getHome() == null) return null;
+        return TownHelper.getClosestTownToEntity(entity).getCoordinatesFor(npc.getHome());
     }
 
     @SuppressWarnings("unchecked")
     public static <N extends EntityNPC> N getEntityForNPC(World world, NPC npc) {
         if (npc == HFNPCs.TRADER) {
             return (N) new EntityNPCTrader(world, npc);
-        } if (npc == HFNPCs.BUILDER) {
+        } if (npc == HFNPCs.CARPENTER) {
             return (N) new EntityNPCBuilder(world, npc);
         } else if (npc.isShopkeeper()) {
             return (N) new EntityNPCShopkeeper(world, npc);

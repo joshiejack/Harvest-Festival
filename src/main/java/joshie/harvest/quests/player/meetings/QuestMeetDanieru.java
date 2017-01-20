@@ -30,7 +30,7 @@ public class QuestMeetDanieru extends QuestQuestion {
 
     public QuestMeetDanieru() {
         super(new TutorialSelection("upgrading"));
-        setNPCs(BLACKSMITH, BUILDER, GODDESS, BARN_OWNER, GS_OWNER, FLOWER_GIRL, MILKMAID, MINER);
+        setNPCs(BLACKSMITH, CARPENTER, GODDESS, BARN_OWNER, GS_OWNER, FLOWER_GIRL, MILKMAID, MINER);
     }
 
     @Override

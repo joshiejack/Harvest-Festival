@@ -14,7 +14,7 @@ import java.util.Set;
 @HFQuest("friendship.yulif.sprinkler")
 public class QuestYulif15KSprinkler extends QuestFriendshipStore {
     public QuestYulif15KSprinkler() {
-        super(HFNPCs.BUILDER, 15000);
+        super(HFNPCs.CARPENTER, 15000);
     }
 
     @Override

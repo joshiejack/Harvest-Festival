@@ -50,7 +50,7 @@ public class HFBuildings {
     public static final Building BARN = registerBuilding("barn").setRequirements("carpenter").setInhabitants(HFNPCs.BARN_OWNER).setOffset(6, -1, 8);
     public static final Building BLACKSMITH = registerBuilding("blacksmith").setRequirements("miningHill").setInhabitants(HFNPCs.BLACKSMITH).setOffset(3, -2, 6);
     public static final Building CAFE = registerBuilding("cafe").setRequirements("supermarket").setInhabitants(HFNPCs.CAFE_OWNER, HFNPCs.CAFE_GRANNY).setOffset(7, -1, 10);
-    public static final Building CARPENTER = registerBuilding("carpenter").setSpecialRules(NEVER).setInhabitants(HFNPCs.BUILDER, HFNPCs.FLOWER_GIRL).setOffset(3, -1, 8);
+    public static final Building CARPENTER = registerBuilding("carpenter").setSpecialRules(NEVER).setInhabitants(HFNPCs.CARPENTER, HFNPCs.FLOWER_GIRL).setOffset(3, -1, 8);
     public static final Building CHURCH = registerBuilding("church").setSpecialRules(new SpecialRuleChurch()).setOffset(6, -1, 13);
     public static final Building CLOCKMAKER = registerBuilding("clockmaker").setRequirements("festivals").setInhabitants(HFNPCs.CLOCKMAKER, CLOCKMAKER_CHILD).setOffset(3, -1, 10);
     public static final Building FISHING_HOLE = registerBuilding("fishingHole").setRequirements("fishingHut").setInhabitants(HFNPCs.FISHERMAN).setOffset(6, -4, 7);

@@ -47,7 +47,7 @@ public class ItemNPCSpawner extends ItemHFFML<ItemNPCSpawner, NPC> {
                 EntityNPC entity = NPCHelper.getEntityForNPC(world, npc);
                 entity.setPosition(pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5);
                 entity.resetSpawnHome();
-                if (npc == HFNPCs.BUILDER) {
+                if (npc == HFNPCs.CARPENTER) {
                     entity.setUniqueId(TownHelper.getClosestTownToEntity(entity).getID());
                 }
 

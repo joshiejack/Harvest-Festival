@@ -33,7 +33,7 @@ import java.util.Set;
 import static joshie.harvest.animals.item.ItemAnimalTool.Tool.BRUSH;
 import static joshie.harvest.core.helpers.InventoryHelper.ITEM_STACK;
 import static joshie.harvest.npcs.HFNPCs.BARN_OWNER;
-import static joshie.harvest.npcs.HFNPCs.BUILDER;
+import static joshie.harvest.npcs.HFNPCs.CARPENTER;
 import static joshie.harvest.quests.Quests.YULIF_MEET;
 
 @HFQuest("tutorial.cow")
@@ -50,7 +50,7 @@ public class QuestMeetJim extends QuestQuestion {
 
     public QuestMeetJim() {
         super(new TutorialSelection("cow"));
-        setNPCs(BUILDER, BARN_OWNER);
+        setNPCs(CARPENTER, BARN_OWNER);
     }
 
     @Override
@@ -86,7 +86,7 @@ public class QuestMeetJim extends QuestQuestion {
 
     @Override
     public String getLocalizedScript(EntityPlayer player, EntityLiving entity, NPC npc) {
-        if (npc == BUILDER) {
+        if (npc == CARPENTER) {
             if (player.worldObj.rand.nextFloat() < 0.15F) {
                 if (TownHelper.getClosestTownToEntity(entity).hasBuilding(HFBuildings.BARN)) {
                     //If the barn exists yulif will tell the player to go and talk to jim

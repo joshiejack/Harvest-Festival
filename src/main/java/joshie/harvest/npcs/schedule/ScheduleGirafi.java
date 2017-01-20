@@ -8,16 +8,14 @@ import joshie.harvest.api.npc.NPC;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.world.World;
 
-import static joshie.harvest.api.npc.NPC.Location.HOME;
-import static joshie.harvest.town.BuildingLocations.GENERALCUSTOMER;
-import static joshie.harvest.town.BuildingLocations.GODDESS_POND_BACK_RIGHT;
+import static joshie.harvest.town.BuildingLocations.*;
 
 @SuppressWarnings("unused")
 public class ScheduleGirafi implements ISchedule {
     @Override
     public BuildingLocation getTarget(World world, EntityLiving entity, NPC npc, Season season, Weekday day, long time) {
-        if (time >= 9000L && time <= 17000L) return GENERALCUSTOMER;
+        if (time >= 9000L && time <= 17000L) return GENERAL_CUSTOMER;
         else if (time >= 23000L && time <= 24000L) return GODDESS_POND_BACK_RIGHT;
-        else return npc.getLocation(HOME);
+        else return TOWNHALL_RIGHT;
     }
 }

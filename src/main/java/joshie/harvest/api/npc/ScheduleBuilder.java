@@ -50,7 +50,7 @@ public class ScheduleBuilder {
         public long time;
         public BuildingLocation location;
 
-        public TimedSchedule(Season season, Weekday weekday, long time, BuildingLocation location) {
+        TimedSchedule(Season season, Weekday weekday, long time, BuildingLocation location) {
             this.season = season;
             this.weekday = weekday;
             this.time = time;
@@ -64,7 +64,7 @@ public class ScheduleBuilder {
         public long time;
         public BuildingLocation location;
 
-        public HolidaySchedule(Holiday holiday, long time, BuildingLocation location) {
+        HolidaySchedule(Holiday holiday, long time, BuildingLocation location) {
             this.holiday = holiday;
             this.time = time;
             this.location = location;

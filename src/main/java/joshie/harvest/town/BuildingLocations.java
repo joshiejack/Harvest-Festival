@@ -46,7 +46,7 @@ public class BuildingLocations {
     public static final BuildingLocation GENERALGARDEN = new BuildingLocation(SUPERMARKET, "market.garden").withDistance(16D);
     public static final BuildingLocation GENERAL_BEDROOM = new BuildingLocation(SUPERMARKET, "market.bedroom").withDistance(4D);
     public static final BuildingLocation GENERAL_BED = new BuildingLocation(SUPERMARKET, "candice").withDistance(8D);
-    public static final BuildingLocation GENERALTILL = new BuildingLocation(SUPERMARKET, "market.till").withDistance(1.5D);
+    public static final BuildingLocation GENERAL_TILL = new BuildingLocation(SUPERMARKET, "market.till").withDistance(1.5D);
     public static final BuildingLocation CARPENTER_FRONT = new BuildingLocation(CARPENTER, "carpenter.door").withDistance(24D);
     public static final BuildingLocation CARPENTER_DOWNSTAIRS = new BuildingLocation(CARPENTER, "carpenter.downstairs").withDistance(3D);
     public static final BuildingLocation CARPENTER_UPSTAIRS = new BuildingLocation(CARPENTER, "jade").withDistance(3D);
@@ -70,6 +70,8 @@ public class BuildingLocations {
     public static final BuildingLocation PARK_CUSTOMER = new BuildingLocation(FESTIVALS, "park.customer").withDistance(3D);
     public static final BuildingLocation PARK_BENCH = new BuildingLocation(FESTIVALS, "park.bench").withDistance(5D);
     public static final BuildingLocation PARK_CENTRE = new BuildingLocation(FESTIVALS, "park.centre").withDistance(5D);
+    public static final BuildingLocation PARK_LAMP_BACK = new BuildingLocation(FESTIVALS, "park.back.lamps").withDistance(5D);
+    public static final BuildingLocation PARK_BACK_LEFT = new BuildingLocation(FESTIVALS, "park.back.left").withDistance(5D);
 
     //TODO: Convert to building locations vvv
     public static final String TOWNHALL_CHILD_BEDROOM = "townhall.bedroom.child";

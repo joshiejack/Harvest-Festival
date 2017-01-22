@@ -95,9 +95,59 @@ public class HFNPCs {
 
     public static void init() {
         GODDESS.setHasInfo(new GreetingWeather());
-        CARPENTER.setHome(CARPENTER_DOWNSTAIRS).addGreeting(new GreetingCarpenter());
-        FLOWER_GIRL.setHome(CARPENTER_UPSTAIRS).setHasInfo(new GreetingFlowerBuyer());
-        GS_OWNER.setHome(GENERAL_BEDROOM).setHasInfo(new GreetingSupermarket(GS_OWNER.getRegistryName())); //WORKS AT GENERAL TILL
+        ScheduleBuilder.create(GODDESS, null).build();
+
+        //Carpenter
+        CARPENTER.addGreeting(new GreetingCarpenter());
+        ScheduleBuilder.create(CARPENTER, CARPENTER_DOWNSTAIRS)
+                .add(SPRING, SUNDAY, 0L, CARPENTER_DOWNSTAIRS)
+                .add(SPRING, SUNDAY, 8000L, CARPENTER_FRONT)
+                .add(SPRING, SUNDAY, 17000L, CARPENTER_DOWNSTAIRS)
+                .add(SPRING, SUNDAY, 21000L, CARPENTER_FRONT)
+                .add(COOKING_FESTIVAL, 0L, CARPENTER_UPSTAIRS)
+                .add(COOKING_FESTIVAL, 9000L, PARK_BACK_LEFT)
+                .add(COOKING_FESTIVAL, 20000L, CARPENTER_UPSTAIRS)
+                .build();
+
+        //Flower Girl
+        FLOWER_GIRL.setHasInfo(new GreetingFlowerBuyer());
+        ScheduleBuilder.create(FLOWER_GIRL, CARPENTER_UPSTAIRS)
+                        .add(SPRING, SUNDAY, 0L, CARPENTER_UPSTAIRS)
+                        .add(SPRING, SUNDAY, 5000L, TOWNHALL_TEEN)
+                        .add(SPRING, SUNDAY, 8000L, CARPENTER_UPSTAIRS)
+                        .add(SPRING, SUNDAY, 17000L, PARK_BACK_LEFT)
+                        .add(SPRING, SUNDAY, 19000L, CARPENTER_FRONT)
+                        .add(SPRING, SUNDAY, 21000L, CARPENTER_UPSTAIRS)
+                        .add(COOKING_FESTIVAL, 0L, CARPENTER_UPSTAIRS)
+                        .add(COOKING_FESTIVAL, 6000L, PARK_BACK_LEFT)
+                        .add(COOKING_FESTIVAL, 17000L, CARPENTER_UPSTAIRS)
+                        .build();
+
+        //General Store
+        GS_OWNER.setHasInfo(new GreetingSupermarket(GS_OWNER.getRegistryName()));
+        ScheduleBuilder.create(GS_OWNER, GENERAL_BEDROOM)
+                        .add(SPRING, SUNDAY, 0L, GENERAL_BEDROOM)
+                        .add(SPRING, SUNDAY, 8000L, GENERAL_BEDROOM)
+                        .add(SPRING, SUNDAY, 10000L, PARK_CENTRE)
+                        .add(SPRING, SUNDAY, 15000L, CAFE_FRONT)
+                        .add(SPRING, SUNDAY, 17000L, GENERAL_STORE_FRONT)
+                        .add(SPRING, SUNDAY, 19000L, CAFE_KITCHEN)
+                        .add(SPRING, SUNDAY, 22000L, GENERAL_BED)
+                        .add(SPRING, MONDAY, 0L, GENERAL_BEDROOM)
+                        .add(SPRING, MONDAY, 7500L, GENERAL_TILL)
+                        .add(SPRING, MONDAY, 17000L, GENERAL_BEDROOM)
+                        .add(SPRING, MONDAY, 19000L, CAFE_KITCHEN)
+                        .add(SPRING, MONDAY, 22000L, FISHING_POND_BACK)
+                        .add(SPRING, SATURDAY, 0L, GENERAL_BEDROOM)
+                        .add(SPRING, SATURDAY, 10000L, GENERAL_TILL)
+                        .add(SPRING, SATURDAY, 16000L, CAFE_CUSTOMER)
+                        .add(SPRING, SATURDAY, 19000L, CAFE_KITCHEN)
+                        .add(SPRING, SATURDAY, 22000L, FISHING_POND_BACK)
+                        .add(COOKING_FESTIVAL, 0L, GENERAL_BEDROOM)
+                        .add(COOKING_FESTIVAL, 4500L, PARK_LAMP_BACK)
+                        .add(COOKING_FESTIVAL, 18000L, GENERAL_BEDROOM)
+                        .add(COOKING_FESTIVAL, 20000L, FISHING_POND_BACK)
+                        .build();
 
         //Milkmaid
         ScheduleBuilder.create(MILKMAID, GENERAL_BED)

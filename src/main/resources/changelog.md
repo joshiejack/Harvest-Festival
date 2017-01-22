@@ -94,6 +94,7 @@
 * Disabled the blue feather until i do marriage properly, there's no benefit and it didn't really even work properly
 * Jade will now only give you up to 10 seeds every 5 days
 * Jade will now sometimes give you hardy turnip seeds instead of a normal crop
+* Various npcs have had their schedule changed, so they may be found at different buildings at different times
 
 ###Quests
 * Added a quest board, which comes when you have the townhall, you can purchase a new one from carpenter when townhall is built

@@ -44,7 +44,7 @@ public class CalendarHelper {
     }
 
     private static int getYear(long totalTime) {
-        return (int) Math.floor(getElapsedDays(totalTime) / 4 / DAYS_PER_SEASON);
+        return (int) Math.floor((double)getElapsedDays(totalTime) / 4 / DAYS_PER_SEASON);
     }
 
     public static Season getSeason(long totalTime) {

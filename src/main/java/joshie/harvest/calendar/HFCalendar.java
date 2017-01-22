@@ -2,12 +2,15 @@ package joshie.harvest.calendar;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.CalendarDate;
+import joshie.harvest.api.calendar.Holiday;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.calendar.SeasonProvider;
+import joshie.harvest.api.quests.Quest;
 import joshie.harvest.calendar.provider.HFWorldProvider;
 import joshie.harvest.calendar.provider.SeasonProviderHidden;
 import joshie.harvest.core.helpers.ConfigHelper;
 import joshie.harvest.core.util.annotations.HFLoader;
+import joshie.harvest.quests.QuestHelper;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.DimensionType;
@@ -22,7 +25,7 @@ import static joshie.harvest.core.lib.LoadOrder.HFCALENDAR;
 
 @HFLoader(priority = HFCALENDAR)
 public class HFCalendar {
-    public static final ResourceLocation COOKING_FESTIVAL = registerHoliday("cooking", 22, SPRING);
+    public static final Holiday COOKING_FESTIVAL = registerHoliday("cooking", 22, SPRING);
     private static final SeasonProvider HIDDEN = new SeasonProviderHidden();
     public static Configuration CONFIG;
     public static int DAYS_PER_SEASON_INTEGRATED;
@@ -66,10 +69,12 @@ public class HFCalendar {
         CONFIG.save();
     }
 
-    private static ResourceLocation registerHoliday(String name, int day, Season season) {
+    private static Holiday registerHoliday(String name, int day, Season season) {
         ResourceLocation resource = new ResourceLocation(MODID, name);
-        HFApi.calendar.registerHoliday(resource, new CalendarDate().setDay(day).setSeason(season));
-        return resource;
+        Quest quest = QuestHelper.getQuest("festival." + resource.getResourcePath());
+        Holiday holiday = new Holiday(resource, quest);
+        HFApi.calendar.registerHoliday(holiday, new CalendarDate().setDay(day).setSeason(season));
+        return holiday;
     }
 
     //Configuration

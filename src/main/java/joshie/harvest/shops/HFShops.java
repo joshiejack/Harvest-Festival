@@ -8,6 +8,7 @@ import joshie.harvest.animals.item.ItemAnimalProduct.Sizeable;
 import joshie.harvest.animals.item.ItemAnimalTreat.Treat;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.CalendarDate;
+import joshie.harvest.api.calendar.Holiday;
 import joshie.harvest.api.core.ITiered.ToolTier;
 import joshie.harvest.api.core.Size;
 import joshie.harvest.api.crops.Crop;
@@ -306,8 +307,8 @@ public class HFShops {
         POULTRY.addPurchasable(1000, HFAnimals.TRAY.getStackFromEnum(NEST_EMPTY), 3);
         POULTRY.addPurchasable(7500, HFAnimals.SIZED.getStackFromEnum(INCUBATOR), 1);
 
-        POULTRY.addOpening(MONDAY, 5000, 11000).addOpening(TUESDAY, 5000, 11000).addOpening(WEDNESDAY, 5000, 11000);
-        POULTRY.addOpening(THURSDAY, 5000, 11000).addOpening(FRIDAY, 5000, 11000).addOpening(SATURDAY, 5000, 11000);
+        POULTRY.addOpening(SUNDAY, 5000, 5999).addOpening(MONDAY, 5000, 11000).addOpening(TUESDAY, 5000, 11000).addOpening(WEDNESDAY, 5000, 11000);
+        POULTRY.addOpening(THURSDAY, 5000, 11000).addOpening(FRIDAY, 5000, 11000).addOpening(SATURDAY, 6000, 11000);
     }
 
     private static void registerSupermarket() {
@@ -438,7 +439,7 @@ public class HFShops {
                 .addOpening(FRIDAY, 6000, 18000).addOpening(SATURDAY, 6000, 18000).addOpening(SUNDAY, 6000, 18000);
     }
 
-    private static Shop newHolidayShop(ResourceLocation resource, @Nullable NPC npc, ResourceLocation festival) {
+    private static Shop newHolidayShop(ResourceLocation resource, @Nullable NPC npc, Holiday festival) {
         Shop shop = new Shop(resource).setOpensOnHolidays();
         if (npc != null) {
             ((NPCHolidayStore)npc).setHolidayShop(festival, shop);

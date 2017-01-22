@@ -2,6 +2,7 @@ package joshie.harvest.npcs.schedule;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.buildings.BuildingLocation;
+import joshie.harvest.api.calendar.Holiday;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.calendar.Weekday;
 import joshie.harvest.api.npc.ISchedule;
@@ -11,7 +12,7 @@ import joshie.harvest.api.npc.ScheduleBuilder.HolidaySchedule;
 import joshie.harvest.api.npc.ScheduleBuilder.TimedSchedule;
 import joshie.harvest.calendar.HolidayRegistry;
 import net.minecraft.entity.EntityLiving;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
@@ -20,7 +21,7 @@ import java.util.TreeMap;
 
 public class Schedule implements ISchedule {
     private final TreeMap<Season, TreeMap<Weekday, TreeMap<Long, BuildingLocation>>> seasonalMap = new TreeMap<>();
-    private final HashMap<ResourceLocation, TreeMap<Long, BuildingLocation>> holidayMap = new HashMap<>();
+    private final HashMap<Holiday, TreeMap<Long, BuildingLocation>> holidayMap = new HashMap<>();
     private final BuildingLocation default_;
 
     public Schedule(ScheduleBuilder builder) {
@@ -29,13 +30,13 @@ public class Schedule implements ISchedule {
         for (HolidaySchedule time: builder.holidayScheduleList) register(time.holiday, time.time, time.location);
     }
 
-    public void register(ResourceLocation holiday, long time, BuildingLocation location) {
+    public void register(Holiday holiday, long time, BuildingLocation location) {
         TreeMap<Long, BuildingLocation> hourlyMap = getOrCreateMap(holidayMap, holiday);
         hourlyMap.put(time, location);
         holidayMap.put(holiday, hourlyMap);
     }
 
-    private TreeMap<Long, BuildingLocation> getOrCreateMap(HashMap<ResourceLocation, TreeMap<Long, BuildingLocation>> holidayMap, ResourceLocation holiday) {
+    private TreeMap<Long, BuildingLocation> getOrCreateMap(HashMap<Holiday, TreeMap<Long, BuildingLocation>> holidayMap, Holiday holiday) {
         return holidayMap.containsKey(holiday) ? holidayMap.get(holiday) : new TreeMap<>();
     }
 
@@ -57,8 +58,9 @@ public class Schedule implements ISchedule {
 
     @Override
     public BuildingLocation getTarget(World world, EntityLiving entity, NPC npc, Season season, Weekday weekday, long time) {
+        if (default_ == null) return null;
         //Holidays take priority over anything else
-        ResourceLocation holiday = HolidayRegistry.INSTANCE.getHoliday(HFApi.calendar.getDate(world));
+        Holiday holiday = HolidayRegistry.INSTANCE.getHoliday(world, new BlockPos(entity), HFApi.calendar.getDate(world));
         if (!holiday.equals(HolidayRegistry.NONE) && holidayMap.containsKey(holiday)) {
             BuildingLocation location = getTargetFromMapBasedOnTime(holidayMap.get(holiday), time);
             if (location != null) return location;

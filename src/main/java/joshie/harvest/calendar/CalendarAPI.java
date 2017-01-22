@@ -6,7 +6,6 @@ import joshie.harvest.api.calendar.*;
 import joshie.harvest.calendar.data.SeasonData;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.util.annotations.HFApiImplementation;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -52,7 +51,7 @@ public class CalendarAPI implements CalendarManager {
     }
 
     @Override
-    public void registerHoliday(ResourceLocation name, CalendarDate date) {
+    public void registerHoliday(Holiday name, CalendarDate date) {
         HolidayRegistry.INSTANCE.register(name, date);
     }
 

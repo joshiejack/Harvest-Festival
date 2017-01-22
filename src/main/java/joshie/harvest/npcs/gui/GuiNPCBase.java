@@ -18,6 +18,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.client.event.RenderTooltipEvent;
 import net.minecraftforge.common.MinecraftForge;
@@ -37,6 +38,7 @@ public abstract class GuiNPCBase extends GuiBase {
     private final int outside;
     protected int npcMouseX;
     protected int npcMouseY;
+    protected BlockPos pos;
 
     public GuiNPCBase(EntityPlayer ePlayer, EntityNPC eNpc, EnumHand hand, int next) {
         super(new ContainerNPCChat(ePlayer, eNpc, hand, next), "chat", 0);
@@ -49,6 +51,7 @@ public abstract class GuiNPCBase extends GuiBase {
         nextGui = next;
         inside = npc.getNPC().getInsideColor();
         outside = npc.getNPC().getOutsideColor();
+        pos = new BlockPos(eNpc);
     }
 
     @Override
@@ -176,7 +179,7 @@ public abstract class GuiNPCBase extends GuiBase {
 
     boolean displayInfo() {
         return npc.getNPC().getInfoButton() != null && npc.getNPC().getInfoButton().canDisplay(npc.getNPC(), player)
-                && (npc.getNPC().getShop(player.worldObj) == null || !NPCHelper.isShopOpen(player.worldObj, npc, player, npc.getNPC().getShop(player.worldObj)));
+                && (npc.getNPC().getShop(player.worldObj, pos) == null || !NPCHelper.isShopOpen(player.worldObj, npc, player, npc.getNPC().getShop(player.worldObj, pos)));
     }
 
     public abstract void drawOverlay(int x, int y);

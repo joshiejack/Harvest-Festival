@@ -30,8 +30,8 @@ public class NPCHelper {
         return TownHelper.getClosestTownToEntity(entity).getCoordinatesFor(location);
     }
 
-    public static Selection getShopSelection(World worldObj, NPC npc) {
-        Shop shop = npc.getShop(worldObj);
+    public static Selection getShopSelection(World worldObj, BlockPos pos, NPC npc) {
+        Shop shop = npc.getShop(worldObj, pos);
         ShopSelection selection = selections.get(shop);
         if (selection == null) {
             selection = new ShopSelection(shop);
@@ -65,7 +65,7 @@ public class NPCHelper {
     }
 
     public static boolean isShopOpen(EntityNPC npc, World world, @Nullable EntityPlayer player) {
-        Shop shop = npc.getNPC().getShop(world);
+        Shop shop = npc.getNPC().getShop(world, new BlockPos(npc));
         if (shop != null && isShopOpen(world, npc, player, shop) && (player == null || (canPlayerOpenShop(npc.getNPC(), shop, player)))) {
             return (player != null && (shop.getContents().size() > 0)) || player == null;
         }

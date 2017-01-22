@@ -18,6 +18,7 @@ import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.IForgeRegistryEntry;
@@ -168,7 +169,7 @@ public class NPC extends IForgeRegistryEntry.Impl<NPC> {
         return this == HFNPCs.CARPENTER;
     }
 
-    public Shop getShop(World world) {
+    public Shop getShop(World world, BlockPos pos) {
         return shop;
     }
 

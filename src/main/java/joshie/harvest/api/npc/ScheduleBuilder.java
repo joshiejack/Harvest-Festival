@@ -2,10 +2,10 @@ package joshie.harvest.api.npc;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.buildings.BuildingLocation;
+import joshie.harvest.api.calendar.Holiday;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.calendar.Weekday;
 import joshie.harvest.api.npc.schedule.ScheduleEvent;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 
 import java.util.ArrayList;
@@ -33,7 +33,7 @@ public class ScheduleBuilder {
         return this;
     }
 
-    public ScheduleBuilder add(ResourceLocation holiday, long time, BuildingLocation location) {
+    public ScheduleBuilder add(Holiday holiday, long time, BuildingLocation location) {
         holidayScheduleList.add(new HolidaySchedule(holiday, time, location));
         return this;
     }
@@ -60,11 +60,11 @@ public class ScheduleBuilder {
 
     //For special schedules on specific holidays
     public static class HolidaySchedule {
-        public ResourceLocation holiday;
+        public Holiday holiday;
         public long time;
         public BuildingLocation location;
 
-        public HolidaySchedule(ResourceLocation holiday, long time, BuildingLocation location) {
+        public HolidaySchedule(Holiday holiday, long time, BuildingLocation location) {
             this.holiday = holiday;
             this.time = time;
             this.location = location;

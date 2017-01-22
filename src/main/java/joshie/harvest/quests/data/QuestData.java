@@ -44,6 +44,7 @@ public abstract class QuestData {
 
     public abstract void markCompleted(@Nonnull World world, @Nullable EntityPlayer player, Quest quest, boolean rewards);
     public boolean startQuest(Quest quest, boolean sync, @Nullable NBTTagCompound tag) { return false; }
+    public abstract void removeAsCurrent(@Nonnull World world, Quest quest);
 
     public void readFromNBT(NBTTagCompound nbt) {
         if (nbt.hasKey("CurrentQuests")) {

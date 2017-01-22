@@ -26,4 +26,10 @@ public class QuestDataClient extends QuestData {
         current.remove(quest);
         finished.add(quest);
     }
+
+    @Override
+    public void removeAsCurrent(@Nonnull World world, Quest quest) {
+        current.remove(quest);
+        finished.remove(quest);
+    }
 }

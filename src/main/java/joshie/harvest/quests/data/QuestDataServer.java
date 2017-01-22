@@ -9,6 +9,7 @@ import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.util.interfaces.IQuestMaster;
 import joshie.harvest.quests.packet.PacketQuestCompleted;
 import joshie.harvest.quests.packet.PacketQuestConnect;
+import joshie.harvest.quests.packet.PacketQuestRemove;
 import joshie.harvest.quests.packet.PacketQuestSetCurrent;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -77,6 +78,15 @@ public class QuestDataServer extends QuestData {
         //Sync everything
         if ((quest.getQuestType() == QuestType.PLAYER || quest.getQuestType() == QuestType.TOWN && rewards)) master.sync(player, new PacketQuestCompleted(quest, rewards)); //Let this player claim the reward
         if (quest.getQuestType() == QuestType.TOWN) master.sync(null, new PacketQuestCompleted(quest, false)); //Let the rest of the server know this was completed
+        updateQuests(true); //Update the world on these quests, everytime one is completed
+    }
+
+    @Override
+    public void removeAsCurrent(@Nonnull World world, Quest quest) {
+        current.remove(quest);
+        finished.remove(quest);
+        HFTrackers.markDirty(world);
+        if (quest.getQuestType() == QuestType.TOWN) master.sync(null, new PacketQuestRemove(quest)); //Let the rest of the server know this was completed
         updateQuests(true); //Update the world on these quests, everytime one is completed
     }
     

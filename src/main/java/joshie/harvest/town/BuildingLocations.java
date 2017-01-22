@@ -8,6 +8,7 @@ import static joshie.harvest.buildings.HFBuildings.*;
 public class BuildingLocations {
     public static final BuildingLocation FISHING_HUT_UPSTAIRS = new BuildingLocation(FISHING_HUT, "fisher.upstairs").withDistance(8D);
     public static final BuildingLocation FISHING_HUT_DOWNSTAIRS = new BuildingLocation(FISHING_HUT, "jacob").withDistance(8D);
+    public static final BuildingLocation FISHER_LEFT = new BuildingLocation(FISHING_HUT, "fisher.left").withDistance(16D);
     public static final BuildingLocation FISHING_POND_PIER = new BuildingLocation(FISHING_HOLE, "pond.pier").withDistance(16D);
     public static final BuildingLocation FISHING_POND_BACK = new BuildingLocation(FISHING_HOLE, "pond.back").withDistance(20D);
     public static final BuildingLocation FISHING_POND_LEFT = new BuildingLocation(FISHING_HOLE, "pond.left").withDistance(20D);
@@ -16,6 +17,7 @@ public class BuildingLocations {
     public static final BuildingLocation GODDESS_POND_FRONT = new BuildingLocation(GODDESS_POND, "goddess.front").withDistance(24D);
     public static final BuildingLocation GODDESS_POND_FRONT_LEFT = new BuildingLocation(GODDESS_POND, "goddess.left").withDistance(24D);
     public static final BuildingLocation GODDESS_POND_FRONT_RIGHT = new BuildingLocation(GODDESS_POND, "goddess.right").withDistance(24D);
+    public static final BuildingLocation GODDESS_BACK_LEFT = new BuildingLocation(GODDESS_POND, "goddess.left.back").withDistance(16D);
     public static final BuildingLocation BARN_INSIDE = new BuildingLocation(BARN, "jim").withDistance(8D);
     public static final BuildingLocation BARN_LEFT_PEN = new BuildingLocation(BARN, "barn.left").withDistance(8D);
     public static final BuildingLocation BARN_DOOR = new BuildingLocation(BARN, "barn.door").withDistance(20D);
@@ -38,6 +40,7 @@ public class BuildingLocations {
     public static final BuildingLocation CHURCHPEWBACKLEFT = new BuildingLocation(CHURCH, "church.pew.left.back").withDistance(3D);
     public static final BuildingLocation CHURCH_PEW_BACK_RIGHT = new BuildingLocation(CHURCH, "church.pew.right.back").withDistance(3D);
     public static final BuildingLocation CHURCH_RIGHT = new BuildingLocation(CHURCH, "church.right").withDistance(20D);
+    public static final BuildingLocation CHURCH_LEFT = new BuildingLocation(CHURCH, "church.left").withDistance(20D);
     public static final BuildingLocation GENERAL_CUSTOMER = new BuildingLocation(SUPERMARKET, "market.customer").withDistance(16D);
     public static final BuildingLocation GENERAL_STORE_FRONT = new BuildingLocation(SUPERMARKET, "market.front").withDistance(16D);
     public static final BuildingLocation GENERALGARDEN = new BuildingLocation(SUPERMARKET, "market.garden").withDistance(16D);
@@ -60,11 +63,15 @@ public class BuildingLocations {
     public static final BuildingLocation CLOCKMAKER_DOOR = new BuildingLocation(CLOCKMAKER, "clockworker.door");
     public static final BuildingLocation CLOCKMAKER_UPSTAIRS = new BuildingLocation(CLOCKMAKER, "fenn");
     public static final BuildingLocation CLOCKMAKER_DOWNSTAIRS = new BuildingLocation(CLOCKMAKER, "tiberius");
+    public static final BuildingLocation PARK_STALL = new BuildingLocation(FESTIVALS, "park.stall").withDistance(1D);
     public static final BuildingLocation PARK_CAFE = new BuildingLocation(FESTIVALS, "park.cafe").withDistance(1D);
     public static final BuildingLocation PARK_TABLE = new BuildingLocation(FESTIVALS, "park.table").withDistance(5D);
+    public static final BuildingLocation PARK_LEFT = new BuildingLocation(FESTIVALS, "park.left").withDistance(5D);
+    public static final BuildingLocation PARK_CUSTOMER = new BuildingLocation(FESTIVALS, "park.customer").withDistance(3D);
+    public static final BuildingLocation PARK_BENCH = new BuildingLocation(FESTIVALS, "park.bench").withDistance(5D);
+    public static final BuildingLocation PARK_CENTRE = new BuildingLocation(FESTIVALS, "park.centre").withDistance(5D);
 
     //TODO: Convert to building locations vvv
-    public static final String MARKET_DOOR = "market.entrance";
     public static final String TOWNHALL_CHILD_BEDROOM = "townhall.bedroom.child";
     public static final String TOWNHALL_FRONT_OF_STAGE = "townhall.stage.front";
     public static final String TOWNHALL_LEFT_OF_STAGE = "townhall.stage.left";
@@ -77,11 +84,9 @@ public class BuildingLocations {
     public static final String MINER_HALL = "miner.hall";
     public static final String POULTRY_FRONT = "poultry.front";
     public static final String FISHER_RIGHT = "fisher.right";
-    public static final String FISHER_LEFT = "fisher.left";
+
     public static final String FISHER_DOOR = "fisher.door";
-    public static final String CHURCH_LEFT = "church.left";
     public static final String GODDESS_BACK = "goddess.back";
-    public static final String GODDESS_BACK_LEFT = "goddess.left.back";
     public static final String GODDESS_MIDDLE_RIGHT = "goddess.right.middle";
     public static final String GODDESS_MIDDLE_LEFT = "goddess.left.middle";
     public static final String GODDESS_WATER = "goddess.water";

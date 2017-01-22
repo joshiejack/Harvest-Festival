@@ -33,7 +33,7 @@ public class GuiNPCSelect extends GuiNPCBase {
 
     public GuiNPCSelect(EntityPlayer player, EntityNPC npc, int next, int selectionType) {
         super(player, npc, EnumHand.MAIN_HAND, next);
-        if (selectionType == -1) selection = NPCHelper.getShopSelection(player.worldObj, npc.getNPC());
+        if (selectionType == -1) selection = NPCHelper.getShopSelection(player.worldObj, pos, npc.getNPC());
         else {
             quest = QuestHelper.getSelectiomFromID(player, selectionType);
             selection = quest != null ? quest.getSelection(player, npc.getNPC()): null;

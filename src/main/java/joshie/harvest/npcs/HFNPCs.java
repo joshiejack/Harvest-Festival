@@ -9,7 +9,6 @@ import joshie.harvest.api.npc.ISchedule;
 import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.npc.ScheduleBuilder;
 import joshie.harvest.api.npc.gift.IGiftHandler;
-import joshie.harvest.calendar.HFCalendar;
 import joshie.harvest.core.base.render.MeshIdentical;
 import joshie.harvest.core.lib.EntityIDs;
 import joshie.harvest.core.proxy.HFClientProxy;
@@ -41,6 +40,7 @@ import static joshie.harvest.api.calendar.Weekday.*;
 import static joshie.harvest.api.npc.INPCHelper.Age.*;
 import static joshie.harvest.api.npc.INPCHelper.Gender.FEMALE;
 import static joshie.harvest.api.npc.INPCHelper.Gender.MALE;
+import static joshie.harvest.calendar.HFCalendar.COOKING_FESTIVAL;
 import static joshie.harvest.core.helpers.ConfigHelper.getDouble;
 import static joshie.harvest.core.helpers.RegistryHelper.registerSounds;
 import static joshie.harvest.core.lib.HFModInfo.*;
@@ -98,14 +98,134 @@ public class HFNPCs {
         CARPENTER.setHome(CARPENTER_DOWNSTAIRS).addGreeting(new GreetingCarpenter());
         FLOWER_GIRL.setHome(CARPENTER_UPSTAIRS).setHasInfo(new GreetingFlowerBuyer());
         GS_OWNER.setHome(GENERAL_BEDROOM).setHasInfo(new GreetingSupermarket(GS_OWNER.getRegistryName())); //WORKS AT GENERAL TILL
-        MILKMAID.setHome(GENERAL_BED); //WORKS AT BARN_LEFT_PEN
-        BARN_OWNER.setHome(BARN_INSIDE);
-        POULTRY.setHome(POULTRY_CENTRE);
-        FISHERMAN.setHome(FISHING_HUT_UPSTAIRS).addGreeting(new GreetingLocation(FISHING_POND_PIER)); //WORKS FISHING_HUT_DOWNSTAIRS
-        CAFE_OWNER.setHome(CAFE_BALCONY); //CAFETILL WORK
+
+        //Milkmaid
+        ScheduleBuilder.create(MILKMAID, GENERAL_BED)
+                        .add(SPRING, SUNDAY, 0L, GENERAL_BED)
+                        .add(SPRING, SUNDAY, 6000L, CHURCH_LEFT)
+                        .add(SPRING, SUNDAY, 16000L, PARK_CENTRE)
+                        .add(SPRING, SUNDAY, 20000L, FISHING_POND_BACK)
+                        .add(SPRING, SUNDAY, 24000L, GENERAL_BED)
+                        .add(SPRING, MONDAY, 0L, GENERAL_BED)
+                        .add(SPRING, MONDAY, 8000L, BARN_LEFT_PEN)
+                        .add(SPRING, MONDAY, 10000L, BARN_RIGHT_PEN)
+                        .add(SPRING, MONDAY, 15000L, BARN_DOOR)
+                        .add(SPRING, MONDAY, 17000L, FISHER_LEFT)
+                        .add(SPRING, MONDAY, 20000L, FISHING_POND_BACK)
+                        .add(SPRING, MONDAY, 24000L, GENERAL_BED)
+                        .add(COOKING_FESTIVAL, 0L, GENERAL_BED)
+                        .add(COOKING_FESTIVAL, 14000L, PARK_CENTRE)
+                        .add(COOKING_FESTIVAL, 16000L, PARK_CUSTOMER)
+                        .add(COOKING_FESTIVAL, 18000L, GENERAL_BED)
+                        .add(COOKING_FESTIVAL, 20000L, FISHING_POND_BACK)
+                        .add(COOKING_FESTIVAL, 24000L, GENERAL_BED)
+                        .build();
+
+        //Barn Owner
+        ScheduleBuilder.create(BARN_OWNER, BARN_INSIDE)
+                        .add(SPRING, SUNDAY, 0L, BARN_INSIDE)
+                        .add(SPRING, SUNDAY, 10000L, GENERAL_BEDROOM)
+                        .add(SPRING, SUNDAY, 13000L, CAFE_FRONT)
+                        .add(SPRING, SUNDAY, 16000L, PARK_CENTRE)
+                        .add(SPRING, SUNDAY, 19000L, GENERAL_BEDROOM)
+                        .add(SPRING, SUNDAY, 21000L, BARN_INSIDE)
+                        .add(SPRING, MONDAY, 0L, BARN_INSIDE)
+                        .add(SPRING, MONDAY, 15000L, GENERAL_CUSTOMER)
+                        .add(SPRING, MONDAY, 17000L, PARK_CENTRE)
+                        .add(SPRING, MONDAY, 19000L, GENERAL_BEDROOM)
+                        .add(SPRING, MONDAY, 22000L, BARN_INSIDE)
+                        .add(COOKING_FESTIVAL, 0L, BARN_INSIDE)
+                        .add(COOKING_FESTIVAL, 10000L, BARN_INSIDE)
+                        .add(COOKING_FESTIVAL, 17000L, BARN_DOOR)
+                        .add(COOKING_FESTIVAL, 19000L, GENERAL_BEDROOM)
+                        .add(COOKING_FESTIVAL, 23500L, BARN_INSIDE)
+                        .build();
+
+        //Miner
+        ScheduleBuilder.create(MINER, null).build();
+
+        //Poultry Farm Owner
+        ScheduleBuilder.create(POULTRY, POULTRY_CENTRE)
+                        .add(SPRING, SUNDAY, 0L, POULTRY_CENTRE)
+                        .add(SPRING, SATURDAY, 4500L, CARPENTER_FRONT)
+                        .add(SPRING, SUNDAY, 6000L, CARPENTER_FRONT)
+                        .add(SPRING, SUNDAY, 7000L, CHURCH_RIGHT)
+                        .add(SPRING, SUNDAY, 12000L, POULTRY_CENTRE)
+                        .add(SPRING, SUNDAY, 15000L, PARK_BENCH)
+                        .add(SPRING, SUNDAY, 18000L, POULTRY_CENTRE)
+                        .add(SPRING, MONDAY, 0L, POULTRY_CENTRE)
+                        .add(SPRING, MONDAY, 6000L, POULTRY_CENTRE)
+                        .add(SPRING, MONDAY, 12000L, GENERAL_STORE_FRONT)
+                        .add(SPRING, MONDAY, 15000L, PARK_BENCH)
+                        .add(SPRING, MONDAY, 18000L, POULTRY_CENTRE)
+                        .add(COOKING_FESTIVAL, 0L, POULTRY_CENTRE)
+                        .add(COOKING_FESTIVAL, 6000L, PARK_BENCH)
+                        .add(COOKING_FESTIVAL, 11000L, POULTRY_DOOR)
+                        .add(COOKING_FESTIVAL, 13000L, POULTRY_CENTRE)
+                        .build();
+
+        //Fisherman
+        FISHERMAN.addGreeting(new GreetingLocation(FISHING_POND_PIER));
+        ScheduleBuilder.create(FISHERMAN, FISHING_HUT_UPSTAIRS)
+                        .add(SPRING, SUNDAY, 0L, FISHING_HUT_UPSTAIRS)
+                        .add(SPRING, SATURDAY, 5000L, FISHING_POND_PIER)
+                        .add(SPRING, SUNDAY, 6000L, FISHING_POND_PIER)
+                        .add(SPRING, SUNDAY, 9000L, GODDESS_POND_FRONT)
+                        .add(SPRING, SUNDAY, 12000L, FISHING_HUT_DOWNSTAIRS)
+                        .add(SPRING, SUNDAY, 15000L, FISHING_POND_PIER)
+                        .add(SPRING, SUNDAY, 18000L, FISHING_HUT_UPSTAIRS)
+                        .add(SPRING, TUESDAY, 0L, FISHING_HUT_UPSTAIRS)
+                        .add(SPRING, TUESDAY, 6000L, FISHING_POND_PIER)
+                        .add(SPRING, TUESDAY, 10000L, GODDESS_POND_FRONT)
+                        .add(SPRING, TUESDAY, 12000L, FISHING_HUT_DOWNSTAIRS)
+                        .add(SPRING, TUESDAY, 19000L, FISHING_POND_PIER)
+                        .add(SPRING, TUESDAY, 22000L, FISHING_HUT_UPSTAIRS)
+                        .add(SPRING, SATURDAY, 0L, FISHING_HUT_UPSTAIRS)
+                        .add(SPRING, SATURDAY, 6000L, GODDESS_POND_FRONT)
+                        .add(SPRING, SATURDAY, 8000L, FISHING_POND_PIER)
+                        .add(SPRING, SATURDAY, 13000L, FISHING_HUT_DOWNSTAIRS)
+                        .add(SPRING, SATURDAY, 15000L, FISHING_POND_PIER)
+                        .add(SPRING, SATURDAY, 18000L, FISHING_HUT_DOWNSTAIRS)
+                        .add(SPRING, SATURDAY, 19500L, FISHING_POND_PIER)
+                        .add(SPRING, SATURDAY, 22000L, FISHING_HUT_UPSTAIRS)
+                        .add(COOKING_FESTIVAL, 0L, FISHING_HUT_UPSTAIRS)
+                        .add(COOKING_FESTIVAL, 6000L, GODDESS_POND_FRONT)
+                        .add(COOKING_FESTIVAL, 7000L, FISHING_POND_PIER)
+                        .add(COOKING_FESTIVAL, 13000L, PARK_LEFT)
+                        .add(COOKING_FESTIVAL, 16000L, PARK_CUSTOMER)
+                        .add(COOKING_FESTIVAL, 17500L, FISHING_POND_PIER)
+                        .add(COOKING_FESTIVAL, 20000L, FISHING_HUT_DOWNSTAIRS)
+                        .add(COOKING_FESTIVAL, 22000L, FISHING_HUT_UPSTAIRS).build();
+
+        ScheduleBuilder.create(CAFE_OWNER, CAFE_BALCONY)
+                        .add(SPRING, SUNDAY, 0L, CAFE_BALCONY)
+                        .add(SPRING, SATURDAY, 5000L, GODDESS_POND_FRONT_LEFT)
+                        .add(SPRING, SUNDAY, 6000L, GODDESS_POND_FRONT_LEFT)
+                        .add(SPRING, SUNDAY, 7000L, CHURCH_INSIDE)
+                        .add(SPRING, SUNDAY, 8500L, CAFETILL)
+                        .add(SPRING, SUNDAY, 17000L, PARK_TABLE)
+                        .add(SPRING, SUNDAY, 20000L, CAFE_BALCONY)
+                        .add(SPRING, MONDAY, 0L, CAFE_BALCONY)
+                        .add(SPRING, MONDAY, 8000L, CAFETILL)
+                        .add(SPRING, MONDAY, 17000L, CAFE_CUSTOMER)
+                        .add(SPRING, MONDAY, 18000L, CAFE_FRONT)
+                        .add(SPRING, MONDAY, 19000L, PARK_TABLE)
+                        .add(SPRING, MONDAY, 22000L, CAFE_BALCONY)
+                        .add(SPRING, SATURDAY, 0L, CAFE_BALCONY)
+                        .add(SPRING, SATURDAY, 6000L, GODDESS_POND_FRONT_LEFT)
+                        .add(SPRING, SATURDAY, 8000L, CAFETILL)
+                        .add(SPRING, SATURDAY, 17000L, CAFE_CUSTOMER)
+                        .add(SPRING, SATURDAY, 18000L, CAFE_FRONT)
+                        .add(SPRING, SATURDAY, 19000L, PARK_TABLE)
+                        .add(SPRING, SATURDAY, 22000L, CAFE_BALCONY)
+                        .add(COOKING_FESTIVAL, 0L, CAFE_BALCONY)
+                        .add(COOKING_FESTIVAL, 5000L, PARK_STALL)
+                        .add(COOKING_FESTIVAL, 18000L, CAFE_BALCONY)
+                        .build();
+
         ScheduleBuilder.create(CAFE_GRANNY, CAFE_KITCHEN)
                         .add(SPRING, SUNDAY, 0L, CAFE_KITCHEN)
-                        .add(SPRING, SUNDAY, 5000L, CHURCH_PEW_CENTRE)
+                        .add(SPRING, SATURDAY, 5000L, CHURCH_PEW_CENTRE)
                         .add(SPRING, SUNDAY, 17000L, FISHING_POND_RIGHT)
                         .add(SPRING, SUNDAY, 20000L, CAFE_KITCHEN)
                         .add(SPRING, MONDAY, 0L, CAFE_KITCHEN)
@@ -125,9 +245,9 @@ public class HFNPCs {
                         .add(SPRING, SATURDAY, 15000L, CAFE_KITCHEN)
                         .add(SPRING, SATURDAY, 17000L, FISHING_POND_RIGHT)
                         .add(SPRING, SATURDAY, 19000L, CAFE_KITCHEN)
-                        .add(HFCalendar.COOKING_FESTIVAL, 0L, CAFE_KITCHEN)
-                        .add(HFCalendar.COOKING_FESTIVAL, 5000L, PARK_CAFE)
-                        .add(HFCalendar.COOKING_FESTIVAL, 18000L, CAFE_KITCHEN)
+                        .add(COOKING_FESTIVAL, 0L, CAFE_KITCHEN)
+                        .add(COOKING_FESTIVAL, 5000L, PARK_CAFE)
+                        .add(COOKING_FESTIVAL, 18000L, CAFE_KITCHEN)
                         .build();
 
 

@@ -11,6 +11,7 @@ import joshie.harvest.npcs.NPCHelper;
 import joshie.harvest.npcs.entity.EntityNPC;
 import joshie.harvest.quests.QuestHelper;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.common.eventhandler.Event.Result;
 
 @Packet(Side.SERVER)
@@ -50,7 +51,8 @@ public class PacketQuestSelect extends PacketQuest {
         Selection selection;
         EntityNPC npc = (EntityNPC) player.worldObj.getEntityByID(npcID);
         if (npc != null) {
-            if (quest == -1 && npc.getNPC().getShop(player.worldObj) != null) selection = NPCHelper.getShopSelection(player.worldObj, npc.getNPC());
+            BlockPos pos = new BlockPos(npc);
+            if (quest == -1 && npc.getNPC().getShop(player.worldObj, pos) != null) selection = NPCHelper.getShopSelection(player.worldObj, pos, npc.getNPC());
             else {
                 theQuest = QuestHelper.getSelectiomFromID(player, quest);
                 selection = theQuest != null ? theQuest.getSelection(player, npc.getNPC()) : null;

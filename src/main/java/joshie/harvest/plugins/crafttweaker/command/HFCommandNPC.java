@@ -2,7 +2,6 @@ package joshie.harvest.plugins.crafttweaker.command;
 
 import joshie.harvest.core.commands.AbstractHFCommand;
 import joshie.harvest.api.npc.NPC;
-import joshie.harvest.npcs.NPCRegistry;
 import minetweaker.MineTweakerAPI;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
@@ -35,7 +34,7 @@ public class HFCommandNPC extends AbstractHFCommand {
 
     private List<String> getShopList() {
         List<String> list = new ArrayList<>();
-        for (NPC npc: NPCRegistry.REGISTRY.getValues()) {
+        for (NPC npc: NPC.REGISTRY.getValues()) {
             list.add(npc.getLocalizedName() + " = " + npc.getRegistryName());
         }
 

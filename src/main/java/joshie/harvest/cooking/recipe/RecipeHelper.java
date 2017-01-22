@@ -72,6 +72,7 @@ public class RecipeHelper {
         return addRecipe(meal.getName(), FRYING_PAN, hungerModifier, modifier, false, ingredients);
     }
 
+    @SuppressWarnings("unused")
     public static void addFryingPanRecipe(String mealname, ItemStack result, Ingredient... ingredients) {
         addRecipe(mealname, result, FRYING_PAN, ingredients);
     }

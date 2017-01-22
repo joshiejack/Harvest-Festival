@@ -1,13 +1,11 @@
 package joshie.harvest.crops;
 
 import joshie.harvest.api.crops.Crop;
-import joshie.harvest.api.crops.ICropProvider;
 import joshie.harvest.api.crops.ICropRegistry;
 import joshie.harvest.api.crops.WateringHandler;
 import joshie.harvest.core.handlers.DisableHandler;
 import joshie.harvest.core.util.annotations.HFApiImplementation;
 import joshie.harvest.core.util.holders.ItemStackHolder;
-import joshie.harvest.crops.item.ItemCrop.Crops;
 import joshie.harvest.crops.tile.TileWithered;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
@@ -45,18 +43,6 @@ public class CropRegistry implements ICropRegistry {
     }
 
     @Override
-    @Deprecated //TODO: Remove in 0.7+
-    public ItemStack getCropStack(Crop crop, int amount) {
-        for (Crops crop1: Crops.values()) {
-            if (crop1.getCrop() == crop) return HFCrops.CROP.getStackFromEnum(crop1, amount);
-        }
-
-        ItemStack stack = HFCrops.CROP.getStackFromEnum(Crops.TURNIP);
-        stack.stackSize = amount;
-        return stack;
-    }
-
-    @Override
     public void registerSeedForBlacklisting(ItemStack item) {
         DisableHandler.SEEDS_BLACKLIST.register(item);
     }
@@ -84,11 +70,6 @@ public class CropRegistry implements ICropRegistry {
     @Override
     @SuppressWarnings("deprecation")
     public Crop getCropFromStack(ItemStack stack) {
-        //TODO: Remove in 0.7+
-        if (stack.getItem() instanceof ICropProvider) {
-            return ((ICropProvider)stack.getItem()).getCrop(stack);
-        }
-
         Crop crop = providers.get(ItemStackHolder.of(stack.getItem(), OreDictionary.WILDCARD_VALUE));
         return crop != null ? crop : providers.get(ItemStackHolder.of(stack));
     }

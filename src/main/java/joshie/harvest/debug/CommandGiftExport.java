@@ -1,11 +1,11 @@
 package joshie.harvest.debug;
 
 import com.google.common.collect.HashMultimap;
+import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.npc.gift.IGiftHandler.Quality;
 import joshie.harvest.core.commands.AbstractHFCommand;
 import joshie.harvest.core.commands.HFCommand;
-import joshie.harvest.api.npc.NPC;
-import joshie.harvest.npcs.NPCRegistry;
+import joshie.harvest.npcs.NPCHelper;
 import net.minecraft.command.CommandNotFoundException;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.command.NumberInvalidException;
@@ -26,9 +26,9 @@ public class CommandGiftExport extends AbstractHFCommand {
     }
 
     public static StringBuilder getGifts(ItemStack stack) {
-        if (!NPCRegistry.INSTANCE.getGifts().isBlacklisted(stack)) {
+        if (!NPCHelper.INSTANCE.getGifts().isBlacklisted(stack)) {
             HashMultimap<Quality, NPC> qualities = HashMultimap.create();
-            for (NPC npc : NPCRegistry.REGISTRY) {
+            for (NPC npc : NPC.REGISTRY) {
                 if (npc == NPC.NULL_NPC) continue;
                 Quality quality = npc.getGiftValue(stack);
                 qualities.get(quality).add(npc);

@@ -3,7 +3,7 @@ package joshie.harvest.npcs.gui;
 import joshie.harvest.api.npc.gift.IGiftHandler.Quality;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.helpers.TextHelper;
-import joshie.harvest.npcs.NPCRegistry;
+import joshie.harvest.npcs.NPCHelper;
 import joshie.harvest.npcs.entity.EntityNPC;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -30,7 +30,7 @@ public class GuiNPCGift extends GuiNPCChat {
 
     @Override
     public String getScript() {
-        if (NPCRegistry.INSTANCE.getGifts().isBlacklisted(gift)) return TextHelper.getSpeech(npc, "gift.no");
+        if (NPCHelper.INSTANCE.getGifts().isBlacklisted(gift)) return TextHelper.getSpeech(npc, "gift.no");
         //TODO: Reenable in 1.0 when I readd marriage
         /*
         if (ToolHelper.isBlueFeather(gift)) {

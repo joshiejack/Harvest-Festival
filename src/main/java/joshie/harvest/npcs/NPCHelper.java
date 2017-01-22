@@ -1,14 +1,21 @@
 package joshie.harvest.npcs;
 
 import joshie.harvest.api.buildings.BuildingLocation;
+import joshie.harvest.api.npc.INPCHelper;
+import joshie.harvest.api.npc.ISchedule;
 import joshie.harvest.api.npc.NPC;
+import joshie.harvest.api.npc.ScheduleBuilder;
 import joshie.harvest.api.npc.gift.IGiftHandler.Quality;
 import joshie.harvest.api.quests.Selection;
 import joshie.harvest.api.shops.Shop;
 import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.handlers.GuiHandler;
+import joshie.harvest.core.helpers.TextHelper;
+import joshie.harvest.core.util.annotations.HFApiImplementation;
 import joshie.harvest.npcs.entity.*;
+import joshie.harvest.npcs.gift.GiftRegistry;
+import joshie.harvest.npcs.schedule.Schedule;
 import joshie.harvest.player.PlayerTrackerServer;
 import joshie.harvest.shops.HFShops;
 import joshie.harvest.shops.gui.ShopSelection;
@@ -23,8 +30,31 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 import java.util.HashMap;
 
-public class NPCHelper {
+@HFApiImplementation
+public class NPCHelper implements INPCHelper {
     private static final HashMap<Shop, ShopSelection> selections = new HashMap<>();
+    public static final NPCHelper INSTANCE = new NPCHelper();
+    private final GiftRegistry gifts = new GiftRegistry();
+
+    @Override
+    public GiftRegistry getGifts() {
+        return gifts;
+    }
+
+    @Override
+    public ItemStack getStackForNPC(NPC npc) {
+        return HFNPCs.SPAWNER_NPC.getStackFromObject(npc);
+    }
+
+    @Override
+    public String getRandomSpeech(NPC npc, String text, int maximumAlternatives, Object... data) {
+        return TextHelper.getRandomSpeech(npc, text, maximumAlternatives, data);
+    }
+
+    @Override
+    public ISchedule buildSchedule(ScheduleBuilder builder) {
+        return new Schedule(builder);
+    }
 
     public static BlockPos getCoordinatesForLocation(EntityLivingBase entity, BuildingLocation location) {
         return TownHelper.getClosestTownToEntity(entity).getCoordinatesFor(location);

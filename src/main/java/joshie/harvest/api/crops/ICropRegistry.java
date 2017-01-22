@@ -25,10 +25,6 @@ public interface ICropRegistry {
     /** Returns the crop as seeds **/
     ItemStack getSeedStack(Crop crop, int amount);
 
-    /** Returns the crop as a stack **/
-    @Deprecated
-    ItemStack getCropStack(Crop crop, int amount);
-
     /** Register a seed, so that if the config disables it
      *  the seed cannot be right clicked
      *  @param item     the seeds */
@@ -38,6 +34,8 @@ public interface ICropRegistry {
      *  @param world the world
      *  @param pos the block position
      *  @return the crop data the loation**/
+    @Nullable
+    @SuppressWarnings("unused")
     Crop getCropAtLocation(World world, BlockPos pos);
 
     /** Called to plant a crop at the location, the location should be location the crop itself

@@ -11,12 +11,6 @@ public interface CookingManager {
      *  @param      ingredient the name of the ingredient **/
     void register(ItemStack stack, Ingredient ingredient);
     
-    /** Registers a special recipe handler, called before the normal
-     *  recipes are ever processed
-     * @param handler   the handler */
-    @Deprecated //TODO: Remove in 0.7+
-    void registerRecipeHandler(RecipeHandler handler);
-
     /** Registers a cooking handler
      * @param handler   the handler */
     void registerCookingHandler(CookingHandler handler);
@@ -25,20 +19,6 @@ public interface CookingManager {
      *  Use OreDictionary.WILDCARD_VALUE if metadata doesn't matter
      * @param stack the knife stack */
     void registerKnife(ItemStack stack);
-
-    @Deprecated //TODO: Remove in 0.7+
-    Meal addMeal(ResourceLocation key, Utensil utensil, int hunger, float saturation, int eatTimer, Ingredient... ingredients);
-
-    @Deprecated //TODO: Remove in 0.7+
-    void addRecipe(ItemStack output, Utensil utensil, Ingredient... ingredients);
-
-    /** Add a recipe, with a custom stack output
-     *  Use case for such thing is wheat > bread
-     * @param key    the registry name
-     * @param utensil   the utensil
-     * @param output    the resulting item
-     * @param ingredients the ingredients */
-    Recipe addBasicRecipe(ResourceLocation key, Utensil utensil, ItemStack output, IngredientStack... ingredients);
 
     /** Returns true if this stack is an ingredient
      * @param  stack    the stack to validate **/
@@ -55,9 +35,6 @@ public interface CookingManager {
      * @return      a fluid, can be null */
     ResourceLocation getFluid(ItemStack ingredient);
 
-    @Deprecated //TODO: Remove in 0.7+
-    ItemStack getResult(Utensil utensil, List<ItemStack> ingredients);
-
     /** Returns a resulting itemstack for the ingredients input
      *  @param      utensil the utensil in use
      *  @param      ingredients the ingredients
@@ -67,8 +44,9 @@ public interface CookingManager {
     /** Returns a default copy of this meal
      *  @param name     this is the resource path of the name, if it's a harvestfestival meal you can just use the name,
      *                  if it's added by other mods you should use the normal resourcepath **/
+    @SuppressWarnings("unused")
     ItemStack getMeal(String name);
-    
+
     /** Returns a copy of this meal, with it's best stats
      *  Can and will return null if it was not found.
      *  @param name     this is the resource path of the name, if it's a harvestfestival meal you can just use the name,

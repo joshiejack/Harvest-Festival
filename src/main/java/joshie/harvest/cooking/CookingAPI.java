@@ -2,9 +2,7 @@ package joshie.harvest.cooking;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.cooking.*;
-import joshie.harvest.cooking.recipe.RecipeHF;
 import joshie.harvest.cooking.recipe.RecipeMaker;
-import joshie.harvest.cooking.recipe.RecipeVanilla;
 import joshie.harvest.core.util.annotations.HFApiImplementation;
 import joshie.harvest.core.util.holders.HolderRegistryMulti;
 import joshie.harvest.core.util.holders.ItemStackHolder;
@@ -14,13 +12,11 @@ import net.minecraftforge.oredict.OreDictionary;
 
 import java.util.*;
 
-import static joshie.harvest.cooking.recipe.RecipeHelper.toIngredientStacks;
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 
 @HFApiImplementation
 public class CookingAPI implements CookingManager {
     public static final CookingAPI INSTANCE = new CookingAPI();
-    private final Set<RecipeHandler> handlers = new HashSet<>();
     private final Set<ItemStackHolder> knives = new HashSet<>();
     private final Set<CookingHandler> cookingHandlers = new HashSet<>();
     private final HolderRegistryMulti<Ingredient> ingredientRegistry = new HolderRegistryMulti<Ingredient>() {
@@ -56,12 +52,6 @@ public class CookingAPI implements CookingManager {
     }
 
     @Override
-    @Deprecated
-    public void registerRecipeHandler(RecipeHandler handler) {
-        handlers.add(handler);
-    }
-
-    @Override
     public void registerCookingHandler(CookingHandler handler) {
         cookingHandlers.add(handler);
     }
@@ -75,30 +65,6 @@ public class CookingAPI implements CookingManager {
     public ResourceLocation getFluid(ItemStack ingredient) {
         Ingredient components = getCookingComponents(ingredient);
         return components == null ? null : components.getFluid();
-    }
-
-    @Override
-    public Meal addMeal(ResourceLocation key, Utensil utensil, int hunger, float saturation, int eatTimer, Ingredient... components) {
-        Recipe recipe = new RecipeHF(utensil, hunger, saturation, toIngredientStacks(components));
-        recipe.setRegistryName(key);
-        Recipe.REGISTRY.register(recipe);
-        return recipe;
-    }
-
-    @Override
-    @Deprecated
-    public void addRecipe(ItemStack output, Utensil utensil, Ingredient... ingredients) {
-        Recipe recipe = new RecipeVanilla(output, utensil, toIngredientStacks(ingredients));
-        recipe.setRegistryName(new ResourceLocation(MODID, output.getUnlocalizedName()));
-        Recipe.REGISTRY.register(recipe);
-    }
-
-    @Override
-    public Recipe addBasicRecipe(ResourceLocation key, Utensil utensil, ItemStack output, IngredientStack... ingredients) {
-        Recipe recipe = new RecipeVanilla(output, utensil, ingredients);
-        recipe.setRegistryName(key);
-        Recipe.REGISTRY.register(recipe);
-        return recipe;
     }
 
     @Override
@@ -151,31 +117,7 @@ public class CookingAPI implements CookingManager {
             }
         }
 
-        return Collections.singletonList(getResult(utensil, stacks));
-    }
-
-    @Override
-    @SuppressWarnings("ConstantConditions")
-    @Deprecated
-    public ItemStack getResult(Utensil utensil, List<ItemStack> stacks) {
-        //TODO Remove in 0.7+ from here
-        //Convert all the stacks in to their relevant ingredients
-        List<Ingredient> components = new ArrayList<>();
-        for (ItemStack stack : stacks) {
-            Ingredient ingredient = getCookingComponents(stack);
-            if (!components.contains(ingredient)) components.add(ingredient);
-        }
-
-        //Check the special recipes first
-        for (RecipeHandler recipe : handlers) {
-            ItemStack ret = recipe.getResult(utensil, stacks, components);
-            if (ret != null) {
-                return ret;
-            }
-        }
-
-        //TODO Remove in 0.7+ to here
-        return utensil.getBurntItem().copy();
+        return Collections.singletonList(utensil.getBurntItem().copy());
     }
 
     @Override

@@ -35,18 +35,6 @@ public class GatheringRegistry implements IGatheringRegistry {
     }
 
     @Override
-    @Deprecated //TODO: Remove in 0.7+
-    public void registerGathering(Season season, IBlockState state, double weight) {
-        registerGathering(state, weight, season);
-    }
-
-    @Override
-    @Deprecated //TODO: Remove in 0.7+
-    public void registerGathering(IBlockState state, double weight) {
-        registerGathering(state, weight, (Season[]) null);
-    }
-
-    @Override
     public IBlockState getRandomStateForSeason(World world, @Nullable Season season) {
         if (season == null) return null;
         return gatherings.get(season).get(world);

@@ -5,7 +5,6 @@ import joshie.harvest.core.base.item.ItemHFFML;
 import joshie.harvest.npcs.HFNPCs;
 import joshie.harvest.api.npc.NPC;
 import joshie.harvest.npcs.NPCHelper;
-import joshie.harvest.npcs.NPCRegistry;
 import joshie.harvest.npcs.entity.EntityNPC;
 import joshie.harvest.town.TownHelper;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -26,7 +25,7 @@ import static joshie.harvest.core.lib.HFModInfo.MODID;
 
 public class ItemNPCSpawner extends ItemHFFML<ItemNPCSpawner, NPC> {
     public ItemNPCSpawner() {
-        super(NPCRegistry.REGISTRY, HFTab.TOWN);
+        super(NPC.REGISTRY, HFTab.TOWN);
     }
 
     @Override

@@ -195,12 +195,7 @@ public abstract class Quest extends IForgeRegistryEntry.Impl<Quest> {
      *  @param entity       the npc entity
      *  @param npc          the npc instance**/
     @SuppressWarnings("deprecated")
-    public void onChatClosed(EntityPlayer player, EntityLiving entity, NPC npc, boolean wasSneaking) {
-        onChatClosed(player, entity, npc);
-    }
-
-    @Deprecated //TODO: Remove in 0.7+
-    public void onChatClosed(EntityPlayer player, EntityLiving entity, NPC npc) {}
+    public void onChatClosed(EntityPlayer player, EntityLiving entity, NPC npc, boolean wasSneaking) {}
 
     /** Called when the quest is completed
      *  @param player       the player that completed the quest **/

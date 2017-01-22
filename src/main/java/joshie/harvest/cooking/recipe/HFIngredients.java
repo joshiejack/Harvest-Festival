@@ -41,6 +41,7 @@ public class HFIngredients {
     public static final Ingredient FISH = new Ingredient("fish");
     public static final Ingredient MEAT = new Ingredient("meat");
     public static final Ingredient HERB = new Ingredient("herb");
+    public static final Ingredient EGG = new Ingredient("egg");
 
     //Formula
     //Cost = Shop/Sell Price += Give or Take
@@ -66,7 +67,7 @@ public class HFIngredients {
 
     //Random Stuff
     public static final Ingredient CHOCOLATE = new Ingredient("chocolate", 3, 0.5F);
-    public static final Ingredient EGG = new Ingredient("egg", 3, 0.8F);
+
     public static final Ingredient FLOUR = new Ingredient("flour", 1, 0.6F).setSellValue(ItemIngredients.Ingredient.FLOUR.getCost());
     public static final Ingredient OIL = new Ingredient("oil", 0, 0.2F).setSellValue(ItemIngredients.Ingredient.OIL.getCost()).setFluid(MappingEvent.OIL).setEatTime(-8);
     public static final Ingredient RICEBALL = new Ingredient("riceball", 1, 0.25F).setSellValue(ItemIngredients.Ingredient.RICEBALL.getCost());
@@ -74,6 +75,9 @@ public class HFIngredients {
     public static final Ingredient DUMPLING_POWDER = new Ingredient("dumpling_powder", 1, 0.2F).setEatTime(8).setSellValue(ItemIngredients.Ingredient.DUMPLING_POWDER.getCost());
     public static final Ingredient WINE = new Ingredient("wine", 2, 0.8F).setSellValue(ItemIngredients.Ingredient.WINE.getCost()).setFluid(MappingEvent.WINE).setEatTime(-8);
 
+    public static final Ingredient SMALL_EGG = new Ingredient("small_egg", 2, 0.6F);
+    public static final Ingredient MEDIUM_EGG = new Ingredient("medium_egg", 3, 0.8F);
+    public static final Ingredient LARGE_EGG = new Ingredient("large_egg", 4, 1F);
     public static final Ingredient MILK = new Ingredient("milk", 2, 0.6F).setFluid(MappingEvent.MILK);
     public static final Ingredient MAYONNAISE = new Ingredient("mayonnaise", 3, 1.0F);
     public static final Ingredient BREAD = new Ingredient("bread", 5, 1.2F);
@@ -136,6 +140,7 @@ public class HFIngredients {
         MEAT.add(CHICKEN, PORK, BEEF, MUTTON, RABBIT);
         FISH.add(SALMON, COD);
         HERB.add(CHAMOMILE, MINT, LAVENDAR);
+        EGG.add(SMALL_EGG, MEDIUM_EGG, LARGE_EGG);
     }
 
     private static String getPrimaryCropName(ItemStack stack) {
@@ -149,11 +154,17 @@ public class HFIngredients {
 
     public static void postInit() {
         //Animal Products
-        CookingAPI.INSTANCE.register(new ItemStack(Items.EGG), EGG);
+        CookingAPI.INSTANCE.register(new ItemStack(Items.EGG), SMALL_EGG);
         CookingAPI.INSTANCE.register(new ItemStack(Items.MILK_BUCKET), MILK);
-        CookingAPI.INSTANCE.register(ANIMAL_PRODUCT.getStack(Sizeable.EGG, Size.SMALL), EGG);
+        CookingAPI.INSTANCE.register(ANIMAL_PRODUCT.getStack(Sizeable.EGG, Size.SMALL), SMALL_EGG);
+        CookingAPI.INSTANCE.register(ANIMAL_PRODUCT.getStack(Sizeable.EGG, Size.MEDIUM), MEDIUM_EGG);
+        CookingAPI.INSTANCE.register(ANIMAL_PRODUCT.getStack(Sizeable.EGG, Size.LARGE), LARGE_EGG);
         CookingAPI.INSTANCE.register(ANIMAL_PRODUCT.getStack(Sizeable.MILK, Size.SMALL), MILK);
+        CookingAPI.INSTANCE.register(ANIMAL_PRODUCT.getStack(Sizeable.MILK, Size.MEDIUM), MILK);
+        CookingAPI.INSTANCE.register(ANIMAL_PRODUCT.getStack(Sizeable.MILK, Size.LARGE), MILK);
         CookingAPI.INSTANCE.register(ANIMAL_PRODUCT.getStack(Sizeable.MAYONNAISE, Size.SMALL), MAYONNAISE);
+        CookingAPI.INSTANCE.register(ANIMAL_PRODUCT.getStack(Sizeable.MAYONNAISE, Size.MEDIUM), MAYONNAISE);
+        CookingAPI.INSTANCE.register(ANIMAL_PRODUCT.getStack(Sizeable.MAYONNAISE, Size.LARGE), MAYONNAISE);
 
         //Crops
         for (Crop crop: Crop.REGISTRY) {

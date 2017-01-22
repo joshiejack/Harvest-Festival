@@ -10,6 +10,7 @@ import net.minecraft.item.ItemStack;
 import java.util.HashMap;
 
 @HFApiImplementation
+@SuppressWarnings("unused")
 public class SizeableRegistry implements ISizeableRegistry {
     public static final SizeableRegistry INSTANCE = new SizeableRegistry();
     private final HashMap<ItemStackHolder, Size> providers = new HashMap<>();

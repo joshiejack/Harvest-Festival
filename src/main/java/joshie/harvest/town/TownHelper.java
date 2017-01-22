@@ -16,6 +16,8 @@ import static joshie.harvest.core.HFTrackers.getTownTracker;
 
 @HFApiImplementation
 public class TownHelper implements TownManager {
+    public static final TownHelper INSTANCE = new TownHelper();
+
     @SuppressWarnings("unchecked")
     public static <T extends TownData> T getClosestTownToBlockPos(World world, BlockPos pos) {
         return (T) getTownTracker(world).getClosestTownToBlockPos(pos);

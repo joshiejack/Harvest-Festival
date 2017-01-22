@@ -95,6 +95,8 @@
 * Jade will now only give you up to 10 seeds every 5 days
 * Jade will now sometimes give you hardy turnip seeds instead of a normal crop
 * Various npcs have had their schedule changed, so they may be found at different buildings at different times
+* Blacksmith will only start work on tools during operating hours.
+* Blacksmith will take four days to upgrade tools if you have him start work on tuesday or wednesdays as he rests on thursdays.
 
 ###Quests
 * Added a quest board, which comes when you have the townhall, you can purchase a new one from carpenter when townhall is built

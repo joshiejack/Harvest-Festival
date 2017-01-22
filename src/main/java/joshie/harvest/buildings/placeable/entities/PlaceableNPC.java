@@ -3,7 +3,6 @@ package joshie.harvest.buildings.placeable.entities;
 import com.google.gson.annotations.Expose;
 import joshie.harvest.api.npc.NPC;
 import joshie.harvest.npcs.NPCHelper;
-import joshie.harvest.npcs.NPCRegistry;
 import joshie.harvest.npcs.entity.EntityNPC;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
@@ -40,7 +39,7 @@ public class PlaceableNPC extends PlaceableEntity {
     @Override
     public Entity getEntity(World world, BlockPos pos, Rotation rotation) {
         if (npc == null || npc.equals("")) return null;
-        NPC inpc = NPCRegistry.REGISTRY.getValue(new ResourceLocation(npc)); if (inpc == null) return null;
+        NPC inpc = NPC.REGISTRY.getValue(new ResourceLocation(npc)); if (inpc == null) return null;
         EntityNPC entity = NPCHelper.getEntityForNPC(world, inpc);
         entity.setPosition(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5);
         entity.resetSpawnHome();

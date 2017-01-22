@@ -6,7 +6,6 @@ import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.cooking.Ingredient;
 import joshie.harvest.api.core.ISpecialRules;
 import joshie.harvest.api.crops.IStateHandler.PlantSection;
-import joshie.harvest.crops.handlers.growth.GrowthHandlerSide;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Items;
@@ -42,10 +41,6 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements IPlantable {
     private boolean needsWatering;
     private boolean alternativeName;
     private boolean requiresSickle;
-    //TODO: Remove in 0.7+
-    private int hunger;
-    //TODO: Remove in 0.7+
-    private float saturation;
     private ItemStack item;
     private Season[] seasons;
     private long cost;
@@ -74,29 +69,6 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements IPlantable {
         this.needsWatering = true;
         this.doubleStage = Integer.MAX_VALUE;
         this.type = EnumPlantType.Crop;
-        this.setRegistryName(key);
-        REGISTRY.register(this);
-    }
-
-    @Deprecated //TODO: Remove in 0.7+
-    public Crop(ResourceLocation key, long cost, long sell, int stages, int color, Season... seasons) {
-        this.seasons = seasons;
-        this.cost = cost;
-        this.sell = sell;
-        this.stages = stages;
-        this.regrow = 0;
-        this.year = 0;
-        this.alternativeName = false;
-        this.foodType = AnimalFoodType.VEGETABLE;
-        this.bagColor = color;
-        this.stateHandler = new StateHandlerDefault(this);
-        this.growthHandler = SEASONAL;
-        this.needsWatering = true;
-        this.doubleStage = Integer.MAX_VALUE;
-        this.dropHandler = Crop.DROPS;
-        this.rules = Crop.RULES;
-        this.type = EnumPlantType.Crop;
-        this.skipRender = false;
         this.setRegistryName(key);
         REGISTRY.register(this);
     }
@@ -236,21 +208,6 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements IPlantable {
         return this;
     }
 
-    //TODO: Remove in 0.7+
-    @Deprecated
-    public Crop setFoodStats(int hunger, float saturation) {
-        this.hunger = hunger;
-        this.saturation = saturation;
-        return setIngredient(hunger, saturation);
-    }
-
-    //TODO: Remove in 0.7+
-    @Deprecated
-    public Crop setIngredient(Ingredient ingredient) {
-        this.ingredient = ingredient;
-        return this;
-    }
-
     /**
      * Set the ingredient stats for this crop
      **/
@@ -315,17 +272,6 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements IPlantable {
         return this;
     }
 
-    @Deprecated //TODO: Remove in 0.7+
-    public Crop setGrowsToSide(Block block) {
-        this.growthHandler = new GrowthHandlerSide(block);
-        return this;
-    }
-
-    @Deprecated //TODO: Remove in 0.7+
-    public Crop setWitheredColor(int color) {
-        return this;
-    }
-
     /**
      * This crop doesn't need to load it's renders,
      * It's blocks will be tinted as well
@@ -361,11 +307,6 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements IPlantable {
      * @return the sell value in gold
      */
     public long getSellValue() {
-        return sell;
-    }
-
-    @Deprecated //TODO: Remove in 0.7+
-    public long getSellValue(ItemStack stack) {
         return sell;
     }
 
@@ -433,12 +374,6 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements IPlantable {
         return stage >= doubleStage;
     }
 
-    ////TODO: Remove in 0.7+
-    @Deprecated //DO NOT CALL always null
-    public Block growsToSide() {
-        return null;
-    }
-
     /**
      * Return the growth handler for this crop
      * **/
@@ -462,12 +397,6 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements IPlantable {
         return bagColor;
     }
 
-    //TODO: Remove in 0.7+
-    @Deprecated
-    public int getWitheredColor() {
-        return 0xA64DFF;
-    }
-
     /**
      * The type of animal food this is
      **/
@@ -480,18 +409,6 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements IPlantable {
      **/
     public Ingredient getIngredient() {
         return ingredient;
-    }
-
-    //TODO: Remove in 0.7+
-    @Deprecated
-    public int getHunger() {
-        return hunger;
-    }
-
-    //TODO: Remove in 0.7+
-    @Deprecated
-    public float getSaturation() {
-        return saturation;
     }
 
     /**

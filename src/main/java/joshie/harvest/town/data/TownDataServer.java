@@ -18,7 +18,6 @@ import joshie.harvest.core.util.interfaces.IQuestMaster;
 import joshie.harvest.gathering.GatheringData;
 import joshie.harvest.npcs.HFNPCs;
 import joshie.harvest.npcs.NPCHelper;
-import joshie.harvest.npcs.NPCRegistry;
 import joshie.harvest.npcs.entity.EntityNPCBuilder;
 import joshie.harvest.npcs.entity.EntityNPCHuman;
 import joshie.harvest.quests.Quests;
@@ -152,7 +151,7 @@ public class TownDataServer extends TownData<QuestDataServer> implements IQuestM
             gathering.newDay(world, townCentre, buildings.values(), isFar);
             generateNewDailyQuest(world);
             for (ResourceLocation villager: deadVillagers) {
-                NPC npc = NPCRegistry.REGISTRY.getValue(villager);
+                NPC npc = NPC.REGISTRY.getValue(villager);
                 if (npc != HFNPCs.GODDESS) {
                     EntityNPCHuman entity = NPCHelper.getEntityForNPC(world, npc);
                     entity.setPosition(townCentre.getX(), townCentre.getY(), townCentre.getZ());

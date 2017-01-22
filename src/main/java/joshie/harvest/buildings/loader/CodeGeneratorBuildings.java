@@ -8,7 +8,6 @@ import joshie.harvest.buildings.placeable.blocks.PlaceableChest;
 import joshie.harvest.buildings.placeable.entities.PlaceableNPC;
 import joshie.harvest.core.util.HFTemplate;
 import joshie.harvest.api.npc.NPC;
-import joshie.harvest.npcs.NPCRegistry;
 import joshie.harvest.npcs.entity.EntityNPCBuilder;
 import joshie.harvest.npcs.entity.EntityNPCShopkeeper;
 import joshie.harvest.npcs.entity.EntityNPCTrader;
@@ -74,7 +73,7 @@ public class CodeGeneratorBuildings {
                 String name = chest.getName();
                 if (name.startsWith("npc.")) {
                     name = name.replace("npc.", "");
-                    NPC npc = NPCRegistry.REGISTRY.getValue(new ResourceLocation(MODID, name));
+                    NPC npc = NPC.REGISTRY.getValue(new ResourceLocation(MODID, name));
                     String npcField = npc == null ? "" : npc.getRegistryName().toString();
                     ret.add(new PlaceableNPC(name, npcField, x, y, z));
                     ret.add(new PlaceableBlock(Blocks.AIR.getDefaultState(), x, y, z));

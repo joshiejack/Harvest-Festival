@@ -52,14 +52,17 @@ public class BuildingLocations {
     public static final BuildingLocation CARPENTER_UPSTAIRS = new BuildingLocation(CARPENTER, "jade").withDistance(3D);
     public static final BuildingLocation CHURCH_FRONT = new BuildingLocation(CHURCH, "church.door").withDistance(24D);
     public static final BuildingLocation MINEENTRANCE = new BuildingLocation(MINING_HILL, "mine.front").withDistance(24D);
+    public static final BuildingLocation MINE_RIGHT = new BuildingLocation(MINING_HILL, "mine.right").withDistance(16D);
     public static final BuildingLocation CAFETILL = new BuildingLocation(CAFE, "cafe.till").withDistance(4D);
     public static final BuildingLocation CAFE_FRONT = new BuildingLocation(CAFE, "cafe.entrance").withDistance(16D);
+    public static final BuildingLocation CAFE_DOOR = new BuildingLocation(CAFE, "cafe.door").withDistance(8D);
     public static final BuildingLocation CAFE_CUSTOMER = new BuildingLocation(CAFE, "cafe.customer").withDistance(16D);
     public static final BuildingLocation CAFE_BALCONY = new BuildingLocation(CAFE, "liara").withDistance(16D);
     public static final BuildingLocation CAFE_KITCHEN = new BuildingLocation(CAFE, "katlin").withDistance(16D);
-    public static final BuildingLocation BLACKSMITHFRONT = new BuildingLocation(BLACKSMITH, "blacksmith.entrance").withDistance(16D);
-    public static final BuildingLocation BLACKSMITHDOOR = new BuildingLocation(BLACKSMITH, "blacksmith.door").withDistance(20D);
-    public static final BuildingLocation BLACKSMITH_FURNACE = new BuildingLocation(BLACKSMITH, "daniel").withDistance(3D);
+    public static final BuildingLocation CAFE_STAIRS = new BuildingLocation(CAFE, "cafe.stairs").withDistance(4D);
+    public static final BuildingLocation BLACKSMITH_FRONT = new BuildingLocation(BLACKSMITH, "blacksmith.entrance").withDistance(16D);
+    public static final BuildingLocation BLACKMSITH_DOOR = new BuildingLocation(BLACKSMITH, "blacksmith.door").withDistance(20D);
+    public static final BuildingLocation BLACKSMITH_FURNACE = new BuildingLocation(BLACKSMITH, "daniel").withDistance(1.5D);
     public static final BuildingLocation CLOCKMAKER_DOOR = new BuildingLocation(CLOCKMAKER, "clockworker.door");
     public static final BuildingLocation CLOCKMAKER_UPSTAIRS = new BuildingLocation(CLOCKMAKER, "fenn");
     public static final BuildingLocation CLOCKMAKER_DOWNSTAIRS = new BuildingLocation(CLOCKMAKER, "tiberius");
@@ -72,16 +75,14 @@ public class BuildingLocations {
     public static final BuildingLocation PARK_CENTRE = new BuildingLocation(FESTIVALS, "park.centre").withDistance(5D);
     public static final BuildingLocation PARK_LAMP_BACK = new BuildingLocation(FESTIVALS, "park.back.lamps").withDistance(5D);
     public static final BuildingLocation PARK_BACK_LEFT = new BuildingLocation(FESTIVALS, "park.back.left").withDistance(5D);
+    public static final BuildingLocation PARK_OAK = new BuildingLocation(FESTIVALS, "park.oak").withDistance(5D);
 
     //TODO: Convert to building locations vvv
     public static final String TOWNHALL_CHILD_BEDROOM = "townhall.bedroom.child";
     public static final String TOWNHALL_FRONT_OF_STAGE = "townhall.stage.front";
     public static final String TOWNHALL_LEFT_OF_STAGE = "townhall.stage.left";
     public static final String TOWNHALL_RIGHT_OF_STAGE = "townhall.stage.right";
-    public static final String CAFE_DOOR = "cafe.door";
-    public static final String CAFE_STAIRS = "cafe.stairs";
     public static final String MINE_STAIRS = "mine.stairs";
-    public static final String MINE_RIGHT = "mine.right";
     public static final String MINE_BACK = "mine.back";
     public static final String MINER_HALL = "miner.hall";
     public static final String POULTRY_FRONT = "poultry.front";

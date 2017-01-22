@@ -4,7 +4,6 @@ import joshie.harvest.api.npc.INPCHelper;
 import joshie.harvest.core.helpers.MCClientHelper;
 import joshie.harvest.core.base.render.FakeEntityRenderer.EntityItemRenderer;
 import joshie.harvest.api.npc.NPC;
-import joshie.harvest.npcs.NPCRegistry;
 import joshie.harvest.npcs.entity.EntityNPC;
 import joshie.harvest.npcs.entity.EntityNPCVillager;
 import joshie.harvest.npcs.render.NPCItemRenderer.NPCTile;
@@ -66,8 +65,8 @@ public class NPCItemRenderer extends TileEntitySpecialRenderer<NPCTile> {
 
         @Override
         public void setID(int id) {
-            id = Math.max(0, Math.min(NPCRegistry.REGISTRY.getValues().size() - 1, id));
-            this.npc = NPCRegistry.REGISTRY.getValues().get(id);
+            id = Math.max(0, Math.min(NPC.REGISTRY.getValues().size() - 1, id));
+            this.npc = NPC.REGISTRY.getValues().get(id);
         }
     }
 }

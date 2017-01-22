@@ -2,6 +2,7 @@ package joshie.harvest.quests.player.trade;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.CalendarDate;
+import joshie.harvest.api.calendar.Weekday;
 import joshie.harvest.api.core.ITiered;
 import joshie.harvest.api.core.ITiered.ToolTier;
 import joshie.harvest.api.npc.NPC;
@@ -23,6 +24,8 @@ import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundCategory;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import javax.annotation.Nonnull;
 
 import static joshie.harvest.core.helpers.InventoryHelper.ITEM_STACK;
 import static joshie.harvest.core.helpers.SpawnItemHelper.spawnXP;
@@ -99,6 +102,7 @@ public class QuestUpgrade extends QuestTrade {
         }
     }
 
+    @Nonnull
     public static ItemStack getRepairMaterial(ToolTier tier) {
         switch (tier) {
             case BASIC:
@@ -112,9 +116,8 @@ public class QuestUpgrade extends QuestTrade {
             case MYSTRIL:
                 return HFMining.MATERIALS.getStackFromEnum(Material.MYSTRIL);
             case MYTHIC:
-                return HFMining.MATERIALS.getStackFromEnum(Material.MYTHIC);
             default:
-                return null;
+                return HFMining.MATERIALS.getStackFromEnum(Material.MYTHIC);
         }
     }
 
@@ -129,7 +132,10 @@ public class QuestUpgrade extends QuestTrade {
     @SideOnly(Side.CLIENT)
     @Override
     public String getLocalizedScript(EntityPlayer player, EntityLiving entity, NPC npc) {
+        CalendarDate today = HFApi.calendar.getDate(player.worldObj);
+        long daytime = CalendarHelper.getTime(player.worldObj);
         if (quest_stage == TEST) {
+            if (today.getWeekday() == Weekday.THURSDAY || daytime < 10000 || daytime > 16000) return getLocalized("closed.start");
             //Repairing
             ToolTier broken = isHoldingBrokenTool(player);
             if (broken != null) {
@@ -164,8 +170,8 @@ public class QuestUpgrade extends QuestTrade {
                 return getLocalized("accept");
             } else return null;
         } else {
-            CalendarDate today = HFApi.calendar.getDate(player.worldObj);
             if (getDifference(date, today) >= days) {
+                if (today.getWeekday() == Weekday.THURSDAY || daytime < 10000 || daytime > 16000) return getLocalized("closed.finish", tool.getDisplayName());
                 return getLocalized("done", tool.getDisplayName());
             }
 
@@ -174,8 +180,12 @@ public class QuestUpgrade extends QuestTrade {
     }
 
     @Override
+    @SuppressWarnings("ConstantConditions")
     public void onChatClosed(EntityPlayer player, EntityLiving entity, NPC npc, boolean wasSneaking) {
+        CalendarDate today = HFApi.calendar.getDate(player.worldObj);
+        long daytime = CalendarHelper.getTime(player.worldObj);
         if (quest_stage == TEST) {
+            if (today.getWeekday() == Weekday.THURSDAY || daytime < 10000 || daytime > 16000) return;
             //Repairing
             ToolTier broken = isHoldingBrokenTool(player);
             if (broken != null) {
@@ -187,7 +197,7 @@ public class QuestUpgrade extends QuestTrade {
                     tool = player.getHeldItemMainhand().copy();
                     tool.getSubCompound("Data", true).setInteger("Damage", 0);
                     tool.getSubCompound("Data", true).setDouble("Level", tool.getSubCompound("Data", true).getDouble("Level"));
-                    days = 1; //Takes 1 day to repair
+                    days = date.getWeekday() == Weekday.WEDNESDAY ? 2: 1; //Takes 1 day to repair
                     increaseStage(player);
                     rewardGold(player, -required);
                     takeHeldStack(player, 1);
@@ -207,14 +217,13 @@ public class QuestUpgrade extends QuestTrade {
                     tool = player.getHeldItemMainhand().copy();
                     tool.setTagCompound(null);
                     tool.setItemDamage(tool.getItemDamage() + 1);
-                    days = 3; //Takes three days
+                    days = date.getWeekday() == Weekday.TUESDAY || date.getWeekday() == Weekday.WEDNESDAY ? 4: 3; //Takes three days
                     increaseStage(player);
                     rewardGold(player, -required);
                     takeHeldStack(player, 1);
                 }
             }
         } else {
-            CalendarDate today = HFApi.calendar.getDate(player.worldObj);
             if (getDifference(date, today) >= days) {
                 complete(player);
                 player.worldObj.playSound(player, player.posX, player.posY, player.posZ, SoundEvents.BLOCK_ANVIL_HIT, SoundCategory.NEUTRAL, 0.25F, 1F);
@@ -258,8 +267,7 @@ public class QuestUpgrade extends QuestTrade {
     }
 
     private boolean isRepairable(ItemStack stack, ToolTier tier) {
-        if (tier == ToolTier.CURSED || tier == ToolTier.BLESSED) return false;
-        return HFTools.HAMMER.getDamageForDisplay(stack) != 0;
+        return !(tier == ToolTier.CURSED || tier == ToolTier.BLESSED) && HFTools.HAMMER.getDamageForDisplay(stack) != 0;
     }
 
     private ToolTier isHoldingBrokenTool(EntityPlayer player) {

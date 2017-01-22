@@ -6,7 +6,6 @@ import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.shops.IPurchasable;
 import joshie.harvest.api.shops.IRequirement;
 import joshie.harvest.api.shops.Shop;
-import joshie.harvest.npcs.NPCRegistry;
 import joshie.harvest.plugins.crafttweaker.CraftTweaker;
 import joshie.harvest.plugins.crafttweaker.base.BaseUndoable;
 import joshie.harvest.plugins.crafttweaker.wrappers.GreetingShopWrapper;
@@ -39,7 +38,7 @@ public class Shops {
     @ZenMethod
     @SuppressWarnings("unused")
     public static void addShopToNPC(String npc, String shop, String greeting, String openinghours, @Optional String hoursText) {
-        NPC theNPC = NPCRegistry.REGISTRY.getValue(new ResourceLocation(MODID, npc));
+        NPC theNPC = NPC.REGISTRY.getValue(new ResourceLocation(MODID, npc));
         if (theNPC == null) CraftTweaker.logError(String.format("No NPC with the id %s could be found. Use /hf npclist for a list of ids", npc));
         else if (theNPC.isShopkeeper()) CraftTweaker.logError(String.format("Attempted to add a shop to %s when they already have a shop", theNPC.getLocalizedName()));
         else if (Shop.REGISTRY.containsKey(new ResourceLocation("MineTweaker3", shop.toLowerCase()))) CraftTweaker.logError(String.format("Attempted to add a shop with a duplicate id: %s", "MineTweaker3:" + shop.toLowerCase()));

@@ -1251,9 +1251,9 @@ harvestfestival.shop.poultry.greeting3=Welcome to Cluckety Cluck Cluck's Chicken
 
 #Blacksmith
 harvestfestival.shop.blacksmith=Blacksmith
-harvestfestival.shop.blacksmith.sign1=Repairs and
-harvestfestival.shop.blacksmith.sign2=Upgrades
-harvestfestival.shop.blacksmith.sign3=ALWAYS OPEN!
+harvestfestival.shop.blacksmith.sign1=
+harvestfestival.shop.blacksmith.sign2=Fri-Wed
+harvestfestival.shop.blacksmith.sign3=10am-4pm
 
 #Cafe
 harvestfestival.shop.cafe=Liara's Cafe
@@ -1472,6 +1472,7 @@ harvestfestival.quest.trade.vanilla.milk=These bottles of milk sure look delicio
 harvestfestival.quest.trade.vanilla.wool=Your wool is so fine, it will make great clothes. Please take this wool, better for building with!
 
 # Blacksmith Upgrades
+harvestfestival.quest.trade.upgrade.closed.start=I'm afraid I can only work on your tools during business hours.
 harvestfestival.quest.trade.upgrade.level=Your tool is not at 100%%! Please come back when it is.
 harvestfestival.quest.trade.upgrade.gold=To upgrade this tool it will cost you %s, please come back when you have enough.
 harvestfestival.quest.trade.upgrade.material=To upgrade this tool I’m going to need %1s %2s.
@@ -1481,6 +1482,7 @@ harvestfestival.quest.trade.upgrade.wait=Sorry to say but your tool is not quite
 harvestfestival.quest.trade.upgrade.repair.gold=Repairing this tool will cost you %s gold. Please come when you have enough.
 harvestfestival.quest.trade.upgrade.repair.material=To repair this tool I’m going to need %s.
 harvestfestival.quest.trade.upgrade.repair.start=This I can do, please come back in a day to collect your repaired tool.
+harvestfestival.quest.trade.upgrade.repair.no=I'm afraid I don't know how to repair this.
 
 # Jade Seed Trades
 harvestfestival.quest.trade.seeds.reminder=If you ever need more seeds, just bring me another five flowers.

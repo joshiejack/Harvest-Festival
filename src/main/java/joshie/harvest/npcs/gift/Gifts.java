@@ -7,7 +7,7 @@ import joshie.harvest.api.core.Size;
 import joshie.harvest.api.npc.gift.GiftCategory;
 import joshie.harvest.api.npc.gift.IGiftHandler;
 import joshie.harvest.core.util.holders.HolderRegistry;
-import joshie.harvest.npcs.NPCRegistry;
+import joshie.harvest.npcs.NPCHelper;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -39,7 +39,7 @@ public class Gifts implements IGiftHandler {
         categoryRegistry.put(JUNK, Quality.BAD);
     }
 
-    protected void registerWoolLikeItems(Quality quality) {
+    void registerWoolLikeItems(Quality quality) {
         stackRegistry.register(Blocks.WOOL, quality);
         stackRegistry.register(Blocks.CARPET, quality);
         stackRegistry.register(Items.BANNER, quality);
@@ -55,7 +55,7 @@ public class Gifts implements IGiftHandler {
         if (itemQuality != null) return itemQuality;
 
         Quality lowest = Quality.AWESOME;
-        GiftCategory[] categories = NPCRegistry.INSTANCE.getGifts().getRegistry().getValueOf(stack);
+        GiftCategory[] categories = NPCHelper.INSTANCE.getGifts().getRegistry().getValueOf(stack);
         if (categories == null) return Quality.DECENT;
         for (GiftCategory category: categories) {
             Quality quality = categoryRegistry.get(category);

@@ -12,6 +12,7 @@ import net.minecraft.world.World;
 import java.util.HashMap;
 
 @HFApiImplementation
+@SuppressWarnings("unused")
 public class HFDailyTickable implements IDailyTickableRegistry {
     public static final HFDailyTickable INSTANCE = new HFDailyTickable();
     private final HashMap<Block, IDailyTickableBlock> registry = new HashMap<>();

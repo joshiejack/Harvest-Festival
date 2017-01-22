@@ -247,6 +247,7 @@ public class HFNPCs {
                         .add(COOKING_FESTIVAL, 20000L, FISHING_HUT_DOWNSTAIRS)
                         .add(COOKING_FESTIVAL, 22000L, FISHING_HUT_UPSTAIRS).build();
 
+        //Cafe Owner
         ScheduleBuilder.create(CAFE_OWNER, CAFE_BALCONY)
                         .add(SPRING, SUNDAY, 0L, CAFE_BALCONY)
                         .add(SPRING, SATURDAY, 5000L, GODDESS_POND_FRONT_LEFT)
@@ -273,6 +274,7 @@ public class HFNPCs {
                         .add(COOKING_FESTIVAL, 18000L, CAFE_BALCONY)
                         .build();
 
+        //Cafe Granny
         ScheduleBuilder.create(CAFE_GRANNY, CAFE_KITCHEN)
                         .add(SPRING, SUNDAY, 0L, CAFE_KITCHEN)
                         .add(SPRING, SATURDAY, 5000L, CHURCH_PEW_CENTRE)
@@ -300,8 +302,33 @@ public class HFNPCs {
                         .add(COOKING_FESTIVAL, 18000L, CAFE_KITCHEN)
                         .build();
 
+        //Blacksmith
+        ScheduleBuilder.create(BLACKSMITH, BLACKSMITH_FURNACE)
+                        .add(SPRING, SUNDAY, 0L, BLACKSMITH_FURNACE)
+                        .add(SPRING, SUNDAY, 6000L, CAFE_DOOR)
+                        .add(SPRING, SUNDAY, 8000L, BLACKSMITH_FRONT)
+                        .add(SPRING, SUNDAY, 9500L, BLACKSMITH_FURNACE)
+                        .add(SPRING, SUNDAY, 17000L, TOWNHALL_ENTRANCE)
+                        .add(SPRING, SUNDAY, 20000L, PARK_OAK)
+                        .add(SPRING, SUNDAY, 23000L, BLACKSMITH_FURNACE)
+                        .add(SPRING, THURSDAY, 0L, BLACKSMITH_FURNACE)
+                        .add(SPRING, THURSDAY, 6000L, CAFE_DOOR)
+                        .add(SPRING, THURSDAY, 10000L, CAFE_STAIRS)
+                        .add(SPRING, THURSDAY, 13000L, MINE_RIGHT)
+                        .add(SPRING, THURSDAY, 16000L, CAFE_DOOR)
+                        .add(SPRING, THURSDAY, 18000L, BLACKMSITH_DOOR)
+                        .add(SPRING, THURSDAY, 20000L, PARK_OAK)
+                        .add(SPRING, THURSDAY, 23000L, BLACKSMITH_FURNACE)
+                        .add(SPRING, FRIDAY, 0L, BLACKSMITH_FURNACE)
+                        .add(SPRING, FRIDAY, 6000L, CAFE_DOOR)
+                        .add(SPRING, FRIDAY, 8000L, BLACKSMITH_FRONT)
+                        .add(SPRING, FRIDAY, 9500L, BLACKSMITH_FURNACE)
+                        .add(SPRING, FRIDAY, 17000L, TOWNHALL_ENTRANCE)
+                        .add(SPRING, FRIDAY, 20000L, PARK_OAK)
+                        .add(SPRING, FRIDAY, 23000L, BLACKSMITH_FURNACE)
+                        .build();
 
-        BLACKSMITH.setHome(BLACKSMITH_FURNACE);
+
         CLOCKMAKER.setHome(CLOCKMAKER_DOWNSTAIRS).setHasInfo(new GreetingTime());
         CLOCKMAKER_CHILD.setHome(CLOCKMAKER_UPSTAIRS);
         PRIEST.setHome(TOWNHALL_ADULT_BED);
@@ -323,7 +350,7 @@ public class HFNPCs {
 
         TRADER.setHome(TOWNHALL_RIGHT); //WORKS IN THE PARK AT 'GIRAFI'
 
-        for (NPC npc: NPCRegistry.REGISTRY) {
+        for (NPC npc: NPC.REGISTRY) {
             if (npc != NPC.NULL_NPC) {
                 setupGifts(npc);
                 setupSchedules(npc);
@@ -356,7 +383,7 @@ public class HFNPCs {
     public static void initClient() {
         HFClientProxy.RENDER_MAP.put(SPAWNER_NPC, NPCTile.INSTANCE);
         ClientRegistry.bindTileEntitySpecialRenderer(NPCTile.class, new NPCItemRenderer());
-        for (NPC npc: NPCRegistry.REGISTRY) {
+        for (NPC npc: NPC.REGISTRY) {
             ItemStack stack = SPAWNER_NPC.getStackFromObject(npc);
             ForgeHooksClient.registerTESRItemStack(stack.getItem(), stack.getItemDamage(), NPCTile.class);
         }

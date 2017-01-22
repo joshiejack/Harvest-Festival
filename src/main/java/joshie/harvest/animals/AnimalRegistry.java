@@ -1,8 +1,5 @@
 package joshie.harvest.animals;
 
-import joshie.harvest.animals.entity.ai.EntityAIEat;
-import joshie.harvest.animals.entity.ai.EntityAIEatLivestock;
-import joshie.harvest.animals.entity.ai.EntityAILayEgg;
 import joshie.harvest.animals.packet.PacketSyncAnimal;
 import joshie.harvest.animals.stats.AnimalStatsHF;
 import joshie.harvest.animals.stats.AnimalStatsLivestock;
@@ -16,7 +13,6 @@ import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.core.util.annotations.HFApiImplementation;
 import joshie.harvest.core.util.holders.HolderRegistry;
-import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -66,34 +62,6 @@ public class AnimalRegistry implements IAnimalHandler {
         else if (type == AnimalType.LIVESTOCK) return new AnimalStatsLivestock();
         else if (type == AnimalType.MILKABLE) return new AnimalStatsMilkable();
         else return new AnimalStatsHF();
-    }
-
-    @Override
-    public EntityAIBase getEntityAI(EntityAnimal animal, AnimalAI type, boolean add) {
-        if (type == AnimalAI.EAT) {
-            EntityAIBase eat = new EntityAIEat(animal);
-            if (add) {
-                animal.tasks.addTask(5, eat);
-            }
-
-            return eat;
-        } else if (type == AnimalAI.EGGS) {
-            EntityAILayEgg eat = new EntityAILayEgg(animal);
-            if (add) {
-                animal.tasks.addTask(5, eat);
-            }
-
-            return eat;
-        } else if (type == AnimalAI.EAT_GRASS) {
-            EntityAIBase eat = new EntityAIEatLivestock(animal);
-            if (add) {
-                animal.tasks.addTask(5, eat);
-            }
-
-            return eat;
-        }
-
-        return null;
     }
 
     @Override

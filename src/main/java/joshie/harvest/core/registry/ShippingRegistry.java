@@ -1,6 +1,5 @@
 package joshie.harvest.core.registry;
 
-import joshie.harvest.api.core.IShippable;
 import joshie.harvest.api.core.IShippingRegistry;
 import joshie.harvest.api.core.Ore;
 import joshie.harvest.core.util.annotations.HFApiImplementation;
@@ -39,14 +38,6 @@ public class ShippingRegistry implements IShippingRegistry {
 
         //Return the registry value first, so we can override
         Long value = registry.getValueOf(stack);
-        if (value != null) return value;
-
-        //Shippables
-        //TODO: Remove in 0.7+
-        if (stack.getItem() instanceof IShippable) {
-            return ((IShippable)stack.getItem()).getSellValue(stack);
-        }
-
-        return 0L;
+        return value != null ? value : 0L;
     }
 }

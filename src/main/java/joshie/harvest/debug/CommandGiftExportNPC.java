@@ -1,6 +1,7 @@
 package joshie.harvest.debug;
 
 import com.google.common.collect.HashMultimap;
+import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.npc.gift.GiftCategory;
 import joshie.harvest.api.npc.gift.IGiftHandler;
 import joshie.harvest.api.npc.gift.IGiftHandler.Quality;
@@ -8,8 +9,7 @@ import joshie.harvest.core.commands.AbstractHFCommand;
 import joshie.harvest.core.commands.HFCommand;
 import joshie.harvest.core.helpers.TextHelper;
 import joshie.harvest.core.util.holders.HolderRegistry;
-import joshie.harvest.api.npc.NPC;
-import joshie.harvest.npcs.NPCRegistry;
+import joshie.harvest.npcs.NPCHelper;
 import joshie.harvest.npcs.gift.Gifts;
 import net.minecraft.command.CommandNotFoundException;
 import net.minecraft.command.ICommandSender;
@@ -35,7 +35,7 @@ public class CommandGiftExportNPC extends AbstractHFCommand {
     @Override
     public boolean execute(MinecraftServer server, ICommandSender sender, String[] parameters) throws CommandNotFoundException, NumberInvalidException {
         if (parameters.length == 1) {
-            NPC npc = NPCRegistry.REGISTRY.getValue(new ResourceLocation(MODID, parameters[0]));
+            NPC npc = NPC.REGISTRY.getValue(new ResourceLocation(MODID, parameters[0]));
             if (npc != null) {
                 IGiftHandler gifts = ReflectionHelper.getPrivateValue(NPC.class, npc, "gifts");
                 if (gifts instanceof Gifts) {
@@ -73,7 +73,7 @@ public class CommandGiftExportNPC extends AbstractHFCommand {
                             StringBuilder eString = new StringBuilder();
                             boolean initial = false;
                             for (ItemStack stack: exceptions) {
-                                GiftCategory[] r = NPCRegistry.INSTANCE.getGifts().getRegistry().getValueOf(stack);
+                                GiftCategory[] r = NPCHelper.INSTANCE.getGifts().getRegistry().getValueOf(stack);
                                 if (r != null) {
                                     for (GiftCategory sCategory : r) {
                                         if (sCategory == category) {
@@ -90,7 +90,7 @@ public class CommandGiftExportNPC extends AbstractHFCommand {
                             }
 
 
-                            List<ItemStack> stacks = NPCRegistry.INSTANCE.getGifts().getRegistry().getStacksFor(new GiftCategory[] { category });
+                            List<ItemStack> stacks = NPCHelper.INSTANCE.getGifts().getRegistry().getStacksFor(new GiftCategory[] { category });
                             builder.append("|-\n" +
                                     "| [[File:" + WordUtils.capitalize(category.name().toLowerCase()) + " Category.png|48px|center]]\n" +
                                     "|''[[Gifting#" + WordUtils.capitalize(category.name().toLowerCase()) + "|" + WordUtils.capitalize(category.name().toLowerCase()) + "]]''\n" +

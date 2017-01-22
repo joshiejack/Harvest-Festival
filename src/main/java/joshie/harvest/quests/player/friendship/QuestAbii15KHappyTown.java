@@ -6,7 +6,6 @@ import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.npcs.HFNPCs;
 import joshie.harvest.api.npc.NPC;
-import joshie.harvest.npcs.NPCRegistry;
 import joshie.harvest.quests.Quests;
 import joshie.harvest.quests.base.QuestFriendship;
 import net.minecraft.entity.player.EntityPlayer;
@@ -26,7 +25,7 @@ public class QuestAbii15KHappyTown extends QuestFriendship {
 
     @Override
     public void onQuestCompleted(EntityPlayer player) {
-        for (NPC npc: NPCRegistry.REGISTRY) {
+        for (NPC npc: NPC.REGISTRY) {
             if (player.worldObj.rand.nextInt(3) <= 1) {
                 HFApi.player.getRelationsForPlayer(player).affectRelationship(RelationshipType.NPC, npc.getUUID(), 1000);
             }

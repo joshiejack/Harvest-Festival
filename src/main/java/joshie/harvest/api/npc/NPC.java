@@ -12,7 +12,6 @@ import joshie.harvest.api.npc.greeting.GreetingShop;
 import joshie.harvest.api.npc.greeting.IConditionalGreeting;
 import joshie.harvest.api.shops.Shop;
 import joshie.harvest.npcs.HFNPCs;
-import joshie.harvest.npcs.NPCRegistry;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.player.EntityPlayer;
@@ -21,7 +20,9 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.registry.IForgeRegistry;
 import net.minecraftforge.fml.common.registry.IForgeRegistryEntry;
+import net.minecraftforge.fml.common.registry.RegistryBuilder;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -31,6 +32,7 @@ import static joshie.harvest.api.npc.INPCHelper.Age.ADULT;
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 
 public class NPC extends IForgeRegistryEntry.Impl<NPC> {
+    public static final IForgeRegistry<NPC> REGISTRY = new RegistryBuilder<NPC>().setName(new ResourceLocation("harvestfestival", "npcs")).setType(NPC.class).setIDRange(0, 32000).create();
     public static final NPC NULL_NPC = new NPC();
     private final List<IConditionalGreeting> conditionals = new ArrayList<>(256);
     private final String multipleLocalizationKey;
@@ -86,7 +88,7 @@ public class NPC extends IForgeRegistryEntry.Impl<NPC> {
         this.multipleLocalizationKey = MODID + ".npc." + name + ".greeting";
         this.uuid = UUID.nameUUIDFromBytes(resource.toString().getBytes());
         this.setRegistryName(resource);
-        NPCRegistry.REGISTRY.register(this);
+        REGISTRY.register(this);
     }
 
     public NPC setHeight(float height, float offset) {

@@ -66,7 +66,7 @@ public class QuestMeetLiara extends QuestQuestion {
     }
 
     @Override
-    public void onChatClosed(EntityPlayer player, EntityLiving entity, NPC npc) {
+    public void onChatClosed(EntityPlayer player, EntityLiving entity, NPC npc, boolean wasSneaking) {
         if (isCompletedEarly || quest_stage == TUTORIAL) {
             if (TownHelper.getClosestTownToEntity(entity).hasBuilding(HFBuildings.CAFE)) {
                 complete(player);

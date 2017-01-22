@@ -7,12 +7,6 @@ import net.minecraft.world.World;
 
 /** This is a capability for ticking tile entities, and entities once daily **/
 public interface IDailyTickableBlock {
-    /** @return true if this tickers is for inside the mine **/
-    @Deprecated //TODO: Remove in 0.7+
-    default boolean isMiningWorld() {
-        return false;
-    }
-
     /** Called when the day ticks over
      *  @param world, always use this, rather than other types
      *  @param pos the position of the block

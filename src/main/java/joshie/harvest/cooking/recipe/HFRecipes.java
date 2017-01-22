@@ -102,7 +102,9 @@ public class HFRecipes {
         addNoUtensilRecipe(Meal.SASHIMI, 2.5F, 2F, FISH); //Shop
         addNoUtensilRecipe(Meal.SASHIMI_CHIRASHI, 1.1F, 0.9F, SASHIMI, SCRAMBLED_EGG, RICEBALL, SASHIMI_VEGETABLE);//Shop
         //Added in 0.6+
-        addNoUtensilRecipe("mayonnaise", HFAnimals.ANIMAL_PRODUCT.getStack(Sizeable.MAYONNAISE, Size.MEDIUM), EGG);//Danieru 20000RP
+        addNoUtensilRecipe("mayonnaise_small", HFAnimals.ANIMAL_PRODUCT.getStack(Sizeable.MAYONNAISE, Size.SMALL), SMALL_EGG, OIL);//Danieru 20000RP
+        addNoUtensilRecipe("mayonnaise_medium", HFAnimals.ANIMAL_PRODUCT.getStack(Sizeable.MAYONNAISE, Size.MEDIUM), MEDIUM_EGG, OIL);//Danieru 20000RP
+        addNoUtensilRecipe("mayonnaise_large", HFAnimals.ANIMAL_PRODUCT.getStack(Sizeable.MAYONNAISE, Size.LARGE), LARGE_EGG, OIL);//Danieru 20000RP
         addNoUtensilRecipe(Meal.SANDWICH_FRUIT, 1.05F, 1F, BREAD, FRUITS).setOptionalIngredients(FRUITS).setMaximumOptionalIngredients(5);//Shops
         addNoUtensilRecipe(Meal.RICE_BAMBOO, 2F, 1.5F, BAMBOO, RICEBALL);//Brandon
         addNoUtensilRecipe(Meal.RICE_MATSUTAKE, 2F, 1.5F, MATSUTAKE, RICEBALL);//Shops

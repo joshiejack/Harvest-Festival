@@ -5,7 +5,6 @@ import joshie.harvest.core.handlers.GoddessHandler;
 import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.npcs.HFNPCs;
 import joshie.harvest.npcs.NPCHelper;
-import joshie.harvest.npcs.NPCRegistry;
 import joshie.harvest.npcs.entity.EntityNPCGoddess;
 import joshie.harvest.npcs.packet.PacketGoddessGift;
 import joshie.harvest.player.relationships.RelationshipData;
@@ -28,6 +27,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nonnull;
 import java.util.List;
 
 import static joshie.harvest.core.lib.HFModInfo.MODID;
@@ -48,7 +48,7 @@ public class BlockGoddessWater extends BlockFluidClassic {
         if (!world.isRemote && entity instanceof EntityItem) {
             EntityItem item = ((EntityItem)entity);
             ItemStack stack = item.getEntityItem();
-            if (!NPCRegistry.INSTANCE.getGifts().isBlacklisted(stack)) {
+            if (!NPCHelper.INSTANCE.getGifts().isBlacklisted(stack)) {
                 if (!GoddessHandler.spawnGoddess(world, entity, false, false)) {
                     if (item.getThrower() != null) {
                         EntityPlayer player = world.getPlayerEntityByName(item.getThrower());
@@ -81,7 +81,7 @@ public class BlockGoddessWater extends BlockFluidClassic {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list) {
+    public void getSubBlocks(@Nonnull Item item, CreativeTabs tab, List<ItemStack> list) {
         list.add(new ItemStack(item));
     }
 }

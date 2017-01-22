@@ -6,7 +6,6 @@ import joshie.harvest.api.npc.INPCHelper;
 import joshie.harvest.npcs.HFNPCs;
 import joshie.harvest.api.npc.NPC;
 import joshie.harvest.npcs.NPCHelper;
-import joshie.harvest.npcs.NPCRegistry;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
@@ -130,7 +129,7 @@ public abstract class EntityNPC<E extends EntityNPC> extends EntityAgeable imple
     @Override
     public void readEntityFromNBT(NBTTagCompound nbt) {
         super.readEntityFromNBT(nbt);
-        npc = NPCRegistry.REGISTRY.getValue(new ResourceLocation(nbt.getString("NPC")));
+        npc = NPC.REGISTRY.getValue(new ResourceLocation(nbt.getString("NPC")));
     }
 
     @Override
@@ -152,7 +151,7 @@ public abstract class EntityNPC<E extends EntityNPC> extends EntityAgeable imple
     @Override
     public void readSpawnData(ByteBuf buf) {
         String name = buf.readBoolean() ? ByteBufUtils.readUTF8String(buf) : "";
-        npc = name.equals("") ? (NPC) HFNPCs.MAYOR : NPCRegistry.REGISTRY.getValue(new ResourceLocation(name));
+        npc = name.equals("") ? (NPC) HFNPCs.MAYOR : NPC.REGISTRY.getValue(new ResourceLocation(name));
     }
 
     @SuppressWarnings("unchecked")

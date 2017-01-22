@@ -16,19 +16,6 @@ public interface IGatheringRegistry {
      *                in every single season. **/
     void registerGathering(IBlockState state, double weight, Season... seasons);
 
-    /** Register a block state to be generated in a specific season
-     * @param season the season this should generate in
-     * @param state the block state to generate
-     * @param weight weight for this to generate **/
-    @Deprecated
-    void registerGathering(Season season, IBlockState state, double weight);
-
-    /** Register a block state to be generated in any season
-     * @param state the block state to generate
-     * @param weight weight for this to generate**/
-    @Deprecated
-    void registerGathering(IBlockState state, double weight);
-
     /** Returns a random block state for this season
      * @param world the world object
      * @param season the current season

@@ -7,7 +7,6 @@ import joshie.harvest.cooking.item.*;
 import joshie.harvest.cooking.item.ItemIngredients.Ingredient;
 import joshie.harvest.cooking.item.ItemMeal.Meal;
 import joshie.harvest.cooking.recipe.RecipeMaker;
-import joshie.harvest.cooking.recipe.RecipeMayo;
 import joshie.harvest.cooking.render.*;
 import joshie.harvest.cooking.tile.*;
 import joshie.harvest.core.base.render.MeshIdentical;
@@ -39,7 +38,6 @@ public class HFCooking {
     @SuppressWarnings("unchecked")
     public static void preInit() {
         BLADE_STACK = UTENSILS.getStackFromEnum(BLADE);
-        HFApi.cooking.registerRecipeHandler(new RecipeMayo());
         HFApi.cooking.registerCookingHandler(new RecipeMaker());
         HFApi.cooking.registerKnife(new ItemStack(UTENSILS, 1, KNIFE.ordinal()));
         OreDictionary.registerOre("foodOliveoil", INGREDIENTS.getStackFromEnum(Ingredient.OIL));

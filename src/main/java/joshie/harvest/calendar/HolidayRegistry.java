@@ -1,7 +1,7 @@
 package joshie.harvest.calendar;
 
 import joshie.harvest.api.calendar.CalendarDate;
-import joshie.harvest.api.calendar.Holiday;
+import joshie.harvest.api.calendar.Festival;
 import joshie.harvest.town.TownHelper;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -15,8 +15,8 @@ import static joshie.harvest.core.lib.HFModInfo.MODID;
 
 public class HolidayRegistry {
     public static final HolidayRegistry INSTANCE = new HolidayRegistry();
-    private final HashMap<Holiday, CalendarDate> holidays = new HashMap<>();
-    public static final Holiday NONE = new Holiday(new ResourceLocation(MODID, "none"), null);
+    private final HashMap<Festival, CalendarDate> holidays = new HashMap<>();
+    public static final Festival NONE = new Festival(new ResourceLocation(MODID, "none"));
 
     boolean isHoliday(CalendarDate date) {
         for (CalendarDate holiday : holidays.values()) {
@@ -27,8 +27,8 @@ public class HolidayRegistry {
     }
 
     @Nonnull
-    public Holiday getHoliday(CalendarDate date) {
-        for (Entry<Holiday, CalendarDate> entry : holidays.entrySet()) {
+    public Festival getHoliday(CalendarDate date) {
+        for (Entry<Festival, CalendarDate> entry : holidays.entrySet()) {
             if (entry.getValue().isSameDay(date)) {
                 return entry.getKey();
             }
@@ -38,13 +38,13 @@ public class HolidayRegistry {
     }
 
     @Nonnull
-    public Holiday getHoliday(World world, BlockPos pos, CalendarDate date) {
-        for (Entry<Holiday, CalendarDate> entry : holidays.entrySet()) {
+    public Festival getHoliday(World world, BlockPos pos, CalendarDate date) {
+        for (Entry<Festival, CalendarDate> entry : holidays.entrySet()) {
             if (entry.getValue().isSameDay(date)) {
-                Holiday holiday = entry.getKey();
-                if (holiday.getQuest() == null ||
-                        (holiday.getQuest() != null && !TownHelper.getClosestTownToBlockPos(world, pos).getQuests().getFinished().contains(holiday.getQuest()))) {
-                    return holiday;
+                Festival festival = entry.getKey();
+                if (festival.getQuest() == null ||
+                        (festival.getQuest() != null && !TownHelper.getClosestTownToBlockPos(world, pos).getQuests().getFinished().contains(festival.getQuest()))) {
+                    return festival;
                 }
             }
         }
@@ -52,7 +52,7 @@ public class HolidayRegistry {
         return NONE;
     }
 
-    public void register(Holiday holiday, CalendarDate date) {
-        holidays.put(holiday, date);
+    public void register(Festival festival, CalendarDate date) {
+        holidays.put(festival, date);
     }
 }

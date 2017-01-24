@@ -8,20 +8,20 @@ import joshie.harvest.animals.item.ItemAnimalProduct.Sizeable;
 import joshie.harvest.animals.item.ItemAnimalTreat.Treat;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.CalendarDate;
-import joshie.harvest.api.calendar.Holiday;
+import joshie.harvest.api.calendar.Festival;
 import joshie.harvest.api.core.ITiered.ToolTier;
 import joshie.harvest.api.core.Size;
 import joshie.harvest.api.crops.Crop;
 import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.shops.Shop;
 import joshie.harvest.buildings.HFBuildings;
-import joshie.harvest.calendar.HFCalendar;
 import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.core.HFCore;
 import joshie.harvest.core.block.BlockStorage.Storage;
 import joshie.harvest.core.util.annotations.HFLoader;
 import joshie.harvest.crops.HFCrops;
 import joshie.harvest.crops.block.BlockSprinkler.Sprinkler;
+import joshie.harvest.festivals.HFFestivals;
 import joshie.harvest.fishing.HFFishing;
 import joshie.harvest.fishing.block.BlockFishing.FishingBlock;
 import joshie.harvest.fishing.item.ItemFish.Fish;
@@ -80,8 +80,8 @@ public class HFShops {
     public static final Shop BLOODMAGE = newShop(new ResourceLocation(MODID, "bloodmage"), HFNPCs.CLOCKMAKER).setSpecialSellingRules(new SpecialRulesFriendship(HFNPCs.CLOCKMAKER, 15000)).setOpensOnHolidays();
     public static final Shop KITCHEN = newShop(new ResourceLocation(MODID, "kitchen"), HFNPCs.CAFE_GRANNY).setSpecialSellingRules(new SpecialRulesFriendship(HFNPCs.CAFE_GRANNY, 15000));
     public static final Shop TRADER = newShop(new ResourceLocation(MODID, "trader"), HFNPCs.TRADER).setSpecialSellingRules(new SpecialRulesFriendship(HFNPCs.TRADER, 15000));
-    public static final Shop COOKING_FESTIVAL_FOOD = newHolidayShop(new ResourceLocation(MODID, "cooking"), HFNPCs.CAFE_GRANNY, HFCalendar.COOKING_FESTIVAL);
-    public static final Shop COOKING_FESTIVAL_RECIPES = newHolidayShop(new ResourceLocation(MODID, "recipes"), HFNPCs.CAFE_OWNER, HFCalendar.COOKING_FESTIVAL);
+    public static final Shop COOKING_FESTIVAL_FOOD = newHolidayShop(new ResourceLocation(MODID, "cooking"), HFNPCs.CAFE_GRANNY, HFFestivals.COOKING_FESTIVAL);
+    public static final Shop COOKING_FESTIVAL_RECIPES = newHolidayShop(new ResourceLocation(MODID, "recipes"), HFNPCs.CAFE_OWNER, HFFestivals.COOKING_FESTIVAL);
 
     @SuppressWarnings("unused")
     public static void postInit() {
@@ -233,7 +233,7 @@ public class HFShops {
         CARPENTER.addPurchasable(new PurchasableBuilding(5000L, HFBuildings.SUPERMARKET, Logs.of(96)));
         CARPENTER.addPurchasable(new PurchasableBuilding(4000L, HFBuildings.BARN, Logs.of(96)));
         CARPENTER.addPurchasable(new PurchasableBuilding(3000L, HFBuildings.POULTRY_FARM, Logs.of(96)));
-        CARPENTER.addPurchasable(new PurchasableBuilding(1000L, HFBuildings.FESTIVALS, Logs.of(8), Stone.of(4)));
+        CARPENTER.addPurchasable(new PurchasableBuilding(1000L, HFFestivals.FESTIVAL_GROUNDS, Logs.of(8), Stone.of(4)));
         CARPENTER.addPurchasable(new PurchasableBuilding(3000L, HFBuildings.MINING_HILL, Logs.of(16), Iron.of(8)));
         CARPENTER.addPurchasable(new PurchasableBuilding(9000L, HFBuildings.BLACKSMITH, Logs.of(32), Stone.of(248), Iron.of(16)));
         CARPENTER.addPurchasable(new PurchasableBuilding(12000L, HFBuildings.FISHING_HUT, Logs.of(96), Glass.of(16), Iron.of(16)));
@@ -277,7 +277,7 @@ public class HFShops {
         MINER.addPurchasable(1000, HFMining.LADDER.getStackFromEnum(Ladder.DECORATIVE), 3);
         MINER.addPurchasable(250, HFMining.MINING_TOOL.getStackFromEnum(MiningTool.ESCAPE_ROPE), 10);
         MINER.addPurchasable(new PurchasableObtainedMaterial(50, HFMining.MINING_TOOL.getStackFromEnum(MiningTool.ELEVATOR_CABLE), Copper.of(1)));
-        MINER.addPurchasable(new PurchasableObtainedMaterial(1000, HFMining.ELEVATOR.getStackFromEnum(Elevator.JUNK), Logs.of(3), Copper.of(2), Adamantite.of(1)));
+        MINER.addPurchasable(new PurchasableObtainedMaterial(1000, HFMining.ELEVATOR.getStackFromEnum(Elevator.JUNK), Logs.of(3), Copper.of(2), Adamantite.of(1)).setNote(HFNotes.ELEVATOR));
         MINER.addPurchasable(new PurchasableObtained(200, HFMining.MATERIALS.getStackFromEnum(Material.COPPER)));
         MINER.addPurchasable(new PurchasableObtained(300, HFMining.MATERIALS.getStackFromEnum(Material.SILVER)));
         MINER.addPurchasable(new PurchasableObtained(400, HFMining.MATERIALS.getStackFromEnum(Material.GOLD)));
@@ -439,7 +439,7 @@ public class HFShops {
                 .addOpening(FRIDAY, 6000, 18000).addOpening(SATURDAY, 6000, 18000).addOpening(SUNDAY, 6000, 18000);
     }
 
-    private static Shop newHolidayShop(ResourceLocation resource, @Nullable NPC npc, Holiday festival) {
+    private static Shop newHolidayShop(ResourceLocation resource, @Nullable NPC npc, Festival festival) {
         Shop shop = new Shop(resource).setOpensOnHolidays();
         if (npc != null) {
             ((NPCHolidayStore)npc).setHolidayShop(festival, shop);

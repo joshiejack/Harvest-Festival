@@ -1,7 +1,6 @@
 package joshie.harvest.api.npc.schedule;
 
 import joshie.harvest.api.npc.NPC;
-import joshie.harvest.api.npc.ScheduleBuilder;
 import net.minecraftforge.fml.common.eventhandler.Event;
 
 /** Called whenever the schedule builder is used

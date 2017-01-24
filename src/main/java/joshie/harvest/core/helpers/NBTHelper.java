@@ -18,6 +18,7 @@ import net.minecraft.world.World;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;
+import java.util.Map.Entry;
 
 public class NBTHelper {
     public static void copyTileData(TileHarvest tile, World world, BlockPos pos, IBlockState state) {
@@ -241,6 +242,30 @@ public class NBTHelper {
         for (T entry: theList) {
             NBTTagCompound tag = new NBTTagCompound();
             entry.writeToNBT(tag);
+            list.appendTag(tag);
+        }
+
+        nbt.setTag(name, list);
+    }
+
+    public static HashMap<UUID, BlockPos> readPosList(String name, NBTTagCompound nbt) {
+        HashMap<UUID, BlockPos> list = new HashMap<>();
+        NBTTagList currently = nbt.getTagList(name, 10);
+        for (int i = 0; i < currently.tagCount(); i++) {
+            BlockPos pos = BlockPos.fromLong(currently.getCompoundTagAt(i).getLong("Pos"));
+            UUID uuid = UUID.fromString(currently.getCompoundTagAt(i).getString("UUID"));
+            list.put(uuid, pos);
+        }
+
+        return list;
+    }
+
+    public static void writePosList(String name, NBTTagCompound nbt, HashMap<UUID, BlockPos> theList) {
+        NBTTagList list = new NBTTagList();
+        for (Entry<UUID, BlockPos> entry: theList.entrySet()) {
+            NBTTagCompound tag = new NBTTagCompound();
+            tag.setString("UUID", entry.getKey().toString());
+            tag.setLong("Pos", entry.getValue().toLong());
             list.appendTag(tag);
         }
 

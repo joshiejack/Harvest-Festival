@@ -1,6 +1,7 @@
 package joshie.harvest.town;
 
 import joshie.harvest.api.buildings.BuildingLocation;
+import joshie.harvest.festivals.HFFestivals;
 
 import static joshie.harvest.buildings.HFBuildings.*;
 
@@ -74,19 +75,19 @@ public class BuildingLocations {
     public static final BuildingLocation CLOCKMAKER_DOOR = new BuildingLocation(CLOCKMAKER, "clockworker.door");
     public static final BuildingLocation CLOCKMAKER_UPSTAIRS = new BuildingLocation(CLOCKMAKER, "fenn");
     public static final BuildingLocation CLOCKMAKER_DOWNSTAIRS = new BuildingLocation(CLOCKMAKER, "tiberius");
-    public static final BuildingLocation PARK_STALL = new BuildingLocation(FESTIVALS, "park.stall").withDistance(1D);
-    public static final BuildingLocation PARK_CAFE = new BuildingLocation(FESTIVALS, "park.cafe").withDistance(1D);
-    public static final BuildingLocation PARK_TABLE = new BuildingLocation(FESTIVALS, "park.table").withDistance(5D);
-    public static final BuildingLocation PARK_LEFT = new BuildingLocation(FESTIVALS, "park.left").withDistance(5D);
-    public static final BuildingLocation PARK_CUSTOMER = new BuildingLocation(FESTIVALS, "park.customer").withDistance(3D);
-    public static final BuildingLocation PARK_BENCH = new BuildingLocation(FESTIVALS, "park.bench").withDistance(5D);
-    public static final BuildingLocation PARK_CENTRE = new BuildingLocation(FESTIVALS, "park.centre").withDistance(5D);
-    public static final BuildingLocation PARK_LAMP_BACK = new BuildingLocation(FESTIVALS, "park.back.lamps").withDistance(5D);
-    public static final BuildingLocation PARK_BACK_LEFT = new BuildingLocation(FESTIVALS, "park.back.left").withDistance(5D);
-    public static final BuildingLocation PARK_OAK = new BuildingLocation(FESTIVALS, "park.oak").withDistance(5D);
-    public static final BuildingLocation PARK_SPRUCE = new BuildingLocation(FESTIVALS, "park.spruce").withDistance(5D);
-    public static final BuildingLocation PARK_BOTTOM = new BuildingLocation(FESTIVALS, "park.bottom").withDistance(5D);
-    public static final BuildingLocation PARK_TRADER = new BuildingLocation(FESTIVALS, "girafi").withDistance(1.5D);
+    public static final BuildingLocation PARK_STALL = new BuildingLocation(HFFestivals.FESTIVAL_GROUNDS, "park.stall").withDistance(1D);
+    public static final BuildingLocation PARK_CAFE = new BuildingLocation(HFFestivals.FESTIVAL_GROUNDS, "park.cafe").withDistance(1D);
+    public static final BuildingLocation PARK_TABLE = new BuildingLocation(HFFestivals.FESTIVAL_GROUNDS, "park.table").withDistance(5D);
+    public static final BuildingLocation PARK_LEFT = new BuildingLocation(HFFestivals.FESTIVAL_GROUNDS, "park.left").withDistance(5D);
+    public static final BuildingLocation PARK_CUSTOMER = new BuildingLocation(HFFestivals.FESTIVAL_GROUNDS, "park.customer").withDistance(3D);
+    public static final BuildingLocation PARK_BENCH = new BuildingLocation(HFFestivals.FESTIVAL_GROUNDS, "park.bench").withDistance(5D);
+    public static final BuildingLocation PARK_CENTRE = new BuildingLocation(HFFestivals.FESTIVAL_GROUNDS, "park.centre").withDistance(5D);
+    public static final BuildingLocation PARK_LAMP_BACK = new BuildingLocation(HFFestivals.FESTIVAL_GROUNDS, "park.back.lamps").withDistance(5D);
+    public static final BuildingLocation PARK_BACK_LEFT = new BuildingLocation(HFFestivals.FESTIVAL_GROUNDS, "park.back.left").withDistance(5D);
+    public static final BuildingLocation PARK_OAK = new BuildingLocation(HFFestivals.FESTIVAL_GROUNDS, "park.oak").withDistance(5D);
+    public static final BuildingLocation PARK_SPRUCE = new BuildingLocation(HFFestivals.FESTIVAL_GROUNDS, "park.spruce").withDistance(5D);
+    public static final BuildingLocation PARK_BOTTOM = new BuildingLocation(HFFestivals.FESTIVAL_GROUNDS, "park.bottom").withDistance(5D);
+    public static final BuildingLocation PARK_TRADER = new BuildingLocation(HFFestivals.FESTIVAL_GROUNDS, "girafi").withDistance(1.5D);
 
     //TODO: Convert to building locations vvv
     public static final String TOWNHALL_CHILD_BEDROOM = "townhall.bedroom.child";

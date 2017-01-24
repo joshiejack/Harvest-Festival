@@ -8,7 +8,6 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.buildings.Building;
 import joshie.harvest.api.core.ISpecialRules;
 import joshie.harvest.buildings.block.BlockInternalAir;
-import joshie.harvest.buildings.building.BuildingFestival;
 import joshie.harvest.buildings.item.ItemBlueprint;
 import joshie.harvest.buildings.item.ItemBuilding;
 import joshie.harvest.buildings.item.ItemCheat;
@@ -16,7 +15,6 @@ import joshie.harvest.buildings.loader.*;
 import joshie.harvest.buildings.placeable.Placeable;
 import joshie.harvest.buildings.special.SpecialRuleBuildings;
 import joshie.harvest.buildings.special.SpecialRuleChurch;
-import joshie.harvest.buildings.special.SpecialRuleFestivals;
 import joshie.harvest.core.base.render.FMLDefinition;
 import joshie.harvest.core.base.render.MeshIdentical;
 import joshie.harvest.core.util.annotations.HFLoader;
@@ -60,8 +58,6 @@ public class HFBuildings {
     public static final Building POULTRY_FARM = registerBuilding("poultryFarm").setRequirements("carpenter").setInhabitants(HFNPCs.POULTRY).setOffset(4, -1, 12);
     public static final Building SUPERMARKET = registerBuilding("supermarket").setRequirements("carpenter").setInhabitants(HFNPCs.MILKMAID, HFNPCs.GS_OWNER).setOffset(7, -1, 12).setTickTime(5);
     public static final Building TOWNHALL = registerBuilding("townhall").setSpecialRules(new SpecialRuleBuildings(9)).setInhabitants(HFNPCs.MAYOR, HFNPCs.PRIEST, HFNPCs.DAUGHTER_ADULT, HFNPCs.DAUGHTER_CHILD).setOffset(10, -1, 17);
-    //0.6+ Buildings
-    public static final Building FESTIVALS = registerBuilding("festivals", BuildingFestival.class).setSpecialRules(new SpecialRuleFestivals()).setInhabitants(HFNPCs.TRADER).setOffset(14, -1, 32);
 
     public static void preInit() {}
 
@@ -85,7 +81,7 @@ public class HFBuildings {
     }
 
     @SuppressWarnings("unchecked")
-    private static <B extends Building> B registerBuilding(String name, Class<B>... clazzes) {
+    public static <B extends Building> B registerBuilding(String name, Class<B>... clazzes) {
         Class<B> clazz = clazzes.length == 1 ? clazzes[0] : null;
         Building building = null;
         try {

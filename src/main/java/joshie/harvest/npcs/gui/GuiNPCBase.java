@@ -34,8 +34,8 @@ public abstract class GuiNPCBase extends GuiBase {
     protected final EntityNPC npc;
     protected final EntityPlayer player;
     protected final int nextGui;
-    private final int inside;
-    private final int outside;
+    protected int inside;
+    protected int outside;
     protected int npcMouseX;
     protected int npcMouseY;
     protected BlockPos pos;
@@ -75,10 +75,17 @@ public abstract class GuiNPCBase extends GuiBase {
         drawTexturedModalRect(x, y + 150, 0, 50, 256, 51);
         GlStateManager.color(1F, 1F, 1F, 1F);
         GlStateManager.disableBlend();
-        ChatFontRenderer.render(this, x, y, npc.getName(), inside, outside);
+        drawName(x, y);
         GlStateManager.color(1F, 1F, 1F, 1F);
         GlStateManager.popMatrix();
+        drawTabs(x, y);
+    }
 
+    protected void drawName(int x, int y) {
+        ChatFontRenderer.render(this, x, y, npc.getName(), inside, outside);
+    }
+
+    protected void drawTabs(int x, int y) {
         if (npc.getNPC() == HFNPCs.GODDESS || isHoldingItem()) {
             mc.renderEngine.bindTexture(chatbox);
             //Drawing the icons

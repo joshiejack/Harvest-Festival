@@ -1,6 +1,10 @@
 package joshie.harvest.api.npc;
 
 import joshie.harvest.api.npc.gift.IGiftRegistry;
+import joshie.harvest.api.npc.greeting.Script;
+import joshie.harvest.api.npc.schedule.ScheduleBuilder;
+import net.minecraft.entity.EntityAgeable;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 
 /** For registering and manipulating npcs **/
@@ -24,6 +28,12 @@ public interface INPCHelper {
     /** Called from the schedule builder to build it
      *  @param builder the builder object **/
     ISchedule buildSchedule(ScheduleBuilder builder);
+
+    /** Forces a script to open
+     *  @param player the player to open it for
+     *  @param npc    the npc to open it for
+     *  @param script   the script data to use **/
+    void forceScriptOpen(EntityPlayer player, EntityAgeable npc, Script script);
 
     enum Gender {
         MALE, FEMALE

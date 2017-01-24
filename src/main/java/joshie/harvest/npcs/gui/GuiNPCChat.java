@@ -148,7 +148,7 @@ public class GuiNPCChat extends GuiNPCBase {
         else nextChat();
     }
 
-    private void nextChat() {
+    protected void nextChat() {
         if (!finished) {
             finished = true;
             line = MAX_LINES_PER_PAGE;

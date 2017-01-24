@@ -33,16 +33,18 @@ public class GuiHandler implements IGuiHandler {
     public static final int SHOP_MENU_SELL = 9;
     public static final int GIFT_GODDESS = 10;
     public static final int QUEST_BOARD = 11;
+    public static final int FORCED_NPC = 12;
 
     @Override
     public Object getServerGuiElement(int ID, EntityPlayer player, World world, int entityID, int nextGui, int hand) {
         switch (ID) {
+            case FORCED_NPC:
+                return new ContainerNPCChat(player, (EntityNPC) world.getEntityByID(entityID), EnumHand.MAIN_HAND, -1);
             case NPC_INFO:
             case NPC: {
-                EntityNPC npc = (EntityNPC) world.getEntityByID(entityID);
-                if (hand != -1) return new ContainerNPCChat(player, npc, EnumHand.MAIN_HAND, nextGui);
                 return new ContainerNPCChat(player, (EntityNPC) world.getEntityByID(entityID), EnumHand.MAIN_HAND, nextGui);
             }
+
             case SHOP_WELCOME:  return new ContainerNPCChat(player, (EntityNPC) world.getEntityByID(entityID), EnumHand.MAIN_HAND, SHOP_OPTIONS);
             case SHOP_OPTIONS:  return new ContainerNPCChat(player, (EntityNPC) world.getEntityByID(entityID), EnumHand.MAIN_HAND, nextGui);
             case SHOP_MENU:
@@ -59,6 +61,9 @@ public class GuiHandler implements IGuiHandler {
     @Override
     public Object getClientGuiElement(int ID, EntityPlayer player, World world, int entityID, int nextGui, int hand) {
         switch (ID) {
+            case FORCED_NPC: {
+                return new GuiNPCMask(player, (EntityNPC) world.getEntityByID(entityID), nextGui);
+            }
             case NPC: {
                 EntityNPC npc = (EntityNPC) world.getEntityByID(entityID);
                 if (hand != -1) return new GuiNPCSelect(player, npc, nextGui, hand);

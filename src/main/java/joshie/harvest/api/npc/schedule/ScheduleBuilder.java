@@ -1,11 +1,11 @@
-package joshie.harvest.api.npc;
+package joshie.harvest.api.npc.schedule;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.buildings.BuildingLocation;
-import joshie.harvest.api.calendar.Holiday;
+import joshie.harvest.api.calendar.Festival;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.calendar.Weekday;
-import joshie.harvest.api.npc.schedule.ScheduleEvent;
+import joshie.harvest.api.npc.NPC;
 import net.minecraftforge.common.MinecraftForge;
 
 import java.util.ArrayList;
@@ -33,8 +33,8 @@ public class ScheduleBuilder {
         return this;
     }
 
-    public ScheduleBuilder add(Holiday holiday, long time, BuildingLocation location) {
-        holidayScheduleList.add(new HolidaySchedule(holiday, time, location));
+    public ScheduleBuilder add(Festival festival, long time, BuildingLocation location) {
+        holidayScheduleList.add(new HolidaySchedule(festival, time, location));
         return this;
     }
 
@@ -60,12 +60,12 @@ public class ScheduleBuilder {
 
     //For special schedules on specific holidays
     public static class HolidaySchedule {
-        public Holiday holiday;
+        public Festival festival;
         public long time;
         public BuildingLocation location;
 
-        HolidaySchedule(Holiday holiday, long time, BuildingLocation location) {
-            this.holiday = holiday;
+        HolidaySchedule(Festival festival, long time, BuildingLocation location) {
+            this.festival = festival;
             this.time = time;
             this.location = location;
         }

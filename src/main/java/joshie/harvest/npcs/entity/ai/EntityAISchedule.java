@@ -25,7 +25,7 @@ public class EntityAISchedule extends EntityAIBase {
         this.setMutexBits(1);
     }
 
-    private BuildingLocation getBuildingTarget(CalendarDate date) {
+    protected BuildingLocation getBuildingTarget(CalendarDate date) {
         return npc.getNPC().getScheduler().getTarget(npc.worldObj, npc, npc.getNPC(), date.getSeason(), date.getWeekday(), CalendarHelper.getTime(npc.worldObj));
     }
 

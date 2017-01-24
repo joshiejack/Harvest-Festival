@@ -51,7 +51,7 @@ public class CalendarAPI implements CalendarManager {
     }
 
     @Override
-    public void registerHoliday(Holiday name, CalendarDate date) {
+    public void registerHoliday(Festival name, CalendarDate date) {
         HolidayRegistry.INSTANCE.register(name, date);
     }
 

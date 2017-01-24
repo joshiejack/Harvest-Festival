@@ -2,12 +2,12 @@ package joshie.harvest.npcs;
 
 import joshie.harvest.HarvestFestival;
 import joshie.harvest.api.calendar.CalendarDate;
-import joshie.harvest.api.calendar.Holiday;
+import joshie.harvest.api.calendar.Festival;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.npc.INPCHelper.Age;
 import joshie.harvest.api.npc.INPCHelper.Gender;
 import joshie.harvest.api.npc.NPC;
-import joshie.harvest.api.npc.ScheduleBuilder;
+import joshie.harvest.api.npc.schedule.ScheduleBuilder;
 import joshie.harvest.api.npc.gift.IGiftHandler;
 import joshie.harvest.core.base.render.MeshIdentical;
 import joshie.harvest.core.lib.EntityIDs;
@@ -39,7 +39,7 @@ import static joshie.harvest.api.calendar.Weekday.*;
 import static joshie.harvest.api.npc.INPCHelper.Age.*;
 import static joshie.harvest.api.npc.INPCHelper.Gender.FEMALE;
 import static joshie.harvest.api.npc.INPCHelper.Gender.MALE;
-import static joshie.harvest.calendar.HFCalendar.COOKING_FESTIVAL;
+import static joshie.harvest.festivals.HFFestivals.COOKING_FESTIVAL;
 import static joshie.harvest.core.helpers.ConfigHelper.getDouble;
 import static joshie.harvest.core.helpers.RegistryHelper.registerSounds;
 import static joshie.harvest.core.lib.HFModInfo.GIFTPATH;
@@ -436,8 +436,8 @@ public class HFNPCs {
         }
     }
 
-    private static void addHolidayGreetings(NPC npc, Holiday... holidays) {
-        for (Holiday holiday: holidays) npc.addGreeting(new GreetingFestival(holiday));
+    private static void addHolidayGreetings(NPC npc, Festival... festivals) {
+        for (Festival festival : festivals) npc.addGreeting(new GreetingFestival(festival));
     }
 
     private static void setupGifts(NPC npc) {

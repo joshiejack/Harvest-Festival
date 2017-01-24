@@ -35,9 +35,9 @@ public interface CalendarManager {
     Weather getWeather(World world);
 
     /** Register a holiday
-     *  @param holiday the holiday data
+     *  @param festival the holiday data
      *  @param date the date this holiday occurs (will be fit in to a 30 day calendar)**/
-    void registerHoliday(Holiday holiday, CalendarDate date);
+    void registerHoliday(Festival festival, CalendarDate date);
 
     /** If today is a holiday
      *  @param world the world**/

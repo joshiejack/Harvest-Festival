@@ -1,10 +1,12 @@
 package joshie.harvest.npcs;
 
+import joshie.harvest.HarvestFestival;
 import joshie.harvest.api.buildings.BuildingLocation;
 import joshie.harvest.api.npc.INPCHelper;
 import joshie.harvest.api.npc.ISchedule;
 import joshie.harvest.api.npc.NPC;
-import joshie.harvest.api.npc.ScheduleBuilder;
+import joshie.harvest.api.npc.greeting.Script;
+import joshie.harvest.api.npc.schedule.ScheduleBuilder;
 import joshie.harvest.api.npc.gift.IGiftHandler.Quality;
 import joshie.harvest.api.quests.Selection;
 import joshie.harvest.api.shops.Shop;
@@ -54,6 +56,11 @@ public class NPCHelper implements INPCHelper {
     @Override
     public ISchedule buildSchedule(ScheduleBuilder builder) {
         return new Schedule(builder);
+    }
+
+    @Override
+    public void forceScriptOpen(EntityPlayer player, EntityAgeable npc, Script script) {
+        player.openGui(HarvestFestival.instance, GuiHandler.FORCED_NPC, player.worldObj, npc.getEntityId(), Script.REGISTRY.getValues().indexOf(script), -1);
     }
 
     public static BlockPos getCoordinatesForLocation(EntityLivingBase entity, BuildingLocation location) {

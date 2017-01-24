@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north,stand=cooking":  { "model": "harvestfestival:cooking_stand" },
+    "facing=south,stand=cooking":  { "model": "harvestfestival:cooking_stand", "y": 180 },
+    "facing=east,stand=cooking": { "model": "harvestfestival:cooking_stand", "y": 90 },
+    "facing=west,stand=cooking": { "model": "harvestfestival:cooking_stand", "y": 270 }
+  }
+}

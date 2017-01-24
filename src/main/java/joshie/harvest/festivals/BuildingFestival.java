@@ -1,8 +1,8 @@
-package joshie.harvest.buildings.building;
+package joshie.harvest.festivals;
 
 import joshie.harvest.api.buildings.Building;
 import joshie.harvest.api.calendar.CalendarDate;
-import joshie.harvest.api.calendar.Holiday;
+import joshie.harvest.api.calendar.Festival;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.calendar.HolidayRegistry;
 import joshie.harvest.core.util.HFTemplate;
@@ -23,8 +23,8 @@ public class BuildingFestival extends Building {
 
     @Override
     public void newDay(World world, BlockPos pos, Rotation rotation, CalendarDate dToday, CalendarDate dYesterday) {
-        Holiday yesterday = HolidayRegistry.INSTANCE.getHoliday(dYesterday);
-        Holiday today = HolidayRegistry.INSTANCE.getHoliday(dToday);
+        Festival yesterday = HolidayRegistry.INSTANCE.getHoliday(dYesterday);
+        Festival today = HolidayRegistry.INSTANCE.getHoliday(dToday);
         if (yesterday != today) {
             getTemplate(yesterday).removeBlocks(world, pos, rotation);
             Quest quest = yesterday.getQuest();
@@ -47,7 +47,7 @@ public class BuildingFestival extends Building {
         }
     }
 
-    private HFTemplate getTemplate(Holiday holiday) {
-        return (getGson().fromJson(ResourceLoader.getJSONResource(holiday.getResource(), "festivals"), HFTemplate.class));
+    private HFTemplate getTemplate(Festival festival) {
+        return (getGson().fromJson(ResourceLoader.getJSONResource(festival.getResource(), "festivals"), HFTemplate.class));
     }
 }

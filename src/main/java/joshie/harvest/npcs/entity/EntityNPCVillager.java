@@ -6,7 +6,7 @@ import net.minecraft.world.World;
 
 public class EntityNPCVillager extends EntityNPCHuman<EntityNPCVillager> {
     public EntityNPCVillager(World world) {
-        super(world, (NPC) HFNPCs.GODDESS);
+        super(world, HFNPCs.GODDESS);
     }
 
     public EntityNPCVillager(World world, NPC npc) {

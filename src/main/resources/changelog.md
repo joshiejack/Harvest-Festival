@@ -21,6 +21,7 @@
 * Optimised building save format, should be smaller size
 * Only load buildings in to RAM when they're rendered/built
 * Building costs increased slightly, buildings reshuffled order, some cost other things
+* Removed the basement from the general store as it caused confusion
 * You will now unlock the church when you have nine npcs in town
 * You will now unlock the townhall when you have built nine buildings
 * Added the "festival grounds building", can be purchased as soon as you have built poultry farm or animal ranch or general store

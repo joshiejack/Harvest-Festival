@@ -96,11 +96,8 @@ public class NPCHelper implements INPCHelper {
 
     public static boolean isShopOpen(EntityNPC npc, World world, @Nullable EntityPlayer player) {
         Shop shop = npc.getNPC().getShop(world, new BlockPos(npc));
-        if (shop != null && isShopOpen(world, npc, player, shop) && (player == null || (canPlayerOpenShop(npc.getNPC(), shop, player)))) {
-            return (player != null && (shop.getContents().size() > 0)) || player == null;
-        }
-
-        return false;
+        return (shop != null && isShopOpen(world, npc, player, shop)
+                && (player == null || (canPlayerOpenShop(npc.getNPC(), shop, player)))) && ((player != null && (shop.getContents().size() > 0)) || player == null);
     }
 
     public static int getGuiIDForNPC(EntityNPC npc, World world, EntityPlayer player) {
@@ -114,7 +111,6 @@ public class NPCHelper implements INPCHelper {
 
     @SuppressWarnings("unchecked")
     public static boolean isShopOpen(World world, EntityAgeable npc, @Nullable EntityPlayer player, Shop shop) {
-        if (HFShops.TWENTY_FOUR_HOUR_SHOPPING) return true;
-        return shop.getOpeningHandler().isOpen(world, npc, player, shop);
+        return HFShops.TWENTY_FOUR_HOUR_SHOPPING || shop.getOpeningHandler().isOpen(world, npc, player, shop);
     }
 }

@@ -785,6 +785,8 @@ harvestfestival.npc.goddess.gift.bad=This gift insults me.
 harvestfestival.npc.goddess.gift.terrible=How dare you insult me like this.
 harvestfestival.npc.goddess.gift.no=I'm afraid it would not be appropriate for me to accept this gift, it is far too valuable!
 harvestfestival.npc.goddess.gift.reject=Darling, I do appreciate but I cannot in good faith accept another gift today.
+harvestfestival.npc.goddess.festival.cooking1=My dear if you haven't heard the cooking festival is today!
+harvestfestival.npc.goddess.festival.cooking2=You should enter your best dish for the cooking festival my sweet!
 
 # Goddess Weather
 harvestfestival.npc.goddess.weather.sunny1=Oh sweety, tomorrow is looking like a lovely day of sunshine!
@@ -823,6 +825,8 @@ harvestfestival.npc.katlin.gift.bad=In my day, we gave people good gifts.
 harvestfestival.npc.katlin.gift.terrible=Are you trying to kill me? What an awful gift.
 harvestfestival.npc.katlin.gift.no=Youngun I cannot take this gift, it holds too much value.
 harvestfestival.npc.katlin.gift.reject=You've already given me something today youngun.
+harvestfestival.npc.katlin.festival.cooking1=I hope you will be entering the cooking festival today, youngun.
+harvestfestival.npc.katlin.festival.cooking2=I hope you do me proud in the cooking festival.
 
 #Danieuru/Chylex
 harvestfestival.npc.daniel.shop=I'm open every day of the week except for Thursdays from 10:00 to 16:00.
@@ -847,6 +851,8 @@ harvestfestival.npc.daniel.gift.decent=It's alright.
 harvestfestival.npc.daniel.gift.dislike=It's not alright.
 harvestfestival.npc.daniel.gift.bad=You give bad gifts.
 harvestfestival.npc.daniel.gift.terrible=And I thought the rejection from Yulif was bad enough, now you give me this?
+harvestfestival.npc.daniel.festival.cooking1=Are you looking forward to the cooking festival today?
+harvestfestival.npc.daniel.festival.cooking2=What are you planning on cooking for the festival today?
 
 #Cloe
 harvestfestival.npc.cloe.greeting1=A good book, makes a girl happy.
@@ -869,6 +875,8 @@ harvestfestival.npc.cloe.gift.decent=Thanks.
 harvestfestival.npc.cloe.gift.dislike=Err, what?
 harvestfestival.npc.cloe.gift.bad=Err, no thanks...
 harvestfestival.npc.cloe.gift.terrible=I thought my parents were the worst, but nope it's you.
+harvestfestival.npc.cloe.festival.cooking1=I may not be much of a cook, but I think you'd do great in today's festival.
+harvestfestival.npc.cloe.festival.cooking2=Make sure to bring your best food for the festival today.
 
 #Liara/ApsciLiara
 harvestfestival.npc.liara.shop=I'm afraid the cafe is only open from half past nine in the morning to five in the evening, but we're open every day of the week!
@@ -894,6 +902,8 @@ harvestfestival.npc.liara.gift.decent=Thank you.
 harvestfestival.npc.liara.gift.dislike=No thank you.
 harvestfestival.npc.liara.gift.bad=I do not enjoy this.
 harvestfestival.npc.liara.gift.terrible=I would thank you, but you have given me the worst thing anyone could give me. Goodbye.
+harvestfestival.npc.liara.festival.cooking1=The cooking festival is today. I would take part but it's my shop's busiest day.
+harvestfestival.npc.liara.festival.cooking2=I love cooking, and I hope you do too. You should participate in the cooking festival!
 
 #Jade
 harvestfestival.npc.jade.buy1=These flowers are perfect for my collection, here take this small token.
@@ -923,6 +933,8 @@ harvestfestival.npc.jade.gift.decent=I appreciate this.
 harvestfestival.npc.jade.gift.dislike=I can not appreciate this.
 harvestfestival.npc.jade.gift.bad=What a bad present!
 harvestfestival.npc.jade.gift.terrible=It really is a terrible gift!
+harvestfestival.npc.jade.festival.cooking1=It looks like festivals have been implemented, and there is one today, you should attend!
+harvestfestival.npc.jade.festival.cooking2=Get out your best food and go and participate in the cooking festival, I dare you!
 
 #Jenni/Othlon
 harvestfestival.npc.jenni.shop=Heya friend, just to remind you, we're open everyday except Wednesday and Sunday, from 9am to 5pm. Oh Saturdays we are only open from 11am to 3pm.
@@ -947,6 +959,8 @@ harvestfestival.npc.jenni.gift.decent=A good friend, you are.
 harvestfestival.npc.jenni.gift.dislike=Thanks my friend.
 harvestfestival.npc.jenni.gift.bad=You could have done better, but it's ok.
 harvestfestival.npc.jenni.gift.terrible=I did not think you could ever offend me, but you have now, why?
+harvestfestival.npc.jenni.festival.cooking1=The cooking festival is from 6am to 6pm so make sure to bring your best prepared food!
+harvestfestival.npc.jenni.festival.cooking2=Come and see me whenever you are ready to start cooking!
 
 #Jaimii
 harvestfestival.npc.jamie.greeting1=This is my town, and you remember that.
@@ -1318,6 +1332,18 @@ harvestfestival.shop.trader.greeting1=Good Morning, how may I help you?
 harvestfestival.shop.trader.greeting2=Looking to sell some feathers or leather, then I'm your man.
 harvestfestival.shop.trader.greeting3=Welcome, please do let yourself be served.
 
+#Recipe Shop - Cooking Festival
+harvestfestival.shop.recipes=Recipe Shack
+harvestfestival.shop.recipes.greeting1=Recipes from all the year in all one place!
+harvestfestival.shop.recipes.greeting2=Come get your recipes!
+harvestfestival.shop.recipes.greeting3=No exclusives here, just out of season recipes at cost!
+
+#Ingredients Shop - Cooking Festival
+harvestfestival.shop.cooking=Granny's Goodies
+harvestfestival.shop.cooking.greeting1=Are you missing any ingredients, then I think I can help you out.
+harvestfestival.shop.cooking.greeting2=If you need some ingredients, I'm here to help.
+harvestfestival.shop.cooking.greeting3=Get your missing ingredients right here from Granny.
+
 #Miscellaneous
 harvestfestival.marriage=Gift for Marriage
 harvestfestival.marriage.locked=LOCKED
@@ -1620,6 +1646,12 @@ harvestfestival.quest.slay.task=The mines have become infested lately. It's hard
 harvestfestival.quest.slay.complete1=I guess that was helpful of you, here take a payment.
 harvestfestival.quest.slay.complete2=Good on you for clearing some mobs out of the mine. I've some gold to spare.
 harvestfestival.quest.slay.complete3=Thanks for helping clear the mine. Take this.
+
+## Festival Quests
+#Cooking Festival
+harvestfestival.quest.festival.cooking.question=Want to enter the cooking festival?
+harvestfestival.quest.festival.cooking.ready=@I am ready!
+harvestfestival.quest.festival.cooking.cancel=@Give me a minute.
 
 ###Achievements
 achievement.harvestfestival.summon=Goddess' Bounty

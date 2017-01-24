@@ -23,7 +23,7 @@ import java.util.HashSet;
 import java.util.Map.Entry;
 import java.util.UUID;
 
-import static joshie.harvest.town.BuildingLocations.MINEENTRANCE;
+import static joshie.harvest.town.BuildingLocations.MINE_ENTRANCE;
 
 public class TownTrackerServer extends TownTracker<TownDataServer> {
     private BiMap<UUID, Integer> townIDs = HashBiMap.create();
@@ -49,8 +49,8 @@ public class TownTrackerServer extends TownTracker<TownDataServer> {
         if (uuid == null) return default_;
         TownData data = uuidMap.get(uuid);
         if (data == null) return default_;
-        if (!data.hasBuilding(MINEENTRANCE.getResource())) return data.getTownCentre();
-        BlockPos location = data.getCoordinatesFor(MINEENTRANCE);
+        if (!data.hasBuilding(MINE_ENTRANCE.getResource())) return data.getTownCentre();
+        BlockPos location = data.getCoordinatesFor(MINE_ENTRANCE);
         return location != null? location : data.getTownCentre();
     }
 
@@ -59,14 +59,14 @@ public class TownTrackerServer extends TownTracker<TownDataServer> {
         UUID uuid = townIDs.inverse().get(mineID);
         if (uuid == null) return Rotation.NONE;
         TownDataServer data = uuidMap.get(uuid);
-        if (data == null || !data.hasBuilding(MINEENTRANCE.getResource())) return Rotation.NONE;
-        return data.getFacingFor(MINEENTRANCE.getResource());
+        if (data == null || !data.hasBuilding(MINE_ENTRANCE.getResource())) return Rotation.NONE;
+        return data.getFacingFor(MINE_ENTRANCE.getResource());
     }
 
     @Override
     public int getMineIDFromCoordinates(BlockPos pos) {
         TownData data = getClosestTownToBlockPos(pos);
-        if (!data.hasBuilding(MINEENTRANCE.getResource())) return -1;
+        if (!data.hasBuilding(MINE_ENTRANCE.getResource())) return -1;
         if (townIDs.containsKey(data.getID())) {
             return townIDs.get(data.getID());
         } else return matchUUIDWithMineID(data.getID());

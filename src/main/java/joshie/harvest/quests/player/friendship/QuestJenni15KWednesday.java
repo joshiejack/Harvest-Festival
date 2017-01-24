@@ -68,7 +68,7 @@ public class QuestJenni15KWednesday extends QuestFriendshipStore {
             TownBuilding building = TownHelper.getClosestTownToEntity(player).getBuilding(HFBuildings.SUPERMARKET);
             if (building != null) {
                 World world = player.worldObj;
-                BlockPos pos = building.pos.up(11);
+                BlockPos pos = building.pos.up(2);
                 if (building.rotation == Rotation.CLOCKWISE_90) { //North
                     pos = pos.offset(EnumFacing.WEST, 12).offset(EnumFacing.SOUTH, 12);
                 } else if (building.rotation == Rotation.COUNTERCLOCKWISE_90) { //South

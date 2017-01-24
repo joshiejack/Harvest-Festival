@@ -40,7 +40,7 @@ public class EntityAIWork extends EntityAIBase {
 
     @Override
     public void startExecuting() {
-        if (moveTimer %200 == 0) {
+        if (moveTimer %100 == 0) {
             if (npc.getDistanceSq(target) >= 1.5D) {
                 npc.setPositionAndUpdate(target.getX() + 0.5D, target.getY() + 1D, target.getZ() + 0.5D);
             }

@@ -2,10 +2,10 @@ package joshie.harvest.npcs;
 
 import joshie.harvest.HarvestFestival;
 import joshie.harvest.api.calendar.CalendarDate;
+import joshie.harvest.api.calendar.Holiday;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.npc.INPCHelper.Age;
 import joshie.harvest.api.npc.INPCHelper.Gender;
-import joshie.harvest.api.npc.ISchedule;
 import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.npc.ScheduleBuilder;
 import joshie.harvest.api.npc.gift.IGiftHandler;
@@ -21,7 +21,6 @@ import joshie.harvest.npcs.npc.NPCHolidayStore;
 import joshie.harvest.npcs.render.NPCItemRenderer;
 import joshie.harvest.npcs.render.NPCItemRenderer.NPCTile;
 import joshie.harvest.npcs.render.RenderNPC;
-import joshie.harvest.npcs.schedule.ScheduleEmpty;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.ForgeHooksClient;
@@ -43,7 +42,8 @@ import static joshie.harvest.api.npc.INPCHelper.Gender.MALE;
 import static joshie.harvest.calendar.HFCalendar.COOKING_FESTIVAL;
 import static joshie.harvest.core.helpers.ConfigHelper.getDouble;
 import static joshie.harvest.core.helpers.RegistryHelper.registerSounds;
-import static joshie.harvest.core.lib.HFModInfo.*;
+import static joshie.harvest.core.lib.HFModInfo.GIFTPATH;
+import static joshie.harvest.core.lib.HFModInfo.MODID;
 import static joshie.harvest.core.lib.LoadOrder.HFNPCS;
 import static joshie.harvest.town.BuildingLocations.*;
 
@@ -253,18 +253,18 @@ public class HFNPCs {
                         .add(SPRING, SATURDAY, 5000L, GODDESS_POND_FRONT_LEFT)
                         .add(SPRING, SUNDAY, 6000L, GODDESS_POND_FRONT_LEFT)
                         .add(SPRING, SUNDAY, 7000L, CHURCH_INSIDE)
-                        .add(SPRING, SUNDAY, 8500L, CAFETILL)
+                        .add(SPRING, SUNDAY, 8500L, CAFE_TILL)
                         .add(SPRING, SUNDAY, 17000L, PARK_TABLE)
                         .add(SPRING, SUNDAY, 20000L, CAFE_BALCONY)
                         .add(SPRING, MONDAY, 0L, CAFE_BALCONY)
-                        .add(SPRING, MONDAY, 8000L, CAFETILL)
+                        .add(SPRING, MONDAY, 8000L, CAFE_TILL)
                         .add(SPRING, MONDAY, 17000L, CAFE_CUSTOMER)
                         .add(SPRING, MONDAY, 18000L, CAFE_FRONT)
                         .add(SPRING, MONDAY, 19000L, PARK_TABLE)
                         .add(SPRING, MONDAY, 22000L, CAFE_BALCONY)
                         .add(SPRING, SATURDAY, 0L, CAFE_BALCONY)
                         .add(SPRING, SATURDAY, 6000L, GODDESS_POND_FRONT_LEFT)
-                        .add(SPRING, SATURDAY, 8000L, CAFETILL)
+                        .add(SPRING, SATURDAY, 8000L, CAFE_TILL)
                         .add(SPRING, SATURDAY, 17000L, CAFE_CUSTOMER)
                         .add(SPRING, SATURDAY, 18000L, CAFE_FRONT)
                         .add(SPRING, SATURDAY, 19000L, PARK_TABLE)
@@ -328,12 +328,83 @@ public class HFNPCs {
                         .add(SPRING, FRIDAY, 23000L, BLACKSMITH_FURNACE)
                         .build();
 
+        //Clockmaker
+        CLOCKMAKER.setHasInfo(new GreetingTime());
+        ScheduleBuilder.create(CLOCKMAKER, CLOCKMAKER_DOWNSTAIRS)
+                        .add(SPRING, SUNDAY, 0L, CLOCKMAKER_DOWNSTAIRS)
+                        .add(SPRING, SUNDAY, 8000L, CHURCH_PEW_BACK_RIGHT)
+                        .add(SPRING, SUNDAY, 11000L, TOWNHALL_RIGHT)
+                        .add(SPRING, SUNDAY, 14000L, GODDESS_POND_BACK)
+                        .add(SPRING, SUNDAY, 16000L, PARK_LEFT)
+                        .add(SPRING, SUNDAY, 18000L, CLOCKMAKER_DOWNSTAIRS)
+                        .add(SPRING, MONDAY, 0L, CLOCKMAKER_DOWNSTAIRS)
+                        .add(SPRING, MONDAY, 8000L, CAFE_CUSTOMER)
+                        .add(SPRING, MONDAY, 11000L, TOWNHALL_RIGHT_OF_STAGE)
+                        .add(SPRING, MONDAY, 14000L, FISHING_POND_LEFT)
+                        .add(SPRING, MONDAY, 16000L, PARK_LEFT)
+                        .add(SPRING, MONDAY, 18000L, CLOCKMAKER_DOWNSTAIRS)
+                        .build();
 
-        CLOCKMAKER.setHome(CLOCKMAKER_DOWNSTAIRS).setHasInfo(new GreetingTime());
-        CLOCKMAKER_CHILD.setHome(CLOCKMAKER_UPSTAIRS);
-        PRIEST.setHome(TOWNHALL_ADULT_BED);
-        MAYOR.setHome(TOWNHALL_STAGE);
-        DAUGHTER_ADULT.setHome(TOWNHALL_TEEN_BED);
+        //Clockmaker Child
+        ScheduleBuilder.create(CLOCKMAKER_CHILD, CLOCKMAKER_UPSTAIRS)
+                        .add(SPRING, SUNDAY, 0L, CLOCKMAKER_UPSTAIRS)
+                        .add(SPRING, SUNDAY, 8000L, CHURCH_PEW_BACK_RIGHT)
+                        .add(SPRING, SUNDAY, 10000L, POULTRY_DOOR)
+                        .add(SPRING, SUNDAY, 12000L, BARN_DOOR)
+                        .add(SPRING, SUNDAY, 16000L, TOWNHALL_LEFT)
+                        .add(SPRING, SUNDAY, 18000L, CLOCKMAKER_UPSTAIRS)
+                        .add(SPRING, MONDAY, 0L, CLOCKMAKER_UPSTAIRS)
+                        .add(SPRING, MONDAY, 8000L, BARN_DOOR)
+                        .add(SPRING, MONDAY, 10000L, POULTRY_DOOR)
+                        .add(SPRING, MONDAY, 14000L, FISHING_POND_LEFT)
+                        .add(SPRING, MONDAY, 16000L, PARK_SPRUCE)
+                        .add(SPRING, MONDAY, 18000L, CLOCKMAKER_UPSTAIRS)
+                        .build();
+
+        //Priest
+        ScheduleBuilder.create(PRIEST, TOWNHALL_ADULT_BED)
+                        .add(SPRING, SUNDAY, 0L, TOWNHALL_ADULT_BED)
+                        .add(SPRING, SUNDAY, 6000L, CHURCH_FRONT)
+                        .add(SPRING, SUNDAY, 7000L, CHURCH_INSIDE)
+                        .add(SPRING, SUNDAY, 17000L, GODDESS_POND_FRONT_RIGHT)
+                        .add(SPRING, SUNDAY, 19000L, GODDESS_POND_FRONT)
+                        .add(SPRING, SUNDAY, 22000L, TOWNHALL_ADULT_BED)
+                        .add(SPRING, MONDAY, 0L, TOWNHALL_ADULT_BED)
+                        .add(SPRING, MONDAY, 6000L, MINE_BACK)
+                        .add(SPRING, MONDAY, 9000L, CHURCH_INSIDE)
+                        .add(SPRING, MONDAY, 17500L, FISHING_HUT_RIGHT)
+                        .add(SPRING, MONDAY, 19000L, TOWNHALL_LEFT_OF_STAGE)
+                        .add(SPRING, MONDAY, 22000L, TOWNHALL_ADULT_BED).build();
+        //Mayor
+        ScheduleBuilder.create(MAYOR, TOWNHALL_STAGE)
+                        .add(SPRING, SUNDAY, 0L, TOWNHALL_ADULT_BED)
+                        .add(SPRING, SUNDAY, 6000L, TOWNHALL_FRONT_OF_STAGE)
+                        .add(SPRING, SUNDAY, 9000L, TOWNHALL_STAGE)
+                        .add(SPRING, SUNDAY, 15000L, CAFE_BALCONY)
+                        .add(SPRING, SUNDAY, 19000L, TOWNHALL_LEFT)
+                        .add(SPRING, SUNDAY, 22000L, TOWNHALL_ADULT_BED)
+                        .add(COOKING_FESTIVAL, 0L, TOWNHALL_ADULT_BED)
+                        .add(COOKING_FESTIVAL, 6000L, PARK_BOTTOM)
+                        .add(COOKING_FESTIVAL, 19000L, TOWNHALL_FRONT_OF_STAGE)
+                        .add(COOKING_FESTIVAL, 22000L, TOWNHALL_ADULT_BED)
+                        .build();
+
+        //Eldest Daughter
+        ScheduleBuilder.create(DAUGHTER_ADULT, TOWNHALL_TEEN_BED)
+                        .add(SPRING, SUNDAY, 0L, TOWNHALL_TEEN_BED)
+                        .add(SPRING, SUNDAY, 7000L, CHURCH_PEW_FRONT_RIGHT)
+                        .add(SPRING, SUNDAY, 10000L, CAFE_KITCHEN)
+                        .add(SPRING, SUNDAY, 13000L, POULTRY_FRONT)
+                        .add(SPRING, SUNDAY, 15000L, TOWNHALL_RIGHT)
+                        .add(SPRING, SUNDAY, 19000L, TOWNHALL_TEEN_BED)
+                        .add(SPRING, MONDAY, 0L, TOWNHALL_TEEN_BED)
+                        .add(SPRING, MONDAY, 7000L, CAFE_KITCHEN)
+                        .add(SPRING, MONDAY, 10000L, FISHING_HUT_DOOR)
+                        .add(SPRING, MONDAY, 15000L, TOWNHALL_RIGHT)
+                        .add(SPRING, MONDAY, 19000L, TOWNHALL_TEEN_BED)
+                        .build();
+
+        //Youngest Daughter
         ScheduleBuilder.create(DAUGHTER_CHILD, TOWNHALL_CHILD_BED)
                         .add(SPRING, SUNDAY, 0L, TOWNHALL_CHILD_BED)
                         .add(SPRING, SUNDAY, 8000L, CHURCH_PEW_FRONT_LEFT)
@@ -348,14 +419,25 @@ public class HFNPCs {
                         .add(SPRING, MONDAY, 15000L, TOWNHALL_CHILD_BED)
                         .build();
 
-        TRADER.setHome(TOWNHALL_RIGHT); //WORKS IN THE PARK AT 'GIRAFI'
+        //Trader
+        ScheduleBuilder.create(TRADER, PARK_TRADER)
+                        .add(SPRING, SUNDAY, 0L, TOWNHALL_RIGHT)
+                        .add(SPRING, SUNDAY, 6000L, PARK_TRADER)
+                        .add(SPRING, SUNDAY, 11000L, GENERAL_CUSTOMER)
+                        .add(SPRING, SUNDAY, 13000L, GENERAL_GARDEN)
+                        .add(SPRING, SUNDAY, 16000L, GODDESS_POND_BACK_RIGHT)
+                        .build();
 
         for (NPC npc: NPC.REGISTRY) {
             if (npc != NPC.NULL_NPC) {
+                addHolidayGreetings(npc, COOKING_FESTIVAL);
                 setupGifts(npc);
-                setupSchedules(npc);
             }
         }
+    }
+
+    private static void addHolidayGreetings(NPC npc, Holiday... holidays) {
+        for (Holiday holiday: holidays) npc.addGreeting(new GreetingFestival(holiday));
     }
 
     private static void setupGifts(NPC npc) {
@@ -364,16 +446,6 @@ public class HFNPCs {
             try {
                 IGiftHandler handler = (IGiftHandler) Class.forName(GIFTPATH + WordUtils.capitalize(npc.getRegistryName().getResourcePath())).newInstance();
                 if (handler != null) npc.setGiftHandler(handler);
-            } catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {/**/}
-        }
-    }
-
-    private static void setupSchedules(NPC npc) {
-        if (npc.getScheduler() == null) npc.setScheduleHandler(ScheduleEmpty.INSTANCE);
-        if (npc.getRegistryName().getResourceDomain().equals(MODID)) {
-            try {
-                ISchedule schedule = (ISchedule) Class.forName(SCHEDULEPATH + WordUtils.capitalize(npc.getRegistryName().getResourcePath())).newInstance();
-                if (schedule != null) npc.setScheduleHandler(schedule);
             } catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {/**/}
         }
     }

@@ -515,6 +515,8 @@ harvestfestival.cookware.steamer=Steamer
 
 harvestfestival.storage.shipping=Shipment Box
 harvestfestival.storage.shipping.tooltip=Every day at 6am the powers that be drop by and collect any items you place in here, along with payment.
+harvestfestival.storage.mailbox=Mailbox
+harvestfestival.storage.mailbox.tooltip=With a mailbox you will receive invites to special events. You can also sometimes receive gifts in the mail.
 harvestfestival.sized.incubator=Incubator
 harvestfestival.trough.wood=Food Trough
 harvestfestival.sprinkler.iron=Sprinkler
@@ -1652,7 +1654,7 @@ harvestfestival.quest.slay.complete3=Thanks for helping clear the mine. Take thi
 harvestfestival.quest.festival.cooking.question=Want to enter the cooking festival?
 harvestfestival.quest.festival.cooking.ready=@I am ready!
 harvestfestival.quest.festival.cooking.cancel=@Give me a minute.
-harvestfestival.script.cooking1=This was a great contest! Had a taste of everyone's meals... And well I think I've decided..... ...... ................... ..... ..... .... In third place is %1$s with their %2$s. ..... .. ... . .......... .... .. .. .. .. . In second place we jave %3$s with their %4$s... and finally...... without... further ado.... the winner of this year's cooking festival is........... %5$s with their amazing %6$s. Congratulations! For this years prize we have a gift of %7$s gold as well as a special recipe!
+harvestfestival.script.cooking=This was a great contest! Had a taste of everyone's meals... And well I think I've decided..... ...... ................... ..... ..... In third place is %1$s with their %2$s. ..... .. ... . .......... .... .. .. .. .. . In second place we jave %3$s with their %4$s... and finally...... without... further ado.... the winner of this year's cooking festival is........... %5$s with their amazing %6$s. Congratulations! For this years prize we have a gift of %7$s gold as well as a special recipe!
 
 ###Achievements
 achievement.harvestfestival.summon=Goddess' Bounty
@@ -1759,6 +1761,8 @@ harvestfestival.note.farming.title=Crop Farming
 harvestfestival.note.farming.description=To get started with farming crops use your hoe to till a 3x3 area of farmland. Next plant your seeds, clicking on the centre block. Now fill your watering can by right clicking any water source while holding it. Water your crops using a right click. Every day the crops will grow if they have been watered, so you'll need patience. You can sleep at any time to speed up their growth.
 harvestfestival.note.shipping.title=Shipping Basics
 harvestfestival.note.shipping.description=Every day at 6am, a mysterious invisible being will appear to take your items from the shipping box. They'll leave you a sum of gold, which you can then spend wisely.\nTo place items in to be shipped either right click or drop the stack on top. You can also make use of hoppers. In this case the profit will go to the player who placed the shipping box.
+harvestfestival.note.mailbox.title=Mailbox
+harvestfestival.note.mailbox.description=The mailbox is where you can ready letters from the townspeople. The main use is to be invited to festivals. You can accept an invite or reject it, skipping the festival entirely. You can also sometimes receive other kinds of letters, but that may be later down the line...
 harvestfestival.note.sickle.title=Sickle
 harvestfestival.note.sickle.description=The sickle is a tool that is very effective at destroying crops, and other plant like matter. It is especially effective at destroying any of your crops that may end up dying from lack of water or season changes. \n\nSome crops such as grass or wheat require the use of the sickle in order to harvest their drops.
 harvestfestival.note.supermarket.title=General Store

@@ -856,7 +856,7 @@
       "pos": "7 2 20"
     },
     {
-      "state": "lapis_block",
+      "state": "harvestfestival:stand",
       "pos": "8 2 21"
     },
     {
@@ -872,11 +872,11 @@
       "pos": "9 2 22"
     },
     {
-      "state": "lapis_block",
+      "state": "harvestfestival:stand",
       "pos": "9 2 21"
     },
     {
-      "state": "lapis_block",
+      "state": "harvestfestival:stand",
       "pos": "10 2 21"
     },
     {
@@ -892,7 +892,7 @@
       "pos": "11 2 22"
     },
     {
-      "state": "lapis_block",
+      "state": "harvestfestival:stand",
       "pos": "11 2 21"
     },
     {
@@ -922,11 +922,6 @@
     {
       "state": "wooden_button 4",
       "pos": "13 2 20",
-      "type": "blocks.Decorative"
-    },
-    {
-      "state": "cake",
-      "pos": "13 2 7",
       "type": "blocks.Decorative"
     },
     {
@@ -1162,11 +1157,6 @@
     },
     {
       "pos": "32 2 5"
-    },
-    {
-      "state": "cake",
-      "pos": "33 2 5",
-      "type": "blocks.Decorative"
     },
     {
       "state": "spruce_stairs",

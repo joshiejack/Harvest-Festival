@@ -20,10 +20,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.util.ArrayList;
-import java.util.EnumMap;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
 
 import static joshie.harvest.api.cooking.Utensil.*;
 import static joshie.harvest.cooking.recipe.RecipeBuilder.*;
@@ -82,6 +79,12 @@ public class ItemMeal extends ItemHFFoodEnum<ItemMeal, Meal> {
         public String getName() {
             return name().toLowerCase(Locale.ENGLISH);
         }
+    }
+
+    public ItemStack getRandomMeal(Random rand) {
+        boolean first = rand.nextBoolean();
+        if (first) return getCreativeStack(this, Meal.values()[rand.nextInt(50)]);
+        else return getCreativeStack(this, Meal.values()[55 + rand.nextInt(35)]);
     }
 
     private Recipe getRecipeFromMeal(Meal meal) {

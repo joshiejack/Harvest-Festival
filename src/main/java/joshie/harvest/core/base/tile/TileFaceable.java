@@ -1,5 +1,6 @@
 package joshie.harvest.core.base.tile;
 
+import joshie.harvest.core.helpers.MCServerHelper;
 import joshie.harvest.core.util.interfaces.IFaceable;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
@@ -12,6 +13,9 @@ public class TileFaceable extends TileHarvest implements IFaceable {
         if (dir == EnumFacing.DOWN || dir == EnumFacing.UP) {
             orientation = EnumFacing.NORTH;
         } else orientation = dir;
+
+        markDirty();
+        MCServerHelper.markTileForUpdate(this);
     }
 
     @Override

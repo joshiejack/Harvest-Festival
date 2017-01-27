@@ -1,7 +1,6 @@
 package joshie.harvest.cooking.tile;
 
 import joshie.harvest.api.HFApi;
-import joshie.harvest.api.cooking.IAltItem;
 import joshie.harvest.api.cooking.Utensil;
 import joshie.harvest.cooking.CookingHelper.PlaceIngredientResult;
 import joshie.harvest.core.HFTrackers;
@@ -139,7 +138,7 @@ public abstract class TileCooking extends TileFaceable {
         if (!HFApi.cooking.isIngredient(stack)) return false;
         else {
             if (worldObj.isRemote) return true;
-            ItemStack clone = getRealIngredient(stack);
+            ItemStack clone = stack.copy();
             clone.stackSize = 1;
             if (!clone.hasTagCompound()) {
                 clone.setTagCompound(new NBTTagCompound());
@@ -154,16 +153,6 @@ public abstract class TileCooking extends TileFaceable {
             this.markDirty();
             return true;
         }
-    }
-
-    @SuppressWarnings("deprecation")
-    private ItemStack getRealIngredient(ItemStack stack) {
-        ItemStack alt = stack;
-        if (stack.getItem() instanceof IAltItem) {
-            alt = ((IAltItem)stack.getItem()).getAlternativeWhenCooking(stack);
-        }
-
-        return alt == null ? stack.copy() : alt.copy();
     }
 
     //Called Clientside to update the client

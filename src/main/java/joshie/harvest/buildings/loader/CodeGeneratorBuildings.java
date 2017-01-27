@@ -67,7 +67,7 @@ public class CodeGeneratorBuildings {
         BlockPos position = new BlockPos(x1 + x, y1 + y, z1 + z);
         IBlockState state = world.getBlockState(position);
         Block block = state.getBlock();
-        if (block == Blocks.CHEST) {
+        if (block == Blocks.CHEST || block == Blocks.TRAPPED_CHEST) {
             TileEntityChest chest = (TileEntityChest) world.getTileEntity(new BlockPos(x1 + x, y1 + y, z1 + z));
             if (chest != null) {
                 String name = chest.getName();

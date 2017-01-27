@@ -61,7 +61,7 @@ public class ItemAxe extends ItemToolSmashing<ItemAxe> {
                 return replaceTree(pos, player);
         }
 
-        return super.onBlockStartBreak(stack, pos, player);
+        return false;
     }
 
     private int getTimes(ItemStack stack) {
@@ -123,7 +123,7 @@ public class ItemAxe extends ItemToolSmashing<ItemAxe> {
     }
 
     //Borrowed from Tinkers Construct by boni
-    private boolean findTree(World world, BlockPos origin) {
+    public boolean findTree(World world, BlockPos origin) {
         BlockPos pos = null;
         Stack<BlockPos> candidates = new Stack<>();
         candidates.add(origin);

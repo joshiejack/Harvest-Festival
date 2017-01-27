@@ -22,9 +22,14 @@ public class BuildingFestival extends Building {
     }
 
     @Override
+    public void onBuilt(World world, BlockPos pos, Rotation rotation) {
+        getTemplate(Festival.NONE).placeBlocks(world, pos, rotation, null); //Place the default blocks
+    }
+
+    @Override
     public void newDay(World world, BlockPos pos, Rotation rotation, CalendarDate dToday, CalendarDate dYesterday) {
-        Festival yesterday = HolidayRegistry.INSTANCE.getHoliday(dYesterday);
-        Festival today = HolidayRegistry.INSTANCE.getHoliday(dToday);
+        Festival yesterday = HolidayRegistry.INSTANCE.getHoliday(world, pos, dYesterday);
+        Festival today = HolidayRegistry.INSTANCE.getHoliday(world, pos, dToday);
         if (yesterday != today) {
             getTemplate(yesterday).removeBlocks(world, pos, rotation);
             Quest quest = yesterday.getQuest();
@@ -41,7 +46,7 @@ public class BuildingFestival extends Building {
             Quest quest = QuestHelper.getQuest("festival." + today.getQuest());
             if (quest != null) {
                 if (TownHelper.getClosestTownToBlockPos(world, pos).getQuests().getFinished().contains(quest)) {
-                    getTemplate(HolidayRegistry.NONE).placeBlocks(world, pos, rotation, null);
+                    getTemplate(Festival.NONE).placeBlocks(world, pos, rotation, null);
                 }
             }
         }

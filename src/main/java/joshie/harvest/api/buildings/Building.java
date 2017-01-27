@@ -142,9 +142,11 @@ public class Building extends IForgeRegistryEntry.Impl<Building> {
         return width;
     }
 
-    public void newDay(World world, BlockPos pos, Rotation rotation, CalendarDate today, CalendarDate yesterday) {
-        //Called when the day passed over
-    }
+    //Called when the day passed over
+    public void newDay(World world, BlockPos pos, Rotation rotation, CalendarDate today, CalendarDate yesterday) {}
+
+    //Called when this building has finished being built
+    public void onBuilt(World world, BlockPos pos, Rotation rotation) {}
 
     public boolean canHaveMultiple() {
         return canHaveMultiple;
@@ -159,4 +161,6 @@ public class Building extends IForgeRegistryEntry.Impl<Building> {
     public int hashCode() {
         return getRegistryName() == null? 0 : getRegistryName().hashCode();
     }
+
+
 }

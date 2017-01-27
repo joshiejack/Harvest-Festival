@@ -117,7 +117,7 @@ public class CropRegistry implements ICropRegistry {
         IBlockState state = world.getBlockState(pos);
         WateringHandler checker = CropHelper.getWateringHandler(world, pos, state);
         if (checker != null && !checker.isWet(world, pos, state)) {
-            return checker.hydrate(world, pos, state);
+            return world.setBlockState(pos, checker.hydrate(world, pos, state));
         }
 
         return false;

@@ -28,6 +28,7 @@
 
 ###Calendar
 * Summers are more likely to be sunny (98% vs 95%), and typhoon chances are higher if sun fails (99% vs 75%)
+* Changed default server length from 365 to 300, for calendar related reasons
 
 ###CraftTweaker
 * Add support for blacklisting hoes/seeds

@@ -8,7 +8,10 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public final class Festival {
+    public static final Festival NONE = new Festival(new ResourceLocation("harvestfestival", "none"));
     private final ResourceLocation resource;
+    private boolean shopsOpen;
+    private boolean hidden;
     private Quest quest;
     private Note note;
 
@@ -29,6 +32,18 @@ public final class Festival {
         return this;
     }
 
+    /** Call this to make shops open on this festival **/
+    public Festival setShopsOpen() {
+        this.shopsOpen = true;
+        return this;
+    }
+
+    /** Hide this festival from the calendar **/
+    public Festival setHidden() {
+        this.hidden = true;
+        return this;
+    }
+
     @Nullable
     public Note getNote() {
         return note;
@@ -42,6 +57,10 @@ public final class Festival {
     @Nullable
     public Quest getQuest() {
         return quest;
+    }
+
+    public boolean doShopsOpen() {
+        return shopsOpen;
     }
 
     @Override

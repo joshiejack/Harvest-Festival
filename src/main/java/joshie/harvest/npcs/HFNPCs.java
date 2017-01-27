@@ -105,7 +105,7 @@ public class HFNPCs {
                 .add(SPRING, SUNDAY, 17000L, CARPENTER_DOWNSTAIRS)
                 .add(SPRING, SUNDAY, 21000L, CARPENTER_FRONT)
                 .add(COOKING_FESTIVAL, 0L, CARPENTER_UPSTAIRS)
-                .add(COOKING_FESTIVAL, 9000L, PARK_BACK_LEFT)
+                .add(COOKING_FESTIVAL, 9000L, PARK_BENCH)
                 .add(COOKING_FESTIVAL, 20000L, CARPENTER_UPSTAIRS)
                 .build();
 
@@ -119,7 +119,7 @@ public class HFNPCs {
                         .add(SPRING, SUNDAY, 19000L, CARPENTER_FRONT)
                         .add(SPRING, SUNDAY, 21000L, CARPENTER_UPSTAIRS)
                         .add(COOKING_FESTIVAL, 0L, CARPENTER_UPSTAIRS)
-                        .add(COOKING_FESTIVAL, 6000L, PARK_BACK_LEFT)
+                        .add(COOKING_FESTIVAL, 6000L, PARK_CENTRE)
                         .add(COOKING_FESTIVAL, 17000L, CARPENTER_UPSTAIRS)
                         .build();
 
@@ -144,7 +144,7 @@ public class HFNPCs {
                         .add(SPRING, SATURDAY, 19000L, CAFE_KITCHEN)
                         .add(SPRING, SATURDAY, 22000L, FISHING_POND_BACK)
                         .add(COOKING_FESTIVAL, 0L, GENERAL_BEDROOM)
-                        .add(COOKING_FESTIVAL, 4500L, PARK_LAMP_BACK)
+                        .add(COOKING_FESTIVAL, 4500L, PARK_PODIUM)
                         .add(COOKING_FESTIVAL, 18000L, GENERAL_BEDROOM)
                         .add(COOKING_FESTIVAL, 20000L, FISHING_POND_BACK)
                         .build();
@@ -164,7 +164,7 @@ public class HFNPCs {
                         .add(SPRING, MONDAY, 20000L, FISHING_POND_BACK)
                         .add(SPRING, MONDAY, 24000L, GENERAL_BED)
                         .add(COOKING_FESTIVAL, 0L, GENERAL_BED)
-                        .add(COOKING_FESTIVAL, 14000L, PARK_CENTRE)
+                        .add(COOKING_FESTIVAL, 6000L, PARK_TABLE)
                         .add(COOKING_FESTIVAL, 16000L, PARK_CUSTOMER)
                         .add(COOKING_FESTIVAL, 18000L, GENERAL_BED)
                         .add(COOKING_FESTIVAL, 20000L, FISHING_POND_BACK)
@@ -384,7 +384,7 @@ public class HFNPCs {
                         .add(SPRING, SUNDAY, 19000L, TOWNHALL_LEFT)
                         .add(SPRING, SUNDAY, 22000L, TOWNHALL_ADULT_BED)
                         .add(COOKING_FESTIVAL, 0L, TOWNHALL_ADULT_BED)
-                        .add(COOKING_FESTIVAL, 6000L, PARK_BOTTOM)
+                        .add(COOKING_FESTIVAL, 6000L, PARK_BUSH)
                         .add(COOKING_FESTIVAL, 19000L, TOWNHALL_FRONT_OF_STAGE)
                         .add(COOKING_FESTIVAL, 22000L, TOWNHALL_ADULT_BED)
                         .build();
@@ -426,6 +426,10 @@ public class HFNPCs {
                         .add(SPRING, SUNDAY, 11000L, GENERAL_CUSTOMER)
                         .add(SPRING, SUNDAY, 13000L, GENERAL_GARDEN)
                         .add(SPRING, SUNDAY, 16000L, GODDESS_POND_BACK_RIGHT)
+                        .add(COOKING_FESTIVAL, 0L, TOWNHALL_RIGHT)
+                        .add(COOKING_FESTIVAL, 6000L, PARK_TRADER)
+                        .add(COOKING_FESTIVAL, 19000L, GENERAL_GARDEN)
+                        .add(COOKING_FESTIVAL, 22000L, TOWNHALL_RIGHT)
                         .build();
 
         for (NPC npc: NPC.REGISTRY) {

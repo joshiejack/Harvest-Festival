@@ -114,6 +114,7 @@ public class TownDataServer extends TownData<QuestDataServer> implements IQuestM
         TownBuilding newBuilding = new TownBuilding(building, rotation, pos);
         buildings.put(Building.REGISTRY.getKey(building), newBuilding);
         PacketHandler.sendToDimension(world.provider.getDimension(), new PacketNewBuilding(uuid, newBuilding));
+        building.onBuilt(world, pos, rotation);
         HFTrackers.markDirty(world);
     }
 

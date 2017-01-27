@@ -248,8 +248,8 @@ public class NBTHelper {
         nbt.setTag(name, list);
     }
 
-    public static HashMap<UUID, BlockPos> readPosList(String name, NBTTagCompound nbt) {
-        HashMap<UUID, BlockPos> list = new HashMap<>();
+    public static Map<UUID, BlockPos> readPosList(String name, NBTTagCompound nbt) {
+        Map<UUID, BlockPos> list = new HashMap<>();
         NBTTagList currently = nbt.getTagList(name, 10);
         for (int i = 0; i < currently.tagCount(); i++) {
             BlockPos pos = BlockPos.fromLong(currently.getCompoundTagAt(i).getLong("Pos"));
@@ -260,7 +260,7 @@ public class NBTHelper {
         return list;
     }
 
-    public static void writePosList(String name, NBTTagCompound nbt, HashMap<UUID, BlockPos> theList) {
+    public static void writePosList(String name, NBTTagCompound nbt, Map<UUID, BlockPos> theList) {
         NBTTagList list = new NBTTagList();
         for (Entry<UUID, BlockPos> entry: theList.entrySet()) {
             NBTTagCompound tag = new NBTTagCompound();

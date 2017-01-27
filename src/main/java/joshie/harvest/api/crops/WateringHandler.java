@@ -38,9 +38,8 @@ public class WateringHandler {
      * @param    pos    the position being watered
      * @param    state  the current state
      * @return   true if we we watered the crop **/
-    public boolean hydrate(World world, BlockPos pos, IBlockState state) {
-        world.setBlockState(pos, state.withProperty(BlockFarmland.MOISTURE, WET_SOIL));
-        return true;
+    public IBlockState hydrate(World world, BlockPos pos, IBlockState state) {
+        return state.withProperty(BlockFarmland.MOISTURE, WET_SOIL);
     }
 
     /** Called every morning, to dehydrate this soil

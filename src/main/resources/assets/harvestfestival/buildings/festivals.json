@@ -949,7 +949,7 @@
       "pos": "12 0 13"
     },
     {
-      "state": "dirt",
+      "state": "grass",
       "pos": "12 0 14"
     },
     {
@@ -3405,6 +3405,15 @@
       "pos": "7 1 27"
     },
     {
+      "homeString": "stage.right",
+      "npc": "",
+      "pos": "7 1 19",
+      "type": "entities.NPC"
+    },
+    {
+      "pos": "7 1 19"
+    },
+    {
       "homeString": "park.back.lamps",
       "npc": "",
       "pos": "7 1 13",
@@ -3551,6 +3560,15 @@
       "pos": "12 1 8"
     },
     {
+      "homeString": "stage.left",
+      "npc": "",
+      "pos": "12 1 19",
+      "type": "entities.NPC"
+    },
+    {
+      "pos": "12 1 19"
+    },
+    {
       "state": "spruce_fence",
       "pos": "12 1 27"
     },
@@ -3588,6 +3606,12 @@
       "pos": "13 1 5"
     },
     {
+      "pos": "13 1 4"
+    },
+    {
+      "pos": "13 1 3"
+    },
+    {
       "state": "spruce_fence",
       "pos": "13 1 2"
     },
@@ -3598,6 +3622,15 @@
     {
       "state": "spruce_fence",
       "pos": "14 1 1"
+    },
+    {
+      "pos": "14 1 2"
+    },
+    {
+      "pos": "14 1 5"
+    },
+    {
+      "pos": "14 1 6"
     },
     {
       "state": "leaves2 5",
@@ -3618,6 +3651,9 @@
     {
       "state": "leaves 14",
       "pos": "15 1 25"
+    },
+    {
+      "pos": "15 1 2"
     },
     {
       "state": "log 1",
@@ -4435,12 +4471,18 @@
       "pos": "10 2 6"
     },
     {
+      "pos": "10 2 7"
+    },
+    {
       "state": "torch 5",
       "pos": "10 2 28",
       "type": "blocks.Decorative"
     },
     {
       "pos": "11 2 28"
+    },
+    {
+      "pos": "11 2 7"
     },
     {
       "state": "leaves 4",
@@ -4461,12 +4503,18 @@
       "pos": "12 2 3"
     },
     {
+      "pos": "12 2 4"
+    },
+    {
       "state": "leaves 14",
       "pos": "12 2 5"
     },
     {
       "state": "leaves 5",
       "pos": "12 2 6"
+    },
+    {
+      "pos": "12 2 7"
     },
     {
       "pos": "12 2 27"
@@ -4483,6 +4531,18 @@
       "type": "blocks.Decorative"
     },
     {
+      "pos": "13 2 6"
+    },
+    {
+      "pos": "13 2 5"
+    },
+    {
+      "pos": "13 2 4"
+    },
+    {
+      "pos": "13 2 3"
+    },
+    {
       "state": "torch 5",
       "pos": "13 2 2",
       "type": "blocks.Decorative"
@@ -4492,6 +4552,9 @@
     },
     {
       "pos": "14 2 1"
+    },
+    {
+      "pos": "14 2 2"
     },
     {
       "state": "leaves2 5",
@@ -4508,11 +4571,23 @@
       "pos": "15 2 22"
     },
     {
+      "pos": "15 2 2"
+    },
+    {
       "state": "spruce_fence",
       "pos": "15 2 1"
     },
     {
       "pos": "16 2 1"
+    },
+    {
+      "homeString": "park.podium",
+      "npc": "",
+      "pos": "16 2 19",
+      "type": "entities.NPC"
+    },
+    {
+      "pos": "16 2 19"
     },
     {
       "state": "trapdoor 10",
@@ -4857,6 +4932,42 @@
       "pos": "6 3 9"
     },
     {
+      "homeString": "stage.stand4",
+      "npc": "",
+      "pos": "8 3 21",
+      "type": "entities.NPC"
+    },
+    {
+      "pos": "8 3 21"
+    },
+    {
+      "homeString": "stage.stand4.human",
+      "npc": "",
+      "pos": "8 3 22",
+      "type": "entities.NPC"
+    },
+    {
+      "pos": "8 3 22"
+    },
+    {
+      "homeString": "stage.stand3.human",
+      "npc": "",
+      "pos": "9 3 22",
+      "type": "entities.NPC"
+    },
+    {
+      "pos": "9 3 22"
+    },
+    {
+      "homeString": "stage.stand3",
+      "npc": "",
+      "pos": "9 3 21",
+      "type": "entities.NPC"
+    },
+    {
+      "pos": "9 3 21"
+    },
+    {
       "state": "log2 1",
       "pos": "9 3 4"
     },
@@ -4877,6 +4988,51 @@
       "pos": "10 3 6"
     },
     {
+      "pos": "10 3 7"
+    },
+    {
+      "homeString": "stage.stand2",
+      "npc": "",
+      "pos": "10 3 21",
+      "type": "entities.NPC"
+    },
+    {
+      "pos": "10 3 21"
+    },
+    {
+      "homeString": "stage.stand2.human",
+      "npc": "",
+      "pos": "10 3 22",
+      "type": "entities.NPC"
+    },
+    {
+      "pos": "10 3 22"
+    },
+    {
+      "homeString": "stage.stand1.human",
+      "npc": "",
+      "pos": "11 3 22",
+      "type": "entities.NPC"
+    },
+    {
+      "pos": "11 3 22"
+    },
+    {
+      "homeString": "stage.stand1",
+      "npc": "",
+      "pos": "11 3 21",
+      "type": "entities.NPC"
+    },
+    {
+      "pos": "11 3 21"
+    },
+    {
+      "pos": "11 3 7"
+    },
+    {
+      "pos": "11 3 6"
+    },
+    {
       "state": "log2 1",
       "pos": "11 3 5"
     },
@@ -4889,8 +5045,26 @@
       "pos": "12 3 3"
     },
     {
+      "pos": "12 3 4"
+    },
+    {
       "state": "log2 1",
       "pos": "12 3 5"
+    },
+    {
+      "pos": "12 3 6"
+    },
+    {
+      "pos": "12 3 7"
+    },
+    {
+      "pos": "13 3 6"
+    },
+    {
+      "pos": "13 3 5"
+    },
+    {
+      "pos": "13 3 3"
     },
     {
       "state": "trapdoor 14",
@@ -5020,6 +5194,15 @@
       "pos": "10 4 6"
     },
     {
+      "pos": "10 4 7"
+    },
+    {
+      "pos": "11 4 7"
+    },
+    {
+      "pos": "11 4 6"
+    },
+    {
       "state": "log2 1",
       "pos": "11 4 5"
     },
@@ -5032,12 +5215,27 @@
       "pos": "12 4 3"
     },
     {
+      "pos": "12 4 4"
+    },
+    {
       "state": "log2 1",
       "pos": "12 4 5"
     },
     {
       "state": "log2 1",
       "pos": "12 4 6"
+    },
+    {
+      "pos": "12 4 7"
+    },
+    {
+      "pos": "13 4 6"
+    },
+    {
+      "pos": "13 4 5"
+    },
+    {
+      "pos": "13 4 3"
     },
     {
       "state": "dark_oak_stairs",
@@ -5264,6 +5462,15 @@
       "pos": "10 5 7"
     },
     {
+      "pos": "10 5 8"
+    },
+    {
+      "pos": "11 5 8"
+    },
+    {
+      "pos": "11 5 7"
+    },
+    {
       "state": "leaves 5",
       "pos": "11 5 6"
     },
@@ -5296,6 +5503,12 @@
       "pos": "12 5 7"
     },
     {
+      "pos": "12 5 8"
+    },
+    {
+      "pos": "13 5 7"
+    },
+    {
       "state": "leaves 6",
       "pos": "13 5 6"
     },
@@ -5306,6 +5519,18 @@
     {
       "state": "leaves 5",
       "pos": "13 5 4"
+    },
+    {
+      "pos": "13 5 3"
+    },
+    {
+      "pos": "14 5 4"
+    },
+    {
+      "pos": "14 5 5"
+    },
+    {
+      "pos": "14 5 6"
     },
     {
       "state": "dark_oak_stairs",

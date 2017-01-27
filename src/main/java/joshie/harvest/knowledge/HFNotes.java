@@ -20,6 +20,7 @@ public class HFNotes {
     public static final Note CROP_FARMING = registerNote(FARMING, "farming");
     public static final Note SICKLE = registerNote(FARMING, "sickle");
     public static final Note SHIPPING = registerNote(OTHER, "shipping");
+    public static final Note MAILBOX = registerNote(TOWNSHIP, "mailbox");
     public static final Note SUPERMARKET = registerNote(TOWNSHIP, "supermarket");
     public static final Note CHICKEN_CARE = registerNote(FARMING, "care.chickens");
     public static final Note COW_CARE = registerNote(FARMING, "care.cows");

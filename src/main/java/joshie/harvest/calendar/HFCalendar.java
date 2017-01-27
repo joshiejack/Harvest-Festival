@@ -66,7 +66,7 @@ public class HFCalendar {
         CONFIG = ConfigHelper.getConfig();
         OVERWORLD_ID = getInteger("Overworld ID", 3);
         DAYS_PER_SEASON_INTEGRATED = getInteger("Integrated Server > Days per season", 30);
-        DAYS_PER_SEASON_DEDICATED = getInteger("Dedicated Server > Days per season", 365);
+        DAYS_PER_SEASON_DEDICATED = getInteger("Dedicated Server > Days per season", 300);
         TICKS_PER_DAY = getInteger("Ticks per day", 24000);
         ENABLE_SUNNY = getBoolean("Weather > Enable sunny", true);
         ENABLE_RAIN = getBoolean("Weather > Enable rain", true);

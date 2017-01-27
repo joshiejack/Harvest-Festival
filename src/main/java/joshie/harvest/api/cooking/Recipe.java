@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Recipe extends IForgeRegistryEntry.Impl<Recipe> implements Meal {
+public class Recipe extends IForgeRegistryEntry.Impl<Recipe> {
     public static final IForgeRegistry<Recipe> REGISTRY = new RegistryBuilder<Recipe>().setName(new ResourceLocation("harvestfestival", "meals")).setType(Recipe.class).setIDRange(0, 32000).create();
 
     private final List<IngredientStack> required = new ArrayList<>();
@@ -44,6 +44,7 @@ public class Recipe extends IForgeRegistryEntry.Impl<Recipe> implements Meal {
         return this;
     }
 
+    @SuppressWarnings("unused")
     public Recipe setRequiredIngredients(IngredientStack... required) {
         Collections.addAll(this.required, required);
         return this;
@@ -57,6 +58,7 @@ public class Recipe extends IForgeRegistryEntry.Impl<Recipe> implements Meal {
         return this;
     }
 
+    @SuppressWarnings("unused")
     public Recipe setOptionalIngredients(IngredientStack... ingredients) {
         Collections.addAll(this.optional, ingredients);
         return this;
@@ -77,16 +79,7 @@ public class Recipe extends IForgeRegistryEntry.Impl<Recipe> implements Meal {
         return this;
     }
 
-    @Override
-    public Meal setAlternativeTexture(ItemStack stack) {
-        return this;
-    }
-
-    @Override
-    public Meal setExhaustion(float exhaustion) {
-        return this;
-    }
-
+    @SuppressWarnings("deprecation")
     public String getDisplayName() {
         return I18n.translateToLocal(getRegistryName().getResourceDomain() + ".meal." + getRegistryName().getResourcePath().replace("_", "."));
     }

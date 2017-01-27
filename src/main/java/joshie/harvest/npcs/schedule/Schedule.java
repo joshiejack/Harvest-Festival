@@ -61,7 +61,7 @@ public class Schedule implements ISchedule {
         if (default_ == null) return null;
         //Holidays take priority over anything else
         Festival festival = HolidayRegistry.INSTANCE.getHoliday(world, new BlockPos(entity), HFApi.calendar.getDate(world));
-        if (!festival.equals(HolidayRegistry.NONE) && holidayMap.containsKey(festival)) {
+        if (!festival.equals(Festival.NONE) && holidayMap.containsKey(festival)) {
             BuildingLocation location = getTargetFromMapBasedOnTime(holidayMap.get(festival), time);
             if (location != null) return location;
         }

@@ -5,12 +5,13 @@ import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.core.helpers.MCServerHelper;
 import joshie.harvest.core.helpers.NBTHelper;
 import joshie.harvest.festivals.HFFestivals;
-import joshie.harvest.festivals.quests.QuestCookingFestival;
+import joshie.harvest.festivals.cooking.CookingContestQuest;
 import joshie.harvest.town.TownHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
+import javax.annotation.Nullable;
 import java.util.UUID;
 
 public class TileStand extends TileFaceable {
@@ -21,11 +22,11 @@ public class TileStand extends TileFaceable {
         return stack == null;
     }
 
-    public boolean setContents(EntityPlayer player, ItemStack stack) {
-        QuestCookingFestival quest = TownHelper.getClosestTownToBlockPos(worldObj, pos).getQuests().getAQuest(HFFestivals.COOKING_FESTIVAL.getQuest());
+    public boolean setContents(@Nullable EntityPlayer player, ItemStack stack) {
+        CookingContestQuest quest = TownHelper.getClosestTownToBlockPos(worldObj, pos).getQuests().getAQuest(HFFestivals.COOKING_FESTIVAL.getQuest());
         if (quest == null || quest.isFull() || this.stack != null) return false;
         else {
-            quest.addStand(EntityHelper.getPlayerUUID(player), pos);
+            if (player != null) quest.addStand(EntityHelper.getPlayerUUID(player), pos);
             this.stack = stack.splitStack(1); //Remove one item
             MCServerHelper.markTileForUpdate(this);
         }
@@ -34,10 +35,10 @@ public class TileStand extends TileFaceable {
     }
 
     public ItemStack removeContents() {
-        QuestCookingFestival quest = TownHelper.getClosestTownToBlockPos(worldObj, pos).getQuests().getAQuest(HFFestivals.COOKING_FESTIVAL.getQuest());
+        CookingContestQuest quest = TownHelper.getClosestTownToBlockPos(worldObj, pos).getQuests().getAQuest(HFFestivals.COOKING_FESTIVAL.getQuest());
         if (stack == null) return null;
         else {
-            quest.removeStand(pos);
+            if (quest != null) quest.removeStand(pos);
             ItemStack stack = this.stack.copy();
             this.stack = null;
             MCServerHelper.markTileForUpdate(this);

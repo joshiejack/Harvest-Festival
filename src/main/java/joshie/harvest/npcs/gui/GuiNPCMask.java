@@ -34,6 +34,6 @@ public class GuiNPCMask extends GuiNPCChat {
     @Override
     @SuppressWarnings("unchecked")
     public String getScript() {
-        return script.getLocalized();
+        return script.getLocalized(npc, posingAs);
     }
 }

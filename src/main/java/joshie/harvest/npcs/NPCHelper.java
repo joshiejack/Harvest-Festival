@@ -31,6 +31,7 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 import java.util.HashMap;
+import java.util.UUID;
 
 @HFApiImplementation
 public class NPCHelper implements INPCHelper {
@@ -119,5 +120,14 @@ public class NPCHelper implements INPCHelper {
     @SuppressWarnings("unchecked")
     public static boolean isShopOpen(World world, EntityAgeable npc, @Nullable EntityPlayer player, Shop shop) {
         return HFShops.TWENTY_FOUR_HOUR_SHOPPING || shop.getOpeningHandler().isOpen(world, npc, player, shop);
+    }
+
+    @Nullable
+    public static NPC getNPCFromUUID(UUID uuid) {
+        for (NPC npc: NPC.REGISTRY) {
+            if (npc.getUUID().equals(uuid)) return npc;
+        }
+
+        return null;
     }
 }

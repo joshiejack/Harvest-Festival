@@ -12,6 +12,7 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.wrapper.EmptyHandler;
 
+import javax.annotation.Nonnull;
 import java.util.UUID;
 
 import static joshie.harvest.api.HFApi.shipping;
@@ -28,17 +29,12 @@ public class TileShipping extends TileFaceable {
     public void readFromNBT(NBTTagCompound nbt) {
         super.readFromNBT(nbt);
 
-        if (nbt.getString("Owner") != null) {
-            owner = UUID.fromString(nbt.getString("Owner"));
-        }
+        if (nbt.hasKey("Owner")) owner = UUID.fromString(nbt.getString("Owner"));
     }
 
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
-        if (owner != null) {
-            nbt.setString("Owner", owner.toString());
-        }
-
+        if (owner != null) nbt.setString("Owner", owner.toString());
         return super.writeToNBT(nbt);
     }
 
@@ -50,6 +46,7 @@ public class TileShipping extends TileFaceable {
         }
 
         @Override
+        @SuppressWarnings("ConstantConditions")
         public ItemStack insertItem(int slot, ItemStack stack, boolean simulate) {
             if (stack == null || stack.getItem() == null || owner == null) return stack;
             long sell = shipping.getSellValue(stack);
@@ -71,13 +68,14 @@ public class TileShipping extends TileFaceable {
     };
 
     @Override
-    public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
+    public boolean hasCapability(@Nonnull Capability<?> capability, @Nonnull EnumFacing facing) {
         return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY || super.hasCapability(capability, facing);
     }
 
     @SuppressWarnings("unchecked")
     @Override
-    public <T> T getCapability(Capability<T> capability, EnumFacing facing)
+    @Nonnull
+    public <T> T getCapability(@Nonnull Capability<T> capability, @Nonnull EnumFacing facing)
     {
         if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
             return (T) handler;

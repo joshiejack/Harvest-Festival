@@ -13,6 +13,7 @@ import joshie.harvest.core.helpers.RegistryHelper;
 import joshie.harvest.core.util.annotations.HFLoader;
 import joshie.harvest.festivals.block.BlockStand;
 import joshie.harvest.festivals.render.SpecialRendererStand;
+import joshie.harvest.festivals.cooking.CookingContestScript;
 import joshie.harvest.festivals.tile.TileStand;
 import joshie.harvest.knowledge.HFNotes;
 import joshie.harvest.npcs.HFNPCs;
@@ -23,6 +24,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import static joshie.harvest.api.calendar.Season.SPRING;
+import static joshie.harvest.api.calendar.Season.WINTER;
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 import static joshie.harvest.core.lib.LoadOrder.HFBUILDING;
 
@@ -30,7 +32,8 @@ import static joshie.harvest.core.lib.LoadOrder.HFBUILDING;
 @SuppressWarnings("unchecked")
 public class HFFestivals {
     public static final Festival COOKING_FESTIVAL = registerFestival("cooking", 22, SPRING);
-    public static final Script COOKING1 = registerScript(HFNPCs.GS_OWNER, "cooking1");
+    public static final Festival STARRY_NIGHT_PRE = registerFestival("starry_pre", 23, WINTER);
+    public static final Script COOKING1 = new CookingContestScript();
     public static final Building FESTIVAL_GROUNDS = HFBuildings.registerBuilding("festivals", BuildingFestival.class).setSpecialRules(new SpecialRuleFestivals()).setInhabitants(HFNPCs.TRADER).setOffset(14, -1, 32);
     public static final BlockStand STAND = new BlockStand().register("stand");
 

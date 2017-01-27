@@ -11,6 +11,7 @@ import joshie.harvest.core.helpers.InventoryHelper;
 import joshie.harvest.core.helpers.RegistryHelper;
 import joshie.harvest.core.loot.SetEnum;
 import joshie.harvest.core.loot.SetSizeable;
+import joshie.harvest.core.tile.TileMailbox;
 import joshie.harvest.core.tile.TileShipping;
 import joshie.harvest.core.util.annotations.HFLoader;
 import net.minecraft.block.BlockFlower.EnumFlowerColor;
@@ -52,7 +53,7 @@ public class HFCore {
         NetworkRegistry.INSTANCE.registerGuiHandler(HarvestFestival.instance, new GuiHandler());
         LootFunctionManager.registerFunction(new SetEnum.Serializer());
         LootFunctionManager.registerFunction(new SetSizeable.Serializer());
-        RegistryHelper.registerTiles(TileShipping.class);
+        RegistryHelper.registerTiles(TileShipping.class, TileMailbox.class);
         GODDESS.setBlock(GODDESS_WATER);
 
         //Register sellables

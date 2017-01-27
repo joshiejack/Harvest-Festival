@@ -56,8 +56,8 @@ public class CalendarAPI implements CalendarManager {
     }
 
     @Override
-    public boolean isHoliday(World world) {
-        return HolidayRegistry.INSTANCE.isHoliday(getDate(world));
+    public Festival getHoliday(World world, BlockPos pos) {
+        return HolidayRegistry.INSTANCE.getHoliday(world, pos, getDate(world));
     }
 
     @Override

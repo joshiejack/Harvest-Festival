@@ -3,6 +3,10 @@
     "facing=north,storage=shipping":  { "model": "harvestfestival:shipping_box" },
     "facing=south,storage=shipping":  { "model": "harvestfestival:shipping_box", "y": 180 },
     "facing=east,storage=shipping": { "model": "harvestfestival:shipping_box", "y": 90 },
-    "facing=west,storage=shipping": { "model": "harvestfestival:shipping_box", "y": 270 }
+    "facing=west,storage=shipping": { "model": "harvestfestival:shipping_box", "y": 270 },
+    "facing=north,storage=mailbox":  { "model": "harvestfestival:mailbox" },
+    "facing=south,storage=mailbox":  { "model": "harvestfestival:mailbox", "y": 180 },
+    "facing=east,storage=mailbox": { "model": "harvestfestival:mailbox", "y": 90 },
+    "facing=west,storage=mailbox": { "model": "harvestfestival:mailbox", "y": 270 }
   }
 }

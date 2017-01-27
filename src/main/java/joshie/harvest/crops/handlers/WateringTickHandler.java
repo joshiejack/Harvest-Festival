@@ -34,7 +34,7 @@ public class WateringTickHandler {
                             if (handler != null) {
                                 HFApi.tickable.addTickable(world, pos, Ticker.INSTANCE);
                                 if (!handler.isWet(world, pos, state) && world.isRaining()) {
-                                    handler.hydrate(world, pos, state);
+                                    extendedblockstorage.set(x, y & 15, z, handler.hydrate(world, pos, state));
                                 }
                             }
                         }
@@ -51,7 +51,9 @@ public class WateringTickHandler {
             WateringHandler handler = CropHelper.getWateringHandler(world, pos, state);
             if (handler != null) {
                 if (CropHelper.isRainingAt(world, pos.up(2))) {
-                    if (!handler.isWet(world, pos, state)) handler.hydrate(world, pos, state);
+                    if (!handler.isWet(world, pos, state)) {
+                        world.setBlockState(pos, handler.hydrate(world, pos, state));
+                    }
                 } else handler.dehydrate(world, pos, state);
 
                 return true;

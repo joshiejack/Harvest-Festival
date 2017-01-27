@@ -1,7 +1,7 @@
 package joshie.harvest.api.buildings;
 
 import joshie.harvest.api.HFApi;
-import joshie.harvest.api.calendar.CalendarDate;
+import joshie.harvest.api.calendar.Festival;
 import joshie.harvest.api.core.ISpecialRules;
 import joshie.harvest.api.npc.NPC;
 import joshie.harvest.buildings.render.BuildingKey;
@@ -17,6 +17,7 @@ import net.minecraftforge.fml.common.registry.IForgeRegistry;
 import net.minecraftforge.fml.common.registry.IForgeRegistryEntry;
 import net.minecraftforge.fml.common.registry.RegistryBuilder;
 
+import javax.annotation.Nonnull;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Locale;
@@ -142,10 +143,20 @@ public class Building extends IForgeRegistryEntry.Impl<Building> {
         return width;
     }
 
-    //Called when the day passed over
-    public void newDay(World world, BlockPos pos, Rotation rotation, CalendarDate today, CalendarDate yesterday) {}
+    /** Called when the festival changes
+     * @param world         the world object
+     * @param pos           the position of the building
+     * @param rotation      the rotation of the building
+     * @param oldFestival   the previous festival
+     * @param newFestival   the new festival
+     */
+    public void onFestivalChanged(@Nonnull World world, @Nonnull BlockPos pos, @Nonnull Rotation rotation, @Nonnull Festival oldFestival, @Nonnull Festival newFestival) {}
 
-    //Called when this building has finished being built
+    /** Called when the building has finished being built
+     * @param world         the world object
+     * @param pos           the position of the building
+     * @param rotation      the rotation of the building
+     */
     public void onBuilt(World world, BlockPos pos, Rotation rotation) {}
 
     public boolean canHaveMultiple() {

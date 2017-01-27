@@ -10,7 +10,6 @@ import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.npc.schedule.ScheduleBuilder;
 import joshie.harvest.api.npc.schedule.ScheduleBuilder.HolidaySchedule;
 import joshie.harvest.api.npc.schedule.ScheduleBuilder.TimedSchedule;
-import joshie.harvest.calendar.HolidayRegistry;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -60,7 +59,7 @@ public class Schedule implements ISchedule {
     public BuildingLocation getTarget(World world, EntityLiving entity, NPC npc, Season season, Weekday weekday, long time) {
         if (default_ == null) return null;
         //Holidays take priority over anything else
-        Festival festival = HolidayRegistry.INSTANCE.getHoliday(world, new BlockPos(entity), HFApi.calendar.getDate(world));
+        Festival festival = HFApi.calendar.getFestival(world, new BlockPos(entity));
         if (!festival.equals(Festival.NONE) && holidayMap.containsKey(festival)) {
             BuildingLocation location = getTargetFromMapBasedOnTime(holidayMap.get(festival), time);
             if (location != null) return location;

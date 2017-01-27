@@ -5,7 +5,6 @@ import com.google.common.cache.CacheBuilder;
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
 import joshie.harvest.api.HFApi;
-import joshie.harvest.api.calendar.CalendarDate;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.town.data.TownData;
@@ -28,10 +27,10 @@ import static joshie.harvest.town.BuildingLocations.MINE_ENTRANCE;
 public class TownTrackerServer extends TownTracker<TownDataServer> {
     private BiMap<UUID, Integer> townIDs = HashBiMap.create();
 
-    public void newDay(CalendarDate today, CalendarDate yesterday) {
+    public void newDay() {
         Cache<BlockPos, Boolean> isFar = CacheBuilder.newBuilder().build();
         for (TownDataServer town: townData) {
-            town.newDay(getWorld(), isFar, today, yesterday);
+            town.newDay(getWorld(), isFar);
         }
     }
 

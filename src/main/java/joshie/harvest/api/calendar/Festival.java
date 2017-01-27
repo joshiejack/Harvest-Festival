@@ -6,10 +6,13 @@ import net.minecraft.util.ResourceLocation;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.HashMap;
 
 public final class Festival {
-    public static final Festival NONE = new Festival(new ResourceLocation("harvestfestival", "none"));
+    public static final Festival NONE = new Festival(new ResourceLocation("harvestfestival", "none")).setAffectsGrounds();
+    public static final HashMap<ResourceLocation, Festival> REGISTRY = new HashMap<>();
     private final ResourceLocation resource;
+    private boolean affectsGround;
     private boolean shopsOpen;
     private boolean hidden;
     private Quest quest;
@@ -17,6 +20,7 @@ public final class Festival {
 
     public Festival(@Nonnull ResourceLocation resource) {
         this.resource = resource;
+        REGISTRY.put(resource, this);
     }
 
     /** The note that gets added when this festival is
@@ -44,6 +48,12 @@ public final class Festival {
         return this;
     }
 
+    /** Call this to make this festival change the look of the festival grounds **/
+    public Festival setAffectsGrounds() {
+        this.affectsGround = true;
+        return this;
+    }
+
     @Nullable
     public Note getNote() {
         return note;
@@ -61,6 +71,10 @@ public final class Festival {
 
     public boolean doShopsOpen() {
         return shopsOpen;
+    }
+
+    public boolean affectsFestivalGrounds() {
+        return affectsGround;
     }
 
     @Override

@@ -6,17 +6,21 @@ import joshie.harvest.api.calendar.*;
 import joshie.harvest.calendar.data.SeasonData;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.util.annotations.HFApiImplementation;
+import joshie.harvest.town.TownHelper;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import org.apache.commons.lang3.tuple.Pair;
 
 import javax.annotation.Nonnull;
 import java.util.EnumMap;
+import java.util.HashMap;
 
 @HFApiImplementation
 public class CalendarAPI implements CalendarManager {
     public static final CalendarAPI INSTANCE = new CalendarAPI();
     private final EnumMap<Season, SeasonData> data = new EnumMap<>(Season.class);
     private final TIntObjectMap<SeasonProvider> providers = new TIntObjectHashMap<>();
+    private final HashMap<Pair<Integer, Season>, Festival> festivals = new HashMap<>();
 
     //Winter: Leaves 0xFFFFFF | Grass 0xFFFFFF
     //Autumn: Leaves 0xFF9900 | Grass 0xB25900
@@ -51,13 +55,13 @@ public class CalendarAPI implements CalendarManager {
     }
 
     @Override
-    public void registerHoliday(Festival name, CalendarDate date) {
-        HolidayRegistry.INSTANCE.register(name, date);
+    public void registerFestival(Festival festival, int day, Season season) {
+        festivals.put(Pair.of(day, season), festival);
     }
 
     @Override
-    public Festival getHoliday(World world, BlockPos pos) {
-        return HolidayRegistry.INSTANCE.getHoliday(world, pos, getDate(world));
+    public Festival getFestival(World world, BlockPos pos) {
+        return TownHelper.getClosestTownToBlockPos(world, pos).getFestival();
     }
 
     @Override

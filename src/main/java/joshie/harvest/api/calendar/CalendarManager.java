@@ -36,13 +36,13 @@ public interface CalendarManager {
 
     /** Register a holiday
      *  @param festival the holiday data
-     *  @param date the date this holiday occurs (will be fit in to a 30 day calendar)**/
-    void registerHoliday(Festival festival, CalendarDate date);
+     *  @param day the date this holiday occurs (will be fit in to a 30 day calendar)
+     *  @param season the season of this holiday**/
+    void registerFestival(Festival festival, int day, Season season);
 
     /** Fetch the current festival
      *  @param world    the world object
      *  @param pos      the location we're checking for the holiday
      *  @return the current holiday**/
-    @SuppressWarnings("unused")
-    Festival getHoliday(World world, BlockPos pos);
+    Festival getFestival(World world, BlockPos pos);
 }

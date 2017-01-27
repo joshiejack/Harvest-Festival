@@ -2,14 +2,12 @@ package joshie.harvest.shops;
 
 import com.google.common.collect.HashMultimap;
 import joshie.harvest.api.HFApi;
-import joshie.harvest.api.calendar.CalendarDate;
 import joshie.harvest.api.calendar.Festival;
 import joshie.harvest.api.calendar.Weekday;
 import joshie.harvest.api.core.ISpecialRules;
 import joshie.harvest.api.shops.OpeningHandler;
 import joshie.harvest.api.shops.Shop;
 import joshie.harvest.calendar.CalendarHelper;
-import joshie.harvest.calendar.HolidayRegistry;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
@@ -35,10 +33,9 @@ public class ShopHours implements OpeningHandler {
     @Override
     @SuppressWarnings("unchecked")
     public boolean isOpen(World world, EntityAgeable npc, @Nullable EntityPlayer player, Shop shop) {
-        CalendarDate date = HFApi.calendar.getDate(world);
-        Festival festival = HolidayRegistry.INSTANCE.getHoliday(world, new BlockPos(npc), date);
+        Festival festival = HFApi.calendar.getFestival(world, new BlockPos(npc));
         if (!opensOnHolidays && !festival.doShopsOpen() && !festival.equals(Festival.NONE)) return false;
-        Weekday day = date.getWeekday();
+        Weekday day = HFApi.calendar.getDate(world).getWeekday();
         for (OpeningHours hours: open.get(day)) {
             boolean isOpen = CalendarHelper.isBetween(world, hours.open, hours.close) &&
                     (hours.rules == null || hours.rules.canDo(world, npc, 0));
@@ -51,8 +48,7 @@ public class ShopHours implements OpeningHandler {
     @Override
     @SuppressWarnings("unchecked")
     public boolean isPreparingToOpen(World world, EntityAgeable npc, Shop shop) {
-        CalendarDate date = HFApi.calendar.getDate(world);
-        Festival festival = HolidayRegistry.INSTANCE.getHoliday(world, new BlockPos(npc), date);
+        Festival festival = HFApi.calendar.getFestival(world, new BlockPos(npc));
         if (!opensOnHolidays && !festival.doShopsOpen() && !festival.equals(Festival.NONE)) return false;
         Weekday day = HFApi.calendar.getDate(world).getWeekday();
         for (OpeningHours hours: open.get(day)) {

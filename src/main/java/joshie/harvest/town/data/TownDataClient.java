@@ -1,6 +1,7 @@
 package joshie.harvest.town.data;
 
 import joshie.harvest.api.buildings.Building;
+import joshie.harvest.api.calendar.Festival;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.buildings.BuildingStage;
 import joshie.harvest.quests.data.QuestDataClient;
@@ -26,5 +27,10 @@ public class TownDataClient extends TownData<QuestDataClient> {
 
     public void setDailyQuest(Quest dailyQuest) {
         this.dailyQuest = dailyQuest;
+    }
+
+    public void setFestival(Festival festival, int days) {
+        this.festival = festival;
+        this.festivalDays = days;
     }
 }

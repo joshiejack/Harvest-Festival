@@ -3,6 +3,7 @@ package joshie.harvest.town.data;
 import joshie.harvest.api.buildings.Building;
 import joshie.harvest.api.buildings.BuildingLocation;
 import joshie.harvest.api.calendar.CalendarDate;
+import joshie.harvest.api.calendar.Festival;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.buildings.BuildingStage;
@@ -21,6 +22,8 @@ public abstract class TownData<Q extends QuestData> {
     protected LinkedList<BuildingStage> building = new LinkedList<>();
     protected final Set<ResourceLocation> inhabitants = new HashSet<>();
     protected final ShopData shops = new ShopData();
+    protected Festival festival = Festival.NONE;
+    protected int festivalDays;
     protected CalendarDate birthday;
     protected Quest dailyQuest;
     protected BlockPos townCentre;
@@ -83,6 +86,10 @@ public abstract class TownData<Q extends QuestData> {
         return building.getRealCoordinatesFor(location.getLocation());
     }
 
+    public Festival getFestival() {
+        return festival;
+    }
+
     public Set<ResourceLocation> getInhabitants() {
         return inhabitants;
     }
@@ -108,6 +115,10 @@ public abstract class TownData<Q extends QuestData> {
         }
 
         if (nbt.hasKey("DailyQuest")) dailyQuest = Quest.REGISTRY.getValue(new ResourceLocation(nbt.getString("DailyQuest")));
+        if (nbt.hasKey("Festival")) {
+            festival = Festival.REGISTRY.get(new ResourceLocation(nbt.getString("Festival")));
+            festivalDays = nbt.getInteger("FestivalDaysRemaining");
+        } else festival = Festival.NONE;
     }
 
     public void writeToNBT(NBTTagCompound nbt) {
@@ -118,6 +129,10 @@ public abstract class TownData<Q extends QuestData> {
         NBTHelper.writeMap("TownBuildingList", nbt, buildings);
         NBTHelper.writeList("CurrentlyBuilding", nbt, building);
         if (dailyQuest != null) nbt.setString("DailyQuest", dailyQuest.getRegistryName().toString());
+        if (festival != null) {
+            nbt.setString("Festival", festival.getResource().toString());
+            nbt.setInteger("FestivalDaysRemaining", festivalDays);
+        }
     }
 
     @Override

@@ -2,7 +2,6 @@ package joshie.harvest.festivals;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.buildings.Building;
-import joshie.harvest.api.calendar.CalendarDate;
 import joshie.harvest.api.calendar.Festival;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.npc.NPC;
@@ -12,8 +11,8 @@ import joshie.harvest.buildings.special.SpecialRuleFestivals;
 import joshie.harvest.core.helpers.RegistryHelper;
 import joshie.harvest.core.util.annotations.HFLoader;
 import joshie.harvest.festivals.block.BlockStand;
-import joshie.harvest.festivals.render.SpecialRendererStand;
 import joshie.harvest.festivals.cooking.CookingContestScript;
+import joshie.harvest.festivals.render.SpecialRendererStand;
 import joshie.harvest.festivals.tile.TileStand;
 import joshie.harvest.knowledge.HFNotes;
 import joshie.harvest.npcs.HFNPCs;
@@ -53,7 +52,7 @@ public class HFFestivals {
     private static Festival registerFestival(String name, int day, Season season) {
         ResourceLocation resource = new ResourceLocation(MODID, name);
         Festival festival = new Festival(resource);
-        HFApi.calendar.registerHoliday(festival, new CalendarDate().setDay(day).setSeason(season));
+        HFApi.calendar.registerFestival(festival, day, season);
         return festival;
     }
 

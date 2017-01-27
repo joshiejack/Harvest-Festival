@@ -21,13 +21,13 @@ import static joshie.harvest.calendar.HFCalendar.TWO_HOURS;
 @HFEvents
 public class NewDayHandler {
     //New day
-    public static void newDay(final World world, CalendarDate today, CalendarDate yesterday) {
+    public static void newDay(final World world) {
         DailyTickHandler tickables = HFTrackers.getTickables(world);
         tickables.processPhase(IDailyTickable.Phase.PRIORITY);
         tickables.processBlocks();
         tickables.processPhase(IDailyTickable.Phase.PRE);
         HFTrackers.<AnimalTrackerServer>getAnimalTracker(world).newDay();
-        HFTrackers.<TownTrackerServer>getTownTracker(world).newDay(today, yesterday);
+        HFTrackers.<TownTrackerServer>getTownTracker(world).newDay();
         tickables.processPhase(IDailyTickable.Phase.POST);
         tickables.processPhase(IDailyTickable.Phase.LAST);
         HFTrackers.markDirty(world);
@@ -51,7 +51,7 @@ public class NewDayHandler {
                 AnimalTrackerServer.processQueue();
                 DailyTickHandler.processQueue();
                 for (World world : FMLCommonHandler.instance().getMinecraftServerInstance().worldServers) {
-                    newDay(world, today, yesterday);
+                    newDay(world);
                 }
             }
 

@@ -4,6 +4,7 @@ import com.google.common.cache.Cache;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.buildings.Building;
 import joshie.harvest.api.calendar.CalendarDate;
+import joshie.harvest.api.calendar.Festival;
 import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.api.quests.QuestType;
@@ -26,6 +27,7 @@ import joshie.harvest.quests.packet.PacketQuest;
 import joshie.harvest.town.packet.PacketDailyQuest;
 import joshie.harvest.town.packet.PacketNewBuilding;
 import joshie.harvest.town.packet.PacketSyncBuilding;
+import joshie.harvest.town.packet.PacketSyncFestival;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
@@ -146,7 +148,7 @@ public class TownDataServer extends TownData<QuestDataServer> implements IQuestM
         PacketHandler.sendToDimension(world.provider.getDimension(), new PacketDailyQuest(uuid, dailyQuest));
     }
 
-    public void newDay(World world, Cache<BlockPos, Boolean> isFar, CalendarDate today, CalendarDate yesterday) {
+    public void newDay(World world, Cache<BlockPos, Boolean> isFar) {
         if (world.isBlockLoaded(getTownCentre())) {
             shops.newDay(world, uuid);
             gathering.newDay(world, townCentre, buildings.values(), isFar);
@@ -171,8 +173,21 @@ public class TownDataServer extends TownData<QuestDataServer> implements IQuestM
             }
 
             //Update the buildings
-            for (TownBuilding building: buildings.values()) {
-                building.building.newDay(world, building.pos, building.rotation, today, yesterday);
+            //Festival updates
+            Festival previousFestival = festival;
+            if (previousFestival != Festival.NONE) { //If there is a festival active
+                festivalDays--;  //Decrease the amount of days of the festival left
+                if (festivalDays <= 0) { //If we have no days left then v
+                    festival = Festival.NONE; //Cancel the festival
+                }
+            }
+
+            //If the festival is not the same, call for a change of festivals
+            if (festival != previousFestival) {
+                PacketHandler.sendToDimension(world.provider.getDimension(), new PacketSyncFestival(uuid, festival, festivalDays));
+                for (TownBuilding building : buildings.values()) {
+                    building.building.onFestivalChanged(world, building.pos, building.rotation, previousFestival, festival);
+                }
             }
 
             deadVillagers = new HashSet<>(); //Reset the dead villagers

@@ -49,7 +49,7 @@ public class DailyTickHandler extends HFTracker {
         }
     }
 
-    public void add (final BlockPos pos, final DailyTickableBlock daily) {
+    public void add(final BlockPos pos, final DailyTickableBlock daily) {
         for (Phases phase : daily.getPhases()) blockTickables.get(phase).put(pos, daily);
     }
 

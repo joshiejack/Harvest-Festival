@@ -22,7 +22,6 @@ import joshie.harvest.fishing.render.SpecialRendererHatchery;
 import joshie.harvest.fishing.render.SpecialRendererTrap;
 import joshie.harvest.fishing.tile.TileHatchery;
 import joshie.harvest.fishing.tile.TileTrap;
-import net.minecraft.client.renderer.block.statemap.StateMap;
 import net.minecraft.client.renderer.entity.RenderFish;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemFishFood.FishType;
@@ -42,11 +41,9 @@ import static joshie.harvest.api.calendar.Season.*;
 import static joshie.harvest.core.helpers.RegistryHelper.registerOreIfNotExists;
 import static joshie.harvest.core.helpers.RegistryHelper.registerTiles;
 import static joshie.harvest.fishing.FishingHelper.WaterType.*;
-import static net.minecraft.block.BlockLiquid.LEVEL;
 
 @HFLoader
 public class HFFishing {
-    public static final StateMap NO_WATER = new StateMap.Builder().ignore(LEVEL).build();
     public static final ItemFish FISH = new ItemFish().register("fish");
     public static final ItemJunk JUNK = new ItemJunk().register("junk");
     public static final ItemFishingRod FISHING_ROD = new ItemFishingRod().register("fishing_rod");

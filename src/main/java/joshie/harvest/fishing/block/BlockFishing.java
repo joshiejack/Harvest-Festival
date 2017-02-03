@@ -31,7 +31,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import javax.annotation.Nonnull;
 import java.util.Locale;
 
-import static joshie.harvest.fishing.HFFishing.NO_WATER;
+import static joshie.harvest.core.proxy.HFClientProxy.NO_WATER;
 import static joshie.harvest.fishing.block.BlockFishing.FishingBlock.TRAP_BAITED;
 import static net.minecraft.block.BlockLiquid.LEVEL;
 

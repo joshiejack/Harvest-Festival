@@ -4,6 +4,8 @@ import joshie.harvest.core.util.interfaces.IFaceable;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 
+import javax.annotation.Nonnull;
+
 public abstract class TileFillableSizedFaceable extends TileFillableSized implements IFaceable {
     public EnumFacing orientation;
 
@@ -29,6 +31,7 @@ public abstract class TileFillableSizedFaceable extends TileFillableSized implem
     }
 
     @Override
+    @Nonnull
     public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
         if (orientation != null) {
             nbt.setString("Orientation", orientation.getName2());

@@ -7,6 +7,7 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.renderer.block.statemap.StateMap;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
@@ -29,7 +30,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-import static joshie.harvest.crops.HFCrops.NO_LEAVES;
 import static net.minecraft.block.BlockLeaves.CHECK_DECAY;
 import static net.minecraft.block.BlockLeaves.DECAYABLE;
 
@@ -259,7 +259,7 @@ public abstract class BlockHFLeaves<B extends BlockHFLeaves, E extends Enum<E> &
     @SideOnly(Side.CLIENT)
     @Override
     public void registerModels(Item item, String name) {
-        ModelLoader.setCustomStateMapper(this, NO_LEAVES);
+        ModelLoader.setCustomStateMapper(this, new StateMap.Builder().ignore(CHECK_DECAY, DECAYABLE).build());
         super.registerModels(item, name);
     }
 }

@@ -24,7 +24,6 @@ import net.minecraft.block.BlockOldLog;
 import net.minecraft.block.BlockPlanks.EnumType;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.block.statemap.StateMap;
 import net.minecraft.client.renderer.color.BlockColors;
 import net.minecraft.client.renderer.color.IBlockColor;
 import net.minecraft.client.renderer.color.IItemColor;
@@ -50,12 +49,9 @@ import static joshie.harvest.core.helpers.ConfigHelper.getBoolean;
 import static joshie.harvest.core.helpers.ConfigHelper.getInteger;
 import static joshie.harvest.core.helpers.RegistryHelper.*;
 import static joshie.harvest.core.lib.LoadOrder.HFCROPS;
-import static net.minecraft.block.BlockLeaves.CHECK_DECAY;
-import static net.minecraft.block.BlockLeaves.DECAYABLE;
 
 @HFLoader(priority = HFCROPS)
 public class HFCrops {
-    public static final StateMap NO_LEAVES = new StateMap.Builder().ignore(CHECK_DECAY, DECAYABLE).build();
     //Crops and Trees
     public static final BlockHFCrops CROPS = new BlockHFCrops().register("crops_block");
     public static final BlockSprinkler SPRINKLER = new BlockSprinkler().register("sprinkler");

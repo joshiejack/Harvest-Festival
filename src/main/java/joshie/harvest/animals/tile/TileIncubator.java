@@ -74,10 +74,11 @@ public class TileIncubator extends TileFillableSizedFaceable {
                 NBTTagCompound tag = held.getSubCompound("Data", true);
                 if (tag.hasKey("Relationship")) {
                     relationship = tag.getInteger("Relationship");
-                    if (tag.hasKey("Owner")) {
-                        owner = UUID.fromString(tag.getString("Owner"));
-                    } else owner = EntityHelper.getPlayerUUID(player);
-                }
+                } else relationship = 0;
+
+                if (tag.hasKey("Owner")) {
+                    owner = UUID.fromString(tag.getString("Owner"));
+                } else owner = EntityHelper.getPlayerUUID(player);
 
                 held.splitStack(1);
                 return true;

@@ -24,6 +24,10 @@ import static net.minecraft.world.chunk.Chunk.NULL_BLOCK_STORAGE;
 public class SnowLoader extends DailyTickableBlock {
     public static final SnowLoader INSTANCE = new SnowLoader();
 
+    public SnowLoader() {
+        super(Phases.PRE);
+    }
+
     @Override
     public boolean isStateCorrect(World world, BlockPos pos, IBlockState state) {
         return state.getBlock() == Blocks.SNOW_LAYER;

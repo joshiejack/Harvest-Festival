@@ -6,7 +6,7 @@
 	},
 	"variants": {
 		"naturalblock=bamboo": [{ "textures": { "cross": "harvestfestival:blocks/bamboo_shoots" }}],
-		"naturalblock=chamomile": [{ "textures": { "cross": "harvestfestival:blocks/chamomile" }}] ,
+		"naturalblock=chamomile": [{ "textures": { "cross": "harvestfestival:blocks/chamomile" }}],
 		"naturalblock=lavendar": [{ "textures": { "cross": "harvestfestival:blocks/lavendar" }}],
 		"naturalblock=matsutake": [{ "textures": { "cross": "harvestfestival:blocks/matsutake" }}],
 		"naturalblock=mint": [{ "textures": {"cross": "harvestfestival:blocks/mint" }}]

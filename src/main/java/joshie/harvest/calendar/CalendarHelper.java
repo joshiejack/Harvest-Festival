@@ -37,7 +37,7 @@ public class CalendarHelper {
     public static void setDate(World world, CalendarDate date) {
         long time = world.getWorldTime();
         Season previous = date.getSeason();
-        date.setWeekday(getWeekday(time)).setDay(getDay(time)).setSeason(getSeason(time)).setYear(getYear(time));
+        date.setDate(getWeekday(time), getDay(time), getSeason(time), getYear(time));
         if (previous != date.getSeason()) {
             HFTrackers.getCalendar(world).onSeasonChanged();
         }

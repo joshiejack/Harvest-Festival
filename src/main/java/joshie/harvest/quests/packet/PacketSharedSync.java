@@ -5,6 +5,7 @@ import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.network.Packet;
 import joshie.harvest.core.network.Packet.Side;
 import joshie.harvest.core.network.PenguinPacket;
+import joshie.harvest.knowledge.letter.LetterData;
 import joshie.harvest.quests.data.QuestData;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
@@ -12,11 +13,11 @@ import net.minecraftforge.fml.common.network.ByteBufUtils;
 import java.util.UUID;
 
 @Packet(Side.CLIENT)
-public class PacketQuest<Q extends QuestData> extends PenguinPacket {
+public class PacketSharedSync extends PenguinPacket {
     protected UUID uuid;
 
-    public PacketQuest() {}
-    public PacketQuest setUUID(UUID uuid) {
+    public PacketSharedSync() {}
+    public PacketSharedSync setUUID(UUID uuid) {
         this.uuid = uuid;
         return this;
     }
@@ -37,8 +38,14 @@ public class PacketQuest<Q extends QuestData> extends PenguinPacket {
     }
 
     @SuppressWarnings("unchecked")
-    Q getQuestDataFromPlayer(EntityPlayer player) {
+   public <Q extends QuestData> Q getQuestDataFromPlayer(EntityPlayer player) {
         if (uuid == null) return (Q) HFTrackers.getPlayerTrackerFromPlayer(player).getQuests();
         else return (Q) HFTrackers.getTownTracker(player.worldObj).getTownByID(uuid).getQuests();
+    }
+
+    @SuppressWarnings("unchecked")
+    public <L extends LetterData> L getLetterDataFromPlayer(EntityPlayer player) {
+        if (uuid == null) return (L) HFTrackers.getPlayerTrackerFromPlayer(player).getLetters();
+        else return (L) HFTrackers.getTownTracker(player.worldObj).getTownByID(uuid).getLetters();
     }
 }

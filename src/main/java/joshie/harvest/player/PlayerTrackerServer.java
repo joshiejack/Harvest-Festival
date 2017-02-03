@@ -2,17 +2,18 @@ package joshie.harvest.player;
 
 import joshie.harvest.api.calendar.CalendarDate;
 import joshie.harvest.api.calendar.Season;
-import joshie.harvest.api.quests.QuestType;
+import joshie.harvest.api.quests.TargetType;
 import joshie.harvest.calendar.CalendarHelper;
 import joshie.harvest.core.achievements.HFAchievements;
 import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.core.network.PacketHandler;
-import joshie.harvest.core.util.interfaces.IQuestMaster;
+import joshie.harvest.core.util.interfaces.ISyncMaster;
+import joshie.harvest.knowledge.letter.LetterDataServer;
 import joshie.harvest.player.relationships.RelationshipDataServer;
 import joshie.harvest.player.stats.StatsServer;
 import joshie.harvest.player.tracking.TrackingServer;
 import joshie.harvest.quests.data.QuestDataServer;
-import joshie.harvest.quests.packet.PacketQuest;
+import joshie.harvest.quests.packet.PacketSharedSync;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
@@ -20,10 +21,11 @@ import net.minecraft.nbt.NBTTagCompound;
 import javax.annotation.Nullable;
 import java.util.UUID;
 
-public class PlayerTrackerServer extends PlayerTracker implements IQuestMaster {
+public class PlayerTrackerServer extends PlayerTracker implements ISyncMaster {
     private final QuestDataServer quests;
     private final RelationshipDataServer relationships;
     private final StatsServer stats;
+    private final LetterDataServer letters;
     protected final TrackingServer tracking;
 
     //References to the player and uuid this refers to
@@ -33,6 +35,7 @@ public class PlayerTrackerServer extends PlayerTracker implements IQuestMaster {
     public PlayerTrackerServer(@Nullable EntityPlayerMP player, UUID uuid) {
         this.uuid = uuid;
         this.player = player != null ? player: getAndCreatePlayer();
+        letters = new LetterDataServer(this);
         quests = new QuestDataServer(this);
         relationships = new RelationshipDataServer(this);
         stats = new StatsServer(this);
@@ -70,12 +73,22 @@ public class PlayerTrackerServer extends PlayerTracker implements IQuestMaster {
     }
 
     @Override
-    public QuestType getQuestType() {
-        return QuestType.PLAYER;
+    public TrackingServer getTracking() {
+        return tracking;
     }
 
     @Override
-    public void sync(EntityPlayer other, PacketQuest packet) {
+    public LetterDataServer getLetters() {
+        return letters;
+    }
+
+    @Override
+    public TargetType getTargetType() {
+        return TargetType.PLAYER;
+    }
+
+    @Override
+    public void sync(EntityPlayer other, PacketSharedSync packet) {
         if (other != null) PacketHandler.sendToClient(packet, other);
         else {
             EntityPlayerMP player = getAndCreatePlayer();
@@ -85,12 +98,9 @@ public class PlayerTrackerServer extends PlayerTracker implements IQuestMaster {
         }
     }
 
-    public TrackingServer getTracking() {
-        return tracking;
-    }
-
     public void newDay(CalendarDate yesterday, CalendarDate today) {
         //Add their gold from selling items
+        letters.newDay(yesterday, today);
         relationships.newDay(yesterday, today);
         EntityPlayerMP player = getAndCreatePlayer();
         if (player != null) {
@@ -110,6 +120,7 @@ public class PlayerTrackerServer extends PlayerTracker implements IQuestMaster {
     public void syncPlayerStats(EntityPlayerMP player) {
         //Only sync the stats if the player is online
         if (player.connection != null && player.connection.netManager != null) {
+            letters.sync(player);
             quests.sync(player);
             relationships.sync(player);
             stats.sync(player);
@@ -118,6 +129,7 @@ public class PlayerTrackerServer extends PlayerTracker implements IQuestMaster {
     }
 
     public void readFromNBT(NBTTagCompound nbt) {
+        letters.readFromNBT(nbt.getCompoundTag("Letters"));
         quests.readFromNBT(nbt.getCompoundTag("Quests"));
         relationships.readFromNBT(nbt.getCompoundTag("Relationships"));
         stats.readFromNBT(nbt.getCompoundTag("Stats"));
@@ -125,6 +137,7 @@ public class PlayerTrackerServer extends PlayerTracker implements IQuestMaster {
     }
 
     public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
+        nbt.setTag("Letters", letters.writeToNBT(new NBTTagCompound()));
         nbt.setTag("Quests", quests.writeToNBT(new NBTTagCompound()));
         nbt.setTag("Relationships", relationships.writeToNBT(new NBTTagCompound()));
         nbt.setTag("Stats", stats.writeToNBT(new NBTTagCompound()));

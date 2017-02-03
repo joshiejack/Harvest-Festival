@@ -1,11 +1,15 @@
 package joshie.harvest.fishing.tile;
 
+import joshie.harvest.api.ticking.DailyTickableBlock;
+import joshie.harvest.api.ticking.DailyTickableBlock.Phases;
 import joshie.harvest.core.base.render.RenderData;
 import joshie.harvest.core.base.tile.TileSingleStack;
 import joshie.harvest.core.helpers.SpawnItemHelper;
 import joshie.harvest.core.helpers.StackHelper;
 import joshie.harvest.fishing.FishingAPI;
 import joshie.harvest.fishing.FishingHelper;
+import joshie.harvest.fishing.HFFishing;
+import joshie.harvest.fishing.block.BlockFishing.FishingBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -17,15 +21,47 @@ import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.List;
 
 public class TileHatchery extends TileSingleStack implements ITickable {
+    private static final DailyTickableBlock TICKABLE = new DailyTickableBlock(Phases.MAIN) {
+        @Override
+        public boolean isStateCorrect(World world, BlockPos pos, IBlockState state) {
+            return state.getBlock() == HFFishing.FISHING_BLOCK && HFFishing.FISHING_BLOCK.getEnumFromState(state) == FishingBlock.HATCHERY;
+        }
+
+        @Override
+        @SuppressWarnings("ConstantConditions")
+        public void newDay(World world, BlockPos pos, IBlockState state) {
+            TileHatchery hatchery = (TileHatchery) world.getTileEntity(pos);
+            if (hatchery.isOnWaterSurface(world, pos)) {
+                ItemStack stack = hatchery.stack;
+                if (stack != null && stack.stackSize < 10) {
+                    int daysRequired = FishingAPI.INSTANCE.getDaysFor(stack);
+                    if (daysRequired >= 1) {
+                        hatchery.daysPassed++;
+                        if (hatchery.daysPassed >= FishingAPI.INSTANCE.getDaysFor(stack)) {
+                            hatchery.daysPassed = 0;
+                            stack.stackSize++;
+                            hatchery.saveAndRefresh();
+                        }
+                    }
+                }
+            }
+        }
+    };
     public final RenderData render = new RenderData();
     private List<ItemStack> renderStacks = new ArrayList<>();
     private int daysPassed = 0;
     private int breakChance = 100;
     private int last;
+
+    @Override
+    public DailyTickableBlock getTickableForTile() {
+        return TICKABLE;
+    }
 
     @Override
     public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity packet) {
@@ -35,7 +71,7 @@ public class TileHatchery extends TileSingleStack implements ITickable {
     }
 
     @Override
-    public void handleUpdateTag(NBTTagCompound tag) {
+    public void handleUpdateTag(@Nonnull NBTTagCompound tag) {
         super.handleUpdateTag(tag);
         onFishChanged(); //Update the stack size
         render.doRenderUpdate(worldObj, pos, last);
@@ -104,23 +140,6 @@ public class TileHatchery extends TileSingleStack implements ITickable {
         }
     }
 
-    @Override
-    public void newDay() {
-        if (isOnWaterSurface(worldObj, getPos())) {
-            if (stack != null && stack.stackSize < 10) {
-                int daysRequired = FishingAPI.INSTANCE.getDaysFor(stack);
-                if (daysRequired >= 1) {
-                    daysPassed++;
-                    if (daysPassed >= FishingAPI.INSTANCE.getDaysFor(stack)) {
-                        daysPassed = 0;
-                        stack.stackSize++;
-                        saveAndRefresh();
-                    }
-                }
-            }
-        }
-    }
-
     private boolean isOnWaterSurface(World world, BlockPos pos) {
         return world.isAirBlock(pos.up()) && FishingHelper.isWater(world, pos.east(), pos.west(), pos.north(), pos.south(), pos.east().south(), pos.east().north(), pos.west().north(), pos.west().south());
     }
@@ -133,6 +152,7 @@ public class TileHatchery extends TileSingleStack implements ITickable {
     }
 
     @Override
+    @Nonnull
     public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
         nbt.setInteger("DaysPassed", daysPassed);
         nbt.setByte("TimesPulled", (byte) breakChance);

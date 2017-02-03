@@ -7,7 +7,7 @@ import joshie.harvest.api.crops.Crop;
 import joshie.harvest.cooking.CookingAPI;
 import joshie.harvest.cooking.item.ItemIngredients;
 import joshie.harvest.cooking.item.ItemMeal.Meal;
-import joshie.harvest.cooking.render.MappingEvent;
+import joshie.harvest.cooking.render.IngredientMappingEvent;
 import joshie.harvest.core.helpers.InventoryHelper;
 import joshie.harvest.core.util.annotations.HFLoader;
 import joshie.harvest.crops.HFCrops;
@@ -19,6 +19,8 @@ import joshie.harvest.gathering.block.BlockNature.NaturalBlock;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
 
 import static joshie.harvest.animals.HFAnimals.ANIMAL_PRODUCT;
@@ -69,16 +71,16 @@ public class HFIngredients {
     public static final Ingredient CHOCOLATE = new Ingredient("chocolate", 3, 0.5F);
 
     public static final Ingredient FLOUR = new Ingredient("flour", 1, 0.6F).setSellValue(ItemIngredients.Ingredient.FLOUR.getCost());
-    public static final Ingredient OIL = new Ingredient("oil", 0, 0.2F).setSellValue(ItemIngredients.Ingredient.OIL.getCost()).setFluid(MappingEvent.OIL).setEatTime(-8);
+    public static final Ingredient OIL = new Ingredient("oil", 0, 0.2F).setSellValue(ItemIngredients.Ingredient.OIL.getCost()).setFluid(IngredientMappingEvent.OIL).setEatTime(-8);
     public static final Ingredient RICEBALL = new Ingredient("riceball", 1, 0.25F).setSellValue(ItemIngredients.Ingredient.RICEBALL.getCost());
     public static final Ingredient CURRY_POWDER = new Ingredient("curry_powder", 1, 0.2F).setEatTime(-4).setSellValue(ItemIngredients.Ingredient.CURRY_POWDER.getCost());
     public static final Ingredient DUMPLING_POWDER = new Ingredient("dumpling_powder", 1, 0.2F).setEatTime(8).setSellValue(ItemIngredients.Ingredient.DUMPLING_POWDER.getCost());
-    public static final Ingredient WINE = new Ingredient("wine", 2, 0.8F).setSellValue(ItemIngredients.Ingredient.WINE.getCost()).setFluid(MappingEvent.WINE).setEatTime(-8);
+    public static final Ingredient WINE = new Ingredient("wine", 2, 0.8F).setSellValue(ItemIngredients.Ingredient.WINE.getCost()).setFluid(IngredientMappingEvent.WINE).setEatTime(-8);
 
     public static final Ingredient SMALL_EGG = new Ingredient("small_egg", 2, 0.6F);
     public static final Ingredient MEDIUM_EGG = new Ingredient("medium_egg", 3, 0.8F);
     public static final Ingredient LARGE_EGG = new Ingredient("large_egg", 4, 1F);
-    public static final Ingredient MILK = new Ingredient("milk", 2, 0.6F).setFluid(MappingEvent.MILK);
+    public static final Ingredient MILK = new Ingredient("milk", 2, 0.6F).setFluid(IngredientMappingEvent.MILK);
     public static final Ingredient MAYONNAISE = new Ingredient("mayonnaise", 3, 1.0F);
     public static final Ingredient BREAD = new Ingredient("bread", 5, 1.2F);
     public static final Ingredient RED_MUSHROOM = new Ingredient("red_mushroom", 4, 0.5F);
@@ -141,6 +143,15 @@ public class HFIngredients {
         FISH.add(SALMON, COD);
         HERB.add(CHAMOMILE, MINT, LAVENDAR);
         EGG.add(SMALL_EGG, MEDIUM_EGG, LARGE_EGG);
+    }
+
+    @SideOnly(Side.CLIENT)
+    public static void preInitClient() {
+        for (Ingredient component: Ingredient.INGREDIENTS.values()) {
+            if (component.getFluid() != null) {
+
+            }
+        }
     }
 
     private static String getPrimaryCropName(ItemStack stack) {

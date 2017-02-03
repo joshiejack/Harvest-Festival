@@ -1,5 +1,6 @@
 package joshie.harvest.api.calendar;
 
+import joshie.harvest.api.core.Letter;
 import joshie.harvest.api.knowledge.Note;
 import joshie.harvest.api.quests.Quest;
 import net.minecraft.util.ResourceLocation;
@@ -9,13 +10,14 @@ import javax.annotation.Nullable;
 import java.util.HashMap;
 
 public final class Festival {
-    public static final Festival NONE = new Festival(new ResourceLocation("harvestfestival", "none")).setAffectsGrounds();
     public static final HashMap<ResourceLocation, Festival> REGISTRY = new HashMap<>();
+    public static final Festival NONE = new Festival(new ResourceLocation("harvestfestival", "none")).setAffectsGrounds();
     private final ResourceLocation resource;
     private boolean affectsGround;
     private boolean shopsOpen;
     private boolean hidden;
     private Quest quest;
+    private Letter letter;
     private Note note;
 
     public Festival(@Nonnull ResourceLocation resource) {
@@ -27,6 +29,12 @@ public final class Festival {
      *  around for the first time */
     public Festival setNote(Note note) {
         this.note = note;
+        return this;
+    }
+
+    /** The letter that gets sent to the town mailbox **/
+    public Festival setLetter(Letter letter) {
+        this.letter = letter;
         return this;
     }
 
@@ -59,6 +67,11 @@ public final class Festival {
         return note;
     }
 
+    @Nullable
+    public Letter getLetter() {
+        return letter;
+    }
+
     @Nonnull
     public ResourceLocation getResource() {
         return resource;
@@ -80,7 +93,7 @@ public final class Festival {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (o == null || !(o instanceof Festival)) return false;
         Festival festival = (Festival) o;
         return resource.equals(festival.resource);
     }

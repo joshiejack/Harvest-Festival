@@ -40,10 +40,10 @@ public class StateHandlerDefault<C extends Crop> implements IStateHandler<C> {
 
     @Override
     public IBlockState getState(IBlockAccess world, BlockPos pos, PlantSection section, C crop, int stage, boolean withered) {
-        return getState( Math.min(maximum, stage));
+        return getState(Math.min(maximum, stage));
     }
 
     protected IBlockState getState(int stage) {
-        return defaultState.withProperty(stages, stage);
+        return defaultState.withProperty(stages, Math.max(1, stage));
     }
 }

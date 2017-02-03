@@ -46,7 +46,6 @@ import static net.minecraft.util.EnumFacing.*;
 
 public class BlockTrough extends BlockHFEnumRotatableMeta<BlockTrough, Trough> implements IAnimalFeeder {
     private static final AxisAlignedBB TROUGH_AABB =  new AxisAlignedBB(0D, 0D, 0D, 1D, 0.75D, 1D);
-
     public static final PropertyEnum<Section> SECTION = PropertyEnum.create("section", Section.class);
 
     public enum Trough implements IStringSerializable {
@@ -59,7 +58,7 @@ public class BlockTrough extends BlockHFEnumRotatableMeta<BlockTrough, Trough> i
     }
 
     public enum Section implements IStringSerializable {
-        SINGLE_EMPTY, SINGLE_FILLED, END_EMPTY, END_FILLED, MIDDLE_EMPTY, MIDDLE_FILLED;
+        SINGLE, END, MIDDLE;
 
         @Override
         public String getName() {
@@ -71,7 +70,7 @@ public class BlockTrough extends BlockHFEnumRotatableMeta<BlockTrough, Trough> i
         super(Material.WOOD, Trough.class);
         setHardness(1.5F);
         setSoundType(SoundType.WOOD);
-        setDefaultState(getDefaultState().withProperty(SECTION, Section.SINGLE_EMPTY));
+        setDefaultState(getDefaultState().withProperty(SECTION, Section.SINGLE));
     }
 
     @Override
@@ -87,13 +86,14 @@ public class BlockTrough extends BlockHFEnumRotatableMeta<BlockTrough, Trough> i
 
     @SuppressWarnings("deprecation")
     @Override
-    public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn) {
+    public void addCollisionBoxToList(IBlockState state, @Nonnull World worldIn, @Nonnull BlockPos pos, @Nonnull AxisAlignedBB entityBox, @Nonnull List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn) {
         if (entityIn instanceof EntityPlayer) addCollisionBoxToList(pos, entityBox, collidingBoxes, TROUGH_AABB);
         else addCollisionBoxToList(pos, entityBox, collidingBoxes, HFCore.FENCE_COLLISION);
     }
 
     @SuppressWarnings("deprecation")
     @Override
+    @Nonnull
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos) {
         return TROUGH_AABB;
     }
@@ -117,7 +117,8 @@ public class BlockTrough extends BlockHFEnumRotatableMeta<BlockTrough, Trough> i
     }
 
     @Override
-    public TileEntity createTileEntity(World world, IBlockState state) {
+    @Nonnull
+    public TileEntity createTileEntity(@Nonnull World world, @Nonnull IBlockState state) {
         Trough trough = getEnumFromState(state);
         switch (trough) {
             case WOOD:
@@ -133,26 +134,25 @@ public class BlockTrough extends BlockHFEnumRotatableMeta<BlockTrough, Trough> i
     public IBlockState getActualState(@Nonnull IBlockState state, IBlockAccess world, BlockPos pos) {
         TileEntity tile = world instanceof ChunkCache ? ((ChunkCache)world).func_190300_a(pos, Chunk.EnumCreateEntityType.CHECK) : world.getTileEntity(pos);
         if (tile instanceof TileTrough) {
-            boolean isFilled = ((TileTrough)tile).getMaster().getFillAmount() > 0;
             boolean north = isTrough(NORTH, world, pos);
             boolean south = isTrough(SOUTH, world, pos);
-
-            if (north && !south) return isFilled ? state.withProperty(SECTION, Section.END_FILLED).withProperty(FACING, EAST) : state.withProperty(SECTION, Section.END_EMPTY).withProperty(FACING, EAST);
-            if (south && !north) return isFilled ? state.withProperty(SECTION, Section.END_FILLED).withProperty(FACING, WEST) : state.withProperty(SECTION, Section.END_EMPTY).withProperty(FACING, WEST);
-            if (south && north) return isFilled ? state.withProperty(SECTION, Section.MIDDLE_FILLED).withProperty(FACING, EAST) : state.withProperty(SECTION, Section.MIDDLE_EMPTY).withProperty(FACING, EAST);
+            if (north && !south) return state.withProperty(SECTION, Section.END).withProperty(FACING, EAST);
+            if (south && !north) return state.withProperty(SECTION, Section.END).withProperty(FACING, WEST);
+            if (south) return state.withProperty(SECTION, Section.MIDDLE).withProperty(FACING, EAST);
 
             boolean east = isTrough(EAST, world, pos);
             boolean west = isTrough(WEST, world, pos);
-            if (west && east) return isFilled ? state.withProperty(SECTION, Section.MIDDLE_FILLED).withProperty(FACING, SOUTH) : state.withProperty(SECTION, Section.MIDDLE_EMPTY).withProperty(FACING, SOUTH);
-            if (east && !west) return isFilled ? state.withProperty(SECTION, Section.END_FILLED).withProperty(FACING, SOUTH) : state.withProperty(SECTION, Section.END_EMPTY).withProperty(FACING, SOUTH);
-            if (west && !east) return isFilled ? state.withProperty(SECTION, Section.END_FILLED).withProperty(FACING, NORTH) : state.withProperty(SECTION, Section.END_EMPTY).withProperty(FACING, NORTH);
+            if (west && east) return state.withProperty(SECTION, Section.MIDDLE).withProperty(FACING, SOUTH);
+            if (east) return state.withProperty(SECTION, Section.END).withProperty(FACING, SOUTH);
+            if (west) return state.withProperty(SECTION, Section.END).withProperty(FACING, NORTH);
 
-            return isFilled ? state.withProperty(SECTION, Section.SINGLE_FILLED): state.withProperty(SECTION, Section.SINGLE_EMPTY);
+            return state.withProperty(SECTION, Section.SINGLE);
         }
 
         return state;
     }
 
+    @SuppressWarnings("ConstantConditions")
     private boolean isTrough(EnumFacing facing, IBlockAccess world, BlockPos pos) {
         IBlockState state = world.getBlockState(pos.offset(facing));
         if (state.getBlock() == this) {
@@ -165,6 +165,7 @@ public class BlockTrough extends BlockHFEnumRotatableMeta<BlockTrough, Trough> i
     }
 
     @Override
+    @SuppressWarnings("ConstantConditions")
     public boolean feedAnimal(AnimalStats stats, World world, BlockPos pos, IBlockState state, boolean simulate) {
         if (HFApi.animals.canAnimalEatFoodType(stats, AnimalFoodType.GRASS)) {
             TileTrough master = ((TileTrough) world.getTileEntity(pos)).getMaster();
@@ -181,6 +182,7 @@ public class BlockTrough extends BlockHFEnumRotatableMeta<BlockTrough, Trough> i
     }
 
     @Override
+    @SuppressWarnings("ConstantConditions")
     public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
         super.onBlockPlacedBy(world, pos, state, placer, stack);
         if (getEnumFromState(state) == WOOD) {
@@ -189,7 +191,8 @@ public class BlockTrough extends BlockHFEnumRotatableMeta<BlockTrough, Trough> i
     }
 
     @Override
-    public void breakBlock(World world, BlockPos pos, IBlockState state) {
+    @SuppressWarnings("ConstantConditions")
+    public void breakBlock(@Nonnull World world, @Nonnull BlockPos pos, @Nonnull IBlockState state) {
         if (getEnumFromState(state) == WOOD) {
             ((TileTrough)world.getTileEntity(pos)).onRemoved();
         }
@@ -206,7 +209,7 @@ public class BlockTrough extends BlockHFEnumRotatableMeta<BlockTrough, Trough> i
     @Override
     public void registerModels(Item item, String name) {
         for (int i = 0; i < values.length; i++) {
-            ModelLoader.setCustomModelResourceLocation(item, i, new ModelResourceLocation(getRegistryName(), "facing=north,section=single_filled," + property.getName() + "=" + getEnumFromMeta(i).getName()));
+            ModelLoader.setCustomModelResourceLocation(item, i, new ModelResourceLocation(getRegistryName(), "facing=north,section=single," + property.getName() + "=" + getEnumFromMeta(i).getName()));
         }
     }
 }

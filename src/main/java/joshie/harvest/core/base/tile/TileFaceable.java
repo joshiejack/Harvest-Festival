@@ -1,9 +1,10 @@
 package joshie.harvest.core.base.tile;
 
-import joshie.harvest.core.helpers.MCServerHelper;
 import joshie.harvest.core.util.interfaces.IFaceable;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
+
+import javax.annotation.Nonnull;
 
 public class TileFaceable extends TileHarvest implements IFaceable {
     public EnumFacing orientation;
@@ -14,8 +15,7 @@ public class TileFaceable extends TileHarvest implements IFaceable {
             orientation = EnumFacing.NORTH;
         } else orientation = dir;
 
-        markDirty();
-        MCServerHelper.markTileForUpdate(this);
+        saveAndRefresh();
     }
 
     @Override
@@ -33,6 +33,7 @@ public class TileFaceable extends TileHarvest implements IFaceable {
     }
 
     @Override
+    @Nonnull
     public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
         if (orientation != null) {
             nbt.setString("Orientation", orientation.getName2());

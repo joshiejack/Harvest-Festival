@@ -15,7 +15,6 @@ import joshie.harvest.api.player.IPlayerHelper;
 import joshie.harvest.api.quests.IQuestHelper;
 import joshie.harvest.api.shops.IShopHelper;
 import joshie.harvest.api.ticking.IDailyTickableRegistry;
-import joshie.harvest.api.town.TownManager;
 
 /**
  * These are filled by HarvestFestival when it is loaded
@@ -36,5 +35,4 @@ public class HFApi {
     public static IShopHelper shops = null;
     public static ISizeableRegistry sizeable = null;
     public static IDailyTickableRegistry tickable = null;
-    public static TownManager town = null;
 }

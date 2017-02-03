@@ -39,6 +39,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.Capability.IStorage;
 import net.minecraftforge.common.capabilities.CapabilityManager;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -128,6 +129,11 @@ public class HFAnimals {
                 animals.registerFoodAsType(crop.getCropStack(1), crop.getFoodType());
             }
         }
+    }
+
+    @SideOnly(Side.CLIENT)
+    public static void initClient() {
+        ClientRegistry.bindTileEntitySpecialRenderer(TileTrough.class, new SpecialRendererTrough());
     }
 
     //Configuration

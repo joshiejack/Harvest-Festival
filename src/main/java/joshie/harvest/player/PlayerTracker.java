@@ -1,5 +1,6 @@
 package joshie.harvest.player;
 
+import joshie.harvest.knowledge.letter.LetterData;
 import joshie.harvest.quests.data.QuestData;
 import joshie.harvest.player.relationships.RelationshipData;
 import joshie.harvest.player.stats.Stats;
@@ -15,4 +16,5 @@ public abstract class PlayerTracker {
     public abstract RelationshipData getRelationships();
     public abstract Stats getStats();
     public abstract Tracking getTracking();
+    public abstract LetterData getLetters();
 }

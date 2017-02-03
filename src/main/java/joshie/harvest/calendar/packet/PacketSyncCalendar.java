@@ -52,7 +52,7 @@ public class PacketSyncCalendar extends PenguinPacket {
         CalendarDate.DAYS_PER_SEASON = daysPerSeason;
         CalendarDate date = HFApi.calendar.getDate(player.worldObj);
         Season previous = date.getSeason();
-        date.setWeekday(weekday).setDay(day).setSeason(season).setYear(year);
+        date.setDate(weekday, day, season, year);
 
         //Refresh all Blocks in Render range
         //If the seasons are not the same, re-render the client

@@ -1,12 +1,13 @@
 package joshie.harvest.core.base.tile;
 
 import joshie.harvest.api.core.Size;
-import joshie.harvest.core.helpers.MCServerHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
-public abstract class TileFillableSized extends TileDaily {
+import javax.annotation.Nonnull;
+
+public abstract class TileFillableSized extends TileHarvest {
     protected int fillAmount = 0;
     protected Size size = Size.MEDIUM;
 
@@ -28,15 +29,10 @@ public abstract class TileFillableSized extends TileDaily {
         setFilled(size, fillAmount + amount);
     }
 
-    public void setFilled(Size size, int isFilled) {
+    protected void setFilled(Size size, int isFilled) {
         this.fillAmount = isFilled;
         this.size = size;
         saveAndRefresh();
-    }
-
-    public void saveAndRefresh() {
-        MCServerHelper.markForUpdate(worldObj, getPos(), 3);
-        markDirty();
     }
 
     @Override
@@ -47,6 +43,7 @@ public abstract class TileFillableSized extends TileDaily {
     }
 
     @Override
+    @Nonnull
     public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
         nbt.setByte("IsFilled", (byte) fillAmount);
         nbt.setByte("Size", (byte) getSize().ordinal());

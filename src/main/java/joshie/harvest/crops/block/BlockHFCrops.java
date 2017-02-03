@@ -8,16 +8,13 @@ import joshie.harvest.api.crops.Crop;
 import joshie.harvest.api.crops.IBreakCrops;
 import joshie.harvest.api.crops.IStateHandler.PlantSection;
 import joshie.harvest.api.trees.Tree;
-import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.base.block.BlockHFEnum;
 import joshie.harvest.core.base.item.ItemBlockHF;
 import joshie.harvest.core.lib.HFModInfo;
-import joshie.harvest.core.util.annotations.HFEvents;
 import joshie.harvest.crops.CropData;
 import joshie.harvest.crops.CropHelper;
 import joshie.harvest.crops.HFCrops;
 import joshie.harvest.crops.block.BlockHFCrops.CropType;
-import joshie.harvest.crops.handlers.WateringTickHandler.Ticker;
 import joshie.harvest.crops.tile.TileCrop;
 import joshie.harvest.crops.tile.TileWithered;
 import net.minecraft.block.Block;
@@ -42,11 +39,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.IPlantable;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.entity.player.UseHoeEvent;
-import net.minecraftforge.fml.common.eventhandler.EventPriority;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -313,46 +305,6 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
 
         if (crop != null) return crop.getData().getCrop().getStateHandler().getState(world, pos, stage.getSection(), crop.getData().getCrop(), crop.getData().getStage(), stage.isWithered());
         else return Blocks.DEADBUSH.getDefaultState();
-    }
-
-    private static class RainingSoil {
-        private int existence;
-        private final EntityPlayer player;
-        private final World world;
-        private final BlockPos pos;
-
-        RainingSoil(EntityPlayer player, World world, BlockPos pos) {
-            this.player = player;
-            this.world = world;
-            this.pos = pos;
-        }
-
-        @SubscribeEvent
-        public void onTick(TickEvent.WorldTickEvent event) {
-            if (event.world != world) return;
-            boolean remove = existence >= 30;
-            if (remove) {
-                HFApi.crops.hydrateSoil(player, world, pos);
-                MinecraftForge.EVENT_BUS.unregister(this);
-            }
-
-            existence++;
-        }
-    }
-
-    @HFEvents
-    @SuppressWarnings("unused")
-    public static class EventHandler {
-        @SubscribeEvent(priority = EventPriority.LOWEST, receiveCanceled = true)
-        public void onDirtTilled(UseHoeEvent event) {
-            if (!event.getWorld().isRemote && !event.isCanceled()) {
-                if (HFTrackers.getCalendar(event.getWorld()).getTodaysWeather().isRain() && CropHelper.isRainingAt(event.getWorld(), event.getPos().up(2))) {
-                    MinecraftForge.EVENT_BUS.register(new RainingSoil(event.getEntityPlayer(), event.getWorld(), event.getPos()));
-                }
-
-                HFApi.tickable.addTickable(event.getWorld(), event.getPos(), Ticker.INSTANCE);
-            }
-        }
     }
 
     @Override

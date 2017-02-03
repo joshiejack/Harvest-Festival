@@ -35,7 +35,7 @@ public class ContainerNPCGift extends ContainerNPCChat {
                     int points = theNpc.getGiftValue(gift).getRelationPoints();
                     if (!relationships.hasGivenBirthdayGift(theNpc.getUUID())) {
                         CalendarDate today = HFApi.calendar.getDate(player.worldObj);
-                        if (today.isSameDay(theNpc.getBirthday())) {
+                        if (theNpc.getBirthday().isSameDay(today)) {
                             relationships.setHasGivenBirthdayGift(theNpc.getUUID());
                             points *= 5;
                         }

@@ -3,7 +3,7 @@ package joshie.harvest.core.handlers;
 import joshie.harvest.animals.HFAnimals;
 import joshie.harvest.animals.tracker.AnimalTrackerServer;
 import joshie.harvest.api.calendar.CalendarDate;
-import joshie.harvest.api.ticking.IDailyTickable;
+import joshie.harvest.api.ticking.DailyTickableBlock.Phases;
 import joshie.harvest.calendar.data.CalendarServer;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.util.annotations.HFEvents;
@@ -19,17 +19,16 @@ import static joshie.harvest.calendar.HFCalendar.TICKS_PER_DAY;
 import static joshie.harvest.calendar.HFCalendar.TWO_HOURS;
 
 @HFEvents
+@SuppressWarnings("unused")
 public class NewDayHandler {
     //New day
-    public static void newDay(final World world) {
+    public static void newDay(final World world, CalendarDate yesterday, CalendarDate today) {
         DailyTickHandler tickables = HFTrackers.getTickables(world);
-        tickables.processPhase(IDailyTickable.Phase.PRIORITY);
-        tickables.processBlocks();
-        tickables.processPhase(IDailyTickable.Phase.PRE);
+        tickables.processPhase(Phases.PRE);
         HFTrackers.<AnimalTrackerServer>getAnimalTracker(world).newDay();
-        HFTrackers.<TownTrackerServer>getTownTracker(world).newDay();
-        tickables.processPhase(IDailyTickable.Phase.POST);
-        tickables.processPhase(IDailyTickable.Phase.LAST);
+        HFTrackers.<TownTrackerServer>getTownTracker(world).newDay(yesterday, today);
+        tickables.processPhase(Phases.MAIN);
+        tickables.processPhase(Phases.POST);
         HFTrackers.markDirty(world);
     }
 
@@ -51,7 +50,7 @@ public class NewDayHandler {
                 AnimalTrackerServer.processQueue();
                 DailyTickHandler.processQueue();
                 for (World world : FMLCommonHandler.instance().getMinecraftServerInstance().worldServers) {
-                    newDay(world);
+                    newDay(world, yesterday, today);
                 }
             }
 

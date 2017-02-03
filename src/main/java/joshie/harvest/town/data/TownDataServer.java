@@ -7,7 +7,7 @@ import joshie.harvest.api.calendar.CalendarDate;
 import joshie.harvest.api.calendar.Festival;
 import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.quests.Quest;
-import joshie.harvest.api.quests.QuestType;
+import joshie.harvest.api.quests.TargetType;
 import joshie.harvest.buildings.BuildingStage;
 import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.calendar.CalendarHelper;
@@ -15,15 +15,16 @@ import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.core.helpers.NBTHelper;
 import joshie.harvest.core.network.PacketHandler;
-import joshie.harvest.core.util.interfaces.IQuestMaster;
+import joshie.harvest.core.util.interfaces.ISyncMaster;
 import joshie.harvest.gathering.GatheringData;
+import joshie.harvest.knowledge.letter.LetterDataServer;
 import joshie.harvest.npcs.HFNPCs;
 import joshie.harvest.npcs.NPCHelper;
 import joshie.harvest.npcs.entity.EntityNPCBuilder;
 import joshie.harvest.npcs.entity.EntityNPCHuman;
 import joshie.harvest.quests.Quests;
 import joshie.harvest.quests.data.QuestDataServer;
-import joshie.harvest.quests.packet.PacketQuest;
+import joshie.harvest.quests.packet.PacketSharedSync;
 import joshie.harvest.town.packet.PacketDailyQuest;
 import joshie.harvest.town.packet.PacketNewBuilding;
 import joshie.harvest.town.packet.PacketSyncBuilding;
@@ -39,10 +40,11 @@ import net.minecraft.world.WorldServer;
 import javax.annotation.Nullable;
 import java.util.*;
 
-public class TownDataServer extends TownData<QuestDataServer> implements IQuestMaster {
+public class TownDataServer extends TownData<QuestDataServer, LetterDataServer> implements ISyncMaster {
     public final GatheringData gathering = new GatheringData();
     private Set<ResourceLocation> deadVillagers = new HashSet<>();
     private final QuestDataServer quests = new QuestDataServer(this);
+    private final LetterDataServer letters = new LetterDataServer(this);
     private int dimension;
 
     public TownDataServer() {}
@@ -59,18 +61,23 @@ public class TownDataServer extends TownData<QuestDataServer> implements IQuestM
     }
 
     @Override
-    public QuestType getQuestType() {
-        return QuestType.TOWN;
+    public LetterDataServer getLetters() {
+        return letters;
     }
 
     @Override
-    public void sync(@Nullable EntityPlayer player, PacketQuest packet) {
+    public TargetType getTargetType() {
+        return TargetType.TOWN;
+    }
+
+    @Override
+    public void sync(@Nullable EntityPlayer player, PacketSharedSync packet) {
         if (player != null) PacketHandler.sendToClient(packet.setUUID(getID()), player);
         else PacketHandler.sendToDimension(dimension, packet.setUUID(getID()));
     }
 
     private boolean isDead(NPC npc) {
-        return deadVillagers.contains(((NPC)npc).getRegistryName());
+        return deadVillagers.contains(npc.getRegistryName());
     }
 
     public void createNewBuilder(World world, BlockPos pos) {
@@ -148,7 +155,7 @@ public class TownDataServer extends TownData<QuestDataServer> implements IQuestM
         PacketHandler.sendToDimension(world.provider.getDimension(), new PacketDailyQuest(uuid, dailyQuest));
     }
 
-    public void newDay(World world, Cache<BlockPos, Boolean> isFar) {
+    public void newDay(World world, Cache<BlockPos, Boolean> isFar, CalendarDate yesterday, CalendarDate today) {
         if (world.isBlockLoaded(getTownCentre())) {
             shops.newDay(world, uuid);
             gathering.newDay(world, townCentre, buildings.values(), isFar);
@@ -190,6 +197,7 @@ public class TownDataServer extends TownData<QuestDataServer> implements IQuestM
                 }
             }
 
+            letters.newDay(yesterday, today);
             deadVillagers = new HashSet<>(); //Reset the dead villagers
         }
     }
@@ -208,6 +216,7 @@ public class TownDataServer extends TownData<QuestDataServer> implements IQuestM
     @Override
     public void readFromNBT(NBTTagCompound nbt) {
         super.readFromNBT(nbt);
+        letters.readFromNBT(nbt);
         quests.readFromNBT(nbt);
         gathering.readFromNBT(nbt);
         dimension = nbt.getInteger("Dimension");
@@ -223,6 +232,7 @@ public class TownDataServer extends TownData<QuestDataServer> implements IQuestM
     @Override
     public void writeToNBT(NBTTagCompound nbt) {
         super.writeToNBT(nbt);
+        letters.writeToNBT(nbt);
         quests.writeToNBT(nbt);
         gathering.writeToNBT(nbt);
         nbt.setInteger("Dimension", dimension);

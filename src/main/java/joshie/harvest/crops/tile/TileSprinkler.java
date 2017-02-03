@@ -1,15 +1,20 @@
 package joshie.harvest.crops.tile;
 
 import joshie.harvest.api.HFApi;
+import joshie.harvest.api.ticking.DailyTickableBlock;
+import joshie.harvest.api.ticking.DailyTickableBlock.Phases;
 import joshie.harvest.calendar.CalendarHelper;
-import joshie.harvest.core.base.tile.TileDaily;
+import joshie.harvest.core.base.tile.TileHarvest;
 import joshie.harvest.core.helpers.MCServerHelper;
+import joshie.harvest.crops.HFCrops;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
@@ -17,16 +22,47 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 
+import javax.annotation.Nonnull;
+
 import static joshie.harvest.crops.HFCrops.SPRINKLER_DRAIN_RATE;
 
-public class TileSprinkler extends TileDaily implements ITickable {
-    protected double height;
-    protected int range;
+public class TileSprinkler extends TileHarvest implements ITickable {
+    private static final DailyTickableBlock TICKABLE = new DailyTickableBlock(Phases.POST) {
+        @Override
+        public boolean isStateCorrect(World world, BlockPos pos, IBlockState state) {
+            return state.getBlock() == HFCrops.SPRINKLER;
+        }
+
+        @Override
+        @SuppressWarnings("ConstantConditions")
+        public void newDay(World world, BlockPos pos, IBlockState state) {
+            TileSprinkler sprinkler = (TileSprinkler) world.getTileEntity(pos);
+            if (SPRINKLER_DRAIN_RATE <= 0 || sprinkler.getTank().getFluidAmount() > 1) {
+                //Reduce the amount in the tank
+                if (sprinkler.hydrateSoil() && SPRINKLER_DRAIN_RATE > 0) {
+                    sprinkler.getTank().drainInternal(SPRINKLER_DRAIN_RATE, true);
+                    if (sprinkler.getTank().getFluidAmount() <= 1) {
+                        MCServerHelper.markTileForUpdate(sprinkler);
+                    }
+                }
+            }
+        }
+    };
+
+    /** Main tile stuff **/
+    private final double height;
+    private final int range;
+
     protected int tick;
 
     public TileSprinkler() {
-        height = 0.7D;
-        range = 4;
+        this(0.7D, 4);
+    }
+
+    @SuppressWarnings("WeakerAccess")
+    public TileSprinkler(double height, int range) {
+        this.height = height;
+        this.range = range;
     }
 
     protected double getRandomDouble() {
@@ -54,7 +90,7 @@ public class TileSprinkler extends TileDaily implements ITickable {
         }
     }
 
-    public boolean hydrateSoil() {
+    private boolean hydrateSoil() {
         boolean ret = false;
         for (int x = -range; x <= range; x++) {
             for (int z = -range; z <= range; z++) {
@@ -73,21 +109,9 @@ public class TileSprinkler extends TileDaily implements ITickable {
     }
 
     @Override
-    public Phase[] getPhases() {
-        return new Phase[] { Phase.POST };
-    }
-
-    @Override
-    public void newDay() {
-        if (SPRINKLER_DRAIN_RATE <= 0 || tank.getFluidAmount() > 1) {
-            //Reduce the amount in the tank
-            if (hydrateSoil() && SPRINKLER_DRAIN_RATE > 0) {
-                tank.drainInternal(SPRINKLER_DRAIN_RATE, true);
-                if (tank.getFluidAmount() <= 1) {
-                    MCServerHelper.markTileForUpdate(this);
-                }
-            }
-        }
+    public void validate() {
+        tileEntityInvalid = false;
+        HFApi.tickable.addTickable(worldObj, pos, TICKABLE);
     }
 
     @Override
@@ -102,8 +126,8 @@ public class TileSprinkler extends TileDaily implements ITickable {
         return super.writeToNBT(tag);
     }
 
-    /** Capabilities **/
-    protected final FluidTank tank = new FluidTank(Fluid.BUCKET_VOLUME) {
+    /** ================= Capabilities =================================== **/
+    private final FluidTank tank = new FluidTank(Fluid.BUCKET_VOLUME) {
         @Override
         public boolean canFillFluidType(FluidStack fluid) {
             return fluid.getFluid() == FluidRegistry.WATER;
@@ -116,13 +140,14 @@ public class TileSprinkler extends TileDaily implements ITickable {
 
 
     @Override
-    public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
+    public boolean hasCapability(@Nonnull Capability<?> capability, @Nonnull EnumFacing facing) {
         return capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY || super.hasCapability(capability, facing);
     }
 
     @SuppressWarnings("unchecked")
     @Override
-    public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
+    @Nonnull
+    public <T> T getCapability(@Nonnull Capability<T> capability, @Nonnull EnumFacing facing) {
         if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY)
             return (T) tank;
         return super.getCapability(capability, facing);

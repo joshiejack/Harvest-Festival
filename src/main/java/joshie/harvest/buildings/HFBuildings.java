@@ -70,7 +70,6 @@ public class HFBuildings {
     public static void init() {
         HFApi.npc.getGifts().addToBlacklist(STRUCTURES, BLUEPRINTS);
         for (Building building: Building.REGISTRY.getValues()) {
-            building.initBuilding(); //Init the building localisation
             BuildingRegistry.INSTANCE.getTemplateForBuilding(building).initTemplate();
         }
     }

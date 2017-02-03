@@ -8,7 +8,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import javax.annotation.Nonnull;
 
 public class TileWithered extends TileHarvest {
-    protected final CropData data = new CropData();
+    private final CropData data = new CropData();
 
     //Return and create new data if it doesn't exist yet
     @Nonnull

@@ -42,16 +42,6 @@
         "west":  { "uv": [ 0, 0, 0.5, 6 ], "texture": "#texture" },
         "east":  { "uv": [ 0, 0, 0.5, 6 ], "texture": "#texture" }
     }
-},
-{
-    "__comment": "Hay",
-    "from": [ 0, 4, 2 ],
-    "to": [ 16, 11, 14 ],
-    "faces": {
-        "up":    { "uv": [ 0, 9, 8, 15 ], "texture": "#texture" },
-        "west":  { "uv": [ 0, 9, 6, 12.5 ], "texture": "#texture" },
-        "east":  { "uv": [ 0, 9, 6, 12.5 ], "texture": "#texture" }
-    }
 }
 ]
 }

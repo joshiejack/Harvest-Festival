@@ -10,7 +10,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 
 @Packet(Side.CLIENT)
-public class PacketQuestCompleteEarly extends PacketQuest {
+public class PacketQuestCompleteEarly extends PacketSharedSync {
     private Quest quest;
 
     @SuppressWarnings("unused")

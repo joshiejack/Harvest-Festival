@@ -3,6 +3,7 @@ package joshie.harvest.core.helpers;
 import joshie.harvest.core.base.tile.TileHarvest;
 import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.core.network.PacketRefresh;
+import joshie.harvest.core.network.PenguinPacket;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -42,6 +43,19 @@ public class MCServerHelper {
 
     public static void markTileForUpdate(TileHarvest tile) {
         PacketRefresh packet = new PacketRefresh(tile.getPos(), tile.getUpdateTag());
+        if (tile.getWorld() instanceof WorldServer) {
+            WorldServer server = (WorldServer)tile.getWorld();
+            BlockPos pos = tile.getPos();
+            for (EntityPlayer player : server.playerEntities) {
+                EntityPlayerMP mp = ((EntityPlayerMP) player);
+                if (mp.getDistanceSq(pos) < 64 * 64 && server.getPlayerChunkMap().isPlayerWatchingChunk(mp, pos.getX() >> 4, pos.getZ() >> 4)) {
+                    PacketHandler.sendToClient(packet, mp);
+                }
+            }
+        }
+    }
+
+    public static void sendTileUpdate(TileHarvest tile, PenguinPacket packet) {
         if (tile.getWorld() instanceof WorldServer) {
             WorldServer server = (WorldServer)tile.getWorld();
             BlockPos pos = tile.getPos();

@@ -1,7 +1,7 @@
 package joshie.harvest.npcs.gui;
 
 import joshie.harvest.api.quests.Quest;
-import joshie.harvest.api.quests.QuestType;
+import joshie.harvest.api.quests.TargetType;
 import joshie.harvest.api.quests.Selection;
 import joshie.harvest.core.helpers.TextHelper;
 import joshie.harvest.core.lib.HFModInfo;
@@ -152,7 +152,7 @@ public class GuiNPCSelect extends GuiNPCBase {
 
     @SuppressWarnings("unchecked")
     private void select() {
-        if (quest != null && quest.getQuestType() == QuestType.TOWN) {
+        if (quest != null && quest.getQuestType() == TargetType.TOWN) {
             TownData town = TownHelper.getClosestTownToEntity(npc);
             PacketHandler.sendToServer(new PacketQuestSelect(quest, npc, selected).setUUID(town.getID()));
         } else PacketHandler.sendToServer(new PacketQuestSelect(quest, npc, selected));

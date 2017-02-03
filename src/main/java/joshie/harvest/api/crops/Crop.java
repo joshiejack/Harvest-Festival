@@ -98,7 +98,7 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements IPlantable {
     /** Set the growth lengths for this tree
      * @param stages the number of stages **/
     public Crop setStages(int stages) {
-        this.stages = stages;
+        this.stages = stages + 1;
         return this;
     }
 
@@ -157,6 +157,7 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements IPlantable {
      * Creates a state handler based on the passed in values
      */
     public Crop setStages(int... stages) {
+        stages = modifyStagesToFix(stages);
         this.stages = stages[stages.length - 1];
         this.stateHandler = new StateHandlerBasic(stages);
         return this;
@@ -166,9 +167,20 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements IPlantable {
      * Creates a state handler for this block, based on the passed in values
      */
     public Crop setStages(Block block, int... stages) {
+        stages = modifyStagesToFix(stages);
         this.stages = stages[stages.length - 1];
         this.stateHandler = new StateHandlerBlock(block, stages);
         return this;
+    }
+
+    /** Modifies the default stage values, to be increased by one,
+     *  so that input can be 2, 3, 5 and there a crop will take 5 days */
+    private int[] modifyStagesToFix(int[] stages) {
+        for (int i = 0; i < stages.length; i++) {
+            stages[i] = stages[i] + 1;
+        }
+
+        return stages;
     }
 
     /**

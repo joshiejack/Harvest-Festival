@@ -43,10 +43,16 @@ public class PurchasableBuilding extends PurchasableMaterials {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public boolean isPurchasable(World world, EntityPlayer player) {
         TownData town = TownHelper.getClosestTownToEntity(player);
         if (town.hasBuilding(resource)) return false;
-        return building.getRules().canDo(world, player, 1) && building.hasRequirements(player);
+        return building.getRules().canDo(world, player, 1) && hasBuildingRequirements(player);
+    }
+
+    private boolean hasBuildingRequirements(EntityPlayer player) {
+        ResourceLocation[] requirements = building.getRequirements();
+        return requirements.length == 0 || TownHelper.getClosestTownToEntity(player).hasBuildings(requirements);
     }
 
     @Override
@@ -57,7 +63,8 @@ public class PurchasableBuilding extends PurchasableMaterials {
     @Override
     @SuppressWarnings("unchecked")
     public boolean canList(World world, EntityPlayer player) {
-        return (!TownHelper.getClosestTownToEntity(player).hasBuilding(resource) || building.canHaveMultiple()) && building.getRules().canDo(world, player, 1) && building.hasRequirements(player);
+        return (!TownHelper.getClosestTownToEntity(player).hasBuilding(resource) || building.canHaveMultiple())
+                && building.getRules().canDo(world, player, 1) && hasBuildingRequirements(player);
     }
 
     @Override

@@ -31,10 +31,10 @@ public abstract class Quest extends IForgeRegistryEntry.Impl<Quest> {
     private Set<NPC> npcs = new HashSet<>();
     private ItemStack primary;
     protected int quest_stage;
-    private QuestType type;
+    private TargetType type;
 
     public Quest() {
-        this.type = QuestType.PLAYER;
+        this.type = TargetType.PLAYER;
     }
 
     /** Called when this quest is registered initially **/
@@ -53,7 +53,7 @@ public abstract class Quest extends IForgeRegistryEntry.Impl<Quest> {
         return npcs;
     }
 
-    public final QuestType getQuestType() {
+    public final TargetType getQuestType() {
         return type;
     }
 
@@ -107,7 +107,7 @@ public abstract class Quest extends IForgeRegistryEntry.Impl<Quest> {
 
     /** Set this quest as a town based quest**/
     protected final Quest setTownQuest() {
-        this.type = QuestType.TOWN;
+        this.type = TargetType.TOWN;
         return this;
     }
 

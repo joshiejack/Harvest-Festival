@@ -15,7 +15,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.common.eventhandler.Event.Result;
 
 @Packet(Side.SERVER)
-public class PacketQuestSelect extends PacketQuest {
+public class PacketQuestSelect extends PacketSharedSync {
     private int quest;
     private int npcID;
     private int selected;

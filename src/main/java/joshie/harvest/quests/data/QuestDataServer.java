@@ -4,9 +4,9 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.CalendarDate;
 import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.quests.Quest;
-import joshie.harvest.api.quests.QuestType;
+import joshie.harvest.api.quests.TargetType;
 import joshie.harvest.core.HFTrackers;
-import joshie.harvest.core.util.interfaces.IQuestMaster;
+import joshie.harvest.core.util.interfaces.ISyncMaster;
 import joshie.harvest.quests.packet.PacketQuestCompleted;
 import joshie.harvest.quests.packet.PacketQuestConnect;
 import joshie.harvest.quests.packet.PacketQuestRemove;
@@ -26,10 +26,10 @@ import static joshie.harvest.core.helpers.SerializeHelper.readMap;
 import static joshie.harvest.core.helpers.SerializeHelper.writeMap;
 
 public class QuestDataServer extends QuestData {
-    private final IQuestMaster master;
+    private final ISyncMaster master;
     private Map<Quest, CalendarDate> lastFinished = new HashMap<>();
 
-    public QuestDataServer(IQuestMaster master) {
+    public QuestDataServer(ISyncMaster master) {
         this.master = master;
     }
 
@@ -76,8 +76,8 @@ public class QuestDataServer extends QuestData {
 
         HFTrackers.markDirty(world);
         //Sync everything
-        if ((quest.getQuestType() == QuestType.PLAYER || quest.getQuestType() == QuestType.TOWN && rewards)) master.sync(player, new PacketQuestCompleted(quest, rewards)); //Let this player claim the reward
-        if (quest.getQuestType() == QuestType.TOWN) master.sync(null, new PacketQuestCompleted(quest, false)); //Let the rest of the server know this was completed
+        if ((quest.getQuestType() == TargetType.PLAYER || quest.getQuestType() == TargetType.TOWN && rewards)) master.sync(player, new PacketQuestCompleted(quest, rewards)); //Let this player claim the reward
+        if (quest.getQuestType() == TargetType.TOWN) master.sync(null, new PacketQuestCompleted(quest, false)); //Let the rest of the server know this was completed
         updateQuests(true); //Update the world on these quests, everytime one is completed
     }
 
@@ -86,7 +86,7 @@ public class QuestDataServer extends QuestData {
         current.remove(quest);
         finished.remove(quest);
         HFTrackers.markDirty(world);
-        if (quest.getQuestType() == QuestType.TOWN) master.sync(null, new PacketQuestRemove(quest)); //Let the rest of the server know this was completed
+        if (quest.getQuestType() == TargetType.TOWN) master.sync(null, new PacketQuestRemove(quest)); //Let the rest of the server know this was completed
         updateQuests(true); //Update the world on these quests, everytime one is completed
     }
     
@@ -102,7 +102,7 @@ public class QuestDataServer extends QuestData {
     }
 
     private void updateQuests(Quest quest, boolean sync) {
-        if (quest.getQuestType() != master.getQuestType()) return; //If we aren't the same quest type, we don't get counted
+        if (quest.getQuestType() != master.getTargetType()) return; //If we aren't the same quest type, we don't get counted
         //Check if the quest can be complete
         //If the quest isn't finished, do stuff
         if (!finished.contains(quest) || quest.isRepeatable()) {

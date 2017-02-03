@@ -8,7 +8,6 @@ import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.Selection;
 import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.core.helpers.NBTHelper;
-import joshie.harvest.festivals.HFFestivals;
 import joshie.harvest.festivals.tile.TileStand;
 import joshie.harvest.npcs.HFNPCs;
 import joshie.harvest.npcs.entity.EntityNPCHuman;
@@ -94,7 +93,7 @@ public class CookingContestQuest extends QuestFestival {
             EntityAIPathing pathing = ((EntityNPCHuman)entity).getPathing();
             ScheduleMove point1 = ScheduleMove.of(town.getCoordinatesFor(BuildingLocations.PARK_STAGE_RIGHT));
             ScheduleMove point2 = ScheduleMove.of(town.getCoordinatesFor(BuildingLocations.PARK_STAGE_LEFT));
-            ScheduleSpeech speech = ScheduleSpeech.of(HFFestivals.COOKING1);
+            ScheduleSpeech speech = ScheduleSpeech.of(CookingContest.SCRIPT);
             pathing.setPath(point1, point2, point1, speech);
 
             Map<BlockPos, BlockPos> emptyStands = buildEmptyMap(town);

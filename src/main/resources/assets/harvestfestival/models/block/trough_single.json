@@ -1,4 +1,5 @@
-{"parent": "block/block",
+{
+    "parent": "block/block",
 "textures": {
     "particle": "harvestfestival:models/trough",
     "texture": "harvestfestival:models/trough"
@@ -115,14 +116,6 @@
         "south": { "uv": [ 10.5, 2.5, 9.5, 4 ], "texture": "#texture" },
         "west":  { "uv": [ 9.5, 2.5, 10.5, 4 ], "texture": "#texture" },
         "east":  { "uv": [ 10.5, 2.5, 9.5, 4 ], "texture": "#texture" }
-    }
-},
-{
-    "__comment": "Hay",
-    "from": [ 2, 4, 2 ],
-    "to": [ 14, 11, 14 ],
-    "faces": {
-        "up":    { "uv": [ 0, 9, 6, 15 ], "texture": "#texture" }
     }
 }
 ]

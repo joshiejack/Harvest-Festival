@@ -16,6 +16,7 @@
 * Cows, Chickens and Sheep should be a little smarter, and try to find a location that's inside when it's raining, night or winter, and go outside when its day, sunny and not winter
 * Animals will now search for feeding trays/troughs/feeding trays within a 64 block radius, so ensure they can access them
 * Change collision of nests and feeding trays
+* Fodder will now visually show how much is in the trough rather than just full or empty
 
 ###Buildings
 * Optimised building save format, should be smaller size
@@ -69,6 +70,12 @@
   * Relationship Data for Animals and NPCs
   * Notes page, where everything you learn from NPCs is kept track of
   * Quest page, where you can see what quests you are currently working on
+
+###Letters - NEW!
+* Added Mailbox
+  * NPCs will send letters to invite you to start festivals
+  * NPCs will send letters, sometimes containing gifts
+  * NPCs will sends letter containing tips
 
 ###Mining
 * Fixed cursed tools being unobtainable

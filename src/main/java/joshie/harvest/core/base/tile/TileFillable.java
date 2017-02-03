@@ -1,11 +1,9 @@
 package joshie.harvest.core.base.tile;
 
-import joshie.harvest.api.ticking.IDailyTickable;
-import joshie.harvest.core.helpers.MCServerHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
-public abstract class TileFillable extends TileDaily implements IDailyTickable {
+public abstract class TileFillable extends TileHarvest {
     protected int fillAmount;
 
     public abstract boolean onActivated(ItemStack held);
@@ -14,22 +12,16 @@ public abstract class TileFillable extends TileDaily implements IDailyTickable {
         return fillAmount;
     }
 
+    protected abstract int getMaximumFill();
+
     public void adjustFill(int amount) {
         setFilled(fillAmount + amount);
     }
 
-    public void setFilled(int isFilled) {
-        this.fillAmount = isFilled;
+    protected boolean setFilled(int isFilled) {
+        fillAmount = Math.min(getMaximumFill(), isFilled);
         saveAndRefresh();
-    }
-
-    public void saveAndRefresh() {
-        MCServerHelper.markForUpdate(worldObj, getPos(), 3);
-        if (!worldObj.isRemote) {
-            MCServerHelper.markTileForUpdate(this);
-        }
-
-        markDirty();
+        return true;
     }
 
     @Override

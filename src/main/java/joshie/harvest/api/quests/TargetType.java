@@ -1,5 +1,5 @@
 package joshie.harvest.api.quests;
 
-public enum QuestType {
+public enum TargetType {
     PLAYER, TOWN
 }

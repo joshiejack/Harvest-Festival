@@ -5,7 +5,6 @@ import joshie.harvest.api.calendar.Festival;
 import joshie.harvest.api.core.ISpecialRules;
 import joshie.harvest.api.npc.NPC;
 import joshie.harvest.buildings.render.BuildingKey;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Rotation;
@@ -25,13 +24,10 @@ import java.util.Set;
 
 public class Building extends IForgeRegistryEntry.Impl<Building> {
     public static final IForgeRegistry<Building> REGISTRY = new RegistryBuilder<Building>().setName(new ResourceLocation("harvestfestival", "buildings")).setType(Building.class).setIDRange(0, 32000).create();
-    //Offsets
     private final Set<ResourceLocation> inhabitants = new HashSet<>();
-
-    //Costs and rules
+    private ResourceLocation[] requirements = new ResourceLocation[0];
     private ISpecialRules special = (w, p, a) -> true;
     private String toLocalise = "";
-    private ResourceLocation[] requirements = new ResourceLocation[0];
     private int offsetY = -1;
     private long tickTime = 15L;
     private int width;
@@ -40,23 +36,14 @@ public class Building extends IForgeRegistryEntry.Impl<Building> {
 
     public Building() {}
     public Building(ResourceLocation resource){
-        this.setRegistryName(resource);
+        setRegistryName(resource);
+        toLocalise = resource.getResourceDomain().toLowerCase(Locale.ENGLISH) + ".structures." + resource.getResourcePath().toLowerCase(Locale.ENGLISH);
         REGISTRY.register(this);
     }
-
-    public void initBuilding() {
-        toLocalise = getRegistryName().getResourceDomain().toLowerCase(Locale.ENGLISH) + ".structures." + this.getRegistryName().getResourcePath().toLowerCase(Locale.ENGLISH);
-    }
-
-    public Collection<? extends ResourceLocation> getInhabitants() {
-        return inhabitants;
-    }
-
-    private ResourceLocation getResourceFromName(String resource) {
-        if (resource.contains(":")) return new ResourceLocation(resource);
-        else return new ResourceLocation("harvestfestival", resource);
-    }
-
+    /** Set the requirements for this building from string values
+     * @param requirements  the buildings required in format "modid:building".
+     *                      you can exclude the modid if the building is from harvestfestival
+     * @return the building */
     public Building setRequirements(String... requirements) {
         this.requirements = new ResourceLocation[requirements.length];
         for (int i = 0; i < requirements.length; i++) {
@@ -66,6 +53,16 @@ public class Building extends IForgeRegistryEntry.Impl<Building> {
         return this;
     }
 
+    /** Internal helper method for converting from string to resource
+     *  @param resource string name **/
+    private ResourceLocation getResourceFromName(String resource) {
+        if (resource.contains(":")) return new ResourceLocation(resource);
+        else return new ResourceLocation("harvestfestival", resource);
+    }
+
+    /** Sets how many ticks between each block the builder will place
+     * @param time the amount of ticks between each block being placed
+     * @return the building*/
     public Building setTickTime(long time) {
         this.tickTime = time;
         return this;
@@ -95,6 +92,10 @@ public class Building extends IForgeRegistryEntry.Impl<Building> {
     public Building setMultiple() {
         this.canHaveMultiple = true;
         return this;
+    }
+
+    public Collection<? extends ResourceLocation> getInhabitants() {
+        return inhabitants;
     }
 
     public ISpecialRules getRules() {
@@ -131,9 +132,14 @@ public class Building extends IForgeRegistryEntry.Impl<Building> {
         return offsetY;
     }
 
-    public boolean hasRequirements(EntityPlayer player) {
-        return requirements.length == 0 || HFApi.town.doesClosestTownHaveBuildings(player, requirements);
+    public ResourceLocation[] getRequirements() {
+        return requirements;
     }
+
+    public boolean canHaveMultiple() {
+        return canHaveMultiple;
+    }
+
 
     public int getLength() {
         return length;
@@ -159,10 +165,6 @@ public class Building extends IForgeRegistryEntry.Impl<Building> {
      */
     public void onBuilt(World world, BlockPos pos, Rotation rotation) {}
 
-    public boolean canHaveMultiple() {
-        return canHaveMultiple;
-    }
-
     @Override
     public boolean equals(Object o) {
         return o instanceof Building && getRegistryName() != null && getRegistryName().equals(((Building) o).getRegistryName());
@@ -172,6 +174,4 @@ public class Building extends IForgeRegistryEntry.Impl<Building> {
     public int hashCode() {
         return getRegistryName() == null? 0 : getRegistryName().hashCode();
     }
-
-
 }

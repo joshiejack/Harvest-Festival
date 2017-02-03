@@ -13,7 +13,7 @@ import java.util.Set;
 public class Tracking implements IPlayerTracking {
     protected Set<ItemStackHolder> obtained = new HashSet<>(); //Items that have been obtained
     protected Set<ResourceLocation> recipes = new HashSet<>(); //Recipe Learnt
-    protected Set<ResourceLocation> notes = new HashSet<>();
+    protected Set<ResourceLocation> notes = new HashSet<>(); //Notes Learnt
 
     public boolean learnRecipe(Recipe recipe) {
         if (recipe == null) {

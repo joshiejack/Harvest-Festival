@@ -17,6 +17,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nonnull;
 import java.util.List;
 import java.util.Locale;
 
@@ -28,7 +29,7 @@ import static net.minecraft.util.text.TextFormatting.GOLD;
 public class ItemNPCTool extends ItemHFEnum<ItemNPCTool, NPCTool> {
     public static final String SPECIAL = "Gift";
     public enum NPCTool implements IStringSerializable {
-        BLUE_FEATHER, NPC_KILLER, GIFT, SPEECH;
+        BLUE_FEATHER, NPC_KILLER, GIFT, SPEECH, MAIL;
 
         public boolean isReal() {
             return this == NPC_KILLER;
@@ -82,7 +83,9 @@ public class ItemNPCTool extends ItemHFEnum<ItemNPCTool, NPCTool> {
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(ItemStack held, World world, EntityPlayer player, EnumHand hand) {
+    @Nonnull
+    @SuppressWarnings("ConstantConditions")
+    public ActionResult<ItemStack> onItemRightClick(@Nonnull ItemStack held, World world, EntityPlayer player, EnumHand hand) {
         if (held.hasTagCompound() && held.getTagCompound().hasKey(SPECIAL)) {
             if (!world.isRemote) {
                 for (ItemStack stack: MiningHelper.getLoot(MINING_GEMS, world, player, 3F)) {

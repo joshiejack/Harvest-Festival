@@ -48,7 +48,7 @@ public class HFNotes {
     public static final Note SECRET_RELATIONSHIPS = registerNote(FARMING, "secret.relationships").setSecretNote();
     public static final Note SECRET_LIVESTOCK = registerNote(FARMING, "secret.livestock").setSecretNote();
 
-    public static final Note FESTIVAL_COOKING = registerNote(TOWNSHIP, "festival.cooking");
+
 
     @SideOnly(Side.CLIENT)
     public static void preInitClient() {
@@ -57,7 +57,7 @@ public class HFNotes {
         SECRET_CURSED_TOOLS.setRender(new NoteRenderCursedTools());
     }
 
-    private static Note registerNote(Category category, String name) {
+    public static Note registerNote(Category category, String name) {
         return new Note(category, new ResourceLocation(MODID, name));
     }
 }

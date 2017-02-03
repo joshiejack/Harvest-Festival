@@ -7,6 +7,7 @@ import net.minecraft.world.IBlockAccess;
 public class StateHandlerBasic extends StateHandlerDefault<Crop> {
     private final int[] values;
 
+    @SuppressWarnings("WeakerAccess")
     public StateHandlerBasic(int... values) {
         super(values.length);
         this.values = values;

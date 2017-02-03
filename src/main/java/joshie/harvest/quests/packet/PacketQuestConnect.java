@@ -8,7 +8,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 
 @Packet(Side.CLIENT)
-public class PacketQuestConnect extends PacketQuest {
+public class PacketQuestConnect extends PacketSharedSync {
     private NBTTagCompound tag;
 
     @SuppressWarnings("unused")

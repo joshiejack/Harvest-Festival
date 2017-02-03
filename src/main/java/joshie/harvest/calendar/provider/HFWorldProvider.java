@@ -3,8 +3,9 @@ package joshie.harvest.calendar.provider;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.calendar.Weather;
-import joshie.harvest.calendar.data.Calendar;
 import joshie.harvest.calendar.HFCalendar;
+import joshie.harvest.calendar.SnowLoader;
+import joshie.harvest.calendar.data.Calendar;
 import joshie.harvest.calendar.data.SeasonData;
 import joshie.harvest.calendar.render.WeatherRenderer;
 import joshie.harvest.core.HFTrackers;
@@ -27,7 +28,7 @@ import net.minecraftforge.common.ForgeModContainer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import static joshie.harvest.calendar.SnowLoader.SNOW_LAYER;
+import javax.annotation.Nonnull;
 
 public class HFWorldProvider extends WorldProviderSurface {
     @SideOnly(Side.CLIENT)
@@ -35,6 +36,7 @@ public class HFWorldProvider extends WorldProviderSurface {
 
     @SideOnly(Side.CLIENT)
     @Override
+    @Nonnull
     public IRenderHandler getWeatherRenderer() {
         if (WEATHER_RENDERER != null) return WEATHER_RENDERER;
         else WEATHER_RENDERER = new WeatherRenderer();
@@ -66,7 +68,7 @@ public class HFWorldProvider extends WorldProviderSurface {
         skyInit = false;
     }
 
-    public int getSkyBlendColour(World world, BlockPos center) {
+    private int getSkyBlendColour(World world, BlockPos center) {
         if (center.getX() == skyX && center.getZ() == skyZ && skyInit) {
             return skyRGBMultiplier;
         }
@@ -114,7 +116,8 @@ public class HFWorldProvider extends WorldProviderSurface {
 
     @SideOnly(Side.CLIENT)
     @Override
-    public Vec3d getSkyColor(Entity cameraEntity, float partialTicks) {
+    @Nonnull
+    public Vec3d getSkyColor(@Nonnull Entity cameraEntity, float partialTicks) {
         float f1 = worldObj.getCelestialAngle(partialTicks);
         float f2 = MathHelper.cos(f1 * (float) Math.PI * 2.0F) * 2.0F + 0.5F;
 
@@ -173,7 +176,7 @@ public class HFWorldProvider extends WorldProviderSurface {
         return new Vec3d((double) f4, (double) f5, (double) f6);
     }
 
-    public double clamp(double min, double max, double val) {
+    private double clamp(double min, double max, double val) {
         return Math.max(min, Math.min(max, val));
     }
 
@@ -193,12 +196,12 @@ public class HFWorldProvider extends WorldProviderSurface {
     }
 
     @Override
-    public boolean isBlockHighHumidity(BlockPos pos) {
+    public boolean isBlockHighHumidity(@Nonnull BlockPos pos) {
         return HFApi.calendar.getDate(worldObj).getSeason() != Season.SUMMER && super.isBlockHighHumidity(pos);
     }
 
     @Override
-    public boolean canSnowAt(BlockPos pos, boolean checkLight) {
+    public boolean canSnowAt(@Nonnull BlockPos pos, boolean checkLight) {
         Weather weather = HFApi.calendar.getWeather(worldObj);
         if (weather.isSnow()) {
             Biome biome = worldObj.getBiome(pos);
@@ -212,8 +215,8 @@ public class HFWorldProvider extends WorldProviderSurface {
                         if (pos.getY() >= 0 && pos.getY() < 256 && worldObj.getLightFor(EnumSkyBlock.BLOCK, pos) < 10) {
                             IBlockState state = worldObj.getBlockState(pos);
                             if (state.getMaterial() == Material.AIR && Blocks.SNOW_LAYER.canPlaceBlockAt(worldObj, pos)) {
-                                if (SNOW_LAYER != null && !biome.isSnowyBiome()) {
-                                    HFApi.tickable.addTickable(worldObj, pos, SNOW_LAYER);
+                                if (SnowLoader.INSTANCE != null && !biome.isSnowyBiome()) {
+                                    HFApi.tickable.addTickable(worldObj, pos, SnowLoader.INSTANCE);
                                 }
 
                                 return true;

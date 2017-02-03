@@ -52,6 +52,7 @@ public class CropHelper {
     }
 
     //Returns true if this is waterable
+    @Nullable
     public static WateringHandler getWateringHandler(World world, BlockPos pos, IBlockState state) {
         for (WateringHandler checker: CropRegistry.INSTANCE.wateringHandlers) {
             if (checker.handlesState(world, pos, state)) return checker;

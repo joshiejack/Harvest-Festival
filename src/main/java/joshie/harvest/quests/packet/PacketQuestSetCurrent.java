@@ -10,7 +10,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 
 @Packet(Packet.Side.CLIENT)
-public class PacketQuestSetCurrent extends PacketQuest<QuestDataClient> {
+public class PacketQuestSetCurrent extends PacketSharedSync {
     private Quest quest;
 
     @SuppressWarnings("unused")
@@ -44,6 +44,6 @@ public class PacketQuestSetCurrent extends PacketQuest<QuestDataClient> {
 
     @Override
     public void handlePacket(EntityPlayer player) {
-        getQuestDataFromPlayer(player).addAsCurrent(quest);
+        this.<QuestDataClient>getQuestDataFromPlayer(player).addAsCurrent(quest);
     }
 }

@@ -50,7 +50,8 @@ public class ItemHFSeeds extends ItemSeeds implements ICreativeSorted {
     }
 
     @Override
-    public String getItemStackDisplayName(ItemStack stack) {
+    @Nonnull
+    public String getItemStackDisplayName(@Nonnull ItemStack stack) {
         Crop crop = getCropFromStack(stack);
         return (crop == null) ? TextHelper.translate("crop.seeds.useless") : crop.getSeedsName();
     }
@@ -65,7 +66,7 @@ public class ItemHFSeeds extends ItemSeeds implements ICreativeSorted {
             if (!crop.requiresWater()) list.add("" + TextFormatting.BLUE + TextFormatting.ITALIC + TextHelper.translate("crop.water"));
             crop.getGrowthHandler().addInformation(list, crop, debug);
             int amount = crop instanceof Tree ? ((Tree)crop).getStagesToMaturity() : crop.getStages();
-            list.add(amount + " " + TextHelper.translate("crop.seeds.days"));
+            list.add(amount - 1 + " " + TextHelper.translate("crop.seeds.days"));
         }
     }
 

@@ -125,5 +125,9 @@ public class BlockFishing extends BlockHFEnum<BlockFishing, FishingBlock> {
         public String getName() {
             return name().toLowerCase(Locale.ENGLISH);
         }
+
+        public boolean isTrap() {
+            return this == TRAP || this == TRAP_BAITED;
+        }
     }
 }

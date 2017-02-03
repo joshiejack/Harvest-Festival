@@ -1,11 +1,8 @@
 package joshie.harvest.town;
 
-import joshie.harvest.api.town.TownManager;
-import joshie.harvest.core.util.annotations.HFApiImplementation;
 import joshie.harvest.town.data.TownData;
 import joshie.harvest.town.data.TownDataServer;
 import net.minecraft.entity.Entity;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
@@ -14,10 +11,7 @@ import java.util.UUID;
 
 import static joshie.harvest.core.HFTrackers.getTownTracker;
 
-@HFApiImplementation
-public class TownHelper implements TownManager {
-    public static final TownHelper INSTANCE = new TownHelper();
-
+public class TownHelper {
     @SuppressWarnings("unchecked")
     public static <T extends TownData> T getClosestTownToBlockPos(World world, BlockPos pos) {
         return (T) getTownTracker(world).getClosestTownToBlockPos(pos);
@@ -39,10 +33,5 @@ public class TownHelper implements TownManager {
                 data.createNewBuilder(world, pos);
             }
         }
-    }
-
-    @Override
-    public boolean doesClosestTownHaveBuildings(Entity entity, ResourceLocation... buildings) {
-        return getClosestTownToEntity(entity).hasBuildings(buildings);
     }
 }

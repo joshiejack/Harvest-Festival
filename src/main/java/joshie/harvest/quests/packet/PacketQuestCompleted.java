@@ -9,7 +9,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 
 @Packet(Side.CLIENT)
-public class PacketQuestCompleted extends PacketQuest {
+public class PacketQuestCompleted extends PacketSharedSync {
     private Quest quest;
     private boolean rewards;
 

@@ -1,17 +1,22 @@
 package joshie.harvest.plugins.crafttweaker.handlers;
 
+import com.google.common.collect.ImmutableList;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.AnimalFoodType;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.crops.Crop;
+import joshie.harvest.api.crops.StateHandlerBlock;
 import joshie.harvest.plugins.crafttweaker.CraftTweaker;
 import joshie.harvest.plugins.crafttweaker.base.BaseCrop;
 import joshie.harvest.plugins.crafttweaker.base.BaseOnce;
 import minetweaker.MineTweakerAPI;
 import minetweaker.api.item.IItemStack;
 import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.common.EnumPlantType;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
@@ -86,13 +91,47 @@ public class Crops {
 
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    @ZenMethod
+    @SuppressWarnings("unused, deprecation")
+    public static void setStages(String name, int[] stages, IItemStack[] blocks, int[] meta) {
+        if (stages.length != meta.length || blocks.length != meta.length) CraftTweaker.logError(String.format("Could not set the stages for %s as the array lengths didn't match", name));
+        else {
+            IBlockState[] states = new IBlockState[stages.length];
+            for (int i = 0; i < states.length; i++) {
+                Block theBlock = asBlock(blocks[i]);
+                if (theBlock == null) {
+                    CraftTweaker.logError(String.format("Could not set the stages for %s as one of the items was not a block", name));
+                    return; //Don't continue any further
+                }
+
+                states[i] = theBlock.getStateFromMeta(meta[i]);
+            }
+
+            MineTweakerAPI.apply(new SetStages(name, null, stages, states));
+        }
+    }
 
     @ZenMethod
-    @SuppressWarnings("unused")
+    @SuppressWarnings("unused, deprecation")
+    public static void setStages(String name, IItemStack block, int[] stages, int[] meta) {
+        Block theBlock = asBlock(block);
+        if (theBlock == null) CraftTweaker.logError(String.format("Could not set the stages for %s as the stack item was null or not a block", name));
+        else if (stages.length != meta.length) CraftTweaker.logError(String.format("Could not set the stages for %s as the meta values didn't match the stage values", name));
+        else {
+            IBlockState[] states = new IBlockState[stages.length];
+            for (int i = 0; i < states.length; i++) states[i] = theBlock.getStateFromMeta(meta[i]);
+            MineTweakerAPI.apply(new SetStages(name, null, stages, states));
+        }
+    }
+
+
+    @ZenMethod
+    @SuppressWarnings("unused, deprecation")
     public static void setStages(String name, IItemStack block, int[] stages) {
         Block theBlock = asBlock(block);
-        if (theBlock == null) CraftTweaker.logError(String.format("Could not set the drop for %s as the stack item was null or not a block", name));
-        else MineTweakerAPI.apply(new SetStages(name, theBlock, stages));
+        if (theBlock == null) CraftTweaker.logError(String.format("Could not set the stages for %s as the stack item was null or not a block", name));
+        else MineTweakerAPI.apply(new SetStages(name, theBlock, stages, null));
+
     }
 
     @ZenMethod
@@ -104,17 +143,20 @@ public class Crops {
     private static class SetStages extends BaseCrop {
         private final Block block;
         private final int[] stages;
+        private final IBlockState[] states;
 
-        public SetStages(String name, Block block, int[] stages) {
+        public SetStages(String name, Block block, int[] stages, IBlockState[] states) {
             super(name);
             this.block = block;
             this.stages = stages;
+            this.states = states;
         }
 
         public  SetStages(String name, int[] stages) {
             super(name);
             this.block = null;
             this.stages = stages;
+            this.states = null;
         }
 
         @Override
@@ -125,7 +167,36 @@ public class Crops {
         @Override
         protected void applyToCrop(Crop crop) {
             if (block == null) crop.setStages(stages);
-            else crop.setStages(block, stages);
+            else {
+                if (states != null) {
+                    crop.setStages(stages[stages.length - 1]);
+                    crop.setStateHandler(new StateHandlerBlockWithStates(stages, states));
+                } else crop.setStages(block, stages);
+            }
+        }
+    }
+
+    private static class StateHandlerBlockWithStates extends StateHandlerBlock {
+        private final IBlockState[] states;
+
+        StateHandlerBlockWithStates(int[] values, IBlockState[] states) {
+            super(null, values);
+            this.states = states;
+        }
+
+        @Override
+        public ImmutableList<IBlockState> getValidStates() {
+            return ImmutableList.copyOf(states);
+        }
+
+        @Override
+        @SuppressWarnings("deprecation")
+        public IBlockState getState(IBlockAccess world, BlockPos pos, PlantSection section, Crop crop, int stage, boolean withered) {
+            for (int i = 0; i < values.length; i++) {
+                if (stage <= values[i]) return states[i];
+            }
+
+            return states[states.length - 1];
         }
     }
 

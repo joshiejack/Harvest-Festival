@@ -10,7 +10,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 
 @Packet(Side.CLIENT)
-public class PacketSyncData extends PacketQuest {
+public class PacketSyncData extends PacketSharedSync {
     private Quest quest;
     private NBTTagCompound tag;
 

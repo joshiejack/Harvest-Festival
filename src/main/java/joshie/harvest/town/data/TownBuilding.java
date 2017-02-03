@@ -20,6 +20,7 @@ public class TownBuilding implements INBTSerializableMap<ResourceLocation, TownB
     public BlockPos pos;
 
     public TownBuilding() {}
+    @SuppressWarnings("WeakerAccess")
     public TownBuilding(Building building, Rotation rotation, BlockPos pos) {
         this.building = building;
         this.rotation = rotation;
@@ -30,11 +31,11 @@ public class TownBuilding implements INBTSerializableMap<ResourceLocation, TownB
         return rotation;
     }
 
-    public BlockPos getRealCoordinatesFor(Placeable placeable) {
+    private BlockPos getRealCoordinatesFor(Placeable placeable) {
         return placeable.getTransformedPosition(pos, rotation);
     }
 
-    public BlockPos getRealCoordinatesFor(String npc_location) {
+    BlockPos getRealCoordinatesFor(String npc_location) {
         PlaceableNPC offsets = BuildingRegistry.INSTANCE.getTemplateForBuilding(building).getNPCOffset(npc_location);
         if (offsets == null) return null;
         return getRealCoordinatesFor(offsets);
@@ -46,6 +47,7 @@ public class TownBuilding implements INBTSerializableMap<ResourceLocation, TownB
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public void deserializeNBT(NBTTagCompound nbt) {
         building = Building.REGISTRY.getValue(new ResourceLocation(nbt.getString("Building")));
         pos = NBTHelper.readBlockPos("Building", nbt);

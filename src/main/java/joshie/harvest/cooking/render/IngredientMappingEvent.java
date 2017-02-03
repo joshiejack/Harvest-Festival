@@ -10,7 +10,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 
 @HFEvents(Side.CLIENT)
-public class MappingEvent {
+public class IngredientMappingEvent {
     public static final ResourceLocation OIL = new ResourceLocation(MODID, "fluids/oil_cooking");
     public static final ResourceLocation MILK = new ResourceLocation(MODID, "fluids/milk");
     public static final ResourceLocation WINE = new ResourceLocation(MODID, "fluids/wine");

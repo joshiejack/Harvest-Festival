@@ -1,127 +1,58 @@
 package joshie.harvest.animals.tile;
 
+import joshie.harvest.animals.HFAnimals;
+import joshie.harvest.animals.block.BlockTrough;
+import joshie.harvest.animals.block.BlockTrough.Section;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.AnimalAction;
 import joshie.harvest.api.animals.AnimalStats;
-import joshie.harvest.core.base.tile.TileFillable;
+import joshie.harvest.api.animals.AnimalTest;
+import joshie.harvest.api.ticking.DailyTickableBlock;
+import joshie.harvest.api.ticking.DailyTickableBlock.Phases;
+import joshie.harvest.core.base.tile.TileFillableConnected;
 import joshie.harvest.core.helpers.EntityHelper;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
 import static joshie.harvest.api.animals.AnimalFoodType.GRASS;
-import static net.minecraft.util.EnumFacing.*;
 
-public class TileTrough extends TileFillable {
-    private static final int MAX_WIDTH = 3;
-    private boolean facingX;
-    private int offsetX;
-    private int offsetZ;
-    private int size;
-
-    public TileTrough getMaster() {
-        TileEntity tile = worldObj.getTileEntity(getPos().add(offsetX, 0, offsetZ));
-        return tile instanceof TileTrough ? (TileTrough) tile: this;
-    }
-
-    public int getSize() {
-        return size;
-    }
-
-    private boolean updateMasterInDirection(EnumFacing facing) {
-        if (worldObj.getTileEntity(getPos().offset(facing)) instanceof TileTrough) {
-            TileTrough trough = ((TileTrough)worldObj.getTileEntity(getPos().offset(facing))).getMaster();
-            if (trough.getSize() < MAX_WIDTH) {
-                int offsetX = trough.getPos().getX() - getPos().getX();
-                int offsetZ = trough.getPos().getZ() - getPos().getZ();
-                if (offsetX != 0 && offsetZ != 0) return false;
-                if (trough.size > 1) {
-                    if (trough.facingX && offsetX != 0) return false;
-                    else if (!trough.facingX && offsetZ != 0) return false;
-                }
-
-                if (offsetZ != 0) trough.facingX = true;
-                if (offsetX != 0) trough.facingX = false;
-                this.offsetX = offsetX;
-                this.offsetZ = offsetZ;
-                trough.size++; //Increase the trough size
-                trough.markDirty();
-                return true;
-            }
+public class TileTrough extends TileFillableConnected<TileTrough> {
+    private static final DailyTickableBlock TICKABLE = new DailyTickableBlock(Phases.PRE, Phases.MAIN) {
+        @Override
+        public boolean isStateCorrect(World world, BlockPos pos, IBlockState state) {
+            return state.getBlock() == HFAnimals.TROUGH;
         }
 
-        return false;
-    }
-
-    private void updateMaster() {
-        if (updateMasterInDirection(NORTH)) return;
-        if (updateMasterInDirection(SOUTH)) return;
-        if (updateMasterInDirection(EAST)) return;
-        if (!updateMasterInDirection(WEST)) {
-            //Make this block it's own master
-            offsetX = 0;
-            offsetZ = 0;
-            size = 1;
-            markDirty();
-        }
-    }
-
-    public void onPlaced() {
-        updateMaster();
-        setFilled(getFillAmount());
-    }
-
-    private BlockPos getNewMaster() {
-        for (int x = -2; x <= 2; x++) {
-            for (int z = -2; z <= 2; z++) {
-                TileEntity tile = worldObj.getTileEntity(getPos().add(x, 0, z));
-                if (tile instanceof TileTrough) {
-                    if (((TileTrough)tile).getMaster() == this) {
-                        return getPos().add(x, 0, z);
+        @Override
+        @SuppressWarnings("ConstantConditions")
+        public void newDay(World world, BlockPos pos, IBlockState state) {
+            TileTrough trough = (TileTrough) world.getTileEntity(pos);
+            if (trough.getMaster() == trough) {
+                for (EntityAnimal animal : EntityHelper.getEntities(EntityAnimal.class, world, pos, 32D, 5D)) {
+                    AnimalStats stats = EntityHelper.getStats(animal);
+                    if (stats != null && trough.fillAmount > 0 && HFApi.animals.canAnimalEatFoodType(stats, GRASS) &&
+                            !stats.performTest(AnimalTest.HAS_EATEN) && trough.setFilled(trough.getFillAmount() - 1)) {
+                        stats.performAction(world, null, null, AnimalAction.FEED);
                     }
                 }
             }
         }
+    };
 
-        return null;
+    private Section section;
+    private EnumFacing facing;
+
+    public TileTrough() {
+        super(3);
     }
 
-    private void setMaster(BlockPos pos) {
-        for (int x = -2; x <= 2; x++) {
-            for (int z = -2; z <= 2; z++) {
-                TileEntity tile = worldObj.getTileEntity(getPos().add(x, 0, z));
-                if (tile instanceof TileTrough) {
-                    TileTrough trough = ((TileTrough)tile);
-                    if (trough.getMaster() == this) {
-                        trough.offsetX = pos.getX() - trough.getPos().getX();
-                        trough.offsetZ = pos.getZ() - trough.getPos().getZ();
-                        trough.updateMaster(); //Refresh the master status
-                        trough.markDirty();
-                    }
-                }
-            }
-        }
-    }
-
-    public void onRemoved() {
-        int volume = getMaster().getFillAmount();
-        int size = Math.max(0, getMaster().size - 1);
-        boolean facingX = getMaster().facingX;
-        TileTrough master = getMaster();
-        if (getMaster() == this) {
-            BlockPos newMaster = getNewMaster();
-            if (newMaster != null) {
-                setMaster(newMaster);
-            }
-        }
-
-        master.setFilled(Math.min(7 * size, volume)); //Update the volume in the new master
-        master.size = size;
-        master.facingX = facingX;
-        master.markDirty();
+    @Override
+    public DailyTickableBlock getTickableForTile() {
+        return TICKABLE;
     }
 
     @Override
@@ -129,74 +60,48 @@ public class TileTrough extends TileFillable {
         if (HFApi.animals.canEat(held, GRASS)) {
             TileTrough master = getMaster();
             if (master != null) {
-                boolean processed = false;
-                for (int i = 0; i < 12 && held.stackSize > 0; i++) {
-                    if (held.stackSize >= 1) {
-                        if (master.hasRoomAndFill()) {
-                            held.splitStack(1);
-                            processed = true;
-                        } else break;
+                if (held.stackSize >= 1) {
+                    if (master.fillAmount < master.getMaximumFill() && master.setFilled(master.getFillAmount() + 10)) {
+                        held.splitStack(1);
+                        return true;
                     }
                 }
-
-                return processed;
             }
         }
 
         return false;
     }
 
-    private boolean hasRoomAndFill() {
-        if (fillAmount < (40 * size)) {
-            setFilled(getFillAmount() + 10);
-            return true;
+    @Override
+    protected boolean isValidConnection(BlockPos pos) {
+        return worldObj.getTileEntity(pos) instanceof TileTrough;
+    }
+
+    @Override
+    public void resetClientData() {
+        section = null;
+        facing = null;
+    }
+
+    public Section getSection() {
+        if (section != null) return section;
+        else {
+            IBlockState state = worldObj.getBlockState(pos);
+            IBlockState actualState = state.getActualState(worldObj, pos);
+            section = actualState.getValue(BlockTrough.SECTION);
         }
 
-        return false;
+        return section;
     }
 
-    private boolean hasFoodAndFeed() {
-        if (fillAmount > 0) {
-            setFilled(getFillAmount() - 1);
-            return true;
+    public EnumFacing getFacing() {
+        if (facing != null) return facing;
+        else {
+            IBlockState state = worldObj.getBlockState(pos);
+            IBlockState actualState = state.getActualState(worldObj, pos);
+            facing = actualState.getValue(BlockTrough.FACING);
         }
 
-        return false;
-    }
-
-    //Feed animals from the night before, and feed them for today
-    @Override
-    public Phase[] getPhases() {
-        return new Phase[] { Phase.PRE, Phase.POST };
-    }
-
-    @Override
-    public void newDay() {
-        if (getMaster() == this) {
-            for (EntityAnimal animal : EntityHelper.getEntities(EntityAnimal.class, getWorld(), getPos(), 32D, 5D)) {
-                AnimalStats stats = EntityHelper.getStats(animal);
-                if (stats != null && HFApi.animals.canAnimalEatFoodType(stats, GRASS) && hasFoodAndFeed()) {
-                    stats.performAction(getWorld(), null, null, AnimalAction.FEED);
-                }
-            }
-        }
-    }
-
-    @Override
-    public void readFromNBT(NBTTagCompound nbt) {
-        super.readFromNBT(nbt);
-        facingX = nbt.getBoolean("FacingX");
-        offsetX = nbt.getInteger("OffsetX");
-        offsetZ = nbt.getInteger("OffsetZ");
-        size = nbt.getByte("Size");
-    }
-
-    @Override
-    public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
-        nbt.setBoolean("FacingX", facingX);
-        nbt.setInteger("OffsetX", offsetX);
-        nbt.setInteger("OffsetZ", offsetZ);
-        nbt.setByte("Size", (byte) size);
-        return super.writeToNBT(nbt);
+        return facing;
     }
 }

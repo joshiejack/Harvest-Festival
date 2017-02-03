@@ -33,6 +33,7 @@ public class TileShipping extends TileFaceable {
     }
 
     @Override
+    @Nonnull
     public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
         if (owner != null) nbt.setString("Owner", owner.toString());
         return super.writeToNBT(nbt);

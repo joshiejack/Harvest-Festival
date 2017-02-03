@@ -1,14 +1,17 @@
 package joshie.harvest.fishing.tile;
 
+import joshie.harvest.api.ticking.DailyTickableBlock;
+import joshie.harvest.api.ticking.DailyTickableBlock.Phases;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.base.tile.TileSingleStack;
 import joshie.harvest.core.helpers.FakePlayerHelper;
 import joshie.harvest.core.helpers.InventoryHelper;
-import joshie.harvest.core.helpers.MCServerHelper;
 import joshie.harvest.core.helpers.SpawnItemHelper;
 import joshie.harvest.core.lib.LootStrings;
 import joshie.harvest.fishing.FishingAPI;
 import joshie.harvest.fishing.FishingHelper;
+import joshie.harvest.fishing.HFFishing;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -18,8 +21,40 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraft.world.storage.loot.LootContext;
 
+import javax.annotation.Nonnull;
+
 public class TileTrap extends TileSingleStack {
+    private static final DailyTickableBlock TICKABLE = new DailyTickableBlock(Phases.MAIN) {
+        @Override
+        public boolean isStateCorrect(World world, BlockPos pos, IBlockState state) {
+            return state.getBlock() == HFFishing.FISHING_BLOCK && HFFishing.FISHING_BLOCK.getEnumFromState(state).isTrap();
+        }
+
+        @Override
+        @SuppressWarnings("ConstantConditions")
+        public void newDay(World world, BlockPos pos, IBlockState state) {
+            TileTrap trap = (TileTrap) world.getTileEntity(pos);
+            if (trap.stack != null && FishingAPI.INSTANCE.isBait(trap.stack)) {
+                if (trap.isSurroundedByWater(world, pos)) {
+                    LootContext.Builder lootcontext$builder = new LootContext.Builder((WorldServer) world);
+                    lootcontext$builder.withLootedEntity(FakePlayerHelper.getFakePlayerWithPosition((WorldServer) world, pos));
+                    if (FishingHelper.isWater(world, pos.down())) lootcontext$builder.withLuck(1F);
+                    for (ItemStack itemstack : world.getLootTableManager().getLootTableFromLocation(trap.getLootTable()).generateLootForPools(world.rand, lootcontext$builder.build())) {
+                        trap.baited = false;
+                        trap.stack = itemstack.copy();
+                    }
+
+                    trap.saveAndRefresh();
+                }
+            }
+        }
+    };
     private boolean baited = false;
+
+    @Override
+    public DailyTickableBlock getTickableForTile() {
+        return TICKABLE;
+    }
 
     @Override
     public boolean onRightClicked(EntityPlayer player, ItemStack place) {
@@ -51,24 +86,6 @@ public class TileTrap extends TileSingleStack {
         return worldObj.rand.nextInt(4) == 0 ? FishingHelper.getFishingTable(worldObj, pos) : LootStrings.TRAP_JUNK;
     }
 
-    @Override
-    public void newDay() {
-        if (isSurroundedByWater(worldObj, pos)) {
-            if (stack != null && FishingAPI.INSTANCE.isBait(stack)) {
-                LootContext.Builder lootcontext$builder = new LootContext.Builder((WorldServer) worldObj);
-                lootcontext$builder.withLootedEntity(FakePlayerHelper.getFakePlayerWithPosition((WorldServer) worldObj, getPos()));
-                if (FishingHelper.isWater(worldObj, pos.down())) lootcontext$builder.withLuck(1F);
-                for (ItemStack itemstack : worldObj.getLootTableManager().getLootTableFromLocation(getLootTable()).generateLootForPools(worldObj.rand, lootcontext$builder.build())) {
-                    baited = false;
-                    stack = itemstack.copy();
-                }
-
-                saveAndRefresh();
-                MCServerHelper.markTileForUpdate(this);
-            }
-        }
-    }
-
     private boolean isSurroundedByWater(World world, BlockPos pos) {
         return FishingHelper.isWater(world, pos.east(), pos.west(), pos.south(), pos.north(), pos.up());
     }
@@ -80,6 +97,7 @@ public class TileTrap extends TileSingleStack {
     }
 
     @Override
+    @Nonnull
     public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
         nbt.setBoolean("Baited", baited);
         return super.writeToNBT(nbt);

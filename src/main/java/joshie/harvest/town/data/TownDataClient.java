@@ -4,16 +4,23 @@ import joshie.harvest.api.buildings.Building;
 import joshie.harvest.api.calendar.Festival;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.buildings.BuildingStage;
+import joshie.harvest.knowledge.letter.LetterDataClient;
 import joshie.harvest.quests.data.QuestDataClient;
 
 import java.util.LinkedList;
 
-public class TownDataClient extends TownData<QuestDataClient> {
+public class TownDataClient extends TownData<QuestDataClient, LetterDataClient> {
     private final QuestDataClient quest = new QuestDataClient();
+    private final LetterDataClient letters = new LetterDataClient();
 
     @Override
     public QuestDataClient getQuests() {
         return quest;
+    }
+
+    @Override
+    public LetterDataClient getLetters() {
+        return letters;
     }
 
     public void addBuilding(TownBuilding building) {

@@ -2,7 +2,6 @@ package joshie.harvest.town.packet;
 
 import io.netty.buffer.ByteBuf;
 import joshie.harvest.api.calendar.Festival;
-import joshie.harvest.calendar.HolidayRegistry;
 import joshie.harvest.core.network.Packet;
 import joshie.harvest.core.network.Packet.Side;
 import joshie.harvest.town.data.TownDataClient;
@@ -34,7 +33,7 @@ public class PacketSyncFestival extends PacketSyncTown {
     @Override
     public void fromBytes(ByteBuf buf) {
         super.fromBytes(buf);
-        festival = HolidayRegistry.INSTANCE.getFestivalFromString(new ResourceLocation(ByteBufUtils.readUTF8String(buf)));
+        festival = Festival.REGISTRY.get(new ResourceLocation(ByteBufUtils.readUTF8String(buf)));
         days = buf.readInt();
     }
 

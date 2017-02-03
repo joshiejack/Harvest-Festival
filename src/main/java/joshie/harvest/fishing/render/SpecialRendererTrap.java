@@ -13,6 +13,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nonnull;
+
 @SideOnly(Side.CLIENT)
 public class SpecialRendererTrap extends TileSpecialRendererItem<TileTrap> {
     private static final ItemStack SPEECH = HFNPCs.TOOLS.getStackFromEnum(NPCTool.SPEECH);
@@ -20,7 +22,7 @@ public class SpecialRendererTrap extends TileSpecialRendererItem<TileTrap> {
     private static final Item WOOD = Item.getItemFromBlock(HFGathering.WOOD);
 
     @Override
-    public void renderTileEntityAt(TileTrap tile, double x, double y, double z, float tick, int destroyStage) {
+    public void renderTileEntityAt(@Nonnull TileTrap tile, double x, double y, double z, float tick, int destroyStage) {
         if (!tile.isBaited()) {
             ItemStack stack = tile.getStack();
             if (stack != null) {

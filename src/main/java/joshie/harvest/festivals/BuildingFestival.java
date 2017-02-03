@@ -2,10 +2,10 @@ package joshie.harvest.festivals;
 
 import joshie.harvest.api.buildings.Building;
 import joshie.harvest.api.calendar.Festival;
-import joshie.harvest.api.quests.Quest;
 import joshie.harvest.core.util.HFTemplate;
 import joshie.harvest.core.util.ResourceLoader;
 import joshie.harvest.town.TownHelper;
+import joshie.harvest.town.data.TownDataServer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
@@ -27,12 +27,19 @@ public class BuildingFestival extends Building {
 
     @Override
     public void onFestivalChanged(@Nonnull World world, @Nonnull BlockPos pos, @Nonnull Rotation rotation, @Nonnull Festival oldFestival, @Nonnull Festival newFestival) {
+        TownDataServer town = TownHelper.getClosestTownToBlockPos(world, pos);
+        removeOldFestival(oldFestival, world, pos, rotation, town);
+        addNewFestival(newFestival, world, pos, rotation, town);
+    }
+
+    private void removeOldFestival(Festival oldFestival, World world, BlockPos pos, Rotation rotation, TownDataServer town) {
         if (oldFestival.affectsFestivalGrounds()) getFestivalTemplateFromFestival(oldFestival).removeBlocks(world, pos, rotation); //Remove the old festival
-        Quest oldQuest = oldFestival.getQuest(); //Remove the old festival quest
-        if (oldQuest != null) TownHelper.getClosestTownToBlockPos(world, pos).getQuests().removeAsCurrent(world, oldQuest);
+        if (oldFestival.getQuest() != null) town.getQuests().removeAsCurrent(world, oldFestival.getQuest());
+    }
+
+    private void addNewFestival(Festival newFestival, World world, BlockPos pos, Rotation rotation, TownDataServer town) {
         if (newFestival.affectsFestivalGrounds()) getFestivalTemplateFromFestival(newFestival).placeBlocks(world, pos, rotation, null); //Place the new blocks
-        Quest newQuest = newFestival.getQuest(); //Start the new festivals Quest
-        if (newQuest != null) TownHelper.getClosestTownToBlockPos(world, pos).getQuests().startQuest(newQuest, true, null);
+        if (newFestival.getQuest() != null) town.getQuests().startQuest(newFestival.getQuest(), true, null);
     }
 
     private HFTemplate getFestivalTemplateFromFestival(Festival festival) {

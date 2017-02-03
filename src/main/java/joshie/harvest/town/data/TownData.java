@@ -8,6 +8,7 @@ import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.buildings.BuildingStage;
 import joshie.harvest.core.helpers.NBTHelper;
+import joshie.harvest.knowledge.letter.LetterData;
 import joshie.harvest.quests.data.QuestData;
 import joshie.harvest.shops.data.ShopData;
 import net.minecraft.nbt.NBTTagCompound;
@@ -17,11 +18,11 @@ import net.minecraft.util.math.BlockPos;
 
 import java.util.*;
 
-public abstract class TownData<Q extends QuestData> {
-    protected Map<ResourceLocation, TownBuilding> buildings = new HashMap<>();
-    protected LinkedList<BuildingStage> building = new LinkedList<>();
+public abstract class TownData<Q extends QuestData, L extends LetterData> {
     protected final Set<ResourceLocation> inhabitants = new HashSet<>();
     protected final ShopData shops = new ShopData();
+    protected Map<ResourceLocation, TownBuilding> buildings = new HashMap<>();
+    protected LinkedList<BuildingStage> building = new LinkedList<>();
     protected Festival festival = Festival.NONE;
     protected int festivalDays;
     protected CalendarDate birthday;
@@ -31,6 +32,7 @@ public abstract class TownData<Q extends QuestData> {
 
     /** Overriden to actually return what we should **/
     public abstract Q getQuests();
+    public abstract L getLetters();
 
     public Quest getDailyQuest() {
         return dailyQuest;

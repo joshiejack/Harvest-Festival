@@ -1,12 +1,12 @@
 package joshie.harvest.quests.gui;
 
 import joshie.harvest.api.quests.Quest;
+import joshie.harvest.core.base.gui.ContainerNull;
 import joshie.harvest.core.base.gui.GuiBaseContainer;
 import joshie.harvest.core.helpers.MCClientHelper;
 import joshie.harvest.core.helpers.TextHelper;
 import joshie.harvest.town.TownHelper;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.apache.commons.lang3.StringEscapeUtils;
@@ -16,8 +16,8 @@ public class GuiQuestBoard extends GuiBaseContainer {
     private Quest quest;
     private BlockPos pos;
 
-    public GuiQuestBoard(BlockPos pos, EntityPlayer player, InventoryPlayer playerInv) {
-        super(new ContainerQuestBoard(player, playerInv), "sign", 34);
+    public GuiQuestBoard(BlockPos pos, EntityPlayer player) {
+        super(new ContainerNull(), "sign", 34);
         this.quest = TownHelper.getClosestTownToEntity(player).getDailyQuest();
         this.world = MCClientHelper.getWorld();
         this.pos = pos;

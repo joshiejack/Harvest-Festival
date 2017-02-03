@@ -4,7 +4,9 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
-public abstract class TileSingleStack extends TileDaily {
+import javax.annotation.Nonnull;
+
+public abstract class TileSingleStack extends TileHarvest {
     protected ItemStack stack = null;
 
     public abstract boolean onRightClicked(EntityPlayer player, ItemStack place);
@@ -22,6 +24,7 @@ public abstract class TileSingleStack extends TileDaily {
     }
 
     @Override
+    @Nonnull
     public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
         if (stack != null) {
             nbt.setTag("Stack", stack.writeToNBT(new NBTTagCompound()));

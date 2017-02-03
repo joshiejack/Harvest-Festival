@@ -9,7 +9,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 
 @Packet(Side.CLIENT)
-public class PacketQuestRemove extends PacketQuest {
+public class PacketQuestRemove extends PacketSharedSync {
     private Quest quest;
 
     @SuppressWarnings("unused")

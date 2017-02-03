@@ -1,15 +1,18 @@
 package joshie.harvest.core.block;
 
+import joshie.harvest.HarvestFestival;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.base.block.BlockHFEnumRotatableTile;
 import joshie.harvest.core.base.item.ItemBlockHF;
 import joshie.harvest.core.block.BlockStorage.Storage;
+import joshie.harvest.core.handlers.GuiHandler;
 import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.core.helpers.StackHelper;
 import joshie.harvest.core.item.ItemBlockStorage;
 import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.core.tile.TileMailbox;
 import joshie.harvest.core.tile.TileShipping;
+import joshie.harvest.knowledge.letter.LetterHelper;
 import joshie.harvest.player.PlayerTrackerServer;
 import net.minecraft.block.BlockFence;
 import net.minecraft.block.SoundType;
@@ -107,6 +110,10 @@ public class BlockStorage extends BlockHFEnumRotatableTile<BlockStorage, Storage
 
                 held.splitStack(1);
                 return true;
+            }
+        } else if (storage == MAILBOX) {
+            if (!world.isRemote && LetterHelper.hasUnreadLetters(player)) {
+                player.openGui(HarvestFestival.instance, GuiHandler.MAILBOX, world, 0, 0, 0);
             }
         }
 

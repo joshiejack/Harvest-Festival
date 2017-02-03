@@ -62,6 +62,7 @@ public class TileSpecialRendererItem<T extends TileEntity> extends TileEntitySpe
         GlStateManager.popMatrix();
     }
 
+    @SuppressWarnings("ConstantConditions")
     protected void renderFluidCube(ResourceLocation fluid, float x, float y, float z, float size) {
         GlStateManager.pushMatrix();
         GlStateManager.translate(x, y, z);
@@ -125,6 +126,37 @@ public class TileSpecialRendererItem<T extends TileEntity> extends TileEntitySpe
             vb.pos(size / 2f, 0, -size / 2f).tex(uMax, vMin).endVertex(); //Top Left
             vb.pos(size / 2f, -size / 2f, -size / 2f).tex(uMin, vMin).endVertex(); //Bottom Left
             vb.pos(-size / 2f, -size / 2f, -size / 2f).tex(uMin, vMax).endVertex(); //Bottom Right
+            tessellator.draw();
+        }
+
+        GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+        GlStateManager.disableBlend();
+        RenderHelper.enableStandardItemLighting();
+        GlStateManager.popMatrix();
+    }
+
+    @SuppressWarnings("ConstantConditions")
+    protected void renderFluidPlane(ResourceLocation fluid, float x, float y, float z, float width, float length) {
+        GlStateManager.pushMatrix();
+        GlStateManager.translate(x, y, z);
+        RenderHelper.disableStandardItemLighting();
+        GlStateManager.enableBlend();
+        GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+        Tessellator tessellator = Tessellator.getInstance();
+        VertexBuffer vb = tessellator.getBuffer();
+        TextureAtlasSprite sprite = MINECRAFT.getTextureMapBlocks().getTextureExtry(fluid.toString());
+        if (sprite != null) {
+            MINECRAFT.renderEngine.bindTexture(LOCATION_BLOCKS_TEXTURE);
+            double uMin = (double) sprite.getMinU();
+            double uMax = (double) sprite.getMaxU();
+            double vMin = (double) sprite.getMinV();
+            double vMax = (double) sprite.getMaxV();
+
+            vb.begin(7, POSITION_TEX);
+            vb.pos(width / 2f, 0, length / 2f).tex(uMax, vMax).endVertex();
+            vb.pos(width / 2f, 0, -length / 2f).tex(uMax, vMin).endVertex();
+            vb.pos(-width / 2f, 0, -length / 2f).tex(uMin, vMin).endVertex();
+            vb.pos(-width / 2f, 0, length / 2f).tex(uMin, vMax).endVertex();
             tessellator.draw();
         }
 

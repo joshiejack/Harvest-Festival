@@ -5,12 +5,13 @@ import joshie.harvest.cooking.gui.ContainerFridge;
 import joshie.harvest.cooking.gui.GuiCookbook;
 import joshie.harvest.cooking.gui.GuiFridge;
 import joshie.harvest.cooking.tile.TileFridge;
+import joshie.harvest.core.base.gui.ContainerNull;
+import joshie.harvest.knowledge.gui.letter.GuiLetter;
 import joshie.harvest.knowledge.HFNotes;
 import joshie.harvest.knowledge.gui.stats.GuiStats;
 import joshie.harvest.npcs.NPCHelper;
 import joshie.harvest.npcs.entity.EntityNPC;
 import joshie.harvest.npcs.gui.*;
-import joshie.harvest.quests.gui.ContainerQuestBoard;
 import joshie.harvest.quests.gui.GuiQuestBoard;
 import joshie.harvest.shops.gui.ContainerNPCShop;
 import joshie.harvest.shops.gui.GuiNPCShop;
@@ -34,6 +35,7 @@ public class GuiHandler implements IGuiHandler {
     public static final int GIFT_GODDESS = 10;
     public static final int QUEST_BOARD = 11;
     public static final int FORCED_NPC = 12;
+    public static final int MAILBOX = 13;
 
     @Override
     public Object getServerGuiElement(int ID, EntityPlayer player, World world, int entityID, int nextGui, int hand) {
@@ -53,7 +55,8 @@ public class GuiHandler implements IGuiHandler {
                 return new ContainerNPCShop((EntityNPC) world.getEntityByID(entityID));
             case GIFT:          return new ContainerNPCGift(player, (EntityNPC) world.getEntityByID(entityID), EnumHand.values()[hand], -1);
             case FRIDGE:        return new ContainerFridge(player, player.inventory, (TileFridge) world.getTileEntity(new BlockPos(entityID, nextGui, hand)));
-            case QUEST_BOARD:   return new ContainerQuestBoard(player, player.inventory);
+            case MAILBOX:
+            case QUEST_BOARD:   return new ContainerNull();
             default:            return null;
         }
     }
@@ -82,7 +85,8 @@ public class GuiHandler implements IGuiHandler {
             case GIFT:          return new GuiNPCGift(player, (EntityNPC) world.getEntityByID(entityID), EnumHand.values()[hand]);
             case GIFT_GODDESS:  return new GuiNPCGift(player, (EntityNPC) world.getEntityByID(entityID), EnumHand.values()[hand], GuiNPCGift.GODDESS_GIFT);
             case FRIDGE:        return new GuiFridge(player, player.inventory, (TileFridge) world.getTileEntity(new BlockPos(entityID, nextGui, hand)));
-            case QUEST_BOARD:   return new GuiQuestBoard(new BlockPos(entityID, nextGui, hand), player, player.inventory);
+            case QUEST_BOARD:   return new GuiQuestBoard(new BlockPos(entityID, nextGui, hand), player);
+            case MAILBOX:       return new GuiLetter(player);
             case COOKBOOK:      return new GuiCookbook();
             case STATS_BOOK:    return new GuiStats();
             case SHOP_OPTIONS:    {

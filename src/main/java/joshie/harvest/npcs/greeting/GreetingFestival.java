@@ -4,7 +4,6 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.Festival;
 import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.npc.greeting.IConditionalGreeting;
-import joshie.harvest.calendar.HolidayRegistry;
 import joshie.harvest.core.helpers.TextHelper;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.player.EntityPlayer;
@@ -21,7 +20,7 @@ public class GreetingFestival implements IConditionalGreeting {
 
     @Override
     public boolean canDisplay(EntityPlayer player, EntityAgeable ageable, NPC npc) {
-        return HolidayRegistry.INSTANCE.getHoliday(player.worldObj, new BlockPos(player), HFApi.calendar.getDate(player.worldObj)) == festival;
+        return HFApi.calendar.getFestival(player.worldObj, new BlockPos(ageable)) == festival;
     }
 
     @Override

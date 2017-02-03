@@ -4,7 +4,7 @@ import joshie.harvest.core.base.tile.TileFaceable;
 import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.core.helpers.MCServerHelper;
 import joshie.harvest.core.helpers.NBTHelper;
-import joshie.harvest.festivals.HFFestivals;
+import joshie.harvest.festivals.cooking.CookingContest;
 import joshie.harvest.festivals.cooking.CookingContestQuest;
 import joshie.harvest.town.TownHelper;
 import net.minecraft.entity.player.EntityPlayer;
@@ -23,7 +23,7 @@ public class TileStand extends TileFaceable {
     }
 
     public boolean setContents(@Nullable EntityPlayer player, ItemStack stack) {
-        CookingContestQuest quest = TownHelper.getClosestTownToBlockPos(worldObj, pos).getQuests().getAQuest(HFFestivals.COOKING_FESTIVAL.getQuest());
+        CookingContestQuest quest = TownHelper.getClosestTownToBlockPos(worldObj, pos).getQuests().getAQuest(CookingContest.FESTIVAL.getQuest());
         if (quest == null || quest.isFull() || this.stack != null) return false;
         else {
             if (player != null) quest.addStand(EntityHelper.getPlayerUUID(player), pos);
@@ -35,7 +35,7 @@ public class TileStand extends TileFaceable {
     }
 
     public ItemStack removeContents() {
-        CookingContestQuest quest = TownHelper.getClosestTownToBlockPos(worldObj, pos).getQuests().getAQuest(HFFestivals.COOKING_FESTIVAL.getQuest());
+        CookingContestQuest quest = TownHelper.getClosestTownToBlockPos(worldObj, pos).getQuests().getAQuest(CookingContest.FESTIVAL.getQuest());
         if (stack == null) return null;
         else {
             if (quest != null) quest.removeStand(pos);

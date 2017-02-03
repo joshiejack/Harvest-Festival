@@ -11,9 +11,12 @@ import joshie.harvest.core.helpers.InventoryHelper;
 import joshie.harvest.core.helpers.RegistryHelper;
 import joshie.harvest.core.loot.SetEnum;
 import joshie.harvest.core.loot.SetSizeable;
+import joshie.harvest.core.render.SpecialRendererMailbox;
 import joshie.harvest.core.tile.TileMailbox;
 import joshie.harvest.core.tile.TileShipping;
 import joshie.harvest.core.util.annotations.HFLoader;
+import joshie.harvest.fishing.render.SpecialRendererTrap;
+import joshie.harvest.fishing.tile.TileTrap;
 import net.minecraft.block.BlockFlower.EnumFlowerColor;
 import net.minecraft.block.BlockFlower.EnumFlowerType;
 import net.minecraft.client.Minecraft;
@@ -28,6 +31,7 @@ import net.minecraft.world.biome.BiomeColorHelper;
 import net.minecraft.world.storage.loot.functions.LootFunctionManager;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import net.minecraftforge.fml.relauncher.Side;
@@ -92,9 +96,10 @@ public class HFCore {
                 return worldIn != null && pos != null ? BiomeColorHelper.getFoliageColorAtPos(worldIn, pos) : ColorizerFoliage.getFoliageColorBasic();
         }, HFCore.FLOWERS);
 
-        Minecraft.getMinecraft().getItemColors().registerItemColorHandler((stack, tintIndex) -> {
-                return HFCore.FLOWERS.getEnumFromMeta(stack.getItemDamage()).isColored() ? ColorizerFoliage.getFoliageColorBasic() : -1;
-        }, HFCore.FLOWERS);
+        Minecraft.getMinecraft().getItemColors().registerItemColorHandler((stack, tintIndex) ->
+                HFCore.FLOWERS.getEnumFromMeta(stack.getItemDamage()).isColored() ? ColorizerFoliage.getFoliageColorBasic() : -1 , HFCore.FLOWERS);
+
+        ClientRegistry.bindTileEntitySpecialRenderer(TileMailbox.class, new SpecialRendererMailbox());
     }
 
     private static Fluid registerFluid(Fluid fluid) {

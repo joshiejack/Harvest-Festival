@@ -65,7 +65,7 @@ public class NPC extends IForgeRegistryEntry.Impl<NPC> {
      * @param resource      the registry name, e.g. harvestfestival:jim
      * @param gender        the gender of the npc, this is only used for specialised greetings
      * @param age           the age group of the npc
-     * @param birthday    the date of birth for this npc,
+     * @param birthday      the date of birth for this npc,
      *                      take note that by default there are 30 days in a season,
      *                      if you use a higher number, this npc will never have
      *                      a birthday unless users change the config value

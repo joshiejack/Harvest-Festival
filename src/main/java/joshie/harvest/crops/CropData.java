@@ -23,6 +23,7 @@ public class CropData {
     private boolean safe;
     private boolean isDead;
 
+    @SuppressWarnings("WeakerAccess")
     public CropData setCrop(Crop crop, int stage) {
         this.crop = crop;
         this.stage = stage;
@@ -31,6 +32,7 @@ public class CropData {
     }
 
     //Returns false if the crop was withered
+    @SuppressWarnings("unchecked")
     public boolean newDay(World world, BlockPos pos) {
         //Stage 1, Check how long the plant has been without water, If it's more than 2 days kill it
         if (isDead || crop == null || (crop.requiresWater() && daysWithoutWater > 2) || !crop.getGrowthHandler().canGrow(world, pos, crop)) {
@@ -89,7 +91,7 @@ public class CropData {
         else return world.setBlockToAir(pos);
     }
 
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings("unchecked, unused")
     public List<ItemStack> harvest(@Nullable EntityPlayer player, boolean doHarvest) {
         if (crop != null && crop.getGrowthHandler().canHarvest(crop, stage)) {
             if (crop.getGrowthHandler().canHarvest(crop, stage)) {
@@ -105,6 +107,10 @@ public class CropData {
         } else {
             return null;
         }
+    }
+
+    public boolean isWatered() {
+        return daysWithoutWater == 0;
     }
 
     public void setHydrated() {

@@ -89,7 +89,8 @@ public class BlockTray extends BlockHFEnum<BlockTray, Tray> implements IAnimalFe
                 ItemStack drop = nest.getDrop().copy();
                 if (nest.getMother() != null) {
                     NBTTagCompound tag = drop.getSubCompound("Data", true);
-                    tag.setString("Mother", nest.getMother().toString());
+                    int relationship = HFApi.player.getRelationsForPlayer(player).getRelationship(nest.getMother());
+                    tag.setInteger("Relationship", (relationship - (relationship % 2500)));
                 }
 
                 nest.clear();

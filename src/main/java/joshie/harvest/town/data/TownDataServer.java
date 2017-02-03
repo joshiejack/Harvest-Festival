@@ -10,6 +10,7 @@ import joshie.harvest.api.quests.Quest;
 import joshie.harvest.api.quests.TargetType;
 import joshie.harvest.buildings.BuildingStage;
 import joshie.harvest.buildings.HFBuildings;
+import joshie.harvest.calendar.CalendarAPI;
 import joshie.harvest.calendar.CalendarHelper;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.helpers.EntityHelper;
@@ -18,6 +19,7 @@ import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.core.util.interfaces.ISyncMaster;
 import joshie.harvest.gathering.GatheringData;
 import joshie.harvest.knowledge.letter.LetterDataServer;
+import joshie.harvest.knowledge.packet.PacketSyncLetters;
 import joshie.harvest.npcs.HFNPCs;
 import joshie.harvest.npcs.NPCHelper;
 import joshie.harvest.npcs.entity.EntityNPCBuilder;
@@ -37,6 +39,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.*;
 
@@ -45,6 +48,8 @@ public class TownDataServer extends TownData<QuestDataServer, LetterDataServer> 
     private Set<ResourceLocation> deadVillagers = new HashSet<>();
     private final QuestDataServer quests = new QuestDataServer(this);
     private final LetterDataServer letters = new LetterDataServer(this);
+    private Festival targetFestival = Festival.NONE;
+    private int targetFestivalDays;
     private int dimension;
 
     public TownDataServer() {}
@@ -71,7 +76,7 @@ public class TownDataServer extends TownData<QuestDataServer, LetterDataServer> 
     }
 
     @Override
-    public void sync(@Nullable EntityPlayer player, PacketSharedSync packet) {
+    public void sync(@Nullable EntityPlayer player, @Nonnull PacketSharedSync packet) {
         if (player != null) PacketHandler.sendToClient(packet.setUUID(getID()), player);
         else PacketHandler.sendToDimension(dimension, packet.setUUID(getID()));
     }
@@ -155,6 +160,11 @@ public class TownDataServer extends TownData<QuestDataServer, LetterDataServer> 
         PacketHandler.sendToDimension(world.provider.getDimension(), new PacketDailyQuest(uuid, dailyQuest));
     }
 
+    public void startFestival(Festival festival) {
+        this.targetFestival = festival;
+        this.targetFestivalDays = festival.getFestivalLength();
+    }
+
     public void newDay(World world, Cache<BlockPos, Boolean> isFar, CalendarDate yesterday, CalendarDate today) {
         if (world.isBlockLoaded(getTownCentre())) {
             shops.newDay(world, uuid);
@@ -179,9 +189,16 @@ public class TownDataServer extends TownData<QuestDataServer, LetterDataServer> 
                 }
             }
 
-            //Update the buildings
             //Festival updates
+            //Set the festival for today
             Festival previousFestival = festival;
+            if (targetFestival != Festival.NONE) {
+                festival = targetFestival;
+                festivalDays = targetFestivalDays;
+                targetFestival = Festival.NONE;
+                targetFestivalDays = 0;
+            }
+
             if (previousFestival != Festival.NONE) { //If there is a festival active
                 festivalDays--;  //Decrease the amount of days of the festival left
                 if (festivalDays <= 0) { //If we have no days left then v
@@ -197,7 +214,27 @@ public class TownDataServer extends TownData<QuestDataServer, LetterDataServer> 
                 }
             }
 
-            letters.newDay(yesterday, today);
+            letters.newDay(today);
+            boolean changed = false;
+            Festival newFestival = CalendarAPI.INSTANCE.getFestivalFromDate(today);
+            if (!newFestival.equals(Festival.NONE)) {
+                Festival oldFestival = CalendarAPI.INSTANCE.getFestivalFromDate(yesterday);
+                if (!newFestival.equals(oldFestival)) {
+                    //Remove the old letter
+                    if (oldFestival.getLetter() != null) {
+                        changed = true;
+                        letters.remove(oldFestival.getLetter());
+                    }
+
+                    //Add the new letter
+                    if (newFestival.getLetter() != null) {
+                        changed = true;
+                        letters.add(newFestival.getLetter());
+                    }
+                }
+            }
+
+            if (changed) sync(null, new PacketSyncLetters(letters.getLetters()));
             deadVillagers = new HashSet<>(); //Reset the dead villagers
         }
     }
@@ -227,6 +264,12 @@ public class TownDataServer extends TownData<QuestDataServer, LetterDataServer> 
             if (buildings.containsKey(HFBuildings.FISHING_HUT.getRegistryName())) quests.getFinished().add(Quests.BUILDING_FISHER);
             if (buildings.containsKey(HFBuildings.BLACKSMITH.getRegistryName())) quests.getFinished().add(Quests.BUILDING_BLACKSMITH);
         }
+
+        //Target festival
+        if (nbt.hasKey("FestivalTarget")) {
+            targetFestival = Festival.REGISTRY.get(new ResourceLocation(nbt.getString("FestivalTarget")));
+            targetFestivalDays = nbt.getInteger("FestivalTargetDays");
+        } else festival = Festival.NONE;
     }
 
     @Override
@@ -237,5 +280,11 @@ public class TownDataServer extends TownData<QuestDataServer, LetterDataServer> 
         gathering.writeToNBT(nbt);
         nbt.setInteger("Dimension", dimension);
         nbt.setTag("DeadVillagers", NBTHelper.writeResourceSet(deadVillagers));
+
+        //Target festival
+        if (targetFestival != null) {
+            nbt.setString("FestivalTarget", targetFestival.getResource().toString());
+            nbt.setInteger("FestivalTargetDays", targetFestivalDays);
+        }
     }
 }

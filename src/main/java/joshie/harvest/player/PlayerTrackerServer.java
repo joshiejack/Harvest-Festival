@@ -100,7 +100,7 @@ public class PlayerTrackerServer extends PlayerTracker implements ISyncMaster {
 
     public void newDay(CalendarDate yesterday, CalendarDate today) {
         //Add their gold from selling items
-        letters.newDay(yesterday, today);
+        letters.newDay(today);
         relationships.newDay(yesterday, today);
         EntityPlayerMP player = getAndCreatePlayer();
         if (player != null) {

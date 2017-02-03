@@ -1656,6 +1656,9 @@ harvestfestival.quest.festival.cooking.ready=@I am ready!
 harvestfestival.quest.festival.cooking.cancel=@Give me a minute.
 harvestfestival.script.cooking=This was a great contest! Had a taste of everyone's meals... And well I think I've decided..... ...... ................... ..... ..... In third place is %1$s with their %2$s. ..... .. ... . .......... .... .. .. .. .. . In second place we jave %3$s with their %4$s... and finally...... without... further ado.... the winner of this year's cooking festival is........... %5$s with their amazing %6$s. Congratulations! For this years prize we have a gift of %7$s gold as well as a special recipe!
 
+## Letters
+harvestfestival.letter.cooking=Dear Sir/Madam, \n\nI have plans for a cooking festival that I would like to setup for tomorrow. Please confirm if you would be happy to attend.\n\n\n-Jenni
+
 ###Achievements
 achievement.harvestfestival.summon=Goddess' Bounty
 achievement.harvestfestival.summon.desc=Summon a goddess flower

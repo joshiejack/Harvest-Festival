@@ -6,6 +6,7 @@ import joshie.harvest.core.base.tile.TileHarvest;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
+import javax.annotation.Nonnull;
 import java.util.UUID;
 
 import static joshie.harvest.core.helpers.MCServerHelper.markTileForUpdate;
@@ -54,6 +55,7 @@ public class TileNest extends TileHarvest {
     }
 
     @Override
+    @Nonnull
     public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
         if (mother != null) nbt.setString("Mother", mother.toString());
         if (size != null) nbt.setString("Size", size.name());

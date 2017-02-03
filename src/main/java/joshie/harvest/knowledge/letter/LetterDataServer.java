@@ -4,9 +4,7 @@ import gnu.trove.iterator.TObjectIntIterator;
 import gnu.trove.map.TObjectIntMap;
 import gnu.trove.map.hash.TObjectIntHashMap;
 import joshie.harvest.api.calendar.CalendarDate;
-import joshie.harvest.api.calendar.Festival;
 import joshie.harvest.api.core.Letter;
-import joshie.harvest.calendar.CalendarAPI;
 import joshie.harvest.core.util.interfaces.ISyncMaster;
 import joshie.harvest.knowledge.packet.PacketAddLetter;
 import joshie.harvest.knowledge.packet.PacketRemoveLetter;
@@ -33,7 +31,15 @@ public class LetterDataServer extends LetterData {
 
     @Override
     public boolean hasUnreadLetters() {
-        return letters.size() >= 0;
+        return letters.size() > 0;
+    }
+
+    public void add(Letter letter) {
+        letters.put(letter, 0);
+    }
+
+    public void remove(Letter letter) {
+        letters.remove(letter);
     }
 
     public void addLetter(Letter letter) {
@@ -50,7 +56,7 @@ public class LetterDataServer extends LetterData {
         master.sync(player, new PacketSyncLetters(letters.keySet()));
     }
 
-    public void newDay(CalendarDate yesterday, CalendarDate today) {
+    public void newDay(CalendarDate today) {
         //Increase the number of days passed by one
         for (Letter resource: letters.keySet()) {
             letters.increment(resource);
@@ -65,24 +71,6 @@ public class LetterDataServer extends LetterData {
             if (letter.isExpired(today, it.value())) {
                 changed = true;
                 it.remove();
-            }
-        }
-
-        Festival newFestival = CalendarAPI.INSTANCE.getFestivalFromDate(today);
-        if (!newFestival.equals(Festival.NONE)) {
-            Festival oldFestival = CalendarAPI.INSTANCE.getFestivalFromDate(yesterday);
-            if (!newFestival.equals(oldFestival)) {
-                //Remove the old letter
-                if (oldFestival.getLetter() != null) {
-                    changed = true;
-                    letters.remove(oldFestival.getLetter());
-                }
-
-                //Add the new letter
-                if (newFestival.getLetter() != null) {
-                    changed = true;
-                    letters.put(newFestival.getLetter(), 0);
-                }
             }
         }
 

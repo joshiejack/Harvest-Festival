@@ -4,6 +4,7 @@ import joshie.harvest.api.calendar.CalendarDate;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
@@ -24,12 +25,13 @@ public class Letter {
     private EventPriority priority;
     private boolean isTownLetter;
     private String toLocalize;
+    private boolean rejectable;
     private int expiry;
 
     public Letter(ResourceLocation resource) {
         this.resource = resource;
         this.priority = EventPriority.NORMAL;
-        this.toLocalize = resource.getResourceDomain() + ".letter." + resource;
+        this.toLocalize = resource.getResourceDomain() + ".letter." + resource.getResourcePath();
         this.expiry = -1;
         REGISTRY.put(resource, this);
     }
@@ -41,6 +43,12 @@ public class Letter {
     /** Marks this letter as being saved to the town **/
     public Letter setTownLetter() {
         this.isTownLetter = true;
+        return this;
+    }
+
+    /** Mark this letter as having a reject button **/
+    public Letter setRejectable() {
+        rejectable = true;
         return this;
     }
 
@@ -81,6 +89,8 @@ public class Letter {
     }
 
     /** Called when the gui is init, so that you can add buttons
+     *  Take note that buttons that accept the letter or reject
+     *  are automatically added
      * @param list  the list of buttons
      * @param x     guiLeft
      * @param y     guiTop */
@@ -90,12 +100,27 @@ public class Letter {
     /** Called when rendering the letter
      * @param gui   the gui
      * @param font  the font
-     * @param x     guiLeft
-     * @param y     guiTop */
+     * @param mouseX    x position of mouse
+     * @param mouseY    y position of mouse */
     @SideOnly(Side.CLIENT)
-    public void renderLetter(GuiScreen gui, FontRenderer font, int x, int y) {
-        font.drawSplitString(StringEscapeUtils.unescapeJava(I18n.translateToLocal(toLocalize)), 42, 38, 142, 4210752);
+    @SuppressWarnings("deprecation")
+    public void renderLetter(GuiScreen gui, FontRenderer font, int mouseX, int mouseY) {
+        font.drawSplitString(StringEscapeUtils.unescapeJava(I18n.translateToLocal(toLocalize)), 15, 15, 142, 4210752);
     }
+
+    /** Called to check if the button should be added **/
+    @SideOnly(Side.CLIENT)
+    public boolean hasRejectButton() {
+        return rejectable;
+    }
+
+    /** Called when the letter is accepted
+     *  @param player   the player who accepted the letter **/
+    public void onLetterAccepted(EntityPlayer player) {}
+
+    /** Called when the letter is rejected
+     *  @param player   the player who rejected the letter **/
+    public void onLetterRejected(EntityPlayer player) {}
 
     @Override
     public boolean equals(Object o) {

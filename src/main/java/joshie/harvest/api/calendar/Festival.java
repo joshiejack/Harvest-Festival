@@ -9,6 +9,8 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.HashMap;
 
+import static joshie.harvest.api.calendar.CalendarDate.DAYS_PER_SEASON;
+
 public final class Festival {
     public static final HashMap<ResourceLocation, Festival> REGISTRY = new HashMap<>();
     public static final Festival NONE = new Festival(new ResourceLocation("harvestfestival", "none")).setAffectsGrounds();
@@ -16,12 +18,14 @@ public final class Festival {
     private boolean affectsGround;
     private boolean shopsOpen;
     private boolean hidden;
+    private int length;
     private Quest quest;
     private Letter letter;
     private Note note;
 
     public Festival(@Nonnull ResourceLocation resource) {
         this.resource = resource;
+        this.length = 3;
         REGISTRY.put(resource, this);
     }
 
@@ -56,10 +60,22 @@ public final class Festival {
         return this;
     }
 
+    /** Set the festival length
+     *  @param length   the number of days the festival will stay up **/
+    public Festival setLength(int length) {
+        this.length = length;
+        return this;
+    }
+
     /** Call this to make this festival change the look of the festival grounds **/
     public Festival setAffectsGrounds() {
         this.affectsGround = true;
         return this;
+    }
+
+    /** Returns how many days this festival lasts **/
+    public int getFestivalLength() {
+        return (int)(((double)length / 30D) * DAYS_PER_SEASON);
     }
 
     @Nullable

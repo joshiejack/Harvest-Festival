@@ -5,10 +5,10 @@
 		"model": "minecraft:cross"
 	},
 	"variants": {
-		"flowertype=bamboo": [{ "textures": { "cross": "harvestfestival:blocks/bamboo_shoots" }}],
-		"flowertype=chamomile": [{ "textures": { "cross": "harvestfestival:blocks/moondrop" }}] ,
-		"flowertype=lavendar": [{ "textures": { "cross": "harvestfestival:blocks/toyflower" }}],
-		"flowertype=matsutake": [{ "textures": { "cross": "harvestfestival:blocks/pinkcat" }}],
-		"flowertype=mine": [{ "textures": {"cross": "harvestfestival:blocks/blue_magicgrass" }}]
+		"naturalblock=bamboo": [{ "textures": { "cross": "harvestfestival:blocks/bamboo_shoots" }}],
+		"naturalblock=chamomile": [{ "textures": { "cross": "harvestfestival:blocks/chamomile" }}] ,
+		"naturalblock=lavendar": [{ "textures": { "cross": "harvestfestival:blocks/lavendar" }}],
+		"naturalblock=matsutake": [{ "textures": { "cross": "harvestfestival:blocks/matsutake" }}],
+		"naturalblock=mint": [{ "textures": {"cross": "harvestfestival:blocks/mint" }}]
 	}
 }

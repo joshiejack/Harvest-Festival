@@ -2,15 +2,15 @@ package joshie.harvest.festivals.cooking;
 
 import joshie.harvest.api.calendar.CalendarDate;
 import joshie.harvest.api.calendar.Season;
-import joshie.harvest.api.core.Letter;
+import joshie.harvest.festivals.LetterFestival;
 import net.minecraft.util.ResourceLocation;
 
 import static joshie.harvest.core.lib.HFModInfo.MODID;
+import static joshie.harvest.festivals.HFFestivals.COOKING_FESTIVAL;
 
-public class CookingContestLetter extends Letter {
+public class CookingContestLetter extends LetterFestival {
     public CookingContestLetter() {
-        super(new ResourceLocation(MODID, "cooking"));
-        setTownLetter(); //Mark this as a town based letter
+        super(COOKING_FESTIVAL, new ResourceLocation(MODID, "cooking"));
     }
 
     @Override

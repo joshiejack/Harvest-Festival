@@ -21,6 +21,7 @@ public class LetterHelper {
     public static void addLetterToMailbox(EntityPlayer player, Letter letter) {
         if (!letter.isTownLetter()) HFTrackers.<PlayerTrackerServer>getPlayerTrackerFromPlayer(player).getLetters().addLetter(letter);
         else TownHelper.<TownDataServer>getClosestTownToEntity(player).getLetters().addLetter(letter);
+        HFTrackers.markDirty(player.worldObj);
     }
 
     @Nonnull

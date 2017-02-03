@@ -39,7 +39,7 @@ import static joshie.harvest.api.calendar.Weekday.*;
 import static joshie.harvest.api.npc.INPCHelper.Age.*;
 import static joshie.harvest.api.npc.INPCHelper.Gender.FEMALE;
 import static joshie.harvest.api.npc.INPCHelper.Gender.MALE;
-import static joshie.harvest.festivals.cooking.CookingContest.FESTIVAL;
+import static joshie.harvest.festivals.HFFestivals.COOKING_FESTIVAL;
 import static joshie.harvest.core.helpers.ConfigHelper.getDouble;
 import static joshie.harvest.core.helpers.RegistryHelper.registerSounds;
 import static joshie.harvest.core.lib.HFModInfo.GIFTPATH;
@@ -104,9 +104,9 @@ public class HFNPCs {
                 .add(SPRING, SUNDAY, 8000L, CARPENTER_FRONT)
                 .add(SPRING, SUNDAY, 17000L, CARPENTER_DOWNSTAIRS)
                 .add(SPRING, SUNDAY, 21000L, CARPENTER_FRONT)
-                .add(FESTIVAL, 0L, CARPENTER_UPSTAIRS)
-                .add(FESTIVAL, 9000L, PARK_BENCH)
-                .add(FESTIVAL, 20000L, CARPENTER_UPSTAIRS)
+                .add(COOKING_FESTIVAL, 0L, CARPENTER_UPSTAIRS)
+                .add(COOKING_FESTIVAL, 9000L, PARK_BENCH)
+                .add(COOKING_FESTIVAL, 20000L, CARPENTER_UPSTAIRS)
                 .build();
 
         //Flower Girl
@@ -118,9 +118,9 @@ public class HFNPCs {
                         .add(SPRING, SUNDAY, 17000L, PARK_BACK_LEFT)
                         .add(SPRING, SUNDAY, 19000L, CARPENTER_FRONT)
                         .add(SPRING, SUNDAY, 21000L, CARPENTER_UPSTAIRS)
-                        .add(FESTIVAL, 0L, CARPENTER_UPSTAIRS)
-                        .add(FESTIVAL, 6000L, PARK_CENTRE)
-                        .add(FESTIVAL, 17000L, CARPENTER_UPSTAIRS)
+                        .add(COOKING_FESTIVAL, 0L, CARPENTER_UPSTAIRS)
+                        .add(COOKING_FESTIVAL, 6000L, PARK_CENTRE)
+                        .add(COOKING_FESTIVAL, 17000L, CARPENTER_UPSTAIRS)
                         .build();
 
         //General Store
@@ -143,10 +143,10 @@ public class HFNPCs {
                         .add(SPRING, SATURDAY, 16000L, CAFE_CUSTOMER)
                         .add(SPRING, SATURDAY, 19000L, CAFE_KITCHEN)
                         .add(SPRING, SATURDAY, 22000L, FISHING_POND_BACK)
-                        .add(FESTIVAL, 0L, GENERAL_BEDROOM)
-                        .add(FESTIVAL, 4500L, PARK_PODIUM)
-                        .add(FESTIVAL, 18000L, GENERAL_BEDROOM)
-                        .add(FESTIVAL, 20000L, FISHING_POND_BACK)
+                        .add(COOKING_FESTIVAL, 0L, GENERAL_BEDROOM)
+                        .add(COOKING_FESTIVAL, 4500L, PARK_PODIUM)
+                        .add(COOKING_FESTIVAL, 18000L, GENERAL_BEDROOM)
+                        .add(COOKING_FESTIVAL, 20000L, FISHING_POND_BACK)
                         .build();
 
         //Milkmaid
@@ -163,12 +163,12 @@ public class HFNPCs {
                         .add(SPRING, MONDAY, 17000L, FISHER_LEFT)
                         .add(SPRING, MONDAY, 20000L, FISHING_POND_BACK)
                         .add(SPRING, MONDAY, 24000L, GENERAL_BED)
-                        .add(FESTIVAL, 0L, GENERAL_BED)
-                        .add(FESTIVAL, 6000L, PARK_TABLE)
-                        .add(FESTIVAL, 16000L, PARK_CUSTOMER)
-                        .add(FESTIVAL, 18000L, GENERAL_BED)
-                        .add(FESTIVAL, 20000L, FISHING_POND_BACK)
-                        .add(FESTIVAL, 24000L, GENERAL_BED)
+                        .add(COOKING_FESTIVAL, 0L, GENERAL_BED)
+                        .add(COOKING_FESTIVAL, 6000L, PARK_TABLE)
+                        .add(COOKING_FESTIVAL, 16000L, PARK_CUSTOMER)
+                        .add(COOKING_FESTIVAL, 18000L, GENERAL_BED)
+                        .add(COOKING_FESTIVAL, 20000L, FISHING_POND_BACK)
+                        .add(COOKING_FESTIVAL, 24000L, GENERAL_BED)
                         .build();
 
         //Barn Owner
@@ -184,11 +184,11 @@ public class HFNPCs {
                         .add(SPRING, MONDAY, 17000L, PARK_CENTRE)
                         .add(SPRING, MONDAY, 19000L, GENERAL_BEDROOM)
                         .add(SPRING, MONDAY, 22000L, BARN_INSIDE)
-                        .add(FESTIVAL, 0L, BARN_INSIDE)
-                        .add(FESTIVAL, 10000L, BARN_INSIDE)
-                        .add(FESTIVAL, 17000L, BARN_DOOR)
-                        .add(FESTIVAL, 19000L, GENERAL_BEDROOM)
-                        .add(FESTIVAL, 23500L, BARN_INSIDE)
+                        .add(COOKING_FESTIVAL, 0L, BARN_INSIDE)
+                        .add(COOKING_FESTIVAL, 10000L, BARN_INSIDE)
+                        .add(COOKING_FESTIVAL, 17000L, BARN_DOOR)
+                        .add(COOKING_FESTIVAL, 19000L, GENERAL_BEDROOM)
+                        .add(COOKING_FESTIVAL, 23500L, BARN_INSIDE)
                         .build();
 
         //Miner
@@ -208,10 +208,10 @@ public class HFNPCs {
                         .add(SPRING, MONDAY, 12000L, GENERAL_STORE_FRONT)
                         .add(SPRING, MONDAY, 15000L, PARK_BENCH)
                         .add(SPRING, MONDAY, 18000L, POULTRY_CENTRE)
-                        .add(FESTIVAL, 0L, POULTRY_CENTRE)
-                        .add(FESTIVAL, 6000L, PARK_BENCH)
-                        .add(FESTIVAL, 11000L, POULTRY_DOOR)
-                        .add(FESTIVAL, 13000L, POULTRY_CENTRE)
+                        .add(COOKING_FESTIVAL, 0L, POULTRY_CENTRE)
+                        .add(COOKING_FESTIVAL, 6000L, PARK_BENCH)
+                        .add(COOKING_FESTIVAL, 11000L, POULTRY_DOOR)
+                        .add(COOKING_FESTIVAL, 13000L, POULTRY_CENTRE)
                         .build();
 
         //Fisherman
@@ -238,14 +238,14 @@ public class HFNPCs {
                         .add(SPRING, SATURDAY, 18000L, FISHING_HUT_DOWNSTAIRS)
                         .add(SPRING, SATURDAY, 19500L, FISHING_POND_PIER)
                         .add(SPRING, SATURDAY, 22000L, FISHING_HUT_UPSTAIRS)
-                        .add(FESTIVAL, 0L, FISHING_HUT_UPSTAIRS)
-                        .add(FESTIVAL, 6000L, GODDESS_POND_FRONT)
-                        .add(FESTIVAL, 7000L, FISHING_POND_PIER)
-                        .add(FESTIVAL, 13000L, PARK_LEFT)
-                        .add(FESTIVAL, 16000L, PARK_CUSTOMER)
-                        .add(FESTIVAL, 17500L, FISHING_POND_PIER)
-                        .add(FESTIVAL, 20000L, FISHING_HUT_DOWNSTAIRS)
-                        .add(FESTIVAL, 22000L, FISHING_HUT_UPSTAIRS).build();
+                        .add(COOKING_FESTIVAL, 0L, FISHING_HUT_UPSTAIRS)
+                        .add(COOKING_FESTIVAL, 6000L, GODDESS_POND_FRONT)
+                        .add(COOKING_FESTIVAL, 7000L, FISHING_POND_PIER)
+                        .add(COOKING_FESTIVAL, 13000L, PARK_LEFT)
+                        .add(COOKING_FESTIVAL, 16000L, PARK_CUSTOMER)
+                        .add(COOKING_FESTIVAL, 17500L, FISHING_POND_PIER)
+                        .add(COOKING_FESTIVAL, 20000L, FISHING_HUT_DOWNSTAIRS)
+                        .add(COOKING_FESTIVAL, 22000L, FISHING_HUT_UPSTAIRS).build();
 
         //Cafe Owner
         ScheduleBuilder.create(CAFE_OWNER, CAFE_BALCONY)
@@ -269,9 +269,9 @@ public class HFNPCs {
                         .add(SPRING, SATURDAY, 18000L, CAFE_FRONT)
                         .add(SPRING, SATURDAY, 19000L, PARK_TABLE)
                         .add(SPRING, SATURDAY, 22000L, CAFE_BALCONY)
-                        .add(FESTIVAL, 0L, CAFE_BALCONY)
-                        .add(FESTIVAL, 5000L, PARK_STALL)
-                        .add(FESTIVAL, 18000L, CAFE_BALCONY)
+                        .add(COOKING_FESTIVAL, 0L, CAFE_BALCONY)
+                        .add(COOKING_FESTIVAL, 5000L, PARK_STALL)
+                        .add(COOKING_FESTIVAL, 18000L, CAFE_BALCONY)
                         .build();
 
         //Cafe Granny
@@ -297,9 +297,9 @@ public class HFNPCs {
                         .add(SPRING, SATURDAY, 15000L, CAFE_KITCHEN)
                         .add(SPRING, SATURDAY, 17000L, FISHING_POND_RIGHT)
                         .add(SPRING, SATURDAY, 19000L, CAFE_KITCHEN)
-                        .add(FESTIVAL, 0L, CAFE_KITCHEN)
-                        .add(FESTIVAL, 5000L, PARK_CAFE)
-                        .add(FESTIVAL, 18000L, CAFE_KITCHEN)
+                        .add(COOKING_FESTIVAL, 0L, CAFE_KITCHEN)
+                        .add(COOKING_FESTIVAL, 5000L, PARK_CAFE)
+                        .add(COOKING_FESTIVAL, 18000L, CAFE_KITCHEN)
                         .build();
 
         //Blacksmith
@@ -383,10 +383,10 @@ public class HFNPCs {
                         .add(SPRING, SUNDAY, 15000L, CAFE_BALCONY)
                         .add(SPRING, SUNDAY, 19000L, TOWNHALL_LEFT)
                         .add(SPRING, SUNDAY, 22000L, TOWNHALL_ADULT_BED)
-                        .add(FESTIVAL, 0L, TOWNHALL_ADULT_BED)
-                        .add(FESTIVAL, 6000L, PARK_BUSH)
-                        .add(FESTIVAL, 19000L, TOWNHALL_FRONT_OF_STAGE)
-                        .add(FESTIVAL, 22000L, TOWNHALL_ADULT_BED)
+                        .add(COOKING_FESTIVAL, 0L, TOWNHALL_ADULT_BED)
+                        .add(COOKING_FESTIVAL, 6000L, PARK_BUSH)
+                        .add(COOKING_FESTIVAL, 19000L, TOWNHALL_FRONT_OF_STAGE)
+                        .add(COOKING_FESTIVAL, 22000L, TOWNHALL_ADULT_BED)
                         .build();
 
         //Eldest Daughter
@@ -426,15 +426,15 @@ public class HFNPCs {
                         .add(SPRING, SUNDAY, 11000L, GENERAL_CUSTOMER)
                         .add(SPRING, SUNDAY, 13000L, GENERAL_GARDEN)
                         .add(SPRING, SUNDAY, 16000L, GODDESS_POND_BACK_RIGHT)
-                        .add(FESTIVAL, 0L, TOWNHALL_RIGHT)
-                        .add(FESTIVAL, 6000L, PARK_TRADER)
-                        .add(FESTIVAL, 19000L, GENERAL_GARDEN)
-                        .add(FESTIVAL, 22000L, TOWNHALL_RIGHT)
+                        .add(COOKING_FESTIVAL, 0L, TOWNHALL_RIGHT)
+                        .add(COOKING_FESTIVAL, 6000L, PARK_TRADER)
+                        .add(COOKING_FESTIVAL, 19000L, GENERAL_GARDEN)
+                        .add(COOKING_FESTIVAL, 22000L, TOWNHALL_RIGHT)
                         .build();
 
         for (NPC npc: NPC.REGISTRY) {
             if (npc != NPC.NULL_NPC) {
-                addHolidayGreetings(npc, FESTIVAL);
+                addHolidayGreetings(npc, COOKING_FESTIVAL);
                 setupGifts(npc);
             }
         }

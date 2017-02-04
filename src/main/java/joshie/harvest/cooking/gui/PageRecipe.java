@@ -42,6 +42,8 @@ public class PageRecipe extends Page {
         return recipeMap.get(recipe);
     }
 
+    private static final int buttonX = 195;
+    private static final int buttonY = 140;
     private final Recipe recipe;
     private final List<CyclingStack> list = new ArrayList<>();
     private final String description;
@@ -127,13 +129,14 @@ public class PageRecipe extends Page {
         //Cook Button
         GlStateManager.color(1F, 1F, 1F);
         gui.mc.getTextureManager().bindTexture(LEFT_GUI);
-        int y = mouseX >= 236 && mouseX <= 287 && mouseY >= 148 && mouseY <= 176 ? 135 : 101;
-        gui.drawTexture(200, 140, 0, y, 66, 34);
+        int y = mouseX >= buttonX && mouseX <= buttonX + 66 && mouseY >= buttonY && mouseY <= buttonY + 34 ? 135 : 101;
+        gui.drawTexture(buttonX, buttonY, 0, y, 66, 34);
+        gui.drawString(buttonX + 18, buttonY + 14, TextFormatting.BOLD + TextHelper.translate("cook"));
     }
 
     @Override
     public boolean mouseClicked(int mouseX, int mouseY) {
-        if(mouseX >= 236 && mouseX <= 287 && mouseY >= 148 && mouseY <= 176) {
+        if(mouseX >= buttonX && mouseX <= buttonX + 66 && mouseY >= buttonY && mouseY <= buttonY + 34) {
             if (RecipeMaker.areAllRequiredInRecipe(recipe.getRequired(), GuiCookbook.ingredients)) {
                 String utensil = TextFormatting.YELLOW + PageRecipeList.get(recipe.getUtensil()).getItem().getDisplayName() + TextFormatting.RESET;
                 String name = TextFormatting.YELLOW + recipe.getDisplayName() + TextFormatting.RESET;

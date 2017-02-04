@@ -30,6 +30,7 @@ public class TrackingServer extends Tracking {
 
     public TrackingServer(PlayerTrackerServer master) {
         this.master = master;
+        addDefaultRecipes();
     }
 
     @Override
@@ -71,6 +72,15 @@ public class TrackingServer extends Tracking {
         PacketHandler.sendToClient(new PacketSyncObtained(stack), master.getAndCreatePlayer());
     }
 
+    private void addDefaultRecipes() {
+        //Learn all the default recipes
+        for (Recipe recipe: Recipe.REGISTRY) {
+            if (recipe.isDefault() && !recipes.contains(recipe.getRegistryName())) {
+                recipes.add(recipe.getRegistryName());
+            }
+        }
+    }
+
     public boolean addForShipping(ItemStack item) {
         long sell = HFApi.shipping.getSellValue(item);
         StackSold stack = StackSold.of(item, sell);
@@ -99,13 +109,7 @@ public class TrackingServer extends Tracking {
         recipes = NBTHelper.readResourceSet(nbt, "Recipes");
         shipped = NBTHelper.readHashSet(StackSold.class, nbt.getTagList("Shipped", 10));
         notes = NBTHelper.readResourceSet(nbt, "Notes");
-
-        //Learn all the default recipes
-        for (Recipe recipe: Recipe.REGISTRY) {
-            if (recipe.isDefault() && !recipes.contains(recipe.getRegistryName())) {
-                recipes.add(recipe.getRegistryName());
-            }
-        }
+        addDefaultRecipes();
     }
 
     public NBTTagCompound writeToNBT(NBTTagCompound nbt) {

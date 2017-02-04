@@ -152,6 +152,7 @@ harvestfestival.utensils=Utensils
 harvestfestival.cookbook=Recipe Book
 harvestfestival.recipe.format=%s Recipe
 harvestfestival.recipe.invalid=Junk Recipe
+harvestfestival.cook=COOK
 
 #Meals
 harvestfestival.meal.learnt=New Recipe Learnt!

@@ -38,7 +38,7 @@ public class TileIncubator extends TileFillableSizedFaceable {
                 if (incubator.fillAmount == 0) {
                     for (int i = 0; i < incubator.getBabyAmount(); i++) {
                         EntityHarvestChicken baby = new EntityHarvestChicken(world);
-                        baby.setPositionAndUpdate(pos.getX() + 3 * world.rand.nextDouble(), pos.getY() + world.rand.nextDouble(), pos.getZ() + 3 * world.rand.nextDouble());
+                        baby.setPositionAndUpdate(pos.getX(), pos.up().getY() + world.rand.nextDouble(), pos.getZ());
                         baby.setGrowingAge(-(24000 * HFAnimals.AGING_TIMER));
                         AnimalStats stats = EntityHelper.getStats(baby);
                         if (stats != null) {

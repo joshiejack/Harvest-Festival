@@ -42,6 +42,10 @@ import static joshie.harvest.core.block.BlockStorage.Storage.SHIPPING;
 
 public class BlockStorage extends BlockHFEnumRotatableTile<BlockStorage, Storage> {
     private static final AxisAlignedBB SHIPPING_AABB = new AxisAlignedBB(0D, 0D, 0D, 1D, 0.6D, 1D);
+    private static final AxisAlignedBB MAILBOX_NORTH_AABB = new AxisAlignedBB(0.2D, 0.2D, 0.6D, 0.8D, 0.9D, 1.4D);
+    private static final AxisAlignedBB MAILBOX_SOUTH_AABB = new AxisAlignedBB(0.2D, 0.2D, -0.4D, 0.8D, 0.9D, 0.4D);
+    private static final AxisAlignedBB MAILBOX_EAST_AABB = new AxisAlignedBB(-0.4D, 0.2D, 0.2D, 0.4D, 0.9D, 0.8D);
+    private static final AxisAlignedBB MAILBOX_WEST_AABB = new AxisAlignedBB(0.6D, 0.2D, 0.2D, 1.4D, 0.9D, 0.8D);
 
     public enum Storage implements IStringSerializable {
         SHIPPING, MAILBOX;
@@ -83,13 +87,13 @@ public class BlockStorage extends BlockHFEnumRotatableTile<BlockStorage, Storage
                     EnumFacing facing = mailbox.getFacing();
                     switch (facing) {
                         case NORTH:
-                            return new AxisAlignedBB(0.2D, 0.2D, 0.6D, 0.8D, 0.9D, 1.4D);
+                            return MAILBOX_NORTH_AABB;
                         case EAST:
-                            return new AxisAlignedBB(-0.4D, 0.2D, 0.2D, 0.4D, 0.9D, 0.8D);
+                            return MAILBOX_EAST_AABB;
                         case SOUTH:
-                            return new AxisAlignedBB(0.2D, 0.2D, -0.4D, 0.8D, 0.9D, 0.4D);
+                            return MAILBOX_SOUTH_AABB;
                         case WEST:
-                            return new AxisAlignedBB(0.6D, 0.2D, 0.2D, 1.4D, 0.9D, 0.8D);
+                            return MAILBOX_WEST_AABB;
                     }
                 }
             default:

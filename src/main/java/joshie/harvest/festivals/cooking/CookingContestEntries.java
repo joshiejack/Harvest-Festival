@@ -20,6 +20,7 @@ public class CookingContestEntries {
     private UUID winner;
     private long prize;
 
+    @SuppressWarnings("ConstantConditions")
     CookingContestEntries(World world, Map<UUID, BlockPos> blockPosList) {
         rand.setSeed(HFApi.calendar.getDate(world).hashCode());
         entries = new HashMap<>();
@@ -31,7 +32,7 @@ public class CookingContestEntries {
 
         if (entries.size() < 4) { addEntries(HFNPCs.FLOWER_GIRL, HFNPCs.MILKMAID, HFNPCs.TRADER, HFNPCs.CARPENTER);}
         List<UUID> sorted = new ArrayList<>(entries.keySet());
-        sorted.sort((o1, o2) -> { return ((Integer)entries.get(o1).getScore()).compareTo(entries.get(o2).getScore()); });
+        sorted.sort((o1, o2) -> ((Integer)entries.get(o1).getScore()).compareTo(entries.get(o2).getScore()));
         List<Object> localized = new ArrayList<>();
         for (int i = 1; i < sorted.size(); i++) {
             UUID uuid = sorted.get(i); //Get the winners and remove the last place

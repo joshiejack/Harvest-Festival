@@ -13,7 +13,7 @@ import static joshie.harvest.api.calendar.CalendarDate.DAYS_PER_SEASON;
 
 public final class Festival {
     public static final HashMap<ResourceLocation, Festival> REGISTRY = new HashMap<>();
-    public static final Festival NONE = new Festival(new ResourceLocation("harvestfestival", "none")).setAffectsGrounds();
+    public static final Festival NONE = new Festival(new ResourceLocation("harvestfestival", "none"));
     private final ResourceLocation resource;
     private boolean affectsGround;
     private boolean shopsOpen;
@@ -26,6 +26,7 @@ public final class Festival {
     public Festival(@Nonnull ResourceLocation resource) {
         this.resource = resource;
         this.length = 3;
+        this.affectsGround = true;
         REGISTRY.put(resource, this);
     }
 
@@ -68,8 +69,8 @@ public final class Festival {
     }
 
     /** Call this to make this festival change the look of the festival grounds **/
-    public Festival setAffectsGrounds() {
-        this.affectsGround = true;
+    public Festival setNoBuilding() {
+        this.affectsGround = false;
         return this;
     }
 

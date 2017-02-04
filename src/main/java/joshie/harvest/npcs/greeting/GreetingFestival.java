@@ -15,7 +15,7 @@ public class GreetingFestival implements IConditionalGreeting {
 
     public GreetingFestival(Festival festival) {
         this.festival = festival;
-        this.text = "harvestfestival.npc.%s.festival." + festival.getResource().getResourcePath();
+        this.text = "harvestfestival.npc.%s.festival." + festival.getResource().getResourcePath().replace("_", ".");
     }
 
     @Override

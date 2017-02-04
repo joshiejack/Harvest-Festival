@@ -1,6 +1,8 @@
 package joshie.harvest.festivals;
 
+import joshie.harvest.api.calendar.CalendarDate;
 import joshie.harvest.api.calendar.Festival;
+import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.core.Letter;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.town.TownHelper;
@@ -10,12 +12,19 @@ import net.minecraft.util.ResourceLocation;
 
 public class LetterFestival extends Letter {
     private final Festival festival;
+    private final Season season;
 
-    public LetterFestival(Festival festival, ResourceLocation resource) {
+    public LetterFestival(Festival festival, Season season, ResourceLocation resource) {
         super(resource);
         this.festival = festival;
+        this.season = season;
         this.setRejectable();
         this.setTownLetter();
+    }
+
+    @Override
+    public boolean isExpired(CalendarDate today, int days) {
+        return expires() && days >= getExpiry() || today.getSeason() != season;
     }
 
     @Override

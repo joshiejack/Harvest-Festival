@@ -23,7 +23,7 @@ public class TileStand extends TileFaceable {
     }
 
     public boolean setContents(@Nullable EntityPlayer player, ItemStack stack) {
-        CookingContestQuest quest = TownHelper.getClosestTownToBlockPos(worldObj, pos).getQuests().getAQuest(HFFestivals.COOKING_FESTIVAL.getQuest());
+        CookingContestQuest quest = TownHelper.getClosestTownToBlockPos(worldObj, pos).getQuests().getAQuest(HFFestivals.COOKING_CONTEST.getQuest());
         if (quest == null || quest.isFull() || this.stack != null) return false;
         else {
             if (player != null) quest.addStand(EntityHelper.getPlayerUUID(player), pos);
@@ -35,7 +35,7 @@ public class TileStand extends TileFaceable {
     }
 
     public ItemStack removeContents() {
-        CookingContestQuest quest = TownHelper.getClosestTownToBlockPos(worldObj, pos).getQuests().getAQuest(HFFestivals.COOKING_FESTIVAL.getQuest());
+        CookingContestQuest quest = TownHelper.getClosestTownToBlockPos(worldObj, pos).getQuests().getAQuest(HFFestivals.COOKING_CONTEST.getQuest());
         if (stack == null) return null;
         else {
             if (quest != null) quest.removeStand(pos);

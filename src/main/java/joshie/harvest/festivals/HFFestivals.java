@@ -30,9 +30,11 @@ import static joshie.harvest.knowledge.HFNotes.registerNote;
 @HFLoader(priority = HFBUILDING)
 @SuppressWarnings("unchecked")
 public class HFFestivals {
+
     public static final Building FESTIVAL_GROUNDS = HFBuildings.registerBuilding("festivals", BuildingFestival.class).setSpecialRules(new SpecialRuleFestivals()).setInhabitants(HFNPCs.TRADER).setOffset(14, -1, 32);
     public static final BlockStand STAND = new BlockStand().register("stand");
     //TODO: Re-enable all the other quests
+    private static Map<Festival, Season> TEMP_REGISTRY = new HashMap<>();
     //public static final Festival NEW_YEARS = registerFestival("new_years", 1, SPRING);
     public static final Festival COOKING_CONTEST = registerFestival("cooking", 22, SPRING);
     //public static final Festival CHICKEN_FESTIVAL = registerFestival("chicken", 7, SUMMER);
@@ -41,19 +43,19 @@ public class HFFestivals {
     //public static final Festival SHEEP_FESTIVAL = registerFestival("sheep", 21, AUTUMN);
     //public static final Festival STARRY_NIGHT = registerFestival("starry_night", 24, WINTER);
     //public static final Festival NEW_YEARS_EVE = registerFestival("new_years_eve", 30, WINTER);
-    private static Map<Festival, Season> temp = new HashMap<>();
+
 
     public static void preInit() {
         RegistryHelper.registerTiles(TileStand.class);
     }
 
     public static void init() {
-        for (Festival festival: temp.keySet()) {
+        for (Festival festival: TEMP_REGISTRY.keySet()) {
             String name = "festival." + festival.getResource().getResourcePath().replace("_", ".");
-            festival.setQuest(QuestHelper.getQuest(name)).setNote(registerNote(TOWNSHIP, name)).setLetter(new LetterFestival(festival, temp.get(festival), festival.getResource()));
+            festival.setQuest(QuestHelper.getQuest(name)).setNote(registerNote(TOWNSHIP, name)).setLetter(new LetterFestival(festival, TEMP_REGISTRY.get(festival), festival.getResource()));
         }
 
-        temp = null; //We don't need this map anymore
+        TEMP_REGISTRY = null; //save memory
     }
 
     @SideOnly(Side.CLIENT)
@@ -65,7 +67,7 @@ public class HFFestivals {
         ResourceLocation resource = new ResourceLocation(MODID, name);
         Festival festival = new Festival(resource);
         HFApi.calendar.registerFestival(festival, day, season);
-        temp.put(festival, season);
+        TEMP_REGISTRY.put(festival, season);
         return festival;
     }
 }

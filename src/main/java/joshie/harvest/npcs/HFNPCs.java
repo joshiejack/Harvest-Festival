@@ -435,9 +435,10 @@ public class HFNPCs {
 
         for (NPC npc: NPC.REGISTRY) {
             if (npc != NPC.NULL_NPC) {
-                addHolidayGreetings(npc,
-                        HFFestivals.NEW_YEARS, HFFestivals.COOKING_CONTEST, HFFestivals.CHICKEN_FESTIVAL, HFFestivals.COW_FESTIVAL,
-                        HFFestivals.HARVEST_FESTIVAL, HFFestivals.SHEEP_FESTIVAL, HFFestivals.STARRY_NIGHT, HFFestivals.NEW_YEARS_EVE);
+                //addHolidayGreetings(npc,
+                        //HFFestivals.NEW_YEARS, HFFestivals.COOKING_CONTEST, HFFestivals.CHICKEN_FESTIVAL, HFFestivals.COW_FESTIVAL,
+                        //HFFestivals.HARVEST_FESTIVAL, HFFestivals.SHEEP_FESTIVAL, HFFestivals.STARRY_NIGHT, HFFestivals.NEW_YEARS_EVE);
+                addHolidayGreetings(npc, HFFestivals.COOKING_CONTEST);
                 setupGifts(npc);
             }
         }

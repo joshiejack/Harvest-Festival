@@ -346,7 +346,9 @@ public abstract class ItemTool<I extends ItemTool> extends ItemHFBase<I> impleme
     @SideOnly(Side.CLIENT)
     public void getSubItems(@Nonnull Item item, CreativeTabs tab, List<ItemStack> list) {
         for (int i = 0; i < ToolTier.values().length; i++) {
-            list.add(new ItemStack(item, 1, i));
+            ItemStack stack = new ItemStack(item, 1, i);
+            stack.getSubCompound("Data", true).setInteger("Damage", 0);
+            list.add(stack);
         }
     }
 

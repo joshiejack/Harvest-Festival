@@ -31,7 +31,7 @@ public class Letter {
     public Letter(ResourceLocation resource) {
         this.resource = resource;
         this.priority = EventPriority.NORMAL;
-        this.toLocalize = resource.getResourceDomain() + ".letter." + resource.getResourcePath();
+        this.toLocalize = resource.getResourceDomain() + ".letter." + resource.getResourcePath().replace("_", ".");
         this.expiry = -1;
         REGISTRY.put(resource, this);
     }

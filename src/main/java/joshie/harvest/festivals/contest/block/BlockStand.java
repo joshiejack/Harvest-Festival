@@ -1,10 +1,10 @@
-package joshie.harvest.festivals.block;
+package joshie.harvest.festivals.contest.block;
 
 import joshie.harvest.core.helpers.SpawnItemHelper;
-import joshie.harvest.festivals.block.BlockStand.Stand;
+import joshie.harvest.festivals.contest.block.BlockStand.Stand;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.block.BlockHFEnumRotatableTile;
-import joshie.harvest.festivals.tile.TileStand;
+import joshie.harvest.festivals.contest.tile.TileStand;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;

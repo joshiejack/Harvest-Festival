@@ -16,6 +16,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 
+import javax.annotation.Nonnull;
 import java.util.*;
 
 public abstract class TownData<Q extends QuestData, L extends LetterData> {
@@ -88,6 +89,7 @@ public abstract class TownData<Q extends QuestData, L extends LetterData> {
         return building.getRealCoordinatesFor(location.getLocation());
     }
 
+    @Nonnull
     public Festival getFestival() {
         return festival;
     }
@@ -120,7 +122,10 @@ public abstract class TownData<Q extends QuestData, L extends LetterData> {
         if (nbt.hasKey("Festival")) {
             festival = Festival.REGISTRY.get(new ResourceLocation(nbt.getString("Festival")));
             festivalDays = nbt.getInteger("FestivalDaysRemaining");
-        } else festival = Festival.NONE;
+        }
+
+        //Fix the broken festivla if it applies
+        if (festival == null) festival = Festival.NONE;
     }
 
     public void writeToNBT(NBTTagCompound nbt) {

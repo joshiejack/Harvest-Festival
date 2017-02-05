@@ -1651,13 +1651,22 @@ harvestfestival.quest.slay.complete2=Good on you for clearing some mobs out of t
 harvestfestival.quest.slay.complete3=Thanks for helping clear the mine. Take this.
 
 ## Festival Quests
+#New Years
+harvestfestival.quest.festival.new.years.riceballs=How yer doing? The new year's come around and well, yer know. We've been here since the beginning. For that I'm grateful as ever. It's a bit of a tradition for riceballs around these times. To thank ya for yer hard work, enjoy these. Happy New Year!
+harvestfestival.quest.festival.new.years.rice=Hey! It's been wonderful this past year. You've come along way. It's been really nice to see how things have changed. Yulif would be pretty upset at this, but I've decided to make some bamboo rice. Not quite what I should really be doing but you know. It makes me happier. Happy New Year to you!
+harvestfestival.quest.festival.new.years.gold=Ehh, being the mayor has been hard work this year. But I guess you've done an alright job of looking after things. Here's your yearly stipend. Don't waste it.
+harvestfestival.quest.festival.new.years.wine=Good day sir! I bring to you a most splendid VALUABLE treat that we love to drink in my homeland, don't squander it.
+
 #Cooking Festival
 harvestfestival.quest.festival.cooking.question=Want to enter the cooking festival?
 harvestfestival.quest.festival.cooking.ready=@I am ready!
 harvestfestival.quest.festival.cooking.cancel=@Give me a minute.
 harvestfestival.script.cooking=This was a great contest! Had a taste of everyone's meals... And well I think I've decided..... ...... ................... ..... ..... In third place is %1$s with their %2$s. ..... .. ... . .......... .... .. .. .. .. . In second place we jave %3$s with their %4$s... and finally...... without... further ado.... the winner of this year's cooking festival is........... %5$s with their amazing %6$s. Congratulations! For this years prize we have a gift of %7$s gold as well as a special recipe!
 
+
+
 ## Letters
+harvestfestival.letter.new.years=Alright there, \n\nWe're planning on taking part in some festivities to celebrate the new year. I think we should invite ya. Give us a heads up if yer want to take part\n\n\n-Yulif and Jade
 harvestfestival.letter.cooking=Dear Sir/Madam, \n\nI have plans for a cooking festival that I would like to setup for tomorrow. Please confirm if you would be happy to attend.\n\n\n-Jenni
 
 ###Achievements

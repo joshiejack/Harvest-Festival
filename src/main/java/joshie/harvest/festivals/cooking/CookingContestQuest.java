@@ -9,7 +9,7 @@ import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.Selection;
 import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.core.helpers.NBTHelper;
-import joshie.harvest.festivals.tile.TileStand;
+import joshie.harvest.festivals.contest.tile.TileStand;
 import joshie.harvest.npcs.HFNPCs;
 import joshie.harvest.npcs.entity.EntityNPCHuman;
 import joshie.harvest.npcs.entity.ai.EntityAIPathing;

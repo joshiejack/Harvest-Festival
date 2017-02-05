@@ -61,7 +61,7 @@ public class TileTrough extends TileFillableConnected<TileTrough> {
             TileTrough master = getMaster();
             if (master != null) {
                 if (held.stackSize >= 1) {
-                    if (master.fillAmount < master.getMaximumFill() && master.setFilled(master.getFillAmount() + 10)) {
+                    if (master.fillAmount < master.getMaximumFill() && master.setFilled(master.getFillAmount() + 5)) {
                         held.splitStack(1);
                         return true;
                     }

@@ -1,12 +1,11 @@
 package joshie.harvest.api.core;
 
-import joshie.harvest.api.player.RelationshipType;
 import net.minecraft.util.IStringSerializable;
 
 import java.util.Locale;
 
 public enum Size implements IStringSerializable {
-    SMALL(0), MEDIUM(RelationshipType.ANIMAL.getMaximumRP() / 2), LARGE(RelationshipType.ANIMAL.getMaximumRP());
+    SMALL(0), MEDIUM(900), LARGE(9900);
 
     private final int relationship;
 

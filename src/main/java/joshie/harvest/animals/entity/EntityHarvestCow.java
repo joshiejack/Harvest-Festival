@@ -90,7 +90,7 @@ public class EntityHarvestCow extends EntityCow {
 
                 return true;
             }
-        } else return true;
+        } else return false;
     }
 
     @Override

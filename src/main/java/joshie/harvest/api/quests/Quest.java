@@ -125,7 +125,7 @@ public abstract class Quest extends IForgeRegistryEntry.Impl<Quest> {
         HFApi.quests.increaseStage(this, player);
     }
 
-    /** Syncs the data to the player from client to server **/
+    /** Syncs the data to the player from server to client **/
     public final void syncData(EntityPlayer player) {
         HFApi.quests.syncData(this, player);
     }

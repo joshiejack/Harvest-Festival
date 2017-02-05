@@ -34,7 +34,7 @@ public class ShopHours implements OpeningHandler {
     @SuppressWarnings("unchecked")
     public boolean isOpen(World world, EntityAgeable npc, @Nullable EntityPlayer player, Shop shop) {
         Festival festival = HFApi.calendar.getFestival(world, new BlockPos(npc));
-        if (!opensOnHolidays && !festival.doShopsOpen() && !festival.equals(Festival.NONE)) return false;
+        if (!opensOnHolidays && !festival.doShopsOpen() && festival != Festival.NONE) return false;
         Weekday day = HFApi.calendar.getDate(world).getWeekday();
         for (OpeningHours hours: open.get(day)) {
             boolean isOpen = CalendarHelper.isBetween(world, hours.open, hours.close) &&
@@ -49,7 +49,7 @@ public class ShopHours implements OpeningHandler {
     @SuppressWarnings("unchecked")
     public boolean isPreparingToOpen(World world, EntityAgeable npc, Shop shop) {
         Festival festival = HFApi.calendar.getFestival(world, new BlockPos(npc));
-        if (!opensOnHolidays && !festival.doShopsOpen() && !festival.equals(Festival.NONE)) return false;
+        if (!opensOnHolidays && !festival.doShopsOpen() && festival != Festival.NONE) return false;
         Weekday day = HFApi.calendar.getDate(world).getWeekday();
         for (OpeningHours hours: open.get(day)) {
             long daytime = CalendarHelper.getTime(world); //0-23999 by default

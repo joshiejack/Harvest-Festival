@@ -44,5 +44,6 @@ public interface CalendarManager {
      *  @param world    the world object
      *  @param pos      the location we're checking for the holiday
      *  @return the current holiday**/
+    @Nonnull
     Festival getFestival(World world, BlockPos pos);
 }

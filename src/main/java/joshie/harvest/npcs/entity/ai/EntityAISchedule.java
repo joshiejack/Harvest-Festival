@@ -37,7 +37,7 @@ public class EntityAISchedule extends EntityAIBase {
 
     @Override
     public boolean continueExecuting() {
-        return blockTarget != null;
+        return blockTarget != null && !npc.isTalking();
     }
 
     private void updateTarget() {

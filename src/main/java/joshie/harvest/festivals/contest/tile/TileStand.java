@@ -1,4 +1,4 @@
-package joshie.harvest.festivals.tile;
+package joshie.harvest.festivals.contest.tile;
 
 import joshie.harvest.core.base.tile.TileFaceable;
 import joshie.harvest.core.helpers.EntityHelper;

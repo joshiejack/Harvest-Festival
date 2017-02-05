@@ -1,7 +1,7 @@
-package joshie.harvest.festivals.render;
+package joshie.harvest.festivals.contest.render;
 
 import joshie.harvest.core.base.render.TileSpecialRendererItem;
-import joshie.harvest.festivals.tile.TileStand;
+import joshie.harvest.festivals.contest.tile.TileStand;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;

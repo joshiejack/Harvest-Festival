@@ -171,6 +171,20 @@ public class ItemMeal extends ItemHFFoodEnum<ItemMeal, Meal> {
         }
     }
 
+    public ItemStack getCreativeStack(Meal meal, int amount) {
+        Recipe recipe = getRecipeFromMeal(meal);
+        if (recipe != null) {
+            ArrayList<IngredientStack> stacks = new ArrayList<>();
+            stacks.addAll(recipe.getRequired());
+            //if (recipe.getOptional().size() > 0) stacks.addAll(recipe.getOptional());
+            ItemStack stack = RecipeMaker.BUILDER.build(recipe, stacks).get(0);
+            stack.stackSize = amount;
+            return stack;
+        }
+
+        return null;
+    }
+
     @Override
     public ItemStack getCreativeStack(Item item, Meal meal) {
         Recipe recipe = getRecipeFromMeal(meal);

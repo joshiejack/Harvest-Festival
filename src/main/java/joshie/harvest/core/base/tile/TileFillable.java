@@ -3,6 +3,8 @@ package joshie.harvest.core.base.tile;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
+import javax.annotation.Nonnull;
+
 public abstract class TileFillable extends TileHarvest {
     protected int fillAmount;
 
@@ -31,6 +33,7 @@ public abstract class TileFillable extends TileHarvest {
     }
 
     @Override
+    @Nonnull
     public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
         nbt.setByte("IsFilled", (byte) fillAmount);
         return super.writeToNBT(nbt);

@@ -2,7 +2,7 @@ package joshie.harvest.festivals.cooking;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.cooking.HFCooking;
-import joshie.harvest.festivals.tile.TileStand;
+import joshie.harvest.festivals.contest.tile.TileStand;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;

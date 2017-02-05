@@ -97,7 +97,7 @@ public class EntityHarvestSheep extends EntitySheep {
 
                 return true;
             }
-        } else return true;
+        } else return false;
     }
 
     @Override
@@ -122,6 +122,7 @@ public class EntityHarvestSheep extends EntitySheep {
     }
 
     @Override
+    @Nonnull
     public EntitySheep createChild(EntityAgeable ageable) {
         return new EntityHarvestSheep(worldObj);
     }

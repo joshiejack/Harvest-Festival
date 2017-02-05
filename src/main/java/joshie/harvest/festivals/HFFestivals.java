@@ -8,9 +8,9 @@ import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.buildings.special.SpecialRuleFestivals;
 import joshie.harvest.core.helpers.RegistryHelper;
 import joshie.harvest.core.util.annotations.HFLoader;
-import joshie.harvest.festivals.block.BlockStand;
-import joshie.harvest.festivals.render.SpecialRendererStand;
-import joshie.harvest.festivals.tile.TileStand;
+import joshie.harvest.festivals.contest.block.BlockStand;
+import joshie.harvest.festivals.contest.render.SpecialRendererStand;
+import joshie.harvest.festivals.contest.tile.TileStand;
 import joshie.harvest.npcs.HFNPCs;
 import joshie.harvest.quests.QuestHelper;
 import net.minecraft.util.ResourceLocation;
@@ -35,7 +35,7 @@ public class HFFestivals {
     public static final BlockStand STAND = new BlockStand().register("stand");
     //TODO: Re-enable all the other quests
     private static Map<Festival, Season> TEMP_REGISTRY = new HashMap<>();
-    //public static final Festival NEW_YEARS = registerFestival("new_years", 1, SPRING);
+    public static final Festival NEW_YEARS = registerFestival("new_years", 1, SPRING).setLength(1).setNoBuilding();
     public static final Festival COOKING_CONTEST = registerFestival("cooking", 22, SPRING);
     //public static final Festival CHICKEN_FESTIVAL = registerFestival("chicken", 7, SUMMER);
     //public static final Festival COW_FESTIVAL = registerFestival("cow", 20, SUMMER);

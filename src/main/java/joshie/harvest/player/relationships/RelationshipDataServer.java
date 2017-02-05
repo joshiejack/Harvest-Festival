@@ -26,8 +26,6 @@ public class RelationshipDataServer extends RelationshipData {
         this.master = master;
     }
 
-
-
     public boolean hasGivenBirthdayGift(UUID uuid) {
         return status.get(uuid).contains(RelationStatus.BIRTHDAY_GIFT);
     }

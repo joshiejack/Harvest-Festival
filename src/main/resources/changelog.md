@@ -17,6 +17,7 @@
 * Animals will now search for feeding trays/troughs/feeding trays within a 64 block radius, so ensure they can access them
 * Change collision of nests and feeding trays
 * Fodder will now visually show how much is in the trough rather than just full or empty
+* The way size of animal products is redesigned. It's now a random chance for larger products, with the higher relationship increasing this chance.
 
 ###Buildings
 * Optimised building save format, should be smaller size

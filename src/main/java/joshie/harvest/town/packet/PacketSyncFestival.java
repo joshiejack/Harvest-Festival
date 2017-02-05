@@ -26,7 +26,7 @@ public class PacketSyncFestival extends PacketSyncTown {
     @Override
     public void toBytes(ByteBuf buf) {
         super.toBytes(buf);
-        ByteBufUtils.writeUTF8String(buf, festival.toString());
+        ByteBufUtils.writeUTF8String(buf, festival.getResource().toString());
         buf.writeInt(days);
     }
 

@@ -3,7 +3,7 @@ Milk, Watering Cans, Wool, Bush, Ores > VapourDrive
 Mine Materials > VapourDrive, Balduran (http://balduranne.deviantart.com/)
 Dust Overlays > Balduran (http://balduranne.deviantart.com/)
 Fossil, Wine > Poppy
-Chamomile, Mint > Willi_Zinger
+Chamomile, Mint, Lavendar, Matsutake, Moondrop, Magic Flowers > Willi_Zinger
 Seasons HUD > CyanideX
 
 ## Buildings
@@ -25,5 +25,6 @@ Tool Blessing: http://www.freesound.org/people/rhodesmas/sounds/320652/
 Recipe Learnt: http://www.freesound.org/people/LittleRobotSoundFactory/sounds/270404/
 
 ##Lang
-Meal Descriptions > DivineAspect
+Meal Descriptions (0.5) > DivineAspect
+Meal Descriptions (0.6) > ZephyrWindSpirit
 Simplified Chinese Translation > Neko. 一只猫neko倾情汉化 =w=

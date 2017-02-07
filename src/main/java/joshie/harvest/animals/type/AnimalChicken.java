@@ -6,7 +6,6 @@ import joshie.harvest.animals.item.ItemAnimalSpawner.Spawner;
 import joshie.harvest.api.animals.AnimalAction;
 import joshie.harvest.api.animals.AnimalStats;
 import joshie.harvest.core.helpers.SizeableHelper;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 
 import static joshie.harvest.api.animals.AnimalFoodType.SEED;
@@ -32,8 +31,8 @@ public class AnimalChicken extends AnimalAbstract {
     }
 
     @Override
-    public ItemStack getProduct(EntityPlayer player, AnimalStats stats) {
-        return HFAnimals.ANIMAL_PRODUCT.getStack(Sizeable.EGG, SizeableHelper.getSizeFromAnimal(player, stats.getAnimal()));
+    public ItemStack getProduct(AnimalStats stats) {
+        return HFAnimals.ANIMAL_PRODUCT.getStack(Sizeable.EGG, SizeableHelper.getSizeFromAnimal(stats.getHappiness(), stats.getAnimal()));
     }
 
     @Override

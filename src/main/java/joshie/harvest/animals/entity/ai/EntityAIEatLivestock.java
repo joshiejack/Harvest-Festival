@@ -28,10 +28,10 @@ public class EntityAIEatLivestock extends EntityAIEat {
     protected void eat(BlockPos pos, IBlockState state) {
         Block block = state.getBlock();
         if (block == Blocks.TALLGRASS) {
-            getStats().performAction(animal.worldObj, null, null, AnimalAction.FEED);
+            getStats().performAction(animal.worldObj, null, AnimalAction.FEED);
             animal.worldObj.setBlockToAir(pos);
         } else if (block == Blocks.TALLGRASS && state.getValue(BlockDoublePlant.VARIANT) == EnumPlantType.GRASS) {
-            getStats().performAction(animal.worldObj, null, null, AnimalAction.FEED);
+            getStats().performAction(animal.worldObj, null, AnimalAction.FEED);
             animal.worldObj.setBlockToAir(pos);
             if (state.getValue(BlockDoublePlant.HALF) == EnumBlockHalf.LOWER) {
                 animal.worldObj.setBlockToAir(pos.up());

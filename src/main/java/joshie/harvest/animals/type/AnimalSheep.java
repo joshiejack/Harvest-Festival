@@ -6,7 +6,6 @@ import joshie.harvest.api.animals.AnimalAction;
 import joshie.harvest.api.animals.AnimalStats;
 import joshie.harvest.core.helpers.SizeableHelper;
 import net.minecraft.entity.passive.EntityAnimal;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 
 import static joshie.harvest.api.animals.AnimalFoodType.GRASS;
@@ -47,8 +46,8 @@ public class AnimalSheep extends AnimalAbstract {
     }
 
     @Override
-    public ItemStack getProduct(EntityPlayer player, AnimalStats stats) {
-        return SizeableHelper.getWool(player, stats.getAnimal(), stats);
+    public ItemStack getProduct(AnimalStats stats) {
+        return SizeableHelper.getWool(stats);
     }
 
     @Override

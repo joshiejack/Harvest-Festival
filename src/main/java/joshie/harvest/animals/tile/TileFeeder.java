@@ -32,7 +32,7 @@ public class TileFeeder extends TileFillable {
                 AnimalStats stats = EntityHelper.getStats(animal);
                 if (stats != null && feeder.fillAmount > 0 && HFApi.animals.canAnimalEatFoodType(stats, SEED) &&
                         !stats.performTest(AnimalTest.HAS_EATEN) && feeder.setFilled(feeder.getFillAmount() - 1)) {
-                    stats.performAction(world, null, null, AnimalAction.FEED);
+                    stats.performAction(world, null, AnimalAction.FEED);
                 }
             }
         }

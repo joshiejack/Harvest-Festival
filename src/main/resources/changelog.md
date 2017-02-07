@@ -13,6 +13,7 @@
 * Cleaning will now stop working when the animal is fully cleaned
 * Feeding animals incorrect treats or hitting them will cause a relationship penalty
 * Changed relationship maximum to 27,000RP
+* Animals relationship are now treated more like happiness. They are tied to the animal instead of the player. This means you'll get the larger products no matter who milks a cow for example. Just as long as they're happy.
 * Cows, Chickens and Sheep should be a little smarter, and try to find a location that's inside when it's raining, night or winter, and go outside when its day, sunny and not winter
 * Animals will now search for feeding trays/troughs/feeding trays within a 64 block radius, so ensure they can access them
 * Change collision of nests and feeding trays

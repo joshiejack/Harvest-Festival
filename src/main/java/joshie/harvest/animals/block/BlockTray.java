@@ -121,7 +121,7 @@ public class BlockTray extends BlockHFEnum<BlockTray, Tray> implements IAnimalFe
             if (feeder != null && feeder.getFillAmount() > 0) {
                 if (!simulate) {
                     feeder.adjustFill(-1);
-                    stats.performAction(world, null, null, AnimalAction.FEED);
+                    stats.performAction(world, null, AnimalAction.FEED);
                 }
 
                 return true;
@@ -138,11 +138,10 @@ public class BlockTray extends BlockHFEnum<BlockTray, Tray> implements IAnimalFe
 
     @Override
     public void layEgg(AnimalStats stats, World world, BlockPos pos, IBlockState state) {
-        EntityPlayer player = stats.getOwner();
         TileEntity tile = world.getTileEntity(pos);
-        if (player != null && stats.getAnimal() != null && tile instanceof TileNest) {
+        if (stats.getAnimal() != null && tile instanceof TileNest) {
             if (!world.isRemote) {
-                ((TileNest) tile).setDrop(EntityHelper.getEntityUUID(stats.getAnimal()), stats.getType().getProduct(player, stats));
+                ((TileNest) tile).setDrop(EntityHelper.getEntityUUID(stats.getAnimal()), stats.getType().getProduct(stats));
                 stats.setProduced(1); //Product one egg
             }
 

@@ -2,7 +2,6 @@ package joshie.harvest.npcs.gui;
 
 import joshie.harvest.HarvestFestival;
 import joshie.harvest.api.HFApi;
-import joshie.harvest.api.player.RelationshipType;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.api.quests.QuestQuestion;
 import joshie.harvest.core.HFTrackers;
@@ -35,7 +34,7 @@ public class ContainerNPCChat extends ContainerBase {
     @Override
     public void onContainerClosed(EntityPlayer player) {
         if (!player.worldObj.isRemote) {
-            HFTrackers.getPlayerTrackerFromPlayer(player).getRelationships().talkTo(RelationshipType.NPC, player, npc.getNPC().getUUID());
+            HFTrackers.getPlayerTrackerFromPlayer(player).getRelationships().talkTo(player, npc.getNPC().getUUID());
         }
 
        if (open && nextGui >= -1) {

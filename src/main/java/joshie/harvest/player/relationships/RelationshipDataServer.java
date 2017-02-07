@@ -13,7 +13,6 @@ import joshie.harvest.player.packet.PacketSyncStatusReset;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.EnumParticleTypes;
 
 import javax.annotation.Nullable;
 import java.util.Collection;
@@ -35,11 +34,11 @@ public class RelationshipDataServer extends RelationshipData {
     }
 
     @Override
-    public void talkTo(RelationshipType type, EntityPlayer player, UUID key) {
+    public void talkTo(EntityPlayer player, UUID key) {
         Collection<RelationStatus> statuses = status.get(key);
         if (!statuses.contains(RelationStatus.TALKED)) {
             statuses.add(RelationStatus.TALKED);
-            affectRelationship(type, key, 100);
+            affectRelationship(key, 100);
             syncStatus((EntityPlayerMP) player, key, RelationStatus.TALKED, true);
         }
 
@@ -55,7 +54,7 @@ public class RelationshipDataServer extends RelationshipData {
         Collection<RelationStatus> statuses = status.get(key);
         if (!statuses.contains(RelationStatus.GIFTED)) {
             if (amount == 0) return true;
-            affectRelationship(RelationshipType.NPC, key, amount);
+            affectRelationship(key, amount);
             statuses.add(RelationStatus.GIFTED);
             syncStatus((EntityPlayerMP) player, key, RelationStatus.GIFTED, true);
             master.getTracking().addGift();
@@ -66,14 +65,13 @@ public class RelationshipDataServer extends RelationshipData {
     }
 
     @Override
-    public void affectRelationship(RelationshipType type, UUID key, int amount) {
-        int newValue = Math.max(0, Math.min(type.getMaximumRP(), getRelationship(key) + amount));
+    public void affectRelationship(UUID key, int amount) {
+        int newValue = Math.max(0, Math.min(RelationshipType.NPC.getMaximumRP(), getRelationship(key) + amount));
         relationships.put(key, newValue);
         EntityPlayerMP player = master.getAndCreatePlayer();
         if (player != null) {
-            if (type == RelationshipType.NPC && newValue >= 5000) player.addStat(HFAchievements.friend);
-            EnumParticleTypes particle = amount == 0 ? null : amount <= -1 ? EnumParticleTypes.DAMAGE_INDICATOR : EnumParticleTypes.HEART;
-            syncRelationship(player, key, newValue, particle);
+            if (newValue >= 5000) player.addStat(HFAchievements.friend);
+            syncRelationship(player, key, newValue);
         }
     }
 
@@ -82,7 +80,7 @@ public class RelationshipDataServer extends RelationshipData {
         int newValue = (int)(adult * (percentage / 100D));
         relationships.put(baby, newValue);
         if (player != null) {
-            syncRelationship((EntityPlayerMP) player, baby, newValue, null);
+            syncRelationship((EntityPlayerMP) player, baby, newValue);
         }
     }
 
@@ -90,8 +88,8 @@ public class RelationshipDataServer extends RelationshipData {
         PacketHandler.sendToClient(new PacketSyncRelationsConnect(writeToNBT(new NBTTagCompound())), player);
     }
 
-    public void syncRelationship(EntityPlayerMP player, UUID key, int value, EnumParticleTypes particles) {
-        PacketHandler.sendToClient(new PacketSyncRelationship(key, value, particles), player);
+    public void syncRelationship(EntityPlayerMP player, UUID key, int value) {
+        PacketHandler.sendToClient(new PacketSyncRelationship(key, value), player);
     }
 
     public void syncStatus(EntityPlayerMP player, UUID key, RelationStatus status, boolean value) {

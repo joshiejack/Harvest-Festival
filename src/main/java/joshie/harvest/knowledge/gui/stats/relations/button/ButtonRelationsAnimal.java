@@ -8,17 +8,13 @@ import joshie.harvest.api.animals.AnimalStats;
 import joshie.harvest.api.animals.AnimalTest;
 import joshie.harvest.api.animals.IAnimalType;
 import joshie.harvest.api.player.RelationshipType;
-import joshie.harvest.core.HFTrackers;
-import joshie.harvest.core.helpers.EntityHelper;
-import joshie.harvest.core.helpers.MCClientHelper;
+import joshie.harvest.core.base.gui.ButtonBook;
 import joshie.harvest.core.helpers.StackRenderHelper;
 import joshie.harvest.crops.HFCrops;
 import joshie.harvest.crops.item.ItemCrop.Crops;
 import joshie.harvest.knowledge.gui.stats.GuiStats;
-import joshie.harvest.core.base.gui.ButtonBook;
 import joshie.harvest.npcs.HFNPCs;
 import joshie.harvest.npcs.item.ItemNPCTool.NPCTool;
-import joshie.harvest.player.relationships.RelationshipDataClient;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.passive.EntityAnimal;
@@ -26,8 +22,6 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
-
-import java.util.UUID;
 
 public class ButtonRelationsAnimal extends ButtonBook {
     private static final ResourceLocation HEARTS = new ResourceLocation("textures/gui/icons.png");
@@ -52,6 +46,7 @@ public class ButtonRelationsAnimal extends ButtonBook {
     private final boolean isTreated;
     private final boolean isSick;
     private final boolean isPregnant;
+    //TODO:
     //If sick hearts are green
     //If pregnant
 
@@ -67,18 +62,16 @@ public class ButtonRelationsAnimal extends ButtonBook {
         this.width = 120;
         this.height = 16;
         this.stack = stats.getType().getIcon();
-        RelationshipDataClient data = HFTrackers.getClientPlayerTracker().getRelationships();
-        UUID uuid = EntityHelper.getEntityUUID(animal);
         this.type = stats.getType();
-        this.relationship = data.getRelationship(uuid);
-        this.petted = data.hasTalked(uuid);
+        this.relationship = stats.getHappiness();
+        this.petted = stats.performTest(AnimalTest.BEEN_LOVED);
         this.eaten = stats.performTest(AnimalTest.HAS_EATEN);
         this.needsCleaning = stats.performTest(AnimalTest.CAN_CLEAN);
         this.isClean = stats.performTest(AnimalTest.IS_CLEAN);
         this.isSick = stats.performTest(AnimalTest.IS_SICK);
         this.isPregnant = stats.performTest(AnimalTest.IS_PREGNANT);
         this.isTreated = stats.performTest(AnimalTest.HAD_TREAT);
-        this.product =  stats.getType().getProduct(MCClientHelper.getPlayer(), stats);
+        this.product =  stats.getType().getProduct(stats);
         this.collected = !stats.canProduce();
     }
 

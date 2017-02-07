@@ -3,7 +3,6 @@ package joshie.harvest.animals.stats;
 import joshie.harvest.animals.HFAnimals;
 import joshie.harvest.api.animals.AnimalAction;
 import joshie.harvest.api.animals.AnimalTest;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
@@ -22,13 +21,12 @@ public class AnimalStatsMilkable extends AnimalStatsLivestock {
     }
 
     @Override
-    public boolean performAction(@Nonnull World world, @Nullable EntityPlayer player, @Nullable ItemStack stack, AnimalAction action) {
-        if (action == AnimalAction.CLAIM_PRODUCT) return milk(world, player);
-        else return super.performAction(world, player, stack, action);
+    public boolean performAction(@Nonnull World world, @Nullable ItemStack stack, AnimalAction action) {
+        if (action == AnimalAction.CLAIM_PRODUCT) return milk(world);
+        else return super.performAction(world, stack, action);
     }
 
-    private boolean milk(@Nonnull World world, @Nullable EntityPlayer player) {
-        if (player == null) return false;
+    private boolean milk(@Nonnull World world) {
         if (!world.isRemote) {
             setProduced(getProductsPerDay());
         }

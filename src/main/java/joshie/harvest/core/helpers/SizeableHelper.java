@@ -24,29 +24,28 @@ public class SizeableHelper {
         return HFAnimals.ANIMAL_PRODUCT.getStack(Sizeable.EGG, size);
     }
 
-    public static ItemStack getMilk(EntityPlayer player, EntityAnimal animal, AnimalStats stats) {
-        return SizeableHelper.getSizeable(player, animal, stats, Sizeable.MILK);
+    public static ItemStack getMilk(AnimalStats stats) {
+        return SizeableHelper.getSizeable(stats, Sizeable.MILK);
     }
 
-    public static ItemStack getWool(EntityPlayer player, EntityAnimal animal, AnimalStats stats) {
-        return SizeableHelper.getSizeable(player, animal, stats, Sizeable.WOOL);
+    public static ItemStack getWool(AnimalStats stats) {
+        return SizeableHelper.getSizeable(stats, Sizeable.WOOL);
     }
 
-    private static ItemStack getSizeable(EntityPlayer player, EntityAnimal animal, AnimalStats stats, Sizeable sizeable) {
-        return sizeable.getStackOfSize(HFAnimals.ANIMAL_PRODUCT, getSizeFromAnimal(player, animal), stats.getProductsPerDay());
+    private static ItemStack getSizeable(AnimalStats stats, Sizeable sizeable) {
+        return sizeable.getStackOfSize(HFAnimals.ANIMAL_PRODUCT, getSizeFromAnimal(stats.getHappiness(), stats.getAnimal()), stats.getProductsPerDay());
     }
 
-    public static Size getSizeFromAnimal(EntityPlayer player, EntityAnimal animal) {
-        int relationship = HFApi.player.getRelationsForPlayer(player).getRelationship(EntityHelper.getEntityUUID(animal));
+    public static Size getSizeFromAnimal(int happiness, EntityAnimal animal) {
         WeightedSize weighted = new WeightedSize();
         for (Size size: Size.values()) {
-            int value = 27000 -(27000 -(relationship - size.getRelationshipRequirement()));
+            int value = 27000 -(27000 -(happiness - size.getRelationshipRequirement()));
             if (value > 0) {
                 weighted.add(size, value);
             }
         }
 
-        return weighted.get(player);
+        return weighted.get(animal);
     }
 
     private static class WeightedSize {
@@ -60,9 +59,9 @@ public class SizeableHelper {
         }
 
         @Nullable
-        public Size get(EntityPlayer player) {
+        public Size get(EntityAnimal animal) {
             if (map.size() == 0) return Size.SMALL;
-            return map.ceilingEntry((player.worldObj.rand.nextDouble() * total)).getValue();
+            return map.ceilingEntry((animal.worldObj.rand.nextDouble() * total)).getValue();
         }
     }
 }

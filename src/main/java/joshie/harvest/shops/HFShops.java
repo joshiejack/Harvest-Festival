@@ -136,7 +136,7 @@ public class HFShops {
         BLOODMAGE.addPurchasable(-150, new ItemStack(Items.GOLDEN_CARROT), 5);
         BLOODMAGE.addPurchasable(-100, new ItemStack(Items.RABBIT_FOOT), 2);
         BLOODMAGE.addPurchasable(-200, new ItemStack(Items.GUNPOWDER), 4);
-        BLOODMAGE.addPurchasable(-30, new ItemStack(Items.REDSTONE));
+        BLOODMAGE.addPurchasable(-30, new ItemStack(Items.REDSTONE), 10);
         BLOODMAGE.addPurchasable(-50, new ItemStack(Items.GLOWSTONE_DUST), 5);
         BLOODMAGE.addOpening(WEDNESDAY, 19000, 24000).addOpening(WEDNESDAY, 0, 5000).addOpening(SATURDAY, 18000, 24000).addOpening(SATURDAY, 0, 3500);
     }
@@ -286,10 +286,10 @@ public class HFShops {
         MINER.addPurchasable(new PurchasableOre(400, new ItemStack(Items.IRON_INGOT)));
         MINER.addPurchasable(new PurchasableOre(600, new ItemStack(Items.GOLD_INGOT)));
         //Selling things to the mine
-        MINER.addPurchasable(-10, new ItemStack(Items.COAL, 1, 1));
-        MINER.addPurchasable(-6, new ItemStack(Items.GOLD_NUGGET));
-        MINER.addPurchasable(-10, new ItemStack(Items.COAL));
-        MINER.addPurchasable(-20, new ItemStack(Items.QUARTZ));
+        MINER.addPurchasable(-10, new ItemStack(Items.COAL, 1, 1), 10);
+        MINER.addPurchasable(-6, new ItemStack(Items.GOLD_NUGGET), 10);
+        MINER.addPurchasable(-10, new ItemStack(Items.COAL), 10);
+        MINER.addPurchasable(-20, new ItemStack(Items.QUARTZ), 10);
         MINER.addPurchasable(-40, new ItemStack(Items.IRON_INGOT), 8);
         MINER.addPurchasable(-60, new ItemStack(Items.GOLD_INGOT), 5);
 
@@ -359,7 +359,7 @@ public class HFShops {
         BAITSHOP.addPurchasable(-150, new ItemStack(Items.PRISMARINE_CRYSTALS), 3);
         BAITSHOP.addPurchasable(-10, new ItemStack(Items.FISH, 1, 0), 20);
         BAITSHOP.addPurchasable(-30, new ItemStack(Items.FISH, 1, 1), 15);
-        BAITSHOP.addPurchasable(-50, new ItemStack(Items.FISH, 1, 2));
+        BAITSHOP.addPurchasable(-50, new ItemStack(Items.FISH, 1, 2), 10);
         BAITSHOP.addPurchasable(-100, new ItemStack(Items.FISH, 1, 3), 5);
         for (Fish fish: Fish.values()) {
             long sell = (fish.getSellValue(fish.getLengthFromSizeOfFish(MEDIUM_FISH))) - fish.getSellValue(fish.getLengthFromSizeOfFish(MEDIUM_FISH)) % 10;
@@ -371,11 +371,11 @@ public class HFShops {
 
     private static void registerTrader() {
         TRADER.addPurchasable(-60, new ItemStack(Items.MILK_BUCKET), 3);
-        TRADER.addPurchasable(-30, new ItemStack(Items.EGG));
+        TRADER.addPurchasable(-30, new ItemStack(Items.EGG), 10);
         TRADER.addPurchasable(-120, new ItemStack(Items.LEATHER), 3);
         TRADER.addPurchasable(-50, new ItemStack(Items.FEATHER), 8);
         TRADER.addPurchasable(-80, new ItemStack(Items.RABBIT_HIDE), 5);
-        TRADER.addPurchasable(-20, new ItemStack(Items.STRING));
+        TRADER.addPurchasable(-20, new ItemStack(Items.STRING), 10);
         for (int i = 0; i < 16; i++) {
             TRADER.addPurchasable(-150, new ItemStack(Blocks.WOOL, 1, 0), 3);
         }

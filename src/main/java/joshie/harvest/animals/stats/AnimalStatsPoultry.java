@@ -4,7 +4,6 @@ import joshie.harvest.animals.HFAnimals;
 import joshie.harvest.api.animals.AnimalAction;
 import joshie.harvest.api.animals.AnimalTest;
 import joshie.harvest.api.animals.IAnimalType;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
@@ -37,16 +36,16 @@ public class AnimalStatsPoultry extends AnimalStatsHF {
     }
 
     @Override
-    public boolean performAction(@Nonnull World world, @Nullable EntityPlayer player, @Nullable ItemStack stack, AnimalAction action) {
-        if (action == AnimalAction.DISMOUNT) return dismount(player);
-        else return super.performAction(world, player, stack, action);
+    public boolean performAction(@Nonnull World world, @Nullable ItemStack stack, AnimalAction action) {
+        if (action == AnimalAction.DISMOUNT) return dismount();
+        else return super.performAction(world, stack, action);
     }
 
     @SuppressWarnings("ConstantConditions")
-    private boolean dismount(@Nullable EntityPlayer player) {
+    private boolean dismount() {
         if (!thrown) {
             thrown = true;
-            animal.setInLove(player);
+            animal.setInLove(null);
             return true;
         }
 

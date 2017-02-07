@@ -6,10 +6,8 @@ import joshie.harvest.animals.entity.ai.EntityAIFindShelterOrSun;
 import joshie.harvest.animals.entity.ai.EntityAILayEgg;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.AnimalStats;
+import joshie.harvest.api.animals.AnimalTest;
 import joshie.harvest.api.animals.IAnimalHandler.AnimalType;
-import joshie.harvest.api.player.RelationshipType;
-import joshie.harvest.core.HFTrackers;
-import joshie.harvest.core.helpers.EntityHelper;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
@@ -22,6 +20,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 
+import javax.annotation.Nonnull;
 import java.util.Set;
 
 import static joshie.harvest.api.animals.IAnimalHandler.ANIMAL_STATS_CAPABILITY;
@@ -29,7 +28,7 @@ import static joshie.harvest.api.animals.IAnimalHandler.ANIMAL_STATS_CAPABILITY;
 public class EntityHarvestChicken extends EntityChicken {
     private static final Set<Item> TEMPTATION_ITEMS = Sets.newHashSet(Items.WHEAT_SEEDS, Items.MELON_SEEDS, Items.PUMPKIN_SEEDS, Items.BEETROOT_SEEDS);
     private final AnimalStats<NBTTagCompound> stats = HFApi.animals.newStats(AnimalType.POULTRY);
-    private EntityPlayer toLovePlayer;
+    private boolean tickToLove;
     private int toLoveTicker;
 
     public EntityHarvestChicken(World world) {
@@ -58,6 +57,7 @@ public class EntityHarvestChicken extends EntityChicken {
     }
 
     @Override
+    @Nonnull
     public EntityHarvestChicken createChild(EntityAgeable ageable) {
         return new EntityHarvestChicken(worldObj);
     }
@@ -65,18 +65,21 @@ public class EntityHarvestChicken extends EntityChicken {
     @Override
     public void onLivingUpdate() {
         super.onLivingUpdate();
-        if (toLovePlayer != null) {
+        if (tickToLove) {
             if (toLoveTicker >= 0) toLoveTicker--;
             else {
-                HFTrackers.getPlayerTrackerFromPlayer(toLovePlayer).getRelationships().talkTo(RelationshipType.ANIMAL, toLovePlayer, EntityHelper.getEntityUUID(this));
-                toLovePlayer = null; //Player no more!!!!!!!!
+                if (!stats.performTest(AnimalTest.BEEN_LOVED)) {
+                    stats.affectHappiness(100); //Love <3
+                }
+
+                tickToLove = false;
             }
         }
     }
 
     @Override
     public void setInLove(EntityPlayer player) {
-        toLovePlayer = player;
+        tickToLove = true;
         toLoveTicker = 20;
     }
 

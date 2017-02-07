@@ -2,7 +2,6 @@ package joshie.harvest.quests.town.building;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.npc.NPC;
-import joshie.harvest.api.player.RelationshipType;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.crops.HFCrops;
@@ -40,7 +39,7 @@ public class QuestGoddessPond extends QuestTown {
 
     @Override
     public void onQuestCompleted(EntityPlayer player) {
-        HFApi.player.getRelationsForPlayer(player).affectRelationship(RelationshipType.NPC, HFNPCs.GODDESS.getUUID(), 1000);
+        HFApi.player.getRelationsForPlayer(player).affectRelationship(HFNPCs.GODDESS.getUUID(), 1000);
         rewardItem(player, HFCrops.STRAWBERRY.getCropStack(10));
         rewardGold(player, 5000);
     }

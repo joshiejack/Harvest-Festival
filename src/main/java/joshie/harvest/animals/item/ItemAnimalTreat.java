@@ -45,7 +45,7 @@ public class ItemAnimalTreat extends ItemHFEnum<ItemAnimalTreat, Treat> {
     public boolean itemInteractionForEntity(ItemStack stack, EntityPlayer player, EntityLivingBase target, EnumHand hand) {
         AnimalStats stats = EntityHelper.getStats(target);
         AnimalAction action = getEnumFromStack(stack).getType() != null ? AnimalAction.TREAT_SPECIAL : AnimalAction.TREAT_GENERIC;
-        if (stats != null && stats.performAction(player.worldObj, player, stack, action)) {
+        if (stats != null && stats.performAction(player.worldObj, stack, action)) {
             stack.splitStack(1);
             return true;
         } else return false;

@@ -1,7 +1,6 @@
 package joshie.harvest.quests.player.friendship;
 
 import joshie.harvest.api.HFApi;
-import joshie.harvest.api.player.RelationshipType;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.npcs.HFNPCs;
@@ -24,8 +23,8 @@ public class QuestAbii10KHappyFamily extends QuestFriendship {
 
     @Override
     public void onQuestCompleted(EntityPlayer player) {
-        HFApi.player.getRelationsForPlayer(player).affectRelationship(RelationshipType.NPC, HFNPCs.MAYOR.getUUID(), 1000);
-        HFApi.player.getRelationsForPlayer(player).affectRelationship(RelationshipType.NPC, HFNPCs.PRIEST.getUUID(), 1000);
-        HFApi.player.getRelationsForPlayer(player).affectRelationship(RelationshipType.NPC, HFNPCs.DAUGHTER_ADULT.getUUID(), 1000);
+        HFApi.player.getRelationsForPlayer(player).affectRelationship(HFNPCs.MAYOR.getUUID(), 1000);
+        HFApi.player.getRelationsForPlayer(player).affectRelationship(HFNPCs.PRIEST.getUUID(), 1000);
+        HFApi.player.getRelationsForPlayer(player).affectRelationship(HFNPCs.DAUGHTER_ADULT.getUUID(), 1000);
     }
 }

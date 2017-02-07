@@ -14,7 +14,7 @@ public class PacketSyncMarriage extends PacketRelationship {
 
     public PacketSyncMarriage() {}
     public PacketSyncMarriage(UUID key, boolean divorce) {
-        super(key, null);
+        super(key);
         this.divorce = divorce;
     }
 

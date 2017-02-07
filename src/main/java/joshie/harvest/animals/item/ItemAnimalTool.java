@@ -1,11 +1,13 @@
 package joshie.harvest.animals.item;
 
+import joshie.harvest.animals.HFAnimals;
+import joshie.harvest.animals.entity.EntityHarvestCow;
 import joshie.harvest.animals.item.ItemAnimalTool.Tool;
-import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.AnimalAction;
 import joshie.harvest.api.animals.AnimalStats;
 import joshie.harvest.api.animals.AnimalTest;
-import joshie.harvest.api.player.RelationshipType;
+import joshie.harvest.api.core.Size;
+import joshie.harvest.core.achievements.HFAchievements;
 import joshie.harvest.core.base.item.ItemHFEnum;
 import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.core.lib.CreativeSort;
@@ -22,6 +24,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nonnull;
 import java.util.HashMap;
 import java.util.Locale;
 
@@ -66,6 +69,7 @@ public class ItemAnimalTool extends ItemHFEnum<ItemAnimalTool, Tool> {
     }
 
     @Override
+    @Nonnull
     public EnumAction getItemUseAction(ItemStack stack) {
         return getEnumFromStack(stack) == MILKER ? EnumAction.BOW : EnumAction.NONE;
     }
@@ -73,13 +77,21 @@ public class ItemAnimalTool extends ItemHFEnum<ItemAnimalTool, Tool> {
     private final HashMap<EntityPlayer, AnimalStats> milkables = new HashMap<>();
 
     @Override
-    public ItemStack onItemUseFinish(ItemStack held, World world, EntityLivingBase entityLiving) {
+    public ItemStack onItemUseFinish(@Nonnull ItemStack held, World world, EntityLivingBase entityLiving) {
         if (entityLiving instanceof EntityPlayer && getEnumFromStack(held) == MILKER) {
             EntityPlayer player = (EntityPlayer) entityLiving;
             AnimalStats stats = milkables.get(player);
             if (stats != null) {
-                if (stats.performAction(world, player, held, AnimalAction.CLAIM_PRODUCT)) {
-                    ItemStack product = stats.getType().getProduct(player, stats);
+                if (stats.performAction(world, held, AnimalAction.CLAIM_PRODUCT)) {
+                    ItemStack product = stats.getType().getProduct(stats);
+                    //Achievements
+                    if (product.getItem() == HFAnimals.ANIMAL_PRODUCT && stats.getAnimal() instanceof EntityHarvestCow) {
+                        player.addStat(HFAchievements.milker);
+                        if (HFAnimals.ANIMAL_PRODUCT.getSize(product) == Size.LARGE) {
+                            player.addStat(HFAchievements.milkerLarge);
+                        }
+                    }
+
                     if (!player.inventory.addItemStackToInventory(product)) {
                         player.dropItem(product, false);
                     }
@@ -91,7 +103,6 @@ public class ItemAnimalTool extends ItemHFEnum<ItemAnimalTool, Tool> {
                         held.getSubCompound("Data", true).setInteger("Damage", damage);
                     }
 
-                    HFApi.player.getRelationsForPlayer(player).affectRelationship(RelationshipType.ANIMAL, EntityHelper.getEntityUUID(stats.getAnimal()), stats.getType().getRelationshipBonus(AnimalAction.CLAIM_PRODUCT));
                     ToolHelper.consumeHunger(player, 4F);
                 }
             }
@@ -111,14 +122,14 @@ public class ItemAnimalTool extends ItemHFEnum<ItemAnimalTool, Tool> {
     }
 
     private boolean impregnate(EntityPlayer player, AnimalStats stats, ItemStack stack) {
-        if (stats.performAction(player.worldObj, player, stack, AnimalAction.IMPREGNATE)) {
+        if (stats.performAction(player.worldObj, stack, AnimalAction.IMPREGNATE)) {
             stack.splitStack(1);
             return true;
         } else return false;
     }
 
     private boolean heal(EntityPlayer player, AnimalStats stats, ItemStack stack) {
-        if (stats.performAction(player.worldObj, player, stack, AnimalAction.HEAL)) {
+        if (stats.performAction(player.worldObj, stack, AnimalAction.HEAL)) {
             stack.splitStack(1);
             ToolHelper.consumeHunger(player, 5F);
             return true;
@@ -127,7 +138,7 @@ public class ItemAnimalTool extends ItemHFEnum<ItemAnimalTool, Tool> {
 
     private boolean clean(EntityPlayer player, ItemStack held, EntityLivingBase animal, AnimalStats stats) {
         if (stats.performTest(AnimalTest.CAN_CLEAN)) {
-            boolean cleaned = stats.performAction(player.worldObj, player, held, AnimalAction.CLEAN);
+            boolean cleaned = stats.performAction(player.worldObj, held, AnimalAction.CLEAN);
             if (cleaned) {
                 if (player.worldObj.isRemote) {
                     for (int j = 0; j < 30D; j++) {
@@ -182,11 +193,11 @@ public class ItemAnimalTool extends ItemHFEnum<ItemAnimalTool, Tool> {
         return canBeDamaged(stack) ? ((double) getDamageForDisplay(stack) / MAX_DAMAGE) : 0;
     }
 
-    protected int getDamageForDisplay(ItemStack stack) {
+    private int getDamageForDisplay(ItemStack stack) {
         return stack.getSubCompound("Data", true).getInteger("Damage");
     }
 
-    public boolean canBeDamaged(ItemStack stack) {
+    private boolean canBeDamaged(ItemStack stack) {
         return getEnumFromStack(stack).isDamageable;
     }
 

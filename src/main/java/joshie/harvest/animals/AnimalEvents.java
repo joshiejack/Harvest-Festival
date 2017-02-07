@@ -60,7 +60,7 @@ public class AnimalEvents {
         AnimalStats stats = EntityHelper.getStats(event.getTarget());
         ItemStack stack = event.getItemStack();
         if (stats != null && stack != null) {
-            if (HFApi.animals.canEat(stack, stats.getType().getFoodTypes()) && stats.performAction(event.getWorld(), event.getEntityPlayer(), stack, AnimalAction.FEED)) {
+            if (HFApi.animals.canEat(stack, stats.getType().getFoodTypes()) && stats.performAction(event.getWorld(), stack, AnimalAction.FEED)) {
                 stack.splitStack(1);
                 event.setCanceled(true);
             }
@@ -71,7 +71,7 @@ public class AnimalEvents {
     public void onEntityAttackedByPlayer(AttackEntityEvent event) {
         AnimalStats stats = EntityHelper.getStats(event.getTarget());
         if (stats != null) {
-            stats.affectRelationship(event.getEntityPlayer(), -10);
+            stats.affectHappiness(-10);
         }
     }
 
@@ -136,7 +136,7 @@ public class AnimalEvents {
                         entity.rotationPitch = player.rotationPitch;
                         entity.rotationYaw = player.rotationYaw;
                         entity.moveRelative(0F, 0.1F, 1.05F);
-                        stats.performAction(player.worldObj, player, null, AnimalAction.DISMOUNT);
+                        stats.performAction(player.worldObj, null, AnimalAction.DISMOUNT);
                     }
                 }
             }

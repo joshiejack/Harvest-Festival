@@ -1,7 +1,6 @@
 package joshie.harvest.api.animals;
 
 import net.minecraft.entity.passive.EntityAnimal;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 
 public interface IAnimalType {
@@ -36,8 +35,9 @@ public interface IAnimalType {
      *  @return the points awarded**/
     int getRelationshipBonus(AnimalAction action);
 
-    /** @return the product that this animal produces **/
-    ItemStack getProduct(EntityPlayer player, AnimalStats stats);
+    /** @return the product that this animal produces
+     *  @param stats    the animals stats **/
+    ItemStack getProduct(AnimalStats stats);
 
     /** Called whenever an animal is reset to being able to produce again
      * @param stats     the stats

@@ -2,7 +2,6 @@ package joshie.harvest.quests.town.tasks;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.npc.NPC;
-import joshie.harvest.api.player.RelationshipType;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.core.helpers.TextHelper;
@@ -113,7 +112,7 @@ public class QuestSlay extends QuestDaily {
 
     @Override
     public void onQuestCompleted(EntityPlayer player) {
-        HFApi.player.getRelationsForPlayer(player).affectRelationship(RelationshipType.NPC, HFNPCs.MINER.getUUID(), 500);
+        HFApi.player.getRelationsForPlayer(player).affectRelationship(HFNPCs.MINER.getUUID(), 500);
         rewardGold(player, 1000L * targetAmount);
     }
 

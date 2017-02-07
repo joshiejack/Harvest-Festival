@@ -3,6 +3,7 @@ package joshie.harvest.animals.stats;
 import joshie.harvest.animals.HFAnimals;
 import joshie.harvest.animals.item.ItemAnimalTreat.Treat;
 import joshie.harvest.animals.packet.PacketSyncAnimal;
+import joshie.harvest.animals.packet.PacketSyncHappiness;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.AnimalAction;
 import joshie.harvest.api.animals.AnimalStats;
@@ -10,6 +11,7 @@ import joshie.harvest.api.animals.AnimalTest;
 import joshie.harvest.api.animals.IAnimalType;
 import joshie.harvest.api.player.RelationshipType;
 import joshie.harvest.core.helpers.EntityHelper;
+import joshie.harvest.core.network.PacketHandler;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
@@ -36,12 +38,16 @@ public class AnimalStatsHF implements AnimalStats<NBTTagCompound> {
     private WeakReference<EntityPlayer> owner;
     protected EntityAnimal animal;
     protected IAnimalType type;
+    //TODO: Remove in 0.7+
     protected UUID o_uuid;
 
     private int currentLifespan = 0; //How many days this animal has lived for
     protected int healthiness = Byte.MAX_VALUE; //How healthy this animal is, full byte range
     private int stress = Byte.MIN_VALUE; //How stressed this animal is, full byte range
     private int daysNotFed; //How many subsequent days that this animal has not been fed
+    private boolean loadHappiness = false; //TODO: Remove in 0.7+
+    private boolean beenLoved; //If the animal has received love today
+    private int happiness; //How happy this animal is
 
     private boolean isSick; //Whether the animal is sick or not
     private boolean wasSick; //Whether the animal was previously sick
@@ -71,6 +77,16 @@ public class AnimalStatsHF implements AnimalStats<NBTTagCompound> {
      *  @param animal the entity **/
     public AnimalStatsHF setEntity(EntityAnimal animal) {
         this.animal = animal;
+        //TODO: Remove in 0.7+
+        //Loads the happiness based on the entity
+        if (loadHappiness) {
+            EntityPlayer owner = getOwner();
+            if (owner != null) {
+                loadHappiness = false; //Reset the happiness loading
+                happiness = HFApi.player.getRelationsForPlayer(owner).getRelationship(EntityHelper.getEntityUUID(animal));
+            }
+        }
+
         return this;
     }
 
@@ -133,7 +149,7 @@ public class AnimalStatsHF implements AnimalStats<NBTTagCompound> {
         EntityPlayer owner = getOwner();
         if (owner != null && isOutsideInSun && wasOutsideInSun) {
             healthiness++;
-            affectRelationship(owner, type.getRelationshipBonus(AnimalAction.OUTSIDE));
+            affectHappiness(type.getRelationshipBonus(AnimalAction.OUTSIDE));
         }
 
         //Mark the past value
@@ -197,6 +213,7 @@ public class AnimalStatsHF implements AnimalStats<NBTTagCompound> {
                 healthiness+= 10;
             }
 
+            beenLoved = false;
             healthiness = Math.min(127, Math.max(-128, healthiness));
             daysNotFed++;
             daysPassed++;
@@ -246,6 +263,7 @@ public class AnimalStatsHF implements AnimalStats<NBTTagCompound> {
         } else return false;
     }
 
+    //TODO: Remove in 0.7+
     private EntityPlayer getAndCreateOwner() {
         if (owner != null) return owner.get();
         else {
@@ -259,6 +277,7 @@ public class AnimalStatsHF implements AnimalStats<NBTTagCompound> {
     }
 
     @Override
+    //TODO: Remove in 0.7+
     public EntityPlayer getOwner() {
         EntityPlayer owner = getAndCreateOwner();
         if (owner != null && animal != null) {
@@ -273,6 +292,7 @@ public class AnimalStatsHF implements AnimalStats<NBTTagCompound> {
     }
 
     @Override
+    //TODO: Remove in 0.7+
     public void setOwner(@Nonnull UUID uuid) {
         this.o_uuid = uuid;
     }
@@ -285,6 +305,7 @@ public class AnimalStatsHF implements AnimalStats<NBTTagCompound> {
     @Override
     public void setProduced(int amount) {
         producedProducts += amount;
+        affectHappiness(getType().getRelationshipBonus(AnimalAction.CLAIM_PRODUCT));
         HFApi.animals.syncAnimalStats(animal);
     }
 
@@ -293,21 +314,22 @@ public class AnimalStatsHF implements AnimalStats<NBTTagCompound> {
         if (test == AnimalTest.HAS_EATEN) return daysNotFed < 0;
         else if (test == AnimalTest.IS_SICK) return isSick;
         else if (test == AnimalTest.HAD_TREAT) return treated;
+        else if (test == AnimalTest.BEEN_LOVED) return beenLoved;
         else return false;
     }
 
     @Override
-    public boolean performAction(@Nonnull World world, @Nullable EntityPlayer player, @Nullable ItemStack stack, AnimalAction action) {
-        if (action == AnimalAction.FEED) return feed(world, player);
-        else if (action == AnimalAction.HEAL) return heal(world, player);
-        return (action == AnimalAction.TREAT_SPECIAL || action == AnimalAction.TREAT_GENERIC) && treat(world, player, stack);
+    public boolean performAction(@Nonnull World world, @Nullable ItemStack stack, AnimalAction action) {
+        if (action == AnimalAction.FEED) return feed(world);
+        else if (action == AnimalAction.HEAL) return heal(world);
+        return (action == AnimalAction.TREAT_SPECIAL || action == AnimalAction.TREAT_GENERIC) && treat(world, stack);
     }
 
-    private boolean feed(@Nonnull World world, @Nullable EntityPlayer player) {
+    private boolean feed(@Nonnull World world) {
         if (daysNotFed >= 0) {
             if (!world.isRemote) {
                 daysNotFed = -1;
-                affectRelationship(player, type.getRelationshipBonus(AnimalAction.FEED));
+                affectHappiness(type.getRelationshipBonus(AnimalAction.FEED));
                 HFApi.animals.syncAnimalStats(animal);
             }
 
@@ -317,13 +339,13 @@ public class AnimalStatsHF implements AnimalStats<NBTTagCompound> {
         return false;
     }
 
-    private boolean heal(@Nonnull World world, @Nullable EntityPlayer player) {
+    private boolean heal(@Nonnull World world) {
         if (healthiness < 27) {
             animal.clearActivePotions();
             if (!world.isRemote) {
                 healthiness = Byte.MAX_VALUE;
                 isSick = false;
-                affectRelationship(player, -100);
+                affectHappiness(-100);
                 HFApi.animals.syncAnimalStats(animal);
             }
 
@@ -332,43 +354,55 @@ public class AnimalStatsHF implements AnimalStats<NBTTagCompound> {
     }
 
     @Override
-    public void affectRelationship(EntityPlayer player, int amount) {
-        if (player != null && amount != 0) {
-            HFApi.player.getRelationsForPlayer(player).affectRelationship(RelationshipType.ANIMAL, EntityHelper.getEntityUUID(animal), amount);
-            if (amount < 0) {
-                try {
-                    ReflectionHelper.findMethod(EntityLivingBase.class, null, new String[]{"playHurtSound"}, DamageSource.class).invoke(animal, DamageSource.starve);
-                } catch (IllegalAccessException | InvocationTargetException ex) { ex.printStackTrace(); }
+    public int getHappiness() {
+        return happiness;
+    }
+
+    @Override
+    public void affectHappiness(int amount) {
+        if (amount != 0) {
+            beenLoved = true; //Mark the animal as having received some loving
+            happiness = Math.max(0, Math.min(RelationshipType.ANIMAL.getMaximumRP(), happiness + amount));
+            if (animal != null && !animal.worldObj.isRemote) {
+                if (amount < 0) {
+                    try {
+                        ReflectionHelper.findMethod(EntityLivingBase.class, null, new String[]{"playHurtSound"}, DamageSource.class).invoke(animal, DamageSource.starve);
+                    } catch (IllegalAccessException | InvocationTargetException ex) {
+                        ex.printStackTrace();
+                    }
+                }
+
+                PacketHandler.sendToAllAround(new PacketSyncHappiness(animal.getEntityId(), amount), animal.dimension, animal.posX, animal.posY, animal.posZ, 178);
             }
         }
     }
 
-    private void treat(EntityPlayer player, AnimalAction action) {
+    private void treat(AnimalAction action) {
         treated = true;
-        affectRelationship(player, type.getRelationshipBonus(action));
+        affectHappiness(type.getRelationshipBonus(action));
         HFApi.animals.syncAnimalStats(animal);
     }
 
-    private boolean treat(@Nonnull World world, @Nullable EntityPlayer player, @Nullable ItemStack stack) {
+    private boolean treat(@Nonnull World world, @Nullable ItemStack stack) {
         if (stack == null) return false;
         if (!treated) {
             if (HFAnimals.TREATS.getEnumFromStack(stack) == Treat.GENERIC) {
                 if (!world.isRemote) {
                     genericTreats++;
-                    treat(player, AnimalAction.TREAT_GENERIC);
+                    treat(AnimalAction.TREAT_GENERIC);
                 }
 
                 return true;
             } else if (HFAnimals.TREATS.getEnumFromStack(stack).getType() == type) {
                 if (!world.isRemote) {
                     typeTreats++;
-                    treat(player, AnimalAction.TREAT_SPECIAL);
+                    treat(AnimalAction.TREAT_SPECIAL);
                 }
 
                 return true;
             } else {
                 if (!world.isRemote) {
-                    treat(player, AnimalAction.TREAT_INCORRECT);
+                    treat(AnimalAction.TREAT_INCORRECT);
                 }
 
                 return true;
@@ -380,6 +414,7 @@ public class AnimalStatsHF implements AnimalStats<NBTTagCompound> {
 
     @Override
     public void deserializeNBT(NBTTagCompound nbt) {
+        //TODO: Remove in 0.7+
         if (nbt.hasKey("Owner")) {
             o_uuid = UUID.fromString(nbt.getString("Owner"));
         }
@@ -399,11 +434,17 @@ public class AnimalStatsHF implements AnimalStats<NBTTagCompound> {
             productsPerDay = nbt.getByte("NumProducts");
             producedProducts = nbt.getByte("ProducedProducts");
         }
+
+        if (nbt.hasKey("Happiness")) {
+            beenLoved = nbt.getBoolean("BeenLoved");
+            happiness = nbt.getShort("Happiness");
+        } else loadHappiness = true;
     }
 
     @Override
     public NBTTagCompound serializeNBT() {
         NBTTagCompound tag = new NBTTagCompound();
+        //TODO: Remove in 0.7+
         if (o_uuid != null) {
             tag.setString("Owner", o_uuid.toString());
         }
@@ -423,6 +464,12 @@ public class AnimalStatsHF implements AnimalStats<NBTTagCompound> {
         if (type.getDaysBetweenProduction() > 0) {
             tag.setByte("NumProducts", (byte) productsPerDay);
             tag.setByte("ProducedProducts", (byte) producedProducts);
+        }
+
+        //TODO: Remove if loadHappiness in 0.7+
+        if (happiness > 0) {
+            tag.setBoolean("BeenLoved", beenLoved);
+            tag.setShort("Happiness", (short) happiness);
         }
 
         return tag;

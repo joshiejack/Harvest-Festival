@@ -322,7 +322,7 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
     @Override
     public boolean canGrow(@Nonnull World world, @Nonnull BlockPos pos, @Nonnull IBlockState state, boolean isClient) {
         if (getEnumFromState(state) == CropType.WITHERED) return false; //It's dead it can't grow...
-        if (HFCrops.ENABLE_BONEMEAL) {
+        if (!HFCrops.ENABLE_BONEMEAL) {
             if (HFCrops.SEASONAL_BONEMEAL) {
                 CropData data = CropHelper.getCropDataAt(world, pos);
                 if (data != null && data.getCrop().getGrowthHandler().canGrow(world, pos, data.getCrop())) {

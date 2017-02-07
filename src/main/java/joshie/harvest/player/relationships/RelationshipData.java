@@ -5,7 +5,6 @@ import com.google.common.collect.Multimap;
 import joshie.harvest.api.calendar.CalendarDate;
 import joshie.harvest.api.npc.RelationStatus;
 import joshie.harvest.api.player.IRelations;
-import joshie.harvest.api.player.RelationshipType;
 import joshie.harvest.core.helpers.NBTHelper;
 import joshie.harvest.core.helpers.TextHelper;
 import net.minecraft.entity.player.EntityPlayer;
@@ -17,7 +16,7 @@ import javax.annotation.Nullable;
 import java.util.*;
 
 public abstract class RelationshipData implements IRelations {
-    public void talkTo(RelationshipType type, EntityPlayer player, UUID key) {}
+    public void talkTo(EntityPlayer player, UUID key) {}
     public boolean gift(EntityPlayer player, UUID key, int amount) { return false; }
     public void copyRelationship(@Nullable EntityPlayer player, int adult, UUID baby, double percentage) {}
 

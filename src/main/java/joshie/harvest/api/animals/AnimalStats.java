@@ -42,25 +42,29 @@ public interface AnimalStats<N extends NBTBase> extends INBTSerializable<N> {
     void onBihourlyTick();
 
     /** Returns the owner of this animal */
+    //TODO: Remove in 0.7+
+    @Deprecated
     EntityPlayer getOwner();
 
     /** Set the owner of this animal **/
+    //TODO: Remove in 0.7+
+    @Deprecated
     void setOwner(@Nonnull UUID uuid);
 
-    /** Affects the relationship with this player,
-     *  It's a handy shortcut instead of calliing the relationship
-     *  helper for the animals
-     * @param player    the player
-     * @param amount    the amount */
-    void affectRelationship(EntityPlayer player, int amount);
+    /** @return the happiness of this animal **/
+    int getHappiness();
+
+    /** Affects the happiness of this animal
+     *
+     * @param happiness the amount to change the happiness by  */
+    void affectHappiness(int happiness);
 
     /** Perform an action on this animal
      *  @param world    the world object, should never be null
-     *  @param player   the player performing the action, can be null
      *  @param stack    the stack performing the action
      *  @param action   the action itself
      *  @return true if it was successfully performed **/
-    boolean performAction(@Nonnull World world, @Nullable EntityPlayer player, @Nullable ItemStack stack, AnimalAction action);
+    boolean performAction(@Nonnull World world, @Nullable ItemStack stack, AnimalAction action);
 
     /** Performs a test on the animal
      *  @param test     the test to perform**/

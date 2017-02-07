@@ -8,7 +8,6 @@ import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.player.PlayerTrackerServer;
 import net.minecraft.entity.EntityAgeable;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
@@ -77,18 +76,18 @@ public class AnimalStatsLivestock extends AnimalStatsHF {
     }
 
     @Override
-    public boolean performAction(@Nonnull World world, @Nullable EntityPlayer player, @Nullable ItemStack stack, AnimalAction action) {
-        if (action == AnimalAction.CLEAN) return clean(world, player);
-        else if (action == AnimalAction.IMPREGNATE) return impregnate(player);
-        else return super.performAction(world, player, stack, action);
+    public boolean performAction(@Nonnull World world, @Nullable ItemStack stack, AnimalAction action) {
+        if (action == AnimalAction.CLEAN) return clean(world);
+        else if (action == AnimalAction.IMPREGNATE) return impregnate();
+        else return super.performAction(world, stack, action);
     }
 
-    private boolean clean(@Nonnull World world, @Nullable EntityPlayer player) {
+    private boolean clean(@Nonnull World world) {
         if (cleanliness < Byte.MAX_VALUE) {
             if (!world.isRemote) {
                 cleanliness = (byte) Math.min(Byte.MAX_VALUE, cleanliness + 10);
                 if (cleanliness >= Byte.MAX_VALUE) {
-                    affectRelationship(player, 30);
+                    affectHappiness(30);
                     HFApi.animals.syncAnimalStats(animal);
                 }
             }
@@ -99,12 +98,12 @@ public class AnimalStatsLivestock extends AnimalStatsHF {
         return false;
     }
 
-    private boolean impregnate(EntityPlayer player) {
+    private boolean impregnate() {
         if (animal.getAge() < 0) return false;
         if (isPregnant) return false;
         daysPregnant = 0;
         isPregnant = true;
-        affectRelationship(player, 200);
+        affectHappiness(200);
         HFApi.animals.syncAnimalStats(animal);
         return true;
     }

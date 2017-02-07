@@ -6,11 +6,8 @@ import joshie.harvest.animals.entity.ai.EntityAIFindShelterOrSun;
 import joshie.harvest.animals.item.ItemAnimalTool.Tool;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.AnimalStats;
+import joshie.harvest.api.animals.AnimalTest;
 import joshie.harvest.api.animals.IAnimalHandler.AnimalType;
-import joshie.harvest.api.player.RelationshipType;
-import joshie.harvest.core.HFTrackers;
-import joshie.harvest.core.helpers.EntityHelper;
-import joshie.harvest.player.relationships.RelationshipData;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
@@ -26,7 +23,7 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 
-import java.util.UUID;
+import javax.annotation.Nonnull;
 
 import static joshie.harvest.api.animals.IAnimalHandler.ANIMAL_STATS_CAPABILITY;
 import static joshie.harvest.core.helpers.InventoryHelper.ITEM;
@@ -78,22 +75,20 @@ public class EntityHarvestCow extends EntityCow {
         if (player == null) return false;
         boolean special = ITEM_STACK.matchesAny(stack, getStacks()) || ITEM.matchesAny(stack, HFAnimals.TREATS);
         if (stack == null || !special) {
-            RelationshipData data = HFTrackers.getPlayerTrackerFromPlayer(player).getRelationships();
-            UUID uuid = EntityHelper.getEntityUUID(this);
-            if (data.hasTalked(uuid)) return false;
-            else {
-                HFTrackers.getPlayerTrackerFromPlayer(player).getRelationships().talkTo(RelationshipType.ANIMAL, player, EntityHelper.getEntityUUID(this));
+            if (!stats.performTest(AnimalTest.BEEN_LOVED)) {
+                stats.affectHappiness(100); //Love <3
                 SoundEvent s = getAmbientSound();
                 if (s != null) {
                     playSound(s, 2F, getSoundPitch());
                 }
 
                 return true;
-            }
+            } else return false;
         } else return false;
     }
 
     @Override
+    @Nonnull
     public EntityCow createChild(EntityAgeable ageable) {
         return new EntityHarvestCow(this.worldObj);
     }

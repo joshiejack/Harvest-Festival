@@ -15,7 +15,7 @@ public class PacketSyncGifted extends PacketRelationship {
 
     public PacketSyncGifted() {}
     public PacketSyncGifted(UUID key, RelationStatus status, boolean gifted) {
-        super(key, null);
+        super(key);
         this.gifted = gifted;
         this.status = status;
     }

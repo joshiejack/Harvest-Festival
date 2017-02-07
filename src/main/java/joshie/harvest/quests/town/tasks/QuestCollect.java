@@ -3,7 +3,6 @@ package joshie.harvest.quests.town.tasks;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.crops.Crop;
 import joshie.harvest.api.npc.NPC;
-import joshie.harvest.api.player.RelationshipType;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.cooking.item.ItemMeal.Meal;
@@ -73,7 +72,7 @@ public class QuestCollect extends QuestDaily {
 
     @Override
     public void onQuestCompleted(EntityPlayer player) {
-        HFApi.player.getRelationsForPlayer(player).affectRelationship(RelationshipType.NPC, HFNPCs.CAFE_GRANNY.getUUID(), 500);
+        HFApi.player.getRelationsForPlayer(player).affectRelationship(HFNPCs.CAFE_GRANNY.getUUID(), 500);
         ItemStack stack = HFCooking.MEAL.getCreativeStack(HFCooking.MEAL, Meal.values()[player.worldObj.rand.nextInt(Meal.values().length)]);
         if (player.worldObj.rand.nextInt(10) == 0) {
             stack.stackSize = 10;

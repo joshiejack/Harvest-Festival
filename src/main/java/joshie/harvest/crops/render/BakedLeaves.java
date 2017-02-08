@@ -42,12 +42,10 @@ import static net.minecraft.block.BlockLeaves.DECAYABLE;
 public class BakedLeaves extends BakedHF {
     private final TextureAtlasSprite sprite;
     private final IBakedModel base;
-    private Season season;
 
-    public BakedLeaves(IBakedModel parent, IBakedModel base, Season season, TextureAtlasSprite sprite) {
+    public BakedLeaves(IBakedModel parent, IBakedModel base, TextureAtlasSprite sprite) {
         super(parent);
         this.base = base;
-        this.season = season;
         this.sprite = sprite;
     }
 
@@ -56,7 +54,7 @@ public class BakedLeaves extends BakedHF {
         List<BakedQuad> quads = new ArrayList<>();
         if (MCClientHelper.getMinecraft().gameSettings.fancyGraphics) base.getQuads(state, side, rand).stream().forEachOrdered(quads::add);
         else base.getQuads(state, side, rand).stream().map(quad -> new BakedQuadRetextured(quad, sprite)).forEachOrdered(quads::add);
-        if (HFApi.calendar.getDate(MCClientHelper.getWorld()).getSeason() == season) {
+        if (HFApi.calendar.getDate(MCClientHelper.getWorld()).getSeason() == Season.SPRING) {
             BakedLeaves.super.getQuads(state, side, rand).stream().map(BakedTintedQuad :: new).forEachOrdered(quads::add);
         }
 
@@ -105,14 +103,14 @@ public class BakedLeaves extends BakedHF {
             TextureAtlasSprite spriteOak = Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite("harvestfestival:blocks/leaves_oak_black");
             for (LeavesFruit leaves: LeavesFruit.values()) {
                 IBlockState state = HFCrops.LEAVES_FRUIT.getStateFromEnum(leaves);
-                registry.putObject(getModelResourceLocation(state), new BakedLeaves(registry.getObject(getModelResourceLocation(state)), oak, leaves.getSeason(), spriteOak));
+                registry.putObject(getModelResourceLocation(state), new BakedLeaves(registry.getObject(getModelResourceLocation(state)), oak, spriteOak));
             }
 
             IBakedModel jungle = registry.getObject(new ModelResourceLocation("minecraft:jungle_leaves#normal"));
             TextureAtlasSprite spriteJungle = Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite("harvestfestival:blocks/leaves_jungle_black");
             for (LeavesTropical leaves: LeavesTropical.values()) {
                 IBlockState state = HFCrops.LEAVES_TROPICAL.getStateFromEnum(leaves);
-                registry.putObject(getModelResourceLocation(state), new BakedLeaves(registry.getObject(getModelResourceLocation(state)), jungle, leaves.getSeason(), spriteJungle));
+                registry.putObject(getModelResourceLocation(state), new BakedLeaves(registry.getObject(getModelResourceLocation(state)), jungle, spriteJungle));
             }
         }
     }

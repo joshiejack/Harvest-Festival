@@ -10,6 +10,6 @@ import java.util.Random;
 public class DropHandlerGrass extends DropHandler {
     @Override
     public ItemStack getDrop(Crop crop, int stage, Random rand) {
-        return stage >= crop.getMinimumCut() ? crop.getCropStack((int) Math.floor(stage / 2) - 2) : null;
+        return stage >= crop.getMinimumCut() ? crop.getCropStack(1 + (stage - crop.getMinimumCut())) : null;
     }
 }

@@ -7,7 +7,8 @@
     "stage": {
       "1": { "textures": { "cross": "harvestfestival:blocks/crops/orange_seeds" }},
       "2": { "textures": { "cross": "harvestfestival:blocks/crops/orange_sapling" }},
-      "3": { "model": "harvestfestival:crops/orange_juvenile" }
+      "3": { "textures": { "cross": "harvestfestival:blocks/crops/orange_juvenile_lower" }},
+      "4": { "textures": { "cross": "harvestfestival:blocks/crops/orange_juvenile_upper" }}
     }
   }
 }

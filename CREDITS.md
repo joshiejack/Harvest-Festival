@@ -9,6 +9,9 @@ Seasons HUD > CyanideX
 ## Buildings
 Harvest Goddess Pond - http://www.planetminecraft.com/project/waterfall-pond-d/
 
+## Trees
+Apple, Grape, Peach > Willi_Zinger
+
 ##Sounds
 Frying Pan Sizzle: http://www.freesound.org/people/purge63/sounds/94227/
 Mixer Whirr: http://www.freesound.org/people/VSokorelos/sounds/346170/
@@ -26,5 +29,5 @@ Recipe Learnt: http://www.freesound.org/people/LittleRobotSoundFactory/sounds/27
 
 ##Lang
 Meal Descriptions (0.5) > DivineAspect
-Meal Descriptions (0.6) > ZephyrWindSpirit
+Meal Descriptions (0.6), Festival Greetings > ZephyrWindSpirit
 Simplified Chinese Translation > Neko. 一只猫neko倾情汉化 =w=

@@ -1,6 +1,5 @@
 package joshie.harvest.crops.block;
 
-import joshie.harvest.api.calendar.Season;
 import joshie.harvest.core.base.block.BlockHFLeaves;
 import joshie.harvest.crops.block.BlockLeavesFruit.LeavesFruit;
 import net.minecraft.util.IStringSerializable;
@@ -15,16 +14,7 @@ public class BlockLeavesFruit extends BlockHFLeaves<BlockLeavesFruit, LeavesFrui
     }
 
     public enum LeavesFruit implements IStringSerializable {
-        APPLE(Season.AUTUMN), GRAPE(Season.AUTUMN), ORANGE(Season.SUMMER), PEACH(Season.SUMMER);
-
-        private final Season season;
-        LeavesFruit(Season season) {
-            this.season = season;
-        }
-
-        public Season getSeason() {
-            return season;
-        }
+        APPLE, GRAPE, ORANGE, PEACH;
 
         @Override
         public String getName() {

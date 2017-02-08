@@ -8,7 +8,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class GrowthHandlerSide extends GrowthHandler<Crop> {
-    private final Block block;
+    protected final Block block;
 
     public GrowthHandlerSide(Block block) {
         this.block = block;
@@ -25,10 +25,14 @@ public class GrowthHandlerSide extends GrowthHandler<Crop> {
         if (newStage == crop.getStages()) {
             if (crop.getRegrowStage() > 0 && attemptToGrowToSide(world, pos)) {
                 return crop.getRegrowStage();
-            } else world.setBlockState(pos, block.getDefaultState());
+            } else world.setBlockState(pos, getBlockState(world));
         }
 
         return newStage;
+    }
+
+    protected IBlockState getBlockState(World world) {
+        return block.getDefaultState();
     }
 
     @Override

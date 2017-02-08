@@ -17,20 +17,26 @@ public class GrowthHandlerTree extends GrowthHandler<Tree> {
     @Override
     public int grow(World world, BlockPos pos, Tree tree, int stage) {
         if(HFApi.calendar.getSeasonAtCoordinates(world, pos) == Season.WINTER) return stage; //Tree won't grow in winter
-        //If we have reached the stage where we are a real tree
-        //Then set the blocks in the world
-        if (stage == tree.getStages() - 1) {
-            growTree(world, pos);
-        }
 
         //If we he haven't reached maturity, continue growing
-        if (stage < tree.getStagesToMaturity()) {
+        if (stage < tree.getStages()) {
             stage++;
         }
 
+        //When we reach juvenile, plant the extra block
+        if (stage == tree.getStagesToJuvenile()) {
+            growJuvenile(world, pos);
+        }
+
+        //When we reach maturity, grow the tree
+        if (stage == tree.getStagesToMaturity()) {
+            growTree(world, pos);
+        }
+
+
         //If our tree is mature, and we're in season, then we should grow fruit for the tree
-        if (stage >= tree.getStagesToMaturity() && isCorrectSeason(world, pos, tree)) {
-            growFruit(world, pos);
+        if (stage >= tree.getStages() && isCorrectSeason(world, pos, tree)) {
+            growFruit(world, pos); //Grow the fruit, then reset the tree to the stage where we start counting again
             return tree.getRegrowStage(); //Reset the tree to the less than maturity
         }
 
@@ -39,15 +45,18 @@ public class GrowthHandlerTree extends GrowthHandler<Tree> {
 
     @Override
     public boolean canPlantSeedAt(World world, BlockPos pos, IBlockState soil, Tree tree, BlockPos original) {
-        return !(!world.isAirBlock(pos.east()) || !world.isAirBlock(pos.west()) || !world.isAirBlock(pos.north()) || !world.isAirBlock(pos.south()))
-                && !(!world.isAirBlock(pos.north().east()) || !world.isAirBlock(pos.north().west()) || !world.isAirBlock(pos.north().west()) || !world.isAirBlock(pos.south().east()))
-                    && pos.equals(original) && super.canPlantSeedAt(world, pos, soil, tree, original);
+        return pos.equals(original);
     }
 
     @Override
     public boolean canHarvest(Tree tree, int stage) {
-        return stage >= tree.getStages();
+        return false;
     }
+
+    /** Grow the juvenile, setting the blocks
+     *  @param world    the world
+     *  @param pos      the position of the trunk block**/
+    protected void growJuvenile(World world, BlockPos pos) {}
 
     /** Grow the tree, setting the blocks
      *  @param world    the world

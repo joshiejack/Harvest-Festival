@@ -126,7 +126,7 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
     @SuppressWarnings("deprecation")
     @Override
     //Return 0.75F if the plant isn't withered, otherwise, unbreakable!!!
-    public float getPlayerRelativeBlockHardness(IBlockState state, EntityPlayer player, World world, BlockPos pos) {
+    public float getPlayerRelativeBlockHardness(IBlockState state, @Nonnull EntityPlayer player, @Nonnull World world, @Nonnull BlockPos pos) {
         CropType stage = getEnumFromState(state);
         ItemStack held = player.getHeldItemMainhand();
         //If this crop is withered return 0
@@ -137,6 +137,8 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
     }
 
     @Override
+    @Nonnull
+    @SuppressWarnings("deprecation")
     public SoundType getSoundType(IBlockState state, World world, BlockPos pos, @Nullable Entity entity) {
         CropData data = CropHelper.getCropDataAt(world, pos);
         return data != null && data.getCrop() instanceof Tree ? SoundType.WOOD : getSoundType();
@@ -163,7 +165,8 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
         return null;
     }
 
-    public boolean canStay(World world, BlockPos pos) {
+    @SuppressWarnings("unchecked")
+    private boolean canStay(World world, BlockPos pos) {
         CropData data = CropHelper.getCropDataAt(world, pos);
         if (data != null) {
             Crop crop = data.getCrop();
@@ -320,25 +323,20 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
 
     //Can Apply Bonemeal (Not Fully Grown)
     @Override
+    @SuppressWarnings("unchecked")
     public boolean canGrow(@Nonnull World world, @Nonnull BlockPos pos, @Nonnull IBlockState state, boolean isClient) {
         if (getEnumFromState(state) == CropType.WITHERED) return false; //It's dead it can't grow...
-        if (!HFCrops.ENABLE_BONEMEAL) {
+        if (HFCrops.ENABLE_BONEMEAL) {
             if (HFCrops.SEASONAL_BONEMEAL) {
                 CropData data = CropHelper.getCropDataAt(world, pos);
-                if (data != null && data.getCrop().getGrowthHandler().canGrow(world, pos, data.getCrop())) {
-                    return canGrow(world, pos, state);
-                }
-
-                return false;
+                return data != null && data.getCrop().getGrowthHandler().canGrow(world, pos, data.getCrop()) && canGrow(world, pos, state);
             } else return canGrow(world, pos, state);
         } else return false;
     }
 
     private boolean canGrow(World world, BlockPos pos, IBlockState state) {
         TileWithered crop = CropHelper.getTile(world, pos, getSection(state));
-        if (crop != null) {
-            return crop.getData().getStage() < crop.getData().getCrop().getStages();
-        } else return false;
+        return crop != null && crop.getData().getStage() < crop.getData().getCrop().getStages();
     }
 
     /* Only called server side **/
@@ -361,6 +359,7 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public boolean feedAnimal(AnimalStats stats, World world, BlockPos pos, IBlockState state, boolean simulate) {
         if (HFApi.animals.canAnimalEatFoodType(stats, AnimalFoodType.GRASS)) {
             CropData data = CropHelper.getCropDataAt(world, pos);
@@ -369,7 +368,7 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
                     int stage = data.getStage();
                     if (stage > 5) {
                         if (simulate) return true;
-                        HFApi.crops.plantCrop(stats.getOwner(), world, pos, data.getCrop(), stage - 5);
+                        HFApi.crops.plantCrop(null, world, pos, data.getCrop(), stage - 5);
                         return true;
                     }
                 }

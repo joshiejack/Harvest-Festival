@@ -16,7 +16,7 @@ public class StateHandlerTree extends StateHandlerDefault<Tree> {
     private final int stage3;
 
     public StateHandlerTree(IBlockState log, int stage1, int stage2, int stage3) {
-        super(3);
+        super(4);
         this.log = log;
         this.stage1 = stage1;
         this.stage2 = stage1 + stage2;
@@ -26,8 +26,9 @@ public class StateHandlerTree extends StateHandlerDefault<Tree> {
     @SuppressWarnings("deprecation")
     @Override
     public IBlockState getState(IBlockAccess world, BlockPos pos, PlantSection section, Tree tree, int stage, boolean withered) {
-        if (stage <= stage1) return getState(1);
-        else if (stage <= stage2) return getState(2);
+        if (section == PlantSection.TOP) return stage < stage3 ? getState(4) : log;
+        else if (stage < stage1) return getState(1);
+        else if (stage < stage2) return getState(2);
         else if (stage < stage3) return getState(3);
         else return log;
     }

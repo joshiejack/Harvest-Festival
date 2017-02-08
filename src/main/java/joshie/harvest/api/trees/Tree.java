@@ -11,6 +11,7 @@ public class Tree extends Crop {
     public static final GrowthHandler TREE_GROWTH = new GrowthHandlerTree();
     private IBlockState log = Blocks.LOG.getDefaultState();
     private int maturity;
+    private int juvenile;
 
     /** Constructor for tree **/
     public Tree(ResourceLocation key) {
@@ -22,6 +23,11 @@ public class Tree extends Crop {
     /** Returns the stage at which this tree is mature **/
     public int getStagesToMaturity() {
         return maturity;
+    }
+
+    /** Returns the stage at which this tree becomes two blocks **/
+    public int getStagesToJuvenile() {
+        return juvenile;
     }
 
     /** Set the log state, call this before setStageLength
@@ -41,10 +47,10 @@ public class Tree extends Crop {
     /**
      * Creates a state handler based on the passed in values
      */
-    public Tree setStageLength(int seeds, int sapling, int juvenile, int maturity) {
-        this.maturity = seeds + sapling + juvenile + maturity;
-        setStages(this.maturity - maturity);
-        setRegrow(this.maturity - 3);
+    public Tree setStageLength(int seeds, int sapling, int juvenile) {
+        this.maturity = seeds + sapling + juvenile;
+        this.juvenile = seeds + sapling;
+        setFruitRegrow(3);
         setStateHandler(new StateHandlerTree(log, seeds, sapling, juvenile));
         return this;
     }
@@ -53,7 +59,8 @@ public class Tree extends Crop {
      * Set how many days it takes fruit to regrow
      * **/
     public Tree setFruitRegrow(int regrow) {
-        setRegrow(getStagesToMaturity() - regrow);
+        setStages(maturity + 1 + regrow);
+        setRegrow(maturity + 1);
         return this;
     }
 }

@@ -7,7 +7,8 @@
     "stage": {
       "1": { "textures": { "cross": "harvestfestival:blocks/crops/banana_seeds" }},
       "2": { "textures": { "cross": "harvestfestival:blocks/crops/banana_sapling" }},
-      "3": { "model": "harvestfestival:crops/banana_juvenile" }
+      "3": { "textures": { "cross": "harvestfestival:blocks/crops/banana_juvenile_lower" }},
+      "4": { "textures": { "cross": "harvestfestival:blocks/crops/banana_juvenile_upper" }}
     }
   }
 }

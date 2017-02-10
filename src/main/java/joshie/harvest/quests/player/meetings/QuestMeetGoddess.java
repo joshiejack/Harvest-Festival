@@ -8,7 +8,6 @@ import joshie.harvest.core.HFCore;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.knowledge.HFNotes;
 import joshie.harvest.quests.selection.TutorialSelection;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
@@ -28,9 +27,9 @@ public class QuestMeetGoddess extends QuestQuestion {
     }
 
     @SideOnly(Side.CLIENT)
-    public String getLocalizedScript(EntityPlayer player, EntityLiving entity, NPC npc) {
+    public String getLocalizedScript(EntityPlayer player, NPC npc) {
         //The goddess says hello and asks if you are new
-        if (isCompletedEarly) {
+        if (isCompletedEarly()) {
             return getLocalized("completed");
         } else if (quest_stage == HELLO) return getLocalized("hello");
         else if (quest_stage == BACKSTORY) {
@@ -42,18 +41,19 @@ public class QuestMeetGoddess extends QuestQuestion {
     }
 
     @Override
-    public void onChatClosed(EntityPlayer player, EntityLiving entity, NPC npc, boolean isSneaking) {
-        if (isCompletedEarly) {
-            complete(player);
-            HFApi.quests.completeQuest(YULIF_MEET, player);
-            HFTrackers.getPlayerTrackerFromPlayer(player).getTracking().learnNote(HFNotes.BLUEPRINTS);
-        } else if (quest_stage == BACKSTORY) {
+    public void onChatClosed(EntityPlayer player, NPC npc) {
+        if (quest_stage == BACKSTORY) {
             complete(player);
         }
     }
 
     @Override
     public void onQuestCompleted(EntityPlayer player) {
+        if (isCompletedEarly()) {
+            HFApi.quests.completeQuest(YULIF_MEET, player);
+            HFTrackers.getPlayerTrackerFromPlayer(player).getTracking().learnNote(HFNotes.BLUEPRINTS);
+        }
+
         rewardItem(player, new ItemStack(HFCore.FLOWERS, 4, 0));
     }
 }

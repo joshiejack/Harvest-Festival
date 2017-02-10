@@ -3,7 +3,7 @@ package joshie.harvest.knowledge.gui.stats.notes.render;
 import joshie.harvest.api.core.ITiered.ToolTier;
 import joshie.harvest.core.base.item.ItemTool;
 import joshie.harvest.fishing.HFFishing;
-import joshie.harvest.quests.player.trade.QuestUpgrade;
+import joshie.harvest.quests.player.trade.QuestBlacksmithing;
 import joshie.harvest.tools.HFTools;
 import net.minecraft.item.ItemStack;
 
@@ -36,8 +36,8 @@ public class NoteRenderRepairing extends NoteRenderHF {
     }
 
     private void drawTier(ToolTier tier, int left, int top) {
-        long gold = QuestUpgrade.getCost(tier) / 10;
-        ItemStack ore = QuestUpgrade.getRepairMaterial(tier);
+        long gold = QuestBlacksmithing.getCost(tier) / 10;
+        ItemStack ore = QuestBlacksmithing.getRepairMaterial(tier);
         ItemStack tool = this.tool.getStack(tier);
         int to = 70;
         drawArrow(left + to + 18, top + 3);

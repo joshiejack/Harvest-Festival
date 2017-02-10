@@ -12,7 +12,7 @@ import joshie.harvest.core.util.annotations.HFLoader;
 import joshie.harvest.crops.block.*;
 import joshie.harvest.crops.handlers.growth.GrowthHandlerNether;
 import joshie.harvest.crops.handlers.growth.GrowthHandlerSide;
-import joshie.harvest.crops.handlers.rules.SpecialRulesQuest;
+import joshie.harvest.shops.rules.SpecialRulesQuest;
 import joshie.harvest.crops.handlers.rules.SpecialRulesRanch;
 import joshie.harvest.crops.item.ItemCrop;
 import joshie.harvest.crops.item.ItemCrop.Crops;

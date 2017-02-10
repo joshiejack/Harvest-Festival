@@ -100,6 +100,8 @@ public class BuildingLocations {
     public static final BuildingLocation PARK_STAGE_STAND2_HUMAN = new BuildingLocation(HFFestivals.FESTIVAL_GROUNDS, "stage.stand2.human").withDistance(0.5D);
     public static final BuildingLocation PARK_STAGE_STAND3_HUMAN = new BuildingLocation(HFFestivals.FESTIVAL_GROUNDS, "stage.stand3.human").withDistance(0.5D);
     public static final BuildingLocation PARK_STAGE_STAND4_HUMAN = new BuildingLocation(HFFestivals.FESTIVAL_GROUNDS, "stage.stand4.human").withDistance(0.5D);
+    public static final BuildingLocation PARK_TRADER_LEFT = new BuildingLocation(HFFestivals.FESTIVAL_GROUNDS, "newyear.left").withDistance(1.5D);
+    public static final BuildingLocation PARK_TRADER_RIGHT = new BuildingLocation(HFFestivals.FESTIVAL_GROUNDS, "newyear.right").withDistance(1.5D);
 
     //TODO: Convert to building locations vvv
     public static final String TOWNHALL_CHILD_BEDROOM = "townhall.bedroom.child";

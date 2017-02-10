@@ -22,6 +22,11 @@ public abstract class QuestFriendship extends Quest {
     }
 
     @Override
+    public boolean isNPCUsed(EntityPlayer player, NPC npc) {
+        return super.isNPCUsed(player, npc) && HFApi.player.getRelationsForPlayer(player).getRelationship(npc.getUUID()) >= relationship;
+    }
+
+    @Override
     public boolean canStartQuest(Set<Quest> active, Set<Quest> finished) {
         return true;
     }
@@ -34,16 +39,12 @@ public abstract class QuestFriendship extends Quest {
     @SideOnly(Side.CLIENT)
     @Override
     public String getLocalizedScript(EntityPlayer player, EntityLiving entity, NPC npc) {
-        if (HFApi.player.getRelationsForPlayer(player).getRelationship(npc.getUUID()) >= relationship) {
-            return getLocalized("text");
-        } else return null;
+        return getLocalized("text");
     }
 
     @Override
     public void onChatClosed(EntityPlayer player, EntityLiving entity, NPC npc, boolean isSneaking) {
-        if (HFApi.player.getRelationsForPlayer(player).getRelationship(npc.getUUID()) >= relationship) {
-            complete(player);
-        }
+        complete(player);
     }
 
     @Override

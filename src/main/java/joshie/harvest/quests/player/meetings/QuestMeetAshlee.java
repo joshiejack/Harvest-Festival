@@ -10,16 +10,13 @@ import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.api.quests.QuestQuestion;
-import joshie.harvest.api.quests.Selection;
 import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.core.helpers.InventoryHelper;
 import joshie.harvest.knowledge.HFNotes;
-import joshie.harvest.npcs.HFNPCs;
 import joshie.harvest.quests.Quests;
 import joshie.harvest.quests.selection.TutorialSelection;
 import joshie.harvest.town.TownHelper;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -35,7 +32,6 @@ import static joshie.harvest.animals.block.BlockTray.Tray.FEEDER_EMPTY;
 import static joshie.harvest.animals.block.BlockTray.Tray.NEST_EMPTY;
 import static joshie.harvest.animals.item.ItemAnimalTool.Tool.CHICKEN_FEED;
 import static joshie.harvest.core.helpers.InventoryHelper.ITEM_STACK;
-import static joshie.harvest.npcs.HFNPCs.GODDESS;
 import static joshie.harvest.npcs.HFNPCs.POULTRY;
 
 @HFQuest("tutorial.chicken")
@@ -51,7 +47,7 @@ public class QuestMeetAshlee extends QuestQuestion {
 
     public QuestMeetAshlee() {
         super(new TutorialSelection("chicken"));
-        setNPCs(GODDESS, POULTRY);
+        setNPCs(POULTRY);
     }
 
     @Override
@@ -93,83 +89,59 @@ public class QuestMeetAshlee extends QuestQuestion {
     }
 
     @Override
-    public Selection getSelection(EntityPlayer player, NPC npc) {
-        return npc == POULTRY && quest_stage <= 0 ? selection : null;
-    }
-
-    @Override
-    public String getLocalizedScript(EntityPlayer player, EntityLiving entity, NPC npc) {
-        if (npc == HFNPCs.GODDESS) {
-            if (player.worldObj.rand.nextFloat() < 0.15F) {
-                if (TownHelper.getClosestTownToEntity(entity).hasBuilding(HFBuildings.POULTRY_FARM)) {
-                    //If the barn exists the goddess will tell the player to go and talk to ashlee
-                    return getLocalized("reminder.talk");
-                }
-
-                //Goddess reminds the player that you should go and build a poultry farm
-                //So that you can get further chickens
-                return getLocalized("reminder.poultry");
-            } else return null;
-        } else if (npc == HFNPCs.POULTRY) {
-            if (!TownHelper.getClosestTownToEntity(entity).hasBuilding(HFBuildings.POULTRY_FARM)) return null;
-            if (isCompletedEarly) {
-                return getLocalized("completed");
-            } else if (quest_stage == INTRO) {
-            /*Ashlee explains she has a chicken she would like to give you
-            She then proceeds to ask if you know how to care for chickens */
-                return getLocalized("start");
-            } else if (quest_stage == THROW) {
-            /*Now that Ashlee knows that you do not how to take care of chicken she starts off on a rant
-            She explains that in order to care four chickens, you must feed them
-            She tells you that you can feed them by hand, or place chicken feed in a feeding tray
-            And they will feed themselves, She also tells you that they need to be loved,
-            She explains the best way for a chicken to feel loved is when you pick it up
-            You can do this by right clicking it, and to put it down, right click the ground
-            She explains you can also make it love you when feed it by hand
-            She explains that doing this will make the chicken like you more, and in doing so
-            She asks the player to go feed by hand, and throw the chicken (giving the player feed) */
-                return getLocalized("throw");
-            } else if (quest_stage == ACTION1 || quest_stage == ACTION2) {
-            /*Ashlee Reminds you to go pick up and throw a chicken, as well as feed one chicken feed
-            She allow informs the player that if they ran out of feed, she will happily trade for more
-            She also explains that she will trade a vanilla egg for a chicken if yours happens to die
-            If the player gives them seeds */
-                return getLocalized("reminder.throw");
-            } else if (quest_stage == EGG) {
-            /*Ashlee congratulates you on performing the task, she then goes on to say that
-            Over time the chicken will eventually produce bigger and better eggs that you can sell for more money
-            She also explains that for chickens to lay eggs they need a nesting box
-            Chickens will lay their eggs in here and you can then collect them and ship them off
-            Ashlee now asks the player to return when they have one egg from the special chickens */
-                return getLocalized("egg");
-            } else if (quest_stage == FINAL) {
-                /*Ashlee thanks the player for their time and gives them a reward of a large egg
-                She explains this is a valuable egg from the best of chickens, you'll have to take care
-                Of yours properly if you wish to look after it. She also heard that yulif had a spare cow
-                And that you should go talk to him if you want it */
-                if (InventoryHelper.getHandItemIsIn(player, ITEM_STACK, HFAnimals.ANIMAL_PRODUCT.getStack(Sizeable.EGG, Size.SMALL)) != null) {
-                    return getLocalized("complete");
-                }
-
-            /*Ashlee reminds you that she wants an egg from one of the special chickens
-            She also tells that if you lost the nest, bring her a hay bale */
-                return getLocalized("reminder.egg");
+    public String getLocalizedScript(EntityPlayer player, NPC npc) {
+        if (!TownHelper.getClosestTownToEntity(player).hasBuilding(HFBuildings.POULTRY_FARM)) return null;
+        if (isCompletedEarly()) {
+            return getLocalized("completed");
+        } else if (quest_stage == INTRO) {
+        /*Ashlee explains she has a chicken she would like to give you
+        She then proceeds to ask if you know how to care for chickens */
+            return getLocalized("start");
+        } else if (quest_stage == THROW) {
+        /*Now that Ashlee knows that you do not how to take care of chicken she starts off on a rant
+        She explains that in order to care four chickens, you must feed them
+        She tells you that you can feed them by hand, or place chicken feed in a feeding tray
+        And they will feed themselves, She also tells you that they need to be loved,
+        She explains the best way for a chicken to feel loved is when you pick it up
+        You can do this by right clicking it, and to put it down, right click the ground
+        She explains you can also make it love you when feed it by hand
+        She explains that doing this will make the chicken like you more, and in doing so
+        She asks the player to go feed by hand, and throw the chicken (giving the player feed) */
+            return getLocalized("throw");
+        } else if (quest_stage == ACTION1 || quest_stage == ACTION2) {
+        /*Ashlee Reminds you to go pick up and throw a chicken, as well as feed one chicken feed
+        She allow informs the player that if they ran out of feed, she will happily trade for more
+        She also explains that she will trade a vanilla egg for a chicken if yours happens to die
+        If the player gives them seeds */
+            return getLocalized("reminder.throw");
+        } else if (quest_stage == EGG) {
+        /*Ashlee congratulates you on performing the task, she then goes on to say that
+        Over time the chicken will eventually produce bigger and better eggs that you can sell for more money
+        She also explains that for chickens to lay eggs they need a nesting box
+        Chickens will lay their eggs in here and you can then collect them and ship them off
+        Ashlee now asks the player to return when they have one egg from the special chickens */
+            return getLocalized("egg");
+        } else if (quest_stage == FINAL) {
+            /*Ashlee thanks the player for their time and gives them a reward of a large egg
+            She explains this is a valuable egg from the best of chickens, you'll have to take care
+            Of yours properly if you wish to look after it. She also heard that yulif had a spare cow
+            And that you should go talk to him if you want it */
+            if (InventoryHelper.getHandItemIsIn(player, ITEM_STACK, HFAnimals.ANIMAL_PRODUCT.getStack(Sizeable.EGG, Size.SMALL)) != null) {
+                return getLocalized("complete");
             }
+
+        /*Ashlee reminds you that she wants an egg from one of the special chickens
+        She also tells that if you lost the nest, bring her a hay bale */
+            return getLocalized("reminder.egg");
         }
 
         return null;
     }
 
     @Override
-    public void onChatClosed(EntityPlayer player, EntityLiving entity, NPC npc, boolean wasSneaking) {
-        if (!TownHelper.getClosestTownToEntity(entity).hasBuilding(HFBuildings.POULTRY_FARM)) return;
-        if (isCompletedEarly) {
-            complete(player);
-            rewardEntity(player, "harvestfestival.chicken");
-            rewardItem(player, new ItemStack(HFAnimals.TOOLS, 64, CHICKEN_FEED.ordinal()));
-            rewardItem(player, HFAnimals.TRAY.getStackFromEnum(NEST_EMPTY));
-            rewardItem(player, HFAnimals.ANIMAL_PRODUCT.getStack(Sizeable.EGG, Size.LARGE));
-        } else if (quest_stage == THROW) {
+    public void onChatClosed(EntityPlayer player, NPC npc) {
+        if (!TownHelper.getClosestTownToEntity(player).hasBuilding(HFBuildings.POULTRY_FARM)) return;
+        if (quest_stage == THROW) {
             increaseStage(player);
             rewardEntity(player, "harvestfestival.chicken");
             rewardItem(player, new ItemStack(HFAnimals.TOOLS, 16, CHICKEN_FEED.ordinal()));
@@ -186,6 +158,15 @@ public class QuestMeetAshlee extends QuestQuestion {
 
     @Override
     public void onQuestCompleted(EntityPlayer player) {
+        //If we finished early
+        if (isCompletedEarly()) {
+            complete(player);
+            rewardEntity(player, "harvestfestival.chicken");
+            rewardItem(player, new ItemStack(HFAnimals.TOOLS, 64, CHICKEN_FEED.ordinal()));
+            rewardItem(player, HFAnimals.TRAY.getStackFromEnum(NEST_EMPTY));
+            rewardItem(player, HFAnimals.ANIMAL_PRODUCT.getStack(Sizeable.EGG, Size.LARGE));
+        }
+
         HFApi.player.getTrackingForPlayer(player).learnNote(HFNotes.CHICKEN_CARE);
         HFApi.player.getTrackingForPlayer(player).learnNote(HFNotes.ANIMAL_HAPPINESS);
         HFApi.player.getTrackingForPlayer(player).learnNote(HFNotes.ANIMAL_STRESS);

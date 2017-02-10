@@ -4,9 +4,11 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.core.ITiered.ToolTier;
 import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.quests.HFQuest;
+import joshie.harvest.api.quests.Quest;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.base.item.ItemTool;
 import joshie.harvest.core.lib.HFSounds;
+import joshie.harvest.npcs.HFNPCs;
 import joshie.harvest.quests.Quests;
 import joshie.harvest.quests.base.QuestTrade;
 import joshie.harvest.tools.HFTools;
@@ -18,9 +20,12 @@ import net.minecraft.util.SoundCategory;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import java.util.Set;
+
 import static joshie.harvest.api.core.ITiered.ToolTier.BLESSED;
 import static joshie.harvest.core.helpers.SpawnItemHelper.spawnXP;
 import static joshie.harvest.npcs.HFNPCs.PRIEST;
+import static joshie.harvest.quests.Quests.TOMAS_MEET;
 
 
 @HFQuest("trade.bless")
@@ -29,27 +34,35 @@ public class QuestPriestRepair extends QuestTrade {
         setNPCs(PRIEST);
     }
 
+    @Override
+    public boolean canStartQuest(Set<Quest> active, Set<Quest> finished) {
+        return finished.contains(TOMAS_MEET);
+    }
+
+    @Override
+    public boolean isNPCUsed(EntityPlayer player, NPC npc) {
+        return npc == HFNPCs.PRIEST && isHolding(player);
+    }
+
     @SideOnly(Side.CLIENT)
     @Override
     @SuppressWarnings("ConstantConditions")
     public String getLocalizedScript(EntityPlayer player, EntityLiving entity, NPC npc) {
         long cost = HFApi.quests.hasCompleted(Quests.TOMAS_15K, player) ? 1000 : 2500;
         boolean hasGold = HFTrackers.getPlayerTrackerFromPlayer(player).getStats().getGold() >= cost;
-        boolean hasTool = isHolding(player);
-        if (hasGold && hasTool) {
+        if (hasGold) {
             ItemStack tool = player.getHeldItemMainhand(); //For translation reasons
             return getLocalized("done", tool.getDisplayName());
-        } else if (hasTool) {
+        } else {
             return getLocalized("gold", cost);
-        } else return player.worldObj.rand.nextDouble() <= 0.05D ? getLocalized("reminder", cost) : null;
+        }
     }
 
     @Override
     public void onChatClosed(EntityPlayer player, EntityLiving entity, NPC npc, boolean wasSneaking) {
         long cost = HFApi.quests.hasCompleted(Quests.TOMAS_15K, player) ? 1000 : 2500;
         boolean hasGold = HFTrackers.getPlayerTrackerFromPlayer(player).getStats().getGold() >= cost;
-        boolean hasTool = isHolding(player);
-        if (hasGold && hasTool) {
+        if (hasGold) {
             complete(player);
             player.worldObj.playSound(player, player.posX, player.posY, player.posZ, HFSounds.BLESS_TOOL, SoundCategory.NEUTRAL, 0.25F, 1F);
             for (int i = 0; i < 32; i++) {

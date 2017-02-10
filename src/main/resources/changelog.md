@@ -108,6 +108,7 @@
 * Various npcs have had their schedule changed, so they may be found at different buildings at different times
 * Blacksmith will only start work on tools during operating hours.
 * Blacksmith will take four days to upgrade tools if you have him start work on tuesday or wednesdays as he rests on thursdays.
+* Can now right click to go back to the previous chat page
 
 ###Quests
 * Added a quest board, which comes when you have the townhall, you can purchase a new one from carpenter when townhall is built
@@ -150,6 +151,7 @@
 * Fixed sickles always breaking blocks even when broken
 * Fixed bug where fodder could be placed in a fridge
 * Fix chicks spawning in random locations around the incubator
+* Fix milkers and brushes being stackable
 
 ##0.5.11
 * Fixed a crash with the shipping bin when loading worlds when a hopper is inserting items

@@ -4,7 +4,7 @@ import joshie.harvest.api.core.ITiered.ToolTier;
 import joshie.harvest.core.base.item.ItemTool;
 import joshie.harvest.fishing.HFFishing;
 import joshie.harvest.mining.HFMining;
-import joshie.harvest.quests.player.trade.QuestUpgrade;
+import joshie.harvest.quests.player.trade.QuestBlacksmithing;
 import joshie.harvest.tools.HFTools;
 import net.minecraft.item.ItemStack;
 
@@ -36,13 +36,13 @@ public class NoteRenderUpgrading extends NoteRenderHF {
     }
 
     private void drawTier(ToolTier tier, int left, int top) {
-        long gold = QuestUpgrade.getCost(tier);
-        ItemStack ore = new ItemStack(HFMining.MATERIALS, QuestUpgrade.getRequired(tier), QuestUpgrade.getMaterial(tier));
+        long gold = QuestBlacksmithing.getCost(tier);
+        ItemStack ore = new ItemStack(HFMining.MATERIALS, QuestBlacksmithing.getRequired(tier), QuestBlacksmithing.getMaterial(tier));
         ItemStack tool = this.tool.getStack(tier);
         int to = 75;
         drawArrow(left + to + 18, top + 3);
         drawStack(tool, left + to, top);
-        drawStack(HFTools.HAMMER.getStack(ToolTier.values()[tier.ordinal() + 1]), left + to + 35, top);
+        drawStack(this.tool.getStack(ToolTier.values()[tier.ordinal() + 1]), left + to + 35, top);
         drawGold(gold, left + 26, top + 2);
         drawStack(ore, left + 5, top - 2);
     }

@@ -53,20 +53,28 @@ public class QuestTrees2 extends QuestTown {
         return finished.contains(Quests.SELL_TREES);
     }
 
-    @Nullable
-    @SideOnly(Side.CLIENT)
-    public String getLocalizedScript(EntityPlayer player, EntityLiving entity, NPC npc) {
-        return quest_stage >= FINISHED ? getLocalized("complete") : null;
-    }
-
     @Override
-    public void onChatClosed(EntityPlayer player, EntityLiving entity, NPC npc, boolean wasSneaking) {
-        if (quest_stage == FINISHED) complete(player);
+    public boolean isNPCUsed(EntityPlayer player, NPC npc) {
+        if (!super.isNPCUsed(player, npc)) return false;
+        boolean ret = quest_stage >= FINISHED;
         if (!player.worldObj.isRemote && quest_stage == START) {
             int totalCrops = getTotalCrops(HFApi.calendar.getDate(player.worldObj), player);
             if (totalCrops >= 100) {
                 increaseStage(player);
             }
         }
+
+        return ret;
+    }
+
+    @Nullable
+    @SideOnly(Side.CLIENT)
+    public String getLocalizedScript(EntityPlayer player, EntityLiving entity, NPC npc) {
+        return getLocalized("complete");
+    }
+
+    @Override
+    public void onChatClosed(EntityPlayer player, EntityLiving entity, NPC npc, boolean wasSneaking) {
+        complete(player);
     }
 }

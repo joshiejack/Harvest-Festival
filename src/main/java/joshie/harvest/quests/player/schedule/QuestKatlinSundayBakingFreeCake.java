@@ -37,22 +37,27 @@ public class QuestKatlinSundayBakingFreeCake extends Quest  {
 
     @Override
     public boolean canStartQuest(Set<Quest> active, Set<Quest> finished) {
-        return finished.contains(Quests.BUILDING_CAFE);
+        return finished.contains(Quests.KATLIN_MEET) && finished.contains(Quests.TOMAS_MEET);
+    }
+
+    @Override
+    public boolean isNPCUsed(EntityPlayer player, NPC npc) {
+        if (npc != HFNPCs.CAFE_GRANNY || !TownHelper.getClosestTownToEntity(player).hasBuilding(HFBuildings.CHURCH)) return false;
+        CalendarDate today = HFApi.calendar.getDate(player.worldObj);
+        long daytime = CalendarHelper.getTime(player.worldObj);
+        if (today.getWeekday() == Weekday.SUNDAY && daytime >= 7000L && daytime <= 17000L) {
+            if (date == null || CalendarHelper.getDays(date, today) >= 7) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     @Nullable
     @SideOnly(Side.CLIENT)
     public String getLocalizedScript(EntityPlayer player, EntityLiving entity, NPC npc) {
-        if (!TownHelper.getClosestTownToEntity(player).hasBuilding(HFBuildings.CHURCH)) return null;
-        CalendarDate today = HFApi.calendar.getDate(player.worldObj);
-        long daytime = CalendarHelper.getTime(player.worldObj);
-        if (today.getWeekday() == Weekday.SUNDAY && daytime >= 7000L && daytime <= 17000L) {
-            if (date == null || CalendarHelper.getDays(date, today) >= 7) {
-                return getLocalized("cake");
-            }
-        }
-
-        return null;
+        return getLocalized("cake");
     }
 
     private ItemStack getRandomBakedGoods(Random rand) {
@@ -62,16 +67,10 @@ public class QuestKatlinSundayBakingFreeCake extends Quest  {
 
     @Override
     public void onChatClosed(EntityPlayer player, EntityLiving entity, NPC npc, boolean wasSneaking) {
-        if (!TownHelper.getClosestTownToEntity(player).hasBuilding(HFBuildings.CHURCH)) return;
         CalendarDate today = HFApi.calendar.getDate(player.worldObj);
-        long daytime = CalendarHelper.getTime(player.worldObj);
-        if (today.getWeekday() == Weekday.SUNDAY && daytime >= 7000L && daytime <= 17000L) {
-            if (date == null || CalendarHelper.getDays(date, today) >= 7) {
-                date = today.copy(); //Save the date we received this
-                syncData(player); //Sync the new data
-                rewardItem(player, getRandomBakedGoods(player.worldObj.rand));
-            }
-        }
+        date = today.copy(); //Save the date we received this
+        syncData(player); //Sync the new data
+        rewardItem(player, getRandomBakedGoods(player.worldObj.rand));
     }
 
     @Override

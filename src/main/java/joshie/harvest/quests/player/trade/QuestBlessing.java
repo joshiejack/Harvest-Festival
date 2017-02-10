@@ -5,10 +5,12 @@ import joshie.harvest.api.calendar.CalendarDate;
 import joshie.harvest.api.core.ITiered.ToolTier;
 import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.quests.HFQuest;
+import joshie.harvest.api.quests.Quest;
 import joshie.harvest.calendar.CalendarHelper;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.base.item.ItemTool;
 import joshie.harvest.core.lib.HFSounds;
+import joshie.harvest.npcs.HFNPCs;
 import joshie.harvest.quests.Quests;
 import joshie.harvest.quests.base.QuestTrade;
 import net.minecraft.entity.EntityLiving;
@@ -20,19 +22,27 @@ import net.minecraft.util.SoundCategory;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import java.util.Set;
+
 import static joshie.harvest.api.core.ITiered.ToolTier.BLESSED;
 import static joshie.harvest.core.helpers.SpawnItemHelper.spawnXP;
-import static joshie.harvest.npcs.HFNPCs.PRIEST;
+import static joshie.harvest.quests.Quests.TOMAS_MEET;
 
 
 @HFQuest("trade.cursed")
-public class QuestBless extends QuestTrade {
+public class QuestBlessing extends QuestTrade {
     private static final int TEST = 0;
     private CalendarDate date;
     private ItemStack tool;
 
-    public QuestBless() {
-        setNPCs(PRIEST);
+    @Override
+    public boolean canStartQuest(Set<Quest> active, Set<Quest> finished) {
+        return finished.contains(TOMAS_MEET);
+    }
+
+    @Override
+    public boolean isNPCUsed(EntityPlayer player, NPC npc) {
+        return npc == HFNPCs.PRIEST && (isHolding(player) || tool != null);
     }
 
     @SideOnly(Side.CLIENT)

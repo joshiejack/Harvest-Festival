@@ -14,6 +14,8 @@ import joshie.harvest.npcs.entity.EntityNPC;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.EnumHand;
 
+import javax.annotation.Nonnull;
+
 @Packet(Side.SERVER)
 public class PacketGift extends PenguinPacket {
     private int npcID;
@@ -38,19 +40,24 @@ public class PacketGift extends PenguinPacket {
     public void handlePacket(EntityPlayer player) {
         EntityNPC npc = (EntityNPC) player.worldObj.getEntityByID(npcID);
         if (npc != null) {
-            if (npc.isEntityAlive()) {
-                if (npc.getNPC() != HFNPCs.GODDESS) {
-                    if (player.getHeldItemOffhand() != null) {
-                        player.openGui(HarvestFestival.instance, GuiHandler.GIFT, player.worldObj, npcID, -1, EnumHand.OFF_HAND.ordinal());
-                    } else if (player.getHeldItemMainhand() != null) {
-                        player.openGui(HarvestFestival.instance, GuiHandler.GIFT, player.worldObj, npcID, -1, EnumHand.MAIN_HAND.ordinal());
-                    }
-                } else {
-                    SpawnItemHelper.spawnByEntity(player, HFKnowledge.BOOK.getStackFromEnum(Book.STATISTICS));
-                }
+            handleGifting(player, npc);
+        }
+    }
 
-                npc.setTalking(player);
+    public static void handleGifting(@Nonnull EntityPlayer player, @Nonnull EntityNPC npc) {
+        if (npc.isEntityAlive()) {
+            if (npc.getNPC() == HFNPCs.GODDESS) {
+                SpawnItemHelper.addToPlayerInventory(player, HFKnowledge.BOOK.getStackFromEnum(Book.STATISTICS));
+
+            } else if (!player.worldObj.isRemote) {
+                if (player.getHeldItemOffhand() != null) {
+                    player.openGui(HarvestFestival.instance, GuiHandler.GIFT, player.worldObj, npc.getEntityId(), -1, EnumHand.OFF_HAND.ordinal());
+                } else if (player.getHeldItemMainhand() != null) {
+                    player.openGui(HarvestFestival.instance, GuiHandler.GIFT, player.worldObj, npc.getEntityId(), -1, EnumHand.MAIN_HAND.ordinal());
+                }
             }
+
+            npc.setTalking(player);
         }
     }
 }

@@ -93,21 +93,20 @@ public class QuestSlay extends QuestDaily {
     }
 
     @Override
+    public boolean isNPCUsed(EntityPlayer player, NPC npc) {
+        return super.isNPCUsed(player, npc) && targetAmount != 0 && counter >= targetAmount;
+    }
+
+    @Override
     @Nullable
     @SideOnly(Side.CLIENT)
     public String getLocalizedScript(EntityPlayer player, EntityLiving entity, NPC npc) {
-        if (targetAmount != 0 && counter >= targetAmount) {
-            return TextHelper.getRandomSpeech(npc, "harvestfestival.quest.slay.complete", 32);
-        }
-
-        return null;
+        return TextHelper.getRandomSpeech(npc, "harvestfestival.quest.slay.complete", 32);
     }
 
     @Override
     public void onChatClosed(EntityPlayer player, EntityLiving entity, NPC npc, boolean wasSneaking) {
-        if (targetAmount != 0 && counter >= targetAmount) {
-            complete(player);
-        }
+        complete(player);
     }
 
     @Override

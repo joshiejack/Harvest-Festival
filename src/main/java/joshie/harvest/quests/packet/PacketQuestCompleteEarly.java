@@ -35,7 +35,7 @@ public class PacketQuestCompleteEarly extends PacketSharedSync {
     public void handlePacket(EntityPlayer player) {
         QuestQuestion real = getQuestDataFromPlayer(player).getAQuest(quest);
         if (real != null) {
-            real.isCompletedEarly = true;
+            //real.isCompletedEarly = true;
         }
     }
 }

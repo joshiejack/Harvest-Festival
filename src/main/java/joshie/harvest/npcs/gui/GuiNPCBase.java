@@ -2,6 +2,7 @@ package joshie.harvest.npcs.gui;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.player.RelationshipType;
+import joshie.harvest.api.quests.Quest;
 import joshie.harvest.core.base.gui.GuiBase;
 import joshie.harvest.core.helpers.TextHelper;
 import joshie.harvest.core.lib.HFModInfo;
@@ -11,12 +12,12 @@ import joshie.harvest.npcs.NPCHelper;
 import joshie.harvest.npcs.entity.EntityNPC;
 import joshie.harvest.npcs.packet.PacketGift;
 import joshie.harvest.npcs.packet.PacketInfo;
+import joshie.harvest.quests.QuestHelper;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextFormatting;
@@ -33,6 +34,7 @@ public abstract class GuiNPCBase extends GuiBase {
     private static final ResourceLocation chatbox = new ResourceLocation(HFModInfo.MODID, "textures/gui/chatbox.png");
     protected final EntityNPC npc;
     protected final EntityPlayer player;
+    protected final Quest quest;
     protected final int nextGui;
     protected int inside;
     protected int outside;
@@ -40,15 +42,15 @@ public abstract class GuiNPCBase extends GuiBase {
     protected int npcMouseY;
     protected BlockPos pos;
 
-    public GuiNPCBase(EntityPlayer ePlayer, EntityNPC eNpc, EnumHand hand, int next) {
-        super(new ContainerNPCChat(ePlayer, eNpc, hand, next), "chat", 0);
-
+    public GuiNPCBase(EntityPlayer ePlayer, EntityNPC eNpc, int next) {
+        super(new ContainerNPCChat(ePlayer, eNpc, next), "chat", 0);
+        quest = QuestHelper.getCurrentQuest(ePlayer, eNpc);
+        nextGui = next;
         hasInventory = false;
         npc = eNpc;
         player = ePlayer;
         xSize = 256;
         ySize = 256;
-        nextGui = next;
         inside = npc.getNPC().getInsideColor();
         outside = npc.getNPC().getOutsideColor();
         pos = new BlockPos(eNpc);
@@ -165,9 +167,10 @@ public abstract class GuiNPCBase extends GuiBase {
     //Perform the mouse clicks
     protected void onMouseClick(int mouseX, int mouseY) {
         if (isChat()) {
-            if ((npc.getNPC() == HFNPCs.GODDESS || isHoldingItem()) && hoveringGift())
+            if ((npc.getNPC() == HFNPCs.GODDESS || isHoldingItem()) && hoveringGift()) {
+                PacketGift.handleGifting(player, npc);
                 PacketHandler.sendToServer(new PacketGift(npc));
-            else if (displayInfo() && hoveringInfo())
+            } else if (displayInfo() && hoveringInfo())
                 PacketHandler.sendToServer(new PacketInfo(npc));
         }
     }
@@ -266,7 +269,7 @@ public abstract class GuiNPCBase extends GuiBase {
 
             if (needsWrap) {
                 int wrappedTooltipWidth = 0;
-                List<String> wrappedTextLines = new ArrayList<String>();
+                List<String> wrappedTextLines = new ArrayList<>();
                 for (int i = 0; i < textLines.size(); i++) {
                     String textLine = textLines.get(i);
                     List<String> wrappedLine = fontRendererObj.listFormattedStringToWidth(textLine, tooltipTextWidth);
@@ -313,12 +316,11 @@ public abstract class GuiNPCBase extends GuiBase {
             GuiUtils.drawGradientRect(zLevel, tooltipX - 3, tooltipY - 3, tooltipX + tooltipTextWidth + 3, tooltipY + tooltipHeight + 3, backgroundColor, backgroundColor);
             GuiUtils.drawGradientRect(zLevel, tooltipX - 4, tooltipY - 3, tooltipX - 3, tooltipY + tooltipHeight + 3, backgroundColor, backgroundColor);
             GuiUtils.drawGradientRect(zLevel, tooltipX + tooltipTextWidth + 3, tooltipY - 3, tooltipX + tooltipTextWidth + 4, tooltipY + tooltipHeight + 3, backgroundColor, backgroundColor);
-            final int borderColorStart = ( 200 << 24 ) | ( outside & 0x00ffffff );
-            final int borderColorEnd = borderColorStart;
-            GuiUtils.drawGradientRect(zLevel, tooltipX - 3, tooltipY - 3 + 1, tooltipX - 3 + 1, tooltipY + tooltipHeight + 3 - 1, borderColorStart, borderColorEnd);
-            GuiUtils.drawGradientRect(zLevel, tooltipX + tooltipTextWidth + 2, tooltipY - 3 + 1, tooltipX + tooltipTextWidth + 3, tooltipY + tooltipHeight + 3 - 1, borderColorStart, borderColorEnd);
-            GuiUtils.drawGradientRect(zLevel, tooltipX - 3, tooltipY - 3, tooltipX + tooltipTextWidth + 3, tooltipY - 3 + 1, borderColorStart, borderColorStart);
-            GuiUtils.drawGradientRect(zLevel, tooltipX - 3, tooltipY + tooltipHeight + 2, tooltipX + tooltipTextWidth + 3, tooltipY + tooltipHeight + 3, borderColorEnd, borderColorEnd);
+            final int borderColor = ( 200 << 24 ) | ( outside & 0x00ffffff );
+            GuiUtils.drawGradientRect(zLevel, tooltipX - 3, tooltipY - 3 + 1, tooltipX - 3 + 1, tooltipY + tooltipHeight + 3 - 1, borderColor, borderColor);
+            GuiUtils.drawGradientRect(zLevel, tooltipX + tooltipTextWidth + 2, tooltipY - 3 + 1, tooltipX + tooltipTextWidth + 3, tooltipY + tooltipHeight + 3 - 1, borderColor, borderColor);
+            GuiUtils.drawGradientRect(zLevel, tooltipX - 3, tooltipY - 3, tooltipX + tooltipTextWidth + 3, tooltipY - 3 + 1, borderColor, borderColor);
+            GuiUtils.drawGradientRect(zLevel, tooltipX - 3, tooltipY + tooltipHeight + 2, tooltipX + tooltipTextWidth + 3, tooltipY + tooltipHeight + 3, borderColor, borderColor);
 
             MinecraftForge.EVENT_BUS.post(new RenderTooltipEvent.PostBackground(stack, textLines, tooltipX, tooltipY, fontRendererObj, tooltipTextWidth, tooltipHeight));
             int tooltipTop = tooltipY;

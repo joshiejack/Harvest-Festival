@@ -21,6 +21,11 @@ public class NewYearsQuests extends QuestFestivalMultichat {
         setNPCs(HFNPCs.CARPENTER, HFNPCs.FLOWER_GIRL, HFNPCs.MAYOR, HFNPCs.TRADER);
     }
 
+    //@Override
+    protected boolean isCorrectTime(long time) {
+        return time >= 13000L && time <= 22000L;
+    }
+
     @Override
     @Nullable
     protected String getLocalizedScript(NPC npc) {

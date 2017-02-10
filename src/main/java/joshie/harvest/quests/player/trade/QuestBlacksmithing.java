@@ -7,12 +7,14 @@ import joshie.harvest.api.core.ITiered;
 import joshie.harvest.api.core.ITiered.ToolTier;
 import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.quests.HFQuest;
+import joshie.harvest.api.quests.Quest;
 import joshie.harvest.calendar.CalendarHelper;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.base.item.ItemTool;
 import joshie.harvest.core.helpers.InventoryHelper;
 import joshie.harvest.mining.HFMining;
 import joshie.harvest.mining.item.ItemMaterial.Material;
+import joshie.harvest.npcs.HFNPCs;
 import joshie.harvest.quests.base.QuestTrade;
 import joshie.harvest.tools.HFTools;
 import net.minecraft.entity.EntityLiving;
@@ -26,21 +28,28 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nonnull;
+import java.util.Set;
 
 import static joshie.harvest.core.helpers.InventoryHelper.ITEM_STACK;
 import static joshie.harvest.core.helpers.SpawnItemHelper.spawnXP;
-import static joshie.harvest.npcs.HFNPCs.BLACKSMITH;
+import static joshie.harvest.quests.Quests.DANIERU_MEET;
 
 
 @HFQuest("trade.upgrade")
-public class QuestUpgrade extends QuestTrade {
+public class QuestBlacksmithing extends QuestTrade {
     private static final int TEST = 0;
     private CalendarDate date;
     private ItemStack tool;
     private int days;
 
-    public QuestUpgrade() {
-        setNPCs(BLACKSMITH);
+    @Override
+    public boolean canStartQuest(Set<Quest> active, Set<Quest> finished) {
+        return finished.contains(DANIERU_MEET);
+    }
+
+    @Override
+    public boolean isNPCUsed(EntityPlayer player, NPC npc) {
+        return npc == HFNPCs.BLACKSMITH && (isHolding(player) != null || isHoldingBrokenTool(player) != null || tool != null);
     }
 
     private int getDifference(CalendarDate then, CalendarDate now) {

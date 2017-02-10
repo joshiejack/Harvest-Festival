@@ -12,10 +12,10 @@ import joshie.harvest.core.helpers.InventoryHelper;
 import joshie.harvest.core.helpers.InventoryHelper.SearchType;
 import joshie.harvest.crops.HFCrops;
 import joshie.harvest.knowledge.HFNotes;
+import joshie.harvest.quests.Quests;
 import joshie.harvest.quests.selection.TutorialSelection;
 import joshie.harvest.tools.HFTools;
 import joshie.harvest.town.TownHelper;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
@@ -28,7 +28,6 @@ import static joshie.harvest.api.core.ITiered.ToolTier.BASIC;
 import static joshie.harvest.core.helpers.InventoryHelper.ITEM_STACK;
 import static joshie.harvest.core.helpers.InventoryHelper.SPECIAL;
 import static joshie.harvest.npcs.HFNPCs.FLOWER_GIRL;
-import static joshie.harvest.quests.Quests.YULIF_MEET;
 
 @HFQuest("tutorial.crops")
 public class QuestMeetJade extends QuestQuestion {
@@ -44,7 +43,7 @@ public class QuestMeetJade extends QuestQuestion {
 
     @Override
     public boolean canStartQuest(Set<Quest> active, Set<Quest> finished) {
-        return finished.contains(YULIF_MEET);
+        return finished.contains(Quests.GODDESS_MEET);
     }
 
     @Override
@@ -68,9 +67,9 @@ public class QuestMeetJade extends QuestQuestion {
     }
 
     @Override
-    public String getLocalizedScript(EntityPlayer player, EntityLiving entity, NPC npc) {
-        if (!TownHelper.getClosestTownToEntity(entity).hasBuilding(HFBuildings.CARPENTER)) return null;
-        if (isCompletedEarly) {
+    public String getLocalizedScript(EntityPlayer player, NPC npc) {
+        if (!TownHelper.getClosestTownToEntity(player).hasBuilding(HFBuildings.CARPENTER)) return null;
+        if (isCompletedEarly()) {
             return getLocalized("completed");
         } else if (quest_stage == INTRO) {
          /* Jade says hello to the player, and asks them if they know how to farm */
@@ -125,17 +124,14 @@ public class QuestMeetJade extends QuestQuestion {
     }
 
     @Override
-    public void onChatClosed(EntityPlayer player, EntityLiving entity, NPC npc, boolean wasSneaking) {
-        if (!TownHelper.getClosestTownToEntity(entity).hasBuilding(HFBuildings.CARPENTER)) return;
-        if (isCompletedEarly || quest_stage == START) {
+    public void onChatClosed(EntityPlayer player, NPC npc) {
+        if (!TownHelper.getClosestTownToEntity(player).hasBuilding(HFBuildings.CARPENTER)) return;
+        if (quest_stage == START) {
             rewardItem(player, HFTools.HOE.getStack(BASIC));
             rewardItem(player, HFTools.WATERING_CAN.getStack(BASIC));
             HFApi.player.getTrackingForPlayer(player).learnNote(HFNotes.CROP_FARMING);
-            if (isCompletedEarly) complete(player);
-            if (quest_stage == START) {
-                rewardItem(player, HFCrops.TUTORIAL.getSeedStack(3));
-                increaseStage(player);
-            }
+            rewardItem(player, HFCrops.TUTORIAL.getSeedStack(3));
+            increaseStage(player);
         } else if (quest_stage == TURNIPS) {
             if (InventoryHelper.getHandItemIsIn(player, ITEM_STACK, HFCrops.TUTORIAL.getCropStack(9), 9) != null) {
                 complete(player);
@@ -157,6 +153,14 @@ public class QuestMeetJade extends QuestQuestion {
 
     @Override
     public void onQuestCompleted(EntityPlayer player) {
+        //If we finished early
+        if (isCompletedEarly()) {
+            rewardItem(player, HFTools.HOE.getStack(BASIC));
+            rewardItem(player, HFTools.WATERING_CAN.getStack(BASIC));
+            HFApi.player.getTrackingForPlayer(player).learnNote(HFNotes.CROP_FARMING);
+        }
+
+        HFApi.quests.completeQuestConditionally(Quests.BUILDING_CARPENTER, player);
         HFApi.player.getTrackingForPlayer(player).learnNote(HFNotes.SICKLE);
         rewardItem(player, HFTools.SICKLE.getStack(BASIC));
         Season season = HFApi.calendar.getDate(player.worldObj).getSeason();

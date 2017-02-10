@@ -101,7 +101,7 @@ public abstract class Quest extends IForgeRegistryEntry.Impl<Quest> {
 
     /** Called to check if this npc is used
      *  @param npc the npc **/
-    public boolean isNPCUsed(NPC npc) {
+    public boolean isNPCUsed(EntityPlayer player, NPC npc) {
         return getNPCs().contains(npc);
     }
 

@@ -7,8 +7,8 @@ import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.npc.INPCHelper.Age;
 import joshie.harvest.api.npc.INPCHelper.Gender;
 import joshie.harvest.api.npc.NPC;
-import joshie.harvest.api.npc.schedule.ScheduleBuilder;
 import joshie.harvest.api.npc.gift.IGiftHandler;
+import joshie.harvest.api.npc.schedule.ScheduleBuilder;
 import joshie.harvest.core.base.render.MeshIdentical;
 import joshie.harvest.core.lib.EntityIDs;
 import joshie.harvest.core.proxy.HFClientProxy;
@@ -40,12 +40,13 @@ import static joshie.harvest.api.calendar.Weekday.*;
 import static joshie.harvest.api.npc.INPCHelper.Age.*;
 import static joshie.harvest.api.npc.INPCHelper.Gender.FEMALE;
 import static joshie.harvest.api.npc.INPCHelper.Gender.MALE;
-import static joshie.harvest.festivals.HFFestivals.COOKING_CONTEST;
 import static joshie.harvest.core.helpers.ConfigHelper.getDouble;
 import static joshie.harvest.core.helpers.RegistryHelper.registerSounds;
 import static joshie.harvest.core.lib.HFModInfo.GIFTPATH;
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 import static joshie.harvest.core.lib.LoadOrder.HFNPCS;
+import static joshie.harvest.festivals.HFFestivals.COOKING_CONTEST;
+import static joshie.harvest.festivals.HFFestivals.NEW_YEARS;
 import static joshie.harvest.town.BuildingLocations.*;
 
 @HFLoader(priority = HFNPCS)
@@ -95,11 +96,13 @@ public class HFNPCs {
     }
 
     public static void init() {
-        GODDESS.setHasInfo(new GreetingWeather());
+        GODDESS.setHasInfo(new GreetingWeather())
+                .addGreeting(new GreetingBeforeAshlee("tutorial.chicken.reminder.poultry"));
         ScheduleBuilder.create(GODDESS, null).build();
 
         //Carpenter
-        CARPENTER.addGreeting(new GreetingCarpenter());
+        CARPENTER.addGreeting(new GreetingCarpenter())
+                .addGreeting(new GreetingBeforeJim("tutorial.cow.reminder.barn"));
         ScheduleBuilder.create(CARPENTER, CARPENTER_DOWNSTAIRS)
                 .add(SPRING, SUNDAY, 0L, CARPENTER_DOWNSTAIRS)
                 .add(SPRING, SUNDAY, 8000L, CARPENTER_FRONT)
@@ -108,10 +111,17 @@ public class HFNPCs {
                 .add(COOKING_CONTEST, 0L, CARPENTER_UPSTAIRS)
                 .add(COOKING_CONTEST, 9000L, PARK_BENCH)
                 .add(COOKING_CONTEST, 20000L, CARPENTER_UPSTAIRS)
+                .add(NEW_YEARS, 0L, CARPENTER_DOWNSTAIRS)
+                .add(NEW_YEARS, 10000L, CARPENTER_FRONT)
+                .add(NEW_YEARS, 11500L, PARK_TRADER)
+                .add(NEW_YEARS, 22500L, CARPENTER_DOWNSTAIRS)
                 .build();
 
-        //Flower Girl
-        FLOWER_GIRL.setHasInfo(new GreetingFlowerBuyer());
+        //Flower Girl, Add the flower buying greeting, and before complettion of meeting jenni
+        FLOWER_GIRL.setHasInfo(new GreetingFlowerBuyer())
+                .addGreeting(new GreetingBeforeJenni("trade.seeds.reminder"))
+                .addGreeting(new GreetingBeforeJenni("trade.tools.reminder"))
+                .addGreeting(new GreetingBeforeJenni("tutorial.supermarket.reminder.supermarket"));
         ScheduleBuilder.create(FLOWER_GIRL, CARPENTER_UPSTAIRS)
                         .add(SPRING, SUNDAY, 0L, CARPENTER_UPSTAIRS)
                         .add(SPRING, SUNDAY, 5000L, TOWNHALL_TEEN)
@@ -122,6 +132,11 @@ public class HFNPCs {
                         .add(COOKING_CONTEST, 0L, CARPENTER_UPSTAIRS)
                         .add(COOKING_CONTEST, 6000L, PARK_CENTRE)
                         .add(COOKING_CONTEST, 17000L, CARPENTER_UPSTAIRS)
+                        .add(NEW_YEARS, 0L, CARPENTER_UPSTAIRS)
+                        .add(NEW_YEARS, 10000L, CARPENTER_DOWNSTAIRS)
+                        .add(NEW_YEARS, 11500L, PARK_TRADER_LEFT)
+                        .add(NEW_YEARS, 22500L, CARPENTER_DOWNSTAIRS)
+                        .add(NEW_YEARS, 23500L, CARPENTER_UPSTAIRS)
                         .build();
 
         //General Store
@@ -363,6 +378,7 @@ public class HFNPCs {
                         .build();
 
         //Priest
+        PRIEST.addGreeting(new GreetingPriestBlessing());
         ScheduleBuilder.create(PRIEST, TOWNHALL_ADULT_BED)
                         .add(SPRING, SUNDAY, 0L, TOWNHALL_ADULT_BED)
                         .add(SPRING, SUNDAY, 6000L, CHURCH_FRONT)
@@ -431,6 +447,11 @@ public class HFNPCs {
                         .add(COOKING_CONTEST, 6000L, PARK_TRADER)
                         .add(COOKING_CONTEST, 19000L, GENERAL_GARDEN)
                         .add(COOKING_CONTEST, 22000L, TOWNHALL_RIGHT)
+                        .add(NEW_YEARS, 0L, TOWNHALL_RIGHT)
+                        .add(NEW_YEARS, 10000L, TOWNHALL_ENTRANCE)
+                        .add(NEW_YEARS, 11500L, PARK_TRADER_RIGHT)
+                        .add(NEW_YEARS, 22500L, TOWNHALL_ENTRANCE)
+                        .add(NEW_YEARS, 23500L, TOWNHALL_RIGHT)
                         .build();
 
         for (NPC npc: NPC.REGISTRY) {

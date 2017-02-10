@@ -3589,6 +3589,15 @@
       "pos": "13 1 25"
     },
     {
+      "homeString": "newyear.left",
+      "npc": "",
+      "pos": "13 1 15",
+      "type": "entities.NPC"
+    },
+    {
+      "pos": "13 1 15"
+    },
+    {
       "homeString": "girafi",
       "npc": "harvestfestival:girafi",
       "pos": "13 1 14",
@@ -3596,6 +3605,15 @@
     },
     {
       "pos": "13 1 14"
+    },
+    {
+      "homeString": "newyear.right",
+      "npc": "",
+      "pos": "13 1 13",
+      "type": "entities.NPC"
+    },
+    {
+      "pos": "13 1 13"
     },
     {
       "state": "leaves 4",

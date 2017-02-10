@@ -25,6 +25,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.util.FakePlayer;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -139,6 +140,7 @@ public class QuestHelper implements IQuestHelper {
         List<Quest> all = new ArrayList<>();
         all.addAll(HFTrackers.getPlayerTrackerFromPlayer(player).getQuests().getCurrent());
         all.addAll(TownHelper.getClosestTownToEntity(player).getQuests().getCurrent());
+        Collections.sort(all, ((o1, o2) ->  o1.getRegistryName().toString().compareTo(o2.getRegistryName().toString())));
         Collections.sort(all, ((o1, o2) ->  o1.getPriority().compareTo(o2.getPriority())));
         return all;
     }
@@ -149,24 +151,11 @@ public class QuestHelper implements IQuestHelper {
         } catch (Exception e) { return null; }
     }
 
-    public static String getScript(EntityPlayer player, EntityNPC npc) {
+    @Nullable
+    public static Quest getCurrentQuest(EntityPlayer player, EntityNPC npc) {
         List<Quest> quests = HFApi.quests.getCurrentQuests(player);
-        for (Quest q : quests) {
-            if (q.getNPCs().contains(npc.getNPC())) {
-                String script = q.getLocalizedScript(player, npc, npc.getNPC());
-                if (script != null) return script;
-            }
-        }
-
-        return null;
-    }
-
-    public static Quest getSelection(EntityPlayer player, EntityNPC npc) {
-        List<Quest> quests = HFApi.quests.getCurrentQuests(player);
-        for (Quest q : quests) {
-            if (q.getNPCs().contains(npc.getNPC())) {
-                if (q.getSelection(player, npc.getNPC()) != null) return q;
-            }
+        for (Quest quest: quests) {
+            if (quest.isNPCUsed(player, npc.getNPC())) return quest;
         }
 
         return null;

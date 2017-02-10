@@ -2,6 +2,7 @@ package joshie.harvest.quests.packet;
 
 import io.netty.buffer.ByteBuf;
 import joshie.harvest.HarvestFestival;
+import joshie.harvest.api.HFApi;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.api.quests.Selection;
 import joshie.harvest.core.handlers.GuiHandler;
@@ -61,6 +62,8 @@ public class PacketQuestSelect extends PacketSharedSync {
             //Check
             if (selection != null) {
                 Result result = selection.onSelected(player, npc, npc.getNPC(), theQuest, selected);
+                selection.setSelected(); //Mark this as selected
+                if (theQuest != null) HFApi.quests.syncData(theQuest, player); //Sync to the client
                 if (result == Result.ALLOW)
                     player.openGui(HarvestFestival.instance, GuiHandler.NPC, player.worldObj, npc.getEntityId(), -1, -1);
                 else if (result == Result.DENY) player.closeScreen();

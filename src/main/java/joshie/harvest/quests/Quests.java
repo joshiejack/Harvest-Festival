@@ -19,6 +19,7 @@ public class Quests {
     public static final Quest CANDICE_5K = QuestHelper.getQuest("recipe.milk.hot");
     public static final Quest CANDICE_10K = QuestHelper.getQuest("recipe.icecream");
     public static final Quest CANDICE_15K = QuestHelper.getQuest("friendship.candice.notes");
+    public static final Quest CLOE_MEET = QuestHelper.getQuest("meeting.cloe");
     public static final Quest CLOE_5K = QuestHelper.getQuest("recipe.noodles");
     public static final Quest CLOE_10K = QuestHelper.getQuest("recipe.risotto");
     public static final Quest CLOE_15K = QuestHelper.getQuest("friendship.cloe.gift");
@@ -64,10 +65,12 @@ public class Quests {
     public static final Quest LIARA_17K = QuestHelper.getQuest("recipe.tempura");
     public static final Quest LIARA_20K = QuestHelper.getQuest("recipe.tempura.rice");
     public static final Quest LIARA_22K = QuestHelper.getQuest("recipe.tempura.noodles");
+    public static final Quest TIBERIUS_MEET = QuestHelper.getQuest("meeting.tiberius");
     public static final Quest TIBERIUS_5K = QuestHelper.getQuest("recipe.dinnerroll");
     public static final Quest TIBERIUS_10K = QuestHelper.getQuest("recipe.doughnut");
     public static final Quest TIBERIUS_15K = QuestHelper.getQuest("friendship.tiberius.dark");
     public static final Quest YULIF_MEET = QuestHelper.getQuest("tutorial.carpenter");
+    public static final Quest TOMAS_MEET = QuestHelper.getQuest("meeting.tomas");
     public static final Quest TOMAS_5K = QuestHelper.getQuest("recipe.latte.vegetable");
     public static final Quest TOMAS_10K = QuestHelper.getQuest("recipe.dumplings");
     public static final Quest TOMAS_15K = QuestHelper.getQuest("friendship.tomas.cheaper");
@@ -75,13 +78,15 @@ public class Quests {
     public static final Quest YULIF_10K = QuestHelper.getQuest("recipe.cake.chocolate");
     public static final Quest YULIF_15K = QuestHelper.getQuest("friendship.yulif.sprinkler");
 
-    //Buildings
+    //Buildings, Town Based Quests
     public static final Quest BUILDING_CAFE = QuestHelper.getQuest("building.cafe");
     public static final Quest BUILDING_BLACKSMITH = QuestHelper.getQuest("building.blacksmith");
     public static final Quest BUILDING_FISHER = QuestHelper.getQuest("building.fisher");
     public static final Quest BUILDING_FESTIVALS = QuestHelper.getQuest("building.festivals");
+    public static final Quest BUILDING_CARPENTER = QuestHelper.getQuest("building.carpenter");
+    public static final Quest BUILDING_SUPERMARKET = QuestHelper.getQuest("building.supermarket");
 
-    //Dummy Quests for unlocking things
+    //Dummy Quests for unlocking things, Town Based Quests
     public static final Quest SELL_STRAWBERRY = QuestHelper.getQuest("seeds.strawberry");
     public static final Quest SELL_SWEET_POTATO = QuestHelper.getQuest("seeds.sweetpotato");
     public static final Quest SELL_TREES = QuestHelper.getQuest("seeds.trees1");

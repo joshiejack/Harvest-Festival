@@ -4,14 +4,13 @@ import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.npc.greeting.Script;
 import joshie.harvest.npcs.entity.EntityNPC;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.EnumHand;
 
 public class GuiNPCMask extends GuiNPCChat {
     private final Script script;
     private NPC posingAs;
 
     public GuiNPCMask(EntityPlayer player, EntityNPC npc, int scriptID) {
-        super(player, npc, EnumHand.MAIN_HAND, -1, false);
+        super(player, npc, -1, false);
         script = Script.REGISTRY.getValues().get(scriptID);
         posingAs = script.getNPC() != null ? script.getNPC() : npc.getNPC();
         inside = posingAs.getInsideColor();

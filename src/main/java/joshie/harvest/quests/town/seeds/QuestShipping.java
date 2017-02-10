@@ -5,6 +5,7 @@ import joshie.harvest.api.calendar.CalendarDate;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.crops.Crop;
 import joshie.harvest.api.npc.NPC;
+import joshie.harvest.api.quests.Quest;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.player.PlayerTrackerServer;
 import joshie.harvest.player.tracking.StackSold;
@@ -17,6 +18,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import javax.annotation.Nullable;
 import java.util.HashSet;
 import java.util.Set;
+
+import static joshie.harvest.quests.Quests.BUILDING_SUPERMARKET;
 
 public class QuestShipping extends QuestTown {
     private static final int START = 0;
@@ -31,6 +34,11 @@ public class QuestShipping extends QuestTown {
         this.setNPCs(npc);
         this.season = season;
         this.required = required;
+    }
+
+    @Override
+    public boolean canStartQuest(Set<Quest> active, Set<Quest> finished) {
+        return finished.contains(BUILDING_SUPERMARKET);
     }
 
     //Rebuild the list of spring crops
@@ -64,15 +72,10 @@ public class QuestShipping extends QuestTown {
         }
     }
 
-    @Nullable
-    @SideOnly(Side.CLIENT)
-    public String getLocalizedScript(EntityPlayer player, EntityLiving entity, NPC npc) {
-        return quest_stage >= FINISHED ? getLocalized("complete") : null;
-    }
-
     @Override
-    public void onChatClosed(EntityPlayer player, EntityLiving entity, NPC npc, boolean wasSneaking) {
-        if (quest_stage == FINISHED) complete(player);
+    public boolean isNPCUsed(EntityPlayer player, NPC npc) {
+        if (!super.isNPCUsed(player, npc)) return false;
+        boolean ret = quest_stage >= FINISHED;
         if (!player.worldObj.isRemote && quest_stage == START) {
             if (crops == null) rebuildCropSet();
             int totalCrops = getTotalCrops(HFApi.calendar.getDate(player.worldObj), player);
@@ -80,5 +83,18 @@ public class QuestShipping extends QuestTown {
                 increaseStage(player);
             }
         }
+
+        return ret;
+    }
+
+    @Nullable
+    @SideOnly(Side.CLIENT)
+    public String getLocalizedScript(EntityPlayer player, EntityLiving entity, NPC npc) {
+        return getLocalized("complete");
+    }
+
+    @Override
+    public void onChatClosed(EntityPlayer player, EntityLiving entity, NPC npc, boolean wasSneaking) {
+        complete(player);
     }
 }

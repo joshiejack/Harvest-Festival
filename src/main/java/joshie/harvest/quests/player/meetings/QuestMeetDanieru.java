@@ -12,7 +12,6 @@ import joshie.harvest.mining.HFMining;
 import joshie.harvest.mining.item.ItemMaterial.Material;
 import joshie.harvest.quests.selection.TutorialSelection;
 import joshie.harvest.town.TownHelper;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -56,10 +55,10 @@ public class QuestMeetDanieru extends QuestQuestion {
     }
 
     @Override
-    public String getLocalizedScript(EntityPlayer player, EntityLiving entity, NPC npc) {
+    public String getLocalizedScript(EntityPlayer player, NPC npc) {
         if (quest_stage == BUILD && npc != BLACKSMITH && player.worldObj.rand.nextFloat() < 0.25F) {
             String suffix = ((NPC)npc).getRegistryName().getResourcePath();
-            boolean blacksmith = TownHelper.getClosestTownToEntity(entity).hasBuilding(HFBuildings.BLACKSMITH);
+            boolean blacksmith = TownHelper.getClosestTownToEntity(player).hasBuilding(HFBuildings.BLACKSMITH);
             //They tell the player that they should go and visit the blacksmith
             //They should all have a slight variation
             //So this is like
@@ -71,8 +70,8 @@ public class QuestMeetDanieru extends QuestQuestion {
             //All tell the player that they should probably get a mine and a blacksmith built
             return getLocalized("blacksmith." + suffix);
         } else if  (npc == BLACKSMITH) {
-            if (!TownHelper.getClosestTownToEntity(entity).hasBuilding(HFBuildings.BLACKSMITH)) return null;
-            if (isCompletedEarly) {
+            if (!TownHelper.getClosestTownToEntity(player).hasBuilding(HFBuildings.BLACKSMITH)) return null;
+            if (isCompletedEarly()) {
                 return getLocalized("completed");
             } else if (quest_stage == BUILD) {
                 //Danieuru thanks the player for welcoming to the town
@@ -98,9 +97,9 @@ public class QuestMeetDanieru extends QuestQuestion {
     }
 
     @Override
-    public void onChatClosed(EntityPlayer player, EntityLiving entity, NPC npc, boolean isSneaking) {
-        if (npc == BLACKSMITH && (isCompletedEarly || quest_stage == EXPLAIN)) {
-            if (TownHelper.getClosestTownToEntity(entity).hasBuilding(HFBuildings.BLACKSMITH)) {
+    public void onChatClosed(EntityPlayer player, NPC npc) {
+        if (npc == BLACKSMITH && quest_stage == EXPLAIN) {
+            if (TownHelper.getClosestTownToEntity(player).hasBuilding(HFBuildings.BLACKSMITH)) {
                 complete(player);
             }
         }

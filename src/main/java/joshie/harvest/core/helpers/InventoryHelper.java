@@ -14,7 +14,7 @@ import static joshie.harvest.core.helpers.InventoryHelper.SearchType.*;
 
 public class InventoryHelper {
     public enum SearchType {
-        FLOWER, HOE, BUCKET, SHEARS, WOOL
+        FLOWER, HOE, BUCKET, SHEARS, WOOL, PICKAXE
     }
 
     public static final Matcher<String> ORE_DICTIONARY = new Matcher<String>() {
@@ -58,6 +58,8 @@ public class InventoryHelper {
                 return stack.getItem() instanceof ItemShears;
             } else if (type.equals(WOOL)) {
                 return ToolHelper.isWool(stack);
+            } else if (type.equals(PICKAXE)) {
+                return stack.getItem() instanceof ItemPickaxe;
             }
 
             return false;

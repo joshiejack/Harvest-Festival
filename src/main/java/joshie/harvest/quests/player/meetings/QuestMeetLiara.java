@@ -14,7 +14,6 @@ import joshie.harvest.knowledge.HFNotes;
 import joshie.harvest.quests.Quests;
 import joshie.harvest.quests.selection.TutorialSelection;
 import joshie.harvest.town.TownHelper;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 
@@ -38,9 +37,9 @@ public class QuestMeetLiara extends QuestQuestion {
     }
 
     @Override
-    public String getLocalizedScript(EntityPlayer player, EntityLiving entity, NPC npc) {
-        if (!TownHelper.getClosestTownToEntity(entity).hasBuilding(HFBuildings.CAFE)) return null;
-        if (isCompletedEarly) {
+    public String getLocalizedScript(EntityPlayer player, NPC npc) {
+        if (!TownHelper.getClosestTownToEntity(player).hasBuilding(HFBuildings.CAFE)) return null;
+        if (isCompletedEarly()) {
             return getLocalized("completed");
         } else if (quest_stage == WELCOME) {
             //Liara tells the player, welcome to the cafe, she tells them that she is an expert on cooking
@@ -66,11 +65,9 @@ public class QuestMeetLiara extends QuestQuestion {
     }
 
     @Override
-    public void onChatClosed(EntityPlayer player, EntityLiving entity, NPC npc, boolean wasSneaking) {
-        if (isCompletedEarly || quest_stage == TUTORIAL) {
-            if (TownHelper.getClosestTownToEntity(entity).hasBuilding(HFBuildings.CAFE)) {
-                complete(player);
-            }
+    public void onChatClosed(EntityPlayer player, NPC npc) {
+        if (quest_stage == TUTORIAL && TownHelper.getClosestTownToEntity(player).hasBuilding(HFBuildings.CAFE)) {
+            complete(player);
         }
     }
 

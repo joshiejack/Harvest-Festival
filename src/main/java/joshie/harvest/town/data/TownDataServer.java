@@ -263,6 +263,8 @@ public class TownDataServer extends TownData<QuestDataServer, LetterDataServer> 
             if (buildings.containsKey(HFBuildings.CAFE.getRegistryName())) quests.getFinished().add(Quests.BUILDING_CAFE);
             if (buildings.containsKey(HFBuildings.FISHING_HUT.getRegistryName())) quests.getFinished().add(Quests.BUILDING_FISHER);
             if (buildings.containsKey(HFBuildings.BLACKSMITH.getRegistryName())) quests.getFinished().add(Quests.BUILDING_BLACKSMITH);
+            if (buildings.containsKey(HFBuildings.CARPENTER.getRegistryName())) quests.getFinished().add(Quests.BUILDING_CARPENTER);
+            if (buildings.containsKey(HFBuildings.SUPERMARKET.getRegistryName())) quests.getFinished().add(Quests.BUILDING_SUPERMARKET);
         }
 
         //Target festival

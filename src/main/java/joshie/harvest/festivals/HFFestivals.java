@@ -35,7 +35,7 @@ public class HFFestivals {
     public static final BlockStand STAND = new BlockStand().register("stand");
     //TODO: Re-enable all the other quests
     private static Map<Festival, Season> TEMP_REGISTRY = new HashMap<>();
-    public static final Festival NEW_YEARS = registerFestival("new_years", 1, SPRING).setLength(1).setNoBuilding();
+    public static final Festival NEW_YEARS = registerFestival("new_years", 1, SPRING).setLength(1);
     public static final Festival COOKING_CONTEST = registerFestival("cooking", 22, SPRING);
     //public static final Festival CHICKEN_FESTIVAL = registerFestival("chicken", 7, SUMMER);
     //public static final Festival COW_FESTIVAL = registerFestival("cow", 20, SUMMER);

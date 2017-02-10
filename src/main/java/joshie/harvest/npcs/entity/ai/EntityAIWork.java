@@ -13,7 +13,6 @@ import net.minecraft.util.math.BlockPos;
 public class EntityAIWork extends EntityAIBase {
     private final EntityNPCShopkeeper npc;
     private BlockPos target;
-    private int moveTimer;
 
     public EntityAIWork(EntityNPCShopkeeper npc) {
         this.npc = npc;
@@ -30,7 +29,9 @@ public class EntityAIWork extends EntityAIBase {
         if(npc.getNPC().getShop(npc.worldObj, pos) != null && NPCHelper.isShopOpen(npc.worldObj, npc, null, npc.getNPC().getShop(npc.worldObj, pos))) {
             target = NPCHelper.getCoordinatesForLocation(npc, getBuildingTarget(HFApi.calendar.getDate(npc.worldObj)));
             return target != null;
-        } else return false;
+        } else {
+            return false;
+        }
     }
 
     @Override
@@ -40,14 +41,10 @@ public class EntityAIWork extends EntityAIBase {
 
     @Override
     public void startExecuting() {
-        if (moveTimer %100 == 0) {
-            if (npc.getDistanceSq(target) >= 1.5D) {
-                npc.setPositionAndUpdate(target.getX() + 0.5D, target.getY() + 1D, target.getZ() + 0.5D);
-            }
-
-            npc.getNavigator().clearPathEntity();
+        if (npc.getDistanceSq(target) >= 1.5D) {
+            npc.setPositionAndUpdate(target.getX() + 0.5D, target.getY() + 1D, target.getZ() + 0.5D);
         }
 
-        moveTimer++;
+        npc.getNavigator().clearPathEntity();
     }
 }

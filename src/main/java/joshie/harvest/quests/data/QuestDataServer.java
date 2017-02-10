@@ -2,7 +2,6 @@ package joshie.harvest.quests.data;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.CalendarDate;
-import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.api.quests.TargetType;
 import joshie.harvest.core.HFTrackers;
@@ -31,6 +30,13 @@ public class QuestDataServer extends QuestData {
 
     public QuestDataServer(ISyncMaster master) {
         this.master = master;
+    }
+
+    public void purge(EntityPlayerMP player) {
+        current.clear();
+        finished.clear();
+        lastFinished.clear();
+        sync(player); //Resync everything
     }
 
     public CalendarDate getLastCompletionOfQuest(Quest quest) {
@@ -114,22 +120,6 @@ public class QuestDataServer extends QuestData {
     }
 
     private boolean canStart(Quest quest, Set<Quest> active, Set<Quest> finished) {
-        //Loops through all the active quests, if any of the quests are real and contain npcs that are used by this quest, we can not start it
-        Set<NPC> npcs = quest.getNPCs();
-        if (npcs != null) {
-            for (Quest a : active) {
-                if (a.isRealQuest()) {
-                    for (NPC npc : npcs) {
-                        for (NPC n : a.getNPCs()) {
-                            if (n.equals(npc)) {
-                                return false;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
         return quest.canStartQuest(active, finished);
     }
 

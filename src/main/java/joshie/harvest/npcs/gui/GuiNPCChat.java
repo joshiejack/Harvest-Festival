@@ -10,9 +10,7 @@ import joshie.harvest.npcs.entity.EntityNPC;
 import joshie.harvest.npcs.packet.PacketGift;
 import joshie.harvest.npcs.packet.PacketInfo;
 import joshie.harvest.player.stats.Stats;
-import joshie.harvest.quests.QuestHelper;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.EnumHand;
 import net.minecraft.util.text.TextFormatting;
 
 import java.io.IOException;
@@ -38,8 +36,8 @@ public class GuiNPCChat extends GuiNPCBase {
         return String.format(string, stats.getGold(), playerLover, npcLover, player.getDisplayNameString(), npc.getNPC().getLocalizedName());
     }
 
-    public GuiNPCChat(EntityPlayer player, EntityNPC npc, EnumHand hand, int nextGui, boolean info) {
-        super(player, npc, hand, nextGui);
+    public GuiNPCChat(EntityPlayer player, EntityNPC npc, int nextGui, boolean info) {
+        super(player, npc, nextGui);
         isScriptInit = false;
         this.info = info;
     }
@@ -140,15 +138,29 @@ public class GuiNPCChat extends GuiNPCBase {
     }
 
     @Override
-    protected void onMouseClick(int mouseX, int mouseY) {
-        if ((npc.getNPC() == HFNPCs.GODDESS || isHoldingItem()) && hoveringGift())
+    protected void mouseClicked(int x, int y, int mouseButton) throws IOException {
+        super.mouseClicked(x, y, mouseButton);
+        if ((npc.getNPC() == HFNPCs.GODDESS || isHoldingItem()) && hoveringGift()) {
+            PacketGift.handleGifting(player, npc);
             PacketHandler.sendToServer(new PacketGift(npc));
-        else if (displayInfo() && hoveringInfo() && npc.getNPC().getInfoButton() != null)
+        } else if (displayInfo() && hoveringInfo() && npc.getNPC().getInfoButton() != null)
             PacketHandler.sendToServer(new PacketInfo(npc));
-        else nextChat();
+        else if (mouseButton == 0) nextChat();
+        else if (mouseButton == 1) previousChat();
     }
 
-    protected void nextChat() {
+    void previousChat() {
+        if (!finished) {
+            finished = true;
+            line = MAX_LINES_PER_PAGE;
+        } else if (page > 0) {
+            finished = false; //Reset the page being finished
+            //line = 0; //Reset the line we are currently reading
+            page--; //Reset the page we are currently reading
+        }
+    }
+
+    void nextChat() {
         if (!finished) {
             finished = true;
             line = MAX_LINES_PER_PAGE;
@@ -174,7 +186,7 @@ public class GuiNPCChat extends GuiNPCBase {
         if (infoGreeting != null) return infoGreeting;
 
         //Scripts
-        String script = QuestHelper.getScript(player, npc);
+        String script = quest != null ? quest.getLocalizedScript(player, npc, npc.getNPC()) : null;
         return script == null ? npc.getNPC().getGreeting(player, npc) : script;
     }
 }

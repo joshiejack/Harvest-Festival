@@ -36,24 +36,29 @@ public class GuiHandler implements IGuiHandler {
     public static final int QUEST_BOARD = 11;
     public static final int FORCED_NPC = 12;
     public static final int MAILBOX = 13;
+    public static final int SELECTION = 14;
+
+    //Open no gui after this one
+    public static final int NEXT_NONE = -1;
 
     @Override
     public Object getServerGuiElement(int ID, EntityPlayer player, World world, int entityID, int nextGui, int hand) {
         switch (ID) {
             case FORCED_NPC:
-                return new ContainerNPCChat(player, (EntityNPC) world.getEntityByID(entityID), EnumHand.MAIN_HAND, -1);
+                return new ContainerNPCChat(player, (EntityNPC) world.getEntityByID(entityID), NEXT_NONE);
+            case SELECTION:
             case NPC_INFO:
             case NPC: {
-                return new ContainerNPCChat(player, (EntityNPC) world.getEntityByID(entityID), EnumHand.MAIN_HAND, nextGui);
+                return new ContainerNPCChat(player, (EntityNPC) world.getEntityByID(entityID), nextGui);
             }
 
-            case SHOP_WELCOME:  return new ContainerNPCChat(player, (EntityNPC) world.getEntityByID(entityID), EnumHand.MAIN_HAND, SHOP_OPTIONS);
-            case SHOP_OPTIONS:  return new ContainerNPCChat(player, (EntityNPC) world.getEntityByID(entityID), EnumHand.MAIN_HAND, nextGui);
+            case SHOP_WELCOME:  return new ContainerNPCChat(player, (EntityNPC) world.getEntityByID(entityID), SHOP_OPTIONS);
+            case SHOP_OPTIONS:  return new ContainerNPCChat(player, (EntityNPC) world.getEntityByID(entityID), nextGui);
             case SHOP_MENU:
             case SHOP_MENU_SELL:
                 HFApi.player.getTrackingForPlayer(player).learnNote(HFNotes.SHOPPING);
                 return new ContainerNPCShop((EntityNPC) world.getEntityByID(entityID));
-            case GIFT:          return new ContainerNPCGift(player, (EntityNPC) world.getEntityByID(entityID), EnumHand.values()[hand], -1);
+            case GIFT:          return new ContainerNPCGift(player, (EntityNPC) world.getEntityByID(entityID), EnumHand.values()[hand], nextGui);
             case FRIDGE:        return new ContainerFridge(player, player.inventory, (TileFridge) world.getTileEntity(new BlockPos(entityID, nextGui, hand)));
             case MAILBOX:
             case QUEST_BOARD:   return new ContainerNull();
@@ -67,23 +72,25 @@ public class GuiHandler implements IGuiHandler {
             case FORCED_NPC: {
                 return new GuiNPCMask(player, (EntityNPC) world.getEntityByID(entityID), nextGui);
             }
-            case NPC: {
+            case SELECTION: {
+
+            } case NPC: {
                 EntityNPC npc = (EntityNPC) world.getEntityByID(entityID);
                 if (hand != -1) return new GuiNPCSelect(player, npc, nextGui, hand);
-                return new GuiNPCChat(player, (EntityNPC) world.getEntityByID(entityID), EnumHand.MAIN_HAND, nextGui, false);
+                return new GuiNPCChat(player, (EntityNPC) world.getEntityByID(entityID), nextGui, false);
             }
             case NPC_INFO: {
                 EntityNPC npc = (EntityNPC) world.getEntityByID(entityID);
                 if (hand != -1) return new GuiNPCSelect(player, npc, nextGui, hand);
-                return new GuiNPCChat(player, (EntityNPC) world.getEntityByID(entityID), EnumHand.MAIN_HAND, nextGui, true);
+                return new GuiNPCChat(player, (EntityNPC) world.getEntityByID(entityID), nextGui, true);
             }
-            case SHOP_WELCOME:  return new GuiNPCChat(player, (EntityNPC) world.getEntityByID(entityID), EnumHand.MAIN_HAND, SHOP_OPTIONS, false);
+            case SHOP_WELCOME:  return new GuiNPCChat(player, (EntityNPC) world.getEntityByID(entityID), SHOP_OPTIONS, false);
             case SHOP_MENU_SELL:
             case SHOP_MENU:
                 HFApi.player.getTrackingForPlayer(player).learnNote(HFNotes.SHOPPING);
-                return new GuiNPCShop(player, (EntityNPC) world.getEntityByID(entityID), -2, ID == SHOP_MENU_SELL);
+                return new GuiNPCShop(player, (EntityNPC) world.getEntityByID(entityID), NEXT_NONE, ID == SHOP_MENU_SELL);
             case GIFT:          return new GuiNPCGift(player, (EntityNPC) world.getEntityByID(entityID), EnumHand.values()[hand]);
-            case GIFT_GODDESS:  return new GuiNPCGift(player, (EntityNPC) world.getEntityByID(entityID), EnumHand.values()[hand], GuiNPCGift.GODDESS_GIFT);
+            case GIFT_GODDESS:  return new GuiNPCGift(player, (EntityNPC) world.getEntityByID(entityID), GuiNPCGift.GODDESS_GIFT);
             case FRIDGE:        return new GuiFridge(player, player.inventory, (TileFridge) world.getTileEntity(new BlockPos(entityID, nextGui, hand)));
             case QUEST_BOARD:   return new GuiQuestBoard(new BlockPos(entityID, nextGui, hand), player);
             case MAILBOX:       return new GuiLetter(player);
@@ -92,8 +99,8 @@ public class GuiHandler implements IGuiHandler {
             case SHOP_OPTIONS:    {
                 EntityNPC npc = (EntityNPC) world.getEntityByID(entityID);
                 if (NPCHelper.isShopOpen(npc, world, player)) {
-                    return new GuiNPCSelect(player, npc, nextGui, -1);
-                } else return new GuiNPCChat(player, npc, EnumHand.MAIN_HAND, nextGui, false);
+                    return new GuiNPCSelect(player, npc, nextGui, NEXT_NONE);
+                } else return new GuiNPCChat(player, npc, nextGui, false);
             }
 
             default:            return null;

@@ -1,8 +1,8 @@
 package joshie.harvest.npcs.gui;
 
 import joshie.harvest.api.quests.Quest;
-import joshie.harvest.api.quests.TargetType;
 import joshie.harvest.api.quests.Selection;
+import joshie.harvest.api.quests.TargetType;
 import joshie.harvest.core.helpers.TextHelper;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.network.PacketHandler;
@@ -16,11 +16,12 @@ import joshie.harvest.town.TownHelper;
 import joshie.harvest.town.data.TownData;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.EnumHand;
 import net.minecraft.util.text.TextFormatting;
 
 import java.io.IOException;
 import java.util.Arrays;
+
+import static joshie.harvest.core.handlers.GuiHandler.NEXT_NONE;
 
 /** Renders a selection menu gui **/
 public class GuiNPCSelect extends GuiNPCBase {
@@ -32,8 +33,8 @@ public class GuiNPCSelect extends GuiNPCBase {
     private int selected;
 
     public GuiNPCSelect(EntityPlayer player, EntityNPC npc, int next, int selectionType) {
-        super(player, npc, EnumHand.MAIN_HAND, next);
-        if (selectionType == -1) selection = NPCHelper.getShopSelection(player.worldObj, pos, npc.getNPC());
+        super(player, npc, next);
+        if (selectionType == NEXT_NONE) selection = NPCHelper.getShopSelection(player.worldObj, pos, npc.getNPC());
         else {
             quest = QuestHelper.getSelectiomFromID(player, selectionType);
             selection = quest != null ? quest.getSelection(player, npc.getNPC()): null;
@@ -129,9 +130,10 @@ public class GuiNPCSelect extends GuiNPCBase {
 
     @Override
     public void onMouseClick(int mouseX, int mouseY) {
-        if (isPointInRegion(242, 156, 17, 19, npcMouseX, npcMouseY))
+        if (isPointInRegion(242, 156, 17, 19, npcMouseX, npcMouseY)) {
+            PacketGift.handleGifting(player, npc);
             PacketHandler.sendToServer(new PacketGift(npc));
-        else if (npc.getNPC().getInfoButton() != null && isPointInRegion(242, 177, 17, 19, npcMouseX, npcMouseY))
+        } else if (npc.getNPC().getInfoButton() != null && isPointInRegion(242, 177, 17, 19, npcMouseX, npcMouseY))
             PacketHandler.sendToServer(new PacketInfo(npc));
         else if (selection != null) {
             if (mouseY >= 156 && mouseY <= 164 && isValidOption(0)) {

@@ -37,6 +37,10 @@ public class Shop {
         REGISTRY.put(resource, this);
     }
 
+    public Shop setSpecialRules(ISpecialRules rules) {
+        return setSpecialPurchaseRules(rules).setSpecialSellingRules(rules);
+    }
+
     @SuppressWarnings("unused")
     public Shop setSpecialPurchaseRules(ISpecialRules rules) {
         this.rulesBuying = rules;

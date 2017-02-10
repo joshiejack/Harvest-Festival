@@ -13,7 +13,6 @@ import joshie.harvest.mining.HFMining;
 import joshie.harvest.mining.item.ItemMaterial.Material;
 import joshie.harvest.quests.selection.TutorialSelection;
 import joshie.harvest.tools.HFTools;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -21,7 +20,6 @@ import net.minecraft.world.World;
 import java.util.Set;
 
 import static joshie.harvest.core.helpers.InventoryHelper.ITEM_STACK;
-import static joshie.harvest.npcs.HFNPCs.BLACKSMITH;
 import static joshie.harvest.npcs.HFNPCs.MINER;
 import static joshie.harvest.quests.Quests.JENNI_MEET;
 
@@ -43,7 +41,7 @@ public class QuestMeetBrandon extends QuestQuestion {
 
     @Override
     public Selection getSelection(EntityPlayer player, NPC npc) {
-        return npc == BLACKSMITH ? super.getSelection(player, npc) : null;
+        return super.getSelection(player, npc);
     }
 
     @Override
@@ -53,8 +51,8 @@ public class QuestMeetBrandon extends QuestQuestion {
     }
 
     @Override
-    public String getLocalizedScript(EntityPlayer player, EntityLiving entity, NPC npc) {
-        if (isCompletedEarly) {
+    public String getLocalizedScript(EntityPlayer player, NPC npc) {
+        if (isCompletedEarly()) {
             return getLocalized("completed");
         } else if (quest_stage == BUILD) {
             //Brandon asks if the player knows how to mine
@@ -72,16 +70,22 @@ public class QuestMeetBrandon extends QuestQuestion {
     }
 
     @Override
-    public void onChatClosed(EntityPlayer player, EntityLiving entity, NPC npc, boolean isSneaking) {
-        if (isCompletedEarly) rewardItem(player, HFTools.HAMMER.getStack(ToolTier.BASIC));
-        else if (quest_stage == EXPLAIN) increaseStage(player);
-        if (isCompletedEarly || (quest_stage == ORE && InventoryHelper.getHandItemIsIn(player, ITEM_STACK, HFMining.MATERIALS.getStackFromEnum(Material.JUNK), 3) != null)) {
+    public void onChatClosed(EntityPlayer player, NPC npc) {
+        if (quest_stage == EXPLAIN) {
+            rewardItem(player, HFTools.HAMMER.getStack(ToolTier.BASIC));
+            increaseStage(player);
+        } else if ((quest_stage == ORE && InventoryHelper.getHandItemIsIn(player, ITEM_STACK, HFMining.MATERIALS.getStackFromEnum(Material.JUNK), 3) != null)) {
             complete(player);
         }
     }
 
     @Override
     public void onQuestCompleted(EntityPlayer player) {
+        //Early finishes
+        if (isCompletedEarly()) {
+            rewardItem(player, HFTools.HAMMER.getStack(ToolTier.BASIC));
+        }
+
         HFApi.player.getTrackingForPlayer(player).learnNote(HFNotes.MINING);
         HFApi.player.getTrackingForPlayer(player).learnNote(HFNotes.HAMMER);
         rewardItem(player, new ItemStack(HFMining.MATERIALS, 10, Material.JUNK.ordinal()));

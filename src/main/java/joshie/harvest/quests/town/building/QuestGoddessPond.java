@@ -3,6 +3,7 @@ package joshie.harvest.quests.town.building;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.quests.HFQuest;
+import joshie.harvest.api.quests.Quest;
 import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.crops.HFCrops;
 import joshie.harvest.npcs.HFNPCs;
@@ -12,7 +13,10 @@ import joshie.harvest.town.data.TownData;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 
+import java.util.Set;
+
 import static joshie.harvest.npcs.HFNPCs.GODDESS;
+import static joshie.harvest.quests.Quests.BUILDING_CARPENTER;
 
 @HFQuest("building.goddess")
 public class QuestGoddessPond extends QuestTown {
@@ -21,13 +25,20 @@ public class QuestGoddessPond extends QuestTown {
     }
 
     @Override
-    public String getLocalizedScript(EntityPlayer player, EntityLiving entity, NPC npc) {
-        TownData data = TownHelper.getClosestTownToEntity(player);
-        if (data.hasBuilding(HFBuildings.GODDESS_POND)) {
-            return getLocalized("thanks");
-        }
+    public boolean canStartQuest(Set<Quest> active, Set<Quest> finished) {
+        return finished.contains(BUILDING_CARPENTER);
+    }
 
-        return player.worldObj.rand.nextDouble() <= 0.1D && data.getBuildings().size() >= 5 ? getLocalized("please") : null;
+    @Override
+    public boolean isNPCUsed(EntityPlayer player, NPC npc) {
+        if (npc != HFNPCs.GODDESS) return false;
+        TownData data = TownHelper.getClosestTownToEntity(player);
+        return data.getBuildings().size() >= 5 || data.hasBuilding(HFBuildings.GODDESS_POND);
+    }
+
+    @Override
+    public String getLocalizedScript(EntityPlayer player, EntityLiving entity, NPC npc) {
+        return TownHelper.getClosestTownToEntity(player).getBuildings().size() >= 5 ? getLocalized("please") : getLocalized("thanks");
     }
 
     @Override

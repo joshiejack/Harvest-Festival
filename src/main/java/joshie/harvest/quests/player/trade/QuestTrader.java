@@ -6,6 +6,8 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.core.Size;
 import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.quests.HFQuest;
+import joshie.harvest.api.quests.Quest;
+import joshie.harvest.npcs.HFNPCs;
 import joshie.harvest.quests.base.QuestTrade;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
@@ -17,14 +19,22 @@ import net.minecraft.util.EnumHand;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import static joshie.harvest.npcs.HFNPCs.TRADER;
+import java.util.Set;
+
+import static joshie.harvest.quests.Quests.JOHAN_MEET;
 
 @HFQuest("trade.vanilla")
 public class QuestTrader extends QuestTrade {
     private static final Item WOOL = Item.getItemFromBlock(Blocks.WOOL);
 
-    public QuestTrader() {
-        setNPCs(TRADER);
+    @Override
+    public boolean canStartQuest(Set<Quest> active, Set<Quest> finished) {
+        return finished.contains(JOHAN_MEET);
+    }
+
+    @Override
+    public boolean isNPCUsed(EntityPlayer player, NPC npc) {
+        return npc == HFNPCs.TRADER && isHoldingAnyAtAll(player);
     }
 
     @SideOnly(Side.CLIENT)
@@ -42,19 +52,17 @@ public class QuestTrader extends QuestTrade {
     @Override
     @SuppressWarnings("ConstantConditions")
     public void onChatClosed(EntityPlayer player, EntityLiving entity, NPC npc, boolean wasSneaking) {
-        if (isHoldingAnyAtAll(player)) {
-            EnumHand hand = isHoldingAny(player, EnumHand.MAIN_HAND) ? EnumHand.MAIN_HAND: EnumHand.OFF_HAND;
-            if (player.getHeldItem(hand) != null) {
-                ItemStack held = player.getHeldItem(hand).copy(); //Ignore
-                takeHeldStack(player, held.stackSize);
-                Size size = HFApi.sizeable.getSize(held);
-                int amount = held.stackSize;
-                if (size == Size.MEDIUM) amount *= 2;
-                else if (size == Size.LARGE) amount *= 3;
-                Sizeable sizeable = HFAnimals.ANIMAL_PRODUCT.getEnumFromStack(held);
-                Item item = sizeable == Sizeable.EGG ? Items.EGG : sizeable == Sizeable.MILK ? Items.MILK_BUCKET : WOOL;
-                rewardItem(player, new ItemStack(item, amount));
-            }
+        EnumHand hand = isHoldingAny(player, EnumHand.MAIN_HAND) ? EnumHand.MAIN_HAND: EnumHand.OFF_HAND;
+        if (player.getHeldItem(hand) != null) {
+            ItemStack held = player.getHeldItem(hand).copy(); //Ignore
+            takeHeldStack(player, held.stackSize);
+            Size size = HFApi.sizeable.getSize(held);
+            int amount = held.stackSize;
+            if (size == Size.MEDIUM) amount *= 2;
+            else if (size == Size.LARGE) amount *= 3;
+            Sizeable sizeable = HFAnimals.ANIMAL_PRODUCT.getEnumFromStack(held);
+            Item item = sizeable == Sizeable.EGG ? Items.EGG : sizeable == Sizeable.MILK ? Items.MILK_BUCKET : WOOL;
+            rewardItem(player, new ItemStack(item, amount));
         }
     }
 

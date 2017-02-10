@@ -64,6 +64,11 @@ public class ItemAnimalTool extends ItemHFEnum<ItemAnimalTool, Tool> {
     }
 
     @Override
+    public int getItemStackLimit(ItemStack stack) {
+        return getEnumFromStack(stack).isDamageable ? 1: 64;
+    }
+
+    @Override
     public int getMaxItemUseDuration(ItemStack stack) {
         return getEnumFromStack(stack) == MILKER ? 32 : 0;
     }

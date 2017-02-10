@@ -5,6 +5,7 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.CalendarDate;
 import joshie.harvest.api.npc.NPC;
 import joshie.harvest.core.HFTrackers;
+import joshie.harvest.core.handlers.GuiHandler;
 import joshie.harvest.npcs.NPCHelper;
 import joshie.harvest.npcs.entity.EntityNPC;
 import joshie.harvest.player.PlayerTrackerServer;
@@ -14,8 +15,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
 
 public class ContainerNPCGift extends ContainerNPCChat {
+    private final EnumHand hand;
+
     public ContainerNPCGift(EntityPlayer player, EntityNPC npc, EnumHand hand, int nextGui) {
-        super(player, npc, hand, nextGui);
+        super(player, npc, nextGui);
+        this.hand = hand;
     }
 
     @Override
@@ -27,7 +31,6 @@ public class ContainerNPCGift extends ContainerNPCChat {
 
                 NPC theNpc = npc.getNPC();
                 RelationshipDataServer relationships = HFTrackers.<PlayerTrackerServer>getPlayerTrackerFromPlayer(player).getRelationships();
-
                 //TODO: Reenable in 1.0 when I readd marriage
                 /*if (ToolHelper.isBlueFeather(gift)) {
                     relationships.propose(player, theNpc.getUUID());
@@ -51,7 +54,7 @@ public class ContainerNPCGift extends ContainerNPCChat {
             }
 
             //On closure
-            if (nextGui != -1) {
+            if (nextGui != GuiHandler.NEXT_NONE) {
                 player.openGui(HarvestFestival.instance, nextGui, player.worldObj, npc.getEntityId(), 0, -1);
             }
         }

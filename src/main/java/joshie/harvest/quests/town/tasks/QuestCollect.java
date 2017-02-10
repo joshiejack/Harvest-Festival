@@ -51,15 +51,17 @@ public class QuestCollect extends QuestDaily {
     }
 
     @Override
+    public boolean isNPCUsed(EntityPlayer player, NPC npc) {
+        if (!super.isNPCUsed(player, npc)) return false;
+        String name = "crop" + WordUtils.capitalizeFully(crop.getRegistryName().getResourcePath(), '_').replace("_", "");
+        return InventoryHelper.getHandItemIsIn(player, ORE_DICTIONARY, name, amount) != null;
+    }
+
+    @Override
     @Nullable
     @SideOnly(Side.CLIENT)
     public String getLocalizedScript(EntityPlayer player, EntityLiving entity, NPC npc) {
-        String name = "crop" + WordUtils.capitalizeFully(crop.getRegistryName().getResourcePath(), '_').replace("_", "");
-        if (InventoryHelper.getHandItemIsIn(player, ORE_DICTIONARY, name, amount) != null) {
-            return TextHelper.getRandomSpeech(npc, "harvestfestival.quest.collect.crops.complete", 32);
-        }
-
-        return null;
+        return TextHelper.getRandomSpeech(npc, "harvestfestival.quest.collect.crops.complete", 32);
     }
 
     @Override

@@ -18,7 +18,6 @@ import joshie.harvest.town.TownHelper;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 
 import java.io.IOException;
@@ -40,7 +39,7 @@ public class GuiNPCShop<I extends IPurchasable> extends GuiNPCBase {
     private ItemStack purchased;
 
     public GuiNPCShop(EntityPlayer player, EntityNPC npc, int nextGui, boolean isSelling) {
-        super(player, npc, EnumHand.MAIN_HAND, nextGui);
+        super(player, npc, nextGui);
         client = player;
         shop = npc.getNPC().getShop(player.worldObj, pos);
         if (shop == null || !NPCHelper.isShopOpen(npc.worldObj, npc, null, npc.getNPC().getShop(npc.worldObj, pos))) player.closeScreen();

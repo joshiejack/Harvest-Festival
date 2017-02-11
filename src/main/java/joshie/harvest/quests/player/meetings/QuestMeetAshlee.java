@@ -160,7 +160,6 @@ public class QuestMeetAshlee extends QuestQuestion {
     public void onQuestCompleted(EntityPlayer player) {
         //If we finished early
         if (isCompletedEarly()) {
-            complete(player);
             rewardEntity(player, "harvestfestival.chicken");
             rewardItem(player, new ItemStack(HFAnimals.TOOLS, 64, CHICKEN_FEED.ordinal()));
             rewardItem(player, HFAnimals.TRAY.getStackFromEnum(NEST_EMPTY));

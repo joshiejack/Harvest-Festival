@@ -31,7 +31,7 @@ import java.util.Set;
 import static joshie.harvest.animals.item.ItemAnimalTool.Tool.BRUSH;
 import static joshie.harvest.core.helpers.InventoryHelper.ITEM_STACK;
 import static joshie.harvest.npcs.HFNPCs.BARN_OWNER;
-import static joshie.harvest.quests.Quests.YULIF_MEET;
+import static joshie.harvest.quests.Quests.JADE_MEET;
 
 @HFQuest("tutorial.cow")
 public class QuestMeetJim extends QuestQuestion {
@@ -52,7 +52,7 @@ public class QuestMeetJim extends QuestQuestion {
 
     @Override
     public boolean canStartQuest(Set<Quest> active, Set<Quest> finished) {
-        return finished.contains(YULIF_MEET);
+        return finished.contains(JADE_MEET);
     }
 
     @Override

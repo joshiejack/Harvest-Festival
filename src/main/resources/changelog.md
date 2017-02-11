@@ -152,6 +152,7 @@
 * Fixed bug where fodder could be placed in a fridge
 * Fix chicks spawning in random locations around the incubator
 * Fix milkers and brushes being stackable
+* You'll know spawn at the bottom of the mining hill stairs
 
 ##0.5.11
 * Fixed a crash with the shipping bin when loading worlds when a hopper is inserting items

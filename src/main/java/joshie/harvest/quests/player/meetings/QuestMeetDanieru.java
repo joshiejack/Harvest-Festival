@@ -57,7 +57,7 @@ public class QuestMeetDanieru extends QuestQuestion {
     @Override
     public String getLocalizedScript(EntityPlayer player, NPC npc) {
         if (quest_stage == BUILD && npc != BLACKSMITH && player.worldObj.rand.nextFloat() < 0.25F) {
-            String suffix = ((NPC)npc).getRegistryName().getResourcePath();
+            String suffix = npc.getRegistryName().getResourcePath();
             boolean blacksmith = TownHelper.getClosestTownToEntity(player).hasBuilding(HFBuildings.BLACKSMITH);
             //They tell the player that they should go and visit the blacksmith
             //They should all have a slight variation

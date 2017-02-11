@@ -14,6 +14,7 @@ import joshie.harvest.npcs.gui.GuiNPCBase;
 import joshie.harvest.player.stats.StatsClient;
 import joshie.harvest.shops.data.ShopData;
 import joshie.harvest.shops.gui.button.*;
+import joshie.harvest.shops.purchasable.PurchasableBuilding;
 import joshie.harvest.town.TownHelper;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.EntityPlayer;
@@ -66,6 +67,18 @@ public class GuiNPCShop<I extends IPurchasable> extends GuiNPCBase {
         } else return true;
     }
 
+    private int getPriorityValue(IPurchasable purchasable) {
+        if (purchasable instanceof PurchasableBuilding) {
+            if (isGoldOnly(purchasable)) return 10000;
+            IPurchaseableMaterials materials = ((IPurchaseableMaterials)purchasable);
+            return (materials.getCost() > 0 ? 10001 : 10000) - materials.getRequirements().length;
+        } else {
+            if (isGoldOnly(purchasable)) return 0;
+            IPurchaseableMaterials materials = ((IPurchaseableMaterials)purchasable);
+            return (materials.getCost() > 0 ? 1 : 0) + materials.getRequirements().length;
+        }
+    }
+
     @SuppressWarnings("all")
     public void reload() {
         contents.clear();
@@ -75,13 +88,7 @@ public class GuiNPCShop<I extends IPurchasable> extends GuiNPCBase {
             }
         }
 
-        contents.sort((s1, s2)-> {
-            int one = isGoldOnly((IPurchasable)s1) || ((IPurchaseableMaterials)s1).getRequirements().length == 1 ? 1 : 0;
-            int two = isGoldOnly((IPurchasable)s2) || ((IPurchaseableMaterials)s2).getRequirements().length == 1 ? 1 : 0;
-            return one > two ? 1 : one == two ? 0:  -1;
-
-        } );
-
+        contents.sort((s1, s2)-> ((Integer)getPriorityValue(s2)).compareTo(getPriorityValue(s1)));
         setStart(start);
     }
 
@@ -158,20 +165,16 @@ public class GuiNPCShop<I extends IPurchasable> extends GuiNPCBase {
             if (space + 20 <= 200) {
                 buttonList.add(new ButtonListing(this, purchasable, id, left, top));
             }
-
-            return 20;
-        }
-
-        IPurchaseableMaterials builder = (IPurchaseableMaterials) purchasable;
-        if (builder.getRequirements().length == 1 && builder.getCost() == 0) {
-            if (space + 20 <= 200) {
-                IRequirement requirement = builder.getRequirements()[0];
-                buttonList.add(new ButtonListingItem(requirement.getIcon(), requirement.getCost(), this, builder, id, left, top));
+        } else {
+            IPurchaseableMaterials builder = (IPurchaseableMaterials) purchasable;
+            if (builder.getRequirements().length == 1 && builder.getCost() == 0) {
+                if (space + 20 <= 200) {
+                    IRequirement requirement = builder.getRequirements()[0];
+                    buttonList.add(new ButtonListingItem(requirement.getIcon(), requirement.getCost(), this, builder, id, left, top));
+                }
+            } else if (space + 20 <= 200) {
+                buttonList.add(new ButtonListingBuilding(this, builder, id, left, top));
             }
-
-            return 20;
-        } else if (space + 36 <= 200) {
-            buttonList.add(new ButtonListingBuilding(this, builder, id, left, top));
         }
 
         return 20;

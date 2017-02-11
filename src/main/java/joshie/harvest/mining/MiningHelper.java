@@ -149,13 +149,13 @@ public class MiningHelper {
         Rotation rotation = tracker.getMineOrientation(mineID);
         if (spawn == null) spawn = entity.worldObj.getSpawnPoint();
         if (rotation == Rotation.NONE) {
-            entity.rotationYaw = 90F;
-        } else if (rotation == Rotation.CLOCKWISE_90) {
-            entity.rotationYaw = 180F;
-        } else if (rotation == Rotation.CLOCKWISE_180) {
             entity.rotationYaw = 270F;
-        } else if (rotation == Rotation.COUNTERCLOCKWISE_90) {
+        } else if (rotation == Rotation.CLOCKWISE_90) {
             entity.rotationYaw = 0F;
+        } else if (rotation == Rotation.CLOCKWISE_180) {
+            entity.rotationYaw = 90F;
+        } else if (rotation == Rotation.COUNTERCLOCKWISE_90) {
+            entity.rotationYaw = 180F;
         }
 
         return EntityHelper.teleport(entity, 0, spawn);

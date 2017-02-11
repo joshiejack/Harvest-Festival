@@ -104,18 +104,18 @@ public class HFNPCs {
         CARPENTER.addGreeting(new GreetingCarpenter())
                 .addGreeting(new GreetingBeforeJim("tutorial.cow.reminder.barn"));
         ScheduleBuilder.create(CARPENTER, CARPENTER_DOWNSTAIRS)
-                .add(SPRING, SUNDAY, 0L, CARPENTER_DOWNSTAIRS)
-                .add(SPRING, SUNDAY, 8000L, CARPENTER_FRONT)
-                .add(SPRING, SUNDAY, 17000L, CARPENTER_DOWNSTAIRS)
-                .add(SPRING, SUNDAY, 21000L, CARPENTER_FRONT)
-                .add(COOKING_CONTEST, 0L, CARPENTER_UPSTAIRS)
-                .add(COOKING_CONTEST, 9000L, PARK_BENCH)
-                .add(COOKING_CONTEST, 20000L, CARPENTER_UPSTAIRS)
-                .add(NEW_YEARS, 0L, CARPENTER_DOWNSTAIRS)
-                .add(NEW_YEARS, 10000L, CARPENTER_FRONT)
-                .add(NEW_YEARS, 11500L, PARK_TRADER)
-                .add(NEW_YEARS, 22500L, CARPENTER_DOWNSTAIRS)
-                .build();
+                        .add(SPRING, SUNDAY, 0L, CARPENTER_DOWNSTAIRS)
+                        .add(SPRING, SUNDAY, 8000L, CARPENTER_FRONT)
+                        .add(SPRING, SUNDAY, 17000L, CARPENTER_DOWNSTAIRS)
+                        .add(SPRING, SUNDAY, 21000L, CARPENTER_FRONT)
+                        .add(COOKING_CONTEST, 0L, CARPENTER_UPSTAIRS)
+                        .add(COOKING_CONTEST, 9000L, PARK_BENCH)
+                        .add(COOKING_CONTEST, 20000L, CARPENTER_UPSTAIRS)
+                        .add(NEW_YEARS, 0L, CARPENTER_DOWNSTAIRS)
+                        .add(NEW_YEARS, 10000L, CARPENTER_FRONT)
+                        .add(NEW_YEARS, 11500L, PARK_TRADER)
+                        .add(NEW_YEARS, 22500L, CARPENTER_DOWNSTAIRS)
+                        .build();
 
         //Flower Girl, Add the flower buying greeting, and before complettion of meeting jenni
         FLOWER_GIRL.setHasInfo(new GreetingFlowerBuyer())
@@ -163,6 +163,11 @@ public class HFNPCs {
                         .add(COOKING_CONTEST, 4500L, PARK_PODIUM)
                         .add(COOKING_CONTEST, 18000L, GENERAL_BEDROOM)
                         .add(COOKING_CONTEST, 20000L, FISHING_POND_BACK)
+                        .add(NEW_YEARS, 0L, GENERAL_BEDROOM)
+                        .add(NEW_YEARS, 7000L, GENERAL_GARDEN)
+                        .add(NEW_YEARS, 12000L, PARK_OAK)
+                        .add(NEW_YEARS, 20000L, GENERAL_GARDEN)
+                        .add(NEW_YEARS, 22000L, GENERAL_BEDROOM)
                         .build();
 
         //Milkmaid
@@ -185,6 +190,11 @@ public class HFNPCs {
                         .add(COOKING_CONTEST, 18000L, GENERAL_BED)
                         .add(COOKING_CONTEST, 20000L, FISHING_POND_BACK)
                         .add(COOKING_CONTEST, 24000L, GENERAL_BED)
+                        .add(NEW_YEARS, 0L, GENERAL_BED)
+                        .add(NEW_YEARS, 7000L, GENERAL_GARDEN)
+                        .add(NEW_YEARS, 12000L, PARK_OAK)
+                        .add(NEW_YEARS, 20000L, GENERAL_GARDEN)
+                        .add(NEW_YEARS, 22000L, GENERAL_BED)
                         .build();
 
         //Barn Owner
@@ -359,6 +369,11 @@ public class HFNPCs {
                         .add(SPRING, MONDAY, 14000L, FISHING_POND_LEFT)
                         .add(SPRING, MONDAY, 16000L, PARK_LEFT)
                         .add(SPRING, MONDAY, 18000L, CLOCKMAKER_DOWNSTAIRS)
+                        .add(NEW_YEARS, 0L, CLOCKMAKER_DOWNSTAIRS)
+                        .add(NEW_YEARS, 7000L, CLOCKMAKER_DOOR)
+                        .add(NEW_YEARS, 12000L, PARK_SPRUCE)
+                        .add(NEW_YEARS, 20000L, CLOCKMAKER_DOOR)
+                        .add(NEW_YEARS, 22000L, CLOCKMAKER_DOWNSTAIRS)
                         .build();
 
         //Clockmaker Child
@@ -375,6 +390,11 @@ public class HFNPCs {
                         .add(SPRING, MONDAY, 14000L, FISHING_POND_LEFT)
                         .add(SPRING, MONDAY, 16000L, PARK_SPRUCE)
                         .add(SPRING, MONDAY, 18000L, CLOCKMAKER_UPSTAIRS)
+                        .add(NEW_YEARS, 0L, CLOCKMAKER_UPSTAIRS)
+                        .add(NEW_YEARS, 7000L, CLOCKMAKER_DOWNSTAIRS)
+                        .add(NEW_YEARS, 12000L, PARK_SPRUCE)
+                        .add(NEW_YEARS, 19000L, CLOCKMAKER_DOWNSTAIRS)
+                        .add(NEW_YEARS, 20000L, CLOCKMAKER_UPSTAIRS)
                         .build();
 
         //Priest
@@ -391,7 +411,13 @@ public class HFNPCs {
                         .add(SPRING, MONDAY, 9000L, CHURCH_INSIDE)
                         .add(SPRING, MONDAY, 17500L, FISHING_HUT_RIGHT)
                         .add(SPRING, MONDAY, 19000L, TOWNHALL_LEFT_OF_STAGE)
-                        .add(SPRING, MONDAY, 22000L, TOWNHALL_ADULT_BED).build();
+                        .add(SPRING, MONDAY, 22000L, TOWNHALL_ADULT_BED)
+                        .add(NEW_YEARS, 0L, TOWNHALL_ADULT_BED)
+                        .add(NEW_YEARS, 7000L, TOWNHALL_ENTRANCE)
+                        .add(NEW_YEARS, 12000L, PARK_BENCH)
+                        .add(NEW_YEARS, 20000L, TOWNHALL_ENTRANCE)
+                        .add(NEW_YEARS, 22000L, TOWNHALL_ADULT_BED)
+                        .build();
         //Mayor
         ScheduleBuilder.create(MAYOR, TOWNHALL_STAGE)
                         .add(SPRING, SUNDAY, 0L, TOWNHALL_ADULT_BED)
@@ -404,6 +430,11 @@ public class HFNPCs {
                         .add(COOKING_CONTEST, 6000L, PARK_BUSH)
                         .add(COOKING_CONTEST, 19000L, TOWNHALL_FRONT_OF_STAGE)
                         .add(COOKING_CONTEST, 22000L, TOWNHALL_ADULT_BED)
+                        .add(NEW_YEARS, 0L, TOWNHALL_ADULT_BED)
+                        .add(NEW_YEARS, 7000L, TOWNHALL_STAGE)
+                        .add(NEW_YEARS, 12000L, PARK_PODIUM)
+                        .add(NEW_YEARS, 20000L, TOWNHALL_STAGE)
+                        .add(NEW_YEARS, 22000L, TOWNHALL_ADULT_BED)
                         .build();
 
         //Eldest Daughter
@@ -419,6 +450,11 @@ public class HFNPCs {
                         .add(SPRING, MONDAY, 10000L, FISHING_HUT_DOOR)
                         .add(SPRING, MONDAY, 15000L, TOWNHALL_RIGHT)
                         .add(SPRING, MONDAY, 19000L, TOWNHALL_TEEN_BED)
+                        .add(NEW_YEARS, 0L, TOWNHALL_TEEN_BED)
+                        .add(NEW_YEARS, 7000L, TOWNHALL_RIGHT)
+                        .add(NEW_YEARS, 12000L, PARK_BENCH)
+                        .add(NEW_YEARS, 20000L, TOWNHALL_RIGHT)
+                        .add(NEW_YEARS, 22000L, TOWNHALL_TEEN_BED)
                         .build();
 
         //Youngest Daughter
@@ -434,6 +470,11 @@ public class HFNPCs {
                         .add(SPRING, MONDAY, 10000L, POULTRY_DOOR)
                         .add(SPRING, MONDAY, 12000L, TOWNHALL_LEFT)
                         .add(SPRING, MONDAY, 15000L, TOWNHALL_CHILD_BED)
+                        .add(NEW_YEARS, 0L, TOWNHALL_CHILD_BED)
+                        .add(NEW_YEARS, 7000L, TOWNHALL_LEFT)
+                        .add(NEW_YEARS, 12000L, PARK_BENCH)
+                        .add(NEW_YEARS, 19000L, TOWNHALL_LEFT)
+                        .add(NEW_YEARS, 20000L, TOWNHALL_CHILD_BED)
                         .build();
 
         //Trader
@@ -459,7 +500,7 @@ public class HFNPCs {
                 //addHolidayGreetings(npc,
                         //HFFestivals.NEW_YEARS, HFFestivals.COOKING_CONTEST, HFFestivals.CHICKEN_FESTIVAL, HFFestivals.COW_FESTIVAL,
                         //HFFestivals.HARVEST_FESTIVAL, HFFestivals.SHEEP_FESTIVAL, HFFestivals.STARRY_NIGHT, HFFestivals.NEW_YEARS_EVE);
-                addHolidayGreetings(npc, HFFestivals.COOKING_CONTEST);
+                addHolidayGreetings(npc, HFFestivals.NEW_YEARS, HFFestivals.COOKING_CONTEST);
                 setupGifts(npc);
             }
         }

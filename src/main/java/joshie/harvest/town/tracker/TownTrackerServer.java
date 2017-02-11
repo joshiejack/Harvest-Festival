@@ -51,7 +51,20 @@ public class TownTrackerServer extends TownTracker<TownDataServer> {
         if (data == null) return default_;
         if (!data.hasBuilding(MINE_ENTRANCE.getResource())) return data.getTownCentre();
         BlockPos location = data.getCoordinatesFor(MINE_ENTRANCE);
-        return location != null? location : data.getTownCentre();
+        if (location != null) {
+            Rotation rotation = getMineOrientation(mineID);
+            if (rotation == Rotation.NONE) {
+                return location.west(12).down(3);
+            } else if (rotation == Rotation.CLOCKWISE_90) {
+                return location.north(12).down(3);
+            } else if (rotation == Rotation.CLOCKWISE_180) {
+                return location.east(12).down(3);
+            } else if (rotation == Rotation.COUNTERCLOCKWISE_90) {
+                return location.south(12).down(3);
+            }
+        }
+
+        return data.getTownCentre();
     }
 
     @Override

@@ -245,7 +245,7 @@ public class HFShops {
         CARPENTER.addPurchasable(new PurchasableBuilding(25000L, HFBuildings.CHURCH, Logs.of(160), Stone.of(128), Glass.of(8), Iron.of(8)));
         CARPENTER.addPurchasable(new PurchasableBuilding(50000L, HFBuildings.TOWNHALL, Logs.of(640), Stone.of(256), Glass.of(48), Bricks.of(32)));
         CARPENTER.addPurchasable(new PurchasableMaterials(0L, HFCore.STORAGE.getStackFromEnum(Storage.SHIPPING), Logs.of(8)).addTooltip("storage.shipping").setNote(HFNotes.SHIPPING));
-        CARPENTER.addPurchasable(new PurchasableMaterials(500L, HFCore.STORAGE.getStackFromEnum(Storage.MAILBOX), Logs.of(5)).addTooltip("storage.mailbox").setNote(HFNotes.MAILBOX));
+        CARPENTER.addPurchasable(new PurchasableMaterials(0L, HFCore.STORAGE.getStackFromEnum(Storage.MAILBOX), Logs.of(4)).addTooltip("storage.mailbox").setNote(HFNotes.MAILBOX));
         CARPENTER.addPurchasable(new PurchasableMaterials(3000L, HFCrops.SPRINKLER.getStackFromEnum(Sprinkler.OLD), Logs.of(4), Copper.of(8)) {
             @Override
             public boolean canList(World world, EntityPlayer player) {

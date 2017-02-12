@@ -36,7 +36,7 @@ public class PageQuests extends BookPage<GuiStats> {
         Iterator<Quest> it = list.iterator();
         while (it.hasNext()) {
             Quest quest = it.next();
-            if (!quest.isRealQuest() || quest.getDescription(world, player) == null) it.remove();
+            if (quest.getDescription(world, player) == null) it.remove();
         }
 
         int x = 0, y = 0;

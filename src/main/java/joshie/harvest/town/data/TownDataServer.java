@@ -111,7 +111,7 @@ public class TownDataServer extends TownData<QuestDataServer, LetterDataServer> 
         BuildingStage stage = new BuildingStage(building, pos, rotation);
         if (!this.building.contains(stage)) {
             this.building.addLast(stage);
-            HFTrackers.markDirty(world);
+            HFTrackers.markTownsDirty();
             syncBuildings(world);
             return true;
         }
@@ -119,9 +119,9 @@ public class TownDataServer extends TownData<QuestDataServer, LetterDataServer> 
         return false;
     }
 
-    public void finishBuilding(World world) {
-        this.building.removeFirst(); //Remove the first building
-        HFTrackers.markDirty(world);
+    public void finishBuilding() {
+        building.removeFirst(); //Remove the first building
+        HFTrackers.markTownsDirty();
     }
 
     public void addBuilding(World world, Building building, Rotation rotation, BlockPos pos) {
@@ -129,7 +129,7 @@ public class TownDataServer extends TownData<QuestDataServer, LetterDataServer> 
         buildings.put(Building.REGISTRY.getKey(building), newBuilding);
         PacketHandler.sendToDimension(world.provider.getDimension(), new PacketNewBuilding(uuid, newBuilding));
         building.onBuilt(world, pos, rotation);
-        HFTrackers.markDirty(world);
+        HFTrackers.markTownsDirty();
     }
 
     private boolean isRepeatable(World world, Quest quest) {
@@ -275,7 +275,7 @@ public class TownDataServer extends TownData<QuestDataServer, LetterDataServer> 
     }
 
     @Override
-    public void writeToNBT(NBTTagCompound nbt) {
+    public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
         super.writeToNBT(nbt);
         letters.writeToNBT(nbt);
         quests.writeToNBT(nbt);
@@ -288,5 +288,7 @@ public class TownDataServer extends TownData<QuestDataServer, LetterDataServer> 
             nbt.setString("FestivalTarget", targetFestival.getResource().toString());
             nbt.setInteger("FestivalTargetDays", targetFestivalDays);
         }
+
+        return nbt;
     }
 }

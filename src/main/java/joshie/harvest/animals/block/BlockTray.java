@@ -9,7 +9,6 @@ import joshie.harvest.api.core.Size;
 import joshie.harvest.core.achievements.HFAchievements;
 import joshie.harvest.core.base.block.BlockHFEnum;
 import joshie.harvest.core.base.tile.TileFillable;
-import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.core.helpers.SpawnItemHelper;
 import joshie.harvest.core.lib.CreativeSort;
 import net.minecraft.block.SoundType;
@@ -87,11 +86,9 @@ public class BlockTray extends BlockHFEnum<BlockTray, Tray> implements IAnimalFe
             TileNest nest = (TileNest) tile;
             if (nest.getDrop() != null) {
                 ItemStack drop = nest.getDrop().copy();
-                if (nest.getMother() != null) {
-                    NBTTagCompound tag = drop.getSubCompound("Data", true);
-                    int relationship = HFApi.player.getRelationsForPlayer(player).getRelationship(nest.getMother());
-                    tag.setInteger("Relationship", (relationship - (relationship % 2500)));
-                }
+                int relationship = nest.getRelationship();
+                NBTTagCompound tag = drop.getSubCompound("Data", true);
+                tag.setInteger("Relationship", (relationship - (relationship % 2500)));
 
                 nest.clear();
                 SpawnItemHelper.addToPlayerInventory(player, drop);
@@ -141,7 +138,7 @@ public class BlockTray extends BlockHFEnum<BlockTray, Tray> implements IAnimalFe
         TileEntity tile = world.getTileEntity(pos);
         if (stats.getAnimal() != null && tile instanceof TileNest) {
             if (!world.isRemote) {
-                ((TileNest) tile).setDrop(EntityHelper.getEntityUUID(stats.getAnimal()), stats.getType().getProduct(stats));
+                ((TileNest) tile).setDrop(stats.getHappiness(), stats.getType().getProduct(stats));
                 stats.setProduced(1); //Product one egg
             }
 

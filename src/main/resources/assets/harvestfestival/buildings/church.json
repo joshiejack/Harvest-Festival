@@ -1455,8 +1455,8 @@
       "pos": "2 3 5"
     },
     {
-      "homeString": "tomas",
-      "npc": "",
+      "homeString": "thomas",
+      "npc": "harvestfestival:thomas",
       "pos": "2 3 6",
       "type": "entities.NPC"
     },

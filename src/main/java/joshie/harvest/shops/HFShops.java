@@ -268,17 +268,17 @@ public class HFShops {
         }
 
         //Selling things to the carpenter
-        CARPENTER.addPurchasable(-1, new ItemStack(Blocks.LOG));
-        CARPENTER.addPurchasable(-1, new ItemStack(Blocks.STONE));
-        CARPENTER.setSpecialRules(new SpecialRulesQuest(Quests.YULIF_MEET));
+        CARPENTER.addPurchasable(-1, new ItemStack(Blocks.LOG), 512);
+        CARPENTER.addPurchasable(-1, new ItemStack(Blocks.STONE), 512);
+        CARPENTER.setSpecialRules(new SpecialRulesQuest(Quests.JADE_MEET));
         CARPENTER.addOpening(MONDAY, 9000, 17500).addOpening(TUESDAY, 9000, 17500).addOpening(WEDNESDAY, 9000, 17500);
         CARPENTER.addOpening(THURSDAY, 9000, 17500).addOpening(FRIDAY, 9000, 17500).addOpening(SUNDAY, 9000, 17500);
     }
 
     private static void registerMiner() {
-        MINER.addPurchasable(1000, HFMining.LADDER.getStackFromEnum(Ladder.DECORATIVE), 3);
-        MINER.addPurchasable(250, HFMining.MINING_TOOL.getStackFromEnum(MiningTool.ESCAPE_ROPE), 10);
         MINER.addPurchasable(40, new ItemStack(Blocks.TORCH), 160);
+        MINER.addPurchasable(250, HFMining.MINING_TOOL.getStackFromEnum(MiningTool.ESCAPE_ROPE), 10);
+        MINER.addPurchasable(1000, HFMining.LADDER.getStackFromEnum(Ladder.DECORATIVE), 3);
         MINER.addPurchasable(new PurchasableObtainedMaterial(50, HFMining.MINING_TOOL.getStackFromEnum(MiningTool.ELEVATOR_CABLE), Copper.of(1)));
         MINER.addPurchasable(new PurchasableObtainedMaterial(1000, HFMining.ELEVATOR.getStackFromEnum(Elevator.JUNK), Logs.of(3), Copper.of(2), Adamantite.of(1)).setNote(HFNotes.ELEVATOR));
         MINER.addPurchasable(new PurchasableObtained(200, HFMining.MATERIALS.getStackFromEnum(Material.COPPER)));

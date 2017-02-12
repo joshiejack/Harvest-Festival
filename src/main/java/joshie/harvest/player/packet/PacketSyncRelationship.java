@@ -1,19 +1,19 @@
 package joshie.harvest.player.packet;
 
 import io.netty.buffer.ByteBuf;
+import joshie.harvest.api.npc.NPC;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.network.Packet;
 import net.minecraft.entity.player.EntityPlayer;
-
-import java.util.UUID;
 
 @Packet(Packet.Side.CLIENT)
 public class PacketSyncRelationship extends PacketRelationship {
     private int value;
 
+    @SuppressWarnings("unused")
     public PacketSyncRelationship() {}
-    public PacketSyncRelationship(UUID uuid, int value) {
-        super(uuid);
+    public PacketSyncRelationship(NPC npc, int value) {
+        super(npc);
         this.value = value;
     }
 
@@ -30,7 +30,7 @@ public class PacketSyncRelationship extends PacketRelationship {
     }
 
     @Override
-    protected void handleRelationship(EntityPlayer player, UUID key) {
-        HFTrackers.getClientPlayerTracker().getRelationships().setRelationship(key, value);
+    protected void handleRelationship(EntityPlayer player, NPC npc) {
+        HFTrackers.getClientPlayerTracker().getRelationships().setRelationship(npc, value);
     }
 }

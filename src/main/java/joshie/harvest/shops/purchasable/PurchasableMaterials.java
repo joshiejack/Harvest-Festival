@@ -1,8 +1,8 @@
 package joshie.harvest.shops.purchasable;
 
+import joshie.harvest.api.buildings.Building;
 import joshie.harvest.api.shops.IPurchaseableMaterials;
 import joshie.harvest.api.shops.IRequirement;
-import joshie.harvest.api.buildings.Building;
 import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.core.helpers.TextHelper;
 import joshie.harvest.shops.requirement.Logs;
@@ -17,6 +17,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.commons.lang3.text.WordUtils;
 
+import javax.annotation.Nonnull;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
@@ -67,7 +68,7 @@ public class PurchasableMaterials extends PurchasableFML<Building> implements IP
     }
 
     @Override
-    public boolean canDo(World world, EntityPlayer player, int amount) {
+    public boolean canDo(@Nonnull World world, @Nonnull EntityPlayer player, int amount) {
         for (IRequirement requirement: requirements) {
             if (!requirement.isFulfilled(world, player, amount)) return false;
         }

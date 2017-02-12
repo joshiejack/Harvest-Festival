@@ -3,17 +3,17 @@ package joshie.harvest.quests.player.meetings;
 import joshie.harvest.animals.HFAnimals;
 import joshie.harvest.animals.entity.EntityHarvestChicken;
 import joshie.harvest.animals.item.ItemAnimalProduct.Sizeable;
+import joshie.harvest.animals.item.ItemAnimalSpawner.Spawner;
 import joshie.harvest.animals.item.ItemAnimalTool.Tool;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.core.Size;
 import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.quests.HFQuest;
-import joshie.harvest.api.quests.Quest;
-import joshie.harvest.api.quests.QuestQuestion;
 import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.core.helpers.InventoryHelper;
 import joshie.harvest.knowledge.HFNotes;
-import joshie.harvest.quests.Quests;
+import joshie.harvest.npcs.HFNPCs;
+import joshie.harvest.quests.base.QuestMeetingTutorial;
 import joshie.harvest.quests.selection.TutorialSelection;
 import joshie.harvest.town.TownHelper;
 import net.minecraft.entity.Entity;
@@ -24,18 +24,19 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
-import java.util.Set;
 
 import static joshie.harvest.animals.block.BlockTray.Tray.FEEDER_EMPTY;
 import static joshie.harvest.animals.block.BlockTray.Tray.NEST_EMPTY;
 import static joshie.harvest.animals.item.ItemAnimalTool.Tool.CHICKEN_FEED;
 import static joshie.harvest.core.helpers.InventoryHelper.ITEM_STACK;
-import static joshie.harvest.npcs.HFNPCs.POULTRY;
 
 @HFQuest("tutorial.chicken")
-public class QuestMeetAshlee extends QuestQuestion {
+public class QuestMeetAshlee extends QuestMeetingTutorial {
+    private static final ItemStack CHICKEN = HFAnimals.ANIMAL.getStackFromEnum(Spawner.CHICKEN);
+    private static final ItemStack EGG_ITEM = HFAnimals.ANIMAL_PRODUCT.getStack(Sizeable.EGG, Size.SMALL);
     private static final int INTRO = 0;
     private static final int THROW = 1;
     private static final int ACTION1 = 2;
@@ -46,13 +47,7 @@ public class QuestMeetAshlee extends QuestQuestion {
     private boolean hasFed;
 
     public QuestMeetAshlee() {
-        super(new TutorialSelection("chicken"));
-        setNPCs(POULTRY);
-    }
-
-    @Override
-    public boolean canStartQuest(Set<Quest> active, Set<Quest> finished) {
-        return finished.contains(Quests.JADE_MEET);
+        super(new TutorialSelection("chicken"), HFBuildings.POULTRY_FARM, HFNPCs.POULTRY);
     }
 
     @Override
@@ -89,8 +84,27 @@ public class QuestMeetAshlee extends QuestQuestion {
     }
 
     @Override
+    public String getDescription(World world, EntityPlayer player) {
+        if (TownHelper.getClosestTownToEntity(player).hasBuilding(HFBuildings.CARPENTER)) {
+            if (quest_stage == INTRO) return hasBuilding(player) ? getLocalized("description.talk") : getLocalized("description.build");
+            else if (quest_stage == ACTION1 || quest_stage == ACTION2) return getLocalized("description.throw");
+            else if (quest_stage == FINAL) return getLocalized("description.egg");
+        }
+
+        return null;
+    }
+
+    @Override
+    public ItemStack getCurrentIcon(World world, EntityPlayer player) {
+        if (!hasBuilding(player)) return buildingStack;
+        else if (quest_stage == INTRO) return primary;
+        else if (quest_stage == ACTION1 || quest_stage == ACTION2) return CHICKEN;
+        else if (quest_stage == FINAL) return EGG_ITEM;
+        else return super.getCurrentIcon(world, player);
+    }
+
+    @Override
     public String getLocalizedScript(EntityPlayer player, NPC npc) {
-        if (!TownHelper.getClosestTownToEntity(player).hasBuilding(HFBuildings.POULTRY_FARM)) return null;
         if (isCompletedEarly()) {
             return getLocalized("completed");
         } else if (quest_stage == INTRO) {
@@ -140,7 +154,6 @@ public class QuestMeetAshlee extends QuestQuestion {
 
     @Override
     public void onChatClosed(EntityPlayer player, NPC npc) {
-        if (!TownHelper.getClosestTownToEntity(player).hasBuilding(HFBuildings.POULTRY_FARM)) return;
         if (quest_stage == THROW) {
             increaseStage(player);
             rewardEntity(player, "harvestfestival.chicken");

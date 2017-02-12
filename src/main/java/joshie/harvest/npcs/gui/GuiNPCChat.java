@@ -139,7 +139,6 @@ public class GuiNPCChat extends GuiNPCBase {
 
     @Override
     protected void mouseClicked(int x, int y, int mouseButton) throws IOException {
-        super.mouseClicked(x, y, mouseButton);
         if ((npc.getNPC() == HFNPCs.GODDESS || isHoldingItem()) && hoveringGift()) {
             PacketGift.handleGifting(player, npc);
             PacketHandler.sendToServer(new PacketGift(npc));

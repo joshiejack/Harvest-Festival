@@ -14,6 +14,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.commons.lang3.text.WordUtils;
 
+import javax.annotation.Nonnull;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
@@ -58,7 +59,7 @@ public class Purchasable implements IPurchasable {
     }
 
     @Override
-    public boolean canDo(World world, EntityPlayer player, int amount) {
+    public boolean canDo(@Nonnull World world, @Nonnull EntityPlayer player, int amount) {
         if (getCost() < 0) {
             return InventoryHelper.hasInInventory(player, ITEM_STACK, getDisplayStack(), (getDisplayStack().stackSize * amount));
         }

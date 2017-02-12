@@ -32,6 +32,7 @@ import static joshie.harvest.core.helpers.InventoryHelper.ITEM;
 import static joshie.harvest.core.helpers.InventoryHelper.ITEM_STACK;
 
 @HFEvents
+@SuppressWarnings("unused")
 public class AnimalEvents {
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     @SuppressWarnings("ConstantConditions")
@@ -50,8 +51,8 @@ public class AnimalEvents {
     @SuppressWarnings("ConstantConditions")
     public void onEntityDeath(LivingDeathEvent event) {
         AnimalStats stats = EntityHelper.getStats(event.getEntityLiving());
-        if (stats != null) {
-            HFTrackers.getAnimalTracker(event.getEntityLiving().worldObj).onDeath(stats);
+        if (stats != null && !event.getEntity().worldObj.isRemote) {
+            HFTrackers.<AnimalTrackerServer>getAnimalTracker(event.getEntityLiving().worldObj).onDeath(stats);
         }
     }
 
@@ -114,6 +115,7 @@ public class AnimalEvents {
                 Entity entity = event.getTarget();
                 AnimalStats stats = EntityHelper.getStats(entity);
                 if (stats != null && stats.performTest(AnimalTest.CAN_CARRY)) {
+                    entity.setEntityInvulnerable(true);
                     entity.startRiding(player, true);
                 }
             }
@@ -136,6 +138,7 @@ public class AnimalEvents {
                         entity.rotationPitch = player.rotationPitch;
                         entity.rotationYaw = player.rotationYaw;
                         entity.moveRelative(0F, 0.1F, 1.05F);
+                        entity.setEntityInvulnerable(false);
                         stats.performAction(player.worldObj, null, AnimalAction.DISMOUNT);
                     }
                 }

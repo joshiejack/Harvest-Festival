@@ -26,10 +26,10 @@ public class NewDayHandler {
         DailyTickHandler tickables = HFTrackers.getTickables(world);
         tickables.processPhase(Phases.PRE);
         HFTrackers.<AnimalTrackerServer>getAnimalTracker(world).newDay();
-        HFTrackers.<TownTrackerServer>getTownTracker(world).newDay(yesterday, today);
+        HFTrackers.<TownTrackerServer>getTowns(world).newDay(yesterday, today);
+        HFTrackers.markTownsDirty();
         tickables.processPhase(Phases.MAIN);
         tickables.processPhase(Phases.POST);
-        HFTrackers.markDirty(world);
     }
 
     //Server tick for new day

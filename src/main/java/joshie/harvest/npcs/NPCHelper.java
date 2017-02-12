@@ -5,6 +5,7 @@ import joshie.harvest.api.buildings.BuildingLocation;
 import joshie.harvest.api.npc.INPCHelper;
 import joshie.harvest.api.npc.ISchedule;
 import joshie.harvest.api.npc.NPC;
+import joshie.harvest.api.npc.RelationStatus;
 import joshie.harvest.api.npc.greeting.Script;
 import joshie.harvest.api.npc.schedule.ScheduleBuilder;
 import joshie.harvest.api.npc.gift.IGiftHandler.Quality;
@@ -29,6 +30,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.UUID;
@@ -98,17 +100,16 @@ public class NPCHelper implements INPCHelper {
         } else return (N) new EntityNPCVillager(world, npc);
     }
 
-    private static boolean canPlayerOpenShop(NPC npc, Shop shop, EntityPlayer player) {
-        return (!player.worldObj.isRemote && HFTrackers.<PlayerTrackerServer>getPlayerTrackerFromPlayer(player).getRelationships().hasMet(npc.getUUID()) || player.worldObj.isRemote) && (shop.canBuyFromShop(player) || shop.canSellToShop(player));
+    private static boolean canPlayerOpenShop(NPC npc, Shop shop, @Nonnull EntityPlayer player) {
+        return (!player.worldObj.isRemote && HFTrackers.<PlayerTrackerServer>getPlayerTrackerFromPlayer(player).getRelationships().isStatusMet(npc, RelationStatus.MET) || player.worldObj.isRemote) && (shop.canBuyFromShop(player) || shop.canSellToShop(player));
     }
 
-    public static boolean isShopOpen(EntityNPC npc, World world, @Nullable EntityPlayer player) {
+    public static boolean isShopOpen(EntityNPC npc, World world, @Nonnull EntityPlayer player) {
         Shop shop = npc.getNPC().getShop(world, new BlockPos(npc));
-        return (shop != null && isShopOpen(world, npc, player, shop)
-                && (player == null || (canPlayerOpenShop(npc.getNPC(), shop, player)))) && ((player != null && (shop.getContents().size() > 0)) || player == null);
+        return (shop != null && isShopOpen(world, npc, player, shop) && canPlayerOpenShop(npc.getNPC(), shop, player)) && (shop.getContents().size() > 0);
     }
 
-    public static int getGuiIDForNPC(EntityNPC npc, World world, EntityPlayer player) {
+    public static int getGuiIDForNPC(EntityNPC npc, World world, @Nonnull EntityPlayer player) {
         return !npc.isBusy() && isShopOpen(npc, world, player) ? GuiHandler.SHOP_WELCOME: GuiHandler.NPC;
     }
 
@@ -118,11 +119,12 @@ public class NPCHelper implements INPCHelper {
     }
 
     @SuppressWarnings("unchecked")
-    public static boolean isShopOpen(World world, EntityAgeable npc, @Nullable EntityPlayer player, Shop shop) {
+    public static boolean isShopOpen(World world, EntityAgeable npc, @Nonnull EntityPlayer player, Shop shop) {
         return HFShops.TWENTY_FOUR_HOUR_SHOPPING || shop.getOpeningHandler().isOpen(world, npc, player, shop);
     }
 
     @Nullable
+    @SuppressWarnings("deprecation")
     public static NPC getNPCFromUUID(UUID uuid) {
         for (NPC npc: NPC.REGISTRY) {
             if (npc.getUUID().equals(uuid)) return npc;

@@ -43,7 +43,7 @@ public class QuestMeetJade extends QuestQuestion {
 
     @Override
     public boolean canStartQuest(Set<Quest> active, Set<Quest> finished) {
-        return finished.contains(Quests.GODDESS_MEET);
+        return finished.contains(Quests.YULIF_MEET);
     }
 
     @Override

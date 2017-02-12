@@ -18,8 +18,10 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @HFEvents
+@SuppressWarnings("unused")
 public class SyncHandler {
     @HFEvents
+    @SuppressWarnings("unused")
     public static class ClientReset {
         @SideOnly(Side.CLIENT)
         @SubscribeEvent
@@ -38,15 +40,15 @@ public class SyncHandler {
             EntityPlayerMP player = (EntityPlayerMP) event.player;
             HFTrackers.<PlayerTrackerServer>getPlayerTrackerFromPlayer(player).getStats().setBirthday(FMLCommonHandler.instance().getMinecraftServerInstance().worldServers[0]); //Set birthday to overworld date
             HFTrackers.<CalendarServer>getCalendar(player.worldObj).syncToPlayer(player);
-            HFTrackers.<TownTrackerServer>getTownTracker(event.player.worldObj).syncToPlayer(player);
+            HFTrackers.<TownTrackerServer>getTowns(event.player.worldObj).syncToPlayer(player);
             HFTrackers.<PlayerTrackerServer>getPlayerTrackerFromPlayer(player).syncPlayerStats(player);
         }
     }
 
     @SubscribeEvent
     public void onChangeDimension(PlayerChangedDimensionEvent event) {
-        if (event.player instanceof EntityPlayerMP) {
-            HFTrackers.<TownTrackerServer>getTownTracker(MCServerHelper.getWorld(event.toDim)).syncToPlayer((EntityPlayerMP)event.player); //Resync the town data
+        if (event.player instanceof EntityPlayerMP && event.toDim == 0) {
+            HFTrackers.<TownTrackerServer>getTowns(MCServerHelper.getWorld(event.toDim)).syncToPlayer((EntityPlayerMP)event.player); //Resync the town data
         }
     }
 }

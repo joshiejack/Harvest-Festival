@@ -23,7 +23,7 @@ public abstract class QuestFriendship extends Quest {
 
     @Override
     public boolean isNPCUsed(EntityPlayer player, NPC npc) {
-        return super.isNPCUsed(player, npc) && HFApi.player.getRelationsForPlayer(player).getRelationship(npc.getUUID()) >= relationship;
+        return super.isNPCUsed(player, npc) && HFApi.player.getRelationsForPlayer(player).getRelationship(npc) >= relationship;
     }
 
     @Override

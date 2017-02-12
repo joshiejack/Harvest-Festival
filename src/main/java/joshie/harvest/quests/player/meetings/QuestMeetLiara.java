@@ -3,42 +3,43 @@ package joshie.harvest.quests.player.meetings;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.quests.HFQuest;
-import joshie.harvest.api.quests.Quest;
-import joshie.harvest.api.quests.QuestQuestion;
 import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.cooking.CookingHelper;
 import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.cooking.block.BlockCookware.Cookware;
 import joshie.harvest.cooking.item.ItemUtensil.Utensil;
 import joshie.harvest.knowledge.HFNotes;
+import joshie.harvest.npcs.HFNPCs;
 import joshie.harvest.quests.Quests;
+import joshie.harvest.quests.base.QuestMeetingTutorial;
 import joshie.harvest.quests.selection.TutorialSelection;
 import joshie.harvest.town.TownHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-
-import java.util.Set;
-
-import static joshie.harvest.npcs.HFNPCs.CAFE_OWNER;
-import static joshie.harvest.quests.Quests.JENNI_MEET;
+import net.minecraft.world.World;
 
 @HFQuest("tutorial.cafe")
-public class QuestMeetLiara extends QuestQuestion {
+public class QuestMeetLiara extends QuestMeetingTutorial {
     private static final int WELCOME = 0;
     private static final int TUTORIAL = 1;
     public QuestMeetLiara() {
-        super(new TutorialSelection("cafe"));
-        setNPCs(CAFE_OWNER);
+        super(new TutorialSelection("cafe"), HFBuildings.CAFE, HFNPCs.CAFE_OWNER);
     }
 
     @Override
-    public boolean canStartQuest(Set<Quest> active, Set<Quest> finished) {
-        return finished.contains(JENNI_MEET);
+    public String getDescription(World world, EntityPlayer player) {
+        if (TownHelper.getClosestTownToEntity(player).hasBuildings(building.getRequirements())) {
+            return hasBuilding(player) ? getLocalized("description") : getLocalized("build");
+        } else return null;
+    }
+
+    @Override
+    public ItemStack getCurrentIcon(World world, EntityPlayer player) {
+        return hasBuilding(player) ? primary : buildingStack;
     }
 
     @Override
     public String getLocalizedScript(EntityPlayer player, NPC npc) {
-        if (!TownHelper.getClosestTownToEntity(player).hasBuilding(HFBuildings.CAFE)) return null;
         if (isCompletedEarly()) {
             return getLocalized("completed");
         } else if (quest_stage == WELCOME) {
@@ -66,7 +67,7 @@ public class QuestMeetLiara extends QuestQuestion {
 
     @Override
     public void onChatClosed(EntityPlayer player, NPC npc) {
-        if (quest_stage == TUTORIAL && TownHelper.getClosestTownToEntity(player).hasBuilding(HFBuildings.CAFE)) {
+        if (quest_stage == TUTORIAL) {
             complete(player);
         }
     }

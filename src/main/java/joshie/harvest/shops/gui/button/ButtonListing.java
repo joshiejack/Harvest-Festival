@@ -19,13 +19,14 @@ import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.GlStateManager;
 
+import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.List;
 
 import static joshie.harvest.shops.gui.GuiNPCShop.SHOP_EXTRA;
 
 public class ButtonListing<I extends IPurchasable> extends GuiButton {
-    public static final int HOVER = 2;
+    private static final int HOVER = 2;
     protected final GuiNPCShop shop;
     protected final I purchasable;
     protected int state;
@@ -44,7 +45,7 @@ public class ButtonListing<I extends IPurchasable> extends GuiButton {
     }
 
     @Override
-    public void drawButton(Minecraft mc, int mouseX, int mouseY) {
+    public void drawButton(@Nonnull Minecraft mc, int mouseX, int mouseY) {
         if (visible) {
             FontRenderer fontrenderer = mc.fontRendererObj;
             mc.getTextureManager().bindTexture(SHOP_EXTRA);
@@ -82,7 +83,7 @@ public class ButtonListing<I extends IPurchasable> extends GuiButton {
         }
     }
 
-    protected void drawBackground() {
+    private void drawBackground() {
         drawTexturedModalRect(xPosition, yPosition, 0, state * 18, width / 2, height);
         drawTexturedModalRect(xPosition + width / 2, yPosition, 200 - width / 2, state * 18, width / 2, height);
     }
@@ -151,12 +152,12 @@ public class ButtonListing<I extends IPurchasable> extends GuiButton {
         if (state == HOVER) super.playPressSound(soundHandlerIn);
     }
 
-    protected boolean canPurchaseX(int x) {
+    private boolean canPurchaseX(int x) {
         StatsClient stats = HFTrackers.getClientPlayerTracker().getStats();
         return x <= purchasable.getStock() && stats.getGold() - (purchasable.getCost() * x) >= 0 && purchasable.canDo(MCClientHelper.getWorld(), MCClientHelper.getPlayer(), x);
     }
 
-    protected boolean canPurchase1() {
+    private boolean canPurchase1() {
         return canPurchaseX(1);
     }
 }

@@ -15,6 +15,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import java.util.List;
 
 @HFEvents
+@SuppressWarnings("unused")
 public class SleepHandler {
     public static boolean register() { return HFCore.SLEEP_ANYTIME; }
 

@@ -2,7 +2,7 @@
   "components": [
     {
       "state": "planks 5",
-      "pos": "2 0 2"
+      "pos": "2 0 3"
     },
     {
       "state": "planks 5",
@@ -10,6 +10,22 @@
     },
     {
       "state": "planks 5",
+      "pos": "2 0 9"
+    },
+    {
+      "state": "planks 5",
+      "pos": "3 0 10"
+    },
+    {
+      "state": "log 1",
+      "pos": "3 0 9"
+    },
+    {
+      "state": "planks 1",
+      "pos": "3 0 8"
+    },
+    {
+      "state": "planks 1",
       "pos": "3 0 7"
     },
     {
@@ -17,35 +33,27 @@
       "pos": "3 0 6"
     },
     {
-      "state": "planks 5",
+      "state": "planks 1",
       "pos": "3 0 5"
     },
     {
-      "state": "planks 5",
+      "state": "planks 1",
       "pos": "3 0 4"
     },
     {
-      "state": "planks 5",
+      "state": "log 1",
       "pos": "3 0 3"
     },
     {
-      "state": "log 1",
-      "pos": "3 0 2"
-    },
-    {
       "state": "planks 5",
-      "pos": "3 0 1"
-    },
-    {
-      "state": "planks 1",
-      "pos": "4 0 2"
+      "pos": "3 0 2"
     },
     {
       "state": "planks 5",
       "pos": "4 0 3"
     },
     {
-      "state": "planks 1",
+      "state": "planks 5",
       "pos": "4 0 4"
     },
     {
@@ -57,11 +65,35 @@
       "pos": "4 0 6"
     },
     {
+      "state": "planks 5",
+      "pos": "4 0 7"
+    },
+    {
+      "state": "planks 5",
+      "pos": "4 0 8"
+    },
+    {
+      "state": "planks 1",
+      "pos": "4 0 9"
+    },
+    {
+      "state": "planks 1",
+      "pos": "5 0 9"
+    },
+    {
+      "state": "planks 5",
+      "pos": "5 0 8"
+    },
+    {
+      "state": "planks 1",
+      "pos": "5 0 7"
+    },
+    {
       "state": "planks 1",
       "pos": "5 0 6"
     },
     {
-      "state": "planks 5",
+      "state": "planks 1",
       "pos": "5 0 5"
     },
     {
@@ -73,31 +105,19 @@
       "pos": "5 0 3"
     },
     {
-      "state": "log 1",
-      "pos": "5 0 2"
-    },
-    {
       "state": "planks 5",
-      "pos": "5 0 1"
-    },
-    {
-      "state": "planks 5",
-      "pos": "6 0 2"
-    },
-    {
-      "state": "planks 1",
       "pos": "6 0 3"
     },
     {
-      "state": "planks 1",
+      "state": "planks 5",
       "pos": "6 0 4"
     },
     {
-      "state": "planks 1",
+      "state": "planks 5",
       "pos": "6 0 5"
     },
     {
-      "state": "log 1",
+      "state": "planks 1",
       "pos": "6 0 6"
     },
     {
@@ -105,11 +125,35 @@
       "pos": "6 0 7"
     },
     {
+      "state": "planks 5",
+      "pos": "6 0 8"
+    },
+    {
       "state": "planks 1",
-      "pos": "7 0 6"
+      "pos": "6 0 9"
     },
     {
       "state": "planks 5",
+      "pos": "7 0 10"
+    },
+    {
+      "state": "log 1",
+      "pos": "7 0 9"
+    },
+    {
+      "state": "planks 1",
+      "pos": "7 0 8"
+    },
+    {
+      "state": "log 1",
+      "pos": "7 0 7"
+    },
+    {
+      "state": "planks 5",
+      "pos": "7 0 6"
+    },
+    {
+      "state": "log 1",
       "pos": "7 0 5"
     },
     {
@@ -117,20 +161,12 @@
       "pos": "7 0 4"
     },
     {
-      "state": "planks 5",
+      "state": "log 1",
       "pos": "7 0 3"
     },
     {
-      "state": "log 1",
-      "pos": "7 0 2"
-    },
-    {
       "state": "planks 5",
-      "pos": "7 0 1"
-    },
-    {
-      "state": "planks 1",
-      "pos": "8 0 2"
+      "pos": "7 0 2"
     },
     {
       "state": "planks 5",
@@ -138,69 +174,28 @@
     },
     {
       "state": "planks 5",
-      "pos": "8 0 4"
-    },
-    {
-      "state": "planks 5",
       "pos": "8 0 5"
     },
     {
-      "state": "planks 1",
-      "pos": "8 0 6"
+      "state": "planks 5",
+      "pos": "8 0 7"
     },
     {
       "state": "planks 5",
-      "pos": "9 0 7"
-    },
-    {
-      "state": "log 1",
-      "pos": "9 0 6"
-    },
-    {
-      "state": "planks 1",
-      "pos": "9 0 5"
-    },
-    {
-      "state": "planks 1",
-      "pos": "9 0 4"
-    },
-    {
-      "state": "planks 1",
-      "pos": "9 0 3"
-    },
-    {
-      "state": "log 1",
-      "pos": "9 0 2"
-    },
-    {
-      "state": "planks 5",
-      "pos": "9 0 1"
-    },
-    {
-      "state": "planks 5",
-      "pos": "10 0 2"
-    },
-    {
-      "state": "planks 5",
-      "pos": "10 0 6"
+      "pos": "8 0 9"
     },
     {
       "homeString": "fisher.right",
       "npc": "",
-      "pos": "0 1 7",
+      "pos": "0 1 2",
       "type": "entities.NPC"
     },
     {
-      "pos": "0 1 7"
+      "pos": "0 1 2"
     },
     {
       "state": "dark_oak_stairs",
-      "pos": "2 1 2"
-    },
-    {
-      "state": "trapdoor 14",
-      "pos": "2 1 3",
-      "type": "blocks.Decorative"
+      "pos": "2 1 3"
     },
     {
       "state": "trapdoor 14",
@@ -217,7 +212,33 @@
       "pos": "2 1 6"
     },
     {
+      "state": "trapdoor 14",
+      "pos": "2 1 7",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "trapdoor 14",
+      "pos": "2 1 8",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "dark_oak_stairs",
+      "pos": "2 1 9"
+    },
+    {
       "state": "dark_oak_stairs 3",
+      "pos": "3 1 10"
+    },
+    {
+      "state": "log 1",
+      "pos": "3 1 9"
+    },
+    {
+      "state": "stained_hardened_clay",
+      "pos": "3 1 8"
+    },
+    {
+      "state": "stained_hardened_clay",
       "pos": "3 1 7"
     },
     {
@@ -233,28 +254,20 @@
       "pos": "3 1 4"
     },
     {
-      "state": "stained_hardened_clay",
+      "state": "log 1",
       "pos": "3 1 3"
     },
     {
-      "state": "log 1",
+      "state": "dark_oak_stairs 2",
       "pos": "3 1 2"
     },
     {
-      "state": "dark_oak_stairs 2",
-      "pos": "3 1 1"
-    },
-    {
       "state": "trapdoor 12",
-      "pos": "4 1 1",
+      "pos": "4 1 2",
       "type": "blocks.Decorative"
     },
     {
       "state": "stained_hardened_clay",
-      "pos": "4 1 2"
-    },
-    {
-      "state": "dark_oak_stairs 7",
       "pos": "4 1 3"
     },
     {
@@ -262,217 +275,195 @@
       "pos": "4 1 4"
     },
     {
-      "state": "dark_oak_stairs 6",
-      "pos": "4 1 5"
+      "state": "flower_pot",
+      "pos": "4 1 5",
+      "type": "blocks.FlowerPot"
     },
     {
-      "state": "stained_hardened_clay",
+      "state": "fence",
       "pos": "4 1 6"
     },
     {
-      "state": "trapdoor 13",
+      "state": "ladder 5",
       "pos": "4 1 7",
       "type": "blocks.Decorative"
     },
     {
-      "state": "trapdoor 13",
-      "pos": "5 1 7",
+      "state": "trapdoor 8",
+      "pos": "4 1 8",
       "type": "blocks.Decorative"
     },
     {
       "state": "stained_hardened_clay",
-      "pos": "5 1 6"
+      "pos": "4 1 9"
     },
     {
-      "state": "flower_pot",
-      "pos": "5 1 5",
-      "type": "blocks.FlowerPot"
-    },
-    {
-      "pos": "5 1 4"
-    },
-    {
-      "state": "vine 4",
-      "pos": "5 1 3",
+      "state": "trapdoor 13",
+      "pos": "4 1 10",
       "type": "blocks.Decorative"
     },
     {
-      "state": "log 1",
-      "pos": "5 1 2"
+      "homeString": "fisher.left",
+      "npc": "",
+      "pos": "5 1 11",
+      "type": "entities.NPC"
     },
     {
-      "state": "dark_oak_stairs 2",
-      "pos": "5 1 1"
+      "pos": "5 1 11"
     },
     {
-      "pos": "6 1 1"
+      "state": "trapdoor 13",
+      "pos": "5 1 10",
+      "type": "blocks.Decorative"
     },
     {
-      "state": "wooden_door 3",
-      "pos": "6 1 2",
-      "type": "blocks.Double"
+      "state": "stained_hardened_clay",
+      "pos": "5 1 9"
     },
     {
-      "pos": "6 1 3"
+      "state": "cauldron 3",
+      "pos": "5 1 8"
+    },
+    {
+      "pos": "5 1 7"
     },
     {
       "homeString": "jacob",
       "npc": "harvestfestival:jacob",
-      "pos": "6 1 4",
+      "pos": "5 1 6",
       "type": "entities.NPC"
     },
     {
-      "pos": "6 1 4"
+      "pos": "5 1 6"
     },
     {
-      "state": "fence",
-      "pos": "6 1 5"
+      "pos": "5 1 5"
     },
     {
-      "state": "log 1",
-      "pos": "6 1 6"
-    },
-    {
-      "state": "dark_oak_stairs 3",
-      "pos": "6 1 7"
-    },
-    {
-      "state": "trapdoor 13",
-      "pos": "7 1 7",
-      "type": "blocks.Decorative"
+      "state": "dark_oak_stairs 7",
+      "pos": "5 1 4"
     },
     {
       "state": "stained_hardened_clay",
-      "pos": "7 1 6"
-    },
-    {
-      "state": "ladder 2",
-      "pos": "7 1 5",
-      "type": "blocks.Decorative"
-    },
-    {
-      "pos": "7 1 4"
-    },
-    {
-      "pos": "7 1 3"
-    },
-    {
-      "state": "log 1",
-      "pos": "7 1 2"
-    },
-    {
-      "state": "dark_oak_stairs 2",
-      "pos": "7 1 1"
-    },
-    {
-      "homeString": "fisher.door",
-      "npc": "",
-      "pos": "7 1 0",
-      "type": "entities.NPC"
-    },
-    {
-      "pos": "7 1 0"
+      "pos": "5 1 3"
     },
     {
       "state": "trapdoor 12",
-      "pos": "8 1 1",
+      "pos": "5 1 2",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "trapdoor 12",
+      "pos": "6 1 2",
       "type": "blocks.Decorative"
     },
     {
       "state": "stained_hardened_clay",
-      "pos": "8 1 2"
+      "pos": "6 1 3"
     },
     {
-      "state": "trapdoor 10",
-      "pos": "8 1 3",
+      "state": "dark_oak_stairs 4",
+      "pos": "6 1 4"
+    },
+    {
+      "state": "vine 8",
+      "pos": "6 1 5",
       "type": "blocks.Decorative"
     },
     {
-      "state": "cauldron 3",
-      "pos": "8 1 4"
+      "pos": "6 1 6"
     },
     {
-      "state": "trapdoor 10",
-      "pos": "8 1 5",
+      "pos": "6 1 7"
+    },
+    {
+      "state": "trapdoor 8",
+      "pos": "6 1 8",
       "type": "blocks.Decorative"
     },
     {
       "state": "stained_hardened_clay",
-      "pos": "8 1 6"
+      "pos": "6 1 9"
     },
     {
       "state": "trapdoor 13",
-      "pos": "8 1 7",
+      "pos": "6 1 10",
       "type": "blocks.Decorative"
     },
     {
       "state": "dark_oak_stairs 3",
-      "pos": "9 1 7"
+      "pos": "7 1 10"
     },
     {
       "state": "log 1",
-      "pos": "9 1 6"
+      "pos": "7 1 9"
     },
     {
       "state": "stained_hardened_clay",
-      "pos": "9 1 5"
-    },
-    {
-      "state": "stained_hardened_clay",
-      "pos": "9 1 4"
-    },
-    {
-      "state": "stained_hardened_clay",
-      "pos": "9 1 3"
+      "pos": "7 1 8"
     },
     {
       "state": "log 1",
-      "pos": "9 1 2"
+      "pos": "7 1 7"
+    },
+    {
+      "state": "wooden_door",
+      "pos": "7 1 6",
+      "type": "blocks.Double"
+    },
+    {
+      "state": "log 1",
+      "pos": "7 1 5"
+    },
+    {
+      "state": "stained_hardened_clay",
+      "pos": "7 1 4"
+    },
+    {
+      "state": "log 1",
+      "pos": "7 1 3"
     },
     {
       "state": "dark_oak_stairs 2",
-      "pos": "9 1 1"
+      "pos": "7 1 2"
     },
     {
       "state": "dark_oak_stairs 1",
-      "pos": "10 1 2"
+      "pos": "8 1 3"
     },
     {
       "state": "trapdoor 15",
-      "pos": "10 1 3",
-      "type": "blocks.Decorative"
-    },
-    {
-      "state": "trapdoor 15",
-      "pos": "10 1 4",
-      "type": "blocks.Decorative"
-    },
-    {
-      "state": "trapdoor 15",
-      "pos": "10 1 5",
+      "pos": "8 1 4",
       "type": "blocks.Decorative"
     },
     {
       "state": "dark_oak_stairs 1",
-      "pos": "10 1 6"
+      "pos": "8 1 5"
     },
     {
-      "homeString": "fisher.upstairs",
-      "npc": "",
-      "pos": "11 1 4",
-      "type": "entities.NPC"
+      "pos": "8 1 6"
     },
     {
-      "pos": "11 1 4"
+      "state": "dark_oak_stairs 1",
+      "pos": "8 1 7"
+    },
+    {
+      "state": "trapdoor 15",
+      "pos": "8 1 8",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "dark_oak_stairs 1",
+      "pos": "8 1 9"
     },
     {
       "state": "wooden_button 2",
-      "pos": "2 2 2",
+      "pos": "2 2 3",
       "type": "blocks.Decorative"
     },
     {
       "state": "vine 8",
-      "pos": "2 2 3",
+      "pos": "2 2 4",
       "type": "blocks.Decorative"
     },
     {
@@ -481,9 +472,36 @@
       "type": "blocks.Decorative"
     },
     {
-      "state": "wooden_button 3",
-      "pos": "3 2 7",
+      "state": "vine 8",
+      "pos": "2 2 7",
       "type": "blocks.Decorative"
+    },
+    {
+      "state": "vine 8",
+      "pos": "2 2 8",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "wooden_button 2",
+      "pos": "2 2 9",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "wooden_button 3",
+      "pos": "3 2 10",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "log 1",
+      "pos": "3 2 9"
+    },
+    {
+      "state": "planks 1",
+      "pos": "3 2 8"
+    },
+    {
+      "state": "planks 1",
+      "pos": "3 2 7"
     },
     {
       "state": "log 1",
@@ -494,145 +512,189 @@
       "pos": "3 2 5"
     },
     {
-      "state": "stained_glass_pane",
+      "state": "planks 1",
       "pos": "3 2 4"
     },
     {
-      "state": "planks 1",
+      "state": "log 1",
       "pos": "3 2 3"
     },
     {
-      "state": "log 1",
-      "pos": "3 2 2"
-    },
-    {
       "state": "wooden_button 4",
-      "pos": "3 2 1",
-      "type": "blocks.Decorative"
-    },
-    {
-      "state": "vine 1",
-      "pos": "4 2 1",
+      "pos": "3 2 2",
       "type": "blocks.Decorative"
     },
     {
       "state": "planks 1",
-      "pos": "4 2 2"
-    },
-    {
-      "chestType": "harvestfestival:chests/fishing",
-      "state": "chest 5",
-      "pos": "4 2 3",
-      "type": "blocks.Chest"
-    },
-    {
-      "state": "wooden_pressure_plate",
-      "pos": "4 2 4"
+      "pos": "4 2 3"
     },
     {
       "state": "flower_pot",
-      "pos": "4 2 5",
+      "pos": "4 2 4",
       "type": "blocks.FlowerPot"
     },
     {
-      "state": "planks 1",
-      "pos": "4 2 6"
+      "state": "vine 2",
+      "pos": "4 2 5",
+      "type": "blocks.Decorative"
     },
     {
-      "state": "vine 4",
+      "state": "torch 5",
+      "pos": "4 2 6",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "ladder 5",
       "pos": "4 2 7",
       "type": "blocks.Decorative"
     },
     {
-      "state": "planks 1",
-      "pos": "5 2 6"
-    },
-    {
-      "state": "vine 1",
-      "pos": "5 2 5",
+      "state": "lever 4",
+      "pos": "4 2 8",
       "type": "blocks.Decorative"
     },
     {
-      "pos": "5 2 4"
+      "state": "planks 1",
+      "pos": "4 2 9"
     },
     {
       "state": "vine 4",
-      "pos": "5 2 3",
+      "pos": "4 2 10",
       "type": "blocks.Decorative"
     },
     {
-      "state": "log 1",
-      "pos": "5 2 2"
+      "state": "stained_glass_pane",
+      "pos": "5 2 9"
     },
     {
-      "state": "torch 4",
-      "pos": "5 2 1",
+      "pos": "5 2 8"
+    },
+    {
+      "pos": "5 2 7"
+    },
+    {
+      "pos": "5 2 6"
+    },
+    {
+      "pos": "5 2 5"
+    },
+    {
+      "state": "wooden_pressure_plate",
+      "pos": "5 2 4"
+    },
+    {
+      "state": "stained_glass_pane",
+      "pos": "5 2 3"
+    },
+    {
+      "state": "vine 1",
+      "pos": "6 2 2",
       "type": "blocks.Decorative"
     },
     {
-      "stack": "minecraft:trapdoor",
-      "rotation": 0,
-      "facing": "NORTH",
-      "pos": "5 2 1",
-      "type": "entities.ItemFrame"
-    },
-    {
-      "pos": "6 2 1"
-    },
-    {
+      "state": "planks 1",
       "pos": "6 2 3"
     },
     {
-      "pos": "6 2 4"
+      "chestType": "harvestfestival:chests/fishing",
+      "state": "chest 3",
+      "pos": "6 2 4",
+      "type": "blocks.Chest"
     },
     {
-      "state": "torch 5",
+      "state": "vine 8",
       "pos": "6 2 5",
       "type": "blocks.Decorative"
     },
     {
-      "state": "log 1",
       "pos": "6 2 6"
     },
     {
-      "state": "wooden_button 3",
-      "pos": "6 2 7",
-      "type": "blocks.Decorative"
+      "pos": "6 2 7"
     },
     {
-      "state": "vine 4",
-      "pos": "7 2 7",
+      "state": "lever 4",
+      "pos": "6 2 8",
       "type": "blocks.Decorative"
     },
     {
       "state": "planks 1",
-      "pos": "7 2 6"
+      "pos": "6 2 9"
     },
     {
-      "state": "ladder 2",
-      "pos": "7 2 5",
+      "state": "vine 4",
+      "pos": "6 2 10",
       "type": "blocks.Decorative"
     },
     {
-      "pos": "7 2 4"
-    },
-    {
-      "pos": "7 2 3"
+      "state": "wooden_button 3",
+      "pos": "7 2 10",
+      "type": "blocks.Decorative"
     },
     {
       "state": "log 1",
-      "pos": "7 2 2"
+      "pos": "7 2 9"
     },
     {
-      "state": "torch 4",
-      "pos": "7 2 1",
+      "state": "planks 1",
+      "pos": "7 2 8"
+    },
+    {
+      "state": "log 1",
+      "pos": "7 2 7"
+    },
+    {
+      "state": "log 1",
+      "pos": "7 2 5"
+    },
+    {
+      "state": "planks 1",
+      "pos": "7 2 4"
+    },
+    {
+      "state": "log 1",
+      "pos": "7 2 3"
+    },
+    {
+      "state": "wooden_button 4",
+      "pos": "7 2 2",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "wooden_button 1",
+      "pos": "8 2 3",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "vine 2",
+      "pos": "8 2 4",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "torch 1",
+      "pos": "8 2 5",
       "type": "blocks.Decorative"
     },
     {
       "stack": "minecraft:trapdoor",
       "rotation": 0,
-      "facing": "NORTH",
-      "pos": "7 2 1",
+      "facing": "EAST",
+      "pos": "8 2 5",
+      "type": "entities.ItemFrame"
+    },
+    {
+      "pos": "8 2 6"
+    },
+    {
+      "state": "torch 1",
+      "pos": "8 2 7",
+      "type": "blocks.Decorative"
+    },
+    {
+      "stack": "minecraft:trapdoor",
+      "rotation": 0,
+      "facing": "EAST",
+      "pos": "8 2 7",
       "type": "entities.ItemFrame"
     },
     {
@@ -642,101 +704,41 @@
         "translate:harvestfestival.shop.baitshop.sign2",
         "translate:harvestfestival.shop.baitshop.sign3"
       ],
-      "state": "wall_sign 2",
-      "pos": "8 2 1",
+      "state": "wall_sign 5",
+      "pos": "8 2 8",
       "type": "blocks.Sign"
     },
     {
-      "state": "planks 1",
-      "pos": "8 2 2"
-    },
-    {
-      "state": "lever 2",
-      "pos": "8 2 3",
-      "type": "blocks.Decorative"
-    },
-    {
-      "pos": "8 2 4"
-    },
-    {
-      "state": "lever 2",
-      "pos": "8 2 5",
-      "type": "blocks.Decorative"
-    },
-    {
-      "state": "planks 1",
-      "pos": "8 2 6"
-    },
-    {
-      "state": "vine 4",
-      "pos": "8 2 7",
-      "type": "blocks.Decorative"
-    },
-    {
-      "state": "wooden_button 3",
-      "pos": "9 2 7",
-      "type": "blocks.Decorative"
-    },
-    {
-      "state": "log 1",
-      "pos": "9 2 6"
-    },
-    {
-      "state": "planks 1",
-      "pos": "9 2 5"
-    },
-    {
-      "state": "stained_glass_pane",
-      "pos": "9 2 4"
-    },
-    {
-      "state": "planks 1",
-      "pos": "9 2 3"
-    },
-    {
-      "state": "log 1",
-      "pos": "9 2 2"
-    },
-    {
-      "state": "wooden_button 4",
-      "pos": "9 2 1",
-      "type": "blocks.Decorative"
-    },
-    {
       "state": "wooden_button 1",
-      "pos": "10 2 2",
-      "type": "blocks.Decorative"
-    },
-    {
-      "state": "vine 2",
-      "pos": "10 2 3",
-      "type": "blocks.Decorative"
-    },
-    {
-      "state": "vine 2",
-      "pos": "10 2 5",
-      "type": "blocks.Decorative"
-    },
-    {
-      "state": "wooden_button 1",
-      "pos": "10 2 6",
+      "pos": "8 2 9",
       "type": "blocks.Decorative"
     },
     {
       "state": "dark_oak_stairs 4",
-      "pos": "2 3 2"
-    },
-    {
-      "state": "vine 8",
-      "pos": "2 3 3",
-      "type": "blocks.Decorative"
+      "pos": "2 3 3"
     },
     {
       "state": "dark_oak_stairs 4",
       "pos": "2 3 6"
     },
     {
+      "state": "dark_oak_stairs 4",
+      "pos": "2 3 9"
+    },
+    {
       "state": "dark_oak_stairs 7",
+      "pos": "3 3 10"
+    },
+    {
+      "state": "log 1",
+      "pos": "3 3 9"
+    },
+    {
+      "state": "spruce_stairs",
+      "pos": "3 3 8"
+    },
+    {
+      "state": "spruce_stairs",
       "pos": "3 3 7"
     },
     {
@@ -744,184 +746,173 @@
       "pos": "3 3 6"
     },
     {
-      "state": "planks 1",
+      "state": "spruce_stairs",
       "pos": "3 3 5"
     },
     {
-      "state": "stained_glass_pane",
+      "state": "spruce_stairs",
       "pos": "3 3 4"
     },
     {
-      "state": "planks 1",
+      "state": "log 1",
       "pos": "3 3 3"
     },
     {
-      "state": "log 1",
+      "state": "dark_oak_stairs 6",
       "pos": "3 3 2"
     },
     {
-      "state": "dark_oak_stairs 6",
-      "pos": "3 3 1"
+      "state": "planks 1",
+      "pos": "4 3 3"
     },
     {
-      "state": "spruce_stairs 2",
-      "pos": "4 3 2"
-    },
-    {
-      "state": "trapdoor 9",
-      "pos": "4 3 3",
+      "state": "trapdoor 11",
+      "pos": "4 3 4",
       "type": "blocks.Decorative"
     },
     {
-      "state": "wooden_slab 9",
-      "pos": "4 3 4"
-    },
-    {
-      "state": "trapdoor 8",
+      "state": "trapdoor 11",
       "pos": "4 3 5",
       "type": "blocks.Decorative"
     },
     {
-      "state": "spruce_stairs 3",
+      "state": "wooden_slab 9",
       "pos": "4 3 6"
     },
     {
-      "state": "spruce_stairs 3",
+      "state": "trapdoor 11",
+      "pos": "4 3 7",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "trapdoor 11",
+      "pos": "4 3 8",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "planks 1",
+      "pos": "4 3 9"
+    },
+    {
+      "state": "stained_glass_pane",
+      "pos": "5 3 9"
+    },
+    {
+      "state": "wooden_slab 9",
+      "pos": "5 3 8"
+    },
+    {
+      "state": "wooden_slab 9",
+      "pos": "5 3 7"
+    },
+    {
       "pos": "5 3 6"
     },
     {
-      "state": "trapdoor 8",
-      "pos": "5 3 5",
-      "type": "blocks.Decorative"
+      "state": "wooden_slab 9",
+      "pos": "5 3 5"
     },
     {
       "state": "wooden_slab 9",
       "pos": "5 3 4"
     },
     {
-      "state": "trapdoor 9",
-      "pos": "5 3 3",
+      "state": "stained_glass_pane",
+      "pos": "5 3 3"
+    },
+    {
+      "state": "vine 1",
+      "pos": "6 3 2",
       "type": "blocks.Decorative"
     },
     {
-      "state": "spruce_stairs 2",
-      "pos": "5 3 2"
-    },
-    {
-      "state": "dark_oak_stairs 6",
-      "pos": "6 3 1"
-    },
-    {
-      "state": "log 1",
-      "pos": "6 3 2"
-    },
-    {
-      "state": "wooden_slab 9",
+      "state": "planks 1",
       "pos": "6 3 3"
     },
     {
-      "pos": "6 3 4"
+      "state": "trapdoor 10",
+      "pos": "6 3 4",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "trapdoor 10",
+      "pos": "6 3 5",
+      "type": "blocks.Decorative"
     },
     {
       "state": "wooden_slab 9",
-      "pos": "6 3 5"
-    },
-    {
-      "state": "log 1",
       "pos": "6 3 6"
     },
     {
-      "state": "dark_oak_stairs 7",
-      "pos": "6 3 7"
+      "state": "trapdoor 10",
+      "pos": "6 3 7",
+      "type": "blocks.Decorative"
     },
     {
-      "state": "spruce_stairs 3",
+      "state": "trapdoor 10",
+      "pos": "6 3 8",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "planks 1",
+      "pos": "6 3 9"
+    },
+    {
+      "state": "vine 4",
+      "pos": "6 3 10",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "dark_oak_stairs 7",
+      "pos": "7 3 10"
+    },
+    {
+      "state": "log 1",
+      "pos": "7 3 9"
+    },
+    {
+      "state": "spruce_stairs 1",
+      "pos": "7 3 8"
+    },
+    {
+      "state": "spruce_stairs 1",
+      "pos": "7 3 7"
+    },
+    {
+      "state": "log 1",
       "pos": "7 3 6"
     },
     {
-      "state": "trapdoor 9",
-      "pos": "7 3 5",
-      "type": "blocks.Decorative"
+      "state": "spruce_stairs 1",
+      "pos": "7 3 5"
     },
     {
-      "state": "wooden_slab 9",
+      "state": "spruce_stairs 1",
       "pos": "7 3 4"
     },
     {
-      "state": "trapdoor 9",
-      "pos": "7 3 3",
-      "type": "blocks.Decorative"
-    },
-    {
-      "state": "spruce_stairs 2",
-      "pos": "7 3 2"
-    },
-    {
-      "state": "spruce_stairs 2",
-      "pos": "8 3 2"
-    },
-    {
-      "state": "trapdoor 9",
-      "pos": "8 3 3",
-      "type": "blocks.Decorative"
-    },
-    {
-      "state": "wooden_slab 9",
-      "pos": "8 3 4"
-    },
-    {
-      "state": "trapdoor 8",
-      "pos": "8 3 5",
-      "type": "blocks.Decorative"
-    },
-    {
-      "state": "spruce_stairs 3",
-      "pos": "8 3 6"
-    },
-    {
-      "state": "dark_oak_stairs 7",
-      "pos": "9 3 7"
-    },
-    {
       "state": "log 1",
-      "pos": "9 3 6"
-    },
-    {
-      "state": "planks 1",
-      "pos": "9 3 5"
-    },
-    {
-      "state": "stained_glass_pane",
-      "pos": "9 3 4"
-    },
-    {
-      "state": "planks 1",
-      "pos": "9 3 3"
-    },
-    {
-      "state": "log 1",
-      "pos": "9 3 2"
+      "pos": "7 3 3"
     },
     {
       "state": "dark_oak_stairs 6",
-      "pos": "9 3 1"
+      "pos": "7 3 2"
     },
     {
       "state": "dark_oak_stairs 5",
-      "pos": "10 3 2"
-    },
-    {
-      "state": "vine 2",
-      "pos": "10 3 3",
-      "type": "blocks.Decorative"
+      "pos": "8 3 3"
     },
     {
       "state": "dark_oak_stairs 5",
-      "pos": "10 3 6"
+      "pos": "8 3 6"
+    },
+    {
+      "state": "dark_oak_stairs 5",
+      "pos": "8 3 9"
     },
     {
       "state": "fence",
-      "pos": "2 4 2"
+      "pos": "2 4 3"
     },
     {
       "state": "fence",
@@ -929,6 +920,22 @@
     },
     {
       "state": "fence",
+      "pos": "2 4 9"
+    },
+    {
+      "state": "fence",
+      "pos": "3 4 10"
+    },
+    {
+      "state": "stained_hardened_clay",
+      "pos": "3 4 9"
+    },
+    {
+      "state": "spruce_stairs 4",
+      "pos": "3 4 8"
+    },
+    {
+      "state": "spruce_stairs 4",
       "pos": "3 4 7"
     },
     {
@@ -936,7 +943,7 @@
       "pos": "3 4 6"
     },
     {
-      "state": "spruce_stairs",
+      "state": "spruce_stairs 4",
       "pos": "3 4 5"
     },
     {
@@ -944,249 +951,274 @@
       "pos": "3 4 4"
     },
     {
-      "state": "spruce_stairs",
+      "state": "stained_hardened_clay",
       "pos": "3 4 3"
     },
     {
-      "state": "stained_hardened_clay",
+      "state": "fence",
       "pos": "3 4 2"
     },
     {
-      "state": "fence",
-      "pos": "3 4 1"
-    },
-    {
-      "state": "spruce_stairs 6",
-      "pos": "4 4 2"
-    },
-    {
-      "state": "double_wooden_slab 5",
+      "state": "spruce_stairs 2",
       "pos": "4 4 3"
     },
     {
-      "state": "wool",
+      "state": "double_wooden_slab 5",
       "pos": "4 4 4"
     },
     {
-      "state": "double_wooden_slab 5",
+      "state": "wooden_slab 5",
       "pos": "4 4 5"
     },
     {
-      "state": "spruce_stairs 7",
+      "state": "double_wooden_slab 1",
       "pos": "4 4 6"
     },
     {
-      "state": "spruce_stairs 7",
-      "pos": "5 4 6"
+      "pos": "4 4 7"
     },
     {
       "state": "wooden_slab 5",
-      "pos": "5 4 5"
+      "pos": "4 4 8"
     },
     {
-      "state": "wool 9",
-      "pos": "5 4 4"
-    },
-    {
-      "state": "wooden_slab 5",
-      "pos": "5 4 3"
-    },
-    {
-      "state": "spruce_stairs 6",
-      "pos": "5 4 2"
-    },
-    {
-      "state": "fence",
-      "pos": "6 4 1"
-    },
-    {
-      "state": "stained_hardened_clay",
-      "pos": "6 4 2"
-    },
-    {
-      "state": "double_wooden_slab 1",
-      "pos": "6 4 3"
-    },
-    {
-      "state": "wooden_slab 5",
-      "pos": "6 4 4"
-    },
-    {
-      "state": "double_wooden_slab 1",
-      "pos": "6 4 5"
-    },
-    {
-      "state": "stained_hardened_clay",
-      "pos": "6 4 6"
-    },
-    {
-      "state": "fence",
-      "pos": "6 4 7"
+      "state": "spruce_stairs 3",
+      "pos": "4 4 9"
     },
     {
       "state": "spruce_stairs 7",
-      "pos": "7 4 6"
+      "pos": "5 4 9"
     },
     {
-      "pos": "7 4 5"
-    },
-    {
-      "pos": "7 4 4"
-    },
-    {
-      "state": "wooden_slab 5",
-      "pos": "7 4 3"
-    },
-    {
-      "state": "spruce_stairs 6",
-      "pos": "7 4 2"
-    },
-    {
-      "state": "spruce_stairs 6",
-      "pos": "8 4 2"
-    },
-    {
-      "state": "wooden_slab 5",
-      "pos": "8 4 3"
-    },
-    {
-      "state": "ladder 4",
-      "pos": "8 4 4",
+      "state": "ladder 2",
+      "pos": "5 4 8",
       "type": "blocks.Decorative"
     },
     {
-      "state": "wooden_slab 5",
-      "pos": "8 4 5"
+      "pos": "5 4 7"
     },
     {
-      "state": "spruce_stairs 7",
+      "state": "wooden_slab 5",
+      "pos": "5 4 6"
+    },
+    {
+      "state": "wool 9",
+      "pos": "5 4 5"
+    },
+    {
+      "state": "wool",
+      "pos": "5 4 4"
+    },
+    {
+      "state": "spruce_stairs 6",
+      "pos": "5 4 3"
+    },
+    {
+      "state": "spruce_stairs 2",
+      "pos": "6 4 3"
+    },
+    {
+      "state": "double_wooden_slab 5",
+      "pos": "6 4 4"
+    },
+    {
+      "state": "wooden_slab 5",
+      "pos": "6 4 5"
+    },
+    {
+      "state": "double_wooden_slab 1",
+      "pos": "6 4 6"
+    },
+    {
+      "state": "wooden_slab 5",
+      "pos": "6 4 7"
+    },
+    {
+      "state": "wooden_slab 5",
+      "pos": "6 4 8"
+    },
+    {
+      "state": "spruce_stairs 3",
+      "pos": "6 4 9"
+    },
+    {
+      "state": "fence",
+      "pos": "7 4 10"
+    },
+    {
+      "state": "stained_hardened_clay",
+      "pos": "7 4 9"
+    },
+    {
+      "state": "spruce_stairs 5",
+      "pos": "7 4 8"
+    },
+    {
+      "state": "spruce_stairs 5",
+      "pos": "7 4 7"
+    },
+    {
+      "state": "stained_hardened_clay",
+      "pos": "7 4 6"
+    },
+    {
+      "state": "spruce_stairs 5",
+      "pos": "7 4 5"
+    },
+    {
+      "state": "spruce_stairs 5",
+      "pos": "7 4 4"
+    },
+    {
+      "state": "stained_hardened_clay",
+      "pos": "7 4 3"
+    },
+    {
+      "state": "fence",
+      "pos": "7 4 2"
+    },
+    {
+      "state": "fence",
+      "pos": "8 4 3"
+    },
+    {
+      "state": "fence",
       "pos": "8 4 6"
     },
     {
       "state": "fence",
-      "pos": "9 4 7"
+      "pos": "8 4 9"
     },
     {
-      "state": "stained_hardened_clay",
-      "pos": "9 4 6"
-    },
-    {
-      "state": "spruce_stairs 1",
-      "pos": "9 4 5"
-    },
-    {
-      "state": "spruce_stairs 5",
-      "pos": "9 4 4"
-    },
-    {
-      "state": "spruce_stairs 1",
-      "pos": "9 4 3"
-    },
-    {
-      "state": "stained_hardened_clay",
-      "pos": "9 4 2"
-    },
-    {
-      "state": "fence",
-      "pos": "9 4 1"
-    },
-    {
-      "state": "fence",
-      "pos": "10 4 2"
-    },
-    {
-      "state": "fence",
-      "pos": "10 4 6"
-    },
-    {
-      "state": "wooden_slab 13",
-      "pos": "0 5 4"
-    },
-    {
-      "state": "dark_oak_stairs 2",
-      "pos": "2 5 2"
-    },
-    {
-      "state": "dark_oak_stairs 7",
+      "state": "wooden_slab 5",
       "pos": "2 5 3"
     },
     {
-      "state": "dark_oak_stairs 6",
+      "state": "dark_oak_stairs",
+      "pos": "2 5 4"
+    },
+    {
+      "state": "dark_oak_stairs",
       "pos": "2 5 5"
     },
     {
-      "state": "dark_oak_stairs 3",
+      "state": "wooden_slab 5",
       "pos": "2 5 6"
     },
     {
+      "state": "dark_oak_stairs",
+      "pos": "2 5 7"
+    },
+    {
+      "state": "dark_oak_stairs",
+      "pos": "2 5 8"
+    },
+    {
       "state": "wooden_slab 5",
+      "pos": "2 5 9"
+    },
+    {
+      "state": "dark_oak_stairs",
+      "pos": "3 5 10"
+    },
+    {
+      "state": "spruce_stairs",
+      "pos": "3 5 9"
+    },
+    {
+      "state": "dark_oak_stairs 5",
+      "pos": "3 5 8"
+    },
+    {
+      "state": "dark_oak_stairs 5",
       "pos": "3 5 7"
     },
     {
-      "state": "spruce_stairs 3",
+      "state": "spruce_stairs",
       "pos": "3 5 6"
     },
     {
-      "state": "planks 1",
+      "state": "dark_oak_stairs 5",
       "pos": "3 5 5"
     },
     {
-      "state": "spruce_stairs 4",
+      "state": "dark_oak_stairs 5",
       "pos": "3 5 4"
     },
     {
-      "state": "planks 1",
+      "state": "spruce_stairs",
       "pos": "3 5 3"
     },
     {
-      "state": "spruce_stairs 2",
+      "state": "dark_oak_stairs",
       "pos": "3 5 2"
     },
     {
-      "state": "wooden_slab 5",
-      "pos": "3 5 1"
-    },
-    {
-      "state": "dark_oak_stairs 2",
-      "pos": "4 5 1"
-    },
-    {
-      "state": "dark_oak_stairs 7",
+      "state": "dark_oak_stairs 5",
       "pos": "4 5 2"
     },
     {
-      "state": "torch 5",
-      "pos": "4 5 3",
-      "type": "blocks.Decorative"
-    },
-    {
-      "pos": "4 5 4"
-    },
-    {
-      "painting": "Kebab",
-      "facing": "EAST",
-      "pos": "4 5 4",
-      "type": "entities.Painting"
+      "state": "planks 1",
+      "pos": "4 5 3"
     },
     {
       "state": "flower_pot",
-      "pos": "4 5 5",
+      "pos": "4 5 4",
       "type": "blocks.FlowerPot"
     },
     {
-      "state": "dark_oak_stairs 6",
+      "pos": "4 5 5"
+    },
+    {
+      "state": "spruce_stairs 5",
       "pos": "4 5 6"
     },
     {
-      "state": "dark_oak_stairs 3",
       "pos": "4 5 7"
     },
     {
-      "state": "dark_oak_stairs 3",
+      "state": "wooden_button 4",
+      "pos": "4 5 8",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "planks 1",
+      "pos": "4 5 9"
+    },
+    {
+      "state": "dark_oak_stairs 5",
+      "pos": "4 5 10"
+    },
+    {
+      "state": "wooden_slab 13",
+      "pos": "5 5 12"
+    },
+    {
+      "state": "spruce_stairs 7",
+      "pos": "5 5 9"
+    },
+    {
+      "state": "torch 4",
+      "pos": "5 5 8",
+      "type": "blocks.Decorative"
+    },
+    {
+      "stack": "minecraft:trapdoor",
+      "rotation": 0,
+      "facing": "NORTH",
+      "pos": "5 5 8",
+      "type": "entities.ItemFrame"
+    },
+    {
       "pos": "5 5 7"
     },
     {
-      "state": "dark_oak_stairs 6",
+      "homeString": "fisher.upstairs",
+      "npc": "",
+      "pos": "5 5 6",
+      "type": "entities.NPC"
+    },
+    {
       "pos": "5 5 6"
     },
     {
@@ -1196,335 +1228,274 @@
       "pos": "5 5 4"
     },
     {
-      "pos": "5 5 3"
-    },
-    {
-      "state": "dark_oak_stairs 7",
-      "pos": "5 5 2"
-    },
-    {
-      "state": "dark_oak_stairs 2",
-      "pos": "5 5 1"
-    },
-    {
-      "state": "wooden_slab 5",
-      "pos": "6 5 1"
-    },
-    {
-      "state": "spruce_stairs 2",
-      "pos": "6 5 2"
-    },
-    {
-      "state": "spruce_stairs 7",
-      "pos": "6 5 3"
-    },
-    {
-      "homeString": "fisher.upstairs",
-      "npc": "",
-      "pos": "6 5 4",
-      "type": "entities.NPC"
-    },
-    {
-      "pos": "6 5 4"
+      "painting": "Kebab",
+      "facing": "SOUTH",
+      "pos": "5 5 4",
+      "type": "entities.Painting"
     },
     {
       "state": "spruce_stairs 6",
-      "pos": "6 5 5"
-    },
-    {
-      "state": "spruce_stairs 3",
-      "pos": "6 5 6"
-    },
-    {
-      "state": "wooden_slab 5",
-      "pos": "6 5 7"
-    },
-    {
-      "state": "dark_oak_stairs 3",
-      "pos": "7 5 7"
-    },
-    {
-      "state": "dark_oak_stairs 6",
-      "pos": "7 5 6"
-    },
-    {
-      "pos": "7 5 5"
-    },
-    {
-      "pos": "7 5 4"
-    },
-    {
-      "pos": "7 5 3"
-    },
-    {
-      "state": "dark_oak_stairs 7",
-      "pos": "7 5 2"
-    },
-    {
-      "state": "dark_oak_stairs 2",
-      "pos": "7 5 1"
-    },
-    {
-      "state": "dark_oak_stairs 2",
-      "pos": "8 5 1"
-    },
-    {
-      "state": "dark_oak_stairs 7",
-      "pos": "8 5 2"
-    },
-    {
-      "state": "wooden_button 2",
-      "pos": "8 5 3",
-      "type": "blocks.Decorative"
-    },
-    {
-      "state": "torch 2",
-      "pos": "8 5 4",
-      "type": "blocks.Decorative"
-    },
-    {
-      "stack": "minecraft:trapdoor",
-      "rotation": 0,
-      "facing": "WEST",
-      "pos": "8 5 4",
-      "type": "entities.ItemFrame"
-    },
-    {
-      "state": "wooden_button 2",
-      "pos": "8 5 5",
-      "type": "blocks.Decorative"
-    },
-    {
-      "state": "dark_oak_stairs 6",
-      "pos": "8 5 6"
-    },
-    {
-      "state": "dark_oak_stairs 3",
-      "pos": "8 5 7"
-    },
-    {
-      "state": "wooden_slab 5",
-      "pos": "9 5 7"
-    },
-    {
-      "state": "spruce_stairs 3",
-      "pos": "9 5 6"
-    },
-    {
-      "state": "planks 1",
-      "pos": "9 5 5"
-    },
-    {
-      "state": "spruce_stairs 5",
-      "pos": "9 5 4"
-    },
-    {
-      "state": "planks 1",
-      "pos": "9 5 3"
-    },
-    {
-      "state": "spruce_stairs 2",
-      "pos": "9 5 2"
-    },
-    {
-      "state": "wooden_slab 5",
-      "pos": "9 5 1"
-    },
-    {
-      "state": "dark_oak_stairs 2",
-      "pos": "10 5 2"
-    },
-    {
-      "state": "dark_oak_stairs 7",
-      "pos": "10 5 3"
-    },
-    {
-      "state": "dark_oak_stairs 6",
-      "pos": "10 5 5"
-    },
-    {
-      "state": "dark_oak_stairs 3",
-      "pos": "10 5 6"
+      "pos": "5 5 3"
     },
     {
       "state": "wooden_slab 13",
-      "pos": "12 5 4"
-    },
-    {
-      "state": "fence",
-      "pos": "0 6 4"
-    },
-    {
-      "state": "dark_oak_stairs 2",
-      "pos": "2 6 3"
+      "pos": "5 5 0"
     },
     {
       "state": "dark_oak_stairs 4",
-      "pos": "2 6 4"
-    },
-    {
-      "state": "dark_oak_stairs 3",
-      "pos": "2 6 5"
-    },
-    {
-      "state": "spruce_stairs 3",
-      "pos": "3 6 5"
+      "pos": "6 5 2"
     },
     {
       "state": "planks 1",
+      "pos": "6 5 3"
+    },
+    {
+      "state": "torch 5",
+      "pos": "6 5 4",
+      "type": "blocks.Decorative"
+    },
+    {
+      "pos": "6 5 5"
+    },
+    {
+      "state": "spruce_stairs 4",
+      "pos": "6 5 6"
+    },
+    {
+      "pos": "6 5 7"
+    },
+    {
+      "state": "wooden_button 4",
+      "pos": "6 5 8",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "planks 1",
+      "pos": "6 5 9"
+    },
+    {
+      "state": "dark_oak_stairs 4",
+      "pos": "6 5 10"
+    },
+    {
+      "state": "dark_oak_stairs 1",
+      "pos": "7 5 10"
+    },
+    {
+      "state": "spruce_stairs 1",
+      "pos": "7 5 9"
+    },
+    {
+      "state": "dark_oak_stairs 4",
+      "pos": "7 5 8"
+    },
+    {
+      "state": "dark_oak_stairs 4",
+      "pos": "7 5 7"
+    },
+    {
+      "state": "spruce_stairs 1",
+      "pos": "7 5 6"
+    },
+    {
+      "state": "dark_oak_stairs 4",
+      "pos": "7 5 5"
+    },
+    {
+      "state": "dark_oak_stairs 4",
+      "pos": "7 5 4"
+    },
+    {
+      "state": "spruce_stairs 1",
+      "pos": "7 5 3"
+    },
+    {
+      "state": "dark_oak_stairs 1",
+      "pos": "7 5 2"
+    },
+    {
+      "state": "wooden_slab 5",
+      "pos": "8 5 3"
+    },
+    {
+      "state": "dark_oak_stairs 1",
+      "pos": "8 5 4"
+    },
+    {
+      "state": "dark_oak_stairs 1",
+      "pos": "8 5 5"
+    },
+    {
+      "state": "wooden_slab 5",
+      "pos": "8 5 6"
+    },
+    {
+      "state": "dark_oak_stairs 1",
+      "pos": "8 5 7"
+    },
+    {
+      "state": "dark_oak_stairs 1",
+      "pos": "8 5 8"
+    },
+    {
+      "state": "wooden_slab 5",
+      "pos": "8 5 9"
+    },
+    {
+      "state": "dark_oak_stairs",
+      "pos": "3 6 8"
+    },
+    {
+      "state": "dark_oak_stairs",
+      "pos": "3 6 7"
+    },
+    {
+      "state": "dark_oak_stairs",
+      "pos": "3 6 5"
+    },
+    {
+      "state": "dark_oak_stairs",
       "pos": "3 6 4"
     },
     {
-      "state": "spruce_stairs 2",
-      "pos": "3 6 3"
-    },
-    {
-      "state": "dark_oak_stairs 2",
+      "state": "dark_oak_stairs",
       "pos": "4 6 2"
     },
     {
-      "state": "dark_oak_stairs 7",
+      "state": "spruce_stairs",
       "pos": "4 6 3"
     },
     {
+      "state": "dark_oak_stairs 5",
       "pos": "4 6 4"
     },
     {
-      "chestType": "harvestfestival:frames/fishing",
-      "stack": "minecraft:fishing_rod 0",
-      "rotation": 0,
-      "facing": "EAST",
-      "pos": "4 6 4",
-      "type": "entities.ItemFrame"
-    },
-    {
-      "state": "dark_oak_stairs 6",
+      "state": "dark_oak_stairs 5",
       "pos": "4 6 5"
     },
     {
-      "state": "dark_oak_stairs 3",
+      "state": "spruce_stairs",
       "pos": "4 6 6"
     },
     {
-      "state": "dark_oak_stairs 3",
+      "state": "dark_oak_stairs 5",
+      "pos": "4 6 7"
+    },
+    {
+      "state": "dark_oak_stairs 5",
+      "pos": "4 6 8"
+    },
+    {
+      "state": "spruce_stairs",
+      "pos": "4 6 9"
+    },
+    {
+      "state": "dark_oak_stairs",
+      "pos": "4 6 10"
+    },
+    {
+      "state": "fence",
+      "pos": "5 6 12"
+    },
+    {
+      "state": "dark_oak_stairs 7",
+      "pos": "5 6 10"
+    },
+    {
+      "state": "planks 1",
+      "pos": "5 6 9"
+    },
+    {
+      "state": "ladder 2",
+      "pos": "5 6 8",
+      "type": "blocks.Decorative"
+    },
+    {
+      "pos": "5 6 7"
+    },
+    {
       "pos": "5 6 6"
     },
     {
-      "state": "dark_oak_stairs 6",
       "pos": "5 6 5"
     },
     {
       "pos": "5 6 4"
     },
     {
-      "state": "dark_oak_stairs 7",
-      "pos": "5 6 3"
-    },
-    {
-      "state": "dark_oak_stairs 2",
-      "pos": "5 6 2"
-    },
-    {
-      "state": "spruce_stairs 2",
-      "pos": "6 6 3"
-    },
-    {
-      "pos": "6 6 4"
-    },
-    {
-      "state": "spruce_stairs 3",
-      "pos": "6 6 5"
-    },
-    {
-      "state": "dark_oak_stairs 3",
-      "pos": "7 6 6"
-    },
-    {
-      "state": "dark_oak_stairs 6",
-      "pos": "7 6 5"
-    },
-    {
-      "pos": "7 6 4"
-    },
-    {
-      "state": "dark_oak_stairs 7",
-      "pos": "7 6 3"
-    },
-    {
-      "state": "dark_oak_stairs 2",
-      "pos": "7 6 2"
-    },
-    {
-      "state": "dark_oak_stairs 2",
-      "pos": "8 6 2"
-    },
-    {
-      "state": "dark_oak_stairs 7",
-      "pos": "8 6 3"
-    },
-    {
-      "state": "ladder 4",
-      "pos": "8 6 4",
-      "type": "blocks.Decorative"
-    },
-    {
-      "state": "dark_oak_stairs 6",
-      "pos": "8 6 5"
-    },
-    {
-      "state": "dark_oak_stairs 3",
-      "pos": "8 6 6"
-    },
-    {
-      "state": "spruce_stairs 3",
-      "pos": "9 6 5"
+      "chestType": "harvestfestival:frames/fishing",
+      "stack": "minecraft:fishing_rod 0",
+      "rotation": 0,
+      "facing": "SOUTH",
+      "pos": "5 6 4",
+      "type": "entities.ItemFrame"
     },
     {
       "state": "planks 1",
-      "pos": "9 6 4"
+      "pos": "5 6 3"
     },
     {
-      "state": "spruce_stairs 2",
-      "pos": "9 6 3"
-    },
-    {
-      "state": "dark_oak_stairs 2",
-      "pos": "10 6 3"
-    },
-    {
-      "state": "dark_oak_stairs 5",
-      "pos": "10 6 4"
-    },
-    {
-      "state": "dark_oak_stairs 3",
-      "pos": "10 6 5"
+      "state": "dark_oak_stairs 6",
+      "pos": "5 6 2"
     },
     {
       "state": "fence",
-      "pos": "12 6 4"
+      "pos": "5 6 0"
     },
     {
-      "state": "fence",
-      "pos": "0 7 4"
+      "state": "dark_oak_stairs 1",
+      "pos": "6 6 2"
     },
     {
-      "state": "wooden_slab 13",
-      "pos": "1 7 4"
+      "state": "spruce_stairs 1",
+      "pos": "6 6 3"
+    },
+    {
+      "state": "dark_oak_stairs 4",
+      "pos": "6 6 4"
+    },
+    {
+      "state": "dark_oak_stairs 4",
+      "pos": "6 6 5"
+    },
+    {
+      "state": "spruce_stairs 1",
+      "pos": "6 6 6"
+    },
+    {
+      "state": "dark_oak_stairs 4",
+      "pos": "6 6 7"
+    },
+    {
+      "state": "dark_oak_stairs 4",
+      "pos": "6 6 8"
+    },
+    {
+      "state": "spruce_stairs 1",
+      "pos": "6 6 9"
+    },
+    {
+      "state": "dark_oak_stairs 1",
+      "pos": "6 6 10"
+    },
+    {
+      "state": "dark_oak_stairs 1",
+      "pos": "7 6 8"
+    },
+    {
+      "state": "dark_oak_stairs 1",
+      "pos": "7 6 7"
+    },
+    {
+      "state": "dark_oak_stairs 1",
+      "pos": "7 6 5"
+    },
+    {
+      "state": "dark_oak_stairs 1",
+      "pos": "7 6 4"
     },
     {
       "state": "wooden_slab 5",
-      "pos": "2 7 4"
-    },
-    {
-      "state": "wooden_slab 1",
-      "pos": "3 7 4"
-    },
-    {
-      "state": "wooden_slab 5",
-      "pos": "4 7 3"
-    },
-    {
-      "state": "wooden_slab 13",
       "pos": "4 7 4"
     },
     {
@@ -1533,6 +1504,42 @@
     },
     {
       "state": "wooden_slab 5",
+      "pos": "4 7 7"
+    },
+    {
+      "state": "wooden_slab 5",
+      "pos": "4 7 8"
+    },
+    {
+      "state": "fence",
+      "pos": "5 7 12"
+    },
+    {
+      "state": "wooden_slab 13",
+      "pos": "5 7 11"
+    },
+    {
+      "state": "wooden_slab 5",
+      "pos": "5 7 10"
+    },
+    {
+      "state": "wooden_slab 1",
+      "pos": "5 7 9"
+    },
+    {
+      "state": "wooden_slab 13",
+      "pos": "5 7 8"
+    },
+    {
+      "state": "wooden_slab 13",
+      "pos": "5 7 7"
+    },
+    {
+      "state": "wooden_slab 1",
+      "pos": "5 7 6"
+    },
+    {
+      "state": "wooden_slab 13",
       "pos": "5 7 5"
     },
     {
@@ -1540,60 +1547,44 @@
       "pos": "5 7 4"
     },
     {
-      "state": "wooden_slab 5",
+      "state": "wooden_slab 1",
       "pos": "5 7 3"
     },
     {
-      "state": "wooden_slab 1",
+      "state": "wooden_slab 5",
+      "pos": "5 7 2"
+    },
+    {
+      "state": "wooden_slab 13",
+      "pos": "5 7 1"
+    },
+    {
+      "state": "fence",
+      "pos": "5 7 0"
+    },
+    {
+      "state": "wooden_slab 5",
       "pos": "6 7 4"
     },
     {
       "state": "wooden_slab 5",
-      "pos": "7 7 5"
-    },
-    {
-      "state": "wooden_slab 13",
-      "pos": "7 7 4"
+      "pos": "6 7 5"
     },
     {
       "state": "wooden_slab 5",
-      "pos": "7 7 3"
+      "pos": "6 7 7"
     },
     {
       "state": "wooden_slab 5",
-      "pos": "8 7 3"
-    },
-    {
-      "state": "wooden_slab 13",
-      "pos": "8 7 4"
+      "pos": "6 7 8"
     },
     {
       "state": "wooden_slab 5",
-      "pos": "8 7 5"
-    },
-    {
-      "state": "wooden_slab 1",
-      "pos": "9 7 4"
+      "pos": "5 8 12"
     },
     {
       "state": "wooden_slab 5",
-      "pos": "10 7 4"
-    },
-    {
-      "state": "wooden_slab 13",
-      "pos": "11 7 4"
-    },
-    {
-      "state": "fence",
-      "pos": "12 7 4"
-    },
-    {
-      "state": "wooden_slab 5",
-      "pos": "0 8 4"
-    },
-    {
-      "state": "wooden_slab 5",
-      "pos": "12 8 4"
+      "pos": "5 8 0"
     }
   ]
 }

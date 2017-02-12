@@ -5,7 +5,7 @@ import gnu.trove.map.hash.TIntObjectHashMap;
 import joshie.harvest.animals.tracker.AnimalTracker;
 import joshie.harvest.calendar.data.Calendar;
 import joshie.harvest.calendar.data.CalendarClient;
-import joshie.harvest.calendar.data.CalendarData;
+import joshie.harvest.calendar.data.CalendarSavedData;
 import joshie.harvest.calendar.data.CalendarServer;
 import joshie.harvest.core.handlers.ClientHandler;
 import joshie.harvest.core.handlers.DailyTickHandler;
@@ -18,7 +18,10 @@ import joshie.harvest.player.PlayerLoader;
 import joshie.harvest.player.PlayerTracker;
 import joshie.harvest.player.PlayerTrackerClient;
 import joshie.harvest.player.PlayerTrackerServer;
+import joshie.harvest.town.data.TownSavedData;
 import joshie.harvest.town.tracker.TownTracker;
+import joshie.harvest.town.tracker.TownTrackerClient;
+import joshie.harvest.town.tracker.TownTrackerServer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
@@ -42,11 +45,13 @@ public class HFTrackers {
         CLIENT_WORLDS = new TIntObjectHashMap<>();
         CLIENT_PLAYER = new PlayerTrackerClient();
         CLIENT_CALENDAR = new CalendarClient();
+        CLIENT_TOWNS = new TownTrackerClient();
     }
 
     public static void resetServer() {
         SERVER_WORLDS.clear();
         SERVER_CALENDAR = null;
+        SERVER_TOWNS = null;
         MINE_MANAGER = null;
     }
 
@@ -83,21 +88,38 @@ public class HFTrackers {
         return (A) getHandler(world).getAnimalTracker();
     }
 
-    @SuppressWarnings("unchecked")
-    public static <T extends TownTracker> T getTownTracker(World world) {
-        return (T) getHandler(world).getTownTracker();
-    }
-
     public static DailyTickHandler getTickables(World world) {
         return getServer(world).getTickables();
     }
 
-    public static void markDirty(World world) {
-        SERVER_WORLDS.get(world.provider.getDimension()).markDirty();
+    /*####################Town Trackers##########################*/
+    private static final String TOWN_NAME = HFModInfo.CAPNAME + "-Towns";
+    @SideOnly(Side.CLIENT)
+    private static TownTracker CLIENT_TOWNS;
+    private static TownTrackerServer SERVER_TOWNS;
+
+    @SuppressWarnings("unchecked")
+    public static <C extends TownTracker> C getTowns(World world) {
+        return (world.isRemote) ? (C) CLIENT_TOWNS : (C) getServerTowns(world);
     }
 
-    public static void markDirty(int dimension) {
-        SERVER_WORLDS.get(dimension).markDirty();
+    private static TownTrackerServer getServerTowns(World overworld) {
+        if (SERVER_TOWNS == null) {
+            TownSavedData data = (TownSavedData) overworld.getPerWorldStorage().getOrLoadData(TownSavedData.class, TOWN_NAME);
+            if (data == null) {
+                data = new TownSavedData(TOWN_NAME);
+                overworld.getPerWorldStorage().setData(TOWN_NAME, data);
+            }
+
+            SERVER_TOWNS = data.getData();
+            SERVER_TOWNS.setWorld(data, overworld);
+        }
+
+        return SERVER_TOWNS;
+    }
+
+    public static void markTownsDirty() {
+        SERVER_TOWNS.markDirty();
     }
 
     /*####################Calendar Trackers##########################*/
@@ -113,9 +135,9 @@ public class HFTrackers {
 
     private static CalendarServer getServerCalendar(World overworld) {
         if (SERVER_CALENDAR == null) {
-            CalendarData data = (CalendarData) overworld.getPerWorldStorage().getOrLoadData(CalendarData.class, CALENDAR_NAME);
+            CalendarSavedData data = (CalendarSavedData) overworld.getPerWorldStorage().getOrLoadData(CalendarSavedData.class, CALENDAR_NAME);
             if (data == null) {
-                data = new CalendarData(CALENDAR_NAME);
+                data = new CalendarSavedData(CALENDAR_NAME);
                 overworld.getPerWorldStorage().setData(CALENDAR_NAME, data);
             }
 

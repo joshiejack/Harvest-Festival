@@ -52,7 +52,7 @@ public abstract class TownTracker<T extends TownData> extends HFTracker {
         return result == null ? null : result;
     }
 
-    public BlockPos getCoordinatesForOverworldMine(Entity entity, int mineID) {
+    public BlockPos getCoordinatesForOverworldMine(@Nullable Entity entity, int mineID) {
         return entity instanceof EntityPlayer ? ((EntityPlayer) entity).getBedLocation(0) : DimensionManager.getWorld(0).getSpawnPoint();
     }
 

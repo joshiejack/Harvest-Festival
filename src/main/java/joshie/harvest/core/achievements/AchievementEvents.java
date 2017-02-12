@@ -12,6 +12,7 @@ import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerChangedDimensionEvent;
 
 @HFEvents
+@SuppressWarnings("unused")
 public class AchievementEvents {
     @SubscribeEvent
     public void onItemPickup(PlayerEvent.ItemPickupEvent event) {

@@ -23,8 +23,8 @@ public class QuestAbii10KHappyFamily extends QuestFriendship {
 
     @Override
     public void onQuestCompleted(EntityPlayer player) {
-        HFApi.player.getRelationsForPlayer(player).affectRelationship(HFNPCs.MAYOR.getUUID(), 1000);
-        HFApi.player.getRelationsForPlayer(player).affectRelationship(HFNPCs.PRIEST.getUUID(), 1000);
-        HFApi.player.getRelationsForPlayer(player).affectRelationship(HFNPCs.DAUGHTER_ADULT.getUUID(), 1000);
+        HFApi.player.getRelationsForPlayer(player).affectRelationship(HFNPCs.MAYOR, 1000);
+        HFApi.player.getRelationsForPlayer(player).affectRelationship(HFNPCs.PRIEST, 1000);
+        HFApi.player.getRelationsForPlayer(player).affectRelationship(HFNPCs.DAUGHTER_ADULT, 1000);
     }
 }

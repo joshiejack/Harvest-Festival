@@ -9,7 +9,7 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
 
-public class SpecialRulesQuest implements ISpecialRules<EntityPlayer> {
+public class SpecialRulesQuest implements ISpecialRules {
     private final String unlocalised;
     private Quest quest;
 

@@ -2,16 +2,13 @@ package joshie.harvest.quests.player.meetings;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.quests.HFQuest;
-import joshie.harvest.api.quests.Quest;
 import joshie.harvest.festivals.HFFestivals;
 import joshie.harvest.npcs.HFNPCs;
 import joshie.harvest.quests.Quests;
 import joshie.harvest.quests.base.QuestMeeting;
 import net.minecraft.entity.player.EntityPlayer;
-
-import java.util.Set;
-
-import static joshie.harvest.quests.Quests.*;
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 
 @HFQuest("meeting.johan")
 public class QuestMeetJohan extends QuestMeeting {
@@ -20,8 +17,15 @@ public class QuestMeetJohan extends QuestMeeting {
     }
 
     @Override
-    public boolean canStartQuest(Set<Quest> active, Set<Quest> finished) {
-        return finished.contains(JENNI_MEET) || finished.contains(ASHLEE_MEET) || finished.contains(JIM_MEET);
+    public String getDescription(World world, EntityPlayer player) {
+        if (building.getRules().canDo(world, player, 1)) {
+            return hasBuilding(player) ? getLocalized("description") : getLocalized("build");
+        } else return null;
+    }
+
+    @Override
+    public ItemStack getCurrentIcon(World world, EntityPlayer player) {
+        return hasBuilding(player) ? primary : buildingStack;
     }
 
     @Override

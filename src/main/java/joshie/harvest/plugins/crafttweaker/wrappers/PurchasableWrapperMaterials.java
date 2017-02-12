@@ -9,6 +9,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nonnull;
 import java.util.List;
 
 public class PurchasableWrapperMaterials extends PurchasableMaterials {
@@ -30,7 +31,7 @@ public class PurchasableWrapperMaterials extends PurchasableMaterials {
     }
 
     @Override
-    public boolean canDo(World world, EntityPlayer player, int amount) {
+    public boolean canDo(@Nonnull World world, @Nonnull EntityPlayer player, int amount) {
         return original.canDo(world, player, amount);
     }
 

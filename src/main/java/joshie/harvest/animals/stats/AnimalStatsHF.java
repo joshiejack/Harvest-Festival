@@ -83,7 +83,7 @@ public class AnimalStatsHF implements AnimalStats<NBTTagCompound> {
             EntityPlayer owner = getOwner();
             if (owner != null) {
                 loadHappiness = false; //Reset the happiness loading
-                happiness = HFApi.player.getRelationsForPlayer(owner).getRelationship(EntityHelper.getEntityUUID(animal));
+                happiness = RelationshipType.ANIMAL.getMaximumRP() / 2;
             }
         }
 
@@ -110,8 +110,7 @@ public class AnimalStatsHF implements AnimalStats<NBTTagCompound> {
         }
 
         //Gets the adjusted relationship, 0-35k
-        int relationship = HFApi.player.getRelationsForPlayer(owner).getRelationship(EntityHelper.getEntityUUID(animal));
-        double chance = (relationship / (double) RelationshipType.ANIMAL.getMaximumRP()) * 200;
+        double chance = (happiness / (double) RelationshipType.ANIMAL.getMaximumRP()) * 200;
         chance += healthiness;
         if (chance <= 1) {
             chance = 1D;
@@ -276,7 +275,6 @@ public class AnimalStatsHF implements AnimalStats<NBTTagCompound> {
         return null;
     }
 
-    @Override
     //TODO: Remove in 0.7+
     public EntityPlayer getOwner() {
         EntityPlayer owner = getAndCreateOwner();
@@ -289,12 +287,6 @@ public class AnimalStatsHF implements AnimalStats<NBTTagCompound> {
         }
 
         return null;
-    }
-
-    @Override
-    //TODO: Remove in 0.7+
-    public void setOwner(@Nonnull UUID uuid) {
-        this.o_uuid = uuid;
     }
 
     @Override
@@ -374,6 +366,14 @@ public class AnimalStatsHF implements AnimalStats<NBTTagCompound> {
 
                 PacketHandler.sendToAllAround(new PacketSyncHappiness(animal.getEntityId(), amount), animal.dimension, animal.posX, animal.posY, animal.posZ, 178);
             }
+        }
+    }
+
+    @Override
+    public void copyHappiness(@Nullable EntityPlayer player, int parentHappiness, double percentage) {
+        happiness = (int)(parentHappiness * (percentage / 100D));
+        if (getAnimal() != null) {
+            HFApi.animals.syncAnimalStats(getAnimal());
         }
     }
 

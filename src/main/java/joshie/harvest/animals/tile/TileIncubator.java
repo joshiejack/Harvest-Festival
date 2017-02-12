@@ -7,7 +7,6 @@ import joshie.harvest.api.animals.AnimalStats;
 import joshie.harvest.api.core.Size;
 import joshie.harvest.api.ticking.DailyTickableBlock;
 import joshie.harvest.api.ticking.DailyTickableBlock.Phases;
-import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.base.tile.TileFillableSizedFaceable;
 import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.tools.ToolHelper;
@@ -42,8 +41,7 @@ public class TileIncubator extends TileFillableSizedFaceable {
                         baby.setGrowingAge(-(24000 * HFAnimals.AGING_TIMER));
                         AnimalStats stats = EntityHelper.getStats(baby);
                         if (stats != null) {
-                            stats.setOwner(incubator.owner);
-                            HFTrackers.getPlayerTracker(world, incubator.owner).getRelationships().copyRelationship(EntityHelper.getPlayerFromUUID(incubator.owner), incubator.relationship, EntityHelper.getEntityUUID(baby), 50D);
+                            stats.copyHappiness(EntityHelper.getPlayerFromUUID(incubator.owner), incubator.relationship, 50D);
                         }
 
                         world.spawnEntityInWorld(baby);

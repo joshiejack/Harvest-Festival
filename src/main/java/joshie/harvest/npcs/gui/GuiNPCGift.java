@@ -38,7 +38,7 @@ public class GuiNPCGift extends GuiNPCChat {
             if (relationship >= HFNPCs.MAX_FRIENDSHIP && npc.getNPC().isMarriageCandidate()) {
                 return TextHelper.getSpeech(npc, "marriage.accept");
             } else return TextHelper.getSpeech(npc, "marriage.reject");
-        } else */if (GODDESS_GIFT != null || HFTrackers.getClientPlayerTracker().getRelationships().gift(player, npc.getNPC().getUUID(), value.getRelationPoints())) {
+        } else */if (GODDESS_GIFT != null || HFTrackers.getClientPlayerTracker().getRelationships().gift(player, npc.getNPC(), value.getRelationPoints())) {
             return TextHelper.getSpeech(npc, "gift." + value.name().toLowerCase(Locale.ENGLISH));
         } else return TextHelper.getSpeech(npc, "gift.reject");
     }

@@ -70,8 +70,7 @@ public class NPC extends IForgeRegistryEntry.Impl<NPC> {
      *                      if you use a higher number, this npc will never have
      *                      a birthday unless users change the config value
      * @param insideColor   this is the internal border colour of the npcs chat box
-     * @param outsideColor  this is the outer border colour of the npcs chat box
-     * @return returns the npc, so you can manipulate it further if you like**/
+     * @param outsideColor  this is the outer border colour of the npcs chat box **/
     public NPC(ResourceLocation resource, Gender gender, Age age, CalendarDate birthday, int insideColor, int outsideColor) {
         String MODID = resource.getResourceDomain();
         String name = resource.getResourcePath();
@@ -103,11 +102,13 @@ public class NPC extends IForgeRegistryEntry.Impl<NPC> {
         return this;
     }
 
+    @SuppressWarnings("unused")
     public NPC setAlexSkin() {
         this.alex = true;
         return this;
     }
 
+    @SuppressWarnings("unused")
     public NPC setNoRespawn() {
         this.doesRespawn = false;
         return this;
@@ -142,6 +143,9 @@ public class NPC extends IForgeRegistryEntry.Impl<NPC> {
         return age;
     }
 
+    @Deprecated
+    //TODO: Remove in 0.7+
+    @SuppressWarnings("unused")
     public Gender getGender() {
         return gender;
     }
@@ -154,6 +158,8 @@ public class NPC extends IForgeRegistryEntry.Impl<NPC> {
         return age == ADULT;
     }
 
+    @Deprecated
+    //TODO: Remove in 0.7+
     public UUID getUUID() {
         return uuid;
     }
@@ -190,12 +196,6 @@ public class NPC extends IForgeRegistryEntry.Impl<NPC> {
 
     public IInfoButton getInfoButton() {
         return info;
-
-    }
-    @SuppressWarnings("unchecked")
-    public String getInfoGreeting(EntityPlayer player, EntityAgeable npc) {
-        if (info == null) return null;
-        return info.getLocalizedText(player, npc, this);
     }
 
     public boolean onClickedInfoButton(EntityPlayer player) {
@@ -262,18 +262,11 @@ public class NPC extends IForgeRegistryEntry.Impl<NPC> {
 
     @Override
     public boolean equals(Object o) {
-        if (o == null) return false;
-        if (o == this) return true;
-        if (o.getClass() != this.getClass()) return false;
-        return getRegistryName().equals(((NPC) o).getRegistryName());
+        return o instanceof NPC && getRegistryName() != null && getRegistryName().equals(((NPC) o).getRegistryName());
     }
 
     @Override
     public int hashCode() {
-        return getRegistryName().hashCode();
-    }
-
-    public enum Location {
-        HOME, SHOP
+        return getRegistryName() == null? 0 : getRegistryName().hashCode();
     }
 }

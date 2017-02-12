@@ -32,7 +32,7 @@ public abstract class PacketSyncTown extends PenguinPacket {
 
     @Override
     public void handlePacket(EntityPlayer player) {
-        TownDataClient townData = HFTrackers.<TownTrackerClient>getTownTracker(player.worldObj).getTownByID(town);
+        TownDataClient townData = HFTrackers.<TownTrackerClient>getTowns(player.worldObj).getTownByID(town);
         if (townData != null) {
             handlePacket(townData);
         }

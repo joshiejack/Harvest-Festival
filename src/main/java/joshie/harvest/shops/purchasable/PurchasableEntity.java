@@ -1,10 +1,8 @@
 package joshie.harvest.shops.purchasable;
 
 import joshie.harvest.api.HFApi;
-import joshie.harvest.api.animals.AnimalStats;
 import joshie.harvest.api.knowledge.Note;
 import joshie.harvest.api.shops.IPurchasable;
-import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.core.helpers.TextHelper;
 import joshie.harvest.knowledge.HFNotes;
 import net.minecraft.entity.Entity;
@@ -16,6 +14,7 @@ import net.minecraft.network.play.server.SPacketEntityAttach;
 import net.minecraft.network.play.server.SPacketSetPassengers;
 import net.minecraft.world.World;
 
+import javax.annotation.Nonnull;
 import java.util.List;
 import java.util.Locale;
 
@@ -46,7 +45,7 @@ public class PurchasableEntity implements IPurchasable {
     }
 
     @Override
-    public boolean canDo(World world, EntityPlayer player, int amount) {
+    public boolean canDo(@Nonnull World world, @Nonnull EntityPlayer player, int amount) {
         return amount == 1 && (lead || player.getPassengers().size() == 0);
     }
 
@@ -91,11 +90,6 @@ public class PurchasableEntity implements IPurchasable {
                 //Leash or ride the entity
                 if (!lead) theEntity.startRiding(player, true);
                 else theEntity.setLeashedToEntity(player, true);
-
-                AnimalStats stats = EntityHelper.getStats(theEntity);
-                if (stats != null) {
-                    stats.setOwner(EntityHelper.getPlayerUUID(player));
-                }
 
                 //Spawn the entity
                 player.worldObj.spawnEntityInWorld(theEntity);

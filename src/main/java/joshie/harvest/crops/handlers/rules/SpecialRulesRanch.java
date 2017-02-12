@@ -6,9 +6,11 @@ import joshie.harvest.town.TownHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 
-public class SpecialRulesRanch implements ISpecialRules<EntityPlayer> {
+import javax.annotation.Nonnull;
+
+public class SpecialRulesRanch implements ISpecialRules {
     @Override
-    public boolean canDo(World world, EntityPlayer player, int amount) {
+    public boolean canDo(@Nonnull World world, @Nonnull EntityPlayer player, int amount) {
         return TownHelper.getClosestTownToEntity(player).hasBuilding(HFBuildings.BARN);
     }
 }

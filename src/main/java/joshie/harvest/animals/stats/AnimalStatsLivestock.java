@@ -3,20 +3,17 @@ package joshie.harvest.animals.stats;
 import joshie.harvest.animals.HFAnimals;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.AnimalAction;
+import joshie.harvest.api.animals.AnimalStats;
 import joshie.harvest.api.animals.AnimalTest;
-import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.helpers.EntityHelper;
-import joshie.harvest.player.PlayerTrackerServer;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-import static joshie.harvest.api.animals.IAnimalHandler.ANIMAL_STATS_CAPABILITY;
 import static joshie.harvest.calendar.HFCalendar.TICKS_PER_DAY;
 
 public class AnimalStatsLivestock extends AnimalStatsHF {
@@ -123,12 +120,16 @@ public class AnimalStatsLivestock extends AnimalStatsHF {
             EntityAgeable baby = animal.createChild(animal);
             baby.setGrowingAge(-(int)(TICKS_PER_DAY * HFAnimals.AGING_TIMER));
             baby.setLocationAndAngles(animal.posX, animal.posY, animal.posZ, 0.0F, 0.0F);
-            baby.getCapability(ANIMAL_STATS_CAPABILITY, EnumFacing.DOWN).setOwner(o_uuid);
-            int parent = HFTrackers.<PlayerTrackerServer>getPlayerTracker(animal.worldObj, o_uuid).getRelationships().getRelationship(EntityHelper.getEntityUUID(animal));
-            HFTrackers.getPlayerTracker(animal.worldObj, o_uuid).getRelationships().copyRelationship(getOwner(), parent, EntityHelper.getEntityUUID(baby), 50D);
+            AnimalStats stats = EntityHelper.getStats(baby);
+            if (stats != null) {
+                stats.copyHappiness(getOwner(), getHappiness(), 50D);
+            }
+
             animal.worldObj.spawnEntityInWorld(baby);
         }
     }
+
+
 
     @Override
     public void deserializeNBT(NBTTagCompound nbt) {

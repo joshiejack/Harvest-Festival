@@ -37,12 +37,12 @@ public class PurchasableCropSeeds implements IPurchasable {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
     public boolean canDo(@Nonnull World world, @Nonnull EntityPlayer player, int amount) {
         CalendarDate date = HFApi.calendar.getDate(world);
         if (!isCorrectSeason(date.getSeason())) return false;
         if (!crop.canPurchase()) return false;
-        if (crop.getPurchaseYear() > 0 && !CalendarHelper.haveYearsPassed(world, player, crop.getPurchaseYear())) return false;
+        if (crop.getPurchaseYear() > 0 && !CalendarHelper.haveYearsPassed(world, player, crop.getPurchaseYear()))
+            return false;
         return crop.getRules().canDo(world, player, amount);
     }
 

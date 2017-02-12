@@ -38,7 +38,7 @@ public class ShopData {
     public void newDay(World world, UUID uuid) {
         data.values().stream().forEach(ShopInventory::newDay);
         //Update all clients on the new values for this shop
-        PacketHandler.sendToDimension(world.provider.getDimension(), new PacketSyncSold(uuid, writeToNBT(new NBTTagCompound())));
+        PacketHandler.sendToEveryone(new PacketSyncSold(uuid, writeToNBT(new NBTTagCompound())));
     }
 
     public void readFromNBT(NBTTagCompound nbt) {

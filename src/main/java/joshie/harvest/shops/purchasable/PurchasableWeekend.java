@@ -7,6 +7,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
+import javax.annotation.Nonnull;
+
 public class PurchasableWeekend extends Purchasable {
     private final ItemStack[] required;
 
@@ -27,7 +29,7 @@ public class PurchasableWeekend extends Purchasable {
     }
 
     @Override
-    public boolean canDo(World world, EntityPlayer player, int amount) {
+    public boolean canDo(@Nonnull World world, @Nonnull EntityPlayer player, int amount) {
         return amount == 1 && HFApi.calendar.getDate(world).getWeekday().isWeekend() && hasRequiredItem(player);
     }
 

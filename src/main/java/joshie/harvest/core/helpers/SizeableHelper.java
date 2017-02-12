@@ -2,11 +2,9 @@ package joshie.harvest.core.helpers;
 
 import joshie.harvest.animals.HFAnimals;
 import joshie.harvest.animals.item.ItemAnimalProduct.Sizeable;
-import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.AnimalStats;
 import joshie.harvest.api.core.Size;
 import net.minecraft.entity.passive.EntityAnimal;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 
 import javax.annotation.Nullable;
@@ -14,16 +12,6 @@ import java.util.NavigableMap;
 import java.util.TreeMap;
 
 public class SizeableHelper {
-    public static ItemStack getProduct(EntityPlayer player, AnimalStats stats) {
-        Size size = null;
-        int relationship = HFApi.player.getRelationsForPlayer(player).getRelationship(EntityHelper.getEntityUUID(stats.getAnimal()));
-        for (Size s : Size.values()) {
-            if (relationship >= s.getRelationshipRequirement()) size = s;
-        }
-
-        return HFAnimals.ANIMAL_PRODUCT.getStack(Sizeable.EGG, size);
-    }
-
     public static ItemStack getMilk(AnimalStats stats) {
         return SizeableHelper.getSizeable(stats, Sizeable.MILK);
     }

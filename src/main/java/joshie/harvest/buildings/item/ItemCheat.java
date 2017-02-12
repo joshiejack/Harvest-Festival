@@ -17,6 +17,7 @@ import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+import javax.annotation.Nonnull;
 import java.util.HashSet;
 import java.util.Locale;
 import java.util.Set;
@@ -42,6 +43,7 @@ public class ItemCheat extends ItemHFEnum<ItemCheat, Cheat> {
     private static BlockPos pos2;
 
     @Override
+    @Nonnull
     public EnumActionResult onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
         int damage = stack.getItemDamage();
         if (damage == COORD_SETTER.ordinal()) {

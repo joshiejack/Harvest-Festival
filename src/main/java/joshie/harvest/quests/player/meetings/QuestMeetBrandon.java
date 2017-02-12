@@ -4,50 +4,43 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.core.ITiered.ToolTier;
 import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.quests.HFQuest;
-import joshie.harvest.api.quests.Quest;
-import joshie.harvest.api.quests.QuestQuestion;
-import joshie.harvest.api.quests.Selection;
+import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.core.helpers.InventoryHelper;
 import joshie.harvest.knowledge.HFNotes;
 import joshie.harvest.mining.HFMining;
 import joshie.harvest.mining.item.ItemMaterial.Material;
+import joshie.harvest.npcs.HFNPCs;
+import joshie.harvest.quests.base.QuestMeetingTutorial;
 import joshie.harvest.quests.selection.TutorialSelection;
 import joshie.harvest.tools.HFTools;
+import joshie.harvest.town.TownHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-import java.util.Set;
-
 import static joshie.harvest.core.helpers.InventoryHelper.ITEM_STACK;
-import static joshie.harvest.npcs.HFNPCs.MINER;
-import static joshie.harvest.quests.Quests.JENNI_MEET;
 
 @HFQuest("tutorial.mining")
-public class QuestMeetBrandon extends QuestQuestion {
+public class QuestMeetBrandon extends QuestMeetingTutorial {
     private static final int BUILD = 0;
     private static final int EXPLAIN = 1;
     private static final int ORE = 2;
 
     public QuestMeetBrandon() {
-        super(new TutorialSelection("mining"));
-        setNPCs(MINER);
-    }
-
-    @Override
-    public boolean canStartQuest(Set<Quest> active, Set<Quest> finished) {
-        return finished.contains(JENNI_MEET);
-    }
-
-    @Override
-    public Selection getSelection(EntityPlayer player, NPC npc) {
-        return super.getSelection(player, npc);
+        super(new TutorialSelection("mining"), HFBuildings.MINING_HILL, HFNPCs.MINER);
     }
 
     @Override
     public String getDescription(World world, EntityPlayer player) {
-        if (quest_stage == ORE) return getLocalized("description.ore");
+        if (quest_stage == BUILD && TownHelper.getClosestTownToEntity(player).hasBuildings(building.getRequirements())) {
+            return hasBuilding(player) ? getLocalized("description") : getLocalized("build");
+        } else if (quest_stage == ORE) return getLocalized("description.ore");
         else return super.getDescription(world, player);
+    }
+
+    @Override
+    public ItemStack getCurrentIcon(World world, EntityPlayer player) {
+        return hasBuilding(player) ? primary : buildingStack;
     }
 
     @Override

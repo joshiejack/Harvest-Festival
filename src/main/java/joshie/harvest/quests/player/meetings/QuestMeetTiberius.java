@@ -1,17 +1,14 @@
 package joshie.harvest.quests.player.meetings;
 
 import joshie.harvest.api.quests.HFQuest;
-import joshie.harvest.api.quests.Quest;
 import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.npcs.HFNPCs;
 import joshie.harvest.quests.base.QuestMeeting;
+import joshie.harvest.town.TownHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-
-import java.util.Set;
-
-import static joshie.harvest.quests.Quests.JOHAN_MEET;
+import net.minecraft.world.World;
 
 @HFQuest("meeting.tiberius")
 public class QuestMeetTiberius extends QuestMeeting {
@@ -20,8 +17,10 @@ public class QuestMeetTiberius extends QuestMeeting {
     }
 
     @Override
-    public boolean canStartQuest(Set<Quest> active, Set<Quest> finished) {
-        return finished.contains(JOHAN_MEET);
+    public String getDescription(World world, EntityPlayer player) {
+        if (hasBuilding(player)) return getLocalized("description");
+        else if (TownHelper.getClosestTownToEntity(player).hasBuildings(building.getRequirements())) return getLocalized("build");
+        else return null;
     }
 
     @Override

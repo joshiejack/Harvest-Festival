@@ -154,11 +154,13 @@ public class ItemAnimalTool extends ItemHFEnum<ItemAnimalTool, Tool> {
                     }
                 }
 
-                int damage = getDamageForDisplay(held) + 1;
-                if (damage >= MAX_DAMAGE) {
-                    held.splitStack(1);
-                } else {
-                    held.getSubCompound("Data", true).setInteger("Damage", damage);
+                if (!stats.performTest(AnimalTest.CAN_CLEAN)) {
+                    int damage = getDamageForDisplay(held) + 1;
+                    if (damage >= MAX_DAMAGE) {
+                        held.splitStack(1);
+                    } else {
+                        held.getSubCompound("Data", true).setInteger("Damage", damage);
+                    }
                 }
 
                 ToolHelper.consumeHunger(player, 4F);

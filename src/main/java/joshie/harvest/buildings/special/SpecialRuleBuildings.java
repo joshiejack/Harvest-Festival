@@ -5,7 +5,9 @@ import joshie.harvest.town.TownHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 
-public class SpecialRuleBuildings implements ISpecialRules<EntityPlayer> {
+import javax.annotation.Nonnull;
+
+public class SpecialRuleBuildings implements ISpecialRules {
     private final int amount;
 
     public SpecialRuleBuildings(int amount) {
@@ -13,7 +15,7 @@ public class SpecialRuleBuildings implements ISpecialRules<EntityPlayer> {
     }
 
     @Override
-    public boolean canDo(World world, EntityPlayer player, int amount) {
-        return amount == 1 && TownHelper.getClosestTownToEntity(player).getBuildings().size() >= 9;
+    public boolean canDo(@Nonnull World world, @Nonnull EntityPlayer player, int amount) {
+        return amount == 1 && TownHelper.getClosestTownToEntity(player).getBuildings().size() >= this.amount;
     }
 }

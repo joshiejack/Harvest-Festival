@@ -1,9 +1,6 @@
 package joshie.harvest.animals.tracker;
 
 import joshie.harvest.api.animals.AnimalStats;
-import joshie.harvest.core.HFTrackers;
-import joshie.harvest.core.helpers.EntityHelper;
-import joshie.harvest.player.PlayerTracker;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
@@ -28,7 +25,6 @@ public class AnimalTrackerServer extends AnimalTracker {
         } catch (Exception ex) { /**/}
     }
 
-    @Override
     public void onDeath(AnimalStats stats) {
         stats.setDead();
     }
@@ -56,9 +52,6 @@ public class AnimalTrackerServer extends AnimalTracker {
                     iterator.remove();
                     if (animal != null && !animal.isDead) {
                         animal.attackEntityFrom(natural_causes, 1000F);
-                        for (PlayerTracker tracker : HFTrackers.getPlayerTrackers()) {
-                            tracker.getRelationships().clear(EntityHelper.getEntityUUID(animal));
-                        }
                     }
                 }
             }

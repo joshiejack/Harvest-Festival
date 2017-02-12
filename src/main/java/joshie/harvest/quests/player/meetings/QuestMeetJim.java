@@ -4,17 +4,18 @@ import joshie.harvest.animals.HFAnimals;
 import joshie.harvest.animals.block.BlockTrough.Trough;
 import joshie.harvest.animals.entity.EntityHarvestCow;
 import joshie.harvest.animals.item.ItemAnimalProduct.Sizeable;
+import joshie.harvest.animals.item.ItemAnimalSpawner.Spawner;
 import joshie.harvest.animals.item.ItemAnimalTool.Tool;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.core.Size;
 import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.quests.HFQuest;
-import joshie.harvest.api.quests.Quest;
-import joshie.harvest.api.quests.QuestQuestion;
 import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.core.helpers.InventoryHelper;
 import joshie.harvest.crops.HFCrops;
 import joshie.harvest.knowledge.HFNotes;
+import joshie.harvest.npcs.HFNPCs;
+import joshie.harvest.quests.base.QuestMeetingTutorial;
 import joshie.harvest.quests.selection.TutorialSelection;
 import joshie.harvest.tools.ToolHelper;
 import joshie.harvest.town.TownHelper;
@@ -24,17 +25,17 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumHand;
+import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
-import java.util.Set;
 
 import static joshie.harvest.animals.item.ItemAnimalTool.Tool.BRUSH;
 import static joshie.harvest.core.helpers.InventoryHelper.ITEM_STACK;
-import static joshie.harvest.npcs.HFNPCs.BARN_OWNER;
-import static joshie.harvest.quests.Quests.JADE_MEET;
 
 @HFQuest("tutorial.cow")
-public class QuestMeetJim extends QuestQuestion {
+public class QuestMeetJim extends QuestMeetingTutorial {
+    private static final ItemStack COW = HFAnimals.ANIMAL.getStackFromEnum(Spawner.COW);
+    private static final ItemStack MILK_ITEM = HFAnimals.ANIMAL_PRODUCT.getStack(Sizeable.MILK, Size.SMALL);
     private static final int START = 0;
     private static final int INFO = 1;
     private static final int ACTION1 = 2;
@@ -46,13 +47,7 @@ public class QuestMeetJim extends QuestQuestion {
     private boolean hasMilked;
 
     public QuestMeetJim() {
-        super(new TutorialSelection("cow"));
-        setNPCs(BARN_OWNER);
-    }
-
-    @Override
-    public boolean canStartQuest(Set<Quest> active, Set<Quest> finished) {
-        return finished.contains(JADE_MEET);
+        super(new TutorialSelection("cow"), HFBuildings.BARN, HFNPCs.BARN_OWNER);
     }
 
     @Override
@@ -77,8 +72,27 @@ public class QuestMeetJim extends QuestQuestion {
     }
 
     @Override
+    public String getDescription(World world, EntityPlayer player) {
+        if (TownHelper.getClosestTownToEntity(player).hasBuilding(HFBuildings.CARPENTER)) {
+            if (quest_stage == START) return hasBuilding(player) ? getLocalized("description.talk") : getLocalized("description.build");
+            else if (quest_stage == ACTION1 || quest_stage == ACTION2) return getLocalized("description.brush");
+            else if (quest_stage == MILKING) return getLocalized("description.milk");
+        }
+
+        return null;
+    }
+
+    @Override
+    public ItemStack getCurrentIcon(World world, EntityPlayer player) {
+        if (!hasBuilding(player)) return buildingStack;
+        else if (quest_stage == START) return primary;
+        else if (quest_stage == ACTION1 || quest_stage == ACTION2) return COW;
+        else if (quest_stage == MILKING) return MILK_ITEM;
+        else return super.getCurrentIcon(world, player);
+    }
+
+    @Override
     public String getLocalizedScript(EntityPlayer player, NPC npc) {
-        if (!TownHelper.getClosestTownToEntity(player).hasBuilding(HFBuildings.BARN)) return null;
         if (isCompletedEarly()) {
             return getLocalized("completed");
         } else if (quest_stage == START) {
@@ -126,12 +140,11 @@ public class QuestMeetJim extends QuestQuestion {
 
     @Override
     public void onChatClosed(EntityPlayer player, NPC npc) {
-        if (!TownHelper.getClosestTownToEntity(player).hasBuilding(HFBuildings.BARN)) return;
         if (quest_stage == INFO || isCompletedEarly()) {
             increaseStage(player);
             rewardEntity(player, "harvestfestival.cow");
             rewardItem(player, new ItemStack(Items.LEAD));
-            rewardItem(player, HFCrops.GRASS.getCropStack(64));
+            rewardItem(player, HFCrops.GRASS.getCropStack(16));
             rewardItem(player, HFAnimals.TOOLS.getStackFromEnum(BRUSH));
         } else if (quest_stage == MILKER) {
             increaseStage(player);
@@ -145,7 +158,14 @@ public class QuestMeetJim extends QuestQuestion {
 
     @Override
     public void onQuestCompleted(EntityPlayer player) {
-        if (isCompletedEarly()) rewardItem(player, HFAnimals.TOOLS.getStackFromEnum(Tool.MILKER));
+        if (isCompletedEarly()) {
+            rewardEntity(player, "harvestfestival.cow");
+            rewardItem(player, HFAnimals.TOOLS.getStackFromEnum(Tool.MILKER));
+            rewardItem(player, new ItemStack(Items.LEAD));
+            rewardItem(player, HFCrops.GRASS.getCropStack(16));
+            rewardItem(player, HFAnimals.TOOLS.getStackFromEnum(BRUSH));
+        }
+
         HFApi.player.getTrackingForPlayer(player).learnNote(HFNotes.COW_CARE);
         HFApi.player.getTrackingForPlayer(player).learnNote(HFNotes.ANIMAL_HAPPINESS);
         HFApi.player.getTrackingForPlayer(player).learnNote(HFNotes.ANIMAL_STRESS);

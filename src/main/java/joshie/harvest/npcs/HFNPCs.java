@@ -97,12 +97,14 @@ public class HFNPCs {
 
     public static void init() {
         GODDESS.setHasInfo(new GreetingWeather())
-                .addGreeting(new GreetingBeforeAshlee("tutorial.chicken.reminder.poultry"));
+                .addGreeting(new GreetingBeforeAshlee("tutorial.chicken.reminder.poultry"))
+                .addGreeting(new GreetingBeforeDanieru(GODDESS));
         ScheduleBuilder.create(GODDESS, null).build();
 
         //Carpenter
         CARPENTER.addGreeting(new GreetingCarpenter())
-                .addGreeting(new GreetingBeforeJim("tutorial.cow.reminder.barn"));
+                .addGreeting(new GreetingBeforeJim("tutorial.cow.reminder.barn"))
+                .addGreeting(new GreetingBeforeDanieru(CARPENTER));
         ScheduleBuilder.create(CARPENTER, CARPENTER_DOWNSTAIRS)
                         .add(SPRING, SUNDAY, 0L, CARPENTER_DOWNSTAIRS)
                         .add(SPRING, SUNDAY, 8000L, CARPENTER_FRONT)
@@ -121,7 +123,8 @@ public class HFNPCs {
         FLOWER_GIRL.setHasInfo(new GreetingFlowerBuyer())
                 .addGreeting(new GreetingBeforeJenni("trade.seeds.reminder"))
                 .addGreeting(new GreetingBeforeJenni("trade.tools.reminder"))
-                .addGreeting(new GreetingBeforeJenni("tutorial.supermarket.reminder.supermarket"));
+                .addGreeting(new GreetingBeforeJenni("tutorial.supermarket.reminder.supermarket"))
+                .addGreeting(new GreetingBeforeDanieru(FLOWER_GIRL));
         ScheduleBuilder.create(FLOWER_GIRL, CARPENTER_UPSTAIRS)
                         .add(SPRING, SUNDAY, 0L, CARPENTER_UPSTAIRS)
                         .add(SPRING, SUNDAY, 5000L, TOWNHALL_TEEN)
@@ -140,7 +143,8 @@ public class HFNPCs {
                         .build();
 
         //General Store
-        GS_OWNER.setHasInfo(new GreetingSupermarket(GS_OWNER.getRegistryName()));
+        GS_OWNER.setHasInfo(new GreetingSupermarket(GS_OWNER.getRegistryName()))
+                .addGreeting(new GreetingBeforeDanieru(GS_OWNER));
         ScheduleBuilder.create(GS_OWNER, GENERAL_BEDROOM)
                         .add(SPRING, SUNDAY, 0L, GENERAL_BEDROOM)
                         .add(SPRING, SUNDAY, 8000L, GENERAL_BEDROOM)
@@ -171,6 +175,7 @@ public class HFNPCs {
                         .build();
 
         //Milkmaid
+        MILKMAID.addGreeting(new GreetingBeforeDanieru(MILKMAID));
         ScheduleBuilder.create(MILKMAID, GENERAL_BED)
                         .add(SPRING, SUNDAY, 0L, GENERAL_BED)
                         .add(SPRING, SUNDAY, 6000L, CHURCH_LEFT)
@@ -198,6 +203,7 @@ public class HFNPCs {
                         .build();
 
         //Barn Owner
+        BARN_OWNER.addGreeting(new GreetingBeforeDanieru(BARN_OWNER));
         ScheduleBuilder.create(BARN_OWNER, BARN_INSIDE)
                         .add(SPRING, SUNDAY, 0L, BARN_INSIDE)
                         .add(SPRING, SUNDAY, 10000L, GENERAL_BEDROOM)

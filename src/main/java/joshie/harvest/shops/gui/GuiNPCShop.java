@@ -30,7 +30,7 @@ import java.util.List;
 public class GuiNPCShop<I extends IPurchasable> extends GuiNPCBase {
     static final ResourceLocation SHOP_BACKGROUND = new ResourceLocation(HFModInfo.MODID, "textures/gui/shop.png");
     public static final ResourceLocation SHOP_EXTRA = new ResourceLocation(HFModInfo.MODID, "textures/gui/shop_extra.png");
-    protected final List<IPurchasable> contents = new ArrayList<>();
+    private final List<IPurchasable> contents = new ArrayList<>();
     protected final StatsClient stats;
     protected final EntityPlayer client;
     protected final Shop shop;
@@ -141,7 +141,7 @@ public class GuiNPCShop<I extends IPurchasable> extends GuiNPCBase {
         int id = start;
         int position = 0;
         int pPosition = 0;
-        ShopData data = TownHelper.getClosestTownToEntity(MCClientHelper.getPlayer()).getShops();;
+        ShopData data = TownHelper.getClosestTownToEntity(MCClientHelper.getPlayer()).getShops();
         Iterator<IPurchasable> it = contents.iterator();
         while (it.hasNext() && position <= 180) {
             IPurchasable purchasable = it.next();
@@ -164,6 +164,7 @@ public class GuiNPCShop<I extends IPurchasable> extends GuiNPCBase {
         if (isGoldOnly(purchasable)) {
             if (space + 20 <= 200) {
                 buttonList.add(new ButtonListing(this, purchasable, id, left, top));
+                return 20;
             }
         } else {
             IPurchaseableMaterials builder = (IPurchaseableMaterials) purchasable;
@@ -171,13 +172,15 @@ public class GuiNPCShop<I extends IPurchasable> extends GuiNPCBase {
                 if (space + 20 <= 200) {
                     IRequirement requirement = builder.getRequirements()[0];
                     buttonList.add(new ButtonListingItem(requirement.getIcon(), requirement.getCost(), this, builder, id, left, top));
+                    return 20;
                 }
             } else if (space + 20 <= 200) {
                 buttonList.add(new ButtonListingBuilding(this, builder, id, left, top));
+                return 20;
             }
         }
 
-        return 20;
+        return 0;
     }
 
     private void drawResizableBackground(int x, int y) {
@@ -300,6 +303,4 @@ public class GuiNPCShop<I extends IPurchasable> extends GuiNPCBase {
     public int getMax() {
         return 10;
     }
-
-
 }

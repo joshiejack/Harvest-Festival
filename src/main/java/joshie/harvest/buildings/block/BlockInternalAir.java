@@ -25,6 +25,7 @@ import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import java.util.List;
@@ -45,7 +46,7 @@ public class BlockInternalAir extends BlockHFBase<BlockInternalAir> {
     @Nullable
     @Override
     @SuppressWarnings("deprecation")
-    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, World worldIn, BlockPos pos) {
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, @Nonnull World worldIn, @Nonnull BlockPos pos) {
         return NULL_AABB;
     }
 
@@ -61,18 +62,19 @@ public class BlockInternalAir extends BlockHFBase<BlockInternalAir> {
     }
 
     @Override
-    public boolean isReplaceable(IBlockAccess worldIn, BlockPos pos) {
+    public boolean isReplaceable(IBlockAccess worldIn, @Nonnull BlockPos pos) {
         return true;
     }
 
     @Override
     @SideOnly(Side.CLIENT)
+    @Nonnull
     public BlockRenderLayer getBlockLayer() {
         return BlockRenderLayer.CUTOUT_MIPPED;
     }
 
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item itemIn, CreativeTabs tab, List<ItemStack> list) {
+    public void getSubBlocks(@Nonnull Item itemIn, CreativeTabs tab, List<ItemStack> list) {
         if (DEBUG_MODE) list.add(new ItemStack(itemIn));
     }
 
@@ -103,7 +105,7 @@ public class BlockInternalAir extends BlockHFBase<BlockInternalAir> {
                     world.setBlockToAir(pos);
                     try {
                         MinecraftForge.EVENT_BUS.unregister(this);
-                    } catch (Exception e) {}
+                    } catch (Exception e) {/**/}
                 }
             }
         }

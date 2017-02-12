@@ -24,6 +24,7 @@ import javax.annotation.Nonnull;
 import static net.minecraft.world.chunk.Chunk.NULL_BLOCK_STORAGE;
 
 @HFEvents
+@SuppressWarnings("unused")
 public class WateringTickHandler extends DailyTickableBlock {
     public WateringTickHandler() {
         super(Phases.MAIN);

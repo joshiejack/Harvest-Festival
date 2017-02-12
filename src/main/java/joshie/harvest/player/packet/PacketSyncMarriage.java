@@ -1,20 +1,20 @@
 package joshie.harvest.player.packet;
 
 import io.netty.buffer.ByteBuf;
+import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.npc.RelationStatus;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.network.Packet;
 import net.minecraft.entity.player.EntityPlayer;
 
-import java.util.UUID;
-
 @Packet(Packet.Side.CLIENT)
+@SuppressWarnings("unused")
 public class PacketSyncMarriage extends PacketRelationship {
     private boolean divorce;
 
     public PacketSyncMarriage() {}
-    public PacketSyncMarriage(UUID key, boolean divorce) {
-        super(key);
+    public PacketSyncMarriage(NPC npc, boolean divorce) {
+        super(npc);
         this.divorce = divorce;
     }
 
@@ -31,7 +31,7 @@ public class PacketSyncMarriage extends PacketRelationship {
     }
 
     @Override
-    protected void handleRelationship(EntityPlayer player, UUID key) {
-        HFTrackers.getClientPlayerTracker().getRelationships().setStatus(key, RelationStatus.MARRIED, divorce);
+    protected void handleRelationship(EntityPlayer player, NPC npc) {
+        HFTrackers.getClientPlayerTracker().getRelationships().setStatus(npc, RelationStatus.MARRIED, divorce);
     }
 }

@@ -43,6 +43,7 @@ public class GuiHandler implements IGuiHandler {
 
     @Override
     public Object getServerGuiElement(int ID, EntityPlayer player, World world, int entityID, int nextGui, int hand) {
+
         switch (ID) {
             case FORCED_NPC:
                 return new ContainerNPCChat(player, (EntityNPC) world.getEntityByID(entityID), NEXT_NONE);

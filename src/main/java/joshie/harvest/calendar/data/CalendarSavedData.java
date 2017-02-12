@@ -3,10 +3,10 @@ package joshie.harvest.calendar.data;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.WorldSavedData;
 
-public class CalendarData extends WorldSavedData {
+public class CalendarSavedData extends WorldSavedData {
     private final CalendarServer server = new CalendarServer();
 
-    public CalendarData(String string) {
+    public CalendarSavedData(String string) {
         super(string);
     }
 

@@ -28,7 +28,7 @@ public class PurchasableWrapper implements IPurchasable {
     }
 
     @Override
-    public boolean canList(World world, EntityPlayer player) {
+    public boolean canList(@Nonnull World world, @Nonnull EntityPlayer player) {
         return original.canList(world, player);
     }
 

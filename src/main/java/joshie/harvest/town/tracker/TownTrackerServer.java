@@ -6,10 +6,10 @@ import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.CalendarDate;
-import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.town.data.TownData;
 import joshie.harvest.town.data.TownDataServer;
+import joshie.harvest.town.data.TownSavedData;
 import joshie.harvest.town.packet.PacketNewTown;
 import joshie.harvest.town.packet.PacketSyncTowns;
 import net.minecraft.entity.Entity;
@@ -18,7 +18,9 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
+import javax.annotation.Nullable;
 import java.util.HashSet;
 import java.util.Map.Entry;
 import java.util.UUID;
@@ -26,7 +28,13 @@ import java.util.UUID;
 import static joshie.harvest.town.BuildingLocations.MINE_ENTRANCE;
 
 public class TownTrackerServer extends TownTracker<TownDataServer> {
+    private TownSavedData data;
     private BiMap<UUID, Integer> townIDs = HashBiMap.create();
+
+    public void setWorld(TownSavedData data, World world) {
+        super.setWorld(world);
+        this.data = data;
+    }
 
     public void newDay(CalendarDate yesterday, CalendarDate today) {
         Cache<BlockPos, Boolean> isFar = CacheBuilder.newBuilder().build();
@@ -43,7 +51,7 @@ public class TownTrackerServer extends TownTracker<TownDataServer> {
     }
 
     @Override
-    public BlockPos getCoordinatesForOverworldMine(Entity entity, int mineID) {
+    public BlockPos getCoordinatesForOverworldMine(@Nullable Entity entity, int mineID) {
         BlockPos default_ = super.getCoordinatesForOverworldMine(entity, mineID);
         UUID uuid = townIDs.inverse().get(mineID);
         if (uuid == null) return default_;
@@ -89,7 +97,7 @@ public class TownTrackerServer extends TownTracker<TownDataServer> {
         for (int i = 0; i < 32000; i++) { //Add a mineid to uuid entry
             if (!townIDs.inverse().containsKey(i)) {
                 townIDs.put(uuid, i);
-                HFTrackers.markDirty(getDimension());
+                markDirty();
                 return i;
             }
         }
@@ -105,8 +113,13 @@ public class TownTrackerServer extends TownTracker<TownDataServer> {
         matchUUIDWithMineID(data.getID());
         PacketHandler.sendToDimension(getDimension(), new PacketNewTown(data)); //Sync to everyone on this dimension
         data.getQuests().sync(null);
-        HFTrackers.markDirty(getDimension());
+        markDirty();
         return data;
+    }
+
+    /* ############# Saving ################*/
+    public void markDirty() {
+        data.markDirty();
     }
 
     public void readFromNBT(NBTTagCompound nbt) {

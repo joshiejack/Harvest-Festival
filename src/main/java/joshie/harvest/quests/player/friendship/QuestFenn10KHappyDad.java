@@ -23,6 +23,6 @@ public class QuestFenn10KHappyDad extends QuestFriendship {
 
     @Override
     public void onQuestCompleted(EntityPlayer player) {
-        HFApi.player.getRelationsForPlayer(player).affectRelationship(HFNPCs.CLOCKMAKER.getUUID(), 3000);
+        HFApi.player.getRelationsForPlayer(player).affectRelationship(HFNPCs.CLOCKMAKER, 3000);
     }
 }

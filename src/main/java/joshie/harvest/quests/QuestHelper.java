@@ -1,13 +1,11 @@
 package joshie.harvest.quests;
 
 import joshie.harvest.api.HFApi;
-import joshie.harvest.api.animals.AnimalStats;
 import joshie.harvest.api.quests.IQuestHelper;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.api.quests.QuestQuestion;
 import joshie.harvest.api.quests.TargetType;
 import joshie.harvest.core.HFTrackers;
-import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.core.helpers.SpawnItemHelper;
 import joshie.harvest.core.util.annotations.HFApiImplementation;
 import joshie.harvest.npcs.entity.EntityNPC;
@@ -25,6 +23,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.util.FakePlayer;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -118,11 +117,6 @@ public class QuestHelper implements IQuestHelper {
             Entity theEntity = EntityList.createEntityByIDFromName(entity, player.worldObj);
             if (theEntity != null) {
                 theEntity.setPosition(player.posX, player.posY, player.posZ);
-                AnimalStats stats = EntityHelper.getStats(theEntity);
-                if (stats != null) {
-                    stats.setOwner(EntityHelper.getPlayerUUID(player));
-                }
-
                 player.worldObj.spawnEntityInWorld(theEntity);
             }
         }
@@ -135,7 +129,7 @@ public class QuestHelper implements IQuestHelper {
     }
 
     @Override
-    public List<Quest> getCurrentQuests(EntityPlayer player) {
+    public List<Quest> getCurrentQuests(@Nonnull EntityPlayer player) {
         if (isFakePlayer(player)) return EMPTY;
         List<Quest> all = new ArrayList<>();
         all.addAll(HFTrackers.getPlayerTrackerFromPlayer(player).getQuests().getCurrent());
@@ -154,6 +148,10 @@ public class QuestHelper implements IQuestHelper {
     @Nullable
     public static Quest getCurrentQuest(EntityPlayer player, EntityNPC npc) {
         List<Quest> quests = HFApi.quests.getCurrentQuests(player);
+        for (Quest quest: quests) {
+            //System.out.println(quest.getRegistryName().toString());
+        }
+
         for (Quest quest: quests) {
             if (quest.isNPCUsed(player, npc.getNPC())) return quest;
         }

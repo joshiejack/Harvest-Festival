@@ -35,8 +35,4 @@ public class ServerHandler extends SideHandler {
     public TownTrackerServer getTownTracker() {
         return data.getTownTracker();
     }
-    
-    public void markDirty() {
-        data.markDirty();
-    }
 }

@@ -9,7 +9,6 @@ import net.minecraftforge.common.util.INBTSerializable;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.util.UUID;
 
 /** Extra data for animal **/
 public interface AnimalStats<N extends NBTBase> extends INBTSerializable<N> {
@@ -41,16 +40,6 @@ public interface AnimalStats<N extends NBTBase> extends INBTSerializable<N> {
     /** Called every two hours **/
     void onBihourlyTick();
 
-    /** Returns the owner of this animal */
-    //TODO: Remove in 0.7+
-    @Deprecated
-    EntityPlayer getOwner();
-
-    /** Set the owner of this animal **/
-    //TODO: Remove in 0.7+
-    @Deprecated
-    void setOwner(@Nonnull UUID uuid);
-
     /** @return the happiness of this animal **/
     int getHappiness();
 
@@ -58,6 +47,12 @@ public interface AnimalStats<N extends NBTBase> extends INBTSerializable<N> {
      *
      * @param happiness the amount to change the happiness by  */
     void affectHappiness(int happiness);
+
+    /** Copy happiness, from adult to child
+     *  @param player               a player if they're available
+     *  @param parentHappiness      the parent animal current happiness
+     *  @param percentage           the percentage of the stats to copy **/
+    void copyHappiness(@Nullable EntityPlayer player, int parentHappiness, double percentage);
 
     /** Perform an action on this animal
      *  @param world    the world object, should never be null

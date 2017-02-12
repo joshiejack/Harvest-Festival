@@ -23,11 +23,14 @@ import static net.minecraft.init.Items.EGG;
 public class DisableHandler {
     //Crop Blocks
     public static final Set<Block> CROPS = new HashSet<>();
+    public static final Set<Block> GRASS = new HashSet<>();
     public static final HolderRegistrySet SEEDS_BLACKLIST = new HolderRegistrySet();
     public static final HolderRegistrySet HOE_BLACKLIST = new HolderRegistrySet();
 
+
     /* Disables vanilla seeds from being able to be planted **/
     @HFEvents
+    @SuppressWarnings("unused")
     public static class VanillaSeeds {
         public static boolean register() { return DISABLE_VANILLA_SEEDS; }
 
@@ -37,7 +40,6 @@ public class DisableHandler {
             if (held != null) {
                 if (SEEDS_BLACKLIST.contains(held)) {
                     event.setUseItem(Result.DENY);
-                    return; //Don't continue
                 }
             }
         }
@@ -45,6 +47,7 @@ public class DisableHandler {
 
     /* Disables vanilla crops from growing **/
     @HFEvents
+    @SuppressWarnings("unused")
     public static class VanillaGrowth {
         public static boolean register() { return DISABLE_VANILLA_GROWTH; }
 
@@ -58,6 +61,7 @@ public class DisableHandler {
 
     /* Disables vanilla crops from dropping **/
     @HFEvents
+    @SuppressWarnings("unused")
     public static class VanillaDrops {
         public static boolean register() { return DISABLE_VANILLA_DROPS; }
 
@@ -71,6 +75,7 @@ public class DisableHandler {
 
     /* Disables vanilla eggs from spawning chickens **/
     @HFEvents
+    @SuppressWarnings("unused")
     public static class EggSpawning {
         public static boolean register() { return DISABLE_SPAWN_CHICKEN; }
 
@@ -87,6 +92,7 @@ public class DisableHandler {
 
     /* Disables the use of vanilla hoes **/
     @HFEvents
+    @SuppressWarnings("unused")
     public static class VanillaHoes {
         public static boolean register() { return DISABLE_VANILLA_HOE; }
 
@@ -100,12 +106,13 @@ public class DisableHandler {
 
     /* Disables seeds from dropping from grass **/
     @HFEvents
+    @SuppressWarnings("unused")
     public static class SeedDrops {
         public static boolean register() { return DISABLE_VANILLA_WHEAT_SEEDS; }
 
         @SubscribeEvent
         public void onItemDropping(BlockEvent.HarvestDropsEvent event) {
-            if (event.getState().getBlock() == Blocks.TALLGRASS || event.getState().getBlock() == Blocks.DOUBLE_PLANT) {
+            if (event.getState().getBlock() == Blocks.TALLGRASS || event.getState().getBlock() == Blocks.DOUBLE_PLANT || GRASS.contains(event.getState().getBlock())) {
                 Iterator<ItemStack> it = event.getDrops().iterator();
                 while (it.hasNext()) {
                     if (SEEDS_BLACKLIST.contains(it.next())) it.remove();

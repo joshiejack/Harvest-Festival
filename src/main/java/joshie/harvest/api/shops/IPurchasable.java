@@ -7,9 +7,10 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nonnull;
 import java.util.List;
 
-public interface IPurchasable extends ISpecialRules<EntityPlayer> {
+public interface IPurchasable extends ISpecialRules {
     /** The purchaseables id, this needs to be a unique string **/
     String getPurchaseableID();
 
@@ -17,7 +18,7 @@ public interface IPurchasable extends ISpecialRules<EntityPlayer> {
      *  It is called when attempting to display an item
      *  @param world the world object
      *  @param player the player trying to buy**/
-    default boolean canList(World world, EntityPlayer player) { return getCost() < 0 || canDo(world, player, 1); }
+    default boolean canList(@Nonnull World world, @Nonnull EntityPlayer player) { return getCost() < 0 || canDo(world, player, 1); }
 
     /** The total cost of this item **/
     long getCost();

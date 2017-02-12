@@ -1,5 +1,6 @@
 package joshie.harvest.core.block;
 
+import joshie.harvest.api.npc.RelationStatus;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.handlers.GoddessHandler;
 import joshie.harvest.core.network.PacketHandler;
@@ -53,8 +54,8 @@ public class BlockGoddessWater extends BlockFluidClassic {
                     if (item.getThrower() != null) {
                         EntityPlayer player = world.getPlayerEntityByName(item.getThrower());
                         RelationshipData data = HFTrackers.getPlayerTrackerFromPlayer(player).getRelationships();
-                        if (!data.hasGifted(HFNPCs.GODDESS.getUUID())) {
-                            HFTrackers.getPlayerTrackerFromPlayer(player).getRelationships().gift(player, HFNPCs.GODDESS.getUUID(), NPCHelper.getGiftValue(HFNPCs.GODDESS, stack).getRelationPoints());
+                        if (!data.isStatusMet(HFNPCs.GODDESS, RelationStatus.GIFTED)) {
+                            HFTrackers.getPlayerTrackerFromPlayer(player).getRelationships().gift(player, HFNPCs.GODDESS, NPCHelper.getGiftValue(HFNPCs.GODDESS, stack).getRelationPoints());
                             double x = item.posX;
                             double y = item.posY;
                             double z = item.posZ;

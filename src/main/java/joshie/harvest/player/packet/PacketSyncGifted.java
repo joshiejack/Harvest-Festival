@@ -1,21 +1,21 @@
 package joshie.harvest.player.packet;
 
 import io.netty.buffer.ByteBuf;
+import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.npc.RelationStatus;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.network.Packet;
 import net.minecraft.entity.player.EntityPlayer;
-
-import java.util.UUID;
 
 @Packet(Packet.Side.CLIENT)
 public class PacketSyncGifted extends PacketRelationship {
     private boolean gifted;
     private RelationStatus status;
 
+    @SuppressWarnings("unused")
     public PacketSyncGifted() {}
-    public PacketSyncGifted(UUID key, RelationStatus status, boolean gifted) {
-        super(key);
+    public PacketSyncGifted(NPC npc, RelationStatus status, boolean gifted) {
+        super(npc);
         this.gifted = gifted;
         this.status = status;
     }
@@ -35,7 +35,7 @@ public class PacketSyncGifted extends PacketRelationship {
     }
 
     @Override
-    protected void handleRelationship(EntityPlayer player, UUID key) {
-        HFTrackers.getClientPlayerTracker().getRelationships().setStatus(key, status, gifted);
+    protected void handleRelationship(EntityPlayer player, NPC npc) {
+        HFTrackers.getClientPlayerTracker().getRelationships().setStatus(npc, status, gifted);
     }
 }

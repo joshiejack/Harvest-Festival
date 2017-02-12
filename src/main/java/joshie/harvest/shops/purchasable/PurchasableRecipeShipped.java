@@ -9,6 +9,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
+import javax.annotation.Nonnull;
+
 public class PurchasableRecipeShipped extends PurchasableMeal {
     private final Crop crop;
 
@@ -20,7 +22,7 @@ public class PurchasableRecipeShipped extends PurchasableMeal {
     }
 
     @Override
-    public boolean canDo(World world, EntityPlayer player, int amount) {
+    public boolean canDo(@Nonnull World world, @Nonnull EntityPlayer player, int amount) {
         return HFTrackers.getPlayerTrackerFromPlayer(player).getTracking().hasObtainedItem(crop.getCropStack(1));
     }
 

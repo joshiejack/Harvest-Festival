@@ -9,20 +9,13 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 
 public interface OpeningHandler {
-    /** If the REGISTRY is currently open
+    /** If the Shop is currently open
      * @param world the world object
      * @param npc   the npc entity
      * @param player the player entity
      * @param shop the shop
      * @return true if open  */
     boolean isOpen(World world, EntityAgeable npc, @Nullable EntityPlayer player, Shop shop);
-
-    /** If the REGISTRY is going to open (ideally in the next 1.5 hours)
-     * @param world the world object
-     * @param npc   the npc entity
-     * @param shop the shop
-     * @return true if open  */
-    boolean isPreparingToOpen(World world, EntityAgeable npc, Shop shop);
 
     /** Add an opening time
      * @param day   day of the week
@@ -31,7 +24,6 @@ public interface OpeningHandler {
      * @param rules an optional field, only ever pass one  */
     void addOpening(Weekday day, int opening, int closing, ISpecialRules... rules);
 
-    /** Allows this shop to open on holidays
-     *  @return the opening hours */
+    /** Allows this shop to open on holidays */
     OpeningHandler setOpensOnHolidays();
 }

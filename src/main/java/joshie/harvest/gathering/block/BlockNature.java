@@ -4,20 +4,27 @@ import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.block.BlockHFEnum;
 import joshie.harvest.core.block.BlockFlower.FlowerType;
 import joshie.harvest.core.lib.CreativeSort;
+import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.util.interfaces.ISellable;
 import joshie.harvest.gathering.block.BlockNature.NaturalBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.IPlantable;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nonnull;
 import java.util.Locale;
@@ -116,5 +123,13 @@ public class BlockNature extends BlockHFEnum<BlockNature, NaturalBlock> implemen
     @Override
     public int getSortValue(ItemStack stack) {
         return CreativeSort.TOOLS - 100;
+    }
+
+    @SideOnly(Side.CLIENT)
+    @Override
+    public void registerModels(Item item, String name) {
+        for (int i = 0; i < values.length; i++) {
+            ModelLoader.setCustomModelResourceLocation(item, i, new ModelResourceLocation(new ResourceLocation(HFModInfo.MODID, property.getName() + "_" + getEnumFromMeta(i).getName()), "inventory"));
+        }
     }
 }

@@ -80,7 +80,7 @@ public class QuestDataServer extends QuestData {
             finish(world, player, localQuest, rewards);
         } else finish(world, player, quest, rewards);
 
-        HFTrackers.markDirty(world);
+        HFTrackers.markTownsDirty();
         //Sync everything
         if ((quest.getQuestType() == TargetType.PLAYER || quest.getQuestType() == TargetType.TOWN && rewards)) master.sync(player, new PacketQuestCompleted(quest, rewards)); //Let this player claim the reward
         if (quest.getQuestType() == TargetType.TOWN) master.sync(null, new PacketQuestCompleted(quest, false)); //Let the rest of the server know this was completed
@@ -91,7 +91,7 @@ public class QuestDataServer extends QuestData {
     public void removeAsCurrent(@Nonnull World world, Quest quest) {
         current.remove(quest);
         finished.remove(quest);
-        HFTrackers.markDirty(world);
+        HFTrackers.markTownsDirty();
         if (quest.getQuestType() == TargetType.TOWN) master.sync(null, new PacketQuestRemove(quest)); //Let the rest of the server know this was completed
         updateQuests(true); //Update the world on these quests, everytime one is completed
     }

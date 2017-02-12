@@ -6,10 +6,13 @@ import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.QuestQuestion;
 import joshie.harvest.core.HFCore;
 import joshie.harvest.core.HFTrackers;
+import joshie.harvest.knowledge.HFKnowledge;
 import joshie.harvest.knowledge.HFNotes;
+import joshie.harvest.knowledge.item.ItemBook.Book;
 import joshie.harvest.quests.selection.TutorialSelection;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -41,6 +44,11 @@ public class QuestMeetGoddess extends QuestQuestion {
     }
 
     @Override
+    public String getDescription(World world, EntityPlayer player) {
+        return getLocalized("description");
+    }
+
+    @Override
     public void onChatClosed(EntityPlayer player, NPC npc) {
         if (quest_stage == BACKSTORY) {
             complete(player);
@@ -54,6 +62,7 @@ public class QuestMeetGoddess extends QuestQuestion {
             HFTrackers.getPlayerTrackerFromPlayer(player).getTracking().learnNote(HFNotes.BLUEPRINTS);
         }
 
+        rewardItem(player, HFKnowledge.BOOK.getStackFromEnum(Book.STATISTICS));
         rewardItem(player, new ItemStack(HFCore.FLOWERS, 4, 0));
     }
 }

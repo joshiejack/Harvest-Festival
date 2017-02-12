@@ -75,7 +75,7 @@ public class PacketPurchaseItem extends PenguinPacket {
                 TownHelper.getClosestTownToEntity(player).getShops().onPurchasableHandled(player, shop, purchasable);
             }
 
-            HFTrackers.markDirty(player.worldObj);
+            HFTrackers.markTownsDirty();
             return true;
         }
 

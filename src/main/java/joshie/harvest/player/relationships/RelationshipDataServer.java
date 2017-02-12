@@ -1,6 +1,7 @@
 package joshie.harvest.player.relationships;
 
 import joshie.harvest.api.calendar.CalendarDate;
+import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.npc.RelationStatus;
 import joshie.harvest.api.player.RelationshipType;
 import joshie.harvest.core.achievements.HFAchievements;
@@ -14,9 +15,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 
-import javax.annotation.Nullable;
 import java.util.Collection;
-import java.util.UUID;
 
 public class RelationshipDataServer extends RelationshipData {
     private final PlayerTrackerServer master;
@@ -25,38 +24,37 @@ public class RelationshipDataServer extends RelationshipData {
         this.master = master;
     }
 
-    public boolean hasGivenBirthdayGift(UUID uuid) {
-        return status.get(uuid).contains(RelationStatus.BIRTHDAY_GIFT);
+    public boolean hasGivenBirthdayGift(NPC npc) {
+        return status.get(npc).contains(RelationStatus.BIRTHDAY_GIFT);
     }
 
-    public void setHasGivenBirthdayGift(UUID uuid) {
-        status.get(uuid).add(RelationStatus.BIRTHDAY_GIFT);
+    public void setHasGivenBirthdayGift(NPC npc) {
+        status.get(npc).add(RelationStatus.BIRTHDAY_GIFT);
     }
 
-    @Override
-    public void talkTo(EntityPlayer player, UUID key) {
-        Collection<RelationStatus> statuses = status.get(key);
+    public void talkTo(EntityPlayer player, NPC npc) {
+        Collection<RelationStatus> statuses = status.get(npc);
         if (!statuses.contains(RelationStatus.TALKED)) {
             statuses.add(RelationStatus.TALKED);
-            affectRelationship(key, 100);
-            syncStatus((EntityPlayerMP) player, key, RelationStatus.TALKED, true);
+            affectRelationship(npc, 100);
+            syncStatus((EntityPlayerMP) player, npc, RelationStatus.TALKED, true);
         }
 
         //Add this so we will always have a key for something
         if (!statuses.contains(RelationStatus.MET)) {
             statuses.add(RelationStatus.MET);
-            syncStatus((EntityPlayerMP) player, key, RelationStatus.MET, true);
+            syncStatus((EntityPlayerMP) player, npc, RelationStatus.MET, true);
         }
     }
 
     @Override
-    public boolean gift(EntityPlayer player, UUID key, int amount) {
-        Collection<RelationStatus> statuses = status.get(key);
+    public boolean gift(EntityPlayer player, NPC npc, int amount) {
+        Collection<RelationStatus> statuses = status.get(npc);
         if (!statuses.contains(RelationStatus.GIFTED)) {
             if (amount == 0) return true;
-            affectRelationship(key, amount);
+            affectRelationship(npc, amount);
             statuses.add(RelationStatus.GIFTED);
-            syncStatus((EntityPlayerMP) player, key, RelationStatus.GIFTED, true);
+            syncStatus((EntityPlayerMP) player, npc, RelationStatus.GIFTED, true);
             master.getTracking().addGift();
             return true;
         }
@@ -65,22 +63,13 @@ public class RelationshipDataServer extends RelationshipData {
     }
 
     @Override
-    public void affectRelationship(UUID key, int amount) {
-        int newValue = Math.max(0, Math.min(RelationshipType.NPC.getMaximumRP(), getRelationship(key) + amount));
-        relationships.put(key, newValue);
+    public void affectRelationship(NPC npc, int amount) {
+        int newValue = Math.max(0, Math.min(RelationshipType.NPC.getMaximumRP(), getRelationship(npc) + amount));
+        relationships.put(npc, newValue);
         EntityPlayerMP player = master.getAndCreatePlayer();
         if (player != null) {
             if (newValue >= 5000) player.addStat(HFAchievements.friend);
-            syncRelationship(player, key, newValue);
-        }
-    }
-
-    @Override
-    public void copyRelationship(@Nullable EntityPlayer player, int adult, UUID baby, double percentage) {
-        int newValue = (int)(adult * (percentage / 100D));
-        relationships.put(baby, newValue);
-        if (player != null) {
-            syncRelationship((EntityPlayerMP) player, baby, newValue);
+            syncRelationship(player, npc, newValue);
         }
     }
 
@@ -88,12 +77,12 @@ public class RelationshipDataServer extends RelationshipData {
         PacketHandler.sendToClient(new PacketSyncRelationsConnect(writeToNBT(new NBTTagCompound())), player);
     }
 
-    public void syncRelationship(EntityPlayerMP player, UUID key, int value) {
-        PacketHandler.sendToClient(new PacketSyncRelationship(key, value), player);
+    public void syncRelationship(EntityPlayerMP player, NPC npc, int value) {
+        PacketHandler.sendToClient(new PacketSyncRelationship(npc, value), player);
     }
 
-    public void syncStatus(EntityPlayerMP player, UUID key, RelationStatus status, boolean value) {
-        PacketHandler.sendToClient(new PacketSyncGifted(key, status, value), player);
+    public void syncStatus(EntityPlayerMP player, NPC npc, RelationStatus status, boolean value) {
+        PacketHandler.sendToClient(new PacketSyncGifted(npc, status, value), player);
     }
 
     public void resetStatus(CalendarDate yesterday, EntityPlayerMP player) {

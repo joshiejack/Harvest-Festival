@@ -64,7 +64,6 @@ public class ItemAnimalSpawner extends ItemHFEnum<ItemAnimalSpawner, Spawner> {
                 entity.setPosition(pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5);
                 AnimalStats stats = EntityHelper.getStats(entity);
                 if (stats != null) {
-                    stats.setOwner(EntityHelper.getPlayerUUID(player));
                     world.spawnEntityInWorld(entity);
                 }
             }

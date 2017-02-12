@@ -21,7 +21,7 @@ public abstract class QuestFriendshipStore extends QuestFriendship {
     @SideOnly(Side.CLIENT)
     @Override
     public String getLocalizedScript(EntityPlayer player, EntityLiving entity, NPC npc) {
-        if (HFApi.player.getRelationsForPlayer(player).getRelationship(npc.getUUID()) >= relationship) {
+        if (HFApi.player.getRelationsForPlayer(player).getRelationship(npc) >= relationship) {
             return HFApi.quests.getCurrentQuests(player).contains(getQuest()) ? getLocalized("item"): getLocalized("text");
         } else return null;
     }

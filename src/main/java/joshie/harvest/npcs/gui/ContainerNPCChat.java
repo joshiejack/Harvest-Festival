@@ -7,6 +7,7 @@ import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.base.gui.ContainerBase;
 import joshie.harvest.core.handlers.GuiHandler;
 import joshie.harvest.npcs.entity.EntityNPC;
+import joshie.harvest.player.PlayerTrackerServer;
 import joshie.harvest.quests.QuestHelper;
 import net.minecraft.entity.player.EntityPlayer;
 
@@ -37,7 +38,6 @@ public class ContainerNPCChat extends ContainerBase {
     public void onContainerClosed(EntityPlayer player) {
         if (!hasBeenClosed) {
             hasBeenClosed = true; //Mark as having been closed, so we don't keep reopening guis
-
             if (nextGui == GuiHandler.NEXT_NONE) {
                 npc.setTalking(null); //
                 if (quest != null) quest.onChatClosed(player, npc, npc.getNPC(), sneaking);
@@ -49,27 +49,8 @@ public class ContainerNPCChat extends ContainerBase {
 
             //Add the bonus RP after doing quest based stuff.
             if (!player.worldObj.isRemote) {
-                HFTrackers.getPlayerTrackerFromPlayer(player).getRelationships().talkTo(player, npc.getNPC().getUUID());
+                HFTrackers.<PlayerTrackerServer>getPlayerTrackerFromPlayer(player).getRelationships().talkTo(player, npc.getNPC());
             }
         }
-
-        /*
-       if (hasBeenClosed && nextGui >= -1) {
-            hasBeenClosed = false; //To cancel out infinite loop
-
-            Quest selection = QuestHelper.getSelection(player, npc);
-            if (!HFApi.quests.getCurrentQuests(player).contains(selection)) selection = null;
-            if (selection instanceof QuestQuestion && ((QuestQuestion)selection).isCompletedEarly) selection = null;
-            if (selection == null && nextGui == -1) {
-                npc.setTalking(null); //We're no longer talking
-                quest.onChatClosed(player, npc, npc.getNPC(), sneaking);
-            }
-
-            if (!player.worldObj.isRemote) {
-                if (selection != null && nextGui != SHOP_OPTIONS) {
-                    player.openGui(HarvestFestival.instance, NPC, player.worldObj, npc.getEntityId(), 0, Quest.REGISTRY.getValues().indexOf(Quest.REGISTRY.getValue(selection.getRegistryName())));
-                } else if (nextGui != -1) player.openGui(HarvestFestival.instance, nextGui, player.worldObj, npc.getEntityId(), 0, -1);
-            }
-        }*/
     }
 }

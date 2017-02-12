@@ -19,28 +19,28 @@ public class InventoryHelper {
 
     public static final Matcher<String> ORE_DICTIONARY = new Matcher<String>() {
         @Override
-        public boolean matches(ItemStack stack, String string) {
+        public boolean matches(@Nonnull ItemStack stack, String string) {
             return InventoryHelper.isOreName(stack, string);
         }
     };
 
     public static final Matcher<ItemStack> ITEM_STACK = new Matcher<ItemStack>() {
         @Override
-        public boolean matches(ItemStack stack, ItemStack stack2) {
+        public boolean matches(@Nonnull ItemStack stack, ItemStack stack2) {
             return stack.isItemEqual(stack2);
         }
     };
 
     public static final Matcher<Item> ITEM = new Matcher<Item>() {
         @Override
-        public boolean matches(ItemStack stack, Item item) {
+        public boolean matches(@Nonnull ItemStack stack, Item item) {
             return stack.getItem() == item;
         }
     };
 
     public static final Matcher<SearchType> SPECIAL = new Matcher<SearchType>() {
         @Override
-        public boolean matches(ItemStack stack, SearchType type) {
+        public boolean matches(@Nonnull ItemStack stack, SearchType type) {
             if (type.equals(FLOWER)) {
                 if(stack.getItem() == Item.getItemFromBlock(Blocks.RED_FLOWER) || stack.getItem() == Item.getItemFromBlock(Blocks.YELLOW_FLOWER)) return true;
                 else {

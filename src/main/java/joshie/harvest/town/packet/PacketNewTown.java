@@ -37,6 +37,6 @@ public class PacketNewTown extends PenguinPacket {
 
     @Override
     public void handlePacket(EntityPlayer player) {
-        HFTrackers.<TownTrackerClient>getTownTracker(player.worldObj).addTown((TownDataClient)data);
+        HFTrackers.<TownTrackerClient>getTowns(player.worldObj).addTown((TownDataClient)data);
     }
 }

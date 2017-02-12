@@ -6,17 +6,19 @@ import joshie.harvest.api.npc.NPC;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 
-public class SpecialRulesFriendship implements ISpecialRules<EntityPlayer> {
+import javax.annotation.Nonnull;
+
+public class SpecialRulesFriendship implements ISpecialRules {
     private final NPC npc;
     private final int relationship;
 
     public SpecialRulesFriendship(NPC npc, int relationship) {
-        this.npc = (NPC) npc;
+        this.npc = npc;
         this.relationship = relationship;
     }
 
     @Override
-    public boolean canDo(World world, EntityPlayer player, int amount) {
-        return HFApi.player.getRelationsForPlayer(player).getRelationship(npc.getUUID()) >= relationship;
+    public boolean canDo(@Nonnull World world, @Nonnull EntityPlayer player, int amount) {
+        return HFApi.player.getRelationsForPlayer(player).getRelationship(npc) >= relationship;
     }
 }

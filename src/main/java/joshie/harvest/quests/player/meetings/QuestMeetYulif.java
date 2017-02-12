@@ -61,7 +61,8 @@ public class QuestMeetYulif extends Quest {
 
     @Override
     public String getDescription(World world, EntityPlayer player) {
-        if (quest_stage == LOGS) return getLocalized("description.logs", getWoodAmount());
+        if (quest_stage == WELCOME) return getLocalized("description.info");
+        else if (quest_stage == LOGS) return getLocalized("description.logs", getWoodAmount());
         else if (quest_stage == SEED_CHAT) return getLocalized("description.jade");
         else if (quest_stage == FINISHED) return getLocalized("description.goddess");
         else return super.getDescription(world, player);

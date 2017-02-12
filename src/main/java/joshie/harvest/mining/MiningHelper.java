@@ -127,7 +127,7 @@ public class MiningHelper {
     }
 
     public static boolean teleportToMine(Entity entity) {
-        int id = HFTrackers.getTownTracker(entity.worldObj).getMineIDFromCoordinates(new BlockPos(entity));
+        int id = HFTrackers.getTowns(entity.worldObj).getMineIDFromCoordinates(new BlockPos(entity));
         return id != -1 && teleportToMine(entity, id);
     }
 
@@ -144,7 +144,7 @@ public class MiningHelper {
 
     public static boolean teleportToOverworld(Entity entity) {
         int mineID = getMineID((int) entity.posZ >> 4);
-        TownTracker tracker = HFTrackers.getTownTracker(DimensionManager.getWorld(0));
+        TownTracker tracker = HFTrackers.getTowns(DimensionManager.getWorld(0));
         BlockPos spawn = tracker.getCoordinatesForOverworldMine(entity, mineID);
         Rotation rotation = tracker.getMineOrientation(mineID);
         if (spawn == null) spawn = entity.worldObj.getSpawnPoint();
@@ -161,7 +161,7 @@ public class MiningHelper {
         return EntityHelper.teleport(entity, 0, spawn);
     }
 
-    public static void teleportToCoordinates(Entity entity, BlockPos spawn, float yaw) {
+    static void teleportToCoordinates(Entity entity, BlockPos spawn, float yaw) {
         if (entity instanceof EntityPlayerMP) {
             ReflectionHelper.setPrivateValue(EntityPlayerMP.class, (EntityPlayerMP) entity, true, "invulnerableDimensionChange", "field_184851_cj");
             ((EntityPlayerMP) entity).connection.setPlayerLocation(spawn.getX() + 0.5D, spawn.getY(), spawn.getZ() + 0.5D, yaw, entity.rotationPitch);
@@ -226,7 +226,7 @@ public class MiningHelper {
         return chance;
     }
 
-    public static int getDifference(BlockPos link1, BlockPos pos) {
+    static int getDifference(BlockPos link1, BlockPos pos) {
         int floor1 = MiningHelper.getFloor(link1);
         int floor2 = MiningHelper.getFloor(pos);
         return floor1 >= floor2 ? floor1 - floor2 : floor2 - floor1;

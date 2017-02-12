@@ -3,18 +3,14 @@ package joshie.harvest.quests.player.meetings;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.core.ITiered.ToolTier;
 import joshie.harvest.api.quests.HFQuest;
-import joshie.harvest.api.quests.Quest;
 import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.fishing.HFFishing;
 import joshie.harvest.npcs.HFNPCs;
 import joshie.harvest.quests.Quests;
 import joshie.harvest.quests.base.QuestMeeting;
+import joshie.harvest.town.TownHelper;
 import net.minecraft.entity.player.EntityPlayer;
-
-import java.util.Set;
-
-import static joshie.harvest.quests.Quests.ASHLEE_MEET;
-import static joshie.harvest.quests.Quests.JIM_MEET;
+import net.minecraft.world.World;
 
 @HFQuest("meeting.jacob")
 public class QuestMeetJacob extends QuestMeeting {
@@ -23,8 +19,10 @@ public class QuestMeetJacob extends QuestMeeting {
     }
 
     @Override
-    public boolean canStartQuest(Set<Quest> active, Set<Quest> finished) {
-        return finished.contains(ASHLEE_MEET) && finished.contains(JIM_MEET);
+    public String getDescription(World world, EntityPlayer player) {
+        if (hasBuilding(player)) return getLocalized("description");
+        else if (TownHelper.getClosestTownToEntity(player).hasBuildings(building.getRequirements())) return getLocalized("build");
+        else return null;
     }
 
     @Override

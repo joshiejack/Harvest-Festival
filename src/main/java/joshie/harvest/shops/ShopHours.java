@@ -13,7 +13,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import javax.annotation.Nullable;
+import javax.annotation.Nonnull;
 
 public class ShopHours implements OpeningHandler {
     private final HashMultimap<Weekday, OpeningHours> open = HashMultimap.create();
@@ -32,36 +32,17 @@ public class ShopHours implements OpeningHandler {
 
     @Override
     @SuppressWarnings("unchecked")
-    public boolean isOpen(World world, EntityAgeable npc, @Nullable EntityPlayer player, Shop shop) {
+    public boolean isOpen(World world, EntityAgeable npc, @Nonnull EntityPlayer player, Shop shop) {
         Festival festival = HFApi.calendar.getFestival(world, new BlockPos(npc));
         if (!opensOnHolidays && !festival.doShopsOpen() && festival != Festival.NONE) return false;
         Weekday day = HFApi.calendar.getDate(world).getWeekday();
         for (OpeningHours hours: open.get(day)) {
             boolean isOpen = CalendarHelper.isBetween(world, hours.open, hours.close) &&
-                    (hours.rules == null || hours.rules.canDo(world, npc, 0));
+                    (hours.rules == null || hours.rules.canDo(world, player, 0));
             if (isOpen && (player == null || shop.getPurchasableIDs().size() > 0)) return true;
         }
 
         return false;
-    }
-
-    @Override
-    @SuppressWarnings("unchecked")
-    public boolean isPreparingToOpen(World world, EntityAgeable npc, Shop shop) {
-        Festival festival = HFApi.calendar.getFestival(world, new BlockPos(npc));
-        if (!opensOnHolidays && !festival.doShopsOpen() && festival != Festival.NONE) return false;
-        Weekday day = HFApi.calendar.getDate(world).getWeekday();
-        for (OpeningHours hours: open.get(day)) {
-            long daytime = CalendarHelper.getTime(world); //0-23999 by default
-            int hourHalfBeforeWork = fix(CalendarHelper.getScaledTime(hours.open) - 1500);
-            if(daytime >= hourHalfBeforeWork && (hours.rules == null || hours.rules.canDo(world, npc, 0))) return true;
-        }
-
-        return false;
-    }
-
-    private int fix(int i) {
-        return Math.min(24000, Math.max(0, i));
     }
 
     /** The integers in here are as follows

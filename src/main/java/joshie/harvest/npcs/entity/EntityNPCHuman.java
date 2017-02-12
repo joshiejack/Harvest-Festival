@@ -120,7 +120,7 @@ public abstract class EntityNPCHuman<E extends EntityNPCHuman> extends EntityNPC
             //Respawn a new bugger
             if (npc.respawns()) {
                 this.<TownDataServer>getHomeTown().markNPCDead(getNPC().getRegistryName());
-                HFTrackers.markDirty(worldObj); //Mark this npc as dead, ready for tomorrow to be reborn
+                HFTrackers.markTownsDirty(); //Mark this npc as dead, ready for tomorrow to be reborn
             }
         }
 
@@ -132,7 +132,7 @@ public abstract class EntityNPCHuman<E extends EntityNPCHuman> extends EntityNPC
         if (source != DamageSource.outOfWorld) {
             addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 200, 0, true, false));
             if (source.getSourceOfDamage() instanceof EntityPlayer) {
-                HFApi.player.getRelationsForPlayer(((EntityPlayer) source.getSourceOfDamage())).affectRelationship(npc.getUUID(), -10);
+                HFApi.player.getRelationsForPlayer(((EntityPlayer) source.getSourceOfDamage())).affectRelationship(npc, -10);
             }
         }
 

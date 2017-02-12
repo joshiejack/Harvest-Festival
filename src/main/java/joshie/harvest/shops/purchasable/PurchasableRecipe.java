@@ -11,6 +11,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
+import javax.annotation.Nonnull;
+
 public class PurchasableRecipe extends PurchasableMeal {
     private final Season season;
     private final Weekday weekday;
@@ -36,7 +38,7 @@ public class PurchasableRecipe extends PurchasableMeal {
     }
 
     @Override
-    public boolean canDo(World world, EntityPlayer player, int amount) {
+    public boolean canDo(@Nonnull World world, @Nonnull EntityPlayer player, int amount) {
         if (season == null || weekday == null) return amount == 1;
         CalendarDate date = HFApi.calendar.getDate(world);
         return amount == 1 && date.getWeekday() == weekday && date.getSeason() == season;

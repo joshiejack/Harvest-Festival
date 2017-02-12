@@ -1,5 +1,6 @@
 package joshie.harvest.knowledge.gui.stats.relations.button;
 
+import joshie.harvest.api.npc.RelationStatus;
 import joshie.harvest.api.player.RelationshipType;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.helpers.StackRenderHelper;
@@ -32,10 +33,10 @@ public class ButtonRelationsNPC extends ButtonBook {
         this.height = 16;
         this.stack = HFNPCs.SPAWNER_NPC.getStackFromObject(npc);
         RelationshipDataClient data = HFTrackers.getClientPlayerTracker().getRelationships();
-        this.relationship = data.getRelationship(npc.getUUID());
-        this.gifted = data.hasGifted(npc.getUUID());
-        this.talked = data.hasTalked(npc.getUUID());
-        this.met = data.hasMet(npc.getUUID());
+        this.relationship = data.getRelationship(npc);
+        this.gifted = data.isStatusMet(npc, RelationStatus.GIFTED);
+        this.talked = data.isStatusMet(npc, RelationStatus.TALKED);
+        this.met = data.isStatusMet(npc, RelationStatus.MET);
     }
 
     @Override

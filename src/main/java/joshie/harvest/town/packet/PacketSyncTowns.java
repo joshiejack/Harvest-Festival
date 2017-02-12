@@ -56,6 +56,6 @@ public class PacketSyncTowns extends PenguinPacket {
 
     @Override
     public void handlePacket(EntityPlayer player) {
-        HFTrackers.<TownTrackerClient>getTownTracker(player.worldObj).setTowns(clients);
+        HFTrackers.<TownTrackerClient>getTowns(player.worldObj).setTowns(clients);
     }
 }

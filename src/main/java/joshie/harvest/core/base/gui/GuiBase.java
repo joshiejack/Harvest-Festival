@@ -188,12 +188,4 @@ public abstract class GuiBase extends GuiScreen {
         mouseWheel = Mouse.getDWheel();
         super.handleMouseInput();
     }
-
-    @Override
-    protected void mouseClicked(int x, int y, int mouseButton) throws IOException {
-        super.mouseClicked(x, y, mouseButton);
-        onMouseClick(mouseX, mouseY);
-    }
-
-    protected void onMouseClick(int mouseX, int mouseY) {}
 }

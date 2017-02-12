@@ -23,11 +23,11 @@ import static joshie.harvest.api.calendar.Season.*;
 public class CalendarServer extends Calendar {
     private final CalendarDate DATE = new CalendarDate(0, SPRING, 1);
     private static final Random rand = new Random();
-    private CalendarData data;
+    private CalendarSavedData data;
 
     public CalendarServer() {}
 
-    public void setWorld(CalendarData data, World world) {
+    public void setWorld(CalendarSavedData data, World world) {
         this.data = data;
         super.setWorld(world);
         recalculateAndUpdate(world);

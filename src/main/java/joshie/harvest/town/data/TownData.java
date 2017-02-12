@@ -128,7 +128,7 @@ public abstract class TownData<Q extends QuestData, L extends LetterData> {
         if (festival == null) festival = Festival.NONE;
     }
 
-    public void writeToNBT(NBTTagCompound nbt) {
+    public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
         nbt.setTag("Created", birthday.toNBT());
         shops.writeToNBT(nbt);
         NBTHelper.writeBlockPos("TownCentre", nbt, townCentre);
@@ -140,6 +140,8 @@ public abstract class TownData<Q extends QuestData, L extends LetterData> {
             nbt.setString("Festival", festival.getResource().toString());
             nbt.setInteger("FestivalDaysRemaining", festivalDays);
         }
+
+        return nbt;
     }
 
     @Override

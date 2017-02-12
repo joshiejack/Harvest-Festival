@@ -15,8 +15,6 @@ import joshie.harvest.core.render.SpecialRendererMailbox;
 import joshie.harvest.core.tile.TileMailbox;
 import joshie.harvest.core.tile.TileShipping;
 import joshie.harvest.core.util.annotations.HFLoader;
-import joshie.harvest.fishing.render.SpecialRendererTrap;
-import joshie.harvest.fishing.tile.TileTrap;
 import net.minecraft.block.BlockFlower.EnumFlowerColor;
 import net.minecraft.block.BlockFlower.EnumFlowerType;
 import net.minecraft.client.Minecraft;
@@ -60,7 +58,12 @@ public class HFCore {
         RegistryHelper.registerTiles(TileShipping.class, TileMailbox.class);
         GODDESS.setBlock(GODDESS_WATER);
 
-        //Register sellables
+        //Register Flowers
+        registerIfNotRegistered("flowerPinkcat", FLOWERS.getStackFromEnum(FlowerType.PINKCAT));
+        registerIfNotRegistered("flowerToy", FLOWERS.getStackFromEnum(FlowerType.TOY));
+        registerIfNotRegistered("flowerMagicBlue", FLOWERS.getStackFromEnum(FlowerType.BLUE_MAGICGRASS));
+        registerIfNotRegistered("flowerMagicRed", FLOWERS.getStackFromEnum(FlowerType.RED_MAGICGRASS));
+        registerIfNotRegistered("flowerMoondrop", FLOWERS.getStackFromEnum(FlowerType.MOONDROP));
         registerIfNotRegistered("flowerSunflower", new ItemStack(Blocks.DOUBLE_PLANT, 1, SUNFLOWER.getMeta()));
         registerIfNotRegistered("flowerLilac", new ItemStack(Blocks.DOUBLE_PLANT, 1, SYRINGA.getMeta()));
         registerIfNotRegistered("flowerRose", new ItemStack(Blocks.DOUBLE_PLANT, 1, ROSE.getMeta()));

@@ -11,6 +11,7 @@
 * Adjusted animal product sell values to be more balanced
 * Cows and sheep will now eat vanilla tall grass
 * Cleaning will now stop working when the animal is fully cleaned
+* The Brush will only take damage when you've fully brushed the animal
 * Feeding animals incorrect treats or hitting them will cause a relationship penalty
 * Changed relationship maximum to 27,000RP
 * Animals relationship are now treated more like happiness. They are tied to the animal instead of the player. This means you'll get the larger products no matter who milks a cow for example. Just as long as they're happy.
@@ -19,6 +20,7 @@
 * Change collision of nests and feeding trays
 * Fodder will now visually show how much is in the trough rather than just full or empty
 * The way size of animal products is redesigned. It's now a random chance for larger products, with the higher relationship increasing this chance.
+* Chickens will now be invulnerable while riding a players head
 
 ###Buildings
 * Optimised building save format, should be smaller size

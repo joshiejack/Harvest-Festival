@@ -7,17 +7,16 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
 import javax.annotation.Nonnull;
-import java.util.UUID;
 
 import static joshie.harvest.core.helpers.MCServerHelper.markTileForUpdate;
 
 public class TileNest extends TileHarvest {
-    private UUID mother;
+    private int relationship;
     private ItemStack drop;
     private Size size;
 
-    public void setDrop(UUID mother, ItemStack stack) {
-        this.mother = mother;
+    public void setDrop(int mother, ItemStack stack) {
+        this.relationship = mother;
         this.drop = stack;
         this.size = HFApi.sizeable.getSize(stack);
         this.markDirty();
@@ -25,15 +24,15 @@ public class TileNest extends TileHarvest {
     }
 
     public void clear() {
-        this.mother = null;
+        this.relationship = 0;
         this.drop = null;
         this.size = null;
         this.markDirty();
         markTileForUpdate(this);
     }
 
-    public UUID getMother() {
-        return mother;
+    public int getRelationship() {
+        return relationship;
     }
 
     public ItemStack getDrop() {
@@ -47,7 +46,7 @@ public class TileNest extends TileHarvest {
     @Override
     public void readFromNBT(NBTTagCompound nbt) {
         super.readFromNBT(nbt);
-        if (nbt.hasKey("Mother")) mother = UUID.fromString(nbt.getString("Mother"));
+        if (nbt.hasKey("Relationship")) relationship = nbt.getInteger("Relationship");
         if (nbt.hasKey("Size")) size = Size.valueOf(nbt.getString("Size"));
         if (nbt.hasKey("Drop")) {
             drop = ItemStack.loadItemStackFromNBT(nbt.getCompoundTag("Drop"));
@@ -57,7 +56,7 @@ public class TileNest extends TileHarvest {
     @Override
     @Nonnull
     public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
-        if (mother != null) nbt.setString("Mother", mother.toString());
+        if (relationship != 0) nbt.setInteger("Relationship", relationship);
         if (size != null) nbt.setString("Size", size.name());
         if (drop != null) nbt.setTag("Drop", drop.writeToNBT(new NBTTagCompound()));
         return super.writeToNBT(nbt);

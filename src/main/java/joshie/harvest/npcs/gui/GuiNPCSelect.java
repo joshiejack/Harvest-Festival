@@ -129,7 +129,7 @@ public class GuiNPCSelect extends GuiNPCBase {
 
 
     @Override
-    public void onMouseClick(int mouseX, int mouseY) {
+    protected void mouseClicked(int x, int y, int mouseButton) throws IOException {
         if (isPointInRegion(242, 156, 17, 19, npcMouseX, npcMouseY)) {
             PacketGift.handleGifting(player, npc);
             PacketHandler.sendToServer(new PacketGift(npc));

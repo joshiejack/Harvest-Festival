@@ -34,7 +34,7 @@ import java.util.List;
 public class GoddessHandler {
     private static Item goddess;
 
-    public static boolean isGoddessFlower(ItemStack stack) {
+    private static boolean isGoddessFlower(ItemStack stack) {
         if (goddess == null) goddess = Item.getItemFromBlock(HFCore.FLOWERS);
         return stack.getItem() == goddess && stack.getItemDamage() == FlowerType.GODDESS.ordinal();
     }
@@ -43,7 +43,7 @@ public class GoddessHandler {
         return spawnGoddess(world, entity.posX, entity.posY, entity.posZ, flower, move);
     }
 
-    public static boolean spawnGoddess(World world, double x, double y, double z, boolean flower, boolean move) {
+    private static boolean spawnGoddess(World world, double x, double y, double z, boolean flower, boolean move) {
         List<EntityNPCGoddess> npcs = world.getEntitiesWithinAABB(EntityNPCGoddess.class, new AxisAlignedBB(x - 0.5F, y - 0.5F, z - 0.5F, x + 0.5F, y + 0.5F, z + 0.5F).expand(32D, 32D, 32D));
         boolean newGoddess = npcs.size() < 1;
         EntityNPCGoddess goddess = !newGoddess ? npcs.get(0) : NPCHelper.getEntityForNPC(world, (NPC) HFNPCs.GODDESS);
@@ -58,6 +58,7 @@ public class GoddessHandler {
 
     //Goddess flower spawns goddess
     @SubscribeEvent
+    @SuppressWarnings("ConstantConditions")
     public void onItemExpire(ItemExpireEvent event) {
         World world = event.getEntityItem().worldObj;
         if (!world.isRemote) {
@@ -76,7 +77,7 @@ public class GoddessHandler {
         }
     }
 
-    public static long lastGoddess;
+    private static long lastGoddess;
 
     //Right clicking flower pot with stick creates goddess
     @SubscribeEvent

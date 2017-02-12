@@ -49,7 +49,7 @@ public class NewYearsQuests extends QuestFestivalMultichat {
     public void onChatClosed(EntityPlayer player, NPC npc) {
         if (npc == HFNPCs.CARPENTER) rewardItem(player, HFCooking.MEAL.getCreativeStack(Meal.RICEBALLS_TOASTED, 7));
         else if (npc == HFNPCs.FLOWER_GIRL) rewardItem(player, HFCooking.MEAL.getCreativeStack(Meal.RICE_BAMBOO, 3));
-        else if (npc == HFNPCs.MAYOR) rewardGold(player, HFApi.player.getRelationsForPlayer(player).getRelationship(npc.getUUID()));
+        else if (npc == HFNPCs.MAYOR) rewardGold(player, HFApi.player.getRelationsForPlayer(player).getRelationship(npc));
         else if (npc == HFNPCs.TRADER) {
             ItemStack wine = HFCooking.INGREDIENTS.getStackFromEnum(Ingredient.WINE);
             wine.setStackDisplayName("Canard-Duchêne");

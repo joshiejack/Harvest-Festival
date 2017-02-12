@@ -1222,7 +1222,7 @@ harvestfestival.npc.yulif.greeting3=Have you seen Jim? Isn't he just?
 harvestfestival.npc.yulif.greeting4=I am tired of all this hard work, When will ya appreciate my buildings?
 harvestfestival.npc.yulif.greeting5=I am tired of wandering around, I am dying right now.
 harvestfestival.npc.yulif.greeting6=If ya get in my way, I can't build there.
-harvestfestival.npc.yulif.greeting7=I've heard my wood and stone prices are crazy, but I consider them fair.
+harvestfestival.npc.yulif.greeting7=After many complaints that my wood and stone prices were crazy I've decided to reduce the price.
 harvestfestival.npc.yulif.greeting8=How have yer been getting on %4$s?
 harvestfestival.npc.yulif.greeting9=If you ever lose me, remember yer can always recall me with a new carpenter building.
 harvestfestival.npc.yulif.greeting10=I'll have more building for ya as our town grows.
@@ -1422,15 +1422,17 @@ harvestfestival.marriage.unlocked=UNLOCKED
 ##Tutorial Quests
 #Intro
 harvestfestival.quest.tutorial.intro.title=Harvest Goddess
+harvestfestival.quest.tutorial.intro.description=Summon and talk to the Harvest Goddess.
 harvestfestival.quest.tutorial.intro.hello=Hello my dear, I'm not sure if I recognise you, have we met?
 harvestfestival.quest.tutorial.intro.question=[Is this your first time Playing?]
 harvestfestival.quest.tutorial.intro.tutorial=@Yes it is!
 harvestfestival.quest.tutorial.intro.skip=@I know what I'm doing
-harvestfestival.quest.tutorial.intro.completed=Well then I must have lost my memory! Here have some flowers, hopefully they'll make your forget this ever happened...
-harvestfestival.quest.tutorial.intro.backstory=Well then, nice to meet you. I am the Harvest Goddess. I'd like to tell you a little story. A long time ago, this land we live in was filled with a bustling village, the people there were removed from their homes by a crazy storm, and wiped out, now I hear that they want to return back home where they belong, but they need your help. Oh and just to let you know, I will poof after a while, you can always respawn me with the goddess flower. I'll leave you one everytime I leave. I think that's all I have to tell you for now, see you later!
+harvestfestival.quest.tutorial.intro.completed=Well then I must have lost my memory! Here have some flowers and a book, hopefully they'll make your forget this ever happened...
+harvestfestival.quest.tutorial.intro.backstory=Well then, nice to meet you. I am the Harvest Goddess. I'd like to tell you a little story. A long time ago, this land we live in was filled with a bustling village, the people there were removed from their homes by a crazy storm, and wiped out, now I hear that they want to return back home where they belong, but they need your help. Oh and just to let you know, I will poof after a while, you can always respawn me with the goddess flower. I'll leave you one everytime I leave. I'll also like to give you this book, I'd check the quests section if you get stuck. I think that's all I have to tell you for now, see you later!
 
 #Carpenter
 harvestfestival.quest.tutorial.carpenter.title=Carpentry
+harvestfestival.quest.tutorial.carpenter.description.info=Talk to the Goddess for more information.
 harvestfestival.quest.tutorial.carpenter.description.logs=Show Harvest Goddess %s logs.
 harvestfestival.quest.tutorial.carpenter.description.jade=Build a Carpenter.\nShow Jade a flower.
 harvestfestival.quest.tutorial.carpenter.description.goddess=Talk to the Harvest Goddess.
@@ -1451,7 +1453,7 @@ harvestfestival.quest.tutorial.carpenter.thanks.finish=Well done dear, this town
 #Crops Tutorial
 harvestfestival.quest.tutorial.crops.title=Crop Farming
 harvestfestival.quest.tutorial.crops.title.what=Mystery Gift?
-harvestfestival.quest.tutorial.crops.description.jade=Talk to Jade
+harvestfestival.quest.tutorial.crops.description.jade=Talk to Jade.
 harvestfestival.quest.tutorial.crops.description.turnips=Grow nine Hardy Turnips.\nShow them to Jade.
 harvestfestival.quest.tutorial.crops.intro=Hey! As promised I have something to tell you about! Crop Farming. Has anyone ever taught you before?
 harvestfestival.quest.tutorial.crops.question=Do you know how to farm crops?
@@ -1467,6 +1469,10 @@ harvestfestival.quest.tutorial.crops.complete=Wow you have done a fantastic job 
 
 #Chicken Care
 harvestfestival.quest.tutorial.chicken.title=Foxie's Fowls
+harvestfestival.quest.tutorial.chicken.description.talk=Talk to Ashlee.
+harvestfestival.quest.tutorial.chicken.description.build=Build the Poultry Farm.
+harvestfestival.quest.tutorial.chicken.description.throw=Throw and feed a chicken.
+harvestfestival.quest.tutorial.chicken.description.egg=Show Ashlee a small egg.
 harvestfestival.quest.tutorial.chicken.reminder.talk=Sweety it looks you’ve had a Poultry Farm built. You should go and talk to Ashlee.
 harvestfestival.quest.tutorial.chicken.reminder.poultry=Hey my dear, don’t forget you’re going to want a Poultry Farm.
 harvestfestival.quest.tutorial.chicken.start=I love this place. Isn’t it wonderful, Mr Fox? I hope I get to stay here for longer. Oh, hello! Sorry I didn’t see you there, I was just ehhh. Nevermind. Anyway, welcome to my Poultry Farm! My name is Ashlee.
@@ -1482,6 +1488,10 @@ harvestfestival.quest.tutorial.chicken.complete=For your hard work, I’m happy 
 
 #Cow Care
 harvestfestival.quest.tutorial.cow.title=Daisy Duke
+harvestfestival.quest.tutorial.cow.description.talk=Talk to Jim.
+harvestfestival.quest.tutorial.cow.description.build=Build the Animal Ranch.
+harvestfestival.quest.tutorial.cow.description.talk=Brush and feed a cow..
+harvestfestival.quest.tutorial.cow.description.milk=Show Jim a small milk.
 harvestfestival.quest.tutorial.cow.reminder.intro=Looks like yer got the Animal Ranch built ya should go and talk to Jim.
 harvestfestival.quest.tutorial.cow.reminder.barn=I reckon yer should get an Animal Ranch built, so yer can learn about cows and sheep.
 harvestfestival.quest.tutorial.cow.start=I’m quite glad that you’ve invited me here. I’m Jim by the way, I run the Animal Ranch. As a thanks, I have a spare cow for you.
@@ -1497,14 +1507,16 @@ harvestfestival.quest.tutorial.cow.complete=You’ve done a fine job there. I ha
 
 #General Store Introduction
 harvestfestival.quest.tutorial.supermarket.title=Supermarket Sweep
-harvestfestival.quest.tutorial.supermarket.description.build=Build a General Store
-harvestfestival.quest.tutorial.supermarket.description.visit=Introduce yourself to Jenni
+harvestfestival.quest.tutorial.supermarket.description.build=Build a General Store.
+harvestfestival.quest.tutorial.supermarket.description.visit=Introduce yourself to Jenni.
 harvestfestival.quest.tutorial.supermarket.reminder.talk=You should probably go and talk to Candice or Jenni, now that you have the General Store built.
 harvestfestival.quest.tutorial.supermarket.reminder.supermarket=Just a friendly reminder, if you want more seeds, go and get a General Store built!
 harvestfestival.quest.tutorial.supermarket.welcome.owner=Hey, I’m the owner of this here General Store. It’s nice to move to town. I sell all kinds of wares from seeds to chocolate. If you need anything just ask me. Opening hours are Weekdays, 09:00-17:00, well except for Wednesday and Sunday when we’re closed. We’re also open for 4 hours on a Saturday from 11:00 to 15:00. It looks like you’re our first customer too, so here’s a reward!
 
 #Cafe Cooking Lesson
 harvestfestival.quest.tutorial.cafe.title=Big Chef, Little Chef
+harvestfestival.quest.tutorial.cafe.description=Converse with Liara.
+harvestfestival.quest.tutorial.cafe.build=Build the Cafe.
 harvestfestival.quest.tutorial.cafe.welcome=Welcome to my Cafe. I am Liara the owner. Here we show a true passion for cooking and bring you the best food you can find. I’m happy to teach you how to cook if you don’t know how.
 harvestfestival.quest.tutorial.cafe.question=Do you need to learn how to cook?
 harvestfestival.quest.tutorial.cafe.tutorial=@I do indeed
@@ -1527,6 +1539,7 @@ harvestfestival.quest.tutorial.mining.completed=Good for you. Take this hammer a
 #Upgrading Tools Tutorial
 harvestfestival.quest.tutorial.upgrading.title=Tinker's Construct
 harvestfestival.quest.tutorial.upgrading.description.build=Build a Blacksmith
+harvestfestival.quest.tutorial.upgrading.description.talk=Talk to Danieru
 harvestfestival.quest.tutorial.upgrading.reminder.blacksmith.yulif=Ya should probably go and see the Blacksmith.
 harvestfestival.quest.tutorial.upgrading.reminder.blacksmith.goddess=Hey sweety, I hear the Blacksmith wants to see you.
 harvestfestival.quest.tutorial.upgrading.reminder.blacksmith.jim=Danieru told me he was interested in seeing you.
@@ -1676,15 +1689,41 @@ harvestfestival.quest.friendship.fenn.plants.text=Guess what!!!! I went foraging
 harvestfestival.quest.tomas.cheaper.text=You've become a wonderful human towards me. For your sanctity I am now happy to grace you with a much cheaper price for a blessing.
 
 ## Meeting Quests
+harvestfestival.quest.meeting.jacob.title=Finding Jakob
+harvestfestival.quest.meeting.jacob.build=Build the Tackle Shop.
 harvestfestival.quest.meeting.jacob.text=Nice to meet you %4$s, the name's jacob. From what I've heard you're interested in fishing, you know, I've just recently bought myself a new rod, I'd like you to have my old one here, please take care of her. I run this tackle shop, if you need anything please do pop by.
+harvestfestival.quest.meeting.jacob.description=Converse with newbie Jakob.
+harvestfestival.quest.meeting.katlin.title=Granny's Goods
 harvestfestival.quest.meeting.katlin.text=Good day youngun. I'm Katlin but you can call me granny if you like. I help out my granddaughter Liara, mostly in the kitchen. I must thank you for letting her open shop up here, it's been her life long dream. I have some spare change, it isn't much but please do take it.
+harvestfestival.quest.meeting.katlin.description=Have first conversation with Granny Katlin.
+harvestfestival.quest.meeting.johan.title=Johan'nesburg
+harvestfestival.quest.meeting.johan.build=Build the Festival Grounds.
 harvestfestival.quest.meeting.johan.text=Good day. It is such a pleasure to meet you. The name is Johan. I'm normally here throughout the day but I travel back to my homeland at night. To let you know that if you ever need a bucket of milk, block of wool or some brown eggs, I'll happily trade for bottles of milk, plain wool or white eggs. I will see you around.
+harvestfestival.quest.meeting.johan.description=Meet Johan.
+harvestfestival.quest.meeting.abi.title=Little Foot
 harvestfestival.quest.meeting.abi.text=HELLLO BIG PERSON! I'm Abii!!!!! Never seen you before :D
+harvestfestival.quest.meeting.abi.description=Say hello to Abii.
+harvestfestival.quest.meeting.candice.title=Creepy Candice
 harvestfestival.quest.meeting.candice.text=I will surely find myself someone. Well hello there aren’t you just the cutest. I’m Candice. Jenni downstairs is the owner here, I’m just a tenant. Nice to meet you! I'd love for you to have one of my favourite drinks!
+harvestfestival.quest.meeting.candice.description=Introduce yourself to Candice.
+harvestfestival.quest.meeting.fenn.title=Pokefenn
 harvestfestival.quest.meeting.fenn.text=Oooo hello there! Fenn's the name, vines are the game.
+harvestfestival.quest.meeting.fenn.description=Welcome Fenn to town.
+harvestfestival.quest.meeting.tiberius.title=Way too much time
+harvestfestival.quest.meeting.tiberius.build=Build the Clockmaker.
 harvestfestival.quest.meeting.tiberius.text=Hello, I feel grateful for your invite here. Maybe one day if we become friends I'll let you in on a secret of mine. For now, please take this clock as it may help you one day.
+harvestfestival.quest.meeting.tiberius.description=Visit Tiberius for the first time.
+harvestfestival.quest.meeting.cloe.title=Calamity Cloe
 harvestfestival.quest.meeting.cloe.text=Nice to meet you, I'm Cloe. I don't really have much else to say, but thanks for inviting us all here.
+harvestfestival.quest.meeting.cloe.description=Have your first conversation with Cloe.
+harvestfestival.quest.meeting.tomas.title=Notre Dame
+harvestfestival.quest.meeting.tomas.build=Build the Church.
 harvestfestival.quest.meeting.tomas.text=I am Tomas. With my powers as priest I am able to bless anything you may find that has become cursed, for a small fee. Thank you very inviting my congregation to your town.
+harvestfestival.quest.meeting.tomas.description=Have the Priest introduce himself.
+harvestfestival.quest.meeting.jeimmi.title=Mad Mayor
+harvestfestival.quest.meeting.jeimmi.build=Build the Townhall.
+harvestfestival.quest.meeting.jeimmi.text=All this time, you thought you were mayor. Well that's just hilarious. This town has been mine since the beginning, I will let noone else take it. Your Mayor Jeimmi. Why should I bother thanking you.
+harvestfestival.quest.meeting.jeimmi.description=Say hello to Mayor Jeimmi!
 
 ## Seed Quests
 harvestfestival.quest.seeds.cabbage.complete=Wow it looks like you've shipped 1000 spring crops! That's amazing. I have some good news too, we've recently found someone who will be happy to supply the store with cabbage seeds. So make sure to check the store the next time you visit!
@@ -1693,6 +1732,9 @@ harvestfestival.quest.seeds.greenpepper.complete=I can't believe my eyes, you've
 harvestfestival.quest.seeds.progress.complete=This town has really been growing, It's been a pleasure helping you achieve that. With that comes some wonderful news, I'm now able to stock beetroots in autumn, and melons in the summer seasons. Thanks again for your hard work.
 
 #Building the Goddess a Home
+harvestfestival.quest.building.goddess.title=Grateful Goddess
+harvestfestival.quest.building.goddess.build=Build the Goddess Pond.
+harvestfestival.quest.building.goddess.description=Talk to the Harvest Goddess.
 harvestfestival.quest.building.goddess.please=You’ve done a remarkable job of bringing this town back together. I’m really happy to see it growing! I’d just love a permanent home here too. If you can build me one, then I have a reward for you.
 harvestfestival.quest.building.goddess.thanks=Your hard work getting this town back on its feet couldn’t be more appreciated. I couldn’t be more grateful for the home you have built me here either. To show my appreciation I’d like to give you a few strawberries and a small bonus to your funds!
 

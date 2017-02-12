@@ -9,6 +9,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
+import javax.annotation.Nonnull;
 import java.util.List;
 import java.util.Random;
 
@@ -37,12 +38,12 @@ public class PurchasableRandomMeal extends PurchasableMeal {
     }
 
     @Override
-    public boolean canList(World world, EntityPlayer player) {
+    public boolean canList(@Nonnull World world, @Nonnull EntityPlayer player) {
         return HFApi.quests.hasCompleted(Quests.SELL_ORES, player) && canDo(world, player, 1);
     }
 
     @Override
-    public boolean canDo(World world, EntityPlayer player, int amount) {
+    public boolean canDo(@Nonnull World world, @Nonnull EntityPlayer player, int amount) {
         Random rand = new Random(HFApi.calendar.getDate(world).hashCode() + seedAdjustment);
         List<Recipe> list = Recipe.REGISTRY.getValues();
         stack = null; //Reset the stack

@@ -3,7 +3,6 @@ package joshie.harvest.buildings;
 import joshie.harvest.api.buildings.Building;
 import joshie.harvest.buildings.placeable.Placeable;
 import joshie.harvest.buildings.placeable.Placeable.ConstructionStage;
-import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.util.Direction;
 import joshie.harvest.core.util.HFTemplate;
 import joshie.harvest.core.util.interfaces.INBTWriteable;
@@ -22,7 +21,6 @@ public class BuildingStage implements INBTWriteable {
     private HFTemplate template;
     public Rotation rotation;
     public ConstructionStage stage;
-    private boolean basement;
     private int index;
     public BlockPos pos;
 
@@ -33,7 +31,6 @@ public class BuildingStage implements INBTWriteable {
         this.rotation = rotation;
         this.stage = ConstructionStage.BUILD;
         this.index = 0;
-        this.basement = true;
         this.pos = pos.add(0, building.getOffsetY(), 0);
         //HFBuildings.loadBuilding(building);
     }
@@ -81,7 +78,6 @@ public class BuildingStage implements INBTWriteable {
                 stage = ConstructionStage.FINISHED;
                 index = 0;
 
-                basement = true;
                 TownDataServer data = TownHelper.getClosestTownToBlockPos(world, pos);
                 data.addBuilding(world, building, rotation, pos);
                 data.syncBuildings(world);
@@ -89,16 +85,6 @@ public class BuildingStage implements INBTWriteable {
             }
 
             TownHelper.<TownDataServer>getClosestTownToBlockPos(world, pos).syncBuildings(world);
-        }
-
-        //Resync when we change
-        if (basement) {
-            Placeable placeable = next();
-            if (placeable.getOffsetPos().getY() >= -getBuilding().getOffsetY()) {
-                basement = false;
-                HFTrackers.markDirty(world);
-                TownHelper.<TownDataServer>getClosestTownToBlockPos(world, pos).syncBuildings(world);
-            }
         }
 
         return true;
@@ -127,10 +113,6 @@ public class BuildingStage implements INBTWriteable {
         return stage == ConstructionStage.FINISHED;
     }
 
-    public boolean isWorkingOnBasement() {
-        return basement;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -144,6 +126,7 @@ public class BuildingStage implements INBTWriteable {
         return building != null ? building.hashCode() : 0;
     }
 
+    @SuppressWarnings("deprecation")
     public static BuildingStage readFromNBT(NBTTagCompound nbt) {
         BuildingStage stage = new BuildingStage();
         stage.building = Building.REGISTRY.getValue(new ResourceLocation(nbt.getString("CurrentlyBuilding")));
@@ -155,7 +138,6 @@ public class BuildingStage implements INBTWriteable {
         } else stage.rotation = Rotation.valueOf(nbt.getString("Rotation"));
 
         stage.pos = new BlockPos(nbt.getInteger("BuildingX"), nbt.getInteger("BuildingY"), nbt.getInteger("BuildingZ"));
-        stage.basement = nbt.getBoolean("Basement");
 
         if (nbt.hasKey("Stage")) {
             stage.index = nbt.getInteger("Index");
@@ -172,7 +154,6 @@ public class BuildingStage implements INBTWriteable {
         nbt.setInteger("BuildingX", pos.getX());
         nbt.setInteger("BuildingY", pos.getY());
         nbt.setInteger("BuildingZ", pos.getZ());
-        nbt.setBoolean("Basement", basement);
 
         if (stage != null) {
             nbt.setInteger("Stage", stage.ordinal());

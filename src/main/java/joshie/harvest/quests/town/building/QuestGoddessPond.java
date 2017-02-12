@@ -12,6 +12,8 @@ import joshie.harvest.town.TownHelper;
 import joshie.harvest.town.data.TownData;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 
 import java.util.Set;
 
@@ -20,6 +22,8 @@ import static joshie.harvest.quests.Quests.BUILDING_CARPENTER;
 
 @HFQuest("building.goddess")
 public class QuestGoddessPond extends QuestTown {
+    private static final ItemStack BUILDING = HFBuildings.GODDESS_POND.getSpawner();
+
     public QuestGoddessPond() {
         setNPCs(GODDESS);
     }
@@ -27,6 +31,18 @@ public class QuestGoddessPond extends QuestTown {
     @Override
     public boolean canStartQuest(Set<Quest> active, Set<Quest> finished) {
         return finished.contains(BUILDING_CARPENTER);
+    }
+
+    @Override
+    public String getDescription(World world, EntityPlayer player) {
+        if (HFBuildings.GODDESS_POND.getRules().canDo(world, player, 1)) {
+            return TownHelper.getClosestTownToEntity(player).hasBuilding(HFBuildings.GODDESS_POND) ? getLocalized("description") : getLocalized("build");
+        } else return null;
+    }
+
+    @Override
+    public ItemStack getCurrentIcon(World world, EntityPlayer player) {
+        return TownHelper.getClosestTownToEntity(player).hasBuilding(HFBuildings.GODDESS_POND) ? primary : BUILDING;
     }
 
     @Override
@@ -38,7 +54,7 @@ public class QuestGoddessPond extends QuestTown {
 
     @Override
     public String getLocalizedScript(EntityPlayer player, EntityLiving entity, NPC npc) {
-        return TownHelper.getClosestTownToEntity(player).getBuildings().size() >= 5 ? getLocalized("please") : getLocalized("thanks");
+        return TownHelper.getClosestTownToEntity(player).getBuildings().size() >= 5 ? getLocalized("thanks") : getLocalized("please");
     }
 
     @Override
@@ -50,7 +66,7 @@ public class QuestGoddessPond extends QuestTown {
 
     @Override
     public void onQuestCompleted(EntityPlayer player) {
-        HFApi.player.getRelationsForPlayer(player).affectRelationship(HFNPCs.GODDESS.getUUID(), 1000);
+        HFApi.player.getRelationsForPlayer(player).affectRelationship(HFNPCs.GODDESS, 1000);
         rewardItem(player, HFCrops.STRAWBERRY.getCropStack(10));
         rewardGold(player, 5000);
     }

@@ -111,7 +111,7 @@ public class QuestSlay extends QuestDaily {
 
     @Override
     public void onQuestCompleted(EntityPlayer player) {
-        HFApi.player.getRelationsForPlayer(player).affectRelationship(HFNPCs.MINER.getUUID(), 500);
+        HFApi.player.getRelationsForPlayer(player).affectRelationship(HFNPCs.MINER, 500);
         rewardGold(player, 1000L * targetAmount);
     }
 

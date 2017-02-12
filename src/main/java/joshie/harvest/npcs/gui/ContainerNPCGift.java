@@ -25,7 +25,7 @@ public class ContainerNPCGift extends ContainerNPCChat {
     @Override
     public void onContainerClosed(EntityPlayer player) {
         if (!player.worldObj.isRemote) {
-            if (HFTrackers.getPlayerTrackerFromPlayer(player).getRelationships().gift(player, npc.getNPC().getUUID(), 0)) {
+            if (HFTrackers.getPlayerTrackerFromPlayer(player).getRelationships().gift(player, npc.getNPC(), 0)) {
                 ItemStack gift = player.getHeldItem(hand);
                 if (gift == null || NPCHelper.INSTANCE.getGifts().isBlacklisted(gift)) return;
 
@@ -36,15 +36,15 @@ public class ContainerNPCGift extends ContainerNPCChat {
                     relationships.propose(player, theNpc.getUUID());
                 } else { */
                     int points = theNpc.getGiftValue(gift).getRelationPoints();
-                    if (!relationships.hasGivenBirthdayGift(theNpc.getUUID())) {
+                    if (!relationships.hasGivenBirthdayGift(theNpc)) {
                         CalendarDate today = HFApi.calendar.getDate(player.worldObj);
                         if (theNpc.getBirthday().isSameDay(today)) {
-                            relationships.setHasGivenBirthdayGift(theNpc.getUUID());
+                            relationships.setHasGivenBirthdayGift(theNpc);
                             points *= 5;
                         }
                     }
 
-                    relationships.gift(player, theNpc.getUUID(), points);
+                    relationships.gift(player, theNpc, points);
                 //}
 
                 gift.splitStack(1);

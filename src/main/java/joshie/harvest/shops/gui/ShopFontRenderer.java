@@ -2,7 +2,7 @@ package joshie.harvest.shops.gui;
 
 import gnu.trove.set.TCharSet;
 import gnu.trove.set.hash.TCharHashSet;
-import joshie.harvest.npcs.gui.GuiNPCBase;
+import joshie.harvest.core.base.gui.GuiBase;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.GlStateManager;
@@ -36,7 +36,7 @@ public class ShopFontRenderer {
         });
     }
 
-    private static boolean renderAsVanilla(GuiNPCBase gui, String text, int x, int y) {
+    private static boolean renderAsVanilla(GuiBase gui, String text, int x, int y) {
         GlStateManager.pushMatrix();
         float scale = 1.5F;
         GlStateManager.scale(scale, scale, scale);
@@ -55,7 +55,7 @@ public class ShopFontRenderer {
         return true;
     }
 
-    public static boolean render(GuiNPCBase gui, int x, int y, String text, boolean rightAligned) {
+    public static boolean render(GuiBase gui, int x, int y, String text, boolean rightAligned) {
         char[] characters = text.toCharArray();
         if (!ACCEPTED.containsAll(characters)) return renderAsVanilla(gui, text, x, y);
         if (rightAligned) {

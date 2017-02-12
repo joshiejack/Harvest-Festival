@@ -3,6 +3,7 @@ package joshie.harvest.core.base.gui;
 import joshie.harvest.core.helpers.MCClientHelper;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.npcs.gui.ContainerNPCChat;
+import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
@@ -41,9 +42,12 @@ public abstract class GuiBase extends GuiScreen {
         name = "";
     }
 
+    public FontRenderer getFont() {
+        return fontRendererObj;
+    }
+
     @Override
     public void initGui() {
-        super.initGui();
         mc.thePlayer.openContainer = container;
         guiLeft = (width - xSize) / 2;
         guiTop = (height - ySize) / 2;

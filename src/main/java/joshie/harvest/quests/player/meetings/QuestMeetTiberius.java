@@ -24,6 +24,11 @@ public class QuestMeetTiberius extends QuestMeeting {
     }
 
     @Override
+    public ItemStack getCurrentIcon(World world, EntityPlayer player) {
+        return hasBuilding(player) ? primary : buildingStack;
+    }
+
+    @Override
     public void onQuestCompleted(EntityPlayer player) {
         rewardItem(player, new ItemStack(Items.CLOCK));
     }

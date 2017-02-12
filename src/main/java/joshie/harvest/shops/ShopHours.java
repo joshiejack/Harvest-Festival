@@ -13,7 +13,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 public class ShopHours implements OpeningHandler {
     private final HashMultimap<Weekday, OpeningHours> open = HashMultimap.create();
@@ -32,14 +32,13 @@ public class ShopHours implements OpeningHandler {
 
     @Override
     @SuppressWarnings("unchecked")
-    public boolean isOpen(World world, EntityAgeable npc, @Nonnull EntityPlayer player, Shop shop) {
+    public boolean isOpen(World world, EntityAgeable npc, @Nullable EntityPlayer player, Shop shop) {
         Festival festival = HFApi.calendar.getFestival(world, new BlockPos(npc));
         if (!opensOnHolidays && !festival.doShopsOpen() && festival != Festival.NONE) return false;
         Weekday day = HFApi.calendar.getDate(world).getWeekday();
         for (OpeningHours hours: open.get(day)) {
-            boolean isOpen = CalendarHelper.isBetween(world, hours.open, hours.close) &&
-                    (hours.rules == null || hours.rules.canDo(world, player, 0));
-            if (isOpen && (player == null || shop.getPurchasableIDs().size() > 0)) return true;
+            boolean isOpen = CalendarHelper.isBetween(world, hours.open, hours.close) && (player == null || hours.rules == null || hours.rules.canDo(world, player, 0));
+            if (isOpen && (shop.getPurchasableIDs().size() > 0)) return true;
         }
 
         return false;

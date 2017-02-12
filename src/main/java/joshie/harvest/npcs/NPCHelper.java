@@ -119,7 +119,7 @@ public class NPCHelper implements INPCHelper {
     }
 
     @SuppressWarnings("unchecked")
-    public static boolean isShopOpen(World world, EntityAgeable npc, @Nonnull EntityPlayer player, Shop shop) {
+    public static boolean isShopOpen(World world, EntityAgeable npc, @Nullable EntityPlayer player, Shop shop) {
         return HFShops.TWENTY_FOUR_HOUR_SHOPPING || shop.getOpeningHandler().isOpen(world, npc, player, shop);
     }
 

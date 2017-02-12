@@ -27,7 +27,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class GuiNPCShop<I extends IPurchasable> extends GuiNPCBase {
+public class GuiNPCShop extends GuiNPCBase {
     static final ResourceLocation SHOP_BACKGROUND = new ResourceLocation(HFModInfo.MODID, "textures/gui/shop.png");
     public static final ResourceLocation SHOP_EXTRA = new ResourceLocation(HFModInfo.MODID, "textures/gui/shop_extra.png");
     private final List<IPurchasable> contents = new ArrayList<>();
@@ -43,7 +43,7 @@ public class GuiNPCShop<I extends IPurchasable> extends GuiNPCBase {
         super(player, npc, nextGui);
         client = player;
         shop = npc.getNPC().getShop(player.worldObj, pos);
-        if (shop == null || !NPCHelper.isShopOpen(npc.worldObj, npc, null, npc.getNPC().getShop(npc.worldObj, pos))) player.closeScreen();
+        if (shop == null || !NPCHelper.isShopOpen(npc.worldObj, npc, player, npc.getNPC().getShop(npc.worldObj, pos))) player.closeScreen();
         stats = HFTrackers.getClientPlayerTracker().getStats();
         selling = isSelling;
     }
@@ -82,8 +82,9 @@ public class GuiNPCShop<I extends IPurchasable> extends GuiNPCBase {
     @SuppressWarnings("all")
     public void reload() {
         contents.clear();
+        ShopData data = TownHelper.getClosestTownToEntity(MCClientHelper.getPlayer()).getShops();
         for (IPurchasable purchasable: shop.getContents()) {
-            if (isAllowedInShop(purchasable) && purchasable.canList(client.worldObj, client)) {
+            if (isAllowedInShop(purchasable) && purchasable.canList(client.worldObj, client) && data.canList(shop, purchasable)) {
                 contents.add(purchasable);
             }
         }
@@ -109,9 +110,8 @@ public class GuiNPCShop<I extends IPurchasable> extends GuiNPCBase {
     }
 
     @Override
-    protected void onMouseClick(int mouseX, int mouseY) {
-        super.onMouseClick(mouseX, mouseY);
-        //TODO: Call this when i am able to, also please
+    protected void mouseClicked(int x, int y, int mouseButton) throws IOException {
+        super.mouseClicked(x, y, mouseButton);
         if (selectedButton == null) {
             updatePurchased(null, 0);
         }
@@ -185,7 +185,7 @@ public class GuiNPCShop<I extends IPurchasable> extends GuiNPCBase {
 
     private void drawResizableBackground(int x, int y) {
         mc.renderEngine.bindTexture(SHOP_BACKGROUND);
-        if (buttonList.size() < 10) {
+        if (buttonList.size() < 12) {
             drawTexturedModalRect(x, y - 12 + (20 * (buttonList.size())), 0, 228, xSize, 28);
             drawTexturedModalRect(x, y, 0, 0, xSize, (20 * (buttonList.size())) - 2);
 

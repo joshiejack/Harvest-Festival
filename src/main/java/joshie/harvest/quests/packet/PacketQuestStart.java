@@ -49,7 +49,5 @@ public class PacketQuestStart extends PacketSyncData {
             player.openGui(HarvestFestival.instance, GuiHandler.QUEST_BOARD, player.worldObj, pos.getX(), pos.getY(), pos.getZ());
             MCServerHelper.markTileForUpdate(player.worldObj, pos);
         }
-
-        town.generateNewDailyQuest(player.worldObj);
     }
 }

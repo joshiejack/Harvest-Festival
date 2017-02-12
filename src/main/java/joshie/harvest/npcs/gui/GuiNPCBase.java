@@ -13,7 +13,6 @@ import joshie.harvest.npcs.entity.EntityNPC;
 import joshie.harvest.npcs.packet.PacketGift;
 import joshie.harvest.npcs.packet.PacketInfo;
 import joshie.harvest.quests.QuestHelper;
-import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.entity.player.EntityPlayer;
@@ -26,6 +25,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.config.GuiUtils;
 
 import javax.annotation.Nonnull;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -59,10 +59,6 @@ public abstract class GuiNPCBase extends GuiBase {
     @Override
     public boolean doesGuiPauseGame() {
         return false;
-    }
-
-    public FontRenderer getFont() {
-        return fontRendererObj;
     }
 
     @Override
@@ -165,7 +161,9 @@ public abstract class GuiNPCBase extends GuiBase {
     }
 
     //Perform the mouse clicks
-    protected void onMouseClick(int mouseX, int mouseY) {
+    @Override
+    protected void mouseClicked(int x, int y, int mouseButton) throws IOException {
+        super.mouseClicked(x, y, mouseButton);
         if (isChat()) {
             if ((npc.getNPC() == HFNPCs.GODDESS || isHoldingItem()) && hoveringGift()) {
                 PacketGift.handleGifting(player, npc);
@@ -195,8 +193,7 @@ public abstract class GuiNPCBase extends GuiBase {
     public abstract void drawOverlay(int x, int y);
 
     @Override
-    public void drawDefaultBackground() {
-    }
+    public void drawDefaultBackground() {}
 
     public String getScript() {
         return "missing chat";
@@ -204,6 +201,13 @@ public abstract class GuiNPCBase extends GuiBase {
 
     public void endChat() {
         mc.thePlayer.closeScreen();
+    }
+
+    @Override
+    protected void keyTyped(char typedChar, int keyCode) throws IOException {
+        if (keyCode == 1 || this.mc.gameSettings.keyBindInventory.isActiveAndMatches(keyCode)) {
+            endChat();
+        }
     }
 
     //Tooltip

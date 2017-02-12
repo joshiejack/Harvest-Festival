@@ -1078,7 +1078,7 @@ harvestfestival.npc.tiberius.festival.new.years1=With each passing year, that wi
 harvestfestival.npc.tiberius.festival.new.years2= Its difficult to get Fenn to go to bed before the New Year.
 
 #Jakob
-harvestfestival.npc.jacob.shop=If you're after some fishing gear, we're open Wednesday through Friday from one in the afternoon to seven in the evening.
+harvestfestival.npc.jacob.shop=If you're after some fishing gear, we're open Tuesday through Friday from one in the afternoon to seven in the evening.
 harvestfestival.npc.jacob.greeting1=Fishing is my game, Jacob is my name.
 harvestfestival.npc.jacob.greeting2=One day I will catch the elusive clownfish, I promise you!
 harvestfestival.npc.jacob.greeting3=There's nothing like just sitting and waiting for a fish to bite, so relaxing.
@@ -1581,6 +1581,7 @@ harvestfestival.quest.trade.vanilla.wool=Your wool is so fine, it will make grea
 
 # Blacksmith Upgrades
 harvestfestival.quest.trade.upgrade.closed.start=I'm afraid I can only work on your tools during business hours.
+harvestfestival.quest.trade.upgrade.closed.finish=I finished working on your %s. It's my time off but it's no work to hand it back to you.w
 harvestfestival.quest.trade.upgrade.level=Your tool is not at 100%%! Please come back when it is.
 harvestfestival.quest.trade.upgrade.gold=To upgrade this tool it will cost you %s, please come back when you have enough.
 harvestfestival.quest.trade.upgrade.material=To upgrade this tool I’m going to need %1s %2s.
@@ -1740,7 +1741,7 @@ harvestfestival.quest.building.goddess.thanks=Your hard work getting this town b
 
 ##Schedule Quests
 #Sunday Baking!
-harvestfestival.schedule.katlin.baking.cake=Youngun today is a graceful day, I've been hard at work baking, so I'd like for you to have some of my baked goods.
+harvestfestival.quest.schedule.katlin.baking.cake=Youngun today is a graceful day, I've been hard at work baking, so I'd like for you to have some of my baked goods.
 
 ## Help Wanted Quests
 #Crop Collecting

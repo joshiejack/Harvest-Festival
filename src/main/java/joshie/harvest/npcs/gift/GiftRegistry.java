@@ -5,9 +5,7 @@ import joshie.harvest.api.npc.gift.IGiftRegistry;
 import joshie.harvest.core.base.item.ItemTool;
 import joshie.harvest.core.util.holders.HolderRegistry;
 import joshie.harvest.core.util.holders.HolderRegistrySet;
-import net.minecraft.item.ItemArmor;
-import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.*;
 
 public class GiftRegistry implements IGiftRegistry {
     private final HolderRegistrySet blacklist = new HolderRegistrySet();
@@ -32,7 +30,9 @@ public class GiftRegistry implements IGiftRegistry {
         if (registry.getValueOf(stack) == null &&
                 (stack.getItem() instanceof ItemBlock ||
                  stack.getItem() instanceof ItemTool ||
-                 stack.getItem() instanceof ItemArmor)) {
+                 stack.getItem() instanceof ItemArmor ||
+                 stack.getItem() instanceof ItemSword ||
+                 stack.getItem() instanceof net.minecraft.item.ItemTool)) {
 
             return true;
         }

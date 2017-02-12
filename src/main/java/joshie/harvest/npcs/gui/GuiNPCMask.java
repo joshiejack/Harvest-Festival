@@ -5,6 +5,8 @@ import joshie.harvest.api.npc.greeting.Script;
 import joshie.harvest.npcs.entity.EntityNPC;
 import net.minecraft.entity.player.EntityPlayer;
 
+import java.io.IOException;
+
 public class GuiNPCMask extends GuiNPCChat {
     private final Script script;
     private NPC posingAs;
@@ -26,8 +28,9 @@ public class GuiNPCMask extends GuiNPCChat {
     protected void drawTabs(int x, int y) {}
 
     @Override
-    protected void onMouseClick(int mouseX, int mouseY) {
-        nextChat();
+    protected void mouseClicked(int x, int y, int mouseButton) throws IOException {
+        if (mouseButton == 0) nextChat();
+        else if (mouseButton == 1) previousChat();
     }
 
     @Override

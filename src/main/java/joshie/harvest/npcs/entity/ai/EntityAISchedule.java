@@ -57,7 +57,7 @@ public class EntityAISchedule extends EntityAIBase {
                 if (scheduleTimer % 100 == 0) {
                     Path path = npc.getNavigator().getPathToPos(blockTarget);
                     if (path == null) {
-                        Vec3d vec = RandomPositionGenerator.findRandomTargetBlockTowards(npc, 32, 5, new Vec3d((double) blockTarget.getX() + 0.5D, (double) blockTarget.getY() + 1D, (double) blockTarget.getZ() + 0.5D));
+                        Vec3d vec = RandomPositionGenerator.findRandomTargetBlockTowards(npc, 10, 7, new Vec3d((double) blockTarget.getX() + 0.5D, (double) blockTarget.getY() + 1D, (double) blockTarget.getZ() + 0.5D));
                         if (vec != null) {
                             path = npc.getNavigator().getPathToPos(new BlockPos(vec));
                         }

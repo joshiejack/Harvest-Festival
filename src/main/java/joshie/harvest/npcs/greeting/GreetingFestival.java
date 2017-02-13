@@ -25,7 +25,7 @@ public class GreetingFestival implements IConditionalGreeting {
 
     @Override
     public double getDisplayChance() {
-        return 60D;
+        return 40D;
     }
 
     @Override

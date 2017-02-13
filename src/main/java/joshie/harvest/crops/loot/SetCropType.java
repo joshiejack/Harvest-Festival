@@ -10,6 +10,7 @@ import net.minecraft.world.storage.loot.LootContext;
 import net.minecraft.world.storage.loot.conditions.LootCondition;
 import net.minecraft.world.storage.loot.functions.LootFunction;
 
+import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -22,19 +23,20 @@ public class SetCropType extends LootFunction {
     private static List<Crop> cropsList;
     private final String crop;
 
+    @SuppressWarnings("WeakerAccess")
     public SetCropType(LootCondition[] conditionsIn, String crop) {
         super(conditionsIn);
         this.crop = crop;
     }
 
     @Override
-    public ItemStack apply(ItemStack stack, Random rand, LootContext context) {
+    @Nonnull
+    public ItemStack apply(@Nonnull ItemStack stack, @Nonnull Random rand, @Nonnull LootContext context) {
         if (crop.equals("randomCrop")) return random(true);
         if (crop.equals("randomSeed")) return random(false);
         ResourceLocation resource = crop.contains(":") ? new ResourceLocation(crop) : new ResourceLocation(MODID, crop);
         Crop theCrop = Crop.REGISTRY.getValue(resource);
-        stack.setItemDamage(Crop.REGISTRY.getValues().indexOf(theCrop));
-        return stack;
+        return theCrop.getCropStack(stack.stackSize);
     }
 
     public ItemStack random(boolean crop) {
@@ -52,11 +54,12 @@ public class SetCropType extends LootFunction {
             super(new ResourceLocation("hf_set_crop"), SetCropType.class);
         }
 
-        public void serialize(JsonObject object, SetCropType functionClazz, JsonSerializationContext serializationContext) {
+        public void serialize(@Nonnull JsonObject object, @Nonnull SetCropType functionClazz, @Nonnull JsonSerializationContext serializationContext) {
             object.addProperty("crop", functionClazz.crop);
         }
 
-        public SetCropType deserialize(JsonObject object, JsonDeserializationContext deserializationContext, LootCondition[] conditionsIn) {
+        @Nonnull
+        public SetCropType deserialize(@Nonnull JsonObject object, @Nonnull JsonDeserializationContext deserializationContext, @Nonnull LootCondition[] conditionsIn) {
             return new SetCropType(conditionsIn, object.get("crop").getAsString());
         }
     }

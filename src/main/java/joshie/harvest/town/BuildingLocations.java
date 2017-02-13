@@ -87,7 +87,7 @@ public class BuildingLocations {
     public static final BuildingLocation PARK_OAK = new BuildingLocation(HFFestivals.FESTIVAL_GROUNDS, "park.oak").withDistance(5D);
     public static final BuildingLocation PARK_SPRUCE = new BuildingLocation(HFFestivals.FESTIVAL_GROUNDS, "park.spruce").withDistance(5D);
     public static final BuildingLocation PARK_BOTTOM = new BuildingLocation(HFFestivals.FESTIVAL_GROUNDS, "park.bottom").withDistance(5D);
-    public static final BuildingLocation PARK_TRADER = new BuildingLocation(HFFestivals.FESTIVAL_GROUNDS, "girafi").withDistance(1.5D);
+    public static final BuildingLocation PARK_TRADER = new BuildingLocation(HFFestivals.FESTIVAL_GROUNDS, "girafi").withDistance(1D);
     public static final BuildingLocation PARK_PODIUM = new BuildingLocation(HFFestivals.FESTIVAL_GROUNDS, "park.podium").withDistance(1.5D);
     public static final BuildingLocation PARK_BUSH = new BuildingLocation(HFFestivals.FESTIVAL_GROUNDS, "park.bush").withDistance(1.5D);
     public static final BuildingLocation PARK_STAGE_RIGHT = new BuildingLocation(HFFestivals.FESTIVAL_GROUNDS, "stage.right").withDistance(0.5D);
@@ -100,8 +100,8 @@ public class BuildingLocations {
     public static final BuildingLocation PARK_STAGE_STAND2_HUMAN = new BuildingLocation(HFFestivals.FESTIVAL_GROUNDS, "stage.stand2.human").withDistance(0.5D);
     public static final BuildingLocation PARK_STAGE_STAND3_HUMAN = new BuildingLocation(HFFestivals.FESTIVAL_GROUNDS, "stage.stand3.human").withDistance(0.5D);
     public static final BuildingLocation PARK_STAGE_STAND4_HUMAN = new BuildingLocation(HFFestivals.FESTIVAL_GROUNDS, "stage.stand4.human").withDistance(0.5D);
-    public static final BuildingLocation PARK_TRADER_LEFT = new BuildingLocation(HFFestivals.FESTIVAL_GROUNDS, "newyear.left").withDistance(1.5D);
-    public static final BuildingLocation PARK_TRADER_RIGHT = new BuildingLocation(HFFestivals.FESTIVAL_GROUNDS, "newyear.right").withDistance(1.5D);
+    public static final BuildingLocation PARK_TRADER_LEFT = new BuildingLocation(HFFestivals.FESTIVAL_GROUNDS, "newyear.left").withDistance(1D);
+    public static final BuildingLocation PARK_TRADER_RIGHT = new BuildingLocation(HFFestivals.FESTIVAL_GROUNDS, "newyear.right").withDistance(1D);
 
     //TODO: Convert to building locations vvv
     public static final String TOWNHALL_CHILD_BEDROOM = "townhall.bedroom.child";

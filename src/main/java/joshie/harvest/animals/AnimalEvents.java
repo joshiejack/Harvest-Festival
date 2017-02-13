@@ -42,7 +42,7 @@ public class AnimalEvents {
         if (stats != null && entity instanceof EntityAnimal) {
             if (!entity.worldObj.isRemote) {
                 stats.setEntity((EntityAnimal)entity);
-                AnimalTrackerServer.addToQueue(() -> HFTrackers.<AnimalTrackerServer>getAnimalTracker(event.getWorld()).onJoinWorld((EntityAnimal) entity, stats));
+                HFTrackers.<AnimalTrackerServer>getAnimalTracker(event.getWorld()).add(stats);
             } else PacketHandler.sendToServer(new PacketSyncAnimal(entity.getEntityId())); //Request spawn data from the server
         }
     }

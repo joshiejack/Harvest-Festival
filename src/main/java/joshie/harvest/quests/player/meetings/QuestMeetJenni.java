@@ -27,7 +27,7 @@ public class QuestMeetJenni extends QuestMeeting {
 
     @Override
     public String getDescription(World world, EntityPlayer player) {
-        if (TownHelper.getClosestTownToEntity(player).hasBuilding(HFBuildings.CARPENTER)) {
+        if (TownHelper.getClosestTownToEntity(player).hasBuilding(HFBuildings.CARPENTER) && HFApi.quests.hasCompleted(Quests.JADE_MEET, player)) {
             if (!hasBuilding(player)) return getLocalized("description.build");
             else return getLocalized("description.visit");
         } else return null;

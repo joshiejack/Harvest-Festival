@@ -7,25 +7,33 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 import java.util.Map.Entry;
 
 public class DailyTickHandler extends HFTracker {
-    private static final Set<Runnable> queue = new HashSet<>();
+    private final Map<BlockPos, DailyTickableBlock> queue = new HashMap<>();
     private final Map<Phases, Map<BlockPos, DailyTickableBlock>> blockTickables = new HashMap<>();
 
     public DailyTickHandler() {
         for (Phases phase: Phases.values()) blockTickables.put(phase, new HashMap<>());
     }
 
-    public static void addToQueue(Runnable runnable) {
-        queue.add(runnable);
+    //Add to the queue
+    public void add(final BlockPos pos, final DailyTickableBlock daily) {
+        queue.put(pos, daily);
     }
 
-    static void processQueue() {
-        Set<Runnable> toProcess = new HashSet<>(queue);
+    void processQueue() {
+        for (Entry<BlockPos, DailyTickableBlock> entry: queue.entrySet()) {
+            DailyTickableBlock daily = entry.getValue();
+            for (Phases phase : daily.getPhases()) {
+                blockTickables.get(phase).put(entry.getKey(), daily);
+            }
+        }
+
         queue.clear(); //Clear the old queue
-        toProcess.forEach(Runnable :: run);
     }
 
     void processPhase(Phases phase) {
@@ -47,13 +55,5 @@ public class DailyTickHandler extends HFTracker {
                 } else entries.remove();
             }
         }
-    }
-
-    public void add(final BlockPos pos, final DailyTickableBlock daily) {
-        for (Phases phase : daily.getPhases()) blockTickables.get(phase).put(pos, daily);
-    }
-
-    public void remove(final BlockPos pos, final DailyTickableBlock daily) {
-        for (Phases phase: daily.getPhases()) blockTickables.get(phase).remove(pos);
     }
 }

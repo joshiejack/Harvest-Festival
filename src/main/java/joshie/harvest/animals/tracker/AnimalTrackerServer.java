@@ -5,52 +5,45 @@ import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 
-import java.util.*;
-import java.util.Map.Entry;
+import java.util.ConcurrentModificationException;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
 
 public class AnimalTrackerServer extends AnimalTracker {
     private static final DamageSource natural_causes = new DamageSource("natural").setDamageBypassesArmor();
-    private final HashMap<EntityAnimal, AnimalStats> animals = new HashMap<>();
-    private static final Set<Runnable> queue = new HashSet<>();
+    private final Set<AnimalStats> animals = new HashSet<>();
+    private final Set<AnimalStats> queue = new HashSet<>();
 
-    public static void addToQueue(Runnable r) {
-        queue.add(r);
+    public void add(AnimalStats stats) {
+        queue.add(stats);
     }
 
-    public static void processQueue() {
-        Set<Runnable> toProcess = new HashSet<>(queue);
-        queue.clear(); //Clear the old queue
-        try {
-            toProcess.forEach(Runnable::run);
-        } catch (Exception ex) { /**/}
+    public void processQueue() {
+        animals.addAll(queue);
+        queue.clear(); //Clear the queue
     }
 
     public void onDeath(AnimalStats stats) {
         stats.setDead();
     }
 
-    public void onJoinWorld(EntityAnimal entity, AnimalStats animal) {
-        animals.put(entity, animal);
-    }
-
     public void biHourly() {
         try {
-            for (AnimalStats stats : animals.values()) {
-                stats.onBihourlyTick();
-            }
+            animals.stream().forEach(AnimalStats::onBihourlyTick);
         } catch (ConcurrentModificationException ex) { /**/ }
     }
 
     public void newDay() {
         World world = getWorld();
-        Iterator<Entry<EntityAnimal, AnimalStats>> iterator = animals.entrySet().iterator();
+        Iterator<AnimalStats> iterator = animals.iterator();
         while (iterator.hasNext()) {
-            Entry<EntityAnimal, AnimalStats> data = iterator.next(); //Only tick animals when owner in online
-            EntityAnimal animal = data.getKey();
-            if (world.loadedEntityList.contains(animal)) {
-                if (animal == null || animal.isDead || !data.getValue().newDay()) { //If the new day wasn't successful, remove the animal from your memory
+            AnimalStats data = iterator.next(); //Only tick animals when owner in online
+            EntityAnimal animal = data.getAnimal();
+            if (animal != null && world.loadedEntityList.contains(animal)) {
+                if (animal.isDead || !data.newDay()) { //If the new day wasn't successful, remove the animal from your memory
                     iterator.remove();
-                    if (animal != null && !animal.isDead) {
+                    if (!animal.isDead) {
                         animal.attackEntityFrom(natural_causes, 1000F);
                     }
                 }

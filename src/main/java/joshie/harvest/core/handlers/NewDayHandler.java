@@ -24,10 +24,16 @@ public class NewDayHandler {
     //New day
     public static void newDay(final World world, CalendarDate yesterday, CalendarDate today) {
         DailyTickHandler tickables = HFTrackers.getTickables(world);
+        tickables.processQueue();
         tickables.processPhase(Phases.PRE);
-        HFTrackers.<AnimalTrackerServer>getAnimalTracker(world).newDay();
-        HFTrackers.<TownTrackerServer>getTowns(world).newDay(yesterday, today);
-        HFTrackers.markTownsDirty();
+        AnimalTrackerServer tracker = HFTrackers.getAnimalTracker(world);
+        tracker.processQueue();
+        tracker.newDay();
+        if (world.provider.getDimension() == 0) {
+            HFTrackers.<TownTrackerServer>getTowns(world).newDay(yesterday, today);
+            HFTrackers.markTownsDirty();
+        }
+
         tickables.processPhase(Phases.MAIN);
         tickables.processPhase(Phases.POST);
     }
@@ -47,8 +53,6 @@ public class NewDayHandler {
                     player.newDay(yesterday, today);
                 }
 
-                AnimalTrackerServer.processQueue();
-                DailyTickHandler.processQueue();
                 for (World world : FMLCommonHandler.instance().getMinecraftServerInstance().worldServers) {
                     newDay(world, yesterday, today);
                 }

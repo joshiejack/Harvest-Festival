@@ -10,7 +10,7 @@ import net.minecraft.item.ItemStack;
 
 import java.util.Set;
 
-import static joshie.harvest.quests.Quests.JADE_MEET;
+import static joshie.harvest.quests.Quests.YULIF_MEET;
 
 public abstract class QuestMeetingTutorial extends QuestQuestion {
     protected final Building building;
@@ -25,7 +25,7 @@ public abstract class QuestMeetingTutorial extends QuestQuestion {
 
     @Override
     public boolean canStartQuest(Set<Quest> active, Set<Quest> finished) {
-        return finished.contains(JADE_MEET);
+        return finished.contains(YULIF_MEET);
     }
 
     @Override

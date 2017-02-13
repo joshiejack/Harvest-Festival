@@ -15,6 +15,7 @@ import joshie.harvest.core.helpers.InventoryHelper;
 import joshie.harvest.crops.HFCrops;
 import joshie.harvest.knowledge.HFNotes;
 import joshie.harvest.npcs.HFNPCs;
+import joshie.harvest.quests.Quests;
 import joshie.harvest.quests.base.QuestMeetingTutorial;
 import joshie.harvest.quests.selection.TutorialSelection;
 import joshie.harvest.tools.ToolHelper;
@@ -73,7 +74,7 @@ public class QuestMeetJim extends QuestMeetingTutorial {
 
     @Override
     public String getDescription(World world, EntityPlayer player) {
-        if (TownHelper.getClosestTownToEntity(player).hasBuilding(HFBuildings.CARPENTER)) {
+        if (TownHelper.getClosestTownToEntity(player).hasBuilding(HFBuildings.CARPENTER) && HFApi.quests.hasCompleted(Quests.JADE_MEET, player)) {
             if (quest_stage == START) return hasBuilding(player) ? getLocalized("description.talk") : getLocalized("description.build");
             else if (quest_stage == ACTION1 || quest_stage == ACTION2) return getLocalized("description.brush");
             else if (quest_stage == MILKING) return getLocalized("description.milk");

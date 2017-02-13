@@ -64,7 +64,7 @@ harvestfestival.structures.fishinghut=Tackle Shop
 harvestfestival.structures.fishinghut.tooltip=If you want to make some serious income from fishing, then this is what you'll need.
 harvestfestival.structures.goddesspond=Goddess Pond
 harvestfestival.structures.goddesspond.tooltip=Where the goddess prefers to live, you can toss any crop or plant in her waters and she'll spawn and accept that item as a gift.
-harvestfestival.structures.mininghill=Mine
+harvestfestival.structures.mininghill=Mining Hill
 harvestfestival.structures.mininghill.tooltip=Here's where you can find all sorts of nodes, which you can sell for cash.
 harvestfestival.structures.poultryfarm=Poultry Farm
 harvestfestival.structures.poultryfarm.tooltip=Want to get started on chickens? Here's the place, simply chat with the owner for a free chicken.
@@ -176,17 +176,17 @@ harvestfestival.meal.exhaust=Exhausts
 harvestfestival.meal.fry.stir=Stir Fry
 harvestfestival.meal.rice.fried=Fried Rice
 harvestfestival.meal.pancake.savoury=Savoury Pancake
-harvestfestival.meal.pancake.savoury.description=Crisp and Fluffy and containing flavours which aren’t just for breakfast, these savoury pancakes go great on their own or with your favourite scallion.
+harvestfestival.meal.pancake.savoury.description=Crisp and Fluffy and containing flavours which aren't just for breakfast, these savoury pancakes go great on their own or with your favourite scallion.
 harvestfestival.meal.fries.french=French Fries
 harvestfestival.meal.fries.french.description=Columnar potatoes, arguably the most transcendent form of basic starches, fried with the most universal of spices is an excellent addition to many meals.
 harvestfestival.meal.popcorn=Popcorn
 harvestfestival.meal.popcorn.description=One of only a handful of explosively cooked foods, and normally eaten by the handful, this light and fluffy foodstuff benefits from the king of oils and spices.
 harvestfestival.meal.cornflakes=Cornflakes
-harvestfestival.meal.cornflakes.description=If you’re mad you could fry this nutritious classical start to the day, IRL we make them in ovens, but hey, legacy systems are all silly. A little bit of sweet brightens this up.
+harvestfestival.meal.cornflakes.description=If you're mad you could fry this nutritious classical start to the day, IRL we make them in ovens, but hey, legacy systems are all silly. A little bit of sweet brightens this up.
 harvestfestival.meal.egg.scrambled=Scrambled Eggs
 harvestfestival.meal.egg.scrambled.description=The key to light and fluffy scrambled eggs is adding the salt and letting it sit for two minutes before cooking, any other toppings can be added immediately before the pan.
 harvestfestival.meal.omelet=Omelette
-harvestfestival.meal.omelet.description=This crisp and soft treatment of eggs with oil and milk is a breakfast classic, but depending on what’s rolled or folded within, can be a meal for any occasion.
+harvestfestival.meal.omelet.description=This crisp and soft treatment of eggs with oil and milk is a breakfast classic, but depending on what's rolled or folded within, can be a meal for any occasion.
 harvestfestival.meal.omelet.rice=Omurice
 harvestfestival.meal.omelet.rice.description=The slightly dried rice soaks up the egg mixture and its starches help bind omelette rice together. This allows this dish to contain a wider range of ingredients then a simple omelet.
 harvestfestival.meal.pancake=Pancake
@@ -194,33 +194,33 @@ harvestfestival.meal.pancake.description=Pancakes, Flapjacks, Griddle Cakes, all
 harvestfestival.meal.potsticker=Potsticker
 harvestfestival.meal.potsticker.description=Savoury and sumptuous vegetables rolled into a dumpling and fried until it combines the crispness of pastry and the softness of steamed vegetables.
 harvestfestival.meal.risotto=Risotto
-harvestfestival.meal.risotto.description=This traditional Italian dish is effectively a reduction of tomatoes and onions on a basis of rice, dissolving the rice’s outer starch into a smooth texture.
+harvestfestival.meal.risotto.description=This traditional Italian dish is effectively a reduction of tomatoes and onions on a basis of rice, dissolving the rice's outer starch into a smooth texture.
 harvestfestival.meal.juice.pineapple=Pineapple Juice
-harvestfestival.meal.juice.pineapple.description=Sweet and tart, pineapple juice both quenches thirst and restores vitamins. Some think it’s not sweet or tangy enough.
+harvestfestival.meal.juice.pineapple.description=Sweet and tart, pineapple juice both quenches thirst and restores vitamins. Some think it's not sweet or tangy enough.
 harvestfestival.meal.juice.tomato=Tomato Juice
-harvestfestival.meal.juice.tomato.description=Invented as a last minute substitute for missing orange juice, it’s primary modern use is in cocktails.
+harvestfestival.meal.juice.tomato.description=Invented as a last minute substitute for missing orange juice, it's primary modern use is in cocktails.
 harvestfestival.meal.milk.strawberry=Strawberry Milk
 harvestfestival.meal.milk.strawberry.description=This sweetened milk and fruit concoction can help people with upset stomachs, and ease digestion. Some prefer it a little sweeter.
 harvestfestival.meal.juice.vegetable=Vegetable Juice
-harvestfestival.meal.juice.vegetable.description=A mix of non fruit juices, common combinations include tomato  and something to give it spice. Salad fixings are often succulent enough to be juiced as well.
+harvestfestival.meal.juice.vegetable.description=A mix of non fruit juices, common combinations include tomato and something to give it spice. Salad fixings are often succulent enough to be juiced as well.
 harvestfestival.meal.latte.vegetable=Vegetable Latte
-harvestfestival.meal.latte.vegetable.description=Vegetable oils bind to lactic acids, binding all those healthy vitamins into easily digested forms, no comment on it’s taste.
+harvestfestival.meal.latte.vegetable.description=Vegetable oils bind to lactic acids, binding all those healthy vitamins into easily digested forms, no comment on it's taste.
 harvestfestival.meal.ketchup=Ketchup
 harvestfestival.meal.ketchup.description=Thick and rich, ketchup is one of the classic condiments. Some prefer theirs sweet, salty, or otherwise spicy.
 harvestfestival.meal.butter=Butter
-harvestfestival.meal.butter.description=Properly churned creamy milk has much of it’s fat and oils separate out into butter when blended. A common preservative helps it keep, and with flavor.
+harvestfestival.meal.butter.description=Properly churned creamy milk has much of it's fat and oils separate out into butter when blended. A common preservative helps it keep, and with flavor.
 harvestfestival.meal.fishsticks=Fish Fingers
 harvestfestival.meal.fishsticks.description=One of the meats which responds better to mincing, minced fish can be formed into sticks or patties as a handy snack or meal.
 harvestfestival.meal.salad=Salad
-harvestfestival.meal.salad.description=Crisp and refreshing the perfect contrast to fat heavy meats. There’s so many toppings to choose from, practically a whole garden, though some prefer oil and salt.
+harvestfestival.meal.salad.description=Crisp and refreshing the perfect contrast to fat heavy meats. There's so many toppings to choose from, practically a whole garden, though some prefer oil and salt.
 harvestfestival.meal.sandwich=Sandwich
-harvestfestival.meal.sandwich.description=The quintessential portable food, it’s inventor would consume them while gambling or working too late. Most like it with something to moisten it or add some crispness.
+harvestfestival.meal.sandwich.description=The quintessential portable food, it's inventor would consume them while gambling or working too late. Most like it with something to moisten it or add some crispness.
 harvestfestival.meal.turnip.pickled=Pickled Turnip
-harvestfestival.meal.turnip.pickled.description=Pickling draws out the flavor of the humble turnip, some prefer more extreme uses of the world’s most common spice.
+harvestfestival.meal.turnip.pickled.description=Pickling draws out the flavor of the humble turnip, some prefer more extreme uses of the world's most common spice.
 harvestfestival.meal.cucumber.pickled=Pickled Cucumber
 harvestfestival.meal.cucumber.pickled.description=The Archetypical Pickle, both food and condiment, crisp and refreshing.
 harvestfestival.meal.sushi=Sushi
-harvestfestival.meal.sushi.description=Originally a finger food of vinegared rice and fish, it’s grown into an art form.
+harvestfestival.meal.sushi.description=Originally a finger food of vinegared rice and fish, it's grown into an art form.
 harvestfestival.meal.sashimi=Sashimi
 harvestfestival.meal.sashimi.description=This simple method of preparing fish requires delicate cuts but no cooking.
 harvestfestival.meal.sashimi.chirashi=Chirashi Sushi
@@ -230,17 +230,17 @@ harvestfestival.meal.milk.hot.description=Piping Hot, but short of boiling, milk
 harvestfestival.meal.chocolate.hot=Hot Chocolate
 harvestfestival.meal.chocolate.hot.description=The beverage of the gods, molten cocoa added to sweet cream produces the finest beverage known to gods or mankind. Some prefer it sweeter.
 harvestfestival.meal.stew.pumpkin=Pumpkin Stew
-harvestfestival.meal.stew.pumpkin.description=This traditional stew is made from the innards of a pumpkin slowly heated until they liquefy, fans say it’s like liquid pumpkin pie.
+harvestfestival.meal.stew.pumpkin.description=This traditional stew is made from the innards of a pumpkin slowly heated until they liquefy, fans say it's like liquid pumpkin pie.
 harvestfestival.meal.stew.fish=Fish Stew
-harvestfestival.meal.stew.fish.description=Technically a maritime chowder, fish stew takes advantage of the sea water found in fish to add volume to it’s meaty substance.
+harvestfestival.meal.stew.fish.description=Technically a maritime chowder, fish stew takes advantage of the sea water found in fish to add volume to it's meaty substance.
 harvestfestival.meal.egg.boiled=Boiled Egg
-harvestfestival.meal.egg.boiled.description=Placing eggs in cool water and then slowly raising it to a boil, and  then returning the water to coolness is all that’s needed to make this dish. Shell and serve.
+harvestfestival.meal.egg.boiled.description=Placing eggs in cool water and then slowly raising it to a boil, and then returning the water to coolness is all that's needed to make this dish. Shell and serve.
 harvestfestival.meal.spinach.boiled=Boiled Spinach
 harvestfestival.meal.spinach.boiled.description=Children are more sensitive to sour flavors then adults, which is why getting this simple dish into kids is a multigeneration mistake.
 harvestfestival.meal.potato.candied=Candied Potato
-harvestfestival.meal.potato.candied.description=The sweet potato is fantastic both in nourishment and flavor, both sweet and succulent, we can’t blame people for wanting more.
+harvestfestival.meal.potato.candied.description=The sweet potato is fantastic both in nourishment and flavor, both sweet and succulent, we can't blame people for wanting more.
 harvestfestival.meal.dumplings=Dumplings
-harvestfestival.meal.dumplings.description=Crisp and delicious vegetables in pastry like tubes, fried so quickly that they don’t wilt or loose their flavour.
+harvestfestival.meal.dumplings.description=Crisp and delicious vegetables in pastry like tubes, fried so quickly that they don't wilt or loose their flavour.
 harvestfestival.meal.noodles=Noodles
 harvestfestival.meal.noodles.description=Strings, sheets, and other shapes of ground up wheat are a substantive part of many meals and cuisines. Serve with sauce or spiced.
 harvestfestival.meal.soup.rice=Rice Soup
@@ -252,11 +252,11 @@ harvestfestival.meal.egg.overrice.description=Crack an egg over riceballs and th
 harvestfestival.meal.stew=Stew
 harvestfestival.meal.stew.description=The simple addition of flour to milk slowly heated creates an excellent stew base which can transfer and support many delicious additions.
 harvestfestival.meal.corn.baked=Baked Corn
-harvestfestival.meal.corn.baked.description=Roasted corn is a staple, the sugars inside the kernels roast up sweet, though not sweet enough for some. Butter’s moisture rounds it out.
+harvestfestival.meal.corn.baked.description=Roasted corn is a staple, the sugars inside the kernels roast up sweet, though not sweet enough for some. Butter's moisture rounds it out.
 harvestfestival.meal.riceballs.toasted=Toasted Rice Balls
 harvestfestival.meal.riceballs.toasted.description=Toasted riceballs keep all the portability and convenience, but gain a crisp texture to go along with their flavor, which is only improved by the heat.
 harvestfestival.meal.toast=Toast
-harvestfestival.meal.toast.description=Crisped bread once used to add flavour to stale drinks, hence a “toast”, now we know it tastes good all on its own.
+harvestfestival.meal.toast.description=Crisped bread once used to add flavour to stale drinks, hence a "toast", now we know it tastes good all on its own.
 harvestfestival.meal.dinnerroll=Dinner Roll
 harvestfestival.meal.dinnerroll.description=These rolls are made from rolls of baked eggs thinned with milk and salt, technically a type of omelette, but tasting more like a bread.
 harvestfestival.meal.doria=Doria
@@ -268,13 +268,13 @@ harvestfestival.meal.cookies.chocolate.description=By spreading chocolate throug
 harvestfestival.meal.cake.chocolate=Chocolate Cake
 harvestfestival.meal.cake.chocolate.description=Adding chocolate to cake batter gets you chocolate cake batter, if you can avoid eating it, and all the tasty things you can add you can even bake it.
 harvestfestival.meal.toast.french=French Toast
-harvestfestival.meal.toast.french.description=By soaking bread in most of its ingredients before frying, they’ve basically invented double bread, and it’s amazing. Add the main missing ingredient for an extra treat.
+harvestfestival.meal.toast.french.description=By soaking bread in most of its ingredients before frying, they've basically invented double bread, and it's amazing. Add the main missing ingredient for an extra treat.
 harvestfestival.meal.doughnut=Doughnut
 harvestfestival.meal.doughnut.description=Rings of glory and wonder. Bane to hunger and munchies. Companion to tea, coffee, and other wondrous hot astringent beverages.
 harvestfestival.meal.fish.grilled=Grilled Fish
 harvestfestival.meal.fish.grilled.description=Grilling opens up new vistas of taste for fish, crisp or soft, rich or tangy depending on your preparation method.
 harvestfestival.meal.eggplant.happy=Happy Eggplant
-harvestfestival.meal.eggplant.happy.description=Crescent cut stir fried eggplant brings a smile to most people’s faces, and it even smiles back.
+harvestfestival.meal.eggplant.happy.description=Crescent cut stir fried eggplant brings a smile to most people's faces, and it even smiles back.
 harvestfestival.meal.burnt.counter=Failed Handmade Dish
 harvestfestival.meal.burnt.pot=Failed Pot Dish
 harvestfestival.meal.burnt.frying.pan=Failed Frying Pan Meal
@@ -284,15 +284,15 @@ harvestfestival.meal.burnt.oven=Failed Oven Dish
 harvestfestival.meal.jam.apple=Apple Jam
 harvestfestival.meal.jam.apple.description=Apple jam. Delicious. Its jam, made from apples. Best smeared on toast, right out of the toaster. Only thing better is to add a touch of alcohol.
 harvestfestival.meal.jam.grape=Grape Jam
-harvestfestival.meal.jam.grape.description=The best friend of everyone’s fruit sandwich. Sweet and sticky, grape jam is a staple in a beginner chef’s or parent’s pantry. Perhaps combining with another grape byproduct could improve it further.
+harvestfestival.meal.jam.grape.description=The best friend of everyone's fruit sandwich. Sweet and sticky, grape jam is a staple in a beginner chef's or parent's pantry. Perhaps combining with another grape byproduct could improve it further.
 harvestfestival.meal.jam.strawberry=Strawberry Jam
 harvestfestival.meal.jam.strawberry.description=A sticky, sweet preserve made of strawberries. Does come with seeds! A splash of wine should be an improvement.
 harvestfestival.meal.marmalade=Marmalade
-harvestfestival.meal.marmalade.description=Marmalade… well if you don’t have butter, and you don’t have jam… this is the alternative for a preserves-on-toast. Finish it off with a sprinkling of France's best.
+harvestfestival.meal.marmalade.description=Marmalade... well if you don't have butter, and you don't have jam... this is the alternative for a preserves-on-toast. Finish it off with a sprinkling of France's best.
 harvestfestival.meal.noodles.tempura=Tempura Noodles
-harvestfestival.meal.noodles.tempura.description=Noodles with tempura. Also known as ramen with tempura. Don’t forget the squiggly radish naruto!
+harvestfestival.meal.noodles.tempura.description=Noodles with tempura. Also known as ramen with tempura. Don't forget the squiggly radish naruto!
 harvestfestival.meal.rice.tempura=Tempura Rice
-harvestfestival.meal.rice.tempura.description=Tempura in rice. Uh… what else do you want? Soy sauce?
+harvestfestival.meal.rice.tempura.description=Tempura in rice. Uh... what else do you want? Soy sauce?
 harvestfestival.meal.juice.orange=Orange Juice
 harvestfestival.meal.juice.orange.description=Fresh squeezed orange juice! Pairs well with scrambled eggs, hash browns and a slab of smoked ham.
 harvestfestival.meal.juice.apple=Apple Juice
@@ -312,7 +312,7 @@ harvestfestival.meal.latte.mix.description=Always need a little dash of extra mi
 harvestfestival.meal.latte.fruit=Fruit Latte
 harvestfestival.meal.latte.fruit.description=Adding some milk to your fruit juices can fill you up a little more. So why not give it a go?
 harvestfestival.meal.sandwich.fruit=Fruit Sandwich
-harvestfestival.meal.sandwich.fruit.description=Uh… fruit… in a sandwich. Good for vegetarian diets, or someone who likes smushed together fruit on toast.
+harvestfestival.meal.sandwich.fruit.description=Uh... fruit... in a sandwich. Good for vegetarian diets, or someone who likes smushed together fruit on toast.
 harvestfestival.meal.bread.raisin=Raisin Bread
 harvestfestival.meal.bread.raisin.description=For some easy baking try out this delicious Raisin Bread. Fabulous for anytime. Would go well with a cup of tea.
 harvestfestival.meal.bun.jam=Jam Bun
@@ -885,7 +885,7 @@ harvestfestival.npc.daniel.gift.bad=You give bad gifts.
 harvestfestival.npc.daniel.gift.terrible=And I thought the rejection from Yulif was bad enough, now you give me this?
 harvestfestival.npc.daniel.festival.cooking1=Are you looking forward to the cooking festival today?
 harvestfestival.npc.daniel.festival.cooking2=What are you planning on cooking for the festival today?
-harvestfestival.npc.daniel.festival.new.years1=Dragons are good luck on New years. Will they visit our town?  I don’t think anyone would approve of putting a sheep out at midnight in front of that dog statue to attract one though.
+harvestfestival.npc.daniel.festival.new.years1=Dragons are good luck on New years. Will they visit our town?  I don't think anyone would approve of putting a sheep out at midnight in front of that dog statue to attract one though.
 harvestfestival.npc.daniel.festival.new.years2=Are you planning on taking part in the new years celebrations?
 
 #Cloe
@@ -911,7 +911,7 @@ harvestfestival.npc.cloe.gift.bad=Err, no thanks...
 harvestfestival.npc.cloe.gift.terrible=I thought my parents were the worst, but nope it's you.
 harvestfestival.npc.cloe.festival.cooking1=I may not be much of a cook, but I think you'd do great in today's festival.
 harvestfestival.npc.cloe.festival.cooking2=Make sure to bring your best food for the festival today.
-harvestfestival.npc.cloe.festival.new.years1=The world didn’t end when the calendar turned over. I guess thats good.
+harvestfestival.npc.cloe.festival.new.years1=The world didn't end when the calendar turned over. I guess thats good.
 harvestfestival.npc.cloe.festival.new.years2=It took a whole pot of tea to be able to come outside with it this cold.
 
 #Liara/ApsciLiara
@@ -940,7 +940,7 @@ harvestfestival.npc.liara.gift.bad=I do not enjoy this.
 harvestfestival.npc.liara.gift.terrible=I would thank you, but you have given me the worst thing anyone could give me. Goodbye.
 harvestfestival.npc.liara.festival.cooking1=The cooking festival is today. I would take part but it's my shop's busiest day.
 harvestfestival.npc.liara.festival.cooking2=I love cooking, and I hope you do too. You should participate in the cooking festival!
-harvestfestival.npc.liara.festival.new.years1=Mm mmm! I’m in the mood to make some new year food. Dumplings, wonton soup, rice soup, rice pudding...
+harvestfestival.npc.liara.festival.new.years1=Mm mmm! I'm in the mood to make some new year food. Dumplings, wonton soup, rice soup, rice pudding...
 harvestfestival.npc.liara.festival.new.years2= Only downside to spring, the lack of winter berries.
 
 #Jade
@@ -1099,7 +1099,7 @@ harvestfestival.npc.jacob.gift.dislike=I'm not so sure about this one.
 harvestfestival.npc.jacob.gift.bad=I really don't like what you just gave me.
 harvestfestival.npc.jacob.gift.terrible=Are you crazy? I would never ever want this.
 harvestfestival.npc.jacob.festival.new.years1=Ever tried pickled fish inside a riceball? Or red bean paste?
-harvestfestival.npc.jacob.festival.new.years2= I’m creating a poem for the new year. Would you like to hear it?
+harvestfestival.npc.jacob.festival.new.years2= I'm creating a poem for the new year. Would you like to hear it?
 
 #Pokefenn
 harvestfestival.npc.fenn.greeting1=One day, I'm going to grow some vines, and you're going to climb them with me!
@@ -1120,7 +1120,7 @@ harvestfestival.npc.fenn.gift.decent=Oo, I like it.
 harvestfestival.npc.fenn.gift.dislike=Hmmm, whyy.
 harvestfestival.npc.fenn.gift.bad=Whyyyy, I don't like it :(
 harvestfestival.npc.fenn.gift.terrible=No, no no, no nO NOO NOOOOO!!!! This is nooo!! Just no!
-harvestfestival.npc.fenn.festival.new.years1=I stayed up late last night, and saw a shooting star! I made a wish for New Years, but I’m not telling.
+harvestfestival.npc.fenn.festival.new.years1=I stayed up late last night, and saw a shooting star! I made a wish for New Years, but I'm not telling.
 harvestfestival.npc.fenn.festival.new.years2= I wonder if Abii got to stay up late. Her mum is so strict, like my dad.
 
 #Jim/SpitefulFox
@@ -1142,8 +1142,8 @@ harvestfestival.npc.jim.gift.decent=This is a decent gift.
 harvestfestival.npc.jim.gift.dislike=I can't say that I fully like this gift.
 harvestfestival.npc.jim.gift.bad=This was not a good choice for a gift.
 harvestfestival.npc.jim.gift.terrible=If you knew me at all, you would not dare to give me this.
-harvestfestival.npc.jim.festival.new.years1=Ah, the first day of spring. Freshly trimmed grass wakes a man up in the morning, don’t you agree?
-harvestfestival.npc.jim.festival.new.years2= The spring is a wonderful time to buy a miracle potion for your livestock, don’t you agree %4$s?
+harvestfestival.npc.jim.festival.new.years1=Ah, the first day of spring. Freshly trimmed grass wakes a man up in the morning, don't you agree?
+harvestfestival.npc.jim.festival.new.years2= The spring is a wonderful time to buy a miracle potion for your livestock, don't you agree %4$s?
 
 #Brandon/Cricket
 harvestfestival.npc.brandon.shop=If you ever need some mining equipment, I'm open from Monday to Saturday, 11am to 4pm.
@@ -1167,8 +1167,8 @@ harvestfestival.npc.brandon.gift.decent=Thanks, that was nice.
 harvestfestival.npc.brandon.gift.dislike=I guess that was nice.
 harvestfestival.npc.brandon.gift.bad=Did you not know? I hate this stuff.
 harvestfestival.npc.brandon.gift.terrible=Get away from me now. How dare you insult me with such a gift.
-harvestfestival.npc.brandon.festival.new.years1=High ho, high ho, its off to mine I go… Hm? Oh hello.
-harvestfestival.npc.brandon.festival.new.years2= Spring isn’t as profitable for finding ore below ground than winter is, have you noticed? Copper seems quite findable at last, junk as it is.
+harvestfestival.npc.brandon.festival.new.years1=High ho, high ho, its off to mine I go... Hm? Oh hello.
+harvestfestival.npc.brandon.festival.new.years2= Spring isn't as profitable for finding ore below ground than winter is, have you noticed? Copper seems quite findable at last, junk as it is.
 
 #Tomas
 harvestfestival.npc.thomas.greeting1=I will save you from your sins.
@@ -1212,7 +1212,7 @@ harvestfestival.npc.candice.gift.dislike=Umm, It will do.
 harvestfestival.npc.candice.gift.bad=Umm, I'm not quite sure this is what I wanted.
 harvestfestival.npc.candice.gift.terrible=I cannot belive you would ever give me this. Do you not like me?
 harvestfestival.npc.candice.festival.new.years1=Happy New Year %4$s!
-harvestfestival.npc.candice.festival.new.years2= How’re your cows doing? They should be really happy to not have snow underhoof anymore.
+harvestfestival.npc.candice.festival.new.years2=How're your cows doing? They should be really happy to not have snow underhoof anymore.
 
 #Yulife
 harvestfestival.npc.yulif.shop=If yer looking for buildings, I'm afraid I'm only available 9am to 5:30pm, Sunday to Friday.
@@ -1238,7 +1238,7 @@ harvestfestival.npc.yulif.gift.dislike=Err, ok, thanks?
 harvestfestival.npc.yulif.gift.bad=Err, what? Why would I ever want this?
 harvestfestival.npc.yulif.gift.terrible=Damn, is this really what ya think I would like? Please don't talk to me.
 harvestfestival.npc.yulif.festival.new.years1=Mm, Happy New Year, I ‘spose. *Sigh*
-harvestfestival.npc.yulif.festival.new.years2= Long life, wealth and happiness. From a riceball. Mm. Do you believe those things?
+harvestfestival.npc.yulif.festival.new.years2=Long life, wealth and happiness. From a riceball. Mm. Do you believe those things?
 
 harvestfestival.npc.builder.build=Do not fret I am currently working on building the structure for the %s.
 harvestfestival.npc.builder.paint=I am currently placing up some paintings, and such for the %s.
@@ -1271,7 +1271,7 @@ harvestfestival.npc.ashlee.gift.dislike=Please don't give me this.
 harvestfestival.npc.ashlee.gift.bad=Why would you ever give me this?
 harvestfestival.npc.ashlee.gift.terrible=This gift is the worst thing I have ever received.
 harvestfestival.npc.ashlee.festival.new.years1=A furry scarf for a new year! Fox fur is so soft.
-harvestfestival.npc.ashlee.festival.new.years2=If my chicks didn’t need so much care during the winter, I would’ve hibernated like any other fox.
+harvestfestival.npc.ashlee.festival.new.years2=If my chicks didn't need so much care during the winter, I would've hibernated like any other fox.
 
 #Girafi
 harvestfestival.npc.girafi.greeting1=Why hello fellow human, I am a humble trader, if you have any eggs, milk or wool I'll happily trade my own from the vanilla world!
@@ -1441,14 +1441,14 @@ harvestfestival.quest.tutorial.carpenter.wood.dozentwo=two dozen
 harvestfestival.quest.tutorial.carpenter.wood.stack=a stack of
 harvestfestival.quest.tutorial.carpenter.wood.stackhalf=half a stack of
 harvestfestival.quest.tutorial.carpenter.wood.stackquarter=a quarter of a stack of
-harvestfestival.quest.tutorial.carpenter.welcome=Why hello my sweet, it’s nice to see you again. I’ve had a little thought about how we can get the town started. I’ve heard rumours that a fella named Yulif is an excellent carpenter, he and his sister have been looking to take on a project, and this could just be the right thing for them. Jade would be a perfect fit too as she loves nature and would be a great asset for getting started. I think we just need something to entice them, perhaps if you can fetch me %s logs then I have something for you that just might work.
-harvestfestival.quest.tutorial.carpenter.reminder.wood=Oh hello again, if you’ve forgotten we’re looking to bring our first villagers to town, I just need %s logs to help you get started.
-harvestfestival.quest.tutorial.carpenter.thanks.build=Perfect! Just what we need, thanks a bunch. I’ve got the perfect thing for you right here. This is a structure blueprint, you use them to select the area you want a building to be built! You’ll see a ghost image of a building when you have it selected, once you’ve found the spot simply right click. If Yulif hasn’t moved in yet he’ll appear and get started working on the building right away! You’ll just have to wait a little while for him to be done. Take note you can queue up blueprints, but only one can be built at a time. Oh and don’t worry if he dies from some tragic accident! He should respawn when the day passes over and get back to work immediately! I think that’s all I have to say, so I’ll leave you to get the Carpenter House built. Oh one more thing before I forget, once he’s done building Jade should move in, she normally hangs out upstairs, I’d suggest that you go and take her a flower, as she has seeds she’ll be happy to trade for them.
-harvestfestival.quest.tutorial.carpenter.reminder.carpenter=Sweety you’re supposed to be going to see Jade not me! If you haven’t yet get a Carpenter House built and visit her upstairs with a flower. If you’re in trouble and lost the blueprint, just bring me another %s logs and I’ll give you another one.
+harvestfestival.quest.tutorial.carpenter.welcome=Why hello my sweet, it's nice to see you again. I've had a little thought about how we can get the town started. I've heard rumours that a fella named Yulif is an excellent carpenter, he and his sister have been looking to take on a project, and this could just be the right thing for them. Jade would be a perfect fit too as she loves nature and would be a great asset for getting started. I think we just need something to entice them, perhaps if you can fetch me %s logs then I have something for you that just might work.
+harvestfestival.quest.tutorial.carpenter.reminder.wood=Oh hello again, if you've forgotten we're looking to bring our first villagers to town, I just need %s logs to help you get started.
+harvestfestival.quest.tutorial.carpenter.thanks.build=Perfect! Just what we need, thanks a bunch. I've got the perfect thing for you right here. This is a structure blueprint, you use them to select the area you want a building to be built! You'll see a ghost image of a building when you have it selected, once you've found the spot simply right click. If Yulif hasn't moved in yet he'll appear and get started working on the building right away! You'll just have to wait a little while for him to be done. Take note you can queue up blueprints, but only one can be built at a time. Oh and don't worry if he dies from some tragic accident! He should respawn when the day passes over and get back to work immediately! I think that's all I have to say, so I'll leave you to get the Carpenter House built. Oh one more thing before I forget, once he's done building Jade should move in, she normally hangs out upstairs, I'd suggest that you go and take her a flower, as she has seeds she'll be happy to trade for them.
+harvestfestival.quest.tutorial.carpenter.reminder.carpenter=Sweety you're supposed to be going to see Jade not me! If you haven't yet get a Carpenter House built and visit her upstairs with a flower. If you're in trouble and lost the blueprint, just bring me another %s logs and I'll give you another one.
 harvestfestival.quest.tutorial.carpenter.reminder.give=Thanks have another blueprint and go see Jade!
-harvestfestival.quest.tutorial.carpenter.reminder.flowers=Nice to meet you, I’m Jade. I’m kinda uhhh looking for a flower right now.
-harvestfestival.quest.tutorial.carpenter.thanks.flowers=Hey! Looks like you have a flower for me! The goddess told me all about you, I can’t wait to see the town grow. I think the goddess wants to thank you for helping us out, so you should go see her. But afterwards please do come back and visit me as I have something I’d love to show you!
-harvestfestival.quest.tutorial.carpenter.thanks.finish=Well done dear, this town will be built in no time with you at the helm. Getting things done will probably cost you some money though, so I’m happy to give you a starting gift of 1000 gold. I hope you spend it wisely, anyway, you should be off to see Jade again now! Thanks for the help.
+harvestfestival.quest.tutorial.carpenter.reminder.flowers=Nice to meet you, I'm Jade. I'm kinda uhhh looking for a flower right now.
+harvestfestival.quest.tutorial.carpenter.thanks.flowers=Hey! Looks like you have a flower for me! The goddess told me all about you, I can't wait to see the town grow. I think the goddess wants to thank you for helping us out, so you should go see her. But afterwards please do come back and visit me as I have something I'd love to show you!
+harvestfestival.quest.tutorial.carpenter.thanks.finish=Well done dear, this town will be built in no time with you at the helm. Getting things done will probably cost you some money though, so I'm happy to give you a starting gift of 1000 gold. I hope you spend it wisely, anyway, you should be off to see Jade again now! Thanks for the help.
 
 #Crops Tutorial
 harvestfestival.quest.tutorial.crops.title=Crop Farming
@@ -1460,12 +1460,12 @@ harvestfestival.quest.tutorial.crops.question=Do you know how to farm crops?
 harvestfestival.quest.tutorial.crops.tutorial=@How do I farm crops?
 harvestfestival.quest.tutorial.crops.skip=@I know how
 harvestfestival.quest.tutorial.crops.completed=Well then if you know everything, please just take these items to get started.
-harvestfestival.quest.tutorial.crops.start=Well then let me teach you! The very basics of crop farming is that you need to till some ground, once done, simply plant some seeds in this spot. Keep in mind that seeds plant in a 3x3 area. You’ll need to make sure those seeds watered every day, or they will not grow, as well as making sure you have the correct crops for that season. In order to use your hoe, you simply have to right click it to till dirt in to farmland. Before you can use the watering can however you will need to fill it with water. Take these and come back to me when you have grown yourself nine hardy turnips. Oh, one final tip, if you want to speed up crop growth, you can sleep. Crops will grow everyday, so this is the quickest way to get them to grow!
-harvestfestival.quest.tutorial.crops.reminder.turnips=Hey again. Looks like you don’t have nine hardy turnips yet. If you’re stuck and lost your hoe, just come back to me with a stone hoe and I’ll happily trade. If you need another watering can, I can spare some for buckets. Oh and if you want one bag of hardy turnips just bring me five flowers.
+harvestfestival.quest.tutorial.crops.start=Well then let me teach you! The very basics of crop farming is that you need to till some ground, once done, simply plant some seeds in this spot. Keep in mind that seeds plant in a 3x3 area. You'll need to make sure those seeds watered every day, or they will not grow, as well as making sure you have the correct crops for that season. In order to use your hoe, you simply have to right click it to till dirt in to farmland. Before you can use the watering can however you will need to fill it with water. Take these and come back to me when you have grown yourself nine hardy turnips. Oh, one final tip, if you want to speed up crop growth, you can sleep. Crops will grow everyday, so this is the quickest way to get them to grow!
+harvestfestival.quest.tutorial.crops.reminder.turnips=Hey again. Looks like you don't have nine hardy turnips yet. If you're stuck and lost your hoe, just come back to me with a stone hoe and I'll happily trade. If you need another watering can, I can spare some for buckets. Oh and if you want one bag of hardy turnips just bring me five flowers.
 harvestfestival.quest.tutorial.crops.thanks.flowers=Oh my so pretty, thanks! Here take these hardy turnip seeds seeds as a thank you.
-harvestfestival.quest.tutorial.crops.thanks.hoe=Perfect, here’s my hoe.
-harvestfestival.quest.tutorial.crops.thanks.bucket=Just what I’m after, you can have one of my spare watering cans.
-harvestfestival.quest.tutorial.crops.complete=Wow you have done a fantastic job growing these hardy turnips, I am tempted to take them for myself. But you can keep them. I don’t want you to have wasted your time on me. I should probably tell you, that you can sell whatever you grow for gold. You’ll just need a shipping bin. If you want them you can buy them directly from my brother’s shop, when he’s open for business. To use them, all you have to do is right click with the item held in your hand, and they should be ready to be shipped. In the morning you’ll get gold for everything you ship. If you don’t want to ship everything by hand, just place a hopper next to the bin and it will happily insert. Profits go to whoever placed it! Just to let you know though, the turnips you've been growing aren't really worth much. You'll need to grow some others, which you can get from me, if you want to make more money. I do have a small supply but I’m happy to trade for five flowers at any time. I would suggest though that you talk to my brother and get the general store built as soon as possible. The people there should be able to sell you much more variety than I could ever! As a last reward, take this sickle. You'll need it to harvest some crops, and it is pretty effective at destroying dead ones!
+harvestfestival.quest.tutorial.crops.thanks.hoe=Perfect, here's my hoe.
+harvestfestival.quest.tutorial.crops.thanks.bucket=Just what I'm after, you can have one of my spare watering cans.
+harvestfestival.quest.tutorial.crops.complete=Wow you have done a fantastic job growing these hardy turnips, I am tempted to take them for myself. But you can keep them. I don't want you to have wasted your time on me. I should probably tell you, that you can sell whatever you grow for gold. You'll just need a shipping bin. If you want them you can buy them directly from my brother's shop, when he's open for business. To use them, all you have to do is right click with the item held in your hand, and they should be ready to be shipped. In the morning you'll get gold for everything you ship. If you don't want to ship everything by hand, just place a hopper next to the bin and it will happily insert. Profits go to whoever placed it! Just to let you know though, the turnips you've been growing aren't really worth much. You'll need to grow some others, which you can get from me, if you want to make more money. I do have a small supply but I'm happy to trade for five flowers at any time. I would suggest though that you talk to my brother and get the general store built as soon as possible. The people there should be able to sell you much more variety than I could ever! As a last reward, take this sickle. You'll need it to harvest some crops, and it is pretty effective at destroying dead ones!
 
 #Chicken Care
 harvestfestival.quest.tutorial.chicken.title=Foxie's Fowls
@@ -1473,18 +1473,18 @@ harvestfestival.quest.tutorial.chicken.description.talk=Talk to Ashlee.
 harvestfestival.quest.tutorial.chicken.description.build=Build the Poultry Farm.
 harvestfestival.quest.tutorial.chicken.description.throw=Throw and feed a chicken.
 harvestfestival.quest.tutorial.chicken.description.egg=Show Ashlee a small egg.
-harvestfestival.quest.tutorial.chicken.reminder.talk=Sweety it looks you’ve had a Poultry Farm built. You should go and talk to Ashlee.
-harvestfestival.quest.tutorial.chicken.reminder.poultry=Hey my dear, don’t forget you’re going to want a Poultry Farm.
-harvestfestival.quest.tutorial.chicken.start=I love this place. Isn’t it wonderful, Mr Fox? I hope I get to stay here for longer. Oh, hello! Sorry I didn’t see you there, I was just ehhh. Nevermind. Anyway, welcome to my Poultry Farm! My name is Ashlee.
+harvestfestival.quest.tutorial.chicken.reminder.talk=Sweety it looks you've had a Poultry Farm built. You should go and talk to Ashlee.
+harvestfestival.quest.tutorial.chicken.reminder.poultry=Hey my dear, don't forget you're going to want a Poultry Farm.
+harvestfestival.quest.tutorial.chicken.start=I love this place. Isn't it wonderful, Mr Fox? I hope I get to stay here for longer. Oh, hello! Sorry I didn't see you there, I was just ehhh. Nevermind. Anyway, welcome to my Poultry Farm! My name is Ashlee.
 harvestfestival.quest.tutorial.chicken.question=Do you know how to take care of chickens?
 harvestfestival.quest.tutorial.chicken.tutorial=@Show me please!
 harvestfestival.quest.tutorial.chicken.skip=@Give me the goods!
-harvestfestival.quest.tutorial.chicken.completed=Oh well then, that’s good. Please take this spare chicken and somethings to help.
-harvestfestival.quest.tutorial.chicken.throw=Ahh so you don’t know? Well then first things first, you must feed your chickens! If you don’t, they will get sick and stop producing anything for you! You can feed chickens by hand or with a feeding tray. Chickens, like us need a bit of love too. To show a chicken that you love it, just make sure to pick it up every day. You can pick up chickens by right clicking them, they love it! Just right click the ground again to throw them back down. Feeding by hand also makes a chicken love you a bit more. A happier chicken will produce bigger and better eggs. Here’s some feed. Can you go feed this chicken and show it some additional love? Then come back to me.
+harvestfestival.quest.tutorial.chicken.completed=Oh well then, that's good. Please take this spare chicken and somethings to help.
+harvestfestival.quest.tutorial.chicken.throw=Ahh so you don't know? Well then first things first, you must feed your chickens! If you don't, they will get sick and stop producing anything for you! You can feed chickens by hand or with a feeding tray. Chickens, like us need a bit of love too. To show a chicken that you love it, just make sure to pick it up every day. You can pick up chickens by right clicking them, they love it! Just right click the ground again to throw them back down. Feeding by hand also makes a chicken love you a bit more. A happier chicken will produce bigger and better eggs. Here's some feed. Can you go feed this chicken and show it some additional love? Then come back to me.
 harvestfestival.quest.tutorial.chicken.reminder.throw=Remember? I asked you to pick up a chicken, and feed it some chicken feed.
-harvestfestival.quest.tutorial.chicken.egg=Well done. It looks like you now know how to take care of your chickens. As mentioned before, happier chickens make bigger eggs. But how do I get eggs you ask? Well my dear simply place a nest box nearby. And eventually the chicken will lay an egg. They’ll only lay one egg a day however. They won’t lay eggs unless they have been fed. Once you collected your eggs, don’t forget to ship them off for some gold. I have a nest box for you, come back and see me when you’ve got an egg from your chicken.
-harvestfestival.quest.tutorial.chicken.reminder.egg=Remember I’m after an egg from a chicken. If you need a new box, you can buy one from me.
-harvestfestival.quest.tutorial.chicken.complete=For your hard work, I’m happy to give you a rare egg! If you want to get more you’ll really have to take care of your chickens. Oh right, there’s also somethings else you may not know about yet, first thing, take your chickens inside when it's going to rain, and bring them out when it's sunny, also something else is the incubator. With an incubator you can hatch your own chickens. You just need to place an egg inside, wait a few days and then a chick should hatch! They’ll be born with half the relationship so it’s much better than just buying more. By the way, thanks for letting me open shop here.
+harvestfestival.quest.tutorial.chicken.egg=Well done. It looks like you now know how to take care of your chickens. As mentioned before, happier chickens make bigger eggs. But how do I get eggs you ask? Well my dear simply place a nest box nearby. And eventually the chicken will lay an egg. They'll only lay one egg a day however. They won't lay eggs unless they have been fed. Once you collected your eggs, don't forget to ship them off for some gold. I have a nest box for you, come back and see me when you've got an egg from your chicken.
+harvestfestival.quest.tutorial.chicken.reminder.egg=Remember I'm after an egg from a chicken. If you need a new box, you can buy one from me.
+harvestfestival.quest.tutorial.chicken.complete=For your hard work, I'm happy to give you a rare egg! If you want to get more you'll really have to take care of your chickens. Oh right, there's also somethings else you may not know about yet, first thing, take your chickens inside when it's going to rain, and bring them out when it's sunny, also something else is the incubator. With an incubator you can hatch your own chickens. You just need to place an egg inside, wait a few days and then a chick should hatch! They'll be born with half the relationship so it's much better than just buying more. By the way, thanks for letting me open shop here.
 
 #Cow Care
 harvestfestival.quest.tutorial.cow.title=Daisy Duke
@@ -1494,16 +1494,16 @@ harvestfestival.quest.tutorial.cow.description.talk=Brush and feed a cow..
 harvestfestival.quest.tutorial.cow.description.milk=Show Jim a small milk.
 harvestfestival.quest.tutorial.cow.reminder.intro=Looks like yer got the Animal Ranch built ya should go and talk to Jim.
 harvestfestival.quest.tutorial.cow.reminder.barn=I reckon yer should get an Animal Ranch built, so yer can learn about cows and sheep.
-harvestfestival.quest.tutorial.cow.start=I’m quite glad that you’ve invited me here. I’m Jim by the way, I run the Animal Ranch. As a thanks, I have a spare cow for you.
+harvestfestival.quest.tutorial.cow.start=I'm quite glad that you've invited me here. I'm Jim by the way, I run the Animal Ranch. As a thanks, I have a spare cow for you.
 harvestfestival.quest.tutorial.cow.question=Do you know how to take care of cows?
 harvestfestival.quest.tutorial.cow.tutorial=@Give me instructions
 harvestfestival.quest.tutorial.cow.skip=@I already know
 harvestfestival.quest.tutorial.cow.completed=Is that so? Well here she is. Take these to help you out too.
 harvestfestival.quest.tutorial.cow.info=Is that so? Guess I better teach you then. The basics are easy, these bigger animals like to be fed and loved, but they also need to be kept clean if you want them to stay healthy. They like to be fed fodder, which you can feed them by hand for a bonus, or with a trough. To show your cows some love just talk to them to by holding right click on them, until they show you the love back. Do the same when brushing them, but this time with a brush in hand, to get them squeaky clean. Go and give that a go, feed the cow and give her a clean.
 harvestfestival.quest.tutorial.cow.reminder.talk=Remember I advised you to go and feed your cow by hand as well as brushing them.
-harvestfestival.quest.tutorial.cow.milk=Well done, looks like you know how to keep your cows happy. Cows will make you milk every day. To get milk you’ll need to take a milker to them and hold right click until you get what you desire. Remember the friendlier you are with your animals the bigger products they’ll give you. Go and bring me some milk from your cow.
+harvestfestival.quest.tutorial.cow.milk=Well done, looks like you know how to keep your cows happy. Cows will make you milk every day. To get milk you'll need to take a milker to them and hold right click until you get what you desire. Remember the friendlier you are with your animals the bigger products they'll give you. Go and bring me some milk from your cow.
 harvestfestival.quest.tutorial.cow.reminder.milk=Did you forget? I asked you to go and milk your cow.
-harvestfestival.quest.tutorial.cow.complete=You’ve done a fine job there. I have some additional advice. For one your animals like to be outside when it's sunny and inside when it's rainy. And also to breed your animals just buy a Miracle Potion from me. It’ll impregnate your animals, and after a few days they’ll give birth to a baby, who’ll have half the relationship points of the parent. That’s all for now. Please do come again.
+harvestfestival.quest.tutorial.cow.complete=You've done a fine job there. I have some additional advice. For one your animals like to be outside when it's sunny and inside when it's rainy. And also to breed your animals just buy a Miracle Potion from me. It'll impregnate your animals, and after a few days they'll give birth to a baby, who'll have half the relationship points of the parent. That's all for now. Please do come again.
 
 #General Store Introduction
 harvestfestival.quest.tutorial.supermarket.title=Supermarket Sweep
@@ -1511,21 +1511,23 @@ harvestfestival.quest.tutorial.supermarket.description.build=Build a General Sto
 harvestfestival.quest.tutorial.supermarket.description.visit=Introduce yourself to Jenni.
 harvestfestival.quest.tutorial.supermarket.reminder.talk=You should probably go and talk to Candice or Jenni, now that you have the General Store built.
 harvestfestival.quest.tutorial.supermarket.reminder.supermarket=Just a friendly reminder, if you want more seeds, go and get a General Store built!
-harvestfestival.quest.tutorial.supermarket.welcome.owner=Hey, I’m the owner of this here General Store. It’s nice to move to town. I sell all kinds of wares from seeds to chocolate. If you need anything just ask me. Opening hours are Weekdays, 09:00-17:00, well except for Wednesday and Sunday when we’re closed. We’re also open for 4 hours on a Saturday from 11:00 to 15:00. It looks like you’re our first customer too, so here’s a reward!
+harvestfestival.quest.tutorial.supermarket.welcome.owner=Hey, I'm the owner of this here General Store. It's nice to move to town. I sell all kinds of wares from seeds to chocolate. If you need anything just ask me. Opening hours are Weekdays, 09:00-17:00, well except for Wednesday and Sunday when we're closed. We're also open for 4 hours on a Saturday from 11:00 to 15:00. It looks like you're our first customer too, so here's a reward!
 
 #Cafe Cooking Lesson
 harvestfestival.quest.tutorial.cafe.title=Big Chef, Little Chef
 harvestfestival.quest.tutorial.cafe.description=Converse with Liara.
 harvestfestival.quest.tutorial.cafe.build=Build the Cafe.
-harvestfestival.quest.tutorial.cafe.welcome=Welcome to my Cafe. I am Liara the owner. Here we show a true passion for cooking and bring you the best food you can find. I’m happy to teach you how to cook if you don’t know how.
+harvestfestival.quest.tutorial.cafe.welcome=Welcome to my Cafe. I am Liara the owner. Here we show a true passion for cooking and bring you the best food you can find. I'm happy to teach you how to cook if you don't know how.
 harvestfestival.quest.tutorial.cafe.question=Do you need to learn how to cook?
 harvestfestival.quest.tutorial.cafe.tutorial=@I do indeed
 harvestfestival.quest.tutorial.cafe.skip=@I can work it out
-harvestfestival.quest.tutorial.cafe.completed=Well that’s just awesome! I’m happy to give you these things to get started though.
-harvestfestival.quest.tutorial.cafe.explain=Well that’s just awesome! I’m happy to teach you. To get started you are going to need some sort of utensil. The most basic one would be the kitchen counter in combo with a knife. You’ll also need to know how to prepare a recipe. You can buy a bunch from me, but here’s Pickled Turnip to start with. You’ll just have to add it to your knowledge with right click. To see it, just grab yourself a Recipe Book. Select the utensil and then the recipe. You’ll then be able to see a list of items on the right hand side that you will need. If you have the ingredients and the utensil in place, clicking cook will place all the ingredients in to the utensil. It should then start cooking. Unless you’re using a counter of course! Then you’ll need to chop with a right click instead. If you need additional cookware, I’m happy to sell them to you, but they’re only available at weekends. One last thing. The recipes in the book are the very basics, you should try experimenting with adding extra ingredients, and you might be able to make a better version. Thanks for your time.
+harvestfestival.quest.tutorial.cafe.completed=Well that's just awesome! I'm happy to give you these things to get started though.
+harvestfestival.quest.tutorial.cafe.explain=Well that's just awesome! I'm happy to teach you. To get started you are going to need some sort of utensil. The most basic one would be the kitchen counter in combo with a knife. You'll also need to know how to prepare a recipe. You can buy a bunch from me, but here's Pickled Turnip to start with. You'll just have to add it to your knowledge with right click. To see it, just grab yourself a Recipe Book. Select the utensil and then the recipe. You'll then be able to see a list of items on the right hand side that you will need. If you have the ingredients and the utensil in place, clicking cook will place all the ingredients in to the utensil. It should then start cooking. Unless you're using a counter of course! Then you'll need to chop with a right click instead. If you need additional cookware, I'm happy to sell them to you, but they're only available at weekends. One last thing. The recipes in the book are the very basics, you should try experimenting with adding extra ingredients, and you might be able to make a better version. Thanks for your time.
 
 #Mining Tutorial
 harvestfestival.quest.tutorial.mining.title=Miner's Delight
+harvestfestival.quest.tutorial.mining.build=Build the Mining Hill
+harvestfestival.quest.tutorial.mining.description=Enter the mining hill and talk to Brandon.
 harvestfestival.quest.tutorial.mining.description.ore=Show Brandon three Junk Ore
 harvestfestival.quest.tutorial.mining.intro=Ehh what are you doing here? The name's Brandon. I prefer to hang out here in the mines than in that town with those people. I guess it's nice to meet you. Do you need anything?
 harvestfestival.quest.tutorial.mining.explain=Well I should probably explain then if I must. I would explain it but all you have to do is to break the nodes you see hanging around the mine with a hammer. Although there are different kind of nodes such as copper or just plain rocks. I've had this old hammer of mine for a long time now, and it's just become a bit useless, I think you should have it. Prove to me that you can mine then I'll let you keep it. Go smash some plain rocks and bring me back three junk ore.
@@ -1546,20 +1548,20 @@ harvestfestival.quest.tutorial.upgrading.reminder.blacksmith.jim=Danieru told me
 harvestfestival.quest.tutorial.upgrading.reminder.blacksmith.jenni=You should go and talk to Danieru.
 harvestfestival.quest.tutorial.upgrading.reminder.blacksmith.candice=Hey there gorgeous, Danieru wanted to see you.
 harvestfestival.quest.tutorial.upgrading.reminder.blacksmith.jade=I heard a rumour that the Blacksmith was looking to talk to you about something.
-harvestfestival.quest.tutorial.upgrading.reminder.blacksmith.brandon=I have something I’d like to give you, but you should go and see Danieru first.
+harvestfestival.quest.tutorial.upgrading.reminder.blacksmith.brandon=I have something I'd like to give you, but you should go and see Danieru first.
 harvestfestival.quest.tutorial.upgrading.blacksmith.yulif=Ya should probably get a Blacksmith built.
 harvestfestival.quest.tutorial.upgrading.blacksmith.goddess=Hey darling, I recommend getting a Blacksmith built next.
 harvestfestival.quest.tutorial.upgrading.blacksmith.jim=A Blacksmith would be a great investment.
 harvestfestival.quest.tutorial.upgrading.blacksmith.jenni=You should build a Blacksmith.
-harvestfestival.quest.tutorial.upgrading.blacksmith.candice=I’d love to work some hard metal. So perhaps you could get a Blacksmith built for me?
+harvestfestival.quest.tutorial.upgrading.blacksmith.candice=I'd love to work some hard metal. So perhaps you could get a Blacksmith built for me?
 harvestfestival.quest.tutorial.upgrading.blacksmith.jade=I heard a rumour that a Blacksmith would love to move to town.
 harvestfestival.quest.tutorial.upgrading.blacksmith.brandon=It's great to be here. I think you should invite Danieru the Blacksmith too.
-harvestfestival.quest.tutorial.upgrading.intro=If there is anywhere else I’d rather be than here, it’s in The End. Did I tell you about my adventures there. Oh wait, have we even met? I’m Danieru, the Blacksmith. Do you need any help?
+harvestfestival.quest.tutorial.upgrading.intro=If there is anywhere else I'd rather be than here, it's in The End. Did I tell you about my adventures there. Oh wait, have we even met? I'm Danieru, the Blacksmith. Do you need any help?
 harvestfestival.quest.tutorial.upgrading.question=Do you know how to upgrade tools?
 harvestfestival.quest.tutorial.upgrading.tutorial=@I do not know anything.
 harvestfestival.quest.tutorial.upgrading.skip=@I know everything.
-harvestfestival.quest.tutorial.upgrading.completed=That’s good then. I have some ore for you.
-harvestfestival.quest.tutorial.upgrading.explain=That’s good then. I’ll be happy to teach you. The first step is to get your tools to the stage where they can even be upgraded. If you notice they have a percentage bar. When this is at 100%% just bring them to me. I’ll also need some ore to work with, as well as payment for my services. I’ll work on them for a few days, then you can have your tools back fully upgraded. Anyway that’s about it. Actually, take these!.
+harvestfestival.quest.tutorial.upgrading.completed=That's good then. I have some ore for you.
+harvestfestival.quest.tutorial.upgrading.explain=That's good then. I'll be happy to teach you. The first step is to get your tools to the stage where they can even be upgraded. If you notice they have a percentage bar. When this is at 100%% just bring them to me. I'll also need some ore to work with, as well as payment for my services. I'll work on them for a few days, then you can have your tools back fully upgraded. Anyway that's about it. Actually, take these!.
 
 ##Trading Quests
 # Priest Blessing Quest
@@ -1584,12 +1586,12 @@ harvestfestival.quest.trade.upgrade.closed.start=I'm afraid I can only work on y
 harvestfestival.quest.trade.upgrade.closed.finish=I finished working on your %s. It's my time off but it's no work to hand it back to you.w
 harvestfestival.quest.trade.upgrade.level=Your tool is not at 100%%! Please come back when it is.
 harvestfestival.quest.trade.upgrade.gold=To upgrade this tool it will cost you %s, please come back when you have enough.
-harvestfestival.quest.trade.upgrade.material=To upgrade this tool I’m going to need %1s %2s.
+harvestfestival.quest.trade.upgrade.material=To upgrade this tool I'm going to need %1s %2s.
 harvestfestival.quest.trade.upgrade.accept=This I can do, please come back in 3 days to collect your upgraded tool.
 harvestfestival.quest.trade.upgrade.done=I've finished working on your %s. Pleasure doing business with you.
 harvestfestival.quest.trade.upgrade.wait=Sorry to say but your tool is not quite ready, please come back in %s days.
 harvestfestival.quest.trade.upgrade.repair.gold=Repairing this tool will cost you %s gold. Please come when you have enough.
-harvestfestival.quest.trade.upgrade.repair.material=To repair this tool I’m going to need %s.
+harvestfestival.quest.trade.upgrade.repair.material=To repair this tool I'm going to need %s.
 harvestfestival.quest.trade.upgrade.repair.start=This I can do, please come back in a day to collect your repaired tool.
 harvestfestival.quest.trade.upgrade.repair.no=I'm afraid I don't know how to repair this.
 
@@ -1598,7 +1600,7 @@ harvestfestival.quest.trade.seeds.reminder=If you ever need more seeds, just bri
 harvestfestival.quest.trade.seeds.complete.yes1=Thanks for the flowers, here have a bag of seeds.
 harvestfestival.quest.trade.seeds.complete.yes2=Your flower supplying skills are appreciated, have some more seeds.
 harvestfestival.quest.trade.seeds.complete.yes3=These flowers are perfect, take some seeds!
-harvestfestival.quest.trade.seeds.complete.no=I’m sorry but I don’t have any seeds to spare this time of year.
+harvestfestival.quest.trade.seeds.complete.no=I'm sorry but I don't have any seeds to spare this time of year.
 harvestfestival.quest.trade.seeds.return=I'm so sorry but I'm out of stock of seeds for now. I should get a fresh supply in %s days.
 
 # Jade Tools Trades
@@ -1705,7 +1707,7 @@ harvestfestival.quest.meeting.abi.title=Little Foot
 harvestfestival.quest.meeting.abi.text=HELLLO BIG PERSON! I'm Abii!!!!! Never seen you before :D
 harvestfestival.quest.meeting.abi.description=Say hello to Abii.
 harvestfestival.quest.meeting.candice.title=Creepy Candice
-harvestfestival.quest.meeting.candice.text=I will surely find myself someone. Well hello there aren’t you just the cutest. I’m Candice. Jenni downstairs is the owner here, I’m just a tenant. Nice to meet you! I'd love for you to have one of my favourite drinks!
+harvestfestival.quest.meeting.candice.text=I will surely find myself someone. Well hello there aren't you just the cutest. I'm Candice. Jenni downstairs is the owner here, I'm just a tenant. Nice to meet you! I'd love for you to have one of my favourite drinks!
 harvestfestival.quest.meeting.candice.description=Introduce yourself to Candice.
 harvestfestival.quest.meeting.fenn.title=Pokefenn
 harvestfestival.quest.meeting.fenn.text=Oooo hello there! Fenn's the name, vines are the game.
@@ -1736,8 +1738,8 @@ harvestfestival.quest.seeds.progress.complete=This town has really been growing,
 harvestfestival.quest.building.goddess.title=Grateful Goddess
 harvestfestival.quest.building.goddess.build=Build the Goddess Pond.
 harvestfestival.quest.building.goddess.description=Talk to the Harvest Goddess.
-harvestfestival.quest.building.goddess.please=You’ve done a remarkable job of bringing this town back together. I’m really happy to see it growing! I’d just love a permanent home here too. If you can build me one, then I have a reward for you.
-harvestfestival.quest.building.goddess.thanks=Your hard work getting this town back on its feet couldn’t be more appreciated. I couldn’t be more grateful for the home you have built me here either. To show my appreciation I’d like to give you a few strawberries and a small bonus to your funds!
+harvestfestival.quest.building.goddess.please=You've done a remarkable job of bringing this town back together. I'm really happy to see it growing! I'd just love a permanent home here too. If you can build me one, then I have a reward for you.
+harvestfestival.quest.building.goddess.thanks=Your hard work getting this town back on its feet couldn't be more appreciated. I couldn't be more grateful for the home you have built me here either. To show my appreciation I'd like to give you a few strawberries and a small bonus to your funds!
 
 ##Schedule Quests
 #Sunday Baking!

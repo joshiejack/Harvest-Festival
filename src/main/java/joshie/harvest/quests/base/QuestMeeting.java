@@ -26,7 +26,7 @@ public class QuestMeeting extends Quest {
 
     @Override
     public boolean canStartQuest(Set<Quest> active, Set<Quest> finished) {
-        return finished.contains(Quests.JADE_MEET);
+        return finished.contains(Quests.YULIF_MEET);
     }
 
     @Override

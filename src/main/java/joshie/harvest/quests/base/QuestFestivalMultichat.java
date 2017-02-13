@@ -24,11 +24,11 @@ public abstract class QuestFestivalMultichat extends QuestFestival {
     @SideOnly(Side.CLIENT)
     public String getLocalizedScript(EntityPlayer player, EntityLiving entity, NPC npc) {
         if (received.get(EntityHelper.getPlayerUUID(player)).contains(npc)) return null; //Don't process
-        return getLocalizedScript(npc);
+        return getLocalizedScript(player, npc);
     }
 
     @Nullable
-    protected abstract String getLocalizedScript(NPC npc);
+    protected abstract String getLocalizedScript(EntityPlayer player, NPC npc);
 
     @Override
     public void onChatClosed(EntityPlayer player, EntityLiving entity, NPC npc, boolean wasSneaking) {

@@ -1,4 +1,4 @@
-package joshie.harvest.festivals;
+package joshie.harvest.knowledge.letter;
 
 import joshie.harvest.api.calendar.CalendarDate;
 import joshie.harvest.api.calendar.Festival;

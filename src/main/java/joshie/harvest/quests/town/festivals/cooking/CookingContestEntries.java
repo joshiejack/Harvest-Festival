@@ -1,4 +1,4 @@
-package joshie.harvest.festivals.cooking;
+package joshie.harvest.quests.town.festivals.cooking;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.npc.NPC;
@@ -21,7 +21,7 @@ public class CookingContestEntries {
     private long prize;
 
     @SuppressWarnings("ConstantConditions")
-    CookingContestEntries(World world, Map<UUID, BlockPos> blockPosList) {
+    public CookingContestEntries(World world, Map<UUID, BlockPos> blockPosList) {
         rand.setSeed(HFApi.calendar.getDate(world).hashCode());
         entries = new HashMap<>();
         for (Entry<UUID, BlockPos> entry: blockPosList.entrySet()) {
@@ -47,11 +47,11 @@ public class CookingContestEntries {
         localizations = localized.toArray();
     }
 
-    boolean isUUIDInContest(UUID uuid) {
+    public boolean isUUIDInContest(UUID uuid) {
         return entries.containsKey(uuid);
     }
 
-    ItemStack getEntryForUUID(UUID uuid) {
+    public ItemStack getEntryForUUID(UUID uuid) {
         return entries.get(uuid).getMeal();
     }
 
@@ -74,15 +74,15 @@ public class CookingContestEntries {
         }
     }
 
-    long getPrize() {
+    public long getPrize() {
         return prize;
     }
 
-    UUID getWinnerID() {
+    public UUID getWinnerID() {
         return winner;
     }
 
-    Object[] getLocalization() {
+    public Object[] getLocalization() {
         return localizations;
     }
 }

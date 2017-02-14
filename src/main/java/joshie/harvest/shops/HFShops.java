@@ -21,7 +21,7 @@ import joshie.harvest.core.block.BlockStorage.Storage;
 import joshie.harvest.core.util.annotations.HFLoader;
 import joshie.harvest.crops.HFCrops;
 import joshie.harvest.crops.block.BlockSprinkler.Sprinkler;
-import joshie.harvest.festivals.HFFestivals;
+import joshie.harvest.calendar.HFFestivals;
 import joshie.harvest.fishing.HFFishing;
 import joshie.harvest.fishing.block.BlockFishing.FishingBlock;
 import joshie.harvest.fishing.item.ItemFish.Fish;
@@ -234,7 +234,7 @@ public class HFShops {
         CARPENTER.addPurchasable(new PurchasableBuilding(5000L, HFBuildings.SUPERMARKET, Logs.of(96), Stone.of(32)));
         CARPENTER.addPurchasable(new PurchasableBuilding(4000L, HFBuildings.BARN, Logs.of(96)));
         CARPENTER.addPurchasable(new PurchasableBuilding(3000L, HFBuildings.POULTRY_FARM, Logs.of(96)));
-        CARPENTER.addPurchasable(new PurchasableBuilding(1000L, HFFestivals.FESTIVAL_GROUNDS, Logs.of(8), Stone.of(4)));
+        CARPENTER.addPurchasable(new PurchasableBuilding(1000L, HFBuildings.FESTIVAL_GROUNDS, Logs.of(8), Stone.of(4)));
         CARPENTER.addPurchasable(new PurchasableBuilding(3000L, HFBuildings.MINING_HILL, Logs.of(16), Iron.of(8)));
         CARPENTER.addPurchasable(new PurchasableBuilding(9000L, HFBuildings.BLACKSMITH, Logs.of(32), Stone.of(248), Iron.of(16)));
         CARPENTER.addPurchasable(new PurchasableBuilding(12000L, HFBuildings.FISHING_HUT, Logs.of(96), Glass.of(16), Iron.of(16)));

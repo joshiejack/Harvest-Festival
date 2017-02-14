@@ -5,6 +5,7 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.core.block.BlockFlower;
 import joshie.harvest.core.block.BlockFlower.FlowerType;
 import joshie.harvest.core.block.BlockGoddessWater;
+import joshie.harvest.core.block.BlockStand;
 import joshie.harvest.core.block.BlockStorage;
 import joshie.harvest.core.handlers.GuiHandler;
 import joshie.harvest.core.helpers.InventoryHelper;
@@ -12,6 +13,8 @@ import joshie.harvest.core.helpers.RegistryHelper;
 import joshie.harvest.core.loot.SetEnum;
 import joshie.harvest.core.loot.SetSizeable;
 import joshie.harvest.core.render.SpecialRendererMailbox;
+import joshie.harvest.core.render.SpecialRendererStand;
+import joshie.harvest.core.tile.TileCookingStand;
 import joshie.harvest.core.tile.TileMailbox;
 import joshie.harvest.core.tile.TileShipping;
 import joshie.harvest.core.util.annotations.HFLoader;
@@ -48,6 +51,7 @@ public class HFCore {
     public static final BlockGoddessWater GODDESS_WATER = new BlockGoddessWater(GODDESS).register("goddess_water");
     public static final BlockFlower FLOWERS = new BlockFlower().register("flowers");
     public static final BlockStorage STORAGE = new BlockStorage().register("storage");
+    public static final BlockStand STAND = new BlockStand().register("stand");
     public static final AxisAlignedBB FENCE_COLLISION =  new AxisAlignedBB(0D, 0D, 0D, 1D, 1.5D, 1D);
 
     @SuppressWarnings("unchecked")
@@ -55,7 +59,7 @@ public class HFCore {
         NetworkRegistry.INSTANCE.registerGuiHandler(HarvestFestival.instance, new GuiHandler());
         LootFunctionManager.registerFunction(new SetEnum.Serializer());
         LootFunctionManager.registerFunction(new SetSizeable.Serializer());
-        RegistryHelper.registerTiles(TileShipping.class, TileMailbox.class);
+        RegistryHelper.registerTiles(TileShipping.class, TileMailbox.class, TileCookingStand.class);
         GODDESS.setBlock(GODDESS_WATER);
 
         //Register Flowers
@@ -93,6 +97,7 @@ public class HFCore {
 
     @SideOnly(Side.CLIENT)
     public static void initClient() {
+        ClientRegistry.bindTileEntitySpecialRenderer(TileCookingStand.class, new SpecialRendererStand());
         Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler((state, worldIn, pos, tintIndex) -> {
                 FlowerType type = HFCore.FLOWERS.getEnumFromState(state);
                 if (!type.isColored()) return -1;

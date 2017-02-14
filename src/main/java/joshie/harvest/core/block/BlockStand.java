@@ -1,10 +1,11 @@
-package joshie.harvest.festivals.contest.block;
+package joshie.harvest.core.block;
 
 import joshie.harvest.core.helpers.SpawnItemHelper;
-import joshie.harvest.festivals.contest.block.BlockStand.Stand;
+import joshie.harvest.core.block.BlockStand.Stand;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.block.BlockHFEnumRotatableTile;
-import joshie.harvest.festivals.contest.tile.TileStand;
+import joshie.harvest.core.tile.TileCookingStand;
+import joshie.harvest.core.tile.TileStand;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -22,8 +23,9 @@ import javax.annotation.Nonnull;
 import java.util.Locale;
 
 public class BlockStand extends BlockHFEnumRotatableTile<BlockStand, Stand> {
+    @SuppressWarnings("WeakerAccess")
     public enum Stand implements IStringSerializable {
-        COOKING, CHICKEN, LIVESTOCK, POT;
+        COOKING, CHICKEN, LIVESTOCK, POT, DISPLAY;
 
         @Override
         public String getName() {
@@ -59,6 +61,9 @@ public class BlockStand extends BlockHFEnumRotatableTile<BlockStand, Stand> {
     @Override
     @Nonnull
     public TileEntity createTileEntity(@Nonnull World world, @Nonnull IBlockState state) {
-        return new TileStand();
+        switch (getEnumFromState(state)) {
+            case COOKING:   return new TileCookingStand();
+            default:        return new TileCookingStand();
+        }
     }
 }

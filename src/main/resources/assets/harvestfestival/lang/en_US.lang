@@ -1778,7 +1778,7 @@ harvestfestival.quest.festival.cooking.cancel=@Give me a minute.
 harvestfestival.script.cooking=This was a great contest! Had a taste of everyone's meals... And well I think I've decided..... ...... ................... ..... ..... In third place is %1$s with their %2$s. ..... .. ... . .......... .... .. .. .. .. . In second place we jave %3$s with their %4$s... and finally...... without... further ado.... the winner of this year's cooking festival is........... %5$s with their amazing %6$s. Congratulations! For this years prize we have a gift of %7$s gold as well as a special recipe!
 
 ### Letters
-harvestfestival.letter.new.years=Alright there, \n\nWe're planning on taking part in some festivities to celebrate the new year from around 1pm to 10pm. I think we should invite ya. Give us a heads up if yer want to take part\n\n\n-Yulif, Jade and Johan
+harvestfestival.letter.new.years=Alright there, \n\nWe're planning on taking part in some festivities to celebrate the new year from around 10am to 6pm. I think we should invite ya. Give us a heads up if yer want to take part\n\n\n-Yulif, Jade and Johan
 harvestfestival.letter.cooking=Dear Sir/Madam, \n\nI have plans for a cooking festival that I would like to setup for tomorrow. Please confirm if you would be happy to attend.\n\n\n-Jenni
 
 ###Achievements

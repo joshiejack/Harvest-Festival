@@ -1,32 +1,56 @@
-package joshie.harvest.festivals.contest.tile;
+package joshie.harvest.core.tile;
 
+import joshie.harvest.api.calendar.Festival;
+import joshie.harvest.api.quests.Quest;
 import joshie.harvest.core.base.tile.TileFaceable;
-import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.core.helpers.MCServerHelper;
 import joshie.harvest.core.helpers.NBTHelper;
-import joshie.harvest.festivals.HFFestivals;
-import joshie.harvest.festivals.cooking.CookingContestQuest;
 import joshie.harvest.town.TownHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.UUID;
 
-public class TileStand extends TileFaceable {
+public abstract class TileStand<Q extends Quest> extends TileFaceable {
     private UUID owner;
-    private ItemStack stack;
+    protected ItemStack stack;
+    private Festival festival;
+
+    @SuppressWarnings("WeakerAccess")
+    public TileStand(Festival festival) {
+        this.festival = festival;
+    }
+
+    @SuppressWarnings("unchecked")
+    public Q getQuest() {
+        return (Q) TownHelper.getClosestTownToBlockPos(worldObj, pos).getQuests().getAQuest(festival.getQuest());
+    }
+
+    protected boolean isQuestInvalid(Q quest) {
+        return quest == null;
+    }
 
     public boolean isEmpty() {
         return stack == null;
     }
 
+    protected void onContentsSet(@Nullable EntityPlayer player, @Nonnull Q quest) {}
+
+    protected void onContentsRemoved(@Nonnull Q quest) {}
+
+    public void setContents(ItemStack stack) {
+        this.stack = stack;
+        this.markDirty();
+    }
+
     public boolean setContents(@Nullable EntityPlayer player, ItemStack stack) {
-        CookingContestQuest quest = TownHelper.getClosestTownToBlockPos(worldObj, pos).getQuests().getAQuest(HFFestivals.COOKING_CONTEST.getQuest());
-        if (quest == null || quest.isFull() || this.stack != null) return false;
+        Q quest = getQuest();
+        if (isQuestInvalid(quest) || this.stack != null) return false;
         else {
-            if (player != null) quest.addStand(EntityHelper.getPlayerUUID(player), pos);
+            onContentsSet(player, quest);
             this.stack = stack.splitStack(1); //Remove one item
             MCServerHelper.markTileForUpdate(this);
         }
@@ -35,10 +59,10 @@ public class TileStand extends TileFaceable {
     }
 
     public ItemStack removeContents() {
-        CookingContestQuest quest = TownHelper.getClosestTownToBlockPos(worldObj, pos).getQuests().getAQuest(HFFestivals.COOKING_CONTEST.getQuest());
+        Q quest = getQuest();
         if (stack == null) return null;
         else {
-            if (quest != null) quest.removeStand(pos);
+            if (quest != null) onContentsRemoved(quest);
             ItemStack stack = this.stack.copy();
             this.stack = null;
             MCServerHelper.markTileForUpdate(this);
@@ -58,6 +82,7 @@ public class TileStand extends TileFaceable {
     }
 
     @Override
+    @Nonnull
     public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
         if (stack != null) nbt.setTag("Stack", NBTHelper.writeItemStack(stack, new NBTTagCompound()));
         if (owner != null) nbt.setString("Owner", owner.toString());

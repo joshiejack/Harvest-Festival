@@ -1,4 +1,4 @@
-package joshie.harvest.festivals;
+package joshie.harvest.buildings.building;
 
 import joshie.harvest.api.buildings.Building;
 import joshie.harvest.api.calendar.Festival;

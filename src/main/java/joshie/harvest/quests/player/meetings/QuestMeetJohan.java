@@ -2,7 +2,7 @@ package joshie.harvest.quests.player.meetings;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.quests.HFQuest;
-import joshie.harvest.festivals.HFFestivals;
+import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.npcs.HFNPCs;
 import joshie.harvest.quests.Quests;
 import joshie.harvest.quests.base.QuestMeeting;
@@ -13,7 +13,7 @@ import net.minecraft.world.World;
 @HFQuest("meeting.johan")
 public class QuestMeetJohan extends QuestMeeting {
     public QuestMeetJohan() {
-        super(HFFestivals.FESTIVAL_GROUNDS, HFNPCs.TRADER);
+        super(HFBuildings.FESTIVAL_GROUNDS, HFNPCs.TRADER);
     }
 
     @Override

@@ -1,7 +1,7 @@
-package joshie.harvest.festivals.contest.render;
+package joshie.harvest.core.render;
 
 import joshie.harvest.core.base.render.TileSpecialRendererItem;
-import joshie.harvest.festivals.contest.tile.TileStand;
+import joshie.harvest.core.tile.TileCookingStand;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -9,9 +9,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import javax.annotation.Nonnull;
 
 @SideOnly(Side.CLIENT)
-public class SpecialRendererStand extends TileSpecialRendererItem<TileStand> {
+public class SpecialRendererStand extends TileSpecialRendererItem<TileCookingStand> {
     @Override
-    public void renderTileEntityAt(@Nonnull TileStand tile, double x, double y, double z, float tick, int destroyStage) {
+    public void renderTileEntityAt(@Nonnull TileCookingStand tile, double x, double y, double z, float tick, int destroyStage) {
         GlStateManager.pushMatrix();
         GlStateManager.translate(x, y, z);
         if (tile.getContents() != null) {

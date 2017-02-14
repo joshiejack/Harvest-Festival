@@ -1,8 +1,8 @@
-package joshie.harvest.festivals.cooking;
+package joshie.harvest.quests.town.festivals.cooking;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.cooking.HFCooking;
-import joshie.harvest.festivals.contest.tile.TileStand;
+import joshie.harvest.core.tile.TileCookingStand;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -21,8 +21,8 @@ class CookingContestEntry {
 
     CookingContestEntry(World world, BlockPos pos) {
         TileEntity tile = world.getTileEntity(pos);
-        if (tile instanceof TileStand) {
-            TileStand stand = ((TileStand)tile);
+        if (tile instanceof TileCookingStand) {
+            TileCookingStand stand = ((TileCookingStand)tile);
             if (stand.getContents() != null) {
                 meal = stand.getContents();
             } else meal = null;

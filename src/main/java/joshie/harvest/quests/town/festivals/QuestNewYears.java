@@ -1,4 +1,4 @@
-package joshie.harvest.festivals.newyears;
+package joshie.harvest.quests.town.festivals;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.npc.NPC;
@@ -17,22 +17,21 @@ import javax.annotation.Nullable;
 import static joshie.harvest.core.registry.ShippingRegistry.SELL_VALUE;
 
 @HFQuest("festival.new.years")
-public class NewYearsQuests extends QuestFestivalMultichat {
-    public NewYearsQuests() {
+public class QuestNewYears extends QuestFestivalMultichat {
+    public QuestNewYears() {
         setNPCs(HFNPCs.CARPENTER, HFNPCs.FLOWER_GIRL, HFNPCs.MAYOR, HFNPCs.TRADER);
     }
 
     //@Override
-    protected boolean isCorrectTime(long time) {
-        return time >= 13000L && time <= 22000L;
+    private boolean isCorrectTime(long time) {
+        return time >= 10000L && time <= 18000L;
     }
 
     @Override
     @Nullable
     protected String getLocalizedScript(EntityPlayer player, NPC npc) {
         if (!isCorrectTime(CalendarHelper.getTime(player.worldObj))) return null;
-        //Yulif tells the player it's been another great new year and he's grateful to have been around since the very beginning
-        //Yulif then gives the player 7 plates of cooked riceballs
+        //Yulif lets the player know that
         if (npc == HFNPCs.CARPENTER) return getLocalized("riceballs");
             //Jade says she's glad that the new year is here and that she misses the earlier days
             //She is grateful and gives you 3 bamboo rice

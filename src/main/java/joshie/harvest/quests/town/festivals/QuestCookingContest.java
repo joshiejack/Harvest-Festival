@@ -1,4 +1,4 @@
-package joshie.harvest.festivals.cooking;
+package joshie.harvest.quests.town.festivals;
 
 import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.npc.greeting.Script;
@@ -9,12 +9,14 @@ import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.Selection;
 import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.core.helpers.NBTHelper;
-import joshie.harvest.festivals.contest.tile.TileStand;
+import joshie.harvest.core.tile.TileCookingStand;
 import joshie.harvest.npcs.HFNPCs;
 import joshie.harvest.npcs.entity.EntityNPCHuman;
 import joshie.harvest.npcs.entity.ai.EntityAIPathing;
 import joshie.harvest.quests.base.QuestFestival;
 import joshie.harvest.quests.selection.FestivalSelection;
+import joshie.harvest.quests.town.festivals.cooking.CookingContestEntries;
+import joshie.harvest.quests.town.festivals.cooking.CookingContestScript;
 import joshie.harvest.town.BuildingLocations;
 import joshie.harvest.town.TownHelper;
 import joshie.harvest.town.data.TownData;
@@ -32,7 +34,7 @@ import java.util.*;
 import java.util.Map.Entry;
 
 @HFQuest("festival.cooking")
-public class CookingContestQuest extends QuestFestival {
+public class QuestCookingContest extends QuestFestival {
     private static final Script SCRIPT = new CookingContestScript();
     private final Selection selection = new FestivalSelection("cooking");
     private final int QUESTION = 0;
@@ -40,7 +42,7 @@ public class CookingContestQuest extends QuestFestival {
     private final int WINNER = 2;
     private Map<UUID, BlockPos> blockPosList = new HashMap<>();
 
-    public CookingContestQuest() {
+    public QuestCookingContest() {
         setNPCs(HFNPCs.GS_OWNER);
     }
 
@@ -108,8 +110,8 @@ public class CookingContestQuest extends QuestFestival {
                     for (Entry<BlockPos, BlockPos> entry: emptyStands.entrySet()) {
                         if (!filled.contains(entry.getKey())) {
                             TileEntity tile = player.worldObj.getTileEntity(entry.getKey());
-                            if (tile instanceof TileStand) {
-                                ((TileStand)tile).setContents(null, stack);
+                            if (tile instanceof TileCookingStand) {
+                                ((TileCookingStand)tile).setContents(stack);
                             }
 
                             theNPC.getPathing().setPath(ScheduleMove.of(entry.getValue().down()), ScheduleWait.of(10));

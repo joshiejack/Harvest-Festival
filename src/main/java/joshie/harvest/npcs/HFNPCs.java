@@ -13,7 +13,7 @@ import joshie.harvest.core.base.render.MeshIdentical;
 import joshie.harvest.core.lib.EntityIDs;
 import joshie.harvest.core.proxy.HFClientProxy;
 import joshie.harvest.core.util.annotations.HFLoader;
-import joshie.harvest.festivals.HFFestivals;
+import joshie.harvest.calendar.HFFestivals;
 import joshie.harvest.npcs.entity.*;
 import joshie.harvest.npcs.greeting.*;
 import joshie.harvest.npcs.item.ItemNPCSpawner;
@@ -45,8 +45,8 @@ import static joshie.harvest.core.helpers.RegistryHelper.registerSounds;
 import static joshie.harvest.core.lib.HFModInfo.GIFTPATH;
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 import static joshie.harvest.core.lib.LoadOrder.HFNPCS;
-import static joshie.harvest.festivals.HFFestivals.COOKING_CONTEST;
-import static joshie.harvest.festivals.HFFestivals.NEW_YEARS;
+import static joshie.harvest.calendar.HFFestivals.COOKING_CONTEST;
+import static joshie.harvest.calendar.HFFestivals.NEW_YEARS;
 import static joshie.harvest.town.BuildingLocations.*;
 
 @HFLoader(priority = HFNPCS)
@@ -506,7 +506,7 @@ public class HFNPCs {
                 //addHolidayGreetings(npc,
                         //HFFestivals.NEW_YEARS, HFFestivals.COOKING_CONTEST, HFFestivals.CHICKEN_FESTIVAL, HFFestivals.COW_FESTIVAL,
                         //HFFestivals.HARVEST_FESTIVAL, HFFestivals.SHEEP_FESTIVAL, HFFestivals.STARRY_NIGHT, HFFestivals.NEW_YEARS_EVE);
-                addHolidayGreetings(npc, HFFestivals.NEW_YEARS, HFFestivals.COOKING_CONTEST);
+                addHolidayGreetings(npc, HFFestivals.NEW_YEARS, HFFestivals.COOKING_CONTEST, HFFestivals.NEW_YEARS_EVE);
                 setupGifts(npc);
             }
         }

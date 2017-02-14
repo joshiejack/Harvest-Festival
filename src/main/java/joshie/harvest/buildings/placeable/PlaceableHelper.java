@@ -6,6 +6,8 @@ import joshie.harvest.buildings.placeable.entities.PlaceableEntity;
 import joshie.harvest.buildings.placeable.entities.PlaceableItemFrame;
 import joshie.harvest.buildings.placeable.entities.PlaceableNPC;
 import joshie.harvest.buildings.placeable.entities.PlaceablePainting;
+import joshie.harvest.core.block.BlockStand;
+import joshie.harvest.core.tile.TileStand;
 import net.minecraft.block.*;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -19,9 +21,12 @@ import java.util.HashMap;
 public class PlaceableHelper {
     public static final HashMap<String, PlaceableEntity> entities = new HashMap<>();
 
+    @SuppressWarnings("ConstantConditions")
     private static Placeable getPrefixString(World world, IBlockState state, int x, int y, int z) {
         Block block = state.getBlock();
-        if (block instanceof joshie.harvest.mining.block.BlockPortal) {
+        if (block instanceof BlockStand) {
+            return new PlaceableStand(((TileStand)world.getTileEntity(new BlockPos(x, y, z))).getContents(), state, x, y, z);
+        } else  if (block instanceof joshie.harvest.mining.block.BlockPortal) {
             return new PlaceableMoveIn(state, x, y, z);
         } else if (block == HFBuildings.AIR || block == Blocks.GOLD_BLOCK) {
             return new PlaceableBlock(Blocks.AIR.getDefaultState(), x, y, z);

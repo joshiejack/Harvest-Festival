@@ -140,7 +140,6 @@ public class Building extends IForgeRegistryEntry.Impl<Building> {
         return canHaveMultiple;
     }
 
-
     public int getLength() {
         return length;
     }

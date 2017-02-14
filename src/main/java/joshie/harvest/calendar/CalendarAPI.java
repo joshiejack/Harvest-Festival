@@ -62,9 +62,34 @@ public class CalendarAPI implements CalendarManager {
         return HFTrackers.getCalendar(world).getTodaysWeather();
     }
 
+    //We're offsetting the day in the calendar, so that the letter gets sent the day before the event
+    private int getOffsetDay(int originalDay) {
+        if (originalDay > 1) return originalDay - 1;
+        else return 30;
+    }
+
+    //Offsetting the season, so if the day ends up as 30, it will be in the previous season
+    private Season getOffsetSeason(int originalDay, Season season) {
+        if (originalDay > 1) return season;
+        else {
+            switch (season) {
+                case SPRING:
+                    return Season.WINTER;
+                case SUMMER:
+                    return Season.SPRING;
+                case AUTUMN:
+                    return Season.SUMMER;
+                case WINTER:
+                    return Season.AUTUMN;
+                default:
+                    return season;
+            }
+        }
+    }
+
     @Override
-    public void registerFestival(Festival festival, int day, Season season) {
-        festivals.put(new CalendarDate(day, season, 1), festival);
+    public void registerFestival(Festival festival, int originalDay, Season originalSeason) {
+        festivals.put(new CalendarDate(getOffsetDay(originalDay), getOffsetSeason(originalDay, originalSeason), 1), festival);
     }
 
     @Override

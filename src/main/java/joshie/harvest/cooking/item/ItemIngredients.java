@@ -6,7 +6,6 @@ import joshie.harvest.core.base.item.ItemHFFoodEnum;
 import joshie.harvest.core.util.interfaces.ISellable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
@@ -57,7 +56,7 @@ public class ItemIngredients extends ItemHFFoodEnum<ItemIngredients, Ingredient>
     }
 
     @Override
-    protected ItemStack getCreativeStack(Item item, Ingredient ingredient) {
+    protected ItemStack getCreativeStack(Ingredient ingredient) {
         return ingredient.getSellValue() > 0L ? getStackFromEnum(ingredient) : null;
     }
 

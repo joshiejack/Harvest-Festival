@@ -2,16 +2,17 @@ package joshie.harvest.town.data;
 
 import joshie.harvest.api.buildings.Building;
 import joshie.harvest.buildings.BuildingRegistry;
-import joshie.harvest.buildings.placeable.Placeable;
 import joshie.harvest.buildings.placeable.entities.PlaceableNPC;
 import joshie.harvest.core.helpers.NBTHelper;
 import joshie.harvest.core.util.Direction;
+import joshie.harvest.core.util.HFTemplate;
 import joshie.harvest.core.util.interfaces.INBTSerializableMap;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 
+import javax.annotation.Nullable;
 import java.util.Map;
 
 public class TownBuilding implements INBTSerializableMap<ResourceLocation, TownBuilding, NBTTagCompound> {
@@ -31,14 +32,14 @@ public class TownBuilding implements INBTSerializableMap<ResourceLocation, TownB
         return rotation;
     }
 
-    private BlockPos getRealCoordinatesFor(Placeable placeable) {
-        return placeable.getTransformedPosition(pos, rotation);
-    }
-
+    @Nullable
     BlockPos getRealCoordinatesFor(String npc_location) {
-        PlaceableNPC offsets = BuildingRegistry.INSTANCE.getTemplateForBuilding(building).getNPCOffset(npc_location);
-        if (offsets == null) return null;
-        return getRealCoordinatesFor(offsets);
+        HFTemplate template = BuildingRegistry.INSTANCE.getTemplateForBuilding(building);
+        if (template == null) return null; //Building should null out too...
+        else {
+            PlaceableNPC placeable = template.getNPCOffset(npc_location);
+            return placeable != null ? placeable.getTransformedPosition(pos, rotation) : null;
+        }
     }
 
     @Override

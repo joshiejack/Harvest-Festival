@@ -132,6 +132,7 @@ public class QuestCookingContest extends QuestFestival {
         }
     }
 
+    @SuppressWarnings("ConstantConditions")
     private Map<BlockPos, BlockPos> buildEmptyMap(TownData town) {
         Map<BlockPos, BlockPos> emptyList = new HashMap<>();
         addToEmptyListIfStandIsEmpty(emptyList, town.getCoordinatesFor(BuildingLocations.PARK_STAGE_STAND1).down(), town.getCoordinatesFor(BuildingLocations.PARK_STAGE_STAND1_HUMAN));

@@ -41,7 +41,7 @@ public class ItemCrop extends ItemHFFoodEnum<ItemCrop, Crops> {
     }
 
     @Override
-    protected ItemStack getCreativeStack(Item item, Crops crop) {
+    protected ItemStack getCreativeStack(Crops crop) {
         return crop.getCrop().getCropStack(1).getItem() == this ? getStackFromEnum(crop) : null;
     }
 

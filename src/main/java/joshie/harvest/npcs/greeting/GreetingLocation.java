@@ -9,13 +9,15 @@ import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
 
+import javax.annotation.Nonnull;
+
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 
 public class GreetingLocation implements IConditionalGreeting {
     private final BuildingLocation location;
     private final String text;
 
-    public GreetingLocation(BuildingLocation location) {
+    public GreetingLocation(@Nonnull BuildingLocation location) {
         this.text = MODID + ".npc.location." + location.getResource().getResourceDomain() + "." + location.getResource().getResourcePath() + ".greeting";
         this.location = location;
     }

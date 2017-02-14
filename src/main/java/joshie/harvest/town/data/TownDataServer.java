@@ -202,7 +202,7 @@ public class TownDataServer extends TownData<QuestDataServer, LetterDataServer> 
                 targetFestivalDays = 0;
             }
 
-            if (previousFestival != Festival.NONE) { //If there is a festival active
+            if (previousFestival == festival) { //If there is a festival active
                 festivalDays--;  //Decrease the amount of days of the festival left
                 if (festivalDays <= 0) { //If we have no days left then v
                     festival = Festival.NONE; //Cancel the festival

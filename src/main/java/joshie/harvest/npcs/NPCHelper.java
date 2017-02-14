@@ -65,7 +65,7 @@ public class NPCHelper implements INPCHelper {
         player.openGui(HarvestFestival.instance, GuiHandler.FORCED_NPC, player.worldObj, npc.getEntityId(), Script.REGISTRY.getValues().indexOf(script), -1);
     }
 
-    public static BlockPos getCoordinatesForLocation(EntityNPCHuman npc, BuildingLocation location) {
+    public static BlockPos getCoordinatesForLocation(EntityNPCHuman npc, @Nonnull BuildingLocation location) {
         return npc.getHomeTown().getCoordinatesFor(location);
     }
 
@@ -81,9 +81,8 @@ public class NPCHelper implements INPCHelper {
     }
 
     public static BlockPos getHomeForEntity(EntityNPC entity) {
-        NPC npc = entity.getNPC();
-        if (npc.getHome() == null) return null;
-        return TownHelper.getClosestTownToEntity(entity, false).getCoordinatesFor(npc.getHome());
+        NPC npc = entity.getNPC(); //Shorthand
+        return npc.getHome() == null ? null : TownHelper.getClosestTownToEntity(entity, false).getCoordinatesFor(npc.getHome());
     }
 
     @SuppressWarnings("unchecked")

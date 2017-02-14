@@ -19,6 +19,6 @@ public class QuestMeetCandice extends QuestMeeting {
     @Override
     public void onQuestCompleted(EntityPlayer player) {
         HFApi.quests.completeQuestConditionally(Quests.BUILDING_SUPERMARKET, player);
-        rewardItem(player, HFCooking.MEAL.getStackFromEnum(Meal.MILK_HOT));
+        rewardItem(player, HFCooking.MEAL.getCreativeStack(Meal.MILK_HOT));
     }
 }

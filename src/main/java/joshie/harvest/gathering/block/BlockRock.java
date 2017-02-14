@@ -20,6 +20,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
+import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -57,6 +58,7 @@ public class BlockRock extends BlockHFSmashable<BlockRock, Rock> {
 
     @SuppressWarnings("deprecation")
     @Override
+    @Nonnull
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
         switch (getEnumFromState(state)) {
             case STONE_SMALL: return STONE_SMALL_AABB;

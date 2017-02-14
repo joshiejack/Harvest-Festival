@@ -692,10 +692,16 @@ harvestfestival.npctool.npc.killer=Instant Entity Killer
 harvestfestival.npctool.gift.special=Special Gift!
 harvestfestival.npctool.gift.special.tooltip=A special gift love Cloe.
 
-
 #Quest Baoard
 harvestfestival.quest.block.board=Quest Board
 harvestfestival.quest.block.active=Quest Board
+
+#Contest Blocks
+harvestfestival.stand.chicken=Chicken Pen
+harvestfestival.stand.cooking=Cooking Stand
+harvestfestival.stand.livestock=Livestock Pen
+harvestfestival.stand.plate=Dinner Plate
+harvestfestival.stand.pot=Harvest Festival Pot
 
 #NPC Tooltips
 harvestfestival.npc.tooltip.calendar=How many years?

@@ -95,7 +95,7 @@ public class CodeGeneratorBuildings {
                     ret.add(PlaceableHelper.getFloorSignString(text, state, new BlockPos(x, y, z)));
                 } else ret.add(PlaceableHelper.getWallSignString(text, state, new BlockPos(x, y, z)));
             } else {
-                Placeable text = PlaceableHelper.getPlaceableBlockString(world, state, x, y, z);
+                Placeable text = PlaceableHelper.getPlaceableBlockString(world, state, position, x, y, z);
                 ret.add(text);
             }
 

@@ -101,6 +101,7 @@ public class BuildingLocations {
     public static final BuildingLocation PARK_STAGE_STAND4_HUMAN = new BuildingLocation(FESTIVAL_GROUNDS, "stage.stand4.human").withDistance(0.5D);
     public static final BuildingLocation PARK_TRADER_LEFT = new BuildingLocation(FESTIVAL_GROUNDS, "newyear.left").withDistance(1D);
     public static final BuildingLocation PARK_TRADER_RIGHT = new BuildingLocation(FESTIVAL_GROUNDS, "newyear.right").withDistance(1D);
+    public static final BuildingLocation PARK_NOODLES_STAND = new BuildingLocation(FESTIVAL_GROUNDS, "noodles").withDistance(1D);
 
     //TODO: Convert to building locations vvv
     public static final String TOWNHALL_CHILD_BEDROOM = "townhall.bedroom.child";

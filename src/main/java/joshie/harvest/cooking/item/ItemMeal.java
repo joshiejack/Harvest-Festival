@@ -83,8 +83,8 @@ public class ItemMeal extends ItemHFFoodEnum<ItemMeal, Meal> {
 
     public ItemStack getRandomMeal(Random rand) {
         boolean first = rand.nextBoolean();
-        if (first) return getCreativeStack(this, Meal.values()[rand.nextInt(50)]);
-        else return getCreativeStack(this, Meal.values()[55 + rand.nextInt(35)]);
+        if (first) return getCreativeStack(Meal.values()[rand.nextInt(50)]);
+        else return getCreativeStack(Meal.values()[55 + rand.nextInt(35)]);
     }
 
     private Recipe getRecipeFromMeal(Meal meal) {
@@ -111,17 +111,20 @@ public class ItemMeal extends ItemHFFoodEnum<ItemMeal, Meal> {
     }
 
     @Override
+    @SuppressWarnings("ConstantConditions")
     public int getHealAmount(ItemStack stack) {
         return stack.hasTagCompound() ? stack.getTagCompound().getInteger(FOOD_LEVEL) : 0;
     }
 
     @Override
+    @SuppressWarnings("ConstantConditions")
     public float getSaturationModifier(ItemStack stack) {
         return stack.hasTagCompound() ? stack.getTagCompound().getFloat(SATURATION_LEVEL) : 0;
     }
 
     @Override
     @SideOnly(Side.CLIENT)
+    @SuppressWarnings("ConstantConditions")
     public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean debug) {
         if (debug) {
             if (stack.hasTagCompound()) {
@@ -176,7 +179,6 @@ public class ItemMeal extends ItemHFFoodEnum<ItemMeal, Meal> {
         if (recipe != null) {
             ArrayList<IngredientStack> stacks = new ArrayList<>();
             stacks.addAll(recipe.getRequired());
-            //if (recipe.getOptional().size() > 0) stacks.addAll(recipe.getOptional());
             ItemStack stack = RecipeMaker.BUILDER.build(recipe, stacks).get(0);
             stack.stackSize = amount;
             return stack;
@@ -186,18 +188,8 @@ public class ItemMeal extends ItemHFFoodEnum<ItemMeal, Meal> {
     }
 
     @Override
-    public ItemStack getCreativeStack(Item item, Meal meal) {
-        Recipe recipe = getRecipeFromMeal(meal);
-        if (recipe != null) {
-            ArrayList<IngredientStack> stacks = new ArrayList<>();
-            stacks.addAll(recipe.getRequired());
-            //if (recipe.getOptional().size() > 0) stacks.addAll(recipe.getOptional());
-            ItemStack stack = RecipeMaker.BUILDER.build(recipe, stacks).get(0);
-            stack.stackSize = 1;
-            return stack;
-        }
-
-        return null;
+    public ItemStack getCreativeStack(Meal meal) {
+        return getCreativeStack(meal, 1);
     }
 
     @Override

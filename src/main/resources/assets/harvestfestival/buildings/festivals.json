@@ -3560,6 +3560,15 @@
       "pos": "12 1 8"
     },
     {
+      "homeString": "noodles",
+      "npc": "",
+      "pos": "12 1 14",
+      "type": "entities.NPC"
+    },
+    {
+      "pos": "12 1 14"
+    },
+    {
       "homeString": "stage.left",
       "npc": "",
       "pos": "12 1 19",

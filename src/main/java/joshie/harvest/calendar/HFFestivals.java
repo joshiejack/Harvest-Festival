@@ -30,7 +30,7 @@ public class HFFestivals {
     //public static final Festival HARVEST_FESTIVAL = registerFestival("harvest", 9, AUTUMN);
     //public static final Festival SHEEP_FESTIVAL = registerFestival("sheep", 21, AUTUMN);
     //public static final Festival STARRY_NIGHT = registerFestival("starry_night", 24, WINTER);
-    public static final Festival NEW_YEARS_EVE = registerFestival("new_years_eve", 30, WINTER);
+    public static final Festival NEW_YEARS_EVE = registerFestival("new_years_eve", 30, WINTER).setLength(1);
 
 
     public static void init() {

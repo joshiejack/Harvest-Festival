@@ -17,6 +17,7 @@ import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.*;
 
 public abstract class TownData<Q extends QuestData, L extends LetterData> {
@@ -86,11 +87,10 @@ public abstract class TownData<Q extends QuestData, L extends LetterData> {
         return true;
     }
 
-    public BlockPos getCoordinatesFor(BuildingLocation location) {
-        if (location == null) return null;
+    @Nullable
+    public BlockPos getCoordinatesFor(@Nonnull BuildingLocation location) {
         TownBuilding building = buildings.get(location.getResource());
-        if (building == null) return null;
-        return building.getRealCoordinatesFor(location.getLocation());
+        return building != null ? building.getRealCoordinatesFor(location.getLocation()) : null;
     }
 
     @Nonnull

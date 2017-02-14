@@ -22,10 +22,10 @@ public class PlaceableHelper {
     public static final HashMap<String, PlaceableEntity> entities = new HashMap<>();
 
     @SuppressWarnings("ConstantConditions")
-    private static Placeable getPrefixString(World world, IBlockState state, int x, int y, int z) {
+    private static Placeable getPrefixString(World world, IBlockState state, BlockPos actual, int x, int y, int z) {
         Block block = state.getBlock();
         if (block instanceof BlockStand) {
-            return new PlaceableStand(((TileStand)world.getTileEntity(new BlockPos(x, y, z))).getContents(), state, x, y, z);
+            return new PlaceableStand(((TileStand)world.getTileEntity(actual)).getContents(), state, x, y, z);
         } else  if (block instanceof joshie.harvest.mining.block.BlockPortal) {
             return new PlaceableMoveIn(state, x, y, z);
         } else if (block == HFBuildings.AIR || block == Blocks.GOLD_BLOCK) {
@@ -75,11 +75,11 @@ public class PlaceableHelper {
         return new PlaceableSign(state, pos.getX(), pos.getY(), pos.getZ(), sign);
     }
 
-    public static Placeable getPlaceableBlockString(World world, IBlockState state, int x, int y, int z) {
+    public static Placeable getPlaceableBlockString(World world, IBlockState state, BlockPos actual, int x, int y, int z) {
         Block block = state.getBlock();
         if (block == Blocks.REEDS) return new PlaceableDecorative(state, x, y, z);
         if (block == Blocks.CAKE) return new PlaceableDecorative(state, x, y, z);
-        return getPrefixString(world, state, x, y, z);
+        return getPrefixString(world, state, actual, x, y, z);
     }
 
     public static Placeable getPlaceableEntityString(Entity entity, int x, int y, int z) {

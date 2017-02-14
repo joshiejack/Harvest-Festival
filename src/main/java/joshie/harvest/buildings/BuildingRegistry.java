@@ -7,6 +7,7 @@ import joshie.harvest.core.util.ResourceLoader;
 import joshie.harvest.core.util.annotations.HFApiImplementation;
 import net.minecraft.item.ItemStack;
 
+import javax.annotation.Nullable;
 import java.util.HashMap;
 
 import static joshie.harvest.buildings.HFBuildings.getGson;
@@ -28,6 +29,7 @@ public class BuildingRegistry implements IBuildingRegistry {
         return HFBuildings.STRUCTURES.getStackFromObject(building);
     }
 
+    @Nullable
     public HFTemplate getTemplateForBuilding(Building building) {
         HFTemplate template = instructions.get(building);
         if (template == null) {

@@ -62,7 +62,7 @@ public class QuestKatlinSundayBakingFreeCake extends Quest  {
 
     private ItemStack getRandomBakedGoods(Random rand) {
         if (rand.nextInt(10) == 0) return new ItemStack(rand.nextBoolean() ? Items.COOKIE : Items.CAKE, 3);
-        else return HFCooking.MEAL.getStackFromEnum(meals[rand.nextInt(meals.length)], 3);
+        else return HFCooking.MEAL.getCreativeStack(meals[rand.nextInt(meals.length)], 3);
     }
 
     @Override

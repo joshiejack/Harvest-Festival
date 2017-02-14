@@ -26,6 +26,7 @@ import net.minecraftforge.fml.common.registry.RegistryBuilder;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nullable;
 import java.util.*;
 
 import static joshie.harvest.api.npc.INPCHelper.Age.ADULT;
@@ -150,6 +151,7 @@ public class NPC extends IForgeRegistryEntry.Impl<NPC> {
         return gender;
     }
 
+    @Nullable
     public BuildingLocation getHome() {
         return home;
     }

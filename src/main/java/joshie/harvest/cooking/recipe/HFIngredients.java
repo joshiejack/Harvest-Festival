@@ -165,8 +165,6 @@ public class HFIngredients {
 
     public static void postInit() {
         //Animal Products
-        CookingAPI.INSTANCE.register(new ItemStack(Items.EGG), SMALL_EGG);
-        CookingAPI.INSTANCE.register(new ItemStack(Items.MILK_BUCKET), MILK);
         CookingAPI.INSTANCE.register(ANIMAL_PRODUCT.getStack(Sizeable.EGG, Size.SMALL), SMALL_EGG);
         CookingAPI.INSTANCE.register(ANIMAL_PRODUCT.getStack(Sizeable.EGG, Size.MEDIUM), MEDIUM_EGG);
         CookingAPI.INSTANCE.register(ANIMAL_PRODUCT.getStack(Sizeable.EGG, Size.LARGE), LARGE_EGG);
@@ -176,6 +174,8 @@ public class HFIngredients {
         CookingAPI.INSTANCE.register(ANIMAL_PRODUCT.getStack(Sizeable.MAYONNAISE, Size.SMALL), MAYONNAISE);
         CookingAPI.INSTANCE.register(ANIMAL_PRODUCT.getStack(Sizeable.MAYONNAISE, Size.MEDIUM), MAYONNAISE);
         CookingAPI.INSTANCE.register(ANIMAL_PRODUCT.getStack(Sizeable.MAYONNAISE, Size.LARGE), MAYONNAISE);
+        CookingAPI.INSTANCE.register(new ItemStack(Items.EGG), SMALL_EGG);
+        CookingAPI.INSTANCE.register(new ItemStack(Items.MILK_BUCKET), MILK);
 
         //Crops
         for (Crop crop: Crop.REGISTRY) {

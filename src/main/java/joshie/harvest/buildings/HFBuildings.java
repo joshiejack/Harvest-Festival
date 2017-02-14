@@ -61,6 +61,7 @@ public class HFBuildings {
     public static final Building SUPERMARKET = registerBuilding("supermarket").setInhabitants(HFNPCs.MILKMAID, HFNPCs.GS_OWNER).setOffset(7, -1, 12).setTickTime(5);
     public static final Building TOWNHALL = registerBuilding("townhall").setSpecialRules(new SpecialRuleBuildings(9)).setInhabitants(HFNPCs.MAYOR, HFNPCs.PRIEST, HFNPCs.DAUGHTER_ADULT, HFNPCs.DAUGHTER_CHILD).setOffset(10, -1, 17);
     public static final Building FESTIVAL_GROUNDS = registerBuilding("festivals", BuildingFestival.class).setSpecialRules(new SpecialRuleFestivals()).setInhabitants(HFNPCs.TRADER).setOffset(14, -1, 32);
+    public static final Building NEWYEARSEVER = registerBuilding("new_years_eve");
 
     public static void preInit() {}
 

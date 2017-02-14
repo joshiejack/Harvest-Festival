@@ -157,7 +157,6 @@ public class AnimalData implements IAnimalData {
             daysNotFed++;
             daysPassed++;
             thrown = false;
-            treated = false;
 
             if (isPregnant) {
                 daysPregnant++;
@@ -190,6 +189,9 @@ public class AnimalData implements IAnimalData {
                     productsPerDay++;
                 }
             }
+
+            //Reset that this has been treated
+            treated = false;
 
             //Updating grabbing products between animals
             int daysBetween = type.getDaysBetweenProduction();

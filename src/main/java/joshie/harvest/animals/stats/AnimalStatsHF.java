@@ -159,6 +159,17 @@ public class AnimalStatsHF implements AnimalStats<NBTTagCompound> {
     protected void postStress() {}
 
     protected void updateStats() {
+        //Update the maximum produced products
+        if (treated && productsPerDay < 5) {
+            int requiredGeneric = type.getGenericTreatCount();
+            int requiredType = type.getTypeTreatCount();
+            if (genericTreats >= requiredGeneric && requiredType >= typeTreats) {
+                genericTreats -= requiredGeneric;
+                typeTreats -= requiredType;
+                productsPerDay++;
+            }
+        }
+
         treated = false;
     }
 
@@ -232,17 +243,6 @@ public class AnimalStatsHF implements AnimalStats<NBTTagCompound> {
                     animal.removePotionEffect(MobEffects.NAUSEA);
                     animal.removePotionEffect(MobEffects.BLINDNESS);
                     animal.removePotionEffect(MobEffects.SLOWNESS);
-                }
-            }
-
-            //Update the maximum produced products
-            if (treated && productsPerDay < 5) {
-                int requiredGeneric = type.getGenericTreatCount();
-                int requiredType = type.getTypeTreatCount();
-                if (genericTreats >= requiredGeneric && requiredType >= typeTreats) {
-                    genericTreats -= requiredGeneric;
-                    typeTreats -= requiredType;
-                    productsPerDay++;
                 }
             }
 

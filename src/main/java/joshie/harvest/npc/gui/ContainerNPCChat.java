@@ -53,10 +53,6 @@ public class ContainerNPCChat extends ContainerBase {
 
     @Override
     public void onContainerClosed(EntityPlayer player) {
-        if (!player.worldObj.isRemote) {
-            HFTrackers.getPlayerTrackerFromPlayer(player).getRelationships().talkTo(player, npc.getNPC().getUUID());
-        }
-
        if (open && nextGui >= -1) {
             open = false; //To cancel out infinite loop
 
@@ -78,6 +74,10 @@ public class ContainerNPCChat extends ContainerBase {
                     player.openGui(HarvestFestival.instance, NPC, player.worldObj, npc.getEntityId(), 0, Quest.REGISTRY.getValues().indexOf(Quest.REGISTRY.getValue(selection.getRegistryName())));
                 } else if (nextGui != -1) player.openGui(HarvestFestival.instance, nextGui, player.worldObj, npc.getEntityId(), 0, -1);
             }
+        }
+
+        if (!player.worldObj.isRemote) {
+            HFTrackers.getPlayerTrackerFromPlayer(player).getRelationships().talkTo(player, npc.getNPC().getUUID());
         }
     }
 }

@@ -1,3 +1,8 @@
+##0.5.23
+* Fix animals bonus products not working
+* Fix inventory issue when closing shop guis
+* Add relationship to npcs AFTER you have chatted with them, not before
+
 ##0.5.22
 * Halve the sell cost of Sweet Potatoes
 * Fix incorrect time when ticks per days is increased

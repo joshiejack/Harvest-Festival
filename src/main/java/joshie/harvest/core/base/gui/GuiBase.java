@@ -94,6 +94,13 @@ public abstract class GuiBase extends GuiScreen {
         return 46;
     }
 
+    @Override
+    protected void keyTyped(char character, int keyCode) throws IOException {
+        if (keyCode == 1 || mc.gameSettings.keyBindInventory.isActiveAndMatches(keyCode)) {
+            mc.thePlayer.closeScreen();
+        }
+    }
+
     public void drawForeground(int x, int y) {}
     public void drawBackground(int x, int y) {}
 

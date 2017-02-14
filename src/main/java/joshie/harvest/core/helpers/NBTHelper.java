@@ -52,8 +52,10 @@ public class NBTHelper {
         if (set != null) {
             for (AbstractHolder stack : set) {
                 NBTTagCompound tag = new NBTTagCompound();
-                stack.writeToNBT(tag);
-                list.appendTag(tag);
+                try {
+                    stack.writeToNBT(tag);
+                    list.appendTag(tag);
+                } catch (NullPointerException ex) {/**/}
             }
         }
 

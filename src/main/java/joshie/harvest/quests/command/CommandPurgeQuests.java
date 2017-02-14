@@ -30,7 +30,7 @@ public class CommandPurgeQuests extends AbstractHFCommand {
             try {
                 EntityPlayerMP player = parameters.length == 0? CommandBase.getCommandSenderAsPlayer(sender) : CommandBase.getPlayer(server, sender, parameters[0]);
                 HFTrackers.<PlayerTrackerServer>getPlayerTrackerFromPlayer(player).getQuests().purge(player);
-                TownHelper.<TownDataServer>getClosestTownToEntity(player).getQuests().purge(player);
+                TownHelper.<TownDataServer>getClosestTownToEntity(player, false).getQuests().purge(player);
                 return true; //After succesfully completing the command, return to avoid throwing an error
             } catch (NumberFormatException | PlayerNotFoundException ignored) {}
         }

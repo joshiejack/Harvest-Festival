@@ -54,7 +54,7 @@ public class QuestSlay extends QuestDaily {
         if (player != null) {
             List<Quest> quests = HFApi.quests.getCurrentQuests(player);
             if (quests.contains(this)) {
-                QuestSlay quest = TownHelper.getClosestTownToEntity(player).getQuests().getAQuest(this);
+                QuestSlay quest = TownHelper.getClosestTownToEntity(player, false).getQuests().getAQuest(this);
                 if (quest != null && quest.counter < quest.targetAmount && quest.isValidKill(event.getEntityLiving())) {
                     quest.counter++;
                     quest.syncData(player);

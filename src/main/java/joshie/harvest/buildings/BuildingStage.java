@@ -78,13 +78,13 @@ public class BuildingStage implements INBTWriteable {
                 stage = ConstructionStage.FINISHED;
                 index = 0;
 
-                TownDataServer data = TownHelper.getClosestTownToBlockPos(world, pos);
+                TownDataServer data = TownHelper.getClosestTownToBlockPos(world, pos, false);
                 data.addBuilding(world, building, rotation, pos);
                 data.syncBuildings(world);
                 return true;
             }
 
-            TownHelper.<TownDataServer>getClosestTownToBlockPos(world, pos).syncBuildings(world);
+            TownHelper.<TownDataServer>getClosestTownToBlockPos(world, pos, false).syncBuildings(world);
         }
 
         return true;

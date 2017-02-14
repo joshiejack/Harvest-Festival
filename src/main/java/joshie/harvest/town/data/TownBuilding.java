@@ -43,7 +43,7 @@ public class TownBuilding implements INBTSerializableMap<ResourceLocation, TownB
 
     @Override
     public void buildMap(Map<ResourceLocation, TownBuilding> map) {
-        map.put(Building.REGISTRY.getKey(building), this);
+        if (building != null) map.put(Building.REGISTRY.getKey(building), this);
     }
 
     @Override

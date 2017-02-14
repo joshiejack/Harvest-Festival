@@ -73,7 +73,7 @@ public class BlockQuestBoard extends BlockHFEnumRotatableMeta<BlockQuestBoard, Q
     @Nonnull
     @SuppressWarnings("ConstantConditions, deprecation")
     public IBlockState getActualState(@Nonnull IBlockState state, IBlockAccess world, BlockPos pos) {
-        TownData data = TownHelper.getClosestTownToBlockPos(world.getTileEntity(pos).getWorld(), pos);
+        TownData data = TownHelper.getClosestTownToBlockPos(world.getTileEntity(pos).getWorld(), pos, false);
         Quest quest = data.getDailyQuest();
         if (quest != null && !data.getQuests().getCurrent().contains(quest)) {
             return state.withProperty(property, QuestBlock.ACTIVE);

@@ -31,7 +31,7 @@ public class QuestMeeting extends Quest {
 
     @Override
     public boolean isNPCUsed(EntityPlayer player, NPC npc) {
-        return getNPCs().contains(npc) && TownHelper.getClosestTownToEntity(player).hasBuilding(building);
+        return getNPCs().contains(npc) && TownHelper.getClosestTownToEntity(player, false).hasBuilding(building);
     }
 
     @Override
@@ -51,7 +51,7 @@ public class QuestMeeting extends Quest {
     }
 
     protected boolean hasBuilding(EntityPlayer player) {
-        return TownHelper.getClosestTownToEntity(player).hasBuilding(building);
+        return TownHelper.getClosestTownToEntity(player, false).hasBuilding(building);
     }
 
     @Override

@@ -5,8 +5,6 @@ import joshie.harvest.buildings.BuildingStage;
 import joshie.harvest.npcs.HFNPCs;
 import joshie.harvest.npcs.entity.ai.EntityAIBuild;
 import joshie.harvest.npcs.entity.ai.EntityAIWork;
-import joshie.harvest.town.TownHelper;
-import joshie.harvest.town.data.TownDataServer;
 import net.minecraft.world.World;
 
 public class EntityNPCBuilder extends EntityNPCShopkeeper {
@@ -18,7 +16,7 @@ public class EntityNPCBuilder extends EntityNPCShopkeeper {
         super(world, HFNPCs.CARPENTER);
     }
 
-    public EntityNPCBuilder(EntityNPCBuilder entity) {
+    private EntityNPCBuilder(EntityNPCBuilder entity) {
         super(entity);
     }
 
@@ -28,15 +26,11 @@ public class EntityNPCBuilder extends EntityNPCShopkeeper {
     }
 
     public BuildingStage getBuilding() {
-        if (homeTown == null) {
-            homeTown = TownHelper.getClosestTownToEntity(this);
-        }
-
-        return homeTown.getCurrentlyBuilding();
+        return getHomeTown().getCurrentlyBuilding();
     }
 
     public void finishBuilding() {
-        ((TownDataServer)homeTown).finishBuilding();
+        getHomeTown().finishBuilding();
         stepHeight = 0.7F; //Reset Step Height
     }
 

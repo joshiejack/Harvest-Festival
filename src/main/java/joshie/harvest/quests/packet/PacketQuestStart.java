@@ -41,9 +41,9 @@ public class PacketQuestStart extends PacketSyncData {
 
     @Override
     public void handlePacket(EntityPlayer player) {
-        TownDataServer town = TownHelper.getClosestTownToEntity(player);
+        TownDataServer town = TownHelper.getClosestTownToEntity(player, false);
         QuestData data = town.getQuests();
-        Quest quest = getClosestTownToEntity(player).getDailyQuest();
+        Quest quest = getClosestTownToEntity(player, false).getDailyQuest();
         if (quest != null && !data.getCurrent().contains(quest)) {
             data.startQuest(quest, true, quest.writeToNBT(new NBTTagCompound()));
             player.openGui(HarvestFestival.instance, GuiHandler.QUEST_BOARD, player.worldObj, pos.getX(), pos.getY(), pos.getZ());

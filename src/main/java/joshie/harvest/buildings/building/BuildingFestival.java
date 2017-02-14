@@ -27,7 +27,7 @@ public class BuildingFestival extends Building {
 
     @Override
     public void onFestivalChanged(@Nonnull World world, @Nonnull BlockPos pos, @Nonnull Rotation rotation, @Nonnull Festival oldFestival, @Nonnull Festival newFestival) {
-        TownDataServer town = TownHelper.getClosestTownToBlockPos(world, pos);
+        TownDataServer town = TownHelper.getClosestTownToBlockPos(world, pos, false);
         removeOldFestival(oldFestival, world, pos, rotation, town);
         addNewFestival(newFestival, world, pos, rotation, town);
     }

@@ -33,7 +33,7 @@ public abstract class EntityNPC<E extends EntityNPC> extends EntityAgeable imple
     }
 
     public EntityNPC(World world) {
-        this(world, (NPC) HFNPCs.MAYOR);
+        this(world, HFNPCs.MAYOR);
     }
 
     public EntityNPC(World world, NPC npc) {
@@ -80,6 +80,7 @@ public abstract class EntityNPC<E extends EntityNPC> extends EntityAgeable imple
     }
 
     @Override
+    @Nonnull
     public String getName() {
         return npc.getLocalizedName();
     }
@@ -110,7 +111,7 @@ public abstract class EntityNPC<E extends EntityNPC> extends EntityAgeable imple
     public void resetSpawnHome() {}
 
     @Override
-    public boolean processInteract(EntityPlayer player, EnumHand hand, ItemStack stack) {
+    public boolean processInteract(@Nonnull EntityPlayer player, EnumHand hand, ItemStack stack) {
         ItemStack held = player.getHeldItem(hand);
         boolean flag = held != null && held.getItem() == Items.SPAWN_EGG;
         if (!flag && isEntityAlive()) {

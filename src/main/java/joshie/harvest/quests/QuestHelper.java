@@ -43,7 +43,7 @@ public class QuestHelper implements IQuestHelper {
     public void completeQuestConditionally(Quest quest, EntityPlayer player) {
         if (!hasCompleted(quest, player)) {
             if (quest.getQuestType() == TargetType.PLAYER) HFTrackers.getPlayerTrackerFromPlayer(player).getQuests().markCompleted(player.worldObj, player, quest, false);
-            else TownHelper.getClosestTownToEntity(player).getQuests().markCompleted(player.worldObj, player, quest, false);
+            else TownHelper.getClosestTownToEntity(player, false).getQuests().markCompleted(player.worldObj, player, quest, false);
         }
     }
 
@@ -51,7 +51,7 @@ public class QuestHelper implements IQuestHelper {
     public void completeQuest(Quest quest, EntityPlayer player) {
         if (!player.worldObj.isRemote) {
             if (quest.getQuestType() == TargetType.PLAYER) HFTrackers.getPlayerTrackerFromPlayer(player).getQuests().markCompleted(player.worldObj, player, quest, true);
-            else TownHelper.getClosestTownToEntity(player).getQuests().markCompleted(player.worldObj, player, quest, true);
+            else TownHelper.getClosestTownToEntity(player, false).getQuests().markCompleted(player.worldObj, player, quest, true);
         }
     }
 
@@ -60,7 +60,7 @@ public class QuestHelper implements IQuestHelper {
         if (!player.worldObj.isRemote) {
             if (quest.getQuestType() == TargetType.PLAYER) sendToClient(new PacketQuestCompleteEarly(quest), player);
             else {
-                TownDataServer data = TownHelper.getClosestTownToEntity(player);
+                TownDataServer data = TownHelper.getClosestTownToEntity(player, false);
                 sendToDimension(player.worldObj.provider.getDimension(), new PacketQuestCompleteEarly(quest).setUUID(data.getID()));
             }
         }
@@ -70,7 +70,7 @@ public class QuestHelper implements IQuestHelper {
     public boolean hasCompleted(Quest quest, EntityPlayer player) {
         if (quest == null) return false;
         if (quest.getQuestType() == TargetType.PLAYER) return HFTrackers.getPlayerTrackerFromPlayer(player).getQuests().getFinished().contains(quest);
-        return TownHelper.getClosestTownToEntity(player).getQuests().getFinished().contains(quest);
+        return TownHelper.getClosestTownToEntity(player, false).getQuests().getFinished().contains(quest);
     }
 
     @Override
@@ -79,7 +79,7 @@ public class QuestHelper implements IQuestHelper {
             quest.setStage(quest.getStage() + 1);
             if (quest.getQuestType() == TargetType.PLAYER) sendToClient(new PacketSyncData(quest, quest.writeToNBT(new NBTTagCompound())), player);
             else {
-                TownDataServer data = TownHelper.getClosestTownToEntity(player);
+                TownDataServer data = TownHelper.getClosestTownToEntity(player, false);
                 sendToDimension(player.worldObj.provider.getDimension(), new PacketSyncData(quest, quest.writeToNBT(new NBTTagCompound())).setUUID(data.getID()));
             }
         }
@@ -90,7 +90,7 @@ public class QuestHelper implements IQuestHelper {
         if (!player.worldObj.isRemote) {
             if (quest.getQuestType() == TargetType.PLAYER) sendToClient(new PacketSyncData(quest, quest.writeToNBT(new NBTTagCompound())), player);
             else {
-                TownDataServer data = TownHelper.getClosestTownToEntity(player);
+                TownDataServer data = TownHelper.getClosestTownToEntity(player, false);
                 sendToDimension(player.worldObj.provider.getDimension(), new PacketSyncData(quest, quest.writeToNBT(new NBTTagCompound())).setUUID(data.getID()));
             }
         }
@@ -133,7 +133,7 @@ public class QuestHelper implements IQuestHelper {
         if (isFakePlayer(player)) return EMPTY;
         List<Quest> all = new ArrayList<>();
         all.addAll(HFTrackers.getPlayerTrackerFromPlayer(player).getQuests().getCurrent());
-        all.addAll(TownHelper.getClosestTownToEntity(player).getQuests().getCurrent());
+        all.addAll(TownHelper.getClosestTownToEntity(player, false).getQuests().getCurrent());
         Collections.sort(all, ((o1, o2) ->  o1.getRegistryName().toString().compareTo(o2.getRegistryName().toString())));
         Collections.sort(all, ((o1, o2) ->  o1.getPriority().compareTo(o2.getPriority())));
         return all;
@@ -158,6 +158,6 @@ public class QuestHelper implements IQuestHelper {
     public static Quest getSelectiomFromID(EntityPlayer player, int selection) {
         Quest toFetch = Quest.REGISTRY.getValues().get(selection);
         if (toFetch.getQuestType() == TargetType.PLAYER) return HFTrackers.getPlayerTrackerFromPlayer(player).getQuests().getAQuest(toFetch);
-        else return TownHelper.getClosestTownToEntity(player).getQuests().getAQuest(toFetch);
+        else return TownHelper.getClosestTownToEntity(player, false).getQuests().getAQuest(toFetch);
     }
 }

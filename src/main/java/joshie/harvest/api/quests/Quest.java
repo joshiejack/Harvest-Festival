@@ -49,7 +49,7 @@ public abstract class Quest extends IForgeRegistryEntry.Impl<Quest> {
     }
 
     /** Returns a list of npcs that this quest lines uses */
-    public Set<NPC> getNPCs() {
+    protected Set<NPC> getNPCs() {
         return npcs;
     }
 

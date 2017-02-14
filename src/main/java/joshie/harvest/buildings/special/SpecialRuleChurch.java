@@ -10,6 +10,6 @@ import javax.annotation.Nonnull;
 public class SpecialRuleChurch implements ISpecialRules {
     @Override
     public boolean canDo(@Nonnull World world, @Nonnull EntityPlayer player, int amount) {
-        return amount == 1 && TownHelper.getClosestTownToEntity(player).getInhabitants().size() >= 9;
+        return amount == 1 && TownHelper.getClosestTownToEntity(player, false).getInhabitants().size() >= 9;
     }
 }

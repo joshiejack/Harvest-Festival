@@ -96,7 +96,7 @@ public class CalendarHelper {
     }
 
     public static boolean haveYearsPassed(World world, EntityPlayer player, int year) {
-        CalendarDate townBirthday = TownHelper.getClosestTownToEntity(player).getBirthday();
+        CalendarDate townBirthday = TownHelper.getClosestTownToEntity(player, false).getBirthday();
         CalendarDate date = calendar.getDate(world);
         return getYearsPassed(townBirthday, date) >= year;
     }

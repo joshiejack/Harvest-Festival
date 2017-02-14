@@ -28,7 +28,7 @@ public class QuestMeetLiara extends QuestMeetingTutorial {
 
     @Override
     public String getDescription(World world, EntityPlayer player) {
-        if (TownHelper.getClosestTownToEntity(player).hasBuildings(building.getRequirements())) {
+        if (TownHelper.getClosestTownToEntity(player, false).hasBuildings(building.getRequirements())) {
             return hasBuilding(player) ? getLocalized("description") : getLocalized("build");
         } else return null;
     }

@@ -6,9 +6,9 @@ import joshie.harvest.api.npc.INPCHelper;
 import joshie.harvest.api.npc.ISchedule;
 import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.npc.RelationStatus;
+import joshie.harvest.api.npc.gift.IGiftHandler.Quality;
 import joshie.harvest.api.npc.greeting.Script;
 import joshie.harvest.api.npc.schedule.ScheduleBuilder;
-import joshie.harvest.api.npc.gift.IGiftHandler.Quality;
 import joshie.harvest.api.quests.Selection;
 import joshie.harvest.api.shops.Shop;
 import joshie.harvest.cooking.HFCooking;
@@ -24,7 +24,6 @@ import joshie.harvest.shops.HFShops;
 import joshie.harvest.shops.gui.ShopSelection;
 import joshie.harvest.town.TownHelper;
 import net.minecraft.entity.EntityAgeable;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
@@ -66,8 +65,8 @@ public class NPCHelper implements INPCHelper {
         player.openGui(HarvestFestival.instance, GuiHandler.FORCED_NPC, player.worldObj, npc.getEntityId(), Script.REGISTRY.getValues().indexOf(script), -1);
     }
 
-    public static BlockPos getCoordinatesForLocation(EntityLivingBase entity, BuildingLocation location) {
-        return TownHelper.getClosestTownToEntity(entity).getCoordinatesFor(location);
+    public static BlockPos getCoordinatesForLocation(EntityNPCHuman npc, BuildingLocation location) {
+        return npc.getHomeTown().getCoordinatesFor(location);
     }
 
     public static Selection getShopSelection(World worldObj, BlockPos pos, NPC npc) {
@@ -84,7 +83,7 @@ public class NPCHelper implements INPCHelper {
     public static BlockPos getHomeForEntity(EntityNPC entity) {
         NPC npc = entity.getNPC();
         if (npc.getHome() == null) return null;
-        return TownHelper.getClosestTownToEntity(entity).getCoordinatesFor(npc.getHome());
+        return TownHelper.getClosestTownToEntity(entity, false).getCoordinatesFor(npc.getHome());
     }
 
     @SuppressWarnings("unchecked")

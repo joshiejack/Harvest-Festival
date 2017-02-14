@@ -65,7 +65,7 @@ public class QuestJenni15KWednesday extends QuestFriendshipStore {
         } else {
             //Update the signs for the general store
             HFApi.quests.completeQuestConditionally(getQuest(), player);
-            TownBuilding building = TownHelper.getClosestTownToEntity(player).getBuilding(HFBuildings.SUPERMARKET);
+            TownBuilding building = TownHelper.getClosestTownToEntity(player, false).getBuilding(HFBuildings.SUPERMARKET);
             if (building != null) {
                 World world = player.worldObj;
                 BlockPos pos = building.pos.up(2);

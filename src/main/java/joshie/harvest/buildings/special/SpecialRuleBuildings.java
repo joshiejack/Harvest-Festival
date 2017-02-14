@@ -16,6 +16,6 @@ public class SpecialRuleBuildings implements ISpecialRules {
 
     @Override
     public boolean canDo(@Nonnull World world, @Nonnull EntityPlayer player, int amount) {
-        return amount == 1 && TownHelper.getClosestTownToEntity(player).getBuildings().size() >= this.amount;
+        return amount == 1 && TownHelper.getClosestTownToEntity(player, false).getBuildings().size() >= this.amount;
     }
 }

@@ -20,7 +20,9 @@ public abstract class TownTracker<T extends TownData> extends HFTracker {
     final HashMap<UUID, T> uuidMap = new HashMap<>();
     Set<T> townData = new HashSet<>();
 
-    @Nullable
+    public abstract T getNullTown();
+
+    @Nonnull
     private T getClosestTown(final BlockPos pos) {
         T closest = null;
         double thatTownDistance = Double.MAX_VALUE;
@@ -32,13 +34,13 @@ public abstract class TownTracker<T extends TownData> extends HFTracker {
             }
         }
 
-        return thatTownDistance > HFNPCs.TOWN_DISTANCE || closest == null ? null: closest;
+        return thatTownDistance > HFNPCs.TOWN_DISTANCE || closest == null ? getNullTown(): closest;
     }
 
     @Nonnull
-    public T getClosestTownToBlockPos(final BlockPos pos) {
+    public T getClosestTownToBlockPos(BlockPos pos, boolean create) {
         T data = getClosestTown(pos);
-        if (data == null) {
+        if (data == getNullTown() && create) {
             data = createNewTown(pos);
         }
 

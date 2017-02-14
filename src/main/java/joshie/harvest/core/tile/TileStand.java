@@ -25,8 +25,9 @@ public abstract class TileStand<Q extends Quest> extends TileFaceable {
     }
 
     @SuppressWarnings("unchecked")
+    @Nullable
     public Q getQuest() {
-        return (Q) TownHelper.getClosestTownToBlockPos(worldObj, pos).getQuests().getAQuest(festival.getQuest());
+        return (Q) TownHelper.getClosestTownToBlockPos(worldObj, pos, false).getQuests().getAQuest(festival.getQuest());
     }
 
     protected boolean isQuestInvalid(Q quest) {

@@ -21,7 +21,7 @@ public class QuestMeetJacob extends QuestMeeting {
     @Override
     public String getDescription(World world, EntityPlayer player) {
         if (hasBuilding(player)) return getLocalized("description");
-        else if (TownHelper.getClosestTownToEntity(player).hasBuildings(building.getRequirements())) return getLocalized("build");
+        else if (TownHelper.getClosestTownToEntity(player, false).hasBuildings(building.getRequirements())) return getLocalized("build");
         else return null;
     }
 

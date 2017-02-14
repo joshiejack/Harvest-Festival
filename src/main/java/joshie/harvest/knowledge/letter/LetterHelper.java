@@ -15,12 +15,12 @@ import java.util.List;
 public class LetterHelper {
     public static boolean hasUnreadLetters(EntityPlayer player) {
         return HFTrackers.getPlayerTrackerFromPlayer(player).getLetters().hasUnreadLetters() ||
-                TownHelper.getClosestTownToEntity(player).getLetters().hasUnreadLetters();
+                TownHelper.getClosestTownToEntity(player, false).getLetters().hasUnreadLetters();
     }
 
     public static void addLetterToMailbox(EntityPlayer player, Letter letter) {
         if (!letter.isTownLetter()) HFTrackers.<PlayerTrackerServer>getPlayerTrackerFromPlayer(player).getLetters().addLetter(letter);
-        else TownHelper.<TownDataServer>getClosestTownToEntity(player).getLetters().addLetter(letter);
+        else TownHelper.<TownDataServer>getClosestTownToEntity(player, false).getLetters().addLetter(letter);
         HFTrackers.markTownsDirty();
     }
 
@@ -28,7 +28,7 @@ public class LetterHelper {
     public static Letter getMostRecentLetter(EntityPlayer player) {
         List<Letter> letterList = new ArrayList<>();
         letterList.addAll(HFTrackers.getPlayerTrackerFromPlayer(player).getLetters().getLetters());
-        letterList.addAll(TownHelper.getClosestTownToEntity(player).getLetters().getLetters());
+        letterList.addAll(TownHelper.getClosestTownToEntity(player, false).getLetters().getLetters());
         if (letterList.size() == 0) return Letter.NONE;
         Collections.sort(letterList, ((o1, o2) ->  o1.getPriority().compareTo(o2.getPriority())));
         return letterList.get(0);

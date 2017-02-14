@@ -11,6 +11,6 @@ import javax.annotation.Nonnull;
 public class SpecialRulesRanch implements ISpecialRules {
     @Override
     public boolean canDo(@Nonnull World world, @Nonnull EntityPlayer player, int amount) {
-        return TownHelper.getClosestTownToEntity(player).hasBuilding(HFBuildings.BARN);
+        return TownHelper.getClosestTownToEntity(player, false).hasBuilding(HFBuildings.BARN);
     }
 }

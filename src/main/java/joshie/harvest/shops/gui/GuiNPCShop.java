@@ -82,7 +82,7 @@ public class GuiNPCShop extends GuiNPCBase {
     @SuppressWarnings("all")
     public void reload() {
         contents.clear();
-        ShopData data = TownHelper.getClosestTownToEntity(MCClientHelper.getPlayer()).getShops();
+        ShopData data = TownHelper.getClosestTownToEntity(MCClientHelper.getPlayer(), false).getShops();
         for (IPurchasable purchasable: shop.getContents()) {
             if (isAllowedInShop(purchasable) && purchasable.canList(client.worldObj, client) && data.canList(shop, purchasable)) {
                 contents.add(purchasable);
@@ -141,7 +141,7 @@ public class GuiNPCShop extends GuiNPCBase {
         int id = start;
         int position = 0;
         int pPosition = 0;
-        ShopData data = TownHelper.getClosestTownToEntity(MCClientHelper.getPlayer()).getShops();
+        ShopData data = TownHelper.getClosestTownToEntity(MCClientHelper.getPlayer(), false).getShops();
         Iterator<IPurchasable> it = contents.iterator();
         while (it.hasNext() && position <= 180) {
             IPurchasable purchasable = it.next();

@@ -33,7 +33,7 @@ public class FishingHelper {
 
     private static Pair<Season, WaterType> getLocation(World world, BlockPos pos) {
         Season season = HFApi.calendar.getDate(world).getSeason();
-        TownData data = TownHelper.getClosestTownToBlockPos(world, pos);
+        TownData data = TownHelper.getClosestTownToBlockPos(world, pos, false);
         BlockPos position = data.getCoordinatesFor(BuildingLocations.FISHING_POND_PIER);
         WaterType type;
         if (position != null && position.getDistance(pos.getX(), pos.getY(), pos.getZ()) <= 6) {

@@ -25,7 +25,7 @@ public class GreetingSupermarket implements IInfoButton {
 
     @Override
     public String getLocalizedText(EntityPlayer player, EntityAgeable ageable, NPC npc) {
-        return TownHelper.getClosestTownToEntity(ageable).getQuests().getFinished().contains(Quests.OPEN_WEDNESDAYS) ? TextHelper.localize(text2) : TextHelper.localize(text);
+        return TownHelper.getClosestTownToEntity(ageable, false).getQuests().getFinished().contains(Quests.OPEN_WEDNESDAYS) ? TextHelper.localize(text2) : TextHelper.localize(text);
     }
 
     @Override

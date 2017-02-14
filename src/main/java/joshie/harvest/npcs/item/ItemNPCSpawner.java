@@ -48,7 +48,7 @@ public class ItemNPCSpawner extends ItemHFFML<ItemNPCSpawner, NPC> {
         entity.setPosition(pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5);
         entity.resetSpawnHome();
         if (npc == HFNPCs.CARPENTER) {
-            entity.setUniqueId(TownHelper.getClosestTownToEntity(entity).getID());
+            entity.setUniqueId(TownHelper.getClosestTownToEntity(entity, true).getID());
         }
 
         world.spawnEntityInWorld(entity);
@@ -62,7 +62,7 @@ public class ItemNPCSpawner extends ItemHFFML<ItemNPCSpawner, NPC> {
             if (!world.isRemote) {
                 if (npc == HFNPCs.CARPENTER) {
                     WorldServer server = (WorldServer) world;
-                    UUID uuid = TownHelper.getClosestTownToEntity(player).getID();
+                    UUID uuid = TownHelper.getClosestTownToEntity(player, true).getID();
                     Entity entity = server.getEntityFromUuid(uuid);
                     if (entity instanceof EntityNPC) {
                         entity.setPosition(pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5);

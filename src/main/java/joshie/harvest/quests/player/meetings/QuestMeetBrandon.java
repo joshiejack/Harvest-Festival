@@ -32,7 +32,7 @@ public class QuestMeetBrandon extends QuestMeetingTutorial {
 
     @Override
     public String getDescription(World world, EntityPlayer player) {
-        if (quest_stage == BUILD && TownHelper.getClosestTownToEntity(player).hasBuildings(building.getRequirements())) {
+        if (quest_stage == BUILD && TownHelper.getClosestTownToEntity(player, false).hasBuildings(building.getRequirements())) {
             return hasBuilding(player) ? getLocalized("description") : getLocalized("build");
         } else if (quest_stage == ORE) return getLocalized("description.ore");
         else return super.getDescription(world, player);

@@ -27,12 +27,11 @@ import joshie.harvest.npcs.entity.EntityNPCHuman;
 import joshie.harvest.quests.Quests;
 import joshie.harvest.quests.data.QuestDataServer;
 import joshie.harvest.quests.packet.PacketSharedSync;
-import joshie.harvest.town.packet.PacketDailyQuest;
-import joshie.harvest.town.packet.PacketNewBuilding;
-import joshie.harvest.town.packet.PacketSyncBuilding;
-import joshie.harvest.town.packet.PacketSyncFestival;
+import joshie.harvest.town.packet.*;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
@@ -42,10 +41,11 @@ import net.minecraft.world.WorldServer;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.*;
+import java.util.Map.Entry;
 
 public class TownDataServer extends TownData<QuestDataServer, LetterDataServer> implements ISyncMaster {
     public final GatheringData gathering = new GatheringData();
-    private Set<ResourceLocation> deadVillagers = new HashSet<>();
+    private Map<ResourceLocation, BlockPos> deadVillagers = new HashMap<>();
     private final QuestDataServer quests = new QuestDataServer(this);
     private final LetterDataServer letters = new LetterDataServer(this);
     private Festival targetFestival = Festival.NONE;
@@ -82,37 +82,39 @@ public class TownDataServer extends TownData<QuestDataServer, LetterDataServer> 
     }
 
     private boolean isDead(NPC npc) {
-        return deadVillagers.contains(npc.getRegistryName());
+        return deadVillagers.keySet().contains(npc.getRegistryName());
     }
 
-    public void createNewBuilder(World world, BlockPos pos) {
-        if (!isDead(HFNPCs.CARPENTER)) {
+    public void createOrUpdateBuilder(WorldServer world, BlockPos pos) {
+        Entity builder = world.getEntityFromUuid(getID());
+        if (!(builder instanceof EntityNPCBuilder) && !isDead(HFNPCs.CARPENTER)) {
             EntityNPCBuilder creator = new EntityNPCBuilder(world);
             creator.setPositionAndUpdate(pos.getX(), pos.getY() + 1.5D, pos.getZ());
-            creator.setSpawnHome(this); //Set the spawn town
             creator.setUniqueId(getID()); //Marking the builder as having the same data
             world.spawnEntityInWorld(creator); //Towns owner now spawned
         }
     }
 
-    public void markNPCDead(ResourceLocation name) {
-        deadVillagers.add(name);
-    }
-
-    public EntityNPCBuilder getBuilder(WorldServer world) {
-        return (EntityNPCBuilder) world.getEntityFromUuid(getID());
+    public void markNPCDead(ResourceLocation name, BlockPos location) {
+        deadVillagers.put(name, location);
     }
 
     public void syncBuildings(World world) {
-        PacketHandler.sendToDimension(world.provider.getDimension(), new PacketSyncBuilding(getID(), this.building));
+        PacketHandler.sendToDimension(world.provider.getDimension(), new PacketSyncBuilding(getID(), buildingQueue));
     }
 
     public boolean setBuilding(World world, Building building, BlockPos pos, Rotation rotation) {
         BuildingStage stage = new BuildingStage(building, pos, rotation);
-        if (!this.building.contains(stage)) {
-            this.building.addLast(stage);
-            HFTrackers.markTownsDirty();
+        if (!buildingQueue.contains(stage)) {
+            buildingQueue.addLast(stage);
+
             syncBuildings(world);
+            if (building == HFBuildings.CARPENTER) {
+                townCentre = pos; //Set the town centre to the carpenters position
+                PacketHandler.sendToDimension(world.provider.getDimension(), new PacketSyncCentre(getID(), townCentre));
+            }
+
+            HFTrackers.markTownsDirty();
             return true;
         }
 
@@ -120,7 +122,7 @@ public class TownDataServer extends TownData<QuestDataServer, LetterDataServer> 
     }
 
     public void finishBuilding() {
-        building.removeFirst(); //Remove the first building
+        buildingQueue.removeFirst(); //Remove the first building
         HFTrackers.markTownsDirty();
     }
 
@@ -141,7 +143,7 @@ public class TownDataServer extends TownData<QuestDataServer, LetterDataServer> 
         }
     }
 
-    public void generateNewDailyQuest(World world) {
+    private void generateNewDailyQuest(World world) {
         List<Quest> quests = new ArrayList<>();
         for (Quest quest: Quest.REGISTRY) {
             if (isRepeatable(world, quest) || !getQuests().getFinished().contains(quest)) {
@@ -170,13 +172,14 @@ public class TownDataServer extends TownData<QuestDataServer, LetterDataServer> 
             shops.newDay(world, uuid);
             gathering.newDay(world, townCentre, buildings.values(), isFar);
             generateNewDailyQuest(world);
-            for (ResourceLocation villager: deadVillagers) {
-                NPC npc = NPC.REGISTRY.getValue(villager);
+            for (Entry<ResourceLocation, BlockPos> entry: deadVillagers.entrySet()) {
+                NPC npc = NPC.REGISTRY.getValue(entry.getKey());
                 if (npc != HFNPCs.GODDESS) {
                     EntityNPCHuman entity = NPCHelper.getEntityForNPC(world, npc);
                     entity.setPosition(townCentre.getX(), townCentre.getY(), townCentre.getZ());
                     entity.resetSpawnHome();
-                    BlockPos pos = entity.getHomeCoordinates();
+                    BlockPos home = NPCHelper.getHomeForEntity(entity);
+                    BlockPos pos = home != null ? home : entry.getValue();
                     int attempts = 0;
                     while (!EntityHelper.isSpawnable(world, pos) && attempts < 64) {
                         pos = pos.add(world.rand.nextInt(16) - 8, world.rand.nextInt(8), world.rand.nextInt(16) - 8);
@@ -235,7 +238,7 @@ public class TownDataServer extends TownData<QuestDataServer, LetterDataServer> 
             }
 
             if (changed) sync(null, new PacketSyncLetters(letters.getLetters()));
-            deadVillagers = new HashSet<>(); //Reset the dead villagers
+            deadVillagers = new HashMap<>(); //Reset the dead villagers
         }
     }
 
@@ -257,7 +260,20 @@ public class TownDataServer extends TownData<QuestDataServer, LetterDataServer> 
         quests.readFromNBT(nbt);
         gathering.readFromNBT(nbt);
         dimension = nbt.getInteger("Dimension");
-        deadVillagers = NBTHelper.readResourceSet(nbt, "DeadVillagers");
+        //TODO: Remove in 0.7+
+        if (nbt.hasKey("DeadVillagers")) {
+            Set<ResourceLocation> dead = NBTHelper.readResourceSet(nbt, "DeadVillagers");
+            dead.stream().forEach((r) -> deadVillagers.put(r, townCentre));
+        } else if (nbt.hasKey("DeadNPCs")) {
+            NBTTagList list = nbt.getTagList("DeadNPCs", 10);
+            for (int i = 0; i < list.tagCount(); i++) {
+                NBTTagCompound tag = list.getCompoundTagAt(i);
+                ResourceLocation resource = new ResourceLocation(tag.getString("Resource"));
+                BlockPos pos = BlockPos.fromLong(tag.getLong("Position"));
+                deadVillagers.put(resource, pos);
+            }
+        }
+
         //TODO: Remove in 0.7+
         if (!nbt.hasKey("CurrentQuests") && !nbt.hasKey("FinishedQuests")) {
             if (buildings.containsKey(HFBuildings.CAFE.getRegistryName())) quests.getFinished().add(Quests.BUILDING_CAFE);
@@ -281,7 +297,15 @@ public class TownDataServer extends TownData<QuestDataServer, LetterDataServer> 
         quests.writeToNBT(nbt);
         gathering.writeToNBT(nbt);
         nbt.setInteger("Dimension", dimension);
-        nbt.setTag("DeadVillagers", NBTHelper.writeResourceSet(deadVillagers));
+        NBTTagList list = new NBTTagList();
+        for (Entry<ResourceLocation, BlockPos> entry: deadVillagers.entrySet()) {
+            NBTTagCompound tag = new NBTTagCompound();
+            tag.setString("Resource", entry.getKey().toString());
+            tag.setLong("Position", entry.getValue().toLong());
+            list.appendTag(tag);
+        }
+
+        nbt.setTag("DeadNPCs", list);
 
         //Target festival
         if (targetFestival != null) {

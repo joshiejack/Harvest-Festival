@@ -13,6 +13,7 @@ import joshie.harvest.core.util.HFTemplate;
 import joshie.harvest.core.util.interfaces.ICreativeSorted;
 import joshie.harvest.town.TownHelper;
 import joshie.harvest.town.data.TownData;
+import joshie.harvest.town.data.TownDataServer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
@@ -22,6 +23,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
 
 import javax.annotation.Nonnull;
 import java.util.ArrayList;
@@ -44,14 +46,16 @@ public class ItemBuilding extends ItemHFFML<ItemBuilding, Building> implements I
             if (raytrace == null || building == null) return new ActionResult<>(EnumActionResult.PASS, stack); //Skip the rest of this
             BlockPos pos = raytrace.getBlockPos();
             if (player.canPlayerEdit(pos, EnumFacing.DOWN, stack)) {
-                TownData town = TownHelper.getClosestTownToBlockPos(world, pos);
-                TownHelper.ensureBuilderExists(world, pos, town);
+                TownData town = TownHelper.getClosestTownToBlockPos(world, pos, false);
                 if ((!town.hasBuilding(building) && !town.isBuilding(building)) || building.canHaveMultiple()) {
                     BuildingKey key = BuildingHelper.getPositioning(stack, world, raytrace, building, player, true);
                     if (key != null) {
                         if (!world.isRemote) {
                             HFTemplate template = BuildingRegistry.INSTANCE.getTemplateForBuilding(building);
                             template.placeBlocks(world, key.getPos(), key.getRotation(), building);
+                            if (HFBuildings.CHEAT_BUILDINGS) {
+                                TownHelper.<TownDataServer>getClosestTownToBlockPos(world, pos, false).createOrUpdateBuilder((WorldServer)world, pos);
+                            }
                         }
 
                         stack.splitStack(1); //Decrease the stack size

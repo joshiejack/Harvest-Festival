@@ -21,10 +21,12 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,7 +42,8 @@ public class ItemBlueprint extends ItemHFFML<ItemBlueprint, Building> implements
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(ItemStack stack, World world, EntityPlayer player, EnumHand hand) {
+    @Nonnull
+    public ActionResult<ItemStack> onItemRightClick(@Nonnull ItemStack stack, World world, EntityPlayer player, EnumHand hand) {
         List<BuildingError> errors = new ArrayList<>();
         if (world.provider.getDimension() != 0) errors.add(BuildingError.DIMENSION);
         else {
@@ -49,13 +52,14 @@ public class ItemBlueprint extends ItemHFFML<ItemBlueprint, Building> implements
             if (raytrace == null || building == null) return new ActionResult<>(EnumActionResult.PASS, stack); //Skip the rest of this
             BlockPos pos = raytrace.getBlockPos();
             if (player.canPlayerEdit(pos, EnumFacing.DOWN, stack)) {
-                TownData town = TownHelper.getClosestTownToBlockPos(world, pos);
-                TownHelper.ensureBuilderExists(world, pos, town);
+                TownData town = TownHelper.getClosestTownToBlockPos(world, pos, false);
                 if ((!town.hasBuilding(building) && !town.isBuilding(building)) || building.canHaveMultiple()) {
                     BuildingKey key = BuildingHelper.getPositioning(stack, world, raytrace, building, player, true);
                     if (key != null) {
                         if (!world.isRemote) {
-                            ((TownDataServer)town).setBuilding(world, building, key.getPos().down(building.getOffsetY()), key.getRotation());
+                            TownDataServer data =  TownHelper.getClosestTownToBlockPos(world, pos, true);
+                            data.setBuilding(world, building, key.getPos().down(building.getOffsetY()), key.getRotation());
+                            data.createOrUpdateBuilder((WorldServer) world, pos);
                         }
 
                         stack.splitStack(1); //Decrease the stack size

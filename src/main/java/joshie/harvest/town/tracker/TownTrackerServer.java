@@ -28,8 +28,14 @@ import java.util.UUID;
 import static joshie.harvest.town.BuildingLocations.MINE_ENTRANCE;
 
 public class TownTrackerServer extends TownTracker<TownDataServer> {
+    public static final TownDataServer NULL_TOWN = new TownDataServer();
     private TownSavedData data;
     private BiMap<UUID, Integer> townIDs = HashBiMap.create();
+
+    @Override
+    public TownDataServer getNullTown() {
+        return NULL_TOWN;
+    }
 
     public void setWorld(TownSavedData data, World world) {
         super.setWorld(world);
@@ -86,7 +92,7 @@ public class TownTrackerServer extends TownTracker<TownDataServer> {
 
     @Override
     public int getMineIDFromCoordinates(BlockPos pos) {
-        TownData data = getClosestTownToBlockPos(pos);
+        TownData data = getClosestTownToBlockPos(pos, false);
         if (!data.hasBuilding(MINE_ENTRANCE.getResource())) return -1;
         if (townIDs.containsKey(data.getID())) {
             return townIDs.get(data.getID());

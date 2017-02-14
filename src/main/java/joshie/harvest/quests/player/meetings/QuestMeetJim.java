@@ -74,7 +74,7 @@ public class QuestMeetJim extends QuestMeetingTutorial {
 
     @Override
     public String getDescription(World world, EntityPlayer player) {
-        if (TownHelper.getClosestTownToEntity(player).hasBuilding(HFBuildings.CARPENTER) && HFApi.quests.hasCompleted(Quests.JADE_MEET, player)) {
+        if (TownHelper.getClosestTownToEntity(player, false).hasBuilding(HFBuildings.CARPENTER) && HFApi.quests.hasCompleted(Quests.JADE_MEET, player)) {
             if (quest_stage == START) return hasBuilding(player) ? getLocalized("description.talk") : getLocalized("description.build");
             else if (quest_stage == ACTION1 || quest_stage == ACTION2) return getLocalized("description.brush");
             else if (quest_stage == MILKING) return getLocalized("description.milk");

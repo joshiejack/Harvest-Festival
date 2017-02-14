@@ -2,13 +2,17 @@ package joshie.harvest.tools.item;
 
 import com.google.common.collect.Multimap;
 import joshie.harvest.api.crops.IBreakCrops;
+import joshie.harvest.core.HFCore;
 import joshie.harvest.core.base.item.ItemTool;
 import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.crops.block.BlockHFCrops;
+import joshie.harvest.gathering.HFGathering;
 import joshie.harvest.tools.ToolHelper;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockBush;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.player.EntityPlayer;
@@ -22,7 +26,11 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+import javax.annotation.Nonnull;
+import java.util.ArrayList;
 import java.util.HashSet;
+
+import static net.minecraft.block.Block.spawnAsEntity;
 
 public class ItemSickle extends ItemTool<ItemHoe> implements IBreakCrops {
     public ItemSickle() {
@@ -73,6 +81,47 @@ public class ItemSickle extends ItemTool<ItemHoe> implements IBreakCrops {
     }
 
     @Override
+    public boolean canLevel(ItemStack stack, IBlockState state) {
+        for (String type : getToolClasses(stack)) {
+            if (state.getBlock().isToolEffective(type, state))
+                return true;
+        }
+
+        return state.getBlock() == HFCore.FLOWERS || state.getBlock() == HFGathering.NATURE || state.getBlock() instanceof BlockBush;
+    }
+
+    @Override
+    public boolean onBlockDestroyed(ItemStack stack, World worldIn, IBlockState state, BlockPos pos, EntityLivingBase entityLiving) {
+        if (entityLiving instanceof EntityPlayer) {
+            EntityPlayer player = ((EntityPlayer)entityLiving);
+            EnumFacing front = EntityHelper.getFacingFromEntity(player);
+            ToolTier tier = getTier(stack);
+
+            //Facing North, We Want East and West to be 1, left * this.left
+            ArrayList<ItemStack> drops = new ArrayList<>();
+            for (int x2 = getXMinus(tier, front, pos.getX()); x2 <= getXPlus(tier, front, pos.getX()); x2++) {
+                for (int z2 = getZMinus(tier, front, pos.getZ()); z2 <= getZPlus(tier, front, pos.getZ()); z2++) {
+                    if (canUse(stack) && canBeDamaged()) {
+                        BlockPos newPos = new BlockPos(x2, pos.getY(), z2);
+                        state = worldIn.getBlockState(newPos);
+                        if (canLevel(stack, state)) {
+                            ToolHelper.collectDrops(worldIn, newPos, worldIn.getBlockState(newPos), player, drops);
+                            worldIn.setBlockToAir(newPos);
+                            ToolHelper.levelTool(stack);
+                        }
+
+                        stack.getSubCompound("Data", true).setInteger("Damage", getDamageForDisplay(stack) + 1);
+                    }
+                }
+            }
+
+            drops.stream().forEach(item -> spawnAsEntity(worldIn, new BlockPos(player), item));
+        }
+
+        return true;
+    }
+
+    @Override
     public float getStrVsBlock(ItemStack stack, IBlockState state) {
         if (canUse(stack)) {
             Material material = state.getMaterial();
@@ -81,7 +130,8 @@ public class ItemSickle extends ItemTool<ItemHoe> implements IBreakCrops {
     }
 
     @Override
-    public Multimap<String, AttributeModifier> getAttributeModifiers(EntityEquipmentSlot slot, ItemStack stack) {
+    @Nonnull
+    public Multimap<String, AttributeModifier> getAttributeModifiers(@Nonnull EntityEquipmentSlot slot, ItemStack stack) {
         Multimap<String, AttributeModifier> multimap = super.getAttributeModifiers(slot, stack);
         ToolTier tier = getTier(stack);
         if (slot == EntityEquipmentSlot.MAINHAND) {

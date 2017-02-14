@@ -54,7 +54,7 @@ public class PacketPurchaseItem extends PenguinPacket {
             }
         } else {
             //Purchase the item this many times
-            ShopData data = TownHelper.getClosestTownToEntity(player).getShops();
+            ShopData data = TownHelper.getClosestTownToEntity(player, false).getShops();
             for (int i = 0; i < amount; i++) {
                 data.onPurchasableHandled(player, shop, purchasable);
             }
@@ -68,11 +68,11 @@ public class PacketPurchaseItem extends PenguinPacket {
 
     private boolean purchase(EntityPlayerMP player) {
         StatsServer stats = HFTrackers.<PlayerTrackerServer>getPlayerTrackerFromPlayer(player).getStats();
-        long cost = TownHelper.getClosestTownToEntity(player).getShops().getSellValue(shop, purchasable);
+        long cost = TownHelper.getClosestTownToEntity(player, false).getShops().getSellValue(shop, purchasable);
         if (stats.getGold() -(cost * amount) >= 0) {
             stats.addGold(player, -(cost * amount));
             for (int i = 0; i < amount; i++) {
-                TownHelper.getClosestTownToEntity(player).getShops().onPurchasableHandled(player, shop, purchasable);
+                TownHelper.getClosestTownToEntity(player, false).getShops().onPurchasableHandled(player, shop, purchasable);
             }
 
             HFTrackers.markTownsDirty();

@@ -34,6 +34,6 @@ public abstract class QuestMeetingTutorial extends QuestQuestion {
     }
 
     protected boolean hasBuilding(EntityPlayer player) {
-        return TownHelper.getClosestTownToEntity(player).hasBuilding(building);
+        return TownHelper.getClosestTownToEntity(player, false).hasBuilding(building);
     }
 }

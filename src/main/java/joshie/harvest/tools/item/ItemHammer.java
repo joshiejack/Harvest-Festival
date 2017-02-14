@@ -103,10 +103,7 @@ public class ItemHammer extends ItemToolSmashing<ItemHammer> {
                     } else break; //Exist since we can't damage anymore
                 }
 
-                BlockPos target = new BlockPos(player);
-                for (ItemStack item : drops) {
-                    spawnAsEntity(worldIn, target, item);
-                }
+                drops.stream().forEach(item -> spawnAsEntity(worldIn, new BlockPos(player), item));
             }
 
             return true;

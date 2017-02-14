@@ -36,30 +36,30 @@ public class QuestGoddessPond extends QuestTown {
     @Override
     public String getDescription(World world, EntityPlayer player) {
         if (HFBuildings.GODDESS_POND.getRules().canDo(world, player, 1)) {
-            return TownHelper.getClosestTownToEntity(player).hasBuilding(HFBuildings.GODDESS_POND) ? getLocalized("description") : getLocalized("build");
+            return TownHelper.getClosestTownToEntity(player, false).hasBuilding(HFBuildings.GODDESS_POND) ? getLocalized("description") : getLocalized("build");
         } else return null;
     }
 
     @Override
     public ItemStack getCurrentIcon(World world, EntityPlayer player) {
-        return TownHelper.getClosestTownToEntity(player).hasBuilding(HFBuildings.GODDESS_POND) ? primary : BUILDING;
+        return TownHelper.getClosestTownToEntity(player, false).hasBuilding(HFBuildings.GODDESS_POND) ? primary : BUILDING;
     }
 
     @Override
     public boolean isNPCUsed(EntityPlayer player, NPC npc) {
         if (npc != HFNPCs.GODDESS) return false;
-        TownData data = TownHelper.getClosestTownToEntity(player);
+        TownData data = TownHelper.getClosestTownToEntity(player, false);
         return data.getBuildings().size() >= 5 || data.hasBuilding(HFBuildings.GODDESS_POND);
     }
 
     @Override
     public String getLocalizedScript(EntityPlayer player, EntityLiving entity, NPC npc) {
-        return TownHelper.getClosestTownToEntity(player).getBuildings().size() >= 5 ? getLocalized("thanks") : getLocalized("please");
+        return TownHelper.getClosestTownToEntity(player, false).getBuildings().size() >= 5 ? getLocalized("thanks") : getLocalized("please");
     }
 
     @Override
     public void onChatClosed(EntityPlayer player, EntityLiving entity, NPC npc, boolean wasSneaking) {
-        if (TownHelper.getClosestTownToEntity(entity).hasBuilding(HFBuildings.GODDESS_POND)) {
+        if (TownHelper.getClosestTownToEntity(entity, false).hasBuilding(HFBuildings.GODDESS_POND)) {
             complete(player);
         }
     }

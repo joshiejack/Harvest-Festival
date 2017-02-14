@@ -12,7 +12,7 @@ import javax.annotation.Nonnull;
 public class SpecialRuleFestivals implements ISpecialRules {
     @Override
     public boolean canDo(@Nonnull World world, @Nonnull EntityPlayer player, int amount) {
-        TownData data = TownHelper.getClosestTownToEntity(player);
+        TownData data = TownHelper.getClosestTownToEntity(player, false);
         return amount == 1 && data.hasBuilding(HFBuildings.SUPERMARKET) || data.hasBuilding(HFBuildings.BARN) || data.hasBuilding(HFBuildings.POULTRY_FARM);
     }
 }

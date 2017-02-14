@@ -155,7 +155,7 @@ public class GuiNPCSelect extends GuiNPCBase {
     @SuppressWarnings("unchecked")
     private void select() {
         if (quest != null && quest.getQuestType() == TargetType.TOWN) {
-            TownData town = TownHelper.getClosestTownToEntity(npc);
+            TownData town = TownHelper.getClosestTownToEntity(npc, false);
             PacketHandler.sendToServer(new PacketQuestSelect(quest, npc, selected).setUUID(town.getID()));
         } else PacketHandler.sendToServer(new PacketQuestSelect(quest, npc, selected));
     }

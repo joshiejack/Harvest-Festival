@@ -66,7 +66,7 @@ public class HFTemplate {
                 for (Placeable placeable : components) placeable.place(world, pos, rotation, ConstructionStage.PAINT, false);
                 for (Placeable placeable : components) placeable.place(world, pos, rotation, ConstructionStage.MOVEIN, false);
                 if (building != null) {
-                    TownHelper.<TownDataServer>getClosestTownToBlockPos(world, pos).addBuilding(world, building, rotation, pos);
+                    TownHelper.<TownDataServer>getClosestTownToBlockPos(world, pos, true).addBuilding(world, building, rotation, pos);
                 }
 
                 MCServerHelper.markForUpdate(world, pos);

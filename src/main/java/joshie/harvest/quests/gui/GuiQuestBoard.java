@@ -18,7 +18,7 @@ public class GuiQuestBoard extends GuiBaseContainer {
 
     public GuiQuestBoard(BlockPos pos, EntityPlayer player) {
         super(new ContainerNull(), "sign", 34);
-        this.quest = TownHelper.getClosestTownToEntity(player).getDailyQuest();
+        this.quest = TownHelper.getClosestTownToEntity(player, false).getDailyQuest();
         this.world = MCClientHelper.getWorld();
         this.pos = pos;
         this.xSize = 226;
@@ -27,7 +27,7 @@ public class GuiQuestBoard extends GuiBaseContainer {
     @Override
     public void initGui() {
         super.initGui();
-        if (quest != null && !TownHelper.getClosestTownToEntity(MCClientHelper.getPlayer()).getQuests().getCurrent().contains(quest)) {
+        if (quest != null && !TownHelper.getClosestTownToEntity(MCClientHelper.getPlayer(), false).getQuests().getCurrent().contains(quest)) {
             buttonList.add(new GuiButtonStartQuest(pos, quest, 0, guiLeft + 78, guiTop + 152));
         }
     }

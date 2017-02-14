@@ -250,14 +250,14 @@ public class HFShops {
             @Override
             public boolean canList(World world, EntityPlayer player) {
                 CalendarDate date = HFApi.calendar.getDate(world);
-                return (date.getYear() >= 1 || date.getSeason().ordinal() >= 1) && TownHelper.getClosestTownToEntity(player).hasBuilding(HFBuildings.MINING_HILL);
+                return (date.getYear() >= 1 || date.getSeason().ordinal() >= 1) && TownHelper.getClosestTownToEntity(player, false).hasBuilding(HFBuildings.MINING_HILL);
             }
         }.setStock(10).addTooltip("sprinkler.old"));
 
         CARPENTER.addPurchasable(new PurchasableMaterials(10000L, HFCrops.SPRINKLER.getStackFromEnum(Sprinkler.IRON), Logs.of(4), Silver.of(8)) {
             @Override
             public boolean canList(World world, EntityPlayer player) {
-                return HFApi.quests.hasCompleted(Quests.SELL_SPRINKLER, player) && TownHelper.getClosestTownToEntity(player).hasBuilding(HFBuildings.MINING_HILL);
+                return HFApi.quests.hasCompleted(Quests.SELL_SPRINKLER, player) && TownHelper.getClosestTownToEntity(player, false).hasBuilding(HFBuildings.MINING_HILL);
             }
         }.setStock(3).addTooltip("sprinkler.iron.tooltip"));
 
@@ -341,7 +341,7 @@ public class HFShops {
         SUPERMARKET.setSpecialRules(new SpecialRulesQuest(Quests.JENNI_MEET));
         SUPERMARKET.addOpening(MONDAY, 9000, 17000).addOpening(TUESDAY, 9000, 17000).addOpening(THURSDAY, 9000, 17000);
         SUPERMARKET.addOpening(FRIDAY, 9000, 17000).addOpening(SATURDAY, 11000, 15000);
-        SUPERMARKET.addConditionalOpening((w,e,i) -> TownHelper.getClosestTownToEntity(e).getQuests().getFinished().contains(Quests.OPEN_WEDNESDAYS), WEDNESDAY, 9000, 17000);
+        SUPERMARKET.addConditionalOpening((w,e,i) -> TownHelper.getClosestTownToEntity(e, false).getQuests().getFinished().contains(Quests.OPEN_WEDNESDAYS), WEDNESDAY, 9000, 17000);
     }
 
     private static void registerTackleshop() {

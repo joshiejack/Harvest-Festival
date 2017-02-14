@@ -144,6 +144,7 @@
 * Change Basic tools repair material to Junk Ore
 * Hammers will now mine larger areas of stone
 * Axes will now chop down entire trees
+* Sickles will now break large areas of grass
 
 ####Fixes
 * Gifting npcs on their birthday will now only work once on smp, instead of over multiple days

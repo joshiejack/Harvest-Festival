@@ -48,7 +48,7 @@ public class QuestMeetJade extends QuestQuestion {
 
     @Override
     public Selection getSelection(EntityPlayer player, NPC npc) {
-        if (!TownHelper.getClosestTownToEntity(player).hasBuilding(HFBuildings.CARPENTER)) return null;
+        if (!TownHelper.getClosestTownToEntity(player, false).hasBuilding(HFBuildings.CARPENTER)) return null;
         return quest_stage <= 0 ? selection : null;
     }
 
@@ -68,7 +68,7 @@ public class QuestMeetJade extends QuestQuestion {
 
     @Override
     public String getLocalizedScript(EntityPlayer player, NPC npc) {
-        if (!TownHelper.getClosestTownToEntity(player).hasBuilding(HFBuildings.CARPENTER)) return null;
+        if (!TownHelper.getClosestTownToEntity(player, false).hasBuilding(HFBuildings.CARPENTER)) return null;
         if (isCompletedEarly()) {
             return getLocalized("completed");
         } else if (quest_stage == INTRO) {
@@ -125,7 +125,7 @@ public class QuestMeetJade extends QuestQuestion {
 
     @Override
     public void onChatClosed(EntityPlayer player, NPC npc) {
-        if (!TownHelper.getClosestTownToEntity(player).hasBuilding(HFBuildings.CARPENTER)) return;
+        if (!TownHelper.getClosestTownToEntity(player, false).hasBuilding(HFBuildings.CARPENTER)) return;
         if (quest_stage == START) {
             rewardItem(player, HFTools.HOE.getStack(BASIC));
             rewardItem(player, HFTools.WATERING_CAN.getStack(BASIC));

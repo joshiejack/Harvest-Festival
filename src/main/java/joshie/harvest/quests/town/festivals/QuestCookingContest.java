@@ -91,7 +91,7 @@ public class QuestCookingContest extends QuestFestival {
     @Override
     public void onChatClosed(EntityPlayer player, EntityLiving entity, NPC npc, boolean wasSneaking) {
         if (!player.worldObj.isRemote && quest_stage == CONTEST) {
-            TownData town = TownHelper.getClosestTownToEntity(entity);
+            TownData town = TownHelper.getClosestTownToEntity(entity, false);
             BlockPos original = town.getCoordinatesFor(BuildingLocations.PARK_LAMP_BACK);
             //Schedule for Jenni
             EntityAIPathing pathing = ((EntityNPCHuman)entity).getPathing();

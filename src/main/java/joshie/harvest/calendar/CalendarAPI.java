@@ -70,7 +70,7 @@ public class CalendarAPI implements CalendarManager {
     @Override
     @Nonnull
     public Festival getFestival(World world, BlockPos pos) {
-        return TownHelper.getClosestTownToBlockPos(world, pos).getFestival();
+        return TownHelper.getClosestTownToBlockPos(world, pos, false).getFestival();
     }
 
     @Override

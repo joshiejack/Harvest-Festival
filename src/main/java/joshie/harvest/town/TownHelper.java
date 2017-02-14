@@ -3,12 +3,10 @@ package joshie.harvest.town;
 import joshie.harvest.mining.HFMining;
 import joshie.harvest.mining.MiningHelper;
 import joshie.harvest.town.data.TownData;
-import joshie.harvest.town.data.TownDataServer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.DimensionManager;
 
 import javax.annotation.Nonnull;
@@ -23,44 +21,33 @@ public class TownHelper {
     }
 
     @SuppressWarnings("unchecked")
-    public static <T extends TownData> T getClosestTownToBlockPos(World world, BlockPos pos) {
+    @Nonnull
+    private static <T extends TownData> T getClosestTownToBlockPos(@Nonnull World world, @Nonnull BlockPos pos, @Nullable Entity entity, boolean create) {
         //If we're in the mine, adjust the block position
         //Based on the mining id that we have been given
         if (world.provider.getDimension() == HFMining.MINING_ID) {
-            return (T) getTowns(world).getClosestTownToBlockPos(getTowns(world).getCoordinatesForOverworldMine(null, MiningHelper.getMineID(pos)));
+            return (T) getTowns(world).getClosestTownToBlockPos(getTowns(world).getCoordinatesForOverworldMine(null, MiningHelper.getMineID(pos)), create);
         } else if (world.provider.getDimension() != 0) {
             //If the world isn't the overworld, take the spawn coordinates instead
-            return (T) getTowns(world).getClosestTownToBlockPos(getDefaultCoordinates(null));
+            return (T) getTowns(world).getClosestTownToBlockPos(getDefaultCoordinates(entity), create);
         }
 
-        return (T) getTowns(world).getClosestTownToBlockPos(pos);
+        return (T) getTowns(world).getClosestTownToBlockPos(pos, create);
     }
 
     @SuppressWarnings("unchecked")
-    public static <T extends TownData> T getClosestTownToEntity(@Nonnull Entity entity) {
-        BlockPos pos = new BlockPos(entity);
-        //If we're in the mine, adjust the block position
-        //Based on the mining id that we have been given
-        if (entity.worldObj.provider.getDimension() == HFMining.MINING_ID) {
-            return (T) getTowns(entity.worldObj).getClosestTownToBlockPos(getTowns(entity.worldObj).getCoordinatesForOverworldMine(null, MiningHelper.getMineID(pos)));
-        } else if (entity.worldObj.provider.getDimension() != 0) {
-            //If the world isn't the overworld, take the spawn coordinates instead
-            return (T) getTowns(entity.worldObj).getClosestTownToBlockPos(getDefaultCoordinates(entity));
-        }
+    @Nonnull
+    public static <T extends TownData> T getClosestTownToBlockPos(World world, BlockPos pos, boolean create) {
+        return getClosestTownToBlockPos(world, pos, null, create);
+    }
 
-        return (T) getTowns(entity.worldObj).getClosestTownToBlockPos(pos);
+    @SuppressWarnings("unchecked")
+    @Nonnull
+    public static <T extends TownData> T getClosestTownToEntity(@Nonnull Entity entity, boolean create) {
+        return getClosestTownToBlockPos(entity.worldObj, new BlockPos(entity), entity, create);
     }
 
     public static TownData getTownByID(World world, UUID townID) {
         return getTowns(world).getTownByID(townID);
-    }
-
-    public static void ensureBuilderExists(World world, BlockPos pos, TownData original) {
-        if (!world.isRemote) {
-            TownDataServer data = (TownDataServer) original;
-            if (data.getBuilder((WorldServer) world) == null) {
-                data.createNewBuilder(world, pos);
-            }
-        }
     }
 }

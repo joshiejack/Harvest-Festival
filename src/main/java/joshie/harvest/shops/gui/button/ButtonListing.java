@@ -41,7 +41,7 @@ public class ButtonListing<I extends IPurchasable> extends GuiButton {
         this.height = 18;
         this.shop = shop;
         this.purchasable = (I) purchasable;
-        this.data = TownHelper.getClosestTownToEntity(MCClientHelper.getPlayer()).getShops();
+        this.data = TownHelper.getClosestTownToEntity(MCClientHelper.getPlayer(), false).getShops();
     }
 
     @Override

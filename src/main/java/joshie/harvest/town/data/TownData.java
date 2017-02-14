@@ -23,7 +23,7 @@ public abstract class TownData<Q extends QuestData, L extends LetterData> {
     protected final Set<ResourceLocation> inhabitants = new HashSet<>();
     protected final ShopData shops = new ShopData();
     protected Map<ResourceLocation, TownBuilding> buildings = new HashMap<>();
-    protected LinkedList<BuildingStage> building = new LinkedList<>();
+    protected LinkedList<BuildingStage> buildingQueue = new LinkedList<>();
     protected Festival festival = Festival.NONE;
     protected int festivalDays;
     protected CalendarDate birthday;
@@ -34,6 +34,10 @@ public abstract class TownData<Q extends QuestData, L extends LetterData> {
     /** Overriden to actually return what we should **/
     public abstract Q getQuests();
     public abstract L getLetters();
+
+    public boolean isNull() {
+        return false;
+    }
 
     public Quest getDailyQuest() {
         return dailyQuest;
@@ -57,13 +61,13 @@ public abstract class TownData<Q extends QuestData, L extends LetterData> {
 
     /** Building currently being worked on **/
     public BuildingStage getCurrentlyBuilding() {
-        return building.size() > 0 ? building.getFirst() : null;
+        return buildingQueue.size() > 0 ? buildingQueue.getFirst() : null;
     }
 
     /** If this building is being built currently **/
     public boolean isBuilding(Building building) {
-        if (building == null) return this.building.size() > 0;
-        return this.building.contains(new BuildingStage(building, BlockPos.ORIGIN, Rotation.NONE));
+        if (building == null) return buildingQueue.size() > 0;
+        return buildingQueue.contains(new BuildingStage(building, BlockPos.ORIGIN, Rotation.NONE));
     }
 
     public boolean hasBuilding(ResourceLocation building) {
@@ -113,7 +117,7 @@ public abstract class TownData<Q extends QuestData, L extends LetterData> {
         uuid = NBTHelper.readUUID("Town", nbt);
         townCentre = NBTHelper.readBlockPos("TownCentre", nbt);
         NBTHelper.readMap("TownBuildingList", TownBuilding.class, buildings, nbt);
-        NBTHelper.readList("CurrentlyBuilding", BuildingStage.class, building, nbt);
+        NBTHelper.readList("CurrentlyBuilding", BuildingStage.class, buildingQueue, nbt);
         for (TownBuilding building: buildings.values()) {
             inhabitants.addAll(building.building.getInhabitants());
         }
@@ -134,7 +138,7 @@ public abstract class TownData<Q extends QuestData, L extends LetterData> {
         NBTHelper.writeBlockPos("TownCentre", nbt, townCentre);
         NBTHelper.writeUUID("Town", nbt, uuid);
         NBTHelper.writeMap("TownBuildingList", nbt, buildings);
-        NBTHelper.writeList("CurrentlyBuilding", nbt, building);
+        NBTHelper.writeList("CurrentlyBuilding", nbt, buildingQueue);
         if (dailyQuest != null) nbt.setString("DailyQuest", dailyQuest.getRegistryName().toString());
         if (festival != null) {
             nbt.setString("Festival", festival.getResource().toString());

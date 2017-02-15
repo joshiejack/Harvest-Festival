@@ -10,7 +10,6 @@ import net.minecraft.world.WorldServer;
 
 public class ScheduleSpeech extends ScheduleElement<Script> {
     private final Script script;
-    private boolean satisfied = false;
 
     private ScheduleSpeech(Script script) {
         this.script = script;
@@ -18,10 +17,6 @@ public class ScheduleSpeech extends ScheduleElement<Script> {
 
     public static ScheduleSpeech of(Script script) {
         return new ScheduleSpeech(script);
-    }
-
-    public boolean isSatisfied(EntityAgeable npc) {
-        return satisfied;
     }
 
     @Override
@@ -36,7 +31,7 @@ public class ScheduleSpeech extends ScheduleElement<Script> {
                 }
             }
 
-            satisfied = true;
+            super.execute(npc);
         }
     }
 }

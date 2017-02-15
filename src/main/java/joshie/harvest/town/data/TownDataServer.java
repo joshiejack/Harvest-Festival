@@ -12,6 +12,7 @@ import joshie.harvest.buildings.BuildingStage;
 import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.calendar.CalendarAPI;
 import joshie.harvest.calendar.CalendarHelper;
+import joshie.harvest.calendar.HFFestivals;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.core.helpers.NBTHelper;
@@ -204,7 +205,7 @@ public class TownDataServer extends TownData<QuestDataServer, LetterDataServer> 
 
             if (previousFestival == festival) { //If there is a festival active
                 festivalDays--;  //Decrease the amount of days of the festival left
-                if (festivalDays <= 0) { //If we have no days left then v
+                if (festivalDays <= 0 && (festival != HFFestivals.NEW_YEARS_EVE || (today.getDay() != 0 && festival == HFFestivals.NEW_YEARS_EVE))) { //If we have no days left then v
                     festival = Festival.NONE; //Cancel the festival
                 }
             }

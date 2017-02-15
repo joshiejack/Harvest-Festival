@@ -29,7 +29,7 @@
 * Removed the basement from the general store as it caused confusion
 * You will now unlock the church when you have nine npcs in town
 * You will now unlock the townhall when you have built nine buildings
-* Added the "festival grounds building", can be purchased as soon as you have built poultry farm or animal ranch or general store
+* Added the "park building", can be purchased as soon as you have built poultry farm or animal ranch or general store, it's intended to be used for festivals
 
 ###Calendar
 * Summers are more likely to be sunny (98% vs 95%), and typhoon chances are higher if sun fails (99% vs 75%)

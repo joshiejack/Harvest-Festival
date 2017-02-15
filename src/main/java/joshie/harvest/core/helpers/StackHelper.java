@@ -52,6 +52,17 @@ public class StackHelper {
         }
     }
 
+    public static NBTTagCompound getTag(String str) {
+        String s = formatNBT(str).getUnformattedText().replace("%20", " ");
+        try {
+            NBTBase nbtbase = JsonToNBT.getTagFromJson(str);
+            if (!(nbtbase instanceof NBTTagCompound)) return null;
+            return (NBTTagCompound) nbtbase;
+        } catch (Exception nbtexception) {
+            return null;
+        }
+    }
+
     private static boolean isMeta(String str) {
         return !isNBT(str) && !isAmount(str);
     }
@@ -98,6 +109,13 @@ public class StackHelper {
         }
 
         return item;
+    }
+
+    private static ITextComponent formatNBT(String str) {
+        TextComponentString chatcomponenttext = new TextComponentString("");
+        Object object = new TextComponentString(str);
+        chatcomponenttext.appendSibling((ITextComponent) object);
+        return chatcomponenttext;
     }
 
     private static ITextComponent formatNBT(String[] str, int start) {

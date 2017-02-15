@@ -72,7 +72,7 @@ harvestfestival.structures.supermarket=General Store
 harvestfestival.structures.supermarket.tooltip=Selling all kinds of goods from tools, to seeds and cooking ingredients.
 harvestfestival.structures.townhall=Townhall
 harvestfestival.structures.townhall.tooltip=The ultimate hub, unlocks some events and other treats.
-harvestfestival.structures.festivals=Festival Grounds
+harvestfestival.structures.festivals=Park
 harvestfestival.structures.festivals.tooltip=This is where festivals will take place. Don't place anything on the grounds as it will get removed whenever a festival is near.
 harvestfestival.structures.null=Invalid
 
@@ -1706,7 +1706,7 @@ harvestfestival.quest.meeting.katlin.title=Granny's Goods
 harvestfestival.quest.meeting.katlin.text=Good day youngun. I'm Katlin but you can call me granny if you like. I help out my granddaughter Liara, mostly in the kitchen. I must thank you for letting her open shop up here, it's been her life long dream. I have some spare change, it isn't much but please do take it.
 harvestfestival.quest.meeting.katlin.description=Have first conversation with Granny Katlin.
 harvestfestival.quest.meeting.johan.title=Johan'nesburg
-harvestfestival.quest.meeting.johan.build=Build the Festival Grounds.
+harvestfestival.quest.meeting.johan.build=Build the Park.
 harvestfestival.quest.meeting.johan.text=Good day. It is such a pleasure to meet you. The name is Johan. I'm normally here throughout the day but I travel back to my homeland at night. To let you know that if you ever need a bucket of milk, block of wool or some brown eggs, I'll happily trade for bottles of milk, plain wool or white eggs. I will see you around.
 harvestfestival.quest.meeting.johan.description=Meet Johan.
 harvestfestival.quest.meeting.abi.title=Little Foot
@@ -1783,7 +1783,13 @@ harvestfestival.quest.festival.cooking.ready=@I am ready!
 harvestfestival.quest.festival.cooking.cancel=@Give me a minute.
 harvestfestival.script.cooking=This was a great contest! Had a taste of everyone's meals... And well I think I've decided..... ...... ................... ..... ..... In third place is %1$s with their %2$s. ..... .. ... . .......... .... .. .. .. .. . In second place we jave %3$s with their %4$s... and finally...... without... further ado.... the winner of this year's cooking festival is........... %5$s with their amazing %6$s. Congratulations! For this years prize we have a gift of %7$s gold as well as a special recipe!
 
+#New Years Eve
+harvestfestival.quest.festival.new.years.eve.question=Do you want to start the countdown?
+harvestfestival.quest.festival.new.years.eve.option1=@Bring on the New Year!
+harvestfestival.quest.festival.new.years.eve.option2=@Give me a minute.
+
 ### Letters
+harvestfestival.letter.new.years.eve=Hello!\n\nWe're planning on celebrating the coming new year tomorrow night in the park. Yulif and I will be there for sure. I'd just love it if you would attend! We'll be celebrating from 6pm! Don't be late!\n\n\n-Jade
 harvestfestival.letter.new.years=Alright there, \n\nWe're planning on taking part in some festivities to celebrate the new year from around 10am to 6pm. I think we should invite ya. Give us a heads up if yer want to take part\n\n\n-Yulif, Jade and Johan
 harvestfestival.letter.cooking=Dear Sir/Madam, \n\nI have plans for a cooking festival that I would like to setup for tomorrow. Please confirm if you would be happy to attend.\n\n\n-Jenni
 
@@ -1946,5 +1952,7 @@ harvestfestival.note.secret.livestock.title=Improving your livestock
 harvestfestival.note.secret.livestock.description=Greatest sir it is with deepest pride and greatest pleasure that I am able to inform you of my research on the production habits of livestock. I have learnt in my research that it will take exactly 7 generic treats and 24 cow treats to make cows more productive, producing up to 5 milk a day, while sheep require 2 generic and 29 sheep treats to produce more wool.
 
 #Festival Notes
-harvestfestival.note.festival.new.years.title=New Year's Festival
+harvestfestival.note.festival.new.years.title=New Years
 harvestfestival.note.festival.new.years.description=The New Year's Festival takes place in the park. It's a small get together of the town. Yulif hosts the event and from him you can receive a traditional riceball dish. Jade and Johan also like to contribute to the events. The mayor will also have a yearly stipend for you to receive. If she's moved in of course!
+harvestfestival.note.festival.new.years.eve.title=New Years Eve
+harvestfestival.note.festival.new.years.eve.description=This festival takes place in the park from 6pm onwards. It's a casual gathering where the town munches on some fresh noodles. The townsfolk will enjoy your attendance. If you want to start the countdown to new years, you should talk to Yulif or the Mayor if they're moved in.

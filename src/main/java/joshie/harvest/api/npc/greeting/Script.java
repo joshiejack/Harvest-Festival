@@ -14,7 +14,7 @@ public class Script extends IForgeRegistryEntry.Impl<Script> {
     private NPC npc;
 
     public Script(ResourceLocation unlocalised) {
-        this.unlocalised = unlocalised.getResourceDomain() + ".script." + unlocalised.getResourcePath();
+        this.unlocalised = unlocalised.getResourceDomain() + ".script." + unlocalised.getResourcePath().replace("_", ".");
         this.setRegistryName(unlocalised);
         REGISTRY.register(this);
     }

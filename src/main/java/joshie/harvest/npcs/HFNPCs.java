@@ -40,6 +40,7 @@ import static joshie.harvest.api.calendar.Weekday.*;
 import static joshie.harvest.api.npc.INPCHelper.Age.*;
 import static joshie.harvest.api.npc.INPCHelper.Gender.FEMALE;
 import static joshie.harvest.api.npc.INPCHelper.Gender.MALE;
+import static joshie.harvest.calendar.HFFestivals.NEW_YEARS_EVE;
 import static joshie.harvest.core.helpers.ConfigHelper.getDouble;
 import static joshie.harvest.core.helpers.RegistryHelper.registerSounds;
 import static joshie.harvest.core.lib.HFModInfo.GIFTPATH;
@@ -117,6 +118,9 @@ public class HFNPCs {
                         .add(NEW_YEARS, 10000L, CARPENTER_FRONT)
                         .add(NEW_YEARS, 11500L, PARK_TRADER)
                         .add(NEW_YEARS, 22500L, CARPENTER_DOWNSTAIRS)
+                        .add(NEW_YEARS_EVE, 0L, CARPENTER_DOWNSTAIRS)
+                        .add(NEW_YEARS_EVE, 13000L, CARPENTER_FRONT)
+                        .add(NEW_YEARS_EVE, 17000L, PARK_NOODLES_STAND)
                         .build();
 
         //Flower Girl, Add the flower buying greeting, and before complettion of meeting jenni
@@ -140,6 +144,9 @@ public class HFNPCs {
                         .add(NEW_YEARS, 11500L, PARK_TRADER_LEFT)
                         .add(NEW_YEARS, 22500L, CARPENTER_DOWNSTAIRS)
                         .add(NEW_YEARS, 23500L, CARPENTER_UPSTAIRS)
+                        .add(NEW_YEARS_EVE, 0L, CARPENTER_UPSTAIRS)
+                        .add(NEW_YEARS_EVE, 13000L, CARPENTER_DOWNSTAIRS)
+                        .add(NEW_YEARS_EVE, 17000L, PARK_STAGE_LEFT)
                         .build();
 
         //General Store
@@ -172,6 +179,9 @@ public class HFNPCs {
                         .add(NEW_YEARS, 12000L, PARK_OAK)
                         .add(NEW_YEARS, 20000L, GENERAL_GARDEN)
                         .add(NEW_YEARS, 22000L, GENERAL_BEDROOM)
+                        .add(NEW_YEARS_EVE, 0L, GENERAL_BEDROOM)
+                        .add(NEW_YEARS_EVE, 13000L, GENERAL_GARDEN)
+                        .add(NEW_YEARS_EVE, 17000L, PARK_OAK)
                         .build();
 
         //Milkmaid
@@ -200,6 +210,9 @@ public class HFNPCs {
                         .add(NEW_YEARS, 12000L, PARK_OAK)
                         .add(NEW_YEARS, 20000L, GENERAL_GARDEN)
                         .add(NEW_YEARS, 22000L, GENERAL_BED)
+                        .add(NEW_YEARS_EVE, 0L, GENERAL_BED)
+                        .add(NEW_YEARS_EVE, 13000L, GENERAL_GARDEN)
+                        .add(NEW_YEARS_EVE, 17000L, PARK_OAK)
                         .build();
 
         //Barn Owner
@@ -221,6 +234,9 @@ public class HFNPCs {
                         .add(COOKING_CONTEST, 17000L, BARN_DOOR)
                         .add(COOKING_CONTEST, 19000L, GENERAL_BEDROOM)
                         .add(COOKING_CONTEST, 23500L, BARN_INSIDE)
+                        .add(NEW_YEARS_EVE, 0L, BARN_INSIDE)
+                        .add(NEW_YEARS_EVE, 13000L, BARN_DOOR)
+                        .add(NEW_YEARS_EVE, 17000L, PARK_LEFT)
                         .build();
 
         //Miner
@@ -244,6 +260,9 @@ public class HFNPCs {
                         .add(COOKING_CONTEST, 6000L, PARK_BENCH)
                         .add(COOKING_CONTEST, 11000L, POULTRY_DOOR)
                         .add(COOKING_CONTEST, 13000L, POULTRY_CENTRE)
+                        .add(NEW_YEARS_EVE, 0L, POULTRY_CENTRE)
+                        .add(NEW_YEARS_EVE, 13000L, POULTRY_DOOR)
+                        .add(NEW_YEARS_EVE, 17000L, PARK_LEFT)
                         .build();
 
         //Fisherman
@@ -277,7 +296,11 @@ public class HFNPCs {
                         .add(COOKING_CONTEST, 16000L, PARK_CUSTOMER)
                         .add(COOKING_CONTEST, 17500L, FISHING_POND_PIER)
                         .add(COOKING_CONTEST, 20000L, FISHING_HUT_DOWNSTAIRS)
-                        .add(COOKING_CONTEST, 22000L, FISHING_HUT_UPSTAIRS).build();
+                        .add(COOKING_CONTEST, 22000L, FISHING_HUT_UPSTAIRS)
+                        .add(NEW_YEARS_EVE, 0L, FISHING_HUT_UPSTAIRS)
+                        .add(NEW_YEARS_EVE, 13000L, FISHING_HUT_DOWNSTAIRS)
+                        .add(NEW_YEARS_EVE, 17000L, PARK_BOTTOM)
+                        .build();
 
         //Cafe Owner
         ScheduleBuilder.create(CAFE_OWNER, CAFE_BALCONY)
@@ -304,6 +327,9 @@ public class HFNPCs {
                         .add(COOKING_CONTEST, 0L, CAFE_BALCONY)
                         .add(COOKING_CONTEST, 5000L, PARK_STALL)
                         .add(COOKING_CONTEST, 18000L, CAFE_BALCONY)
+                        .add(NEW_YEARS_EVE, 0L, CAFE_BALCONY)
+                        .add(NEW_YEARS_EVE, 13000L, CAFE_FRONT)
+                        .add(NEW_YEARS_EVE, 17000L, PARK_SPRUCE)
                         .build();
 
         //Cafe Granny
@@ -332,6 +358,9 @@ public class HFNPCs {
                         .add(COOKING_CONTEST, 0L, CAFE_KITCHEN)
                         .add(COOKING_CONTEST, 5000L, PARK_CAFE)
                         .add(COOKING_CONTEST, 18000L, CAFE_KITCHEN)
+                        .add(NEW_YEARS_EVE, 0L, CAFE_KITCHEN)
+                        .add(NEW_YEARS_EVE, 13000L, GODDESS_POND_FRONT_RIGHT)
+                        .add(NEW_YEARS_EVE, 17000L, PARK_SPRUCE)
                         .build();
 
         //Blacksmith
@@ -358,6 +387,9 @@ public class HFNPCs {
                         .add(SPRING, FRIDAY, 17000L, TOWNHALL_ENTRANCE)
                         .add(SPRING, FRIDAY, 20000L, PARK_OAK)
                         .add(SPRING, FRIDAY, 23000L, BLACKSMITH_FURNACE)
+                        .add(NEW_YEARS_EVE, 0L, BLACKSMITH_FURNACE)
+                        .add(NEW_YEARS_EVE, 13000L, BLACKSMITH_FRONT)
+                        .add(NEW_YEARS_EVE, 17000L, PARK_BUSH)
                         .build();
 
         //Clockmaker
@@ -441,6 +473,9 @@ public class HFNPCs {
                         .add(NEW_YEARS, 12000L, PARK_PODIUM)
                         .add(NEW_YEARS, 20000L, TOWNHALL_STAGE)
                         .add(NEW_YEARS, 22000L, TOWNHALL_ADULT_BED)
+                        .add(NEW_YEARS_EVE, 0L, TOWNHALL_ADULT_BED)
+                        .add(NEW_YEARS_EVE, 13000L, TOWNHALL_STAGE)
+                        .add(NEW_YEARS_EVE, 17000L, PARK_CUSTOMER)
                         .build();
 
         //Eldest Daughter
@@ -461,6 +496,9 @@ public class HFNPCs {
                         .add(NEW_YEARS, 12000L, PARK_BENCH)
                         .add(NEW_YEARS, 20000L, TOWNHALL_RIGHT)
                         .add(NEW_YEARS, 22000L, TOWNHALL_TEEN_BED)
+                        .add(NEW_YEARS_EVE, 0L, TOWNHALL_TEEN_BED)
+                        .add(NEW_YEARS_EVE, 13000L, TOWNHALL_RIGHT)
+                        .add(NEW_YEARS_EVE, 17000L, PARK_CUSTOMER)
                         .build();
 
         //Youngest Daughter
@@ -499,6 +537,9 @@ public class HFNPCs {
                         .add(NEW_YEARS, 11500L, PARK_TRADER_RIGHT)
                         .add(NEW_YEARS, 22500L, TOWNHALL_ENTRANCE)
                         .add(NEW_YEARS, 23500L, TOWNHALL_RIGHT)
+                        .add(NEW_YEARS_EVE, 0L, TOWNHALL_RIGHT)
+                        .add(NEW_YEARS_EVE, 13000L, TOWNHALL_ENTRANCE)
+                        .add(NEW_YEARS_EVE, 17000L, PARK_TABLE)
                         .build();
 
         for (NPC npc: NPC.REGISTRY) {

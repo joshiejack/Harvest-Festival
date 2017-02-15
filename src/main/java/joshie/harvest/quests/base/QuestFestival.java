@@ -8,7 +8,7 @@ import java.util.Set;
 public class QuestFestival extends QuestTown {
     @Override
     public EventPriority getPriority() {
-        return EventPriority.HIGH;
+        return EventPriority.HIGHEST;
     }
 
     @Override

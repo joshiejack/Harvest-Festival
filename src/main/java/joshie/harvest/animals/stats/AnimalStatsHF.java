@@ -57,6 +57,7 @@ public class AnimalStatsHF implements AnimalStats<NBTTagCompound> {
     private int daysPassed; //How many days have passed so far
     private int productsPerDay = 1; //The maximum number of products this animal can produce a day
     private int producedProducts; //Whether the animal has produced products this day
+    private boolean golden; //If this animal has won a contest
     private boolean treated; //Whether this animal has had it's treat for today
     private int genericTreats; //Number of generic treats this animal had
     private int typeTreats; //Number of specific treats this animal had
@@ -307,14 +308,28 @@ public class AnimalStatsHF implements AnimalStats<NBTTagCompound> {
         else if (test == AnimalTest.IS_SICK) return isSick;
         else if (test == AnimalTest.HAD_TREAT) return treated;
         else if (test == AnimalTest.BEEN_LOVED) return beenLoved;
-        else return false;
+        else return test == AnimalTest.IS_GOLDEN && golden;
     }
 
     @Override
     public boolean performAction(@Nonnull World world, @Nullable ItemStack stack, AnimalAction action) {
         if (action == AnimalAction.FEED) return feed(world);
         else if (action == AnimalAction.HEAL) return heal(world);
+        else if (action == AnimalAction.MAKE_GOLDEN) return golden(world);
         return (action == AnimalAction.TREAT_SPECIAL || action == AnimalAction.TREAT_GENERIC) && treat(world, stack);
+    }
+
+    private boolean golden(@Nonnull World world) {
+        if (!golden) {
+            if (!world.isRemote) {
+                golden = true;
+                HFApi.animals.syncAnimalStats(animal);
+            }
+
+            return true;
+        }
+
+        return false;
     }
 
     private boolean feed(@Nonnull World world) {
@@ -430,6 +445,7 @@ public class AnimalStatsHF implements AnimalStats<NBTTagCompound> {
         wasSick = nbt.getBoolean("WasSick");
         isSick = nbt.getBoolean("IsSick");
         wasOutsideInSun = nbt.getBoolean("WasOutsideInSun");
+        golden = nbt.getBoolean("Golden");
         if (type.getDaysBetweenProduction() > 0) {
             productsPerDay = nbt.getByte("NumProducts");
             producedProducts = nbt.getByte("ProducedProducts");
@@ -460,6 +476,7 @@ public class AnimalStatsHF implements AnimalStats<NBTTagCompound> {
         tag.setBoolean("WasSick", wasSick);
         tag.setBoolean("IsSick", isSick);
         tag.setBoolean("WasOutsideInSun", wasOutsideInSun);
+        tag.setBoolean("Golden", golden);
 
         if (type.getDaysBetweenProduction() > 0) {
             tag.setByte("NumProducts", (byte) productsPerDay);

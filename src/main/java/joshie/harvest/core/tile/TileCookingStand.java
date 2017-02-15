@@ -2,7 +2,7 @@ package joshie.harvest.core.tile;
 
 import joshie.harvest.calendar.HFFestivals;
 import joshie.harvest.core.helpers.EntityHelper;
-import joshie.harvest.quests.town.festivals.QuestCookingContest;
+import joshie.harvest.quests.town.festivals.QuestContestCooking;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
@@ -10,7 +10,7 @@ import net.minecraft.item.ItemStack;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class TileCookingStand extends TileStandContest<QuestCookingContest> {
+public class TileCookingStand extends TileStandContest<QuestContestCooking> {
     public TileCookingStand() {
         super(HFFestivals.COOKING_CONTEST);
     }
@@ -21,17 +21,17 @@ public class TileCookingStand extends TileStandContest<QuestCookingContest> {
     }
 
     @Override
-    protected void onContentsSet(@Nullable EntityPlayer player, @Nonnull QuestCookingContest quest) {
+    protected void onContentsSet(@Nullable EntityPlayer player, @Nonnull QuestContestCooking quest) {
         if (player != null) quest.addStand(EntityHelper.getPlayerUUID(player), pos);
     }
 
     @Override
-    protected void onContentsRemoved(@Nonnull QuestCookingContest quest) {
+    protected void onContentsRemoved(@Nonnull QuestContestCooking quest) {
         quest.removeStand(pos);
     }
 
     @Override
-    protected boolean isQuestInvalid(QuestCookingContest quest) {
+    protected boolean isQuestInvalid(QuestContestCooking quest) {
         return quest.isFull();
     }
 }

@@ -9,5 +9,6 @@ public enum AnimalTest {
     IS_PREGNANT, //If the animal is pregnant
     CAN_MILK, //If you can milk this animal
     CAN_CARRY, //If you can carry the animal on your head
-    BEEN_LOVED //If the animal has been loved already today
+    BEEN_LOVED, //If the animal has been loved already today
+    IS_GOLDEN //If the animal has won a contest
  }

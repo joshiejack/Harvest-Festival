@@ -34,7 +34,7 @@ import java.util.*;
 import java.util.Map.Entry;
 
 @HFQuest("festival.cooking")
-public class QuestCookingContest extends QuestFestival {
+public class QuestContestCooking extends QuestFestival {
     private static final Script SCRIPT = new CookingContestScript();
     private final Selection selection = new FestivalSelection("cooking");
     private final int QUESTION = 0;
@@ -42,7 +42,7 @@ public class QuestCookingContest extends QuestFestival {
     private final int WINNER = 2;
     private Map<UUID, BlockPos> blockPosList = new HashMap<>();
 
-    public QuestCookingContest() {
+    public QuestContestCooking() {
         setNPCs(HFNPCs.GS_OWNER);
     }
 

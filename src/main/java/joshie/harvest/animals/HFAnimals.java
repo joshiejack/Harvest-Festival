@@ -7,12 +7,9 @@ import joshie.harvest.animals.block.BlockTrough;
 import joshie.harvest.animals.entity.EntityHarvestChicken;
 import joshie.harvest.animals.entity.EntityHarvestCow;
 import joshie.harvest.animals.entity.EntityHarvestSheep;
-import joshie.harvest.animals.item.ItemAnimalProduct;
-import joshie.harvest.animals.item.ItemAnimalSpawner;
+import joshie.harvest.animals.item.*;
 import joshie.harvest.animals.item.ItemAnimalSpawner.Spawner;
-import joshie.harvest.animals.item.ItemAnimalTool;
 import joshie.harvest.animals.item.ItemAnimalTool.Tool;
-import joshie.harvest.animals.item.ItemAnimalTreat;
 import joshie.harvest.animals.render.*;
 import joshie.harvest.animals.stats.AnimalStatsHF;
 import joshie.harvest.animals.tile.TileFeeder;
@@ -64,6 +61,7 @@ public class HFAnimals {
     public static final ItemAnimalSpawner ANIMAL = new ItemAnimalSpawner().register("animal");
     public static final ItemAnimalTool TOOLS = new ItemAnimalTool().register("tool_animal");
     public static final ItemAnimalTreat TREATS = new ItemAnimalTreat().register("treat");
+    public static final ItemGoldenProduct GOLDEN_PRODUCT = new ItemGoldenProduct().register("golden");
     public static final ItemAnimalProduct ANIMAL_PRODUCT = new ItemAnimalProduct().register("sizeable");
 
     //Animal Blocks

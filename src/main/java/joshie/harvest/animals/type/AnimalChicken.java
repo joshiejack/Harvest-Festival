@@ -32,7 +32,7 @@ public class AnimalChicken extends AnimalAbstract {
 
     @Override
     public ItemStack getProduct(AnimalStats stats) {
-        return HFAnimals.ANIMAL_PRODUCT.getStack(Sizeable.EGG, SizeableHelper.getSizeFromAnimal(stats.getHappiness(), stats.getAnimal()));
+        return SizeableHelper.getEgg(stats);
     }
 
     @Override

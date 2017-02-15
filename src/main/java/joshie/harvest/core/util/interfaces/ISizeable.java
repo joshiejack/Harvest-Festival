@@ -17,6 +17,9 @@ public interface ISizeable {
         return new ItemStack(item, stackSize, (getMeta() * 3) + size.ordinal());
     }
 
+    /** Returns the golden version of this **/
+    ItemStack getGoldenProduct();
+
     /** Return the metadata for this sizeable **/
     int getMeta();
 
@@ -28,4 +31,5 @@ public interface ISizeable {
     long getSmall();
     long getMedium();
     long getLarge();
+    long getGolden();
 }

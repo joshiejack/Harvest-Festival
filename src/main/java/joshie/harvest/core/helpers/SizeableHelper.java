@@ -3,6 +3,7 @@ package joshie.harvest.core.helpers;
 import joshie.harvest.animals.HFAnimals;
 import joshie.harvest.animals.item.ItemAnimalProduct.Sizeable;
 import joshie.harvest.api.animals.AnimalStats;
+import joshie.harvest.api.animals.AnimalTest;
 import joshie.harvest.api.core.Size;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.item.ItemStack;
@@ -13,18 +14,26 @@ import java.util.TreeMap;
 
 public class SizeableHelper {
     public static ItemStack getMilk(AnimalStats stats) {
-        return SizeableHelper.getSizeable(stats, Sizeable.MILK);
+        return SizeableHelper.getSizeable(stats, Sizeable.MILK, stats.getProductsPerDay());
     }
 
     public static ItemStack getWool(AnimalStats stats) {
-        return SizeableHelper.getSizeable(stats, Sizeable.WOOL);
+        return SizeableHelper.getSizeable(stats, Sizeable.WOOL, stats.getProductsPerDay());
     }
 
-    private static ItemStack getSizeable(AnimalStats stats, Sizeable sizeable) {
-        return sizeable.getStackOfSize(HFAnimals.ANIMAL_PRODUCT, getSizeFromAnimal(stats.getHappiness(), stats.getAnimal()), stats.getProductsPerDay());
+    public static ItemStack getEgg(AnimalStats stats) {
+        return SizeableHelper.getSizeable(stats, Sizeable.WOOL, 1);
     }
 
-    public static Size getSizeFromAnimal(int happiness, EntityAnimal animal) {
+    private static ItemStack getSizeable(AnimalStats stats, Sizeable sizeable, int size) {
+        if (stats.performTest(AnimalTest.IS_GOLDEN) && stats.getHappiness() >= 20000 && stats.getAnimal().worldObj.rand.nextInt(100) == 0) {
+            return sizeable.getGoldenProduct();
+        }
+
+        return sizeable.getStackOfSize(HFAnimals.ANIMAL_PRODUCT, getSizeFromAnimal(stats.getHappiness(), stats.getAnimal()), size);
+    }
+
+    private static Size getSizeFromAnimal(int happiness, EntityAnimal animal) {
         WeightedSize weighted = new WeightedSize();
         for (Size size: Size.values()) {
             int value = 27000 -(27000 -(happiness - size.getRelationshipRequirement()));

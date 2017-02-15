@@ -367,6 +367,7 @@ harvestfestival.sizeable.format=%1s %2s
 harvestfestival.sizeable.small=Small
 harvestfestival.sizeable.medium=Medium
 harvestfestival.sizeable.large=Large
+harvestfestival.sizeable.golden=Golden
 harvestfestival.sizeable.egg=Egg
 harvestfestival.sizeable.milk=Milk
 harvestfestival.sizeable.wool=Wool
@@ -820,10 +821,20 @@ harvestfestival.npc.goddess.gift.bad=This gift insults me.
 harvestfestival.npc.goddess.gift.terrible=How dare you insult me like this.
 harvestfestival.npc.goddess.gift.no=I'm afraid it would not be appropriate for me to accept this gift, it is far too valuable!
 harvestfestival.npc.goddess.gift.reject=Darling, I do appreciate but I cannot in good faith accept another gift today.
-harvestfestival.npc.goddess.festival.cooking1=My dear if you haven't heard the cooking festival is today!
-harvestfestival.npc.goddess.festival.cooking2=You should enter your best dish for the cooking festival my sweet!
+harvestfestival.npc.goddess.festival.chicken1=Are you entering the Chicken Festival my sweet?
+harvestfestival.npc.goddess.festival.chicken2=If you plan to enter the Chicken Festival, go to the park and talk to Ashlee.
+harvestfestival.npc.goddess.festival.cow1=Are you entering the Cow Festival today dear?
+harvestfestival.npc.goddess.festival.cow2=Talk to Jim, if you want to enter, I heard.
+harvestfestival.npc.goddess.festival.harvest1=Today is the Harvest Festival. I'm tickled that they celebrate the harvest!
+harvestfestival.npc.goddess.festival.harvest2=Be sure to bring food to add to a community pot in the park. Its different every year.
+harvestfestival.npc.goddess.festival.new.years.eve1=Another year come and gone. The town is looking so much more lively, and its all thanks to you.
+harvestfestival.npc.goddess.festival.new.years.eve2=There's noodles being served in the park tonight to close out the year. If you please, float a bowl of noodles in my pond. I do so enjoy these events, though I cannot attend myself.
 harvestfestival.npc.goddess.festival.new.years1=A Happy New Year to you dear.
 harvestfestival.npc.goddess.festival.new.years2=If you visit the park today, you get some riceballs. Be sure to bring me one!
+harvestfestival.npc.goddess.festival.sheep1=This is exciting. The Sheep Festival is today!
+harvestfestival.npc.goddess.festival.sheep2=Go ahead and talk to Jim about the festival today darling.
+harvestfestival.npc.goddess.festival.starry.night1=Oh the solstice. Quite a sight with all this snow.
+harvestfestival.npc.goddess.festival.starry.night2=I'm sort of sad I cannot go join the town for dinner in the park. Do go in my place, would you dear?
 
 # Goddess Weather
 harvestfestival.npc.goddess.weather.sunny1=Oh sweety, tomorrow is looking like a lovely day of sunshine!
@@ -862,10 +873,20 @@ harvestfestival.npc.katlin.gift.bad=In my day, we gave people good gifts.
 harvestfestival.npc.katlin.gift.terrible=Are you trying to kill me? What an awful gift.
 harvestfestival.npc.katlin.gift.no=Youngun I cannot take this gift, it holds too much value.
 harvestfestival.npc.katlin.gift.reject=You've already given me something today youngun.
-harvestfestival.npc.katlin.festival.cooking1=I hope you will be entering the cooking festival today, youngun.
-harvestfestival.npc.katlin.festival.cooking2=I hope you do me proud in the cooking festival.
+harvestfestival.npc.katlin.festival.chicken1=A happy chicken makes a happy home. Or was it a happy wife makes a happy life?
+harvestfestival.npc.katlin.festival.chicken2=I remember someone telling me once that chickens like to roost on a pole off the ground. I wonder why that is...
+harvestfestival.npc.katlin.festival.cow1=In my day, you made your butter and cream with a hand churn.
+harvestfestival.npc.katlin.festival.cow2=Milk didn't used to be processed before selling. Some of us would drink it right from the bucket.
+harvestfestival.npc.katlin.festival.harvest1=For as long as I can remember, the harvest festival takes place in the autumn, and it always includes food. Its not for the Goddess's birthday though.
+harvestfestival.npc.katlin.festival.harvest2=Its getting colder. I should knit a new scarf and a pair of mittens.
+harvestfestival.npc.katlin.festival.new.years.eve1=When the new year comes, open the front door. When the old year leaves, open the back door and close it after it leaves.
+harvestfestival.npc.katlin.festival.new.years.eve2=Its traditional to do a toast at midnight. To good health, long life, and happiness dearie.
 harvestfestival.npc.katlin.festival.new.years1=Open the front door to let in the new year, open the back door to let out the old year.
-harvestfestival.npc.katlin.festival.new.years2= Happy New Year dear. I wish you wealth, good health, and happiness.
+harvestfestival.npc.katlin.festival.new.years2=Happy New Year dear. I wish you wealth, good health, and happiness.
+harvestfestival.npc.katlin.festival.sheep1=You can tell the quality of a sheep's wool by touching them, you know. Same way you get the feeling of a good yarn, its by touching them. Feeling it between your fingers.
+harvestfestival.npc.katlin.festival.sheep2=If they shear the prize winning sheep, I might buy some wool to spin for a project. A nice autumnal dye...
+harvestfestival.npc.katlin.festival.starry.night1=I remember when Tomas invited me to dinner one Starry Night. I'm sad to say he chose that night to ask for a divorce. This festival is not my favorite for that reason. Brings a tear to my eye every now and than each year.
+harvestfestival.npc.katlin.festival.starry.night2=Do consider inviting Liara to dinner though. She enjoys this season so much.
 
 #Danieuru/Chylex
 harvestfestival.npc.daniel.shop=I'm open every day of the week except for Thursdays from 10:00 to 16:00.
@@ -890,10 +911,20 @@ harvestfestival.npc.daniel.gift.decent=It's alright.
 harvestfestival.npc.daniel.gift.dislike=It's not alright.
 harvestfestival.npc.daniel.gift.bad=You give bad gifts.
 harvestfestival.npc.daniel.gift.terrible=And I thought the rejection from Yulif was bad enough, now you give me this?
-harvestfestival.npc.daniel.festival.cooking1=Are you looking forward to the cooking festival today?
-harvestfestival.npc.daniel.festival.cooking2=What are you planning on cooking for the festival today?
-harvestfestival.npc.daniel.festival.new.years1=Dragons are good luck on New years. Will they visit our town?  I don't think anyone would approve of putting a sheep out at midnight in front of that dog statue to attract one though.
-harvestfestival.npc.daniel.festival.new.years2=Are you planning on taking part in the new years celebrations?
+harvestfestival.npc.daniel.festival.chicken1=Chickens and I have one thing in common; we both hate water and being out in the rain.
+harvestfestival.npc.daniel.festival.chicken2=Stories say in other places, there are chickens out there who lay ender pearls. Where can I get a chicken like that?
+harvestfestival.npc.daniel.festival.cow1=Jim needs to sell his own animal supplies. I can supply more tools that way.
+harvestfestival.npc.daniel.festival.cow2=A dragon's favorite meal is a cow. Or a sheep. Usually sheep though.
+harvestfestival.npc.daniel.festival.harvest1=Is there any more food?
+harvestfestival.npc.daniel.festival.harvest2=I'm not a farmer, but the soup cauldron is quality iron. I can see it from here.
+harvestfestival.npc.daniel.festival.new.years.eve1=This next year will be the year I track down the elusive end portal. Nobody will call me a fool when I bring back that loot in the cities in the End.
+harvestfestival.npc.daniel.festival.new.years.eve2=Rumor has it the End people have come up with propelled flight. An ‘elytra', and you can fly with rockets and fireworks to propel you around. Or a bow with punch? Do some research, get back to me.
+harvestfestival.npc.daniel.festival.new.years1=Dragons are good luck on New years. Will they visit our town?
+harvestfestival.npc.daniel.festival.new.years2=I don't think anyone would approve of putting a sheep out at midnight in front of that dog statue to attract one though.
+harvestfestival.npc.daniel.festival.sheep1=I did sell shears in my shop once, but Jim decided to finally sell his own supplies. I don't repair shears though.
+harvestfestival.npc.daniel.festival.sheep2=Its smart to sharpen your shears before shearing your animal, it makes for a smoother cut, and a cleaner shear.
+harvestfestival.npc.daniel.festival.starry.night1=Should I ask Yulif or Jenni to dinner? They aren't very interested... -sigh-
+harvestfestival.npc.daniel.festival.starry.night2=You keep finding me at the cafe in the mornings, but I'm happier just remaining at the forge.
 
 #Cloe
 harvestfestival.npc.cloe.greeting1=A good book, makes a girl happy.
@@ -916,10 +947,20 @@ harvestfestival.npc.cloe.gift.decent=Thanks.
 harvestfestival.npc.cloe.gift.dislike=Err, what?
 harvestfestival.npc.cloe.gift.bad=Err, no thanks...
 harvestfestival.npc.cloe.gift.terrible=I thought my parents were the worst, but nope it's you.
-harvestfestival.npc.cloe.festival.cooking1=I may not be much of a cook, but I think you'd do great in today's festival.
-harvestfestival.npc.cloe.festival.cooking2=Make sure to bring your best food for the festival today.
+harvestfestival.npc.cloe.festival.chicken1=Have you ever peeled a chicken's foot? Its very difficult to do.
+harvestfestival.npc.cloe.festival.chicken2=You can eat almost every part of a chicken, except for the beak, I believe. Why you would want to though... don't ask me.
+harvestfestival.npc.cloe.festival.cow1=Some breeds of cows grow these massive sets of bone horns right out of their heads.
+harvestfestival.npc.cloe.festival.cow2=All the cows Jim's ranch sells have no horns though. I wonder why.
+harvestfestival.npc.cloe.festival.harvest1=You can boil down bones to make a decent soup stock.
+harvestfestival.npc.cloe.festival.harvest2=Jade makes the soup each year. She never says what her secret ingredient is that she adds. I add a bone every now and than, but it has to be fished out.
+harvestfestival.npc.cloe.festival.new.years.eve1=Mm, didn't get too good of marks on my civic service exam. New Year's isn't exactly interesting anyways. Go get noodles, stay up late... whatever.
+harvestfestival.npc.cloe.festival.new.years.eve2=We should get something more interesting to do, like watch scary movies till midnight.
 harvestfestival.npc.cloe.festival.new.years1=The world didn't end when the calendar turned over. I guess thats good.
-harvestfestival.npc.cloe.festival.new.years2=It took a whole pot of tea to be able to come outside with it this cold.
+harvestfestival.npc.cloe.festival.new.years2=It took a whole pot of coffee to be able to come outside with it this cold.
+harvestfestival.npc.cloe.festival.sheep1=Sheep horns curl around their ears. But they're made of bone and hollow.
+harvestfestival.npc.cloe.festival.sheep2=Baaaah, humbug. I'm going back to sleep. There's no dark sheep to be seen.
+harvestfestival.npc.cloe.festival.starry.night1=Uh... hello.
+harvestfestival.npc.cloe.festival.starry.night2=Don't forget whomever you ended up inviting is bringing their family along.
 
 #Liara/ApsciLiara
 harvestfestival.npc.liara.shop=I'm afraid the cafe is only open from half past nine in the morning to five in the evening, but we're open every day of the week!
@@ -945,10 +986,20 @@ harvestfestival.npc.liara.gift.decent=Thank you.
 harvestfestival.npc.liara.gift.dislike=No thank you.
 harvestfestival.npc.liara.gift.bad=I do not enjoy this.
 harvestfestival.npc.liara.gift.terrible=I would thank you, but you have given me the worst thing anyone could give me. Goodbye.
-harvestfestival.npc.liara.festival.cooking1=The cooking festival is today. I would take part but it's my shop's busiest day.
-harvestfestival.npc.liara.festival.cooking2=I love cooking, and I hope you do too. You should participate in the cooking festival!
+harvestfestival.npc.liara.festival.chicken1=You can keep your eggs on the counter as long as they aren't washed with soap. It takes off the protective coating on the eggshells and they go bad much quicker.
+harvestfestival.npc.liara.festival.chicken2=Chickens fed different choices of feed and let outside each day produce better eggs, I've found. Nice rich yellow yolks. Best omelettes I've ever made.
+harvestfestival.npc.liara.festival.cow1=Not every chocolate has milk in it, did you know? Its not considered chocolate in my book without milk in it.
+harvestfestival.npc.liara.festival.cow2=I wonder what you need to feed a cow in order for her to produce chocolate milk...
+harvestfestival.npc.liara.festival.harvest1=It isn't just a lunch, it is a harvest meal. It would go well with a freshly picked salad from the cafe.
+harvestfestival.npc.liara.festival.harvest2=There's just no telling whether or not the soup turns out well until we taste it. I always add the same thing though.
+harvestfestival.npc.liara.festival.new.years.eve1=I'd love to hold a cooking class next year. Even for something as simple as cupcakes. Would you be interested in that %4$s?
+harvestfestival.npc.liara.festival.new.years.eve2=Plain noodles are very boring; I'm trying mine with a light lemon cream sauce. It goes well against heavier dishes, like chicken picatta and eggplant parmasan.
 harvestfestival.npc.liara.festival.new.years1=Mm mmm! I'm in the mood to make some new year food. Dumplings, wonton soup, rice soup, rice pudding...
-harvestfestival.npc.liara.festival.new.years2= Only downside to spring, the lack of winter berries.
+harvestfestival.npc.liara.festival.new.years2=Only downside to spring, the lack of winter berries.
+harvestfestival.npc.liara.festival.sheep1=The one festival I'd rather sleep through, or work in the cafe. Nothing but sheep, wool, and yarn. And a lot of baaabling.
+harvestfestival.npc.liara.festival.sheep2=Now if you want to talk about dishes made with lamb, or with mutton, I'm all ears.
+harvestfestival.npc.liara.festival.starry.night1=Winter calls for a nice hearty stew. Plenty of root vegetables and meats... I'm getting hungry thinking about it.
+harvestfestival.npc.liara.festival.starry.night2=You know %4$s, you can invite someone to the park to have dinner. They might invite their family. Like... if you invited me, I would invite Granny Katlin, see?
 
 #Jade
 harvestfestival.npc.jade.buy1=These flowers are perfect for my collection, here take this small token.
@@ -978,10 +1029,20 @@ harvestfestival.npc.jade.gift.decent=I appreciate this.
 harvestfestival.npc.jade.gift.dislike=I can not appreciate this.
 harvestfestival.npc.jade.gift.bad=What a bad present!
 harvestfestival.npc.jade.gift.terrible=It really is a terrible gift!
-harvestfestival.npc.jade.festival.cooking1=It looks like festivals have been implemented, and there is one today, you should attend!
-harvestfestival.npc.jade.festival.cooking2=Get out your best food and go and participate in the cooking festival, I dare you!
-harvestfestival.npc.jade.festival.new.years1=Ooooh, Happy New Year! I can't wait to see what you get up to this year!
+harvestfestival.npc.jade.festival.chicken1=Chicken is good to eat, the original white meat.
+harvestfestival.npc.jade.festival.chicken2=Our town's birds are more bred for egg production than meat though. Johan might have meat bird eggs if you trade him some of your small, medium or large eggs.
+harvestfestival.npc.jade.festival.cow1=I keep going out in the pastures to pick any flowers I see before the cows come out to graze. They have no appreciation of flowers like I do. Or cats.
+harvestfestival.npc.jade.festival.cow2=We need a cat festival. Than the milk would have more use.
+harvestfestival.npc.jade.festival.harvest1=What a  beautiful day it is today. Do you intend to add to our community soup?
+harvestfestival.npc.jade.festival.harvest2=Its a little different each year, so I can't guarantee the flavor. Only edible items though. No cobblestone, or wood, or seeds.
+harvestfestival.npc.jade.festival.new.years.eve1=I've been making paper flowers to float on the water of the goddess pond. Each flower someone will write a new year's wish on, and they'll float away. Would you like to write down a wish?
+harvestfestival.npc.jade.festival.new.years.eve2=I hope the next year is profitable for you!
+harvestfestival.npc.jade.festival.new.years1=Ooooh, Happy New Year! Have a riceball! Try it with some soy sauce!
 harvestfestival.npc.jade.festival.new.years2=Its so nice to see flowers blooming.
+harvestfestival.npc.jade.festival.sheep1=Sheep take such a long time to regrow their wool before you can shear them again. I wonder if they ever produce more than one item ever per shearing?
+harvestfestival.npc.jade.festival.sheep2=Don't mention copper to Jim when he's around his sheep. I don't remember why.
+harvestfestival.npc.jade.festival.starry.night1=I might be able to get some mistletoe if I go exploring in the forest. The poor trees though don't like mistletoe.
+harvestfestival.npc.jade.festival.starry.night2=Have you seen any snowberries about?
 
 #Jenni/Othlon
 harvestfestival.npc.jenni.shop=Heya friend, just to remind you, we're open everyday except Wednesday and Sunday, from 9am to 5pm. Oh Saturdays we are only open from 11am to 3pm.
@@ -1006,10 +1067,20 @@ harvestfestival.npc.jenni.gift.decent=A good friend, you are.
 harvestfestival.npc.jenni.gift.dislike=Thanks my friend.
 harvestfestival.npc.jenni.gift.bad=You could have done better, but it's ok.
 harvestfestival.npc.jenni.gift.terrible=I did not think you could ever offend me, but you have now, why?
-harvestfestival.npc.jenni.festival.cooking1=The cooking festival is from 6am to 6pm so make sure to bring your best prepared food!
-harvestfestival.npc.jenni.festival.cooking2=Come and see me whenever you are ready to start cooking!
+harvestfestival.npc.jenni.festival.chicken1=Such good birdies. Spare feathers always add a bit of pizazz for a craft project.
+harvestfestival.npc.jenni.festival.chicken2=I love the taste of the food our town's eggs make. Liara's cakes especially.
+harvestfestival.npc.jenni.festival.cow1=I don't like how the cattle have to stand still so long while being milked. Isn't it stressful for them?
+harvestfestival.npc.jenni.festival.cow2=Candice always keeps the fridge supplied with fresh milk from the dairy. Claims to milk them herself.
+harvestfestival.npc.jenni.festival.harvest1=A pinch of this, a dash of that, and swish it all about...
+harvestfestival.npc.jenni.festival.harvest2=A splash of oil, a few sprigs of chamomile and voila, a beautiful soup. Oh hello!
+harvestfestival.npc.jenni.festival.new.years.eve1=It helps to use a flat edge to smooth out the folds in your paper flower. See that crisp edge? Its a bit sharp, but holds its shape while floating in the water. I can test a smaller flower in the well before going to make my actual flower.
+harvestfestival.npc.jenni.festival.new.years.eve2=My new year resolution is to grow my inventory of stock to sell to you and the town. Perhaps increase my choice of seeds.
 harvestfestival.npc.jenni.festival.new.years1=Happy New Year!
 harvestfestival.npc.jenni.festival.new.years2=If I had my way, we would be having a dumpling bar for lunch, and a beef pot for dinner. The mayor would have a fit for the price!
+harvestfestival.npc.jenni.festival.sheep1=Wool sells well alone, but there should be a way to spin it for yarn. Yarn sells very well. Granny Katlin would be your best customer.
+harvestfestival.npc.jenni.festival.sheep2=They're pickier than goats, but I've seen a flock of sheep mow down a hill of grass. It was like watching a baaing cloud.
+harvestfestival.npc.jenni.festival.starry.night1=Its too cold to grow any crops, so I don't carry any winter seeds yet in my shop.
+harvestfestival.npc.jenni.festival.starry.night2=As fall ended, I saw somewhere that someone wove a basket shaped like a horn and filled it with food. I wish I could've gotten a closer look.
 
 #Jaimii
 harvestfestival.npc.jamie.greeting1=This is my town, and you remember that.
@@ -1030,8 +1101,20 @@ harvestfestival.npc.jamie.gift.decent=And you think I like this?
 harvestfestival.npc.jamie.gift.dislike=You insult my family name with this gift.
 harvestfestival.npc.jamie.gift.bad=This is quite possibly one of the worst things you could have given me.
 harvestfestival.npc.jamie.gift.terrible=That's it, If I have full authority I would banish you from this town. You insult me, you insult my family, your tarnish this town. Do not try this ever again.
+harvestfestival.npc.jamie.festival.chicken1=Ashlee pays good money for use of the festival grounds for this hideous festival. The money I make from the rental fee of the grounds is the ONLY good thing about it.
+harvestfestival.npc.jamie.festival.chicken2=Get that hideous feathered creature away from me!
+harvestfestival.npc.jamie.festival.cow1=All these droppings. Yuck. And they are eating every bit of grass in the park.
+harvestfestival.npc.jamie.festival.cow2=All they do is eat, and chew, and have long purple tongues that eat anything. So inefficient.
+harvestfestival.npc.jamie.festival.harvest1=The town soup is never good. Something always spoils it. What did you add to it anyways.
+harvestfestival.npc.jamie.festival.harvest2=All thats ever added is vegetables. Can't there be more variety in this. -sniff-
+harvestfestival.npc.jamie.festival.new.years.eve1=Taxes are right around the corner. Than the money flows in, heh heh.
+harvestfestival.npc.jamie.festival.new.years.eve2=I only allow Abii and Cloe to stay up late if their school marks are acceptable to me.
 harvestfestival.npc.jamie.festival.new.years1=Its not worth my time to be out on such a festival. Paperwork is piling up as I stand here, I can feel it.
 harvestfestival.npc.jamie.festival.new.years2=The girls wanted to stay up late, so Tomas stayed up with them, bless his soul. If he has one.
+harvestfestival.npc.jamie.festival.sheep1=I noticed that nobody keeps their sheep around for very long. Do they only keep the lambs about?
+harvestfestival.npc.jamie.festival.sheep2=I've tasted rack of lamb before; a succulent and juicy cut of meat. Oh I'm sorry, I said that out loud.
+harvestfestival.npc.jamie.festival.starry.night1=Stay away from my Cloe, do you understand me?!
+harvestfestival.npc.jamie.festival.starry.night2=On the other hand, you can TRY to invite her. But don't get too sad when she dumps you on the pathway. Don't leave any bloodstains on my doorstep.
 
 #Abii
 harvestfestival.npc.abi.greeting1=Ooo, so cute. What's that? OMG!
@@ -1055,8 +1138,20 @@ harvestfestival.npc.abi.gift.decent=Aww, so nice.
 harvestfestival.npc.abi.gift.dislike=Hmm, not so nice.
 harvestfestival.npc.abi.gift.bad=Awww, I didn't want this.
 harvestfestival.npc.abi.gift.terrible=What? I HATE it, I HATE it. So mean!
+harvestfestival.npc.abi.festival.chicken1=Chickies! So cute! How many chickies are coming to play today?
+harvestfestival.npc.abi.festival.chicken2=Mama hates animals, but I go out to see them when she's not looking. Mama gets so angry when I have feathers in my hair.
+harvestfestival.npc.abi.festival.cow1=Moo! Moo! I'm a cow!
+harvestfestival.npc.abi.festival.cow2=Cows are so big! Bigger than me! They like being patted though.
+harvestfestival.npc.abi.festival.harvest1=Mmm, soup smells yummy.
+harvestfestival.npc.abi.festival.harvest2=Can I put some candy in the soup?
+harvestfestival.npc.abi.festival.new.years.eve1=I get to stay up late... I get to stay up late...
+harvestfestival.npc.abi.festival.new.years.eve2=Do you get to make a wish with Jade's pretty flowers? I wished for a pretty dress!
 harvestfestival.npc.abi.festival.new.years1=New year, new year, have a happy new year!
 harvestfestival.npc.abi.festival.new.years2=Did you want to be taller when the year ended? I did!
+harvestfestival.npc.abi.festival.sheep1=OMG look at the cloud sheeps! One sheep, two sheep, three sheep, four sheep!
+harvestfestival.npc.abi.festival.sheep2=Your sheep's nose is so soft! Eek, it licked me!
+harvestfestival.npc.abi.festival.starry.night1=Look at my cute dress for dinner!
+harvestfestival.npc.abi.festival.starry.night2=Mama and Papa and sissy are all dressed up too. Are you going to come to dinner?
 
 #Tiberius/WayofTime
 harvestfestival.npc.tiberius.time=Looks like you've been in this town for %s years.
@@ -1081,8 +1176,20 @@ harvestfestival.npc.tiberius.gift.decent=You are kind.
 harvestfestival.npc.tiberius.gift.dislike=You are not so kind.
 harvestfestival.npc.tiberius.gift.bad=This gift is very bad.
 harvestfestival.npc.tiberius.gift.terrible=I find this a terrible gift. There is nothing worse in the world.
+harvestfestival.npc.tiberius.festival.chicken1=Rise in the morning to the crow of the rooster.
+harvestfestival.npc.tiberius.festival.chicken2=I wonder how daylight savings time affects the roosters...
+harvestfestival.npc.tiberius.festival.cow1=For such big animals, cows don't produce much blood.
+harvestfestival.npc.tiberius.festival.cow2=Apparently most of their blood flows through the udders.
+harvestfestival.npc.tiberius.festival.harvest1=The key to any good dish is time for cooking. Too little, and it doesn't finish cooking through. Too much, and the dish burns.
+harvestfestival.npc.tiberius.festival.harvest2=My clocks are not good for timers I'm afraid. I have heard of a mystical hourglass that can be calibrated though.
+harvestfestival.npc.tiberius.festival.new.years.eve1=The blood moon rarely comes out on New Years Eve. What is that, you ask? The moon turns orangey-red, its a kind of eclipse.
+harvestfestival.npc.tiberius.festival.new.years.eve2=This is the one night I allow my son to stay up late.
 harvestfestival.npc.tiberius.festival.new.years1=With each passing year, that wives tale of the end of the world when the calendar runs out is debunked.
-harvestfestival.npc.tiberius.festival.new.years2= Its difficult to get Fenn to go to bed before the New Year.
+harvestfestival.npc.tiberius.festival.new.years2=Its difficult to get Fenn to go to bed before the New Year.
+harvestfestival.npc.tiberius.festival.sheep1=Throughout the history of time, sheep have been there. At least their wool has.
+harvestfestival.npc.tiberius.festival.sheep2=Though they are said to attract werewolves if left in front of a wolf altar on the night of the full moon. If one wants to catch the wolf, you have to set a specific silver-laid trap.
+harvestfestival.npc.tiberius.festival.starry.night1=This particular event is a bittersweet time for me, %4$s. Fenn enjoys a family meal, but he occasionally asks if his mother is coming too. She left me, see.
+harvestfestival.npc.tiberius.festival.starry.night2=If you wish, we would join you for the dinner in the park.
 
 #Jakob
 harvestfestival.npc.jacob.shop=If you're after some fishing gear, we're open Tuesday through Friday from one in the afternoon to seven in the evening.
@@ -1105,8 +1212,20 @@ harvestfestival.npc.jacob.gift.decent=Thanks for the kind gift.
 harvestfestival.npc.jacob.gift.dislike=I'm not so sure about this one.
 harvestfestival.npc.jacob.gift.bad=I really don't like what you just gave me.
 harvestfestival.npc.jacob.gift.terrible=Are you crazy? I would never ever want this.
+harvestfestival.npc.jacob.festival.chicken1=Chicken manure is a good compost. So is fish, but it smells something awful apparently.
+harvestfestival.npc.jacob.festival.chicken2=If you feed your chickens oyster shells, I hear it improves their eggshells. Something about... calcium.
+harvestfestival.npc.jacob.festival.cow1=We need a fishing festival. I should petition for a fishing festival.
+harvestfestival.npc.jacob.festival.cow2=I love the rain, but the livestock hate it. I dont' have the space to keep any.
+harvestfestival.npc.jacob.festival.harvest1=She didn't say I had to descale the fish before adding it to the soup... or remove the bones. Or even the eyes.
+harvestfestival.npc.jacob.festival.harvest2=Sardines do not make a good soup. I would not try that.
+harvestfestival.npc.jacob.festival.new.years.eve1=Its been my dream each year to fish up a larger fish than last year. There's that Legend fish that eluded every fisherman since forever.
+harvestfestival.npc.jacob.festival.new.years.eve2=You should do more business with me next year. Fishing is quite a profitable business if the biting is good.
 harvestfestival.npc.jacob.festival.new.years1=Ever tried pickled fish inside a riceball? Or red bean paste?
-harvestfestival.npc.jacob.festival.new.years2= I'm creating a poem for the new year. Would you like to hear it?
+harvestfestival.npc.jacob.festival.new.years2=I'm creating a poem for the new year. Would you like to hear it?
+harvestfestival.npc.jacob.festival.sheep1=Baa baa black sheep, have you any wool? Yes sir, yes sir, three bags full. One for the mayor, one for the wife, and one for the little ones who live down the lane... no thats not right.
+harvestfestival.npc.jacob.festival.sheep2=The fishing nets you can make with quality wool ropes hold a lot of water in them.
+harvestfestival.npc.jacob.festival.starry.night1=There's a rare fish called the Glacierfish that you could only catch in the Cindersap Forest River Delta, I heard once. It swims upstream from the ocean to spawn only in winter.
+harvestfestival.npc.jacob.festival.starry.night2=Certain fish come out only in winter.
 
 #Pokefenn
 harvestfestival.npc.fenn.greeting1=One day, I'm going to grow some vines, and you're going to climb them with me!
@@ -1127,8 +1246,20 @@ harvestfestival.npc.fenn.gift.decent=Oo, I like it.
 harvestfestival.npc.fenn.gift.dislike=Hmmm, whyy.
 harvestfestival.npc.fenn.gift.bad=Whyyyy, I don't like it :(
 harvestfestival.npc.fenn.gift.terrible=No, no no, no nO NOO NOOOOO!!!! This is nooo!! Just no!
+harvestfestival.npc.fenn.festival.chicken1=I keep a handful of seeds in my pocket to feed the chickens in Ashlee's coop when she's not looking.
+harvestfestival.npc.fenn.festival.chicken2=They follow me around in a flock when I've got the seeds in my hand. Johan's vanilla chickens love wheat seeds. So much that they start burping hearts.
+harvestfestival.npc.fenn.festival.cow1=Do you feed your cow by hand?
+harvestfestival.npc.fenn.festival.cow2=I like feeding Jim's cows treats when I'm outside. They lick my hands, and leave me all sticky.
+harvestfestival.npc.fenn.festival.harvest1=I'm hungry, when are we going to eat?
+harvestfestival.npc.fenn.festival.harvest2=Its really hot when you stand next to the soup pot. I'm not allowed to add anything, dad adds it for me.
+harvestfestival.npc.fenn.festival.new.years.eve1=Oh boy, I get to stay up late tonight! Dad's gonna let me!
+harvestfestival.npc.fenn.festival.new.years.eve2=Will Abi get to stay up late as well? Her mom's as strict as my dad, maybe worse.
 harvestfestival.npc.fenn.festival.new.years1=I stayed up late last night, and saw a shooting star! I made a wish for New Years, but I'm not telling.
-harvestfestival.npc.fenn.festival.new.years2= I wonder if Abii got to stay up late. Her mum is so strict, like my dad.
+harvestfestival.npc.fenn.festival.new.years2=I wonder if Abi got to stay up late. Her mum is so strict, like my dad.
+harvestfestival.npc.fenn.festival.sheep1=Dad mentioned something once about a wolf in sheep's clothing. What does that mean?
+harvestfestival.npc.fenn.festival.sheep2=I see the wolves outside of town lurking around the pastures. Its scary to think that wolves like to eat sheep.
+harvestfestival.npc.fenn.festival.starry.night1=Is Mom coming to dinner Dad?
+harvestfestival.npc.fenn.festival.starry.night2=We have to get dressed all fancy to have dinner. I wonder why?
 
 #Jim/SpitefulFox
 harvestfestival.npc.jim.shop=The Animal Ranch is open from 10am to 3pm. From Monday to Saturday.
@@ -1149,8 +1280,20 @@ harvestfestival.npc.jim.gift.decent=This is a decent gift.
 harvestfestival.npc.jim.gift.dislike=I can't say that I fully like this gift.
 harvestfestival.npc.jim.gift.bad=This was not a good choice for a gift.
 harvestfestival.npc.jim.gift.terrible=If you knew me at all, you would not dare to give me this.
+harvestfestival.npc.jim.festival.chicken1=I'll just wait until the cow and sheep festivals roll around.
+harvestfestival.npc.jim.festival.chicken2=That's when my animals will shine. Bessel's milk is first class.
+harvestfestival.npc.jim.festival.cow1=You're enterin' the festival, I'm going to assume.
+harvestfestival.npc.jim.festival.cow2=How's that cow doing lately? Feeding her lots of treats?
+harvestfestival.npc.jim.festival.harvest1=Only the finest milk for the soup from my ranch.
+harvestfestival.npc.jim.festival.harvest2=I tried to eat last year's soup with using wool for bread once. It wasn't very tasty at all. I haven't tried eating wool, or bread, since.
+harvestfestival.npc.jim.festival.new.years.eve1=My new year's resolution? Mmm, I'd love to have a herd of horses to sell to players. They don't produce anything, its true, but you can get around town much faster.
+harvestfestival.npc.jim.festival.new.years.eve2=Getting in touch with a leatherworker to increase my inventory for the ranch would be good. I'd love to sell saddles.
 harvestfestival.npc.jim.festival.new.years1=Ah, the first day of spring. Freshly trimmed grass wakes a man up in the morning, don't you agree?
-harvestfestival.npc.jim.festival.new.years2= The spring is a wonderful time to buy a miracle potion for your livestock, don't you agree %4$s?
+harvestfestival.npc.jim.festival.new.years2=The spring is a wonderful time to buy a miracle potion for your livestock, don't you agree %4$s?
+harvestfestival.npc.jim.festival.sheep1=Sheep are very sensitive to copper, you need to only feed them the proper diet. In this case, fodder bought from me or grown in your own farm.
+harvestfestival.npc.jim.festival.sheep2=Have you been feeding your sheep any treats? I hear it might do good things if you feed them lots.
+harvestfestival.npc.jim.festival.starry.night1=I hope you've stocked up on fodder for the winter %4$s. Its going to be a cold one.
+harvestfestival.npc.jim.festival.starry.night2=Make sure your sheep stay warm after you shear them. Its like going outside with just underwear on when they are sheared. COLD.
 
 #Brandon/Cricket
 harvestfestival.npc.brandon.shop=If you ever need some mining equipment, I'm open from Monday to Saturday, 11am to 4pm.
@@ -1174,8 +1317,20 @@ harvestfestival.npc.brandon.gift.decent=Thanks, that was nice.
 harvestfestival.npc.brandon.gift.dislike=I guess that was nice.
 harvestfestival.npc.brandon.gift.bad=Did you not know? I hate this stuff.
 harvestfestival.npc.brandon.gift.terrible=Get away from me now. How dare you insult me with such a gift.
+harvestfestival.npc.brandon.festival.chicken1=I swear that chicken I've seen before.
+harvestfestival.npc.brandon.festival.chicken2=Black feathers, red eyes, straight out of the nether-region, I tell you! Came right for me!
+harvestfestival.npc.brandon.festival.cow1=That cow is staring at me. There's a reason I'm way over here, and not over there.
+harvestfestival.npc.brandon.festival.cow2=I'm headed back into the mines shortly. I'm not interested in watching someone walk a cow into a stage.
+harvestfestival.npc.brandon.festival.harvest1=Sitting in semidarkness, watching the glints of the eyes of monsters while sipping my thermos of nice hot soup. Nothing better.
+harvestfestival.npc.brandon.festival.harvest2=Pickaxes don't serve as good soup spoons apparently. I've got the burns to prove it.
+harvestfestival.npc.brandon.festival.new.years.eve1=There isn't a big difference between this year, and the next. You just get older. The mines get older too.
+harvestfestival.npc.brandon.festival.new.years.eve2=The rocks grow older and grow crystals eventually. Open up to reveal more ore... thats what I want to see. More ores. Diamonds. Emeralds. Avoiding monsters and such.
 harvestfestival.npc.brandon.festival.new.years1=High ho, high ho, its off to mine I go... Hm? Oh hello.
-harvestfestival.npc.brandon.festival.new.years2= Spring isn't as profitable for finding ore below ground than winter is, have you noticed? Copper seems quite findable at last, junk as it is.
+harvestfestival.npc.brandon.festival.new.years2=Spring isn't as profitable for finding ore below ground than winter is, have you noticed? Copper seems quite findable at last, junk as it is.
+harvestfestival.npc.brandon.festival.sheep1=The shape of a sheep's eyeball makes me uneasy. Its so... flat.
+harvestfestival.npc.brandon.festival.sheep2=Like they've got no soul inside. Or are seeking to eat me in the depths of the mine.
+harvestfestival.npc.brandon.festival.starry.night1=A mining I shall go, a mining I shall go. Ores and rocks and cherry booms, a mining I shall go.
+harvestfestival.npc.brandon.festival.starry.night2=If someone actually cared, they can bring me leftovers in the mines. Hint hint.
 
 #Tomas
 harvestfestival.npc.thomas.greeting1=I will save you from your sins.
@@ -1194,8 +1349,20 @@ harvestfestival.npc.thomas.gift.decent=Bless you my child.
 harvestfestival.npc.thomas.gift.dislike=This is, err, okay.
 harvestfestival.npc.thomas.gift.bad=You insult god with your gift!
 harvestfestival.npc.thomas.gift.terrible=I would condemn you to hell for such a gift, it is just not right.
+harvestfestival.npc.thomas.festival.chicken1=Don't bring your chickens near Jaimii, she hates animals. Sleeps with earmuffs to avoid the crow of the rooster.
+harvestfestival.npc.thomas.festival.chicken2=Birds are able to reach the sky, something we cannot do without help. Chickens don't fly much though. Do they prefer the faith of the ground?
+harvestfestival.npc.thomas.festival.cow1=I can bless your tools, but not your animals for a win.
+harvestfestival.npc.thomas.festival.cow2=A fine day for a festival. He is smiling upon this day.
+harvestfestival.npc.thomas.festival.harvest1=A tithe for the harvest to seal the deal for bountiful autumn?
+harvestfestival.npc.thomas.festival.harvest2=Pray that our veg grows big and strong.
+harvestfestival.npc.thomas.festival.new.years.eve1=A blessing for the new year to you, %4$s.
+harvestfestival.npc.thomas.festival.new.years.eve2=A tithe to the church is always appreciated. Our bell needs a new can of polish.
 harvestfestival.npc.thomas.festival.new.years1=May your soul be purified for the next year.
-harvestfestival.npc.thomas.festival.new.years2= Do not forget to make your tithe to the church.
+harvestfestival.npc.thomas.festival.new.years2=Do not forget to make your tithe to the church.
+harvestfestival.npc.thomas.festival.sheep1=Sheep bring the wolf. The wolf is a bad omen. Carry silver on the full moon.
+harvestfestival.npc.thomas.festival.sheep2=Remember, I can bless your tools, but not your animals.
+harvestfestival.npc.thomas.festival.starry.night1=Jaimii is my dinner date, %4$s. I am unlikely to choose another.
+harvestfestival.npc.thomas.festival.starry.night2=When dinner is complete, some couples come to pray at the church before retiring.
 
 #Candice
 harvestfestival.npc.candice.greeting1=I love my job, and sharing it with my friends.
@@ -1218,8 +1385,21 @@ harvestfestival.npc.candice.gift.decent=Thanks beautiful.
 harvestfestival.npc.candice.gift.dislike=Umm, It will do.
 harvestfestival.npc.candice.gift.bad=Umm, I'm not quite sure this is what I wanted.
 harvestfestival.npc.candice.gift.terrible=I cannot belive you would ever give me this. Do you not like me?
+harvestfestival.npc.candice.festival.chicken1=Why are you talking to me? Ashlee is the one to speak to about chickens!
+harvestfestival.npc.candice.festival.chicken2=Milk. Maid. Not chicken maid. Sheesh.
+harvestfestival.npc.candice.festival.cow1=Nothing better than fresh milk straight from the cow.
+harvestfestival.npc.candice.festival.cow2=Butter, cheese, cream, ice cream, so many uses for milk.
+harvestfestival.npc.candice.festival.harvest1=Cream base soups are the best.
+harvestfestival.npc.candice.festival.harvest2=When I don't have to make them myself that is. I'll leave that to someone who actually LIKES to cook.
+harvestfestival.npc.candice.festival.new.years.eve1=A happy moo year to you, %4$s!
+harvestfestival.npc.candice.festival.new.years.eve2=I'm going to have a resolution for new year to work on finding myself a lover.
 harvestfestival.npc.candice.festival.new.years1=Happy New Year %4$s!
 harvestfestival.npc.candice.festival.new.years2=How're your cows doing? They should be really happy to not have snow underhoof anymore.
+harvestfestival.npc.candice.festival.sheep1=Jim is the one leading this festival.
+harvestfestival.npc.candice.festival.sheep2=Why don't you go talk to HIM about it?
+harvestfestival.npc.candice.festival.starry.night1=You gonna invite someone to the winter dinner thing %4$s? Its kinda romantic, don't you think?
+harvestfestival.npc.candice.festival.starry.night2=The animals aren't fond of snow, so keep your livestock inside and under cover.
+
 
 #Yulife
 harvestfestival.npc.yulif.shop=If yer looking for buildings, I'm afraid I'm only available 9am to 5:30pm, Sunday to Friday.
@@ -1244,9 +1424,20 @@ harvestfestival.npc.yulif.gift.decent=Thank yer.
 harvestfestival.npc.yulif.gift.dislike=Err, ok, thanks?
 harvestfestival.npc.yulif.gift.bad=Err, what? Why would I ever want this?
 harvestfestival.npc.yulif.gift.terrible=Damn, is this really what ya think I would like? Please don't talk to me.
+harvestfestival.npc.yulif.festival.chicken1=Animals are so pushy, and smelly. They keep knocking all the torches out of the barns and coops.
+harvestfestival.npc.yulif.festival.chicken2=If you didn't need the products to cook with, I wouldn't bother with working with animals myself.
+harvestfestival.npc.yulif.festival.cow1=This is Jim's favorite festival. I'm not so interested.
+harvestfestival.npc.yulif.festival.cow2=The animal ranch needs a new blueprint, but Jim's so busy I haven't had the chance to show him any new ideas. He's always with his livestock.
+harvestfestival.npc.yulif.festival.harvest1=Don't talk to me. Talk to my sister if you want to add food to the pot.
+harvestfestival.npc.yulif.festival.harvest2=Jade yelled at me when I put melon slices into the pot one year. The rinds ruined the soup. Oh well, more melon for me. -chomp-
+harvestfestival.npc.yulif.festival.new.years.eve1=My new year's resolution is to create a fantastic new blueprint for the animal ranch.
+harvestfestival.npc.yulif.festival.new.years.eve2=When you cut down a tree in the forest in winter, who is around to hear it fall?
 harvestfestival.npc.yulif.festival.new.years1=Mm, Happy New Year, I ‘spose. *Sigh*
 harvestfestival.npc.yulif.festival.new.years2=Long life, wealth and happiness. From a riceball. Mm. Do you believe those things?
-
+harvestfestival.npc.yulif.festival.sheep1=If you spin wool thick enough, you can make ropes out of it. Sheep do have a use after all.
+harvestfestival.npc.yulif.festival.sheep2=They appear to be pickier about what they eat than cows do, by what I see Jim's flock do. They never eat mint, but cows do.
+harvestfestival.npc.yulif.festival.starry.night1=Its so quiet when building in the winter. Just the sound of construction when everything else is silent.
+harvestfestival.npc.yulif.festival.starry.night2=We're having a get together to celebrate the winter season. Its not much, but its tradition. Its also tradition to invite someone to dinner.
 harvestfestival.npc.builder.build=Do not fret I am currently working on building the structure for the %s.
 harvestfestival.npc.builder.paint=I am currently placing up some paintings, and such for the %s.
 harvestfestival.npc.builder.decorate=Working hard, adding the finishing touches for the %s.
@@ -1277,8 +1468,20 @@ harvestfestival.npc.ashlee.gift.decent=Nice gift!
 harvestfestival.npc.ashlee.gift.dislike=Please don't give me this.
 harvestfestival.npc.ashlee.gift.bad=Why would you ever give me this?
 harvestfestival.npc.ashlee.gift.terrible=This gift is the worst thing I have ever received.
+harvestfestival.npc.ashlee.festival.chicken1=Are you entering the Chicken Festival?! I need some competition!
+harvestfestival.npc.ashlee.festival.chicken2=Is it strange for foxes like me to enjoy chickens this much without eating them?
+harvestfestival.npc.ashlee.festival.cow1=I just don't like cows. They're too big.
+harvestfestival.npc.ashlee.festival.cow2=I bet the mayor's getting a kick of having all the cows messing up the festival grounds.
+harvestfestival.npc.ashlee.festival.harvest1=Boiled egg, scrambled egg, poached egg, raw egg, fried egg... oh so many choices to add to the soup.
+harvestfestival.npc.ashlee.festival.harvest2=Or I'll just throw in a freshly plucked chicken!
+harvestfestival.npc.ashlee.festival.new.years.eve1=I'm looking forward to doing some work with Yulif possibly to draft a chicken coop in the next year. My girls are a bit cramped in my barn, they could do with some free range space outside.
+harvestfestival.npc.ashlee.festival.new.years.eve2=Its not really a resolution, but on my to-do list. And get more fox stuff!
 harvestfestival.npc.ashlee.festival.new.years1=A furry scarf for a new year! Fox fur is so soft.
 harvestfestival.npc.ashlee.festival.new.years2=If my chicks didn't need so much care during the winter, I would've hibernated like any other fox.
+harvestfestival.npc.ashlee.festival.sheep1=I've got this itch to start chasing sheep all of a sudden. Its it because foxes like to chase sheep?
+harvestfestival.npc.ashlee.festival.sheep2=I've watched sheep herding trials before; its amazing what the shepherds and their dogs can do.
+harvestfestival.npc.ashlee.festival.starry.night1=There you go my chickies, nice and cozy warm in your nests...
+harvestfestival.npc.ashlee.festival.starry.night2=You inviting anyone to the winter dinner?
 
 #Girafi
 harvestfestival.npc.girafi.greeting1=Why hello fellow human, I am a humble trader, if you have any eggs, milk or wool I'll happily trade my own from the vanilla world!
@@ -1299,8 +1502,20 @@ harvestfestival.npc.girafi.gift.decent=This gift is good.
 harvestfestival.npc.girafi.gift.dislike=I am sorry, but this does not feel good.
 harvestfestival.npc.girafi.gift.bad=This gift is not something I would ever buy for myself.
 harvestfestival.npc.girafi.gift.terrible=This is possibly the last thing on earth I would ever consider owning. Do you hate me?
+harvestfestival.npc.girafi.festival.chicken1=I do have vanilla eggs, yes. Are you looking for a trade? Come find me after the festival.
+harvestfestival.npc.girafi.festival.chicken2=I warn you, I'm not a chicken person, so if your vanilla eggs are infertile, don't get angry at me.
+harvestfestival.npc.girafi.festival.cow1=A bottle for a bucket, life of a trader of milk. Its a decent trade, yes?
+harvestfestival.npc.girafi.festival.cow2=Like horses, one never stands right behind a cow. I like not having a hoofprint bruise on my gut, thank you.
+harvestfestival.npc.girafi.festival.harvest1=We celebrate the harvest in order to please our Goddess that we have a bountiful autumn each year. So far, we've done so-so, I'd say.
+harvestfestival.npc.girafi.festival.harvest2=I am more of a stew sort than a soup sort. Much richer, and good for warming from inside out.
+harvestfestival.npc.girafi.festival.new.years.eve1=I resolve to go back to Denmark next year. If not for a few weeks. See the family and such.
+harvestfestival.npc.girafi.festival.new.years.eve2=Noodles. What a strange choice of food. They look like pale snakes in a bowl. Just waiting to rear up and strike as you go at them with a fork or sticks.
 harvestfestival.npc.girafi.festival.new.years1=Godt nytår!
-harvestfestival.npc.girafi.festival.new.years2= This riceball is sticky, and keeps breaking apart when I take a bite.
+harvestfestival.npc.girafi.festival.new.years2=This riceball is sticky, and keeps breaking apart when I take a bite.
+harvestfestival.npc.girafi.festival.sheep1=I've still got some vanilla wool if you're willing to trade those lumps of wool to me.
+harvestfestival.npc.girafi.festival.sheep2=This sweater is a bit itchy. Straight wool yarn makes me itchy.
+harvestfestival.npc.girafi.festival.starry.night1=If I got invited to dinner, I'd invite Jenni and Candice. Its a family event, sort of. And since I live here... yeah.
+harvestfestival.npc.girafi.festival.starry.night2=In Denmark in the winter, you rarely see the sun. Its almost always cloudy, and the sun sets really quickly.
 
 ###Shop greetings
 # WARNING FOR SHOP NAMES:
@@ -1790,9 +2005,14 @@ harvestfestival.quest.festival.new.years.eve.option1=@Bring on the New Year!
 harvestfestival.quest.festival.new.years.eve.option2=@Give me a minute.
 
 ### Letters
-harvestfestival.letter.new.years.eve=Hello!\n\nWe're planning on celebrating the coming new year tomorrow night in the park. Yulif and I will be there for sure. I'd just love it if you would attend! We'll be celebrating from 6pm! Don't be late!\n\n\n-Jade
-harvestfestival.letter.new.years=Alright there, \n\nWe're planning on taking part in some festivities to celebrate the new year from around 10am to 6pm. I think we should invite ya. Give us a heads up if yer want to take part\n\n\n-Yulif, Jade and Johan
+harvestfestival.letter.new.years.eve=Alright there,\n\nWe're planning on taking part in some festivities to celebrate the coming new year tomorrow night. Jade and I'll be there for sure. I'd just love it if ya would attend. We'll be celebrating from 6pm!\n\n\n-Yulif
+harvestfestival.letter.new.years=Dear Sir/Madam, \n\nWe are preparing a fantastic showcase for you in the park to celebrate the new year from around 10am to 6pm. You are duly invited. Please RSVP.\n\n\n-Johan
 harvestfestival.letter.cooking=Dear Sir/Madam, \n\nI have plans for a cooking festival that I would like to setup for tomorrow. Please confirm if you would be happy to attend.\n\n\n-Jenni
+harvestfestival.letter.chicken=Hi, \n\nI'd like to begin setting up for a chicken festival. Where we'll be judging your chickens from 6am to 6pm, with a grand prize! Confirm if this will be good.\n\n\n-Ashlee
+harvestfestival.letter.cow=Hey lovely, \n\nI've plans to host a cow festival soon. It would operate from 6am to 6pm, be sure to bring your best. Let me know if you wish to attend.\n\n\n-Candice
+harvestfestival.letter.sheep=Good day, \n\nI would like to set up a sheep festival tomorrow, bring your best! We'll be judging from 6am to 6pm. Reply if you plan to attend.\n\n\n-Jim
+harvestfestival.letter.starry.night=Hi\n\nThe town is planning on celebrating starry night soon. It's a night to invite your loved ones to dinner. Let me know when you're ready.\n\n\n-Harvest Goddess
+harvestfestival.letter.harvest.festival=Hello!\n\nTomorrow we're all going to be gathering to celeberate the harvest. We'll be adding food to a communal pot, so bring your best crops!\n\n\n\-Jade
 
 ###Achievements
 achievement.harvestfestival.summon=Goddess' Bounty
@@ -1957,3 +2177,15 @@ harvestfestival.note.festival.new.years.title=New Years
 harvestfestival.note.festival.new.years.description=The New Year's Festival takes place in the park. It's a small get together of the town. Yulif hosts the event and from him you can receive a traditional riceball dish. Jade and Johan also like to contribute to the events. The mayor will also have a yearly stipend for you to receive. If she's moved in of course!
 harvestfestival.note.festival.new.years.eve.title=New Years Eve
 harvestfestival.note.festival.new.years.eve.description=This festival takes place in the park from 6pm onwards. It's a casual gathering where the town munches on some fresh noodles. The townsfolk will enjoy your attendance. If you want to start the countdown to new years, you should talk to Yulif or the Mayor if they're moved in.
+harvestfestival.note.festival.cooking.title=Cooking Festival
+harvestfestival.note.festival.cooking.description=The cooking festival is a widely celebrated event that occurs from 6am-6pm. There are some special shops that open up on this day, so be sure to visit them. To participate talk to Jenni she will let you know what utensil category will be judged. When you have your meal ready, place it on one of the cooking stands, then talk to Jenni to start the judging.
+harvestfestival.note.festival.chicken.title=Chicken Festival
+harvestfestival.note.festival.chicken.description=The chicken festival takes place in the park from 6am-6pm. It is lead by Ashlee. Bring your chosen chicken along, place them inside one of the contest pens then talk to Ashlee to get the festival started. Animals are judged on happiness and how valuable they are.
+harvestfestival.note.festival.cow.title=Cow
+harvestfestival.note.festival.cow.description=The cow festival takes place in the park from 6am-6pm. It is lead by Candice. Bring your chosen cow along with a lead, right click the lead on to one of the livestock pens and the animal will be placed inside. Then talk to Candice to get the festival started. Animals are judged on happiness and how valuable they are.
+harvestfestival.note.festival.sheep.title=Cow
+harvestfestival.note.festival.sheep.description=The sheep festival takes place in the park from 6am-6pm. It is lead by Jim. Bring your chosen sheep along with a lead, right click the lead on to one of the livestock pens and the animal will be placed inside. Then talk to Jim to get the festival started. Animals are judged on happiness and how valuable they are.
+harvestfestival.note.festival.starry.night.title=Starry Night
+harvestfestival.note.festival.starry.night.description=Starry night is a night that the npcs spend with their loved ones. To start the festival, simply invite someone to dinner. You'll get the option when chatting to them. They'll tell you that they will be waiting at the park in two hours. Then when you attend simply talk to the person you invited to finish the meal.
+harvestfestival.note.festival.harvest.festival.title=Harvest Festival
+harvestfestival.note.festival.harvest.festival.description=The Harvest Festival is when the whole town gathers in the park to contribute towards a communal soup. You'll be able to attend from 8am to 8pm. Throw an item in the pot to have the festival proceed.

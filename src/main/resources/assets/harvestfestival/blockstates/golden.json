@@ -1,0 +1,13 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "transform": "forge:default-item",
+    "model": "forge:item-layer"
+  },
+  "variants": {
+    "egg": [{ "textures": { "layer0": "harvestfestival:items/egg_golden" }}],
+    "milk": [{ "textures": { "layer0": "harvestfestival:items/milk_golden" }}],
+    "mayonnaise": [{ "textures": { "layer0": "harvestfestival:items/mayonnaise_golden" }}],
+    "wool": [{ "textures": { "layer0": "harvestfestival:items/wool_golden" }}]
+  }
+}

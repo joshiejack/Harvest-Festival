@@ -91,7 +91,7 @@ public class ItemHFSizeable<I extends ItemHFFoodEnum, E extends Enum<E> & IStrin
 
     @Override
     public int getSortValue(ItemStack stack) {
-        return CreativeSort.SIZEABLE + stack.getItemDamage() + (getEnumFromStack(stack).ordinal() * 3);
+        return CreativeSort.SIZEABLE + stack.getItemDamage() + (getEnumFromStack(stack).ordinal() * 4);
     }
 
     @Override

@@ -5,7 +5,7 @@ import net.minecraftforge.fml.common.eventhandler.EventPriority;
 
 import java.util.Set;
 
-public class QuestFestival extends QuestTown {
+public abstract class QuestFestival extends QuestTown {
     @Override
     public EventPriority getPriority() {
         return EventPriority.HIGHEST;

@@ -15,6 +15,7 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nonnull;
 import java.util.List;
 import java.util.Locale;
 
@@ -82,6 +83,7 @@ public abstract class ItemHFEnum<I extends ItemHFEnum, E extends Enum<E> & IStri
     }
 
     @Override
+    @Nonnull
     public String getUnlocalizedName(ItemStack stack) {
         return prefix + "_" + getEnumFromStack(stack).name().toLowerCase(Locale.ENGLISH);
     }

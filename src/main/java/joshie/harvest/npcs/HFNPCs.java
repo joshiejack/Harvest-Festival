@@ -412,6 +412,9 @@ public class HFNPCs {
                         .add(NEW_YEARS, 12000L, PARK_SPRUCE)
                         .add(NEW_YEARS, 20000L, CLOCKMAKER_DOOR)
                         .add(NEW_YEARS, 22000L, CLOCKMAKER_DOWNSTAIRS)
+                        .add(NEW_YEARS_EVE, 0L, CLOCKMAKER_DOWNSTAIRS)
+                        .add(NEW_YEARS_EVE, 13000L, CLOCKMAKER_DOOR)
+                        .add(NEW_YEARS_EVE, 17000L, PARK_BACK_LEFT)
                         .build();
 
         //Clockmaker Child
@@ -433,6 +436,9 @@ public class HFNPCs {
                         .add(NEW_YEARS, 12000L, PARK_SPRUCE)
                         .add(NEW_YEARS, 19000L, CLOCKMAKER_DOWNSTAIRS)
                         .add(NEW_YEARS, 20000L, CLOCKMAKER_UPSTAIRS)
+                        .add(NEW_YEARS_EVE, 0L, CLOCKMAKER_UPSTAIRS)
+                        .add(NEW_YEARS_EVE, 13000L, CLOCKMAKER_DOWNSTAIRS)
+                        .add(NEW_YEARS_EVE, 17000L, PARK_BACK_LEFT)
                         .build();
 
         //Priest
@@ -519,6 +525,9 @@ public class HFNPCs {
                         .add(NEW_YEARS, 12000L, PARK_BENCH)
                         .add(NEW_YEARS, 19000L, TOWNHALL_LEFT)
                         .add(NEW_YEARS, 20000L, TOWNHALL_CHILD_BED)
+                        .add(NEW_YEARS_EVE, 0L, TOWNHALL_CHILD_BED)
+                        .add(NEW_YEARS_EVE, 13000L, TOWNHALL_LEFT)
+                        .add(NEW_YEARS_EVE, 17000L, PARK_CUSTOMER)
                         .build();
 
         //Trader

@@ -1,10 +1,10 @@
 package joshie.harvest.cooking.recipe;
 
 import joshie.harvest.animals.item.ItemAnimalProduct.Sizeable;
+import joshie.harvest.api.HFApi;
 import joshie.harvest.api.cooking.Ingredient;
 import joshie.harvest.api.core.Size;
 import joshie.harvest.api.crops.Crop;
-import joshie.harvest.cooking.CookingAPI;
 import joshie.harvest.cooking.item.ItemIngredients;
 import joshie.harvest.cooking.item.ItemMeal.Meal;
 import joshie.harvest.cooking.render.IngredientMappingEvent;
@@ -19,11 +19,10 @@ import joshie.harvest.gathering.block.BlockNature.NaturalBlock;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
 
 import static joshie.harvest.animals.HFAnimals.ANIMAL_PRODUCT;
+import static joshie.harvest.animals.HFAnimals.GOLDEN_PRODUCT;
 import static joshie.harvest.cooking.HFCooking.INGREDIENTS;
 import static joshie.harvest.cooking.HFCooking.MEAL;
 import static joshie.harvest.core.lib.LoadOrder.HFINGREDIENTS;
@@ -145,15 +144,6 @@ public class HFIngredients {
         EGG.add(SMALL_EGG, MEDIUM_EGG, LARGE_EGG);
     }
 
-    @SideOnly(Side.CLIENT)
-    public static void preInitClient() {
-        for (Ingredient component: Ingredient.INGREDIENTS.values()) {
-            if (component.getFluid() != null) {
-
-            }
-        }
-    }
-
     private static String getPrimaryCropName(ItemStack stack) {
         String[] names = InventoryHelper.getOreNames(stack);
         for (String name: names) {
@@ -163,19 +153,24 @@ public class HFIngredients {
         return null;
     }
 
+    @SuppressWarnings("unused")
     public static void postInit() {
         //Animal Products
-        CookingAPI.INSTANCE.register(ANIMAL_PRODUCT.getStack(Sizeable.EGG, Size.SMALL), SMALL_EGG);
-        CookingAPI.INSTANCE.register(ANIMAL_PRODUCT.getStack(Sizeable.EGG, Size.MEDIUM), MEDIUM_EGG);
-        CookingAPI.INSTANCE.register(ANIMAL_PRODUCT.getStack(Sizeable.EGG, Size.LARGE), LARGE_EGG);
-        CookingAPI.INSTANCE.register(ANIMAL_PRODUCT.getStack(Sizeable.MILK, Size.SMALL), MILK);
-        CookingAPI.INSTANCE.register(ANIMAL_PRODUCT.getStack(Sizeable.MILK, Size.MEDIUM), MILK);
-        CookingAPI.INSTANCE.register(ANIMAL_PRODUCT.getStack(Sizeable.MILK, Size.LARGE), MILK);
-        CookingAPI.INSTANCE.register(ANIMAL_PRODUCT.getStack(Sizeable.MAYONNAISE, Size.SMALL), MAYONNAISE);
-        CookingAPI.INSTANCE.register(ANIMAL_PRODUCT.getStack(Sizeable.MAYONNAISE, Size.MEDIUM), MAYONNAISE);
-        CookingAPI.INSTANCE.register(ANIMAL_PRODUCT.getStack(Sizeable.MAYONNAISE, Size.LARGE), MAYONNAISE);
-        CookingAPI.INSTANCE.register(new ItemStack(Items.EGG), SMALL_EGG);
-        CookingAPI.INSTANCE.register(new ItemStack(Items.MILK_BUCKET), MILK);
+
+        HFApi.cooking.register(ANIMAL_PRODUCT.getStack(Sizeable.EGG, Size.SMALL), SMALL_EGG);
+        HFApi.cooking.register(ANIMAL_PRODUCT.getStack(Sizeable.EGG, Size.MEDIUM), MEDIUM_EGG);
+        HFApi.cooking.register(ANIMAL_PRODUCT.getStack(Sizeable.EGG, Size.LARGE), LARGE_EGG);
+        HFApi.cooking.register(GOLDEN_PRODUCT.getStackFromEnum(Sizeable.EGG), LARGE_EGG);
+        HFApi.cooking.register(ANIMAL_PRODUCT.getStack(Sizeable.MILK, Size.SMALL), MILK);
+        HFApi.cooking.register(ANIMAL_PRODUCT.getStack(Sizeable.MILK, Size.MEDIUM), MILK);
+        HFApi.cooking.register(ANIMAL_PRODUCT.getStack(Sizeable.MILK, Size.LARGE), MILK);
+        HFApi.cooking.register(GOLDEN_PRODUCT.getStackFromEnum(Sizeable.MILK), MILK);
+        HFApi.cooking.register(ANIMAL_PRODUCT.getStack(Sizeable.MAYONNAISE, Size.SMALL), MAYONNAISE);
+        HFApi.cooking.register(ANIMAL_PRODUCT.getStack(Sizeable.MAYONNAISE, Size.MEDIUM), MAYONNAISE);
+        HFApi.cooking.register(ANIMAL_PRODUCT.getStack(Sizeable.MAYONNAISE, Size.LARGE), MAYONNAISE);
+        HFApi.cooking.register(GOLDEN_PRODUCT.getStackFromEnum(Sizeable.MAYONNAISE), MAYONNAISE);
+        HFApi.cooking.register(new ItemStack(Items.EGG), SMALL_EGG);
+        HFApi.cooking.register(new ItemStack(Items.MILK_BUCKET), MILK);
 
         //Crops
         for (Crop crop: Crop.REGISTRY) {
@@ -184,43 +179,43 @@ public class HFIngredients {
                 String name = getPrimaryCropName(stack);
                 if (name != null) {
                     registerForOre(name, crop.getIngredient());
-                } else CookingAPI.INSTANCE.register(stack, crop.getIngredient());
+                } else HFApi.cooking.register(stack, crop.getIngredient());
             }
         }
 
         //Fruits
-        CookingAPI.INSTANCE.register(new ItemStack(Blocks.MELON_BLOCK), WATERMELON);
+        HFApi.cooking.register(new ItemStack(Blocks.MELON_BLOCK), WATERMELON);
 
         //Fungus
-        CookingAPI.INSTANCE.register(new ItemStack(Blocks.BROWN_MUSHROOM), BROWN_MUSHROOM);
-        CookingAPI.INSTANCE.register(new ItemStack(Blocks.RED_MUSHROOM), RED_MUSHROOM);
-        CookingAPI.INSTANCE.register(NATURE.getStackFromEnum(NaturalBlock.MATSUTAKE), MATSUTAKE);
+        HFApi.cooking.register(new ItemStack(Blocks.BROWN_MUSHROOM), BROWN_MUSHROOM);
+        HFApi.cooking.register(new ItemStack(Blocks.RED_MUSHROOM), RED_MUSHROOM);
+        HFApi.cooking.register(NATURE.getStackFromEnum(NaturalBlock.MATSUTAKE), MATSUTAKE);
 
         //Other Plants
-        CookingAPI.INSTANCE.register(NATURE.getStackFromEnum(NaturalBlock.BAMBOO), BAMBOO);
-        CookingAPI.INSTANCE.register(HFGathering.NATURE.getStackFromEnum(NaturalBlock.CHAMOMILE), CHAMOMILE);
-        CookingAPI.INSTANCE.register(HFGathering.NATURE.getStackFromEnum(NaturalBlock.MINT), MINT);
-        CookingAPI.INSTANCE.register(HFGathering.NATURE.getStackFromEnum(NaturalBlock.LAVENDAR), LAVENDAR);
+        HFApi.cooking.register(NATURE.getStackFromEnum(NaturalBlock.BAMBOO), BAMBOO);
+        HFApi.cooking.register(HFGathering.NATURE.getStackFromEnum(NaturalBlock.CHAMOMILE), CHAMOMILE);
+        HFApi.cooking.register(HFGathering.NATURE.getStackFromEnum(NaturalBlock.MINT), MINT);
+        HFApi.cooking.register(HFGathering.NATURE.getStackFromEnum(NaturalBlock.LAVENDAR), LAVENDAR);
 
         //Ingredients
         registerForOre("foodChocolatebar", CHOCOLATE);
         registerForOre("foodFlour", FLOUR);
         registerForOre("foodOliveoil", OIL);
-        CookingAPI.INSTANCE.register(INGREDIENTS.getStackFromEnum(ItemIngredients.Ingredient.RICEBALL), RICEBALL);
-        CookingAPI.INSTANCE.register(INGREDIENTS.getStackFromEnum(ItemIngredients.Ingredient.CURRY_POWDER), CURRY_POWDER);
-        CookingAPI.INSTANCE.register(INGREDIENTS.getStackFromEnum(ItemIngredients.Ingredient.DUMPLING_POWDER), DUMPLING_POWDER);
-        CookingAPI.INSTANCE.register(INGREDIENTS.getStackFromEnum(ItemIngredients.Ingredient.WINE), WINE);
+        HFApi.cooking.register(INGREDIENTS.getStackFromEnum(ItemIngredients.Ingredient.RICEBALL), RICEBALL);
+        HFApi.cooking.register(INGREDIENTS.getStackFromEnum(ItemIngredients.Ingredient.CURRY_POWDER), CURRY_POWDER);
+        HFApi.cooking.register(INGREDIENTS.getStackFromEnum(ItemIngredients.Ingredient.DUMPLING_POWDER), DUMPLING_POWDER);
+        HFApi.cooking.register(INGREDIENTS.getStackFromEnum(ItemIngredients.Ingredient.WINE), WINE);
 
         //Meals - Real
-        CookingAPI.INSTANCE.register(MEAL.getStackFromEnum(Meal.EGG_BOILED), BOILED_EGG);
-        CookingAPI.INSTANCE.register(MEAL.getStackFromEnum(Meal.SASHIMI), SASHIMI);
-        CookingAPI.INSTANCE.register(MEAL.getStackFromEnum(Meal.COOKIES), COOKIES);
-        CookingAPI.INSTANCE.register(MEAL.getStackFromEnum(Meal.NOODLES), NOODLES);
-        CookingAPI.INSTANCE.register(MEAL.getStackFromEnum(Meal.JAM_STRAWBERRY), JAM);
-        CookingAPI.INSTANCE.register(MEAL.getStackFromEnum(Meal.JAM_APPLE), JAM);
-        CookingAPI.INSTANCE.register(MEAL.getStackFromEnum(Meal.JAM_GRAPE), JAM);
-        CookingAPI.INSTANCE.register(MEAL.getStackFromEnum(Meal.MARMALADE), JAM);
-        CookingAPI.INSTANCE.register(MEAL.getStackFromEnum(Meal.TEMPURA), TEMPURA);
+        HFApi.cooking.register(MEAL.getStackFromEnum(Meal.EGG_BOILED), BOILED_EGG);
+        HFApi.cooking.register(MEAL.getStackFromEnum(Meal.SASHIMI), SASHIMI);
+        HFApi.cooking.register(MEAL.getStackFromEnum(Meal.COOKIES), COOKIES);
+        HFApi.cooking.register(MEAL.getStackFromEnum(Meal.NOODLES), NOODLES);
+        HFApi.cooking.register(MEAL.getStackFromEnum(Meal.JAM_STRAWBERRY), JAM);
+        HFApi.cooking.register(MEAL.getStackFromEnum(Meal.JAM_APPLE), JAM);
+        HFApi.cooking.register(MEAL.getStackFromEnum(Meal.JAM_GRAPE), JAM);
+        HFApi.cooking.register(MEAL.getStackFromEnum(Meal.MARMALADE), JAM);
+        HFApi.cooking.register(MEAL.getStackFromEnum(Meal.TEMPURA), TEMPURA);
 
         //Meals that are registed as ores
         registerForOre("foodButter", BUTTER);
@@ -228,34 +223,34 @@ public class HFIngredients {
         registerForOre("foodKetchup", KETCHUP);
 
         //Meals - Vanilla
-        CookingAPI.INSTANCE.register(new ItemStack(Items.BREAD), BREAD);
-        CookingAPI.INSTANCE.register(new ItemStack(Items.BAKED_POTATO), BAKED_POTATO);
+        HFApi.cooking.register(new ItemStack(Items.BREAD), BREAD);
+        HFApi.cooking.register(new ItemStack(Items.BAKED_POTATO), BAKED_POTATO);
 
         //Meats
-        CookingAPI.INSTANCE.register(new ItemStack(Items.FISH, 1, 0), COD);
-        CookingAPI.INSTANCE.register(new ItemStack(Items.FISH, 1, 1), SALMON);
-        CookingAPI.INSTANCE.register(new ItemStack(Items.CHICKEN), CHICKEN);
-        CookingAPI.INSTANCE.register(new ItemStack(Items.RABBIT), RABBIT);
-        CookingAPI.INSTANCE.register(new ItemStack(Items.BEEF), BEEF);
-        CookingAPI.INSTANCE.register(new ItemStack(Items.PORKCHOP), PORK);
-        CookingAPI.INSTANCE.register(new ItemStack(Items.MUTTON), MUTTON);
-        CookingAPI.INSTANCE.register(new ItemStack(Items.COOKED_RABBIT), RABBIT_COOKED);
-        CookingAPI.INSTANCE.register(HFFishing.FISH.getStackFromEnum(Fish.COD), COD);
-        CookingAPI.INSTANCE.register(HFFishing.FISH.getStackFromEnum(Fish.SALMON), SALMON);
+        HFApi.cooking.register(new ItemStack(Items.FISH, 1, 0), COD);
+        HFApi.cooking.register(new ItemStack(Items.FISH, 1, 1), SALMON);
+        HFApi.cooking.register(new ItemStack(Items.CHICKEN), CHICKEN);
+        HFApi.cooking.register(new ItemStack(Items.RABBIT), RABBIT);
+        HFApi.cooking.register(new ItemStack(Items.BEEF), BEEF);
+        HFApi.cooking.register(new ItemStack(Items.PORKCHOP), PORK);
+        HFApi.cooking.register(new ItemStack(Items.MUTTON), MUTTON);
+        HFApi.cooking.register(new ItemStack(Items.COOKED_RABBIT), RABBIT_COOKED);
+        HFApi.cooking.register(HFFishing.FISH.getStackFromEnum(Fish.COD), COD);
+        HFApi.cooking.register(HFFishing.FISH.getStackFromEnum(Fish.SALMON), SALMON);
         for (Fish fish: ItemFish.Fish.values()) {
             if (!(fish.isUncookable() || fish == Fish.COD || fish == Fish.SALMON)) {
-                CookingAPI.INSTANCE.register(HFFishing.FISH.getStackFromEnum(fish), FISH);
+                HFApi.cooking.register(HFFishing.FISH.getStackFromEnum(fish), FISH);
             }
         }
 
         //Spices and Salts
         registerForOre("foodSalt", SALT);
-        CookingAPI.INSTANCE.register(new ItemStack(Items.SUGAR), SUGAR);
+        HFApi.cooking.register(new ItemStack(Items.SUGAR), SUGAR);
     }
 
     private static void registerForOre(String ore, Ingredient ingredient) {
         for (ItemStack item: OreDictionary.getOres(ore)) {
-            CookingAPI.INSTANCE.register(item, ingredient);
+            HFApi.cooking.register(item, ingredient);
         }
     }
 }

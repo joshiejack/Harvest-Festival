@@ -36,7 +36,7 @@
 * Changed default server length from 365 to 300, for calendar related reasons
 
 ###CraftTweaker
-* Add support for blacklisting hoes/seeds
+* Add support for blacklisting hoes/seeds/items being giftable
 * Add support for adding modded crops
 
 ###Cooking

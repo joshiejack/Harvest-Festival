@@ -1,7 +1,9 @@
 package joshie.harvest.plugins.crafttweaker.handlers;
 
+import joshie.harvest.api.HFApi;
 import joshie.harvest.core.handlers.DisableHandler;
 import joshie.harvest.plugins.crafttweaker.CraftTweaker;
+import joshie.harvest.plugins.crafttweaker.base.BaseOnce;
 import joshie.harvest.plugins.crafttweaker.base.BaseUndoable;
 import minetweaker.MineTweakerAPI;
 import minetweaker.api.item.IItemStack;
@@ -75,6 +77,34 @@ public class Blacklist {
         @Override
         public void undo() {
             DisableHandler.HOE_BLACKLIST.unregister(item);
+        }
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    @ZenMethod
+    @SuppressWarnings("unused")
+    public static void blacklistGiftable(IItemStack drop) {
+        ItemStack stack = asStack(drop);
+        if (stack == null) CraftTweaker.logError("Could not prevent an item from being gifted as it was null");
+        else MineTweakerAPI.apply(new BlacklistGifted(stack));
+    }
+
+    private static class BlacklistGifted extends BaseOnce {
+        private final ItemStack item;
+
+        BlacklistGifted(ItemStack drop) {
+            this.item = drop;
+        }
+
+        @Override
+        public String getDescription() {
+            return "Preventing " + item.getDisplayName() + " from being giftable";
+        }
+
+        @Override
+        public void applyOnce() {
+            HFApi.npc.getGifts().addToBlacklist(item);
         }
     }
 }

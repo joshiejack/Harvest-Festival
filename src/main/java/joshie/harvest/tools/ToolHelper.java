@@ -15,6 +15,7 @@ import net.minecraft.init.MobEffects;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.FoodStats;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -24,14 +25,15 @@ import net.minecraftforge.event.entity.player.PlayerWakeUpEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
 import static joshie.harvest.animals.item.ItemAnimalTool.Tool.BRUSH;
 import static joshie.harvest.calendar.HFCalendar.TICKS_PER_DAY;
 import static joshie.harvest.cooking.item.ItemIngredients.Ingredient.OIL;
-import static joshie.harvest.tools.HFTools.EXHAUSTION;
-import static joshie.harvest.tools.HFTools.FATIGUE;
+import static joshie.harvest.tools.HFTools.*;
 
 public class ToolHelper {
     public static boolean isBrush(ItemStack stack) {
@@ -98,11 +100,14 @@ public class ToolHelper {
             PotionEffect effect = player.getActivePotionEffect(EXHAUSTION);
             if (level == 0 || effect != null && effect.getDuration() <= 1500) {
                 player.addPotionEffect(new PotionEffect(MobEffects.BLINDNESS, 100, 7));
-                if (!player.worldObj.isRemote) {
-                    int dimension = player.worldObj.provider.canRespawnHere() ? player.worldObj.provider.getDimension() : 0;
-                    BlockPos spawn = player.getBedLocation(dimension) != null ? player.getBedLocation(dimension) : DimensionManager.getWorld(dimension).provider.getRandomizedSpawnPoint();
-                    EntityHelper.teleport(player, dimension, spawn);
-                    player.trySleep(spawn);
+                if (!player.worldObj.isRemote && ENABLE_FAINTING) {
+                    if (ENABLE_DEATH_FAINTING) player.attackEntityFrom(DamageSource.starve, 1000F);
+                    else {
+                        int dimension = player.worldObj.provider.canRespawnHere() ? player.worldObj.provider.getDimension() : 0;
+                        BlockPos spawn = player.getBedLocation(dimension) != null ? player.getBedLocation(dimension) : DimensionManager.getWorld(dimension).provider.getRandomizedSpawnPoint();
+                        EntityHelper.teleport(player, dimension, spawn);
+                        player.trySleep(spawn);
+                    }
                 }
 
                 //Remove all effects
@@ -140,21 +145,17 @@ public class ToolHelper {
 
     public static void collectDrops(World world, BlockPos pos, IBlockState state, EntityPlayer player, List<ItemStack> drops) {
         Block block = state.getBlock();
-        List<ItemStack> blockDrops;
+        List<ItemStack> blockDrops = new ArrayList<>();
         if (block.canSilkHarvest(world, pos, state, player)) {
-            Item item = Item.getItemFromBlock(block);
-            blockDrops = new ArrayList<>();
-            if (item != null) {
-                int meta = 0;
-                if (item.getHasSubtypes()) {
-                    meta = block.getMetaFromState(state);
+            try {
+                Method method = ReflectionHelper.findMethod(Block.class, null, new String[] { "createStackedBlock" } , IBlockState.class);
+                ItemStack stack = (ItemStack) method.invoke(block, state);
+                if (stack != null) {
+                    blockDrops.add(stack);
+                    ForgeEventFactory.fireBlockHarvesting(blockDrops, world, pos, state, 0, 1F, true, player);
+                    drops.addAll(blockDrops); //Add all the drops to our list
                 }
-
-                drops.add(new ItemStack(item, 1, meta));
-            }
-
-            ForgeEventFactory.fireBlockHarvesting(blockDrops, world, pos, state, 0, 1F, true, player);
-            drops.addAll(blockDrops); //Add all the drops to our list
+            } catch (IllegalAccessException | InvocationTargetException e) {/**/}
         } else {
             blockDrops = block.getDrops(world, pos, state, 0);
             ForgeEventFactory.fireBlockHarvesting(blockDrops, world, pos, state, 0, 1F, false, player);

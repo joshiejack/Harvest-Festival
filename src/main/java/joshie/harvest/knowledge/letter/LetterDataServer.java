@@ -35,20 +35,22 @@ public class LetterDataServer extends LetterData {
     }
 
     public void add(Letter letter) {
-        letters.put(letter, 0);
+        if (letter != Letter.NONE) {
+            letters.put(letter, 0);
+        }
     }
 
     public void remove(Letter letter) {
         letters.remove(letter);
     }
 
-    public void addLetter(Letter letter) {
-        letters.put(letter, 0);
+    void addLetterAndSync(Letter letter) {
+        add(letter); //Call add letter code
         master.sync(null, new PacketAddLetter(letter));
     }
 
-    public void removeLetter(Letter letter) {
-        letters.remove(letter);
+    void removeLetterAndSync(Letter letter) {
+        remove(letter); //Call remove letter code
         master.sync(null, new PacketRemoveLetter(letter));
     }
 
@@ -85,7 +87,10 @@ public class LetterDataServer extends LetterData {
             NBTTagCompound tag = list.getCompoundTagAt(i);
             ResourceLocation resource = new ResourceLocation(tag.getString("Letter"));
             int days = tag.getInteger("Days");
-            letters.put(Letter.REGISTRY.get(resource), days);
+            Letter letter = Letter.REGISTRY.get(resource);
+            if (letter != Letter.NONE) {
+                letters.put(letter, days);
+            }
         }
     }
 

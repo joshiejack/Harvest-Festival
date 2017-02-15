@@ -1,5 +1,6 @@
 package joshie.harvest.api.crops;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
@@ -29,6 +30,11 @@ public interface ICropRegistry {
      *  the seed cannot be right clicked
      *  @param item     the seeds */
     void registerSeedForBlacklisting(ItemStack item);
+
+    /** Register a block, that would normally drop seeds
+     *  In order to prevent it from dropping any blacklisted seeds
+     *  @param block    the block*/
+    void registerBlockForSeedRemoval(Block block);
 
     /** Fetch the crop at this location, will return null if there is no crop there
      *  @param world the world

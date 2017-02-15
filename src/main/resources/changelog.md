@@ -63,10 +63,18 @@
 
 ###Fishing - NEW!
 * Added fishing rods, obtainable when you meet jakob for the first time
+* Added various fish and junk that can be caught
+* Different fish per season and water type (OCEAN, RIVER, LAKE, POND)
+* Added proper fishing shop for jakob
+* Added bait, attach to your rods to increase speed
+* Added fish trap, seed with bait to catch fish/junk
+* Added hatchery, will duplicate fish
 
 ###Gathering
 * More items will now spawn around the world (that sell for more than 1 gold!)
 * Items will no longer spawn inside of towns, they will only spawn from 32 to 128 blocks away
+* Added support so that blacklisting seeds works for BOP Short/Medium Grass etc.
+* Added support so that gathering items will spawn on BOP Grass
 
 ###Knowledge - NEW!
 * Added a knowledge book, things you can find inside are:
@@ -145,6 +153,8 @@
 * Hammers will now mine larger areas of stone
 * Axes will now chop down entire trees
 * Sickles will now break large areas of grass
+* Added config option to prevent respawning at a bed when you are starving
+* Added config option to kill the player instead of respawning at the bed
 
 ####Fixes
 * Gifting npcs on their birthday will now only work once on smp, instead of over multiple days

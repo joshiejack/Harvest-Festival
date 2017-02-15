@@ -1,6 +1,7 @@
 package joshie.harvest.api.gathering;
 
 import joshie.harvest.api.calendar.Season;
+import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.world.World;
 
@@ -22,4 +23,8 @@ public interface IGatheringRegistry {
      * @return a block state */
     @Nullable
     IBlockState getRandomStateForSeason(World world, @Nullable Season season);
+
+    /** Register a block state as being a valid spawn location for gathering blocks
+     * @param block the block that is valid */
+    void registerValidGatheringSpawn(Block block);
 }

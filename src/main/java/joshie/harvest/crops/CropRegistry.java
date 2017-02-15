@@ -7,6 +7,7 @@ import joshie.harvest.core.handlers.DisableHandler;
 import joshie.harvest.core.util.annotations.HFApiImplementation;
 import joshie.harvest.core.util.holders.ItemStackHolder;
 import joshie.harvest.crops.tile.TileWithered;
+import net.minecraft.block.Block;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
@@ -45,6 +46,11 @@ public class CropRegistry implements ICropRegistry {
     @Override
     public void registerSeedForBlacklisting(ItemStack item) {
         DisableHandler.SEEDS_BLACKLIST.register(item);
+    }
+
+    @Override
+    public void registerBlockForSeedRemoval(Block block) {
+        DisableHandler.GRASS.add(block);
     }
 
     @Override

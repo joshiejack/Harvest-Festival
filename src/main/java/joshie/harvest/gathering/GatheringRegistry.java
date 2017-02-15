@@ -3,13 +3,13 @@ package joshie.harvest.gathering;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.gathering.IGatheringRegistry;
 import joshie.harvest.core.util.annotations.HFApiImplementation;
+import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
-import java.util.EnumMap;
-import java.util.NavigableMap;
-import java.util.TreeMap;
+import java.util.*;
 
 import static joshie.harvest.api.calendar.Season.*;
 
@@ -17,8 +17,11 @@ import static joshie.harvest.api.calendar.Season.*;
 public class GatheringRegistry implements IGatheringRegistry {
     public static final GatheringRegistry INSTANCE = new GatheringRegistry();
     private final EnumMap<Season, WeightedState> gatherings = new EnumMap<>(Season.class);
+    private final Set<Block> gatheringStates = new HashSet<>();
 
-    private GatheringRegistry() {}
+    private GatheringRegistry() {
+        registerValidGatheringSpawn(Blocks.GRASS);
+    }
 
     @Override
     public void registerGathering(IBlockState state, double weight, Season... seasons) {
@@ -38,6 +41,15 @@ public class GatheringRegistry implements IGatheringRegistry {
     public IBlockState getRandomStateForSeason(World world, @Nullable Season season) {
         if (season == null) return null;
         return gatherings.get(season).get(world);
+    }
+
+    @Override
+    public void registerValidGatheringSpawn(Block block) {
+        gatheringStates.add(block);
+    }
+
+    boolean isValidGatheringSpawn(Block block) {
+        return gatheringStates.contains(block);
     }
 
     private class WeightedState {

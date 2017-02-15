@@ -4,6 +4,7 @@ import com.google.gson.ExclusionStrategy;
 import com.google.gson.FieldAttributes;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import joshie.harvest.HarvestFestival;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.buildings.Building;
 import joshie.harvest.api.core.ISpecialRules;
@@ -31,6 +32,7 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.registry.IForgeRegistryEntry.Impl;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.apache.logging.log4j.Level;
 
 import java.lang.reflect.InvocationTargetException;
 
@@ -76,7 +78,7 @@ public class HFBuildings {
         for (Building building: Building.REGISTRY.getValues()) {
             HFTemplate template = BuildingRegistry.INSTANCE.getTemplateForBuilding(building);
             if (template != null) template.initTemplate();
-            else System.out.println("Failed to load the template for the building: " + building.getRegistryName().toString());
+            else HarvestFestival.LOGGER.log(Level.WARN, "Failed to load the template for the building: " + building.getRegistryName().toString());
         }
     }
 

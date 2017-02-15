@@ -16,6 +16,7 @@ hf.commands.help.header=--- Showing hf.help page %d of %d (/hf.help <page>) ---
 #Tooltips
 harvestfestival.tooltip.cosmetic=Cosmetic
 harvestfestival.tooltip.flower=Caller of the Goddess
+harvestfestival.tooltip.mailbox=Place on the side of a fence
 
 #Animals
 harvestfestival.spawner.tooltip=Hold shift to spawn babies

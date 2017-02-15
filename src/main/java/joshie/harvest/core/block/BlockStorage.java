@@ -8,6 +8,7 @@ import joshie.harvest.core.block.BlockStorage.Storage;
 import joshie.harvest.core.handlers.GuiHandler;
 import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.core.helpers.StackHelper;
+import joshie.harvest.core.helpers.TextHelper;
 import joshie.harvest.core.item.ItemBlockStorage;
 import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.core.tile.TileMailbox;
@@ -31,9 +32,12 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.List;
 import java.util.Locale;
 
 import static joshie.harvest.api.HFApi.shipping;
@@ -171,6 +175,14 @@ public class BlockStorage extends BlockHFEnumRotatableTile<BlockStorage, Storage
     @Nonnull
     public TileEntity createTileEntity(@Nonnull World world, @Nonnull IBlockState state) {
         return getEnumFromState(state) == SHIPPING ? new TileShipping() : new TileMailbox();
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean flag) {
+        if (getEnumFromMeta(stack.getItemDamage()) == Storage.MAILBOX) {
+            list.add(TextHelper.translate("tooltip.mailbox"));
+        }
     }
 
     @Override

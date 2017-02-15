@@ -5,7 +5,6 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.town.data.TownBuilding;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.math.BlockPos;
@@ -40,7 +39,7 @@ public class GatheringData {
 
         for (int i = 0; i < 2048 && placed < 256; i++) {
             BlockPos pos = world.getTopSolidOrLiquidBlock(townCentre.add(128 - world.rand.nextInt(256), 64, 128 - world.rand.nextInt(256)));
-            if (world.isBlockLoaded(pos) && world.getBlockState(pos.down()).getBlock() == Blocks.GRASS && world.isAirBlock(pos) && world.canBlockSeeSky(pos) &&
+            if (world.isBlockLoaded(pos) && GatheringRegistry.INSTANCE.isValidGatheringSpawn(world.getBlockState(pos.down()).getBlock()) && world.isAirBlock(pos) && world.canBlockSeeSky(pos) &&
                     isAtLeast32BlocksAwayFromEverything(isFar, buildings, pos)) {
                 IBlockState random = HFApi.gathering.getRandomStateForSeason(world, season);
                 if (random != null && world.setBlockState(pos, random, 2)) {

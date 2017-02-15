@@ -117,19 +117,4 @@ public class ToolEvents {
             HFTrackers.getPlayerTrackerFromPlayer(event.player).getTracking().addAsObtained(stack);
         }
     }
-
-    //Axe
-    @SubscribeEvent
-    public void onBlockDrops(HarvestDropsEvent event){
-        if (event.getHarvester() != null) {
-            EntityPlayer player = event.getHarvester();
-            if (!player.isSneaking() && player.getHeldItemMainhand() != null && player.getHeldItemMainhand().getItem() == HFTools.AXE && HFTools.AXE.findTree(player.worldObj, event.getPos())) {
-                if (!HFTools.AXE.hasReachedLimit(player.getHeldItemMainhand())) {
-                    if (event.getState().getBlock().isWood(event.getWorld(), event.getPos())) {
-                        //event.getDrops().clear();
-                    }
-                }
-            }
-        }
-    }
 }

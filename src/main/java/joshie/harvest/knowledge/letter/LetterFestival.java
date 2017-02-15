@@ -37,7 +37,7 @@ public class LetterFestival extends Letter {
     @Override
     public void onLetterRejected(EntityPlayer player) {
         if (festival.getLetter() != null) { //Just remove the letter
-            TownHelper.<TownDataServer>getClosestTownToEntity(player, false).getLetters().removeLetter(festival.getLetter());
+            TownHelper.<TownDataServer>getClosestTownToEntity(player, false).getLetters().removeLetterAndSync(festival.getLetter());
             HFTrackers.markTownsDirty();
         }
     }

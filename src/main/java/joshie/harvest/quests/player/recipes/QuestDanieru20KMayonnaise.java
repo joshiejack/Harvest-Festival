@@ -28,6 +28,7 @@ public class QuestDanieru20KMayonnaise extends QuestRecipe {
     protected List<ItemStack> getRewardStacks(EntityPlayer player) {
         return Lists.newArrayList(CookingHelper.getRecipe("mayonnaise_small"),
                                   CookingHelper.getRecipe("mayonnaise_medium"),
-                                  CookingHelper.getRecipe("mayonnaise_large"));
+                                  CookingHelper.getRecipe("mayonnaise_large"),
+                                  CookingHelper.getRecipe("mayonnaise_golden"));
     }
 }

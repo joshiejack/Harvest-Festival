@@ -12,6 +12,8 @@ import net.minecraft.pathfinding.Path;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 
+import javax.annotation.Nullable;
+
 public class EntityAISchedule extends EntityAIBase {
     private final EntityNPCHuman npc;
     private BuildingLocation location;
@@ -25,6 +27,7 @@ public class EntityAISchedule extends EntityAIBase {
         this.setMutexBits(1);
     }
 
+    @Nullable
     private BuildingLocation getBuildingTarget(CalendarDate date) {
         return npc.getNPC().getScheduler().getTarget(npc.worldObj, npc, npc.getNPC(), date.getSeason(), date.getWeekday(), CalendarHelper.getTime(npc.worldObj));
     }
@@ -43,7 +46,9 @@ public class EntityAISchedule extends EntityAIBase {
     private void updateTarget() {
         CalendarDate date = HFApi.calendar.getDate(npc.worldObj);
         location = getBuildingTarget(date);
-        blockTarget = NPCHelper.getCoordinatesForLocation(npc, location);
+        if (location != null) {
+            blockTarget = NPCHelper.getCoordinatesForLocation(npc, location);
+        }
     }
 
     @Override

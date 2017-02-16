@@ -79,6 +79,7 @@ public class HFIngredients {
     public static final Ingredient SMALL_EGG = new Ingredient("small_egg", 2, 0.6F);
     public static final Ingredient MEDIUM_EGG = new Ingredient("medium_egg", 3, 0.8F);
     public static final Ingredient LARGE_EGG = new Ingredient("large_egg", 4, 1F);
+    public static final Ingredient GOLDEN_EGG = new Ingredient("golden_egg", 6, 1F);
     public static final Ingredient MILK = new Ingredient("milk", 2, 0.6F).setFluid(IngredientMappingEvent.MILK);
     public static final Ingredient MAYONNAISE = new Ingredient("mayonnaise", 3, 1.0F);
     public static final Ingredient BREAD = new Ingredient("bread", 5, 1.2F);
@@ -141,7 +142,7 @@ public class HFIngredients {
         MEAT.add(CHICKEN, PORK, BEEF, MUTTON, RABBIT);
         FISH.add(SALMON, COD);
         HERB.add(CHAMOMILE, MINT, LAVENDAR);
-        EGG.add(SMALL_EGG, MEDIUM_EGG, LARGE_EGG);
+        EGG.add(SMALL_EGG, MEDIUM_EGG, LARGE_EGG, GOLDEN_EGG);
     }
 
     private static String getPrimaryCropName(ItemStack stack) {
@@ -160,7 +161,7 @@ public class HFIngredients {
         HFApi.cooking.register(ANIMAL_PRODUCT.getStack(Sizeable.EGG, Size.SMALL), SMALL_EGG);
         HFApi.cooking.register(ANIMAL_PRODUCT.getStack(Sizeable.EGG, Size.MEDIUM), MEDIUM_EGG);
         HFApi.cooking.register(ANIMAL_PRODUCT.getStack(Sizeable.EGG, Size.LARGE), LARGE_EGG);
-        HFApi.cooking.register(GOLDEN_PRODUCT.getStackFromEnum(Sizeable.EGG), LARGE_EGG);
+        HFApi.cooking.register(GOLDEN_PRODUCT.getStackFromEnum(Sizeable.EGG), GOLDEN_EGG);
         HFApi.cooking.register(ANIMAL_PRODUCT.getStack(Sizeable.MILK, Size.SMALL), MILK);
         HFApi.cooking.register(ANIMAL_PRODUCT.getStack(Sizeable.MILK, Size.MEDIUM), MILK);
         HFApi.cooking.register(ANIMAL_PRODUCT.getStack(Sizeable.MILK, Size.LARGE), MILK);

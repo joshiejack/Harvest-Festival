@@ -11,7 +11,6 @@ import joshie.harvest.core.util.annotations.HFEvents;
 import joshie.harvest.mining.HFMining;
 import joshie.harvest.mining.MiningHelper;
 import joshie.harvest.npcs.HFNPCs;
-import joshie.harvest.api.npc.NPC;
 import joshie.harvest.npcs.NPCHelper;
 import joshie.harvest.npcs.entity.EntityNPC;
 import net.minecraft.block.BlockChest;
@@ -82,7 +81,7 @@ public class MineManager extends WorldSavedData {
 
     void onTeleportToMine(World world, int mineID) {
         if (!generated.contains(mineID)) {
-            EntityNPC entity = NPCHelper.getEntityForNPC(world, (NPC) HFNPCs.MINER);
+            EntityNPC entity = NPCHelper.getEntityForNPC(world, HFNPCs.MINER);
             BlockPos pos = modifyNPCPosition((WorldServer)world, getSpawnCoordinateForMine(world, mineID, 1), entity);
             entity.setPosition(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5);
             entity.setHeldItem(EnumHand.MAIN_HAND, new ItemStack(Blocks.TORCH));

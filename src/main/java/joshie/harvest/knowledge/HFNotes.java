@@ -48,8 +48,6 @@ public class HFNotes {
     public static final Note SECRET_RELATIONSHIPS = registerNote(FARMING, "secret.relationships").setSecretNote();
     public static final Note SECRET_LIVESTOCK = registerNote(FARMING, "secret.livestock").setSecretNote();
 
-
-
     @SideOnly(Side.CLIENT)
     public static void preInitClient() {
         UPGRADING.setRender(new NoteRenderUpgrading());

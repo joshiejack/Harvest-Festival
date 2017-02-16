@@ -8,6 +8,7 @@ import joshie.harvest.api.calendar.Weekday;
 import joshie.harvest.api.npc.NPC;
 import net.minecraftforge.common.MinecraftForge;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,14 +18,14 @@ public class ScheduleBuilder {
     public final BuildingLocation default_;
     private final NPC npc;
 
-    private ScheduleBuilder(NPC npc, BuildingLocation default_) {
+    private ScheduleBuilder(NPC npc, @Nullable BuildingLocation default_) {
         this.npc = npc;
         this.default_ = default_;
         this.npc.setHome(default_);
         MinecraftForge.EVENT_BUS.post(new ScheduleEvent.Pre(npc, this));
     }
 
-    public static ScheduleBuilder create(NPC npc, BuildingLocation default_) {
+    public static ScheduleBuilder create(NPC npc, @Nullable BuildingLocation default_) {
         return new ScheduleBuilder(npc, default_);
     }
 

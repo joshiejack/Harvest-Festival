@@ -3,7 +3,6 @@ package joshie.harvest.quests.town.festivals;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.quests.HFQuest;
-import joshie.harvest.calendar.CalendarHelper;
 import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.cooking.item.ItemIngredients.Ingredient;
 import joshie.harvest.cooking.item.ItemMeal.Meal;
@@ -22,15 +21,14 @@ public class QuestNewYears extends QuestFestivalMultichat {
         setNPCs(HFNPCs.CARPENTER, HFNPCs.FLOWER_GIRL, HFNPCs.MAYOR, HFNPCs.TRADER);
     }
 
-    //@Override
-    private boolean isCorrectTime(long time) {
+    @Override
+    protected boolean isCorrectTime(long time) {
         return time >= 10000L && time <= 18000L;
     }
 
     @Override
     @Nullable
     protected String getLocalizedScript(EntityPlayer player, NPC npc) {
-        if (!isCorrectTime(CalendarHelper.getTime(player.worldObj))) return null;
         //Yulif lets the player know that
         if (npc == HFNPCs.CARPENTER) return getLocalized("riceballs");
             //Jade says she's glad that the new year is here and that she misses the earlier days
@@ -48,7 +46,6 @@ public class QuestNewYears extends QuestFestivalMultichat {
     @Override
     @SuppressWarnings("ConstantConditions")
     public void onChatClosed(EntityPlayer player, NPC npc) {
-        if (!isCorrectTime(CalendarHelper.getTime(player.worldObj))) return;
         if (npc == HFNPCs.CARPENTER) rewardItem(player, HFCooking.MEAL.getCreativeStack(Meal.RICEBALLS_TOASTED, 7));
         else if (npc == HFNPCs.FLOWER_GIRL) rewardItem(player, HFCooking.MEAL.getCreativeStack(Meal.RICE_BAMBOO, 3));
         else if (npc == HFNPCs.MAYOR) rewardGold(player, HFApi.player.getRelationsForPlayer(player).getRelationship(npc));

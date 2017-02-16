@@ -3,6 +3,7 @@ package joshie.harvest.quests.base;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import joshie.harvest.api.npc.NPC;
+import joshie.harvest.calendar.CalendarHelper;
 import joshie.harvest.core.helpers.EntityHelper;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
@@ -19,11 +20,15 @@ import java.util.UUID;
 public abstract class QuestFestivalMultichat extends QuestFestival {
     private final Multimap<UUID, NPC> received = HashMultimap.create();
 
+    protected boolean isCorrectTime(long time) {
+        return true;
+    }
+
     @Override
     @Nullable
     @SideOnly(Side.CLIENT)
     public String getLocalizedScript(EntityPlayer player, EntityLiving entity, NPC npc) {
-        if (received.get(EntityHelper.getPlayerUUID(player)).contains(npc)) return null; //Don't process
+        if (!isCorrectTime(CalendarHelper.getTime(player.worldObj)) || received.get(EntityHelper.getPlayerUUID(player)).contains(npc)) return null; //Don't process
         return getLocalizedScript(player, npc);
     }
 
@@ -32,11 +37,13 @@ public abstract class QuestFestivalMultichat extends QuestFestival {
 
     @Override
     public void onChatClosed(EntityPlayer player, EntityLiving entity, NPC npc, boolean wasSneaking) {
-        UUID uuid = EntityHelper.getPlayerUUID(player);
-        if (received.get(uuid).contains(npc)) return;
-        received.get(uuid).add(npc); //Mark this npc as talked to
-        syncData(player); //Update the data about this npc
-        onChatClosed(player, npc);
+        if (isCorrectTime(CalendarHelper.getTime(player.worldObj))) {
+            UUID uuid = EntityHelper.getPlayerUUID(player);
+            if (received.get(uuid).contains(npc)) return;
+            received.get(uuid).add(npc); //Mark this npc as talked to
+            syncData(player); //Update the data about this npc
+            onChatClosed(player, npc);
+        }
     }
 
     public abstract void onChatClosed(EntityPlayer player, NPC npc);

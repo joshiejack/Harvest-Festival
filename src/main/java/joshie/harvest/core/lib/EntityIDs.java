@@ -14,4 +14,5 @@ public class EntityIDs {
     public static final int GODDESS = 10;
     public static final int FISHING = 11;
     public static final int TRADER = 12;
+    public static final int MINER = 13;
 }

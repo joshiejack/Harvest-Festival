@@ -20,6 +20,7 @@ import net.minecraft.world.biome.Biome;
 
 import java.util.Random;
 
+@SuppressWarnings("unused")
 public class RenderHook {
     /**
      * Added at the start of renderByItem to render my special renderers
@@ -37,6 +38,7 @@ public class RenderHook {
     /** Replaces the vanilla addRainParticles so that I can
      *  Remove rain splashes when it's snowing and not raining
      *  Add rain sound when it's raining in snowy biomes */
+    @SuppressWarnings("unused")
     public static void addRainParticles(Minecraft mc, EntityRenderer renderer, Random random) {
         float f = mc.theWorld.getRainStrength(1.0F);
 

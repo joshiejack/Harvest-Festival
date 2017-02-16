@@ -1,6 +1,7 @@
 package joshie.harvest.cooking.block;
 
 import joshie.harvest.HarvestFestival;
+import joshie.harvest.api.HFApi;
 import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.cooking.block.BlockCookware.Cookware;
 import joshie.harvest.cooking.tile.*;
@@ -9,7 +10,6 @@ import joshie.harvest.core.base.block.BlockHFEnumRotatableTile;
 import joshie.harvest.core.handlers.GuiHandler;
 import joshie.harvest.core.helpers.SpawnItemHelper;
 import joshie.harvest.core.util.interfaces.IFaceable;
-import joshie.harvest.tools.ToolHelper;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockStateContainer;
@@ -182,12 +182,12 @@ public class BlockCookware extends BlockHFEnumRotatableTile<BlockCookware, Cookw
         if (tile instanceof TileCooking) {
             TileCooking cooking = (TileCooking) tile;
             if (cooking.isFinishedCooking()) {
-                if (held == null || !ToolHelper.isKnife(held)) {
+                if (held == null || !HFApi.cooking.isKnife(held)) {
                     cooking.giveToPlayer(player);
                     return true;
                 }
             }  else if (held != null) {
-                if (ToolHelper.isKnife(held)) {
+                if (HFApi.cooking.isKnife(held)) {
                     if (cookware == COUNTER || world.getTileEntity(pos.down()) instanceof TileCounter) {
                         cooking = cookware == COUNTER ? cooking : (TileCooking) world.getTileEntity(pos.down());
                         if (cooking != null) {

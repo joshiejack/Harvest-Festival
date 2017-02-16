@@ -2,14 +2,13 @@ package joshie.harvest.tools;
 
 import joshie.harvest.animals.HFAnimals;
 import joshie.harvest.animals.item.ItemAnimalProduct.Sizeable;
-import joshie.harvest.api.HFApi;
 import joshie.harvest.api.core.ITiered;
-import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.core.base.item.ItemTool;
 import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.core.util.annotations.HFEvents;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.Item;
@@ -18,6 +17,8 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.FoodStats;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.event.ForgeEventFactory;
@@ -25,6 +26,7 @@ import net.minecraftforge.event.entity.player.PlayerWakeUpEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
 
+import javax.annotation.Nonnull;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -32,10 +34,17 @@ import java.util.List;
 
 import static joshie.harvest.animals.item.ItemAnimalTool.Tool.BRUSH;
 import static joshie.harvest.calendar.HFCalendar.TICKS_PER_DAY;
-import static joshie.harvest.cooking.item.ItemIngredients.Ingredient.OIL;
 import static joshie.harvest.tools.HFTools.*;
 
 public class ToolHelper {
+    private static final DamageSource EXHAUSTED = new DamageSource("exhausted") {
+        @Override
+        @Nonnull
+        public ITextComponent getDeathMessage(EntityLivingBase entityLivingBaseIn)  {
+            String s = "harvestfestival.death.attack." + this.damageType;
+            return new TextComponentTranslation(s, entityLivingBaseIn.getDisplayName());
+        }
+    }.setDamageBypassesArmor().setDamageIsAbsolute();
     public static boolean isBrush(ItemStack stack) {
         return HFAnimals.TOOLS.getEnumFromStack(stack) == BRUSH;
     }
@@ -53,14 +62,6 @@ public class ToolHelper {
 
     public static boolean isWool(ItemStack stack) {
         return stack.getItem() == HFAnimals.ANIMAL_PRODUCT && HFAnimals.ANIMAL_PRODUCT.getEnumFromStack(stack) == Sizeable.WOOL;
-    }
-
-    public static boolean isOil(ItemStack stack) {
-        return HFCooking.INGREDIENTS.getEnumFromStack(stack) == OIL;
-    }
-
-    public static boolean isKnife(ItemStack stack) {
-        return HFApi.cooking.isKnife(stack);
     }
 
     public static void levelTool(ItemStack stack) {
@@ -101,7 +102,7 @@ public class ToolHelper {
             if (level == 0 || effect != null && effect.getDuration() <= 1500) {
                 player.addPotionEffect(new PotionEffect(MobEffects.BLINDNESS, 100, 7));
                 if (!player.worldObj.isRemote && ENABLE_FAINTING) {
-                    if (ENABLE_DEATH_FAINTING) player.attackEntityFrom(DamageSource.starve, 1000F);
+                    if (ENABLE_DEATH_FAINTING) player.attackEntityFrom(EXHAUSTED, 1000F);
                     else {
                         int dimension = player.worldObj.provider.canRespawnHere() ? player.worldObj.provider.getDimension() : 0;
                         BlockPos spawn = player.getBedLocation(dimension) != null ? player.getBedLocation(dimension) : DimensionManager.getWorld(dimension).provider.getRandomizedSpawnPoint();
@@ -148,7 +149,7 @@ public class ToolHelper {
         List<ItemStack> blockDrops = new ArrayList<>();
         if (block.canSilkHarvest(world, pos, state, player)) {
             try {
-                Method method = ReflectionHelper.findMethod(Block.class, null, new String[] { "createStackedBlock" } , IBlockState.class);
+                Method method = ReflectionHelper.findMethod(Block.class, null, new String[] { "createStackedBlock", "func_180643_i" } , IBlockState.class);
                 ItemStack stack = (ItemStack) method.invoke(block, state);
                 if (stack != null) {
                     blockDrops.add(stack);

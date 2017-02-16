@@ -9,6 +9,7 @@ harvestfestival.mode.true=Harvest Festival was set to easy mode!
 harvestfestival.mode.false=Harvest Festival was set to hard mode!
 harvestfestival.check.head=On head after purchase.
 harvestfestival.check.lead=On lead after purchase.
+harvestfestival.death.attack.exhausted=%1$s worked themselves to death
 
 #Commands
 hf.commands.help.header=--- Showing hf.help page %d of %d (/hf.help <page>) ---
@@ -1925,7 +1926,7 @@ harvestfestival.quest.meeting.johan.title=Johan'nesburg
 harvestfestival.quest.meeting.johan.build=Build the Park.
 harvestfestival.quest.meeting.johan.text=Good day. It is such a pleasure to meet you. The name is Johan. I'm normally here throughout the day but I travel back to my homeland at night. To let you know that if you ever need a bucket of milk, block of wool or some brown eggs, I'll happily trade for bottles of milk, plain wool or white eggs. I will see you around.
 harvestfestival.quest.meeting.johan.description=Meet Johan.
-harvestfestival.quest.meeting.abi.title=Little Foot
+harvestfestival.quest.meeting.abi.title=Littlefoot
 harvestfestival.quest.meeting.abi.text=HELLLO BIG PERSON! I'm Abii!!!!! Never seen you before :D
 harvestfestival.quest.meeting.abi.description=Say hello to Abii.
 harvestfestival.quest.meeting.candice.title=Creepy Candice

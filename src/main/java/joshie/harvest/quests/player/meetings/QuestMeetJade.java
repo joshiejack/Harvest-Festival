@@ -160,7 +160,6 @@ public class QuestMeetJade extends QuestQuestion {
             HFApi.player.getTrackingForPlayer(player).learnNote(HFNotes.CROP_FARMING);
         }
 
-        HFApi.quests.completeQuestConditionally(Quests.BUILDING_CARPENTER, player);
         HFApi.player.getTrackingForPlayer(player).learnNote(HFNotes.SICKLE);
         rewardItem(player, HFTools.SICKLE.getStack(BASIC));
         Season season = HFApi.calendar.getDate(player.worldObj).getSeason();

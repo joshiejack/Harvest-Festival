@@ -19,8 +19,6 @@ import javax.annotation.Nullable;
 import java.util.HashSet;
 import java.util.Set;
 
-import static joshie.harvest.quests.Quests.BUILDING_SUPERMARKET;
-
 public class QuestShipping extends QuestTown {
     private static final int START = 0;
     private static final int FINISHED = 1;
@@ -38,7 +36,7 @@ public class QuestShipping extends QuestTown {
 
     @Override
     public boolean canStartQuest(Set<Quest> active, Set<Quest> finished) {
-        return finished.contains(BUILDING_SUPERMARKET);
+        return true;
     }
 
     //Rebuild the list of spring crops

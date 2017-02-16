@@ -2,17 +2,17 @@ package joshie.harvest.quests.town.seeds;
 
 import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.quests.HFQuest;
-import joshie.harvest.api.quests.Quest;
+import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.npcs.HFNPCs;
-import joshie.harvest.quests.Quests;
 import joshie.harvest.quests.base.QuestTown;
+import joshie.harvest.town.TownHelper;
+import joshie.harvest.town.data.TownData;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
-import java.util.Set;
 
 @HFQuest("seeds.progress")
 public class QuestProgress extends QuestTown {
@@ -21,9 +21,9 @@ public class QuestProgress extends QuestTown {
     }
 
     @Override
-    public boolean canStartQuest(Set<Quest> active, Set<Quest> finished) {
-        return finished.contains(Quests.BUILDING_CAFE) && finished.contains(Quests.BUILDING_BLACKSMITH)
-                && finished.contains(Quests.BUILDING_FISHER) && finished.contains(Quests.BUILDING_FESTIVALS);
+    public boolean isNPCUsed(EntityPlayer player, NPC npc) {
+        TownData data = TownHelper.getClosestTownToEntity(player, false);
+        return data.hasBuilding(HFBuildings.CAFE) && data.hasBuilding(HFBuildings.BLACKSMITH) && data.hasBuilding(HFBuildings.FISHING_HUT) && data.hasBuilding(HFBuildings.FESTIVAL_GROUNDS);
     }
 
     @Nullable

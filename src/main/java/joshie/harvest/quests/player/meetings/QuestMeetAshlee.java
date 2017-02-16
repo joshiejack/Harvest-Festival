@@ -175,15 +175,14 @@ public class QuestMeetAshlee extends QuestMeetingTutorial {
         //If we finished early
         if (isCompletedEarly()) {
             rewardEntity(player, "harvestfestival.chicken");
-            rewardItem(player, new ItemStack(HFAnimals.TOOLS, 64, CHICKEN_FEED.ordinal()));
+            rewardItem(player, new ItemStack(HFAnimals.TOOLS, 16, CHICKEN_FEED.ordinal()));
             rewardItem(player, HFAnimals.TRAY.getStackFromEnum(NEST_EMPTY));
-            rewardItem(player, HFAnimals.ANIMAL_PRODUCT.getStack(Sizeable.EGG, Size.LARGE));
         }
 
         HFApi.player.getTrackingForPlayer(player).learnNote(HFNotes.CHICKEN_CARE);
         HFApi.player.getTrackingForPlayer(player).learnNote(HFNotes.ANIMAL_HAPPINESS);
         HFApi.player.getTrackingForPlayer(player).learnNote(HFNotes.ANIMAL_STRESS);
-        rewardItem(player, HFAnimals.ANIMAL_PRODUCT.getStackOfSize(Sizeable.EGG, Size.LARGE, 3));
+        rewardItem(player, HFAnimals.ANIMAL_PRODUCT.getStack(Sizeable.EGG, Size.LARGE));
         rewardItem(player, HFAnimals.TRAY.getStackFromEnum(FEEDER_EMPTY));
     }
 

@@ -26,6 +26,7 @@ import net.minecraftforge.fml.common.registry.RegistryBuilder;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.*;
 
@@ -48,12 +49,12 @@ public class NPC extends IForgeRegistryEntry.Impl<NPC> {
     private final int insideColor;
     private final int outsideColor;
 
+    protected Shop shop;
     private BuildingLocation home;
     private float height;
     private float offset;
     private IGiftHandler gifts;
     private ISchedule schedule;
-    private Shop shop;
     private boolean doesRespawn;
     private boolean alex;
     private IInfoButton info;
@@ -179,7 +180,7 @@ public class NPC extends IForgeRegistryEntry.Impl<NPC> {
         return this == HFNPCs.CARPENTER;
     }
 
-    public Shop getShop(World world, BlockPos pos) {
+    public Shop getShop(World world, BlockPos pos, @Nonnull EntityPlayer player) {
         return shop;
     }
 

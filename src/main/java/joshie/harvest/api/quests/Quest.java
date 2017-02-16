@@ -170,6 +170,10 @@ public abstract class Quest extends IForgeRegistryEntry.Impl<Quest> {
         else return I18n.translateToLocalFormatted(getPrefix() + "." + quest.replace("_", ""), format);
     }
 
+    /** Called when this quest is selected to be displayed/used by an npc
+     *  Use this method to setup context data for the quest that you need access to **/
+    public void onQuestSelectedForDisplay(EntityPlayer player, EntityLiving entity, NPC npc) {}
+
     /** Return the script, in a simple unlocalised form
      *  This will get run through getLocalized, this is
      *  so you can return shorter, simple strings by default

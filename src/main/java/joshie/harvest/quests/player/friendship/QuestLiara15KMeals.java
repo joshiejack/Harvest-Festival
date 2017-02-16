@@ -31,10 +31,11 @@ public class QuestLiara15KMeals extends QuestFriendshipStore {
 
     @Override
     protected Quest getQuest() {
-        return Quests.SELL_ORES;
+        return Quests.SELL_MEALS;
     }
 
     @Override
+    @SuppressWarnings("ConstantConditions")
     protected List<ItemStack> getRewardStacks(EntityPlayer player) {
         List<ItemStack> stacks = new ArrayList<>();
         for (int i = 0; i < 3; i++) {

@@ -25,7 +25,6 @@ import joshie.harvest.npcs.HFNPCs;
 import joshie.harvest.npcs.NPCHelper;
 import joshie.harvest.npcs.entity.EntityNPCBuilder;
 import joshie.harvest.npcs.entity.EntityNPCHuman;
-import joshie.harvest.quests.Quests;
 import joshie.harvest.quests.data.QuestDataServer;
 import joshie.harvest.quests.packet.PacketSharedSync;
 import joshie.harvest.town.packet.*;
@@ -273,15 +272,6 @@ public class TownDataServer extends TownData<QuestDataServer, LetterDataServer> 
                 BlockPos pos = BlockPos.fromLong(tag.getLong("Position"));
                 deadVillagers.put(resource, pos);
             }
-        }
-
-        //TODO: Remove in 0.7+
-        if (!nbt.hasKey("CurrentQuests") && !nbt.hasKey("FinishedQuests")) {
-            if (buildings.containsKey(HFBuildings.CAFE.getRegistryName())) quests.getFinished().add(Quests.BUILDING_CAFE);
-            if (buildings.containsKey(HFBuildings.FISHING_HUT.getRegistryName())) quests.getFinished().add(Quests.BUILDING_FISHER);
-            if (buildings.containsKey(HFBuildings.BLACKSMITH.getRegistryName())) quests.getFinished().add(Quests.BUILDING_BLACKSMITH);
-            if (buildings.containsKey(HFBuildings.CARPENTER.getRegistryName())) quests.getFinished().add(Quests.BUILDING_CARPENTER);
-            if (buildings.containsKey(HFBuildings.SUPERMARKET.getRegistryName())) quests.getFinished().add(Quests.BUILDING_SUPERMARKET);
         }
 
         //Target festival

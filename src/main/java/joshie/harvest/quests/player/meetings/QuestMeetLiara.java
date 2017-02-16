@@ -10,7 +10,6 @@ import joshie.harvest.cooking.block.BlockCookware.Cookware;
 import joshie.harvest.cooking.item.ItemUtensil.Utensil;
 import joshie.harvest.knowledge.HFNotes;
 import joshie.harvest.npcs.HFNPCs;
-import joshie.harvest.quests.Quests;
 import joshie.harvest.quests.base.QuestMeetingTutorial;
 import joshie.harvest.quests.selection.TutorialSelection;
 import joshie.harvest.town.TownHelper;
@@ -74,7 +73,6 @@ public class QuestMeetLiara extends QuestMeetingTutorial {
 
     @Override
     public void onQuestCompleted(EntityPlayer player) {
-        HFApi.quests.completeQuestConditionally(Quests.BUILDING_CAFE, player);
         rewardItem(player, HFCooking.UTENSILS.getStackFromEnum(Utensil.KNIFE));
         rewardItem(player, HFCooking.COOKWARE.getStackFromEnum(Cookware.COUNTER));
         rewardItem(player, new ItemStack(HFCooking.COOKBOOK));

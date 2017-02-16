@@ -5,7 +5,6 @@ import joshie.harvest.api.calendar.CalendarDate;
 import joshie.harvest.api.calendar.Festival;
 import joshie.harvest.api.npc.INPCHelper.Age;
 import joshie.harvest.api.npc.INPCHelper.Gender;
-import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.shops.Shop;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
@@ -14,10 +13,10 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
 
-public class NPCHolidayStore extends NPC {
+public class NPCHolidayStoreSpecial extends NPCSpecialSeller {
     private Shop shop;
     private Festival festival;
-    public NPCHolidayStore(ResourceLocation resource, Gender gender, Age age, CalendarDate birthday, int insideColor, int outsideColor) {
+    public NPCHolidayStoreSpecial(ResourceLocation resource, Gender gender, Age age, CalendarDate birthday, int insideColor, int outsideColor) {
         super(resource, gender, age, birthday, insideColor, outsideColor);
     }
 
@@ -28,7 +27,7 @@ public class NPCHolidayStore extends NPC {
         else return super.getShop(world, pos, player);
     }
 
-    public NPCHolidayStore setHolidayShop(Festival festival, Shop shop) {
+    public NPCHolidayStoreSpecial setHolidayShop(Festival festival, Shop shop) {
         this.festival = festival;
         this.shop = shop;
         return this;

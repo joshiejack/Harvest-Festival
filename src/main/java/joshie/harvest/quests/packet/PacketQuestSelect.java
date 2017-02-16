@@ -53,7 +53,7 @@ public class PacketQuestSelect extends PacketSharedSync {
         EntityNPC npc = (EntityNPC) player.worldObj.getEntityByID(npcID);
         if (npc != null) {
             BlockPos pos = new BlockPos(npc);
-            if (quest == -1 && npc.getNPC().getShop(player.worldObj, pos) != null) selection = NPCHelper.getShopSelection(player.worldObj, pos, npc.getNPC());
+            if (quest == -1 && npc.getNPC().getShop(player.worldObj, pos, player) != null) selection = NPCHelper.getShopSelection(player.worldObj, pos, npc.getNPC(), player);
             else {
                 theQuest = QuestHelper.getSelectiomFromID(player, quest);
                 selection = theQuest != null ? theQuest.getSelection(player, npc.getNPC()) : null;

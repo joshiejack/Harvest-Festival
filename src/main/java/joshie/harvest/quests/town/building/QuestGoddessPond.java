@@ -18,7 +18,6 @@ import net.minecraft.world.World;
 import java.util.Set;
 
 import static joshie.harvest.npcs.HFNPCs.GODDESS;
-import static joshie.harvest.quests.Quests.BUILDING_CARPENTER;
 
 @HFQuest("building.goddess")
 public class QuestGoddessPond extends QuestTown {
@@ -30,7 +29,13 @@ public class QuestGoddessPond extends QuestTown {
 
     @Override
     public boolean canStartQuest(Set<Quest> active, Set<Quest> finished) {
-        return finished.contains(BUILDING_CARPENTER);
+        return true;
+    }
+
+    @Override
+    public boolean isNPCUsed(EntityPlayer player, NPC npc) {
+        TownData data = TownHelper.getClosestTownToEntity(player, false);
+        return data.getBuildings().size() >= 5 || data.hasBuilding(HFBuildings.GODDESS_POND);
     }
 
     @Override
@@ -45,12 +50,7 @@ public class QuestGoddessPond extends QuestTown {
         return TownHelper.getClosestTownToEntity(player, false).hasBuilding(HFBuildings.GODDESS_POND) ? primary : BUILDING;
     }
 
-    @Override
-    public boolean isNPCUsed(EntityPlayer player, NPC npc) {
-        if (npc != HFNPCs.GODDESS) return false;
-        TownData data = TownHelper.getClosestTownToEntity(player, false);
-        return data.getBuildings().size() >= 5 || data.hasBuilding(HFBuildings.GODDESS_POND);
-    }
+
 
     @Override
     public String getLocalizedScript(EntityPlayer player, EntityLiving entity, NPC npc) {

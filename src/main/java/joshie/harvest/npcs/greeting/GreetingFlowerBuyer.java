@@ -3,8 +3,10 @@ package joshie.harvest.npcs.greeting;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.npc.IInfoButton;
 import joshie.harvest.api.npc.NPC;
+import joshie.harvest.api.quests.Quest;
 import joshie.harvest.core.helpers.InventoryHelper;
 import joshie.harvest.core.helpers.TextHelper;
+import joshie.harvest.quests.QuestHelper;
 import joshie.harvest.quests.Quests;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.EntityAgeable;
@@ -17,6 +19,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import static joshie.harvest.core.lib.HFModInfo.ICONS;
 
 public class GreetingFlowerBuyer implements IInfoButton {
+    private static final Quest BUY_FLOWER = QuestHelper.getQuest("trader.flowers");
+
     @Override
     public boolean canDisplay(NPC npc, EntityPlayer player) {
         return HFApi.quests.hasCompleted(Quests.FLOWER_BUYER, player);
@@ -24,7 +28,7 @@ public class GreetingFlowerBuyer implements IInfoButton {
 
     @Override
     public boolean onClicked(NPC inpc, EntityPlayer player) {
-        HFApi.quests.completeQuest(Quests.BUY_FLOWER, player);
+        HFApi.quests.completeQuest(BUY_FLOWER, player);
         return true;
     }
 

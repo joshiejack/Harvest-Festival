@@ -78,14 +78,6 @@ public class Quests {
     public static final Quest YULIF_10K = QuestHelper.getQuest("recipe.cake.chocolate");
     public static final Quest YULIF_15K = QuestHelper.getQuest("friendship.yulif.sprinkler");
 
-    //Buildings, Town Based Quests
-    public static final Quest BUILDING_CAFE = QuestHelper.getQuest("building.cafe");
-    public static final Quest BUILDING_BLACKSMITH = QuestHelper.getQuest("building.blacksmith");
-    public static final Quest BUILDING_FISHER = QuestHelper.getQuest("building.fisher");
-    public static final Quest BUILDING_FESTIVALS = QuestHelper.getQuest("building.festivals");
-    public static final Quest BUILDING_CARPENTER = QuestHelper.getQuest("building.carpenter");
-    public static final Quest BUILDING_SUPERMARKET = QuestHelper.getQuest("building.supermarket");
-
     //Dummy Quests for unlocking things, Town Based Quests
     public static final Quest SELL_STRAWBERRY = QuestHelper.getQuest("seeds.strawberry");
     public static final Quest SELL_SWEET_POTATO = QuestHelper.getQuest("seeds.sweetpotato");
@@ -96,5 +88,4 @@ public class Quests {
     public static final Quest SELL_ORES = QuestHelper.getQuest("item.ores");
     public static final Quest OPEN_WEDNESDAYS = QuestHelper.getQuest("shop.wednesday");
     public static final Quest FLOWER_BUYER = QuestHelper.getQuest("buyer.flowers");
-    public static final Quest BUY_FLOWER = QuestHelper.getQuest("trader.flowers");
 }

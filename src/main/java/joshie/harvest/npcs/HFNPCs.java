@@ -9,19 +9,23 @@ import joshie.harvest.api.npc.INPCHelper.Gender;
 import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.npc.gift.IGiftHandler;
 import joshie.harvest.api.npc.schedule.ScheduleBuilder;
+import joshie.harvest.calendar.HFFestivals;
 import joshie.harvest.core.base.render.MeshIdentical;
 import joshie.harvest.core.lib.EntityIDs;
 import joshie.harvest.core.proxy.HFClientProxy;
 import joshie.harvest.core.util.annotations.HFLoader;
-import joshie.harvest.calendar.HFFestivals;
 import joshie.harvest.npcs.entity.*;
 import joshie.harvest.npcs.greeting.*;
 import joshie.harvest.npcs.item.ItemNPCSpawner;
 import joshie.harvest.npcs.item.ItemNPCTool;
 import joshie.harvest.npcs.npc.NPCHolidayStore;
+import joshie.harvest.npcs.npc.NPCHolidayStoreSpecial;
+import joshie.harvest.npcs.npc.NPCSpecialOpener;
+import joshie.harvest.npcs.npc.NPCSpecialSeller;
 import joshie.harvest.npcs.render.NPCItemRenderer;
 import joshie.harvest.npcs.render.NPCItemRenderer.NPCTile;
 import joshie.harvest.npcs.render.RenderNPC;
+import joshie.harvest.quests.Quests;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.ForgeHooksClient;
@@ -40,38 +44,36 @@ import static joshie.harvest.api.calendar.Weekday.*;
 import static joshie.harvest.api.npc.INPCHelper.Age.*;
 import static joshie.harvest.api.npc.INPCHelper.Gender.FEMALE;
 import static joshie.harvest.api.npc.INPCHelper.Gender.MALE;
-import static joshie.harvest.calendar.HFFestivals.NEW_YEARS_EVE;
+import static joshie.harvest.calendar.HFFestivals.*;
 import static joshie.harvest.core.helpers.ConfigHelper.getDouble;
 import static joshie.harvest.core.helpers.RegistryHelper.registerSounds;
 import static joshie.harvest.core.lib.HFModInfo.GIFTPATH;
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 import static joshie.harvest.core.lib.LoadOrder.HFNPCS;
-import static joshie.harvest.calendar.HFFestivals.COOKING_CONTEST;
-import static joshie.harvest.calendar.HFFestivals.NEW_YEARS;
 import static joshie.harvest.town.BuildingLocations.*;
 
 @HFLoader(priority = HFNPCS)
 @SuppressWarnings("unchecked")
 public class HFNPCs {
-    public static final NPC GODDESS = register("goddess", FEMALE, ADULT, 8, SPRING, 0x8CEED3, 0x4EC485).setHeight(1.2F, 0.6F); //The Goddess                        (SPAWN)
-    public static final NPC CARPENTER = register("yulif", MALE, ADULT, 19, SUMMER, 0x313857, 0x121421); //Builds stuff            (SPAWN)
-    public static final NPC FLOWER_GIRL = register("jade", FEMALE, ADULT, 14, SPRING, 0x653081, 0x361840); // Sister of Yulif                  (CARPENTER)
-    public static final NPC GS_OWNER = register("jenni", FEMALE, ADULT, 7, WINTER, 0xDDD0AD, 0xE79043); //Owner of general store               (GENERAL STORE)
-    public static final NPC MILKMAID = register("candice", FEMALE, ADULT, 5, AUTUMN, 0xF65FAB, 0xF21985); //Works in the Barn, Milking Cows    (GENERAL STORE)
-    public static final NPC BARN_OWNER = register("jim", MALE, ADULT, 26, SPRING, 0xDE7245, 0x722B19); // Owner of the Animal Barn             (BARN)
-    public static final NPC POULTRY = register("ashlee", FEMALE, ADULT, 16, AUTUMN, 0xC62D2D, 0x571111); //Poultry Farm Owner                  (POULTRY FARM)
-    public static final NPC TRADER = register("girafi", MALE, ADULT, 2, AUTUMN,  0xFFFFFF, 0xC60C30); //Trader                                 (GENERAL STORE)
-    public static final NPC FISHERMAN = register("jacob", MALE, ADULT, 28, AUTUMN, 0x7396FF, 0x0036D9); //Fisherman                            (FISHING HUT)
-    public static final NPC MINER = register("brandon", MALE, ADULT, 13, AUTUMN, 0xC28D48, 0x5F5247); //Works in the mines                     (MINE)
-    public static final NPC CAFE_OWNER = register("liara", FEMALE, ADULT, 17, SPRING, 0xBEC8EE, 0x8091D0, NPCHolidayStore.class); // Owner of the Cafe                (CAFE)
-    public static final NPC CAFE_GRANNY = register("katlin", FEMALE, ELDER, 12, SUMMER, 0xDDDDDD, 0x777777, NPCHolidayStore.class);// Granny of Cafe Owner            (CAFE)
-    public static final NPC BLACKSMITH = register("daniel", MALE, ADULT, 1, WINTER, 0x613827, 0x23150E); // Blacksmith                         (BLACKSMITH)
-    public static final NPC CLOCKMAKER = register("tiberius", MALE, ADULT, 15, WINTER, 0x305A2E, 0x142419); //The clock worker                 (CLOCKWORKERS)
-    public static final NPC CLOCKMAKER_CHILD = register("fenn", MALE, CHILD, 25, SUMMER, 0x228C00, 0x003F00); // Clockmakers Child             (CLOCKWORKERS)
-    public static final NPC PRIEST = register("thomas", MALE, ELDER, 9, SUMMER, 0x006666, 0x00B2B20); //Married to mayor                       (CHURCH)
-    public static final NPC MAYOR = register("jamie", FEMALE, ELDER, 8, SUMMER, 0xA8AC9A, 0x3B636D); //Married to priest                       (TOWNHALL)
-    public static final NPC DAUGHTER_ADULT = register("cloe", FEMALE, ADULT, 3, SPRING, 0xFFFF99, 0xB2B200); //Daughter of Mayor and Priest        (TOWNHALL)
-    public static final NPC DAUGHTER_CHILD = register("abi", FEMALE, CHILD, 27, WINTER, 0xFF99FF, 0xFF20FF); //Daughter of Mayor and Priest        (TOWNHALL)
+    public static final NPC GODDESS = register("goddess", FEMALE, ADULT, 8, SPRING, 0x8CEED3, 0x4EC485).setHeight(1.2F, 0.6F);
+    public static final NPCSpecialSeller CARPENTER = register("yulif", MALE, ADULT, 19, SUMMER, 0x313857, 0x121421, NPCSpecialSeller.class);
+    public static final NPCSpecialSeller FLOWER_GIRL = register("jade", FEMALE, ADULT, 14, SPRING, 0x653081, 0x361840, NPCSpecialSeller.class);
+    public static final NPCSpecialSeller GS_OWNER = register("jenni", FEMALE, ADULT, 7, WINTER, 0xDDD0AD, 0xE79043, NPCSpecialOpener.class).setNPC(GODDESS);
+    public static final NPC MILKMAID = register("candice", FEMALE, ADULT, 5, AUTUMN, 0xF65FAB, 0xF21985);
+    public static final NPC BARN_OWNER = register("jim", MALE, ADULT, 26, SPRING, 0xDE7245, 0x722B19);
+    public static final NPC POULTRY = register("ashlee", FEMALE, ADULT, 16, AUTUMN, 0xC62D2D, 0x571111);
+    public static final NPC TRADER = register("girafi", MALE, ADULT, 2, AUTUMN,  0xFFFFFF, 0xC60C30);
+    public static final NPCSpecialSeller FISHERMAN = register("jacob", MALE, ADULT, 28, AUTUMN, 0x7396FF, 0x0036D9, NPCSpecialSeller.class);
+    public static final NPCSpecialSeller MINER = register("brandon", MALE, ADULT, 13, AUTUMN, 0xC28D48, 0x5F5247, NPCSpecialSeller.class);
+    public static final NPCSpecialSeller CAFE_OWNER = register("liara", FEMALE, ADULT, 17, SPRING, 0xBEC8EE, 0x8091D0, NPCHolidayStoreSpecial.class);
+    public static final NPC CAFE_GRANNY = register("katlin", FEMALE, ELDER, 12, SUMMER, 0xDDDDDD, 0x777777, NPCHolidayStore.class);
+    public static final NPC BLACKSMITH = register("daniel", MALE, ADULT, 1, WINTER, 0x613827, 0x23150E);
+    public static final NPC CLOCKMAKER = register("tiberius", MALE, ADULT, 15, WINTER, 0x305A2E, 0x142419);
+    public static final NPC CLOCKMAKER_CHILD = register("fenn", MALE, CHILD, 25, SUMMER, 0x228C00, 0x003F00);
+    public static final NPC PRIEST = register("thomas", MALE, ELDER, 9, SUMMER, 0x006666, 0x00B2B20);
+    public static final NPC MAYOR = register("jamie", FEMALE, ELDER, 8, SUMMER, 0xA8AC9A, 0x3B636D);
+    public static final NPC DAUGHTER_ADULT = register("cloe", FEMALE, ADULT, 3, SPRING, 0xFFFF99, 0xB2B200);
+    public static final NPC DAUGHTER_CHILD = register("abi", FEMALE, CHILD, 27, WINTER, 0xFF99FF, 0xFF20FF);
 
     //Item
     public static final ItemNPCSpawner SPAWNER_NPC = new ItemNPCSpawner().register("spawner_npc");
@@ -105,7 +107,8 @@ public class HFNPCs {
         ScheduleBuilder.create(GODDESS, null).build();
 
         //Carpenter
-        CARPENTER.addGreeting(new GreetingCarpenter())
+        CARPENTER.setQuest(Quests.SELL_SPRINKLER)
+                .addGreeting(new GreetingCarpenter())
                 .addGreeting(new GreetingBeforeJim("tutorial.cow.reminder.barn"))
                 .addGreeting(new GreetingBeforeDanieru(CARPENTER));
         ScheduleBuilder.create(CARPENTER, CARPENTER_DOWNSTAIRS)
@@ -120,13 +123,15 @@ public class HFNPCs {
                         .add(NEW_YEARS, 10000L, CARPENTER_FRONT)
                         .add(NEW_YEARS, 11500L, PARK_TRADER)
                         .add(NEW_YEARS, 22500L, CARPENTER_DOWNSTAIRS)
-                        .add(NEW_YEARS_EVE, 0L, CARPENTER_DOWNSTAIRS)
+                        .add(NEW_YEARS_EVE, 0L, PARK_NOODLES_STAND)
+                        .add(NEW_YEARS_EVE, 6000L, CARPENTER_DOWNSTAIRS)
                         .add(NEW_YEARS_EVE, 13000L, CARPENTER_FRONT)
                         .add(NEW_YEARS_EVE, 17000L, PARK_NOODLES_STAND)
                         .build();
 
         //Flower Girl, Add the flower buying greeting, and before complettion of meeting jenni
-        FLOWER_GIRL.setHasInfo(new GreetingFlowerBuyer())
+        FLOWER_GIRL.setQuest(Quests.FLOWER_BUYER)
+                .setHasInfo(new GreetingFlowerBuyer())
                 .addGreeting(new GreetingBeforeJenni("trade.seeds.reminder"))
                 .addGreeting(new GreetingBeforeJenni("trade.tools.reminder"))
                 .addGreeting(new GreetingBeforeJenni("tutorial.supermarket.reminder.supermarket"))
@@ -146,13 +151,15 @@ public class HFNPCs {
                         .add(NEW_YEARS, 11500L, PARK_TRADER_LEFT)
                         .add(NEW_YEARS, 22500L, CARPENTER_DOWNSTAIRS)
                         .add(NEW_YEARS, 23500L, CARPENTER_UPSTAIRS)
-                        .add(NEW_YEARS_EVE, 0L, CARPENTER_UPSTAIRS)
+                        .add(NEW_YEARS_EVE, 0L, PARK_STAGE_LEFT)
+                        .add(NEW_YEARS_EVE, 6000L, CARPENTER_UPSTAIRS)
                         .add(NEW_YEARS_EVE, 13000L, CARPENTER_DOWNSTAIRS)
                         .add(NEW_YEARS_EVE, 17000L, PARK_STAGE_LEFT)
                         .build();
 
         //General Store
-        GS_OWNER.setHasInfo(new GreetingSupermarket(GS_OWNER.getRegistryName()))
+        GS_OWNER.setQuest(Quests.SELL_STRAWBERRY)
+                .setHasInfo(new GreetingSupermarket(GS_OWNER.getRegistryName()))
                 .addGreeting(new GreetingBeforeDanieru(GS_OWNER));
         ScheduleBuilder.create(GS_OWNER, GENERAL_BEDROOM)
                         .add(SPRING, SUNDAY, 0L, GENERAL_BEDROOM)
@@ -181,7 +188,8 @@ public class HFNPCs {
                         .add(NEW_YEARS, 12000L, PARK_OAK)
                         .add(NEW_YEARS, 20000L, GENERAL_GARDEN)
                         .add(NEW_YEARS, 22000L, GENERAL_BEDROOM)
-                        .add(NEW_YEARS_EVE, 0L, GENERAL_BEDROOM)
+                        .add(NEW_YEARS_EVE, 0L, PARK_OAK)
+                        .add(NEW_YEARS_EVE, 6000L, GENERAL_BEDROOM)
                         .add(NEW_YEARS_EVE, 13000L, GENERAL_GARDEN)
                         .add(NEW_YEARS_EVE, 17000L, PARK_OAK)
                         .build();
@@ -212,7 +220,8 @@ public class HFNPCs {
                         .add(NEW_YEARS, 12000L, PARK_OAK)
                         .add(NEW_YEARS, 20000L, GENERAL_GARDEN)
                         .add(NEW_YEARS, 22000L, GENERAL_BED)
-                        .add(NEW_YEARS_EVE, 0L, GENERAL_BED)
+                        .add(NEW_YEARS_EVE, 0L, PARK_OAK)
+                        .add(NEW_YEARS_EVE, 6000L, GENERAL_BED)
                         .add(NEW_YEARS_EVE, 13000L, GENERAL_GARDEN)
                         .add(NEW_YEARS_EVE, 17000L, PARK_OAK)
                         .build();
@@ -236,12 +245,14 @@ public class HFNPCs {
                         .add(COOKING_CONTEST, 17000L, BARN_DOOR)
                         .add(COOKING_CONTEST, 19000L, GENERAL_BEDROOM)
                         .add(COOKING_CONTEST, 23500L, BARN_INSIDE)
-                        .add(NEW_YEARS_EVE, 0L, BARN_INSIDE)
+                        .add(NEW_YEARS_EVE, 0L, PARK_LEFT)
+                        .add(NEW_YEARS_EVE, 6000L, BARN_INSIDE)
                         .add(NEW_YEARS_EVE, 13000L, BARN_DOOR)
                         .add(NEW_YEARS_EVE, 17000L, PARK_LEFT)
                         .build();
 
         //Miner
+        MINER.setQuest(Quests.SELL_ORES);
         ScheduleBuilder.create(MINER, null).build();
 
         //Poultry Farm Owner
@@ -262,13 +273,15 @@ public class HFNPCs {
                         .add(COOKING_CONTEST, 6000L, PARK_BENCH)
                         .add(COOKING_CONTEST, 11000L, POULTRY_DOOR)
                         .add(COOKING_CONTEST, 13000L, POULTRY_CENTRE)
-                        .add(NEW_YEARS_EVE, 0L, POULTRY_CENTRE)
+                        .add(NEW_YEARS_EVE, 0L, PARK_LEFT)
+                        .add(NEW_YEARS_EVE, 6000L, POULTRY_CENTRE)
                         .add(NEW_YEARS_EVE, 13000L, POULTRY_DOOR)
                         .add(NEW_YEARS_EVE, 17000L, PARK_LEFT)
                         .build();
 
         //Fisherman
-        FISHERMAN.addGreeting(new GreetingLocation(FISHING_POND_PIER));
+        FISHERMAN.setQuest(Quests.SELL_HATCHERY)
+                .addGreeting(new GreetingLocation(FISHING_POND_PIER));
         ScheduleBuilder.create(FISHERMAN, FISHING_HUT_UPSTAIRS)
                         .add(SPRING, SUNDAY, 0L, FISHING_HUT_UPSTAIRS)
                         .add(SPRING, SATURDAY, 5000L, FISHING_POND_PIER)
@@ -299,12 +312,14 @@ public class HFNPCs {
                         .add(COOKING_CONTEST, 17500L, FISHING_POND_PIER)
                         .add(COOKING_CONTEST, 20000L, FISHING_HUT_DOWNSTAIRS)
                         .add(COOKING_CONTEST, 22000L, FISHING_HUT_UPSTAIRS)
-                        .add(NEW_YEARS_EVE, 0L, FISHING_HUT_UPSTAIRS)
+                        .add(NEW_YEARS_EVE, 0L, PARK_BOTTOM)
+                        .add(NEW_YEARS_EVE, 6000L, FISHING_HUT_UPSTAIRS)
                         .add(NEW_YEARS_EVE, 13000L, FISHING_HUT_DOWNSTAIRS)
                         .add(NEW_YEARS_EVE, 17000L, PARK_BOTTOM)
                         .build();
 
         //Cafe Owner
+        CAFE_OWNER.setQuest(Quests.SELL_MEALS);
         ScheduleBuilder.create(CAFE_OWNER, CAFE_BALCONY)
                         .add(SPRING, SUNDAY, 0L, CAFE_BALCONY)
                         .add(SPRING, SATURDAY, 5000L, GODDESS_POND_FRONT_LEFT)
@@ -329,7 +344,8 @@ public class HFNPCs {
                         .add(COOKING_CONTEST, 0L, CAFE_BALCONY)
                         .add(COOKING_CONTEST, 5000L, PARK_STALL)
                         .add(COOKING_CONTEST, 18000L, CAFE_BALCONY)
-                        .add(NEW_YEARS_EVE, 0L, CAFE_BALCONY)
+                        .add(NEW_YEARS_EVE, 0L, PARK_SPRUCE)
+                        .add(NEW_YEARS_EVE, 6000L, CAFE_BALCONY)
                         .add(NEW_YEARS_EVE, 13000L, CAFE_FRONT)
                         .add(NEW_YEARS_EVE, 17000L, PARK_SPRUCE)
                         .build();
@@ -360,7 +376,8 @@ public class HFNPCs {
                         .add(COOKING_CONTEST, 0L, CAFE_KITCHEN)
                         .add(COOKING_CONTEST, 5000L, PARK_CAFE)
                         .add(COOKING_CONTEST, 18000L, CAFE_KITCHEN)
-                        .add(NEW_YEARS_EVE, 0L, CAFE_KITCHEN)
+                        .add(NEW_YEARS_EVE, 0L, PARK_SPRUCE)
+                        .add(NEW_YEARS_EVE, 6000L, CAFE_KITCHEN)
                         .add(NEW_YEARS_EVE, 13000L, GODDESS_POND_FRONT_RIGHT)
                         .add(NEW_YEARS_EVE, 17000L, PARK_SPRUCE)
                         .build();
@@ -389,7 +406,8 @@ public class HFNPCs {
                         .add(SPRING, FRIDAY, 17000L, TOWNHALL_ENTRANCE)
                         .add(SPRING, FRIDAY, 20000L, PARK_OAK)
                         .add(SPRING, FRIDAY, 23000L, BLACKSMITH_FURNACE)
-                        .add(NEW_YEARS_EVE, 0L, BLACKSMITH_FURNACE)
+                        .add(NEW_YEARS_EVE, 17000L, PARK_BUSH)
+                        .add(NEW_YEARS_EVE, 6000L, BLACKSMITH_FURNACE)
                         .add(NEW_YEARS_EVE, 13000L, BLACKSMITH_FRONT)
                         .add(NEW_YEARS_EVE, 17000L, PARK_BUSH)
                         .build();
@@ -414,7 +432,8 @@ public class HFNPCs {
                         .add(NEW_YEARS, 12000L, PARK_SPRUCE)
                         .add(NEW_YEARS, 20000L, CLOCKMAKER_DOOR)
                         .add(NEW_YEARS, 22000L, CLOCKMAKER_DOWNSTAIRS)
-                        .add(NEW_YEARS_EVE, 0L, CLOCKMAKER_DOWNSTAIRS)
+                        .add(NEW_YEARS_EVE, 0L, PARK_BACK_LEFT)
+                        .add(NEW_YEARS_EVE, 6000L, CLOCKMAKER_DOWNSTAIRS)
                         .add(NEW_YEARS_EVE, 13000L, CLOCKMAKER_DOOR)
                         .add(NEW_YEARS_EVE, 17000L, PARK_BACK_LEFT)
                         .build();
@@ -438,7 +457,8 @@ public class HFNPCs {
                         .add(NEW_YEARS, 12000L, PARK_SPRUCE)
                         .add(NEW_YEARS, 19000L, CLOCKMAKER_DOWNSTAIRS)
                         .add(NEW_YEARS, 20000L, CLOCKMAKER_UPSTAIRS)
-                        .add(NEW_YEARS_EVE, 0L, CLOCKMAKER_UPSTAIRS)
+                        .add(NEW_YEARS_EVE, 0L, PARK_BACK_LEFT)
+                        .add(NEW_YEARS_EVE, 6000L, CLOCKMAKER_UPSTAIRS)
                         .add(NEW_YEARS_EVE, 13000L, CLOCKMAKER_DOWNSTAIRS)
                         .add(NEW_YEARS_EVE, 17000L, PARK_BACK_LEFT)
                         .build();
@@ -463,6 +483,10 @@ public class HFNPCs {
                         .add(NEW_YEARS, 12000L, PARK_BENCH)
                         .add(NEW_YEARS, 20000L, TOWNHALL_ENTRANCE)
                         .add(NEW_YEARS, 22000L, TOWNHALL_ADULT_BED)
+                        .add(NEW_YEARS_EVE, 0L, PARK_CUSTOMER)
+                        .add(NEW_YEARS_EVE, 6000L, TOWNHALL_ADULT_BED)
+                        .add(NEW_YEARS_EVE, 13000L, CHURCH_INSIDE)
+                        .add(NEW_YEARS_EVE, 17000L, PARK_CUSTOMER)
                         .build();
         //Mayor
         ScheduleBuilder.create(MAYOR, TOWNHALL_STAGE)
@@ -481,7 +505,8 @@ public class HFNPCs {
                         .add(NEW_YEARS, 12000L, PARK_PODIUM)
                         .add(NEW_YEARS, 20000L, TOWNHALL_STAGE)
                         .add(NEW_YEARS, 22000L, TOWNHALL_ADULT_BED)
-                        .add(NEW_YEARS_EVE, 0L, TOWNHALL_ADULT_BED)
+                        .add(NEW_YEARS_EVE, 0L, PARK_CUSTOMER)
+                        .add(NEW_YEARS_EVE, 6000L, TOWNHALL_ADULT_BED)
                         .add(NEW_YEARS_EVE, 13000L, TOWNHALL_STAGE)
                         .add(NEW_YEARS_EVE, 17000L, PARK_CUSTOMER)
                         .build();
@@ -504,7 +529,8 @@ public class HFNPCs {
                         .add(NEW_YEARS, 12000L, PARK_BENCH)
                         .add(NEW_YEARS, 20000L, TOWNHALL_RIGHT)
                         .add(NEW_YEARS, 22000L, TOWNHALL_TEEN_BED)
-                        .add(NEW_YEARS_EVE, 0L, TOWNHALL_TEEN_BED)
+                        .add(NEW_YEARS_EVE, 0L, PARK_CUSTOMER)
+                        .add(NEW_YEARS_EVE, 6000L, TOWNHALL_TEEN_BED)
                         .add(NEW_YEARS_EVE, 13000L, TOWNHALL_RIGHT)
                         .add(NEW_YEARS_EVE, 17000L, PARK_CUSTOMER)
                         .build();
@@ -527,7 +553,8 @@ public class HFNPCs {
                         .add(NEW_YEARS, 12000L, PARK_BENCH)
                         .add(NEW_YEARS, 19000L, TOWNHALL_LEFT)
                         .add(NEW_YEARS, 20000L, TOWNHALL_CHILD_BED)
-                        .add(NEW_YEARS_EVE, 0L, TOWNHALL_CHILD_BED)
+                        .add(NEW_YEARS_EVE, 0L, PARK_CUSTOMER)
+                        .add(NEW_YEARS_EVE, 6000L, TOWNHALL_CHILD_BED)
                         .add(NEW_YEARS_EVE, 13000L, TOWNHALL_LEFT)
                         .add(NEW_YEARS_EVE, 17000L, PARK_CUSTOMER)
                         .build();
@@ -548,7 +575,8 @@ public class HFNPCs {
                         .add(NEW_YEARS, 11500L, PARK_TRADER_RIGHT)
                         .add(NEW_YEARS, 22500L, TOWNHALL_ENTRANCE)
                         .add(NEW_YEARS, 23500L, TOWNHALL_RIGHT)
-                        .add(NEW_YEARS_EVE, 0L, TOWNHALL_RIGHT)
+                        .add(NEW_YEARS_EVE, 0L, PARK_TABLE)
+                        .add(NEW_YEARS_EVE, 6000L, TOWNHALL_RIGHT)
                         .add(NEW_YEARS_EVE, 13000L, TOWNHALL_ENTRANCE)
                         .add(NEW_YEARS_EVE, 17000L, PARK_TABLE)
                         .build();

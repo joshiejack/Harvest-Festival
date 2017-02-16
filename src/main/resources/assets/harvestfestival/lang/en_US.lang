@@ -2001,9 +2001,17 @@ harvestfestival.quest.festival.cooking.cancel=@Give me a minute.
 harvestfestival.script.cooking=This was a great contest! Had a taste of everyone's meals... And well I think I've decided..... ...... ................... ..... ..... In third place is %1$s with their %2$s. ..... .. ... . .......... .... .. .. .. .. . In second place we jave %3$s with their %4$s... and finally...... without... further ado.... the winner of this year's cooking festival is........... %5$s with their amazing %6$s. Congratulations! For this years prize we have a gift of %7$s gold as well as a special recipe!
 
 #New Years Eve
+harvestfestival.quest.festival.new.years.eve.start=Evenin, the new year is coming. Are ya ready to celebrate until morning with us?
 harvestfestival.quest.festival.new.years.eve.question=Do you want to start the countdown?
 harvestfestival.quest.festival.new.years.eve.option1=@Bring on the New Year!
 harvestfestival.quest.festival.new.years.eve.option2=@Give me a minute.
+harvestfestival.quest.festival.new.years.eve.intro=It's time to start the countdown for new year!
+harvestfestival.quest.festival.new.years.eve.5=Five!!............
+harvestfestival.quest.festival.new.years.eve.4=Four! :D
+harvestfestival.quest.festival.new.years.eve.3=Three! :O
+harvestfestival.quest.festival.new.years.eve.2=Twooooooo!!!
+harvestfestival.quest.festival.new.years.eve.1=One :D :D :D
+harvestfestival.quest.festival.new.years.eve.0=Happy New Year ya'll!!!!!!!!!!!!!!!!!!
 
 ### Letters
 harvestfestival.letter.new.years.eve=Alright there,\n\nWe're planning on taking part in some festivities to celebrate the coming new year tomorrow night. Jade and I'll be there for sure. I'd just love it if ya would attend. We'll be celebrating from 6pm!\n\n\n-Yulif

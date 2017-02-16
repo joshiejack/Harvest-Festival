@@ -2,12 +2,13 @@
   "pools": [
     {
       "name": "townhall_teenager",
-      "rolls": 3,
+      "rolls": 5,
       "entries": [
         {
           "type": "item",
           "name": "harvestfestival:crops",
-          "weight": 1,
+          "entryName": "pineapple",
+          "weight": 2,
           "functions": [
             {
               "function": "set_count",
@@ -25,6 +26,7 @@
         {
           "type": "item",
           "name": "harvestfestival:crops",
+          "entryName": "strawberry",
           "weight": 5,
           "functions": [
             {
@@ -37,6 +39,82 @@
             {
               "function": "hf_set_crop",
               "crop": "strawberry"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "harvestfestival:crops",
+          "entryName": "banana",
+          "weight": 2,
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 1,
+                "max": 1
+              }
+            },
+            {
+              "function": "hf_set_crop",
+              "crop": "banana"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "harvestfestival:crops",
+          "entryName": "peach",
+          "weight": 4,
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 1,
+                "max": 2
+              }
+            },
+            {
+              "function": "hf_set_crop",
+              "crop": "peach"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "harvestfestival:crops",
+          "entryName": "grape",
+          "weight": 4,
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 1,
+                "max": 2
+              }
+            },
+            {
+              "function": "hf_set_crop",
+              "crop": "grape"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "harvestfestival:crops",
+          "entryName": "orange",
+          "weight": 8,
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 1,
+                "max": 3
+              }
+            },
+            {
+              "function": "hf_set_crop",
+              "crop": "orange"
             }
           ]
         },
@@ -62,8 +140,8 @@
             {
               "function": "set_count",
               "count": {
-                "min": 7,
-                "max": 11
+                "min": 3,
+                "max": 5
               }
             }
           ]

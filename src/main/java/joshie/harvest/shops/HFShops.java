@@ -15,13 +15,13 @@ import joshie.harvest.api.crops.Crop;
 import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.shops.Shop;
 import joshie.harvest.buildings.HFBuildings;
+import joshie.harvest.calendar.HFFestivals;
 import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.core.HFCore;
 import joshie.harvest.core.block.BlockStorage.Storage;
 import joshie.harvest.core.util.annotations.HFLoader;
 import joshie.harvest.crops.HFCrops;
 import joshie.harvest.crops.block.BlockSprinkler.Sprinkler;
-import joshie.harvest.calendar.HFFestivals;
 import joshie.harvest.fishing.HFFishing;
 import joshie.harvest.fishing.block.BlockFishing.FishingBlock;
 import joshie.harvest.fishing.item.ItemFish.Fish;
@@ -36,7 +36,10 @@ import joshie.harvest.mining.item.ItemMaterial.Material;
 import joshie.harvest.mining.item.ItemMiningTool.MiningTool;
 import joshie.harvest.npcs.HFNPCs;
 import joshie.harvest.npcs.npc.NPCHolidayStore;
+import joshie.harvest.npcs.npc.NPCHolidayStoreSpecial;
+import joshie.harvest.quests.HFQuests;
 import joshie.harvest.quests.Quests;
+import joshie.harvest.quests.block.BlockQuestBoard.QuestBlock;
 import joshie.harvest.shops.purchasable.*;
 import joshie.harvest.shops.requirement.*;
 import joshie.harvest.shops.rules.SpecialRulesFriendship;
@@ -56,7 +59,9 @@ import static joshie.harvest.animals.block.BlockSizedStorage.SizedStorage.INCUBA
 import static joshie.harvest.animals.block.BlockTray.Tray.FEEDER_EMPTY;
 import static joshie.harvest.animals.block.BlockTray.Tray.NEST_EMPTY;
 import static joshie.harvest.animals.block.BlockTrough.Trough.WOOD;
-import static joshie.harvest.animals.item.ItemAnimalSpawner.Spawner.*;
+import static joshie.harvest.animals.item.ItemAnimalSpawner.Spawner.CHICKEN;
+import static joshie.harvest.animals.item.ItemAnimalSpawner.Spawner.COW;
+import static joshie.harvest.animals.item.ItemAnimalSpawner.Spawner.SHEEP;
 import static joshie.harvest.animals.item.ItemAnimalTool.Tool.*;
 import static joshie.harvest.api.calendar.Season.*;
 import static joshie.harvest.api.calendar.Weekday.*;
@@ -104,18 +109,20 @@ public class HFShops {
     
     private static void registerBarn() {
         BARN.addPurchasable(100, HFCrops.GRASS.getCropStack(1));
-        BARN.addPurchasable(1000, HFAnimals.TOOLS.getStackFromEnum(MEDICINE));
-        BARN.addPurchasable(new PurchasableEntity(EntityHarvestCow.class, 5000, HFAnimals.ANIMAL.getStackFromEnum(COW), true).setNote(HFNotes.COW_CARE));
-        BARN.addPurchasable(new PurchasableEntity(EntityHarvestSheep.class, 4000, HFAnimals.ANIMAL.getStackFromEnum(SHEEP), true).setNote(HFNotes.SHEEP_CARE));
-        BARN.addPurchasable(3000, HFAnimals.TOOLS.getStackFromEnum(MIRACLE_POTION), 1);
-        BARN.addPurchasable(500, HFAnimals.TROUGH.getStackFromEnum(WOOD), 3);
-        BARN.addPurchasable(250, new ItemStack(Items.NAME_TAG));
         BARN.addPurchasable(10, HFAnimals.TREATS.getStackFromEnum(Treat.GENERIC));
         BARN.addPurchasable(30, HFAnimals.TREATS.getStackFromEnum(Treat.COW));
         BARN.addPurchasable(30, HFAnimals.TREATS.getStackFromEnum(Treat.SHEEP));
+        BARN.addPurchasable(new PurchasableEntity(EntityHarvestCow.class, 5000, HFAnimals.ANIMAL.getStackFromEnum(COW), true).setNote(HFNotes.COW_CARE));
+        BARN.addPurchasable(new PurchasableEntity(EntityHarvestSheep.class, 4000, HFAnimals.ANIMAL.getStackFromEnum(SHEEP), true).setNote(HFNotes.SHEEP_CARE));
+        BARN.addPurchasable(500, HFAnimals.TROUGH.getStackFromEnum(WOOD), 3);
+        BARN.addPurchasable(1000, HFAnimals.TOOLS.getStackFromEnum(MEDICINE));
+        BARN.addPurchasable(3000, HFAnimals.TOOLS.getStackFromEnum(MIRACLE_POTION), 1);
+        BARN.addPurchasable(250, new ItemStack(Items.NAME_TAG));
+        BARN.addPurchasable(100, new ItemStack(Items.LEAD));
+        BARN.addPurchasable(1000, new ItemStack(Items.SADDLE));
         BARN.addPurchasable(1000, HFAnimals.TOOLS.getStackFromEnum(BRUSH), 1);
         BARN.addPurchasable(2000, HFAnimals.TOOLS.getStackFromEnum(MILKER), 1);
-        BARN.addPurchasable(1800, new ItemStack(Items.SHEARS), 1);
+        BARN.addPurchasable(2000, new ItemStack(Items.SHEARS), 1);
         BARN.setSpecialRules(new SpecialRulesQuest(Quests.JIM_MEET));
         BARN.addOpening(MONDAY, 10000, 15000).addOpening(TUESDAY, 10000, 15000).addOpening(WEDNESDAY, 10000, 15000);
         BARN.addOpening(THURSDAY, 10000, 15000).addOpening(FRIDAY, 10000, 15000).addOpening(SATURDAY, 10000, 15000);
@@ -250,16 +257,23 @@ public class HFShops {
             @Override
             public boolean canList(World world, EntityPlayer player) {
                 CalendarDate date = HFApi.calendar.getDate(world);
-                return (date.getYear() >= 1 || date.getSeason().ordinal() >= 1) && TownHelper.getClosestTownToEntity(player, false).hasBuilding(HFBuildings.MINING_HILL);
+                return (date.getYear() >= 1 || date.getSeason().ordinal() >= 1);
             }
         }.setStock(10).addTooltip("sprinkler.old"));
 
         CARPENTER.addPurchasable(new PurchasableMaterials(10000L, HFCrops.SPRINKLER.getStackFromEnum(Sprinkler.IRON), Logs.of(4), Silver.of(8)) {
             @Override
             public boolean canList(World world, EntityPlayer player) {
-                return HFApi.quests.hasCompleted(Quests.SELL_SPRINKLER, player) && TownHelper.getClosestTownToEntity(player, false).hasBuilding(HFBuildings.MINING_HILL);
+                return HFApi.quests.hasCompleted(Quests.SELL_SPRINKLER, player);
             }
         }.setStock(3).addTooltip("sprinkler.iron.tooltip"));
+
+        CARPENTER.addPurchasable(new PurchasableMaterials(500L, HFQuests.QUEST_BLOCK.getStackFromEnum(QuestBlock.BOARD), Logs.of(8), Gold.of(4)) {
+            @Override
+            public boolean canList(World world, EntityPlayer player) {
+                return TownHelper.getClosestTownToEntity(player, false).hasBuilding(HFBuildings.TOWNHALL);
+            }
+        }.setStock(1));
 
         CARPENTER.addPurchasable(new PurchasableMaterials(10, new ItemStack(Blocks.LOG)));
         CARPENTER.addPurchasable(new PurchasableMaterials(20, new ItemStack(Blocks.STONE)));
@@ -446,7 +460,8 @@ public class HFShops {
     private static Shop newHolidayShop(ResourceLocation resource, @Nullable NPC npc, Festival festival) {
         Shop shop = new Shop(resource).setOpensOnHolidays();
         if (npc != null) {
-            ((NPCHolidayStore)npc).setHolidayShop(festival, shop);
+            if (npc instanceof NPCHolidayStore) ((NPCHolidayStore)npc).setHolidayShop(festival, shop);
+            else if (npc instanceof NPCHolidayStoreSpecial) ((NPCHolidayStoreSpecial)npc).setHolidayShop(festival, shop);
         }
 
         return shop;

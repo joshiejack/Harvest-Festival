@@ -10,7 +10,6 @@ import joshie.harvest.core.helpers.InventoryHelper;
 import joshie.harvest.knowledge.HFNotes;
 import joshie.harvest.npcs.HFNPCs;
 import joshie.harvest.quests.HFQuests;
-import joshie.harvest.quests.Quests;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -151,7 +150,6 @@ public class QuestMeetYulif extends Quest {
 
     @Override
     public void onQuestCompleted(EntityPlayer player) {
-        HFApi.quests.completeQuestConditionally(Quests.BUILDING_CARPENTER, player);
         rewardGold(player, 1000);
     }
 }

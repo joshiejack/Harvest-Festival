@@ -69,8 +69,8 @@ public class NPCHelper implements INPCHelper {
         return npc.getHomeTown().getCoordinatesFor(location);
     }
 
-    public static Selection getShopSelection(World worldObj, BlockPos pos, NPC npc) {
-        Shop shop = npc.getShop(worldObj, pos);
+    public static Selection getShopSelection(World worldObj, BlockPos pos, NPC npc, EntityPlayer player) {
+        Shop shop = npc.getShop(worldObj, pos, player);
         ShopSelection selection = selections.get(shop);
         if (selection == null) {
             selection = new ShopSelection(shop);
@@ -105,7 +105,7 @@ public class NPCHelper implements INPCHelper {
     }
 
     public static boolean isShopOpen(EntityNPC npc, World world, @Nonnull EntityPlayer player) {
-        Shop shop = npc.getNPC().getShop(world, new BlockPos(npc));
+        Shop shop = npc.getNPC().getShop(world, new BlockPos(npc), player); //Grab the shop
         return (shop != null && isShopOpen(world, npc, player, shop) && canPlayerOpenShop(npc.getNPC(), shop, player)) && (shop.getContents().size() > 0);
     }
 

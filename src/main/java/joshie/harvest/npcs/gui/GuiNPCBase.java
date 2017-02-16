@@ -187,7 +187,7 @@ public abstract class GuiNPCBase extends GuiBase {
 
     boolean displayInfo() {
         return npc.getNPC().getInfoButton() != null && npc.getNPC().getInfoButton().canDisplay(npc.getNPC(), player)
-                && (npc.getNPC().getShop(player.worldObj, pos) == null || !NPCHelper.isShopOpen(player.worldObj, npc, player, npc.getNPC().getShop(player.worldObj, pos)));
+                && (npc.getNPC().getShop(player.worldObj, pos, player) == null || !NPCHelper.isShopOpen(player.worldObj, npc, player, npc.getNPC().getShop(player.worldObj, pos, player)));
     }
 
     public abstract void drawOverlay(int x, int y);

@@ -12,7 +12,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 public class NPCSpecialSeller extends NPC {
     protected Quest quest;
@@ -25,8 +25,8 @@ public class NPCSpecialSeller extends NPC {
     }
 
     @Override //If the current town hasn't enabled selling of sprinklers, then enable it
-    public Shop getShop(World world, BlockPos pos, @Nonnull EntityPlayer player) {
-        if (quest != null && HFApi.player.getRelationsForPlayer(player).getRelationship(npc) >= 15000) {
+    public Shop getShop(World world, BlockPos pos, @Nullable EntityPlayer player) {
+        if (player != null && quest != null && HFApi.player.getRelationsForPlayer(player).getRelationship(npc) >= 15000) {
             HFApi.quests.completeQuestConditionally(quest, player);
         }
 

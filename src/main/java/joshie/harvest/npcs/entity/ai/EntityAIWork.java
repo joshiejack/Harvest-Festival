@@ -26,7 +26,7 @@ public class EntityAIWork extends EntityAIBase {
     @Override
     public boolean shouldExecute() {
         BlockPos pos = new BlockPos(npc);
-        if(npc.getNPC().getShop(npc.worldObj, pos) != null && NPCHelper.isShopOpen(npc.worldObj, npc, null, npc.getNPC().getShop(npc.worldObj, pos))) {
+        if(npc.getNPC().getShop(npc.worldObj, pos, null) != null && NPCHelper.isShopOpen(npc.worldObj, npc, null, npc.getNPC().getShop(npc.worldObj, pos, null))) {
             target = NPCHelper.getCoordinatesForLocation(npc, getBuildingTarget(HFApi.calendar.getDate(npc.worldObj)));
             return target != null;
         } else {
@@ -36,7 +36,7 @@ public class EntityAIWork extends EntityAIBase {
 
     @Override
     public boolean continueExecuting() {
-        return NPCHelper.isShopOpen(npc.worldObj, npc, null, npc.getNPC().getShop(npc.worldObj, new BlockPos(npc)));
+        return NPCHelper.isShopOpen(npc.worldObj, npc, null, npc.getNPC().getShop(npc.worldObj, new BlockPos(npc), null));
     }
 
     @Override

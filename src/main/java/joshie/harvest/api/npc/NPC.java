@@ -26,7 +26,6 @@ import net.minecraftforge.fml.common.registry.RegistryBuilder;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.*;
 
@@ -180,7 +179,7 @@ public class NPC extends IForgeRegistryEntry.Impl<NPC> {
         return this == HFNPCs.CARPENTER;
     }
 
-    public Shop getShop(World world, BlockPos pos, @Nonnull EntityPlayer player) {
+    public Shop getShop(World world, BlockPos pos, @Nullable EntityPlayer player) {
         return shop;
     }
 

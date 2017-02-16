@@ -42,8 +42,8 @@ public class GuiNPCShop extends GuiNPCBase {
     public GuiNPCShop(EntityPlayer player, EntityNPC npc, int nextGui, boolean isSelling) {
         super(player, npc, nextGui);
         client = player;
-        shop = npc.getNPC().getShop(player.worldObj, pos);
-        if (shop == null || !NPCHelper.isShopOpen(npc.worldObj, npc, player, npc.getNPC().getShop(npc.worldObj, pos))) player.closeScreen();
+        shop = npc.getNPC().getShop(player.worldObj, pos, player);
+        if (shop == null || !NPCHelper.isShopOpen(npc.worldObj, npc, player, npc.getNPC().getShop(npc.worldObj, pos, player))) player.closeScreen();
         stats = HFTrackers.getClientPlayerTracker().getStats();
         selling = isSelling;
     }

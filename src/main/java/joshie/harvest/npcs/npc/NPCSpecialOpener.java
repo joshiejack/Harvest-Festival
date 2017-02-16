@@ -11,7 +11,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 public class NPCSpecialOpener extends NPCSpecialSeller {
     public NPCSpecialOpener(ResourceLocation resource, Gender gender, Age age, CalendarDate birthday, int insideColor, int outsideColor) {
@@ -19,8 +19,8 @@ public class NPCSpecialOpener extends NPCSpecialSeller {
     }
 
     @Override //If the current town hasn't enabled selling of sprinklers, then enable it
-    public Shop getShop(World world, BlockPos pos, @Nonnull EntityPlayer player) {
-        if (quest != null && HFApi.player.getRelationsForPlayer(player).getRelationship(npc) >= 15000) {
+    public Shop getShop(World world, BlockPos pos, @Nullable EntityPlayer player) {
+        if (player != null && quest != null && HFApi.player.getRelationsForPlayer(player).getRelationship(npc) >= 15000) {
             HFApi.quests.completeQuestConditionally(Quests.OPEN_WEDNESDAYS, player);
             HFApi.quests.completeQuestConditionally(quest, player);
         }

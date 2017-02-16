@@ -11,7 +11,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 public class NPCHolidayStoreSpecial extends NPCSpecialSeller {
     private Shop shop;
@@ -21,7 +21,7 @@ public class NPCHolidayStoreSpecial extends NPCSpecialSeller {
     }
 
     @Override
-    public Shop getShop(World world, BlockPos pos, @Nonnull EntityPlayer player) {
+    public Shop getShop(World world, BlockPos pos, @Nullable EntityPlayer player) {
         Festival festival = HFApi.calendar.getFestival(world, pos);
         if (festival.equals(this.festival)) return shop;
         else return super.getShop(world, pos, player);

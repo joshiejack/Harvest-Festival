@@ -73,12 +73,12 @@ public class CalendarHelper {
     }
 
     public static int getYearsPassed(CalendarDate birthday, CalendarDate date) {
-        int current_total_days = getTotalDays(date);
-        int birthday_total_days = getTotalDays(birthday);
+        double current_total_days = getTotalDays(date);
+        double birthday_total_days = getTotalDays(birthday);
         int one_year = DAYS_PER_SEASON * 4;
         
-        int years_passed = current_total_days / one_year; 
-        int birthday_years = birthday_total_days / one_year;
+        int years_passed = (int) Math.floor(current_total_days / one_year);
+        int birthday_years = (int) Math.floor(birthday_total_days / one_year);
                 
         return Math.max(0, years_passed - birthday_years);
     }

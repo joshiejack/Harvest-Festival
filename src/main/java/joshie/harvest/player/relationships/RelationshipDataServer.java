@@ -69,7 +69,7 @@ public class RelationshipDataServer extends RelationshipData {
         EntityPlayerMP player = master.getAndCreatePlayer();
         if (player != null) {
             if (newValue >= 5000) player.addStat(HFAchievements.friend);
-            syncRelationship(player, npc, newValue);
+            PacketHandler.sendToClient(new PacketSyncRelationship(npc, newValue), player);
         }
     }
 
@@ -77,11 +77,7 @@ public class RelationshipDataServer extends RelationshipData {
         PacketHandler.sendToClient(new PacketSyncRelationsConnect(writeToNBT(new NBTTagCompound())), player);
     }
 
-    public void syncRelationship(EntityPlayerMP player, NPC npc, int value) {
-        PacketHandler.sendToClient(new PacketSyncRelationship(npc, value), player);
-    }
-
-    public void syncStatus(EntityPlayerMP player, NPC npc, RelationStatus status, boolean value) {
+    private void syncStatus(EntityPlayerMP player, NPC npc, RelationStatus status, boolean value) {
         PacketHandler.sendToClient(new PacketSyncGifted(npc, status, value), player);
     }
 

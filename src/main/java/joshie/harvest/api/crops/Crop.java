@@ -103,7 +103,8 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements IPlantable {
     }
 
     /**
-     * Set the year this crop is unlocked for purchased
+     * Set the number of years that have to have passed,
+     * for this crop to be purchasable
      **/
     public Crop setUnlocked(int year) {
         this.year = year;

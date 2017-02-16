@@ -1,27 +1,21 @@
 {
-    "parent": "block/block",
-    "textures": {
-        "particle": "harvestfestival:models/mailbox2",
-        "texture": "harvestfestival:models/mailbox1"
-    },
+  "parent": "block/block",
+  "display": {
+    "gui": {
+      "rotation": [ 30, 225, 0 ],
+      "translation": [ 5, -3, 0],
+      "scale":[ 0.825, 0.825, 0.825 ]
+    }
+  },
+  "textures": {
+    "particle": "harvestfestival:models/mailbox2",
+    "texture": "harvestfestival:models/mailbox1"
+  },
   "elements": [
     {
-      "__comment": "Post",
-      "from": [ 7, 0, 10.5 ],
-      "to": [ 9, 14, 12.5 ],
-      "faces": {
-        "down":  { "uv": [ 5, 11, 9, 15 ], "texture": "#texture" },
-        "up":    { "uv": [ 5, 11, 9, 15 ], "texture": "#texture" },
-        "north": { "uv": [ 0, 0, 4, 16 ], "texture": "#texture" },
-        "south": { "uv": [ 0, 0, 4, 16 ], "texture": "#texture" },
-        "west":  { "uv": [ 0, 0, 4, 16 ], "texture": "#texture" },
-        "east":  { "uv": [ 0, 0, 4, 16 ], "texture": "#texture" }
-      }
-    },
-    {
       "__comment": "Post_Lower",
-      "from": [ 7, 7, 4.5 ],
-      "to": [ 9, 7.5, 10.5 ],
+      "from": [ 6.5, 3, 13 ],
+      "to": [ 9.5, 5, 27 ],
       "faces": {
         "down":  { "uv": [ 12, 7, 16, 16 ], "texture": "#texture" },
         "up":    { "uv": [ 12, 7, 16, 16 ], "texture": "#texture" },
@@ -33,8 +27,8 @@
     },
     {
       "__comment": "Mailbox",
-      "from": [ 5.5, 7.5, 3.5 ],
-      "to": [ 10.5, 11.5, 10.5 ],
+      "from": [ 3, 5, 10 ],
+      "to": [ 13, 13, 22 ],
       "faces": {
         "down":  { "uv": [ 1, 6, 9, 16 ], "texture": "#particle" },
         "up":    { "uv": [ 1, 6, 9, 16 ], "texture": "#particle" },
@@ -46,8 +40,8 @@
     },
     {
       "__comment": "Mailbox_Centre",
-      "from": [ 6, 11.5, 3.5 ],
-      "to": [ 10, 12, 10.5 ],
+      "from": [ 4, 13, 10 ],
+      "to": [ 12, 14, 22 ],
       "faces": {
         "down":  { "uv": [ 4, 6, 10, 16 ], "texture": "#particle" },
         "up":    { "uv": [ 4, 6, 10, 16 ], "texture": "#particle" },
@@ -59,8 +53,8 @@
     },
     {
       "__comment": "Mailbox_Top",
-      "from": [ 6.5, 12, 3.5 ],
-      "to": [ 9.5, 12.5, 10.5 ],
+      "from": [ 5, 14, 10 ],
+      "to": [ 11, 15, 22 ],
       "faces": {
         "down":  { "uv": [ 5, 6, 9, 16 ], "texture": "#particle" },
         "up":    { "uv": [ 5, 6, 9, 16 ], "texture": "#particle" },
@@ -72,9 +66,9 @@
     },
     {
       "__comment": "Post_Lower*",
-      "from": [ 7, 7, 8 ],
-      "to": [ 9, 8, 12.5 ],
-      "rotation": { "origin": [ 7, 8, 8 ], "axis": "x", "angle": 45 },
+      "from": [ 6.5, 3, 17 ],
+      "to": [ 9.5, 5, 26 ],
+      "rotation": { "origin": [ 6.5, 5, 17 ], "axis": "x", "angle": 45 },
       "faces": {
         "down":  { "uv": [ 12, 7, 16, 16 ], "texture": "#texture" },
         "up":    { "uv": [ 12, 7, 16, 16 ], "texture": "#texture" },

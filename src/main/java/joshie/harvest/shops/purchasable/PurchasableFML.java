@@ -7,6 +7,7 @@ import joshie.harvest.core.helpers.InventoryHelper;
 import joshie.harvest.core.helpers.SpawnItemHelper;
 import joshie.harvest.core.helpers.TextHelper;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.IForgeRegistry;
@@ -69,12 +70,16 @@ public abstract class PurchasableFML<I extends IForgeRegistryEntry.Impl<I>> impl
         return cost;
     }
 
+    protected ItemStack getPurchasedStack() {
+        return getDisplayStack();
+    }
+
     @Override
     public void onPurchased(EntityPlayer player) {
         if (getCost() < 0) {
-            InventoryHelper.takeItemsInInventory(player, ITEM_STACK, getDisplayStack(), getDisplayStack().stackSize);
+            InventoryHelper.takeItemsInInventory(player, ITEM_STACK, getPurchasedStack(), getPurchasedStack().stackSize);
         } else {
-            SpawnItemHelper.addToPlayerInventory(player, getDisplayStack().copy());
+            SpawnItemHelper.addToPlayerInventory(player, getPurchasedStack().copy());
         }
 
         if (note != null) HFApi.player.getTrackingForPlayer(player).learnNote(note);

@@ -25,7 +25,7 @@ import java.util.Locale;
 public class PurchasableMaterials extends PurchasableFML<Building> implements IPurchaseableMaterials {
     private final String resource;
     private ItemStack stack;
-    private final IRequirement[] requirements;
+    protected final IRequirement[] requirements;
 
     public PurchasableMaterials(long cost, int logs, int stone, ResourceLocation name) {
         super(cost, name);

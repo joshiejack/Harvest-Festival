@@ -52,9 +52,11 @@ public class ItemBuilding extends ItemHFFML<ItemBuilding, Building> implements I
                     if (key != null) {
                         if (!world.isRemote) {
                             HFTemplate template = BuildingRegistry.INSTANCE.getTemplateForBuilding(building);
-                            template.placeBlocks(world, key.getPos(), key.getRotation(), building);
-                            if (HFBuildings.CHEAT_BUILDINGS) {
-                                TownHelper.<TownDataServer>getClosestTownToBlockPos(world, pos, false).createOrUpdateBuilder((WorldServer)world, pos);
+                            if (template != null) {
+                                template.placeBlocks(world, key.getPos(), key.getRotation(), building);
+                                if (HFBuildings.CHEAT_BUILDINGS) {
+                                    TownHelper.<TownDataServer>getClosestTownToBlockPos(world, pos, false).createOrUpdateBuilder((WorldServer) world, pos);
+                                }
                             }
                         }
 

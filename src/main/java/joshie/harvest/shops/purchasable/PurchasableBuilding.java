@@ -2,7 +2,7 @@ package joshie.harvest.shops.purchasable;
 
 import joshie.harvest.api.buildings.Building;
 import joshie.harvest.api.shops.IRequirement;
-import joshie.harvest.core.helpers.SpawnItemHelper;
+import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.core.helpers.TextHelper;
 import joshie.harvest.town.TownHelper;
 import joshie.harvest.town.data.TownData;
@@ -39,8 +39,8 @@ public class PurchasableBuilding extends PurchasableMaterials {
     }
 
     @Override
-    public void onPurchased(EntityPlayer player) {
-        SpawnItemHelper.addToPlayerInventory(player, building.getBlueprint());
+    protected ItemStack getPurchasedStack() {
+        return HFBuildings.CHEAT_BUILDINGS ? building.getSpawner() : building.getBlueprint();
     }
 
     @Override

@@ -13,6 +13,7 @@ import joshie.harvest.api.core.ITiered.ToolTier;
 import joshie.harvest.api.core.Size;
 import joshie.harvest.api.crops.Crop;
 import joshie.harvest.api.npc.NPC;
+import joshie.harvest.api.quests.Quest;
 import joshie.harvest.api.shops.Shop;
 import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.calendar.HFFestivals;
@@ -39,6 +40,7 @@ import joshie.harvest.npcs.npc.NPCHolidayStore;
 import joshie.harvest.npcs.npc.NPCHolidayStoreSpecial;
 import joshie.harvest.quests.HFQuests;
 import joshie.harvest.quests.Quests;
+import joshie.harvest.quests.base.QuestRecipe;
 import joshie.harvest.quests.block.BlockQuestBoard.QuestBlock;
 import joshie.harvest.shops.purchasable.*;
 import joshie.harvest.shops.requirement.*;
@@ -53,15 +55,14 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import static joshie.harvest.animals.block.BlockSizedStorage.SizedStorage.INCUBATOR;
 import static joshie.harvest.animals.block.BlockTray.Tray.FEEDER_EMPTY;
 import static joshie.harvest.animals.block.BlockTray.Tray.NEST_EMPTY;
 import static joshie.harvest.animals.block.BlockTrough.Trough.WOOD;
-import static joshie.harvest.animals.item.ItemAnimalSpawner.Spawner.CHICKEN;
-import static joshie.harvest.animals.item.ItemAnimalSpawner.Spawner.COW;
-import static joshie.harvest.animals.item.ItemAnimalSpawner.Spawner.SHEEP;
+import static joshie.harvest.animals.item.ItemAnimalSpawner.Spawner.*;
 import static joshie.harvest.animals.item.ItemAnimalTool.Tool.*;
 import static joshie.harvest.api.calendar.Season.*;
 import static joshie.harvest.api.calendar.Weekday.*;
@@ -315,14 +316,14 @@ public class HFShops {
 
     private static void registerPoultry() {
         POULTRY.addPurchasable(50, HFAnimals.TOOLS.getStackFromEnum(CHICKEN_FEED));
-        POULTRY.addPurchasable(1000, HFAnimals.TOOLS.getStackFromEnum(MEDICINE));
-        POULTRY.addPurchasable(new PurchasableEntity(EntityHarvestChicken.class, 1500, HFAnimals.ANIMAL.getStackFromEnum(CHICKEN), false).setNote(HFNotes.CHICKEN_CARE));
-        POULTRY.addPurchasable(250, new ItemStack(Items.NAME_TAG));
         POULTRY.addPurchasable(10, HFAnimals.TREATS.getStackFromEnum(Treat.GENERIC));
         POULTRY.addPurchasable(30, HFAnimals.TREATS.getStackFromEnum(Treat.CHICKEN));
+        POULTRY.addPurchasable(new PurchasableEntity(EntityHarvestChicken.class, 1500, HFAnimals.ANIMAL.getStackFromEnum(CHICKEN), false).setNote(HFNotes.CHICKEN_CARE));
+        POULTRY.addPurchasable(1000, HFAnimals.TOOLS.getStackFromEnum(MEDICINE));
+        POULTRY.addPurchasable(250, new ItemStack(Items.NAME_TAG));
         POULTRY.addPurchasable(500, HFAnimals.TRAY.getStackFromEnum(FEEDER_EMPTY), 3);
         POULTRY.addPurchasable(1000, HFAnimals.TRAY.getStackFromEnum(NEST_EMPTY), 3);
-        POULTRY.addPurchasable(7500, HFAnimals.SIZED.getStackFromEnum(INCUBATOR), 1);
+        POULTRY.addPurchasable(5000, HFAnimals.SIZED.getStackFromEnum(INCUBATOR), 1);
         POULTRY.setSpecialRules(new SpecialRulesQuest(Quests.ASHLEE_MEET));
         POULTRY.addOpening(SUNDAY, 5000, 5999).addOpening(MONDAY, 5000, 11000).addOpening(TUESDAY, 5000, 11000).addOpening(WEDNESDAY, 5000, 11000);
         POULTRY.addOpening(THURSDAY, 5000, 11000).addOpening(FRIDAY, 5000, 11000).addOpening(SATURDAY, 6000, 11000);
@@ -453,6 +454,18 @@ public class HFShops {
         COOKING_FESTIVAL_RECIPES.addPurchasable(new PurchasableRecipe(new ResourceLocation(MODID, "pancake")));
         COOKING_FESTIVAL_RECIPES.addPurchasable(new PurchasableRecipe(new ResourceLocation(MODID, "rice_matsutake")));
         COOKING_FESTIVAL_RECIPES.addPurchasable(new PurchasableRecipe(new ResourceLocation(MODID, "rice_mushroom")));
+        //Add all the recipes the player has learnt from friendship to the list
+        for (Quest quest: Quest.REGISTRY) {
+            if (quest instanceof QuestRecipe) {
+                COOKING_FESTIVAL_RECIPES.addPurchasable(new PurchasableRecipe(new ResourceLocation(MODID, ((QuestRecipe)quest).recipe)) {
+                    @Override
+                    public boolean canList(@Nonnull World world, @Nonnull EntityPlayer player) {
+                        return HFApi.quests.hasCompleted(quest, player);
+                    }
+                }.setStock(1));
+            }
+        }
+
         COOKING_FESTIVAL_RECIPES.addOpening(MONDAY, 6000, 18000).addOpening(TUESDAY, 6000, 18000).addOpening(WEDNESDAY, 6000, 18000).addOpening(THURSDAY, 6000, 18000)
                 .addOpening(FRIDAY, 6000, 18000).addOpening(SATURDAY, 6000, 18000).addOpening(SUNDAY, 6000, 18000);
     }

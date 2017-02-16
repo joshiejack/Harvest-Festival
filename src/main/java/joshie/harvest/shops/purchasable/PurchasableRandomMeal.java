@@ -39,7 +39,7 @@ public class PurchasableRandomMeal extends PurchasableMeal {
 
     @Override
     public boolean canList(@Nonnull World world, @Nonnull EntityPlayer player) {
-        return HFApi.quests.hasCompleted(Quests.SELL_ORES, player) && canDo(world, player, 1);
+        return HFApi.quests.hasCompleted(Quests.SELL_MEALS, player) && canDo(world, player, 1);
     }
 
     @Override

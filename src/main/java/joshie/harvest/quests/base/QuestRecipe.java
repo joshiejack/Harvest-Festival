@@ -9,7 +9,7 @@ import net.minecraft.item.ItemStack;
 import java.util.Set;
 
 public class QuestRecipe extends QuestFriendship {
-    protected final String recipe;
+    public final String recipe;
 
     public QuestRecipe(String recipe, NPC npc, int relationship) {
         super(npc, relationship);

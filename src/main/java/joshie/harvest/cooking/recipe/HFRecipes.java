@@ -160,6 +160,7 @@ public class HFRecipes {
         addOvenRecipe(Meal.CAKE, 1.3F, 1.1F, EGG, FLOUR, BUTTER, CAKE_FRUIT).setOptionalIngredients(ORANGE, PINEAPPLE, STRAWBERRY, PEACH, GRAPE); //Liara 12500RP
         addOvenRecipe(Meal.PIE_APPLE, 1.2F, 1.1F, APPLE, EGG, BUTTER, FLOUR); //Katlin 20000RP
         //Vanilla style
+        addOvenRecipe("vanilla_cake", new ItemStack(Items.CAKE), MILK, EGG, SUGAR, FLOUR).setDefault();
         addOvenRecipe("bread", new ItemStack(Items.BREAD), FLOUR).setDefault();
         addOvenRecipe("baked_potato", new ItemStack(Items.BAKED_POTATO), POTATO).setDefault();
         addOvenRecipe("cooked_chicken", new ItemStack(Items.COOKED_CHICKEN), CHICKEN).setDefault();

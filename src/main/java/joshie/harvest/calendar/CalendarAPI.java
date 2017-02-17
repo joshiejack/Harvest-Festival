@@ -22,15 +22,15 @@ public class CalendarAPI implements CalendarManager {
     private final TIntObjectMap<SeasonProvider> providers = new TIntObjectHashMap<>();
     private final HashMap<CalendarDate, Festival> festivals = new HashMap<>();
 
-    //Winter: Leaves 0xFFFFFF | Grass 0xFFFFFF
-    //Autumn: Leaves 0xFF9900 | Grass 0xB25900
-    //Summer: Leaves NONE     | Grass 0x4A9C2E
-    //Spring: Leaves 0x80B76C     | Grass NONE
     private CalendarAPI() {
-        data.put(Season.SPRING, new SeasonData(Season.SPRING, 0x87CEFA, 0, 0x80B76C, 0.65D, 0.0F, 80D, 100D, 0D, 0D, 0D));
-        data.put(Season.SUMMER, new SeasonData(Season.SUMMER, 7972863, 0x4A9C2E, 0, 0.4D, 0.0011F, 98D, 99D, 100D, 0D, 0D));
-        data.put(Season.AUTUMN, new SeasonData(Season.AUTUMN, 0x8CBED6, 0xB25900, 0xFF9900, 1.08D, -0.07F, 50D, 100D, 0D, 0D, 0D));
-        data.put(Season.WINTER, new SeasonData(Season.WINTER, 0xFFFFFF, 0xFFFFFF, 0xCCCCCC, 1.56D, -0.1375F, 45D, 0D, 0D, 90D, 100D));
+        data.put(Season.SPRING, new SeasonData(Season.SPRING, 0x87CEFA, 6000, 20500).setLeavesColor(0x80B76C)
+                                    .setWeatherWeight(Weather.SUNNY, 5D).setWeatherWeight(Weather.RAIN, 1D));
+        data.put(Season.SUMMER, new SeasonData(Season.SUMMER, 7972863, 5000, 21500).setGrassColor(0x4A9C2E)
+                                    .setWeatherWeight(Weather.SUNNY, 15D).setWeatherWeight(Weather.RAIN, 1D).setWeatherWeight(Weather.TYPHOON, 0.1D));
+        data.put(Season.AUTUMN, new SeasonData(Season.AUTUMN, 0x8CBED6, 7000, 19000).setGrassColor(0xB25900).setLeavesColor(0xFF9900)
+                                    .setWeatherWeight(Weather.RAIN, 5D).setWeatherWeight(Weather.SUNNY, 5D));
+        data.put(Season.WINTER, new SeasonData(Season.WINTER, 0xFFFFFF, 8000, 16500).setGrassColor(0xFFFFFF).setLeavesColor(0xCCCCCC)
+                                    .setWeatherWeight(Weather.SUNNY, 4D).setWeatherWeight(Weather.SNOW, 5D).setWeatherWeight(Weather.BLIZZARD, 1D));
     }
 
     public Festival getFestivalFromDate(CalendarDate date) {
@@ -60,6 +60,11 @@ public class CalendarAPI implements CalendarManager {
     @Override
     public Weather getWeather(World world) {
         return HFTrackers.getCalendar(world).getTodaysWeather();
+    }
+
+    @Override
+    public Weekday getWeekday(World world) {
+        return CalendarHelper.getWeekday(world.getWorldTime());
     }
 
     //We're offsetting the day in the calendar, so that the letter gets sent the day before the event

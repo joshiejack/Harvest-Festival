@@ -26,10 +26,13 @@ public class ContainerNPCChat extends ContainerBase {
         this.hasBeenClosed = false;
         this.sneaking = player.isSneaking();
         this.quest = QuestHelper.getCurrentQuest(player, npc);
-        if (this.quest != null && nextGui == GuiHandler.NEXT_NONE) {
-            Selection selection = this.quest.getSelection(player, npc.getNPC());
-            if (selection != null && !selection.isSelected()) {
-                this.nextGui = SELECTION;
+        if (this.quest != null) {
+            this.quest.onQuestSelectedForDisplay(player, npc, npc.getNPC());
+            if (nextGui == GuiHandler.NEXT_NONE) {
+                Selection selection = this.quest.getSelection(player, npc.getNPC());
+                if (selection != null && !selection.isSelected()) {
+                    this.nextGui = SELECTION;
+                }
             }
         }
     }

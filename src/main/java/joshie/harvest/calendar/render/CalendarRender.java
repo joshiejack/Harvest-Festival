@@ -110,7 +110,7 @@ public class CalendarRender {
         if (HFApi.calendar.getDate(MCClientHelper.getWorld()).getSeason() == Season.AUTUMN) {
             event.setNewColor(0xFF9900);
         } else {
-            int leaves = HFTrackers.getCalendar(MCClientHelper.getWorld()).getSeasonData().getLeavesColor();
+            int leaves = HFTrackers.getCalendar(MCClientHelper.getWorld()).getSeasonData().leavesColor;
             if (leaves != 0) {
                 event.setNewColor(CalendarHelper.getBlendedColour(leavesToBlend, event.getOriginalColor(), leaves));
             }
@@ -119,7 +119,7 @@ public class CalendarRender {
 
     @SubscribeEvent
     public void getGrassColor(GetGrassColor event) {
-        int grass = HFTrackers.getCalendar(MCClientHelper.getWorld()).getSeasonData().getGrassColor();
+        int grass = HFTrackers.getCalendar(MCClientHelper.getWorld()).getSeasonData().grassColor;
         if (grass != 0) {
             event.setNewColor(CalendarHelper.getBlendedColour(grassToBlend, event.getOriginalColor(), grass));
         }

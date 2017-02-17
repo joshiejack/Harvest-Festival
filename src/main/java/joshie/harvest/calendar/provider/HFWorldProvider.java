@@ -3,10 +3,8 @@ package joshie.harvest.calendar.provider;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.calendar.Weather;
-import joshie.harvest.calendar.HFCalendar;
 import joshie.harvest.calendar.SnowLoader;
 import joshie.harvest.calendar.data.Calendar;
-import joshie.harvest.calendar.data.SeasonData;
 import joshie.harvest.calendar.render.WeatherRenderer;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.helpers.MCClientHelper;
@@ -29,6 +27,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nonnull;
+
+import static joshie.harvest.calendar.HFCalendar.TICKS_PER_DAY;
 
 public class HFWorldProvider extends WorldProviderSurface {
     @SideOnly(Side.CLIENT)
@@ -82,7 +82,7 @@ public class HFWorldProvider extends WorldProviderSurface {
             distance = ranges[settings.renderDistanceChunks];
         }
 
-        int original = HFTrackers.getCalendar(MCClientHelper.getWorld()).getSeasonData().getSkyColor();
+        int original = HFTrackers.getCalendar(MCClientHelper.getWorld()).getSeasonData().skyColor;
         int r = (original & 0xFF0000) >> 16;
         int g = (original & 0x00FF00) >> 8;
         int b = original & 0x0000FF;
@@ -176,23 +176,14 @@ public class HFWorldProvider extends WorldProviderSurface {
         return new Vec3d((double) f4, (double) f5, (double) f6);
     }
 
-    private double clamp(double min, double max, double val) {
-        return Math.max(min, Math.min(max, val));
-    }
-
-    /**
-     * Cheers to chylex for a bunch of the maths on this one ;D
-     **/
     @Override
     public float calculateCelestialAngle(long worldTime, float partialTicks) {
         Calendar calendar = HFTrackers.getCalendar(worldObj);
-        if (calendar == null) return 1F;
-        SeasonData data = calendar.getSeasonData();
-        int time = (int) (worldTime % HFCalendar.TICKS_PER_DAY);
-        double fac = data.getCelestialLengthFactor();
-        float chylex = (float) (clamp(0, 1000D, time) + 11000D * (clamp(0, 11000D, time - 1000D) / 11000D) * fac + clamp(0, 1000D, time - 12000D) + 11000D * (clamp(0, 11000D, time - 12000D) / 11000D) * (2 - fac));
-        float angle = (chylex / HFCalendar.TICKS_PER_DAY) - 0.25F;
-        return angle + data.getCelestialAngleOffset();
+        if (calendar != null) {
+            return calendar.getSeasonData().getCelestialAngle((int) (worldTime % TICKS_PER_DAY) + 6000);
+        }
+
+        return 1F;
     }
 
     @Override

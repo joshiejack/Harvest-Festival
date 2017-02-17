@@ -82,16 +82,8 @@ public class CalendarServer extends Calendar {
             season = getNextSeason(season);
         }
 
-        SeasonData data = CalendarAPI.INSTANCE.getDataForSeason(season);
-        for (Weather weather : Weather.values()) {
-            if (!isWeatherEnabled(weather)) continue;
-            double chance = data.getWeatherChance(weather);
-            if (chance > 0D && rand.nextDouble() * 100D < chance) {
-                return weather;
-            }
-        }
-
-        return Weather.SUNNY;
+        Weather weather = CalendarAPI.INSTANCE.getDataForSeason(season).getWeather(rand);
+        return isWeatherEnabled(weather) ? weather : Weather.SUNNY;
     }
 
     private boolean isWeatherEnabled(Weather weather) {
@@ -132,7 +124,7 @@ public class CalendarServer extends Calendar {
     public void readFromNBT(NBTTagCompound nbt) {
         if (nbt.hasKey("Date")) {
             CalendarDate date = CalendarDate.fromNBT(nbt.getCompoundTag("Date"));
-            DATE.setDate(date.getWeekday(), date.getDay(), date.getSeason(), date.getYear());
+            DATE.setDate(date.getDay(), date.getSeason(), date.getYear());
         }
 
         rainStrength = nbt.getFloat("Rain");

@@ -138,13 +138,22 @@ public class QuestBlacksmithing extends QuestTrade {
         } else return 0D;
     }
 
+    private CalendarDate today;
+    private Weekday weekday;
+    private long daytime;
+
+    @Override
+    public void onQuestSelectedForDisplay(EntityPlayer player, EntityLiving entity, NPC npc) {
+        today = HFApi.calendar.getDate(player.worldObj);
+        weekday = HFApi.calendar.getWeekday(player.worldObj);
+        daytime = CalendarHelper.getTime(player.worldObj);
+    }
+
     @SideOnly(Side.CLIENT)
     @Override
     public String getLocalizedScript(EntityPlayer player, EntityLiving entity, NPC npc) {
-        CalendarDate today = HFApi.calendar.getDate(player.worldObj);
-        long daytime = CalendarHelper.getTime(player.worldObj);
         if (quest_stage == TEST) {
-            if (today.getWeekday() == Weekday.THURSDAY || daytime < 10000 || daytime > 16000) return getLocalized("closed.start");
+            if (weekday == Weekday.THURSDAY || daytime < 10000 || daytime > 16000) return getLocalized("closed.start");
             //Repairing
             ToolTier broken = isHoldingBrokenTool(player);
             if (broken != null) {
@@ -180,7 +189,7 @@ public class QuestBlacksmithing extends QuestTrade {
             } else return null;
         } else {
             if (getDifference(date, today) >= days) {
-                if (today.getWeekday() == Weekday.THURSDAY || daytime < 10000 || daytime > 16000) return getLocalized("closed.finish", tool.getDisplayName());
+                if (weekday == Weekday.THURSDAY || daytime < 10000 || daytime > 16000) return getLocalized("closed.finish", tool.getDisplayName());
                 return getLocalized("done", tool.getDisplayName());
             }
 
@@ -191,10 +200,8 @@ public class QuestBlacksmithing extends QuestTrade {
     @Override
     @SuppressWarnings("ConstantConditions")
     public void onChatClosed(EntityPlayer player, EntityLiving entity, NPC npc, boolean wasSneaking) {
-        CalendarDate today = HFApi.calendar.getDate(player.worldObj);
-        long daytime = CalendarHelper.getTime(player.worldObj);
         if (quest_stage == TEST) {
-            if (today.getWeekday() == Weekday.THURSDAY || daytime < 10000 || daytime > 16000) return;
+            if (weekday == Weekday.THURSDAY || daytime < 10000 || daytime > 16000) return;
             //Repairing
             ToolTier broken = isHoldingBrokenTool(player);
             if (broken != null) {
@@ -206,7 +213,7 @@ public class QuestBlacksmithing extends QuestTrade {
                     tool = player.getHeldItemMainhand().copy();
                     tool.getSubCompound("Data", true).setInteger("Damage", 0);
                     tool.getSubCompound("Data", true).setDouble("Level", tool.getSubCompound("Data", true).getDouble("Level"));
-                    days = date.getWeekday() == Weekday.WEDNESDAY ? 2: 1; //Takes 1 day to repair
+                    days = weekday == Weekday.WEDNESDAY ? 2: 1; //Takes 1 day to repair
                     increaseStage(player);
                     rewardGold(player, -required);
                     takeHeldStack(player, 1);
@@ -226,7 +233,7 @@ public class QuestBlacksmithing extends QuestTrade {
                     tool = player.getHeldItemMainhand().copy();
                     tool.setTagCompound(null);
                     tool.setItemDamage(tool.getItemDamage() + 1);
-                    days = date.getWeekday() == Weekday.TUESDAY || date.getWeekday() == Weekday.WEDNESDAY ? 4: 3; //Takes three days
+                    days = weekday == Weekday.TUESDAY || weekday == Weekday.WEDNESDAY ? 4: 3; //Takes three days
                     increaseStage(player);
                     rewardGold(player, -required);
                     takeHeldStack(player, 1);

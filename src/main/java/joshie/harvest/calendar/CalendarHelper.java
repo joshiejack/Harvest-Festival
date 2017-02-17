@@ -30,14 +30,14 @@ public class CalendarHelper {
         return DAYS[modulus];
     }
 
-    private static Weekday getWeekday(long time) {
-        return getWeekday(getElapsedDays(time));
+    public static Weekday getWeekday(long time) {
+        return getWeekday(getElapsedDays(time + 6000));
     }
 
     public static void setDate(World world, CalendarDate date) {
         long time = world.getWorldTime();
         Season previous = date.getSeason();
-        date.setDate(getWeekday(time), getDay(time), getSeason(time), getYear(time));
+        date.setDate(getDay(time), getSeason(time), getYear(time));
         if (previous != date.getSeason()) {
             HFTrackers.getCalendar(world).onSeasonChanged();
         }

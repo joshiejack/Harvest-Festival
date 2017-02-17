@@ -75,15 +75,21 @@ public class QuestNewYearsEve extends QuestFestival {
         setNPCs(HFNPCs.CARPENTER, HFNPCs.MAYOR);
     }
 
-    //@Override
-    private boolean isCorrectTime(long time) {
+    private long time;
+
+    @Override
+    public void onQuestSelectedForDisplay(EntityPlayer player, EntityLiving entity, NPC npc) {
+        this.time = CalendarHelper.getTime(player.worldObj);
+    }
+
+    private boolean isCorrectTime() {
         return time < 6000 || (time >= 18000L && time <= 24000L);
     }
 
     @Override
     @Nullable
     public Selection getSelection(EntityPlayer player, NPC npc) {
-        return isCorrectTime(CalendarHelper.getTime(player.worldObj)) ? start : null;
+        return isCorrectTime() ? start : null;
     }
 
     @Override
@@ -91,14 +97,8 @@ public class QuestNewYearsEve extends QuestFestival {
     @SideOnly(Side.CLIENT)
     public String getLocalizedScript(EntityPlayer player, EntityLiving entity, NPC npc) {
         CalendarDate date = calendar.getDate(player.worldObj);
-        if (!isCorrectTime(CalendarHelper.getTime(player.worldObj)) || date.getSeason() != Season.WINTER) return null;
+        if (!isCorrectTime() || date.getSeason() != Season.WINTER) return null;
         return getLocalized(npc.getRegistryName().getResourceDomain());
-    }
-
-    @Override
-    public void onChatClosed(EntityPlayer player, EntityLiving entity, NPC npc, boolean wasSneaking) {
-        CalendarDate date = calendar.getDate(player.worldObj);
-        if (!isCorrectTime(CalendarHelper.getTime(player.worldObj)) || date.getSeason() != Season.WINTER) return;
     }
 
     private static class ScheduleNewYear extends ScheduleElement {

@@ -132,7 +132,7 @@ public class CalendarHUD {
                     //Draw the time
                     GlStateManager.pushMatrix();
                     String time = formatTime(CalendarHelper.getScaledTime((int) CalendarHelper.getTime(MCClientHelper.getWorld())));
-                    mc.fontRendererObj.drawStringWithShadow("(" + date.getWeekday().getLocalizedName() + ")" + "  " + time, adjustedX + 42, adjustedY + 23, 0xFFFFFFFF);
+                    mc.fontRendererObj.drawStringWithShadow("(" + HFApi.calendar.getWeekday(MCClientHelper.getWorld()).getLocalizedName() + ")" + "  " + time, adjustedX + 42, adjustedY + 23, 0xFFFFFFFF);
                     GlStateManager.popMatrix();
                 }
             }

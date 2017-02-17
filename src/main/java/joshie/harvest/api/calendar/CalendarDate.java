@@ -5,7 +5,6 @@ import net.minecraft.nbt.NBTTagCompound;
 public class CalendarDate {
     /** This gets set by the config files, so it won't ALWAYS be 30 */
     public static int DAYS_PER_SEASON = 30;
-    private Weekday weekday;
     private int day;
     private Season season;
     private int year;
@@ -15,7 +14,6 @@ public class CalendarDate {
         this.day = day;
         this.season = season;
         this.year = year;
-        this.weekday = Weekday.MONDAY;
     }
 
     /** The day gets scaled to fit in to the 30 scale mark
@@ -30,33 +28,19 @@ public class CalendarDate {
 
     /** Make a copy of this date **/
     public CalendarDate copy() {
-        return new CalendarDate().setDate(getWeekday(), getDay(), getSeason(), getYear());
+        return new CalendarDate().setDate(getDay(), getSeason(), getYear());
     }
 
     /** Update the internal values of this date
-     * @param weekday   the day of the week
      * @param day       the day of the season
      * @param season    the season
      * @param year      the year
      * @return the full date  */
-    public CalendarDate setDate(Weekday weekday, int day, Season season, int year) {
-        this.weekday = weekday;
+    public CalendarDate setDate(int day, Season season, int year) {
         this.day = day;
         this.season = season;
         this.year = year;
         return this;
-    }
-
-    /** Update the internal weekday
-     *  @param weekday      the day of the week **/
-    public CalendarDate setWeekday(Weekday weekday) {
-        this.weekday = weekday;
-        return this;
-    }
-
-    /** @return  the day of the week **/
-    public Weekday getWeekday() {
-        return weekday;
     }
 
     /** @return  the day of the season **/
@@ -82,13 +66,12 @@ public class CalendarDate {
         int day = nbt.getInteger("Day");
         Season season = Season.values()[nbt.getByte("Season")];
         int year = nbt.getInteger("Year");
-        return new CalendarDate(day, season, year).setWeekday(weekday);
+        return new CalendarDate(day, season, year);
     }
 
     /** Save a date to nbt **/
     public NBTTagCompound toNBT() {
         NBTTagCompound nbt = new NBTTagCompound();
-        nbt.setByte("WeekDay", (byte) weekday.ordinal());
         nbt.setInteger("Day", day);
         nbt.setByte("Season", (byte) season.ordinal());
         nbt.setInteger("Year", year);

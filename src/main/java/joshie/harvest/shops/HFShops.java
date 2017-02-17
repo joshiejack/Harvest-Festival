@@ -325,8 +325,8 @@ public class HFShops {
         POULTRY.addPurchasable(1000, HFAnimals.TRAY.getStackFromEnum(NEST_EMPTY), 3);
         POULTRY.addPurchasable(5000, HFAnimals.SIZED.getStackFromEnum(INCUBATOR), 1);
         POULTRY.setSpecialRules(new SpecialRulesQuest(Quests.ASHLEE_MEET));
-        POULTRY.addOpening(SUNDAY, 5000, 5999).addOpening(MONDAY, 5000, 11000).addOpening(TUESDAY, 5000, 11000).addOpening(WEDNESDAY, 5000, 11000);
-        POULTRY.addOpening(THURSDAY, 5000, 11000).addOpening(FRIDAY, 5000, 11000).addOpening(SATURDAY, 6000, 11000);
+        POULTRY.addOpening(MONDAY, 5000, 11000).addOpening(TUESDAY, 5000, 11000).addOpening(WEDNESDAY, 5000, 11000);
+        POULTRY.addOpening(THURSDAY, 5000, 11000).addOpening(FRIDAY, 5000, 11000).addOpening(SATURDAY, 5000, 11000);
     }
 
     private static void registerSupermarket() {

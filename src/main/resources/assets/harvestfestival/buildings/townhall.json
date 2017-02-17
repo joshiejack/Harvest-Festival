@@ -3714,9 +3714,8 @@
       "pos": "2 3 9"
     },
     {
-      "state": "harvestfestival:quest_block 5",
-      "pos": "2 3 10",
-      "type": "blocks.Decorative"
+      "state": "harvestfestival:quest_block 3",
+      "pos": "2 3 10"
     },
     {
       "pos": "2 3 11"
@@ -6678,9 +6677,7 @@
       "pos": "12 5 12"
     },
     {
-      "state": "trapdoor",
-      "pos": "12 5 13",
-      "type": "blocks.Decorative"
+      "pos": "12 5 13"
     },
     {
       "state": "stone_brick_stairs 5",
@@ -6695,9 +6692,7 @@
       "pos": "13 5 14"
     },
     {
-      "state": "trapdoor",
-      "pos": "13 5 13",
-      "type": "blocks.Decorative"
+      "pos": "13 5 13"
     },
     {
       "state": "dark_oak_stairs 3",
@@ -6756,9 +6751,7 @@
       "pos": "14 5 12"
     },
     {
-      "state": "trapdoor",
-      "pos": "14 5 13",
-      "type": "blocks.Decorative"
+      "pos": "14 5 13"
     },
     {
       "state": "stone_brick_stairs 4",

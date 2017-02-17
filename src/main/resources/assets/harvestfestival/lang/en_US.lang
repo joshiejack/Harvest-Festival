@@ -32,6 +32,7 @@ harvestfestival.tool.milker=Milker
 harvestfestival.tool.brush=Animal Brush
 harvestfestival.tool.medicine=Animal Medicine
 harvestfestival.tool.chicken.feed=Chicken Feed
+harvestfestival.tool.chicken.feed.tooltip=Feeds for 10 days in a feeding tray
 harvestfestival.tool.miracle.potion=Miracle Potion
 
 #Buildings
@@ -105,6 +106,7 @@ harvestfestival.crop.cucumber=Cucumber
 harvestfestival.crop.eggplant=Eggplant
 harvestfestival.crop.grass.block=Grass
 harvestfestival.crop.grass.item=Fodder
+harvestfestival.crop.grass.item.tooltip=Feeds for 5 days in a trough
 harvestfestival.crop.green.pepper=Green Pepper
 harvestfestival.crop.onion=Onion
 harvestfestival.crop.pineapple=Pineapple
@@ -1713,7 +1715,7 @@ harvestfestival.quest.tutorial.chicken.complete=For your hard work, I'm happy to
 harvestfestival.quest.tutorial.cow.title=Daisy Duke
 harvestfestival.quest.tutorial.cow.description.talk=Talk to Jim.
 harvestfestival.quest.tutorial.cow.description.build=Build the Animal Ranch.
-harvestfestival.quest.tutorial.cow.description.talk=Brush and feed a cow..
+harvestfestival.quest.tutorial.cow.description.brush=Brush and feed a cow..
 harvestfestival.quest.tutorial.cow.description.milk=Show Jim a small milk.
 harvestfestival.quest.tutorial.cow.reminder.intro=Looks like yer got the Animal Ranch built ya should go and talk to Jim.
 harvestfestival.quest.tutorial.cow.reminder.barn=I reckon yer should get an Animal Ranch built, so yer can learn about cows and sheep.
@@ -2005,13 +2007,13 @@ harvestfestival.quest.festival.new.years.eve.start=Evenin, the new year is comin
 harvestfestival.quest.festival.new.years.eve.question=Do you want to start the countdown?
 harvestfestival.quest.festival.new.years.eve.option1=@Bring on the New Year!
 harvestfestival.quest.festival.new.years.eve.option2=@Give me a minute.
-harvestfestival.quest.festival.new.years.eve.intro=It's time to start the countdown for new year!
-harvestfestival.quest.festival.new.years.eve.5=Five!!............
-harvestfestival.quest.festival.new.years.eve.4=Four! :D
-harvestfestival.quest.festival.new.years.eve.3=Three! :O
-harvestfestival.quest.festival.new.years.eve.2=Twooooooo!!!
-harvestfestival.quest.festival.new.years.eve.1=One :D :D :D
-harvestfestival.quest.festival.new.years.eve.0=Happy New Year ya'll!!!!!!!!!!!!!!!!!!
+harvestfestival.script.new.years.eve.intro=It's time to start the countdown for new year!
+harvestfestival.script.new.years.eve.5=Five!!............
+harvestfestival.script.new.years.eve.4=Four! :D
+harvestfestival.script.new.years.eve.3=Three! :O
+harvestfestival.script.new.years.eve.2=Twooooooo!!!
+harvestfestival.script.new.years.eve.1=One :D :D :D
+harvestfestival.script.new.years.eve.0=Happy New Year ya'll!!!!!!!!!!!!!!!!!!
 
 ### Letters
 harvestfestival.letter.new.years.eve=Alright there,\n\nWe're planning on taking part in some festivities to celebrate the coming new year tomorrow night. Jade and I'll be there for sure. I'd just love it if ya would attend. We'll be celebrating from 6pm!\n\n\n-Yulif

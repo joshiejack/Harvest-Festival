@@ -11,7 +11,7 @@ import java.util.Set;
 @HFQuest("recipe.tempura.rice")
 public class QuestLiara20KTempuraRice extends QuestRecipe {
     public QuestLiara20KTempuraRice() {
-        super("tempura_rice", HFNPCs.CAFE_OWNER, 20000);
+        super("rice_tempura", HFNPCs.CAFE_OWNER, 20000);
     }
 
     @Override

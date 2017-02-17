@@ -1,7 +1,6 @@
 package joshie.harvest.animals.type;
 
 import joshie.harvest.animals.HFAnimals;
-import joshie.harvest.animals.item.ItemAnimalProduct.Sizeable;
 import joshie.harvest.animals.item.ItemAnimalSpawner.Spawner;
 import joshie.harvest.api.animals.AnimalAction;
 import joshie.harvest.api.animals.AnimalStats;
@@ -23,8 +22,8 @@ public class AnimalChicken extends AnimalAbstract {
     @Override
     public int getRelationshipBonus(AnimalAction action) {
         switch (action) {
-            case FEED:      return 30;
             case OUTSIDE:   return 5;
+            case FEED:      return 100;
         }
 
         return super.getRelationshipBonus(action);

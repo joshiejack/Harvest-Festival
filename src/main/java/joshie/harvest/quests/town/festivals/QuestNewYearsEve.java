@@ -72,7 +72,7 @@ public class QuestNewYearsEve extends QuestFestival {
     };
 
     public QuestNewYearsEve() {
-        setNPCs(HFNPCs.CARPENTER, HFNPCs.MAYOR);
+        setNPCs(HFNPCs.CARPENTER);
     }
 
     private long time;
@@ -98,7 +98,7 @@ public class QuestNewYearsEve extends QuestFestival {
     public String getLocalizedScript(EntityPlayer player, EntityLiving entity, NPC npc) {
         CalendarDate date = calendar.getDate(player.worldObj);
         if (!isCorrectTime() || date.getSeason() != Season.WINTER) return null;
-        return getLocalized(npc.getRegistryName().getResourceDomain());
+        return getLocalized("start");
     }
 
     private static class ScheduleNewYear extends ScheduleElement {

@@ -5,6 +5,7 @@ import joshie.harvest.animals.entity.ai.EntityAIEat;
 import joshie.harvest.animals.entity.ai.EntityAIFindShelterOrSun;
 import joshie.harvest.animals.entity.ai.EntityAILayEgg;
 import joshie.harvest.api.HFApi;
+import joshie.harvest.api.animals.AnimalAction;
 import joshie.harvest.api.animals.AnimalStats;
 import joshie.harvest.api.animals.AnimalTest;
 import joshie.harvest.api.animals.IAnimalHandler.AnimalType;
@@ -69,7 +70,7 @@ public class EntityHarvestChicken extends EntityChicken {
             if (toLoveTicker >= 0) toLoveTicker--;
             else {
                 if (!stats.performTest(AnimalTest.BEEN_LOVED)) {
-                    stats.affectHappiness(100); //Love <3
+                    stats.affectHappiness(stats.getType().getRelationshipBonus(AnimalAction.PETTED)); //Love <3
                 }
 
                 tickToLove = false;

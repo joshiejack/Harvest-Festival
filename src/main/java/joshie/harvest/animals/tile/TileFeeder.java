@@ -3,6 +3,7 @@ package joshie.harvest.animals.tile;
 import joshie.harvest.animals.HFAnimals;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.AnimalAction;
+import joshie.harvest.api.animals.AnimalFoodType;
 import joshie.harvest.api.animals.AnimalStats;
 import joshie.harvest.api.animals.AnimalTest;
 import joshie.harvest.api.ticking.DailyTickableBlock;
@@ -11,7 +12,6 @@ import joshie.harvest.core.base.tile.TileFillable;
 import joshie.harvest.core.helpers.EntityHelper;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.passive.EntityAnimal;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -38,32 +38,12 @@ public class TileFeeder extends TileFillable {
         }
     };
 
+    public TileFeeder() {
+        super(AnimalFoodType.SEED, 100, 10);
+    }
+
     @Override
     public DailyTickableBlock getTickableForTile() {
         return TICKABLE;
-    }
-
-    @Override
-    protected int getMaximumFill() {
-        return 100;
-    }
-
-    @Override
-    public boolean onActivated(ItemStack held) {
-        if (held != null && HFApi.animals.canEat(held, SEED)) {
-            boolean processed = false;
-            for (int i = 0; i < 10 && held.stackSize > 0; i++) {
-                if (held.stackSize >= 1) {
-                    if (fillAmount < getMaximumFill() && setFilled(getFillAmount() + 10)) {
-                        held.splitStack(1);
-                        processed = true;
-                    } else break;
-                }
-            }
-
-            return processed;
-        }
-
-        return false;
     }
 }

@@ -5,6 +5,7 @@ import joshie.harvest.animals.entity.ai.EntityAIEatLivestock;
 import joshie.harvest.animals.entity.ai.EntityAIFindShelterOrSun;
 import joshie.harvest.animals.item.ItemAnimalTool.Tool;
 import joshie.harvest.api.HFApi;
+import joshie.harvest.api.animals.AnimalAction;
 import joshie.harvest.api.animals.AnimalStats;
 import joshie.harvest.api.animals.AnimalTest;
 import joshie.harvest.api.animals.IAnimalHandler.AnimalType;
@@ -76,7 +77,7 @@ public class EntityHarvestCow extends EntityCow {
         boolean special = ITEM_STACK.matchesAny(stack, getStacks()) || ITEM.matchesAny(stack, HFAnimals.TREATS);
         if (stack == null || !special) {
             if (!stats.performTest(AnimalTest.BEEN_LOVED)) {
-                stats.affectHappiness(100); //Love <3
+                stats.affectHappiness(stats.getType().getRelationshipBonus(AnimalAction.PETTED)); //Love <3
                 SoundEvent s = getAmbientSound();
                 if (s != null) {
                     playSound(s, 2F, getSoundPitch());

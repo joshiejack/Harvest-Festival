@@ -51,10 +51,14 @@ public abstract class AnimalAbstract implements IAnimalType {
     @Override
     public int getRelationshipBonus(AnimalAction action) {
         switch (action) {
-            case TREAT_SPECIAL: return 30;
-            case TREAT_GENERIC: return 20;
+            case PETTED:          return 100;
+            case FEED:            return 70;
+            case TREAT_SPECIAL:   return 30;
+            case TREAT_GENERIC:   return 20;
+            case HEAL:            return -100;
             case TREAT_INCORRECT: return -50;
-            default:            return 0;
+            case HURT:            return -10;
+            default:              return 0;
         }
     }
 

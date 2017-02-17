@@ -19,9 +19,9 @@ public class ItemAnimalProduct extends ItemHFSizeable<ItemAnimalProduct, Sizeabl
         switch (getEnumFromStack(stack)) {
             case EGG:
             case MAYONNAISE:
-                return 3;
+                return 3 + getSize(stack).ordinal();
             case MILK:
-                return 2;
+                return 2 + getSize(stack).ordinal();
             default:
                 return 0;
         }

@@ -9,6 +9,8 @@ import joshie.harvest.npcs.entity.EntityNPCShopkeeper;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.util.math.BlockPos;
 
+import javax.annotation.Nullable;
+
 
 public class EntityAIWork extends EntityAIBase {
     private final EntityNPCShopkeeper npc;
@@ -19,6 +21,7 @@ public class EntityAIWork extends EntityAIBase {
         this.setMutexBits(1);
     }
 
+    @Nullable
     private BuildingLocation getBuildingTarget(CalendarDate date) {
         return npc.getNPC().getScheduler().getTarget(npc.worldObj, npc, npc.getNPC(), date.getSeason(), HFApi.calendar.getWeekday(npc.worldObj), CalendarHelper.getTime(npc.worldObj));
     }
@@ -27,7 +30,8 @@ public class EntityAIWork extends EntityAIBase {
     public boolean shouldExecute() {
         BlockPos pos = new BlockPos(npc);
         if(npc.getNPC().getShop(npc.worldObj, pos, null) != null && NPCHelper.isShopOpen(npc.worldObj, npc, null, npc.getNPC().getShop(npc.worldObj, pos, null))) {
-            target = NPCHelper.getCoordinatesForLocation(npc, getBuildingTarget(HFApi.calendar.getDate(npc.worldObj)));
+            BuildingLocation buildingLocation = getBuildingTarget(HFApi.calendar.getDate(npc.worldObj));
+            if (buildingLocation != null) target = NPCHelper.getCoordinatesForLocation(npc, buildingLocation);
             return target != null;
         } else {
             return false;

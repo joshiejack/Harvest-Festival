@@ -84,7 +84,7 @@ public class AnimalStatsLivestock extends AnimalStatsHF {
             if (!world.isRemote) {
                 cleanliness = (byte) Math.min(Byte.MAX_VALUE, cleanliness + 10);
                 if (cleanliness >= Byte.MAX_VALUE) {
-                    affectHappiness(30);
+                    affectHappiness(type.getRelationshipBonus(AnimalAction.CLEAN));
                     HFApi.animals.syncAnimalStats(animal);
                 }
             }
@@ -100,7 +100,7 @@ public class AnimalStatsLivestock extends AnimalStatsHF {
         if (isPregnant) return false;
         daysPregnant = 0;
         isPregnant = true;
-        affectHappiness(200);
+        affectHappiness(type.getRelationshipBonus(AnimalAction.IMPREGNATE));
         HFApi.animals.syncAnimalStats(animal);
         return true;
     }

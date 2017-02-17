@@ -5,6 +5,7 @@ import joshie.harvest.animals.block.BlockTrough;
 import joshie.harvest.animals.block.BlockTrough.Section;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.AnimalAction;
+import joshie.harvest.api.animals.AnimalFoodType;
 import joshie.harvest.api.animals.AnimalStats;
 import joshie.harvest.api.animals.AnimalTest;
 import joshie.harvest.api.ticking.DailyTickableBlock;
@@ -13,7 +14,6 @@ import joshie.harvest.core.base.tile.TileFillableConnected;
 import joshie.harvest.core.helpers.EntityHelper;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.passive.EntityAnimal;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -47,29 +47,12 @@ public class TileTrough extends TileFillableConnected<TileTrough> {
     private EnumFacing facing;
 
     public TileTrough() {
-        super(3);
+        super(AnimalFoodType.GRASS, 40, 5, 3);
     }
 
     @Override
     public DailyTickableBlock getTickableForTile() {
         return TICKABLE;
-    }
-
-    @Override
-    public boolean onActivated(ItemStack held) {
-        if (HFApi.animals.canEat(held, GRASS)) {
-            TileTrough master = getMaster();
-            if (master != null) {
-                if (held.stackSize >= 1) {
-                    if (master.fillAmount < master.getMaximumFill() && master.setFilled(master.getFillAmount() + 5)) {
-                        held.splitStack(1);
-                        return true;
-                    }
-                }
-            }
-        }
-
-        return false;
     }
 
     @Override

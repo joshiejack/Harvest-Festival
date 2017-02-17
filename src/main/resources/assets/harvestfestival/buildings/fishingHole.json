@@ -1,21 +1,6 @@
 {
   "components": [
     {
-      "state": "vine 1",
-      "pos": "4 0 9",
-      "type": "blocks.Decorative"
-    },
-    {
-      "state": "vine 4",
-      "pos": "4 0 11",
-      "type": "blocks.Decorative"
-    },
-    {
-      "state": "vine 2",
-      "pos": "5 0 10",
-      "type": "blocks.Decorative"
-    },
-    {
       "state": "sandstone",
       "pos": "5 0 6"
     },
@@ -58,21 +43,6 @@
     {
       "state": "sandstone",
       "pos": "4 1 6"
-    },
-    {
-      "state": "vine 1",
-      "pos": "4 1 9",
-      "type": "blocks.Decorative"
-    },
-    {
-      "state": "vine 4",
-      "pos": "4 1 11",
-      "type": "blocks.Decorative"
-    },
-    {
-      "state": "vine 2",
-      "pos": "5 1 10",
-      "type": "blocks.Decorative"
     },
     {
       "state": "sandstone",
@@ -155,21 +125,6 @@
       "pos": "4 2 6"
     },
     {
-      "state": "vine 1",
-      "pos": "4 2 9",
-      "type": "blocks.Decorative"
-    },
-    {
-      "state": "vine 4",
-      "pos": "4 2 11",
-      "type": "blocks.Decorative"
-    },
-    {
-      "state": "vine 2",
-      "pos": "5 2 10",
-      "type": "blocks.Decorative"
-    },
-    {
       "state": "sand",
       "pos": "5 2 7"
     },
@@ -249,6 +204,11 @@
     {
       "state": "sand",
       "pos": "9 2 6"
+    },
+    {
+      "state": "vine 8",
+      "pos": "3 3 10",
+      "type": "blocks.Decorative"
     },
     {
       "state": "grass",
@@ -473,6 +433,11 @@
     },
     {
       "pos": "0 4 7"
+    },
+    {
+      "state": "vine 8",
+      "pos": "3 4 10",
+      "type": "blocks.Decorative"
     },
     {
       "state": "fence",

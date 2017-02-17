@@ -258,8 +258,7 @@ public class HFNPCs {
         //Poultry Farm Owner
         ScheduleBuilder.create(POULTRY, POULTRY_CENTRE)
                         .add(SPRING, SUNDAY, 0L, POULTRY_CENTRE)
-                        .add(SPRING, SATURDAY, 4500L, CARPENTER_FRONT)
-                        .add(SPRING, SUNDAY, 6000L, CARPENTER_FRONT)
+                        .add(SPRING, SUNDAY, 4500L, CARPENTER_FRONT)
                         .add(SPRING, SUNDAY, 7000L, CHURCH_RIGHT)
                         .add(SPRING, SUNDAY, 12000L, POULTRY_CENTRE)
                         .add(SPRING, SUNDAY, 15000L, PARK_BENCH)
@@ -406,7 +405,7 @@ public class HFNPCs {
                         .add(SPRING, FRIDAY, 17000L, TOWNHALL_ENTRANCE)
                         .add(SPRING, FRIDAY, 20000L, PARK_OAK)
                         .add(SPRING, FRIDAY, 23000L, BLACKSMITH_FURNACE)
-                        .add(NEW_YEARS_EVE, 17000L, PARK_BUSH)
+                        .add(NEW_YEARS_EVE, 0L, PARK_BUSH)
                         .add(NEW_YEARS_EVE, 6000L, BLACKSMITH_FURNACE)
                         .add(NEW_YEARS_EVE, 13000L, BLACKSMITH_FRONT)
                         .add(NEW_YEARS_EVE, 17000L, PARK_BUSH)

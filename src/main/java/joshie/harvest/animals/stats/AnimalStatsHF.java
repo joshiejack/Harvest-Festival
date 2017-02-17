@@ -352,7 +352,7 @@ public class AnimalStatsHF implements AnimalStats<NBTTagCompound> {
             if (!world.isRemote) {
                 healthiness = Byte.MAX_VALUE;
                 isSick = false;
-                affectHappiness(-100);
+                affectHappiness(type.getRelationshipBonus(AnimalAction.HEAL));
                 HFApi.animals.syncAnimalStats(animal);
             }
 

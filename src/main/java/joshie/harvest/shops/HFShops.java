@@ -109,17 +109,17 @@ public class HFShops {
     }
     
     private static void registerBarn() {
-        BARN.addPurchasable(100, HFCrops.GRASS.getCropStack(1));
+        BARN.addPurchasable(new Purchasable(100, HFCrops.GRASS.getCropStack(1)).addTooltip("crop.grass.item"));
         BARN.addPurchasable(10, HFAnimals.TREATS.getStackFromEnum(Treat.GENERIC));
         BARN.addPurchasable(30, HFAnimals.TREATS.getStackFromEnum(Treat.COW));
         BARN.addPurchasable(30, HFAnimals.TREATS.getStackFromEnum(Treat.SHEEP));
-        BARN.addPurchasable(new PurchasableEntity(EntityHarvestCow.class, 5000, HFAnimals.ANIMAL.getStackFromEnum(COW), true).setNote(HFNotes.COW_CARE));
-        BARN.addPurchasable(new PurchasableEntity(EntityHarvestSheep.class, 4000, HFAnimals.ANIMAL.getStackFromEnum(SHEEP), true).setNote(HFNotes.SHEEP_CARE));
+        BARN.addPurchasable(new PurchasableEntity(EntityHarvestCow.class, 5000, HFAnimals.ANIMAL.getStackFromEnum(COW)).setNote(HFNotes.COW_CARE));
+        BARN.addPurchasable(new PurchasableEntity(EntityHarvestSheep.class, 4000, HFAnimals.ANIMAL.getStackFromEnum(SHEEP)).setNote(HFNotes.SHEEP_CARE));
         BARN.addPurchasable(500, HFAnimals.TROUGH.getStackFromEnum(WOOD), 3);
         BARN.addPurchasable(1000, HFAnimals.TOOLS.getStackFromEnum(MEDICINE));
         BARN.addPurchasable(3000, HFAnimals.TOOLS.getStackFromEnum(MIRACLE_POTION), 1);
         BARN.addPurchasable(250, new ItemStack(Items.NAME_TAG));
-        BARN.addPurchasable(100, new ItemStack(Items.LEAD));
+        BARN.addPurchasable(150, new ItemStack(Items.LEAD));
         BARN.addPurchasable(1000, new ItemStack(Items.SADDLE));
         BARN.addPurchasable(1000, HFAnimals.TOOLS.getStackFromEnum(BRUSH), 1);
         BARN.addPurchasable(2000, HFAnimals.TOOLS.getStackFromEnum(MILKER), 1);
@@ -315,10 +315,10 @@ public class HFShops {
     }
 
     private static void registerPoultry() {
-        POULTRY.addPurchasable(50, HFAnimals.TOOLS.getStackFromEnum(CHICKEN_FEED));
+        BARN.addPurchasable(new Purchasable(50, HFAnimals.TOOLS.getStackFromEnum(CHICKEN_FEED)).addTooltip("tool.chicken.feed"));
         POULTRY.addPurchasable(10, HFAnimals.TREATS.getStackFromEnum(Treat.GENERIC));
         POULTRY.addPurchasable(30, HFAnimals.TREATS.getStackFromEnum(Treat.CHICKEN));
-        POULTRY.addPurchasable(new PurchasableEntity(EntityHarvestChicken.class, 1500, HFAnimals.ANIMAL.getStackFromEnum(CHICKEN), false).setNote(HFNotes.CHICKEN_CARE));
+        POULTRY.addPurchasable(new PurchasableEntity(EntityHarvestChicken.class, 1500, HFAnimals.ANIMAL.getStackFromEnum(CHICKEN)).setNote(HFNotes.CHICKEN_CARE));
         POULTRY.addPurchasable(1000, HFAnimals.TOOLS.getStackFromEnum(MEDICINE));
         POULTRY.addPurchasable(250, new ItemStack(Items.NAME_TAG));
         POULTRY.addPurchasable(500, HFAnimals.TRAY.getStackFromEnum(FEEDER_EMPTY), 3);
@@ -454,20 +454,22 @@ public class HFShops {
         COOKING_FESTIVAL_RECIPES.addPurchasable(new PurchasableRecipe(new ResourceLocation(MODID, "pancake")));
         COOKING_FESTIVAL_RECIPES.addPurchasable(new PurchasableRecipe(new ResourceLocation(MODID, "rice_matsutake")));
         COOKING_FESTIVAL_RECIPES.addPurchasable(new PurchasableRecipe(new ResourceLocation(MODID, "rice_mushroom")));
+        COOKING_FESTIVAL_RECIPES.addOpening(MONDAY, 6000, 18000).addOpening(TUESDAY, 6000, 18000).addOpening(WEDNESDAY, 6000, 18000).addOpening(THURSDAY, 6000, 18000)
+                                .addOpening(FRIDAY, 6000, 18000).addOpening(SATURDAY, 6000, 18000).addOpening(SUNDAY, 6000, 18000);
+
         //Add all the recipes the player has learnt from friendship to the list
         for (Quest quest: Quest.REGISTRY) {
             if (quest instanceof QuestRecipe) {
-                COOKING_FESTIVAL_RECIPES.addPurchasable(new PurchasableRecipe(new ResourceLocation(MODID, ((QuestRecipe)quest).recipe)) {
-                    @Override
-                    public boolean canList(@Nonnull World world, @Nonnull EntityPlayer player) {
-                        return HFApi.quests.hasCompleted(quest, player);
-                    }
-                }.setStock(1));
+                for (String recipe : ((QuestRecipe) quest).recipe) {
+                    COOKING_FESTIVAL_RECIPES.addPurchasable(new PurchasableRecipe(new ResourceLocation(MODID, recipe)) {
+                        @Override
+                        public boolean canList(@Nonnull World world, @Nonnull EntityPlayer player) {
+                            return HFApi.quests.hasCompleted(quest, player);
+                        }
+                    }.setStock(1));
+                }
             }
         }
-
-        COOKING_FESTIVAL_RECIPES.addOpening(MONDAY, 6000, 18000).addOpening(TUESDAY, 6000, 18000).addOpening(WEDNESDAY, 6000, 18000).addOpening(THURSDAY, 6000, 18000)
-                .addOpening(FRIDAY, 6000, 18000).addOpening(SATURDAY, 6000, 18000).addOpening(SUNDAY, 6000, 18000);
     }
 
     private static Shop newHolidayShop(ResourceLocation resource, @Nullable NPC npc, Festival festival) {

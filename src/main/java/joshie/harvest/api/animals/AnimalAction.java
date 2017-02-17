@@ -11,5 +11,7 @@ public enum AnimalAction {
     DISMOUNT, //Called when an animal that was carried was dismounted
     CLAIM_PRODUCT, //Gets the product
     OUTSIDE, //Used for adding a bonus to relationship for being outside
-    MAKE_GOLDEN //Marks the animal as golden
+    MAKE_GOLDEN, //Marks the animal as golden
+    HURT, //When the animal is attacked
+    PETTED //When the animal is petted
 }

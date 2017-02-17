@@ -2,6 +2,7 @@ package joshie.harvest.buildings.placeable.blocks;
 
 import com.google.gson.annotations.Expose;
 import joshie.harvest.buildings.placeable.Placeable;
+import joshie.harvest.core.HFCore;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.Rotation;
@@ -83,7 +84,8 @@ public class PlaceableBlock extends Placeable {
     public final void remove(World world, BlockPos pos, Rotation rotation, ConstructionStage stage) {
         if (canPlace(stage)) {
             BlockPos transformed = getTransformedPosition(pos, rotation);
-            if (world.getBlockState(transformed) == getTransformedState(rotation)) {
+            IBlockState theState = world.getBlockState(transformed);
+            if (theState == getTransformedState(rotation) || theState.getBlock() == HFCore.STAND) {
                 world.setBlockToAir(transformed);
             }
         }

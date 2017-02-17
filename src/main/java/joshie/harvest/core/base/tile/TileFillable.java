@@ -1,26 +1,59 @@
 package joshie.harvest.core.base.tile;
 
+import joshie.harvest.api.HFApi;
+import joshie.harvest.api.animals.AnimalFoodType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
 import javax.annotation.Nonnull;
 
+import static joshie.harvest.api.animals.AnimalFoodType.SEED;
+
 public abstract class TileFillable extends TileHarvest {
+    private final AnimalFoodType foodType;
+    private final int maxFill;
+    private final int fillPer;
     protected int fillAmount;
 
-    public abstract boolean onActivated(ItemStack held);
+    public TileFillable(AnimalFoodType type, int max, int per) {
+        foodType = type;
+        maxFill = max;
+        fillPer = per;
+    }
+
+    protected TileFillable getTile() {
+        return this;
+    }
+
+    public boolean onActivated(@Nonnull ItemStack held) {
+        if (HFApi.animals.canEat(held, foodType)) {
+            if (held.stackSize >= 1) {
+                TileFillable fillable = getTile();
+                if (fillable != null) {
+                    if (fillable.getFillAmount() + fillPer <= fillable.getMaximumFill() && fillable.setFilled(fillable.getFillAmount() + fillPer)) {
+                        held.splitStack(1);
+                        return true;
+                    }
+                }
+            }
+        }
+
+        return false;
+    }
 
     public int getFillAmount() {
         return fillAmount;
     }
 
-    protected abstract int getMaximumFill();
+    public int getMaximumFill() {
+        return maxFill;
+    }
 
     public void adjustFill(int amount) {
         setFilled(fillAmount + amount);
     }
 
-    protected boolean setFilled(int isFilled) {
+    public boolean setFilled(int isFilled) {
         fillAmount = Math.min(getMaximumFill(), isFilled);
         saveAndRefresh();
         return true;

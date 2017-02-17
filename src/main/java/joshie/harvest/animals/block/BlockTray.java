@@ -104,7 +104,7 @@ public class BlockTray extends BlockHFEnum<BlockTray, Tray> implements IAnimalFe
 
                 return true;
             }
-        } else if (tile instanceof TileFillable) {
+        } else if (held != null && tile instanceof TileFillable) {
             return ((TileFillable)tile).onActivated(held);
         }
 

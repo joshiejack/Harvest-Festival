@@ -1,6 +1,7 @@
 package joshie.harvest.core.base.tile;
 
 import joshie.harvest.animals.packet.PacketClearNeighbours;
+import joshie.harvest.api.animals.AnimalFoodType;
 import joshie.harvest.core.helpers.MCServerHelper;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
@@ -17,12 +18,19 @@ public abstract class TileFillableConnected<T extends TileFillableConnected> ext
     private int offsetZ;
     private int size;
 
-    public TileFillableConnected(int max) {
-        this.maxWidth = max;
+    public TileFillableConnected(AnimalFoodType foodType, int maxFill, int fillPer, int maxWidth) {
+        super(foodType, maxFill, fillPer);
+        this.maxWidth = maxWidth;
     }
 
-    protected int getMaximumFill() {
-        return size * 40;
+    @Override
+    protected T getTile() {
+        return getMaster();
+    }
+
+    @Override
+    public int getMaximumFill() {
+        return size * super.getMaximumFill();
     }
 
     public abstract void resetClientData();

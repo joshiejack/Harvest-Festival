@@ -2,14 +2,14 @@ package joshie.harvest.knowledge.gui.stats.collection.page;
 
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.base.gui.BookPage;
-import joshie.harvest.knowledge.gui.stats.GuiStats;
-import joshie.harvest.knowledge.gui.stats.button.ButtonNext;
-import joshie.harvest.knowledge.gui.stats.button.ButtonPrevious;
-import joshie.harvest.knowledge.gui.stats.collection.button.ButtonShipped;
 import joshie.harvest.core.registry.ShippingRegistry;
 import joshie.harvest.core.util.holders.AbstractItemHolder;
 import joshie.harvest.crops.HFCrops;
 import joshie.harvest.crops.item.ItemCrop.Crops;
+import joshie.harvest.knowledge.gui.stats.GuiStats;
+import joshie.harvest.knowledge.gui.stats.button.ButtonNext;
+import joshie.harvest.knowledge.gui.stats.button.ButtonPrevious;
+import joshie.harvest.knowledge.gui.stats.collection.button.ButtonShipped;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiLabel;
 import net.minecraft.item.ItemStack;
@@ -17,8 +17,7 @@ import net.minecraft.item.ItemStack;
 import java.util.ArrayList;
 import java.util.List;
 
-import static joshie.harvest.knowledge.gui.stats.CollectionHelper.isInFishCollection;
-import static joshie.harvest.knowledge.gui.stats.CollectionHelper.isInMiningCollection;
+import static joshie.harvest.knowledge.gui.stats.CollectionHelper.*;
 
 public class PageShipping extends PageCollection {
     public static final BookPage INSTANCE = new PageShipping();
@@ -33,7 +32,7 @@ public class PageShipping extends PageCollection {
     }
 
     boolean qualifies(ItemStack stack) {
-        return !isInFishCollection(stack) && !isInMiningCollection(stack);
+        return !isInFishCollection(stack) && !isInMiningCollection(stack) && !isInCookingCollection(stack);
     }
 
     @Override

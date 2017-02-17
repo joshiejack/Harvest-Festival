@@ -72,7 +72,7 @@ public class AnimalEvents {
     public void onEntityAttackedByPlayer(AttackEntityEvent event) {
         AnimalStats stats = EntityHelper.getStats(event.getTarget());
         if (stats != null) {
-            stats.affectHappiness(-10);
+            stats.affectHappiness(stats.getType().getRelationshipBonus(AnimalAction.HURT));
         }
     }
 

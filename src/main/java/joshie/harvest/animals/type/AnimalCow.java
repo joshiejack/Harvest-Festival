@@ -9,7 +9,7 @@ import net.minecraft.item.ItemStack;
 
 import static joshie.harvest.api.animals.AnimalFoodType.GRASS;
 
-public class AnimalCow extends AnimalAbstract {
+public class AnimalCow extends AnimalLivestock {
     public AnimalCow() {
         super("cow", 12, 20, GRASS);
     }
@@ -37,8 +37,7 @@ public class AnimalCow extends AnimalAbstract {
     @Override
     public int getRelationshipBonus(AnimalAction action) {
         switch (action) {
-            case FEED:          return 10;
-            case OUTSIDE:       return 2;
+            case OUTSIDE:       return 3;
             case CLAIM_PRODUCT: return 10;
         }
 

@@ -31,6 +31,7 @@ public abstract class PurchasableFML<I extends IForgeRegistryEntry.Impl<I>> impl
     private Note note;
     private int stock;
 
+    @SuppressWarnings("WeakerAccess")
     public PurchasableFML(long cost, ResourceLocation resource) {
         this.cost = cost;
         if (resource != null) {

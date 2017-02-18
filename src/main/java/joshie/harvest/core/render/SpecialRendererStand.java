@@ -1,7 +1,7 @@
 package joshie.harvest.core.render;
 
 import joshie.harvest.core.base.render.TileSpecialRendererItem;
-import joshie.harvest.core.tile.TileStand;
+import joshie.harvest.core.base.tile.TileStand;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.fml.relauncher.Side;

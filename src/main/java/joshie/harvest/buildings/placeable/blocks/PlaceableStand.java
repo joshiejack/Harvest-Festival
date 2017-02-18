@@ -1,7 +1,7 @@
 package joshie.harvest.buildings.placeable.blocks;
 
 import com.google.gson.annotations.Expose;
-import joshie.harvest.core.tile.TileStand;
+import joshie.harvest.core.base.tile.TileStand;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;

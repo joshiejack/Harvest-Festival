@@ -6,7 +6,7 @@ import joshie.harvest.core.block.BlockStand.Stand;
 import joshie.harvest.core.helpers.SpawnItemHelper;
 import joshie.harvest.core.tile.TileCookingStand;
 import joshie.harvest.core.tile.TilePlate;
-import joshie.harvest.core.tile.TileStand;
+import joshie.harvest.core.base.tile.TileStand;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;

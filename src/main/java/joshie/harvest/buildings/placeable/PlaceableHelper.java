@@ -7,7 +7,7 @@ import joshie.harvest.buildings.placeable.entities.PlaceableItemFrame;
 import joshie.harvest.buildings.placeable.entities.PlaceableNPC;
 import joshie.harvest.buildings.placeable.entities.PlaceablePainting;
 import joshie.harvest.core.block.BlockStand;
-import joshie.harvest.core.tile.TileStand;
+import joshie.harvest.core.base.tile.TileStand;
 import net.minecraft.block.*;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;

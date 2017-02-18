@@ -1,7 +1,6 @@
-package joshie.harvest.core.tile;
+package joshie.harvest.core.base.tile;
 
-import joshie.harvest.core.base.tile.TileFaceable;
-import joshie.harvest.core.helpers.MCServerHelper;
+import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.core.helpers.NBTHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -9,9 +8,11 @@ import net.minecraft.nbt.NBTTagCompound;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.UUID;
 
 public abstract class TileStand extends TileFaceable {
     protected ItemStack stack;
+    private UUID uuid;
 
     public boolean isItemValid(@Nonnull ItemStack held) {
         return true;
@@ -23,12 +24,13 @@ public abstract class TileStand extends TileFaceable {
 
     public void setContents(ItemStack stack) {
         this.stack = stack;
-        this.markDirty();
+        saveAndRefresh();
     }
 
     public boolean setContents(@Nullable EntityPlayer player, ItemStack stack) {
         this.stack = stack.splitStack(1); //Remove one item
-        MCServerHelper.markTileForUpdate(this);
+        this.uuid = EntityHelper.getPlayerUUID(player);
+        saveAndRefresh();
         return true;
     }
 
@@ -37,7 +39,7 @@ public abstract class TileStand extends TileFaceable {
         else {
             ItemStack stack = this.stack.copy();
             this.stack = null;
-            MCServerHelper.markTileForUpdate(this);
+            saveAndRefresh();
             return stack;
         }
     }
@@ -46,16 +48,22 @@ public abstract class TileStand extends TileFaceable {
         return stack;
     }
 
+    public UUID getUUID() {
+        return uuid;
+    }
+
     @Override
     public void readFromNBT(NBTTagCompound nbt) {
         super.readFromNBT(nbt);
         stack = nbt.hasKey("Stack") ? NBTHelper.readItemStack(nbt.getCompoundTag("Stack")) : null;
+        uuid = nbt.hasKey("UUID") ? UUID.fromString(nbt.getString("UUID")) : null;
     }
 
     @Override
     @Nonnull
     public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
         if (stack != null) nbt.setTag("Stack", NBTHelper.writeItemStack(stack, new NBTTagCompound()));
+        if (uuid != null) nbt.setString("UUID", uuid.toString());
         return super.writeToNBT(nbt);
     }
 }

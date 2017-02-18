@@ -79,7 +79,7 @@ public class QuestNewYearsEve extends QuestFestival {
 
     @Override
     public void onQuestSelectedForDisplay(EntityPlayer player, EntityLiving entity, NPC npc) {
-        this.time = CalendarHelper.getTime(player.worldObj);
+        time = CalendarHelper.getTime(player.worldObj);
     }
 
     private boolean isCorrectTime() {

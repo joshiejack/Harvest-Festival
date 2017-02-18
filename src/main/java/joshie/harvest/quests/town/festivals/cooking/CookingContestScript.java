@@ -22,7 +22,7 @@ public class CookingContestScript extends Script {
     public String getLocalized(EntityAgeable ageable, NPC npc) {
         QuestContestCooking quest = TownHelper.getClosestTownToEntity(ageable, false).getQuests().getAQuest(HFFestivals.COOKING_CONTEST.getQuest());
         if (quest != null) {
-            return I18n.translateToLocalFormatted(unlocalised, quest.getWinner(ageable).getLocalization());
+            return I18n.translateToLocalFormatted(unlocalised, quest.getContestEntries(ageable).getLocalization());
         } else return "INVALID";
     }
 }

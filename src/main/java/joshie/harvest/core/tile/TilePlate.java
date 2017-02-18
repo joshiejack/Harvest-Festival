@@ -1,5 +1,6 @@
 package joshie.harvest.core.tile;
 
+import joshie.harvest.core.base.tile.TileStand;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 

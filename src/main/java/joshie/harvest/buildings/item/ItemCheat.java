@@ -1,5 +1,6 @@
 package joshie.harvest.buildings.item;
 
+import joshie.harvest.buildings.BuildingRegistry;
 import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.buildings.block.BlockInternalAir;
 import joshie.harvest.buildings.item.ItemCheat.Cheat;
@@ -8,12 +9,11 @@ import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.item.ItemHFEnum;
 import joshie.harvest.core.helpers.ChatHelper;
 import joshie.harvest.core.lib.CreativeSort;
+import joshie.harvest.core.util.HFTemplate;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -27,7 +27,8 @@ import static joshie.harvest.buildings.item.ItemCheat.Cheat.*;
 public class ItemCheat extends ItemHFEnum<ItemCheat, Cheat> {
     public enum Cheat implements IStringSerializable {
         COORD_SETTER, CODE_GENERATOR,
-        AIR_PLACER, AIR_REMOVER;
+        AIR_PLACER, AIR_REMOVER,
+        PARK_PLACER, PARK_ENDSTONE;
 
         @Override
         public String getName() {
@@ -106,6 +107,14 @@ public class ItemCheat extends ItemHFEnum<ItemCheat, Cheat> {
                     BlockInternalAir.onPlaced(world, position, player);
                 }
             }
+        } else if (damage == PARK_PLACER.ordinal()) {
+            HFTemplate template = BuildingRegistry.INSTANCE.getTemplateForBuilding(HFBuildings.FESTIVAL_GROUNDS);
+            template.placeBlocks(world, pos, Rotation.NONE, null);
+            world.setBlockState(pos, Blocks.END_STONE.getDefaultState());
+            world.setBlockState(pos.south(30).east(37).up(9), Blocks.END_STONE.getDefaultState());
+        } else if (damage == PARK_ENDSTONE.ordinal()) {
+            HFTemplate template = BuildingRegistry.INSTANCE.getTemplateForBuilding(HFBuildings.FESTIVAL_GROUNDS);
+            template.removeBlocks(world, pos, Rotation.NONE, Blocks.END_STONE.getDefaultState());
         }
 
         return EnumActionResult.SUCCESS;

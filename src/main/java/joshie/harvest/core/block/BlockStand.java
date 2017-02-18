@@ -11,6 +11,7 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
@@ -93,5 +94,16 @@ public class BlockStand extends BlockHFEnumRotatableTile<BlockStand, Stand> {
             case PLATE:     return new TilePlate();
             default:        return new TileCookingStand();
         }
+    }
+
+    @Override
+    public void breakBlock(@Nonnull World world, @Nonnull BlockPos pos, @Nonnull IBlockState state) {
+        TileEntity tile = world.getTileEntity(pos);
+        if (tile instanceof TileStand) {
+            TileStand stand = ((TileStand)tile);
+            InventoryHelper.spawnItemStack(world, pos.getX(), pos.getY(), pos.getZ(), stand.getContents());
+        }
+
+        super.breakBlock(world, pos, state);
     }
 }

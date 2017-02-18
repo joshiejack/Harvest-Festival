@@ -2,6 +2,7 @@ package joshie.harvest.buildings.placeable;
 
 import com.google.gson.annotations.Expose;
 import net.minecraft.block.BlockBush;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
@@ -76,7 +77,7 @@ public abstract class Placeable {
         return false;
     }
 
-    public void remove(World world, BlockPos pos, Rotation rotation, ConstructionStage stage) {
+    public void remove(World world, BlockPos pos, Rotation rotation, ConstructionStage stage, IBlockState replacement) {
         return;
     }
 

@@ -230,12 +230,6 @@ public class BlockCookware extends BlockHFEnumRotatableTile<BlockCookware, Cookw
     @Override
     public void breakBlock(@Nonnull World world, @Nonnull BlockPos pos, @Nonnull IBlockState state) {
         Cookware cookware = getEnumFromState(state);
-        if (cookware == FRIDGE_TOP) {
-            world.setBlockToAir(pos.down());
-        } else if (cookware == FRIDGE) {
-            world.setBlockToAir(pos.up());
-        }
-
         TileEntity tile = world.getTileEntity(pos);
         if (tile instanceof TileCooking) {
             TileCooking cooking = ((TileCooking)tile);
@@ -246,6 +240,12 @@ public class BlockCookware extends BlockHFEnumRotatableTile<BlockCookware, Cookw
             TileFridge fridge = ((TileFridge)tile);
             InventoryHelper.dropInventoryItems(world, pos, fridge.getContents());
             world.updateComparatorOutputLevel(pos, this);
+        }
+
+        if (cookware == FRIDGE_TOP) {
+            world.setBlockToAir(pos.down());
+        } else if (cookware == FRIDGE) {
+            world.setBlockToAir(pos.up());
         }
 
         super.breakBlock(world, pos, state);

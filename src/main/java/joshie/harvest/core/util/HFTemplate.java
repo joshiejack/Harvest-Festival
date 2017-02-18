@@ -8,6 +8,7 @@ import joshie.harvest.buildings.placeable.entities.PlaceableNPC;
 import joshie.harvest.core.helpers.MCServerHelper;
 import joshie.harvest.town.TownHelper;
 import joshie.harvest.town.data.TownDataServer;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
@@ -46,13 +47,13 @@ public class HFTemplate {
         return components;
     }
 
-    public void removeBlocks(World world, BlockPos pos, Rotation rotation) {
+    public void removeBlocks(World world, BlockPos pos, Rotation rotation, IBlockState state) {
         if (!world.isRemote) {
             if (components != null) {
-                for (int i = components.length - 1; i >= 0; i--) components[i].remove(world, pos, rotation, ConstructionStage.MOVEIN);
-                for (int i = components.length - 1; i >= 0; i--) components[i].remove(world, pos, rotation, ConstructionStage.PAINT);
-                for (int i = components.length - 1; i >= 0; i--) components[i].remove(world, pos, rotation, ConstructionStage.DECORATE);
-                for (int i = components.length - 1; i >= 0; i--) components[i].remove(world, pos, rotation, ConstructionStage.BUILD);
+                for (int i = components.length - 1; i >= 0; i--) components[i].remove(world, pos, rotation, ConstructionStage.MOVEIN, state);
+                for (int i = components.length - 1; i >= 0; i--) components[i].remove(world, pos, rotation, ConstructionStage.PAINT, state);
+                for (int i = components.length - 1; i >= 0; i--) components[i].remove(world, pos, rotation, ConstructionStage.DECORATE, state);
+                for (int i = components.length - 1; i >= 0; i--) components[i].remove(world, pos, rotation, ConstructionStage.BUILD, state);
                 MCServerHelper.markForUpdate(world, pos);
             }
         }

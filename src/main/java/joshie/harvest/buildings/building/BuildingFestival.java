@@ -6,6 +6,7 @@ import joshie.harvest.core.util.HFTemplate;
 import joshie.harvest.core.util.ResourceLoader;
 import joshie.harvest.town.TownHelper;
 import joshie.harvest.town.data.TownDataServer;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
@@ -33,7 +34,7 @@ public class BuildingFestival extends Building {
     }
 
     private void removeOldFestival(Festival oldFestival, World world, BlockPos pos, Rotation rotation, TownDataServer town) {
-        if (oldFestival.affectsFestivalGrounds()) getFestivalTemplateFromFestival(oldFestival).removeBlocks(world, pos, rotation); //Remove the old festival
+        if (oldFestival.affectsFestivalGrounds()) getFestivalTemplateFromFestival(oldFestival).removeBlocks(world, pos, rotation, Blocks.AIR.getDefaultState()); //Remove the old festival
         if (oldFestival.getQuest() != null) town.getQuests().removeAsCurrent(world, oldFestival.getQuest());
     }
 

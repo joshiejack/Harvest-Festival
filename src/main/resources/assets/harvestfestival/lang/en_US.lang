@@ -724,7 +724,7 @@ harvestfestival.npc.tooltip.weather=Weather, tomorrow?
 harvestfestival.npc.tooltip.gift=Gift held item!
 harvestfestival.npc.tooltip.flower=Sell Flower!
 harvestfestival.npc.tooltip.book=Ask for knowledge?
-
+harvestfestival.npc.tooltip.birthday=%s's Birthday
 
 # NPC Names
 ## NOTE FOR TRANSLATORS, READ
@@ -1647,6 +1647,15 @@ harvestfestival.shop.cooking.greeting1=Are you missing any ingredients, then I t
 harvestfestival.shop.cooking.greeting2=If you need some ingredients, I'm here to help.
 harvestfestival.shop.cooking.greeting3=Get your missing ingredients right here from Granny.
 
+#Clockmaker
+harvestfestival.shop.clockmaker=Clockmaker
+harvestfestival.shop.clockmaker.greeting1=Hickory, dickery, dock. The player opened my shop.
+harvestfestival.shop.clockmaker.greeting2=Welcome to the Golden Compass.
+harvestfestival.shop.clockmaker.greeting3=Tick-tock. Tick-tock. Welcome!
+harvestfestival.shop.clockmaker.sign1=Eight till
+harvestfestival.shop.clockmaker.sign2=Three, \o/
+harvestfestival.shop.clockmaker.sign3=Monday-Friday
+
 #Miscellaneous
 harvestfestival.marriage=Gift for Marriage
 harvestfestival.marriage.locked=LOCKED
@@ -1948,7 +1957,7 @@ harvestfestival.quest.meeting.fenn.text=Oooo hello there! Fenn's the name, vines
 harvestfestival.quest.meeting.fenn.description=Welcome Fenn to town.
 harvestfestival.quest.meeting.tiberius.title=Way too much time
 harvestfestival.quest.meeting.tiberius.build=Build the Clockmaker.
-harvestfestival.quest.meeting.tiberius.text=Hello, I feel grateful for your invite here. Maybe one day if we become friends I'll let you in on a secret of mine. For now, please take this clock as it may help you one day.
+harvestfestival.quest.meeting.tiberius.text=Hello, I feel grateful for your invite here. Maybe one day if we become friends I'll let you in on a secret of mine. For now, please take these as it may be of some help to you.
 harvestfestival.quest.meeting.tiberius.description=Visit Tiberius for the first time.
 harvestfestival.quest.meeting.cloe.title=Calamity Cloe
 harvestfestival.quest.meeting.cloe.text=Nice to meet you, I'm Cloe. I don't really have much else to say, but thanks for inviting us all here.
@@ -2023,16 +2032,6 @@ harvestfestival.script.new.years.eve.3=Three! :O
 harvestfestival.script.new.years.eve.2=Twooooooo!!!
 harvestfestival.script.new.years.eve.1=One :D :D :D
 harvestfestival.script.new.years.eve.0=Happy New Year ya'll!!!!!!!!!!!!!!!!!!
-
-### Letters
-harvestfestival.letter.new.years.eve=Alright there,\n\nWe're planning on taking part in some festivities to celebrate the coming new year tomorrow night. Jade and I'll be there for sure. I'd just love it if ya would attend. We'll be celebrating from 6pm!\n\n\n-Yulif
-harvestfestival.letter.new.years=Dear Sir/Madam, \n\nWe are preparing a fantastic showcase for you in the park to celebrate the new year from around 10am to 6pm. You are duly invited. Please RSVP.\n\n\n-Johan
-harvestfestival.letter.cooking=Dear Sir/Madam, \n\nI have plans for a cooking festival that I would like to setup for tomorrow. Please confirm if you would be happy to attend.\n\n\n-Jenni
-harvestfestival.letter.chicken=Hi, \n\nI'd like to begin setting up for a chicken festival. Where we'll be judging your chickens from 6am to 6pm, with a grand prize! Confirm if this will be good.\n\n\n-Ashlee
-harvestfestival.letter.cow=Hey lovely, \n\nI've plans to host a cow festival soon. It would operate from 6am to 6pm, be sure to bring your best. Let me know if you wish to attend.\n\n\n-Candice
-harvestfestival.letter.sheep=Good day, \n\nI would like to set up a sheep festival tomorrow, bring your best! We'll be judging from 6am to 6pm. Reply if you plan to attend.\n\n\n-Jim
-harvestfestival.letter.starry.night=Hi\n\nThe town is planning on celebrating starry night soon. It's a night to invite your loved ones to dinner. Let me know when you're ready.\n\n\n-Harvest Goddess
-harvestfestival.letter.harvest.festival=Hello!\n\nTomorrow we're all going to be gathering to celeberate the harvest. We'll be adding food to a communal pot, so bring your best crops!\n\n\n\-Jade
 
 ###Achievements
 achievement.harvestfestival.summon=Goddess' Bounty
@@ -2110,6 +2109,7 @@ harvestfestival.config.tooltip=
 
 #Stats book
 harvestfestival.book.statistics=Farming for Dummies
+harvestfestival.book.calendar=Calendar
 harvestfestival.stats.next=Next Page
 harvestfestival.stats.previous=Previous Page
 harvestfestival.stats.collection=Collections
@@ -2201,11 +2201,22 @@ harvestfestival.note.festival.cooking.title=Cooking Festival
 harvestfestival.note.festival.cooking.description=The cooking festival is a widely celebrated event that occurs from 6am-6pm. There are some special shops that open up on this day, so be sure to visit them. To participate talk to Jenni she will let you know what utensil category will be judged. When you have your meal ready, place it on one of the cooking stands, then talk to Jenni to start the judging.
 harvestfestival.note.festival.chicken.title=Chicken Festival
 harvestfestival.note.festival.chicken.description=The chicken festival takes place in the park from 6am-6pm. It is lead by Ashlee. Bring your chosen chicken along, place them inside one of the contest pens then talk to Ashlee to get the festival started. Animals are judged on happiness and how valuable they are.
-harvestfestival.note.festival.cow.title=Cow
+harvestfestival.note.festival.cow.title=Cow Festival
 harvestfestival.note.festival.cow.description=The cow festival takes place in the park from 6am-6pm. It is lead by Candice. Bring your chosen cow along with a lead, right click the lead on to one of the livestock pens and the animal will be placed inside. Then talk to Candice to get the festival started. Animals are judged on happiness and how valuable they are.
-harvestfestival.note.festival.sheep.title=Cow
+harvestfestival.note.festival.sheep.title=Sheep Festival
 harvestfestival.note.festival.sheep.description=The sheep festival takes place in the park from 6am-6pm. It is lead by Jim. Bring your chosen sheep along with a lead, right click the lead on to one of the livestock pens and the animal will be placed inside. Then talk to Jim to get the festival started. Animals are judged on happiness and how valuable they are.
 harvestfestival.note.festival.starry.night.title=Starry Night
 harvestfestival.note.festival.starry.night.description=Starry night is a night that the npcs spend with their loved ones. To start the festival, simply invite someone to dinner. You'll get the option when chatting to them. They'll tell you that they will be waiting at the park in two hours. Then when you attend simply talk to the person you invited to finish the meal.
-harvestfestival.note.festival.harvest.festival.title=Harvest Festival
-harvestfestival.note.festival.harvest.festival.description=The Harvest Festival is when the whole town gathers in the park to contribute towards a communal soup. You'll be able to attend from 8am to 8pm. Throw an item in the pot to have the festival proceed.
+harvestfestival.note.festival.harvest.title=Harvest Festival
+harvestfestival.note.festival.harvest.description=The Harvest Festival is when the whole town gathers in the park to contribute towards a communal soup. You'll be able to attend from 8am to 8pm. Throw an item in the pot to have the festival proceed.
+
+###Letters
+# Festival Letters
+harvestfestival.letter.new.years.eve=Alright there,\n\nWe're planning on taking part in some festivities to celebrate the coming new year tomorrow night. Jade and I'll be there for sure. I'd just love it if ya would attend. We'll be celebrating from 6pm!\n\n\n-Yulif
+harvestfestival.letter.new.years=Dear Sir/Madam, \n\nWe are preparing a fantastic showcase for you in the park to celebrate the new year from around 10am to 6pm. You are duly invited. Please RSVP.\n\n\n-Johan
+harvestfestival.letter.cooking=Dear Sir/Madam, \n\nI have plans for a cooking festival that I would like to setup for tomorrow. Please confirm if you would be happy to attend.\n\n\n-Jenni
+harvestfestival.letter.chicken=Hi, \n\nI'd like to begin setting up for a chicken festival. Where we'll be judging your chickens from 6am to 6pm, with a grand prize! Confirm if this will be good.\n\n\n-Ashlee
+harvestfestival.letter.cow=Hey lovely, \n\nI've plans to host a cow festival soon. It would operate from 6am to 6pm, be sure to bring your best. Let me know if you wish to attend.\n\n\n-Candice
+harvestfestival.letter.sheep=Good day, \n\nI would like to set up a sheep festival tomorrow, bring your best! We'll be judging from 6am to 6pm. Reply if you plan to attend.\n\n\n-Jim
+harvestfestival.letter.starry.night=Hi\n\nThe town is planning on celebrating starry night soon. It's a night to invite your loved ones to dinner. Let me know when you're ready.\n\n\n-Harvest Goddess
+harvestfestival.letter.harvest.festival=Hello!\n\nTomorrow we're all going to be gathering to celeberate the harvest. We'll be adding food to a communal pot, so bring your best crops!\n\n\n\-Jade

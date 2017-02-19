@@ -13,6 +13,7 @@ import net.minecraft.world.World;
 import javax.annotation.Nonnull;
 import java.util.EnumMap;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Map.Entry;
 
 @HFApiImplementation
@@ -20,7 +21,7 @@ public class CalendarAPI implements CalendarManager {
     public static final CalendarAPI INSTANCE = new CalendarAPI();
     private final EnumMap<Season, SeasonData> data = new EnumMap<>(Season.class);
     private final TIntObjectMap<SeasonProvider> providers = new TIntObjectHashMap<>();
-    private final HashMap<CalendarDate, Festival> festivals = new HashMap<>();
+    private final Map<CalendarDate, Festival> festivals = new HashMap<>();
 
     private CalendarAPI() {
         data.put(Season.SPRING, new SeasonData(Season.SPRING, 0x87CEFA, 6000, 20500).setLeavesColor(0x80B76C)
@@ -39,6 +40,10 @@ public class CalendarAPI implements CalendarManager {
         }
 
         return Festival.NONE;
+    }
+
+    public Map<CalendarDate, Festival> getFestivals() {
+        return festivals;
     }
 
     @Override

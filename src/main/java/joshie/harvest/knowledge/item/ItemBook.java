@@ -12,13 +12,15 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.world.World;
 
+import javax.annotation.Nonnull;
 import java.util.Locale;
 
+import static joshie.harvest.core.handlers.GuiHandler.CALENDAR_GUI;
 import static joshie.harvest.core.handlers.GuiHandler.STATS_BOOK;
 
 public class ItemBook extends ItemHFEnum<ItemBook, Book> implements ICreativeSorted {
     public enum Book implements IStringSerializable {
-        STATISTICS(STATS_BOOK);
+        STATISTICS(STATS_BOOK), CALENDAR(CALENDAR_GUI);
 
         private final int guiID;
 
@@ -41,6 +43,7 @@ public class ItemBook extends ItemHFEnum<ItemBook, Book> implements ICreativeSor
     }
 
     @Override
+    @Nonnull
     public ActionResult<ItemStack> onItemRightClick(ItemStack stack, World world, EntityPlayer player, EnumHand hand) {
         if (!player.isSneaking()) {
             player.openGui(HarvestFestival.instance, getEnumFromStack(stack).getGuiID(), world, 0, 0, 0);

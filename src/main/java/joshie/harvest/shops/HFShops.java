@@ -29,7 +29,9 @@ import joshie.harvest.fishing.item.ItemFish.Fish;
 import joshie.harvest.fishing.item.ItemJunk.Junk;
 import joshie.harvest.gathering.HFGathering;
 import joshie.harvest.gathering.block.BlockNature.NaturalBlock;
+import joshie.harvest.knowledge.HFKnowledge;
 import joshie.harvest.knowledge.HFNotes;
+import joshie.harvest.knowledge.item.ItemBook.Book;
 import joshie.harvest.mining.HFMining;
 import joshie.harvest.mining.block.BlockElevator.Elevator;
 import joshie.harvest.mining.block.BlockLadder.Ladder;
@@ -44,6 +46,7 @@ import joshie.harvest.quests.base.QuestRecipe;
 import joshie.harvest.quests.block.BlockQuestBoard.QuestBlock;
 import joshie.harvest.shops.purchasable.*;
 import joshie.harvest.shops.requirement.*;
+import joshie.harvest.shops.requirement.String;
 import joshie.harvest.shops.rules.SpecialRulesFriendship;
 import joshie.harvest.shops.rules.SpecialRulesQuest;
 import joshie.harvest.tools.HFTools;
@@ -84,11 +87,13 @@ public class HFShops {
     public static final Shop MINER = newShop(new ResourceLocation(MODID, "miner"), HFNPCs.MINER);
     //Added in 0.6+
     public static final Shop BAITSHOP = newShop(new ResourceLocation(MODID, "baitshop"), HFNPCs.FISHERMAN);
-    public static final Shop BLOODMAGE = newShop(new ResourceLocation(MODID, "bloodmage"), HFNPCs.CLOCKMAKER).setSpecialSellingRules(new SpecialRulesFriendship(HFNPCs.CLOCKMAKER, 15000)).setOpensOnHolidays();
+    public static final Shop CLOCKMAKER = newShop(new ResourceLocation(MODID, "clockmaker"), HFNPCs.CLOCKMAKER);
+    public static final Shop BLOODMAGE = newShop(new ResourceLocation(MODID, "bloodmage"), null).setSpecialSellingRules(new SpecialRulesFriendship(HFNPCs.CLOCKMAKER, 15000)).setOpensOnHolidays();
     public static final Shop KITCHEN = newShop(new ResourceLocation(MODID, "kitchen"), HFNPCs.CAFE_GRANNY).setSpecialSellingRules(new SpecialRulesFriendship(HFNPCs.CAFE_GRANNY, 15000));
     public static final Shop TRADER = newShop(new ResourceLocation(MODID, "trader"), HFNPCs.TRADER).setSpecialSellingRules(new SpecialRulesFriendship(HFNPCs.TRADER, 15000));
     public static final Shop COOKING_FESTIVAL_FOOD = newHolidayShop(new ResourceLocation(MODID, "cooking"), HFNPCs.CAFE_GRANNY, HFFestivals.COOKING_CONTEST);
     public static final Shop COOKING_FESTIVAL_RECIPES = newHolidayShop(new ResourceLocation(MODID, "recipes"), HFNPCs.CAFE_OWNER, HFFestivals.COOKING_CONTEST);
+
 
     @SuppressWarnings("unused")
     public static void postInit() {
@@ -97,6 +102,7 @@ public class HFShops {
         registerCafe();
         registerCafeKitchen();
         registerCarpenter();
+        registerClockmaker();
         registerMiner();
         registerPoultry();
         registerSupermarket();
@@ -290,6 +296,15 @@ public class HFShops {
         CARPENTER.addOpening(THURSDAY, 9000, 17500).addOpening(FRIDAY, 9000, 17500).addOpening(SUNDAY, 9000, 17500);
     }
 
+    private static void registerClockmaker() {
+        CLOCKMAKER.addPurchasable(500, new ItemStack(Items.CLOCK));
+        CLOCKMAKER.addPurchasable(150, new ItemStack(Items.COMPASS));
+        CLOCKMAKER.addPurchasable(100, new ItemStack(Items.MAP));
+        CLOCKMAKER.addPurchasable(750, HFKnowledge.BOOK.getStackFromEnum(Book.CALENDAR));
+        CLOCKMAKER.addOpening(MONDAY, 8000, 15000).addOpening(TUESDAY, 8000, 15000).addOpening(WEDNESDAY, 8000, 15000)
+                .addOpening(THURSDAY, 8000, 15000).addOpening(FRIDAY, 8000, 15000);
+    }
+
     private static void registerMiner() {
         MINER.addPurchasable(40, new ItemStack(Blocks.TORCH), 160);
         MINER.addPurchasable(250, HFMining.MINING_TOOL.getStackFromEnum(MiningTool.ESCAPE_ROPE), 10);
@@ -315,7 +330,7 @@ public class HFShops {
     }
 
     private static void registerPoultry() {
-        BARN.addPurchasable(new Purchasable(50, HFAnimals.TOOLS.getStackFromEnum(CHICKEN_FEED)).addTooltip("tool.chicken.feed"));
+        POULTRY.addPurchasable(new Purchasable(50, HFAnimals.TOOLS.getStackFromEnum(CHICKEN_FEED)).addTooltip("tool.chicken.feed"));
         POULTRY.addPurchasable(10, HFAnimals.TREATS.getStackFromEnum(Treat.GENERIC));
         POULTRY.addPurchasable(30, HFAnimals.TREATS.getStackFromEnum(Treat.CHICKEN));
         POULTRY.addPurchasable(new PurchasableEntity(EntityHarvestChicken.class, 1500, HFAnimals.ANIMAL.getStackFromEnum(CHICKEN)).setNote(HFNotes.CHICKEN_CARE));
@@ -363,7 +378,7 @@ public class HFShops {
         BAITSHOP.addPurchasable(new Purchasable(Junk.BAIT.getCost(), HFFishing.JUNK.getStackFromEnum(Junk.BAIT)).addTooltip("junk.bait"));
         BAITSHOP.addPurchasable(1000L, HFFishing.FISHING_ROD.getStack(ToolTier.BASIC), 1);
         BAITSHOP.addPurchasable(new Purchasable(500L, HFFishing.FISHING_BLOCK.getStackFromEnum(FishingBlock.TRAP)).setStock(10).addTooltip("fishing.block.trap"));
-        BAITSHOP.addPurchasable(new PurchasableMaterials(3000L, HFFishing.FISHING_BLOCK.getStackFromEnum(FishingBlock.HATCHERY), Logs.of(8), Wool.of(1)) {
+        BAITSHOP.addPurchasable(new PurchasableMaterials(3000L, HFFishing.FISHING_BLOCK.getStackFromEnum(FishingBlock.HATCHERY), Logs.of(8), String.of(6)) {
             @Override
             public boolean canList(World world, EntityPlayer player) {
                 return HFApi.quests.hasCompleted(Quests.SELL_HATCHERY, player);
@@ -460,7 +475,7 @@ public class HFShops {
         //Add all the recipes the player has learnt from friendship to the list
         for (Quest quest: Quest.REGISTRY) {
             if (quest instanceof QuestRecipe) {
-                for (String recipe : ((QuestRecipe) quest).recipe) {
+                for (java.lang.String recipe : ((QuestRecipe) quest).recipe) {
                     COOKING_FESTIVAL_RECIPES.addPurchasable(new PurchasableRecipe(new ResourceLocation(MODID, recipe)) {
                         @Override
                         public boolean canList(@Nonnull World world, @Nonnull EntityPlayer player) {

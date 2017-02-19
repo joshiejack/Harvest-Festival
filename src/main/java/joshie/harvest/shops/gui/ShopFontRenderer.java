@@ -55,6 +55,12 @@ public class ShopFontRenderer {
         return true;
     }
 
+    public static boolean render(GuiBase gui, int x, int y, String text, float scale) {
+        char[] characters = text.toCharArray();
+        if (!ACCEPTED.containsAll(characters)) return renderAsVanilla(gui, text, x, y);
+        return renderAsHF( text, x, y, scale);
+    }
+
     public static boolean render(GuiBase gui, int x, int y, String text, boolean rightAligned) {
         char[] characters = text.toCharArray();
         if (!ACCEPTED.containsAll(characters)) return renderAsVanilla(gui, text, x, y);

@@ -66,7 +66,6 @@
 * Added fishing rods, obtainable when you meet jakob for the first time
 * Added various fish and junk that can be caught
 * Different fish per season and water type (OCEAN, RIVER, LAKE, POND)
-* Added proper fishing shop for jakob
 * Added bait, attach to your rods to increase speed
 * Added fish trap, seed with bait to catch fish/junk
 * Added hatchery, will duplicate fish
@@ -83,6 +82,8 @@
   * Relationship Data for Animals and NPCs
   * Notes page, where everything you learn from NPCs is kept track of
   * Quest page, where you can see what quests you are currently working on
+* Added a calendar! The clockmaker will give you one when you meet him
+  * Can see the birthdays of all the npcs you've met as well as the dates festival are 'expected' to occur (you'll receive letter day before)
 
 ###Letters - NEW!
 * Added Mailbox
@@ -137,6 +138,9 @@
 * You are now able to sell some items to the stores, but only a certain amount each day
 * Shops are now able to support a "stock value", aka how many items you can buy of this item each day
 * You no longer need to purchase a counter for the mixer to be unlocked for purchase
+* Added some secret unlockable shops
+* Added a daytime clockmaker shop to tiberius, selling clocks, calendars, maps, compass
+* Added a shop to jakob, selling the new fish stuff
 
 ###Tools
 * Tools will have [BROKEN] in front of their name, when they can't be used

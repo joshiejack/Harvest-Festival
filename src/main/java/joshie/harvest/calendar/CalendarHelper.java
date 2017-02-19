@@ -17,8 +17,8 @@ import static joshie.harvest.api.calendar.CalendarDate.DAYS_PER_SEASON;
 import static joshie.harvest.calendar.HFCalendar.TICKS_PER_DAY;
 
 public class CalendarHelper {
-    private static final Season[] SEASONS;
-    private static final Weekday[] DAYS;
+    public static final Season[] SEASONS;
+    public static final Weekday[] DAYS;
     static {
         SEASONS = Season.class.getEnumConstants();
         DAYS = Weekday.class.getEnumConstants();

@@ -2,6 +2,8 @@ package joshie.harvest.quests.player.meetings;
 
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.buildings.HFBuildings;
+import joshie.harvest.knowledge.HFKnowledge;
+import joshie.harvest.knowledge.item.ItemBook.Book;
 import joshie.harvest.npcs.HFNPCs;
 import joshie.harvest.quests.base.QuestMeeting;
 import joshie.harvest.town.TownHelper;
@@ -31,5 +33,6 @@ public class QuestMeetTiberius extends QuestMeeting {
     @Override
     public void onQuestCompleted(EntityPlayer player) {
         rewardItem(player, new ItemStack(Items.CLOCK));
+        rewardItem(player, HFKnowledge.BOOK.getStackFromEnum(Book.CALENDAR));
     }
 }

@@ -3,19 +3,26 @@ package joshie.harvest.api.calendar;
 import joshie.harvest.api.core.Letter;
 import joshie.harvest.api.knowledge.Note;
 import joshie.harvest.api.quests.Quest;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.translation.I18n;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 
 import static joshie.harvest.api.calendar.CalendarDate.DAYS_PER_SEASON;
 
-public final class Festival {
+public final class Festival implements CalendarEntry {
     public static final HashMap<ResourceLocation, Festival> REGISTRY = new HashMap<>();
     public static final Festival NONE = new Festival(new ResourceLocation("harvestfestival", "none"));
+    private static final ItemStack CLOCK = new ItemStack(Items.CLOCK);
     private final ResourceLocation resource;
     private boolean affectsGround;
+    private ItemStack icon;
     private boolean shopsOpen;
     private boolean hidden;
     private int length;
@@ -27,7 +34,15 @@ public final class Festival {
         this.resource = resource;
         this.length = 3;
         this.affectsGround = true;
+        this.icon = CLOCK;
         REGISTRY.put(resource, this);
+    }
+
+    /** Set the icon for this festival
+     *  @param stack    the representative icon **/
+    public Festival setIcon(ItemStack stack) {
+        this.icon = stack;
+        return this;
     }
 
     /** The note that gets added when this festival is
@@ -97,6 +112,17 @@ public final class Festival {
     @Nullable
     public Quest getQuest() {
         return quest;
+    }
+
+    @Override
+    public ItemStack getStackRepresentation() {
+        return icon;
+    }
+
+    @Override
+    public void addTooltipForCalendarEntry(List<String> tooltip) {
+        if (note != null) tooltip.add(note.getTitle());
+        else tooltip.addAll(Arrays.asList(I18n.translateToLocal(resource.getResourceDomain() + ".festival." + resource.getResourcePath().replace("_", ".") + ".tooltip.").split("\n")));
     }
 
     public boolean doShopsOpen() {

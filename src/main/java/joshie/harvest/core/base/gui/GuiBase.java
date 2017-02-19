@@ -60,12 +60,16 @@ public abstract class GuiBase extends GuiScreen {
         }
     }
 
+    protected void drawGuiTexture() {
+        mc.renderEngine.bindTexture(TEXTURE);
+        drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
+    }
+
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
         drawDefaultBackground();
         GlStateManager.color(1.0f, 1.0f, 1.0f, 1.0f);
-        mc.renderEngine.bindTexture(TEXTURE);
-        drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
+        drawGuiTexture();
         drawBackground(guiLeft, guiTop);
         super.drawScreen(mouseX, mouseY, partialTicks);
         drawTooltip(tooltip, mouseX, mouseY);
@@ -109,6 +113,10 @@ public abstract class GuiBase extends GuiScreen {
 
     public void drawForeground(int x, int y) {}
     public void drawBackground(int x, int y) {}
+
+    public void addTooltip(String string) {
+        tooltip.add(string);
+    }
     
     public void addTooltip(List<String> list) {
         tooltip.addAll(list);

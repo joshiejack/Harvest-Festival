@@ -18,10 +18,7 @@ import joshie.harvest.npcs.entity.*;
 import joshie.harvest.npcs.greeting.*;
 import joshie.harvest.npcs.item.ItemNPCSpawner;
 import joshie.harvest.npcs.item.ItemNPCTool;
-import joshie.harvest.npcs.npc.NPCHolidayStore;
-import joshie.harvest.npcs.npc.NPCHolidayStoreSpecial;
-import joshie.harvest.npcs.npc.NPCSpecialOpener;
-import joshie.harvest.npcs.npc.NPCSpecialSeller;
+import joshie.harvest.npcs.npc.*;
 import joshie.harvest.npcs.render.NPCItemRenderer;
 import joshie.harvest.npcs.render.NPCItemRenderer.NPCTile;
 import joshie.harvest.npcs.render.RenderNPC;
@@ -68,7 +65,7 @@ public class HFNPCs {
     public static final NPCSpecialSeller CAFE_OWNER = register("liara", FEMALE, ADULT, 17, SPRING, 0xBEC8EE, 0x8091D0, NPCHolidayStoreSpecial.class);
     public static final NPC CAFE_GRANNY = register("katlin", FEMALE, ELDER, 12, SUMMER, 0xDDDDDD, 0x777777, NPCHolidayStore.class);
     public static final NPC BLACKSMITH = register("daniel", MALE, ADULT, 1, WINTER, 0x613827, 0x23150E);
-    public static final NPC CLOCKMAKER = register("tiberius", MALE, ADULT, 15, WINTER, 0x305A2E, 0x142419);
+    public static final NPC CLOCKMAKER = register("tiberius", MALE, ADULT, 15, WINTER, 0x305A2E, 0x142419, NPCClockmaker.class);
     public static final NPC CLOCKMAKER_CHILD = register("fenn", MALE, CHILD, 25, SUMMER, 0x228C00, 0x003F00);
     public static final NPC PRIEST = register("thomas", MALE, ELDER, 9, SUMMER, 0x006666, 0x00B2B20);
     public static final NPC MAYOR = register("jamie", FEMALE, ELDER, 8, SUMMER, 0xA8AC9A, 0x3B636D);
@@ -422,10 +419,15 @@ public class HFNPCs {
                         .add(SPRING, SUNDAY, 18000L, CLOCKMAKER_DOWNSTAIRS)
                         .add(SPRING, MONDAY, 0L, CLOCKMAKER_DOWNSTAIRS)
                         .add(SPRING, MONDAY, 8000L, CAFE_CUSTOMER)
-                        .add(SPRING, MONDAY, 11000L, TOWNHALL_RIGHT_OF_STAGE)
-                        .add(SPRING, MONDAY, 14000L, FISHING_POND_LEFT)
+                        .add(SPRING, MONDAY, 15500L, FISHING_POND_LEFT)
                         .add(SPRING, MONDAY, 16000L, PARK_LEFT)
                         .add(SPRING, MONDAY, 18000L, CLOCKMAKER_DOWNSTAIRS)
+                        .add(SPRING, SATURDAY, 0L, CLOCKMAKER_DOWNSTAIRS)
+                        .add(SPRING, SATURDAY, 8000L, CAFE_CUSTOMER)
+                        .add(SPRING, SATURDAY, 11000L, TOWNHALL_RIGHT_OF_STAGE)
+                        .add(SPRING, SATURDAY, 14000L, FISHING_POND_LEFT)
+                        .add(SPRING, SATURDAY, 16000L, PARK_LEFT)
+                        .add(SPRING, SATURDAY, 18000L, CLOCKMAKER_DOWNSTAIRS)
                         .add(NEW_YEARS, 0L, CLOCKMAKER_DOWNSTAIRS)
                         .add(NEW_YEARS, 7000L, CLOCKMAKER_DOOR)
                         .add(NEW_YEARS, 12000L, PARK_SPRUCE)

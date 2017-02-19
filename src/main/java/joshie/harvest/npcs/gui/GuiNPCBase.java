@@ -8,7 +8,6 @@ import joshie.harvest.core.helpers.TextHelper;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.npcs.HFNPCs;
-import joshie.harvest.npcs.NPCHelper;
 import joshie.harvest.npcs.entity.EntityNPC;
 import joshie.harvest.npcs.packet.PacketGift;
 import joshie.harvest.npcs.packet.PacketInfo;
@@ -186,8 +185,7 @@ public abstract class GuiNPCBase extends GuiBase {
     }
 
     boolean displayInfo() {
-        return npc.getNPC().getInfoButton() != null && npc.getNPC().getInfoButton().canDisplay(npc.getNPC(), player)
-                && (npc.getNPC().getShop(player.worldObj, pos, player) == null || !NPCHelper.isShopOpen(player.worldObj, npc, player, npc.getNPC().getShop(player.worldObj, pos, player)));
+        return npc.getNPC().getInfoButton() != null && npc.getNPC().getInfoButton().canDisplay(npc.getNPC(), player);
     }
 
     public abstract void drawOverlay(int x, int y);

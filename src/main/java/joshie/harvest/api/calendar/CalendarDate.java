@@ -62,7 +62,6 @@ public class CalendarDate {
      * @param nbt   the tag to read
      * @return the date */
     public static CalendarDate fromNBT(NBTTagCompound nbt) {
-        Weekday weekday = Weekday.values()[nbt.getByte("WeekDay")];
         int day = nbt.getInteger("Day");
         Season season = Season.values()[nbt.getByte("Season")];
         int year = nbt.getInteger("Year");

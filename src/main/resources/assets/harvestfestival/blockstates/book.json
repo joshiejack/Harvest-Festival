@@ -5,6 +5,7 @@
     "model": "forge:item-layer"
   },
   "variants": {
-    "statistics": [{ "textures": { "layer0": "harvestfestival:items/book_knowledge" }}]
+    "statistics": [{ "textures": { "layer0": "harvestfestival:items/book_knowledge" }}],
+    "calendar": [{ "textures": { "layer0": "harvestfestival:items/calendar" }}]
   }
 }

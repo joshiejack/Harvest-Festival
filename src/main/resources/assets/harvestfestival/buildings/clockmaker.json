@@ -703,14 +703,15 @@
       "pos": "4 2 2"
     },
     {
-      "pos": "4 2 3"
-    },
-    {
-      "stack": "minecraft:clock",
-      "rotation": 0,
-      "facing": "SOUTH",
+      "text": [
+        "translate:harvestfestival.shop.clockmaker",
+        "translate:harvestfestival.shop.clockmaker.sign1",
+        "translate:harvestfestival.shop.clockmaker.sign2",
+        "translate:harvestfestival.shop.clockmaker.sign3"
+      ],
+      "state": "wall_sign 3",
       "pos": "4 2 3",
-      "type": "entities.ItemFrame"
+      "type": "blocks.Sign"
     },
     {
       "pos": "4 2 4"

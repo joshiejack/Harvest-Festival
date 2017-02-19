@@ -1,11 +1,20 @@
 package joshie.harvest.calendar;
 
+import joshie.harvest.animals.HFAnimals;
+import joshie.harvest.animals.item.ItemAnimalSpawner.Spawner;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.Festival;
 import joshie.harvest.api.calendar.Season;
+import joshie.harvest.cooking.HFCooking;
+import joshie.harvest.cooking.block.BlockCookware.Cookware;
+import joshie.harvest.cooking.item.ItemIngredients.Ingredient;
+import joshie.harvest.cooking.item.ItemMeal.Meal;
 import joshie.harvest.core.util.annotations.HFLoader;
 import joshie.harvest.knowledge.letter.LetterFestival;
 import joshie.harvest.quests.QuestHelper;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
 import java.util.HashMap;
@@ -38,6 +47,14 @@ public class HFFestivals {
             festival.setQuest(QuestHelper.getQuest(name)).setNote(registerNote(TOWNSHIP, name)).setLetter(new LetterFestival(festival, TEMP_REGISTRY.get(festival), festival.getResource()));
         }
 
+        NEW_YEARS.setIcon(HFCooking.INGREDIENTS.getStackFromEnum(Ingredient.RICEBALL));
+        COOKING_CONTEST.setIcon(HFCooking.COOKWARE.getStackFromEnum(Cookware.FRYING_PAN));
+        CHICKEN_FESTIVAL.setIcon(HFAnimals.ANIMAL.getStackFromEnum(Spawner.CHICKEN));
+        COW_FESTIVAL.setIcon(HFAnimals.ANIMAL.getStackFromEnum(Spawner.COW));
+        HARVEST_FESTIVAL.setIcon(new ItemStack(Items.CAULDRON));
+        SHEEP_FESTIVAL.setIcon(HFAnimals.ANIMAL.getStackFromEnum(Spawner.SHEEP));
+        STARRY_NIGHT.setIcon(new ItemStack(Blocks.SAPLING, 1, 1));
+        NEW_YEARS_EVE.setIcon(HFCooking.MEAL.getStackFromEnum(Meal.NOODLES));
         TEMP_REGISTRY = null; //save memory
     }
 

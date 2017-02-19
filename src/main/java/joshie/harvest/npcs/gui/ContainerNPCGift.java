@@ -52,7 +52,7 @@ public class ContainerNPCGift extends ContainerNPCChat {
                     player.setHeldItem(hand, null);
                 }
 
-                npc.setHeldItem(EnumHand.MAIN_HAND, gifted);
+                npc.setHeldItem(EnumHand.OFF_HAND, gifted);
             }
 
             //On closure

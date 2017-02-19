@@ -1,8 +1,8 @@
 package joshie.harvest.api.npc;
 
-import joshie.harvest.api.HFApi;
 import joshie.harvest.api.buildings.BuildingLocation;
 import joshie.harvest.api.calendar.CalendarDate;
+import joshie.harvest.api.calendar.CalendarEntry;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.npc.INPCHelper.Age;
 import joshie.harvest.api.npc.INPCHelper.Gender;
@@ -29,10 +29,11 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import javax.annotation.Nullable;
 import java.util.*;
 
+import static joshie.harvest.api.HFApi.npc;
 import static joshie.harvest.api.npc.INPCHelper.Age.ADULT;
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 
-public class NPC extends IForgeRegistryEntry.Impl<NPC> {
+public class NPC extends IForgeRegistryEntry.Impl<NPC> implements CalendarEntry {
     public static final IForgeRegistry<NPC> REGISTRY = new RegistryBuilder<NPC>().setName(new ResourceLocation("harvestfestival", "npcs")).setType(NPC.class).setIDRange(0, 32000).create();
     public static final NPC NULL_NPC = new NPC();
     private final List<IConditionalGreeting> conditionals = new ArrayList<>(256);
@@ -226,7 +227,7 @@ public class NPC extends IForgeRegistryEntry.Impl<NPC> {
             }
         }
 
-        return HFApi.npc.getRandomSpeech(this, multipleLocalizationKey, 100);
+        return npc.getRandomSpeech(this, multipleLocalizationKey, 100);
     }
 
     public Quality getGiftValue(ItemStack stack) {
@@ -260,6 +261,16 @@ public class NPC extends IForgeRegistryEntry.Impl<NPC> {
 
     public boolean respawns() {
         return doesRespawn;
+    }
+
+    @Override
+    public ItemStack getStackRepresentation() {
+        return npc.getStackForNPC(this);
+    }
+
+    @Override
+    public void addTooltipForCalendarEntry(List<String> tooltip) {
+        tooltip.add(I18n.translateToLocalFormatted("harvestfestival.npc.tooltip.birthday", getLocalizedName()));
     }
 
     @Override

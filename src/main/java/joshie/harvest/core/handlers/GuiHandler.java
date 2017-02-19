@@ -6,8 +6,9 @@ import joshie.harvest.cooking.gui.GuiCookbook;
 import joshie.harvest.cooking.gui.GuiFridge;
 import joshie.harvest.cooking.tile.TileFridge;
 import joshie.harvest.core.base.gui.ContainerNull;
-import joshie.harvest.knowledge.gui.letter.GuiLetter;
 import joshie.harvest.knowledge.HFNotes;
+import joshie.harvest.knowledge.gui.calendar.GuiCalendar;
+import joshie.harvest.knowledge.gui.letter.GuiLetter;
 import joshie.harvest.knowledge.gui.stats.GuiStats;
 import joshie.harvest.npcs.NPCHelper;
 import joshie.harvest.npcs.entity.EntityNPC;
@@ -37,6 +38,7 @@ public class GuiHandler implements IGuiHandler {
     public static final int FORCED_NPC = 12;
     public static final int MAILBOX = 13;
     public static final int SELECTION = 14;
+    public static final int CALENDAR_GUI = 15;
 
     //Open no gui after this one
     public static final int NEXT_NONE = -1;
@@ -97,6 +99,7 @@ public class GuiHandler implements IGuiHandler {
             case MAILBOX:       return new GuiLetter(player);
             case COOKBOOK:      return new GuiCookbook();
             case STATS_BOOK:    return new GuiStats();
+            case CALENDAR_GUI:      return new GuiCalendar(player);
             case SHOP_OPTIONS:    {
                 EntityNPC npc = (EntityNPC) world.getEntityByID(entityID);
                 if (NPCHelper.isShopOpen(npc, world, player)) {

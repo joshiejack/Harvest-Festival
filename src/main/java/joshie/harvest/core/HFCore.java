@@ -7,18 +7,18 @@ import joshie.harvest.core.block.BlockFlower.FlowerType;
 import joshie.harvest.core.block.BlockGoddessWater;
 import joshie.harvest.core.block.BlockStand;
 import joshie.harvest.core.block.BlockStorage;
+import joshie.harvest.core.entity.EntityBasket;
 import joshie.harvest.core.handlers.GuiHandler;
 import joshie.harvest.core.helpers.InventoryHelper;
 import joshie.harvest.core.helpers.RegistryHelper;
+import joshie.harvest.core.lib.EntityIDs;
 import joshie.harvest.core.loot.SetEnum;
 import joshie.harvest.core.loot.SetSizeable;
-import joshie.harvest.core.render.SpecialRendererMailbox;
+import joshie.harvest.core.render.RenderBasket;
 import joshie.harvest.core.render.SpecialRendererCookingStand;
+import joshie.harvest.core.render.SpecialRendererMailbox;
 import joshie.harvest.core.render.SpecialRendererPlate;
-import joshie.harvest.core.tile.TileCookingStand;
-import joshie.harvest.core.tile.TileMailbox;
-import joshie.harvest.core.tile.TilePlate;
-import joshie.harvest.core.tile.TileShipping;
+import joshie.harvest.core.tile.*;
 import joshie.harvest.core.util.annotations.HFLoader;
 import net.minecraft.block.BlockFlower.EnumFlowerColor;
 import net.minecraft.block.BlockFlower.EnumFlowerType;
@@ -35,6 +35,7 @@ import net.minecraft.world.storage.loot.functions.LootFunctionManager;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
+import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import net.minecraftforge.fml.relauncher.Side;
@@ -46,6 +47,7 @@ import static joshie.harvest.core.helpers.ConfigHelper.getBoolean;
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 import static joshie.harvest.core.lib.LoadOrder.HFCORE;
 import static net.minecraft.block.BlockDoublePlant.EnumPlantType.*;
+import static net.minecraftforge.fml.common.registry.EntityRegistry.registerModEntity;
 
 @HFLoader(priority = HFCORE)
 public class HFCore {
@@ -62,6 +64,7 @@ public class HFCore {
         LootFunctionManager.registerFunction(new SetEnum.Serializer());
         LootFunctionManager.registerFunction(new SetSizeable.Serializer());
         RegistryHelper.registerTiles(TileShipping.class, TileMailbox.class, TileCookingStand.class, TilePlate.class);
+        registerModEntity(EntityBasket.class, "basket", EntityIDs.BASKET, HarvestFestival.instance, 150, 3, true);
         GODDESS.setBlock(GODDESS_WATER);
 
         //Register Flowers
@@ -89,6 +92,7 @@ public class HFCore {
     @SideOnly(Side.CLIENT)
     public static void preInitClient() {
         RegistryHelper.registerFluidBlockRendering(GODDESS_WATER, "goddess_water");
+        RenderingRegistry.registerEntityRenderingHandler(EntityBasket.class, RenderBasket::new);
     }
 
     public static void init() {

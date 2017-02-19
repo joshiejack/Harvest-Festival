@@ -108,7 +108,7 @@ public class HFMining {
         MiningContext gem = new MiningContext(GEM_FLOOR);
         MiningContext mystril = new MiningContext(MYSTRIL_FLOOR);
         HFApi.mining.registerOre(all, FLOWERS.getStateFromEnum(WEED), 50D, SPRING, SUMMER, AUTUMN);
-        HFApi.mining.registerOre(all, ORE.getStateFromEnum(Ore.ROCK), 200D, SPRING, SUMMER, AUTUMN);
+        HFApi.mining.registerOre(all, ORE.getStateFromEnum(Ore.ROCK), 100D, SPRING, SUMMER, AUTUMN);
         HFApi.mining.registerOre(copper, ORE.getStateFromEnum(Ore.COPPER), 6D, SPRING, SUMMER, AUTUMN);
         HFApi.mining.registerOre(silver, ORE.getStateFromEnum(Ore.SILVER), 5D, SPRING, SUMMER, AUTUMN);
         HFApi.mining.registerOre(silver, ORE.getStateFromEnum(Ore.AMETHYST), 4D, SPRING, SUMMER, AUTUMN);
@@ -120,7 +120,7 @@ public class HFMining {
         HFApi.mining.registerOre(mystril, ORE.getStateFromEnum(Ore.DIAMOND), 0.5D, SPRING, SUMMER, AUTUMN);
 
         //Winter values
-        HFApi.mining.registerOre(all, ORE.getStateFromEnum(Ore.ROCK), 200D, WINTER);
+        HFApi.mining.registerOre(all, ORE.getStateFromEnum(Ore.ROCK), 100D, WINTER);
         HFApi.mining.registerOre(copper, ORE.getStateFromEnum(Ore.COPPER), 10D, WINTER);
         HFApi.mining.registerOre(copper, ORE.getStateFromEnum(Ore.GEM), 3D, WINTER);
         HFApi.mining.registerOre(silver, ORE.getStateFromEnum(Ore.SILVER), 6D, WINTER);

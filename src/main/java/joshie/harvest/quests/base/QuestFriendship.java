@@ -1,5 +1,6 @@
 package joshie.harvest.quests.base;
 
+import com.google.common.collect.Lists;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.quests.Quest;
@@ -9,7 +10,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
@@ -58,7 +58,7 @@ public abstract class QuestFriendship extends Quest {
     }
 
     protected List<ItemStack> getRewardStacks(EntityPlayer player) {
-        return getRewardStack() != null ? Collections.singletonList(getRewardStack()) : null;
+        return getRewardStack() != null ? Lists.newArrayList(getRewardStack()) : null;
     }
 
     protected ItemStack getRewardStack() { return null; }

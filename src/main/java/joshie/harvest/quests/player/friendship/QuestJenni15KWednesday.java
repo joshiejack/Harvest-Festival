@@ -1,5 +1,6 @@
 package joshie.harvest.quests.player.friendship;
 
+import com.google.common.collect.Lists;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.quests.HFQuest;
@@ -22,7 +23,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
@@ -48,9 +48,9 @@ public class QuestJenni15KWednesday extends QuestFriendshipStore {
     @Override
     protected List<ItemStack> getRewardStacks(EntityPlayer player) {
         Season season = HFApi.calendar.getDate(player.worldObj).getSeason();
-        if (season == SUMMER) return Collections.singletonList(HFCrops.PINEAPPLE.getSeedStack(2));
-        else if (season == AUTUMN) return Collections.singletonList(HFCrops.GREEN_PEPPER.getSeedStack(2));
-        else return Collections.singletonList(HFCrops.CABBAGE.getSeedStack(2));
+        if (season == SUMMER) return Lists.newArrayList(HFCrops.PINEAPPLE.getSeedStack(2));
+        else if (season == AUTUMN) return Lists.newArrayList(HFCrops.GREEN_PEPPER.getSeedStack(2));
+        else return Lists.newArrayList(HFCrops.CABBAGE.getSeedStack(2));
     }
 
     @Override

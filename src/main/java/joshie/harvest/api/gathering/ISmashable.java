@@ -40,9 +40,9 @@ public interface ISmashable {
         if (required != null && tier.isGreaterThanOrEqualTo(required)) {
             float luck = tier.ordinal() * 0.25F;
             List<ItemStack> drops = getDrops(player, world, pos, state, luck);
+            world.setBlockToAir(pos); //Clear out the block
             if (drops.size() > 0) {
                 if (!world.isRemote) {
-                    world.setBlockToAir(pos);
                     for (ItemStack drop: drops) {
                         spawnAsEntity(world, pos, drop);
                     }

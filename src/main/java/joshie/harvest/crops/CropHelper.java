@@ -6,6 +6,7 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.crops.IStateHandler.PlantSection;
 import joshie.harvest.api.crops.WateringHandler;
+import joshie.harvest.core.entity.EntityBasket;
 import joshie.harvest.core.helpers.SpawnItemHelper;
 import joshie.harvest.crops.block.BlockHFCrops;
 import joshie.harvest.crops.tile.TileWithered;
@@ -65,6 +66,8 @@ public class CropHelper {
     public static boolean harvestCrop(EntityPlayer player, World world, BlockPos pos) {
         List<ItemStack> list = HFApi.crops.harvestCrop(player, world, pos);
         if (!world.isRemote && !list.isEmpty()) {
+            EntityBasket.findBasketAndShip(player, list);
+            //Spawn them items
             for (ItemStack stack: list) {
                 SpawnItemHelper.dropBlockAsItem(world, pos.getX(), pos.getY(), pos.getZ(), stack);
             }

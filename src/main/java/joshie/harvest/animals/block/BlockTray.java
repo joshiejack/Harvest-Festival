@@ -1,5 +1,6 @@
 package joshie.harvest.animals.block;
 
+import com.google.common.collect.Lists;
 import joshie.harvest.animals.block.BlockTray.Tray;
 import joshie.harvest.animals.tile.TileFeeder;
 import joshie.harvest.animals.tile.TileNest;
@@ -9,6 +10,7 @@ import joshie.harvest.api.core.Size;
 import joshie.harvest.core.achievements.HFAchievements;
 import joshie.harvest.core.base.block.BlockHFEnum;
 import joshie.harvest.core.base.tile.TileFillable;
+import joshie.harvest.core.entity.EntityBasket;
 import joshie.harvest.core.helpers.SpawnItemHelper;
 import joshie.harvest.core.lib.CreativeSort;
 import net.minecraft.block.SoundType;
@@ -91,7 +93,10 @@ public class BlockTray extends BlockHFEnum<BlockTray, Tray> implements IAnimalFe
                 tag.setInteger("Relationship", (relationship - (relationship % 2500)));
 
                 nest.clear();
-                SpawnItemHelper.addToPlayerInventory(player, drop);
+
+                if (!EntityBasket.findBasketAndShip(player, Lists.newArrayList(drop))) {
+                    SpawnItemHelper.addToPlayerInventory(player, drop);
+                }
 
                 if (!world.isRemote) {
                     world.setBlockState(pos, getStateFromEnum(NEST_EMPTY));

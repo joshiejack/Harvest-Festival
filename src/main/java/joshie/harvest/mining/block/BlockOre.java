@@ -1,10 +1,12 @@
 package joshie.harvest.mining.block;
 
+import com.google.common.collect.Lists;
 import joshie.harvest.api.gathering.ISmashable;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.base.block.BlockHFSmashable;
 import joshie.harvest.core.base.item.ItemToolSmashing;
+import joshie.harvest.core.entity.EntityBasket;
 import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.mining.HFMining;
 import joshie.harvest.mining.MiningHelper;
@@ -29,7 +31,6 @@ import net.minecraft.world.WorldServer;
 
 import javax.annotation.Nonnull;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
@@ -120,15 +121,15 @@ public class BlockOre extends BlockHFSmashable<BlockOre, Ore> implements ISmasha
     private static List<ItemStack> getRandomStack(World world, Material material, int bonus) {
         while (bonus > 0) {
             if (world.rand.nextInt(bonus) == 0)
-                return Collections.singletonList(HFMining.MATERIALS.getStackFromEnum(material, 1 + world.rand.nextInt(bonus)));
+                return Lists.newArrayList(HFMining.MATERIALS.getStackFromEnum(material, 1 + world.rand.nextInt(bonus)));
             bonus--;
         }
 
-        return Collections.singletonList(HFMining.MATERIALS.getStackFromEnum(material, 1));
+        return Lists.newArrayList(HFMining.MATERIALS.getStackFromEnum(material, 1));
     }
 
     private static List<ItemStack> getRandomStack(World world, Item item, int bonus) {
-        return Collections.singletonList(new ItemStack(item, 1 + world.rand.nextInt(bonus)));
+        return Lists.newArrayList(new ItemStack(item, 1 + world.rand.nextInt(bonus)));
     }
 
     @Override
@@ -143,7 +144,7 @@ public class BlockOre extends BlockHFSmashable<BlockOre, Ore> implements ISmasha
         List<ItemStack> drops;
         switch (ore) {
             case ROCK:
-                drops = world.isRemote ? Collections.singletonList(new ItemStack(this)): MiningHelper.getLoot(MINING, world, player, luck);
+                drops = world.isRemote ? Lists.newArrayList(new ItemStack(this)): MiningHelper.getLoot(MINING, world, player, luck);
                 break;
             case COPPER:
                 drops = getRandomStack(world, Material.COPPER, 2);
@@ -173,12 +174,13 @@ public class BlockOre extends BlockHFSmashable<BlockOre, Ore> implements ISmasha
                 drops = getRandomStack(world, Material.TOPAZ, 4);
                 break;
             case GEM:
-                drops = world.isRemote ? Collections.singletonList(new ItemStack(this)) : MiningHelper.getLoot(MINING_GEMS, world, player, luck);
+                drops = world.isRemote ? Lists.newArrayList(new ItemStack(this)) : MiningHelper.getLoot(MINING_GEMS, world, player, luck);
                 break;
             default:
                 drops = new ArrayList<>();
         }
 
+        EntityBasket.findBasketAndShip(player, drops);
         if (!world.isRemote) {
             for (ItemStack stack: drops) {
                 HFTrackers.getPlayerTrackerFromPlayer(player).getTracking().addAsObtained(stack);

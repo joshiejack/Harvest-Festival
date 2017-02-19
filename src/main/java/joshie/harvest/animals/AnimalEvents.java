@@ -8,10 +8,10 @@ import joshie.harvest.api.animals.AnimalAction;
 import joshie.harvest.api.animals.AnimalStats;
 import joshie.harvest.api.animals.AnimalTest;
 import joshie.harvest.core.HFTrackers;
+import joshie.harvest.core.entity.EntityBasket;
 import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.core.util.annotations.HFEvents;
-import net.minecraft.block.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
@@ -27,7 +27,9 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.EntityInteract;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedOutEvent;
 
+import static joshie.harvest.core.handlers.BasketHandler.forbidsDrop;
 import static joshie.harvest.core.helpers.InventoryHelper.ITEM;
 import static joshie.harvest.core.helpers.InventoryHelper.ITEM_STACK;
 
@@ -121,9 +123,18 @@ public class AnimalEvents {
             }
         }
 
-        private boolean forbidsDrop(Block block) {
-            return block instanceof BlockDoor || block instanceof BlockFenceGate || block instanceof BlockTrapDoor
-                    || block instanceof BlockLever || block instanceof BlockButton;
+        @SubscribeEvent
+        public void onPlayerLoggedOut(PlayerLoggedOutEvent event) {
+            for (Entity entity : event.player.getPassengers()) {
+                if (entity instanceof EntityBasket) {
+                    AnimalStats stats = EntityHelper.getStats(entity);
+                    entity.dismountRidingEntity();
+                    entity.rotationPitch = event.player.rotationPitch;
+                    entity.rotationYaw = event.player.rotationYaw;
+                    entity.moveRelative(0F, 0.1F, 1.05F);
+                    entity.setEntityInvulnerable(false);
+                }
+            }
         }
 
         @SubscribeEvent

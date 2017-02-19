@@ -1,5 +1,6 @@
 package joshie.harvest.cooking.recipe;
 
+import com.google.common.collect.Lists;
 import gnu.trove.map.TObjectIntMap;
 import gnu.trove.map.hash.TObjectIntHashMap;
 import joshie.harvest.api.cooking.Ingredient;
@@ -68,8 +69,8 @@ public class RecipeBuilder {
     }
 
     private List<ItemStack> build(ItemStack basicStack, boolean supportsNBTData) {
-        if (!supportsNBTData) return Collections.singletonList(StackHelper.toStack(basicStack, stackSize));
-        else return Collections.singletonList(setFoodStats(StackHelper.toStack(basicStack, stackSize), hunger, saturation, cost));
+        if (!supportsNBTData) return Lists.newArrayList(StackHelper.toStack(basicStack, stackSize));
+        else return Lists.newArrayList(setFoodStats(StackHelper.toStack(basicStack, stackSize), hunger, saturation, cost));
     }
 
     @SuppressWarnings("ConstantConditions")

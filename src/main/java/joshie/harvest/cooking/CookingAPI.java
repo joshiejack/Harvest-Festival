@@ -1,5 +1,6 @@
 package joshie.harvest.cooking;
 
+import com.google.common.collect.Lists;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.cooking.*;
 import joshie.harvest.cooking.recipe.RecipeMaker;
@@ -117,7 +118,7 @@ public class CookingAPI implements CookingManager {
             }
         }
 
-        return Collections.singletonList(utensil.getBurntItem().copy());
+        return Lists.newArrayList(utensil.getBurntItem().copy());
     }
 
     @Override

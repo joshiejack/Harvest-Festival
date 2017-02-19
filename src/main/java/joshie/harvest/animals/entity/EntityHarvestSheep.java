@@ -9,6 +9,7 @@ import joshie.harvest.api.animals.AnimalAction;
 import joshie.harvest.api.animals.AnimalStats;
 import joshie.harvest.api.animals.AnimalTest;
 import joshie.harvest.api.animals.IAnimalHandler.AnimalType;
+import joshie.harvest.core.entity.EntityBasket;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
@@ -97,8 +98,8 @@ public class EntityHarvestSheep extends EntitySheep {
     @Nonnull
     public List<ItemStack> onSheared(ItemStack item, net.minecraft.world.IBlockAccess world, BlockPos pos, int fortune) {
         List<ItemStack> ret = new ArrayList<>();
+        EntityPlayer player = worldObj.getClosestPlayerToEntity(this, 178D);
         if (!isChild()) {
-            EntityPlayer player = worldObj.getClosestPlayerToEntity(this, 178D);
             if (player != null) {
                 ret.add(stats.getType().getProduct(stats));
                 if (!worldObj.isRemote) {
@@ -108,6 +109,10 @@ public class EntityHarvestSheep extends EntitySheep {
 
                 playSound(SoundEvents.ENTITY_SHEEP_SHEAR, 1.0F, 1.0F);
             }
+        }
+
+        if (player != null) {
+            EntityBasket.findBasketAndShip(player, ret);
         }
 
         return ret;

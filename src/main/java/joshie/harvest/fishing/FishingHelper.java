@@ -2,6 +2,7 @@ package joshie.harvest.fishing;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.Season;
+import joshie.harvest.core.util.annotations.HFEvents;
 import joshie.harvest.town.BuildingLocations;
 import joshie.harvest.town.TownHelper;
 import joshie.harvest.town.data.TownData;
@@ -16,6 +17,7 @@ import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.HashMap;
 
+@HFEvents
 public class FishingHelper {
     static final HashMap<Pair<Season, WaterType>, ResourceLocation> FISHING_LOOT = new HashMap<>();
 

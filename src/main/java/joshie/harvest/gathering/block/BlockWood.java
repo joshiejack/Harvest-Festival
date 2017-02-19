@@ -1,5 +1,6 @@
 package joshie.harvest.gathering.block;
 
+import com.google.common.collect.Lists;
 import joshie.harvest.api.core.ITiered.ToolTier;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.block.BlockHFSmashable;
@@ -21,7 +22,6 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
@@ -90,12 +90,12 @@ public class BlockWood extends BlockHFSmashable<BlockWood, Wood> {
     public List<ItemStack> getDrops(EntityPlayer player, World world, BlockPos pos, IBlockState state, float luck) {
         Wood type = getEnumFromState(state);
         switch (type) {
-            case BRANCH_SMALL: return Collections.singletonList(new ItemStack(Blocks.LOG, 1));
-            case BRANCH_MEDIUM: return Collections.singletonList(new ItemStack(Blocks.LOG, 2));
-            case BRANCH_LARGE: return Collections.singletonList(new ItemStack(Blocks.LOG, 6));
-            case STUMP_SMALL: return Collections.singletonList(new ItemStack(Blocks.LOG, 3));
-            case STUMP_MEDIUM: return Collections.singletonList(new ItemStack(Blocks.LOG, 4));
-            case STUMP_LARGE: return Collections.singletonList(new ItemStack(Blocks.LOG, 12));
+            case BRANCH_SMALL: return Lists.newArrayList(new ItemStack(Blocks.LOG, 1));
+            case BRANCH_MEDIUM: return Lists.newArrayList(new ItemStack(Blocks.LOG, 2));
+            case BRANCH_LARGE: return Lists.newArrayList(new ItemStack(Blocks.LOG, 6));
+            case STUMP_SMALL: return Lists.newArrayList(new ItemStack(Blocks.LOG, 3));
+            case STUMP_MEDIUM: return Lists.newArrayList(new ItemStack(Blocks.LOG, 4));
+            case STUMP_LARGE: return Lists.newArrayList(new ItemStack(Blocks.LOG, 12));
             default: return new ArrayList<>();
         }
     }

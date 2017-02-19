@@ -1,5 +1,6 @@
 package joshie.harvest.animals.item;
 
+import com.google.common.collect.Lists;
 import joshie.harvest.animals.HFAnimals;
 import joshie.harvest.animals.entity.EntityHarvestCow;
 import joshie.harvest.animals.item.ItemAnimalTool.Tool;
@@ -9,7 +10,9 @@ import joshie.harvest.api.animals.AnimalTest;
 import joshie.harvest.api.core.Size;
 import joshie.harvest.core.achievements.HFAchievements;
 import joshie.harvest.core.base.item.ItemHFEnum;
+import joshie.harvest.core.entity.EntityBasket;
 import joshie.harvest.core.helpers.EntityHelper;
+import joshie.harvest.core.helpers.SpawnItemHelper;
 import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.core.util.interfaces.ISellable;
 import joshie.harvest.tools.ToolHelper;
@@ -97,8 +100,8 @@ public class ItemAnimalTool extends ItemHFEnum<ItemAnimalTool, Tool> {
                         }
                     }
 
-                    if (!player.inventory.addItemStackToInventory(product)) {
-                        player.dropItem(product, false);
+                    if (!EntityBasket.findBasketAndShip(player, Lists.newArrayList(product))) {
+                        SpawnItemHelper.addToPlayerInventory(player, product);
                     }
 
                     int damage = getDamageForDisplay(held) + 1;

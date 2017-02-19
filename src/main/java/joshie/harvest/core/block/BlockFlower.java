@@ -3,6 +3,7 @@ package joshie.harvest.core.block;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.block.BlockHFEnum;
 import joshie.harvest.core.block.BlockFlower.FlowerType;
+import joshie.harvest.core.entity.EntityBasket;
 import joshie.harvest.core.helpers.TextHelper;
 import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.core.lib.HFModInfo;
@@ -27,6 +28,7 @@ import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nonnull;
 import java.util.List;
 import java.util.Locale;
 
@@ -64,6 +66,18 @@ public class BlockFlower extends BlockHFEnum<BlockFlower, FlowerType> implements
         public String getName() {
             return toString().toLowerCase(Locale.ENGLISH);
         }
+    }
+
+    @Override
+    @Nonnull
+    public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, @Nonnull IBlockState state, int fortune) {
+        List<ItemStack> ret = super.getDrops(world, pos, state, fortune);
+        EntityPlayer player = harvesters.get();
+        if (player != null) {
+            EntityBasket.findBasketAndShip(player, ret);
+        }
+
+        return ret;
     }
 
     @Override

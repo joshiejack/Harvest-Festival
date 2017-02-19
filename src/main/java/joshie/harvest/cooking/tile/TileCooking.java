@@ -6,6 +6,7 @@ import joshie.harvest.cooking.CookingHelper.PlaceIngredientResult;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.achievements.HFAchievements;
 import joshie.harvest.core.base.tile.TileFaceable;
+import joshie.harvest.core.entity.EntityBasket;
 import joshie.harvest.core.helpers.MCServerHelper;
 import joshie.harvest.core.helpers.SpawnItemHelper;
 import joshie.harvest.core.helpers.StackHelper;
@@ -75,6 +76,7 @@ public abstract class TileCooking extends TileFaceable {
     //reset everything ready for the next cooking batch
     public void giveToPlayer(EntityPlayer player) {
         List<ItemStack> theItems = getResult();
+        EntityBasket.findBasketAndShip(player, theItems);
         for (ItemStack theItem: theItems) {
             if (theItem.hasTagCompound()) {
                 player.addStat(HFAchievements.cooking);

@@ -3,6 +3,7 @@ package joshie.harvest.gathering.block;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.block.BlockHFEnum;
 import joshie.harvest.core.block.BlockFlower.FlowerType;
+import joshie.harvest.core.entity.EntityBasket;
 import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.util.interfaces.ISellable;
@@ -12,6 +13,7 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
@@ -27,6 +29,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nonnull;
+import java.util.List;
 import java.util.Locale;
 
 import static net.minecraftforge.common.EnumPlantType.Plains;
@@ -57,6 +60,18 @@ public class BlockNature extends BlockHFEnum<BlockNature, NaturalBlock> implemen
         public String getName() {
             return toString().toLowerCase(Locale.ENGLISH);
         }
+    }
+
+    @Override
+    @Nonnull
+    public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, @Nonnull IBlockState state, int fortune) {
+        List<ItemStack> ret = super.getDrops(world, pos, state, fortune);
+        EntityPlayer player = harvesters.get();
+        if (player != null) {
+            EntityBasket.findBasketAndShip(player, ret);
+        }
+
+        return ret;
     }
 
     @Override

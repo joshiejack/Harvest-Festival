@@ -9,6 +9,8 @@ import joshie.harvest.api.crops.IStateHandler.PlantSection;
 import joshie.harvest.api.trees.Tree;
 import joshie.harvest.core.base.block.BlockHFEnum;
 import joshie.harvest.core.base.item.ItemBlockHF;
+import joshie.harvest.core.entity.EntityBasket;
+import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.crops.CropData;
 import joshie.harvest.crops.CropHelper;
@@ -182,6 +184,38 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
         return false;
     }
 
+    private int getXMinus(EnumFacing facing, int x) {
+        if (facing == EnumFacing.NORTH) {
+            return x - 1;
+        } else if (facing == EnumFacing.SOUTH) {
+            return x - 1;
+        } else return x;
+    }
+
+    private int getXPlus(EnumFacing facing, int x) {
+        if (facing == EnumFacing.NORTH) {
+            return x + 1;
+        } else if (facing == EnumFacing.SOUTH) {
+            return x + 1;
+        } else return x;
+    }
+
+    private int getZMinus(EnumFacing facing, int z) {
+        if (facing == EnumFacing.WEST) {
+            return z - 1;
+        } else if (facing == EnumFacing.EAST) {
+            return z - 1;
+        } else return z;
+    }
+
+    private int getZPlus(EnumFacing facing, int z) {
+        if (facing == EnumFacing.WEST) {
+            return z + 1;
+        } else if (facing == EnumFacing.EAST) {
+            return z + 1;
+        } else return z;
+    }
+
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
         CropType stage = getEnumFromState(state);
@@ -193,6 +227,22 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
             if (data == null || data.getCrop().requiresSickle() || data.getCrop() instanceof Tree) {
                 return false;
             } else {
+                EnumFacing front = EntityHelper.getFacingFromEntity(player);
+                if (EntityBasket.isWearingBasket(player)) {
+                    for (int x2 = getXMinus(front, pos.getX()); x2 <= getXPlus(front, pos.getX()); x2++) {
+                        for (int z2 = getZMinus(front, pos.getZ()); z2 <= getZPlus(front, pos.getZ()); z2++) {
+                            BlockPos position = new BlockPos(x2, pos.getY(), z2);
+                            IBlockState theState = world.getBlockState(position);
+                            PlantSection theSection = BlockHFCrops.getSection(theState);
+                            CropData theData = CropHelper.getCropDataAt(world, pos);
+                            if (!(theData == null || theData.getCrop().requiresSickle() || theData.getCrop() instanceof Tree)) {
+                                if (theSection == BOTTOM) harvestCrop(player, world, position);
+                                else harvestCrop(player, world, position.down());
+                            }
+                        }
+                    }
+                }
+
                 if (section == BOTTOM) {
                     return harvestCrop(player, world, pos);
                 } else {

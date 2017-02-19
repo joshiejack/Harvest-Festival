@@ -1,5 +1,6 @@
 package joshie.harvest.core.base.block;
 
+import com.google.common.collect.Lists;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.helpers.MCClientHelper;
 import net.minecraft.block.Block;
@@ -26,7 +27,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -253,7 +253,7 @@ public abstract class BlockHFLeaves<B extends BlockHFLeaves, E extends Enum<E> &
 
     @Override
     public List<ItemStack> onSheared(ItemStack item, IBlockAccess world, BlockPos pos, int fortune) {
-        return Collections.singletonList(new ItemStack(this, 1, super.getMetaFromState(world.getBlockState(pos))));
+        return Lists.newArrayList(new ItemStack(this, 1, super.getMetaFromState(world.getBlockState(pos))));
     }
 
     @SideOnly(Side.CLIENT)

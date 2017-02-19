@@ -3,6 +3,7 @@ package joshie.harvest.gathering;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.gathering.IGatheringRegistry;
 import joshie.harvest.core.util.annotations.HFApiImplementation;
+import joshie.harvest.core.util.annotations.HFEvents;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -14,6 +15,7 @@ import java.util.*;
 import static joshie.harvest.api.calendar.Season.*;
 
 @HFApiImplementation
+@HFEvents
 public class GatheringRegistry implements IGatheringRegistry {
     public static final GatheringRegistry INSTANCE = new GatheringRegistry();
     private final EnumMap<Season, WeightedState> gatherings = new EnumMap<>(Season.class);

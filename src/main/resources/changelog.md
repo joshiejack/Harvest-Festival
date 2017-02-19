@@ -61,6 +61,7 @@
 * Take note that once any player has completed the quest, the crops can be purchased by anyone in that town
 * When crops die, they chance a chance to turn in to weeds, wood, or rocks
 * You can now break dead crops normally, no need to use a sickle
+* Added a 'shipping basket', you wear it on your head and it will autoship things you pick up
 
 ###Fishing - NEW!
 * Added fishing rods, obtainable when you meet jakob for the first time

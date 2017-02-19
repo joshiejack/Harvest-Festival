@@ -22,7 +22,7 @@ public class SizeableHelper {
     }
 
     public static ItemStack getEgg(AnimalStats stats) {
-        return SizeableHelper.getSizeable(stats, Sizeable.WOOL, 1);
+        return SizeableHelper.getSizeable(stats, Sizeable.EGG, 1);
     }
 
     private static ItemStack getSizeable(AnimalStats stats, Sizeable sizeable, int size) {

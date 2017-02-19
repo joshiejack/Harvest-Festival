@@ -60,6 +60,7 @@
 * Changed how/when some crops are unlocked
 * Take note that once any player has completed the quest, the crops can be purchased by anyone in that town
 * When crops die, they chance a chance to turn in to weeds, wood, or rocks
+* You can now break dead crops normally, no need to use a sickle
 
 ###Fishing - NEW!
 * Added fishing rods, obtainable when you meet jakob for the first time
@@ -135,6 +136,7 @@
 * Chicken Feed now costs 50 gold, but will last for 10 feeds
 * You are now able to sell some items to the stores, but only a certain amount each day
 * Shops are now able to support a "stock value", aka how many items you can buy of this item each day
+* You no longer need to purchase a counter for the mixer to be unlocked for purchase
 
 ###Tools
 * Tools will have [BROKEN] in front of their name, when they can't be used

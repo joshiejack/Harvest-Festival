@@ -60,7 +60,7 @@ public class MiningHelper {
         addFloors(51, 61, 71, 81); //Gold unlock, 4k
         addFloors(90, 95, 100, 105, 110, 115, 120, 125); //Gem unlock, 8k
         addFloors(127, 129, 131, 133, 136, 140, 143, 145, 149, 150, 152, 156, 157, 163, 166); //Mystril unlock, 15 floors
-    }
+}
 
     private static void addFloors(int... ints) {
         HOLE_FLOORS.addAll(ints);

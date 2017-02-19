@@ -64,13 +64,13 @@ public class CropHelper {
     //Harvests the crop at this location
     public static boolean harvestCrop(EntityPlayer player, World world, BlockPos pos) {
         List<ItemStack> list = HFApi.crops.harvestCrop(player, world, pos);
-        if (!world.isRemote && list != null && list.size() > 0) {
+        if (!world.isRemote && !list.isEmpty()) {
             for (ItemStack stack: list) {
                 SpawnItemHelper.dropBlockAsItem(world, pos.getX(), pos.getY(), pos.getZ(), stack);
             }
         }
 
-        return list != null && list.size() > 0;
+        return !list.isEmpty();
     }
 
     @Nullable

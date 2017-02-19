@@ -1,15 +1,10 @@
 package joshie.harvest.tools.item;
 
 import com.google.common.collect.Multimap;
-import joshie.harvest.api.crops.IBreakCrops;
-import joshie.harvest.core.HFCore;
-import joshie.harvest.core.base.item.ItemTool;
+import joshie.harvest.core.base.item.ItemToolChargeable;
 import joshie.harvest.core.helpers.EntityHelper;
-import joshie.harvest.crops.block.BlockHFCrops;
-import joshie.harvest.gathering.HFGathering;
+import joshie.harvest.core.helpers.TextHelper;
 import joshie.harvest.tools.ToolHelper;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockBush;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
@@ -17,22 +12,22 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumParticleTypes;
-import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+import net.minecraftforge.common.IPlantable;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nonnull;
-import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Locale;
 
-import static net.minecraft.block.Block.spawnAsEntity;
-
-public class ItemSickle extends ItemTool<ItemHoe> implements IBreakCrops {
+public class ItemSickle extends ItemToolChargeable<ItemSickle> {
     public ItemSickle() {
         super("sickle", new HashSet<>());
     }
@@ -87,35 +82,41 @@ public class ItemSickle extends ItemTool<ItemHoe> implements IBreakCrops {
                 return true;
         }
 
-        return state.getBlock() == HFCore.FLOWERS || state.getBlock() == HFGathering.NATURE || state.getBlock() instanceof BlockBush;
+        return state.getBlock() instanceof IPlantable;
     }
 
     @Override
-    public boolean onBlockDestroyed(ItemStack stack, World worldIn, IBlockState state, BlockPos pos, EntityLivingBase entityLiving) {
+    public boolean onBlockDestroyed(ItemStack stack, World worldIn, IBlockState state, BlockPos startPos, EntityLivingBase entityLiving) {
         if (entityLiving instanceof EntityPlayer) {
             EntityPlayer player = ((EntityPlayer)entityLiving);
             EnumFacing front = EntityHelper.getFacingFromEntity(player);
-            ToolTier tier = getTier(stack);
+            ToolTier tier = getChargeTier(getCharge(stack));
 
             //Facing North, We Want East and West to be 1, left * this.left
-            ArrayList<ItemStack> drops = new ArrayList<>();
-            for (int x2 = getXMinus(tier, front, pos.getX()); x2 <= getXPlus(tier, front, pos.getX()); x2++) {
-                for (int z2 = getZMinus(tier, front, pos.getZ()); z2 <= getZPlus(tier, front, pos.getZ()); z2++) {
+            for (int x2 = getXMinus(tier, front, startPos.getX()); x2 <= getXPlus(tier, front, startPos.getX()); x2++) {
+                for (int z2 = getZMinus(tier, front, startPos.getZ()); z2 <= getZPlus(tier, front, startPos.getZ()); z2++) {
                     if (canUse(stack) && canBeDamaged()) {
-                        BlockPos newPos = new BlockPos(x2, pos.getY(), z2);
+                        BlockPos newPos = new BlockPos(x2, startPos.getY(), z2);
                         state = worldIn.getBlockState(newPos);
-                        if (canLevel(stack, state)) {
-                            ToolHelper.collectDrops(worldIn, newPos, worldIn.getBlockState(newPos), player, drops);
-                            worldIn.setBlockToAir(newPos);
-                            ToolHelper.levelTool(stack);
+                        if (canLevel(stack, state)) { //Break the block and collect the drops
+                            ToolHelper.performTask(player, stack, this);
+                            if (!newPos.equals(startPos)) {
+                                if (!worldIn.isRemote) {
+                                    if (state.getBlock().canHarvestBlock(worldIn, newPos, player)) {
+                                        boolean flag = state.getBlock().removedByPlayer(state, worldIn, newPos, player, true);
+                                        if (flag) {
+                                            state.getBlock().onBlockDestroyedByPlayer(worldIn, newPos, state);
+                                            state.getBlock().harvestBlock(worldIn, player, newPos, state, worldIn.getTileEntity(newPos), stack);
+                                        }
+                                    }
+                                }
+                            }
                         }
 
                         stack.getSubCompound("Data", true).setInteger("Damage", getDamageForDisplay(stack) + 1);
                     }
                 }
             }
-
-            drops.stream().forEach(item -> spawnAsEntity(worldIn, new BlockPos(player), item));
         }
 
         return true;
@@ -143,40 +144,27 @@ public class ItemSickle extends ItemTool<ItemHoe> implements IBreakCrops {
     }
 
     @Override
-    public float getStrengthVSCrops(EntityPlayer player, World world, BlockPos pos, IBlockState state, ItemStack stack) {
-        if (canUse(stack)) {
-            if (!player.canPlayerEdit(pos, EnumFacing.DOWN, stack)) return 0F;
-            else {
-                EnumFacing front = EntityHelper.getFacingFromEntity(player);
-                Block initial = world.getBlockState(pos).getBlock();
-                if (!(initial instanceof BlockHFCrops)) {
-                    return 0F;
-                }
+    @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean flag) {
+        super.addInformation(stack, player, list, flag);
+        int charge = getCharge(stack);
+        ToolTier thisTier = getTier(stack);
+        if (thisTier != ToolTier.BASIC) {
+            ToolTier tier = LEVEL_TO_TIER.get(charge);
+            list.add(TextFormatting.GOLD + TextHelper.translate("sickle.tooltip.charge." + tier.name().toLowerCase(Locale.ENGLISH)));
+            list.add("-------");
+            if (charge < thisTier.getToolLevel())
+                list.add(TextFormatting.AQUA + "" + TextFormatting.ITALIC + TextHelper.translate("sickle.tooltip.charge"));
+            if (charge != 0)
+                list.add(TextFormatting.RED + "" + TextFormatting.ITALIC + TextHelper.translate("sickle.tooltip.discharge"));
+        }
+    }
 
-                ToolTier tier = getTier(stack);
-                //Facing North, We Want East and West to be 1, left * this.left
-                for (int x2 = getXMinus(tier, front, pos.getX()); x2 <= getXPlus(tier, front, pos.getX()); x2++) {
-                    for (int z2 = getZMinus(tier, front, pos.getZ()); z2 <= getZPlus(tier, front, pos.getZ()); z2++) {
-                        if (canUse(stack)) {
-                            BlockPos newPos = new BlockPos(x2, pos.getY(), z2);
-                            Block block = world.getBlockState(newPos).getBlock();
-                            if (block instanceof BlockHFCrops) {
-                                if (!world.isRemote && (!newPos.equals(pos))) {
-                                    block.removedByPlayer(state, world, newPos, player, true);
-                                }
-
-                                boolean isWithered = BlockHFCrops.isWithered(world.getBlockState(newPos));
-                                IBlockState particleState = isWithered ? Blocks.TALLGRASS.getDefaultState() : Blocks.CARROTS.getDefaultState();
-                                displayParticle(world, newPos, EnumParticleTypes.BLOCK_CRACK, particleState);
-                                playSound(world, newPos, SoundEvents.BLOCK_GRASS_BREAK, SoundCategory.BLOCKS);
-                                ToolHelper.performTask(player, stack, this);
-                            }
-                        }
-                    }
-                }
-            }
-
-            return 1F;
-        } else return 0.005F;
+    @Override
+    protected String getLevelName(ItemStack stack, int charges) {
+        int maximum = getMaxCharge(stack);
+        int charge = getCharge(stack);
+        int newCharge = Math.min(maximum, charge + charges);
+        return charge == newCharge ? null : TextHelper.translate("hoe.sickle.charge." + LEVEL_TO_TIER.get(newCharge).name().toLowerCase(Locale.ENGLISH));
     }
 }

@@ -170,7 +170,10 @@ public class ItemHoe extends ItemToolChargeable<ItemHoe> {
         ImmutableList.Builder<BlockPos> builder = ImmutableList.builder();
         for (int x2 = getXMinus(tier, front, pos.getX()); x2 <= getXPlus(tier, front, pos.getX()); x2++) {
             for (int z2 = getZMinus(tier, front, pos.getZ()); z2 <= getZPlus(tier, front, pos.getZ()); z2++) {
-                builder.add(new BlockPos(x2, pos.getY(), z2));
+                BlockPos highlight = new BlockPos(x2, pos.getY(), z2);
+                if (!highlight.equals(pos)) {
+                    builder.add(highlight);
+                }
             }
         }
 
@@ -210,12 +213,16 @@ public class ItemHoe extends ItemToolChargeable<ItemHoe> {
     public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean flag) {
         super.addInformation(stack, player, list, flag);
         int charge = getCharge(stack);
-        ToolTier tier = LEVEL_TO_TIER.get(charge);
         ToolTier thisTier = getTier(stack);
-        list.add(TextFormatting.GOLD + TextHelper.translate("hoe.tooltip.charge." + tier.name().toLowerCase(Locale.ENGLISH)));
-        list.add("-------");
-        if (charge < thisTier.getToolLevel()) list.add(TextFormatting.AQUA + "" + TextFormatting.ITALIC + TextHelper.translate("hoe.tooltip.charge"));
-        if (charge != 0) list.add(TextFormatting.RED + "" + TextFormatting.ITALIC + TextHelper.translate("hoe.tooltip.discharge"));
+        if (thisTier != ToolTier.BASIC) {
+            ToolTier tier = LEVEL_TO_TIER.get(charge);
+            list.add(TextFormatting.GOLD + TextHelper.translate("hoe.tooltip.charge." + tier.name().toLowerCase(Locale.ENGLISH)));
+            list.add("-------");
+            if (charge < thisTier.getToolLevel())
+                list.add(TextFormatting.AQUA + "" + TextFormatting.ITALIC + TextHelper.translate("hoe.tooltip.charge"));
+            if (charge != 0)
+                list.add(TextFormatting.RED + "" + TextFormatting.ITALIC + TextHelper.translate("hoe.tooltip.discharge"));
+        }
     }
 
     @Override

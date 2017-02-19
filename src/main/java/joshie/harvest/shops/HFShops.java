@@ -170,7 +170,7 @@ public class HFShops {
         CAFE.addPurchasable(new PurchasableWeekend(2500, COOKWARE.getStackFromEnum(OVEN_OFF)).setStock(1).setNote(HFNotes.OVEN));
         CAFE.addPurchasable(new PurchasableWeekend(1500, COOKWARE.getStackFromEnum(FRYING_PAN), COOKWARE.getStackFromEnum(OVEN_OFF)).setStock(1).setNote(HFNotes.POTPAN));
         CAFE.addPurchasable(new PurchasableWeekend(1000, COOKWARE.getStackFromEnum(POT), COOKWARE.getStackFromEnum(OVEN_OFF)).setStock(1).setNote(HFNotes.POTPAN));
-        CAFE.addPurchasable(new PurchasableWeekend(1200, COOKWARE.getStackFromEnum(MIXER), COOKWARE.getStackFromEnum(COUNTER)).setStock(1).setNote(HFNotes.MIXER));
+        CAFE.addPurchasable(new PurchasableWeekend(1200, COOKWARE.getStackFromEnum(MIXER)).setStock(1).setNote(HFNotes.MIXER));
 
         //Add recipes for purchase
         CAFE.addPurchasable(new PurchasableRecipe(SPRING, MONDAY, new ResourceLocation(MODID, "juice_vegetable")));
@@ -247,7 +247,7 @@ public class HFShops {
         CARPENTER.addPurchasable(new PurchasableBuilding(9000L, HFBuildings.BLACKSMITH, Logs.of(32), Stone.of(248), Iron.of(16)));
         CARPENTER.addPurchasable(new PurchasableBuilding(12000L, HFBuildings.FISHING_HUT, Logs.of(96), Glass.of(16), Iron.of(16)));
         CARPENTER.addPurchasable(new PurchasableBuilding(3000L, HFBuildings.FISHING_HOLE, Logs.of(16)));
-        CARPENTER.addPurchasable(new PurchasableBuilding(10000L, HFBuildings.CAFE, Logs.of(200), Stone.of(48), Glass.of(32), Bricks.of(32), Iron.of(8)));
+        CARPENTER.addPurchasable(new PurchasableBuilding(10000L, HFBuildings.CAFE, Logs.of(200), Stone.of(48), Glass.of(32), Bricks.of(32)));
         CARPENTER.addPurchasable(new PurchasableBuilding(15000L, HFBuildings.CLOCKMAKER, Logs.of(128), Stone.of(64), Iron.of(8)));
         CARPENTER.addPurchasable(new PurchasableBuilding(7000L, HFBuildings.GODDESS_POND, Logs.of(32), Stone.of(64)));
         CARPENTER.addPurchasable(new PurchasableBuilding(25000L, HFBuildings.CHURCH, Logs.of(160), Stone.of(128), Glass.of(8), Iron.of(8)));

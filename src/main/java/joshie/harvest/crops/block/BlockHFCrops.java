@@ -5,7 +5,6 @@ import joshie.harvest.api.animals.AnimalFoodType;
 import joshie.harvest.api.animals.AnimalStats;
 import joshie.harvest.api.animals.IAnimalFeeder;
 import joshie.harvest.api.crops.Crop;
-import joshie.harvest.api.crops.IBreakCrops;
 import joshie.harvest.api.crops.IStateHandler.PlantSection;
 import joshie.harvest.api.trees.Tree;
 import joshie.harvest.core.base.block.BlockHFEnum;
@@ -81,7 +80,6 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
 
     public BlockHFCrops() {
         super(Material.PLANTS, CropType.class, null);
-        setBlockUnbreakable();
         setSoundType(SoundType.GROUND);
         if (!HFCrops.GROWS_DAILY) setTickRandomly(true);
         disableStats();
@@ -125,15 +123,20 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
 
     @SuppressWarnings("deprecation")
     @Override
-    //Return 0.75F if the plant isn't withered, otherwise, unbreakable!!!
-    public float getPlayerRelativeBlockHardness(IBlockState state, @Nonnull EntityPlayer player, @Nonnull World world, @Nonnull BlockPos pos) {
-        CropType stage = getEnumFromState(state);
-        ItemStack held = player.getHeldItemMainhand();
-        //If this crop is withered return 0
+    public float getBlockHardness(IBlockState state, World world, BlockPos pos) {
+        CropType type = getEnumFromState(state);
+        if (type.isWithered()) return 0.5F;
+        else return isWood(world, pos) ? 2F : 0.1F;
+    }
+
+    @Override
+    public boolean isWood(IBlockAccess world, BlockPos pos) {
         CropData data = CropHelper.getCropDataAt(world, pos);
-        if (data != null && data.getCrop() instanceof Tree) return 0.02F;
-        if (held == null || (!(held.getItem() instanceof IBreakCrops))) return stage.isWithered() ? 0 : 0.75F;
-        return ((IBreakCrops) held.getItem()).getStrengthVSCrops(player, world, pos, state, held);
+        if (data != null && data.getCrop() instanceof Tree) {
+            if (data.getStage() >= ((Tree)data.getCrop()).getStagesToMaturity()) return true;
+        }
+
+        return false;
     }
 
     @Override
@@ -209,6 +212,22 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
         }
     }
 
+    @SuppressWarnings("deprecation")
+    @Override
+    public float getPlayerRelativeBlockHardness(IBlockState state, @Nonnull EntityPlayer player, @Nonnull World world, @Nonnull BlockPos pos) {
+        float hardness = state.getBlockHardness(world, pos);
+        if (hardness < 0.0F) {
+            return 0.0F;
+        }
+
+        ItemStack held = player.getHeldItemMainhand();
+        if (held != null && HFApi.crops.isSickle(held)) {
+            return player.getDigSpeed(state, pos) / hardness / 20F;
+        } else {
+            return player.getDigSpeed(state, pos) / hardness / 100F;
+        }
+    }
+
     @Override
     public boolean removedByPlayer(@Nonnull IBlockState state, @Nonnull World world, @Nonnull BlockPos pos, @Nonnull EntityPlayer player, boolean willHarvest) {
         CropType stage = getEnumFromState(state);
@@ -223,7 +242,7 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
 
         Crop crop = data.getCrop();
         int originalStage = data.getStage();
-        boolean isSickle = player.getHeldItemMainhand() != null && player.getHeldItemMainhand().getItem() instanceof IBreakCrops;
+        boolean isSickle = player.getHeldItemMainhand() != null && HFApi.crops.isSickle(player.getHeldItemMainhand());
         if (isSickle || !crop.requiresSickle()) {
             if (section == BOTTOM) {
                 harvestCrop(player, world, pos);

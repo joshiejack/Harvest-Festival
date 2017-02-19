@@ -1,12 +1,13 @@
 package joshie.harvest.tools;
 
 import joshie.harvest.api.HFApi;
-import joshie.harvest.core.base.item.ItemTool;
 import joshie.harvest.core.util.annotations.HFLoader;
 import joshie.harvest.tools.item.*;
+import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.oredict.OreDictionary;
 
 import static joshie.harvest.core.helpers.ConfigHelper.getBoolean;
 import static joshie.harvest.core.helpers.ConfigHelper.getInteger;
@@ -20,7 +21,7 @@ public class HFTools {
     public static final ItemAxe AXE = new ItemAxe().register("axe");
 
     //Farming Tools
-    public static final ItemTool SICKLE = new ItemSickle().register("sickle");
+    public static final ItemSickle SICKLE = new ItemSickle().register("sickle");
     public static final ItemHoe HOE = new ItemHoe().register("hoe");
     public static final ItemWateringCan WATERING_CAN = new ItemWateringCan().register("wateringcan");
 
@@ -40,6 +41,7 @@ public class HFTools {
 
     public static void init() {
         HFApi.npc.getGifts().addToBlacklist(HAMMER, AXE, SICKLE, WATERING_CAN, HOE);
+        HFApi.crops.registerSickle(new ItemStack(SICKLE, 1, OreDictionary.WILDCARD_VALUE));
     }
 
     private static Potion registerPotion(String name, int color, int x, int y) {

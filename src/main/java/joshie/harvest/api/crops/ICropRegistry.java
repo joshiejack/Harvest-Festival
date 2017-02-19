@@ -83,4 +83,13 @@ public interface ICropRegistry {
      *  @param farmland     the farmland block
      *  @param dirt         the block this becomes when it 'dies'**/
     void registerFarmlandToDirtMapping(IBlockState farmland, IBlockState dirt);
+
+    /** Register the item as being considered a sickle for harvesting crops
+     * @param stack the item, use OreDictionary.WILDCARD_VALUE if the damage shouldn't matter */
+    void registerSickle(ItemStack stack);
+
+    /** If the stack is registered as a sickle
+     *  @param stack    the stack to check
+     *  @return if the item is a sickle **/
+    boolean isSickle(ItemStack stack);
 }

@@ -30,6 +30,8 @@ public class CropRegistry implements ICropRegistry {
     public final Set<WateringHandler> wateringHandlers = new HashSet<>();
     public final HashMap<IBlockState, IBlockState> farmlandToDirtMap = new HashMap<>();
     private final HashMap<ItemStackHolder, Crop> providers = new HashMap<>();
+    private final Set<ItemStackHolder> sickles = new HashSet<>();
+    private static final List<ItemStack> EMPTY = new ArrayList<>();
 
     @Override
     public BlockStateContainer getStateContainer(PropertyInteger stages) {
@@ -56,6 +58,16 @@ public class CropRegistry implements ICropRegistry {
     @Override
     public void registerCropProvider(ItemStack stack, Crop crop) {
         providers.put(ItemStackHolder.of(stack), crop);
+    }
+
+    @Override
+    public void registerSickle(ItemStack stack) {
+        sickles.add(ItemStackHolder.of(stack));
+    }
+
+    @Override
+    public boolean isSickle(ItemStack stack) {
+        return sickles.contains(ItemStackHolder.of(stack)) || sickles.contains(ItemStackHolder.of(stack.getItem(), OreDictionary.WILDCARD_VALUE));
     }
 
     public List<ItemStack> getStacksForCrop(Crop crop) {
@@ -114,8 +126,8 @@ public class CropRegistry implements ICropRegistry {
                 } else tile.saveAndRefresh();
 
                 return harvest;
-            } else return null;
-        } else return null;
+            } else return EMPTY;
+        } else return EMPTY;
     }
 
     @Override

@@ -31,7 +31,7 @@ public class CalendarHelper {
     }
 
     public static Weekday getWeekday(long time) {
-        return getWeekday(getElapsedDays(time + 6000));
+        return getWeekday(getElapsedDays(time));
     }
 
     public static void setDate(World world, CalendarDate date) {

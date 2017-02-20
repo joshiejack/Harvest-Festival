@@ -91,7 +91,6 @@ public class BlockTray extends BlockHFEnum<BlockTray, Tray> implements IAnimalFe
                 int relationship = nest.getRelationship();
                 NBTTagCompound tag = drop.getSubCompound("Data", true);
                 tag.setInteger("Relationship", (relationship - (relationship % 2500)));
-
                 nest.clear();
 
                 if (!EntityBasket.findBasketAndShip(player, Lists.newArrayList(drop))) {

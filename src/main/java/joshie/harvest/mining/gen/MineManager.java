@@ -66,7 +66,7 @@ public class MineManager extends WorldSavedData {
         return tag;
     }
 
-    private BlockPos modifyNPCPosition(WorldServer dim, BlockPos spawn, Entity entity) {
+    public static BlockPos modifyNPCPosition(WorldServer dim, BlockPos spawn, Entity entity) {
         IBlockState actual = HFMining.PORTAL.getActualState(dim.getBlockState(spawn), dim, spawn);
         if (actual.getBlock() == HFMining.PORTAL) {
             Random rand = dim.rand;

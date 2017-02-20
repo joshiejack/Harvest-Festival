@@ -1,10 +1,15 @@
 package joshie.harvest.knowledge;
 
+import joshie.harvest.animals.HFAnimals;
+import joshie.harvest.animals.item.ItemAnimalSpawner.Spawner;
 import joshie.harvest.api.core.ITiered.ToolTier;
 import joshie.harvest.api.knowledge.Category;
 import joshie.harvest.api.knowledge.Note;
+import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.cooking.block.BlockCookware.Cookware;
+import joshie.harvest.core.HFCore;
+import joshie.harvest.core.block.BlockStorage.Storage;
 import joshie.harvest.core.util.annotations.HFLoader;
 import joshie.harvest.knowledge.gui.stats.notes.render.NoteRenderCursedTools;
 import joshie.harvest.knowledge.gui.stats.notes.render.NoteRenderRepairing;
@@ -13,6 +18,7 @@ import joshie.harvest.mining.HFMining;
 import joshie.harvest.mining.block.BlockElevator.Elevator;
 import joshie.harvest.mining.block.BlockOre.Ore;
 import joshie.harvest.tools.HFTools;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
@@ -42,8 +48,8 @@ public class HFNotes {
     public static final Note UPGRADING = registerNote(TOWNSHIP, "upgrading");
     public static final Note COOKING = registerNote(ACTIVITIES, "cooking");
     public static final Note RECIPES = registerNote(ACTIVITIES, "recipes");
-    public static final Note RECIPE_BOOK = registerNote(ACTIVITIES, "counter");
-    public static final Note KITCHEN_COUNTER = registerNote(ACTIVITIES, "recipebook");
+    public static final Note RECIPE_BOOK = registerNote(ACTIVITIES, "recipebook");
+    public static final Note KITCHEN_COUNTER = registerNote(ACTIVITIES, "counter");
     public static final Note FRIDGE = registerNote(ACTIVITIES, "fridge");
     public static final Note OVEN = registerNote(ACTIVITIES, "oven");
     public static final Note MIXER = registerNote(ACTIVITIES, "mixer");
@@ -64,6 +70,13 @@ public class HFNotes {
     }
 
     public static void init() {
+        BLUEPRINTS.setIcon(HFBuildings.BLUEPRINTS.getStackFromObject(HFBuildings.CARPENTER));
+        CROP_FARMING.setIcon(new ItemStack(Items.CARROT));
+        SHIPPING.setIcon(HFCore.STORAGE.getStackFromEnum(Storage.SHIPPING));
+        MAILBOX.setIcon(HFCore.STORAGE.getStackFromEnum(Storage.MAILBOX));
+        CHICKEN_CARE.setIcon(HFAnimals.ANIMAL.getStackFromEnum(Spawner.CHICKEN));
+        COW_CARE.setIcon(HFAnimals.ANIMAL.getStackFromEnum(Spawner.COW));
+        SHEEP_CARE.setIcon(HFAnimals.ANIMAL.getStackFromEnum(Spawner.SHEEP));
         HAMMER.setIcon(HFTools.HAMMER.getStack(ToolTier.BASIC));
         AXE.setIcon(HFTools.AXE.getStack(ToolTier.BASIC));
         SICKLE.setIcon(HFTools.SICKLE.getStack(ToolTier.BASIC));

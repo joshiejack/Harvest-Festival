@@ -21,27 +21,37 @@ import joshie.harvest.core.util.interfaces.ISyncMaster;
 import joshie.harvest.gathering.GatheringData;
 import joshie.harvest.knowledge.letter.LetterDataServer;
 import joshie.harvest.knowledge.packet.PacketSyncLetters;
+import joshie.harvest.mining.gen.MineManager;
+import joshie.harvest.mining.gen.MiningProvider;
 import joshie.harvest.npcs.HFNPCs;
 import joshie.harvest.npcs.NPCHelper;
 import joshie.harvest.npcs.entity.EntityNPCBuilder;
 import joshie.harvest.npcs.entity.EntityNPCHuman;
+import joshie.harvest.npcs.entity.EntityNPCMiner;
 import joshie.harvest.quests.data.QuestDataServer;
 import joshie.harvest.quests.packet.PacketSharedSync;
 import joshie.harvest.town.packet.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.*;
 import java.util.Map.Entry;
+
+import static joshie.harvest.mining.HFMining.MINING_ID;
 
 public class TownDataServer extends TownData<QuestDataServer, LetterDataServer> implements ISyncMaster {
     public final GatheringData gathering = new GatheringData();
@@ -174,7 +184,18 @@ public class TownDataServer extends TownData<QuestDataServer, LetterDataServer> 
             generateNewDailyQuest(world);
             for (Entry<ResourceLocation, BlockPos> entry: deadVillagers.entrySet()) {
                 NPC npc = NPC.REGISTRY.getValue(entry.getKey());
-                if (npc != HFNPCs.GODDESS) {
+                if (npc == HFNPCs.MINER) {
+                    WorldServer server = FMLCommonHandler.instance().getMinecraftServerInstance().worldServerForDimension(MINING_ID);
+                    EntityNPCMiner entity = NPCHelper.getEntityForNPC(server, HFNPCs.MINER);
+                    int id = HFTrackers.getTowns(entity.worldObj).getMineIDFromCoordinates(getTownCentre());
+                    MiningProvider provider = ((MiningProvider) server.provider);
+                    BlockPos pos = MineManager.modifyNPCPosition(server, provider.getSpawnCoordinateForMine(id, 1), entity);
+                    entity.setPosition(pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5);
+                    entity.setHeldItem(EnumHand.MAIN_HAND, new ItemStack(Blocks.TORCH));
+                    entity.setHeldItem(EnumHand.OFF_HAND, new ItemStack(Items.IRON_PICKAXE));
+                    entity.resetSpawnHome();
+                    server.spawnEntityInWorld(entity);
+                } else if (npc != HFNPCs.GODDESS) {
                     EntityNPCHuman entity = NPCHelper.getEntityForNPC(world, npc);
                     entity.setPosition(townCentre.getX(), townCentre.getY(), townCentre.getZ());
                     entity.resetSpawnHome();
@@ -238,7 +259,7 @@ public class TownDataServer extends TownData<QuestDataServer, LetterDataServer> 
             }
 
             if (changed) sync(null, new PacketSyncLetters(letters.getLetters()));
-            deadVillagers = new HashMap<>(); //Reset the dead villagers
+            deadVillagers.clear(); //Reset the dead villagers
         }
     }
 

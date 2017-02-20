@@ -14,6 +14,11 @@ public class Tracking implements IPlayerTracking {
     protected Set<ItemStackHolder> obtained = new HashSet<>(); //Items that have been obtained
     protected Set<ResourceLocation> recipes = new HashSet<>(); //Recipe Learnt
     protected Set<ResourceLocation> notes = new HashSet<>(); //Notes Learnt
+    protected Set<ResourceLocation> unread = new HashSet<>(); //Things we haven't read yet
+
+    public Set<ResourceLocation> getReadStatus() {
+        return unread;
+    }
 
     public boolean learnRecipe(Recipe recipe) {
         if (recipe == null) {

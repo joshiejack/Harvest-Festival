@@ -28,7 +28,7 @@ public class EntityNPCGoddess extends EntityNPC<EntityNPCGoddess> {
 
     @SuppressWarnings("unused")
     public EntityNPCGoddess(World world) {
-        this(world, (NPC) HFNPCs.GODDESS);
+        this(world, HFNPCs.GODDESS);
     }
 
     public EntityNPCGoddess(World world, NPC npc) {

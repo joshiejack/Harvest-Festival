@@ -32,7 +32,7 @@ public class ShippingRegistry implements IShippingRegistry {
     @SuppressWarnings("ConstantConditions, deprecation")
     public long getSellValue(ItemStack stack) {
         //Per item override
-        if (stack.hasTagCompound()) {
+        if (stack.hasTagCompound() && stack.getTagCompound().hasKey(SELL_VALUE)) {
             return stack.getTagCompound().getLong(SELL_VALUE);
         }
 

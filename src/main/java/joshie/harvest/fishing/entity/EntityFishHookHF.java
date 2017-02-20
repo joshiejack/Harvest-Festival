@@ -32,7 +32,7 @@ public class EntityFishHookHF extends EntityFishHook {
     //TODO: Line changed by me
     public EntityFishHookHF(World world, EntityPlayer player, int tier, int bait) {
         super(world, player);
-        this.tickTimer = tier * (bait > 0 ? 2: 1);
+        this.tickTimer = (tier + 1) * (bait > 0 ? 2: 1);
         this.tier = tier;
     }
 

@@ -45,7 +45,7 @@ public class QuestKatlinSundayBakingFreeCake extends Quest  {
         if (npc != HFNPCs.CAFE_GRANNY || !TownHelper.getClosestTownToEntity(player, false).hasBuilding(HFBuildings.CHURCH)) return false;
         CalendarDate today = HFApi.calendar.getDate(player.worldObj);
         long daytime = CalendarHelper.getTime(player.worldObj);
-        if (HFApi.calendar.getWeekday(player.worldObj) == Weekday.SUNDAY && daytime >= 7000L && daytime <= 17000L) {
+        if (today.getWeekday() == Weekday.SUNDAY && daytime >= 7000L && daytime <= 17000L) {
             if (date == null || CalendarHelper.getDays(date, today) >= 7) {
                 return true;
             }

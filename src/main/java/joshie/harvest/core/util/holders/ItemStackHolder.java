@@ -51,6 +51,11 @@ public class ItemStackHolder extends AbstractItemHolder {
     }
 
     @Override
+    public String toString() {
+        return "ItemStackHolder: "  + (item != null ? item.getRegistryName() + " " + meta: "null");
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;

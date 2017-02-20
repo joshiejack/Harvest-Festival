@@ -23,13 +23,13 @@ public class QuestProgress extends QuestTown {
     @Override
     public boolean isNPCUsed(EntityPlayer player, NPC npc) {
         TownData data = TownHelper.getClosestTownToEntity(player, false);
-        return data.hasBuilding(HFBuildings.CAFE) && data.hasBuilding(HFBuildings.BLACKSMITH) && data.hasBuilding(HFBuildings.FISHING_HUT) && data.hasBuilding(HFBuildings.FESTIVAL_GROUNDS);
+        return super.isNPCUsed(player, npc) && data.hasBuilding(HFBuildings.CAFE) && data.hasBuilding(HFBuildings.BLACKSMITH) && data.hasBuilding(HFBuildings.FISHING_HUT) && data.hasBuilding(HFBuildings.FESTIVAL_GROUNDS);
     }
 
     @Nullable
     @SideOnly(Side.CLIENT)
     public String getLocalizedScript(EntityPlayer player, EntityLiving entity, NPC npc) {
-        return "complete";
+        return getLocalized("complete");
     }
 
     @Override

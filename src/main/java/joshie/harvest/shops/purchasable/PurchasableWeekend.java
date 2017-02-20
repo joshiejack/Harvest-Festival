@@ -30,7 +30,7 @@ public class PurchasableWeekend extends Purchasable {
 
     @Override
     public boolean canDo(@Nonnull World world, @Nonnull EntityPlayer player, int amount) {
-        return amount == 1 && HFApi.calendar.getWeekday(world).isWeekend() && hasRequiredItem(player);
+        return amount == 1 && HFApi.calendar.getDate(world).getWeekday().isWeekend() && hasRequiredItem(player);
     }
 
     @Override

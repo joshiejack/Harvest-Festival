@@ -3,6 +3,7 @@ package joshie.harvest.core.util.holders;
 import joshie.harvest.api.core.ISizedProvider;
 import joshie.harvest.api.core.Size;
 import joshie.harvest.core.base.item.ItemHFSizeable;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
@@ -49,6 +50,11 @@ public class SizeableHolder extends AbstractItemHolder {
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound tag) {
         return stack.writeToNBT(tag);
+    }
+
+    @Override
+    public String toString() {
+        return "SizeableHolder:" + (stack != null ? stack.getItem().getRegistryName() + " " + stack.getItemDamage() + " item: " + (item != null ? ((Item)item).getRegistryName() : "null") : "null");
     }
 
     @Override

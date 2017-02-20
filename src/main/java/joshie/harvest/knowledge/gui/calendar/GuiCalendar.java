@@ -29,6 +29,7 @@ import static joshie.harvest.core.lib.HFModInfo.MODID;
 public class GuiCalendar extends GuiBase {
     public static final ResourceLocation CALENDAR_TEXTURE = new ResourceLocation(MODID, "textures/gui/calendar.png") ;
     private final Multimap<CalendarDate, CalendarEntry> entries = HashMultimap.create();
+    public static CalendarDate date;
     public static Season season;
     public static int year = -1;
     private int rows;
@@ -36,8 +37,9 @@ public class GuiCalendar extends GuiBase {
 
     public GuiCalendar(EntityPlayer player) {
         super(new ContainerNull(), "calendar", 36);
-        season = HFApi.calendar.getDate(player.worldObj).getSeason();
-        year = HFApi.calendar.getDate(player.worldObj).getYear();
+        date = HFApi.calendar.getDate(player.worldObj);
+        season = date.getSeason();
+        year = date.getYear();
         xSize = 226;
         CalendarAPI.INSTANCE.getFestivals().entrySet().stream().forEach((e) -> entries.get(getNextDay(e.getKey())).add(e.getValue()));
         for (NPC npc: NPC.REGISTRY) {

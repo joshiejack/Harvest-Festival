@@ -1,5 +1,6 @@
 package joshie.harvest.knowledge.gui.stats.collection.page;
 
+import joshie.harvest.HarvestFestival;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.base.gui.BookPage;
 import joshie.harvest.core.registry.ShippingRegistry;
@@ -13,6 +14,7 @@ import joshie.harvest.knowledge.gui.stats.collection.button.ButtonShipped;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiLabel;
 import net.minecraft.item.ItemStack;
+import org.apache.logging.log4j.Level;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +42,12 @@ public class PageShipping extends PageCollection {
         super.initGui(gui, buttonList, labelList); //Add the tabs
         List<AbstractItemHolder> list = new ArrayList<>();
         for (AbstractItemHolder holder: ShippingRegistry.INSTANCE.getRegistry().getStacks()) {
-            if (qualifies(holder.getMatchingStacks().get(0))) list.add(holder);
+            List<ItemStack> stacks = holder.getMatchingStacks();
+            if (stacks.size() > 0 && qualifies(stacks.get(0))) {
+                list.add(holder);
+            } else if (stacks.size() == 0) {
+                HarvestFestival.LOGGER.log(Level.INFO, "Unable to find matching stacks when adding to collections for: " + holder.toString());
+            }
         }
 
         int j = 0;

@@ -5,6 +5,7 @@ import net.minecraft.nbt.NBTTagCompound;
 public class CalendarDate {
     /** This gets set by the config files, so it won't ALWAYS be 30 */
     public static int DAYS_PER_SEASON = 30;
+    private Weekday weekday;
     private int day;
     private Season season;
     private int year;
@@ -14,6 +15,7 @@ public class CalendarDate {
         this.day = day;
         this.season = season;
         this.year = year;
+        this.weekday = Weekday.MONDAY;
     }
 
     /** The day gets scaled to fit in to the 30 scale mark
@@ -28,19 +30,26 @@ public class CalendarDate {
 
     /** Make a copy of this date **/
     public CalendarDate copy() {
-        return new CalendarDate().setDate(getDay(), getSeason(), getYear());
+        return new CalendarDate().setDate(weekday, day, season, year);
     }
 
     /** Update the internal values of this date
+     * @param weekday   the day of the week
      * @param day       the day of the season
      * @param season    the season
      * @param year      the year
      * @return the full date  */
-    public CalendarDate setDate(int day, Season season, int year) {
+    public CalendarDate setDate(Weekday weekday, int day, Season season, int year) {
+        this.weekday = weekday;
         this.day = day;
         this.season = season;
         this.year = year;
         return this;
+    }
+
+    /** @return  the day of the week **/
+    public Weekday getWeekday() {
+        return weekday;
     }
 
     /** @return  the day of the season **/
@@ -62,10 +71,11 @@ public class CalendarDate {
      * @param nbt   the tag to read
      * @return the date */
     public static CalendarDate fromNBT(NBTTagCompound nbt) {
+        Weekday weekday = Weekday.values()[nbt.getByte("WeekDay")];
         int day = nbt.getInteger("Day");
         Season season = Season.values()[nbt.getByte("Season")];
         int year = nbt.getInteger("Year");
-        return new CalendarDate(day, season, year);
+        return new CalendarDate().setDate(weekday, day, season, year);
     }
 
     /** Save a date to nbt **/

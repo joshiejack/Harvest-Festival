@@ -1,11 +1,19 @@
 package joshie.harvest.knowledge;
 
+import joshie.harvest.api.core.ITiered.ToolTier;
 import joshie.harvest.api.knowledge.Category;
 import joshie.harvest.api.knowledge.Note;
+import joshie.harvest.cooking.HFCooking;
+import joshie.harvest.cooking.block.BlockCookware.Cookware;
 import joshie.harvest.core.util.annotations.HFLoader;
 import joshie.harvest.knowledge.gui.stats.notes.render.NoteRenderCursedTools;
 import joshie.harvest.knowledge.gui.stats.notes.render.NoteRenderRepairing;
 import joshie.harvest.knowledge.gui.stats.notes.render.NoteRenderUpgrading;
+import joshie.harvest.mining.HFMining;
+import joshie.harvest.mining.block.BlockElevator.Elevator;
+import joshie.harvest.mining.block.BlockOre.Ore;
+import joshie.harvest.tools.HFTools;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -53,6 +61,21 @@ public class HFNotes {
         UPGRADING.setRender(new NoteRenderUpgrading());
         REPAIRING.setRender(new NoteRenderRepairing());
         SECRET_CURSED_TOOLS.setRender(new NoteRenderCursedTools());
+    }
+
+    public static void init() {
+        HAMMER.setIcon(HFTools.HAMMER.getStack(ToolTier.BASIC));
+        AXE.setIcon(HFTools.AXE.getStack(ToolTier.BASIC));
+        SICKLE.setIcon(HFTools.SICKLE.getStack(ToolTier.BASIC));
+        MINING.setIcon(HFMining.ORE.getStackFromEnum(Ore.COPPER));
+        RECIPES.setIcon(HFCooking.RECIPE.getStackFromResource(new ResourceLocation(MODID, "salad")));
+        RECIPE_BOOK.setIcon(new ItemStack(HFCooking.COOKBOOK));
+        KITCHEN_COUNTER.setIcon(HFCooking.COOKWARE.getStackFromEnum(Cookware.COUNTER));
+        FRIDGE.setIcon(HFCooking.COOKWARE.getStackFromEnum(Cookware.FRIDGE));
+        OVEN.setIcon(HFCooking.COOKWARE.getStackFromEnum(Cookware.OVEN_OFF));
+        MIXER.setIcon(HFCooking.COOKWARE.getStackFromEnum(Cookware.MIXER));
+        POTPAN.setIcon(HFCooking.COOKWARE.getStackFromEnum(Cookware.POT));
+        ELEVATOR.setIcon(HFMining.ELEVATOR.getStackFromEnum(Elevator.JUNK));
     }
 
     public static Note registerNote(Category category, String name) {

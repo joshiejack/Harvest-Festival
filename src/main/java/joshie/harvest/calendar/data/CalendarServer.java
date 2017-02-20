@@ -124,7 +124,7 @@ public class CalendarServer extends Calendar {
     public void readFromNBT(NBTTagCompound nbt) {
         if (nbt.hasKey("Date")) {
             CalendarDate date = CalendarDate.fromNBT(nbt.getCompoundTag("Date"));
-            DATE.setDate(date.getDay(), date.getSeason(), date.getYear());
+            DATE.setDate(date.getWeekday(), date.getDay(), date.getSeason(), date.getYear());
         }
 
         rainStrength = nbt.getFloat("Rain");

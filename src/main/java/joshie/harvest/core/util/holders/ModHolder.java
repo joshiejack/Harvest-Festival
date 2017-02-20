@@ -41,6 +41,11 @@ public class ModHolder extends AbstractItemHolder {
     }
 
     @Override
+    public String toString() {
+        return "ModHolder: " + mod;
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;

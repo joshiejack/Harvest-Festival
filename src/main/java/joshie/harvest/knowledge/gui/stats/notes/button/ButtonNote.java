@@ -4,6 +4,7 @@ import joshie.harvest.api.knowledge.Note;
 import joshie.harvest.api.knowledge.NoteRender;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.base.gui.ButtonBook;
+import joshie.harvest.core.helpers.StackRenderHelper;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.knowledge.gui.stats.GuiStats;
 import joshie.harvest.knowledge.gui.stats.notes.page.PageNotes;
@@ -53,9 +54,14 @@ public class ButtonNote extends ButtonBook {
     }
 
     private void drawForeground() {
-        GlStateManager.color(1F, 1F, 1F);
-        gui.mc.getTextureManager().bindTexture(HFModInfo.ICONS);
-        gui.drawTexturedModalRect(xPosition, yPosition, xNote, 32, 16, 16);
+        if (note.getIcon() == Note.PAPER) {
+            GlStateManager.color(1F, 1F, 1F);
+            gui.mc.getTextureManager().bindTexture(HFModInfo.ICONS);
+            gui.drawTexturedModalRect(xPosition, yPosition, xNote, 32, 16, 16);
+        } else {
+            if (unlocked) StackRenderHelper.drawStack(note.getIcon(), xPosition, yPosition, 1F);
+            else StackRenderHelper.drawGreyStack(note.getIcon(), xPosition, yPosition, 1F);
+        }
     }
 
     @Override

@@ -142,6 +142,7 @@
 * Added some secret unlockable shops
 * Added a daytime clockmaker shop to tiberius, selling clocks, calendars, maps, compass
 * Added a shop to jakob, selling the new fish stuff
+* Poultry Farm is now open from 6am-12pm instead of 5am-11am
 
 ###Tools
 * Tools will have [BROKEN] in front of their name, when they can't be used

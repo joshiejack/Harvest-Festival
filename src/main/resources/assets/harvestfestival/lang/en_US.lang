@@ -1462,7 +1462,7 @@ harvestfestival.npc.builder.basement.decorate=Just adding the finishing touches 
 harvestfestival.npc.builder.basement.movein=Don't mind me just helping everyone move in to the %s.
 
 #Ashlee
-harvestfestival.npc.ashlee.shop=If you ever need anything, just be sure to ask. But only from 5am to 11am, Monday through Saturday.
+harvestfestival.npc.ashlee.shop=If you ever need anything, just be sure to ask. But only from 6am to 12pm, Monday through Saturday.
 harvestfestival.npc.ashlee.greeting1=I sure love plucking chickens!
 harvestfestival.npc.ashlee.greeting2=I am so tired, working with chickens is such hard work!
 harvestfestival.npc.ashlee.greeting3=From this day forward, I hope I can sleep better.
@@ -1559,7 +1559,7 @@ harvestfestival.shop.general.options.chat=@Chat
 #Poultry Farm
 harvestfestival.shop.poultry=Foxie's Fowls
 harvestfestival.shop.poultry.sign1=
-harvestfestival.shop.poultry.sign2=05:00 - 11:00
+harvestfestival.shop.poultry.sign2=06:00 - 12:00
 harvestfestival.shop.poultry.sign3=Mon-Sat
 harvestfestival.shop.poultry.greeting1=Chickens provide essentials for us, what can I help you with?
 harvestfestival.shop.poultry.greeting2=The Poultry Farm has been here for 300 years, what do you desire?

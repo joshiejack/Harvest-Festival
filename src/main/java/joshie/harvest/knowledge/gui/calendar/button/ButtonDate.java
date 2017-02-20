@@ -20,7 +20,7 @@ public class ButtonDate extends GuiButton {
     public ButtonDate(GuiCalendar gui, int number, List<CalendarEntry> entries, int x, int y) {
         super(number, x, y, "");
         this.gui = gui;
-        this.icons = new CyclingStack(x + 8, y + 7, entries);
+        this.icons = new CyclingStack(x + 8, y + 6, entries);
         this.width = 26;
         this.height = 26;
     }
@@ -33,9 +33,16 @@ public class ButtonDate extends GuiButton {
             GlStateManager.enableBlend();
             GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
             GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
+
+            //If it's the same date, draw the highlight
+            mc.getTextureManager().bindTexture(GuiCalendar.CALENDAR_TEXTURE);
+            if (id == GuiCalendar.date.getDay() && GuiCalendar.season == GuiCalendar.date.getSeason() && GuiCalendar.year == GuiCalendar.date.getYear()) {
+                drawTexturedModalRect(xPosition - 2, yPosition - 2, 10, 54, 26, 26);
+            }
+
             boolean prev = mc.fontRendererObj.getUnicodeFlag();
             mc.fontRendererObj.setUnicodeFlag(true);
-            gui.drawString(mc.fontRendererObj, TextFormatting.BOLD + "" + (id + 1), xPosition, yPosition, 0xFFFFFF);
+            gui.drawString(mc.fontRendererObj, TextFormatting.BOLD + "" + (id + 1), xPosition + 2, yPosition, 0xFFFFFF);
             mc.fontRendererObj.setUnicodeFlag(prev);
             mouseDragged(mc, mouseX, mouseY);
             icons.render(gui, mouseX, mouseY);

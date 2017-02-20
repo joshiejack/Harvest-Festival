@@ -1,5 +1,7 @@
 package joshie.harvest.api.knowledge;
 
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.fml.relauncher.Side;
@@ -10,10 +12,12 @@ import java.util.LinkedHashMap;
 
 public class Note {
     public static final LinkedHashMap<ResourceLocation, Note> REGISTRY = new LinkedHashMap<>();
+    public static final ItemStack PAPER = new ItemStack(Items.PAPER);
     private final Category category;
     private final ResourceLocation resource;
     private final String title;
     private final String description;
+    private ItemStack icon;
     private boolean isSecret;
     @SideOnly(Side.CLIENT)
     private NoteRender render;
@@ -21,6 +25,7 @@ public class Note {
     public Note(Category category, ResourceLocation resource) {
         this.category = category;
         this.resource = resource;
+        this.icon = PAPER;
         this.title = resource.getResourceDomain() + ".note." + resource.getResourcePath() + ".title";
         this.description = resource.getResourceDomain() + ".note." + resource.getResourcePath() + ".description";
         REGISTRY.put(resource, this);
@@ -29,6 +34,13 @@ public class Note {
     @SideOnly(Side.CLIENT)
     public Note setRender(NoteRender render) {
         this.render = render;
+        return this;
+    }
+
+    /** Set the icon for this note
+     *  @param icon     the stack to reprsent this note **/
+    public Note setIcon(ItemStack icon) {
+        this.icon = icon;
         return this;
     }
 
@@ -44,6 +56,11 @@ public class Note {
     @SideOnly(Side.CLIENT)
     public NoteRender getRender() {
         return render;
+    }
+
+    /** Returns the stack that this note displays as **/
+    public ItemStack getIcon() {
+        return icon;
     }
 
     public Category getCategory() {

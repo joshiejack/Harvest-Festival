@@ -67,11 +67,6 @@ public class CalendarAPI implements CalendarManager {
         return HFTrackers.getCalendar(world).getTodaysWeather();
     }
 
-    @Override
-    public Weekday getWeekday(World world) {
-        return CalendarHelper.getWeekday(world.getWorldTime());
-    }
-
     //We're offsetting the day in the calendar, so that the letter gets sent the day before the event
     private int getOffsetDay(int originalDay) {
         if (originalDay > 1) return originalDay - 1;

@@ -41,7 +41,7 @@ public class PurchasableRecipe extends PurchasableMeal {
     public boolean canDo(@Nonnull World world, @Nonnull EntityPlayer player, int amount) {
         if (season == null || weekday == null) return amount == 1;
         CalendarDate date = HFApi.calendar.getDate(world);
-        return amount == 1 && HFApi.calendar.getWeekday(world) == weekday && date.getSeason() == season;
+        return amount == 1 && date.getWeekday() == weekday && date.getSeason() == season;
     }
 
     @Override

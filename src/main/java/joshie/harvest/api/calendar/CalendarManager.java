@@ -34,10 +34,6 @@ public interface CalendarManager {
      * @param world a world object **/
     Weather getWeather(World world);
 
-    /** Return the day of the week
-     *  @param world    the world object **/
-    Weekday getWeekday(World world);
-
     /** Register a holiday
      *  @param festival the holiday data
      *  @param day the date this holiday occurs (will be fit in to a 30 day calendar)

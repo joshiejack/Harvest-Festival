@@ -35,7 +35,7 @@ public class QuestGoddessPond extends QuestTown {
     @Override
     public boolean isNPCUsed(EntityPlayer player, NPC npc) {
         TownData data = TownHelper.getClosestTownToEntity(player, false);
-        return data.getBuildings().size() >= 5 || data.hasBuilding(HFBuildings.GODDESS_POND);
+        return super.isNPCUsed(player, npc) && data.getBuildings().size() >= 5 || data.hasBuilding(HFBuildings.GODDESS_POND);
     }
 
     @Override
@@ -50,11 +50,9 @@ public class QuestGoddessPond extends QuestTown {
         return TownHelper.getClosestTownToEntity(player, false).hasBuilding(HFBuildings.GODDESS_POND) ? primary : BUILDING;
     }
 
-
-
     @Override
     public String getLocalizedScript(EntityPlayer player, EntityLiving entity, NPC npc) {
-        return TownHelper.getClosestTownToEntity(player, false).getBuildings().size() >= 5 ? getLocalized("thanks") : getLocalized("please");
+        return TownHelper.getClosestTownToEntity(player, false).hasBuilding(HFBuildings.GODDESS_POND) ? getLocalized("thanks") : getLocalized("please");
     }
 
     @Override

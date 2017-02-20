@@ -61,7 +61,7 @@ public abstract class EntityNPCHuman<E extends EntityNPCHuman> extends EntityNPC
     @Override
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
-        getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(35.0D);
+        getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(128.0D);
     }
 
     public EntityAIPathing getPathing() {

@@ -483,11 +483,8 @@ public class AnimalStatsHF implements AnimalStats<NBTTagCompound> {
             tag.setByte("ProducedProducts", (byte) producedProducts);
         }
 
-        //TODO: Remove if loadHappiness in 0.7+
-        if (happiness > 0) {
-            tag.setBoolean("BeenLoved", beenLoved);
-            tag.setShort("Happiness", (short) happiness);
-        }
+        tag.setBoolean("BeenLoved", beenLoved);
+        tag.setShort("Happiness", (short) happiness);
 
         return tag;
     }

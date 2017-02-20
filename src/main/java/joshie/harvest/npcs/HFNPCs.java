@@ -169,7 +169,6 @@ public class HFNPCs {
                         .add(SPRING, MONDAY, 0L, GENERAL_BEDROOM)
                         .add(SPRING, MONDAY, 7500L, GENERAL_TILL)
                         .add(SPRING, MONDAY, 17000L, GENERAL_BEDROOM)
-                        .add(SPRING, MONDAY, 19000L, CAFE_KITCHEN)
                         .add(SPRING, MONDAY, 22000L, FISHING_POND_BACK)
                         .add(SPRING, SATURDAY, 0L, GENERAL_BEDROOM)
                         .add(SPRING, SATURDAY, 10000L, GENERAL_TILL)

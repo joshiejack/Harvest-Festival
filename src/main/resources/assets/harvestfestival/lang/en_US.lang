@@ -799,6 +799,7 @@ harvestfestival.npc.generic.child.gift.bad=Why would you do this to me? :(
 harvestfestival.npc.generic.child.gift.terrible=I HATE YOU, TAKE THIS AWAAAAY!!!
 #No Thanks
 harvestfestival.npc.generic.child.gift.reject=No thank you! Maybe tomorrow :D
+harvestfestival.npc.generic.child.gift.no=Oh my. I think you like that item too much for me to accept it!
 
 #Generic Elder Thanks
 harvestfestival.npc.generic.elder.gift.awesome=In all my life, I have never received such a beautiful gift. With all my heart thank you.
@@ -809,6 +810,7 @@ harvestfestival.npc.generic.elder.gift.bad=Are trying to insult me?
 harvestfestival.npc.generic.elder.gift.terrible=You should be caned for giving me such a terrible gift.
 #No Thanks
 harvestfestival.npc.generic.elder.gift.reject=Sorry young one, but with great respect I cannot take another gift from you today.
+harvestfestival.npc.generic.elder.gift.no=That gift is far too valuable for me to accept.
 
 #Goddess
 harvestfestival.npc.goddess.greeting1=How are you my dear?
@@ -1115,6 +1117,7 @@ harvestfestival.npc.jamie.gift.decent=And you think I like this?
 harvestfestival.npc.jamie.gift.dislike=You insult my family name with this gift.
 harvestfestival.npc.jamie.gift.bad=This is quite possibly one of the worst things you could have given me.
 harvestfestival.npc.jamie.gift.terrible=That's it, If I have full authority I would banish you from this town. You insult me, you insult my family, your tarnish this town. Do not try this ever again.
+harvestfestival.npc.jamie.gift.no=You may not be the best person in this town. But even I cannot accept this gift. It is far too valuable.
 harvestfestival.npc.jamie.festival.chicken1=Ashlee pays good money for use of the festival grounds for this hideous festival. The money I make from the rental fee of the grounds is the ONLY good thing about it.
 harvestfestival.npc.jamie.festival.chicken2=Get that hideous feathered creature away from me!
 harvestfestival.npc.jamie.festival.cow1=All these droppings. Yuck. And they are eating every bit of grass in the park.
@@ -1220,7 +1223,7 @@ harvestfestival.npc.jacob.greeting10=It's sure nice having some new fish to catc
 harvestfestival.npc.jacob.greeting11=Just keep swimming...
 harvestfestival.npc.jacob.marriage.reject=I'm really looking for one of the other fish in the sea.
 harvestfestival.npc.jacob.marriage.accept=You are my starfish, I cannot wait to be your husband.
-harvestfestival.npc.jacob.gift.awesome=Fishing is my passion, and you really know exactly what I want.
+harvestfestival.npc.jacob.gift.awesome=I am a huge ray fan. I could not thank you enough. Nothing can beat this.
 harvestfestival.npc.jacob.gift.good=All things like this are good. Thank you.
 harvestfestival.npc.jacob.gift.decent=Thanks for the kind gift.
 harvestfestival.npc.jacob.gift.dislike=I'm not so sure about this one.

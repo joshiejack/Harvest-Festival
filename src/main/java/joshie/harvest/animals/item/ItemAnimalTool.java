@@ -14,6 +14,7 @@ import joshie.harvest.core.entity.EntityBasket;
 import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.core.helpers.SpawnItemHelper;
 import joshie.harvest.core.lib.CreativeSort;
+import joshie.harvest.core.lib.HFSounds;
 import joshie.harvest.core.util.interfaces.ISellable;
 import joshie.harvest.tools.ToolHelper;
 import net.minecraft.entity.EntityLivingBase;
@@ -23,6 +24,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -157,7 +159,8 @@ public class ItemAnimalTool extends ItemHFEnum<ItemAnimalTool, Tool> {
                     }
                 }
 
-                if (!stats.performTest(AnimalTest.CAN_CLEAN)) {
+                player.worldObj.playSound(player, player.posX, player.posY, player.posZ, HFSounds.BRUSH, SoundCategory.PLAYERS, 1.5F, 1F);
+                if (stats.performTest(AnimalTest.IS_CLEAN)) {
                     int damage = getDamageForDisplay(held) + 1;
                     if (damage >= MAX_DAMAGE) {
                         held.splitStack(1);

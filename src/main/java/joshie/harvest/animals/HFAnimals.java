@@ -47,6 +47,7 @@ import static joshie.harvest.api.HFApi.animals;
 import static joshie.harvest.api.animals.AnimalFoodType.*;
 import static joshie.harvest.core.helpers.ConfigHelper.getBoolean;
 import static joshie.harvest.core.helpers.ConfigHelper.getInteger;
+import static joshie.harvest.core.helpers.RegistryHelper.registerSounds;
 import static joshie.harvest.core.helpers.RegistryHelper.registerTiles;
 import static net.minecraftforge.fml.common.registry.EntityRegistry.registerModEntity;
 
@@ -74,6 +75,7 @@ public class HFAnimals {
         registerModEntity(EntityHarvestCow.class, "cow", EntityIDs.COW, HarvestFestival.instance, 150, 3, true);
         registerModEntity(EntityHarvestSheep.class, "sheep", EntityIDs.SHEEP, HarvestFestival.instance, 150, 3, true);
         registerModEntity(EntityHarvestChicken.class, "chicken", EntityIDs.CHICKEN, HarvestFestival.instance, 150, 3, true);
+        registerSounds("brush");
         registerFoodsAsType(CHICKEN, Items.CHICKEN, Items.COOKED_CHICKEN);
         registerFoodsAsType(FISH, Items.FISH, Items.COOKED_FISH);
         registerFoodsAsType(FRUIT, Items.APPLE, Items.MELON);

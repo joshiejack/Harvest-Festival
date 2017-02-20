@@ -19,6 +19,7 @@ public class HFSounds {
     public static final SoundEvent BLESS_TOOL = getSoundEvent("blessing");
     public static final SoundEvent GODDESS_SPAWN = getSoundEvent("goddess");
     public static final SoundEvent RECIPE = getSoundEvent("recipe");
+    public static final SoundEvent BRUSH = getSoundEvent("brush");
 
     private static SoundEvent getSoundEvent(String name) {
         return SoundEvent.REGISTRY.getObject(new ResourceLocation(MODID, name));

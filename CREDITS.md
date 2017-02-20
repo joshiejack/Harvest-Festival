@@ -26,6 +26,7 @@ Smash Wood: http://www.freesound.org/people/skinhat/sounds/31168/
 Goddess Spawn: http://www.freesound.org/people/Chocobaggy/sounds/252681/
 Tool Blessing: http://www.freesound.org/people/rhodesmas/sounds/320652/
 Recipe Learnt: http://www.freesound.org/people/LittleRobotSoundFactory/sounds/270404/
+Brushing Animals: http://www.freesound.org/people/13GPanska_Stanek_Vojtech/sounds/371909/
 
 ##Lang
 Meal Descriptions (0.5) > DivineAspect

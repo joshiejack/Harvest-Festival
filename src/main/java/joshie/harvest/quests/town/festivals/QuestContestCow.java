@@ -10,12 +10,14 @@ import joshie.harvest.api.npc.schedule.ScheduleWait;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.Selection;
 import joshie.harvest.calendar.CalendarHelper;
+import joshie.harvest.cooking.HFCooking;
+import joshie.harvest.cooking.item.ItemMeal.Meal;
 import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.npcs.HFNPCs;
 import joshie.harvest.npcs.entity.EntityNPCHuman;
 import joshie.harvest.npcs.entity.ai.EntityAIPathing;
 import joshie.harvest.quests.base.QuestFestival;
-import joshie.harvest.quests.town.festivals.cow.CowContestEntries;
+import joshie.harvest.quests.town.festivals.cow.AnimalContestEntries;
 import joshie.harvest.quests.town.festivals.cow.CowContestScript;
 import joshie.harvest.quests.town.festivals.cow.CowContestSelection;
 import joshie.harvest.quests.town.festivals.cow.CowSelection;
@@ -25,28 +27,38 @@ import joshie.harvest.town.data.TownData;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.apache.commons.lang3.tuple.Pair;
 
 import javax.annotation.Nullable;
 import java.util.*;
+import java.util.Map.Entry;
 
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 import static joshie.harvest.quests.town.festivals.cow.CowSelection.getEntrants;
 
 @HFQuest("festival.cow")
 public class QuestContestCow extends QuestFestival {
-    private static final Script cowJudge = new CowContestScript();
+    private static final Script cowJudge1 = new CowContestScript(1);
+    private static final Script cowJudge2 = new CowContestScript(2);
+    private static final Script cowJudge3 = new CowContestScript(3);
+    private static final Script cowJudge4 = new CowContestScript(4);
     private static final Script cowFinish = new Script(new ResourceLocation(MODID, "cow_finish"));
     private static final Script cowWinner = new Script(new ResourceLocation(MODID, "cow_winner"));
     public static final int QUESTION = 0;
     public static final int EXPLAIN = 1;
     public static final int SELECT = 2;
     public static final int START = 3;
-    private final Map<UUID, EntityHarvestCow> players = new HashMap<>();
+
+    private final Map<UUID, Pair<UUID, Integer>> players = new HashMap<>();
     private final Selection selection = new CowContestSelection();
     private final Selection cowSelection = new CowSelection();
     private long time;
@@ -56,8 +68,13 @@ public class QuestContestCow extends QuestFestival {
     }
 
     //Only marked on the server side
-    public void setEntrant(EntityPlayer player, EntityHarvestCow entrant) {
-        players.put(EntityHelper.getPlayerUUID(player), entrant);
+    public void setEntrant(EntityPlayer player, Pair<EntityHarvestCow, Integer> entrant) {
+        players.put(EntityHelper.getPlayerUUID(player), Pair.of(EntityHelper.getEntityUUID(entrant.getKey()), entrant.getValue()));
+    }
+
+    public boolean isPlayersCow(EntityHarvestCow cow) {
+        UUID uuid = EntityHelper.getEntityUUID(cow);
+        return players.values().contains(uuid);
     }
 
     @Override
@@ -81,12 +98,12 @@ public class QuestContestCow extends QuestFestival {
     @Nullable
     @SideOnly(Side.CLIENT)
     public String getLocalizedScript(EntityPlayer player, EntityLiving entity, NPC npc) {
-        if (quest_stage == QUESTION && isCorrectTime(time)) return "Hello pretty! Welcome to the Cow Festival, how may I help you?";
-        else if (quest_stage == EXPLAIN) return "Just bring one of your cows, and put them inside one of the stalls. Then talk to me, to select which cow. You can then wait for any other players to join. Once ready come talk to me again to start the judging. I'll walk around and judge each cow.";
+        if (quest_stage == QUESTION && isCorrectTime(time)) return getLocalized("help"); //"Hello pretty! Welcome to the Cow Festival, how may I help you?";
+        else if (quest_stage == EXPLAIN) return getLocalized("expain"); //"Just bring one of your cows, and put them inside one of the stalls. Then talk to me, to select which cow. You can then wait for any other players to join. Once ready come talk to me again to start the judging. I'll walk around and judge each cow.";
         else if (quest_stage == SELECT) {
-            return getEntrants(player).size() == 0 ? "There are no cows in the stalls! Come back when you have some to pick" : "Alrighty then, pick one of the following cows to enter them!";
+            return getEntrants(player).size() == 0 ? getLocalized("none") : getLocalized("selected"); //"There are no cows in the stalls! Come back when you have some to pick" : "Alrighty then, pick one of the following cows to enter them!";
         } else if (quest_stage == START) {
-            return "Well then let's get the judging started! Don't get in my way or it may delay the process";
+            return getLocalized("start"); //"Well then let's get the judging started! Don't get in my way or it may delay the process";
         } else return null;
     }
 
@@ -95,24 +112,28 @@ public class QuestContestCow extends QuestFestival {
     public void onChatClosed(EntityPlayer player, EntityLiving entity, NPC npc, boolean wasSneaking) {
         if (quest_stage == EXPLAIN) quest_stage = QUESTION;
         else if (!player.worldObj.isRemote && quest_stage == START) {
-            EntityAIPathing pathing = ((EntityNPCHuman)entity).getPathing();
-            TownData town = TownHelper.getClosestTownToEntity(entity, false);
-            List<EntityHarvestCow> spawned = new ArrayList<>();
-            spawnCowIfNotExists(player.worldObj, town.getCoordinatesFor(BuildingLocations.PARK_COW_1), spawned);
-            spawnCowIfNotExists(player.worldObj, town.getCoordinatesFor(BuildingLocations.PARK_COW_2), spawned);
-            spawnCowIfNotExists(player.worldObj, town.getCoordinatesFor(BuildingLocations.PARK_COW_3), spawned);
-            spawnCowIfNotExists(player.worldObj, town.getCoordinatesFor(BuildingLocations.PARK_COW_4), spawned);
-            ScheduleMove cow1 = ScheduleMove.of(town.getCoordinatesFor(BuildingLocations.PARK_COW_1));
-            ScheduleMove cow2 = ScheduleMove.of(town.getCoordinatesFor(BuildingLocations.PARK_COW_2));
-            ScheduleMove cow3 = ScheduleMove.of(town.getCoordinatesFor(BuildingLocations.PARK_COW_3));
-            ScheduleMove cow4 = ScheduleMove.of(town.getCoordinatesFor(BuildingLocations.PARK_COW_4));
-            ScheduleMove judge = ScheduleMove.of(town.getCoordinatesFor(BuildingLocations.PARK_COW_JUDGE));
-            ScheduleWinner winner = new ScheduleWinner(player.worldObj, players, spawned);
-            pathing.setPath(cow1, ScheduleSpeech.of(cowJudge), cow2, ScheduleSpeech.of(cowJudge),
-                    cow3, ScheduleSpeech.of(cowJudge), cow4, ScheduleSpeech.of(cowJudge), ScheduleWait.of(1),
-                    ScheduleSpeech.of(cowFinish), judge, ScheduleSpeech.of(cowWinner), winner);
+            executeFestival(player, ((EntityNPCHuman)entity).getPathing());
             increaseStage(player); //Go up another level so we don't keep calling this
         }
+    }
+
+    @SuppressWarnings("WeakerAccess")
+    protected void executeFestival(EntityPlayer player, EntityAIPathing pathing) {
+        TownData town = TownHelper.getClosestTownToEntity(player, false);
+        List<EntityHarvestCow> spawned = new ArrayList<>();
+        spawnCowIfNotExists(player.worldObj, town.getCoordinatesFor(BuildingLocations.PARK_COW_1), spawned);
+        spawnCowIfNotExists(player.worldObj, town.getCoordinatesFor(BuildingLocations.PARK_COW_2), spawned);
+        spawnCowIfNotExists(player.worldObj, town.getCoordinatesFor(BuildingLocations.PARK_COW_3), spawned);
+        spawnCowIfNotExists(player.worldObj, town.getCoordinatesFor(BuildingLocations.PARK_COW_4), spawned);
+        ScheduleMove cow1 = ScheduleMove.of(town.getCoordinatesFor(BuildingLocations.PARK_COW_1));
+        ScheduleMove cow2 = ScheduleMove.of(town.getCoordinatesFor(BuildingLocations.PARK_COW_2));
+        ScheduleMove cow3 = ScheduleMove.of(town.getCoordinatesFor(BuildingLocations.PARK_COW_3));
+        ScheduleMove cow4 = ScheduleMove.of(town.getCoordinatesFor(BuildingLocations.PARK_COW_4));
+        ScheduleMove judge = ScheduleMove.of(town.getCoordinatesFor(BuildingLocations.PARK_COW_JUDGE));
+        ScheduleWinner winner = new ScheduleWinner(player.worldObj, this, spawned);
+        pathing.setPath(cow1, ScheduleSpeech.of(cowJudge1), cow2, ScheduleSpeech.of(cowJudge2),
+                cow3, ScheduleSpeech.of(cowJudge3), cow4, ScheduleSpeech.of(cowJudge4), ScheduleWait.of(1),
+                ScheduleSpeech.of(cowFinish), judge, ScheduleSpeech.of(cowWinner), winner);
     }
 
     private void spawnCowIfNotExists(World world, BlockPos pos, List<EntityHarvestCow> spawned) {
@@ -125,18 +146,61 @@ public class QuestContestCow extends QuestFestival {
         }
     }
 
-    private static class ScheduleWinner extends ScheduleElement {
-        private final CowContestEntries entries;
+    @Override
+    public void readFromNBT(NBTTagCompound nbt) {
+        super.readFromNBT(nbt);
+        players.clear(); //Reset the data on reading
+        NBTTagList list = nbt.getTagList("Entries", 10);
+        for (int i = 0; i < list.tagCount(); i++) {
+            NBTTagCompound tag = list.getCompoundTagAt(i);
+            UUID player = UUID.fromString(tag.getString("Player"));
+            UUID animal = UUID.fromString(tag.getString("Animal"));
+            Integer stall = tag.getInteger("Stall");
+            players.put(player, Pair.of(animal, stall));
+        }
+    }
+
+    @Override
+    public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
+        super.writeToNBT(nbt);
+        NBTTagList list = new NBTTagList();
+        for (Entry<UUID, Pair<UUID, Integer>> entry: players.entrySet()) {
+            NBTTagCompound tag = new NBTTagCompound();
+            tag.setString("Player", entry.getKey().toString());
+            tag.setString("Animal", entry.getValue().getKey().toString());
+            tag.setInteger("Stall", entry.getValue().getValue());
+            list.appendTag(tag);
+        }
+
+        nbt.setTag("Entries", list);
+        return nbt;
+    }
+
+    public static class ScheduleWinner extends ScheduleElement {
+        private static final ItemStack[] REWARDS = new ItemStack[] {
+                HFCooking.MEAL.getCreativeStack(Meal.MILK_STRAWBERRY),
+                HFCooking.MEAL.getCreativeStack(Meal.MILK_HOT),
+                new ItemStack(Items.WHEAT)
+        };
+
+        private final AnimalContestEntries entries;
         private final List<EntityHarvestCow> spawned;
 
-        public ScheduleWinner(World world, Map<UUID, EntityHarvestCow> players, List<EntityHarvestCow> spawned) {
-            this.entries = new CowContestEntries(world, players);
+        public ScheduleWinner(World world, QuestContestCow quest, List<EntityHarvestCow> spawned) {
+            this.entries = getEntries(world, quest);
             this.spawned = spawned;
+        }
+
+        public static AnimalContestEntries getEntries(World world, QuestContestCow quest) {
+            return new AnimalContestEntries(world, quest.players, HFNPCs.BARN_OWNER, HFNPCs.GS_OWNER, HFNPCs.TRADER, HFNPCs.CARPENTER);
         }
 
         public void execute(EntityAgeable npc) {
             super.execute(npc);
-            entries.winner(); //Kill all those in the spawned list
+            for (Place place: Place.VALUES) {
+                entries.getEntry(place).reward(place, entries.getNPCs(), REWARDS);
+            }
+
             spawned.stream().forEach(EntityHarvestCow::setDead);
         }
     }

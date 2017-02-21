@@ -71,7 +71,8 @@ public class EntityAISchedule extends EntityAIBase {
     private Path getPathAwayFromTarget() {
         Vec3d vec = RandomPositionGenerator.findRandomTargetBlockAwayFrom(npc, (int) distanceRequired / 2, 3, new Vec3d((double) blockTarget.getX() + 0.5D, (double) blockTarget.getY() + 1D, (double) blockTarget.getZ() + 0.5D));
         if (vec != null) {
-            return npc.getNavigator().getPathToPos(new BlockPos(vec));
+            blockTarget = new BlockPos(vec); //Update the target, so we don't teleport back
+            return npc.getNavigator().getPathToPos(blockTarget);
         } else return null;
     }
 

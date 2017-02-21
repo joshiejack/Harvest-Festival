@@ -14,19 +14,21 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.eventhandler.Event.Result;
+import org.apache.commons.lang3.tuple.Pair;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CowSelection extends Selection<QuestContestCow> {
-    public static List<EntityHarvestCow> getEntrants(EntityPlayer player) {
-        List<EntityHarvestCow> cows = new ArrayList<>();
+    public static List<Pair<EntityHarvestCow, Integer>> getEntrants(EntityPlayer player) {
+        List<Pair<EntityHarvestCow, Integer>> cows = new ArrayList<>();
         TownData town = TownHelper.getClosestTownToEntity(player, false);
-        addCowToList(player.worldObj, town, BuildingLocations.PARK_COW_1, cows);
-        addCowToList(player.worldObj, town, BuildingLocations.PARK_COW_2, cows);
-        addCowToList(player.worldObj, town, BuildingLocations.PARK_COW_3, cows);
-        addCowToList(player.worldObj, town, BuildingLocations.PARK_COW_4, cows);
+        addCowToList(player.worldObj, town, BuildingLocations.PARK_COW_1, 1, cows);
+        addCowToList(player.worldObj, town, BuildingLocations.PARK_COW_2, 2, cows);
+        addCowToList(player.worldObj, town, BuildingLocations.PARK_COW_3, 3, cows);
+        addCowToList(player.worldObj, town, BuildingLocations.PARK_COW_4, 4, cows);
         return cows;
     }
 
@@ -46,22 +48,25 @@ public class CowSelection extends Selection<QuestContestCow> {
         return closest;
     }
 
-    private static void addCowToList(World world, TownData town, BuildingLocation location, List<EntityHarvestCow> cows) {
+    private static void addCowToList(World world, TownData town, BuildingLocation location, int id, List<Pair<EntityHarvestCow, Integer>> cows) {
         EntityHarvestCow closest = getClosestCow(world, town.getCoordinatesFor(location));
-        if (closest != null && !cows.contains(closest)) {
-            cows.add(closest);
+        if (closest != null) {
+            Pair<EntityHarvestCow, Integer> entry = Pair.of(closest, id);
+            if (!cows.contains(entry)) {
+                cows.add(entry);
+            }
         }
     }
 
     @Override
     public String[] getText(@Nonnull EntityPlayer player) {
-       List<EntityHarvestCow> cows = getEntrants(player);
+       List<Pair<EntityHarvestCow, Integer>> cows = getEntrants(player);
         int max = Math.min(4, cows.size());
         if (max <= 0) return new String[] { "No cows in the stalls." };
         else {
             String[] string = new String[max];
             for (int i = 0; i < max; i++) {
-                string[i] = "@" + cows.get(i).getName();
+                string[i] = "@" + cows.get(i).getKey().getName();
             }
 
             return string;
@@ -71,7 +76,7 @@ public class CowSelection extends Selection<QuestContestCow> {
     @Override
     public Result onSelected(EntityPlayer player, EntityLiving entity, NPC npc, @Nullable QuestContestCow quest, int option) {
         if (quest == null) return Result.DEFAULT;
-        List<EntityHarvestCow> cows = getEntrants(player);
+        List<Pair<EntityHarvestCow, Integer>> cows = getEntrants(player);
         int index = option - 1;
         if (index >= cows.size()) return Result.DENY;
         else {

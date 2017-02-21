@@ -2,7 +2,6 @@ package joshie.harvest.tools.item;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.crops.IStateHandler.PlantSection;
-import joshie.harvest.core.HFCore;
 import joshie.harvest.core.base.item.ItemTool;
 import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.core.util.handlers.SingleFluidHandler;
@@ -191,7 +190,7 @@ public class ItemWateringCan extends ItemTool<ItemWateringCan> {
     @SideOnly(Side.CLIENT)
     @Override
     public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
-        if (advanced && HFCore.DEBUG_MODE) {
+        if (advanced) {
             tooltip.add("Water: " + getCapacity(stack));
             tooltip.add("Level: " + getLevel(stack));
         }

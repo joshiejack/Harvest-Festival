@@ -6,7 +6,7 @@ import joshie.harvest.api.cooking.Recipe;
 import joshie.harvest.api.cooking.Utensil;
 import joshie.harvest.cooking.CookingAPI;
 import joshie.harvest.core.commands.AbstractHFCommand;
-import joshie.harvest.core.commands.HFCommand;
+import joshie.harvest.core.commands.HFDebugCommand;
 import net.minecraft.command.CommandNotFoundException;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.command.NumberInvalidException;
@@ -18,7 +18,7 @@ import org.apache.commons.lang3.text.WordUtils;
 
 import static joshie.harvest.debug.CommandExportRecipe.DESCRIPTIONS;
 
-@HFCommand
+@HFDebugCommand
 @SuppressWarnings("unused")
 public class CommandExportUsageInRecipes extends AbstractHFCommand {
     @Override

@@ -4,12 +4,12 @@ import com.google.common.collect.Lists;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.shops.IPurchasable;
 import joshie.harvest.api.shops.Shop;
-import joshie.harvest.core.commands.HFCommand;
+import joshie.harvest.core.commands.HFDebugCommand;
 import net.minecraft.item.ItemStack;
 
 import java.util.List;
 
-@HFCommand
+@HFDebugCommand
 @SuppressWarnings("unused")
 public class CommandExportBuilder extends CommandExportHeld {
     @Override

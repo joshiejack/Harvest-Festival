@@ -144,8 +144,9 @@ public class BlockStorage extends BlockHFEnumRotatableTile<BlockStorage, Storage
         } else if (storage == MAILBOX) {
             if (!world.isRemote && LetterHelper.hasUnreadLetters(player)) {
                 player.openGui(HarvestFestival.instance, GuiHandler.MAILBOX, world, 0, 0, 0);
-                return true;
             }
+
+            return true;
         } else if (storage == BASKET) {
             if (!player.isBeingRidden()) {
                 if (!world.isRemote) {

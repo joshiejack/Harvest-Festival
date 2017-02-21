@@ -1,7 +1,7 @@
 package joshie.harvest.debug;
 
 import joshie.harvest.api.core.ITiered.ToolTier;
-import joshie.harvest.core.commands.HFCommand;
+import joshie.harvest.core.commands.HFDebugCommand;
 import joshie.harvest.mining.HFMining;
 import joshie.harvest.mining.item.ItemMaterial.Material;
 import joshie.harvest.tools.HFTools;
@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-@HFCommand
+@HFDebugCommand
 @SuppressWarnings("unused")
 public class CommandExportMiningList extends CommandExportHeld {
     @Override

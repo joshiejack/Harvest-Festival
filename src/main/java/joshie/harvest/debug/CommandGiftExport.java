@@ -4,7 +4,7 @@ import com.google.common.collect.HashMultimap;
 import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.npc.gift.IGiftHandler.Quality;
 import joshie.harvest.core.commands.AbstractHFCommand;
-import joshie.harvest.core.commands.HFCommand;
+import joshie.harvest.core.commands.HFDebugCommand;
 import joshie.harvest.npcs.NPCHelper;
 import net.minecraft.command.CommandNotFoundException;
 import net.minecraft.command.ICommandSender;
@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-@HFCommand
+@HFDebugCommand
 @SuppressWarnings("unused")
 public class CommandGiftExport extends AbstractHFCommand {
     @Override

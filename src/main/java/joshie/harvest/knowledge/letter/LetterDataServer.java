@@ -31,7 +31,7 @@ public class LetterDataServer extends LetterData {
 
     @Override
     public boolean hasUnreadLetters() {
-        return letters.size() > 0;
+        return !(letters.size() == 1 && letters.containsKey(Letter.NONE)) && letters.size() > 0;
     }
 
     public void add(Letter letter) {

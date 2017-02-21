@@ -1,7 +1,7 @@
 {
   "components": [
     {
-      "chestType": "harvestfestival:chests/festival.cow",
+      "chestType": "harvestfestival:chests/festival_cow",
       "state": "chest 3",
       "pos": "4 1 9",
       "type": "blocks.Chest"
@@ -348,10 +348,6 @@
     {
       "state": "dark_oak_fence_gate 2",
       "pos": "16 1 9"
-    },
-    {
-      "state": "double_wooden_slab 1",
-      "pos": "17 1 20"
     },
     {
       "state": "dark_oak_fence_gate 2",
@@ -860,10 +856,6 @@
       "pos": "16 2 3"
     },
     {
-      "state": "dark_oak_fence",
-      "pos": "17 2 20"
-    },
-    {
       "state": "wooden_button",
       "pos": "18 2 5",
       "type": "blocks.Decorative"
@@ -1105,7 +1097,7 @@
     {
       "text": [
         "",
-        "Cow Bargains",
+        "Cheap Cow",
         "",
         ""
       ],
@@ -1276,10 +1268,6 @@
     {
       "state": "wooden_slab 9",
       "pos": "16 3 9"
-    },
-    {
-      "state": "dark_oak_fence",
-      "pos": "17 3 20"
     },
     {
       "state": "wooden_slab 9",
@@ -1949,14 +1937,6 @@
       "state": "trapdoor 13",
       "pos": "16 4 10",
       "type": "blocks.Decorative"
-    },
-    {
-      "state": "wooden_slab 1",
-      "pos": "16 4 19"
-    },
-    {
-      "state": "wooden_slab 1",
-      "pos": "17 4 20"
     },
     {
       "state": "planks 5",

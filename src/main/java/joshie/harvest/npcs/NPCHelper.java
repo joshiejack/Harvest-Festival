@@ -93,8 +93,6 @@ public class NPCHelper implements INPCHelper {
             return (N) new EntityNPCTrader(world, npc);
         } if (npc == HFNPCs.CARPENTER) {
             return (N) new EntityNPCBuilder(world, npc);
-        } else if (npc.isShopkeeper()) {
-            return (N) new EntityNPCShopkeeper(world, npc);
         } if (npc == HFNPCs.GODDESS) {
             return (N) new EntityNPCGoddess(world, npc);
         } else return (N) new EntityNPCVillager(world, npc);

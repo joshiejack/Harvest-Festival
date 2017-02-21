@@ -7,7 +7,7 @@ import joshie.harvest.api.cooking.Recipe;
 import joshie.harvest.api.cooking.Utensil;
 import joshie.harvest.cooking.recipe.RecipeMaker;
 import joshie.harvest.core.commands.AbstractHFCommand;
-import joshie.harvest.core.commands.HFCommand;
+import joshie.harvest.core.commands.HFDebugCommand;
 import net.minecraft.command.CommandNotFoundException;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.command.NumberInvalidException;
@@ -24,7 +24,7 @@ import java.util.HashMap;
 
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 
-@HFCommand
+@HFDebugCommand
 public class CommandExportRecipe extends AbstractHFCommand {
     static HashMap<Recipe, String> DESCRIPTIONS = new HashMap<>();
     static HashMap<Recipe, String> INFO_OVERRIDE = new HashMap<>();

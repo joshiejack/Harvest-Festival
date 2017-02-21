@@ -2,14 +2,14 @@ package joshie.harvest.debug;
 
 import joshie.harvest.api.buildings.Building;
 import joshie.harvest.buildings.HFBuildings;
-import joshie.harvest.core.commands.HFCommand;
+import joshie.harvest.core.commands.HFDebugCommand;
 import net.minecraft.item.ItemStack;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-@HFCommand
+@HFDebugCommand
 @SuppressWarnings("unused")
 public class CommandExportBuildingList extends CommandExportHeld {
     @Override

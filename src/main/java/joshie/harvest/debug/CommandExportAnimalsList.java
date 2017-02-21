@@ -5,7 +5,7 @@ import joshie.harvest.animals.HFAnimals;
 import joshie.harvest.animals.item.ItemAnimalProduct.Sizeable;
 import joshie.harvest.animals.item.ItemAnimalTool.Tool;
 import joshie.harvest.animals.item.ItemAnimalTreat.Treat;
-import joshie.harvest.core.commands.HFCommand;
+import joshie.harvest.core.commands.HFDebugCommand;
 import net.minecraft.item.ItemStack;
 import org.apache.commons.lang3.text.WordUtils;
 
@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-@HFCommand
+@HFDebugCommand
 @SuppressWarnings("unused")
 public class CommandExportAnimalsList extends CommandExportHeld {
     @Override

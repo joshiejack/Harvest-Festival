@@ -6,10 +6,10 @@ import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.crops.Crop;
 import joshie.harvest.api.crops.StateHandlerBasic;
 import joshie.harvest.api.crops.StateHandlerBlock;
+import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.npc.gift.IGiftHandler.Quality;
 import joshie.harvest.core.commands.AbstractHFCommand;
-import joshie.harvest.core.commands.HFCommand;
-import joshie.harvest.api.npc.NPC;
+import joshie.harvest.core.commands.HFDebugCommand;
 import net.minecraft.command.CommandNotFoundException;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.command.NumberInvalidException;
@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-@HFCommand
+@HFDebugCommand
 @SuppressWarnings("unused")
 public class CommandCropExport extends AbstractHFCommand {
     @Override

@@ -5,8 +5,8 @@ import joshie.harvest.buildings.item.ItemCheat.Cheat;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.block.BlockHFBase;
 import joshie.harvest.core.helpers.InventoryHelper;
-import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.core.helpers.TextHelper;
+import joshie.harvest.core.lib.CreativeSort;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
@@ -27,10 +27,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-
 import java.util.List;
 
-import static joshie.harvest.core.HFCore.DEBUG_MODE;
 import static joshie.harvest.core.helpers.InventoryHelper.ITEM_STACK;
 
 public class BlockInternalAir extends BlockHFBase<BlockInternalAir> {
@@ -74,9 +72,7 @@ public class BlockInternalAir extends BlockHFBase<BlockInternalAir> {
     }
 
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(@Nonnull Item itemIn, CreativeTabs tab, List<ItemStack> list) {
-        if (DEBUG_MODE) list.add(new ItemStack(itemIn));
-    }
+    public void getSubBlocks(@Nonnull Item itemIn, CreativeTabs tab, List<ItemStack> list) {}
 
     @Override
     public int getSortValue(ItemStack stack) {

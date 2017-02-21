@@ -6,7 +6,7 @@ import joshie.harvest.api.npc.gift.GiftCategory;
 import joshie.harvest.api.npc.gift.IGiftHandler;
 import joshie.harvest.api.npc.gift.IGiftHandler.Quality;
 import joshie.harvest.core.commands.AbstractHFCommand;
-import joshie.harvest.core.commands.HFCommand;
+import joshie.harvest.core.commands.HFDebugCommand;
 import joshie.harvest.core.helpers.TextHelper;
 import joshie.harvest.core.util.holders.HolderRegistry;
 import joshie.harvest.npcs.NPCHelper;
@@ -25,7 +25,7 @@ import java.util.Map.Entry;
 
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 
-@HFCommand
+@HFDebugCommand
 public class CommandGiftExportNPC extends AbstractHFCommand {
     @Override
     public String getCommandName() {

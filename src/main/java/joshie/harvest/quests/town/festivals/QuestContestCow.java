@@ -26,14 +26,13 @@ import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 import static joshie.harvest.quests.town.festivals.cow.CowSelection.getEntrants;
@@ -98,30 +97,47 @@ public class QuestContestCow extends QuestFestival {
         else if (!player.worldObj.isRemote && quest_stage == START) {
             EntityAIPathing pathing = ((EntityNPCHuman)entity).getPathing();
             TownData town = TownHelper.getClosestTownToEntity(entity, false);
+            List<EntityHarvestCow> spawned = new ArrayList<>();
+            spawnCowIfNotExists(player.worldObj, town.getCoordinatesFor(BuildingLocations.PARK_COW_1), spawned);
+            spawnCowIfNotExists(player.worldObj, town.getCoordinatesFor(BuildingLocations.PARK_COW_2), spawned);
+            spawnCowIfNotExists(player.worldObj, town.getCoordinatesFor(BuildingLocations.PARK_COW_3), spawned);
+            spawnCowIfNotExists(player.worldObj, town.getCoordinatesFor(BuildingLocations.PARK_COW_4), spawned);
             ScheduleMove cow1 = ScheduleMove.of(town.getCoordinatesFor(BuildingLocations.PARK_COW_1));
             ScheduleMove cow2 = ScheduleMove.of(town.getCoordinatesFor(BuildingLocations.PARK_COW_2));
             ScheduleMove cow3 = ScheduleMove.of(town.getCoordinatesFor(BuildingLocations.PARK_COW_3));
             ScheduleMove cow4 = ScheduleMove.of(town.getCoordinatesFor(BuildingLocations.PARK_COW_4));
             ScheduleMove judge = ScheduleMove.of(town.getCoordinatesFor(BuildingLocations.PARK_COW_JUDGE));
-            ScheduleWinner winner = new ScheduleWinner(player.worldObj, players);
+            ScheduleWinner winner = new ScheduleWinner(player.worldObj, players, spawned);
             pathing.setPath(cow1, ScheduleSpeech.of(cowJudge), cow2, ScheduleSpeech.of(cowJudge),
                     cow3, ScheduleSpeech.of(cowJudge), cow4, ScheduleSpeech.of(cowJudge), ScheduleWait.of(1),
                     ScheduleSpeech.of(cowFinish), judge, ScheduleSpeech.of(cowWinner), winner);
             increaseStage(player); //Go up another level so we don't keep calling this
-            //quest_stage = EXPLAIN;
+        }
+    }
+
+    private void spawnCowIfNotExists(World world, BlockPos pos, List<EntityHarvestCow> spawned) {
+        EntityHarvestCow cow = CowSelection.getClosestCow(world, pos);
+        if (cow == null) {
+            cow = new EntityHarvestCow(world);
+            cow.setPositionAndUpdate(pos.getX(), pos.getY(), pos.getZ()); //TODO: Add locations that are inside the pen for spawning
+            world.spawnEntityInWorld(cow); //We create a cow
+            spawned.add(cow); //So we can remove later
         }
     }
 
     private static class ScheduleWinner extends ScheduleElement {
         private final CowContestEntries entries;
+        private final List<EntityHarvestCow> spawned;
 
-        public ScheduleWinner(World world, Map<UUID, EntityHarvestCow> players) {
+        public ScheduleWinner(World world, Map<UUID, EntityHarvestCow> players, List<EntityHarvestCow> spawned) {
             this.entries = new CowContestEntries(world, players);
+            this.spawned = spawned;
         }
 
         public void execute(EntityAgeable npc) {
             super.execute(npc);
-            entries.winner();
+            entries.winner(); //Kill all those in the spawned list
+            spawned.stream().forEach(EntityHarvestCow::setDead);
         }
     }
 }

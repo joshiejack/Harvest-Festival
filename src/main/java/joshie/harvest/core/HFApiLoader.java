@@ -7,6 +7,7 @@ import joshie.harvest.api.quests.Quest;
 import joshie.harvest.core.commands.AbstractHFCommand;
 import joshie.harvest.core.commands.CommandManager;
 import joshie.harvest.core.commands.HFCommand;
+import joshie.harvest.core.commands.HFDebugCommand;
 import joshie.harvest.core.network.Packet;
 import joshie.harvest.core.util.annotations.HFApiImplementation;
 import joshie.harvest.core.util.annotations.HFEvents;
@@ -62,6 +63,9 @@ public class HFApiLoader {
         registerEvents(asm, isClient);
         registerPackets(asm);
         registerCommands(asm);
+        if (HFCore.DEBUG_MODE) {
+            registerDebugCommand(asm);
+        }
     }
 
     private static void registerQuests(@Nonnull ASMDataTable asm) {
@@ -82,6 +86,20 @@ public class HFApiLoader {
 
     private static void registerCommands(@Nonnull ASMDataTable asm) {
         String annotationClassName = HFCommand.class.getCanonicalName();
+        Set<ASMData> asmDatas = new HashSet<>(asm.getAll(annotationClassName));
+        for (ASMDataTable.ASMData asmData : asmDatas) {
+            try {
+                Class clazz = Class.forName(asmData.getClassName());
+                if (AbstractHFCommand.class.isAssignableFrom(clazz)) {
+                    CommandManager.INSTANCE.registerCommand((AbstractHFCommand) clazz.newInstance());
+                }
+            } catch (Exception e) { e.printStackTrace(); }
+        }
+    }
+
+    private static void registerDebugCommand(@Nonnull ASMDataTable asm) {
+        //Debug commands
+        String annotationClassName = HFDebugCommand.class.getCanonicalName();
         Set<ASMData> asmDatas = new HashSet<>(asm.getAll(annotationClassName));
         for (ASMDataTable.ASMData asmData : asmDatas) {
             try {

@@ -56,14 +56,10 @@ public abstract class QuestQuestion extends Quest {
     }
 
     public abstract static class QuestSelection<Q extends QuestQuestion> extends Selection<Q> {
-        protected boolean finishedEarly;
+        boolean finishedEarly;
 
         public QuestSelection(String title, String line1, String line2) {
             super(title, line1, line2);
-        }
-
-        public QuestSelection(String title, String line1, String line2, String line3) {
-            super(title, line1, line2, line3);
         }
 
         @Override
@@ -77,16 +73,13 @@ public abstract class QuestQuestion extends Quest {
             return Result.ALLOW;
         }
 
-        @Override
         public void readFromNBT(NBTTagCompound tag) {
-            super.readFromNBT(tag);
             finishedEarly = tag.getBoolean("FinishedEarly");
         }
 
-        @Override
         public NBTTagCompound writeToNBT(NBTTagCompound tag) {
             tag.setBoolean("FinishedEarly", finishedEarly);
-            return super.writeToNBT(tag);
+            return tag;
         }
     }
 }

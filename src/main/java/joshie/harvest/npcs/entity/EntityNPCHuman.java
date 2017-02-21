@@ -9,7 +9,6 @@ import joshie.harvest.npcs.entity.ai.EntityAITalkingTo;
 import joshie.harvest.town.TownHelper;
 import joshie.harvest.town.data.TownDataServer;
 import joshie.harvest.town.tracker.TownTrackerServer;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIOpenDoor;
 import net.minecraft.entity.ai.EntityAISwimming;
@@ -23,6 +22,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
+
+import static joshie.harvest.npcs.HFNPCs.NPC_AI_DISTANCE;
 
 public abstract class EntityNPCHuman<E extends EntityNPCHuman> extends EntityNPC<E> {
     private EntityAIPathing pathing;
@@ -55,13 +56,12 @@ public abstract class EntityNPCHuman<E extends EntityNPCHuman> extends EntityNPC
         tasks.addTask(6, new EntityAISchedule(this));
         tasks.addTask(9, new EntityAIWatchClosest(this, EntityPlayer.class, 3.0F, 1.0F));
         tasks.addTask(9, new EntityAIWatchClosest(this, EntityNPC.class, 5.0F, 0.02F));
-        tasks.addTask(10, new EntityAIWatchClosest(this, EntityLiving.class, 8.0F));
     }
 
     @Override
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
-        getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(128.0D);
+        getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(NPC_AI_DISTANCE);
     }
 
     public EntityAIPathing getPathing() {

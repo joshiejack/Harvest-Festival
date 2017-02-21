@@ -3,15 +3,14 @@ package joshie.harvest.api.quests;
 import joshie.harvest.api.npc.NPC;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.common.eventhandler.Event.Result;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 /** Used for selection menus **/
 public abstract class Selection<Q extends Quest> {
     protected String[] lines;
-    protected boolean selected;
 
     public Selection() {}
     public Selection(String title, String line1, String line2) {
@@ -34,25 +33,8 @@ public abstract class Selection<Q extends Quest> {
     }
 
     /** Returns the unlocalised text **/
-    public final String[] getText() {
+    public String[] getText(@Nonnull EntityPlayer player) {
         return lines;
-    }
-
-    public void setSelected() {
-        selected = true;
-    }
-
-    public boolean isSelected() {
-        return selected;
-    }
-
-    public void readFromNBT(NBTTagCompound tag) {
-        selected = tag.getBoolean("Selected");
-    }
-
-    public NBTTagCompound writeToNBT(NBTTagCompound tag) {
-        tag.setBoolean("Selected", selected);
-        return tag;
     }
 
     /** Called when these options are selected

@@ -111,6 +111,10 @@ public class BuildingLocations {
     public static final BuildingLocation PARK_NOODLES_STAND = new BuildingLocation(FESTIVAL_GROUNDS, "noodles").withDistance(1D);
     public static final BuildingLocation PARK_COW_JUDGE = new BuildingLocation(FESTIVAL_GROUNDS, "festival.cow.candice").withDistance(1D);
     public static final BuildingLocation PARK_COW_BARN = new BuildingLocation(FESTIVAL_GROUNDS, "festival.cow.jim").withDistance(1D);
+    public static final BuildingLocation PARK_COW_1 = new BuildingLocation(FESTIVAL_GROUNDS, "festival.cow.stand1").withDistance(1D);
+    public static final BuildingLocation PARK_COW_2 = new BuildingLocation(FESTIVAL_GROUNDS, "festival.cow.stand2").withDistance(1D);
+    public static final BuildingLocation PARK_COW_3 = new BuildingLocation(FESTIVAL_GROUNDS, "festival.cow.stand3").withDistance(1D);
+    public static final BuildingLocation PARK_COW_4 = new BuildingLocation(FESTIVAL_GROUNDS, "festival.cow.stand4").withDistance(1D);
 
     //TODO: Convert to building locations vvv
     public static final String TOWNHALL_CHILD_BEDROOM = "townhall.bedroom.child";

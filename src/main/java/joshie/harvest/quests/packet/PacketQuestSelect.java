@@ -62,7 +62,6 @@ public class PacketQuestSelect extends PacketSharedSync {
             //Check
             if (selection != null) {
                 Result result = selection.onSelected(player, npc, npc.getNPC(), theQuest, selected);
-                selection.setSelected(); //Mark this as selected
                 if (theQuest != null) HFApi.quests.syncData(theQuest, player); //Sync to the client
                 if (result == Result.ALLOW)
                     player.openGui(HarvestFestival.instance, GuiHandler.NPC, player.worldObj, npc.getEntityId(), -1, -1);

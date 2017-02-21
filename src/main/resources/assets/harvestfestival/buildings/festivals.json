@@ -3930,7 +3930,7 @@
       "pos": "23 1 22"
     },
     {
-      "homeString": "festivalcow.stand3",
+      "homeString": "festival.cow.stand3",
       "npc": "",
       "pos": "23 1 17",
       "type": "entities.NPC"

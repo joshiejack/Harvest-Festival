@@ -25,12 +25,13 @@ public class ContainerNPCChat extends ContainerBase {
         this.nextGui = nextGui;
         this.hasBeenClosed = false;
         this.sneaking = player.isSneaking();
+        this.npc.setTalking(player);
         this.quest = QuestHelper.getCurrentQuest(player, npc);
         if (this.quest != null) {
             this.quest.onQuestSelectedForDisplay(player, npc, npc.getNPC());
             if (nextGui == GuiHandler.NEXT_NONE) {
                 Selection selection = this.quest.getSelection(player, npc.getNPC());
-                if (selection != null && !selection.isSelected()) {
+                if (selection != null) {
                     this.nextGui = SELECTION;
                 }
             }
@@ -40,9 +41,9 @@ public class ContainerNPCChat extends ContainerBase {
     @Override
     public void onContainerClosed(EntityPlayer player) {
         if (!hasBeenClosed) {
+            npc.setTalking(null);
             hasBeenClosed = true; //Mark as having been closed, so we don't keep reopening guis
             if (nextGui == GuiHandler.NEXT_NONE) {
-                npc.setTalking(null); //
                 if (quest != null) quest.onChatClosed(player, npc, npc.getNPC(), sneaking);
             } else if (nextGui == SHOP_OPTIONS) {
                 player.openGui(HarvestFestival.instance, SHOP_OPTIONS, player.worldObj, npc.getEntityId(), 0, NEXT_NONE);

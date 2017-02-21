@@ -143,11 +143,11 @@ public class EntityHelper {
         else return null;
     }
 
-    @SuppressWarnings("ConstantConditions")
+    @SuppressWarnings("ConstantConditions, unchecked")
     @Nullable
-    public static AnimalStats getStats(Entity target) {
+    public static <A extends AnimalStats> A getStats(Entity target) {
         if (target.hasCapability(ANIMAL_STATS_CAPABILITY, EnumFacing.DOWN)) {
-            return target.getCapability(ANIMAL_STATS_CAPABILITY, EnumFacing.DOWN);
+            return (A) target.getCapability(ANIMAL_STATS_CAPABILITY, EnumFacing.DOWN);
         }
 
         return null;

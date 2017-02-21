@@ -212,7 +212,7 @@
       "pos": "11 1 13"
     },
     {
-      "state": "dark_oak_fence",
+      "state": "dark_oak_fence_gate 1",
       "pos": "11 1 12"
     },
     {
@@ -346,12 +346,8 @@
       "pos": "16 1 6"
     },
     {
-      "state": "dark_oak_fence",
+      "state": "dark_oak_fence_gate 2",
       "pos": "16 1 9"
-    },
-    {
-      "state": "double_wooden_slab 1",
-      "pos": "16 1 19"
     },
     {
       "state": "double_wooden_slab 1",
@@ -569,11 +565,11 @@
       "pos": "27 1 24"
     },
     {
-      "state": "harvestfestival:trough 4",
-      "pos": "27 1 22"
+      "state": "harvestfestival:trough 2",
+      "pos": "27 1 23"
     },
     {
-      "state": "dark_oak_fence",
+      "state": "dark_oak_fence_gate",
       "pos": "27 1 21"
     },
     {
@@ -687,26 +683,6 @@
     {
       "state": "double_wooden_slab 1",
       "pos": "7 2 25"
-    },
-    {
-      "pos": "7 2 24"
-    },
-    {
-      "stack": "minecraft:wheat",
-      "rotation": 0,
-      "facing": "EAST",
-      "pos": "7 2 24",
-      "type": "entities.ItemFrame"
-    },
-    {
-      "pos": "7 2 22"
-    },
-    {
-      "stack": "harvestfestival:crops 17",
-      "rotation": 0,
-      "facing": "EAST",
-      "pos": "7 2 22",
-      "type": "entities.ItemFrame"
     },
     {
       "state": "wooden_slab 1",
@@ -825,26 +801,6 @@
       "pos": "12 2 21"
     },
     {
-      "pos": "12 2 22"
-    },
-    {
-      "stack": "minecraft:wheat",
-      "rotation": 0,
-      "facing": "WEST",
-      "pos": "12 2 22",
-      "type": "entities.ItemFrame"
-    },
-    {
-      "pos": "12 2 24"
-    },
-    {
-      "stack": "harvestfestival:crops 17",
-      "rotation": 0,
-      "facing": "WEST",
-      "pos": "12 2 24",
-      "type": "entities.ItemFrame"
-    },
-    {
       "state": "double_wooden_slab 1",
       "pos": "12 2 25"
     },
@@ -879,11 +835,6 @@
     },
     {
       "state": "wooden_button",
-      "pos": "13 2 9",
-      "type": "blocks.Decorative"
-    },
-    {
-      "state": "wooden_button",
       "pos": "14 2 5",
       "type": "blocks.Decorative"
     },
@@ -907,16 +858,6 @@
     {
       "state": "dark_oak_fence",
       "pos": "16 2 3"
-    },
-    {
-      "state": "wooden_button",
-      "pos": "16 2 5",
-      "type": "blocks.Decorative"
-    },
-    {
-      "state": "wooden_button",
-      "pos": "16 2 10",
-      "type": "blocks.Decorative"
     },
     {
       "state": "dark_oak_fence",
@@ -1277,10 +1218,6 @@
       "pos": "13 3 18"
     },
     {
-      "state": "spruce_stairs",
-      "pos": "13 3 9"
-    },
-    {
       "state": "spruce_stairs 2",
       "pos": "14 3 5"
     },
@@ -1321,36 +1258,36 @@
       "pos": "15 3 18"
     },
     {
-      "state": "dark_oak_stairs 3",
-      "pos": "15 3 10"
+      "state": "wooden_slab 9",
+      "pos": "15 3 9"
     },
     {
-      "state": "dark_oak_stairs 2",
-      "pos": "15 3 5"
+      "state": "wooden_slab 9",
+      "pos": "15 3 6"
     },
     {
       "state": "dark_oak_fence",
       "pos": "16 3 3"
     },
     {
-      "state": "spruce_stairs 2",
-      "pos": "16 3 5"
+      "state": "wooden_slab 9",
+      "pos": "16 3 6"
     },
     {
-      "state": "spruce_stairs 3",
-      "pos": "16 3 10"
+      "state": "wooden_slab 9",
+      "pos": "16 3 9"
     },
     {
       "state": "dark_oak_fence",
       "pos": "17 3 20"
     },
     {
-      "state": "dark_oak_stairs 3",
-      "pos": "17 3 10"
+      "state": "wooden_slab 9",
+      "pos": "17 3 9"
     },
     {
-      "state": "dark_oak_stairs 2",
-      "pos": "17 3 5"
+      "state": "wooden_slab 9",
+      "pos": "17 3 6"
     },
     {
       "state": "spruce_stairs 2",
@@ -1503,10 +1440,6 @@
       "pos": "25 3 21"
     },
     {
-      "state": "spruce_stairs 2",
-      "pos": "25 3 20"
-    },
-    {
       "state": "trapdoor 5",
       "pos": "25 3 18",
       "type": "blocks.Decorative"
@@ -1543,16 +1476,7 @@
       "type": "blocks.Decorative"
     },
     {
-      "state": "trapdoor 12",
-      "pos": "26 3 19",
-      "type": "blocks.Decorative"
-    },
-    {
-      "state": "spruce_stairs",
-      "pos": "26 3 20"
-    },
-    {
-      "state": "dark_oak_stairs 7",
+      "state": "dark_oak_stairs 6",
       "pos": "26 3 21"
     },
     {
@@ -1582,17 +1506,8 @@
       "pos": "27 3 24"
     },
     {
-      "state": "dark_oak_stairs 7",
+      "state": "dark_oak_stairs 6",
       "pos": "27 3 21"
-    },
-    {
-      "state": "spruce_stairs 1",
-      "pos": "27 3 20"
-    },
-    {
-      "state": "trapdoor 4",
-      "pos": "27 3 19",
-      "type": "blocks.Decorative"
     },
     {
       "state": "wooden_slab 13",
@@ -1613,10 +1528,6 @@
     {
       "state": "wooden_slab 13",
       "pos": "28 3 6"
-    },
-    {
-      "state": "spruce_stairs 2",
-      "pos": "28 3 20"
     },
     {
       "state": "double_wooden_slab 5",
@@ -2287,7 +2198,12 @@
       "type": "blocks.Decorative"
     },
     {
-      "state": "spruce_stairs 2",
+      "state": "trapdoor 4",
+      "pos": "26 4 20",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "spruce_stairs",
       "pos": "26 4 21"
     },
     {
@@ -2315,8 +2231,13 @@
       "pos": "27 4 22"
     },
     {
-      "state": "spruce_stairs 2",
+      "state": "spruce_stairs 1",
       "pos": "27 4 21"
+    },
+    {
+      "state": "trapdoor 4",
+      "pos": "27 4 20",
+      "type": "blocks.Decorative"
     },
     {
       "state": "wooden_slab 5",

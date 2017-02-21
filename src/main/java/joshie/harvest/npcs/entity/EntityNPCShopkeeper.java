@@ -3,6 +3,7 @@ package joshie.harvest.npcs.entity;
 import joshie.harvest.api.npc.NPC;
 import net.minecraft.world.World;
 
+@Deprecated //TODO: Remove in 0.7+
 public class EntityNPCShopkeeper extends EntityNPCHuman<EntityNPCShopkeeper> {
     @SuppressWarnings("unused")
     public EntityNPCShopkeeper(World world) {
@@ -23,8 +24,11 @@ public class EntityNPCShopkeeper extends EntityNPCHuman<EntityNPCShopkeeper> {
     }
 
     @Override
-    protected void initEntityAI() {
-        super.initEntityAI();
-        //tasks.addTask(6, new EntityAIWork(this));
+    public void onLivingUpdate() {
+        super.onLivingUpdate();
+
+        EntityNPCHuman human = new EntityNPCVillager(worldObj, npc);
+        human.setPositionAndUpdate(posX, posY, posZ);
+        setDead(); //Kill this entity
     }
 }

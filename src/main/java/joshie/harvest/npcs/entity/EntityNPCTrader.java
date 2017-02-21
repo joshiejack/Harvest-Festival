@@ -8,7 +8,7 @@ import joshie.harvest.town.data.TownDataServer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class EntityNPCTrader extends EntityNPCShopkeeper {
+public class EntityNPCTrader extends EntityNPCHuman<EntityNPCTrader> {
     public EntityNPCTrader(World world, NPC npc) {
         super(world, npc);
     }
@@ -23,8 +23,8 @@ public class EntityNPCTrader extends EntityNPCShopkeeper {
     }
 
     @Override
-    public EntityNPCTrader getNewEntity(EntityNPCShopkeeper entity) {
-        return new EntityNPCTrader((EntityNPCTrader) entity);
+    public EntityNPCTrader getNewEntity(EntityNPCTrader entity) {
+        return new EntityNPCTrader(entity);
     }
 
     @Override

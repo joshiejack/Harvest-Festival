@@ -2031,6 +2031,12 @@ harvestfestival.quest.festival.cooking.ready=@I am ready!
 harvestfestival.quest.festival.cooking.cancel=@Give me a minute.
 harvestfestival.script.cooking=This was a great contest! Had a taste of everyone's meals... And well I think I've decided..... ...... ................... ..... ..... In third place is %1$s with their %2$s. ..... .. ... . .......... .... .. .. .. .. . In second place we jave %3$s with their %4$s... and finally...... without... further ado.... the winner of this year's cooking festival is........... %5$s with their amazing %6$s. Congratulations! For this years prize we have a gift of %7$s gold as well as a special recipe!
 
+#Cow Festival
+harvestfestival.quest.festival.cow.pick=How may I help you?
+harvestfestival.quest.festival.cow.how=@How do I enter?
+harvestfestival.quest.festival.cow.ready=@Select the cow.
+harvestfestival.quest.festival.cow.cancel=@Nothing for now.
+
 #New Years Eve
 harvestfestival.quest.festival.new.years.eve.start=Evenin, the new year is coming. Are ya ready to celebrate until morning with us?
 harvestfestival.quest.festival.new.years.eve.question=Do you want to start the countdown?

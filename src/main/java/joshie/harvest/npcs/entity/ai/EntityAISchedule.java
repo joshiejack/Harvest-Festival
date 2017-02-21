@@ -35,7 +35,7 @@ public class EntityAISchedule extends EntityAIBase {
 
     @Override
     public boolean shouldExecute() {
-        //updateTarget(); //Called here as need to check for new targets
+        updateTarget(); //Called here as need to check for new targets
         return blockTarget == null || (npc.getDistanceSq(blockTarget) > distanceRequired);
     }
 
@@ -86,9 +86,10 @@ public class EntityAISchedule extends EntityAIBase {
     public void updateTask() {
         if (scheduleTimer %200 == 0) updateTarget();
         if (blockTarget != null) {
+
             //If we're too far away from the target, based on the location requirements then
             if (npc.getDistanceSq(blockTarget) > distanceRequired) {
-                if (scheduleTimer %50 == 0) {
+                if (scheduleTimer %100 == 0) {
                     if (shouldTeleport()) {
                         teleportTimer = 0; //Reset the teleport timer
                         npc.attemptTeleport(blockTarget.getX() + 0.5D, blockTarget.getY() + 1D, blockTarget.getZ() + 0.5D);
@@ -99,7 +100,7 @@ public class EntityAISchedule extends EntityAIBase {
                         }
                     }
                 }
-            } else if (distanceRequired == 1) npc.getNavigator().clearPathEntity();
+            } //else if (distanceRequired == 1) npc.getNavigator().clearPathEntity();
             else if (distanceRequired > 1 && scheduleTimer % 300 == 0) { //If the location is larger than 0, allow wandering
                 Path path = getPathAwayFromTarget();
                 if (path != null) {

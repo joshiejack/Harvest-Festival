@@ -60,7 +60,7 @@ public class GuiHandler implements IGuiHandler {
             case SHOP_MENU:
             case SHOP_MENU_SELL:
                 HFApi.player.getTrackingForPlayer(player).learnNote(HFNotes.SHOPPING);
-                return new ContainerNPCShop((EntityNPC) world.getEntityByID(entityID));
+                return new ContainerNPCShop(player, (EntityNPC) world.getEntityByID(entityID));
             case GIFT:          return new ContainerNPCGift(player, (EntityNPC) world.getEntityByID(entityID), EnumHand.values()[hand], nextGui);
             case FRIDGE:        return new ContainerFridge(player, player.inventory, (TileFridge) world.getTileEntity(new BlockPos(entityID, nextGui, hand)));
             case MAILBOX:
@@ -75,9 +75,8 @@ public class GuiHandler implements IGuiHandler {
             case FORCED_NPC: {
                 return new GuiNPCMask(player, (EntityNPC) world.getEntityByID(entityID), nextGui);
             }
-            case SELECTION: {
-
-            } case NPC: {
+            case SELECTION:
+            case NPC: {
                 EntityNPC npc = (EntityNPC) world.getEntityByID(entityID);
                 if (hand != -1) return new GuiNPCSelect(player, npc, nextGui, hand);
                 return new GuiNPCChat(player, (EntityNPC) world.getEntityByID(entityID), nextGui, false);

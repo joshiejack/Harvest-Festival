@@ -6,7 +6,7 @@ import joshie.harvest.npcs.HFNPCs;
 import joshie.harvest.npcs.entity.ai.EntityAIBuild;
 import net.minecraft.world.World;
 
-public class EntityNPCBuilder extends EntityNPCShopkeeper {
+public class EntityNPCBuilder extends EntityNPCHuman<EntityNPCBuilder> {
     public EntityNPCBuilder(World world, NPC npc) {
         super(world, npc);
     }
@@ -20,8 +20,8 @@ public class EntityNPCBuilder extends EntityNPCShopkeeper {
     }
 
     @Override
-    public EntityNPCBuilder getNewEntity(EntityNPCShopkeeper entity) {
-        return new EntityNPCBuilder((EntityNPCBuilder) entity);
+    public EntityNPCBuilder getNewEntity(EntityNPCBuilder entity) {
+        return new EntityNPCBuilder(entity);
     }
 
     public BuildingStage getBuilding() {

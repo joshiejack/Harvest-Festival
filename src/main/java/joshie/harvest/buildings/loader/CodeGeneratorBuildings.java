@@ -1,5 +1,6 @@
 package joshie.harvest.buildings.loader;
 
+import joshie.harvest.api.npc.NPC;
 import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.buildings.placeable.Placeable;
 import joshie.harvest.buildings.placeable.PlaceableHelper;
@@ -7,9 +8,7 @@ import joshie.harvest.buildings.placeable.blocks.PlaceableBlock;
 import joshie.harvest.buildings.placeable.blocks.PlaceableChest;
 import joshie.harvest.buildings.placeable.entities.PlaceableNPC;
 import joshie.harvest.core.util.HFTemplate;
-import joshie.harvest.api.npc.NPC;
 import joshie.harvest.npcs.entity.EntityNPCBuilder;
-import joshie.harvest.npcs.entity.EntityNPCShopkeeper;
 import joshie.harvest.npcs.entity.EntityNPCTrader;
 import joshie.harvest.npcs.entity.EntityNPCVillager;
 import net.minecraft.block.Block;
@@ -62,7 +61,6 @@ public class CodeGeneratorBuildings {
         entityList.addAll(getEntities(EntityNPCVillager.class, x1 + x, y1 + y, z1 + z));
         entityList.addAll(getEntities(EntityNPCBuilder.class, x1 + x, y1 + y, z1 + z));
         entityList.addAll(getEntities(EntityNPCTrader.class, x1 + x, y1 + y, z1 + z));
-        entityList.addAll(getEntities(EntityNPCShopkeeper.class, x1 + x, y1 + y, z1 + z));
 
         BlockPos position = new BlockPos(x1 + x, y1 + y, z1 + z);
         IBlockState state = world.getBlockState(position);

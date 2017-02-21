@@ -54,11 +54,6 @@ public class QuestNewYearsEve extends QuestFestival {
                                                     "harvestfestival.quest.festival.new.years.eve.option1",
                                                     "harvestfestival.quest.festival.new.years.eve.option2") {
         @Override
-        public boolean isSelected() {
-            return false;
-        }
-
-        @Override
         public Result onSelected(EntityPlayer player, EntityLiving entity, NPC npc, @Nullable Quest quest, int option) {
             if (option == 1) {
                 EntityAIPathing pathing = ((EntityNPCHuman)entity).getPathing();

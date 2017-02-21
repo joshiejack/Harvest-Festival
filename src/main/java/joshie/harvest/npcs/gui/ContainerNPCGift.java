@@ -24,6 +24,7 @@ public class ContainerNPCGift extends ContainerNPCChat {
 
     @Override
     public void onContainerClosed(EntityPlayer player) {
+        npc.setTalking(null);
         if (!player.worldObj.isRemote) {
             if (HFTrackers.getPlayerTrackerFromPlayer(player).getRelationships().gift(player, npc.getNPC(), 0)) {
                 ItemStack gift = player.getHeldItem(hand);

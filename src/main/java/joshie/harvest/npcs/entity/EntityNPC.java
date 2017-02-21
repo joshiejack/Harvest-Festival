@@ -40,9 +40,8 @@ public abstract class EntityNPC<E extends EntityNPC> extends EntityAgeable imple
         super(world);
         this.npc = npc;
         this.enablePersistence();
-        setSize(0.6F, (1.8F * npc.getHeight()));
+        setSize(0.6F, (1.7F * npc.getHeight()));
         setPathPriority(PathNodeType.WATER, -1.0F);
-        stepHeight = 0.7F;
     }
 
     public EntityNPC(E entity) {
@@ -118,7 +117,6 @@ public abstract class EntityNPC<E extends EntityNPC> extends EntityAgeable imple
             if (!worldObj.isRemote) {
                 int guiID = NPCHelper.getGuiIDForNPC(this, worldObj, player);
                 player.openGui(HarvestFestival.instance, guiID, worldObj, getEntityId(), -1, -1);
-                setTalking(player);
             }
 
             return true;

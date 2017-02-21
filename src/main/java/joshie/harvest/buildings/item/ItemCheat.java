@@ -110,11 +110,24 @@ public class ItemCheat extends ItemHFEnum<ItemCheat, Cheat> {
         } else if (damage == PARK_PLACER.ordinal()) {
             HFTemplate template = BuildingRegistry.INSTANCE.getTemplateForBuilding(HFBuildings.FESTIVAL_GROUNDS);
             template.placeBlocks(world, pos, Rotation.NONE, null);
+            for (int  x = 0; x < 38; x++) {
+                for (int z = 0; z < 31; z++) {
+                    BlockPos target = pos.add(x, 0, z);
+                    world.setBlockState(target, Blocks.GRASS.getDefaultState());
+                }
+            }
+
             world.setBlockState(pos, Blocks.END_STONE.getDefaultState());
             world.setBlockState(pos.south(30).east(37).up(9), Blocks.END_STONE.getDefaultState());
         } else if (damage == PARK_ENDSTONE.ordinal()) {
             HFTemplate template = BuildingRegistry.INSTANCE.getTemplateForBuilding(HFBuildings.FESTIVAL_GROUNDS);
             template.removeBlocks(world, pos, Rotation.NONE, Blocks.END_STONE.getDefaultState());
+            for (int  x = 0; x < 38; x++) {
+                for (int z = 0; z < 31; z++) {
+                    BlockPos target = pos.add(x, 0, z);
+                    world.setBlockState(target, Blocks.END_STONE.getDefaultState());
+                }
+            }
         }
 
         return EnumActionResult.SUCCESS;

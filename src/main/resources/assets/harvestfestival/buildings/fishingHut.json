@@ -337,6 +337,12 @@
       "pos": "5 1 6"
     },
     {
+      "homeString": "fisher.work",
+      "npc": "",
+      "pos": "5 1 5",
+      "type": "entities.NPC"
+    },
+    {
       "pos": "5 1 5"
     },
     {

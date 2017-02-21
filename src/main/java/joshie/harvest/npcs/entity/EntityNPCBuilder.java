@@ -4,7 +4,6 @@ import joshie.harvest.api.npc.NPC;
 import joshie.harvest.buildings.BuildingStage;
 import joshie.harvest.npcs.HFNPCs;
 import joshie.harvest.npcs.entity.ai.EntityAIBuild;
-import joshie.harvest.npcs.entity.ai.EntityAIWork;
 import net.minecraft.world.World;
 
 public class EntityNPCBuilder extends EntityNPCShopkeeper {
@@ -43,6 +42,6 @@ public class EntityNPCBuilder extends EntityNPCShopkeeper {
     protected void initEntityAI() {
         super.initEntityAI();
         tasks.addTask(5, new EntityAIBuild(this));
-        tasks.addTask(7, new EntityAIWork(this));
+        //tasks.addTask(7, new EntityAIWork(this));
     }
 }

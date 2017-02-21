@@ -16,7 +16,8 @@ import javax.annotation.Nullable;
 
 public class EntityAISchedule extends EntityAIBase {
     private final EntityNPCHuman npc;
-    private BuildingLocation location;
+    private double distanceRequired;
+    private int ticksBeforeTeleport;
     private BlockPos blockTarget;
     private BlockPos prevTarget;
     private int teleportTimer;
@@ -34,8 +35,8 @@ public class EntityAISchedule extends EntityAIBase {
 
     @Override
     public boolean shouldExecute() {
-        updateTarget(); //Called here as need to check for new targets
-        return blockTarget != null && npc.getDistanceSq(blockTarget) > location.getDistanceRequired();
+        //updateTarget(); //Called here as need to check for new targets
+        return blockTarget == null || (npc.getDistanceSq(blockTarget) > distanceRequired);
     }
 
     @Override
@@ -45,48 +46,68 @@ public class EntityAISchedule extends EntityAIBase {
 
     private void updateTarget() {
         CalendarDate date = HFApi.calendar.getDate(npc.worldObj);
-        location = getBuildingTarget(date);
+        BuildingLocation location = getBuildingTarget(date);
         if (location != null) {
+            distanceRequired = location.distance;
+            ticksBeforeTeleport = location.ticksBeforeTeleport;
             blockTarget = NPCHelper.getCoordinatesForLocation(npc, location);
         }
     }
 
+    @Nullable
+    private Path getPathToTarget() {
+        Path path = npc.getNavigator().getPathToPos(blockTarget);
+        if (path != null) return path;
+        else {
+            //Grab a random block towards the target
+            Vec3d vec = RandomPositionGenerator.findRandomTargetBlockTowards(npc, 10, 7, new Vec3d((double) blockTarget.getX() + 0.5D, (double) blockTarget.getY() + 1D, (double) blockTarget.getZ() + 0.5D));
+            if (vec != null) {
+                return npc.getNavigator().getPathToPos(new BlockPos(vec));
+            } else return null;
+        }
+    }
+
+    @Nullable
+    private Path getPathAwayFromTarget() {
+        Vec3d vec = RandomPositionGenerator.findRandomTargetBlockAwayFrom(npc, (int) distanceRequired / 2, 3, new Vec3d((double) blockTarget.getX() + 0.5D, (double) blockTarget.getY() + 1D, (double) blockTarget.getZ() + 0.5D));
+        if (vec != null) {
+            return npc.getNavigator().getPathToPos(new BlockPos(vec));
+        } else return null;
+    }
+
+    private boolean shouldTeleport() {
+        if (!blockTarget.equals(prevTarget)) teleportTimer = 0;
+        else teleportTimer++; //Update the teleport timer if the target is the same
+        prevTarget = blockTarget; //Update the prevTarget
+        return teleportTimer >= ticksBeforeTeleport;
+    }
+
     @Override
     public void updateTask() {
-        scheduleTimer++;
         if (scheduleTimer %200 == 0) updateTarget();
         if (blockTarget != null) {
-            double distance = npc.getDistanceSq(blockTarget);
-            boolean tooFar = distance > location.getDistanceRequired();
-            if (tooFar) {
-                if (scheduleTimer % 100 == 0) {
-                    Path path = npc.getNavigator().getPathToPos(blockTarget);
-                    if (path == null) {
-                        Vec3d vec = RandomPositionGenerator.findRandomTargetBlockTowards(npc, 10, 7, new Vec3d((double) blockTarget.getX() + 0.5D, (double) blockTarget.getY() + 1D, (double) blockTarget.getZ() + 0.5D));
-                        if (vec != null) {
-                            path = npc.getNavigator().getPathToPos(new BlockPos(vec));
+            //If we're too far away from the target, based on the location requirements then
+            if (npc.getDistanceSq(blockTarget) > distanceRequired) {
+                if (scheduleTimer %50 == 0) {
+                    if (shouldTeleport()) {
+                        teleportTimer = 0; //Reset the teleport timer
+                        npc.attemptTeleport(blockTarget.getX() + 0.5D, blockTarget.getY() + 1D, blockTarget.getZ() + 0.5D);
+                    } else {
+                        Path path = getPathToTarget();
+                        if (path != null) {
+                            npc.getNavigator().setPath(path, 0.6F);
                         }
                     }
-
+                }
+            } else if (distanceRequired == 1) npc.getNavigator().clearPathEntity();
+            else if (distanceRequired > 1 && scheduleTimer % 300 == 0) { //If the location is larger than 0, allow wandering
+                Path path = getPathAwayFromTarget();
+                if (path != null) {
                     npc.getNavigator().setPath(path, 0.6F);
-                }
-
-                if (!blockTarget.equals(prevTarget)) teleportTimer = 0;
-                else teleportTimer++;
-                prevTarget = blockTarget;
-                if (teleportTimer >= 1200) {
-                    teleportTimer = 0;
-                    npc.attemptTeleport(blockTarget.getX() + 0.5D, blockTarget.getY() + 1D, blockTarget.getZ() + 0.5D);
-                }
-            } else if (scheduleTimer %300 == 0) {
-                Vec3d vec = RandomPositionGenerator.findRandomTargetBlockAwayFrom(npc, (int) location.getDistanceRequired() / 2, 3, new Vec3d((double) blockTarget.getX() + 0.5D, (double) blockTarget.getY() + 1D, (double) blockTarget.getZ() + 0.5D));
-                if (vec != null) {
-                    Path path = npc.getNavigator().getPathToPos(new BlockPos(vec));
-                    if (path != null) {
-                        npc.getNavigator().setPath(path, 0.6F);
-                    }
                 }
             }
         }
+
+        scheduleTimer++;
     }
 }

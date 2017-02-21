@@ -1,7 +1,6 @@
 package joshie.harvest.npcs.entity;
 
 import joshie.harvest.api.npc.NPC;
-import joshie.harvest.npcs.entity.ai.EntityAIWork;
 import net.minecraft.world.World;
 
 public class EntityNPCShopkeeper extends EntityNPCHuman<EntityNPCShopkeeper> {
@@ -26,6 +25,6 @@ public class EntityNPCShopkeeper extends EntityNPCHuman<EntityNPCShopkeeper> {
     @Override
     protected void initEntityAI() {
         super.initEntityAI();
-        tasks.addTask(6, new EntityAIWork(this));
+        //tasks.addTask(6, new EntityAIWork(this));
     }
 }

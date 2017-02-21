@@ -2,7 +2,7 @@ package joshie.harvest.shops.data;
 
 import joshie.harvest.api.shops.IPurchasable;
 import joshie.harvest.api.shops.Shop;
-import joshie.harvest.core.helpers.CollectionHelper;
+import joshie.harvest.core.helpers.HolderHelper;
 import joshie.harvest.core.helpers.NBTHelper;
 import joshie.harvest.core.util.interfaces.INBTSerializableMap;
 import joshie.harvest.player.tracking.StackSold;
@@ -25,12 +25,12 @@ public class ShopInventory implements INBTSerializableMap<Shop, ShopInventory, N
 
     public void onItemSoldToShop(IPurchasable purchasable) {
         StackSold stack = StackSold.of(purchasable.getDisplayStack(), purchasable.getCost());
-        CollectionHelper.mergeCollection(stack, soldToShop);
+        HolderHelper.mergeCollection(stack, soldToShop);
     }
 
     public StackSold onItemPurchasedFromShop(IPurchasable purchasable) {
         StackSold stack = StackSold.of(purchasable.getDisplayStack(), purchasable.getCost());
-        return CollectionHelper.mergeCollection(stack, purchasedFromShop);
+        return HolderHelper.mergeCollection(stack, purchasedFromShop);
     }
 
     public long getAdjustedSellToShopValue(IPurchasable purchasable) {

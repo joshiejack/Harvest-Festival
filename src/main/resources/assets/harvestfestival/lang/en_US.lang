@@ -1661,6 +1661,12 @@ harvestfestival.shop.clockmaker.sign1=Eight till
 harvestfestival.shop.clockmaker.sign2=Three, \o/
 harvestfestival.shop.clockmaker.sign3=Monday-Friday
 
+#Cheap Cow - Cow Festival
+harvestfestival.shop.cow=Cheap Cow
+harvestfestival.shop.cow.greeting1=Get your 'Cheap Cow' goods here.
+harvestfestival.shop.cow.greeting2=Welcome to the 'Cheap Cow', do you need anything?
+harvestfestival.shop.cow.greeting3=Who needs sheep? When you can have crazy cows!
+
 #Miscellaneous
 harvestfestival.marriage=Gift for Marriage
 harvestfestival.marriage.locked=LOCKED

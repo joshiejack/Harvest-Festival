@@ -272,7 +272,7 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
 
         ItemStack held = player.getHeldItemMainhand();
         if (held != null && HFApi.crops.isSickle(held)) {
-            return player.getDigSpeed(state, pos) / hardness / 20F;
+            return player.getDigSpeed(state, pos) / hardness / 10F;
         } else {
             return player.getDigSpeed(state, pos) / hardness / 100F;
         }

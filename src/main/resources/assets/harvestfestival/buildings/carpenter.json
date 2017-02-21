@@ -437,6 +437,12 @@
       "type": "blocks.Decorative"
     },
     {
+      "homeString": "carpenter.entrance",
+      "npc": "",
+      "pos": "8 1 3",
+      "type": "entities.NPC"
+    },
+    {
       "pos": "8 1 3"
     },
     {

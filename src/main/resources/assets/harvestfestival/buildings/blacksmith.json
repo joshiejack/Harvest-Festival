@@ -321,8 +321,8 @@
       "pos": "3 2 9"
     },
     {
-      "homeString": "daniel",
-      "npc": "harvestfestival:daniel",
+      "homeString": "blacksmith.work",
+      "npc": "",
       "pos": "3 2 8",
       "type": "entities.NPC"
     },
@@ -391,6 +391,12 @@
     },
     {
       "pos": "4 2 7"
+    },
+    {
+      "homeString": "daniel",
+      "npc": "harvestfestival:daniel",
+      "pos": "4 2 8",
+      "type": "entities.NPC"
     },
     {
       "pos": "4 2 8"

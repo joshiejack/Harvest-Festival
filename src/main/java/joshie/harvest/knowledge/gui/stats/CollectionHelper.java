@@ -21,4 +21,8 @@ public class CollectionHelper {
 
         return false;
     }
+
+    public static boolean isInShippingCollection(ItemStack stack) {
+        return !isInFishCollection(stack) && !isInMiningCollection(stack) && !isInCookingCollection(stack);
+    }
 }

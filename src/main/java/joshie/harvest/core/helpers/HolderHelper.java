@@ -4,7 +4,7 @@ import joshie.harvest.core.util.holders.AbstractDataHolder;
 
 import java.util.Collection;
 
-public class CollectionHelper {
+public class HolderHelper {
     @SuppressWarnings("unchecked")
     public static <T extends AbstractDataHolder> T mergeCollection(T t, Collection<T> collection) {
         if (!collection.contains(t)) {

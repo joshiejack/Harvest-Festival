@@ -461,6 +461,12 @@
       "pos": "4 2 3"
     },
     {
+      "homeString": "poultry.work",
+      "npc": "",
+      "pos": "4 2 4",
+      "type": "entities.NPC"
+    },
+    {
       "pos": "4 2 4"
     },
     {
@@ -490,12 +496,6 @@
     },
     {
       "pos": "5 2 5"
-    },
-    {
-      "homeString": "ashlee",
-      "npc": "harvestfestival:ashlee",
-      "pos": "5 2 4",
-      "type": "entities.NPC"
     },
     {
       "pos": "5 2 4"
@@ -531,6 +531,12 @@
     },
     {
       "pos": "6 2 3"
+    },
+    {
+      "homeString": "ashlee",
+      "npc": "harvestfestival:ashlee",
+      "pos": "6 2 4",
+      "type": "entities.NPC"
     },
     {
       "pos": "6 2 4"

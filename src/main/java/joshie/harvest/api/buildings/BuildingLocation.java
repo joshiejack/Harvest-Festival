@@ -5,27 +5,14 @@ import net.minecraft.util.ResourceLocation;
 public class BuildingLocation {
     private final ResourceLocation building;
     private final String location;
-    private final double distance;
+    public double distance;
+    public int ticksBeforeTeleport;
 
     public BuildingLocation(Building building, String location) {
         this.building = Building.REGISTRY.getKey(building);
         this.location = location;
         this.distance = 5D;
-    }
-
-    private BuildingLocation(BuildingLocation location, double distance) {
-        this.building = location.building;
-        this.location = location.location;
-        this.distance = distance;
-    }
-
-    public BuildingLocation withDistance(double distance) {
-        if (this.distance == distance) return this;
-        else return new BuildingLocation(this, distance);
-    }
-
-    public double getDistanceRequired() {
-        return distance;
+        this.ticksBeforeTeleport = 1500;
     }
 
     public ResourceLocation getResource() {
@@ -34,6 +21,16 @@ public class BuildingLocation {
 
     public String getLocation() {
         return location;
+    }
+
+    public BuildingLocation withDistance(double distance) {
+        this.distance = distance;
+        return this;
+    }
+
+    public BuildingLocation withTime(int ticksBeforeTeleport) {
+        this.ticksBeforeTeleport = ticksBeforeTeleport;
+        return this;
     }
 
     @Override

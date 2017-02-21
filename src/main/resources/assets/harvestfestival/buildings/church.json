@@ -681,6 +681,12 @@
       "pos": "5 1 7"
     },
     {
+      "homeString": "thomas",
+      "npc": "harvestfestival:thomas",
+      "pos": "5 1 6",
+      "type": "entities.NPC"
+    },
+    {
       "pos": "5 1 6"
     },
     {
@@ -1091,7 +1097,12 @@
       "pos": "2 2 5"
     },
     {
-      "state": "carpet 14",
+      "homeString": "church.work",
+      "npc": "",
+      "pos": "2 2 6",
+      "type": "entities.NPC"
+    },
+    {
       "pos": "2 2 6"
     },
     {
@@ -1453,12 +1464,6 @@
     },
     {
       "pos": "2 3 5"
-    },
-    {
-      "homeString": "thomas",
-      "npc": "harvestfestival:thomas",
-      "pos": "2 3 6",
-      "type": "entities.NPC"
     },
     {
       "pos": "2 3 6"

@@ -1,10 +1,12 @@
 package joshie.harvest.shops;
 
 import joshie.harvest.animals.HFAnimals;
+import joshie.harvest.animals.block.BlockTrough.Trough;
 import joshie.harvest.animals.entity.EntityHarvestChicken;
 import joshie.harvest.animals.entity.EntityHarvestCow;
 import joshie.harvest.animals.entity.EntityHarvestSheep;
 import joshie.harvest.animals.item.ItemAnimalProduct.Sizeable;
+import joshie.harvest.animals.item.ItemAnimalTool.Tool;
 import joshie.harvest.animals.item.ItemAnimalTreat.Treat;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.CalendarDate;
@@ -93,7 +95,7 @@ public class HFShops {
     public static final Shop TRADER = newShop(new ResourceLocation(MODID, "trader"), HFNPCs.TRADER).setSpecialSellingRules(new SpecialRulesFriendship(HFNPCs.TRADER, 15000));
     public static final Shop COOKING_FESTIVAL_FOOD = newHolidayShop(new ResourceLocation(MODID, "cooking"), HFNPCs.CAFE_GRANNY, HFFestivals.COOKING_CONTEST);
     public static final Shop COOKING_FESTIVAL_RECIPES = newHolidayShop(new ResourceLocation(MODID, "recipes"), HFNPCs.CAFE_OWNER, HFFestivals.COOKING_CONTEST);
-
+    public static final Shop COW_FESTIVAL_BARGAINS = newHolidayShop(new ResourceLocation(MODID, "cow"), HFNPCs.BARN_OWNER, HFFestivals.COW_FESTIVAL);
 
     @SuppressWarnings("unused")
     public static void postInit() {
@@ -112,6 +114,7 @@ public class HFShops {
         //Event specific
         registerCooking();
         registerRecipes();
+        registerCowBargains();
     }
     
     private static void registerBarn() {
@@ -470,8 +473,6 @@ public class HFShops {
         COOKING_FESTIVAL_RECIPES.addPurchasable(new PurchasableRecipe(new ResourceLocation(MODID, "pancake")));
         COOKING_FESTIVAL_RECIPES.addPurchasable(new PurchasableRecipe(new ResourceLocation(MODID, "rice_matsutake")));
         COOKING_FESTIVAL_RECIPES.addPurchasable(new PurchasableRecipe(new ResourceLocation(MODID, "rice_mushroom")));
-        COOKING_FESTIVAL_RECIPES.addOpening(MONDAY, 6000, 18000).addOpening(TUESDAY, 6000, 18000).addOpening(WEDNESDAY, 6000, 18000).addOpening(THURSDAY, 6000, 18000)
-                                .addOpening(FRIDAY, 6000, 18000).addOpening(SATURDAY, 6000, 18000).addOpening(SUNDAY, 6000, 18000);
 
         //Add all the recipes the player has learnt from friendship to the list
         for (Quest quest: Quest.REGISTRY) {
@@ -486,6 +487,22 @@ public class HFShops {
                 }
             }
         }
+
+        COOKING_FESTIVAL_RECIPES.addOpening(MONDAY, 6000, 18000).addOpening(TUESDAY, 6000, 18000).addOpening(WEDNESDAY, 6000, 18000).addOpening(THURSDAY, 6000, 18000)
+                .addOpening(FRIDAY, 6000, 18000).addOpening(SATURDAY, 6000, 18000).addOpening(SUNDAY, 6000, 18000);
+    }
+
+    private static void registerCowBargains() {
+        COW_FESTIVAL_BARGAINS.addPurchasable(100, HFAnimals.TREATS.getStackFromEnum(Treat.COW, 16));
+        COW_FESTIVAL_BARGAINS.addPurchasable(500, HFCrops.GRASS.getCropStack(16));
+        COW_FESTIVAL_BARGAINS.addPurchasable(1000, HFAnimals.TROUGH.getStackFromEnum(Trough.WOOD, 3));
+        COW_FESTIVAL_BARGAINS.addPurchasable(1000, HFAnimals.TOOLS.getStackFromEnum(Tool.MEDICINE, 2));
+        COW_FESTIVAL_BARGAINS.addPurchasable(1500, HFAnimals.TOOLS.getStackFromEnum(Tool.MIRACLE_POTION));
+        COW_FESTIVAL_BARGAINS.addPurchasable(500, HFAnimals.TOOLS.getStackFromEnum(Tool.BRUSH));
+        COW_FESTIVAL_BARGAINS.addPurchasable(1000, HFAnimals.TOOLS.getStackFromEnum(Tool.MILKER));
+        COW_FESTIVAL_BARGAINS.addPurchasable(100, new ItemStack(Items.NAME_TAG));
+        COW_FESTIVAL_BARGAINS.addOpening(MONDAY, 6000, 18000).addOpening(TUESDAY, 6000, 18000).addOpening(WEDNESDAY, 6000, 18000).addOpening(THURSDAY, 6000, 18000)
+                .addOpening(FRIDAY, 6000, 18000).addOpening(SATURDAY, 6000, 18000).addOpening(SUNDAY, 6000, 18000);
     }
 
     private static Shop newHolidayShop(ResourceLocation resource, @Nullable NPC npc, Festival festival) {

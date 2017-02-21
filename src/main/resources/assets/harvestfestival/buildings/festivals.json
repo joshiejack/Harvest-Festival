@@ -3414,6 +3414,15 @@
       "pos": "7 1 19"
     },
     {
+      "homeString": "festival.cow.back.left",
+      "npc": "",
+      "pos": "7 1 17",
+      "type": "entities.NPC"
+    },
+    {
+      "pos": "7 1 17"
+    },
+    {
       "homeString": "park.back.lamps",
       "npc": "",
       "pos": "7 1 13",
@@ -3496,6 +3505,15 @@
       "pos": "10 1 22"
     },
     {
+      "homeString": "festival.cow.jim",
+      "npc": "",
+      "pos": "10 1 25",
+      "type": "entities.NPC"
+    },
+    {
+      "pos": "10 1 25"
+    },
+    {
       "state": "spruce_fence",
       "pos": "10 1 28"
     },
@@ -3558,6 +3576,15 @@
     {
       "state": "leaves 13",
       "pos": "12 1 8"
+    },
+    {
+      "homeString": "festival.cow.stand1",
+      "npc": "",
+      "pos": "12 1 13",
+      "type": "entities.NPC"
+    },
+    {
+      "pos": "12 1 13"
     },
     {
       "homeString": "noodles",
@@ -3660,6 +3687,24 @@
       "pos": "14 1 6"
     },
     {
+      "homeString": "festival.cow.back",
+      "npc": "",
+      "pos": "14 1 11",
+      "type": "entities.NPC"
+    },
+    {
+      "pos": "14 1 11"
+    },
+    {
+      "homeString": "festival.cow.candice",
+      "npc": "",
+      "pos": "14 1 19",
+      "type": "entities.NPC"
+    },
+    {
+      "pos": "14 1 19"
+    },
+    {
       "state": "leaves 14",
       "pos": "14 1 24"
     },
@@ -3729,6 +3774,15 @@
       "pos": "17 1 15"
     },
     {
+      "homeString": "festival.cow.stand2",
+      "npc": "",
+      "pos": "17 1 10",
+      "type": "entities.NPC"
+    },
+    {
+      "pos": "17 1 10"
+    },
+    {
       "state": "log 1",
       "pos": "18 1 1"
     },
@@ -3761,6 +3815,15 @@
       "pos": "19 1 21"
     },
     {
+      "homeString": "festival.cow.edge",
+      "npc": "",
+      "pos": "19 1 16",
+      "type": "entities.NPC"
+    },
+    {
+      "pos": "19 1 16"
+    },
+    {
       "state": "spruce_fence",
       "pos": "19 1 3"
     },
@@ -3779,11 +3842,11 @@
     {
       "homeString": "park.table",
       "npc": "",
-      "pos": "20 1 10",
+      "pos": "20 1 9",
       "type": "entities.NPC"
     },
     {
-      "pos": "20 1 10"
+      "pos": "20 1 9"
     },
     {
       "state": "log 1",
@@ -3867,6 +3930,15 @@
       "pos": "23 1 22"
     },
     {
+      "homeString": "festivalcow.stand3",
+      "npc": "",
+      "pos": "23 1 17",
+      "type": "entities.NPC"
+    },
+    {
+      "pos": "23 1 17"
+    },
+    {
       "homeString": "park.centre",
       "npc": "",
       "pos": "23 1 15",
@@ -3906,6 +3978,15 @@
     {
       "state": "leaves 13",
       "pos": "24 1 8"
+    },
+    {
+      "homeString": "festival.cow.bench",
+      "npc": "",
+      "pos": "24 1 21",
+      "type": "entities.NPC"
+    },
+    {
+      "pos": "24 1 21"
     },
     {
       "state": "leaves 13",
@@ -3965,6 +4046,15 @@
       "pos": "26 1 1"
     },
     {
+      "homeString": "festival.cow.seats",
+      "npc": "",
+      "pos": "26 1 4",
+      "type": "entities.NPC"
+    },
+    {
+      "pos": "26 1 4"
+    },
+    {
       "state": "leaves 14",
       "pos": "26 1 8"
     },
@@ -3991,6 +4081,15 @@
     {
       "state": "leaves 14",
       "pos": "27 1 29"
+    },
+    {
+      "homeString": "festival.cow.stand4",
+      "npc": "",
+      "pos": "27 1 20",
+      "type": "entities.NPC"
+    },
+    {
+      "pos": "27 1 20"
     },
     {
       "state": "leaves 6",
@@ -4073,11 +4172,11 @@
     {
       "homeString": "park.bottom",
       "npc": "",
-      "pos": "29 1 20",
+      "pos": "29 1 19",
       "type": "entities.NPC"
     },
     {
-      "pos": "29 1 20"
+      "pos": "29 1 19"
     },
     {
       "homeString": "park.spruce",
@@ -4116,6 +4215,15 @@
     },
     {
       "pos": "30 1 4"
+    },
+    {
+      "homeString": "festival.cow.customer",
+      "npc": "",
+      "pos": "30 1 8",
+      "type": "entities.NPC"
+    },
+    {
+      "pos": "30 1 8"
     },
     {
       "state": "leaves 6",

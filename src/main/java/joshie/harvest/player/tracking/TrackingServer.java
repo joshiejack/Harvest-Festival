@@ -3,10 +3,11 @@ package joshie.harvest.player.tracking;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.cooking.Recipe;
 import joshie.harvest.core.achievements.HFAchievements;
-import joshie.harvest.core.helpers.CollectionHelper;
+import joshie.harvest.core.helpers.HolderHelper;
 import joshie.harvest.core.helpers.NBTHelper;
 import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.core.util.holders.ItemStackHolder;
+import joshie.harvest.knowledge.gui.stats.CollectionHelper;
 import joshie.harvest.player.PlayerTrackerServer;
 import joshie.harvest.player.packet.*;
 import joshie.harvest.quests.Quests;
@@ -82,7 +83,7 @@ public class TrackingServer extends Tracking {
     public boolean addForShipping(ItemStack item) {
         long sell = HFApi.shipping.getSellValue(item);
         StackSold stack = StackSold.of(item, sell);
-        CollectionHelper.mergeCollection(stack, toBeShipped);
+        HolderHelper.mergeCollection(stack, toBeShipped);
         return sell >= 0;
     }
 
@@ -92,8 +93,11 @@ public class TrackingServer extends Tracking {
         while (forSale.hasNext()) {
             StackSold stack = forSale.next();
             sold += stack.getSellValue();
-            CollectionHelper.mergeCollection(stack, shipped); //Mark this item as having been shipped
-            addAsObtained(stack.getStack()); //Mark the item as having been collected
+            HolderHelper.mergeCollection(stack, shipped); //Mark this item as having been shipped
+            if (CollectionHelper.isInShippingCollection(stack.getStack())) {
+                addAsObtained(stack.getStack()); //Mark the item as having been collected
+            }
+
             forSale.remove();
         }
 

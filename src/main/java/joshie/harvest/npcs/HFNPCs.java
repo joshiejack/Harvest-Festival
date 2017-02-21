@@ -57,7 +57,7 @@ public class HFNPCs {
     public static final NPCSpecialSeller FLOWER_GIRL = register("jade", FEMALE, ADULT, 14, SPRING, 0x653081, 0x361840, NPCSpecialSeller.class);
     public static final NPCSpecialSeller GS_OWNER = register("jenni", FEMALE, ADULT, 7, WINTER, 0xDDD0AD, 0xE79043, NPCSpecialOpener.class).setNPC(GODDESS);
     public static final NPC MILKMAID = register("candice", FEMALE, ADULT, 5, AUTUMN, 0xF65FAB, 0xF21985);
-    public static final NPC BARN_OWNER = register("jim", MALE, ADULT, 26, SPRING, 0xDE7245, 0x722B19);
+    public static final NPC BARN_OWNER = register("jim", MALE, ADULT, 26, SPRING, 0xDE7245, 0x722B19, NPCHolidayStore.class);
     public static final NPC POULTRY = register("ashlee", FEMALE, ADULT, 16, AUTUMN, 0xC62D2D, 0x571111);
     public static final NPC TRADER = register("girafi", MALE, ADULT, 2, AUTUMN,  0xFFFFFF, 0xC60C30);
     public static final NPCSpecialSeller FISHERMAN = register("jacob", MALE, ADULT, 28, AUTUMN, 0x7396FF, 0x0036D9, NPCSpecialSeller.class);
@@ -111,6 +111,7 @@ public class HFNPCs {
         ScheduleBuilder.create(CARPENTER, CARPENTER_DOWNSTAIRS)
                         .add(SPRING, SUNDAY, 0L, CARPENTER_DOWNSTAIRS)
                         .add(SPRING, SUNDAY, 8000L, CARPENTER_FRONT)
+                        .add(SPRING, SUNDAY, 9000L, CARPENTER_WORK)
                         .add(SPRING, SUNDAY, 17000L, CARPENTER_DOWNSTAIRS)
                         .add(SPRING, SUNDAY, 21000L, CARPENTER_FRONT)
                         .add(COOKING_CONTEST, 0L, CARPENTER_UPSTAIRS)
@@ -216,6 +217,10 @@ public class HFNPCs {
                         .add(NEW_YEARS, 12000L, PARK_OAK)
                         .add(NEW_YEARS, 20000L, GENERAL_GARDEN)
                         .add(NEW_YEARS, 22000L, GENERAL_BED)
+                        .add(COW_FESTIVAL, 0L, GENERAL_BED)
+                        .add(COW_FESTIVAL, 6000L, PARK_COW_JUDGE)
+                        .add(COW_FESTIVAL, 19000L, GENERAL_GARDEN)
+                        .add(COW_FESTIVAL, 22000L, GENERAL_BED)
                         .add(NEW_YEARS_EVE, 0L, PARK_OAK)
                         .add(NEW_YEARS_EVE, 6000L, GENERAL_BED)
                         .add(NEW_YEARS_EVE, 13000L, GENERAL_GARDEN)
@@ -232,6 +237,7 @@ public class HFNPCs {
                         .add(SPRING, SUNDAY, 19000L, GENERAL_BEDROOM)
                         .add(SPRING, SUNDAY, 21000L, BARN_INSIDE)
                         .add(SPRING, MONDAY, 0L, BARN_INSIDE)
+                        .add(SPRING, MONDAY, 10000L, BARN_WORK)
                         .add(SPRING, MONDAY, 15000L, GENERAL_CUSTOMER)
                         .add(SPRING, MONDAY, 17000L, PARK_CENTRE)
                         .add(SPRING, MONDAY, 19000L, GENERAL_BEDROOM)
@@ -241,6 +247,10 @@ public class HFNPCs {
                         .add(COOKING_CONTEST, 17000L, BARN_DOOR)
                         .add(COOKING_CONTEST, 19000L, GENERAL_BEDROOM)
                         .add(COOKING_CONTEST, 23500L, BARN_INSIDE)
+                        .add(COW_FESTIVAL, 0L, BARN_INSIDE)
+                        .add(COW_FESTIVAL, 6000L, PARK_COW_BARN)
+                        .add(COW_FESTIVAL, 19000L, BARN_DOOR)
+                        .add(COW_FESTIVAL, 22000L, BARN_INSIDE)
                         .add(NEW_YEARS_EVE, 0L, PARK_LEFT)
                         .add(NEW_YEARS_EVE, 6000L, BARN_INSIDE)
                         .add(NEW_YEARS_EVE, 13000L, BARN_DOOR)
@@ -260,7 +270,7 @@ public class HFNPCs {
                         .add(SPRING, SUNDAY, 15000L, PARK_BENCH)
                         .add(SPRING, SUNDAY, 18000L, POULTRY_CENTRE)
                         .add(SPRING, MONDAY, 0L, POULTRY_CENTRE)
-                        .add(SPRING, MONDAY, 6000L, POULTRY_CENTRE)
+                        .add(SPRING, MONDAY, 6000L, POULTRY_WORK)
                         .add(SPRING, MONDAY, 13000L, GENERAL_STORE_FRONT)
                         .add(SPRING, MONDAY, 15000L, PARK_BENCH)
                         .add(SPRING, MONDAY, 18000L, POULTRY_CENTRE)
@@ -288,6 +298,7 @@ public class HFNPCs {
                         .add(SPRING, TUESDAY, 6000L, FISHING_POND_PIER)
                         .add(SPRING, TUESDAY, 10000L, GODDESS_POND_FRONT)
                         .add(SPRING, TUESDAY, 12000L, FISHING_HUT_DOWNSTAIRS)
+                        .add(SPRING, TUESDAY, 13000L, FISHING_HUT_WORK)
                         .add(SPRING, TUESDAY, 19000L, FISHING_POND_PIER)
                         .add(SPRING, TUESDAY, 22000L, FISHING_HUT_UPSTAIRS)
                         .add(SPRING, SATURDAY, 0L, FISHING_HUT_UPSTAIRS)
@@ -381,6 +392,7 @@ public class HFNPCs {
                         .add(SPRING, SUNDAY, 6000L, CAFE_DOOR)
                         .add(SPRING, SUNDAY, 8000L, BLACKSMITH_FRONT)
                         .add(SPRING, SUNDAY, 9500L, BLACKSMITH_FURNACE)
+                        .add(SPRING, SUNDAY, 10000L, BLACKSMITH_WORK)
                         .add(SPRING, SUNDAY, 17000L, TOWNHALL_ENTRANCE)
                         .add(SPRING, SUNDAY, 20000L, PARK_OAK)
                         .add(SPRING, SUNDAY, 23000L, BLACKSMITH_FURNACE)
@@ -396,6 +408,7 @@ public class HFNPCs {
                         .add(SPRING, FRIDAY, 6000L, CAFE_DOOR)
                         .add(SPRING, FRIDAY, 8000L, BLACKSMITH_FRONT)
                         .add(SPRING, FRIDAY, 9500L, BLACKSMITH_FURNACE)
+                        .add(SPRING, FRIDAY, 10000L, BLACKSMITH_WORK)
                         .add(SPRING, FRIDAY, 17000L, TOWNHALL_ENTRANCE)
                         .add(SPRING, FRIDAY, 20000L, PARK_OAK)
                         .add(SPRING, FRIDAY, 23000L, BLACKSMITH_FURNACE)
@@ -415,7 +428,7 @@ public class HFNPCs {
                         .add(SPRING, SUNDAY, 16000L, PARK_LEFT)
                         .add(SPRING, SUNDAY, 18000L, CLOCKMAKER_DOWNSTAIRS)
                         .add(SPRING, MONDAY, 0L, CLOCKMAKER_DOWNSTAIRS)
-                        .add(SPRING, MONDAY, 8000L, CAFE_CUSTOMER)
+                        .add(SPRING, MONDAY, 8000L, CLOCKMAKER_WORK)
                         .add(SPRING, MONDAY, 15500L, FISHING_POND_LEFT)
                         .add(SPRING, MONDAY, 16000L, PARK_LEFT)
                         .add(SPRING, MONDAY, 18000L, CLOCKMAKER_DOWNSTAIRS)
@@ -466,7 +479,7 @@ public class HFNPCs {
         ScheduleBuilder.create(PRIEST, TOWNHALL_ADULT_BED)
                         .add(SPRING, SUNDAY, 0L, TOWNHALL_ADULT_BED)
                         .add(SPRING, SUNDAY, 6000L, CHURCH_FRONT)
-                        .add(SPRING, SUNDAY, 7000L, CHURCH_INSIDE)
+                        .add(SPRING, SUNDAY, 7000L, CHURCH_WORK)
                         .add(SPRING, SUNDAY, 17000L, GODDESS_POND_FRONT_RIGHT)
                         .add(SPRING, SUNDAY, 19000L, GODDESS_POND_FRONT)
                         .add(SPRING, SUNDAY, 22000L, TOWNHALL_ADULT_BED)

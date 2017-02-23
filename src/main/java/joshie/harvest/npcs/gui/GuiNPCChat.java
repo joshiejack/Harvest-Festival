@@ -43,7 +43,7 @@ public class GuiNPCChat extends GuiNPCBase {
     }
 
     private boolean buildScript() {
-        List<String> formatted = fontRendererObj.listFormattedStringToWidth(format(getScript()), 172);
+        List<String> formatted = fontRendererObj.listFormattedStringToWidth(format(getScript()), 171);
         String[] original = formatted.toArray(new String[formatted.size()]);
         int size = original.length / MAX_LINES_PER_PAGE;
         boolean isRemainder = original.length % MAX_LINES_PER_PAGE == 0;

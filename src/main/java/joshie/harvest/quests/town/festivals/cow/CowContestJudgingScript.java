@@ -1,24 +1,23 @@
 package joshie.harvest.quests.town.festivals.cow;
 
-import joshie.harvest.animals.entity.EntityHarvestCow;
 import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.npc.greeting.Script;
 import joshie.harvest.calendar.HFFestivals;
 import joshie.harvest.core.helpers.TextHelper;
 import joshie.harvest.npcs.HFNPCs;
 import joshie.harvest.quests.town.festivals.QuestContestCow;
-import joshie.harvest.quests.town.festivals.QuestContestCow.ScheduleWinner;
+import joshie.harvest.quests.town.festivals.contest.ContestEntry;
 import joshie.harvest.town.TownHelper;
 import net.minecraft.entity.EntityAgeable;
+import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
 
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 
-public class CowContestScript extends Script {
+public class CowContestJudgingScript extends Script {
     private final int cowID;
 
-    public CowContestScript(int id) {
+    public CowContestJudgingScript(int id) {
         super(new ResourceLocation(MODID, "cow_judge_" + id));
         setNPC(HFNPCs.MILKMAID);
         cowID = id; //get the correct id
@@ -41,14 +40,15 @@ public class CowContestScript extends Script {
     public String getLocalized(EntityAgeable ageable, NPC npc) {
         QuestContestCow quest = TownHelper.getClosestTownToEntity(ageable, false).getQuests().getAQuest(HFFestivals.COW_FESTIVAL.getQuest());
         if (quest != null) {
-            AnimalContestEntry entry;
-            EntityHarvestCow cow = CowSelection.getClosestCow(ageable.worldObj, new BlockPos(ageable));
-            if (cow != null) {
-                if (quest.isPlayersCow(cow)) {
-                    entry = new AnimalContestEntry(null, cow);
-                } else entry = ScheduleWinner.getEntries(ageable.worldObj, quest).getEntry(cowID);
-                return TextHelper.format("Let's take a look at '" + cow.getName() + "'. Well... %s", getTextFromScore(entry.getScore()));
-            } else return "There appears to be no cow at this stall";
-        } else return "INVALID";
+            ContestEntry entry = quest.getEntries().getEntryFromStall(cowID);
+            if (entry != null) {
+                EntityAnimal cow = entry.getEntity(ageable.worldObj);
+                if (cow != null) {
+                    return TextHelper.format("Let's take a look at '" + cow.getName() + "'. Well... %s", getTextFromScore(entry.getScore(ageable.worldObj)));
+                }
+            }
+        }
+
+        return "There appears to be no cow at this stall";
     }
 }

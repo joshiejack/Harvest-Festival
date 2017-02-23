@@ -32,6 +32,7 @@ public class GuiNPCSelect extends GuiNPCBase {
     private int optionsTotal;
     private int selected;
 
+    @SuppressWarnings("unchecked")
     public GuiNPCSelect(EntityPlayer player, EntityNPC npc, int next, int selectionType) {
         super(player, npc, next);
         if (selectionType == NEXT_NONE) selection = NPCHelper.getShopSelection(player.worldObj, pos, npc.getNPC(), player);
@@ -40,10 +41,10 @@ public class GuiNPCSelect extends GuiNPCBase {
             selection = quest != null ? quest.getSelection(player, npc.getNPC()): null;
         }
 
-        if (selection == null || selection.getText(player) == null);//player.closeScreen();
+        if (selection == null || selection.getText(player, quest) == null);//player.closeScreen();
         else {
             optionsTotal = 0;
-            text = Arrays.copyOf(selection.getText(player), selection.getText(player).length);
+            text = Arrays.copyOf(selection.getText(player, quest), selection.getText(player, quest).length);
             selected = 1;
             boolean optionStarted = false;
             for (int i = 0; i < text.length; i++) {

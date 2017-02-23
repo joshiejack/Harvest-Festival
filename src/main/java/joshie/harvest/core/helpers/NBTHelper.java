@@ -170,6 +170,15 @@ public class NBTHelper {
         return set;
     }
 
+    public static void writeUUIDSet(NBTTagCompound nbt, String name, Set<UUID> uuids) {
+        NBTTagList list = new NBTTagList();
+        for (UUID uuid: uuids) {
+            list.appendTag(new NBTTagString(uuid.toString()));
+        }
+
+        nbt.setTag(name, list);
+    }
+
     public static ItemStack readItemStack(NBTTagCompound nbt) {
         Item item = Item.getByNameOrId(nbt.getString("id"));
         if (item == null) return null; //DIE!

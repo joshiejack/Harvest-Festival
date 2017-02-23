@@ -81,6 +81,7 @@ public class QuestHelper implements IQuestHelper {
             else {
                 TownDataServer data = TownHelper.getClosestTownToEntity(player, false);
                 sendToDimension(player.worldObj.provider.getDimension(), new PacketSyncData(quest, quest.writeToNBT(new NBTTagCompound())).setUUID(data.getID()));
+                HFTrackers.markTownsDirty();
             }
         }
     }
@@ -92,6 +93,7 @@ public class QuestHelper implements IQuestHelper {
             else {
                 TownDataServer data = TownHelper.getClosestTownToEntity(player, false);
                 sendToDimension(player.worldObj.provider.getDimension(), new PacketSyncData(quest, quest.writeToNBT(new NBTTagCompound())).setUUID(data.getID()));
+                HFTrackers.markTownsDirty();
             }
         }
     }

@@ -6,7 +6,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.common.eventhandler.Event.Result;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 /** Used for selection menus **/
 public abstract class Selection<Q extends Quest> {
@@ -33,7 +32,7 @@ public abstract class Selection<Q extends Quest> {
     }
 
     /** Returns the unlocalised text **/
-    public String[] getText(@Nonnull EntityPlayer player) {
+    public String[] getText(@Nonnull EntityPlayer player, Q quest) {
         return lines;
     }
 
@@ -49,5 +48,5 @@ public abstract class Selection<Q extends Quest> {
      *              return DENY to close the options menu
      *              return ALLOW to open the npc chat window
      *              return DEFAULT to do nothing */
-    public abstract Result onSelected(EntityPlayer player, EntityLiving entity, NPC npc, @Nullable Q quest, int option);
+    public abstract Result onSelected(EntityPlayer player, EntityLiving entity, NPC npc, Q quest, int option);
 }

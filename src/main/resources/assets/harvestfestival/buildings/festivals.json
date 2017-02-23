@@ -3496,6 +3496,15 @@
       "pos": "10 1 8"
     },
     {
+      "homeString": "festival.cow.1",
+      "npc": "",
+      "pos": "10 1 13",
+      "type": "entities.NPC"
+    },
+    {
+      "pos": "10 1 13"
+    },
+    {
       "homeString": "park.back.left",
       "npc": "",
       "pos": "10 1 22",
@@ -3781,6 +3790,15 @@
     },
     {
       "pos": "17 1 10"
+    },
+    {
+      "homeString": "festival.cow.2",
+      "npc": "",
+      "pos": "17 1 8",
+      "type": "entities.NPC"
+    },
+    {
+      "pos": "17 1 8"
     },
     {
       "state": "log 1",
@@ -4081,6 +4099,15 @@
     {
       "state": "leaves 14",
       "pos": "27 1 29"
+    },
+    {
+      "homeString": "festival.cow.4",
+      "npc": "",
+      "pos": "27 1 22",
+      "type": "entities.NPC"
+    },
+    {
+      "pos": "27 1 22"
     },
     {
       "homeString": "festival.cow.stand4",

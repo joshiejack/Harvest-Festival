@@ -4,7 +4,9 @@ import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.quests.Selection;
 import joshie.harvest.calendar.CalendarHelper;
 import joshie.harvest.core.helpers.EntityHelper;
+import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.npcs.entity.ai.EntityAIPathing;
+import joshie.harvest.quests.packet.PacketQuestUpdateAnimals;
 import joshie.harvest.quests.town.festivals.Place;
 import joshie.harvest.quests.town.festivals.contest.ContestAnimalSelection;
 import joshie.harvest.quests.town.festivals.contest.ContestAnimalStartMenu;
@@ -27,14 +29,14 @@ public abstract class QuestAnimalContest<E extends EntityAnimal> extends QuestFe
     public static final int START = 2;
     public static final int CONTINUE = 3;
     private final Selection selection;
-    private final Selection cowSelection;
+    private final Selection animalSelection;
     private final Selection startSelection;
     private long time;
 
     public QuestAnimalContest(ContestEntries<E> entries, String prefix) {
         this.entries = entries;
         this.selection = new ContestInfoMenu(prefix);
-        this.cowSelection = new ContestAnimalSelection<E>(prefix);
+        this.animalSelection = new ContestAnimalSelection<E>(prefix);
         this.startSelection =  new ContestAnimalStartMenu(prefix);
     }
 
@@ -47,6 +49,10 @@ public abstract class QuestAnimalContest<E extends EntityAnimal> extends QuestFe
     @Override
     public void onQuestSelectedForDisplay(EntityPlayer player, EntityLiving entity, NPC npc) {
         time = CalendarHelper.getTime(player.worldObj);
+        if (!player.worldObj.isRemote) { //Sync up the animal names and stuff
+            entries.setAnimalNames(PacketQuestUpdateAnimals.getNamesFromEntities(entries.getAvailableEntries(player)));
+            PacketHandler.sendToClient(new PacketQuestUpdateAnimals(getEntries().getNames()), player);
+        }
     }
 
     @SuppressWarnings("WeakerAccess")
@@ -59,7 +65,7 @@ public abstract class QuestAnimalContest<E extends EntityAnimal> extends QuestFe
         if (isCorrectTime(time)) {
             if (quest_stage == EXPLAIN || quest_stage == START || quest_stage == CONTINUE) return null;
             if (entries.isSelecting(player)) {
-                if (entries.getAvailableEntries(player).size() > 0) return cowSelection;
+                if (entries.getNames().size() > 0) return animalSelection;
                 else return null;
             }
 
@@ -79,7 +85,7 @@ public abstract class QuestAnimalContest<E extends EntityAnimal> extends QuestFe
         if (isCorrectTime(time)) {
             if (quest_stage == EXPLAIN) return getLocalized("explain");
             if (entries.isSelecting(player)) {
-                return entries.getAvailableEntries(player).size() > 0 ? getLocalized("select") : getLocalized("none");
+                return entries.getNames().size() > 0 ? getLocalized("select") : getLocalized("none");
             }
 
             if (!entries.isEntered(player)) return getLocalized("help");

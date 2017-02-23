@@ -11,7 +11,7 @@ import net.minecraftforge.fml.common.network.ByteBufUtils;
 
 @Packet(Side.CLIENT)
 public class PacketSyncData extends PacketSharedSync {
-    private Quest quest;
+    protected Quest quest;
     private NBTTagCompound tag;
 
     public PacketSyncData() {}
@@ -38,7 +38,7 @@ public class PacketSyncData extends PacketSharedSync {
     @Override
     public void handlePacket(EntityPlayer player) {
         Quest real = getQuestDataFromPlayer(player).getAQuest(quest);
-        if (real != null) {
+        if (real != null && tag != null) {
             real.readFromNBT(tag);
         }
     }

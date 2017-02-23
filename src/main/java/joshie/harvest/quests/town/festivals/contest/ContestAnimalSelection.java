@@ -38,9 +38,9 @@ public class ContestAnimalSelection<E extends EntityAnimal> extends Selection<Qu
 
     @Override
     @SuppressWarnings("unchecked")
-    public Result onSelected(EntityPlayer player, EntityLiving entity, NPC npc, QuestAnimalContest quest, int stall) {
+    public Result onSelected(EntityPlayer player, EntityLiving entity, NPC npc, QuestAnimalContest quest, int option) {
         List<Pair<E, Integer>> animals = quest.getEntries().getAvailableEntries(player);
-        int index = stall - 1;
+        int index = option - 1;
         if (index >= animals.size()) return Result.DENY;
         else {
             quest.getEntries().enter(player, animals.get(index).getKey(), animals.get(index).getValue());

@@ -2049,7 +2049,7 @@ harvestfestival.quest.festival.cow.selected=Well then let's get the judging star
 harvestfestival.quest.festival.cow.judging=Just give me a minute. I'm busy judging!
 harvestfestival.quest.festival.cow.nostalls=No cows in any of the stalls!
 
-harvestfestival.script.cow.winner=It's time to announce the winner of the Cow Festival. In third place we have %1$s with their cow %2$s. Winning some Wheat. \n\nIn second we have %3$s with their cow %4$s. Your prize is a drink of Hot Milk.\n\n\nAnd finally without any further delay the winner of this year's Cow Festival is.... %5$s with their amazing cow %6$s!!!!!!!\nCongratulations! You win some strawberry milk and your cow should now be able to produce golden milk!\n\nThank you to everyone that participated. It was a wonderful contest. I hope to see you all back next year!
+harvestfestival.script.cow.winner=It's time to announce the winner of the Cow Festival. In third place we have %1$s with their cow %2$s. Winning some Wheat. \n\nIn second we have %3$s with their cow %4$s. Your prize is a drink of Hot Milk.\n\n\nAnd finally without any further delay the winner of this year's Cow Festival is.... %5$s with their amazing cow %6$s!!!!!!!\nCongratulations! You win some strawberry milk and your cow should now be able to produce golden milk!\n\n\nThank you to everyone that participated. It was a wonderful contest. I hope to see you all back next year!
 harvestfestival.script.cow.finish=Well everyone that's all the cows judged! It was a good contest today. Time for me to announce the winners. Just a second, need to head back to the entry stand.
 
 #New Years Eve

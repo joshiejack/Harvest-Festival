@@ -27,12 +27,21 @@ public class ContestEntries<E extends EntityAnimal> {
     private final NPC[] npcs;
     private final String[] names;
     private Set<UUID> selecting = new HashSet<>();
+    private List<Pair<String, Integer>> animalNames;
 
     public ContestEntries(Class<E> entity, BuildingLocation[] locations, NPC[] npcs, String[] names) {
         this.entityClass = entity;
         this.locations = locations;
         this.npcs = npcs;
         this.names = names;
+    }
+
+    public void setAnimalNames(List<Pair<String, Integer>> list) {
+        this.animalNames = list;
+    }
+
+    public List<Pair<String, Integer>> getNames() {
+        return animalNames;
     }
 
     public List<Pair<E, Integer>> getAvailableEntries(EntityPlayer player) {
@@ -54,7 +63,7 @@ public class ContestEntries<E extends EntityAnimal> {
         return list;
     }
 
-    public void enter(EntityPlayer player, E animal, int stall) {
+    void enter(EntityPlayer player, E animal, int stall) {
         UUID playerUUID = EntityHelper.getPlayerUUID(player);
         UUID animalUUID = EntityHelper.getEntityUUID(animal);
         //Wipe out any entries that match the exist
@@ -76,6 +85,7 @@ public class ContestEntries<E extends EntityAnimal> {
         Collections.shuffle(names);
         for (O name: names) {
             if (!used.contains(name)) {
+                used.add(name);
                 return name;
             }
         }

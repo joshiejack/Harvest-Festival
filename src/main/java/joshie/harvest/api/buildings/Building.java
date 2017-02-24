@@ -128,9 +128,7 @@ public class Building extends IForgeRegistryEntry.Impl<Building> {
         return tickTime;
     }
 
-    public int getOffsetY() {
-        return offsetY;
-    }
+
 
     public ResourceLocation[] getRequirements() {
         return requirements;
@@ -140,12 +138,16 @@ public class Building extends IForgeRegistryEntry.Impl<Building> {
         return canHaveMultiple;
     }
 
-    public int getLength() {
-        return length;
-    }
-
     public int getWidth() {
         return width;
+    }
+
+    public int getOffsetY() {
+        return offsetY;
+    }
+
+    public int getLength() {
+        return length;
     }
 
     /** Called when the festival changes

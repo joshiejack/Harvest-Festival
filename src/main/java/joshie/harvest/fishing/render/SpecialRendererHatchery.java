@@ -25,4 +25,19 @@ public class SpecialRendererHatchery extends TileSpecialRendererItem<TileHatcher
 
         GlStateManager.popMatrix();
     }
+
+    @Override
+    protected void translateItem(boolean isBlock, float position, float rotation, float offset1, float offset2) {
+        GlStateManager.translate(0.5F, -1.05F, 0.5F);
+        GlStateManager.rotate(-15, 0F, 1F, 0F);
+        GlStateManager.scale(0.25F, 0.25F, 0.25F);
+        if (!isBlock) {
+            GlStateManager.rotate(rotation, 0F, 1F, 0F);
+            GlStateManager.rotate(-190, 0F, 1F, 0F);
+            GlStateManager.translate(offset1 * 3F, offset2 * 3.5F, position * 0.75F);
+        } else {
+            GlStateManager.rotate(90, 1F, 0F, 0F);
+            GlStateManager.translate(offset1 * 1.4F, 0.8F - offset2 * 2.5F, position - 1F);
+        }
+    }
 }

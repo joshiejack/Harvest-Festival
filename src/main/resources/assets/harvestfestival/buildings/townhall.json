@@ -2730,7 +2730,7 @@
     },
     {
       "painting": "Aztec",
-      "facing": "NORTH",
+      "facing": "north",
       "pos": "3 2 18",
       "type": "entities.Painting"
     },
@@ -2794,7 +2794,7 @@
     },
     {
       "painting": "Wasteland",
-      "facing": "SOUTH",
+      "facing": "south",
       "pos": "3 2 2",
       "type": "entities.Painting"
     },
@@ -3002,7 +3002,7 @@
       "chestType": "harvestfestival:frames/townhall_entry",
       "stack": "minecraft:paper",
       "rotation": 0,
-      "facing": "SOUTH",
+      "facing": "south",
       "pos": "6 2 16",
       "type": "entities.ItemFrame"
     },
@@ -3044,7 +3044,7 @@
       "chestType": "harvestfestival:frames/townhall_entry",
       "stack": "minecraft:paper",
       "rotation": 0,
-      "facing": "EAST",
+      "facing": "east",
       "pos": "7 2 15",
       "type": "entities.ItemFrame"
     },
@@ -3082,7 +3082,7 @@
       "chestType": "harvestfestival:frames/townhall_entry",
       "stack": "minecraft:paper",
       "rotation": 0,
-      "facing": "EAST",
+      "facing": "east",
       "pos": "7 2 5",
       "type": "entities.ItemFrame"
     },
@@ -3173,7 +3173,7 @@
     },
     {
       "painting": "Bomb",
-      "facing": "NORTH",
+      "facing": "north",
       "pos": "9 2 18",
       "type": "entities.Painting"
     },
@@ -3237,7 +3237,7 @@
     },
     {
       "painting": "Aztec2",
-      "facing": "SOUTH",
+      "facing": "south",
       "pos": "9 2 2",
       "type": "entities.Painting"
     },
@@ -3714,7 +3714,7 @@
       "pos": "2 3 9"
     },
     {
-      "state": "harvestfestival:quest_block 3",
+      "state": "harvestfestival:quest_block 5",
       "pos": "2 3 10"
     },
     {
@@ -4754,9 +4754,6 @@
       "state": "wooden_button 1",
       "pos": "2 4 11",
       "type": "blocks.Decorative"
-    },
-    {
-      "pos": "2 4 12"
     },
     {
       "state": "wooden_button 1",
@@ -7011,7 +7008,7 @@
       "chestType": "harvestfestival:frames/townhall_child",
       "stack": "minecraft:carrot",
       "rotation": 0,
-      "facing": "EAST",
+      "facing": "east",
       "pos": "2 6 17",
       "type": "entities.ItemFrame"
     },
@@ -7106,7 +7103,7 @@
       "chestType": "harvestfestival:frames/townhall_teenager",
       "stack": "minecraft:book",
       "rotation": 0,
-      "facing": "NORTH",
+      "facing": "north",
       "pos": "4 6 4",
       "type": "entities.ItemFrame"
     },
@@ -7552,7 +7549,7 @@
     },
     {
       "painting": "Alban",
-      "facing": "EAST",
+      "facing": "east",
       "pos": "10 6 9",
       "type": "entities.Painting"
     },
@@ -7566,7 +7563,7 @@
     },
     {
       "painting": "Plant",
-      "facing": "EAST",
+      "facing": "east",
       "pos": "10 6 11",
       "type": "entities.Painting"
     },
@@ -7590,7 +7587,7 @@
       "chestType": "harvestfestival:frames/townhall_child",
       "stack": "minecraft:carrot",
       "rotation": 0,
-      "facing": "WEST",
+      "facing": "west",
       "pos": "10 6 16",
       "type": "entities.ItemFrame"
     },
@@ -7607,7 +7604,7 @@
       "chestType": "harvestfestival:frames/townhall_child",
       "stack": "minecraft:carrot",
       "rotation": 0,
-      "facing": "WEST",
+      "facing": "west",
       "pos": "10 6 18",
       "type": "entities.ItemFrame"
     },
@@ -7785,7 +7782,7 @@
       "chestType": "harvestfestival:frames/townhall_priest",
       "stack": "minecraft:written_book",
       "rotation": 0,
-      "facing": "WEST",
+      "facing": "west",
       "pos": "14 6 8",
       "type": "entities.ItemFrame"
     },
@@ -7805,7 +7802,7 @@
       "chestType": "harvestfestival:frames/townhall_mayor",
       "stack": "minecraft:speckled_melon",
       "rotation": 0,
-      "facing": "WEST",
+      "facing": "west",
       "pos": "14 6 12",
       "type": "entities.ItemFrame"
     },
@@ -8047,7 +8044,7 @@
     },
     {
       "painting": "Creebet",
-      "facing": "SOUTH",
+      "facing": "south",
       "pos": "2 7 16",
       "type": "entities.Painting"
     },
@@ -8056,7 +8053,7 @@
     },
     {
       "painting": "Wasteland",
-      "facing": "EAST",
+      "facing": "east",
       "pos": "2 7 17",
       "type": "entities.Painting"
     },
@@ -8065,7 +8062,7 @@
     },
     {
       "painting": "Pool",
-      "facing": "NORTH",
+      "facing": "north",
       "pos": "2 7 18",
       "type": "entities.Painting"
     },
@@ -8149,7 +8146,7 @@
     },
     {
       "painting": "Aztec",
-      "facing": "NORTH",
+      "facing": "north",
       "pos": "4 7 4",
       "type": "entities.Painting"
     },
@@ -8285,7 +8282,7 @@
     },
     {
       "painting": "Aztec",
-      "facing": "SOUTH",
+      "facing": "south",
       "pos": "6 7 2",
       "type": "entities.Painting"
     },
@@ -8430,7 +8427,7 @@
     },
     {
       "painting": "Wasteland",
-      "facing": "NORTH",
+      "facing": "north",
       "pos": "8 7 4",
       "type": "entities.Painting"
     },
@@ -8561,7 +8558,7 @@
     },
     {
       "painting": "Creebet",
-      "facing": "WEST",
+      "facing": "west",
       "pos": "10 7 2",
       "type": "entities.Painting"
     },
@@ -9714,7 +9711,7 @@
     {
       "stack": "minecraft:leather_boots 0 {display:{color:6717235}}",
       "rotation": 0,
-      "facing": "EAST",
+      "facing": "east",
       "pos": "10 8 8",
       "type": "entities.ItemFrame"
     },
@@ -9735,7 +9732,7 @@
     {
       "stack": "minecraft:leather_chestplate 0 {display:{color:6717235}}",
       "rotation": 0,
-      "facing": "EAST",
+      "facing": "east",
       "pos": "10 8 12",
       "type": "entities.ItemFrame"
     },
@@ -10924,7 +10921,7 @@
     {
       "stack": "minecraft:leather_leggings 0 {display:{color:6717235}}",
       "rotation": 0,
-      "facing": "EAST",
+      "facing": "east",
       "pos": "10 9 8",
       "type": "entities.ItemFrame"
     },
@@ -10937,7 +10934,7 @@
     {
       "stack": "minecraft:golden_shovel 0",
       "rotation": 6,
-      "facing": "EAST",
+      "facing": "east",
       "pos": "10 9 10",
       "type": "entities.ItemFrame"
     },
@@ -10950,7 +10947,7 @@
     {
       "stack": "minecraft:leather_helmet 0 {display:{color:6717235}}",
       "rotation": 0,
-      "facing": "EAST",
+      "facing": "east",
       "pos": "10 9 12",
       "type": "entities.ItemFrame"
     },

@@ -36,7 +36,7 @@ public class TileHatchery extends TileSingleStack implements ITickable {
         @SuppressWarnings("ConstantConditions")
         public void newDay(World world, BlockPos pos, IBlockState state) {
             TileHatchery hatchery = (TileHatchery) world.getTileEntity(pos);
-            if (hatchery.isOnWaterSurface(world, pos)) {
+            if (hatchery.isOnWaterSurface(world, pos.down())) {
                 ItemStack stack = hatchery.stack;
                 if (stack != null && stack.stackSize < 10) {
                     int daysRequired = FishingAPI.INSTANCE.getDaysFor(stack);
@@ -141,7 +141,7 @@ public class TileHatchery extends TileSingleStack implements ITickable {
     }
 
     private boolean isOnWaterSurface(World world, BlockPos pos) {
-        return world.isAirBlock(pos.up()) && FishingHelper.isWater(world, pos.east(), pos.west(), pos.north(), pos.south(), pos.east().south(), pos.east().north(), pos.west().north(), pos.west().south());
+        return FishingHelper.isWater(world, pos.east(), pos.west(), pos.north(), pos.south(), pos.east().south(), pos.east().north(), pos.west().north(), pos.west().south());
     }
 
     @Override

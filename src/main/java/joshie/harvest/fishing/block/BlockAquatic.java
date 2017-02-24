@@ -4,7 +4,7 @@ import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.block.BlockHFEnum;
 import joshie.harvest.core.base.item.ItemBlockHF;
 import joshie.harvest.core.base.tile.TileSingleStack;
-import joshie.harvest.fishing.block.BlockFishing.FishingBlock;
+import joshie.harvest.fishing.block.BlockAquatic.FishingBlock;
 import joshie.harvest.fishing.item.ItemBlockFishing;
 import joshie.harvest.fishing.tile.TileHatchery;
 import joshie.harvest.fishing.tile.TileTrap;
@@ -15,10 +15,10 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ChunkCache;
 import net.minecraft.world.IBlockAccess;
@@ -32,12 +32,13 @@ import javax.annotation.Nonnull;
 import java.util.Locale;
 
 import static joshie.harvest.core.proxy.HFClientProxy.NO_WATER;
-import static joshie.harvest.fishing.block.BlockFishing.FishingBlock.TRAP_BAITED;
+import static joshie.harvest.fishing.block.BlockAquatic.FishingBlock.HATCHERY;
+import static joshie.harvest.fishing.block.BlockAquatic.FishingBlock.TRAP_BAITED;
 import static net.minecraft.block.BlockLiquid.LEVEL;
 
-public class BlockFishing extends BlockHFEnum<BlockFishing, FishingBlock> {
-    public BlockFishing() {
-        super(Material.PISTON, FishingBlock.class, HFTab.FISHING);
+public class BlockAquatic extends BlockHFEnum<BlockAquatic, FishingBlock> {
+    public BlockAquatic() {
+        super(Material.WATER, FishingBlock.class, HFTab.FISHING);
     }
 
     @Override
@@ -49,11 +50,6 @@ public class BlockFishing extends BlockHFEnum<BlockFishing, FishingBlock> {
     @Override
     public ItemBlockHF getItemBlock() {
         return new ItemBlockFishing(this);
-    }
-
-    @SideOnly(Side.CLIENT)
-    public boolean canRenderInLayer(IBlockState state, BlockRenderLayer layer) {
-        return getEnumFromState(state) == FishingBlock.HATCHERY ? layer == BlockRenderLayer.TRANSLUCENT: layer == BlockRenderLayer.CUTOUT_MIPPED;
     }
 
     @SuppressWarnings("deprecation")
@@ -88,12 +84,30 @@ public class BlockFishing extends BlockHFEnum<BlockFishing, FishingBlock> {
     }
 
     @Override
+    @SuppressWarnings("deprecation, unchecked")
+    @Nonnull
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos) {
+        if (getEnumFromState(state) == HATCHERY) {
+            return new AxisAlignedBB(0.0D, -0.9D, 0.0D, 1.0D, 0.1D, 1.0D);
+        } else return super.getBoundingBox(state, world, pos);
+    }
+
+    @Override
+    @SuppressWarnings("deprecation, unchecked")
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState state, @Nonnull World world, @Nonnull BlockPos pos) {
+        if (getEnumFromState(state) == HATCHERY) {
+            return new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.001D, 1.0D);
+        } else return super.getBoundingBox(state, world, pos);
+    }
+
+    @Override
     public boolean hasTileEntity(IBlockState state) {
         return true;
     }
 
     @Override
-    public TileEntity createTileEntity(World world, IBlockState state) {
+    @Nonnull
+    public TileEntity createTileEntity(@Nonnull World world, @Nonnull IBlockState state) {
         switch (getEnumFromState(state)) {
             case TRAP:
             case TRAP_BAITED:   return new TileTrap();

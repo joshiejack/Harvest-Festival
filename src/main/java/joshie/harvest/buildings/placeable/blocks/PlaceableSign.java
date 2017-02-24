@@ -13,6 +13,7 @@ public class PlaceableSign extends PlaceableDecorative {
     @Expose
     private ITextComponent[] text;
 
+    @SuppressWarnings("unused")
     public PlaceableSign() {}
     public PlaceableSign(IBlockState state, int x, int y, int z, ITextComponent... text) {
         super(state, x, y, z);

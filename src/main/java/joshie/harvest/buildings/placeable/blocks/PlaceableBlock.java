@@ -8,22 +8,11 @@ import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import java.util.EnumMap;
-
 public class PlaceableBlock extends Placeable {
-    private EnumMap<Rotation, IBlockState> states = new EnumMap<>(Rotation.class);
-
     @Expose
     protected IBlockState state;
 
     public PlaceableBlock() {}
-    public PlaceableBlock(BlockPos pos, PlaceableBlock block) {
-        state = block.state;
-        for (Rotation rotation: Rotation.values()) {
-            states.put(rotation, state.withRotation(rotation));
-        }
-    }
-
     public PlaceableBlock(IBlockState state, int x, int y, int z) {
         this.state = state;
         this.pos = new BlockPos(x, y, z);
@@ -36,11 +25,6 @@ public class PlaceableBlock extends Placeable {
 
     @Override
     public PlaceableBlock init() {
-        if (states == null) states = new EnumMap<>(Rotation.class);
-        for (Rotation rotation: Rotation.values()) {
-            states.put(rotation, state.withRotation(rotation));
-        }
-
         return this;
     }
 
@@ -61,7 +45,7 @@ public class PlaceableBlock extends Placeable {
         return stage == ConstructionStage.BUILD;
     }
 
-    public boolean prePlace (World world, BlockPos pos) {
+    private boolean prePlace (World world, BlockPos pos) {
         return world.getBlockState(pos).getBlockHardness(world, pos) != -1.0F;
     }
 

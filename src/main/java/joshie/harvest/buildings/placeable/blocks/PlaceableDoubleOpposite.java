@@ -6,6 +6,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class PlaceableDoubleOpposite extends PlaceableDecorative {
+    @SuppressWarnings("unused")
     public PlaceableDoubleOpposite(){}
     public PlaceableDoubleOpposite(IBlockState state, int x, int y, int z) {
         super(state, x, y, z);

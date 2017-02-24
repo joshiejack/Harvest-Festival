@@ -30,7 +30,6 @@ public class TileSpecialRendererItem<T extends TileEntity> extends TileEntitySpe
         GlStateManager.rotate(-15, 0F, 1F, 0F);
         GlStateManager.scale(0.25F, 0.25F, 0.25F);
         if (!isBlock) {
-            //GlStateManager.rotate(-180, 1F, 0F, 0F);
             GlStateManager.rotate(rotation, 0F, 1F, 0F);
             GlStateManager.rotate(-190, 0F, 1F, 0F);
             GlStateManager.translate(offset1 * 3F, offset2 * 3.5F, position * 0.75F);

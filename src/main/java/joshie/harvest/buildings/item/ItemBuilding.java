@@ -6,6 +6,7 @@ import joshie.harvest.buildings.BuildingHelper;
 import joshie.harvest.buildings.BuildingRegistry;
 import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.buildings.render.BuildingKey;
+import joshie.harvest.core.HFCore;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.item.ItemHFFML;
 import joshie.harvest.core.helpers.TextHelper;
@@ -47,7 +48,7 @@ public class ItemBuilding extends ItemHFFML<ItemBuilding, Building> implements I
             BlockPos pos = raytrace.getBlockPos();
             if (player.canPlayerEdit(pos, EnumFacing.DOWN, stack)) {
                 TownData town = TownHelper.getClosestTownToBlockPos(world, pos, false);
-                if ((!town.hasBuilding(building) && !town.isBuilding(building)) || building.canHaveMultiple()) {
+                if ((!town.hasBuilding(building) && !town.isBuilding(building)) || building.canHaveMultiple() || HFCore.DEBUG_MODE) {
                     BuildingKey key = BuildingHelper.getPositioning(stack, world, raytrace, building, player, true);
                     if (key != null) {
                         if (!world.isRemote) {

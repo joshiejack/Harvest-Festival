@@ -2,11 +2,39 @@
   "components": [
     {
       "state": "sandstone",
+      "pos": "4 0 4"
+    },
+    {
+      "state": "sandstone",
+      "pos": "4 0 5"
+    },
+    {
+      "state": "sandstone",
+      "pos": "4 0 6"
+    },
+    {
+      "state": "sandstone",
+      "pos": "4 0 7"
+    },
+    {
+      "state": "sandstone",
+      "pos": "5 0 7"
+    },
+    {
+      "state": "sandstone",
       "pos": "5 0 6"
     },
     {
       "state": "sandstone",
       "pos": "5 0 5"
+    },
+    {
+      "state": "sandstone",
+      "pos": "5 0 4"
+    },
+    {
+      "state": "sandstone",
+      "pos": "6 0 4"
     },
     {
       "state": "sandstone",
@@ -22,10 +50,6 @@
     },
     {
       "state": "sandstone",
-      "pos": "7 0 7"
-    },
-    {
-      "state": "sandstone",
       "pos": "7 0 6"
     },
     {
@@ -34,18 +58,54 @@
     },
     {
       "state": "sandstone",
-      "pos": "8 0 6"
+      "pos": "3 1 7"
     },
     {
       "state": "sandstone",
+      "pos": "3 1 6"
+    },
+    {
+      "state": "sandstone",
+      "pos": "3 1 5"
+    },
+    {
+      "state": "sandstone",
+      "pos": "3 1 4"
+    },
+    {
+      "state": "sandstone",
+      "pos": "3 1 3"
+    },
+    {
+      "state": "sandstone",
+      "pos": "4 1 3"
+    },
+    {
+      "state": "sand",
+      "pos": "4 1 4"
+    },
+    {
+      "state": "sand",
       "pos": "4 1 5"
     },
     {
-      "state": "sandstone",
+      "state": "sand",
       "pos": "4 1 6"
     },
     {
+      "state": "sand",
+      "pos": "4 1 7"
+    },
+    {
       "state": "sandstone",
+      "pos": "4 1 8"
+    },
+    {
+      "state": "sandstone",
+      "pos": "5 1 8"
+    },
+    {
+      "state": "sand",
       "pos": "5 1 7"
     },
     {
@@ -57,11 +117,19 @@
       "pos": "5 1 5"
     },
     {
-      "state": "sandstone",
+      "state": "sand",
       "pos": "5 1 4"
     },
     {
       "state": "sandstone",
+      "pos": "5 1 3"
+    },
+    {
+      "state": "sandstone",
+      "pos": "6 1 3"
+    },
+    {
+      "state": "sand",
       "pos": "6 1 4"
     },
     {
@@ -85,7 +153,7 @@
       "pos": "7 1 8"
     },
     {
-      "state": "sand",
+      "state": "sandstone",
       "pos": "7 1 7"
     },
     {
@@ -102,31 +170,123 @@
     },
     {
       "state": "sandstone",
+      "pos": "7 1 3"
+    },
+    {
+      "state": "sandstone",
+      "pos": "8 1 4"
+    },
+    {
+      "state": "sandstone",
       "pos": "8 1 5"
     },
     {
-      "state": "sand",
+      "state": "sandstone",
       "pos": "8 1 6"
     },
     {
       "state": "sandstone",
-      "pos": "8 1 7"
+      "pos": "2 2 3"
     },
     {
       "state": "sandstone",
-      "pos": "9 1 6"
+      "pos": "2 2 4"
+    },
+    {
+      "state": "sandstone",
+      "pos": "2 2 5"
+    },
+    {
+      "state": "sandstone",
+      "pos": "2 2 6"
+    },
+    {
+      "state": "sandstone",
+      "pos": "2 2 7"
+    },
+    {
+      "state": "sandstone",
+      "pos": "2 2 8"
+    },
+    {
+      "state": "sandstone",
+      "pos": "3 2 9"
+    },
+    {
+      "state": "sandstone",
+      "pos": "3 2 8"
     },
     {
       "state": "sand",
-      "pos": "4 2 5"
+      "pos": "3 2 7"
     },
     {
       "state": "sand",
-      "pos": "4 2 6"
+      "pos": "3 2 6"
     },
     {
       "state": "sand",
-      "pos": "5 2 7"
+      "pos": "3 2 5"
+    },
+    {
+      "state": "sand",
+      "pos": "3 2 4"
+    },
+    {
+      "state": "sand",
+      "pos": "3 2 3"
+    },
+    {
+      "state": "sandstone",
+      "pos": "3 2 2"
+    },
+    {
+      "state": "sandstone",
+      "pos": "4 2 2"
+    },
+    {
+      "state": "sand",
+      "pos": "4 2 3"
+    },
+    {
+      "state": "water",
+      "pos": "4 2 4",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "water",
+      "pos": "4 2 5",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "water",
+      "pos": "4 2 6",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "sand",
+      "pos": "4 2 7"
+    },
+    {
+      "state": "sand",
+      "pos": "4 2 8"
+    },
+    {
+      "state": "sandstone",
+      "pos": "4 2 9"
+    },
+    {
+      "state": "sandstone",
+      "pos": "5 2 9"
+    },
+    {
+      "state": "sand",
+      "pos": "5 2 8"
+    },
+    {
+      "state": "water",
+      "pos": "5 2 7",
+      "type": "blocks.Decorative"
     },
     {
       "state": "water",
@@ -139,12 +299,30 @@
       "type": "blocks.Decorative"
     },
     {
-      "state": "sand",
-      "pos": "5 2 4"
+      "state": "water",
+      "pos": "5 2 4",
+      "type": "blocks.Decorative"
     },
     {
       "state": "sand",
-      "pos": "6 2 4"
+      "pos": "5 2 3"
+    },
+    {
+      "state": "sandstone",
+      "pos": "5 2 2"
+    },
+    {
+      "state": "sandstone",
+      "pos": "6 2 2"
+    },
+    {
+      "state": "sand",
+      "pos": "6 2 3"
+    },
+    {
+      "state": "water",
+      "pos": "6 2 4",
+      "type": "blocks.Decorative"
     },
     {
       "state": "water",
@@ -166,13 +344,20 @@
       "pos": "6 2 8"
     },
     {
+      "state": "sandstone",
+      "pos": "6 2 9"
+    },
+    {
+      "state": "sandstone",
+      "pos": "7 2 9"
+    },
+    {
       "state": "sand",
       "pos": "7 2 8"
     },
     {
-      "state": "water",
-      "pos": "7 2 7",
-      "type": "blocks.Decorative"
+      "state": "sand",
+      "pos": "7 2 7"
     },
     {
       "state": "water",
@@ -190,45 +375,121 @@
     },
     {
       "state": "sand",
+      "pos": "7 2 3"
+    },
+    {
+      "state": "sandstone",
+      "pos": "7 2 2"
+    },
+    {
+      "state": "sandstone",
+      "pos": "8 2 3"
+    },
+    {
+      "state": "sand",
+      "pos": "8 2 4"
+    },
+    {
+      "state": "sand",
       "pos": "8 2 5"
     },
     {
-      "state": "water",
-      "pos": "8 2 6",
-      "type": "blocks.Decorative"
+      "state": "sand",
+      "pos": "8 2 6"
     },
     {
-      "state": "sand",
+      "state": "sandstone",
       "pos": "8 2 7"
     },
     {
-      "state": "sand",
+      "state": "sandstone",
+      "pos": "8 2 8"
+    },
+    {
+      "state": "sandstone",
       "pos": "9 2 6"
     },
     {
-      "state": "vine 8",
-      "pos": "3 3 10",
-      "type": "blocks.Decorative"
+      "state": "sandstone",
+      "pos": "9 2 5"
     },
     {
-      "state": "grass",
+      "state": "sandstone",
+      "pos": "9 2 4"
+    },
+    {
+      "state": "sand",
+      "pos": "2 3 3"
+    },
+    {
+      "state": "sand",
+      "pos": "2 3 4"
+    },
+    {
+      "state": "sand",
+      "pos": "2 3 5"
+    },
+    {
+      "state": "sand",
+      "pos": "2 3 6"
+    },
+    {
+      "state": "sand",
+      "pos": "2 3 7"
+    },
+    {
+      "state": "sand",
+      "pos": "2 3 8"
+    },
+    {
+      "state": "sand",
+      "pos": "3 3 9"
+    },
+    {
+      "state": "sand",
+      "pos": "3 3 8"
+    },
+    {
+      "state": "sand",
       "pos": "3 3 7"
     },
     {
-      "state": "grass",
-      "pos": "3 3 6"
+      "state": "water",
+      "pos": "3 3 6",
+      "type": "blocks.Decorative"
     },
     {
-      "state": "grass",
-      "pos": "3 3 5"
+      "state": "water",
+      "pos": "3 3 5",
+      "type": "blocks.Decorative"
     },
     {
-      "state": "grass",
-      "pos": "4 3 3"
+      "state": "water",
+      "pos": "3 3 4",
+      "type": "blocks.Decorative"
     },
     {
-      "state": "grass",
-      "pos": "4 3 4"
+      "state": "water",
+      "pos": "3 3 3",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "sand",
+      "pos": "3 3 2"
+    },
+    {
+      "state": "sand",
+      "pos": "4 3 2"
+    },
+    {
+      "state": "water",
+      "pos": "4 3 3",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "water",
+      "pos": "4 3 4",
+      "type": "blocks.Decorative"
     },
     {
       "state": "water",
@@ -241,31 +502,27 @@
       "type": "blocks.Decorative"
     },
     {
-      "state": "grass",
-      "pos": "4 3 7"
-    },
-    {
-      "state": "vine 1",
-      "pos": "4 3 9",
+      "state": "water",
+      "pos": "4 3 7",
       "type": "blocks.Decorative"
     },
     {
-      "state": "log 1",
-      "pos": "4 3 10"
-    },
-    {
-      "state": "vine 4",
-      "pos": "4 3 11",
+      "state": "water",
+      "pos": "4 3 8",
       "type": "blocks.Decorative"
     },
     {
-      "state": "vine 2",
-      "pos": "5 3 10",
-      "type": "blocks.Decorative"
+      "state": "sand",
+      "pos": "4 3 9"
     },
     {
-      "state": "grass",
-      "pos": "5 3 8"
+      "state": "sand",
+      "pos": "5 3 9"
+    },
+    {
+      "state": "water",
+      "pos": "5 3 8",
+      "type": "blocks.Decorative"
     },
     {
       "state": "water",
@@ -288,12 +545,22 @@
       "type": "blocks.Decorative"
     },
     {
-      "state": "grass",
-      "pos": "5 3 3"
+      "state": "water",
+      "pos": "5 3 3",
+      "type": "blocks.Decorative"
     },
     {
-      "state": "grass",
-      "pos": "6 3 3"
+      "state": "sand",
+      "pos": "5 3 2"
+    },
+    {
+      "state": "sand",
+      "pos": "6 3 2"
+    },
+    {
+      "state": "water",
+      "pos": "6 3 3",
+      "type": "blocks.Decorative"
     },
     {
       "state": "water",
@@ -321,11 +588,11 @@
       "type": "blocks.Decorative"
     },
     {
-      "state": "grass",
+      "state": "sand",
       "pos": "6 3 9"
     },
     {
-      "state": "grass",
+      "state": "sand",
       "pos": "7 3 9"
     },
     {
@@ -354,15 +621,20 @@
       "type": "blocks.Decorative"
     },
     {
-      "state": "grass",
-      "pos": "7 3 3"
+      "state": "water",
+      "pos": "7 3 3",
+      "type": "blocks.Decorative"
     },
     {
-      "state": "grass",
+      "state": "sand",
+      "pos": "7 3 2"
+    },
+    {
+      "state": "sand",
       "pos": "8 3 3"
     },
     {
-      "state": "grass",
+      "state": "sand",
       "pos": "8 3 4"
     },
     {
@@ -376,211 +648,620 @@
       "type": "blocks.Decorative"
     },
     {
-      "state": "water",
-      "pos": "8 3 7",
-      "type": "blocks.Decorative"
+      "state": "sand",
+      "pos": "8 3 7"
     },
     {
-      "state": "grass",
+      "state": "sand",
       "pos": "8 3 8"
     },
     {
-      "state": "grass",
-      "pos": "9 3 8"
+      "state": "sand",
+      "pos": "9 3 6"
     },
     {
-      "state": "grass",
-      "pos": "9 3 7"
-    },
-    {
-      "state": "water",
-      "pos": "9 3 6",
-      "type": "blocks.Decorative"
-    },
-    {
-      "state": "grass",
+      "state": "sand",
       "pos": "9 3 5"
     },
     {
-      "state": "grass",
+      "state": "sand",
       "pos": "9 3 4"
     },
     {
       "state": "grass",
-      "pos": "10 3 4"
+      "pos": "0 4 6"
     },
     {
       "state": "grass",
-      "pos": "10 3 5"
+      "pos": "1 4 8"
     },
     {
       "state": "grass",
-      "pos": "10 3 6"
+      "pos": "1 4 7"
     },
     {
       "state": "grass",
-      "pos": "10 3 7"
+      "pos": "1 4 6"
     },
     {
       "state": "grass",
-      "pos": "10 3 8"
+      "pos": "1 4 5"
     },
     {
-      "homeString": "pond.back",
-      "npc": "",
-      "pos": "0 4 7",
-      "type": "entities.NPC"
+      "state": "grass",
+      "pos": "1 4 4"
     },
     {
-      "pos": "0 4 7"
+      "state": "grass",
+      "pos": "1 4 3"
     },
     {
-      "state": "vine 8",
-      "pos": "3 4 10",
+      "state": "grass",
+      "pos": "1 4 2"
+    },
+    {
+      "state": "grass",
+      "pos": "2 4 1"
+    },
+    {
+      "state": "grass",
+      "pos": "2 4 2"
+    },
+    {
+      "state": "water",
+      "pos": "2 4 3",
       "type": "blocks.Decorative"
     },
     {
-      "state": "fence",
-      "pos": "3 4 7"
+      "state": "water",
+      "pos": "2 4 4",
+      "type": "blocks.Decorative"
     },
     {
-      "state": "reeds",
+      "state": "water",
+      "pos": "2 4 5",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "water",
+      "pos": "2 4 6",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "water",
+      "pos": "2 4 7",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "grass",
+      "pos": "2 4 8"
+    },
+    {
+      "state": "grass",
+      "pos": "3 4 9"
+    },
+    {
+      "state": "water",
+      "pos": "3 4 8",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "water",
+      "pos": "3 4 7",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "water",
       "pos": "3 4 6",
       "type": "blocks.Decorative"
     },
     {
-      "state": "fence",
-      "pos": "3 4 5"
+      "state": "water",
+      "pos": "3 4 5",
+      "type": "blocks.Decorative"
     },
     {
-      "state": "tallgrass 1",
-      "pos": "4 4 3"
+      "state": "water",
+      "pos": "3 4 4",
+      "type": "blocks.Decorative"
     },
     {
-      "state": "double_plant 5",
+      "state": "water",
+      "pos": "3 4 3",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "water",
+      "pos": "3 4 2",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "grass",
+      "pos": "3 4 1"
+    },
+    {
+      "state": "grass",
+      "pos": "4 4 1"
+    },
+    {
+      "state": "water",
+      "pos": "4 4 2",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "water",
+      "pos": "4 4 3",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "water",
       "pos": "4 4 4",
-      "type": "blocks.Double"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "tallgrass 1",
-      "pos": "4 4 7"
+      "state": "water",
+      "pos": "4 4 5",
+      "type": "blocks.Decorative"
     },
     {
-      "state": "vine 1",
+      "state": "water",
+      "pos": "4 4 6",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "water",
+      "pos": "4 4 7",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "water",
+      "pos": "4 4 8",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "water",
       "pos": "4 4 9",
       "type": "blocks.Decorative"
     },
     {
-      "state": "log 1",
+      "state": "grass",
       "pos": "4 4 10"
     },
     {
-      "state": "vine 4",
-      "pos": "4 4 11",
+      "state": "grass",
+      "pos": "5 4 10"
+    },
+    {
+      "state": "water",
+      "pos": "5 4 9",
       "type": "blocks.Decorative"
     },
     {
-      "state": "vine 2",
-      "pos": "5 4 10",
-      "type": "blocks.Decorative"
-    },
-    {
-      "state": "double_plant 3",
+      "state": "water",
       "pos": "5 4 8",
-      "type": "blocks.Double"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "red_flower 3",
+      "state": "water",
+      "pos": "5 4 7",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "water",
+      "pos": "5 4 6",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "water",
+      "pos": "5 4 5",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "water",
+      "pos": "5 4 4",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "water",
       "pos": "5 4 3",
       "type": "blocks.Decorative"
     },
     {
-      "homeString": "pond.right",
-      "npc": "",
-      "pos": "6 4 0",
-      "type": "entities.NPC"
+      "state": "water",
+      "pos": "5 4 2",
+      "type": "blocks.Decorative"
     },
     {
-      "pos": "6 4 0"
+      "state": "grass",
+      "pos": "5 4 1"
     },
     {
-      "state": "tallgrass 1",
-      "pos": "6 4 3"
+      "state": "grass",
+      "pos": "6 4 1"
     },
     {
-      "state": "waterlily",
+      "state": "water",
+      "pos": "6 4 2",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "water",
+      "pos": "6 4 3",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "water",
+      "pos": "6 4 4",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "water",
       "pos": "6 4 5",
       "type": "blocks.Decorative"
     },
     {
-      "state": "red_flower 1",
+      "state": "water",
+      "pos": "6 4 6",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "water",
+      "pos": "6 4 7",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "water",
+      "pos": "6 4 8",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "water",
       "pos": "6 4 9",
       "type": "blocks.Decorative"
     },
     {
-      "state": "double_plant",
+      "state": "grass",
+      "pos": "6 4 10"
+    },
+    {
+      "state": "grass",
+      "pos": "6 4 11"
+    },
+    {
+      "state": "grass",
+      "pos": "7 4 10"
+    },
+    {
+      "state": "water",
       "pos": "7 4 9",
-      "type": "blocks.Double"
+      "type": "blocks.Decorative"
     },
     {
-      "text": [
-        "",
-        "",
-        "",
-        ""
-      ],
-      "state": "wall_sign 4",
+      "state": "water",
+      "pos": "7 4 8",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "water",
+      "pos": "7 4 7",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "water",
       "pos": "7 4 6",
-      "type": "blocks.Sign"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "double_plant 1",
+      "state": "water",
+      "pos": "7 4 5",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "water",
+      "pos": "7 4 4",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "water",
       "pos": "7 4 3",
-      "type": "blocks.Double"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "tallgrass 1",
-      "pos": "8 4 3"
+      "state": "water",
+      "pos": "7 4 2",
+      "type": "blocks.Decorative"
     },
     {
-      "state": "tallgrass 2",
-      "pos": "8 4 4"
+      "state": "grass",
+      "pos": "7 4 1"
     },
     {
-      "text": [
-        "",
-        "",
-        "",
-        ""
-      ],
-      "state": "wall_sign 2",
+      "state": "grass",
+      "pos": "7 4 0"
+    },
+    {
+      "state": "grass",
+      "pos": "8 4 1"
+    },
+    {
+      "state": "grass",
+      "pos": "8 4 2"
+    },
+    {
+      "state": "water",
+      "pos": "8 4 3",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "water",
+      "pos": "8 4 4",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "water",
       "pos": "8 4 5",
-      "type": "blocks.Sign"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "wooden_slab 9",
-      "pos": "8 4 6"
+      "state": "water",
+      "pos": "8 4 6",
+      "type": "blocks.Decorative"
     },
     {
-      "text": [
-        "",
-        "",
-        "",
-        ""
-      ],
-      "state": "wall_sign 3",
+      "state": "water",
       "pos": "8 4 7",
-      "type": "blocks.Sign"
+      "type": "blocks.Decorative"
     },
     {
-      "state": "red_flower 6",
+      "state": "water",
       "pos": "8 4 8",
       "type": "blocks.Decorative"
     },
     {
-      "state": "red_flower 3",
-      "pos": "9 4 8",
+      "state": "grass",
+      "pos": "8 4 9"
+    },
+    {
+      "state": "grass",
+      "pos": "8 4 10"
+    },
+    {
+      "state": "grass",
+      "pos": "9 4 9"
+    },
+    {
+      "state": "grass",
+      "pos": "9 4 8"
+    },
+    {
+      "state": "grass",
+      "pos": "9 4 7"
+    },
+    {
+      "state": "water",
+      "pos": "9 4 6",
       "type": "blocks.Decorative"
+    },
+    {
+      "state": "water",
+      "pos": "9 4 5",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "water",
+      "pos": "9 4 4",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "grass",
+      "pos": "9 4 3"
+    },
+    {
+      "state": "grass",
+      "pos": "9 4 2"
+    },
+    {
+      "state": "grass",
+      "pos": "9 4 1"
+    },
+    {
+      "state": "grass",
+      "pos": "10 4 2"
+    },
+    {
+      "state": "grass",
+      "pos": "10 4 3"
+    },
+    {
+      "state": "grass",
+      "pos": "10 4 4"
+    },
+    {
+      "state": "grass",
+      "pos": "10 4 5"
+    },
+    {
+      "state": "grass",
+      "pos": "10 4 6"
+    },
+    {
+      "state": "grass",
+      "pos": "10 4 7"
+    },
+    {
+      "state": "grass",
+      "pos": "10 4 8"
+    },
+    {
+      "state": "grass",
+      "pos": "11 4 7"
+    },
+    {
+      "state": "grass",
+      "pos": "11 4 6"
+    },
+    {
+      "state": "grass",
+      "pos": "11 4 5"
+    },
+    {
+      "state": "grass",
+      "pos": "11 4 4"
+    },
+    {
+      "state": "grass",
+      "pos": "11 4 3"
+    },
+    {
+      "state": "grass",
+      "pos": "12 4 5"
+    },
+    {
+      "state": "tallgrass 1",
+      "pos": "0 5 6"
+    },
+    {
+      "state": "tallgrass 1",
+      "pos": "1 5 8"
+    },
+    {
+      "state": "tallgrass 1",
+      "pos": "1 5 7"
+    },
+    {
+      "state": "red_flower 1",
+      "pos": "1 5 5",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "tallgrass 1",
+      "pos": "1 5 4"
+    },
+    {
+      "state": "double_plant 5",
+      "pos": "1 5 3",
+      "type": "blocks.Double"
+    },
+    {
+      "state": "tallgrass 1",
+      "pos": "1 5 2"
+    },
+    {
+      "state": "double_plant 4",
+      "pos": "2 5 1",
+      "type": "blocks.Double"
+    },
+    {
+      "state": "red_flower 6",
+      "pos": "2 5 8",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "double_plant 5",
+      "pos": "3 5 9",
+      "type": "blocks.Double"
+    },
+    {
+      "state": "tallgrass 1",
+      "pos": "3 5 1"
+    },
+    {
+      "state": "double_plant 5",
+      "pos": "4 5 1",
+      "type": "blocks.Double"
+    },
+    {
+      "state": "waterlily",
+      "pos": "4 5 3",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "waterlily",
+      "pos": "4 5 7",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "spruce_fence",
+      "pos": "4 5 10"
+    },
+    {
+      "state": "reeds",
+      "pos": "5 5 10",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "red_flower 1",
+      "pos": "5 5 1",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "tallgrass 1",
+      "pos": "6 5 1"
+    },
+    {
+      "state": "waterlily",
+      "pos": "6 5 9",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "spruce_fence",
+      "pos": "6 5 10"
+    },
+    {
+      "state": "double_plant 4",
+      "pos": "6 5 11",
+      "type": "blocks.Double"
+    },
+    {
+      "state": "tallgrass 1",
+      "pos": "7 5 10"
+    },
+    {
+      "state": "waterlily",
+      "pos": "7 5 4",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "red_flower 3",
+      "pos": "7 5 1",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "tallgrass 1",
+      "pos": "7 5 0"
+    },
+    {
+      "state": "double_plant 5",
+      "pos": "8 5 1",
+      "type": "blocks.Double"
+    },
+    {
+      "state": "waterlily",
+      "pos": "8 5 6",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "red_flower 1",
+      "pos": "8 5 9",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "red_flower 6",
+      "pos": "8 5 10",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "tallgrass 1",
+      "pos": "9 5 9"
+    },
+    {
+      "state": "red_flower 3",
+      "pos": "9 5 8",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "tallgrass 1",
+      "pos": "9 5 7"
     },
     {
       "text": [
@@ -590,12 +1271,12 @@
         ""
       ],
       "state": "wall_sign 3",
-      "pos": "9 4 7",
+      "pos": "9 5 6",
       "type": "blocks.Sign"
     },
     {
-      "state": "spruce_stairs 4",
-      "pos": "9 4 6"
+      "state": "wooden_slab 9",
+      "pos": "9 5 5"
     },
     {
       "text": [
@@ -605,80 +1286,174 @@
         ""
       ],
       "state": "wall_sign 2",
-      "pos": "9 4 5",
+      "pos": "9 5 4",
       "type": "blocks.Sign"
     },
     {
       "state": "tallgrass 1",
-      "pos": "9 4 4"
+      "pos": "9 5 3"
     },
     {
-      "state": "tallgrass 2",
-      "pos": "10 4 4"
-    },
-    {
-      "state": "red_flower 6",
-      "pos": "10 4 5",
+      "state": "red_flower 1",
+      "pos": "9 5 2",
       "type": "blocks.Decorative"
-    },
-    {
-      "state": "spruce_stairs 1",
-      "pos": "10 4 6"
     },
     {
       "state": "tallgrass 1",
-      "pos": "10 4 7"
+      "pos": "9 5 1"
     },
     {
-      "state": "tallgrass 2",
-      "pos": "10 4 8"
+      "state": "tallgrass 1",
+      "pos": "10 5 2"
     },
     {
-      "homeString": "pond.left",
-      "npc": "",
-      "pos": "11 4 11",
-      "type": "entities.NPC"
+      "state": "double_plant 5",
+      "pos": "10 5 3",
+      "type": "blocks.Double"
     },
     {
-      "pos": "11 4 11"
+      "text": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "state": "wall_sign 2",
+      "pos": "10 5 4",
+      "type": "blocks.Sign"
     },
     {
-      "state": "fence",
-      "pos": "3 5 7"
+      "state": "spruce_stairs 4",
+      "pos": "10 5 5"
+    },
+    {
+      "text": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "state": "wall_sign 3",
+      "pos": "10 5 6",
+      "type": "blocks.Sign"
+    },
+    {
+      "state": "tallgrass 1",
+      "pos": "10 5 7"
+    },
+    {
+      "state": "tallgrass 1",
+      "pos": "10 5 8"
+    },
+    {
+      "state": "spruce_fence",
+      "pos": "11 5 7"
+    },
+    {
+      "text": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "state": "wall_sign 3",
+      "pos": "11 5 6",
+      "type": "blocks.Sign"
+    },
+    {
+      "state": "spruce_stairs 4",
+      "pos": "11 5 5"
+    },
+    {
+      "text": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "state": "wall_sign 2",
+      "pos": "11 5 4",
+      "type": "blocks.Sign"
+    },
+    {
+      "state": "spruce_fence",
+      "pos": "11 5 3"
+    },
+    {
+      "state": "spruce_stairs 1",
+      "pos": "12 5 5"
+    },
+    {
+      "state": "spruce_fence",
+      "pos": "4 6 10"
     },
     {
       "state": "reeds",
-      "pos": "3 5 6",
+      "pos": "5 6 10",
       "type": "blocks.Decorative"
     },
     {
-      "state": "fence",
-      "pos": "3 5 5"
+      "state": "spruce_fence",
+      "pos": "6 6 10"
+    },
+    {
+      "state": "spruce_fence",
+      "pos": "11 6 7"
+    },
+    {
+      "state": "spruce_fence",
+      "pos": "11 6 3"
     },
     {
       "state": "wooden_slab 1",
-      "pos": "4 5 10"
-    },
-    {
-      "homeString": "pond.pier",
-      "npc": "",
-      "pos": "8 5 6",
-      "type": "entities.NPC"
-    },
-    {
-      "pos": "8 5 6"
+      "pos": "4 7 10"
     },
     {
       "state": "wooden_slab 1",
-      "pos": "3 6 7"
+      "pos": "5 7 10"
     },
     {
       "state": "wooden_slab 1",
-      "pos": "3 6 6"
+      "pos": "6 7 10"
+    },
+    {
+      "state": "spruce_fence",
+      "pos": "11 7 7"
+    },
+    {
+      "state": "spruce_fence",
+      "pos": "11 7 3"
     },
     {
       "state": "wooden_slab 1",
-      "pos": "3 6 5"
+      "pos": "11 8 7"
+    },
+    {
+      "state": "wooden_slab 9",
+      "pos": "11 8 6"
+    },
+    {
+      "state": "wooden_slab 9",
+      "pos": "11 8 5"
+    },
+    {
+      "state": "wooden_slab 9",
+      "pos": "11 8 4"
+    },
+    {
+      "state": "wooden_slab 1",
+      "pos": "11 8 3"
+    },
+    {
+      "text": [
+        "~~~~~~~~~~~~",
+        "Fishing Pond",
+        "",
+        "~~~~~~~~~~~~"
+      ],
+      "state": "wall_sign 5",
+      "pos": "12 8 5",
+      "type": "blocks.Sign"
     }
   ]
 }

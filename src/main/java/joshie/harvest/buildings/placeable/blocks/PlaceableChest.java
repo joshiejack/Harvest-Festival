@@ -15,6 +15,7 @@ public class PlaceableChest extends PlaceableBlock {
     @Expose
     private ResourceLocation chestType;
 
+    @SuppressWarnings("unused")
     public PlaceableChest() {}
     public PlaceableChest(String name, IBlockState state, int x, int y, int z) {
         super(state, x, y, z);

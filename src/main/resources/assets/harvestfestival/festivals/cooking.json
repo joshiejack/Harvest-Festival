@@ -856,8 +856,10 @@
       "pos": "7 2 20"
     },
     {
+      "facing": "north",
       "state": "harvestfestival:stand",
-      "pos": "8 2 21"
+      "pos": "8 2 21",
+      "type": "blocks.Stand"
     },
     {
       "pos": "8 2 22"
@@ -872,12 +874,16 @@
       "pos": "9 2 22"
     },
     {
+      "facing": "north",
       "state": "harvestfestival:stand",
-      "pos": "9 2 21"
+      "pos": "9 2 21",
+      "type": "blocks.Stand"
     },
     {
+      "facing": "north",
       "state": "harvestfestival:stand",
-      "pos": "10 2 21"
+      "pos": "10 2 21",
+      "type": "blocks.Stand"
     },
     {
       "pos": "10 2 22"
@@ -892,8 +898,10 @@
       "pos": "11 2 22"
     },
     {
+      "facing": "north",
       "state": "harvestfestival:stand",
-      "pos": "11 2 21"
+      "pos": "11 2 21",
+      "type": "blocks.Stand"
     },
     {
       "pos": "12 2 20"

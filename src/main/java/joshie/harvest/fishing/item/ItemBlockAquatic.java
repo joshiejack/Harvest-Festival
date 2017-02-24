@@ -1,8 +1,8 @@
 package joshie.harvest.fishing.item;
 
 import joshie.harvest.core.base.item.ItemBlockHF;
-import joshie.harvest.fishing.block.BlockFishing;
-import joshie.harvest.fishing.block.BlockFishing.FishingBlock;
+import joshie.harvest.fishing.block.BlockAquatic;
+import joshie.harvest.fishing.block.BlockAquatic.FishingBlock;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -17,8 +17,8 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
 
-public class ItemBlockFishing extends ItemBlockHF<BlockFishing> {
-    public ItemBlockFishing(BlockFishing block) {
+public class ItemBlockAquatic extends ItemBlockHF<BlockAquatic> {
+    public ItemBlockAquatic(BlockAquatic block) {
         super(block);
     }
 
@@ -26,7 +26,7 @@ public class ItemBlockFishing extends ItemBlockHF<BlockFishing> {
     @Nonnull
     @SuppressWarnings("ConstantConditions")
     public ActionResult<ItemStack> onItemRightClick(@Nonnull ItemStack stack, World world, EntityPlayer player, EnumHand hand) {
-        if (getBlock().getEnumFromStack(stack) != FishingBlock.HATCHERY) return new ActionResult<>(EnumActionResult.PASS, stack);
+        IBlockState state = getBlock().getStateFromMeta(stack.getItemDamage());
         RayTraceResult raytraceresult = rayTrace(world, player, true);
         if (raytraceresult == null) {
             return new ActionResult<>(EnumActionResult.PASS, stack);
@@ -42,8 +42,8 @@ public class ItemBlockFishing extends ItemBlockHF<BlockFishing> {
                 if (iblockstate.getMaterial() == Material.WATER && (iblockstate.getValue(BlockLiquid.LEVEL)) == 0 && world.isAirBlock(blockpos1)) {
                     // special case for handling block placement with water lilies
                     net.minecraftforge.common.util.BlockSnapshot blocksnapshot = net.minecraftforge.common.util.BlockSnapshot.getBlockSnapshot(world, blockpos1);
-                    world.setBlockState(blockpos1, getBlock().getStateFromEnum(FishingBlock.HATCHERY));
-                    if (net.minecraftforge.event.ForgeEventFactory.onPlayerBlockPlace(player, blocksnapshot, net.minecraft.util.EnumFacing.UP).isCanceled()) {
+                    world.setBlockState(blockpos1, state);
+                    if (net.minecraftforge.event.ForgeEventFactory.onPlayerBlockPlace(player, blocksnapshot, EnumFacing.UP).isCanceled()) {
                         blocksnapshot.restore(true, false);
                         return new ActionResult<>(EnumActionResult.FAIL, stack);
                     }
@@ -67,7 +67,7 @@ public class ItemBlockFishing extends ItemBlockHF<BlockFishing> {
     @Override
     @Nonnull
     public EnumActionResult onItemUse(@Nonnull ItemStack stack, @Nonnull EntityPlayer playerIn, @Nonnull World worldIn, @Nonnull BlockPos pos, @Nonnull EnumHand hand, @Nonnull EnumFacing facing, float hitX, float hitY, float hitZ) {
-        FishingBlock fishing = getBlock().getEnumFromStack(stack);
+        Floating fishing = getBlock().getEnumFromStack(stack);
         if (fishing == FishingBlock.HATCHERY) {
             return EnumActionResult.PASS;
         } else {

@@ -7,6 +7,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class PlaceableDouble extends PlaceableDecorative {
+    @SuppressWarnings("unused")
     public PlaceableDouble(){}
     public PlaceableDouble(IBlockState state, int x, int y, int z) {
         super(state, x, y, z);

@@ -3,6 +3,7 @@ package joshie.harvest.buildings.placeable.blocks;
 import net.minecraft.block.state.IBlockState;
 
 public class PlaceableDecorative extends PlaceableBlock {
+    @SuppressWarnings("WeakerAccess")
     public PlaceableDecorative() {}
     public PlaceableDecorative(IBlockState state, int x, int y, int z) {
         super(state, x, y, z);

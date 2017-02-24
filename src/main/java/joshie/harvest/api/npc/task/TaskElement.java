@@ -1,4 +1,4 @@
-package joshie.harvest.api.npc.schedule;
+package joshie.harvest.api.npc.task;
 
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
@@ -6,7 +6,7 @@ import net.minecraft.entity.EntityAgeable;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 
-public abstract class ScheduleElement {
+public abstract class TaskElement {
     public static final BiMap<ResourceLocation, Class> REGISTRY = HashBiMap.create();
     private boolean satisfied = false;
 

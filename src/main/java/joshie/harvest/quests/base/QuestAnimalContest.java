@@ -2,7 +2,7 @@ package joshie.harvest.quests.base;
 
 import joshie.harvest.api.buildings.BuildingLocation;
 import joshie.harvest.api.npc.NPC;
-import joshie.harvest.api.npc.schedule.ScheduleMove;
+import joshie.harvest.api.npc.task.TaskMove;
 import joshie.harvest.api.quests.Selection;
 import joshie.harvest.calendar.CalendarHelper;
 import joshie.harvest.core.helpers.EntityHelper;
@@ -47,8 +47,8 @@ public abstract class QuestAnimalContest<E extends EntityAnimal> extends QuestFe
         return entries;
     }
 
-    protected ScheduleMove getMove(TownData town, BuildingLocation location) {
-        return ScheduleMove.of(town.getCoordinatesFor(location));
+    protected TaskMove getMove(TownData town, BuildingLocation location) {
+        return TaskMove.of(town.getCoordinatesFor(location));
     }
 
     public abstract ItemStack getReward(Place place);

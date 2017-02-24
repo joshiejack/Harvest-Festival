@@ -1,15 +1,15 @@
 package joshie.harvest.npcs.entity.ai;
 
-import joshie.harvest.api.npc.schedule.ScheduleElement;
-import joshie.harvest.api.npc.schedule.SchedulePath;
+import joshie.harvest.api.npc.task.TaskElement;
+import joshie.harvest.api.npc.task.TaskList;
 import joshie.harvest.npcs.entity.EntityNPCHuman;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.nbt.NBTTagCompound;
 
 public class EntityAIPathing extends EntityAIBase {
     private final EntityNPCHuman npc;
-    private SchedulePath path;
-    private ScheduleElement target;
+    private TaskList path;
+    private TaskElement target;
     private int scheduleTimer;
 
     public EntityAIPathing(EntityNPCHuman npc) {
@@ -17,12 +17,12 @@ public class EntityAIPathing extends EntityAIBase {
         this.setMutexBits(1);
     }
 
-    public void setPath(ScheduleElement... elements) {
-        path = SchedulePath.target(elements);
+    public void setPath(TaskElement... elements) {
+        path = TaskList.target(elements);
         recalculateTarget();
     }
 
-    public SchedulePath getPath() {
+    public TaskList getPath() {
         return this.path;
     }
 
@@ -53,7 +53,7 @@ public class EntityAIPathing extends EntityAIBase {
 
     public void readFromNBT(NBTTagCompound tag) {
         if (tag.hasKey("Path")) {
-            path = SchedulePath.fromNBT(tag.getCompoundTag("Path"));
+            path = TaskList.fromNBT(tag.getCompoundTag("Path"));
         }
     }
 

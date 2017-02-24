@@ -4,9 +4,9 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.cooking.Utensil;
 import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.npc.greeting.Script;
-import joshie.harvest.api.npc.schedule.ScheduleMove;
-import joshie.harvest.api.npc.schedule.ScheduleSpeech;
-import joshie.harvest.api.npc.schedule.ScheduleWait;
+import joshie.harvest.api.npc.task.TaskMove;
+import joshie.harvest.api.npc.task.TaskSpeech;
+import joshie.harvest.api.npc.task.TaskWait;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.Selection;
 import joshie.harvest.calendar.CalendarHelper;
@@ -89,9 +89,9 @@ public class QuestContestCooking extends QuestFestival {
             BlockPos original = town.getCoordinatesFor(BuildingLocations.PARK_LAMP_BACK);
             //Schedule for Jenni
             EntityAIPathing pathing = ((EntityNPCHuman)entity).getPathing();
-            ScheduleMove point1 = ScheduleMove.of(town.getCoordinatesFor(BuildingLocations.PARK_STAGE_RIGHT));
-            ScheduleMove point2 = ScheduleMove.of(town.getCoordinatesFor(BuildingLocations.PARK_STAGE_LEFT));
-            ScheduleSpeech speech = ScheduleSpeech.of(SCRIPT);
+            TaskMove point1 = TaskMove.of(town.getCoordinatesFor(BuildingLocations.PARK_STAGE_RIGHT));
+            TaskMove point2 = TaskMove.of(town.getCoordinatesFor(BuildingLocations.PARK_STAGE_LEFT));
+            TaskSpeech speech = TaskSpeech.of(SCRIPT);
             pathing.setPath(point1, point2, point1, speech);
             CookingContestEntries entries = getContestEntries(entity);
             Set<UUID> used = new HashSet<>();
@@ -105,7 +105,7 @@ public class QuestContestCooking extends QuestFestival {
                             TileCookingStand stand = ((TileCookingStand)tile);
                             if (stand.getContents() == null || used.contains(stand.getUUID())) {
                                 stand.setContents(entries.getEntryForNPC(theNPC.getNPC()));
-                                theNPC.getPathing().setPath(ScheduleMove.of(entries.getWalkLocations(town)[i]), ScheduleWait.of(10));
+                                theNPC.getPathing().setPath(TaskMove.of(entries.getWalkLocations(town)[i]), TaskWait.of(10));
                                 break;
                             } else if (stand.getContents() != null && stand.getUUID() != null) used.add(stand.getUUID());
                         }

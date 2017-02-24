@@ -12,10 +12,12 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
+import java.util.HashMap;
+import java.util.Map;
 
 public class NPCHolidayStoreSpecial extends NPCSpecialSeller {
-    private Shop shop;
-    private Festival festival;
+    private final Map<Festival, Shop> shops = new HashMap<>();
+
     public NPCHolidayStoreSpecial(ResourceLocation resource, Gender gender, Age age, CalendarDate birthday, int insideColor, int outsideColor) {
         super(resource, gender, age, birthday, insideColor, outsideColor);
     }
@@ -23,13 +25,12 @@ public class NPCHolidayStoreSpecial extends NPCSpecialSeller {
     @Override
     public Shop getShop(World world, BlockPos pos, @Nullable EntityPlayer player) {
         Festival festival = HFApi.calendar.getFestival(world, pos);
-        if (festival.equals(this.festival)) return shop;
+        if (shops.containsKey(festival)) return shops.get(festival);
         else return super.getShop(world, pos, player);
     }
 
-    public NPCHolidayStoreSpecial setHolidayShop(Festival festival, Shop shop) {
-        this.festival = festival;
-        this.shop = shop;
+    public NPCHolidayStoreSpecial addHolidayShop(Festival festival, Shop shop) {
+        shops.put(festival, shop);
         return this;
     }
 }

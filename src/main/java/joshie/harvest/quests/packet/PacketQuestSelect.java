@@ -48,24 +48,25 @@ public class PacketQuestSelect extends PacketSharedSync {
     @Override
     @SuppressWarnings("unchecked")
     public void handlePacket(EntityPlayer player) {
-        Quest theQuest = null;
-        Selection selection;
         EntityNPC npc = (EntityNPC) player.worldObj.getEntityByID(npcID);
         if (npc != null) {
             BlockPos pos = new BlockPos(npc);
-            if (quest == -1 && npc.getNPC().getShop(player.worldObj, pos, player) != null) selection = NPCHelper.getShopSelection(player.worldObj, pos, npc.getNPC(), player);
-            else {
-                theQuest = QuestHelper.getSelectiomFromID(player, quest);
-                selection = theQuest != null ? theQuest.getSelection(player, npc.getNPC()) : null;
-            }
-
-            //Check
-            if (selection != null && theQuest != null) {
-                Result result = selection.onSelected(player, npc, npc.getNPC(), theQuest, selected);
-                HFApi.quests.syncData(theQuest, player); //Sync to the client
-                if (result == Result.ALLOW)
+            if (quest == -1 && npc.getNPC().getShop(player.worldObj, pos, player) != null) {
+                Selection selection = NPCHelper.getShopSelection(player.worldObj, pos, npc.getNPC(), player);
+                Result result = selection.onSelected(player, npc, npc.getNPC(), null, selected);
+                if (result == Result.ALLOW) {
                     player.openGui(HarvestFestival.instance, GuiHandler.NPC, player.worldObj, npc.getEntityId(), -1, -1);
-                else if (result == Result.DENY) player.closeScreen();
+                } else if (result == Result.DENY) player.closeScreen();
+            } else {
+                Quest theQuest = QuestHelper.getSelectiomFromID(player, quest);
+                Selection selection = theQuest != null ? theQuest.getSelection(player, npc.getNPC()) : null;
+                if (selection != null) {
+                    Result result = selection.onSelected(player, npc, npc.getNPC(), theQuest, selected);
+                    HFApi.quests.syncData(theQuest, player); //Sync to the client
+                    if (result == Result.ALLOW) {
+                        player.openGui(HarvestFestival.instance, GuiHandler.NPC, player.worldObj, npc.getEntityId(), -1, -1);
+                    } else if (result == Result.DENY) player.closeScreen();
+                }
             }
         }
     }

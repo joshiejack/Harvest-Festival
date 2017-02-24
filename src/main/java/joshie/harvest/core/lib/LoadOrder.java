@@ -8,4 +8,5 @@ public class LoadOrder {
     public static final int HFINGREDIENTS = 6;
     public static final int HFNPCS = 5;
     public static final int HFBUILDING = 4;
+    public static final int HFSCHEDULES = 3;
 }

@@ -1,4 +1,4 @@
-package joshie.harvest.api.npc.schedule;
+package joshie.harvest.api.npc.task;
 
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.ai.RandomPositionGenerator;
@@ -10,19 +10,19 @@ import net.minecraft.util.math.Vec3d;
 
 import javax.annotation.Nullable;
 
-public class ScheduleMove extends ScheduleElement {
+public class TaskMove extends TaskElement {
     private BlockPos pos;
 
-    private ScheduleMove(BlockPos pos) {
+    private TaskMove(BlockPos pos) {
         this.pos = pos;
     }
 
-    public static ScheduleMove of(BlockPos pos) {
-        return new ScheduleMove(pos);
+    public static TaskMove of(BlockPos pos) {
+        return new TaskMove(pos);
     }
 
-    public ScheduleElement offset(EnumFacing facing, int amount) {
-        return ScheduleMove.of(pos.offset(facing, amount));
+    public TaskElement offset(EnumFacing facing, int amount) {
+        return TaskMove.of(pos.offset(facing, amount));
     }
 
     @Nullable

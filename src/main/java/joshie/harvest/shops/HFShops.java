@@ -96,6 +96,7 @@ public class HFShops {
     public static final Shop COOKING_FESTIVAL_FOOD = newHolidayShop(new ResourceLocation(MODID, "cooking"), HFNPCs.CAFE_GRANNY, HFFestivals.COOKING_CONTEST);
     public static final Shop COOKING_FESTIVAL_RECIPES = newHolidayShop(new ResourceLocation(MODID, "recipes"), HFNPCs.CAFE_OWNER, HFFestivals.COOKING_CONTEST);
     public static final Shop COW_FESTIVAL_BARGAINS = newHolidayShop(new ResourceLocation(MODID, "cow"), HFNPCs.BARN_OWNER, HFFestivals.COW_FESTIVAL);
+    public static final Shop COW_FESTIVAL_DAIRY_QUEEN = newHolidayShop(new ResourceLocation(MODID, "dairy"), HFNPCs.CAFE_OWNER, HFFestivals.COW_FESTIVAL);
 
     @SuppressWarnings("unused")
     public static void postInit() {
@@ -115,6 +116,7 @@ public class HFShops {
         registerCooking();
         registerRecipes();
         registerCowBargains();
+        registerDairyQueen();
     }
     
     private static void registerBarn() {
@@ -505,11 +507,24 @@ public class HFShops {
                 .addOpening(FRIDAY, 6000, 18000).addOpening(SATURDAY, 6000, 18000).addOpening(SUNDAY, 6000, 18000);
     }
 
+    private static void registerDairyQueen() {
+        COW_FESTIVAL_DAIRY_QUEEN.addPurchasable(new PurchasableMeal(150, new ResourceLocation(MODID, "ice_cream")).setStock(20));
+        COW_FESTIVAL_DAIRY_QUEEN.addPurchasable(new PurchasableMeal(100, new ResourceLocation(MODID, "milk_hot")).setStock(20));
+        COW_FESTIVAL_DAIRY_QUEEN.addPurchasable(new PurchasableMeal(120, new ResourceLocation(MODID, "chocolate_hot")).setStock(10));
+        COW_FESTIVAL_DAIRY_QUEEN.addPurchasable(new PurchasableMeal(50, new ResourceLocation(MODID, "cornflakes")).setStock(10));
+        COW_FESTIVAL_DAIRY_QUEEN.addPurchasable(new PurchasableMeal(200, new ResourceLocation(MODID, "dinnerroll")).setStock(5));
+        COW_FESTIVAL_DAIRY_QUEEN.addPurchasable(new PurchasableMeal(150, new ResourceLocation(MODID, "bun_jam")).setStock(5));
+        COW_FESTIVAL_DAIRY_QUEEN.addPurchasable(new PurchasableMeal(300, new ResourceLocation(MODID, "doughnut")).setStock(5));
+        COW_FESTIVAL_DAIRY_QUEEN.addPurchasable(new PurchasableMeal(140, new ResourceLocation(MODID, "milk_strawberry")).setStock(8));
+        COW_FESTIVAL_DAIRY_QUEEN.addOpening(MONDAY, 6000, 18000).addOpening(TUESDAY, 6000, 18000).addOpening(WEDNESDAY, 6000, 18000).addOpening(THURSDAY, 6000, 18000)
+                .addOpening(FRIDAY, 6000, 18000).addOpening(SATURDAY, 6000, 18000).addOpening(SUNDAY, 6000, 18000);
+    }
+
     private static Shop newHolidayShop(ResourceLocation resource, @Nullable NPC npc, Festival festival) {
         Shop shop = new Shop(resource).setOpensOnHolidays();
         if (npc != null) {
             if (npc instanceof NPCHolidayStore) ((NPCHolidayStore)npc).setHolidayShop(festival, shop);
-            else if (npc instanceof NPCHolidayStoreSpecial) ((NPCHolidayStoreSpecial)npc).setHolidayShop(festival, shop);
+            else if (npc instanceof NPCHolidayStoreSpecial) ((NPCHolidayStoreSpecial)npc).addHolidayShop(festival, shop);
         }
 
         return shop;

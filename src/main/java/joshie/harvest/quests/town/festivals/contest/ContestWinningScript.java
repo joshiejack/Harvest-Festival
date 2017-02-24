@@ -1,10 +1,10 @@
 package joshie.harvest.quests.town.festivals.contest;
 
-import joshie.harvest.api.calendar.Festival;
 import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.npc.greeting.Script;
 import joshie.harvest.quests.base.QuestAnimalContest;
 import joshie.harvest.town.TownHelper;
+import joshie.harvest.town.data.TownData;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.translation.I18n;
@@ -15,17 +15,14 @@ import static joshie.harvest.core.lib.HFModInfo.MODID;
 import static joshie.harvest.quests.town.festivals.Place.*;
 
 public class ContestWinningScript extends Script {
-    private Festival festival;
-
-    public ContestWinningScript(Festival festival, NPC npc) {
-        super(new ResourceLocation(MODID, festival.getResource().getResourceDomain() + "_winner"));
-        this.festival = festival;
-        this.setNPC(npc);
+    public ContestWinningScript(String name) {
+        super(new ResourceLocation(MODID, name + "_winner"));
     }
 
     @Override
     public String getLocalized(EntityAgeable ageable, NPC npc) {
-        QuestAnimalContest quest = TownHelper.getClosestTownToEntity(ageable, false).getQuests().getAQuest(festival.getQuest());
+        TownData data = TownHelper.getClosestTownToEntity(ageable, false);
+        QuestAnimalContest quest = data.getQuests().getAQuest(data.getFestival().getQuest());
         ContestEntries entries = quest.getEntries();
         World world = ageable.worldObj;
         ContestEntry third = entries.getEntry(THIRD);

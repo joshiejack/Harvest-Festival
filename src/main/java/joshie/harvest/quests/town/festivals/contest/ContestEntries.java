@@ -132,8 +132,8 @@ public class ContestEntries<E extends EntityAnimal> {
                     AnimalStats stats = EntityHelper.getStats(animal);
                     if (stats != null) {
                         stats.setProduced(5); //Forbid the animal making products
-                        stats.setDead(); //Autokill the animal if it persists
-                        //stats.affectHappiness(world.rand.nextInt(20000)); //Give the animal a random happiness//TODO: Re-Enable
+                        stats.setDead(); //Autokill the animal the next day if it somehow persists
+                        stats.affectHappiness(world.rand.nextInt(20000)); //Give the animal a random happiness
                     }
 
                     entries.add(new ContestEntry(getNextEntry(usedNPCS, npcs), EntityHelper.getEntityUUID(animal), i));

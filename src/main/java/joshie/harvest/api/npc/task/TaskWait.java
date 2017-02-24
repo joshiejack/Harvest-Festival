@@ -1,18 +1,18 @@
-package joshie.harvest.api.npc.schedule;
+package joshie.harvest.api.npc.task;
 
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.nbt.NBTTagCompound;
 
-public class ScheduleWait extends ScheduleElement {
+public class TaskWait extends TaskElement {
     private int target;
     private int ticker;
 
-    private ScheduleWait(int target) {
+    private TaskWait(int target) {
         this.target = target;
     }
 
-    public static ScheduleWait of(int target) {
-        return new ScheduleWait(target);
+    public static TaskWait of(int target) {
+        return new TaskWait(target);
     }
 
     @Override

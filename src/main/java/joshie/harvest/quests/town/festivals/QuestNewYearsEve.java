@@ -6,9 +6,9 @@ import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.npc.RelationStatus;
 import joshie.harvest.api.npc.greeting.Script;
-import joshie.harvest.api.npc.schedule.ScheduleElement;
-import joshie.harvest.api.npc.schedule.ScheduleSpeech;
-import joshie.harvest.api.npc.schedule.ScheduleWait;
+import joshie.harvest.api.npc.task.TaskElement;
+import joshie.harvest.api.npc.task.TaskSpeech;
+import joshie.harvest.api.npc.task.TaskWait;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.api.quests.Selection;
@@ -58,9 +58,9 @@ public class QuestNewYearsEve extends QuestFestival {
         public Result onSelected(EntityPlayer player, EntityLiving entity, NPC npc, @Nullable Quest quest, int option) {
             if (option == 1) {
                 EntityAIPathing pathing = ((EntityNPCHuman)entity).getPathing();
-                pathing.setPath(ScheduleSpeech.of(scriptIntro), ScheduleWait.of(1), ScheduleSpeech.of(scriptCountdown5), ScheduleWait.of(1), ScheduleSpeech.of(scriptCountdown4),
-                                ScheduleWait.of(1), ScheduleSpeech.of(scriptCountdown3),  ScheduleWait.of(1), ScheduleSpeech.of(scriptCountdown2), ScheduleWait.of(1),
-                                ScheduleSpeech.of(scriptCountdown1), ScheduleWait.of(1), new ScheduleNewYear(), ScheduleSpeech.of(scriptCountdown0));
+                pathing.setPath(TaskSpeech.of(scriptIntro), TaskWait.of(1), TaskSpeech.of(scriptCountdown5), TaskWait.of(1), TaskSpeech.of(scriptCountdown4),
+                                TaskWait.of(1), TaskSpeech.of(scriptCountdown3),  TaskWait.of(1), TaskSpeech.of(scriptCountdown2), TaskWait.of(1),
+                                TaskSpeech.of(scriptCountdown1), TaskWait.of(1), new TaskNewYear(), TaskSpeech.of(scriptCountdown0));
             }
 
             return Result.DENY;
@@ -97,7 +97,7 @@ public class QuestNewYearsEve extends QuestFestival {
         return getLocalized("start");
     }
 
-    public static class ScheduleNewYear extends ScheduleElement {
+    public static class TaskNewYear extends TaskElement {
         private static final String tag = "{LifeTime:30,FireworksItem:{id:fireworks,Count:1,tag:{Fireworks:{Explosions:[{Type:%s,Flicker:%s,Trail:%s,Colors:[%s],FadeColors:[%s]}]}}}}";
 
         @SuppressWarnings("ConstantConditions")

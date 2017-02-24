@@ -444,6 +444,7 @@ public class AnimalStatsHF implements AnimalStats<NBTTagCompound> {
         typeTreats = nbt.getShort("TypeTreats");
         wasSick = nbt.getBoolean("WasSick");
         isSick = nbt.getBoolean("IsSick");
+        hasDied = nbt.getBoolean("IsDead");
         wasOutsideInSun = nbt.getBoolean("WasOutsideInSun");
         golden = nbt.getBoolean("Golden");
         if (type.getDaysBetweenProduction() > 0) {
@@ -475,6 +476,7 @@ public class AnimalStatsHF implements AnimalStats<NBTTagCompound> {
         tag.setShort("TypeTreats", (short) typeTreats);
         tag.setBoolean("WasSick", wasSick);
         tag.setBoolean("IsSick", isSick);
+        tag.setBoolean("IsDead", hasDied);
         tag.setBoolean("WasOutsideInSun", wasOutsideInSun);
         tag.setBoolean("Golden", golden);
 

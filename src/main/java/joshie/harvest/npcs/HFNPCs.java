@@ -8,7 +8,6 @@ import joshie.harvest.api.npc.INPCHelper.Age;
 import joshie.harvest.api.npc.INPCHelper.Gender;
 import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.npc.gift.IGiftHandler;
-import joshie.harvest.api.npc.schedule.*;
 import joshie.harvest.calendar.HFFestivals;
 import joshie.harvest.core.base.render.MeshIdentical;
 import joshie.harvest.core.lib.EntityIDs;
@@ -23,8 +22,6 @@ import joshie.harvest.npcs.render.NPCItemRenderer;
 import joshie.harvest.npcs.render.NPCItemRenderer.NPCTile;
 import joshie.harvest.npcs.render.RenderNPC;
 import joshie.harvest.quests.Quests;
-import joshie.harvest.quests.town.festivals.QuestNewYearsEve.ScheduleNewYear;
-import joshie.harvest.quests.town.festivals.contest.ScheduleWinner;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.ForgeHooksClient;
@@ -39,17 +36,15 @@ import org.apache.commons.lang3.text.WordUtils;
 import java.lang.reflect.InvocationTargetException;
 
 import static joshie.harvest.api.calendar.Season.*;
-import static joshie.harvest.api.calendar.Weekday.*;
 import static joshie.harvest.api.npc.INPCHelper.Age.*;
 import static joshie.harvest.api.npc.INPCHelper.Gender.FEMALE;
 import static joshie.harvest.api.npc.INPCHelper.Gender.MALE;
-import static joshie.harvest.calendar.HFFestivals.*;
 import static joshie.harvest.core.helpers.ConfigHelper.getDouble;
 import static joshie.harvest.core.helpers.RegistryHelper.registerSounds;
 import static joshie.harvest.core.lib.HFModInfo.GIFTPATH;
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 import static joshie.harvest.core.lib.LoadOrder.HFNPCS;
-import static joshie.harvest.town.BuildingLocations.*;
+import static joshie.harvest.town.BuildingLocations.FISHING_POND_PIER;
 
 @HFLoader(priority = HFNPCS)
 @SuppressWarnings("unchecked")
@@ -78,9 +73,11 @@ public class HFNPCs {
     public static final ItemNPCSpawner SPAWNER_NPC = new ItemNPCSpawner().register("spawner_npc");
     public static final ItemNPCTool TOOLS = new ItemNPCTool().register("tool_npc");
 
+    @SuppressWarnings("deprecation")
     public static void preInit() {
         EntityRegistry.registerModEntity(EntityNPCVillager.class, "villager", EntityIDs.VILLAGER, HarvestFestival.instance, 80, 3, true);
         EntityRegistry.registerModEntity(EntityNPCBuilder.class, "builder", EntityIDs.BUILDER, HarvestFestival.instance, 80, 3, true);
+        //TODO: Remove in 0.7+
         EntityRegistry.registerModEntity(EntityNPCShopkeeper.class, "shopkeeper", EntityIDs.SHOPKEEPER, HarvestFestival.instance, 80, 3, true);
         EntityRegistry.registerModEntity(EntityNPCGoddess.class, "goddess", EntityIDs.GODDESS, HarvestFestival.instance, 80, 3, true);
         EntityRegistry.registerModEntity(EntityNPCTrader.class, "trader", EntityIDs.TRADER, HarvestFestival.instance, 80, 3, true);
@@ -89,10 +86,12 @@ public class HFNPCs {
     }
 
     @SideOnly(Side.CLIENT)
+    @SuppressWarnings("deprecation")
     public static void preInitClient() {
         ModelLoader.setCustomMeshDefinition(SPAWNER_NPC, new MeshIdentical(SPAWNER_NPC));
         registerNPCRendering(EntityNPCVillager.class);
         registerNPCRendering(EntityNPCBuilder.class);
+        //TODO: Remove in 0.7+
         registerNPCRendering(EntityNPCShopkeeper.class);
         registerNPCRendering(EntityNPCGoddess.class);
         registerNPCRendering(EntityNPCTrader.class);
@@ -100,512 +99,36 @@ public class HFNPCs {
     }
 
     public static void init() {
-        ScheduleElement.REGISTRY.put(new ResourceLocation(MODID, "move"), ScheduleMove.class);
-        ScheduleElement.REGISTRY.put(new ResourceLocation(MODID, "speech"), ScheduleSpeech.class);
-        ScheduleElement.REGISTRY.put(new ResourceLocation(MODID, "wait"), ScheduleWait.class);
-        ScheduleElement.REGISTRY.put(new ResourceLocation(MODID, "new_year"), ScheduleNewYear.class);
-        ScheduleElement.REGISTRY.put(new ResourceLocation(MODID, "winner"), ScheduleWinner.class);
-
         GODDESS.setHasInfo(new GreetingWeather())
                 .addGreeting(new GreetingBeforeAshlee("tutorial.chicken.reminder.poultry"))
                 .addGreeting(new GreetingBeforeDanieru(GODDESS));
-        ScheduleBuilder.create(GODDESS, null).build();
-
-        //Carpenter
         CARPENTER.setQuest(Quests.SELL_SPRINKLER)
                 .addGreeting(new GreetingCarpenter())
                 .addGreeting(new GreetingBeforeJim("tutorial.cow.reminder.barn"))
                 .addGreeting(new GreetingBeforeDanieru(CARPENTER));
-        ScheduleBuilder.create(CARPENTER, CARPENTER_DOWNSTAIRS)
-                        .add(SPRING, SUNDAY, 0L, CARPENTER_DOWNSTAIRS)
-                        .add(SPRING, SUNDAY, 8000L, CARPENTER_FRONT)
-                        .add(SPRING, SUNDAY, 9000L, CARPENTER_WORK)
-                        .add(SPRING, SUNDAY, 17000L, CARPENTER_DOWNSTAIRS)
-                        .add(SPRING, SUNDAY, 21000L, CARPENTER_FRONT)
-                        .add(COOKING_CONTEST, 0L, CARPENTER_UPSTAIRS)
-                        .add(COOKING_CONTEST, 9000L, PARK_BENCH)
-                        .add(COOKING_CONTEST, 20000L, CARPENTER_UPSTAIRS)
-                        .add(NEW_YEARS, 0L, CARPENTER_DOWNSTAIRS)
-                        .add(NEW_YEARS, 10000L, CARPENTER_FRONT)
-                        .add(NEW_YEARS, 11500L, PARK_TRADER)
-                        .add(NEW_YEARS, 22500L, CARPENTER_DOWNSTAIRS)
-                        .add(NEW_YEARS_EVE, 0L, PARK_NOODLES_STAND)
-                        .add(NEW_YEARS_EVE, 6000L, CARPENTER_DOWNSTAIRS)
-                        .add(NEW_YEARS_EVE, 13000L, CARPENTER_FRONT)
-                        .add(NEW_YEARS_EVE, 17000L, PARK_NOODLES_STAND)
-                        .build();
-
-        //Flower Girl, Add the flower buying greeting, and before complettion of meeting jenni
         FLOWER_GIRL.setQuest(Quests.FLOWER_BUYER)
                 .setHasInfo(new GreetingFlowerBuyer())
                 .addGreeting(new GreetingBeforeJenni("trade.seeds.reminder"))
                 .addGreeting(new GreetingBeforeJenni("trade.tools.reminder"))
                 .addGreeting(new GreetingBeforeJenni("tutorial.supermarket.reminder.supermarket"))
                 .addGreeting(new GreetingBeforeDanieru(FLOWER_GIRL));
-        ScheduleBuilder.create(FLOWER_GIRL, CARPENTER_UPSTAIRS)
-                        .add(SPRING, SUNDAY, 0L, CARPENTER_UPSTAIRS)
-                        .add(SPRING, SUNDAY, 6000L, TOWNHALL_TEEN)
-                        .add(SPRING, SUNDAY, 8000L, CARPENTER_UPSTAIRS)
-                        .add(SPRING, SUNDAY, 17000L, PARK_BACK_LEFT)
-                        .add(SPRING, SUNDAY, 19000L, CARPENTER_FRONT)
-                        .add(SPRING, SUNDAY, 21000L, CARPENTER_UPSTAIRS)
-                        .add(COOKING_CONTEST, 0L, CARPENTER_UPSTAIRS)
-                        .add(COOKING_CONTEST, 6000L, PARK_CENTRE)
-                        .add(COOKING_CONTEST, 17000L, CARPENTER_UPSTAIRS)
-                        .add(NEW_YEARS, 0L, CARPENTER_UPSTAIRS)
-                        .add(NEW_YEARS, 10000L, CARPENTER_DOWNSTAIRS)
-                        .add(NEW_YEARS, 11500L, PARK_TRADER_LEFT)
-                        .add(NEW_YEARS, 22500L, CARPENTER_DOWNSTAIRS)
-                        .add(NEW_YEARS, 23500L, CARPENTER_UPSTAIRS)
-                        .add(NEW_YEARS_EVE, 0L, PARK_STAGE_LEFT)
-                        .add(NEW_YEARS_EVE, 6000L, CARPENTER_UPSTAIRS)
-                        .add(NEW_YEARS_EVE, 13000L, CARPENTER_DOWNSTAIRS)
-                        .add(NEW_YEARS_EVE, 17000L, PARK_STAGE_LEFT)
-                        .build();
-
-        //General Store
-        GS_OWNER.setQuest(Quests.SELL_STRAWBERRY)
-                .setHasInfo(new GreetingSupermarket(GS_OWNER.getRegistryName()))
+        GS_OWNER.setQuest(Quests.SELL_STRAWBERRY).
+                setHasInfo(new GreetingSupermarket(GS_OWNER.getRegistryName()))
                 .addGreeting(new GreetingBeforeDanieru(GS_OWNER));
-        ScheduleBuilder.create(GS_OWNER, GENERAL_BEDROOM)
-                        .add(SPRING, SUNDAY, 0L, GENERAL_BEDROOM)
-                        .add(SPRING, SUNDAY, 8000L, GENERAL_BEDROOM)
-                        .add(SPRING, SUNDAY, 10000L, PARK_CENTRE)
-                        .add(SPRING, SUNDAY, 15000L, CAFE_FRONT)
-                        .add(SPRING, SUNDAY, 17000L, GENERAL_STORE_FRONT)
-                        .add(SPRING, SUNDAY, 19000L, CAFE_KITCHEN)
-                        .add(SPRING, SUNDAY, 22000L, GENERAL_BED)
-                        .add(SPRING, MONDAY, 0L, GENERAL_BEDROOM)
-                        .add(SPRING, MONDAY, 7500L, GENERAL_TILL)
-                        .add(SPRING, MONDAY, 17000L, GENERAL_BEDROOM)
-                        .add(SPRING, MONDAY, 22000L, FISHING_POND_BACK)
-                        .add(SPRING, SATURDAY, 0L, GENERAL_BEDROOM)
-                        .add(SPRING, SATURDAY, 10000L, GENERAL_TILL)
-                        .add(SPRING, SATURDAY, 16000L, CAFE_CUSTOMER)
-                        .add(SPRING, SATURDAY, 19000L, CAFE_KITCHEN)
-                        .add(SPRING, SATURDAY, 22000L, FISHING_POND_BACK)
-                        .add(COOKING_CONTEST, 0L, GENERAL_BEDROOM)
-                        .add(COOKING_CONTEST, 4500L, PARK_PODIUM)
-                        .add(COOKING_CONTEST, 18000L, GENERAL_BEDROOM)
-                        .add(COOKING_CONTEST, 20000L, FISHING_POND_BACK)
-                        .add(NEW_YEARS, 0L, GENERAL_BEDROOM)
-                        .add(NEW_YEARS, 7000L, GENERAL_GARDEN)
-                        .add(NEW_YEARS, 12000L, PARK_OAK)
-                        .add(NEW_YEARS, 20000L, GENERAL_GARDEN)
-                        .add(NEW_YEARS, 22000L, GENERAL_BEDROOM)
-                        .add(NEW_YEARS_EVE, 0L, PARK_OAK)
-                        .add(NEW_YEARS_EVE, 6000L, GENERAL_BEDROOM)
-                        .add(NEW_YEARS_EVE, 13000L, GENERAL_GARDEN)
-                        .add(NEW_YEARS_EVE, 17000L, PARK_OAK)
-                        .build();
-
-        //Milkmaid
         MILKMAID.addGreeting(new GreetingBeforeDanieru(MILKMAID));
-        ScheduleBuilder.create(MILKMAID, GENERAL_BED)
-                        .add(SPRING, SUNDAY, 0L, GENERAL_BED)
-                        .add(SPRING, SUNDAY, 6000L, CHURCH_LEFT)
-                        .add(SPRING, SUNDAY, 16000L, PARK_CENTRE)
-                        .add(SPRING, SUNDAY, 20000L, FISHING_POND_BACK)
-                        .add(SPRING, SUNDAY, 24000L, GENERAL_BED)
-                        .add(SPRING, MONDAY, 0L, GENERAL_BED)
-                        .add(SPRING, MONDAY, 8000L, BARN_LEFT_PEN)
-                        .add(SPRING, MONDAY, 10000L, BARN_RIGHT_PEN)
-                        .add(SPRING, MONDAY, 15000L, BARN_DOOR)
-                        .add(SPRING, MONDAY, 17000L, FISHER_LEFT)
-                        .add(SPRING, MONDAY, 20000L, FISHING_POND_BACK)
-                        .add(SPRING, MONDAY, 24000L, GENERAL_BED)
-                        .add(COOKING_CONTEST, 0L, GENERAL_BED)
-                        .add(COOKING_CONTEST, 6000L, PARK_TABLE)
-                        .add(COOKING_CONTEST, 16000L, PARK_CUSTOMER)
-                        .add(COOKING_CONTEST, 18000L, GENERAL_BED)
-                        .add(COOKING_CONTEST, 20000L, FISHING_POND_BACK)
-                        .add(COOKING_CONTEST, 24000L, GENERAL_BED)
-                        .add(NEW_YEARS, 0L, GENERAL_BED)
-                        .add(NEW_YEARS, 7000L, GENERAL_GARDEN)
-                        .add(NEW_YEARS, 12000L, PARK_OAK)
-                        .add(NEW_YEARS, 20000L, GENERAL_GARDEN)
-                        .add(NEW_YEARS, 22000L, GENERAL_BED)
-                        .add(COW_FESTIVAL, 0L, GENERAL_BED)
-                        .add(COW_FESTIVAL, 6000L, PARK_COW_JUDGE)
-                        .add(COW_FESTIVAL, 19000L, GENERAL_GARDEN)
-                        .add(COW_FESTIVAL, 22000L, GENERAL_BED)
-                        .add(NEW_YEARS_EVE, 0L, PARK_OAK)
-                        .add(NEW_YEARS_EVE, 6000L, GENERAL_BED)
-                        .add(NEW_YEARS_EVE, 13000L, GENERAL_GARDEN)
-                        .add(NEW_YEARS_EVE, 17000L, PARK_OAK)
-                        .build();
-
-        //Barn Owner
         BARN_OWNER.addGreeting(new GreetingBeforeDanieru(BARN_OWNER));
-        ScheduleBuilder.create(BARN_OWNER, BARN_INSIDE)
-                        .add(SPRING, SUNDAY, 0L, BARN_INSIDE)
-                        .add(SPRING, SUNDAY, 10000L, GENERAL_BEDROOM)
-                        .add(SPRING, SUNDAY, 13000L, CAFE_FRONT)
-                        .add(SPRING, SUNDAY, 16000L, PARK_CENTRE)
-                        .add(SPRING, SUNDAY, 19000L, GENERAL_BEDROOM)
-                        .add(SPRING, SUNDAY, 21000L, BARN_INSIDE)
-                        .add(SPRING, MONDAY, 0L, BARN_INSIDE)
-                        .add(SPRING, MONDAY, 10000L, BARN_WORK)
-                        .add(SPRING, MONDAY, 15000L, GENERAL_CUSTOMER)
-                        .add(SPRING, MONDAY, 17000L, PARK_CENTRE)
-                        .add(SPRING, MONDAY, 19000L, GENERAL_BEDROOM)
-                        .add(SPRING, MONDAY, 22000L, BARN_INSIDE)
-                        .add(COOKING_CONTEST, 0L, BARN_INSIDE)
-                        .add(COOKING_CONTEST, 10000L, BARN_INSIDE)
-                        .add(COOKING_CONTEST, 17000L, BARN_DOOR)
-                        .add(COOKING_CONTEST, 19000L, GENERAL_BEDROOM)
-                        .add(COOKING_CONTEST, 23500L, BARN_INSIDE)
-                        .add(COW_FESTIVAL, 0L, BARN_INSIDE)
-                        .add(COW_FESTIVAL, 6000L, PARK_COW_BARN)
-                        .add(COW_FESTIVAL, 19000L, BARN_DOOR)
-                        .add(COW_FESTIVAL, 22000L, BARN_INSIDE)
-                        .add(NEW_YEARS_EVE, 0L, PARK_LEFT)
-                        .add(NEW_YEARS_EVE, 6000L, BARN_INSIDE)
-                        .add(NEW_YEARS_EVE, 13000L, BARN_DOOR)
-                        .add(NEW_YEARS_EVE, 17000L, PARK_LEFT)
-                        .build();
-
-        //Miner
         MINER.setQuest(Quests.SELL_ORES);
-        ScheduleBuilder.create(MINER, null).build();
-
-        //Poultry Farm Owner
-        ScheduleBuilder.create(POULTRY, POULTRY_CENTRE)
-                        .add(SPRING, SUNDAY, 0L, POULTRY_CENTRE)
-                        .add(SPRING, SUNDAY, 6000L, CARPENTER_FRONT)
-                        .add(SPRING, SUNDAY, 7500L, CHURCH_RIGHT)
-                        .add(SPRING, SUNDAY, 12000L, POULTRY_CENTRE)
-                        .add(SPRING, SUNDAY, 15000L, PARK_BENCH)
-                        .add(SPRING, SUNDAY, 18000L, POULTRY_CENTRE)
-                        .add(SPRING, MONDAY, 0L, POULTRY_CENTRE)
-                        .add(SPRING, MONDAY, 6000L, POULTRY_WORK)
-                        .add(SPRING, MONDAY, 13000L, GENERAL_STORE_FRONT)
-                        .add(SPRING, MONDAY, 15000L, PARK_BENCH)
-                        .add(SPRING, MONDAY, 18000L, POULTRY_CENTRE)
-                        .add(COOKING_CONTEST, 0L, POULTRY_CENTRE)
-                        .add(COOKING_CONTEST, 6000L, PARK_BENCH)
-                        .add(COOKING_CONTEST, 11000L, POULTRY_DOOR)
-                        .add(COOKING_CONTEST, 13000L, POULTRY_CENTRE)
-                        .add(NEW_YEARS_EVE, 0L, PARK_LEFT)
-                        .add(NEW_YEARS_EVE, 6000L, POULTRY_CENTRE)
-                        .add(NEW_YEARS_EVE, 13000L, POULTRY_DOOR)
-                        .add(NEW_YEARS_EVE, 17000L, PARK_LEFT)
-                        .build();
-
-        //Fisherman
-        FISHERMAN.setQuest(Quests.SELL_HATCHERY)
-                .addGreeting(new GreetingLocation(FISHING_POND_PIER));
-        ScheduleBuilder.create(FISHERMAN, FISHING_HUT_UPSTAIRS)
-                        .add(SPRING, SUNDAY, 0L, FISHING_HUT_UPSTAIRS)
-                        .add(SPRING, SUNDAY, 6000L, FISHING_POND_PIER)
-                        .add(SPRING, SUNDAY, 9000L, GODDESS_POND_FRONT)
-                        .add(SPRING, SUNDAY, 12000L, FISHING_HUT_DOWNSTAIRS)
-                        .add(SPRING, SUNDAY, 15000L, FISHING_POND_PIER)
-                        .add(SPRING, SUNDAY, 18000L, FISHING_HUT_UPSTAIRS)
-                        .add(SPRING, TUESDAY, 0L, FISHING_HUT_UPSTAIRS)
-                        .add(SPRING, TUESDAY, 6000L, FISHING_POND_PIER)
-                        .add(SPRING, TUESDAY, 10000L, GODDESS_POND_FRONT)
-                        .add(SPRING, TUESDAY, 12000L, FISHING_HUT_DOWNSTAIRS)
-                        .add(SPRING, TUESDAY, 13000L, FISHING_HUT_WORK)
-                        .add(SPRING, TUESDAY, 19000L, FISHING_POND_PIER)
-                        .add(SPRING, TUESDAY, 22000L, FISHING_HUT_UPSTAIRS)
-                        .add(SPRING, SATURDAY, 0L, FISHING_HUT_UPSTAIRS)
-                        .add(SPRING, SATURDAY, 6000L, GODDESS_POND_FRONT)
-                        .add(SPRING, SATURDAY, 8000L, FISHING_POND_PIER)
-                        .add(SPRING, SATURDAY, 13000L, FISHING_HUT_DOWNSTAIRS)
-                        .add(SPRING, SATURDAY, 15000L, FISHING_POND_PIER)
-                        .add(SPRING, SATURDAY, 18000L, FISHING_HUT_DOWNSTAIRS)
-                        .add(SPRING, SATURDAY, 19500L, FISHING_POND_PIER)
-                        .add(SPRING, SATURDAY, 22000L, FISHING_HUT_UPSTAIRS)
-                        .add(COOKING_CONTEST, 0L, FISHING_HUT_UPSTAIRS)
-                        .add(COOKING_CONTEST, 6000L, GODDESS_POND_FRONT)
-                        .add(COOKING_CONTEST, 7000L, FISHING_POND_PIER)
-                        .add(COOKING_CONTEST, 13000L, PARK_LEFT)
-                        .add(COOKING_CONTEST, 16000L, PARK_CUSTOMER)
-                        .add(COOKING_CONTEST, 17500L, FISHING_POND_PIER)
-                        .add(COOKING_CONTEST, 20000L, FISHING_HUT_DOWNSTAIRS)
-                        .add(COOKING_CONTEST, 22000L, FISHING_HUT_UPSTAIRS)
-                        .add(NEW_YEARS_EVE, 0L, PARK_BOTTOM)
-                        .add(NEW_YEARS_EVE, 6000L, FISHING_HUT_UPSTAIRS)
-                        .add(NEW_YEARS_EVE, 13000L, FISHING_HUT_DOWNSTAIRS)
-                        .add(NEW_YEARS_EVE, 17000L, PARK_BOTTOM)
-                        .build();
-
-        //Cafe Owner
+        FISHERMAN.setQuest(Quests.SELL_HATCHERY).addGreeting(new GreetingLocation(FISHING_POND_PIER));
         CAFE_OWNER.setQuest(Quests.SELL_MEALS);
-        ScheduleBuilder.create(CAFE_OWNER, CAFE_BALCONY)
-                        .add(SPRING, SUNDAY, 0L, CAFE_BALCONY)
-                        .add(SPRING, SUNDAY, 6000L, GODDESS_POND_FRONT_LEFT)
-                        .add(SPRING, SUNDAY, 7000L, CHURCH_INSIDE)
-                        .add(SPRING, SUNDAY, 8500L, CAFE_TILL)
-                        .add(SPRING, SUNDAY, 17000L, PARK_TABLE)
-                        .add(SPRING, SUNDAY, 20000L, CAFE_BALCONY)
-                        .add(SPRING, MONDAY, 0L, CAFE_BALCONY)
-                        .add(SPRING, MONDAY, 8000L, CAFE_TILL)
-                        .add(SPRING, MONDAY, 17000L, CAFE_CUSTOMER)
-                        .add(SPRING, MONDAY, 18000L, CAFE_FRONT)
-                        .add(SPRING, MONDAY, 19000L, PARK_TABLE)
-                        .add(SPRING, MONDAY, 22000L, CAFE_BALCONY)
-                        .add(SPRING, SATURDAY, 0L, CAFE_BALCONY)
-                        .add(SPRING, SATURDAY, 6000L, GODDESS_POND_FRONT_LEFT)
-                        .add(SPRING, SATURDAY, 8000L, CAFE_TILL)
-                        .add(SPRING, SATURDAY, 17000L, CAFE_CUSTOMER)
-                        .add(SPRING, SATURDAY, 18000L, CAFE_FRONT)
-                        .add(SPRING, SATURDAY, 19000L, PARK_TABLE)
-                        .add(SPRING, SATURDAY, 22000L, CAFE_BALCONY)
-                        .add(COOKING_CONTEST, 0L, CAFE_BALCONY)
-                        .add(COOKING_CONTEST, 6000L, PARK_STALL)
-                        .add(COOKING_CONTEST, 18000L, CAFE_BALCONY)
-                        .add(NEW_YEARS_EVE, 0L, PARK_SPRUCE)
-                        .add(NEW_YEARS_EVE, 6000L, CAFE_BALCONY)
-                        .add(NEW_YEARS_EVE, 13000L, CAFE_FRONT)
-                        .add(NEW_YEARS_EVE, 17000L, PARK_SPRUCE)
-                        .build();
-
-        //Cafe Granny
-        ScheduleBuilder.create(CAFE_GRANNY, CAFE_KITCHEN)
-                        .add(SPRING, SUNDAY, 0L, CAFE_KITCHEN)
-                        .add(SPRING, SATURDAY, 6000L, CHURCH_PEW_CENTRE)
-                        .add(SPRING, SUNDAY, 17000L, FISHING_POND_RIGHT)
-                        .add(SPRING, SUNDAY, 20000L, CAFE_KITCHEN)
-                        .add(SPRING, MONDAY, 0L, CAFE_KITCHEN)
-                        .add(SPRING, MONDAY, 6000L, GODDESS_POND_FRONT_LEFT)
-                        .add(SPRING, MONDAY, 6500L, CAFE_FRONT)
-                        .add(SPRING, MONDAY, 17000L, FISHING_POND_RIGHT)
-                        .add(SPRING, MONDAY, 19000L, CAFE_KITCHEN)
-                        .add(SPRING, FRIDAY, 0L, CAFE_KITCHEN)
-                        .add(SPRING, FRIDAY, 9500L, GODDESS_POND_FRONT_LEFT)
-                        .add(SPRING, FRIDAY, 14000L, CAFE_FRONT)
-                        .add(SPRING, FRIDAY, 16000L, CAFE_KITCHEN)
-                        .add(SPRING, FRIDAY, 20000L, FISHING_POND_RIGHT)
-                        .add(SPRING, FRIDAY, 22000L, CAFE_KITCHEN)
-                        .add(SPRING, SATURDAY, 0L, CAFE_KITCHEN)
-                        .add(SPRING, SATURDAY, 6000L, GODDESS_POND_FRONT_LEFT)
-                        .add(SPRING, SATURDAY, 10000L, CAFE_FRONT)
-                        .add(SPRING, SATURDAY, 15000L, CAFE_KITCHEN)
-                        .add(SPRING, SATURDAY, 17000L, FISHING_POND_RIGHT)
-                        .add(SPRING, SATURDAY, 19000L, CAFE_KITCHEN)
-                        .add(COOKING_CONTEST, 0L, CAFE_KITCHEN)
-                        .add(COOKING_CONTEST, 6000L, PARK_CAFE)
-                        .add(COOKING_CONTEST, 18000L, CAFE_KITCHEN)
-                        .add(NEW_YEARS_EVE, 0L, PARK_SPRUCE)
-                        .add(NEW_YEARS_EVE, 6000L, CAFE_KITCHEN)
-                        .add(NEW_YEARS_EVE, 13000L, GODDESS_POND_FRONT_RIGHT)
-                        .add(NEW_YEARS_EVE, 17000L, PARK_SPRUCE)
-                        .build();
-
-        //Blacksmith
-        ScheduleBuilder.create(BLACKSMITH, BLACKSMITH_FURNACE)
-                        .add(SPRING, SUNDAY, 0L, BLACKSMITH_FURNACE)
-                        .add(SPRING, SUNDAY, 6000L, CAFE_DOOR)
-                        .add(SPRING, SUNDAY, 8000L, BLACKSMITH_FRONT)
-                        .add(SPRING, SUNDAY, 9500L, BLACKSMITH_FURNACE)
-                        .add(SPRING, SUNDAY, 10000L, BLACKSMITH_WORK)
-                        .add(SPRING, SUNDAY, 17000L, TOWNHALL_ENTRANCE)
-                        .add(SPRING, SUNDAY, 20000L, PARK_OAK)
-                        .add(SPRING, SUNDAY, 23000L, BLACKSMITH_FURNACE)
-                        .add(SPRING, THURSDAY, 0L, BLACKSMITH_FURNACE)
-                        .add(SPRING, THURSDAY, 6000L, CAFE_DOOR)
-                        .add(SPRING, THURSDAY, 10000L, CAFE_STAIRS)
-                        .add(SPRING, THURSDAY, 13000L, MINE_RIGHT)
-                        .add(SPRING, THURSDAY, 16000L, CAFE_DOOR)
-                        .add(SPRING, THURSDAY, 18000L, BLACKMSITH_DOOR)
-                        .add(SPRING, THURSDAY, 20000L, PARK_OAK)
-                        .add(SPRING, THURSDAY, 23000L, BLACKSMITH_FURNACE)
-                        .add(SPRING, FRIDAY, 0L, BLACKSMITH_FURNACE)
-                        .add(SPRING, FRIDAY, 6000L, CAFE_DOOR)
-                        .add(SPRING, FRIDAY, 8000L, BLACKSMITH_FRONT)
-                        .add(SPRING, FRIDAY, 9500L, BLACKSMITH_FURNACE)
-                        .add(SPRING, FRIDAY, 10000L, BLACKSMITH_WORK)
-                        .add(SPRING, FRIDAY, 17000L, TOWNHALL_ENTRANCE)
-                        .add(SPRING, FRIDAY, 20000L, PARK_OAK)
-                        .add(SPRING, FRIDAY, 23000L, BLACKSMITH_FURNACE)
-                        .add(NEW_YEARS_EVE, 0L, PARK_BUSH)
-                        .add(NEW_YEARS_EVE, 6000L, BLACKSMITH_FURNACE)
-                        .add(NEW_YEARS_EVE, 13000L, BLACKSMITH_FRONT)
-                        .add(NEW_YEARS_EVE, 17000L, PARK_BUSH)
-                        .build();
-
-        //Clockmaker
         CLOCKMAKER.setHasInfo(new GreetingTime());
-        ScheduleBuilder.create(CLOCKMAKER, CLOCKMAKER_DOWNSTAIRS)
-                        .add(SPRING, SUNDAY, 0L, CLOCKMAKER_DOWNSTAIRS)
-                        .add(SPRING, SUNDAY, 8000L, CHURCH_PEW_BACK_RIGHT)
-                        .add(SPRING, SUNDAY, 11000L, TOWNHALL_RIGHT)
-                        .add(SPRING, SUNDAY, 14000L, GODDESS_POND_BACK)
-                        .add(SPRING, SUNDAY, 16000L, PARK_LEFT)
-                        .add(SPRING, SUNDAY, 18000L, CLOCKMAKER_DOWNSTAIRS)
-                        .add(SPRING, MONDAY, 0L, CLOCKMAKER_DOWNSTAIRS)
-                        .add(SPRING, MONDAY, 8000L, CLOCKMAKER_WORK)
-                        .add(SPRING, MONDAY, 15500L, FISHING_POND_LEFT)
-                        .add(SPRING, MONDAY, 16000L, PARK_LEFT)
-                        .add(SPRING, MONDAY, 18000L, CLOCKMAKER_DOWNSTAIRS)
-                        .add(SPRING, SATURDAY, 0L, CLOCKMAKER_DOWNSTAIRS)
-                        .add(SPRING, SATURDAY, 8000L, CAFE_CUSTOMER)
-                        .add(SPRING, SATURDAY, 11000L, TOWNHALL_RIGHT_OF_STAGE)
-                        .add(SPRING, SATURDAY, 14000L, FISHING_POND_LEFT)
-                        .add(SPRING, SATURDAY, 16000L, PARK_LEFT)
-                        .add(SPRING, SATURDAY, 18000L, CLOCKMAKER_DOWNSTAIRS)
-                        .add(NEW_YEARS, 0L, CLOCKMAKER_DOWNSTAIRS)
-                        .add(NEW_YEARS, 7000L, CLOCKMAKER_DOOR)
-                        .add(NEW_YEARS, 12000L, PARK_SPRUCE)
-                        .add(NEW_YEARS, 20000L, CLOCKMAKER_DOOR)
-                        .add(NEW_YEARS, 22000L, CLOCKMAKER_DOWNSTAIRS)
-                        .add(NEW_YEARS_EVE, 0L, PARK_BACK_LEFT)
-                        .add(NEW_YEARS_EVE, 6000L, CLOCKMAKER_DOWNSTAIRS)
-                        .add(NEW_YEARS_EVE, 13000L, CLOCKMAKER_DOOR)
-                        .add(NEW_YEARS_EVE, 17000L, PARK_BACK_LEFT)
-                        .build();
-
-        //Clockmaker Child
-        ScheduleBuilder.create(CLOCKMAKER_CHILD, CLOCKMAKER_UPSTAIRS)
-                        .add(SPRING, SUNDAY, 0L, CLOCKMAKER_UPSTAIRS)
-                        .add(SPRING, SUNDAY, 8000L, CHURCH_PEW_BACK_RIGHT)
-                        .add(SPRING, SUNDAY, 10000L, POULTRY_DOOR)
-                        .add(SPRING, SUNDAY, 12000L, BARN_DOOR)
-                        .add(SPRING, SUNDAY, 16000L, TOWNHALL_LEFT)
-                        .add(SPRING, SUNDAY, 18000L, CLOCKMAKER_UPSTAIRS)
-                        .add(SPRING, MONDAY, 0L, CLOCKMAKER_UPSTAIRS)
-                        .add(SPRING, MONDAY, 8000L, BARN_DOOR)
-                        .add(SPRING, MONDAY, 10000L, POULTRY_DOOR)
-                        .add(SPRING, MONDAY, 14000L, FISHING_POND_LEFT)
-                        .add(SPRING, MONDAY, 16000L, PARK_SPRUCE)
-                        .add(SPRING, MONDAY, 18000L, CLOCKMAKER_UPSTAIRS)
-                        .add(NEW_YEARS, 0L, CLOCKMAKER_UPSTAIRS)
-                        .add(NEW_YEARS, 7000L, CLOCKMAKER_DOWNSTAIRS)
-                        .add(NEW_YEARS, 12000L, PARK_SPRUCE)
-                        .add(NEW_YEARS, 19000L, CLOCKMAKER_DOWNSTAIRS)
-                        .add(NEW_YEARS, 20000L, CLOCKMAKER_UPSTAIRS)
-                        .add(NEW_YEARS_EVE, 0L, PARK_BACK_LEFT)
-                        .add(NEW_YEARS_EVE, 6000L, CLOCKMAKER_UPSTAIRS)
-                        .add(NEW_YEARS_EVE, 13000L, CLOCKMAKER_DOWNSTAIRS)
-                        .add(NEW_YEARS_EVE, 17000L, PARK_BACK_LEFT)
-                        .build();
-
-        //Priest
         PRIEST.addGreeting(new GreetingPriestBlessing());
-        ScheduleBuilder.create(PRIEST, TOWNHALL_ADULT_BED)
-                        .add(SPRING, SUNDAY, 0L, TOWNHALL_ADULT_BED)
-                        .add(SPRING, SUNDAY, 6000L, CHURCH_FRONT)
-                        .add(SPRING, SUNDAY, 7000L, CHURCH_WORK)
-                        .add(SPRING, SUNDAY, 17000L, GODDESS_POND_FRONT_RIGHT)
-                        .add(SPRING, SUNDAY, 19000L, GODDESS_POND_FRONT)
-                        .add(SPRING, SUNDAY, 22000L, TOWNHALL_ADULT_BED)
-                        .add(SPRING, MONDAY, 0L, TOWNHALL_ADULT_BED)
-                        .add(SPRING, MONDAY, 6000L, MINE_BACK)
-                        .add(SPRING, MONDAY, 9000L, CHURCH_INSIDE)
-                        .add(SPRING, MONDAY, 17500L, FISHING_HUT_RIGHT)
-                        .add(SPRING, MONDAY, 19000L, TOWNHALL_LEFT_OF_STAGE)
-                        .add(SPRING, MONDAY, 22000L, TOWNHALL_ADULT_BED)
-                        .add(NEW_YEARS, 0L, TOWNHALL_ADULT_BED)
-                        .add(NEW_YEARS, 7000L, TOWNHALL_ENTRANCE)
-                        .add(NEW_YEARS, 12000L, PARK_BENCH)
-                        .add(NEW_YEARS, 20000L, TOWNHALL_ENTRANCE)
-                        .add(NEW_YEARS, 22000L, TOWNHALL_ADULT_BED)
-                        .add(NEW_YEARS_EVE, 0L, PARK_CUSTOMER)
-                        .add(NEW_YEARS_EVE, 6000L, TOWNHALL_ADULT_BED)
-                        .add(NEW_YEARS_EVE, 13000L, CHURCH_INSIDE)
-                        .add(NEW_YEARS_EVE, 17000L, PARK_CUSTOMER)
-                        .build();
-        //Mayor
-        ScheduleBuilder.create(MAYOR, TOWNHALL_STAGE)
-                        .add(SPRING, SUNDAY, 0L, TOWNHALL_ADULT_BED)
-                        .add(SPRING, SUNDAY, 6000L, TOWNHALL_FRONT_OF_STAGE)
-                        .add(SPRING, SUNDAY, 9000L, TOWNHALL_STAGE)
-                        .add(SPRING, SUNDAY, 15000L, CAFE_BALCONY)
-                        .add(SPRING, SUNDAY, 19000L, TOWNHALL_LEFT)
-                        .add(SPRING, SUNDAY, 22000L, TOWNHALL_ADULT_BED)
-                        .add(COOKING_CONTEST, 0L, TOWNHALL_ADULT_BED)
-                        .add(COOKING_CONTEST, 6000L, PARK_BUSH)
-                        .add(COOKING_CONTEST, 19000L, TOWNHALL_FRONT_OF_STAGE)
-                        .add(COOKING_CONTEST, 22000L, TOWNHALL_ADULT_BED)
-                        .add(NEW_YEARS, 0L, TOWNHALL_ADULT_BED)
-                        .add(NEW_YEARS, 7000L, TOWNHALL_STAGE)
-                        .add(NEW_YEARS, 12000L, PARK_PODIUM)
-                        .add(NEW_YEARS, 20000L, TOWNHALL_STAGE)
-                        .add(NEW_YEARS, 22000L, TOWNHALL_ADULT_BED)
-                        .add(NEW_YEARS_EVE, 0L, PARK_CUSTOMER)
-                        .add(NEW_YEARS_EVE, 6000L, TOWNHALL_ADULT_BED)
-                        .add(NEW_YEARS_EVE, 13000L, TOWNHALL_STAGE)
-                        .add(NEW_YEARS_EVE, 17000L, PARK_CUSTOMER)
-                        .build();
-
-        //Eldest Daughter
-        ScheduleBuilder.create(DAUGHTER_ADULT, TOWNHALL_TEEN_BED)
-                        .add(SPRING, SUNDAY, 0L, TOWNHALL_TEEN_BED)
-                        .add(SPRING, SUNDAY, 7000L, CHURCH_PEW_FRONT_RIGHT)
-                        .add(SPRING, SUNDAY, 10000L, CAFE_KITCHEN)
-                        .add(SPRING, SUNDAY, 13000L, POULTRY_FRONT)
-                        .add(SPRING, SUNDAY, 15000L, TOWNHALL_RIGHT)
-                        .add(SPRING, SUNDAY, 19000L, TOWNHALL_TEEN_BED)
-                        .add(SPRING, MONDAY, 0L, TOWNHALL_TEEN_BED)
-                        .add(SPRING, MONDAY, 7000L, CAFE_KITCHEN)
-                        .add(SPRING, MONDAY, 10000L, FISHING_HUT_DOOR)
-                        .add(SPRING, MONDAY, 15000L, TOWNHALL_RIGHT)
-                        .add(SPRING, MONDAY, 19000L, TOWNHALL_TEEN_BED)
-                        .add(NEW_YEARS, 0L, TOWNHALL_TEEN_BED)
-                        .add(NEW_YEARS, 7000L, TOWNHALL_RIGHT)
-                        .add(NEW_YEARS, 12000L, PARK_BENCH)
-                        .add(NEW_YEARS, 20000L, TOWNHALL_RIGHT)
-                        .add(NEW_YEARS, 22000L, TOWNHALL_TEEN_BED)
-                        .add(NEW_YEARS_EVE, 0L, PARK_CUSTOMER)
-                        .add(NEW_YEARS_EVE, 6000L, TOWNHALL_TEEN_BED)
-                        .add(NEW_YEARS_EVE, 13000L, TOWNHALL_RIGHT)
-                        .add(NEW_YEARS_EVE, 17000L, PARK_CUSTOMER)
-                        .build();
-
-        //Youngest Daughter
-        ScheduleBuilder.create(DAUGHTER_CHILD, TOWNHALL_CHILD_BED)
-                        .add(SPRING, SUNDAY, 0L, TOWNHALL_CHILD_BED)
-                        .add(SPRING, SUNDAY, 8000L, CHURCH_PEW_FRONT_LEFT)
-                        .add(SPRING, SUNDAY, 10000L, POULTRY_DOOR)
-                        .add(SPRING, SUNDAY, 12000L, BARN_DOOR)
-                        .add(SPRING, SUNDAY, 14000L, TOWNHALL_LEFT)
-                        .add(SPRING, SUNDAY, 15000L, TOWNHALL_CHILD_BED)
-                        .add(SPRING, MONDAY, 0L, TOWNHALL_CHILD_BED)
-                        .add(SPRING, MONDAY, 8000L, BARN_DOOR)
-                        .add(SPRING, MONDAY, 10000L, POULTRY_DOOR)
-                        .add(SPRING, MONDAY, 12000L, TOWNHALL_LEFT)
-                        .add(SPRING, MONDAY, 15000L, TOWNHALL_CHILD_BED)
-                        .add(NEW_YEARS, 0L, TOWNHALL_CHILD_BED)
-                        .add(NEW_YEARS, 7000L, TOWNHALL_LEFT)
-                        .add(NEW_YEARS, 12000L, PARK_BENCH)
-                        .add(NEW_YEARS, 19000L, TOWNHALL_LEFT)
-                        .add(NEW_YEARS, 20000L, TOWNHALL_CHILD_BED)
-                        .add(NEW_YEARS_EVE, 0L, PARK_CUSTOMER)
-                        .add(NEW_YEARS_EVE, 6000L, TOWNHALL_CHILD_BED)
-                        .add(NEW_YEARS_EVE, 13000L, TOWNHALL_LEFT)
-                        .add(NEW_YEARS_EVE, 17000L, PARK_CUSTOMER)
-                        .build();
-
-        //Trader
-        ScheduleBuilder.create(TRADER, PARK_TRADER)
-                        .add(SPRING, SUNDAY, 0L, TOWNHALL_RIGHT)
-                        .add(SPRING, SUNDAY, 6000L, PARK_TRADER)
-                        .add(SPRING, SUNDAY, 11000L, GENERAL_CUSTOMER)
-                        .add(SPRING, SUNDAY, 13000L, GENERAL_GARDEN)
-                        .add(SPRING, SUNDAY, 16000L, GODDESS_POND_BACK_RIGHT)
-                        .add(COOKING_CONTEST, 0L, TOWNHALL_RIGHT)
-                        .add(COOKING_CONTEST, 6000L, PARK_TRADER)
-                        .add(COOKING_CONTEST, 19000L, GENERAL_GARDEN)
-                        .add(COOKING_CONTEST, 22000L, TOWNHALL_RIGHT)
-                        .add(NEW_YEARS, 0L, TOWNHALL_RIGHT)
-                        .add(NEW_YEARS, 10000L, TOWNHALL_ENTRANCE)
-                        .add(NEW_YEARS, 11500L, PARK_TRADER_RIGHT)
-                        .add(NEW_YEARS, 22500L, TOWNHALL_ENTRANCE)
-                        .add(NEW_YEARS, 23500L, TOWNHALL_RIGHT)
-                        .add(NEW_YEARS_EVE, 0L, PARK_TABLE)
-                        .add(NEW_YEARS_EVE, 6000L, TOWNHALL_RIGHT)
-                        .add(NEW_YEARS_EVE, 13000L, TOWNHALL_ENTRANCE)
-                        .add(NEW_YEARS_EVE, 17000L, PARK_TABLE)
-                        .build();
 
         for (NPC npc: NPC.REGISTRY) {
             if (npc != NPC.NULL_NPC) {
                 //addHolidayGreetings(npc,
                         //HFFestivals.NEW_YEARS, HFFestivals.COOKING_CONTEST, HFFestivals.CHICKEN_FESTIVAL, HFFestivals.COW_FESTIVAL,
                         //HFFestivals.HARVEST_FESTIVAL, HFFestivals.SHEEP_FESTIVAL, HFFestivals.STARRY_NIGHT, HFFestivals.NEW_YEARS_EVE);
-                addHolidayGreetings(npc, HFFestivals.NEW_YEARS, HFFestivals.COOKING_CONTEST, HFFestivals.NEW_YEARS_EVE);
+                addHolidayGreetings(npc, HFFestivals.NEW_YEARS, HFFestivals.COOKING_CONTEST, HFFestivals.COW_FESTIVAL, HFFestivals.NEW_YEARS_EVE);
                 setupGifts(npc);
             }
         }

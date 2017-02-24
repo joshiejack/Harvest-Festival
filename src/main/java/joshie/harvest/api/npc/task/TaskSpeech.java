@@ -1,4 +1,4 @@
-package joshie.harvest.api.npc.schedule;
+package joshie.harvest.api.npc.task;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.npc.greeting.Script;
@@ -10,15 +10,15 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.WorldServer;
 
-public class ScheduleSpeech extends ScheduleElement {
+public class TaskSpeech extends TaskElement {
     private Script script;
 
-    private ScheduleSpeech(Script script) {
+    private TaskSpeech(Script script) {
         this.script = script;
     }
 
-    public static ScheduleSpeech of(Script script) {
-        return new ScheduleSpeech(script);
+    public static TaskSpeech of(Script script) {
+        return new TaskSpeech(script);
     }
 
     @Override

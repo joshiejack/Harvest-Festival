@@ -1,7 +1,7 @@
 package joshie.harvest.quests.town.festivals.contest;
 
 import joshie.harvest.api.calendar.Festival;
-import joshie.harvest.api.npc.schedule.ScheduleElement;
+import joshie.harvest.api.npc.task.TaskElement;
 import joshie.harvest.quests.base.QuestAnimalContest;
 import joshie.harvest.quests.town.festivals.Place;
 import joshie.harvest.town.TownHelper;
@@ -9,11 +9,11 @@ import net.minecraft.entity.EntityAgeable;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 
-public class ScheduleWinner extends ScheduleElement {
+public class TaskWinner extends TaskElement {
     private Festival festival;
 
     @SuppressWarnings("WeakerAccess")
-    public ScheduleWinner(Festival festival) {
+    public TaskWinner(Festival festival) {
         this.festival = festival;
     }
 

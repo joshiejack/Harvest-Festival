@@ -10,7 +10,7 @@ import net.minecraftforge.fml.common.registry.RegistryBuilder;
 
 public class Script extends IForgeRegistryEntry.Impl<Script> {
     public static final IForgeRegistry<Script> REGISTRY = new RegistryBuilder<Script>().setName(new ResourceLocation("harvestfestival", "scripts")).setType(Script.class).setIDRange(0, 32000).create();
-    protected final String unlocalised;
+    protected String unlocalised;
     private NPC npc;
 
     public Script(ResourceLocation unlocalised) {

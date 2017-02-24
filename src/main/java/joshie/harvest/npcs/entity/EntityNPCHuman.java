@@ -15,6 +15,7 @@ import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.pathfinding.PathNavigateGround;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
@@ -105,5 +106,21 @@ public abstract class EntityNPCHuman<E extends EntityNPCHuman> extends EntityNPC
         }
 
         return super.attackEntityFrom(source, amount);
+    }
+
+    @Override
+    public void readEntityFromNBT(NBTTagCompound nbt) {
+        super.readEntityFromNBT(nbt);
+        if (pathing != null) {
+            pathing.readFromNBT(nbt.getCompoundTag("Pathing"));
+        }
+    }
+
+    @Override
+    public void writeEntityToNBT(NBTTagCompound nbt) {
+        super.writeEntityToNBT(nbt);
+        if (pathing != null) {
+            nbt.setTag("Pathing", pathing.writeToNBT(new NBTTagCompound()));
+        }
     }
 }

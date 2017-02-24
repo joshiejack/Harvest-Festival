@@ -225,7 +225,7 @@ public class TownDataServer extends TownData<QuestDataServer, LetterDataServer> 
 
             if (previousFestival == festival) { //If there is a festival active
                 festivalDays--;  //Decrease the amount of days of the festival left
-                if (festivalDays <= 0 && (festival != HFFestivals.NEW_YEARS_EVE || (today.getDay() != 0 && festival == HFFestivals.NEW_YEARS_EVE))) { //If we have no days left then v
+                if (festivalDays <= 0 && (festival != HFFestivals.NEW_YEARS_EVE || (today.getDay() != 0 && festival == HFFestivals.NEW_YEARS_EVE)) || quests.getFinished().contains(festival.getQuest())) { //If we have no days left then v
                     festival = Festival.NONE; //Cancel the festival
                 }
             }

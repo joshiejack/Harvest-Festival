@@ -23,13 +23,13 @@ public class ContestAnimalSelection<E extends EntityAnimal> extends Selection<Qu
     @Override
     @SuppressWarnings("unchecked")
     public String[] getText(@Nonnull EntityPlayer player, QuestAnimalContest quest) {
-        List<Pair<E, Integer>> animals = quest.getEntries().getAvailableEntries(player);
+        List<Pair<String, Integer>> animals = quest.getEntries().getNames();
         int max = Math.min(4, animals.size());
         if (max <= 0) return new String[] { I18n.translateToLocal(translate) };
         else {
             String[] string = new String[max];
             for (int i = 0; i < max; i++) {
-                string[i] = "@" + animals.get(i).getKey().getName();
+                string[i] = "@" + animals.get(i).getKey();
             }
 
             return string;

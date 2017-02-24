@@ -45,6 +45,16 @@ public class ContestEntries<E extends EntityAnimal> {
     }
 
     public List<Pair<E, Integer>> getAvailableEntries(EntityPlayer player) {
+        //Validate the existing entries
+        Iterator<ContestEntry> it = entries.iterator();
+        while (it.hasNext()) {
+            ContestEntry entry = it.next();
+            if (entry.getEntity(player.worldObj) == null) {
+                it.remove(); //Remove the entries as they are no longer valid
+            }
+        }
+
+        //Grab the list of closest
         List<Pair<E, Integer>> list = Lists.newArrayList();
         for (int i = 0; i < locations.length; i++) {
             BuildingLocation location = locations[i];
@@ -74,7 +84,7 @@ public class ContestEntries<E extends EntityAnimal> {
                 it.remove();
             }
         }
-
+        
         entries.add(new ContestEntry(playerUUID, animalUUID, stall));
         selecting.remove(playerUUID);
     }
@@ -143,6 +153,7 @@ public class ContestEntries<E extends EntityAnimal> {
         double d0 = -1.0D;
         E closest = null;
         for (E animal: animals) {
+            if (animal.isDead) continue;
             double d1 = animal.getDistanceSq(pos);
             if ((d1 < 5D * 5D) && (d0 == -1.0D || d1 < d0))  {
                 d0 = d1;

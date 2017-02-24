@@ -99,7 +99,7 @@ public abstract class QuestAnimalContest<E extends EntityAnimal> extends QuestFe
     public void onChatClosed(EntityPlayer player, EntityLiving entity, NPC npc, boolean wasSneaking) {
         if (quest_stage == EXPLAIN) quest_stage = QUESTION;
         if (quest_stage == START) increaseStage(player);
-        if (entries.isSelecting(player) && entries.getAvailableEntries(player).size() == 0) {
+        if (entries.isSelecting(player) && entries.getNames().size() == 0) {
             entries.getSelecting().remove(EntityHelper.getPlayerUUID(player)); //Remove the player
         }
     }

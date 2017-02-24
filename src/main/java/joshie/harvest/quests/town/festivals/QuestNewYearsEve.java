@@ -27,6 +27,7 @@ import net.minecraft.entity.item.EntityFireworkRocket;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.common.FMLCommonHandler;
@@ -96,8 +97,9 @@ public class QuestNewYearsEve extends QuestFestival {
         return getLocalized("start");
     }
 
-    private static class ScheduleNewYear extends ScheduleElement {
+    public static class ScheduleNewYear extends ScheduleElement {
         private static final String tag = "{LifeTime:30,FireworksItem:{id:fireworks,Count:1,tag:{Fireworks:{Explosions:[{Type:%s,Flicker:%s,Trail:%s,Colors:[%s],FadeColors:[%s]}]}}}}";
+
         @SuppressWarnings("ConstantConditions")
         private static ItemStack getRandomFireworks(Random rand) {
             ItemStack stack = new ItemStack(Items.FIREWORKS);
@@ -109,7 +111,7 @@ public class QuestNewYearsEve extends QuestFestival {
         public void execute(EntityAgeable npc) {
             //Spawn the fireworks first
             for (int x = -10; x <= 10; x++) {
-                for (int z = -10 ; z <= 10; z++) {
+                for (int z = -10; z <= 10; z++) {
                     if (npc.worldObj.rand.nextBoolean()) {
                         npc.worldObj.spawnEntityInWorld(new EntityFireworkRocket(npc.worldObj, npc.posX + x, npc.posY + npc.worldObj.rand.nextInt(15), npc.posZ + z, getRandomFireworks(npc.worldObj.rand)));
                     }
@@ -122,8 +124,8 @@ public class QuestNewYearsEve extends QuestFestival {
             CalendarHelper.setWorldTime(server, CalendarHelper.getTime(0, Season.SPRING, calendar.getDate().getYear() + 1) - 1);
 
             //Add 500RP to all the npcs for any players that are in range
-            for (EntityPlayer player: EntityHelper.getEntities(EntityPlayer.class, npc.worldObj, new BlockPos(npc), 64, 64)) {
-                for (NPC aNPC: NPC.REGISTRY) {
+            for (EntityPlayer player : EntityHelper.getEntities(EntityPlayer.class, npc.worldObj, new BlockPos(npc), 64, 64)) {
+                for (NPC aNPC : NPC.REGISTRY) {
                     if (HFApi.player.getRelationsForPlayer(player).isStatusMet(aNPC, RelationStatus.MET)) {
                         HFApi.player.getRelationsForPlayer(player).affectRelationship(aNPC, 500);
                     }
@@ -131,6 +133,14 @@ public class QuestNewYearsEve extends QuestFestival {
             }
 
             super.execute(npc); //Mark this as satisfied
+        }
+
+        @Override
+        public void readFromNBT(NBTTagCompound tag) {}
+
+        @Override
+        public NBTTagCompound writeToNBT(NBTTagCompound tag) {
+            return tag;
         }
     }
 }

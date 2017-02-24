@@ -4,6 +4,7 @@ import joshie.harvest.api.npc.schedule.ScheduleElement;
 import joshie.harvest.api.npc.schedule.SchedulePath;
 import joshie.harvest.npcs.entity.EntityNPCHuman;
 import net.minecraft.entity.ai.EntityAIBase;
+import net.minecraft.nbt.NBTTagCompound;
 
 public class EntityAIPathing extends EntityAIBase {
     private final EntityNPCHuman npc;
@@ -48,5 +49,19 @@ public class EntityAIPathing extends EntityAIBase {
         }
 
         if (target == null) path = null; //Clear this up
+    }
+
+    public void readFromNBT(NBTTagCompound tag) {
+        if (tag.hasKey("Path")) {
+            path = SchedulePath.fromNBT(tag.getCompoundTag("Path"));
+        }
+    }
+
+    public NBTTagCompound writeToNBT(NBTTagCompound tag) {
+        if (path != null) {
+            tag.setTag("Path", path.toNBT(new NBTTagCompound()));
+        }
+
+        return tag;
     }
 }

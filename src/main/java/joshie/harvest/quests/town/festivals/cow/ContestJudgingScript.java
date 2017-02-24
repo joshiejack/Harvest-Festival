@@ -5,7 +5,7 @@ import joshie.harvest.api.npc.greeting.Script;
 import joshie.harvest.calendar.HFFestivals;
 import joshie.harvest.core.helpers.TextHelper;
 import joshie.harvest.npcs.HFNPCs;
-import joshie.harvest.quests.town.festivals.QuestContestCow;
+import joshie.harvest.quests.base.QuestAnimalContest;
 import joshie.harvest.quests.town.festivals.contest.ContestEntry;
 import joshie.harvest.town.TownHelper;
 import net.minecraft.entity.EntityAgeable;
@@ -14,13 +14,13 @@ import net.minecraft.util.ResourceLocation;
 
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 
-public class CowContestJudgingScript extends Script {
-    private final int cowID;
+public class ContestJudgingScript extends Script {
+    private final int id;
 
-    public CowContestJudgingScript(int id) {
-        super(new ResourceLocation(MODID, "cow_judge_" + id));
+    public ContestJudgingScript(String animal, int id) {
+        super(new ResourceLocation(MODID, animal + "_judge_" + id));
         setNPC(HFNPCs.MILKMAID);
-        cowID = id; //get the correct id
+        this.id = id; //get the correct id
     }
 
     private String getTextFromScore(int score) {
@@ -38,13 +38,13 @@ public class CowContestJudgingScript extends Script {
 
     @Override
     public String getLocalized(EntityAgeable ageable, NPC npc) {
-        QuestContestCow quest = TownHelper.getClosestTownToEntity(ageable, false).getQuests().getAQuest(HFFestivals.COW_FESTIVAL.getQuest());
+        QuestAnimalContest quest = TownHelper.getClosestTownToEntity(ageable, false).getQuests().getAQuest(HFFestivals.COW_FESTIVAL.getQuest());
         if (quest != null) {
-            ContestEntry entry = quest.getEntries().getEntryFromStall(cowID);
+            ContestEntry entry = quest.getEntries().getEntryFromStall(id);
             if (entry != null) {
-                EntityAnimal cow = entry.getEntity(ageable.worldObj);
-                if (cow != null) {
-                    return TextHelper.format("Let's take a look at '" + cow.getName() + "'. Well... %s", getTextFromScore(entry.getScore(ageable.worldObj)));
+                EntityAnimal animal = entry.getEntity(ageable.worldObj);
+                if (animal != null) {
+                    return TextHelper.format("Let's take a look at '" + animal.getName() + "'. Well... %s", getTextFromScore(entry.getScore(ageable.worldObj)));
                 }
             }
         }

@@ -8,7 +8,7 @@ import joshie.harvest.api.npc.INPCHelper.Age;
 import joshie.harvest.api.npc.INPCHelper.Gender;
 import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.npc.gift.IGiftHandler;
-import joshie.harvest.api.npc.schedule.ScheduleBuilder;
+import joshie.harvest.api.npc.schedule.*;
 import joshie.harvest.calendar.HFFestivals;
 import joshie.harvest.core.base.render.MeshIdentical;
 import joshie.harvest.core.lib.EntityIDs;
@@ -23,6 +23,8 @@ import joshie.harvest.npcs.render.NPCItemRenderer;
 import joshie.harvest.npcs.render.NPCItemRenderer.NPCTile;
 import joshie.harvest.npcs.render.RenderNPC;
 import joshie.harvest.quests.Quests;
+import joshie.harvest.quests.town.festivals.QuestNewYearsEve.ScheduleNewYear;
+import joshie.harvest.quests.town.festivals.contest.ScheduleWinner;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.ForgeHooksClient;
@@ -98,6 +100,12 @@ public class HFNPCs {
     }
 
     public static void init() {
+        ScheduleElement.REGISTRY.put(new ResourceLocation(MODID, "move"), ScheduleMove.class);
+        ScheduleElement.REGISTRY.put(new ResourceLocation(MODID, "speech"), ScheduleSpeech.class);
+        ScheduleElement.REGISTRY.put(new ResourceLocation(MODID, "wait"), ScheduleWait.class);
+        ScheduleElement.REGISTRY.put(new ResourceLocation(MODID, "new_year"), ScheduleNewYear.class);
+        ScheduleElement.REGISTRY.put(new ResourceLocation(MODID, "winner"), ScheduleWinner.class);
+
         GODDESS.setHasInfo(new GreetingWeather())
                 .addGreeting(new GreetingBeforeAshlee("tutorial.chicken.reminder.poultry"))
                 .addGreeting(new GreetingBeforeDanieru(GODDESS));

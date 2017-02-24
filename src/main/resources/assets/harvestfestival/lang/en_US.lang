@@ -432,11 +432,11 @@ harvestfestival.junk.fossil=Fish Fossil
 harvestfestival.junk.treasure=Pirate Treasure
 
 #Blocks
-harvestfestival.fishing.block.trap=Fish Trap
-harvestfestival.fishing.block.trap.tooltip=Easy way to catch fish, just fill with bait, make sure it's surrounded by water on all sides and then check back the next day.
-harvestfestival.fishing.block.trap.baited=Baited Fish Trap
-harvestfestival.fishing.block.hatchery=Hatchery
-harvestfestival.fishing.block.hatchery.tooltip=Place on waters surface, ensuring all 8 blocks around are water. Place fish inside and over a few days, they will eventually multiply. Be careful though because when you take a fish out, there is a chance for it to break.
+harvestfestival.aquatic.trap=Fish Trap
+harvestfestival.aquatic.trap.tooltip=Easy way to catch fish, just fill with bait, make sure it's surrounded by water on all sides and then check back the next day.
+harvestfestival.aquatic.trap.baited=Baited Fish Trap
+harvestfestival.floating.hatchery=Hatchery
+harvestfestival.floating.hatchery.tooltip=Place on waters surface, ensuring all 8 blocks around are water. Place fish inside and over a few days, they will eventually multiply. Be careful though because when you take a fish out, there is a chance for it to break.
 
 #Tools
 harvestfestival.tool.broken=[BROKEN]

@@ -27,7 +27,7 @@ public class TileTrap extends TileSingleStack {
     private static final DailyTickableBlock TICKABLE = new DailyTickableBlock(Phases.MAIN) {
         @Override
         public boolean isStateCorrect(World world, BlockPos pos, IBlockState state) {
-            return state.getBlock() == HFFishing.FISHING_BLOCK && HFFishing.FISHING_BLOCK.getEnumFromState(state).isTrap();
+            return state.getBlock() == HFFishing.AQUATIC_BLOCKS && HFFishing.AQUATIC_BLOCKS.getEnumFromState(state).isTrap();
         }
 
         @Override

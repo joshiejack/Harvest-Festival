@@ -9,7 +9,7 @@ import joshie.harvest.core.helpers.StackHelper;
 import joshie.harvest.fishing.FishingAPI;
 import joshie.harvest.fishing.FishingHelper;
 import joshie.harvest.fishing.HFFishing;
-import joshie.harvest.fishing.block.BlockFishing.FishingBlock;
+import joshie.harvest.fishing.block.BlockFloating.Floating;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -29,7 +29,7 @@ public class TileHatchery extends TileSingleStack implements ITickable {
     private static final DailyTickableBlock TICKABLE = new DailyTickableBlock(Phases.MAIN) {
         @Override
         public boolean isStateCorrect(World world, BlockPos pos, IBlockState state) {
-            return state.getBlock() == HFFishing.FISHING_BLOCK && HFFishing.FISHING_BLOCK.getEnumFromState(state) == FishingBlock.HATCHERY;
+            return state.getBlock() == HFFishing.FLOATING_BLOCKS && HFFishing.FLOATING_BLOCKS.getEnumFromState(state) == Floating.HATCHERY;
         }
 
         @Override

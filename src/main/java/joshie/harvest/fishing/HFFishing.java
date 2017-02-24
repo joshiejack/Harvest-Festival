@@ -8,7 +8,8 @@ import joshie.harvest.core.lib.EntityIDs;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.util.annotations.HFLoader;
 import joshie.harvest.fishing.FishingHelper.WaterType;
-import joshie.harvest.fishing.block.BlockFishing;
+import joshie.harvest.fishing.block.BlockAquatic;
+import joshie.harvest.fishing.block.BlockFloating;
 import joshie.harvest.fishing.entity.EntityFishHookHF;
 import joshie.harvest.fishing.item.ItemFish;
 import joshie.harvest.fishing.item.ItemFish.Fish;
@@ -47,7 +48,8 @@ public class HFFishing {
     public static final ItemFish FISH = new ItemFish().register("fish");
     public static final ItemJunk JUNK = new ItemJunk().register("junk");
     public static final ItemFishingRod FISHING_ROD = new ItemFishingRod().register("fishing_rod");
-    public static final BlockFishing FISHING_BLOCK = new BlockFishing().register("fishing_block");
+    public static final BlockAquatic AQUATIC_BLOCKS = new BlockAquatic().register("aquatic");
+    public static final BlockFloating FLOATING_BLOCKS = new BlockFloating().register("floating");
 
     @SuppressWarnings("unchecked")
     public static void preInit(){

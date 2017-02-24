@@ -4,9 +4,8 @@ import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.block.BlockHFEnum;
 import joshie.harvest.core.base.item.ItemBlockHF;
 import joshie.harvest.core.base.tile.TileSingleStack;
-import joshie.harvest.fishing.block.BlockAquatic.FishingBlock;
-import joshie.harvest.fishing.item.ItemBlockFishing;
-import joshie.harvest.fishing.tile.TileHatchery;
+import joshie.harvest.fishing.block.BlockAquatic.Aquatic;
+import joshie.harvest.fishing.item.ItemBlockAquatic;
 import joshie.harvest.fishing.tile.TileTrap;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockStateContainer;
@@ -18,7 +17,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.IStringSerializable;
-import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ChunkCache;
 import net.minecraft.world.IBlockAccess;
@@ -32,13 +30,13 @@ import javax.annotation.Nonnull;
 import java.util.Locale;
 
 import static joshie.harvest.core.proxy.HFClientProxy.NO_WATER;
-import static joshie.harvest.fishing.block.BlockAquatic.FishingBlock.HATCHERY;
-import static joshie.harvest.fishing.block.BlockAquatic.FishingBlock.TRAP_BAITED;
+import static joshie.harvest.fishing.block.BlockAquatic.Aquatic.TRAP_BAITED;
 import static net.minecraft.block.BlockLiquid.LEVEL;
 
-public class BlockAquatic extends BlockHFEnum<BlockAquatic, FishingBlock> {
+public class BlockAquatic extends BlockHFEnum<BlockAquatic, Aquatic> {
     public BlockAquatic() {
-        super(Material.WATER, FishingBlock.class, HFTab.FISHING);
+        super(Material.WATER, Aquatic.class, HFTab.FISHING);
+        setHardness(0.1F);
     }
 
     @Override
@@ -49,13 +47,13 @@ public class BlockAquatic extends BlockHFEnum<BlockAquatic, FishingBlock> {
 
     @Override
     public ItemBlockHF getItemBlock() {
-        return new ItemBlockFishing(this);
+        return new ItemBlockAquatic(this);
     }
 
     @SuppressWarnings("deprecation")
     @Override
     public boolean isFullCube(IBlockState state) {
-        return getEnumFromState(state) != FishingBlock.HATCHERY;
+        return true;
     }
 
     @Override
@@ -77,27 +75,10 @@ public class BlockAquatic extends BlockHFEnum<BlockAquatic, FishingBlock> {
         if (tile instanceof TileTrap) {
             TileTrap trap = ((TileTrap)tile);
             if (trap.isBaited()) return getStateFromEnum(TRAP_BAITED);
-            else return getStateFromEnum(FishingBlock.TRAP);
+            else return getStateFromEnum(Aquatic.TRAP);
         }
 
         return state;
-    }
-
-    @Override
-    @SuppressWarnings("deprecation, unchecked")
-    @Nonnull
-    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos) {
-        if (getEnumFromState(state) == HATCHERY) {
-            return new AxisAlignedBB(0.0D, -0.9D, 0.0D, 1.0D, 0.1D, 1.0D);
-        } else return super.getBoundingBox(state, world, pos);
-    }
-
-    @Override
-    @SuppressWarnings("deprecation, unchecked")
-    public AxisAlignedBB getCollisionBoundingBox(IBlockState state, @Nonnull World world, @Nonnull BlockPos pos) {
-        if (getEnumFromState(state) == HATCHERY) {
-            return new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.001D, 1.0D);
-        } else return super.getBoundingBox(state, world, pos);
     }
 
     @Override
@@ -111,13 +92,12 @@ public class BlockAquatic extends BlockHFEnum<BlockAquatic, FishingBlock> {
         switch (getEnumFromState(state)) {
             case TRAP:
             case TRAP_BAITED:   return new TileTrap();
-            case HATCHERY:      return new TileHatchery();
             default:            return null;
         }
     }
 
     @Override
-    protected boolean shouldDisplayInCreative(FishingBlock block) {
+    protected boolean shouldDisplayInCreative(Aquatic block) {
         return block != TRAP_BAITED;
     }
 
@@ -128,8 +108,8 @@ public class BlockAquatic extends BlockHFEnum<BlockAquatic, FishingBlock> {
         super.registerModels(item, name);
     }
 
-    public enum FishingBlock implements IStringSerializable {
-        TRAP, TRAP_BAITED, HATCHERY;
+    public enum Aquatic implements IStringSerializable {
+        TRAP, TRAP_BAITED;
 
         @Override
         public String getName() {

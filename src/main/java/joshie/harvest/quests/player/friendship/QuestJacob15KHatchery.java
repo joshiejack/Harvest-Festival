@@ -3,7 +3,7 @@ package joshie.harvest.quests.player.friendship;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.fishing.HFFishing;
-import joshie.harvest.fishing.block.BlockFishing.FishingBlock;
+import joshie.harvest.fishing.block.BlockFloating.Floating;
 import joshie.harvest.npcs.HFNPCs;
 import joshie.harvest.quests.Quests;
 import joshie.harvest.quests.base.QuestFriendshipStore;
@@ -29,6 +29,6 @@ public class QuestJacob15KHatchery extends QuestFriendshipStore {
 
     @Override
     protected ItemStack getRewardStack() {
-        return HFFishing.FISHING_BLOCK.getStackFromEnum(FishingBlock.HATCHERY);
+        return HFFishing.FLOATING_BLOCKS.getStackFromEnum(Floating.HATCHERY);
     }
 }

@@ -26,7 +26,8 @@ import joshie.harvest.core.util.annotations.HFLoader;
 import joshie.harvest.crops.HFCrops;
 import joshie.harvest.crops.block.BlockSprinkler.Sprinkler;
 import joshie.harvest.fishing.HFFishing;
-import joshie.harvest.fishing.block.BlockFishing.FishingBlock;
+import joshie.harvest.fishing.block.BlockAquatic.Aquatic;
+import joshie.harvest.fishing.block.BlockFloating.Floating;
 import joshie.harvest.fishing.item.ItemFish.Fish;
 import joshie.harvest.fishing.item.ItemJunk.Junk;
 import joshie.harvest.gathering.HFGathering;
@@ -380,13 +381,13 @@ public class HFShops {
     private static void registerTackleshop() {
         BAITSHOP.addPurchasable(new Purchasable(Junk.BAIT.getCost(), HFFishing.JUNK.getStackFromEnum(Junk.BAIT)).addTooltip("junk.bait"));
         BAITSHOP.addPurchasable(1000L, HFFishing.FISHING_ROD.getStack(ToolTier.BASIC), 1);
-        BAITSHOP.addPurchasable(new Purchasable(500L, HFFishing.FISHING_BLOCK.getStackFromEnum(FishingBlock.TRAP)).setStock(10).addTooltip("fishing.block.trap"));
-        BAITSHOP.addPurchasable(new PurchasableMaterials(3000L, HFFishing.FISHING_BLOCK.getStackFromEnum(FishingBlock.HATCHERY), Logs.of(8), String.of(6)) {
+        BAITSHOP.addPurchasable(new Purchasable(500L, HFFishing.AQUATIC_BLOCKS.getStackFromEnum(Aquatic.TRAP)).setStock(10).addTooltip("aquatic.trap"));
+        BAITSHOP.addPurchasable(new PurchasableMaterials(3000L, HFFishing.FLOATING_BLOCKS.getStackFromEnum(Floating.HATCHERY), Logs.of(8), String.of(6)) {
             @Override
             public boolean canList(World world, EntityPlayer player) {
                 return HFApi.quests.hasCompleted(Quests.SELL_HATCHERY, player);
             }
-        }.setStock(1).addTooltip("fishing.block.hatchery"));
+        }.setStock(1).addTooltip("floating.hatchery"));
 
 
         //Selling things to the carpenter

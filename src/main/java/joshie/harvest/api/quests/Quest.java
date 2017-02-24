@@ -1,6 +1,7 @@
 package joshie.harvest.api.quests;
 
 import joshie.harvest.api.HFApi;
+import joshie.harvest.api.knowledge.Note;
 import joshie.harvest.api.npc.NPC;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
@@ -203,6 +204,11 @@ public abstract class Quest extends IForgeRegistryEntry.Impl<Quest> {
     /** Called when the quest is completed
      *  @param player       the player that completed the quest **/
     public void onQuestCompleted(EntityPlayer player) {}
+
+    /** Called to gather the notes this quest fulfills, if it has been completed **/
+    public Set<Note> getNotes() {
+        return new HashSet<>();
+    }
 
     /** Call to complete a quest, only calls the serverside
      * @param player    the player to complete the quest for **/

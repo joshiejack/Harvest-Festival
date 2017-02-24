@@ -1,6 +1,8 @@
 package joshie.harvest.quests.player.meetings;
 
+import com.google.common.collect.Sets;
 import joshie.harvest.api.HFApi;
+import joshie.harvest.api.knowledge.Note;
 import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.buildings.HFBuildings;
@@ -16,6 +18,8 @@ import joshie.harvest.town.TownHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+
+import java.util.Set;
 
 @HFQuest("tutorial.cafe")
 public class QuestMeetLiara extends QuestMeetingTutorial {
@@ -72,15 +76,16 @@ public class QuestMeetLiara extends QuestMeetingTutorial {
     }
 
     @Override
+    public Set<Note> getNotes() {
+        return Sets.newHashSet(HFNotes.RECIPES, HFNotes.RECIPE_BOOK, HFNotes.KITCHEN_COUNTER, HFNotes.COOKING);
+    }
+
+    @Override
     public void onQuestCompleted(EntityPlayer player) {
         rewardItem(player, HFCooking.UTENSILS.getStackFromEnum(Utensil.KNIFE));
         rewardItem(player, HFCooking.COOKWARE.getStackFromEnum(Cookware.COUNTER));
         rewardItem(player, new ItemStack(HFCooking.COOKBOOK));
         rewardItem(player, CookingHelper.getRecipe("turnip_pickled"));
         HFApi.player.getTrackingForPlayer(player).addAsObtained(HFCooking.COOKWARE.getStackFromEnum(Cookware.COUNTER));
-        HFApi.player.getTrackingForPlayer(player).learnNote(HFNotes.RECIPES);
-        HFApi.player.getTrackingForPlayer(player).learnNote(HFNotes.RECIPE_BOOK);
-        HFApi.player.getTrackingForPlayer(player).learnNote(HFNotes.KITCHEN_COUNTER);
-        HFApi.player.getTrackingForPlayer(player).learnNote(HFNotes.COOKING);
     }
 }

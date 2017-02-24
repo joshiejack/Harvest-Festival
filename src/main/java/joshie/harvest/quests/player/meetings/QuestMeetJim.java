@@ -1,5 +1,6 @@
 package joshie.harvest.quests.player.meetings;
 
+import com.google.common.collect.Sets;
 import joshie.harvest.animals.HFAnimals;
 import joshie.harvest.animals.block.BlockTrough.Trough;
 import joshie.harvest.animals.entity.EntityHarvestCow;
@@ -8,6 +9,7 @@ import joshie.harvest.animals.item.ItemAnimalSpawner.Spawner;
 import joshie.harvest.animals.item.ItemAnimalTool.Tool;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.core.Size;
+import joshie.harvest.api.knowledge.Note;
 import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.buildings.HFBuildings;
@@ -29,6 +31,8 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
+
+import java.util.Set;
 
 import static joshie.harvest.animals.item.ItemAnimalTool.Tool.BRUSH;
 import static joshie.harvest.core.helpers.InventoryHelper.ITEM_STACK;
@@ -158,6 +162,11 @@ public class QuestMeetJim extends QuestMeetingTutorial {
     }
 
     @Override
+    public Set<Note> getNotes() {
+        return Sets.newHashSet(HFNotes.COW_CARE, HFNotes.ANIMAL_HAPPINESS, HFNotes.ANIMAL_STRESS);
+    }
+
+    @Override
     public void onQuestCompleted(EntityPlayer player) {
         if (isCompletedEarly()) {
             rewardEntity(player, "harvestfestival.cow");
@@ -167,9 +176,6 @@ public class QuestMeetJim extends QuestMeetingTutorial {
             rewardItem(player, HFAnimals.TOOLS.getStackFromEnum(BRUSH));
         }
 
-        HFApi.player.getTrackingForPlayer(player).learnNote(HFNotes.COW_CARE);
-        HFApi.player.getTrackingForPlayer(player).learnNote(HFNotes.ANIMAL_HAPPINESS);
-        HFApi.player.getTrackingForPlayer(player).learnNote(HFNotes.ANIMAL_STRESS);
         rewardItem(player, HFAnimals.ANIMAL_PRODUCT.getStackOfSize(Sizeable.MILK, Size.LARGE, 1));
         rewardItem(player, HFAnimals.TROUGH.getStackFromEnum(Trough.WOOD));
     }

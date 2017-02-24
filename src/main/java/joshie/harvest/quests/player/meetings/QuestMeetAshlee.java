@@ -1,5 +1,6 @@
 package joshie.harvest.quests.player.meetings;
 
+import com.google.common.collect.Sets;
 import joshie.harvest.animals.HFAnimals;
 import joshie.harvest.animals.entity.EntityHarvestChicken;
 import joshie.harvest.animals.item.ItemAnimalProduct.Sizeable;
@@ -7,6 +8,7 @@ import joshie.harvest.animals.item.ItemAnimalSpawner.Spawner;
 import joshie.harvest.animals.item.ItemAnimalTool.Tool;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.core.Size;
+import joshie.harvest.api.knowledge.Note;
 import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.buildings.HFBuildings;
@@ -28,6 +30,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
+import java.util.Set;
 
 import static joshie.harvest.animals.block.BlockTray.Tray.FEEDER_EMPTY;
 import static joshie.harvest.animals.block.BlockTray.Tray.NEST_EMPTY;
@@ -171,6 +174,11 @@ public class QuestMeetAshlee extends QuestMeetingTutorial {
     }
 
     @Override
+    public Set<Note> getNotes() {
+        return Sets.newHashSet(HFNotes.CHICKEN_CARE, HFNotes.ANIMAL_HAPPINESS, HFNotes.ANIMAL_STRESS);
+    }
+
+    @Override
     public void onQuestCompleted(EntityPlayer player) {
         //If we finished early
         if (isCompletedEarly()) {
@@ -179,9 +187,6 @@ public class QuestMeetAshlee extends QuestMeetingTutorial {
             rewardItem(player, HFAnimals.TRAY.getStackFromEnum(NEST_EMPTY));
         }
 
-        HFApi.player.getTrackingForPlayer(player).learnNote(HFNotes.CHICKEN_CARE);
-        HFApi.player.getTrackingForPlayer(player).learnNote(HFNotes.ANIMAL_HAPPINESS);
-        HFApi.player.getTrackingForPlayer(player).learnNote(HFNotes.ANIMAL_STRESS);
         rewardItem(player, HFAnimals.ANIMAL_PRODUCT.getStack(Sizeable.EGG, Size.LARGE));
         rewardItem(player, HFAnimals.TRAY.getStackFromEnum(FEEDER_EMPTY));
     }

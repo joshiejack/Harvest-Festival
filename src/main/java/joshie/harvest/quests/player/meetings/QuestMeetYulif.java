@@ -1,6 +1,8 @@
 package joshie.harvest.quests.player.meetings;
 
+import com.google.common.collect.Sets;
 import joshie.harvest.api.HFApi;
+import joshie.harvest.api.knowledge.Note;
 import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.Quest;
@@ -119,6 +121,11 @@ public class QuestMeetYulif extends Quest {
         }
 
         return null;
+    }
+
+    @Override
+    public Set<Note> getNotes() {
+        return Sets.newHashSet(HFNotes.BLUEPRINTS);
     }
 
     /* Rewards Logic */

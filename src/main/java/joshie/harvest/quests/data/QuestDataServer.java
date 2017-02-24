@@ -64,7 +64,11 @@ public class QuestDataServer extends QuestData {
 
     private void finish(@Nonnull World world, @Nullable EntityPlayer player, Quest quest, boolean rewards) {
         finished.add(quest);
-        if (rewards && player != null) quest.onQuestCompleted(player);
+        if (rewards && player != null) {
+            quest.onQuestCompleted(player); //Complete the quest, then add any notes
+            quest.getNotes().stream().forEach(note -> HFApi.player.getTrackingForPlayer(player).learnNote(note));
+        }
+
         if (quest.isRepeatable() && quest.getDaysBetween() > 0) {
             lastFinished.put(quest, HFApi.calendar.getDate(world).copy());
         }

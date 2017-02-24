@@ -1,6 +1,7 @@
 package joshie.harvest.quests.player.meetings;
 
-import joshie.harvest.api.HFApi;
+import com.google.common.collect.Sets;
+import joshie.harvest.api.knowledge.Note;
 import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.buildings.HFBuildings;
@@ -14,6 +15,8 @@ import joshie.harvest.town.TownHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+
+import java.util.Set;
 
 @HFQuest("tutorial.upgrading")
 public class QuestMeetDanieru extends QuestMeetingTutorial {
@@ -68,9 +71,12 @@ public class QuestMeetDanieru extends QuestMeetingTutorial {
     }
 
     @Override
+    public Set<Note> getNotes() {
+        return Sets.newHashSet(HFNotes.UPGRADING, HFNotes.REPAIRING);
+    }
+
+    @Override
     public void onQuestCompleted(EntityPlayer player) {
-        HFApi.player.getTrackingForPlayer(player).learnNote(HFNotes.UPGRADING);
-        HFApi.player.getTrackingForPlayer(player).learnNote(HFNotes.REPAIRING);
         rewardItem(player, new ItemStack(HFMining.MATERIALS, 10, Material.COPPER.ordinal()));
     }
 }

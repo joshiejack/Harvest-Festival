@@ -1,7 +1,8 @@
 package joshie.harvest.quests.player.meetings;
 
-import joshie.harvest.api.HFApi;
+import com.google.common.collect.Sets;
 import joshie.harvest.api.core.ITiered.ToolTier;
+import joshie.harvest.api.knowledge.Note;
 import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.buildings.HFBuildings;
@@ -17,6 +18,8 @@ import joshie.harvest.town.TownHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+
+import java.util.Set;
 
 import static joshie.harvest.core.helpers.InventoryHelper.ITEM_STACK;
 
@@ -73,14 +76,17 @@ public class QuestMeetBrandon extends QuestMeetingTutorial {
     }
 
     @Override
+    public Set<Note> getNotes() {
+        return Sets.newHashSet(HFNotes.MINING, HFNotes.HAMMER);
+    }
+
+    @Override
     public void onQuestCompleted(EntityPlayer player) {
         //Early finishes
         if (isCompletedEarly()) {
             rewardItem(player, HFTools.HAMMER.getStack(ToolTier.BASIC));
         }
 
-        HFApi.player.getTrackingForPlayer(player).learnNote(HFNotes.MINING);
-        HFApi.player.getTrackingForPlayer(player).learnNote(HFNotes.HAMMER);
         rewardItem(player, new ItemStack(HFMining.MATERIALS, 10, Material.JUNK.ordinal()));
     }
 }

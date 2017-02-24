@@ -1,7 +1,9 @@
 package joshie.harvest.quests.player.meetings;
 
+import com.google.common.collect.Sets;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.Season;
+import joshie.harvest.api.knowledge.Note;
 import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.Quest;
@@ -152,15 +154,18 @@ public class QuestMeetJade extends QuestQuestion {
     }
 
     @Override
+    public Set<Note> getNotes() {
+        return Sets.newHashSet(HFNotes.CROP_FARMING, HFNotes.SICKLE);
+    }
+
+    @Override
     public void onQuestCompleted(EntityPlayer player) {
         //If we finished early
         if (isCompletedEarly()) {
             rewardItem(player, HFTools.HOE.getStack(BASIC));
             rewardItem(player, HFTools.WATERING_CAN.getStack(BASIC));
-            HFApi.player.getTrackingForPlayer(player).learnNote(HFNotes.CROP_FARMING);
         }
 
-        HFApi.player.getTrackingForPlayer(player).learnNote(HFNotes.SICKLE);
         rewardItem(player, HFTools.SICKLE.getStack(BASIC));
         Season season = HFApi.calendar.getDate(player.worldObj).getSeason();
         if (season == SUMMER) rewardItem(player, HFCrops.ONION.getSeedStack(3));

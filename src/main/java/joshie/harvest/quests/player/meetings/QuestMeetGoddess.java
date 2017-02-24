@@ -5,9 +5,7 @@ import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.QuestQuestion;
 import joshie.harvest.core.HFCore;
-import joshie.harvest.core.HFTrackers;
 import joshie.harvest.knowledge.HFKnowledge;
-import joshie.harvest.knowledge.HFNotes;
 import joshie.harvest.knowledge.item.ItemBook.Book;
 import joshie.harvest.quests.selection.TutorialSelection;
 import net.minecraft.entity.player.EntityPlayer;
@@ -59,7 +57,6 @@ public class QuestMeetGoddess extends QuestQuestion {
     public void onQuestCompleted(EntityPlayer player) {
         if (isCompletedEarly()) {
             HFApi.quests.completeQuest(YULIF_MEET, player);
-            HFTrackers.getPlayerTrackerFromPlayer(player).getTracking().learnNote(HFNotes.BLUEPRINTS);
         }
 
         rewardItem(player, HFKnowledge.BOOK.getStackFromEnum(Book.STATISTICS));

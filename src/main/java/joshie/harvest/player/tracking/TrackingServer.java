@@ -2,6 +2,8 @@ package joshie.harvest.player.tracking;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.cooking.Recipe;
+import joshie.harvest.api.quests.Quest;
+import joshie.harvest.api.quests.TargetType;
 import joshie.harvest.core.achievements.HFAchievements;
 import joshie.harvest.core.helpers.HolderHelper;
 import joshie.harvest.core.helpers.NBTHelper;
@@ -71,15 +73,6 @@ public class TrackingServer extends Tracking {
         PacketHandler.sendToClient(new PacketSyncObtained(stack), master.getAndCreatePlayer());
     }
 
-    private void addDefaultRecipes() {
-        //Learn all the default recipes
-        for (Recipe recipe: Recipe.REGISTRY) {
-            if (recipe.isDefault() && !recipes.contains(recipe.getRegistryName())) {
-                recipes.add(recipe.getRegistryName());
-            }
-        }
-    }
-
     public boolean addForShipping(ItemStack item) {
         long sell = HFApi.shipping.getSellValue(item);
         StackSold stack = StackSold.of(item, sell);
@@ -104,6 +97,25 @@ public class TrackingServer extends Tracking {
         return sold;
     }
 
+    private void addDefaultRecipes() {
+        //Learn all the default recipes
+        for (Recipe recipe: Recipe.REGISTRY) {
+            if (recipe.isDefault() && !recipes.contains(recipe.getRegistryName())) {
+                recipes.add(recipe.getRegistryName());
+            }
+        }
+    }
+
+    private void addLearntNotes() {
+        for (Quest quest: Quest.REGISTRY) {
+            if (quest.getQuestType() == TargetType.PLAYER) {
+                if (master.getQuests().getFinished().contains(quest)) {
+                    quest.getNotes().forEach(this :: learnNote);
+                }
+            }
+        }
+    }
+
     public void readFromNBT(NBTTagCompound nbt) {
         giftsGiven = nbt.getInteger("GiftsGiven");
         obtained = NBTHelper.readHashSet(ItemStackHolder.class, nbt.getTagList("ItemsObtained", 10));
@@ -113,6 +125,7 @@ public class TrackingServer extends Tracking {
         notes = NBTHelper.readResourceSet(nbt, "Notes");
         unread = NBTHelper.readResourceSet(nbt, "Unread");
         addDefaultRecipes();
+        addLearntNotes();
     }
 
     public NBTTagCompound writeToNBT(NBTTagCompound nbt) {

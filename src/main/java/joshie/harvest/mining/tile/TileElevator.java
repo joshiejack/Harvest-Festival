@@ -10,6 +10,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextComponentTranslation;
 
+import javax.annotation.Nonnull;
+
 public class TileElevator extends TileFaceable {
     private BlockPos twin;
 
@@ -75,7 +77,8 @@ public class TileElevator extends TileFaceable {
     }
 
     @Override
-    public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
+    @Nonnull
+    public NBTTagCompound writeToNBT(@Nonnull NBTTagCompound nbt) {
         if (twin != null)
             nbt.setLong("Twin", twin.toLong());
         return super.writeToNBT(nbt);

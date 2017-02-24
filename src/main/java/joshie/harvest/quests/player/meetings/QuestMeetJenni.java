@@ -1,7 +1,9 @@
 package joshie.harvest.quests.player.meetings;
 
+import com.google.common.collect.Sets;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.Season;
+import joshie.harvest.api.knowledge.Note;
 import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.buildings.HFBuildings;
@@ -14,6 +16,8 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+
+import java.util.Set;
 
 import static joshie.harvest.api.calendar.Season.AUTUMN;
 import static joshie.harvest.api.calendar.Season.SUMMER;
@@ -55,8 +59,12 @@ public class QuestMeetJenni extends QuestMeeting {
     }
 
     @Override
+    public Set<Note> getNotes() {
+        return Sets.newHashSet(HFNotes.SUPERMARKET);
+    }
+
+    @Override
     public void onQuestCompleted(EntityPlayer player) {
-        HFApi.player.getTrackingForPlayer(player).learnNote(HFNotes.SUPERMARKET);
         Season season = HFApi.calendar.getDate(player.worldObj).getSeason();
         if (season == SUMMER) rewardItem(player, HFCrops.TOMATO.getSeedStack(4));
         else if (season == AUTUMN) rewardItem(player, HFCrops.EGGPLANT.getSeedStack(4));

@@ -19,6 +19,7 @@ import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
 
+import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,7 +54,7 @@ public abstract class TileCooking extends TileFaceable {
         return cooking;
     }
 
-    public int getCookTimer() {
+    int getCookTimer() {
         return cookTimer;
     }
 
@@ -167,7 +168,7 @@ public abstract class TileCooking extends TileFaceable {
     }
 
     @Override
-    public void handleUpdateTag(NBTTagCompound tag) {
+    public void handleUpdateTag(@Nonnull NBTTagCompound tag) {
         super.handleUpdateTag(tag);
 
         //Updated the renderer
@@ -220,7 +221,8 @@ public abstract class TileCooking extends TileFaceable {
     }
 
     @Override
-    public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
+    @Nonnull
+    public NBTTagCompound writeToNBT(@Nonnull NBTTagCompound nbt) {
         nbt.setBoolean("IsCooking", cooking);
         nbt.setShort("CookingTimer", cookTimer);
         nbt.setByte("Last", (byte) last);
@@ -247,12 +249,8 @@ public abstract class TileCooking extends TileFaceable {
         return super.writeToNBT(nbt);
     }
 
-    public boolean isAbove(Utensil utensil) {
+    boolean isAbove(Utensil utensil) {
         TileEntity tile = worldObj.getTileEntity(pos.down());
-        if (tile instanceof TileCooking) {
-            return ((TileCooking)tile).getUtensil() == utensil;
-        }
-
-        return false;
+        return tile instanceof TileCooking && ((TileCooking)tile).getUtensil() == utensil;
     }
 }

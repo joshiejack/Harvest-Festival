@@ -84,7 +84,7 @@ public class ContestEntries<E extends EntityAnimal> {
                 it.remove();
             }
         }
-        
+
         entries.add(new ContestEntry(playerUUID, animalUUID, stall));
         selecting.remove(playerUUID);
     }
@@ -133,7 +133,7 @@ public class ContestEntries<E extends EntityAnimal> {
                     if (stats != null) {
                         stats.setProduced(5); //Forbid the animal making products
                         stats.setDead(); //Autokill the animal if it persists
-                        //stats.affectHappiness(world.rand.nextInt(20000)); //Give the animal a random happiness
+                        //stats.affectHappiness(world.rand.nextInt(20000)); //Give the animal a random happiness//TODO: Re-Enable
                     }
 
                     entries.add(new ContestEntry(getNextEntry(usedNPCS, npcs), EntityHelper.getEntityUUID(animal), i));

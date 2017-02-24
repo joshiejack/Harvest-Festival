@@ -1,6 +1,8 @@
 package joshie.harvest.quests.base;
 
+import joshie.harvest.api.buildings.BuildingLocation;
 import joshie.harvest.api.npc.NPC;
+import joshie.harvest.api.npc.schedule.ScheduleMove;
 import joshie.harvest.api.quests.Selection;
 import joshie.harvest.calendar.CalendarHelper;
 import joshie.harvest.core.helpers.EntityHelper;
@@ -12,6 +14,7 @@ import joshie.harvest.quests.town.festivals.contest.ContestAnimalSelection;
 import joshie.harvest.quests.town.festivals.contest.ContestAnimalStartMenu;
 import joshie.harvest.quests.town.festivals.contest.ContestEntries;
 import joshie.harvest.quests.town.festivals.contest.ContestInfoMenu;
+import joshie.harvest.town.data.TownData;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
@@ -42,6 +45,10 @@ public abstract class QuestAnimalContest<E extends EntityAnimal> extends QuestFe
 
     public ContestEntries<E> getEntries() {
         return entries;
+    }
+
+    protected ScheduleMove getMove(TownData town, BuildingLocation location) {
+        return ScheduleMove.of(town.getCoordinatesFor(location));
     }
 
     public abstract ItemStack getReward(Place place);

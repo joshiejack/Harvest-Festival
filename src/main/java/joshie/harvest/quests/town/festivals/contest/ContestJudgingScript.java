@@ -1,4 +1,4 @@
-package joshie.harvest.quests.town.festivals.cow;
+package joshie.harvest.quests.town.festivals.contest;
 
 import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.npc.greeting.Script;

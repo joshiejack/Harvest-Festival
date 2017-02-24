@@ -1,11 +1,9 @@
-package joshie.harvest.quests.town.festivals.cow;
+package joshie.harvest.quests.town.festivals.contest;
 
 import joshie.harvest.api.calendar.Festival;
 import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.npc.greeting.Script;
 import joshie.harvest.quests.base.QuestAnimalContest;
-import joshie.harvest.quests.town.festivals.contest.ContestEntries;
-import joshie.harvest.quests.town.festivals.contest.ContestEntry;
 import joshie.harvest.town.TownHelper;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.util.ResourceLocation;

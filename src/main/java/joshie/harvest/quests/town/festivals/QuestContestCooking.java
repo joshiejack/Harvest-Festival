@@ -2,7 +2,7 @@ package joshie.harvest.quests.town.festivals;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.cooking.Utensil;
-import joshie.harvest.api.npc.NPC;
+import joshie.harvest.api.npc.NPCEntity;
 import joshie.harvest.api.npc.greeting.Script;
 import joshie.harvest.api.npc.task.TaskMove;
 import joshie.harvest.api.npc.task.TaskSpeech;
@@ -22,7 +22,7 @@ import joshie.harvest.quests.town.festivals.cooking.CookingContestScript;
 import joshie.harvest.town.BuildingLocations;
 import joshie.harvest.town.TownHelper;
 import joshie.harvest.town.data.TownData;
-import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -51,14 +51,14 @@ public class QuestContestCooking extends QuestFestival {
     private long time;
 
     @Override
-    public void onQuestSelectedForDisplay(EntityPlayer player, EntityLiving entity, NPC npc) {
+    public void onQuestSelectedForDisplay(EntityPlayer player, NPCEntity entity) {
         rand.setSeed(HFApi.calendar.getDate(player.worldObj).hashCode());
         category = Utensil.UTENSILS[rand.nextInt(Utensil.UTENSILS.length)];
         time = CalendarHelper.getTime(player.worldObj);
     }
 
     @Override
-    public Selection getSelection(EntityPlayer player, NPC npc) {
+    public Selection getSelection(EntityPlayer player, NPCEntity entity) {
         if (!isCorrectTime()) return null;
         if (quest_stage <= QUESTION) {
             return selection;
@@ -68,7 +68,7 @@ public class QuestContestCooking extends QuestFestival {
     @Override
     @Nullable
     @SideOnly(Side.CLIENT)
-    public String getLocalizedScript(EntityPlayer player, EntityLiving entity, NPC npc) {
+    public String getLocalizedScript(EntityPlayer player, NPCEntity entity) {
         if (!isCorrectTime()) return null;
         return "We are describing the contest to the player";
     }
@@ -77,15 +77,15 @@ public class QuestContestCooking extends QuestFestival {
         return time >= 6000 && time <= 18000;
     }
 
-    public CookingContestEntries getContestEntries(EntityLiving ageable) {
+    public CookingContestEntries getContestEntries(EntityLivingBase ageable) {
         return new CookingContestEntries(ageable.worldObj, ageable, category);
     }
 
     @Override
-    public void onChatClosed(EntityPlayer player, EntityLiving entity, NPC npc, boolean wasSneaking) {
+    public void onChatClosed(EntityPlayer player, NPCEntity entity, boolean wasSneaking) {
         if (!isCorrectTime()) return;
         if (!player.worldObj.isRemote) {
-            TownData town = TownHelper.getClosestTownToEntity(entity, false);
+            TownData town = TownHelper.getClosestTownToEntity(player, false);
             BlockPos original = town.getCoordinatesFor(BuildingLocations.PARK_LAMP_BACK);
             //Schedule for Jenni
             EntityAIPathing pathing = ((EntityNPCHuman)entity).getPathing();
@@ -93,7 +93,7 @@ public class QuestContestCooking extends QuestFestival {
             TaskMove point2 = TaskMove.of(town.getCoordinatesFor(BuildingLocations.PARK_STAGE_LEFT));
             TaskSpeech speech = TaskSpeech.of(SCRIPT);
             pathing.setPath(point1, point2, point1, speech);
-            CookingContestEntries entries = getContestEntries(entity);
+            CookingContestEntries entries = getContestEntries(player);
             Set<UUID> used = new HashSet<>();
             List<EntityNPCHuman> npcs = EntityHelper.getEntities(EntityNPCHuman.class, player.worldObj, original, 32D, 5D);
             for (EntityNPCHuman theNPC: npcs) {
@@ -116,7 +116,7 @@ public class QuestContestCooking extends QuestFestival {
             increaseStage(player);
         } else if (quest_stage == FINISH) {
             complete(player); //Finish the contest
-            CookingContestEntries entries = getContestEntries(entity);
+            CookingContestEntries entries = getContestEntries(player);
             if (entries.isWinner(player)) {
                 rewardGold(player, entries.getPrize());
             }

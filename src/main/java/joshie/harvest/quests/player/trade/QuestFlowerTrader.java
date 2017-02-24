@@ -3,7 +3,7 @@ package joshie.harvest.quests.player.trade;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.CalendarDate;
 import joshie.harvest.api.calendar.Season;
-import joshie.harvest.api.npc.NPC;
+import joshie.harvest.api.npc.NPCEntity;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.calendar.CalendarHelper;
@@ -13,7 +13,6 @@ import joshie.harvest.crops.HFCrops;
 import joshie.harvest.npcs.HFNPCs;
 import joshie.harvest.quests.Quests;
 import joshie.harvest.quests.base.QuestTrade;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.relauncher.Side;
@@ -37,13 +36,13 @@ public class QuestFlowerTrader extends QuestTrade {
     }
 
     @Override
-    public boolean isNPCUsed(EntityPlayer player, NPC npc) {
-        return npc == HFNPCs.FLOWER_GIRL && InventoryHelper.getHandItemIsIn(player, SPECIAL, SearchType.FLOWER, 5) != null;
+    public boolean isNPCUsed(EntityPlayer player, NPCEntity entity) {
+        return entity.getNPC() == HFNPCs.FLOWER_GIRL && InventoryHelper.getHandItemIsIn(player, SPECIAL, SearchType.FLOWER, 5) != null;
     }
 
     @SideOnly(Side.CLIENT)
     @Override
-    public String getLocalizedScript(EntityPlayer player, EntityLiving entity, NPC npc) {
+    public String getLocalizedScript(EntityPlayer player, NPCEntity entity) {
         CalendarDate today = HFApi.calendar.getDate(player.worldObj);
         int days = date == null ? 5 : CalendarHelper.getDays(date, today);
         if (received > 0 && days >= 5) received = 0;
@@ -60,7 +59,7 @@ public class QuestFlowerTrader extends QuestTrade {
     }
 
     @Override
-    public void onChatClosed(EntityPlayer player, EntityLiving entity, NPC npc, boolean wasSneaking) {
+    public void onChatClosed(EntityPlayer player, NPCEntity entity, boolean wasSneaking) {
         CalendarDate today = HFApi.calendar.getDate(player.worldObj);
         int days = date == null ? 5 : CalendarHelper.getDays(date, today);
         if (date != null && received > 0 && days >= 5) {

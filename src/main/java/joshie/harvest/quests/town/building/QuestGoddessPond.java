@@ -1,16 +1,14 @@
 package joshie.harvest.quests.town.building;
 
 import joshie.harvest.api.HFApi;
-import joshie.harvest.api.npc.NPC;
+import joshie.harvest.api.npc.NPCEntity;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.Quest;
+import joshie.harvest.api.town.Town;
 import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.crops.HFCrops;
 import joshie.harvest.npcs.HFNPCs;
 import joshie.harvest.quests.base.QuestTown;
-import joshie.harvest.town.TownHelper;
-import joshie.harvest.town.data.TownData;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -33,31 +31,31 @@ public class QuestGoddessPond extends QuestTown {
     }
 
     @Override
-    public boolean isNPCUsed(EntityPlayer player, NPC npc) {
-        TownData data = TownHelper.getClosestTownToEntity(player, false);
-        return super.isNPCUsed(player, npc) && data.getBuildings().size() >= 5 || data.hasBuilding(HFBuildings.GODDESS_POND);
+    public boolean isNPCUsed(EntityPlayer player, NPCEntity entity) {
+        Town data = entity.getTown();
+        return super.isNPCUsed(player, entity) && data.getBuildingCount() >= 5 || data.hasBuilding(HFBuildings.GODDESS_POND);
     }
 
     @Override
     public String getDescription(World world, EntityPlayer player) {
         if (HFBuildings.GODDESS_POND.getRules().canDo(world, player, 1)) {
-            return TownHelper.getClosestTownToEntity(player, false).hasBuilding(HFBuildings.GODDESS_POND) ? getLocalized("description") : getLocalized("build");
+            return HFApi.towns.getTownForEntity(player).hasBuilding(HFBuildings.GODDESS_POND) ? getLocalized("description") : getLocalized("build");
         } else return null;
     }
 
     @Override
     public ItemStack getCurrentIcon(World world, EntityPlayer player) {
-        return TownHelper.getClosestTownToEntity(player, false).hasBuilding(HFBuildings.GODDESS_POND) ? primary : BUILDING;
+        return HFApi.towns.getTownForEntity(player).hasBuilding(HFBuildings.GODDESS_POND) ? primary : BUILDING;
     }
 
     @Override
-    public String getLocalizedScript(EntityPlayer player, EntityLiving entity, NPC npc) {
-        return TownHelper.getClosestTownToEntity(player, false).hasBuilding(HFBuildings.GODDESS_POND) ? getLocalized("thanks") : getLocalized("please");
+    public String getLocalizedScript(EntityPlayer player, NPCEntity entity) {
+        return entity.getTown().hasBuilding(HFBuildings.GODDESS_POND) ? getLocalized("thanks") : getLocalized("please");
     }
 
     @Override
-    public void onChatClosed(EntityPlayer player, EntityLiving entity, NPC npc, boolean wasSneaking) {
-        if (TownHelper.getClosestTownToEntity(entity, false).hasBuilding(HFBuildings.GODDESS_POND)) {
+    public void onChatClosed(EntityPlayer player, NPCEntity entity, boolean wasSneaking) {
+        if (entity.getTown().hasBuilding(HFBuildings.GODDESS_POND)) {
             complete(player);
         }
     }

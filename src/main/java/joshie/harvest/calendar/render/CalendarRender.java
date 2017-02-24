@@ -71,11 +71,13 @@ public class CalendarRender {
 
                 Weather weather = HFApi.calendar.getWeather(mc.theWorld);
                 if (k2 != l2) {
-                    if (weather == Weather.BLIZZARD) {
-                        fogTarget = -30000;
-                    } else if (weather == Weather.SNOW) {
-                        fogTarget = -2000;
-                    } else fogTarget = 100;
+                    if (mc.theWorld.getBiome(blockpos$mutableblockpos).canRain()) {
+                        if (weather == Weather.BLIZZARD) {
+                            fogTarget = -30000;
+                        } else if (weather == Weather.SNOW) {
+                            fogTarget = -2000;
+                        } else fogTarget = 100;
+                    } else fogTarget = 5000;
                 } else fogTarget = 100;
                 if (blockpos$mutableblockpos.getY() < j2) fogTarget = 5000;
 

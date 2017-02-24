@@ -2,7 +2,7 @@ package joshie.harvest.quests.town.tasks;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.crops.Crop;
-import joshie.harvest.api.npc.NPC;
+import joshie.harvest.api.npc.NPCEntity;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.cooking.item.ItemMeal.Meal;
@@ -11,7 +11,6 @@ import joshie.harvest.core.helpers.TextHelper;
 import joshie.harvest.crops.HFCrops;
 import joshie.harvest.npcs.HFNPCs;
 import joshie.harvest.quests.base.QuestDaily;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -51,8 +50,8 @@ public class QuestCollect extends QuestDaily {
     }
 
     @Override
-    public boolean isNPCUsed(EntityPlayer player, NPC npc) {
-        if (!super.isNPCUsed(player, npc)) return false;
+    public boolean isNPCUsed(EntityPlayer player, NPCEntity entity) {
+        if (!super.isNPCUsed(player, entity)) return false;
         String name = "crop" + WordUtils.capitalizeFully(crop.getRegistryName().getResourcePath(), '_').replace("_", "");
         return InventoryHelper.getHandItemIsIn(player, ORE_DICTIONARY, name, amount) != null;
     }
@@ -60,12 +59,12 @@ public class QuestCollect extends QuestDaily {
     @Override
     @Nullable
     @SideOnly(Side.CLIENT)
-    public String getLocalizedScript(EntityPlayer player, EntityLiving entity, NPC npc) {
-        return TextHelper.getRandomSpeech(npc, "harvestfestival.quest.collect.crops.complete", 32);
+    public String getLocalizedScript(EntityPlayer player, NPCEntity entity) {
+        return TextHelper.getRandomSpeech(entity.getNPC(), "harvestfestival.quest.collect.crops.complete", 32);
     }
 
     @Override
-    public void onChatClosed(EntityPlayer player, EntityLiving entity, NPC npc, boolean wasSneaking) {
+    public void onChatClosed(EntityPlayer player, NPCEntity entity, boolean wasSneaking) {
         String name = "crop" + WordUtils.capitalizeFully(crop.getRegistryName().getResourcePath(), '_').replace("_", "");
         if (InventoryHelper.takeItemsIfHeld(player, ORE_DICTIONARY, name, amount) != null) {
             complete(player);

@@ -185,7 +185,7 @@ public class GuiNPCChat extends GuiNPCBase {
         if (infoGreeting != null) return infoGreeting;
 
         //Scripts
-        String script = quest != null ? quest.getLocalizedScript(player, npc, npc.getNPC()) : null;
+        String script = quest != null ? quest.getLocalizedScript(player, npc) : null;
         return script == null ? npc.getNPC().getGreeting(player, npc) : script;
     }
 }

@@ -1,6 +1,7 @@
 package joshie.harvest.npcs.entity;
 
 import joshie.harvest.api.npc.NPC;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.world.World;
 
 @Deprecated //TODO: Remove in 0.7+

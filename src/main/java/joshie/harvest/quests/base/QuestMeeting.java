@@ -2,10 +2,10 @@ package joshie.harvest.quests.base;
 
 import joshie.harvest.api.buildings.Building;
 import joshie.harvest.api.npc.NPC;
+import joshie.harvest.api.npc.NPCEntity;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.quests.Quests;
 import joshie.harvest.town.TownHelper;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -30,8 +30,8 @@ public class QuestMeeting extends Quest {
     }
 
     @Override
-    public boolean isNPCUsed(EntityPlayer player, NPC npc) {
-        return getNPCs().contains(npc) && TownHelper.getClosestTownToEntity(player, false).hasBuilding(building);
+    public boolean isNPCUsed(EntityPlayer player, NPCEntity entity) {
+        return getNPCs().contains(entity.getNPC()) && TownHelper.getClosestTownToEntity(player, false).hasBuilding(building);
     }
 
     @Override
@@ -46,7 +46,7 @@ public class QuestMeeting extends Quest {
 
     @SideOnly(Side.CLIENT)
     @Override
-    public String getLocalizedScript(EntityPlayer player, EntityLiving entity, NPC npc) {
+    public String getLocalizedScript(EntityPlayer player, NPCEntity entity) {
         return getLocalized("text");
     }
 
@@ -55,7 +55,7 @@ public class QuestMeeting extends Quest {
     }
 
     @Override
-    public void onChatClosed(EntityPlayer player, EntityLiving entity, NPC npc, boolean wasSneaking) {
+    public void onChatClosed(EntityPlayer player, NPCEntity entity, boolean wasSneaking) {
         complete(player);
     }
 }

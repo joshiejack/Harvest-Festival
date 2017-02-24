@@ -1,9 +1,9 @@
 package joshie.harvest.quests.player.meetings;
 
 import com.google.common.collect.Sets;
-import joshie.harvest.api.HFApi;
 import joshie.harvest.api.knowledge.Note;
 import joshie.harvest.api.npc.NPC;
+import joshie.harvest.api.npc.NPCEntity;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.buildings.HFBuildings;
@@ -12,13 +12,13 @@ import joshie.harvest.core.helpers.InventoryHelper;
 import joshie.harvest.knowledge.HFNotes;
 import joshie.harvest.npcs.HFNPCs;
 import joshie.harvest.quests.HFQuests;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 import java.util.Set;
 
+import static joshie.harvest.api.HFApi.npc;
 import static joshie.harvest.core.helpers.InventoryHelper.ORE_DICTIONARY;
 import static joshie.harvest.core.helpers.InventoryHelper.SPECIAL;
 import static joshie.harvest.core.helpers.InventoryHelper.SearchType.FLOWER;
@@ -27,8 +27,8 @@ import static joshie.harvest.quests.Quests.GODDESS_MEET;
 
 @HFQuest("tutorial.carpenter")
 public class QuestMeetYulif extends Quest {
-    private static final ItemStack GODDESS_STACK = HFApi.npc.getStackForNPC(HFNPCs.GODDESS);
-    private static final ItemStack FLOWER_GIRL_STACK = HFApi.npc.getStackForNPC(HFNPCs.FLOWER_GIRL);
+    private static final ItemStack GODDESS_STACK = npc.getStackForNPC(HFNPCs.GODDESS);
+    private static final ItemStack FLOWER_GIRL_STACK = npc.getStackForNPC(HFNPCs.FLOWER_GIRL);
     private static final int WELCOME = 0;
     private static final int LOGS = 1;
     private static final int SEED_CHAT = 2;
@@ -70,7 +70,8 @@ public class QuestMeetYulif extends Quest {
     }
 
     @Override
-    public String getLocalizedScript(EntityPlayer player, EntityLiving entity, NPC npc) {
+    public String getLocalizedScript(EntityPlayer player, NPCEntity entity) {
+        NPC npc = entity.getNPC();
         if (quest_stage == WELCOME && npc == HFNPCs.GODDESS) {
             return getLocalized("welcome", getWoodAmount());
         } else if (quest_stage == LOGS && npc == HFNPCs.GODDESS) {
@@ -130,7 +131,8 @@ public class QuestMeetYulif extends Quest {
 
     /* Rewards Logic */
     @Override
-    public void onChatClosed(EntityPlayer player, EntityLiving entity, NPC npc, boolean wasSneaking) {
+    public void onChatClosed(EntityPlayer player, NPCEntity entity, boolean wasSneaking) {
+        NPC npc = entity.getNPC();
         if (quest_stage == WELCOME && npc == HFNPCs.GODDESS) {
             increaseStage(player);
         } else if (quest_stage == LOGS && npc == HFNPCs.GODDESS) {

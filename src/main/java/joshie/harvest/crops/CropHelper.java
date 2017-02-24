@@ -18,7 +18,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ChunkCache;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.Chunk;
 
 import javax.annotation.Nullable;
@@ -114,9 +113,6 @@ public class CropHelper {
             return false;
         } else if (world.getPrecipitationHeight(pos).getY() > pos.getY()) {
             return false;
-        } else {
-            Biome biome = world.getBiome(pos);
-            return biome.canRain() || biome.isSnowyBiome();
-        }
+        } else return world.getBiome(pos).canRain();
     }
 }

@@ -50,7 +50,7 @@ public class GatheringRegistry implements IGatheringRegistry {
         gatheringStates.add(block);
     }
 
-    boolean isValidGatheringSpawn(Block block) {
+    public boolean isValidGatheringSpawn(Block block) {
         return gatheringStates.contains(block);
     }
 

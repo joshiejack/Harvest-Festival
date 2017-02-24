@@ -1,7 +1,7 @@
 package joshie.harvest.api.quests;
 
 import joshie.harvest.api.npc.NPC;
-import net.minecraft.entity.EntityLiving;
+import joshie.harvest.api.npc.NPCEntity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.common.eventhandler.Event.Result;
@@ -24,23 +24,23 @@ public abstract class QuestQuestion extends Quest {
     }
 
     @Override
-    public String getLocalizedScript(EntityPlayer player, EntityLiving entity, NPC npc) {
-        return getLocalizedScript(player, npc);
+    public String getLocalizedScript(EntityPlayer player, NPCEntity entity) {
+        return getLocalizedScript(player, entity.getNPC());
     }
 
     protected abstract String getLocalizedScript(EntityPlayer player, NPC npc);
 
     @Override
-    public void onChatClosed(EntityPlayer player, EntityLiving entity, NPC npc, boolean wasSneaking) {
+    public void onChatClosed(EntityPlayer player, NPCEntity entity, boolean wasSneaking) {
         if (isCompletedEarly()) {
             complete(player);
-        } else onChatClosed(player, npc);
+        } else onChatClosed(player, entity.getNPC());
     }
 
     protected abstract void onChatClosed(EntityPlayer player, NPC npc);
 
     @Override
-    public Selection getSelection(EntityPlayer player, NPC npc) {
+    public Selection getSelection(EntityPlayer player, NPCEntity entity) {
         return quest_stage <= 0 ? selection : null;
     }
 
@@ -63,7 +63,7 @@ public abstract class QuestQuestion extends Quest {
         }
 
         @Override
-        public Result onSelected(EntityPlayer player, EntityLiving entity, NPC npc, QuestQuestion quest, int option) {
+        public Result onSelected(EntityPlayer player, NPCEntity entity, QuestQuestion quest, int option) {
             if (option == 1) { //If it's our first time, start tutorials
                 quest.quest_stage++;
             } else { //If it's not then give the player the essentials to get started

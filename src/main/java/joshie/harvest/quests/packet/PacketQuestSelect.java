@@ -53,15 +53,15 @@ public class PacketQuestSelect extends PacketSharedSync {
             BlockPos pos = new BlockPos(npc);
             if (quest == -1 && npc.getNPC().getShop(player.worldObj, pos, player) != null) {
                 Selection selection = NPCHelper.getShopSelection(player.worldObj, pos, npc.getNPC(), player);
-                Result result = selection.onSelected(player, npc, npc.getNPC(), null, selected);
+                Result result = selection.onSelected(player, npc, null, selected);
                 if (result == Result.ALLOW) {
                     player.openGui(HarvestFestival.instance, GuiHandler.NPC, player.worldObj, npc.getEntityId(), -1, -1);
                 } else if (result == Result.DENY) player.closeScreen();
             } else {
                 Quest theQuest = QuestHelper.getSelectiomFromID(player, quest);
-                Selection selection = theQuest != null ? theQuest.getSelection(player, npc.getNPC()) : null;
+                Selection selection = theQuest != null ? theQuest.getSelection(player, npc) : null;
                 if (selection != null) {
-                    Result result = selection.onSelected(player, npc, npc.getNPC(), theQuest, selected);
+                    Result result = selection.onSelected(player, npc, theQuest, selected);
                     HFApi.quests.syncData(theQuest, player); //Sync to the client
                     if (result == Result.ALLOW) {
                         player.openGui(HarvestFestival.instance, GuiHandler.NPC, player.worldObj, npc.getEntityId(), -1, -1);

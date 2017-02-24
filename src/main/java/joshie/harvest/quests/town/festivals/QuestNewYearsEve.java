@@ -4,6 +4,7 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.CalendarDate;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.npc.NPC;
+import joshie.harvest.api.npc.NPCEntity;
 import joshie.harvest.api.npc.RelationStatus;
 import joshie.harvest.api.npc.greeting.Script;
 import joshie.harvest.api.npc.task.TaskElement;
@@ -18,11 +19,8 @@ import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.core.helpers.StackHelper;
 import joshie.harvest.npcs.HFNPCs;
-import joshie.harvest.npcs.entity.EntityNPCHuman;
-import joshie.harvest.npcs.entity.ai.EntityAIPathing;
 import joshie.harvest.quests.base.QuestFestival;
 import net.minecraft.entity.EntityAgeable;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.item.EntityFireworkRocket;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
@@ -55,10 +53,9 @@ public class QuestNewYearsEve extends QuestFestival {
                                                     "harvestfestival.quest.festival.new.years.eve.option1",
                                                     "harvestfestival.quest.festival.new.years.eve.option2") {
         @Override
-        public Result onSelected(EntityPlayer player, EntityLiving entity, NPC npc, @Nullable Quest quest, int option) {
+        public Result onSelected(EntityPlayer player, NPCEntity entity, @Nullable Quest quest, int option) {
             if (option == 1) {
-                EntityAIPathing pathing = ((EntityNPCHuman)entity).getPathing();
-                pathing.setPath(TaskSpeech.of(scriptIntro), TaskWait.of(1), TaskSpeech.of(scriptCountdown5), TaskWait.of(1), TaskSpeech.of(scriptCountdown4),
+                entity.setPath(TaskSpeech.of(scriptIntro), TaskWait.of(1), TaskSpeech.of(scriptCountdown5), TaskWait.of(1), TaskSpeech.of(scriptCountdown4),
                                 TaskWait.of(1), TaskSpeech.of(scriptCountdown3),  TaskWait.of(1), TaskSpeech.of(scriptCountdown2), TaskWait.of(1),
                                 TaskSpeech.of(scriptCountdown1), TaskWait.of(1), new TaskNewYear(), TaskSpeech.of(scriptCountdown0));
             }
@@ -74,7 +71,7 @@ public class QuestNewYearsEve extends QuestFestival {
     private long time;
 
     @Override
-    public void onQuestSelectedForDisplay(EntityPlayer player, EntityLiving entity, NPC npc) {
+    public void onQuestSelectedForDisplay(EntityPlayer player, NPCEntity entity) {
         time = CalendarHelper.getTime(player.worldObj);
     }
 
@@ -84,14 +81,14 @@ public class QuestNewYearsEve extends QuestFestival {
 
     @Override
     @Nullable
-    public Selection getSelection(EntityPlayer player, NPC npc) {
+    public Selection getSelection(EntityPlayer player, NPCEntity entity) {
         return isCorrectTime() ? start : null;
     }
 
     @Override
     @Nullable
     @SideOnly(Side.CLIENT)
-    public String getLocalizedScript(EntityPlayer player, EntityLiving entity, NPC npc) {
+    public String getLocalizedScript(EntityPlayer player, NPCEntity entity) {
         CalendarDate date = calendar.getDate(player.worldObj);
         if (!isCorrectTime() || date.getSeason() != Season.WINTER) return null;
         return getLocalized("start");

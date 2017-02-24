@@ -38,7 +38,7 @@ public class GuiNPCSelect extends GuiNPCBase {
         if (selectionType == NEXT_NONE) selection = NPCHelper.getShopSelection(player.worldObj, pos, npc.getNPC(), player);
         else {
             quest = QuestHelper.getSelectiomFromID(player, selectionType);
-            selection = quest != null ? quest.getSelection(player, npc.getNPC()): null;
+            selection = quest != null ? quest.getSelection(player, npc): null;
         }
 
         if (selection != null && selection.getText(player, quest) != null) {
@@ -90,7 +90,7 @@ public class GuiNPCSelect extends GuiNPCBase {
         }
     }
 
-    public void adjustSelection(int number) {
+    private void adjustSelection(int number) {
         int newSelection = selected + number;
         if (newSelection > optionsTotal) {
             newSelection = 1;

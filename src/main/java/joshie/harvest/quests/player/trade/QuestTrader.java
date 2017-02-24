@@ -4,12 +4,11 @@ import joshie.harvest.animals.HFAnimals;
 import joshie.harvest.animals.item.ItemAnimalProduct.Sizeable;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.core.Size;
-import joshie.harvest.api.npc.NPC;
+import joshie.harvest.api.npc.NPCEntity;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.npcs.HFNPCs;
 import joshie.harvest.quests.base.QuestTrade;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -33,13 +32,13 @@ public class QuestTrader extends QuestTrade {
     }
 
     @Override
-    public boolean isNPCUsed(EntityPlayer player, NPC npc) {
-        return npc == HFNPCs.TRADER && isHoldingAnyAtAll(player);
+    public boolean isNPCUsed(EntityPlayer player, NPCEntity entity) {
+        return entity.getNPC() == HFNPCs.TRADER && isHoldingAnyAtAll(player);
     }
 
     @SideOnly(Side.CLIENT)
     @Override
-    public String getLocalizedScript(EntityPlayer player, EntityLiving entity, NPC npc) {
+    public String getLocalizedScript(EntityPlayer player, NPCEntity entity) {
         if (isHoldingInEitherHand(player, Sizeable.EGG)) {
             return getLocalized("egg");
         } else if (isHoldingInEitherHand(player, Sizeable.MILK)) {
@@ -51,7 +50,7 @@ public class QuestTrader extends QuestTrade {
 
     @Override
     @SuppressWarnings("ConstantConditions")
-    public void onChatClosed(EntityPlayer player, EntityLiving entity, NPC npc, boolean wasSneaking) {
+    public void onChatClosed(EntityPlayer player, NPCEntity entity, boolean wasSneaking) {
         EnumHand hand = isHoldingAny(player, EnumHand.MAIN_HAND) ? EnumHand.MAIN_HAND: EnumHand.OFF_HAND;
         if (player.getHeldItem(hand) != null) {
             ItemStack held = player.getHeldItem(hand).copy(); //Ignore

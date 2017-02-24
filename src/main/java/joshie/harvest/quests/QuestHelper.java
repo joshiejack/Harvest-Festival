@@ -138,7 +138,7 @@ public class QuestHelper implements IQuestHelper {
     public static Quest getCurrentQuest(EntityPlayer player, EntityNPC npc) {
         List<Quest> quests = HFApi.quests.getCurrentQuests(player);
         for (Quest quest: quests) {
-            if (quest.isNPCUsed(player, npc.getNPC())) return quest;
+            if (quest.isNPCUsed(player, npc)) return quest;
         }
 
         return null;

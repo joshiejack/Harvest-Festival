@@ -7,9 +7,12 @@ import joshie.harvest.core.base.tile.TileSingleStack;
 import joshie.harvest.fishing.block.BlockFloating.Floating;
 import joshie.harvest.fishing.item.ItemBlockFishing;
 import joshie.harvest.fishing.tile.TileHatchery;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
@@ -22,10 +25,12 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
 import java.util.Locale;
+import java.util.Random;
 
 public class BlockFloating extends BlockHFEnum<BlockFloating, Floating> {
     public BlockFloating() {
         super(Material.PISTON, Floating.class, HFTab.FISHING);
+        setTickRandomly(true);
         setHardness(0.5F);
     }
 
@@ -49,13 +54,40 @@ public class BlockFloating extends BlockHFEnum<BlockFloating, Floating> {
     @SuppressWarnings("deprecation, unchecked")
     @Nonnull
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos) {
-        return new AxisAlignedBB(0.0D, -0.9D, 0.0D, 1.0D, 0.1D, 1.0D);
+        return new AxisAlignedBB(0.0D, -0.9D, 0.0D, 1.0D, 0.001D, 1.0D);
     }
 
     @Override
     @SuppressWarnings("deprecation, unchecked")
     public AxisAlignedBB getCollisionBoundingBox(IBlockState state, @Nonnull World world, @Nonnull BlockPos pos) {
-        return new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.001D, 1.0D);
+        return new AxisAlignedBB(0.0D, -0.9D, 0.0D, 1.0D, 0.001D, 1.0D);
+    }
+
+    @Override
+    @SuppressWarnings("deprecation")
+    public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn) {
+        super.neighborChanged(state, worldIn, pos, blockIn);
+        checkAndDropBlock(worldIn, pos, state);
+    }
+
+    @Override
+    public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
+        checkAndDropBlock(worldIn, pos, state);
+    }
+
+    private void checkAndDropBlock(World worldIn, BlockPos pos, IBlockState state) {
+        if (!canBlockStay(worldIn, pos)) {
+            dropBlockAsItem(worldIn, pos, state, 0);
+            worldIn.setBlockState(pos, Blocks.AIR.getDefaultState(), 3);
+        }
+    }
+
+    private boolean canBlockStay(World worldIn, BlockPos pos) {
+        if (pos.getY() >= 0 && pos.getY() < 256) {
+            IBlockState iblockstate = worldIn.getBlockState(pos.down());
+            Material material = iblockstate.getMaterial();
+            return material == Material.WATER && iblockstate.getValue(BlockLiquid.LEVEL) == 0;
+        } else return false;
     }
 
     @Override

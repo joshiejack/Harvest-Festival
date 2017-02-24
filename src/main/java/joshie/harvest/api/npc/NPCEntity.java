@@ -2,6 +2,7 @@ package joshie.harvest.api.npc;
 
 import joshie.harvest.api.npc.task.TaskElement;
 import joshie.harvest.api.town.Town;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -12,6 +13,9 @@ public interface NPCEntity {
 
     /** Returns the world object for this npc **/
     World getWorldObj();
+
+    /** Returns this as an entity **/
+    EntityLiving getAsEntity();
 
     /** Returns a BlockPos representing this entities location **/
     BlockPos getPos();

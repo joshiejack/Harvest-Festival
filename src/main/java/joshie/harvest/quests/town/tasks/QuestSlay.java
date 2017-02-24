@@ -1,7 +1,7 @@
 package joshie.harvest.quests.town.tasks;
 
 import joshie.harvest.api.HFApi;
-import joshie.harvest.api.npc.NPC;
+import joshie.harvest.api.npc.NPCEntity;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.core.helpers.TextHelper;
@@ -10,7 +10,6 @@ import joshie.harvest.quests.base.QuestDaily;
 import joshie.harvest.town.TownHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
@@ -93,19 +92,19 @@ public class QuestSlay extends QuestDaily {
     }
 
     @Override
-    public boolean isNPCUsed(EntityPlayer player, NPC npc) {
-        return super.isNPCUsed(player, npc) && targetAmount != 0 && counter >= targetAmount;
+    public boolean isNPCUsed(EntityPlayer player, NPCEntity entity) {
+        return super.isNPCUsed(player, entity) && targetAmount != 0 && counter >= targetAmount;
     }
 
     @Override
     @Nullable
     @SideOnly(Side.CLIENT)
-    public String getLocalizedScript(EntityPlayer player, EntityLiving entity, NPC npc) {
-        return TextHelper.getRandomSpeech(npc, "harvestfestival.quest.slay.complete", 32);
+    public String getLocalizedScript(EntityPlayer player, NPCEntity entity) {
+        return TextHelper.getRandomSpeech(entity.getNPC(), "harvestfestival.quest.slay.complete", 32);
     }
 
     @Override
-    public void onChatClosed(EntityPlayer player, EntityLiving entity, NPC npc, boolean wasSneaking) {
+    public void onChatClosed(EntityPlayer player, NPCEntity entity, boolean wasSneaking) {
         complete(player);
     }
 

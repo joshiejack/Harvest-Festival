@@ -2,8 +2,8 @@ package joshie.harvest.quests.base;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.npc.NPC;
+import joshie.harvest.api.npc.NPCEntity;
 import joshie.harvest.api.quests.Quest;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
@@ -20,8 +20,8 @@ public abstract class QuestFriendshipStore extends QuestFriendship {
 
     @SideOnly(Side.CLIENT)
     @Override
-    public String getLocalizedScript(EntityPlayer player, EntityLiving entity, NPC npc) {
-        if (HFApi.player.getRelationsForPlayer(player).getRelationship(npc) >= relationship) {
+    public String getLocalizedScript(EntityPlayer player, NPCEntity entity) {
+        if (HFApi.player.getRelationsForPlayer(player).getRelationship(entity.getNPC()) >= relationship) {
             return HFApi.quests.getCurrentQuests(player).contains(getQuest()) ? getLocalized("item"): getLocalized("text");
         } else return null;
     }

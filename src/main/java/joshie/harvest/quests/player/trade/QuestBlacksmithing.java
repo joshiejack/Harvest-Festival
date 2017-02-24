@@ -5,7 +5,7 @@ import joshie.harvest.api.calendar.CalendarDate;
 import joshie.harvest.api.calendar.Weekday;
 import joshie.harvest.api.core.ITiered;
 import joshie.harvest.api.core.ITiered.ToolTier;
-import joshie.harvest.api.npc.NPC;
+import joshie.harvest.api.npc.NPCEntity;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.calendar.CalendarHelper;
@@ -48,8 +48,8 @@ public class QuestBlacksmithing extends QuestTrade {
     }
 
     @Override
-    public boolean isNPCUsed(EntityPlayer player, NPC npc) {
-        return npc == HFNPCs.BLACKSMITH && (isHolding(player) != null || isHoldingBrokenTool(player) != null || tool != null);
+    public boolean isNPCUsed(EntityPlayer player, NPCEntity entity) {
+        return entity.getNPC() == HFNPCs.BLACKSMITH && (isHolding(player) != null || isHoldingBrokenTool(player) != null || tool != null);
     }
 
     private int getDifference(CalendarDate then, CalendarDate now) {
@@ -142,14 +142,14 @@ public class QuestBlacksmithing extends QuestTrade {
     private long daytime;
 
     @Override
-    public void onQuestSelectedForDisplay(EntityPlayer player, EntityLiving entity, NPC npc) {
+    public void onQuestSelectedForDisplay(EntityPlayer player, NPCEntity entity) {
         today = HFApi.calendar.getDate(player.worldObj);
         daytime = CalendarHelper.getTime(player.worldObj);
     }
 
     @SideOnly(Side.CLIENT)
     @Override
-    public String getLocalizedScript(EntityPlayer player, EntityLiving entity, NPC npc) {
+    public String getLocalizedScript(EntityPlayer player, NPCEntity entity) {
         if (quest_stage == TEST) {
             if (today.getWeekday() == Weekday.THURSDAY || daytime < 10000 || daytime > 16000) return getLocalized("closed.start");
             //Repairing
@@ -197,7 +197,7 @@ public class QuestBlacksmithing extends QuestTrade {
 
     @Override
     @SuppressWarnings("ConstantConditions")
-    public void onChatClosed(EntityPlayer player, EntityLiving entity, NPC npc, boolean wasSneaking) {
+    public void onChatClosed(EntityPlayer player, NPCEntity entity, boolean wasSneaking) {
         if (quest_stage == TEST) {
             if (today.getWeekday() == Weekday.THURSDAY || daytime < 10000 || daytime > 16000) return;
             //Repairing
@@ -241,8 +241,9 @@ public class QuestBlacksmithing extends QuestTrade {
             if (getDifference(date, today) >= days) {
                 complete(player);
                 player.worldObj.playSound(player, player.posX, player.posY, player.posZ, SoundEvents.BLOCK_ANVIL_HIT, SoundCategory.NEUTRAL, 0.25F, 1F);
+                EntityLiving living = entity.getAsEntity();
                 for (int i = 0; i < 32; i++) {
-                    player.worldObj.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, entity.posX + player.worldObj.rand.nextFloat() + player.worldObj.rand.nextFloat() - 1F, entity.posY + 0.25D + entity.worldObj.rand.nextFloat() + entity.worldObj.rand.nextFloat(), entity.posZ + player.worldObj.rand.nextFloat() + player.worldObj.rand.nextFloat() - 1F, 0, 0, 0);
+                    player.worldObj.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, living.posX + player.worldObj.rand.nextFloat() + player.worldObj.rand.nextFloat() - 1F, living.posY + 0.25D + entity.getWorldObj().rand.nextFloat() + entity.getWorldObj().rand.nextFloat(), living.posZ + player.worldObj.rand.nextFloat() + player.worldObj.rand.nextFloat() - 1F, 0, 0, 0);
                 }
             }
         }

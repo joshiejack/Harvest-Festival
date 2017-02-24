@@ -1,5 +1,8 @@
 package joshie.harvest.town;
 
+import joshie.harvest.api.town.ITownHelper;
+import joshie.harvest.api.town.Town;
+import joshie.harvest.core.util.annotations.HFApiImplementation;
 import joshie.harvest.mining.HFMining;
 import joshie.harvest.mining.MiningHelper;
 import joshie.harvest.town.data.TownData;
@@ -15,7 +18,10 @@ import java.util.UUID;
 
 import static joshie.harvest.core.HFTrackers.getTowns;
 
-public class TownHelper {
+@HFApiImplementation
+public class TownHelper implements ITownHelper {
+    public static final TownHelper INSTANCE = new TownHelper();
+
     private static BlockPos getDefaultCoordinates(@Nullable Entity entity) {
         return entity instanceof EntityPlayer ? ((EntityPlayer) entity).getBedLocation(0) : DimensionManager.getWorld(0).getSpawnPoint();
     }
@@ -49,5 +55,15 @@ public class TownHelper {
 
     public static TownData getTownByID(World world, UUID townID) {
         return getTowns(world).getTownByID(townID);
+    }
+
+    @Override
+    public Town getTownForBlockPos(World world, BlockPos pos) {
+        return getClosestTownToBlockPos(world, pos, false);
+    }
+
+    @Override
+    public Town getTownForEntity(Entity entity) {
+        return getClosestTownToEntity(entity, false);
     }
 }

@@ -4,7 +4,7 @@ import com.google.common.collect.Sets;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.knowledge.Note;
-import joshie.harvest.api.npc.NPC;
+import joshie.harvest.api.npc.NPCEntity;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.crops.HFCrops;
@@ -12,7 +12,6 @@ import joshie.harvest.knowledge.HFNotes;
 import joshie.harvest.quests.Quests;
 import joshie.harvest.quests.base.QuestMeeting;
 import joshie.harvest.town.TownHelper;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -44,7 +43,7 @@ public class QuestMeetJenni extends QuestMeeting {
     }
 
     @Override
-    public String getLocalizedScript(EntityPlayer player, EntityLiving entity, NPC npc) {
+    public String getLocalizedScript(EntityPlayer player, NPCEntity entity) {
         //Jenni says hey there I'm the owner, welcome to the supermarket, here you can buy all kinds of things
         //From seeds to chocolate, If you need anything, just ask me
         //She then says we're open every weekday except wednesday from 9am to 5pm
@@ -54,7 +53,7 @@ public class QuestMeetJenni extends QuestMeeting {
     }
 
     @Override
-    public void onChatClosed(EntityPlayer player, EntityLiving entity, NPC npc, boolean wasSneaking) {
+    public void onChatClosed(EntityPlayer player, NPCEntity entity, boolean wasSneaking) {
         complete(player);
     }
 

@@ -1,7 +1,6 @@
 package joshie.harvest.quests.base;
 
 import joshie.harvest.api.buildings.BuildingLocation;
-import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.npc.NPCEntity;
 import joshie.harvest.api.npc.task.TaskMove;
 import joshie.harvest.api.npc.task.TaskWait;
@@ -18,7 +17,6 @@ import joshie.harvest.quests.town.festivals.contest.ContestAnimalStartMenu;
 import joshie.harvest.quests.town.festivals.contest.ContestEntries;
 import joshie.harvest.quests.town.festivals.contest.ContestInfoMenu;
 import joshie.harvest.town.data.TownData;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -58,7 +56,7 @@ public abstract class QuestAnimalContest<E extends EntityAnimal> extends QuestFe
     public abstract ItemStack getReward(Place place);
 
     @Override
-    public void onQuestSelectedForDisplay(EntityPlayer player, EntityLiving entity, NPC npc) {
+    public void onQuestSelectedForDisplay(EntityPlayer player, NPCEntity npc) {
         time = CalendarHelper.getTime(player.worldObj);
         if (!player.worldObj.isRemote) { //Sync up the animal names and stuff
             entries.setAnimalNames(PacketQuestUpdateAnimals.getNamesFromEntities(entries.getAvailableEntries(player)));
@@ -72,7 +70,7 @@ public abstract class QuestAnimalContest<E extends EntityAnimal> extends QuestFe
     }
 
     @Override
-    public Selection getSelection(EntityPlayer player, NPC npc) {
+    public Selection getSelection(EntityPlayer player, NPCEntity entity) {
         if (isCorrectTime(time)) {
             if (quest_stage == EXPLAIN || quest_stage == START || quest_stage == CONTINUE) return null;
             if (entries.isSelecting(player)) {
@@ -87,13 +85,13 @@ public abstract class QuestAnimalContest<E extends EntityAnimal> extends QuestFe
         return null;
     }
 
-    public void targetEntries(EntityPlayer player, NPCEntity npc) {
-        Town town = npc.getTown();
-        List<EntityNPCHuman> npcs = EntityHelper.getEntities(EntityNPCHuman.class, player.worldObj, npc.getPos(), 32D, 5D);
+    public void targetEntries(EntityPlayer player, NPCEntity entity) {
+        Town town = entity.getTown();
+        List<EntityNPCHuman> npcs = EntityHelper.getEntities(EntityNPCHuman.class, player.worldObj, entity.getPos(), 32D, 5D);
         for (EntityNPCHuman theNPC: npcs) {
             BuildingLocation building = entries.getLocationFromNPC(theNPC.getNPC());
             if (building != null) {
-                npc.setPath(TaskMove.of(town.getCoordinatesFor(building)), TaskWait.of(30));
+                entity.setPath(TaskMove.of(town.getCoordinatesFor(building)), TaskWait.of(30));
             }
         }
     }
@@ -101,7 +99,7 @@ public abstract class QuestAnimalContest<E extends EntityAnimal> extends QuestFe
     @Override
     @Nullable
     @SideOnly(Side.CLIENT)
-    public String getLocalizedScript(EntityPlayer player, EntityLiving entity, NPC npc) {
+    public String getLocalizedScript(EntityPlayer player, NPCEntity entity) {
         if (quest_stage == START) return getLocalized("selected");
         if (quest_stage == CONTINUE) return getLocalized("judging");
         if (isCorrectTime(time)) {
@@ -118,7 +116,7 @@ public abstract class QuestAnimalContest<E extends EntityAnimal> extends QuestFe
     }
 
     @Override
-    public void onChatClosed(EntityPlayer player, EntityLiving entity, NPC npc, boolean wasSneaking) {
+    public void onChatClosed(EntityPlayer player, NPCEntity entity, boolean wasSneaking) {
         if (quest_stage == EXPLAIN) quest_stage = QUESTION;
         if (quest_stage == START) increaseStage(player);
         if (entries.isSelecting(player) && entries.getNames().size() == 0) {

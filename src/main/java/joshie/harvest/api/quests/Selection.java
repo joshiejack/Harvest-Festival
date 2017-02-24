@@ -1,7 +1,6 @@
 package joshie.harvest.api.quests;
 
-import joshie.harvest.api.npc.NPC;
-import net.minecraft.entity.EntityLiving;
+import joshie.harvest.api.npc.NPCEntity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.common.eventhandler.Event.Result;
 
@@ -40,13 +39,12 @@ public abstract class Selection<Q extends Quest> {
      *  On the server side only, any changes that
      *  are internally saved, will be synced to the client
      * @param player        the player interacting
-     * @param entity        the entity the player is interacting with
-     * @param npc           the npc associated with the entity
+     * @param entity        the npc associated with the entity
      * @param option        which option they selected (1/2/3)
      * @param quest         the quest object associated with this
      * @return return what happens next,
      *              return DENY to close the options menu
      *              return ALLOW to open the npc chat window
      *              return DEFAULT to do nothing */
-    public abstract Result onSelected(EntityPlayer player, EntityLiving entity, NPC npc, Q quest, int option);
+    public abstract Result onSelected(EntityPlayer player, NPCEntity entity, Q quest, int option);
 }

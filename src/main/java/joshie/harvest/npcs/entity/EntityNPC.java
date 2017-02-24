@@ -11,6 +11,7 @@ import joshie.harvest.api.npc.NPC;
 import joshie.harvest.npcs.NPCHelper;
 import joshie.harvest.town.TownHelper;
 import net.minecraft.entity.EntityAgeable;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
@@ -100,6 +101,11 @@ public abstract class EntityNPC<E extends EntityNPC> extends EntityAgeable imple
 
     @Override
     public void setPath(TaskElement... tasks) {}
+
+    @Override
+    public EntityLiving getAsEntity() {
+        return this;
+    }
 
     @Override
     @Nonnull

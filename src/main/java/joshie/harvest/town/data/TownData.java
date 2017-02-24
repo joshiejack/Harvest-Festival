@@ -76,6 +76,7 @@ public abstract class TownData<Q extends QuestData, L extends LetterData> implem
         return buildings.get(building) != null;
     }
 
+    @Override
     public boolean hasBuilding(Building building) {
         return buildings.get(building.getRegistryName()) != null;
     }
@@ -86,6 +87,11 @@ public abstract class TownData<Q extends QuestData, L extends LetterData> implem
         }
 
         return true;
+    }
+
+    @Override
+    public int getBuildingCount() {
+        return getBuildings().size();
     }
 
     @Override

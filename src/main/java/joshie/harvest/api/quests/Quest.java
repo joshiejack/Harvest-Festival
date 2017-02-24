@@ -3,8 +3,8 @@ package joshie.harvest.api.quests;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.knowledge.Note;
 import joshie.harvest.api.npc.NPC;
+import joshie.harvest.api.npc.NPCEntity;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -102,8 +102,8 @@ public abstract class Quest extends IForgeRegistryEntry.Impl<Quest> {
 
     /** Called to check if this npc is used
      *  @param npc the npc **/
-    public boolean isNPCUsed(EntityPlayer player, NPC npc) {
-        return getNPCs().contains(npc);
+    public boolean isNPCUsed(EntityPlayer player, NPCEntity npc) {
+        return getNPCs().contains(npc.getNPC());
     }
 
     /** Set this quest as a town based quest**/
@@ -174,33 +174,31 @@ public abstract class Quest extends IForgeRegistryEntry.Impl<Quest> {
 
     /** Called when this quest is selected to be displayed/used by an npc
      *  Use this method to setup context data for the quest that you need access to **/
-    public void onQuestSelectedForDisplay(EntityPlayer player, EntityLiving entity, NPC npc) {}
+    public void onQuestSelectedForDisplay(EntityPlayer player, NPCEntity npc) {}
 
     /** Return the script, in a simple unlocalised form
      *  This will get run through getLocalized, this is
      *  so you can return shorter, simple strings by default
      * @param player    the player who is talking
-     * @param entity    the entity for the npc they're interacting with
-     * @param npc       the npc type they're interacting with
+     * @param npc       the npc they're interacting with
      * @return  the script*/
     @Nullable
     @SideOnly(Side.CLIENT)
-    public String getLocalizedScript(EntityPlayer player, EntityLiving entity, NPC npc) {
+    public String getLocalizedScript(EntityPlayer player, NPCEntity npc) {
         return null;
     }
 
     /** This is used when you want the quest to have options to select from
      *  You can return this based on the stage */
     @Nullable
-    public Selection getSelection(EntityPlayer player, NPC npc) {
+    public Selection getSelection(EntityPlayer player, NPCEntity npc) {
         return null;
     }
 
     /** Called when chat closes
      *  @param player       the player
-     *  @param entity       the npc entity
-     *  @param npc          the npc instance**/
-    public void onChatClosed(EntityPlayer player, EntityLiving entity, NPC npc, boolean wasSneaking) {}
+     *  @param npc       the npc**/
+    public void onChatClosed(EntityPlayer player, NPCEntity npc, boolean wasSneaking) {}
 
     /** Called when the quest is completed
      *  @param player       the player that completed the quest **/
@@ -218,7 +216,7 @@ public abstract class Quest extends IForgeRegistryEntry.Impl<Quest> {
     }
 
     /** Call this to reward the player with an item **/
-    public final void takeHeldStack(EntityPlayer player, int amount) {
+    protected final void takeHeldStack(EntityPlayer player, int amount) {
         player.inventory.decrStackSize(player.inventory.currentItem, amount);
     }
 
@@ -233,7 +231,7 @@ public abstract class Quest extends IForgeRegistryEntry.Impl<Quest> {
     }
 
     /** Spawns an entity **/
-    public final void rewardEntity(EntityPlayer player, String entity) {
+    protected final void rewardEntity(EntityPlayer player, String entity) {
         HFApi.quests.rewardEntity(this, player, entity);
     }
 

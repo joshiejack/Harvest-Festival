@@ -1,9 +1,8 @@
 package joshie.harvest.quests.town.festivals.contest;
 
-import joshie.harvest.api.npc.NPC;
+import joshie.harvest.api.npc.NPCEntity;
 import joshie.harvest.api.quests.Selection;
 import joshie.harvest.quests.base.QuestAnimalContest;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.text.translation.I18n;
@@ -38,7 +37,7 @@ public class ContestAnimalSelection<E extends EntityAnimal> extends Selection<Qu
 
     @Override
     @SuppressWarnings("unchecked")
-    public Result onSelected(EntityPlayer player, EntityLiving entity, NPC npc, QuestAnimalContest quest, int option) {
+    public Result onSelected(EntityPlayer player, NPCEntity entity, QuestAnimalContest quest, int option) {
         List<Pair<E, Integer>> animals = quest.getEntries().getAvailableEntries(player);
         int index = option - 1;
         if (index >= animals.size()) return Result.DENY;

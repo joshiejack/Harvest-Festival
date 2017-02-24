@@ -8,6 +8,8 @@ import joshie.harvest.calendar.data.Calendar;
 import joshie.harvest.calendar.render.WeatherRenderer;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.helpers.MCClientHelper;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
@@ -191,34 +193,71 @@ public class HFWorldProvider extends WorldProviderSurface {
         return HFApi.calendar.getDate(worldObj).getSeason() != Season.SUMMER && super.isBlockHighHumidity(pos);
     }
 
+    private boolean isWater(BlockPos pos) {
+        return worldObj.getBlockState(pos).getMaterial() == Material.WATER;
+    }
+
+    @Override
+    public boolean canBlockFreeze(@Nonnull BlockPos pos, boolean byWater) {
+        Biome biome = worldObj.getBiome(pos);
+        if (!biome.canRain()) {
+            return super.canBlockFreeze(pos, byWater);
+        } else if (biome.isSnowyBiome()) {
+            Weather weather = HFApi.calendar.getWeather(worldObj);
+            return !weather.isRain() && super.canBlockFreeze(pos, byWater);
+        } else {
+            Weather weather = HFApi.calendar.getWeather(worldObj);
+            float f = biome.getFloatTemperature(pos);
+            if (weather.isSnow() && f > 0.15F) {
+                if (pos.getY() >= 0 && pos.getY() < 256 && worldObj.getLightFor(EnumSkyBlock.BLOCK, pos) < 10) {
+                    IBlockState iblockstate = worldObj.getBlockState(pos);
+                    Block block = iblockstate.getBlock();
+                    if ((block == Blocks.WATER || block == Blocks.FLOWING_WATER) && iblockstate.getValue(BlockLiquid.LEVEL) == 0) {
+                        if (!byWater) {
+                            HFApi.tickable.addTickable(worldObj, pos, SnowLoader.INSTANCE);
+                            return true;
+                        }
+
+                        boolean flag = isWater(pos.west()) && isWater(pos.east()) && isWater(pos.north()) && isWater(pos.south());
+                        if (!flag) {
+                            HFApi.tickable.addTickable(worldObj, pos, SnowLoader.INSTANCE);
+                            return true;
+                        }
+                    }
+                }
+
+                return false;
+            } else return super.canBlockFreeze(pos, byWater);
+        }
+    }
+
     @Override
     public boolean canSnowAt(@Nonnull BlockPos pos, boolean checkLight) {
-        Weather weather = HFApi.calendar.getWeather(worldObj);
-        if (weather.isSnow()) {
-            Biome biome = worldObj.getBiome(pos);
+        Biome biome = worldObj.getBiome(pos);
+        if (!biome.canRain()) {
+            return super.canSnowAt(pos, checkLight);
+        } else if (biome.isSnowyBiome()) {
+            Weather weather = HFApi.calendar.getWeather(worldObj);
+            return !weather.isRain() && super.canSnowAt(pos, checkLight);
+        } else {
+            Weather weather = HFApi.calendar.getWeather(worldObj);
             float f = biome.getFloatTemperature(pos);
-
-            if (f > 0.15F) {
+            if (weather.isSnow() && f > 0.15F) {
                 if (!checkLight) {
                     return true;
                 } else {
-                    if (biome.canRain()) {
-                        if (pos.getY() >= 0 && pos.getY() < 256 && worldObj.getLightFor(EnumSkyBlock.BLOCK, pos) < 10) {
-                            IBlockState state = worldObj.getBlockState(pos);
-                            if (state.getMaterial() == Material.AIR && Blocks.SNOW_LAYER.canPlaceBlockAt(worldObj, pos)) {
-                                if (SnowLoader.INSTANCE != null && !biome.isSnowyBiome()) {
-                                    HFApi.tickable.addTickable(worldObj, pos, SnowLoader.INSTANCE);
-                                }
-
-                                return true;
-                            }
+                    if (pos.getY() >= 0 && pos.getY() < 256 && worldObj.getLightFor(EnumSkyBlock.BLOCK, pos) < 10) {
+                        IBlockState iblockstate = worldObj.getBlockState(pos);
+                        if (iblockstate.getBlock() != Blocks.SNOW_LAYER && iblockstate.getBlock().isReplaceable(worldObj, pos) && Blocks.SNOW_LAYER.canPlaceBlockAt(worldObj, pos)) {
+                            HFApi.tickable.addTickable(worldObj, pos, SnowLoader.INSTANCE);
+                            return true;
                         }
                     }
 
                     return false;
                 }
             } else return super.canSnowAt(pos, checkLight);
-        } else return false;
+        }
     }
 
     @Override

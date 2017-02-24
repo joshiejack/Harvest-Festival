@@ -1,6 +1,6 @@
 package joshie.harvest.quests.player.trade;
 
-import joshie.harvest.api.npc.NPC;
+import joshie.harvest.api.npc.NPCEntity;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.core.helpers.InventoryHelper;
@@ -9,7 +9,6 @@ import joshie.harvest.npcs.HFNPCs;
 import joshie.harvest.quests.Quests;
 import joshie.harvest.quests.base.QuestTrade;
 import joshie.harvest.tools.HFTools;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -27,13 +26,13 @@ public class QuestToolTrader extends QuestTrade {
     }
 
     @Override
-    public boolean isNPCUsed(EntityPlayer player, NPC npc) {
-        return npc == HFNPCs.FLOWER_GIRL && hasHeldType(player, SearchType.HOE, SearchType.BUCKET, SearchType.SHEARS);
+    public boolean isNPCUsed(EntityPlayer player, NPCEntity entity) {
+        return entity.getNPC() == HFNPCs.FLOWER_GIRL && hasHeldType(player, SearchType.HOE, SearchType.BUCKET, SearchType.SHEARS);
     }
 
     @SideOnly(Side.CLIENT)
     @Override
-    public String getLocalizedScript(EntityPlayer player, EntityLiving entity, NPC npc) {
+    public String getLocalizedScript(EntityPlayer player, NPCEntity entity) {
         if (hasHeldType(player, SearchType.HOE)) {
             return getLocalized("hoe");
         } else if (hasHeldType(player, SearchType.BUCKET)) {
@@ -44,7 +43,7 @@ public class QuestToolTrader extends QuestTrade {
     }
 
     @Override
-    public void onChatClosed(EntityPlayer player, EntityLiving entity, NPC npc, boolean isSneaking) {
+    public void onChatClosed(EntityPlayer player, NPCEntity entity, boolean isSneaking) {
         complete(player);
     }
 

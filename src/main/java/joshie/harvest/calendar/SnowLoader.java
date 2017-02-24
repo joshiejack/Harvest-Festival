@@ -7,6 +7,7 @@ import joshie.harvest.api.ticking.DailyTickableBlock;
 import joshie.harvest.calendar.data.Calendar;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.util.annotations.HFEvents;
+import net.minecraft.block.IGrowable;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
@@ -30,7 +31,7 @@ public class SnowLoader extends DailyTickableBlock {
 
     @Override
     public boolean isStateCorrect(World world, BlockPos pos, IBlockState state) {
-        return state.getBlock() == Blocks.SNOW_LAYER;
+        return state.getBlock() == Blocks.SNOW_LAYER || state.getBlock() == Blocks.ICE;
     }
 
     @Override
@@ -39,11 +40,25 @@ public class SnowLoader extends DailyTickableBlock {
         Weather weather = calendar.getTodaysWeather();
         if (!weather.isSnow()) {
             if (calendar.getDate().getSeason() != Season.WINTER && world.rand.nextInt(3) < 2) {
-                world.setBlockToAir(pos);
+                if (state.getBlock() == Blocks.SNOW_LAYER) {
+                    world.setBlockToAir(pos); //Destroy the snow layer
+                    //Attempt to grow some plants in spring, as we will have destroyed them in the winter
+                    if (world.rand.nextInt(32) == 0) {
+                        IBlockState down = world.getBlockState(pos.down());
+                        if (down.getBlock() instanceof IGrowable) {
+                            IGrowable growable = ((IGrowable)down.getBlock());
+                            if (growable.canGrow(world, pos.down(), down, false)) {
+                                if (growable.canUseBonemeal(world, world.rand, pos.down(), down)) {
+                                    growable.grow(world, world.rand, pos.down(), down);
+                                }
+                            }
+                        }
+                    }
+                } else world.setBlockState(pos, Blocks.WATER.getDefaultState());
             }
-        } else if (weather == Weather.BLIZZARD) {
+        } else if (weather == Weather.BLIZZARD && state.getBlock() == Blocks.SNOW_LAYER) {
             int meta = state.getValue(LAYERS);
-            if (meta < 3) {
+            if (meta < 5) {
                 world.setBlockState(pos, state.withProperty(LAYERS, meta + 1), 2);
             }
         }
@@ -59,7 +74,7 @@ public class SnowLoader extends DailyTickableBlock {
                 for (int y = 0; y < 256; y++) {
                     ExtendedBlockStorage extendedblockstorage = array[y >> 4];
                     if (extendedblockstorage != NULL_BLOCK_STORAGE) {
-                        if (extendedblockstorage.get(x, y & 15, z).getBlock() == SNOW_LAYER) {
+                        if (extendedblockstorage.get(x, y & 15, z).getBlock() == SNOW_LAYER || extendedblockstorage.get(x, y & 15, z).getBlock() == Blocks.ICE) {
                             BlockPos pos = new BlockPos((chunk.xPosition * 16) + x, y, (chunk.zPosition * 16) + z);
                             if (!chunk.getBiome(pos, world.provider.getBiomeProvider()).isSnowyBiome()) {
                                 HFApi.tickable.addTickable(world, pos, this);

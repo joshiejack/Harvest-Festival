@@ -13,7 +13,7 @@ public class EntityNPCVillager extends EntityNPCHuman<EntityNPCVillager> {
         super(world, npc);
     }
 
-    public EntityNPCVillager(EntityNPCVillager entity) {
+    private EntityNPCVillager(EntityNPCVillager entity) {
         super(entity);
     }
 

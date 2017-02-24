@@ -2,6 +2,7 @@ package joshie.harvest.quests.town.festivals;
 
 import joshie.harvest.api.npc.INPCHelper.Age;
 import joshie.harvest.api.npc.NPC;
+import joshie.harvest.api.npc.NPCEntity;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.quests.base.QuestFestivalTimed;
 import net.minecraft.entity.player.EntityPlayer;
@@ -13,8 +14,8 @@ public class QuestContestSheep extends QuestFestivalTimed {
     public QuestContestSheep() {}
 
     @Override //If the npc is a marriage candidate, we can process them for this festival
-    public boolean isNPCUsed(EntityPlayer player, NPC npc) {
-        return npc.getAge() == Age.ADULT;
+    public boolean isNPCUsed(EntityPlayer player, NPCEntity entity) {
+        return entity.getNPC().getAge() == Age.ADULT;
     }
 
     @Override

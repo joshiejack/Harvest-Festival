@@ -3,8 +3,8 @@ package joshie.harvest.quests.base;
 import com.google.common.collect.Lists;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.npc.NPC;
+import joshie.harvest.api.npc.NPCEntity;
 import joshie.harvest.api.quests.Quest;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
@@ -22,8 +22,8 @@ public abstract class QuestFriendship extends Quest {
     }
 
     @Override
-    public boolean isNPCUsed(EntityPlayer player, NPC npc) {
-        return super.isNPCUsed(player, npc) && HFApi.player.getRelationsForPlayer(player).getRelationship(npc) >= relationship;
+    public boolean isNPCUsed(EntityPlayer player, NPCEntity entity) {
+        return super.isNPCUsed(player, entity) && HFApi.player.getRelationsForPlayer(player).getRelationship(entity.getNPC()) >= relationship;
     }
 
     @Override
@@ -38,12 +38,12 @@ public abstract class QuestFriendship extends Quest {
 
     @SideOnly(Side.CLIENT)
     @Override
-    public String getLocalizedScript(EntityPlayer player, EntityLiving entity, NPC npc) {
+    public String getLocalizedScript(EntityPlayer player, NPCEntity entity) {
         return getLocalized("text");
     }
 
     @Override
-    public void onChatClosed(EntityPlayer player, EntityLiving entity, NPC npc, boolean isSneaking) {
+    public void onChatClosed(EntityPlayer player, NPCEntity entity, boolean isSneaking) {
         complete(player);
     }
 

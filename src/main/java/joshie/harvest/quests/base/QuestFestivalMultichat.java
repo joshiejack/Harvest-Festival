@@ -3,9 +3,9 @@ package joshie.harvest.quests.base;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import joshie.harvest.api.npc.NPC;
+import joshie.harvest.api.npc.NPCEntity;
 import joshie.harvest.calendar.CalendarHelper;
 import joshie.harvest.core.helpers.EntityHelper;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -27,22 +27,22 @@ public abstract class QuestFestivalMultichat extends QuestFestival {
     @Override
     @Nullable
     @SideOnly(Side.CLIENT)
-    public String getLocalizedScript(EntityPlayer player, EntityLiving entity, NPC npc) {
-        if (!isCorrectTime(CalendarHelper.getTime(player.worldObj)) || received.get(EntityHelper.getPlayerUUID(player)).contains(npc)) return null; //Don't process
-        return getLocalizedScript(player, npc);
+    public String getLocalizedScript(EntityPlayer player, NPCEntity entity) {
+        if (!isCorrectTime(CalendarHelper.getTime(player.worldObj)) || received.get(EntityHelper.getPlayerUUID(player)).contains(entity.getNPC())) return null; //Don't process
+        return getLocalizedScript(player, entity.getNPC());
     }
 
     @Nullable
     protected abstract String getLocalizedScript(EntityPlayer player, NPC npc);
 
     @Override
-    public void onChatClosed(EntityPlayer player, EntityLiving entity, NPC npc, boolean wasSneaking) {
+    public void onChatClosed(EntityPlayer player, NPCEntity entity, boolean wasSneaking) {
         if (isCorrectTime(CalendarHelper.getTime(player.worldObj))) {
             UUID uuid = EntityHelper.getPlayerUUID(player);
-            if (received.get(uuid).contains(npc)) return;
-            received.get(uuid).add(npc); //Mark this npc as talked to
+            if (received.get(uuid).contains(entity.getNPC())) return;
+            received.get(uuid).add(entity.getNPC()); //Mark this npc as talked to
             syncData(player); //Update the data about this npc
-            onChatClosed(player, npc);
+            onChatClosed(player, entity.getNPC());
         }
     }
 

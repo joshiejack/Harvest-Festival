@@ -2,7 +2,7 @@ package joshie.harvest.quests.player.trade;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.core.ITiered.ToolTier;
-import joshie.harvest.api.npc.NPC;
+import joshie.harvest.api.npc.NPCEntity;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.core.HFTrackers;
@@ -40,14 +40,14 @@ public class QuestPriestRepair extends QuestTrade {
     }
 
     @Override
-    public boolean isNPCUsed(EntityPlayer player, NPC npc) {
-        return npc == HFNPCs.PRIEST && isHolding(player);
+    public boolean isNPCUsed(EntityPlayer player, NPCEntity entity) {
+        return entity.getNPC() == HFNPCs.PRIEST && isHolding(player);
     }
 
     @SideOnly(Side.CLIENT)
     @Override
     @SuppressWarnings("ConstantConditions")
-    public String getLocalizedScript(EntityPlayer player, EntityLiving entity, NPC npc) {
+    public String getLocalizedScript(EntityPlayer player, NPCEntity entity) {
         long cost = HFApi.quests.hasCompleted(Quests.TOMAS_15K, player) ? 1000 : 2500;
         boolean hasGold = HFTrackers.getPlayerTrackerFromPlayer(player).getStats().getGold() >= cost;
         if (hasGold) {
@@ -59,12 +59,13 @@ public class QuestPriestRepair extends QuestTrade {
     }
 
     @Override
-    public void onChatClosed(EntityPlayer player, EntityLiving entity, NPC npc, boolean wasSneaking) {
+    public void onChatClosed(EntityPlayer player, NPCEntity npc, boolean wasSneaking) {
         long cost = HFApi.quests.hasCompleted(Quests.TOMAS_15K, player) ? 1000 : 2500;
         boolean hasGold = HFTrackers.getPlayerTrackerFromPlayer(player).getStats().getGold() >= cost;
         if (hasGold) {
             complete(player);
             player.worldObj.playSound(player, player.posX, player.posY, player.posZ, HFSounds.BLESS_TOOL, SoundCategory.NEUTRAL, 0.25F, 1F);
+            EntityLiving entity = npc.getAsEntity();
             for (int i = 0; i < 32; i++) {
                 player.worldObj.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, entity.posX + player.worldObj.rand.nextFloat() + player.worldObj.rand.nextFloat() - 1F, entity.posY + 0.25D + entity.worldObj.rand.nextFloat() + entity.worldObj.rand.nextFloat(), entity.posZ + player.worldObj.rand.nextFloat() + player.worldObj.rand.nextFloat() - 1F, 0, 0, 0);
             }

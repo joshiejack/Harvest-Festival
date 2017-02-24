@@ -2,6 +2,7 @@ package joshie.harvest.quests.base;
 
 import joshie.harvest.api.buildings.Building;
 import joshie.harvest.api.npc.NPC;
+import joshie.harvest.api.npc.NPCEntity;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.api.quests.QuestQuestion;
 import joshie.harvest.town.TownHelper;
@@ -29,8 +30,8 @@ public abstract class QuestMeetingTutorial extends QuestQuestion {
     }
 
     @Override
-    public boolean isNPCUsed(EntityPlayer player, NPC npc) {
-        return getNPCs().contains(npc) && hasBuilding(player);
+    public boolean isNPCUsed(EntityPlayer player, NPCEntity entity) {
+        return getNPCs().contains(entity.getNPC()) && hasBuilding(player);
     }
 
     protected boolean hasBuilding(EntityPlayer player) {

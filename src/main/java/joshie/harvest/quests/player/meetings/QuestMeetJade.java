@@ -5,6 +5,7 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.knowledge.Note;
 import joshie.harvest.api.npc.NPC;
+import joshie.harvest.api.npc.NPCEntity;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.api.quests.QuestQuestion;
@@ -49,8 +50,8 @@ public class QuestMeetJade extends QuestQuestion {
     }
 
     @Override
-    public Selection getSelection(EntityPlayer player, NPC npc) {
-        if (!TownHelper.getClosestTownToEntity(player, false).hasBuilding(HFBuildings.CARPENTER)) return null;
+    public Selection getSelection(EntityPlayer player, NPCEntity entity) {
+        if (!entity.getTown().hasBuilding(HFBuildings.CARPENTER)) return null;
         return quest_stage <= 0 ? selection : null;
     }
 

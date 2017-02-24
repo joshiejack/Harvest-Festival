@@ -5,6 +5,7 @@ import joshie.harvest.api.calendar.CalendarDate;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.crops.Crop;
 import joshie.harvest.api.npc.NPC;
+import joshie.harvest.api.npc.NPCEntity;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.player.PlayerTrackerServer;
@@ -28,7 +29,7 @@ public class QuestShipping extends QuestTown {
     private int required;
     private int total;
 
-    public QuestShipping(NPC npc, Season season, int required) {
+    QuestShipping(NPC npc, Season season, int required) {
         this.setNPCs(npc);
         this.season = season;
         this.required = required;
@@ -71,8 +72,8 @@ public class QuestShipping extends QuestTown {
     }
 
     @Override
-    public boolean isNPCUsed(EntityPlayer player, NPC npc) {
-        if (!super.isNPCUsed(player, npc)) return false;
+    public boolean isNPCUsed(EntityPlayer player, NPCEntity entity) {
+        if (!super.isNPCUsed(player, entity)) return false;
         boolean ret = quest_stage >= FINISHED;
         if (!player.worldObj.isRemote && quest_stage == START) {
             if (crops == null) rebuildCropSet();
@@ -92,7 +93,7 @@ public class QuestShipping extends QuestTown {
     }
 
     @Override
-    public void onChatClosed(EntityPlayer player, EntityLiving entity, NPC npc, boolean wasSneaking) {
+    public void onChatClosed(EntityPlayer player, NPCEntity entity, boolean wasSneaking) {
         complete(player);
     }
 }

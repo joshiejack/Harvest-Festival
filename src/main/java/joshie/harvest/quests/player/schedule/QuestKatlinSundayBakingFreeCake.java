@@ -3,7 +3,7 @@ package joshie.harvest.quests.player.schedule;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.CalendarDate;
 import joshie.harvest.api.calendar.Weekday;
-import joshie.harvest.api.npc.NPC;
+import joshie.harvest.api.npc.NPCEntity;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.buildings.HFBuildings;
@@ -13,7 +13,6 @@ import joshie.harvest.cooking.item.ItemMeal.Meal;
 import joshie.harvest.npcs.HFNPCs;
 import joshie.harvest.quests.Quests;
 import joshie.harvest.town.TownHelper;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -41,8 +40,8 @@ public class QuestKatlinSundayBakingFreeCake extends Quest  {
     }
 
     @Override
-    public boolean isNPCUsed(EntityPlayer player, NPC npc) {
-        if (npc != HFNPCs.CAFE_GRANNY || !TownHelper.getClosestTownToEntity(player, false).hasBuilding(HFBuildings.CHURCH)) return false;
+    public boolean isNPCUsed(EntityPlayer player, NPCEntity entity) {
+        if (entity.getNPC() != HFNPCs.CAFE_GRANNY || !TownHelper.getClosestTownToEntity(player, false).hasBuilding(HFBuildings.CHURCH)) return false;
         CalendarDate today = HFApi.calendar.getDate(player.worldObj);
         long daytime = CalendarHelper.getTime(player.worldObj);
         if (today.getWeekday() == Weekday.SUNDAY && daytime >= 7000L && daytime <= 17000L) {
@@ -56,7 +55,8 @@ public class QuestKatlinSundayBakingFreeCake extends Quest  {
 
     @Nullable
     @SideOnly(Side.CLIENT)
-    public String getLocalizedScript(EntityPlayer player, EntityLiving entity, NPC npc) {
+    @Override
+    public String getLocalizedScript(EntityPlayer player, NPCEntity entity) {
         return getLocalized("cake");
     }
 
@@ -66,7 +66,7 @@ public class QuestKatlinSundayBakingFreeCake extends Quest  {
     }
 
     @Override
-    public void onChatClosed(EntityPlayer player, EntityLiving entity, NPC npc, boolean wasSneaking) {
+    public void onChatClosed(EntityPlayer player, NPCEntity entity, boolean wasSneaking) {
         CalendarDate today = HFApi.calendar.getDate(player.worldObj);
         date = today.copy(); //Save the date we received this
         syncData(player); //Sync the new data

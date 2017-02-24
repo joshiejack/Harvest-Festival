@@ -12,8 +12,6 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
-import static joshie.harvest.api.calendar.Season.WINTER;
-
 
 public class StatsServer extends Stats {
     private final PlayerTrackerServer master;
@@ -22,12 +20,8 @@ public class StatsServer extends Stats {
         this.master = master;
     }
 
-    private boolean isBirthdaySet() {
-        return birthday.getSeason() != WINTER && birthday.getDay() != 0 && birthday.getYear() != 0;
-    }
-
     public boolean setBirthday(World world) {
-        if (!isBirthdaySet()) {
+        if (birthday == null) {
             birthday = HFApi.calendar.getDate(world).copy();
             return true;
         } else return false;

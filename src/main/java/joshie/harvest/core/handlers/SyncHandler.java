@@ -10,7 +10,6 @@ import net.minecraft.client.gui.GuiMultiplayer;
 import net.minecraft.client.gui.GuiWorldSelection;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraftforge.client.event.GuiOpenEvent;
-import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerChangedDimensionEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
@@ -38,7 +37,7 @@ public class SyncHandler {
     public void onPlayerLogin(PlayerLoggedInEvent event) {
         if (event.player instanceof EntityPlayerMP) {
             EntityPlayerMP player = (EntityPlayerMP) event.player;
-            HFTrackers.<PlayerTrackerServer>getPlayerTrackerFromPlayer(player).getStats().setBirthday(FMLCommonHandler.instance().getMinecraftServerInstance().worldServers[0]); //Set birthday to overworld date
+            HFTrackers.<PlayerTrackerServer>getPlayerTrackerFromPlayer(player).getStats().setBirthday(player.worldObj); //Set birthday to overworld date
             HFTrackers.<CalendarServer>getCalendar(player.worldObj).syncToPlayer(player);
             HFTrackers.<TownTrackerServer>getTowns(event.player.worldObj).syncToPlayer(player);
             HFTrackers.<PlayerTrackerServer>getPlayerTrackerFromPlayer(player).syncPlayerStats(player);

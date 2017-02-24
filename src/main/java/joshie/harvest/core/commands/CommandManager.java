@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @HFEvents
 public class CommandManager extends CommandBase {
@@ -33,15 +34,8 @@ public class CommandManager extends CommandBase {
         return commands;
     }
 
-    public List<AbstractHFCommand> getPossibleCommands(ICommandSender sender) {
-        ArrayList<AbstractHFCommand> list = new ArrayList<>();
-        for (AbstractHFCommand command : commands.values()) {
-            if (sender.canCommandSenderUseCommand(command.getPermissionLevel().ordinal(), command.getCommandName())) {
-                list.add(command);
-            }
-        }
-
-        return list;
+    List<AbstractHFCommand> getPossibleCommands(ICommandSender sender) {
+        return commands.values().stream().filter(command -> sender.canCommandSenderUseCommand(command.getPermissionLevel().ordinal(), command.getCommandName())).collect(Collectors.toCollection(ArrayList::new));
     }
 
     @Override

@@ -92,9 +92,7 @@ public class CalendarDate {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         CalendarDate that = (CalendarDate) o;
-        if (day != that.day) return false;
-        if (year != that.year) return false;
-        return season == that.season;
+        return day == that.day && year == that.year && season == that.season;
     }
 
     @Override

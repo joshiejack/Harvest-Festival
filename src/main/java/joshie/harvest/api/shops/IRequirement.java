@@ -15,7 +15,7 @@ public interface IRequirement {
      * @param world     the world
      * @param player    the player
      * @param amount    the amount
-     * @return */
+     * @return if the requirement is met */
     boolean isFulfilled(World world, EntityPlayer player, int amount);
 
     /** Called when purchased

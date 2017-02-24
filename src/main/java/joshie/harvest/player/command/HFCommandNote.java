@@ -33,22 +33,20 @@ public class HFCommandNote extends AbstractHFCommand {
                 EntityPlayerMP player = parameters.length == 1? CommandBase.getCommandSenderAsPlayer(sender) : CommandBase.getPlayer(server, sender, parameters[0]);
                 TrackingServer tracking = HFTrackers.<PlayerTrackerServer>getPlayerTrackerFromPlayer(player).getTracking();
                 String note = parameters[parameters.length - 1];
-                if (note.equals("all")) {
-                    for (Note message: Note.REGISTRY.values()) {
-                        tracking.learnNote(message);
-                    }
-
-                    tracking.sync(player);
-                    return true;
-                } else if (note.equals("clear")) {
-                    tracking.learnNote(null);
-                    tracking.sync(player);
-                    return true;
-                } else {
-                    if (!note.contains(":")) note = "harvestfestival:" + note;
-                    tracking.learnNote(Note.REGISTRY.get(new ResourceLocation(note)));
-                    tracking.sync(player);
-                    return true;
+                switch (note) {
+                    case "all":
+                        Note.REGISTRY.values().forEach(tracking::learnNote);
+                        tracking.sync(player);
+                        return true;
+                    case "clear":
+                        tracking.learnNote(null);
+                        tracking.sync(player);
+                        return true;
+                    default:
+                        if (!note.contains(":")) note = "harvestfestival:" + note;
+                        tracking.learnNote(Note.REGISTRY.get(new ResourceLocation(note)));
+                        tracking.sync(player);
+                        return true;
                 }
             } catch (NumberFormatException | PlayerNotFoundException ignored) {}
         }

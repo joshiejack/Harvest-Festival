@@ -21,7 +21,7 @@ public class ContestAnimalSelection<E extends EntityAnimal> extends Selection<Qu
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "deprecation"})
     public String[] getText(@Nonnull EntityPlayer player, QuestAnimalContest quest) {
         List<Pair<String, Integer>> animals = quest.getEntries().getNames();
         int max = Math.min(4, animals.size());

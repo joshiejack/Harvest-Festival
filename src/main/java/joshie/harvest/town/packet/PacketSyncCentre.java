@@ -1,16 +1,11 @@
 package joshie.harvest.town.packet;
 
 import io.netty.buffer.ByteBuf;
-import joshie.harvest.buildings.BuildingStage;
 import joshie.harvest.core.network.Packet;
 import joshie.harvest.core.network.Packet.Side;
 import joshie.harvest.town.data.TownDataClient;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.math.BlockPos;
-import net.minecraftforge.fml.common.network.ByteBufUtils;
 
-import java.util.LinkedList;
 import java.util.UUID;
 
 @Packet(Side.CLIENT)

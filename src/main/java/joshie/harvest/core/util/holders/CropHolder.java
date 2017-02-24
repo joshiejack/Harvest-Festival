@@ -31,11 +31,7 @@ public class CropHolder extends AbstractItemHolder {
     @Override
     public boolean matches(ItemStack stack) {
         Crop container = HFApi.crops.getCropFromStack(stack);
-        if (container != null) {
-            return container == crop;
-        }
-
-        return false;
+        return container != null && container == crop;
     }
 
     public static CropHolder readFromNBT(NBTTagCompound tag) {

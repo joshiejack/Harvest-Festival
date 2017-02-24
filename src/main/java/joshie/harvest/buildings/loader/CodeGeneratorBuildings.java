@@ -99,12 +99,10 @@ public class CodeGeneratorBuildings {
 
             //Entities
             if (entityList.size() > 0) {
-                for (Entity e : entityList) {
-                    if (!all.contains(e)) {
-                        ret.add(PlaceableHelper.getPlaceableEntityString(e, x, y, z));
-                        all.add(e);
-                    }
-                }
+                entityList.stream().filter(e -> !all.contains(e)).forEach(e -> {
+                    ret.add(PlaceableHelper.getPlaceableEntityString(e, x, y, z));
+                    all.add(e);
+                });
             }
         }
     }

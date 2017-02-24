@@ -33,22 +33,23 @@ public class HFCommandRecipe extends AbstractHFCommand {
                 EntityPlayerMP player = parameters.length == 1? CommandBase.getCommandSenderAsPlayer(sender) : CommandBase.getPlayer(server, sender, parameters[0]);
                 TrackingServer tracking = HFTrackers.<PlayerTrackerServer>getPlayerTrackerFromPlayer(player).getTracking();
                 String recipe = parameters[parameters.length - 1];
-                if (recipe.equals("all")) {
-                    for (Recipe meal: Recipe.REGISTRY) {
-                        tracking.learnRecipe(meal);
-                    }
+                switch (recipe) {
+                    case "all":
+                        for (Recipe meal : Recipe.REGISTRY) {
+                            tracking.learnRecipe(meal);
+                        }
 
-                    tracking.sync(player);
-                    return true;
-                } else if (recipe.equals("clear")) {
-                    tracking.learnRecipe(null);
-                    tracking.sync(player);
-                    return true;
-                } else {
-                    if (!recipe.contains(":")) recipe = "harvestfestival:" + recipe;
-                    tracking.learnRecipe(Recipe.REGISTRY.getValue(new ResourceLocation(recipe)));
-                    tracking.sync(player);
-                    return true;
+                        tracking.sync(player);
+                        return true;
+                    case "clear":
+                        tracking.learnRecipe(null);
+                        tracking.sync(player);
+                        return true;
+                    default:
+                        if (!recipe.contains(":")) recipe = "harvestfestival:" + recipe;
+                        tracking.learnRecipe(Recipe.REGISTRY.getValue(new ResourceLocation(recipe)));
+                        tracking.sync(player);
+                        return true;
                 }
             } catch (NumberFormatException | PlayerNotFoundException ignored) {}
         }

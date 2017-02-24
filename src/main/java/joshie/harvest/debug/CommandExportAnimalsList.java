@@ -47,13 +47,13 @@ public class CommandExportAnimalsList extends CommandExportHeld {
         }
 
         //Exceptions
-        Collections.sort(products, (o1, o2) -> {return o1.compareTo(o2); });
+        Collections.sort(products, String::compareTo);
         for (int i = 0; i < products.size(); i++) {
             if (i != 0) builder.append(" • ");
 
-            builder.append("[[Small " + products.get(i) + "]]");
-            builder.append(" • [[Medium " + products.get(i) + "]]");
-            builder.append(" • [[Large " + products.get(i) + "]]");
+            builder.append("[[Small ").append(products.get(i)).append("]]");
+            builder.append(" • [[Medium ").append(products.get(i)).append("]]");
+            builder.append(" • [[Large ").append(products.get(i)).append("]]");
         }
 
         builder.append("\n|-\n" +
@@ -89,11 +89,11 @@ public class CommandExportAnimalsList extends CommandExportHeld {
     }
 
     private void addToBuilderAndSort(List<String> list, StringBuilder builder) {
-        Collections.sort(list, (o1, o2) -> {return o1.compareTo(o2); });
+        Collections.sort(list, String::compareTo);
 
         for (int i = 0; i < list.size(); i++) {
             if (i != 0) builder.append(" • ");
-            builder.append("[[" + list.get(i) + "]]");
+            builder.append("[[").append(list.get(i)).append("]]");
         }
     }
 }

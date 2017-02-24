@@ -27,6 +27,7 @@ import java.util.Map;
 public class BuildingAccess implements IBlockAccess {
     private final Map<BlockPos, IBlockState> mapping = new HashMap<>();
 
+    @SuppressWarnings("deprecation")
     public BuildingAccess(Building building, Rotation rotation) {
         //HFBuildings.loadBuilding(building);
         HFTemplate template = BuildingRegistry.INSTANCE.getTemplateForBuilding(building);

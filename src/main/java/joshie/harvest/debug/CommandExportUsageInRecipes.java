@@ -90,8 +90,7 @@ public class CommandExportUsageInRecipes extends AbstractHFCommand {
                     }
 
                     String name = DESCRIPTIONS.containsKey(recipe) ? DESCRIPTIONS.get(recipe) : "//TODO: Add way to obtain";
-                    builder.append("\n|" + name + "\n" +
-                            "|-");
+                    builder.append("\n|").append(name).append("\n").append("|-");
                 }
             }
 

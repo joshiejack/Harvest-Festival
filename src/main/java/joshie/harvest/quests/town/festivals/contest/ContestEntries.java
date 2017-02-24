@@ -219,14 +219,12 @@ public class ContestEntries<E extends EntityAnimal> {
     }
 
     public void kill(World world) {
-        for (ContestEntry entry: entries) {
-            if (entry.getUUID() == null) {
-                E animal = EntityHelper.getAnimalFromUUID(world, entry.getAnimal());
-                if (animal != null) {
-                    animal.setDead();
-                }
+        entries.stream().filter(entry -> entry.getUUID() == null).forEach(entry -> {
+            E animal = EntityHelper.getAnimalFromUUID(world, entry.getAnimal());
+            if (animal != null) {
+                animal.setDead();
             }
-        }
+        });
     }
 
     public ContestEntry getEntry(Place place) {

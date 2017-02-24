@@ -19,6 +19,7 @@ public class ContestWinningScript extends Script {
         super(new ResourceLocation(MODID, name + "_winner"));
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public String getLocalized(EntityAgeable ageable, NPC npc) {
         TownData data = TownHelper.getClosestTownToEntity(ageable, false);

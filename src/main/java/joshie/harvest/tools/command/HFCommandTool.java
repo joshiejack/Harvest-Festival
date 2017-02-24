@@ -24,8 +24,7 @@ public class HFCommandTool extends AbstractHFCommand {
     }
 
     private boolean applyLevel(ItemStack stack, double level) {
-        if (stack == null || !(stack.getItem() instanceof ITiered)) return false;
-        return ((ITiered)stack.getItem()).setLevel(stack, level);
+        return !(stack == null || !(stack.getItem() instanceof ITiered)) && ((ITiered) stack.getItem()).setLevel(stack, level);
     }
 
     @Override
@@ -33,9 +32,8 @@ public class HFCommandTool extends AbstractHFCommand {
         if (parameters != null && (parameters.length == 1 || parameters.length == 2)) {
             try {
                 double level = Double.parseDouble(parameters[parameters.length - 1]);
-                EntityPlayerMP player = parameters.length == 1? CommandBase.getCommandSenderAsPlayer(sender) : CommandBase.getPlayer(server, sender, parameters[0]);
-                if (applyLevel(player.getHeldItemOffhand(), level)) return true;
-                return applyLevel(player.getHeldItemMainhand(), level);
+                EntityPlayerMP player = parameters.length == 1 ? CommandBase.getCommandSenderAsPlayer(sender) : CommandBase.getPlayer(server, sender, parameters[0]);
+                return applyLevel(player.getHeldItemOffhand(), level) || applyLevel(player.getHeldItemMainhand(), level);
             } catch (NumberFormatException | PlayerNotFoundException ignored) {}
         }
 

@@ -1,16 +1,16 @@
 package joshie.harvest.plugins.crafttweaker.command;
 
-import joshie.harvest.core.commands.AbstractHFCommand;
 import joshie.harvest.api.npc.NPC;
+import joshie.harvest.core.commands.AbstractHFCommand;
 import minetweaker.MineTweakerAPI;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.text.TextComponentString;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class HFCommandNPC extends AbstractHFCommand {
 
@@ -33,11 +33,7 @@ public class HFCommandNPC extends AbstractHFCommand {
     }
 
     private List<String> getShopList() {
-        List<String> list = new ArrayList<>();
-        for (NPC npc: NPC.REGISTRY.getValues()) {
-            list.add(npc.getLocalizedName() + " = " + npc.getRegistryName());
-        }
-
+        List<String> list = NPC.REGISTRY.getValues().stream().map(npc -> npc.getLocalizedName() + " = " + npc.getRegistryName()).collect(Collectors.toList());
         Collections.sort(list, String::compareTo);
         return list;
     }

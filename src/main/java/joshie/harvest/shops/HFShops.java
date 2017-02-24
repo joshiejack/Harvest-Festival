@@ -350,11 +350,9 @@ public class HFShops {
     }
 
     private static void registerSupermarket() {
-        for (Crop crop : Crop.REGISTRY.getValues()) {
-            if (crop != Crop.NULL_CROP) {
-                SUPERMARKET.addPurchasable(new PurchasableCropSeeds(crop));
-            }
-        }
+        Crop.REGISTRY.getValues().stream().filter(crop -> crop != Crop.NULL_CROP).forEachOrdered(crop -> {
+            SUPERMARKET.addPurchasable(new PurchasableCropSeeds(crop));
+        });
 
         SUPERMARKET.addPurchasable(500, HFTools.HOE.getStack(ToolTier.BASIC), 1);
         SUPERMARKET.addPurchasable(500, HFTools.SICKLE.getStack(ToolTier.BASIC), 1);

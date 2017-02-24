@@ -147,16 +147,15 @@ public class HFCrops {
         }
 
         //Register everything in the ore dictionary
-        for (Crop crop : Crop.REGISTRY.getValues()) {
-            if (crop != Crop.NULL_CROP) {
-                //Register always in the ore dictionary
-                ItemStack clone = crop.getCropStack(1);
-                String name = "crop" + WordUtils.capitalizeFully(crop.getRegistryName().getResourcePath(), '_').replace("_", "");
-                RegistryHelper.registerOreIfNotExists(name, clone);
-                HFApi.crops.registerCropProvider(clone, crop);
-                HFApi.shipping.registerSellable(clone, crop.getSellValue());
-            }
-        }
+        //Register always in the ore dictionary
+        Crop.REGISTRY.getValues().stream().filter(crop -> crop != Crop.NULL_CROP).forEachOrdered(crop -> {
+            //Register always in the ore dictionary
+            ItemStack clone = crop.getCropStack(1);
+            String name = "crop" + WordUtils.capitalizeFully(crop.getRegistryName().getResourcePath(), '_').replace("_", "");
+            RegistryHelper.registerOreIfNotExists(name, clone);
+            HFApi.crops.registerCropProvider(clone, crop);
+            HFApi.shipping.registerSellable(clone, crop.getSellValue());
+        });
 
         registerOreIfNotExists("cropMelon", new ItemStack(Items.MELON));
         registerOreIfNotExists("cropMelon", new ItemStack(Blocks.MELON_BLOCK));

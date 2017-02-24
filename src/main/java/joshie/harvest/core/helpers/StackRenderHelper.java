@@ -11,7 +11,6 @@ import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.tileentity.TileEntityItemStackRenderer;
 import net.minecraft.crash.CrashReport;
 import net.minecraft.crash.CrashReportCategory;
-import net.minecraft.crash.ICrashReportDetail;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ReportedException;
@@ -84,28 +83,10 @@ public class StackRenderHelper {
             {
                 CrashReport crashreport = CrashReport.makeCrashReport(throwable, "Rendering item");
                 CrashReportCategory crashreportcategory = crashreport.makeCategory("Item being rendered");
-                crashreportcategory.setDetail("Item Type", () -> { return String.valueOf(p_184391_2_.getItem()); });
-                crashreportcategory.setDetail("Item Aux", new ICrashReportDetail<String>()
-                {
-                    public String call() throws Exception
-                    {
-                        return String.valueOf(p_184391_2_.getMetadata());
-                    }
-                });
-                crashreportcategory.setDetail("Item NBT", new ICrashReportDetail<String>()
-                {
-                    public String call() throws Exception
-                    {
-                        return String.valueOf((Object)p_184391_2_.getTagCompound());
-                    }
-                });
-                crashreportcategory.setDetail("Item Foil", new ICrashReportDetail<String>()
-                {
-                    public String call() throws Exception
-                    {
-                        return String.valueOf(p_184391_2_.hasEffect());
-                    }
-                });
+                crashreportcategory.setDetail("Item Type", () -> String.valueOf(p_184391_2_.getItem()));
+                crashreportcategory.setDetail("Item Aux", () -> String.valueOf(p_184391_2_.getMetadata()));
+                crashreportcategory.setDetail("Item NBT", () -> String.valueOf(p_184391_2_.getTagCompound()));
+                crashreportcategory.setDetail("Item Foil", () -> String.valueOf(p_184391_2_.hasEffect()));
                 throw new ReportedException(crashreport);
             }
 

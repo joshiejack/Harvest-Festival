@@ -23,7 +23,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
 
-public class ButtonRelationsAnimal extends ButtonBook {
+public class ButtonRelationsAnimal extends ButtonBook<GuiStats> {
     private static final ResourceLocation HEARTS = new ResourceLocation("textures/gui/icons.png");
     private static final ItemStack PETTED = HFNPCs.TOOLS.getStackFromEnum(NPCTool.SPEECH);
     private static final ItemStack MIRACLE = HFAnimals.TOOLS.getStackFromEnum(Tool.MIRACLE_POTION);

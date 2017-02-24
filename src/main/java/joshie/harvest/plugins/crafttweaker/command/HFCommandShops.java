@@ -9,10 +9,10 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextComponentString;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
+import java.util.Map.Entry;
+import java.util.stream.Collectors;
 
 public class HFCommandShops extends AbstractHFCommand {
 
@@ -35,11 +35,7 @@ public class HFCommandShops extends AbstractHFCommand {
     }
 
     private List<ResourceLocation> getShopList() {
-        List<ResourceLocation> list = new ArrayList<>();
-        for (Map.Entry<ResourceLocation, Shop> entry : Shop.REGISTRY.entrySet()) {
-            list.add(entry.getKey());
-        }
-
+        List<ResourceLocation> list = Shop.REGISTRY.entrySet().stream().map(Entry::getKey).collect(Collectors.toList());
         Collections.sort(list, (s1, s2) -> s1.toString().compareTo(s2.toString()));
         return list;
     }

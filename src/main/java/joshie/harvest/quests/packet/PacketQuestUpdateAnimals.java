@@ -27,8 +27,7 @@ public class PacketQuestUpdateAnimals extends PenguinPacket {
     @Override
     public void toBytes(ByteBuf buf) {
         buf.writeInt(list.size());
-        for (int i = 0; i < list.size(); i++) {
-            Pair<String, Integer> pair = list.get(i);
+        for (Pair<String, Integer> pair : list) {
             ByteBufUtils.writeUTF8String(buf, pair.getKey());
             buf.writeInt(pair.getValue());
         }

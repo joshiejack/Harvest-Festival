@@ -71,10 +71,12 @@ public class Note {
         return isSecret;
     }
 
+    @SuppressWarnings("deprecation")
     public String getDescription() {
         return StringEscapeUtils.unescapeJava(I18n.translateToLocal(description));
     }
 
+    @SuppressWarnings("deprecation")
     public String getTitle() {
         return I18n.translateToLocal(title);
     }

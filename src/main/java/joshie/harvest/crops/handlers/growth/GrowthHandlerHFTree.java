@@ -22,7 +22,7 @@ public abstract class GrowthHandlerHFTree extends GrowthHandlerTree {
 
     public GrowthHandlerHFTree(Fruit fruit) {
         this.fruit = fruit;
-        this.template = getGson().fromJson(ResourceLoader.getJSONResource(new ResourceLocation(MODID, fruit.getName()), "trees"), HFTemplate.class);;
+        this.template = getGson().fromJson(ResourceLoader.getJSONResource(new ResourceLocation(MODID, fruit.getName()), "trees"), HFTemplate.class);
     }
 
     @Override

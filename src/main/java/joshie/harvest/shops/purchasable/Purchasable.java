@@ -60,11 +60,7 @@ public class Purchasable implements IPurchasable {
 
     @Override
     public boolean canDo(@Nonnull World world, @Nonnull EntityPlayer player, int amount) {
-        if (getCost() < 0) {
-            return InventoryHelper.hasInInventory(player, ITEM_STACK, getDisplayStack(), (getDisplayStack().stackSize * amount));
-        }
-
-        return true;
+        return getCost() >= 0 || InventoryHelper.hasInInventory(player, ITEM_STACK, getDisplayStack(), (getDisplayStack().stackSize * amount));
     }
 
     @Override

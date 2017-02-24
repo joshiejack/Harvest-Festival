@@ -1,7 +1,5 @@
 package joshie.harvest.npcs.gift;
 
-import joshie.harvest.api.HFApi;
-import joshie.harvest.api.npc.gift.IGiftRegistry;
 import joshie.harvest.cooking.item.ItemMeal.Meal;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemPotion;
@@ -28,7 +26,6 @@ public class GiftsTiberius extends Gifts {
 
     @Override
     public Quality getQuality(ItemStack stack) {
-        IGiftRegistry registry = HFApi.npc.getGifts();
         if (stack.getItem() instanceof ItemPotion) {
             for (PotionEffect effect: PotionUtils.getEffectsFromStack(stack)) {
                 if (effect.getPotion() == MobEffects.REGENERATION) return AWESOME;

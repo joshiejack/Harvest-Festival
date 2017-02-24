@@ -18,6 +18,7 @@ public abstract class GreetingLocalized implements IConditionalGreeting {
         return 5D;
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public String getLocalizedText(EntityPlayer player, EntityAgeable ageable, NPC npc) {
         return I18n.translateToLocal(text);

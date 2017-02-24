@@ -11,6 +11,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 import static joshie.harvest.core.registry.ShippingRegistry.SELL_VALUE;
 
@@ -31,12 +32,10 @@ public class RecipeBuilder {
         stackSize = 1; //Always create one recipe at least
         //We first always make one required item, and add all the optionals to it, as we already know we CAN make one item
         Set<Ingredient> removed = new HashSet<>();
-        for (IngredientStack stack: recipe.getRequired()) {
-            if (!removed.contains(stack.getIngredient())) {
-                removed.add(stack.getIngredient());
-                removeFromList(stack);
-            }
-        }
+        recipe.getRequired().stream().filter(stack -> !removed.contains(stack.getIngredient())).forEachOrdered(stack -> {
+            removed.add(stack.getIngredient());
+            removeFromList(stack);
+        });
 
         //The next step is calculate the additional hunger, and saturation from the optional list
         calculateHungerSaturationAndRemoveOptionals(recipe, new ArrayList<>(optional));
@@ -162,10 +161,7 @@ public class RecipeBuilder {
         }
 
         //Removed and cleared up the set so we carry on
-        for (IngredientStack required: requiredSet) {
-            removeFromList(required);
-        }
-
+        requiredSet.forEach(this::removeFromList);
         return true;
     }
 
@@ -201,13 +197,7 @@ public class RecipeBuilder {
             List<IngredientStack> list = new ArrayList<>();
             for (IngredientStack required: getList(recipe)) {
                 //Search through the required set, and remove the first entry we find that matches
-                Iterator<IngredientStack> it = ingredients.iterator();
-                while(it.hasNext()) {
-                    IngredientStack stack = it.next();
-                    if (required.isSame(stack)) {
-                        list.add(stack);
-                    }
-                }
+                list.addAll(ingredients.stream().filter(required::isSame).collect(Collectors.toList()));
             }
 
             return list;

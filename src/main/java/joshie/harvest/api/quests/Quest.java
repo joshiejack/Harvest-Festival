@@ -143,6 +143,7 @@ public abstract class Quest extends IForgeRegistryEntry.Impl<Quest> {
     }
 
     /** The name of this quest line **/
+    @SuppressWarnings("deprecation")
     public String getTitle() {
         return I18n.translateToLocal(getPrefix() + ".title");
     }

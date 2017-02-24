@@ -73,14 +73,12 @@ public class BasketHandler {
     public void onRightClickGround(PlayerInteractEvent.RightClickBlock event) {
         EntityPlayer player = event.getEntityPlayer();
         if (!forbidsDrop(event.getWorld().getBlockState(event.getPos()).getBlock())) {
-            for (Entity entity : player.getPassengers()) {
-                if (entity instanceof EntityBasket) {
-                    ItemStack basket = HFCore.STORAGE.getStackFromEnum(Storage.BASKET);
-                    if (basket.onItemUse(player, player.worldObj, event.getPos(), EnumHand.MAIN_HAND, event.getFace(), 0F, 0F, 0F) == EnumActionResult.SUCCESS) {
-                        entity.setDead();
-                    }
+            player.getPassengers().stream().filter(entity -> entity instanceof EntityBasket).forEach(entity -> {
+                ItemStack basket = HFCore.STORAGE.getStackFromEnum(Storage.BASKET);
+                if (basket.onItemUse(player, player.worldObj, event.getPos(), EnumHand.MAIN_HAND, event.getFace(), 0F, 0F, 0F) == EnumActionResult.SUCCESS) {
+                    entity.setDead();
                 }
-            }
+            });
         }
     }
 }

@@ -6,11 +6,7 @@ import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.util.ResourceLocation;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-
-import static joshie.harvest.cooking.gui.GuiCookbook.LEFT_GUI;
-import static joshie.harvest.cooking.gui.GuiCookbook.RIGHT_GUI;
 
 public abstract class GuiBaseBook extends GuiScreen {
 
@@ -25,8 +21,6 @@ public abstract class GuiBaseBook extends GuiScreen {
     private int ySize = 166;
     public int guiLeft;
     public int guiTop;
-    private int centreX;
-    private int centreY;
 
     public GuiBaseBook(ResourceLocation left, ResourceLocation right, int backgroundWidth, int backgroundHeight) {
         this.left = left;
@@ -50,12 +44,11 @@ public abstract class GuiBaseBook extends GuiScreen {
 
     @Override
     public void drawScreen(int x, int y, float partialTicks) {
-        centreX = (width / 2) - backgroundWidth;
-        centreY = (height - backgroundHeight) / 2;
-        mc.getTextureManager().bindTexture(RIGHT_GUI);
-       //GlStateManager.colorMask(false, false, false, false);
+        int centreX = (width / 2) - backgroundWidth;
+        int centreY = (height - backgroundHeight) / 2;
+        mc.getTextureManager().bindTexture(right);
         drawTexturedModalRect(centreX + backgroundWidth, centreY, 0, 0, backgroundWidth, backgroundHeight);
-        mc.getTextureManager().bindTexture(LEFT_GUI);
+        mc.getTextureManager().bindTexture(left);
         drawTexturedModalRect(centreX, centreY, 102, 0, backgroundWidth, backgroundHeight);
         runnables.clear();
         tooltip.clear();
@@ -72,10 +65,6 @@ public abstract class GuiBaseBook extends GuiScreen {
     public void setPage(BookPage page) {
         GuiBaseBook.page = page;
         this.initGui();
-    }
-
-    public void addRunnable(Runnable runnable) {
-        runnables.add(runnable);
     }
 
     public void addTooltip(String string) {
@@ -95,12 +84,9 @@ public abstract class GuiBaseBook extends GuiScreen {
             GlStateManager.disableLighting();
             GlStateManager.disableDepth();
             int k = 0;
-            Iterator<String> iterator = list.iterator();
 
-            while (iterator.hasNext()) {
-                String s = iterator.next();
+            for (String s : list) {
                 int l = fontRendererObj.getStringWidth(s);
-
                 if (l > k) {
                     k = l;
                 }

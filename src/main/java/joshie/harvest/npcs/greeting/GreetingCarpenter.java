@@ -14,6 +14,7 @@ import java.util.Locale;
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 
 public class GreetingCarpenter implements IConditionalGreeting<EntityNPCBuilder> {
+    @SuppressWarnings("deprecation")
     @Override
     public String getLocalizedText(EntityPlayer player, EntityNPCBuilder builder, NPC npc) {
         BuildingStage stage = TownHelper.getClosestTownToEntity(builder, false).getCurrentlyBuilding();

@@ -49,19 +49,17 @@ public class CommandExportBuilder extends CommandExportHeld {
 
     private StringBuilder getPurchasable(ItemStack stack) {
         StringBuilder builder = new StringBuilder();
-        builder.append("{{Infobox purchasable\n" +
-                "|image       = " + stack.getDisplayName() + ".png\n");
+        builder.append("{{Infobox purchasable\n" + "|image       = ").append(stack.getDisplayName()).append(".png\n");
         if (getStore(stack) != null) {
-            builder.append("|store        = [[" + getStore(stack) + "]]\n" +
-                    "|cost = {{gold|" + getCost(stack) + "}}\n");
+            builder.append("|store        = [[").append(getStore(stack)).append("]]\n").append("|cost = {{gold|").append(getCost(stack)).append("}}\n");
         }
 
         if (HFApi.shipping.getSellValue(stack) > 0L) {
-            builder.append("|price = {{gold|" + HFApi.shipping.getSellValue(stack) + "}}\n");
+            builder.append("|price = {{gold|").append(HFApi.shipping.getSellValue(stack)).append("}}\n");
         }
 
         if (CommandExportRecipe.getHunger(stack) != 0) {
-            builder.append("|hunger = {{hunger|" + CommandExportRecipe.getHunger(stack) + "}}\n");
+            builder.append("|hunger = {{hunger|").append(CommandExportRecipe.getHunger(stack)).append("}}\n");
         }
                 builder.append("}}");
         return builder;
@@ -96,7 +94,7 @@ public class CommandExportBuilder extends CommandExportHeld {
 
         String name = getNavboxName(parameters);
         if (name != null) {
-            builder.append("{{" + name + "}}");
+            builder.append("{{").append(name).append("}}");
         }
 
         Debug.save(builder);

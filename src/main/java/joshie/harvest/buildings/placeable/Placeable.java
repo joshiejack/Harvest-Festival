@@ -77,9 +77,7 @@ public abstract class Placeable {
         return false;
     }
 
-    public void remove(World world, BlockPos pos, Rotation rotation, ConstructionStage stage, IBlockState replacement) {
-        return;
-    }
+    public void remove(World world, BlockPos pos, Rotation rotation, ConstructionStage stage, IBlockState replacement) {}
 
     public enum ConstructionStage {
         BUILD, PAINT, DECORATE, MOVEIN, FINISHED

@@ -25,12 +25,16 @@ public class HFCommandTime extends AbstractHFCommand {
         if (parameters.length > 1) {
             if (parameters[0].equals("set")) {
                 long time = CalendarHelper.getElapsedDays(server.worldServers[0].getWorldTime()) * HFCalendar.TICKS_PER_DAY;
-                if (parameters[1].equals("day"))  {
-                    time += 3000;
-                } else if (parameters[1].equals("night")) {
-                    time += 18000;
-                } else {
-                    time += (parseInt(parameters[1]) - 6000L);
+                switch (parameters[1]) {
+                    case "day":
+                        time += 3000;
+                        break;
+                    case "night":
+                        time += 18000;
+                        break;
+                    default:
+                        time += (parseInt(parameters[1]) - 6000L);
+                        break;
                 }
 
                 CalendarHelper.setWorldTime(server, time);

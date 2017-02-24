@@ -26,11 +26,7 @@ public class Obtained implements LootCondition {
     @Override
     public boolean testCondition(Random rand, LootContext context) {
         EntityPlayer player = (EntityPlayer) context.getKillerPlayer();
-        if (player != null) {
-            return HFTrackers.getPlayerTrackerFromPlayer(player).getTracking().hasObtainedItem(stack);
-        }
-
-        return false;
+        return player != null && HFTrackers.getPlayerTrackerFromPlayer(player).getTracking().hasObtainedItem(stack);
     }
 
     public static class Serializer extends LootCondition.Serializer<Obtained> {

@@ -11,7 +11,9 @@ import net.minecraftforge.fml.common.registry.IForgeRegistryEntry.Impl;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nonnull;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public abstract class ItemHFFoodFML<I extends ItemHFFoodFML, E extends Impl<E>> extends ItemHFFood<I> implements ICreativeSorted, IFMLItem {
     protected final IForgeRegistry<E> registry;
@@ -68,12 +70,8 @@ public abstract class ItemHFFoodFML<I extends ItemHFFoodFML, E extends Impl<E>> 
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubItems(Item item, CreativeTabs tab, List<ItemStack> list) {
-        for (E e: registry.getValues()) {
-            if (shouldDisplayInCreative(e) && e != getNullValue()) {
-                list.add(getCreativeStack(item, e));
-            }
-        }
+    public void getSubItems(@Nonnull Item item, CreativeTabs tab, List<ItemStack> list) {
+        list.addAll(registry.getValues().stream().filter(e -> shouldDisplayInCreative(e) && e != getNullValue()).map(e -> getCreativeStack(item, e)).collect(Collectors.toList()));
     }
 
     @SideOnly(Side.CLIENT)

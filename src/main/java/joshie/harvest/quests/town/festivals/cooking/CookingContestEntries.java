@@ -9,7 +9,6 @@ import joshie.harvest.api.npc.NPC;
 import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.core.tile.TileCookingStand;
 import joshie.harvest.npcs.HFNPCs;
-import joshie.harvest.npcs.NPCHelper;
 import joshie.harvest.town.BuildingLocations;
 import joshie.harvest.town.TownHelper;
 import joshie.harvest.town.data.TownData;
@@ -27,20 +26,16 @@ import java.util.UUID;
 
 public class CookingContestEntries {
     private static final NPC[] USABLE = new NPC[] { HFNPCs.FLOWER_GIRL, HFNPCs.MILKMAID, HFNPCs.TRADER, HFNPCs.CARPENTER };
-    private final Random rand = new Random();
-    private final BiMap<UUID, CookingContestEntry> players;
     private final BiMap<NPC, CookingContestEntry> npcs;
     private final Object[] localizations;
-    private final Utensil utensil;
     private EntityPlayer winner;
     private long prize;
 
     @SuppressWarnings("ConstantConditions")
     public CookingContestEntries(World world, Entity entity, Utensil category) {
-        rand.setSeed(HFApi.calendar.getDate(world).hashCode());
-        utensil = category;
+        Random rand = new Random(HFApi.calendar.getDate(world).hashCode());
         TownData data = TownHelper.getClosestTownToEntity(entity, false);
-        players = HashBiMap.create();
+        BiMap<UUID, CookingContestEntry> players = HashBiMap.create();
         npcs = HashBiMap.create();
         for (BlockPos pos: getStandLocations(data)) {
             TileEntity tile = world.getTileEntity(pos);
@@ -116,16 +111,6 @@ public class CookingContestEntries {
         positions[2] = town.getCoordinatesFor(BuildingLocations.PARK_STAGE_STAND3).down();
         positions[3] = town.getCoordinatesFor(BuildingLocations.PARK_STAGE_STAND4).down();
         return positions;
-    }
-
-    private String getNameFromEntry(UUID uuid) {
-        EntityPlayer player = EntityHelper.getPlayerFromUUID(uuid);
-        if (player != null) return player.getName();
-        else {
-            NPC npc = NPCHelper.getNPCFromUUID(uuid);
-            if (npc != null) return npc.getLocalizedName();
-            else return "Unknown";
-        }
     }
 
     public long getPrize() {

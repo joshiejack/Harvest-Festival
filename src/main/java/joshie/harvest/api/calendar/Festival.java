@@ -94,6 +94,10 @@ public final class Festival implements CalendarEntry {
         return (int)(((double)length / 30D) * DAYS_PER_SEASON);
     }
 
+    public boolean isHidden() {
+        return hidden;
+    }
+
     @Nullable
     public Note getNote() {
         return note;

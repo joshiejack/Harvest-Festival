@@ -75,8 +75,7 @@ public class StackSold extends AbstractDataHolder<StackSold> {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         StackSold that = (StackSold) o;
-        if (meta != that.meta) return false;
-        return item != null ? item.equals(that.item) : that.item == null;
+        return meta == that.meta && (item != null ? item.equals(that.item) : that.item == null);
     }
 
     @Override

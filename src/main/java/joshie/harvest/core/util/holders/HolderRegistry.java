@@ -12,7 +12,6 @@ import net.minecraftforge.oredict.OreDictionary;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Map.Entry;
 
 public class HolderRegistry<R> {
@@ -51,12 +50,7 @@ public class HolderRegistry<R> {
 
     public List<ItemStack> getStacksFor(R ingredient) {
         ArrayList<ItemStack> result = new ArrayList<>();
-        for (Map.Entry<AbstractItemHolder, R> entry : registry.entrySet()) {
-            if (matches(ingredient, entry.getValue())) {
-                result.addAll(entry.getKey().getMatchingStacks());
-            }
-        }
-
+        registry.entrySet().stream().filter(entry -> matches(ingredient, entry.getValue())).forEach(entry -> result.addAll(entry.getKey().getMatchingStacks()));
         return result;
     }
 

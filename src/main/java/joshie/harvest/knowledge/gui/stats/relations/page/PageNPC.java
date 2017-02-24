@@ -16,7 +16,7 @@ public class PageNPC extends PageRelationship {
     public static final BookPage INSTANCE = new PageNPC();
 
     private PageNPC() {
-        super("npc", HFNPCs.SPAWNER_NPC.getStackFromObject((NPC)HFNPCs.CARPENTER));
+        super("npc", HFNPCs.SPAWNER_NPC.getStackFromObject(HFNPCs.CARPENTER));
     }
 
     @Override

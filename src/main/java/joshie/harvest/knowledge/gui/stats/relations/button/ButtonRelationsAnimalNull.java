@@ -6,7 +6,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.text.TextFormatting;
 
-public class ButtonRelationsAnimalNull extends ButtonBook {
+public class ButtonRelationsAnimalNull extends ButtonBook<GuiStats> {
     public ButtonRelationsAnimalNull(GuiStats gui, int buttonId, int x, int y) {
         super(gui, buttonId, x, y, "No animals nearby!");
         this.gui = gui;

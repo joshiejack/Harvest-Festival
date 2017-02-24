@@ -3,7 +3,10 @@ package joshie.harvest.knowledge.gui.calendar;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import joshie.harvest.api.HFApi;
-import joshie.harvest.api.calendar.*;
+import joshie.harvest.api.calendar.CalendarDate;
+import joshie.harvest.api.calendar.CalendarEntry;
+import joshie.harvest.api.calendar.Season;
+import joshie.harvest.api.calendar.Weekday;
 import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.npc.RelationStatus;
 import joshie.harvest.calendar.CalendarAPI;
@@ -20,9 +23,9 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map.Entry;
+import java.util.stream.Collectors;
 
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 
@@ -41,12 +44,18 @@ public class GuiCalendar extends GuiBase {
         season = date.getSeason();
         year = date.getYear();
         xSize = 226;
-        CalendarAPI.INSTANCE.getFestivals().entrySet().stream().forEach((e) -> entries.get(getNextDay(e.getKey())).add(e.getValue()));
-        for (NPC npc: NPC.REGISTRY) {
+
+        CalendarAPI.INSTANCE.getFestivals().entrySet().forEach((entry) -> {
+            if (!entry.getValue().isHidden()) {
+                entries.get(getNextDay(entry.getKey())).add(entry.getValue());
+            }
+        });
+
+        NPC.REGISTRY.forEach(npc -> {
             if (npc != NPC.NULL_NPC && HFApi.player.getRelationsForPlayer(player).isStatusMet(npc, RelationStatus.MET)) {
                 entries.get(npc.getBirthday()).add(npc);
             }
-        }
+        });
     }
 
     private CalendarDate getNextDay(CalendarDate date) {
@@ -79,12 +88,7 @@ public class GuiCalendar extends GuiBase {
     }
 
     private List<CalendarEntry> getStacksForDate(CalendarDate date) {
-        List<CalendarEntry> stacks = new ArrayList<>();
-        for (Entry<CalendarDate, CalendarEntry> entry: entries.entries()) {
-            if (entry.getKey().isSameDay(date)) stacks.add(entry.getValue());
-        }
-
-        return stacks;
+        return entries.entries().stream().filter(entry -> entry.getKey().isSameDay(date)).map(Entry::getValue).collect(Collectors.toList());
     }
 
     private int getNumberOfRows() {

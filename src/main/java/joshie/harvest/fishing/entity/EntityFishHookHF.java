@@ -42,6 +42,7 @@ public class EntityFishHookHF extends EntityFishHook {
     }
 
     @Override
+    @SuppressWarnings("empty")
     public void onUpdate() {
         if (!worldObj.isRemote)  {
             setFlag(6, isGlowing());
@@ -153,9 +154,8 @@ public class EntityFishHookHF extends EntityFishHook {
                 float f2 = MathHelper.sqrt_double(motionX * motionX + motionZ * motionZ);
                 rotationYaw = (float) (MathHelper.atan2(motionX, motionZ) * (180D / Math.PI));
 
-                for (rotationPitch = (float) (MathHelper.atan2(motionY, (double) f2) * (180D / Math.PI)); rotationPitch - prevRotationPitch < -180.0F; prevRotationPitch -= 360.0F) {
-                    ;
-                }
+
+                for (rotationPitch = (float) (MathHelper.atan2(motionY, (double) f2) * (180D / Math.PI)); rotationPitch - prevRotationPitch < -180.0F; prevRotationPitch -= 360.0F) {}
 
                 while (rotationPitch - prevRotationPitch >= 180.0F) {
                     prevRotationPitch += 360.0F;
@@ -217,8 +217,8 @@ public class EntityFishHookHF extends EntityFishHook {
                             motionY -= 0.20000000298023224D;
                             playSound(SoundEvents.ENTITY_BOBBER_SPLASH, 0.25F, 1.0F + (rand.nextFloat() - rand.nextFloat()) * 0.4F);
                             float f6 = (float) MathHelper.floor_double(getEntityBoundingBox().minY);
-                            worldserver.spawnParticle(EnumParticleTypes.WATER_BUBBLE, posX, (double) (f6 + 1.0F), posZ, (int) (1.0F + width * 20.0F), (double) width, 0.0D, (double) width, 0.20000000298023224D, new int[0]);
-                            worldserver.spawnParticle(EnumParticleTypes.WATER_WAKE, posX, (double) (f6 + 1.0F), posZ, (int) (1.0F + width * 20.0F), (double) width, 0.0D, (double) width, 0.20000000298023224D, new int[0]);
+                            worldserver.spawnParticle(EnumParticleTypes.WATER_BUBBLE, posX, (double) (f6 + 1.0F), posZ, (int) (1.0F + width * 20.0F), (double) width, 0.0D, (double) width, 0.20000000298023224D);
+                            worldserver.spawnParticle(EnumParticleTypes.WATER_WAKE, posX, (double) (f6 + 1.0F), posZ, (int) (1.0F + width * 20.0F), (double) width, 0.0D, (double) width, 0.20000000298023224D);
                             ticksCatchable = MathHelper.getRandomIntegerInRange(rand, 10, 30);
                         } else {
                             fishApproachAngle = (float) ((double) fishApproachAngle + rand.nextGaussian() * 4.0D);
@@ -231,7 +231,7 @@ public class EntityFishHookHF extends EntityFishHook {
                             Block block1 = worldserver.getBlockState(new BlockPos((int) d13, (int) d15 - 1, (int) d16)).getBlock();
                             if (block1 == Blocks.WATER || block1 == Blocks.FLOWING_WATER) {
                                 if (rand.nextFloat() < 0.15F) {
-                                    worldserver.spawnParticle(EnumParticleTypes.WATER_BUBBLE, d13, d15 - 0.10000000149011612D, d16, 1, (double) f8, 0.1D, (double) f10, 0.0D, new int[0]);
+                                    worldserver.spawnParticle(EnumParticleTypes.WATER_BUBBLE, d13, d15 - 0.10000000149011612D, d16, 1, (double) f8, 0.1D, (double) f10, 0.0D);
                                 }
 
                                 float f = f8 * 0.04F;
@@ -259,7 +259,7 @@ public class EntityFishHookHF extends EntityFishHook {
                             double d2 = posZ + (double) (MathHelper.cos(f7) * f9 * 0.1F);
                             Block block = worldserver.getBlockState(new BlockPos((int) d12, (int) d14 - 1, (int) d2)).getBlock();
                             if (block == Blocks.WATER || block == Blocks.FLOWING_WATER) {
-                                worldserver.spawnParticle(EnumParticleTypes.WATER_SPLASH, d12, d14, d2, 2 + rand.nextInt(2), 0.10000000149011612D, 0.0D, 0.10000000149011612D, 0.0D, new int[0]);
+                                worldserver.spawnParticle(EnumParticleTypes.WATER_SPLASH, d12, d14, d2, 2 + rand.nextInt(2), 0.10000000149011612D, 0.0D, 0.10000000149011612D, 0.0D);
                             }
                         }
 

@@ -17,10 +17,6 @@ public class IngredientMappingEvent {
 
     @SubscribeEvent
     public void onMapping(TextureStitchEvent.Pre event) {
-        for (Ingredient component: Ingredient.INGREDIENTS.values()) {
-            if (component.getFluid() != null) {
-                event.getMap().registerSprite(component.getFluid());
-            }
-        }
+        Ingredient.INGREDIENTS.values().stream().filter(component -> component.getFluid() != null).forEach(component -> event.getMap().registerSprite(component.getFluid()));
     }
 }

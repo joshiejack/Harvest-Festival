@@ -41,11 +41,11 @@ public class CommandExportBuildingList extends CommandExportHeld {
             }
         }
 
-        Collections.sort(list, (o1, o2) -> {return o1.compareTo(o2); });
+        Collections.sort(list, String::compareTo);
 
         for (int i = 0; i < list.size(); i++) {
             if (i != 0) builder.append(" • ");
-            builder.append("[[" + list.get(i) + "]]");
+            builder.append("[[").append(list.get(i)).append("]]");
         }
 
         builder.append("\n|-\n" +

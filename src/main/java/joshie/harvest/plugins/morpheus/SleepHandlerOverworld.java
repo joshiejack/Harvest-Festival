@@ -16,11 +16,9 @@ public class SleepHandlerOverworld implements INewDayHandler {
         for (int j = 0; j < server.worldServers.length; ++j) {
             WorldServer world = server.worldServers[j];
             world.setWorldTime((i - i % TICKS_PER_DAY) - 1);
-            for (EntityPlayer entityplayer : world.playerEntities) {
-                if (entityplayer.isPlayerSleeping())  {
-                    entityplayer.wakeUpPlayer(false, false, true);
-                }
-            }
+            world.playerEntities.stream().filter(EntityPlayer::isPlayerSleeping).forEach(entityplayer -> {
+                entityplayer.wakeUpPlayer(false, false, true);
+            });
         }
     }
 }

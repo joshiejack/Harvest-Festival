@@ -22,6 +22,7 @@ public class GreetingShop implements IInfoButton {
         this.text = resourceLocation.getResourceDomain() + ".npc." + resourceLocation.getResourcePath() + ".shop";
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public String getLocalizedText(EntityPlayer player, EntityAgeable ageable, NPC npc) {
         return I18n.translateToLocal(text);

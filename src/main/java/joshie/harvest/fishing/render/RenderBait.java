@@ -15,7 +15,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 
 @HFEvents(Side.CLIENT)
-@SuppressWarnings("unused")
+@SuppressWarnings("unused, ConstantConditions")
 public class RenderBait {
     @SubscribeEvent
     public void onTooltipRender(RenderTooltipEvent.PostText event) {
@@ -34,10 +34,6 @@ public class RenderBait {
                 int i1 = event.getX() + 75;
                 int j1 = event.getY() + 18 + (11 * (event.getLines().size() - 1));
                 int k1 = 7;
-
-                if (i1 + k > gui.width) {
-                    //i1 -= 28 + k;
-                }
 
                 if (j1 + k1 + 6 > gui.height) {
                     j1 = gui.height - k1 - 6;
@@ -58,8 +54,6 @@ public class RenderBait {
                 GuiUtils.drawGradientRect(zLevel, i1 - 3, j1 + k1 + 2, i1 + k + 3, j1 + k1 + 3, j2, j2);
 
                 GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-                int posY = 17;
-
                 ItemStack bait = amount > 1 ? HFFishing.JUNK.getStackFromEnum(Junk.BAIT, amount) : HFFishing.JUNK.getStackFromEnum(Junk.BAIT, 1);
                 GlStateManager.pushMatrix();
                 GlStateManager.disableBlend();

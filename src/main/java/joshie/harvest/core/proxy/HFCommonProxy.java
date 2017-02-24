@@ -41,13 +41,7 @@ public class HFCommonProxy {
         }
 
         //Now that we have gathered all the classes, let's sort them by priority
-        Comparator<Triple<Integer, String, String>> priority = new Comparator<Triple<Integer, String, String>>() {
-            @Override
-            public int compare(Triple<Integer, String, String> str1, Triple<Integer, String, String> str2) {
-                return str1.getLeft() < str2.getLeft() ? 1: str1.getLeft() > str2.getLeft() ? -1 : 0;
-            }
-        };
-
+        Comparator<Triple<Integer, String, String>> priority = (str1, str2) -> str1.getLeft() < str2.getLeft() ? 1: str1.getLeft() > str2.getLeft() ? -1 : 0;
         Collections.sort(unsorted, priority);
 
         //Add Everything to the real LIST

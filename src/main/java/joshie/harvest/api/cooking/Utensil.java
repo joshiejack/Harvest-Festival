@@ -29,10 +29,7 @@ public class Utensil {
     private Utensil(int index, String label){
         if (index >= UTENSILS.length) {
             Utensil[] tmp = new Utensil[index + 1];
-            for (int x = 0; x < UTENSILS.length; x++) {
-                tmp[x] = UTENSILS[x];
-            }
-
+            System.arraycopy(UTENSILS, 0, tmp, 0, UTENSILS.length);
             UTENSILS = tmp;
         }
 

@@ -16,7 +16,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
 
-public class ButtonRelationsNPC extends ButtonBook {
+public class ButtonRelationsNPC extends ButtonBook<GuiStats> {
     private static final ResourceLocation HEARTS = new ResourceLocation("textures/gui/icons.png");
     private static final ItemStack GIFT = HFNPCs.TOOLS.getStackFromEnum(NPCTool.GIFT);
     private static final ItemStack TALK = HFNPCs.TOOLS.getStackFromEnum(NPCTool.SPEECH);

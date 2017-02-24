@@ -1,10 +1,10 @@
 package joshie.harvest.knowledge.gui.stats.quests.button;
 
 import joshie.harvest.api.quests.Quest;
+import joshie.harvest.core.base.gui.ButtonBook;
 import joshie.harvest.core.helpers.MCClientHelper;
 import joshie.harvest.core.helpers.StackRenderHelper;
 import joshie.harvest.knowledge.gui.stats.GuiStats;
-import joshie.harvest.core.base.gui.ButtonBook;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.EntityPlayer;
@@ -13,9 +13,12 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import org.apache.commons.lang3.StringEscapeUtils;
 
-public class ButtonQuest extends ButtonBook {
+import javax.annotation.Nonnull;
+
+public class ButtonQuest extends ButtonBook<GuiStats> {
     private final ItemStack stack;
     private final String description;
+
 
     public ButtonQuest(GuiStats gui, Quest quest, int buttonId, int x, int y) {
         super(gui, buttonId, x, y, quest.getTitle());
@@ -29,7 +32,7 @@ public class ButtonQuest extends ButtonBook {
     }
 
     @Override
-    public void drawButton(Minecraft mc, int mouseX, int mouseY) {
+    public void drawButton(@Nonnull Minecraft mc, int mouseX, int mouseY) {
         if (visible) {
             GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
             hovered = mouseX >= xPosition && mouseY >= yPosition && mouseX < xPosition + width && mouseY < yPosition + height;

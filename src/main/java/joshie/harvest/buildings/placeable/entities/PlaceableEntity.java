@@ -22,8 +22,7 @@ public abstract class PlaceableEntity extends Placeable {
     @Override
     public boolean place (World world, BlockPos pos, Rotation rotation, boolean playSound) {
         Entity entity = getEntity(world, pos, rotation);
-        if (entity == null) return false;
-        return world.spawnEntityInWorld(entity);
+        return entity != null && world.spawnEntityInWorld(entity);
     }
 
     public abstract PlaceableEntity getCopyFromEntity(Entity entity, int x, int y, int z);

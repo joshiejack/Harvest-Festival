@@ -28,6 +28,7 @@ public class Script extends IForgeRegistryEntry.Impl<Script> {
         return npc;
     }
 
+    @SuppressWarnings("deprecation")
     public String getLocalized(EntityAgeable ageable, NPC npc) {
         return I18n.translateToLocal(unlocalised);
     }

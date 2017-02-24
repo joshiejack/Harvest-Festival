@@ -19,7 +19,7 @@ import net.minecraftforge.oredict.OreDictionary;
 
 import javax.annotation.Nullable;
 import java.util.*;
-import java.util.Map.Entry;
+import java.util.stream.Collectors;
 
 import static joshie.harvest.crops.block.BlockHFCrops.CropType.FRESH;
 import static joshie.harvest.crops.block.BlockHFCrops.CropType.FRESH_DOUBLE;
@@ -74,14 +74,8 @@ public class CropRegistry implements ICropRegistry {
         List<ItemStack> list = new ArrayList<>();
         list.add(crop.getCropStack(1));
         ItemStackHolder holder = ItemStackHolder.of(crop.getCropStack(1));
-        for (Entry<ItemStackHolder, Crop> entry: providers.entrySet()) {
-            if (entry.getValue().equals(crop)) {
-                for (ItemStack stack: entry.getKey().getMatchingStacks()) {
-                    if (!holder.matches(stack)) list.add(stack);
-                }
-            }
-        }
-
+        providers.entrySet().stream().filter(entry -> entry.getValue().equals(crop))
+                .forEach(entry -> list.addAll(entry.getKey().getMatchingStacks().stream().filter(stack -> !holder.matches(stack)).collect(Collectors.toList())));
         return list;
     }
 
@@ -134,11 +128,7 @@ public class CropRegistry implements ICropRegistry {
     public boolean hydrateSoil(@Nullable EntityPlayer player, World world, BlockPos pos) {
         IBlockState state = world.getBlockState(pos);
         WateringHandler checker = CropHelper.getWateringHandler(world, pos, state);
-        if (checker != null && !checker.isWet(world, pos, state)) {
-            return world.setBlockState(pos, checker.hydrate(world, pos, state));
-        }
-
-        return false;
+        return checker != null && !checker.isWet(world, pos, state) && world.setBlockState(pos, checker.hydrate(world, pos, state));
     }
 
     @Override

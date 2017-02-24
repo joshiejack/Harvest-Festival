@@ -31,8 +31,7 @@ public class AnimalStatsPoultry extends AnimalStatsHF {
 
     @Override
     public boolean performTest(AnimalTest test) {
-        if (test == AnimalTest.CAN_CARRY) return true;
-        else return super.performTest(test);
+        return test == AnimalTest.CAN_CARRY || super.performTest(test);
     }
 
     @Override

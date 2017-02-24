@@ -18,6 +18,7 @@ public class CookingContestScript extends Script {
         setNPC(HFNPCs.GS_OWNER);
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public String getLocalized(EntityAgeable ageable, NPC npc) {
         QuestContestCooking quest = TownHelper.getClosestTownToEntity(ageable, false).getQuests().getAQuest(HFFestivals.COOKING_CONTEST.getQuest());

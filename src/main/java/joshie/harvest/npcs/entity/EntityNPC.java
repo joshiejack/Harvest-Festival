@@ -150,7 +150,7 @@ public abstract class EntityNPC<E extends EntityNPC> extends EntityAgeable imple
     @Override
     public void readSpawnData(ByteBuf buf) {
         String name = buf.readBoolean() ? ByteBufUtils.readUTF8String(buf) : "";
-        npc = name.equals("") ? (NPC) HFNPCs.MAYOR : NPC.REGISTRY.getValue(new ResourceLocation(name));
+        npc = name.equals("") ? HFNPCs.MAYOR : NPC.REGISTRY.getValue(new ResourceLocation(name));
     }
 
     @SuppressWarnings("unchecked")

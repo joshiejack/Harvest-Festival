@@ -19,6 +19,7 @@ import net.minecraft.util.text.TextFormatting;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class PageNotes extends BookPage<GuiStats> {
 
@@ -28,11 +29,7 @@ public class PageNotes extends BookPage<GuiStats> {
     PageNotes(Category category, ItemStack stack) {
         super("note", category.getUnlocalizedName(), stack);
         this.list = new ArrayList<>();
-        for (Note note: Note.REGISTRY.values()) {
-            if (note.getCategory() == category) {
-                this.list.add(note);
-            }
-        }
+        this.list.addAll(Note.REGISTRY.values().stream().filter(note -> note.getCategory() == category).collect(Collectors.toList()));
     }
 
     public static void setNote(Note note) {

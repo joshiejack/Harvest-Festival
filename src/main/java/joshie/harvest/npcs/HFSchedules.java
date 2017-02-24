@@ -12,14 +12,11 @@ import net.minecraft.util.ResourceLocation;
 
 import static joshie.harvest.api.calendar.Season.SPRING;
 import static joshie.harvest.api.calendar.Weekday.*;
-import static joshie.harvest.api.calendar.Weekday.TUESDAY;
 import static joshie.harvest.calendar.HFFestivals.*;
-import static joshie.harvest.calendar.HFFestivals.COW_FESTIVAL;
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 import static joshie.harvest.core.lib.LoadOrder.HFSCHEDULES;
 import static joshie.harvest.npcs.HFNPCs.*;
 import static joshie.harvest.town.BuildingLocations.*;
-import static joshie.harvest.town.BuildingLocations.PARK_NOODLES_STAND;
 
 @HFLoader(priority = HFSCHEDULES)
 @SuppressWarnings("unused")

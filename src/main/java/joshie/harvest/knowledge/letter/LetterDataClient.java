@@ -7,6 +7,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @SideOnly(Side.CLIENT)
 public class LetterDataClient extends LetterData {
@@ -14,12 +15,7 @@ public class LetterDataClient extends LetterData {
 
     @Override
     public Set<Letter> getLetters() {
-        Set<Letter> set = new HashSet<>();
-        for (ResourceLocation letter: letters) {
-            set.add(Letter.REGISTRY.get(letter));
-        }
-
-        return set;
+        return letters.stream().map(Letter.REGISTRY::get).collect(Collectors.toSet());
     }
 
     @Override

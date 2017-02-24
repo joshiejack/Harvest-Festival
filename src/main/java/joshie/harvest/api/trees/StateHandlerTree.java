@@ -7,9 +7,11 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 
 import static net.minecraft.block.Block.FULL_BLOCK_AABB;
-import static net.minecraft.block.Block.NULL_AABB;
 
 public class StateHandlerTree extends StateHandlerDefault<Tree> {
+    private static final AxisAlignedBB SAPLING_AABB = new AxisAlignedBB(0.09999999403953552D, 0.0D, 0.09999999403953552D, 0.8999999761581421D, 0.800000011920929D, 0.8999999761581421D);
+    private static final AxisAlignedBB JUVENILE_UPPER_AABB = new AxisAlignedBB(0.09999999403953552D, -1.0D, 0.09999999403953552D, 0.8999999761581421D, 0.800000011920929D, 0.8999999761581421D);
+    private static final AxisAlignedBB JUVENILE_LOWER_AABB = new AxisAlignedBB(0.09999999403953552D, 0.0D, 0.09999999403953552D, 0.8999999761581421D, 1.800000011920929D, 0.8999999761581421D);
     private final IBlockState log;
     private final int stage1;
     private final int stage2;
@@ -35,11 +37,19 @@ public class StateHandlerTree extends StateHandlerDefault<Tree> {
 
     @Override
     public AxisAlignedBB getBoundingBox(IBlockAccess world, BlockPos pos, PlantSection section, Tree tree, int stage, boolean withered) {
-        return stage >= stage2 ? FULL_BLOCK_AABB : CROP_AABB;
+        if (section == PlantSection.TOP) return stage < stage3 ? JUVENILE_UPPER_AABB : FULL_BLOCK_AABB;
+        else if (stage < stage1) return CROP_AABB;
+        else if (stage < stage2) return SAPLING_AABB;
+        else if (stage < stage3) return JUVENILE_LOWER_AABB;
+        else return FULL_BLOCK_AABB;
     }
 
     @Override
     public AxisAlignedBB getCollisionBoundingBox(IBlockAccess world, BlockPos pos, PlantSection section, Tree tree, int stage, boolean withered) {
-        return stage >= stage3 ? FULL_BLOCK_AABB : NULL_AABB;
+        if (section == PlantSection.TOP) return stage < stage3 ? JUVENILE_UPPER_AABB : FULL_BLOCK_AABB;
+        else if (stage < stage1) return CROP_AABB;
+        else if (stage < stage2) return SAPLING_AABB;
+        else if (stage < stage3) return JUVENILE_LOWER_AABB;
+        else return FULL_BLOCK_AABB;
     }
 }

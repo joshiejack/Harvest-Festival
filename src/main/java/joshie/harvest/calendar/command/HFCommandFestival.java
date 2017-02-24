@@ -10,7 +10,6 @@ import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.Entity;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.World;
 
 import static joshie.harvest.calendar.HFCalendar.TICKS_PER_DAY;
 import static joshie.harvest.core.lib.HFModInfo.MODID;
@@ -32,7 +31,6 @@ public class HFCommandFestival extends AbstractHFCommand {
     public boolean execute(MinecraftServer server, ICommandSender sender, String[] parameters) {
         if (parameters != null && parameters.length == 1 && sender instanceof Entity) {
             try {
-                World world = ((Entity)sender).worldObj;
                 Festival newFestival = parameters[0].contains(":") ? Festival.REGISTRY.get(new ResourceLocation(parameters[0])) : Festival.REGISTRY.get(new ResourceLocation(MODID, parameters[0]));
                 TownDataServer town = TownHelper.getClosestTownToEntity(((Entity) sender), false);
                 town.startFestival(newFestival); //Update the building right away

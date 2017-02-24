@@ -37,7 +37,7 @@ public class CraftTweaker {
             exists = directory.mkdir();
         }
 
-        if(exists) {
+        if (exists) {
             MineTweakerAPI.registerBracketHandler(new ItemBracketHandler());
             ItemBracketHandler.rebuildItemRegistry();
             MineTweakerAPI.registerClass(Crops.class);
@@ -72,8 +72,7 @@ public class CraftTweaker {
     public static IRequirement[] asRequirements(IIngredient[] ingredients) {
         if (ingredients == null) return null;
         ArrayList<IRequirement> stacks = new ArrayList<>();
-        for (int i = 0; i < ingredients.length; i++) {
-            IIngredient ingredient = ingredients[i];
+        for (IIngredient ingredient : ingredients) {
             if (ingredient instanceof IOreDictEntry) {
                 stacks.add(new RequirementOreWrapper(asOre(ingredient), ingredient.getAmount()));
             } else if (ingredient.getInternal() instanceof ItemStack) {

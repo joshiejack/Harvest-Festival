@@ -57,7 +57,7 @@ public class CommandGiftExportNPC extends AbstractHFCommand {
 
                     for (Quality quality: Quality.values()) {
                         StringBuilder builder = new StringBuilder();
-                        builder.append("===" + WordUtils.capitalize(quality.name().toLowerCase()) + "===");
+                        builder.append("===").append(WordUtils.capitalize(quality.name().toLowerCase())).append("===");
                         builder.append("\n{{quote|");
                         builder.append(TextHelper.getSpeech(npc, "gift." + quality.name().toLowerCase(Locale.ENGLISH)));
                         builder.append("}} \n" +
@@ -91,10 +91,7 @@ public class CommandGiftExportNPC extends AbstractHFCommand {
 
 
                             List<ItemStack> stacks = NPCHelper.INSTANCE.getGifts().getRegistry().getStacksFor(new GiftCategory[] { category });
-                            builder.append("|-\n" +
-                                    "| [[File:" + WordUtils.capitalize(category.name().toLowerCase()) + " Category.png|48px|center]]\n" +
-                                    "|''[[Gifting#" + WordUtils.capitalize(category.name().toLowerCase()) + "|" + WordUtils.capitalize(category.name().toLowerCase()) + "]]''\n" +
-                                    "|''");
+                            builder.append("|-\n" + "| [[File:").append(WordUtils.capitalize(category.name().toLowerCase())).append(" Category.png|48px|center]]\n").append("|''[[Gifting#").append(WordUtils.capitalize(category.name().toLowerCase())).append("|").append(WordUtils.capitalize(category.name().toLowerCase())).append("]]''\n").append("|''");
 
                             if (initial) {
                                 builder.append("All Except for ");
@@ -106,11 +103,7 @@ public class CommandGiftExportNPC extends AbstractHFCommand {
                         }
 
                         for (ItemStack stack: stackRegistry.getStacksFor(quality)) {
-                            builder.append("|-\n" +
-                                    "|[[File:" + stack.getDisplayName() + ".png|48px|center]]\n" +
-                                    "|[[" + stack.getDisplayName() + "]]\n" +
-                                    "|\n" +
-                                    "|\n");
+                            builder.append("|-\n" + "|[[File:").append(stack.getDisplayName()).append(".png|48px|center]]\n").append("|[[").append(stack.getDisplayName()).append("]]\n").append("|\n").append("|\n");
                             handled.add(stack);
                         }
 

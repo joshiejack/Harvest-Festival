@@ -14,6 +14,7 @@ import net.minecraftforge.fml.common.network.ByteBufUtils;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Packet(Side.CLIENT)
 public class PacketSyncLetters extends PacketSharedSync {
@@ -22,9 +23,7 @@ public class PacketSyncLetters extends PacketSharedSync {
     public PacketSyncLetters(){}
     public PacketSyncLetters(Set<Letter> set) {
         this.set = new HashSet<>();
-        for (Letter letter: set) {
-            this.set.add(letter.getResource());
-        }
+        this.set.addAll(set.stream().map(Letter::getResource).collect(Collectors.toList()));
     }
 
     @Override

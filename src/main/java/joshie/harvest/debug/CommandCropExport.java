@@ -173,9 +173,7 @@ public class CommandCropExport extends AbstractHFCommand {
                             builder.append("=");
 
                             List<NPC> list = new ArrayList<>(qualities.get(quality));
-                            Collections.sort(list, (o1, o2) -> {
-                                return o1.getLocalizedName().compareTo(o2.getLocalizedName());
-                            });
+                            Collections.sort(list, (o1, o2) -> o1.getLocalizedName().compareTo(o2.getLocalizedName()));
 
                             boolean first2 = false;
                             for (NPC npc: list) {

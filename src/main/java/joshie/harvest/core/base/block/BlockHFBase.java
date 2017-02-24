@@ -1,6 +1,5 @@
 package joshie.harvest.core.base.block;
 
-import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.item.ItemBlockHF;
 import joshie.harvest.core.helpers.TextHelper;
 import net.minecraft.block.Block;
@@ -17,6 +16,8 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nonnull;
+
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 
 public abstract class BlockHFBase<B extends BlockHFBase> extends Block {
@@ -26,11 +27,6 @@ public abstract class BlockHFBase<B extends BlockHFBase> extends Block {
     public BlockHFBase(Material material, CreativeTabs tab) {
         super(material);
         setCreativeTab(tab);
-    }
-
-    //Default to farming constructor
-    public BlockHFBase(Material material) {
-        this(material, HFTab.FARMING);
     }
 
     @SuppressWarnings("unchecked")
@@ -45,23 +41,26 @@ public abstract class BlockHFBase<B extends BlockHFBase> extends Block {
     }
 
     public ItemBlockHF getItemBlock() {
-        return new ItemBlockHF(this);
+        return new ItemBlockHF<>(this);
     }
 
     @SuppressWarnings("unchecked")
     @Override
+    @Nonnull
     public B setBlockUnbreakable() {
         return (B) super.setBlockUnbreakable();
     }
 
     @SuppressWarnings("unchecked")
     @Override
+    @Nonnull
     public B setHardness(float hardness) {
         return (B) super.setHardness(hardness);
     }
 
     @SuppressWarnings("unchecked")
     @Override
+    @Nonnull
     public B setResistance(float value) {
         return (B) super.setResistance(value);
     }
@@ -90,6 +89,7 @@ public abstract class BlockHFBase<B extends BlockHFBase> extends Block {
     }
 
     @Override
+    @Nonnull
     public String getUnlocalizedName() {
         return unlocalizedName;
     }

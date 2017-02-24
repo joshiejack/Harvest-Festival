@@ -3,14 +3,12 @@ package joshie.harvest.quests;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.quests.IQuestHelper;
 import joshie.harvest.api.quests.Quest;
-import joshie.harvest.api.quests.QuestQuestion;
 import joshie.harvest.api.quests.TargetType;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.helpers.SpawnItemHelper;
 import joshie.harvest.core.util.annotations.HFApiImplementation;
 import joshie.harvest.npcs.entity.EntityNPC;
 import joshie.harvest.player.PlayerTrackerServer;
-import joshie.harvest.quests.packet.PacketQuestCompleteEarly;
 import joshie.harvest.quests.packet.PacketSyncData;
 import joshie.harvest.town.TownHelper;
 import joshie.harvest.town.data.TownDataServer;
@@ -52,17 +50,6 @@ public class QuestHelper implements IQuestHelper {
         if (!player.worldObj.isRemote) {
             if (quest.getQuestType() == TargetType.PLAYER) HFTrackers.getPlayerTrackerFromPlayer(player).getQuests().markCompleted(player.worldObj, player, quest, true);
             else TownHelper.getClosestTownToEntity(player, false).getQuests().markCompleted(player.worldObj, player, quest, true);
-        }
-    }
-
-    @Override
-    public void completeEarly(QuestQuestion quest, EntityPlayer player) {
-        if (!player.worldObj.isRemote) {
-            if (quest.getQuestType() == TargetType.PLAYER) sendToClient(new PacketQuestCompleteEarly(quest), player);
-            else {
-                TownDataServer data = TownHelper.getClosestTownToEntity(player, false);
-                sendToDimension(player.worldObj.provider.getDimension(), new PacketQuestCompleteEarly(quest).setUUID(data.getID()));
-            }
         }
     }
 

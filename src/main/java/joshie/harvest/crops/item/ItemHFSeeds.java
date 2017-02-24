@@ -28,6 +28,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nonnull;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 import static net.minecraft.init.Blocks.FARMLAND;
@@ -121,12 +122,8 @@ public class ItemHFSeeds extends ItemSeeds implements ICreativeSorted {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubItems(Item item, CreativeTabs tab, List<ItemStack> list) {
-        for (Crop crop : Crop.REGISTRY.getValues()) {
-            if (crop != Crop.NULL_CROP && crop.getCropStack(1).getItem() != Items.BRICK) {
-                list.add(getStackFromCrop(crop));
-            }
-        }
+    public void getSubItems(@Nonnull Item item, CreativeTabs tab, List<ItemStack> list) {
+        list.addAll(Crop.REGISTRY.getValues().stream().filter(crop -> crop != Crop.NULL_CROP && crop.getCropStack(1).getItem() != Items.BRICK).map(this::getStackFromCrop).collect(Collectors.toList()));
     }
 
     public ItemHFSeeds register(String name) {

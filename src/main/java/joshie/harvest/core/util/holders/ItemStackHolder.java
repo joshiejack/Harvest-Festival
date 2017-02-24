@@ -61,9 +61,7 @@ public class ItemStackHolder extends AbstractItemHolder {
         if (o == null || getClass() != o.getClass()) return false;
 
         ItemStackHolder that = (ItemStackHolder) o;
-        if (meta != that.meta) return false;
-        return item != null ? item.equals(that.item) : that.item == null;
-
+        return meta == that.meta && (item != null ? item.equals(that.item) : that.item == null);
     }
 
     @Override

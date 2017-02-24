@@ -6,7 +6,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.text.TextFormatting;
 
-public class ButtonQuestNull extends ButtonBook {
+public class ButtonQuestNull extends ButtonBook<GuiStats> {
     public ButtonQuestNull(GuiStats gui, int buttonId, int x, int y) {
         super(gui, buttonId, x, y, "No Active Quests!");
         this.gui = gui;

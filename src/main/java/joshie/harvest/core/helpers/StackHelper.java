@@ -55,8 +55,7 @@ public class StackHelper {
     public static NBTTagCompound getTag(String str) {
         String s = formatNBT(str).getUnformattedText().replace("%20", " ");
         try {
-            NBTBase nbtbase = JsonToNBT.getTagFromJson(str);
-            if (!(nbtbase instanceof NBTTagCompound)) return null;
+            NBTBase nbtbase = JsonToNBT.getTagFromJson(s);
             return (NBTTagCompound) nbtbase;
         } catch (Exception nbtexception) {
             return null;

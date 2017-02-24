@@ -39,9 +39,7 @@ public class BuildingLocation {
         if (o == null || getClass() != o.getClass()) return false;
 
         BuildingLocation that = (BuildingLocation) o;
-        if (building != null ? !building.equals(that.building) : that.building != null) return false;
-        return location != null ? location.equals(that.location) : that.location == null;
-
+        return building != null ? building.equals(that.building) : that.building == null && (location != null ? location.equals(that.location) : that.location == null);
     }
 
     @Override

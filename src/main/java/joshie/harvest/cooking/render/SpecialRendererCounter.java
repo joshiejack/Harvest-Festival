@@ -14,12 +14,7 @@ public class SpecialRendererCounter extends SpecialRendererCookware<TileCounter>
     protected void renderCookware(TileCounter tile) {
         List<ItemStack> ingredients = tile.getIngredients();
         List<ItemStack> results = tile.getResult();
-        for (ItemStack result: results) {
-            if (result != null) {
-                renderResult(tile, result);
-            }
-        }
-
+        results.stream().filter(result -> result != null).forEachOrdered(result -> renderResult(tile, result));
         int max = ingredients.size();
         for (int i = 0; i < max; i++) {
             renderIngredient(ingredients.get(i), tile.heightOffset[i], tile.rotations[i], tile.offset1[i], tile.offset2[i]);

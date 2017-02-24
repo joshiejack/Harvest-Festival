@@ -75,10 +75,7 @@ public class BakedLeaves extends BakedHF {
         protected ModelResourceLocation getModelResourceLocation(@Nonnull IBlockState state) {
             Map< IProperty<?>, Comparable<? >> map = Maps.newLinkedHashMap(state.getProperties());
             String s = (Block.REGISTRY.getNameForObject(state.getBlock())).toString();
-            for (IProperty<?> iproperty : ignored) {
-                map.remove(iproperty);
-            }
-
+            ignored.forEach(map::remove);
             return new ModelResourceLocation(s, getPropertyString(map));
         }
 

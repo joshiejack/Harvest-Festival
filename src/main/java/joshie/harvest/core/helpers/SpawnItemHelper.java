@@ -66,10 +66,6 @@ public class SpawnItemHelper {
     }
 
     public static void spawnItemStack(World world, BlockPos pos, List<ItemStack> stacks) {
-        for (ItemStack stack: stacks) {
-            if (stack != null) {
-                net.minecraft.inventory.InventoryHelper.spawnItemStack(world, pos.getX(), pos.getY(), pos.getZ(), stack);
-            }
-        }
+        stacks.stream().filter(stack -> stack != null).forEachOrdered(stack -> net.minecraft.inventory.InventoryHelper.spawnItemStack(world, pos.getX(), pos.getY(), pos.getZ(), stack));
     }
 }

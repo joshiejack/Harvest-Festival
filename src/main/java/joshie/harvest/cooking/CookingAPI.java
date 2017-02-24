@@ -12,6 +12,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.oredict.OreDictionary;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 
@@ -100,12 +101,7 @@ public class CookingAPI implements CookingManager {
     }
 
     private List<IngredientStack> toIngredients(List<ItemStack> stacks) {
-        List<IngredientStack> ingredients = new ArrayList<>();
-        for (ItemStack stack: stacks) {
-            ingredients.add(toIngredientStack(stack));
-        }
-
-        return ingredients;
+        return stacks.stream().map(this::toIngredientStack).collect(Collectors.toList());
     }
 
     @Override

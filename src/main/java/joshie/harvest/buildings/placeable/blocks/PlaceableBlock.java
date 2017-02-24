@@ -95,9 +95,7 @@ public class PlaceableBlock extends Placeable {
         if (obj == null) return false;
         if ((!(obj instanceof PlaceableBlock))) return false;
         PlaceableBlock other = (PlaceableBlock) obj;
-        if (getX() != other.getX()) return false;
-        if (getY() != other.getY()) return false;
-        return (getZ() == other.getZ());
+        return getX() == other.getX() && getY() == other.getY() && (getZ() == other.getZ());
     }
 
     @Override

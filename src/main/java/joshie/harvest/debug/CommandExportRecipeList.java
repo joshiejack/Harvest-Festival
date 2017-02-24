@@ -37,14 +37,10 @@ public class CommandExportRecipeList extends AbstractHFCommand {
         for (Utensil utensil: utensils) {
             String name = ReflectionHelper.getPrivateValue(Utensil.class, utensil, "label");
             StringBuilder builder = new StringBuilder();
-            builder.append("|-\n" +
-                    "!" + WordUtils.capitalize(name.replace("_", " ").toLowerCase()) + "\n" +
-                    "|");
+            builder.append("|-\n" + "!").append(WordUtils.capitalize(name.replace("_", " ").toLowerCase())).append("\n").append("|");
             boolean first = true;
             List<Recipe> recipes = new ArrayList<>(set.get(utensil));
-            Collections.sort(recipes, (o1, o2) -> {
-                return o1.getDisplayName().compareTo(o2.getDisplayName());
-            });
+            Collections.sort(recipes, (o1, o2) -> o1.getDisplayName().compareTo(o2.getDisplayName()));
 
             for (Recipe recipe: recipes) {
                 if (first) first = false;
@@ -59,7 +55,7 @@ public class CommandExportRecipeList extends AbstractHFCommand {
 
             builder.append("\n");
             all.append(builder);
-            Debug.save(builder);
+            Debug.save(all);
         }
 
         return true;

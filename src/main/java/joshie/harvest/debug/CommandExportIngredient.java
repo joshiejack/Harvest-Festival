@@ -110,39 +110,11 @@ public class CommandExportIngredient extends AbstractHFCommand {
 
             if (recipe != null) {
                 StringBuilder builder = new StringBuilder();
-                builder.append("{{Infobox recipe\n" +
-                        "|image       = " + recipe.getDisplayName() + ".png\n" +
-                        "|from        = " + getDescription(recipe) + "\n" +
-                        "|hunger = {{hunger|" + getHunger(recipe) + "}}\n" +
-                        "|price = {{gold|" + getCost(recipe) + "}}\n" +
-                        "|utensil      = {{name|" + getUtensilName(recipe.getUtensil()) + "}}\n" +
-                        "|recipe   = " + getRecipeList(recipe) + "\n" +
-                        "}}");
+                builder.append("{{Infobox recipe\n" + "|image       = ").append(recipe.getDisplayName()).append(".png\n").append("|from        = ").append(getDescription(recipe)).append("\n").append("|hunger = {{hunger|").append(getHunger(recipe)).append("}}\n").append("|price = {{gold|").append(getCost(recipe)).append("}}\n").append("|utensil      = {{name|").append(getUtensilName(recipe.getUtensil())).append("}}\n").append("|recipe   = ").append(getRecipeList(recipe)).append("\n").append("}}");
                 String override = INFO_OVERRIDE.containsKey(recipe) ? INFO_OVERRIDE.get(recipe) :
                         recipe.getDisplayName() + " is a cooking recipe made in the [[" + getUtensilName(recipe.getUtensil()) + "]].";
-                builder.append("\n" +
-                        "\n" + override + "\n" +
-                        "\n" +
-                        "==Stats==\n" +
-                        "{| class=\"wikitable\"\n" +
-                        "!Image\n" +
-                        "!Name\n" +
-                        "!Utensil\n" +
-                        "!Required\n" +
-                        "!Optional\n" +
-                        "!Base Hunger\n" +
-                        "!Recipe From\n" +
-                        "!Base Sell Price\n" +
-                        "|-");
-                builder.append("\n|[[File:" + recipe.getDisplayName().replace(" ", "_") + ".png]]\n" +
-                        "|[[" + recipe.getDisplayName() + "]]\n" +
-                        "|[[File:" + getUtensilName(recipe.getUtensil()) + ".png|link=" + getUtensilName(recipe.getUtensil()) + "]]\n" +
-                        "|" + getRecipeList(recipe) + "\n" +
-                        "|" + getOptionalList(recipe) + "\n" +
-                        "|{{hunger|" + getHunger(recipe) + "}}\n" +
-                        "|" + getDescription(recipe) + "\n" +
-                        "|{{gold|" + getCost(recipe) + "}}\n" +
-                        "|-\n");
+                builder.append("\n" + "\n").append(override).append("\n").append("\n").append("==Stats==\n").append("{| class=\"wikitable\"\n").append("!Image\n").append("!Name\n").append("!Utensil\n").append("!Required\n").append("!Optional\n").append("!Base Hunger\n").append("!Recipe From\n").append("!Base Sell Price\n").append("|-");
+                builder.append("\n|[[File:").append(recipe.getDisplayName().replace(" ", "_")).append(".png]]\n").append("|[[").append(recipe.getDisplayName()).append("]]\n").append("|[[File:").append(getUtensilName(recipe.getUtensil())).append(".png|link=").append(getUtensilName(recipe.getUtensil())).append("]]\n").append("|").append(getRecipeList(recipe)).append("\n").append("|").append(getOptionalList(recipe)).append("\n").append("|{{hunger|").append(getHunger(recipe)).append("}}\n").append("|").append(getDescription(recipe)).append("\n").append("|{{gold|").append(getCost(recipe)).append("}}\n").append("|-\n");
 
                 builder.append("|}");
                 ArrayList<IngredientStack> stacks = new ArrayList<>();
@@ -152,7 +124,7 @@ public class CommandExportIngredient extends AbstractHFCommand {
                 builder.append(CommandGiftExport.getGifts(stack));
                 builder.append("\n");
                 builder.append(CommandExportUsageInRecipes.getExport(recipe.getStack()));
-                builder.append("\n\n{{NavboxRecipes}}[[Category:" + getUtensilName(recipe.getUtensil()) + " Recipes]]");
+                builder.append("\n\n{{NavboxRecipes}}[[Category:").append(getUtensilName(recipe.getUtensil())).append(" Recipes]]");
                 Debug.save(builder);
             }
         }

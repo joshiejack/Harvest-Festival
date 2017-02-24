@@ -47,8 +47,7 @@ public class PurchasableBuilding extends PurchasableMaterials {
     @SuppressWarnings("unchecked")
     public boolean isPurchasable(World world, EntityPlayer player) {
         TownData town = TownHelper.getClosestTownToEntity(player, false);
-        if (town.hasBuilding(resource)) return false;
-        return building.getRules().canDo(world, player, 1) && hasBuildingRequirements(player);
+        return !town.hasBuilding(resource) && building.getRules().canDo(world, player, 1) && hasBuildingRequirements(player);
     }
 
     private boolean hasBuildingRequirements(EntityPlayer player) {

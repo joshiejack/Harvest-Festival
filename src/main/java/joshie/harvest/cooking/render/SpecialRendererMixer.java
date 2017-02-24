@@ -52,9 +52,7 @@ public class SpecialRendererMixer extends SpecialRendererCookware<TileMixer> {
             GlStateManager.rotate(-90, 0F, 1F, 0F);
         }
 
-        if (!isBlock) {
-            //GlStateManager.rotate(90, 1F, 0F, 0F);
-        } else {
+        if (isBlock) {
             GlStateManager.rotate(90, 0F, 1F, 0F);
         }
     }

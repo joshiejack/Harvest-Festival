@@ -62,9 +62,7 @@ public class FMLHolder extends AbstractItemHolder {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         FMLHolder fmlHolder = (FMLHolder) o;
-        if (item != null ? !item.equals(fmlHolder.item) : fmlHolder.item != null) return false;
-        return resource != null ? resource.equals(fmlHolder.resource) : fmlHolder.resource == null;
-
+        return item != null ? item.equals(fmlHolder.item) : fmlHolder.item == null && (resource != null ? resource.equals(fmlHolder.resource) : fmlHolder.resource == null);
     }
 
     @Override

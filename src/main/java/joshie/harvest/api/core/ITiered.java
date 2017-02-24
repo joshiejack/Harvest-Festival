@@ -17,8 +17,8 @@ public interface ITiered {
     void levelTool(ItemStack stack);
 
     /** Sets the level
-     * @param stack
-     * @param value**/
+     * @param stack the stack
+     * @param value the level**/
     boolean setLevel(ItemStack stack, double value);
 
     /** Returns the tier of this item

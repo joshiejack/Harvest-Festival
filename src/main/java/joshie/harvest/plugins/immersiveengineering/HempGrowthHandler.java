@@ -21,7 +21,6 @@ public class HempGrowthHandler extends GrowthHandler<Crop> {
 
     @Override
     public boolean canGrow(World world, BlockPos pos, Crop crop) {
-        if (!super.canGrow(world, pos, crop)) return false;
-        return world.getLight(pos) >= 12;
+        return super.canGrow(world, pos, crop) && world.getLight(pos) >= 12;
     }
 }

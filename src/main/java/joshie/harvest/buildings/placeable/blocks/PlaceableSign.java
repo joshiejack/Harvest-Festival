@@ -17,18 +17,14 @@ public class PlaceableSign extends PlaceableDecorative {
     public PlaceableSign(IBlockState state, int x, int y, int z, ITextComponent... text) {
         super(state, x, y, z);
         this.text = new ITextComponent[text.length];
-        for (int i = 0; i < text.length; i++) {
-            this.text[i] = text[i];
-        }
+        System.arraycopy(text, 0, this.text, 0, text.length);
     }
 
     @Override
     public void postPlace (World world, BlockPos pos, Rotation rotation) {
         TileEntity tile = world.getTileEntity(pos);
         if (tile instanceof TileEntitySign) {
-            for (int i = 0; i < 4; ++i) {
-                ((TileEntitySign) tile).signText[i] = text[i];
-            }
+            System.arraycopy(text, 0, ((TileEntitySign) tile).signText, 0, 4);
         }
     }
 }

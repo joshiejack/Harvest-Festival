@@ -152,7 +152,7 @@ public class Crops {
             this.states = states;
         }
 
-        public  SetStages(String name, int[] stages) {
+        public SetStages(String name, int[] stages) {
             super(name);
             this.block = null;
             this.stages = stages;

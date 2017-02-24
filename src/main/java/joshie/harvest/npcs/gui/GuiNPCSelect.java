@@ -41,8 +41,7 @@ public class GuiNPCSelect extends GuiNPCBase {
             selection = quest != null ? quest.getSelection(player, npc.getNPC()): null;
         }
 
-        if (selection == null || selection.getText(player, quest) == null);//player.closeScreen();
-        else {
+        if (selection != null && selection.getText(player, quest) != null) {
             optionsTotal = 0;
             text = Arrays.copyOf(selection.getText(player, quest), selection.getText(player, quest).length);
             selected = 1;

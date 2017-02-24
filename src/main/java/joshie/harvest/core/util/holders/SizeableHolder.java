@@ -62,9 +62,7 @@ public class SizeableHolder extends AbstractItemHolder {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         SizeableHolder that = (SizeableHolder) o;
-        if (item != null ? !item.equals(that.item) : that.item != null) return false;
-        return object != null ? object.equals(that.object) : that.object == null;
-
+        return item != null ? item.equals(that.item) : that.item == null && (object != null ? object.equals(that.object) : that.object == null);
     }
 
     @Override

@@ -118,6 +118,7 @@ public class Shop {
         return HFApi.npc.getRandomSpeech(npc, unlocalizedName + ".greeting", 100);
     }
 
+    @SuppressWarnings("deprecation")
     public String getLocalizedName() {
         return I18n.translateToLocal(unlocalizedName);
     }

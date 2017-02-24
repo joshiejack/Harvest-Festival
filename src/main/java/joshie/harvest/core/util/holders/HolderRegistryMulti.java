@@ -11,7 +11,10 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
 
 public class HolderRegistryMulti<R> {
     private final HashMap<AbstractItemHolder, R> registry = new HashMap<>();
@@ -74,12 +77,7 @@ public class HolderRegistryMulti<R> {
 
     public List<ItemStack> getStacksFor(R ingredient) {
         ArrayList<ItemStack> result = new ArrayList<>();
-        for (Map.Entry<AbstractItemHolder, R> entry : registry.entrySet()) {
-            if (isEqual(ingredient, entry.getValue())) {
-                result.addAll(entry.getKey().getMatchingStacks());
-            }
-        }
-
+        registry.entrySet().stream().filter(entry -> isEqual(ingredient, entry.getValue())).forEach(entry -> result.addAll(entry.getKey().getMatchingStacks()));
         return result;
     }
 

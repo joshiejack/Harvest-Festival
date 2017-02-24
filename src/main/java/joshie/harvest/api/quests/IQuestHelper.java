@@ -29,12 +29,6 @@ public interface IQuestHelper {
      *  @param player   the player to complete the quest for**/
     void completeQuest(Quest quest, EntityPlayer player);
 
-    /** Completes a question quest early
-     *  @param quest    the quest
-     *  @param player   the player
-     */
-    void completeEarly(QuestQuestion quest, EntityPlayer player);
-
     /** Rewards a player with an item, if called on the client side,
      *  the item will be validated against the quest to ensure it can be rewarded
      *  @param quest    the quest we're taking from, so it can be validated

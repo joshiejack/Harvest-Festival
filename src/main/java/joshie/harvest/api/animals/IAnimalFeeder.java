@@ -1,7 +1,6 @@
 package joshie.harvest.api.animals;
 
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 

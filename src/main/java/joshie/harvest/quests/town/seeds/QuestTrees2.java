@@ -9,7 +9,6 @@ import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.helpers.InventoryHelper;
 import joshie.harvest.npcs.HFNPCs;
 import joshie.harvest.player.PlayerTrackerServer;
-import joshie.harvest.player.tracking.StackSold;
 import joshie.harvest.quests.Quests;
 import joshie.harvest.quests.base.QuestTown;
 import net.minecraft.entity.EntityLiving;
@@ -38,12 +37,8 @@ public class QuestTrees2 extends QuestTown {
         else {
             total = 0;
             lastCheck = date.copy();
-            for (StackSold sold : HFTrackers.<PlayerTrackerServer>getPlayerTrackerFromPlayer(player).getTracking().getShipped()) {
-                if (InventoryHelper.isOreName(sold.getStack(), crops)) {
-                    total += sold.getAmount();
-                }
-            }
-
+            HFTrackers.<PlayerTrackerServer>getPlayerTrackerFromPlayer(player).getTracking().getShipped().stream()
+                    .filter(sold -> InventoryHelper.isOreName(sold.getStack(), crops)).forEach(sold -> total += sold.getAmount());
             return total;
         }
     }

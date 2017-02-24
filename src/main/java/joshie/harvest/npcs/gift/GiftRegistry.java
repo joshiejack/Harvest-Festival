@@ -27,17 +27,13 @@ public class GiftRegistry implements IGiftRegistry {
     }
 
     public boolean isBlacklisted(ItemStack stack) {
-        if (registry.getValueOf(stack) == null &&
+        return registry.getValueOf(stack) == null &&
                 (stack.getItem() instanceof ItemBlock ||
-                 stack.getItem() instanceof ItemTool ||
-                 stack.getItem() instanceof ItemArmor ||
-                 stack.getItem() instanceof ItemSword ||
-                 stack.getItem() instanceof net.minecraft.item.ItemTool)) {
-
-            return true;
-        }
-
-        return blacklist.contains(stack);
+                        stack.getItem() instanceof ItemTool ||
+                        stack.getItem() instanceof ItemArmor ||
+                        stack.getItem() instanceof ItemSword ||
+                        stack.getItem() instanceof net.minecraft.item.ItemTool) ||
+                blacklist.contains(stack);
     }
 
     @Override

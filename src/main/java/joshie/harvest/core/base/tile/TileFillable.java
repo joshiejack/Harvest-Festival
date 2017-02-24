@@ -7,8 +7,6 @@ import net.minecraft.nbt.NBTTagCompound;
 
 import javax.annotation.Nonnull;
 
-import static joshie.harvest.api.animals.AnimalFoodType.SEED;
-
 public abstract class TileFillable extends TileHarvest {
     private final AnimalFoodType foodType;
     private final int maxFill;

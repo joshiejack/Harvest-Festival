@@ -10,7 +10,7 @@ public interface ISizedProvider<E> {
     Size getSize(ItemStack stack);
 
     /** Return the object this stack represents
-     * @param stack  */
+     * @param stack the stack  */
     E getObject(ItemStack stack);
 
     /** Return this object loaded from a string **/

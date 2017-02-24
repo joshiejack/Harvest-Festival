@@ -71,14 +71,13 @@ public class CommandExportMiningList extends CommandExportHeld {
 
     private void addToBuilderAndSort(String name, List<String> list, StringBuilder builder, boolean sort) {
         if (sort) {
-            builder.append("\n|-\n" +
-                    "!" + name +"\n|");
-            Collections.sort(list, (o1, o2) -> {return o1.compareTo(o2); });
+            builder.append("\n|-\n" + "!").append(name).append("\n|");
+            Collections.sort(list, String::compareTo);
         }
 
         for (int i = 0; i < list.size(); i++) {
             if (i != 0) builder.append(" • ");
-            builder.append("[[" + list.get(i) + "]]");
+            builder.append("[[").append(list.get(i)).append("]]");
         }
     }
 

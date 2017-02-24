@@ -9,7 +9,7 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextFormatting;
 
-public class ButtonShipped extends ButtonBook {
+public class ButtonShipped extends ButtonBook<GuiStats> {
     private final GuiStats gui;
     protected final AbstractItemHolder holder;
     private final long value;

@@ -125,16 +125,14 @@ public class AnimalEvents {
 
         @SubscribeEvent
         public void onPlayerLoggedOut(PlayerLoggedOutEvent event) {
-            for (Entity entity : event.player.getPassengers()) {
-                if (entity instanceof EntityBasket) {
-                    AnimalStats stats = EntityHelper.getStats(entity);
-                    entity.dismountRidingEntity();
-                    entity.rotationPitch = event.player.rotationPitch;
-                    entity.rotationYaw = event.player.rotationYaw;
-                    entity.moveRelative(0F, 0.1F, 1.05F);
-                    entity.setEntityInvulnerable(false);
-                }
-            }
+            event.player.getPassengers().stream().filter(entity -> entity instanceof EntityBasket).forEach(entity -> {
+                AnimalStats stats = EntityHelper.getStats(entity);
+                entity.dismountRidingEntity();
+                entity.rotationPitch = event.player.rotationPitch;
+                entity.rotationYaw = event.player.rotationYaw;
+                entity.moveRelative(0F, 0.1F, 1.05F);
+                entity.setEntityInvulnerable(false);
+            });
         }
 
         @SubscribeEvent

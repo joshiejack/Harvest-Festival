@@ -15,7 +15,6 @@ import org.lwjgl.input.Mouse;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public abstract class GuiBase extends GuiScreen {
@@ -129,12 +128,9 @@ public abstract class GuiBase extends GuiScreen {
             GlStateManager.disableLighting();
             GlStateManager.disableDepth();
             int k = 0;
-            Iterator<String> iterator = list.iterator();
 
-            while (iterator.hasNext()) {
-                String s = iterator.next();
+            for (String s : list) {
                 int l = fontRendererObj.getStringWidth(s);
-
                 if (l > k) {
                     k = l;
                 }

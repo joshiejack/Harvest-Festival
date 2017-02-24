@@ -268,6 +268,7 @@ public class NPC extends IForgeRegistryEntry.Impl<NPC> implements CalendarEntry 
         return npc.getStackForNPC(this);
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public void addTooltipForCalendarEntry(List<String> tooltip) {
         tooltip.add(I18n.translateToLocalFormatted("harvestfestival.npc.tooltip.birthday", getLocalizedName()));

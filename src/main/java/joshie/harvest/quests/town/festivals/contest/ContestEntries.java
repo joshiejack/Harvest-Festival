@@ -16,6 +16,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.apache.commons.lang3.tuple.Pair;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;
@@ -49,7 +50,7 @@ public class ContestEntries<E extends EntityAnimal> {
         Iterator<ContestEntry> it = entries.iterator();
         while (it.hasNext()) {
             ContestEntry entry = it.next();
-            if (entry.getEntity(player.worldObj) == null) {
+            if (entry.getAnimalEntity(player.worldObj) == null) {
                 it.remove(); //Remove the entries as they are no longer valid
             }
         }
@@ -80,7 +81,7 @@ public class ContestEntries<E extends EntityAnimal> {
         Iterator<ContestEntry> it = entries.iterator();
         while (it.hasNext()) {
             ContestEntry entry = it.next();
-            if (entry.getStall() == stall || playerUUID.equals(entry.getUUID()) || animalUUID.equals(entry.getAnimal())) {
+            if (entry.getStall() == stall || playerUUID.equals(entry.getPlayerUUID()) || animalUUID.equals(entry.getAnimalUUID())) {
                 it.remove();
             }
         }
@@ -168,6 +169,17 @@ public class ContestEntries<E extends EntityAnimal> {
         return selecting.contains(EntityHelper.getPlayerUUID(player));
     }
 
+    @Nullable
+    public BuildingLocation getLocationFromNPC(@Nonnull NPC npc) {
+        for (ContestEntry entry: entries) {
+            if (entry.getNPC() == npc) {
+                return locations[entry.getStall() - 1];
+            }
+        }
+
+        return null;
+    }
+
     public boolean isEntered(int stall) {
         for (ContestEntry entry: entries) {
             if (stall == entry.getStall()) return true;
@@ -179,7 +191,7 @@ public class ContestEntries<E extends EntityAnimal> {
     public boolean isEntered(EntityPlayer player) {
         UUID uuid = EntityHelper.getEntityUUID(player);
         for (ContestEntry entry: entries) {
-            if (uuid.equals(entry.getUUID())) return true;
+            if (uuid.equals(entry.getPlayerUUID())) return true;
         }
 
         return false;
@@ -219,8 +231,8 @@ public class ContestEntries<E extends EntityAnimal> {
     }
 
     public void kill(World world) {
-        entries.stream().filter(entry -> entry.getUUID() == null).forEach(entry -> {
-            E animal = EntityHelper.getAnimalFromUUID(world, entry.getAnimal());
+        entries.stream().filter(entry -> entry.getPlayerUUID() == null).forEach(entry -> {
+            E animal = EntityHelper.getAnimalFromUUID(world, entry.getAnimalUUID());
             if (animal != null) {
                 animal.setDead();
             }

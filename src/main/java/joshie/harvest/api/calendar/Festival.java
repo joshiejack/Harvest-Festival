@@ -1,5 +1,6 @@
 package joshie.harvest.api.calendar;
 
+import joshie.harvest.api.buildings.Building;
 import joshie.harvest.api.core.Letter;
 import joshie.harvest.api.knowledge.Note;
 import joshie.harvest.api.quests.Quest;
@@ -21,6 +22,7 @@ public final class Festival implements CalendarEntry {
     public static final Festival NONE = new Festival(new ResourceLocation("harvestfestival", "none"));
     private static final ItemStack CLOCK = new ItemStack(Items.CLOCK);
     private final ResourceLocation resource;
+    private Building requirement;
     private boolean affectsGround;
     private ItemStack icon;
     private boolean shopsOpen;
@@ -89,6 +91,13 @@ public final class Festival implements CalendarEntry {
         return this;
     }
 
+    /** Set a building requirement for this festival to take place
+     *  @param building     the building to use as a requirement for this festival**/
+    public Festival setRequirement(Building building) {
+        this.requirement = building;
+        return this;
+    }
+
     /** Returns how many days this festival lasts **/
     public int getFestivalLength() {
         return (int)(((double)length / 30D) * DAYS_PER_SEASON);
@@ -96,6 +105,11 @@ public final class Festival implements CalendarEntry {
 
     public boolean isHidden() {
         return hidden;
+    }
+
+    @Nullable
+    public Building getRequirement() {
+        return requirement;
     }
 
     @Nullable

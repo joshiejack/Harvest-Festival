@@ -2,12 +2,15 @@ package joshie.harvest.quests.base;
 
 import joshie.harvest.api.buildings.BuildingLocation;
 import joshie.harvest.api.npc.NPC;
+import joshie.harvest.api.npc.NPCEntity;
 import joshie.harvest.api.npc.task.TaskMove;
+import joshie.harvest.api.npc.task.TaskWait;
 import joshie.harvest.api.quests.Selection;
+import joshie.harvest.api.town.Town;
 import joshie.harvest.calendar.CalendarHelper;
 import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.core.network.PacketHandler;
-import joshie.harvest.npcs.entity.ai.EntityAIPathing;
+import joshie.harvest.npcs.entity.EntityNPCHuman;
 import joshie.harvest.quests.packet.PacketQuestUpdateAnimals;
 import joshie.harvest.quests.town.festivals.Place;
 import joshie.harvest.quests.town.festivals.contest.ContestAnimalSelection;
@@ -24,6 +27,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
+import java.util.List;
 
 public abstract class QuestAnimalContest<E extends EntityAnimal> extends QuestFestival {
     protected final ContestEntries<E> entries;
@@ -40,7 +44,7 @@ public abstract class QuestAnimalContest<E extends EntityAnimal> extends QuestFe
         this.entries = entries;
         this.selection = new ContestInfoMenu(prefix);
         this.animalSelection = new ContestAnimalSelection<E>(prefix);
-        this.startSelection =  new ContestAnimalStartMenu(prefix);
+        this.startSelection = new ContestAnimalStartMenu(prefix);
     }
 
     public ContestEntries<E> getEntries() {
@@ -83,6 +87,17 @@ public abstract class QuestAnimalContest<E extends EntityAnimal> extends QuestFe
         return null;
     }
 
+    public void targetEntries(EntityPlayer player, NPCEntity npc) {
+        Town town = npc.getTown();
+        List<EntityNPCHuman> npcs = EntityHelper.getEntities(EntityNPCHuman.class, player.worldObj, npc.getPos(), 32D, 5D);
+        for (EntityNPCHuman theNPC: npcs) {
+            BuildingLocation building = entries.getLocationFromNPC(theNPC.getNPC());
+            if (building != null) {
+                npc.setPath(TaskMove.of(town.getCoordinatesFor(building)), TaskWait.of(30));
+            }
+        }
+    }
+
     @Override
     @Nullable
     @SideOnly(Side.CLIENT)
@@ -111,7 +126,7 @@ public abstract class QuestAnimalContest<E extends EntityAnimal> extends QuestFe
         }
     }
 
-    public abstract void execute(EntityPlayer player, EntityAIPathing pathing);
+    public abstract void execute(EntityPlayer player, NPCEntity pathing);
 
     @Override
     public void readFromNBT(NBTTagCompound nbt) {

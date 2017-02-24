@@ -240,9 +240,9 @@ public class TownDataServer extends TownData<QuestDataServer, LetterDataServer> 
 
             letters.newDay(today);
             boolean changed = false;
-            Festival newFestival = CalendarAPI.INSTANCE.getFestivalFromDate(today);
+            Festival newFestival = CalendarAPI.INSTANCE.getFestivalFromDate(this, today);
             if (!newFestival.equals(Festival.NONE)) {
-                Festival oldFestival = CalendarAPI.INSTANCE.getFestivalFromDate(yesterday);
+                Festival oldFestival = CalendarAPI.INSTANCE.getFestivalFromDate(this, yesterday);
                 if (!newFestival.equals(oldFestival)) {
                     //Remove the old letter
                     if (oldFestival.getLetter() != null) {

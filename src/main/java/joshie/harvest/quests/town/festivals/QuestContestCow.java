@@ -3,6 +3,7 @@ package joshie.harvest.quests.town.festivals;
 import joshie.harvest.animals.entity.EntityHarvestCow;
 import joshie.harvest.api.buildings.BuildingLocation;
 import joshie.harvest.api.npc.NPC;
+import joshie.harvest.api.npc.NPCEntity;
 import joshie.harvest.api.npc.greeting.Script;
 import joshie.harvest.api.npc.task.TaskSpeech;
 import joshie.harvest.api.npc.task.TaskWait;
@@ -12,7 +13,6 @@ import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.cooking.item.ItemMeal.Meal;
 import joshie.harvest.core.base.other.HFScript;
 import joshie.harvest.npcs.HFNPCs;
-import joshie.harvest.npcs.entity.ai.EntityAIPathing;
 import joshie.harvest.quests.base.QuestAnimalContest;
 import joshie.harvest.quests.town.festivals.contest.ContestEntries;
 import joshie.harvest.quests.town.festivals.contest.ContestJudgingScript;
@@ -57,12 +57,12 @@ public class QuestContestCow extends QuestAnimalContest<EntityHarvestCow> {
     }
 
     @Override
-    public void execute(EntityPlayer player, EntityAIPathing pathing) {
+    public void execute(EntityPlayer player, NPCEntity npc) {
         TownData town = TownHelper.getClosestTownToEntity(player, false);
         entries.startContest(player); //Spawn any relevant data
         setStage(QuestContestCow.START); //Mark as having started
         syncData(player); //Sync up to the client
-        pathing.setPath(getMove(town, PARK_COW_1), TaskSpeech.of(QuestContestCow.COW_JUDGE_1), getMove(town, PARK_COW_2), TaskSpeech.of(QuestContestCow.COW_JUDGE_2),
+        npc.setPath(getMove(town, PARK_COW_1), TaskSpeech.of(QuestContestCow.COW_JUDGE_1), getMove(town, PARK_COW_2), TaskSpeech.of(QuestContestCow.COW_JUDGE_2),
                 getMove(town, PARK_COW_3), TaskSpeech.of(QuestContestCow.COW_JUDGE_3), getMove(town, PARK_COW_4), TaskSpeech.of(QuestContestCow.COW_JUDGE_4), TaskWait.of(1),
                 TaskSpeech.of(QuestContestCow.COW_FINISH), getMove(town, PARK_COW_JUDGE), TaskSpeech.of(QuestContestCow.COW_WINNER), new TaskWinner(HFFestivals.COW_FESTIVAL));
     }

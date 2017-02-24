@@ -1,6 +1,8 @@
 package joshie.harvest.npcs.entity;
 
 import joshie.harvest.api.npc.NPC;
+import joshie.harvest.api.npc.task.TaskElement;
+import joshie.harvest.api.town.Town;
 import joshie.harvest.npcs.HFNPCs;
 import joshie.harvest.npcs.entity.ai.EntityAITalkingTo;
 import net.minecraft.entity.ai.EntityAIOpenDoor;
@@ -9,6 +11,7 @@ import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.pathfinding.PathNavigateGround;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class EntityNPCMiner extends EntityNPCHuman<EntityNPCMiner> {

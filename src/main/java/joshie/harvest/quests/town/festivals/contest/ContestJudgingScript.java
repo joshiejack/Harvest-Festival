@@ -34,7 +34,7 @@ public class ContestJudgingScript extends Script {
         if (quest != null) {
             ContestEntry entry = quest.getEntries().getEntryFromStall(id);
             if (entry != null) {
-                EntityAnimal animal = entry.getEntity(ageable.worldObj);
+                EntityAnimal animal = entry.getAnimalEntity(ageable.worldObj);
                 if (animal != null) {
                     return TextHelper.format(unlocalised, animal.getName(), getTextFromScore(entry.getScore(ageable.worldObj)));
                 }

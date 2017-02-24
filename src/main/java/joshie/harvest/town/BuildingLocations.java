@@ -115,10 +115,14 @@ public class BuildingLocations {
     public static final BuildingLocation PARK_COW_2 = new BuildingLocation(FESTIVAL_GROUNDS, "festival.cow.stand2").withDistance(1D);
     public static final BuildingLocation PARK_COW_3 = new BuildingLocation(FESTIVAL_GROUNDS, "festival.cow.stand3").withDistance(1D);
     public static final BuildingLocation PARK_COW_4 = new BuildingLocation(FESTIVAL_GROUNDS, "festival.cow.stand4").withDistance(1D);
-
     public static final BuildingLocation PARK_COW_STALL_1 = new BuildingLocation(FESTIVAL_GROUNDS, "festival.cow.1").withDistance(1D);
     public static final BuildingLocation PARK_COW_STALL_2 = new BuildingLocation(FESTIVAL_GROUNDS, "festival.cow.2").withDistance(1D);
     public static final BuildingLocation PARK_COW_STALL_4 = new BuildingLocation(FESTIVAL_GROUNDS, "festival.cow.4").withDistance(1D);
+    public static final BuildingLocation PARK_COW_BACK = new BuildingLocation(FESTIVAL_GROUNDS, "festival.cow.back").withDistance(3D);
+    public static final BuildingLocation PARK_COW_SEATS = new BuildingLocation(FESTIVAL_GROUNDS, "festival.cow.seats").withDistance(5D);
+    public static final BuildingLocation PARK_COW_BACK_LEFT = new BuildingLocation(FESTIVAL_GROUNDS, "festival.cow.back.left").withDistance(5D);
+    public static final BuildingLocation PARK_COW_EDGE = new BuildingLocation(FESTIVAL_GROUNDS, "festival.cow.edge").withDistance(7D);
+    public static final BuildingLocation PARK_COW_BENCH = new BuildingLocation(FESTIVAL_GROUNDS, "festival.cow.bench").withDistance(4D);
 
     //TODO: Convert to building locations vvv
     public static final String TOWNHALL_CHILD_BEDROOM = "townhall.bedroom.child";

@@ -6,6 +6,7 @@ import joshie.harvest.api.calendar.CalendarDate;
 import joshie.harvest.api.calendar.Festival;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.quests.Quest;
+import joshie.harvest.api.town.Town;
 import joshie.harvest.buildings.BuildingStage;
 import joshie.harvest.core.helpers.NBTHelper;
 import joshie.harvest.knowledge.letter.LetterData;
@@ -20,7 +21,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.*;
 
-public abstract class TownData<Q extends QuestData, L extends LetterData> {
+public abstract class TownData<Q extends QuestData, L extends LetterData> implements Town {
     protected final Set<ResourceLocation> inhabitants = new HashSet<>();
     protected final ShopData shops = new ShopData();
     protected Map<ResourceLocation, TownBuilding> buildings = new HashMap<>();
@@ -87,6 +88,7 @@ public abstract class TownData<Q extends QuestData, L extends LetterData> {
         return true;
     }
 
+    @Override
     @Nullable
     public BlockPos getCoordinatesFor(@Nonnull BuildingLocation location) {
         TownBuilding building = buildings.get(location.getResource());

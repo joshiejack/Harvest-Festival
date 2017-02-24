@@ -3,9 +3,13 @@ package joshie.harvest.npcs.entity;
 import io.netty.buffer.ByteBuf;
 import joshie.harvest.HarvestFestival;
 import joshie.harvest.api.npc.INPCHelper;
+import joshie.harvest.api.npc.NPCEntity;
+import joshie.harvest.api.npc.task.TaskElement;
+import joshie.harvest.api.town.Town;
 import joshie.harvest.npcs.HFNPCs;
 import joshie.harvest.api.npc.NPC;
 import joshie.harvest.npcs.NPCHelper;
+import joshie.harvest.town.TownHelper;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
@@ -15,6 +19,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
@@ -22,7 +27,7 @@ import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public abstract class EntityNPC<E extends EntityNPC> extends EntityAgeable implements IEntityAdditionalSpawnData {
+public abstract class EntityNPC<E extends EntityNPC> extends EntityAgeable implements IEntityAdditionalSpawnData, NPCEntity {
     protected NPC npc;
     protected EntityNPC lover;
     protected EntityPlayer talkingTo;
@@ -77,6 +82,24 @@ public abstract class EntityNPC<E extends EntityNPC> extends EntityAgeable imple
     public Mode getMode() {
         return mode;
     }
+
+    @Override
+    public World getWorldObj() {
+        return worldObj;
+    }
+
+    @Override
+    public BlockPos getPos() {
+        return new BlockPos(this);
+    }
+
+    @Override
+    public Town getTown() {
+        return TownHelper.getClosestTownToEntity(this, false);
+    }
+
+    @Override
+    public void setPath(TaskElement... tasks) {}
 
     @Override
     @Nonnull

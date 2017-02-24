@@ -55,8 +55,12 @@ public class ContestEntry {
         return EntityHelper.getPlayerFromUUID(player);
     }
 
+    NPC getNPC() {
+        return npc;
+    }
+
     @SuppressWarnings("ConstantConditions")
-    public int getScore(World world) {
+    int getScore(World world) {
         EntityAnimal animal  = EntityHelper.getAnimalFromUUID(world, entity);
         int score = 0;
         if (animal != null) {
@@ -83,32 +87,32 @@ public class ContestEntry {
         return score;
     }
 
-    public String getOwnerName() {
+    String getOwnerName() {
         EntityPlayer player = getPlayer();
         return player != null ? player.getName() : npc != null ? npc.getLocalizedName() : "Anonymous";
     }
 
-    public String getEntityName(World world) {
-        EntityAnimal animal = getEntity(world);
+    String getEntityName(World world) {
+        EntityAnimal animal = getAnimalEntity(world);
         return animal != null ? animal.getName() : "Mystery Animal";
     }
 
     @Nullable
-    public EntityAnimal getEntity(World world) {
+    EntityAnimal getAnimalEntity(World world) {
         return EntityHelper.getAnimalFromUUID(world, entity);
     }
 
     @Nullable
-    public UUID getUUID() {
+    public UUID getPlayerUUID() {
         return player;
     }
 
     @Nonnull
-    public UUID getAnimal() {
+    UUID getAnimalUUID() {
         return entity;
     }
 
-    public int getStall() {
+    int getStall() {
         return stall;
     }
 
@@ -117,7 +121,7 @@ public class ContestEntry {
         return animal == null ? "" : animal.getName();
     }
 
-    public void reward(World world, Place place, NPC[] npcs, ItemStack reward) {
+    void reward(World world, Place place, NPC[] npcs, ItemStack reward) {
         AnimalStats stats = getStats(world);
         EntityPlayer player = getPlayer();
         if (stats != null && player != null) { //Give the rewards for this
@@ -127,7 +131,7 @@ public class ContestEntry {
                 HFApi.player.getRelationsForPlayer(player).affectRelationship(npc, place.happiness);
             }
         } else if (npc != null) {
-            EntityAnimal animal = getEntity(world);
+            EntityAnimal animal = getAnimalEntity(world);
             if (animal != null) {
                 List<EntityNPC> npcList = EntityHelper.getEntities(EntityNPC.class, world, new BlockPos(animal), 64D, 64D);
                 for (EntityNPC aNPC: npcList) {

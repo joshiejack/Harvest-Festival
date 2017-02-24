@@ -7,6 +7,7 @@ import joshie.harvest.calendar.data.SeasonData;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.util.annotations.HFApiImplementation;
 import joshie.harvest.town.TownHelper;
+import joshie.harvest.town.data.TownData;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -34,9 +35,14 @@ public class CalendarAPI implements CalendarManager {
                                     .setWeatherWeight(Weather.SUNNY, 4D).setWeatherWeight(Weather.SNOW, 5D).setWeatherWeight(Weather.BLIZZARD, 1D));
     }
 
-    public Festival getFestivalFromDate(CalendarDate date) {
+    public Festival getFestivalFromDate(TownData data, CalendarDate date) {
         for (Entry<CalendarDate, Festival> entry: festivals.entrySet()) {
-            if (entry.getKey().isSameDay(date)) return entry.getValue();
+            if (entry.getKey().isSameDay(date)) {
+                Festival festival = entry.getValue();
+                if (festival.getRequirement() == null || data.hasBuilding(festival.getRequirement())) {
+                    return festival;
+                }
+            }
         }
 
         return Festival.NONE;

@@ -2,6 +2,7 @@ package joshie.harvest.npcs.entity;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.npc.NPC;
+import joshie.harvest.api.npc.task.TaskElement;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.npcs.entity.ai.EntityAIPathing;
 import joshie.harvest.npcs.entity.ai.EntityAISchedule;
@@ -81,6 +82,11 @@ public abstract class EntityNPCHuman<E extends EntityNPCHuman> extends EntityNPC
         }
 
         return homeTown;
+    }
+
+    @Override
+    public void setPath(TaskElement... tasks) {
+        pathing.setPath(tasks);
     }
 
     @Override

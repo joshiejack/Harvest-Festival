@@ -33,7 +33,7 @@ public class ButtonListing<I extends IPurchasable> extends GuiButton {
     private int hoverTimer;
     private int stackSize = 1;
     private boolean clicked;
-    private ShopData data;
+    private final ShopData data;
 
     @SuppressWarnings("unchecked")
     public ButtonListing(GuiNPCShop shop, IPurchasable purchasable, int buttonId, int x, int y) {

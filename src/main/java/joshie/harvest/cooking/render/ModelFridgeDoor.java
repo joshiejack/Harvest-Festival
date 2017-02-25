@@ -7,14 +7,14 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class ModelFridgeDoor extends ModelBase {
-    public ModelRenderer topHandleBar;
-    public ModelRenderer topDoor;
-    public ModelRenderer topHandleRoof;
-    public ModelRenderer topHandleBase;
-    public ModelRenderer bottomDoor;
-    public ModelRenderer bottomHandleBar;
-    public ModelRenderer bottomHandleRoof;
-    public ModelRenderer bottomHandleBase;
+    private final ModelRenderer topHandleBar;
+    private final ModelRenderer topHandleRoof;
+    private final ModelRenderer topHandleBase;
+    private final ModelRenderer bottomHandleBar;
+    private final ModelRenderer bottomHandleRoof;
+    private final ModelRenderer bottomHandleBase;
+    final ModelRenderer topDoor;
+    final ModelRenderer bottomDoor;
 
     public ModelFridgeDoor() {
         textureWidth = 64;
@@ -62,7 +62,7 @@ public class ModelFridgeDoor extends ModelBase {
         bottomHandleBase.mirror = true;
     }
 
-    public void renderAll() {
+    void renderAll() {
         topHandleBar.rotateAngleY = topDoor.rotateAngleY;
         topHandleBase.rotateAngleY = topDoor.rotateAngleY;
         topHandleRoof.rotateAngleY = topDoor.rotateAngleY;

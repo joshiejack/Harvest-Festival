@@ -12,9 +12,9 @@ import net.minecraft.world.World;
 import org.apache.commons.lang3.StringEscapeUtils;
 
 public class GuiQuestBoard extends GuiBaseContainer {
-    private World world;
-    private Quest quest;
-    private BlockPos pos;
+    private final World world;
+    private final Quest quest;
+    private final BlockPos pos;
 
     public GuiQuestBoard(BlockPos pos, EntityPlayer player) {
         super(new ContainerNull(), "sign", 34);

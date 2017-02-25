@@ -1,7 +1,7 @@
 package joshie.harvest.api.mining;
 
 public class MiningContext {
-    protected int floor;
+    protected final int floor;
 
     public MiningContext(int floor) {
         this.floor = floor;

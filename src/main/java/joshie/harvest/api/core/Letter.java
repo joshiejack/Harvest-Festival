@@ -24,9 +24,9 @@ public class Letter {
     private final ResourceLocation resource;
     private EventPriority priority;
     private boolean isTownLetter;
-    private String toLocalize;
+    private final String toLocalize;
     private boolean rejectable;
-    private int expiry;
+    private final int expiry;
 
     public Letter(ResourceLocation resource) {
         this.resource = resource;

@@ -14,7 +14,7 @@ public class CollectionHelper {
         return stack.getItem() == HFMining.MATERIALS || InventoryHelper.startsWith(stack, "ore") || InventoryHelper.startsWith(stack, "gem");
     }
 
-    public static boolean isInCookingCollection(ItemStack stack) {
+    private static boolean isInCookingCollection(ItemStack stack) {
         for (Recipe recipe: Recipe.REGISTRY) {
             if (stack.isItemEqual(recipe.getStack())) return true;
         }

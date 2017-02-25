@@ -26,8 +26,8 @@ import static joshie.harvest.core.lib.HFModInfo.MODID;
 
 @HFDebugCommand
 public class CommandExportRecipe extends AbstractHFCommand {
-    static HashMap<Recipe, String> DESCRIPTIONS = new HashMap<>();
-    static HashMap<Recipe, String> INFO_OVERRIDE = new HashMap<>();
+    static final HashMap<Recipe, String> DESCRIPTIONS = new HashMap<>();
+    static final HashMap<Recipe, String> INFO_OVERRIDE = new HashMap<>();
 
     @Override
     public String getCommandName() {

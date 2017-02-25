@@ -38,7 +38,7 @@ public class HFTrackers {
     /*####################World Based Trackers##########################*/
     @SideOnly(Side.CLIENT)
     private static TIntObjectMap<SideHandler> CLIENT_WORLDS;
-    private static TIntObjectMap<ServerHandler> SERVER_WORLDS = new TIntObjectHashMap<>();
+    private static final TIntObjectMap<ServerHandler> SERVER_WORLDS = new TIntObjectHashMap<>();
 
     @SideOnly(Side.CLIENT)
     public static void resetClient() {

@@ -18,7 +18,10 @@ public class ContestAnimalStartMenu extends Selection<QuestAnimalContest> {
     public Result onSelected(EntityPlayer player, NPCEntity entity, QuestAnimalContest quest, int option) {
         if (option == 1) {
             quest.targetEntries(player, entity);
-            quest.execute(player, entity);
+            quest.getEntries().startContest(player); //Spawn any relevant data
+            quest.setStage(QuestAnimalContest.START); //Mark as having started
+            quest.syncData(player); //Sync up to the client
+            quest.execute(entity.getTown(), player, entity); //Execute the pathing
             return Result.ALLOW;
         } else if (option == 2) {
             quest.getEntries().getSelecting().add(EntityHelper.getPlayerUUID(player));

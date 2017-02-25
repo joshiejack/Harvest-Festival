@@ -30,7 +30,6 @@ import static joshie.harvest.knowledge.HFNotes.registerNote;
 @HFLoader(priority = HFFESTIVALS)
 @SuppressWarnings("unchecked")
 public class HFFestivals {
-    //TODO: Re-enable all the other quests
     private static Map<Festival, Season> TEMP_REGISTRY = new HashMap<>();
     public static final Festival NEW_YEARS = registerFestival("new_years", 1, SPRING).setLength(1);
     public static final Festival COOKING_CONTEST = registerFestival("cooking", 22, SPRING).setRequirement(HFBuildings.CAFE);

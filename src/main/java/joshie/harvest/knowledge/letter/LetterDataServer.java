@@ -17,8 +17,8 @@ import net.minecraft.util.ResourceLocation;
 import java.util.Set;
 
 public class LetterDataServer extends LetterData {
-    protected TObjectIntMap<Letter> letters = new TObjectIntHashMap<>(); //Letters Unread with the number of days left
-    private ISyncMaster master;
+    protected final TObjectIntMap<Letter> letters = new TObjectIntHashMap<>(); //Letters Unread with the number of days left
+    private final ISyncMaster master;
 
     public LetterDataServer(ISyncMaster master) {
         this.master = master;

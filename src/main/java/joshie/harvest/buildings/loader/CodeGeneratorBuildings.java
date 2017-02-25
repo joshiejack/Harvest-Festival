@@ -35,9 +35,8 @@ import java.util.Set;
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 
 public class CodeGeneratorBuildings {
-
-    private World world;
-    private int x1, y1, z1, x2, y2, z2;
+    private final World world;
+    private final int x1, y1, z1, x2, y2, z2;
 
     public CodeGeneratorBuildings(World world, int xStart, int yStart, int zStart, int xEnd, int yEnd, int zEnd) {
         this.world = world;

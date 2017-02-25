@@ -138,6 +138,7 @@ public final class Festival implements CalendarEntry {
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public void addTooltipForCalendarEntry(List<String> tooltip) {
         if (note != null) tooltip.add(note.getTitle());
         else tooltip.addAll(Arrays.asList(I18n.translateToLocal(resource.getResourceDomain() + ".festival." + resource.getResourcePath().replace("_", ".") + ".tooltip.").split("\n")));

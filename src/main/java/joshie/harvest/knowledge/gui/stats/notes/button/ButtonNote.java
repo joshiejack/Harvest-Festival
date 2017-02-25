@@ -21,9 +21,9 @@ import javax.annotation.Nonnull;
 public class ButtonNote extends ButtonBook {
     private final GuiStats gui;
     private final Note note;
-    private String title;
-    private int xNote;
-    private boolean unlocked;
+    private final String title;
+    private final int xNote;
+    private final boolean unlocked;
     private boolean read;
 
     @SuppressWarnings("unchecked")

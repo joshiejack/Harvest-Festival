@@ -10,8 +10,8 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.BlockPos;
 
 public class GuiButtonStartQuest extends GuiButton {
-    private BlockPos pos;
-    private Quest quest;
+    private final BlockPos pos;
+    private final Quest quest;
 
     public GuiButtonStartQuest(BlockPos pos, Quest quest, int buttonId, int x, int y) {
         super(buttonId, x, y, "");

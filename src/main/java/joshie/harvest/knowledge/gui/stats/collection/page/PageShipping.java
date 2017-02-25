@@ -34,7 +34,7 @@ public class PageShipping extends PageCollection {
     }
 
     boolean qualifies(ItemStack stack) {
-        return !isInFishCollection(stack) && !isInMiningCollection(stack) && !isInCookingCollection(stack);
+        return isInShippingCollection(stack);
     }
 
     @Override

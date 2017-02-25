@@ -8,6 +8,7 @@ import joshie.harvest.api.npc.greeting.Script;
 import joshie.harvest.api.npc.task.TaskSpeech;
 import joshie.harvest.api.npc.task.TaskWait;
 import joshie.harvest.api.quests.HFQuest;
+import joshie.harvest.api.town.Town;
 import joshie.harvest.calendar.HFFestivals;
 import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.cooking.item.ItemMeal.Meal;
@@ -19,8 +20,6 @@ import joshie.harvest.quests.town.festivals.contest.ContestJudgingScript;
 import joshie.harvest.quests.town.festivals.contest.ContestWinningScript;
 import joshie.harvest.quests.town.festivals.contest.TaskWinner;
 import joshie.harvest.town.BuildingLocations;
-import joshie.harvest.town.TownHelper;
-import joshie.harvest.town.data.TownData;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -40,8 +39,7 @@ public class QuestContestCow extends QuestAnimalContest<EntityHarvestCow> {
     private static final Script COW_WINNER = new ContestWinningScript("cow").setNPC(HFNPCs.MILKMAID);
 
     public QuestContestCow() {
-        super(new ContestEntries<>(EntityHarvestCow.class, LOCATIONS, NPCS, NAMES), "cow");
-        setNPCs(HFNPCs.MILKMAID);
+        super(HFNPCs.MILKMAID, new ContestEntries<>(EntityHarvestCow.class, LOCATIONS, NPCS, NAMES), "cow");
     }
 
     @Override
@@ -57,11 +55,7 @@ public class QuestContestCow extends QuestAnimalContest<EntityHarvestCow> {
     }
 
     @Override
-    public void execute(EntityPlayer player, NPCEntity npc) {
-        TownData town = TownHelper.getClosestTownToEntity(player, false);
-        entries.startContest(player); //Spawn any relevant data
-        setStage(QuestContestCow.START); //Mark as having started
-        syncData(player); //Sync up to the client
+    public void execute(Town town, EntityPlayer player, NPCEntity npc) {
         npc.setPath(getMove(town, PARK_COW_1), TaskSpeech.of(QuestContestCow.COW_JUDGE_1), getMove(town, PARK_COW_2), TaskSpeech.of(QuestContestCow.COW_JUDGE_2),
                 getMove(town, PARK_COW_3), TaskSpeech.of(QuestContestCow.COW_JUDGE_3), getMove(town, PARK_COW_4), TaskSpeech.of(QuestContestCow.COW_JUDGE_4), TaskWait.of(1),
                 TaskSpeech.of(QuestContestCow.COW_FINISH), getMove(town, PARK_COW_JUDGE), TaskSpeech.of(QuestContestCow.COW_WINNER), new TaskWinner(HFFestivals.COW_FESTIVAL));

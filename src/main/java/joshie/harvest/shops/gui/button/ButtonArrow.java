@@ -10,7 +10,7 @@ import static joshie.harvest.shops.gui.GuiNPCShop.SHOP_EXTRA;
 public abstract class ButtonArrow extends GuiButton {
     protected final GuiNPCShop shop;
     private final int xCoord;
-    private int amount;
+    private final int amount;
 
     public ButtonArrow(GuiNPCShop shop, int amount, int xCoord, int buttonId, int x, int y) {
         super(buttonId, x, y, "");

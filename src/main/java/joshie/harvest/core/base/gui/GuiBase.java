@@ -18,9 +18,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class GuiBase extends GuiScreen {
-    private Container container;
+    private final Container container;
     protected boolean hasInventory;
-    private ResourceLocation TEXTURE;
+    private final ResourceLocation TEXTURE;
     private static final int nameHeight = 5;
     private static final int inventOffset = 3;
     private final ArrayList<String> tooltip = new ArrayList<>();

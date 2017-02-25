@@ -9,7 +9,7 @@ import java.io.IOException;
 
 public class GuiNPCMask extends GuiNPCChat {
     private final Script script;
-    private NPC posingAs;
+    private final NPC posingAs;
 
     public GuiNPCMask(EntityPlayer player, EntityNPC npc, int scriptID) {
         super(player, npc, -1, false);

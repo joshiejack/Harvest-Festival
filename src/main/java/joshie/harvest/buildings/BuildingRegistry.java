@@ -15,7 +15,7 @@ import static joshie.harvest.buildings.HFBuildings.getGson;
 @HFApiImplementation
 public class BuildingRegistry implements IBuildingRegistry {
     public static final BuildingRegistry INSTANCE = new BuildingRegistry();
-    private HashMap<Building, HFTemplate> instructions = new HashMap<>();
+    private final HashMap<Building, HFTemplate> instructions = new HashMap<>();
 
     private BuildingRegistry() {}
 

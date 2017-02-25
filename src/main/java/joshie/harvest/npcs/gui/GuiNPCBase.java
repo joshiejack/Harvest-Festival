@@ -39,7 +39,7 @@ public abstract class GuiNPCBase extends GuiBase {
     protected int outside;
     protected int npcMouseX;
     protected int npcMouseY;
-    protected BlockPos pos;
+    protected final BlockPos pos;
 
     public GuiNPCBase(EntityPlayer ePlayer, EntityNPC eNpc, int next) {
         super(new ContainerNPCChat(ePlayer, eNpc, next), "chat", 0);

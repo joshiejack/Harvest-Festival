@@ -1,6 +1,7 @@
 package joshie.harvest.quests.base;
 
 import joshie.harvest.api.buildings.BuildingLocation;
+import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.npc.NPCEntity;
 import joshie.harvest.api.npc.task.TaskMove;
 import joshie.harvest.api.npc.task.TaskWait;
@@ -16,7 +17,6 @@ import joshie.harvest.quests.town.festivals.contest.ContestAnimalSelection;
 import joshie.harvest.quests.town.festivals.contest.ContestAnimalStartMenu;
 import joshie.harvest.quests.town.festivals.contest.ContestEntries;
 import joshie.harvest.quests.town.festivals.contest.ContestInfoMenu;
-import joshie.harvest.town.data.TownData;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -38,7 +38,8 @@ public abstract class QuestAnimalContest<E extends EntityAnimal> extends QuestFe
     private final Selection startSelection;
     private long time;
 
-    public QuestAnimalContest(ContestEntries<E> entries, String prefix) {
+    public QuestAnimalContest(NPC npc, ContestEntries<E> entries, String prefix) {
+        this.setNPCs(npc);
         this.entries = entries;
         this.selection = new ContestInfoMenu(prefix);
         this.animalSelection = new ContestAnimalSelection<E>(prefix);
@@ -49,7 +50,7 @@ public abstract class QuestAnimalContest<E extends EntityAnimal> extends QuestFe
         return entries;
     }
 
-    protected TaskMove getMove(TownData town, BuildingLocation location) {
+    protected TaskMove getMove(Town town, BuildingLocation location) {
         return TaskMove.of(town.getCoordinatesFor(location));
     }
 
@@ -124,7 +125,7 @@ public abstract class QuestAnimalContest<E extends EntityAnimal> extends QuestFe
         }
     }
 
-    public abstract void execute(EntityPlayer player, NPCEntity pathing);
+    public abstract void execute(Town town, EntityPlayer player, NPCEntity pathing);
 
     @Override
     public void readFromNBT(NBTTagCompound nbt) {

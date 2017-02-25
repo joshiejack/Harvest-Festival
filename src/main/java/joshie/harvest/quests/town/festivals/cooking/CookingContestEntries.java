@@ -29,7 +29,7 @@ public class CookingContestEntries {
     private final BiMap<NPC, CookingContestEntry> npcs;
     private final Object[] localizations;
     private EntityPlayer winner;
-    private long prize;
+    private final long prize;
 
     @SuppressWarnings("ConstantConditions")
     public CookingContestEntries(World world, Entity entity, Utensil category) {

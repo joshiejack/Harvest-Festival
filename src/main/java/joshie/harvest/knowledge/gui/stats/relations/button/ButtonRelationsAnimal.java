@@ -54,7 +54,7 @@ public class ButtonRelationsAnimal extends ButtonBook<GuiStats> {
 
     //Products they make with x5
     //If you've collected their product
-    private ItemStack stack;
+    private final ItemStack stack;
 
     public ButtonRelationsAnimal(GuiStats gui, EntityAnimal animal, AnimalStats stats, int buttonId, int x, int y) {
         super(gui, buttonId, x, y, animal.getName());

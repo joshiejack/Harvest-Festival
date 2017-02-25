@@ -24,7 +24,7 @@ public class ButtonRelationsNPC extends ButtonBook<GuiStats> {
     private final boolean gifted;
     private final boolean met;
     private final boolean talked;
-    private ItemStack stack;
+    private final ItemStack stack;
 
     public ButtonRelationsNPC(GuiStats gui, NPC npc, int buttonId, int x, int y) {
         super(gui, buttonId, x, y, npc.getLocalizedName());

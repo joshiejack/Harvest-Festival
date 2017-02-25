@@ -25,7 +25,7 @@ import static joshie.harvest.core.handlers.GuiHandler.NEXT_NONE;
 
 /** Renders a selection menu gui **/
 public class GuiNPCSelect extends GuiNPCBase {
-    private Selection selection;
+    private final Selection selection;
     private Quest quest;
     private String[] text;
     private int optionsStart;

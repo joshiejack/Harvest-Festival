@@ -10,7 +10,7 @@ import java.lang.ref.WeakReference;
 import java.util.UUID;
 
 public class FakePlayerHelper {
-    private static GameProfile HF_PLAYER = new GameProfile(UUID.fromString("41C82C87-7AfB-4024-CA57-13C2C99CAE63"), "[HarvestFestival]");
+    private static final GameProfile HF_PLAYER = new GameProfile(UUID.fromString("41C82C87-7AfB-4024-CA57-13C2C99CAE63"), "[HarvestFestival]");
     private static WeakReference<FakePlayer> PLAYER = null;
 
     public static FakePlayer getFakePlayerWithPosition(WorldServer world, BlockPos pos) {

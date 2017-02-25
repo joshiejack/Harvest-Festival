@@ -60,7 +60,7 @@ public class EntityAISchedule extends EntityAIBase {
         if (path != null) return path;
         else {
             //Grab a random block towards the target
-            Vec3d vec = RandomPositionGenerator.findRandomTargetBlockTowards(npc, 10, 7, new Vec3d((double) blockTarget.getX() + 0.5D, (double) blockTarget.getY() + 1D, (double) blockTarget.getZ() + 0.5D));
+            Vec3d vec = RandomPositionGenerator.findRandomTargetBlockTowards(npc, 16, 7, new Vec3d((double) blockTarget.getX() + 0.5D, (double) blockTarget.getY(), (double) blockTarget.getZ() + 0.5D));
             if (vec != null) {
                 return npc.getNavigator().getPathToPos(new BlockPos(vec));
             } else return null;
@@ -69,7 +69,7 @@ public class EntityAISchedule extends EntityAIBase {
 
     @Nullable
     private Path getPathAwayFromTarget() {
-        Vec3d vec = RandomPositionGenerator.findRandomTargetBlockAwayFrom(npc, (int) distanceRequired / 2, 3, new Vec3d((double) blockTarget.getX() + 0.5D, (double) blockTarget.getY() + 1D, (double) blockTarget.getZ() + 0.5D));
+        Vec3d vec = RandomPositionGenerator.findRandomTargetBlockAwayFrom(npc, (int) distanceRequired / 2, 3, new Vec3d((double) blockTarget.getX() + 0.5D, (double) blockTarget.getY(), (double) blockTarget.getZ() + 0.5D));
         if (vec != null) {
             blockTarget = new BlockPos(vec); //Update the target, so we don't teleport back
             return npc.getNavigator().getPathToPos(blockTarget);

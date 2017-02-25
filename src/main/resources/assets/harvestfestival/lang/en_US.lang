@@ -1673,6 +1673,18 @@ harvestfestival.shop.dairy.greeting1=Greetings and good morning. Welcome to Dair
 harvestfestival.shop.dairy.greeting2=If you feel like some filling treats, we got your back!
 harvestfestival.shop.dairy.greeting3=What's for lunch? It's moo moo time!
 
+#Sheep on Sale - Sheep Festival
+harvestfestival.shop.sheep=Sheep on Sale
+harvestfestival.shop.sheep.greeting1=Need a bargain for your sheepy treats, get them here!
+harvestfestival.shop.sheep.greeting2=Welcome to 'Sheep on Sale'. All the best deals right here!
+harvestfestival.shop.sheep.greeting3=Who needs cows? When you can have silly sheep!
+
+#Granny's Knits - Sheep Festival
+harvestfestival.shop.knitting=Granny's Knits & Mutton
+harvestfestival.shop.knitting.greeting1=Looking for some wooly jumpers?
+harvestfestival.shop.knitting.greeting2=Baa Ram Ewe goods all right here!
+harvestfestival.shop.knitting.greeting3=Need something for the winter? Let's keep warm here.
+
 #Miscellaneous
 harvestfestival.marriage=Gift for Marriage
 harvestfestival.marriage.locked=LOCKED

@@ -57,6 +57,8 @@ import joshie.harvest.town.TownHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
@@ -98,6 +100,8 @@ public class HFShops {
     public static final Shop COOKING_FESTIVAL_RECIPES = newHolidayShop(new ResourceLocation(MODID, "recipes"), HFNPCs.CAFE_OWNER, HFFestivals.COOKING_CONTEST);
     public static final Shop COW_FESTIVAL_BARGAINS = newHolidayShop(new ResourceLocation(MODID, "cow"), HFNPCs.BARN_OWNER, HFFestivals.COW_FESTIVAL);
     public static final Shop COW_FESTIVAL_DAIRY_QUEEN = newHolidayShop(new ResourceLocation(MODID, "dairy"), HFNPCs.CAFE_OWNER, HFFestivals.COW_FESTIVAL);
+    public static final Shop SHEEP_FESTIVAL_SALE = newHolidayShop(new ResourceLocation(MODID, "sheep"), HFNPCs.MILKMAID, HFFestivals.SHEEP_FESTIVAL);
+    public static final Shop SHEEP_FESTIVAL_KNITTNG = newHolidayShop(new ResourceLocation(MODID, "knitting"), HFNPCs.CAFE_GRANNY, HFFestivals.SHEEP_FESTIVAL);
 
     @SuppressWarnings("unused")
     public static void postInit() {
@@ -118,6 +122,8 @@ public class HFShops {
         registerRecipes();
         registerCowBargains();
         registerDairyQueen();
+        registerSaleSheep();
+        registerGrannysKnits();
     }
     
     private static void registerBarn() {
@@ -519,10 +525,42 @@ public class HFShops {
                 .addOpening(FRIDAY, 6000, 18000).addOpening(SATURDAY, 6000, 18000).addOpening(SUNDAY, 6000, 18000);
     }
 
+    private static void registerSaleSheep() {
+        SHEEP_FESTIVAL_SALE.addPurchasable(100, HFAnimals.TREATS.getStackFromEnum(Treat.SHEEP, 16));
+        SHEEP_FESTIVAL_SALE.addPurchasable(500, HFCrops.GRASS.getCropStack(16));
+        SHEEP_FESTIVAL_SALE.addPurchasable(1000, HFAnimals.TROUGH.getStackFromEnum(Trough.WOOD, 3));
+        SHEEP_FESTIVAL_SALE.addPurchasable(1000, HFAnimals.TOOLS.getStackFromEnum(Tool.MEDICINE, 2));
+        SHEEP_FESTIVAL_SALE.addPurchasable(1500, HFAnimals.TOOLS.getStackFromEnum(Tool.MIRACLE_POTION));
+        SHEEP_FESTIVAL_SALE.addPurchasable(500, HFAnimals.TOOLS.getStackFromEnum(Tool.BRUSH));
+        SHEEP_FESTIVAL_SALE.addPurchasable(1000, new ItemStack(Items.SHEARS));
+        SHEEP_FESTIVAL_SALE.addPurchasable(100, new ItemStack(Items.NAME_TAG));
+        SHEEP_FESTIVAL_SALE.addOpening(MONDAY, 6000, 18000).addOpening(TUESDAY, 6000, 18000).addOpening(WEDNESDAY, 6000, 18000).addOpening(THURSDAY, 6000, 18000)
+                .addOpening(FRIDAY, 6000, 18000).addOpening(SATURDAY, 6000, 18000).addOpening(SUNDAY, 6000, 18000);
+    }
+
+    private static ItemStack getWoolyArmor(Item item, java.lang.String name) {
+        ItemStack stack = new ItemStack(item);
+        stack.setStackDisplayName(name);
+        ((ItemArmor)item).setColor(new ItemStack(item), 0xFFFFFF);
+        return stack;
+    }
+
+    private static void registerGrannysKnits() {
+        SHEEP_FESTIVAL_KNITTNG.addPurchasable(50, new ItemStack(Items.STRING), 16);
+        SHEEP_FESTIVAL_KNITTNG.addPurchasable(200, new ItemStack(Blocks.WOOL), 16);
+        SHEEP_FESTIVAL_KNITTNG.addPurchasable(500, getWoolyArmor(Items.LEATHER_BOOTS, "Wooly Hat"), 1);
+        SHEEP_FESTIVAL_KNITTNG.addPurchasable(800, getWoolyArmor(Items.LEATHER_BOOTS, "Wooly Coat"), 1);
+        SHEEP_FESTIVAL_KNITTNG.addPurchasable(700, getWoolyArmor(Items.LEATHER_BOOTS, "Wooly Pants"), 1);
+        SHEEP_FESTIVAL_KNITTNG.addPurchasable(400, getWoolyArmor(Items.LEATHER_BOOTS, "Wooly Boots"), 1);
+        SHEEP_FESTIVAL_KNITTNG.addPurchasable(300, new ItemStack(Items.COOKED_MUTTON), 20);
+        SHEEP_FESTIVAL_KNITTNG.addOpening(MONDAY, 6000, 18000).addOpening(TUESDAY, 6000, 18000).addOpening(WEDNESDAY, 6000, 18000).addOpening(THURSDAY, 6000, 18000)
+                .addOpening(FRIDAY, 6000, 18000).addOpening(SATURDAY, 6000, 18000).addOpening(SUNDAY, 6000, 18000);
+    }
+
     private static Shop newHolidayShop(ResourceLocation resource, @Nullable NPC npc, Festival festival) {
         Shop shop = new Shop(resource).setOpensOnHolidays();
         if (npc != null) {
-            if (npc instanceof NPCHolidayStore) ((NPCHolidayStore)npc).setHolidayShop(festival, shop);
+            if (npc instanceof NPCHolidayStore) ((NPCHolidayStore)npc).addHolidayShop(festival, shop);
             else if (npc instanceof NPCHolidayStoreSpecial) ((NPCHolidayStoreSpecial)npc).addHolidayShop(festival, shop);
         }
 

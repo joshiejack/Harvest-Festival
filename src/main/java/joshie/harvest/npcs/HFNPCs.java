@@ -53,7 +53,7 @@ public class HFNPCs {
     public static final NPCSpecialSeller CARPENTER = register("yulif", MALE, ADULT, 19, SUMMER, 0x313857, 0x121421, NPCSpecialSeller.class);
     public static final NPCSpecialSeller FLOWER_GIRL = register("jade", FEMALE, ADULT, 14, SPRING, 0x653081, 0x361840, NPCSpecialSeller.class);
     public static final NPCSpecialSeller GS_OWNER = register("jenni", FEMALE, ADULT, 7, WINTER, 0xDDD0AD, 0xE79043, NPCSpecialOpener.class).setNPC(GODDESS);
-    public static final NPC MILKMAID = register("candice", FEMALE, ADULT, 5, AUTUMN, 0xF65FAB, 0xF21985);
+    public static final NPC MILKMAID = register("candice", FEMALE, ADULT, 5, AUTUMN, 0xF65FAB, 0xF21985, NPCHolidayStore.class);
     public static final NPC BARN_OWNER = register("jim", MALE, ADULT, 26, SPRING, 0xDE7245, 0x722B19, NPCHolidayStore.class);
     public static final NPC POULTRY = register("ashlee", FEMALE, ADULT, 16, AUTUMN, 0xC62D2D, 0x571111);
     public static final NPC TRADER = register("girafi", MALE, ADULT, 2, AUTUMN,  0xFFFFFF, 0xC60C30);
@@ -182,6 +182,6 @@ public class HFNPCs {
 
     public static void configure() {
         TOWN_DISTANCE = getDouble("Distance between towns", 256D);
-        NPC_AI_DISTANCE = getDouble("AI Search Distance", 256D);
+        NPC_AI_DISTANCE = getDouble("AI Range", 32D);
     }
 }

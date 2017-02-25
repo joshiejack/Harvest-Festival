@@ -182,6 +182,6 @@ public class HFNPCs {
 
     public static void configure() {
         TOWN_DISTANCE = getDouble("Distance between towns", 256D);
-        NPC_AI_DISTANCE = getDouble("AI Search Distance", 512D);
+        NPC_AI_DISTANCE = getDouble("AI Search Distance", 256D);
     }
 }

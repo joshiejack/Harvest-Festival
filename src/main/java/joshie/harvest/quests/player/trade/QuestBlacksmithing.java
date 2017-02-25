@@ -243,7 +243,7 @@ public class QuestBlacksmithing extends QuestTrade {
                 player.worldObj.playSound(player, player.posX, player.posY, player.posZ, SoundEvents.BLOCK_ANVIL_HIT, SoundCategory.NEUTRAL, 0.25F, 1F);
                 EntityLiving living = entity.getAsEntity();
                 for (int i = 0; i < 32; i++) {
-                    player.worldObj.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, living.posX + player.worldObj.rand.nextFloat() + player.worldObj.rand.nextFloat() - 1F, living.posY + 0.25D + entity.getWorldObj().rand.nextFloat() + entity.getWorldObj().rand.nextFloat(), living.posZ + player.worldObj.rand.nextFloat() + player.worldObj.rand.nextFloat() - 1F, 0, 0, 0);
+                    player.worldObj.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, living.posX + player.worldObj.rand.nextFloat() + player.worldObj.rand.nextFloat() - 1F, living.posY + 0.25D + living.getEntityWorld().rand.nextFloat() + living.getEntityWorld().rand.nextFloat(), living.posZ + player.worldObj.rand.nextFloat() + player.worldObj.rand.nextFloat() - 1F, 0, 0, 0);
                 }
             }
         }

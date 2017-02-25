@@ -1,13 +1,12 @@
 package joshie.harvest.quests.town.festivals.contest;
 
-import joshie.harvest.api.npc.NPC;
+import joshie.harvest.api.npc.NPCEntity;
 import joshie.harvest.api.npc.greeting.Script;
 import joshie.harvest.core.helpers.TextHelper;
 import joshie.harvest.npcs.HFNPCs;
 import joshie.harvest.quests.base.QuestAnimalContest;
 import joshie.harvest.town.TownHelper;
 import joshie.harvest.town.data.TownData;
-import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.util.ResourceLocation;
 
@@ -24,19 +23,19 @@ public class ContestJudgingScript extends Script {
     }
 
     private String getTextFromScore(int score) {
-        return unlocalised + "." + Math.max(0, Math.min(9, (int)Math.floor(((double)score) / 3000)));
+        return TextHelper.translate(unlocalised + "." + Math.max(0, Math.min(9, (int)Math.floor(((double)score) / 3000))));
     }
 
     @Override
-    public String getLocalized(EntityAgeable ageable, NPC npc) {
-        TownData data = TownHelper.getClosestTownToEntity(ageable, false);
+    public String getLocalized(NPCEntity entity) {
+        TownData data = TownHelper.getClosestTownToEntity(entity.getAsEntity(), false);
         QuestAnimalContest quest = data.getQuests().getAQuest(data.getFestival().getQuest());
         if (quest != null) {
             ContestEntry entry = quest.getEntries().getEntryFromStall(id);
             if (entry != null) {
-                EntityAnimal animal = entry.getAnimalEntity(ageable.worldObj);
+                EntityAnimal animal = entry.getAnimalEntity(entity.getAsEntity().getEntityWorld());
                 if (animal != null) {
-                    return TextHelper.format(unlocalised, animal.getName(), getTextFromScore(entry.getScore(ageable.worldObj)));
+                    return TextHelper.format(unlocalised, animal.getName(), getTextFromScore(entry.getScore(entity.getAsEntity().getEntityWorld())));
                 }
             }
         }

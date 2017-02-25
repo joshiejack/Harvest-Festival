@@ -1,7 +1,7 @@
 package joshie.harvest.api.npc.greeting;
 
 import joshie.harvest.api.npc.NPC;
-import net.minecraft.entity.EntityAgeable;
+import joshie.harvest.api.npc.NPCEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.fml.common.registry.IForgeRegistry;
@@ -29,7 +29,7 @@ public class Script extends IForgeRegistryEntry.Impl<Script> {
     }
 
     @SuppressWarnings("deprecation")
-    public String getLocalized(EntityAgeable ageable, NPC npc) {
+    public String getLocalized(NPCEntity entity) {
         return I18n.translateToLocal(unlocalised);
     }
 }

@@ -38,22 +38,4 @@ public class EntityAIEatLivestock extends EntityAIEat {
             } else animal.worldObj.setBlockToAir(pos.down());
         } else super.eat(pos, state);
     }
-
-    /**
-    @Override
-    protected boolean attemptToEat(BlockPos position, IBlockState state, Block block) {
-        if (block == Blocks.TALLGRASS) {
-            getStats().performAction(animal.worldObj, null, null, AnimalAction.FEED);
-            animal.worldObj.setBlockToAir(position);
-            return true;
-        } else if (block == Blocks.TALLGRASS && state.getValue(BlockDoublePlant.VARIANT) == EnumPlantType.GRASS) {
-            getStats().performAction(animal.worldObj, null, null, AnimalAction.FEED);
-            animal.worldObj.setBlockToAir(position);
-            if (state.getValue(BlockDoublePlant.HALF) == EnumBlockHalf.LOWER) {
-                animal.worldObj.setBlockToAir(position.up());
-            } else animal.worldObj.setBlockToAir(position.down());
-
-            return true;
-        } else return super.attemptToEat(position, state, block);
-    } **/
 }

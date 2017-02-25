@@ -30,9 +30,9 @@ import javax.annotation.Nullable;
 
 public abstract class EntityNPC<E extends EntityNPC> extends EntityAgeable implements IEntityAdditionalSpawnData, NPCEntity {
     protected NPC npc;
-    protected EntityNPC lover;
-    protected EntityPlayer talkingTo;
-    protected Mode mode = Mode.DEFAULT;
+    private EntityPlayer talkingTo;
+    private Mode mode = Mode.DEFAULT;
+    EntityNPC lover;
 
     public enum Mode {
         DEFAULT, GIFT
@@ -82,11 +82,6 @@ public abstract class EntityNPC<E extends EntityNPC> extends EntityAgeable imple
 
     public Mode getMode() {
         return mode;
-    }
-
-    @Override
-    public World getWorldObj() {
-        return worldObj;
     }
 
     @Override

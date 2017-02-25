@@ -1,11 +1,10 @@
 package joshie.harvest.quests.town.festivals.contest;
 
-import joshie.harvest.api.npc.NPC;
+import joshie.harvest.api.npc.NPCEntity;
 import joshie.harvest.api.npc.greeting.Script;
 import joshie.harvest.quests.base.QuestAnimalContest;
 import joshie.harvest.town.TownHelper;
 import joshie.harvest.town.data.TownData;
-import net.minecraft.entity.EntityAgeable;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
@@ -21,11 +20,11 @@ public class ContestWinningScript extends Script {
 
     @SuppressWarnings("deprecation")
     @Override
-    public String getLocalized(EntityAgeable ageable, NPC npc) {
-        TownData data = TownHelper.getClosestTownToEntity(ageable, false);
+    public String getLocalized(NPCEntity entity) {
+        TownData data = TownHelper.getClosestTownToEntity(entity.getAsEntity(), false);
         QuestAnimalContest quest = data.getQuests().getAQuest(data.getFestival().getQuest());
         ContestEntries entries = quest.getEntries();
-        World world = ageable.worldObj;
+        World world = entity.getAsEntity().getEntityWorld();
         ContestEntry third = entries.getEntry(THIRD);
         ContestEntry second = entries.getEntry(SECOND);
         ContestEntry first = entries.getEntry(FIRST);

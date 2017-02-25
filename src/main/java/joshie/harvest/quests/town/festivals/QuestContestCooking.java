@@ -22,7 +22,6 @@ import joshie.harvest.quests.town.festivals.cooking.CookingContestScript;
 import joshie.harvest.town.BuildingLocations;
 import joshie.harvest.town.TownHelper;
 import joshie.harvest.town.data.TownData;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -77,8 +76,8 @@ public class QuestContestCooking extends QuestFestival {
         return time >= 6000 && time <= 18000;
     }
 
-    public CookingContestEntries getContestEntries(EntityLivingBase ageable) {
-        return new CookingContestEntries(ageable.worldObj, ageable, category);
+    public CookingContestEntries getContestEntries(NPCEntity entity) {
+        return new CookingContestEntries(entity.getAsEntity().getEntityWorld(), entity.getAsEntity(), category);
     }
 
     @Override
@@ -93,7 +92,7 @@ public class QuestContestCooking extends QuestFestival {
             TaskMove point2 = TaskMove.of(town.getCoordinatesFor(BuildingLocations.PARK_STAGE_LEFT));
             TaskSpeech speech = TaskSpeech.of(SCRIPT);
             pathing.setPath(point1, point2, point1, speech);
-            CookingContestEntries entries = getContestEntries(player);
+            CookingContestEntries entries = getContestEntries(entity);
             Set<UUID> used = new HashSet<>();
             List<EntityNPCHuman> npcs = EntityHelper.getEntities(EntityNPCHuman.class, player.worldObj, original, 32D, 5D);
             for (EntityNPCHuman theNPC: npcs) {
@@ -116,7 +115,7 @@ public class QuestContestCooking extends QuestFestival {
             increaseStage(player);
         } else if (quest_stage == FINISH) {
             complete(player); //Finish the contest
-            CookingContestEntries entries = getContestEntries(player);
+            CookingContestEntries entries = getContestEntries(entity);
             if (entries.isWinner(player)) {
                 rewardGold(player, entries.getPrize());
             }

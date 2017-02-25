@@ -31,7 +31,7 @@ import static joshie.harvest.town.BuildingLocations.*;
 public class QuestContestCow extends QuestAnimalContest<EntityHarvestCow> {
     private static final BuildingLocation[] LOCATIONS = new BuildingLocation[] { BuildingLocations.PARK_COW_STALL_1, BuildingLocations.PARK_COW_STALL_2, BuildingLocations.PARK_CENTRE, BuildingLocations.PARK_COW_STALL_4 };
     private static final NPC[] NPCS = new NPC[] { HFNPCs.BARN_OWNER, HFNPCs.GS_OWNER, HFNPCs.TRADER, HFNPCs.CARPENTER };
-    private static final String[] NAMES = new String[] { "Anabelle", "Maybelle", "Daisy", "Miltank", "Bessie", "Clarabelle", "Dorothy", "Ella", "Molly", "Bella"};
+    private static final String[] NAMES = new String[] { "Anabelle", "Maybelle", "Daisy", "Miltank", "Bessie", "Clarabelle", "Dorothy", "Ella", "Molly", "Bella", "Bertha"};
     private static final Script COW_FINISH = new HFScript("cow_finish");
     private static final Script COW_JUDGE_1 = new ContestJudgingScript("cow", 1).setNPC(HFNPCs.MILKMAID);
     private static final Script COW_JUDGE_2 = new ContestJudgingScript("cow", 2).setNPC(HFNPCs.MILKMAID);

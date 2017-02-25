@@ -17,8 +17,8 @@ public class ContestAnimalStartMenu extends Selection<QuestAnimalContest> {
     @SuppressWarnings("unchecked")
     public Result onSelected(EntityPlayer player, NPCEntity entity, QuestAnimalContest quest, int option) {
         if (option == 1) {
-            quest.execute(player, entity);
             quest.targetEntries(player, entity);
+            quest.execute(player, entity);
             return Result.ALLOW;
         } else if (option == 2) {
             quest.getEntries().getSelecting().add(EntityHelper.getPlayerUUID(player));

@@ -87,7 +87,7 @@ public abstract class QuestAnimalContest<E extends EntityAnimal> extends QuestFe
 
     public void targetEntries(EntityPlayer player, NPCEntity entity) {
         Town town = entity.getTown();
-        List<EntityNPCHuman> npcs = EntityHelper.getEntities(EntityNPCHuman.class, player.worldObj, entity.getPos(), 32D, 5D);
+        List<EntityNPCHuman> npcs = EntityHelper.getEntities(EntityNPCHuman.class, player.worldObj, entity.getPos(), 64D, 10D);
         for (EntityNPCHuman theNPC: npcs) {
             BuildingLocation building = entries.getLocationFromNPC(theNPC.getNPC());
             if (building != null) {

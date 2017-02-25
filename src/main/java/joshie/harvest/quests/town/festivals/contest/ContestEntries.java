@@ -1,6 +1,7 @@
 package joshie.harvest.quests.town.festivals.contest;
 
 import com.google.common.collect.Lists;
+import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.AnimalStats;
 import joshie.harvest.api.buildings.BuildingLocation;
 import joshie.harvest.api.npc.NPC;
@@ -61,7 +62,7 @@ public class ContestEntries<E extends EntityAnimal> {
             BuildingLocation location = locations[i];
             int stall = i + 1;
             if (!isEntered(stall)) {
-                E animal = getClosestAnimal(player.worldObj, TownHelper.getClosestTownToEntity(player, false).getCoordinatesFor(location));
+                E animal = getClosestAnimal(player.worldObj, HFApi.towns.getTownForEntity(player).getCoordinatesFor(location));
                 if (animal != null) {
                     Pair<E, Integer> pair = Pair.of(animal, stall);
                     if (!list.contains(pair)) {
@@ -154,7 +155,7 @@ public class ContestEntries<E extends EntityAnimal> {
         double d0 = -1.0D;
         E closest = null;
         for (E animal: animals) {
-            if (animal.isDead) continue;
+            if (animal.isDead || animal.isAirBorne) continue;
             double d1 = animal.getDistanceSq(pos);
             if ((d1 < 5D * 5D) && (d0 == -1.0D || d1 < d0))  {
                 d0 = d1;

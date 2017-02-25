@@ -31,7 +31,8 @@ public class Shipping {
         public Add(IIngredient ingredient, long sellValue) {
             this.sellValue = sellValue;
             this.stack = asStack(ingredient);
-            this.ore = Ore.of(asOre(ingredient));
+            String name = asOre(ingredient);
+            if (name != null) this.ore = Ore.of(name);
         }
 
         @Override

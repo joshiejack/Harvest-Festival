@@ -22,6 +22,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nonnull;
+
 @SideOnly(Side.CLIENT)
 public class RenderBasket extends RenderEntity {
     protected final ResourceLocation texture;
@@ -34,6 +36,7 @@ public class RenderBasket extends RenderEntity {
     }
 
     @Override
+    @Nonnull
     protected ResourceLocation getEntityTexture(Entity entity) {
         return TextureMap.LOCATION_BLOCKS_TEXTURE;
     }

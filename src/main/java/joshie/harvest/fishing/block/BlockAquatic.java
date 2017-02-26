@@ -68,6 +68,11 @@ public class BlockAquatic extends BlockHFEnum<BlockAquatic, Aquatic> {
     }
 
     @Override
+    public boolean isReplaceable(IBlockAccess worldIn, @Nonnull BlockPos pos) {
+        return false;
+    }
+
+    @Override
     @SuppressWarnings("deprecation")
     @Nonnull
     public IBlockState getActualState(@Nonnull IBlockState state, IBlockAccess world, BlockPos pos) {

@@ -95,6 +95,9 @@
     "bun_jam": [{ "textures": { "layer0": "harvestfestival:items/meals/bun_jam" }}],
     "sweet_potatoes": [{ "textures": { "layer0": "harvestfestival:items/meals/sweet_potatoes" }}],
     "cake": [{ "textures": { "layer0": "harvestfestival:items/meals/cake" }}],
-    "pie_apple": [{ "textures": { "layer0": "harvestfestival:items/meals/pie_apple" }}]
+    "pie_apple": [{ "textures": { "layer0": "harvestfestival:items/meals/pie_apple" }}],
+    "sandwich_herb": [{ "textures": { "layer0": "harvestfestival:items/meals/sandwich_herb" }}],
+    "soup_herb": [{ "textures": { "layer0": "harvestfestival:items/meals/soup_herb" }}],
+    "salad_herb": [{ "textures": { "layer0": "harvestfestival:items/meals/salad_herb" }}]
   }
 }

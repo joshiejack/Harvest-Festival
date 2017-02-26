@@ -95,25 +95,28 @@ public class TileHatchery extends TileSingleStack implements ITickable {
 
     private boolean removeFish(EntityPlayer player) {
         if (stack != null) {
-            boolean broke = false;
-            if (worldObj.rand.nextInt(100) > breakChance) {
-                IBlockState state = worldObj.getBlockState(getPos());
-                if (worldObj.setBlockToAir(getPos())) {
-                    broke = true;
-                    worldObj.playEvent(null, 2001, getPos(), Block.getStateId(state));
-                }
-            } else breakChance -= 25;
+            if (!worldObj.isRemote) {
+                boolean broke = false;
+                if (worldObj.rand.nextInt(100) > breakChance) {
+                    IBlockState state = worldObj.getBlockState(getPos());
+                    if (worldObj.setBlockToAir(getPos())) {
+                        broke = true;
+                        worldObj.playEvent(null, 2001, getPos(), Block.getStateId(state));
+                    }
+                } else breakChance -= 25;
 
-            if (breakChance <= 0) breakChance = 0;
-            if (stack.stackSize > 1 && !broke) {
-                SpawnItemHelper.addToPlayerInventory(player, StackHelper.toStack(stack, stack.stackSize - 1));
-                stack.stackSize = 1;
-            } else {
-                SpawnItemHelper.addToPlayerInventory(player, stack);
-                stack = null;
+                if (breakChance <= 0) breakChance = 0;
+                if (stack.stackSize > 1 && !broke) {
+                    SpawnItemHelper.spawnByEntity(player, StackHelper.toStack(stack, stack.stackSize - 1));
+                    stack.stackSize = 1;
+                } else {
+                    SpawnItemHelper.spawnByEntity(player, stack);
+                    stack = null;
+                }
+
+                saveAndRefresh();
             }
 
-            saveAndRefresh();
             return true;
         } else return false;
     }

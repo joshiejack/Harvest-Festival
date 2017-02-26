@@ -1,5 +1,7 @@
 package joshie.harvest.core.handlers;
 
+import com.google.common.cache.Cache;
+import com.google.common.cache.CacheBuilder;
 import com.google.common.collect.Lists;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.core.HFCore;
@@ -19,7 +21,11 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedOutEvent;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
 
 @HFEvents
 public class BasketHandler {
@@ -68,12 +74,25 @@ public class BasketHandler {
         }
     }
 
+    private final Cache<EntityPlayer, Set<Entity>> droppedClient = CacheBuilder.newBuilder().expireAfterWrite(1L, TimeUnit.MINUTES).build();
+    private final Cache<EntityPlayer, Set<Entity>> droppedServer = CacheBuilder.newBuilder().expireAfterWrite(1L, TimeUnit.MINUTES).build();
+    private boolean hasDropped(EntityPlayer player, Entity basket) {
+        try {
+            Set<Entity> set = player.worldObj.isRemote ? droppedClient.get(player, HashSet::new) : droppedServer.get(player, HashSet::new);
+            if (set.contains(basket)) return true;
+            else {
+                set.add(basket);
+                return false;
+            }
+        } catch (ExecutionException ex) { return false; }
+    }
+
     @SubscribeEvent
     @SuppressWarnings("ConstantConditions")
     public void onRightClickGround(PlayerInteractEvent.RightClickBlock event) {
         EntityPlayer player = event.getEntityPlayer();
         if (!forbidsDrop(event.getWorld().getBlockState(event.getPos()).getBlock())) {
-            player.getPassengers().stream().filter(entity -> entity instanceof EntityBasket).forEach(entity -> {
+            player.getPassengers().stream().filter(entity -> entity instanceof EntityBasket && !hasDropped(player, entity)).forEach(entity -> {
                 ItemStack basket = HFCore.STORAGE.getStackFromEnum(Storage.BASKET);
                 if (basket.onItemUse(player, player.worldObj, event.getPos(), EnumHand.MAIN_HAND, event.getFace(), 0F, 0F, 0F) == EnumActionResult.SUCCESS) {
                     entity.setDead();

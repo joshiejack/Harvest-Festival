@@ -12,7 +12,8 @@ public class BuildingLocations {
     public static final BuildingLocation FISHING_HUT_WORK = new BuildingLocation(FISHING_HUT, "fisher.work").withDistance(1D).withTime(500);
     public static final BuildingLocation FISHING_HUT_RIGHT = new BuildingLocation(FISHING_HUT, "fisher.right").withDistance(16D);
     public static final BuildingLocation FISHING_HUT_DOOR = new BuildingLocation(FISHING_HUT, "fisher.door").withDistance(16D);
-    public static final BuildingLocation FISHING_POND_PIER = new BuildingLocation(FISHING_HOLE, "pond.pier").withDistance(16D);
+    public static final BuildingLocation FISHING_POND_CENTRE = new BuildingLocation(FISHING_HOLE, "pond.water").withDistance(1D);
+    public static final BuildingLocation FISHING_POND_PIER = new BuildingLocation(FISHING_HOLE, "pond.pier").withDistance(1D);
     public static final BuildingLocation FISHING_POND_BACK = new BuildingLocation(FISHING_HOLE, "pond.back").withDistance(20D);
     public static final BuildingLocation FISHING_POND_LEFT = new BuildingLocation(FISHING_HOLE, "pond.left").withDistance(20D);
     public static final BuildingLocation FISHING_POND_RIGHT = new BuildingLocation(FISHING_HOLE, "pond.right").withDistance(20D);

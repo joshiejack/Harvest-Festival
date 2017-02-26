@@ -2,6 +2,7 @@ package joshie.harvest.buildings.block;
 
 import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.buildings.item.ItemCheat.Cheat;
+import joshie.harvest.core.HFCore;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.block.BlockHFBase;
 import joshie.harvest.core.helpers.InventoryHelper;
@@ -72,7 +73,11 @@ public class BlockInternalAir extends BlockHFBase<BlockInternalAir> {
     }
 
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(@Nonnull Item itemIn, CreativeTabs tab, List<ItemStack> list) {}
+    public void getSubBlocks(@Nonnull Item itemIn, CreativeTabs tab, List<ItemStack> list) {
+        if (HFCore.DEBUG_MODE) {
+            super.getSubBlocks(itemIn, tab, list);
+        }
+    }
 
     @Override
     public int getSortValue(ItemStack stack) {

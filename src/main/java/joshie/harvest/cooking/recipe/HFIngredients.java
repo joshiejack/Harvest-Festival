@@ -165,11 +165,9 @@ public class HFIngredients {
         HFApi.cooking.register(ANIMAL_PRODUCT.getStack(Sizeable.MILK, Size.SMALL), MILK);
         HFApi.cooking.register(ANIMAL_PRODUCT.getStack(Sizeable.MILK, Size.MEDIUM), MILK);
         HFApi.cooking.register(ANIMAL_PRODUCT.getStack(Sizeable.MILK, Size.LARGE), MILK);
-        HFApi.cooking.register(GOLDEN_PRODUCT.getStackFromEnum(Sizeable.MILK), MILK);
         HFApi.cooking.register(ANIMAL_PRODUCT.getStack(Sizeable.MAYONNAISE, Size.SMALL), MAYONNAISE);
         HFApi.cooking.register(ANIMAL_PRODUCT.getStack(Sizeable.MAYONNAISE, Size.MEDIUM), MAYONNAISE);
         HFApi.cooking.register(ANIMAL_PRODUCT.getStack(Sizeable.MAYONNAISE, Size.LARGE), MAYONNAISE);
-        HFApi.cooking.register(GOLDEN_PRODUCT.getStackFromEnum(Sizeable.MAYONNAISE), MAYONNAISE);
         HFApi.cooking.register(new ItemStack(Items.EGG), SMALL_EGG);
         HFApi.cooking.register(new ItemStack(Items.MILK_BUCKET), MILK);
 

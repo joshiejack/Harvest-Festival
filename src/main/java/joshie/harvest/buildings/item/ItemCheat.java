@@ -10,17 +10,17 @@ import joshie.harvest.core.base.item.ItemHFEnum;
 import joshie.harvest.core.helpers.ChatHelper;
 import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.core.util.HFTemplate;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import org.apache.commons.lang3.tuple.Pair;
 
 import javax.annotation.Nonnull;
-import java.util.HashSet;
-import java.util.Locale;
-import java.util.Set;
+import java.util.*;
 
 import static joshie.harvest.buildings.item.ItemCheat.Cheat.*;
 
@@ -108,26 +108,43 @@ public class ItemCheat extends ItemHFEnum<ItemCheat, Cheat> {
                 }
             }
         } else if (damage == PARK_PLACER.ordinal()) {
-            HFTemplate template = BuildingRegistry.INSTANCE.getTemplateForBuilding(HFBuildings.FESTIVAL_GROUNDS);
-            template.placeBlocks(world, pos, Rotation.NONE, null);
+            List<Pair<BlockPos, IBlockState>> states = new ArrayList<>();
             for (int  x = 0; x < 38; x++) {
                 for (int z = 0; z < 31; z++) {
                     BlockPos target = pos.add(x, 0, z);
-                    world.setBlockState(target, Blocks.GRASS.getDefaultState());
+                    if (world.getBlockState(target).getBlock() == Blocks.END_STONE) {
+                        states.add(Pair.of(target, Blocks.GRASS.getDefaultState()));
+                    } else if (world.getBlockState(target).getBlock() == Blocks.AIR) states.add(Pair.of(target, Blocks.GRASS_PATH.getDefaultState()));
                 }
+            }
+
+            HFTemplate template = BuildingRegistry.INSTANCE.getTemplateForBuilding(HFBuildings.FESTIVAL_GROUNDS);
+            template.placeBlocks(world, pos, Rotation.NONE, null);
+            for (Pair<BlockPos, IBlockState> pair: states) {
+                world.setBlockState(pair.getLeft(), pair.getRight());
             }
 
             world.setBlockState(pos, Blocks.END_STONE.getDefaultState());
             world.setBlockState(pos.south(30).east(37).up(9), Blocks.END_STONE.getDefaultState());
         } else if (damage == PARK_ENDSTONE.ordinal()) {
-            HFTemplate template = BuildingRegistry.INSTANCE.getTemplateForBuilding(HFBuildings.FESTIVAL_GROUNDS);
-            template.removeBlocks(world, pos, Rotation.NONE, Blocks.END_STONE.getDefaultState());
+            List<Pair<BlockPos, IBlockState>> states = new ArrayList<>();
             for (int  x = 0; x < 38; x++) {
                 for (int z = 0; z < 31; z++) {
                     BlockPos target = pos.add(x, 0, z);
-                    world.setBlockState(target, Blocks.END_STONE.getDefaultState());
+                    if (world.getBlockState(target).getBlock() == Blocks.GRASS) {
+                        states.add(Pair.of(target, Blocks.END_STONE.getDefaultState()));
+                    } else states.add(Pair.of(target, Blocks.AIR.getDefaultState()));
                 }
             }
+
+            HFTemplate template = BuildingRegistry.INSTANCE.getTemplateForBuilding(HFBuildings.FESTIVAL_GROUNDS);
+            template.removeBlocks(world, pos, Rotation.NONE, Blocks.END_STONE.getDefaultState());
+            for (Pair<BlockPos, IBlockState> pair: states) {
+                world.setBlockState(pair.getLeft(), pair.getRight());
+            }
+
+            world.setBlockState(pos, Blocks.END_STONE.getDefaultState());
+            world.setBlockState(pos.south(30).east(37).up(9), Blocks.END_STONE.getDefaultState());
         }
 
         return EnumActionResult.SUCCESS;

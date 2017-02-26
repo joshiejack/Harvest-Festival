@@ -109,6 +109,10 @@ public abstract class EntityNPCHuman<E extends EntityNPCHuman> extends EntityNPC
             if (source.getSourceOfDamage() instanceof EntityPlayer) {
                 HFApi.player.getRelationsForPlayer(((EntityPlayer) source.getSourceOfDamage())).affectRelationship(npc, -10);
             }
+
+            if (source == DamageSource.inWall) {
+                attemptTeleport(posX + worldObj.rand.nextInt(20) - 10D, posY + worldObj.rand.nextInt(3), posZ + worldObj.rand.nextInt(20) - 10D);
+            }
         }
 
         return super.attackEntityFrom(source, amount);

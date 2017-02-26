@@ -85,6 +85,8 @@ harvestfestival.cheat.code.generator=[BuildingGen] Code Generator
 harvestfestival.air=[BuildingGen] Internal Air
 harvestfestival.cheat.air.placer=[BuildingGen] Internal Air Placer
 harvestfestival.cheat.air.remover=[BuildingGen] Internal Air Remover
+harvestfestival.cheat.park.placer=[FestivalGen] Park Placer
+harvestfestival.cheat.park.endstone=[FestivalGen] Park Clearer
 
 #Crops
 harvestfestival.crop.sickle=Requires Sickle

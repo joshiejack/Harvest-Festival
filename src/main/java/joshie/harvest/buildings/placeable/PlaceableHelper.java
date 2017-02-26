@@ -6,8 +6,9 @@ import joshie.harvest.buildings.placeable.entities.PlaceableEntity;
 import joshie.harvest.buildings.placeable.entities.PlaceableItemFrame;
 import joshie.harvest.buildings.placeable.entities.PlaceableNPC;
 import joshie.harvest.buildings.placeable.entities.PlaceablePainting;
-import joshie.harvest.core.block.BlockStand;
+import joshie.harvest.core.base.tile.TileFillable;
 import joshie.harvest.core.base.tile.TileStand;
+import joshie.harvest.core.block.BlockStand;
 import joshie.harvest.core.util.interfaces.IFaceable;
 import net.minecraft.block.*;
 import net.minecraft.block.state.IBlockState;
@@ -26,7 +27,10 @@ public class PlaceableHelper {
     @SuppressWarnings("ConstantConditions")
     private static Placeable getPrefixString(World world, IBlockState state, BlockPos actual, int x, int y, int z) {
         Block block = state.getBlock();
-        if (block instanceof BlockStand) {
+        if (world.getTileEntity(actual) instanceof TileFillable) {
+            TileFillable fillable = (TileFillable) world.getTileEntity(actual);
+            return new PlaceableFillable(fillable.getFillAmount(), state, x, y, z);
+        } else if (block instanceof BlockStand) {
             TileStand stand = (TileStand) world.getTileEntity(actual);
             return new PlaceableStand(stand.getFacing(), stand.getContents(), state, x, y, z);
         } else if (world.getTileEntity(actual) instanceof IFaceable) {

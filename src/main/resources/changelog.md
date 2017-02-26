@@ -63,6 +63,16 @@
 * You can now break dead crops normally, no need to use a sickle
 * Added a 'shipping basket', you wear it on your head and it will autoship things you pick up
 
+###Festivals - NEW!
+* Added new years festival, celebrate with food
+* Added cooking festival, celebrate your cooking skills. Winners will be able to buy corn.
+* Added cow festival, winners cows will produce golden milk if happiness is high!
+* Added chicken festival, winners chickens will produce golden eggs if happiness is high!
+* Added harvest festival, make friends with the villagers by contributing your best to a communal soup
+* Added sheep festival, winners sheep will produce golden wool if happiness is high!
+* Added starry night festival, celebrate the winter with your loved ones
+* Added new years eve festival, celebrate with a meal then watch some fireworks to bring in the new year
+
 ###Fishing - NEW!
 * Added fishing rods, obtainable when you meet jakob for the first time
 * Added various fish and junk that can be caught
@@ -122,6 +132,7 @@
 * Blacksmith will only start work on tools during operating hours.
 * Blacksmith will take four days to upgrade tools if you have him start work on tuesday or wednesdays as he rests on thursdays.
 * Can now right click to go back to the previous chat page
+* NPCS will teleport when taking damage from being in a wall
 
 ###Quests
 * Added a quest board, which comes when you have the townhall, you can purchase a new one from carpenter when townhall is built

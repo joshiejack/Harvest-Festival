@@ -30,7 +30,7 @@ public class BlockStand extends BlockHFEnumRotatableTile<BlockStand, Stand> {
 
     @SuppressWarnings("WeakerAccess")
     public enum Stand implements IStringSerializable {
-        COOKING, CHICKEN, LIVESTOCK, POT, PLATE;
+        COOKING, POT, PLATE;
 
         @Override
         public String getName() {

@@ -102,6 +102,7 @@ public class HFShops {
     public static final Shop COW_FESTIVAL_DAIRY_QUEEN = newHolidayShop(new ResourceLocation(MODID, "dairy"), HFNPCs.CAFE_OWNER, HFFestivals.COW_FESTIVAL);
     public static final Shop SHEEP_FESTIVAL_SALE = newHolidayShop(new ResourceLocation(MODID, "sheep"), HFNPCs.MILKMAID, HFFestivals.SHEEP_FESTIVAL);
     public static final Shop SHEEP_FESTIVAL_KNITTNG = newHolidayShop(new ResourceLocation(MODID, "knitting"), HFNPCs.CAFE_GRANNY, HFFestivals.SHEEP_FESTIVAL);
+    public static final Shop CHICKEN_FESTIVAL_MFC = newHolidayShop(new ResourceLocation(MODID, "mfc"), HFNPCs.CAFE_OWNER, HFFestivals.CHICKEN_FESTIVAL);
 
     @SuppressWarnings("unused")
     public static void postInit() {
@@ -124,6 +125,7 @@ public class HFShops {
         registerDairyQueen();
         registerSaleSheep();
         registerGrannysKnits();
+        registerMinecraftFriedChicken();
     }
     
     private static void registerBarn() {
@@ -405,7 +407,7 @@ public class HFShops {
         BAITSHOP.addPurchasable(-100, new ItemStack(Items.FISH, 1, 3), 5);
         for (Fish fish: Fish.values()) {
             long sell = (fish.getSellValue(fish.getLengthFromSizeOfFish(MEDIUM_FISH))) - fish.getSellValue(fish.getLengthFromSizeOfFish(MEDIUM_FISH)) % 10;
-            BAITSHOP.addPurchasable(new PurchasableObtained(sell, HFFishing.FISH.getStackFromEnum(fish)).setStock(100));
+            BAITSHOP.addPurchasable(new PurchasableObtained(-sell, HFFishing.FISH.getStackFromEnum(fish)).setStock(100));
         }
 
         BAITSHOP.setSpecialRules(new SpecialRulesQuest(Quests.JACOB_MEET));
@@ -446,8 +448,6 @@ public class HFShops {
         COOKING_FESTIVAL_FOOD.addPurchasable(new PurchasableCrop(HFCrops.EGGPLANT));
         COOKING_FESTIVAL_FOOD.addPurchasable(new PurchasableCrop(HFCrops.SPINACH));
         COOKING_FESTIVAL_FOOD.addPurchasable(new PurchasableCrop(HFCrops.SWEET_POTATO));
-        COOKING_FESTIVAL_FOOD.addOpening(MONDAY, 6000, 18000).addOpening(TUESDAY, 6000, 18000).addOpening(WEDNESDAY, 6000, 18000).addOpening(THURSDAY, 6000, 18000)
-                .addOpening(FRIDAY, 6000, 18000).addOpening(SATURDAY, 6000, 18000).addOpening(SUNDAY, 6000, 18000);
     }
 
     private static void registerRecipes() {
@@ -494,9 +494,6 @@ public class HFShops {
                 }
             }
         }
-
-        COOKING_FESTIVAL_RECIPES.addOpening(MONDAY, 6000, 18000).addOpening(TUESDAY, 6000, 18000).addOpening(WEDNESDAY, 6000, 18000).addOpening(THURSDAY, 6000, 18000)
-                .addOpening(FRIDAY, 6000, 18000).addOpening(SATURDAY, 6000, 18000).addOpening(SUNDAY, 6000, 18000);
     }
 
     private static void registerCowBargains() {
@@ -508,8 +505,6 @@ public class HFShops {
         COW_FESTIVAL_BARGAINS.addPurchasable(500, HFAnimals.TOOLS.getStackFromEnum(Tool.BRUSH));
         COW_FESTIVAL_BARGAINS.addPurchasable(1000, HFAnimals.TOOLS.getStackFromEnum(Tool.MILKER));
         COW_FESTIVAL_BARGAINS.addPurchasable(100, new ItemStack(Items.NAME_TAG));
-        COW_FESTIVAL_BARGAINS.addOpening(MONDAY, 6000, 18000).addOpening(TUESDAY, 6000, 18000).addOpening(WEDNESDAY, 6000, 18000).addOpening(THURSDAY, 6000, 18000)
-                .addOpening(FRIDAY, 6000, 18000).addOpening(SATURDAY, 6000, 18000).addOpening(SUNDAY, 6000, 18000);
     }
 
     private static void registerDairyQueen() {
@@ -521,8 +516,6 @@ public class HFShops {
         COW_FESTIVAL_DAIRY_QUEEN.addPurchasable(new PurchasableMeal(150, new ResourceLocation(MODID, "bun_jam")).setStock(5));
         COW_FESTIVAL_DAIRY_QUEEN.addPurchasable(new PurchasableMeal(300, new ResourceLocation(MODID, "doughnut")).setStock(5));
         COW_FESTIVAL_DAIRY_QUEEN.addPurchasable(new PurchasableMeal(140, new ResourceLocation(MODID, "milk_strawberry")).setStock(8));
-        COW_FESTIVAL_DAIRY_QUEEN.addOpening(MONDAY, 6000, 18000).addOpening(TUESDAY, 6000, 18000).addOpening(WEDNESDAY, 6000, 18000).addOpening(THURSDAY, 6000, 18000)
-                .addOpening(FRIDAY, 6000, 18000).addOpening(SATURDAY, 6000, 18000).addOpening(SUNDAY, 6000, 18000);
     }
 
     private static void registerSaleSheep() {
@@ -534,8 +527,6 @@ public class HFShops {
         SHEEP_FESTIVAL_SALE.addPurchasable(500, HFAnimals.TOOLS.getStackFromEnum(Tool.BRUSH));
         SHEEP_FESTIVAL_SALE.addPurchasable(1000, new ItemStack(Items.SHEARS));
         SHEEP_FESTIVAL_SALE.addPurchasable(100, new ItemStack(Items.NAME_TAG));
-        SHEEP_FESTIVAL_SALE.addOpening(MONDAY, 6000, 18000).addOpening(TUESDAY, 6000, 18000).addOpening(WEDNESDAY, 6000, 18000).addOpening(THURSDAY, 6000, 18000)
-                .addOpening(FRIDAY, 6000, 18000).addOpening(SATURDAY, 6000, 18000).addOpening(SUNDAY, 6000, 18000);
     }
 
     private static ItemStack getWoolyArmor(Item item, java.lang.String name) {
@@ -553,8 +544,16 @@ public class HFShops {
         SHEEP_FESTIVAL_KNITTNG.addPurchasable(700, getWoolyArmor(Items.LEATHER_BOOTS, "Wooly Pants"), 1);
         SHEEP_FESTIVAL_KNITTNG.addPurchasable(400, getWoolyArmor(Items.LEATHER_BOOTS, "Wooly Boots"), 1);
         SHEEP_FESTIVAL_KNITTNG.addPurchasable(300, new ItemStack(Items.COOKED_MUTTON), 20);
-        SHEEP_FESTIVAL_KNITTNG.addOpening(MONDAY, 6000, 18000).addOpening(TUESDAY, 6000, 18000).addOpening(WEDNESDAY, 6000, 18000).addOpening(THURSDAY, 6000, 18000)
-                .addOpening(FRIDAY, 6000, 18000).addOpening(SATURDAY, 6000, 18000).addOpening(SUNDAY, 6000, 18000);
+    }
+
+    private static void registerMinecraftFriedChicken() {
+        CHICKEN_FESTIVAL_MFC.addPurchasable(250, new ItemStack(Items.COOKED_CHICKEN), 20);
+        CHICKEN_FESTIVAL_MFC.addPurchasable(new PurchasableMeal(150, new ResourceLocation(MODID, "fries_french")).setStock(20));
+        CHICKEN_FESTIVAL_MFC.addPurchasable(new PurchasableMeal(0, new ResourceLocation(MODID, "ketchup")).setStock(20));
+        CHICKEN_FESTIVAL_MFC.addPurchasable(new PurchasableMeal(50, new ResourceLocation(MODID, "egg_boiled")).setStock(5));
+        CHICKEN_FESTIVAL_MFC.addPurchasable(new PurchasableMeal(100, new ResourceLocation(MODID, "egg_scrambled")).setStock(5));
+        CHICKEN_FESTIVAL_MFC.addPurchasable(new PurchasableMeal(200, new ResourceLocation(MODID, "juice_orange")).setStock(8));
+        CHICKEN_FESTIVAL_MFC.addPurchasable(new PurchasableMeal(100, new ResourceLocation(MODID, "juice_apple")).setStock(8));
     }
 
     private static Shop newHolidayShop(ResourceLocation resource, @Nullable NPC npc, Festival festival) {
@@ -564,7 +563,7 @@ public class HFShops {
             else if (npc instanceof NPCHolidayStoreSpecial) ((NPCHolidayStoreSpecial)npc).addHolidayShop(festival, shop);
         }
 
-        return shop;
+        return shop.addOpening(MONDAY, 6000, 18000).addOpening(TUESDAY, 6000, 18000).addOpening(WEDNESDAY, 6000, 18000).addOpening(THURSDAY, 6000, 18000).addOpening(FRIDAY, 6000, 18000).addOpening(SATURDAY, 6000, 18000).addOpening(SUNDAY, 6000, 18000);
     }
 
     private static Shop newShop(ResourceLocation resource, @Nullable NPC npc) {

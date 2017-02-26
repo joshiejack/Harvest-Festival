@@ -41,7 +41,7 @@ public abstract class QuestQuestion extends Quest {
 
     @Override
     public Selection getSelection(EntityPlayer player, NPCEntity entity) {
-        return quest_stage <= 0 ? selection : null;
+        return quest_stage <= 0 && !isCompletedEarly() ? selection : null;
     }
 
     @Override

@@ -1233,7 +1233,7 @@ harvestfestival.npc.tiberius.festival.starry.night2=If you wish, we would join y
 
 #Jakob
 harvestfestival.npc.jacob.shop=If you're after some fishing gear, we're open Tuesday through Friday from one in the afternoon to seven in the evening.
-harvestfestival.npc.jacob.greeting1=Fishing is my game, Jacob is my name.
+harvestfestival.npc.jacob.greeting1=Fishing is my game, Jakob is my name.
 harvestfestival.npc.jacob.greeting2=One day I will catch the elusive clownfish, I promise you!
 harvestfestival.npc.jacob.greeting3=There's nothing like just sitting and waiting for a fish to bite, so relaxing.
 harvestfestival.npc.jacob.greeting4=I really hope it rains soon. Or is it now?
@@ -1725,6 +1725,12 @@ harvestfestival.shop.knitting.greeting1=Looking for some wooly jumpers?
 harvestfestival.shop.knitting.greeting2=Baa Ram Ewe goods all right here!
 harvestfestival.shop.knitting.greeting3=Need something for the winter? Let's keep warm here.
 
+#Minecraft Fried Chicken - Chicken Festival
+harvestfestival.shop.mfc=MFC
+harvestfestival.shop.mfc.greeting1=Good morning and welcome to Minecraft Fried Chicken!
+harvestfestival.shop.mfc.greeting2=Get your fried chicken and eggs right here!
+harvestfestival.shop.mfc.greeting3=What's for lunch? It's time to cluck cluck cluck.
+
 #Miscellaneous
 harvestfestival.marriage=Gift for Marriage
 harvestfestival.marriage.locked=LOCKED
@@ -2006,7 +2012,7 @@ harvestfestival.quest.tomas.cheaper.text=You've become a wonderful human towards
 ## Meeting Quests
 harvestfestival.quest.meeting.jacob.title=Finding Jakob
 harvestfestival.quest.meeting.jacob.build=Build the Tackle Shop.
-harvestfestival.quest.meeting.jacob.text=Nice to meet you %4$s, the name's jacob. From what I've heard you're interested in fishing, you know, I've just recently bought myself a new rod, I'd like you to have my old one here, please take care of her. I run this tackle shop, if you need anything please do pop by.
+harvestfestival.quest.meeting.jacob.text=Nice to meet you %4$s, the name's Jakob. From what I've heard you're interested in fishing, you know, I've just recently bought myself a new rod, I'd like you to have my old one here, please take care of her. I run this tackle shop, if you need anything please do pop by.
 harvestfestival.quest.meeting.jacob.description=Converse with newbie Jakob.
 harvestfestival.quest.meeting.katlin.title=Granny's Goods
 harvestfestival.quest.meeting.katlin.text=Good day youngun. I'm Katlin but you can call me granny if you like. I help out my granddaughter Liara, mostly in the kitchen. I must thank you for letting her open shop up here, it's been her life long dream. I have some spare change, it isn't much but please do take it.

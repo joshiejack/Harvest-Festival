@@ -46,6 +46,8 @@ public class ItemFishingRod extends ItemTool<ItemFishingRod> {
         int existing = tag.getInteger("Bait");
         if (existing + bait.stackSize > 999) return false;
         tag.setInteger("Bait", existing + bait.stackSize);
+        rod.setTagCompound(tag); //Reset the tag
+        System.out.println("Added bait..." + existing + bait.stackSize);
         return true;
     }
 
@@ -55,6 +57,7 @@ public class ItemFishingRod extends ItemTool<ItemFishingRod> {
         int newValue = existing - amount;
         if (newValue < 0) tag.removeTag("Bait");
         else tag.setInteger("Bait", newValue);
+        rod.setTagCompound(tag); //Reset the tag
         if (returning && existing > 0) {
             ItemStack bait = HFFishing.JUNK.getStackFromEnum(Junk.BAIT, newValue < 0 ? amount + newValue : amount);
             SpawnItemHelper.addToPlayerInventory(player, bait);

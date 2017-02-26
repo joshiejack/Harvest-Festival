@@ -82,6 +82,7 @@ public class ItemJunk extends ItemHFEnum<ItemJunk, Junk> {
                 ItemStack rod = getClosest(playerIn.inventory.mainInventory, slot);
                 if (rod != null && HFFishing.FISHING_ROD.addBait(rod, stack)) {
                     stack.stackSize = 0; //Clear out this stack
+                    System.out.println("we did this on the side? " + worldIn);
                     return new ActionResult<>(EnumActionResult.SUCCESS, stack);
                 }
             }

@@ -95,6 +95,10 @@ public abstract class TileCooking extends TileFaceable {
         if (ingredients.size() > 0) {
             ItemStack stack = ingredients.get(ingredients.size() - 1);
             if (stack.hasTagCompound()) stack.getTagCompound().removeTag(IN_UTENSIL);
+            if (stack.hasTagCompound() && stack.getTagCompound().hasNoTags()) {
+                stack.setTagCompound(null);
+            }
+
             SpawnItemHelper.addToPlayerInventory(player, stack);
             ingredients.remove(ingredients.size() - 1); //Remove the last stack
             if (worldObj.isRemote) return;
@@ -117,14 +121,17 @@ public abstract class TileCooking extends TileFaceable {
         if (!worldObj.isRemote) {
             if (cooking) {
                 cookTimer++;
-                if (cookTimer >= getCookingTime()) {
+                if (ingredients.size() == 0) {
+                    cooking = false;
+                    markDirty();
+                } else if (cookTimer >= getCookingTime()) {
                     result.addAll(HFApi.cooking.getCookingResult(getUtensil(), ingredients));
                     cooking = false;
                     ingredients = new ArrayList<>();
                     cookTimer = 0;
-                    this.markDirty();
+                    markDirty();
                 }
-
+                
                 if (hasPrerequisites() != SUCCESS) {
                     cooking = false;
                     this.markDirty();

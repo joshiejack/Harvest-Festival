@@ -142,7 +142,7 @@ public class HFIngredients {
         MEAT.add(CHICKEN, PORK, BEEF, MUTTON, RABBIT);
         FISH.add(SALMON, COD);
         HERB.add(CHAMOMILE, MINT, LAVENDAR);
-        EGG.add(SMALL_EGG, MEDIUM_EGG, LARGE_EGG, GOLDEN_EGG);
+        EGG.add(SMALL_EGG, MEDIUM_EGG, LARGE_EGG);
     }
 
     private static String getPrimaryCropName(ItemStack stack) {

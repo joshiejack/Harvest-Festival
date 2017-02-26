@@ -48,7 +48,7 @@ public class RecipeBuilder {
         //We now know exactly what the stack size will be, as well as exactly how many items we have left!
         //We know this, as it will be the items remaining in the required
         //If we have stuff to calculate then do so, otherwise return everything as is
-        if (required.size() == 0 || recipe.supportsNBTData()) return build(recipe.getStack(), recipe.supportsNBTData());
+        if (required.size() == 0 || !recipe.supportsNBTData()) return build(recipe.getStack(), recipe.supportsNBTData());
         else {
             //Now we need to work out the additional stats for the last bit of food
             List<ItemStack> ret = new ArrayList<>();

@@ -47,7 +47,6 @@ public class ItemFishingRod extends ItemTool<ItemFishingRod> {
         if (existing + bait.stackSize > 999) return false;
         tag.setInteger("Bait", existing + bait.stackSize);
         rod.setTagCompound(tag); //Reset the tag
-        System.out.println("Added bait..." + existing + bait.stackSize);
         return true;
     }
 

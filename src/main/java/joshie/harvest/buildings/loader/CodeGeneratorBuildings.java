@@ -1,6 +1,7 @@
 package joshie.harvest.buildings.loader;
 
 import joshie.harvest.api.npc.NPC;
+import joshie.harvest.buildings.BuildingRegistry;
 import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.buildings.placeable.Placeable;
 import joshie.harvest.buildings.placeable.PlaceableHelper;
@@ -37,8 +38,9 @@ import static joshie.harvest.core.lib.HFModInfo.MODID;
 public class CodeGeneratorBuildings {
     private final World world;
     private final int x1, y1, z1, x2, y2, z2;
+    private final boolean parkLocations;
 
-    public CodeGeneratorBuildings(World world, int xStart, int yStart, int zStart, int xEnd, int yEnd, int zEnd) {
+    public CodeGeneratorBuildings(World world, int xStart, int yStart, int zStart, int xEnd, int yEnd, int zEnd, boolean parkLocations) {
         this.world = world;
         this.x1 = xStart < xEnd ? xStart : xEnd;
         this.x2 = xStart < xEnd ? xEnd : xStart;
@@ -46,6 +48,7 @@ public class CodeGeneratorBuildings {
         this.y2 = yStart < yEnd ? yEnd : yStart;
         this.z1 = zStart < zEnd ? zStart : zEnd;
         this.z2 = zStart < zEnd ? zEnd : zStart;
+        this.parkLocations = parkLocations;
     }
 
     @SuppressWarnings("unchecked")
@@ -75,33 +78,35 @@ public class CodeGeneratorBuildings {
                     ret.add(new PlaceableNPC(name, npcField, x, y, z));
                     ret.add(new PlaceableBlock(Blocks.AIR.getDefaultState(), x, y, z));
                     return;
-                } else if (name.startsWith("loot.")) {
+                } else if (!parkLocations && name.startsWith("loot.")) {
                     ret.add(new PlaceableChest(name.replace("loot.", "chests/"), state, x, y, z));
                     return;
                 }
             }
         }
 
-        if ((block != Blocks.AIR  || entityList.size() > 0) && block != Blocks.END_STONE) {
-            int meta = state.getBlock().getMetaFromState(state);
-            if ((block == Blocks.DOUBLE_PLANT || block instanceof BlockDoor) && meta >= 8) return;
-            TileEntity tile = world.getTileEntity(position);
-            if (tile instanceof TileEntitySign) {
-                ITextComponent[] text = ((TileEntitySign) tile).signText;
-                if (block == Blocks.STANDING_SIGN) {
-                    ret.add(PlaceableHelper.getFloorSignString(text, state, new BlockPos(x, y, z)));
-                } else ret.add(PlaceableHelper.getWallSignString(text, state, new BlockPos(x, y, z)));
-            } else {
-                Placeable text = PlaceableHelper.getPlaceableBlockString(world, state, position, x, y, z);
-                ret.add(text);
-            }
+        if (!parkLocations) {
+            if ((block != Blocks.AIR || entityList.size() > 0) && block != Blocks.END_STONE) {
+                int meta = state.getBlock().getMetaFromState(state);
+                if ((block == Blocks.DOUBLE_PLANT || block instanceof BlockDoor) && meta >= 8) return;
+                TileEntity tile = world.getTileEntity(position);
+                if (tile instanceof TileEntitySign) {
+                    ITextComponent[] text = ((TileEntitySign) tile).signText;
+                    if (block == Blocks.STANDING_SIGN) {
+                        ret.add(PlaceableHelper.getFloorSignString(text, state, new BlockPos(x, y, z)));
+                    } else ret.add(PlaceableHelper.getWallSignString(text, state, new BlockPos(x, y, z)));
+                } else {
+                    Placeable text = PlaceableHelper.getPlaceableBlockString(world, state, position, x, y, z);
+                    ret.add(text);
+                }
 
-            //Entities
-            if (entityList.size() > 0) {
-                entityList.stream().filter(e -> !all.contains(e)).forEach(e -> {
-                    ret.add(PlaceableHelper.getPlaceableEntityString(e, x, y, z));
-                    all.add(e);
-                });
+                //Entities
+                if (entityList.size() > 0) {
+                    entityList.stream().filter(e -> !all.contains(e)).forEach(e -> {
+                        ret.add(PlaceableHelper.getPlaceableEntityString(e, x, y, z));
+                        all.add(e);
+                    });
+                }
             }
         }
     }
@@ -120,6 +125,11 @@ public class CodeGeneratorBuildings {
             }
 
             HFTemplate template = new HFTemplate(ret);
+            if (parkLocations) {
+                HFTemplate park = BuildingRegistry.INSTANCE.getTemplateForBuilding(HFBuildings.FESTIVAL_GROUNDS);
+                template.merge(park); //Merge in the existing park template...
+            }
+
             try {
                 String json = HFBuildings.getGson().toJson(template);
                 PrintWriter writer = new PrintWriter("building.json", "UTF-8");

@@ -1,5 +1,12 @@
 {
     "parent": "block/block",
+  "display": {
+    "gui": {
+      "rotation": [ 30, 225, 0 ],
+      "translation": [ 0, 8, 0],
+      "scale":[ 0.625, 0.625, 0.625 ]
+    }
+  },
     "ambientocclusion": false,
     "textures": {
         "particle": "harvestfestival:models/hatchery",

@@ -6032,6 +6032,93 @@
     {
       "state": "leaves2 1",
       "pos": "11 9 4"
+    },
+    {
+      "homeString": "festival.sheep.1",
+      "npc": "",
+      "pos": "6 1 12",
+      "type": "entities.NPC"
+    },
+    {
+      "pos": "6 1 12"
+    },
+    {
+      "homeString": "festival.sheep.stand1",
+      "npc": "",
+      "pos": "8 1 12",
+      "type": "entities.NPC"
+    },
+    {
+      "pos": "8 1 12"
+    },
+    {
+      "homeString": "festival.sheep.stand2",
+      "npc": "",
+      "pos": "10 1 18",
+      "type": "entities.NPC"
+    },
+    {
+      "pos": "10 1 18"
+    },
+    {
+      "homeString": "festival.sheep.2",
+      "npc": "",
+      "pos": "10 1 21",
+      "type": "entities.NPC"
+    },
+    {
+      "pos": "10 1 21"
+    },
+    {
+      "homeString": "festival.sheep.jim",
+      "npc": "",
+      "pos": "13 1 9",
+      "type": "entities.NPC"
+    },
+    {
+      "pos": "13 1 9"
+    },
+    {
+      "homeString": "festival.sheep.granny",
+      "npc": "",
+      "pos": "14 1 7",
+      "type": "entities.NPC"
+    },
+    {
+      "pos": "14 1 7"
+    },
+    {
+      "homeString": "festival.sheep.stand4",
+      "npc": "",
+      "pos": "23 1 6",
+      "type": "entities.NPC"
+    },
+    {
+      "pos": "23 1 6"
+    },
+    {
+      "homeString": "festival.sheep.3",
+      "npc": "",
+      "pos": "27 1 20",
+      "type": "entities.NPC"
+    },
+    {
+      "homeString": "festival.sheep.stand3",
+      "npc": "",
+      "pos": "27 1 16",
+      "type": "entities.NPC"
+    },
+    {
+      "pos": "27 1 16"
+    },
+    {
+      "homeString": "festival.sheep.4",
+      "npc": "",
+      "pos": "27 1 5",
+      "type": "entities.NPC"
+    },
+    {
+      "pos": "27 1 5"
     }
   ]
 }

@@ -17,6 +17,7 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class HFTemplate {
     @Expose
@@ -29,6 +30,19 @@ public class HFTemplate {
         for (int j = 0; j < ret.size(); j++) {
             components[j] = ret.get(j);
         }
+    }
+
+    public void merge(HFTemplate park) {
+        List<Placeable> set = new ArrayList<>();
+        for (Placeable component: park.components) {
+            if (!set.contains(component)) set.add(component);
+        }
+
+        for (Placeable component: components) {
+            if (!set.contains(component)) set.add(component);
+        }
+
+        components = set.toArray(new Placeable[set.size()]);
     }
 
     public void initTemplate() {

@@ -28,7 +28,8 @@ public class ItemCheat extends ItemHFEnum<ItemCheat, Cheat> {
     public enum Cheat implements IStringSerializable {
         COORD_SETTER, CODE_GENERATOR,
         AIR_PLACER, AIR_REMOVER,
-        PARK_PLACER, PARK_ENDSTONE;
+        PARK_PLACER, PARK_ENDSTONE,
+        PARK_LOCATIONS_GENERATOR;
 
         @Override
         public String getName() {
@@ -59,7 +60,7 @@ public class ItemCheat extends ItemHFEnum<ItemCheat, Cheat> {
 
             return EnumActionResult.SUCCESS;
         } else if (damage == CODE_GENERATOR.ordinal() && pos1 != null && pos2 != null) {
-            new CodeGeneratorBuildings(world, pos1.getX(), pos1.getY(), pos1.getZ(), pos2.getX(), pos2.getY(), pos2.getZ()).getCode();
+            new CodeGeneratorBuildings(world, pos1.getX(), pos1.getY(), pos1.getZ(), pos2.getX(), pos2.getY(), pos2.getZ(), false).getCode();
             return EnumActionResult.SUCCESS;
         } else if (damage == AIR_PLACER.ordinal()) {
             if (!world.isRemote) {
@@ -145,6 +146,9 @@ public class ItemCheat extends ItemHFEnum<ItemCheat, Cheat> {
 
             world.setBlockState(pos, Blocks.END_STONE.getDefaultState());
             world.setBlockState(pos.south(30).east(37).up(9), Blocks.END_STONE.getDefaultState());
+        } else if (damage == PARK_LOCATIONS_GENERATOR.ordinal() && pos1 != null && pos2 != null) {
+            new CodeGeneratorBuildings(world, pos1.getX(), pos1.getY(), pos1.getZ(), pos2.getX(), pos2.getY(), pos2.getZ(), true).getCode();
+            return EnumActionResult.SUCCESS;
         }
 
         return EnumActionResult.SUCCESS;

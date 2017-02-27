@@ -19,7 +19,6 @@ import joshie.harvest.quests.town.festivals.contest.ContestEntries;
 import joshie.harvest.quests.town.festivals.contest.ContestJudgingScript;
 import joshie.harvest.quests.town.festivals.contest.ContestWinningScript;
 import joshie.harvest.quests.town.festivals.contest.TaskWinner;
-import joshie.harvest.town.BuildingLocations;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -28,18 +27,19 @@ import static joshie.harvest.town.BuildingLocations.*;
 
 @HFQuest("festival.cow")
 public class QuestContestCow extends QuestAnimalContest<EntityHarvestCow> {
-    private static final BuildingLocation[] LOCATIONS = new BuildingLocation[] { BuildingLocations.PARK_COW_STALL_1, BuildingLocations.PARK_COW_STALL_2, BuildingLocations.PARK_CENTRE, BuildingLocations.PARK_COW_STALL_4 };
-    private static final NPC[] NPCS = new NPC[] { HFNPCs.BARN_OWNER, HFNPCs.GS_OWNER, HFNPCs.TRADER, HFNPCs.CARPENTER };
+    private static final String ANIMAL = "cow";
+    private static final BuildingLocation[] LOCATIONS = new BuildingLocation[] { PARK_COW_STALL_1, PARK_COW_STALL_2, PARK_CENTRE, PARK_COW_STALL_4 };
+    private static final NPC[] NPCS = new NPC[] { HFNPCs.BARN_OWNER, HFNPCs.GS_OWNER, HFNPCs.TRADER, HFNPCs.CARPENTER, HFNPCs.CLOCKMAKER_CHILD, HFNPCs.DAUGHTER_CHILD };
     private static final String[] NAMES = new String[] { "Anabelle", "Maybelle", "Daisy", "Miltank", "Bessie", "Clarabelle", "Dorothy", "Ella", "Molly", "Bella", "Bertha"};
-    private static final Script COW_FINISH = new HFScript("cow_finish");
-    private static final Script COW_JUDGE_1 = new ContestJudgingScript("cow", 1).setNPC(HFNPCs.MILKMAID);
-    private static final Script COW_JUDGE_2 = new ContestJudgingScript("cow", 2).setNPC(HFNPCs.MILKMAID);
-    private static final Script COW_JUDGE_3 = new ContestJudgingScript("cow", 3).setNPC(HFNPCs.MILKMAID);
-    private static final Script COW_JUDGE_4 = new ContestJudgingScript("cow", 4).setNPC(HFNPCs.MILKMAID);
-    private static final Script COW_WINNER = new ContestWinningScript("cow").setNPC(HFNPCs.MILKMAID);
+    private static final Script FINISH = new HFScript(ANIMAL + "_finish");
+    private static final Script JUDGE_1 = new ContestJudgingScript(ANIMAL, 1).setNPC(HFNPCs.MILKMAID);
+    private static final Script JUDGE_2 = new ContestJudgingScript(ANIMAL, 2).setNPC(HFNPCs.MILKMAID);
+    private static final Script JUDGE_3 = new ContestJudgingScript(ANIMAL, 3).setNPC(HFNPCs.MILKMAID);
+    private static final Script JUDGE_4 = new ContestJudgingScript(ANIMAL, 4).setNPC(HFNPCs.MILKMAID);
+    private static final Script WINNER = new ContestWinningScript(ANIMAL).setNPC(HFNPCs.MILKMAID);
 
     public QuestContestCow() {
-        super(HFNPCs.MILKMAID, new ContestEntries<>(EntityHarvestCow.class, LOCATIONS, NPCS, NAMES), "cow");
+        super(HFNPCs.MILKMAID, new ContestEntries<>(EntityHarvestCow.class, LOCATIONS, NPCS, NAMES), ANIMAL);
     }
 
     @Override
@@ -56,8 +56,8 @@ public class QuestContestCow extends QuestAnimalContest<EntityHarvestCow> {
 
     @Override
     public void execute(Town town, EntityPlayer player, NPCEntity npc) {
-        npc.setPath(getMove(town, PARK_COW_1), TaskSpeech.of(QuestContestCow.COW_JUDGE_1), getMove(town, PARK_COW_2), TaskSpeech.of(QuestContestCow.COW_JUDGE_2),
-                getMove(town, PARK_COW_3), TaskSpeech.of(QuestContestCow.COW_JUDGE_3), getMove(town, PARK_COW_4), TaskSpeech.of(QuestContestCow.COW_JUDGE_4), TaskWait.of(1),
-                TaskSpeech.of(QuestContestCow.COW_FINISH), getMove(town, PARK_COW_JUDGE), TaskSpeech.of(QuestContestCow.COW_WINNER), new TaskWinner(HFFestivals.COW_FESTIVAL));
+        npc.setPath(getMove(town, PARK_COW_1), TaskSpeech.of(QuestContestCow.JUDGE_1), getMove(town, PARK_COW_2), TaskSpeech.of(QuestContestCow.JUDGE_2),
+                getMove(town, PARK_COW_3), TaskSpeech.of(QuestContestCow.JUDGE_3), getMove(town, PARK_COW_4), TaskSpeech.of(QuestContestCow.JUDGE_4), TaskWait.of(1),
+                TaskSpeech.of(QuestContestCow.FINISH), getMove(town, PARK_COW_JUDGE), TaskSpeech.of(QuestContestCow.WINNER), new TaskWinner(HFFestivals.COW_FESTIVAL));
     }
 }

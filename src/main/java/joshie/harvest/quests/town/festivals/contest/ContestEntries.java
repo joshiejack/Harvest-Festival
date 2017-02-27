@@ -92,17 +92,21 @@ public class ContestEntries<E extends EntityAnimal> {
     }
 
     @SuppressWarnings("all")
-    private <O> O getNextEntry(Set<O> used, O... o) {
+    private <O> O getNextEntry(EntityPlayer player, Set<O> used, O... o) {
         List<O> names = Lists.newArrayList(o);
         Collections.shuffle(names);
         for (O name: names) {
-            if (!used.contains(name)) {
+            if (!used.contains(name) && isValid(player, name)) {
                 used.add(name);
                 return name;
             }
         }
 
         return o[0];
+    }
+
+    private boolean isValid(EntityPlayer player, Object o) {
+        return !(o instanceof NPC) || TownHelper.getClosestTownToEntity(player, false).hasNPC(((NPC) o));
     }
 
     private E createEntity(World world) {
@@ -118,7 +122,7 @@ public class ContestEntries<E extends EntityAnimal> {
 
     @SuppressWarnings("ConstantConditions")
     //After this is called, we need to sync up the entries to the clients
-    public void startContest(EntityPlayer player) {
+    void startContest(EntityPlayer player) {
         World world = player.worldObj;
         if (entries.size() < 4) {
             Set<String> used = new HashSet<>();
@@ -129,7 +133,7 @@ public class ContestEntries<E extends EntityAnimal> {
                     BlockPos pos = TownHelper.getClosestTownToEntity(player, false).getCoordinatesFor(locations[i - 1]);
                     E animal = createEntity(world);
                     animal.setPositionAndUpdate(pos.getX(), pos.getY(), pos.getZ());
-                    animal.setCustomNameTag(getNextEntry(used, names));
+                    animal.setCustomNameTag(getNextEntry(player, used, names));
                     world.spawnEntityInWorld(animal);
                     AnimalStats stats = EntityHelper.getStats(animal);
                     if (stats != null) {
@@ -139,7 +143,7 @@ public class ContestEntries<E extends EntityAnimal> {
                         stats.affectHappiness(world.rand.nextInt(20000)); //Give the animal a random happiness
                     }
 
-                    entries.add(new ContestEntry(getNextEntry(usedNPCS, npcs), EntityHelper.getEntityUUID(animal), i));
+                    entries.add(new ContestEntry(getNextEntry(player, usedNPCS, npcs), EntityHelper.getEntityUUID(animal), i));
                 }
             }
         }
@@ -182,7 +186,7 @@ public class ContestEntries<E extends EntityAnimal> {
         return null;
     }
 
-    public boolean isEntered(int stall) {
+    private boolean isEntered(int stall) {
         for (ContestEntry entry: entries) {
             if (stall == entry.getStall()) return true;
         }
@@ -228,11 +232,11 @@ public class ContestEntries<E extends EntityAnimal> {
         return selecting;
     }
 
-    public NPC[] getNPCs() {
+    NPC[] getNPCs() {
         return npcs;
     }
 
-    public void kill(World world) {
+    void kill(World world) {
         entries.stream().filter(entry -> entry.getPlayerUUID() == null).forEach(entry -> {
             E animal = EntityHelper.getAnimalFromUUID(world, entry.getAnimalUUID());
             if (animal != null) {
@@ -241,12 +245,12 @@ public class ContestEntries<E extends EntityAnimal> {
         });
     }
 
-    public ContestEntry getEntry(Place place) {
+    ContestEntry getEntry(Place place) {
         return entries.get(place.ordinal());
     }
 
     @Nullable
-    public ContestEntry getEntryFromStall(int stall) {
+    ContestEntry getEntryFromStall(int stall) {
         for (ContestEntry entry: entries) {
             if (entry.getStall() == stall) return entry;
         }

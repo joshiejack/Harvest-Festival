@@ -5,6 +5,7 @@ import joshie.harvest.api.buildings.BuildingLocation;
 import joshie.harvest.api.calendar.CalendarDate;
 import joshie.harvest.api.calendar.Festival;
 import joshie.harvest.api.calendar.Season;
+import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.api.town.Town;
 import joshie.harvest.buildings.BuildingStage;
@@ -70,6 +71,14 @@ public abstract class TownData<Q extends QuestData, L extends LetterData> implem
     public boolean isBuilding(Building building) {
         if (building == null) return buildingQueue.size() > 0;
         return buildingQueue.contains(new BuildingStage(building, BlockPos.ORIGIN, Rotation.NONE));
+    }
+
+    public boolean hasNPC(NPC npc) {
+        for (TownBuilding building: buildings.values()) {
+            if (building.building.getInhabitants().contains(npc.getRegistryName())) return true;
+        }
+
+        return false;
     }
 
     public boolean hasBuilding(ResourceLocation building) {

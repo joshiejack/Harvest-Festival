@@ -124,6 +124,25 @@ public class BuildingLocations {
     public static final BuildingLocation PARK_COW_BACK_LEFT = new BuildingLocation(FESTIVAL_GROUNDS, "festival.cow.back.left").withDistance(5D);
     public static final BuildingLocation PARK_COW_EDGE = new BuildingLocation(FESTIVAL_GROUNDS, "festival.cow.edge").withDistance(7D);
     public static final BuildingLocation PARK_COW_BENCH = new BuildingLocation(FESTIVAL_GROUNDS, "festival.cow.bench").withDistance(4D);
+    public static final BuildingLocation PARK_SHEEP_JUDGE = new BuildingLocation(FESTIVAL_GROUNDS, "festival.sheep.jim").withDistance(1D);
+    public static final BuildingLocation PARK_SHEEP_SHOP = new BuildingLocation(FESTIVAL_GROUNDS, "festival.sheep.candice").withDistance(1D);
+    public static final BuildingLocation PARK_SHEEP_GRANNY = new BuildingLocation(FESTIVAL_GROUNDS, "festival.sheep.granny").withDistance(1D);
+    public static final BuildingLocation PARK_SHEEP_1 = new BuildingLocation(FESTIVAL_GROUNDS, "festival.sheep.stand1").withDistance(1D);
+    public static final BuildingLocation PARK_SHEEP_2 = new BuildingLocation(FESTIVAL_GROUNDS, "festival.sheep.stand2").withDistance(1D);
+    public static final BuildingLocation PARK_SHEEP_3 = new BuildingLocation(FESTIVAL_GROUNDS, "festival.sheep.stand3").withDistance(1D);
+    public static final BuildingLocation PARK_SHEEP_4 = new BuildingLocation(FESTIVAL_GROUNDS, "festival.sheep.stand4").withDistance(1D);
+    public static final BuildingLocation PARK_SHEEP_STALL_1 = new BuildingLocation(FESTIVAL_GROUNDS, "festival.sheep.1").withDistance(1D);
+    public static final BuildingLocation PARK_SHEEP_STALL_2 = new BuildingLocation(FESTIVAL_GROUNDS, "festival.sheep.2").withDistance(1D);
+    public static final BuildingLocation PARK_SHEEP_STALL_3 = new BuildingLocation(FESTIVAL_GROUNDS, "festival.sheep.3").withDistance(1D);
+    public static final BuildingLocation PARK_SHEEP_STALL_4 = new BuildingLocation(FESTIVAL_GROUNDS, "festival.sheep.4").withDistance(1D);
+    public static final BuildingLocation PARK_SHEEP_YULIF = new BuildingLocation(FESTIVAL_GROUNDS, "festival.sheep.yulif").withDistance(5D);
+    public static final BuildingLocation PARK_SHEEP_JENNI = new BuildingLocation(FESTIVAL_GROUNDS, "festival.sheep.jenni").withDistance(5D);
+    public static final BuildingLocation PARK_SHEEP_ASHLEE = new BuildingLocation(FESTIVAL_GROUNDS, "festival.sheep.ashlee").withDistance(5D);
+    public static final BuildingLocation PARK_SHEEP_DANIERU = new BuildingLocation(FESTIVAL_GROUNDS, "festival.sheep.danieru").withDistance(5D);
+    public static final BuildingLocation PARK_SHEEP_TIBERIUS = new BuildingLocation(FESTIVAL_GROUNDS, "festival.sheep.tiberius").withDistance(5D);
+    public static final BuildingLocation PARK_SHEEP_LIARA = new BuildingLocation(FESTIVAL_GROUNDS, "festival.sheep.liara").withDistance(5D);
+    public static final BuildingLocation PARK_SHEEP_JAKOB = new BuildingLocation(FESTIVAL_GROUNDS, "festival.sheep.jakob").withDistance(5D);
+    public static final BuildingLocation PARK_SHEEP_MAYOR = new BuildingLocation(FESTIVAL_GROUNDS, "festival.sheep.mayor").withDistance(7D);
 
     //TODO: Convert to building locations vvv
     public static final String TOWNHALL_CHILD_BEDROOM = "townhall.bedroom.child";

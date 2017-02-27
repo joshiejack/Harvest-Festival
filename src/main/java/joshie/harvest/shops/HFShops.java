@@ -529,19 +529,19 @@ public class HFShops {
         SHEEP_FESTIVAL_SALE.addPurchasable(100, new ItemStack(Items.NAME_TAG));
     }
 
-    private static ItemStack getWoolyArmor(Item item, java.lang.String name) {
+    public static ItemStack getWoolyArmor(Item item, java.lang.String name) {
         ItemStack stack = new ItemStack(item);
         stack.setStackDisplayName(name);
-        ((ItemArmor)item).setColor(new ItemStack(item), 0xFFFFFF);
+        ((ItemArmor)item).setColor(stack, 0xFFFFFF);
         return stack;
     }
 
     private static void registerGrannysKnits() {
         SHEEP_FESTIVAL_KNITTNG.addPurchasable(50, new ItemStack(Items.STRING), 16);
         SHEEP_FESTIVAL_KNITTNG.addPurchasable(200, new ItemStack(Blocks.WOOL), 16);
-        SHEEP_FESTIVAL_KNITTNG.addPurchasable(500, getWoolyArmor(Items.LEATHER_BOOTS, "Wooly Hat"), 1);
-        SHEEP_FESTIVAL_KNITTNG.addPurchasable(800, getWoolyArmor(Items.LEATHER_BOOTS, "Wooly Coat"), 1);
-        SHEEP_FESTIVAL_KNITTNG.addPurchasable(700, getWoolyArmor(Items.LEATHER_BOOTS, "Wooly Pants"), 1);
+        SHEEP_FESTIVAL_KNITTNG.addPurchasable(500, getWoolyArmor(Items.LEATHER_HELMET, "Wooly Hat"), 1);
+        SHEEP_FESTIVAL_KNITTNG.addPurchasable(800, getWoolyArmor(Items.LEATHER_CHESTPLATE, "Wooly Coat"), 1);
+        SHEEP_FESTIVAL_KNITTNG.addPurchasable(700, getWoolyArmor(Items.LEATHER_LEGGINGS, "Wooly Pants"), 1);
         SHEEP_FESTIVAL_KNITTNG.addPurchasable(400, getWoolyArmor(Items.LEATHER_BOOTS, "Wooly Boots"), 1);
         SHEEP_FESTIVAL_KNITTNG.addPurchasable(300, new ItemStack(Items.COOKED_MUTTON), 20);
     }

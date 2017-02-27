@@ -6119,6 +6119,84 @@
     },
     {
       "pos": "27 1 5"
+    },
+    {
+      "homeString": "festival.sheep.tiberius",
+      "npc": "",
+      "pos": "11 1 14",
+      "type": "entities.NPC"
+    },
+    {
+      "pos": "11 1 14"
+    },
+    {
+      "homeString": "festival.sheep.mayor",
+      "npc": "",
+      "pos": "16 1 17",
+      "type": "entities.NPC"
+    },
+    {
+      "pos": "16 1 17"
+    },
+    {
+      "homeString": "festival.sheep.liara",
+      "npc": "",
+      "pos": "17 1 10",
+      "type": "entities.NPC"
+    },
+    {
+      "homeString": "festival.sheep.jakob",
+      "npc": "",
+      "pos": "19 1 6",
+      "type": "entities.NPC"
+    },
+    {
+      "pos": "19 1 6"
+    },
+    {
+      "homeString": "festival.sheep.yulif",
+      "npc": "",
+      "pos": "21 1 15",
+      "type": "entities.NPC"
+    },
+    {
+      "pos": "21 1 15"
+    },
+    {
+      "homeString": "festival.sheep.ashlee",
+      "npc": "",
+      "pos": "23 1 9",
+      "type": "entities.NPC"
+    },
+    {
+      "pos": "23 1 9"
+    },
+    {
+      "homeString": "festival.sheep.jenni",
+      "npc": "",
+      "pos": "26 1 13",
+      "type": "entities.NPC"
+    },
+    {
+      "pos": "26 1 13"
+    },
+    {
+      "homeString": "festival.sheep.danieru",
+      "npc": "",
+      "pos": "29 1 12",
+      "type": "entities.NPC"
+    },
+    {
+      "pos": "29 1 12"
+    },
+    {
+      "homeString": "festival.sheep.candice",
+      "npc": "",
+      "pos": "22 1 21",
+      "type": "entities.NPC"
+    },
+    {
+      "pos": "22 1 21"
     }
   ]
 }

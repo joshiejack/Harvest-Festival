@@ -51,4 +51,19 @@ public class PlaceableNPC extends PlaceableEntity {
         EntityNPC npc = (EntityNPC) e;
         return new PlaceableNPC("", npc.getNPC().getRegistryName().toString(), x, y, z);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PlaceableNPC that = (PlaceableNPC) o;
+        return homeString != null ? homeString.equals(that.homeString) : that.homeString == null && (npc != null ? npc.equals(that.npc) : that.npc == null);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = homeString != null ? homeString.hashCode() : 0;
+        result = 31 * result + (npc != null ? npc.hashCode() : 0);
+        return result;
+    }
 }

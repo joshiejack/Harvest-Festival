@@ -1,7 +1,8 @@
 package joshie.harvest.buildings.placeable.blocks;
 
 import com.google.gson.annotations.Expose;
-import joshie.harvest.animals.tile.TileTrough;
+import joshie.harvest.core.base.tile.TileFillable;
+import joshie.harvest.core.base.tile.TileFillableConnected;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Rotation;
@@ -28,8 +29,12 @@ public class PlaceableFillable extends PlaceableBlock {
     @Override
     public void postPlace(World world, BlockPos pos, Rotation rotation) {
         TileEntity tile = world.getTileEntity(pos);
-        if (tile instanceof TileTrough) {
-            ((TileTrough) tile).setFilled(fill);
+        if (tile instanceof TileFillable) {
+            if (tile instanceof TileFillableConnected) {
+                ((TileFillableConnected)tile).onPlaced();
+            }
+
+            ((TileFillable) tile).setFilled(fill);
         }
     }
 }

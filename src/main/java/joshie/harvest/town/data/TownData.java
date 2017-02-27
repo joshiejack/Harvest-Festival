@@ -23,7 +23,7 @@ import javax.annotation.Nullable;
 import java.util.*;
 
 public abstract class TownData<Q extends QuestData, L extends LetterData> implements Town {
-    protected final Set<ResourceLocation> inhabitants = new HashSet<>();
+    protected final Set<NPC> inhabitants = new HashSet<>();
     protected final ShopData shops = new ShopData();
     protected Map<ResourceLocation, TownBuilding> buildings = new HashMap<>();
     protected LinkedList<BuildingStage> buildingQueue = new LinkedList<>();
@@ -73,14 +73,6 @@ public abstract class TownData<Q extends QuestData, L extends LetterData> implem
         return buildingQueue.contains(new BuildingStage(building, BlockPos.ORIGIN, Rotation.NONE));
     }
 
-    public boolean hasNPC(NPC npc) {
-        for (TownBuilding building: buildings.values()) {
-            if (building.building.getInhabitants().contains(npc.getRegistryName())) return true;
-        }
-
-        return false;
-    }
-
     public boolean hasBuilding(ResourceLocation building) {
         return buildings.get(building) != null;
     }
@@ -115,7 +107,7 @@ public abstract class TownData<Q extends QuestData, L extends LetterData> implem
         return festival;
     }
 
-    public Set<ResourceLocation> getInhabitants() {
+    public Set<NPC> getInhabitants() {
         return inhabitants;
     }
 

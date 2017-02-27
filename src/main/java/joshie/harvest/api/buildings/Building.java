@@ -17,14 +17,11 @@ import net.minecraftforge.fml.common.registry.IForgeRegistryEntry;
 import net.minecraftforge.fml.common.registry.RegistryBuilder;
 
 import javax.annotation.Nonnull;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Locale;
-import java.util.Set;
+import java.util.*;
 
 public class Building extends IForgeRegistryEntry.Impl<Building> {
     public static final IForgeRegistry<Building> REGISTRY = new RegistryBuilder<Building>().setName(new ResourceLocation("harvestfestival", "buildings")).setType(Building.class).setIDRange(0, 32000).create();
-    private final Set<ResourceLocation> inhabitants = new HashSet<>();
+    private final Set<NPC> inhabitants = new HashSet<>();
     private ResourceLocation[] requirements = new ResourceLocation[0];
     private ISpecialRules special = (w, p, a) -> true;
     private String toLocalise = "";
@@ -76,10 +73,7 @@ public class Building extends IForgeRegistryEntry.Impl<Building> {
     }
 
     public Building setInhabitants(NPC... npcs) {
-        for (NPC npc: npcs) {
-            inhabitants.add(npc.getRegistryName());
-        }
-
+        Collections.addAll(inhabitants, npcs);
         return this;
     }
 
@@ -94,7 +88,7 @@ public class Building extends IForgeRegistryEntry.Impl<Building> {
         return this;
     }
 
-    public Collection<? extends ResourceLocation> getInhabitants() {
+    public Collection<NPC> getInhabitants() {
         return inhabitants;
     }
 

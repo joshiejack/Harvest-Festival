@@ -70,7 +70,7 @@
     "bread_curry": [{ "textures": { "layer0": "harvestfestival:items/meals/bread_curry" }}],
     "noodles_thick_fried": [{ "textures": { "layer0": "harvestfestival:items/meals/noodles_thick_fried" }}],
     "tempura": [{ "textures": { "layer0": "harvestfestival:items/meals/tempura" }}],
-    "curry_dry": [{ "textures": { "layer0": "harvestfestival:items/meals/curry_dry" }}],
+    "curry_dry": [{ "textures": { "layer0": "harvestfestival:items/meals/curry_rice" }}],
     "juice_grape": [{ "textures": { "layer0": "harvestfestival:items/meals/juice_grape" }}],
     "juice_peach": [{ "textures": { "layer0": "harvestfestival:items/meals/juice_peach" }}],
     "juice_banana": [{ "textures": { "layer0": "harvestfestival:items/meals/juice_banana" }}],

@@ -47,7 +47,6 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements IPlantable {
     private long sell;
     private int stages;
     private int regrow;
-    private int year;
     private int bagColor;
     private int doubleStage;
     private int minCut;
@@ -99,15 +98,6 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements IPlantable {
      * @param stages the number of stages **/
     public Crop setStages(int stages) {
         this.stages = stages;
-        return this;
-    }
-
-    /**
-     * Set the number of years that have to have passed,
-     * for this crop to be purchasable
-     **/
-    public Crop setUnlocked(int year) {
-        this.year = year;
         return this;
     }
 
@@ -319,13 +309,6 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements IPlantable {
      */
     public int getStages() {
         return stages;
-    }
-
-    /**
-     * The year in which this crop can be purchased
-     **/
-    public int getPurchaseYear() {
-        return year;
     }
 
     /**

@@ -1,6 +1,5 @@
 package joshie.harvest.npcs.gui;
 
-import joshie.harvest.api.HFApi;
 import joshie.harvest.api.player.RelationshipType;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.core.base.gui.GuiBase;
@@ -127,10 +126,12 @@ public abstract class GuiNPCBase extends GuiBase {
     public void drawForeground(int x, int y) {
         boolean originalFlag = fontRendererObj.getUnicodeFlag();
         fontRendererObj.setUnicodeFlag(true);
+        //TODO: Readd when doing marriage
+        /**
         mc.renderEngine.bindTexture(HFModInfo.ELEMENTS);
         if (npc.getNPC().isMarriageCandidate()) {
             drawHeart(HFApi.player.getRelationsForPlayer(player).getRelationship(npc.getNPC()));
-        }
+        } **/
 
         GlStateManager.color(1F, 1F, 1F);
         RenderHelper.enableGUIStandardItemLighting();

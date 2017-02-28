@@ -359,7 +359,7 @@ public class HFShops {
     }
 
     private static void registerSupermarket() {
-        Crop.REGISTRY.getValues().stream().filter(crop -> crop != Crop.NULL_CROP).forEachOrdered(crop -> {
+        Crop.REGISTRY.getValues().stream().filter(crop -> crop != Crop.NULL_CROP && crop.getSeedCost() > 0).forEachOrdered(crop -> {
             SUPERMARKET.addPurchasable(new PurchasableCropSeeds(crop));
         });
 

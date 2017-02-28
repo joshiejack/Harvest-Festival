@@ -19,16 +19,15 @@ import java.util.Iterator;
 import java.util.List;
 
 public class EntityBasket extends Entity {
-    private static final DataParameter<Optional<ItemStack>> ITEM = EntityDataManager.<Optional<ItemStack>>createKey(EntityItem.class, DataSerializers.OPTIONAL_ITEM_STACK);
+    private static final DataParameter<Optional<ItemStack>> ITEM = EntityDataManager.createKey(EntityItem.class, DataSerializers.OPTIONAL_ITEM_STACK);
 
     public EntityBasket(World worldIn) {
         super(worldIn);
-        setEntityItemStack(new ItemStack(Blocks.AIR, 0));
     }
 
     @Override
     protected void entityInit() {
-        this.getDataManager().register(ITEM, Optional.<ItemStack>absent());
+        this.getDataManager().register(ITEM, Optional.absent());
     }
 
     public void setEntityItemStack(@Nullable ItemStack stack) {
@@ -38,7 +37,6 @@ public class EntityBasket extends Entity {
 
     public ItemStack getEntityItem()  {
         ItemStack itemstack = (ItemStack)((Optional)this.getDataManager().get(ITEM)).orNull();
-
         if (itemstack == null) {
             return new ItemStack(Blocks.STONE);
         } else {
@@ -66,6 +64,10 @@ public class EntityBasket extends Entity {
     public static boolean findBasketAndShip(EntityPlayer player, List<ItemStack> list) {
         for (Entity entity : player.getPassengers()) {
             if (entity instanceof EntityBasket) {
+                if (list.size() > 0) {
+                    ((EntityBasket)entity).setEntityItemStack(list.get(list.size() - 1).copy());
+                }
+
                 ((EntityBasket)entity).autoship(player.worldObj, player, list);
                 return list.isEmpty();
             }

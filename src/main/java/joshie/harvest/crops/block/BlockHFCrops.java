@@ -177,7 +177,7 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
             Crop crop = data.getCrop();
             if (crop.getGrowthHandler() != null) {
                 IBlockState down = world.getBlockState(pos.down());
-                return down.getBlock() == this || down.getBlock().canSustainPlant(down, world, pos, EnumFacing.UP, this) || crop.getGrowthHandler().canGrow(world, pos, crop);
+                return down.getBlock() == this || (down.getBlock().canSustainPlant(down, world, pos, EnumFacing.UP, this) && crop.getGrowthHandler().canGrow(world, pos, crop));
             }
         }
 

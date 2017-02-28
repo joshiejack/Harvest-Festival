@@ -6,6 +6,7 @@ import joshie.harvest.api.animals.AnimalFoodType;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.crops.Crop;
 import joshie.harvest.api.crops.StateHandlerBlock;
+import joshie.harvest.crops.handlers.rules.SpecialRulesYear;
 import joshie.harvest.plugins.crafttweaker.CraftTweaker;
 import joshie.harvest.plugins.crafttweaker.base.BaseCrop;
 import joshie.harvest.plugins.crafttweaker.base.BaseOnce;
@@ -359,12 +360,12 @@ public class Crops {
 
         @Override
         public String getDescription() {
-            return "Setting year unlocked for " + resource + " to " + year;
+            return "Setting years passed unlocked for " + resource + " to " + year;
         }
 
         @Override
         protected void applyToCrop(Crop crop) {
-            crop.setUnlocked(year);
+            crop.setPurchaseRules(new SpecialRulesYear(year));
         }
     }
 

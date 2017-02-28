@@ -14,10 +14,7 @@ import joshie.harvest.core.helpers.RegistryHelper;
 import joshie.harvest.core.lib.EntityIDs;
 import joshie.harvest.core.loot.SetEnum;
 import joshie.harvest.core.loot.SetSizeable;
-import joshie.harvest.core.render.RenderBasket;
-import joshie.harvest.core.render.SpecialRendererCookingStand;
-import joshie.harvest.core.render.SpecialRendererMailbox;
-import joshie.harvest.core.render.SpecialRendererPlate;
+import joshie.harvest.core.render.*;
 import joshie.harvest.core.tile.*;
 import joshie.harvest.core.util.annotations.HFLoader;
 import net.minecraft.block.BlockFlower.EnumFlowerColor;
@@ -63,7 +60,7 @@ public class HFCore {
         NetworkRegistry.INSTANCE.registerGuiHandler(HarvestFestival.instance, new GuiHandler());
         LootFunctionManager.registerFunction(new SetEnum.Serializer());
         LootFunctionManager.registerFunction(new SetSizeable.Serializer());
-        RegistryHelper.registerTiles(TileShipping.class, TileMailbox.class, TileCookingStand.class, TilePlate.class);
+        RegistryHelper.registerTiles(TileShipping.class, TileMailbox.class, TileCookingStand.class, TilePlate.class, TileBasket.class);
         registerModEntity(EntityBasket.class, "basket", EntityIDs.BASKET, HarvestFestival.instance, 150, 3, true);
         GODDESS.setBlock(GODDESS_WATER);
 
@@ -103,6 +100,7 @@ public class HFCore {
 
     @SideOnly(Side.CLIENT)
     public static void initClient() {
+        ClientRegistry.bindTileEntitySpecialRenderer(TileBasket.class, new SpecialRendererBasket());
         ClientRegistry.bindTileEntitySpecialRenderer(TileCookingStand.class, new SpecialRendererCookingStand());
         ClientRegistry.bindTileEntitySpecialRenderer(TilePlate.class, new SpecialRendererPlate());
         Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler((state, worldIn, pos, tintIndex) -> {

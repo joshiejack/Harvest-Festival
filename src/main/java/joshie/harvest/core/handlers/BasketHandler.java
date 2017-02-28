@@ -7,20 +7,24 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.core.HFCore;
 import joshie.harvest.core.block.BlockStorage.Storage;
 import joshie.harvest.core.entity.EntityBasket;
+import joshie.harvest.core.item.ItemBlockStorage;
+import joshie.harvest.core.tile.TileBasket;
 import joshie.harvest.core.util.annotations.HFEvents;
 import joshie.harvest.crops.block.BlockHFCrops;
 import net.minecraft.block.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumActionResult;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedOutEvent;
 
+import javax.annotation.Nullable;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -47,6 +51,16 @@ public class BasketHandler {
         }
     }
 
+    private void setBasket(World world, BlockPos pos, @Nullable ItemStack stack) {
+        world.setBlockState(pos, HFCore.STORAGE.getStateFromEnum(Storage.BASKET));
+        if (stack != null) {
+            TileEntity tile = world.getTileEntity(pos);
+            if (tile instanceof TileBasket) {
+                ((TileBasket)tile).onRightClicked(null, stack);
+            }
+        }
+    }
+
     @SubscribeEvent
     public void onPlayerLoggedOut(PlayerLoggedOutEvent event) {
         for (Entity entity : event.player.getPassengers()) {
@@ -54,14 +68,14 @@ public class BasketHandler {
                 EntityPlayer player = event.player;
                 BlockPos pos = new BlockPos(player);
                 if (player.worldObj.isAirBlock(pos)) {
-                    player.worldObj.setBlockState(pos, HFCore.STORAGE.getStateFromEnum(Storage.BASKET));
+                    setBasket(player.worldObj, pos, ((EntityBasket)entity).getEntityItem());
                 } else {
                     boolean placed = false;
                     int attempts = 0;
                     while (!placed && attempts < 512) {
                         BlockPos placing = pos.add(player.worldObj.rand.nextInt(10) - 5, player.worldObj.rand.nextInt(3), player.worldObj.rand.nextInt(10) - 5);
                         if (player.worldObj.isAirBlock(placing)) {
-                            player.worldObj.setBlockState(placing, HFCore.STORAGE.getStateFromEnum(Storage.BASKET));
+                            setBasket(player.worldObj, placing, ((EntityBasket)entity).getEntityItem());
                             placed = true;
                         }
 
@@ -94,7 +108,9 @@ public class BasketHandler {
         if (!forbidsDrop(event.getWorld().getBlockState(event.getPos()).getBlock())) {
             player.getPassengers().stream().filter(entity -> entity instanceof EntityBasket && !hasDropped(player, entity)).forEach(entity -> {
                 ItemStack basket = HFCore.STORAGE.getStackFromEnum(Storage.BASKET);
-                if (basket.onItemUse(player, player.worldObj, event.getPos(), EnumHand.MAIN_HAND, event.getFace(), 0F, 0F, 0F) == EnumActionResult.SUCCESS) {
+                TileBasket tile = (((ItemBlockStorage)basket.getItem()).onBasketUsed(basket, player, player.worldObj, event.getPos(), EnumHand.MAIN_HAND, event.getFace(), 0F, 0F, 0F));
+                if (tile != null) {
+                    tile.onRightClicked(null, ((EntityBasket)entity).getEntityItem());
                     entity.setDead();
                 }
             });

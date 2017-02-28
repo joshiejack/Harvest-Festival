@@ -6,7 +6,6 @@ import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.crops.Crop;
 import joshie.harvest.api.shops.IPurchasable;
 import joshie.harvest.api.trees.Tree;
-import joshie.harvest.calendar.CalendarHelper;
 import joshie.harvest.core.helpers.MCClientHelper;
 import joshie.harvest.core.helpers.SpawnItemHelper;
 import joshie.harvest.core.helpers.TextHelper;
@@ -39,9 +38,7 @@ public class PurchasableCropSeeds implements IPurchasable {
     @Override
     public boolean canDo(@Nonnull World world, @Nonnull EntityPlayer player, int amount) {
         CalendarDate date = HFApi.calendar.getDate(world);
-        return isCorrectSeason(date.getSeason()) && crop.canPurchase()
-                && !(crop.getPurchaseYear() > 0 && !CalendarHelper.haveYearsPassed(world, player, crop.getPurchaseYear()))
-                && crop.getRules().canDo(world, player, amount);
+        return isCorrectSeason(date.getSeason()) && crop.getRules().canDo(world, player, amount);
     }
 
     @Override

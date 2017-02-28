@@ -12,6 +12,7 @@ import joshie.harvest.core.helpers.StackHelper;
 import joshie.harvest.core.helpers.TextHelper;
 import joshie.harvest.core.item.ItemBlockStorage;
 import joshie.harvest.core.lib.CreativeSort;
+import joshie.harvest.core.tile.TileBasket;
 import joshie.harvest.core.tile.TileMailbox;
 import joshie.harvest.core.tile.TileShipping;
 import joshie.harvest.core.util.interfaces.IFaceable;
@@ -154,9 +155,14 @@ public class BlockStorage extends BlockHFEnumRotatableTile<BlockStorage, Storage
                     basket.setPositionAndUpdate(player.posX, player.posY + 1.5D, player.posZ);
                     basket.setEntityInvulnerable(true);
                     basket.startRiding(player, true);
+                    TileEntity tile = world.getTileEntity(pos);
+                    if (tile instanceof TileBasket) {
+                        basket.setEntityItemStack(((TileBasket)tile).getStack());
+                    }
+
                     world.spawnEntityInWorld(basket);
                     ((EntityPlayerMP)player).connection.sendPacket(new SPacketSetPassengers(player));
-                    world.setBlockToAir(pos);
+                    world.setBlockToAir(pos); //Remove the basket
                 }
 
                 return true;
@@ -211,13 +217,20 @@ public class BlockStorage extends BlockHFEnumRotatableTile<BlockStorage, Storage
 
     @Override
     public boolean hasTileEntity(IBlockState state) {
-        return getEnumFromState(state) != BASKET;
+        return true;
     }
 
     @Override
     @Nonnull
     public TileEntity createTileEntity(@Nonnull World world, @Nonnull IBlockState state) {
-        return getEnumFromState(state) == SHIPPING ? new TileShipping() : new TileMailbox();
+        switch(getEnumFromState(state)) {
+            case SHIPPING:
+                return new TileShipping();
+            case MAILBOX:
+                return new TileMailbox();
+            default:
+                return new TileBasket();
+        }
     }
 
     @Override

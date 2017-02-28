@@ -33,7 +33,7 @@ public abstract class GrowthHandler<C extends Crop> {
         return soil.getBlock().canSustainPlant(soil, world, pos, EnumFacing.UP, crop) && world.isAirBlock(pos.up());
     }
 
-    /** Return true if this crop can't crop in this location
+    /** Return true if this crop can grow in this location
      *  @param world        the world
      *  @param pos          the position
      *  @param crop         the crop **/

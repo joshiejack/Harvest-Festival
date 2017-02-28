@@ -337,6 +337,8 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
                 world.setBlockToAir(pos.down());
             }
         }
+
+        super.breakBlock(world, pos, state); //Break them crops
     }
 
     @Override

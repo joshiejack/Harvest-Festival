@@ -165,6 +165,6 @@ public class ItemSickle extends ItemToolChargeable<ItemSickle> {
         int maximum = getMaxCharge(stack);
         int charge = getCharge(stack);
         int newCharge = Math.min(maximum, charge + charges);
-        return charge == newCharge ? null : TextHelper.translate("hoe.sickle.charge." + LEVEL_TO_TIER.get(newCharge).name().toLowerCase(Locale.ENGLISH));
+        return charge == newCharge ? null : TextHelper.translate("sickle.tooltip.charge." + LEVEL_TO_TIER.get(newCharge).name().toLowerCase(Locale.ENGLISH));
     }
 }

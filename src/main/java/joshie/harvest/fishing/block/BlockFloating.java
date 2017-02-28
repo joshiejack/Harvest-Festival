@@ -11,9 +11,11 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -88,6 +90,29 @@ public class BlockFloating extends BlockHFEnum<BlockFloating, Floating> {
             Material material = iblockstate.getMaterial();
             return material == Material.WATER && iblockstate.getValue(BlockLiquid.LEVEL) == 0;
         } else return false;
+    }
+
+    @Override
+    public void breakBlock(@Nonnull World world, @Nonnull BlockPos pos, @Nonnull IBlockState state) {
+        TileEntity tile = world.getTileEntity(pos);
+        if (tile instanceof TileHatchery) {
+            ItemStack stack = (((TileHatchery) tile).getStack());
+            if (stack != null) {
+                for (int i = 0; i < stack.stackSize; i++) {
+                    ItemStack stack2 = stack.copy();
+                    stack2.stackSize = 1;
+                    stack2.setTagCompound(new NBTTagCompound());
+                    stack2.getTagCompound().setLong("Rand", world.rand.nextLong());
+                    EntityItem item = new EntityItem(world, pos.getX() + 0.5D, pos.getY() - 1.5D, pos.getZ() + 0.5D, stack2);
+                    item.setPickupDelay(Integer.MAX_VALUE);
+                    item.lifespan = 20;
+                    item.addVelocity((-0.5D + world.rand.nextDouble()), 0D, (-0.5D + world.rand.nextDouble()));
+                    world.spawnEntityInWorld(item);
+                }
+            }
+        }
+
+        super.breakBlock(world, pos, state);
     }
 
     @Override

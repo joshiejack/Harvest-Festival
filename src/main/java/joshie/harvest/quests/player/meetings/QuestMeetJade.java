@@ -51,7 +51,7 @@ public class QuestMeetJade extends QuestQuestion {
 
     @Override
     public Selection getSelection(EntityPlayer player, NPCEntity entity) {
-        if (!entity.getTown().hasBuilding(HFBuildings.CARPENTER)) return null;
+        if (!entity.getTown().hasBuilding(HFBuildings.CARPENTER) || isCompletedEarly()) return null;
         return quest_stage <= 0 ? selection : null;
     }
 

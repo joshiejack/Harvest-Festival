@@ -89,6 +89,7 @@ public class HFNotes {
         MIXER.setIcon(HFCooking.COOKWARE.getStackFromEnum(Cookware.MIXER));
         POTPAN.setIcon(HFCooking.COOKWARE.getStackFromEnum(Cookware.POT));
         ELEVATOR.setIcon(HFMining.ELEVATOR.getStackFromEnum(Elevator.JUNK));
+        SUPERMARKET.setIcon(HFBuildings.STRUCTURES.getStackFromObject(HFBuildings.SUPERMARKET));
     }
 
     public static Note registerNote(Category category, String name) {

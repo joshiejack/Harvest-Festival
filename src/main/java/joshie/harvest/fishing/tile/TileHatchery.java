@@ -98,6 +98,8 @@ public class TileHatchery extends TileSingleStack implements ITickable {
             if (!worldObj.isRemote) {
                 boolean broke = false;
                 if (worldObj.rand.nextInt(100) > breakChance) {
+
+
                     IBlockState state = worldObj.getBlockState(getPos());
                     if (worldObj.setBlockToAir(getPos())) {
                         broke = true;

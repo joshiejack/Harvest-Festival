@@ -28,7 +28,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Set;
 import java.util.Stack;
@@ -65,7 +64,7 @@ public class ItemAxe extends ItemToolSmashing<ItemAxe> {
         return false;
     }
 
-    public int getHitsRequired(ItemStack stack) {
+    private int getHitsRequired(ItemStack stack) {
         switch (getTier(stack)) {
             case BASIC:
                 return 6;
@@ -85,16 +84,6 @@ public class ItemAxe extends ItemToolSmashing<ItemAxe> {
             default:
                 return 7;
         }
-    }
-
-    public int getTimes(ItemStack stack) {
-        return stack.getSubCompound("Chopping", true).getInteger("Times"); //Current level
-    }
-
-    @Nullable
-    public BlockPos getPosition(ItemStack stack) {
-        NBTTagCompound tag = stack.getSubCompound("Chopping", true);
-        return tag.hasKey("Block") ? BlockPos.fromLong(tag.getLong("Block")) : null;
     }
 
     private boolean canChopTree(EntityPlayer player, ItemStack stack, BlockPos pos) {

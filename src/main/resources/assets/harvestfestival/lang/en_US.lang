@@ -506,6 +506,7 @@ harvestfestival.hammer.blessed=Blessed Hammer
 harvestfestival.hammer.mythic=Mythic Hammer
 
 #Axe
+harvestfestival.axe.chop=Chopping Tree
 harvestfestival.axe.tooltip.sneak=Sneak to chop normally
 harvestfestival.axe.tooltip.chops=Chops a Tree in %s hits
 harvestfestival.axe.basic=Normal Axe
@@ -2245,6 +2246,8 @@ harvestfestival.subtitle.blessing=Heavenly Noise
 harvestfestival.subtitle.godddess=Goddess Ding
 harvestfestival.subtitle.recipe=Recipe Learnt!
 harvestfestival.subtitle.brush=Brushing
+harvestfestival.subtitle.chop=Tree Chopping
+harvestfestival.subtitle.fall=Tree Falling
 
 #Config
 harvestfestival.config.tooltip=

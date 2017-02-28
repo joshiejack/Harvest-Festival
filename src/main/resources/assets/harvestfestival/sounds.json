@@ -17,5 +17,9 @@
   "recipe": { "category": "neutral", "sounds":["harvestfestival:recipe"], "subtitle": "harvestfestival.subtitle.recipe" },
   "brush": { "category": "players", "sounds":[
     "harvestfestival:brush1", "harvestfestival:brush2", "harvestfestival:brush3"
-  ], "subtitle": "harvestfestival.subtitle.brush" }
+  ], "subtitle": "harvestfestival.subtitle.brush" },
+  "tree_chop": { "category": "players", "sounds":[
+    "harvestfestival:tree1", "harvestfestival:tree2", "harvestfestival:tree3"
+  ], "subtitle": "harvestfestival.subtitle.chop" },
+  "tree_fall": { "category": "neutral", "sounds":["harvestfestival:tree_fall"], "subtitle": "harvestfestival.subtitle.fall" }
 }

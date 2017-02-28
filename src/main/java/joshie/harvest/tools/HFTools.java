@@ -36,7 +36,7 @@ public class HFTools {
             .registerPotionAttributeModifier(ATTACK_DAMAGE, "8107BD5F-4CF8-4030-441D-534C1F140890", -0.20000000596046448D, 2);
 
     public static void preInit() {
-        registerSounds("smash_rock", "smash_wood");
+        registerSounds("smash_rock", "smash_wood", "tree_chop", "tree_fall");
     }
 
     public static void init() {

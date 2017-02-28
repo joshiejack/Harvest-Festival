@@ -20,6 +20,8 @@ public class HFSounds {
     public static final SoundEvent GODDESS_SPAWN = getSoundEvent("goddess");
     public static final SoundEvent RECIPE = getSoundEvent("recipe");
     public static final SoundEvent BRUSH = getSoundEvent("brush");
+    public static final SoundEvent TREE_CHOP = getSoundEvent("tree_chop");
+    public static final SoundEvent TREE_FALL = getSoundEvent("tree_fall");
 
     private static SoundEvent getSoundEvent(String name) {
         return SoundEvent.REGISTRY.getObject(new ResourceLocation(MODID, name));

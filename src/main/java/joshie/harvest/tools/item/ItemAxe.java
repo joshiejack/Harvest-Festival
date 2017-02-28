@@ -28,6 +28,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Set;
 import java.util.Stack;
@@ -55,7 +56,7 @@ public class ItemAxe extends ItemToolSmashing<ItemAxe> {
     @Override
     public boolean onBlockStartBreak(ItemStack stack, BlockPos pos, EntityPlayer player) {
         if (!player.isSneaking() && findTree(player.worldObj, pos)) {
-            if (canChopTree(stack, pos))
+            if (canChopTree(player, stack, pos))
                 return chopTree(pos, player, stack);
              else if (isWood(player.worldObj, pos))
                 return replaceTree(pos, player);
@@ -64,7 +65,7 @@ public class ItemAxe extends ItemToolSmashing<ItemAxe> {
         return false;
     }
 
-    private int getTimes(ItemStack stack) {
+    public int getHitsRequired(ItemStack stack) {
         switch (getTier(stack)) {
             case BASIC:
                 return 6;
@@ -86,25 +87,33 @@ public class ItemAxe extends ItemToolSmashing<ItemAxe> {
         }
     }
 
-    public boolean hasReachedLimit(ItemStack stack) {
-        return stack.getSubCompound("Chopping", true).getInteger("Times") > getTimes(stack);
+    public int getTimes(ItemStack stack) {
+        return stack.getSubCompound("Chopping", true).getInteger("Times"); //Current level
     }
 
-    private boolean canChopTree(ItemStack stack, BlockPos pos) {
+    @Nullable
+    public BlockPos getPosition(ItemStack stack) {
+        NBTTagCompound tag = stack.getSubCompound("Chopping", true);
+        return tag.hasKey("Block") ? BlockPos.fromLong(tag.getLong("Block")) : null;
+    }
+
+    private boolean canChopTree(EntityPlayer player, ItemStack stack, BlockPos pos) {
         NBTTagCompound tag = stack.getSubCompound("Chopping", true);
         if (tag.hasKey("Block")) {
             BlockPos internal = BlockPos.fromLong(tag.getLong("Block"));
             if (internal.equals(pos)) {
                 int times = tag.getInteger("Times");
                 tag.setInteger("Times", times + 1);
-                return times >= getTimes(stack);
+                player.worldObj.playSound(null, pos, HFSounds.TREE_CHOP, SoundCategory.BLOCKS, (player.worldObj.rand.nextFloat() * 0.25F) * times * 10F, player.worldObj.rand.nextFloat() * 1.0F + 0.5F);
+                return times >= getHitsRequired(stack);
             }
         }
 
         int times = 1;
         tag.setLong("Block", pos.toLong());
         tag.setInteger("Times", times);
-        return times > getTimes(stack);
+        player.worldObj.playSound(null, pos, HFSounds.TREE_CHOP, SoundCategory.BLOCKS, (player.worldObj.rand.nextFloat() * 0.25F) * times * 10F, player.worldObj.rand.nextFloat() * 1.0F + 0.5F);
+        return times > getHitsRequired(stack);
     }
 
     private boolean chopTree(BlockPos pos, EntityPlayer player, ItemStack stack) {
@@ -113,6 +122,7 @@ public class ItemAxe extends ItemToolSmashing<ItemAxe> {
         tag.removeTag("Times"); //Remove the data now we're chopping
         if(player.worldObj.isRemote) return true;
         MinecraftForge.EVENT_BUS.register(new ChopTree(pos, player, stack));
+        player.worldObj.playSound(null, pos, HFSounds.TREE_FALL, SoundCategory.BLOCKS, player.worldObj.rand.nextFloat() * 0.25F + 6F, player.worldObj.rand.nextFloat() * 1.0F + 0.5F);
         return true;
     }
 
@@ -163,7 +173,7 @@ public class ItemAxe extends ItemToolSmashing<ItemAxe> {
 
     @Override
     public void playSound(World world, BlockPos pos) {
-        playSound(world, pos, HFSounds.SMASH_WOOD, SoundCategory.BLOCKS);
+        world.playSound(null, pos, HFSounds.SMASH_WOOD, SoundCategory.BLOCKS, world.rand.nextFloat() * 0.25F + 6F, world.rand.nextFloat() * 1.0F + 0.5F);
     }
 
     @Override
@@ -192,6 +202,6 @@ public class ItemAxe extends ItemToolSmashing<ItemAxe> {
     public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean flag) {
         super.addInformation(stack, player, list, flag);
         list.add(TextFormatting.AQUA + "" + TextFormatting.ITALIC + TextHelper.translate("axe.tooltip.sneak"));
-        list.add(TextFormatting.GREEN + TextHelper.formatHF("axe.tooltip.chops", getTimes(stack) + 1));
+        list.add(TextFormatting.GREEN + TextHelper.formatHF("axe.tooltip.chops", getHitsRequired(stack) + 1));
     }
 }

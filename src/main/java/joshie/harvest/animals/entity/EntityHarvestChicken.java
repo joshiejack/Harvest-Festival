@@ -22,6 +22,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.Set;
 
 import static joshie.harvest.api.animals.IAnimalHandler.ANIMAL_STATS_CAPABILITY;
@@ -70,7 +71,7 @@ public class EntityHarvestChicken extends EntityChicken {
             if (toLoveTicker >= 0) toLoveTicker--;
             else {
                 if (!stats.performTest(AnimalTest.BEEN_LOVED)) {
-                    stats.affectHappiness(stats.getType().getRelationshipBonus(AnimalAction.PETTED)); //Love <3
+                    stats.performAction(worldObj, null, AnimalAction.PETTED); //Love <3
                 }
 
                 tickToLove = false;
@@ -79,19 +80,21 @@ public class EntityHarvestChicken extends EntityChicken {
     }
 
     @Override
-    public void setInLove(EntityPlayer player) {
+    public void setInLove(@Nullable EntityPlayer player) {
         tickToLove = true;
         toLoveTicker = 20;
     }
 
     @Override
-    public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
+    @SuppressWarnings("ConstantConditions")
+    public boolean hasCapability(@Nonnull Capability<?> capability, @Nonnull EnumFacing facing) {
         return capability == ANIMAL_STATS_CAPABILITY || super.hasCapability(capability, facing);
     }
 
     @Override
-    @SuppressWarnings("unchecked")
-    public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
+    @SuppressWarnings("ConstantConditions, unchecked")
+    @Nonnull
+    public <T> T getCapability(@Nonnull Capability<T> capability, @Nonnull EnumFacing facing) {
         return capability == ANIMAL_STATS_CAPABILITY ? (T) stats : super.getCapability(capability, facing);
     }
 

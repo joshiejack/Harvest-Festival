@@ -89,7 +89,7 @@ public class HFBuildings {
     }
 
     @SuppressWarnings("unchecked")
-    private static <B extends Building> B registerBuilding(String name, Class<B>... clazzes) {
+    public static <B extends Building> B registerBuilding(String name, Class<B>... clazzes) {
         Class<B> clazz = clazzes.length == 1 ? clazzes[0] : null;
         Building building = null;
         try {

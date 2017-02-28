@@ -77,7 +77,7 @@ public class EntityHarvestCow extends EntityCow {
         boolean special = ITEM_STACK.matchesAny(stack, getStacks()) || ITEM.matchesAny(stack, HFAnimals.TREATS);
         if (stack == null || !special) {
             if (!stats.performTest(AnimalTest.BEEN_LOVED)) {
-                stats.affectHappiness(stats.getType().getRelationshipBonus(AnimalAction.PETTED)); //Love <3
+                stats.performAction(worldObj, null, AnimalAction.PETTED); //Love <3
                 SoundEvent s = getAmbientSound();
                 if (s != null) {
                     playSound(s, 2F, getSoundPitch());

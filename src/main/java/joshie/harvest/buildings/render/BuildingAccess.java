@@ -31,7 +31,7 @@ public class BuildingAccess implements IBlockAccess {
     public BuildingAccess(Building building, Rotation rotation) {
         //HFBuildings.loadBuilding(building);
         HFTemplate template = BuildingRegistry.INSTANCE.getTemplateForBuilding(building);
-        if (template.getComponents() == null) return;
+        if (template == null || template.getComponents() == null) return;
         for (Placeable placeable : template.getComponents()) {
             if (placeable == null) continue;
             if (placeable instanceof PlaceableBlock) {

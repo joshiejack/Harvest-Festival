@@ -316,7 +316,22 @@ public class AnimalStatsHF implements AnimalStats<NBTTagCompound> {
         if (action == AnimalAction.FEED) return feed(world);
         else if (action == AnimalAction.HEAL) return heal(world);
         else if (action == AnimalAction.MAKE_GOLDEN) return golden(world);
+        else if (action == AnimalAction.PETTED) return pet(world);
         return (action == AnimalAction.TREAT_SPECIAL || action == AnimalAction.TREAT_GENERIC) && treat(world, stack);
+    }
+
+    private boolean pet(@Nonnull World world) {
+        if (!beenLoved) {
+            if (!world.isRemote) {
+                beenLoved = true;
+                affectHappiness(type.getRelationshipBonus(AnimalAction.PETTED));
+                HFApi.animals.syncAnimalStats(animal);
+            }
+
+            return true;
+        }
+
+        return false;
     }
 
     private boolean golden(@Nonnull World world) {
@@ -368,7 +383,6 @@ public class AnimalStatsHF implements AnimalStats<NBTTagCompound> {
     @Override
     public void affectHappiness(int amount) {
         if (amount != 0) {
-            beenLoved = true; //Mark the animal as having received some loving
             happiness = Math.max(0, Math.min(RelationshipType.ANIMAL.getMaximumRP(), happiness + amount));
             if (animal != null && !animal.worldObj.isRemote) {
                 if (amount < 0) {

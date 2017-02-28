@@ -68,7 +68,7 @@ public class RecipeBuilder {
     }
 
     private List<ItemStack> build(ItemStack basicStack, boolean supportsNBTData) {
-        if (!supportsNBTData) return Lists.newArrayList(StackHelper.toStack(basicStack, stackSize));
+        if (!supportsNBTData) return Lists.newArrayList(StackHelper.toStack(basicStack, basicStack.stackSize * stackSize));
         else return Lists.newArrayList(setFoodStats(StackHelper.toStack(basicStack, stackSize), hunger, saturation, cost));
     }
 

@@ -76,7 +76,7 @@ public class BlockAquatic extends BlockHFEnum<BlockAquatic, Aquatic> {
     @SuppressWarnings("deprecation")
     @Nonnull
     public IBlockState getActualState(@Nonnull IBlockState state, IBlockAccess world, BlockPos pos) {
-        TileEntity tile = world instanceof ChunkCache ? ((ChunkCache)world).func_190300_a(pos, Chunk.EnumCreateEntityType.CHECK) : world.getTileEntity(pos);
+        TileEntity tile = world instanceof ChunkCache ? ((ChunkCache)world).getTileEntity(pos, Chunk.EnumCreateEntityType.CHECK) : world.getTileEntity(pos);
         if (tile instanceof TileTrap) {
             TileTrap trap = ((TileTrap)tile);
             if (trap.isBaited()) return getStateFromEnum(TRAP_BAITED);

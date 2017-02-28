@@ -38,10 +38,10 @@ public class CropHelper {
     }
 
     public static TileWithered getTile(IBlockAccess world, BlockPos pos, PlantSection section) {
-        if (section == BOTTOM) return (TileWithered) (world instanceof ChunkCache ? ((ChunkCache)world).func_190300_a(pos, Chunk.EnumCreateEntityType.CHECK) : world.getTileEntity(pos));
+        if (section == BOTTOM) return (TileWithered) (world instanceof ChunkCache ? ((ChunkCache)world).getTileEntity(pos, Chunk.EnumCreateEntityType.CHECK) : world.getTileEntity(pos));
         else {
-            TileWithered down = ((TileWithered)(world instanceof ChunkCache ? ((ChunkCache)world).func_190300_a(pos.down(), Chunk.EnumCreateEntityType.CHECK) : world.getTileEntity(pos.down())));
-            return down == null ? (TileWithered) (world instanceof ChunkCache ? ((ChunkCache)world).func_190300_a(pos, Chunk.EnumCreateEntityType.CHECK) : world.getTileEntity(pos)): down;
+            TileWithered down = ((TileWithered)(world instanceof ChunkCache ? ((ChunkCache)world).getTileEntity(pos.down(), Chunk.EnumCreateEntityType.CHECK) : world.getTileEntity(pos.down())));
+            return down == null ? (TileWithered) (world instanceof ChunkCache ? ((ChunkCache)world).getTileEntity(pos, Chunk.EnumCreateEntityType.CHECK) : world.getTileEntity(pos)): down;
         }
     }
 
@@ -108,11 +108,6 @@ public class CropHelper {
     }
 
     public static boolean isRainingAt(World world, BlockPos pos) {
-        if (!HFApi.calendar.getWeather(world).isRain()) return false;
-        else if (!world.canBlockSeeSky(pos)) {
-            return false;
-        } else if (world.getPrecipitationHeight(pos).getY() > pos.getY()) {
-            return false;
-        } else return world.getBiome(pos).canRain();
+        return HFApi.calendar.getWeather(world).isRain() && world.canBlockSeeSky(pos) && world.getPrecipitationHeight(pos).getY() <= pos.getY() && world.getBiome(pos).canRain();
     }
 }

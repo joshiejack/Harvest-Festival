@@ -132,7 +132,7 @@ public class BlockTrough extends BlockHFEnumRotatableMeta<BlockTrough, Trough> i
     @Override
     @Nonnull
     public IBlockState getActualState(@Nonnull IBlockState state, IBlockAccess world, BlockPos pos) {
-        TileEntity tile = world instanceof ChunkCache ? ((ChunkCache)world).func_190300_a(pos, Chunk.EnumCreateEntityType.CHECK) : world.getTileEntity(pos);
+        TileEntity tile = world instanceof ChunkCache ? ((ChunkCache)world).getTileEntity(pos, Chunk.EnumCreateEntityType.CHECK) : world.getTileEntity(pos);
         if (tile instanceof TileTrough) {
             boolean north = isTrough(NORTH, world, pos);
             boolean south = isTrough(SOUTH, world, pos);

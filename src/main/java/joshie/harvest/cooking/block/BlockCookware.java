@@ -266,7 +266,7 @@ public class BlockCookware extends BlockHFEnumRotatableTile<BlockCookware, Cookw
         IBlockState ret = super.getActualState(state, world, pos);
         Cookware cookware = getEnumFromState(ret);
         if (cookware == OVEN_OFF || cookware == OVEN_ON) {
-            TileEntity tile = world instanceof ChunkCache ? ((ChunkCache)world).func_190300_a(pos.up(), Chunk.EnumCreateEntityType.CHECK) : world.getTileEntity(pos.up());
+            TileEntity tile = world instanceof ChunkCache ? ((ChunkCache)world).getTileEntity(pos.up(), Chunk.EnumCreateEntityType.CHECK) : world.getTileEntity(pos.up());
             if (tile instanceof TileHeatable) {
                 if (((TileHeatable)tile).isCooking()) {
                     return ret.withProperty(property, OVEN_ON);

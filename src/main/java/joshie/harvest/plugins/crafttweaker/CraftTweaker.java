@@ -13,23 +13,32 @@ import joshie.harvest.plugins.crafttweaker.handlers.Shipping;
 import joshie.harvest.plugins.crafttweaker.handlers.Shops;
 import joshie.harvest.plugins.crafttweaker.wrappers.RequirementItemWrapper;
 import joshie.harvest.plugins.crafttweaker.wrappers.RequirementOreWrapper;
+import minetweaker.IBracketHandler;
 import minetweaker.MineTweakerAPI;
 import minetweaker.MineTweakerImplementationAPI;
 import minetweaker.api.item.IIngredient;
 import minetweaker.api.item.IItemStack;
 import minetweaker.api.oredict.IOreDictEntry;
-import minetweaker.mc1102.brackets.ItemBracketHandler;
 import minetweaker.runtime.providers.ScriptProviderDirectory;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 
 import java.io.File;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
 @HFLoader(mods = "MineTweaker3")
 public class CraftTweaker {
-    public static void init() {
+    public static IBracketHandler getItemBracketHandler() throws ClassNotFoundException, InstantiationException, IllegalAccessException {
+        return (IBracketHandler) Class.forName("minetweaker.mc1102.brackets.ItemBracketHandler").newInstance();
+    }
+
+    public static void rebuildItemRegistry(IBracketHandler handler) throws NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
+        handler.getClass().getMethod("rebuildItemRegistry").invoke(null);
+    }
+
+    public static void init() throws ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
         /** Attempt to load in the crops before world **/
         File directory = new File(ConfigHelper.getConfig().getConfigFile().getParentFile(), "harvestfestival");
         boolean exists = directory.exists();
@@ -38,12 +47,13 @@ public class CraftTweaker {
         }
 
         if (exists) {
-            MineTweakerAPI.registerBracketHandler(new ItemBracketHandler());
-            ItemBracketHandler.rebuildItemRegistry();
+            IBracketHandler handler = getItemBracketHandler();
+            MineTweakerAPI.registerBracketHandler(handler);
+            rebuildItemRegistry(handler);
             MineTweakerAPI.registerClass(Crops.class);
             MineTweakerImplementationAPI.setScriptProvider(new ScriptProviderDirectory(directory));
             MineTweakerImplementationAPI.reload();
-        } else { /**/ }
+        }
 
         MineTweakerAPI.registerClass(Blacklist.class);
         MineTweakerAPI.registerClass(Shipping.class);

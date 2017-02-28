@@ -51,6 +51,7 @@ public abstract class BlockHFEnumRotatableTile<B extends BlockHFEnumRotatableTil
 
     @Override
     @SideOnly(Side.CLIENT)
+    @Nonnull
     public BlockRenderLayer getBlockLayer() {
         return BlockRenderLayer.CUTOUT_MIPPED;
     }
@@ -62,7 +63,8 @@ public abstract class BlockHFEnumRotatableTile<B extends BlockHFEnumRotatableTil
 
     @SuppressWarnings("deprecation")
     @Override
-    public IBlockState withRotation(IBlockState state, Rotation rot) {
+    @Nonnull
+    public IBlockState withRotation(@Nonnull IBlockState state, Rotation rot) {
         return state.withProperty(FACING, rot.rotate(state.getValue(FACING)));
     }
 
@@ -78,7 +80,7 @@ public abstract class BlockHFEnumRotatableTile<B extends BlockHFEnumRotatableTil
     @Override
     @Nonnull
     public IBlockState getActualState(@Nonnull IBlockState state, IBlockAccess world, BlockPos pos) {
-        TileEntity tile = world instanceof ChunkCache ? ((ChunkCache)world).func_190300_a(pos, Chunk.EnumCreateEntityType.CHECK) : world.getTileEntity(pos);
+        TileEntity tile = world instanceof ChunkCache ? ((ChunkCache)world).getTileEntity(pos, Chunk.EnumCreateEntityType.CHECK) : world.getTileEntity(pos);
         if (tile instanceof IFaceable) {
             return state.withProperty(FACING, ((IFaceable)tile).getFacing());
         }

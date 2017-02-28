@@ -120,7 +120,7 @@ public class BlockSizedStorage extends BlockHFEnumRotatableTile<BlockSizedStorag
 
     @Override
     public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos) {
-        TileEntity tile = world instanceof ChunkCache ? ((ChunkCache)world).func_190300_a(pos, Chunk.EnumCreateEntityType.CHECK) : world.getTileEntity(pos);
+        TileEntity tile = world instanceof ChunkCache ? ((ChunkCache)world).getTileEntity(pos, Chunk.EnumCreateEntityType.CHECK) : world.getTileEntity(pos);
         if (tile instanceof TileFillableSized) {
             TileFillableSized sized = (TileFillableSized) tile;
             boolean isFilled = sized.getFillAmount() > 0;

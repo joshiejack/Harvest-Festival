@@ -26,6 +26,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.common.FMLCommonHandler;
@@ -38,7 +39,6 @@ import java.util.Random;
 
 import static joshie.harvest.api.HFApi.calendar;
 import static joshie.harvest.core.lib.HFModInfo.MODID;
-import static minetweaker.mc1102.MineTweakerMod.server;
 
 @HFQuest("festival.new.years.eve")
 public class QuestNewYearsEve extends QuestFestival {
@@ -115,7 +115,8 @@ public class QuestNewYearsEve extends QuestFestival {
                 }
             }
 
-            FMLCommonHandler.instance().getMinecraftServerInstance().getCommandManager().executeCommand(npc, "/summon fireworks_rocket ~ ~ ~ {LifeTime:60,FireworksItem:{id:fireworks,Count:1,tag:{Fireworks:{Explosions:[{Type:1,Flicker:0,Trail:1,Colors:[11743532,14602026],FadeColors:[]}]}}}}");
+            MinecraftServer server = FMLCommonHandler.instance().getMinecraftServerInstance();
+            server.getCommandManager().executeCommand(npc, "/summon fireworks_rocket ~ ~ ~ {LifeTime:60,FireworksItem:{id:fireworks,Count:1,tag:{Fireworks:{Explosions:[{Type:1,Flicker:0,Trail:1,Colors:[11743532,14602026],FadeColors:[]}]}}}}");
             //Set the world time to one tick before the new year!
             CalendarServer calendar = HFTrackers.getCalendar(npc.worldObj);
             CalendarHelper.setWorldTime(server, CalendarHelper.getTime(0, Season.SPRING, calendar.getDate().getYear() + 1) - 1);

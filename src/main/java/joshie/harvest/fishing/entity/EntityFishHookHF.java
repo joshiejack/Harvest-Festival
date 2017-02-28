@@ -88,7 +88,7 @@ public class EntityFishHookHF extends EntityFishHook {
             setRotation(rotationYaw, rotationPitch);
         } else {
             if (inGround) {
-                if (worldObj.getBlockState(field_189740_d).getBlock() == inTile) {
+                if (worldObj.getBlockState(pos).getBlock() == inTile) {
                     ++ticksInGround;
                     if (ticksInGround == 1200) {
                         setDead();
@@ -122,7 +122,7 @@ public class EntityFishHookHF extends EntityFishHook {
                 double d0 = 0.0D;
 
                 for (Entity entity1: list) {
-                    if (func_189739_a(entity1) && (entity1 != angler || ticksInAir >= 5)) {
+                    if (canBeHooked(entity1) && (entity1 != angler || ticksInAir >= 5)) {
                         AxisAlignedBB axisalignedbb1 = entity1.getEntityBoundingBox().expandXyz(0.30000001192092896D);
                         RayTraceResult raytraceresult1 = axisalignedbb1.calculateIntercept(vec3d1, vec3d);
                         if (raytraceresult1 != null) {
@@ -155,7 +155,10 @@ public class EntityFishHookHF extends EntityFishHook {
                 rotationYaw = (float) (MathHelper.atan2(motionX, motionZ) * (180D / Math.PI));
 
 
-                for (rotationPitch = (float) (MathHelper.atan2(motionY, (double) f2) * (180D / Math.PI)); rotationPitch - prevRotationPitch < -180.0F; prevRotationPitch -= 360.0F) {}
+                rotationPitch = (float) (MathHelper.atan2(motionY, (double) f2) * (180D / Math.PI));
+                while (rotationPitch - prevRotationPitch < -180.0F) {
+                    prevRotationPitch -= 360.0F;
+                }
 
                 while (rotationPitch - prevRotationPitch >= 180.0F) {
                     prevRotationPitch += 360.0F;

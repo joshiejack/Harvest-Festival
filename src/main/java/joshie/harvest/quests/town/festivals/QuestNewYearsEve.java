@@ -123,11 +123,8 @@ public class QuestNewYearsEve extends QuestFestival {
 
             //Add 500RP to all the npcs for any players that are in range
             for (EntityPlayer player : EntityHelper.getEntities(EntityPlayer.class, npc.worldObj, new BlockPos(npc), 64, 64)) {
-                for (NPC aNPC : NPC.REGISTRY) {
-                    if (HFApi.player.getRelationsForPlayer(player).isStatusMet(aNPC, RelationStatus.MET)) {
-                        HFApi.player.getRelationsForPlayer(player).affectRelationship(aNPC, 500);
-                    }
-                }
+                NPC.REGISTRY.values().stream().filter(aNPC -> HFApi.player.getRelationsForPlayer(player).isStatusMet(aNPC, RelationStatus.MET))
+                        .forEach(aNPC -> HFApi.player.getRelationsForPlayer(player).affectRelationship(aNPC, 500));
             }
 
             super.execute(npc); //Mark this as satisfied

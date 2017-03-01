@@ -22,13 +22,15 @@ import java.util.Locale;
 import static joshie.harvest.core.helpers.InventoryHelper.ITEM_STACK;
 
 public class Purchasable implements IPurchasable {
-    protected final ItemStack stack;
-    private final String resource;
-    private final long cost;
+
+    protected String resource;
+    protected ItemStack stack;
+    protected long cost;
     private String tooltip;
     private int stock;
     private Note note;
 
+    public Purchasable(){}
     public Purchasable(long cost, ItemStack stack) {
         this.cost = cost;
         this.stack = stack;
@@ -50,7 +52,7 @@ public class Purchasable implements IPurchasable {
         return this;
     }
 
-    static String stackToString(ItemStack stack) {
+    private static String stackToString(ItemStack stack) {
         if (stack == null) return "null";
         String string = stack.getItem().getRegistryName().toString().replace(":", "_");
         if (stack.getItemDamage() != 0) string = string + "_" + stack.getItemDamage();
@@ -78,12 +80,16 @@ public class Purchasable implements IPurchasable {
         return stack;
     }
 
+    protected ItemStack getPurchasedStack() {
+        return getDisplayStack();
+    }
+
     @Override
     public void onPurchased(EntityPlayer player) {
         if (getCost() < 0) {
-            InventoryHelper.takeItemsInInventory(player, ITEM_STACK, getDisplayStack(), getDisplayStack().stackSize);
+            InventoryHelper.takeItemsInInventory(player, ITEM_STACK, getPurchasedStack(), getPurchasedStack().stackSize);
         } else {
-            SpawnItemHelper.addToPlayerInventory(player, getDisplayStack().copy());
+            SpawnItemHelper.addToPlayerInventory(player, getPurchasedStack().copy());
         }
 
         if (note != null) HFApi.player.getTrackingForPlayer(player).learnNote(note);

@@ -36,24 +36,15 @@ public class HFCommandRelationship extends AbstractHFCommand {
                 int value = Integer.parseInt(parameters[parameters.length - 1]);
                 switch (npc) {
                     case "all":
-                        for (NPC npcz: NPC.REGISTRY) {
-                            if (npcz != NPC.NULL_NPC) {
-                                relationships.affectRelationship(npcz, value);
-                            }
-                        }
-
+                        NPC.REGISTRY.values().stream().filter(npcz -> npcz != NPC.NULL_NPC).forEach(npcz -> relationships.affectRelationship(npcz, value));
                         return true;
                     case "clear":
-                        for (NPC npcz: NPC.REGISTRY) {
-                            if (npcz != NPC.NULL_NPC) {
-                                relationships.affectRelationship(npcz, -relationships.getRelationship(npcz));
-                            }
-                        }
-
+                        NPC.REGISTRY.values().stream().filter(npcz -> npcz != NPC.NULL_NPC)
+                                .forEachOrdered(npcz -> relationships.affectRelationship(npcz, -relationships.getRelationship(npcz)));
                         return true;
                     default:
                         if (!npc.contains(":")) npc = "harvestfestival:" + npc;
-                        relationships.affectRelationship(NPC.REGISTRY.getValue(new ResourceLocation(npc)), value);
+                        relationships.affectRelationship(NPC.REGISTRY.get(new ResourceLocation(npc)), value);
                         return true;
                 }
             } catch (NumberFormatException | PlayerNotFoundException ignored) {}

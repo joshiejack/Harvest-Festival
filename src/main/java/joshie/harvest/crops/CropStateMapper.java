@@ -8,25 +8,26 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.StateMapperBase;
 
+import javax.annotation.Nonnull;
 import java.util.Map;
 
 public class CropStateMapper extends StateMapperBase {
     @Override
+    @Nonnull
     public Map<IBlockState, ModelResourceLocation> putStateModelLocations(Block blockIn) {
-        for (Crop crop : Crop.REGISTRY.getValues()) {
-            if (crop == Crop.NULL_CROP) continue;
-            if (crop.skipLoadingRender()) continue;
+        Crop.REGISTRY.values().stream().filter(crop -> crop != Crop.NULL_CROP && !crop.skipLoadingRender()).forEachOrdered(crop -> {
             for (Object object : crop.getStateHandler().getValidStates()) {
                 IBlockState state = (IBlockState) object;
                 mapStateModelLocations.put(state, getCropResourceLocation(crop, state));
             }
-        }
+        });
 
         return mapStateModelLocations;
     }
 
     @Override
-    protected ModelResourceLocation getModelResourceLocation(IBlockState state) {
+    @Nonnull
+    protected ModelResourceLocation getModelResourceLocation(@Nonnull IBlockState state) {
         Map <IProperty<?>, Comparable<? >> map = Maps.newLinkedHashMap(state.getProperties());
         map.remove(HFCrops.CROPS.property); //Remove the base property for rendering purposes
         return new ModelResourceLocation(Block.REGISTRY.getNameForObject(state.getBlock()), getPropertyString(map));
@@ -35,6 +36,6 @@ public class CropStateMapper extends StateMapperBase {
     private ModelResourceLocation getCropResourceLocation(Crop crop, IBlockState state) {
         Map <IProperty<?>, Comparable<? >> map = Maps.newLinkedHashMap(state.getProperties());
         map.remove(HFCrops.CROPS.property); //Remove the base property for rendering purposes
-        return new ModelResourceLocation(crop.getRegistryName().getResourceDomain() + ":crops_" + crop.getRegistryName().getResourcePath(), this.getPropertyString(map));
+        return new ModelResourceLocation(crop.getResource().getResourceDomain() + ":crops_" + crop.getResource().getResourcePath(), this.getPropertyString(map));
     }
 }

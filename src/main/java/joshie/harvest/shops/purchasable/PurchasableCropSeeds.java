@@ -24,7 +24,7 @@ public class PurchasableCropSeeds implements IPurchasable {
 
     public PurchasableCropSeeds(Crop crop) {
         this.crop = crop;
-        this.resource = crop.getRegistryName().toString().replace(":", "_") + "Seeds";
+        this.resource = crop.getResource().toString().replace(":", "_") + "Seeds";
     }
 
     private boolean isCorrectSeason(Season theSeason) {

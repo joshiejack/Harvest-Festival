@@ -32,10 +32,13 @@ public class RecipeBuilder {
         stackSize = 1; //Always create one recipe at least
         //We first always make one required item, and add all the optionals to it, as we already know we CAN make one item
         Set<Ingredient> removed = new HashSet<>();
+        Set<IngredientStack> toRemove = new HashSet<>();
         recipe.getRequired().stream().filter(stack -> !removed.contains(stack.getIngredient())).forEachOrdered(stack -> {
             removed.add(stack.getIngredient());
-            removeFromList(stack);
+            toRemove.add(stack);
         });
+
+        toRemove.forEach(this::removeFromList);
 
         //The next step is calculate the additional hunger, and saturation from the optional list
         calculateHungerSaturationAndRemoveOptionals(recipe, new ArrayList<>(optional));

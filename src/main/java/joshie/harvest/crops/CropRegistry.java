@@ -13,8 +13,11 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.registry.IForgeRegistry;
+import net.minecraftforge.fml.common.registry.RegistryBuilder;
 import net.minecraftforge.oredict.OreDictionary;
 
 import javax.annotation.Nullable;
@@ -27,6 +30,8 @@ import static joshie.harvest.crops.block.BlockHFCrops.CropType.FRESH_DOUBLE;
 @HFApiImplementation
 public class CropRegistry implements ICropRegistry {
     public static final CropRegistry INSTANCE = new CropRegistry();
+    //TODO: Remove in 0.7+
+    public static final IForgeRegistry<Crop> REGISTRY = new RegistryBuilder<Crop>().setName(new ResourceLocation("harvestfestival", "crops")).setType(Crop.class).setIDRange(0, 32000).create();
     public final Set<WateringHandler> wateringHandlers = new HashSet<>();
     public final HashMap<IBlockState, IBlockState> farmlandToDirtMap = new HashMap<>();
     private final HashMap<ItemStackHolder, Crop> providers = new HashMap<>();

@@ -172,15 +172,13 @@ public class HFIngredients {
         HFApi.cooking.register(new ItemStack(Items.MILK_BUCKET), MILK);
 
         //Crops
-        for (Crop crop: Crop.REGISTRY) {
-            if (crop != Crop.NULL_CROP && crop.getIngredient() != null) {
-                ItemStack stack = crop.getCropStack(1);
-                String name = getPrimaryCropName(stack);
-                if (name != null) {
-                    registerForOre(name, crop.getIngredient());
-                } else HFApi.cooking.register(stack, crop.getIngredient());
-            }
-        }
+        Crop.REGISTRY.values().stream().filter(crop -> crop != Crop.NULL_CROP && crop.getIngredient() != null).forEachOrdered(crop -> {
+            ItemStack stack = crop.getCropStack(1);
+            String name = getPrimaryCropName(stack);
+            if (name != null) {
+                registerForOre(name, crop.getIngredient());
+            } else HFApi.cooking.register(stack, crop.getIngredient());
+        });
 
         //Fruits
         HFApi.cooking.register(new ItemStack(Blocks.MELON_BLOCK), WATERMELON);

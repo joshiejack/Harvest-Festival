@@ -8,6 +8,9 @@ import joshie.harvest.core.util.HFTemplate;
 import joshie.harvest.core.util.ResourceLoader;
 import joshie.harvest.core.util.annotations.HFApiImplementation;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.common.registry.IForgeRegistry;
+import net.minecraftforge.fml.common.registry.RegistryBuilder;
 
 import javax.annotation.Nullable;
 import java.util.HashMap;
@@ -16,6 +19,7 @@ import static joshie.harvest.buildings.HFBuildings.getGson;
 
 @HFApiImplementation
 public class BuildingRegistry implements IBuildingRegistry {
+    public static final IForgeRegistry<Building> REGISTRY = new RegistryBuilder<Building>().setName(new ResourceLocation("harvestfestival", "buildings")).setType(Building.class).setIDRange(0, 32000).create();
     public static final BuildingRegistry INSTANCE = new BuildingRegistry();
     private final HashMap<Building, HFTemplate> instructions = new HashMap<>();
 
@@ -34,15 +38,15 @@ public class BuildingRegistry implements IBuildingRegistry {
     @Nullable
     public HFTemplate getTemplateForBuilding(Building building) {
         if (HFCore.DEBUG_MODE && building instanceof BuildingFestivalDebug) {
-            HFTemplate template = (getGson().fromJson(ResourceLoader.getJSONResource(HFBuildings.FESTIVAL_GROUNDS.getRegistryName(), "buildings"), HFTemplate.class));
-            HFTemplate festival = (getGson().fromJson(ResourceLoader.getJSONResource(building.getRegistryName(), "festivals"), HFTemplate.class));
+            HFTemplate template = (getGson().fromJson(ResourceLoader.getJSONResource(HFBuildings.FESTIVAL_GROUNDS.getResource(), "buildings"), HFTemplate.class));
+            HFTemplate festival = (getGson().fromJson(ResourceLoader.getJSONResource(building.getResource(), "festivals"), HFTemplate.class));
             template.merge(festival);
             return template; //Merged yo!
         }
 
         HFTemplate template = instructions.get(building);
         if (template == null) {
-            template = (getGson().fromJson(ResourceLoader.getJSONResource(building.getRegistryName(), "buildings"), HFTemplate.class));
+            template = (getGson().fromJson(ResourceLoader.getJSONResource(building.getResource(), "buildings"), HFTemplate.class));
             instructions.put(building, template);
         }
 

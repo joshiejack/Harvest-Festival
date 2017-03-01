@@ -44,13 +44,13 @@ public class TownBuilding implements INBTSerializableMap<ResourceLocation, TownB
 
     @Override
     public void buildMap(Map<ResourceLocation, TownBuilding> map) {
-        if (building != null) map.put(Building.REGISTRY.getKey(building), this);
+        if (building != null) map.put(building.getResource(), this);
     }
 
     @Override
     @SuppressWarnings("deprecation")
     public void deserializeNBT(NBTTagCompound nbt) {
-        building = Building.REGISTRY.getValue(new ResourceLocation(nbt.getString("Building")));
+        building = Building.REGISTRY.get(new ResourceLocation(nbt.getString("Building")));
         pos = NBTHelper.readBlockPos("Building", nbt);
         //TODO: Remove in 0.7+
         if (nbt.hasKey("Direction")) {
@@ -62,7 +62,7 @@ public class TownBuilding implements INBTSerializableMap<ResourceLocation, TownB
     @Override
     public NBTTagCompound serializeNBT() {
         NBTTagCompound nbt = new NBTTagCompound();
-        nbt.setString("Building", Building.REGISTRY.getKey(building).toString());
+        nbt.setString("Building", building.getResource().toString());
         nbt.setString("Rotation", rotation.name());
         NBTHelper.writeBlockPos("Building", nbt, pos);
         return nbt;

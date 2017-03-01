@@ -58,7 +58,7 @@ public abstract class QuestFestivalMultichat extends QuestFestival {
             UUID uuid = UUID.fromString(tag.getString("ID"));
             NBTTagList npcIds = tag.getTagList("NPCs", 8);
             for (int j = 0; j < npcIds.tagCount(); j++) {
-                received.get(uuid).add(NPC.REGISTRY.getValue(new ResourceLocation(npcIds.getStringTagAt(j))));
+                received.get(uuid).add(NPC.REGISTRY.get(new ResourceLocation(npcIds.getStringTagAt(j))));
             }
         }
     }
@@ -71,7 +71,7 @@ public abstract class QuestFestivalMultichat extends QuestFestival {
             tag.setString("ID", uuid.toString());
             NBTTagList npcIDs = new NBTTagList();
             for (NPC npc: received.get(uuid)) {
-                npcIDs.appendTag(new NBTTagString(npc.getRegistryName().toString()));
+                npcIDs.appendTag(new NBTTagString(npc.getResource().toString()));
             }
 
             tag.setTag("NPCs", npcIDs);

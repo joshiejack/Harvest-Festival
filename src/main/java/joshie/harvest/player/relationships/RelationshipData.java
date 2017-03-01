@@ -105,7 +105,7 @@ public abstract class RelationshipData implements IRelations {
                     relationships.put(npc, value);
                 }
             } else if (tag.hasKey("NPC")) {
-                NPC npc = NPC.REGISTRY.getValue(new ResourceLocation(tag.getString("NPC")));
+                NPC npc = NPC.REGISTRY.get(new ResourceLocation(tag.getString("NPC")));
                 int value = tag.getInteger("Value");
                 relationships.put(npc, value);
             }
@@ -126,7 +126,7 @@ public abstract class RelationshipData implements IRelations {
                     }
                 }
             } else if (tag.hasKey("NPC")) {
-                NPC npc = NPC.REGISTRY.getValue(new ResourceLocation(tag.getString("NPC")));
+                NPC npc = NPC.REGISTRY.get(new ResourceLocation(tag.getString("NPC")));
                 Collection<RelationStatus> collection = status.get(npc);
                 NBTTagList statuses = tag.getTagList("Status", 8);
                 for (int j = 0; j < statuses.tagCount(); j++) {
@@ -169,7 +169,7 @@ public abstract class RelationshipData implements IRelations {
         for (Map.Entry<NPC, Integer> entry : relationships.entrySet()) {
             if (entry == null || entry.getKey() == null) continue;
             NBTTagCompound tag = new NBTTagCompound();
-            tag.setString("NPC", entry.getKey().getRegistryName().toString());
+            tag.setString("NPC", entry.getKey().getResource().toString());
             tag.setInteger("Value", entry.getValue());
             relationList.appendTag(tag);
         }
@@ -180,7 +180,7 @@ public abstract class RelationshipData implements IRelations {
         NBTTagList statusList = new NBTTagList();
         for (NPC npc: status.keySet()) {
             NBTTagCompound tag = new NBTTagCompound();
-            tag.setString("NPC", npc.getRegistryName().toString());
+            tag.setString("NPC", npc.getResource().toString());
             NBTTagList list = new NBTTagList();
             for (RelationStatus stat: status.get(npc)) {
                 list.appendTag(new NBTTagString(stat.name()));

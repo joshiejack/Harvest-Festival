@@ -27,7 +27,7 @@ public class CommandExportRecipeList extends AbstractHFCommand {
     @Override
     public boolean execute(MinecraftServer server, ICommandSender sender, String[] parameters) throws CommandNotFoundException, NumberInvalidException {
         HashMultimap<Utensil, Recipe> set = HashMultimap.create();
-        for (Recipe recipe: Recipe.REGISTRY) {
+        for (Recipe recipe: Recipe.REGISTRY.values()) {
             set.get(recipe.getUtensil()).add(recipe);
         }
 

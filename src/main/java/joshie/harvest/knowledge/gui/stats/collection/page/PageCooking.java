@@ -20,6 +20,7 @@ import java.util.List;
 
 import static joshie.harvest.core.registry.ShippingRegistry.SELL_VALUE;
 
+@SuppressWarnings("WeakerAccess")
 public class PageCooking extends PageCollection {
     public static final BookPage INSTANCE = new PageCooking();
 
@@ -30,7 +31,7 @@ public class PageCooking extends PageCollection {
     @Override
     public void initGui(GuiStats gui, List<GuiButton> buttonList, List<GuiLabel> labelList) {
         super.initGui(gui, buttonList, labelList); //Add the tabs
-        List<Recipe> list = Recipe.REGISTRY.getValues();
+        List<Recipe> list = new ArrayList<>(Recipe.REGISTRY.values());
         int j = 0;
         int k = 0;
         int l = 0;
@@ -41,7 +42,7 @@ public class PageCooking extends PageCollection {
             stacks.addAll(recipe.getRequired());
             ItemStack stack = RecipeMaker.BUILDER.build(recipe, stacks).get(0);
             stack.stackSize = 1;
-            long value = stack.hasTagCompound() ? stack.getTagCompound().getLong(SELL_VALUE): 0L;
+            long value = stack.getTagCompound() != null ? stack.getTagCompound().getLong(SELL_VALUE): 0L;
             boolean obtained = hasObtainedStack(stack);
             if (k == 7) {
                 k = 0;

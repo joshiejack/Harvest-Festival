@@ -66,7 +66,7 @@ public class CropData {
     }
 
     public ResourceLocation getResource() {
-        return crop.getRegistryName();
+        return crop.getResource();
     }
 
     public int getStage() {
@@ -120,7 +120,7 @@ public class CropData {
     public void readFromNBT(NBTTagCompound nbt) {
         if (nbt.hasKey("CropResource")) {
             isDead = nbt.getBoolean("IsDead");
-            crop = Crop.REGISTRY.getValue(new ResourceLocation(nbt.getString("CropResource")));
+            crop = Crop.REGISTRY.get(new ResourceLocation(nbt.getString("CropResource")));
             stage = nbt.getByte("CurrentStage");
             daysWithoutWater = nbt.getShort("DaysWithoutWater");
         }
@@ -131,7 +131,7 @@ public class CropData {
     public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
         if (crop != null) {
             nbt.setBoolean("IsDead", isDead);
-            nbt.setString("CropResource", crop.getRegistryName().toString());
+            nbt.setString("CropResource", crop.getResource().toString());
             nbt.setByte("CurrentStage", (byte) stage);
             nbt.setShort("DaysWithoutWater", (short) daysWithoutWater);
         }

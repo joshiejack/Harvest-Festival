@@ -21,11 +21,14 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.commons.lang3.text.WordUtils;
 
 import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.List;
 
 import static joshie.harvest.core.helpers.InventoryHelper.ORE_DICTIONARY;
 
 @HFQuest("collect.crops")
 public class QuestCollect extends QuestDaily {
+    private static List<Crop> crops;
     public QuestCollect() {
         setNPCs(HFNPCs.CAFE_GRANNY);
         setTownQuest();
@@ -40,19 +43,30 @@ public class QuestCollect extends QuestDaily {
         else {
             rand.setSeed(HFApi.calendar.getDate(world).hashCode());
             amount = 1 + rand.nextInt(10);
-            crop = getValidCrop(Crop.REGISTRY.getValues().get(rand.nextInt(Crop.REGISTRY.getValues().size())));
+            crop = getValidCrop(getCrops().get(rand.nextInt(getCrops().size())));
             return getLocalized("task", amount, crop.getLocalizedName(true));
         }
     }
 
+    private static List<Crop> getCrops() {
+        if (crops != null) return crops;
+        else {
+            crops = new ArrayList<>(Crop.REGISTRY.values());
+            crops.remove(HFCrops.GRASS);
+            crops.remove(HFCrops.TUTORIAL);
+            crops.remove(Crop.NULL_CROP);
+            return crops;
+        }
+    }
+
     private Crop getValidCrop(Crop crop) {
-        return crop == HFCrops.GRASS || crop == HFCrops.TUTORIAL || crop.getIngredient() == null ? HFCrops.TURNIP : crop;
+        return crop.getIngredient() == null ? HFCrops.TURNIP : crop;
     }
 
     @Override
     public boolean isNPCUsed(EntityPlayer player, NPCEntity entity) {
         if (!super.isNPCUsed(player, entity)) return false;
-        String name = "crop" + WordUtils.capitalizeFully(crop.getRegistryName().getResourcePath(), '_').replace("_", "");
+        String name = "crop" + WordUtils.capitalizeFully(crop.getResource().getResourcePath(), '_').replace("_", "");
         return InventoryHelper.getHandItemIsIn(player, ORE_DICTIONARY, name, amount) != null;
     }
 
@@ -65,7 +79,7 @@ public class QuestCollect extends QuestDaily {
 
     @Override
     public void onChatClosed(EntityPlayer player, NPCEntity entity, boolean wasSneaking) {
-        String name = "crop" + WordUtils.capitalizeFully(crop.getRegistryName().getResourcePath(), '_').replace("_", "");
+        String name = "crop" + WordUtils.capitalizeFully(crop.getResource().getResourcePath(), '_').replace("_", "");
         if (InventoryHelper.takeItemsIfHeld(player, ORE_DICTIONARY, name, amount) != null) {
             complete(player);
         }
@@ -86,13 +100,13 @@ public class QuestCollect extends QuestDaily {
     public void readFromNBT(NBTTagCompound nbt) {
         super.readFromNBT(nbt);
         amount = nbt.getByte("TargetAmount");
-        crop = Crop.REGISTRY.getValue(new ResourceLocation(nbt.getString("TargetCrop")));
+        crop = Crop.REGISTRY.get(new ResourceLocation(nbt.getString("TargetCrop")));
     }
 
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
         nbt.setByte("TargetAmount", (byte) amount);
-        nbt.setString("TargetCrop", crop.getRegistryName().toString());
+        nbt.setString("TargetCrop", crop.getResource().toString());
         return super.writeToNBT(nbt);
     }
 }

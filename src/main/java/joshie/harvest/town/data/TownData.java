@@ -59,7 +59,7 @@ public abstract class TownData<Q extends QuestData, L extends LetterData> implem
     }
 
     public TownBuilding getBuilding(Building building) {
-        return buildings.get(building.getRegistryName());
+        return buildings.get(building.getResource());
     }
 
     /** Building currently being worked on **/
@@ -79,7 +79,7 @@ public abstract class TownData<Q extends QuestData, L extends LetterData> implem
 
     @Override
     public boolean hasBuilding(Building building) {
-        return buildings.get(building.getRegistryName()) != null;
+        return buildings.get(building.getResource()) != null;
     }
 
     public boolean hasBuildings(ResourceLocation[] buildings) {
@@ -98,7 +98,7 @@ public abstract class TownData<Q extends QuestData, L extends LetterData> implem
     @Override
     @Nullable
     public BlockPos getCoordinatesFor(@Nonnull BuildingLocation location) {
-        TownBuilding building = buildings.get(location.getResource());
+        TownBuilding building = buildings.get(location.getBuilding().getResource());
         return building != null ? building.getRealCoordinatesFor(location.getLocation()) : null;
     }
 

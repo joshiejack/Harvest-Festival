@@ -35,10 +35,7 @@ public class HFCommandRecipe extends AbstractHFCommand {
                 String recipe = parameters[parameters.length - 1];
                 switch (recipe) {
                     case "all":
-                        for (Recipe meal : Recipe.REGISTRY) {
-                            tracking.learnRecipe(meal);
-                        }
-
+                        Recipe.REGISTRY.values().forEach(tracking::learnRecipe);
                         tracking.sync(player);
                         return true;
                     case "clear":
@@ -47,7 +44,7 @@ public class HFCommandRecipe extends AbstractHFCommand {
                         return true;
                     default:
                         if (!recipe.contains(":")) recipe = "harvestfestival:" + recipe;
-                        tracking.learnRecipe(Recipe.REGISTRY.getValue(new ResourceLocation(recipe)));
+                        tracking.learnRecipe(Recipe.REGISTRY.get(new ResourceLocation(recipe)));
                         tracking.sync(player);
                         return true;
                 }

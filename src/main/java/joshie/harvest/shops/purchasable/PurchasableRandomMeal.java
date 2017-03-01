@@ -10,6 +10,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -45,24 +46,28 @@ public class PurchasableRandomMeal extends PurchasableMeal {
     @Override
     public boolean canDo(@Nonnull World world, @Nonnull EntityPlayer player, int amount) {
         Random rand = new Random(HFApi.calendar.getDate(world).hashCode() + seedAdjustment);
-        List<Recipe> list = Recipe.REGISTRY.getValues();
+        List<Recipe> list = new ArrayList<>(Recipe.REGISTRY.values());
         stack = null; //Reset the stack
         while(stack == null || !stack.hasTagCompound()) {
             stack = CookingHelper.makeRecipe(list.get(rand.nextInt(list.size())));
         }
 
-        adjustableCost = (long)((double)stack.getTagCompound().getLong(SELL_VALUE) / 1.1);
-        adjustableCost = (long)Math.ceil((double)adjustableCost/50) * 50;
-        stack.getTagCompound().setLong(SELL_VALUE, 0L);
+        if (stack.getTagCompound() != null) {
+            adjustableCost = (long) ((double) stack.getTagCompound().getLong(SELL_VALUE) / 1.1);
+            adjustableCost = (long) Math.ceil((double) adjustableCost / 50) * 50;
+            stack.getTagCompound().setLong(SELL_VALUE, 0L);
+        }
+
         return true;
     }
 
     @Override
-    @SuppressWarnings("ConstantConditions")
     public ItemStack getDisplayStack() {
         if (stack == null) {
-            stack = CookingHelper.makeRecipe(item);
-            stack.getTagCompound().setLong(SELL_VALUE, 0L);
+            stack = CookingHelper.makeRecipe(recipe);
+            if (stack.getTagCompound() != null) {
+                stack.getTagCompound().setLong(SELL_VALUE, 0L);
+            }
         }
 
         return stack;

@@ -8,7 +8,7 @@ import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.buildings.render.BuildingKey;
 import joshie.harvest.core.HFCore;
 import joshie.harvest.core.HFTab;
-import joshie.harvest.core.base.item.ItemHFFML;
+import joshie.harvest.core.base.item.ItemHFRegistry;
 import joshie.harvest.core.helpers.TextHelper;
 import joshie.harvest.core.util.HFTemplate;
 import joshie.harvest.core.util.interfaces.ICreativeSorted;
@@ -30,9 +30,9 @@ import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ItemBuilding extends ItemHFFML<ItemBuilding, Building> implements ICreativeSorted {
+public class ItemBuilding extends ItemHFRegistry<ItemBuilding, Building> implements ICreativeSorted {
     public ItemBuilding() {
-        super(Building.REGISTRY, HFTab.TOWN);
+        super("Building", BuildingRegistry.REGISTRY, Building.REGISTRY, HFTab.TOWN);
         setMaxStackSize(1);
     }
 
@@ -71,36 +71,11 @@ public class ItemBuilding extends ItemHFFML<ItemBuilding, Building> implements I
         //Process the errors for the player
         if (errors.size() == 0) return new ActionResult<>(EnumActionResult.SUCCESS, stack);
         else return BuildingHelper.displayErrors(world, stack, errors);
-        /*
-
-
-        if (world.provider.getDimension() == 0) {
-            RayTraceResult raytrace = BuildingHelper.rayTrace(player, 128, 0F);
-            if (raytrace == null || raytrace.getBlockPos() == null) {
-                return new ActionResult<>(EnumActionResult.PASS, stack);
-            }
-
-            BuildingImpl building = getObjectFromStack(stack);
-            if (building != null && (DEBUG_MODE || building.canHaveMultiple() || !TownHelper.getClosestTownToEntity(player).hasBuilding(building.getRegistryName()))) {
-                if(player.canPlayerEdit(raytrace.getBlockPos(), EnumFacing.DOWN, stack)) {
-                    if (!world.isRemote) {
-                        TownHelper.ensureBuilderExists(world, raytrace.getBlockPos(), null); //Force a town to exist near where you clicked
-                    }
-
-                    BuildingKey key = BuildingHelper.getPositioning(stack, world, raytrace, building, player, true);
-                    if (key != null) {
-                        stack.splitStack(1);
-                        return new ActionResult<>(building.generate(world, key.getPos(), key.getRotation()), stack);
-                    }
-                } else if (world.isRemote) ChatHelper.displayChat(TextFormatting.RED + TextHelper.translate("town.failure") + " " + TextFormatting.WHITE + TextHelper.translate("town.permission"));
-            } else if (world.isRemote) ChatHelper.displayChat(TextFormatting.RED + TextHelper.translate("town.failure") + " " + TextFormatting.WHITE + TextHelper.translate("town.distance"));
-        } else if (world.isRemote) ChatHelper.displayChat(TextFormatting.RED + TextHelper.translate("town.failure") + " " + TextFormatting.WHITE + TextHelper.translate("town.dimension"));
-        return new ActionResult<>(EnumActionResult.PASS, stack); */
     }
 
     @Override
-    public Building getNullValue() {
-        return HFBuildings.null_building;
+    public Building getDefaultValue() {
+        return HFBuildings.CARPENTER;
     }
 
     @Override

@@ -27,7 +27,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public abstract class Quest extends IForgeRegistryEntry.Impl<Quest> {
-    /** DO NOT MODIFY THE ENTRIES IN THE REGISTRY, ALWAYS MAKE A COPY OF THE QUESTS **/
+    /** DO NOT MODIFY THE ENTRIES IN THE OLD_REGISTRY, ALWAYS MAKE A COPY OF THE QUESTS **/
     public static final IForgeRegistry<Quest> REGISTRY = new RegistryBuilder<Quest>().setName(new ResourceLocation("harvestfestival", "quests")).setType(Quest.class).setIDRange(0, 32000).create();
     private Set<NPC> npcs = new HashSet<>();
     protected ItemStack primary;

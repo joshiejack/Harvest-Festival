@@ -23,7 +23,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.*;
 
 import static joshie.harvest.api.cooking.Utensil.*;
-import static joshie.harvest.cooking.recipe.RecipeBuilder.*;
+import static joshie.harvest.cooking.recipe.RecipeBuilder.FOOD_LEVEL;
+import static joshie.harvest.cooking.recipe.RecipeBuilder.SATURATION_LEVEL;
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 import static joshie.harvest.core.registry.ShippingRegistry.SELL_VALUE;
 import static net.minecraft.util.text.TextFormatting.DARK_GRAY;
@@ -90,7 +91,7 @@ public class ItemMeal extends ItemHFFoodEnum<ItemMeal, Meal> {
     private Recipe getRecipeFromMeal(Meal meal) {
         if (MEAL_TO_RECIPE.size() == 0) {
             for (Meal ameal: Meal.values()) {
-                MEAL_TO_RECIPE.put(ameal, Recipe.REGISTRY.getValue(new ResourceLocation(MODID, ameal.getName())));
+                MEAL_TO_RECIPE.put(ameal, Recipe.REGISTRY.get(new ResourceLocation(MODID, ameal.getName())));
             }
         }
 
@@ -98,7 +99,7 @@ public class ItemMeal extends ItemHFFoodEnum<ItemMeal, Meal> {
     }
 
     public ItemStack getStackFromRecipe(RecipeHF recipeHF) {
-        Meal meal = Meal.valueOf(recipeHF.getRegistryName().getResourcePath().toUpperCase(Locale.ENGLISH));
+        Meal meal = Meal.valueOf(recipeHF.getResource().getResourcePath().toUpperCase(Locale.ENGLISH));
         return new ItemStack(this, 1, meal.ordinal());
     }
 

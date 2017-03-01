@@ -21,15 +21,15 @@ import java.util.List;
 import java.util.Locale;
 
 public class PurchasableBuilding extends PurchasableMaterials {
-    private final ResourceLocation resource;
     private final Building building;
     private final String tooltip;
 
     public PurchasableBuilding(long cost, Building building, IRequirement... requirements) {
-        super(cost, building.getRegistryName(), requirements);
+        super(requirements);
         this.building = building;
-        this.resource = Building.REGISTRY.getKey(this.building);
-        this.tooltip = resource.getResourceDomain() + ".structures." + resource.getResourcePath() + ".tooltip";
+        this.cost = cost;
+        this.tooltip = building.getResource().getResourceDomain() + ".structures." + building.getResource().getResourcePath() + ".tooltip";
+        this.resource = ((cost >= 0) ? "buy:" : "sell:") + building.getResource().toString().replace(":", "_");
         this.setStock(1);
     }
 
@@ -47,7 +47,7 @@ public class PurchasableBuilding extends PurchasableMaterials {
     @SuppressWarnings("unchecked")
     public boolean isPurchasable(World world, EntityPlayer player) {
         TownData town = TownHelper.getClosestTownToEntity(player, false);
-        return !town.hasBuilding(resource) && building.getRules().canDo(world, player, 1) && hasBuildingRequirements(player);
+        return !town.hasBuilding(building) && building.getRules().canDo(world, player, 1) && hasBuildingRequirements(player);
     }
 
     private boolean hasBuildingRequirements(EntityPlayer player) {
@@ -62,8 +62,8 @@ public class PurchasableBuilding extends PurchasableMaterials {
 
     @Override
     @SuppressWarnings("unchecked")
-    public boolean canList(World world, EntityPlayer player) {
-        return (!TownHelper.getClosestTownToEntity(player, false).hasBuilding(resource) || building.canHaveMultiple())
+    public boolean canList(@Nonnull World world, @Nonnull EntityPlayer player) {
+        return (!TownHelper.getClosestTownToEntity(player, false).hasBuilding(building) || building.canHaveMultiple())
                 && building.getRules().canDo(world, player, 1) && hasBuildingRequirements(player);
     }
 

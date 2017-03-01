@@ -30,12 +30,10 @@ public class CommandExportTreeList extends CommandExportHeld {
 
         List<String> fruitList = new ArrayList<>();
         List<String> treeList = new ArrayList<>();
-        for (Crop crop: Crop.REGISTRY) {
-            if (crop instanceof Tree) {
-                fruitList.add(crop.getCropStack(1).getDisplayName());
-                treeList.add(crop.getCropStack(1).getDisplayName() + " Tree");
-            }
-        }
+        Crop.REGISTRY.values().stream().filter(crop -> crop instanceof Tree).forEachOrdered(crop -> {
+            fruitList.add(crop.getCropStack(1).getDisplayName());
+            treeList.add(crop.getCropStack(1).getDisplayName() + " Tree");
+        });
 
         addToBuilderAndSort("Fruit", fruitList, builder);
         addToBuilderAndSort("Tree", treeList, builder);

@@ -4,27 +4,25 @@ import joshie.harvest.api.cooking.Recipe;
 import joshie.harvest.cooking.CookingHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.common.registry.IForgeRegistry;
 
 import static joshie.harvest.core.registry.ShippingRegistry.SELL_VALUE;
 
-public class PurchasableMeal extends PurchasableFML<Recipe> {
-    private ItemStack stack;
+public class PurchasableMeal extends Purchasable {
+    protected final Recipe recipe;
 
     public PurchasableMeal(long cost, ResourceLocation resource) {
-        super(cost, resource);
-    }
-
-    @Override
-    public IForgeRegistry<Recipe> getRegistry() {
-        return Recipe.REGISTRY;
+        this.recipe = Recipe.REGISTRY.get(resource);
+        this.cost = cost;
+        this.resource = ((cost >= 0) ? "buy:" : "sell:") + resource.toString().replace(":", "_");
     }
 
     @Override
     public ItemStack getDisplayStack() {
         if (stack == null) {
-            stack = CookingHelper.makeRecipe(item);
-            stack.getTagCompound().setLong(SELL_VALUE, 0L);
+            stack = CookingHelper.makeRecipe(recipe);
+            if (stack.getTagCompound() != null) {
+                stack.getTagCompound().setLong(SELL_VALUE, 0L);
+            }
         }
 
         return stack;

@@ -3,8 +3,6 @@ package joshie.harvest.cooking.recipe;
 import joshie.harvest.animals.HFAnimals;
 import joshie.harvest.animals.item.ItemAnimalProduct.Sizeable;
 import joshie.harvest.api.HFApi;
-import joshie.harvest.api.cooking.Recipe;
-import joshie.harvest.api.cooking.Utensil;
 import joshie.harvest.api.core.Size;
 import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.cooking.item.ItemIngredients;
@@ -18,8 +16,6 @@ import static joshie.harvest.cooking.recipe.RecipeHelper.*;
 
 @HFLoader
 public class HFRecipes {
-    public static final Recipe NULL_RECIPE = new Recipe(Utensil.COUNTER);
-
     public static void init() {
         addFryingPanRecipes();
         addMixerRecipes();

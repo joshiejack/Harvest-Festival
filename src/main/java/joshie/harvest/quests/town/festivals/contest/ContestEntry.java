@@ -152,7 +152,7 @@ public class ContestEntry {
             UUID player = UUID.fromString(tag.getString("Player"));
             return new ContestEntry(player, animal, stall);
         } else if (tag.hasKey("NPC")) {
-            NPC npc = NPC.REGISTRY.getValue(new ResourceLocation(tag.getString("NPC")));
+            NPC npc = NPC.REGISTRY.get(new ResourceLocation(tag.getString("NPC")));
             return new ContestEntry(npc, animal, stall);
         } else return null;
     }
@@ -162,7 +162,7 @@ public class ContestEntry {
         tag.setString("Animal", entity.toString());
         tag.setInteger("Stall", stall);
         if (player != null) tag.setString("Player", player.toString());
-        else if (npc != null) tag.setString("NPC", npc.getRegistryName().toString());
+        else if (npc != null) tag.setString("NPC", npc.getResource().toString());
         return tag;
     }
 }

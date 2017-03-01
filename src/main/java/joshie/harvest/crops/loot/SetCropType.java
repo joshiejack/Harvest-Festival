@@ -35,13 +35,13 @@ public class SetCropType extends LootFunction {
         if (crop.equals("randomCrop")) return random(true);
         if (crop.equals("randomSeed")) return random(false);
         ResourceLocation resource = crop.contains(":") ? new ResourceLocation(crop) : new ResourceLocation(MODID, crop);
-        Crop theCrop = Crop.REGISTRY.getValue(resource);
+        Crop theCrop = Crop.REGISTRY.get(resource);
         return theCrop.getCropStack(stack.stackSize);
     }
 
     public ItemStack random(boolean crop) {
         if (cropsList == null) {
-            cropsList = new ArrayList<>(Crop.REGISTRY.getValues());
+            cropsList = new ArrayList<>(Crop.REGISTRY.values());
             cropsList.remove(Crop.NULL_CROP);
         }
 

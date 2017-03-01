@@ -11,6 +11,7 @@ import joshie.harvest.core.base.render.FakeEntityRenderer;
 import joshie.harvest.core.base.render.FakeEntityRenderer.EntityItemRenderer;
 import joshie.harvest.core.handlers.DisableHandler;
 import joshie.harvest.core.proxy.HFClientProxy;
+import joshie.harvest.crops.CropRegistry;
 import joshie.harvest.crops.HFCrops;
 import joshie.harvest.crops.handlers.drop.DropHandlerTree;
 import net.minecraft.block.Block;
@@ -68,7 +69,11 @@ public class RegistryHelper {
     }
 
     public static Crop registerCrop(String name) {
-        return addHandlersToCrop(name, new Crop(new ResourceLocation(MODID, name)));
+        Crop crop = addHandlersToCrop(name, new Crop(new ResourceLocation(MODID, name)));
+        crop.setRegistryName(new ResourceLocation(MODID, name));
+        //TODO: Remove fml registry in 0.7+
+        CropRegistry.REGISTRY.register(crop);
+        return crop;
     }
 
     public static Tree registerTree(String name) {

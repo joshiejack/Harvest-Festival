@@ -26,8 +26,11 @@ import joshie.harvest.town.TownHelper;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.registry.IForgeRegistry;
+import net.minecraftforge.fml.common.registry.RegistryBuilder;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -36,6 +39,8 @@ import java.util.UUID;
 
 @HFApiImplementation
 public class NPCHelper implements INPCHelper {
+    //TODO: Remove in 0.7+
+    public static final IForgeRegistry<NPC> OLD_REGISTRY = new RegistryBuilder<NPC>().setName(new ResourceLocation("harvestfestival", "npcs")).setType(NPC.class).setIDRange(0, 32000).create();
     private static final HashMap<Shop, ShopSelection> selections = new HashMap<>();
     public static final NPCHelper INSTANCE = new NPCHelper();
     private final GiftRegistry gifts = new GiftRegistry();
@@ -124,7 +129,7 @@ public class NPCHelper implements INPCHelper {
     @Nullable
     @SuppressWarnings("deprecation")
     public static NPC getNPCFromUUID(UUID uuid) {
-        for (NPC npc: NPC.REGISTRY) {
+        for (NPC npc: NPC.REGISTRY.values()) {
             if (npc.getUUID().equals(uuid)) return npc;
         }
 

@@ -92,7 +92,7 @@ public class TownDataServer extends TownData<QuestDataServer, LetterDataServer> 
     }
 
     private boolean isDead(NPC npc) {
-        return deadVillagers.keySet().contains(npc.getRegistryName());
+        return deadVillagers.keySet().contains(npc.getResource());
     }
 
     public void createOrUpdateBuilder(WorldServer world, BlockPos pos) {
@@ -138,7 +138,7 @@ public class TownDataServer extends TownData<QuestDataServer, LetterDataServer> 
 
     public void addBuilding(World world, Building building, Rotation rotation, BlockPos pos) {
         TownBuilding newBuilding = new TownBuilding(building, rotation, pos);
-        buildings.put(Building.REGISTRY.getKey(building), newBuilding);
+        buildings.put(building.getResource(), newBuilding);
         inhabitants.addAll(building.getInhabitants()); //Add all the inhabitants
         PacketHandler.sendToDimension(world.provider.getDimension(), new PacketNewBuilding(uuid, newBuilding));
         building.onBuilt(world, pos, rotation);
@@ -184,7 +184,7 @@ public class TownDataServer extends TownData<QuestDataServer, LetterDataServer> 
             gathering.newDay(world, townCentre, buildings.values(), isFar);
             generateNewDailyQuest(world);
             for (Entry<ResourceLocation, BlockPos> entry: deadVillagers.entrySet()) {
-                NPC npc = NPC.REGISTRY.getValue(entry.getKey());
+                NPC npc = NPC.REGISTRY.get(entry.getKey());
                 if (npc == HFNPCs.MINER) {
                     WorldServer server = FMLCommonHandler.instance().getMinecraftServerInstance().worldServerForDimension(MINING_ID);
                     EntityNPCMiner entity = NPCHelper.getEntityForNPC(server, HFNPCs.MINER);

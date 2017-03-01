@@ -1,38 +1,38 @@
 package joshie.harvest.cooking.item;
 
 import joshie.harvest.api.cooking.Recipe;
-import joshie.harvest.cooking.recipe.HFRecipes;
+import joshie.harvest.cooking.CookingAPI;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.HFTrackers;
-import joshie.harvest.core.base.item.ItemHFFML;
+import joshie.harvest.core.base.item.ItemHFRegistry;
 import joshie.harvest.core.helpers.ChatHelper;
 import joshie.harvest.core.helpers.TextHelper;
 import joshie.harvest.core.lib.HFSounds;
 import joshie.harvest.core.util.interfaces.ICreativeSorted;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.SoundCategory;
+import net.minecraft.util.*;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 
+import javax.annotation.Nonnull;
+
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 
-public class ItemRecipe extends ItemHFFML<ItemRecipe, Recipe> implements ICreativeSorted {
+//TODO in 0.7+ Remove ItemHFFML
+public class ItemRecipe extends ItemHFRegistry<ItemRecipe, Recipe> implements ICreativeSorted {
     public ItemRecipe() {
-        super(Recipe.REGISTRY, HFTab.COOKING);
+        super("Recipe", CookingAPI.REGISTRY, Recipe.REGISTRY, HFTab.COOKING);
     }
 
     @Override
     public String getItemStackDisplayName(ItemStack stack) {
-        int id = Math.max(0, Math.min(Recipe.REGISTRY.getValues().size() - 1, stack.getItemDamage()));
-        return TextHelper.format(MODID + ".recipe.format", Recipe.REGISTRY.getValues().get(id).getDisplayName());
+        return TextHelper.format(MODID + ".recipe.format", getObjectFromStack(stack).getDisplayName());
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(ItemStack stack, World world, EntityPlayer player, EnumHand hand) {
+    @Nonnull
+    public ActionResult<ItemStack> onItemRightClick(@Nonnull ItemStack stack, World world, EntityPlayer player, EnumHand hand) {
         Recipe recipe = getObjectFromStack(stack);
         if (recipe != null && HFTrackers.getPlayerTrackerFromPlayer(player).getTracking().learnRecipe(recipe)) {
             if (!player.capabilities.isCreativeMode) stack.stackSize--; //Decrease the stack
@@ -45,8 +45,8 @@ public class ItemRecipe extends ItemHFFML<ItemRecipe, Recipe> implements ICreati
     }
 
     @Override
-    public Recipe getNullValue() {
-        return HFRecipes.NULL_RECIPE;
+    public Recipe getDefaultValue() {
+        return Recipe.REGISTRY.get(new ResourceLocation("pancake_savoury"));
     }
 
     @Override

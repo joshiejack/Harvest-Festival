@@ -55,7 +55,8 @@ public class HFAchievements {
     public static Achievement cooking;
     public static Achievement recipes;
 
-    public static void init() {
+    @SuppressWarnings("unused")
+    public static void postInit() {
         AchievementPage.registerAchievementPage(PAGE);
         summon = addAchievement("summon", 0, 0, HFCore.FLOWERS.getStackFromEnum(FlowerType.GODDESS), null);
         friend = addAchievement("friend", 2, 3, new ItemStack(Items.COOKIE), summon);

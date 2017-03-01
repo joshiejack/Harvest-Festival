@@ -158,11 +158,10 @@ public class CommandCropExport extends AbstractHFCommand {
 
                     //GIFTS!
                     HashMultimap<Quality, NPC> qualities = HashMultimap.create();
-                    for (NPC npc : NPC.REGISTRY) {
-                        if (npc == NPC.NULL_NPC) continue;
+                    NPC.REGISTRY.values().stream().filter(npc -> npc != NPC.NULL_NPC).forEachOrdered(npc -> {
                         Quality quality = npc.getGiftValue(stack);
                         qualities.get(quality).add(npc);
-                    }
+                    });
 
                     builder.append("\n\n==Gifts==");
                     builder.append("\n{{Gifts");

@@ -5,10 +5,11 @@ import joshie.harvest.api.cooking.Recipe;
 import joshie.harvest.api.cooking.Utensil;
 import joshie.harvest.cooking.HFCooking;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 
 public class RecipeHF extends Recipe {
-    public RecipeHF(Utensil utensil, int hunger, float saturation, IngredientStack... required) {
-        super(utensil, required);
+    public RecipeHF(ResourceLocation resource, Utensil utensil, int hunger, float saturation, IngredientStack... required) {
+        super(resource, utensil, required);
         setFoodStats(hunger, saturation);
     }
 

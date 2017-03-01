@@ -11,6 +11,7 @@ import static joshie.harvest.animals.HFAnimals.TREATS;
 import static joshie.harvest.api.npc.gift.GiftCategory.*;
 
 @HFLoader(priority = 0)
+@SuppressWarnings("unused")
 public class HFGiftsFarming extends HFGiftsAbstract {
     public static void init() {
         assignGeneric(TREATS, JUNK);
@@ -29,9 +30,9 @@ public class HFGiftsFarming extends HFGiftsAbstract {
     }
 
     public static void postInit() {
-        for (Crop crop: joshie.harvest.api.crops.Crop.REGISTRY) {
-            if (crop != Crop.NULL_CROP)
-                assignGeneric(crop.getCropStack(1), crop.getFoodType() == AnimalFoodType.FRUIT ? FRUIT : crop.getFoodType() == AnimalFoodType.VEGETABLE ? VEGETABLE : PLANT);
-        }
+        Crop.REGISTRY.values().stream().filter(crop -> crop != Crop.NULL_CROP)
+                .forEachOrdered(crop -> assignGeneric(crop.getCropStack(1),
+                        crop.getFoodType() == AnimalFoodType.FRUIT ? FRUIT :
+                                crop.getFoodType() == AnimalFoodType.VEGETABLE ? VEGETABLE : PLANT));
     }
 }

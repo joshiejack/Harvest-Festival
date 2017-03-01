@@ -66,7 +66,7 @@ public class ItemCrop extends ItemHFFoodEnum<ItemCrop, Crops> {
         public Crop getCrop() {
             if (crop != null) return crop;
             else {
-                crop = Crop.REGISTRY.getValue(cropLocation);
+                crop = Crop.REGISTRY.get(cropLocation);
                 return crop;
             }
         }

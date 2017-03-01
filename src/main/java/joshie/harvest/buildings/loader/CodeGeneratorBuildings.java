@@ -73,8 +73,8 @@ public class CodeGeneratorBuildings {
                 String name = chest.getName();
                 if (name.startsWith("npc.")) {
                     name = name.replace("npc.", "");
-                    NPC npc = NPC.REGISTRY.getValue(new ResourceLocation(MODID, name));
-                    String npcField = npc == null ? "" : npc.getRegistryName().toString();
+                    NPC npc = NPC.REGISTRY.get(new ResourceLocation(MODID, name));
+                    String npcField = npc == null ? "" : npc.getResource().toString();
                     ret.add(new PlaceableNPC(name, npcField, x, y, z));
                     ret.add(new PlaceableBlock(Blocks.AIR.getDefaultState(), x, y, z));
                     return;

@@ -113,7 +113,7 @@ public class HFNPCs {
                 .addGreeting(new GreetingBeforeJenni("tutorial.supermarket.reminder.supermarket"))
                 .addGreeting(new GreetingBeforeDanieru(FLOWER_GIRL));
         GS_OWNER.setQuest(Quests.SELL_STRAWBERRY).
-                setHasInfo(new GreetingSupermarket(GS_OWNER.getRegistryName()))
+                setHasInfo(new GreetingSupermarket(GS_OWNER))
                 .addGreeting(new GreetingBeforeDanieru(GS_OWNER));
         MILKMAID.addGreeting(new GreetingBeforeDanieru(MILKMAID));
         BARN_OWNER.addGreeting(new GreetingBeforeDanieru(BARN_OWNER));
@@ -123,13 +123,11 @@ public class HFNPCs {
         CLOCKMAKER.setHasInfo(new GreetingTime());
         PRIEST.addGreeting(new GreetingPriestBlessing());
 
-        for (NPC npc: NPC.REGISTRY) {
-            if (npc != NPC.NULL_NPC) {
-                addHolidayGreetings(npc, HFFestivals.NEW_YEARS, HFFestivals.COOKING_CONTEST, HFFestivals.CHICKEN_FESTIVAL, HFFestivals.COW_FESTIVAL,
-                        HFFestivals.HARVEST_FESTIVAL, HFFestivals.SHEEP_FESTIVAL, HFFestivals.STARRY_NIGHT, HFFestivals.NEW_YEARS_EVE);
-                setupGifts(npc);
-            }
-        }
+        NPC.REGISTRY.values().stream().filter(npc -> npc != NPC.NULL_NPC).forEachOrdered(npc -> {
+            addHolidayGreetings(npc, HFFestivals.NEW_YEARS, HFFestivals.COOKING_CONTEST, HFFestivals.CHICKEN_FESTIVAL, HFFestivals.COW_FESTIVAL,
+                    HFFestivals.HARVEST_FESTIVAL, HFFestivals.SHEEP_FESTIVAL, HFFestivals.STARRY_NIGHT, HFFestivals.NEW_YEARS_EVE);
+            setupGifts(npc);
+        });
     }
 
     private static void addHolidayGreetings(NPC npc, Festival... festivals) {
@@ -138,9 +136,9 @@ public class HFNPCs {
 
     private static void setupGifts(NPC npc) {
         npc.setGiftHandler(new IGiftHandler() {});
-        if (npc.getRegistryName().getResourceDomain().equals(MODID)) {
+        if (npc.getResource().getResourceDomain().equals(MODID)) {
             try {
-                IGiftHandler handler = (IGiftHandler) Class.forName(GIFTPATH + WordUtils.capitalize(npc.getRegistryName().getResourcePath())).newInstance();
+                IGiftHandler handler = (IGiftHandler) Class.forName(GIFTPATH + WordUtils.capitalize(npc.getResource().getResourcePath())).newInstance();
                 if (handler != null) npc.setGiftHandler(handler);
             } catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {/**/}
         }
@@ -151,7 +149,7 @@ public class HFNPCs {
     public static void initClient() {
         HFClientProxy.RENDER_MAP.put(SPAWNER_NPC, NPCTile.INSTANCE);
         ClientRegistry.bindTileEntitySpecialRenderer(NPCTile.class, new NPCItemRenderer());
-        for (NPC npc: NPC.REGISTRY) {
+        for (NPC npc: NPC.REGISTRY.values()) {
             ItemStack stack = SPAWNER_NPC.getStackFromObject(npc);
             ForgeHooksClient.registerTESRItemStack(stack.getItem(), stack.getItemDamage(), NPCTile.class);
         }
@@ -166,7 +164,11 @@ public class HFNPCs {
                                 .newInstance(new ResourceLocation("harvestfestival", name), gender, age, new CalendarDate(dayOfBirth, seasonOfBirth, 1), insideColor, outsideColor);
         } catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException ex) { /**/}
 
-        if (npc == null) npc = new NPC(new ResourceLocation(MODID, name), gender, age, new CalendarDate(dayOfBirth, seasonOfBirth, 1), insideColor, outsideColor);
+        if (npc == null) {
+            npc = new NPC(new ResourceLocation(MODID, name), gender, age, new CalendarDate(dayOfBirth, seasonOfBirth, 1), insideColor, outsideColor);
+            npc.setRegistryName(new ResourceLocation(MODID, name));
+            NPCHelper.OLD_REGISTRY.register(npc);
+        }
         return (N) npc;
     }
 

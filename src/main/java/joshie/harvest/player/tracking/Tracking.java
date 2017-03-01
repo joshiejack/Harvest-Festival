@@ -24,7 +24,7 @@ public class Tracking implements IPlayerTracking {
         if (recipe == null) {
             recipes.clear();
             return false;
-        } else return recipes.add(recipe.getRegistryName());
+        } else return recipes.add(recipe.getResource());
     }
 
     @Override

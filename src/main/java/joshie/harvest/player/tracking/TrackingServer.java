@@ -99,11 +99,7 @@ public class TrackingServer extends Tracking {
 
     private void addDefaultRecipes() {
         //Learn all the default recipes
-        for (Recipe recipe: Recipe.REGISTRY) {
-            if (recipe.isDefault() && !recipes.contains(recipe.getRegistryName())) {
-                recipes.add(recipe.getRegistryName());
-            }
-        }
+        Recipe.REGISTRY.values().stream().filter(recipe -> recipe.isDefault() && !recipes.contains(recipe.getResource())).forEachOrdered(recipe -> recipes.add(recipe.getResource()));
     }
 
     private void addLearntNotes() {

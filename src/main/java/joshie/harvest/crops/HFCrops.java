@@ -154,10 +154,10 @@ public class HFCrops {
 
         //Register everything in the ore dictionary
         //Register always in the ore dictionary
-        Crop.REGISTRY.getValues().stream().filter(crop -> crop != Crop.NULL_CROP).forEachOrdered(crop -> {
+        Crop.REGISTRY.values().stream().filter(crop -> crop != Crop.NULL_CROP).forEachOrdered(crop -> {
             //Register always in the ore dictionary
             ItemStack clone = crop.getCropStack(1);
-            String name = "crop" + WordUtils.capitalizeFully(crop.getRegistryName().getResourcePath(), '_').replace("_", "");
+            String name = "crop" + WordUtils.capitalizeFully(crop.getResource().getResourcePath(), '_').replace("_", "");
             RegistryHelper.registerOreIfNotExists(name, clone);
             HFApi.crops.registerCropProvider(clone, crop);
             HFApi.shipping.registerSellable(clone, crop.getSellValue());
@@ -215,11 +215,8 @@ public class HFCrops {
 
         //Register all the normal blocks as using the tint index
         colors.registerBlockColorHandler(coloring, CROPS);
-        for (Crop crop : Crop.REGISTRY) {
-            if (crop != Crop.NULL_CROP && crop.skipLoadingRender()) {
-                colors.registerBlockColorHandler(coloring, ((IBlockState)crop.getStateHandler().getValidStates().get(0)).getBlock());
-            }
-        }
+        Crop.REGISTRY.values().stream().filter(crop -> crop != Crop.NULL_CROP && crop.skipLoadingRender())
+                .forEachOrdered(crop -> colors.registerBlockColorHandler(coloring, ((IBlockState) crop.getStateHandler().getValidStates().get(0)).getBlock()));
     }
 
     public static ItemStack getCropStack(Crops crop) {
@@ -256,6 +253,7 @@ public class HFCrops {
         CROPS_DIE_SERVER = getBoolean("Dedicated Server > Crops die when not having been watered", false);
     }
 
+    @SuppressWarnings("unused")
     public static void onServerStarting() {
         MinecraftServer server = FMLCommonHandler.instance().getMinecraftServerInstance();
         if (server.isDedicatedServer()) {

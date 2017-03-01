@@ -152,14 +152,14 @@ public abstract class EntityNPC<E extends EntityNPC> extends EntityAgeable imple
     @Override
     public void readEntityFromNBT(NBTTagCompound nbt) {
         super.readEntityFromNBT(nbt);
-        npc = NPC.REGISTRY.getValue(new ResourceLocation(nbt.getString("NPC")));
+        npc = NPC.REGISTRY.get(new ResourceLocation(nbt.getString("NPC")));
     }
 
     @Override
     public void writeEntityToNBT(NBTTagCompound nbt) {
         super.writeEntityToNBT(nbt);
         if (npc != null) {
-            nbt.setString("NPC", npc.getRegistryName().toString());
+            nbt.setString("NPC", npc.getResource().toString());
         }
     }
 
@@ -167,14 +167,14 @@ public abstract class EntityNPC<E extends EntityNPC> extends EntityAgeable imple
     public void writeSpawnData(ByteBuf buf) {
         buf.writeBoolean(npc != null);
         if (npc != null) {
-            ByteBufUtils.writeUTF8String(buf, npc.getRegistryName().toString());
+            ByteBufUtils.writeUTF8String(buf, npc.getResource().toString());
         }
     }
 
     @Override
     public void readSpawnData(ByteBuf buf) {
         String name = buf.readBoolean() ? ByteBufUtils.readUTF8String(buf) : "";
-        npc = name.equals("") ? HFNPCs.MAYOR : NPC.REGISTRY.getValue(new ResourceLocation(name));
+        npc = name.equals("") ? HFNPCs.MAYOR : NPC.REGISTRY.get(new ResourceLocation(name));
     }
 
     @SuppressWarnings("unchecked")

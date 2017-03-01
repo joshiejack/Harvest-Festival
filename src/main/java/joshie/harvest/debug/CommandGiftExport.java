@@ -28,11 +28,10 @@ public class CommandGiftExport extends AbstractHFCommand {
     public static StringBuilder getGifts(ItemStack stack) {
         if (!NPCHelper.INSTANCE.getGifts().isBlacklisted(stack)) {
             HashMultimap<Quality, NPC> qualities = HashMultimap.create();
-            for (NPC npc : NPC.REGISTRY) {
-                if (npc == NPC.NULL_NPC) continue;
+            NPC.REGISTRY.values().stream().filter(npc -> npc != NPC.NULL_NPC).forEachOrdered(npc -> {
                 Quality quality = npc.getGiftValue(stack);
                 qualities.get(quality).add(npc);
-            }
+            });
 
             StringBuilder builder = new StringBuilder();
             builder.append("==Gifts==\n");

@@ -17,17 +17,17 @@ import static joshie.harvest.core.lib.HFModInfo.MODID;
 @HFLoader
 public class Debug {
     private static void register(String name, String description) {
-        Recipe recipe = Recipe.REGISTRY.getValue(new ResourceLocation(MODID, name));
+        Recipe recipe = Recipe.REGISTRY.get(new ResourceLocation(MODID, name));
         CommandExportRecipe.DESCRIPTIONS.put(recipe, description);
     }
 
     private static void register(Meal meal, String description) {
-        Recipe recipe = Recipe.REGISTRY.getValue(new ResourceLocation(MODID, meal.name().toLowerCase()));
+        Recipe recipe = Recipe.REGISTRY.get(new ResourceLocation(MODID, meal.name().toLowerCase()));
         CommandExportRecipe.DESCRIPTIONS.put(recipe, description);
     }
 
     private static void registerOverride(String name, String description) {
-        Recipe recipe = Recipe.REGISTRY.getValue(new ResourceLocation(MODID, name));
+        Recipe recipe = Recipe.REGISTRY.get(new ResourceLocation(MODID, name));
         CommandExportRecipe.INFO_OVERRIDE.put(recipe, description);
     }
 

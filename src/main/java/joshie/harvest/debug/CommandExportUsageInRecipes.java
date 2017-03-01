@@ -45,7 +45,7 @@ public class CommandExportUsageInRecipes extends AbstractHFCommand {
                     "!Recipe From\n" +
                     "|-");
             IngredientStack istacks = new IngredientStack(theIngredient);
-            for (Recipe recipe : Recipe.REGISTRY) {
+            for (Recipe recipe : Recipe.REGISTRY.values()) {
                 boolean doThis = false;
                 for (IngredientStack iStack : recipe.getRequired()) {
                     if (iStack.isSame(istacks)) {

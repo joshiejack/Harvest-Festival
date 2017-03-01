@@ -36,7 +36,7 @@ public class TextHelper {
     public static String getRandomSpeech(NPC npc, final String text, final int maximumAlternatives, Object... data) {
         int maximum = 1;
         try {
-            final Triple<String, String, ResourceLocation> key = Triple.of(getLang(), text, npc.getRegistryName());
+            final Triple<String, String, ResourceLocation> key = Triple.of(getLang(), text, npc.getResource());
             maximum = TRANSLATION_CACHE.get(key, () -> {
                 int i;
                 for (i = 1; i <= maximumAlternatives; i++) {

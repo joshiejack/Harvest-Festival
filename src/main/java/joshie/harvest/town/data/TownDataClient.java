@@ -1,6 +1,5 @@
 package joshie.harvest.town.data;
 
-import joshie.harvest.api.buildings.Building;
 import joshie.harvest.api.calendar.Festival;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.buildings.BuildingStage;
@@ -28,7 +27,7 @@ public class TownDataClient extends TownData<QuestDataClient, LetterDataClient> 
     }
 
     public void addBuilding(TownBuilding building) {
-        buildings.put(Building.REGISTRY.getKey(building.building), building);
+        buildings.put(building.building.getResource(), building);
         inhabitants.addAll(building.building.getInhabitants());
     }
 

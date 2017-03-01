@@ -1,9 +1,11 @@
 package joshie.harvest.api.npc;
 
+import com.google.common.collect.Maps;
 import joshie.harvest.api.buildings.BuildingLocation;
 import joshie.harvest.api.calendar.CalendarDate;
 import joshie.harvest.api.calendar.CalendarEntry;
 import joshie.harvest.api.calendar.Season;
+import joshie.harvest.api.core.HFRegistry;
 import joshie.harvest.api.npc.INPCHelper.Age;
 import joshie.harvest.api.npc.INPCHelper.Gender;
 import joshie.harvest.api.npc.gift.IGiftHandler;
@@ -21,7 +23,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.IForgeRegistry;
-import net.minecraftforge.fml.common.registry.IForgeRegistryEntry;
 import net.minecraftforge.fml.common.registry.RegistryBuilder;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -33,8 +34,11 @@ import static joshie.harvest.api.HFApi.npc;
 import static joshie.harvest.api.npc.INPCHelper.Age.ADULT;
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 
-public class NPC extends IForgeRegistryEntry.Impl<NPC> implements CalendarEntry {
-    public static final IForgeRegistry<NPC> REGISTRY = new RegistryBuilder<NPC>().setName(new ResourceLocation("harvestfestival", "npcs")).setType(NPC.class).setIDRange(0, 32000).create();
+//TODO: Remove forge registry in 0.7+
+//Do not call setRegistryName or anything
+//This is only extending the old forge registry for 0.5 > 0.6 compatability reason
+public class NPC extends HFRegistry<NPC> implements CalendarEntry {
+    public static final Map<ResourceLocation, NPC> REGISTRY = Maps.newHashMap();
     public static final NPC NULL_NPC = new NPC();
     private final List<IConditionalGreeting> conditionals = new ArrayList<>(256);
     private final String multipleLocalizationKey;
@@ -74,6 +78,7 @@ public class NPC extends IForgeRegistryEntry.Impl<NPC> implements CalendarEntry 
      * @param insideColor   this is the internal border colour of the npcs chat box
      * @param outsideColor  this is the outer border colour of the npcs chat box **/
     public NPC(ResourceLocation resource, Gender gender, Age age, CalendarDate birthday, int insideColor, int outsideColor) {
+        super(resource);
         String MODID = resource.getResourceDomain();
         String name = resource.getResourcePath();
         this.age = age;
@@ -88,8 +93,11 @@ public class NPC extends IForgeRegistryEntry.Impl<NPC> implements CalendarEntry 
         this.skin = new ResourceLocation(MODID, "textures/entity/" + name + ".png");
         this.multipleLocalizationKey = MODID + ".npc." + name + ".greeting";
         this.uuid = UUID.nameUUIDFromBytes(resource.toString().getBytes());
-        this.setRegistryName(resource);
-        REGISTRY.register(this);
+    }
+
+    @Override
+    public final Map<ResourceLocation, NPC> getRegistry() {
+        return REGISTRY;
     }
 
     public NPC setHeight(float height, float offset) {
@@ -100,7 +108,7 @@ public class NPC extends IForgeRegistryEntry.Impl<NPC> implements CalendarEntry 
 
     public NPC setShop(Shop shop) {
         this.shop = shop;
-        setHasInfo(new GreetingShop(getRegistryName()));
+        setHasInfo(new GreetingShop(getResource()));
         return this;
     }
 
@@ -194,7 +202,7 @@ public class NPC extends IForgeRegistryEntry.Impl<NPC> implements CalendarEntry 
 
     @SuppressWarnings("deprecation")
     public String getLocalizedName() {
-        return I18n.translateToLocal(getRegistryName().getResourceDomain() + ".npc." + getRegistryName().getResourcePath() + ".name");
+        return I18n.translateToLocal(getResource().getResourceDomain() + ".npc." + getResource().getResourcePath() + ".name");
     }
 
     public IInfoButton getInfoButton() {
@@ -276,11 +284,11 @@ public class NPC extends IForgeRegistryEntry.Impl<NPC> implements CalendarEntry 
 
     @Override
     public boolean equals(Object o) {
-        return o instanceof NPC && getRegistryName() != null && getRegistryName().equals(((NPC) o).getRegistryName());
+        return o instanceof NPC && getResource() != null && getResource().equals(((NPC) o).getResource());
     }
 
     @Override
     public int hashCode() {
-        return getRegistryName() == null? 0 : getRegistryName().hashCode();
+        return getResource() == null? 0 : getResource().hashCode();
     }
 }

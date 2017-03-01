@@ -35,7 +35,7 @@ public class CommandGiftExportNPC extends AbstractHFCommand {
     @Override
     public boolean execute(MinecraftServer server, ICommandSender sender, String[] parameters) throws CommandNotFoundException, NumberInvalidException {
         if (parameters.length == 1) {
-            NPC npc = NPC.REGISTRY.getValue(new ResourceLocation(MODID, parameters[0]));
+            NPC npc = NPC.REGISTRY.get(new ResourceLocation(MODID, parameters[0]));
             if (npc != null) {
                 IGiftHandler gifts = ReflectionHelper.getPrivateValue(NPC.class, npc, "gifts");
                 if (gifts instanceof Gifts) {

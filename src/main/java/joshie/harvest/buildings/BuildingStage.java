@@ -129,7 +129,7 @@ public class BuildingStage implements INBTWriteable {
     @SuppressWarnings("deprecation")
     public static BuildingStage readFromNBT(NBTTagCompound nbt) {
         BuildingStage stage = new BuildingStage();
-        stage.building = Building.REGISTRY.getValue(new ResourceLocation(nbt.getString("CurrentlyBuilding")));
+        stage.building = Building.REGISTRY.get(new ResourceLocation(nbt.getString("CurrentlyBuilding")));
         stage.template = BuildingRegistry.INSTANCE.getTemplateForBuilding(stage.building);
         //TODO: Remove in 0.7+
         if (nbt.hasKey("Direction")) {
@@ -149,7 +149,7 @@ public class BuildingStage implements INBTWriteable {
 
     @Override
     public void writeToNBT(NBTTagCompound nbt) {
-        nbt.setString("CurrentlyBuilding", Building.REGISTRY.getKey(building).toString());
+        nbt.setString("CurrentlyBuilding", building.getResource().toString());
         nbt.setString("Rotation", rotation.name());
         nbt.setInteger("BuildingX", pos.getX());
         nbt.setInteger("BuildingY", pos.getY());

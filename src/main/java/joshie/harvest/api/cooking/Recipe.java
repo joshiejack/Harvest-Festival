@@ -1,24 +1,22 @@
 package joshie.harvest.api.cooking;
 
+import joshie.harvest.api.core.HFRegistry;
 import net.minecraft.init.Items;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.translation.I18n;
-import net.minecraftforge.fml.common.registry.IForgeRegistry;
-import net.minecraftforge.fml.common.registry.IForgeRegistryEntry;
-import net.minecraftforge.fml.common.registry.RegistryBuilder;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
-public class Recipe extends IForgeRegistryEntry.Impl<Recipe> {
-    public static final IForgeRegistry<Recipe> REGISTRY = new RegistryBuilder<Recipe>().setName(new ResourceLocation("harvestfestival", "meals")).setType(Recipe.class).setIDRange(0, 32000).create();
-
+//TODO: Remove forge registry in 0.7+
+//Do not call setRegistryName or anything
+//This is only extending the old forge registry for 0.5 > 0.6 compatability reason
+public class Recipe extends HFRegistry<Recipe> {
+    public static final Map<ResourceLocation, Recipe> REGISTRY = new HashMap<>();
     private final List<IngredientStack> required = new ArrayList<>();
     private List<IngredientStack> optional = new ArrayList<>();
-    private final Utensil utensil;
+    private Utensil utensil;
     private int hunger;
     private float saturation;
     private EnumAction action;
@@ -26,7 +24,8 @@ public class Recipe extends IForgeRegistryEntry.Impl<Recipe> {
     private int maximumOptional;
     private boolean isLearntByDefault;
 
-    public Recipe(Utensil utensil, IngredientStack... required) {
+    public Recipe(ResourceLocation resource, Utensil utensil, IngredientStack... required) {
+        super(resource);
         this.utensil = utensil;
         this.action = EnumAction.EAT;
         this.eatTimer = 24;
@@ -79,9 +78,14 @@ public class Recipe extends IForgeRegistryEntry.Impl<Recipe> {
         return this;
     }
 
+    @Override
+    public final Map<ResourceLocation, Recipe> getRegistry() {
+        return REGISTRY;
+    }
+
     @SuppressWarnings("deprecation")
     public String getDisplayName() {
-        return I18n.translateToLocal(getRegistryName().getResourceDomain() + ".meal." + getRegistryName().getResourcePath().replace("_", "."));
+        return I18n.translateToLocal(getResource().getResourceDomain() + ".meal." + getResource().getResourcePath().replace("_", "."));
     }
 
     public boolean isDefault() {
@@ -126,5 +130,15 @@ public class Recipe extends IForgeRegistryEntry.Impl<Recipe> {
 
     public boolean supportsNBTData() {
         return true;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        return o == this || o instanceof Recipe && getResource().equals(((Recipe) o).getResource());
+    }
+
+    @Override
+    public int hashCode() {
+        return getResource().hashCode();
     }
 }

@@ -233,12 +233,12 @@ public class HFShops {
     }
 
     private static void registerCafeKitchen() {
-        KITCHEN.addPurchasable(-680, new ItemStack(Items.BREAD), 2);
+        KITCHEN.addPurchasable(-350, new ItemStack(Items.BREAD), 2);
         KITCHEN.addPurchasable(-50, new ItemStack(Blocks.BROWN_MUSHROOM), 5);
         KITCHEN.addPurchasable(-60, new ItemStack(Items.PORKCHOP), 3);
         KITCHEN.addPurchasable(-80, new ItemStack(Items.COOKED_PORKCHOP), 4);
         KITCHEN.addPurchasable(-400, new ItemStack(Items.CAKE), 4);
-        KITCHEN.addPurchasable(-250, new ItemStack(Items.COOKIE), 5);
+        KITCHEN.addPurchasable(-30, new ItemStack(Items.COOKIE), 5);
         KITCHEN.addPurchasable(-60, new ItemStack(Items.BEEF), 3);
         KITCHEN.addPurchasable(-80, new ItemStack(Items.COOKED_BEEF), 4);
         KITCHEN.addPurchasable(-40, new ItemStack(Items.CHICKEN), 5);
@@ -359,7 +359,7 @@ public class HFShops {
     }
 
     private static void registerSupermarket() {
-        Crop.REGISTRY.getValues().stream().filter(crop -> crop != Crop.NULL_CROP && crop.getSeedCost() > 0).forEachOrdered(crop -> {
+        Crop.REGISTRY.values().stream().filter(crop -> crop != Crop.NULL_CROP && crop.getSeedCost() > 0).forEachOrdered(crop -> {
             SUPERMARKET.addPurchasable(new PurchasableCropSeeds(crop));
         });
 

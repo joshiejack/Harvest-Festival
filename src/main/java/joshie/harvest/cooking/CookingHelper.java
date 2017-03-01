@@ -23,8 +23,7 @@ import static joshie.harvest.core.lib.HFModInfo.MODID;
 
 public class CookingHelper {
     public static ItemStack getRecipe(String name) {
-        Recipe recipe = Recipe.REGISTRY.getValue(new ResourceLocation(MODID, name));
-        return HFCooking.RECIPE.getStackFromObject(recipe);
+        return HFCooking.RECIPE.getStackFromObject(Recipe.REGISTRY.get(new ResourceLocation(MODID, name)));
     }
 
     public static boolean hasAllIngredients(Recipe recipe, EntityPlayer player) {

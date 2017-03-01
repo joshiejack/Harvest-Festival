@@ -7,6 +7,7 @@ import joshie.harvest.core.HFTab;
 import joshie.harvest.core.helpers.TextHelper;
 import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.core.util.interfaces.ICreativeSorted;
+import joshie.harvest.crops.CropRegistry;
 import joshie.harvest.crops.HFCrops;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
@@ -15,6 +16,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemSeeds;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -37,12 +39,6 @@ public class ItemHFSeeds extends ItemSeeds implements ICreativeSorted {
     public ItemHFSeeds() {
         super(HFCrops.CROPS, FARMLAND);
         setCreativeTab(HFTab.FARMING);
-        setHasSubtypes(true);
-    }
-
-    @Override
-    public boolean showDurabilityBar(ItemStack stack) {
-        return false;
     }
 
     @Override
@@ -112,18 +108,30 @@ public class ItemHFSeeds extends ItemSeeds implements ICreativeSorted {
     }
 
     public ItemStack getStackFromCrop(Crop crop) {
-        return new ItemStack(this, 1, Crop.REGISTRY.getValues().indexOf(crop));
+        ItemStack stack = new ItemStack(this);
+        NBTTagCompound tag = new NBTTagCompound();
+        tag.setString("Crop", crop.getResource().toString());
+        stack.setTagCompound(tag);
+        return stack;
     }
 
     public Crop getCropFromStack(ItemStack stack) {
-        int id = Math.max(0, Math.min(Crop.REGISTRY.getValues().size() - 1, stack.getItemDamage()));
-        return Crop.REGISTRY.getValues().get(id);
+        //TODO: Remove in 0.7+
+        if (stack.getTagCompound() == null || !stack.getTagCompound().hasKey("Crop")) {
+            int id = Math.max(0, Math.min(CropRegistry.REGISTRY.getValues().size() - 1, stack.getItemDamage()));
+            NBTTagCompound tag = stack.hasTagCompound() ? stack.getTagCompound() : new NBTTagCompound();
+            Crop crop = CropRegistry.REGISTRY.getValues().get(id);
+            if (crop == null) crop = Crop.NULL_CROP;
+            tag.setString("Crop", crop.getResource().toString());
+            stack.setTagCompound(tag);
+            return crop;
+        } else return Crop.REGISTRY.get(new ResourceLocation(stack.getTagCompound().getString("Crop")));
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public void getSubItems(@Nonnull Item item, CreativeTabs tab, List<ItemStack> list) {
-        list.addAll(Crop.REGISTRY.getValues().stream().filter(crop -> crop != Crop.NULL_CROP && crop.getCropStack(1).getItem() != Items.BRICK).map(this::getStackFromCrop).collect(Collectors.toList()));
+        list.addAll(Crop.REGISTRY.values().stream().filter(crop -> crop != Crop.NULL_CROP && crop.getCropStack(1).getItem() != Items.BRICK).map(this::getStackFromCrop).collect(Collectors.toList()));
     }
 
     public ItemHFSeeds register(String name) {

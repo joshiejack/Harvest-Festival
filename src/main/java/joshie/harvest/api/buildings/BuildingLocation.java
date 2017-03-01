@@ -1,21 +1,19 @@
 package joshie.harvest.api.buildings;
 
-import net.minecraft.util.ResourceLocation;
-
 public class BuildingLocation {
-    private final ResourceLocation building;
+    private final Building building;
     private final String location;
     public double distance;
     public int ticksBeforeTeleport;
 
     public BuildingLocation(Building building, String location) {
-        this.building = Building.REGISTRY.getKey(building);
+        this.building = building;
         this.location = location;
         this.distance = 5D;
         this.ticksBeforeTeleport = 1500;
     }
 
-    public ResourceLocation getResource() {
+    public Building getBuilding() {
         return building;
     }
 

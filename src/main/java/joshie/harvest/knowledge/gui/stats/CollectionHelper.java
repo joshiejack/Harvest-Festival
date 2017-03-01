@@ -15,8 +15,8 @@ public class CollectionHelper {
     }
 
     private static boolean isInCookingCollection(ItemStack stack) {
-        for (Recipe recipe: Recipe.REGISTRY) {
-            if (stack.isItemEqual(recipe.getStack())) return true;
+        for (Recipe recipe: Recipe.REGISTRY.values()) {
+                if (stack.isItemEqual(recipe.getStack())) return true;
         }
 
         return false;

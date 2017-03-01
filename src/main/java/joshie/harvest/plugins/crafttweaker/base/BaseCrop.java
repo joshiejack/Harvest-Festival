@@ -20,7 +20,7 @@ public abstract class BaseCrop extends BaseOnce {
 
     @Override
     public void applyOnce() {
-        Crop crop = Crop.REGISTRY.getValue(resource);
+        Crop crop = Crop.REGISTRY.get(resource);
         if (crop != null) {
             applyToCrop(crop);
         }

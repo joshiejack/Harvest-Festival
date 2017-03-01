@@ -1,7 +1,9 @@
 package joshie.harvest.api.buildings;
 
+import com.google.common.collect.Maps;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.Festival;
+import joshie.harvest.api.core.HFRegistry;
 import joshie.harvest.api.core.ISpecialRules;
 import joshie.harvest.api.npc.NPC;
 import joshie.harvest.buildings.render.BuildingKey;
@@ -12,15 +14,12 @@ import net.minecraft.util.StringUtils;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.common.registry.IForgeRegistry;
-import net.minecraftforge.fml.common.registry.IForgeRegistryEntry;
-import net.minecraftforge.fml.common.registry.RegistryBuilder;
 
 import javax.annotation.Nonnull;
 import java.util.*;
 
-public class Building extends IForgeRegistryEntry.Impl<Building> {
-    public static final IForgeRegistry<Building> REGISTRY = new RegistryBuilder<Building>().setName(new ResourceLocation("harvestfestival", "buildings")).setType(Building.class).setIDRange(0, 32000).create();
+public class Building extends HFRegistry<Building> {
+    public static final Map<ResourceLocation, Building> REGISTRY = Maps.newHashMap();
     private final Set<NPC> inhabitants = new HashSet<>();
     private ResourceLocation[] requirements = new ResourceLocation[0];
     private ISpecialRules special = (w, p, a) -> true;
@@ -31,11 +30,9 @@ public class Building extends IForgeRegistryEntry.Impl<Building> {
     private int length;
     private boolean canHaveMultiple;
 
-    public Building() {}
     public Building(ResourceLocation resource){
-        setRegistryName(resource);
+        super(resource);
         toLocalise = resource.getResourceDomain().toLowerCase(Locale.ENGLISH) + ".structures." + resource.getResourcePath().toLowerCase(Locale.ENGLISH);
-        REGISTRY.register(this);
     }
     /** Set the requirements for this building from string values
      * @param requirements  the buildings required in format "modid:building".
@@ -88,6 +85,11 @@ public class Building extends IForgeRegistryEntry.Impl<Building> {
         return this;
     }
 
+    @Override
+    public final Map<ResourceLocation, Building> getRegistry() {
+        return REGISTRY;
+    }
+
     public Collection<NPC> getInhabitants() {
         return inhabitants;
     }
@@ -99,7 +101,7 @@ public class Building extends IForgeRegistryEntry.Impl<Building> {
     @SuppressWarnings("deprecation")
     public String getLocalisedName() {
         if (StringUtils.isNullOrEmpty(toLocalise)) {
-            this.toLocalise = this.getRegistryName().getResourceDomain().toLowerCase(Locale.ENGLISH) + ".structures." + this.getRegistryName().getResourcePath().toLowerCase(Locale.ENGLISH);
+            toLocalise = getResource().getResourceDomain().toLowerCase(Locale.ENGLISH) + ".structures." + getResource().getResourcePath().toLowerCase(Locale.ENGLISH);
         }
 
         return I18n.translateToLocal(toLocalise);
@@ -121,8 +123,6 @@ public class Building extends IForgeRegistryEntry.Impl<Building> {
     public long getTickTime() {
         return tickTime;
     }
-
-
 
     public ResourceLocation[] getRequirements() {
         return requirements;
@@ -162,11 +162,11 @@ public class Building extends IForgeRegistryEntry.Impl<Building> {
 
     @Override
     public boolean equals(Object o) {
-        return o instanceof Building && getRegistryName() != null && getRegistryName().equals(((Building) o).getRegistryName());
+        return o instanceof Building && getResource() != null && getResource().equals(((Building) o).getResource());
     }
 
     @Override
     public int hashCode() {
-        return getRegistryName() == null? 0 : getRegistryName().hashCode();
+        return getResource() == null? 0 : getResource().hashCode();
     }
 }

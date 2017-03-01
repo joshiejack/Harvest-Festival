@@ -1,13 +1,12 @@
 package joshie.harvest.debug;
 
 import joshie.harvest.api.buildings.Building;
-import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.core.commands.HFDebugCommand;
 import net.minecraft.item.ItemStack;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @HFDebugCommand
 @SuppressWarnings("unused")
@@ -34,13 +33,7 @@ public class CommandExportBuildingList extends CommandExportHeld {
                 "|-\n" +
                 "!" + CAT2 + "\n|");
 
-        List<String> list = new ArrayList<>();
-        for (Building building: Building.REGISTRY) {
-            if (building != HFBuildings.null_building) {
-                list.add(building.getLocalisedName());
-            }
-        }
-
+        List<String> list = Building.REGISTRY.values().stream().map(Building::getLocalisedName).collect(Collectors.toList());
         Collections.sort(list, String::compareTo);
 
         for (int i = 0; i < list.size(); i++) {

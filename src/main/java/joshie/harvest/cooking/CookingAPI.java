@@ -9,6 +9,8 @@ import joshie.harvest.core.util.holders.HolderRegistryMulti;
 import joshie.harvest.core.util.holders.ItemStackHolder;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.common.registry.IForgeRegistry;
+import net.minecraftforge.fml.common.registry.RegistryBuilder;
 import net.minecraftforge.oredict.OreDictionary;
 
 import java.util.*;
@@ -18,6 +20,8 @@ import static joshie.harvest.core.lib.HFModInfo.MODID;
 
 @HFApiImplementation
 public class CookingAPI implements CookingManager {
+    //TODO: Remove in 0.7+
+    public static final IForgeRegistry<Recipe> REGISTRY = new RegistryBuilder<Recipe>().setName(new ResourceLocation("harvestfestival", "meals")).setType(Recipe.class).setIDRange(0, 32000).create();
     public static final CookingAPI INSTANCE = new CookingAPI();
     private final Set<ItemStackHolder> knives = new HashSet<>();
     private final Set<CookingHandler> cookingHandlers = new HashSet<>();
@@ -72,8 +76,8 @@ public class CookingAPI implements CookingManager {
     @Override
     public ItemStack getBestMeal(String string) {
         ResourceLocation location = string.contains(":") ? new ResourceLocation(string) : new ResourceLocation(MODID, string);
-        for (Recipe recipe : Recipe.REGISTRY.getValues()) {
-            if (recipe.getRegistryName().equals(location)) {
+        for (Recipe recipe : Recipe.REGISTRY.values()) {
+            if (recipe.getResource().equals(location)) {
                 ArrayList<IngredientStack> stacks = new ArrayList<>();
                 stacks.addAll(recipe.getRequired());
                 if (recipe.getOptional().size() > 0)stacks.addAll(recipe.getOptional());
@@ -87,8 +91,8 @@ public class CookingAPI implements CookingManager {
     @Override
     public ItemStack getMeal(String string) {
         ResourceLocation location = string.contains(":") ? new ResourceLocation(string) : new ResourceLocation(MODID, string);
-        for (Recipe recipe : Recipe.REGISTRY.getValues()) {
-            if (recipe.getRegistryName().equals(location)) {
+        for (Recipe recipe : Recipe.REGISTRY.values()) {
+            if (recipe.getResource().equals(location)) {
                 return CookingHelper.makeRecipe(recipe);
             }
         }

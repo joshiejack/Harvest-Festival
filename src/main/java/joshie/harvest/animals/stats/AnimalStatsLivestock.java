@@ -34,7 +34,7 @@ public class AnimalStatsLivestock extends AnimalStatsHF {
     @Override
     protected void postStress() {
         if (cleanliness < 0) {
-            healthiness += cleanliness;
+            healthiness += Math.max(1, cleanliness / 2);
         } else if (cleanliness >= 0) {
             cleanliness = 0;
         }
@@ -82,7 +82,7 @@ public class AnimalStatsLivestock extends AnimalStatsHF {
     private boolean clean(@Nonnull World world) {
         if (cleanliness < Byte.MAX_VALUE) {
             if (!world.isRemote) {
-                cleanliness = (byte) Math.min(Byte.MAX_VALUE, cleanliness + 10);
+                cleanliness = (byte) Math.min(Byte.MAX_VALUE, cleanliness + 20);
                 if (cleanliness >= Byte.MAX_VALUE) {
                     affectHappiness(type.getRelationshipBonus(AnimalAction.CLEAN));
                     HFApi.animals.syncAnimalStats(animal);

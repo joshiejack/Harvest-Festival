@@ -2,35 +2,27 @@ package joshie.harvest.npcs.item;
 
 import joshie.harvest.api.npc.NPC;
 import joshie.harvest.core.HFTab;
-import joshie.harvest.core.base.item.ItemHFFML;
+import joshie.harvest.core.base.item.ItemHFRegistry;
 import joshie.harvest.npcs.HFNPCs;
 import joshie.harvest.npcs.NPCHelper;
 import joshie.harvest.npcs.entity.EntityNPC;
 import joshie.harvest.town.TownHelper;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
-import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nonnull;
 import java.util.UUID;
 
-import static joshie.harvest.core.lib.HFModInfo.MODID;
-
-public class ItemNPCSpawner extends ItemHFFML<ItemNPCSpawner, NPC> {
+public class ItemNPCSpawner extends ItemHFRegistry<ItemNPCSpawner, NPC> {
     public ItemNPCSpawner() {
-        super(NPC.REGISTRY, HFTab.TOWN);
+        super("NPC", NPCHelper.OLD_REGISTRY, NPC.REGISTRY, HFTab.TOWN);
     }
 
     @Override
@@ -79,14 +71,7 @@ public class ItemNPCSpawner extends ItemHFFML<ItemNPCSpawner, NPC> {
     }
 
     @Override
-    public NPC getNullValue() {
-        return NPC.NULL_NPC;
-    }
-
-    @SideOnly(Side.CLIENT)
-    public void registerModels(Item item, String name) {
-        for (NPC npc: registry) {
-            ModelLoader.setCustomModelResourceLocation(item, registry.getValues().indexOf(npc), new ModelResourceLocation(new ResourceLocation(MODID, "spawner_npc"), "inventory"));
-        }
+    protected NPC getDefaultValue() {
+        return HFNPCs.CARPENTER;
     }
 }

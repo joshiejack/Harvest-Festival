@@ -36,17 +36,13 @@ public class BakedCrops extends BakedHF {
         @SubscribeEvent
         public void onBaking(ModelBakeEvent event) {
             IRegistry<ModelResourceLocation, IBakedModel> registry = event.getModelRegistry();
-            for (Crop crop: Crop.REGISTRY) {
-                if (crop != Crop.NULL_CROP) {
-                    if (crop.skipLoadingRender()) {
-                        for (Object object: crop.getStateHandler().getValidStates()) {
-                            IBlockState state = (IBlockState) object;
-                            IBakedModel original = registry.getObject(getModelResourceLocation(state));
-                            registry.putObject(getModelResourceLocation(state), new BakedCrops(original));
-                        }
-                    }
+            Crop.REGISTRY.values().stream().filter(crop -> crop != Crop.NULL_CROP).filter(Crop::skipLoadingRender).forEachOrdered(crop -> {
+                for (Object object : crop.getStateHandler().getValidStates()) {
+                    IBlockState state = (IBlockState) object;
+                    IBakedModel original = registry.getObject(getModelResourceLocation(state));
+                    registry.putObject(getModelResourceLocation(state), new BakedCrops(original));
                 }
-            }
+            });
         }
     }
 }

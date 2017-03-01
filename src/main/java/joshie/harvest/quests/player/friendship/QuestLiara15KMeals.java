@@ -40,7 +40,7 @@ public class QuestLiara15KMeals extends QuestFriendshipStore {
         List<ItemStack> stacks = new ArrayList<>();
         for (int i = 0; i < 3; i++) {
             Random rand = new Random(HFApi.calendar.getDate(player.worldObj).hashCode() + i);
-            List<Recipe> list = Recipe.REGISTRY.getValues();
+            List<Recipe> list = new ArrayList<>(Recipe.REGISTRY.values());
             ItemStack stack = null;
             while (stack == null || !stack.hasTagCompound()) {
                 stack = CookingHelper.makeRecipe(list.get(rand.nextInt(list.size())));

@@ -18,7 +18,7 @@ public class RecipeMaker implements CookingHandler {
     @Override
     public List<ItemStack> getResult(Utensil utensil, List<ItemStack> stacks, List<IngredientStack> ingredients) {
         //Loop the recipes once, checking if we only have the allowed
-        for (Recipe recipe: Recipe.REGISTRY) {
+        for (Recipe recipe: Recipe.REGISTRY.values()) {
             List<ItemStack> ret = findRecipe(utensil, recipe, ingredients, true);
             if (ret != null) {
                 return ret;
@@ -26,7 +26,7 @@ public class RecipeMaker implements CookingHandler {
         }
 
         //Next loop again, this time allowing for other ingredients
-        for (Recipe recipe: Recipe.REGISTRY) {
+        for (Recipe recipe: Recipe.REGISTRY.values()) {
             List<ItemStack> ret = findRecipe(utensil, recipe, ingredients, false);
             if (ret != null) {
                 return ret;

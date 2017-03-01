@@ -33,7 +33,7 @@ public class HFCommandNPC extends AbstractHFCommand {
     }
 
     private List<String> getShopList() {
-        List<String> list = NPC.REGISTRY.getValues().stream().map(npc -> npc.getLocalizedName() + " = " + npc.getRegistryName()).collect(Collectors.toList());
+        List<String> list = NPC.REGISTRY.values().stream().map(npc -> npc.getLocalizedName() + " = " + npc.getResource()).collect(Collectors.toList());
         Collections.sort(list, String::compareTo);
         return list;
     }

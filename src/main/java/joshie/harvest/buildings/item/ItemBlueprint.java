@@ -1,18 +1,20 @@
 package joshie.harvest.buildings.item;
 
-import joshie.harvest.buildings.*;
 import joshie.harvest.api.buildings.Building;
+import joshie.harvest.buildings.BuildingError;
+import joshie.harvest.buildings.BuildingHelper;
+import joshie.harvest.buildings.BuildingRegistry;
+import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.buildings.render.BuildingKey;
 import joshie.harvest.core.HFTab;
-import joshie.harvest.core.base.item.ItemHFFML;
+import joshie.harvest.core.base.item.ItemHFRegistry;
 import joshie.harvest.core.helpers.TextHelper;
+import joshie.harvest.core.util.holders.HolderRegistrySet;
 import joshie.harvest.core.util.interfaces.ICreativeSorted;
 import joshie.harvest.town.TownHelper;
 import joshie.harvest.town.data.TownData;
 import joshie.harvest.town.data.TownDataServer;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
@@ -22,23 +24,15 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
-import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ItemBlueprint extends ItemHFFML<ItemBlueprint, Building> implements ICreativeSorted {
+public class ItemBlueprint extends ItemHFRegistry<ItemBlueprint, Building> implements ICreativeSorted {
     public ItemBlueprint() {
-        super(Building.REGISTRY, HFTab.TOWN);
+        super("Building", BuildingRegistry.REGISTRY, Building.REGISTRY, HFTab.TOWN);
         setMaxStackSize(1);
-    }
-
-    @Override
-    public boolean showDurabilityBar(ItemStack stack) {
-        return false;
     }
 
     @Override
@@ -75,8 +69,8 @@ public class ItemBlueprint extends ItemHFFML<ItemBlueprint, Building> implements
     }
 
     @Override
-    public Building getNullValue() {
-        return HFBuildings.null_building;
+    public Building getDefaultValue() {
+        return HFBuildings.CARPENTER;
     }
 
     @Override
@@ -87,12 +81,5 @@ public class ItemBlueprint extends ItemHFFML<ItemBlueprint, Building> implements
     @Override
     public int getSortValue(ItemStack stack) {
         return 105;
-    }
-
-    @SideOnly(Side.CLIENT)
-    public void registerModels(Item item, String name) {
-        for (Building building: registry) {
-            ModelLoader.setCustomModelResourceLocation(item, registry.getValues().indexOf(building), new ModelResourceLocation(getRegistryName(), "inventory"));
-        }
     }
 }

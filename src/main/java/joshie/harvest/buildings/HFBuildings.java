@@ -18,7 +18,7 @@ import joshie.harvest.buildings.placeable.Placeable;
 import joshie.harvest.buildings.special.SpecialRuleBuildings;
 import joshie.harvest.buildings.special.SpecialRuleChurch;
 import joshie.harvest.buildings.special.SpecialRuleFestivals;
-import joshie.harvest.core.base.render.FMLDefinition;
+import joshie.harvest.core.base.render.BuildingDefinition;
 import joshie.harvest.core.base.render.MeshIdentical;
 import joshie.harvest.core.util.HFTemplate;
 import joshie.harvest.core.util.annotations.HFLoader;
@@ -50,7 +50,6 @@ public class HFBuildings {
     public static final BlockInternalAir AIR = new BlockInternalAir().register("air");
 
     private static final ISpecialRules NEVER = (w, p, a) -> false;
-    public static final Building null_building = new Building();
     public static final Building BARN = registerBuilding("barn").setInhabitants(HFNPCs.BARN_OWNER).setOffset(6, -1, 8);
     public static final Building BLACKSMITH = registerBuilding("blacksmith").setRequirements("miningHill").setInhabitants(HFNPCs.BLACKSMITH).setOffset(3, -2, 6);
     public static final Building CAFE = registerBuilding("cafe").setRequirements("supermarket").setInhabitants(HFNPCs.CAFE_OWNER, HFNPCs.CAFE_GRANNY).setOffset(7, -1, 10);
@@ -70,22 +69,22 @@ public class HFBuildings {
 
     @SideOnly(Side.CLIENT)
     public static void preInitClient() {
-        ModelLoader.setCustomMeshDefinition(STRUCTURES, new FMLDefinition<>(STRUCTURES, "buildings", Building.REGISTRY));
+        ModelLoader.setCustomMeshDefinition(STRUCTURES, new BuildingDefinition(STRUCTURES));
         ModelLoader.setCustomMeshDefinition(BLUEPRINTS, new MeshIdentical(BLUEPRINTS));
     }
 
     public static void init() {
         HFApi.npc.getGifts().addToBlacklist(STRUCTURES, BLUEPRINTS);
-        for (Building building: Building.REGISTRY.getValues()) {
+        for (Building building: Building.REGISTRY.values()) {
             HFTemplate template = BuildingRegistry.INSTANCE.getTemplateForBuilding(building);
             if (template != null) template.initTemplate();
-            else HarvestFestival.LOGGER.log(Level.WARN, "Failed to load the template for the building: " + building.getRegistryName().toString());
+            else HarvestFestival.LOGGER.log(Level.WARN, "Failed to load the template for the building: " + building.getResource().toString());
         }
     }
 
     @SideOnly(Side.CLIENT)
     public static void initClient() {
-        FMLDefinition.getDefinition("buildings").registerEverything();
+        BuildingDefinition.registerEverything();
     }
 
     @SuppressWarnings("unchecked")
@@ -96,7 +95,12 @@ public class HFBuildings {
             if (clazz != null) building = clazz.getConstructor(ResourceLocation.class).newInstance(new ResourceLocation("harvestfestival", name));
         } catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException ex) { /**/}
 
-        if (building == null)  building = new Building(new ResourceLocation("harvestfestival", name));
+        if (building == null)  {
+            building = new Building(new ResourceLocation("harvestfestival", name));
+            building.setRegistryName(new ResourceLocation("harvestfestival", name));
+            BuildingRegistry.REGISTRY.register(building);
+        }
+
         return (B) building;
     }
 

@@ -19,13 +19,13 @@ public abstract class PacketRelationship extends PenguinPacket {
 
     @Override
     public void toBytes(ByteBuf buf) {
-        ByteBufUtils.writeUTF8String(buf, npc.getRegistryName().toString());
+        ByteBufUtils.writeUTF8String(buf, npc.getResource().toString());
     }
 
     @Override
     public void fromBytes(ByteBuf buf) {
         try {
-            npc = NPC.REGISTRY.getValue(new ResourceLocation(ByteBufUtils.readUTF8String(buf)));
+            npc = NPC.REGISTRY.get(new ResourceLocation(ByteBufUtils.readUTF8String(buf)));
         } catch (Exception e) { HarvestFestival.LOGGER.log(Level.ERROR, "Failed to read a sync gift packet correctly"); }
     }
 

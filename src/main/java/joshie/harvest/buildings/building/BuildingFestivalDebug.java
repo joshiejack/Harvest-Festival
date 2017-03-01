@@ -4,7 +4,6 @@ import joshie.harvest.api.buildings.Building;
 import net.minecraft.util.ResourceLocation;
 
 public class BuildingFestivalDebug extends Building {
-    public BuildingFestivalDebug() {}
     public BuildingFestivalDebug(ResourceLocation resource){
         super(resource);
     }

@@ -21,12 +21,12 @@ public class PacketSelectRecipe extends PenguinPacket {
 
     @Override
     public void toBytes(ByteBuf to) {
-        ByteBufUtils.writeUTF8String(to, recipe.getRegistryName().toString());
+        ByteBufUtils.writeUTF8String(to, recipe.getResource().toString());
     }
 
     @Override
     public void fromBytes(ByteBuf from) {
-        recipe = Recipe.REGISTRY.getValue(new ResourceLocation(ByteBufUtils.readUTF8String(from)));
+        recipe = Recipe.REGISTRY.get(new ResourceLocation(ByteBufUtils.readUTF8String(from)));
     }
 
     @Override

@@ -1,14 +1,16 @@
 package joshie.harvest.npcs.render;
 
 import joshie.harvest.api.npc.INPCHelper;
-import joshie.harvest.core.helpers.MCClientHelper;
-import joshie.harvest.core.base.render.FakeEntityRenderer.EntityItemRenderer;
 import joshie.harvest.api.npc.NPC;
+import joshie.harvest.core.base.render.FakeEntityRenderer.EntityItemRenderer;
+import joshie.harvest.core.helpers.MCClientHelper;
+import joshie.harvest.npcs.HFNPCs;
 import joshie.harvest.npcs.entity.EntityNPC;
 import joshie.harvest.npcs.entity.EntityNPCVillager;
 import joshie.harvest.npcs.render.NPCItemRenderer.NPCTile;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
 import javax.annotation.Nullable;
@@ -64,9 +66,8 @@ public class NPCItemRenderer extends TileEntitySpecialRenderer<NPCTile> {
         public NPC npc;
 
         @Override
-        public void setID(int id) {
-            id = Math.max(0, Math.min(NPC.REGISTRY.getValues().size() - 1, id));
-            this.npc = NPC.REGISTRY.getValues().get(id);
+        public void setStack(ItemStack stack) {
+            this.npc = HFNPCs.SPAWNER_NPC.getObjectFromStack(stack);
         }
     }
 }

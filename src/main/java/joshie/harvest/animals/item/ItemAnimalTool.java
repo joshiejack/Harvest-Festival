@@ -169,7 +169,7 @@ public class ItemAnimalTool extends ItemHFEnum<ItemAnimalTool, Tool> {
                     }
                 }
 
-                ToolHelper.consumeHunger(player, 4F);
+                ToolHelper.consumeHunger(player, 1F);
                 return true;
             }
         }

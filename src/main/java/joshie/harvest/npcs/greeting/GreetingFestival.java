@@ -30,6 +30,6 @@ public class GreetingFestival implements IConditionalGreeting {
 
     @Override
     public String getLocalizedText(EntityPlayer player, EntityAgeable ageable, NPC npc) {
-        return TextHelper.getRandomSpeech(npc, String.format(text, npc.getRegistryName().getResourcePath()), 10);
+        return TextHelper.getRandomSpeech(npc, String.format(text, npc.getResource().getResourcePath()), 10);
     }
 }

@@ -6,6 +6,7 @@ import joshie.harvest.core.base.render.FakeEntityRenderer.EntityItemRenderer;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 
@@ -44,8 +45,8 @@ public class FakeEntityRenderer extends TileEntitySpecialRenderer<EntityItemRend
         protected final TIntObjectMap<RenderPair> map = new TIntObjectHashMap<>();
         public RenderPair render;
 
-        public void setID(int id) {
-            this.render = map.get(id);
+        public void setStack(ItemStack stack) {
+            this.render = map.get(stack.getItemDamage());
         }
     }
 

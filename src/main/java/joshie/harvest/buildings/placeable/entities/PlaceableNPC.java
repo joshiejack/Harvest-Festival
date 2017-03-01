@@ -39,7 +39,7 @@ public class PlaceableNPC extends PlaceableEntity {
     @Override
     public Entity getEntity(World world, BlockPos pos, Rotation rotation) {
         if (npc == null || npc.equals("")) return null;
-        NPC inpc = NPC.REGISTRY.getValue(new ResourceLocation(npc)); if (inpc == null) return null;
+        NPC inpc = NPC.REGISTRY.get(new ResourceLocation(npc)); if (inpc == null) return null;
         EntityNPC entity = NPCHelper.getEntityForNPC(world, inpc);
         entity.setPosition(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5);
         entity.resetSpawnHome();
@@ -49,7 +49,7 @@ public class PlaceableNPC extends PlaceableEntity {
     @Override
     public PlaceableNPC getCopyFromEntity(Entity e, int x, int y, int z) {
         EntityNPC npc = (EntityNPC) e;
-        return new PlaceableNPC("", npc.getNPC().getRegistryName().toString(), x, y, z);
+        return new PlaceableNPC("", npc.getNPC().getResource().toString(), x, y, z);
     }
 
     @Override

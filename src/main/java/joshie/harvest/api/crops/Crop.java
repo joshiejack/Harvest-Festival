@@ -4,6 +4,7 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.AnimalFoodType;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.cooking.Ingredient;
+import joshie.harvest.api.core.HFRegistry;
 import joshie.harvest.api.core.ISpecialRules;
 import joshie.harvest.api.crops.IStateHandler.PlantSection;
 import net.minecraft.block.Block;
@@ -18,16 +19,19 @@ import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.IPlantable;
-import net.minecraftforge.fml.common.registry.IForgeRegistry;
-import net.minecraftforge.fml.common.registry.IForgeRegistryEntry;
-import net.minecraftforge.fml.common.registry.RegistryBuilder;
 import org.apache.commons.lang3.StringUtils;
 
-public class Crop extends IForgeRegistryEntry.Impl<Crop> implements IPlantable {
-    public static final IForgeRegistry<Crop> REGISTRY = new RegistryBuilder<Crop>().setName(new ResourceLocation("harvestfestival", "crops")).setType(Crop.class).setIDRange(0, 32000).create();
-    public static final GrowthHandler SEASONAL = new GrowthHandler() {};
-    public static final DropHandler DROPS = new DropHandler();
-    public static final ISpecialRules RULES = (w, p, a) -> true;
+import java.util.HashMap;
+import java.util.Map;
+
+//TODO: Remove forge registry in 0.7+
+//Do not call setRegistryName or anything
+//This is only extending the old forge registry for 0.5 > 0.6 compatability reason
+public class Crop extends HFRegistry<Crop> implements IPlantable {
+    public static final Map<ResourceLocation, Crop> REGISTRY = new HashMap<>();
+    private static final GrowthHandler SEASONAL = new GrowthHandler() {};
+    private static final DropHandler DROPS = new DropHandler();
+    private static final ISpecialRules RULES = (w, p, a) -> true;
     public static final Crop NULL_CROP = new Crop();
 
     //CropData
@@ -57,6 +61,7 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements IPlantable {
     }
 
     public Crop(ResourceLocation key) {
+        super(key);
         this.seasons = new Season[] { Season.SPRING };
         this.stages = 3;
         this.foodType = AnimalFoodType.VEGETABLE;
@@ -68,8 +73,6 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements IPlantable {
         this.needsWatering = true;
         this.doubleStage = Integer.MAX_VALUE;
         this.type = EnumPlantType.Crop;
-        this.setRegistryName(key);
-        REGISTRY.register(this);
     }
 
     /** Set how much this tree costs to buy and sell
@@ -203,7 +206,7 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements IPlantable {
      * Set the ingredient stats for this crop
      **/
     public Crop setIngredient(int hunger, float saturation) {
-        String name = getRegistryName().getResourcePath();
+        String name = getResource().getResourcePath();
         if (Ingredient.INGREDIENTS.containsKey(name)) {
             this.ingredient = Ingredient.INGREDIENTS.get(name);
         } else this.ingredient = new Ingredient(name, hunger, saturation);
@@ -270,6 +273,11 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements IPlantable {
     public Crop setSkipRender() {
         this.skipRender = true;
         return this;
+    }
+
+    @Override
+    public final Map<ResourceLocation, Crop> getRegistry() {
+        return REGISTRY;
     }
 
     /**
@@ -366,15 +374,6 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements IPlantable {
     }
 
     /**
-     * This is called when bringing up the list of crops for sale
-     *
-     * @return whether this item can be purchased in this shop or not
-     */
-    public boolean canPurchase() {
-        return getSeedCost() > 0;
-    }
-
-    /**
      * Return the colour of the seed bag
      **/
     public int getColor() {
@@ -462,7 +461,7 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements IPlantable {
     @SuppressWarnings("deprecation")
     public String getLocalizedName(boolean isItem) {
         String suffix = alternativeName ? ((isItem) ? ".item" : ".block") : "";
-        return I18n.translateToLocal((getRegistryName().getResourceDomain() + ".crop." + StringUtils.replace(getRegistryName().getResourcePath(), "_", ".") + suffix));
+        return I18n.translateToLocal((getResource().getResourceDomain() + ".crop." + StringUtils.replace(getResource().getResourcePath(), "_", ".") + suffix));
     }
 
     /**
@@ -472,7 +471,7 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements IPlantable {
      */
     @SuppressWarnings("deprecation")
     public String getSeedsName() {
-        String name = alternativeName ? I18n.translateToLocalFormatted((getRegistryName().getResourceDomain() + ".crop." + StringUtils.replace(getRegistryName().getResourcePath(), "_", ".") + ".block")) : item == null ? "NULL" : item.getDisplayName();
+        String name = alternativeName ? I18n.translateToLocalFormatted((getResource().getResourceDomain() + ".crop." + StringUtils.replace(getResource().getResourcePath(), "_", ".") + ".block")) : item == null ? "NULL" : item.getDisplayName();
         String seeds = I18n.translateToLocal("harvestfestival.crop.seeds");
         String format = I18n.translateToLocal("harvestfestival.crop.seeds.format");
         return String.format(format, name, seeds);
@@ -491,11 +490,11 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements IPlantable {
 
     @Override
     public boolean equals(Object o) {
-        return o == this || o instanceof Crop && getRegistryName().equals(((Crop) o).getRegistryName());
+        return o == this || o instanceof Crop && getResource().equals(((Crop) o).getResource());
     }
 
     @Override
     public int hashCode() {
-        return getRegistryName().hashCode();
+        return getResource().hashCode();
     }
 }

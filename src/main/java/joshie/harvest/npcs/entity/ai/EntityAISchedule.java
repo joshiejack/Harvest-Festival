@@ -35,6 +35,7 @@ public class EntityAISchedule extends EntityAIBase {
 
     @Override
     public boolean shouldExecute() {
+        if (npc.getNPC() == null) return false;
         updateTarget(); //Called here as need to check for new targets
         return blockTarget == null || (npc.getDistanceSq(blockTarget) > distanceRequired);
     }

@@ -36,7 +36,7 @@ public class CommandExportIngredient extends AbstractHFCommand {
     }
 
     private Recipe getRecipeFromStack(ItemStack stack) {
-        for (Recipe recipe: Recipe.REGISTRY) {
+        for (Recipe recipe: Recipe.REGISTRY.values()) {
             ItemStack out = recipe.getStack();
             if (out.isItemEqual(stack)) return recipe;
         }
@@ -46,7 +46,7 @@ public class CommandExportIngredient extends AbstractHFCommand {
 
     private Recipe getRecipeFromString(String[] name) {
         if (name.length <= 0) return null;
-        else return Recipe.REGISTRY.getValue(new ResourceLocation(MODID, name[0]));
+        else return Recipe.REGISTRY.get(new ResourceLocation(MODID, name[0]));
     }
 
     private int getHunger(Recipe recipe) {

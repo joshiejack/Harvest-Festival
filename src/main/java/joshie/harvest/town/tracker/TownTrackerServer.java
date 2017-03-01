@@ -63,7 +63,7 @@ public class TownTrackerServer extends TownTracker<TownDataServer> {
         if (uuid == null) return default_;
         TownData data = uuidMap.get(uuid);
         if (data == null) return default_;
-        if (!data.hasBuilding(MINE_ENTRANCE.getResource())) return data.getTownCentre();
+        if (!data.hasBuilding(MINE_ENTRANCE.getBuilding())) return data.getTownCentre();
         BlockPos location = data.getCoordinatesFor(MINE_ENTRANCE);
         if (location != null) {
             Rotation rotation = getMineOrientation(mineID);
@@ -86,14 +86,14 @@ public class TownTrackerServer extends TownTracker<TownDataServer> {
         UUID uuid = townIDs.inverse().get(mineID);
         if (uuid == null) return Rotation.NONE;
         TownDataServer data = uuidMap.get(uuid);
-        if (data == null || !data.hasBuilding(MINE_ENTRANCE.getResource())) return Rotation.NONE;
-        return data.getFacingFor(MINE_ENTRANCE.getResource());
+        if (data == null || !data.hasBuilding(MINE_ENTRANCE.getBuilding())) return Rotation.NONE;
+        return data.getFacingFor(MINE_ENTRANCE.getBuilding().getResource());
     }
 
     @Override
     public int getMineIDFromCoordinates(BlockPos pos) {
         TownData data = getClosestTownToBlockPos(pos, false);
-        if (!data.hasBuilding(MINE_ENTRANCE.getResource())) return -1;
+        if (!data.hasBuilding(MINE_ENTRANCE.getBuilding())) return -1;
         if (townIDs.containsKey(data.getID())) {
             return townIDs.get(data.getID());
         } else return matchUUIDWithMineID(data.getID());

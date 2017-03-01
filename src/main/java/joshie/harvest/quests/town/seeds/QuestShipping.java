@@ -43,7 +43,7 @@ public class QuestShipping extends QuestTown {
     //Rebuild the list of spring crops
     private void rebuildCropSet() {
         crops = new HashSet<>();
-        for (Crop crop: Crop.REGISTRY) {
+        for (Crop crop: Crop.REGISTRY.values()) {
             for (Season season: crop.getSeasons()) {
                 if (season == this.season) {
                     crops.add(StackSold.of(crop.getCropStack(1), 0L));

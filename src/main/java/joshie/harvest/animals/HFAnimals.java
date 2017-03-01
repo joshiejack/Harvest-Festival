@@ -123,12 +123,8 @@ public class HFAnimals {
     }
 
     public static void init() {
-        for (Crop crop : Crop.REGISTRY.getValues()) {
-            if (crop == Crop.NULL_CROP) continue;
-            if (crop.getFoodType() != null) {
-                animals.registerFoodAsType(crop.getCropStack(1), crop.getFoodType());
-            }
-        }
+        Crop.REGISTRY.values().stream().filter(crop -> crop != Crop.NULL_CROP && crop.getFoodType() != null)
+                .forEachOrdered(crop -> animals.registerFoodAsType(crop.getCropStack(1), crop.getFoodType()));
     }
 
     @SideOnly(Side.CLIENT)

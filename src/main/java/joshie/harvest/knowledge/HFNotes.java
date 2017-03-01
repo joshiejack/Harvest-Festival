@@ -6,6 +6,7 @@ import joshie.harvest.api.core.ITiered.ToolTier;
 import joshie.harvest.api.knowledge.Category;
 import joshie.harvest.api.knowledge.Note;
 import joshie.harvest.buildings.HFBuildings;
+import joshie.harvest.cooking.CookingHelper;
 import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.cooking.block.BlockCookware.Cookware;
 import joshie.harvest.core.HFCore;
@@ -69,7 +70,8 @@ public class HFNotes {
         SECRET_CURSED_TOOLS.setRender(new NoteRenderCursedTools());
     }
 
-    public static void init() {
+    @SuppressWarnings("unused")
+    public static void postInit() {
         BLUEPRINTS.setIcon(HFBuildings.BLUEPRINTS.getStackFromObject(HFBuildings.CARPENTER));
         CROP_FARMING.setIcon(new ItemStack(Items.CARROT));
         SHIPPING.setIcon(HFCore.STORAGE.getStackFromEnum(Storage.SHIPPING));
@@ -81,7 +83,7 @@ public class HFNotes {
         AXE.setIcon(HFTools.AXE.getStack(ToolTier.BASIC));
         SICKLE.setIcon(HFTools.SICKLE.getStack(ToolTier.BASIC));
         MINING.setIcon(HFMining.ORE.getStackFromEnum(Ore.COPPER));
-        RECIPES.setIcon(HFCooking.RECIPE.getStackFromResource(new ResourceLocation(MODID, "salad")));
+        RECIPES.setIcon(CookingHelper.getRecipe("salad"));
         RECIPE_BOOK.setIcon(new ItemStack(HFCooking.COOKBOOK));
         KITCHEN_COUNTER.setIcon(HFCooking.COOKWARE.getStackFromEnum(Cookware.COUNTER));
         FRIDGE.setIcon(HFCooking.COOKWARE.getStackFromEnum(Cookware.FRIDGE));

@@ -21,7 +21,7 @@ class CookingContestEntry {
 
     CookingContestEntry(NPC npc, Random rand) {
         this.npc = npc;
-        owner = npc.getRegistryName().toString();
+        owner = npc.getResource().toString();
         meal = HFCooking.MEAL.getRandomMeal(rand);
         category = getUtensilFromStack(meal);
     }

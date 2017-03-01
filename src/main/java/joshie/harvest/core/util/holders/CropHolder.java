@@ -35,13 +35,13 @@ public class CropHolder extends AbstractItemHolder {
     }
 
     public static CropHolder readFromNBT(NBTTagCompound tag) {
-        return new CropHolder(Crop.REGISTRY.getValue(new ResourceLocation(tag.getString("CropResource"))));
+        return new CropHolder(Crop.REGISTRY.get(new ResourceLocation(tag.getString("CropResource"))));
     }
 
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound tag) {
         if (crop != null) {
-            tag.setString("CropResource", crop.getRegistryName().toString());
+            tag.setString("CropResource", crop.getResource().toString());
         }
 
         return tag;
@@ -49,7 +49,7 @@ public class CropHolder extends AbstractItemHolder {
 
     @Override
     public String toString() {
-        return "CropHolder:" + (crop != null ? crop.getRegistryName().toString() : "null");
+        return "CropHolder:" + (crop != null ? crop.getResource().toString() : "null");
     }
 
     @Override

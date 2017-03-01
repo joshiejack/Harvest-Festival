@@ -29,7 +29,7 @@ public class RenderHook {
         EntityItemRenderer tile = HFClientProxy.RENDER_MAP.get(stack.getItem());
         if (tile == null) return false;
         else {
-            tile.setID(stack.getItemDamage()); //Set the id and render the tile
+            tile.setStack(stack); //Set the id and render the tile
             TileEntityRendererDispatcher.instance.renderTileEntityAt(tile, 0.0D, 0.0D, 0.0D, 0.0F);
             return true;
         }

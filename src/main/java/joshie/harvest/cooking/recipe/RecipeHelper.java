@@ -4,6 +4,7 @@ import joshie.harvest.api.cooking.Ingredient;
 import joshie.harvest.api.cooking.IngredientStack;
 import joshie.harvest.api.cooking.Recipe;
 import joshie.harvest.api.cooking.Utensil;
+import joshie.harvest.cooking.CookingAPI;
 import joshie.harvest.cooking.item.ItemMeal.Meal;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -39,16 +40,22 @@ public class RecipeHelper {
         saturation = Math.min(1.6F, Math.max(0.2F, saturation * modifier));
 
         //Add the recipe
-        Recipe recipe = new RecipeHF(utensil, hunger, saturation, toIngredientStacks(ingredients)).setEatTimer(eatTimer);
-        recipe.setRegistryName(new ResourceLocation(MODID, mealname));
-        Recipe.REGISTRY.register(recipe);
+        ResourceLocation resource = new ResourceLocation(MODID, mealname);
+        Recipe recipe = new RecipeHF(resource, utensil, hunger, saturation, toIngredientStacks(ingredients)).setEatTimer(eatTimer);
+        //TODO: Remove in 0.7+
+        recipe.setRegistryName(resource);
+        //TODO: Remove in 0.7+
+        CookingAPI.REGISTRY.register(recipe);
         return recipe;
     }
 
     private static Recipe addRecipe(String name, ItemStack result, Utensil utensil, Ingredient... ingredients) {
-        Recipe recipe = new RecipeVanilla(result, utensil, toIngredientStacks(ingredients));
-        recipe.setRegistryName(new ResourceLocation(MODID, name));
-        Recipe.REGISTRY.register(recipe);
+        ResourceLocation resource = new ResourceLocation(MODID, name);
+        Recipe recipe = new RecipeVanilla(resource, result, utensil, toIngredientStacks(ingredients));
+        //TODO: Remove in 0.7+
+        recipe.setRegistryName(resource);
+        //TODO: Remove in 0.7+
+        CookingAPI.REGISTRY.register(recipe);
         return recipe;
     }
 

@@ -25,17 +25,13 @@ import java.util.Locale;
 
 import static joshie.harvest.cooking.gui.GuiCookbook.LEFT_GUI;
 import static joshie.harvest.cooking.gui.GuiCookbook.ingredients;
-import static joshie.harvest.cooking.recipe.HFRecipes.NULL_RECIPE;
 
+@SuppressWarnings("WeakerAccess")
 public class PageRecipe extends Page {
     private static final HashMap<Recipe, PageRecipe> recipeMap = new HashMap<>();
     static {
         recipeMap.clear();
-
-        for (Recipe recipe: Recipe.REGISTRY) {
-            if (recipe == NULL_RECIPE) continue;
-            recipeMap.put(recipe, new PageRecipe(recipe));
-        }
+        Recipe.REGISTRY.values().stream().forEachOrdered(recipe -> recipeMap.put(recipe, new PageRecipe(recipe)));
     }
 
     public static PageRecipe of(Recipe recipe) {
@@ -49,10 +45,10 @@ public class PageRecipe extends Page {
     private final String description;
     private final ItemStack stack;
 
-    public PageRecipe(Recipe recipe) {
+    private PageRecipe(Recipe recipe) {
         this.recipe = recipe;
         this.stack = CookingHelper.makeRecipe(recipe);
-        this.description = recipe.getRegistryName().getResourceDomain() + ".meal." + recipe.getRegistryName().getResourcePath().replace("_", ".") + ".description";
+        this.description = recipe.getResource().getResourceDomain() + ".meal." + recipe.getResource().getResourcePath().replace("_", ".") + ".description";
     }
 
     @Override
@@ -60,7 +56,7 @@ public class PageRecipe extends Page {
         return PageRecipeList.get(recipe.getUtensil());
     }
 
-    public String getRecipeName() {
+    String getRecipeName() {
         return recipe.getDisplayName();
     }
 
@@ -165,7 +161,7 @@ public class PageRecipe extends Page {
         return recipe != null ? recipe.hashCode() : 0;
     }
 
-    public static class CyclingStack {
+    private static class CyclingStack {
         private final int x;
         private final int y;
         private final IngredientStack ingredient;
@@ -175,7 +171,7 @@ public class PageRecipe extends Page {
         private int index;
 
         @SuppressWarnings("unchecked")
-        public CyclingStack(int x, int y, IngredientStack ingredient) {
+        CyclingStack(int x, int y, IngredientStack ingredient) {
             this.x = x;
             this.y = y;
             this.ingredient = ingredient;

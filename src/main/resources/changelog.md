@@ -1,6 +1,7 @@
 #0.6.0
 ##!Important
 * Removed a couple internal registries so it may warn you when joining a world, this can be safely ignored
+* Changed default server length from 365 to 300, for calendar related reasons, recommended you do so too
 
 #Additions + Changes to existing features
 ###Animals
@@ -12,6 +13,7 @@
 * Cows and sheep will now eat vanilla tall grass
 * Cleaning will now stop working when the animal is fully cleaned
 * The Brush will only take damage when you've fully brushed the animal
+* Brushing takes less hunger and less time
 * Feeding animals incorrect treats or hitting them will cause a relationship penalty
 * Changed relationship maximum to 27,000RP
 * Animals relationship are now treated more like happiness. They are tied to the animal instead of the player. This means you'll get the larger products no matter who milks a cow for example. Just as long as they're happy.
@@ -21,19 +23,16 @@
 * Fodder will now visually show how much is in the trough rather than just full or empty
 * The way size of animal products is redesigned. It's now a random chance for larger products, with the higher relationship increasing this chance.
 * Chickens will now be invulnerable while riding a players head
+* Cows and sheep will become sick less frequently
 
 ###Buildings
 * Optimised building save format, should be smaller size
-* Only load buildings in to RAM when they're rendered/built
 * Building costs increased slightly, buildings reshuffled order, some cost other things
 * Removed the basement from the general store as it caused confusion
 * You will now unlock the church when you have nine npcs in town
 * You will now unlock the townhall when you have built nine buildings
 * Added the "park building", can be purchased as soon as you have built poultry farm or animal ranch or general store, it's intended to be used for festivals
 
-###Calendar
-* Summers are more likely to be sunny (98% vs 95%), and typhoon chances are higher if sun fails (99% vs 75%)
-* Changed default server length from 365 to 300, for calendar related reasons
 
 ###CraftTweaker
 * Add support for blacklisting hoes/seeds/items being giftable
@@ -95,8 +94,6 @@
   * Quest page, where you can see what quests you are currently working on
 * Added a calendar! The clockmaker will give you one when you meet him
   * Can see the birthdays of all the npcs you've met as well as the dates festival are 'expected' to occur (you'll receive letter day before)
-
-###Letters - NEW!
 * Added Mailbox
   * NPCs will send letters to invite you to start festivals
   * NPCs will send letters, sometimes containing gifts
@@ -145,7 +142,7 @@
 * Moved the crop farming tools to the general store
 * Moved the animal farming tools to the animal ranch
 * Moved the sprinkler to the carpenters store
-* Fodder now costs 100 gold, but will last for 10 feeds
+* Fodder now costs 100 gold, but will last for 5 feeds
 * Chicken Feed now costs 50 gold, but will last for 10 feeds
 * You are now able to sell some items to the stores, but only a certain amount each day
 * Shops are now able to support a "stock value", aka how many items you can buy of this item each day

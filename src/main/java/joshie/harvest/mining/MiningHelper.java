@@ -205,8 +205,8 @@ public class MiningHelper {
     }
 
     public static int getOreChance(Season season, int floor, Random rand) {
-        int lowerLimit = season == WINTER ? 8 : 10;
-        int upperLimit = season == WINTER ? 16 : 20;
+        int lowerLimit = season == WINTER ? 6 : 8;
+        int upperLimit = season == WINTER ? 14 : 18;
 
         int chance = season == WINTER ? 7 + rand.nextInt(9) : 10 + rand.nextInt(11);
         if (floor % COW_FLOORS == 0) {

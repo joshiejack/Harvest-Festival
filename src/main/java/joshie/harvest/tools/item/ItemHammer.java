@@ -209,10 +209,15 @@ public class ItemHammer extends ItemToolSmashing<ItemHammer> {
     public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean flag) {
         super.addInformation(stack, player, list, flag);
         ToolTier tier = getTier(stack);
+        if (getFront(tier) > 0) {
+            int area = (1 + (getFront(tier) * 2));
+            list.add(TextFormatting.DARK_GREEN + TextHelper.formatHF("wateringcan.tooltip.dimensions", area, area));
+        }
+
         int width = getWidthAndHeight(tier) == 0 ? 1 : 3;
         int height = tier == ToolTier.BASIC ? 1: getWidthAndHeight(tier) == 0 ? 2 : 3;
         int depth = getDepth(tier) + 1;
-        list.add(TextFormatting.AQUA + "" + TextFormatting.ITALIC + TextHelper.translate("hammer.tooltip.titles"));
         list.add(TextFormatting.GOLD + TextHelper.formatHF("hammer.tooltip.dimensions", width, height, depth));
+        list.add(TextFormatting.AQUA + "" + TextFormatting.ITALIC + TextHelper.translate("hammer.tooltip.titles"));
     }
 }

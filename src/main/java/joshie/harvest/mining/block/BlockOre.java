@@ -147,16 +147,16 @@ public class BlockOre extends BlockHFSmashable<BlockOre, Ore> implements ISmasha
                 drops = world.isRemote ? Lists.newArrayList(new ItemStack(this)): MiningHelper.getLoot(MINING, world, player, luck);
                 break;
             case COPPER:
-                drops = getRandomStack(world, Material.COPPER, 2);
+                drops = getRandomStack(world, Material.COPPER, 3);
                 break;
             case SILVER:
                 drops = getRandomStack(world, Material.SILVER, 3);
                 break;
             case GOLD:
-                drops = getRandomStack(world, Material.GOLD, 4);
+                drops = getRandomStack(world, Material.GOLD, 5);
                 break;
             case MYSTRIL:
-                drops = getRandomStack(world, Material.MYSTRIL, 3);
+                drops = getRandomStack(world, Material.MYSTRIL, 5);
                 break;
             case EMERALD:
                 drops = getRandomStack(world, Items.EMERALD, 5);

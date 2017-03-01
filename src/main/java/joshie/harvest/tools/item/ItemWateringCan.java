@@ -4,6 +4,7 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.crops.IStateHandler.PlantSection;
 import joshie.harvest.core.base.item.ItemTool;
 import joshie.harvest.core.helpers.EntityHelper;
+import joshie.harvest.core.helpers.TextHelper;
 import joshie.harvest.core.util.handlers.SingleFluidHandler;
 import joshie.harvest.crops.CropHelper;
 import joshie.harvest.crops.block.BlockHFCrops;
@@ -21,6 +22,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
@@ -116,7 +118,7 @@ public class ItemWateringCan extends ItemTool<ItemWateringCan> {
 
     @Override
     @Nonnull
-    public ActionResult<ItemStack> onItemRightClick(ItemStack stack, World world, EntityPlayer player, EnumHand hand) {
+    public ActionResult<ItemStack> onItemRightClick(@Nonnull ItemStack stack, World world, EntityPlayer player, EnumHand hand) {
         if(attemptToFill(world, player, stack)) return new ActionResult<>(EnumActionResult.SUCCESS, stack);
         else {
             waterCrops(world, player, getMovingObjectPositionFromPlayer(world, player), stack, getTier(stack));
@@ -136,6 +138,7 @@ public class ItemWateringCan extends ItemTool<ItemWateringCan> {
         } else return EnumActionResult.FAIL;
     }
 
+    @SuppressWarnings("ConstantConditions")
     private boolean attemptToFill(World world, EntityPlayer player, ItemStack stack) {
         RayTraceResult rayTraceResult = this.rayTrace(world, player, true);
         if (rayTraceResult != null && rayTraceResult.typeOfHit == RayTraceResult.Type.BLOCK) {
@@ -187,9 +190,14 @@ public class ItemWateringCan extends ItemTool<ItemWateringCan> {
         }
     }
 
-    @SideOnly(Side.CLIENT)
     @Override
-    public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
+    @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack stack, EntityPlayer player, List<String> tooltip, boolean advanced) {
+        ToolTier tier = getTier(stack);
+        int width = 1 + (2 * getSides(tier));
+        int depth = 1 + getFront(tier);
+        tooltip.add(TextFormatting.AQUA + TextHelper.formatHF("wateringcan.tooltip.dimensions", width, depth));
+
         if (advanced) {
             tooltip.add("Water: " + getCapacity(stack));
             tooltip.add("Level: " + getLevel(stack));
@@ -198,7 +206,7 @@ public class ItemWateringCan extends ItemTool<ItemWateringCan> {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubItems(Item item, CreativeTabs tab, List<ItemStack> list) {
+    public void getSubItems(@Nonnull Item item, CreativeTabs tab, List<ItemStack> list) {
         for (int i = 0; i < ToolTier.values().length; i++) {
             ItemStack unleveled = new ItemStack(item, 1, i);
             getCapability(unleveled).fill(new FluidStack(FluidRegistry.WATER, 128), true);

@@ -514,6 +514,7 @@ harvestfestival.sickle.blessed=Blessed Sickle
 harvestfestival.sickle.mythic=Mythic Sickle
 
 #Watering Can
+harvestfestival.wateringcan.tooltip.dimensions=Waters a %sx%s area
 harvestfestival.wateringcan.basic=Normal Watering Can
 harvestfestival.wateringcan.copper=Copper Watering Can
 harvestfestival.wateringcan.silver=Silver Watering Can
@@ -525,6 +526,7 @@ harvestfestival.wateringcan.mythic=Mythic Watering Can
 
 #Hammer
 harvestfestival.hammer.tooltip.dimensions=Mines a %sx%sx%s area of stone
+harvestfestival.hammer.tooltip.smash=Smashes a %sx%s area
 harvestfestival.hammer.tooltip.titles=(Width, Height, Depth)
 harvestfestival.hammer.basic=Normal Hammer
 harvestfestival.hammer.copper=Copper Hammer

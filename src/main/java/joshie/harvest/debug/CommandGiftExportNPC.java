@@ -90,7 +90,6 @@ public class CommandGiftExportNPC extends AbstractHFCommand {
                             }
 
 
-                            List<ItemStack> stacks = NPCHelper.INSTANCE.getGifts().getRegistry().getStacksFor(new GiftCategory[] { category });
                             builder.append("|-\n" + "| [[File:").append(WordUtils.capitalize(category.name().toLowerCase())).append(" Category.png|48px|center]]\n").append("|''[[Gifting#").append(WordUtils.capitalize(category.name().toLowerCase())).append("|").append(WordUtils.capitalize(category.name().toLowerCase())).append("]]''\n").append("|''");
 
                             if (initial) {

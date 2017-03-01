@@ -6,6 +6,8 @@ import net.minecraft.command.ICommandSender;
 import net.minecraft.command.NumberInvalidException;
 import net.minecraft.server.MinecraftServer;
 
+import javax.annotation.Nonnull;
+
 public abstract class AbstractHFCommand implements Comparable<Object> {
     /** Return the command name **/
     public abstract String getCommandName();
@@ -30,7 +32,7 @@ public abstract class AbstractHFCommand implements Comparable<Object> {
     }
 
     @Override
-    public int compareTo(Object o) {
+    public int compareTo(@Nonnull Object o) {
         return getCommandName().compareTo(((AbstractHFCommand) o).getCommandName());
     }
 
@@ -41,7 +43,7 @@ public abstract class AbstractHFCommand implements Comparable<Object> {
         } catch (Exception e) { return  0; }
     }
 
-    public enum CommandLevel {
+    enum CommandLevel {
         ANYONE, OP_BYPASS_PROTECTION, OP_AFFECT_GAMEPLAY, OP_BAN_PLAYERS, OP_STOP_SERVER
     }
 }

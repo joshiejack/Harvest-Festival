@@ -23,7 +23,7 @@ public class ItemBlockFishing extends ItemBlockHF<BlockFloating> {
 
     @Override
     @Nonnull
-    @SuppressWarnings("ConstantConditions")
+    @SuppressWarnings({"ConstantConditions", "deprecation"})
     public ActionResult<ItemStack> onItemRightClick(@Nonnull ItemStack stack, World world, EntityPlayer player, EnumHand hand) {
         IBlockState state = getBlock().getStateFromMeta(stack.getItemDamage());
         RayTraceResult raytraceresult = rayTrace(world, player, true);

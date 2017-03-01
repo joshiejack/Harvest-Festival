@@ -9,7 +9,6 @@ import joshie.harvest.buildings.render.BuildingKey;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.item.ItemHFRegistry;
 import joshie.harvest.core.helpers.TextHelper;
-import joshie.harvest.core.util.holders.HolderRegistrySet;
 import joshie.harvest.core.util.interfaces.ICreativeSorted;
 import joshie.harvest.town.TownHelper;
 import joshie.harvest.town.data.TownData;

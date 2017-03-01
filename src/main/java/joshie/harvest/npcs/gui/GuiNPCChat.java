@@ -56,10 +56,8 @@ public class GuiNPCChat extends GuiNPCBase {
         for (int i = 0; i < size; i++) {
             int length = ((start + MAX_LINES_PER_PAGE) > original.length) ? original.length : (start + MAX_LINES_PER_PAGE);
             String[] subtext = Arrays.copyOfRange(original, start, length);
-            for (int j = 0; j < subtext.length; j++) {
-                script[i][j] = subtext[j];
-            }
-
+            //TODO: Ensure chat works still
+            System.arraycopy(subtext, 0, script[i], 0, subtext.length);
             start = start + MAX_LINES_PER_PAGE;
         }
 

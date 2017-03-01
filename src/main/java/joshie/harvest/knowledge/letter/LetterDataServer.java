@@ -60,9 +60,7 @@ public class LetterDataServer extends LetterData {
 
     public void newDay(CalendarDate today) {
         //Increase the number of days passed by one
-        for (Letter resource: letters.keySet()) {
-            letters.increment(resource);
-        }
+        letters.keySet().forEach(letters::increment);
 
         //Now to check if we need to remove, then remove if so
         boolean changed = false;

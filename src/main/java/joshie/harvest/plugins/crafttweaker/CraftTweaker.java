@@ -34,7 +34,7 @@ public class CraftTweaker {
         return (IBracketHandler) Class.forName("minetweaker.mc1102.brackets.ItemBracketHandler").newInstance();
     }
 
-    public static void rebuildItemRegistry(IBracketHandler handler) throws NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
+    public static void rebuildItemRegistry(IBracketHandler handler) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
         handler.getClass().getMethod("rebuildItemRegistry").invoke(null);
     }
 

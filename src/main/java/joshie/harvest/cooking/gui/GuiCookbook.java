@@ -118,7 +118,7 @@ public class GuiCookbook extends GuiScreen {
         }
     }
 
-    public void addRunnable(Runnable r) {
+    void addRunnable(Runnable r) {
         runnables.add(r);
     }
 
@@ -143,7 +143,7 @@ public class GuiCookbook extends GuiScreen {
         drawRect(centreX + x, centreY + y, centreX + x + width, centreY + y + length, color);
     }
 
-    public void drawIngredientTooltip(List<ItemStack> stacks, int mouseX, int mouseY) {
+    void drawIngredientTooltip(List<ItemStack> stacks, int mouseX, int mouseY) {
         GlStateManager.disableRescaleNormal();
         RenderHelper.disableStandardItemLighting();
         GlStateManager.disableLighting();
@@ -151,17 +151,11 @@ public class GuiCookbook extends GuiScreen {
         int k = (int)(stacks.size() >= 6 ? 6 * 15.5: stacks.size() * 15.5);
         int j2 = mouseX + centreX + 12;
         int k2 = mouseY + centreY + 6;
-        int i1 = 8;
-
-        if (stacks.size() > 1) {
-            i1 += 2 + (stacks.size() - 1) * 10;
-        }
-
         if (j2 + k > this.width) {
             j2 -= 28 + k;
         }
 
-        i1 = ((stacks.size() / 6) + 1) * 16;
+        int i1 = ((stacks.size() / 6) + 1) * 16;
         this.zLevel = 300.0F;
         itemRender.zLevel = 300.0F;
         int j1 = 0xEEB0A483;

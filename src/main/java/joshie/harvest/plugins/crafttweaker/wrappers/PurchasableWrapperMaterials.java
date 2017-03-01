@@ -16,12 +16,12 @@ public class PurchasableWrapperMaterials extends PurchasableMaterials {
     public IPurchasable original;
 
     public PurchasableWrapperMaterials(PurchasableMaterials purchasable, int wood, int stone, long cost) {
-        super(cost, wood, stone, (ItemStack) null);
+        super(cost, wood, stone, null);
         this.original = purchasable;
     }
 
     public PurchasableWrapperMaterials(IPurchasable purchasable, long cost, IRequirement... requirements) {
-        super(cost, (ItemStack) null, requirements);
+        super(cost, null, requirements);
         this.original = purchasable;
     }
 
@@ -36,7 +36,7 @@ public class PurchasableWrapperMaterials extends PurchasableMaterials {
     }
 
     @Override
-    public boolean canList(World world, EntityPlayer player) {
+    public boolean canList(@Nonnull World world, @Nonnull EntityPlayer player) {
         return original.canList(world, player);
     }
 

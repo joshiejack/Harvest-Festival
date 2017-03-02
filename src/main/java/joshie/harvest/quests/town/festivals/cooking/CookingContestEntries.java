@@ -7,7 +7,7 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.cooking.Utensil;
 import joshie.harvest.api.npc.NPC;
 import joshie.harvest.core.helpers.EntityHelper;
-import joshie.harvest.core.tile.TileCookingStand;
+import joshie.harvest.core.tile.TilePlate;
 import joshie.harvest.npcs.HFNPCs;
 import joshie.harvest.town.BuildingLocations;
 import joshie.harvest.town.TownHelper;
@@ -39,9 +39,9 @@ public class CookingContestEntries {
         npcs = HashBiMap.create();
         for (BlockPos pos: getStandLocations(data)) {
             TileEntity tile = world.getTileEntity(pos);
-            if (tile instanceof TileCookingStand) {
-                ItemStack stack = ((TileCookingStand)tile).getContents();
-                UUID uuid = ((TileCookingStand)tile).getUUID();
+            if (tile instanceof TilePlate) {
+                ItemStack stack = ((TilePlate)tile).getContents();
+                UUID uuid = ((TilePlate)tile).getUUID();
                 EntityPlayer player = EntityHelper.getPlayerFromUUID(uuid);
                 if (stack != null && player != null) {
                     players.put(uuid, new CookingContestEntry(player, stack));
@@ -117,7 +117,7 @@ public class CookingContestEntries {
         return prize;
     }
 
-    public Object[] getLocalization() {
+    Object[] getLocalization() {
         return localizations;
     }
 }

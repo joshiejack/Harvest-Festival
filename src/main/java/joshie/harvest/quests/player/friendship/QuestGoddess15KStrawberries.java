@@ -3,6 +3,7 @@ package joshie.harvest.quests.player.friendship;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.Quest;
+import joshie.harvest.core.achievements.HFAchievements;
 import joshie.harvest.npcs.HFNPCs;
 import joshie.harvest.quests.Quests;
 import joshie.harvest.quests.base.QuestFriendship;
@@ -23,6 +24,7 @@ public class QuestGoddess15KStrawberries extends QuestFriendship {
 
     @Override
     public void onQuestCompleted(EntityPlayer player) {
+        player.addStat(HFAchievements.strawberries);
         HFApi.quests.completeQuestConditionally(Quests.SELL_STRAWBERRY, player);
     }
 }

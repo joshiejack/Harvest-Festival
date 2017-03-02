@@ -2,11 +2,10 @@ package joshie.harvest.core.block;
 
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.block.BlockHFEnumRotatableTile;
+import joshie.harvest.core.base.tile.TileStand;
 import joshie.harvest.core.block.BlockStand.Stand;
 import joshie.harvest.core.helpers.SpawnItemHelper;
-import joshie.harvest.core.tile.TileCookingStand;
 import joshie.harvest.core.tile.TilePlate;
-import joshie.harvest.core.base.tile.TileStand;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -30,7 +29,7 @@ public class BlockStand extends BlockHFEnumRotatableTile<BlockStand, Stand> {
 
     @SuppressWarnings("WeakerAccess")
     public enum Stand implements IStringSerializable {
-        COOKING, POT, PLATE;
+        UNUSED, POT, PLATE;
 
         @Override
         public String getName() {
@@ -89,11 +88,7 @@ public class BlockStand extends BlockHFEnumRotatableTile<BlockStand, Stand> {
     @Override
     @Nonnull
     public TileEntity createTileEntity(@Nonnull World world, @Nonnull IBlockState state) {
-        switch (getEnumFromState(state)) {
-            case COOKING:   return new TileCookingStand();
-            case PLATE:     return new TilePlate();
-            default:        return new TileCookingStand();
-        }
+        return new TilePlate();
     }
 
     @Override

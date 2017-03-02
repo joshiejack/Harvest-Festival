@@ -18,8 +18,12 @@ public class AchievementEvents {
     public void onItemPickup(PlayerEvent.ItemPickupEvent event) {
         ItemStack stack = event.pickedUp.getEntityItem();
         EntityPlayer player = event.player;
-        if (InventoryHelper.ITEM_STACK.matches(stack, HFCrops.TURNIP.getCropStack(1))) {
+        if (InventoryHelper.ITEM_STACK.matches(stack, HFCrops.ONION.getCropStack(1))) {
+            player.addStat(HFAchievements.onion);
+        } else if (InventoryHelper.ITEM_STACK.matches(stack, HFCrops.TURNIP.getCropStack(1))) {
             player.addStat(HFAchievements.harvest);
+        } else if (InventoryHelper.ITEM_STACK.matches(stack, HFCrops.SPINACH.getCropStack(1))) {
+            player.addStat(HFAchievements.spinach);
         } else if (InventoryHelper.ITEM_STACK.matches(stack, HFMining.MATERIALS.getStackFromEnum(Material.JUNK))) {
             player.addStat(HFAchievements.junk);
         } else if (InventoryHelper.ITEM_STACK.matches(stack, HFMining.MATERIALS.getStackFromEnum(Material.COPPER))) {

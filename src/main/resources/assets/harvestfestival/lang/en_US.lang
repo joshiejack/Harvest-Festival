@@ -743,15 +743,15 @@ harvestfestival.npctool.blue.feather=Blue Feather
 harvestfestival.npctool.npc.killer=Instant Entity Killer
 harvestfestival.npctool.gift.special=Special Gift!
 harvestfestival.npctool.gift.special.tooltip=A special gift love Cloe.
+harvestfestival.npctool.gift.mail=Love letter
+harvestfestival.npctool.gift.upgrade=Upgrade
 
 #Quest Baoard
 harvestfestival.quest.block.board=Quest Board
 harvestfestival.quest.block.active=Quest Board
 
 #Contest Blocks
-harvestfestival.stand.chicken=Chicken Pen
-harvestfestival.stand.cooking=Cooking Stand
-harvestfestival.stand.livestock=Livestock Pen
+harvestfestival.decorative.cooking=Cooking Stand
 harvestfestival.stand.plate=Dinner Plate
 harvestfestival.stand.pot=Harvest Festival Pot
 
@@ -1883,7 +1883,7 @@ harvestfestival.quest.tutorial.mining.description=Enter the mining hill and talk
 harvestfestival.quest.tutorial.mining.description.ore=Show Brandon three Junk Ore
 harvestfestival.quest.tutorial.mining.intro=Ehh what are you doing here? The name's Brandon. I prefer to hang out here in the mines than in that town with those people. I guess it's nice to meet you. Do you need anything?
 harvestfestival.quest.tutorial.mining.explain=Well I should probably explain then if I must. I would explain it but all you have to do is to break the nodes you see hanging around the mine with a hammer. Although there are different kind of nodes such as copper or just plain rocks. I've had this old hammer of mine for a long time now, and it's just become a bit useless, I think you should have it. Prove to me that you can mine then I'll let you keep it. Go smash some plain rocks and bring me back three junk ore.
-harvestfestival.quest.tutorial.mining.complete=Ehhh, I guess that's a decent job you did there. I've got some more to give you but at least you understand the basics now. Should warn you that there are some rocks that are too strong for this hammer. You'll need better ones for that. I believe a Blacksmith could help you out with that.
+harvestfestival.quest.tutorial.mining.complete=Ehhh, I guess that's a decent job you did there. I've got some more to give you but at least you understand the basics now. Should warn you that there are some rocks that are too strong for this hammer. You'll need better ones for that. I believe a Blacksmith could help you out with that. You may also find some blocked holes down in the mines. You can fill these holes with ladders from my store. That way you can travel down deeper.
 harvestfestival.quest.tutorial.mining.reminder=Just bring me three junk ore, to prove to me that you know how mining works.
 harvestfestival.quest.tutorial.mining.question=Got a clue about nodes and mining?
 harvestfestival.quest.tutorial.mining.tutorial=@Please help me!
@@ -1913,7 +1913,7 @@ harvestfestival.quest.tutorial.upgrading.question=Do you know how to upgrade too
 harvestfestival.quest.tutorial.upgrading.tutorial=@I do not know anything.
 harvestfestival.quest.tutorial.upgrading.skip=@I know everything.
 harvestfestival.quest.tutorial.upgrading.completed=That's good then. I have some ore for you.
-harvestfestival.quest.tutorial.upgrading.explain=That's good then. I'll be happy to teach you. The first step is to get your tools to the stage where they can even be upgraded. If you notice they have a percentage bar. When this is at 100%% just bring them to me. I'll also need some ore to work with, as well as payment for my services. I'll work on them for a few days, then you can have your tools back fully upgraded. Anyway that's about it. Actually, take these!.
+harvestfestival.quest.tutorial.upgrading.explain=That's good then. I'll be happy to teach you. The first step is to get your tools to the stage where they can even be upgraded. If you notice they have a percentage bar. When this is at 100%% just bring them to me. I'll also need some ore to work with, as well as payment for my services. I'll work on them for a few days, then you can have your tools back fully upgraded. Anyway that's about it. Actually, take these!
 
 ##Trading Quests
 # Priest Blessing Quest
@@ -2219,6 +2219,18 @@ achievement.harvestfestival.onion=In Summer
 achievement.harvestfestival.onion.desc=And I'll be doing whatever snow does
 achievement.harvestfestival.spinach=Popeye
 achievement.harvestfestival.spinach.desc=I'm strong to the finish, 'cause I eats me Spinach
+achievement.harvestfestival.cabbage=Cabbage Patch
+achievement.harvestfestival.cabbage.desc=Ship 1000 Spring crops and unlock cabbages
+achievement.harvestfestival.pineapple=Who lives in a pineapple?
+achievement.harvestfestival.pineapple.desc=Ship 1000 Summer crops and unlock pineapples
+achievement.harvestfestival.greenPepper=Pepper Ann
+achievement.harvestfestival.greenPepper.desc=Ship 1000 Autumn crops and unlock green peppers
+achievement.harvestfestival.strawberries=Strawberry Jam
+achievement.harvestfestival.strawberries.desc=Get 3 hearts with the goddess to unlock strawberries
+achievement.harvestfestival.sweetPotatoes=Sweety Pie
+achievement.harvestfestival.sweetPotatoes.desc=Gift 300 gifts to unlock sweet potatoes
+achievement.harvestfestival.corn=So corny
+achievement.harvestfestival.corn.desc=Win the cooking festival to unlock corn
 achievement.harvestfestival.milker=Moomoo Milk
 achievement.harvestfestival.milker.desc=Obtain your first milk from a cow
 achievement.harvestfestival.milkerLarge=Gallon Load
@@ -2262,7 +2274,7 @@ achievement.harvestfestival.mystril.desc=It's cool, it's mystril
 achievement.harvestfestival.cooking=First Meal
 achievement.harvestfestival.cooking.desc=Make your first meal
 achievement.harvestfestival.recipes=Master Chef
-achievement.harvestfestival.recipes.desc=Learn 50 Recipes
+achievement.harvestfestival.recipes.desc=Learn 50 Recipes to unlock trees
 
 ###Sounds
 harvestfestival.subtitle.fryingpan=Sizzle

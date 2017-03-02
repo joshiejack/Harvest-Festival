@@ -1,9 +1,5 @@
 {
   "variants": {
-    "facing=north,stand=cooking":  { "model": "harvestfestival:cooking_stand" },
-    "facing=south,stand=cooking":  { "model": "harvestfestival:cooking_stand", "y": 180 },
-    "facing=east,stand=cooking": { "model": "harvestfestival:cooking_stand", "y": 90 },
-    "facing=west,stand=cooking": { "model": "harvestfestival:cooking_stand", "y": 270 },
     "facing=north,stand=plate":  { "model": "harvestfestival:dinner_plate" },
     "facing=south,stand=plate":  { "model": "harvestfestival:dinner_plate", "y": 180 },
     "facing=east,stand=plate": { "model": "harvestfestival:dinner_plate", "y": 90 },

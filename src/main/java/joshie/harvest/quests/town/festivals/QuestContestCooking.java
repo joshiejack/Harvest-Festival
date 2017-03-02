@@ -11,7 +11,7 @@ import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.Selection;
 import joshie.harvest.calendar.CalendarHelper;
 import joshie.harvest.core.helpers.EntityHelper;
-import joshie.harvest.core.tile.TileCookingStand;
+import joshie.harvest.core.tile.TilePlate;
 import joshie.harvest.npcs.HFNPCs;
 import joshie.harvest.npcs.entity.EntityNPCHuman;
 import joshie.harvest.npcs.entity.ai.EntityAIPathing;
@@ -100,8 +100,8 @@ public class QuestContestCooking extends QuestFestival {
                     for (int i = 0; i < 4; i++) {
                         BlockPos pos = entries.getStandLocations(town)[i];
                         TileEntity tile = player.worldObj.getTileEntity(pos);
-                        if (tile instanceof TileCookingStand) {
-                            TileCookingStand stand = ((TileCookingStand)tile);
+                        if (tile instanceof TilePlate) {
+                            TilePlate stand = ((TilePlate)tile);
                             if (stand.getContents() == null || used.contains(stand.getUUID())) {
                                 stand.setContents(entries.getEntryForNPC(theNPC.getNPC()));
                                 theNPC.getPathing().setPath(TaskMove.of(entries.getWalkLocations(town)[i]), TaskWait.of(10));
@@ -134,8 +134,8 @@ public class QuestContestCooking extends QuestFestival {
 
     private void addToEmptyListIfStandIsEmpty(Map<BlockPos, BlockPos> emptyList, World world, BlockPos pos, BlockPos pos2) {
         TileEntity tile = world.getTileEntity(pos);
-        if (tile instanceof TileCookingStand) {
-            ItemStack stack = ((TileCookingStand)tile).getContents();
+        if (tile instanceof TilePlate) {
+            ItemStack stack = ((TilePlate)tile).getContents();
             if (stack == null) emptyList.put(pos, pos2);
         }
     }

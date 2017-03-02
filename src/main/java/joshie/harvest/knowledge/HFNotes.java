@@ -9,8 +9,10 @@ import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.cooking.CookingHelper;
 import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.cooking.block.BlockCookware.Cookware;
+import joshie.harvest.cooking.item.ItemMeal.Meal;
 import joshie.harvest.core.HFCore;
 import joshie.harvest.core.block.BlockStorage.Storage;
+import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.util.annotations.HFLoader;
 import joshie.harvest.knowledge.gui.stats.notes.render.NoteRenderCursedTools;
 import joshie.harvest.knowledge.gui.stats.notes.render.NoteRenderRepairing;
@@ -19,6 +21,7 @@ import joshie.harvest.mining.HFMining;
 import joshie.harvest.mining.block.BlockElevator.Elevator;
 import joshie.harvest.mining.block.BlockOre.Ore;
 import joshie.harvest.tools.HFTools;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -70,8 +73,9 @@ public class HFNotes {
         SECRET_CURSED_TOOLS.setRender(new NoteRenderCursedTools());
     }
 
+    @SideOnly(Side.CLIENT)
     @SuppressWarnings("unused")
-    public static void postInit() {
+    public static void postInitClient() {
         BLUEPRINTS.setIcon(HFBuildings.BLUEPRINTS.getStackFromObject(HFBuildings.CARPENTER));
         CROP_FARMING.setIcon(new ItemStack(Items.CARROT));
         SHIPPING.setIcon(HFCore.STORAGE.getStackFromEnum(Storage.SHIPPING));
@@ -83,6 +87,7 @@ public class HFNotes {
         AXE.setIcon(HFTools.AXE.getStack(ToolTier.BASIC));
         SICKLE.setIcon(HFTools.SICKLE.getStack(ToolTier.BASIC));
         MINING.setIcon(HFMining.ORE.getStackFromEnum(Ore.COPPER));
+        RECIPES.setIcon(HFCooking.MEAL.getStackFromEnum(Meal.SALAD));
         RECIPES.setIcon(CookingHelper.getRecipe("salad"));
         RECIPE_BOOK.setIcon(new ItemStack(HFCooking.COOKBOOK));
         KITCHEN_COUNTER.setIcon(HFCooking.COOKWARE.getStackFromEnum(Cookware.COUNTER));
@@ -92,6 +97,8 @@ public class HFNotes {
         POTPAN.setIcon(HFCooking.COOKWARE.getStackFromEnum(Cookware.POT));
         ELEVATOR.setIcon(HFMining.ELEVATOR.getStackFromEnum(Elevator.JUNK));
         SUPERMARKET.setIcon(HFBuildings.STRUCTURES.getStackFromObject(HFBuildings.SUPERMARKET));
+        REPAIRING.setIcon(new ItemStack(Blocks.ANVIL));
+        UPGRADING.setIcon(HFModInfo.ICONS, 0, 48);
     }
 
     public static Note registerNote(Category category, String name) {

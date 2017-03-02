@@ -22,7 +22,6 @@ public class ButtonNote extends ButtonBook {
     private final GuiStats gui;
     private final Note note;
     private final String title;
-    private final int xNote;
     private final boolean unlocked;
     private boolean read;
 
@@ -36,7 +35,6 @@ public class ButtonNote extends ButtonBook {
         this.title = note.isSecret() ? TextFormatting.AQUA + note.getTitle() : note.getTitle();
         this.unlocked = HFTrackers.getClientPlayerTracker().getTracking().getLearntNotes().contains(note.getResource());
         this.read = HFTrackers.getClientPlayerTracker().getTracking().getReadStatus().contains(note.getResource());
-        this.xNote = !unlocked ? 32: note.isSecret() ? 16 : 0;
     }
 
     @Override
@@ -59,9 +57,15 @@ public class ButtonNote extends ButtonBook {
     }
 
     private void drawForeground(@Nonnull Minecraft mc) {
-        if (note.getIcon() == Note.PAPER) {
+        if (note.getGuiResource() != null) {
+            GlStateManager.color(1F, 1F, 1F);
+            gui.mc.getTextureManager().bindTexture(note.getGuiResource());
+            if (unlocked) gui.drawTexturedModalRect(xPosition, yPosition, note.getGuiX(), note.getGuiY(), 16, 16);
+            else gui.drawTexturedModalRect(xPosition, yPosition, note.getGuiX() + 16, note.getGuiY(), 16, 16);
+        } else if (note.getIcon() == Note.PAPER) {
             GlStateManager.color(1F, 1F, 1F);
             gui.mc.getTextureManager().bindTexture(HFModInfo.ICONS);
+            int xNote = !unlocked ? 32: note.isSecret() ? 16 : 0;
             gui.drawTexturedModalRect(xPosition, yPosition, xNote, 32, 16, 16);
         } else {
             if (unlocked) StackRenderHelper.drawStack(note.getIcon(), xPosition, yPosition, 1F);

@@ -17,6 +17,8 @@ public class Note {
     private final ResourceLocation resource;
     private final String title;
     private final String description;
+    private ResourceLocation gui;
+    private int guiX, guiY;
     private ItemStack icon;
     private boolean isSecret;
     @SideOnly(Side.CLIENT)
@@ -44,6 +46,17 @@ public class Note {
         return this;
     }
 
+    /** Set the icon for this note
+     *  @param resource      the resource to bind for this note
+     *  @param x             the x position of the icon
+     *  @param y             the y position of the icon**/
+    public Note setIcon(ResourceLocation resource, int x, int y) {
+        this.gui = resource;
+        this.guiX = x;
+        this.guiY = y;
+        return this;
+    }
+
     public Note setSecretNote() {
         this.isSecret = true;
         return this;
@@ -61,6 +74,19 @@ public class Note {
     /** Returns the stack that this note displays as **/
     public ItemStack getIcon() {
         return icon;
+    }
+
+    /** Returns the resource to display the icon for this note **/
+    public ResourceLocation getGuiResource() {
+        return gui;
+    }
+
+    public int getGuiX() {
+        return guiX;
+    }
+
+    public int getGuiY() {
+        return guiY;
     }
 
     public Category getCategory() {

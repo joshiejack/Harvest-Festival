@@ -62,6 +62,7 @@ public class TrackingServer extends Tracking {
         if (giftsGiven >= 300) {
             EntityPlayer player = master.getAndCreatePlayer();
             if (player != null) {
+                player.addStat(HFAchievements.sweetPotatoes);
                 HFApi.quests.completeQuestConditionally(Quests.SELL_SWEET_POTATO, player);
             }
         }

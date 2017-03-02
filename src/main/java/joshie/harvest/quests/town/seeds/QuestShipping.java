@@ -12,6 +12,7 @@ import joshie.harvest.player.PlayerTrackerServer;
 import joshie.harvest.player.tracking.StackSold;
 import joshie.harvest.quests.base.QuestTown;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.stats.Achievement;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -25,10 +26,11 @@ public class QuestShipping extends QuestTown {
     private CalendarDate lastCheck;
     private Set<StackSold> crops;
     private Season season;
+    private Achievement achievement;
     private int required;
     private int total;
 
-    QuestShipping(NPC npc, Season season, int required) {
+    QuestShipping(Achievement achievement, NPC npc, Season season, int required) {
         this.setNPCs(npc);
         this.season = season;
         this.required = required;
@@ -78,6 +80,7 @@ public class QuestShipping extends QuestTown {
             if (crops == null) rebuildCropSet();
             int totalCrops = getTotalCrops(HFApi.calendar.getDate(player.worldObj), player);
             if (totalCrops >= required) {
+                player.addStat(achievement);
                 increaseStage(player);
             }
 

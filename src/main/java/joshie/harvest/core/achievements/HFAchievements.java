@@ -14,8 +14,6 @@ import joshie.harvest.mining.HFMining;
 import joshie.harvest.mining.block.BlockOre.Ore;
 import joshie.harvest.mining.item.ItemDarkSpawner.DarkSpawner;
 import joshie.harvest.mining.item.ItemMaterial.Material;
-import joshie.harvest.npcs.HFNPCs;
-import joshie.harvest.npcs.item.ItemNPCTool.NPCTool;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -54,24 +52,37 @@ public class HFAchievements {
     public static Achievement mystril;
     public static Achievement cooking;
     public static Achievement recipes;
+    public static Achievement cabbage;
+    public static Achievement pineapple;
+    public static Achievement greenPepper;
+    public static Achievement strawberries;
+    public static Achievement corn;
+    public static Achievement sweetPotatoes;
 
     @SuppressWarnings("unused")
     public static void postInit() {
         AchievementPage.registerAchievementPage(PAGE);
         summon = addAchievement("summon", 0, 0, HFCore.FLOWERS.getStackFromEnum(FlowerType.GODDESS), null);
-        friend = addAchievement("friend", 2, 3, new ItemStack(Items.COOKIE), summon);
-        marriage = addAchievement("marriage", 4, 3, HFNPCs.TOOLS.getStackFromEnum(NPCTool.BLUE_FEATHER), summon);
+        friend = addAchievement("friend", 2, 2, new ItemStack(Items.COOKIE), summon);
+        //marriage = addAchievement("marriage", 4, 3, HFNPCs.TOOLS.getStackFromEnum(NPCTool.BLUE_FEATHER), summon); //TODO: Readd when i do marriage
         harvest = addAchievement("harvest", 0, 4, HFCrops.TURNIP.getCropStack(1), summon);
-        onion = addAchievement("onion", 0, 7, HFCrops.ONION.getCropStack(1), harvest);
-        spinach = addAchievement("spinach", 0, 9, HFCrops.SPINACH.getCropStack(1), harvest);
-        milker = addAchievement("milker", -2, 6, HFAnimals.ANIMAL_PRODUCT.getStack(Sizeable.MILK, Size.SMALL), harvest);
-        egger = addAchievement("egger", 2, 6, HFAnimals.ANIMAL_PRODUCT.getStack(Sizeable.EGG, Size.SMALL), harvest);
-        milkerLarge = addAchievement("milkerLarge", -4, 6, HFAnimals.ANIMAL_PRODUCT.getStack(Sizeable.MILK, Size.LARGE), milker);
-        eggerLarge = addAchievement("eggerLarge", 4, 6, HFAnimals.ANIMAL_PRODUCT.getStack(Sizeable.EGG, Size.LARGE), egger);
-        firstChristmas = addAchievement("firstChristmas", 2, -3, new ItemStack(Blocks.SAPLING, 1, 1), summon);
-        birthday = addAchievement("birthday", 2, -5, new ItemStack(Items.CAKE), firstChristmas);
-        firstShipping = addAchievement("firstShipping", -2, 3, HFCore.STORAGE.getStackFromEnum(Storage.SHIPPING), summon);
-        millionaire = addAchievement("millionaire", -4, 3, new ItemStack(Items.GOLD_INGOT), firstShipping);
+        onion = addAchievement("onion", 0, 6, HFCrops.ONION.getCropStack(1), harvest);
+        spinach = addAchievement("spinach", 0, 8, HFCrops.SPINACH.getCropStack(1), onion);
+        cabbage = addAchievement("cabbage", 2, 4, HFCrops.CABBAGE.getCropStack(1), harvest);
+        pineapple = addAchievement("pineapple", 2, 6, HFCrops.PINEAPPLE.getCropStack(1), onion);
+        greenPepper = addAchievement("greenPepper", 2, 8, HFCrops.GREEN_PEPPER.getCropStack(1), spinach);
+        strawberries = addAchievement("strawberries", -2, 4, HFCrops.STRAWBERRY.getCropStack(1), harvest);
+        corn = addAchievement("corn", -2, 6, HFCrops.CORN.getCropStack(1), onion);
+        sweetPotatoes = addAchievement("sweetPotatoes", -2, 8, HFCrops.SWEET_POTATO.getCropStack(1), spinach);
+
+        milker = addAchievement("milker", 2, -3, HFAnimals.ANIMAL_PRODUCT.getStack(Sizeable.MILK, Size.SMALL), summon);
+        egger = addAchievement("egger", -2, -3, HFAnimals.ANIMAL_PRODUCT.getStack(Sizeable.EGG, Size.SMALL), summon);
+        milkerLarge = addAchievement("milkerLarge", 2, -5, HFAnimals.ANIMAL_PRODUCT.getStack(Sizeable.MILK, Size.LARGE), milker);
+        eggerLarge = addAchievement("eggerLarge", -2, -5, HFAnimals.ANIMAL_PRODUCT.getStack(Sizeable.EGG, Size.LARGE), egger);
+        firstChristmas = addAchievement("firstChristmas", 0, -3, new ItemStack(Blocks.SAPLING, 1, 1), summon);
+        birthday = addAchievement("birthday", 0, -5, new ItemStack(Items.CAKE), firstChristmas);
+        firstShipping = addAchievement("firstShipping", -2, 2, HFCore.STORAGE.getStackFromEnum(Storage.SHIPPING), summon);
+        millionaire = addAchievement("millionaire", -4, 2, new ItemStack(Items.GOLD_INGOT), firstShipping);
         theMine = addAchievement("theMine", 3, 0, HFMining.ORE.getStackFromEnum(Ore.ROCK), summon);
         killChick = addAchievement("killChick", 5, -1, HFMining.DARK_SPAWNER.getStackFromEnum(DarkSpawner.CHICK), theMine);
         killChicken = addAchievement("killChicken", 7, -1, HFMining.DARK_SPAWNER.getStackFromEnum(DarkSpawner.CHICKEN), killChick);

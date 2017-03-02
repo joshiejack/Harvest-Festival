@@ -84,11 +84,11 @@ public class QuestBlacksmithing extends QuestTrade {
             case BASIC:
             case COPPER:
             case SILVER:
-                return 20;
-            case GOLD:
                 return 10;
-            case BLESSED:
+            case GOLD:
                 return 5;
+            case BLESSED:
+                return 1;
             default:
                 return 0;
         }

@@ -119,7 +119,7 @@ public class HFCrops {
     //Year Long Crops
     public static final Crop GRASS = registerCrop("grass").setItem(getCropStack(Crops.GRASS)).setValue(500, 1).setStages(11).setRegrow(1).setSeedColours(0x7AC958).setSeasons(SPRING, SUMMER, AUTUMN)
                                         .setAnimalFoodType(AnimalFoodType.GRASS).setBecomesDouble(6).setHasAlternativeName().setRequiresSickle(6).setNoWaterRequirements().setPurchaseRules(new SpecialRulesRanch());
-    public static final Crop WHEAT = registerCrop("wheat").setItem(Items.WHEAT).setValue(150, 150).setStages(Blocks.WHEAT, 2, 5, 9, 12, 16, 22, 27, 28).setSeedColours(0XEAC715).setSeasons(SPRING, SUMMER, AUTUMN)
+    public static final Crop WHEAT = registerCrop("wheat").setItem(Items.WHEAT).setValue(150, 100).setStages(Blocks.WHEAT, 2, 5, 9, 12, 16, 22, 27, 28).setSeedColours(0XEAC715).setSeasons(SPRING, SUMMER, AUTUMN)
                                         .setIngredient(1, 0.1F).setAnimalFoodType(AnimalFoodType.GRASS).setRequiresSickle(0);
     public static final Crop CORN = registerCrop("corn").setItem(getCropStack(Crops.CORN)).setValue(1200, 50).setStages(3, 8, 12, 14, 15).setRegrow(12).setSeedColours(0XD4BD45)
                                         .setSeasons(SUMMER, AUTUMN).setPurchaseRules(new SpecialRulesQuest("corn"));

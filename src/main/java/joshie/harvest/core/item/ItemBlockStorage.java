@@ -2,8 +2,8 @@ package joshie.harvest.core.item;
 
 import joshie.harvest.core.base.item.ItemBlockHF;
 import joshie.harvest.core.block.BlockStorage;
+import joshie.harvest.core.block.BlockStorage.Storage;
 import joshie.harvest.core.tile.TileBasket;
-import joshie.harvest.core.tile.TileMailbox;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -30,6 +30,8 @@ public class ItemBlockStorage extends ItemBlockHF<BlockStorage> {
 
     @Override
     public boolean placeBlockAt(@Nonnull ItemStack stack, @Nonnull EntityPlayer player, @Nonnull World world, @Nonnull BlockPos pos, @Nonnull EnumFacing side, float hitX, float hitY, float hitZ, @Nonnull IBlockState newState)  {
+        Storage storage = getBlock().getEnumFromStack(stack);
+        if (storage == Storage.MAILBOX && !player.isSneaking()) return false;
         if (!world.setBlockState(pos, newState, 3)) return false;
 
         IBlockState state = world.getBlockState(pos);
@@ -37,9 +39,7 @@ public class ItemBlockStorage extends ItemBlockHF<BlockStorage> {
             setTileEntityNBT(world, player, pos, stack);
             getBlock().onBlockPlacedBy(world, pos, state, player, stack, side);
             TileEntity tile = world.getTileEntity(pos);
-             if (tile instanceof TileMailbox) {
-                 ((TileMailbox)tile).saveAndRefresh();
-             } else if (tile instanceof TileBasket) {
+             if (tile instanceof TileBasket) {
                  basket  = ((TileBasket)tile);
              }
         }

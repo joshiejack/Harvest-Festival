@@ -13,6 +13,8 @@ import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.List;
 
+import static joshie.harvest.api.calendar.CalendarDate.DAYS_PER_SEASON;
+
 public class ButtonDate extends GuiButton {
     private final GuiCalendar gui;
     private final CyclingStack icons;
@@ -43,9 +45,16 @@ public class ButtonDate extends GuiButton {
             boolean prev = mc.fontRendererObj.getUnicodeFlag();
             mc.fontRendererObj.setUnicodeFlag(true);
             gui.drawString(mc.fontRendererObj, TextFormatting.BOLD + "" + (id + 1), xPosition + 2, yPosition, 0xFFFFFF);
+
             mc.fontRendererObj.setUnicodeFlag(prev);
             mouseDragged(mc, mouseX, mouseY);
             icons.render(gui, mouseX, mouseY);
+            if (DAYS_PER_SEASON != 30 && hovered) {
+                int modifier = DAYS_PER_SEASON / 30;
+                int min = (id * modifier) + 1;
+                int max = (id * modifier) + modifier;
+                gui.addTooltip(min + "-" + max);
+            }
         }
     }
 
@@ -83,6 +92,7 @@ public class ButtonDate extends GuiButton {
                 StackRenderHelper.drawStack(stack, x, y, 1F);
                 if (mouseX >= x && mouseX <= x + 16 && mouseY >= y && mouseY < y + 16) {
                     gui.addTooltip(tooltip);
+                    if (DAYS_PER_SEASON != 30) gui.addTooltip("------");
                 } else ticker++;
 
                 GlStateManager.enableDepth();

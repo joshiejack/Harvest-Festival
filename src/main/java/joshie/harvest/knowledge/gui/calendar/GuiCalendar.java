@@ -27,6 +27,7 @@ import java.util.List;
 import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
+import static joshie.harvest.api.calendar.CalendarDate.DAYS_PER_SEASON;
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 
 public class GuiCalendar extends GuiBase {
@@ -40,7 +41,9 @@ public class GuiCalendar extends GuiBase {
 
     public GuiCalendar(EntityPlayer player) {
         super(new ContainerNull(), "calendar", 36);
-        date = HFApi.calendar.getDate(player.worldObj);
+        CalendarDate local = HFApi.calendar.getDate(player.worldObj);
+        int day = (local.getDay() - 1) / (DAYS_PER_SEASON / 30);
+        date = new CalendarDate(day, local.getSeason(), local.getYear());
         season = date.getSeason();
         year = date.getYear();
         xSize = 226;
@@ -77,7 +80,7 @@ public class GuiCalendar extends GuiBase {
         //int yExtra = rows
         for (int day = 0; day < 30; day++) {
             CalendarDate date = new CalendarDate(day, season, year);
-            buttonList.add(new ButtonDate(this, day, getStacksForDate(date), guiLeft + getXForDate(date), guiTop + getYForDate(date)));
+            buttonList.add(new ButtonDate(this, day, getStacksForDate(new CalendarDate(day * (DAYS_PER_SEASON / 30), season, year)), guiLeft + getXForDate(date), guiTop + getYForDate(date)));
         }
 
         if ((GuiCalendar.year > 0 || (GuiCalendar.year == 0 && GuiCalendar.season != Season.SPRING))) {
@@ -142,11 +145,5 @@ public class GuiCalendar extends GuiBase {
             RenderHelper.disableStandardItemLighting();
             ShopFontRenderer.render(this, 12 + weekday.ordinal() * 30, 10, weekday.getLocalizedName(), 1F);
         }
-    }
-
-    public void setDisplay(Season season, int year) {
-        GuiCalendar.season= season;
-        GuiCalendar.year = year;
-        this.initGui();
     }
 }

@@ -26,6 +26,10 @@ public class ConfigHelper {
         return config.get(category, name, dft, comment).getBoolean(dft);
     }
 
+    public static int getInteger(String name, int dft, int minimum, int maximum) {
+        return config.get(category, name, dft, null, minimum, maximum).getInt();
+    }
+
     public static int getInteger(String name, int dft) {
         return config.get(category, name, dft).getInt();
     }

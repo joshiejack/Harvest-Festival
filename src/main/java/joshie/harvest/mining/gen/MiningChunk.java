@@ -51,7 +51,7 @@ public class MiningChunk implements IChunkGenerator {
     private static final List<Block> IRREPLACABLE = Lists.newArrayList();
 
     static {
-        MONSTERS.add(new Biome.SpawnListEntry(EntityDarkChick.class, 70, 1, 2));
+        MONSTERS.add(new Biome.SpawnListEntry(EntityDarkChick.class, 70, 1, 1));
         MONSTERS.add(new Biome.SpawnListEntry(EntityDarkChicken.class, 50, 1, 1));
         MONSTERS.add(new Biome.SpawnListEntry(EntityDarkSheep.class, 30, 1, 1));
         MONSTERS.add(new Biome.SpawnListEntry(EntityDarkCow.class, 15, 1, 1));

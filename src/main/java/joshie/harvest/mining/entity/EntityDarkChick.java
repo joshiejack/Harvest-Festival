@@ -16,6 +16,10 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
+import javax.annotation.Nonnull;
+
+import static joshie.harvest.mining.HFMining.ANIMALS_ON_EVERY_FLOOR;
+import static joshie.harvest.mining.MiningHelper.CHICK_FLOORS;
 import static joshie.harvest.mining.MiningHelper.COPPER_FLOOR;
 
 public class EntityDarkChick extends EntityMob {
@@ -33,7 +37,7 @@ public class EntityDarkChick extends EntityMob {
 
     @Override
     public int getMaxSpawnedInChunk() {
-        return 3;
+        return 2;
     }
 
     @Override
@@ -56,7 +60,7 @@ public class EntityDarkChick extends EntityMob {
     }
 
     @Override
-    public void onDeath(DamageSource cause) {
+    public void onDeath(@Nonnull DamageSource cause) {
         super.onDeath(cause);
         EntityPlayer player = EntityHelper.getPlayerFromSource(cause);
         if (player != null) {
@@ -67,7 +71,7 @@ public class EntityDarkChick extends EntityMob {
     @Override
     protected boolean isValidLightLevel() {
         int floor = MiningHelper.getFloor((int)posX >> 4, (int) posY);
-        return floor >= COPPER_FLOOR;
+        return floor >= COPPER_FLOOR && (ANIMALS_ON_EVERY_FLOOR || ((floor - 3) % CHICK_FLOORS == 0));
     }
 
     @Override
@@ -110,8 +114,8 @@ public class EntityDarkChick extends EntityMob {
     }
 
     @Override
-    protected void playStepSound(BlockPos pos, Block blockIn) {
-        this.playSound(SoundEvents.ENTITY_CHICKEN_STEP, 0.15F, 1.0F);
+    protected void playStepSound(@Nonnull BlockPos pos, @Nonnull Block blockIn) {
+        playSound(SoundEvents.ENTITY_CHICKEN_STEP, 0.15F, 1.1F);
     }
 
     @Override

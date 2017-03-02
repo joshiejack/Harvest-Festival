@@ -38,7 +38,7 @@ public class EntityNPCMiner extends EntityNPCHuman<EntityNPCMiner> {
         tasks.addTask(1, new EntityAITalkingTo(this));
         tasks.addTask(1, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
         tasks.addTask(4, new EntityAIOpenDoor(this, true));
-        tasks.addTask(6, new EntityAIWander(this, 1.0D));
+        tasks.addTask(6, new EntityAIWander(this, 0.5D));
         tasks.addTask(9, new EntityAIWatchClosest(this, EntityPlayer.class, 3.0F, 1.0F));
         tasks.addTask(9, new EntityAIWatchClosest(this, EntityNPC.class, 5.0F, 0.02F));
     }

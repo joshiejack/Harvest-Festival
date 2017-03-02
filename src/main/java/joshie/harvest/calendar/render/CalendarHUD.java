@@ -3,14 +3,16 @@ package joshie.harvest.calendar.render;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.CalendarDate;
 import joshie.harvest.api.calendar.Season;
-import joshie.harvest.calendar.*;
+import joshie.harvest.calendar.CalendarAPI;
+import joshie.harvest.calendar.CalendarHelper;
+import joshie.harvest.calendar.HFCalendar;
 import joshie.harvest.calendar.data.Calendar;
 import joshie.harvest.calendar.data.SeasonData;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.helpers.MCClientHelper;
+import joshie.harvest.core.helpers.TextHelper;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.util.annotations.HFEvents;
-import joshie.harvest.core.helpers.TextHelper;
 import joshie.harvest.mining.HFMining;
 import joshie.harvest.mining.MiningHelper;
 import net.minecraft.client.Minecraft;
@@ -125,7 +127,7 @@ public class CalendarHUD {
                     //Enlarge the Day
                     GlStateManager.pushMatrix();
                     GlStateManager.scale(1.4F, 1.4F, 1.4F);
-                    String header = inMine ? TextFormatting.GRAY + TextHelper.format("harvestfestival.mine.format", "" + MiningHelper.getFloor(mc.thePlayer.chunkCoordX, (int)mc.thePlayer.posY)) : TextHelper.format("harvestfestival.calendar.date", season.getDisplayName(), (date.getDay() + 1));
+                    String header = inMine ? TextFormatting.GRAY + TextHelper.format("harvestfestival.mine.format", "" + MiningHelper.getFloor((int)mc.thePlayer.posX >> 4, (int) Math.min(247, Math.max(1, mc.thePlayer.posY)))) : TextHelper.format("harvestfestival.calendar.date", season.getDisplayName(), (date.getDay() + 1));
                     mc.fontRendererObj.drawStringWithShadow(header, (adjustedX / 1.4F) + 30, (adjustedY / 1.4F) + 7, 0xFFFFFFFF);
                     GlStateManager.popMatrix();
 

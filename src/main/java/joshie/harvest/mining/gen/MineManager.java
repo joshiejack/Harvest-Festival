@@ -37,6 +37,7 @@ import java.util.Random;
 
 import static joshie.harvest.core.helpers.EntityHelper.isSpawnable;
 import static joshie.harvest.mining.MiningHelper.MAX_FLOORS;
+import static joshie.harvest.mining.MiningHelper.getFloor;
 
 @HFEvents
 public class MineManager extends WorldSavedData {
@@ -140,15 +141,17 @@ public class MineManager extends WorldSavedData {
         return HFTrackers.getMineManager(world).getCoordinateMap(mineID).containsKey(floor);
     }
 
-    public BlockPos getSpawnCoordinateForMine(World world, int mineID, int floor) {
+    BlockPos getSpawnCoordinateForMine(World world, int mineID, int floor) {
         BlockPos ret = getCoordinateMap(mineID).get(floor);
-        if (ret == null) {
-            BlockPos pos = new BlockPos(Math.floor(floor / MAX_FLOORS) * CHUNK_BOUNDARY * 16, (floor - 1) % MAX_FLOORS == 0 ? 247 : 1, mineID * CHUNK_BOUNDARY * 16);
+        if (ret == null || getFloor(ret) != floor) {
+            int chunkX = (int) (Math.floor(((double)floor - 1) / MAX_FLOORS) * CHUNK_BOUNDARY * 16);
+            BlockPos pos = new BlockPos(chunkX, (floor - 1) % MAX_FLOORS == 0 ? 247 : 1, mineID * CHUNK_BOUNDARY * 16);
             for (int x = 0; x < 16 * CHUNK_BOUNDARY; x++) {
                 for (int z = 0; z < 16 * CHUNK_BOUNDARY; z++) {
                     BlockPos toCheck = pos.add(x, 0, z);
                     IBlockState state = world.getBlockState(toCheck);
                     if (state.getBlock() == HFMining.PORTAL && state.getActualState(world, toCheck).getValue(HFMining.PORTAL.property).isCentre()) {
+                        getCoordinateMap(mineID).put(floor, ret);
                         return toCheck;
                     }
                 }

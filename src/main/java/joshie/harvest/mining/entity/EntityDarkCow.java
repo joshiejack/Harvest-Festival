@@ -15,6 +15,10 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+import javax.annotation.Nonnull;
+
+import static joshie.harvest.mining.HFMining.ANIMALS_ON_EVERY_FLOOR;
+import static joshie.harvest.mining.MiningHelper.COW_FLOORS;
 import static joshie.harvest.mining.MiningHelper.GEM_FLOOR;
 
 public class EntityDarkCow extends EntityMob {
@@ -60,7 +64,7 @@ public class EntityDarkCow extends EntityMob {
     @Override
     protected boolean isValidLightLevel() {
         int floor = MiningHelper.getFloor((int)posX >> 4, (int) posY);
-        return floor >= GEM_FLOOR;
+        return floor >= GEM_FLOOR && (ANIMALS_ON_EVERY_FLOOR || (((floor - 8) % COW_FLOORS == 0)));
     }
 
     @Override
@@ -79,8 +83,8 @@ public class EntityDarkCow extends EntityMob {
     }
 
     @Override
-    protected void playStepSound(BlockPos pos, Block blockIn) {
-        this.playSound(SoundEvents.ENTITY_COW_STEP, 0.15F, 1.0F);
+    protected void playStepSound(@Nonnull BlockPos pos, @Nonnull Block blockIn) {
+        playSound(SoundEvents.ENTITY_COW_STEP, 0.15F, 1.0F);
     }
 
     @Override

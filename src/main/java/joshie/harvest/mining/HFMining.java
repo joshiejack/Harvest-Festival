@@ -38,6 +38,7 @@ import static joshie.harvest.api.calendar.Season.*;
 import static joshie.harvest.core.HFCore.FLOWERS;
 import static joshie.harvest.core.HFTab.MINING;
 import static joshie.harvest.core.block.BlockFlower.FlowerType.WEED;
+import static joshie.harvest.core.helpers.ConfigHelper.getBoolean;
 import static joshie.harvest.core.helpers.ConfigHelper.getInteger;
 import static joshie.harvest.core.helpers.RegistryHelper.registerOreIfNotExists;
 import static joshie.harvest.core.helpers.RegistryHelper.registerTiles;
@@ -141,8 +142,10 @@ public class HFMining {
     }
 
     public static int MINING_ID;
+    public static boolean ANIMALS_ON_EVERY_FLOOR;
 
     public static void configure() {
         MINING_ID = getInteger("Mining world ID", 4);
+        ANIMALS_ON_EVERY_FLOOR = getBoolean("Spawn dark animals on every floor instead of hordes", false);
     }
 }

@@ -75,10 +75,10 @@ public class HFAchievements {
         corn = addAchievement("corn", -2, 6, HFCrops.CORN.getCropStack(1), onion);
         sweetPotatoes = addAchievement("sweetPotatoes", -2, 8, HFCrops.SWEET_POTATO.getCropStack(1), spinach);
 
-        milker = addAchievement("milker", 2, -3, HFAnimals.ANIMAL_PRODUCT.getStack(Sizeable.MILK, Size.SMALL), summon);
-        egger = addAchievement("egger", -2, -3, HFAnimals.ANIMAL_PRODUCT.getStack(Sizeable.EGG, Size.SMALL), summon);
-        milkerLarge = addAchievement("milkerLarge", 2, -5, HFAnimals.ANIMAL_PRODUCT.getStack(Sizeable.MILK, Size.LARGE), milker);
-        eggerLarge = addAchievement("eggerLarge", -2, -5, HFAnimals.ANIMAL_PRODUCT.getStack(Sizeable.EGG, Size.LARGE), egger);
+        milker = addAchievement("milker", 2, -2, HFAnimals.ANIMAL_PRODUCT.getStack(Sizeable.MILK, Size.SMALL), summon);
+        egger = addAchievement("egger", -2, -2, HFAnimals.ANIMAL_PRODUCT.getStack(Sizeable.EGG, Size.SMALL), summon);
+        milkerLarge = addAchievement("milkerLarge", 2, -4, HFAnimals.ANIMAL_PRODUCT.getStack(Sizeable.MILK, Size.LARGE), milker);
+        eggerLarge = addAchievement("eggerLarge", -2, -4, HFAnimals.ANIMAL_PRODUCT.getStack(Sizeable.EGG, Size.LARGE), egger);
         firstChristmas = addAchievement("firstChristmas", 0, -3, new ItemStack(Blocks.SAPLING, 1, 1), summon);
         birthday = addAchievement("birthday", 0, -5, new ItemStack(Items.CAKE), firstChristmas);
         firstShipping = addAchievement("firstShipping", -2, 2, HFCore.STORAGE.getStackFromEnum(Storage.SHIPPING), summon);

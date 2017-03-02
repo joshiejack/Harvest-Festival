@@ -323,7 +323,7 @@ public class HFShops {
         MINER.addPurchasable(40, new ItemStack(Blocks.TORCH), 160);
         MINER.addPurchasable(250, HFMining.MINING_TOOL.getStackFromEnum(MiningTool.ESCAPE_ROPE), 10);
         MINER.addPurchasable(1000, HFMining.LADDER.getStackFromEnum(Ladder.DECORATIVE), 3);
-        MINER.addPurchasable(new PurchasableObtainedMaterial(50, HFMining.MINING_TOOL.getStackFromEnum(MiningTool.ELEVATOR_CABLE), Copper.of(1)));
+        MINER.addPurchasable(new PurchasableObtainedMaterial(200, HFMining.MINING_TOOL.getStackFromEnum(MiningTool.ELEVATOR_CABLE, 8), Copper.of(1)));
         MINER.addPurchasable(new PurchasableObtainedMaterial(1000, HFMining.ELEVATOR.getStackFromEnum(Elevator.JUNK), Logs.of(3), Copper.of(2), Adamantite.of(1)).setNote(HFNotes.ELEVATOR));
         MINER.addPurchasable(new PurchasableObtained(200, HFMining.MATERIALS.getStackFromEnum(Material.COPPER)));
         MINER.addPurchasable(new PurchasableObtained(300, HFMining.MATERIALS.getStackFromEnum(Material.SILVER)));

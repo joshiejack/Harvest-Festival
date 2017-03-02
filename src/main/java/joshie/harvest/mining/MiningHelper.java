@@ -34,10 +34,10 @@ import static joshie.harvest.mining.gen.MineManager.CHUNK_BOUNDARY;
 
 public class MiningHelper {
     private static final double WORLD_HEIGHT = 256D;
-    private static final int CHICK_FLOORS = 7;
-    private static final int CHICKEN_FLOORS = 11;
-    private static final int SHEEP_FLOORS = 13;
-    private static final int COW_FLOORS = 17;
+    public static final int CHICK_FLOORS = 7;
+    public static final int CHICKEN_FLOORS = 11;
+    public static final int SHEEP_FLOORS = 13;
+    public static final int COW_FLOORS = 17;
     public static final int MYSTRIL_FLOOR = 169;
     public static final int GEM_FLOOR = 127;
     public static final int GOLD_FLOOR = 85;

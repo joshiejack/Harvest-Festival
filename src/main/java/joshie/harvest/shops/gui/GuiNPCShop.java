@@ -7,6 +7,7 @@ import joshie.harvest.api.shops.Shop;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.helpers.MCClientHelper;
 import joshie.harvest.core.helpers.StackRenderHelper;
+import joshie.harvest.core.helpers.TextHelper;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.npcs.NPCHelper;
 import joshie.harvest.npcs.entity.EntityNPC;
@@ -242,8 +243,8 @@ public class GuiNPCShop extends GuiNPCBase {
         }
     }
 
-
     public String getCostAsString(long cost) {
+        if (cost == 0) return TextHelper.translate("shop.free");
         if (cost < 0) cost = -cost;
         if (cost < 1000) return "" + cost;
         long remainder = cost % 1000;

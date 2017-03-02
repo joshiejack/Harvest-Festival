@@ -11,7 +11,6 @@ import joshie.harvest.core.HFTrackers;
 import joshie.harvest.player.PlayerTrackerServer;
 import joshie.harvest.player.tracking.StackSold;
 import joshie.harvest.quests.base.QuestTown;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -75,12 +74,14 @@ public class QuestShipping extends QuestTown {
     public boolean isNPCUsed(EntityPlayer player, NPCEntity entity) {
         if (!super.isNPCUsed(player, entity)) return false;
         boolean ret = quest_stage >= FINISHED;
-        if (!player.worldObj.isRemote && quest_stage == START) {
+        if (!player.worldObj.isRemote && quest_stage == START && HFApi.calendar.getDate(player.worldObj).getSeason() == season) {
             if (crops == null) rebuildCropSet();
             int totalCrops = getTotalCrops(HFApi.calendar.getDate(player.worldObj), player);
             if (totalCrops >= required) {
                 increaseStage(player);
             }
+
+            return false;
         }
 
         return ret;
@@ -88,7 +89,7 @@ public class QuestShipping extends QuestTown {
 
     @Nullable
     @SideOnly(Side.CLIENT)
-    public String getLocalizedScript(EntityPlayer player, EntityLiving entity, NPC npc) {
+    public String getLocalizedScript(EntityPlayer player, NPCEntity entity) {
         return getLocalized("complete");
     }
 

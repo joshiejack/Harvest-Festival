@@ -94,10 +94,15 @@ public class ButtonListing<I extends IPurchasable> extends GuiButton {
         GlStateManager.color(1.0F, 1.0F, 1.0F);
         //Draw the cost
         String cost = shop.getCostAsString(data.getSellValue(shop.getShop(), purchasable));
-        int width = fontrenderer.getStringWidth(cost);
-        mc.renderEngine.bindTexture(HFModInfo.ELEMENTS);
-        drawTexturedModalRect(xPosition + 184, (yPosition + (height - 8) / 2) - 2, 244, 0, 12, 12);
-        drawString(fontrenderer, cost, xPosition + 180 - width, yPosition + (height - 8) / 2, j);
+        if (purchasable.getCost() != 0) {
+            int width = fontrenderer.getStringWidth(cost);
+            drawString(fontrenderer, cost, xPosition + 180 - width, yPosition + (height - 8) / 2, j);
+            mc.renderEngine.bindTexture(HFModInfo.ELEMENTS);
+            drawTexturedModalRect(xPosition + 184, (yPosition + (height - 8) / 2) - 2, 244, 0, 12, 12);
+        } else {
+            int width = fontrenderer.getStringWidth(cost);
+            drawString(fontrenderer, cost, xPosition + 194 - width, yPosition + (height - 8) / 2, j);
+        }
     }
 
     @Override

@@ -2,7 +2,6 @@ package joshie.harvest.quests.town.seeds;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.CalendarDate;
-import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.npc.NPCEntity;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.Quest;
@@ -12,7 +11,6 @@ import joshie.harvest.npcs.HFNPCs;
 import joshie.harvest.player.PlayerTrackerServer;
 import joshie.harvest.quests.Quests;
 import joshie.harvest.quests.base.QuestTown;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -65,7 +63,8 @@ public class QuestTrees2 extends QuestTown {
 
     @Nullable
     @SideOnly(Side.CLIENT)
-    public String getLocalizedScript(EntityPlayer player, EntityLiving entity, NPC npc) {
+    @Override
+    public String getLocalizedScript(EntityPlayer player, NPCEntity npc) {
         return getLocalized("complete");
     }
 

@@ -61,6 +61,7 @@
 * When crops die, they chance a chance to turn in to weeds, wood, or rocks
 * You can now break dead crops normally, no need to use a sickle
 * Added a 'shipping basket', you wear it on your head and it will autoship things you pick up
+* Nether Wart is no longer an obtainable HF crop. I'll re-add it when I add greenhouses. (Vanilla works again)
 
 ###Festivals - NEW!
 * Added new years festival, celebrate with food
@@ -169,6 +170,7 @@
 * Hammers will now mine larger areas of stone
 * Axes will now chop down entire trees
 * Sickles will now break large areas of grass
+* Certain tiers of watering can have had their ranges changed (mostly++)
 * Added config option to prevent respawning at a bed when you are starving
 * Added config option to kill the player instead of respawning at the bed
 

@@ -26,13 +26,13 @@ public class CalendarAPI implements CalendarManager {
 
     private CalendarAPI() {
         data.put(Season.SPRING, new SeasonData(Season.SPRING, 0x87CEFA, 6000, 20500).setLeavesColor(0x80B76C)
-                                    .setWeatherWeight(Weather.SUNNY, 5D).setWeatherWeight(Weather.RAIN, 1D));
+                                    .setWeatherWeight(Weather.SUNNY, 70D).setWeatherWeight(Weather.RAIN, 30D));
         data.put(Season.SUMMER, new SeasonData(Season.SUMMER, 7972863, 5000, 21500).setGrassColor(0x4A9C2E)
-                                    .setWeatherWeight(Weather.SUNNY, 15D).setWeatherWeight(Weather.RAIN, 1D).setWeatherWeight(Weather.TYPHOON, 0.1D));
+                                    .setWeatherWeight(Weather.SUNNY, 95D).setWeatherWeight(Weather.RAIN, 4D).setWeatherWeight(Weather.TYPHOON, 1D));
         data.put(Season.AUTUMN, new SeasonData(Season.AUTUMN, 0x8CBED6, 7000, 19000).setGrassColor(0xB25900).setLeavesColor(0xFF9900)
-                                    .setWeatherWeight(Weather.RAIN, 5D).setWeatherWeight(Weather.SUNNY, 5D));
+                                    .setWeatherWeight(Weather.RAIN, 45D).setWeatherWeight(Weather.SUNNY, 55D));
         data.put(Season.WINTER, new SeasonData(Season.WINTER, 0xFFFFFF, 8000, 16500).setGrassColor(0xFFFFFF).setLeavesColor(0xCCCCCC)
-                                    .setWeatherWeight(Weather.SUNNY, 4D).setWeatherWeight(Weather.SNOW, 5D).setWeatherWeight(Weather.BLIZZARD, 1D));
+                                    .setWeatherWeight(Weather.SUNNY, 49D).setWeatherWeight(Weather.SNOW, 50D).setWeatherWeight(Weather.BLIZZARD, 1D));
     }
 
     public Festival getFestivalFromDate(TownData data, CalendarDate date) {

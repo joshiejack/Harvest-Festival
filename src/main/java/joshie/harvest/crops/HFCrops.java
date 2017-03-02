@@ -13,14 +13,14 @@ import joshie.harvest.core.util.annotations.HFLoader;
 import joshie.harvest.crops.block.*;
 import joshie.harvest.crops.handlers.growth.GrowthHandlerNether;
 import joshie.harvest.crops.handlers.growth.GrowthHandlerSide;
-import joshie.harvest.crops.handlers.rules.SpecialRulesYear;
-import joshie.harvest.shops.rules.SpecialRulesQuest;
 import joshie.harvest.crops.handlers.rules.SpecialRulesRanch;
+import joshie.harvest.crops.handlers.rules.SpecialRulesYear;
 import joshie.harvest.crops.item.ItemCrop;
 import joshie.harvest.crops.item.ItemCrop.Crops;
 import joshie.harvest.crops.item.ItemHFSeeds;
 import joshie.harvest.crops.loot.SetCropType;
 import joshie.harvest.crops.tile.*;
+import joshie.harvest.shops.rules.SpecialRulesQuest;
 import net.minecraft.block.BlockFarmland;
 import net.minecraft.block.BlockOldLog;
 import net.minecraft.block.BlockPlanks.EnumType;
@@ -123,8 +123,9 @@ public class HFCrops {
                                         .setIngredient(1, 0.1F).setAnimalFoodType(AnimalFoodType.GRASS).setRequiresSickle(0);
     public static final Crop CORN = registerCrop("corn").setItem(getCropStack(Crops.CORN)).setValue(1300, 50).setStages(3, 8, 12, 14, 15).setRegrow(12).setSeedColours(0XD4BD45)
                                         .setSeasons(SUMMER, AUTUMN).setPurchaseRules(new SpecialRulesQuest("corn"));
-    public static final Crop NETHER_WART = registerCrop("nether_wart").setItem(Items.NETHER_WART).setValue(4000, 20).setStages(Blocks.NETHER_WART, 1, 2, 3, 4).setRegrow(1).setSeedColours(0x8B0000)
-                                            .setPlantType(EnumPlantType.Nether).setNoWaterRequirements().setGrowthHandler(SOUL_SAND).setPurchaseRules(new SpecialRulesQuest("netherwart"));
+    //TODO: Readd properly in 0.7
+    private static final Crop NETHER_WART = registerCrop("nether_wart").setItem(Items.NETHER_WART).setValue(0, 20).setStages(Blocks.NETHER_WART, 1, 2, 3, 4).setRegrow(1).setSeedColours(0x8B0000)
+                                            .setPlantType(EnumPlantType.Nether).setNoWaterRequirements().setGrowthHandler(SOUL_SAND).setPurchaseRules(new SpecialRulesQuest("netherwart")).setSkipRender();
     //Tutorial Crop
     public static final Crop TUTORIAL = registerCrop("tutorial_turnip").setItem(getCropStack(Crops.TUTORIAL_TURNIP)).setValue(0, 10).setStages(1, 2, 3).setSeedColours(0xACA262).setSeasons(SPRING, SUMMER, AUTUMN, WINTER);
 
@@ -138,7 +139,8 @@ public class HFCrops {
         registerVanillaCrop(Blocks.BEETROOTS, Items.BEETROOT, BEETROOT);
         registerVanillaCrop(Blocks.MELON_STEM, Items.MELON, WATERMELON);
         registerVanillaCrop(Blocks.PUMPKIN_STEM, Blocks.PUMPKIN, PUMPKIN);
-        registerVanillaCrop(Blocks.NETHER_WART, Items.NETHER_WART, NETHER_WART);
+        HFApi.crops.registerCropProvider(new ItemStack(Items.NETHER_WART), NETHER_WART);
+        //registerVanillaCrop(Blocks.NETHER_WART, Items.NETHER_WART, NETHER_WART);
         HFApi.crops.registerWateringHandler(new WateringHandler());
         HFApi.shipping.registerSellable(new ItemStack(Items.POISONOUS_POTATO), 1L);
         RegistryHelper.registerTiles(TileWithered.class, TileCrop.class, TileSprinkler.class, TileSprinklerOld.class, TileFruit.class);

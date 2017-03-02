@@ -211,7 +211,7 @@ public class ItemHammer extends ItemToolSmashing<ItemHammer> {
         ToolTier tier = getTier(stack);
         if (getFront(tier) > 0) {
             int area = (1 + (getFront(tier) * 2));
-            list.add(TextFormatting.DARK_GREEN + TextHelper.formatHF("wateringcan.tooltip.dimensions", area, area));
+            list.add(TextFormatting.DARK_GREEN + TextHelper.formatHF("hammer.tooltip.smash", area, area));
         }
 
         int width = getWidthAndHeight(tier) == 0 ? 1 : 3;

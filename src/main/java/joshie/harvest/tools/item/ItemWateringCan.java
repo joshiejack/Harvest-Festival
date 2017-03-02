@@ -64,16 +64,16 @@ public class ItemWateringCan extends ItemTool<ItemWateringCan> {
             case COPPER:
                 return 0;
             case SILVER:
-                return 1;
+                return 2;
             case GOLD:
                 return 2;
             case MYSTRIL:
-                return 4;
+                return 2;
             case CURSED:
             case BLESSED:
-                return 6;
+                return 5;
             case MYTHIC:
-                return 12;
+                return 11;
             default:
                 return 0;
         }
@@ -85,11 +85,13 @@ public class ItemWateringCan extends ItemTool<ItemWateringCan> {
             case BASIC:
                 return 0;
             case COPPER:
-            case SILVER:
-            case GOLD:
                 return 1;
-            case MYSTRIL:
+            case SILVER:
+                return 1;
+            case GOLD:
                 return 2;
+            case MYSTRIL:
+                return 3;
             case CURSED:
             case BLESSED:
                 return 6;

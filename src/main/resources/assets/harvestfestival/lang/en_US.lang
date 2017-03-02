@@ -1618,6 +1618,7 @@ harvestfestival.npc.girafi.festival.starry.night2=In Denmark in the winter, you 
 #General
 harvestfestival.shop.outof.true=Out of gold! Please come back later!
 harvestfestival.shop.outof.false=Out of stock! Please try again later!
+harvestfestival.shop.free=Free!
 
 #General Store
 harvestfestival.shop.general=Jenni's Bargains
@@ -1986,7 +1987,7 @@ harvestfestival.quest.recipe.pancake.savoury.text=You may like your pancakes swe
 harvestfestival.quest.recipe.juice.pineapple.text=Getting to know ya has been a sweet deal. So here.
 harvestfestival.quest.recipe.popcorn.text=Nothing I love a bit more than heading to the movies, watching the latest fox film and snacking on popcorn.
 harvestfestival.quest.recipe.porridge.text=This porridge recipe is something my mother used to make me. And now as we've grown closer, I'm happy to share it with you, my sweet.
-harvestfestival.quest.recipe.potsticker.text=For being such a wonderful friend. And staying beside me through thick and fin, I'd love to give you this gift.
+harvestfestival.quest.recipe.potsticker.text=For being such a wonderful friend. And staying beside me through thick and thin, I'd love to give you this gift.
 harvestfestival.quest.recipe.risotto.text=You know how I said I only know noodles. Well I've been learning now, this is what I've been practicing.
 harvestfestival.quest.recipe.salad.text=You've been a good friend, so take this.
 harvestfestival.quest.recipe.egg.scrambled.text=My mind is so confused on who to choose, you could say it's scrambled.

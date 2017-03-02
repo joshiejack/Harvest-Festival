@@ -44,6 +44,10 @@ public final class Festival implements CalendarEntry {
      *  @param stack    the representative icon **/
     public Festival setIcon(ItemStack stack) {
         this.icon = stack;
+        if (this.note.getIcon() == Note.PAPER) {
+            this.note.setIcon(stack);
+        }
+
         return this;
     }
 

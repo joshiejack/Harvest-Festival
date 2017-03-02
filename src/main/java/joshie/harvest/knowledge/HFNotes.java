@@ -2,6 +2,7 @@ package joshie.harvest.knowledge;
 
 import joshie.harvest.animals.HFAnimals;
 import joshie.harvest.animals.item.ItemAnimalSpawner.Spawner;
+import joshie.harvest.animals.item.ItemAnimalTreat.Treat;
 import joshie.harvest.api.core.ITiered.ToolTier;
 import joshie.harvest.api.knowledge.Category;
 import joshie.harvest.api.knowledge.Note;
@@ -87,7 +88,7 @@ public class HFNotes {
         AXE.setIcon(HFTools.AXE.getStack(ToolTier.BASIC));
         SICKLE.setIcon(HFTools.SICKLE.getStack(ToolTier.BASIC));
         MINING.setIcon(HFMining.ORE.getStackFromEnum(Ore.COPPER));
-        RECIPES.setIcon(HFCooking.MEAL.getStackFromEnum(Meal.SALAD));
+        COOKING.setIcon(HFCooking.MEAL.getStackFromEnum(Meal.SALAD));
         RECIPES.setIcon(CookingHelper.getRecipe("salad"));
         RECIPE_BOOK.setIcon(new ItemStack(HFCooking.COOKBOOK));
         KITCHEN_COUNTER.setIcon(HFCooking.COOKWARE.getStackFromEnum(Cookware.COUNTER));
@@ -99,6 +100,9 @@ public class HFNotes {
         SUPERMARKET.setIcon(HFBuildings.STRUCTURES.getStackFromObject(HFBuildings.SUPERMARKET));
         REPAIRING.setIcon(new ItemStack(Blocks.ANVIL));
         UPGRADING.setIcon(HFModInfo.ICONS, 0, 48);
+        SECRET_CURSED_TOOLS.setIcon(HFTools.SICKLE.getStack(ToolTier.CURSED));
+        SECRET_LIVESTOCK.setIcon(HFAnimals.TREATS.getStackFromEnum(Treat.COW));
+        SECRET_CHICKENS.setIcon(HFAnimals.TREATS.getStackFromEnum(Treat.CHICKEN));
     }
 
     public static Note registerNote(Category category, String name) {

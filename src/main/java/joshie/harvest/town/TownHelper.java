@@ -22,8 +22,10 @@ import static joshie.harvest.core.HFTrackers.getTowns;
 public class TownHelper implements ITownHelper {
     public static final TownHelper INSTANCE = new TownHelper();
 
+    @Nonnull
     private static BlockPos getDefaultCoordinates(@Nullable Entity entity) {
-        return entity instanceof EntityPlayer ? ((EntityPlayer) entity).getBedLocation(0) : DimensionManager.getWorld(0).getSpawnPoint();
+        BlockPos pos = entity instanceof EntityPlayer ? ((EntityPlayer)entity).getBedLocation(0) : null;
+        return pos == null ? DimensionManager.getWorld(0).provider.getRandomizedSpawnPoint(): pos;
     }
 
     @SuppressWarnings("unchecked")

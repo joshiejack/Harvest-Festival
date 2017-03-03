@@ -25,6 +25,7 @@ import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
 
+import javax.annotation.Nonnull;
 import java.util.List;
 import java.util.Random;
 
@@ -126,7 +127,7 @@ public class MiningHelper {
         return spawn;
     }
 
-    public static boolean teleportToMine(Entity entity) {
+    public static boolean teleportToMine(@Nonnull Entity entity) {
         int id = HFTrackers.getTowns(entity.worldObj).getMineIDFromCoordinates(new BlockPos(entity));
         return id != -1 && teleportToMine(entity, id);
     }

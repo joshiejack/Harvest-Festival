@@ -15,6 +15,7 @@ import joshie.harvest.core.tile.TilePlate;
 import joshie.harvest.npcs.HFNPCs;
 import joshie.harvest.npcs.entity.EntityNPCHuman;
 import joshie.harvest.npcs.entity.ai.EntityAIPathing;
+import joshie.harvest.quests.Quests;
 import joshie.harvest.quests.base.QuestFestival;
 import joshie.harvest.quests.selection.FestivalSelection;
 import joshie.harvest.quests.town.festivals.cooking.CookingContestEntries;
@@ -117,6 +118,7 @@ public class QuestContestCooking extends QuestFestival {
             complete(player); //Finish the contest
             CookingContestEntries entries = getContestEntries(entity);
             if (entries.isWinner(player)) {
+                HFApi.quests.completeQuestConditionally(Quests.SELL_CORN, player);
                 rewardGold(player, entries.getPrize());
             }
         }

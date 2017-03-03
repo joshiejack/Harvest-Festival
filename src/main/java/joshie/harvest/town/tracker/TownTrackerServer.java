@@ -20,6 +20,7 @@ import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.HashSet;
 import java.util.Map.Entry;
@@ -91,7 +92,7 @@ public class TownTrackerServer extends TownTracker<TownDataServer> {
     }
 
     @Override
-    public int getMineIDFromCoordinates(BlockPos pos) {
+    public int getMineIDFromCoordinates(@Nonnull BlockPos pos) {
         TownData data = getClosestTownToBlockPos(pos, false);
         if (!data.hasBuilding(MINE_ENTRANCE.getBuilding())) return -1;
         if (townIDs.containsKey(data.getID())) {

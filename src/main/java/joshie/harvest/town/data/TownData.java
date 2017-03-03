@@ -115,6 +115,7 @@ public abstract class TownData<Q extends QuestData, L extends LetterData> implem
         return buildings.values();
     }
 
+    @Nonnull
     public BlockPos getTownCentre() {
         return townCentre;
     }

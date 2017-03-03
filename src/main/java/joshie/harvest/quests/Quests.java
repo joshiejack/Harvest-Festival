@@ -79,6 +79,7 @@ public class Quests {
     public static final Quest YULIF_15K = QuestHelper.getQuest("friendship.yulif.sprinkler");
 
     //Dummy Quests for unlocking things, Town Based Quests
+    public static final Quest SELL_CORN = QuestHelper.getQuest("seeds.corn");
     public static final Quest SELL_STRAWBERRY = QuestHelper.getQuest("seeds.strawberry");
     public static final Quest SELL_SWEET_POTATO = QuestHelper.getQuest("seeds.sweetpotato");
     public static final Quest SELL_TREES = QuestHelper.getQuest("seeds.trees1");

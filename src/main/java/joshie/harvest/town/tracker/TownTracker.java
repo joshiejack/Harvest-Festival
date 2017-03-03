@@ -23,7 +23,7 @@ public abstract class TownTracker<T extends TownData> extends HFTracker {
     public abstract T getNullTown();
 
     @Nonnull
-    private T getClosestTown(final BlockPos pos) {
+    private T getClosestTown(@Nonnull final BlockPos pos) {
         T closest = null;
         double thatTownDistance = Double.MAX_VALUE;
         for (T town: townData) {
@@ -38,7 +38,7 @@ public abstract class TownTracker<T extends TownData> extends HFTracker {
     }
 
     @Nonnull
-    public T getClosestTownToBlockPos(BlockPos pos, boolean create) {
+    public T getClosestTownToBlockPos(@Nonnull BlockPos pos, boolean create) {
         T data = getClosestTown(pos);
         if (data == getNullTown() && create) {
             data = createNewTown(pos);

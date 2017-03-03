@@ -276,7 +276,7 @@ public class HFShops {
         CARPENTER.addPurchasable(new PurchasableMaterials(0L, HFCore.STORAGE.getStackFromEnum(Storage.MAILBOX), Logs.of(4)).addTooltip("storage.mailbox").setNote(HFNotes.MAILBOX));
         CARPENTER.addPurchasable(new PurchasableMaterials(3000L, HFCrops.SPRINKLER.getStackFromEnum(Sprinkler.OLD), Logs.of(4), Copper.of(8)) {
             @Override
-            public boolean canList(World world, EntityPlayer player) {
+            public boolean canList(@Nonnull World world, @Nonnull EntityPlayer player) {
                 CalendarDate date = HFApi.calendar.getDate(world);
                 return (date.getYear() >= 1 || date.getSeason().ordinal() >= 1);
             }
@@ -284,14 +284,14 @@ public class HFShops {
 
         CARPENTER.addPurchasable(new PurchasableMaterials(10000L, HFCrops.SPRINKLER.getStackFromEnum(Sprinkler.IRON), Logs.of(4), Silver.of(8)) {
             @Override
-            public boolean canList(World world, EntityPlayer player) {
+            public boolean canList(@Nonnull World world, @Nonnull EntityPlayer player) {
                 return HFApi.quests.hasCompleted(Quests.SELL_SPRINKLER, player);
             }
         }.setStock(3).addTooltip("sprinkler.iron.tooltip"));
 
         CARPENTER.addPurchasable(new PurchasableMaterials(500L, HFQuests.QUEST_BLOCK.getStackFromEnum(QuestBlock.BOARD), Logs.of(8), Gold.of(4)) {
             @Override
-            public boolean canList(World world, EntityPlayer player) {
+            public boolean canList(@Nonnull World world, @Nonnull EntityPlayer player) {
                 return TownHelper.getClosestTownToEntity(player, false).hasBuilding(HFBuildings.TOWNHALL);
             }
         }.setStock(1));

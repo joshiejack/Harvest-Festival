@@ -1,6 +1,7 @@
 package joshie.harvest.quests.town.festivals.cooking;
 
 import joshie.harvest.api.HFApi;
+import joshie.harvest.api.cooking.Recipe;
 import joshie.harvest.api.cooking.Utensil;
 import joshie.harvest.api.npc.NPC;
 import joshie.harvest.cooking.HFCooking;
@@ -34,7 +35,11 @@ class CookingContestEntry {
     }
 
     private Utensil getUtensilFromStack(ItemStack stack) {
-        return Utensil.FRYING_PAN;
+        for (Recipe recipe: Recipe.REGISTRY.values()) {
+            if (recipe.getStack().isItemEqual(stack)) return recipe.getUtensil();
+        }
+
+        return null;
     }
 
     public String getName() {
@@ -59,7 +64,7 @@ class CookingContestEntry {
         int hunger = ((ItemFood)meal.getItem()).getHealAmount(meal);
         float saturation = ((ItemFood)meal.getItem()).getSaturationModifier(meal);
         long gold = HFApi.shipping.getSellValue(meal);
-        return (int)(hunger * saturation + gold) - ((category == utensil) ? 0: -1000);
+        return (int)(hunger * saturation + gold) - ((category == utensil) ? 0: 1000);
     }
 
     @Override

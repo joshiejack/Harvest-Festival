@@ -29,7 +29,7 @@ public class FishingHelper {
         return true;
     }
 
-    enum WaterType {
+    public enum WaterType {
         OCEAN, LAKE, RIVER, POND
     }
 

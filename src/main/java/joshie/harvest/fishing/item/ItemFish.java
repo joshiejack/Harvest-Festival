@@ -1,5 +1,8 @@
 package joshie.harvest.fishing.item;
 
+import com.google.common.collect.HashMultimap;
+import com.google.common.collect.Multimap;
+import joshie.harvest.api.calendar.Season;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.item.ItemHFFoodEnum;
 import joshie.harvest.core.lib.CreativeSort;
@@ -17,7 +20,10 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.List;
 import java.util.Locale;
 
+import static joshie.harvest.api.calendar.Season.*;
+
 public class ItemFish extends ItemHFFoodEnum<ItemFish, Fish> {
+    public static final Multimap<Season, Fish> FISH_LOCATIONS = HashMultimap.create();
     public static final String SIZE = "Size";
 
     public ItemFish() {
@@ -68,13 +74,14 @@ public class ItemFish extends ItemHFFoodEnum<ItemFish, Fish> {
     public static final int LARGE_FISH = 3;
     public static final int GIANT_FISH = 4;
     public enum Fish implements IStringSerializable, ISellable {
-        ANCHOVY(30L, 2D, 40D), ANGEL(230, 5D, 15D), ANGLER(500, 20D, 100D), BASS(105L, 35D, 75D), BLAASOP(365L, 34D, 110D), BOWFIN(130L, 50D, 109D),
-        BUTTERFLY(200L, 12D, 22D), CARP(60L, 35D, 105D), CATFISH(120L, 100D, 250D), CHUB(40L, 40D, 80D), CLOWN(170L, 10D, 18D), COD(50L, 5D, 200D),
-        DAMSEL(105L, 3D, 5D), ELECTRICRAY(230L, 80D, 190D), GOLD(35L, 5D, 45D), HERRING(85L, 14D, 46D), KOI(280L, 25D, 90D), LAMPREY(100L, 13D, 100D),
-        LUNGFISH(200L, 70D, 150D), MANTARAY(400L, 400D, 700D), MINNOW(20L, 2D, 13D), PERCH(65L, 7.5D, 30D), PICKEREL(140L, 50D, 76D), PIKE(235L, 60D, 130D),
-        PIRANHA(400L, 30D, 50D), PUFFER(300L, 2.5D, 61D), PUPFISH(115L, 5D, 8D), SALMON(80L, 60D, 80D), SARDINE(20L, 8D, 30D), SIAMESE(200L, 4D, 7D),
-        STARGAZER(140L, 25D, 40D), STINGRAY(250L, 150D, 200D), TANG(230L, 20D, 35D), TETRA(185L, 1.5D, 4D), TROUT(80L, 25D, 90D), TUNA(160L, 40D, 460D),
-        WALLEYE(110L, 25D, 35D);
+        ANCHOVY(30L, 2D, 40D, SPRING, SUMMER, AUTUMN, WINTER), ANGEL(230, 5D, 15D, SPRING), ANGLER(500, 20D, 100D, WINTER), BASS(105L, 35D, 75D, SPRING, AUTUMN), BLAASOP(365L, 34D, 110D, WINTER),
+        BOWFIN(130L, 50D, 109D, SPRING, SUMMER, AUTUMN, WINTER), BUTTERFLY(200L, 12D, 22D, SPRING, SUMMER), CARP(60L, 35D, 105D, SPRING, SUMMER, AUTUMN, WINTER), CATFISH(120L, 100D, 250D, SUMMER, AUTUMN, WINTER),
+        CHUB(40L, 40D, 80D, SPRING, SUMMER, AUTUMN, WINTER), CLOWN(170L, 10D, 18D, SPRING, SUMMER), COD(50L, 5D, 200D, SPRING, AUTUMN, WINTER), DAMSEL(105L, 3D, 5D, SPRING, SUMMER), ELECTRICRAY(230L, 80D, 190D, AUTUMN, WINTER),
+        GOLD(35L, 5D, 45D, SPRING, SUMMER, AUTUMN, WINTER), HERRING(85L, 14D, 46D, SPRING, AUTUMN, WINTER), KOI(280L, 25D, 90D, SUMMER, WINTER), LAMPREY(100L, 13D, 100D, SPRING, AUTUMN, WINTER), LUNGFISH(200L, 70D, 150D, SUMMER),
+        MANTARAY(400L, 400D, 700D, SPRING), MINNOW(20L, 2D, 13D, SPRING, SUMMER, AUTUMN, WINTER), PERCH(65L, 7.5D, 30D, SPRING, SUMMER, AUTUMN, WINTER), PICKEREL(140L, 50D, 76D, SPRING, SUMMER, WINTER), PIKE(235L, 60D, 130D, SUMMER, WINTER),
+        PIRANHA(400L, 30D, 50D, SUMMER), PUFFER(300L, 2.5D, 61D, SUMMER), PUPFISH(115L, 5D, 8D, SPRING, SUMMER, AUTUMN, WINTER), SALMON(80L, 60D, 80D, SPRING, SUMMER, AUTUMN, WINTER), SARDINE(20L, 8D, 30D, SUMMER, AUTUMN, WINTER),
+        SIAMESE(200L, 4D, 7D, SPRING, WINTER), STARGAZER(140L, 25D, 40D, SPRING, SUMMER), STINGRAY(250L, 150D, 200D, SPRING, SUMMER), TANG(230L, 20D, 35D, SPRING, SUMMER), TETRA(185L, 1.5D, 4D, SPRING, SUMMER),
+        TROUT(80L, 25D, 90D, SPRING, SUMMER, AUTUMN, WINTER), TUNA(160L, 40D, 460D, AUTUMN, WINTER), WALLEYE(110L, 25D, 35D, SUMMER, AUTUMN);
 
         private final long sell;
         private final double small;
@@ -83,13 +90,16 @@ public class ItemFish extends ItemHFFoodEnum<ItemFish, Fish> {
         private final double giant;
         private final int amount;
 
-        Fish(long sell, double min, double max) {
+        Fish(long sell, double min, double max, Season... seasons) {
             this.sell = sell;
             this.small = min;
             this.medium = min + (max - min) * (1/3);
             this.large = this.medium * 2;
             this.giant = max;
             this.amount = (int) Math.min(10, Math.max(1, min / 10D));
+            for (Season season: seasons) {
+                ItemFish.FISH_LOCATIONS.get(season).add(this);
+            }
         }
 
         public boolean isPoisonous() {

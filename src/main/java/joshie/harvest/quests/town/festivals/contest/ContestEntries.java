@@ -106,7 +106,7 @@ public class ContestEntries<E extends EntityAnimal> {
     }
 
     private boolean isValid(EntityPlayer player, Object o) {
-        return !(o instanceof NPC) || TownHelper.getClosestTownToEntity(player, false).getInhabitants().contains(o);
+        return !(o instanceof NPC) || TownHelper.getClosestTownToEntity(player, false).hasNPC((NPC)o);
     }
 
     private E createEntity(World world) {

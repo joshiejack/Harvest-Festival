@@ -56,8 +56,8 @@ public class HFBuildings {
     public static final Building CARPENTER = registerBuilding("carpenter").setSpecialRules(NEVER).setInhabitants(HFNPCs.CARPENTER, HFNPCs.FLOWER_GIRL).setOffset(3, -1, 8);
     public static final Building CHURCH = registerBuilding("church").setSpecialRules(new SpecialRuleChurch()).setOffset(6, -1, 13);
     public static final Building CLOCKMAKER = registerBuilding("clockmaker").setRequirements("festivals").setInhabitants(HFNPCs.CLOCKMAKER, CLOCKMAKER_CHILD).setOffset(3, -1, 10);
-    public static final Building FISHING_HOLE = registerBuilding("fishingHole").setRequirements("fishingHut").setInhabitants(HFNPCs.FISHERMAN).setOffset(5, -5, 12);
-    public static final Building FISHING_HUT = registerBuilding("fishingHut").setRequirements("barn", "poultryFarm").setOffset(6, -1, 8);
+    public static final Building FISHING_HOLE = registerBuilding("fishingHole").setRequirements("fishingHut").setOffset(5, -5, 12);
+    public static final Building FISHING_HUT = registerBuilding("fishingHut").setRequirements("barn", "poultryFarm").setInhabitants(HFNPCs.FISHERMAN).setOffset(6, -1, 8);
     public static final Building GODDESS_POND = registerBuilding("goddessPond").setSpecialRules(new SpecialRuleBuildings(5)).setInhabitants(HFNPCs.GODDESS).setOffset(11, -1, 20);
     public static final Building MINING_HILL = registerBuilding("miningHill").setRequirements("supermarket").setInhabitants(HFNPCs.MINER).setOffset(10, -3, 11);
     public static final Building POULTRY_FARM = registerBuilding("poultryFarm").setInhabitants(HFNPCs.POULTRY).setOffset(4, -1, 12);

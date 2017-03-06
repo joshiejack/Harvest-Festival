@@ -159,7 +159,7 @@ public class TownDataServer extends TownData<QuestDataServer, LetterDataServer> 
         for (Quest quest: Quest.REGISTRY) {
             if (isRepeatable(world, quest) || !getQuests().getFinished().contains(quest)) {
                 if (!getQuests().getCurrent().contains(quest)) {
-                    if (quest.canStartDailyQuest(world, townCentre)) {
+                    if (quest.canStartDailyQuest(this, world, townCentre)) {
                         quests.add(quest);
                     }
                 }

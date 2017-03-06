@@ -82,6 +82,11 @@ public abstract class TownData<Q extends QuestData, L extends LetterData> implem
         return buildings.get(building.getResource()) != null;
     }
 
+    @Override
+    public boolean hasNPC(NPC npc) {
+        return getInhabitants().contains(npc);
+    }
+
     public boolean hasBuildings(ResourceLocation[] buildings) {
         for (ResourceLocation building: buildings) {
             if (this.buildings.get(building) == null) return false;

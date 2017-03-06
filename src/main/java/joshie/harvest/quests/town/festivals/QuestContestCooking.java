@@ -10,6 +10,7 @@ import joshie.harvest.api.npc.task.TaskWait;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.Selection;
 import joshie.harvest.calendar.CalendarHelper;
+import joshie.harvest.core.achievements.HFAchievements;
 import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.core.tile.TilePlate;
 import joshie.harvest.npcs.HFNPCs;
@@ -118,6 +119,7 @@ public class QuestContestCooking extends QuestFestival {
             complete(player); //Finish the contest
             CookingContestEntries entries = getContestEntries(entity);
             if (entries.isWinner(player)) {
+                player.addStat(HFAchievements.corn);
                 HFApi.quests.completeQuestConditionally(Quests.SELL_CORN, player);
                 rewardGold(player, entries.getPrize());
             }

@@ -33,8 +33,7 @@ public class QuestSlay extends QuestDaily {
     private int counter;
 
     public QuestSlay() {
-        setNPCs(HFNPCs.MINER);
-        setTownQuest();
+        super(HFNPCs.MINER);
     }
 
     @Override

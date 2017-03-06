@@ -2115,6 +2115,13 @@ harvestfestival.quest.slay.task=The mines have become infested lately. It's hard
 harvestfestival.quest.slay.complete1=I guess that was helpful of you, here take a payment.
 harvestfestival.quest.slay.complete2=Good on you for clearing some mobs out of the mine. I've some gold to spare.
 harvestfestival.quest.slay.complete3=Thanks for helping clear the mine. Take this.
+#Finding Fish
+harvestfestival.quest.collect.fish.title=Missing Ingredients
+harvestfestival.quest.collect.fish.desc=Bring Jakob %1$s %2$s
+harvestfestival.quest.collect.fish.task=%2$s have started to become uncontrollable. I think you should catch %1$s in order to reduce their stock. Come see me with the fish. \n- Jakob\n\n- %3$sG reward\n- Jakob will be grateful
+harvestfestival.quest.collect.fish.complete1=Thanks. Hopefully the other fish in the area will be able to compete better.
+harvestfestival.quest.collect.fish.complete2=Good job. We needed to cut down those numbers for a better chance for the other fish.
+harvestfestival.quest.collect.fish.complete3=Hopefully this reward will be enough for your hard work on reducing the number of this fish.
 
 ## Festival Quests
 #New Years

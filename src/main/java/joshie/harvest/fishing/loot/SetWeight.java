@@ -35,7 +35,7 @@ public class SetWeight extends LootFunction {
     }
 
     @SuppressWarnings("ConstantConditions")
-    private ItemStack applyFishSizeData(Random rand, ItemStack held, ItemStack stack) {
+    public static ItemStack applyFishSizeData(Random rand, ItemStack held, ItemStack stack) {
         if (!stack.hasTagCompound()) stack.setTagCompound(new NBTTagCompound());
         int min = HFFishing.FISHING_ROD.getMinimumFishSize(held);
         int max = HFFishing.FISHING_ROD.getMaximumFishSize(held);

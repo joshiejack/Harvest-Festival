@@ -4,6 +4,7 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.knowledge.Note;
 import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.npc.NPCEntity;
+import joshie.harvest.api.town.Town;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -81,8 +82,11 @@ public abstract class Quest extends IForgeRegistryEntry.Impl<Quest> {
     }
 
     /** If this quest counts as a daily quest, and if it can currently be started
+     * @param town  the town trying to start the quest in
+     * @param world the world
+     * @param pos   the position
      *  @return false for quests that can only be started via the quest board at a random chance **/
-    public boolean canStartDailyQuest(World world, BlockPos pos) {
+    public boolean canStartDailyQuest(Town town, World world, BlockPos pos) {
         return false;
     }
 

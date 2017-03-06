@@ -1,9 +1,15 @@
 package joshie.harvest.quests.town.tasks;
 
+import com.google.common.collect.HashMultimap;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Multimap;
 import joshie.harvest.api.HFApi;
+import joshie.harvest.api.animals.AnimalFoodType;
+import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.crops.Crop;
 import joshie.harvest.api.npc.NPCEntity;
 import joshie.harvest.api.quests.HFQuest;
+import joshie.harvest.api.town.Town;
 import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.cooking.item.ItemMeal.Meal;
 import joshie.harvest.core.helpers.InventoryHelper;
@@ -15,27 +21,33 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.commons.lang3.text.WordUtils;
 
 import javax.annotation.Nullable;
-import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
+import static joshie.harvest.api.calendar.Season.WINTER;
 import static joshie.harvest.core.helpers.InventoryHelper.ORE_DICTIONARY;
 
 @HFQuest("collect.crops")
-public class QuestCollect extends QuestDaily {
-    private static List<Crop> crops;
-    public QuestCollect() {
-        setNPCs(HFNPCs.CAFE_GRANNY);
-        setTownQuest();
+public class QuestCollectCrops extends QuestDaily {
+    private static final Multimap<Season, Crop> CROPS = HashMultimap.create();
+    public QuestCollectCrops() {
+        super(HFNPCs.CAFE_GRANNY);
     }
 
     private Crop crop = HFCrops.TURNIP;
     private int amount = 1;
+
+    @Override
+    public boolean canStartDailyQuest(Town town, World world, BlockPos pos) {
+        return super.canStartDailyQuest(town, world, pos) && HFApi.calendar.getDate(world).getSeason()  != WINTER;
+    }
 
     @Override
     public String getDescription(World world, @Nullable EntityPlayer player) {
@@ -43,24 +55,19 @@ public class QuestCollect extends QuestDaily {
         else {
             rand.setSeed(HFApi.calendar.getDate(world).hashCode());
             amount = 1 + rand.nextInt(10);
-            crop = getValidCrop(getCrops().get(rand.nextInt(getCrops().size())));
+            List<Crop> list = Lists.newArrayList(getCrops(HFApi.calendar.getDate(world).getSeason()));
+            crop = list.get(rand.nextInt(list.size()));
             return getLocalized("task", amount, crop.getLocalizedName(true));
         }
     }
 
-    private static List<Crop> getCrops() {
-        if (crops != null) return crops;
+    private Collection<Crop> getCrops(Season season) {
+        if (CROPS.get(season).size() > 0) return CROPS.get(season);
         else {
-            crops = new ArrayList<>(Crop.REGISTRY.values());
-            crops.remove(HFCrops.GRASS);
-            crops.remove(HFCrops.TUTORIAL);
-            crops.remove(Crop.NULL_CROP);
-            return crops;
+            Crop.REGISTRY.values().stream().filter(crop -> crop.getSeedCost() != 0 && crop.getFoodType() != AnimalFoodType.GRASS && crop != Crop.NULL_CROP
+                    && Lists.newArrayList(crop.getSeasons()).contains(season)).forEach(crop -> CROPS.get(season).add(crop));
+            return CROPS.get(season);
         }
-    }
-
-    private Crop getValidCrop(Crop crop) {
-        return crop.getIngredient() == null ? HFCrops.TURNIP : crop;
     }
 
     @Override

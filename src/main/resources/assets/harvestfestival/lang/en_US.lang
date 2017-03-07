@@ -90,6 +90,7 @@ harvestfestival.cheat.park.endstone=[FestivalGen] Park Clearer
 harvestfestival.cheat.park.locations.generator=[FestivalGen] Park Locations
 
 #Crops
+harvestfestival.crop.wild=Wild %s
 harvestfestival.crop.sickle=Requires Sickle
 harvestfestival.crop.water=No Water Required
 harvestfestival.crop.seeds.format=%1s %2s
@@ -2083,7 +2084,7 @@ harvestfestival.quest.meeting.jeimmi.description=Say hello to Mayor Jeimmi!
 ## Seed Quests
 harvestfestival.quest.seeds.cabbage.complete=Wow it looks like you've shipped 1000 spring crops! That's amazing. I have some good news too, we've recently found someone who will be happy to supply the store with cabbage seeds. So make sure to check the store the next time you visit!
 harvestfestival.quest.seeds.pineapple.complete=Look at you, you've managed to ship 1000 summer crops! How incredible. Oh another thing Spongebob has decided to sponsor our store, and as a specialty we are now able to sell you pineapples!
-harvestfestival.quest.seeds.greenpepper.complete=I can't believe my eyes, you've shipped over 1000 autumn crops! You're insane. Before I forget, things have been going really well around here, and we've recently been able to find a supplier for green peppers. I'll be able to sell you them right away!
+harvestfestival.quest.seeds.sweetpotato.complete=I can't believe my eyes, you've shipped over 1000 autumn crops! You're insane. Before I forget, things have been going really well around here, and we've recently been able to find a supplier for sweet potatoes. I'll be able to sell you them right away!
 harvestfestival.quest.seeds.progress.complete=This town has really been growing, It's been a pleasure helping you achieve that. With that comes some wonderful news, I'm now able to stock beetroots in autumn, and melons in the summer seasons. Thanks again for your hard work.
 
 #Building the Goddess a Home
@@ -2284,7 +2285,7 @@ achievement.harvestfestival.strawberries=Strawberry Jam
 achievement.harvestfestival.strawberries.desc=Reach spring year 3 to unlock strawberries
 achievement.harvestfestival.sweetPotatoes=Sweety Pie
 achievement.harvestfestival.sweetPotatoes.desc=Ship 1000 Autumn crops to unlock sweet potatoes
-achievement.harvestfestival.tomato=Pickles
+achievement.harvestfestival.tomato=Tomato Ketchup
 achievement.harvestfestival.tomato.desc=Reach summer year 2 to unlock tomatoes
 achievement.harvestfestival.corn=So corny
 achievement.harvestfestival.corn.desc=Reach summer year 3 to unlock corn

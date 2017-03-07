@@ -1,0 +1,123 @@
+{
+  "components": [
+    {
+      "state": "trapdoor 14",
+      "pos": "12 1 11",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "trapdoor 14",
+      "pos": "12 1 13",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "trapdoor 14",
+      "pos": "12 1 15",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "trapdoor 14",
+      "pos": "12 1 17",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "trapdoor 13",
+      "pos": "13 1 18",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "dark_oak_stairs 6",
+      "pos": "13 1 17"
+    },
+    {
+      "state": "wooden_slab 13",
+      "pos": "13 1 16"
+    },
+    {
+      "state": "wooden_slab 13",
+      "pos": "13 1 15"
+    },
+    {
+      "state": "wooden_slab 13",
+      "pos": "13 1 14"
+    },
+    {
+      "state": "wooden_slab 13",
+      "pos": "13 1 13"
+    },
+    {
+      "state": "wooden_slab 13",
+      "pos": "13 1 12"
+    },
+    {
+      "state": "dark_oak_stairs 7",
+      "pos": "13 1 11"
+    },
+    {
+      "state": "trapdoor 12",
+      "pos": "13 1 10",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "trapdoor 15",
+      "pos": "14 1 11",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "trapdoor 15",
+      "pos": "14 1 13",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "trapdoor 15",
+      "pos": "14 1 15",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "trapdoor 15",
+      "pos": "14 1 17",
+      "type": "blocks.Decorative"
+    },
+    {
+      "state": "trapdoor",
+      "pos": "13 2 17",
+      "type": "blocks.Decorative"
+    },
+    {
+      "stack": "harvestfestival:meal 43 {SellValue:0L,FoodSaturation:4f,display:{Name:\"New%20Years%20Riceballs\"},FoodLevel:10}",
+      "facing": "east",
+      "state": "harvestfestival:stand 2",
+      "pos": "13 2 16",
+      "type": "blocks.Stand"
+    },
+    {
+      "state": "trapdoor 3",
+      "pos": "13 2 15",
+      "type": "blocks.Decorative"
+    },
+    {
+      "stack": "harvestfestival:meal 43 {SellValue:0L,FoodSaturation:4f,display:{Name:\"New%20Years%20Riceballs\"},FoodLevel:10}",
+      "facing": "east",
+      "state": "harvestfestival:stand 2",
+      "pos": "13 2 14",
+      "type": "blocks.Stand"
+    },
+    {
+      "state": "trapdoor 3",
+      "pos": "13 2 13",
+      "type": "blocks.Decorative"
+    },
+    {
+      "stack": "harvestfestival:meal 43 {SellValue:0L,FoodSaturation:4f,display:{Name:\"New%20Years%20Riceballs\"},FoodLevel:10}",
+      "facing": "east",
+      "state": "harvestfestival:stand 2",
+      "pos": "13 2 12",
+      "type": "blocks.Stand"
+    },
+    {
+      "state": "trapdoor 3",
+      "pos": "13 2 11",
+      "type": "blocks.Decorative"
+    }
+  ]
+}

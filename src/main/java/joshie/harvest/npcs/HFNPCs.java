@@ -49,14 +49,14 @@ import static joshie.harvest.town.BuildingLocations.FISHING_POND_PIER;
 @HFLoader(priority = HFNPCS)
 @SuppressWarnings("unchecked")
 public class HFNPCs {
-    public static final NPC GODDESS = register("goddess", FEMALE, ADULT, 8, SPRING, 0x8CEED3, 0x4EC485).setHeight(1.2F, 0.6F);
+    public static final NPC GODDESS = register("goddess", FEMALE, ADULT, 8, SPRING, 0x8CEED3, 0x4EC485).setHeight(1.2F, 0.6F).setUninvitable();
     public static final NPCSpecialSeller CARPENTER = register("yulif", MALE, ADULT, 19, SUMMER, 0x313857, 0x121421, NPCSpecialSeller.class);
     public static final NPCSpecialSeller FLOWER_GIRL = register("jade", FEMALE, ADULT, 14, SPRING, 0x653081, 0x361840, NPCSpecialSeller.class);
     public static final NPCSpecialSeller GS_OWNER = register("jenni", FEMALE, ADULT, 7, WINTER, 0xDDD0AD, 0xE79043, NPCSpecialOpener.class).setNPC(GODDESS);
     public static final NPC MILKMAID = register("candice", FEMALE, ADULT, 5, AUTUMN, 0xF65FAB, 0xF21985, NPCHolidayStore.class);
     public static final NPC BARN_OWNER = register("jim", MALE, ADULT, 26, SPRING, 0xDE7245, 0x722B19, NPCHolidayStore.class);
     public static final NPC POULTRY = register("ashlee", FEMALE, ADULT, 16, AUTUMN, 0xC62D2D, 0x571111);
-    public static final NPC TRADER = register("girafi", MALE, ADULT, 2, AUTUMN,  0xFFFFFF, 0xC60C30);
+    public static final NPC TRADER = register("girafi", MALE, ADULT, 2, AUTUMN,  0xFFFFFF, 0xC60C30).setUninvitable();
     public static final NPCSpecialSeller FISHERMAN = register("jacob", MALE, ADULT, 28, AUTUMN, 0x7396FF, 0x0036D9, NPCSpecialSeller.class);
     public static final NPCSpecialSeller MINER = register("brandon", MALE, ADULT, 13, AUTUMN, 0xC28D48, 0x5F5247, NPCSpecialSeller.class);
     public static final NPCSpecialSeller CAFE_OWNER = register("liara", FEMALE, ADULT, 17, SPRING, 0xBEC8EE, 0x8091D0, NPCHolidayStoreSpecial.class);
@@ -75,6 +75,16 @@ public class HFNPCs {
 
     @SuppressWarnings("deprecation")
     public static void preInit() {
+        CARPENTER.addFamily(FLOWER_GIRL);
+        FLOWER_GIRL.addFamily(CARPENTER);
+        GS_OWNER.addFamily(MILKMAID);
+        MILKMAID.addFamily(GS_OWNER);
+        BARN_OWNER.addFamily(POULTRY, FISHERMAN);
+        POULTRY.addFamily(BARN_OWNER, FISHERMAN);
+        FISHERMAN.addFamily(BARN_OWNER, POULTRY);
+        CAFE_OWNER.addFamily(CAFE_GRANNY);
+        CLOCKMAKER.addFamily(CLOCKMAKER_CHILD);
+        DAUGHTER_ADULT.addFamily(PRIEST, MAYOR, DAUGHTER_CHILD);
         EntityRegistry.registerModEntity(EntityNPCVillager.class, "villager", EntityIDs.VILLAGER, HarvestFestival.instance, 80, 3, true);
         EntityRegistry.registerModEntity(EntityNPCBuilder.class, "builder", EntityIDs.BUILDER, HarvestFestival.instance, 80, 3, true);
         //TODO: Remove in 0.7+
@@ -117,7 +127,7 @@ public class HFNPCs {
                 .addGreeting(new GreetingBeforeDanieru(GS_OWNER));
         MILKMAID.addGreeting(new GreetingBeforeDanieru(MILKMAID));
         BARN_OWNER.addGreeting(new GreetingBeforeDanieru(BARN_OWNER));
-        MINER.setQuest(Quests.SELL_ORES);
+        MINER.setQuest(Quests.SELL_ORES).setUninvitable();
         FISHERMAN.setQuest(Quests.SELL_HATCHERY).addGreeting(new GreetingLocation(FISHING_POND_PIER));
         CAFE_OWNER.setQuest(Quests.SELL_MEALS);
         CLOCKMAKER.setHasInfo(new GreetingTime());

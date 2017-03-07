@@ -6,15 +6,21 @@ import joshie.harvest.api.calendar.Festival;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.calendar.Weekday;
 import joshie.harvest.api.npc.NPC;
+import joshie.harvest.api.npc.NPCEntity;
+import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ScheduleBuilder {
     public List<TimedSchedule> timedScheduleList = new ArrayList<>();
     public List<HolidaySchedule> holidayScheduleList = new ArrayList<>();
+    public Map<BuildingLocation, Conditional> rules = new HashMap<>();
     public final BuildingLocation default_;
     private final NPC npc;
 
@@ -36,6 +42,11 @@ public class ScheduleBuilder {
 
     public ScheduleBuilder add(Festival festival, long time, BuildingLocation location) {
         holidayScheduleList.add(new HolidaySchedule(festival, time, location));
+        return this;
+    }
+
+    public ScheduleBuilder add(BuildingLocation location, Conditional conditional) {
+        rules.put(location, conditional);
         return this;
     }
 
@@ -70,5 +81,10 @@ public class ScheduleBuilder {
             this.time = time;
             this.location = location;
         }
+    }
+
+    //For conditional schedules
+    public static abstract class Conditional {
+        public abstract boolean canDo(@Nonnull World world, @Nonnull NPCEntity npc);
     }
 }

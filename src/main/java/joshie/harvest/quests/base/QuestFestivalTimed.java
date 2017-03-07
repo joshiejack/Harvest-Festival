@@ -11,7 +11,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import javax.annotation.Nullable;
 
 public abstract class QuestFestivalTimed extends QuestFestival {
-    private long time;
+    protected long time;
 
     @Override
     public void onQuestSelectedForDisplay(EntityPlayer player, NPCEntity entity) {

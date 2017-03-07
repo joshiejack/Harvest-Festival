@@ -2,8 +2,8 @@ package joshie.harvest.quests.town.festivals.starry;
 
 import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.npc.NPCEntity;
-import joshie.harvest.api.quests.Quest;
 import joshie.harvest.api.quests.Selection;
+import joshie.harvest.quests.town.festivals.QuestStarryNight;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
@@ -12,8 +12,12 @@ import net.minecraftforge.fml.common.eventhandler.Event.Result;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class StarryNightData extends Selection {
+import javax.annotation.Nonnull;
+import java.util.Set;
+
+public class StarryNightData extends Selection<QuestStarryNight> {
     private static final String prefix = "harvestfestival.quest.festival.starry.night";
+    private static final String[] lines2 = new String[] { "Are you ready to eat?", "@Let's begin!", "@Not Yet!"};
     private boolean completed;
     private boolean chat;
     private NPC invited;
@@ -22,8 +26,13 @@ public class StarryNightData extends Selection {
         super("What do you want to do?", "@Invite to Starry Night", "@Chat");
     }
 
-    public Selection getSelection() {
-        return invited == null ? this : null;
+    @Override
+    public String[] getText(@Nonnull EntityPlayer player, QuestStarryNight quest) {
+        return invited == null ? lines : lines2;
+    }
+
+    public Selection getSelection(long time) {
+        return !chat && (invited == null || time >= 18000L || time < 6000L) ? this : null;
     }
 
     @SuppressWarnings("deprecation")
@@ -51,11 +60,29 @@ public class StarryNightData extends Selection {
         return completed;
     }
 
+    public boolean isInvited(NPCEntity npc) {
+        return invited != null && (invited == npc.getNPC() || invited.getFamily().contains(npc.getNPC()));
+    }
+
+    private void startSequence(EntityPlayer player, NPCEntity entity) {
+        Set<NPC> family = entity.getNPC().getFamily(); //Family
+        //Walk around and have a speech
+    }
+
     @Override
-    public Result onSelected(EntityPlayer player, NPCEntity entity, Quest quest, int option) {
-        //Option1 = Invite to Starry Night
-        if (option == 1) invited = entity.getNPC();
-        else chat = true;
+    public Result onSelected(EntityPlayer player, NPCEntity entity, QuestStarryNight quest, int option) {
+        if (invited == null) {
+            //Option1 = Invite to Starry Night
+            if (option == 1) invited = entity.getNPC();
+            else chat = true;
+        } else {
+            if (option == 1) {
+                chat = true;
+                completed = true;
+                startSequence(player, entity);
+            } else return Result.DENY;
+        }
+
         quest.syncData(player); //Resync to client
         //Option2 = Chat
         return Result.ALLOW;

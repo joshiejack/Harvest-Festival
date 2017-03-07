@@ -31,6 +31,7 @@ import static net.minecraft.util.text.TextFormatting.DARK_GRAY;
 
 public class ItemMeal extends ItemHFFoodEnum<ItemMeal, Meal> {
     private static final EnumMap<Meal, Recipe> MEAL_TO_RECIPE = new EnumMap<>(Meal.class);
+    public static final Meal[] MEALS = Meal.values();
     public ItemMeal() {
         super(HFTab.COOKING, Meal.class);
     }
@@ -84,13 +85,13 @@ public class ItemMeal extends ItemHFFoodEnum<ItemMeal, Meal> {
 
     public ItemStack getRandomMeal(Random rand) {
         boolean first = rand.nextBoolean();
-        if (first) return getCreativeStack(Meal.values()[rand.nextInt(50)]);
-        else return getCreativeStack(Meal.values()[55 + rand.nextInt(35)]);
+        if (first) return getCreativeStack(MEALS[rand.nextInt(50)]);
+        else return getCreativeStack(MEALS[55 + rand.nextInt(35)]);
     }
 
     private Recipe getRecipeFromMeal(Meal meal) {
         if (MEAL_TO_RECIPE.size() == 0) {
-            for (Meal ameal: Meal.values()) {
+            for (Meal ameal: MEALS) {
                 MEAL_TO_RECIPE.put(ameal, Recipe.REGISTRY.get(new ResourceLocation(MODID, ameal.getName())));
             }
         }

@@ -6,8 +6,9 @@ import joshie.harvest.api.calendar.Festival;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.calendar.Weekday;
 import joshie.harvest.api.npc.ISchedule;
-import joshie.harvest.api.npc.NPC;
+import joshie.harvest.api.npc.NPCEntity;
 import joshie.harvest.api.npc.schedule.ScheduleBuilder;
+import joshie.harvest.api.npc.schedule.ScheduleBuilder.Conditional;
 import joshie.harvest.api.npc.schedule.ScheduleBuilder.HolidaySchedule;
 import joshie.harvest.api.npc.schedule.ScheduleBuilder.TimedSchedule;
 import net.minecraft.entity.EntityLiving;
@@ -16,15 +17,19 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.TreeMap;
 
 public class Schedule implements ISchedule {
     private final TreeMap<Season, TreeMap<Weekday, TreeMap<Long, BuildingLocation>>> seasonalMap = new TreeMap<>();
     private final HashMap<Festival, TreeMap<Long, BuildingLocation>> holidayMap = new HashMap<>();
+    private final Map<BuildingLocation, Conditional> rules = new HashMap<>();
     private final BuildingLocation default_;
 
     public Schedule(ScheduleBuilder builder) {
         this.default_ = builder.default_;
+        for (Entry<BuildingLocation, Conditional> entry: builder.rules.entrySet()) rules.put(entry.getKey(), entry.getValue());
         for (TimedSchedule time: builder.timedScheduleList) register(time.season, time.weekday, time.time, time.location);
         for (HolidaySchedule time: builder.holidayScheduleList) register(time.festival, time.time, time.location);
     }
@@ -56,7 +61,13 @@ public class Schedule implements ISchedule {
     }
 
     @Override
-    public BuildingLocation getTarget(World world, EntityLiving entity, NPC npc, Season season, Weekday weekday, long time) {
+    public BuildingLocation getTarget(World world, NPCEntity entity, Season season, Weekday weekday, long time) {
+        BuildingLocation target = getTarget(world, entity.getAsEntity(), season, weekday, time);
+        Conditional conditional = rules.get(target);
+        return conditional == null || conditional.canDo(world, entity) ? target : default_;
+    }
+
+    private BuildingLocation getTarget(World world, EntityLiving entity, Season season, Weekday weekday, long time) {
         if (default_ == null) return null;
         //Holidays take priority over anything else
         Festival festival = HFApi.calendar.getFestival(world, new BlockPos(entity));

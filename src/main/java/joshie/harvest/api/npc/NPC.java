@@ -38,6 +38,7 @@ import static joshie.harvest.core.lib.HFModInfo.MODID;
 public class NPC extends HFRegistry<NPC> implements CalendarEntry {
     public static final Map<ResourceLocation, NPC> REGISTRY = Maps.newHashMap();
     public static final NPC NULL_NPC = new NPC();
+    private final Set<NPC> family = new HashSet<>();
     private final List<IConditionalGreeting> conditionals = new ArrayList<>(256);
     private final String multipleLocalizationKey;
     private final String generalLocalizationKey;
@@ -60,6 +61,7 @@ public class NPC extends HFRegistry<NPC> implements CalendarEntry {
     private boolean doesRespawn;
     private boolean alex;
     private IInfoButton info;
+    private boolean canInvite;
 
     private NPC() {
         this(new ResourceLocation(MODID, "null"), INPCHelper.Gender.MALE, INPCHelper.Age.ADULT, new CalendarDate(1, Season.SPRING, 1), 0, 0);
@@ -80,6 +82,7 @@ public class NPC extends HFRegistry<NPC> implements CalendarEntry {
         String MODID = resource.getResourceDomain();
         String name = resource.getResourcePath();
         this.age = age;
+        this.canInvite = true;
         this.gender = gender;
         this.height = 1F;
         this.birthday = birthday;
@@ -147,6 +150,19 @@ public class NPC extends HFRegistry<NPC> implements CalendarEntry {
         return this;
     }
 
+    public NPC setUninvitable() {
+        this.canInvite = false;
+        return this;
+    }
+
+    /** Mark the following npc as a family member of this npc
+     *  This is mostly used for the starry night festival,
+     *  Friends are also added, doesn't have to be direct npcs**/
+    public NPC addFamily(NPC... npcs) {
+        Collections.addAll(family, npcs);
+        return this;
+    }
+
     public Age getAge() {
         return age;
     }
@@ -161,6 +177,10 @@ public class NPC extends HFRegistry<NPC> implements CalendarEntry {
     @Nullable
     public BuildingLocation getHome() {
         return home;
+    }
+
+    public boolean canInvite() {
+        return canInvite;
     }
 
     public boolean isMarriageCandidate() {
@@ -242,6 +262,10 @@ public class NPC extends HFRegistry<NPC> implements CalendarEntry {
 
     public String getInfoTooltip() {
         return info.getTooltip();
+    }
+
+    public Set<NPC> getFamily() {
+        return family;
     }
 
     @SideOnly(Side.CLIENT)

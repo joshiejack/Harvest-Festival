@@ -1,6 +1,5 @@
 package joshie.harvest.quests.town.festivals;
 
-import joshie.harvest.api.npc.INPCHelper.Age;
 import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.npc.NPCEntity;
 import joshie.harvest.api.quests.HFQuest;
@@ -26,7 +25,15 @@ public class QuestStarryNight extends QuestFestivalTimed {
 
     @Override //If the npc is a marriage candidate, we can process them for this festival
     public boolean isNPCUsed(EntityPlayer player, NPCEntity entity) {
-        return entity.getNPC().getAge() == Age.ADULT && !getDataForPlayer(player).isFinished();
+        return entity.getNPC().canInvite() && !getDataForPlayer(player).isFinished();
+    }
+
+    public boolean isInvited(NPCEntity npc) {
+        for (StarryNightData data: this.data.values()) {
+            if (data.isInvited(npc)) return true;
+        }
+
+        return false;
     }
 
     private StarryNightData getDataForPlayer(EntityPlayer player) {
@@ -41,12 +48,12 @@ public class QuestStarryNight extends QuestFestivalTimed {
 
     @Override
     protected boolean isCorrectTime(long time) {
-        return time >= 13000L && time <= 22000L;
+        return true;
     }
 
     @Nullable
     public Selection getSelection(EntityPlayer player, NPC npc) {
-        return getDataForPlayer(player).getSelection();
+        return getDataForPlayer(player).getSelection(time);
     }
 
     @Override

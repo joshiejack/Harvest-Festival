@@ -3,6 +3,7 @@ package joshie.harvest.cooking.render;
 import gnu.trove.map.TIntObjectMap;
 import gnu.trove.map.hash.TIntObjectHashMap;
 import joshie.harvest.cooking.HFCooking;
+import joshie.harvest.cooking.item.ItemMeal;
 import joshie.harvest.cooking.item.ItemMeal.Meal;
 import net.minecraft.client.renderer.ItemMeshDefinition;
 import net.minecraft.client.renderer.block.model.ModelBakery;
@@ -34,7 +35,7 @@ public class MealDefinition implements ItemMeshDefinition {
     }
 
     private int getMealMetaFromStack(ItemStack stack) {
-        if (stack.getItemDamage() >= 0 && stack.getItemDamage() < Meal.values().length) {
+        if (stack.getItemDamage() >= 0 && stack.getItemDamage() < ItemMeal.MEALS.length) {
             return stack.getItemDamage();
         }
 

@@ -30,7 +30,7 @@ public class EntityAISchedule extends EntityAIBase {
 
     @Nullable
     private BuildingLocation getBuildingTarget(CalendarDate date) {
-        return npc.getNPC().getScheduler().getTarget(npc.worldObj, npc, npc.getNPC(), date.getSeason(), date.getWeekday(), CalendarHelper.getTime(npc.worldObj));
+        return npc.getNPC().getScheduler().getTarget(npc.worldObj, npc, date.getSeason(), date.getWeekday(), CalendarHelper.getTime(npc.worldObj));
     }
 
     @Override

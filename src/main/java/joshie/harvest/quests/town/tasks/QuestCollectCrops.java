@@ -11,6 +11,7 @@ import joshie.harvest.api.npc.NPCEntity;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.town.Town;
 import joshie.harvest.cooking.HFCooking;
+import joshie.harvest.cooking.item.ItemMeal;
 import joshie.harvest.cooking.item.ItemMeal.Meal;
 import joshie.harvest.core.helpers.InventoryHelper;
 import joshie.harvest.core.helpers.TextHelper;
@@ -95,7 +96,7 @@ public class QuestCollectCrops extends QuestDaily {
     @Override
     public void onQuestCompleted(EntityPlayer player) {
         HFApi.player.getRelationsForPlayer(player).affectRelationship(HFNPCs.CAFE_GRANNY, 500);
-        ItemStack stack = HFCooking.MEAL.getCreativeStack(Meal.values()[player.worldObj.rand.nextInt(Meal.values().length)]);
+        ItemStack stack = HFCooking.MEAL.getCreativeStack(ItemMeal.MEALS[player.worldObj.rand.nextInt(Meal.values().length)]);
         if (player.worldObj.rand.nextInt(10) == 0) {
             stack.stackSize = 10;
         }

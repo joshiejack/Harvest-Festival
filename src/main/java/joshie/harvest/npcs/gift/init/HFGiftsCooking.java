@@ -58,7 +58,7 @@ public class HFGiftsCooking extends HFGiftsAbstract {
     }
 
     public static void init() {
-        for (Meal meal: ItemMeal.Meal.values()) {
+        for (Meal meal: ItemMeal.MEALS) {
             assignGeneric(MEAL.getStackFromEnum(meal), getCategory(meal));
         }
 

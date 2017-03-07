@@ -2147,6 +2147,39 @@ harvestfestival.quest.festival.cooking.ready=@I am ready!
 harvestfestival.quest.festival.cooking.cancel=@Give me a minute.
 harvestfestival.script.cooking=This was a great contest! Had a taste of everyone's meals... And well I think I've decided..... ...... ................... ..... ..... In third place is %1$s with their %2$s. ..... .. ... . .......... .... .. .. .. .. . In second place we jave %3$s with their %4$s... and finally...... without... further ado.... the winner of this year's cooking festival is........... %5$s with their amazing %6$s. Congratulations! For this years prize we have a gift of %7$s gold as well as a special recipe!
 
+#Cooking Festical
+harvestfestival.quest.festival.cooking.help=Welcome to the wonderful cooking festival! This year we'll be judging dishes made in the %s!
+harvestfestival.quest.festival.cooking.pick=Want to enter the cooking festival?
+harvestfestival.quest.festival.cooking.how=@How to enter?
+harvestfestival.quest.festival.cooking.ready=@Pick my dish!
+harvestfestival.quest.festival.cooking.cancel=@Give me a minute.
+harvestfestival.quest.festival.cooking.start=Ready to go?
+harvestfestival.quest.festival.cooking.yes=@I am ready!
+harvestfestival.quest.festival.cooking.change=@Change Entry.
+harvestfestival.quest.festival.cooking.no=@One more minute.
+harvestfestival.quest.festival.cooking.none=There are no additional meals.
+harvestfestival.quest.festival.cooking.explain=To enter simply place the meal you want to enter on one of the plates up on the stage. When you're done you can come to me and select your entry. You can then wait for others to join, or get the contest started right away by talking to me again. You can also change your entry if you like.
+harvestfestival.quest.festival.cooking.none=No meals have been placed on any of the plates!
+harvestfestival.quest.festival.cooking.select=Select the meal you would like to enter.
+harvestfestival.quest.festival.cooking.selected=Time for the judging to beging then! Watch your step or you may slow down the process.
+harvestfestival.quest.festival.cooking.judging=I'm judging right now.
+harvestfestival.quest.festival.cooking.nostalls=There are no meals on any of the stands!
+
+harvestfestival.script.cooking.judge=Time to stuff my face with %1$s. Hmm.... %2$s
+harvestfestival.script.cooking.judge.none=I can't see any meal right now...
+harvestfestival.script.cooking.judge.0=Yuck, this is absolutely vile!
+harvestfestival.script.cooking.judge.1=Who thought they could cook when they made this?
+harvestfestival.script.cooking.judge.2=What a bad dish.
+harvestfestival.script.cooking.judge.3=I guess this dish could pass as edible.
+harvestfestival.script.cooking.judge.4=Ehh, this one tastes alright.
+harvestfestival.script.cooking.judge.5=Hmm, the flavours, or lack thereof. But it tastes fine.
+harvestfestival.script.cooking.judge.6=You're really starting to make way here. It tastes relatively decent.
+harvestfestival.script.cooking.judge.7=Now this tastes good! Yummy!
+harvestfestival.script.cooking.judge.8=This has some wonderful flavours. It's a very good effort.
+harvestfestival.script.cooking.judge.9=Woah. I have never tasted something as amazing as this before.
+harvestfestival.script.cooking.winner=Well looks like I've decided. In third place is %1$s with nice dish of ''%2$s'. You can have some flour and 500G. \n\nIn second comes %3$s with their dish ''%4$s'. For your efforts you can have 2500G and a bottle of wine.\n\n\nAnd now to announce the winner of this years Cooking Festival... Well it's %5$s with their absolutely scrumptious dish of ''%6$s'!!!!!!!\n\Fantastic Work! You get a prize of 5000G and I'll now start selling corn at my store from the summer! In the meantime have some free seeds!\n\nThanks for taking part everyone. I look forward to next year!
+harvestfestival.script.cooking.finish=I've finished tasting. I just need a moment to collect my thoughts and make my final decisions.
+
 #Cow Festival
 harvestfestival.quest.festival.cow.help=Hello pretty! Welcome to the Cow Festival!
 harvestfestival.quest.festival.cow.pick=How may I help you?

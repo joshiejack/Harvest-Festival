@@ -15,10 +15,10 @@ import joshie.harvest.cooking.item.ItemMeal.Meal;
 import joshie.harvest.core.base.other.HFScript;
 import joshie.harvest.npcs.HFNPCs;
 import joshie.harvest.quests.base.QuestAnimalContest;
-import joshie.harvest.quests.town.festivals.contest.ContestEntries;
+import joshie.harvest.quests.town.festivals.contest.animal.AnimalContestEntries;
 import joshie.harvest.quests.town.festivals.contest.ContestJudgingScript;
+import joshie.harvest.quests.town.festivals.contest.ContestTaskWinner;
 import joshie.harvest.quests.town.festivals.contest.ContestWinningScript;
-import joshie.harvest.quests.town.festivals.contest.TaskWinner;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -39,7 +39,12 @@ public class QuestContestCow extends QuestAnimalContest<EntityHarvestCow> {
     private static final Script WINNER = new ContestWinningScript(ANIMAL).setNPC(HFNPCs.MILKMAID);
 
     public QuestContestCow() {
-        super(HFNPCs.MILKMAID, new ContestEntries<>(EntityHarvestCow.class, LOCATIONS, NPCS, NAMES), ANIMAL);
+        super(HFNPCs.MILKMAID, ANIMAL);
+    }
+
+    @Override
+    protected AnimalContestEntries createEntries() {
+        return new AnimalContestEntries<>(EntityHarvestCow.class, LOCATIONS, NPCS, NAMES);
     }
 
     @Override
@@ -58,6 +63,6 @@ public class QuestContestCow extends QuestAnimalContest<EntityHarvestCow> {
     public void execute(Town town, EntityPlayer player, NPCEntity npc) {
         npc.setPath(getMove(town, PARK_COW_1), TaskSpeech.of(QuestContestCow.JUDGE_1), getMove(town, PARK_COW_2), TaskSpeech.of(QuestContestCow.JUDGE_2),
                 getMove(town, PARK_COW_3), TaskSpeech.of(QuestContestCow.JUDGE_3), getMove(town, PARK_COW_4), TaskSpeech.of(QuestContestCow.JUDGE_4), TaskWait.of(1),
-                TaskSpeech.of(QuestContestCow.FINISH), getMove(town, PARK_COW_JUDGE), TaskSpeech.of(QuestContestCow.WINNER), new TaskWinner(HFFestivals.COW_FESTIVAL));
+                TaskSpeech.of(QuestContestCow.FINISH), getMove(town, PARK_COW_JUDGE), TaskSpeech.of(QuestContestCow.WINNER), new ContestTaskWinner(HFFestivals.COW_FESTIVAL));
     }
 }

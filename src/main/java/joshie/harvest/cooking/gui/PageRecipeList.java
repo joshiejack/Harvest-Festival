@@ -2,6 +2,7 @@ package joshie.harvest.cooking.gui;
 
 import joshie.harvest.api.cooking.Recipe;
 import joshie.harvest.api.cooking.Utensil;
+import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.core.HFTrackers;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.item.ItemStack;
@@ -14,22 +15,21 @@ import java.util.List;
 
 import static joshie.harvest.cooking.HFCooking.COOKWARE;
 import static joshie.harvest.cooking.block.BlockCookware.Cookware.*;
-import static joshie.harvest.cooking.gui.GuiCookbook.*;
+import static joshie.harvest.cooking.gui.GuiCookbook.LEFT_GUI;
+import static joshie.harvest.cooking.gui.GuiCookbook.MASTER;
 
 /** Display the recipe list **/
+@SuppressWarnings("WeakerAccess")
 public class PageRecipeList extends Page {
     private static final HashMap<Utensil, PageRecipeList> UTENSIL_PAGES = new HashMap<>();
     private static final HashMap<Utensil, ItemStack> RENDER_MAP = new HashMap<>();
     static {
-        RENDER_MAP.put(Utensil.COUNTER, COOKWARE.getStackFromEnum(COUNTER));
-        RENDER_MAP.put(Utensil.FRYING_PAN, COOKWARE.getStackFromEnum(FRYING_PAN));
-        RENDER_MAP.put(Utensil.MIXER, COOKWARE.getStackFromEnum(MIXER));
-        RENDER_MAP.put(Utensil.OVEN, COOKWARE.getStackFromEnum(OVEN_ON));
-        RENDER_MAP.put(Utensil.POT, COOKWARE.getStackFromEnum(POT));
-        for (int i = 0; i < MAX_UTENSILS_DISPLAY; i++) {
-            Utensil utensil = Utensil.getUtensilFromIndex(i);
-            UTENSIL_PAGES.put(utensil, new PageRecipeList(utensil));
-        }
+        RENDER_MAP.put(HFCooking.COUNTER, COOKWARE.getStackFromEnum(COUNTER));
+        RENDER_MAP.put(HFCooking.FRYING_PAN, COOKWARE.getStackFromEnum(FRYING_PAN));
+        RENDER_MAP.put(HFCooking.MIXER, COOKWARE.getStackFromEnum(MIXER));
+        RENDER_MAP.put(HFCooking.OVEN, COOKWARE.getStackFromEnum(OVEN_ON));
+        RENDER_MAP.put(HFCooking.POT, COOKWARE.getStackFromEnum(POT));
+        Utensil.REGISTRY.values().stream().forEach(utensil -> UTENSIL_PAGES.put(utensil, new PageRecipeList(utensil)));
     }
 
     public static PageRecipeList get(Utensil utensil) {
@@ -71,7 +71,7 @@ public class PageRecipeList extends Page {
         return RENDER_MAP.get(utensil);
     }
 
-    public boolean hasRecipes() {
+    boolean hasRecipes() {
         return recipes.size() > 0;
     }
 

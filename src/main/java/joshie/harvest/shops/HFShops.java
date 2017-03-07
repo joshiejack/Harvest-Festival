@@ -20,6 +20,7 @@ import joshie.harvest.api.shops.Shop;
 import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.calendar.HFFestivals;
 import joshie.harvest.cooking.HFCooking;
+import joshie.harvest.cooking.block.BlockCookware.Cookware;
 import joshie.harvest.core.HFCore;
 import joshie.harvest.core.block.BlockStorage.Storage;
 import joshie.harvest.core.util.annotations.HFLoader;
@@ -185,12 +186,12 @@ public class HFShops {
         //Allow the purchasing of cookware at the weekends
         CAFE.addPurchasable(new PurchasableWeekend(25, new ItemStack(COOKBOOK)).setStock(1).setNote(HFNotes.RECIPE_BOOK));
         CAFE.addPurchasable(new PurchasableWeekend(50, UTENSILS.getStackFromEnum(KNIFE)).setStock(1).setNote(HFNotes.KITCHEN_COUNTER));
-        CAFE.addPurchasable(new PurchasableWeekend(250, COOKWARE.getStackFromEnum(COUNTER)).setStock(5).setNote(HFNotes.KITCHEN_COUNTER));
-        CAFE.addPurchasable(new PurchasableWeekend(3000, COOKWARE.getStackFromEnum(FRIDGE)).setStock(1).setNote(HFNotes.FRIDGE));
-        CAFE.addPurchasable(new PurchasableWeekend(2500, COOKWARE.getStackFromEnum(OVEN_OFF)).setStock(1).setNote(HFNotes.OVEN));
-        CAFE.addPurchasable(new PurchasableWeekend(1500, COOKWARE.getStackFromEnum(FRYING_PAN), COOKWARE.getStackFromEnum(OVEN_OFF)).setStock(1).setNote(HFNotes.POTPAN));
-        CAFE.addPurchasable(new PurchasableWeekend(1000, COOKWARE.getStackFromEnum(POT), COOKWARE.getStackFromEnum(OVEN_OFF)).setStock(1).setNote(HFNotes.POTPAN));
-        CAFE.addPurchasable(new PurchasableWeekend(1200, COOKWARE.getStackFromEnum(MIXER)).setStock(1).setNote(HFNotes.MIXER));
+        CAFE.addPurchasable(new PurchasableWeekend(250, COOKWARE.getStackFromEnum(Cookware.COUNTER)).setStock(5).setNote(HFNotes.KITCHEN_COUNTER));
+        CAFE.addPurchasable(new PurchasableWeekend(3000, COOKWARE.getStackFromEnum(Cookware.FRIDGE)).setStock(1).setNote(HFNotes.FRIDGE));
+        CAFE.addPurchasable(new PurchasableWeekend(2500, COOKWARE.getStackFromEnum(Cookware.OVEN_OFF)).setStock(1).setNote(HFNotes.OVEN));
+        CAFE.addPurchasable(new PurchasableWeekend(1500, COOKWARE.getStackFromEnum(Cookware.FRYING_PAN), COOKWARE.getStackFromEnum(OVEN_OFF)).setStock(1).setNote(HFNotes.POTPAN));
+        CAFE.addPurchasable(new PurchasableWeekend(1000, COOKWARE.getStackFromEnum(Cookware.POT), COOKWARE.getStackFromEnum(OVEN_OFF)).setStock(1).setNote(HFNotes.POTPAN));
+        CAFE.addPurchasable(new PurchasableWeekend(1200, COOKWARE.getStackFromEnum(Cookware.MIXER)).setStock(1).setNote(HFNotes.MIXER));
 
         //Add recipes for purchase
         CAFE.addPurchasable(new PurchasableRecipe(SPRING, MONDAY, new ResourceLocation(MODID, "juice_vegetable")));
@@ -435,7 +436,7 @@ public class HFShops {
         COOKING_FESTIVAL_FOOD.addPurchasable(100, HFGathering.NATURE.getStackFromEnum(NaturalBlock.MINT));
         COOKING_FESTIVAL_FOOD.addPurchasable(150, HFGathering.NATURE.getStackFromEnum(NaturalBlock.CHAMOMILE));
         COOKING_FESTIVAL_FOOD.addPurchasable(200, HFGathering.NATURE.getStackFromEnum(NaturalBlock.LAVENDAR));
-        COOKING_FESTIVAL_FOOD.addPurchasable(1000, HFGathering.NATURE.getStackFromEnum(NaturalBlock.MATSUTAKE));
+        COOKING_FESTIVAL_FOOD.addPurchasable(700, HFGathering.NATURE.getStackFromEnum(NaturalBlock.MATSUTAKE));
         COOKING_FESTIVAL_FOOD.addPurchasable(150, new ItemStack(Blocks.BROWN_MUSHROOM));
         COOKING_FESTIVAL_FOOD.addPurchasable(300, HFAnimals.ANIMAL_PRODUCT.getStack(Sizeable.EGG, Size.SMALL));
         COOKING_FESTIVAL_FOOD.addPurchasable(500, HFAnimals.ANIMAL_PRODUCT.getStack(Sizeable.MILK, Size.SMALL));

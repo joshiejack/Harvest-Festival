@@ -3,6 +3,7 @@ package joshie.harvest.debug;
 import com.google.common.collect.HashMultimap;
 import joshie.harvest.api.cooking.Recipe;
 import joshie.harvest.api.cooking.Utensil;
+import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.core.commands.AbstractHFCommand;
 import joshie.harvest.core.commands.HFDebugCommand;
 import net.minecraft.command.CommandNotFoundException;
@@ -31,7 +32,7 @@ public class CommandExportRecipeList extends AbstractHFCommand {
             set.get(recipe.getUtensil()).add(recipe);
         }
 
-        Utensil[] utensils = new Utensil[] { Utensil.COUNTER, Utensil.FRYING_PAN, Utensil.MIXER, Utensil.OVEN, Utensil.POT };
+        Utensil[] utensils = new Utensil[] { HFCooking.COUNTER, HFCooking.FRYING_PAN, HFCooking.MIXER, HFCooking.OVEN, HFCooking.POT };
 
         StringBuilder all = new StringBuilder();
         for (Utensil utensil: utensils) {

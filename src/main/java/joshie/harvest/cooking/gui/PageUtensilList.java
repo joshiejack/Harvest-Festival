@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static joshie.harvest.cooking.gui.GuiCookbook.LEFT_GUI;
-import static joshie.harvest.cooking.gui.GuiCookbook.MAX_UTENSILS_DISPLAY;
 
 /** Display the utensils **/
 public class PageUtensilList extends Page {
@@ -21,9 +20,8 @@ public class PageUtensilList extends Page {
     public PageUtensilList initGui(GuiCookbook gui) {
         super.initGui(gui);
         pages = new ArrayList<>();
-        for (int i = 0; i < MAX_UTENSILS_DISPLAY; i++) {
-            Utensil utensil = Utensil.getUtensilFromIndex(i);
-            PageRecipeList page = PageRecipeList.get(utensil);
+        for (Utensil tool: Utensil.REGISTRY.values()) {
+            PageRecipeList page = PageRecipeList.get(tool);
             if (page.initGui(gui).hasRecipes()) {
                 pages.add(page);
             }

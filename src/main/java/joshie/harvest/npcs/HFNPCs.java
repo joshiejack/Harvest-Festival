@@ -79,11 +79,12 @@ public class HFNPCs {
         FLOWER_GIRL.addFamily(CARPENTER);
         GS_OWNER.addFamily(MILKMAID);
         MILKMAID.addFamily(GS_OWNER);
-        BARN_OWNER.addFamily(POULTRY, FISHERMAN);
-        POULTRY.addFamily(BARN_OWNER, FISHERMAN);
+        BARN_OWNER.addFamily(FISHERMAN);
+        POULTRY.addFamily(BLACKSMITH);
         FISHERMAN.addFamily(BARN_OWNER, POULTRY);
         CAFE_OWNER.addFamily(CAFE_GRANNY);
         CLOCKMAKER.addFamily(CLOCKMAKER_CHILD);
+        BLACKSMITH.addFamily(POULTRY);
         DAUGHTER_ADULT.addFamily(PRIEST, MAYOR, DAUGHTER_CHILD);
         EntityRegistry.registerModEntity(EntityNPCVillager.class, "villager", EntityIDs.VILLAGER, HarvestFestival.instance, 80, 3, true);
         EntityRegistry.registerModEntity(EntityNPCBuilder.class, "builder", EntityIDs.BUILDER, HarvestFestival.instance, 80, 3, true);

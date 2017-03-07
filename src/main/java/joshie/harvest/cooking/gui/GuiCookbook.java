@@ -68,8 +68,8 @@ public class GuiCookbook extends GuiScreen {
             //Draw the background buttons
             GlStateManager.color(1F, 1F, 1F);
             boolean hoverX = mouseX >= 307 && mouseX <= 333;
-            for (int i = 0; i < MAX_UTENSILS_DISPLAY; i++) {
-                Utensil tool = Utensil.getUtensilFromIndex(i);
+            int i = 0;
+            for (Utensil tool: Utensil.REGISTRY.values()) {
                 if (PageRecipeList.get(tool).hasRecipes()) {
                     mc.getTextureManager().bindTexture(LEFT_GUI);
                     boolean hoverY = mouseY >= 16 + i * 36 && mouseY <= 50 + i * 36;
@@ -77,6 +77,8 @@ public class GuiCookbook extends GuiScreen {
                     drawTexture(308, 16 + i * 36, 0, theY, 26, 32);
                     drawStack(308, 25 + i * 36, PageRecipeList.get(tool).getItem(), 1F);
                 }
+
+                i++;
             }
         }
 
@@ -100,8 +102,8 @@ public class GuiCookbook extends GuiScreen {
         //Draw the utensil buttons
         if (page.getUtensil() != null) {
             boolean hoverX = mouseX >= 307 && mouseX <= 333;
-            for (int i = 0; i < MAX_UTENSILS_DISPLAY; i++) {
-                Utensil tool = Utensil.getUtensilFromIndex(i);
+            int i = 0;
+            for (Utensil tool: Utensil.REGISTRY.values()) {
                 if (PageRecipeList.get(tool).hasRecipes()) {
                     boolean hoverY = mouseY >= 16 + i * 36 && mouseY <= 50 + i * 36;
                     if (hoverX && hoverY) {
@@ -109,6 +111,8 @@ public class GuiCookbook extends GuiScreen {
                         return; //Don't continue
                     }
                 }
+
+                i++;
             }
         }
 

@@ -3,6 +3,7 @@ package joshie.harvest.cooking.item;
 import joshie.harvest.api.cooking.IngredientStack;
 import joshie.harvest.api.cooking.Recipe;
 import joshie.harvest.api.cooking.Utensil;
+import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.cooking.item.ItemMeal.Meal;
 import joshie.harvest.cooking.recipe.RecipeHF;
 import joshie.harvest.cooking.recipe.RecipeMaker;
@@ -22,7 +23,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.*;
 
-import static joshie.harvest.api.cooking.Utensil.*;
 import static joshie.harvest.cooking.recipe.RecipeBuilder.FOOD_LEVEL;
 import static joshie.harvest.cooking.recipe.RecipeBuilder.SATURATION_LEVEL;
 import static joshie.harvest.core.lib.HFModInfo.MODID;
@@ -44,7 +44,7 @@ public class ItemMeal extends ItemHFFoodEnum<ItemMeal, Meal> {
         NOODLES, SOUP_RICE, PORRIDGE, EGG_OVERRICE, STEW, STEW_PUMPKIN, STEW_FISH, CORN_BAKED, RICEBALLS_TOASTED,
         TOAST, DINNERROLL, DORIA, COOKIES(true), COOKIES_CHOCOLATE, CAKE_CHOCOLATE,
         //0.6+ Meals
-        BURNT_COUNTER(COUNTER), BURNT_FRYING_PAN(FRYING_PAN), BURNT_MIXER(MIXER), BURNT_OVEN(OVEN), BURNT_POT(POT), //Burnt as separate metadata
+        BURNT_COUNTER(HFCooking.COUNTER), BURNT_FRYING_PAN(HFCooking.FRYING_PAN), BURNT_MIXER(HFCooking.MIXER), BURNT_OVEN(HFCooking.OVEN), BURNT_POT(HFCooking.POT), //Burnt as separate metadata
         STIR_FRY, RICE_FRIED, SOUFFLE_APPLE, BREAD_CURRY, NOODLES_THICK_FRIED, TEMPURA, CURRY_DRY,
         JUICE_GRAPE, JUICE_PEACH, JUICE_BANANA, JUICE_ORANGE, JUICE_APPLE, JUICE_FRUIT, LATTE_FRUIT, JUICE_MIX, LATTE_MIX,
         SANDWICH_FRUIT, RICE_BAMBOO, RICE_MATSUTAKE, RICE_MUSHROOM, BREAD_RAISIN, ICE_CREAM,
@@ -107,7 +107,7 @@ public class ItemMeal extends ItemHFFoodEnum<ItemMeal, Meal> {
     @Override
     public String getItemStackDisplayName(ItemStack stack) {
         Meal meal = getEnumFromStack(stack);
-        if (meal.getUtensil() != null) return DARK_GRAY + TextHelper.localize(meal.getUtensil().getUnlocalizedName());
+        if (meal.getUtensil() != null) return DARK_GRAY + meal.getUtensil().getBurntName();
         Recipe impl = getRecipeFromMeal(meal);
         return impl != null ? impl.getDisplayName() : "Corrupted Meal";
     }

@@ -2,6 +2,7 @@ package joshie.harvest.cooking.tile;
 
 import joshie.harvest.api.cooking.Utensil;
 import joshie.harvest.cooking.CookingHelper.PlaceIngredientResult;
+import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.cooking.tile.TileCooking.TileCookingTicking;
 import joshie.harvest.core.lib.HFSounds;
 import net.minecraft.item.ItemStack;
@@ -44,11 +45,11 @@ public class TileMixer extends TileCookingTicking {
 
     @Override
     public Utensil getUtensil() {
-        return Utensil.MIXER;
+        return HFCooking.MIXER;
     }
 
     @Override
     public PlaceIngredientResult hasPrerequisites() {
-        return isAbove(Utensil.COUNTER) ? PlaceIngredientResult.SUCCESS : PlaceIngredientResult.MISSING_COUNTER;
+        return isAbove(HFCooking.COUNTER) ? PlaceIngredientResult.SUCCESS : PlaceIngredientResult.MISSING_COUNTER;
     }
 }

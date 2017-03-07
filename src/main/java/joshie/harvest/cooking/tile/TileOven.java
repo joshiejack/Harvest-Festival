@@ -1,6 +1,7 @@
 package joshie.harvest.cooking.tile;
 
 import joshie.harvest.api.cooking.Utensil;
+import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.cooking.tile.TileCooking.TileCookingTicking;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.achievements.HFAchievements;
@@ -21,7 +22,7 @@ public class TileOven extends TileCookingTicking {
 
     @Override
     public Utensil getUtensil() {
-        return Utensil.OVEN;
+        return HFCooking.OVEN;
     }
 
     @Override

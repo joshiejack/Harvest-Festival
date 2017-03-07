@@ -4,10 +4,9 @@ import io.netty.buffer.ByteBuf;
 import joshie.harvest.core.network.Packet;
 import joshie.harvest.core.network.Packet.Side;
 import joshie.harvest.core.network.PenguinPacket;
-import joshie.harvest.quests.base.QuestAnimalContest;
+import joshie.harvest.quests.town.festivals.contest.QuestContest;
 import joshie.harvest.town.TownHelper;
 import joshie.harvest.town.data.TownDataClient;
-import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 import org.apache.commons.lang3.tuple.Pair;
@@ -16,11 +15,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Packet(Side.CLIENT)
-public class PacketQuestUpdateAnimals extends PenguinPacket {
+public class PacketQuestUpdateNames extends PenguinPacket {
     private List<Pair<String, Integer>> list;
 
-    public PacketQuestUpdateAnimals() {}
-    public PacketQuestUpdateAnimals(List<Pair<String, Integer>> list) {
+    @SuppressWarnings("unused")
+    public PacketQuestUpdateNames() {}
+    public PacketQuestUpdateNames(List<Pair<String, Integer>> list) {
         this.list = list;
     }
 
@@ -44,21 +44,12 @@ public class PacketQuestUpdateAnimals extends PenguinPacket {
         }
     }
 
-    public static <E extends EntityAnimal> List<Pair<String, Integer>> getNamesFromEntities(List<Pair<E, Integer>> list) {
-        List<Pair<String, Integer>> list1 = new ArrayList<>();
-        for (Pair<E, Integer> pair: list) {
-            list1.add(Pair.of(pair.getKey().getName(), pair.getValue()));
-        }
-
-        return list1;
-    }
-
     @Override
     public void handlePacket(EntityPlayer player) {
         TownDataClient town = TownHelper.getClosestTownToEntity(player, false);
-        QuestAnimalContest quest = town.getQuests().getAQuest(town.getFestival().getQuest());
+        QuestContest quest = town.getQuests().getAQuest(town.getFestival().getQuest());
         if (quest != null) {
-            quest.getEntries().setAnimalNames(list);
+            quest.getEntries().setEntryNames(list);
         }
     }
 }

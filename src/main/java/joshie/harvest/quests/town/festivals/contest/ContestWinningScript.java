@@ -2,7 +2,6 @@ package joshie.harvest.quests.town.festivals.contest;
 
 import joshie.harvest.api.npc.NPCEntity;
 import joshie.harvest.api.npc.greeting.Script;
-import joshie.harvest.quests.base.QuestAnimalContest;
 import joshie.harvest.town.TownHelper;
 import joshie.harvest.town.data.TownData;
 import net.minecraft.util.ResourceLocation;
@@ -22,14 +21,14 @@ public class ContestWinningScript extends Script {
     @Override
     public String getLocalized(NPCEntity entity) {
         TownData data = TownHelper.getClosestTownToEntity(entity.getAsEntity(), false);
-        QuestAnimalContest quest = data.getQuests().getAQuest(data.getFestival().getQuest());
+        QuestContest quest = data.getQuests().getAQuest(data.getFestival().getQuest());
         ContestEntries entries = quest.getEntries();
         World world = entity.getAsEntity().getEntityWorld();
         ContestEntry third = entries.getEntry(THIRD);
         ContestEntry second = entries.getEntry(SECOND);
         ContestEntry first = entries.getEntry(FIRST);
-        return StringEscapeUtils.unescapeJava(I18n.translateToLocalFormatted(unlocalised, third.getOwnerName(), third.getEntityName(world),
-                second.getOwnerName(), second.getEntityName(world),
-                first.getOwnerName(), first.getEntityName(world)));
+        return StringEscapeUtils.unescapeJava(I18n.translateToLocalFormatted(unlocalised, third.getOwnerName(), third.getName(world),
+                second.getOwnerName(), second.getName(world),
+                first.getOwnerName(), first.getName(world)));
     }
 }

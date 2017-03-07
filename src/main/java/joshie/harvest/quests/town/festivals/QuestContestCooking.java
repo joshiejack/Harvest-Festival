@@ -1,146 +1,152 @@
 package joshie.harvest.quests.town.festivals;
 
+import com.google.common.collect.Lists;
 import joshie.harvest.api.HFApi;
+import joshie.harvest.api.buildings.BuildingLocation;
 import joshie.harvest.api.cooking.Utensil;
+import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.npc.NPCEntity;
 import joshie.harvest.api.npc.greeting.Script;
-import joshie.harvest.api.npc.task.TaskMove;
 import joshie.harvest.api.npc.task.TaskSpeech;
 import joshie.harvest.api.npc.task.TaskWait;
 import joshie.harvest.api.quests.HFQuest;
-import joshie.harvest.api.quests.Selection;
-import joshie.harvest.calendar.CalendarHelper;
+import joshie.harvest.api.town.Town;
+import joshie.harvest.calendar.HFFestivals;
+import joshie.harvest.cooking.HFCooking;
+import joshie.harvest.cooking.item.ItemIngredients.Ingredient;
 import joshie.harvest.core.achievements.HFAchievements;
-import joshie.harvest.core.helpers.EntityHelper;
-import joshie.harvest.core.tile.TilePlate;
+import joshie.harvest.core.base.other.HFScript;
+import joshie.harvest.core.helpers.TextHelper;
 import joshie.harvest.npcs.HFNPCs;
-import joshie.harvest.npcs.entity.EntityNPCHuman;
-import joshie.harvest.npcs.entity.ai.EntityAIPathing;
 import joshie.harvest.quests.Quests;
-import joshie.harvest.quests.base.QuestFestival;
-import joshie.harvest.quests.selection.FestivalSelection;
-import joshie.harvest.quests.town.festivals.cooking.CookingContestEntries;
-import joshie.harvest.quests.town.festivals.cooking.CookingContestScript;
-import joshie.harvest.town.BuildingLocations;
-import joshie.harvest.town.TownHelper;
-import joshie.harvest.town.data.TownData;
+import joshie.harvest.quests.town.festivals.contest.ContestJudgingScript;
+import joshie.harvest.quests.town.festivals.contest.ContestTaskWinner;
+import joshie.harvest.quests.town.festivals.contest.ContestWinningScript;
+import joshie.harvest.quests.town.festivals.contest.QuestContest;
+import joshie.harvest.quests.town.festivals.contest.cooking.CookingContestEntries;
+import joshie.harvest.quests.town.festivals.contest.cooking.CookingContestEntry;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
-import java.util.*;
+import java.util.Collections;
+import java.util.List;
+
+import static joshie.harvest.npcs.HFNPCs.GS_OWNER;
+import static joshie.harvest.town.BuildingLocations.*;
 
 @HFQuest("festival.cooking")
-public class QuestContestCooking extends QuestFestival {
-    private static final Script SCRIPT = new CookingContestScript();
-    private final Selection selection = new FestivalSelection("cooking");
-    private static final int QUESTION = 0;
-    private static final int FINISH = 1;
-    private Random rand = new Random();
+public class QuestContestCooking extends QuestContest<CookingContestEntries> {
+    private static final String PREFIX = "cooking";
+    private static final BuildingLocation[] LOCATIONS = new BuildingLocation[] { PARK_COW_STALL_1, PARK_COW_STALL_2, PARK_CENTRE, PARK_COW_STALL_4 };
+    private static final NPC[] NPCS = new NPC[] { HFNPCs.FLOWER_GIRL, HFNPCs.MILKMAID, HFNPCs.TRADER, HFNPCs.CARPENTER, HFNPCs.DAUGHTER_ADULT, HFNPCs.CLOCKMAKER, HFNPCs.BLACKSMITH, HFNPCs.FISHERMAN, HFNPCs.POULTRY, HFNPCs.PRIEST, HFNPCs.BARN_OWNER };
+    private static final Script FINISH = new HFScript(PREFIX + "_finish");
+    private static final Script JUDGE_1 = new ContestJudgingScript(PREFIX, 1).setNPC(GS_OWNER);
+    private static final Script JUDGE_2 = new ContestJudgingScript(PREFIX, 2).setNPC(GS_OWNER);
+    private static final Script JUDGE_3 = new ContestJudgingScript(PREFIX, 3).setNPC(GS_OWNER);
+    private static final Script JUDGE_4 = new ContestJudgingScript(PREFIX, 4).setNPC(GS_OWNER);
+    private static final Script WINNER = new ContestWinningScript(PREFIX).setNPC(GS_OWNER);
     private Utensil category;
 
-
     public QuestContestCooking() {
-        setNPCs(HFNPCs.GS_OWNER);
-    }
-
-    private long time;
-
-    @Override
-    public void onQuestSelectedForDisplay(EntityPlayer player, NPCEntity entity) {
-        rand.setSeed(HFApi.calendar.getDate(player.worldObj).hashCode());
-        category = Utensil.UTENSILS[rand.nextInt(Utensil.UTENSILS.length)];
-        time = CalendarHelper.getTime(player.worldObj);
+        super(GS_OWNER, PREFIX);
+        List<Utensil> utensils = Lists.newArrayList(Utensil.REGISTRY.values());
+        Collections.shuffle(utensils);
+        category = utensils.get(0);
     }
 
     @Override
-    public Selection getSelection(EntityPlayer player, NPCEntity entity) {
-        if (!isCorrectTime()) return null;
-        if (quest_stage <= QUESTION) {
-            return selection;
-        } else return null;
+    protected CookingContestEntries createEntries() {
+        return new CookingContestEntries(LOCATIONS, NPCS);
     }
 
+    public Utensil getCategory() {
+        return category;
+    }
     @Override
     @Nullable
     @SideOnly(Side.CLIENT)
     public String getLocalizedScript(EntityPlayer player, NPCEntity entity) {
-        if (!isCorrectTime()) return null;
-        return "We are describing the contest to the player";
+        if (quest_stage == START) return getLocalized("selected");
+        if (quest_stage == CONTINUE) return getLocalized("judging");
+        if (isCorrectTime(time)) {
+            if (quest_stage == EXPLAIN) return getLocalized("explain");
+            if (entries.isSelecting(player)) {
+                return entries.getNames().size() > 0 ? getLocalized("select") : getLocalized("none");
+            }
+
+            if (!entries.isEntered(player)) return getLocalized("help", TextHelper.localize(getCategory().getLocalizedName()));
+            if (entries.isEntered(player)) return getLocalized("start");
+        }
+
+        return player.worldObj.rand.nextInt(4) == 0 ? getLocalized("wait") : null;
     }
 
-    private boolean isCorrectTime() {
-        return time >= 6000 && time <= 18000;
-    }
 
-    public CookingContestEntries getContestEntries(NPCEntity entity) {
-        return new CookingContestEntries(entity.getAsEntity().getEntityWorld(), entity.getAsEntity(), category);
+    @Override
+    public void reward(World world, Place place) {
+        CookingContestEntry entry = entries.getEntry(place);
+        entry.reward(world, place, entries.getNPCs(), getReward(place));
+        if (entry.getPlayer() != null) {
+            EntityPlayer player = entry.getPlayer();
+            switch (place) {
+                case FIRST:
+                    player.addStat(HFAchievements.corn);
+                    HFApi.quests.completeQuestConditionally(Quests.SELL_CORN, player);
+                    rewardGold(player, 5000);
+                    break;
+                case SECOND:
+                    rewardGold(player, 2500);
+                    break;
+                case THIRD:
+                    rewardGold(player, 500);
+                    break;
+            }
+        }
     }
 
     @Override
-    public void onChatClosed(EntityPlayer player, NPCEntity entity, boolean wasSneaking) {
-        if (!isCorrectTime()) return;
-        if (!player.worldObj.isRemote) {
-            TownData town = TownHelper.getClosestTownToEntity(player, false);
-            BlockPos original = town.getCoordinatesFor(BuildingLocations.PARK_LAMP_BACK);
-            //Schedule for Jenni
-            EntityAIPathing pathing = ((EntityNPCHuman)entity).getPathing();
-            TaskMove point1 = TaskMove.of(town.getCoordinatesFor(BuildingLocations.PARK_STAGE_RIGHT));
-            TaskMove point2 = TaskMove.of(town.getCoordinatesFor(BuildingLocations.PARK_STAGE_LEFT));
-            TaskSpeech speech = TaskSpeech.of(SCRIPT);
-            pathing.setPath(point1, point2, point1, speech);
-            CookingContestEntries entries = getContestEntries(entity);
-            Set<UUID> used = new HashSet<>();
-            List<EntityNPCHuman> npcs = EntityHelper.getEntities(EntityNPCHuman.class, player.worldObj, original, 32D, 5D);
-            for (EntityNPCHuman theNPC: npcs) {
-                if (entries.isEntered(theNPC.getNPC())) {
-                    for (int i = 0; i < 4; i++) {
-                        BlockPos pos = entries.getStandLocations(town)[i];
-                        TileEntity tile = player.worldObj.getTileEntity(pos);
-                        if (tile instanceof TilePlate) {
-                            TilePlate stand = ((TilePlate)tile);
-                            if (stand.getContents() == null || used.contains(stand.getUUID())) {
-                                stand.setContents(entries.getEntryForNPC(theNPC.getNPC()));
-                                theNPC.getPathing().setPath(TaskMove.of(entries.getWalkLocations(town)[i]), TaskWait.of(10));
-                                break;
-                            } else if (stand.getContents() != null && stand.getUUID() != null) used.add(stand.getUUID());
-                        }
-                    }
-                }
-            }
-
-            increaseStage(player);
-        } else if (quest_stage == FINISH) {
-            complete(player); //Finish the contest
-            CookingContestEntries entries = getContestEntries(entity);
-            if (entries.isWinner(player)) {
-                player.addStat(HFAchievements.corn);
-                HFApi.quests.completeQuestConditionally(Quests.SELL_CORN, player);
-                rewardGold(player, entries.getPrize());
-            }
+    public ItemStack getReward(Place place) {
+        switch (place) {
+            case FIRST:
+                return HFCooking.INGREDIENTS.getStackFromEnum(Ingredient.FLOUR, 8);
+            case SECOND:
+                return HFCooking.INGREDIENTS.getStackFromEnum(Ingredient.WINE, 1);
+            case THIRD:
+                return HFCooking.INGREDIENTS.getStackFromEnum(Ingredient.FLOUR, 8);
+            default:
+                return new ItemStack(Items.WHEAT);
         }
     }
 
-    @SuppressWarnings("ConstantConditions")
-    private Map<BlockPos, BlockPos> buildEmptyMap(World world, TownData town) {
-        Map<BlockPos, BlockPos> emptyList = new HashMap<>();
-        addToEmptyListIfStandIsEmpty(emptyList, world, town.getCoordinatesFor(BuildingLocations.PARK_STAGE_STAND1).down(), town.getCoordinatesFor(BuildingLocations.PARK_STAGE_STAND1_HUMAN));
-        addToEmptyListIfStandIsEmpty(emptyList, world, town.getCoordinatesFor(BuildingLocations.PARK_STAGE_STAND2).down(), town.getCoordinatesFor(BuildingLocations.PARK_STAGE_STAND2_HUMAN));
-        addToEmptyListIfStandIsEmpty(emptyList, world, town.getCoordinatesFor(BuildingLocations.PARK_STAGE_STAND3).down(), town.getCoordinatesFor(BuildingLocations.PARK_STAGE_STAND3_HUMAN));
-        addToEmptyListIfStandIsEmpty(emptyList, world, town.getCoordinatesFor(BuildingLocations.PARK_STAGE_STAND4).down(), town.getCoordinatesFor(BuildingLocations.PARK_STAGE_STAND4_HUMAN));
-        return emptyList;
+    @Override
+    public void execute(Town town, EntityPlayer player, NPCEntity npc) {
+        npc.setPath(getMove(town, PARK_COW_1), TaskSpeech.of(QuestContestCooking.JUDGE_1), getMove(town, PARK_COW_2), TaskSpeech.of(QuestContestCooking.JUDGE_2),
+                getMove(town, PARK_COW_3), TaskSpeech.of(QuestContestCooking.JUDGE_3), getMove(town, PARK_COW_4), TaskSpeech.of(QuestContestCooking.JUDGE_4), TaskWait.of(1),
+                TaskSpeech.of(QuestContestCooking.FINISH), getMove(town, PARK_COW_JUDGE), TaskSpeech.of(QuestContestCooking.WINNER), new ContestTaskWinner(HFFestivals.COW_FESTIVAL));
     }
 
-    private void addToEmptyListIfStandIsEmpty(Map<BlockPos, BlockPos> emptyList, World world, BlockPos pos, BlockPos pos2) {
-        TileEntity tile = world.getTileEntity(pos);
-        if (tile instanceof TilePlate) {
-            ItemStack stack = ((TilePlate)tile).getContents();
-            if (stack == null) emptyList.put(pos, pos2);
+    @Override
+    public void readFromNBT(NBTTagCompound nbt) {
+        super.readFromNBT(nbt);
+        if (nbt.hasKey("Utensil")) {
+            category = Utensil.REGISTRY.get(new ResourceLocation(nbt.getString("Utensil")));
         }
+    }
+
+    @Override
+    public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
+        super.writeToNBT(nbt);
+        if (category != null) {
+            nbt.setString("Utensil", category.getResource().toString());
+        }
+
+        return nbt;
     }
 }

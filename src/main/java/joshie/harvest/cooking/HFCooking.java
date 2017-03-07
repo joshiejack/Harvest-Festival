@@ -12,6 +12,7 @@ import joshie.harvest.cooking.tile.*;
 import joshie.harvest.core.base.render.MeshIdentical;
 import joshie.harvest.core.util.annotations.HFLoader;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.relauncher.Side;
@@ -23,10 +24,18 @@ import static joshie.harvest.cooking.item.ItemUtensil.Utensil.KNIFE;
 import static joshie.harvest.cooking.tile.TileMixer.BLADE_STACK;
 import static joshie.harvest.core.helpers.RegistryHelper.registerSounds;
 import static joshie.harvest.core.helpers.RegistryHelper.registerTiles;
+import static joshie.harvest.core.lib.HFModInfo.MODID;
 import static joshie.harvest.core.lib.LoadOrder.HFCOOKING;
 
 @HFLoader(priority = HFCOOKING)
 public class HFCooking {
+    //Utensils
+    public static final Utensil COUNTER = new Utensil(new ResourceLocation(MODID, "counter"));
+    public static final Utensil POT = new Utensil(new ResourceLocation(MODID, "pot"));
+    public static final Utensil FRYING_PAN = new Utensil(new ResourceLocation(MODID, "frying_pan"));
+    public static final Utensil MIXER = new Utensil(new ResourceLocation(MODID, "mixer"));
+    public static final Utensil OVEN = new Utensil(new ResourceLocation(MODID, "oven"));
+
     //Cooking
     public static final BlockCookware COOKWARE = new BlockCookware().register("cookware");
     public static final ItemMeal MEAL = new ItemMeal().register("meal");
@@ -49,11 +58,11 @@ public class HFCooking {
         OreDictionary.registerOre("foodScrambledegg", MEAL.getStackFromEnum(Meal.EGG_SCRAMBLED));
         registerSounds("counter", "fridge", "frying_pan", "mixer", "oven", "oven_done", "oven_door", "pot", "recipe");
         registerTiles(TileFridge.class, TileFryingPan.class, TileCounter.class, TileMixer.class, TileOven.class, TilePot.class);
-        Utensil.COUNTER.setBurntItem(MEAL.getStackFromEnum(Meal.BURNT_COUNTER));
-        Utensil.POT.setBurntItem(MEAL.getStackFromEnum(Meal.BURNT_POT));
-        Utensil.FRYING_PAN.setBurntItem(MEAL.getStackFromEnum(Meal.BURNT_FRYING_PAN));
-        Utensil.MIXER.setBurntItem(MEAL.getStackFromEnum(Meal.BURNT_MIXER));
-        Utensil.OVEN.setBurntItem(MEAL.getStackFromEnum(Meal.BURNT_OVEN));
+        COUNTER.setBurntItem(MEAL.getStackFromEnum(Meal.BURNT_COUNTER));
+        POT.setBurntItem(MEAL.getStackFromEnum(Meal.BURNT_POT));
+        FRYING_PAN.setBurntItem(MEAL.getStackFromEnum(Meal.BURNT_FRYING_PAN));
+        MIXER.setBurntItem(MEAL.getStackFromEnum(Meal.BURNT_MIXER));
+        OVEN.setBurntItem(MEAL.getStackFromEnum(Meal.BURNT_OVEN));
     }
 
     @SideOnly(Side.CLIENT)

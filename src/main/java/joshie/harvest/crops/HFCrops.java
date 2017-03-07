@@ -107,7 +107,7 @@ public class HFCrops {
                                             .setSeasons(AUTUMN).setPurchaseRules(new SpecialRulesQuest("sweetpotato"));
     public static final Crop GREEN_PEPPER = registerCrop("green_pepper").setItem(getCropStack(Crops.GREEN_PEPPER)).setValue(900, 80).setStages(1, 3, 4, 7, 8).setRegrow(5).setSeedColours(0x56D213)
                                             .setSeasons(AUTUMN).setPurchaseRules(new SpecialRulesQuest("greenpepper"));
-    public static final Crop BEETROOT = registerCrop("beetroot").setItem(Items.BEETROOT).setValue(550, 330).setStages(Blocks.BEETROOTS, 3, 7, 10, 11).setSeedColours(0x690000)
+    public static final Crop BEETROOT = registerCrop("beetroot").setItem(Items.BEETROOT).setValue(550, 120).setStages(Blocks.BEETROOTS, 1, 2, 3, 4).setSeedColours(0x690000)
                                             .setSeasons(AUTUMN).setPurchaseRules(TOWN_PROGRESS);
 
     //Autumn Trees

@@ -11,7 +11,7 @@ import joshie.harvest.calendar.HFFestivals;
 import joshie.harvest.core.util.annotations.HFLoader;
 import joshie.harvest.quests.town.festivals.QuestNewYearsEve.TaskNewYear;
 import joshie.harvest.quests.town.festivals.QuestStarryNight;
-import joshie.harvest.quests.town.festivals.contest.TaskWinner;
+import joshie.harvest.quests.town.festivals.contest.ContestTaskWinner;
 import joshie.harvest.town.TownHelper;
 import joshie.harvest.town.data.TownData;
 import net.minecraft.util.ResourceLocation;
@@ -35,7 +35,7 @@ public class HFSchedules {
         registerTaskElement("speech", TaskSpeech.class);
         registerTaskElement("wait", TaskWait.class);
         registerTaskElement("new_year", TaskNewYear.class);
-        registerTaskElement("winner", TaskWinner.class);
+        registerTaskElement("winner", ContestTaskWinner.class);
 
         //If invited to the starry night festival, then go to the park
         Conditional isInvited = new Conditional() {

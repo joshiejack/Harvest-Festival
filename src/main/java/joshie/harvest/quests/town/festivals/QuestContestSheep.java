@@ -15,10 +15,10 @@ import joshie.harvest.cooking.item.ItemMeal.Meal;
 import joshie.harvest.core.base.other.HFScript;
 import joshie.harvest.npcs.HFNPCs;
 import joshie.harvest.quests.base.QuestAnimalContest;
-import joshie.harvest.quests.town.festivals.contest.ContestEntries;
+import joshie.harvest.quests.town.festivals.contest.animal.AnimalContestEntries;
 import joshie.harvest.quests.town.festivals.contest.ContestJudgingScript;
+import joshie.harvest.quests.town.festivals.contest.ContestTaskWinner;
 import joshie.harvest.quests.town.festivals.contest.ContestWinningScript;
-import joshie.harvest.quests.town.festivals.contest.TaskWinner;
 import joshie.harvest.shops.HFShops;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
@@ -29,19 +29,24 @@ import static joshie.harvest.town.BuildingLocations.*;
 
 @HFQuest("festival.sheep")
 public class QuestContestSheep extends QuestAnimalContest<EntityHarvestSheep> {
-    private static final String ANIMAL = "sheep";
+    private static final String PREFIX = "sheep";
     private static final BuildingLocation[] STALLS = new BuildingLocation[] { PARK_SHEEP_STALL_1, PARK_SHEEP_STALL_2, PARK_SHEEP_STALL_3, PARK_SHEEP_STALL_4 };
     private static final NPC[] NPCS = new NPC[] { HFNPCs.CAFE_GRANNY, HFNPCs.FLOWER_GIRL, HFNPCs.MILKMAID, HFNPCs.DAUGHTER_ADULT, HFNPCs.TRADER, HFNPCs.GS_OWNER };
     private static final String[] NAMES = new String[] { "Fluffy", "Flaafy", "Maisy", "Mareep", "Shaggy", "Fae", "Emma", "Dolly", "Sally", "Larry", "Shaun"};
-    private static final Script FINISH = new HFScript(ANIMAL + "_finish");
-    private static final Script JUDGE_1 = new ContestJudgingScript(ANIMAL, 1).setNPC(HFNPCs.BARN_OWNER);
-    private static final Script JUDGE_2 = new ContestJudgingScript(ANIMAL, 2).setNPC(HFNPCs.BARN_OWNER);
-    private static final Script JUDGE_3 = new ContestJudgingScript(ANIMAL, 3).setNPC(HFNPCs.BARN_OWNER);
-    private static final Script JUDGE_4 = new ContestJudgingScript(ANIMAL, 4).setNPC(HFNPCs.BARN_OWNER);
-    private static final Script WINNER = new ContestWinningScript(ANIMAL).setNPC(HFNPCs.BARN_OWNER);
+    private static final Script FINISH = new HFScript(PREFIX + "_finish");
+    private static final Script JUDGE_1 = new ContestJudgingScript(PREFIX, 1).setNPC(HFNPCs.BARN_OWNER);
+    private static final Script JUDGE_2 = new ContestJudgingScript(PREFIX, 2).setNPC(HFNPCs.BARN_OWNER);
+    private static final Script JUDGE_3 = new ContestJudgingScript(PREFIX, 3).setNPC(HFNPCs.BARN_OWNER);
+    private static final Script JUDGE_4 = new ContestJudgingScript(PREFIX, 4).setNPC(HFNPCs.BARN_OWNER);
+    private static final Script WINNER = new ContestWinningScript(PREFIX).setNPC(HFNPCs.BARN_OWNER);
 
     public QuestContestSheep() {
-        super(HFNPCs.BARN_OWNER, new ContestEntries<>(EntityHarvestSheep.class, STALLS, NPCS, NAMES), ANIMAL);
+        super(HFNPCs.BARN_OWNER, PREFIX);
+    }
+
+    @Override
+    protected AnimalContestEntries createEntries() {
+        return new AnimalContestEntries<>(EntityHarvestSheep.class, STALLS, NPCS, NAMES);
     }
 
     @Override
@@ -63,6 +68,6 @@ public class QuestContestSheep extends QuestAnimalContest<EntityHarvestSheep> {
     public void execute(Town town, EntityPlayer player, NPCEntity npc) {
         npc.setPath(getMove(town, PARK_SHEEP_1), TaskSpeech.of(JUDGE_1), getMove(town, PARK_SHEEP_2), TaskSpeech.of(JUDGE_2),
                 getMove(town, PARK_SHEEP_3), TaskSpeech.of(JUDGE_3), getMove(town, PARK_SHEEP_4), TaskSpeech.of(JUDGE_4), TaskWait.of(1),
-                TaskSpeech.of(FINISH), getMove(town, PARK_SHEEP_JUDGE), TaskSpeech.of(WINNER), new TaskWinner(HFFestivals.SHEEP_FESTIVAL));
+                TaskSpeech.of(FINISH), getMove(town, PARK_SHEEP_JUDGE), TaskSpeech.of(WINNER), new ContestTaskWinner(HFFestivals.SHEEP_FESTIVAL));
     }
 }

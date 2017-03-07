@@ -2,31 +2,30 @@ package joshie.harvest.quests.town.festivals.contest;
 
 import joshie.harvest.api.calendar.Festival;
 import joshie.harvest.api.npc.task.TaskElement;
-import joshie.harvest.quests.base.QuestAnimalContest;
 import joshie.harvest.quests.town.festivals.Place;
 import joshie.harvest.town.TownHelper;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 
-public class TaskWinner extends TaskElement {
+public class ContestTaskWinner extends TaskElement {
     private Festival festival;
 
     @SuppressWarnings("WeakerAccess")
-    public TaskWinner(Festival festival) {
+    public ContestTaskWinner(Festival festival) {
         this.festival = festival;
     }
 
     public void execute(EntityAgeable npc) {
         super.execute(npc);
-        QuestAnimalContest quest = TownHelper.getClosestTownToEntity(npc, false).getQuests().getAQuest(festival.getQuest());
+        QuestContest quest = TownHelper.getClosestTownToEntity(npc, false).getQuests().getAQuest(festival.getQuest());
         if (quest != null) {
             ContestEntries entries = quest.getEntries();
             for (Place place: Place.VALUES) {
-                entries.getEntry(place).reward(npc.worldObj, place, quest.getEntries().getNPCs(), quest.getReward(place));
+                quest.reward(npc.worldObj, place);
             }
 
-            entries.kill(npc.worldObj);
+            entries.complete(npc.worldObj);
             TownHelper.getClosestTownToEntity(npc, false).getQuests().markCompleted(npc.worldObj, null, quest, false);
         }
     }

@@ -5,11 +5,11 @@ import joshie.harvest.api.cooking.IngredientStack;
 import joshie.harvest.api.cooking.Recipe;
 import joshie.harvest.api.cooking.Utensil;
 import joshie.harvest.cooking.CookingAPI;
+import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.cooking.item.ItemMeal.Meal;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
-import static joshie.harvest.api.cooking.Utensil.*;
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 
 public class RecipeHelper {
@@ -76,51 +76,51 @@ public class RecipeHelper {
     }
     
     public static Recipe addFryingPanRecipe(Meal meal, float hungerModifier, float modifier, Ingredient... ingredients) {
-        return addRecipe(meal.getName(), FRYING_PAN, hungerModifier, modifier, false, ingredients);
+        return addRecipe(meal.getName(), HFCooking.FRYING_PAN, hungerModifier, modifier, false, ingredients);
     }
 
     @SuppressWarnings("unused")
     public static void addFryingPanRecipe(String mealname, ItemStack result, Ingredient... ingredients) {
-        addRecipe(mealname, result, FRYING_PAN, ingredients);
+        addRecipe(mealname, result, HFCooking.FRYING_PAN, ingredients);
     }
 
     public static Recipe addMixerRecipe(Meal meal, boolean isDrink, float hungerModifier, float modifier, Ingredient... ingredients) {
-        return addRecipe(meal.getName(), MIXER, hungerModifier, modifier, isDrink, ingredients);
+        return addRecipe(meal.getName(), HFCooking.MIXER, hungerModifier, modifier, isDrink, ingredients);
     }
     
     public static Recipe addMixerRecipe(Meal meal, float hungerModifier, float modifier, Ingredient... ingredients) {
-        return addRecipe(meal.getName(), MIXER, hungerModifier, modifier, true, ingredients);
+        return addRecipe(meal.getName(), HFCooking.MIXER, hungerModifier, modifier, true, ingredients);
     }
 
     public static Recipe addMixerRecipe(String mealname, ItemStack result, Ingredient... ingredients) {
-        return addRecipe(mealname, result, MIXER, ingredients);
+        return addRecipe(mealname, result, HFCooking.MIXER, ingredients);
     }
     
     public static Recipe addNoUtensilRecipe(Meal meal, float hungerModifier, float modifier, Ingredient... ingredients) {
-        return addRecipe(meal.getName(), COUNTER, hungerModifier, modifier, false, ingredients);
+        return addRecipe(meal.getName(), HFCooking.COUNTER, hungerModifier, modifier, false, ingredients);
     }
 
     public static Recipe addNoUtensilRecipe(String mealname, ItemStack result, Ingredient... ingredients) {
-        return addRecipe(mealname, result, COUNTER, ingredients);
+        return addRecipe(mealname, result, HFCooking.COUNTER, ingredients);
     }
     
     public static Recipe addPotRecipe(Meal meal, boolean isDrink, float hungerModifier, float modifier, Ingredient... ingredients) {
-        return addRecipe(meal.getName(), POT, hungerModifier, modifier, isDrink, ingredients);
+        return addRecipe(meal.getName(), HFCooking.POT, hungerModifier, modifier, isDrink, ingredients);
     }
     
     public static Recipe addPotRecipe(Meal meal, float hungerModifier, float modifier, Ingredient... ingredients) {
-        return addRecipe(meal.getName(), POT, hungerModifier, modifier, false, ingredients);
+        return addRecipe(meal.getName(), HFCooking.POT, hungerModifier, modifier, false, ingredients);
     }
 
     public static Recipe addPotRecipe(String mealname, ItemStack result, Ingredient... ingredients) {
-        return addRecipe(mealname, result, POT, ingredients);
+        return addRecipe(mealname, result, HFCooking.POT, ingredients);
     }
     
     public static Recipe addOvenRecipe(Meal meal, float hungerModifier, float modifier, Ingredient... ingredients) {
-        return addRecipe(meal.getName(), OVEN, hungerModifier, modifier, false, ingredients);
+        return addRecipe(meal.getName(), HFCooking.OVEN, hungerModifier, modifier, false, ingredients);
     }
 
     public static Recipe addOvenRecipe(String mealname, ItemStack result, Ingredient... ingredients) {
-        return addRecipe(mealname, result, OVEN, ingredients);
+        return addRecipe(mealname, result, HFCooking.OVEN, ingredients);
     }
 }

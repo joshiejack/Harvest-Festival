@@ -3,6 +3,7 @@ package joshie.harvest.quests.town.festivals.starry;
 import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.npc.NPCEntity;
 import joshie.harvest.api.quests.Selection;
+import joshie.harvest.core.helpers.TextHelper;
 import joshie.harvest.quests.town.festivals.QuestStarryNight;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
@@ -45,8 +46,8 @@ public class StarryNightData extends Selection<QuestStarryNight> {
     @SideOnly(Side.CLIENT)
     public String getLocalizedScript(NPC npc) {
         if (chat) return null;
-        else if (invited == null) return "Please invite me";
-        else return invited == npc ? "I look forward to seeing you tonight.": null;
+        else if (invited == null) return TextHelper.getSpeech(npc, "festival.starry.night.invite");
+        else return invited == npc ? TextHelper.getSpeech(npc, "festival.starry.night.tonight") : null;
     }
 
     public boolean isChatting() {

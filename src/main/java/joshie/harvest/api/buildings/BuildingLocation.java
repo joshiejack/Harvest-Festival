@@ -4,13 +4,13 @@ public class BuildingLocation {
     private final Building building;
     private final String location;
     public double distance;
-    public int ticksBeforeTeleport;
+    public int updatesBeforeTeleport;
 
     public BuildingLocation(Building building, String location) {
         this.building = building;
         this.location = location;
         this.distance = 5D;
-        this.ticksBeforeTeleport = 1500;
+        this.updatesBeforeTeleport = 10;
     }
 
     public Building getBuilding() {
@@ -26,8 +26,8 @@ public class BuildingLocation {
         return this;
     }
 
-    public BuildingLocation withTime(int ticksBeforeTeleport) {
-        this.ticksBeforeTeleport = ticksBeforeTeleport;
+    public BuildingLocation withTime(int updatesBeforeTeleport) {
+        this.updatesBeforeTeleport = updatesBeforeTeleport;
         return this;
     }
 
@@ -35,7 +35,6 @@ public class BuildingLocation {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         BuildingLocation that = (BuildingLocation) o;
         return building != null ? building.equals(that.building) : that.building == null && (location != null ? location.equals(that.location) : that.location == null);
     }

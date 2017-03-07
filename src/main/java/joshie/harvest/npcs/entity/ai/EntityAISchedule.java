@@ -50,7 +50,7 @@ public class EntityAISchedule extends EntityAIBase {
         BuildingLocation location = getBuildingTarget(date);
         if (location != null) {
             distanceRequired = location.distance;
-            ticksBeforeTeleport = location.ticksBeforeTeleport;
+            ticksBeforeTeleport = location.updatesBeforeTeleport;
             blockTarget = NPCHelper.getCoordinatesForLocation(npc, location);
         }
     }
@@ -88,7 +88,6 @@ public class EntityAISchedule extends EntityAIBase {
     public void updateTask() {
         if (scheduleTimer %200 == 0) updateTarget();
         if (blockTarget != null) {
-
             //If we're too far away from the target, based on the location requirements then
             if (npc.getDistanceSq(blockTarget) > distanceRequired) {
                 if (scheduleTimer %100 == 0) {

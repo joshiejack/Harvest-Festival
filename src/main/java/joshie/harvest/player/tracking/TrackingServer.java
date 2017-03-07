@@ -4,7 +4,6 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.cooking.Recipe;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.api.quests.TargetType;
-import joshie.harvest.core.achievements.HFAchievements;
 import joshie.harvest.core.helpers.HolderHelper;
 import joshie.harvest.core.helpers.NBTHelper;
 import joshie.harvest.core.network.PacketHandler;
@@ -12,8 +11,6 @@ import joshie.harvest.core.util.holders.ItemStackHolder;
 import joshie.harvest.knowledge.gui.stats.CollectionHelper;
 import joshie.harvest.player.PlayerTrackerServer;
 import joshie.harvest.player.packet.*;
-import joshie.harvest.quests.Quests;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -25,6 +22,7 @@ import java.util.Set;
 public class TrackingServer extends Tracking {
     private Set<StackSold> toBeShipped = new HashSet<>(); //What needs to be sold
     private Set<StackSold> shipped = new HashSet<>();
+    private boolean hasWonCookingContest;
     private int giftsGiven;
     public final PlayerTrackerServer master;
 
@@ -33,17 +31,8 @@ public class TrackingServer extends Tracking {
         addDefaultRecipes();
     }
 
-    @Override
-    public boolean learnRecipe(Recipe recipe) {
-        if (super.learnRecipe(recipe)) {
-            EntityPlayer player = master.getAndCreatePlayer();
-            if (recipes.size() >= 50 && player != null) {
-                player.addStat(HFAchievements.recipes);
-                HFApi.quests.completeQuestConditionally(Quests.SELL_TREES, player);
-            }
-
-            return true;
-        } else return false;
+    public void setHasWonCookingContest() {
+        this.hasWonCookingContest = true;
     }
 
     public Set<StackSold> getShipped() {
@@ -59,13 +48,6 @@ public class TrackingServer extends Tracking {
 
     public void addGift() {
         giftsGiven++;
-        if (giftsGiven >= 300) {
-            EntityPlayer player = master.getAndCreatePlayer();
-            if (player != null) {
-                player.addStat(HFAchievements.sweetPotatoes);
-                HFApi.quests.completeQuestConditionally(Quests.SELL_SWEET_POTATO, player);
-            }
-        }
     }
 
     @Override
@@ -76,6 +58,10 @@ public class TrackingServer extends Tracking {
 
     public boolean addForShipping(ItemStack item) {
         long sell = HFApi.shipping.getSellValue(item);
+        if (hasWonCookingContest && CollectionHelper.isInCookingCollection(item)) {
+            sell *= 1.1;
+        }
+
         StackSold stack = StackSold.of(item, sell);
         HolderHelper.mergeCollection(stack, toBeShipped);
         return sell >= 0;
@@ -114,6 +100,7 @@ public class TrackingServer extends Tracking {
     }
 
     public void readFromNBT(NBTTagCompound nbt) {
+        hasWonCookingContest = nbt.getBoolean("HasWon");
         giftsGiven = nbt.getInteger("GiftsGiven");
         obtained = NBTHelper.readHashSet(ItemStackHolder.class, nbt.getTagList("ItemsObtained", 10));
         toBeShipped = NBTHelper.readHashSet(StackSold.class, nbt.getTagList("ToBeShipped", 10));
@@ -126,6 +113,7 @@ public class TrackingServer extends Tracking {
     }
 
     public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
+        nbt.setBoolean("HasWon", hasWonCookingContest);
         nbt.setInteger("GiftsGiven", giftsGiven);
         nbt.setTag("ItemsObtained", NBTHelper.writeCollection(obtained));
         nbt.setTag("ToBeShipped", NBTHelper.writeCollection(toBeShipped));

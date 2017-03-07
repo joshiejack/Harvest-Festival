@@ -58,6 +58,9 @@ public class HFAchievements {
     public static Achievement strawberries;
     public static Achievement corn;
     public static Achievement sweetPotatoes;
+    public static Achievement cucumbers;
+    public static Achievement tomatoes;
+    public static Achievement eggplants;
 
     @SuppressWarnings("unused")
     public static void postInit() {
@@ -70,10 +73,13 @@ public class HFAchievements {
         spinach = addAchievement("spinach", 0, 8, HFCrops.SPINACH.getCropStack(1), onion);
         cabbage = addAchievement("cabbage", 2, 4, HFCrops.CABBAGE.getCropStack(1), harvest);
         pineapple = addAchievement("pineapple", 2, 6, HFCrops.PINEAPPLE.getCropStack(1), onion);
-        greenPepper = addAchievement("greenPepper", 2, 8, HFCrops.GREEN_PEPPER.getCropStack(1), spinach);
-        strawberries = addAchievement("strawberries", -2, 4, HFCrops.STRAWBERRY.getCropStack(1), harvest);
-        corn = addAchievement("corn", -2, 6, HFCrops.CORN.getCropStack(1), onion);
-        sweetPotatoes = addAchievement("sweetPotatoes", -2, 8, HFCrops.SWEET_POTATO.getCropStack(1), spinach);
+        sweetPotatoes = addAchievement("sweetPotatoes", 2, 8, HFCrops.SWEET_POTATO.getCropStack(1), spinach);
+        cucumbers = addAchievement("cucumber", -2, 4, HFCrops.CUCUMBER.getCropStack(1), harvest);
+        tomatoes = addAchievement("tomato", -2, 6, HFCrops.TOMATO.getCropStack(1), onion);
+        eggplants = addAchievement("eggplant", -2, 8, HFCrops.EGGPLANT.getCropStack(1), spinach);
+        strawberries = addAchievement("strawberries", -4, 4, HFCrops.STRAWBERRY.getCropStack(1), cucumbers);
+        corn = addAchievement("corn", -4, 6, HFCrops.CORN.getCropStack(1), tomatoes);
+        greenPepper = addAchievement("greenPepper", -4, 8, HFCrops.GREEN_PEPPER.getCropStack(1), eggplants);
 
         milker = addAchievement("milker", 2, -2, HFAnimals.ANIMAL_PRODUCT.getStack(Sizeable.MILK, Size.SMALL), summon);
         egger = addAchievement("egger", -2, -2, HFAnimals.ANIMAL_PRODUCT.getStack(Sizeable.EGG, Size.SMALL), summon);

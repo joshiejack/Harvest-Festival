@@ -123,8 +123,7 @@ public class HFNPCs {
                 .addGreeting(new GreetingBeforeJenni("trade.tools.reminder"))
                 .addGreeting(new GreetingBeforeJenni("tutorial.supermarket.reminder.supermarket"))
                 .addGreeting(new GreetingBeforeDanieru(FLOWER_GIRL));
-        GS_OWNER.setQuest(Quests.SELL_STRAWBERRY).
-                setHasInfo(new GreetingSupermarket(GS_OWNER))
+        GS_OWNER.setHasInfo(new GreetingSupermarket(GS_OWNER))
                 .addGreeting(new GreetingBeforeDanieru(GS_OWNER));
         MILKMAID.addGreeting(new GreetingBeforeDanieru(MILKMAID));
         BARN_OWNER.addGreeting(new GreetingBeforeDanieru(BARN_OWNER));

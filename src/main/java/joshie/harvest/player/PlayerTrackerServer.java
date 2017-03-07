@@ -14,6 +14,7 @@ import joshie.harvest.player.stats.StatsServer;
 import joshie.harvest.player.tracking.TrackingServer;
 import joshie.harvest.quests.data.QuestDataServer;
 import joshie.harvest.quests.packet.PacketSharedSync;
+import joshie.harvest.town.TownHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
@@ -111,8 +112,20 @@ public class PlayerTrackerServer extends PlayerTracker implements ISyncMaster {
             relationships.resetStatus(yesterday, player); //Reset the relationship status
             stats.syncGold(player); //Resync the players gold
             if (today.getSeason() == Season.WINTER && today.getDay() == 25) player.addStat(HFAchievements.firstChristmas);
-            if (CalendarHelper.getYearsPassed(stats.getBirthday(), today) >= 1) {
+            if (today.isSameDay(stats.getBirthday())) {
                 player.addStat(HFAchievements.birthday);
+            }
+
+            //Achievements!!!!!!!!!!!!!!!!!!!!!!!!!!!! ? yey??
+            int yearsPassed = CalendarHelper.getYearsPassed(TownHelper.getClosestTownToEntity(player, false).getBirthday(), today);
+            if (yearsPassed >= 2) {
+                if (today.getSeason() == Season.SPRING) player.addStat(HFAchievements.strawberries);
+                else if (today.getSeason() == Season.SUMMER) player.addStat(HFAchievements.corn);
+                else if (today.getSeason() == Season.AUTUMN) player.addStat(HFAchievements.greenPepper);
+            } else if (yearsPassed >= 1) {
+                if (today.getSeason() == Season.SPRING) player.addStat(HFAchievements.cucumbers);
+                else if (today.getSeason() == Season.SUMMER) player.addStat(HFAchievements.tomatoes);
+                else if (today.getSeason() == Season.AUTUMN) player.addStat(HFAchievements.eggplants);
             }
         }
     }

@@ -65,7 +65,7 @@
 
 ###Festivals - NEW!
 * Added new years festival, celebrate with food
-* Added cooking festival, celebrate your cooking skills. Winners will be able to buy corn.
+* Added cooking festival, celebrate your cooking skills. Winners will have cooked meals sell for 1.1x more.
 * Added cow festival, winners cows will produce golden milk if happiness is high!
 * Added chicken festival, winners chickens will produce golden eggs if happiness is high!
 * Added harvest festival, make friends with the villagers by contributing your best to a communal soup

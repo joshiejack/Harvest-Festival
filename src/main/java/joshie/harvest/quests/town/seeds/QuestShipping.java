@@ -32,6 +32,7 @@ public class QuestShipping extends QuestTown {
 
     QuestShipping(Achievement achievement, NPC npc, Season season, int required) {
         this.setNPCs(npc);
+        this.achievement = achievement;
         this.season = season;
         this.required = required;
     }

@@ -97,8 +97,6 @@ public class QuestContestCooking extends QuestContest<CookingContestEntries> {
             EntityPlayer player = entry.getPlayer();
             switch (place) {
                 case FIRST:
-                    player.addStat(HFAchievements.corn);
-                    HFApi.quests.completeQuestConditionally(Quests.SELL_CORN, player);
                     rewardGold(player, 5000);
                     break;
                 case SECOND:

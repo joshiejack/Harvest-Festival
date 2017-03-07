@@ -36,6 +36,7 @@ public class BlockQuestBoard extends BlockHFEnumRotatableMeta<BlockQuestBoard, Q
 
     public BlockQuestBoard() {
         super(Material.WOOD, QuestBlock.class, HFTab.TOWN);
+        setHardness(1.5F);
     }
 
     public enum QuestBlock implements IStringSerializable {

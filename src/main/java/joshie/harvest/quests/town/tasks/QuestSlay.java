@@ -83,10 +83,11 @@ public class QuestSlay extends QuestDaily {
             return getLocalized("desc", targetAmount - counter, TextHelper.localize(translated));
         } else {
             rand.setSeed(HFApi.calendar.getDate(world).hashCode());
+            int position = rand.nextInt(list.length);
+            targetMob = list[position];
             targetAmount = 1 + rand.nextInt(10);
-            targetMob = list[rand.nextInt(list.length)];
             String translated = "entity." + targetMob + ".name";
-            return getLocalized("task", targetAmount, TextHelper.localize(translated));
+            return getLocalized("task", targetAmount, TextHelper.localize(translated), targetAmount * (position + 1));
         }
     }
 

@@ -96,7 +96,9 @@ public class BlockStand extends BlockHFEnumRotatableTile<BlockStand, Stand> {
         TileEntity tile = world.getTileEntity(pos);
         if (tile instanceof TileStand) {
             TileStand stand = ((TileStand)tile);
-            InventoryHelper.spawnItemStack(world, pos.getX(), pos.getY(), pos.getZ(), stand.getContents());
+            if (stand.getContents() != null) {
+                InventoryHelper.spawnItemStack(world, pos.getX(), pos.getY(), pos.getZ(), stand.getContents());
+            }
         }
 
         super.breakBlock(world, pos, state);

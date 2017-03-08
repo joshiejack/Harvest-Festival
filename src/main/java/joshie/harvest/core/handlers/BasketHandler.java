@@ -88,17 +88,13 @@ public class BasketHandler {
         }
     }
 
+    private static final Set<Entity> EMPTY = new HashSet<>();
     private final Cache<EntityPlayer, Set<Entity>> droppedClient = CacheBuilder.newBuilder().expireAfterWrite(1L, TimeUnit.MINUTES).build();
     private final Cache<EntityPlayer, Set<Entity>> droppedServer = CacheBuilder.newBuilder().expireAfterWrite(1L, TimeUnit.MINUTES).build();
-    private boolean hasDropped(EntityPlayer player, Entity basket) {
+    private Set<Entity> getSetFromPlayer(EntityPlayer player) {
         try {
-            Set<Entity> set = player.worldObj.isRemote ? droppedClient.get(player, HashSet::new) : droppedServer.get(player, HashSet::new);
-            if (set.contains(basket)) return true;
-            else {
-                set.add(basket);
-                return false;
-            }
-        } catch (ExecutionException ex) { return false; }
+            return player.worldObj.isRemote ? droppedClient.get(player, HashSet::new) : droppedServer.get(player, HashSet::new);
+        } catch (ExecutionException ex) { return EMPTY; }
     }
 
     @SubscribeEvent
@@ -106,11 +102,13 @@ public class BasketHandler {
     public void onRightClickGround(PlayerInteractEvent.RightClickBlock event) {
         EntityPlayer player = event.getEntityPlayer();
         if (!forbidsDrop(event.getWorld().getBlockState(event.getPos()).getBlock())) {
-            player.getPassengers().stream().filter(entity -> entity instanceof EntityBasket && !hasDropped(player, entity)).forEach(entity -> {
+            Set<Entity> set = getSetFromPlayer(player);
+            player.getPassengers().stream().filter(entity -> entity instanceof EntityBasket && !set.contains(entity)).forEach(entity -> {
                 ItemStack basket = HFCore.STORAGE.getStackFromEnum(Storage.BASKET);
                 TileBasket tile = (((ItemBlockStorage)basket.getItem()).onBasketUsed(basket, player, player.worldObj, event.getPos(), EnumHand.MAIN_HAND, event.getFace(), 0F, 0F, 0F));
                 if (tile != null) {
                     tile.onRightClicked(null, ((EntityBasket)entity).getEntityItem());
+                    set.add(entity);
                     entity.setDead();
                 }
             });

@@ -134,7 +134,7 @@ harvestfestival.crop.hemp.tooltip=Requires light level 12+
 #Trees
 ##Fruit
 harvestfestival.fruit.apple=Harvestable Apple
-harvestfestival.fruit.banana=Havestable Banana
+harvestfestival.fruit.banana=Harvestable Banana
 harvestfestival.fruit.grape=Harvestable Grapes
 harvestfestival.fruit.orange=Harvestable Orange
 harvestfestival.fruit.peach=Harvestable Peach
@@ -580,6 +580,7 @@ harvestfestival.cookware.frying.pan=Frying Pan
 harvestfestival.cookware.mixer=Food Mixer
 harvestfestival.cookware.oven.off=Oven
 harvestfestival.cookware.oven.on=Oven
+harvestfestival.cookware.oven=Oven
 harvestfestival.cookware.chopping.board=Chopping Board
 harvestfestival.cookware.mixing.bowl=Mixing Bowl
 harvestfestival.cookware.baking=Baking Tray

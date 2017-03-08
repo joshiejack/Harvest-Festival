@@ -1,7 +1,6 @@
 package joshie.harvest.quests.town.festivals;
 
 import com.google.common.collect.Lists;
-import joshie.harvest.api.HFApi;
 import joshie.harvest.api.buildings.BuildingLocation;
 import joshie.harvest.api.cooking.Utensil;
 import joshie.harvest.api.npc.NPC;
@@ -14,11 +13,11 @@ import joshie.harvest.api.town.Town;
 import joshie.harvest.calendar.HFFestivals;
 import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.cooking.item.ItemIngredients.Ingredient;
-import joshie.harvest.core.achievements.HFAchievements;
+import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.base.other.HFScript;
 import joshie.harvest.core.helpers.TextHelper;
 import joshie.harvest.npcs.HFNPCs;
-import joshie.harvest.quests.Quests;
+import joshie.harvest.player.PlayerTrackerServer;
 import joshie.harvest.quests.town.festivals.contest.ContestJudgingScript;
 import joshie.harvest.quests.town.festivals.contest.ContestTaskWinner;
 import joshie.harvest.quests.town.festivals.contest.ContestWinningScript;
@@ -97,6 +96,7 @@ public class QuestContestCooking extends QuestContest<CookingContestEntries> {
             EntityPlayer player = entry.getPlayer();
             switch (place) {
                 case FIRST:
+                    HFTrackers.<PlayerTrackerServer>getPlayerTrackerFromPlayer(player).getTracking().setHasWonCookingContest();
                     rewardGold(player, 5000);
                     break;
                 case SECOND:

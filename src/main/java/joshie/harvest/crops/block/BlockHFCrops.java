@@ -421,9 +421,10 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
     //Apply the bonemeal and grow!
     @Override
     public void grow(@Nonnull World world, @Nonnull Random rand, @Nonnull BlockPos pos, @Nonnull IBlockState state) {
-        TileWithered crop = CropHelper.getTile(world, pos, getSection(state));
+        PlantSection section = getSection(state);
+        TileWithered crop = CropHelper.getTile(world, pos, section);
         if (crop != null) {
-            crop.getData().grow(world, pos);
+            crop.getData().grow(world, section == BOTTOM ? pos: pos.down());
             crop.saveAndRefresh();
             markTileForUpdate(crop);
         }

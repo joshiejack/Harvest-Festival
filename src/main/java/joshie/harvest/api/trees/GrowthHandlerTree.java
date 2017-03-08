@@ -33,7 +33,6 @@ public class GrowthHandlerTree extends GrowthHandler<Tree> {
             growTree(world, pos);
         }
 
-
         //If our tree is mature, and we're in season, then we should grow fruit for the tree
         if (stage >= tree.getStages() && isCorrectSeason(world, pos, tree)) {
             growFruit(world, pos); //Grow the fruit, then reset the tree to the stage where we start counting again

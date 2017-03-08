@@ -1,14 +1,6 @@
 {
   "components": [
     {
-      "state": "log",
-      "pos": "4 0 4"
-    },
-    {
-      "state": "log",
-      "pos": "4 1 4"
-    },
-    {
       "state": "harvestfestival:leaves_fruit 2",
       "pos": "2 2 2"
     },

@@ -133,16 +133,11 @@ harvestfestival.crop.hemp.tooltip=Requires light level 12+
 
 #Trees
 ##Fruit
-harvestfestival.fruit.apple=Immature Apple
-harvestfestival.fruit.apple.harvestable=Mature Apple
-harvestfestival.fruit.banana=Immature Banana
-harvestfestival.fruit.banana.harvestable=Mature Banana
-harvestfestival.fruit.grape=Immature Grapes
-harvestfestival.fruit.grape.harvestable=Mature Grapes
-harvestfestival.fruit.orange=Immature Orange
-harvestfestival.fruit.orange.harvestable=Mature Orange
-harvestfestival.fruit.peach=Immature Peach
-harvestfestival.fruit.peach.harvestable=Mature Peach
+harvestfestival.fruit.apple=Harvestable Apple
+harvestfestival.fruit.banana=Havestable Banana
+harvestfestival.fruit.grape=Harvestable Grapes
+harvestfestival.fruit.orange=Harvestable Orange
+harvestfestival.fruit.peach=Harvestable Peach
 ##Leaves
 harvestfestival.leaves.fruit.apple=Apple Leaves
 harvestfestival.leaves.fruit.apple.harvestable=Flowering Apple Leaves

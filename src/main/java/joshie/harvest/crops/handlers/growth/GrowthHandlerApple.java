@@ -22,7 +22,7 @@ public class GrowthHandlerApple extends GrowthHandlerHFTree {
     protected BlockPos getAdjustedPositionBasedOnRotation(BlockPos pos, Rotation rotation) {
         switch (rotation) {
             case NONE:
-                return pos.west(34).north(4);
+                return pos.west(3).north(4);
             case CLOCKWISE_90:
                 return pos.north(3).east(4);
             case CLOCKWISE_180:

@@ -29,6 +29,6 @@
     "orange": [{ "textures": { "layer0": "harvestfestival:items/crops/orange" }}],
     "peach": [{ "textures": { "layer0": "harvestfestival:items/crops/peach" }}],
     "banana": [{ "textures": { "layer0": "harvestfestival:items/crops/banana" }}],
-    "grape": [{ "textures": { "layer0": "harvestfestival:items/crops/grapes" }}]
+    "grape": [{ "textures": { "layer0": "harvestfestival:items/crops/grape" }}]
   }
 }

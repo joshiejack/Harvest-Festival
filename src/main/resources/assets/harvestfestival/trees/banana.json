@@ -2,14 +2,6 @@
   "components": [
     {
       "state": "log 3",
-      "pos": "4 0 4"
-    },
-    {
-      "state": "log 3",
-      "pos": "4 1 4"
-    },
-    {
-      "state": "log 3",
       "pos": "4 2 4"
     },
     {

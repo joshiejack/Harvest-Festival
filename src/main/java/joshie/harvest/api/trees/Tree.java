@@ -6,6 +6,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.EnumPlantType;
 
 public class Tree extends Crop {
     public static final GrowthHandler TREE_GROWTH = new GrowthHandlerTree();
@@ -18,6 +19,7 @@ public class Tree extends Crop {
         super(key);
         setGrowthHandler(TREE_GROWTH);
         setNoWaterRequirements();
+        setPlantType(EnumPlantType.Plains);
     }
 
     /** Returns the stage at which this tree is mature **/

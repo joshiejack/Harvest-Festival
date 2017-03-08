@@ -44,7 +44,7 @@ public class GrowthHandlerTree extends GrowthHandler<Tree> {
 
     @Override
     public boolean canPlantSeedAt(World world, BlockPos pos, IBlockState soil, Tree tree, BlockPos original) {
-        return pos.equals(original);
+        return pos.equals(original) && super.canPlantSeedAt(world, pos, soil, tree, original);
     }
 
     @Override

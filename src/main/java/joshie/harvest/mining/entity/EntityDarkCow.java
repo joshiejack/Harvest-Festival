@@ -19,7 +19,7 @@ import javax.annotation.Nonnull;
 
 import static joshie.harvest.mining.HFMining.ANIMALS_ON_EVERY_FLOOR;
 import static joshie.harvest.mining.MiningHelper.COW_FLOORS;
-import static joshie.harvest.mining.MiningHelper.GEM_FLOOR;
+import static joshie.harvest.mining.MiningHelper.MYSTRIL_FLOOR;
 
 public class EntityDarkCow extends EntityMob {
     public EntityDarkCow(World world) {
@@ -36,7 +36,7 @@ public class EntityDarkCow extends EntityMob {
     @Override
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(30.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(15.0D);
         this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(5.0D);
         this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.15D);
     }
@@ -45,7 +45,7 @@ public class EntityDarkCow extends EntityMob {
     @Override
     protected void initEntityAI() {
         this.tasks.addTask(0, new EntityAISwimming(this));
-        this.tasks.addTask(4, new EntityAIAttackMelee(this, 1.0D, false));
+        this.tasks.addTask(4, new EntityAIAttackMelee(this, 0.5D, false));
         this.tasks.addTask(7, new EntityAIWander(this, 1.0D));
         this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
         this.tasks.addTask(8, new EntityAILookIdle(this));
@@ -64,7 +64,7 @@ public class EntityDarkCow extends EntityMob {
     @Override
     protected boolean isValidLightLevel() {
         int floor = MiningHelper.getFloor((int)posX >> 4, (int) posY);
-        return floor >= GEM_FLOOR && (ANIMALS_ON_EVERY_FLOOR || (((floor - 8) % COW_FLOORS == 0)));
+        return floor >= MYSTRIL_FLOOR && (ANIMALS_ON_EVERY_FLOOR || (((floor - 8) % COW_FLOORS == 0))) && EntityHelper.getEntities(EntityDarkChicken.class, this, 32D).size() < 1;
     }
 
     @Override

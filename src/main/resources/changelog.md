@@ -106,13 +106,15 @@
 * There will now be some "hole blocks in the mine", you will need to right click these with a ladder to place one down, to go further down the mine
 * Adjusted mine generation slightly, should only affect newly generated ones
 * Added gems, some will drop from junk rocks, most will drop from the new gem ore
-* Added Diamond, Emerald, Ruby, Amethyst, Topaz nodes to the mine
-* Added random gem nodes (Only appear in winter)
+* Added Amethyst nodes to the copper and greater levels of the mine
+* Added Topaz nodes to the silver and greater levels of the mine
+* Added Emerald and Ruby nodes to the gold and greater levels of the mine
+* Added Diamond nodes to the mystil and greater levels of the mine
+* Added Random gem nodes (Only appear in winter) to the copper and greater levels of the mine
 * Added Elevators for the mine. Allows you to teleport down to deeper depths instantly (for a setup cost!)
 * Ore nodes will now drop more than one more rarely
 * Reduced the amount of dark chicks, chickens and sheep that spawn
 * Mines will now have a greater chance of producing ore in winter
-* Copper will now only spawn from floor 10 and below
 * The new tiers will now start when you go through a bottom portal instead of just before
 
 ###NPCs

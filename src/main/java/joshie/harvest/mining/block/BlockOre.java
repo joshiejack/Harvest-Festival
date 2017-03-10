@@ -64,8 +64,7 @@ public class BlockOre extends BlockHFSmashable<BlockOre, Ore> implements ISmasha
     @SuppressWarnings("deprecation")
     public float getPlayerRelativeBlockHardness(IBlockState state, @Nonnull EntityPlayer player, @Nonnull World world, @Nonnull BlockPos pos) {
         return (player.getHeldItemMainhand() != null && player.getHeldItemMainhand().getItem() == HFTools.HAMMER)
-                ? ((HFTools.HAMMER.getTier(player.getHeldItemMainhand()).ordinal() + 1) * 0.05F)
-                   - (getToolLevel(getEnumFromState(state)) * 0.025F): -1F;
+                ? ((HFTools.HAMMER.getTier(player.getHeldItemMainhand()).ordinal() + 2) - getToolLevel(getEnumFromState(state))) * 0.025F: -1F;
     }
 
     @SuppressWarnings("deprecation")
@@ -90,11 +89,11 @@ public class BlockOre extends BlockHFSmashable<BlockOre, Ore> implements ISmasha
         switch (ore) {
             case ROCK:
             case COPPER:
+            case AMETHYST:
             case GEM:
                 return 1;
             case SILVER:
             case TOPAZ:
-            case AMETHYST:
                 return 2;
             case GOLD:
             case EMERALD:
@@ -147,16 +146,16 @@ public class BlockOre extends BlockHFSmashable<BlockOre, Ore> implements ISmasha
                 drops = world.isRemote ? Lists.newArrayList(new ItemStack(this)): MiningHelper.getLoot(MINING, world, player, luck);
                 break;
             case COPPER:
-                drops = getRandomStack(world, Material.COPPER, 3);
+                drops = getRandomStack(world, Material.COPPER, 5);
                 break;
             case SILVER:
-                drops = getRandomStack(world, Material.SILVER, 3);
+                drops = getRandomStack(world, Material.SILVER, 4);
                 break;
             case GOLD:
-                drops = getRandomStack(world, Material.GOLD, 5);
+                drops = getRandomStack(world, Material.GOLD, 3);
                 break;
             case MYSTRIL:
-                drops = getRandomStack(world, Material.MYSTRIL, 5);
+                drops = getRandomStack(world, Material.MYSTRIL, 3);
                 break;
             case EMERALD:
                 drops = getRandomStack(world, Items.EMERALD, 5);

@@ -62,6 +62,10 @@ public class EntityHelper {
         return world.getEntitiesWithinAABB(t, new AxisAlignedBB(pos.getX() - 0.5F, pos.getY() - 0.5F, pos.getZ() - 0.5F, pos.getX() + 0.5F, pos.getY() + 0.5F, pos.getZ() + 0.5F).expand(size, ySize, size));
     }
 
+    public static <T extends Entity> List<T> getEntities(Class<? extends T> t, Entity entity, double size) {
+        return entity.worldObj.getEntitiesWithinAABB(t, new AxisAlignedBB(entity.posX - 0.5F, entity.posY - 0.5F, entity.posZ, entity.posX + 0.5F, entity.posY + 0.5F, entity.posZ + 0.5F).expand(size, 3D, size));
+    }
+
     @SuppressWarnings("ConstantConditions")
     public static boolean teleport(Entity entity, int dimension, BlockPos spawn) {
         MinecraftServer server = FMLCommonHandler.instance().getMinecraftServerInstance();

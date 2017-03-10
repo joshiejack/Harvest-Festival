@@ -39,11 +39,10 @@ public class MiningHelper {
     public static final int CHICKEN_FLOORS = 11;
     public static final int SHEEP_FLOORS = 13;
     public static final int COW_FLOORS = 17;
-    public static final int MYSTRIL_FLOOR = 169;
-    public static final int GEM_FLOOR = 127;
+    public static final int MYSTRIL_FLOOR = 127;
     public static final int GOLD_FLOOR = 85;
     public static final int SILVER_FLOOR = 43;
-    public static final int COPPER_FLOOR = 10;
+    public static final int COPPER_FLOOR = 0;
     public static final int MAX_Y = (int) WORLD_HEIGHT - 1;
     public static final int FLOOR_HEIGHT = 6;
     public static final int MAX_FLOORS = (int) Math.floor(WORLD_HEIGHT / FLOOR_HEIGHT);

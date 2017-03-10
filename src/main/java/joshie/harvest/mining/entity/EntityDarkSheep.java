@@ -35,8 +35,8 @@ public class EntityDarkSheep extends EntityMob {
     @Override
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(20.0D);
-        this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(3.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(10.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(2.5D);
         this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.15D);
     }
 
@@ -44,7 +44,7 @@ public class EntityDarkSheep extends EntityMob {
     @Override
     protected void initEntityAI() {
         this.tasks.addTask(0, new EntityAISwimming(this));
-        this.tasks.addTask(4, new EntityAIAttackMelee(this, 0.0D, false));
+        this.tasks.addTask(4, new EntityAIAttackMelee(this, 0.6D, false));
         this.tasks.addTask(7, new EntityAIWander(this, 1.0D));
         this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
         this.tasks.addTask(8, new EntityAILookIdle(this));
@@ -63,7 +63,7 @@ public class EntityDarkSheep extends EntityMob {
     @Override
     protected boolean isValidLightLevel() {
         int floor = MiningHelper.getFloor((int)posX >> 4, (int) posY);
-        return floor >= GOLD_FLOOR && (ANIMALS_ON_EVERY_FLOOR || (((floor + 6) % SHEEP_FLOORS == 0)));
+        return floor >= GOLD_FLOOR && (ANIMALS_ON_EVERY_FLOOR || (((floor + 6) % SHEEP_FLOORS == 0))) && EntityHelper.getEntities(EntityDarkChicken.class, this, 24D).size() < 1;
     }
 
     @Override

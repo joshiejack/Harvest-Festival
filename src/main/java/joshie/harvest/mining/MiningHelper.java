@@ -50,16 +50,14 @@ public class MiningHelper {
     public static final TIntSet HOLE_FLOORS = new TIntHashSet();
 
     static {
-        //1k to copper (1)
         //2k to silver (2)
         //4k to gold (4)
-        //8k to gem(8)
-        //15k to mystril (15)
-        addFloors(9); //Copper unlock, 1k
-        addFloors(27, 41);//Silver unlock, 2k
+        //8k to mystril(8)
+        //15k to mythic (15)
+        addFloors(21, 41);//Silver unlock, 2k
         addFloors(51, 61, 71, 81); //Gold unlock, 4k
-        addFloors(90, 95, 100, 105, 110, 115, 120, 125); //Gem unlock, 8k
-        addFloors(127, 129, 131, 133, 136, 140, 143, 145, 149, 150, 152, 156, 157, 163, 166); //Mystril unlock, 15 floors
+        addFloors(90, 95, 100, 105, 110, 115, 120, 125); //mystril unlock, 8k
+        addFloors(127, 129, 131, 133, 136, 140, 143, 145, 149, 150, 152, 156, 157, 163, 166); //15 fixed floors
 }
 
     private static void addFloors(int... ints) {

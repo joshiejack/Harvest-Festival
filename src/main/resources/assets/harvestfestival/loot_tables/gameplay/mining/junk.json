@@ -72,7 +72,7 @@
         {
           "type": "item",
           "name": "harvestfestival:materials",
-          "entryName": "mythic_255",
+          "entryName": "mythic_1",
           "weight": 1,
           "functions": [
             {
@@ -89,9 +89,184 @@
           ],
           "conditions": [
             {
+              "condition": "harvestfestival:exact",
+              "value": 30
+            },
+            {
+              "condition": "harvestfestival:obtained",
+              "item": "harvestfestival:hoe",
+              "meta": 6
+            },
+            {
+              "condition": "harvestfestival:obtained",
+              "item": "harvestfestival:axe",
+              "meta": 6
+            },
+            {
+              "condition": "harvestfestival:obtained",
+              "item": "harvestfestival:hammer",
+              "meta": 6
+            },
+            {
+              "condition": "harvestfestival:obtained",
+              "item": "harvestfestival:wateringcan",
+              "meta": 6
+            },
+            {
+              "condition": "harvestfestival:obtained",
+              "item": "harvestfestival:sickle",
+              "meta": 6
+            },
+            {
+              "condition": "harvestfestival:obtained",
+              "item": "harvestfestival:fishing_rod",
+              "meta": 6
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "harvestfestival:materials",
+          "entryName": "mythic_43",
+          "weight": 2,
+          "functions": [
+            {
+              "function": "set_data",
+              "data": 5
+            },
+            {
+              "function": "set_count",
+              "count": {
+                "min": 0,
+                "max": 1
+              }
+            }
+          ],
+          "conditions": [
+            {
               "condition": "harvestfestival:between",
-              "from": 0,
-              "to": 255
+              "from": 43,
+              "to": 84
+            },
+            {
+              "condition": "harvestfestival:multiple",
+              "of": 20
+            },
+            {
+              "condition": "harvestfestival:obtained",
+              "item": "harvestfestival:hoe",
+              "meta": 6
+            },
+            {
+              "condition": "harvestfestival:obtained",
+              "item": "harvestfestival:axe",
+              "meta": 6
+            },
+            {
+              "condition": "harvestfestival:obtained",
+              "item": "harvestfestival:hammer",
+              "meta": 6
+            },
+            {
+              "condition": "harvestfestival:obtained",
+              "item": "harvestfestival:wateringcan",
+              "meta": 6
+            },
+            {
+              "condition": "harvestfestival:obtained",
+              "item": "harvestfestival:sickle",
+              "meta": 6
+            },
+            {
+              "condition": "harvestfestival:obtained",
+              "item": "harvestfestival:fishing_rod",
+              "meta": 6
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "harvestfestival:materials",
+          "entryName": "mythic_85",
+          "weight": 4,
+          "functions": [
+            {
+              "function": "set_data",
+              "data": 5
+            },
+            {
+              "function": "set_count",
+              "count": {
+                "min": 0,
+                "max": 1
+              }
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "harvestfestival:between",
+              "from": 85,
+              "to": 126
+            },
+            {
+              "condition": "harvestfestival:multiple",
+              "of": 15
+            },
+            {
+              "condition": "harvestfestival:obtained",
+              "item": "harvestfestival:hoe",
+              "meta": 6
+            },
+            {
+              "condition": "harvestfestival:obtained",
+              "item": "harvestfestival:axe",
+              "meta": 6
+            },
+            {
+              "condition": "harvestfestival:obtained",
+              "item": "harvestfestival:hammer",
+              "meta": 6
+            },
+            {
+              "condition": "harvestfestival:obtained",
+              "item": "harvestfestival:wateringcan",
+              "meta": 6
+            },
+            {
+              "condition": "harvestfestival:obtained",
+              "item": "harvestfestival:sickle",
+              "meta": 6
+            },
+            {
+              "condition": "harvestfestival:obtained",
+              "item": "harvestfestival:fishing_rod",
+              "meta": 6
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "harvestfestival:materials",
+          "entryName": "mythic_127",
+          "weight": 8,
+          "functions": [
+            {
+              "function": "set_data",
+              "data": 5
+            },
+            {
+              "function": "set_count",
+              "count": {
+                "min": 0,
+                "max": 1
+              }
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "harvestfestival:between",
+              "from": 127,
+              "to": 168
             },
             {
               "condition": "harvestfestival:multiple",
@@ -132,8 +307,8 @@
         {
           "type": "item",
           "name": "harvestfestival:materials",
-          "entryName": "mythic_999",
-          "weight": 2,
+          "entryName": "mythic_169",
+          "weight": 1,
           "functions": [
             {
               "function": "set_data",
@@ -150,8 +325,8 @@
           "conditions": [
             {
               "condition": "harvestfestival:between",
-              "from": 256,
-              "to": 999
+              "from": 169,
+              "to": 211
             },
             {
               "condition": "harvestfestival:multiple",
@@ -192,8 +367,8 @@
         {
           "type": "item",
           "name": "harvestfestival:materials",
-          "entryName": "mythic_65535",
-          "weight": 3,
+          "entryName": "mythic_212",
+          "weight": 16,
           "functions": [
             {
               "function": "set_data",
@@ -210,12 +385,67 @@
           "conditions": [
             {
               "condition": "harvestfestival:between",
-              "from": 1000,
-              "to": 65535
+              "from": 212,
+              "to": 254
             },
             {
               "condition": "harvestfestival:multiple",
               "of": 3
+            },
+            {
+              "condition": "harvestfestival:obtained",
+              "item": "harvestfestival:hoe",
+              "meta": 6
+            },
+            {
+              "condition": "harvestfestival:obtained",
+              "item": "harvestfestival:axe",
+              "meta": 6
+            },
+            {
+              "condition": "harvestfestival:obtained",
+              "item": "harvestfestival:hammer",
+              "meta": 6
+            },
+            {
+              "condition": "harvestfestival:obtained",
+              "item": "harvestfestival:wateringcan",
+              "meta": 6
+            },
+            {
+              "condition": "harvestfestival:obtained",
+              "item": "harvestfestival:sickle",
+              "meta": 6
+            },
+            {
+              "condition": "harvestfestival:obtained",
+              "item": "harvestfestival:fishing_rod",
+              "meta": 6
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "harvestfestival:materials",
+          "entryName": "mythic_295",
+          "weight": 32,
+          "functions": [
+            {
+              "function": "set_data",
+              "data": 5
+            },
+            {
+              "function": "set_count",
+              "count": {
+                "min": 0,
+                "max": 1
+              }
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "harvestfestival:from",
+              "from": 255
             },
             {
               "condition": "harvestfestival:obtained",

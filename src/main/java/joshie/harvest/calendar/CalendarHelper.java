@@ -10,6 +10,8 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 
+import javax.annotation.Nonnull;
+
 import static joshie.harvest.api.calendar.CalendarDate.DAYS_PER_SEASON;
 import static joshie.harvest.calendar.HFCalendar.TICKS_PER_DAY;
 
@@ -69,7 +71,7 @@ public class CalendarHelper {
         return current_days + season_days + year_days;
     }
 
-    public static int getYearsPassed(CalendarDate birthday, CalendarDate date) {
+    public static int getYearsPassed(@Nonnull CalendarDate birthday, @Nonnull CalendarDate date) {
         double current_total_days = getTotalDays(date);
         double birthday_total_days = getTotalDays(birthday);
         int one_year = DAYS_PER_SEASON * 4;

@@ -26,10 +26,18 @@ import java.util.HashSet;
 import java.util.Map.Entry;
 import java.util.UUID;
 
+import static joshie.harvest.api.calendar.Season.SPRING;
 import static joshie.harvest.town.BuildingLocations.MINE_ENTRANCE;
 
 public class TownTrackerServer extends TownTracker<TownDataServer> {
-    public static final TownDataServer NULL_TOWN = new TownDataServer();
+    private static final CalendarDate FUTURE = new CalendarDate(0, SPRING, 999);
+    public static final TownDataServer NULL_TOWN = new TownDataServer() {
+        @Override
+        public CalendarDate getBirthday() {
+            return FUTURE;
+        }
+    };
+
     private TownSavedData data;
     private BiMap<UUID, Integer> townIDs = HashBiMap.create();
 

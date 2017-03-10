@@ -136,9 +136,9 @@ public class HFShops {
         BARN.addPurchasable(30, HFAnimals.TREATS.getStackFromEnum(Treat.SHEEP));
         BARN.addPurchasable(new PurchasableEntity(EntityHarvestCow.class, 5000, HFAnimals.ANIMAL.getStackFromEnum(COW)).setNote(HFNotes.COW_CARE));
         BARN.addPurchasable(new PurchasableEntity(EntityHarvestSheep.class, 4000, HFAnimals.ANIMAL.getStackFromEnum(SHEEP)).setNote(HFNotes.SHEEP_CARE));
-        BARN.addPurchasable(500, HFAnimals.TROUGH.getStackFromEnum(WOOD), 3);
+        BARN.addPurchasable(500, HFAnimals.TROUGH.getStackFromEnum(WOOD));
         BARN.addPurchasable(1000, HFAnimals.TOOLS.getStackFromEnum(MEDICINE));
-        BARN.addPurchasable(3000, HFAnimals.TOOLS.getStackFromEnum(MIRACLE_POTION), 1);
+        BARN.addPurchasable(3000, HFAnimals.TOOLS.getStackFromEnum(MIRACLE_POTION));
         BARN.addPurchasable(250, new ItemStack(Items.NAME_TAG));
         BARN.addPurchasable(150, new ItemStack(Items.LEAD));
         BARN.addPurchasable(1000, new ItemStack(Items.SADDLE));
@@ -275,22 +275,22 @@ public class HFShops {
         CARPENTER.addPurchasable(new PurchasableBuilding(50000L, HFBuildings.TOWNHALL, Logs.of(640), Stone.of(256), Glass.of(48), Bricks.of(32)));
         CARPENTER.addPurchasable(new PurchasableMaterials(0L, HFCore.STORAGE.getStackFromEnum(Storage.SHIPPING), Logs.of(8)).addTooltip("storage.shipping").setNote(HFNotes.SHIPPING));
         CARPENTER.addPurchasable(new PurchasableMaterials(0L, HFCore.STORAGE.getStackFromEnum(Storage.MAILBOX), Logs.of(4)).addTooltip("storage.mailbox").setNote(HFNotes.MAILBOX));
-        CARPENTER.addPurchasable(new PurchasableMaterials(3000L, HFCrops.SPRINKLER.getStackFromEnum(Sprinkler.OLD), Logs.of(4), Copper.of(8)) {
+        CARPENTER.addPurchasable(new PurchasableMaterials(1000L, HFCrops.SPRINKLER.getStackFromEnum(Sprinkler.OLD), Logs.of(4), Copper.of(1)) {
             @Override
             public boolean canList(@Nonnull World world, @Nonnull EntityPlayer player) {
                 CalendarDate date = HFApi.calendar.getDate(world);
                 return (date.getYear() >= 1 || date.getSeason().ordinal() >= 1);
             }
-        }.setStock(10).addTooltip("sprinkler.old"));
+        }.addTooltip("sprinkler.old"));
 
-        CARPENTER.addPurchasable(new PurchasableMaterials(10000L, HFCrops.SPRINKLER.getStackFromEnum(Sprinkler.IRON), Logs.of(4), Silver.of(8)) {
+        CARPENTER.addPurchasable(new PurchasableMaterials(9000L, HFCrops.SPRINKLER.getStackFromEnum(Sprinkler.IRON), Logs.of(4), Silver.of(1)) {
             @Override
             public boolean canList(@Nonnull World world, @Nonnull EntityPlayer player) {
                 return HFApi.quests.hasCompleted(Quests.SELL_SPRINKLER, player);
             }
-        }.setStock(3).addTooltip("sprinkler.iron.tooltip"));
+        }.addTooltip("sprinkler.iron.tooltip"));
 
-        CARPENTER.addPurchasable(new PurchasableMaterials(500L, HFQuests.QUEST_BLOCK.getStackFromEnum(QuestBlock.BOARD), Logs.of(8), Gold.of(4)) {
+        CARPENTER.addPurchasable(new PurchasableMaterials(500L, HFQuests.QUEST_BLOCK.getStackFromEnum(QuestBlock.BOARD), Logs.of(4), Gold.of(1)) {
             @Override
             public boolean canList(@Nonnull World world, @Nonnull EntityPlayer player) {
                 return TownHelper.getClosestTownToEntity(player, false).hasBuilding(HFBuildings.TOWNHALL);
@@ -351,9 +351,9 @@ public class HFShops {
         POULTRY.addPurchasable(new PurchasableEntity(EntityHarvestChicken.class, 1500, HFAnimals.ANIMAL.getStackFromEnum(CHICKEN)).setNote(HFNotes.CHICKEN_CARE));
         POULTRY.addPurchasable(1000, HFAnimals.TOOLS.getStackFromEnum(MEDICINE));
         POULTRY.addPurchasable(250, new ItemStack(Items.NAME_TAG));
-        POULTRY.addPurchasable(500, HFAnimals.TRAY.getStackFromEnum(FEEDER_EMPTY), 3);
-        POULTRY.addPurchasable(1000, HFAnimals.TRAY.getStackFromEnum(NEST_EMPTY), 3);
-        POULTRY.addPurchasable(5000, HFAnimals.SIZED.getStackFromEnum(INCUBATOR), 1);
+        POULTRY.addPurchasable(500, HFAnimals.TRAY.getStackFromEnum(FEEDER_EMPTY));
+        POULTRY.addPurchasable(1000, HFAnimals.TRAY.getStackFromEnum(NEST_EMPTY));
+        POULTRY.addPurchasable(5000, HFAnimals.SIZED.getStackFromEnum(INCUBATOR));
         POULTRY.setSpecialRules(new SpecialRulesQuest(Quests.ASHLEE_MEET));
         POULTRY.addOpening(MONDAY, 6000, 12000).addOpening(TUESDAY, 6000, 12000).addOpening(WEDNESDAY, 6000, 12000);
         POULTRY.addOpening(THURSDAY, 6000, 12000).addOpening(FRIDAY, 6000, 12000).addOpening(SATURDAY, 6000, 12000);
@@ -392,7 +392,7 @@ public class HFShops {
         BAITSHOP.addPurchasable(new Purchasable(500L, HFFishing.AQUATIC_BLOCKS.getStackFromEnum(Aquatic.TRAP)).setStock(10).addTooltip("aquatic.trap"));
         BAITSHOP.addPurchasable(new PurchasableMaterials(3000L, HFFishing.FLOATING_BLOCKS.getStackFromEnum(Floating.HATCHERY), Logs.of(8), String.of(6)) {
             @Override
-            public boolean canList(World world, EntityPlayer player) {
+            public boolean canList(@Nonnull World world, @Nonnull EntityPlayer player) {
                 return HFApi.quests.hasCompleted(Quests.SELL_HATCHERY, player);
             }
         }.setStock(1).addTooltip("floating.hatchery"));

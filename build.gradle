@@ -70,6 +70,7 @@ jar {
         attributes 'FMLCorePlugin': 'joshie.harvest.asm.HFTransformer'
         attributes 'FMLCorePluginContainsFMLMod': 'true'
     }
+	exclude 'joshie/harvest/debug'
 }
 
 task apiJar(type: Jar) {

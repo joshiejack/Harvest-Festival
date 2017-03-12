@@ -15,7 +15,6 @@ import joshie.harvest.core.base.item.ItemHFEnum;
 import joshie.harvest.core.helpers.ChatHelper;
 import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.core.util.HFTemplate;
-import joshie.harvest.mining.HFMining;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -162,8 +161,8 @@ public class ItemCheat extends ItemHFEnum<ItemCheat, Cheat> {
         } else if (damage == ORE_CHECKER.ordinal()) {
             if (!world.isRemote) {
                 TIntObjectMap<TObjectIntMap<IBlockState>> map = new TIntObjectHashMap<>();
-                int start = 500;
-                int loop = 10;
+                int start = 800;
+                int loop = 1;
                 HarvestFestival.LOGGER.log(Level.INFO, "Started loop");
                 for (int mineID = start; mineID < start + loop; mineID++) {
                     HarvestFestival.LOGGER.log(Level.INFO, "Processing mine: " + mineID);
@@ -178,9 +177,9 @@ public class ItemCheat extends ItemHFEnum<ItemCheat, Cheat> {
                                     BlockPos toCheck = pos2.add(x, 0, z);
                                     toCheck = new BlockPos(toCheck.getX(), y, toCheck.getZ());
                                     IBlockState state = world.getBlockState(toCheck);
-                                    if (state.getBlock() == HFMining.ORE) {
+                                    //if (state.getBlock() == HFMining.ORE) {
                                         counter.adjustOrPutValue(state, 1, 1);
-                                    }
+                                    //}
                                 }
                             }
                         }

@@ -33,9 +33,7 @@ public class AnimalStatsLivestock extends AnimalStatsHF {
 
     @Override
     protected void postStress() {
-        if (cleanliness < 0) {
-            healthiness += Math.max(1, cleanliness / 2);
-        } else if (cleanliness >= 0) {
+        if (cleanliness >= 0) {
             cleanliness = 0;
         }
     }

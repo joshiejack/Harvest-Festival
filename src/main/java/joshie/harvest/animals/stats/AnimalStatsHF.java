@@ -42,8 +42,6 @@ public class AnimalStatsHF implements AnimalStats<NBTTagCompound> {
     protected UUID o_uuid;
 
     private int currentLifespan = 0; //How many days this animal has lived for
-    protected int healthiness = Byte.MAX_VALUE; //How healthy this animal is, full byte range
-    private int stress = Byte.MIN_VALUE; //How stressed this animal is, full byte range
     private int daysNotFed; //How many subsequent days that this animal has not been fed
     private boolean loadHappiness = false; //TODO: Remove in 0.7+
     private boolean beenLoved; //If the animal has received love today
@@ -112,7 +110,6 @@ public class AnimalStatsHF implements AnimalStats<NBTTagCompound> {
 
         //Gets the adjusted relationship, 0-35k
         double chance = (happiness / (double) RelationshipType.ANIMAL.getMaximumRP()) * 200;
-        chance += healthiness;
         if (chance <= 1) {
             chance = 1D;
         }
@@ -135,20 +132,9 @@ public class AnimalStatsHF implements AnimalStats<NBTTagCompound> {
         boolean dayTime = world.isDaytime();
         boolean isRaining = world.isRaining();
         boolean isOutside = world.canBlockSeeSky(new BlockPos(animal));
-        if (((isRaining || !dayTime) && isOutside)) {
-            stress = (byte) Math.min(Byte.MAX_VALUE, stress + 10);
-        } else if (stress > Byte.MIN_VALUE) {
-            stress--;
-        }
-
-        if (stress > 0) {
-            healthiness--;
-        }
-
         boolean isOutsideInSun = !isRaining && isOutside && dayTime;
         EntityPlayer owner = getOwner();
         if (owner != null && isOutsideInSun && wasOutsideInSun) {
-            healthiness++;
             affectHappiness(type.getRelationshipBonus(AnimalAction.OUTSIDE));
         }
 
@@ -190,61 +176,32 @@ public class AnimalStatsHF implements AnimalStats<NBTTagCompound> {
             }
 
             //If the animal is not sick, check the healthiness
-            if (!isSick) {
-                if (healthiness < 0) {
-                    isSick = true; //Make the animal sick
-                }
-            }
+            if (!isSick && daysNotFed >= 0) {
+                isSick = true; //Make the animal sick
+            } else if (isSick && daysNotFed < 0) isSick = false;
 
             //Reset everything and increase where appropriate
             currentLifespan++;
-            int originalHealth = healthiness;
-            healthiness -= daysNotFed;
 
             preStress();
-            if (!HFAnimals.OUTDOOR_HAPPINESS) {
-                World world = animal.worldObj;
-                boolean isOutside = world.canBlockSeeSky(new BlockPos(animal));
-                boolean isRaining = world.isRaining();
-                if ((isRaining && isOutside)) {
-                    stress = (byte) Math.min(Byte.MAX_VALUE, stress + 50);
-                } else if (stress > Byte.MIN_VALUE) {
-                    stress--;
-                }
-
-                if (stress > 0) {
-                    healthiness--;
-                }
-            }
-
             postStress();
 
-            //Add health daily for animals that are being looked after
-            if (healthiness == originalHealth) {
-                healthiness+= 10;
-            }
-
             beenLoved = false;
-            healthiness = Math.min(127, Math.max(-128, healthiness));
             daysNotFed++;
             daysPassed++;
             updateStats();
 
             //Updating potion effects on the animal
             if (isSick) {
-                if (!wasSick) {
-                    wasSick = true;
-                    animal.addPotionEffect(new PotionEffect(MobEffects.NAUSEA, 1000000, 0));
-                    animal.addPotionEffect(new PotionEffect(MobEffects.BLINDNESS, 1000000, 0));
-                    animal.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS, 1000000, 0));
-                }
-            } else {
-                if (wasSick) {
-                    wasSick = false;
-                    animal.removePotionEffect(MobEffects.NAUSEA);
-                    animal.removePotionEffect(MobEffects.BLINDNESS);
-                    animal.removePotionEffect(MobEffects.SLOWNESS);
-                }
+                wasSick = true;
+                animal.addPotionEffect(new PotionEffect(MobEffects.NAUSEA, 1000000, 0));
+                animal.addPotionEffect(new PotionEffect(MobEffects.BLINDNESS, 1000000, 0));
+                animal.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS, 1000000, 0));
+            } else if (wasSick) {
+                wasSick = false;
+                animal.removePotionEffect(MobEffects.NAUSEA);
+                animal.removePotionEffect(MobEffects.BLINDNESS);
+                animal.removePotionEffect(MobEffects.SLOWNESS);
             }
 
             //Updating grabbing products between animals
@@ -292,7 +249,7 @@ public class AnimalStatsHF implements AnimalStats<NBTTagCompound> {
 
     @Override
     public boolean canProduce() {
-        return healthiness > 0 && producedProducts < productsPerDay;
+        return !isSick && producedProducts < productsPerDay;
     }
 
     @Override
@@ -362,10 +319,9 @@ public class AnimalStatsHF implements AnimalStats<NBTTagCompound> {
     }
 
     private boolean heal(@Nonnull World world) {
-        if (healthiness < 27) {
+        if (isSick) {
             animal.clearActivePotions();
             if (!world.isRemote) {
-                healthiness = Byte.MAX_VALUE;
                 isSick = false;
                 affectHappiness(type.getRelationshipBonus(AnimalAction.HEAL));
                 HFApi.animals.syncAnimalStats(animal);
@@ -449,8 +405,6 @@ public class AnimalStatsHF implements AnimalStats<NBTTagCompound> {
         }
 
         currentLifespan = nbt.getShort("CurrentLifespan");
-        healthiness = nbt.getByte("Healthiness");
-        stress = nbt.getByte("Stress");
         daysNotFed = nbt.getByte("DaysNotFed");
         daysPassed = nbt.getByte("DaysPassed");
         treated = nbt.getBoolean("Treated");
@@ -481,8 +435,6 @@ public class AnimalStatsHF implements AnimalStats<NBTTagCompound> {
         }
 
         tag.setShort("CurrentLifespan", (short) currentLifespan);
-        tag.setByte("Healthiness", (byte) healthiness);
-        tag.setByte("Stress", (byte) stress);
         tag.setByte("DaysNotFed", (byte) daysNotFed);
         tag.setByte("DaysPassed", (byte) daysPassed);
         tag.setBoolean("Treated", treated);

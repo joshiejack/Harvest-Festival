@@ -42,7 +42,7 @@ public class ItemAnimalProduct extends ItemHFSizeable<ItemAnimalProduct, Sizeabl
     }
 
     public enum Sizeable implements IStringSerializable, ISizeable {
-        EGG(50, 60, 80, 120), MILK(90, 120, 200, 300), MAYONNAISE(70, 80, 100, 150), WOOL(500, 750, 1000, 1500);
+        EGG(50, 60, 80, 120), MILK(100, 150, 200, 300), MAYONNAISE(70, 80, 100, 150), WOOL(500, 750, 1000, 1500);
 
         private final long small;
         private final long medium;

@@ -134,11 +134,11 @@ public class HFShops {
         BARN.addPurchasable(10, HFAnimals.TREATS.getStackFromEnum(Treat.GENERIC));
         BARN.addPurchasable(30, HFAnimals.TREATS.getStackFromEnum(Treat.COW));
         BARN.addPurchasable(30, HFAnimals.TREATS.getStackFromEnum(Treat.SHEEP));
-        BARN.addPurchasable(new PurchasableEntity(EntityHarvestCow.class, 5000, HFAnimals.ANIMAL.getStackFromEnum(COW)).setNote(HFNotes.COW_CARE));
-        BARN.addPurchasable(new PurchasableEntity(EntityHarvestSheep.class, 4000, HFAnimals.ANIMAL.getStackFromEnum(SHEEP)).setNote(HFNotes.SHEEP_CARE));
+        BARN.addPurchasable(new PurchasableEntity(EntityHarvestCow.class, 3000, HFAnimals.ANIMAL.getStackFromEnum(COW)).setNote(HFNotes.COW_CARE));
+        BARN.addPurchasable(new PurchasableEntity(EntityHarvestSheep.class, 2500, HFAnimals.ANIMAL.getStackFromEnum(SHEEP)).setNote(HFNotes.SHEEP_CARE));
         BARN.addPurchasable(500, HFAnimals.TROUGH.getStackFromEnum(WOOD));
         BARN.addPurchasable(1000, HFAnimals.TOOLS.getStackFromEnum(MEDICINE));
-        BARN.addPurchasable(3000, HFAnimals.TOOLS.getStackFromEnum(MIRACLE_POTION));
+        BARN.addPurchasable(1500, HFAnimals.TOOLS.getStackFromEnum(MIRACLE_POTION));
         BARN.addPurchasable(250, new ItemStack(Items.NAME_TAG));
         BARN.addPurchasable(150, new ItemStack(Items.LEAD));
         BARN.addPurchasable(1000, new ItemStack(Items.SADDLE));
@@ -501,7 +501,7 @@ public class HFShops {
         COW_FESTIVAL_BARGAINS.addPurchasable(500, HFCrops.GRASS.getCropStack(16));
         COW_FESTIVAL_BARGAINS.addPurchasable(1000, HFAnimals.TROUGH.getStackFromEnum(Trough.WOOD, 3));
         COW_FESTIVAL_BARGAINS.addPurchasable(1000, HFAnimals.TOOLS.getStackFromEnum(Tool.MEDICINE, 2));
-        COW_FESTIVAL_BARGAINS.addPurchasable(1500, HFAnimals.TOOLS.getStackFromEnum(Tool.MIRACLE_POTION));
+        COW_FESTIVAL_BARGAINS.addPurchasable(1000, HFAnimals.TOOLS.getStackFromEnum(Tool.MIRACLE_POTION));
         COW_FESTIVAL_BARGAINS.addPurchasable(500, HFAnimals.TOOLS.getStackFromEnum(Tool.BRUSH));
         COW_FESTIVAL_BARGAINS.addPurchasable(1000, HFAnimals.TOOLS.getStackFromEnum(Tool.MILKER));
         COW_FESTIVAL_BARGAINS.addPurchasable(100, new ItemStack(Items.NAME_TAG));
@@ -523,7 +523,7 @@ public class HFShops {
         SHEEP_FESTIVAL_SALE.addPurchasable(500, HFCrops.GRASS.getCropStack(16));
         SHEEP_FESTIVAL_SALE.addPurchasable(1000, HFAnimals.TROUGH.getStackFromEnum(Trough.WOOD, 3));
         SHEEP_FESTIVAL_SALE.addPurchasable(1000, HFAnimals.TOOLS.getStackFromEnum(Tool.MEDICINE, 2));
-        SHEEP_FESTIVAL_SALE.addPurchasable(1500, HFAnimals.TOOLS.getStackFromEnum(Tool.MIRACLE_POTION));
+        SHEEP_FESTIVAL_SALE.addPurchasable(1000, HFAnimals.TOOLS.getStackFromEnum(Tool.MIRACLE_POTION));
         SHEEP_FESTIVAL_SALE.addPurchasable(500, HFAnimals.TOOLS.getStackFromEnum(Tool.BRUSH));
         SHEEP_FESTIVAL_SALE.addPurchasable(1000, new ItemStack(Items.SHEARS));
         SHEEP_FESTIVAL_SALE.addPurchasable(100, new ItemStack(Items.NAME_TAG));

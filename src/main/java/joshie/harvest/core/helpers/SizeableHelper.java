@@ -21,7 +21,7 @@ public class SizeableHelper {
         Size size = null;
         int relationship = HFApi.relationships.getRelationship(player, tracked.getUUID());
         for (Size s: Size.values()) {
-            if (relationship >= s.getRelationshipRequirement()) size = s;
+            if (relationship >= (s.getRelationshipRequirement() / 5)) size = s;
         }
         
         return sizeable.getStackOfSize(size, tracked.getData().getProductsPerDay());

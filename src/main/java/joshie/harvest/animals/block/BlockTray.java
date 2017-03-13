@@ -153,7 +153,7 @@ public class BlockTray extends BlockHFEnum<BlockTray, Tray> implements IAnimalFe
             Size size = null;
             int relationship = HFApi.relationships.getRelationship(player, tracked.getUUID());
             for (Size s : Size.values()) {
-                if (relationship >= s.getRelationshipRequirement()) size = s;
+                if (relationship >= (s.getRelationshipRequirement() / 5)) size = s;
             }
 
             if (size == Size.SMALL) world.setBlockState(pos, getStateFromEnum(SMALL_CHICKEN));

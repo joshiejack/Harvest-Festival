@@ -3,8 +3,8 @@ package joshie.harvest.animals.block;
 import joshie.harvest.animals.block.BlockSizedStorage.SizedStorage;
 import joshie.harvest.animals.tile.TileIncubator;
 import joshie.harvest.api.core.ISizeable.Size;
-import joshie.harvest.core.base.tile.TileFillableSized;
 import joshie.harvest.core.base.block.BlockHFEnumRotatableTile;
+import joshie.harvest.core.base.tile.TileFillableSized;
 import joshie.harvest.core.util.IFaceable;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -81,9 +81,9 @@ public class BlockSizedStorage extends BlockHFEnumRotatableTile<BlockSizedStorag
     @SuppressWarnings("deprecation")
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos) {
-        IFaceable tile = (IFaceable) world.getTileEntity(pos);
-        if (tile != null) {
-            switch (tile.getFacing()) {
+        TileEntity tile = world.getTileEntity(pos);
+        if (tile instanceof IFaceable) {
+            switch (((IFaceable)tile).getFacing()) {
                 case NORTH:
                     return NEST_NORTH_AABB;
                 case SOUTH:
@@ -95,7 +95,9 @@ public class BlockSizedStorage extends BlockHFEnumRotatableTile<BlockSizedStorag
                 default:
                     return FULL_BLOCK_AABB;
             }
-        } else return FULL_BLOCK_AABB;
+        }
+
+        return FULL_BLOCK_AABB;
     }
 
     @Override

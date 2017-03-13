@@ -62,7 +62,7 @@ public class MiningDaily {
     public void onChunkLoad(ChunkDataEvent.Load event) {
         if (event.getWorld().provider.getDimension() == HFMining.MINING_ID) {
             NBTTagCompound tag = getCompoundTag(event.getData());
-            long chunk = ChunkPos.chunkXZ2Int(event.getChunk().xPosition, event.getChunk().zPosition);
+            long chunk = ChunkPos.asLong(event.getChunk().xPosition, event.getChunk().zPosition);
             if (tag.hasKey("" + chunk)) {
                 int days = CalendarHelper.getElapsedDays(event.getWorld().getWorldTime());
                 int lastDay = tag.getInteger("" + chunk);
@@ -77,7 +77,7 @@ public class MiningDaily {
     public void onChunkSave(ChunkDataEvent.Save event) {
         if (event.getWorld().provider.getDimension() == HFMining.MINING_ID) {
             NBTTagCompound tag = getCompoundTag(event.getData());
-            long chunk = ChunkPos.chunkXZ2Int(event.getChunk().xPosition, event.getChunk().zPosition);
+            long chunk = ChunkPos.asLong(event.getChunk().xPosition, event.getChunk().zPosition);
             int days = CalendarHelper.getElapsedDays(event.getWorld().getWorldTime());
             tag.setInteger("" + chunk, days);
         }

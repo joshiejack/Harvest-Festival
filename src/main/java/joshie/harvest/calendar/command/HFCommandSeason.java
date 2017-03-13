@@ -30,7 +30,7 @@ public class HFCommandSeason extends AbstractHFCommand {
                 if (StringUtils.equalsIgnoreCase(season.name(), parameters[0])) {
                     CalendarServer calendar = HFTrackers.getCalendar(sender.getEntityWorld());
                     int day = calendar.getDate().getDay();
-                    int year = Math.max(1, calendar.getDate().getYear());
+                    int year = calendar.getDate().getYear() + 1;
                     long leftover = server.worldServers[0].getWorldTime() % HFCalendar.TICKS_PER_DAY;
                     CalendarHelper.setWorldTime(server, CalendarHelper.getTime(day, season, year) + leftover);
                     return true;

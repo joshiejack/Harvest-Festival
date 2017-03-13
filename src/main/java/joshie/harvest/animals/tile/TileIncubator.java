@@ -53,7 +53,7 @@ public class TileIncubator extends TileFillableSizedFaceable {
                     if (size == Size.LARGE && worldObj.rand.nextInt(50) == 0) amount++;
                     for (int i = 0; i < amount; i++) {
                         EntityHarvestChicken baby = new EntityHarvestChicken(worldObj);
-                        baby.setPositionAndUpdate(getPos().getX() + 3 * getWorld().rand.nextDouble(), getPos().getY() + getWorld().rand.nextDouble(), getPos().getZ() + 3 * getWorld().rand.nextDouble());
+                        baby.setPositionAndUpdate(pos.getX() + 0.5D, pos.up().getY() + worldObj.rand.nextDouble(), pos.getZ() + 0.5D);
                         baby.setGrowingAge(-(24000 * HFAnimals.AGING_TIMER));
                         baby.getData().setOwner(owner);
                         HFTrackers.getPlayerTracker(worldObj, owner).getRelationships().copyRelationship(EntityHelper.getPlayerFromUUID(owner), relationship, EntityHelper.getEntityUUID(baby), 50D);

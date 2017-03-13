@@ -1,3 +1,10 @@
+##0.5.24
+* Reduce requirements for medium/large products
+* Baby chicks will spawn on top of the incubator
+* Fix a crash with inserting fluids in sprinklers
+* Fix hf day and seasons commands resetting the year
+* Add Korean translation by SPRiA, DarkFate, Kaidaki
+
 ##0.5.23
 * Fix animals bonus products not working
 * Fix inventory issue when closing shop guis

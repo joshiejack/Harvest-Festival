@@ -94,7 +94,7 @@ public class EntityHarvestChicken extends EntityChicken implements IAnimalTracke
         if (toLovePlayer != null) {
             if (toLoveTicker >= 0) toLoveTicker--;
             else {
-                HFTrackers.getPlayerTrackerFromPlayer(toLovePlayer).getRelationships().affectRelationship(toLovePlayer, getUUID(), 100);
+                HFTrackers.getPlayerTrackerFromPlayer(toLovePlayer).getRelationships().talkTo(toLovePlayer, getUUID());
                 toLovePlayer = null;
             }
         }

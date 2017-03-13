@@ -10,6 +10,7 @@ import joshie.harvest.npc.entity.EntityNPC;
 import joshie.harvest.town.TownData;
 import joshie.harvest.town.TownHelper;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -19,6 +20,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -51,6 +53,12 @@ public class ItemNPCSpawner extends ItemHFFML<ItemNPCSpawner, NPC> {
                 if (npc == HFNPCs.BUILDER) {
                     TownData data = TownHelper.getClosestTownToEntity(entity);
                     entity.setUniqueId(data.getID());
+                    if (world instanceof WorldServer) {
+                        Entity entity1 = ((WorldServer)world).getEntityFromUuid(data.getID());
+                        if (entity1 != null) {
+                            entity1.setPosition(pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5);
+                        }
+                    }
                 }
 
                 world.spawnEntityInWorld(entity);

@@ -79,7 +79,7 @@ public class SleepHandler {
 
         player.sleeping = true;
         player.sleepTimer = 0;
-        player.playerLocation = bedLocation;
+        player.bedLocation = bedLocation;
         player.motionX = 0.0D;
         player.motionY = 0.0D;
         player.motionZ = 0.0D;

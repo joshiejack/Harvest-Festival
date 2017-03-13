@@ -1,5 +1,6 @@
 package joshie.harvest.core.handlers;
 
+import joshie.harvest.core.HFCore;
 import joshie.harvest.core.util.annotations.HFEvents;
 import joshie.harvest.core.util.holders.HolderRegistrySet;
 import net.minecraft.block.Block;
@@ -115,7 +116,12 @@ public class DisableHandler {
             if (event.getState().getBlock() == Blocks.TALLGRASS || event.getState().getBlock() == Blocks.DOUBLE_PLANT || GRASS.contains(event.getState().getBlock())) {
                 Iterator<ItemStack> it = event.getDrops().iterator();
                 while (it.hasNext()) {
-                    if (SEEDS_BLACKLIST.contains(it.next())) it.remove();
+                    ItemStack stack = it.next();
+                    if (stack == null) {
+                        if (HFCore.DEBUG_MODE) System.out.println(event.getState() + " had a null itemstack somehow...");
+                    } else if (stack.getItem() == null) {
+                        if (HFCore.DEBUG_MODE) System.out.println(event.getState() + " had a null item somehow...");
+                    } else if (SEEDS_BLACKLIST.contains(stack)) it.remove();
                 }
             }
         }

@@ -7,6 +7,7 @@ import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.cooking.item.ItemMeal.Meal;
 import joshie.harvest.cooking.recipe.RecipeHF;
 import joshie.harvest.cooking.recipe.RecipeMaker;
+import joshie.harvest.core.HFCore;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.item.ItemHFFoodEnum;
 import joshie.harvest.core.helpers.TextHelper;
@@ -128,7 +129,7 @@ public class ItemMeal extends ItemHFFoodEnum<ItemMeal, Meal> {
     @SideOnly(Side.CLIENT)
     @SuppressWarnings("ConstantConditions")
     public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean debug) {
-        if (debug) {
+        if (HFCore.DEBUG_MODE && debug) {
             if (stack.hasTagCompound()) {
                 list.add(TextHelper.translate("meal.hunger") + " : " + stack.getTagCompound().getInteger(FOOD_LEVEL));
                 list.add(TextHelper.translate("meal.sat") + " : " + stack.getTagCompound().getFloat(SATURATION_LEVEL));

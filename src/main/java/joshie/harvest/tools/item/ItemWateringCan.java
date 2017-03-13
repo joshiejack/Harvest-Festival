@@ -2,6 +2,7 @@ package joshie.harvest.tools.item;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.crops.IStateHandler.PlantSection;
+import joshie.harvest.core.HFCore;
 import joshie.harvest.core.base.item.ItemTool;
 import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.core.helpers.TextHelper;
@@ -200,7 +201,7 @@ public class ItemWateringCan extends ItemTool<ItemWateringCan> {
         int depth = 1 + getFront(tier);
         tooltip.add(TextFormatting.AQUA + TextHelper.formatHF("wateringcan.tooltip.dimensions", width, depth));
 
-        if (advanced) {
+        if (HFCore.DEBUG_MODE && advanced) {
             tooltip.add("Water: " + getCapacity(stack));
             tooltip.add("Level: " + getLevel(stack));
         }

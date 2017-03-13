@@ -10,7 +10,6 @@ import joshie.harvest.core.util.annotations.HFEvents;
 import joshie.harvest.crops.HFCrops;
 import joshie.harvest.crops.block.BlockLeavesFruit.LeavesFruit;
 import joshie.harvest.crops.block.BlockLeavesTropical.LeavesTropical;
-import joshie.harvest.debug.Debug;
 import net.minecraft.block.Block;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.IBlockState;
@@ -88,14 +87,6 @@ public class BakedLeaves extends BakedHF {
         @SubscribeEvent
         public void onBaking(ModelBakeEvent event) {
             IRegistry<ModelResourceLocation, IBakedModel> registry = event.getModelRegistry();
-            StringBuilder builder = new StringBuilder();
-            for (ModelResourceLocation list: registry.getKeys()) {
-                builder.append(list);
-                builder.append("\n");
-            }
-
-            Debug.save(builder);
-
             IBakedModel oak = registry.getObject(new ModelResourceLocation("minecraft:oak_leaves#normal"));
             TextureAtlasSprite spriteOak = Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite("harvestfestival:blocks/leaves_oak_black");
             for (LeavesFruit leaves: LeavesFruit.values()) {

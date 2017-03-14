@@ -16,5 +16,6 @@ public enum GiftCategory {
     PLANT,
     SWEET,
     COOKING,
-    MAGIC
+    MAGIC,
+    HERB
 }

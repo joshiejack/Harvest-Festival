@@ -435,7 +435,7 @@ public class HFShops {
         COOKING_FESTIVAL_FOOD.addPurchasable(50, new ItemStack(Items.FISH));
         COOKING_FESTIVAL_FOOD.addPurchasable(100, HFGathering.NATURE.getStackFromEnum(NaturalBlock.MINT));
         COOKING_FESTIVAL_FOOD.addPurchasable(150, HFGathering.NATURE.getStackFromEnum(NaturalBlock.CHAMOMILE));
-        COOKING_FESTIVAL_FOOD.addPurchasable(200, HFGathering.NATURE.getStackFromEnum(NaturalBlock.LAVENDAR));
+        COOKING_FESTIVAL_FOOD.addPurchasable(200, HFGathering.NATURE.getStackFromEnum(NaturalBlock.LAVENDER));
         COOKING_FESTIVAL_FOOD.addPurchasable(700, HFGathering.NATURE.getStackFromEnum(NaturalBlock.MATSUTAKE));
         COOKING_FESTIVAL_FOOD.addPurchasable(150, new ItemStack(Blocks.BROWN_MUSHROOM));
         COOKING_FESTIVAL_FOOD.addPurchasable(300, HFAnimals.ANIMAL_PRODUCT.getStack(Sizeable.EGG, Size.SMALL));

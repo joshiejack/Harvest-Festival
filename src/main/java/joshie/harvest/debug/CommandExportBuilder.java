@@ -5,13 +5,38 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.shops.IPurchasable;
 import joshie.harvest.api.shops.Shop;
 import joshie.harvest.core.commands.HFDebugCommand;
+import net.minecraft.command.CommandNotFoundException;
+import net.minecraft.command.ICommandSender;
+import net.minecraft.command.NumberInvalidException;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.MinecraftServer;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @HFDebugCommand
 @SuppressWarnings("unused")
 public class CommandExportBuilder extends CommandExportHeld {
+    public static final List<AbstractExport> commands = new ArrayList<>();
+
+    @Override
+    public boolean execute(MinecraftServer server, ICommandSender sender, String[] parameters) throws CommandNotFoundException, NumberInvalidException {
+        if (parameters.length == 0) {
+            if (sender instanceof EntityPlayer) {
+                ItemStack stack = ((EntityPlayer) sender).getHeldItemMainhand();
+                if (stack != null) {
+                    for (AbstractExport command : commands) {
+                        if (command.isExportable(stack)) {
+                            command.export(stack, parameters);
+                            return true; //No more execution
+                        }
+                    }
+                }
+            }
+        } return super.execute(server, sender, parameters);
+    }
+
     @Override
     public String getCommandName() {
         return "export";

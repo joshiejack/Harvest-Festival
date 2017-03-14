@@ -15,6 +15,7 @@ public class GiftsLiara extends Gifts {
         stackRegistry.register(HFCooking.MEAL.getStackFromEnum(Meal.CAKE_CHOCOLATE), Quality.AWESOME);
         stackRegistry.register(HFCooking.MEAL.getStackFromEnum(Meal.CHOCOLATE_HOT), Quality.AWESOME);
         stackRegistry.register(HFCooking.MEAL.getStackFromEnum(Meal.COOKIES_CHOCOLATE), Quality.AWESOME);
+        categoryRegistry.put(HERB, Quality.GOOD);
         categoryRegistry.put(FRUIT, Quality.GOOD);
         categoryRegistry.put(VEGETABLE, Quality.GOOD);
         categoryRegistry.put(MEAT, Quality.GOOD);

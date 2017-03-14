@@ -37,11 +37,17 @@ public class BlockRock extends BlockHFSmashable<BlockRock, Rock> {
     private static final AxisAlignedBB BOULDER_LARGE_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.6D, 1.0D);
 
     public enum Rock implements IStringSerializable, ISellable {
-        STONE_SMALL, STONE_MEDIUM, STONE_LARGE, BOULDER_SMALL, BOULDER_MEDIUM, BOULDER_LARGE;
+        STONE_SMALL(1L), STONE_MEDIUM(2L), STONE_LARGE(4L), BOULDER_SMALL(3L), BOULDER_MEDIUM(5L), BOULDER_LARGE(10L);
+
+        private final long sell;
+
+        Rock(long sell) {
+            this.sell = sell;
+        }
 
         @Override
         public long getSellValue() {
-            return 1L;
+            return sell;
         }
 
         @Override

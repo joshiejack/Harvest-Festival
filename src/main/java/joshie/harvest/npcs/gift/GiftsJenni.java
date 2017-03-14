@@ -13,7 +13,7 @@ public class GiftsJenni extends Gifts {
         registerWoolLikeItems(Quality.GOOD);
         stackRegistry.register(Items.PAINTING, Quality.GOOD);
         categoryRegistry.put(VEGETABLE, Quality.GOOD);
-
+        categoryRegistry.put(HERB, Quality.GOOD);
         categoryRegistry.put(JUNK, Quality.DISLIKE);
         categoryRegistry.put(BUILDING, Quality.DISLIKE);
         categoryRegistry.put(MINERAL, Quality.BAD);

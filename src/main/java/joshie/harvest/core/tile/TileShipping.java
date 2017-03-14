@@ -25,6 +25,10 @@ public class TileShipping extends TileFaceable {
         this.markDirty();
     }
 
+    public UUID getOwner() {
+        return owner;
+    }
+
     @Override
     public void readFromNBT(NBTTagCompound nbt) {
         super.readFromNBT(nbt);

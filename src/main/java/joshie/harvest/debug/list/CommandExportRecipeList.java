@@ -1,4 +1,4 @@
-package joshie.harvest.debug;
+package joshie.harvest.debug.list;
 
 import com.google.common.collect.HashMultimap;
 import joshie.harvest.api.cooking.Recipe;
@@ -6,6 +6,7 @@ import joshie.harvest.api.cooking.Utensil;
 import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.core.commands.AbstractHFCommand;
 import joshie.harvest.core.commands.HFDebugCommand;
+import joshie.harvest.debug.Debug;
 import net.minecraft.command.CommandNotFoundException;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.command.NumberInvalidException;

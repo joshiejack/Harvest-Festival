@@ -5,6 +5,7 @@ import joshie.harvest.core.network.Packet;
 import joshie.harvest.core.network.Packet.Side;
 import joshie.harvest.core.network.PacketNBT;
 import joshie.harvest.town.TownHelper;
+import joshie.harvest.town.data.TownData;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
@@ -35,6 +36,9 @@ public class PacketSyncSold extends PacketNBT {
 
     @Override
     public void handlePacket(EntityPlayer player) {
-        TownHelper.getTownByID(player.worldObj, uuid).getShops().readFromNBT(tag);
+        TownData data = TownHelper.getTownByID(player.worldObj, uuid);
+        if (data != null) {
+            data.getShops().readFromNBT(tag);
+        }
     }
 }

@@ -7,4 +7,6 @@ import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
-public @interface HFDebugCommand {}
+public @interface HFDebugCommand {
+    boolean value() default false;
+}

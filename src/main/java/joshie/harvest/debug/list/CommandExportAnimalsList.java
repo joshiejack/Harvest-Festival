@@ -1,4 +1,4 @@
-package joshie.harvest.debug;
+package joshie.harvest.debug.list;
 
 import com.google.common.collect.Lists;
 import joshie.harvest.animals.HFAnimals;
@@ -6,6 +6,8 @@ import joshie.harvest.animals.item.ItemAnimalProduct.Sizeable;
 import joshie.harvest.animals.item.ItemAnimalTool.Tool;
 import joshie.harvest.animals.item.ItemAnimalTreat.Treat;
 import joshie.harvest.core.commands.HFDebugCommand;
+import joshie.harvest.debug.CommandExportHeld;
+import joshie.harvest.debug.Debug;
 import net.minecraft.item.ItemStack;
 import org.apache.commons.lang3.text.WordUtils;
 

@@ -28,6 +28,7 @@ public class Gifts implements IGiftHandler {
         categoryRegistry.put(MEAT, Quality.DECENT);
         categoryRegistry.put(VEGETABLE, Quality.DECENT);
         categoryRegistry.put(FRUIT, Quality.DECENT);
+        categoryRegistry.put(HERB, Quality.DECENT);
         categoryRegistry.put(ANIMAL, Quality.DECENT);
         categoryRegistry.put(KNOWLEDGE, Quality.DECENT);
         categoryRegistry.put(MAGIC, Quality.DECENT);

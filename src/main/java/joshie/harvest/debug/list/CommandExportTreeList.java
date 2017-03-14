@@ -1,8 +1,10 @@
-package joshie.harvest.debug;
+package joshie.harvest.debug.list;
 
 import joshie.harvest.api.crops.Crop;
 import joshie.harvest.api.trees.Tree;
 import joshie.harvest.core.commands.HFDebugCommand;
+import joshie.harvest.debug.CommandExportHeld;
+import joshie.harvest.debug.Debug;
 import net.minecraft.item.ItemStack;
 
 import java.util.ArrayList;

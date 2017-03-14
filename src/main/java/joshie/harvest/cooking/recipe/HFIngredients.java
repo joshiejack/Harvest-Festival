@@ -92,7 +92,7 @@ public class HFIngredients {
     public static final Ingredient MATSUTAKE = new Ingredient("matsutake", 4, 0.6F);
     public static final Ingredient CHAMOMILE = new Ingredient("chamomile", 1, 0.3F);
     public static final Ingredient MINT = new Ingredient("mint", 1, 0.3F);
-    public static final Ingredient LAVENDAR = new Ingredient("lavendar", 1, 0.3F);
+    public static final Ingredient LAVENDER = new Ingredient("lavender", 1, 0.3F);
 
     //Crops
     public static final Ingredient TURNIP = HFCrops.TURNIP.getIngredient();
@@ -141,7 +141,7 @@ public class HFIngredients {
         SASHIMI_VEGETABLE.add(CUCUMBER, TOMATO, ONION, EGGPLANT);
         MEAT.add(CHICKEN, PORK, BEEF, MUTTON, RABBIT);
         FISH.add(SALMON, COD);
-        HERB.add(CHAMOMILE, MINT, LAVENDAR);
+        HERB.add(CHAMOMILE, MINT, LAVENDER);
         EGG.add(SMALL_EGG, MEDIUM_EGG, LARGE_EGG);
     }
 
@@ -192,7 +192,7 @@ public class HFIngredients {
         HFApi.cooking.register(NATURE.getStackFromEnum(NaturalBlock.BAMBOO), BAMBOO);
         HFApi.cooking.register(HFGathering.NATURE.getStackFromEnum(NaturalBlock.CHAMOMILE), CHAMOMILE);
         HFApi.cooking.register(HFGathering.NATURE.getStackFromEnum(NaturalBlock.MINT), MINT);
-        HFApi.cooking.register(HFGathering.NATURE.getStackFromEnum(NaturalBlock.LAVENDAR), LAVENDAR);
+        HFApi.cooking.register(HFGathering.NATURE.getStackFromEnum(NaturalBlock.LAVENDER), LAVENDER);
 
         //Ingredients
         registerForOre("foodChocolatebar", CHOCOLATE);

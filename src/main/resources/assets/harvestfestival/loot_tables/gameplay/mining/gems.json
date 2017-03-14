@@ -217,7 +217,7 @@
           "functions": [
             {
               "function": "hf_set_enum",
-              "enum": "peridot"
+              "enum": "topaz"
             },
             {
               "function": "set_count",

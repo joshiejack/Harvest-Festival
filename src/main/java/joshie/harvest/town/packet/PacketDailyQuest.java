@@ -6,6 +6,8 @@ import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.network.Packet;
 import joshie.harvest.core.network.Packet.Side;
 import joshie.harvest.core.network.PenguinPacket;
+import joshie.harvest.town.TownHelper;
+import joshie.harvest.town.data.TownData;
 import joshie.harvest.town.tracker.TownTrackerClient;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
@@ -44,6 +46,9 @@ public class PacketDailyQuest extends PenguinPacket {
 
     @Override
     public void handlePacket(EntityPlayer player) {
-        HFTrackers.<TownTrackerClient>getTowns(player.worldObj).getTownByID(uuid).setDailyQuest(quest);
+        TownData data = TownHelper.getTownByID(player.worldObj, uuid);
+        if (data != null) {
+            HFTrackers.<TownTrackerClient>getTowns(player.worldObj).getTownByID(uuid).setDailyQuest(quest);
+        }
     }
 }

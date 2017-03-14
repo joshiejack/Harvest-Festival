@@ -93,8 +93,8 @@ public class ItemFish extends ItemHFFoodEnum<ItemFish, Fish> {
         Fish(long sell, double min, double max, Season... seasons) {
             this.sell = sell;
             this.small = min;
-            this.medium = min + (max - min) * (1/3);
-            this.large = this.medium * 2;
+            this.medium = min + (max - min) * 0.33333333D;
+            this.large = min + (max - min) * 0.66666666D;
             this.giant = max;
             this.amount = (int) Math.min(10, Math.max(1, min / 10D));
             for (Season season: seasons) {
@@ -123,9 +123,9 @@ public class ItemFish extends ItemHFFoodEnum<ItemFish, Fish> {
         }
 
         public long getSellValue(double size) {
-            if (size >= giant) return (long)(sell * 1.75);
-            if (size >= large) return (long)((double)sell * 1.5);
-            else if (size >= medium) return (long)((double)sell * 1.25);
+            if (size >= giant) return (long)((double)sell * 1.75D);
+            else if (size >= large) return (long)((double)sell * 1.5D);
+            else if (size >= medium) return (long)((double)sell * 1.25D);
             else return sell;
         }
 

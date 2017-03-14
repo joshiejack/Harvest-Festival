@@ -44,6 +44,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Locale;
+import java.util.UUID;
 
 import static joshie.harvest.api.HFApi.shipping;
 import static joshie.harvest.core.block.BlockStorage.Storage.*;
@@ -172,19 +173,35 @@ public class BlockStorage extends BlockHFEnumRotatableTile<BlockStorage, Storage
         return false;
     }
 
+    @SuppressWarnings("ConstantConditions")
+    @Nullable
+    private UUID getPlayer(EntityItem item , World world, BlockPos pos) {
+        if (item.getThrower() != null) {
+            EntityPlayer player = world.getPlayerEntityByName(item.getThrower());
+            if (player != null) return EntityHelper.getPlayerUUID(player);
+        }
+
+        TileEntity tile = world.getTileEntity(pos);
+        if (tile instanceof TileShipping) {
+            return ((TileShipping)tile).getOwner();
+        }
+
+        return null;
+    }
+
     @Override
     @SuppressWarnings("ConstantConditions")
     public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity) {
         Storage storage = getEnumFromState(state);
         if (storage == SHIPPING && entity instanceof EntityItem) {
             EntityItem item = ((EntityItem)entity);
-            if (item.getThrower() != null) {
-                EntityPlayer player = world.getPlayerEntityByName(item.getThrower());
+            UUID uuid = getPlayer(item, world, pos);
+            if (uuid != null) {
                 ItemStack stack = item.getEntityItem();
                 long sell = shipping.getSellValue(stack);
                 if (sell > 0) {
                     if (!world.isRemote) {
-                        HFTrackers.<PlayerTrackerServer>getPlayerTrackerFromPlayer(player).getTracking().addForShipping(StackHelper.toStack(stack, 1));
+                        HFTrackers.<PlayerTrackerServer>getPlayerTracker(world, uuid).getTracking().addForShipping(StackHelper.toStack(stack, 1));
                     }
 
                     stack.splitStack(1);

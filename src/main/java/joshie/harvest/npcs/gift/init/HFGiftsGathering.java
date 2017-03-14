@@ -2,17 +2,22 @@ package joshie.harvest.npcs.gift.init;
 
 import joshie.harvest.core.block.BlockFlower.FlowerType;
 import joshie.harvest.core.util.annotations.HFLoader;
+import joshie.harvest.gathering.block.BlockNature.NaturalBlock;
 import joshie.harvest.gathering.block.BlockRock.Rock;
 import joshie.harvest.gathering.block.BlockWood.Wood;
 
 import static joshie.harvest.api.npc.gift.GiftCategory.*;
 import static joshie.harvest.core.HFCore.FLOWERS;
-import static joshie.harvest.gathering.HFGathering.ROCK;
-import static joshie.harvest.gathering.HFGathering.WOOD;
+import static joshie.harvest.gathering.HFGathering.*;
 
 @HFLoader(priority = 0)
 public class HFGiftsGathering extends HFGiftsAbstract {
     public static void init() {
+        assignGeneric(NATURE.getStackFromEnum(NaturalBlock.BAMBOO), COOKING, VEGETABLE);
+        assignGeneric(NATURE.getStackFromEnum(NaturalBlock.MATSUTAKE), COOKING);
+        assignGeneric(NATURE.getStackFromEnum(NaturalBlock.CHAMOMILE), COOKING, HERB);
+        assignGeneric(NATURE.getStackFromEnum(NaturalBlock.MINT), COOKING, HERB);
+        assignGeneric(NATURE.getStackFromEnum((NaturalBlock.LAVENDER)), COOKING, HERB);
         assignGeneric(FLOWERS.getStackFromEnum(FlowerType.WEED), JUNK);
         assignGeneric(FLOWERS.getStackFromEnum(FlowerType.GODDESS), FLOWER);
         assignGeneric(FLOWERS.getStackFromEnum(FlowerType.PINKCAT), FLOWER);

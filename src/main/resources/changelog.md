@@ -118,7 +118,7 @@
 * The new tiers will now start when you go through a bottom portal instead of just before
 
 ###NPCs
-* Blacklisted a bunch of things by default like weapons, armour, elytra as well as blacklisting blocks unless they have a gift value added from being gifted by default, unless a gift type is assigned to them
+* Blacklisted damageable items by default, unless a gift type is assigned to them
 * NPCs will now like or dislike more things than before
 * Added a few more quests mostly related to friendship with the npcs, that give you things like secret shops or secret notes!
 * Johan will die every day around 6pm, as he travels back home to trade

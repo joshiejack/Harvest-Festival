@@ -17,6 +17,7 @@ public class GiftsCloe extends Gifts {
         categoryRegistry.put(MONSTER, Quality.GOOD);
         categoryRegistry.put(KNOWLEDGE, Quality.GOOD);
         categoryRegistry.put(VEGETABLE, Quality.DISLIKE);
+        categoryRegistry.put(HERB, Quality.DISLIKE);
         categoryRegistry.put(FLOWER, Quality.DISLIKE);
         stackRegistry.register(Items.PUMPKIN_PIE, Quality.BAD);
         stackRegistry.register(Ore.of("cropCarrot"), Quality.BAD);

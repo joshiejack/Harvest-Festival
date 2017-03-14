@@ -16,7 +16,6 @@ import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import org.apache.commons.lang3.text.WordUtils;
 
 import java.util.ArrayList;
@@ -71,8 +70,7 @@ public class CommandExportRecipe extends AbstractHFCommand {
     }
 
     private String getUtensilName(Utensil utensil) {
-        String name = ReflectionHelper.getPrivateValue(Utensil.class, utensil, "label");
-        return WordUtils.capitalize(name.replace("_", " ").toLowerCase());
+        return utensil.getLocalizedName();
     }
 
     private String getRecipeList(Recipe recipe) {

@@ -7,6 +7,9 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
 
 import javax.annotation.Nonnull;
+import java.awt.*;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
 import java.io.BufferedWriter;
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
@@ -129,6 +132,8 @@ public class Debug {
         register("pumpkin_pie", "N/A");
         register("beetroot_soup", "N/A");
         register("flour", "N/A");
+        register("vanilla_cake", "N/A");
+        register("vanilla_cookies", "N/A");
 
         register(Meal.TEMPURA, "17,500RP with [[Liara]]"); //Liara 17500RP
         register(Meal.RICE_TEMPURA, "20,000RP with [[Liara]]"); //Liara 20000RP
@@ -137,6 +142,7 @@ public class Debug {
         register(Meal.RICE_BAMBOO, "20,000RP with [[Brandon]]"); //Brandon 20000RP
         register(Meal.NOODLES_THICK_FRIED, "20,000RP with [[Cloe]]"); //Cloe 20000RP
         register(Meal.LATTE_FRUIT, "20,000RP with [[Tomas]]"); //Tomas 20000RP
+        register(Meal.CAKE, "12,500RP with [[Liara]]"); //Liara RP 12500RP
 
         registerOverride("flour", "Flour is a cooking recipe made in the [[Mixer]]. You can also purchase flour from the [[General Store]] for {{gold|50}} which is much cheaper than turning your expensive [[Wheat]] in to flour.");
     }
@@ -144,7 +150,11 @@ public class Debug {
     public static void save(@Nonnull StringBuilder builder) {
         try {
             Writer out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("export.rtf"), "UTF-16"));
-            out.write(TextFormatting.getTextWithoutFormattingCodes(builder.toString()));
+            String output = TextFormatting.getTextWithoutFormattingCodes(builder.toString());
+            StringSelection stringSelection = new StringSelection(output);
+            Clipboard clpbrd = Toolkit.getDefaultToolkit().getSystemClipboard();
+            clpbrd.setContents(stringSelection, null);
+            out.write(output);
             out.close();
         } catch (Exception e) {
             e.printStackTrace();

@@ -1,7 +1,9 @@
-package joshie.harvest.debug;
+package joshie.harvest.debug.list;
 
 import joshie.harvest.api.core.ITiered.ToolTier;
 import joshie.harvest.core.commands.HFDebugCommand;
+import joshie.harvest.debug.CommandExportHeld;
+import joshie.harvest.debug.Debug;
 import joshie.harvest.fishing.HFFishing;
 import joshie.harvest.tools.HFTools;
 import net.minecraft.item.ItemStack;

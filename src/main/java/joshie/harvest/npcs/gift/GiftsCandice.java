@@ -24,6 +24,7 @@ public class GiftsCandice extends Gifts {
         stackRegistry.register(Items.MILK_BUCKET, Quality.AWESOME);
         categoryRegistry.put(ANIMAL, Quality.GOOD);
         categoryRegistry.put(SWEET, Quality.DISLIKE);
+        categoryRegistry.put(HERB, Quality.DISLIKE);
         categoryRegistry.put(FRUIT, Quality.BAD);
         stackRegistry.register(Items.GOLDEN_APPLE, Quality.TERRIBLE);
         stackRegistry.register(Ore.of("cropApple"), Quality.TERRIBLE);

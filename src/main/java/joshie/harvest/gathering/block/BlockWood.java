@@ -21,6 +21,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
+import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -37,11 +38,17 @@ public class BlockWood extends BlockHFSmashable<BlockWood, Wood> {
     private static final AxisAlignedBB STUMP_LARGE_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.5D, 1.0D);
 
     public enum Wood implements IStringSerializable, ISellable {
-        BRANCH_SMALL, BRANCH_MEDIUM, BRANCH_LARGE, STUMP_SMALL, STUMP_MEDIUM, STUMP_LARGE;
+        BRANCH_SMALL(1L), BRANCH_MEDIUM(2L), BRANCH_LARGE(4L), STUMP_SMALL(3L), STUMP_MEDIUM(5L), STUMP_LARGE(10L);
+
+        private final long sell;
+
+        Wood(long sell) {
+            this.sell = sell;
+        }
 
         @Override
         public long getSellValue() {
-            return 1L;
+            return sell;
         }
 
         @Override
@@ -64,6 +71,7 @@ public class BlockWood extends BlockHFSmashable<BlockWood, Wood> {
 
     @SuppressWarnings("deprecation")
     @Override
+    @Nonnull
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
         switch (getEnumFromState(state)) {
             case BRANCH_SMALL: return BRANCH_SMALL_AABB;

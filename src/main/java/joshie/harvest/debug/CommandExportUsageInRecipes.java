@@ -3,7 +3,6 @@ package joshie.harvest.debug;
 import joshie.harvest.api.cooking.Ingredient;
 import joshie.harvest.api.cooking.IngredientStack;
 import joshie.harvest.api.cooking.Recipe;
-import joshie.harvest.api.cooking.Utensil;
 import joshie.harvest.cooking.CookingAPI;
 import joshie.harvest.core.commands.AbstractHFCommand;
 import joshie.harvest.core.commands.HFDebugCommand;
@@ -13,7 +12,6 @@ import net.minecraft.command.NumberInvalidException;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
-import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import org.apache.commons.lang3.text.WordUtils;
 
 import static joshie.harvest.debug.CommandExportRecipe.DESCRIPTIONS;
@@ -62,7 +60,7 @@ public class CommandExportUsageInRecipes extends AbstractHFCommand {
                     builder.append(recipe.getDisplayName());
                     builder.append("]]");
                     builder.append("\n|[[File:");
-                    String label = ReflectionHelper.getPrivateValue(Utensil.class, recipe.getUtensil(), "label");
+                    String label = recipe.getUtensil().getLocalizedName();
                     builder.append(WordUtils.capitalize(label.replace("_", " ")).replace(" ", "_"));
                     builder.append(".png|link=");
                     builder.append(WordUtils.capitalize(label.replace("_", " ")));
@@ -89,7 +87,7 @@ public class CommandExportUsageInRecipes extends AbstractHFCommand {
                         }
                     }
 
-                    String name = DESCRIPTIONS.containsKey(recipe) ? DESCRIPTIONS.get(recipe) : "//TODO: Add way to obtain";
+                    String name = DESCRIPTIONS.containsKey(recipe) ? DESCRIPTIONS.get(recipe) : "N/A";
                     builder.append("\n|").append(name).append("\n").append("|-");
                 }
             }

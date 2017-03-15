@@ -78,7 +78,7 @@ public class CalendarServer extends Calendar {
     }
 
     private Weather getRandomWeather(int day, Season season) {
-        if (day > DAYS_PER_SEASON) {
+        if (day >= DAYS_PER_SEASON) {
             season = getNextSeason(season);
         }
 

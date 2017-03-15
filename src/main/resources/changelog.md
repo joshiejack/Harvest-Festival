@@ -131,6 +131,7 @@
 * Various npcs have had their schedule changed, so they may be found at different buildings at different times
 * Blacksmith will only start work on tools during operating hours.
 * Blacksmith will take four days to upgrade tools if you have him start work on tuesday or wednesdays as he rests on thursdays.
+* Blacksmith prices for upgrades have increased. Copper was cheaper than a new tool before...
 * Can now right click to go back to the previous chat page
 * NPCS will teleport when taking damage from being in a wall
 

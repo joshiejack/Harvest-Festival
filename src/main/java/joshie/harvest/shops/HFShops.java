@@ -365,9 +365,9 @@ public class HFShops {
 
         SUPERMARKET.addPurchasable(500, HFTools.HOE.getStack(ToolTier.BASIC), 1);
         SUPERMARKET.addPurchasable(500, HFTools.SICKLE.getStack(ToolTier.BASIC), 1);
-        SUPERMARKET.addPurchasable(1000, HFTools.WATERING_CAN.getStack(ToolTier.BASIC), 1);
-        SUPERMARKET.addPurchasable(new Purchasable(2000, HFTools.AXE.getStack(ToolTier.BASIC)).setStock(1).setNote(HFNotes.AXE));
-        SUPERMARKET.addPurchasable(new Purchasable(2000, HFTools.HAMMER.getStack(ToolTier.BASIC)).setStock(1).setNote(HFNotes.HAMMER));
+        SUPERMARKET.addPurchasable(750, HFTools.WATERING_CAN.getStack(ToolTier.BASIC), 1);
+        SUPERMARKET.addPurchasable(new Purchasable(1000, HFTools.AXE.getStack(ToolTier.BASIC)).setStock(1).setNote(HFNotes.AXE));
+        SUPERMARKET.addPurchasable(new Purchasable(1000, HFTools.HAMMER.getStack(ToolTier.BASIC)).setStock(1).setNote(HFNotes.HAMMER));
 
         //TODO: Reenable in 1.0 when I readd marriage
         //SUPERMARKET.addPurchasable(new PurchasableBlueFeather(1000, HFNPCs.TOOLS.getStackFromEnum(BLUE_FEATHER)));

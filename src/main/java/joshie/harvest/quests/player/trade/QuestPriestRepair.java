@@ -48,7 +48,7 @@ public class QuestPriestRepair extends QuestTrade {
     @Override
     @SuppressWarnings("ConstantConditions")
     public String getLocalizedScript(EntityPlayer player, NPCEntity entity) {
-        long cost = HFApi.quests.hasCompleted(Quests.TOMAS_15K, player) ? 1000 : 2500;
+        long cost = HFApi.quests.hasCompleted(Quests.TOMAS_15K, player) ? 2500 : 5000;
         boolean hasGold = HFTrackers.getPlayerTrackerFromPlayer(player).getStats().getGold() >= cost;
         if (hasGold) {
             ItemStack tool = player.getHeldItemMainhand(); //For translation reasons
@@ -60,7 +60,7 @@ public class QuestPriestRepair extends QuestTrade {
 
     @Override
     public void onChatClosed(EntityPlayer player, NPCEntity npc, boolean wasSneaking) {
-        long cost = HFApi.quests.hasCompleted(Quests.TOMAS_15K, player) ? 1000 : 2500;
+        long cost = HFApi.quests.hasCompleted(Quests.TOMAS_15K, player) ? 2500 : 5000;
         boolean hasGold = HFTrackers.getPlayerTrackerFromPlayer(player).getStats().getGold() >= cost;
         if (hasGold) {
             complete(player);

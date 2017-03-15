@@ -61,15 +61,15 @@ public class QuestBlacksmithing extends QuestTrade {
     public static long getCost(ToolTier tier) {
         switch (tier) {
             case BASIC:
-                return 1000;
+                return 2500;
             case COPPER:
-                return 2000;
-            case SILVER:
                 return 5000;
-            case GOLD:
+            case SILVER:
                 return 10000;
+            case GOLD:
+                return 20000;
             case MYSTRIL:
-                return 25000;
+                return 40000;
             case BLESSED:
                 return 100000;
             case MYTHIC:

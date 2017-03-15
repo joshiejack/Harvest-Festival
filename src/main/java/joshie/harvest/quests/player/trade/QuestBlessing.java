@@ -24,7 +24,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.Set;
 
-import static joshie.harvest.api.core.ITiered.ToolTier.BLESSED;
+import static joshie.harvest.api.core.ITiered.ToolTier.CURSED;
 import static joshie.harvest.core.helpers.SpawnItemHelper.spawnXP;
 import static joshie.harvest.quests.Quests.TOMAS_MEET;
 
@@ -49,7 +49,7 @@ public class QuestBlessing extends QuestTrade {
     @Override
     public String getLocalizedScript(EntityPlayer player, NPCEntity entity) {
         if (quest_stage == TEST) {
-            long cost = HFApi.quests.hasCompleted(Quests.TOMAS_15K, player) ? 10000 : 25000;
+            long cost = HFApi.quests.hasCompleted(Quests.TOMAS_15K, player) ? 25000 : 50000;
             boolean hasGold = HFTrackers.getPlayerTrackerFromPlayer(player).getStats().getGold() >= cost;
             boolean hasTool = isHolding(player);
             if (hasGold && hasTool) {
@@ -71,7 +71,7 @@ public class QuestBlessing extends QuestTrade {
     @SuppressWarnings("ConstantConditions")
     public void onChatClosed(EntityPlayer player, NPCEntity npc, boolean isSneaking) {
         if (quest_stage == TEST) {
-            long cost = HFApi.quests.hasCompleted(Quests.TOMAS_15K, player) ? 10000 : 25000;
+            long cost = HFApi.quests.hasCompleted(Quests.TOMAS_15K, player) ? 25000 : 50000;
             boolean hasGold = HFTrackers.getPlayerTrackerFromPlayer(player).getStats().getGold() >= cost;
             boolean hasTool = isHolding(player);
             if (hasGold && hasTool) {
@@ -131,7 +131,7 @@ public class QuestBlessing extends QuestTrade {
             if (held.getItem() instanceof ItemTool) {
                 ItemTool tool = ((ItemTool)held.getItem());
                 ToolTier tier = tool.getTier(held);
-                return tier == BLESSED;
+                return tier == CURSED;
             }
         }
 

@@ -1,0 +1,1314 @@
+#de_DE.lang by Shuzz.de
+harvestfestival.tab.farming=Harvest Festival - Ackerbau
+harvestfestival.tab.cooking=Harvest Festival - Kochen
+harvestfestival.tab.mining=Harvest Festival - Bergbau
+harvestfestival.tab.town=Harvest Festival - Dorf
+harvestfestival.tab.gathering=Harvest Festival - Sammeln
+harvestfestival.mode.true=Harvest Festival wurde auf Einfach gestellt!
+harvestfestival.mode.false=Harvest Festival wurde auf Schwer gestellt!
+harvestfestival.check.head=On head after purchase.
+harvestfestival.check.lead=On lead after purchase.
+
+#Commands
+hf.commands.help.header=--- Showing HF help page %d of %d (/hf help <page>) ---
+
+#Tooltips
+harvestfestival.tooltip.cosmetic=Dekorativ
+harvestfestival.tooltip.mythic_stone=Verwendet für Verbesserung
+harvestfestival.tooltip.flower=Rufer der Göttin
+
+#Animals
+harvestfestival.spawner.tooltip=Halte Shift um Babies zu erzeugen
+harvestfestival.spawner.cow=Kuh
+harvestfestival.spawner.sheep=Schaf
+harvestfestival.spawner.chicken=Huhn
+entity.harvestfestival.cow.name=Kuh
+entity.harvestfestival.sheep.name=Schaf
+entity.harvestfestival.chicken.name=Huhn
+#Animal Related Items
+harvestfestival.tool.milker=Melker
+harvestfestival.tool.brush=Tierbürste
+harvestfestival.tool.medicine=Tiermedizin
+harvestfestival.tool.chicken.feed=Hühnerfutter
+harvestfestival.tool.miracle.potion=Wundertrank
+
+#Buildings
+harvestfestival.town.failure=Nicht hier!
+harvestfestival.town.dimension=Dörfer können leider nur in der Oberwelt erstellt werden, versuch es dort einmal!
+harvestfestival.town.distance=Du kannst nur ein Gebäude pro Dorf haben, platziere es weiter weg!
+harvestfestival.town.building=Dieses Gebäude befindet sich gerade in der Warteschlange für den Bau, eins pro Dorf!
+harvestfestival.town.permission=Du darfst hier nicht bauen!
+harvestfestival.town.preview=Voransicht angelegt.
+harvestfestival.town.sneak=Schleichen + Rechtsklick zum
+harvestfestival.town.click=Rechtsklick zum
+harvestfestival.town.confirm=bestätigen
+harvestfestival.town.cancel=abbrechen
+harvestfestival.town.cancelled=wurde abgebrochen
+harvestfestival.structures.blueprint=Blaupause: %s
+harvestfestival.structures.spawn=[SPAWN] %s
+harvestfestival.structures.barn=Tierfarm
+harvestfestival.structures.blacksmith=Schmied
+harvestfestival.structures.cafe=Cafe
+harvestfestival.structures.carpenter=Zimmermann
+harvestfestival.structures.church=Kirch
+harvestfestival.structures.clockmaker=Uhrmacher
+harvestfestival.structures.fishinghole=Fischloch
+harvestfestival.structures.fishinghut=Fischerhütte
+harvestfestival.structures.goddesspond=Teich der Göttin
+harvestfestival.structures.mininghill=Bergbauhügel
+harvestfestival.structures.mininghut=Bergbauhütte
+harvestfestival.structures.poultryfarm=Geflügelfarm
+harvestfestival.structures.supermarket=Gemischtwarenladen
+harvestfestival.structures.townhall=Rathaus
+harvestfestival.structures.shipping=Versandkiste
+harvestfestival.structures.null=Ungültig
+
+#Cheat Items (Translators don't bother tranlating these, I just use them to help with dev)
+harvestfestival.cheat.coord.setter=[BuildingGen] Coordinate Setter
+harvestfestival.cheat.code.generator=[BuildingGen] Code Generator
+harvestfestival.air=[BuildingGen] Internal Air
+harvestfestival.cheat.air.placer=[BuildingGen] Internal Air Placer
+harvestfestival.cheat.air.remover=[BuildingGen] Internal Air Remover
+
+#Crops
+harvestfestival.crop.sickle=Benötigt Sichel
+harvestfestival.crop.seeds.format=%1s %2s
+harvestfestival.crop.seeds=Samen
+harvestfestival.crop.seeds.days=Tage
+harvestfestival.crop.seeds.useless=Total nutzlose Samen
+harvestfestival.crop.seeds.corrupted=Verdorbene Samen, ey!
+harvestfestival.crop.null.crop=Jedes
+harvestfestival.crop.beetroot=Rote Beete
+harvestfestival.crop.cabbage=Kohl
+harvestfestival.crop.carrot=Karotte
+harvestfestival.crop.corn=Mais
+harvestfestival.crop.cucumber=Gurke
+harvestfestival.crop.eggplant=Aubergine
+harvestfestival.crop.grass.block=Gras
+harvestfestival.crop.grass.item=Viehfutter
+harvestfestival.crop.green.pepper=Grüne Paprika
+harvestfestival.crop.onion=Zwiebel
+harvestfestival.crop.pineapple=Ananas
+harvestfestival.crop.potato=Kartoffel
+harvestfestival.crop.pumpkin=Kürbis
+harvestfestival.crop.spinach=Spinat
+harvestfestival.crop.strawberry=Erdbeere
+harvestfestival.crop.sweet.potato=Süßkartoffel
+harvestfestival.crop.tomato=Tomate
+harvestfestival.crop.turnip=Rübe
+harvestfestival.crop.watermelon=Wassermelone
+harvestfestival.crop.wheat=Weizen
+harvestfestival.crop.nether.wart=Netherwarze
+harvestfestival.crop.tutorial.turnip=Zähe Rübe
+harvestfestival.crop.hemp=Industriehanf
+harvestfestival.crop.hemp.tooltip=Benötigt Helligkeit von 12+
+
+#General Items
+harvestfestival.general.shoot.bamboo=Bambussprosse
+harvestfestival.general.mushroom.matsutake=Matsutake Pilz
+
+#Cookbook
+harvestfestival.utensils=Utensilien
+harvestfestival.cookbook=Rezeptbuch
+harvestfestival.recipe.format=%s Rezept
+harvestfestival.recipe.invalid=Schrott Rezept
+
+#Meals
+harvestfestival.meal.learnt=Neues Rezept gelernt!
+harvestfestival.meal.intro=Willkommen im Bau-Dein-eigenes-Rezept-Buch. Hier drin steht oftmals gar nichts! Du wirst erst ein paar Rezepte lernen müssen, das Café verkauft Dir welche.\n\nEs gibt außerdem das Gerücht, dass ein paar Dorfbewohner eigene, geheime Rezepte haben. Vielleicht solltest Du mit ihnen Freundschaft schließen...
+harvestfestival.meal.missing=Unmöglich!
+harvestfestival.meal.missing.description=Dir fehlen noch ein paar Zutaten!
+harvestfestival.meal.success=Erfolg!
+harvestfestival.meal.success.description=Wir haben %1s gefunden, jetzt platzieren wir die Zutaten um %2s zu machen.
+harvestfestival.meal.failure=Misslungen!
+harvestfestival.meal.failure.description=Wir haben keinen %1s um die Zutaten für %2s zu platzieren
+harvestfestival.meal.missing_oven=Fehlender Ofen!
+harvestfestival.meal.missing_oven.description=Wir haben ein %1s aber es fehlt ein Ofen darunter um die Zutaten für %2s hinein zu tun.
+harvestfestival.meal.missing_counter=Fehlende Theke!
+harvestfestival.meal.missing_counter.description=Wir haben ein %1s aber es fehlt eine Theke darunter um die Zutaten für %2s hinein zu tun.
+harvestfestival.meal.description=Beschreibung:
+harvestfestival.meal.recipe=Rezept
+harvestfestival.meal.hunger=Stellt wieder her
+harvestfestival.meal.sell=Verkaufpreis
+harvestfestival.meal.sat=Füllt auf
+harvestfestival.meal.exhaust=Ermüdet
+harvestfestival.meal.fry.stir=Gebratenes
+harvestfestival.meal.rice.fried=Gebratener Reis
+harvestfestival.meal.pancake.savoury=Pikanter Pfannkuchen
+harvestfestival.meal.pancake.savoury.description=Knusprig und fluffig mit Aromen die nicht nur beim Frühstück schmecken sind diese Pfannkuchen sowohl allein als auch mit Frühlingszwiebeln ein Gedicht!
+harvestfestival.meal.fries.french=Pommes Frites
+harvestfestival.meal.fries.french.description=Säulenförmige Kartoffeln, möglicherweise die himmlischste Form der einfachen Stärke, frittiert mit dem universellsten alles Gewürze ergeben eine exzellente Ergänzung zu vielen Mahlzeiten.
+harvestfestival.meal.popcorn=Popcorn
+harvestfestival.meal.popcorn.description=Explosiv hergestellt und mit vollen Händen genossen!
+harvestfestival.meal.cornflakes=Cornflakes
+harvestfestival.meal.cornflakes.description=Nahrhafter und klassischer Start in den Tag. Noch besser wenn man sie ein wenig süßt...
+harvestfestival.meal.egg.scrambled=Rührei
+harvestfestival.meal.egg.scrambled.description=Das Geheimnis von leichten und fluffigen Rühreiern ist, das Salz hinzuzugeben und die Mischung dann für zwei Minuten stehen zu lassen. Alle anderen Zutaten kommen direkt vor dem Braten dazu.
+harvestfestival.meal.omelet=Omelette
+harvestfestival.meal.omelet.description=Knuspriger Frühstücksklassiker aus Eiern, Öl und Milch. Je nach dem was man darin einrollt wird es zu einer Mahlzeit für jede Gelegenheit.
+harvestfestival.meal.omelet.rice=Omuraisu
+harvestfestival.meal.omelet.rice.description=Der leicht trockene Reis saugt die Eimischung auf und die Stärke macht das Omelette stabiler. Dadurch kann man alle möglichen Zutaten im Inneren verstecken.
+harvestfestival.meal.pancake=Pfannkuchen
+harvestfestival.meal.pancake.description=Pfannkuchen, Palatschinken, Eierkuchen - alles Namen für das beste, schnell gemachte Frühstück westlich von Konstantinopel.
+harvestfestival.meal.potsticker=Gebratene Maultasche
+harvestfestival.meal.potsticker.description=Leckeres Gemüse eingerollt in einem Teigmantel und dann gebraten
+harvestfestival.meal.risotto=Risotto
+harvestfestival.meal.risotto.description=Dieses traditionelle italienische Gericht ist eigentlich eine Reduktion von Tomaten und Zwiebeln auf eine Reisbasis bei der sich die äußere Hülle des Reis zu einer cremigen Textur auflöst.
+harvestfestival.meal.juice.pineapple=Ananassaft
+harvestfestival.meal.juice.pineapple.description=Süß und herb zugleich löscht Ananassaft den Durst und liefert Vitamine. Manchen ist er nicht süß oder spritzig genug.
+harvestfestival.meal.juice.tomato=Tomatensaft
+harvestfestival.meal.juice.tomato.description=Eigentlich als Notfallersatz für fehlenden Orangensaft erfunden wird er heute hauptsächlich in Cocktails verwendet.
+harvestfestival.meal.milk.strawberry=Erdbeermilch
+harvestfestival.meal.milk.strawberry.description=Dieses gesüßte Gemisch aus Milch und Früchten kann helfen einen gereizten Magen zu beruhigen und die Verdauung unterstützen.
+harvestfestival.meal.juice.vegetable=Gemüsesaft
+harvestfestival.meal.juice.vegetable.description=Ein Mix aus verschiedenen Gemüsesäften, meistens aus Tomatensaft und weiteren Zutaten um es würziger zu machen.
+harvestfestival.meal.latte.vegetable=Veggie Latte
+harvestfestival.meal.latte.vegetable.description=Gemüseöle verbinden sich mit Milchsäuren und bringen die all die gesunden Vitamine in eine leicht verdauliche Form. Kein Kommentar zum Geschmack...
+harvestfestival.meal.ketchup=Ketchup
+harvestfestival.meal.ketchup.description=Dickflüssig und gehaltvoll ist Ketchup ein absoluter Klassiker.
+harvestfestival.meal.butter=Butter
+harvestfestival.meal.butter.description=Butter. Genug gesagt.
+harvestfestival.meal.fishsticks=Fischstäbchen
+harvestfestival.meal.fishsticks.description=Fein gehackter Fisch in Stäbchenform gepresst und paniert. Eine praktische und schnell zubereitete Mahlzeit.
+harvestfestival.meal.salad=Salat
+harvestfestival.meal.salad.description=Frisch und erfrischend ist Salat der perfekte Kontrast zu schwerem und fettigem Fleisch. Die Anzahl der möglichen Zutaten ist riesig, praktisch der ganze Garten.
+harvestfestival.meal.sandwich=Sandwich
+harvestfestival.meal.sandwich.description=Das ultimative tragbare Essen wurde von seinem Erfinder meistens verspeist während er am Spielen war oder spät in die Nacht arbeitete.
+harvestfestival.meal.turnip.pickled=Saure Rüben
+harvestfestival.meal.turnip.pickled.description=Das saure Einlegen bringt den Geschmack der einfach Rübe erst richtig zur Geltung.
+harvestfestival.meal.cucumber.pickled=Saure Gurken
+harvestfestival.meal.cucumber.pickled.description=Das typischste eingelegte Gemüse ist die Gurke. Knackig und erfrischend kann man sie als Beilage oder Hauptmahlzeit essen.
+harvestfestival.meal.sushi=Sushi
+harvestfestival.meal.sushi.description=Eigentlich ein Fingerhappen aus Essigreis und Fisch wurde das Sushi mittlerweile zu einer Kunstform erhoben.
+harvestfestival.meal.sashimi=Sashimi
+harvestfestival.meal.sashimi.description=Diese einfache Methode der Fischzubereitung erfordert präzise Schnitte, aber kein Kochen.
+harvestfestival.meal.sashimi.chirashi=Chirashi Sushi
+harvestfestival.meal.sashimi.chirashi.description=Eine Schüssel Reis mit geschnittenem Fisch oben drauf ergibt ein einfaches Gericht bei dem die Aromen verschiedener Fischsorten eine Vielzahl von Geschmacksvariationen ergeben.
+harvestfestival.meal.milk.hot=Heiße Milch
+harvestfestival.meal.milk.hot.description=Kochend heiß, aber nicht ganz kochend, hilft Milch beim Einschlafen oder der Beruhigung eines verstimmten Magens.
+harvestfestival.meal.chocolate.hot=Heiße Schokolade
+harvestfestival.meal.chocolate.hot.description=Das Getränk der Götter. Geschmolzene Schokoloade mit flüssiger Sahne ergeben das leckerste Getränk das im Himmel und auf Erden bekannt ist. Manche mögen es gern süßer...
+harvestfestival.meal.stew.pumpkin=Kürbiseintopf
+harvestfestival.meal.stew.pumpkin.description=Dieser traditionelle Eintopf wird aus den Innereien des Kürbisses gewonnen die langsam erhitzt werden bis sie sich verflüssigen. Seine Liebhaber sagen, er schmecke wie flüssiger Kürbiskuchen.
+harvestfestival.meal.stew.fish=Fischeintopf
+harvestfestival.meal.stew.fish.description=Eigentlich ein Seefahrergericht. Fischeintopf erhält durch das im Fisch enthaltene Salzwasser eine besondere Würze.
+harvestfestival.meal.egg.boiled=Gekochtes Ei
+harvestfestival.meal.egg.boiled.description=Eier in kaltes Wasser, zum Kochen bringen und wieder abkühlen lassen - fertig. Pellen und servieren.
+harvestfestival.meal.spinach.boiled=Gekochter Spinat
+harvestfestival.meal.spinach.boiled.description=Kinder sind gegenüber sauren Geschmäckern empfindlicher als Erwachsene, daher ist es ein seit Generationen gemachter Fehler, Kindern dieses einfache Gericht vorzusetzen.
+harvestfestival.meal.potato.candied=Kandierte Kartoffeln
+harvestfestival.meal.potato.candied.description=Die Süßkartoffel ist unglaublich nahr- und schmackhaft.
+harvestfestival.meal.dumplings=Teigtaschen
+harvestfestival.meal.dumplings.description=Knackiges, leckeres Gemüse in einer pastetenähnlichen Röhre, schnell gebraten so dass es nicht weich wird oder seinen Geschmack verliert.
+harvestfestival.meal.noodles=Nudeln
+harvestfestival.meal.noodles.description=Fäden, Blätter und andere Formen des gemahlenen Weizens sind ein grundlegender Bestandteil vieler Küchen und Gerichte. Servieren mit Saucen oder Gewürzen.
+harvestfestival.meal.soup.rice=Reissuppe
+harvestfestival.meal.soup.rice.description=Verflüssigte Reisbällchen. Diesem Gebräu wird keine weitere Flüssidkeit zugesetzt, aber es dient dennoch als Grundlage für andere Suppen.
+harvestfestival.meal.porridge=Porridge
+harvestfestival.meal.porridge.description=Vorgekochter Hafer löst sich in nahrhaften Porridge auf wenn man ihn in Milch kocht.
+harvestfestival.meal.egg.overrice=Ei auf Reis
+harvestfestival.meal.egg.overrice.description=Zerschlage ein Ei über Reisbällchen und erhitze das Ganze langsam für 20 Minuten in einer Auflaufform. Das Ei sickert zwischen den Reis und verbindet die Körner mit leckerem Protein.
+harvestfestival.meal.stew=Eintopf
+# GERICHTE PAUSE
+harvestfestival.meal.stew.description=Die einfache Kombination aus Mehl und Milch ergibt die Basis für hervorragende Eintöpfe die aus einer Vielzahl von unterschiedlichen Zutaten gemacht werden können.
+harvestfestival.meal.corn.baked=Gebackener Mais
+harvestfestival.meal.corn.baked.description=Gerösteter Mais ist ein Klassiker, der Zucker den den Maiskörnern wird durch das Rösten immer süßer, aber für manchen noch nicht süß genug. Etwas Butter rundet das Ganze ab.
+harvestfestival.meal.riceballs.toasted=Gebratene Reisbällchen
+harvestfestival.meal.riceballs.toasted.description=Gebratene Reisbällchen sind praktisch und gut zu tragen. Zum leckeren Geschmack kommt die knusprige Hülle.
+harvestfestival.meal.toast=Toast
+harvestfestival.meal.toast.description=Geröstetes Brot wurde früher verwendet um etwas mehr Geschmack zum schalen Bier zu erhalten. Heute weiß man, dass es auch alleine gut schmeckt.
+harvestfestival.meal.dinnerroll=Abendbrötchen
+harvestfestival.meal.dinnerroll.description=Diese Brötchen werden aus mit Milch und Salz verrührten Eier gebacken. Eigentlich eher eine Art von Omelett, schmeckt aber eher wie Brot.
+harvestfestival.meal.doria=Doria
+harvestfestival.meal.doria.description=Diese Art Brot enthält Reis und geröstete Zwiebeln und vereint dadurch Süß und Herzhaft in einem einzigen Gericht.
+harvestfestival.meal.cookies=Kekse
+harvestfestival.meal.cookies.description=Handlich, süß, knusprig, lecker - der ideale Snack der Götter. Wie könnte man so etwas noch besser machen?
+harvestfestival.meal.cookies.chocolate=Schokokekse
+harvestfestival.meal.cookies.chocolate.description=Indem man Schokolade in den Teig rührt kriegt man den Schokogeschmack in die Kekse. Danach gibt man noch einige Broken Schokolade hinzu...
+harvestfestival.meal.cake.chocolate=Schokokuchen
+harvestfestival.meal.cake.chocolate.description=Schokolade plus Kuchenteig ergibt Schokoladenkuchenteig. Und wenn man es schafft, den Teig oder die vielen leckeren Dinge die man noch reinwerfen kann sofort aufzuessen kann man sogar einen Kuchen daraus backen.
+harvestfestival.meal.toast.french=Arme Ritter
+harvestfestival.meal.toast.french.description=Indem man Brot nochmal in den meisten seiner Grundzutaten einlegt und dann brät erhält man im Prinzip Doppelbrot. Und es schmeckt unglaublich gut. Gibt man die fehlende Hauptzutat noch dazu wird's noch leckerer.
+harvestfestival.meal.doughnut=Donut
+harvestfestival.meal.doughnut.description=Ringe der Herrlichkeit. Fluch des Heißhungers. Ideale Gefährten für Tee, Kaffee und andere leckere Heißgetränke.
+harvestfestival.meal.fish.grilled=Gegrillter Fisch
+harvestfestival.meal.fish.grilled.description=Grillen bringt dem Fisch ganz neue Geschmacksdimensionen: Weich oder Knusprig, schwer oder würzig - je nach Zubereitung.
+harvestfestival.meal.eggplant.happy=Fröhliche Aubergine
+harvestfestival.meal.eggplant.happy.description=Halbmondförmig geschnittene und frittierte Aubergine zaubert ein Lächeln auf die Gesichter der meisten Menschen - und lächelt sogar zurück!
+harvestfestival.meal.burnt.counter=Fehlgeschlagene Mahlzeit
+harvestfestival.meal.burnt.pot=Angebranntes Topfgericht
+harvestfestival.meal.burnt.frying.pan=Angebranntes Pfannengericht
+harvestfestival.meal.burnt.mixer=Fehlgeschlagenes Mixgericht
+harvestfestival.meal.burnt.oven=Verbranntes Ofengericht
+
+#Ingredients
+harvestfestival.ingredient.butter=Butter
+harvestfestival.ingredient.cookies=Kekse
+harvestfestival.ingredient.egg.scrambled=Rührei
+harvestfestival.ingredient.ketchup=Ketchup
+harvestfestival.ingredient.sashimi=Sashimi
+harvestfestival.ingredient.oil=Öl
+harvestfestival.ingredient.riceball=Reisbällchen
+harvestfestival.ingredient.salt=Salz
+harvestfestival.ingredient.flour=Mehl
+harvestfestival.ingredient.chocolate=Schokolade
+
+#Utensils
+harvestfestival.utensil.blade=Mixer Messer
+harvestfestival.utensil.knife=Küchenmesser
+
+#Sizeables
+harvestfestival.sizeable.format=%1s %2s
+harvestfestival.sizeable.small=Kleine(s)
+harvestfestival.sizeable.medium=Mittlere(s)
+harvestfestival.sizeable.large=Große(s)
+harvestfestival.sizeable.egg=Ei
+harvestfestival.sizeable.milk=Milch
+harvestfestival.sizeable.wool=Wolle
+harvestfestival.sizeable.fish=Fisch
+harvestfestival.sizeable.cheese=Käse
+harvestfestival.sizeable.yoghurt=Joghurt
+harvestfestival.sizeable.mayonnaise=Mayonaise
+harvestfestival.sizeable.matsutake=Matsutake Pilz
+harvestfestival.sizeable.toadstool=Fliegenpilz
+harvestfestival.sizeable.shiitake=Shiitake Pilz
+harvestfestival.sizeable.yarn=Garn
+
+#Tools
+#Hoe
+harvestfestival.tool.discharge=Setze Werkzeug auf normales Ladeniveau zurück!
+harvestfestival.tool.charge=Erhöhe Werkzeuglevel auf %s
+harvestfestival.hoe.tooltip.charge.basic=Normales Ladelevel (1x1)
+harvestfestival.hoe.tooltip.charge.copper=Kupfer Ladelevel (1x2)
+harvestfestival.hoe.tooltip.charge.silver=Silber Ladelevel (1x3)
+harvestfestival.hoe.tooltip.charge.gold=Gold Ladelevel (1x4)
+harvestfestival.hoe.tooltip.charge.mystril=Mystril Ladelevel (1x6)
+harvestfestival.hoe.tooltip.charge.cursed=Verfluchtes/Gesegnetes Ladelevel (3x12)
+harvestfestival.hoe.tooltip.charge.mythic=Mythisches Ladelevel (5x18)
+harvestfestival.hoe.tooltip.charge=Rechtsklick halten um zu laden
+harvestfestival.hoe.tooltip.discharge=Schleichen und Rechtsklick zum Zurücksetzen.
+harvestfestival.hoe.basic=Hacke
+harvestfestival.hoe.copper=Kupfer Hacke
+harvestfestival.hoe.silver=Silber Hacke
+harvestfestival.hoe.gold=Gold Hacke
+harvestfestival.hoe.mystril=Mystril Hacke
+harvestfestival.hoe.cursed=Verfluchte Hacke
+harvestfestival.hoe.blessed=Gesegnete Hacke
+harvestfestival.hoe.mythic=Mythische Hacke
+
+#Sickle
+harvestfestival.sickle.basic=Sichel
+harvestfestival.sickle.copper=Kupfer Sichel
+harvestfestival.sickle.silver=Silber Sichel
+harvestfestival.sickle.gold=Gold Sichel
+harvestfestival.sickle.mystril=Mystril Sichel
+harvestfestival.sickle.cursed=Verfluchte Sichel
+harvestfestival.sickle.blessed=Gesegnete Sichel
+harvestfestival.sickle.mythic=Mythische Sichel
+
+#Watering Can
+harvestfestival.wateringcan.basic=Gießkanne
+harvestfestival.wateringcan.copper=Kupfer Gießkanne
+harvestfestival.wateringcan.silver=Silber Gießkanne
+harvestfestival.wateringcan.gold=Gold Gießkanne
+harvestfestival.wateringcan.mystril=Mystril Gießkanne
+harvestfestival.wateringcan.cursed=Verfluchte Gießkanne
+harvestfestival.wateringcan.blessed=Gesegnete Gießkanne
+harvestfestival.wateringcan.mythic=Mythische Gießkanne
+
+#Hammer
+harvestfestival.hammer.basic=Hammer
+harvestfestival.hammer.copper=Kupfer Hammer
+harvestfestival.hammer.silver=Silber Hammer
+harvestfestival.hammer.gold=Gold Hammer
+harvestfestival.hammer.mystril=Mystril Hammer
+harvestfestival.hammer.cursed=Verfluchte Hammer
+harvestfestival.hammer.blessed=Gesegneter Hammer
+harvestfestival.hammer.mythic=Mythischer Hammer
+
+#Axe
+harvestfestival.axe.basic=Axt
+harvestfestival.axe.copper=Kupfer Axt
+harvestfestival.axe.silver=Silber Axt
+harvestfestival.axe.gold=Gold Axt
+harvestfestival.axe.mystril=Mystril Axt
+harvestfestival.axe.cursed=Verfluchte Axt
+harvestfestival.axe.blessed=Gesegnete Axt
+harvestfestival.axe.mythic=Mythische Axt
+
+#Effects
+harvestfestival.effect.fatigue=Ermüdet
+harvestfestival.effect.exhaustion=Erschöpft
+harvestfestival.effect.cursed=Verflucht
+
+#Treats
+harvestfestival.treat.cow=Kuhleckerei
+harvestfestival.treat.sheep=Schafleckerei
+harvestfestival.treat.chicken=Hühnerleckerei
+harvestfestival.treat.horse=Pferdeleckerei
+harvestfestival.treat.pig=Schweineleckerei
+harvestfestival.treat.cat=Katzenleckerei
+harvestfestival.treat.dog=Hundeleckerei
+harvestfestival.treat.generic=Leckerei
+
+#Blocks
+harvestfestival.cookware.fridge=Kühlschrank
+harvestfestival.cookware.fridge.top=Kühlschrank
+harvestfestival.cookware.counter=Küchentheke
+harvestfestival.cookware.pot=Kochtopf
+harvestfestival.cookware.frying.pan=Bratpfanne
+harvestfestival.cookware.mixer=Mixer
+harvestfestival.cookware.oven.off=Ofen
+harvestfestival.cookware.oven.on=Ofen
+harvestfestival.cookware.chopping.board=Schneidbrett
+harvestfestival.cookware.mixing.bowl=Rührschüssel
+harvestfestival.cookware.baking=Backblech
+harvestfestival.cookware.steamer=Dampfgarer
+
+harvestfestival.storage.shipping=Versandkiste
+harvestfestival.sized.incubator=Brutkasten
+harvestfestival.trough.wood=Futtertrog
+harvestfestival.sprinkler.wood=Sprinkler
+harvestfestival.tray.nest.empty=Nistkasten
+harvestfestival.tray.small.chicken=Nistkasten mit kleinem Hühnerei
+harvestfestival.tray.medium.chicken=Nistkasten mit mittlerem Hühnerei
+harvestfestival.tray.large.chicken=Nistkasten mit großem Hühnerei
+harvestfestival.tray.feeder.empty=Futterkasten
+harvestfestival.tray.feeder.full=Futterkasten mit Futter
+
+harvestfestival.flowers.goddess=Göttinblume
+harvestfestival.flowers.weed=Unkraut
+
+harvestfestival.wood.branch.small=Kleiner Ast
+harvestfestival.wood.branch.medium=Mittlerer Ast
+harvestfestival.wood.branch.large=Großer Ast
+harvestfestival.wood.stump.small=Kleiner Stumpf
+harvestfestival.wood.stump.medium=Mittlerer Stumpf
+harvestfestival.wood.stump.large=Großer Stumpf
+harvestfestival.rock.stone.small=Kleiner Fels
+harvestfestival.rock.stone.medium=Mittlerer Fels
+harvestfestival.rock.stone.large=Großer Fels
+harvestfestival.rock.boulder.small=Kleiner Findling
+harvestfestival.rock.boulder.medium=Mittlerer Findling
+harvestfestival.rock.boulder.large=Großer Findling
+
+#Mine Blocks
+harvestfestival.dirt=Grubenboden
+harvestfestival.dirt.winter=Grubenboden
+harvestfestival.dirt.decorative=Grubenboden
+harvestfestival.dirt.decorative.winter=Grubenboden
+harvestfestival.hole=Grubenloch
+harvestfestival.stone.real=Grubenwand
+harvestfestival.stone.decorative=Grubenwand
+harvestfestival.ladder.wood=Grubenleiter
+harvestfestival.ore.rock=Fels
+harvestfestival.ore.copper=Kupfervorkommen
+harvestfestival.ore.silver=Silbervorkommen
+harvestfestival.ore.gold=Goldvorkommen
+harvestfestival.ore.mystril=Mystrilvorkommen
+harvestfestival.ore.gem=Edelsteinvorkommen
+harvestfestival.portal=Grubenportal
+
+#Mine Materials
+harvestfestival.material.junk=Erzabfall
+harvestfestival.material.copper=Kupfererz
+harvestfestival.material.silver=Silvererz
+harvestfestival.material.gold=Golderz
+harvestfestival.material.mystril=Mystrilerz
+harvestfestival.material.mythic=Mythischer Stein
+
+#Mine Mobs
+harvestfestival.darkspawner.cow=Dunkelkuh
+harvestfestival.darkspawner.sheep=Dunkelschaf
+harvestfestival.darkspawner.chicken=Dunkelhuhn
+harvestfestival.darkspawner.chick=Dunkelküken
+entity.harvestfestival.dark_cow.name=Dunkelkuh
+entity.harvestfestival.dark_sheep.name=Dunkelschaf
+entity.harvestfestival.dark_chicken.name=Dunkelhuhn
+entity.harvestfestival.dark_chick.name=Dunkelküken
+
+#Mine Tools
+harvestfestival.miningtool.escape.rope=Fluchtseil
+
+tile.goddess.water.name=Göttinwasser
+
+#Seasons
+harvestfestival.season.spring=Frühling
+harvestfestival.season.summer=Sommer
+harvestfestival.season.autumn=Herbst
+harvestfestival.season.winter=Winter
+harvestfestival.season.nether=Infernalisch
+harvestfestival.season.end=Leer
+harvestfestival.calendar.date=%1s %2s
+harvestfestival.calendar.monday=MON
+harvestfestival.calendar.tuesday=DIE
+harvestfestival.calendar.wednesday=MIT
+harvestfestival.calendar.thursday=DON
+harvestfestival.calendar.friday=FRE
+harvestfestival.calendar.saturday=SAM
+harvestfestival.calendar.sunday=SON
+harvestfestival.year=Jahr
+
+#Weathers
+harvestfestival.weather.sunny.set=Stelle Wetter auf sonnig
+harvestfestival.weather.rain.set=Stelle Wetter auf Regen
+harvestfestival.weather.snow.set=Stelle Wetter auf Schnee
+harvestfestival.weather.typhoon.set=Stelle Wetter auf Taifun
+harvestfestival.weather.blizzard.set=Stelle Wetter auf Schneesturm
+
+#NPC Tools
+harvestfestival.npctool.blue.feather=Blaue Feder
+harvestfestival.npctool.npc.killer=Sofortiger Lebewesen Killer
+harvestfestival.npctool.calendar=Wie viele Jahre?
+harvestfestival.npctool.clock=Wann öffnet der Laden?
+harvestfestival.npctool.weather=Wetter morgen?
+harvestfestival.npctool.gift=Gegenstand schenken!
+
+# NPC Names
+## NOTE FOR TRANSLATORS, READ
+# For the Harvest Goddess, use the name that is used by the Harvest Festival Games
+# in your own language, as for the other characters, name them whatever you like!
+# can be your friends, yourself, hints at famous people in your language or whatever
+# the names don't need to be the same.
+# WARNING: Use of any NON a-Z character will change the renderer to use the vanilla font instead
+# So for best looks, if you can try to only use names with that, if the means you don't translate names
+# then sorry. It's not really feasible for me to support unicode with the custom font
+harvestfestival.npc.goddess.name=Demeter
+harvestfestival.npc.katlin.name=Omi Riti
+harvestfestival.npc.daniel.name=Daniel
+harvestfestival.npc.cloe.name=Cloe
+harvestfestival.npc.liara.name=Liara
+harvestfestival.npc.jade.name=Jade
+harvestfestival.npc.jenni.name=Jenni
+harvestfestival.npc.jamie.name=Mayor Jeimmi
+harvestfestival.npc.abi.name=Abii
+harvestfestival.npc.tiberius.name=Tiberius
+harvestfestival.npc.jacob.name=Jakob
+harvestfestival.npc.fenn.name=Fenn
+harvestfestival.npc.jim.name=Jim
+harvestfestival.npc.brandon.name=Brandon
+harvestfestival.npc.thomas.name=Tomas
+harvestfestival.npc.candice.name=Candice
+harvestfestival.npc.yulif.name=Yulif
+harvestfestival.npc.ashlee.name=Ashlee
+harvestfestival.npc.girafi.name=Johan
+
+## NOTE FOR TRANSLATORS, READ
+# When translating these, do not directly translate, just come up with your own
+# funny, or generic greetings related to each character, things that work best
+# in your own language, as these are just generic, do translate the quests
+# semi-literally though, as they are important so the user knows what to do,
+# but take liberty there to, just make sure the user still knows what they
+# have to do in order to complete the quest in question. For many of the greetings you
+# can remove or add more, for the greetings like: harvestfestival.npc.goddess.greeting
+# you can add up to 32 greetings
+#Key-Codes for conversations
+# %1$s = Money - Player has
+# %2$s = Player's Romantic Interest's name
+# %3$s = Entity's Romantic Interest's name
+# %4$s = Players Name
+# %5$s = NPC Name
+#Conversations
+#Error
+harvestfestival.npc.error=Finde keine Übersetzung für Schlüssel: %s oder den Schlüssel %s
+#Generic - Weather
+harvestfestival.npc.generic.weather.good=Tolles Wetter oder?
+harvestfestival.npc.generic.weather.bad=Was für ein Sauwetter!
+
+#Generic Adult Thanks
+harvestfestival.npc.generic.adult.gift.awesome=Vielen Dank für das tolle Geschenk. Ich liebe es!
+harvestfestival.npc.generic.adult.gift.good=Das ist ein wirklich schönes Geschenk, vielen Dank!
+harvestfestival.npc.generic.adult.gift.decent=Danke für das Geschenk.
+harvestfestival.npc.generic.adult.gift.dislike=Ähm, ja, danke auch.
+harvestfestival.npc.generic.adult.gift.bad=Was hast Du Dir dabei nur gedacht? Warum sollte ich das mögen?
+harvestfestival.npc.generic.adult.gift.terrible=Was ist nur los mit Dir? Wer würde sowas schon wollen?!?
+#No Thanks
+harvestfestival.npc.generic.adult.gift.reject=Das ist wirklich sehr freundlich, aber ich kann dieses Geschenk heute nicht annehmen.
+harvestfestival.npc.generic.adult.gift.no=Das ist viel zu wertvoll, das kann ich nicht als Geschenk annehmen!
+
+#Generic Child Thanks
+harvestfestival.npc.generic.child.gift.awesome=Oh mein Gott! Ja! Ja! Ja! Daaaaaaanke Dir! Das ist spitze!
+harvestfestival.npc.generic.child.gift.good=Großartig! Vielen Dank für das schöne Geschenk!
+harvestfestival.npc.generic.child.gift.decent=Schön, danke Dir!
+harvestfestival.npc.generic.child.gift.dislike=Hmmm, ich weiß nicht ob mir das gefällt.
+harvestfestival.npc.generic.child.gift.bad=Warum tust Du mir das an? :(
+harvestfestival.npc.generic.child.gift.terrible=ICH HASSE DICH, NIMM DAS WEEEEEEEG!!!
+#No Thanks
+harvestfestival.npc.generic.child.gift.reject=Nein, danke Dir. Vielleicht morgen... :D
+
+#Generic Elder Thanks
+harvestfestival.npc.generic.elder.gift.awesome=In meinem ganzen Leben habe ich noch kein so schönes Geschenk erhalten. Ich danke Dir aus tiefstem Herzen!
+harvestfestival.npc.generic.elder.gift.good=Das ist ein wirklich schönes Geschenk von Dir. Danke!
+harvestfestival.npc.generic.elder.gift.decent=Danke für das Geschenk.
+harvestfestival.npc.generic.elder.gift.dislike=Das war keine gute Idee...
+harvestfestival.npc.generic.elder.gift.bad=Willst Du mich beleidigen?
+harvestfestival.npc.generic.elder.gift.terrible=Für so ein Geschenk sollte man Dir den Hintern versohlen!
+#No Thanks
+harvestfestival.npc.generic.elder.gift.reject=Es tut mir leid, Kleines, ich kann heute bei allem Respekt wirklich kein Geschenk mehr von Dir annehmen.
+
+#Goddess
+harvestfestival.npc.goddess.greeting1=Wie geht es Dir?
+harvestfestival.npc.goddess.greeting2=Was für ein toller Tag zum Ernten!
+harvestfestival.npc.goddess.greeting3=Brauchst Du noch etwas mein Schatz?
+harvestfestival.npc.goddess.greeting4=Lass Dir bitte nicht zuviel Zeit, ich kann nicht lange bleiben.
+harvestfestival.npc.goddess.greeting5=Was benötigst Du?
+harvestfestival.npc.goddess.greeting6=Wenn Du Dich mal vertust und einen weiteren Zimmermann brauchst dann bring mir einfach mehr Holz und ich helfe Dir gern.
+harvestfestival.npc.goddess.greeting7=Oh, wie schön Dich wieder zu treffen %4$s!
+harvestfestival.npc.goddess.greeting8=Hallo mein Liebling, wie ist es Dir ergangen?
+harvestfestival.npc.goddess.greeting9=Ich bin sicher eines Tages werden die Ernteelfen wiederkommen, es ist so einsam ohne sie.
+harvestfestival.npc.goddess.greeting10=Ich finde man sollte Blumen auf Feldern züchten können, das ist einfach unfair.
+harvestfestival.npc.goddess.greeting11=Oh wo warst Du denn? Es ist wunderbar Dich wiederzusehen.
+harvestfestival.npc.goddess.greeting12=Hallo %4$s, laufen die Dinge gut für Dich?
+harvestfestival.npc.goddess.greeting13=Die Natur ist wirklich wunderschön, nicht wahr?
+harvestfestival.npc.goddess.greeting14=Wenn Du mir ein Geschenk machen möchtest dann ist es am einfachsten wenn Du es in meinen Teich wirfst!
+harvestfestival.npc.goddess.marriage.reject=Herzchen, ich möchte Dich nicht heiraten.
+harvestfestival.npc.goddess.marriage.accept=Was für eine Überraschung mein Goldstück. JA, ich will Dich heiraten!
+harvestfestival.npc.goddess.gift.awesome=Dieses Geschenk gefällt mir ungemein.
+harvestfestival.npc.goddess.gift.good=Dieses Geschenk gefällt mir sehr.
+harvestfestival.npc.goddess.gift.decent=Dieses Geschenk gefällt mir.
+harvestfestival.npc.goddess.gift.dislike=Dieses Geschenk gefällt mir nicht.
+harvestfestival.npc.goddess.gift.bad=Dieses Geschenk beleidigt mich.
+harvestfestival.npc.goddess.gift.terrible=Wie kannst Du es wagen mich so zu beleidigen?
+
+# Goddess Weather
+harvestfestival.npc.goddess.weather.sunny1=Oh Herzchen, morgen wird es ein lieblicher Tag voll Sonnenschein!
+harvestfestival.npc.goddess.weather.sunny2=Es wird ein wunderbar sonniger Tag morgen!
+harvestfestival.npc.goddess.weather.sunny3=Die Sonne wird morgen den ganzen Tag scheinen, es wird wunderschön werden!
+harvestfestival.npc.goddess.weather.rain1=Morgen wird es naß werden, da brauchst Du Deine Felder nicht gießen.
+harvestfestival.npc.goddess.weather.rain2=Die Wolken morgen sehen ziemlich grau aus, wird wohl nieseln.
+harvestfestival.npc.goddess.weather.rain3=Morgen gibt's Regenschauer - Tropf, Tropf, Tropf...
+harvestfestival.npc.goddess.weather.typhoon1=Oh oh, morgen sieht furchtbar aus, ein Taifun ist auf dem Weg!
+harvestfestival.npc.goddess.weather.typhoon2=Das sieht nicht gut aus, bleib morgen lieber drin - ein Taifun kommt!
+harvestfestival.npc.goddess.weather.typhoon3=Morgen gibt es einen schlimmen Sturm, ein Taifun wird in's Dorf kommen.
+harvestfestival.npc.goddess.weather.snow1=Morgen wird es seeeehr kalt werden, zieh Dich lieber warm an für den Schnee!
+harvestfestival.npc.goddess.weather.snow2=Ich glaube morgen sind wir alle Schneeköniginnen und singen Willst Du einen Schneemann bauen?
+harvestfestival.npc.goddess.weather.snow3=Der Wetterbericht für morgen... ist gefroren. Es wird Schnee geben.
+harvestfestival.npc.goddess.weather.blizzard1=Du könntest morgen erfrieren, das Wetter wird furchtbar und ein Schneesturm ist auf dem Weg hierher.
+harvestfestival.npc.goddess.weather.blizzard2=Ich habe gehört, dass Väterchen Frost morgen herkommt und einen Schneesturm mitbringt.
+harvestfestival.npc.goddess.weather.blizzard3=Wow, morgen gibt's nen Schneesturm! Pass' gut auf Dich auf!
+
+#Katlin
+harvestfestival.npc.katlin.greeting1=Wie ist es Dir ergangen?
+harvestfestival.npc.katlin.greeting2=Als ich noch jung war... Oh, das willst Du eh nicht nochmal hören. Wie geht's Dir heute?
+harvestfestival.npc.katlin.greeting3=Die jungen Leute heutzutage. Oh, hallo.
+harvestfestival.npc.katlin.greeting4=Ich putze den ganzen Tag mein Haus nachdem ich morgens mit dem Hund draußen war.
+harvestfestival.npc.katlin.greeting5=Früher war alles, naja, besser...
+harvestfestival.npc.katlin.greeting6=Liara hat ihr Eltern auf tragische Weise verloren als sie jung war. So habe ich sie aufgezogen.
+harvestfestival.npc.katlin.greeting7=Als ich ein kleines Mädchen war hat meine Mutter immer... Hmmm, das sollte ich vielleicht besser nicht erzählen.
+harvestfestival.npc.katlin.greeting8=Eines Tages wird mein Haus blitzblank sein.
+harvestfestival.npc.katlin.greeting9=Hallo Kleines, was treibst Du so?
+harvestfestival.npc.katlin.gift.awesome=Du weißt wie man das Herz eines alten Mädchens erfreut. Genau sowas habe ich mir gewünscht!
+harvestfestival.npc.katlin.gift.good=Für jemand so Junges machtst Du tolle Geschenke.
+harvestfestival.npc.katlin.gift.decent=Das ist akzeptabel.
+harvestfestival.npc.katlin.gift.dislike=Dies ist nicht akzeptabel.
+harvestfestival.npc.katlin.gift.bad=Früher hat man den Leuten ja noch ordentliche Geschenke gegeben.
+harvestfestival.npc.katlin.gift.terrible=Willst Du mich umbringen? Was für ein scheußliches Geschenk!
+
+#Danieuru/Chylex
+harvestfestival.npc.daniel.shop=Ich habe jeden Tag von 10:00 bis 16:00 geöffnet, außer Donnerstags.
+harvestfestival.npc.daniel.greeting1=Seit ich ein Kind war habe ich gern an Dingen herumgebastelt.
+harvestfestival.npc.daniel.greeting2=Werkzeuge sind meine wahre Leidenschaft, sie sind wie eine Erweiterung von mir selbst.
+harvestfestival.npc.daniel.greeting3=Die Leute halten mich für verrückt weil ich an Drachen glaube. Irgendwann werden sie selbst in Das Ende reisen und sie sehen, dann werden sie mich keinen Narren mehr nennen.
+harvestfestival.npc.daniel.greeting4=Wenn ich etwas anderes könnte als Werkzeuge herstellen dann wäre ich ein Drachentöter!
+harvestfestival.npc.daniel.greeting5=Wusstest Du, dass ich in meiner Jugend ein olympischer Sprinter war? Ich war schneller als jeder andere in Minecraftia!
+harvestfestival.npc.daniel.greeting6=Männer, Frauen? Mir egal, ich mag sie alle. Abwechslung ist die Würze des Lebens!
+harvestfestival.npc.daniel.greeting7=Jenni und Yulif gefallen mir beide sehr gut, aber keiner von beiden scheint interessiert zu sein.
+harvestfestival.npc.daniel.greeting8=Wenn Deine Werkzeuge repariert werden müssen bring sie zu mir - und vergiss' die passenden Materialien nicht!
+harvestfestival.npc.daniel.greeting9=Wenn Du mal eine Aufwertung brauchst, dann bring mir ein 100%% Werkzeug, etwas Gold und etwas womit ich es aufwerten kann.
+harvestfestival.npc.daniel.greeting10=Ich war Im Ende, und Du?
+harvestfestival.npc.daniel.greeting11=Ich wurde Schmied weil ich meine eigenen Werkzeuge machen wollte um damit in Das Ende zu gelangen. Es war mein Lebenstraum.
+harvestfestival.npc.daniel.greeting12=Wenn ich jedes Land besuche könnte, hmmm, dann würde ich vermutlich mit Ashlee nach Deutschland reisen wollen.
+harvestfestival.npc.daniel.greeting13=Es gibt nichts was ich mehr hasse als den Ozean! Ich glaube, das hat mit meiner Faszination für Endermen zu tun...
+harvestfestival.npc.daniel.marriage.reject=Ich verbringe meine Zeit lieber mit dem Polieren von Werkzeugen als mit Dir!
+harvestfestival.npc.daniel.marriage.accept=Meine Werkzeuge können warten, lass uns sofort heiraten!!!
+harvestfestival.npc.daniel.gift.awesome=Und ich dachte Das Ende wäre das beste Geschenk für mich gewesen.
+harvestfestival.npc.daniel.gift.good=Du machst großartige Geschenke.
+harvestfestival.npc.daniel.gift.decent=Das ist in Ordnung.
+harvestfestival.npc.daniel.gift.dislike=Das ist nicht in Ordnung.
+harvestfestival.npc.daniel.gift.bad=Du machst miese Geschenke
+harvestfestival.npc.daniel.gift.terrible=Und ich dachte die Zurückweisung von Yulif wäre mies, aber jetzt gibst Du mir sowas?!?
+
+#Cloe
+harvestfestival.npc.cloe.greeting1=Ein gutes Buch macht ein Mädchen glücklich
+harvestfestival.npc.cloe.greeting2=Mein Vater übertreibt es manchmal, ich halte diesen Druck nicht aus!
+harvestfestival.npc.cloe.greeting3=Manchmal verstehe ich Mädchen einfach nicht.
+harvestfestival.npc.cloe.greeting4=Nichts genieße ich mehr als einen gruseligen Film.
+harvestfestival.npc.cloe.greeting5=Ehrlich, ich weiß im Moment nicht genau was ich mit meinem Leben anfangen soll...
+harvestfestival.npc.cloe.greeting6=Diese Welt ist so durcheinander, ich weiß auch nicht...
+harvestfestival.npc.cloe.greeting7=Als ich fünf war hatte ich schon 200 Bücher gelesen.
+harvestfestival.npc.cloe.greeting8=Ich weiß nicht wie Abi all diese falsche Niedlichkeit aushält, mich macht das wahnsinnig.
+harvestfestival.npc.cloe.greeting9=Wir sind so unwichtig.
+harvestfestival.npc.cloe.greeting10=Sag's bitte niemandem, aber: Ich mag Pinguine. Ja, ich weiß, ich weiß...
+harvestfestival.npc.cloe.greeting11=Mein Onkel ist ein bissl seltsam. Er verbringt seine Tage am Schreibtisch und arbeitet an... Naja... ich weiß auch nicht genau an was. Er murmelt irgendwas von Modding...
+harvestfestival.npc.cloe.greeting12=Ich kann nicht glaube dass meine Mutter bei Team Valor ist!
+harvestfestival.npc.cloe.marriage.reject=Warum sollte ich heiraten? Das ist doch Zeitverschwendung.
+harvestfestival.npc.cloe.marriage.accept=Ich bin bereit erwachsen zu werden und mein Leben mit Dir zu verbringen.
+harvestfestival.npc.cloe.gift.awesome=Du willst wirklich mein Herz gewinnen oder?
+harvestfestival.npc.cloe.gift.good=Das freundliche Geschenk gefällt mir sehr.
+harvestfestival.npc.cloe.gift.decent=Danke.
+harvestfestival.npc.cloe.gift.dislike=Ähh, was?!?
+harvestfestival.npc.cloe.gift.bad=Öhm, nein danke...
+harvestfestival.npc.cloe.gift.terrible=Ich dachte meine Eltern wären die Schlimmsten, aber nein: Du bist es!
+
+#Liara/ApsciLiara
+harvestfestival.npc.liara.shop=Ich fürchte, das Café hat nur von 09:30 bis 17:00 Uhr geöffnet, dafür aber jeden Tag!harvestfestival.npc.liara.greeting1=Ich liebe dieses Wetter, perfekt zum Kuchen backen!
+harvestfestival.npc.liara.greeting2=Kochen macht mir am meisten Spaß! Ich liebe den Gesichtsausdruck wenn jemand den ersten Bissen von meinem leckeren Essen in den Mund steckt.
+harvestfestival.npc.liara.greeting3=Bist Du hungrig? Ich habe immer Hunger, kein Wunder, dass ich so gern koche.
+harvestfestival.npc.liara.greeting4=Komm auf jeden Fall mal Dienstags vorbei, da gibt's immer was Besonderes.
+harvestfestival.npc.liara.greeting5=Essen hält die Welt am drehen und macht mich immer ganz schwindelig.
+harvestfestival.npc.liara.greeting6=Es gibt nichts besseres als ein Stück gute, alte Schokolade um ein Mädchen glücklich zu machen.
+harvestfestival.npc.liara.greeting7=Du würdest es nicht glauben, aber ich stehe auf echt... abgefahrene Sachen.
+harvestfestival.npc.liara.greeting8=Wenn Du Kochwaren suchst, die verkaufe ich nur Sonntags.
+harvestfestival.npc.liara.greeting9=Ich verkaufe jede Woche andere Rezepte, je nach Jahreszeit.
+harvestfestival.npc.liara.greeting10=Falls Du es nicht wusstest: Du kannst Fleisch in einem Ofen garen.
+harvestfestival.npc.liara.greeting11=Falls Du meinen Rat möchtest, lies die Beschreibungen im Rezeptbuch. Oft geben sie Dir einen Hinweis, wie man ein Rezept noch besser machen kann...
+harvestfestival.npc.liara.greeting12=Als ich auf der Kochschule war gab es da dieses Mädchen, ich glaube ihr Name begann mit P. Sie war ein entsetzlicher Koch.
+harvestfestival.npc.liara.greeting13=Ich vermisse meine Eltern wirklich sehr, aber ihr Verlust hat dazu geführt, dass ich mich so richtig in meine Kochkarriere verbissen habe.
+harvestfestival.npc.liara.greeting14=Ich war schon mein ganzes Leben lang ein leidenschaftlicher Koch. Als ich zehn war habe ich Cupcakes verkauzft und damit 1000 Gold pro Woche verdient! Aber jetzt bin ich doch froh, dass ich endlich ein richtiges Geschäft eröffnen kann.
+harvestfestival.npc.liara.greeting15=Das Café ist jeden Tag geöffnet! Von halb zehn morgens bis fünf Uhr nachmittags.
+harvestfestival.npc.liara.marriage.reject=Das Café ist mein Zuhause. Ich möchte nicht mit Dir leben.
+harvestfestival.npc.liara.marriage.accept=Danke, ich möchte Dich auch heiraten. Und Dir viele leckere Mahlzeiten kochen.
+harvestfestival.npc.liara.gift.awesome=Ich danke Dir so sehr, ich werde mich immer hieran erinnern.
+harvestfestival.npc.liara.gift.good=Vielen Dank!
+harvestfestival.npc.liara.gift.decent=Danke Dir.
+harvestfestival.npc.liara.gift.dislike=Nein danke.
+harvestfestival.npc.liara.gift.bad=Das gefällt mir nicht.
+harvestfestival.npc.liara.gift.terrible=Ich würde Dir danken, aber Du hast mir das Schlimmste gegeben was man mir nur schenken kann. Lebewohl.
+
+#Jade
+harvestfestival.npc.jade.greeting1=Hey! Ich liebe es in der Welt herumzulaufen, aber auf die Schafe musst Du aufpassen!
+harvestfestival.npc.jade.greeting2=Der Himmel fällt herunter, der Himmel fällt herunter!
+harvestfestival.npc.jade.greeting3=Ich würde so gern einen eigenen Bauernhof besitzen, aber mein Bruder ist so ein Kontrollfreak!
+harvestfestival.npc.jade.greeting4=So viele Leute haben mich böse genannt, dabei bin ich so ein nettes Mädchen.
+harvestfestival.npc.jade.greeting5=Ich wünschte ich hätte eine Katze, aber Yulif hasst Katzen.
+harvestfestival.npc.jade.greeting6=Es ist ziemlich eng in meinem Haus, kaum Platz zum herumlaufen.
+harvestfestival.npc.jade.greeting7=Ich würde liebend gern Blumen verkaufen, aber mir wurde gesagt dass das erst in einem Update kommt. Was auch immer das bedeuten soll?
+harvestfestival.npc.jade.greeting8=Es ist wirklich ziemlich beengt in unserem Zuhause.
+harvestfestival.npc.jade.greeting9=Dir sind vielleicht die Felsen, Unkraut und Stöcke draußen aufgefallen. Du kannst sie kaputt schlagen um Steine und Holz zu kriegen. Du brauchst aber einen Hammer oder eine Axt dafür...
+harvestfestival.npc.jade.greeting10=Das Herz das Du siehst wenn Du mit Leuten redest zeigt Dir wie sehr sie Dich mögen. Wenn sie Dich wirklich sehr gern haben kannst Du sie sogar heiraten!
+harvestfestival.npc.jade.greeting11=Der schnellste Weg zum Herzen von jemandem ist ihnen Geschenke zu geben. Wenn sie Dich gern genug haben kriegst Du vielleicht sogar etwas zurück!
+harvestfestival.npc.jade.greeting12=Schlafen ist der schnellste Weg um Deine Pflanzen wachsen zu lassen.
+harvestfestival.npc.jade.greeting13=Ich habe wirklich keine Ahnung warum Du Deine Pflanzen nicht düngen kannst. Vielleicht geht das eines Tages?
+harvestfestival.npc.jade.greeting14=Denk dran, dass Gras und Weizen nur mit einer Sichel geerntet werden können!
+harvestfestival.npc.jade.marriage.reject=Ich habe momentan kein Interesse an einer Ehe.
+harvestfestival.npc.jade.marriage.accept=Ich bin bereit für die Ehe, ich nehme an!
+harvestfestival.npc.jade.gift.awesome=Ein wirklich wundervolles Geschenk!
+harvestfestival.npc.jade.gift.good=Was für ein schönes Geschenk!
+harvestfestival.npc.jade.gift.decent=Ich weiß das zu schätzen.
+harvestfestival.npc.jade.gift.dislike=Das kann ich nicht wertschätzen.
+harvestfestival.npc.jade.gift.bad=Was für ein schlechtes Geschenke.
+harvestfestival.npc.jade.gift.terrible=Das ist wirklich ein fürchterliches Geschenk!
+
+#Jenni/Othlon
+harvestfestival.npc.jenni.shop=Hey mein Freund, nur zur Erinnerung: Wir haben jeden Tag von neun bis fünf geöffnet, außer Mittwoch und Sonntags. Oh, und Samstags von elf bis drei...
+harvestfestival.npc.jenni.greeting1=Hallo mein guter Freund, komm doch bitte vorbei wenn Du Gemischtwaren brauchst!
+harvestfestival.npc.jenni.greeting2=So sehr ich meine Kunden auch liebe, meine Kunst liebe ich mehr!
+harvestfestival.npc.jenni.greeting3=Bitte erzähl niemandem, dass ich insgeheim ein großer Fan des Bauchtanzes bin.
+harvestfestival.npc.jenni.greeting4=Manchmal würde ich ja gern Sonntags aufmachen, aber dann fällt mir wieder ein wie gerne ich ausschlafe...
+harvestfestival.npc.jenni.greeting5=Omi Riti macht ne richtig gute Suppe!
+harvestfestival.npc.jenni.greeting6=Meine Preise sind die besten im Ort, niemand schlägt Jenni's Supersonderangebote!
+harvestfestival.npc.jenni.greeting7=Mir ist aufgefallen, dass Du aus Australien kommst. Oh, kommst Du gar nicht? Oder doch?
+harvestfestival.npc.jenni.greeting8=Ich bin so stolz, ich muss schon sagen, dieser Laden ist meine größte Errungenschaft.
+harvestfestival.npc.jenni.greeting9=Candice und ich standen uns mal viel näher, aber die Dinge ändern sich. Wir leben noch zusammen weil ich mir alleine die Miete nicht leisten könnte.
+harvestfestival.npc.jenni.greeting10=In meine Freizeit widme ich mich gerne Kunst und Handwerk.
+harvestfestival.npc.jenni.greeting11=Meine Lieblingstiere sind Schweine, und mein Lieblingsobst sind Kirschen.
+harvestfestival.npc.jenni.greeting12=Mein Angebot ist ziemlich eingeschränkt, aber eines Tages werde ich Dir mehr verkaufen können.
+harvestfestival.npc.jenni.marriage.reject=So weit sind wir noch nicht!
+harvestfestival.npc.jenni.marriage.accept=Mein lieber Freund, ich bin jetzt Deine Frau!
+harvestfestival.npc.jenni.gift.awesome=Mein guter Freund, das ist perfekt!
+harvestfestival.npc.jenni.gift.good=Du bist wirklich ein guter Freund.
+harvestfestival.npc.jenni.gift.decent=Du bist ein Freund.
+harvestfestival.npc.jenni.gift.dislike=Danke mein Freun.
+harvestfestival.npc.jenni.gift.bad=Das hättest Du besser machen könnne, aber schon gut...
+harvestfestival.npc.jenni.gift.terrible=Ich hätte nicht gedacht, dass Du mich jemals kränken könntest, aber Du hast es geschafft!
+
+#Jaimii
+harvestfestival.npc.jamie.greeting1=Dies ist meine Stadt, vergiss' das nie!
+harvestfestival.npc.jamie.greeting2=Meine Familie hat die Wahlen im Dorf seit 100 Jahren gewonnen.
+harvestfestival.npc.jamie.greeting3=Meine beiden Mädels sind kostbar für mich, wehe Du tust ihnen weh!
+harvestfestival.npc.jamie.greeting4=Bürgermeister sein ist echt nicht einfach, die Leute lieben einen viel zu sehr.
+harvestfestival.npc.jamie.greeting5=Hey %4$s, hast Du mein Haus gesehen? Das ist viel zu klein!
+harvestfestival.npc.jamie.greeting6=In Zukunft werde ich Wettbewerbe veranstalten, aber in der Zwischenzeit halte ich das Dorf am Laufen.
+harvestfestival.npc.jamie.greeting7=Keine Ahnung wer Dir die Veranwortung für den Aufbau des Dorfs gegeben hat, ich hätte das bestimmt viel besser gemacht.
+harvestfestival.npc.jamie.greeting8=Mein Vater hat mir immer gesagt, dass aus mir mal etwas Großes werden würde. Tja, schau mich an!
+harvestfestival.npc.jamie.greeting9=Meine Familie ist seit Generationen der Bürgermeister, niemand könnte das besser als wir!
+harvestfestival.npc.jamie.greeting10=Ich verstehe nicht, warum ich für all diese Dinge für andere bezahlen muss. Es ist mein Geld!
+harvestfestival.npc.jamie.greeting11=Ich hoffe, Cloe wird bald erwachsen. Sie wirft ein schlechtes Licht auf unsere Familie.
+harvestfestival.npc.jamie.gift.awesome=Endlich gibst Du mir etwas akzeptables.
+harvestfestival.npc.jamie.gift.good=Naja, das wird schon reichen. Gerade so.
+harvestfestival.npc.jamie.gift.decent=Und Du denkst das gefällt mir?
+harvestfestival.npc.jamie.gift.dislike=Du beleidigst meine Familie mit diesem Geschenk.
+harvestfestival.npc.jamie.gift.bad=Das ist eines der schlimmsten Dinge die Du mir nur geben konntest.
+harvestfestival.npc.jamie.gift.terrible=Das reicht! Wenn ich könnte würde ich Dich aus dem Dorf verbannen! Du beleidigst mich, Du beleidigst meine Familie und Du befleckst das Dorf! Tu das nie wieder!
+
+#Abii
+harvestfestival.npc.abi.greeting1=Ooooh, wie niedlich! Was ist das? Oh mein Gott!
+harvestfestival.npc.abi.greeting2=Hallo große Person. Wo warst Du?
+harvestfestival.npc.abi.greeting3=Ich hab' Dich vermisst.
+harvestfestival.npc.abi.greeting4=Oha, Du bist aber groß.
+harvestfestival.npc.abi.greeting5=Meine Mammi ist sooo gemein. :(
+harvestfestival.npc.abi.greeting6=Ich will eine Prinzessin sein!
+harvestfestival.npc.abi.greeting7=Fenn beachtet mich gar nicht, ich möchte dass er mich liebt!
+harvestfestival.npc.abi.greeting8=Pappi sagt wenn ich brav bin kriege ich ein Pony!
+harvestfestival.npc.abi.greeting9=Ich liebe meine große Schwester Cloe!
+harvestfestival.npc.abi.greeting10=Ich will nie erwachsen werden!
+harvestfestival.npc.abi.greeting11=Komm spiel mit mir!
+harvestfestival.npc.abi.greeting12=Ich will ein Kaninchen! So süüüüß!
+harvestfestival.npc.abi.greeting13=WOW! Du bist wirklich groß!
+harvestfestival.npc.abi.greeting14=Magst Du mit mir spielen?
+harvestfestival.npc.abi.greeting15=Meine Eltern sagen ich darf nicht mit Fremden reden...
+harvestfestival.npc.abi.gift.awesome=Ich LIEBE es! Ich LIEBE es! DANKE DIR!
+harvestfestival.npc.abi.gift.good=Ooooh, das mag ich wirklich.
+harvestfestival.npc.abi.gift.decent=Oh, so schön.
+harvestfestival.npc.abi.gift.dislike=Hmmm, nicht so schön.
+harvestfestival.npc.abi.gift.bad=Ähhh, das wollte ich aber nicht...
+harvestfestival.npc.abi.gift.terrible=Was? Ich HASSE es! Ich HASSE es! So gemein.
+
+#Tiberius/WayofTime
+harvestfestival.npc.tiberius.time=Scheinbar bist Du schon seit %s Jahren in diesem Dorf.
+harvestfestival.npc.tiberius.first=Dies ist Dein erstes Jahr im Dorf. Warum fragst Du überhaupt?
+harvestfestival.npc.tiberius.greeting1=Zeit ist ein faszinierendes Ding, in einem Moment vergeht sie gar nicht und plötzlich ist die nächste Stunde schneller vorbei als das Licht!
+harvestfestival.npc.tiberius.greeting2=Als Kind war mein liebster Kinderreim Backe Backe Kuchen.
+harvestfestival.npc.tiberius.greeting3=Wie spät ist es?
+harvestfestival.npc.tiberius.greeting4=Meine liebste Jahreszeit ist der Frühling weil da das neue Jahr beginnt!
+harvestfestival.npc.tiberius.greeting5=Ich habe nie verstanden warum die Leute Angst vor Blut habe. Ein Freund von mir hatte sich einmal mit Blutmagie beschäftigt und hätte beinahe die Welt beherrscht. Leider haben sie ihn erwischt. Vermutlich war die Zeit einfach noch nicht reif dafür...
+harvestfestival.npc.tiberius.greeting6=Wenn Du wüsstest was ich schon alles gemacht habe wärst Du schockiert.
+harvestfestival.npc.tiberius.greeting7=Ich glaube als ich das letzte Mal weg war da war Fenn noch ein Baby. Es ist schon lange her...
+harvestfestival.npc.tiberius.greeting8=Fenn macht manchmal richtig Ärger. Der Junge braucht mehr Disziplin.
+harvestfestival.npc.tiberius.greeting9=Eine Sache die ich Dir über die Zeit sagen kann ist: Wenn Du jemandem ein Geschenk an ihrem Geburtstag gibst mögen sie Dich noch mehr.
+harvestfestival.npc.tiberius.greeting10=Wie lange bist Du jetzt schon in diesem Dorf?
+harvestfestival.npc.tiberius.greeting11=Ich finde die Zeit im alten Ägypten war die nervigste.
+harvestfestival.npc.tiberius.greeting12=Ich hoffe, dass mein Bruder irgendwann hier in's Dorf zieht. Er ist von Bienen begeistert.
+harvestfestival.npc.tiberius.marriage.reject=Ich bin noch nicht bereit zu heiraten.
+harvestfestival.npc.tiberius.marriage.accept=Ich bin bereit Dein Ehemann zu werden.
+harvestfestival.npc.tiberius.gift.awesome=Ich finde dies ist ein wundervolles Geschenk. Es gibt nichts besseres auf der Welt.
+harvestfestival.npc.tiberius.gift.good=Dieses Geschenk ist sehr gut.
+harvestfestival.npc.tiberius.gift.decent=Du bist sehr freundlich.
+harvestfestival.npc.tiberius.gift.dislike=Du bist nicht besonders freundlich.
+harvestfestival.npc.tiberius.gift.bad=Dieses Geschenk ist sehr schlecht.
+harvestfestival.npc.tiberius.gift.terrible=Ich finde dies ist ein fürchterliches Geschenk, es gibt nichts schlimmeres auf der Welt.
+
+#Jakob
+harvestfestival.npc.jacob.shop=Mein Köderladen ist Dienstag bis Freitag von 13:00 bis 17:00 geöffnet.
+harvestfestival.npc.jacob.greeting1=Fischen ist meine Spezialität, Jacob ist mein Name.
+harvestfestival.npc.jacob.greeting2=Ich schwöre Dir, eines Tages fange ich diesen Clownfisch!
+harvestfestival.npc.jacob.greeting3=Es gibt nichts Besseres als da zu sitzen und darauf zu warten, dass ein Fisch anbeisst. Das ist so entspannend...
+harvestfestival.npc.jacob.greeting4=Ich hoffe wirklich, dass es bald regnet. Oder tut es das schon?
+harvestfestival.npc.jacob.greeting5=Ich überlege wirklich, ob ich mich der Aquakultur widmen sollte.
+harvestfestival.npc.jacob.greeting6=Hey, wenn Du nach Angelausrüstung suchst - ich kann Dir auch keine verkaufen.
+harvestfestival.npc.jacob.greeting7=Mein Opa war ein großer Angler. Er hat mich zur Eröffnung meines Köderladens inspiriert.
+harvestfestival.npc.jacob.greeting8=Wenn ich mein ganzes Leben mit Fischen verbringen würde wäre ich glücklich.
+harvestfestival.npc.jacob.greeting9=Falls Du es noch nicht bemerkt haben solltest: das Fischen ist meine Leidenschaft.
+harvestfestival.npc.jacob.greeting10=Ich gehe davon aus, dass Du in den nächsten Monaten hier in der Gegen ein paar neue Fische angeln können wirst.
+harvestfestival.npc.jacob.greeting11=Einfach weiterschwimmen...
+harvestfestival.npc.jacob.marriage.reject=Ich suche einen der anderen Fische im Meer...
+harvestfestival.npc.jacob.marriage.accept=Du bist mein Seestern, ich kann es kaum erwarten Dich zu heiraten!
+harvestfestival.npc.jacob.gift.awesome=Fischen ist meine Leidenschaft und Du ermöglichst mir damit weiter zu machen. Du bist der Beste!
+harvestfestival.npc.jacob.gift.good=Alles was mit Wasser zu tun hat ist gut. Danke Dir.
+harvestfestival.npc.jacob.gift.decent=Danke für das nette Geschenk.
+harvestfestival.npc.jacob.gift.dislike=Ich bin nicht sicher ob mir das gefällt.
+harvestfestival.npc.jacob.gift.bad=Ich gehe nicht gerne in den Untergrund.
+harvestfestival.npc.jacob.gift.terrible=Bist Du verrückt? Sowas würde ich nie haben wollen!
+
+#Pokefenn
+harvestfestival.npc.fenn.greeting1=Eines Tages werden ich Lianen züchten und Du wirst mit mir daran hochklettern!
+harvestfestival.npc.fenn.greeting2=Hab keine Angst vor mir, ich bin zwar klein aber ich weiß ne Menge! Ich weiß zum Beispiel alles über Totems.
+harvestfestival.npc.fenn.greeting3=I wünschte mein Papa wäre nicht so furchteinflößend.
+harvestfestival.npc.fenn.greeting4=Hast Du schonmal von Minecraft gehört? Das ist mein Lieblingsspiel!
+harvestfestival.npc.fenn.greeting5=Guten Tag!
+harvestfestival.npc.fenn.greeting6=Vor Abi hab' ich richtig Angst, hast Du sie schonmal getroffen?
+harvestfestival.npc.fenn.greeting7=Ich wünschte mein Papa würde mich öfter mal nach draußen lassen.
+harvestfestival.npc.fenn.greeting8=Wenn ich groß bin will ich ein Kräutepflanzbaumologe oder wie das heißt werden, villeicht.
+harvestfestival.npc.fenn.greeting9=Mein Lieblingspokemon ist Bulbasaurus.
+harvestfestival.npc.fenn.greeting10=Ich liebe es mit den kleinen Käfern zu spielen.
+harvestfestival.npc.fenn.greeting11=Ohhh, wenn ich groß bin will ich ein Baum werden.
+harvestfestival.npc.fenn.greeting12=Mein Papa soll mir ein Baumhaubauen.
+harvestfestival.npc.fenn.gift.awesome=Woah!!!!!!! Das... ist... UNGLAUBLICH!
+harvestfestival.npc.fenn.gift.good=Danke! Ich liebe es!
+harvestfestival.npc.fenn.gift.decent=Ohhh, ich mag es.
+harvestfestival.npc.fenn.gift.dislike=Hmmm, warum?
+harvestfestival.npc.fenn.gift.bad=Waruuum? Ich mag das nicht haben.
+harvestfestival.npc.fenn.gift.terrible=Nein, nein nein, nein nein neIN NEIN NEEEEEIIIIIN!!! Einfach nur NEIN!
+
+#Jim/SpitefulFox
+harvestfestival.npc.jim.shop=Die Tierfarm ist von zehn Uhr morgens bis drei Uhr Nachmittags geöffnet. Montag bis Samstag.
+harvestfestival.npc.jim.greeting1=Was ist Dein Lieblingstier? Meins sind Füchse, diese hinterhältigen Lümmel!
+harvestfestival.npc.jim.greeting2=Denk dran, komm bei mir vorbei wenn Du möchtest, dass Deine Tiere Babies kriegen!
+harvestfestival.npc.jim.greeting3=In letzter Zeit habe ich die Futtermenge meiner Hühner optimiert, es war eine lehrreiche Erfahrung.
+harvestfestival.npc.jim.greeting4=Weißt Du, die Welt ist manchmal irrwitzig. Gerade neulich habe ich gesehen wie ein Eichhörnchen eine Bank angreift.
+harvestfestival.npc.jim.greeting5=Have you ever noticed how some countries, add 'u' to all their words, It's crazy if you ask me.
+harvestfestival.npc.jim.greeting6=Wenn ich draußen im Sattel sitze kann das Leben nicht mehr schöner sein.
+harvestfestival.npc.jim.greeting7=Du kannst bis zu drei Tröge in einer Reihe aufstellen. Kühe und Schafe werden daraus fressen wenn Du sie mit Futter füllst.
+harvestfestival.npc.jim.greeting8=Wusstest Du, dass große Tiere Dein Getreide fressen können bevor Du es geerntet hast?
+harvestfestival.npc.jim.greeting9=Wenn Du Deine Tiere mit Leckerchen fütterst stellen sie mehr Dinge für Dich her.
+harvestfestival.npc.jim.marriage.reject=Ich möchte nicht heiraten.
+harvestfestival.npc.jim.marriage.accept=Ich habe lange auf diesen Tag gewartet. Ich möchte Dich zu einhundert Prozent heiraten!
+harvestfestival.npc.jim.gift.awesome=Du bist verrückt! Das ist ein unglaubliches Geschenk!
+harvestfestival.npc.jim.gift.good=Ich werde nicht gern verwöhnt, darum ist das ein tolles Geschenk.
+harvestfestival.npc.jim.gift.decent=Das ist ein schönes Geschenk.
+harvestfestival.npc.jim.gift.dislike=Also so ganz gefällt mir das nicht.
+harvestfestival.npc.jim.gift.bad=Das war keine gute Wahl für ein Geschenk.
+harvestfestival.npc.jim.gift.terrible=Würdest Du mich auch nur etwas kennen dann hättest Du mir sowas nicht geschenkt.
+
+#Brandon/Cricket
+harvestfestival.npc.brandon.shop=Wenn Du jemals Dinge für den Bergbau brauchst, ich habe Montags bis Samstags von 11:00 Uhr bis 16:00 Uhr geöffnet.
+harvestfestival.npc.brandon.greeting1=Ich freue mich immer wenn ich in den Minen mal Diamanten finde.
+harvestfestival.npc.brandon.greeting2=Ich weiß nicht wie es Dir geht, aber ich kann nachts einfach nicht mehr schlafen... das Gezirpe von den blöden Grillen hält mich wach.
+harvestfestival.npc.brandon.greeting3=Was ist Dein Lieblingseis? Meins ist Vanilla Plus. Oder war es bis es mir jemand weggenommen hat...
+harvestfestival.npc.brandon.greeting4=Wird Dir Bergbau irgendwann langweilig? Mir nicht.
+harvestfestival.npc.brandon.greeting5=Ich werde nie verstehen warum die Leute Angst vor der Dunkelheit haben. Es gibt nichts besseres als Bergbau um den Weg der vor Dir liegt zu erkennen.
+harvestfestival.npc.brandon.greeting6=Neulich hab ich in den Minen eine seltsame Kreatur gesehen. Sie schien aus Feuer zu bestehen oder so. Ich frage mich was das war?
+harvestfestival.npc.brandon.greeting7=Ich verrate Dir jetzt ein Geheimnis zum schnelleren graben. Wenn Du in die Luft springst und bei der Landung zuhaust dann gehen die Felsen sofort kaputt! Meistens triffst Du damit sogar mehrere Felsblöcke auf einmal! Das klappt übrigens auch wenn Du Dein Farmland einebnen möchtest.
+harvestfestival.npc.brandon.greeting8=Wenn Du irgendwann mal tief in einer Mine feststeckst dann verwende ein Fluchtseil um wieder raus zu kommen.
+harvestfestival.npc.brandon.greeting9=Wenn ich nicht so auf Bergbau stehen würde dann wäre ich vermutlich Bildhauer. Obwohl man Bilder nicht haut...
+harvestfestival.npc.brandon.greeting10=Ich habe das Gefühl, dass mich hier keiner mag. Hast Du ne Idee warum?
+harvestfestival.npc.brandon.greeting11=Ich habe die Leute hier im Dorf satt, ich möchte nur noch weg.
+harvestfestival.npc.brandon.greeting12=Sei vorsichtig wenn Du im Stollen bist, es gibt dort gefährliche Tiere.
+harvestfestival.npc.brandon.marriage.reject=Glaubst Du wirklich ich würde jemanden wie Dich heiraten?
+harvestfestival.npc.brandon.marriage.accept=Eigentlich hatte ich mir was Besseres erhofft, aber ich heirate Dich trotzdem.
+harvestfestival.npc.brandon.gift.awesome=Ich kann Dir gar nicht genug danken, ich habe schon ewig nach einer neuen Spitzhacke gesucht...
+harvestfestival.npc.brandon.gift.good=Bergbau-Zeug ist immer ein tolles Geschenk.
+harvestfestival.npc.brandon.gift.decent=Danke, das war nett.
+harvestfestival.npc.brandon.gift.dislike=Heh, nett... glaub ich...
+harvestfestival.npc.brandon.gift.bad=Ich hasse die Natur. Wusstest Du das nicht?
+harvestfestival.npc.brandon.gift.terrible=Wie kannst Du mich nur so beleidigen? Hau ab!
+
+#Tomas
+harvestfestival.npc.thomas.greeting1=Ich werde Dich von Deinen Sünden retten!
+harvestfestival.npc.thomas.greeting2=Denk dran, wenn Du verfluchte Werkzeuge segnen lassen möchtest - ich bin hier!
+harvestfestival.npc.thomas.greeting3=Nur ER kann Dich noch retten.
+harvestfestival.npc.thomas.greeting4=Die gnade des Herrn scheint auf Dich herab!
+harvestfestival.npc.thomas.greeting5=Wenn Du mal ein verfluchtes Werkzeug findest bring es zu mir und ich segne es Dir für 10000 Gold.
+harvestfestival.npc.thomas.greeting6=Ich kann gesegnete Werkzeuge für 1000 Gold reparieren.
+harvestfestival.npc.thomas.greeting7=Möge der Herr Dir gnädig sein.
+harvestfestival.npc.thomas.greeting8=Ich glaube ich kann fliegen!
+harvestfestival.npc.thomas.greeting9=Du solltest die Kirche mal Sonntags sehen. Proppenvoll!
+harvestfestival.npc.thomas.greeting10=Ich bin so stolz auf mein kleines Mädchen Abi. Ich denke, Cloe könnte viel von ihr lernen.
+harvestfestival.npc.thomas.greeting11=Die Macht Christi zwingt Dich!
+harvestfestival.npc.thomas.gift.awesome=Welch explosives Geschenk! Einfach perfekt! Gott lieb Dich mein Kind.
+harvestfestival.npc.thomas.gift.good=Ein himmlisches Geschenk, danke!
+harvestfestival.npc.thomas.gift.decent=Sei gesegnet mein Kind.
+harvestfestival.npc.thomas.gift.dislike=Das ist... ähm... ok?
+harvestfestival.npc.thomas.gift.bad=Du beleidigst Gott mit diesem Geschenk!
+harvestfestival.npc.thomas.gift.terrible=Für dieses Geschenk sollst Du in der Hölle schmoren!
+
+#Candice
+harvestfestival.npc.candice.greeting1=Ich liebe meine Arbeit, und sie mit meinen Freunden zu teilen.
+harvestfestival.npc.candice.greeting2=Manche Leute sind echte Rindviecher.
+harvestfestival.npc.candice.greeting3=Wo zum Geier bin ich? Was für eine Welt ist das hier?
+harvestfestival.npc.candice.greeting4=Komm mal her, ich hab was im Auge.
+harvestfestival.npc.candice.greeting5=Hallo %4$s! Ich hoffe Dir geht's gut? Du siehst heute wunderschön aus.
+harvestfestival.npc.candice.greeting6=Hey Schnucki, ich hab heute nen Tipp für Dich: Du musst Gras nicht bewässern, das wächst auch von alleine.
+harvestfestival.npc.candice.greeting7=Wusstest Du, dass ich normalerweise bei Jim als Milchmädchen arbeite?
+harvestfestival.npc.candice.greeting8=Du solltest Deinen Tieren unterschiedliche Arten von Leckereien geben.
+harvestfestival.npc.candice.greeting9=Du siehst verwirrt aus. Ich bin sicher, wir sind uns schonmal begegnet.
+harvestfestival.npc.candice.greeting10=Ich stamme aus Texas und Du?
+harvestfestival.npc.candice.greeting11=Rede mit den Leuten und schließe Freundschaften!
+harvestfestival.npc.candice.greeting12=Wenn Du mal eine Schulter zum Ausheulen brauchst dann komm nicht zu mir.
+harvestfestival.npc.candice.marriage.reject=Keine Chance, ich will nicht heiraten!
+harvestfestival.npc.candice.marriage.accept=Du bist perfekt! Wir werden ein wunderbares Paar sein, ich nehme Deinen Antrag an!
+harvestfestival.npc.candice.gift.awesome=Du bist wunderbar! Das ist unglaublich, genau was ich liebe!
+harvestfestival.npc.candice.gift.good=Du weißt wie man micht zum Lächeln bringt.
+harvestfestival.npc.candice.gift.decent=Danke Schnucki!
+harvestfestival.npc.candice.gift.dislike=Öhm, naja, es reicht aus.
+harvestfestival.npc.candice.gift.bad=Ähm, ich glaube nicht dass ich sowas haben wollte.
+harvestfestival.npc.candice.gift.terrible=Ich kann nicht glauben, dass Du mir sowas gibst. Magst Du mich gar nicht?
+
+#Yulife
+harvestfestival.npc.yulif.shop=Wenn de nach Häusern suchs, ich hab leider nur von neun bis halb sechs offen, Sonntags bis Freitags.
+harvestfestival.npc.yulif.greeting1= Häuser bauen dauert ewig. Wann krieg ich mal ne Pause?
+harvestfestival.npc.yulif.greeting2=Die Leute behandeln mich wie nen Sklaven, nie darf ich Pause machen.
+harvestfestival.npc.yulif.greeting3=Hast Du Jim getroffen? Ist er nicht gerecht?
+harvestfestival.npc.yulif.greeting4=Ich hab die harte Arbeit satt. Wann würdigt ihr meine Häuser endlich mal?
+harvestfestival.npc.yulif.greeting5=Ich habe keine Lust mehr zu wandern. Ich sterbe gerade.
+harvestfestival.npc.yulif.greeting6=Ich brauche immer neue Materialien zum Bauen!
+harvestfestival.npc.yulif.greeting7=Mir wurde gesagt, meine Holz- und Steinpreise wären bekloppt, aber ich finde isie fair.
+harvestfestival.npc.yulif.greeting8=Wie läuft's so bei Dir, %4$s?
+harvestfestival.npc.yulif.greeting9=Wenn ich je verschwinde dann denk dran, dass ich mit einem neuen Zimmermannshaus wieder auftauche!
+harvestfestival.npc.yulif.greeting10=Wenn das Dorf wächst kann ich auch neue Gebäude errichten.
+harvestfestival.npc.yulif.greeting11=Wenn Du wissen willst wann ein bestimmter Laden geöffnet hat dann frag' einfach!
+harvestfestival.npc.yulif.greeting12=Manchmal verlange ich mir zu viel ab, zu viele Projekte gleichzeitig.
+harvestfestival.npc.yulif.greeting13=Jade gefällt es manchmal nicht wie ich mit ihr umgehe, aber ich muss doch auf meine kleine Schwester aufpassen oder?
+harvestfestival.npc.yulif.marriage.reject=Ähhhh ich bin nicht bereit zu heiraten.
+harvestfestival.npc.yulif.marriage.accept=Du bist so freundlich, ich wäre gern Dein Mann.
+harvestfestival.npc.yulif.gift.awesome=Woher wusstest Du wie sehr ich das mag? Danke!
+harvestfestival.npc.yulif.gift.good=Du weißt wirklich wie man schöne Geschenke macht.
+harvestfestival.npc.yulif.gift.decent=Danke Dir!
+harvestfestival.npc.yulif.gift.dislike=Äh... ok... danke?
+harvestfestival.npc.yulif.gift.bad=Öh, was? Warum sollte ich das wollen?
+harvestfestival.npc.yulif.gift.terrible=Verdammt, denkst Du echt sowas gefällt mir? Sprich nicht mehr mit mir.
+
+harvestfestival.npc.builder.build=Nur die Ruhe, ich baue derzeit Dein %s.
+harvestfestival.npc.builder.paint=Ich mache gerade die Innenausstattung bei %s.
+harvestfestival.npc.builder.decorate=Hart am arbeiten, bin gleich fertig mit %s.
+harvestfestival.npc.builder.movein=Ich helfe den Leuten gerade beim Einzug in %s.
+harvestfestival.npc.builder.basement.build=Ja, das sieht bestimmt verrückt aus, aber keine Angst, ich arbeite nur am Keller von %s.
+harvestfestival.npc.builder.basement.paint=Ich hänge gerade Bilder in den %s Keller.
+harvestfestival.npc.builder.basement.decorate=Ich mache gerade die letzten Feinheiten im Keller von %s.
+harvestfestival.npc.builder.basement.movein=Ich helfe gerade beim Einzug in den Keller von %s.
+
+#Ashlee
+harvestfestival.npc.ashlee.shop=Falls Du irgendwas brauchst dann frag mich einfach. Aber nur von 05:00 Uhr bis 11:00 Uhr morgens, Montags bis Samstags.
+harvestfestival.npc.ashlee.greeting1=Ich liebe es Hühner zu rupfen!
+harvestfestival.npc.ashlee.greeting2=I am so tired, working with chickens is such hard work!
+harvestfestival.npc.ashlee.greeting3=Ich hoffe, ich kann ab heute besser schlafen.
+harvestfestival.npc.ashlee.greeting4=Die meisten Hühnerzüchter hassen Füchse, aber ich nicht. Die sind so flauschig, wie ich...
+harvestfestival.npc.ashlee.greeting5=Booak, Booak, Booak, BOOOAAAK. Wann halten diese blöden Hühner endlich mal die Klappe?
+harvestfestival.npc.ashlee.greeting6=Wenn Du Deine Hühner per Hand fütterst zeigst Du damit Deine Liebe zu ihnen. Aber es ist natürlich mehr Arbeit...
+harvestfestival.npc.ashlee.greeting7=Hühner fressen sehr gerne Leckereien.
+harvestfestival.npc.ashlee.greeting8=Die Jungs haben mit in der Schule immer geärgert, aber schau mich heute an: Von lauter Hühnern umgeben!
+harvestfestival.npc.ashlee.greeting9=Brutkästen sind vielleich teuer, aber sie bringen dafür um so mehr wieder ein.
+harvestfestival.npc.ashlee.greeting10=Je mehr Leckereien Du einem Tier gibst um so mehr produzieren sie jeden Tag für Dich.
+harvestfestival.npc.ashlee.greeting11=Stelle sicher, dass Deine Hühner in der Nähe ihrer Nester bleiben!
+harvestfestival.npc.ashlee.marriage.reject=Wie kommst Du darauf mir einen Antrag zu machen?
+harvestfestival.npc.ashlee.marriage.accept=Wow, Du bist ja ein alter Fuchs! Na sicher will ich Dich heiraten!
+harvestfestival.npc.ashlee.gift.awesome=Du bist der Oberfuchs, ich liebe dieses Geschenk mit all meinem pelzigen Herz!
+harvestfestival.npc.ashlee.gift.good=Ich Fuchs nehme das gerne an.
+harvestfestival.npc.ashlee.gift.decent=Nettes Geschenk!
+harvestfestival.npc.ashlee.gift.dislike=Bitte gib' mir sowas nicht.
+harvestfestival.npc.ashlee.gift.bad=Warum nur gibst Du mir sowas?
+harvestfestival.npc.ashlee.gift.terrible=Dieses Geschenk ist das mieseste was ich je bekommen habe!
+
+#Girafi
+harvestfestival.npc.girafi.greeting1=Oh hallo lieber Mitmensch, ich bin ein einfacher Händler. Wenn Du Eier, Milch oder Wolle hast dann tausche ich sie gerne gegen meine eigenen aus der Vanilla-Welt ein.
+harvestfestival.npc.girafi.greeting2=Guten Tag mein Herr, ich plane meine nächste Reise und ich glaube es geht nach Dänemark!
+harvestfestival.npc.girafi.greeting3=Ich freue mich sehr Dich wiederzusehen!
+harvestfestival.npc.girafi.greeting4=Ich könnte den ganzen Tag von meinen Abenteuern in aller Welt erzählen. Hab ich Dir schon mal davon berichtet wie ich einen Tintenfisch mit bloßen Händen erwürgt habe und...
+harvestfestival.npc.girafi.greeting5=Hallo, wie geht's?
+harvestfestival.npc.girafi.greeting6=Herrjeh, es ist eine Freude Dich wiederzusehen.
+harvestfestival.npc.girafi.greeting7=Jeder hat gute und schlechte Tage, aber Du machst meinen Tag großartig.
+harvestfestival.npc.girafi.greeting8=Ich handle mit Eiern, Milch und Wolle, nicht vergessen!
+harvestfestival.npc.girafi.greeting9=Ich habe viele Biome erforscht, sogar eine ganze Menge davon!
+harvestfestival.npc.girafi.greeting10=Ich könnte momentan nicht glücklicher sein.
+harvestfestival.npc.girafi.marriage.reject=Es ist ein Vergnügen Dich zu kennen, aber ich teile Deine Gefühle nicht.
+harvestfestival.npc.girafi.marriage.accept=Das ist ja wunderbar. Ich möchte Dich unbedingt heiraten und in weite Ferne entführen!
+harvestfestival.npc.girafi.gift.awesome=Du weißt sehr gut wie man die Sinne eines vornehmen Mannes berührt. Ich kann Dir nicht genug danken!
+harvestfestival.npc.girafi.gift.good=Du bist ein wundervoller Mensch, vielen Dank!
+harvestfestival.npc.girafi.gift.decent=Dieses Geschenk ist gut!
+harvestfestival.npc.girafi.gift.dislike=Es tut mir leid, aber das fühlt sich nicht gut an.
+harvestfestival.npc.girafi.gift.bad=Also sowas hätte ich mir nicht gekauft...
+harvestfestival.npc.girafi.gift.terrible=Das ist vermutlich das allerletzte Ding auf Erden das ich besitzen wollen würde. Wie kommst Du nur darauf mir das zu schenken?
+
+###Shop greetings
+# WARNING FOR SHOP NAMES:
+# Using any character other than the following will change the renderer to use the vanilla font instead
+# So for best looks, if you can try to only use names with that, if the means you don't translate names
+# then sorry. It's not really feasible for me to support unicode with the custom font
+# Accepted characters for names
+# a-z A-Z 0-9 , . ' é
+
+#General Store
+harvestfestival.shop.general=Gemischtwarenladen
+harvestfestival.shop.general.greeting1=Willkommen im Gemischtwarenladen, wie kann ich helfen?
+harvestfestival.shop.general.greeting2=Wir haben alles auf Vorrat, wie kann ich helfen?
+harvestfestival.shop.general.greeting3=Dieser Laden ist der beste im Dorf. Was brauchst Du?
+harvestfestival.shop.general.options=Was möchtest Du tun?
+harvestfestival.shop.general.options.shop=@Shop
+harvestfestival.shop.general.options.chat=@Chat
+
+#Poultry Farm
+harvestfestival.shop.poultry=Gefluegelfarm
+harvestfestival.shop.poultry.greeting1=Hühner liefern uns lebenswichtige Dinge. Womit kann ich Dir helfen?
+harvestfestival.shop.poultry.greeting2=Die Hühnerfarm gibt es hier seit über 300 Jahren! Was wünschst Du?
+harvestfestival.shop.poultry.greeting3=Willkommen im Gackeri-Gack-Gack Hühnercamp. Wie kann ich helfen?
+
+#Cafe
+harvestfestival.shop.cafe=Café
+harvestfestival.shop.cafe.greeting1=Essen! Kommt und holt es euch! Ja bitte?
+harvestfestival.shop.cafe.greeting2=Alles frisch serviert, willkommen!
+harvestfestival.shop.cafe.greeting3=Essen ist fertig!
+
+#Animal Ranch
+harvestfestival.shop.barn=Tierfarm
+harvestfestival.shop.barn.greeting1=Wir verkaufen nicht nur einfach Tiere, wir verkaufen die Besten!
+harvestfestival.shop.barn.greeting2=Willkommen auf der Ranch, brauchst Du etwas?
+harvestfestival.shop.barn.greeting3=Wer braucht Hühner wenn er Kühe und Schafe haben kann?
+
+#Blacksmith
+harvestfestival.shop.blacksmith=Schmied
+harvestfestival.shop.blacksmith.greeting1=Kommt ran und schaut die Waren an!
+harvestfestival.shop.blacksmith.greeting2=Ich verkaufe Dir gerne ein paar schöne Werkzeuge.
+harvestfestival.shop.blacksmith.greeting3=Need some tools? Step right up!
+
+#Carpenter
+harvestfestival.shop.carpenter=Zimmermann
+harvestfestival.shop.carpenter.greeting1=Du suchst neue Gebäude? Lass mich Dir helfen!
+harvestfestival.shop.carpenter.greeting2=Ich habe die besten Blaupausen in der Gegend.
+harvestfestival.shop.carpenter.greeting3=Ich baue die besten Gebäude für Dich!
+
+#Miner
+harvestfestival.shop.miner=Bergbaubedarf
+harvestfestival.shop.miner.greeting1=Ich hab hier seltene Materialien für Dich!
+harvestfestival.shop.miner.greeting2=Komm und hol' Deine seltenen Edelsteine!
+harvestfestival.shop.miner.greeting3=Mineralien gibt's hier!
+
+#Blood Mage
+harvestfestival.shop.bloodmage=Blutmagier
+harvestfestival.shop.bloodmage.greeting1=Willkommen im dunkelsten aller Orte mein Kind!
+harvestfestival.shop.bloodmage.greeting2=Mach Dich darauf gefasst dass Dir die Augen aus dem Kopf fallen wenn Du meine Waren siehst!
+harvestfestival.shop.bloodmage.greeting3=Weide Deine Augen an meinen Waren in dieser dunklen und mysteriösen Nacht.
+
+#Blood Mage
+harvestfestival.shop.baitshop=Koederladen
+harvestfestival.shop.baitshop.greeting1=Wir haben wirklich geöffnet, aber nur dank der Hilfe von anderen.
+harvestfestival.shop.baitshop.greeting2=Wenn Du Fisch willst dann komm und kauf ne Angel!
+harvestfestival.shop.baitshop.greeting3=Kauft eure Angeln hier!
+
+#Miscellaneous
+harvestfestival.marriage=Hochzeitsgeschenk
+harvestfestival.marriage.locked=LOCKED
+harvestfestival.marriage.unlocked=UNLOCKED
+
+###Quests
+##Tutorial Quests
+#Intro
+harvestfestival.quest.tutorial.intro.hello=Hallo mein Liebes, kennen wir uns nicht?
+harvestfestival.quest.tutorial.intro.question=[Spielst Du zum ersten Mal?]
+harvestfestival.quest.tutorial.intro.tutorial=@Ja das tue ich.
+harvestfestival.quest.tutorial.intro.skip=@Ich kenne mich aus
+harvestfestival.quest.tutorial.intro.completed=Gut, dann ist mein Gedächtnis wohl nicht mehr das was es mal war. Hier, nimm diese Blumen und wir reden nicht mehr davon, in Ordnung?
+harvestfestival.quest.tutorial.intro.backstory=Nun dann, freut mich Dich kennen zu lernen. Ich bin die Erntegöttin und möchte Dir eine kleine Geschichte erzählen. Vor langer Zeit gab es hier ein Dorf voller Leben aber die Leute hier wurden durch einen heftigen Sturm vertrieben. Jetzt wollen sie aber zurückkehren wo sie hingehören. Dazu brauchen sie aber Deine Hilfe... Oh, und damit Du es weißt, ich werde nach einer Weile einfach verschwinden aber Du kannst mich mit einer Götterblume wieder herbeirufen. Wenn ich gehe werde ich immer eine davon fallen lassen. Ich glaube das ist dann auch schon alles was ich Dir im Moment sagen kann, bis später!
+
+#Carpenter
+harvestfestival.quest.tutorial.carpenter.wood.dozen=ein Dutzend
+harvestfestival.quest.tutorial.carpenter.wood.dozentwo=zwei Dutzend
+harvestfestival.quest.tutorial.carpenter.wood.stack=ein Stapel
+harvestfestival.quest.tutorial.carpenter.wood.stackhalf=ein halber Stapel
+harvestfestival.quest.tutorial.carpenter.wood.stackquarter=ein viertel Stapel
+harvestfestival.quest.tutorial.carpenter.welcome=Hallo mein Schatz, wie schön Dich wiederzusehen. Ich habe darüber nachgedacht wie wir das Dorf in Schwung bringen. Es gibt da Gerüchte über nen Kerl namens Yulif, angeblich ein hervorragender Zimmermann. Seine Schwester und er suchen nach einem Projekt an dem sie arbeiten können und das hier könnte ideal passen. Seine Schwester Jade würde auch perfekt passen, sie liebt die Natur und könnte uns eine große Hilfe sein. Wir müssen die beiden nur überzeugen bei uns mitzumachen. Ich habe eine Idee was wir tun können, aber dafür musst Du mir %s Holz besorgen.
+harvestfestival.quest.tutorial.carpenter.reminder.wood=Oh Du bis es wieder. Falls Du vergessen hast was Du tun sollst, ich brauche %s Holz um Dir zu helfen.
+harvestfestival.quest.tutorial.carpenter.thanks.build=Perfekt, genau was wir brauchen. Vielen Dank! Ich habe hier genau das Richtige für Dich. Es ist eine Blaupause für ein Gebäude, man benutzt sie um das Gebiet zu markieren an dem ein Gebäude errichtet werden soll. Wenn Du sie in die Hand nimmst kannst Du das Gebäude schemenhaft erkennen und wenn Du es bauen willst dann klickst Du einfach. Wenn Yulif noch nicht hier lebt dann wird er erscheinen und mit der Arbeit am Gebäude anfangen, dann musst Du nur noch warten bis er fertig ist. Merke Dir, dass Du mehrere Bauaufträge in der Warteschlange haben kannst, aber es wird immer nur an einem Gebäude gebaut! Oh und keine Sorge falls er durch einen tragischen Unfall sterben sollte, wenn der Tag vorbei ist wird er am Morgen auferstehen und mit der Arbeit weitermachen. Ich glaube das ist alles was ich zu sagen habe, am Besten fängst Du jetzt mit dem Bau des Zimmermannshauses an. Ah, doch, eine Sache noch: Sobald das Haus steht sollte Jade, Yulif's Schwester, darin einziehen. Sie hält sich normalerweise im oberen Stockwerk auf. Am Besten Du gehst sie dann mal besuchen und nimmst eine Blume mit, die tauscht sie gerne gegen Samen ein.
+harvestfestival.quest.tutorial.carpenter.reminder.carpenter=Schnucki, Du sollt mit Jade reden und nicht mit mir! Sorge für den Bau des Zimmermannshauses und geh sie dort im ersten Stock mit einer Blume besuchen. Wenn Du die Blaupause für das Haus verloren hast dann bring mir einfach nochmal %s Holz und ich gebe Dir eine neue.
+harvestfestival.quest.tutorial.carpenter.reminder.give=Danke! Nimm die Blaupause und geh' Jade besuchen!
+harvestfestival.quest.tutorial.carpenter.reminder.flowers=Schön Dich zu kennenzulernen, ich bin Jade. Im Moment wünsche ich mir eine Blume...
+harvestfestival.quest.tutorial.carpenter.thanks.flowers=Hey, Du hast eine Blume für mich dabei! Die Göttin hat mir schon alles über Dich erzählt, ich kann es gar nicht erwarten das Dorf wachsen zu sehen. Ich glaube, die Göttin will Dir dafür danken, dass Du uns geholfen hast. Du solltest sie nochmal besuchen gehen. Aber komm hinterher nochmal bei mir vorbei, ich hab da noch was das ich Dir gerne zeigen möchte!
+harvestfestival.quest.tutorial.carpenter.thanks.finish=Gut gemacht Liebes, dieses Dorf wird im Null Komma Nichts stehen wenn Du die Führung übernimmst. Aber Du brauchst Geld um Dinge zu bezahlen, darum möchte ich Dir für den Anfang gerne 1000 Gold schenken. Ich hoffe, Du gibst es weise aus! Wie auch immer, Du solltest jetzt nochmal bei Jade vorbei schauen. Nochmal Danke für Deine Hilfe!
+
+#Crops Tutorial
+harvestfestival.quest.tutorial.crops.intro=Hi! Ich hab Dir ja gesagt, dass ich Dir noch was erzählen wollte. Also: Ackerbau. Kennst Du Dich damit aus?
+harvestfestival.quest.tutorial.crops.question=Weißt Du wie man Ackerbau betreibt?
+harvestfestival.quest.tutorial.crops.tutorial=@Wie mache ich das?
+harvestfestival.quest.tutorial.crops.skip=@Ich weiß wie das geht.
+harvestfestival.quest.tutorial.crops.completed=OK, wenn Du Dich auskennst dann nimm diese Gegenstände und leg' los!harvestfestival.quest.tutorial.crops.start=In Ordnung, lass es mich Dir erklären. Das Grundlegende beim Ackerbau ist erstmal den Boden zu pflügen. Wenn das erledigt ist kannst Du auf dem Feld Samen anpflanzen. Dabei musst Du beachten, dass ein Beutel Samen immer auf einem 3x3 Bereich wirkt! Nun musst Du sicherstellen, dass die Samen jeden Tag gegossen werden da sie sonst nicht wachsen. Außerdem müssen die Saaten zur Jahreszeit passen. Um Deine Hacke zu benutzen machst Du einfach einen Rechtsklick auf einen Gras- oder Erdblock um ihn zu Ackerland umzupflügen. Die Gießkanne muss erst mit Wasser gefüllt werden bevor Du sie benutzen kannst. Hier, nimm diese Ausrüstung und komm wieder wenn Du neun zähe Rüben geerntet hast. Oh, ein Tipp noch: Der einfachste Weg um das Wachstum der Pflanzen zu beschleunigen ist einfach Schlafen zu gehen. Pflanzen wachsen jeden Tag einmal, darum ist das der schnellste Weg um sie wachsen zu lassen.
+harvestfestival.quest.tutorial.crops.reminder.turnips=Hallo mal wieder! Scheinbar hast Du noch keine neun Rüben oder? Wenn Du Deine Hacke verloren hast dann bring mir eine Steinhacke und ich tausche sie Dir gegen eine richtige um. Wenn Du noch eine Gießkanne brauchst würde ich Dir eine neue gegen einen Eimer eintauschen. Oh, und für fünf Blumen kriegt Du eine weitere Samentüte.
+harvestfestival.quest.tutorial.crops.thanks.flowers=Oh, wie hübsch, danke! Hier, nimm diese zähen Rübensamen als Dank!
+harvestfestival.quest.tutorial.crops.thanks.hoe=Perfekt, hier Deine Hacke!
+harvestfestival.quest.tutorial.crops.thanks.bucket=Genau was ich braucht, hier hast Du eine Ersatzgießkanne.
+harvestfestival.quest.tutorial.crops.complete=Wow, Du hast den Anbau der zähen Rüben wirklich super hinbekommen, die würde ich am liebsten für mich selbst behalten. Aber nein, behalt Du sie nur, ich will ja nicht Deine Zeit verschwenden. Ich sollte Dir vielleicht erstmal erklären, dass Du alles was Du anbaust und erntest gegen Gold verkaufen kannst. Du brauchst nur einen Versandbehälter. Du kannst sie im Laden meines Bruders kaufen wenn er offen hat. Um sie zu benutzen musst Du nur mit dem Gegenstand den Du verkaufen möchtest auf dem Versandbehälter rechtsklicken. Am nächsten Morgen erhältst Du dann das Gold für alles was Du am Tag vorher verschickt hast. Wenn Du nicht alles per Hand verschicken möchtest dann kannst Du auch einen Fülltrichter auf den Versandbehälter setzen der die Sachen dann für Dich einfüllt. Die Erlöse gehen allerdings an denjenigen, der den Trichter aufgestellt hat! Aber damit Du es weißt, die Rüben die Du bisher gezüchtet hast sind nicht wirklich viel wert. Wenn Du mehr verdienen möchtest dann musst Du eine andere Sorte anbauen die Du auch von mir kriegen kannst. Ich habe nur einen kleinen Vorrat, aber ich tausche liebend gern einen Sack Samen gegen fünf Blumen ein. Trotzdem schlage ich vor, dass Du Dich so bald wie möglich mit meinem Bruder unterhältst und den Gemischtwarenladen bauen lässt. Die Leute dort können Dir ein viel breiteres Sortiment anbieten als ich. Als Belohnung zu guter Letzt nimm diese Sichel. Du wirst sie brauchen um bestimmten Pflanzen zu ernten und sie ist sehr gut darin, tote Pflanzen zu beseitigen.
+
+#Chicken Care
+harvestfestival.quest.tutorial.chicken.reminder.talk=Schnucki so wie es aussieht hast Du eine Hühnerfarm bauen lassen. Du solltest mal hingehen und Dich mit Ashlee unterhalten.
+harvestfestival.quest.tutorial.chicken.reminder.poultry=Hey, vergiss nicht, dass wir eine Hühnerfarm brauchen!
+harvestfestival.quest.tutorial.chicken.start=Ich liebe diesen Ort. Ist es hier nicht wunderbar, Herr Fuchs? Ich hoffe, ich kann hier länger bleiben... Oh, Hallo! Ich hab Dich gar nicht da stehen sehen weil ich war gerade... Äh... Nicht so wichtig. Wie auch immer, willkommen auf meiner Hühnerfarm! Mein Name ist Ashlee.
+harvestfestival.quest.tutorial.chicken.question=Weißt Du schon, wie man sich richtig um Hühner kümmert?
+harvestfestival.quest.tutorial.chicken.tutorial=@Zeig es mir bitte!
+harvestfestival.quest.tutorial.chicken.skip=@Ja, gib mir einfach den Kram.
+harvestfestival.quest.tutorial.chicken.completed=Oh, OK, das ist gut. Hier, nimm dieses Hühnchen und ein paar Hilfsmittel.
+harvestfestival.quest.tutorial.chicken.throw=Ah, also kennst Du Dich nicht aus? Na gut, fangen wir von vorne an: Zunächst einmal musst Du Deine Hühner füttern! Machst Du das nicht werden sie krank und produzieren nichts mehr! Du kannst sie per Hand oder mit einer Futterschale füttern. Außerdem brauche Hühner etwas Liebe, so wie wir auch. Um einem Huhn Deine Zuneigung zu zeigen solltest Du es einmal am Tag auf den Arm nehmen. Du kannst Hühner hochheben indem Du auf ihnen rechtsklickst. Sie lieben das! Rechtsklicke einfach auf den Boden um sie wieder freizulassen. Auch wenn Du sie per Hand fütterst lieben sie dich etwas mehr. Ein glückliches Huhn wird größere und bessere Eier legen. Hier hast Du etwas Futter. Kannst Du das Huhn hier bitte füttern und etwas mit ihm kuscheln? Komm danach wieder zu mir zurück.
+harvestfestival.quest.tutorial.chicken.reminder.throw=Ich hatte Dich doch gebeten, das Huhn auf den Arm zu nehmen und es zu füttern.
+harvestfestival.quest.tutorial.chicken.egg=Gut gemacht! Jetzt solltest Du wissen wie Du Dich um Deine Hühner kümmern musst. Wie ich schon sagte, glücklichere Hühner legen größere Eier. Du fragst Dich, wie Du an die Eier kommst? Das ist einfach, stell einfach einen Nistkasten in der Nähe auf, dort wird ein Huhn dann bald ein Ei legen. Jedes Huhn kann am Tag nur ein Ei legen und auch nur wenn es an dem Tag bereits gefüttert wurde. Wenn Du die Eier eingesammelt hast kannst Du sie verschicken um damit Gold zu verdienen. Hier habe ich einen Nistkasten für Dich. Komm wieder zu mir wenn Dein Huhn ein Ei für Dich gelegt hat.
+harvestfestival.quest.tutorial.chicken.reminder.egg=Ich möchte ein Hühnerei haben. Wenn Du einen neuen Nistkasten brauchst verkaufe ich Dir einen.
+harvestfestival.quest.tutorial.chicken.complete=Für Deine harte Arbeit bekommst Du von mir ein seltenes Ei! Wenn Du mehr möchtest dann musst Du Dich wirklich gut um Deine Hühner kümmern! Ach ja, da gibt's noch ein paar Dinge die Du noch nicht weißt... Erstens, bring Deine Hühner nach drinnen wenn es regnet und nach draußen wenn die Sonne scheint. Zweitens möchte ich Dir vom Inkubator erzählen. Damit kannst Du Deine eigenen Hühner züchten. Lege einfach ein Ei hinein und warte ein paar Tage, dann sollte ein Küken schlüpfen! Die Küken werden übrigens mit der Hälfte der Zuneigung ihrer Eltern geboren, daher ist diese Methode viel besser als Hühner zu kaufen. Danke, dass ich meinen Laden hier eröffnen durfte!
+
+#Cow Care
+harvestfestival.quest.tutorial.cow.reminder.intro=Sieht so aus als wäre Deine Tierfarm fertig gebaut, schau mal dort vorbei und rede mit Jim!
+harvestfestival.quest.tutorial.cow.reminder.barn=Ich denke, Du solltest eine Tierfarm bauen lassen damit Du Kühe und Schafe züchten kannst.
+harvestfestival.quest.tutorial.cow.start=Ich bin sehr froh, dass Du mich hierher eingeladen hast. Ich bin übrigens Jim, ich betreibe die Tierfarm. Als Dankeschön habe ich hier eine Kuh für Dich.
+harvestfestival.quest.tutorial.cow.question=Weißt Du denn, wie man sich um Kühe kümmert?
+harvestfestival.quest.tutorial.cow.tutorial=@Erklär' es mir.
+harvestfestival.quest.tutorial.cow.skip=@Weiß ich schon...
+harvestfestival.quest.tutorial.cow.completed=Ist das so? Na gut, hier ist Deine Kuh. Nimm dieses Zubehör auch noch mit.
+harvestfestival.quest.tutorial.cow.info=Ist das so? Schätze dann sollte ich es Dir besser beibringen. Die Grundlagen sind recht einfach. Diese größeren Tiere brauchen ebenfalls Liebe und Futter, aber Du musst sie auch sauberhalten damit sie gesund bleiben. Sie fressen gern Viehfutter das Du ihnen in einem Trog servieren oder per Hand verfüttern kannst. Bei Handfütterung gibt's auch einen kleinen Bonus bei ihrer Zuneigung zu Dir. Um Deinen Kühen Deine Zuneigung zu zeigen musst Du einfach mit ihnen reden indem Du Rechtsklick gedrückt hältst bis sie Dir ebenfalls ihre Zuneigung zurück zeigen. Auf die gleiche Weise kannst Du sie sauberbürsten wenn Du eine Bürste in der Hand hältst. So, und jetzt ab mit Dir und probiere das alles aus: Füttere die Kuh, rede mit ihr und bürste sie sauber!
+harvestfestival.quest.tutorial.cow.reminder.talk=Ich hatte Dir gesagt, dass Du Deine Kuh per Hand füttern und sie mit der Bürste abbürsten sollst.
+harvestfestival.quest.tutorial.cow.milk=Gut gemacht, sieht aus als wüsstest Du nun wie Du Deine Kühe glücklich halten kannst. Kühe geben jeden Tag Milch. Um die Milch zu kriegen musst Du mit einem Melker zur Kuh gehen und Rechtsklick halten bis Du kriegst was Du willst. Und denk dran: Je größer die Zuneigung der Kuh zu Dir ist, um so mehr Milch gibt sie. Und jetzt geh los und bring mir etwas Milch von Deiner Kuh.
+harvestfestival.quest.tutorial.cow.reminder.milk=Schon vergessen? Du sollst Deine Kuh melken und mir Milch bringen!
+harvestfestival.quest.tutorial.cow.complete=Das hast Du prima erledigt. Ich habe noch ein paar Ratschläge für Dich. Deine Tiere sind bei schönem Wetter gerne draußen und bei Regen lieber drin. Und wenn Du Tierbabies züchten möchtest musst Du einen Wundertrank bei mir kaufen. Er wird Deine Tiere trächtig machen und nach ein paar Tagen werden sie ein Kind kriegen. Das Kind wird mit der Hälfte an Zuneigung der Eltern geboren. Das wäre dann erstmal alles soweit. Schau doch mal wieder rein!
+
+#General Store Introduction
+harvestfestival.quest.tutorial.supermarket.reminder.talk=Du solltest Dich mal mit Candice oder Jenni unterhalten wo doch jetzt der Gemischtwarenladen fertiggestellt ist.
+harvestfestival.quest.tutorial.supermarket.reminder.supermarket=Nur eine freundliche Erinnerung: Wenn Du mehr Saatgut brauchst dann lass' einen Gemischtwarenladen bauen!
+harvestfestival.quest.tutorial.supermarket.welcome.owner=Hey, ich bin der Besitzer des Gemischtwarenladens. Super, dass wir ins Dorf einziehen können. Ich verkaufe alle möglichen Waren vom Saatgut bis zur Schokolade. Wenn Du irgendwas brauchst dann frag' mich einfach! Öffnungszeiten sind jeden Tag von 09:00 bis 17:00 Uhr. Naja, außer Mittwochs und Sonntags, da haben wir zu. Und Samstags ist nur von 11:00-15:00 geöffnet, also vier Stunden lang. Und so wie es aussieht bist Du unser erster Kunde und bekommst darum eine Belohnung!
+harvestfestival.quest.tutorial.supermarket.welcome.guest=Ich werde schon jemanden für mich finden... Na hallo Du Schnuckel, Du bist ja richtig süß! Ich bin Candice. Jenni gehört der Laden hier, ich bin nur eine Mitbewohnerin. Falls Du was brauchst dann rede mit ihr, der Laden ist täglich von 09:00-17:00 geöffnet, außer Mittwochs und Sonntags. Samstags von 11:00 Uhr bis 15:00 Uhr. Jenni sagte mir auch, dass ich Dir das hier geben soll.
+
+#Cafe Cooking Lesson
+harvestfestival.quest.tutorial.cafe.welcome=Willkommen in meinem Café. Ich bin Liara, die Besitzerin. Wir haben hier alle eine Leidenschaft für das Kochen und hier kriegst Du das beste Essen weit und breit! Wenn Du möchstest bringe ich Dir gerne das Kochen bei.
+harvestfestival.quest.tutorial.cafe.question=Möchtest Du Kochen lernen?
+harvestfestival.quest.tutorial.cafe.tutorial=@Ja gerne!
+harvestfestival.quest.tutorial.cafe.skip=@Das kriege ich alleine hin.
+harvestfestival.quest.tutorial.cafe.completed=OK, prima. Lass' mich Dir hier ein paar Dinge geben, so als Starthilfe.
+harvestfestival.quest.tutorial.cafe.explain=Na das ist doch wunderbar! Ich werde es Dir gern beibringen. Um anzufangen brauchst Du erstmal ein paar Utensilien. Das einfachste hier ist eine Küchentheke und ein Messer. Außerdem musst Du wissen wie Du ein Rezept zubereiten kannst. Du kannst ein paar Rezepte von mir kaufen, aber für den Anfang hast Du hier erstmal eines für Saure Rüben. Mit einem Rechtsklick kannst Du es auswendig lernen. Um es Dir anzusehen brauchst Du ein Kochbuch. Wähle das Utensil und dann das Rezept, danach siehst Du auf der rechten Seite eine Liste von Dingen die Du zur Herstellung benötigst. Wenn Du alle Zutaten und Utensilien parat hast dann klicke auf "Kochen" und die Zutaten werden in das Utensil gepackt und der Kochvorgang sollte beginnen. Außer Du benutzt die Küchentheke, natürlich, denn in dem Fall musst Du selbst schnippeln indem Du rechtsklickst. Falls Du weitere Utensilien benötigst dann verkaufe ich sie Dir gerne, aber nur am Wochenende! Eine letzte Sache noch: Die Rezepte im Buch sind nur einfache Varianten. Du solltest mit weiteren Zutaten experimentieren und schaffst es dann vielleicht sie noch besser zu machen. Vielen Dank für Deine Zeit!
+
+#Upgrading Tools Tutorial
+harvestfestival.quest.tutorial.upgrading.reminder.blacksmith.yulif=Du solltest Dich vielleicht mal mit dem Schmied unterhalten...
+harvestfestival.quest.tutorial.upgrading.reminder.blacksmith.goddess=Hey Schnucki, ich habe gehört, dass der Schmied mal mit Dir sprechen möchte.
+harvestfestival.quest.tutorial.upgrading.reminder.blacksmith.jim=Danieru hat mir gesagt, dass er Dich sucht.
+harvestfestival.quest.tutorial.upgrading.reminder.blacksmith.jenni=Du solltest mit Danieru reden!
+harvestfestival.quest.tutorial.upgrading.reminder.blacksmith.candice=Hey Prachtstück, rede mal mit Danieru.
+harvestfestival.quest.tutorial.upgrading.reminder.blacksmith.jade=Ich hab das Gerücht gehört, dass der Schmied Dir was Wichtiges zu sagen hat.
+harvestfestival.quest.tutorial.upgrading.reminder.blacksmith.brandon=Ich hab hier was das ich Dir gerne geben würde, aber vorher solltest Du bei Danieru vorbei schauen.
+harvestfestival.quest.tutorial.upgrading.blacksmith.yulif=Du solltest am Besten eine Schmiede und eine Mine bauen lassen.
+harvestfestival.quest.tutorial.upgrading.blacksmith.goddess=Hey Schnucki, ich empfehle Dir den Bau einer Mine und einer Schmiede.
+harvestfestival.quest.tutorial.upgrading.blacksmith.jim=Eine Schmiede und eine Mine wären eine sehr gute Investition.
+harvestfestival.quest.tutorial.upgrading.blacksmith.jenni=Du solltest eine Schmiede und eine Mine bauen.
+harvestfestival.quest.tutorial.upgrading.blacksmith.candice=Ich würde lieben gerne in einen Stollen runtersteigen und mit hartem Metall arbeiten. Meinst Du es wäre möglich eine Mine und eine Schmiede für mich zu bauen?
+harvestfestival.quest.tutorial.upgrading.blacksmith.jade=Es geht das Gerücht herum, dass ein Bergarbeiter und ein Schmied sich gern in unserem Dorf niederlassen würden.
+harvestfestival.quest.tutorial.upgrading.blacksmith.brandon=Es ist toll hier zu sein. Ich denke, Du solltest Danieru den Schmies ebenfalls hierher einladen!
+harvestfestival.quest.tutorial.upgrading.intro=Der einzige Ort an dem ich lieber wäre als hier wäre Das Ende. Hab ich Dir schon von meinen Abenteuern dort erzählt? Oh warte, kennen wir uns überhaupt?!? Ich bin Danieru, der Schmied. Brauchst Du Hilfe?
+harvestfestival.quest.tutorial.upgrading.question=Weißt Du wie man Werkzeuge aufbessert?
+harvestfestival.quest.tutorial.upgrading.tutorial=@Nein, ich habe keine Ahnung.
+harvestfestival.quest.tutorial.upgrading.skip=@Ich weiß alles!
+harvestfestival.quest.tutorial.upgrading.completed=Na dann ist es ja gut. Hier habe ich Erz und einen Hammer für Dich.
+harvestfestival.quest.tutorial.upgrading.explain=Das ist kein Problem, ich erkläre es Dir gerne. Im ersten Schritt müssen wir Deine Werkzeuge erst einmal auf die Aufwertung vorbereiten. Dir ist vielleicht aufgefallen, dass die Werkzeuge eine Prozentanzeige besitzen. Wenn die bei 100% steht bring das Werkzeug einfach zu mir. Außerdem brauche ich noch etwas Erz zum Verarbeiten und natürlich die Bezahlung für meine Dienste. Ich werden dann ein paar Tage brauchen um die Arbeit abzuschließen, dann kannst Du Deine aufgerüsteten Werkzeuge wieder abholen. Du willst wissen wo Du das Erz herbekommen sollst? Na indem Du in die Mine gehst natürlich... Da unten findest Du Vorkommen die Du mit Deinem Hammer zerschlagen kannst um Erz zu erhalten. So, das war auch schon so ziemlich alles. Ah, aber ich hörte, dass Brandon der Bergmann noch ein Geschenk für Dich hat.
+harvestfestival.quest.tutorial.upgrading.reminder.visit=Denk dran, dass Brandon der Bergmann Dich sehen möchte!
+harvestfestival.quest.tutorial.upgrading.complete=Ehhh, hallo Du. Ich war eben in der Mine unten - und es war ziemlich schrecklich. Da Du mich in dieses Dorf geholt hast gebe ich Dir den Schrott den ich dort gefunden habe. Ich will das Zeug nicht.
+
+#Building the Goddess a Home
+harvestfestival.quest.tutorial.pond.please=Du hast bemerkenswerte Arbeit geleistet und dieses Dorf wieder aufleben lassen. Ich bin wirklich glücklich es wachsen zu sehen! Ich hätte ebenfalls liebend gerne ein permanentes Zuhause hier bei euch. Wenn Du mir eines baust dann habe ich auch eine Belohnung für Dich!
+harvestfestival.quest.tutorial.pond.thanks=Man kann die harte Arbeit die Du in dieses Dorf steckst gar nicht hoch genug schätzen. Und ich könnte nicht dankbarer für das wunderbare Zuhause sein, dass Du für mich geschaffen hast. Um Dir meinen Dank zu zeigen gebe ich Dir diese wunderbaren Erdbeeren. Die mag ich am Liebsten! Bis bald, man sieht sich!
+
+##Trading Quests
+# Priest Blessing Quest
+harvestfestival.quest.trade.cursed.accept=Vielen Dank mein Kind, ich kann Deine Werkzeuge nun segnen. Das wird ein wenig dauern, komm doch in drei Tagen wieder.
+harvestfestival.quest.trade.cursed.gold=Ahh, wie ich sehe hast Du da ein verfluchtes Werkzeug. Für eine kleine Gebühr von 10000 Gold kann ich es für Dich segnen und den Fluch entfernen.
+harvestfestival.quest.trade.cursed.wait=Schön Dich zu sehen, die Segnung Deiner Werkzeuge geht gut voran. Ein wenig wird es aber noch dauern, am Besten kommst Du in %s Tagen wieder vorbei.
+harvestfestival.quest.trade.cursed.done=Dein %s ist nun bereit. Total gesegnet, nur für Dich! Hier, bitte.
+
+# Priest Repair Quests
+harvestfestival.quest.trade.bless.repair.gold=Das sieht aus wie ein gesegnetes Werkzeug. Für nur 500 Gold kann ich es Dir reparieren.
+harvestfestival.quest.trade.bless.repair.done=Und mit der allmächtigen Kraft segne ich hiermit Dein %s erneut und stelle seine Kräfte wieder her.
+
+# Trader Johan Quests
+harvestfestival.quest.trade.vanilla.egg=Danke vielmals für diese Eier! Ich tausche sie gerne gegen welche aus meiner Heimat.
+harvestfestival.quest.trade.vanilla.milk=Diese Milchflaschen sehen delikat aus. Hier, nimm diesen Eimer Milch zum Tausch.
+harvestfestival.quest.trade.vanilla.wool=Deine Wolle ist so fein, da kann man prima Kleidung draus herstellen. Hier, bitte nimm diese grobe Wolle mit der man besser bauen kann.
+
+# Blacksmith Upgrades
+harvestfestival.quest.trade.upgrade.level=Dein Werkzeug ist nicht bei 100%%! Bitte komm wieder wenn es soweit ist.
+harvestfestival.quest.trade.upgrade.gold=Die Aufwertung dieses Werkzeugs kostet Dich %s, komm bitte wieder wenn Du genug Gold hast.
+harvestfestival.quest.trade.upgrade.material=Um dieses Werkzeug aufzuwerten brauche ich %1s %2s.
+harvestfestival.quest.trade.upgrade.accept=Ja, kann ich machen. Komm in drei Tagen vorbei um Dein aufgerüstetes Werkzeug abzuholen.
+harvestfestival.quest.trade.upgrade.done=Ich bin fertig mit %s. War mir ein Vergnügen mit Dir Geschäfte zu machen.
+harvestfestival.quest.trade.upgrade.wait=Tut mir leid, ich bin noch nicht ganz fertig. Komm bitte in %s Tagen wieder.
+harvestfestival.quest.trade.upgrade.repair.gold=Die Reparatur wird %s Gold kosten. Komm bitte wieder wenn Du genug hast.
+harvestfestival.quest.trade.upgrade.repair.material=Für die Reparatur brauche ich %s.
+harvestfestival.quest.trade.upgrade.repair.start=Kann ich machen, komm in einem Tag wieder um Dein repariertes Werkzeug abzuholen.
+
+# Jade Seed Trades
+harvestfestival.quest.trade.seeds.reminder=Wenn Du mehr Samen brauchst dann bring mir nochmal fünf Blumen.
+harvestfestival.quest.trade.seeds.complete.yes=Danke für die Blumen, hier hast Du einen Sack Samen.
+harvestfestival.quest.trade.seeds.complete.no=Es tut mir leid, aber zu dieser Jahreszeit habe ich nichts mehr übrig.
+
+# Jade Tools Trades
+harvestfestival.quest.trade.tools.hoe=Danke für die Hacke! Hier, nimm eine von meinen dafür.
+harvestfestival.quest.trade.tools.wateringcan=Dieser Eimer ist super, hier hast Du noch eine Gießkanne.
+harvestfestival.quest.trade.tools.sickle=Diese Schere ist toll, hier hast Du eine Sichel zum Tausch.
+harvestfestival.quest.trade.tools.reminder=Nur damit Du es weißt, ich habe noch ein paar Gießkannen, Hacken und Sicheln in Reserve falls Du sie brauchst. Ich tausche sie gerne gegen Steinhacken, Eimer und Scheren.
+
+# Goddess Free Carpenter
+harvestfestival.quest.trade.carpenter.thanks=Danke Schnucki, ich gebe Dir gerne noch eine Zimmermannsblaupause.
+
+## Recipe Quests
+harvestfestival.quest.recipe.corn.baked.text=Ich fühle mich wirklich wohl bei Dir, darum gebe ich Dir mein Rezept für gebackenen Mais.
+harvestfestival.quest.recipe.butter.text=Ich verrate Dir jetzt, warum meine Werkzeuge so toll sind: Ich bestreiche sie mit etwas Butter...
+harvestfestival.quest.recipe.potato.candied.text=Nun, es war famos euch kennenzulernen. Ich würde gern ein altes Familienrezept mit Dir teilen.
+harvestfestival.quest.recipe.cake.chocolate.text=Es ist toll, dass wir uns so gut kennen. Hier, nimm ein Stück Kuchen, der ist einfach köstlich...
+harvestfestival.quest.recipe.cookies.chocolate.text=Weißt Du wodurch Kekse NOCH besser werden? Ein kleines bisschen Schokolade...
+harvestfestival.quest.recipe.dinnerroll.text=Wir kennen uns nun so gut, ich habe hier ein Rezept das ich Dir zeigen möchte. Fenn liebt es...
+harvestfestival.quest.recipe.doughnut.text=Zweifellos bist Du einer meiner Lieblingsmenschen. Ich habe noch ein Rezept für Dich und diesmal ist es mein absoluter Favorit!
+harvestfestival.quest.recipe.dumplings.text=Der Geist war gut zu Dir, dafür belohne ich Dich mit Klößen.
+harvestfestival.quest.recipe.fish.stew.text=Hast Du schonmal darüber nachgedacht was ich mit meinem Fisch anstelle? Nun, meistens mache ich einen Eintopf daraus. Und das geht so...
+harvestfestival.quest.recipe.fishsticks.text=Ich mag's beim Kochen gerne einfach. Was sagst Du zu meinen Fischstäbchen?
+harvestfestival.quest.recipe.fries.french.text=Mensch, wir kennen uns mittlerweile richtig gut oder? Ich habe ja schon viele Orte bereist, aber ich habe nirgends ein Rezept gefunden wie das was ich Dir jetzt geben werde.
+harvestfestival.quest.recipe.toast.french.text=Oh Liebes, es ist toll gewesen Dich näher kennen zu lernen. Ich habe übrigens Kochen geübt und habe mein Toastrezept verbessert. Das teile ich gern mit Dir.
+harvestfestival.quest.recipe.fish.grilled.text=Eintöpfe sind ja ganz nett, aber wenn ich mal was Richtiges brauche dann grille ich meinen Fisch, ungefähr so...
+harvestfestival.quest.recipe.chocolate.hot.text=Danke, dass Du Deine Zeit mit mir verbringst. Ich würde Dir gern ein Rezept geben an dem ich nun eine Weile gebastelt habe...
+harvestfestival.quest.recipe.milk.hot.text=Nun, Du hast mit Deiner wunderbaren Art wirklich den Sonnenschein in mein Leben gebracht. Ich liebe Milch, aber ich liebe sie noch mehr wenn sie schön heiß ist. So wie Du...
+harvestfestival.quest.recipe.noodles.text=Schätze Du bist jetzt mein Freund. Hmmm. Ich kann aber nur Nudeln kochen.
+harvestfestival.quest.recipe.omelet.rice.text=Scheinbar schaust Du weiter hinter die Kulissen als die anderen. Ich nenne Dich ab jetzt meinen Freund. Und Freunde teilen ihre Reisomelettes.
+harvestfestival.quest.recipe.pancake.savoury.text=Du magst Deine Pfannkuchen süß, aber ich habe sie herzhaft schon immer lieber gemocht. Wenn Du nicht weiß wie man sie herzhaft macht hab ich hier eine Anleitung für Dich.
+harvestfestival.quest.recipe.juice.pineapple.text=Dich kennenzulernen war echt ne süße Sache, darum hier...
+harvestfestival.quest.recipe.popcorn.text=Es gibt nichts Besseres als im Kino den neuesten Fuchsfilm zu gucken und dabei Popcorn zu futtern...
+harvestfestival.quest.recipe.porridge.text=Meine Mutter hat mit immer Porridge nach diesem Rezept gekocht. Und da wir uns nun nahe stehen teile ich es gern mit Dir.
+harvestfestival.quest.recipe.potsticker.text=Weil Du ein wunderbarer Freund bist und mit mir durch dick und dünn gegangen bist schenke ich Dir das hier.
+harvestfestival.quest.recipe.risotto.text=Weißt Du noch als ich sagte, ich könnte nur Nudeln kochen? Nun, ich habe fleißig geübt und hier ist das Ergebnis.
+harvestfestival.quest.recipe.salad.text=Du warst mir ein guter Freund, hier, nimm das.
+harvestfestival.quest.recipe.egg.scrambled.text=Meine Gedanken sind im Moment so durcheinander, fast schon gerührt...
+harvestfestival.quest.recipe.soup.rice.text=Ich bin verpflichtet Dir dies zu geben.
+harvestfestival.quest.recipe.stew.text=Auf Liara aufzupassen war eine ziemliche Arbeit. Sie war so ein wildes Kind und war kaum zu bändigen bis ich eines Tages einen Eintopf kochte. Und, nun ja, seitdem ist sie ein Engel! Vielleicht lassen sich auch andere mit diesem Rezept beruhigen?
+harvestfestival.quest.recipe.milk.strawberry.text=Wodurch wird Milch noch besser? Erdbeeren!
+harvestfestival.quest.recipe.toast.text=Yulif hat mir bisher noch nicht beigebracht wir man kocht. Aber Toast kann ich schon...
+harvestfestival.quest.recipe.latte.vegetable.text=Ich muss dieses unheilige Ding so schnell wie möglich loswerden. Bitte nimm es.
+
+###Achievements
+achievement.harvestfestival.summon=Der Göttin Lohn
+achievement.harvestfestival.summon.desc=Beschwöre eine Blume der Göttin
+achievement.harvestfestival.visitor=Der Anfang
+achievement.harvestfestival.visitor.desc=Rede mit Jade
+achievement.harvestfestival.harvest=Raus damit!
+achievement.harvestfestival.harvest.desc=Ernte Deine erste Rübe.
+achievement.harvestfestival.onion=Im Sommer
+achievement.harvestfestival.onion.desc=Und ich tue das was Schnee auch macht.
+achievement.harvestfestival.spinach=Popeye
+achievement.harvestfestival.spinach.desc=Ich bin stark und haaart ess' ich den Spinaaat.
+achievement.harvestfestival.milker=Muhmuh Milch
+achievement.harvestfestival.milker.desc=Besorge Deine erste Milch von einer Kuh
+achievement.harvestfestival.milkerLarge=Literweise
+achievement.harvestfestival.milkerLarge.desc=Erhalte eine große Milch von einer Kuh
+achievement.harvestfestival.egger=Ü-Ei
+achievement.harvestfestival.egger.desc=Erhalte Dein erstes Ei von einem Huhn
+achievement.harvestfestival.eggerLarge=Osterei
+achievement.harvestfestival.eggerLarge.desc=Dies ist kein Easter Egg.
+achievement.harvestfestival.firstShipping=Erste Lieferung
+achievement.harvestfestival.firstShipping.desc=Verschiffe Deinen ersten Gegenstand
+achievement.harvestfestival.millionaire=Millionen
+achievement.harvestfestival.millionaire.desc=Wer wird Millionär? DU!
+achievement.harvestfestival.theMine=Ab nach unten
+achievement.harvestfestival.theMine.desc=Betritt die Mine
+achievement.harvestfestival.killChick=Nimm dies!
+achievement.harvestfestival.killChick.desc=Es ist ein Wunder...
+achievement.harvestfestival.killChicken=So Erwachsen
+achievement.harvestfestival.killChicken.desc=Und ich dachte Küken wären hart.
+achievement.harvestfestival.killSheep=Sorry Shaun!
+achievement.harvestfestival.killSheep.desc=Wenigstens kann ich jetzt ne Decke machen...
+achievement.harvestfestival.killCow=Muuuuuuuhuhuhu
+achievement.harvestfestival.killCow.desc=Wer hat die infiziert?
+achievement.harvestfestival.firstChristmas=Frohes Fest
+achievement.harvestfestival.firstChristmas.desc=Stiiii-hille Naaaaaacht.
+achievement.harvestfestival.birthday=Happy Birthday!
+achievement.harvestfestival.birthday.desc=Du solltest öfter mal rausgehen.
+achievement.harvestfestival.friend=Freunde
+achievement.harvestfestival.friend.desc=...sind immer für Dich da.
+achievement.harvestfestival.marriage=Hochzeitsglocken
+achievement.harvestfestival.marriage.desc=Ba-damm da daaaaaa...
+achievement.harvestfestival.junk=Hart und dreckig
+achievement.harvestfestival.junk.desc=Wir haben alle klein angefangen
+achievement.harvestfestival.copper=Kupferstecher
+achievement.harvestfestival.copper.desc=Mein lieber Freund und...
+achievement.harvestfestival.silver=Silberlöffel
+achievement.harvestfestival.silver.desc=Wo sind die Werwölfe?
+achievement.harvestfestival.gold=Goldene Pforte
+achievement.harvestfestival.gold.desc=Ist Gold nicht eigentlich doof?
+achievement.harvestfestival.mystril=Glitzer
+achievement.harvestfestival.mystril.desc=Cool, Mystril...
+achievement.harvestfestival.cooking=Erste Mahlzeit
+achievement.harvestfestival.cooking.desc=Koche Deine erste Mahlzeit
+achievement.harvestfestival.recipes=Chefkoch
+achievement.harvestfestival.recipes.desc=Erlerne 50 Rezepte
+
+###Sounds
+harvestfestival.subtitle.fryingpan=Brutzel
+harvestfestival.subtitle.counter=Hacken
+harvestfestival.subtitle.fridge=Kühlschranktür
+harvestfestival.subtitle.mixer=Surren
+harvestfestival.subtitle.oven=Ofenbrummen
+harvestfestival.subtitle.ovendoor=Ofentür
+harvestfestival.subtitle.ovendone=Ofentür Ping
+harvestfestival.subtitle.pot=Blubbern
+harvestfestival.subtitle.smashrock=Felskrachen
+harvestfestival.subtitle.smashwood=Holzkrachen
+harvestfestival.subtitle.blessing=Himmlisches Geräusch
+harvestfestival.subtitle.godddess=Göttin Ding
+harvestfestival.subtitle.recipe=Rezept erlernt!
+
+#Config
+harvestfestival.config.tooltip=

@@ -114,6 +114,7 @@
 * Added Elevators for the mine. Allows you to teleport down to deeper depths instantly (for a setup cost!)
 * Ore nodes will now drop more than one more rarely
 * Reduced the amount of dark chicks, chickens and sheep that spawn
+* Dark chicks will drop black feathers, Dark chickens will drop black feathers and raw chicken, Dark sheep will drop mutton and black wool, and Dark cows will drop black leather and beef
 * Mines will now have a greater chance of producing ore in winter
 * The new tiers will now start when you go through a bottom portal instead of just before
 

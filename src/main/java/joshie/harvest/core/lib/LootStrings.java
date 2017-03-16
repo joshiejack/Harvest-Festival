@@ -35,6 +35,10 @@ public class LootStrings {
     public static final ResourceLocation MINING = register("gameplay/mining/junk");
     public static final ResourceLocation MINING_GEMS = register("gameplay/mining/gems");
     public static final ResourceLocation TRAP_JUNK = register("gameplay/fishing/trap_junk");
+    public static final ResourceLocation DARK_CHICK = register("gameplay/entities/dark_chick");
+    public static final ResourceLocation DARK_CHICKEN = register("gameplay/entities/dark_chicken");
+    public static final ResourceLocation DARK_SHEEP = register("gameplay/entities/dark_sheep");
+    public static final ResourceLocation DARK_COW = register("gameplay/entities/dark_cow");
 
     private static ResourceLocation register(String id) {
         return LootTableList.register(new ResourceLocation(HFModInfo.MODID, id));

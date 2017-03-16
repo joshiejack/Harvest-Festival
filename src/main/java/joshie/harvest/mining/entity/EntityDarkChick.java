@@ -2,6 +2,7 @@ package joshie.harvest.mining.entity;
 
 import joshie.harvest.core.achievements.HFAchievements;
 import joshie.harvest.core.helpers.EntityHelper;
+import joshie.harvest.core.lib.LootStrings;
 import joshie.harvest.mining.MiningHelper;
 import net.minecraft.block.Block;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -11,12 +12,14 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 import static joshie.harvest.mining.HFMining.ANIMALS_ON_EVERY_FLOOR;
 import static joshie.harvest.mining.MiningHelper.CHICK_FLOORS;
@@ -32,6 +35,11 @@ public class EntityDarkChick extends EntityMob {
         super(world);
         setSize(0.4F, 0.7F);
         setPathPriority(PathNodeType.WATER, 0.0F);
+    }
+
+    @Nullable
+    protected ResourceLocation getLootTable() {
+        return LootStrings.DARK_CHICK;
     }
 
     @Override

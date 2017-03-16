@@ -16,6 +16,8 @@ import joshie.harvest.mining.entity.EntityDarkChicken;
 import joshie.harvest.mining.entity.EntityDarkCow;
 import joshie.harvest.mining.entity.EntityDarkSheep;
 import joshie.harvest.mining.gen.MiningProvider;
+import joshie.harvest.mining.item.ItemDarkDrop;
+import joshie.harvest.mining.item.ItemDarkDrop.DarkDrop;
 import joshie.harvest.mining.item.ItemDarkSpawner;
 import joshie.harvest.mining.item.ItemDarkSpawner.DarkSpawner;
 import joshie.harvest.mining.item.ItemMaterial;
@@ -33,6 +35,7 @@ import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.oredict.OreDictionary;
 
 import static joshie.harvest.api.calendar.Season.*;
 import static joshie.harvest.core.HFCore.FLOWERS;
@@ -58,6 +61,7 @@ public class HFMining {
     public static final BlockElevator ELEVATOR = new BlockElevator().setBlockUnbreakable().register("elevator");
     public static final ItemMaterial MATERIALS = new ItemMaterial().register("materials");
     public static final ItemDarkSpawner DARK_SPAWNER = new ItemDarkSpawner().register("dark_spawner");
+    public static final ItemDarkDrop DARK_DROP = new ItemDarkDrop().register("dark_drop");
     public static final ItemMiningTool MINING_TOOL = new ItemMiningTool().register("tool_mining");
     public static DimensionType MINE_WORLD;
 
@@ -68,6 +72,8 @@ public class HFMining {
         registerModEntity(EntityDarkSheep.class, "dark_sheep", EntityIDs.DARK_SHEEP, HarvestFestival.instance, 80, 3, true);
         registerModEntity(EntityDarkChicken.class, "dark_chicken", EntityIDs.DARK_CHICKEN, HarvestFestival.instance, 80, 3, true);
         registerModEntity(EntityDarkChick.class, "dark_chick", EntityIDs.DARK_CHICK, HarvestFestival.instance, 80, 3, true);
+        OreDictionary.registerOre("feather", DARK_DROP.getStackFromEnum(DarkDrop.FEATHER));
+        OreDictionary.registerOre("leather", DARK_DROP.getStackFromEnum(DarkDrop.LEATHER));
         registerTiles(TileElevator.class);
         LootConditionManager.registerCondition(new From.Serializer());
         LootConditionManager.registerCondition(new Between.Serializer());

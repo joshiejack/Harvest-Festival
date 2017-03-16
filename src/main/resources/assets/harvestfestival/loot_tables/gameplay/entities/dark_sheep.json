@@ -1,0 +1,32 @@
+{
+  "pools": [
+    {
+      "name": "wool",
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "item",
+          "name": "minecraft:wool",
+          "weight": 1,
+          "functions": [
+            {
+              "function": "minecraft:set_data",
+              "data": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "mutton",
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "loot_table",
+          "name": "minecraft:entities/sheep",
+          "weight": 1
+        }
+      ]
+    }
+  ]
+}

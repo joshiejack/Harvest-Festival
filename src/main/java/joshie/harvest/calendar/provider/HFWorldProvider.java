@@ -263,17 +263,19 @@ public class HFWorldProvider extends WorldProviderSurface {
     @Override
     public void updateWeather() {
         Calendar calendar = HFTrackers.getCalendar(worldObj);
-        float rainStrength = calendar.getTodaysRainStrength();
-        float thunderStrength = calendar.getTodaysStormStrength();
-        if (worldObj.rainingStrength > rainStrength) {
+        int targetRain = calendar.getTodaysRainStrength();
+        int targetStorm = calendar.getTodaysStormStrength();
+        int rainStrength = (int) (worldObj.rainingStrength * 100);
+        if (rainStrength > targetRain) {
             worldObj.rainingStrength -= 0.01F;
-        } else if (worldObj.rainingStrength < rainStrength) {
+        } else if (rainStrength < targetRain) {
             worldObj.rainingStrength += 0.01F;
         }
 
-        if (worldObj.thunderingStrength > thunderStrength) {
+        int thunderStrength = (int) (worldObj.thunderingStrength * 100);
+        if (thunderStrength > targetStorm) {
             worldObj.thunderingStrength -= 0.1F;
-        } else if (worldObj.thunderingStrength < thunderStrength) {
+        } else if (thunderStrength < targetStorm) {
             worldObj.thunderingStrength += 0.01F;
         }
     }

@@ -127,8 +127,12 @@ public class CalendarServer extends Calendar {
             DATE.setDate(date.getWeekday(), date.getDay(), date.getSeason(), date.getYear());
         }
 
-        rainStrength = nbt.getFloat("Rain");
-        stormStrength = nbt.getFloat("Storm");
+        rainStrength = nbt.getInteger("RainStrength");
+        stormStrength = nbt.getInteger("StormStrength");
+        //TODO: Remove in 0.7+
+        if (nbt.hasKey("Rain")) rainStrength = (int) nbt.getFloat("Rain") * 100;
+        //TODO: Remove in 0.7+
+        if (nbt.hasKey("Storm")) stormStrength = (int) nbt.getFloat("Storm") * 100;
         for (int i = 0; i < 7; i++) {
             forecast[i] = Weather.values()[nbt.getByte("Day" + i)];
             if (forecast[i] == null) {
@@ -139,8 +143,8 @@ public class CalendarServer extends Calendar {
 
     public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
         nbt.setTag("Date", DATE.toNBT());
-        nbt.setFloat("Rain", rainStrength);
-        nbt.setFloat("Storm", stormStrength);
+        nbt.setInteger("Rain", rainStrength);
+        nbt.setInteger("Storm", stormStrength);
         for (int i = 0; i < 7; i++) {
             Weather weather = forecast[i];
             if (weather == null) weather = Weather.SUNNY;

@@ -38,9 +38,9 @@ public abstract class Calendar extends HFTracker implements SeasonProvider {
 
 
     /* ############# Weather ################*/
-    protected Weather[] forecast = new Weather[7];
-    protected float rainStrength;
-    protected float stormStrength;
+    Weather[] forecast = new Weather[7];
+    int rainStrength;
+    int stormStrength;
 
     public Calendar() {
         for (int i = 0; i < 7; i++) {
@@ -52,32 +52,32 @@ public abstract class Calendar extends HFTracker implements SeasonProvider {
         return forecast[0] != null ? forecast[0] : SUNNY;
     }
 
-    public float getTodaysRainStrength() {
+    public int getTodaysRainStrength() {
         return rainStrength;
     }
 
-    public float getTodaysStormStrength() {
+    public int getTodaysStormStrength() {
         return stormStrength;
     }
 
-    public void updateWeatherStrength() {
+    void updateWeatherStrength() {
         switch (forecast[0]) {
             case SUNNY:
-                rainStrength = 0F;
-                stormStrength = 0F;
+                rainStrength = 0;
+                stormStrength = 0;
                 break;
             case RAIN:
             case SNOW:
-                rainStrength = 1F;
-                stormStrength = 0F;
+                rainStrength = 100;
+                stormStrength = 0;
                 break;
             case TYPHOON:
-                rainStrength = 2F;
-                stormStrength = 1F;
+                rainStrength = 20;
+                stormStrength = 100;
                 break;
             case BLIZZARD:
-                rainStrength = 2F;
-                stormStrength = 0F;
+                rainStrength = 20;
+                stormStrength = 0;
                 break;
             default:
                 break;

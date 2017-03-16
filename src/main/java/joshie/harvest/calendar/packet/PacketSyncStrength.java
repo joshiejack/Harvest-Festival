@@ -9,25 +9,25 @@ import net.minecraft.entity.player.EntityPlayer;
 
 @Packet(Packet.Side.CLIENT)
 public class PacketSyncStrength extends PenguinPacket {
-    private float rain;
-    private float storm;
+    private int rain;
+    private int storm;
 
     public PacketSyncStrength() {}
-    public PacketSyncStrength(float rain, float storm) {
+    public PacketSyncStrength(int rain, int storm) {
         this.rain = rain;
         this.storm = storm;
     }
 
     @Override
     public void toBytes(ByteBuf buf) {
-        buf.writeFloat(rain);
-        buf.writeFloat(storm);
+        buf.writeInt(rain);
+        buf.writeInt(storm);
     }
 
     @Override
     public void fromBytes(ByteBuf buf) {
-        rain = buf.readFloat();
-        storm = buf.readFloat();
+        rain = buf.readInt();
+        storm = buf.readInt();
     }
 
     @Override

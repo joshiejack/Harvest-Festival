@@ -3,7 +3,6 @@ package joshie.harvest.calendar.data;
 import joshie.harvest.api.calendar.CalendarDate;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.calendar.Weather;
-import joshie.harvest.calendar.data.Calendar;
 import joshie.harvest.calendar.provider.HFWorldProvider;
 import joshie.harvest.calendar.render.CalendarRender;
 import net.minecraftforge.fml.relauncher.Side;
@@ -36,7 +35,7 @@ public class CalendarClient extends Calendar {
         updateWeatherStrength();
     }
 
-    public void setStrength(float rain, float storm) {
+    public void setStrength(int rain, int storm) {
         this.rainStrength = rain;
         this.stormStrength = storm;
     }

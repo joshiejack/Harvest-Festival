@@ -2,6 +2,7 @@ package joshie.harvest.mining.entity;
 
 import joshie.harvest.core.achievements.HFAchievements;
 import joshie.harvest.core.helpers.EntityHelper;
+import joshie.harvest.core.lib.LootStrings;
 import joshie.harvest.mining.MiningHelper;
 import net.minecraft.block.Block;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -11,11 +12,13 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 import static joshie.harvest.mining.HFMining.ANIMALS_ON_EVERY_FLOOR;
 import static joshie.harvest.mining.MiningHelper.*;
@@ -27,6 +30,11 @@ public class EntityDarkSheep extends EntityMob {
         setPathPriority(PathNodeType.WATER, 0.0F);
     }
 
+    @Nullable
+    protected ResourceLocation getLootTable() {
+        return LootStrings.DARK_SHEEP;
+    }
+
     @Override
     public int getMaxSpawnedInChunk() {
         return 1;
@@ -35,7 +43,7 @@ public class EntityDarkSheep extends EntityMob {
     @Override
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(10.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(20.0D);
         this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(2.5D);
         this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.15D);
     }

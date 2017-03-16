@@ -94,11 +94,9 @@ public class NPCHelper implements INPCHelper {
     public static <N extends EntityNPC> N getEntityForNPC(World world, NPC npc) {
         if (npc == HFNPCs.MINER) {
             return (N) new EntityNPCMiner(world, npc);
-        } if (npc == HFNPCs.TRADER) {
-            return (N) new EntityNPCTrader(world, npc);
-        } if (npc == HFNPCs.CARPENTER) {
+        }else if (npc == HFNPCs.CARPENTER) {
             return (N) new EntityNPCBuilder(world, npc);
-        } if (npc == HFNPCs.GODDESS) {
+        } else if (npc == HFNPCs.GODDESS) {
             return (N) new EntityNPCGoddess(world, npc);
         } else return (N) new EntityNPCVillager(world, npc);
     }

@@ -3,8 +3,8 @@ package joshie.harvest.quests.town.festivals.contest.animal;
 import com.google.common.collect.Lists;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.AnimalStats;
-import joshie.harvest.api.buildings.BuildingLocation;
 import joshie.harvest.api.npc.NPC;
+import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.quests.base.QuestAnimalContest;
 import joshie.harvest.quests.town.festivals.contest.ContestEntries;
@@ -23,7 +23,7 @@ public class AnimalContestEntries<E extends EntityAnimal> extends ContestEntries
     private final String[] names;
     private Set<String> used;
 
-    public AnimalContestEntries(Class<E> entity, BuildingLocation[] locations, NPC[] npcs, String[] names) {
+    public AnimalContestEntries(Class<E> entity, BlockPos[] locations, NPC[] npcs, String[] names) {
         super(locations, npcs);
         this.entityClass = entity;
         this.names = names;
@@ -37,10 +37,11 @@ public class AnimalContestEntries<E extends EntityAnimal> extends ContestEntries
         //Grab the list of closest
         List<Pair<E, Integer>> list = Lists.newArrayList();
         for (int i = 0; i < locations.length; i++) {
-            BuildingLocation location = locations[i];
+            BlockPos location = locations[i];
             int stall = i + 1;
             if (!isEntered(stall)) {
-                E animal = getClosestAnimal(player.worldObj, HFApi.towns.getTownForEntity(player).getCoordinatesFor(location));
+                BlockPos target = HFApi.towns.getTownForEntity(player).getCoordinatesFromOffset(HFBuildings.FESTIVAL_GROUNDS, location);
+                E animal = getClosestAnimal(player.worldObj, target);
                 if (animal != null) {
                     Pair<E, Integer> pair = Pair.of(animal, stall);
                     if (!list.contains(pair)) {

@@ -8,7 +8,7 @@ import net.minecraft.util.ResourceLocation;
 
 public abstract class TaskElement {
     public static final BiMap<ResourceLocation, Class> REGISTRY = HashBiMap.create();
-    private boolean satisfied = false;
+    protected boolean satisfied = false;
 
     public boolean isSatisfied(EntityAgeable npc) {
         return satisfied;

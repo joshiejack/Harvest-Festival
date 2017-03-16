@@ -84,9 +84,9 @@ public abstract class QuestContest<E extends ContestEntries> extends QuestFestiv
         Town town = entity.getTown();
         List<EntityNPCHuman> npcs = EntityHelper.getEntities(EntityNPCHuman.class, player.worldObj, entity.getPos(), 64D, 10D);
         for (EntityNPCHuman theNPC: npcs) {
-            BuildingLocation building = entries.getLocationFromNPC(theNPC.getNPC());
+            BlockPos building = entries.getLocationFromNPC(theNPC.getNPC());
             if (building != null) {
-                entity.setPath(TaskMove.of(town.getCoordinatesFor(building)), TaskWait.of(30));
+                entity.setPath(TaskMove.of(town.getCoordinatesFromOffset(HFBuildings.FESTIVAL_GROUNDS, building)), TaskWait.of(30));
             }
         }
     }

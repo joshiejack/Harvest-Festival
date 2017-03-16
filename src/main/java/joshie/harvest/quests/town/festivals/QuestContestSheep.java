@@ -1,12 +1,9 @@
 package joshie.harvest.quests.town.festivals;
 
 import joshie.harvest.animals.entity.EntityHarvestSheep;
-import joshie.harvest.api.buildings.BuildingLocation;
 import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.npc.NPCEntity;
 import joshie.harvest.api.npc.greeting.Script;
-import joshie.harvest.api.npc.task.TaskSpeech;
-import joshie.harvest.api.npc.task.TaskWait;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.town.Town;
 import joshie.harvest.calendar.HFFestivals;
@@ -15,22 +12,24 @@ import joshie.harvest.cooking.item.ItemMeal.Meal;
 import joshie.harvest.core.base.other.HFScript;
 import joshie.harvest.npcs.HFNPCs;
 import joshie.harvest.quests.base.QuestAnimalContest;
-import joshie.harvest.quests.town.festivals.contest.animal.AnimalContestEntries;
 import joshie.harvest.quests.town.festivals.contest.ContestJudgingScript;
 import joshie.harvest.quests.town.festivals.contest.ContestTaskWinner;
 import joshie.harvest.quests.town.festivals.contest.ContestWinningScript;
+import joshie.harvest.quests.town.festivals.contest.animal.AnimalContestEntries;
 import joshie.harvest.shops.HFShops;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.BlockPos;
 
 import static joshie.harvest.core.registry.ShippingRegistry.SELL_VALUE;
-import static joshie.harvest.town.BuildingLocations.*;
+import static joshie.harvest.town.BuildingLocations.PARK_SHEEP_JUDGE;
 
 @HFQuest("festival.sheep")
 public class QuestContestSheep extends QuestAnimalContest<EntityHarvestSheep> {
     private static final String PREFIX = "sheep";
-    private static final BuildingLocation[] STALLS = new BuildingLocation[] { PARK_SHEEP_STALL_1, PARK_SHEEP_STALL_2, PARK_SHEEP_STALL_3, PARK_SHEEP_STALL_4 };
+    //TODO: Add the stall positions for walking based on serious setup
+    private static final BlockPos[] STALLS = new BlockPos[] { new BlockPos(6, 1, 12), new BlockPos(10, 1, 21), new BlockPos(27, 1, 20), new BlockPos(27, 1, 5) };
     private static final NPC[] NPCS = new NPC[] { HFNPCs.CAFE_GRANNY, HFNPCs.FLOWER_GIRL, HFNPCs.MILKMAID, HFNPCs.DAUGHTER_ADULT, HFNPCs.TRADER, HFNPCs.GS_OWNER };
     private static final String[] NAMES = new String[] { "Fluffy", "Flaafy", "Maisy", "Mareep", "Shaggy", "Fae", "Emma", "Dolly", "Sally", "Larry", "Shaun"};
     private static final Script FINISH = new HFScript(PREFIX + "_finish");
@@ -39,6 +38,14 @@ public class QuestContestSheep extends QuestAnimalContest<EntityHarvestSheep> {
     private static final Script JUDGE_3 = new ContestJudgingScript(PREFIX, 3).setNPC(HFNPCs.BARN_OWNER);
     private static final Script JUDGE_4 = new ContestJudgingScript(PREFIX, 4).setNPC(HFNPCs.BARN_OWNER);
     private static final Script WINNER = new ContestWinningScript(PREFIX).setNPC(HFNPCs.BARN_OWNER);
+    //TODO: Add the stand positions for walking based on serious setup
+    private static final BlockPos STAND1 = new BlockPos(8, 1, 12);
+    //TODO: Add the stand positions for walking based on serious setup
+    private static final BlockPos STAND2 = new BlockPos(10, 1, 18);
+    //TODO: Add the stand positions for walking based on serious setup
+    private static final BlockPos STAND3 = new BlockPos(27, 1, 16);
+    //TODO: Add the stand positions for walking based on serious setup
+    private static final BlockPos STAND4 = new BlockPos(23, 1, 6);
 
     public QuestContestSheep() {
         super(HFNPCs.BARN_OWNER, PREFIX);
@@ -66,8 +73,7 @@ public class QuestContestSheep extends QuestAnimalContest<EntityHarvestSheep> {
 
     @Override
     public void execute(Town town, EntityPlayer player, NPCEntity npc) {
-        npc.setPath(move(PARK_SHEEP_1), TaskSpeech.of(JUDGE_1), move(PARK_SHEEP_2), TaskSpeech.of(JUDGE_2),
-                move(PARK_SHEEP_3), TaskSpeech.of(JUDGE_3), move(PARK_SHEEP_4), TaskSpeech.of(JUDGE_4), TaskWait.of(1),
-                TaskSpeech.of(FINISH), move(PARK_SHEEP_JUDGE), TaskSpeech.of(WINNER), new ContestTaskWinner(HFFestivals.SHEEP_FESTIVAL));
+        npc.setPath(move(STAND1), speech(JUDGE_1), move(STAND2), speech(JUDGE_2), move(STAND3), speech(JUDGE_3), move(STAND4), speech(JUDGE_4),
+                wait(1), speech(FINISH), move(PARK_SHEEP_JUDGE), speech(WINNER), new ContestTaskWinner(HFFestivals.SHEEP_FESTIVAL));
     }
 }

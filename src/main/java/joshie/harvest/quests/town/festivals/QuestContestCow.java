@@ -1,7 +1,6 @@
 package joshie.harvest.quests.town.festivals;
 
 import joshie.harvest.animals.entity.EntityHarvestCow;
-import joshie.harvest.api.buildings.BuildingLocation;
 import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.npc.NPCEntity;
 import joshie.harvest.api.npc.greeting.Script;
@@ -22,27 +21,27 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 
-import static joshie.harvest.town.BuildingLocations.*;
+import static joshie.harvest.town.BuildingLocations.PARK_COW_JUDGE;
 
 @HFQuest("festival.cow")
 public class QuestContestCow extends QuestAnimalContest<EntityHarvestCow> {
-    private static final String ANIMAL = "cow";
-    private static final BuildingLocation[] LOCATIONS = new BuildingLocation[] { PARK_COW_STALL_1, PARK_COW_STALL_2, PARK_CENTRE, PARK_COW_STALL_4 };
+    private static final String PREFIX = "cow";
+    private static final BlockPos[] LOCATIONS = new BlockPos[] { new BlockPos(10, 1, 13), new BlockPos(17, 1, 8), new BlockPos(23, 1, 15), new BlockPos(27, 1, 22) };
     private static final NPC[] NPCS = new NPC[] { HFNPCs.BARN_OWNER, HFNPCs.GS_OWNER, HFNPCs.TRADER, HFNPCs.CARPENTER, HFNPCs.CLOCKMAKER_CHILD, HFNPCs.DAUGHTER_CHILD };
     private static final String[] NAMES = new String[] { "Anabelle", "Maybelle", "Daisy", "Miltank", "Bessie", "Clarabelle", "Dorothy", "Ella", "Molly", "Bella", "Bertha"};
-    private static final Script FINISH = new HFScript(ANIMAL + "_finish");
-    private static final Script JUDGE_1 = new ContestJudgingScript(ANIMAL, 1).setNPC(HFNPCs.MILKMAID);
-    private static final Script JUDGE_2 = new ContestJudgingScript(ANIMAL, 2).setNPC(HFNPCs.MILKMAID);
-    private static final Script JUDGE_3 = new ContestJudgingScript(ANIMAL, 3).setNPC(HFNPCs.MILKMAID);
-    private static final Script JUDGE_4 = new ContestJudgingScript(ANIMAL, 4).setNPC(HFNPCs.MILKMAID);
-    private static final Script WINNER = new ContestWinningScript(ANIMAL).setNPC(HFNPCs.MILKMAID);
+    private static final Script FINISH = new HFScript(PREFIX + "_finish");
+    private static final Script JUDGE_1 = new ContestJudgingScript(PREFIX, 1).setNPC(HFNPCs.MILKMAID);
+    private static final Script JUDGE_2 = new ContestJudgingScript(PREFIX, 2).setNPC(HFNPCs.MILKMAID);
+    private static final Script JUDGE_3 = new ContestJudgingScript(PREFIX, 3).setNPC(HFNPCs.MILKMAID);
+    private static final Script JUDGE_4 = new ContestJudgingScript(PREFIX, 4).setNPC(HFNPCs.MILKMAID);
+    private static final Script WINNER = new ContestWinningScript(PREFIX).setNPC(HFNPCs.MILKMAID);
     private static final BlockPos STAND1 = new BlockPos(12, 1, 13);
     private static final BlockPos STAND2 = new BlockPos(17, 1, 10);
     private static final BlockPos STAND3 = new BlockPos(23, 1, 17);
     private static final BlockPos STAND4 = new BlockPos(27, 1, 20);
 
     public QuestContestCow() {
-        super(HFNPCs.MILKMAID, ANIMAL);
+        super(HFNPCs.MILKMAID, PREFIX);
     }
 
     @Override

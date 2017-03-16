@@ -1,8 +1,8 @@
 package joshie.harvest.quests.town.festivals.contest;
 
 import com.google.common.collect.Lists;
-import joshie.harvest.api.buildings.BuildingLocation;
 import joshie.harvest.api.npc.NPC;
+import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.core.helpers.NBTHelper;
 import joshie.harvest.quests.town.festivals.Place;
@@ -20,13 +20,13 @@ import java.util.*;
 
 public abstract class ContestEntries<O, E extends ContestEntry, Q extends QuestContest> {
     protected final List<E> entries = new ArrayList<>();
-    protected final BuildingLocation[] locations;
+    protected final BlockPos[] locations;
     protected final NPC[] npcs;
     protected Set<UUID> selecting = new HashSet<>();
     protected List<Pair<String, Integer>> entryNames;
     protected Set<NPC> usedNPCS;
 
-    public ContestEntries(BuildingLocation[] locations, NPC[] npcs) {
+    public ContestEntries(BlockPos[] locations, NPC[] npcs) {
         this.locations = locations;
         this.npcs = npcs;
     }
@@ -73,7 +73,7 @@ public abstract class ContestEntries<O, E extends ContestEntry, Q extends QuestC
     }
 
     @Nullable
-    public BuildingLocation getLocationFromNPC(@Nonnull NPC npc) {
+    public BlockPos getLocationFromNPC(@Nonnull NPC npc) {
         for (E entry: entries) {
             if (entry.getNPC() == npc) {
                 return locations[entry.getStall() - 1];
@@ -109,7 +109,7 @@ public abstract class ContestEntries<O, E extends ContestEntry, Q extends QuestC
             usedNPCS = new HashSet<>();
             for (int i = 1; i <= 4 && entries.size() < 4; i++) {
                 if (!isEntered(i)) {
-                    BlockPos pos = TownHelper.getClosestTownToEntity(player, false).getCoordinatesFor(locations[i - 1]);
+                    BlockPos pos = TownHelper.getClosestTownToEntity(player, false).getCoordinatesFromOffset(HFBuildings.FESTIVAL_GROUNDS, locations[i - 1]);
                     createEntry(player, world, pos, i);
                 }
             }

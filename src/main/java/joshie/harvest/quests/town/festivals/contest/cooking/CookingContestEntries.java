@@ -2,8 +2,8 @@ package joshie.harvest.quests.town.festivals.contest.cooking;
 
 import com.google.common.collect.Lists;
 import joshie.harvest.api.HFApi;
-import joshie.harvest.api.buildings.BuildingLocation;
 import joshie.harvest.api.npc.NPC;
+import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.core.tile.TilePlate;
@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.UUID;
 
 public class CookingContestEntries extends ContestEntries<ItemStack, CookingContestEntry, QuestContestCooking> {
-    public CookingContestEntries(BuildingLocation[] locations, NPC[] npcs) {
+    public CookingContestEntries(BlockPos[] locations, NPC[] npcs) {
         super(locations, npcs);
     }
 
@@ -45,15 +45,18 @@ public class CookingContestEntries extends ContestEntries<ItemStack, CookingCont
         validateExistingEntries(player.worldObj);
         List<Pair<ItemStack, Integer>> list = Lists.newArrayList();
         for (int i = 0; i < locations.length; i++) {
-            BuildingLocation location = locations[i];
+            BlockPos location = locations[i];
             int stall = i + 1;
             if (!isEntered(stall)) {
-                TileEntity tile = player.worldObj.getTileEntity(HFApi.towns.getTownForEntity(player).getCoordinatesFor(location));
-                if (tile instanceof TilePlate) {
-                    ItemStack stack = ((TilePlate)tile).getContents();
-                    if (stack != null) {
-                        Pair<ItemStack, Integer> pair = Pair.of(stack, stall);
-                        if (!list.contains(pair)) list.add(pair);
+                BlockPos target = HFApi.towns.getTownForEntity(player).getCoordinatesFromOffset(HFBuildings.FESTIVAL_GROUNDS, location);
+                if (target != null) {
+                    TileEntity tile = player.worldObj.getTileEntity(target);
+                    if (tile instanceof TilePlate) {
+                        ItemStack stack = ((TilePlate) tile).getContents();
+                        if (stack != null) {
+                            Pair<ItemStack, Integer> pair = Pair.of(stack, stall);
+                            if (!list.contains(pair)) list.add(pair);
+                        }
                     }
                 }
             }
@@ -84,7 +87,8 @@ public class CookingContestEntries extends ContestEntries<ItemStack, CookingCont
             }
         }
 
-        entries.add(new CookingContestEntry(playerUUID, HFApi.towns.getTownForEntity(player).getCoordinatesFor(locations[stall]), stack, stall));
+        BlockPos target = HFApi.towns.getTownForEntity(player).getCoordinatesFromOffset(HFBuildings.FESTIVAL_GROUNDS, locations[stall]);
+        entries.add(new CookingContestEntry(playerUUID, target, stack, stall));
         selecting.remove(playerUUID);
     }
     @Override

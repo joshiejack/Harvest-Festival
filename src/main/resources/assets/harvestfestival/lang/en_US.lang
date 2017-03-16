@@ -2052,7 +2052,7 @@ harvestfestival.quest.meeting.katlin.text=Good day youngun. I'm Katlin but you c
 harvestfestival.quest.meeting.katlin.description=Have first conversation with Granny Katlin.
 harvestfestival.quest.meeting.johan.title=Johan'nesburg
 harvestfestival.quest.meeting.johan.build=Build the Park.
-harvestfestival.quest.meeting.johan.text=Good day. It is such a pleasure to meet you. The name is Johan. I'm normally here throughout the day but I travel back to my homeland at night. To let you know that if you ever need a bucket of milk, block of wool or some brown eggs, I'll happily trade for bottles of milk, plain wool or white eggs. I will see you around.
+harvestfestival.quest.meeting.johan.text=Good day. It is such a pleasure to meet you. The name is Johan a humbler trader. To let you know that if you ever need a bucket of milk, block of wool or some brown eggs, I'll happily trade for bottles of milk, plain wool or white eggs. I will see you around.
 harvestfestival.quest.meeting.johan.description=Meet Johan.
 harvestfestival.quest.meeting.abi.title=Littlefoot
 harvestfestival.quest.meeting.abi.text=HELLLO BIG PERSON! I'm Abii!!!!! Never seen you before :D
@@ -2226,7 +2226,7 @@ harvestfestival.quest.festival.sheep.none=There are no additional sheep.
 harvestfestival.quest.festival.sheep.explain=The sheep contest is an easy one to take part in. Just bring your sheep to the festival and put her in one of the stalls. When you're ready come to me and select her. You can then wait for other people to join, or get started right away! I'll take a gander at all the sheep, then decide the winner at the end.
 harvestfestival.quest.festival.sheep.none=There are no sheep in the stalls! Come back when you have some to pick.
 harvestfestival.quest.festival.sheep.select=Please select the sheep you would like to enter in the contest!
-harvestfestival.quest.festival.sheep.selected=Time to get the judging start then! Please don't get in my way as it may slow down the judgin.
+harvestfestival.quest.festival.sheep.selected=Time to get the judging start then! Please don't get in my way as it may slow down the judging.
 harvestfestival.quest.festival.sheep.judging=Can't you see I'm busy judging right now!?
 harvestfestival.quest.festival.sheep.nostalls=No sheep in any of the stalls!
 
@@ -2244,6 +2244,39 @@ harvestfestival.script.sheep.judge.8=This sheep is looking fantastic, their owne
 harvestfestival.script.sheep.judge.9=This sheep is absolutely outstanding. The wool is the best I've ever seen.
 harvestfestival.script.sheep.winner=Well I guess that means it's time to announce the winner. In third we have %1$s with their sheep %2$s. Happy to give you some wheat. \n\nIn second place we have %3$s with their sheep %4$s. You get to win some stew.\n\n\nFinally time to announce the winner. This years winner of the Sheep Festival is.... %5$s with their wonderful sheep %6$s!!!!!!!\n\nCongrats! You receive a cashmere sweater. It should be worth a fair bit. Your sheep should also now be able to produce golden wool!\n\nThank you to everyone that participated. It was a wonderful contest. I hope to see you all back next year!
 harvestfestival.script.sheep.finish=Well everyone that's all the cows judged! It was a good contest today. Time for me to announce the winners. Just a second, need to head back to the entry stand.
+
+#Chicken Festival
+harvestfestival.quest.festival.chicken.help=Hello and welcome to the Chicken Festival!
+harvestfestival.quest.festival.chicken.pick=How may I help?
+harvestfestival.quest.festival.chicken.how=@How does this work?
+harvestfestival.quest.festival.chicken.ready=@Select chicken.
+harvestfestival.quest.festival.chicken.cancel=@No need right now.
+harvestfestival.quest.festival.chicken.start=Ready to start?
+harvestfestival.quest.festival.chicken.yes=@Let's go!
+harvestfestival.quest.festival.chicken.change=@Select a different chicken.
+harvestfestival.quest.festival.chicken.no=@Not yet.
+harvestfestival.quest.festival.chicken.none=There are no additional chickens.
+harvestfestival.quest.festival.chicken.explain=Just place your chickens in one of the stalls for the chickens. When you're ready come to me and select the chicken you would like to enter. You can then start the contest, wait for others or change your entry.
+harvestfestival.quest.festival.chicken.none=There are no chickens in the stalls! Come back to me when there is.
+harvestfestival.quest.festival.chicken.select=Now you can select the chicken you would like to enter!
+harvestfestival.quest.festival.chicken.selected=That's great. Time for me to get to work. Don't walk in front of me as it will slow down the process.
+harvestfestival.quest.festival.chicken.judging=Hello. I'm currently busy judging.
+harvestfestival.quest.festival.chicken.nostalls=No chickens were found in any stalls!
+
+harvestfestival.script.chicken.judge=Time to look at %1$s. Hmm.... %2$s
+harvestfestival.script.chicken.judge.none=I think the chicken is invisible.
+harvestfestival.script.chicken.judge.0=This chicken has been severely mistreated.
+harvestfestival.script.chicken.judge.1=The chicken is looking alright.
+harvestfestival.script.chicken.judge.2=She looks decent.
+harvestfestival.script.chicken.judge.3=I'm thinking we've got the start of a good chicken here.
+harvestfestival.script.chicken.judge.4=I can see she's doing pretty good.
+harvestfestival.script.chicken.judge.5=Well this girl is looking really good!
+harvestfestival.script.chicken.judge.6=I've seen a bunch of good chickens, but this one is doing very well!
+harvestfestival.script.chicken.judge.7=Well I've got to say the owner has done a good job here. The chicken is looking incredible!
+harvestfestival.script.chicken.judge.8=This is just amazing. The chicken is very happy. The owner should be proud.
+harvestfestival.script.chicken.judge.9=I can't believe my eyes. This chicken is absolutely outstanding! And you can see the gleam in its eyes!
+harvestfestival.script.chicken.winner=Okay I've collected my thoughts and made my decisions. Third place goes to %1$s with their chicken %2$s. You can have this lovely boiled egg! \n\nSecond place goes to %3$s with their chicken %4$s. Please take this lovely homemade scrambled egg.\n\n\nNow who is the winner? Well after a tough contest this year's winner of the Chicken Festival is.... %5$s with their gorgeous chicken %6$s!!!!!!!\n\nWhat a wonderful job, please take this lovely omelette. And another thing your chicken will now be able to produce golden eggs!\n\nThat concludes the festival. I hope you all enjoyed it as much as I did. See you all next year!
+harvestfestival.script.chicken.finish=I guess that's it! I've evaluated all the chickens. It's been a nice contest this year! I'll just need a short moment to think.
 
 #New Years Eve
 harvestfestival.quest.festival.new.years.eve.start=Evenin, the new year is coming. Are ya ready to celebrate until morning with us?

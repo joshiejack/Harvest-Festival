@@ -11,8 +11,6 @@ import joshie.harvest.core.commands.HFDebugCommand;
 import joshie.harvest.core.network.Packet;
 import joshie.harvest.core.util.annotations.HFApiImplementation;
 import joshie.harvest.core.util.annotations.HFEvents;
-import joshie.harvest.debug.AbstractExport;
-import joshie.harvest.debug.CommandExportBuilder;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.discovery.ASMDataTable;
@@ -99,6 +97,7 @@ public class HFApiLoader {
         }
     }
 
+    @SuppressWarnings("unchecked")
     private static void registerDebugCommand(@Nonnull ASMDataTable asm) {
         //Debug commands
         String annotationClassName = HFDebugCommand.class.getCanonicalName();
@@ -112,7 +111,10 @@ public class HFApiLoader {
                     if (AbstractHFCommand.class.isAssignableFrom(clazz)) {
                         CommandManager.INSTANCE.registerCommand((AbstractHFCommand) clazz.newInstance());
                     }
-                } else CommandExportBuilder.commands.add((AbstractExport) clazz.newInstance());
+                } else {
+                    List list = (List) Class.forName("joshie.harvest.debug.CommandExportBuilder").getField("commands").get(null);
+                    list.add(clazz.newInstance());
+                }
             } catch (Exception e) { e.printStackTrace(); }
         }
     }

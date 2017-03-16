@@ -12,6 +12,7 @@
     "park_placer": [{ "textures": { "layer0": "harvestfestival:items/park_placer" }}],
     "park_endstone": [{ "textures": { "layer0": "harvestfestival:items/park_remover" }}],
     "park_locations_generator": [{ "textures": { "layer0": "harvestfestival:items/park_generator" }}],
+    "ore_checker": [{ "textures": { "layer0": "harvestfestival:items/ore_counter" }}],
     "building_preview": [{ "model": "harvestfestival:debug" }]
   }
 }

@@ -88,6 +88,8 @@ harvestfestival.cheat.air.remover=[BuildingGen] Internal Air Remover
 harvestfestival.cheat.park.placer=[FestivalGen] Park Placer
 harvestfestival.cheat.park.endstone=[FestivalGen] Park Clearer
 harvestfestival.cheat.park.locations.generator=[FestivalGen] Park Locations
+harvestfestival.cheat.building.preview=[BuildingPreviewGen] Building Previewer
+harvestfestival.cheat.ore.checker=[MineGen] Ore Counter
 
 #Crops
 harvestfestival.crop.wild=Wild %s

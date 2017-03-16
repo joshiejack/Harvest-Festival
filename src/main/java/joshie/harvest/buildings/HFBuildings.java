@@ -53,7 +53,6 @@ import static joshie.harvest.npcs.HFNPCs.CLOCKMAKER_CHILD;
 public class HFBuildings {
     public static final ItemBuilding STRUCTURES = new ItemBuilding().register("structures");
     public static final ItemBlueprint BLUEPRINTS = new ItemBlueprint().register("blueprint");
-    public static final BlockInternalAir AIR = new BlockInternalAir().register("air");
 
     private static final ISpecialRules NEVER = (w, p, a) -> false;
     public static final Building BARN = registerBuilding("barn").setInhabitants(HFNPCs.BARN_OWNER).setOffset(6, -1, 8);
@@ -71,9 +70,14 @@ public class HFBuildings {
     public static final Building TOWNHALL = registerBuilding("townhall").setSpecialRules(new SpecialRuleBuildings(9)).setInhabitants(HFNPCs.MAYOR, HFNPCs.PRIEST, HFNPCs.DAUGHTER_ADULT, HFNPCs.DAUGHTER_CHILD).setOffset(10, -1, 17);
     public static final Building FESTIVAL_GROUNDS = registerBuilding("festivals", BuildingFestival.class).setSpecialRules(new SpecialRuleFestivals()).setInhabitants(HFNPCs.TRADER).setOffset(14, -1, 32);
 
+    //Debug mode only blocks/items
     public static ItemCheat CHEAT;
+    public static BlockInternalAir AIR;
     public static void preInit() {
-        if (HFCore.DEBUG_MODE) CHEAT = new ItemCheat().register("cheat");
+        if (HFCore.DEBUG_MODE) {
+            AIR =  new BlockInternalAir().register("air");
+            CHEAT = new ItemCheat().register("cheat");
+        }
     }
 
     @SideOnly(Side.CLIENT)

@@ -143,8 +143,8 @@ public class CalendarServer extends Calendar {
 
     public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
         nbt.setTag("Date", DATE.toNBT());
-        nbt.setInteger("Rain", rainStrength);
-        nbt.setInteger("Storm", stormStrength);
+        nbt.setInteger("RainStrength", rainStrength);
+        nbt.setInteger("StormStrength", stormStrength);
         for (int i = 0; i < 7; i++) {
             Weather weather = forecast[i];
             if (weather == null) weather = Weather.SUNNY;

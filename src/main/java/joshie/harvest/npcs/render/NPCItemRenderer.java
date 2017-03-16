@@ -31,7 +31,7 @@ public class NPCItemRenderer extends TileEntitySpecialRenderer<NPCTile> {
 
     @Override
     public void renderTileEntityAt(@Nullable NPCTile fake, double x, double y, double z, float partialTicks, int destroyStage) {
-        if (fake != null && fake.npc != NPC.NULL_NPC) {
+        if (fake != null) {
             GlStateManager.pushMatrix();
             GlStateManager.translate(0.5F, -0.05F, 0.5F);
             GlStateManager.scale(-0.75F, 0.75F, 0.75F);

@@ -13,13 +13,18 @@ import joshie.harvest.buildings.building.BuildingFestival;
 import joshie.harvest.buildings.item.ItemBlueprint;
 import joshie.harvest.buildings.item.ItemBuilding;
 import joshie.harvest.buildings.item.ItemCheat;
+import joshie.harvest.buildings.item.ItemCheat.Cheat;
 import joshie.harvest.buildings.loader.*;
 import joshie.harvest.buildings.placeable.Placeable;
+import joshie.harvest.buildings.render.BuildingItemRenderer;
+import joshie.harvest.buildings.render.BuildingItemRenderer.BuildingTile;
 import joshie.harvest.buildings.special.SpecialRuleBuildings;
 import joshie.harvest.buildings.special.SpecialRuleChurch;
 import joshie.harvest.buildings.special.SpecialRuleFestivals;
+import joshie.harvest.core.HFCore;
 import joshie.harvest.core.base.render.BuildingDefinition;
 import joshie.harvest.core.base.render.MeshIdentical;
+import joshie.harvest.core.proxy.HFClientProxy;
 import joshie.harvest.core.util.HFTemplate;
 import joshie.harvest.core.util.annotations.HFLoader;
 import joshie.harvest.npcs.HFNPCs;
@@ -29,7 +34,9 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraftforge.client.ForgeHooksClient;
 import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.registry.IForgeRegistryEntry.Impl;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -46,7 +53,6 @@ import static joshie.harvest.npcs.HFNPCs.CLOCKMAKER_CHILD;
 public class HFBuildings {
     public static final ItemBuilding STRUCTURES = new ItemBuilding().register("structures");
     public static final ItemBlueprint BLUEPRINTS = new ItemBlueprint().register("blueprint");
-    public static final ItemCheat CHEAT = new ItemCheat().register("cheat");
     public static final BlockInternalAir AIR = new BlockInternalAir().register("air");
 
     private static final ISpecialRules NEVER = (w, p, a) -> false;
@@ -65,7 +71,10 @@ public class HFBuildings {
     public static final Building TOWNHALL = registerBuilding("townhall").setSpecialRules(new SpecialRuleBuildings(9)).setInhabitants(HFNPCs.MAYOR, HFNPCs.PRIEST, HFNPCs.DAUGHTER_ADULT, HFNPCs.DAUGHTER_CHILD).setOffset(10, -1, 17);
     public static final Building FESTIVAL_GROUNDS = registerBuilding("festivals", BuildingFestival.class).setSpecialRules(new SpecialRuleFestivals()).setInhabitants(HFNPCs.TRADER).setOffset(14, -1, 32);
 
-    public static void preInit() {}
+    public static ItemCheat CHEAT;
+    public static void preInit() {
+        if (HFCore.DEBUG_MODE) CHEAT = new ItemCheat().register("cheat");
+    }
 
     @SideOnly(Side.CLIENT)
     public static void preInitClient() {
@@ -85,6 +94,11 @@ public class HFBuildings {
     @SideOnly(Side.CLIENT)
     public static void initClient() {
         BuildingDefinition.registerEverything();
+        if (HFCore.DEBUG_MODE) {
+            HFClientProxy.RENDER_MAP.put(CHEAT, BuildingTile.INSTANCE);
+            ClientRegistry.bindTileEntitySpecialRenderer(BuildingTile.class, new BuildingItemRenderer());
+            ForgeHooksClient.registerTESRItemStack(CHEAT, Cheat.BUILDING_PREVIEW.ordinal(), BuildingTile.class);
+        }
     }
 
     @SuppressWarnings("unchecked")

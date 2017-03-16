@@ -131,7 +131,7 @@ public class HFNPCs {
         CLOCKMAKER.setHasInfo(new GreetingTime());
         PRIEST.addGreeting(new GreetingPriestBlessing());
 
-        NPC.REGISTRY.values().stream().filter(npc -> npc != NPC.NULL_NPC).forEachOrdered(npc -> {
+        NPC.REGISTRY.values().stream().forEachOrdered(npc -> {
             addHolidayGreetings(npc, HFFestivals.NEW_YEARS, HFFestivals.COOKING_CONTEST, HFFestivals.CHICKEN_FESTIVAL, HFFestivals.COW_FESTIVAL,
                     HFFestivals.HARVEST_FESTIVAL, HFFestivals.SHEEP_FESTIVAL, HFFestivals.STARRY_NIGHT, HFFestivals.NEW_YEARS_EVE);
             setupGifts(npc);

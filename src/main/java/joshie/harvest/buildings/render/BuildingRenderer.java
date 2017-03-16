@@ -18,7 +18,7 @@ import java.util.Map.Entry;
 
 @SideOnly(Side.CLIENT)
 public class BuildingRenderer {
-    private final RegionRenderCacheBuilder renderer;
+    protected final RegionRenderCacheBuilder renderer;
     private final BuildingKey key;
     private BlockPos pos;
 
@@ -26,6 +26,10 @@ public class BuildingRenderer {
         this.key = key;
         this.pos = key.getPos();
         this.renderer = new RegionRenderCacheBuilder();
+        setupRender(world);
+    }
+
+    protected void setupRender(BuildingAccess world) {
         for (BlockRenderLayer layer: BlockRenderLayer.values()) {
             VertexBuffer buffer = renderer.getWorldRendererByLayer(layer);
             buffer.begin(7, DefaultVertexFormats.BLOCK);
@@ -35,7 +39,7 @@ public class BuildingRenderer {
         }
     }
 
-    private void addRender(IBlockAccess world, IBlockState state, BlockPos pos, BlockRenderLayer layer, VertexBuffer buffer) {
+    protected void addRender(IBlockAccess world, IBlockState state, BlockPos pos, BlockRenderLayer layer, VertexBuffer buffer) {
         if (state.getBlock().canRenderInLayer(state, layer)) {
             Minecraft.getMinecraft().getBlockRendererDispatcher().renderBlock(state, pos, world, buffer);
         }

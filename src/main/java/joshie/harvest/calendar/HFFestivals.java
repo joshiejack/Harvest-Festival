@@ -6,12 +6,10 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.Festival;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.buildings.HFBuildings;
-import joshie.harvest.buildings.building.BuildingFestivalDebug;
 import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.cooking.block.BlockCookware.Cookware;
 import joshie.harvest.cooking.item.ItemIngredients.Ingredient;
 import joshie.harvest.cooking.item.ItemMeal.Meal;
-import joshie.harvest.core.HFCore;
 import joshie.harvest.core.util.annotations.HFLoader;
 import joshie.harvest.knowledge.letter.LetterFestival;
 import joshie.harvest.quests.QuestHelper;
@@ -47,10 +45,6 @@ public class HFFestivals {
         for (Festival festival: TEMP_REGISTRY.keySet()) {
             String name = "festival." + festival.getResource().getResourcePath().replace("_", ".");
             festival.setQuest(QuestHelper.getQuest(name)).setNote(registerNote(TOWNSHIP, name)).setLetter(new LetterFestival(festival, TEMP_REGISTRY.get(festival), festival.getResource()));
-
-            if (HFCore.DEBUG_MODE) {
-                HFBuildings.registerBuilding(festival.getResource().getResourcePath(), BuildingFestivalDebug.class).setOffset(14, -1, 32);
-            }
         }
 
         NEW_YEARS.setIcon(HFCooking.INGREDIENTS.getStackFromEnum(Ingredient.RICEBALL));

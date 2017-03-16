@@ -3,7 +3,6 @@ package joshie.harvest.npcs.entity.ai;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.buildings.BuildingLocation;
 import joshie.harvest.api.calendar.CalendarDate;
-import joshie.harvest.api.npc.NPC;
 import joshie.harvest.calendar.CalendarHelper;
 import joshie.harvest.npcs.NPCHelper;
 import joshie.harvest.npcs.entity.EntityNPCHuman;
@@ -36,7 +35,7 @@ public class EntityAISchedule extends EntityAIBase {
 
     @Override
     public boolean shouldExecute() {
-        if (npc.getNPC() == null || npc.getNPC() == NPC.NULL_NPC) return false;
+        if (npc.getNPC() == null) return false;
         updateTarget(); //Called here as need to check for new targets
         return blockTarget == null || (npc.getDistanceSq(blockTarget) > distanceRequired);
     }

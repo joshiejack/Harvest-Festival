@@ -36,11 +36,10 @@ public class HFCommandRelationship extends AbstractHFCommand {
                 int value = Integer.parseInt(parameters[parameters.length - 1]);
                 switch (npc) {
                     case "all":
-                        NPC.REGISTRY.values().stream().filter(npcz -> npcz != NPC.NULL_NPC).forEach(npcz -> relationships.affectRelationship(npcz, value));
+                        NPC.REGISTRY.values().stream().forEach(npcz -> relationships.affectRelationship(npcz, value));
                         return true;
                     case "clear":
-                        NPC.REGISTRY.values().stream().filter(npcz -> npcz != NPC.NULL_NPC)
-                                .forEachOrdered(npcz -> relationships.affectRelationship(npcz, -relationships.getRelationship(npcz)));
+                        NPC.REGISTRY.values().stream().forEachOrdered(npcz -> relationships.affectRelationship(npcz, -relationships.getRelationship(npcz)));
                         return true;
                     default:
                         if (!npc.contains(":")) npc = "harvestfestival:" + npc;

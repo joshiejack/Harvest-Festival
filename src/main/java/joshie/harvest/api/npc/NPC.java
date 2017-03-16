@@ -37,7 +37,6 @@ import static joshie.harvest.core.lib.HFModInfo.MODID;
 //This is only extending the old forge registry for 0.5 > 0.6 compatability reason
 public class NPC extends HFRegistry<NPC> implements CalendarEntry {
     public static final Map<ResourceLocation, NPC> REGISTRY = Maps.newHashMap();
-    public static final NPC NULL_NPC = new NPC();
     private final Set<NPC> family = new HashSet<>();
     private final List<IConditionalGreeting> conditionals = new ArrayList<>(256);
     private final String multipleLocalizationKey;

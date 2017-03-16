@@ -55,7 +55,7 @@ public class GuiCalendar extends GuiBase {
         });
 
         NPC.REGISTRY.values().forEach(npc -> {
-            if (npc != NPC.NULL_NPC && HFApi.player.getRelationsForPlayer(player).isStatusMet(npc, RelationStatus.MET)) {
+            if (HFApi.player.getRelationsForPlayer(player).isStatusMet(npc, RelationStatus.MET)) {
                 entries.get(npc.getBirthday()).add(npc);
             }
         });

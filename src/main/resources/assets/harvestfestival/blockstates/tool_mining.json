@@ -5,6 +5,7 @@
     "model": "forge:item-layer"
   },
   "variants": {
-    "escape_rope": [{ "textures": { "layer0": "harvestfestival:items/escape_rope" }}]
+    "escape_rope": [{ "textures": { "layer0": "harvestfestival:items/escape_rope" }}],
+    "elevator_cable": [{ "textures": { "layer0": "harvestfestival:items/elevator_cable" }}]
   }
 }

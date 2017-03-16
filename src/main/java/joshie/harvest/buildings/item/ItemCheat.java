@@ -16,12 +16,17 @@ import joshie.harvest.core.helpers.ChatHelper;
 import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.core.util.HFTemplate;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.commons.lang3.text.WordUtils;
 import org.apache.commons.lang3.tuple.Pair;
 import org.apache.logging.log4j.Level;
@@ -30,6 +35,7 @@ import javax.annotation.Nonnull;
 import java.util.*;
 
 import static joshie.harvest.buildings.item.ItemCheat.Cheat.*;
+import static joshie.harvest.core.lib.HFModInfo.MODID;
 import static joshie.harvest.mining.MiningHelper.MAX_FLOORS;
 import static joshie.harvest.mining.gen.MineManager.CHUNK_BOUNDARY;
 
@@ -38,7 +44,8 @@ public class ItemCheat extends ItemHFEnum<ItemCheat, Cheat> {
         COORD_SETTER, CODE_GENERATOR,
         AIR_PLACER, AIR_REMOVER,
         PARK_PLACER, PARK_ENDSTONE,
-        PARK_LOCATIONS_GENERATOR, ORE_CHECKER;
+        PARK_LOCATIONS_GENERATOR, ORE_CHECKER,
+        BUILDING_PREVIEW;
 
         @Override
         public String getName() {
@@ -211,5 +218,15 @@ public class ItemCheat extends ItemHFEnum<ItemCheat, Cheat> {
     @Override
     public int getSortValue(ItemStack stack) {
         return CreativeSort.LAST;
+    }
+
+    @SideOnly(Side.CLIENT)
+    @Override
+    public void registerModels(Item item, String name) {
+        for (Cheat cheat: values) {
+            if (cheat != Cheat.BUILDING_PREVIEW) {
+                ModelLoader.setCustomModelResourceLocation(item, cheat.ordinal(), new ModelResourceLocation(getRegistryName(), cheat.getName()));
+            } else ModelLoader.setCustomModelResourceLocation(item, cheat.ordinal(), new ModelResourceLocation(new ResourceLocation(MODID, "debug"), "inventory"));
+        }
     }
 }

@@ -12,6 +12,8 @@
     "salt": [{ "textures": { "layer0": "harvestfestival:items/salt" }}],
     "curry_powder": [{ "textures": { "layer0": "harvestfestival:items/curry_powder" }}],
     "dumpling_powder": [{ "textures": { "layer0": "harvestfestival:items/dumpling_powder" }}],
-    "wine": [{ "textures": { "layer0": "harvestfestival:items/wine" }}]
+    "wine": [{ "textures": { "layer0": "harvestfestival:items/wine" }}],
+    "unused1": [{ "textures": { "layer0": "harvestfestival:items/wine" }}],
+    "unused2": [{ "textures": { "layer0": "harvestfestival:items/wine" }}]
   }
 }

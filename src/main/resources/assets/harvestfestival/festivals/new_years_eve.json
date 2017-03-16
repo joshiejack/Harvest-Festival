@@ -86,7 +86,7 @@
     {
       "stack": "harvestfestival:meal 35 {SellValue:0L,FoodSaturation:0.6f,display:{Name:\"New%20Years%20Noodles\"},FoodLevel:20}",
       "facing": "east",
-      "state": "harvestfestival:stand 2",
+      "state": "harvestfestival:stand 1",
       "pos": "13 2 16",
       "type": "blocks.Stand"
     },
@@ -98,7 +98,7 @@
     {
       "stack": "harvestfestival:meal 35 {SellValue:0L,FoodSaturation:0.6f,display:{Name:\"New%20Years%20Noodles\"},FoodLevel:20}",
       "facing": "east",
-      "state": "harvestfestival:stand 2",
+      "state": "harvestfestival:stand 1",
       "pos": "13 2 14",
       "type": "blocks.Stand"
     },
@@ -110,7 +110,7 @@
     {
       "stack": "harvestfestival:meal 35 {SellValue:0L,FoodSaturation:0.6f,display:{Name:\"New%20Years%20Noodles\"},FoodLevel:20}",
       "facing": "east",
-      "state": "harvestfestival:stand 2",
+      "state": "harvestfestival:stand 1",
       "pos": "13 2 12",
       "type": "blocks.Stand"
     },

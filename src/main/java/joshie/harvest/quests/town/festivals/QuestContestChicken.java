@@ -28,7 +28,7 @@ public class QuestContestChicken extends QuestAnimalContest<EntityHarvestChicken
     //TODO: Add the stall positions for walking based on serious setup
     private static final BlockPos[] STALLS = new BlockPos[] { new BlockPos(6, 1, 12), new BlockPos(10, 1, 21), new BlockPos(27, 1, 20), new BlockPos(27, 1, 5) };
     private static final NPC[] NPCS = new NPC[] { HFNPCs.CAFE_GRANNY, HFNPCs.FLOWER_GIRL, HFNPCs.DAUGHTER_CHILD, HFNPCs.CLOCKMAKER_CHILD, HFNPCs.TRADER, HFNPCs.CARPENTER, HFNPCs.GS_OWNER };
-    private static final String[] NAMES = new String[] { "Spock", "Taco", "Torchic", "Sugar", "Nugget", "Robin", "Robyn", "Brenda", "Cora", "Maggie", "Peanut", "Pebbles"};
+    private static final String[] NAMES = new String[] { "Spock", "Taco", "Torchic", "Sugar", "Nugget", "Robin", "Robyn", "Brenda", "Cora", "Maggie", "Peanut", "Pebbles", "Chica", "Cheyenne"};
     private static final Script FINISH = new HFScript(PREFIX + "_finish");
     private static final Script JUDGE_1 = new ContestJudgingScript(PREFIX, 1).setNPC(HFNPCs.POULTRY);
     private static final Script JUDGE_2 = new ContestJudgingScript(PREFIX, 2).setNPC(HFNPCs.POULTRY);

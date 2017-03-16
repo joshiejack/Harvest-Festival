@@ -1003,8 +1003,8 @@ harvestfestival.shop.general.greeting1=Willkommen im Gemischtwarenladen, wie kan
 harvestfestival.shop.general.greeting2=Wir haben alles auf Vorrat, wie kann ich helfen?
 harvestfestival.shop.general.greeting3=Dieser Laden ist der beste im Dorf. Was brauchst Du?
 harvestfestival.shop.general.options=Was möchtest Du tun?
-harvestfestival.shop.general.options.shop=@Shop
-harvestfestival.shop.general.options.chat=@Chat
+harvestfestival.shop.general.options.shop=@Einkaufen
+harvestfestival.shop.general.options.chat=@Reden
 
 #Poultry Farm
 harvestfestival.shop.poultry=Gefluegelfarm
@@ -1118,7 +1118,7 @@ harvestfestival.quest.tutorial.cow.question=Weißt Du denn, wie man sich um Küh
 harvestfestival.quest.tutorial.cow.tutorial=@Erklär' es mir.
 harvestfestival.quest.tutorial.cow.skip=@Weiß ich schon...
 harvestfestival.quest.tutorial.cow.completed=Ist das so? Na gut, hier ist Deine Kuh. Nimm dieses Zubehör auch noch mit.
-harvestfestival.quest.tutorial.cow.info=Ist das so? Schätze dann sollte ich es Dir besser beibringen. Die Grundlagen sind recht einfach. Diese größeren Tiere brauchen ebenfalls Liebe und Futter, aber Du musst sie auch sauberhalten damit sie gesund bleiben. Sie fressen gern Viehfutter das Du ihnen in einem Trog servieren oder per Hand verfüttern kannst. Bei Handfütterung gibt's auch einen kleinen Bonus bei ihrer Zuneigung zu Dir. Um Deinen Kühen Deine Zuneigung zu zeigen musst Du einfach mit ihnen reden indem Du Rechtsklick gedrückt hältst bis sie Dir ebenfalls ihre Zuneigung zurück zeigen. Auf die gleiche Weise kannst Du sie sauberbürsten wenn Du eine Bürste in der Hand hältst. So, und jetzt ab mit Dir und probiere das alles aus: Füttere die Kuh, rede mit ihr und bürste sie sauber!
+harvestfestival.quest.tutorial.cow.info=Du hast keine Ahnung? Schätze dann sollte ich es Dir besser beibringen. Die Grundlagen sind recht einfach. Diese größeren Tiere brauchen ebenfalls Liebe und Futter, aber Du musst sie auch sauberhalten damit sie gesund bleiben. Sie fressen gern Viehfutter das Du ihnen in einem Trog servieren oder per Hand verfüttern kannst. Bei Handfütterung gibt's auch einen kleinen Bonus bei ihrer Zuneigung zu Dir. Um Deinen Kühen Deine Zuneigung zu zeigen musst Du einfach mit ihnen reden indem Du Rechtsklick gedrückt hältst bis sie Dir ebenfalls ihre Zuneigung zurück zeigen. Auf die gleiche Weise kannst Du sie sauberbürsten wenn Du eine Bürste in der Hand hältst. So, und jetzt ab mit Dir und probiere das alles aus: Füttere die Kuh, rede mit ihr und bürste sie sauber!
 harvestfestival.quest.tutorial.cow.reminder.talk=Ich hatte Dir gesagt, dass Du Deine Kuh per Hand füttern und sie mit der Bürste abbürsten sollst.
 harvestfestival.quest.tutorial.cow.milk=Gut gemacht, sieht aus als wüsstest Du nun wie Du Deine Kühe glücklich halten kannst. Kühe geben jeden Tag Milch. Um die Milch zu kriegen musst Du mit einem Melker zur Kuh gehen und Rechtsklick halten bis Du kriegst was Du willst. Und denk dran: Je größer die Zuneigung der Kuh zu Dir ist, um so mehr Milch gibt sie. Und jetzt geh los und bring mir etwas Milch von Deiner Kuh.
 harvestfestival.quest.tutorial.cow.reminder.milk=Schon vergessen? Du sollst Deine Kuh melken und mir Milch bringen!

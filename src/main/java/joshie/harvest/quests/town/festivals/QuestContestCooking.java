@@ -125,9 +125,9 @@ public class QuestContestCooking extends QuestContest<CookingContestEntries> {
 
     @Override
     public void execute(Town town, EntityPlayer player, NPCEntity npc) {
-        npc.setPath(getMove(town, PARK_COW_1), TaskSpeech.of(QuestContestCooking.JUDGE_1), getMove(town, PARK_COW_2), TaskSpeech.of(QuestContestCooking.JUDGE_2),
-                getMove(town, PARK_COW_3), TaskSpeech.of(QuestContestCooking.JUDGE_3), getMove(town, PARK_COW_4), TaskSpeech.of(QuestContestCooking.JUDGE_4), TaskWait.of(1),
-                TaskSpeech.of(QuestContestCooking.FINISH), getMove(town, PARK_COW_JUDGE), TaskSpeech.of(QuestContestCooking.WINNER), new ContestTaskWinner(HFFestivals.COW_FESTIVAL));
+        npc.setPath(move(PARK_COW_1), TaskSpeech.of(QuestContestCooking.JUDGE_1), move(PARK_COW_2), TaskSpeech.of(QuestContestCooking.JUDGE_2),
+                move(PARK_COW_3), TaskSpeech.of(QuestContestCooking.JUDGE_3), move(PARK_COW_4), TaskSpeech.of(QuestContestCooking.JUDGE_4), TaskWait.of(1),
+                TaskSpeech.of(QuestContestCooking.FINISH), move(PARK_COW_JUDGE), TaskSpeech.of(QuestContestCooking.WINNER), new ContestTaskWinner(HFFestivals.COW_FESTIVAL));
     }
 
     @Override

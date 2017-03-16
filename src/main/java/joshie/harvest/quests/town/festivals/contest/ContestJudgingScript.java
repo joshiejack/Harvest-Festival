@@ -14,7 +14,7 @@ public class ContestJudgingScript extends Script {
 
     public ContestJudgingScript(String prefix, int id) {
         super(new ResourceLocation(MODID, prefix + "_judge_" + id));
-        this.unlocalised = getRegistryName().getResourceDomain() + ".script." + getRegistryName().getResourcePath().replace("_", ".").replace("_" + id, "") + ".judge";
+        this.unlocalised = getRegistryName().getResourceDomain() + ".script." + prefix + ".judge";
         this.id = id; //get the correct id
     }
 

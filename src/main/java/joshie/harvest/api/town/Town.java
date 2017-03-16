@@ -6,11 +6,20 @@ import joshie.harvest.api.npc.NPC;
 import net.minecraft.util.math.BlockPos;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 public interface Town {
+    /** Returns the block position location for this building, based off the offsets
+     * @param building the build
+     * @param offset   the offset
+     * @return the block position **/
+    @Nullable
+    BlockPos getCoordinatesFromOffset(Building building, BlockPos offset);
+
     /** Returns the block position location for this building location
      *  @param location     the building location
      *  @return the position**/
+    @Nullable
     BlockPos getCoordinatesFor(@Nonnull BuildingLocation location);
 
     /** Returns true if this town has the building

@@ -66,8 +66,8 @@ public class QuestContestSheep extends QuestAnimalContest<EntityHarvestSheep> {
 
     @Override
     public void execute(Town town, EntityPlayer player, NPCEntity npc) {
-        npc.setPath(getMove(town, PARK_SHEEP_1), TaskSpeech.of(JUDGE_1), getMove(town, PARK_SHEEP_2), TaskSpeech.of(JUDGE_2),
-                getMove(town, PARK_SHEEP_3), TaskSpeech.of(JUDGE_3), getMove(town, PARK_SHEEP_4), TaskSpeech.of(JUDGE_4), TaskWait.of(1),
-                TaskSpeech.of(FINISH), getMove(town, PARK_SHEEP_JUDGE), TaskSpeech.of(WINNER), new ContestTaskWinner(HFFestivals.SHEEP_FESTIVAL));
+        npc.setPath(move(PARK_SHEEP_1), TaskSpeech.of(JUDGE_1), move(PARK_SHEEP_2), TaskSpeech.of(JUDGE_2),
+                move(PARK_SHEEP_3), TaskSpeech.of(JUDGE_3), move(PARK_SHEEP_4), TaskSpeech.of(JUDGE_4), TaskWait.of(1),
+                TaskSpeech.of(FINISH), move(PARK_SHEEP_JUDGE), TaskSpeech.of(WINNER), new ContestTaskWinner(HFFestivals.SHEEP_FESTIVAL));
     }
 }

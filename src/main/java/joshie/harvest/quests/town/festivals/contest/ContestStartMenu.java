@@ -21,6 +21,7 @@ public class ContestStartMenu extends Selection<QuestContest> {
             quest.getEntries().sort(quest, player.worldObj); //Sort the entries
             quest.setStage(QuestContest.START); //Mark as having started
             quest.syncData(player); //Sync up to the client
+            quest.setTown(entity.getTown());
             quest.execute(entity.getTown(), player, entity); //Execute the pathing
             return Result.ALLOW;
         } else if (option == 2) {

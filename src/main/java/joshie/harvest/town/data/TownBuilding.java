@@ -42,6 +42,29 @@ public class TownBuilding implements INBTSerializableMap<ResourceLocation, TownB
         }
     }
 
+    BlockPos getTransformedPosition(BlockPos target) {
+        HFTemplate template = BuildingRegistry.INSTANCE.getTemplateForBuilding(building);
+        if (template == null) return null; //We failed so let's null
+        BlockPos adjusted = transformBlockPos(target, rotation);
+        return new BlockPos(pos.getX() + adjusted.getX(), pos.getY() + adjusted.getY(), pos.getZ() + adjusted.getZ());
+    }
+
+    private BlockPos transformBlockPos(BlockPos target, Rotation rotation) {
+        int i = target.getX();
+        int j = target.getY();
+        int k = target.getZ();
+        switch (rotation)  {
+            case COUNTERCLOCKWISE_90:
+                return new BlockPos(k, j, -i);
+            case CLOCKWISE_90:
+                return new BlockPos(-k, j, i);
+            case CLOCKWISE_180:
+                return new BlockPos(-i, j, -k);
+            default:
+                return target;
+        }
+    }
+
     @Override
     public void buildMap(Map<ResourceLocation, TownBuilding> map) {
         if (building != null) map.put(building.getResource(), this);

@@ -3,10 +3,13 @@ package joshie.harvest.quests.town.festivals.contest;
 import joshie.harvest.api.buildings.BuildingLocation;
 import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.npc.NPCEntity;
+import joshie.harvest.api.npc.greeting.Script;
 import joshie.harvest.api.npc.task.TaskMove;
+import joshie.harvest.api.npc.task.TaskSpeech;
 import joshie.harvest.api.npc.task.TaskWait;
 import joshie.harvest.api.quests.Selection;
 import joshie.harvest.api.town.Town;
+import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.calendar.CalendarHelper;
 import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.core.network.PacketHandler;
@@ -17,6 +20,7 @@ import joshie.harvest.quests.town.festivals.Place;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -35,6 +39,7 @@ public abstract class QuestContest<E extends ContestEntries> extends QuestFestiv
     private final Selection startSelection;
     protected final E entries = createEntries();
     protected long time;
+    private Town town;
 
     public QuestContest(NPC npc, String prefix) {
         this.selection = new ContestInfoMenu(prefix);
@@ -55,8 +60,24 @@ public abstract class QuestContest<E extends ContestEntries> extends QuestFestiv
         }
     }
 
-    protected TaskMove getMove(Town town, BuildingLocation location) {
+    public void setTown(Town town) {
+        this.town = town;
+    }
+
+    protected TaskMove move(BuildingLocation location) {
         return TaskMove.of(town.getCoordinatesFor(location));
+    }
+
+    protected TaskSpeech speech(Script script) {
+        return TaskSpeech.of(script);
+    }
+
+    protected TaskWait wait(int time) {
+        return TaskWait.of(time);
+    }
+
+    protected TaskMove move(BlockPos offset) {
+        return TaskMove.of(town.getCoordinatesFromOffset(HFBuildings.FESTIVAL_GROUNDS, offset));
     }
 
     void targetEntries(EntityPlayer player, NPCEntity entity) {

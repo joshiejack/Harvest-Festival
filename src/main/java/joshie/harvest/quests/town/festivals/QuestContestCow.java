@@ -5,8 +5,6 @@ import joshie.harvest.api.buildings.BuildingLocation;
 import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.npc.NPCEntity;
 import joshie.harvest.api.npc.greeting.Script;
-import joshie.harvest.api.npc.task.TaskSpeech;
-import joshie.harvest.api.npc.task.TaskWait;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.town.Town;
 import joshie.harvest.calendar.HFFestivals;
@@ -15,13 +13,14 @@ import joshie.harvest.cooking.item.ItemMeal.Meal;
 import joshie.harvest.core.base.other.HFScript;
 import joshie.harvest.npcs.HFNPCs;
 import joshie.harvest.quests.base.QuestAnimalContest;
-import joshie.harvest.quests.town.festivals.contest.animal.AnimalContestEntries;
 import joshie.harvest.quests.town.festivals.contest.ContestJudgingScript;
 import joshie.harvest.quests.town.festivals.contest.ContestTaskWinner;
 import joshie.harvest.quests.town.festivals.contest.ContestWinningScript;
+import joshie.harvest.quests.town.festivals.contest.animal.AnimalContestEntries;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.BlockPos;
 
 import static joshie.harvest.town.BuildingLocations.*;
 
@@ -37,6 +36,10 @@ public class QuestContestCow extends QuestAnimalContest<EntityHarvestCow> {
     private static final Script JUDGE_3 = new ContestJudgingScript(ANIMAL, 3).setNPC(HFNPCs.MILKMAID);
     private static final Script JUDGE_4 = new ContestJudgingScript(ANIMAL, 4).setNPC(HFNPCs.MILKMAID);
     private static final Script WINNER = new ContestWinningScript(ANIMAL).setNPC(HFNPCs.MILKMAID);
+    private static final BlockPos STAND1 = new BlockPos(12, 1, 13);
+    private static final BlockPos STAND2 = new BlockPos(17, 1, 10);
+    private static final BlockPos STAND3 = new BlockPos(23, 1, 17);
+    private static final BlockPos STAND4 = new BlockPos(27, 1, 20);
 
     public QuestContestCow() {
         super(HFNPCs.MILKMAID, ANIMAL);
@@ -61,8 +64,7 @@ public class QuestContestCow extends QuestAnimalContest<EntityHarvestCow> {
 
     @Override
     public void execute(Town town, EntityPlayer player, NPCEntity npc) {
-        npc.setPath(getMove(town, PARK_COW_1), TaskSpeech.of(QuestContestCow.JUDGE_1), getMove(town, PARK_COW_2), TaskSpeech.of(QuestContestCow.JUDGE_2),
-                getMove(town, PARK_COW_3), TaskSpeech.of(QuestContestCow.JUDGE_3), getMove(town, PARK_COW_4), TaskSpeech.of(QuestContestCow.JUDGE_4), TaskWait.of(1),
-                TaskSpeech.of(QuestContestCow.FINISH), getMove(town, PARK_COW_JUDGE), TaskSpeech.of(QuestContestCow.WINNER), new ContestTaskWinner(HFFestivals.COW_FESTIVAL));
+        npc.setPath(move(STAND1), speech(JUDGE_1), move(STAND2), speech(JUDGE_2), move(STAND3), speech(JUDGE_3), move(STAND4), speech(JUDGE_4),
+                wait(1), speech(FINISH), move(PARK_COW_JUDGE), speech(WINNER), new ContestTaskWinner(HFFestivals.COW_FESTIVAL));
     }
 }

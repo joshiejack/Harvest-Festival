@@ -107,6 +107,13 @@ public abstract class TownData<Q extends QuestData, L extends LetterData> implem
         return building != null ? building.getRealCoordinatesFor(location.getLocation()) : null;
     }
 
+    @Override
+    @Nullable
+    public BlockPos getCoordinatesFromOffset(Building building, BlockPos offset) {
+        TownBuilding townBuilding = buildings.get(building.getResource());
+        return townBuilding != null ? townBuilding.getTransformedPosition(offset) : null;
+    }
+
     @Nonnull
     public Festival getFestival() {
         return festival;

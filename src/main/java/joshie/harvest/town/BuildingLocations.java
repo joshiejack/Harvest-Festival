@@ -128,11 +128,11 @@ public class BuildingLocations {
     public static final BuildingLocation PARK_SHEEP_JAKOB = new BuildingLocation(FESTIVAL_GROUNDS, "festival.sheep.jakob").withDistance(5D);
     public static final BuildingLocation PARK_SHEEP_MAYOR = new BuildingLocation(FESTIVAL_GROUNDS, "festival.sheep.mayor").withDistance(7D);
 
-    //TODO: With Scheduling the seating arrangements
-    public static final BuildingLocation PARK_STARRY_NIGHT_SEAT1 = new BuildingLocation(FESTIVAL_GROUNDS, "festival.sheep.mayor").withDistance(7D);
-    public static final BuildingLocation PARK_STARRY_NIGHT_SEAT2 = new BuildingLocation(FESTIVAL_GROUNDS, "festival.sheep.mayor").withDistance(7D);
-    public static final BuildingLocation PARK_STARRY_NIGHT_SEAT3 = new BuildingLocation(FESTIVAL_GROUNDS, "festival.sheep.mayor").withDistance(7D);
-    public static final BuildingLocation PARK_STARRY_NIGHT_SEAT4 = new BuildingLocation(FESTIVAL_GROUNDS, "festival.sheep.mayor").withDistance(7D);
+    //TODO: With Scheduling the seating arrangements, update thee seat places when i have them from serious
+    public static final BuildingLocation PARK_STARRY_NIGHT_SEAT1 = new BuildingLocation(FESTIVAL_GROUNDS, "festival.sheep.mayor").withDistance(1D).withTime(3);
+    public static final BuildingLocation PARK_STARRY_NIGHT_SEAT2 = new BuildingLocation(FESTIVAL_GROUNDS, "festival.sheep.mayor").withDistance(1D).withTime(3);
+    public static final BuildingLocation PARK_STARRY_NIGHT_SEAT3 = new BuildingLocation(FESTIVAL_GROUNDS, "festival.sheep.mayor").withDistance(1D).withTime(3);
+    public static final BuildingLocation PARK_STARRY_NIGHT_SEAT4 = new BuildingLocation(FESTIVAL_GROUNDS, "festival.sheep.mayor").withDistance(1D).withTime(3);
 
     //TODO: Convert to building locations vvv
     public static final String TOWNHALL_CHILD_BEDROOM = "townhall.bedroom.child";

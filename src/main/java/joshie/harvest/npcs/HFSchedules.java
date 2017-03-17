@@ -42,8 +42,12 @@ public class HFSchedules {
             @Override
             public boolean canDo(@Nonnull World world, @Nonnull NPCEntity npc) {
                 TownData data = TownHelper.getClosestTownToEntity(npc.getAsEntity(), false);
-                return data.getFestival() == HFFestivals.STARRY_NIGHT && data.getQuests()
-                        .<QuestStarryNight>getAQuest(data.getFestival().getQuest()).isInvited(npc);
+                if (data.getFestival() == HFFestivals.STARRY_NIGHT) {
+                    QuestStarryNight quest = data.getQuests().getAQuest(data.getFestival().getQuest());
+                    return quest != null && quest.isInvited(npc);
+                }
+
+                return false;
             }
         };
 
@@ -147,7 +151,7 @@ public class HFSchedules {
                 .add(STARRY_NIGHT, 0L, PARK_STARRY_NIGHT_SEAT1)
                 .add(STARRY_NIGHT, 7500L, GENERAL_BEDROOM)
                 .add(STARRY_NIGHT, 17000L, PARK_STARRY_NIGHT_SEAT1)
-                .add(PARK_STARRY_NIGHT_SEAT1, isInvited)
+                .add(PARK_STARRY_NIGHT_SEAT3, isInvited)
                 .add(NEW_YEARS_EVE, 0L, PARK_OAK)
                 .add(NEW_YEARS_EVE, 6000L, GENERAL_BEDROOM)
                 .add(NEW_YEARS_EVE, 13000L, GENERAL_GARDEN)
@@ -194,7 +198,7 @@ public class HFSchedules {
                 .add(STARRY_NIGHT, 10000L, GENERAL_STORE_FRONT)
                 .add(STARRY_NIGHT, 15000L, GENERAL_GARDEN)
                 .add(STARRY_NIGHT, 17000L, PARK_STARRY_NIGHT_SEAT2)
-                .add(PARK_STARRY_NIGHT_SEAT2, isInvited)
+                .add(PARK_STARRY_NIGHT_SEAT4, isInvited)
                 .add(NEW_YEARS_EVE, 0L, PARK_OAK)
                 .add(NEW_YEARS_EVE, 6000L, GENERAL_BED)
                 .add(NEW_YEARS_EVE, 13000L, GENERAL_GARDEN)
@@ -231,7 +235,7 @@ public class HFSchedules {
                 .add(STARRY_NIGHT, 6000L, BARN_INSIDE)
                 .add(STARRY_NIGHT, 15000L, GENERAL_BEDROOM)
                 .add(STARRY_NIGHT, 17000L, PARK_STARRY_NIGHT_SEAT1)
-                .add(PARK_STARRY_NIGHT_SEAT1, isInvited)
+                .add(PARK_STARRY_NIGHT_SEAT2, isInvited)
                 .add(NEW_YEARS_EVE, 0L, PARK_LEFT)
                 .add(NEW_YEARS_EVE, 6000L, BARN_INSIDE)
                 .add(NEW_YEARS_EVE, 13000L, BARN_DOOR)
@@ -265,7 +269,7 @@ public class HFSchedules {
                 .add(STARRY_NIGHT, 13000L, GENERAL_STORE_FRONT)
                 .add(STARRY_NIGHT, 15000L, PARK_BENCH)
                 .add(STARRY_NIGHT, 17000L, PARK_STARRY_NIGHT_SEAT2)
-                .add(PARK_STARRY_NIGHT_SEAT2, isInvited)
+                .add(PARK_STARRY_NIGHT_SEAT4, isInvited)
                 .add(NEW_YEARS_EVE, 0L, PARK_LEFT)
                 .add(NEW_YEARS_EVE, 6000L, POULTRY_CENTRE)
                 .add(NEW_YEARS_EVE, 13000L, POULTRY_DOOR)
@@ -438,7 +442,7 @@ public class HFSchedules {
                 .add(STARRY_NIGHT, 8000L, BLACKSMITH_FRONT)
                 .add(STARRY_NIGHT, 9500L, BLACKSMITH_FURNACE)
                 .add(STARRY_NIGHT, 17000L, PARK_STARRY_NIGHT_SEAT1)
-                .add(PARK_STARRY_NIGHT_SEAT1, isInvited)
+                .add(PARK_STARRY_NIGHT_SEAT3, isInvited)
                 .add(NEW_YEARS_EVE, 0L, PARK_BUSH)
                 .add(NEW_YEARS_EVE, 6000L, BLACKSMITH_FURNACE)
                 .add(NEW_YEARS_EVE, 13000L, BLACKSMITH_FRONT)
@@ -683,6 +687,7 @@ public class HFSchedules {
                 .add(SHEEP_FESTIVAL, 0L, TOWNHALL_RIGHT)
                 .add(SHEEP_FESTIVAL, 6000L, PARK_SHEEP_JENNI)
                 .add(SHEEP_FESTIVAL, 18000L, TOWNHALL_RIGHT)
+                .add(PARK_STARRY_NIGHT_SEAT2, isInvited)
                 .add(NEW_YEARS_EVE, 0L, PARK_TABLE)
                 .add(NEW_YEARS_EVE, 6000L, TOWNHALL_RIGHT)
                 .add(NEW_YEARS_EVE, 13000L, TOWNHALL_ENTRANCE)

@@ -54,7 +54,7 @@ public abstract class ContestEntries<O, E extends ContestEntry, Q extends QuestC
     public void complete(World world) {}
 
     @Nullable
-    public E getEntryFromStall(int stall) {
+    E getEntryFromStall(int stall) {
         for (E entry: entries) {
             if (entry.getStall() == stall) return entry;
         }
@@ -73,7 +73,7 @@ public abstract class ContestEntries<O, E extends ContestEntry, Q extends QuestC
     }
 
     @Nullable
-    public BlockPos getLocationFromNPC(@Nonnull NPC npc) {
+    BlockPos getLocationFromNPC(@Nonnull NPC npc) {
         for (E entry: entries) {
             if (entry.getNPC() == npc) {
                 return locations[entry.getStall() - 1];
@@ -86,7 +86,7 @@ public abstract class ContestEntries<O, E extends ContestEntry, Q extends QuestC
     protected abstract void createEntry(EntityPlayer player, World world, BlockPos pos, int stall);
 
     @SuppressWarnings("all")
-    protected  <O> O getNextEntry(EntityPlayer player, Set<O> used, O... o) {
+    public static <O> O getNextEntry(EntityPlayer player, Set<O> used, O... o) {
         List<O> names = Lists.newArrayList(o);
         Collections.shuffle(names);
         for (O name: names) {
@@ -99,7 +99,7 @@ public abstract class ContestEntries<O, E extends ContestEntry, Q extends QuestC
         return o[0];
     }
 
-    private boolean isValid(EntityPlayer player, Object o) {
+    private static boolean isValid(EntityPlayer player, Object o) {
         return !(o instanceof NPC) || TownHelper.getClosestTownToEntity(player, false).hasNPC((NPC)o);
     }
 

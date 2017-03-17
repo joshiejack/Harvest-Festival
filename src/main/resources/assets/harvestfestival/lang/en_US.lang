@@ -2293,6 +2293,14 @@ harvestfestival.script.new.years.eve.2=Twooooooo!!!
 harvestfestival.script.new.years.eve.1=One :D :D :D
 harvestfestival.script.new.years.eve.0=Happy New Year ya'll!!!!!!!!!!!!!!!!!!
 
+#Starry Night
+harvestfestival.quest.festival.starry.night.what=What do you want to do?
+harvestfestival.quest.festival.starry.night.invite=@Invite to Starry Night
+harvestfestival.quest.festival.starry.night.chat=@Chat
+harvestfestival.quest.festival.starry.night.ready=Are you ready to eat?
+harvestfestival.quest.festival.starry.night.go=@Let's begin!
+harvestfestival.quest.festival.starry.night.no=@Not Yet!
+
 ###Achievements
 achievement.harvestfestival.summon=Goddess' Bounty
 achievement.harvestfestival.summon.desc=Summon a goddess flower

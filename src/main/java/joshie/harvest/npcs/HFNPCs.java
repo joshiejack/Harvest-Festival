@@ -77,15 +77,16 @@ public class HFNPCs {
     public static void preInit() {
         CARPENTER.addFamily(FLOWER_GIRL);
         FLOWER_GIRL.addFamily(CARPENTER);
-        GS_OWNER.addFamily(MILKMAID);
-        MILKMAID.addFamily(GS_OWNER);
-        BARN_OWNER.addFamily(FISHERMAN);
-        POULTRY.addFamily(BLACKSMITH);
+        GS_OWNER.addFamily(MILKMAID, TRADER);
+        MILKMAID.addFamily(GS_OWNER, FLOWER_GIRL);
+        BARN_OWNER.addFamily(CARPENTER);
+        POULTRY.addFamily(FLOWER_GIRL);
         FISHERMAN.addFamily(BARN_OWNER, POULTRY);
         CAFE_OWNER.addFamily(CAFE_GRANNY);
         CLOCKMAKER.addFamily(CLOCKMAKER_CHILD);
-        BLACKSMITH.addFamily(POULTRY);
-        DAUGHTER_ADULT.addFamily(PRIEST, MAYOR, DAUGHTER_CHILD);
+        TRADER.addFamily(MILKMAID, GS_OWNER);
+        BLACKSMITH.addFamily(GS_OWNER, CARPENTER);
+        DAUGHTER_ADULT.addFamily(MAYOR, DAUGHTER_CHILD);
         EntityRegistry.registerModEntity(EntityNPCVillager.class, "villager", EntityIDs.VILLAGER, HarvestFestival.instance, 80, 3, true);
         EntityRegistry.registerModEntity(EntityNPCBuilder.class, "builder", EntityIDs.BUILDER, HarvestFestival.instance, 80, 3, true);
         //TODO: Remove in 0.7+

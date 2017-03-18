@@ -15,9 +15,18 @@ public class Tracking implements IPlayerTracking {
     protected Set<ResourceLocation> recipes = new HashSet<>(); //Recipe Learnt
     protected Set<ResourceLocation> notes = new HashSet<>(); //Notes Learnt
     protected Set<ResourceLocation> unread = new HashSet<>(); //Things we haven't read yet
+    protected int mineFloorReached = 1;
 
     public Set<ResourceLocation> getReadStatus() {
         return unread;
+    }
+
+    public int getMineFloorReached() {
+        return mineFloorReached;
+    }
+
+    public void setMineFloorReached(int floor) {
+        mineFloorReached = floor;
     }
 
     public boolean learnRecipe(Recipe recipe) {

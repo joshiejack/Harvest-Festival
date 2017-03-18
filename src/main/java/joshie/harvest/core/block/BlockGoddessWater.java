@@ -3,6 +3,7 @@ package joshie.harvest.core.block;
 import joshie.harvest.api.npc.RelationStatus;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.handlers.GoddessHandler;
+import joshie.harvest.core.helpers.FakePlayerHelper;
 import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.npcs.HFNPCs;
 import joshie.harvest.npcs.NPCHelper;
@@ -21,6 +22,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
 import net.minecraftforge.fluids.BlockFluidClassic;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
@@ -49,7 +51,7 @@ public class BlockGoddessWater extends BlockFluidClassic {
         if (!world.isRemote && entity instanceof EntityItem) {
             EntityItem item = ((EntityItem)entity);
             ItemStack stack = item.getEntityItem();
-            if (!NPCHelper.INSTANCE.getGifts().isBlacklisted(stack)) {
+            if (!NPCHelper.INSTANCE.getGifts().isBlacklisted(world, FakePlayerHelper.getFakePlayerWithPosition((WorldServer) world, pos), stack)) {
                 if (!GoddessHandler.spawnGoddess(world, entity, false, false)) {
                     if (item.getThrower() != null) {
                         EntityPlayer player = world.getPlayerEntityByName(item.getThrower());

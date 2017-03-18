@@ -123,6 +123,7 @@ public class HFAnimals {
     }
 
     public static void init() {
+        HFApi.npc.getGifts().addToBlacklist(ANIMAL);
         Crop.REGISTRY.values().stream().filter(crop -> crop != Crop.NULL_CROP && crop.getFoodType() != null)
                 .forEachOrdered(crop -> animals.registerFoodAsType(crop.getCropStack(1), crop.getFoodType()));
     }

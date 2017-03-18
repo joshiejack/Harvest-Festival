@@ -4,7 +4,13 @@ import joshie.harvest.api.npc.gift.GiftCategory;
 import joshie.harvest.api.npc.gift.IGiftRegistry;
 import joshie.harvest.core.util.holders.HolderRegistry;
 import joshie.harvest.core.util.holders.HolderRegistrySet;
+import net.minecraft.block.Block;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
 public class GiftRegistry implements IGiftRegistry {
     private final HolderRegistrySet blacklist = new HolderRegistrySet();
@@ -25,8 +31,13 @@ public class GiftRegistry implements IGiftRegistry {
         return registry;
     }
 
-    public boolean isBlacklisted(ItemStack stack) {
-        return registry.getValueOf(stack) == null && (stack.getItem().isDamageable()) || blacklist.contains(stack);
+    public boolean isBlacklisted(World world, EntityPlayer player, ItemStack stack) {
+        if (stack.getItem() instanceof ItemBlock) {
+            Block block = ((ItemBlock)stack.getItem()).getBlock();
+            return block.hasTileEntity(block.getStateForPlacement(world, BlockPos.ORIGIN, EnumFacing.DOWN, 0F, 0F, 0F, stack.getItemDamage(), player, stack));
+        }
+
+        return registry.getValueOf(stack) == null && (stack.getItem().isDamageable() || blacklist.contains(stack));
     }
 
     @Override

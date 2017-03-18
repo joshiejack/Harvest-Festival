@@ -1,14 +1,18 @@
 package joshie.harvest.npcs.gift.init;
 
 import joshie.harvest.core.util.annotations.HFLoader;
+import joshie.harvest.mining.item.ItemDarkDrop.DarkDrop;
 import joshie.harvest.mining.item.ItemMaterial.Material;
 
 import static joshie.harvest.api.npc.gift.GiftCategory.*;
+import static joshie.harvest.mining.HFMining.DARK_DROP;
 import static joshie.harvest.mining.HFMining.MATERIALS;
 
 @HFLoader(priority = 0)
 public class HFGiftsMining extends HFGiftsAbstract {
     public static void init() {
+        assignGeneric(DARK_DROP.getStackFromEnum(DarkDrop.LEATHER), MEAT);
+        assignGeneric(DARK_DROP.getStackFromEnum(DarkDrop.FEATHER), ANIMAL);
         assignGeneric(MATERIALS.getStackFromEnum(Material.JUNK), JUNK);
         assignGeneric(MATERIALS.getStackFromEnum(Material.SILVER), MINERAL);
         assignGeneric(MATERIALS.getStackFromEnum(Material.MYSTRIL), MINERAL);

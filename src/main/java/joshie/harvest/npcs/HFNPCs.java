@@ -1,6 +1,7 @@
 package joshie.harvest.npcs;
 
 import joshie.harvest.HarvestFestival;
+import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.CalendarDate;
 import joshie.harvest.api.calendar.Festival;
 import joshie.harvest.api.calendar.Season;
@@ -109,6 +110,7 @@ public class HFNPCs {
     }
 
     public static void init() {
+        HFApi.npc.getGifts().addToBlacklist(SPAWNER_NPC);
         GODDESS.setHasInfo(new GreetingWeather())
                 .addGreeting(new GreetingBeforeAshlee("tutorial.chicken.reminder.poultry"))
                 .addGreeting(new GreetingBeforeDanieru(GODDESS));

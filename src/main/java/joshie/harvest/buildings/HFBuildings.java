@@ -77,6 +77,7 @@ public class HFBuildings {
         if (HFCore.DEBUG_MODE) {
             AIR =  new BlockInternalAir().register("air");
             CHEAT = new ItemCheat().register("cheat");
+            HFApi.npc.getGifts().addToBlacklist(CHEAT);
         }
     }
 

@@ -22,6 +22,7 @@ import java.util.Set;
 public class TrackingServer extends Tracking {
     private Set<StackSold> toBeShipped = new HashSet<>(); //What needs to be sold
     private Set<StackSold> shipped = new HashSet<>();
+
     private boolean hasWonCookingContest;
     private int giftsGiven;
     public final PlayerTrackerServer master;
@@ -29,6 +30,13 @@ public class TrackingServer extends Tracking {
     public TrackingServer(PlayerTrackerServer master) {
         this.master = master;
         addDefaultRecipes();
+    }
+
+    public void setMineFloorReached(int floor) {
+        if (floor > getMineFloorReached()) {
+            super.setMineFloorReached(floor);
+            PacketHandler.sendToClient(new PacketSyncMineFloor(floor), master.getAndCreatePlayer());
+        }
     }
 
     public void setHasWonCookingContest() {
@@ -40,6 +48,8 @@ public class TrackingServer extends Tracking {
     }
 
     public void sync(EntityPlayerMP player) {
+        //TODO: Readd in 1.0 as well as adding elevators to the mine on every 5th floor
+        //PacketHandler.sendToClient(new PacketSyncMineFloor(mineFloorReached), player);
         PacketHandler.sendToClient(new PacketSyncObtainedSet(obtained), player);
         PacketHandler.sendToClient(new PacketSyncRecipes(recipes), player);
         PacketHandler.sendToClient(new PacketSyncNotes(notes), player);
@@ -100,6 +110,7 @@ public class TrackingServer extends Tracking {
     }
 
     public void readFromNBT(NBTTagCompound nbt) {
+        mineFloorReached = nbt.getInteger("Floor");
         hasWonCookingContest = nbt.getBoolean("HasWon");
         giftsGiven = nbt.getInteger("GiftsGiven");
         obtained = NBTHelper.readHashSet(ItemStackHolder.class, nbt.getTagList("ItemsObtained", 10));
@@ -113,6 +124,7 @@ public class TrackingServer extends Tracking {
     }
 
     public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
+        nbt.setInteger("Floor", mineFloorReached);
         nbt.setBoolean("HasWon", hasWonCookingContest);
         nbt.setInteger("GiftsGiven", giftsGiven);
         nbt.setTag("ItemsObtained", NBTHelper.writeCollection(obtained));

@@ -110,7 +110,7 @@ public class HFNPCs {
     }
 
     public static void init() {
-        HFApi.npc.getGifts().addToBlacklist(SPAWNER_NPC);
+        HFApi.npc.getGifts().addToBlacklist(SPAWNER_NPC, TOOLS);
         GODDESS.setHasInfo(new GreetingWeather())
                 .addGreeting(new GreetingBeforeAshlee("tutorial.chicken.reminder.poultry"))
                 .addGreeting(new GreetingBeforeDanieru(GODDESS));

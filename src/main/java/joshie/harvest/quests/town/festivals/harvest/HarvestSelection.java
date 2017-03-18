@@ -11,7 +11,7 @@ public class HarvestSelection extends Selection<QuestHarvestFestival> {
     private boolean started;
 
     public HarvestSelection() {
-        super("Are you ready to start the festival?", "@Yes", "@No");
+        super("harvestfestival.quest.festival.harvest.ready", "harvestfestival.quest.festival.harvest.yes", "harvestfestival.quest.festival.harvest.no");
     }
 
     public void setStarted() {
@@ -20,11 +20,6 @@ public class HarvestSelection extends Selection<QuestHarvestFestival> {
 
     public boolean hasStarted() {
         return started;
-    }
-
-    public String getLocalizedScript() {
-        if (!started) return "Hey welcome to the Harvest Festival. We're going to start if you're ready. You should add something in to the pot if you haven't already.";
-        else return "Thanks for inserting something in to the pot. We're ready to begin";
     }
 
     @Override

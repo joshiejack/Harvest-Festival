@@ -2301,6 +2301,24 @@ harvestfestival.quest.festival.starry.night.ready=Are you ready to eat?
 harvestfestival.quest.festival.starry.night.go=@Let's begin!
 harvestfestival.quest.festival.starry.night.no=@Not Yet!
 
+#Harvest Festival
+harvestfestival.quest.festival.harvest.ready=Are you ready to start the festival?
+harvestfestival.quest.festival.harvest.yes=@Yes, all ready!
+harvestfestival.quest.festival.harvest.no=@No, not yet.
+harvestfestival.quest.festival.harvest.welcome=Welcome, we're getting ready to get started. You should add something to the pot if you haven't already.
+harvestfestival.quest.festival.harvest.started=Well looks like we'll begin then!
+harvestfestival.quest.festival.harvest.decide.1=Blegghhhhh. This is the worst soup I've ever tasted. The festival was a disaster! Who was the cruel person who ruined it for everyone?
+harvestfestival.quest.festival.harvest.decide.2=Yuck, this a terrible soup. Who spoilt the soup? I'd like a word. The festival is over.
+harvestfestival.quest.festival.harvest.decide.3=Ehhh, this soup really isn't good. It's not dreadful but looks you didn't bring the best this year. Perhaps next year. Anyone want to try?
+harvestfestival.quest.festival.harvest.decide.4=Ehh this soup is almost edible, but not quite. It's not bad, but it's not good either. Would anyone else like to give it a go?
+harvestfestival.quest.festival.harvest.decide.5=... This soup is just soup. It's rather bland. Did someone forget to add something to the pot? I guess things went okay otherwise. Anyone else want to try the soup?
+harvestfestival.quest.festival.harvest.decide.6=Oh, well this is soup is okay. Nothing special really. Thanks for coming folks. Anyone else want some?
+harvestfestival.quest.festival.harvest.decide.7=Oooo, this is pretty good! Someone knows what they're doing! Good job everyone, you should all give it a try!
+harvestfestival.quest.festival.harvest.decide.8=!!! This is just very nice! It has a lovely flavour. It's not perfect but it is good soup alright! Come enjoy some soup everyone!
+harvestfestival.quest.festival.harvest.decide.9=Woaaaaah, This soup is soooooo yummy. It's just missing a little something but it is almost perfect! You have all done a fantastic job this year. You have to try it!
+harvestfestival.quest.festival.harvest.decide.10=!!! !!! !!! OMG!!! Wow. If this isn't the most delicious soup I have ever tasted. You have all done an outstanding job this year. The soup is incredible! You must give it a try or you'll never know what you're missing!
+harvestfestival.script.taste=Well everyone it's once again time to celebrate the harvest festival. I hope everyone added their best ingredients. Time to start the tasting...
+
 ###Achievements
 achievement.harvestfestival.summon=Goddess' Bounty
 achievement.harvestfestival.summon.desc=Summon a goddess flower

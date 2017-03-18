@@ -69,7 +69,8 @@ public class QuestHarvestFestival extends QuestFestivalTimed {
     @Override
     @Nullable
     protected String getLocalizedScript(EntityPlayer player, NPC npc) {
-        return getDataForPlayer(player).getLocalizedScript();
+        if (!getDataForPlayer(player).hasStarted()) return getLocalized("welcome");
+        else return getLocalized("started");
     }
 
     @Override
@@ -79,7 +80,8 @@ public class QuestHarvestFestival extends QuestFestivalTimed {
     public void execute(EntityPlayer player, NPCEntity entity) {
         data.values().forEach(HarvestSelection::setStarted);
         syncData(player); //Sync it all up!
-        entity.setPath(TaskMove.of(TownHelper.getClosestTownToEntity(player, false).getCoordinatesFromOffset(HFBuildings.FESTIVAL_GROUNDS, BESIDE_POT)), TaskSpeech.of(TASTE), TaskWait.of(1), TaskSpeech.of(DECIDE), new TaskConsume());
+        entity.setPath(TaskMove.of(TownHelper.getClosestTownToEntity(player, false).getCoordinatesFromOffset(HFBuildings.FESTIVAL_GROUNDS, BESIDE_POT)),
+                TaskSpeech.of(TASTE), TaskWait.of(3), TaskSpeech.of(DECIDE), new TaskConsume());
     }
 
     @Override
@@ -122,6 +124,7 @@ public class QuestHarvestFestival extends QuestFestivalTimed {
     }
 
     @HFTask("consume")
+    @SuppressWarnings("WeakerAccess")
     public static class TaskConsume extends TaskElement {
         @Override
         public void execute(NPCEntity npc) {

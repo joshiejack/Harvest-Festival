@@ -18,7 +18,7 @@ public class SeasonData {
     private int midnight;
 
     public SeasonData(Season season, int skyColor, int sunrise, int sunset) {
-        this.resource = new ResourceLocation(MODID, "textures/hud/" + season.name().toLowerCase(Locale.ENGLISH) + ".png");
+        this.resource = new ResourceLocation(MODID, "textures/gui/" + season.name().toLowerCase(Locale.ENGLISH) + ".png");
         this.skyColor = skyColor;
         this.sunrise = sunrise;
         this.sunset = sunset;

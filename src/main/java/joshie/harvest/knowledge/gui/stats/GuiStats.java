@@ -8,8 +8,6 @@ import joshie.harvest.knowledge.gui.stats.collection.page.PageShipping;
 import joshie.harvest.knowledge.gui.stats.notes.page.PageTown;
 import joshie.harvest.knowledge.gui.stats.quests.page.PageQuests;
 import joshie.harvest.knowledge.gui.stats.relations.page.PageNPC;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
 import static joshie.harvest.core.lib.HFModInfo.MODID;
@@ -17,7 +15,6 @@ import static joshie.harvest.core.lib.HFModInfo.MODID;
 public class GuiStats extends GuiBaseBook {
     private static final ResourceLocation LEFT_GUI = new ResourceLocation(MODID, "textures/gui/book_cooking_left.png");
     private static final ResourceLocation RIGHT_GUI = new ResourceLocation(MODID, "textures/gui/book_cooking_right.png");
-    private static final ItemStack NOTES = new ItemStack(Items.WRITABLE_BOOK);
     private static final int imageWidth = 154;
     private static final int imageHeight = 202;
     public static BookPage collection;
@@ -59,8 +56,9 @@ public class GuiStats extends GuiBaseBook {
             public BookPage getNewPage() { return notes; }
 
             @Override
-            public ItemStack getIcon() {
-                return NOTES;
+            public void drawIcon() {
+                gui.mc.getTextureManager().bindTexture(HFModInfo.ICONS);
+                gui.drawTexturedModalRect(xStack, yPosition + 8, 0, 32, 16, 16);
             }
         });
 

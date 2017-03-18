@@ -34,7 +34,7 @@ public class GiftRegistry implements IGiftRegistry {
     public boolean isBlacklisted(World world, EntityPlayer player, ItemStack stack) {
         if (stack.getItem() instanceof ItemBlock) {
             Block block = ((ItemBlock)stack.getItem()).getBlock();
-            return block.hasTileEntity(block.getStateForPlacement(world, BlockPos.ORIGIN, EnumFacing.DOWN, 0F, 0F, 0F, stack.getItemDamage(), player, stack));
+            if (block.hasTileEntity(block.getStateForPlacement(world, BlockPos.ORIGIN, EnumFacing.DOWN, 0F, 0F, 0F, stack.getItemDamage(), player, stack))) return true;
         }
 
         return registry.getValueOf(stack) == null && (stack.getItem().isDamageable() || blacklist.contains(stack));

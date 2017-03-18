@@ -10,7 +10,7 @@ import static joshie.harvest.core.lib.HFModInfo.MODID;
 
 @ButtonsPlugin
 public class Buttons extends IWidgetPlugin.Base {
-    public static final ResourceLocation RESOURCE = new ResourceLocation(MODID, "textures/hud/gui_widgets.png");
+    public static final ResourceLocation RESOURCE = new ResourceLocation(MODID, "textures/gui/gui_widgets.png");
     public static final WidgetTexture BLANK = new WidgetTexture(
             new ResourceLocation("buttons", "textures/gui_widgets.png"),
             0,

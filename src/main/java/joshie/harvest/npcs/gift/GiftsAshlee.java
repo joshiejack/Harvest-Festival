@@ -19,7 +19,6 @@ public class GiftsAshlee extends Gifts {
         categoryRegistry.put(HERB, Quality.GOOD);
         categoryRegistry.put(ANIMAL, Quality.GOOD);
         categoryRegistry.put(FRUIT, Quality.GOOD);
-        categoryRegistry.put(VEGETABLE, Quality.GOOD);
         categoryRegistry.put(JUNK, Quality.DISLIKE);
         categoryRegistry.put(SWEET, Quality.BAD);
         categoryRegistry.put(MEAT, Quality.TERRIBLE);

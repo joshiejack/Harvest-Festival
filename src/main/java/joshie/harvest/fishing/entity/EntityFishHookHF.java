@@ -24,12 +24,12 @@ import net.minecraft.world.storage.loot.LootContext;
 import java.util.List;
 
 public class EntityFishHookHF extends EntityFishHook {
-    //TODO: Line changed by me
+    //Line changed by me
     private int tickTimer;
     private int tier;
 
     @SuppressWarnings("ConstantConditions")
-    //TODO: Line changed by me
+    //Line changed by me
     public EntityFishHookHF(World world, EntityPlayer player, int tier, int bait) {
         super(world, player);
         this.tickTimer = (tier + 1) * (bait > 0 ? 2: 1);
@@ -195,7 +195,7 @@ public class EntityFishHookHF extends EntityFishHook {
 
                 if (!worldObj.isRemote && d5 > 0.0D) {
                     WorldServer worldserver = (WorldServer) worldObj;
-                    int i1 = tickTimer; //TODO: Line changed by me
+                    int i1 = tickTimer; //Line changed by me
                     BlockPos blockpos = (new BlockPos(this)).up();
 
                     if (rand.nextFloat() < 0.25F && worldObj.isRainingAt(blockpos)) {
@@ -309,15 +309,15 @@ public class EntityFishHookHF extends EntityFishHook {
                 worldObj.setEntityState(this, (byte) 31);
                 i = caughtEntity instanceof EntityItem ? 3 : 5;
             } else if (ticksCatchable > 0) {
-                //TODO: Line changed by me
+                //Line changed by me
                 LootContext.Builder lootcontext$builder = new LootContext.Builder((WorldServer) worldObj);
                 lootcontext$builder.withLuck((float) EnchantmentHelper.getLuckOfSeaModifier(angler) + angler.getLuck() + tier);
                 lootcontext$builder.withLootedEntity(this);
                 lootcontext$builder.withPlayer(angler);
-                //TODO: Line changed by me
+                //Line changed by me
                 for (ItemStack itemstack : worldObj.getLootTableManager().getLootTableFromLocation(FishingHelper.getFishingTable(worldObj, new BlockPos(this))).generateLootForPools(rand, lootcontext$builder.build())) {
                     EntityItem entityitem = new EntityItem(worldObj, posX, posY, posZ, itemstack);
-                    //TODO: Line changed by me
+                    //Line changed by me
                     if (InventoryHelper.isOreName(itemstack, "fish")) {
                         HFTrackers.getPlayerTrackerFromPlayer(angler).getTracking().addAsObtained(itemstack);
                     }

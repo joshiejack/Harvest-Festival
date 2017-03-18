@@ -46,12 +46,6 @@ public class ButtonRelationsAnimal extends ButtonBook<GuiStats> {
     private final boolean isTreated;
     private final boolean isSick;
     private final boolean isPregnant;
-    //TODO:
-    //If sick hearts are green
-    //If pregnant
-
-
-
     //Products they make with x5
     //If you've collected their product
     private final ItemStack stack;

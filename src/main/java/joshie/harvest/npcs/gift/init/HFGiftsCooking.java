@@ -17,6 +17,7 @@ public class HFGiftsCooking extends HFGiftsAbstract {
     private static final GiftCategory[] VEGGIES = new GiftCategory[] { COOKING, VEGETABLE };
     private static final GiftCategory[] FRUITY = new GiftCategory[] { COOKING, FRUIT };
     private static final GiftCategory[] MIXED = new GiftCategory[] { COOKING, FRUIT, VEGETABLE };
+    private static final GiftCategory[] HERBS = new GiftCategory[] { COOKING, HERB };
     private static GiftCategory[] getCategory(Meal meal) {
         switch (meal) {
             case JUICE_TOMATO:
@@ -40,6 +41,9 @@ public class HFGiftsCooking extends HFGiftsAbstract {
             case JUICE_FRUIT:
             case LATTE_FRUIT:
             case CUCUMBER_PICKLED:
+            case JAM_APPLE:
+            case JAM_GRAPE:
+            case JAM_STRAWBERRY:
                 return FRUITY;
             case COOKIES:
             case COOKIES_CHOCOLATE:
@@ -53,6 +57,10 @@ public class HFGiftsCooking extends HFGiftsAbstract {
             case POPCORN:
             case FRIES_FRENCH:
                 return SWEETS;
+            case SALAD_HERB:
+            case SANDWICH_HERB:
+            case SOUP_HERB:
+                return HERBS;
             default: return DEFAULT;
         }
     }
@@ -64,6 +72,7 @@ public class HFGiftsCooking extends HFGiftsAbstract {
 
         assignGeneric(INGREDIENTS.getStackFromEnum(Ingredient.CHOCOLATE), SWEET);
         assignGeneric(INGREDIENTS.getStackFromEnum(Ingredient.DUMPLING_POWDER), JUNK);
+        assignGeneric(INGREDIENTS.getStackFromEnum(Ingredient.CURRY_POWDER), JUNK);
         assignGeneric(INGREDIENTS.getStackFromEnum(Ingredient.WINE), COOKING);
         assignGeneric(INGREDIENTS.getStackFromEnum(Ingredient.FLOUR), JUNK);
         assignGeneric(INGREDIENTS.getStackFromEnum(Ingredient.OIL), JUNK);

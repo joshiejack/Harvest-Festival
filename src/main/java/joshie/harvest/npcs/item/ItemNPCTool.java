@@ -29,7 +29,7 @@ import static net.minecraft.util.text.TextFormatting.GOLD;
 public class ItemNPCTool extends ItemHFEnum<ItemNPCTool, NPCTool> {
     public static final String SPECIAL = "Gift";
     public enum NPCTool implements IStringSerializable {
-        BLUE_FEATHER, NPC_KILLER, GIFT, SPEECH, MAIL, UPGRADE;
+        BLUE_FEATHER, NPC_KILLER, GIFT, SPEECH, MAIL;
 
         public boolean isReal() {
             return this == NPC_KILLER;

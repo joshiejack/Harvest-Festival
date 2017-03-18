@@ -27,7 +27,6 @@ public abstract class QuestData {
     @SuppressWarnings("unchecked")
     public <Q extends Quest> Q getAQuest(Quest quest) {
         //Create the quest if it doesn't exist
-        //TODO: Check if the real quest check is needed
         if (!quest.isRealQuest() && !current.contains(quest)) {
             startQuest(quest, false, null);
         }

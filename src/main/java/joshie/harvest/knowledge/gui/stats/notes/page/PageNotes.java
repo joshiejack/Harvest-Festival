@@ -79,7 +79,7 @@ public class PageNotes extends BookPage<GuiStats> {
 
     @Override
     public void drawScreen(int x, int y) {
-        drawUnicodeFont(note.getDescription(), 164, 20, 126);
+        drawUnicodeFont(note.getDescription(), 164, 23, 126);
         NoteRender render = note.getRender();
         if (render != null) {
             if (!render.isInit()) {

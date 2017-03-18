@@ -10,8 +10,6 @@ public final class Ingredient {
     private final String unlocalized;
     private int hunger;
     private float saturation;
-    private float exhaustion;
-    private int eatTime;
     private long value;
     public ResourceLocation fluid;
 
@@ -25,8 +23,6 @@ public final class Ingredient {
         this.unlocalized = unlocalized;
         this.hunger = hunger;
         this.saturation = saturation;
-        this.exhaustion = 0F;
-        this.eatTime = 4;
         equivalents.add(this);
         INGREDIENTS.put(unlocalized, this);
     }
@@ -75,18 +71,6 @@ public final class Ingredient {
         return this;
     }
 
-    @Deprecated //TODO: Remove in 0.7+
-    public Ingredient setExhaustion(float exhaustion) {
-        this.exhaustion = exhaustion;
-        return this;
-    }
-
-    /** Set how much this ingredient affects the eatimer **/
-    public Ingredient setEatTime(int eatTime) {
-        this.eatTime = eatTime;
-        return this;
-    }
-
     /** Return the categories this ingredient fits in to **/
     public Set<Ingredient> getEquivalents() {
         return equivalents;
@@ -100,30 +84,11 @@ public final class Ingredient {
         return unlocalized;
     }
 
-    public int getEatTime() {
-        return eatTime;
-    }
-
     public int getHunger() {
         return hunger;
     }
 
     public float getSaturation() {
         return saturation;
-    }
-
-    @Deprecated //TODO: Remove in 0.7+
-    public float getExhaustion() {
-        return exhaustion;
-    }
-
-    @Deprecated //TODO: Remove in 0.7+
-    public boolean isEqual(Ingredient ingredient) {
-        for (Ingredient i : equivalents) { //Return true if the item passed in matches this one
-            if (i.getUnlocalized().equals(ingredient.getUnlocalized()))
-                return true; //Loops the equivalents list, this item is contained in that list by default
-        }
-
-        return false;
     }
 }

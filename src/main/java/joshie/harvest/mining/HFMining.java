@@ -107,7 +107,7 @@ public class HFMining {
     }
 
     public static void init() {
-        HFApi.npc.getGifts().addToBlacklist(DARK_SPAWNER, MINING_TOOL, DIRT, STONE, LADDER, PORTAL, ORE);
+        HFApi.npc.getGifts().addToBlacklist(DARK_SPAWNER, MINING_TOOL, DIRT, DIRT_DECORATIVE, STONE, LADDER, PORTAL, ORE);
         //Spring, Summer, Autumn values
         MiningContext copper = new MiningContext(COPPER_FLOOR);
         MiningContext silver = new MiningContext(SILVER_FLOOR);

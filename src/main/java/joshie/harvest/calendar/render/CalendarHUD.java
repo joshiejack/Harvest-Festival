@@ -35,7 +35,7 @@ import static joshie.harvest.core.lib.HFModInfo.MODID;
 
 @HFEvents(Side.CLIENT)
 public class CalendarHUD {
-    private static final ResourceLocation MINE_HUD = new ResourceLocation(MODID, "textures/hud/mine.png");
+    private static final ResourceLocation MINE_HUD = new ResourceLocation(MODID, "textures/gui/mine.png");
     public static boolean editingCalendar;
     public static boolean editingGold;
 

@@ -58,7 +58,7 @@ public class HFCore {
         NetworkRegistry.INSTANCE.registerGuiHandler(HarvestFestival.instance, new GuiHandler());
         LootFunctionManager.registerFunction(new SetEnum.Serializer());
         LootFunctionManager.registerFunction(new SetSizeable.Serializer());
-        RegistryHelper.registerTiles(TileShipping.class, TileMailbox.class, TilePlate.class, TileBasket.class);
+        RegistryHelper.registerTiles(TileShipping.class, TileMailbox.class, TilePlate.class, TileBasket.class, TileFestivalPot.class);
         registerModEntity(EntityBasket.class, "basket", EntityIDs.BASKET, HarvestFestival.instance, 150, 3, true);
         GODDESS.setBlock(GODDESS_WATER);
 

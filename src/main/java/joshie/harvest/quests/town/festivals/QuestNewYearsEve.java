@@ -7,6 +7,7 @@ import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.npc.NPCEntity;
 import joshie.harvest.api.npc.RelationStatus;
 import joshie.harvest.api.npc.greeting.Script;
+import joshie.harvest.api.npc.task.HFTask;
 import joshie.harvest.api.npc.task.TaskElement;
 import joshie.harvest.api.npc.task.TaskSpeech;
 import joshie.harvest.api.npc.task.TaskWait;
@@ -20,7 +21,7 @@ import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.core.helpers.StackHelper;
 import joshie.harvest.npcs.HFNPCs;
 import joshie.harvest.quests.base.QuestFestival;
-import net.minecraft.entity.EntityAgeable;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.item.EntityFireworkRocket;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
@@ -94,6 +95,7 @@ public class QuestNewYearsEve extends QuestFestival {
         return getLocalized("start");
     }
 
+    @HFTask("new_year")
     public static class TaskNewYear extends TaskElement {
         private static final String tag = "{LifeTime:30,FireworksItem:{id:fireworks,Count:1,tag:{Fireworks:{Explosions:[{Type:%s,Flicker:%s,Trail:%s,Colors:[%s],FadeColors:[%s]}]}}}}";
 
@@ -105,7 +107,8 @@ public class QuestNewYearsEve extends QuestFestival {
         }
 
         @Override
-        public void execute(EntityAgeable npc) {
+        public void execute(NPCEntity entity) {
+            EntityLiving npc = entity.getAsEntity();
             //Spawn the fireworks first
             for (int x = -10; x <= 10; x++) {
                 for (int z = -10; z <= 10; z++) {
@@ -127,7 +130,7 @@ public class QuestNewYearsEve extends QuestFestival {
                         .forEach(aNPC -> HFApi.player.getRelationsForPlayer(player).affectRelationship(aNPC, 500));
             }
 
-            super.execute(npc); //Mark this as satisfied
+            super.execute(entity); //Mark this as satisfied
         }
 
         @Override

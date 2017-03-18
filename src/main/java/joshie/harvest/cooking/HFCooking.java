@@ -11,6 +11,7 @@ import joshie.harvest.cooking.render.*;
 import joshie.harvest.cooking.tile.*;
 import joshie.harvest.core.base.render.MeshIdentical;
 import joshie.harvest.core.util.annotations.HFLoader;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
@@ -49,6 +50,7 @@ public class HFCooking {
         BLADE_STACK = UTENSILS.getStackFromEnum(BLADE);
         HFApi.cooking.registerCookingHandler(new RecipeMaker());
         HFApi.cooking.registerKnife(new ItemStack(UTENSILS, 1, KNIFE.ordinal()));
+        HFApi.shipping.registerSellable(new ItemStack(Items.BREAD), 60);
         OreDictionary.registerOre("foodOliveoil", INGREDIENTS.getStackFromEnum(Ingredient.OIL));
         OreDictionary.registerOre("foodChocolatebar", INGREDIENTS.getStackFromEnum(Ingredient.CHOCOLATE));
         OreDictionary.registerOre("foodFlour", INGREDIENTS.getStackFromEnum(Ingredient.FLOUR));

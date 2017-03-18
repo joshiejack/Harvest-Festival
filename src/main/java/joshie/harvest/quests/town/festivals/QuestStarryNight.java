@@ -7,7 +7,7 @@ import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.Selection;
 import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.quests.base.QuestFestivalTimed;
-import joshie.harvest.quests.town.festivals.starry.ScriptNPCRelated;
+import joshie.harvest.quests.town.festivals.starry.ScriptStarry;
 import joshie.harvest.quests.town.festivals.starry.StarryNightData;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
@@ -21,8 +21,8 @@ import java.util.UUID;
 
 @HFQuest("festival.starry.night")
 public class QuestStarryNight extends QuestFestivalTimed {
-    public static final Script WELCOME = new ScriptNPCRelated("welcome");
-    public static final Script GOODBYE = new ScriptNPCRelated("goodbye");
+    public static final Script WELCOME = new ScriptStarry("welcome");
+    public static final Script GOODBYE = new ScriptStarry("goodbye");
     private final Map<UUID, StarryNightData> data = new HashMap<>();
 
     public QuestStarryNight() {}

@@ -1,8 +1,9 @@
 package joshie.harvest.api.npc.task;
 
-import net.minecraft.entity.EntityAgeable;
+import joshie.harvest.api.npc.NPCEntity;
 import net.minecraft.nbt.NBTTagCompound;
 
+@HFTask("wait")
 public class TaskWait extends TaskElement {
     private int target;
     private int ticker;
@@ -16,13 +17,13 @@ public class TaskWait extends TaskElement {
     }
 
     @Override
-    public void execute(EntityAgeable npc) {
-        npc.getNavigator().clearPathEntity();
+    public void execute(NPCEntity npc) {
+        npc.getAsEntity().getNavigator().clearPathEntity();
         ticker++; //Continue Executing
     }
 
     @Override
-    public boolean isSatisfied(EntityAgeable npc) {
+    public boolean isSatisfied(NPCEntity npc) {
         return ticker >= target;
     }
 

@@ -5,6 +5,7 @@ import joshie.harvest.core.base.block.BlockHFEnumRotatableTile;
 import joshie.harvest.core.base.tile.TileStand;
 import joshie.harvest.core.block.BlockStand.Stand;
 import joshie.harvest.core.helpers.SpawnItemHelper;
+import joshie.harvest.core.tile.TileFestivalPot;
 import joshie.harvest.core.tile.TilePlate;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -88,7 +89,7 @@ public class BlockStand extends BlockHFEnumRotatableTile<BlockStand, Stand> {
     @Override
     @Nonnull
     public TileEntity createTileEntity(@Nonnull World world, @Nonnull IBlockState state) {
-        return new TilePlate();
+        return getEnumFromState(state) == Stand.PLATE ? new TilePlate() : new TileFestivalPot();
     }
 
     @Override

@@ -1,13 +1,15 @@
 package joshie.harvest.quests.town.festivals.contest;
 
 import joshie.harvest.api.calendar.Festival;
+import joshie.harvest.api.npc.NPCEntity;
+import joshie.harvest.api.npc.task.HFTask;
 import joshie.harvest.api.npc.task.TaskElement;
 import joshie.harvest.quests.town.festivals.Place;
 import joshie.harvest.town.TownHelper;
-import net.minecraft.entity.EntityAgeable;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 
+@HFTask("winner")
 public class ContestTaskWinner extends TaskElement {
     private Festival festival;
 
@@ -16,17 +18,17 @@ public class ContestTaskWinner extends TaskElement {
         this.festival = festival;
     }
 
-    public void execute(EntityAgeable npc) {
+    public void execute(NPCEntity npc) {
         super.execute(npc);
-        QuestContest quest = TownHelper.getClosestTownToEntity(npc, false).getQuests().getAQuest(festival.getQuest());
+        QuestContest quest = TownHelper.getClosestTownToEntity(npc.getAsEntity(), false).getQuests().getAQuest(festival.getQuest());
         if (quest != null) {
             ContestEntries entries = quest.getEntries();
             for (Place place: Place.VALUES) {
-                quest.reward(npc.worldObj, place);
+                quest.reward(npc.getAsEntity().worldObj, place);
             }
 
-            entries.complete(npc.worldObj);
-            TownHelper.getClosestTownToEntity(npc, false).getQuests().markCompleted(npc.worldObj, null, quest, false);
+            entries.complete(npc.getAsEntity().worldObj);
+            TownHelper.getClosestTownToEntity(npc.getAsEntity(), false).getQuests().markCompleted(npc.getAsEntity().worldObj, null, quest, false);
         }
     }
 

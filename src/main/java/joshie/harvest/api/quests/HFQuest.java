@@ -1,14 +1,11 @@
 package joshie.harvest.api.quests;
 
-import joshie.harvest.core.commands.AbstractHFCommand;
-
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /** Annotate any of the following, to have them automatically registered
- *  @see AbstractHFCommand
  *  @see joshie.harvest.api.quests.Quest
  */
 

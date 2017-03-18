@@ -1,8 +1,8 @@
 package joshie.harvest.api.npc.task;
 
 import joshie.harvest.api.HFApi;
+import joshie.harvest.api.npc.NPCEntity;
 import joshie.harvest.api.npc.greeting.Script;
-import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
@@ -10,6 +10,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.WorldServer;
 
+@HFTask("speech")
 public class TaskSpeech extends TaskElement {
     private Script script;
 
@@ -22,13 +23,13 @@ public class TaskSpeech extends TaskElement {
     }
 
     @Override
-    public void execute(EntityAgeable npc) {
-        BlockPos pos = new BlockPos(npc);
-        WorldServer server = (WorldServer) npc.worldObj;
+    public void execute(NPCEntity npc) {
+        BlockPos pos = new BlockPos(npc.getAsEntity());
+        WorldServer server = (WorldServer) npc.getAsEntity().worldObj;
         for (EntityPlayer player : server.playerEntities) {
             EntityPlayerMP mp = ((EntityPlayerMP) player);
             if (mp.getDistanceSq(pos) < 64 * 64) {
-                HFApi.npc.forceScriptOpen(player, npc, script);
+                HFApi.npc.forceScriptOpen(player, npc.getAsEntity(), script);
             }
         }
 

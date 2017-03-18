@@ -1,12 +1,14 @@
 package joshie.harvest.quests.town.festivals.contest.cooking;
 
+import joshie.harvest.api.npc.NPCEntity;
+import joshie.harvest.api.npc.task.HFTask;
 import joshie.harvest.api.npc.task.TaskElement;
 import joshie.harvest.core.tile.TilePlate;
-import net.minecraft.entity.EntityAgeable;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 
+@HFTask("eat")
 public class TaskEat extends TaskElement {
     private BlockPos target;
 
@@ -15,8 +17,8 @@ public class TaskEat extends TaskElement {
     }
 
     @Override
-    public void execute(EntityAgeable npc) {
-        TileEntity tile = npc.worldObj.getTileEntity(target);
+    public void execute(NPCEntity npc) {
+        TileEntity tile = npc.getAsEntity().worldObj.getTileEntity(target);
         if (tile instanceof TilePlate) {
             ((TilePlate)tile).setContents(null);
         }

@@ -2,6 +2,8 @@ package joshie.harvest.core;
 
 import com.google.common.collect.Lists;
 import joshie.harvest.api.HFApi;
+import joshie.harvest.api.npc.task.HFTask;
+import joshie.harvest.api.npc.task.TaskElement;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.core.commands.AbstractHFCommand;
@@ -26,6 +28,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.*;
 
+import static joshie.harvest.core.lib.HFModInfo.MODID;
 import static joshie.harvest.core.network.PacketHandler.registerPacket;
 
 public class HFApiLoader {
@@ -63,6 +66,7 @@ public class HFApiLoader {
         registerEvents(asm, isClient);
         registerPackets(asm);
         registerCommands(asm);
+        registerTasks(asm);
         if (HFCore.DEBUG_MODE) {
             registerDebugCommand(asm);
         }
@@ -80,6 +84,22 @@ public class HFApiLoader {
                 ResourceLocation resource = new ResourceLocation(domain, extra);
                 load(Quest.class, Quest.REGISTRY, resource, clazz);
                 Quest.REGISTRY.getValue(resource).onRegistered();
+            } catch (Exception e) { e.printStackTrace(); }
+        }
+    }
+
+    private static void registerTasks(@Nonnull ASMDataTable asm) {
+        String annotationClassName = HFTask.class.getCanonicalName();
+        Set<ASMData> asmDatas = new HashSet<>(asm.getAll(annotationClassName));
+        for (ASMDataTable.ASMData asmData : asmDatas) {
+            try {
+                Map<String, Object> data = asmData.getAnnotationInfo();
+                Class clazz = Class.forName(asmData.getClassName());
+                String value = data.get("value") != null ? (String) data.get("value") : "";
+                if (!value.equals("")) {
+                    ResourceLocation resource = value.contains(":") ? new ResourceLocation(value): new ResourceLocation(MODID, value);
+                    TaskElement.REGISTRY.put(resource, clazz);
+                }
             } catch (Exception e) { e.printStackTrace(); }
         }
     }

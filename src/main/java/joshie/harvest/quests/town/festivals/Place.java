@@ -1,7 +1,7 @@
 package joshie.harvest.quests.town.festivals;
 
 public enum Place {
-    FIRST(1000), SECOND(500), THIRD(250);
+    FIRST(2500), SECOND(1000), THIRD(250);
 
     public static final Place VALUES[] = new Place[] { FIRST, SECOND, THIRD};
 

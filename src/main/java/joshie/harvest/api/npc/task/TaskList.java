@@ -1,6 +1,6 @@
 package joshie.harvest.api.npc.task;
 
-import net.minecraft.entity.EntityAgeable;
+import joshie.harvest.api.npc.NPCEntity;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.ResourceLocation;
@@ -19,7 +19,7 @@ public class TaskList {
         return path;
     }
 
-    public TaskElement getCurrentTarget(EntityAgeable npc) {
+    public TaskElement getCurrentTarget(NPCEntity npc) {
         TaskElement target = targets.peek();
         if (target == null || target.isSatisfied(npc)) {
             return targets.poll();

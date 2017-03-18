@@ -1,65 +1,53 @@
 package joshie.harvest.quests.town.festivals.harvest;
 
-import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.npc.NPCEntity;
 import joshie.harvest.api.quests.Selection;
 import joshie.harvest.quests.town.festivals.QuestHarvestFestival;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.common.eventhandler.Event.Result;
 
 public class HarvestSelection extends Selection<QuestHarvestFestival> {
-    private ItemStack inserted;
-    private boolean removed;
+    private boolean started;
 
     public HarvestSelection() {
-        super("Do you want to insert your held item?", "@Yes", "@No");
+        super("Are you ready to start the festival?", "@Yes", "@No");
     }
 
-    public boolean hasRemoved() {
-        if (!removed) {
-            removed = true;
-            return false;
-        }
-
-        return removed;
+    public void setStarted() {
+        this.started = true;
     }
 
-    public ItemStack getInserted() {
-        return inserted;
+    public boolean hasStarted() {
+        return started;
     }
 
-    public String getLocalizedScript(EntityPlayer player, NPC npc) {
-        if (getInserted() == null) return "Welcome! We're about to start. We just need you to add something to the pot.";
-        else return "Thanks for that";
+    public String getLocalizedScript() {
+        if (!started) return "Hey welcome to the Harvest Festival. We're going to start if you're ready. You should add something in to the pot if you haven't already.";
+        else return "Thanks for inserting something in to the pot. We're ready to begin";
     }
 
     @Override
     public Result onSelected(EntityPlayer player, NPCEntity entity, QuestHarvestFestival quest, int option) {
-        //Option1 = Invite to Starry Night
         if (option == 1) {
-            inserted = player.getHeldItemMainhand().copy();
             quest.execute(player, entity);
-        } else return Result.DENY;
+        }
 
         quest.syncData(player); //Resync to client
         //Option2 = Chat
-        return Result.ALLOW;
+        return Result.DENY;
     }
 
     /////////////////////////////// Saving and Loading /////////////////////////////////
     public static HarvestSelection fromNBT(NBTTagCompound tag) {
         HarvestSelection data =  new HarvestSelection();
-        if (tag.hasKey("Inserted")) data.inserted = ItemStack.loadItemStackFromNBT(tag.getCompoundTag("Inserted"));
-        data.removed = tag.getBoolean("Removed");
+        data.started = tag.getBoolean("Started");
         return data;
     }
 
     public NBTTagCompound toNBT() {
         NBTTagCompound tag = new NBTTagCompound();
-        if (inserted != null) tag.setTag("Inserted", inserted.writeToNBT(new NBTTagCompound()));
-        tag.setBoolean("Removed", removed);
+        tag.setBoolean("Started", started);
         return tag;
     }
 }

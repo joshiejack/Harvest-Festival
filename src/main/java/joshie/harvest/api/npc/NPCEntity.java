@@ -2,7 +2,7 @@ package joshie.harvest.api.npc;
 
 import joshie.harvest.api.npc.task.TaskElement;
 import joshie.harvest.api.town.Town;
-import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityAgeable;
 import net.minecraft.util.math.BlockPos;
 
 /** Implemented on my npc entities **/
@@ -11,7 +11,7 @@ public interface NPCEntity {
     NPC getNPC();
 
     /** Returns this as an entity **/
-    EntityLiving getAsEntity();
+    EntityAgeable getAsEntity();
 
     /** Returns a BlockPos representing this entities location **/
     BlockPos getPos();

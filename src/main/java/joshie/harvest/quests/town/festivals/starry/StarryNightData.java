@@ -3,12 +3,12 @@ package joshie.harvest.quests.town.festivals.starry;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.npc.NPCEntity;
+import joshie.harvest.api.npc.task.HFTask;
 import joshie.harvest.api.npc.task.TaskElement;
 import joshie.harvest.api.npc.task.TaskSpeech;
 import joshie.harvest.api.npc.task.TaskWait;
 import joshie.harvest.api.quests.Selection;
 import joshie.harvest.buildings.HFBuildings;
-import joshie.harvest.calendar.HFFestivals;
 import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.cooking.item.ItemMeal.Meal;
 import joshie.harvest.core.HFCore;
@@ -19,7 +19,6 @@ import joshie.harvest.quests.town.festivals.QuestStarryNight;
 import joshie.harvest.quests.town.festivals.contest.ContestEntries;
 import joshie.harvest.town.TownHelper;
 import joshie.harvest.town.data.TownData;
-import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -74,7 +73,7 @@ public class StarryNightData extends Selection<QuestStarryNight> {
     public String getLocalizedScript(NPC npc) {
         if (chat) return null;
         else if (invited == null) return TextHelper.getSpeech(npc, "festival.starry.night.invite");
-        else if (completed && invited == npc) return TextHelper.getSpeech(npc, "festival.starry.night.start");
+        else if (!completed && invited == npc) return TextHelper.getSpeech(npc, "festival.starry.night.start");
         else return invited == npc ? TextHelper.getSpeech(npc, "festival.starry.night.tonight") : null;
     }
 
@@ -127,7 +126,8 @@ public class StarryNightData extends Selection<QuestStarryNight> {
         entity.setPath(TaskSpeech.of(WELCOME), TaskWait.of(1), new ConsumeFood(positions, false), TaskSpeech.of(GOODBYE), new ConsumeFood(positions, true));
     }
 
-    private static class ConsumeFood extends TaskElement {
+    @HFTask("starry")
+    public static class ConsumeFood extends TaskElement {
         private Set<BlockPos> positions;
         private boolean destroy;
         public ConsumeFood(Set<BlockPos> pos, boolean destroy) {
@@ -136,24 +136,25 @@ public class StarryNightData extends Selection<QuestStarryNight> {
         }
 
         @Override
-        public void execute(EntityAgeable npc) {
+        public void execute(NPCEntity npc) {
             super.execute(npc);
             for (BlockPos pos: positions) {
-                if (destroy) npc.worldObj.setBlockToAir(pos);
+                if (destroy) npc.getAsEntity().worldObj.setBlockToAir(pos);
                 else {
-                    TileEntity tile = npc.worldObj.getTileEntity(pos);
+                    TileEntity tile = npc.getAsEntity().worldObj.getTileEntity(pos);
                     if (tile instanceof TilePlate) {
                         ((TilePlate) tile).setContents(null);
                     }
                 }
             }
 
+            /*
             if (destroy) { //Complete this quest too
                 QuestStarryNight quest = TownHelper.getClosestTownToEntity(npc, false).getQuests().getAQuest(HFFestivals.STARRY_NIGHT.getQuest());
                 if (quest != null) {
                     TownHelper.getClosestTownToEntity(npc, false).getQuests().markCompleted(npc.worldObj, null, quest, false);
                 }
-            }
+            } */
         }
 
         @Override

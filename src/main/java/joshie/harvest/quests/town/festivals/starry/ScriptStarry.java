@@ -7,8 +7,8 @@ import net.minecraft.util.text.translation.I18n;
 
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 
-public class ScriptNPCRelated extends Script {
-    public ScriptNPCRelated(String name) {
+public class ScriptStarry extends Script {
+    public ScriptStarry(String name) {
         super(new ResourceLocation(MODID, "starry_" + name));
         unlocalised = "%s.npc.%s..festival.starry.night." + name;
     }

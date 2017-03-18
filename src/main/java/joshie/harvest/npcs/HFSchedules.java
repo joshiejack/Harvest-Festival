@@ -3,18 +3,11 @@ package joshie.harvest.npcs;
 import joshie.harvest.api.npc.NPCEntity;
 import joshie.harvest.api.npc.schedule.ScheduleBuilder;
 import joshie.harvest.api.npc.schedule.ScheduleBuilder.Conditional;
-import joshie.harvest.api.npc.task.TaskElement;
-import joshie.harvest.api.npc.task.TaskMove;
-import joshie.harvest.api.npc.task.TaskSpeech;
-import joshie.harvest.api.npc.task.TaskWait;
 import joshie.harvest.calendar.HFFestivals;
 import joshie.harvest.core.util.annotations.HFLoader;
-import joshie.harvest.quests.town.festivals.QuestNewYearsEve.TaskNewYear;
 import joshie.harvest.quests.town.festivals.QuestStarryNight;
-import joshie.harvest.quests.town.festivals.contest.ContestTaskWinner;
 import joshie.harvest.town.TownHelper;
 import joshie.harvest.town.data.TownData;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
@@ -22,7 +15,6 @@ import javax.annotation.Nonnull;
 import static joshie.harvest.api.calendar.Season.SPRING;
 import static joshie.harvest.api.calendar.Weekday.*;
 import static joshie.harvest.calendar.HFFestivals.*;
-import static joshie.harvest.core.lib.HFModInfo.MODID;
 import static joshie.harvest.core.lib.LoadOrder.HFSCHEDULES;
 import static joshie.harvest.npcs.HFNPCs.*;
 import static joshie.harvest.town.BuildingLocations.*;
@@ -31,12 +23,6 @@ import static joshie.harvest.town.BuildingLocations.*;
 @SuppressWarnings("unused")
 public class HFSchedules {
     public static void init() {
-        registerTaskElement("move", TaskMove.class);
-        registerTaskElement("speech", TaskSpeech.class);
-        registerTaskElement("wait", TaskWait.class);
-        registerTaskElement("new_year", TaskNewYear.class);
-        registerTaskElement("winner", ContestTaskWinner.class);
-
         //If invited to the starry night festival, then go to the park
         Conditional isInvited = new Conditional() {
             @Override
@@ -693,9 +679,5 @@ public class HFSchedules {
                 .add(NEW_YEARS_EVE, 13000L, TOWNHALL_ENTRANCE)
                 .add(NEW_YEARS_EVE, 17000L, PARK_TABLE)
                 .build();
-    }
-
-    private static void registerTaskElement(String name, Class<? extends TaskElement> clazz) {
-        TaskElement.REGISTRY.put(new ResourceLocation(MODID, name), clazz);
     }
 }

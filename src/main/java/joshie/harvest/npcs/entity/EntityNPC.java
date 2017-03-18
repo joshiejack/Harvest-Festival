@@ -3,15 +3,14 @@ package joshie.harvest.npcs.entity;
 import io.netty.buffer.ByteBuf;
 import joshie.harvest.HarvestFestival;
 import joshie.harvest.api.npc.INPCHelper;
+import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.npc.NPCEntity;
 import joshie.harvest.api.npc.task.TaskElement;
 import joshie.harvest.api.town.Town;
 import joshie.harvest.npcs.HFNPCs;
-import joshie.harvest.api.npc.NPC;
 import joshie.harvest.npcs.NPCHelper;
 import joshie.harvest.town.TownHelper;
 import net.minecraft.entity.EntityAgeable;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
@@ -98,7 +97,7 @@ public abstract class EntityNPC<E extends EntityNPC> extends EntityAgeable imple
     public void setPath(TaskElement... tasks) {}
 
     @Override
-    public EntityLiving getAsEntity() {
+    public EntityAgeable getAsEntity() {
         return this;
     }
 

@@ -4,6 +4,7 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.cooking.Recipe;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.api.quests.TargetType;
+import joshie.harvest.core.HFCore;
 import joshie.harvest.core.helpers.HolderHelper;
 import joshie.harvest.core.helpers.NBTHelper;
 import joshie.harvest.core.network.PacketHandler;
@@ -78,7 +79,16 @@ public class TrackingServer extends Tracking {
     }
 
     public long newDay() {
-        long sold = 0; //Loop through the to ship, get the money and remove them
+        //Sync the information to the client
+        if (HFCore.DISPLAY_SHIPPED_LIST) {
+            EntityPlayerMP player = master.getAndCreatePlayer();
+            if (player != null) {
+                PacketHandler.sendToClient(new PacketRenderSold(toBeShipped), player);
+            }
+        }
+
+        //Loop through the to ship, get the money and remove them
+        long sold = 0;
         Iterator<StackSold> forSale = toBeShipped.iterator();
         while (forSale.hasNext()) {
             StackSold stack = forSale.next();

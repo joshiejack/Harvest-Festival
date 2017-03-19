@@ -193,17 +193,14 @@ public class BlockStorage extends BlockHFEnumRotatableTile<BlockStorage, Storage
     @SuppressWarnings("ConstantConditions")
     public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity) {
         Storage storage = getEnumFromState(state);
-        if (storage == SHIPPING && entity instanceof EntityItem) {
+        if (storage == SHIPPING && entity instanceof EntityItem && !world.isRemote) {
             EntityItem item = ((EntityItem)entity);
             UUID uuid = getPlayer(item, world, pos);
             if (uuid != null) {
                 ItemStack stack = item.getEntityItem();
                 long sell = shipping.getSellValue(stack);
                 if (sell > 0) {
-                    if (!world.isRemote) {
-                        HFTrackers.<PlayerTrackerServer>getPlayerTracker(world, uuid).getTracking().addForShipping(StackHelper.toStack(stack, 1));
-                    }
-
+                    HFTrackers.<PlayerTrackerServer>getPlayerTracker(world, uuid).getTracking().addForShipping(StackHelper.toStack(stack, 1));
                     stack.splitStack(1);
                     if (stack.stackSize <= 0) {
                         item.setDead();

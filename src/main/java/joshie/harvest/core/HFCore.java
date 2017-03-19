@@ -126,10 +126,12 @@ public class HFCore {
     public static boolean DEBUG_MODE;
     public static boolean SLEEP_ANYTIME;
     public static boolean NO_TICK_OFFLINE;
+    public static boolean DISPLAY_SHIPPED_LIST;
 
     public static void configure() {
         DEBUG_MODE = getBoolean("Debug Mode", false, "Enabling this adds extra information to items, when you have f3 debug mode on");
         SLEEP_ANYTIME = getBoolean("Sleep any time of day", true);
         NO_TICK_OFFLINE = getBoolean("Server doesn't update time when no players online", false);
+        DISPLAY_SHIPPED_LIST = getBoolean("Display a list of items that were shipped", true, "Needs to be enabled on the client and the server to work");
     }
 }

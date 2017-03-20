@@ -13,6 +13,7 @@ public class GiftsJamie extends Gifts {
     public GiftsJamie() {
         stackRegistry.register(HFMining.MATERIALS.getStackFromEnum(Material.ALEXANDRITE), Quality.AWESOME);
         stackRegistry.register(HFMining.MATERIALS.getStackFromEnum(Material.PINK_DIAMOND), Quality.AWESOME);
+        stackRegistry.register(HFMining.MATERIALS.getStackFromEnum(Material.MYTHIC), Quality.GOOD);
         categoryRegistry.put(MONSTER, Quality.GOOD);
         categoryRegistry.put(FLOWER, Quality.DECENT);
         categoryRegistry.put(COOKING, Quality.DECENT);

@@ -22,6 +22,8 @@ public class GiftsGoddess extends Gifts {
         categoryRegistry.put(PLANT, Quality.BAD);
         stackRegistry.register(HFCooking.MEAL.getStackFromEnum(Meal.JAM_STRAWBERRY), Quality.GOOD);
         stackRegistry.register(HFCooking.MEAL.getStackFromEnum(Meal.MILK_STRAWBERRY), Quality.GOOD);
+        stackRegistry.register(HFFishing.JUNK.getStackFromEnum(Junk.BONES), Quality.TERRIBLE);
+        stackRegistry.register(HFFishing.JUNK.getStackFromEnum(Junk.CAN), Quality.TERRIBLE);
         stackRegistry.register(HFFishing.JUNK.getStackFromEnum(Junk.BOOT), Quality.TERRIBLE);
     }
 }

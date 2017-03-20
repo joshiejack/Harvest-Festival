@@ -1,6 +1,6 @@
 package joshie.harvest.npcs.gift;
 
-import joshie.harvest.mining.HFMining;
+import joshie.harvest.api.core.Ore;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 
@@ -16,7 +16,7 @@ public class GiftsJade extends Gifts {
         categoryRegistry.put(HERB, Quality.GOOD);
         categoryRegistry.put(JUNK, Quality.DISLIKE);
         categoryRegistry.put(MINERAL, Quality.BAD);
-        categoryRegistry.put(BUILDING, Quality.TERRIBLE);
-        stackRegistry.register(HFMining.MATERIALS, Quality.TERRIBLE);
+        stackRegistry.register(Ore.of("stone"), Quality.TERRIBLE);
+        stackRegistry.register(Ore.of("logWood"), Quality.TERRIBLE);
     }
 }

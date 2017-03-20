@@ -1,10 +1,12 @@
 package joshie.harvest.npcs.gift;
 
 import joshie.harvest.api.core.Ore;
+import joshie.harvest.cooking.item.ItemMeal.Meal;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
 import static joshie.harvest.api.npc.gift.GiftCategory.*;
+import static joshie.harvest.cooking.HFCooking.MEAL;
 
 @SuppressWarnings("unused")
 public class GiftsDaniel extends Gifts {
@@ -14,8 +16,11 @@ public class GiftsDaniel extends Gifts {
         categoryRegistry.put(MINERAL, Quality.GOOD);
         categoryRegistry.put(MONSTER, Quality.DECENT);
         categoryRegistry.put(MAGIC, Quality.DISLIKE);
-        stackRegistry.register(new ItemStack(Items.COOKED_FISH, 1, 0), Quality.BAD);
-        stackRegistry.register(new ItemStack(Items.COOKED_FISH, 1, 1), Quality.BAD);
-        categoryRegistry.put(FISH, Quality.TERRIBLE);
+        categoryRegistry.put(FISH, Quality.BAD);
+        stackRegistry.register(new ItemStack(Items.COOKED_FISH, 1, 0), Quality.TERRIBLE);
+        stackRegistry.register(new ItemStack(Items.COOKED_FISH, 1, 1), Quality.TERRIBLE);
+        stackRegistry.register(MEAL.getStackFromEnum(Meal.FISH_GRILLED), Quality.TERRIBLE);
+        stackRegistry.register(MEAL.getStackFromEnum(Meal.FISHSTICKS), Quality.TERRIBLE);
+        stackRegistry.register(MEAL.getStackFromEnum(Meal.STEW_FISH), Quality.TERRIBLE);
     }
 }

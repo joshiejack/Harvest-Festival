@@ -77,6 +77,7 @@ public class HFMining {
         registerTiles(TileElevator.class);
         LootConditionManager.registerCondition(new From.Serializer());
         LootConditionManager.registerCondition(new Between.Serializer());
+        LootConditionManager.registerCondition(new Between100.Serializer());
         LootConditionManager.registerCondition(new EndsIn.Serializer());
         LootConditionManager.registerCondition(new Exact.Serializer());
         LootConditionManager.registerCondition(new MultipleOf.Serializer());

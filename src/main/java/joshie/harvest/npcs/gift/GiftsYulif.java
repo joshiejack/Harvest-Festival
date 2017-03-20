@@ -20,6 +20,7 @@ public class GiftsYulif extends Gifts {
         categoryRegistry.put(VEGETABLE, Quality.BAD);
         categoryRegistry.put(PLANT, Quality.BAD);
         stackRegistry.register(Ore.of("cropCarrot"), Quality.TERRIBLE);
+        stackRegistry.register(Ore.of("cropPotato"), Quality.TERRIBLE);
         stackRegistry.register(Ore.of("cropWheat"), Quality.TERRIBLE);
     }
 }

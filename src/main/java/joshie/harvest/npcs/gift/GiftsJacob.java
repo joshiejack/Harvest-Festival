@@ -4,6 +4,7 @@ import joshie.harvest.api.core.Ore;
 import joshie.harvest.fishing.HFFishing;
 import joshie.harvest.fishing.item.ItemFish.Fish;
 import joshie.harvest.mining.HFMining;
+import joshie.harvest.mining.item.ItemMaterial.Material;
 
 import static joshie.harvest.api.npc.gift.GiftCategory.*;
 
@@ -19,7 +20,6 @@ public class GiftsJacob extends Gifts {
         categoryRegistry.put(JUNK, Quality.DISLIKE);
         categoryRegistry.put(FLOWER, Quality.DISLIKE);
         categoryRegistry.put(MINERAL, Quality.BAD);
-        categoryRegistry.put(GEM, Quality.BAD);
-        stackRegistry.register(HFMining.MATERIALS, Quality.TERRIBLE);
+        stackRegistry.register(HFMining.MATERIALS.getStackFromEnum(Material.JUNK), Quality.TERRIBLE);
     }
 }

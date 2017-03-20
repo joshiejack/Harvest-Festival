@@ -38,6 +38,8 @@ import net.minecraftforge.oredict.OreDictionary;
 import org.apache.commons.lang3.text.WordUtils;
 
 import static joshie.harvest.core.helpers.ConfigHelper.getBoolean;
+import static joshie.harvest.core.helpers.ConfigHelper.getInteger;
+import static joshie.harvest.core.helpers.RegistryHelper.registerSounds;
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 import static joshie.harvest.core.lib.LoadOrder.HFCORE;
 import static net.minecraft.block.BlockDoublePlant.EnumPlantType.*;
@@ -60,6 +62,7 @@ public class HFCore {
         LootFunctionManager.registerFunction(new SetSizeable.Serializer());
         RegistryHelper.registerTiles(TileShipping.class, TileMailbox.class, TilePlate.class, TileBasket.class, TileFestivalPot.class);
         registerModEntity(EntityBasket.class, "basket", EntityIDs.BASKET, HarvestFestival.instance, 150, 3, true);
+        registerSounds("kerching");
         GODDESS.setBlock(GODDESS_WATER);
 
         //Register Flowers
@@ -127,11 +130,13 @@ public class HFCore {
     public static boolean SLEEP_ANYTIME;
     public static boolean NO_TICK_OFFLINE;
     public static boolean DISPLAY_SHIPPED_LIST;
+    public static int DISPLAY_SHIPPED_TICKS_ON_SCREEN;
 
     public static void configure() {
         DEBUG_MODE = getBoolean("Debug Mode", false, "Enabling this adds extra information to items, when you have f3 debug mode on");
         SLEEP_ANYTIME = getBoolean("Sleep any time of day", true);
         NO_TICK_OFFLINE = getBoolean("Server doesn't update time when no players online", false);
-        DISPLAY_SHIPPED_LIST = getBoolean("Display a list of items that were shipped", true, "Needs to be enabled on the client and the server to work");
+        DISPLAY_SHIPPED_LIST = getBoolean("Shipped items list > Enabled", true, "Will display a list of items and how much they were sold for when they day changes. Needs to be enabled on the client and the server to work");
+        DISPLAY_SHIPPED_TICKS_ON_SCREEN = getInteger("Shipped items list > Ticks Displayed", 500, "This is the number of ticks the list will stay on the screen for, before scrolling off");
     }
 }

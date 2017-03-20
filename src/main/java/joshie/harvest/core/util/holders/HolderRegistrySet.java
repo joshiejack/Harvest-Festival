@@ -44,7 +44,7 @@ public class HolderRegistrySet {
             }
         } else if (object instanceof Ore) {
             Ore ore = (Ore) object;
-            OreHolder holder = OreHolder.of(ore.getOre());
+            OreHolder holder = OreHolder.of(ore.getOre(), ore.getType());
             for (ItemStack stack: OreDictionary.getOres(ore.getOre())) {
                 unregisterHolder(stack.getItem(), holder);
             }
@@ -68,7 +68,7 @@ public class HolderRegistrySet {
             }
         } else if (object instanceof Ore) {
             Ore ore = (Ore) object;
-            OreHolder holder = OreHolder.of(ore.getOre());
+            OreHolder holder = OreHolder.of(ore.getOre(), ore.getType());
             for (ItemStack stack: OreDictionary.getOres(ore.getOre())) {
                 registerHolder(stack.getItem(), holder);
             }

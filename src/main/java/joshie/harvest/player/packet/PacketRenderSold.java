@@ -3,12 +3,15 @@ package joshie.harvest.player.packet;
 import io.netty.buffer.ByteBuf;
 import joshie.harvest.core.HFCore;
 import joshie.harvest.core.helpers.NBTHelper;
+import joshie.harvest.core.lib.HFSounds;
 import joshie.harvest.core.network.Packet;
 import joshie.harvest.core.network.PenguinPacket;
 import joshie.harvest.player.tracking.StackSold;
 import joshie.harvest.player.tracking.TrackingRenderer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 
@@ -39,6 +42,9 @@ public class PacketRenderSold extends PenguinPacket {
 
     @Override
     public void handlePacket(EntityPlayer player) {
-        if (HFCore.DISPLAY_SHIPPED_LIST) MinecraftForge.EVENT_BUS.register(new TrackingRenderer(sold));
+        if (HFCore.DISPLAY_SHIPPED_LIST) {
+            player.worldObj.playSound(player, new BlockPos(player), HFSounds.SHIPPED, SoundCategory.PLAYERS, player.worldObj.rand.nextFloat() * 0.25F + 6F, player.worldObj.rand.nextFloat() * 1.0F + 0.5F);
+            MinecraftForge.EVENT_BUS.register(new TrackingRenderer(sold));
+        }
     }
 }

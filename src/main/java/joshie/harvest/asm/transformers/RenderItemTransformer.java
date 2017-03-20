@@ -47,6 +47,7 @@ public class RenderItemTransformer extends AbstractASM {
                     }
                 };
             }
+
             return visitor;
         }
     }

@@ -2,24 +2,30 @@ package joshie.harvest.fishing;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.Season;
+import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.util.annotations.HFEvents;
+import joshie.harvest.knowledge.gui.stats.CollectionHelper;
 import joshie.harvest.town.BuildingLocations;
 import joshie.harvest.town.TownHelper;
 import joshie.harvest.town.data.TownData;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent.RightClickItem;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.HashMap;
 
 @HFEvents
 public class FishingHelper {
-    static final HashMap<Pair<Season, WaterType>, ResourceLocation> FISHING_LOOT = new HashMap<>();
+    public static final HashMap<Pair<Season, WaterType>, ResourceLocation> FISHING_LOOT = new HashMap<>();
 
     public static boolean isWater(World world, BlockPos... positions) {
         for (BlockPos pos: positions) {
@@ -27,6 +33,12 @@ public class FishingHelper {
         }
 
         return true;
+    }
+
+    public static void track(ItemStack itemstack, EntityPlayer angler) {
+        if (CollectionHelper.isInFishCollection(itemstack)) {
+            HFTrackers.getPlayerTrackerFromPlayer(angler).getTracking().addAsObtained(itemstack);
+        }
     }
 
     public enum WaterType {
@@ -52,5 +64,10 @@ public class FishingHelper {
 
     public static ResourceLocation getFishingTable(World world, BlockPos pos) {
         return FISHING_LOOT.get(getLocation(world, pos));
+    }
+
+    @SubscribeEvent
+    public void onItemRightClick(RightClickItem event) {
+
     }
 }

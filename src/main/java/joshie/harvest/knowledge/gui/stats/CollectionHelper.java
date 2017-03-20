@@ -1,17 +1,29 @@
 package joshie.harvest.knowledge.gui.stats;
 
 import joshie.harvest.api.cooking.Recipe;
-import joshie.harvest.core.helpers.InventoryHelper;
+import joshie.harvest.api.core.Ore;
+import joshie.harvest.core.util.holders.HolderRegistrySet;
 import joshie.harvest.mining.HFMining;
 import net.minecraft.item.ItemStack;
 
+import static joshie.harvest.api.core.MatchType.PREFIX;
+
 public class CollectionHelper {
+    public static final HolderRegistrySet FISH = new HolderRegistrySet();
+    public static final HolderRegistrySet ORE = new HolderRegistrySet();
+    static {
+        FISH.register(Ore.of("fish"));
+        ORE.register(HFMining.MATERIALS);
+        ORE.register(Ore.of("ore").setType(PREFIX));
+        ORE.register(Ore.of("gem").setType(PREFIX));
+    }
+
     public static boolean isInFishCollection(ItemStack stack) {
-        return InventoryHelper.isOreName(stack, "fish");
+        return FISH.contains(stack);
     }
 
     public static boolean isInMiningCollection(ItemStack stack) {
-        return stack.getItem() == HFMining.MATERIALS || InventoryHelper.startsWith(stack, "ore") || InventoryHelper.startsWith(stack, "gem");
+        return ORE.contains(stack);
     }
 
     public static boolean isInCookingCollection(ItemStack stack) {

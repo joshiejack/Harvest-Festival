@@ -9,6 +9,8 @@ import net.minecraftforge.oredict.OreDictionary;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.List;
 
 import static joshie.harvest.core.helpers.InventoryHelper.SearchType.*;
 
@@ -190,9 +192,60 @@ public class InventoryHelper {
         return false;
     }
 
+    public static List<ItemStack> getStarts(String ore) {
+        List<ItemStack> list = new ArrayList<>();
+        for (String name: OreDictionary.getOreNames()) {
+            if (name.startsWith(ore)) list.addAll(OreDictionary.getOres(name));
+        }
+
+        return list;
+    }
+
+    public static List<ItemStack> getEnds(String ore) {
+        List<ItemStack> list = new ArrayList<>();
+        for (String name: OreDictionary.getOreNames()) {
+            if (name.endsWith(ore)) list.addAll(OreDictionary.getOres(name));
+        }
+
+        return list;
+    }
+
+    public static List<ItemStack> getContains(String ore) {
+        List<ItemStack> list = new ArrayList<>();
+        for (String name: OreDictionary.getOreNames()) {
+            if (name.contains(ore)) list.addAll(OreDictionary.getOres(name));
+        }
+
+        return list;
+    }
+
     public static boolean startsWith(ItemStack stack, String... ore) {
         for (String name: ore) {
             if (startsWith(stack, name)) return true;
+        }
+
+        return false;
+    }
+
+    public static boolean endsWith(ItemStack stack, String ore) {
+        int[] ids = OreDictionary.getOreIDs(stack);
+        for (int i: ids) {
+            String name = OreDictionary.getOreName(i);
+            if (name.endsWith(ore)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public static boolean contains(ItemStack stack, String ore) {
+        int[] ids = OreDictionary.getOreIDs(stack);
+        for (int i: ids) {
+            String name = OreDictionary.getOreName(i);
+            if (name.contains(ore)) {
+                return true;
+            }
         }
 
         return false;

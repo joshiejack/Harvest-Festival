@@ -21,5 +21,6 @@
   "tree_chop": { "category": "players", "sounds":[
     "harvestfestival:tree1", "harvestfestival:tree2", "harvestfestival:tree3"
   ], "subtitle": "harvestfestival.subtitle.chop" },
-  "tree_fall": { "category": "neutral", "sounds":["harvestfestival:tree_fall"], "subtitle": "harvestfestival.subtitle.fall" }
+  "tree_fall": { "category": "neutral", "sounds":["harvestfestival:tree_fall"], "subtitle": "harvestfestival.subtitle.fall" },
+  "kerching": { "category": "player", "sounds":["harvestfestival:kerching"], "subtitle": "harvestfestival.subtitle.kerching" }
 }

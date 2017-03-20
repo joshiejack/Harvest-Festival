@@ -16,8 +16,7 @@ import java.text.NumberFormat;
 import java.util.Locale;
 import java.util.Set;
 
-import static org.lwjgl.opengl.GL11.GL_ONE_MINUS_SRC_ALPHA;
-import static org.lwjgl.opengl.GL11.GL_SRC_ALPHA;
+import static joshie.harvest.core.HFCore.DISPLAY_SHIPPED_TICKS_ON_SCREEN;
 
 @SideOnly(Side.CLIENT)
 public class TrackingRenderer {
@@ -43,7 +42,7 @@ public class TrackingRenderer {
         ticker++;
         if (ticker >= 2) {
             if (yOffset + 1 >= sold.size() * 20) {
-                if (ticker >= 500) {
+                if (ticker >= DISPLAY_SHIPPED_TICKS_ON_SCREEN) {
                     ticker = 0; //Reset
                     return true;
                 }
@@ -74,9 +73,6 @@ public class TrackingRenderer {
             int maxHeight = event.getResolution().getScaledHeight();
             Minecraft mc = MCClientHelper.getMinecraft();
             GlStateManager.pushMatrix();
-            GlStateManager.enableBlend();
-            GlStateManager.blendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-            GlStateManager.color(1F, 1F, 1F, 0.1F);
             int y = 0;
             int currentY = maxHeight + (20 * sold.size()) - yOffset;
             for (StackSold stack: sold) {

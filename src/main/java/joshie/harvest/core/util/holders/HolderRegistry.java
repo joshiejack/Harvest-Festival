@@ -26,7 +26,7 @@ public class HolderRegistry<R> {
         } else if (object instanceof Mod) {
             registry.put(ModHolder.of(((Mod) object).getMod()), r);
         } else if (object instanceof Ore) {
-            registry.put(OreHolder.of(((Ore) object).getOre()), r);
+            registry.put(OreHolder.of(((Ore) object).getOre(), ((Ore) object).getType()), r);
         }
     }
 

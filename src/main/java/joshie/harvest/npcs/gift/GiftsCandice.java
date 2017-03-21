@@ -23,6 +23,7 @@ public class GiftsCandice extends Gifts {
         stackRegistry.register(HFCooking.MEAL.getStackFromEnum(Meal.LATTE_VEGETABLE), Quality.AWESOME);
         stackRegistry.register(Items.MILK_BUCKET, Quality.AWESOME);
         categoryRegistry.put(ANIMAL, Quality.GOOD);
+        categoryRegistry.put(FLOWER, Quality.DECENT);
         categoryRegistry.put(SWEET, Quality.DISLIKE);
         categoryRegistry.put(HERB, Quality.DISLIKE);
         categoryRegistry.put(FRUIT, Quality.BAD);

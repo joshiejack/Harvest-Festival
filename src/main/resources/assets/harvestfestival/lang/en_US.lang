@@ -130,14 +130,14 @@ harvestfestival.crop.tutorial.turnip=Hardy Turnip
 harvestfestival.crop.banana=Banana
 harvestfestival.crop.orange=Orange
 harvestfestival.crop.peach=Peach
-harvestfestival.crop.grape=Grapes
+harvestfestival.crop.grape=Grape
 harvestfestival.crop.hemp.tooltip=Requires light level 12+
 
 #Trees
 ##Fruit
 harvestfestival.fruit.apple=Harvestable Apple
 harvestfestival.fruit.banana=Harvestable Banana
-harvestfestival.fruit.grape=Harvestable Grapes
+harvestfestival.fruit.grape=Harvestable Grape
 harvestfestival.fruit.orange=Harvestable Orange
 harvestfestival.fruit.peach=Harvestable Peach
 ##Leaves
@@ -1468,7 +1468,7 @@ harvestfestival.npc.candice.gift.good=You know how to make a girl smile don't yo
 harvestfestival.npc.candice.gift.decent=Thanks beautiful.
 harvestfestival.npc.candice.gift.dislike=Umm, It will do.
 harvestfestival.npc.candice.gift.bad=Umm, I'm not quite sure this is what I wanted.
-harvestfestival.npc.candice.gift.terrible=I cannot belive you would ever give me this. Do you not like me?
+harvestfestival.npc.candice.gift.terrible=I cannot believe you would ever give me this. Do you not like me?
 harvestfestival.npc.candice.festival.chicken1=Why are you talking to me? Ashlee is the one to speak to about chickens!
 harvestfestival.npc.candice.festival.chicken2=Milk. Maid. Not chicken maid. Sheesh.
 harvestfestival.npc.candice.festival.cooking1=Yes, I KNOW milk is used in cooking, but don't you hate the smell while heating it?

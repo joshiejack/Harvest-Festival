@@ -6,9 +6,7 @@ import joshie.harvest.cooking.item.ItemIngredients.Ingredient;
 import joshie.harvest.cooking.item.ItemMeal.Meal;
 import net.minecraft.init.Items;
 
-import static joshie.harvest.api.npc.gift.GiftCategory.HERB;
-import static joshie.harvest.api.npc.gift.GiftCategory.SWEET;
-import static joshie.harvest.api.npc.gift.GiftCategory.VEGETABLE;
+import static joshie.harvest.api.npc.gift.GiftCategory.*;
 import static joshie.harvest.cooking.HFCooking.MEAL;
 
 @SuppressWarnings("unused")
@@ -18,8 +16,14 @@ public class GiftsAbi extends Gifts {
         stackRegistry.register(Items.COOKIE, Quality.AWESOME);
         stackRegistry.register(MEAL.getStackFromEnum(Meal.COOKIES), Quality.AWESOME);
         stackRegistry.register(MEAL.getStackFromEnum(Meal.COOKIES_CHOCOLATE), Quality.AWESOME);
+        stackRegistry.register(Items.SADDLE, Quality.GOOD);
+        stackRegistry.register(Ore.of("cropApple"), Quality.GOOD);
+        stackRegistry.register(Ore.of("cropGrape"), Quality.GOOD);
         categoryRegistry.put(SWEET, Quality.GOOD);
-        categoryRegistry.put(HERB, Quality.DISLIKE);
+        stackRegistry.register(Ore.of("cropPotato"), Quality.DECENT);
+        stackRegistry.register(Ore.of("cropCarrot"), Quality.DECENT);
+        stackRegistry.register(Ore.of("cropCabbage"), Quality.DECENT);
+        categoryRegistry.put(MUSHROOM, Quality.DISLIKE);
         categoryRegistry.put(VEGETABLE, Quality.DISLIKE);
         stackRegistry.register(HFCooking.INGREDIENTS.getStackFromEnum(Ingredient.WINE), Quality.DISLIKE);
         stackRegistry.register(Ore.of("leather"), Quality.BAD);

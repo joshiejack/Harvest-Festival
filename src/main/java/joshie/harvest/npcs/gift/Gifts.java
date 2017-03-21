@@ -1,15 +1,9 @@
 package joshie.harvest.npcs.gift;
 
-import joshie.harvest.animals.HFAnimals;
-import joshie.harvest.animals.item.ItemAnimalProduct.Sizeable;
-import joshie.harvest.api.core.Ore;
-import joshie.harvest.api.core.Size;
 import joshie.harvest.api.npc.gift.GiftCategory;
 import joshie.harvest.api.npc.gift.IGiftHandler;
 import joshie.harvest.core.util.holders.HolderRegistry;
 import joshie.harvest.npcs.NPCHelper;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
 import java.util.EnumMap;
@@ -29,8 +23,11 @@ public class Gifts implements IGiftHandler {
         categoryRegistry.put(VEGETABLE, Quality.DECENT);
         categoryRegistry.put(FRUIT, Quality.DECENT);
         categoryRegistry.put(HERB, Quality.DECENT);
-        categoryRegistry.put(ANIMAL, Quality.DECENT);
+        categoryRegistry.put(MILK, Quality.DECENT);
+        categoryRegistry.put(EGG, Quality.DECENT);
+        categoryRegistry.put(WOOL, Quality.DECENT);
         categoryRegistry.put(KNOWLEDGE, Quality.DECENT);
+        categoryRegistry.put(MUSHROOM, Quality.DECENT);
         categoryRegistry.put(MAGIC, Quality.DECENT);
         categoryRegistry.put(FISH, Quality.DISLIKE);
         categoryRegistry.put(PLANT, Quality.DISLIKE);
@@ -39,17 +36,6 @@ public class Gifts implements IGiftHandler {
         categoryRegistry.put(MONSTER, Quality.BAD);
         categoryRegistry.put(JUNK, Quality.BAD);
     }
-
-    void registerWoolLikeItems(Quality quality) {
-        stackRegistry.register(Blocks.WOOL, quality);
-        stackRegistry.register(Blocks.CARPET, quality);
-        stackRegistry.register(Items.BANNER, quality);
-        stackRegistry.register(Ore.of("string"), quality);
-        stackRegistry.register(HFAnimals.ANIMAL_PRODUCT.getStack(Sizeable.WOOL, Size.SMALL), quality);
-        stackRegistry.register(HFAnimals.ANIMAL_PRODUCT.getStack(Sizeable.WOOL, Size.MEDIUM), quality);
-        stackRegistry.register(HFAnimals.ANIMAL_PRODUCT.getStack(Sizeable.WOOL, Size.LARGE), quality);
-    }
-
 
     public Quality getQuality(ItemStack stack) {
         Quality itemQuality = stackRegistry.getValueOf(stack);

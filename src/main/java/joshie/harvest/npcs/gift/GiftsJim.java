@@ -14,8 +14,11 @@ public class GiftsJim extends Gifts {
         stackRegistry.register(Items.STICK, Quality.AWESOME);
         stackRegistry.register(HFCore.FLOWERS.getStackFromEnum(FlowerType.WEED), Quality.AWESOME);
         categoryRegistry.put(JUNK, Quality.GOOD);
-        categoryRegistry.put(ANIMAL, Quality.GOOD);
+        categoryRegistry.put(MILK, Quality.GOOD);
+        categoryRegistry.put(WOOL, Quality.GOOD);
+        categoryRegistry.put(MEAT, Quality.GOOD);
         categoryRegistry.put(MAGIC, Quality.DISLIKE);
+        categoryRegistry.put(EGG, Quality.DISLIKE);
         categoryRegistry.put(FISH, Quality.BAD);
         categoryRegistry.put(GEM, Quality.BAD);
         stackRegistry.register(Items.EMERALD, Quality.TERRIBLE);

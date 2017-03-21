@@ -40,38 +40,33 @@ public class TileFestivalPot extends TileStand {
         if (categories != null) {
             GiftCategory primary = categories[0];
             switch (primary) {
+                case BUILDING:
+                case MONSTER:
+                case JUNK:
+                    return 1;
+                case GEM:
+                case MINERAL:
+                    return 2;
+                case KNOWLEDGE:
+                case MAGIC:
+                case WOOL:
+                    return 3;
+                case FLOWER:
+                case PLANT:
+                    return 4;
+                case FISH:
+                    return 5;
+                case MEAT:
+                case EGG:
+                case MILK:
+                    return 6;
+                case SWEET:
+                case COOKING:
+                    return 7;
                 case VEGETABLE:
                     return 8;
                 case FRUIT:
                     return 9;
-                case MINERAL:
-                    return 2;
-                case MEAT:
-                    return 6;
-                case ANIMAL:
-                    return 4;
-                case JUNK:
-                    return 1;
-                case FISH:
-                    return 5;
-                case FLOWER:
-                    return 4;
-                case BUILDING:
-                    return 1;
-                case MONSTER:
-                   return 1;
-                case GEM:
-                    return 2;
-                case KNOWLEDGE:
-                    return 3;
-                case PLANT:
-                    return 4;
-                case SWEET:
-                    return 7;
-                case COOKING:
-                    return 7;
-                case MAGIC:
-                    return 3;
                 case HERB:
                     return 10;
             }

@@ -1,6 +1,8 @@
 package joshie.harvest.npcs.gift.init;
 
+import joshie.harvest.api.npc.gift.GiftCategory;
 import joshie.harvest.core.util.annotations.HFLoader;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 
 import static joshie.harvest.api.npc.gift.GiftCategory.*;
@@ -24,7 +26,7 @@ public class HFGiftsVanillaBlocks extends HFGiftsAbstract {
         assignGeneric(LOG2, BUILDING);
         assignGeneric(LEAVES, PLANT);
         assignGeneric(LEAVES2, PLANT);
-        assignGeneric(SPONGE, ANIMAL);
+        assignGeneric(SPONGE, FISH);
         assignGeneric(GLASS, BUILDING);
         assignGeneric(LAPIS_ORE, MINERAL);
         assignGeneric(LAPIS_BLOCK, GEM);
@@ -32,11 +34,11 @@ public class HFGiftsVanillaBlocks extends HFGiftsAbstract {
         assignGeneric(WEB, MONSTER);
         assignGeneric(TALLGRASS, JUNK, PLANT);
         assignGeneric(DEADBUSH, JUNK);
-        assignGeneric(WOOL, ANIMAL);
+        assignGeneric(Blocks.WOOL, GiftCategory.WOOL);
         assignGeneric(YELLOW_FLOWER, FLOWER);
         assignGeneric(RED_FLOWER, FLOWER);
-        assignGeneric(BROWN_MUSHROOM, COOKING);
-        assignGeneric(RED_MUSHROOM, COOKING);
+        assignGeneric(BROWN_MUSHROOM, MUSHROOM);
+        assignGeneric(RED_MUSHROOM, MUSHROOM);
         assignGeneric(GOLD_BLOCK, MINERAL);
         assignGeneric(IRON_BLOCK, MINERAL);
         assignGeneric(STONE_SLAB, JUNK, BUILDING);
@@ -117,8 +119,8 @@ public class HFGiftsVanillaBlocks extends HFGiftsAbstract {
         assignGeneric(QUARTZ_BLOCK, MINERAL, BUILDING);
         assignGeneric(QUARTZ_STAIRS, BUILDING);
         assignGeneric(STAINED_HARDENED_CLAY, BUILDING);
-        assignGeneric(HAY_BLOCK, ANIMAL);
-        assignGeneric(CARPET, BUILDING);
+        assignGeneric(HAY_BLOCK, BUILDING, VEGETABLE);
+        assignGeneric(CARPET, BUILDING, GiftCategory.WOOL);
         assignGeneric(HARDENED_CLAY, BUILDING);
         assignGeneric(COAL_BLOCK, BUILDING);
         assignGeneric(PACKED_ICE, SWEET);

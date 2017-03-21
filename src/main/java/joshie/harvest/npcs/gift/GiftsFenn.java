@@ -19,6 +19,7 @@ public class GiftsFenn extends Gifts {
         stackRegistry.register(Ore.of("vine"), Quality.GOOD);
         stackRegistry.register(Ore.of("treeLeaves"), Quality.GOOD);
         categoryRegistry.put(PLANT, Quality.GOOD);
+        categoryRegistry.put(MUSHROOM, Quality.GOOD);
         categoryRegistry.put(GEM, Quality.DISLIKE);
         categoryRegistry.put(MONSTER, Quality.DISLIKE);
         categoryRegistry.put(JUNK, Quality.DISLIKE);

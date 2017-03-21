@@ -1,5 +1,6 @@
 package joshie.harvest.npcs.gift;
 
+import joshie.harvest.api.core.MatchType;
 import joshie.harvest.api.core.Ore;
 import net.minecraft.init.Items;
 
@@ -10,8 +11,10 @@ public class GiftsJenni extends Gifts {
     public GiftsJenni() {
         stackRegistry.register(Items.CARROT_ON_A_STICK, Quality.AWESOME);
         stackRegistry.register(Ore.of("cropCarrot"), Quality.AWESOME);
-        registerWoolLikeItems(Quality.GOOD);
+        stackRegistry.register(Items.ITEM_FRAME, Quality.GOOD);
         stackRegistry.register(Items.PAINTING, Quality.GOOD);
+        stackRegistry.register(Ore.of("dye").setType(MatchType.PREFIX), Quality.GOOD);
+        categoryRegistry.put(WOOL, Quality.GOOD);
         categoryRegistry.put(VEGETABLE, Quality.GOOD);
         categoryRegistry.put(JUNK, Quality.DISLIKE);
         categoryRegistry.put(BUILDING, Quality.DISLIKE);

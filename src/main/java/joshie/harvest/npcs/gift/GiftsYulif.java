@@ -15,7 +15,8 @@ public class GiftsYulif extends Gifts {
         stackRegistry.register(Items.CAKE, Quality.GOOD);
         categoryRegistry.put(BUILDING, Quality.GOOD);
         categoryRegistry.put(MONSTER, Quality.DISLIKE);
-        categoryRegistry.put(ANIMAL, Quality.DISLIKE);
+        categoryRegistry.put(MILK, Quality.DISLIKE);
+        categoryRegistry.put(EGG, Quality.DISLIKE);
         categoryRegistry.put(FLOWER, Quality.DISLIKE);
         categoryRegistry.put(VEGETABLE, Quality.BAD);
         categoryRegistry.put(PLANT, Quality.BAD);

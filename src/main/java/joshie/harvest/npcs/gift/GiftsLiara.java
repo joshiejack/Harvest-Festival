@@ -18,12 +18,14 @@ public class GiftsLiara extends Gifts {
         categoryRegistry.put(HERB, Quality.GOOD);
         categoryRegistry.put(FRUIT, Quality.GOOD);
         categoryRegistry.put(VEGETABLE, Quality.GOOD);
+        categoryRegistry.put(MUSHROOM, Quality.GOOD);
         categoryRegistry.put(MEAT, Quality.GOOD);
-        categoryRegistry.put(ANIMAL, Quality.GOOD);
+        categoryRegistry.put(EGG, Quality.GOOD);
+        categoryRegistry.put(MILK, Quality.GOOD);
         stackRegistry.register(Ore.of("dyeBrown"), Quality.GOOD);
         categoryRegistry.put(FLOWER, Quality.DISLIKE);
         categoryRegistry.put(GEM, Quality.DISLIKE);
-        registerWoolLikeItems(Quality.BAD);
+        categoryRegistry.put(WOOL, Quality.BAD);
         stackRegistry.register(Ore.of("string"), Quality.TERRIBLE);
         stackRegistry.register(Items.SPIDER_EYE, Quality.TERRIBLE);
         stackRegistry.register(Items.FERMENTED_SPIDER_EYE, Quality.TERRIBLE);

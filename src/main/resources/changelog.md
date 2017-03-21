@@ -96,8 +96,6 @@
   * Can see the birthdays of all the npcs you've met as well as the dates festival are 'expected' to occur (you'll receive letter day before)
 * Added Mailbox
   * NPCs will send letters to invite you to start festivals
-  * NPCs will send letters, sometimes containing gifts
-  * NPCs will sends letter containing tips
 
 ###Mining
 * Fixed cursed tools being unobtainable
@@ -123,7 +121,13 @@
 * Added a few more quests mostly related to friendship with the npcs, that give you things like secret shops or secret notes!
 * Throwing an item in to the goddess pond will now gift her that item, and summon her (instead of just adding RP) (So be careful)
 * Gifting NPCS gifts they don't like won't make them hate you so much
-* Changed relationship maximum to 50,000RP
+* Changed relationship maximum to 50,000RP, as well as the amount of RP you get for each gift type
+    * Awesome from 800 to 1000
+    * Good from 400 to 500
+    * Decent from 300 to 200
+    * Dislike from -400 to -200
+    * Bad from -600 to -400
+    * Terrible from -1000 to -800
 * Disabled the blue feather until i do marriage properly, there's no benefit and it didn't really even work properly
 * Jade will now only give you up to 10 seeds every 5 days
 * Jade will now sometimes give you hardy turnip seeds instead of a normal crop

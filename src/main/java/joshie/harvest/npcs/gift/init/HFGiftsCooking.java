@@ -18,6 +18,7 @@ public class HFGiftsCooking extends HFGiftsAbstract {
     private static final GiftCategory[] FRUITY = new GiftCategory[] { COOKING, FRUIT };
     private static final GiftCategory[] MIXED = new GiftCategory[] { COOKING, FRUIT, VEGETABLE };
     private static final GiftCategory[] HERBS = new GiftCategory[] { COOKING, HERB };
+    private static final GiftCategory[] MUSHROOMS = new GiftCategory[] { COOKING, MUSHROOM };
     private static GiftCategory[] getCategory(Meal meal) {
         switch (meal) {
             case JUICE_TOMATO:
@@ -61,6 +62,9 @@ public class HFGiftsCooking extends HFGiftsAbstract {
             case SANDWICH_HERB:
             case SOUP_HERB:
                 return HERBS;
+            case RICE_MUSHROOM:
+            case RICE_MATSUTAKE:
+                return MUSHROOMS;
             default: return DEFAULT;
         }
     }

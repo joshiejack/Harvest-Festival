@@ -19,8 +19,8 @@ public class HFGiftsVanillaItems extends HFGiftsAbstract {
         assignGeneric(STICK, JUNK);
         assignGeneric(BOWL, JUNK);
         assignGeneric(MUSHROOM_STEW, COOKING);
-        assignGeneric(STRING, ANIMAL);
-        assignGeneric(FEATHER, ANIMAL);
+        assignGeneric(STRING, WOOL);
+        assignGeneric(FEATHER, MEAT);
         assignGeneric(GUNPOWDER, MONSTER);
         assignGeneric(BREAD, COOKING);
         assignGeneric(FLINT, MINERAL);
@@ -29,18 +29,18 @@ public class HFGiftsVanillaItems extends HFGiftsAbstract {
         assignGeneric(PAINTING, BUILDING);
         assignGeneric(GOLDEN_APPLE, FRUIT, MINERAL);
         assignGeneric(SIGN, BUILDING);
-        assignGeneric(SADDLE, ANIMAL);
+        assignGeneric(SADDLE, JUNK);
         assignGeneric(REDSTONE, MINERAL);
         assignGeneric(SNOWBALL, SWEET);
         assignGeneric(LEATHER, MEAT);
-        assignGeneric(MILK_BUCKET, ANIMAL);
+        assignGeneric(MILK_BUCKET, MILK);
         assignGeneric(BRICK, BUILDING);
         assignGeneric(CLAY_BALL, BUILDING);
         assignGeneric(REEDS, PLANT);
         assignGeneric(PAPER, KNOWLEDGE);
         assignGeneric(BOOK, KNOWLEDGE);
         assignGeneric(SLIME_BALL, MONSTER);
-        assignGeneric(EGG, ANIMAL);
+        assignGeneric(Items.EGG, GiftCategory.EGG);
         assignGeneric(COMPASS, KNOWLEDGE);
         assignGeneric(CLOCK, KNOWLEDGE);
         assignGeneric(GLOWSTONE_DUST, MINERAL);
@@ -88,7 +88,7 @@ public class HFGiftsVanillaItems extends HFGiftsAbstract {
         assignGeneric(POISONOUS_POTATO, VEGETABLE, MONSTER);
         assignGeneric(GOLDEN_CARROT, VEGETABLE, MINERAL);
         assignGeneric(SKULL, MONSTER);
-        assignGeneric(CARROT_ON_A_STICK, ANIMAL);
+        assignGeneric(CARROT_ON_A_STICK, JUNK);
         assignGeneric(NETHER_STAR, MONSTER, MAGIC);
         assignGeneric(PUMPKIN_PIE, COOKING);
         assignGeneric(FIREWORKS, MAGIC);
@@ -96,8 +96,8 @@ public class HFGiftsVanillaItems extends HFGiftsAbstract {
         assignGeneric(ENCHANTED_BOOK, MAGIC);
         assignGeneric(NETHERBRICK, BUILDING);
         assignGeneric(QUARTZ, MINERAL);
-        assignGeneric(LEAD, ANIMAL);
-        assignGeneric(NAME_TAG, ANIMAL);
+        assignGeneric(LEAD, JUNK);
+        assignGeneric(NAME_TAG, JUNK);
         assignGeneric(RECORD_13, GEM);
         assignGeneric(RECORD_CAT, GEM);
         assignGeneric(RECORD_BLOCKS, GEM);
@@ -115,5 +115,6 @@ public class HFGiftsVanillaItems extends HFGiftsAbstract {
         assignGeneric(CHORUS_FRUIT, FRUIT);
         assignGeneric(CHORUS_FRUIT_POPPED, FRUIT);
         assignGeneric(BEETROOT_SOUP, COOKING);
+        assignGeneric(BANNER, GiftCategory.WOOL);
     }
 }

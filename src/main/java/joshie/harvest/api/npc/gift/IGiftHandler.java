@@ -13,7 +13,7 @@ public interface IGiftHandler {
 
     /** Quality of the gifts **/
     enum Quality {
-        AWESOME(800), GOOD(500), DECENT(300), DISLIKE(-400), BAD(-600), TERRIBLE(-1000);
+        AWESOME(1000), GOOD(500), DECENT(200), DISLIKE(-200), BAD(-400), TERRIBLE(-800);
 
         private final int points;
 

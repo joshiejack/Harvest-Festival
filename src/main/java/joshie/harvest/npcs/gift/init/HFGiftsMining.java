@@ -12,7 +12,7 @@ import static joshie.harvest.mining.HFMining.MATERIALS;
 public class HFGiftsMining extends HFGiftsAbstract {
     public static void init() {
         assignGeneric(DARK_DROP.getStackFromEnum(DarkDrop.LEATHER), MEAT);
-        assignGeneric(DARK_DROP.getStackFromEnum(DarkDrop.FEATHER), ANIMAL);
+        assignGeneric(DARK_DROP.getStackFromEnum(DarkDrop.FEATHER), MEAT);
         assignGeneric(MATERIALS.getStackFromEnum(Material.JUNK), JUNK);
         assignGeneric(MATERIALS.getStackFromEnum(Material.SILVER), MINERAL);
         assignGeneric(MATERIALS.getStackFromEnum(Material.MYSTRIL), MINERAL);

@@ -13,11 +13,11 @@ import static joshie.harvest.gathering.HFGathering.*;
 @HFLoader(priority = 0)
 public class HFGiftsGathering extends HFGiftsAbstract {
     public static void init() {
-        assignGeneric(NATURE.getStackFromEnum(NaturalBlock.BAMBOO), COOKING, VEGETABLE);
-        assignGeneric(NATURE.getStackFromEnum(NaturalBlock.MATSUTAKE), COOKING);
-        assignGeneric(NATURE.getStackFromEnum(NaturalBlock.CHAMOMILE), COOKING, HERB);
-        assignGeneric(NATURE.getStackFromEnum(NaturalBlock.MINT), COOKING, HERB);
-        assignGeneric(NATURE.getStackFromEnum((NaturalBlock.LAVENDER)), COOKING, HERB);
+        assignGeneric(NATURE.getStackFromEnum(NaturalBlock.BAMBOO), VEGETABLE);
+        assignGeneric(NATURE.getStackFromEnum(NaturalBlock.MATSUTAKE), MUSHROOM);
+        assignGeneric(NATURE.getStackFromEnum(NaturalBlock.CHAMOMILE), HERB);
+        assignGeneric(NATURE.getStackFromEnum(NaturalBlock.MINT), HERB);
+        assignGeneric(NATURE.getStackFromEnum((NaturalBlock.LAVENDER)), HERB);
         assignGeneric(FLOWERS.getStackFromEnum(FlowerType.WEED), JUNK);
         assignGeneric(FLOWERS.getStackFromEnum(FlowerType.GODDESS), FLOWER);
         assignGeneric(FLOWERS.getStackFromEnum(FlowerType.PINKCAT), FLOWER);

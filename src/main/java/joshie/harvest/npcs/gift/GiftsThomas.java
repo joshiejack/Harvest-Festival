@@ -14,6 +14,7 @@ public class GiftsThomas extends Gifts {
         categoryRegistry.put(MEAT, Quality.GOOD);
         categoryRegistry.put(SWEET, Quality.DISLIKE);
         categoryRegistry.put(FLOWER, Quality.DISLIKE);
+        categoryRegistry.put(MUSHROOM, Quality.DISLIKE);
         categoryRegistry.put(MAGIC, Quality.BAD);
         categoryRegistry.put(KNOWLEDGE, Quality.BAD);
         stackRegistry.register(Items.POTIONITEM, Quality.TERRIBLE);

@@ -5,7 +5,6 @@ public enum GiftCategory {
     FRUIT,
     MINERAL,
     MEAT,
-    ANIMAL,
     JUNK,
     FISH,
     FLOWER,
@@ -17,5 +16,9 @@ public enum GiftCategory {
     SWEET,
     COOKING,
     MAGIC,
-    HERB
+    HERB,
+    MUSHROOM,
+    WOOL,
+    EGG,
+    MILK
 }

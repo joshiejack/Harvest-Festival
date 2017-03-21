@@ -18,13 +18,11 @@ public class GiftsCandice extends Gifts {
         stackRegistry.register(HFAnimals.ANIMAL_PRODUCT.getStack(Sizeable.MILK, Size.LARGE), Quality.AWESOME);
         stackRegistry.register(HFCooking.MEAL.getStackFromEnum(Meal.MILK_HOT), Quality.AWESOME);
         stackRegistry.register(HFCooking.MEAL.getStackFromEnum(Meal.MILK_STRAWBERRY), Quality.AWESOME);
-        stackRegistry.register(HFCooking.MEAL.getStackFromEnum(Meal.LATTE_MIX), Quality.AWESOME);
-        stackRegistry.register(HFCooking.MEAL.getStackFromEnum(Meal.LATTE_FRUIT), Quality.AWESOME);
-        stackRegistry.register(HFCooking.MEAL.getStackFromEnum(Meal.LATTE_VEGETABLE), Quality.AWESOME);
         stackRegistry.register(Items.MILK_BUCKET, Quality.AWESOME);
-        categoryRegistry.put(ANIMAL, Quality.GOOD);
+        categoryRegistry.put(MILK, Quality.GOOD);
         stackRegistry.register(Ore.of("cropStrawberry"), Quality.DECENT);
         categoryRegistry.put(FLOWER, Quality.DECENT);
+        categoryRegistry.put(MUSHROOM, Quality.DISLIKE);
         categoryRegistry.put(SWEET, Quality.DISLIKE);
         categoryRegistry.put(HERB, Quality.DISLIKE);
         categoryRegistry.put(FRUIT, Quality.BAD);

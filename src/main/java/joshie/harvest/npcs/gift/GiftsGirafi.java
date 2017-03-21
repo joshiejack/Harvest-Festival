@@ -13,9 +13,14 @@ public class GiftsGirafi extends Gifts {
         stackRegistry.register(Ore.of("cropPotato"), Quality.AWESOME);
         stackRegistry.register(Items.BAKED_POTATO, Quality.AWESOME);
         stackRegistry.register(MEAL.getStackFromEnum(Meal.FRIES_FRENCH), Quality.AWESOME);
-        categoryRegistry.put(ANIMAL, Quality.GOOD);
+        stackRegistry.register(Ore.of("cropTomato"), Quality.GOOD);
+        categoryRegistry.put(WOOL, Quality.GOOD);
         categoryRegistry.put(FLOWER, Quality.DISLIKE);
+        categoryRegistry.put(EGG, Quality.DISLIKE);
         categoryRegistry.put(SWEET, Quality.BAD);
-        registerWoolLikeItems(Quality.TERRIBLE);
+        categoryRegistry.put(MILK, Quality.BAD);
+        stackRegistry.register(Ore.of("cropPumpkin"), Quality.TERRIBLE);
+        stackRegistry.register(Items.PUMPKIN_PIE, Quality.TERRIBLE);
+        stackRegistry.register(MEAL.getStackFromEnum(Meal.STEW_PUMPKIN), Quality.TERRIBLE);
     }
 }

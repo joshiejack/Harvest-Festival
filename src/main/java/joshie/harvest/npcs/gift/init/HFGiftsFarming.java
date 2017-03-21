@@ -8,7 +8,6 @@ import joshie.harvest.api.npc.gift.GiftCategory;
 import joshie.harvest.core.util.annotations.HFLoader;
 
 import static joshie.harvest.animals.HFAnimals.*;
-import static joshie.harvest.api.npc.gift.GiftCategory.ANIMAL;
 import static joshie.harvest.api.npc.gift.GiftCategory.*;
 
 @HFLoader(priority = 0)
@@ -16,10 +15,10 @@ import static joshie.harvest.api.npc.gift.GiftCategory.*;
 public class HFGiftsFarming extends HFGiftsAbstract {
     public static void init() {
         assignGeneric(TREATS, JUNK);
-        registerAllSizes(Sizeable.WOOL, ANIMAL);
-        registerAllSizes(Sizeable.EGG, ANIMAL);
-        registerAllSizes(Sizeable.MILK, ANIMAL);
-        registerAllSizes(Sizeable.MAYONNAISE, ANIMAL, COOKING);
+        registerAllSizes(Sizeable.WOOL, WOOL);
+        registerAllSizes(Sizeable.EGG, EGG);
+        registerAllSizes(Sizeable.MILK, MILK);
+        registerAllSizes(Sizeable.MAYONNAISE, EGG);
     }
 
     private static void registerAllSizes(Sizeable sizeable, GiftCategory... categories) {

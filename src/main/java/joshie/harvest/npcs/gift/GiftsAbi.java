@@ -1,6 +1,8 @@
 package joshie.harvest.npcs.gift;
 
 import joshie.harvest.api.core.Ore;
+import joshie.harvest.cooking.HFCooking;
+import joshie.harvest.cooking.item.ItemIngredients.Ingredient;
 import joshie.harvest.cooking.item.ItemMeal.Meal;
 import net.minecraft.init.Items;
 
@@ -19,6 +21,7 @@ public class GiftsAbi extends Gifts {
         categoryRegistry.put(SWEET, Quality.GOOD);
         categoryRegistry.put(HERB, Quality.DISLIKE);
         categoryRegistry.put(VEGETABLE, Quality.DISLIKE);
+        stackRegistry.register(HFCooking.INGREDIENTS.getStackFromEnum(Ingredient.WINE), Quality.DISLIKE);
         stackRegistry.register(Ore.of("leather"), Quality.BAD);
         stackRegistry.register(Items.MAGMA_CREAM, Quality.TERRIBLE);
         stackRegistry.register(Items.ROTTEN_FLESH, Quality.TERRIBLE);

@@ -73,7 +73,7 @@ public class HFIngredients {
     public static final Ingredient OIL = new Ingredient("oil", 0, 0.2F).setSellValue(ItemIngredients.Ingredient.OIL.getCost()).setFluid(IngredientMappingEvent.OIL);
     public static final Ingredient RICEBALL = new Ingredient("riceball", 1, 0.25F).setSellValue(ItemIngredients.Ingredient.RICEBALL.getCost());
     public static final Ingredient CURRY_POWDER = new Ingredient("curry_powder", 1, 0.2F).setSellValue(ItemIngredients.Ingredient.CURRY_POWDER.getCost());
-    public static final Ingredient DUMPLING_POWDER = new Ingredient("dumpling_powder", 1, 0.2F).setSellValue(ItemIngredients.Ingredient.DUMPLING_POWDER.getCost());
+    //public static final Ingredient DUMPLING_POWDER = new Ingredient("dumpling_powder", 1, 0.2F).setSellValue(ItemIngredients.Ingredient.DUMPLING_POWDER.getCost());
     public static final Ingredient WINE = new Ingredient("wine", 2, 0.8F).setSellValue(ItemIngredients.Ingredient.WINE.getCost()).setFluid(IngredientMappingEvent.WINE);
 
     public static final Ingredient SMALL_EGG = new Ingredient("small_egg", 2, 0.6F);
@@ -200,7 +200,7 @@ public class HFIngredients {
         registerForOre("foodOliveoil", OIL);
         HFApi.cooking.register(INGREDIENTS.getStackFromEnum(ItemIngredients.Ingredient.RICEBALL), RICEBALL);
         HFApi.cooking.register(INGREDIENTS.getStackFromEnum(ItemIngredients.Ingredient.CURRY_POWDER), CURRY_POWDER);
-        HFApi.cooking.register(INGREDIENTS.getStackFromEnum(ItemIngredients.Ingredient.DUMPLING_POWDER), DUMPLING_POWDER);
+        //HFApi.cooking.register(INGREDIENTS.getStackFromEnum(ItemIngredients.Ingredient.DUMPLING_POWDER), DUMPLING_POWDER);
         HFApi.cooking.register(INGREDIENTS.getStackFromEnum(ItemIngredients.Ingredient.WINE), WINE);
 
         //Meals - Real

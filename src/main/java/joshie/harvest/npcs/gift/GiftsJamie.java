@@ -1,6 +1,8 @@
 package joshie.harvest.npcs.gift;
 
 import joshie.harvest.api.HFApi;
+import joshie.harvest.cooking.HFCooking;
+import joshie.harvest.cooking.item.ItemIngredients.Ingredient;
 import joshie.harvest.mining.HFMining;
 import joshie.harvest.mining.item.ItemMaterial.Material;
 import net.minecraft.item.ItemStack;
@@ -14,6 +16,7 @@ public class GiftsJamie extends Gifts {
         stackRegistry.register(HFMining.MATERIALS.getStackFromEnum(Material.ALEXANDRITE), Quality.AWESOME);
         stackRegistry.register(HFMining.MATERIALS.getStackFromEnum(Material.PINK_DIAMOND), Quality.AWESOME);
         stackRegistry.register(HFMining.MATERIALS.getStackFromEnum(Material.MYTHIC), Quality.GOOD);
+        stackRegistry.register(HFCooking.INGREDIENTS.getStackFromEnum(Ingredient.WINE), Quality.GOOD);
         categoryRegistry.put(MONSTER, Quality.GOOD);
         categoryRegistry.put(FLOWER, Quality.DECENT);
         categoryRegistry.put(COOKING, Quality.DECENT);

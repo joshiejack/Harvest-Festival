@@ -1,6 +1,8 @@
 package joshie.harvest.npcs.gift;
 
 import joshie.harvest.api.core.Ore;
+import joshie.harvest.cooking.HFCooking;
+import joshie.harvest.cooking.item.ItemIngredients.Ingredient;
 import joshie.harvest.cooking.item.ItemMeal.Meal;
 
 import static joshie.harvest.api.npc.gift.GiftCategory.*;
@@ -20,6 +22,7 @@ public class GiftsFenn extends Gifts {
         categoryRegistry.put(GEM, Quality.DISLIKE);
         categoryRegistry.put(MONSTER, Quality.DISLIKE);
         categoryRegistry.put(JUNK, Quality.DISLIKE);
+        stackRegistry.register(HFCooking.INGREDIENTS.getStackFromEnum(Ingredient.WINE), Quality.DISLIKE);
         categoryRegistry.put(SWEET, Quality.BAD);
         stackRegistry.register(Ore.of("cropSweetPotato"), Quality.TERRIBLE);
         stackRegistry.register(Ore.of("cropBeetroot"), Quality.TERRIBLE);

@@ -69,7 +69,7 @@ public class HolderRegistrySet {
         } else if (object instanceof Ore) {
             Ore ore = (Ore) object;
             OreHolder holder = OreHolder.of(ore.getOre(), ore.getType());
-            for (ItemStack stack: OreDictionary.getOres(ore.getOre())) {
+            for (ItemStack stack: holder.getMatchingStacks()) {
                 registerHolder(stack.getItem(), holder);
             }
         }

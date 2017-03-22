@@ -17,7 +17,7 @@ public class GiftsGirafi extends Gifts {
         stackRegistry.register(MEAL.getStackFromEnum(Meal.FRIES_FRENCH), Quality.AWESOME);
         stackRegistry.register(Ore.of("cropTomato"), Quality.GOOD);
         categoryRegistry.put(WOOL, Quality.GOOD);
-        categoryRegistry.put(FLOWER, Quality.DISLIKE);
+        categoryRegistry.put(FLOWER, Quality.DECENT);
         categoryRegistry.put(EGG, Quality.DISLIKE);
         stackRegistry.register(INGREDIENTS.getStackFromEnum(Ingredient.CHOCOLATE), Quality.BAD);
         stackRegistry.register(MEAL.getStackFromEnum(Meal.CAKE_CHOCOLATE), Quality.BAD);

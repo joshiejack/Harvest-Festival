@@ -17,6 +17,7 @@ public class GiftsJim extends Gifts {
         categoryRegistry.put(MILK, Quality.GOOD);
         categoryRegistry.put(WOOL, Quality.GOOD);
         categoryRegistry.put(MEAT, Quality.GOOD);
+        stackRegistry.register(Items.RABBIT_FOOT, Quality.GOOD);
         categoryRegistry.put(MAGIC, Quality.DISLIKE);
         categoryRegistry.put(EGG, Quality.DISLIKE);
         categoryRegistry.put(FISH, Quality.BAD);

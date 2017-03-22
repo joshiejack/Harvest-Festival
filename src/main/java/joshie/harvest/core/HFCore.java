@@ -96,7 +96,7 @@ public class HFCore {
     public static void init() {
         HFApi.npc.getGifts().addToBlacklist(Items.BUCKET, Items.LAVA_BUCKET, Items.WATER_BUCKET, Items.FLINT_AND_STEEL, Items.BOW, Items.ARROW, Items.MINECART, Items.CHEST_MINECART, Items.FURNACE_MINECART,
                 Items.BOAT, Items.ACACIA_BOAT, Items.BIRCH_BOAT, Items.DARK_OAK_BOAT, Items.JUNGLE_BOAT, Items.SPRUCE_BOAT, Items.FISHING_ROD, Items.SHEARS, Items.SPAWN_EGG, Items.TNT_MINECART,
-                Items.DIAMOND_HORSE_ARMOR, Items.GOLDEN_HORSE_ARMOR, Items.IRON_HORSE_ARMOR);
+                Items.DIAMOND_HORSE_ARMOR, Items.GOLDEN_HORSE_ARMOR, Items.IRON_HORSE_ARMOR, Items.SPECTRAL_ARROW, Items.TIPPED_ARROW);
     }
 
     @SideOnly(Side.CLIENT)

@@ -14,6 +14,7 @@ public class GiftsJenni extends Gifts {
         stackRegistry.register(Items.ITEM_FRAME, Quality.GOOD);
         stackRegistry.register(Items.PAINTING, Quality.GOOD);
         stackRegistry.register(Ore.of("dye").setType(MatchType.PREFIX), Quality.GOOD);
+        stackRegistry.register(Items.RABBIT_FOOT, Quality.GOOD);
         categoryRegistry.put(WOOL, Quality.GOOD);
         categoryRegistry.put(VEGETABLE, Quality.GOOD);
         categoryRegistry.put(JUNK, Quality.DISLIKE);

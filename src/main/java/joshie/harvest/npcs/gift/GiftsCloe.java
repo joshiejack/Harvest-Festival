@@ -9,7 +9,6 @@ import static joshie.harvest.api.npc.gift.GiftCategory.*;
 public class GiftsCloe extends Gifts {
     public GiftsCloe() {
         stackRegistry.register(Ore.of("bone"), Quality.AWESOME);
-        stackRegistry.register(Items.SKULL, Quality.AWESOME);
         stackRegistry.register(Items.BOOK, Quality.AWESOME);
         stackRegistry.register(Items.ENCHANTED_BOOK, Quality.AWESOME);
         stackRegistry.register(Items.WRITABLE_BOOK, Quality.AWESOME);

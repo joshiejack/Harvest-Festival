@@ -60,7 +60,6 @@ public class TileFestivalPot extends TileStand {
                 case EGG:
                 case MILK:
                     return 6;
-                case SWEET:
                 case COOKING:
                     return 7;
                 case VEGETABLE:

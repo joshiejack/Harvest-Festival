@@ -13,7 +13,6 @@ import static joshie.harvest.cooking.HFCooking.MEAL;
 @HFLoader(priority = 0)
 public class HFGiftsCooking extends HFGiftsAbstract {
     private static final GiftCategory[] DEFAULT = new GiftCategory[] { COOKING };
-    private static final GiftCategory[] SWEETS = new GiftCategory[] { COOKING, SWEET };
     private static final GiftCategory[] VEGGIES = new GiftCategory[] { COOKING, VEGETABLE };
     private static final GiftCategory[] FRUITY = new GiftCategory[] { COOKING, FRUIT };
     private static final GiftCategory[] MIXED = new GiftCategory[] { COOKING, FRUIT, VEGETABLE };
@@ -46,18 +45,6 @@ public class HFGiftsCooking extends HFGiftsAbstract {
             case JAM_GRAPE:
             case JAM_STRAWBERRY:
                 return FRUITY;
-            case COOKIES:
-            case COOKIES_CHOCOLATE:
-            case CAKE_CHOCOLATE:
-            case ICE_CREAM:
-            case BUN_JAM:
-            case CAKE:
-            case CHOCOLATE_HOT:
-            case DOUGHNUT:
-            case PANCAKE:
-            case POPCORN:
-            case FRIES_FRENCH:
-                return SWEETS;
             case SALAD_HERB:
             case SANDWICH_HERB:
             case SOUP_HERB:
@@ -74,7 +61,7 @@ public class HFGiftsCooking extends HFGiftsAbstract {
             assignGeneric(MEAL.getStackFromEnum(meal), getCategory(meal));
         }
 
-        assignGeneric(INGREDIENTS.getStackFromEnum(Ingredient.CHOCOLATE), SWEET);
+        assignGeneric(INGREDIENTS.getStackFromEnum(Ingredient.CHOCOLATE), COOKING);
         assignGeneric(INGREDIENTS.getStackFromEnum(Ingredient.DUMPLING_POWDER), JUNK);
         assignGeneric(INGREDIENTS.getStackFromEnum(Ingredient.CURRY_POWDER), JUNK);
         assignGeneric(INGREDIENTS.getStackFromEnum(Ingredient.WINE), COOKING);

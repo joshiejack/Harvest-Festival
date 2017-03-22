@@ -1,8 +1,11 @@
 package joshie.harvest.npcs.gift;
 
+import joshie.harvest.api.core.Ore;
 import joshie.harvest.cooking.item.ItemMeal.Meal;
 import joshie.harvest.core.HFCore;
 import joshie.harvest.core.block.BlockFlower.FlowerType;
+import joshie.harvest.gathering.HFGathering;
+import joshie.harvest.gathering.block.BlockNature.NaturalBlock;
 import joshie.harvest.mining.HFMining;
 import joshie.harvest.mining.item.ItemMaterial.Material;
 import net.minecraft.init.Blocks;
@@ -21,11 +24,20 @@ import static joshie.harvest.cooking.HFCooking.MEAL;
 @SuppressWarnings("unused")
 public class GiftsTiberius extends Gifts {
     public GiftsTiberius() {
+        stackRegistry.register(MEAL.getStackFromEnum(Meal.DOUGHNUT), Quality.AWESOME);
         categoryRegistry.put(MAGIC, Quality.GOOD);
         categoryRegistry.put(KNOWLEDGE, Quality.GOOD);
         categoryRegistry.put(MONSTER, Quality.GOOD);
-        categoryRegistry.put(SWEET, Quality.BAD);
+        stackRegistry.register(Items.POTIONITEM, Quality.GOOD);
+        stackRegistry.register(Items.RABBIT_FOOT, Quality.GOOD);
+        stackRegistry.register(MEAL.getStackFromEnum(Meal.RICE_BAMBOO), Quality.DISLIKE);
+        stackRegistry.register(MEAL.getStackFromEnum(Meal.SPINACH_BOILED), Quality.DISLIKE);
+        stackRegistry.register(MEAL.getStackFromEnum(Meal.SOUP_HERB), Quality.DISLIKE);
+        stackRegistry.register(MEAL.getStackFromEnum(Meal.SALAD_HERB), Quality.DISLIKE);
         categoryRegistry.put(FLOWER, Quality.BAD);
+        stackRegistry.register(HFGathering.NATURE.getStackFromEnum(NaturalBlock.BAMBOO), Quality.BAD);
+        stackRegistry.register(Ore.of("cropSpinach"), Quality.BAD);
+        stackRegistry.register(Ore.of("cropCabbage"), Quality.BAD);
         stackRegistry.register(MEAL.getStackFromEnum(Meal.DOUGHNUT), Quality.GOOD);
         stackRegistry.register(new ItemStack(Items.DYE, 1, 9), Quality.TERRIBLE);
         stackRegistry.register(HFMining.MATERIALS.getStackFromEnum(Material.SAND_ROSE), Quality.TERRIBLE);

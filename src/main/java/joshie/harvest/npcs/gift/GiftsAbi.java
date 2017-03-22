@@ -19,19 +19,17 @@ public class GiftsAbi extends Gifts {
         stackRegistry.register(Items.SADDLE, Quality.GOOD);
         stackRegistry.register(Ore.of("cropApple"), Quality.GOOD);
         stackRegistry.register(Ore.of("cropGrape"), Quality.GOOD);
-        categoryRegistry.put(SWEET, Quality.GOOD);
         stackRegistry.register(Ore.of("cropPotato"), Quality.DECENT);
         stackRegistry.register(Ore.of("cropCarrot"), Quality.DECENT);
         stackRegistry.register(Ore.of("cropCabbage"), Quality.DECENT);
         categoryRegistry.put(MUSHROOM, Quality.DISLIKE);
         categoryRegistry.put(VEGETABLE, Quality.DISLIKE);
+        stackRegistry.register(Items.RABBIT_FOOT, Quality.DISLIKE);
         stackRegistry.register(HFCooking.INGREDIENTS.getStackFromEnum(Ingredient.WINE), Quality.DISLIKE);
         stackRegistry.register(Ore.of("leather"), Quality.BAD);
-        stackRegistry.register(Items.MAGMA_CREAM, Quality.TERRIBLE);
+        stackRegistry.register(Items.RABBIT_HIDE, Quality.BAD);
         stackRegistry.register(Items.ROTTEN_FLESH, Quality.TERRIBLE);
-        stackRegistry.register(Items.SKULL, Quality.TERRIBLE);
         stackRegistry.register(Ore.of("bone"), Quality.TERRIBLE);
-        stackRegistry.register(Ore.of("slimeball"), Quality.TERRIBLE);
         stackRegistry.register(MEAL.getStackFromEnum(Meal.PORRIDGE), Quality.TERRIBLE);
     }
 }

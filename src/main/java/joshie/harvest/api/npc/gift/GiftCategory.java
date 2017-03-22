@@ -13,7 +13,6 @@ public enum GiftCategory {
     GEM,
     KNOWLEDGE,
     PLANT,
-    SWEET,
     COOKING,
     MAGIC,
     HERB,

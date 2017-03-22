@@ -44,10 +44,10 @@ public class HFGiftsVanillaBlocks extends HFGiftsAbstract {
         assignGeneric(STONE_SLAB, JUNK, BUILDING);
         assignGeneric(BRICK_BLOCK, JUNK, BUILDING);
         assignGeneric(TNT, MONSTER);
-        assignGeneric(BOOKSHELF, KNOWLEDGE);
+        assignGeneric(BOOKSHELF, BUILDING);
         assignGeneric(MOSSY_COBBLESTONE, JUNK, BUILDING);
         assignGeneric(OBSIDIAN, JUNK, BUILDING);
-        assignGeneric(TORCH, KNOWLEDGE);
+        assignGeneric(TORCH, JUNK);
         assignGeneric(OAK_STAIRS, JUNK, BUILDING);
         assignGeneric(CHEST, JUNK, BUILDING);
         assignGeneric(DIAMOND_ORE, MINERAL);
@@ -62,7 +62,7 @@ public class HFGiftsVanillaBlocks extends HFGiftsAbstract {
         assignGeneric(REDSTONE_TORCH, BUILDING);
         assignGeneric(STONE_BUTTON, BUILDING);
         assignGeneric(ICE, MINERAL);
-        assignGeneric(SNOW, SWEET);
+        assignGeneric(SNOW, BUILDING);
         assignGeneric(CACTUS, PLANT);
         assignGeneric(CLAY, BUILDING);
         assignGeneric(OAK_FENCE, BUILDING);
@@ -92,7 +92,7 @@ public class HFGiftsVanillaBlocks extends HFGiftsAbstract {
         assignGeneric(DARK_OAK_FENCE_GATE, BUILDING);
         assignGeneric(BRICK_STAIRS, BUILDING);
         assignGeneric(STONE_BRICK_STAIRS, BUILDING);
-        assignGeneric(MYCELIUM, PLANT);
+        assignGeneric(MYCELIUM, JUNK);
         assignGeneric(WATERLILY, PLANT);
         assignGeneric(NETHER_BRICK, BUILDING);
         assignGeneric(NETHER_BRICK_FENCE, BUILDING);
@@ -123,7 +123,7 @@ public class HFGiftsVanillaBlocks extends HFGiftsAbstract {
         assignGeneric(CARPET, BUILDING, GiftCategory.WOOL);
         assignGeneric(HARDENED_CLAY, BUILDING);
         assignGeneric(COAL_BLOCK, BUILDING);
-        assignGeneric(PACKED_ICE, SWEET);
+        assignGeneric(PACKED_ICE, BUILDING);
         assignGeneric(ACACIA_STAIRS, BUILDING);
         assignGeneric(DARK_OAK_STAIRS, BUILDING);
         assignGeneric(new ItemStack(DOUBLE_PLANT, 1, 0), FLOWER); //Sunflower

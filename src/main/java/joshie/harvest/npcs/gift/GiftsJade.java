@@ -2,6 +2,7 @@ package joshie.harvest.npcs.gift;
 
 import joshie.harvest.api.core.Ore;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
 import static joshie.harvest.api.npc.gift.GiftCategory.*;
@@ -11,6 +12,7 @@ public class GiftsJade extends Gifts {
     public GiftsJade() {
         stackRegistry.register(Blocks.YELLOW_FLOWER, Quality.AWESOME);
         stackRegistry.register(new ItemStack(Blocks.RED_FLOWER, 1, 2), Quality.AWESOME);
+        stackRegistry.register(Items.RABBIT_FOOT, Quality.GOOD);
         categoryRegistry.put(FLOWER, Quality.GOOD);
         categoryRegistry.put(PLANT, Quality.GOOD);
         categoryRegistry.put(HERB, Quality.GOOD);

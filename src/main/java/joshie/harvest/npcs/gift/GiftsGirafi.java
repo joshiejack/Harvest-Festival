@@ -1,10 +1,12 @@
 package joshie.harvest.npcs.gift;
 
 import joshie.harvest.api.core.Ore;
+import joshie.harvest.cooking.item.ItemIngredients.Ingredient;
 import joshie.harvest.cooking.item.ItemMeal.Meal;
 import net.minecraft.init.Items;
 
 import static joshie.harvest.api.npc.gift.GiftCategory.*;
+import static joshie.harvest.cooking.HFCooking.INGREDIENTS;
 import static joshie.harvest.cooking.HFCooking.MEAL;
 
 @SuppressWarnings("unused")
@@ -17,7 +19,10 @@ public class GiftsGirafi extends Gifts {
         categoryRegistry.put(WOOL, Quality.GOOD);
         categoryRegistry.put(FLOWER, Quality.DISLIKE);
         categoryRegistry.put(EGG, Quality.DISLIKE);
-        categoryRegistry.put(SWEET, Quality.BAD);
+        stackRegistry.register(INGREDIENTS.getStackFromEnum(Ingredient.CHOCOLATE), Quality.BAD);
+        stackRegistry.register(MEAL.getStackFromEnum(Meal.CAKE_CHOCOLATE), Quality.BAD);
+        stackRegistry.register(MEAL.getStackFromEnum(Meal.COOKIES_CHOCOLATE), Quality.BAD);
+        stackRegistry.register(MEAL.getStackFromEnum(Meal.CHOCOLATE_HOT), Quality.BAD);
         categoryRegistry.put(MILK, Quality.BAD);
         stackRegistry.register(Ore.of("cropPumpkin"), Quality.TERRIBLE);
         stackRegistry.register(Items.PUMPKIN_PIE, Quality.TERRIBLE);

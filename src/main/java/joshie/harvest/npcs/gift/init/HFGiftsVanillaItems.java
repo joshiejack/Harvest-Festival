@@ -31,7 +31,7 @@ public class HFGiftsVanillaItems extends HFGiftsAbstract {
         assignGeneric(SIGN, BUILDING);
         assignGeneric(SADDLE, JUNK);
         assignGeneric(REDSTONE, MINERAL);
-        assignGeneric(SNOWBALL, SWEET);
+        assignGeneric(SNOWBALL, JUNK);
         assignGeneric(LEATHER, MEAT);
         assignGeneric(MILK_BUCKET, MILK);
         assignGeneric(BRICK, BUILDING);
@@ -54,9 +54,9 @@ public class HFGiftsVanillaItems extends HFGiftsAbstract {
         assignGeneric(new ItemStack(Items.DYE, 1, 11), FLOWER); //Dandelion
         assignGeneric(new ItemStack(Items.DYE, 1, 15), MONSTER); //Bonemeal
         assignGeneric(BONE, MONSTER);
-        assignGeneric(SUGAR, SWEET);
-        assignGeneric(CAKE, SWEET, COOKING);
-        assignGeneric(COOKIE, SWEET, COOKING);
+        assignGeneric(SUGAR, JUNK);
+        assignGeneric(CAKE, COOKING);
+        assignGeneric(COOKIE, COOKING);
         assignGeneric(MAP, KNOWLEDGE);
         assignGeneric(FILLED_MAP, KNOWLEDGE);
         assignGeneric(MELON, FRUIT);
@@ -89,11 +89,11 @@ public class HFGiftsVanillaItems extends HFGiftsAbstract {
         assignGeneric(GOLDEN_CARROT, VEGETABLE, MINERAL);
         assignGeneric(SKULL, MONSTER);
         assignGeneric(CARROT_ON_A_STICK, JUNK);
-        assignGeneric(NETHER_STAR, MONSTER, MAGIC);
         assignGeneric(PUMPKIN_PIE, COOKING);
-        assignGeneric(FIREWORKS, MAGIC);
+        assignGeneric(FIREWORKS, JUNK);
         assignGeneric(FIREWORK_CHARGE, JUNK);
         assignGeneric(ENCHANTED_BOOK, MAGIC);
+        assignGeneric(NETHER_STAR, MAGIC);
         assignGeneric(NETHERBRICK, BUILDING);
         assignGeneric(QUARTZ, MINERAL);
         assignGeneric(LEAD, JUNK);
@@ -116,5 +116,11 @@ public class HFGiftsVanillaItems extends HFGiftsAbstract {
         assignGeneric(CHORUS_FRUIT_POPPED, FRUIT);
         assignGeneric(BEETROOT_SOUP, COOKING);
         assignGeneric(BANNER, GiftCategory.WOOL);
+        assignGeneric(MUTTON, MEAT);
+        assignGeneric(COOKED_MUTTON, MEAT);
+        assignGeneric(COOKED_RABBIT, MEAT);
+        assignGeneric(RABBIT, MEAT);
+        assignGeneric(RABBIT_HIDE, MEAT);
+        assignGeneric(RABBIT_STEW, COOKING);
     }
 }

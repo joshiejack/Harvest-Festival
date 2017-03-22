@@ -9,6 +9,7 @@ import joshie.harvest.cooking.item.ItemMeal.Meal;
 import net.minecraft.init.Items;
 
 import static joshie.harvest.api.npc.gift.GiftCategory.*;
+import static joshie.harvest.cooking.HFCooking.MEAL;
 
 @SuppressWarnings("unused")
 public class GiftsCandice extends Gifts {
@@ -23,7 +24,9 @@ public class GiftsCandice extends Gifts {
         stackRegistry.register(Ore.of("cropStrawberry"), Quality.DECENT);
         categoryRegistry.put(FLOWER, Quality.DECENT);
         categoryRegistry.put(MUSHROOM, Quality.DISLIKE);
-        categoryRegistry.put(SWEET, Quality.DISLIKE);
+        stackRegistry.register(MEAL.getStackFromEnum(Meal.BUN_JAM), Quality.DISLIKE);
+        stackRegistry.register(MEAL.getStackFromEnum(Meal.BREAD_RAISIN), Quality.DISLIKE);
+        stackRegistry.register(MEAL.getStackFromEnum(Meal.BREAD_CURRY), Quality.DISLIKE);
         categoryRegistry.put(HERB, Quality.DISLIKE);
         categoryRegistry.put(FRUIT, Quality.BAD);
         stackRegistry.register(Items.GOLDEN_APPLE, Quality.TERRIBLE);

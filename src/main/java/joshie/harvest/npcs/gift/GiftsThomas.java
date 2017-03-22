@@ -1,10 +1,12 @@
 package joshie.harvest.npcs.gift;
 
 
+import joshie.harvest.cooking.item.ItemMeal.Meal;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 
 import static joshie.harvest.api.npc.gift.GiftCategory.*;
+import static joshie.harvest.cooking.HFCooking.MEAL;
 
 @SuppressWarnings("unused")
 public class GiftsThomas extends Gifts {
@@ -12,7 +14,8 @@ public class GiftsThomas extends Gifts {
         stackRegistry.register(Blocks.TNT, Quality.AWESOME);
         stackRegistry.register(Items.GUNPOWDER, Quality.AWESOME);
         categoryRegistry.put(MEAT, Quality.GOOD);
-        categoryRegistry.put(SWEET, Quality.DISLIKE);
+        stackRegistry.register(MEAL.getStackFromEnum(Meal.DOUGHNUT), Quality.DISLIKE);
+        stackRegistry.register(MEAL.getStackFromEnum(Meal.ICE_CREAM), Quality.DISLIKE);
         categoryRegistry.put(FLOWER, Quality.DISLIKE);
         categoryRegistry.put(MUSHROOM, Quality.DISLIKE);
         categoryRegistry.put(MAGIC, Quality.BAD);

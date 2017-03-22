@@ -20,7 +20,6 @@ public class GiftsJamie extends Gifts {
         categoryRegistry.put(MONSTER, Quality.GOOD);
         categoryRegistry.put(FLOWER, Quality.DECENT);
         categoryRegistry.put(COOKING, Quality.DECENT);
-        categoryRegistry.put(SWEET, Quality.DECENT);
     }
 
 

@@ -62,6 +62,8 @@ public class HFFishing {
         HFApi.shipping.registerSellable(new ItemStack(Items.FISH, 1, 1), 30L);
         HFApi.shipping.registerSellable(new ItemStack(Items.FISH, 1, 2), 50L);
         HFApi.shipping.registerSellable(new ItemStack(Items.FISH, 1, 3), 100L);
+        HFApi.shipping.registerSellable(new ItemStack(Items.COOKED_FISH, 1, 0), 11L);
+        HFApi.shipping.registerSellable(new ItemStack(Items.COOKED_FISH, 1, 1), 34L);
         HFApi.fishing.registerBait(JUNK.getStackFromEnum(Junk.BAIT));
         registerTiles(TileTrap.class, TileHatchery.class);
         FishingAPI.INSTANCE.breeding.register(Ore.of("fish"), 3);

@@ -245,7 +245,7 @@ public class HFShops {
         KITCHEN.addPurchasable(-40, new ItemStack(Items.CHICKEN), 5);
         KITCHEN.addPurchasable(-50, new ItemStack(Items.COOKED_CHICKEN), 5);
         KITCHEN.addPurchasable(-90, new ItemStack(Items.BAKED_POTATO), 5);
-        KITCHEN.addPurchasable(-300, new ItemStack(Items.PUMPKIN_PIE), 2);
+        KITCHEN.addPurchasable(-400, new ItemStack(Items.PUMPKIN_PIE), 2);
         KITCHEN.addPurchasable(-40, new ItemStack(Items.RABBIT), 4);
         KITCHEN.addPurchasable(-50, new ItemStack(Items.COOKED_RABBIT), 5);
         KITCHEN.addPurchasable(-250, new ItemStack(Items.RABBIT_FOOT), 2);

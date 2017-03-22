@@ -38,7 +38,6 @@ public class GiftsTiberius extends Gifts {
         stackRegistry.register(HFGathering.NATURE.getStackFromEnum(NaturalBlock.BAMBOO), Quality.BAD);
         stackRegistry.register(Ore.of("cropSpinach"), Quality.BAD);
         stackRegistry.register(Ore.of("cropCabbage"), Quality.BAD);
-        stackRegistry.register(MEAL.getStackFromEnum(Meal.DOUGHNUT), Quality.GOOD);
         stackRegistry.register(new ItemStack(Items.DYE, 1, 9), Quality.TERRIBLE);
         stackRegistry.register(HFMining.MATERIALS.getStackFromEnum(Material.SAND_ROSE), Quality.TERRIBLE);
         stackRegistry.register(HFCore.FLOWERS.getStackFromEnum(FlowerType.PINKCAT), Quality.TERRIBLE);

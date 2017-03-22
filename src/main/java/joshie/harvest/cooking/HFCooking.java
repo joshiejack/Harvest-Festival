@@ -51,6 +51,10 @@ public class HFCooking {
         HFApi.cooking.registerCookingHandler(new RecipeMaker());
         HFApi.cooking.registerKnife(new ItemStack(UTENSILS, 1, KNIFE.ordinal()));
         HFApi.shipping.registerSellable(new ItemStack(Items.BREAD), 60);
+        HFApi.shipping.registerSellable(new ItemStack(Items.PUMPKIN_PIE), 330);
+        HFApi.shipping.registerSellable(new ItemStack(Items.COOKIE), 30);
+        HFApi.shipping.registerSellable(new ItemStack(Items.CAKE), 250);
+        HFApi.shipping.registerSellable(new ItemStack(Items.BEETROOT_SOUP), 380);
         OreDictionary.registerOre("foodOliveoil", INGREDIENTS.getStackFromEnum(Ingredient.OIL));
         OreDictionary.registerOre("foodChocolatebar", INGREDIENTS.getStackFromEnum(Ingredient.CHOCOLATE));
         OreDictionary.registerOre("foodFlour", INGREDIENTS.getStackFromEnum(Ingredient.FLOUR));

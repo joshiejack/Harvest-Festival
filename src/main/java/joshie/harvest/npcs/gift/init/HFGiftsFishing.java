@@ -1,9 +1,8 @@
 package joshie.harvest.npcs.gift.init;
 
-import joshie.harvest.api.npc.gift.GiftCategory;
+import joshie.harvest.api.core.Ore;
 import joshie.harvest.core.util.annotations.HFLoader;
 import joshie.harvest.fishing.HFFishing;
-import joshie.harvest.fishing.item.ItemFish.Fish;
 import joshie.harvest.fishing.item.ItemJunk.Junk;
 
 import static joshie.harvest.api.npc.gift.GiftCategory.*;
@@ -17,8 +16,5 @@ public class HFGiftsFishing extends HFGiftsAbstract {
         assignGeneric(HFFishing.JUNK.getStackFromEnum(Junk.CAN), JUNK);
         assignGeneric(HFFishing.JUNK.getStackFromEnum(Junk.FOSSIL), KNOWLEDGE);
         assignGeneric(HFFishing.JUNK.getStackFromEnum(Junk.TREASURE), GEM);
-        for (Fish fish: Fish.values()) {
-            assignGeneric(HFFishing.FISH.getStackFromEnum(fish), GiftCategory.FISH);
-        }
     }
 }

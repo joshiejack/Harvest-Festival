@@ -23,11 +23,11 @@ public interface IGiftRegistry {
      *      @see joshie.harvest.api.core.Mod
      *      @see joshie.harvest.api.core.Ore
      **/
-    void setCategories(Object object, GiftCategory... categories);
+    void setCategory(Object object, GiftCategory categories);
 
     /** Returns whether this stack is of a specific GiftCategory
      *  @param categories     the categories to check
      *  @param stack         the item to check
      *  @return true if the stack is of the category */
-    boolean isGiftType(ItemStack stack, GiftCategory... categories);
+    boolean isGiftType(ItemStack stack, GiftCategory categories);
 }

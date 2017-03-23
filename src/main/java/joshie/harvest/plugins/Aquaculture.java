@@ -14,6 +14,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
 
 import javax.annotation.Nonnull;
 
+import static joshie.harvest.core.helpers.RegistryHelper.registerOreIfNotExists;
 import static joshie.harvest.shops.HFShops.BAITSHOP;
 
 @ObjectHolder("Aquaculture")
@@ -76,6 +77,7 @@ public class Aquaculture {
             ItemStack stack = new ItemStack(fish, 1, i);
             HFApi.fishing.registerForFishingCollection(stack);
             if (isFish(i)) {
+                registerOreIfNotExists("fish", stack);
                 HFApi.fishing.registerAsBreedable(stack, 3);
                 HFApi.cooking.register(stack, fishIngredient);
             } else HFApi.fishing.registerAsBreedable(stack, 5);
@@ -93,6 +95,7 @@ public class Aquaculture {
                 return (date.getYear() >= 1 || date.getSeason().ordinal() >= 1);
             }
         });
+
         BAITSHOP.addPurchasable(new PurchasableMaterials(1500L, new ItemStack(iron_fishing_rod), new RequirementOreWrapper("ingotIron", 1)){
             @Override
             public boolean canList(@Nonnull World world, @Nonnull EntityPlayer player) {
@@ -100,6 +103,7 @@ public class Aquaculture {
                 return (date.getYear() >= 1 || date.getSeason().ordinal() >= 2);
             }
         });
+
         BAITSHOP.addPurchasable(new PurchasableMaterials(5000L, new ItemStack(diamond_fishing_rod), new RequirementOreWrapper("gemDiamond", 1)){
             @Override
             public boolean canList(@Nonnull World world, @Nonnull EntityPlayer player) {

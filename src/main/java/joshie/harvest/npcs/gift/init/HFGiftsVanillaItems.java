@@ -1,5 +1,7 @@
 package joshie.harvest.npcs.gift.init;
 
+import joshie.harvest.api.core.MatchType;
+import joshie.harvest.api.core.Ore;
 import joshie.harvest.api.npc.gift.GiftCategory;
 import joshie.harvest.core.util.annotations.HFLoader;
 import net.minecraft.init.Items;
@@ -13,47 +15,44 @@ public class HFGiftsVanillaItems extends HFGiftsAbstract {
     public static void init() {
         assignGeneric(APPLE, FRUIT);
         assignGeneric(COAL, MINERAL);
-        assignGeneric(DIAMOND, GEM);
-        assignGeneric(IRON_INGOT, MINERAL);
-        assignGeneric(GOLD_INGOT, MINERAL);
-        assignGeneric(STICK, JUNK);
+        assignGeneric(Ore.of("gemDiamond"), GEM);
+        assignGeneric(Ore.of("ingotIron"), MINERAL);
+        assignGeneric(Ore.of("ingotGold"), MINERAL);
+        assignGeneric(Ore.of("stickWood"), JUNK);
         assignGeneric(BOWL, JUNK);
         assignGeneric(MUSHROOM_STEW, COOKING);
-        assignGeneric(STRING, WOOL);
-        assignGeneric(FEATHER, MEAT);
-        assignGeneric(GUNPOWDER, MONSTER);
+        assignGeneric(Ore.of("string"), WOOL);
+        assignGeneric(Ore.of("feather"), MEAT);
+        assignGeneric(Ore.of("gunpowder"), MONSTER);
         assignGeneric(BREAD, COOKING);
         assignGeneric(FLINT, MINERAL);
         assignGeneric(PORKCHOP, MEAT);
         assignGeneric(COOKED_PORKCHOP, MEAT);
-        assignGeneric(PAINTING, BUILDING);
-        assignGeneric(GOLDEN_APPLE, FRUIT, MINERAL);
+        assignGeneric(PAINTING, ART);
+        assignGeneric(GOLDEN_APPLE, FRUIT);
         assignGeneric(SIGN, BUILDING);
         assignGeneric(SADDLE, JUNK);
-        assignGeneric(REDSTONE, MINERAL);
+        assignGeneric(Ore.of("dustRedstone"), MINERAL);
         assignGeneric(SNOWBALL, JUNK);
-        assignGeneric(LEATHER, MEAT);
+        assignGeneric(Ore.of("leather"), MEAT);
         assignGeneric(MILK_BUCKET, MILK);
-        assignGeneric(BRICK, BUILDING);
+        assignGeneric(Ore.of("ingotBrick"), BUILDING);
         assignGeneric(CLAY_BALL, BUILDING);
-        assignGeneric(REEDS, PLANT);
-        assignGeneric(PAPER, KNOWLEDGE);
+        assignGeneric(Ore.of("sugarcane"), PLANT);
+        assignGeneric(Ore.of("paper"), KNOWLEDGE);
         assignGeneric(BOOK, KNOWLEDGE);
-        assignGeneric(SLIME_BALL, MONSTER);
-        assignGeneric(Items.EGG, GiftCategory.EGG);
+        assignGeneric(Ore.of("slimeball"), MONSTER);
+        assignGeneric(Ore.of("egg"), GiftCategory.EGG);
         assignGeneric(COMPASS, KNOWLEDGE);
         assignGeneric(CLOCK, KNOWLEDGE);
-        assignGeneric(GLOWSTONE_DUST, MINERAL);
-        assignGeneric(Items.FISH, GiftCategory.FISH);
+        assignGeneric(Ore.of("dustGlowstone"), MINERAL);
+        assignGeneric(Ore.of("fish"), GiftCategory.FISH);
         assignGeneric(COOKED_FISH, GiftCategory.FISH);
         assignGeneric(new ItemStack(Items.DYE, 1, 0), KNOWLEDGE); //Ink sac
-        assignGeneric(new ItemStack(Items.DYE, 1, 1), FLOWER); //Rose Red
-        assignGeneric(new ItemStack(Items.DYE, 1, 2), PLANT); //Cactus
-        assignGeneric(new ItemStack(Items.DYE, 1, 3), PLANT); //Cocoa Beans
-        assignGeneric(new ItemStack(Items.DYE, 1, 4), GEM); //Lapis Lazuli
-        assignGeneric(new ItemStack(Items.DYE, 1, 11), FLOWER); //Dandelion
+        assignGeneric(Ore.of("gemLapis"), GEM); //Lapis Lazuli
         assignGeneric(new ItemStack(Items.DYE, 1, 15), MONSTER); //Bonemeal
-        assignGeneric(BONE, MONSTER);
+        assignGeneric(Ore.of("dye").setType(MatchType.PREFIX), ART);
+        assignGeneric(Ore.of("bone"), MONSTER);
         assignGeneric(SUGAR, JUNK);
         assignGeneric(CAKE, COOKING);
         assignGeneric(COOKIE, COOKING);
@@ -65,11 +64,11 @@ public class HFGiftsVanillaItems extends HFGiftsAbstract {
         assignGeneric(CHICKEN, MEAT);
         assignGeneric(COOKED_CHICKEN, MEAT);
         assignGeneric(ROTTEN_FLESH, MONSTER);
-        assignGeneric(ENDER_PEARL, MONSTER);
+        assignGeneric(Ore.of("enderpearl"), MONSTER);
         assignGeneric(BLAZE_ROD, MONSTER);
         assignGeneric(GHAST_TEAR, MONSTER);
-        assignGeneric(GOLD_NUGGET, MINERAL);
-        assignGeneric(NETHER_WART, PLANT, MONSTER);
+        assignGeneric(Ore.of("nuggetGold"), MINERAL);
+        assignGeneric(Ore.of("cropNetherWart"), MONSTER);
         assignGeneric(POTIONITEM, MAGIC);
         assignGeneric(GLASS_BOTTLE, JUNK);
         assignGeneric(SPIDER_EYE, MONSTER);
@@ -77,41 +76,30 @@ public class HFGiftsVanillaItems extends HFGiftsAbstract {
         assignGeneric(BLAZE_POWDER, MONSTER);
         assignGeneric(MAGMA_CREAM, MONSTER);
         assignGeneric(ENDER_EYE, MONSTER);
-        assignGeneric(SPECKLED_MELON, FRUIT, MINERAL);
+        assignGeneric(SPECKLED_MELON, FRUIT);
         assignGeneric(EXPERIENCE_BOTTLE, MAGIC);
         assignGeneric(FIRE_CHARGE, MONSTER);
         assignGeneric(WRITABLE_BOOK, KNOWLEDGE);
         assignGeneric(WRITTEN_BOOK, KNOWLEDGE);
-        assignGeneric(EMERALD, GEM);
+        assignGeneric(Ore.of("gemEmerald"), GEM);
         assignGeneric(FLOWER_POT, FLOWER);
-        assignGeneric(BAKED_POTATO, VEGETABLE, COOKING);
-        assignGeneric(POISONOUS_POTATO, VEGETABLE, MONSTER);
-        assignGeneric(GOLDEN_CARROT, VEGETABLE, MINERAL);
+        assignGeneric(BAKED_POTATO, COOKING);
+        assignGeneric(POISONOUS_POTATO, JUNK);
+        assignGeneric(GOLDEN_CARROT, VEGETABLE);
         assignGeneric(SKULL, MONSTER);
         assignGeneric(CARROT_ON_A_STICK, JUNK);
         assignGeneric(PUMPKIN_PIE, COOKING);
         assignGeneric(FIREWORKS, JUNK);
         assignGeneric(FIREWORK_CHARGE, JUNK);
         assignGeneric(ENCHANTED_BOOK, MAGIC);
-        assignGeneric(NETHER_STAR, MAGIC);
-        assignGeneric(NETHERBRICK, BUILDING);
-        assignGeneric(QUARTZ, MINERAL);
+        assignGeneric(Ore.of("netherStar"), MAGIC);
+        assignGeneric(Ore.of("ingotBrickNether"), BUILDING);
+        assignGeneric(Ore.of("gemQuartz"), MINERAL);
         assignGeneric(LEAD, JUNK);
         assignGeneric(NAME_TAG, JUNK);
-        assignGeneric(RECORD_13, GEM);
-        assignGeneric(RECORD_CAT, GEM);
-        assignGeneric(RECORD_BLOCKS, GEM);
-        assignGeneric(RECORD_CHIRP, GEM);
-        assignGeneric(RECORD_FAR, GEM);
-        assignGeneric(RECORD_MALL, GEM);
-        assignGeneric(RECORD_MELLOHI, GEM);
-        assignGeneric(RECORD_STAL, GEM);
-        assignGeneric(RECORD_STRAD, GEM);
-        assignGeneric(RECORD_WARD, GEM);
-        assignGeneric(RECORD_11, GEM);
-        assignGeneric(RECORD_WAIT, GEM);
-        assignGeneric(PRISMARINE_SHARD, MINERAL);
-        assignGeneric(PRISMARINE_CRYSTALS, GEM);
+        assignGeneric(Ore.of("record"), ART);
+        assignGeneric(Ore.of("gemPrismarine"), MINERAL);
+        assignGeneric(Ore.of("dustPrismarine"), MINERAL);
         assignGeneric(CHORUS_FRUIT, FRUIT);
         assignGeneric(CHORUS_FRUIT_POPPED, FRUIT);
         assignGeneric(BEETROOT_SOUP, COOKING);
@@ -122,5 +110,6 @@ public class HFGiftsVanillaItems extends HFGiftsAbstract {
         assignGeneric(RABBIT, MEAT);
         assignGeneric(RABBIT_HIDE, MEAT);
         assignGeneric(RABBIT_STEW, COOKING);
+        assignGeneric(ITEM_FRAME, ART);
     }
 }

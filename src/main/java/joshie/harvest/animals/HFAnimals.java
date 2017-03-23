@@ -8,6 +8,7 @@ import joshie.harvest.animals.entity.EntityHarvestChicken;
 import joshie.harvest.animals.entity.EntityHarvestCow;
 import joshie.harvest.animals.entity.EntityHarvestSheep;
 import joshie.harvest.animals.item.*;
+import joshie.harvest.animals.item.ItemAnimalProduct.Sizeable;
 import joshie.harvest.animals.item.ItemAnimalSpawner.Spawner;
 import joshie.harvest.animals.item.ItemAnimalTool.Tool;
 import joshie.harvest.animals.render.*;
@@ -22,6 +23,7 @@ import joshie.harvest.animals.type.AnimalSheep;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.AnimalStats;
 import joshie.harvest.api.animals.IAnimalType;
+import joshie.harvest.api.core.Size;
 import joshie.harvest.api.crops.Crop;
 import joshie.harvest.core.helpers.RegistryHelper;
 import joshie.harvest.core.lib.EntityIDs;
@@ -40,6 +42,7 @@ import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.oredict.OreDictionary;
 
 import static joshie.harvest.animals.AnimalRegistry.registerFoodsAsType;
 import static joshie.harvest.animals.item.ItemAnimalTool.Tool.CHICKEN_FEED;
@@ -85,6 +88,9 @@ public class HFAnimals {
         registerFoodsAsType(VEGETABLE, Items.CARROT);
         animals.registerFoodAsType(TOOLS.getStackFromEnum(CHICKEN_FEED), SEED);
         registerTiles(TileIncubator.class, TileTrough.class, TileFeeder.class, TileNest.class);
+        OreDictionary.registerOre("egg", ANIMAL_PRODUCT.getStack(Sizeable.EGG, Size.SMALL));
+        OreDictionary.registerOre("egg", ANIMAL_PRODUCT.getStack(Sizeable.EGG, Size.MEDIUM));
+        OreDictionary.registerOre("egg", ANIMAL_PRODUCT.getStack(Sizeable.EGG, Size.LARGE));
         CapabilityManager.INSTANCE.register(AnimalStats.class, new IStorage<AnimalStats>() {
             @Override
             public NBTBase writeNBT(Capability<AnimalStats> capability, AnimalStats instance, EnumFacing side) {

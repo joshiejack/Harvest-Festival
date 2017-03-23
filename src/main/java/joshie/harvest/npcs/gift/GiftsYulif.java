@@ -1,9 +1,11 @@
 package joshie.harvest.npcs.gift;
 
 import joshie.harvest.api.core.Ore;
+import joshie.harvest.cooking.item.ItemMeal.Meal;
 import net.minecraft.init.Items;
 
 import static joshie.harvest.api.npc.gift.GiftCategory.*;
+import static joshie.harvest.cooking.HFCooking.MEAL;
 
 @SuppressWarnings("unused")
 public class GiftsYulif extends Gifts {
@@ -14,11 +16,19 @@ public class GiftsYulif extends Gifts {
         stackRegistry.register(Ore.of("cropPineapple"), Quality.GOOD);
         stackRegistry.register(Items.CAKE, Quality.GOOD);
         categoryRegistry.put(BUILDING, Quality.GOOD);
+        categoryRegistry.put(FLOWER, Quality.DECENT);
+        stackRegistry.register(Ore.of("cropGreenPepper"), Quality.DECENT);
         categoryRegistry.put(MONSTER, Quality.DISLIKE);
-        categoryRegistry.put(MILK, Quality.DISLIKE);
-        categoryRegistry.put(EGG, Quality.DISLIKE);
-        categoryRegistry.put(FLOWER, Quality.DISLIKE);
+        stackRegistry.register(MEAL.getStackFromEnum(Meal.SALAD), Quality.DECENT);
+        stackRegistry.register(MEAL.getStackFromEnum(Meal.TURNIP_PICKLED), Quality.DISLIKE);
+        stackRegistry.register(MEAL.getStackFromEnum(Meal.SPINACH_BOILED), Quality.DISLIKE);
+        stackRegistry.register(MEAL.getStackFromEnum(Meal.CORN_BAKED), Quality.DISLIKE);
+        stackRegistry.register(MEAL.getStackFromEnum(Meal.JUICE_TOMATO), Quality.DISLIKE);
         categoryRegistry.put(VEGETABLE, Quality.BAD);
+        stackRegistry.register(MEAL.getStackFromEnum(Meal.JUICE_VEGETABLE), Quality.BAD);
+        stackRegistry.register(MEAL.getStackFromEnum(Meal.LATTE_VEGETABLE), Quality.BAD);
+        stackRegistry.register(MEAL.getStackFromEnum(Meal.JUICE_MIX), Quality.BAD);
+        stackRegistry.register(MEAL.getStackFromEnum(Meal.LATTE_MIX), Quality.BAD);
         categoryRegistry.put(PLANT, Quality.BAD);
         stackRegistry.register(Ore.of("cropCarrot"), Quality.TERRIBLE);
         stackRegistry.register(Ore.of("cropPotato"), Quality.TERRIBLE);

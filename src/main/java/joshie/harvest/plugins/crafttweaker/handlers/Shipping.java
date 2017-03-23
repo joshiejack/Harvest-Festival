@@ -17,6 +17,7 @@ import static joshie.harvest.plugins.crafttweaker.CraftTweaker.asStack;
 @ZenClass("mods.harvestfestival.Shipping")
 public class Shipping {
     @ZenMethod
+    @SuppressWarnings("unused")
     public static void addShipping(IIngredient ingredient, long sellValue) {
         if (ingredient instanceof IItemStack || ingredient instanceof IOreDictEntry) {
             MineTweakerAPI.apply(new Add(ingredient, sellValue));
@@ -37,7 +38,9 @@ public class Shipping {
 
         @Override
         public String getDescription() {
-            return "Added " + stack.getDisplayName() + " as shippable";
+            if (ore != null) return "Added " + ore.getOre() + " as shippable";
+            else if (stack != null) return "Added " + stack.getDisplayName() + " as shippable";
+            else return "Added nothing";
         }
 
         @Override

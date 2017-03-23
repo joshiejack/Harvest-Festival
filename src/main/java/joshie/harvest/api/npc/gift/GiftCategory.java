@@ -19,5 +19,6 @@ public enum GiftCategory {
     MUSHROOM,
     WOOL,
     EGG,
-    MILK
+    MILK,
+    ART
 }

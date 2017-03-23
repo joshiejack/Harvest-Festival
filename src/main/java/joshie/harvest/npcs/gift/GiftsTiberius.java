@@ -24,11 +24,13 @@ import static joshie.harvest.cooking.HFCooking.MEAL;
 @SuppressWarnings("unused")
 public class GiftsTiberius extends Gifts {
     public GiftsTiberius() {
+        stackRegistry.register(Items.CLOCK, Quality.AWESOME);
         stackRegistry.register(MEAL.getStackFromEnum(Meal.DOUGHNUT), Quality.AWESOME);
+        stackRegistry.register(Ore.of("dustRedstone"), Quality.GOOD);
+        stackRegistry.register(Ore.of("ingotGold"), Quality.GOOD);
         categoryRegistry.put(MAGIC, Quality.GOOD);
         categoryRegistry.put(KNOWLEDGE, Quality.GOOD);
         categoryRegistry.put(MONSTER, Quality.GOOD);
-        stackRegistry.register(Items.POTIONITEM, Quality.GOOD);
         stackRegistry.register(Items.RABBIT_FOOT, Quality.GOOD);
         stackRegistry.register(MEAL.getStackFromEnum(Meal.RICE_BAMBOO), Quality.DISLIKE);
         stackRegistry.register(MEAL.getStackFromEnum(Meal.SPINACH_BOILED), Quality.DISLIKE);

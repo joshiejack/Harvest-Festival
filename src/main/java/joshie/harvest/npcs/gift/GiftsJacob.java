@@ -17,10 +17,11 @@ public class GiftsJacob extends Gifts {
         stackRegistry.register(HFFishing.FISH.getStackFromEnum(Fish.ELECTRICRAY), Quality.AWESOME);
         stackRegistry.register(HFFishing.FISH.getStackFromEnum(Fish.STINGRAY), Quality.AWESOME);
         stackRegistry.register(Ore.of("fish"), Quality.GOOD);
+        stackRegistry.register(Ore.of("gemPrismarine"), Quality.GOOD);
+        stackRegistry.register(Ore.of("dustPrismarine"), Quality.GOOD);
         categoryRegistry.put(FISH, Quality.GOOD);
         categoryRegistry.put(FLOWER, Quality.DECENT);
         categoryRegistry.put(KNOWLEDGE, Quality.DISLIKE);
-        categoryRegistry.put(JUNK, Quality.DISLIKE);
         stackRegistry.register(MEAL.getStackFromEnum(Meal.SANDWICH), Quality.DISLIKE);
         stackRegistry.register(MEAL.getStackFromEnum(Meal.SANDWICH_HERB), Quality.DISLIKE);
         stackRegistry.register(MEAL.getStackFromEnum(Meal.SANDWICH_FRUIT), Quality.DISLIKE);

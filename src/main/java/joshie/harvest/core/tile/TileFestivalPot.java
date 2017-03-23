@@ -15,6 +15,8 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.UUID;
 
+import static tehnut.buttons.config.ConfigHandler.categories;
+
 public class TileFestivalPot extends TileStand {
     private final Map<UUID, ItemStack> data = new HashMap<>();
 
@@ -36,9 +38,8 @@ public class TileFestivalPot extends TileStand {
     }
 
     private int getScoreFromStack(ItemStack stack) {
-        GiftCategory[] categories = NPCHelper.INSTANCE.getGifts().getRegistry().getValueOf(stack);
-        if (categories != null) {
-            GiftCategory primary = categories[0];
+        GiftCategory primary = NPCHelper.INSTANCE.getGifts().getRegistry().getValueOf(stack);
+        if (primary != null) {
             switch (primary) {
                 case BUILDING:
                 case MONSTER:

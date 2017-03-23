@@ -14,20 +14,9 @@ import net.minecraft.world.World;
 
 public class GiftRegistry implements IGiftRegistry {
     private final HolderRegistrySet blacklist = new HolderRegistrySet();
-    private final HolderRegistry<GiftCategory[]> registry = new HolderRegistry<GiftCategory[]>() {
-        @Override
-        public boolean matches(GiftCategory[] external, GiftCategory[] internal) {
-            for (GiftCategory e: external) {
-                for (GiftCategory i: internal) {
-                    if (e == i) return true;
-                }
-            }
+    private final HolderRegistry<GiftCategory> registry = new HolderRegistry<>();
 
-            return false;
-        }
-    };
-
-    public HolderRegistry<GiftCategory[]> getRegistry() {
+    public HolderRegistry<GiftCategory> getRegistry() {
         return registry;
     }
 
@@ -46,12 +35,12 @@ public class GiftRegistry implements IGiftRegistry {
     }
 
     @Override
-    public void setCategories(Object object, GiftCategory... categories) {
+    public void setCategory(Object object, GiftCategory categories) {
         registry.register(object, categories);
     }
 
     @Override
-    public boolean isGiftType(ItemStack stack, GiftCategory... categories) {
+    public boolean isGiftType(ItemStack stack, GiftCategory categories) {
         return registry.matches(stack, categories);
     }
 }

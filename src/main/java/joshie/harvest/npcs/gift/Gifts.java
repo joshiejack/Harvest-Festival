@@ -25,6 +25,7 @@ public class Gifts implements IGiftHandler {
         categoryRegistry.put(MILK, Quality.DECENT);
         categoryRegistry.put(EGG, Quality.DECENT);
         categoryRegistry.put(WOOL, Quality.DECENT);
+        categoryRegistry.put(ART, Quality.DECENT);
         categoryRegistry.put(KNOWLEDGE, Quality.DECENT);
         categoryRegistry.put(MUSHROOM, Quality.DECENT);
         categoryRegistry.put(MAGIC, Quality.DECENT);
@@ -39,17 +40,7 @@ public class Gifts implements IGiftHandler {
     public Quality getQuality(ItemStack stack) {
         Quality itemQuality = stackRegistry.getValueOf(stack);
         if (itemQuality != null) return itemQuality;
-
-        Quality lowest = Quality.AWESOME;
-        GiftCategory[] categories = NPCHelper.INSTANCE.getGifts().getRegistry().getValueOf(stack);
-        if (categories == null) return Quality.DECENT;
-        for (GiftCategory category: categories) {
-            Quality quality = categoryRegistry.get(category);
-            if (quality.getRelationPoints() < lowest.getRelationPoints()) {
-                lowest = quality;
-            }
-        }
-
-        return lowest;
+        GiftCategory category = NPCHelper.INSTANCE.getGifts().getRegistry().getValueOf(stack);
+        return category == null ? Quality.DECENT : categoryRegistry.get(category);
     }
 }

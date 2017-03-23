@@ -1,6 +1,9 @@
 package joshie.harvest.npcs.gift;
 
+import joshie.harvest.animals.HFAnimals;
+import joshie.harvest.animals.item.ItemAnimalProduct.Sizeable;
 import joshie.harvest.api.core.Ore;
+import joshie.harvest.api.core.Size;
 import joshie.harvest.cooking.item.ItemIngredients.Ingredient;
 import joshie.harvest.cooking.item.ItemMeal.Meal;
 import net.minecraft.init.Items;
@@ -19,10 +22,18 @@ public class GiftsGirafi extends Gifts {
         categoryRegistry.put(WOOL, Quality.GOOD);
         categoryRegistry.put(FLOWER, Quality.DECENT);
         categoryRegistry.put(EGG, Quality.DISLIKE);
+        stackRegistry.register(MEAL.getStackFromEnum(Meal.EGG_BOILED), Quality.DISLIKE);
+        stackRegistry.register(MEAL.getStackFromEnum(Meal.EGG_SCRAMBLED), Quality.DISLIKE);
+        stackRegistry.register(MEAL.getStackFromEnum(Meal.EGG_OVERRICE), Quality.DISLIKE);
+        stackRegistry.register(HFAnimals.ANIMAL_PRODUCT.getStack(Sizeable.MAYONNAISE, Size.SMALL), Quality.DISLIKE);
+        stackRegistry.register(HFAnimals.ANIMAL_PRODUCT.getStack(Sizeable.MAYONNAISE, Size.MEDIUM), Quality.DISLIKE);
+        stackRegistry.register(HFAnimals.ANIMAL_PRODUCT.getStack(Sizeable.MAYONNAISE, Size.LARGE), Quality.DISLIKE);
         stackRegistry.register(INGREDIENTS.getStackFromEnum(Ingredient.CHOCOLATE), Quality.BAD);
         stackRegistry.register(MEAL.getStackFromEnum(Meal.CAKE_CHOCOLATE), Quality.BAD);
         stackRegistry.register(MEAL.getStackFromEnum(Meal.COOKIES_CHOCOLATE), Quality.BAD);
         stackRegistry.register(MEAL.getStackFromEnum(Meal.CHOCOLATE_HOT), Quality.BAD);
+        stackRegistry.register(MEAL.getStackFromEnum(Meal.MILK_HOT), Quality.BAD);
+        stackRegistry.register(MEAL.getStackFromEnum(Meal.MILK_STRAWBERRY), Quality.BAD);
         categoryRegistry.put(MILK, Quality.BAD);
         stackRegistry.register(Ore.of("cropPumpkin"), Quality.TERRIBLE);
         stackRegistry.register(Items.PUMPKIN_PIE, Quality.TERRIBLE);

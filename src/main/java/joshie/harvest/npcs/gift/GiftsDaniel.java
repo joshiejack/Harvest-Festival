@@ -2,6 +2,7 @@ package joshie.harvest.npcs.gift;
 
 import joshie.harvest.api.core.Ore;
 import joshie.harvest.cooking.item.ItemMeal.Meal;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
@@ -13,6 +14,9 @@ public class GiftsDaniel extends Gifts {
     public GiftsDaniel() {
         stackRegistry.register(Ore.of("enderpearl"), Quality.AWESOME);
         stackRegistry.register(Items.ENDER_EYE, Quality.AWESOME);
+        stackRegistry.register(Items.CHORUS_FRUIT, Quality.AWESOME);
+        stackRegistry.register(Items.DRAGON_BREATH, Quality.AWESOME);
+        stackRegistry.register(Blocks.DRAGON_EGG, Quality.AWESOME);
         categoryRegistry.put(MINERAL, Quality.GOOD);
         categoryRegistry.put(MONSTER, Quality.DECENT);
         categoryRegistry.put(MAGIC, Quality.DISLIKE);

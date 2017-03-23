@@ -75,9 +75,7 @@ public class ItemHFSeeds extends ItemSeeds implements ICreativeSorted {
                 } else {
                     for (int x = pos.getX() - 1; x <= pos.getX() + 1; x++) {
                         for (int z = pos.getZ() - 1; z <= pos.getZ() + 1; z++) {
-                            if (crop.growsToSide() == null || !((x == pos.getX() && z == pos.getZ()))) {
-                                planted = plantSeedAt(player, stack, world, new BlockPos(x, pos.getY(), z), facing, crop, planted);
-                            }
+                            planted = plantSeedAt(player, stack, world, new BlockPos(x, pos.getY(), z), facing, crop, planted);
                         }
                     }
                 }

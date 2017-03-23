@@ -80,8 +80,8 @@ public class HFCrops {
     public static final Crop ONION = registerCrop("onion", 150L, 80L, 8, 0, 0, 0XDCC307, SUMMER).setFoodStats(1, 0.4F).setStateHandler(new StateHandlerOnion());
     public static final Crop TOMATO = registerCrop("tomato", 200L, 60L, 10, 7, 0, 0XE60820, SUMMER).setFoodStats(3, 0.5F).setAnimalFoodType(FRUIT).setStateHandler(new StateHandlerTomato());
     public static final Crop CORN = registerCrop("corn", 300L, 100L, 15, 12, 0, 0XD4BD45, SUMMER).setFoodStats(2, 0.3F).setStateHandler(new StateHandlerCorn());
-    public static final Crop PUMPKIN = registerCrop("pumpkin", 500L, 125L, 15, 0, 1, 0XE09A39, SUMMER).setIngredient(new Ingredient("pumpkin", 2, 0.3F)).setItem(new ItemStack(Blocks.PUMPKIN)).setGrowsToSide(Blocks.PUMPKIN).setStateHandler(new StateHandlerPumpkin());
-    public static final Crop PINEAPPLE = registerCrop("pineapple", 1000L, 500L, 21, 5, 3, 0XD7CF00, SUMMER).setFoodStats(2, 1.34F).setAnimalFoodType(FRUIT).setStateHandler(new StateHandlerPineapple());
+    public static final Crop PUMPKIN = registerCrop("pumpkin", 500L, 250L, 15, 0, 1, 0XE09A39, SUMMER).setIngredient(new Ingredient("pumpkin", 2, 0.3F)).setItem(new ItemStack(Blocks.PUMPKIN)).setGrowsToSide(Blocks.PUMPKIN).setStateHandler(new StateHandlerPumpkin());
+    public static final Crop PINEAPPLE = registerCrop("pineapple", 1000L, 500L, 21, 16, 3, 0XD7CF00, SUMMER).setFoodStats(2, 1.34F).setAnimalFoodType(FRUIT).setStateHandler(new StateHandlerPineapple());
     public static final Crop WATERMELON = registerCrop("watermelon", 250L, 25L, 11, 0, 1, 0xc92b3e, SUMMER).setItem(new ItemStack(Items.MELON)).setAnimalFoodType(FRUIT).setDropHandler(new DropHandlerMelon()).setGrowsToSide(Blocks.MELON_BLOCK).setStateHandler(new StateHandlerMelon());
 
     //Autumn Crops
@@ -153,6 +153,16 @@ public class HFCrops {
                     if (BlockHFCrops.isWithered(actual)) {
                         CropData data = CropHelper.getCropDataAt(world, pos);
                         return data != null ? data.getCrop().getWitheredColor() : 0xA64DFF;
+                    } else {
+                        CropData data = CropHelper.getCropDataAt(world, pos);
+                        if (data != null && (data.getCrop() == HFCrops.PUMPKIN || data.getCrop() == HFCrops.WATERMELON)) {
+                            int range = (data.getCrop().getStages() - 1);
+                            int i = range == 0? 0 : (((data.getStage() - 1) * 7) / range);
+                            int j = i * 32;
+                            int k = 255 - i * 8;
+                            int l = i * 4;
+                            return j << 16 | k << 8 | l;
+                        }
                     }
                 }
             }

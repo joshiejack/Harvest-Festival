@@ -1,3 +1,10 @@
+##0.5.25
+* Added German translation by ctonhaeu
+* Fixed pumpkin/melon stem colours
+* Fixed pumpkin/melon regrowing when they shouldn't
+* Fixed pineapples resetting to stage 5 instead of stage 16
+* Doubled the sell value of pumpkins
+
 ##0.5.24
 * Reduce requirements for medium/large products
 * Baby chicks will spawn on top of the incubator

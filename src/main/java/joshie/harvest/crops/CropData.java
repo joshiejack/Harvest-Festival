@@ -72,16 +72,7 @@ public class CropData {
 
     @SuppressWarnings("deprecation")
     private boolean attemptToGrowToSide(World world, BlockPos pos) {
-        if (world.isAirBlock(pos.add(1, 0, 0))) { //If it's air, then let's grow some shit
-            return world.setBlockState(pos.add(1, 0, 0), crop.growsToSide().getStateFromMeta(0), 2); //0 = x-
-        } else if (world.isAirBlock(pos.add(0, 0, -1))) {
-            return world.setBlockState(pos.add(0, 0, -1), crop.growsToSide().getStateFromMeta(1), 2); //1 = z+
-        } else if (world.isAirBlock(pos.add(0, 0, 1))) {
-            return world.setBlockState(pos.add(0, 0, 1), crop.growsToSide().getStateFromMeta(2), 2); //2 = z-
-        } else if (world.isAirBlock(pos.add(-1, 0, 0))) {
-            return world.setBlockState(pos.add(-1, 0, 0), crop.growsToSide().getStateFromMeta(2), 2); //3 = x-
-        }
-        return false;
+        return world.setBlockState(pos, crop.growsToSide().getStateFromMeta(world.rand.nextInt(4)));
     }
 
     public ResourceLocation getResource() {

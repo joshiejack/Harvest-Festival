@@ -1,5 +1,6 @@
 package joshie.harvest.knowledge.gui.stats.collection.page;
 
+import joshie.harvest.api.HFApi;
 import joshie.harvest.api.cooking.IngredientStack;
 import joshie.harvest.api.cooking.Recipe;
 import joshie.harvest.cooking.HFCooking;
@@ -17,8 +18,6 @@ import net.minecraft.item.ItemStack;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static joshie.harvest.core.registry.ShippingRegistry.SELL_VALUE;
 
 @SuppressWarnings("WeakerAccess")
 public class PageCooking extends PageCollection {
@@ -42,7 +41,7 @@ public class PageCooking extends PageCollection {
             stacks.addAll(recipe.getRequired());
             ItemStack stack = RecipeMaker.BUILDER.build(recipe, stacks).get(0);
             stack.stackSize = 1;
-            long value = stack.getTagCompound() != null ? stack.getTagCompound().getLong(SELL_VALUE): 0L;
+            long value = HFApi.shipping.getSellValue(stack);
             boolean obtained = hasObtainedStack(stack);
             if (k == 7) {
                 k = 0;

@@ -13,6 +13,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static joshie.harvest.cooking.HFCooking.COOKING_SELL_MODIFIER;
 import static joshie.harvest.core.registry.ShippingRegistry.SELL_VALUE;
 
 public class RecipeBuilder {
@@ -103,7 +104,7 @@ public class RecipeBuilder {
             }
         }
 
-        this.cost = (long)(sell * 1.12);
+        this.cost = (long)(sell * COOKING_SELL_MODIFIER);
     }
 
     private void calculateActualHungerAndSaturationValues(Recipe recipe) {

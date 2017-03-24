@@ -39,6 +39,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.commons.lang3.tuple.Pair;
 
 import static joshie.harvest.api.calendar.Season.*;
+import static joshie.harvest.cooking.HFCooking.COOKING_SELL_MODIFIER;
 import static joshie.harvest.core.helpers.RegistryHelper.registerOreIfNotExists;
 import static joshie.harvest.core.helpers.RegistryHelper.registerTiles;
 import static joshie.harvest.fishing.FishingHelper.WaterType.*;
@@ -62,8 +63,8 @@ public class HFFishing {
         HFApi.shipping.registerSellable(new ItemStack(Items.FISH, 1, 1), 30L);
         HFApi.shipping.registerSellable(new ItemStack(Items.FISH, 1, 2), 50L);
         HFApi.shipping.registerSellable(new ItemStack(Items.FISH, 1, 3), 100L);
-        HFApi.shipping.registerSellable(new ItemStack(Items.COOKED_FISH, 1, 0), 11L);
-        HFApi.shipping.registerSellable(new ItemStack(Items.COOKED_FISH, 1, 1), 34L);
+        HFApi.shipping.registerSellable(new ItemStack(Items.COOKED_FISH, 1, 0), (long) (10 * COOKING_SELL_MODIFIER));
+        HFApi.shipping.registerSellable(new ItemStack(Items.COOKED_FISH, 1, 1), (long) (30 * COOKING_SELL_MODIFIER));
         HFApi.fishing.registerBait(JUNK.getStackFromEnum(Junk.BAIT));
         registerTiles(TileTrap.class, TileHatchery.class);
         FishingAPI.INSTANCE.breeding.register(Ore.of("fish"), 3);

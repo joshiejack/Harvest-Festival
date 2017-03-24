@@ -31,8 +31,8 @@ public class NPCItemRenderer extends TileEntitySpecialRenderer<NPCTile> {
 
     @Override
     public void renderTileEntityAt(@Nullable NPCTile fake, double x, double y, double z, float partialTicks, int destroyStage) {
-        if (fake != null) {
-            GlStateManager.pushMatrix();
+        if (fake != null) { //DEBUG
+            /*GlStateManager.pushMatrix();
             GlStateManager.enableLighting();
             GlStateManager.translate(0.5F, -0.05F, 0.5F);
             GlStateManager.scale(-5F, 5F, 5F);
@@ -53,9 +53,8 @@ public class NPCItemRenderer extends TileEntitySpecialRenderer<NPCTile> {
             GlStateManager.disableRescaleNormal();
             GlStateManager.enableCull();
             GlStateManager.popMatrix();
-            GlStateManager.popMatrix();
+            GlStateManager.popMatrix(); */
 
-            /*
             GlStateManager.pushMatrix();
             GlStateManager.translate(0.5F, -0.05F, 0.5F);
             GlStateManager.scale(-0.75F, 0.75F, 0.75F);
@@ -76,7 +75,7 @@ public class NPCItemRenderer extends TileEntitySpecialRenderer<NPCTile> {
             GlStateManager.disableRescaleNormal();
             GlStateManager.enableCull();
             GlStateManager.popMatrix();
-            GlStateManager.popMatrix(); */
+            GlStateManager.popMatrix();
         }
     }
 

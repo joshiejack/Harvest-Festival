@@ -11,6 +11,7 @@ import joshie.harvest.core.base.render.MeshIdentical;
 import joshie.harvest.core.helpers.RegistryHelper;
 import joshie.harvest.core.util.annotations.HFLoader;
 import joshie.harvest.crops.block.*;
+import joshie.harvest.crops.handlers.SeedRecipeHandler;
 import joshie.harvest.crops.handlers.growth.GrowthHandlerNether;
 import joshie.harvest.crops.handlers.growth.GrowthHandlerSide;
 import joshie.harvest.crops.handlers.rules.SpecialRulesRanch;
@@ -40,13 +41,15 @@ import net.minecraft.world.storage.loot.functions.LootFunctionManager;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.oredict.RecipeSorter;
+import net.minecraftforge.oredict.RecipeSorter.Category;
 import org.apache.commons.lang3.text.WordUtils;
 
 import static joshie.harvest.api.animals.AnimalFoodType.FRUIT;
 import static joshie.harvest.api.calendar.Season.*;
-import static joshie.harvest.core.handlers.DisableHandler.SEEDS_BLACKLIST;
 import static joshie.harvest.core.helpers.ConfigHelper.getBoolean;
 import static joshie.harvest.core.helpers.ConfigHelper.getInteger;
 import static joshie.harvest.core.helpers.RegistryHelper.*;
@@ -132,27 +135,21 @@ public class HFCrops {
     public static void preInit() {
         //Register the crop serializer
         LootFunctionManager.registerFunction(new SetCropType.Serializer());
-        registerVanillaCrop(Blocks.WHEAT, Items.WHEAT, WHEAT);
-        registerVanillaCrop(Blocks.CARROTS, Items.CARROT, CARROT);
-        registerVanillaCrop(Blocks.POTATOES, Items.POTATO, POTATO);
-        registerVanillaCrop(Blocks.BEETROOTS, Items.BEETROOT, BEETROOT);
-        registerVanillaCrop(Blocks.MELON_STEM, Items.MELON, WATERMELON);
-        registerVanillaCrop(Blocks.PUMPKIN_STEM, Blocks.PUMPKIN, PUMPKIN);
+        RecipeSorter.register("harvestfestival:seeds", SeedRecipeHandler.class, Category.SHAPELESS, "after:minecraft:shapeless");
+        registerVanillaCrop(Blocks.WHEAT, new ItemStack(Items.WHEAT), new ItemStack(Items.WHEAT_SEEDS, 9), WHEAT);
+        registerVanillaCrop(Blocks.CARROTS, new ItemStack(Items.CARROT), new ItemStack(Items.CARROT), CARROT);
+        registerVanillaCrop(Blocks.POTATOES, new ItemStack(Items.POTATO), new ItemStack(Items.POTATO), POTATO);
+        registerVanillaCrop(Blocks.BEETROOTS, new ItemStack(Items.BEETROOT), new ItemStack(Items.BEETROOT_SEEDS, 9), BEETROOT);
+        registerVanillaCrop(Blocks.MELON_STEM, new ItemStack(Items.MELON), new ItemStack(Items.MELON_SEEDS, 45), WATERMELON);
+        registerVanillaCrop(Blocks.PUMPKIN_STEM, new ItemStack(Blocks.PUMPKIN), new ItemStack(Items.PUMPKIN_SEEDS, 36), PUMPKIN);
+        GameRegistry.addShapelessRecipe(new ItemStack(Items.WHEAT_SEEDS), Items.WHEAT);
+        GameRegistry.addShapelessRecipe(new ItemStack(Items.BEETROOT_SEEDS), Items.BEETROOT);
         HFApi.crops.registerCropProvider(new ItemStack(Items.NETHER_WART), NETHER_WART);
         //registerVanillaCrop(Blocks.NETHER_WART, Items.NETHER_WART, NETHER_WART);
         HFApi.crops.registerWateringHandler(new WateringHandler());
         HFApi.shipping.registerSellable(new ItemStack(Items.POISONOUS_POTATO), 1L);
         RegistryHelper.registerTiles(TileWithered.class, TileCrop.class, TileSprinkler.class, TileSprinklerOld.class, TileFruit.class);
         if (DISABLE_VANILLA_MOISTURE) Blocks.FARMLAND.setTickRandomly(false);
-        if (DISABLE_VANILLA_WHEAT_SEEDS || DISABLE_VANILLA_SEEDS) {
-            SEEDS_BLACKLIST.register(Items.MELON_SEEDS);
-            SEEDS_BLACKLIST.register(Items.PUMPKIN_SEEDS);
-            SEEDS_BLACKLIST.register(Items.BEETROOT_SEEDS);
-            SEEDS_BLACKLIST.register(Items.WHEAT_SEEDS);
-            SEEDS_BLACKLIST.register(Items.CARROT);
-            SEEDS_BLACKLIST.register(Items.POTATO);
-        }
-
         //Register everything in the ore dictionary
         //Register always in the ore dictionary
         Crop.REGISTRY.values().stream().filter(crop -> crop != Crop.NULL_CROP).forEachOrdered(crop -> {

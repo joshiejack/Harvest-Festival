@@ -21,6 +21,7 @@ import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.calendar.HFFestivals;
 import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.cooking.block.BlockCookware.Cookware;
+import joshie.harvest.cooking.item.ItemMeal.Meal;
 import joshie.harvest.core.HFCore;
 import joshie.harvest.core.block.BlockStorage.Storage;
 import joshie.harvest.core.util.annotations.HFLoader;
@@ -81,6 +82,7 @@ import static joshie.harvest.cooking.item.ItemIngredients.Ingredient.*;
 import static joshie.harvest.cooking.item.ItemUtensil.Utensil.KNIFE;
 import static joshie.harvest.core.helpers.ConfigHelper.getBoolean;
 import static joshie.harvest.core.lib.HFModInfo.MODID;
+import static joshie.harvest.core.registry.ShippingRegistry.SELL_VALUE;
 import static joshie.harvest.fishing.item.ItemFish.MEDIUM_FISH;
 
 @HFLoader
@@ -233,28 +235,39 @@ public class HFShops {
         CAFE.addOpening(FRIDAY, 9500, 17000).addOpening(SATURDAY, 9500, 17000).addOpening(SUNDAY, 9500, 17000);
     }
 
+    @SuppressWarnings("ConstantConditions")
     private static void registerCafeKitchen() {
         KITCHEN.addPurchasable(-150, new ItemStack(Items.BREAD), 4);
         KITCHEN.addPurchasable(-50, new ItemStack(Blocks.BROWN_MUSHROOM), 5);
-        KITCHEN.addPurchasable(-60, new ItemStack(Items.PORKCHOP), 3);
-        KITCHEN.addPurchasable(-80, new ItemStack(Items.COOKED_PORKCHOP), 4);
-        KITCHEN.addPurchasable(-400, new ItemStack(Items.CAKE), 4);
+        KITCHEN.addPurchasable(-80, new ItemStack(Items.PORKCHOP), 3);
+        KITCHEN.addPurchasable(-100, new ItemStack(Items.COOKED_PORKCHOP), 4);
+        KITCHEN.addPurchasable(-300, new ItemStack(Items.CAKE), 4);
         KITCHEN.addPurchasable(-30, new ItemStack(Items.COOKIE), 5);
-        KITCHEN.addPurchasable(-60, new ItemStack(Items.BEEF), 3);
-        KITCHEN.addPurchasable(-80, new ItemStack(Items.COOKED_BEEF), 4);
-        KITCHEN.addPurchasable(-40, new ItemStack(Items.CHICKEN), 5);
-        KITCHEN.addPurchasable(-50, new ItemStack(Items.COOKED_CHICKEN), 5);
-        KITCHEN.addPurchasable(-90, new ItemStack(Items.BAKED_POTATO), 5);
-        KITCHEN.addPurchasable(-400, new ItemStack(Items.PUMPKIN_PIE), 2);
-        KITCHEN.addPurchasable(-40, new ItemStack(Items.RABBIT), 4);
-        KITCHEN.addPurchasable(-50, new ItemStack(Items.COOKED_RABBIT), 5);
-        KITCHEN.addPurchasable(-250, new ItemStack(Items.RABBIT_FOOT), 2);
+        KITCHEN.addPurchasable(-80, new ItemStack(Items.BEEF), 3);
+        KITCHEN.addPurchasable(-100, new ItemStack(Items.COOKED_BEEF), 4);
+        KITCHEN.addPurchasable(-50, new ItemStack(Items.CHICKEN), 5);
+        KITCHEN.addPurchasable(-60, new ItemStack(Items.COOKED_CHICKEN), 5);
+        KITCHEN.addPurchasable(-100, new ItemStack(Items.BAKED_POTATO), 5);
+        KITCHEN.addPurchasable(-350, new ItemStack(Items.PUMPKIN_PIE), 2);
+        KITCHEN.addPurchasable(-50, new ItemStack(Items.RABBIT), 4);
+        KITCHEN.addPurchasable(-60, new ItemStack(Items.COOKED_RABBIT), 5);
+        KITCHEN.addPurchasable(-250, new ItemStack(Items.RABBIT_FOOT), 3);
         KITCHEN.addPurchasable(-80, new ItemStack(Items.MUSHROOM_STEW), 8);
-        KITCHEN.addPurchasable(-80, new ItemStack(Items.MUTTON), 8);
-        KITCHEN.addPurchasable(-100, new ItemStack(Items.COOKED_MUTTON), 4);
-        KITCHEN.addPurchasable(-500, new ItemStack(Items.BEETROOT_SOUP), 2);
+        KITCHEN.addPurchasable(-380, new ItemStack(Items.RABBIT_STEW), 3);
+        KITCHEN.addPurchasable(-100, new ItemStack(Items.MUTTON), 8);
+        KITCHEN.addPurchasable(-120, new ItemStack(Items.COOKED_MUTTON), 4);
+        KITCHEN.addPurchasable(-450, new ItemStack(Items.BEETROOT_SOUP), 2);
         KITCHEN.addPurchasable(-10, new ItemStack(Items.SUGAR), 20);
         KITCHEN.addPurchasable(-25, new ItemStack(Items.CHORUS_FRUIT), 15);
+        for (Meal meal: Meal.values()) {
+            if (meal.getUtensil() == null) {
+                ItemStack stack = HFCooking.MEAL.getCreativeStack(meal);
+                if (stack.hasTagCompound() && stack.getTagCompound().hasKey(SELL_VALUE)) {
+                    KITCHEN.addPurchasable(-(long)(stack.getTagCompound().getLong(SELL_VALUE) * 1.3334), stack, 2);
+                }
+            }
+        }
+
         KITCHEN.addOpening(FRIDAY, 6000, 9500).addOpening(FRIDAY, 17000, 20000);
         HFNPCs.CAFE_GRANNY.setHasInfo(null); //Remove the opening times from the granny, it's a bonus
     }

@@ -13,6 +13,7 @@ import joshie.harvest.core.handlers.DisableHandler;
 import joshie.harvest.core.proxy.HFClientProxy;
 import joshie.harvest.crops.CropRegistry;
 import joshie.harvest.crops.HFCrops;
+import joshie.harvest.crops.handlers.SeedRecipeHandler;
 import joshie.harvest.crops.handlers.drop.DropHandlerTree;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -34,7 +35,10 @@ import org.apache.commons.lang3.text.WordUtils;
 import java.util.Locale;
 
 import static joshie.harvest.core.HFTab.FARMING;
+import static joshie.harvest.core.handlers.DisableHandler.SEEDS_BLACKLIST;
 import static joshie.harvest.core.lib.HFModInfo.*;
+import static joshie.harvest.crops.HFCrops.DISABLE_VANILLA_SEEDS;
+import static joshie.harvest.crops.HFCrops.DISABLE_VANILLA_WHEAT_SEEDS;
 
 public class RegistryHelper {
     public static void registerSounds(String... sounds) {
@@ -108,20 +112,22 @@ public class RegistryHelper {
         return crop;
     }
 
-    public static void registerVanillaCrop(Block cropBlock, Item item, Crop crop) {
-        HFApi.crops.registerCropProvider(new ItemStack(item), crop);
-        crop.setSkipRender();
-        item.setCreativeTab(FARMING);
-        if (HFCrops.DISABLE_VANILLA_GROWTH || HFCrops.DISABLE_VANILLA_DROPS) DisableHandler.CROPS.add(cropBlock);
-        if (HFCrops.DISABLE_VANILLA_GROWTH) {
-            cropBlock.setTickRandomly(false);
+    private static void addSeeds(Crop crop, ItemStack seeds) {
+        if (DISABLE_VANILLA_WHEAT_SEEDS || DISABLE_VANILLA_SEEDS) {
+            SEEDS_BLACKLIST.register(seeds.getItem()); //Disable the item
+        }
+
+        //Add a bag > seed recipe
+        if (crop.getCropStack(1).getItem() != seeds.getItem()) {
+            GameRegistry.addRecipe(new SeedRecipeHandler(seeds, crop.getSeedStack(1)));
         }
     }
 
-    public static void registerVanillaCrop(Block cropBlock, Block block, Crop crop) {
-        HFApi.crops.registerCropProvider(new ItemStack(block), crop);
+    public static void registerVanillaCrop(Block cropBlock, ItemStack item, ItemStack seeds, Crop crop) {
+        addSeeds(crop, seeds);
+        HFApi.crops.registerCropProvider(item, crop);
         crop.setSkipRender();
-        block.setCreativeTab(FARMING);
+        item.getItem().setCreativeTab(FARMING);
         if (HFCrops.DISABLE_VANILLA_GROWTH || HFCrops.DISABLE_VANILLA_DROPS) DisableHandler.CROPS.add(cropBlock);
         if (HFCrops.DISABLE_VANILLA_GROWTH) {
             cropBlock.setTickRandomly(false);

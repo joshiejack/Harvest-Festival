@@ -20,6 +20,7 @@ public class GiftsBrandon extends Gifts {
         stackRegistry.register(HFMining.LADDER, Quality.GOOD);
         stackRegistry.register(HFMining.MINING_TOOL, Quality.GOOD);
         categoryRegistry.put(MINERAL, Quality.GOOD);
+        categoryRegistry.put(MUSHROOM, Quality.GOOD);
         stackRegistry.register(HFCooking.INGREDIENTS.getStackFromEnum(Ingredient.RICEBALL), Quality.DECENT);
         stackRegistry.register(MEAL.getStackFromEnum(Meal.JUICE_PINEAPPLE), Quality.DECENT);
         stackRegistry.register(MEAL.getStackFromEnum(Meal.JUICE_GRAPE), Quality.DECENT);
@@ -31,11 +32,8 @@ public class GiftsBrandon extends Gifts {
         categoryRegistry.put(ART, Quality.DISLIKE);
         categoryRegistry.put(PLANT, Quality.DISLIKE);
         categoryRegistry.put(FLOWER, Quality.DISLIKE);
-        categoryRegistry.put(MUSHROOM, Quality.DISLIKE);
         stackRegistry.register(MEAL.getStackFromEnum(Meal.SANDWICH_FRUIT), Quality.DISLIKE);
         stackRegistry.register(MEAL.getStackFromEnum(Meal.CUCUMBER_PICKLED), Quality.DISLIKE);
-        stackRegistry.register(MEAL.getStackFromEnum(Meal.RICE_MATSUTAKE), Quality.DISLIKE);
-        stackRegistry.register(MEAL.getStackFromEnum(Meal.RICE_MUSHROOM), Quality.DISLIKE);
         stackRegistry.register(MEAL.getStackFromEnum(Meal.PANCAKE), Quality.DISLIKE);
         categoryRegistry.put(FRUIT, Quality.DISLIKE);
         categoryRegistry.put(FISH, Quality.BAD);

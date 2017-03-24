@@ -494,12 +494,12 @@ harvestfestival.hoe.mythic=Mythic Hoe
 
 #Sickle
 harvestfestival.sickle.tooltip.charge.basic=Normal Charge Level (1x1)
-harvestfestival.sickle.tooltip.charge.copper=Copper Charge Level (1x3)
-harvestfestival.sickle.tooltip.charge.silver=Silver Charge Level (2x3)
+harvestfestival.sickle.tooltip.charge.copper=Copper Charge Level (3x1)
+harvestfestival.sickle.tooltip.charge.silver=Silver Charge Level (3x2)
 harvestfestival.sickle.tooltip.charge.gold=Gold Charge Level (3x3)
 harvestfestival.sickle.tooltip.charge.mystril=Mystril Charge Level (5x5)
 harvestfestival.sickle.tooltip.charge.cursed=Cursed/Blessed Charge Level (9x9)
-harvestfestival.sickle.tooltip.charge.mythic=Mythic Charge Level (5x18)
+harvestfestival.sickle.tooltip.charge.mythic=Mythic Charge Level (15x15)
 harvestfestival.sickle.tooltip.charge=Hold right click to charge
 harvestfestival.sickle.tooltip.discharge=Sneak + right click to reset
 harvestfestival.sickle.basic=Normal Sickle

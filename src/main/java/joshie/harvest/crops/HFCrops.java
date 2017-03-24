@@ -140,10 +140,10 @@ public class HFCrops {
         registerVanillaCrop(Blocks.CARROTS, new ItemStack(Items.CARROT), new ItemStack(Items.CARROT), CARROT);
         registerVanillaCrop(Blocks.POTATOES, new ItemStack(Items.POTATO), new ItemStack(Items.POTATO), POTATO);
         registerVanillaCrop(Blocks.BEETROOTS, new ItemStack(Items.BEETROOT), new ItemStack(Items.BEETROOT_SEEDS, 9), BEETROOT);
-        registerVanillaCrop(Blocks.MELON_STEM, new ItemStack(Items.MELON), new ItemStack(Items.MELON_SEEDS, 45), WATERMELON);
-        registerVanillaCrop(Blocks.PUMPKIN_STEM, new ItemStack(Blocks.PUMPKIN), new ItemStack(Items.PUMPKIN_SEEDS, 36), PUMPKIN);
+        registerVanillaCrop(Blocks.MELON_STEM, new ItemStack(Items.MELON), new ItemStack(Items.MELON_SEEDS, 9), WATERMELON);
+        registerVanillaCrop(Blocks.PUMPKIN_STEM, new ItemStack(Blocks.PUMPKIN), new ItemStack(Items.PUMPKIN_SEEDS, 9), PUMPKIN);
         GameRegistry.addShapelessRecipe(new ItemStack(Items.WHEAT_SEEDS), Items.WHEAT);
-        GameRegistry.addShapelessRecipe(new ItemStack(Items.BEETROOT_SEEDS), Items.BEETROOT);
+        GameRegistry.addShapelessRecipe(new ItemStack(Items.BEETROOT_SEEDS, 2), Items.BEETROOT, Items.BEETROOT);
         HFApi.crops.registerCropProvider(new ItemStack(Items.NETHER_WART), NETHER_WART);
         //registerVanillaCrop(Blocks.NETHER_WART, Items.NETHER_WART, NETHER_WART);
         HFApi.crops.registerWateringHandler(new WateringHandler());

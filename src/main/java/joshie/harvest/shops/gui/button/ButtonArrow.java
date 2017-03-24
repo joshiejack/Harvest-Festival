@@ -3,6 +3,7 @@ package joshie.harvest.shops.gui.button;
 import joshie.harvest.shops.gui.GuiNPCShop;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
+import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.GlStateManager;
 
 import static joshie.harvest.shops.gui.GuiNPCShop.SHOP_EXTRA;
@@ -42,6 +43,7 @@ public abstract class ButtonArrow extends GuiButton {
 
     @Override
     public void mouseReleased(int mouseX, int mouseY) {
-        shop.scroll(amount);
+        if (GuiScreen.isShiftKeyDown()) shop.scroll(amount * 10);
+        else shop.scroll(amount);
     }
 }

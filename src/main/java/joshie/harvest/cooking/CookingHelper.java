@@ -53,7 +53,7 @@ public class CookingHelper {
                         TileCooking cooking = (TileCooking) tile;
                         PlaceIngredientResult result = cooking.hasPrerequisites();
                         if (result != SUCCESS) return result;
-                        if (cooking.getUtensil() == recipe.getUtensil() && cooking.getIngredients().size() == 0) {
+                        if (cooking.getUtensil() == recipe.getUtensil() && cooking.getIngredients().size() == 0 && cooking.getResult().size() == 0) {
                             if (ItemCookbook.cook(cooking, player, recipe)) return SUCCESS;
                         }
                     }

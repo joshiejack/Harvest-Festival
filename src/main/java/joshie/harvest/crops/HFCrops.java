@@ -142,11 +142,14 @@ public class HFCrops {
         registerVanillaCrop(Blocks.BEETROOTS, new ItemStack(Items.BEETROOT), new ItemStack(Items.BEETROOT_SEEDS, 9), BEETROOT);
         registerVanillaCrop(Blocks.MELON_STEM, new ItemStack(Items.MELON), new ItemStack(Items.MELON_SEEDS, 9), WATERMELON);
         registerVanillaCrop(Blocks.PUMPKIN_STEM, new ItemStack(Blocks.PUMPKIN), new ItemStack(Items.PUMPKIN_SEEDS, 9), PUMPKIN);
+        GameRegistry.addShapelessRecipe(new ItemStack(Items.MELON, 9), Blocks.MELON_BLOCK);
         GameRegistry.addShapelessRecipe(new ItemStack(Items.WHEAT_SEEDS), Items.WHEAT);
         GameRegistry.addShapelessRecipe(new ItemStack(Items.BEETROOT_SEEDS, 2), Items.BEETROOT, Items.BEETROOT);
         HFApi.crops.registerCropProvider(new ItemStack(Items.NETHER_WART), NETHER_WART);
         //registerVanillaCrop(Blocks.NETHER_WART, Items.NETHER_WART, NETHER_WART);
         HFApi.crops.registerWateringHandler(new WateringHandler());
+        HFApi.shipping.registerSellable(new ItemStack(Blocks.MELON_BLOCK), WATERMELON.getSellValue() * 9);
+        HFApi.shipping.registerSellable(new ItemStack(Blocks.HAY_BLOCK), WHEAT.getSellValue() * 9);
         HFApi.shipping.registerSellable(new ItemStack(Items.POISONOUS_POTATO), 1L);
         RegistryHelper.registerTiles(TileWithered.class, TileCrop.class, TileSprinkler.class, TileSprinklerOld.class, TileFruit.class);
         if (DISABLE_VANILLA_MOISTURE) Blocks.FARMLAND.setTickRandomly(false);

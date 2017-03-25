@@ -44,6 +44,7 @@
 * Food stats have been rebalanced entirely, they're now calculated based on the basic ingredients with a modifier for certain meals
 * Sell costs for meals are now a bit lower and more rebalanced
 * You can now cook multiple meals at once, the cooking system was rewritten to allow for smarter utensils (i.e. putting two corn in an oven will make two baked corn)
+* Ingredients can be used to cook recipes directly from the fridge
 
 ###Crops
 * Added Old Sprinkler, waters a 3x3 area available from the Carpenter from Summer 7

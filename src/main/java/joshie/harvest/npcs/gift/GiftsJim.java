@@ -36,7 +36,7 @@ public class GiftsJim extends Gifts {
         categoryRegistry.put(GEM, Quality.BAD);
         stackRegistry.register(Ore.of("gemEmerald"), Quality.TERRIBLE);
         stackRegistry.register(Ore.of("gemDiamond"), Quality.TERRIBLE);
-        stackRegistry.register(HFMining.MATERIALS.getStackFromEnum(Material.ADAMANTITE), Quality.TERRIBLE);
+        stackRegistry.register(HFMining.MATERIALS.getStackFromEnum(Material.ALEXANDRITE), Quality.TERRIBLE);
         stackRegistry.register(HFMining.MATERIALS.getStackFromEnum(Material.PINK_DIAMOND), Quality.TERRIBLE);
     }
 }

@@ -24,8 +24,6 @@ public class ContainerFridge extends ContainerBase {
         bindPlayerInventory(inventory, 56);
     }
 
-
-
     @Override
     public int getMaximumStorage(int size) {
         return size * 8;

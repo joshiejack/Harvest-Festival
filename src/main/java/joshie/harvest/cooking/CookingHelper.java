@@ -1,12 +1,13 @@
 package joshie.harvest.cooking;
 
+import joshie.harvest.api.cooking.IFridge;
 import joshie.harvest.api.cooking.Ingredient;
 import joshie.harvest.api.cooking.IngredientStack;
 import joshie.harvest.api.cooking.Recipe;
-import joshie.harvest.cooking.item.ItemCookbook;
 import joshie.harvest.cooking.recipe.RecipeMaker;
 import joshie.harvest.cooking.tile.TileCooking;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
@@ -15,6 +16,7 @@ import net.minecraft.world.World;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import static joshie.harvest.cooking.CookingHelper.PlaceIngredientResult.FAILURE;
@@ -26,9 +28,9 @@ public class CookingHelper {
         return HFCooking.RECIPE.getStackFromObject(Recipe.REGISTRY.get(new ResourceLocation(MODID, name)));
     }
 
-    public static boolean hasAllIngredients(Recipe recipe, EntityPlayer player) {
-        Set<IngredientStack> ingredients = new HashSet<>();
-        for (ItemStack stack: player.inventory.mainInventory) {
+    private static void addIngredientsToSet(Set<IngredientStack> ingredients, IInventory inventory) {
+        for (int i = 0; i < inventory.getSizeInventory(); i++) {
+            ItemStack stack = inventory.getStackInSlot(i);
             if (stack != null) {
                 Ingredient ingredient = CookingAPI.INSTANCE.getCookingComponents(stack);
                 if (ingredient != null) {
@@ -36,15 +38,37 @@ public class CookingHelper {
                 }
             }
         }
+    }
 
+    private static boolean hasAllIngredients(Recipe recipe, List<IInventory> inventories) {
+        Set<IngredientStack> ingredients = new HashSet<>();
+        inventories.stream().forEach(inventory -> addIngredientsToSet(ingredients, inventory));
         ingredients.remove(null); //Remove any nulls
         return RecipeMaker.areAllRequiredInRecipe(recipe.getRequired(), ingredients);
+    }
+
+    public static List<IInventory> getAllFridges(EntityPlayer player, World world, BlockPos pos, int reach) {
+        List<IInventory> fridges = new ArrayList<>();
+        fridges.add(player.inventory);
+        for (int x = -reach; x <= reach; x++) {
+            for (int z = -reach; z <= reach; z++) {
+                for (int y = -1; y <= 1; y++) {
+                    TileEntity tile = world.getTileEntity(pos.add(x, y, z));
+                    if (tile instanceof IFridge) {
+                        fridges.add(((IFridge)tile).getContents());
+                    }
+                }
+            }
+        }
+
+        return fridges;
     }
 
     public static PlaceIngredientResult tryPlaceIngredients(EntityPlayer player, Recipe recipe) {
         World world = player.worldObj;
         BlockPos pos = new BlockPos(player);
         int reach = player.capabilities.isCreativeMode ? 5 : 4;
+        List<IInventory> fridges = getAllFridges(player, world, pos, reach);
         for (int x = -reach; x <= reach; x++) {
             for (int z = -reach; z <= reach; z++) {
                 for (int y = -1; y <= 1; y++) {
@@ -54,7 +78,7 @@ public class CookingHelper {
                         PlaceIngredientResult result = cooking.hasPrerequisites();
                         if (result != SUCCESS) return result;
                         if (cooking.getUtensil() == recipe.getUtensil() && cooking.getIngredients().size() == 0 && cooking.getResult().size() == 0) {
-                            if (ItemCookbook.cook(cooking, player, recipe)) return SUCCESS;
+                            if (cook(cooking, recipe, fridges)) return SUCCESS;
                         }
                     }
                 }
@@ -66,6 +90,38 @@ public class CookingHelper {
 
     public static ItemStack makeRecipe(Recipe recipe) {
         return RecipeMaker.BUILDER.build(recipe, new ArrayList<>(recipe.getRequired())).get(0);
+    }
+
+    private static boolean isIngredient(IngredientStack ingredient, Ingredient check) {
+        return check != null && ingredient.isSame(new IngredientStack(check));
+    }
+
+    private static ItemStack getAndRemoveIngredient(IngredientStack ingredient, List<IInventory> fridges) {
+        for (IInventory inventory: fridges) {
+            for (int i = 0; i < inventory.getSizeInventory(); i++) {
+                ItemStack stack = inventory.getStackInSlot(i);
+                if (stack != null && isIngredient(ingredient, CookingAPI.INSTANCE.getCookingComponents(stack))) {
+                    return inventory.decrStackSize(i, 1);
+                }
+            }
+        }
+
+        return null;
+    }
+
+    private static boolean cook(TileCooking cooking, Recipe selected, List<IInventory> fridges) {
+        if (selected != null) {
+            if (!hasAllIngredients(selected, fridges)) return false;
+            else {
+                for (IngredientStack ingredient : selected.getRequired()) {
+                    ItemStack ret = getAndRemoveIngredient(ingredient, fridges);
+                    if (ret == null) return false;
+                    else cooking.addIngredient(ret);
+                }
+
+                return true;
+            }
+        } else return false;
     }
 
     public enum PlaceIngredientResult {

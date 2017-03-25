@@ -19,15 +19,15 @@ public class GiftsCandice extends Gifts {
         stackRegistry.register(HFAnimals.ANIMAL_PRODUCT.getStack(Sizeable.MILK, Size.SMALL), Quality.AWESOME);
         stackRegistry.register(HFAnimals.ANIMAL_PRODUCT.getStack(Sizeable.MILK, Size.MEDIUM), Quality.AWESOME);
         stackRegistry.register(HFAnimals.ANIMAL_PRODUCT.getStack(Sizeable.MILK, Size.LARGE), Quality.AWESOME);
+        stackRegistry.register(HFCooking.MEAL.getStackFromEnum(Meal.MILK_HOT), Quality.AWESOME);
+        stackRegistry.register(HFCooking.MEAL.getStackFromEnum(Meal.MILK_STRAWBERRY), Quality.AWESOME);
         categoryRegistry.put(MILK, Quality.GOOD);
-        stackRegistry.register(HFCooking.MEAL.getStackFromEnum(Meal.MILK_HOT), Quality.GOOD);
-        stackRegistry.register(HFCooking.MEAL.getStackFromEnum(Meal.MILK_STRAWBERRY), Quality.GOOD);
         stackRegistry.register(Ore.of("cropStrawberry"), Quality.DECENT);
         stackRegistry.register(Ore.of("cropTomato"), Quality.DECENT);
         categoryRegistry.put(FLOWER, Quality.DECENT);
         stackRegistry.register(MEAL.getStackFromEnum(Meal.BUN_JAM), Quality.DECENT);
-        stackRegistry.register(MEAL.getStackFromEnum(Meal.JAM_APPLE), Quality.DISLIKE);
         stackRegistry.register(HFGathering.NATURE.getStackFromEnum(NaturalBlock.LAVENDER), Quality.DISLIKE);
+        stackRegistry.register(MEAL.getStackFromEnum(Meal.JAM_APPLE), Quality.BAD);
         stackRegistry.register(MEAL.getStackFromEnum(Meal.PIE_APPLE), Quality.BAD);
         stackRegistry.register(MEAL.getStackFromEnum(Meal.SOUFFLE_APPLE), Quality.BAD);
         categoryRegistry.put(FRUIT, Quality.BAD);

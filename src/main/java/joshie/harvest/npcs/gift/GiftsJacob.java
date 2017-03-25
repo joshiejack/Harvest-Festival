@@ -16,7 +16,6 @@ public class GiftsJacob extends Gifts {
         stackRegistry.register(HFFishing.FISH.getStackFromEnum(Fish.MANTARAY), Quality.AWESOME);
         stackRegistry.register(HFFishing.FISH.getStackFromEnum(Fish.ELECTRICRAY), Quality.AWESOME);
         stackRegistry.register(HFFishing.FISH.getStackFromEnum(Fish.STINGRAY), Quality.AWESOME);
-        stackRegistry.register(Ore.of("fish"), Quality.GOOD);
         stackRegistry.register(Ore.of("gemPrismarine"), Quality.GOOD);
         stackRegistry.register(Ore.of("dustPrismarine"), Quality.GOOD);
         categoryRegistry.put(FISH, Quality.GOOD);
@@ -25,8 +24,11 @@ public class GiftsJacob extends Gifts {
         stackRegistry.register(MEAL.getStackFromEnum(Meal.SANDWICH), Quality.DISLIKE);
         stackRegistry.register(MEAL.getStackFromEnum(Meal.SANDWICH_HERB), Quality.DISLIKE);
         stackRegistry.register(MEAL.getStackFromEnum(Meal.SANDWICH_FRUIT), Quality.DISLIKE);
-        stackRegistry.register(Ore.of("cropEggplant"), Quality.DISLIKE);
+        stackRegistry.register(MEAL.getStackFromEnum(Meal.EGGPLANT_HAPPY), Quality.BAD);
+        stackRegistry.register(Ore.of("cropEggplant"), Quality.BAD);
         categoryRegistry.put(MINERAL, Quality.BAD);
         stackRegistry.register(HFMining.MATERIALS.getStackFromEnum(Material.JUNK), Quality.TERRIBLE);
+        stackRegistry.register(HFMining.MATERIALS.getStackFromEnum(Material.ORICHALC), Quality.TERRIBLE);
+        stackRegistry.register(HFMining.MATERIALS.getStackFromEnum(Material.MOON_STONE), Quality.TERRIBLE);
     }
 }

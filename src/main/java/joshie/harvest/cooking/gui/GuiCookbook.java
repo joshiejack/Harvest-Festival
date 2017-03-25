@@ -4,14 +4,19 @@ import joshie.harvest.api.cooking.Ingredient;
 import joshie.harvest.api.cooking.IngredientStack;
 import joshie.harvest.api.cooking.Utensil;
 import joshie.harvest.cooking.CookingAPI;
+import joshie.harvest.cooking.CookingHelper;
 import joshie.harvest.core.helpers.MCClientHelper;
 import joshie.harvest.core.helpers.StackRenderHelper;
 import joshie.harvest.core.lib.HFModInfo;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -38,12 +43,19 @@ public class GuiCookbook extends GuiScreen {
         super.initGui();
         setPage(page == null ? MASTER : page);
         ingredients.clear();
-        //Add the player inventory
-        for (ItemStack stack: MCClientHelper.getPlayer().inventory.mainInventory) {
-            if (stack != null) {
-                Ingredient ingredient = CookingAPI.INSTANCE.getCookingComponents(stack);
-                if (ingredient != null) {
-                    ingredients.add(new IngredientStack(ingredient, stack.stackSize));
+        EntityPlayer player = MCClientHelper.getPlayer();
+        World world = player.worldObj;
+        BlockPos pos = new BlockPos(player);
+        int reach = player.capabilities.isCreativeMode ? 5 : 4;
+        List<IInventory> fridges = CookingHelper.getAllFridges(player, world, pos, reach);
+        for (IInventory inventory: fridges) {
+            for (int i = 0; i < inventory.getSizeInventory(); i++) {
+                ItemStack stack = inventory.getStackInSlot(i);
+                if (stack != null) {
+                    Ingredient ingredient = CookingAPI.INSTANCE.getCookingComponents(stack);
+                    if (ingredient != null) {
+                        ingredients.add(new IngredientStack(ingredient, stack.stackSize));
+                    }
                 }
             }
         }

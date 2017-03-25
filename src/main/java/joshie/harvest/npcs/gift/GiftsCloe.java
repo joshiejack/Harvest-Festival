@@ -10,7 +10,6 @@ import static joshie.harvest.cooking.HFCooking.MEAL;
 @SuppressWarnings("unused")
 public class GiftsCloe extends Gifts {
     public GiftsCloe() {
-        stackRegistry.register(Ore.of("bone"), Quality.AWESOME);
         stackRegistry.register(Items.BOOK, Quality.AWESOME);
         stackRegistry.register(Items.ENCHANTED_BOOK, Quality.AWESOME);
         stackRegistry.register(Items.WRITABLE_BOOK, Quality.AWESOME);

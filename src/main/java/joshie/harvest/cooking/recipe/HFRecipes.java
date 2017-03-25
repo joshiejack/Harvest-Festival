@@ -43,7 +43,7 @@ public class HFRecipes {
         addFryingPanRecipe(Meal.FRIES_FRENCH, 4F, 1.2F, POTATO, OIL).setOptionalIngredients(SALT); //Girafi 10000RP
         addFryingPanRecipe(Meal.POPCORN, 3F, 1F, CORN).setOptionalIngredients(BUTTER, SALT); //Ashlee 10000RP
         addFryingPanRecipe(Meal.CORNFLAKES, 1.1F, 0.8F, CORN, MILK).setOptionalIngredients(SUGAR); //Shop
-        addFryingPanRecipe(Meal.EGGPLANT_HAPPY, 1.5F, 1.2F, EGGPLANT).setOptionalIngredients(SUGAR);//Shop
+        addFryingPanRecipe(Meal.EGGPLANT_HAPPY, 2F, 1.2F, EGGPLANT).setOptionalIngredients(SUGAR);//Shop
         addFryingPanRecipe(Meal.EGG_SCRAMBLED, 1.5F, 1.5F, EGG, OIL).setOptionalIngredients(BUTTER, MAYONNAISE, SALT); //Daniel 10000RP
         addFryingPanRecipe(Meal.OMELET, 1.2F, 1.1F, EGG, OIL, MILK).setOptionalIngredients(SALT);//Shop
         addFryingPanRecipe(Meal.OMELET_RICE, 1.15F, 1.1F, EGG, MILK, OIL, RICEBALL).setOptionalIngredients(CABBAGE, ONION, MUSHROOM, GREEN_PEPPER, SALT); //Brandon 10000RP
@@ -123,7 +123,7 @@ public class HFRecipes {
         addPotRecipe(Meal.NOODLES, 2F, 1.5F, FLOUR).setOptionalIngredients(SALT); //Cloe 5000RP
         addPotRecipe(Meal.SOUP_RICE, 3F, 1.2F, RICEBALL); //Brandon 5000RP
         addPotRecipe(Meal.PORRIDGE, 1.5F, 1.2F, MILK, RICEBALL).setOptionalIngredients(SUGAR); //Katlin 5000RP
-        addPotRecipe(Meal.EGG_OVERRICE, 1.5F, 1.2F, EGG, RICEBALL).setOptionalIngredients(SALT);//Shop
+        addPotRecipe(Meal.EGG_OVERRICE, 1.5F, 1F, EGG, RICEBALL).setOptionalIngredients(SALT);//Shop
         addPotRecipe(Meal.STEW, 1.5F, 1.5F, MILK, FLOUR).setOptionalIngredients(EGGPLANT, ONION, POTATO, CARROT, GREEN_PEPPER, FISH, SALT); //Katlin 10000RP
         addPotRecipe(Meal.STEW_PUMPKIN, 2F, 1.4F, PUMPKIN).setOptionalIngredients(SUGAR, SALT);//Shop
         addPotRecipe(Meal.STEW_FISH, 3F, 2F, FISH).setOptionalIngredients(SALT); //Jacob 5000RP
@@ -132,7 +132,7 @@ public class HFRecipes {
         addPotRecipe(Meal.JAM_APPLE, 1.5F, 0.9F, APPLE).setOptionalIngredients(WINE); //Jade 20000RP
         addPotRecipe(Meal.JAM_GRAPE, 1.5F, 0.9F, GRAPE).setOptionalIngredients(WINE);//Jade 20000RP
         addPotRecipe(Meal.MARMALADE, 1.5F, 0.9F, ORANGE).setOptionalIngredients(WINE);//Jade 20000RP
-        addPotRecipe(Meal.NOODLES_TEMPURA, 1.1F, 0.9F, TEMPURA, NOODLES);//Liara 22500RP
+        addPotRecipe(Meal.NOODLES_TEMPURA, 1.1F, 0.5F, TEMPURA, NOODLES);//Liara 22500RP
         addPotRecipe(Meal.RICE_TEMPURA, 1.1F, 0.9F, TEMPURA, RICEBALL);//Liara 20000RP
         addPotRecipe(Meal.SOUP_HERB, 1.1F, 1.1F, CHAMOMILE, ONION).setOptionalIngredients(MINT, LAVENDER);//Shops
         //Vanilla style
@@ -145,7 +145,7 @@ public class HFRecipes {
         addOvenRecipe(Meal.CORN_BAKED, 2F, 1.5F, CORN).setOptionalIngredients(OIL, BUTTER, SALT); //Ashlee 500RP
         addOvenRecipe(Meal.RICEBALLS_TOASTED, 3F, 1.5F, RICEBALL).setOptionalIngredients(SUGAR, SALT);//Shop
         addOvenRecipe(Meal.TOAST, 1.1F, 1.1F, BREAD).setOptionalIngredients(BUTTER); //Jade 5000RP
-        addOvenRecipe(Meal.DINNERROLL, 1.2F, 1.1F, EGG, MILK, BUTTER); //Tiberius 5000RP
+        addOvenRecipe(Meal.DINNERROLL, 1.2F, 0.8F, EGG, MILK, BUTTER); //Tiberius 5000RP
         addOvenRecipe(Meal.DORIA, 1.1F, 1.1F, ONION, BUTTER, MILK, RICEBALL, FLOUR);//Shop
         addOvenRecipe(Meal.COOKIES, 1.2F, 0.4F, EGG, FLOUR, BUTTER).setOptionalIngredients(SUGAR); //Liara 7500RP
         addOvenRecipe(Meal.COOKIES_CHOCOLATE, 1.1F, 0.5F, COOKIES, CHOCOLATE); //Liara 10000RP

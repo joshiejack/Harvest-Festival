@@ -1,6 +1,7 @@
 package joshie.harvest.cooking.tile;
 
 import joshie.harvest.api.HFApi;
+import joshie.harvest.api.cooking.IFridge;
 import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.core.base.tile.TileFaceable;
 import net.minecraft.item.ItemFood;
@@ -15,7 +16,7 @@ import net.minecraftforge.items.wrapper.InvWrapper;
 import javax.annotation.Nonnull;
 
 /** Just a way to interact with the fridge inventory, the fridge inventory is global though, not stored in this block **/
-public class TileFridge extends TileFaceable implements ITickable {
+public class TileFridge extends TileFaceable implements ITickable, IFridge {
     private static final float f1 = 0.025F;
     public float prevLidAngleTop;
     public float lidAngleTop;
@@ -32,6 +33,7 @@ public class TileFridge extends TileFaceable implements ITickable {
         return stack.getItem() == HFCooking.MEAL || HFApi.cooking.isIngredient(stack) || (stack.getItem() instanceof ItemFood && ((ItemFood)stack.getItem()).getHealAmount(stack) > 0);
     }
 
+    @Override
     public FridgeData getContents() {
         return data;
     }

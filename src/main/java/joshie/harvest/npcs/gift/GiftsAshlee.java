@@ -12,7 +12,6 @@ public class GiftsAshlee extends Gifts {
     public GiftsAshlee() {
         stackRegistry.register(Ore.of("cropBanana"), Quality.AWESOME);
         stackRegistry.register(Ore.of("cropCorn"), Quality.AWESOME);
-        stackRegistry.register(MEAL.getStackFromEnum(Meal.CORN_BAKED), Quality.AWESOME);
         categoryRegistry.put(EGG, Quality.GOOD);
         categoryRegistry.put(FRUIT, Quality.GOOD);
         stackRegistry.register(MEAL.getStackFromEnum(Meal.KETCHUP), Quality.BAD);

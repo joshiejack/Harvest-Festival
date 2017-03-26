@@ -43,7 +43,7 @@ public class HFRecipes {
         addFryingPanRecipe(Meal.FRIES_FRENCH, 4F, 1.2F, POTATO, OIL).setOptionalIngredients(SALT); //Girafi 10000RP
         addFryingPanRecipe(Meal.POPCORN, 3F, 1F, CORN).setOptionalIngredients(BUTTER, SALT); //Ashlee 10000RP
         addFryingPanRecipe(Meal.CORNFLAKES, 1.1F, 0.8F, CORN, MILK).setOptionalIngredients(SUGAR); //Shop
-        addFryingPanRecipe(Meal.EGGPLANT_HAPPY, 2F, 1.2F, EGGPLANT).setOptionalIngredients(SUGAR);//Shop
+        addFryingPanRecipe(Meal.EGGPLANT_HAPPY, 5F, 1.2F, EGGPLANT).setOptionalIngredients(SUGAR);//Shop
         addFryingPanRecipe(Meal.EGG_SCRAMBLED, 1.5F, 1.5F, EGG, OIL).setOptionalIngredients(BUTTER, MAYONNAISE, SALT); //Daniel 10000RP
         addFryingPanRecipe(Meal.OMELET, 1.2F, 1.1F, EGG, OIL, MILK).setOptionalIngredients(SALT);//Shop
         addFryingPanRecipe(Meal.OMELET_RICE, 1.15F, 1.1F, EGG, MILK, OIL, RICEBALL).setOptionalIngredients(CABBAGE, ONION, MUSHROOM, GREEN_PEPPER, SALT); //Brandon 10000RP
@@ -142,9 +142,9 @@ public class HFRecipes {
 
     private static void addOvenRecipes() {
         //Added in 0.5+
-        addOvenRecipe(Meal.CORN_BAKED, 2F, 1.5F, CORN).setOptionalIngredients(OIL, BUTTER, SALT); //Ashlee 500RP
+        addOvenRecipe(Meal.CORN_BAKED, 4F, 1.5F, CORN).setOptionalIngredients(OIL, BUTTER, SALT); //Ashlee 500RP
         addOvenRecipe(Meal.RICEBALLS_TOASTED, 3F, 1.5F, RICEBALL).setOptionalIngredients(SUGAR, SALT);//Shop
-        addOvenRecipe(Meal.TOAST, 1.1F, 1.1F, BREAD).setOptionalIngredients(BUTTER); //Jade 5000RP
+        addOvenRecipe(Meal.TOAST, 1.5F, 0.8F, BREAD).setOptionalIngredients(BUTTER); //Jade 5000RP
         addOvenRecipe(Meal.DINNERROLL, 1.2F, 0.8F, EGG, MILK, BUTTER); //Tiberius 5000RP
         addOvenRecipe(Meal.DORIA, 1.1F, 1.1F, ONION, BUTTER, MILK, RICEBALL, FLOUR);//Shop
         addOvenRecipe(Meal.COOKIES, 1.2F, 0.4F, EGG, FLOUR, BUTTER).setOptionalIngredients(SUGAR); //Liara 7500RP

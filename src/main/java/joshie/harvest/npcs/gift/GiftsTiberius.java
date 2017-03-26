@@ -8,7 +8,6 @@ import joshie.harvest.gathering.HFGathering;
 import joshie.harvest.gathering.block.BlockNature.NaturalBlock;
 import joshie.harvest.mining.HFMining;
 import joshie.harvest.mining.item.ItemMaterial.Material;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemPotion;
@@ -43,8 +42,6 @@ public class GiftsTiberius extends Gifts {
         stackRegistry.register(new ItemStack(Items.DYE, 1, 9), Quality.TERRIBLE);
         stackRegistry.register(HFMining.MATERIALS.getStackFromEnum(Material.SAND_ROSE), Quality.TERRIBLE);
         stackRegistry.register(HFCore.FLOWERS.getStackFromEnum(FlowerType.PINKCAT), Quality.TERRIBLE);
-        stackRegistry.register(new ItemStack(Blocks.RED_FLOWER, 1, 2), Quality.TERRIBLE);
-        stackRegistry.register(new ItemStack(Blocks.DOUBLE_PLANT, 1, 1), Quality.TERRIBLE);
     }
 
 

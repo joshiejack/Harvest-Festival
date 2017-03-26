@@ -70,6 +70,7 @@ public class Quests {
     public static final Quest TIBERIUS_10K = QuestHelper.getQuest("recipe.doughnut");
     public static final Quest TIBERIUS_15K = QuestHelper.getQuest("friendship.tiberius.dark");
     public static final Quest YULIF_MEET = QuestHelper.getQuest("tutorial.carpenter");
+    public static final Quest YULIF_AXE = QuestHelper.getQuest("friendship.yulif.axe");
     public static final Quest TOMAS_MEET = QuestHelper.getQuest("meeting.tomas");
     public static final Quest TOMAS_5K = QuestHelper.getQuest("recipe.latte.vegetable");
     public static final Quest TOMAS_10K = QuestHelper.getQuest("recipe.dumplings");

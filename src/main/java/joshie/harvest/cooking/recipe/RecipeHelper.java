@@ -37,7 +37,7 @@ public class RecipeHelper {
         }
 
         hunger = (int)Math.min(20, Math.max(1, hunger * hungerModifier));
-        saturation = Math.min(1.6F, Math.max(0.2F, saturation * modifier));
+        saturation = Math.min(1F, Math.max(0.2F, saturation * modifier));
 
         //Add the recipe
         ResourceLocation resource = new ResourceLocation(MODID, mealname);

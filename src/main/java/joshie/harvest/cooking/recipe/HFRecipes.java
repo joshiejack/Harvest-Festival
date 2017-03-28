@@ -39,7 +39,7 @@ public class HFRecipes {
 
        private static void addFryingPanRecipes() {
         //Added in 0.5+
-        addFryingPanRecipe(Meal.PANCAKE_SAVOURY, 2.5F, 1.1F, FLOUR, CABBAGE, OIL, EGG).setOptionalIngredients(ONION); //Jim 10000RP
+        addFryingPanRecipe(Meal.PANCAKE_SAVOURY, 1.5F, 1.1F, FLOUR, CABBAGE, OIL, EGG).setOptionalIngredients(ONION); //Jim 10000RP
         addFryingPanRecipe(Meal.FRIES_FRENCH, 4F, 1.2F, POTATO, OIL).setOptionalIngredients(SALT); //Girafi 10000RP
         addFryingPanRecipe(Meal.POPCORN, 3F, 1F, CORN).setOptionalIngredients(BUTTER, SALT); //Ashlee 10000RP
         addFryingPanRecipe(Meal.CORNFLAKES, 1.1F, 0.8F, CORN, MILK).setOptionalIngredients(SUGAR); //Shop
@@ -146,7 +146,7 @@ public class HFRecipes {
         addOvenRecipe(Meal.RICEBALLS_TOASTED, 3F, 1.5F, RICEBALL).setOptionalIngredients(SUGAR, SALT);//Shop
         addOvenRecipe(Meal.TOAST, 1.5F, 0.8F, BREAD).setOptionalIngredients(BUTTER); //Jade 5000RP
         addOvenRecipe(Meal.DINNERROLL, 1.2F, 0.8F, EGG, MILK, BUTTER); //Tiberius 5000RP
-        addOvenRecipe(Meal.DORIA, 1.1F, 1.1F, ONION, BUTTER, MILK, RICEBALL, FLOUR);//Shop
+        addOvenRecipe(Meal.DORIA, 1.1F, 0.8F, ONION, BUTTER, MILK, RICEBALL, FLOUR);//Shop
         addOvenRecipe(Meal.COOKIES, 1.2F, 0.4F, EGG, FLOUR, BUTTER).setOptionalIngredients(SUGAR); //Liara 7500RP
         addOvenRecipe(Meal.COOKIES_CHOCOLATE, 1.1F, 0.5F, COOKIES, CHOCOLATE); //Liara 10000RP
         addOvenRecipe(Meal.CAKE_CHOCOLATE, 1.3F, 1.1F, EGG, FLOUR, BUTTER, CHOCOLATE).setOptionalIngredients(SUGAR, FRUITS); //Yulif RP 100000

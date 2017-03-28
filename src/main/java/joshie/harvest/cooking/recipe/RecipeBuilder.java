@@ -176,7 +176,7 @@ public class RecipeBuilder {
         for (IngredientStack stack: optionals) {
             Ingredient main = stack.getIngredient();
             //If we haven't already added this ingredient, use the full value
-            if (!added.containsKey(main)) {
+            if (!added.containsKey(main) || stack.isSame(required)) {
                 hunger += main.getHunger();
                 saturation += main.getSaturation();
                 added.put(main, 0);

@@ -56,7 +56,9 @@ public class HFTools {
     static boolean RESTORE_HUNGER_ON_FAINTING;
     static boolean HF_CONSUME_HUNGER;
     static boolean ENABLE_FAINTING;
+    static boolean ENABLE_EARLY_FAINTING;
     static boolean ENABLE_DEATH_FAINTING;
+    static boolean ENABLE_FAINTING_SLEEP;
     static boolean ATTACK_FAINTING;
     static boolean BLOCK_FAINTING;
 
@@ -66,7 +68,9 @@ public class HFTools {
         RESTORE_HUNGER_ON_SLEEP = getBoolean("Restore hunger on fainting", true);
         HF_CONSUME_HUNGER = getBoolean("Performing Harvest Festival actions consumes hunger", true);
         ENABLE_FAINTING = getBoolean("Enable fainting when low on food", true);
+        ENABLE_EARLY_FAINTING = getBoolean("Enable fainting when exhausted and timer is three quarters way", false);
         ENABLE_DEATH_FAINTING = getBoolean("Kill the player instead of fainting", false);
+        ENABLE_FAINTING_SLEEP = getBoolean("Force the next day when a player faints and is sent to bed if possible", true);
         ATTACK_FAINTING = getBoolean("Attack entities has chance of fainting", false);
         BLOCK_FAINTING = getBoolean("Breaking blocks has chance of fainting", false);
     }

@@ -180,6 +180,7 @@
 * Certain tiers of watering can have had their ranges changed (mostly++)
 * Added config option to prevent respawning at a bed when you are starving
 * Added config option to kill the player instead of respawning at the bed
+* Added config option for fainting when the exhausted timer is expiring (changed default to false)
 
 ####Fixes
 * Gifting npcs on their birthday will now only work once on smp, instead of over multiple days

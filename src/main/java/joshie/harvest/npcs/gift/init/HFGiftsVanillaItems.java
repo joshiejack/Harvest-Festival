@@ -47,7 +47,7 @@ public class HFGiftsVanillaItems extends HFGiftsAbstract {
         assignGeneric(CLOCK, KNOWLEDGE);
         assignGeneric(Ore.of("dustGlowstone"), MINERAL);
         assignGeneric(Ore.of("fish"), GiftCategory.FISH);
-        assignGeneric(COOKED_FISH, GiftCategory.FISH);
+        assignGeneric(COOKED_FISH, COOKING);
         assignGeneric(new ItemStack(Items.DYE, 1, 0), KNOWLEDGE); //Ink sac
         assignGeneric(Ore.of("gemLapis"), GEM); //Lapis Lazuli
         assignGeneric(new ItemStack(Items.DYE, 1, 15), MONSTER); //Bonemeal

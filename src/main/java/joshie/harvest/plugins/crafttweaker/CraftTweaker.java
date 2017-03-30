@@ -2,7 +2,6 @@ package joshie.harvest.plugins.crafttweaker;
 
 import joshie.harvest.api.shops.IRequirement;
 import joshie.harvest.core.commands.CommandManager;
-import joshie.harvest.core.helpers.ConfigHelper;
 import joshie.harvest.core.util.annotations.HFLoader;
 import joshie.harvest.plugins.crafttweaker.command.HFCommandNPC;
 import joshie.harvest.plugins.crafttweaker.command.HFCommandPurchasable;
@@ -27,17 +26,17 @@ import java.util.ArrayList;
 
 @HFLoader(mods = "MineTweaker3")
 public class CraftTweaker {
-    public static IBracketHandler getItemBracketHandler() throws ClassNotFoundException, InstantiationException, IllegalAccessException {
+    private static IBracketHandler getItemBracketHandler() throws ClassNotFoundException, InstantiationException, IllegalAccessException {
         return (IBracketHandler) Class.forName("minetweaker.mc1102.brackets.ItemBracketHandler").newInstance();
     }
 
-    public static void rebuildItemRegistry(IBracketHandler handler) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+    private static void rebuildItemRegistry(IBracketHandler handler) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
         handler.getClass().getMethod("rebuildItemRegistry").invoke(null);
     }
 
     public static void init() throws ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
         /** Attempt to load in the crops before world **/
-        File directory = new File(ConfigHelper.getConfig().getConfigFile().getParentFile(), "harvestfestival");
+        File directory = new File("scripts", "harvestfestival");
         boolean exists = directory.exists();
         if (!exists){
             exists = directory.mkdir();

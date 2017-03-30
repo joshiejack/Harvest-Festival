@@ -6,9 +6,11 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayer.SleepResult;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.player.PlayerSleepInBedEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
@@ -18,6 +20,16 @@ import java.util.List;
 @SuppressWarnings("unused")
 public class SleepHandler {
     public static boolean register() { return HFCore.SLEEP_ANYTIME; }
+
+    @SubscribeEvent
+    public void onDamage(LivingAttackEvent event) {
+        if (event.getSource() == DamageSource.starve && event.getEntityLiving() instanceof EntityPlayer) {
+            EntityPlayer player = ((EntityPlayer)event.getEntityLiving());
+            if (player.isPlayerSleeping()) {
+                event.setCanceled(true);
+            }
+        }
+    }
 
     @SubscribeEvent
     public void onPlayerSleep(PlayerSleepInBedEvent event) {

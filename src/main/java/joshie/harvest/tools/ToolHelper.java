@@ -99,7 +99,7 @@ public class ToolHelper {
             player.addPotionEffect(new PotionEffect(EXHAUSTION, 2000));
         } else {
             PotionEffect effect = player.getActivePotionEffect(EXHAUSTION);
-            if (level == 0 || effect != null && effect.getDuration() <= 1500) {
+            if (effect != null && ((level == 0 && effect.getDuration() <= 1990) || (ENABLE_EARLY_FAINTING && effect.getDuration() <= 1500))) {
                 player.addPotionEffect(new PotionEffect(MobEffects.BLINDNESS, 100, 7));
                 if (!player.worldObj.isRemote && ENABLE_FAINTING) {
                     if (ENABLE_DEATH_FAINTING) player.attackEntityFrom(EXHAUSTED, 1000F);
@@ -108,6 +108,9 @@ public class ToolHelper {
                         BlockPos spawn = player.getBedLocation(dimension) != null ? player.getBedLocation(dimension) : DimensionManager.getWorld(dimension).provider.getRandomizedSpawnPoint();
                         EntityHelper.teleport(player, dimension, spawn);
                         player.trySleep(spawn);
+                        if (ENABLE_FAINTING_SLEEP) { //Force instant sleep
+                            player.sleepTimer = 100;
+                        }
                     }
                 }
 

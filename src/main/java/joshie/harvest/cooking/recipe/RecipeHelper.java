@@ -69,7 +69,7 @@ public class RecipeHelper {
     }
 
     private static Recipe addRecipe(String mealname, Utensil utensil, float hungerModifier, float modifier, boolean drink, Ingredient... ingredients) {
-        int timer = drink ? 8:  24 * (int) modifier;
+        int timer = drink ? 24:  (int) Math.max(24, Math.ceil(24 * modifier));
         Recipe ret = addRecipe(mealname, utensil, hungerModifier, modifier, timer, ingredients);
         if(drink) ret.setIsDrink();
         return ret;

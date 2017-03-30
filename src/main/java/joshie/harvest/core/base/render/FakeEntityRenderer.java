@@ -2,6 +2,9 @@ package joshie.harvest.core.base.render;
 
 import gnu.trove.map.TIntObjectMap;
 import gnu.trove.map.hash.TIntObjectHashMap;
+import joshie.harvest.animals.render.ModelHarvestChicken;
+import joshie.harvest.animals.render.ModelHarvestCow;
+import joshie.harvest.animals.render.ModelHarvestSheep;
 import joshie.harvest.core.base.render.FakeEntityRenderer.EntityItemRenderer;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.GlStateManager;
@@ -21,8 +24,8 @@ public class FakeEntityRenderer extends TileEntitySpecialRenderer<EntityItemRend
     public void renderTileEntityAt(@Nullable EntityItemRenderer fake, double x, double y, double z, float partialTicks, int destroyStage) {
          if (fake != null) {
              GlStateManager.pushMatrix();
-             GlStateManager.translate(0.5F, -0.05F, 0.5F);
-             GlStateManager.scale(-0.75F, 0.75F, 0.75F);
+             GlStateManager.translate(fake.render.translation, -0.05F, 0.5F);
+             GlStateManager.scale(-fake.render.scale, fake.render.scale, fake.render.scale);
              GlStateManager.rotate(180.0F, 0.0F, 0.0F, 1.0F);
              GlStateManager.rotate(135.0F, 0.0F, 1.0F, 0.0F);
              GlStateManager.rotate(135.0F, 0.0F, 1.0F, 0.0F);
@@ -53,17 +56,39 @@ public class FakeEntityRenderer extends TileEntitySpecialRenderer<EntityItemRend
     public static class RenderPair {
         public final ModelBase model;
         public final ResourceLocation texture;
+        public final float scale;
+        public final float translation;
 
         public RenderPair(ResourceLocation name, ModelBase model) {
             this.model = model;
             this.model.isChild = false;
             this.texture = name;
+            //Vanilla
+            this.translation = 0.5F;
+            this.scale = 0.75F;
         }
 
         public RenderPair(String name, ModelBase model) {
             this.model = model;
             this.model.isChild = false;
             this.texture = new ResourceLocation(MODID, "textures/entity/" + name + ".png");
+            //Modded
+            if (model instanceof ModelHarvestChicken.Child) {
+                this.translation = 0.5F;
+                this.scale = 2F;
+            } else if (model instanceof ModelHarvestChicken.Adult) {
+                this.translation = 0.5F;
+                this.scale = 1.5F;
+            } else if (model instanceof ModelHarvestSheep.Wooly) {
+                this.translation = 0.6F;
+                this.scale = 0.9F;
+            } else if (model instanceof ModelHarvestCow.Adult) {
+                this.translation = 0.525F;
+                this.scale = 0.7F;
+            } else {
+                this.translation = 0.5F;
+                this.scale = 0.75F;
+            }
         }
     }
 }

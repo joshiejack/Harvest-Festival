@@ -4,6 +4,7 @@ import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.Season;
+import joshie.harvest.api.calendar.Weather;
 import joshie.harvest.api.crops.IStateHandler.PlantSection;
 import joshie.harvest.api.crops.WateringHandler;
 import joshie.harvest.core.entity.EntityBasket;
@@ -18,6 +19,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ChunkCache;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.Chunk;
 
 import javax.annotation.Nullable;
@@ -108,6 +110,8 @@ public class CropHelper {
     }
 
     public static boolean isRainingAt(World world, BlockPos pos) {
-        return HFApi.calendar.getWeather(world).isRain() && world.canBlockSeeSky(pos) && world.getPrecipitationHeight(pos).getY() <= pos.getY() && world.getBiome(pos).canRain();
+        Biome biome = world.getBiome(pos);
+        Weather weather = HFApi.calendar.getWeather(world);
+        return (weather.isRain() || (weather.isSnow() && biome.isHighHumidity())) && world.canBlockSeeSky(pos) && world.getPrecipitationHeight(pos).getY() <= pos.getY() && world.getBiome(pos).canRain();
     }
 }

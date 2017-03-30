@@ -14,6 +14,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.biome.Biome;
 import net.minecraftforge.client.event.EntityViewRenderEvent.FogColors;
 import net.minecraftforge.client.event.EntityViewRenderEvent.RenderFogEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
@@ -71,11 +72,12 @@ public class CalendarRender {
 
                 Weather weather = HFApi.calendar.getWeather(mc.theWorld);
                 if (k2 != l2) {
-                    if (mc.theWorld.getBiome(blockpos$mutableblockpos).canRain()) {
+                    Biome biome = mc.theWorld.getBiome(blockpos$mutableblockpos);
+                    if (biome.canRain() && !biome.isHighHumidity()) {
                         if (weather == Weather.BLIZZARD) {
-                            fogTarget = -30000;
+                            fogTarget = -20000;
                         } else if (weather == Weather.SNOW) {
-                            fogTarget = -2000;
+                            fogTarget = -1000;
                         } else fogTarget = 100;
                     } else fogTarget = 5000;
                 } else fogTarget = 100;
@@ -109,6 +111,7 @@ public class CalendarRender {
 
     @SubscribeEvent
     public void getFoliageColor(GetFoliageColor event) {
+        if (!event.getBiome().canRain() || event.getBiome().isHighHumidity()) return;
         if (HFApi.calendar.getDate(MCClientHelper.getWorld()).getSeason() == Season.AUTUMN) {
             event.setNewColor(0xFF9900);
         } else {
@@ -121,6 +124,7 @@ public class CalendarRender {
 
     @SubscribeEvent
     public void getGrassColor(GetGrassColor event) {
+        if (!event.getBiome().canRain() || event.getBiome().isHighHumidity()) return;
         int grass = HFTrackers.getCalendar(MCClientHelper.getWorld()).getSeasonData().grassColor;
         if (grass != 0) {
             event.setNewColor(CalendarHelper.getBlendedColour(grassToBlend, event.getOriginalColor(), grass));

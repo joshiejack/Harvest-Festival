@@ -84,7 +84,7 @@ public class WeatherRenderer extends IRenderHandler {
                         if (k2 != l2) {
                             renderer.random.setSeed((long)(l1 * l1 * 3121 + l1 * 45238971 ^ k1 * k1 * 418711 + k1 * 13761));
                             blockpos$mutableblockpos.setPos(l1, k2, k1);
-                            if (!weather.isSnow() && !biome.isSnowyBiome()) {
+                            if ((!weather.isSnow() && !biome.isSnowyBiome()) || biome.isHighHumidity()) {
                                 if (j1 != 0) {
                                     if (j1 >= 0) {
                                         tessellator.draw();

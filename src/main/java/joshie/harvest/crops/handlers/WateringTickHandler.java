@@ -3,7 +3,6 @@ package joshie.harvest.crops.handlers;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.crops.WateringHandler;
 import joshie.harvest.api.ticking.DailyTickableBlock;
-import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.util.annotations.HFEvents;
 import joshie.harvest.crops.CropHelper;
 import net.minecraft.block.state.IBlockState;
@@ -58,7 +57,7 @@ public class WateringTickHandler extends DailyTickableBlock {
     @SubscribeEvent(priority = EventPriority.LOWEST, receiveCanceled = true)
     public void onDirtTilled(UseHoeEvent event) {
         if (!event.getWorld().isRemote && !event.isCanceled()) {
-            if (HFTrackers.getCalendar(event.getWorld()).getTodaysWeather().isRain() && CropHelper.isRainingAt(event.getWorld(), event.getPos().up(2))) {
+            if (CropHelper.isRainingAt(event.getWorld(), event.getPos().up(2))) {
                 MinecraftForge.EVENT_BUS.register(new RainingSoil(event.getEntityPlayer(), event.getWorld(), event.getPos()));
             }
 

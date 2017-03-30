@@ -200,7 +200,7 @@ public class HFWorldProvider extends WorldProviderSurface {
     @Override
     public boolean canBlockFreeze(@Nonnull BlockPos pos, boolean byWater) {
         Biome biome = worldObj.getBiome(pos);
-        if (!biome.canRain()) {
+        if (!biome.canRain() || biome.isHighHumidity()) {
             return super.canBlockFreeze(pos, byWater);
         } else if (biome.isSnowyBiome()) {
             Weather weather = HFApi.calendar.getWeather(worldObj);
@@ -234,7 +234,7 @@ public class HFWorldProvider extends WorldProviderSurface {
     @Override
     public boolean canSnowAt(@Nonnull BlockPos pos, boolean checkLight) {
         Biome biome = worldObj.getBiome(pos);
-        if (!biome.canRain()) {
+        if (!biome.canRain() || biome.isHighHumidity()) {
             return super.canSnowAt(pos, checkLight);
         } else if (biome.isSnowyBiome()) {
             Weather weather = HFApi.calendar.getWeather(worldObj);

@@ -45,7 +45,7 @@ public class BlockOre extends BlockHFSmashable<BlockOre, Ore> implements ISmasha
 
     public enum Ore implements IStringSerializable {
         ROCK, COPPER, SILVER, GOLD, MYSTRIL, GEM,
-        EMERALD, DIAMOND, RUBY, AMETHYST, TOPAZ;
+        EMERALD, DIAMOND, RUBY, AMETHYST, TOPAZ, JADE;
 
         @Override
         public String getName() {
@@ -96,10 +96,11 @@ public class BlockOre extends BlockHFSmashable<BlockOre, Ore> implements ISmasha
             case TOPAZ:
                 return 2;
             case GOLD:
-            case EMERALD:
+            case JADE:
             case RUBY:
                 return 3;
             case MYSTRIL:
+            case EMERALD:
             case DIAMOND:
                 return 4;
             default:
@@ -164,7 +165,10 @@ public class BlockOre extends BlockHFSmashable<BlockOre, Ore> implements ISmasha
                 drops = world.rand.nextInt(512) == 0 ? getRandomStack(world, Material.PINK_DIAMOND, 1) : getRandomStack(world, DIAMOND, 3);
                 break;
             case RUBY:
-                drops = getRandomStack(world, Material.RUBY, 5);
+                drops = getRandomStack(world, Material.RUBY, 4);
+                break;
+            case JADE:
+                drops = getRandomStack(world, Material.JADE, 5);
                 break;
             case AMETHYST:
                 drops = getRandomStack(world, Material.AMETHYST, 3);

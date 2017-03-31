@@ -17,8 +17,8 @@ public class ItemMaterial extends ItemHFEnum<ItemMaterial, Material> {
     public enum Material implements IStringSerializable, ISellable {
         JUNK(1L), COPPER(15L), SILVER(20L), GOLD(25L), MYSTRIL(40L), MYTHIC(20000L),
         ADAMANTITE(50L), AGATE(62L), ALEXANDRITE(10000L), AMETHYST(60L), FLUORITE(20L),
-        MOON_STONE(25L), ORICHALC(50L), PERIDOT(35L), PINK_DIAMOND(10000L), RUBY(75L),
-        SAND_ROSE(30L), TOPAZ(70L);
+        MOON_STONE(25L), ORICHALC(50L), PERIDOT(35L), PINK_DIAMOND(10000L), RUBY(70L),
+        SAND_ROSE(30L), TOPAZ(65L), JADE(75L);
 
         private final long sell;
 

@@ -316,6 +316,32 @@
               "of": 3
             }
           ]
+        },
+        {
+          "type": "item",
+          "name": "harvestfestival:materials",
+          "entryName": "jade",
+          "weight": 110,
+          "functions": [
+            {
+              "function": "hf_set_enum",
+              "enum": "jade"
+            },
+            {
+              "function": "set_count",
+              "count": {
+                "min": 0,
+                "max": 1
+              }
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "harvestfestival:between100",
+              "from": 50,
+              "to": 100
+            }
+          ]
         }
       ]
     }

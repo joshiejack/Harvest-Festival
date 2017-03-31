@@ -122,7 +122,8 @@ public class HFMining {
         HFApi.mining.registerOre(silver, ORE.getStateFromEnum(Ore.TOPAZ), 5D, SPRING, SUMMER, AUTUMN);
         HFApi.mining.registerOre(gold, ORE.getStateFromEnum(Ore.GOLD), 8D, SPRING, SUMMER, AUTUMN);
         HFApi.mining.registerOre(gold, ORE.getStateFromEnum(Ore.RUBY), 6D, SPRING, SUMMER, AUTUMN);
-        HFApi.mining.registerOre(gold, ORE.getStateFromEnum(Ore.EMERALD), 4D, SPRING, SUMMER, AUTUMN);
+        HFApi.mining.registerOre(gold, ORE.getStateFromEnum(Ore.JADE), 5D, SPRING, SUMMER, AUTUMN);
+        HFApi.mining.registerOre(mystril, ORE.getStateFromEnum(Ore.EMERALD), 4D, SPRING, SUMMER, AUTUMN);
         HFApi.mining.registerOre(mystril, ORE.getStateFromEnum(Ore.MYSTRIL), 5D, SPRING, SUMMER, AUTUMN);
         HFApi.mining.registerOre(mystril, ORE.getStateFromEnum(Ore.DIAMOND), 3D, SPRING, SUMMER, AUTUMN);
 
@@ -135,7 +136,8 @@ public class HFMining {
         HFApi.mining.registerOre(silver, ORE.getStateFromEnum(Ore.TOPAZ), 6D, WINTER);
         HFApi.mining.registerOre(gold, ORE.getStateFromEnum(Ore.GOLD), 10D, WINTER);
         HFApi.mining.registerOre(gold, ORE.getStateFromEnum(Ore.RUBY), 7D, WINTER);
-        HFApi.mining.registerOre(gold, ORE.getStateFromEnum(Ore.EMERALD), 4D, WINTER);
+        HFApi.mining.registerOre(mystril, ORE.getStateFromEnum(Ore.JADE), 5D, WINTER);
+        HFApi.mining.registerOre(mystril, ORE.getStateFromEnum(Ore.EMERALD), 4D, WINTER);
         HFApi.mining.registerOre(mystril, ORE.getStateFromEnum(Ore.MYSTRIL), 5D, WINTER);
         HFApi.mining.registerOre(mystril, ORE.getStateFromEnum(Ore.DIAMOND), 3D, WINTER);
     }

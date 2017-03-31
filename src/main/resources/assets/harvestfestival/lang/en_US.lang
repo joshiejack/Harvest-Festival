@@ -658,6 +658,7 @@ harvestfestival.ore.emerald=Emerald Node
 harvestfestival.ore.ruby=Ruby Node
 harvestfestival.ore.topaz=Topaz Node
 harvestfestival.ore.amethyst=Amethyst Node
+harvestfestival.ore.jade=Jade Node
 harvestfestival.portal=Mine Portal
 harvestfestival.mine.format=Floor %s
 
@@ -680,6 +681,7 @@ harvestfestival.material.pink.diamond=Pink Diamond
 harvestfestival.material.ruby=Ruby
 harvestfestival.material.sand.rose=Sandrose
 harvestfestival.material.topaz=Topaz
+harvestfestival.material.jade=Jade
 
 #Mine Mobs
 harvestfestival.darkspawner.cow=Dark Cow

@@ -33,7 +33,7 @@ public class QuestGoddessPond extends QuestTown {
     @Override
     public boolean isNPCUsed(EntityPlayer player, NPCEntity entity) {
         Town data = entity.getTown();
-        return super.isNPCUsed(player, entity) && data.getBuildingCount() >= 5 || data.hasBuilding(HFBuildings.GODDESS_POND);
+        return super.isNPCUsed(player, entity) && (data.getBuildingCount() >= 5 || data.hasBuilding(HFBuildings.GODDESS_POND));
     }
 
     @Override

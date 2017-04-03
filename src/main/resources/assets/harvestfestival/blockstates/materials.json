@@ -22,6 +22,7 @@
     "pink_diamond": [{ "textures": { "layer0": "harvestfestival:items/pink_diamond" }}],
     "ruby": [{ "textures": { "layer0": "harvestfestival:items/ruby" }}],
     "sand_rose": [{ "textures": { "layer0": "harvestfestival:items/sand_rose" }}],
-    "topaz": [{ "textures": { "layer0": "harvestfestival:items/topaz" }}]
+    "topaz": [{ "textures": { "layer0": "harvestfestival:items/topaz" }}],
+    "jade": [{ "textures": { "layer0": "harvestfestival:items/jade" }}]
   }
 }

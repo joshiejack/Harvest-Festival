@@ -34,7 +34,7 @@ public class TownHelper implements ITownHelper {
         //If we're in the mine, adjust the block position
         //Based on the mining id that we have been given
         if (world.provider.getDimension() == HFMining.MINING_ID) {
-            return (T) getTowns(world).getClosestTownToBlockPos(getTowns(world).getCoordinatesForOverworldMine(null, MiningHelper.getMineID(pos)), create);
+            return (T) getTowns(world).getClosestTownToBlockPos(getTowns(world).getCoordinatesForOverworldMine(entity, MiningHelper.getMineID(pos)), create);
         } else if (world.provider.getDimension() != 0) {
             //If the world isn't the overworld, take the spawn coordinates instead
             return (T) getTowns(world).getClosestTownToBlockPos(getDefaultCoordinates(entity), create);

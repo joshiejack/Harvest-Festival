@@ -2,7 +2,6 @@ package joshie.harvest.town.tracker;
 
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
-import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.CalendarDate;
@@ -39,7 +38,7 @@ public class TownTrackerServer extends TownTracker<TownDataServer> {
     };
 
     private TownSavedData data;
-    private BiMap<UUID, Integer> townIDs = HashBiMap.create();
+
 
     @Override
     public TownDataServer getNullTown() {
@@ -59,7 +58,7 @@ public class TownTrackerServer extends TownTracker<TownDataServer> {
     }
 
     public void syncToPlayer(EntityPlayerMP player) {
-        PacketHandler.sendToClient(new PacketSyncTowns(townData), player);
+        PacketHandler.sendToClient(new PacketSyncTowns(townData, townIDs), player);
         for (TownDataServer town: townData) {
             town.getQuests().sync(player);
         }
@@ -126,7 +125,7 @@ public class TownTrackerServer extends TownTracker<TownDataServer> {
         townData.add(data);
         uuidMap.put(data.getID(), data);
         matchUUIDWithMineID(data.getID());
-        PacketHandler.sendToDimension(getDimension(), new PacketNewTown(data)); //Sync to everyone on this dimension
+        PacketHandler.sendToDimension(getDimension(), new PacketNewTown(data, townIDs.get(data.getID()))); //Sync to everyone on this dimension
         data.getQuests().sync(null);
         markDirty();
         return data;

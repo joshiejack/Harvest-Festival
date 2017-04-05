@@ -15,15 +15,18 @@ import net.minecraftforge.fml.common.network.ByteBufUtils;
 @Packet(Side.CLIENT)
 public class PacketNewTown extends PenguinPacket {
     private TownData data;
+    private int mine;
 
     @SuppressWarnings("unused")
     public PacketNewTown() {}
-    public PacketNewTown(TownData data) {
+    public PacketNewTown(TownData data, int mine) {
         this.data = data;
+        this.mine = mine;
     }
 
     @Override
     public void toBytes(ByteBuf buf) {
+        buf.writeInt(mine);
         NBTTagCompound tag = new NBTTagCompound();
         data.writeToNBT(tag);
         ByteBufUtils.writeTag(buf, tag);
@@ -31,12 +34,13 @@ public class PacketNewTown extends PenguinPacket {
 
     @Override
     public void fromBytes(ByteBuf buf) {
+        mine = buf.readInt();
         data = new TownDataClient();
         data.readFromNBT(ByteBufUtils.readTag(buf));
     }
 
     @Override
     public void handlePacket(EntityPlayer player) {
-        HFTrackers.<TownTrackerClient>getTowns(player.worldObj).addTown((TownDataClient)data);
+        HFTrackers.<TownTrackerClient>getTowns(player.worldObj).addTown((TownDataClient)data, mine);
     }
 }

@@ -1,5 +1,7 @@
 package joshie.harvest.town.tracker;
 
+import com.google.common.collect.BiMap;
+import com.google.common.collect.HashBiMap;
 import joshie.harvest.core.util.HFTracker;
 import joshie.harvest.npcs.HFNPCs;
 import joshie.harvest.town.data.TownData;
@@ -18,6 +20,7 @@ import java.util.UUID;
 
 public abstract class TownTracker<T extends TownData> extends HFTracker {
     final HashMap<UUID, T> uuidMap = new HashMap<>();
+    BiMap<UUID, Integer> townIDs = HashBiMap.create();
     Set<T> townData = new HashSet<>();
 
     public abstract T getNullTown();
@@ -49,9 +52,14 @@ public abstract class TownTracker<T extends TownData> extends HFTracker {
 
     public abstract T createNewTown(BlockPos blockPos);
 
+    public T getTownFromMineID(int mineID) {
+        UUID uuid = townIDs.inverse().get(mineID);
+        return uuid != null ? getTownByID(uuid) : getNullTown();
+    }
+
     public T getTownByID(UUID townID) {
         T result = uuidMap.get(townID);
-        return result == null ? null : result;
+        return result == null ? getNullTown() : result;
     }
 
     public BlockPos getCoordinatesForOverworldMine(@Nullable Entity entity, int mineID) {

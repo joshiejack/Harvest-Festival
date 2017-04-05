@@ -10,7 +10,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.common.DimensionManager;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -22,10 +21,11 @@ import static joshie.harvest.core.HFTrackers.getTowns;
 public class TownHelper implements ITownHelper {
     public static final TownHelper INSTANCE = new TownHelper();
 
-    @Nonnull
+    @Nullable
     private static BlockPos getDefaultCoordinates(@Nullable Entity entity) {
+        if (entity == null) return null;
         BlockPos pos = entity instanceof EntityPlayer ? ((EntityPlayer)entity).getBedLocation(0) : null;
-        return pos == null ? DimensionManager.getWorld(0).provider.getRandomizedSpawnPoint(): pos;
+        return pos == null ? entity.worldObj.provider.getRandomizedSpawnPoint(): pos;
     }
 
     @SuppressWarnings("unchecked")
@@ -34,10 +34,11 @@ public class TownHelper implements ITownHelper {
         //If we're in the mine, adjust the block position
         //Based on the mining id that we have been given
         if (world.provider.getDimension() == HFMining.MINING_ID) {
-            return (T) getTowns(world).getClosestTownToBlockPos(getTowns(world).getCoordinatesForOverworldMine(entity, MiningHelper.getMineID(pos)), create);
+            return (T) getTowns(world).getTownFromMineID(MiningHelper.getMineID(pos));
         } else if (world.provider.getDimension() != 0) {
             //If the world isn't the overworld, take the spawn coordinates instead
-            return (T) getTowns(world).getClosestTownToBlockPos(getDefaultCoordinates(entity), create);
+            BlockPos default_ = getDefaultCoordinates(entity);
+            return default_ == null ? (T) getTowns(world).getNullTown() :(T) getTowns(world).getClosestTownToBlockPos(default_, create);
         }
 
         return (T) getTowns(world).getClosestTownToBlockPos(pos, create);

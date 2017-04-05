@@ -69,7 +69,7 @@ public class CookingContestEntry extends ContestEntry<QuestContestCooking> {
 
     @Override
     public String getTextFromScore(String unlocalised, int score) {
-        return TextHelper.translate(unlocalised + "." + Math.max(0, Math.min(9, (int)Math.floor(((double)score) / 1000))));
+        return TextHelper.localize(unlocalised + "." + Math.max(0, Math.min(9, (int)Math.floor(((double)score) / 1000))));
     }
 
     public boolean isInvalid(World world) {

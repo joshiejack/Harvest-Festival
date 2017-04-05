@@ -25,7 +25,7 @@ public class ButtonShipped extends ButtonBook<GuiStats> {
         this.width = 16;
         this.height = 16;
         this.holder = holder;
-        this.obtained = !obtained;
+        this.obtained = obtained;
         this.value = value;
     }
 
@@ -36,7 +36,7 @@ public class ButtonShipped extends ButtonBook<GuiStats> {
         this.height = 16;
         this.holder = null;
         this.stack = stack;
-        this.obtained = !obtained;
+        this.obtained = obtained;
         this.value = value;
     }
 

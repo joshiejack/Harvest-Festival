@@ -34,7 +34,7 @@ public abstract class ContestEntry<Q extends QuestContest> {
 
     @Nullable
     public EntityPlayer getPlayer() {
-        return EntityHelper.getPlayerFromUUID(player);
+        return player == null ? null : EntityHelper.getPlayerFromUUID(player);
     }
 
     public abstract String getName(World world);

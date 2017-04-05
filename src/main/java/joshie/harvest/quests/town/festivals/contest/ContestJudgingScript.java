@@ -30,6 +30,6 @@ public class ContestJudgingScript extends Script {
             }
         }
 
-        return TextHelper.translate(unlocalised + ".none");
+        return TextHelper.format(unlocalised + ".none");
     }
 }

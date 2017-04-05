@@ -1,6 +1,5 @@
 package joshie.harvest.core.helpers;
 
-import joshie.harvest.npcs.render.NPCItemRenderer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderItem;
@@ -26,6 +25,7 @@ import static joshie.harvest.core.lib.HFModInfo.MODID;
 public class StackRenderHelper {
     public static final TextureManager textureManager = MCClientHelper.getMinecraft().getTextureManager();
     private static final ResourceLocation RES_ITEM_GLINT = new ResourceLocation(MODID, "textures/gui/shadow.png");
+    public static boolean renderShadow;
 
     @SideOnly(Side.CLIENT)
     public static void drawStack(ItemStack stack, int left, int top, float size) {
@@ -127,9 +127,9 @@ public class StackRenderHelper {
             if (model.isBuiltInRenderer()) {
                 GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
                 GlStateManager.enableRescaleNormal();
-                NPCItemRenderer.renderShadow = true;
+                renderShadow = true;
                 TileEntityItemStackRenderer.instance.renderByItem(stack);
-                NPCItemRenderer.renderShadow = false;
+                renderShadow = false;
             } else {
                 render.renderModel(model, -1, stack);
                 renderEffect(render, model);

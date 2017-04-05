@@ -6,6 +6,7 @@ import joshie.harvest.animals.render.ModelHarvestChicken;
 import joshie.harvest.animals.render.ModelHarvestCow;
 import joshie.harvest.animals.render.ModelHarvestSheep;
 import joshie.harvest.core.base.render.FakeEntityRenderer.EntityItemRenderer;
+import joshie.harvest.core.helpers.StackRenderHelper;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
@@ -18,6 +19,7 @@ import javax.annotation.Nullable;
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 
 public class FakeEntityRenderer extends TileEntitySpecialRenderer<EntityItemRenderer> {
+    public static final ResourceLocation SHADOW = new ResourceLocation(MODID, "textures/entity/shadow.png");
     public static final FakeEntityRenderer INSTANCE = new FakeEntityRenderer();
 
     @Override
@@ -35,8 +37,13 @@ public class FakeEntityRenderer extends TileEntitySpecialRenderer<EntityItemRend
              GlStateManager.enableRescaleNormal();
              GlStateManager.scale(-1.0F, -1.0F, 1.0F);
              GlStateManager.translate(0.0F, -1.501F, 0.0F);
-             bindTexture(fake.render.texture);
+             if (StackRenderHelper.renderShadow) {
+                 bindTexture(SHADOW);
+                 GlStateManager.disableLighting();
+             } else bindTexture(fake.render.texture);
+
              fake.render.model.render(null, 0F, 0F, 0F, 0F, 0F, 0.0625F);
+             if (StackRenderHelper.renderShadow) GlStateManager.enableLighting();
              GlStateManager.disableRescaleNormal();
              GlStateManager.enableCull();
              GlStateManager.popMatrix();

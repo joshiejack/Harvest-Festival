@@ -54,7 +54,7 @@ public class PageShipping extends PageCollection {
         int k = 0;
         int l = 0;
         int added = 0;
-        for (int i = start * 112; added < start * 112 + 112 && i < list.size(); i++) {
+        for (int i = (start * 112); added < 112 && i < list.size(); i++) {
             AbstractItemHolder holder = list.get(i);
             long value = ShippingRegistry.INSTANCE.getRegistry().getValue(holder);
             boolean obtained = hasObtainedStack(holder);

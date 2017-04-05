@@ -8,6 +8,7 @@ import joshie.harvest.api.core.ISpecialRules;
 import joshie.harvest.api.shops.OpeningHandler;
 import joshie.harvest.api.shops.Shop;
 import joshie.harvest.calendar.CalendarHelper;
+import joshie.harvest.town.TownHelper;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
@@ -33,7 +34,7 @@ public class ShopHours implements OpeningHandler {
     @Override
     @SuppressWarnings("unchecked")
     public boolean isOpen(World world, EntityAgeable npc, @Nullable EntityPlayer player, Shop shop) {
-        Festival festival = HFApi.calendar.getFestival(world, new BlockPos(npc));
+        Festival festival = player != null ? TownHelper.getClosestTownToEntity(player, false).getFestival() : TownHelper.getClosestTownToBlockPos(world, new BlockPos(npc), false).getFestival();
         if (!opensOnHolidays && !festival.doShopsOpen() && festival != Festival.NONE) return false;
         Weekday day = HFApi.calendar.getDate(world).getWeekday();
         for (OpeningHours hours: open.get(day)) {

@@ -1,13 +1,12 @@
 package joshie.harvest.npcs.greeting;
 
-import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.Festival;
 import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.npc.greeting.IConditionalGreeting;
 import joshie.harvest.core.helpers.TextHelper;
+import joshie.harvest.town.TownHelper;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.math.BlockPos;
 
 public class GreetingFestival implements IConditionalGreeting {
     private final String text;
@@ -20,7 +19,7 @@ public class GreetingFestival implements IConditionalGreeting {
 
     @Override
     public boolean canDisplay(EntityPlayer player, EntityAgeable ageable, NPC npc) {
-        return HFApi.calendar.getFestival(player.worldObj, new BlockPos(ageable)) == festival;
+        return TownHelper.getClosestTownToEntity(player, false).getFestival() == festival;
     }
 
     @Override

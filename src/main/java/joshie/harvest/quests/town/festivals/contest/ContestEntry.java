@@ -33,14 +33,14 @@ public abstract class ContestEntry<Q extends QuestContest> {
     }
 
     @Nullable
-    public EntityPlayer getPlayer() {
-        return player == null ? null : EntityHelper.getPlayerFromUUID(player);
+    public EntityPlayer getPlayer(World world) {
+        return player != null ? EntityHelper.getPlayerFromUUID(world, player) : null;
     }
 
     public abstract String getName(World world);
 
-    public String getOwnerName() {
-        EntityPlayer player = getPlayer();
+    public String getOwnerName(World world) {
+        EntityPlayer player = getPlayer(world);
         return player != null ? player.getName() : npc != null ? npc.getLocalizedName() : "Anonymous";
     }
 

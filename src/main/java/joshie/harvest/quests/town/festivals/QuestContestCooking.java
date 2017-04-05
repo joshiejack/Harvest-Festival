@@ -99,8 +99,8 @@ public class QuestContestCooking extends QuestContest<CookingContestEntries> {
     public void reward(World world, Place place) {
         CookingContestEntry entry = entries.getEntry(place);
         entry.reward(world, place, entries.getNPCs(), getReward(place));
-        if (entry.getPlayer() != null) {
-            EntityPlayer player = entry.getPlayer();
+        if (entry.getPlayer(world) != null) {
+            EntityPlayer player = entry.getPlayer(world);
             switch (place) {
                 case FIRST:
                     HFTrackers.<PlayerTrackerServer>getPlayerTrackerFromPlayer(player).getTracking().setHasWonCookingContest();

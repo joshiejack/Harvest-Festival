@@ -82,7 +82,7 @@ public class CookingContestEntry extends ContestEntry<QuestContestCooking> {
 
     @Override
     public void reward(World world, Place place, NPC[] npcs, ItemStack reward) {
-        EntityPlayer player = getPlayer();
+        EntityPlayer player = getPlayer(world);
         if (player != null) { //Give the rewards for this
             SpawnItemHelper.addToPlayerInventory(player, reward);
             for (NPC npc: npcs) {

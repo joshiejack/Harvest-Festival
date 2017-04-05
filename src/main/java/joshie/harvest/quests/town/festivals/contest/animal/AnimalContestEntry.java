@@ -103,7 +103,7 @@ public class AnimalContestEntry extends ContestEntry<QuestAnimalContest> {
 
     public void reward(World world, Place place, NPC[] npcs, ItemStack reward) {
         AnimalStats stats = getStats(world);
-        EntityPlayer player = getPlayer();
+        EntityPlayer player = getPlayer(world);
         if (stats != null && player != null) { //Give the rewards for this
             SpawnItemHelper.addToPlayerInventory(player, reward);
             stats.affectHappiness(place.happiness); //Make the animal happier, and the npcs that took part v

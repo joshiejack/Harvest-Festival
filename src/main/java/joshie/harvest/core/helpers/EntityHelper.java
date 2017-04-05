@@ -58,6 +58,17 @@ public class EntityHelper {
         return null;
     }
 
+    public static EntityPlayer getPlayerFromUUID(World world, UUID uuid) {
+        //Loops through every single player
+        for (EntityPlayer player : world.playerEntities) {
+            if (getPlayerUUID(player).equals(uuid)) {
+                return player;
+            }
+        }
+
+        return null;
+    }
+
     public static <T extends Entity> List<T> getEntities(Class<? extends T> t, World world, BlockPos pos, double size, double ySize) {
         return world.getEntitiesWithinAABB(t, new AxisAlignedBB(pos.getX() - 0.5F, pos.getY() - 0.5F, pos.getZ() - 0.5F, pos.getX() + 0.5F, pos.getY() + 0.5F, pos.getZ() + 0.5F).expand(size, ySize, size));
     }

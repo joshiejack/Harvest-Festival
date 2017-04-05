@@ -27,8 +27,8 @@ public class ContestWinningScript extends Script {
         ContestEntry third = entries.getEntry(THIRD);
         ContestEntry second = entries.getEntry(SECOND);
         ContestEntry first = entries.getEntry(FIRST);
-        return StringEscapeUtils.unescapeJava(I18n.translateToLocalFormatted(unlocalised, third.getOwnerName(), third.getName(world),
-                second.getOwnerName(), second.getName(world),
-                first.getOwnerName(), first.getName(world)));
+        return StringEscapeUtils.unescapeJava(I18n.translateToLocalFormatted(unlocalised, third.getOwnerName(world), third.getName(world),
+                second.getOwnerName(world), second.getName(world),
+                first.getOwnerName(world), first.getName(world)));
     }
 }

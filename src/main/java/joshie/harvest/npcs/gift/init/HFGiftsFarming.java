@@ -17,17 +17,16 @@ import static joshie.harvest.api.npc.gift.GiftCategory.*;
 public class HFGiftsFarming extends HFGiftsAbstract {
     public static void init() {
         assignGeneric(TREATS, JUNK);
+        registerAllSizes(Sizeable.EGG, EGG);
         registerAllSizes(Sizeable.WOOL, WOOL);
         registerAllSizes(Sizeable.MILK, MILK);
         registerAllSizes(Sizeable.MAYONNAISE, COOKING);
-        assignGeneric(GOLDEN_PRODUCT.getStackFromEnum(Sizeable.EGG), EGG);
     }
 
     private static void registerAllSizes(Sizeable sizeable, GiftCategory category) {
         assignGeneric(ANIMAL_PRODUCT.getStack(sizeable, Size.SMALL), category);
         assignGeneric(ANIMAL_PRODUCT.getStack(sizeable, Size.MEDIUM), category);
         assignGeneric(ANIMAL_PRODUCT.getStack(sizeable, Size.LARGE), category);
-        assignGeneric(GOLDEN_PRODUCT.getStackFromEnum(sizeable), category);
     }
 
     public static void postInit() {

@@ -358,7 +358,6 @@ harvestfestival.meal.flour.description=Crushed wheat or whatever you choose to c
 harvestfestival.meal.mayonnaise.small.description=Pressed eggs and vinegar in a jar. That’s a pretty small jar, will that cover your sandwich?
 harvestfestival.meal.mayonnaise.medium.description=Your chicken must like you to be laying larger eggs. The mayonnaise is bigger too.
 harvestfestival.meal.mayonnaise.large.description=Call up that sub shop, their mayonnaise container arrived at your front door. This industrial sized jar will… just barely fit in your fridge. Is it single use?
-harvestfestival.meal.mayonnaise.golden.description=Pretty yolky if you ask me. What farmer would want to press their GOLDEN EGGS for mayonnaise? It’s still the same, just… shiny and yolky.
 #Default Meals
 harvestfestival.meal.vanilla.cookies.description=Finest vanilla ingredients. Uh, wheat cookies! ... once you pull all the fibers out, its very nutritious.
 harvestfestival.meal.vanilla.cake.description=A lovely vanilla cake. Made vanilla style. Can't really be improved.
@@ -401,7 +400,6 @@ harvestfestival.sizeable.format=%1s %2s
 harvestfestival.sizeable.small=Small
 harvestfestival.sizeable.medium=Medium
 harvestfestival.sizeable.large=Large
-harvestfestival.sizeable.golden=Golden
 harvestfestival.sizeable.egg=Egg
 harvestfestival.sizeable.milk=Milk
 harvestfestival.sizeable.wool=Wool
@@ -2214,7 +2212,7 @@ harvestfestival.script.cow.judge.6=This cow is very good! The owner should be pr
 harvestfestival.script.cow.judge.7=This cow doing incredibly well. They sure love their owner.
 harvestfestival.script.cow.judge.8=This cow is doing absolutely awesome. Their owner is wonderful.
 harvestfestival.script.cow.judge.9=This cow is aboslutely outstanding. Fantastic coat! Nothing can beat it.
-harvestfestival.script.cow.winner=It's time to announce the winner of the Cow Festival. In third place we have %1$s with their cow %2$s. Winning some Wheat. \n\nIn second we have %3$s with their cow %4$s. Their prize is a drink of Hot Milk.\n\n\nAnd finally without any further delay the winner of this year's Cow Festival is.... %5$s with their amazing cow %6$s!!!!!!!\n\nCongratulations! You win some strawberry milk and your cow should now be able to produce golden milk!\n\nThank you to everyone that participated. It was a wonderful contest. I hope to see you all back next year!
+harvestfestival.script.cow.winner=It's time to announce the winner of the Cow Festival. In third place we have %1$s with their cow %2$s. Winning some Wheat. \n\nIn second we have %3$s with their cow %4$s. Their prize is a drink of Hot Milk.\n\n\nAnd finally without any further delay the winner of this year's Cow Festival is.... %5$s with their amazing cow %6$s!!!!!!!\n\nCongratulations! You win some strawberry milk and your cow will always produce large milks!\n\nThank you to everyone that participated. It was a wonderful contest. I hope to see you all back next year!
 harvestfestival.script.cow.finish=Well everyone that's all the cows judged! It was a good contest today. Time for me to announce the winners. Just a second, need to head back to the entry stand.
 
 #Sheep Festival
@@ -2247,7 +2245,7 @@ harvestfestival.script.sheep.judge.6=The owner should be proud of this sheep. Sh
 harvestfestival.script.sheep.judge.7=This sheep sure loves their owner they are doing incredibly well.
 harvestfestival.script.sheep.judge.8=This sheep is looking fantastic, their owner has done an amazing job.
 harvestfestival.script.sheep.judge.9=This sheep is absolutely outstanding. The wool is the best I've ever seen.
-harvestfestival.script.sheep.winner=Well I guess that means it's time to announce the winner. In third we have %1$s with their sheep %2$s. Happy to give you some wheat. \n\nIn second place we have %3$s with their sheep %4$s. You get to win some stew.\n\n\nFinally time to announce the winner. This years winner of the Sheep Festival is.... %5$s with their wonderful sheep %6$s!!!!!!!\n\nCongrats! You receive a cashmere sweater. It should be worth a fair bit. Your sheep should also now be able to produce golden wool!\n\nThank you to everyone that participated. It was a wonderful contest. I hope to see you all back next year!
+harvestfestival.script.sheep.winner=Well I guess that means it's time to announce the winner. In third we have %1$s with their sheep %2$s. Happy to give you some wheat. \n\nIn second place we have %3$s with their sheep %4$s. You get to win some stew.\n\n\nFinally time to announce the winner. This years winner of the Sheep Festival is.... %5$s with their wonderful sheep %6$s!!!!!!!\n\nCongrats! You receive a cashmere sweater. It should be worth a fair bit. Your sheep should also now always produce large wool!\n\nThank you to everyone that participated. It was a wonderful contest. I hope to see you all back next year!
 harvestfestival.script.sheep.finish=Well everyone that's all the cows judged! It was a good contest today. Time for me to announce the winners. Just a second, need to head back to the entry stand.
 
 #Chicken Festival
@@ -2280,7 +2278,7 @@ harvestfestival.script.chicken.judge.6=I've seen a bunch of good chickens, but t
 harvestfestival.script.chicken.judge.7=Well I've got to say the owner has done a good job here. The chicken is looking incredible!
 harvestfestival.script.chicken.judge.8=This is just amazing. The chicken is very happy. The owner should be proud.
 harvestfestival.script.chicken.judge.9=I can't believe my eyes. This chicken is absolutely outstanding! And you can see the gleam in its eyes!
-harvestfestival.script.chicken.winner=Okay I've collected my thoughts and made my decisions. Third place goes to %1$s with their chicken %2$s. You can have this lovely boiled egg! \n\nSecond place goes to %3$s with their chicken %4$s. Please take this lovely homemade scrambled egg.\n\n\nNow who is the winner? Well after a tough contest this year's winner of the Chicken Festival is.... %5$s with their gorgeous chicken %6$s!!!!!!!\n\nWhat a wonderful job, please take this lovely omelette. And another thing your chicken will now be able to produce golden eggs!\n\nThat concludes the festival. I hope you all enjoyed it as much as I did. See you all next year!
+harvestfestival.script.chicken.winner=Okay I've collected my thoughts and made my decisions. Third place goes to %1$s with their chicken %2$s. You can have this lovely boiled egg! \n\nSecond place goes to %3$s with their chicken %4$s. Please take this lovely homemade scrambled egg.\n\n\nNow who is the winner? Well after a tough contest this year's winner of the Chicken Festival is.... %5$s with their gorgeous chicken %6$s!!!!!!!\n\nWhat a wonderful job, please take this lovely omelette. And another thing your chicken will now always produce large eggs!\n\nThat concludes the festival. I hope you all enjoyed it as much as I did. See you all next year!
 harvestfestival.script.chicken.finish=I guess that's it! I've evaluated all the chickens. It's been a nice contest this year! I'll just need a short moment to think.
 
 #New Years Eve

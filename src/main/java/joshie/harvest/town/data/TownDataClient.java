@@ -6,12 +6,9 @@ import joshie.harvest.buildings.BuildingStage;
 import joshie.harvest.knowledge.letter.LetterDataClient;
 import joshie.harvest.quests.data.QuestDataClient;
 import net.minecraft.util.math.BlockPos;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.LinkedList;
 
-@SideOnly(Side.CLIENT)
 public class TownDataClient extends TownData<QuestDataClient, LetterDataClient> {
     private final QuestDataClient quest = new QuestDataClient();
     private final LetterDataClient letters = new LetterDataClient();

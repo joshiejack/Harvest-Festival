@@ -265,7 +265,7 @@ public class AnimalStatsHF implements AnimalStats<NBTTagCompound> {
         else if (test == AnimalTest.IS_SICK) return isSick;
         else if (test == AnimalTest.HAD_TREAT) return treated;
         else if (test == AnimalTest.BEEN_LOVED) return beenLoved;
-        else return test == AnimalTest.IS_GOLDEN && golden;
+        else return test == AnimalTest.WON_CONTEST && golden;
     }
 
     @Override

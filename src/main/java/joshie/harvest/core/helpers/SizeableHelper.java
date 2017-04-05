@@ -26,8 +26,8 @@ public class SizeableHelper {
     }
 
     private static ItemStack getSizeable(AnimalStats stats, Sizeable sizeable, int size) {
-        if (stats.performTest(AnimalTest.IS_GOLDEN) && stats.getHappiness() >= 20000 && stats.getAnimal().worldObj.rand.nextInt(100) == 0) {
-            return sizeable.getGoldenProduct();
+        if (stats.performTest(AnimalTest.WON_CONTEST) && stats.getHappiness() >= 20000 && stats.getAnimal().worldObj.rand.nextInt(100) == 0) {
+            return sizeable.getStackOfSize(HFAnimals.ANIMAL_PRODUCT, Size.LARGE, size);
         }
 
         return sizeable.getStackOfSize(HFAnimals.ANIMAL_PRODUCT, getSizeFromAnimal(stats.getHappiness(), stats.getAnimal()), size);

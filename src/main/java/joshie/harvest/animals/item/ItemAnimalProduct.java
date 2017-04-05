@@ -1,6 +1,5 @@
 package joshie.harvest.animals.item;
 
-import joshie.harvest.animals.HFAnimals;
 import joshie.harvest.animals.item.ItemAnimalProduct.Sizeable;
 import joshie.harvest.core.base.item.ItemHFSizeable;
 import joshie.harvest.core.util.interfaces.ISizeable;
@@ -42,18 +41,16 @@ public class ItemAnimalProduct extends ItemHFSizeable<ItemAnimalProduct, Sizeabl
     }
 
     public enum Sizeable implements IStringSerializable, ISizeable {
-        EGG(50, 60, 80, 120), MILK(100, 150, 200, 300), MAYONNAISE(70, 80, 100, 150), WOOL(500, 750, 1000, 1500);
+        EGG(50, 60, 80), MILK(100, 150, 200), MAYONNAISE(70, 80, 100), WOOL(500, 750, 1000);
 
         private final long small;
         private final long medium;
         private final long large;
-        private final long golden;
 
-        Sizeable(long small, long medium, long large, long golden) {
+        Sizeable(long small, long medium, long large) {
             this.small = small;
             this.medium = medium;
             this.large = large;
-            this.golden = golden;
         }
 
         @Override
@@ -72,11 +69,6 @@ public class ItemAnimalProduct extends ItemHFSizeable<ItemAnimalProduct, Sizeabl
         }
 
         @Override
-        public long getGolden() {
-            return golden;
-        }
-
-        @Override
         public String getName() {
             return name().toLowerCase(Locale.ENGLISH);
         }
@@ -84,11 +76,6 @@ public class ItemAnimalProduct extends ItemHFSizeable<ItemAnimalProduct, Sizeabl
         @Override
         public int getMeta() {
             return ordinal();
-        }
-
-        @Override
-        public ItemStack getGoldenProduct() {
-            return HFAnimals.GOLDEN_PRODUCT.getStackFromEnum(this);
         }
     }
 }

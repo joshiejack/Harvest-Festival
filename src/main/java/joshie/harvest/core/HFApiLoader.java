@@ -67,7 +67,7 @@ public class HFApiLoader {
         registerPackets(asm);
         registerCommands(asm);
         registerTasks(asm);
-        if (HFCore.DEBUG_MODE) {
+        if (HFCore.DEBUG_MODE && isClient) {
             registerDebugCommand(asm);
         }
     }

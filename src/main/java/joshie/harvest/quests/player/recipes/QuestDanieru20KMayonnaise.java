@@ -11,7 +11,7 @@ import java.util.Set;
 @HFQuest("recipe.mayonnaise")
 public class QuestDanieru20KMayonnaise extends QuestRecipe {
     public QuestDanieru20KMayonnaise() {
-        super(HFNPCs.BLACKSMITH, 20000, "mayonnaise_small", "mayonnaise_medium", "mayonnaise_large", "mayonnaise_golden");
+        super(HFNPCs.BLACKSMITH, 20000, "mayonnaise_small", "mayonnaise_medium", "mayonnaise_large");
     }
 
     @Override

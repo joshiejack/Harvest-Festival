@@ -65,7 +65,6 @@ public class HFAnimals {
     public static final ItemAnimalSpawner ANIMAL = new ItemAnimalSpawner().register("animal");
     public static final ItemAnimalTool TOOLS = new ItemAnimalTool().register("tool_animal");
     public static final ItemAnimalTreat TREATS = new ItemAnimalTreat().register("treat");
-    public static final ItemGoldenProduct GOLDEN_PRODUCT = new ItemGoldenProduct().register("golden");
     public static final ItemAnimalProduct ANIMAL_PRODUCT = new ItemAnimalProduct().register("sizeable");
 
     //Animal Blocks
@@ -148,7 +147,6 @@ public class HFAnimals {
     public static int AGING_TIMER;
     public static int PREGNANCY_TIMER;
     public static int CHICKEN_TIMER;
-    public static boolean OP_ANIMALS;
     public static boolean VANILLA_MODELS;
     public static boolean OUTDOOR_HAPPINESS;
 

@@ -3,6 +3,8 @@ package joshie.harvest.knowledge.gui.stats;
 import joshie.harvest.api.cooking.Recipe;
 import joshie.harvest.api.core.Ore;
 import joshie.harvest.core.util.holders.HolderRegistrySet;
+import joshie.harvest.fishing.HFFishing;
+import joshie.harvest.fishing.item.ItemJunk.Junk;
 import joshie.harvest.mining.HFMining;
 import net.minecraft.item.ItemStack;
 
@@ -13,6 +15,10 @@ public class CollectionHelper {
     public static final HolderRegistrySet ORE = new HolderRegistrySet();
     static {
         FISH.register(Ore.of("fish"));
+        for (Junk junk: Junk.values()) {
+            if (junk != Junk.BAIT) FISH.register(HFFishing.JUNK.getStackFromEnum(junk));
+        }
+
         ORE.register(HFMining.MATERIALS);
         ORE.register(Ore.of("ore").setType(PREFIX));
         ORE.register(Ore.of("gem").setType(PREFIX));

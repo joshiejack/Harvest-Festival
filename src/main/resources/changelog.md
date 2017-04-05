@@ -66,10 +66,10 @@
 ###Festivals - NEW!
 * Added new years festival, celebrate with food
 * Added cooking festival, celebrate your cooking skills. Winners will have cooked meals sell for 1.1x more.
-* Added cow festival, winners cows will produce golden milk if happiness is high!
-* Added chicken festival, winners chickens will produce golden eggs if happiness is high!
+* Added cow festival, winners cows will will always produce large milk!
+* Added chicken festival, winners chickens will always produce large eggs!
 * Added harvest festival, make friends with the villagers by contributing your best to a communal soup
-* Added sheep festival, winners sheep will produce golden wool if happiness is high!
+* Added sheep festival, winners sheep will always produce large wool!
 * Added starry night festival, celebrate the winter with your loved ones
 * Added new years eve festival, celebrate with a meal then watch some fireworks to bring in the new year
 

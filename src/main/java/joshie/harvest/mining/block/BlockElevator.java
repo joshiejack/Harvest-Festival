@@ -73,18 +73,17 @@ public class BlockElevator extends BlockHFEnumRotatableTile<BlockElevator, Eleva
 
     @Override
     public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity) {
-        if (entity instanceof EntityPlayer && getEnumFromState(state) == Elevator.JUNK) {
-            TileElevator elevator = getElevator(world, pos, state);
-            if (elevator != null) {
-                BlockPos twin = elevator.getTwin();
-                if (twin == null) {
-                    if (world.isRemote) ChatHelper.displayChat(TextHelper.translate("elevator.link"));
-                } else {
-                    EntityPlayer player = (EntityPlayer) entity;
-                    TileEntity target = world.getTileEntity(twin);
-                    if (!isTeleportTargetSetTo(player, twin)) {
-                        setTeleportTargetTo(player, twin, target, pos);
-                    }
+        TileEntity tile = world.getTileEntity(pos);
+        if (entity instanceof EntityPlayer && tile instanceof TileElevator) {
+            TileElevator elevator = (TileElevator) tile;
+            BlockPos twin = elevator.getTwin();
+            if (twin == null) {
+                if (world.isRemote) ChatHelper.displayChat(TextHelper.translate("elevator.link"));
+            } else {
+                EntityPlayer player = (EntityPlayer) entity;
+                TileEntity target = world.getTileEntity(twin);
+                if (!isTeleportTargetSetTo(player, twin)) {
+                    setTeleportTargetTo(player, twin, target, pos);
                 }
             }
         }
@@ -125,7 +124,7 @@ public class BlockElevator extends BlockHFEnumRotatableTile<BlockElevator, Eleva
 
     @Override
     public boolean hasTileEntity(IBlockState state) {
-        return true;
+        return getEnumFromState(state) == Elevator.JUNK;
     }
 
     @Override

@@ -9,7 +9,6 @@ import joshie.harvest.mining.HFMining;
 import joshie.harvest.mining.block.BlockElevator;
 import joshie.harvest.mining.block.BlockElevator.Elevator;
 import net.minecraft.block.BlockNewLog;
-import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.BlockPlanks.EnumType;
 import net.minecraft.block.BlockWallSign;
 import net.minecraft.block.state.IBlockState;
@@ -69,8 +68,6 @@ public class ItemBlockElevator extends ItemBlockHF {
                     world.setBlockState(pos.up(), HFMining.ELEVATOR.getStateFromEnum(Elevator.EMPTY));
                     world.setBlockState(pos.up(2), Blocks.LOG2.getDefaultState().withProperty(BlockNewLog.VARIANT, EnumType.DARK_OAK));
                     world.setBlockState(pos.up(2).offset(raytrace.sideHit), Blocks.WALL_SIGN.getDefaultState().withProperty(BlockWallSign.FACING, raytrace.sideHit));
-                    world.setBlockState(pos.down().offset(raytrace.sideHit), Blocks.PLANKS.getDefaultState().withProperty(BlockPlanks.VARIANT, EnumType.DARK_OAK));
-                    world.setBlockState(pos.offset(raytrace.sideHit), Blocks.WOODEN_PRESSURE_PLATE.getDefaultState());
                     TileEntity tile = world.getTileEntity(pos);
                     if (tile instanceof IFaceable) {
                         ((IFaceable) tile).setFacing(raytrace.sideHit);

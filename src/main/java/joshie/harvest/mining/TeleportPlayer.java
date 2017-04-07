@@ -55,7 +55,7 @@ public class TeleportPlayer {
             this.target = target instanceof TileElevator ? (TileElevator) target : null;
             this.origin = origin;
             int floors = MiningHelper.getDifference(twin, origin);
-            this.counter = Math.min(600, Math.max(60, 15 * floors));
+            this.counter = Math.min(600, Math.max(60, 5 * floors));
         }
 
         private void finishOrCancelTeleport() {

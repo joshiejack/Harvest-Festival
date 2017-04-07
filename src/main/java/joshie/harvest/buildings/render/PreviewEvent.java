@@ -87,7 +87,9 @@ public class PreviewEvent {
         EntityPlayerSP player = MCClientHelper.getPlayer();
         BuildingRenderer renderer = getRenderer(player.worldObj, player);
         if (renderer != null) {
-            renderRenderer(player, renderer, event.getPartialTicks());
+            if (player.getDistanceSqToCenter(renderer.getPos()) < 1) {
+                renderRenderer(player, renderer, event.getPartialTicks());
+            }
         }
     }
 }

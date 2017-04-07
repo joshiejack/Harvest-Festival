@@ -1,5 +1,7 @@
 package joshie.harvest.mining.item;
 
+import com.google.common.cache.Cache;
+import com.google.common.cache.CacheBuilder;
 import joshie.harvest.buildings.BuildingHelper;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.item.ItemHFEnum;
@@ -23,12 +25,16 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.ExecutionException;
 
 import static joshie.harvest.core.helpers.InventoryHelper.ITEM_STACK;
 
 public class ItemMiningTool extends ItemHFEnum<ItemMiningTool, MiningTool> {
+    private final Cache<EntityPlayer, NBTTagCompound> linkDataServer = CacheBuilder.newBuilder().build();
+    private final Cache<EntityPlayer, NBTTagCompound> linkDataClient = CacheBuilder.newBuilder().build();
     public enum MiningTool implements IStringSerializable {
         ESCAPE_ROPE, ELEVATOR_CABLE;
 
@@ -42,8 +48,15 @@ public class ItemMiningTool extends ItemHFEnum<ItemMiningTool, MiningTool> {
         super(HFTab.MINING, MiningTool.class);
     }
 
+    @Nullable
+    private NBTTagCompound getLinkData(EntityPlayer player) {
+        try {
+            return player.worldObj.isRemote ? linkDataClient.get(player, NBTTagCompound::new) : linkDataServer.get(player, NBTTagCompound::new);
+        } catch (ExecutionException ex) { return null; }
+    }
+
     private boolean isElevator(World world, BlockPos pos) {
-        return world.getBlockState(pos).getBlock() == HFMining.ELEVATOR;
+        return world.getTileEntity(pos) instanceof TileElevator;
     }
 
     private int getCostBasedOnFloor(int floor) {
@@ -66,11 +79,11 @@ public class ItemMiningTool extends ItemHFEnum<ItemMiningTool, MiningTool> {
 
     @SuppressWarnings("ConstantConditions")
     private void link(EntityPlayer player, World world, BlockPos pos, ItemStack stack) {
-        NBTTagCompound link = stack.getSubCompound("LinkData", true);
+        NBTTagCompound link = getLinkData(player);
         if (!link.hasKey("Link1")) {
             link.setLong("Link1", pos.toLong());
             //Message that you set the first link coordinates
-            ChatHelper.displayChat(TextHelper.formatHF("elevator.start", MiningHelper.getFloor(pos)));
+            if (world.isRemote) ChatHelper.displayChat(TextHelper.formatHF("elevator.start", MiningHelper.getFloor(pos)));
         } else {
             BlockPos link1 = BlockPos.fromLong(link.getLong("Link1"));
             if (!link1.equals(pos)) {
@@ -84,24 +97,23 @@ public class ItemMiningTool extends ItemHFEnum<ItemMiningTool, MiningTool> {
                         int amount = InventoryHelper.getCount(player, stack, ITEM_STACK);
                         if (amount - cost >= 0) {
                             //Message that you have successfully linked the elevators
-                            ChatHelper.displayChat(TextHelper.formatHF("elevator.success", floor1, floor2));
+                            if (world.isRemote) ChatHelper.displayChat(TextHelper.formatHF("elevator.success", floor1, floor2));
                             ((TileElevator) world.getTileEntity(pos)).setTwin(link1);
-                            InventoryHelper.takeItemsInInventory(player, ITEM_STACK, stack, amount);
+                            InventoryHelper.takeItemsInInventory(player, ITEM_STACK, stack, cost);
                             //Remove the link
                             link.removeTag("Link1");
                         } else {
                             //Message that you need a total of DIFFERENCE ropes to perform the link
-                            ChatHelper.displayChat(TextHelper.formatHF("elevator.cost", cost));
+                            if (world.isRemote) ChatHelper.displayChat(TextHelper.formatHF("elevator.cost", cost));
                         }
-                    } else ChatHelper.displayChat(TextHelper.translate("elevator.cannot.floor"));
-                } else {
+                    } else if (world.isRemote)  ChatHelper.displayChat(TextHelper.translate("elevator.cannot.floor"));
+                } else if (world.isRemote)  {
                     //Message that elevators can't transfer between mines
                     ChatHelper.displayChat(TextHelper.translate("elevator.cannot.mine"));
                 }
 
             } // Error that you can't link identical items
-            else ChatHelper.displayChat(TextHelper.translate("elevator.cannot.self"));
-
+            else if (world.isRemote) ChatHelper.displayChat(TextHelper.translate("elevator.cannot.self"));
         }
     }
 
@@ -111,19 +123,24 @@ public class ItemMiningTool extends ItemHFEnum<ItemMiningTool, MiningTool> {
         if (world.provider.getDimension() == HFMining.MINING_ID) {
             MiningTool tool = getEnumFromStack(stack);
             if (tool == MiningTool.ELEVATOR_CABLE) {
-                RayTraceResult raytrace = BuildingHelper.rayTrace(player, 5D, 0F);
-                if (raytrace == null || (raytrace.sideHit == EnumFacing.DOWN || raytrace.sideHit == EnumFacing.UP)) return new ActionResult<>(EnumActionResult.PASS, stack); //We didn't ind what we want
-                BlockPos pos = raytrace.getBlockPos();
-                if (isElevator(world, pos)) {
+                if (player.isSneaking()) {
+                    NBTTagCompound tag = getLinkData(player);
+                    if (tag != null) tag.removeTag("Link1");
+                } else {
+                    RayTraceResult raytrace = BuildingHelper.rayTrace(player, 5D, 0F);
+                    if (raytrace == null || (raytrace.sideHit == EnumFacing.DOWN || raytrace.sideHit == EnumFacing.UP))
+                        return new ActionResult<>(EnumActionResult.PASS, stack); //We didn't ind what we want
+                    BlockPos pos = raytrace.getBlockPos();
                     if (isElevator(world, pos.down())) link(player, world, pos.down(), stack);
-                    else link(player, world, pos, stack);
+                    else if (isElevator(world, pos)) link(player, world, pos, stack);
                 }
 
                 return new ActionResult<>(EnumActionResult.SUCCESS, stack);
             } else if (tool == MiningTool.ESCAPE_ROPE) {
                     stack.splitStack(1);
-                    if (!world.isRemote)
+                    if (!world.isRemote) {
                         MiningHelper.teleportToOverworld(player); //Back we go!
+                    }
                 return new ActionResult<>(EnumActionResult.SUCCESS, stack);
             }
         }

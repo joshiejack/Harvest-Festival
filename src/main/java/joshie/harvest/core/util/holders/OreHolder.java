@@ -67,7 +67,7 @@ public class OreHolder extends AbstractItemHolder {
 
     @Override
     public String toString() {
-        return "OreHolder: " + ore;
+        return ore;
     }
 
     @Override

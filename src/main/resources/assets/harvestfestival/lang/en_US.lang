@@ -127,6 +127,7 @@ harvestfestival.crop.watermelon=Watermelon
 harvestfestival.crop.wheat=Wheat
 harvestfestival.crop.nether.wart=Nether Wart
 harvestfestival.crop.tutorial.turnip=Hardy Turnip
+harvestfestival.crop.apple=Apple
 harvestfestival.crop.banana=Banana
 harvestfestival.crop.orange=Orange
 harvestfestival.crop.peach=Peach
@@ -158,6 +159,9 @@ harvestfestival.cookbook=Recipe Book
 harvestfestival.recipe.format=%s Recipe
 harvestfestival.recipe.invalid=Junk Recipe
 harvestfestival.cook=COOK
+harvestfestival.cook.mode.any=Any recipes mode
+harvestfestival.cook.mode.cookable=Cookable recipes mode
+harvestfestival.cook.mode.switch=Shift click to change modes
 
 #Meals
 harvestfestival.meal.learnt=New Recipe Learnt!

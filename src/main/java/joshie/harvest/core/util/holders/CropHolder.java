@@ -49,7 +49,7 @@ public class CropHolder extends AbstractItemHolder {
 
     @Override
     public String toString() {
-        return "CropHolder:" + (crop != null ? crop.getResource().toString() : "null");
+        return crop.getLocalizedName(true);
     }
 
     @Override

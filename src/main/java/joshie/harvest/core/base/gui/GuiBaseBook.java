@@ -4,12 +4,13 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.util.ResourceLocation;
+import org.lwjgl.input.Keyboard;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public abstract class GuiBaseBook extends GuiScreen {
-
     private final ArrayList<Runnable> runnables = new ArrayList<>();
     private final ArrayList<String> tooltip = new ArrayList<>();
     private final ResourceLocation left;
@@ -76,6 +77,17 @@ public abstract class GuiBaseBook extends GuiScreen {
     }
 
     public abstract BookPage getDefaultPage();
+
+    @Override
+    public void onGuiClosed() {
+        Keyboard.enableRepeatEvents(false);
+    }
+
+    @Override
+    protected void keyTyped(char typedChar, int keyCode) throws IOException {
+        super.keyTyped(typedChar, keyCode);
+        page.keyTyped(typedChar, keyCode);
+    }
 
     private void drawTooltip(List<String> list, int x, int y) {
         if (!list.isEmpty()) {

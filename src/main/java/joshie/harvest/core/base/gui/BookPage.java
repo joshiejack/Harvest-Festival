@@ -57,4 +57,6 @@ public class BookPage<G extends GuiBaseBook> {
     public void drawScreen(int x, int y) {
 
     }
+
+    public void keyTyped(char typedChar, int keyCode) {}
 }

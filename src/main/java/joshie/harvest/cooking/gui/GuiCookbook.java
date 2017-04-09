@@ -5,6 +5,7 @@ import joshie.harvest.api.cooking.IngredientStack;
 import joshie.harvest.api.cooking.Utensil;
 import joshie.harvest.cooking.CookingAPI;
 import joshie.harvest.cooking.CookingHelper;
+import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.core.helpers.MCClientHelper;
 import joshie.harvest.core.helpers.StackRenderHelper;
 import joshie.harvest.core.lib.HFModInfo;
@@ -41,6 +42,7 @@ public class GuiCookbook extends GuiScreen {
     @Override
     public void initGui() {
         super.initGui();
+        MASTER.initGui(this); //Reload the master
         setPage(page == null ? MASTER : page);
         ingredients.clear();
         EntityPlayer player = MCClientHelper.getPlayer();
@@ -61,6 +63,14 @@ public class GuiCookbook extends GuiScreen {
         }
 
         ingredients.remove(null); //Remove any nulls
+        ItemStack cookbook = player.getHeldItemMainhand() != null && player.getHeldItemMainhand().getItem() == HFCooking.COOKBOOK ? player.getHeldItemMainhand() :
+                player.getHeldItemOffhand() != null && player.getHeldItemOffhand().getItem() == HFCooking.COOKBOOK ? player.getHeldItemOffhand() : null;
+        if (cookbook != null) {
+            PageRecipeList.AVAILABLE_MODE = cookbook.hasTagCompound() && cookbook.getTagCompound().getBoolean("Available");
+        }
+
+        MASTER.initGui(this); //Reload the master
+        setPage(page == null ? MASTER : page);
     }
 
     @Override

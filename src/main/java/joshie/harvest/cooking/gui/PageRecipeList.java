@@ -21,6 +21,7 @@ import static joshie.harvest.cooking.gui.GuiCookbook.MASTER;
 /** Display the recipe list **/
 @SuppressWarnings("WeakerAccess")
 public class PageRecipeList extends Page {
+    public static boolean AVAILABLE_MODE = true;
     private static final HashMap<Utensil, PageRecipeList> UTENSIL_PAGES = new HashMap<>();
     private static final HashMap<Utensil, ItemStack> RENDER_MAP = new HashMap<>();
     static {
@@ -50,7 +51,8 @@ public class PageRecipeList extends Page {
         for (ResourceLocation resource: HFTrackers.getClientPlayerTracker().getTracking().getLearntRecipes()) {
             Recipe recipe = Recipe.REGISTRY.get(resource);
             if (recipe != null && recipe.getUtensil() == utensil) {
-                recipes.add(PageRecipe.of(recipe));
+                PageRecipe page = PageRecipe.of(recipe);
+                if (page.canMake() || !AVAILABLE_MODE) recipes.add(page);
             }
         }
 

@@ -42,7 +42,7 @@ public class ModHolder extends AbstractItemHolder {
 
     @Override
     public String toString() {
-        return "ModHolder: " + mod;
+        return mod;
     }
 
     @Override

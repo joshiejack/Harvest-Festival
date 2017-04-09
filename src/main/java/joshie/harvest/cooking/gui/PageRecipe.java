@@ -18,10 +18,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
 
 import static joshie.harvest.cooking.gui.GuiCookbook.LEFT_GUI;
 import static joshie.harvest.cooking.gui.GuiCookbook.ingredients;
@@ -44,6 +41,8 @@ public class PageRecipe extends Page {
     private final List<CyclingStack> list = new ArrayList<>();
     private final String description;
     private final ItemStack stack;
+    private boolean can;
+    private Set<IngredientStack> compare;
 
     private PageRecipe(Recipe recipe) {
         this.recipe = recipe;
@@ -67,6 +66,15 @@ public class PageRecipe extends Page {
     @Override
     public Utensil getUtensil() {
         return recipe.getUtensil();
+    }
+
+    public boolean canMake() {
+        if (GuiCookbook.ingredients != compare) {
+            can = RecipeMaker.areAllRequiredInRecipe(recipe.getRequired(), GuiCookbook.ingredients);
+            compare = GuiCookbook.ingredients; //Update the cached value, since the ingredients changed
+        }
+
+        return can;
     }
 
     @Override

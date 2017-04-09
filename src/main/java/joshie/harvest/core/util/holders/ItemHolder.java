@@ -46,7 +46,7 @@ public class ItemHolder extends AbstractItemHolder {
 
     @Override
     public String toString() {
-        return "ItemHolder: "  + (item != null ? item.getRegistryName().toString() : "null");
+        return new ItemStack(item).getDisplayName();
     }
 
     @Override

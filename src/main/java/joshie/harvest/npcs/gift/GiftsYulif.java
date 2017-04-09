@@ -3,7 +3,6 @@ package joshie.harvest.npcs.gift;
 import joshie.harvest.api.core.Ore;
 import joshie.harvest.cooking.item.ItemMeal.Meal;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 
 import static joshie.harvest.api.npc.gift.GiftCategory.*;
 import static joshie.harvest.cooking.HFCooking.MEAL;
@@ -16,9 +15,9 @@ public class GiftsYulif extends Gifts {
         stackRegistry.register(Ore.of("gemQuartz"), Quality.GOOD);
         stackRegistry.register(Ore.of("cropCorn"), Quality.GOOD);
         stackRegistry.register(Ore.of("cropPineapple"), Quality.GOOD);
-        stackRegistry.register(Items.CAKE, Quality.GOOD);
         categoryRegistry.put(BUILDING, Quality.GOOD);
         categoryRegistry.put(FLOWER, Quality.DECENT);
+        categoryRegistry.put(MINERAL, Quality.DECENT);
         stackRegistry.register(Ore.of("cropGreenPepper"), Quality.DECENT);
         categoryRegistry.put(MONSTER, Quality.DISLIKE);
         stackRegistry.register(MEAL.getStackFromEnum(Meal.SALAD), Quality.DECENT);

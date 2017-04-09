@@ -14,10 +14,10 @@ import static joshie.harvest.api.npc.gift.GiftCategory.*;
 @SuppressWarnings("unused")
 public class GiftsJade extends Gifts {
     public GiftsJade() {
-        stackRegistry.register(Blocks.YELLOW_FLOWER, Quality.AWESOME);
+        stackRegistry.register(Ore.of("cropGrape"), Quality.AWESOME);
         stackRegistry.register(new ItemStack(Blocks.RED_FLOWER, 1, 2), Quality.AWESOME);
         stackRegistry.register(HFGathering.NATURE.getStackFromEnum(NaturalBlock.LAVENDER), Quality.AWESOME);
-        stackRegistry.register(HFMining.MATERIALS.getStackFromEnum(Material.JADE), Quality.AWESOME);
+        stackRegistry.register(HFMining.MATERIALS.getStackFromEnum(Material.AMETHYST), Quality.AWESOME);
         stackRegistry.register(Items.RABBIT_FOOT, Quality.GOOD);
         categoryRegistry.put(FLOWER, Quality.GOOD);
         categoryRegistry.put(PLANT, Quality.GOOD);

@@ -4,7 +4,6 @@ import joshie.harvest.animals.HFAnimals;
 import joshie.harvest.animals.item.ItemAnimalProduct.Sizeable;
 import joshie.harvest.api.core.Ore;
 import joshie.harvest.api.core.Size;
-import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.cooking.item.ItemMeal.Meal;
 import joshie.harvest.gathering.HFGathering;
 import joshie.harvest.gathering.block.BlockNature.NaturalBlock;
@@ -19,8 +18,6 @@ public class GiftsCandice extends Gifts {
         stackRegistry.register(HFAnimals.ANIMAL_PRODUCT.getStack(Sizeable.MILK, Size.SMALL), Quality.AWESOME);
         stackRegistry.register(HFAnimals.ANIMAL_PRODUCT.getStack(Sizeable.MILK, Size.MEDIUM), Quality.AWESOME);
         stackRegistry.register(HFAnimals.ANIMAL_PRODUCT.getStack(Sizeable.MILK, Size.LARGE), Quality.AWESOME);
-        stackRegistry.register(HFCooking.MEAL.getStackFromEnum(Meal.MILK_HOT), Quality.AWESOME);
-        stackRegistry.register(HFCooking.MEAL.getStackFromEnum(Meal.MILK_STRAWBERRY), Quality.AWESOME);
         categoryRegistry.put(MILK, Quality.GOOD);
         stackRegistry.register(Ore.of("cropStrawberry"), Quality.DECENT);
         stackRegistry.register(Ore.of("cropTomato"), Quality.DECENT);

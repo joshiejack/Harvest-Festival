@@ -159,9 +159,6 @@ harvestfestival.cookbook=Recipe Book
 harvestfestival.recipe.format=%s Recipe
 harvestfestival.recipe.invalid=Junk Recipe
 harvestfestival.cook=COOK
-harvestfestival.cook.mode.any=Any recipes mode
-harvestfestival.cook.mode.cookable=Cookable recipes mode
-harvestfestival.cook.mode.switch=Shift click to change modes
 
 #Meals
 harvestfestival.meal.learnt=New Recipe Learnt!

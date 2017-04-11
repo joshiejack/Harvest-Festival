@@ -42,7 +42,7 @@ public class PageRecipe extends Page {
     private final String description;
     private final ItemStack stack;
     private boolean can;
-    private Set<IngredientStack> compare;
+    private int hash;
 
     private PageRecipe(Recipe recipe) {
         this.recipe = recipe;
@@ -69,9 +69,9 @@ public class PageRecipe extends Page {
     }
 
     public boolean canMake() {
-        if (GuiCookbook.ingredients != compare) {
+        if (hash == 0 || hash != GuiCookbook.ingredients.hashCode()) {
+            hash = GuiCookbook.ingredients.hashCode();
             can = RecipeMaker.areAllRequiredInRecipe(recipe.getRequired(), GuiCookbook.ingredients);
-            compare = GuiCookbook.ingredients; //Update the cached value, since the ingredients changed
         }
 
         return can;

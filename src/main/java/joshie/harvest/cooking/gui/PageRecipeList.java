@@ -21,7 +21,6 @@ import static joshie.harvest.cooking.gui.GuiCookbook.MASTER;
 /** Display the recipe list **/
 @SuppressWarnings("WeakerAccess")
 public class PageRecipeList extends Page {
-    public static boolean AVAILABLE_MODE = true;
     private static final HashMap<Utensil, PageRecipeList> UTENSIL_PAGES = new HashMap<>();
     private static final HashMap<Utensil, ItemStack> RENDER_MAP = new HashMap<>();
     static {
@@ -51,8 +50,7 @@ public class PageRecipeList extends Page {
         for (ResourceLocation resource: HFTrackers.getClientPlayerTracker().getTracking().getLearntRecipes()) {
             Recipe recipe = Recipe.REGISTRY.get(resource);
             if (recipe != null && recipe.getUtensil() == utensil) {
-                PageRecipe page = PageRecipe.of(recipe);
-                if (page.canMake() || !AVAILABLE_MODE) recipes.add(page);
+                recipes.add(PageRecipe.of(recipe));
             }
         }
 
@@ -95,6 +93,19 @@ public class PageRecipeList extends Page {
                     gui.drawStack(25, 20 + i * 14, recipe.getItem(), 1F);
                 }
             }
+
+            //Draw the checks
+            for (int i = 0; i < 10; i++) {
+                int index = start + i;
+                if (index < recipes.size()) {
+                    PageRecipe recipe = recipes.get(index);
+                    GlStateManager.disableDepth();
+                    gui.mc.getTextureManager().bindTexture(LEFT_GUI);
+                    if (recipe.canMake()) {
+                        gui.drawTexture(25 + 8, 20 + i * 14 + 8, 48, 248, 10, 8);
+                    }
+                }
+            }
         }
 
         //Optionally draw the right hand side
@@ -111,6 +122,20 @@ public class PageRecipeList extends Page {
                     } else gui.drawString(190, 24 + i * 14, recipe.getRecipeName());
 
                     gui.drawStack(170, 20 + i * 14, recipe.getItem(), 1F);
+                }
+            }
+
+            //Draw the cheecks
+            for (int j = 10; j < 20; j++) {
+                int index = start + j;
+                if (index < recipes.size()) {
+                    int i = j - 10;
+                    PageRecipe recipe = recipes.get(index);
+                    GlStateManager.disableDepth();
+                    gui.mc.getTextureManager().bindTexture(LEFT_GUI);
+                    if (recipe.canMake()) {
+                        gui.drawTexture(170 + 8, 20 + i * 14 + 8, 48, 248, 10, 8);
+                    }
                 }
             }
         }

@@ -300,7 +300,7 @@ public class HFShops {
             public boolean canList(@Nonnull World world, @Nonnull EntityPlayer player) {
                 return HFApi.quests.hasCompleted(Quests.SELL_SPRINKLER, player);
             }
-        }.addTooltip("sprinkler.iron.tooltip"));
+        }.addTooltip("sprinkler.iron"));
 
         CARPENTER.addPurchasable(new PurchasableMaterials(500L, HFQuests.QUEST_BLOCK.getStackFromEnum(QuestBlock.BOARD), Logs.of(4), Gold.of(1)) {
             @Override

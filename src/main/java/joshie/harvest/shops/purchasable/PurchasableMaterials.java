@@ -11,7 +11,7 @@ import net.minecraft.world.World;
 import javax.annotation.Nonnull;
 
 public class PurchasableMaterials extends Purchasable implements IPurchaseableMaterials {
-    private final IRequirement[] requirements;
+    protected IRequirement[] requirements;
 
     public PurchasableMaterials(IRequirement... requirements) {
         this.requirements = requirements;

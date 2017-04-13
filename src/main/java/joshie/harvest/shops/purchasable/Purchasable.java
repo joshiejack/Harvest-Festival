@@ -22,7 +22,6 @@ import java.util.Locale;
 import static joshie.harvest.core.helpers.InventoryHelper.ITEM_STACK;
 
 public class Purchasable implements IPurchasable {
-
     protected String resource;
     protected ItemStack stack;
     protected long cost;

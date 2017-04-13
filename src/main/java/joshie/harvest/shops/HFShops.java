@@ -77,7 +77,7 @@ import static joshie.harvest.animals.item.ItemAnimalTool.Tool.*;
 import static joshie.harvest.api.calendar.Season.*;
 import static joshie.harvest.api.calendar.Weekday.*;
 import static joshie.harvest.cooking.HFCooking.*;
-import static joshie.harvest.cooking.block.BlockCookware.Cookware.*;
+import static joshie.harvest.cooking.block.BlockCookware.Cookware.OVEN_OFF;
 import static joshie.harvest.cooking.item.ItemIngredients.Ingredient.*;
 import static joshie.harvest.cooking.item.ItemUtensil.Utensil.KNIFE;
 import static joshie.harvest.core.helpers.ConfigHelper.getBoolean;
@@ -427,9 +427,15 @@ public class HFShops {
     }
 
     private static void registerTrader() {
-        TRADER.addPurchasable(-60, new ItemStack(Items.MILK_BUCKET), 3);
-        TRADER.addPurchasable(-30, new ItemStack(Items.EGG), 10);
-        TRADER.addPurchasable(-120, new ItemStack(Items.LEATHER), 3);
+        TRADER.addPurchasable(Material.COIN_GOLD.getSellValue(), HFMining.MATERIALS.getStackFromEnum(Material.COIN_GOLD));
+        TRADER.addPurchasable(Material.COIN_SILVER.getSellValue(), HFMining.MATERIALS.getStackFromEnum(Material.COIN_SILVER));
+        TRADER.addPurchasable(Material.COIN_COPPER.getSellValue(), HFMining.MATERIALS.getStackFromEnum(Material.COIN_COPPER));
+        TRADER.addPurchasable(new PurchasableTrade(new ItemStack(Items.EGG), Sizeable.EGG));
+        TRADER.addPurchasable(new PurchasableTrade(new ItemStack(Blocks.WOOL), Sizeable.WOOL));
+        TRADER.addPurchasable(new PurchasableTrade(new ItemStack(Items.MILK_BUCKET), Sizeable.MILK));
+
+        TRADER.addPurchasable(-60, new ItemStack(Items.MILK_BUCKET), 3);TRADER.addPurchasable(-30, new ItemStack(Items.EGG), 10);
+        TRADER.addPurchasable(-150, new ItemStack(Items.LEATHER), 3);
         TRADER.addPurchasable(-50, new ItemStack(Items.FEATHER), 8);
         TRADER.addPurchasable(-80, new ItemStack(Items.RABBIT_HIDE), 5);
         TRADER.addPurchasable(-20, new ItemStack(Items.STRING), 10);
@@ -439,7 +445,6 @@ public class HFShops {
 
         TRADER.addOpening(MONDAY, 6000, 10000).addOpening(TUESDAY, 6000, 10000).addOpening(WEDNESDAY, 6000, 10000).addOpening(THURSDAY, 6000, 10000);
         TRADER.addOpening(FRIDAY, 6000, 10000).addOpening(SATURDAY, 6000, 10000).addOpening(SUNDAY, 6000, 10000);
-        HFNPCs.TRADER.setHasInfo(null); //Remove the opening times
     }
 
     private static void registerCooking() {

@@ -681,6 +681,9 @@ harvestfestival.material.ruby=Ruby
 harvestfestival.material.sand.rose=Sandrose
 harvestfestival.material.topaz=Topaz
 harvestfestival.material.jade=Jade
+harvestfestival.material.coin.gold=Gold Coin
+harvestfestival.material.coin.silver=Silver Coin
+harvestfestival.material.coin.copper=Copper Coin
 
 #Mine Mobs
 harvestfestival.darkspawner.cow=Dark Cow
@@ -1574,6 +1577,7 @@ harvestfestival.npc.ashlee.festival.starry.night1=There you go my chickies, nice
 harvestfestival.npc.ashlee.festival.starry.night2=You inviting anyone to the winter dinner?
 
 #Girafi
+harvestfestival.npc.girafi.shop=If you're looking to trade with me I'm open every day from 6am to 10am.
 harvestfestival.npc.girafi.greeting1=Why hello fellow human, I am a humble trader, if you have any eggs, milk or wool I'll happily trade my own from the vanilla world!
 harvestfestival.npc.girafi.greeting2=Good day sir, I've been planning my next trip for a while, and I'm thinking I'll head to Denmark.
 harvestfestival.npc.girafi.greeting3=It's most wonderful to see you again!
@@ -1713,7 +1717,7 @@ harvestfestival.shop.baitshop.greeting3=Come get your fishing rods here, if you 
 #Trader
 harvestfestival.shop.trader=Trader Johan's
 harvestfestival.shop.trader.greeting1=Good Morning, how may I help you?
-harvestfestival.shop.trader.greeting2=Looking to sell some feathers or leather, then I'm your man.
+harvestfestival.shop.trader.greeting2=Looking for some trades, then I'm your man!
 harvestfestival.shop.trader.greeting3=Welcome, please do let yourself be served.
 
 #Recipe Shop - Cooking Festival
@@ -1929,11 +1933,6 @@ harvestfestival.quest.trade.cursed.done=Your %s is now ready! All blessed for yo
 harvestfestival.quest.trade.bless.repair.reminder=I can repair blessed tools for %s gold.
 harvestfestival.quest.trade.bless.repair.gold=Looks like you have a blessed tool. I can repair this for a small sum of %s Gold.
 harvestfestival.quest.trade.bless.repair.done=And with all the almighty power I hearby bless your %s once again and restore it's powers.
-
-# Trader Johan Quests
-harvestfestival.quest.trade.vanilla.egg=Thank you very much for these here eggs. I will happily trade them for some from my homeland.
-harvestfestival.quest.trade.vanilla.milk=These bottles of milk sure look delicious! Take this bucket of milk as a thank you.
-harvestfestival.quest.trade.vanilla.wool=Your wool is so fine, it will make great clothes. Please take this wool, better for building with!
 
 # Blacksmith Upgrades
 harvestfestival.quest.trade.upgrade.closed.start=I'm afraid I can only work on your tools during business hours.

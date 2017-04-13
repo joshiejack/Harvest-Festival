@@ -1,5 +1,7 @@
 package joshie.harvest.npcs;
 
+import com.google.common.cache.Cache;
+import com.google.common.cache.CacheBuilder;
 import joshie.harvest.HarvestFestival;
 import joshie.harvest.api.buildings.BuildingLocation;
 import joshie.harvest.api.npc.INPCHelper;
@@ -34,14 +36,14 @@ import net.minecraftforge.fml.common.registry.RegistryBuilder;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 @HFApiImplementation
 public class NPCHelper implements INPCHelper {
     //TODO: Remove in 0.7+
     public static final IForgeRegistry<NPC> OLD_REGISTRY = new RegistryBuilder<NPC>().setName(new ResourceLocation("harvestfestival", "npcs")).setType(NPC.class).setIDRange(0, 32000).create();
-    private static final HashMap<Shop, ShopSelection> selections = new HashMap<>();
+    private static final Cache<EntityPlayer, Map<Shop, ShopSelection>> selections = CacheBuilder.newBuilder().build();
     public static final NPCHelper INSTANCE = new NPCHelper();
     private final GiftRegistry gifts = new GiftRegistry();
 
@@ -75,14 +77,7 @@ public class NPCHelper implements INPCHelper {
     }
 
     public static Selection getShopSelection(World worldObj, BlockPos pos, NPC npc, EntityPlayer player) {
-        Shop shop = npc.getShop(worldObj, pos, player);
-        ShopSelection selection = selections.get(shop);
-        if (selection == null) {
-            selection = new ShopSelection(shop);
-            selections.put(shop, selection);
-        }
-
-        return selection;
+        return new ShopSelection(npc.getShop(worldObj, pos, player), player);
     }
 
     public static BlockPos getHomeForEntity(EntityNPC entity) {

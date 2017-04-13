@@ -172,7 +172,7 @@ public class GuiNPCShop extends GuiNPCBase {
             if (builder.getRequirements().length == 1 && builder.getCost() == 0) {
                 if (space + 20 <= 200) {
                     IRequirement requirement = builder.getRequirements()[0];
-                    buttonList.add(new ButtonListingItem(requirement.getIcon(), requirement.getCost(), this, builder, id, left, top));
+                    buttonList.add(new ButtonListingItem(requirement, this, builder, id, left, top));
                     return 20;
                 }
             } else if (space + 20 <= 200) {

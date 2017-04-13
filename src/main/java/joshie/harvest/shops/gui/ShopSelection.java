@@ -12,12 +12,12 @@ import net.minecraftforge.fml.common.eventhandler.Event.Result;
 public class ShopSelection extends Selection {
     private final Shop shop;
 
-    public ShopSelection(Shop shop) {
+    public ShopSelection(Shop shop, EntityPlayer player) {
         this.shop = shop;
-        if (shop.canBuyFromShop(null) && shop.canSellToShop(null)) {
+        if (shop.canBuyFromShop(player) && shop.canSellToShop(player)) {
             setLines("harvestfestival.shop.general.options", "harvestfestival.shop.general.options.shop", "harvestfestival.shop.general.options.sell", "harvestfestival.shop.general.options.chat");
-        } else if (shop.canBuyFromShop(null)) setLines("harvestfestival.shop.general.options", "harvestfestival.shop.general.options.shop", "harvestfestival.shop.general.options.chat");
-        else if (shop.canSellToShop(null)) setLines("harvestfestival.shop.general.options", "harvestfestival.shop.general.options.sell", "harvestfestival.shop.general.options.chat");
+        } else if (shop.canBuyFromShop(player)) setLines("harvestfestival.shop.general.options", "harvestfestival.shop.general.options.shop", "harvestfestival.shop.general.options.chat");
+        else if (shop.canSellToShop(player)) setLines("harvestfestival.shop.general.options", "harvestfestival.shop.general.options.sell", "harvestfestival.shop.general.options.chat");
     }
 
     /** Called when the option is selected **/

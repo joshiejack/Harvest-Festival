@@ -23,6 +23,9 @@
     "ruby": [{ "textures": { "layer0": "harvestfestival:items/ruby" }}],
     "sand_rose": [{ "textures": { "layer0": "harvestfestival:items/sand_rose" }}],
     "topaz": [{ "textures": { "layer0": "harvestfestival:items/topaz" }}],
-    "jade": [{ "textures": { "layer0": "harvestfestival:items/jade" }}]
+    "jade": [{ "textures": { "layer0": "harvestfestival:items/jade" }}],
+    "coin_gold": [{ "textures": { "layer0": "harvestfestival:items/coin_gold" }}],
+    "coin_silver": [{ "textures": { "layer0": "harvestfestival:items/coin_silver" }}],
+    "coin_copper": [{ "textures": { "layer0": "harvestfestival:items/coin_copper" }}]
   }
 }

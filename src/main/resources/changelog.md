@@ -62,6 +62,7 @@
 * You can now break dead crops normally, no need to use a sickle
 * Added a 'shipping basket', you wear it on your head and it will autoship things you pick up
 * Nether Wart is no longer an obtainable HF crop. I'll re-add it when I add greenhouses. (Vanilla works again)
+* Industrial Hemp is no longer a HF crop. Was slightly buggy. Weill re-add when I rewrite how crops work.
 
 ###Festivals - NEW!
 * Added new years festival, celebrate with food
@@ -156,6 +157,7 @@
 * Shops are now able to support a "stock value", aka how many items you can buy of this item each day
 * You no longer need to purchase a counter for the mixer to be unlocked for purchase
 * Added some secret unlockable shops
+* Added a shop to johan for his trades, instead of using the quest system, he also nows sells coins, which ship for their purchase value
 * Added a daytime clockmaker shop to tiberius, selling clocks, calendars, maps, compass
 * Added a shop to jakob, selling the new fish stuff
 * Poultry Farm is now open from 6am-12pm instead of 5am-11am

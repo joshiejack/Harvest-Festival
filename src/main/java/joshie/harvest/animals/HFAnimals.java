@@ -32,6 +32,7 @@ import net.minecraft.client.model.ModelChicken;
 import net.minecraft.client.model.ModelCow;
 import net.minecraft.client.model.ModelSheep2;
 import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
@@ -74,6 +75,8 @@ public class HFAnimals {
 
     @SuppressWarnings("unchecked")
     public static void preInit() {
+        HFApi.shipping.registerSellable(new ItemStack(Items.FEATHER), 30);
+        HFApi.shipping.registerSellable(new ItemStack(Items.LEATHER), 80);
         registerModEntity(EntityHarvestCow.class, "cow", EntityIDs.COW, HarvestFestival.instance, 150, 3, true);
         registerModEntity(EntityHarvestSheep.class, "sheep", EntityIDs.SHEEP, HarvestFestival.instance, 150, 3, true);
         registerModEntity(EntityHarvestChicken.class, "chicken", EntityIDs.CHICKEN, HarvestFestival.instance, 150, 3, true);

@@ -15,6 +15,7 @@ public class GiftsJenni extends Gifts {
         stackRegistry.register(Items.RABBIT_FOOT, Quality.GOOD);
         categoryRegistry.put(WOOL, Quality.GOOD);
         categoryRegistry.put(VEGETABLE, Quality.GOOD);
+        categoryRegistry.put(MONEY, Quality.DECENT);
         categoryRegistry.put(JUNK, Quality.DISLIKE);
         categoryRegistry.put(BUILDING, Quality.DISLIKE);
         categoryRegistry.put(MINERAL, Quality.BAD);

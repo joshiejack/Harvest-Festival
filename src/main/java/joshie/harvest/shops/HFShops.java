@@ -287,7 +287,7 @@ public class HFShops {
         CARPENTER.addPurchasable(new PurchasableBuilding(50000L, HFBuildings.TOWNHALL, Logs.of(640), Stone.of(256), Glass.of(48), Bricks.of(32)));
         CARPENTER.addPurchasable(new PurchasableMaterials(0L, HFCore.STORAGE.getStackFromEnum(Storage.SHIPPING), Logs.of(8)).addTooltip("storage.shipping").setNote(HFNotes.SHIPPING));
         CARPENTER.addPurchasable(new PurchasableMaterials(0L, HFCore.STORAGE.getStackFromEnum(Storage.MAILBOX), Logs.of(4)).addTooltip("storage.mailbox").setNote(HFNotes.MAILBOX));
-        CARPENTER.addPurchasable(new PurchasableMaterials(1000L, HFCrops.SPRINKLER.getStackFromEnum(Sprinkler.OLD), Logs.of(4), Copper.of(1)) {
+        CARPENTER.addPurchasable(new PurchasableMaterials(0L, HFCrops.SPRINKLER.getStackFromEnum(Sprinkler.OLD), Iron.of(1), Copper.of(5)) {
             @Override
             public boolean canList(@Nonnull World world, @Nonnull EntityPlayer player) {
                 CalendarDate date = HFApi.calendar.getDate(world);
@@ -295,7 +295,7 @@ public class HFShops {
             }
         }.addTooltip("sprinkler.old"));
 
-        CARPENTER.addPurchasable(new PurchasableMaterials(9000L, HFCrops.SPRINKLER.getStackFromEnum(Sprinkler.IRON), Logs.of(4), Silver.of(1)) {
+        CARPENTER.addPurchasable(new PurchasableMaterials(0L, HFCrops.SPRINKLER.getStackFromEnum(Sprinkler.IRON), Adamantite.of(1), Silver.of(5)) {
             @Override
             public boolean canList(@Nonnull World world, @Nonnull EntityPlayer player) {
                 return HFApi.quests.hasCompleted(Quests.SELL_SPRINKLER, player);
@@ -402,7 +402,7 @@ public class HFShops {
         BAITSHOP.addPurchasable(new Purchasable(Junk.BAIT.getCost(), HFFishing.JUNK.getStackFromEnum(Junk.BAIT)).addTooltip("junk.bait"));
         BAITSHOP.addPurchasable(1000L, HFFishing.FISHING_ROD.getStack(ToolTier.BASIC), 1);
         BAITSHOP.addPurchasable(new Purchasable(500L, HFFishing.AQUATIC_BLOCKS.getStackFromEnum(Aquatic.TRAP)).setStock(10).addTooltip("aquatic.trap"));
-        BAITSHOP.addPurchasable(new PurchasableMaterials(3000L, HFFishing.FLOATING_BLOCKS.getStackFromEnum(Floating.HATCHERY), Logs.of(8), String.of(6)) {
+        BAITSHOP.addPurchasable(new PurchasableMaterials(0L, HFFishing.FLOATING_BLOCKS.getStackFromEnum(Floating.HATCHERY), Logs.of(8), String.of(6)) {
             @Override
             public boolean canList(@Nonnull World world, @Nonnull EntityPlayer player) {
                 return HFApi.quests.hasCompleted(Quests.SELL_HATCHERY, player);

@@ -27,5 +27,8 @@ public class HFGiftsMining extends HFGiftsAbstract {
         assignGeneric(MATERIALS.getStackFromEnum(Material.RUBY), GEM);
         assignGeneric(MATERIALS.getStackFromEnum(Material.SAND_ROSE), GEM);
         assignGeneric(MATERIALS.getStackFromEnum(Material.TOPAZ), GEM);
+        assignGeneric(MATERIALS.getStackFromEnum(Material.COIN_COPPER), MONEY);
+        assignGeneric(MATERIALS.getStackFromEnum(Material.COIN_SILVER), MONEY);
+        assignGeneric(MATERIALS.getStackFromEnum(Material.COIN_GOLD), MONEY);
     }
 }

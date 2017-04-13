@@ -22,6 +22,7 @@ public class GiftsLiara extends Gifts {
         categoryRegistry.put(MEAT, Quality.GOOD);
         categoryRegistry.put(EGG, Quality.GOOD);
         categoryRegistry.put(MILK, Quality.GOOD);
+        categoryRegistry.put(MONEY, Quality.DECENT);
         stackRegistry.register(Ore.of("dyeBrown"), Quality.GOOD);
         categoryRegistry.put(FLOWER, Quality.DECENT);
         categoryRegistry.put(GEM, Quality.DISLIKE);

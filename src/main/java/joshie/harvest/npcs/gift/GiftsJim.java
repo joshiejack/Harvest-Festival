@@ -27,6 +27,7 @@ public class GiftsJim extends Gifts {
         stackRegistry.register(MEAL.getStackFromEnum(Meal.EGG_SCRAMBLED), Quality.DECENT);
         stackRegistry.register(MEAL.getStackFromEnum(Meal.EGG_OVERRICE), Quality.DECENT);
         categoryRegistry.put(JUNK, Quality.DECENT);
+        categoryRegistry.put(MONEY, Quality.DISLIKE);
         categoryRegistry.put(MAGIC, Quality.DISLIKE);
         categoryRegistry.put(EGG, Quality.DISLIKE);
         stackRegistry.register(HFAnimals.ANIMAL_PRODUCT.getStack(Sizeable.MAYONNAISE, Size.SMALL), Quality.DISLIKE);

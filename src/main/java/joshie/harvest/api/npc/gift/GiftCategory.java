@@ -20,5 +20,6 @@ public enum GiftCategory {
     WOOL,
     EGG,
     MILK,
-    ART
+    ART,
+    MONEY
 }

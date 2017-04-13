@@ -21,6 +21,7 @@ public class GiftsKatlin extends Gifts {
         categoryRegistry.put(MUSHROOM, Quality.GOOD);
         categoryRegistry.put(MAGIC, Quality.DISLIKE);
         categoryRegistry.put(MINERAL, Quality.BAD);
+        categoryRegistry.put(MONEY, Quality.DISLIKE);
         stackRegistry.register(Items.COAL, Quality.TERRIBLE);
         stackRegistry.register(Ore.of("dustRedstone"), Quality.TERRIBLE);
         stackRegistry.register(Ore.of("gemQuartz"), Quality.TERRIBLE);

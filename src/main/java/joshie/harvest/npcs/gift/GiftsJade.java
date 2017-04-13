@@ -22,6 +22,7 @@ public class GiftsJade extends Gifts {
         categoryRegistry.put(FLOWER, Quality.GOOD);
         categoryRegistry.put(PLANT, Quality.GOOD);
         categoryRegistry.put(HERB, Quality.GOOD);
+        categoryRegistry.put(MONEY, Quality.DECENT);
         categoryRegistry.put(MINERAL, Quality.BAD);
         stackRegistry.register(Ore.of("stone"), Quality.TERRIBLE);
         stackRegistry.register(Ore.of("logWood"), Quality.TERRIBLE);

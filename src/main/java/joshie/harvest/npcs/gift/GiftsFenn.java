@@ -22,6 +22,7 @@ public class GiftsFenn extends Gifts {
         categoryRegistry.put(MUSHROOM, Quality.GOOD);
         categoryRegistry.put(HERB, Quality.GOOD);
         categoryRegistry.put(PLANT, Quality.DECENT);
+        categoryRegistry.put(MONEY, Quality.DECENT);
         categoryRegistry.put(GEM, Quality.DISLIKE);
         categoryRegistry.put(MONSTER, Quality.DISLIKE);
         stackRegistry.register(HFCooking.INGREDIENTS.getStackFromEnum(Ingredient.CHOCOLATE), Quality.BAD);

@@ -342,8 +342,8 @@ public class HFShops {
         MINER.addPurchasable(new PurchasableObtained(200, HFMining.MATERIALS.getStackFromEnum(Material.SILVER)));
         MINER.addPurchasable(new PurchasableObtained(400, HFMining.MATERIALS.getStackFromEnum(Material.GOLD)));
         MINER.addPurchasable(new PurchasableOre(150, new ItemStack(Items.COAL)));
-        MINER.addPurchasable(new PurchasableOre(400, new ItemStack(Items.IRON_INGOT)));
-        MINER.addPurchasable(new PurchasableOre(600, new ItemStack(Items.GOLD_INGOT)));
+        MINER.addPurchasable(new PurchasableOre(300, new ItemStack(Items.IRON_INGOT)));
+        MINER.addPurchasable(new PurchasableOre(500, new ItemStack(Items.GOLD_INGOT)));
         //Selling things to the mine
         MINER.addPurchasable(-10, new ItemStack(Items.COAL, 1, 1), 10);
         MINER.addPurchasable(-6, new ItemStack(Items.GOLD_NUGGET), 10);

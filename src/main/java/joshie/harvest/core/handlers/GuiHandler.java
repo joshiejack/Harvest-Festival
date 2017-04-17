@@ -6,6 +6,8 @@ import joshie.harvest.cooking.gui.GuiCookbook;
 import joshie.harvest.cooking.gui.GuiFridge;
 import joshie.harvest.cooking.tile.TileFridge;
 import joshie.harvest.core.base.gui.ContainerNull;
+import joshie.harvest.core.gui.ContainerBasket;
+import joshie.harvest.core.gui.GuiBasket;
 import joshie.harvest.knowledge.HFNotes;
 import joshie.harvest.knowledge.gui.calendar.GuiCalendar;
 import joshie.harvest.knowledge.gui.letter.GuiLetter;
@@ -39,6 +41,7 @@ public class GuiHandler implements IGuiHandler {
     public static final int MAILBOX = 13;
     public static final int SELECTION = 14;
     public static final int CALENDAR_GUI = 15;
+    public static final int BASKET = 16;
 
     //Open no gui after this one
     public static final int NEXT_NONE = -1;
@@ -65,6 +68,7 @@ public class GuiHandler implements IGuiHandler {
             case FRIDGE:        return new ContainerFridge(player, player.inventory, (TileFridge) world.getTileEntity(new BlockPos(entityID, nextGui, hand)));
             case MAILBOX:
             case QUEST_BOARD:   return new ContainerNull();
+            case BASKET:        return new ContainerBasket(player.inventory, player.getHeldItem( EnumHand.values()[hand]));
             default:            return null;
         }
     }
@@ -106,6 +110,7 @@ public class GuiHandler implements IGuiHandler {
                 } else return new GuiNPCChat(player, npc, nextGui, false);
             }
 
+            case BASKET:        return new GuiBasket(player.inventory, player.getHeldItem( EnumHand.values()[hand]));
             default:            return null;
         }
     }

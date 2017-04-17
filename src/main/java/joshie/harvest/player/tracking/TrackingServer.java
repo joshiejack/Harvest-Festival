@@ -68,7 +68,7 @@ public class TrackingServer extends Tracking {
     }
 
     public boolean addForShipping(ItemStack item) {
-        long sell = HFApi.shipping.getSellValue(item);
+        long sell = HFApi.shipping.getSellValue(item) * item.stackSize;
         if (hasWonCookingContest && CollectionHelper.isInCookingCollection(item)) {
             sell *= 1.1;
         }

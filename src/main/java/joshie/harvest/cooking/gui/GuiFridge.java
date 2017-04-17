@@ -1,7 +1,7 @@
 package joshie.harvest.cooking.gui;
 
 import joshie.harvest.cooking.tile.TileFridge;
-import joshie.harvest.core.base.gui.ContainerBase.SlotHF;
+import joshie.harvest.core.base.gui.ContainerExpanded.SlotHF;
 import joshie.harvest.core.base.gui.GuiBaseContainer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
@@ -10,6 +10,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Slot;
 import net.minecraft.util.ResourceLocation;
+
+import javax.annotation.Nonnull;
 
 public class GuiFridge extends GuiBaseContainer {
     private FridgeFont font;
@@ -25,13 +27,13 @@ public class GuiFridge extends GuiBaseContainer {
     }
 
     @Override
-    public void drawSlot(Slot slotIn) {
-        if (slotIn instanceof SlotHF) {
+    public void drawSlot(@Nonnull Slot slot) {
+        if (slot instanceof SlotHF) {
             FontRenderer temp = fontRendererObj;
             fontRendererObj = font;
-            super.drawSlot(slotIn);
+            super.drawSlot(slot);
             fontRendererObj = temp;
-        } else super.drawSlot(slotIn);
+        } else super.drawSlot(slot);
     }
 
     /** Borrowed from Chisel and Bits **/

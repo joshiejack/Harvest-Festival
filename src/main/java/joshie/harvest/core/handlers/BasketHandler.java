@@ -5,6 +5,7 @@ import com.google.common.cache.CacheBuilder;
 import com.google.common.collect.Lists;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.core.HFCore;
+import joshie.harvest.core.block.BlockStorage;
 import joshie.harvest.core.block.BlockStorage.Storage;
 import joshie.harvest.core.entity.EntityBasket;
 import joshie.harvest.core.item.ItemBlockStorage;
@@ -35,11 +36,10 @@ import java.util.concurrent.TimeUnit;
 public class BasketHandler {
     public static boolean forbidsDrop(Block block) {
         return block instanceof BlockDoor || block instanceof BlockFenceGate || block instanceof BlockTrapDoor
-                || block instanceof BlockLever || block instanceof BlockButton || block instanceof BlockHFCrops
-                || block instanceof joshie.harvest.mining.block.BlockDirt;
+                || block instanceof BlockLever || block instanceof BlockButton || block instanceof BlockHFCrops || block instanceof BlockStorage;
     }
 
-    @SubscribeEvent
+    @SubscribeEvent //TODO: Check that picking up partial items
     public void onItemPickup(EntityItemPickupEvent event) {
         ItemStack stack = event.getItem().getEntityItem();
         if (HFApi.shipping.getSellValue(stack) > 0) {
@@ -101,13 +101,14 @@ public class BasketHandler {
     @SuppressWarnings("ConstantConditions")
     public void onRightClickGround(PlayerInteractEvent.RightClickBlock event) {
         EntityPlayer player = event.getEntityPlayer();
-        if (!forbidsDrop(event.getWorld().getBlockState(event.getPos()).getBlock())) {
+        if (!player.isSneaking() && player.getHeldItemMainhand() == null && player.getHeldItemOffhand() == null
+                && !forbidsDrop(event.getWorld().getBlockState(event.getPos()).getBlock())) {
             Set<Entity> set = getSetFromPlayer(player);
             player.getPassengers().stream().filter(entity -> entity instanceof EntityBasket && !set.contains(entity)).forEach(entity -> {
                 ItemStack basket = HFCore.STORAGE.getStackFromEnum(Storage.BASKET);
-                TileBasket tile = (((ItemBlockStorage)basket.getItem()).onBasketUsed(basket, player, player.worldObj, event.getPos(), EnumHand.MAIN_HAND, event.getFace(), 0F, 0F, 0F));
-                if (tile != null) {
-                    tile.onRightClicked(null, ((EntityBasket)entity).getEntityItem());
+                TileEntity tile = (((ItemBlockStorage)basket.getItem()).onBasketUsed(basket, player, player.worldObj, event.getPos(), EnumHand.MAIN_HAND, event.getFace(), 0F, 0F, 0F));
+                if (tile instanceof TileBasket) {
+                    ((TileBasket)tile).setAppearanceAndContents(((EntityBasket)entity).getEntityItem(), ((EntityBasket)entity).handler);
                     set.add(entity);
                     entity.setDead();
                 }

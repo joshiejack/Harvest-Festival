@@ -18,7 +18,6 @@ public class ContainerNPCShop extends ContainerBase {
         npc.setTalking(null);
         if (!hasBeenClosed) {
             hasBeenClosed = true;
-
         }
     }
 }

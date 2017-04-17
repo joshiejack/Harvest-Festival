@@ -11,6 +11,7 @@ import net.minecraftforge.common.EnumPlantType;
 public class Tree extends Crop {
     public static final GrowthHandler TREE_GROWTH = new GrowthHandlerTree();
     private IBlockState log = Blocks.LOG.getDefaultState();
+    private int sapling;
     private int maturity;
     private int juvenile;
 
@@ -20,6 +21,11 @@ public class Tree extends Crop {
         setGrowthHandler(TREE_GROWTH);
         setNoWaterRequirements();
         setPlantType(EnumPlantType.Plains);
+    }
+
+    /** The number of stages till this reaches a sapling stage **/
+    public int getStagesToSapling() {
+        return sapling;
     }
 
     /** Returns the stage at which this tree is mature **/
@@ -52,6 +58,7 @@ public class Tree extends Crop {
     public Tree setStageLength(int seeds, int sapling, int juvenile) {
         this.maturity = seeds + sapling + juvenile;
         this.juvenile = seeds + sapling;
+        this.sapling = seeds;
         setFruitRegrow(3);
         setStateHandler(new StateHandlerTree(log, seeds, sapling, juvenile));
         return this;

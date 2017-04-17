@@ -12,6 +12,8 @@ public class GiftsJenni extends Gifts {
         stackRegistry.register(Ore.of("cropCarrot"), Quality.AWESOME);
         stackRegistry.register(Items.GOLDEN_CARROT, Quality.AWESOME);
         categoryRegistry.put(ART, Quality.GOOD);
+        stackRegistry.register(Ore.of("cropOrange"), Quality.GOOD);
+        stackRegistry.register(Ore.of("cropPeach"), Quality.GOOD);
         stackRegistry.register(Items.RABBIT_FOOT, Quality.GOOD);
         categoryRegistry.put(WOOL, Quality.GOOD);
         categoryRegistry.put(VEGETABLE, Quality.GOOD);

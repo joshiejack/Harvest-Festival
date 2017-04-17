@@ -1,5 +1,6 @@
 package joshie.harvest.core.block;
 
+import com.google.common.collect.Lists;
 import joshie.harvest.HarvestFestival;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.base.block.BlockHFEnumRotatableTile;
@@ -28,6 +29,7 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.play.server.SPacketSetPassengers;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
@@ -121,7 +123,7 @@ public class BlockStorage extends BlockHFEnumRotatableTile<BlockStorage, Storage
         }
     }
 
-    public static boolean hasShippedItem(World world, EntityPlayer player, ItemStack stack) {
+    private static boolean hasShippedItem(World world, EntityPlayer player, ItemStack stack) {
         long sell = shipping.getSellValue(stack);
         if (sell > 0) {
             if (!world.isRemote) {
@@ -158,7 +160,7 @@ public class BlockStorage extends BlockHFEnumRotatableTile<BlockStorage, Storage
                     basket.startRiding(player, true);
                     TileEntity tile = world.getTileEntity(pos);
                     if (tile instanceof TileBasket) {
-                        basket.setEntityItemStack(((TileBasket)tile).getStack());
+                        basket.setAppearanceAndContents(((TileBasket)tile).getStack(), ((TileBasket)tile).handler);
                     }
 
                     world.spawnEntityInWorld(basket);
@@ -210,11 +212,18 @@ public class BlockStorage extends BlockHFEnumRotatableTile<BlockStorage, Storage
         }
     }
 
+    @SuppressWarnings("ConstantConditions")
     public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase entity, ItemStack stack, EnumFacing facing) {
         TileEntity tile = world.getTileEntity(pos);
         if (entity instanceof EntityPlayer & tile instanceof TileShipping) {
             super.onBlockPlacedBy(world, pos, state, entity, stack);
             ((TileShipping) tile).setOwner(EntityHelper.getPlayerUUID((EntityPlayer) entity));
+        } else if (tile instanceof TileBasket)  {
+            if (stack.hasTagCompound() && stack.getTagCompound().hasKey("inventory")) {
+                ((TileBasket)tile).setAppearanceAndContents(
+                        ItemStack.loadItemStackFromNBT(stack.getTagCompound().getCompoundTag("item")),
+                        stack.getTagCompound().getCompoundTag("inventory"));
+            }
         } else if (tile instanceof IFaceable) {
             ((IFaceable)tile).setFacing(facing);
         }
@@ -227,6 +236,42 @@ public class BlockStorage extends BlockHFEnumRotatableTile<BlockStorage, Storage
             IBlockState state = worldIn.getBlockState(pos.offset(side.getOpposite()));
             return side.getAxis() != EnumFacing.Axis.Y && state.getBlock() instanceof BlockFence;
         } else return super.canReplace(worldIn, pos, side, stack);
+    }
+
+    @Nonnull
+    @Override
+    @SuppressWarnings("ConstantConditions")
+    public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, @Nonnull IBlockState state, int fortune) {
+        if (getEnumFromState(state) == BASKET) {
+            TileEntity tile = world.getTileEntity(pos);
+            ItemStack stack = getStackFromEnum(BASKET);
+            if (tile instanceof TileBasket) {
+                TileBasket basket = ((TileBasket)tile);
+                NBTTagCompound tag = new NBTTagCompound();
+                tag.setTag("inventory", basket.handler.serializeNBT());
+                if (basket.getStack() != null){
+                    tag.setTag("item", basket.getStack().serializeNBT());
+                }
+
+                stack.setTagCompound(tag);
+            }
+
+            return Lists.newArrayList(stack);
+        }
+
+        return super.getDrops(world, pos, state, fortune);
+    }
+
+    @Override
+    public boolean removedByPlayer(@Nonnull IBlockState state, World world, @Nonnull BlockPos pos, @Nonnull EntityPlayer player, boolean willHarvest) {
+        if (getEnumFromState(state) == BASKET) {
+            if (willHarvest) {
+                harvestBlock(world, player, pos, state, world.getTileEntity(pos), player.getHeldItemMainhand());
+            }
+
+            world.setBlockToAir(pos);
+            return false;
+        } else return super.removedByPlayer(state, world, pos, player, willHarvest);
     }
 
     @Override

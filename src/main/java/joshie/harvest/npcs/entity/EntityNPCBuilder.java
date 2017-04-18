@@ -29,7 +29,6 @@ public class EntityNPCBuilder extends EntityNPCHuman<EntityNPCBuilder> {
     }
 
     public void finishBuilding() {
-        getHomeTown().finishBuilding();
         stepHeight = 0.7F; //Reset Step Height
     }
 

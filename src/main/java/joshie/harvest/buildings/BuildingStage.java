@@ -77,10 +77,6 @@ public class BuildingStage implements INBTWriteable {
             } else if (stage == ConstructionStage.MOVEIN) {
                 stage = ConstructionStage.FINISHED;
                 index = 0;
-
-                TownDataServer data = TownHelper.getClosestTownToBlockPos(world, pos, false);
-                data.addBuilding(world, building, rotation, pos);
-                data.syncBuildings(world);
                 return true;
             }
 

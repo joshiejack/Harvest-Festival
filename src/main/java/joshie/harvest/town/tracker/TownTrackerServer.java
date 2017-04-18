@@ -21,7 +21,6 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.util.HashSet;
 import java.util.Map.Entry;
 import java.util.UUID;
 
@@ -39,7 +38,6 @@ public class TownTrackerServer extends TownTracker<TownDataServer> {
 
     private TownSavedData data;
 
-
     @Override
     public TownDataServer getNullTown() {
         return NULL_TOWN;
@@ -52,14 +50,14 @@ public class TownTrackerServer extends TownTracker<TownDataServer> {
 
     public void newDay(CalendarDate yesterday, CalendarDate today) {
         Cache<BlockPos, Boolean> isFar = CacheBuilder.newBuilder().build();
-        for (TownDataServer town: townData) {
+        for (TownDataServer town: uuidMap.values()) {
             town.newDay(getWorld(), isFar, yesterday, today);
         }
     }
 
     public void syncToPlayer(EntityPlayerMP player) {
-        PacketHandler.sendToClient(new PacketSyncTowns(townData, townIDs), player);
-        for (TownDataServer town: townData) {
+        PacketHandler.sendToClient(new PacketSyncTowns(uuidMap.values(), townIDs), player);
+        for (TownDataServer town: uuidMap.values()) {
             town.getQuests().sync(player);
         }
     }
@@ -122,7 +120,6 @@ public class TownTrackerServer extends TownTracker<TownDataServer> {
     @Override
     public TownDataServer createNewTown(BlockPos pos) {
         TownDataServer data = new TownDataServer(getDimension(), pos, HFApi.calendar.getDate(getWorld()));
-        townData.add(data);
         uuidMap.put(data.getID(), data);
         matchUUIDWithMineID(data.getID());
         PacketHandler.sendToDimension(getDimension(), new PacketNewTown(data, townIDs.get(data.getID()))); //Sync to everyone on this dimension
@@ -137,16 +134,13 @@ public class TownTrackerServer extends TownTracker<TownDataServer> {
     }
 
     public void readFromNBT(NBTTagCompound nbt) {
-        townData = new HashSet<>(); //Reset the data
         NBTTagList dimensionTowns = nbt.getTagList("Towns", 10);
         for (int j = 0; j < dimensionTowns.tagCount(); j++) {
             NBTTagCompound tag = dimensionTowns.getCompoundTagAt(j);
             TownDataServer theData = new TownDataServer();
             theData.readFromNBT(tag);
-
             if (theData.getTownCentre().getY() > 0) {
                 uuidMap.put(theData.getID(), theData);
-                townData.add(theData);
             }
         }
 
@@ -162,7 +156,7 @@ public class TownTrackerServer extends TownTracker<TownDataServer> {
 
     public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
         NBTTagList town_list = new NBTTagList();
-        for (TownData data: townData) {
+        for (TownDataServer data: uuidMap.values()) {
             NBTTagCompound townData = new NBTTagCompound();
             data.writeToNBT(townData);
             town_list.appendTag(townData);

@@ -86,8 +86,8 @@ public class QuestDataServer extends QuestData {
 
         HFTrackers.markTownsDirty();
         //Sync everything
-        if ((quest.getQuestType() == TargetType.PLAYER || quest.getQuestType() == TargetType.TOWN && rewards)) master.sync(player, new PacketQuestCompleted(quest, rewards)); //Let this player claim the reward
-        if (quest.getQuestType() == TargetType.TOWN) master.sync(null, new PacketQuestCompleted(quest, false)); //Let the rest of the server know this was completed
+        if ((quest.getQuestType() == TargetType.PLAYER || (quest.getQuestType() == TargetType.TOWN && rewards))) master.sync(player, new PacketQuestCompleted(quest, rewards)); //Let this player claim the reward
+        else if (quest.getQuestType() == TargetType.TOWN) master.sync(null, new PacketQuestCompleted(quest, false)); //Let the rest of the server know this was completed
         updateQuests(true); //Update the world on these quests, everytime one is completed
     }
 

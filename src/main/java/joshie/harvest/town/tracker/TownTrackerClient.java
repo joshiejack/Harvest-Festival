@@ -6,7 +6,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.util.Set;
+import java.util.Collection;
 import java.util.UUID;
 
 @SideOnly(Side.CLIENT)
@@ -24,14 +24,12 @@ public class TownTrackerClient extends TownTracker<TownDataClient> {
     }
 
     public void addTown(TownDataClient data, int mine) {
-        townData.add(data);
         townIDs.put(data.getID(), mine);
         uuidMap.put(data.getID(), data);
     }
 
-    public void setTowns(Set<TownDataClient> set, BiMap<UUID, Integer> ids) {
+    public void setTowns(Collection<TownDataClient> set, BiMap<UUID, Integer> ids) {
         townIDs = ids;
-        townData = set;
         uuidMap.clear(); //Reset the map
         for (TownDataClient data: set) {
             uuidMap.put(data.getID(), data);

@@ -25,6 +25,7 @@ import joshie.harvest.mining.gen.MineManager;
 import joshie.harvest.mining.gen.MiningProvider;
 import joshie.harvest.npcs.HFNPCs;
 import joshie.harvest.npcs.NPCHelper;
+import joshie.harvest.npcs.entity.EntityNPC;
 import joshie.harvest.npcs.entity.EntityNPCBuilder;
 import joshie.harvest.npcs.entity.EntityNPCHuman;
 import joshie.harvest.npcs.entity.EntityNPCMiner;
@@ -88,7 +89,7 @@ public class TownDataServer extends TownData<QuestDataServer, LetterDataServer> 
     @Override
     public void sync(@Nullable EntityPlayer player, @Nonnull PacketSharedSync packet) {
         if (player != null) PacketHandler.sendToClient(packet.setUUID(getID()), player);
-        else PacketHandler.sendToDimension(dimension, packet.setUUID(getID()));
+        else PacketHandler.sendToEveryone(packet.setUUID(getID()));
     }
 
     private boolean isDead(NPC npc) {
@@ -117,7 +118,6 @@ public class TownDataServer extends TownData<QuestDataServer, LetterDataServer> 
         BuildingStage stage = new BuildingStage(building, pos, rotation);
         if (!buildingQueue.contains(stage)) {
             buildingQueue.addLast(stage);
-
             syncBuildings(world);
             if (building == HFBuildings.CARPENTER) {
                 townCentre = pos; //Set the town centre to the carpenters position
@@ -133,7 +133,6 @@ public class TownDataServer extends TownData<QuestDataServer, LetterDataServer> 
 
     public void finishBuilding() {
         buildingQueue.removeFirst(); //Remove the first building
-        HFTrackers.markTownsDirty();
     }
 
     public void addBuilding(World world, Building building, Rotation rotation, BlockPos pos) {
@@ -194,23 +193,23 @@ public class TownDataServer extends TownData<QuestDataServer, LetterDataServer> 
                     entity.setPosition(pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5);
                     entity.setHeldItem(EnumHand.MAIN_HAND, new ItemStack(Blocks.TORCH));
                     entity.setHeldItem(EnumHand.OFF_HAND, new ItemStack(Items.IRON_PICKAXE));
-                    entity.resetSpawnHome();
                     server.spawnEntityInWorld(entity);
                 } else if (npc != HFNPCs.GODDESS) {
-                    EntityNPCHuman entity = NPCHelper.getEntityForNPC(world, npc);
-                    entity.setPosition(townCentre.getX(), townCentre.getY(), townCentre.getZ());
-                    entity.resetSpawnHome();
-                    BlockPos home = NPCHelper.getHomeForEntity(entity);
-                    BlockPos pos = home != null ? home : entry.getValue();
-                    int attempts = 0;
-                    while (!EntityHelper.isSpawnable(world, pos) && attempts < 64) {
-                        pos = pos.add(world.rand.nextInt(16) - 8, world.rand.nextInt(8), world.rand.nextInt(16) - 8);
-                        attempts++;
-                    }
+                    if (!(NPCHelper.getNPCIfExists((WorldServer) world, townCentre, npc) instanceof EntityNPC)) {
+                        EntityNPCHuman entity = NPCHelper.getEntityForNPC(world, npc);
+                        entity.setPosition(townCentre.getX(), townCentre.getY(), townCentre.getZ());
+                        BlockPos home = NPCHelper.getHomeForEntity(entity);
+                        BlockPos pos = home != null ? home : entry.getValue();
+                        int attempts = 0;
+                        while (!EntityHelper.isSpawnable(world, pos) && attempts < 64) {
+                            pos = pos.add(world.rand.nextInt(16) - 8, world.rand.nextInt(8), world.rand.nextInt(16) - 8);
+                            attempts++;
+                        }
 
-                    entity.setPositionAndUpdate(pos.getX(), pos.getY(), pos.getZ());
-                    if (npc == HFNPCs.CARPENTER) entity.setUniqueId(getID()); //Keep the Unique ID the same
-                    world.spawnEntityInWorld(entity);
+                        entity.setPositionAndUpdate(pos.getX(), pos.getY(), pos.getZ());
+                        if (npc == HFNPCs.CARPENTER) entity.setUniqueId(getID()); //Keep the Unique ID the same
+                        world.spawnEntityInWorld(entity);
+                    }
                 }
             }
 

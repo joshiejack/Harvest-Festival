@@ -129,7 +129,6 @@ public class MineManager extends WorldSavedData {
                 if (foundChest && foundTorch && foundSign) break;
             }
 
-            entity.resetSpawnHome();
             world.spawnEntityInWorld(entity);
             generated.add(mineID);
         }

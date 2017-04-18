@@ -26,8 +26,10 @@ import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.UUID;
 
 public abstract class EntityNPC<E extends EntityNPC> extends EntityAgeable implements IEntityAdditionalSpawnData, NPCEntity {
+    protected UUID home;
     protected NPC npc;
     private EntityPlayer talkingTo;
     private Mode mode = Mode.DEFAULT;
@@ -65,6 +67,11 @@ public abstract class EntityNPC<E extends EntityNPC> extends EntityAgeable imple
 
     public boolean isBusy() {
         return false;
+    }
+
+    public UUID getHome() {
+        if (home != null) return home;
+        else return home = TownHelper.getClosestTownToEntity(this, false).getID();
     }
 
     public NPC getNPC() {
@@ -130,8 +137,6 @@ public abstract class EntityNPC<E extends EntityNPC> extends EntityAgeable imple
         return false;
     }
 
-    public void resetSpawnHome() {}
-
     @Override
     public boolean processInteract(@Nonnull EntityPlayer player, EnumHand hand, ItemStack stack) {
         ItemStack held = player.getHeldItem(hand);
@@ -152,14 +157,16 @@ public abstract class EntityNPC<E extends EntityNPC> extends EntityAgeable imple
     public void readEntityFromNBT(NBTTagCompound nbt) {
         super.readEntityFromNBT(nbt);
         npc = NPC.REGISTRY.get(new ResourceLocation(nbt.getString("NPC")));
+        if (nbt.hasKey("Town")) {
+            home = UUID.fromString("Town");
+        }
     }
 
     @Override
     public void writeEntityToNBT(NBTTagCompound nbt) {
         super.writeEntityToNBT(nbt);
-        if (npc != null) {
-            nbt.setString("NPC", npc.getResource().toString());
-        }
+        if (npc != null) nbt.setString("NPC", npc.getResource().toString());
+        if (home != null) nbt.setString("Town", home.toString());
     }
 
     @Override

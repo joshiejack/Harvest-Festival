@@ -316,8 +316,8 @@ public class HFShops {
         }
 
         //Selling things to the carpenter
-        CARPENTER.addPurchasable(-1, new ItemStack(Blocks.LOG), 512);
-        CARPENTER.addPurchasable(-1, new ItemStack(Blocks.STONE), 512);
+        CARPENTER.addPurchasable(-1, new ItemStack(Blocks.LOG));
+        CARPENTER.addPurchasable(-1, new ItemStack(Blocks.STONE));
         CARPENTER.setSpecialRules(new SpecialRulesQuest(Quests.YULIF_MEET));
         CARPENTER.addOpening(MONDAY, 9000, 17500).addOpening(TUESDAY, 9000, 17500).addOpening(WEDNESDAY, 9000, 17500);
         CARPENTER.addOpening(THURSDAY, 9000, 17500).addOpening(FRIDAY, 9000, 17500).addOpening(SUNDAY, 9000, 17500);

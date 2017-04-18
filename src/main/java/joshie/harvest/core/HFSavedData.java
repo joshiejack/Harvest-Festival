@@ -56,7 +56,6 @@ public class HFSavedData extends WorldSavedData {
     @Override
     @Nonnull
     public NBTTagCompound writeToNBT(@Nonnull NBTTagCompound nbt) {
-        nbt.setTag("TownTracker", temp);
         return nbt;
     }
 }

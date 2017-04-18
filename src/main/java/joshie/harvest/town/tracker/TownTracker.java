@@ -14,14 +14,11 @@ import net.minecraftforge.common.DimensionManager;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.UUID;
 
 public abstract class TownTracker<T extends TownData> extends HFTracker {
     final HashMap<UUID, T> uuidMap = new HashMap<>();
     BiMap<UUID, Integer> townIDs = HashBiMap.create();
-    Set<T> townData = new HashSet<>();
 
     public abstract T getNullTown();
 
@@ -29,7 +26,7 @@ public abstract class TownTracker<T extends TownData> extends HFTracker {
     private T getClosestTown(@Nonnull final BlockPos pos) {
         T closest = null;
         double thatTownDistance = Double.MAX_VALUE;
-        for (T town: townData) {
+        for (T town: uuidMap.values()) {
             double thisTownDistance = town.getTownCentre().getDistance(pos.getX(), pos.getY(), pos.getZ());
             if (closest == null || thisTownDistance < thatTownDistance) {
                 thatTownDistance = thisTownDistance;

@@ -15,19 +15,20 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
 @Packet(Side.CLIENT)
 public class PacketSyncTowns extends PenguinPacket {
-    private Set<TownDataServer> servers;
-    private Set<TownDataClient> clients;
+    private Collection<TownDataServer> servers;
+    private Collection<TownDataClient> clients;
     private BiMap<UUID, Integer> ids;
 
     @SuppressWarnings("unused")
     public PacketSyncTowns(){}
-    public PacketSyncTowns(Set<TownDataServer> townData, BiMap<UUID, Integer> townIDs) {
+    public PacketSyncTowns(Collection<TownDataServer> townData, BiMap<UUID, Integer> townIDs) {
         servers = townData;
         ids = townIDs;
     }

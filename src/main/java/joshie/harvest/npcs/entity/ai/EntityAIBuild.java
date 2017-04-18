@@ -4,6 +4,8 @@ import joshie.harvest.buildings.BuildingStage;
 import joshie.harvest.buildings.placeable.Placeable;
 import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.npcs.entity.EntityNPCBuilder;
+import joshie.harvest.town.TownHelper;
+import joshie.harvest.town.data.TownDataServer;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.RandomPositionGenerator;
@@ -105,8 +107,11 @@ public class EntityAIBuild extends EntityAIBase {
 
                     //Finish the building
                     if (building.isFinished()) {
+                        TownDataServer data = TownHelper.getClosestTownToBlockPos(npc.worldObj, new BlockPos(npc), false);
+                        data.finishBuilding(); //Remove the building from the queue
+                        data.addBuilding(npc.worldObj, building.building, building.rotation, building.pos);
+                        data.syncBuildings(npc.worldObj);
                         npc.finishBuilding();
-                        npc.resetSpawnHome();
                     }
                 }
 

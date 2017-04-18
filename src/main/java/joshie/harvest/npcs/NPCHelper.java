@@ -16,6 +16,7 @@ import joshie.harvest.api.shops.Shop;
 import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.handlers.GuiHandler;
+import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.core.helpers.TextHelper;
 import joshie.harvest.core.util.annotations.HFApiImplementation;
 import joshie.harvest.npcs.entity.*;
@@ -25,17 +26,20 @@ import joshie.harvest.player.PlayerTrackerServer;
 import joshie.harvest.shops.HFShops;
 import joshie.harvest.shops.gui.ShopSelection;
 import joshie.harvest.town.TownHelper;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
 import net.minecraftforge.fml.common.registry.IForgeRegistry;
 import net.minecraftforge.fml.common.registry.RegistryBuilder;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -94,6 +98,17 @@ public class NPCHelper implements INPCHelper {
         } else if (npc == HFNPCs.GODDESS) {
             return (N) new EntityNPCGoddess(world, npc);
         } else return (N) new EntityNPCVillager(world, npc);
+    }
+
+    @Nullable
+    public static Entity getNPCIfExists(WorldServer server, BlockPos pos, NPC npc) {
+        UUID uuid = TownHelper.getClosestTownToBlockPos(server, pos, false).getID();
+        List<EntityNPC> npcs = EntityHelper.getEntities(EntityNPC.class, server, pos, 128D, 256D);
+        for (EntityNPC entity: npcs) {
+            if (entity.getNPC() == npc && entity.getHome().equals(uuid)) return entity;
+        }
+
+        return npc == HFNPCs.CARPENTER ? server.getEntityFromUuid(uuid) : null;
     }
 
     private static boolean canPlayerOpenShop(NPC npc, Shop shop, @Nonnull EntityPlayer player) {

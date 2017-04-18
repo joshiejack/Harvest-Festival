@@ -9,6 +9,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
 
 public class PlaceableNPC extends PlaceableEntity {
     @Expose
@@ -40,9 +41,12 @@ public class PlaceableNPC extends PlaceableEntity {
     public Entity getEntity(World world, BlockPos pos, Rotation rotation) {
         if (npc == null || npc.equals("")) return null;
         NPC inpc = NPC.REGISTRY.get(new ResourceLocation(npc)); if (inpc == null) return null;
-        EntityNPC entity = NPCHelper.getEntityForNPC(world, inpc);
+        Entity entity = NPCHelper.getNPCIfExists((WorldServer) world, pos, inpc);
+        if (!(entity instanceof EntityNPC)) {
+            entity = NPCHelper.getEntityForNPC(world, inpc);
+        }
+
         entity.setPosition(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5);
-        entity.resetSpawnHome();
         return entity;
     }
 

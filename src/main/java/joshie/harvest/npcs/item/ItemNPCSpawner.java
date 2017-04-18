@@ -18,7 +18,6 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 
 import javax.annotation.Nonnull;
-import java.util.UUID;
 
 public class ItemNPCSpawner extends ItemHFRegistry<ItemNPCSpawner, NPC> {
     public ItemNPCSpawner() {
@@ -38,7 +37,6 @@ public class ItemNPCSpawner extends ItemHFRegistry<ItemNPCSpawner, NPC> {
     private void spawnNPC(World world, BlockPos pos, NPC npc) {
         EntityNPC entity = NPCHelper.getEntityForNPC(world, npc);
         entity.setPosition(pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5);
-        entity.resetSpawnHome();
         if (npc == HFNPCs.CARPENTER) {
             entity.setUniqueId(TownHelper.getClosestTownToEntity(entity, true).getID());
         }
@@ -52,14 +50,9 @@ public class ItemNPCSpawner extends ItemHFRegistry<ItemNPCSpawner, NPC> {
         NPC npc = getObjectFromStack(stack);
         if (npc != null) {
             if (!world.isRemote) {
-                if (npc == HFNPCs.CARPENTER) {
-                    WorldServer server = (WorldServer) world;
-                    UUID uuid = TownHelper.getClosestTownToEntity(player, true).getID();
-                    Entity entity = server.getEntityFromUuid(uuid);
-                    if (entity instanceof EntityNPC) {
-                        entity.setPosition(pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5);
-                        ((EntityNPC)entity).resetSpawnHome();
-                    } else spawnNPC(world, pos, npc);
+                Entity entity = NPCHelper.getNPCIfExists((WorldServer) world, pos, npc);
+                if (entity instanceof EntityNPC) {
+                    entity.setPosition(pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5);
                 } else spawnNPC(world, pos, npc);
             }
 

@@ -1,11 +1,14 @@
 package joshie.harvest.animals.type;
 
 import joshie.harvest.animals.HFAnimals;
+import joshie.harvest.animals.item.ItemAnimalProduct.Sizeable;
 import joshie.harvest.animals.item.ItemAnimalSpawner.Spawner;
 import joshie.harvest.api.animals.AnimalAction;
 import joshie.harvest.api.animals.AnimalStats;
 import joshie.harvest.core.helpers.SizeableHelper;
 import net.minecraft.item.ItemStack;
+
+import java.util.List;
 
 import static joshie.harvest.api.animals.AnimalFoodType.SEED;
 
@@ -32,6 +35,11 @@ public class AnimalChicken extends AnimalAbstract {
     @Override
     public ItemStack getProduct(AnimalStats stats) {
         return SizeableHelper.getEgg(stats);
+    }
+
+    @Override
+    public List<ItemStack> getProductsForDisplay(AnimalStats stats) {
+        return SizeableHelper.getSizeablesForDisplay(stats, Sizeable.EGG);
     }
 
     @Override

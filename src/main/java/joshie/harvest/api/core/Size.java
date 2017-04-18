@@ -5,7 +5,7 @@ import net.minecraft.util.IStringSerializable;
 import java.util.Locale;
 
 public enum Size implements IStringSerializable {
-    SMALL(0), MEDIUM(900), LARGE(9900);
+    SMALL(0), MEDIUM(9000), LARGE(18000);
 
     private final int relationship;
 

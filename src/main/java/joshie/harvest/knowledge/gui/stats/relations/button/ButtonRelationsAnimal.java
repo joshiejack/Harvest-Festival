@@ -23,6 +23,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
 
+import java.util.List;
+
 public class ButtonRelationsAnimal extends ButtonBook<GuiStats> {
     private static final ResourceLocation HEARTS = new ResourceLocation("textures/gui/icons.png");
     private static final ItemStack PETTED = HFNPCs.TOOLS.getStackFromEnum(NPCTool.SPEECH);
@@ -35,7 +37,7 @@ public class ButtonRelationsAnimal extends ButtonBook<GuiStats> {
     private static final ItemStack BEEF = new ItemStack(Items.BEEF);
     private static final ItemStack CHICKEN = new ItemStack(Items.CHICKEN);
     private static final ItemStack FISH = new ItemStack(Items.FISH);
-    private final ItemStack product;
+    private final List<ItemStack> products;
     private final boolean collected;
     private final IAnimalType type;
     private final int relationship;
@@ -46,9 +48,12 @@ public class ButtonRelationsAnimal extends ButtonBook<GuiStats> {
     private final boolean isTreated;
     private final boolean isSick;
     private final boolean isPregnant;
-    //Products they make with x5
-    //If you've collected their product
     private final ItemStack stack;
+
+    private final boolean doProductTick;
+    private ItemStack product;
+    private int productTick;
+    private int productID;
 
     public ButtonRelationsAnimal(GuiStats gui, EntityAnimal animal, AnimalStats stats, int buttonId, int x, int y) {
         super(gui, buttonId, x, y, animal.getName());
@@ -65,7 +70,9 @@ public class ButtonRelationsAnimal extends ButtonBook<GuiStats> {
         this.isSick = stats.performTest(AnimalTest.IS_SICK);
         this.isPregnant = stats.performTest(AnimalTest.IS_PREGNANT);
         this.isTreated = stats.performTest(AnimalTest.HAD_TREAT);
-        this.product =  stats.getType().getProduct(stats);
+        this.products =  stats.getType().getProductsForDisplay(stats);
+        this.product = products.get(0);
+        this.doProductTick = products.size() > 0;
         this.collected = !stats.canProduce();
     }
 
@@ -103,6 +110,17 @@ public class ButtonRelationsAnimal extends ButtonBook<GuiStats> {
         drawStack(isTreated, HFAnimals.TREATS.getStackFromEnum(Treat.GENERIC), 95, -5);
         drawStack(petted, PETTED, 105, -5);
         drawStack(eaten, getFoodForAnimal(type), 115, -5);
+        if (doProductTick) {
+            productTick++;
+            if (productTick == 1 || productTick % 300 == 0) {
+                product = products.get(productID);
+                productID++; //Increase the id
+                if (productID >= products.size()) {
+                    productID = 0;
+                }
+            }
+        }
+
         drawStack(collected, product, 114, 4, 0.75F);
         StackRenderHelper.drawStack(stack, xPosition + 4, yPosition + 1, 1F);
     }

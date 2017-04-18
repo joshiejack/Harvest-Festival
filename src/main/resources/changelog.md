@@ -22,6 +22,7 @@
 * Change collision of nests and feeding trays
 * Fodder will now visually show how much is in the trough rather than just full or empty
 * The way size of animal products is redesigned. It's now a random chance for larger products, with the higher relationship increasing this chance.
+* You'll start getting medium products at three hearts and large at six hearts
 * Chickens will now be invulnerable while riding a players head
 * Cows and sheep will become sick less frequently
 

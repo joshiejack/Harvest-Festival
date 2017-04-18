@@ -3,6 +3,8 @@ package joshie.harvest.api.animals;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.item.ItemStack;
 
+import java.util.List;
+
 public interface IAnimalType {
     /** Return a simple name for this animal type **/
     String getName();
@@ -38,6 +40,10 @@ public interface IAnimalType {
     /** @return the product that this animal produces
      *  @param stats    the animals stats **/
     ItemStack getProduct(AnimalStats stats);
+
+    /** @return a list of stacks to use for display purposes of what this animal can produce
+     *  @param stats    the animals stats **/
+    List<ItemStack> getProductsForDisplay(AnimalStats stats);
 
     /** Called whenever an animal is reset to being able to produce again
      * @param stats     the stats

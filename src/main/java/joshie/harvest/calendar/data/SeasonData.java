@@ -40,18 +40,8 @@ public class SeasonData {
         return this;
     }
 
-    public int setSunrise(int sunrise) {
-        int old = this.sunrise;
-        this.sunrise = sunrise;
-        recalculateMiddayAndMidnight();
-        return old;
-    }
-
-    public int setSunset(int sunset) {
-        int old = this.sunset;
-        this.sunset = sunset;
-        recalculateMiddayAndMidnight();
-        return old;
+    public int getSunset() {
+        return sunset;
     }
 
     private void recalculateMiddayAndMidnight() {

@@ -1,5 +1,10 @@
 package joshie.harvest.core.handlers;
 
+import joshie.harvest.api.HFApi;
+import joshie.harvest.api.calendar.Season;
+import joshie.harvest.calendar.CalendarAPI;
+import joshie.harvest.calendar.CalendarHelper;
+import joshie.harvest.calendar.data.SeasonData;
 import joshie.harvest.core.HFCore;
 import joshie.harvest.core.util.annotations.HFEvents;
 import net.minecraft.block.state.IBlockState;
@@ -10,6 +15,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.player.PlayerSleepInBedEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -19,7 +25,7 @@ import java.util.List;
 @HFEvents
 @SuppressWarnings("unused")
 public class SleepHandler {
-    public static boolean register() { return HFCore.SLEEP_ANYTIME; }
+    public static boolean register() { return HFCore.SLEEP_ANYTIME || HFCore.SLEEP_ONLY_AT_NIGHT; }
 
     @SubscribeEvent
     public void onDamage(LivingAttackEvent event) {
@@ -33,7 +39,18 @@ public class SleepHandler {
 
     @SubscribeEvent
     public void onPlayerSleep(PlayerSleepInBedEvent event) {
-        event.setResult(trySleep(event.getEntityPlayer(), event.getPos()));
+        if (HFCore.SLEEP_ONLY_AT_NIGHT) {
+            World world = event.getEntityPlayer().worldObj;
+            long time = CalendarHelper.getTime(world);
+            Season season = HFApi.calendar.getDate(world).getSeason();
+            SeasonData data = CalendarAPI.INSTANCE.getDataForSeason(season);
+            if (time >= 6000 && time <= data.getSunset()) {
+                event.setResult(SleepResult.NOT_POSSIBLE_NOW);
+                return;
+            }
+        }
+
+        if (HFCore.SLEEP_ANYTIME) event.setResult(trySleep(event.getEntityPlayer(), event.getPos()));
     }
 
     private SleepResult trySleep(EntityPlayer player, BlockPos bedLocation) {

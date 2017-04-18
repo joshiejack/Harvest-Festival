@@ -128,6 +128,7 @@ public class HFCore {
     //Configure
     public static boolean DEBUG_MODE;
     public static boolean SLEEP_ANYTIME;
+    public static boolean SLEEP_ONLY_AT_NIGHT;
     public static boolean NO_TICK_OFFLINE;
     public static boolean DISPLAY_SHIPPED_LIST;
     public static int DISPLAY_SHIPPED_TICKS_ON_SCREEN;
@@ -136,6 +137,7 @@ public class HFCore {
     public static void configure() {
         DEBUG_MODE = getBoolean("Debug Mode", false, "Enabling this adds extra information to items, when you have f3 debug mode on");
         SLEEP_ANYTIME = getBoolean("Sleep any time of day", true);
+        SLEEP_ONLY_AT_NIGHT = getBoolean("Disable sleep between 6am and sunset", false);
         NO_TICK_OFFLINE = getBoolean("Server doesn't update time when no players online", false);
         DISPLAY_SHIPPED_LIST = getBoolean("Shipped items list > Enabled", true, "Will display a list of items and how much they were sold for when they day changes. Needs to be enabled on the client and the server to work");
         DISPLAY_SHIPPED_TICKS_ON_SCREEN = getInteger("Shipped items list > Ticks Displayed", 500, "This is the number of ticks the list will stay on the screen for, before scrolling off");

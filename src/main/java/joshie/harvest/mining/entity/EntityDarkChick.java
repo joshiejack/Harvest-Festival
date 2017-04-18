@@ -78,7 +78,8 @@ public class EntityDarkChick extends EntityMob {
     @Override
     protected boolean isValidLightLevel() {
         int floor = MiningHelper.getFloor((int)posX >> 4, (int) posY);
-        return floor >= 10 && (ANIMALS_ON_EVERY_FLOOR || ((floor - 3) % CHICK_FLOORS == 0)) && EntityHelper.getEntities(EntityDarkChicken.class, this, 16D).size() < 2;
+        return floor >= 10 && (ANIMALS_ON_EVERY_FLOOR || ((floor - 3) % CHICK_FLOORS == 0))
+                && EntityHelper.getEntities(EntityDarkChicken.class, this, 16D).size() < 2;
     }
 
     @Override

@@ -131,6 +131,7 @@ public class HFCore {
     public static boolean NO_TICK_OFFLINE;
     public static boolean DISPLAY_SHIPPED_LIST;
     public static int DISPLAY_SHIPPED_TICKS_ON_SCREEN;
+    public static int MOBS_ONLY_SPAWN_UNDERGROUND_IN_OVERWORLD;
 
     public static void configure() {
         DEBUG_MODE = getBoolean("Debug Mode", false, "Enabling this adds extra information to items, when you have f3 debug mode on");
@@ -138,5 +139,6 @@ public class HFCore {
         NO_TICK_OFFLINE = getBoolean("Server doesn't update time when no players online", false);
         DISPLAY_SHIPPED_LIST = getBoolean("Shipped items list > Enabled", true, "Will display a list of items and how much they were sold for when they day changes. Needs to be enabled on the client and the server to work");
         DISPLAY_SHIPPED_TICKS_ON_SCREEN = getInteger("Shipped items list > Ticks Displayed", 500, "This is the number of ticks the list will stay on the screen for, before scrolling off");
+        MOBS_ONLY_SPAWN_UNDERGROUND_IN_OVERWORLD = getInteger("Mobs in overworld only spawn under Y value", 50, "Set to 0, or less for no mob spawns. Set to 256 or greater to disable.");
     }
 }

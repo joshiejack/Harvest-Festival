@@ -32,6 +32,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
+import net.minecraft.util.EnumFacing.Axis;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
@@ -185,35 +186,19 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
     }
 
     private int getXMinus(EnumFacing facing, int x) {
-        if (facing == EnumFacing.NORTH) {
-            return x - 1;
-        } else if (facing == EnumFacing.SOUTH) {
-            return x - 1;
-        } else return x;
+        return facing.getAxis() == Axis.Z ? x - 1 : x;
     }
 
     private int getXPlus(EnumFacing facing, int x) {
-        if (facing == EnumFacing.NORTH) {
-            return x + 1;
-        } else if (facing == EnumFacing.SOUTH) {
-            return x + 1;
-        } else return x;
+        return facing.getAxis() == Axis.Z ? x + 1 : x;
     }
 
     private int getZMinus(EnumFacing facing, int z) {
-        if (facing == EnumFacing.WEST) {
-            return z - 1;
-        } else if (facing == EnumFacing.EAST) {
-            return z - 1;
-        } else return z;
+        return facing.getAxis() == Axis.X ? z - 1 : z;
     }
 
     private int getZPlus(EnumFacing facing, int z) {
-        if (facing == EnumFacing.WEST) {
-            return z + 1;
-        } else if (facing == EnumFacing.EAST) {
-            return z + 1;
-        } else return z;
+        return facing.getAxis() == Axis.X ? z + 1 : z;
     }
 
     @Override
@@ -234,7 +219,7 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
                             BlockPos position = new BlockPos(x2, pos.getY(), z2);
                             IBlockState theState = world.getBlockState(position);
                             PlantSection theSection = BlockHFCrops.getSection(theState);
-                            CropData theData = CropHelper.getCropDataAt(world, pos);
+                            CropData theData = CropHelper.getCropDataAt(world, position);
                             if (!(theData == null || theData.getCrop().requiresSickle() || theData.getCrop() instanceof Tree)) {
                                 if (theSection == BOTTOM) harvestCrop(player, world, position);
                                 else harvestCrop(player, world, position.down());
@@ -245,9 +230,7 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
 
                 if (section == BOTTOM) {
                     return harvestCrop(player, world, pos);
-                } else {
-                    return harvestCrop(player, world, pos.down());
-                }
+                } else return harvestCrop(player, world, pos.down());
             }
         }
     }

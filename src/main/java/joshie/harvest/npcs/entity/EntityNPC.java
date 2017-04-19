@@ -158,7 +158,7 @@ public abstract class EntityNPC<E extends EntityNPC> extends EntityAgeable imple
         super.readEntityFromNBT(nbt);
         npc = NPC.REGISTRY.get(new ResourceLocation(nbt.getString("NPC")));
         if (nbt.hasKey("Town")) {
-            home = UUID.fromString("Town");
+            home = UUID.fromString(nbt.getString("Town"));
         }
     }
 

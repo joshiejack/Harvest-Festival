@@ -139,7 +139,7 @@ public class TownDataServer extends TownData<QuestDataServer, LetterDataServer> 
         TownBuilding newBuilding = new TownBuilding(building, rotation, pos);
         buildings.put(building.getResource(), newBuilding);
         inhabitants.addAll(building.getInhabitants()); //Add all the inhabitants
-        PacketHandler.sendToDimension(world.provider.getDimension(), new PacketNewBuilding(uuid, newBuilding));
+        PacketHandler.sendToEveryone(new PacketNewBuilding(uuid, newBuilding));
         building.onBuilt(world, pos, rotation);
         HFTrackers.markTownsDirty();
     }

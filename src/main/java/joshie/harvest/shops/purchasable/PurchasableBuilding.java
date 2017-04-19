@@ -30,7 +30,6 @@ public class PurchasableBuilding extends PurchasableMaterials {
         this.cost = cost;
         this.tooltip = building.getResource().getResourceDomain() + ".structures." + building.getResource().getResourcePath() + ".tooltip";
         this.resource = ((cost >= 0) ? "buy:" : "sell:") + building.getResource().toString().replace(":", "_");
-        this.setStock(1);
     }
 
     @Override

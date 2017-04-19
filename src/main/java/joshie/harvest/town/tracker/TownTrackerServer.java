@@ -122,7 +122,7 @@ public class TownTrackerServer extends TownTracker<TownDataServer> {
         TownDataServer data = new TownDataServer(getDimension(), pos, HFApi.calendar.getDate(getWorld()));
         uuidMap.put(data.getID(), data);
         matchUUIDWithMineID(data.getID());
-        PacketHandler.sendToDimension(getDimension(), new PacketNewTown(data, townIDs.get(data.getID()))); //Sync to everyone on this dimension
+        PacketHandler.sendToEveryone(new PacketNewTown(data, townIDs.get(data.getID()))); //Sync to everyone on this dimension
         data.getQuests().sync(null);
         markDirty();
         return data;

@@ -1,5 +1,6 @@
 package joshie.harvest.animals.entity;
 
+import io.netty.buffer.ByteBuf;
 import joshie.harvest.animals.HFAnimals;
 import joshie.harvest.animals.entity.ai.EntityAIEatLivestock;
 import joshie.harvest.animals.entity.ai.EntityAIFindShelterOrSun;
@@ -23,14 +24,17 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.fml.common.network.ByteBufUtils;
+import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 import static joshie.harvest.api.animals.IAnimalHandler.ANIMAL_STATS_CAPABILITY;
 import static joshie.harvest.core.helpers.InventoryHelper.ITEM;
 import static joshie.harvest.core.helpers.InventoryHelper.ITEM_STACK;
 
-public class EntityHarvestCow extends EntityCow {
+public class EntityHarvestCow extends EntityCow implements IEntityAdditionalSpawnData {
     private final AnimalStats<NBTTagCompound> stats = HFApi.animals.newStats(AnimalType.MILKABLE);
     private static ItemStack[] stacks;
 
@@ -72,7 +76,7 @@ public class EntityHarvestCow extends EntityCow {
     }
 
     @Override
-    public boolean processInteract(EntityPlayer player, EnumHand hand, ItemStack stack) {
+    public boolean processInteract(@Nullable EntityPlayer player, @Nullable EnumHand hand, ItemStack stack) {
         if (player == null) return false;
         boolean special = ITEM_STACK.matchesAny(stack, getStacks()) || ITEM.matchesAny(stack, HFAnimals.TREATS);
         if (stack == null || !special) {
@@ -95,13 +99,15 @@ public class EntityHarvestCow extends EntityCow {
     }
 
     @Override
-    public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
+    @SuppressWarnings("ConstantConditions")
+    public boolean hasCapability(@Nonnull Capability<?> capability, @Nonnull EnumFacing facing) {
         return capability == ANIMAL_STATS_CAPABILITY || super.hasCapability(capability, facing);
     }
 
     @Override
-    @SuppressWarnings("unchecked")
-    public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
+    @SuppressWarnings("unchecked, ConstantConditions")
+    @Nonnull
+    public <T> T getCapability(@Nonnull Capability<T> capability, @Nonnull EnumFacing facing) {
         return capability == ANIMAL_STATS_CAPABILITY ? (T) stats : super.getCapability(capability, facing);
     }
 
@@ -117,5 +123,16 @@ public class EntityHarvestCow extends EntityCow {
         if (compound.hasKey("Stats")) stats.deserializeNBT(compound.getCompoundTag("Stats"));
         //TODO: Remove in 0.7+
         else if (compound.hasKey("CurrentLifespan")) stats.deserializeNBT(compound);
+    }
+
+    @Override
+    public void writeSpawnData(ByteBuf buffer) {
+        ByteBufUtils.writeTag(buffer, stats.serializeNBT());
+    }
+
+    @Override
+    public void readSpawnData(ByteBuf buffer) {
+        stats.setEntity(this);
+        stats.deserializeNBT(ByteBufUtils.readTag(buffer));
     }
 }

@@ -44,7 +44,10 @@ public class AnimalStatsPoultry extends AnimalStatsHF {
     private boolean dismount() {
         if (!thrown) {
             thrown = true;
-            animal.setInLove(null);
+            if (animal != null) {
+                animal.setInLove(null);
+            }
+
             return true;
         }
 

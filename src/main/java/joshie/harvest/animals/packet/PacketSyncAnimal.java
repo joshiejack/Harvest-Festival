@@ -5,23 +5,19 @@ import joshie.harvest.api.animals.AnimalStats;
 import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.core.helpers.MCClientHelper;
 import joshie.harvest.core.network.Packet;
-import joshie.harvest.core.network.PacketHandler;
+import joshie.harvest.core.network.Packet.Side;
 import joshie.harvest.core.network.PenguinPacket;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 
-@Packet
+@Packet(Side.CLIENT)
 public class PacketSyncAnimal extends PenguinPacket {
     private int id;
     private NBTTagCompound tag;
 
     public PacketSyncAnimal() {}
-    public PacketSyncAnimal(int id) {
-        this.id = id;
-    }
-
     public PacketSyncAnimal(int id, AnimalStats stats) {
         this.id = id;
         this.tag = (NBTTagCompound) stats.serializeNBT();
@@ -49,8 +45,7 @@ public class PacketSyncAnimal extends PenguinPacket {
         if (animal != null) {
             AnimalStats stats = EntityHelper.getStats(animal);
             if (stats != null) {
-                if (player.worldObj.isRemote) stats.setEntity(animal).deserializeNBT(tag);
-                else PacketHandler.sendToClient(new PacketSyncAnimal(id, stats), player);
+                stats.setEntity(animal).deserializeNBT(tag);
             }
         }
     }

@@ -1,6 +1,7 @@
 package joshie.harvest.animals.entity;
 
 import com.google.common.collect.Sets;
+import io.netty.buffer.ByteBuf;
 import joshie.harvest.animals.entity.ai.EntityAIEat;
 import joshie.harvest.animals.entity.ai.EntityAIFindShelterOrSun;
 import joshie.harvest.animals.entity.ai.EntityAILayEgg;
@@ -20,6 +21,8 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.fml.common.network.ByteBufUtils;
+import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -27,7 +30,7 @@ import java.util.Set;
 
 import static joshie.harvest.api.animals.IAnimalHandler.ANIMAL_STATS_CAPABILITY;
 
-public class EntityHarvestChicken extends EntityChicken {
+public class EntityHarvestChicken extends EntityChicken implements IEntityAdditionalSpawnData {
     private static final Set<Item> TEMPTATION_ITEMS = Sets.newHashSet(Items.WHEAT_SEEDS, Items.MELON_SEEDS, Items.PUMPKIN_SEEDS, Items.BEETROOT_SEEDS);
     private final AnimalStats<NBTTagCompound> stats = HFApi.animals.newStats(AnimalType.POULTRY);
     private boolean tickToLove;
@@ -110,5 +113,16 @@ public class EntityHarvestChicken extends EntityChicken {
         if (compound.hasKey("Stats")) stats.deserializeNBT(compound.getCompoundTag("Stats"));
         //TODO: Remove in 0.7+
         else if (compound.hasKey("CurrentLifespan")) stats.deserializeNBT(compound);
+    }
+
+    @Override
+    public void writeSpawnData(ByteBuf buffer) {
+        ByteBufUtils.writeTag(buffer, stats.serializeNBT());
+    }
+
+    @Override
+    public void readSpawnData(ByteBuf buffer) {
+        stats.setEntity(this);
+        stats.deserializeNBT(ByteBufUtils.readTag(buffer));
     }
 }

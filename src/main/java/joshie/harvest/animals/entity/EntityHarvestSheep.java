@@ -1,5 +1,6 @@
 package joshie.harvest.animals.entity;
 
+import io.netty.buffer.ByteBuf;
 import joshie.harvest.animals.HFAnimals;
 import joshie.harvest.animals.entity.ai.EntityAIEatLivestock;
 import joshie.harvest.animals.entity.ai.EntityAIFindShelterOrSun;
@@ -26,6 +27,8 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.fml.common.network.ByteBufUtils;
+import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -36,7 +39,7 @@ import static joshie.harvest.api.animals.IAnimalHandler.ANIMAL_STATS_CAPABILITY;
 import static joshie.harvest.core.helpers.InventoryHelper.ITEM;
 import static joshie.harvest.core.helpers.InventoryHelper.ITEM_STACK;
 
-public class EntityHarvestSheep extends EntitySheep {
+public class EntityHarvestSheep extends EntitySheep implements IEntityAdditionalSpawnData {
     private final AnimalStats<NBTTagCompound> stats = HFApi.animals.newStats(AnimalType.LIVESTOCK);
     private static ItemStack[] stacks;
 
@@ -125,13 +128,15 @@ public class EntityHarvestSheep extends EntitySheep {
     }
 
     @Override
-    public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
+    @SuppressWarnings("ConstantConditions")
+    public boolean hasCapability(@Nonnull Capability<?> capability, @Nonnull EnumFacing facing) {
         return capability == ANIMAL_STATS_CAPABILITY || super.hasCapability(capability, facing);
     }
 
     @Override
-    @SuppressWarnings("unchecked")
-    public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
+    @SuppressWarnings("unchecked, ConstantConditions")
+    @Nonnull
+    public <T> T getCapability(@Nonnull Capability<T> capability, @Nonnull EnumFacing facing) {
         return capability == ANIMAL_STATS_CAPABILITY ? (T) stats : super.getCapability(capability, facing);
     }
 
@@ -147,5 +152,16 @@ public class EntityHarvestSheep extends EntitySheep {
         if (compound.hasKey("Stats")) stats.deserializeNBT(compound.getCompoundTag("Stats"));
         //TODO: Remove in 0.7+
         else if (compound.hasKey("CurrentLifespan")) stats.deserializeNBT(compound);
+    }
+
+    @Override
+    public void writeSpawnData(ByteBuf buffer) {
+        ByteBufUtils.writeTag(buffer, stats.serializeNBT());
+    }
+
+    @Override
+    public void readSpawnData(ByteBuf buffer) {
+        stats.setEntity(this);
+        stats.deserializeNBT(ByteBufUtils.readTag(buffer));
     }
 }

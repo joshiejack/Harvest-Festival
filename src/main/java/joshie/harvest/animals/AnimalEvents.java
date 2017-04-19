@@ -1,7 +1,6 @@
 package joshie.harvest.animals;
 
 import joshie.harvest.animals.item.ItemAnimalTool.Tool;
-import joshie.harvest.animals.packet.PacketSyncAnimal;
 import joshie.harvest.animals.tracker.AnimalTrackerServer;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.AnimalAction;
@@ -10,7 +9,6 @@ import joshie.harvest.api.animals.AnimalTest;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.entity.EntityBasket;
 import joshie.harvest.core.helpers.EntityHelper;
-import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.core.util.annotations.HFEvents;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.passive.EntityAnimal;
@@ -45,7 +43,7 @@ public class AnimalEvents {
             if (!entity.worldObj.isRemote) {
                 stats.setEntity((EntityAnimal)entity);
                 HFTrackers.<AnimalTrackerServer>getAnimalTracker(event.getWorld()).add(stats);
-            } else PacketHandler.sendToServer(new PacketSyncAnimal(entity.getEntityId())); //Request spawn data from the server
+            }
         }
     }
 

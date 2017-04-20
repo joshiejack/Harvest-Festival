@@ -71,7 +71,7 @@ public class Purchasable implements IPurchasable {
 
     @Override
     public int getStock() {
-        return stock != 0 ? stock: getCost() < 0 ? 10 : Integer.MAX_VALUE;
+        return stock;
     }
 
     @Override

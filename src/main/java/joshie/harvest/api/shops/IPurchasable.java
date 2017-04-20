@@ -23,8 +23,9 @@ public interface IPurchasable extends ISpecialRules {
     /** The total cost of this item **/
     long getCost();
 
-    /** How many of this item be be purchased each day **/
-    default int getStock() { return getCost() < 0 ? 10 : Integer.MAX_VALUE; }
+    /** How many of this item be be purchased each day
+     * @return 0 if infinite, otherwise return the amount **/
+    default int getStock() { return 0; }
 
     /** This is the display name for this item **/
     default String getDisplayName() { return getDisplayStack().getDisplayName(); }

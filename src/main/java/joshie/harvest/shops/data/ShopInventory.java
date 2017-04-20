@@ -34,11 +34,11 @@ public class ShopInventory implements INBTSerializableMap<Shop, ShopInventory, N
     }
 
     public long getAdjustedSellToShopValue(IPurchasable purchasable) {
-        return Math.min(0, (long)(purchasable.getCost() * (1 - (double)getAmountPurchased(purchasable)/purchasable.getStock())));
+        return purchasable.getStock() == 0 ? purchasable.getCost() : Math.min(0, (long)(purchasable.getCost() * (1 - (double)getAmountPurchased(purchasable)/purchasable.getStock())));
     }
 
     public boolean canList(IPurchasable purchasable) {
-        return purchasable.getCost() < 0 ? getAdjustedSellToShopValue(purchasable) < 0 : getAmountPurchased(purchasable) < purchasable.getStock();
+        return purchasable.getStock() == 0 || (purchasable.getCost() < 0 ? getAdjustedSellToShopValue(purchasable) < 0 : getAmountPurchased(purchasable) < purchasable.getStock());
     }
 
     private int getAmountPurchased(IPurchasable purchasable) {

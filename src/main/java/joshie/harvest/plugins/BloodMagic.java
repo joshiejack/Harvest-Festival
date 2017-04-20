@@ -33,9 +33,9 @@ public class BloodMagic {
         //Make NPCs Give 0 LP
         FMLInterModComms.sendMessage("BloodMagic", "sacrificeValue", "EntityNPCBuilder;0");
         FMLInterModComms.sendMessage("BloodMagic", "sacrificeValue", "EntityNPCGoddess;0");
-        FMLInterModComms.sendMessage("BloodMagic", "sacrificeValue", "EntityNPCShopkeeper;0");
         FMLInterModComms.sendMessage("BloodMagic", "sacrificeValue", "EntityNPCVillager;0");
-        FMLInterModComms.sendMessage("BloodMagic", "sacrificeValue", "EntityNPCTrader;0");
+        FMLInterModComms.sendMessage("BloodMagic", "sacrificeValue", "EntityNPCHuman;0");
+        FMLInterModComms.sendMessage("BloodMagic", "sacrificeValue", "EntityNPCMiner;0");
     }
 
     @SuppressWarnings("ConstantConditions")

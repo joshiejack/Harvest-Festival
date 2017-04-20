@@ -31,16 +31,18 @@ public class ItemFishingRod extends ItemTool<ItemFishingRod> {
         setCreativeTab(HFTab.FISHING);
         addPropertyOverride(new ResourceLocation("cast"), new IItemPropertyGetter() {
             @SideOnly(Side.CLIENT)
-            public float apply(ItemStack stack, @Nullable World worldIn, @Nullable EntityLivingBase entityIn) {
+            public float apply(@Nonnull ItemStack stack, @Nullable World worldIn, @Nullable EntityLivingBase entityIn) {
                 return entityIn == null ? 0.0F : (entityIn.getHeldItemMainhand() == stack && entityIn instanceof EntityPlayer && ((EntityPlayer)entityIn).fishEntity != null ? 1.0F : 0.0F);
             }
         });
     }
 
+    @SuppressWarnings("ConstantConditions")
     public int getBaitAmount(ItemStack stack) {
         return stack.hasTagCompound() ? stack.getTagCompound().getInteger("Bait") : 0;
     }
 
+    @SuppressWarnings("ConstantConditions")
     boolean addBait(ItemStack rod, ItemStack bait) {
         NBTTagCompound tag = rod.hasTagCompound() ? rod.getTagCompound() : new NBTTagCompound();
         int existing = tag.getInteger("Bait");
@@ -50,6 +52,7 @@ public class ItemFishingRod extends ItemTool<ItemFishingRod> {
         return true;
     }
 
+    @SuppressWarnings("ConstantConditions")
     private void removeBait(EntityPlayer player, ItemStack rod, int amount, boolean returning) {
         NBTTagCompound tag = rod.hasTagCompound() ? rod.getTagCompound() : new NBTTagCompound();
         int existing = tag.getInteger("Bait");
@@ -75,7 +78,7 @@ public class ItemFishingRod extends ItemTool<ItemFishingRod> {
     public ActionResult<ItemStack> onItemRightClick(@Nonnull ItemStack stack, @Nonnull World world, EntityPlayer player, @Nonnull EnumHand hand) {
         if (player.fishEntity != null) {
             if (player.fishEntity.handleHookRetraction() != 0) removeBait(player, stack, 1, false);
-            ToolHelper.consumeHunger(player, getExhaustionRate(stack));
+            ToolHelper.performTask(player, stack, this);
             stack.getSubCompound("Data", true).setInteger("Damage", getDamageForDisplay(stack) + 1);
             player.swingArm(hand);
             return new ActionResult<>(EnumActionResult.SUCCESS, stack);

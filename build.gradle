@@ -97,8 +97,6 @@ curseforge {
     }
 }
 
-tasks.curseforge.dependsOn build
-
 publishing {
     tasks.publish.dependsOn 'build'
     publications {

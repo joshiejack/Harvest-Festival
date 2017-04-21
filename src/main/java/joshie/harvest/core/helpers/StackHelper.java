@@ -148,44 +148,6 @@ public class StackHelper {
         }
     }
 
-    public static NBTTagCompound writeItemStackToNBT(NBTTagCompound tag, ItemStack stack) {
-        if (tag == null) {
-            tag = new NBTTagCompound();
-        }
-
-        try {
-            tag.setString("Name", Item.REGISTRY.getNameForObject(stack.getItem()).toString());
-            tag.setInteger("Count", (byte) stack.stackSize);
-            tag.setInteger("Damage", (short) stack.getItemDamage());
-
-            if (stack.getTagCompound() != null) {
-                tag.setTag("tag", stack.getTagCompound());
-            }
-        } catch (Exception ignored) {
-        }
-        return tag;
-    }
-
-    public static ItemStack getItemStackFromNBT(NBTTagCompound tag) {
-        if (tag == null) {
-            tag = new NBTTagCompound();
-        }
-
-        Item item = Item.REGISTRY.getObject(new ResourceLocation(tag.getString("Name")));
-        int count = tag.getInteger("Count");
-        int damage = tag.getInteger("Damage");
-        if (damage < 0) {
-            damage = 0;
-        }
-
-        ItemStack stack = new ItemStack(item, count, damage);
-        if (tag.hasKey("tag", 10)) {
-            stack.setTagCompound(tag.getCompoundTag("tag"));
-        }
-
-        return stack;
-    }
-
     private static final List<ItemStack> allStacks = new ArrayList<>();
 
     @SideOnly(Side.CLIENT)

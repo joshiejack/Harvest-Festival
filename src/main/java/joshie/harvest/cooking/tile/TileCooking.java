@@ -8,8 +8,8 @@ import joshie.harvest.core.achievements.HFAchievements;
 import joshie.harvest.core.base.tile.TileFaceable;
 import joshie.harvest.core.entity.EntityBasket;
 import joshie.harvest.core.helpers.MCServerHelper;
+import joshie.harvest.core.helpers.NBTHelper;
 import joshie.harvest.core.helpers.SpawnItemHelper;
-import joshie.harvest.core.helpers.StackHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -213,7 +213,7 @@ public abstract class TileCooking extends TileFaceable {
         if (nbt.hasKey("IngredientsInside")) {
             NBTTagList is = nbt.getTagList("IngredientsInside", 10);
             for (int i = 0; i < is.tagCount(); i++) {
-                ingredients.add(StackHelper.getItemStackFromNBT(is.getCompoundTagAt(i)));
+                ingredients.add(NBTHelper.readItemStack(is.getCompoundTagAt(i)));
             }
         }
 
@@ -222,7 +222,7 @@ public abstract class TileCooking extends TileFaceable {
         if (nbt.hasKey("Result")) {
             NBTTagList is = nbt.getTagList("Result", 10);
             for (int i = 0; i < is.tagCount(); i++) {
-                result.add(StackHelper.getItemStackFromNBT(is.getCompoundTagAt(i)));
+                result.add(NBTHelper.readItemStack(is.getCompoundTagAt(i)));
             }
         }
     }
@@ -237,7 +237,7 @@ public abstract class TileCooking extends TileFaceable {
         if (ingredients.size() > 0) {
             NBTTagList is = new NBTTagList();
             for (ItemStack ingredient : ingredients) {
-                is.appendTag(StackHelper.writeItemStackToNBT(new NBTTagCompound(), ingredient));
+                is.appendTag(NBTHelper.writeItemStack(ingredient, new NBTTagCompound()));
             }
 
             nbt.setTag("IngredientsInside", is);
@@ -247,7 +247,7 @@ public abstract class TileCooking extends TileFaceable {
         if (result.size() > 0) {
             NBTTagList is = new NBTTagList();
             for (ItemStack ingredient : result) {
-                is.appendTag(StackHelper.writeItemStackToNBT(new NBTTagCompound(), ingredient));
+                is.appendTag(NBTHelper.writeItemStack(ingredient, new NBTTagCompound()));
             }
 
             nbt.setTag("Result", is);

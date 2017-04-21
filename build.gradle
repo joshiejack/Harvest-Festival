@@ -87,7 +87,6 @@ if (System.getenv().CURSE_API) {
     ext.curseapi= System.getenv().CURSE_API
 }
 
-tasks.curseforge.dependsOn build
 curseforge {
     apiKey = ${curseapi}
     project {
@@ -97,6 +96,8 @@ curseforge {
         addArtifact(apiJar)
     }
 }
+
+tasks.curseforge.dependsOn build
 
 publishing {
     tasks.publish.dependsOn 'build'

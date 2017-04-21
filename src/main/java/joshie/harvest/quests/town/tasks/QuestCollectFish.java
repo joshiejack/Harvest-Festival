@@ -5,6 +5,7 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.core.ITiered.ToolTier;
 import joshie.harvest.api.npc.NPCEntity;
 import joshie.harvest.api.quests.HFQuest;
+import joshie.harvest.api.town.Town;
 import joshie.harvest.core.helpers.InventoryHelper;
 import joshie.harvest.core.helpers.TextHelper;
 import joshie.harvest.fishing.HFFishing;
@@ -15,6 +16,7 @@ import joshie.harvest.quests.base.QuestDaily;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -28,25 +30,27 @@ import static joshie.harvest.fishing.item.ItemFish.FISH_LOCATIONS;
 @HFQuest("collect.fish")
 public class QuestCollectFish extends QuestDaily {
     private static final ItemStack rod = HFFishing.FISHING_ROD.getStack(ToolTier.BASIC);
+    private ItemStack fish = HFFishing.FISH.getStackFromEnum(Fish.COD);
+    private long reward = 1L;
+
     public QuestCollectFish() {
         super(HFNPCs.FISHERMAN);
     }
 
-    private ItemStack fish = HFFishing.FISH.getStackFromEnum(Fish.COD);
-    private long reward = 1L;
-
     @Override
     public String getDescription(World world, @Nullable EntityPlayer player) {
         if (player != null) return getLocalized("desc", fish.stackSize, fish.getDisplayName());
-        else {
-            rand.setSeed(HFApi.calendar.getDate(world).hashCode());
-            int amount = 1 + rand.nextInt(3);
-            List<Fish> list = Lists.newArrayList(FISH_LOCATIONS.get(HFApi.calendar.getDate(world).getSeason()));
-            Fish fishy = list.get(rand.nextInt(list.size()));
-            fish = SetWeight.applyFishSizeData(rand, rod, HFFishing.FISH.getStackFromEnum(fishy, amount));
-            reward = HFApi.shipping.getSellValue(fish) * 10;
-            return getLocalized("task", amount, fish.getDisplayName(), reward);
-        }
+        else return getLocalized("task", fish.stackSize, fish.getDisplayName(), reward);
+    }
+
+    @Override
+    public void onSelectedAsDailyQuest(Town town, World world, BlockPos pos) {
+        rand.setSeed(HFApi.calendar.getDate(world).hashCode());
+        int amount = 1 + rand.nextInt(3);
+        List<Fish> list = Lists.newArrayList(FISH_LOCATIONS.get(HFApi.calendar.getDate(world).getSeason()));
+        Fish fishy = list.get(rand.nextInt(list.size()));
+        fish = SetWeight.applyFishSizeData(rand, rod, HFFishing.FISH.getStackFromEnum(fishy, amount));
+        reward = HFApi.shipping.getSellValue(fish) * 10;
     }
 
     @Override
@@ -70,7 +74,7 @@ public class QuestCollectFish extends QuestDaily {
 
     @Override
     public void onQuestCompleted(EntityPlayer player) {
-        HFApi.player.getRelationsForPlayer(player).affectRelationship(HFNPCs.FISHERMAN, 500);
+        HFApi.player.getRelationsForPlayer(player).affectRelationship(HFNPCs.FISHERMAN, 2500);
         rewardGold(player, reward);
     }
 

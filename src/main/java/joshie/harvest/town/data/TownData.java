@@ -144,7 +144,11 @@ public abstract class TownData<Q extends QuestData, L extends LetterData> implem
             inhabitants.addAll(building.building.getInhabitants());
         }
 
-        if (nbt.hasKey("DailyQuest")) dailyQuest = Quest.REGISTRY.getValue(new ResourceLocation(nbt.getString("DailyQuest")));
+        if (nbt.hasKey("DailyQuest")) {
+            dailyQuest = Quest.REGISTRY.getValue(new ResourceLocation(nbt.getString("DailyQuest")));
+            dailyQuest.readFromNBT(nbt.getCompoundTag("DailyQuestData"));
+        }
+
         if (nbt.hasKey("Festival")) {
             festival = Festival.REGISTRY.get(new ResourceLocation(nbt.getString("Festival")));
             festivalDays = nbt.getInteger("FestivalDaysRemaining");
@@ -161,7 +165,11 @@ public abstract class TownData<Q extends QuestData, L extends LetterData> implem
         NBTHelper.writeUUID("Town", nbt, uuid);
         NBTHelper.writeMap("TownBuildingList", nbt, buildings);
         NBTHelper.writeList("CurrentlyBuilding", nbt, buildingQueue);
-        if (dailyQuest != null) nbt.setString("DailyQuest", dailyQuest.getRegistryName().toString());
+        if (dailyQuest != null) {
+            nbt.setString("DailyQuest", dailyQuest.getRegistryName().toString());
+            nbt.setTag("DailyQuestData", dailyQuest.writeToNBT(new NBTTagCompound()));
+        }
+
         if (festival != null) {
             nbt.setString("Festival", festival.getResource().toString());
             nbt.setInteger("FestivalDaysRemaining", festivalDays);

@@ -38,12 +38,12 @@ import static joshie.harvest.core.helpers.InventoryHelper.ORE_DICTIONARY;
 @HFQuest("collect.crops")
 public class QuestCollectCrops extends QuestDaily {
     private static final Multimap<Season, Crop> CROPS = HashMultimap.create();
+    private Crop crop = HFCrops.TURNIP;
+    private int amount = 1;
+
     public QuestCollectCrops() {
         super(HFNPCs.CAFE_GRANNY);
     }
-
-    private Crop crop = HFCrops.TURNIP;
-    private int amount = 1;
 
     @Override
     public boolean canStartDailyQuest(Town town, World world, BlockPos pos) {
@@ -53,13 +53,15 @@ public class QuestCollectCrops extends QuestDaily {
     @Override
     public String getDescription(World world, @Nullable EntityPlayer player) {
         if (player != null) return getLocalized("desc", amount, crop.getLocalizedName(true));
-        else {
-            rand.setSeed(HFApi.calendar.getDate(world).hashCode());
-            amount = 1 + rand.nextInt(10);
-            List<Crop> list = Lists.newArrayList(getCrops(HFApi.calendar.getDate(world).getSeason()));
-            crop = list.get(rand.nextInt(list.size()));
-            return getLocalized("task", amount, crop.getLocalizedName(true));
-        }
+        else return getLocalized("task", amount, crop.getLocalizedName(true));
+    }
+
+    @Override
+    public void onSelectedAsDailyQuest(Town town, World world, BlockPos pos) {
+        rand.setSeed(HFApi.calendar.getDate(world).hashCode());
+        amount = 1 + rand.nextInt(10);
+        List<Crop> list = Lists.newArrayList(getCrops(HFApi.calendar.getDate(world).getSeason()));
+        crop = list.get(rand.nextInt(list.size()));
     }
 
     private Collection<Crop> getCrops(Season season) {
@@ -95,8 +97,9 @@ public class QuestCollectCrops extends QuestDaily {
 
     @Override
     public void onQuestCompleted(EntityPlayer player) {
-        HFApi.player.getRelationsForPlayer(player).affectRelationship(HFNPCs.CAFE_GRANNY, 500);
+        HFApi.player.getRelationsForPlayer(player).affectRelationship(HFNPCs.CAFE_GRANNY, 2500);
         ItemStack stack = HFCooking.MEAL.getCreativeStack(ItemMeal.MEALS[player.worldObj.rand.nextInt(Meal.values().length)]);
+        stack.stackSize = 3;
         if (player.worldObj.rand.nextInt(10) == 0) {
             stack.stackSize = 10;
         }

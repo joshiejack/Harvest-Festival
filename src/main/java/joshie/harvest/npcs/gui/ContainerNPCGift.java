@@ -4,6 +4,7 @@ import joshie.harvest.HarvestFestival;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.CalendarDate;
 import joshie.harvest.api.npc.NPC;
+import joshie.harvest.api.npc.RelationStatus;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.handlers.GuiHandler;
 import joshie.harvest.npcs.NPCHelper;
@@ -14,7 +15,10 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
 
+import static joshie.harvest.api.calendar.Season.WINTER;
+
 public class ContainerNPCGift extends ContainerNPCChat {
+    private static final CalendarDate CHRISTMAS = new CalendarDate(25, WINTER, 0);
     private final EnumHand hand;
 
     public ContainerNPCGift(EntityPlayer player, EntityNPC npc, EnumHand hand, int nextGui) {
@@ -36,16 +40,17 @@ public class ContainerNPCGift extends ContainerNPCChat {
                 /*if (ToolHelper.isBlueFeather(gift)) {
                     relationships.propose(player, theNpc.getUUID());
                 } else { */
-                    int points = theNpc.getGiftValue(gift).getRelationPoints();
-                    if (!relationships.hasGivenBirthdayGift(theNpc)) {
-                        CalendarDate today = HFApi.calendar.getDate(player.worldObj);
-                        if (theNpc.getBirthday().isSameDay(today)) {
-                            relationships.setHasGivenBirthdayGift(theNpc);
-                            points *= 5;
-                        }
-                    }
+                CalendarDate today = HFApi.calendar.getDate(player.worldObj);
+                int points = theNpc.getGiftValue(gift).getRelationPoints();
+                if (!relationships.hasGivenGift(theNpc, RelationStatus.BIRTHDAY_GIFT) && theNpc.getBirthday().isSameDay(today)) {
+                    relationships.setHasGivenGift(theNpc, RelationStatus.BIRTHDAY_GIFT);
+                    points *= 10;
+                } else if (!relationships.hasGivenGift(theNpc, RelationStatus.CHRISTMAS_GIFT) && CHRISTMAS.isSameDay(today)) {
+                    relationships.setHasGivenGift(theNpc, RelationStatus.CHRISTMAS_GIFT);
+                    points *= 5;
+                }
 
-                    relationships.gift(player, theNpc, points);
+                relationships.gift(player, theNpc, points);
                 //}
 
                 ItemStack gifted = gift.splitStack(1);

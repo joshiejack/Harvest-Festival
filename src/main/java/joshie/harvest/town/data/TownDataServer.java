@@ -167,8 +167,14 @@ public class TownDataServer extends TownData<QuestDataServer, LetterDataServer> 
 
         if (quests.size() > 0) {
             dailyQuest = quests.get(world.rand.nextInt(quests.size()));
+            dailyQuest.onSelectedAsDailyQuest(this, world, townCentre);
         } else dailyQuest = null;
 
+        PacketHandler.sendToDimension(world.provider.getDimension(), new PacketDailyQuest(uuid, dailyQuest));
+    }
+
+    public void clearDailyQuest(World world) {
+        dailyQuest = null; //Remove the current daily quest as it has been started in the town
         PacketHandler.sendToDimension(world.provider.getDimension(), new PacketDailyQuest(uuid, dailyQuest));
     }
 

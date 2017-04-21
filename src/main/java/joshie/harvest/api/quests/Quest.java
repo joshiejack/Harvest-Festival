@@ -90,6 +90,13 @@ public abstract class Quest extends IForgeRegistryEntry.Impl<Quest> {
         return false;
     }
 
+    /** Called when this quest is selected as a daily quest
+     *  in order to setup the context for this day
+     *  @param town  the town trying to start the quest in
+     *  @param world the world
+     *  @param pos   the position*/
+    public void onSelectedAsDailyQuest(Town town, World world, BlockPos pos) {}
+
     /** This is only called for daily quests, if they are repeatable
      *  This is how many days need to have passed before this quest can be repeated **/
     public int getDaysBetween() {

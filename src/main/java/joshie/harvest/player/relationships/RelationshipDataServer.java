@@ -24,12 +24,12 @@ public class RelationshipDataServer extends RelationshipData {
         this.master = master;
     }
 
-    public boolean hasGivenBirthdayGift(NPC npc) {
-        return status.get(npc).contains(RelationStatus.BIRTHDAY_GIFT);
+    public boolean hasGivenGift(NPC npc, RelationStatus statusType) {
+        return status.get(npc).contains(statusType);
     }
 
-    public void setHasGivenBirthdayGift(NPC npc) {
-        status.get(npc).add(RelationStatus.BIRTHDAY_GIFT);
+    public void setHasGivenGift(NPC npc, RelationStatus statusType) {
+        status.get(npc).add(statusType);
     }
 
     public void talkTo(EntityPlayer player, NPC npc) {

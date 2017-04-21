@@ -96,7 +96,8 @@ curseforge {
     project {
         id = "${curse_id}"
         releaseType = 'alpha'
-        addGameVersion "${minecraft_version}"
+        changelog = 'test'
+        addGameVersion '${minecraft_version}'
         addArtifact apiJar
     }
 }

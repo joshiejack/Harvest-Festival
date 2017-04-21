@@ -24,7 +24,7 @@ public class HFCommandTime extends AbstractHFCommand {
     public boolean execute(MinecraftServer server, ICommandSender sender, String[] parameters) {
         if (parameters.length > 1) {
             if (parameters[0].equals("set")) {
-                long time = CalendarHelper.getElapsedDays(server.worldServers[0].getWorldTime()) * HFCalendar.TICKS_PER_DAY;
+                long time = CalendarHelper.getElapsedDays(server.worlds[0].getWorldTime()) * HFCalendar.TICKS_PER_DAY;
                 switch (parameters[1]) {
                     case "day":
                         time += 3000;
@@ -43,7 +43,7 @@ public class HFCommandTime extends AbstractHFCommand {
 
             if (parameters[0].equals("add")) {
                 int l = parseInt(parameters[1]);
-                CalendarHelper.setWorldTime(server, server.worldServers[0].getWorldTime() + l);
+                CalendarHelper.setWorldTime(server, server.worlds[0].getWorldTime() + l);
                 return true;
             }
         }

@@ -31,11 +31,9 @@ public class CookingHelper {
     private static void addIngredientsToSet(Set<IngredientStack> ingredients, IInventory inventory) {
         for (int i = 0; i < inventory.getSizeInventory(); i++) {
             ItemStack stack = inventory.getStackInSlot(i);
-            if (stack != null) {
-                Ingredient ingredient = CookingAPI.INSTANCE.getCookingComponents(stack);
-                if (ingredient != null) {
-                    ingredients.add(new IngredientStack(ingredient, stack.stackSize));
-                }
+            Ingredient ingredient = CookingAPI.INSTANCE.getCookingComponents(stack);
+            if (ingredient != null) {
+                ingredients.add(new IngredientStack(ingredient, stack.getCount()));
             }
         }
     }
@@ -65,7 +63,7 @@ public class CookingHelper {
     }
 
     public static PlaceIngredientResult tryPlaceIngredients(EntityPlayer player, Recipe recipe) {
-        World world = player.worldObj;
+        World world = player.getEntityWorld();
         BlockPos pos = new BlockPos(player);
         int reach = player.capabilities.isCreativeMode ? 5 : 4;
         List<IInventory> fridges = getAllFridges(player, world, pos, reach);

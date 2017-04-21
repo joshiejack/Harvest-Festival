@@ -27,6 +27,11 @@ public class LootHelper {
         }
 
         @Override
+        public boolean isEmpty() {
+            return false;
+        }
+
+        @Override
         public ItemStack getStackInSlot(int index) {
             return result;
         }
@@ -55,7 +60,7 @@ public class LootHelper {
         public void markDirty() {}
 
         @Override
-        public boolean isUseableByPlayer(EntityPlayer player) {
+        public boolean isUsableByPlayer(EntityPlayer player) {
             return false;
         }
 

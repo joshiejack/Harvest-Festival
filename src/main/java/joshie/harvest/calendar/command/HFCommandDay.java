@@ -33,7 +33,7 @@ public class HFCommandDay extends AbstractHFCommand {
                 int day = Math.min(DAYS_PER_SEASON, Math.max(1, parseInt(parameters[0]))) - 1;
                 Season season = calendar.getDate().getSeason();
                 int year = calendar.getDate().getYear() + 1;
-                long leftover = server.worldServers[0].getWorldTime() % HFCalendar.TICKS_PER_DAY;
+                long leftover = server.worlds[0].getWorldTime() % HFCalendar.TICKS_PER_DAY;
                 CalendarHelper.setWorldTime(server, CalendarHelper.getTime(day, season, year) + leftover);
                 return true;
             } catch (NumberFormatException ignored) {}

@@ -31,7 +31,7 @@ public class HFCommandYear extends AbstractHFCommand {
                 int day = calendar.getDate().getDay();
                 Season season = calendar.getDate().getSeason();
                 int year = Math.min(Integer.MAX_VALUE, Math.max(1, Integer.parseInt(parameters[0])));
-                long leftover = server.worldServers[0].getWorldTime() % HFCalendar.TICKS_PER_DAY;
+                long leftover = server.worlds[0].getWorldTime() % HFCalendar.TICKS_PER_DAY;
                 CalendarHelper.setWorldTime(server, CalendarHelper.getTime(day, season, year) + leftover);
                 return true;
             } catch (NumberFormatException ignored) {

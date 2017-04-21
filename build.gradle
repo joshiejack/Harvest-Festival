@@ -82,20 +82,20 @@ task apiJar(type: Jar) {
 
 tasks.build.dependsOn apiJar
 
-ext.curseapi=""
-if (System.getenv().CURSE_API) {
-    ext.curseapi= System.getenv().CURSE_API
-}
+//ext.curseapi=""
+//if (System.getenv().CURSE_API) {
+    //ext.curseapi= System.getenv().CURSE_API
+//}
 
-curseforge {
-    apiKey = ${curseapi}
-    project {
-        id = "${curse_id}"
-        releaseType = 'alpha'
-        addGameVersion "${minecraft_version}"
-        addArtifact(apiJar)
-    }
-}
+//curseforge {
+    //apiKey = ${curseapi}
+    //project {
+        //id = "${curse_id}"
+        //releaseType = 'alpha'
+        //addGameVersion "${minecraft_version}"
+        //addArtifact(apiJar)
+    //}
+//}
 
 publishing {
     tasks.publish.dependsOn 'build'

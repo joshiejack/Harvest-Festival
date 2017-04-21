@@ -88,13 +88,11 @@ task apiJar(type: Jar) {
 
 tasks.build.dependsOn apiJar
 
-ext.curseapi=""
-if (System.getenv().CURSE_API) {
-    ext.curseapi= System.getenv().CURSE_API
-}
-
 curseforge {
-    apiKey = ${curseapi}
+    if (System.getenv().CURSE_API) {
+        apiKey = System.getenv().CURSE_API
+    }
+
     project {
         id = "${curse_id}"
         releaseType = 'alpha'

@@ -8,10 +8,12 @@ buildscript {
     }
     dependencies {
         classpath 'net.minecraftforge.gradle:ForgeGradle:2.2-SNAPSHOT'
+        classpath 'gradle.plugin.com.matthewprenger:CurseGradle:1.0.7'
     }
 }
 
 apply plugin: 'net.minecraftforge.gradle.forge'
+apply plugin: 'com.matthewprenger.cursegradle'
 apply plugin: 'maven-publish'
 
 sourceCompatibility = JavaVersion.VERSION_1_8
@@ -82,20 +84,20 @@ task apiJar(type: Jar) {
 
 tasks.build.dependsOn apiJar
 
-//ext.curseapi=""
-//if (System.getenv().CURSE_API) {
-    //ext.curseapi= System.getenv().CURSE_API
-//}
+ext.curseapi=""
+if (System.getenv().CURSE_API) {
+    ext.curseapi= System.getenv().CURSE_API
+}
 
-//curseforge {
-    //apiKey = ${curseapi}
-    //project {
-        //id = "${curse_id}"
-        //releaseType = 'alpha'
-        //addGameVersion "${minecraft_version}"
-        //addArtifact(apiJar)
-    //}
-//}
+curseforge {
+    apiKey = ${curseapi}
+    project {
+        id = "${curse_id}"
+        releaseType = 'alpha'
+        addGameVersion "${minecraft_version}"
+        addArtifact apiJar
+    }
+}
 
 publishing {
     tasks.publish.dependsOn 'build'

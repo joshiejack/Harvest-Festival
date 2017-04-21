@@ -96,6 +96,7 @@ curseforge {
     project {
         id = "${curse_id}"
         releaseType = 'alpha'
+        changelog = 'WARNING! This is highly experimental, with missing textures so use at your own risk!'
         addGameVersion "${minecraft_version}"
         addArtifact(apiJar)
     }

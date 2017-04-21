@@ -5,6 +5,7 @@ Dust Overlays > Balduran (http://balduranne.deviantart.com/)
 Fossil, Wine > Poppy
 Chamomile, Mint, Lavender, Matsutake, Moondrop, Magic Flowers > Willi_Zinger
 Seasons HUD > CyanideX
+Ice Cream > Demmers
 
 ## Buildings
 Harvest Goddess Pond - http://www.planetminecraft.com/project/waterfall-pond-d/

@@ -1,3 +1,5 @@
+import scala.tools.nsc.io.Jar
+
 buildscript {
     repositories {
         jcenter()
@@ -81,6 +83,21 @@ task apiJar(type: Jar) {
 }
 
 tasks.build.dependsOn apiJar
+
+ext.curseapi=""
+if (System.getenv().CURSE_API) {
+    ext.curseapi= System.getenv().CURSE_API
+}
+
+curseforge {
+    apiKey = ${curseapi}
+    project {
+        id = "${curse_id}"
+        releaseType = 'alpha'
+        addGameVersion "${minecraft_version}"
+        addArtifact(apiJar)
+    }
+}
 
 publishing {
     tasks.publish.dependsOn 'build'

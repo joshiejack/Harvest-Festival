@@ -1,3 +1,7 @@
+##0.5.26
+* Fixed crops fake 'dying' when crop death from lack of water is off
+* Reduced the frequency of dark mobs
+
 ##0.5.25
 * Added German translation by ctonhaeu
 * Fixed pumpkin/melon stem colours

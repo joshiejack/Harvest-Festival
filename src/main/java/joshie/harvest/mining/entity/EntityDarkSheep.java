@@ -54,7 +54,8 @@ public class EntityDarkSheep extends EntityMob {
 
     @Override
     protected boolean isValidLightLevel() {
-        return MiningHelper.getFloor((int)posX >> 4, (int) posY) >= GOLD_FLOOR;
+        return MiningHelper.getFloor((int)posX >> 4, (int) posY) >= GOLD_FLOOR &&
+                EntityHelper.getEntities(EntityDarkSheep.class, worldObj, new BlockPos(this), 24D, 24D).size() < 1;
     }
 
     @Override

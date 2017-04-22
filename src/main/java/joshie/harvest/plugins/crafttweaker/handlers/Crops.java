@@ -103,9 +103,10 @@ public class Crops {
             ItemStack[] theDrops = new ItemStack[drops.length];
             for (int i = 0; i < drops.length; i++) {
                 theDrops[i] = asStack(drops[i]);
-                if (theDrops[i] == null)
+                if (theDrops[i] == null) {
                     CraftTweaker.logError(String.format("Could not set the drop for %s as the stack item was null", name));
-                return;
+                    return;
+                }
             }
 
             MineTweakerAPI.apply(new SetDrops(name, theDrops, amounts, chances));

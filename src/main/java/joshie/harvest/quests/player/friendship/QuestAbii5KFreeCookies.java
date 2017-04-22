@@ -2,7 +2,8 @@ package joshie.harvest.quests.player.friendship;
 
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.Quest;
-import joshie.harvest.cooking.CookingHelper;
+import joshie.harvest.cooking.HFCooking;
+import joshie.harvest.cooking.item.ItemMeal.Meal;
 import joshie.harvest.npcs.HFNPCs;
 import joshie.harvest.quests.Quests;
 import joshie.harvest.quests.base.QuestFriendship;
@@ -32,12 +33,12 @@ public class QuestAbii5KFreeCookies extends QuestFriendship {
     protected List<ItemStack> getRewardStacks(EntityPlayer player) {
         List<ItemStack> stacks = new ArrayList<>();
         //Normal Cookies
-        ItemStack stack = CookingHelper.getRecipe("cookies");
+        ItemStack stack = HFCooking.MEAL.getCreativeStack(Meal.COOKIES);
         stack.getTagCompound().setLong(SELL_VALUE, 0L);
         stacks.add(stack);
 
         //Chocolate Cookies
-        stack = CookingHelper.getRecipe("cookies_chocolate");
+        stack = HFCooking.MEAL.getCreativeStack(Meal.COOKIES_CHOCOLATE);
         stack.getTagCompound().setLong(SELL_VALUE, 0L);
         stacks.add(stack);
 

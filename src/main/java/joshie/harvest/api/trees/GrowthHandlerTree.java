@@ -14,23 +14,28 @@ public class GrowthHandlerTree extends GrowthHandler<Tree> {
         return true;
     }
 
+    protected boolean canGrow(World world, BlockPos pos) {
+        return true;
+    }
+
     @Override
     public int grow(World world, BlockPos pos, Tree tree, int stage) {
         if(HFApi.calendar.getSeasonAtCoordinates(world, pos) == Season.WINTER) return stage; //Tree won't grow in winter
+        if (canGrow(world, pos)) {
+            //If we he haven't reached maturity, continue growing
+            if (stage < tree.getStages()) {
+                stage++;
+            }
 
-        //If we he haven't reached maturity, continue growing
-        if (stage < tree.getStages()) {
-            stage++;
-        }
+            //When we reach juvenile, plant the extra block
+            if (stage == tree.getStagesToJuvenile()) {
+                growJuvenile(world, pos);
+            }
 
-        //When we reach juvenile, plant the extra block
-        if (stage == tree.getStagesToJuvenile()) {
-            growJuvenile(world, pos);
-        }
-
-        //When we reach maturity, grow the tree
-        if (stage == tree.getStagesToMaturity()) {
-            growTree(world, pos);
+            //When we reach maturity, grow the tree
+            if (stage == tree.getStagesToMaturity()) {
+                growTree(world, pos);
+            }
         }
 
         //If our tree is mature, and we're in season, then we should grow fruit for the tree

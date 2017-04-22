@@ -133,6 +133,7 @@ harvestfestival.crop.orange=Orange
 harvestfestival.crop.peach=Peach
 harvestfestival.crop.grape=Grape
 harvestfestival.crop.hemp.tooltip=Requires light level 12+
+harvestfestival.tree.area=Requires %sx%s area
 
 #Trees
 ##Fruit

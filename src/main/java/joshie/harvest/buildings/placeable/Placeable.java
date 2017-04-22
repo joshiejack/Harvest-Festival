@@ -1,6 +1,7 @@
 package joshie.harvest.buildings.placeable;
 
 import com.google.gson.annotations.Expose;
+import joshie.harvest.core.util.HFTemplate.Replaceable;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -9,6 +10,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public abstract class Placeable {
+    public static final Replaceable DEFAULT = new Replaceable();
     @Expose
     protected BlockPos pos;
 
@@ -44,8 +46,12 @@ public abstract class Placeable {
     }
 
     public boolean place(World world, BlockPos pos, Rotation rotation, ConstructionStage stage, boolean playSound) {
+        return place(world, pos, rotation, stage, playSound, DEFAULT);
+    }
+
+    public boolean place(World world, BlockPos pos, Rotation rotation, ConstructionStage stage, boolean playSound, Replaceable replaceable) {
         BlockPos transformed = getTransformedPosition(pos, rotation);
-        if (world.getBlockState(transformed).getBlockHardness(world, transformed) == -1F) return true;
+        if (replaceable.cantReplace(world, transformed)) return true;
         if (canPlace(stage)) {
             if (stage == ConstructionStage.BUILD) clearBushes(world, transformed.up());
             return place(world, transformed, rotation, playSound);

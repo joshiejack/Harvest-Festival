@@ -10,7 +10,7 @@ import net.minecraft.util.math.BlockPos;
 @SuppressWarnings("unused")
 public class GrowthHandlerPeach extends GrowthHandlerHFTree {
     public GrowthHandlerPeach() {
-        super(Fruit.PEACH);
+        super(Fruit.PEACH, 2);
     }
 
     @Override

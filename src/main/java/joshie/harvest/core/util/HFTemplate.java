@@ -72,6 +72,10 @@ public class HFTemplate {
     }
 
     public EnumActionResult placeBlocks(World world, BlockPos pos, Rotation rotation, @Nullable Building building) {
+        return placeBlocks(world, pos, rotation, building, Placeable.DEFAULT);
+    }
+
+    public EnumActionResult placeBlocks(World world, BlockPos pos, Rotation rotation, @Nullable Building building, @Nullable Replaceable replaceable) {
         if (!world.isRemote) {
             if (components != null) {
                 for (Placeable placeable : components) placeable.place(world, pos, rotation, ConstructionStage.BUILD, false);
@@ -92,5 +96,11 @@ public class HFTemplate {
 
     public PlaceableNPC getNPCOffset(String npc_location) {
         return npc_offsets.get(npc_location);
+    }
+
+    public static class Replaceable {
+        public boolean cantReplace(World world, BlockPos transformed) {
+            return world.getBlockState(transformed).getBlockHardness(world, transformed) == -1F;
+        }
     }
 }

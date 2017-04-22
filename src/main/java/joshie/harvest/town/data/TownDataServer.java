@@ -25,7 +25,6 @@ import joshie.harvest.mining.gen.MineManager;
 import joshie.harvest.mining.gen.MiningProvider;
 import joshie.harvest.npcs.HFNPCs;
 import joshie.harvest.npcs.NPCHelper;
-import joshie.harvest.npcs.entity.EntityNPC;
 import joshie.harvest.npcs.entity.EntityNPCBuilder;
 import joshie.harvest.npcs.entity.EntityNPCHuman;
 import joshie.harvest.npcs.entity.EntityNPCMiner;
@@ -201,7 +200,8 @@ public class TownDataServer extends TownData<QuestDataServer, LetterDataServer> 
                     entity.setHeldItem(EnumHand.OFF_HAND, new ItemStack(Items.IRON_PICKAXE));
                     server.spawnEntityInWorld(entity);
                 } else if (npc != HFNPCs.GODDESS) {
-                    if (!(NPCHelper.getNPCIfExists((WorldServer) world, townCentre, npc) instanceof EntityNPC)) {
+                    Entity theEntity = NPCHelper.getNPCIfExists((WorldServer) world, townCentre, npc);
+                    if (!(theEntity != null && !theEntity.isDead)) {
                         EntityNPCHuman entity = NPCHelper.getEntityForNPC(world, npc);
                         entity.setPosition(townCentre.getX(), townCentre.getY(), townCentre.getZ());
                         BlockPos home = NPCHelper.getHomeForEntity(entity);

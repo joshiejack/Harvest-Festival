@@ -91,7 +91,7 @@ public abstract class EntityNPCHuman<E extends EntityNPCHuman> extends EntityNPC
 
     @Override
     public void onDeath(@Nonnull DamageSource cause) {
-        if (!worldObj.isRemote && this.posY >= -32D) {
+        if (!worldObj.isRemote) {
             //Respawn a new bugger
             if (npc.respawns()) {
                 this.<TownDataServer>getHomeTown().markNPCDead(getNPC().getResource(), new BlockPos(this));

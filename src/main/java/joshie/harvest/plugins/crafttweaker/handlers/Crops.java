@@ -10,6 +10,7 @@ import joshie.harvest.crops.handlers.rules.SpecialRulesYear;
 import joshie.harvest.plugins.crafttweaker.CraftTweaker;
 import joshie.harvest.plugins.crafttweaker.base.BaseCrop;
 import joshie.harvest.plugins.crafttweaker.base.BaseOnce;
+import joshie.harvest.plugins.crafttweaker.wrappers.MultiDropHandler;
 import minetweaker.MineTweakerAPI;
 import minetweaker.api.item.IItemStack;
 import net.minecraft.block.Block;
@@ -22,6 +23,7 @@ import net.minecraftforge.common.EnumPlantType;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 
+import java.util.Arrays;
 import java.util.Locale;
 
 import static joshie.harvest.core.lib.HFModInfo.MODID;
@@ -92,6 +94,52 @@ public class Crops {
 
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    @ZenMethod
+    @SuppressWarnings("unused")
+    public static void setDrops(String name, IItemStack[] drops, int[] amounts, int[] chances) {
+        if (drops.length != amounts.length || drops.length != chances.length) {
+            CraftTweaker.logError(String.format("Could not set the drop for %s as the drops, amounts and chances weren't the same length", name));
+        } else {
+            ItemStack[] theDrops = new ItemStack[drops.length];
+            for (int i = 0; i < drops.length; i++) {
+                theDrops[i] = asStack(drops[i]);
+                if (theDrops[i] == null)
+                    CraftTweaker.logError(String.format("Could not set the drop for %s as the stack item was null", name));
+                return;
+            }
+
+            MineTweakerAPI.apply(new SetDrops(name, theDrops, amounts, chances));
+        }
+    }
+
+    private static class SetDrops extends BaseCrop {
+        private final ItemStack[] drops;
+        private final int[] amounts;
+        private final int[] chances;
+
+        public SetDrops(String name, ItemStack[] drops, int[] amounts, int[] chances) {
+            super(name);
+            this.drops = drops;
+            this.amounts = amounts;
+            this.chances = chances;
+        }
+
+        @Override
+        public String getDescription() {
+            return "Setting drops for " + resource + " to " + Arrays.toString(drops);
+        }
+
+        @Override
+        protected void applyToCrop(Crop crop) {
+            crop.setItem(drops[0]);
+            HFApi.crops.registerCropProvider(crop.getCropStack(1), crop);
+            crop.setDropHandler(new MultiDropHandler(drops, amounts, chances));
+        }
+    }
+
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
     @ZenMethod
     @SuppressWarnings("unused, deprecation")
     public static void setStages(String name, int[] stages, IItemStack[] blocks, int[] meta) {

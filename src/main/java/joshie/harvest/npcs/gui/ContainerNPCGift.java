@@ -22,7 +22,7 @@ public class ContainerNPCGift extends ContainerNPCChat {
     private final EnumHand hand;
 
     public ContainerNPCGift(EntityPlayer player, EntityNPC npc, EnumHand hand, int nextGui) {
-        super(player, npc, nextGui);
+        super(player, npc, nextGui, true);
         this.hand = hand;
     }
 

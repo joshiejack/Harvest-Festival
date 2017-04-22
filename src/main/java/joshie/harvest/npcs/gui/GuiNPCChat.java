@@ -1,6 +1,7 @@
 package joshie.harvest.npcs.gui;
 
 import joshie.harvest.core.HFTrackers;
+import joshie.harvest.core.base.gui.ContainerBase;
 import joshie.harvest.core.handlers.GuiHandler;
 import joshie.harvest.core.helpers.TextHelper;
 import joshie.harvest.core.network.PacketHandler;
@@ -36,8 +37,14 @@ public class GuiNPCChat extends GuiNPCBase {
         return String.format(string, stats.getGold(), playerLover, npcLover, player.getDisplayNameString(), npc.getNPC().getLocalizedName());
     }
 
-    public GuiNPCChat(EntityPlayer player, EntityNPC npc, int nextGui, boolean info) {
-        super(player, npc, nextGui);
+    public GuiNPCChat(ContainerBase container, EntityPlayer player, EntityNPC npc) {
+        super(container, player, npc, -1);
+        isScriptInit = false;
+        this.info = false;
+    }
+
+    public GuiNPCChat(EntityPlayer player, EntityNPC npc, int nextGui, boolean info, boolean disableQuests) {
+        super(new ContainerNPCChat(player, npc, nextGui, disableQuests), player, npc, nextGui);
         isScriptInit = false;
         this.info = info;
     }

@@ -20,22 +20,24 @@ public class ContainerNPCChat extends ContainerBase {
     private boolean hasBeenClosed = false;
     private boolean sneaking = false;
 
-    public ContainerNPCChat(EntityPlayer player, EntityNPC npc, int nextGui) {
+    public ContainerNPCChat(EntityPlayer player, EntityNPC npc, int nextGui, boolean disableQuests) {
         this.npc = npc;
         this.nextGui = nextGui;
         this.hasBeenClosed = false;
         this.sneaking = player.isSneaking();
         this.npc.setTalking(player);
-        this.quest = QuestHelper.getCurrentQuest(player, npc);
-        if (this.quest != null) {
-            this.quest.onQuestSelectedForDisplay(player, npc);
-            if (nextGui == GuiHandler.NEXT_NONE) {
-                Selection selection = this.quest.getSelection(player, npc);
-                if (selection != null) {
-                    this.nextGui = SELECTION;
+        if (!disableQuests) {
+            this.quest = QuestHelper.getCurrentQuest(player, npc);
+            if (this.quest != null) {
+                this.quest.onQuestSelectedForDisplay(player, npc);
+                if (nextGui == GuiHandler.NEXT_NONE) {
+                    Selection selection = this.quest.getSelection(player, npc);
+                    if (selection != null) {
+                        this.nextGui = SELECTION;
+                    }
                 }
             }
-        }
+        } else this.quest = null;
     }
 
     @Override

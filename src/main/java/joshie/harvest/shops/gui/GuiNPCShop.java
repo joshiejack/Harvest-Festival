@@ -5,6 +5,7 @@ import joshie.harvest.api.shops.IPurchaseableMaterials;
 import joshie.harvest.api.shops.IRequirement;
 import joshie.harvest.api.shops.Shop;
 import joshie.harvest.core.HFTrackers;
+import joshie.harvest.core.base.gui.ContainerNull;
 import joshie.harvest.core.helpers.MCClientHelper;
 import joshie.harvest.core.helpers.StackRenderHelper;
 import joshie.harvest.core.helpers.TextHelper;
@@ -41,7 +42,7 @@ public class GuiNPCShop extends GuiNPCBase {
     private ItemStack purchased;
 
     public GuiNPCShop(EntityPlayer player, EntityNPC npc, int nextGui, boolean isSelling) {
-        super(player, npc, nextGui);
+        super(new ContainerNull(), player, npc, nextGui);
         client = player;
         shop = npc.getNPC().getShop(player.worldObj, pos, player);
         if (shop == null || !NPCHelper.isShopOpen(npc.worldObj, npc, player, npc.getNPC().getShop(npc.worldObj, pos, player))) player.closeScreen();

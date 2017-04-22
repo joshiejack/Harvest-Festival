@@ -3,6 +3,7 @@ package joshie.harvest.npcs.gui;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.api.quests.Selection;
 import joshie.harvest.api.quests.TargetType;
+import joshie.harvest.core.base.gui.ContainerNull;
 import joshie.harvest.core.helpers.TextHelper;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.network.PacketHandler;
@@ -34,7 +35,7 @@ public class GuiNPCSelect extends GuiNPCBase {
 
     @SuppressWarnings("unchecked")
     public GuiNPCSelect(EntityPlayer player, EntityNPC npc, int next, int selectionType) {
-        super(player, npc, next);
+        super(new ContainerNull(), player, npc, next);
         if (selectionType == NEXT_NONE) selection = NPCHelper.getShopSelection(player.worldObj, pos, npc.getNPC(), player);
         else {
             quest = QuestHelper.getSelectiomFromID(player, selectionType);

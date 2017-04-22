@@ -215,13 +215,12 @@ public class Crops {
 
         @Override
         protected void applyToCrop(Crop crop) {
-            if (block == null) crop.setStages(stages);
-            else {
-                if (states != null) {
-                    crop.setStages(stages[stages.length - 1]);
-                    crop.setStateHandler(new StateHandlerBlockWithStates(stages, states));
-                } else crop.setStages(block, stages);
-            }
+            if (states != null) {
+                crop.setStages(stages[stages.length - 1]);
+                crop.setStateHandler(new StateHandlerBlockWithStates(stages, states));
+            } else if (block == null) {
+                crop.setStages(stages);
+            } else crop.setStages(block, stages);
         }
     }
 

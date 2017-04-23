@@ -3,7 +3,6 @@ package joshie.harvest.core.handlers;
 import joshie.harvest.animals.tracker.AnimalTrackerServer;
 import joshie.harvest.core.HFSavedData;
 import joshie.harvest.core.util.handlers.SideHandler;
-import joshie.harvest.town.tracker.TownTrackerServer;
 import net.minecraft.world.World;
 
 public class ServerHandler extends SideHandler {
@@ -29,10 +28,5 @@ public class ServerHandler extends SideHandler {
 
     public DailyTickHandler getTickables() {
         return data.getTickables();
-    }
-
-    @Override
-    public TownTrackerServer getTownTracker() {
-        return data.getTownTracker();
     }
 }

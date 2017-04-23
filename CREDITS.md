@@ -34,3 +34,6 @@ Items Shipped: http://www.freesound.org/people/Benboncan/sounds/91924/
 Meal Descriptions (0.5) > DivineAspect
 Meal Descriptions (0.6), Festival Greetings > ZephyrWindSpirit
 Simplified Chinese Translation > Neko. 一只猫neko倾情汉化 =w=
+German Translation > ctonhaeu
+Korean Translation > SPRiA, DarkFate & Kaidaki
+Brazilian Portuguese Translation > Brittahplay

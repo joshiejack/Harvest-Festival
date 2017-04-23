@@ -1,0 +1,1323 @@
+#ko_KR.lang by SPRiA, DarkFate, Kaidaki
+#MU:L 서버를 위해 제작되었습니다. (http://cafe.naver.com/darkfate)
+#피드백은 irc #DarkNET 채널로 문의 (irc.darkfate.co.kr 포트 6664~6667)
+harvestfestival.tab.farming=하베스트 페스티벌 - 농사
+harvestfestival.tab.cooking=하베스트 페스티벌 - 요리
+harvestfestival.tab.mining=하베스트 페스티벌 - 채광
+harvestfestival.tab.town=하베스트 페스티벌 - 마을
+harvestfestival.tab.gathering=하베스트 페스티벌 - 기타
+harvestfestival.mode.true=하베스트 페스티벌이 쉬운 모드로 설정되었습니다!
+harvestfestival.mode.false=하베스트 페스티벌이 어려운 모드로 설정되었습니다!
+harvestfestival.check.head=구입하면 한 마리가 따라옵니다.
+harvestfestival.check.lead=구입하면 한 마리가 따라옵니다.
+
+#Commands
+hf.commands.help.header=--- HF의 메뉴얼 %d 중 %d페이지 (/hf help <page>) ---
+
+#Tooltips
+harvestfestival.tooltip.cosmetic=장식
+harvestfestival.tooltip.mythic_stone=강화에 사용됨
+harvestfestival.tooltip.flower=물에 던져라! 여신이 소환된다. (이 황금 꽃이 네 꽃이냐? 이 은 꽃이 네 꽃이냐?)
+
+#Animals
+harvestfestival.spawner.tooltip=웅크리기 상태에서 새끼 동물을 스폰함
+harvestfestival.spawner.cow=소
+harvestfestival.spawner.sheep=양
+harvestfestival.spawner.chicken=닭
+entity.harvestfestival.cow.name=소
+entity.harvestfestival.sheep.name=양
+entity.harvestfestival.chicken.name=닭
+#Animal Related Items
+harvestfestival.tool.milker=착유기
+harvestfestival.tool.brush=가축용 털빗
+harvestfestival.tool.medicine=가축 치료제
+harvestfestival.tool.chicken.feed=닭 모이
+harvestfestival.tool.miracle.potion=미라클 포션
+
+#Buildings
+harvestfestival.town.failure=이곳은 불가능합니다!
+harvestfestival.town.dimension=마을은 기본 차원에만 만들 수 있습니다!
+harvestfestival.town.distance=이 건물은 마을당 하나만 지을 수 있습니다!
+harvestfestival.town.building=이 건물은 이 마을에 지어질 예정입니다!
+harvestfestival.town.permission=이곳에 건물을 지을 권한이 없습니다.
+harvestfestival.town.preview=미리보기가 생성되었습니다.
+harvestfestival.town.sneak=웅크리기 + 우클릭으로
+harvestfestival.town.click=우클릭으로
+harvestfestival.town.confirm=승인
+harvestfestival.town.cancel=취소
+harvestfestival.town.cancelled=건설이 취소되었습니다.
+harvestfestival.structures.blueprint=설계도: %s
+harvestfestival.structures.spawn=[생성] %s
+harvestfestival.structures.barn=동물 농장
+harvestfestival.structures.blacksmith=대장간
+harvestfestival.structures.cafe=카페
+harvestfestival.structures.carpenter=목공소
+harvestfestival.structures.church=교회
+harvestfestival.structures.clockmaker=시계방
+harvestfestival.structures.fishinghole=낚시터
+harvestfestival.structures.fishinghut=낚시터 오두막
+harvestfestival.structures.goddesspond=여신의 호수
+harvestfestival.structures.mininghill=광산
+harvestfestival.structures.mininghut=광산 관리소
+harvestfestival.structures.poultryfarm=양계장
+harvestfestival.structures.supermarket=잡화점
+harvestfestival.structures.townhall=마을회관
+harvestfestival.structures.shipping=판매 상자
+harvestfestival.structures.null=유효하지 않음
+
+#Cheat Items (Translators don't bother tranlating these, I just use them to help with dev)
+harvestfestival.cheat.coord.setter=[BuildingGen] Coordinate Setter
+harvestfestival.cheat.code.generator=[BuildingGen] Code Generator
+harvestfestival.air=[BuildingGen] Internal Air
+harvestfestival.cheat.air.placer=[BuildingGen] Internal Air Placer
+harvestfestival.cheat.air.remover=[BuildingGen] Internal Air Remover
+
+#Crops
+harvestfestival.crop.sickle=낫이 필요합니다.
+harvestfestival.crop.seeds.format=%1s %2s
+harvestfestival.crop.seeds=씨앗
+harvestfestival.crop.seeds.days=일
+harvestfestival.crop.seeds.useless=피묻은 쓸모없는 씨앗
+harvestfestival.crop.seeds.corrupted=타락한 씨앗,이에YO!
+harvestfestival.crop.null.crop=어떤
+harvestfestival.crop.beetroot=사탕무
+harvestfestival.crop.cabbage=양배추
+harvestfestival.crop.carrot=당근
+harvestfestival.crop.corn=옥수수
+harvestfestival.crop.cucumber=오이
+harvestfestival.crop.eggplant=가지
+harvestfestival.crop.grass.block=잔디
+harvestfestival.crop.grass.item=사료
+harvestfestival.crop.green.pepper=피망
+harvestfestival.crop.onion=양파
+harvestfestival.crop.pineapple=파인애플
+harvestfestival.crop.potato=감자
+harvestfestival.crop.pumpkin=호박
+harvestfestival.crop.spinach=시금치
+harvestfestival.crop.strawberry=딸기
+harvestfestival.crop.sweet.potato=고구마
+harvestfestival.crop.tomato=토마토
+harvestfestival.crop.turnip=순무
+harvestfestival.crop.watermelon=수박
+harvestfestival.crop.wheat=밀
+harvestfestival.crop.nether.wart=네더 와트
+harvestfestival.crop.tutorial.turnip=억센 순무
+harvestfestival.crop.hemp=산업용 대마
+harvestfestival.crop.hemp.tooltip=밝기가 12 이상이어야 합니다.
+
+#General Items
+harvestfestival.general.shoot.bamboo=죽순
+harvestfestival.general.mushroom.matsutake=송이버섯
+
+#Cookbook
+harvestfestival.utensils=기구
+harvestfestival.cookbook=레시피 모음집
+harvestfestival.recipe.format=%s 레시피
+harvestfestival.recipe.invalid=쓸모없는 레시피
+
+#Meals
+harvestfestival.meal.learnt=새로운 레시피를 알게 되었다!
+harvestfestival.meal.intro=자신 만의 레시피 모음집 만들기에 오신 것을 환영합니다. 안에는 아직 아무것도 없을 수도 있습니다! 먼저 몇 가지 조리법을 배워야 하며, 카페에서 조리법을 살 수 있습니다.\n\n일부 마을 사람들이 자신만의 비밀 조리법을 알고 있다는 소문이 있습니다.
+harvestfestival.meal.missing=불가능합니다!
+harvestfestival.meal.missing.description=몇가지 재료가 부족합니다.
+harvestfestival.meal.success=성공!
+harvestfestival.meal.success.description=%1s 를 찾았고, 이제 %2s 를 만들기 위해 재료를 둡니다.
+harvestfestival.meal.failure=실패!
+harvestfestival.meal.failure.description=%2s를 놓을 %1s를 찾지 못했습니다!
+harvestfestival.meal.missing_oven=오븐이 없습니다!
+harvestfestival.meal.missing_oven.description=We found a %1s however it needs to have an oven underneath it in order to fit the ingredients for %1s
+harvestfestival.meal.missing_counter=Missing Counter!
+harvestfestival.meal.missing_counter.description=We found a %1s however it needs to have a counter underneath it in order to fit the ingredients for %2s
+harvestfestival.meal.description=설명:
+harvestfestival.meal.recipe=레시피
+harvestfestival.meal.hunger=Restores
+harvestfestival.meal.sell=Sells For
+harvestfestival.meal.sat=Fills
+harvestfestival.meal.exhaust=Exhausts
+harvestfestival.meal.fry.stir=볶음 튀김
+harvestfestival.meal.rice.fried=볶음밥
+harvestfestival.meal.pancake.savoury=맛있는 팬케이크
+harvestfestival.meal.pancake.savoury.description=아침식사로는 좀 아까운 바삭하고 복슬복슬한 이 맛있는 팬케이크 자체로도 맛있고 파 종류의 음식과 궁합이 맞습니다.
+harvestfestival.meal.fries.french=감자튀김
+harvestfestival.meal.fries.french.description=감자튀김에 쓰이는 감자는 틀림없이 기본적인 전분의 가장 탁월한 형태로 튀겨서 자주 쓰이는 향신료를 뿌려 다른 요리와 같이 먹으면 정말 완벽합니다.
+harvestfestival.meal.popcorn=팝콘
+harvestfestival.meal.popcorn.description=폭발적으로 조리 된 음식 중 하나이며, 보통 한 움큼 집어 먹습니다. 이 가볍고 폭신한 먹거리는 쩌는 기름과 향료로 완성됩니다.
+harvestfestival.meal.cornflakes=시리얼
+harvestfestival.meal.cornflakes.description=당신이 미쳤다면 이 영양좋고 클래식한 음식을 튀기며 하루를 시작할 수 있습니다. 실제로는 오븐에서 만들지만 전통방식은 영 좋지 않습니다. 살짝 단 맛을 첨가하면 좋습니다.
+harvestfestival.meal.egg.scrambled=스크램블 에그
+harvestfestival.meal.egg.scrambled.description=가볍고 폭신한 스크램블 에그를 만들려면, 소금을 넣고 요리하기 전 2분 간 그대로 둡니다. 그리고 팬에 요리하기 전 토핑을 바로 추가해도 됩니다.
+harvestfestival.meal.omelet=오믈렛
+harvestfestival.meal.omelet.description=기름, 달걀, 우유로 요리된 부드럽고 바삭하고 클래식한 아침식사는 적절히 접거나 굴려서 아무때나 먹을 수 있습니다.
+harvestfestival.meal.omelet.rice=오므라이스
+harvestfestival.meal.omelet.rice.description=약간 푸석한 밥은 달걀 혼합물과 그 속의 전분을 흡수하면서 오믈렛 밥을 적절히 섞어주는데 안성맞춤 입니다. 이 방식을 쓰면 각종 요리 재료를 더 많이 넣을 수 있게 됩니다.
+harvestfestival.meal.pancake=펜케이크
+harvestfestival.meal.pancake.description=펜케이크, 플립 잭, 핫케이크 이 모든 명칭은 옛 콘스탄티노플 서부에서 가장 많이 요리 된 아침 식사 빵으로 부터 유래합니다.
+harvestfestival.meal.potsticker=군만두
+harvestfestival.meal.potsticker.description=짭짤하고 다채로운 야채를 만두에 담고 찐 야채의 부드러움과 만두 겉의 바삭함이 어우러질 때 까지 튀긴 요리입니다.
+harvestfestival.meal.risotto=리조또
+harvestfestival.meal.risotto.description=이탈리아 전통 음식은 쌀을 바탕으로 토마토와 양파를 통해 효과적으로 쌀알의 겉 녹말을 부드럽게 녹입니다.
+harvestfestival.meal.juice.pineapple=파인애플 주스
+harvestfestival.meal.juice.pineapple.description=달고 시큼한 파인애플 주스는 갈증을 해소하고 비타민을 보충해줍니다. 어떤 사람들은 별로 달고 시큼하지 않다고 합니다.
+harvestfestival.meal.juice.tomato=토마토 주스
+harvestfestival.meal.juice.tomato.description=한 순간 없어진 오렌지 주스를 대체할 주스로 발명된 토마토 주스는 요즘들어 칵테일로 많이 사용합니다.
+harvestfestival.meal.milk.strawberry=딸기 우유
+harvestfestival.meal.milk.strawberry.description=단 맛이 들어간 우유와 과일을 섞은 음료는 위장 장애 완화와 소화를 촉진시킵니다. 어떤 사람들은 좀 더 단 맛을 선호하기도 합니다.
+harvestfestival.meal.juice.vegetable=야채 주스
+harvestfestival.meal.juice.vegetable.description=과일이 안들어간 주스는 일반적으로 토마토와 향신료를 넣어 야채 주스로 마십니다. 샐러드 요리는 가끔 주스처럼 즙이 굉장히 많습니다.
+harvestfestival.meal.latte.vegetable=야채 라떼
+harvestfestival.meal.latte.vegetable.description=식물성 기름은 젖산과 결합하여 몸에 좋은 비타민들을 쉽게 소화되도록 묶어줍니다. 하지만 맛의 상태가...
+harvestfestival.meal.ketchup=케찹
+harvestfestival.meal.ketchup.description=케첩은 클래식한 조미료 중 하나입니다. 어떤 사람들은 단맛, 짠맛, 매운맛 등을 선호합니다.
+harvestfestival.meal.butter=버터
+harvestfestival.meal.butter.description=적당히 저어진 크림 우유에는 지방과 기름이 버터 형태로 분리되어 있습니다. 일반적인 방부제를 넣어 버터 자체와 맛을 보존합니다.
+harvestfestival.meal.fishsticks=생선까스
+harvestfestival.meal.fishsticks.description=채소와 궁합이 맞는 고기 중 하나인 다진 생선은 간식으로 스틱이나 패티 형태로 요리 할 수 있습니다.
+harvestfestival.meal.salad=샐러드
+harvestfestival.meal.salad.description=샐러드의 바삭바삭 신선함은 기름진 고기와 완전 다릅니다. 쓰이는 토핑이 굉장히 많습니다. 어떤 사람들은 기름과 소금을 선호합니다.
+harvestfestival.meal.sandwich=샌드위치
+harvestfestival.meal.sandwich.description=테이크아웃 간편식 샌드위치! 최초 이것을 만든 사람은 도박이나 야근에 시달리는 동안 먹었답니다. 대부분의 사람들은 물기가 있거나 바삭한 것을 넣어 함께 먹는 것을 좋아합니다.
+harvestfestival.meal.turnip.pickled=순무 피클
+harvestfestival.meal.turnip.pickled.description=절임을 통해 순무의 맛을 우러 냅니다. 어떤 사람들은 세계에서 가장 흔한 향신료 보다 강한 맛을 선호하기도 합니다.
+harvestfestival.meal.cucumber.pickled=오이 피클
+harvestfestival.meal.cucumber.pickled.description=전형적인 절임 음식입니다. 상큼하고 바삭한 음식과 조미료로 쓰입니다.
+harvestfestival.meal.sushi=초밥
+harvestfestival.meal.sushi.description=원래는 식초와 생선을 곁들인 음식인데 예술적 형태로 변화 하였습니다.
+harvestfestival.meal.sashimi=회
+harvestfestival.meal.sashimi.description=이 생선 음식은 섬세한 칼질이 필요합니다. 단, 절대 조리하지 않습니다.
+harvestfestival.meal.sashimi.chirashi=지라시 초밥
+harvestfestival.meal.sashimi.chirashi.description=썰어놓은 생선을 밥위에 얹어낸 모듬 생선 요리의 맛은 여러 다른 음식과 차원이 다릅니다.
+harvestfestival.meal.milk.hot=따뜻한 우유
+harvestfestival.meal.milk.hot.description=살짝 끓을 정도로 데운, 우유는 꿀잠과 위장완화에 도움을 줍니다.
+harvestfestival.meal.chocolate.hot=코코아
+harvestfestival.meal.chocolate.hot.description=달콤한 크림에 녹은 코코아를 넣어 만든 이 최고의 음료는 신들과 인간에게도 잘 알려져 있습니다. 어떤 사람들은 더 단맛을 선호합니다.
+harvestfestival.meal.stew.pumpkin=호박 스튜
+harvestfestival.meal.stew.pumpkin.description=전통적인 스튜요리는 호박 내부가 액체가 될때 까지 서서히 가열시켜 요리합니다. 애호가들은 액상 호박 파이라고 칭합니다.
+harvestfestival.meal.stew.fish=생선 스튜
+harvestfestival.meal.stew.fish.description=엄밀히 따지자면 해물탕같은 생선 스튜는 바다 해물 특유의 이점으로 그 풍부한 육질을 더 합니다.
+harvestfestival.meal.egg.boiled=삶은 달걀
+harvestfestival.meal.egg.boiled.description=찬물에 달걀을 넣고 서서히 끓인 뒤, 다시 찬물에 넣으세요 이게 다 입니다. 그리고 껍질을 까세요
+harvestfestival.meal.spinach.boiled=삶은 시금치
+harvestfestival.meal.spinach.boiled.description=아이들은 성인보다 신맛에 더 민감하죠 이 요리를 아이들에게 먹이는건 영 좋지 않습니다.
+harvestfestival.meal.potato.candied=맛탕
+harvestfestival.meal.potato.candied.description=달고 즙이 많은 고구마는 영양, 맛 둘 다 쩔죠, 더 달라고 빼애액 하는 사람한테 테클을 걸 순 없습니다.
+harvestfestival.meal.dumplings=만두
+harvestfestival.meal.dumplings.description=마치 맛좋고 바삭바삭한 야채가 들어있는 페스츄리 같은 요리입니다. 빠르게 튀겨 내도 맛을 전혀 잃지 않습니다.
+harvestfestival.meal.noodles=국수
+harvestfestival.meal.noodles.description=면발 형태나 종이 형태로 갈아만든 밀은 많은 요리에 들어갑니다.소스와 양념을 곁들어 먹습니다.
+harvestfestival.meal.soup.rice=죽
+harvestfestival.meal.soup.rice.description=쌀알 뭉치를 녹여낸 이 요리는 순수히 쌀로만 우려냈지만 수프의 기초 재료로 쓰이는 것 같습니다.
+harvestfestival.meal.porridge=오트밀
+harvestfestival.meal.porridge.description=미리 조리한 곡물을 천천히 우유속에 녹이면 영양만점 죽이 됩니다.
+harvestfestival.meal.egg.overrice=날달걀 밥
+harvestfestival.meal.egg.overrice.description=고슬고슬한 밥 위에 달걀을 깨고 냄비에 20분 간 천천히 가열하면 달걀이 쌀알 사이에 맛있는 단백질 성분과 함께 적절히 섞여들어갑니다.
+harvestfestival.meal.stew=스튜
+harvestfestival.meal.stew.description=간단히 우유에 밀가루를 뿌려 천천히 가열하여 스튜 국물을 만듭니다. 여기에 각종 맛나는 재료를 넣어 스튜를 완성시킵니다.
+harvestfestival.meal.corn.baked=구운 옥수수
+harvestfestival.meal.corn.baked.description=군옥수수는 주식입니다! 주식이에요! 알맹이 속 설탕은 맛나게 구워지고 버터의 수분이 알맹이를 더욱 도드라지게 만들죠.
+harvestfestival.meal.riceballs.toasted=구운 주먹밥
+harvestfestival.meal.riceballs.toasted.description=구운 주먹밥은 언제 어디서든 먹을 수 있게 간편성을 갖추고 있지만 데워 먹을때, 맛을 유지하기 위해 바삭한 식감을 더하는 것이 좋습니다.
+harvestfestival.meal.toast=토스트
+harvestfestival.meal.toast.description=한 때 바삭바삭한 빵은 신선치 않은 음료에 맛을 더하기 위해 같이 먹곤 했었죠  이제 "건배!(영어로 toast, 토스트)"  이 맛이 좋은걸 그냥 지나칠리 없죠.
+harvestfestival.meal.dinnerroll=롤빵
+harvestfestival.meal.dinnerroll.description=롤빵은 소금이 살짝 들어간 우유와 달걀을 구워 말아 조리한 음식으로 엄밀히 따지면 오믈렛의 한 종류지만 빵의 식감이 더 들어가있습니다.
+harvestfestival.meal.doria=그라탕
+harvestfestival.meal.doria.description=구운 빵에 볶아낸 밥과 구운 양파를 넣어 단맛을 가미한 뒤 오븐에 쪄냅니다.
+harvestfestival.meal.cookies=쿠키
+harvestfestival.meal.cookies.description=달고 맛좋고 바삭바삭! 언제 어디서든 먹을 수 있는 킹엠페러갓 과자. 이것보다 더 쩌는게 있을까?
+harvestfestival.meal.cookies.chocolate=초콜릿 쿠키
+harvestfestival.meal.cookies.chocolate.description=쿠키를 만들 반죽에 초콜릿을 뿌려서 초콜릿 특유의 맛을 낸 뒤, 다시 초콜릿 칩을 뿌려 완성합니다.
+harvestfestival.meal.cake.chocolate=초콜릿 케이크
+harvestfestival.meal.cake.chocolate.description=초콜릿 반죽에 초콜릿을 넣어서 초콜릿 케잌 반죽을 반죽하여 요리합니다. 혹시나 이 요리를 거부하는 자, 그런사람 없을겁니다.
+harvestfestival.meal.toast.french=프렌치 토스트
+harvestfestival.meal.toast.french.description=프라이팬에 굽기 전에 이번에 다룰 요리 대부분의 재료 대부분을 섞어 둔 혼합물에 빵을 담금으로써 빵이 하나 더 있어야 한다는 점을 자연스럽게 유도 해냈습니다. 그리고 그건 존나 쩔었죠. 왠지 당신 생각에 빠졌다 하는 주재료를 넣어 맛을 더 하세요.
+harvestfestival.meal.doughnut=도넛
+harvestfestival.meal.doughnut.description=놀랍고도 영광스러운 고리! 기근과 당장의 굶주림을 파괴할 지어다! 차, 커피나 매우 몹시 뜨거운 음료와 떼려야 뗄 수 없는 먹거리
+harvestfestival.meal.fish.grilled=생선 구이
+harvestfestival.meal.fish.grilled.description=생선을 석쇠에 구우면 차원이 다른 맛을 낼 수 있습니다. 굽는 방법과 절차에 따라 부드럽거나 바삭바삭, 맛나거나 별로이거나 맛과 식감이 달라집니다.
+harvestfestival.meal.eggplant.happy=행복한 가지
+harvestfestival.meal.eggplant.happy.description=초승달 모양으로 잘린 가지 볶음은 대부분의 사람들에게 웃음을 선사합니다.
+harvestfestival.meal.burnt.counter=실패한 수제 요리
+harvestfestival.meal.burnt.pot=실패한 냄비 요리
+harvestfestival.meal.burnt.frying.pan=실패한 프라이팬 요리
+harvestfestival.meal.burnt.mixer=실패한 믹서기 요리
+harvestfestival.meal.burnt.oven=실패한 오븐 요리
+
+#Ingredients
+harvestfestival.ingredient.butter=버터
+harvestfestival.ingredient.cookies=쿠키
+harvestfestival.ingredient.egg.scrambled=쿠키
+harvestfestival.ingredient.ketchup=케찹
+harvestfestival.ingredient.sashimi=회
+harvestfestival.ingredient.oil=식용유
+harvestfestival.ingredient.riceball=주먹밥
+harvestfestival.ingredient.salt=소금
+harvestfestival.ingredient.flour=밀가루
+harvestfestival.ingredient.chocolate=초콜릿
+
+#Utensils
+harvestfestival.utensil.blade=믹서기 날
+harvestfestival.utensil.knife=식칼
+
+#Sizeables
+harvestfestival.sizeable.format=%1s %2s
+harvestfestival.sizeable.small=작은
+harvestfestival.sizeable.medium=보통
+harvestfestival.sizeable.large=큰
+harvestfestival.sizeable.egg=달걀
+harvestfestival.sizeable.milk=우유
+harvestfestival.sizeable.wool=양털
+harvestfestival.sizeable.fish=물고기
+harvestfestival.sizeable.cheese=치즈
+harvestfestival.sizeable.yoghurt=요구르트
+harvestfestival.sizeable.mayonnaise=마요네즈
+harvestfestival.sizeable.matsutake=송이버섯
+harvestfestival.sizeable.toadstool=독버섯
+harvestfestival.sizeable.shiitake=표고버섯
+harvestfestival.sizeable.yarn=실
+
+#Tools
+#Hoe
+harvestfestival.tool.discharge=일반 등급으로 초기화 되었습니다!
+harvestfestival.tool.charge=도구가 %s 등급으로 충전되었다.
+harvestfestival.hoe.tooltip.charge.basic=일반(1x1)
+harvestfestival.hoe.tooltip.charge.copper=구리(1x2)
+harvestfestival.hoe.tooltip.charge.silver=은(1x3)
+harvestfestival.hoe.tooltip.charge.gold=황금(1x4)
+harvestfestival.hoe.tooltip.charge.mystril=미스릴(1x6)
+harvestfestival.hoe.tooltip.charge.cursed=저주/축복(3x12)
+harvestfestival.hoe.tooltip.charge.mythic=전설(5x18)
+harvestfestival.hoe.tooltip.charge=우클릭을 누른 상태에서 충전
+harvestfestival.hoe.tooltip.discharge=웅크리기 + 우클릭으로 초기화
+harvestfestival.hoe.basic=괭이
+harvestfestival.hoe.copper=구리 괭이
+harvestfestival.hoe.silver=은 괭이
+harvestfestival.hoe.gold=황금 괭이
+harvestfestival.hoe.mystril=미스릴 괭이
+harvestfestival.hoe.cursed=저주받은 괭이
+harvestfestival.hoe.blessed=축복받은 괭이
+harvestfestival.hoe.mythic=전설의 괭이
+
+#Sickle
+harvestfestival.sickle.basic=낫
+harvestfestival.sickle.copper=구리 낫
+harvestfestival.sickle.silver=은 낫
+harvestfestival.sickle.gold=황금 낫
+harvestfestival.sickle.mystril=미스릴 낫
+harvestfestival.sickle.cursed=저주받은 낫
+harvestfestival.sickle.blessed=축복받은 낫
+harvestfestival.sickle.mythic=전설의 낫
+
+#Watering Can
+harvestfestival.wateringcan.basic=물뿌리개
+harvestfestival.wateringcan.copper=구리 물뿌리개
+harvestfestival.wateringcan.silver=은 물뿌리개
+harvestfestival.wateringcan.gold=황금 물뿌리개
+harvestfestival.wateringcan.mystril=미스릴 물뿌리개
+harvestfestival.wateringcan.cursed=저주받은 물뿌리개
+harvestfestival.wateringcan.blessed=축복받은 물뿌리개
+harvestfestival.wateringcan.mythic=전설의 물뿌리개
+
+#Hammer
+harvestfestival.hammer.basic=망치
+harvestfestival.hammer.copper=구리 망치
+harvestfestival.hammer.silver=은 망치
+harvestfestival.hammer.gold=황금 망치
+harvestfestival.hammer.mystril=미스릴 망치
+harvestfestival.hammer.cursed=저주받은 망치
+harvestfestival.hammer.blessed=축복받은 망치
+harvestfestival.hammer.mythic=전설의 망치
+
+#Axe
+harvestfestival.axe.basic=도끼
+harvestfestival.axe.copper=구리 도끼
+harvestfestival.axe.silver=은 도끼
+harvestfestival.axe.gold=황금 도끼
+harvestfestival.axe.mystril=미스릴 도끼
+harvestfestival.axe.cursed=저주받은 도끼
+harvestfestival.axe.blessed=축복받은 도끼
+harvestfestival.axe.mythic=전설의 도끼
+
+#Effects
+harvestfestival.effect.fatigue=지침
+harvestfestival.effect.exhaustion=탈진함
+harvestfestival.effect.cursed=저주받음
+
+#Treats
+harvestfestival.treat.cow=소 특식
+harvestfestival.treat.sheep=양 특식
+harvestfestival.treat.chicken=닭 특식
+harvestfestival.treat.horse=말 특식
+harvestfestival.treat.pig=돼지 특식
+harvestfestival.treat.cat=고양이 특식
+harvestfestival.treat.dog=개 특식
+harvestfestival.treat.generic=특식
+
+#Blocks
+harvestfestival.cookware.fridge=냉장고
+harvestfestival.cookware.fridge.top=냉장고
+harvestfestival.cookware.counter=부엌 조리대
+harvestfestival.cookware.pot=냄비
+harvestfestival.cookware.frying.pan=프라이팬
+harvestfestival.cookware.mixer=믹서기
+harvestfestival.cookware.oven.off=오븐
+harvestfestival.cookware.oven.on=오븐
+harvestfestival.cookware.chopping.board=도마
+harvestfestival.cookware.mixing.bowl=믹싱볼
+harvestfestival.cookware.baking=베이킹 트레이
+harvestfestival.cookware.steamer=찜통
+
+harvestfestival.storage.shipping=판매 상자
+harvestfestival.sized.incubator=부화기
+harvestfestival.trough.wood=구유
+harvestfestival.sprinkler.wood=스프링쿨러
+harvestfestival.tray.nest.empty=둥지
+harvestfestival.tray.small.chicken=둥지
+harvestfestival.tray.medium.chicken=둥지
+harvestfestival.tray.large.chicken=둥지
+harvestfestival.tray.feeder.empty=모이통
+harvestfestival.tray.feeder.full=모이통
+
+harvestfestival.flowers.goddess=여신의 꽃
+harvestfestival.flowers.weed=잡초
+
+harvestfestival.wood.branch.small=작은 나뭇가지
+harvestfestival.wood.branch.medium=나뭇가지
+harvestfestival.wood.branch.large=큰 나뭇가지
+harvestfestival.wood.stump.small=작은 그루터기
+harvestfestival.wood.stump.medium=그루터기
+harvestfestival.wood.stump.large=큰 그루터기
+harvestfestival.rock.stone.small=작은 돌
+harvestfestival.rock.stone.medium=돌
+harvestfestival.rock.stone.large=큰 돌
+harvestfestival.rock.boulder.small=작은 바위
+harvestfestival.rock.boulder.medium=바위
+harvestfestival.rock.boulder.large=큰 바위
+
+#Mine Blocks
+harvestfestival.dirt=광산 바닥
+harvestfestival.dirt.winter=광산 바닥
+harvestfestival.dirt.decorative=광산 바닥
+harvestfestival.dirt.decorative.winter=광산 바닥
+harvestfestival.hole=광산 구멍
+harvestfestival.stone.real=광산 벽
+harvestfestival.stone.decorative=광산 벽
+harvestfestival.ladder.wood=광산 사다리
+harvestfestival.ore.rock=암석
+harvestfestival.ore.copper=구리 광물
+harvestfestival.ore.silver=은 광물
+harvestfestival.ore.gold=금 광물
+harvestfestival.ore.mystril=미스릴 광물
+harvestfestival.ore.gem=잼 광물
+harvestfestival.portal=광산 포탈
+
+#Mine Materials
+harvestfestival.material.junk=쓰레기 광석
+harvestfestival.material.copper=구리 광석
+harvestfestival.material.silver=은 광석
+harvestfestival.material.gold=금 광석
+harvestfestival.material.mystril=미스릴 광석
+harvestfestival.material.mythic=전설의 돌
+
+#Mine Mobs
+harvestfestival.darkspawner.cow=만렙 소
+harvestfestival.darkspawner.sheep=만렙 양
+harvestfestival.darkspawner.chicken=흑마늘 치킨
+harvestfestival.darkspawner.chick=졸라 짱쎈 병아리
+entity.harvestfestival.dark_cow.name=만렙 소
+entity.harvestfestival.dark_sheep.name=만렙 양
+entity.harvestfestival.dark_chicken.name=흑마늘 치킨
+entity.harvestfestival.dark_chick.name=졸라 짱쎈 병아리
+
+#Mine Tools
+harvestfestival.miningtool.escape.rope=탈출용 밧줄
+
+tile.goddess.water.name=여신의 물
+
+#Seasons
+harvestfestival.season.spring=봄
+harvestfestival.season.summer=여름
+harvestfestival.season.autumn=가을
+harvestfestival.season.winter=겨울
+harvestfestival.season.nether=네더
+harvestfestival.season.end=공허
+harvestfestival.calendar.date=%1s %2s일
+harvestfestival.calendar.monday=월
+harvestfestival.calendar.tuesday=화
+harvestfestival.calendar.wednesday=수
+harvestfestival.calendar.thursday=목
+harvestfestival.calendar.friday=금
+harvestfestival.calendar.saturday=토
+harvestfestival.calendar.sunday=일
+harvestfestival.year=년
+
+#Weathers
+harvestfestival.weather.sunny.set=맑은 날씨로 설정됨
+harvestfestival.weather.rain.set=비 내리는 날씨로 설정됨
+harvestfestival.weather.snow.set=눈이 오는 날씨로 설정됨
+harvestfestival.weather.typhoon.set=태풍이 오는 날씨로 설정됨
+harvestfestival.weather.blizzard.set=눈보라 치는 날씨로 설정됨
+
+#NPC Tools
+harvestfestival.npctool.blue.feather=파란 깃털
+harvestfestival.npctool.npc.killer=독립개체 삭제도구
+harvestfestival.npctool.calendar=올해가 몇년차 인가요?
+harvestfestival.npctool.clock=언제 상점을 여나요?
+harvestfestival.npctool.weather=내일 날씨는 어떤가요?
+harvestfestival.npctool.gift=들고있는 아이템을 선물로 준다!
+
+# NPC Names
+## NOTE FOR TRANSLATORS, READ
+# For the Harvest Goddess, use the name that is used by the Harvest Festival Games
+# in your own language, as for the other characters, name them whatever you like!
+# can be your friends, yourself, hints at famous people in your language or whatever
+# the names don't need to be the same.
+# WARNING: Use of any NON a-Z character will change the renderer to use the vanilla font instead
+# So for best looks, if you can try to only use names with that, if the means you don't translate names
+# then sorry. It's not really feasible for me to support unicode with the custom font
+harvestfestival.npc.goddess.name=여신
+harvestfestival.npc.katlin.name=케이틀린 할머니
+harvestfestival.npc.daniel.name= 다니엘
+harvestfestival.npc.cloe.name=클로이
+harvestfestival.npc.liara.name=리아라
+harvestfestival.npc.jade.name=제이드
+harvestfestival.npc.jenni.name=제니
+harvestfestival.npc.jamie.name=지미 시장
+harvestfestival.npc.abi.name=이비
+harvestfestival.npc.tiberius.name=Tiberius
+harvestfestival.npc.jacob.name=제이콥
+harvestfestival.npc.fenn.name=펜
+harvestfestival.npc.jim.name=짐
+harvestfestival.npc.brandon.name=브랜던
+harvestfestival.npc.thomas.name=토마스
+harvestfestival.npc.candice.name=캔디스
+harvestfestival.npc.yulif.name=유리프
+harvestfestival.npc.ashlee.name=에슐리
+harvestfestival.npc.girafi.name=요한
+
+## NOTE FOR TRANSLATORS, READ
+# When translating these, do not directly translate, just come up with your own
+# funny, or generic greetings related to each character, things that work best
+# in your own language, as these are just generic, do translate the quests
+# semi-literally though, as they are important so the user knows what to do,
+# but take liberty there to, just make sure the user still knows what they
+# have to do in order to complete the quest in question. For many of the greetings you
+# can remove or add more, for the greetings like: harvestfestival.npc.goddess.greeting
+# you can add up to 32 greetings
+#Key-Codes for conversations
+# %1$s = Money - Player has
+# %2$s = Player's Romantic Interest's name
+# %3$s = Entity's Romantic Interest's name
+# %4$s = Players Name
+# %5$s = NPC Name
+#Conversations
+#Error
+harvestfestival.npc.error=번역 문구를 찾을 수 없습니다: %s or the key %s
+#Generic - Weather
+harvestfestival.npc.generic.weather.good=정말 끝내주는 날씨야, 안그래?
+harvestfestival.npc.generic.weather.bad=끔찍한 날씨야.
+
+#Generic Adult Thanks
+harvestfestival.npc.generic.adult.gift.awesome=와! 엄청 마음에 드는 선물이야, 정말 고마워!
+harvestfestival.npc.generic.adult.gift.good=괜찮은 선물인데?
+harvestfestival.npc.generic.adult.gift.decent=선물 잘받을게.
+harvestfestival.npc.generic.adult.gift.dislike=으음.. 선물이구나?
+harvestfestival.npc.generic.adult.gift.bad=너 뭔 생각하는거니? 내가 이런걸 원할거 같아?
+harvestfestival.npc.generic.adult.gift.terrible=내가 뭘 잘못했다고 이런 멍청한 선물을 주는거지? 너 뭐 잘못 먹었어?
+#No Thanks
+harvestfestival.npc.generic.adult.gift.reject=호의는 정말 감사하지만, 또다른 선물을 받을수는 없어.
+harvestfestival.npc.generic.adult.gift.no=그런 귀중한 물건은, 선물로 받을 수 없어!
+
+#Generic Child Thanks
+harvestfestival.npc.generic.child.gift.awesome=세상에!! 와!! 진짜? 진짜? 진짜아아ㅏㅏ아로 나 주는거에요??? 아싸!!!!
+harvestfestival.npc.generic.child.gift.good=대단해요! 이 선물 정말 마음에 들어요!
+harvestfestival.npc.generic.child.gift.decent=좋아요! 고맙습니다!
+harvestfestival.npc.generic.child.gift.dislike=흐음.. 이 선물이 마음에 든다고 말하기는 어렵네요.
+harvestfestival.npc.generic.child.gift.bad=왜 저에게 이런걸 주시는 거에요? :(
+harvestfestival.npc.generic.child.gift.terrible=이런걸 주는 당신이 싫어요, 빨리 가져가 버려요!!!!!!
+#No Thanks
+harvestfestival.npc.generic.child.gift.reject=오늘은 괜찮아요. 내일이면 모를까 :D
+
+#Generic Elder Thanks
+harvestfestival.npc.generic.elder.gift.awesome=내 평생 이런 아름다운 선물은 처음 받아 봅니다. 진심에서  우러나오는 감사를 드립니다.
+harvestfestival.npc.generic.elder.gift.good=당신의 마음이 전해지는 선물이군요. 고맙습니다.
+harvestfestival.npc.generic.elder.gift.decent=기쁨을 안겨주는 선물입니다.
+harvestfestival.npc.generic.elder.gift.dislike=이건 별로 좋은 생각이 아니군요.
+harvestfestival.npc.generic.elder.gift.bad=날 모욕하는겁니까?
+harvestfestival.npc.generic.elder.gift.terrible=이런 끔찍한 선물은 당장 도로 갖고 가세요!
+#No Thanks
+harvestfestival.npc.generic.elder.gift.reject=호의를 베푸는 젊은 사람에게 미안한 말이지만, 오늘 또다른 선물을 받을수는 없습니다.
+
+#여신
+harvestfestival.npc.goddess.greeting1=당신, 오늘 하루는 어때요?
+harvestfestival.npc.goddess.greeting2=농장일 하기 정말 좋은 날이네요!
+harvestfestival.npc.goddess.greeting3=제게 어떤 용건이 있으신가요?
+harvestfestival.npc.goddess.greeting4=시간을 낭비하지 마세요. 저는 오랫동안 이곳에 있을 수 없답니다.
+harvestfestival.npc.goddess.greeting5=당신, 필요하신게 있으신가요?
+harvestfestival.npc.goddess.greeting6=만약 목공소 도면을 잃어버렸다면 나무를 가져오세요, 제가 도움이 되어 드릴게요.
+harvestfestival.npc.goddess.greeting7=다시 만나서 반가워요 %4$s!
+harvestfestival.npc.goddess.greeting8=당신, 어떻게 지내셨나요?
+harvestfestival.npc.goddess.greeting9=언젠간 추수의 요정이 돌아오리라 확신해요. 그동안 혼자서 너무 외로웠거든요..
+harvestfestival.npc.goddess.greeting10=당신이 꽃은 재배할 줄 모른다는게 정말 유감이에요… 불공평하지 않나요?
+harvestfestival.npc.goddess.greeting11=그동안 어디 있었어요? 다시 만나서 반가워요.
+harvestfestival.npc.goddess.greeting12=안녕하세요 %4$s, 모든게 잘 되어가나요?
+harvestfestival.npc.goddess.greeting13=자연은 정말로 아름다워요 그렇지 않나요?
+harvestfestival.npc.goddess.greeting14=만약 당신이 나에게 선물을 주고싶다면, 가장 쉬운 방법은 그냥 내 연못에 물건을 던지는거에요!
+harvestfestival.npc.goddess.marriage.reject=오 이런,, 전 당신만의 단짝이 될 수는 없어요.
+harvestfestival.npc.goddess.marriage.accept=별로 놀랍지 않아요, 나의 사랑! 당신과 결혼하는걸 완전 동의해요!
+harvestfestival.npc.goddess.gift.awesome=이 선물은 저를 엄청 기쁘게 해주네요.
+harvestfestival.npc.goddess.gift.good=이 선물은 저를 크게 기쁘게 해주네요.
+harvestfestival.npc.goddess.gift.decent=이 선물은 저를 기쁘게 해주네요.
+harvestfestival.npc.goddess.gift.dislike=이 선물은 저를 기쁘게 해주지 않아요.
+harvestfestival.npc.goddess.gift.bad=이 선물은 저를 모욕하네요.
+harvestfestival.npc.goddess.gift.terrible=당신이 나를 이렇게까지 날 모욕하다니.
+
+# Goddess Weather
+harvestfestival.npc.goddess.weather.sunny1=내일은 햇살이 비추는 사랑스러운 하루가 될거에요!
+harvestfestival.npc.goddess.weather.sunny2=내일은 근사한 햇빛이 내리쬐는 날이 될거에요!
+harvestfestival.npc.goddess.weather.sunny3=아름다운 햇살이 내일의 당신을 반길거에요.
+harvestfestival.npc.goddess.weather.rain1=내일은 축축한 하루가 될거에요. 물론 당신이 작물에 물을 주는 수고를 덜 수 있을거에요.
+harvestfestival.npc.goddess.weather.rain2=구름이 내일을 위해 회색빛을 보여주면서, 비가 올 준비를 하고 있어요.
+harvestfestival.npc.goddess.weather.rain3=뚝, 뚝, 뚝 4월의 샤워를 내일 할 수 있겠어요!
+harvestfestival.npc.goddess.weather.typhoon1=오, 내일은 끔찍해 보이네요. 태풍이 오고 있어요.
+harvestfestival.npc.goddess.weather.typhoon2=별로 좋아보이지 않아요. 당신 내일은 집에 있어요, 태풍이 다가오고 있어요.
+harvestfestival.npc.goddess.weather.typhoon3=끔찍한 폭풍이 내일, 이 마을로 태풍과 함께 올거에요!
+harvestfestival.npc.goddess.weather.snow1=내일 엄청 추울거에요, 따뜻하게 입고 눈을 맞이하세요!
+harvestfestival.npc.goddess.weather.snow2=내일은 얼어붙을거야, ♪나랑 같이 눈사람 만들래?♪
+harvestfestival.npc.goddess.weather.snow3=내일의 일기예보입니다, 얼어붙고 눈내리는 날이 될것 같습니다!
+harvestfestival.npc.goddess.weather.blizzard1=내일 얼어 죽을지도 몰라요. 날씨가 끔찍해요. 눈보라가 오고 있어요!
+harvestfestival.npc.goddess.weather.blizzard2=내일 동장군이 온다고 들었어요. 그런데, 그가 눈보라양을 데리고 온다고 하네요!
+harvestfestival.npc.goddess.weather.blizzard3=와… 내일 눈보라가 올거에요, 조심하세요!
+
+
+#케이틀린
+harvestfestival.npc.katlin.greeting1=요즘 어떻게 지내니?
+harvestfestival.npc.katlin.greeting2=내가 젊었을 때는, 흠.. 별로 듣고싶지 않구나? 오늘 하루 어땠니?
+harvestfestival.npc.katlin.greeting3=하여간 요즘 젊은것들은... 오 안녕?
+harvestfestival.npc.katlin.greeting4=토마스가 그것을 할 수 있었을 때 보다, 못하는 지금이 훨씬 더 행복해.
+harvestfestival.npc.katlin.greeting5=난 일요일 아침엔 교회에 예배를 드리고, 이후 내내 뜨개질을 하는데 시간을 보내지.
+harvestfestival.npc.katlin.greeting6=내가 젊었을 적엔, 좋은것들은 지금보다 더 좋았어.
+harvestfestival.npc.katlin.greeting7=리아라가 어렸을 때 부모님을 여의었어, 그래서 내가 그녀를 키워주게 되었지.
+harvestfestival.npc.katlin.greeting8=토마스는 지난 33년간 내 남편이었어. 가끔씩 그이가 남편일 때가 그리워.
+harvestfestival.npc.katlin.greeting9=내가 어린 소녀였을 적, 내 어머니는 종종. 음 말하면 안될 것 같네.
+harvestfestival.npc.katlin.greeting10=언젠가 너에게 최고의 담요를 만들어 줄게.
+harvestfestival.npc.katlin.greeting11=좋은날이야 젊은이. 무슨일이야?
+harvestfestival.npc.katlin.gift.awesome=너는 나이든 여자의 가슴에 불을 지피는 길은 아는구나. 이건 내가 원하던거야.
+harvestfestival.npc.katlin.gift.good=젊은사람 치고는 꽤 좋은 선물이야.
+harvestfestival.npc.katlin.gift.decent=받아들일만 해.
+harvestfestival.npc.katlin.gift.dislike=받아들이지 못하겠어.
+harvestfestival.npc.katlin.gift.bad=내가 젊었을 적, 우리는 사람들에게 좋은 선물을 줬어.
+harvestfestival.npc.katlin.gift.terrible=누굴 죽일 생각이야? 끔찍한 선물이군.
+
+#다니엘
+harvestfestival.npc.daniel.shop=난 목요일 빼고 아침 10시 에서 오후 4시 까지 문을 여니까 그때 와.
+harvestfestival.npc.daniel.greeting1=난 어릴적 시절을 회상하는걸 좋아하지.
+harvestfestival.npc.daniel.greeting2=난 도구제작에 모든 열정을 바치고 있어. 도구제작은 무궁무진하다구!
+harvestfestival.npc.daniel.greeting3=주변 사람들은 용이 있다고 믿는 나를 미쳤다고 하지. 하지만 두고보라구 엔더에 가면 딴말하지 못할테니까!
+harvestfestival.npc.daniel.greeting4=만약 내가 도구만드는 일을 하지 않았다면, 드레곤 슬레이어가 되었을거야.
+harvestfestival.npc.daniel.greeting5=내가 젊을때 마인토피아 올림픽 단거리 육상 선수 였다는거 알고있어? 딴 녀석들 보다는 훨씬 나았는데.
+harvestfestival.npc.daniel.greeting6=남자, 여자? 보채지 마, 난 둘 다 좋아. 다양성이란건 생활의 활력소라구.
+harvestfestival.npc.daniel.greeting7=난 요즘 제니와 유리프 둘 다 관심이 있는데, 그 둘은 나에게 관심이 없는거 같아.
+harvestfestival.npc.daniel.greeting8=도구를 수리하고 싶으면 재료랑 수리할 도구를 가져와.
+harvestfestival.npc.daniel.greeting9=만약 도구를 강화하고 싶으면 100%%숙련이 완료된 도구와 돈, 그리고 강화에 사용할 재료를 가져와.
+harvestfestival.npc.daniel.greeting10=난 엔더에 가본적이 있어, 너는 가봤어?
+harvestfestival.npc.daniel.greeting11=내가 대장장이가 된 이유는 내 손으로 직접 도구를 만들고 싶어서였고, 마침내 대장장이가 되었지.
+harvestfestival.npc.daniel.greeting12=만약 다른나라를 가본다면, 나는 에슐리와 함께 체코를 방문할거야.
+harvestfestival.npc.daniel.greeting13=난 바다가 싫어. 그건 엔더월드를 향한 열정의 결과라고 생각해.
+harvestfestival.npc.daniel.marriage.reject=난 너보다 도구를 만드는게 더 좋아.
+harvestfestival.npc.daniel.marriage.accept=내가 만들 도구들이 기다려, 어서 결혼하자!
+harvestfestival.npc.daniel.gift.awesome=엔더를 제외한 것 중에서 최고야!
+harvestfestival.npc.daniel.gift.good=오! 이거 좋은거잖아!
+harvestfestival.npc.daniel.gift.decent=음 좋군..
+harvestfestival.npc.daniel.gift.dislike=으음 안좋아...
+harvestfestival.npc.daniel.gift.bad=엉망이군...
+harvestfestival.npc.daniel.gift.terrible=유리프가 날 거절한것도 충분히 나쁜일인데 그것까지 주려고?
+
+#클로이
+harvestfestival.npc.cloe.greeting1=좋은 책은, 소녀를 행복하게 만들어요.
+harvestfestival.npc.cloe.greeting2=우리 아빠는 가끔 너무 심해서 내가 감당할수 없어요.
+harvestfestival.npc.cloe.greeting3=가끔 여자애들을 이해할수가 없어요.
+harvestfestival.npc.cloe.greeting4=무서운 영화보다 더 좋아하는건 없어요!
+harvestfestival.npc.cloe.greeting5=솔직히, 내 인생에서 무엇을 하고싶은지 잘 모르겠어요.
+harvestfestival.npc.cloe.greeting6=이 세상은 너무 혼란스러워서, 이제 더 이상 모르겠어요.
+harvestfestival.npc.cloe.greeting7=전 제가 5살때 책을 200권을 읽었어요.
+harvestfestival.npc.cloe.greeting8=주위에서 이비를 귀엽게 봐주는데, 다 내숭이거든요. 거짓으로 그러는 모습이, 날 정말 미치게 만들어요.
+harvestfestival.npc.cloe.greeting9=우리는 우주의 창백한 푸른 점의 먼지와 같은 존재에요.
+harvestfestival.npc.cloe.greeting10=전 펭귄을 좋아해요. 앗, 아무에게도 말하지 마세요!  아하하...
+harvestfestival.npc.cloe.greeting11=내 삼촌은 좀 이상한데…. 그는 대부분의 시간을 책상에서 보내고, 그저 무언가를 하고 있어요. 삼촌이 “모딩”이라는걸 하고있다고 말했는데.. 언젠간 삼촌도 자기 인생을 알아서 살아갈 날이 오겠죠.
+harvestfestival.npc.cloe.greeting12=엄마가 팀 발로 진영을 선택했단 걸 믿을수가 없어요.
+harvestfestival.npc.cloe.marriage.reject=왜 내가 결혼을 원하지 않냐면요, 그건 시간낭비라 생각해서에요.
+harvestfestival.npc.cloe.marriage.accept=전 충분히 자랐다고 생각해요. 그래서 당신과 제 삶을 함께할 수 있어요.
+harvestfestival.npc.cloe.gift.awesome=저에게 정말로 마음을 주시는군요.
+harvestfestival.npc.cloe.gift.good=친절한 선물 고마워요.
+harvestfestival.npc.cloe.gift.decent=고마워요.
+harvestfestival.npc.cloe.gift.dislike=어..음, 뭐에요?
+harvestfestival.npc.cloe.gift.bad=어...음, 사양할게요..
+harvestfestival.npc.cloe.gift.terrible=내 부모님이 최악이라고 생각했지만, 흠..그건 당신이었네요.
+
+#리아라
+harvestfestival.npc.liara.shop=카페는 오전 9시 30분부터 오후 5시까지 하지만, 매주 열려있어요!
+harvestfestival.npc.liara.greeting1=난 이 날씨가 정말 좋아요! 케이크를 굽기 완벽하거든요!
+harvestfestival.npc.liara.greeting2=요리는 내가 제일 좋아하는 거죠! 내가 만든 맛있는 음식을 먹는 누군가의 얼굴에 미소가 가득한 모습을 보는것이 제일 큰 보람이거든요!
+harvestfestival.npc.liara.greeting3=배고파요? 나도 항상 배고파요, 그렇게 내가 요리를 좋아하는건 당연한 거에요.
+harvestfestival.npc.liara.greeting4=수요일이 되면 카페에 들르세요. 그날은 특별한 게 있거든요.
+harvestfestival.npc.liara.greeting5=음식은 세상을 어지럽게 만들고, 그것은 날 어지럽게 만들어요.
+harvestfestival.npc.liara.greeting6=한조각의 초콜릿만큼 소녀를 행복하게 만드는것은 없어요.
+harvestfestival.npc.liara.greeting7=믿기지 않겠지만, 전 항상 멍때리고 있어요.
+harvestfestival.npc.liara.greeting8=만약 조리도구를 찾는다면, 일요일에 저를 찾아오세요.
+harvestfestival.npc.liara.greeting9=계절마다, 매 주 다른 조리법을 팔고 있어요.
+harvestfestival.npc.liara.greeting10=고기를 오븐을 이용해서 요리할 수 있어요. 혹시 모를까봐 말해요!
+harvestfestival.npc.liara.greeting11=나의 충고를 듣는것 보다는 레시피 모음집의 설명을 읽으세요. 레시피 모음집의 설명은 그 요리를 더 잘 만드는 방법의 힌트를 종종 줄 거에요.
+harvestfestival.npc.liara.greeting12=내가 요리학원에 갔을 때, P로 시작하는 이름을 가진 소녀가 있었는데, 그녀는 요리를 끔찍하게 못했어요.
+harvestfestival.npc.liara.greeting13=부모님이 정말로 그립지만, 그들을 잃은 사실보다는 요리에 제 열정을 바쳤어요.
+harvestfestival.npc.liara.greeting14=난 평생 요리에 열정을 쏟았죠. 10살때 컵케이크를 팔았고, 일주일만에 1000 골드를 벌었어요! 마침내 나만의 사업을 시작하게 되서 기뻐요.
+harvestfestival.npc.liara.greeting15=카페는 언제나 열려있어요! 아침 9시 반부터 저녁 5시까지 말이죠.
+harvestfestival.npc.liara.marriage.reject=카페는 내 집이에요. 당신과 함께 살고싶지 않아요.
+harvestfestival.npc.liara.marriage.accept=고마워요 당신께 아침마다 밥을 차려 드리겠어요.
+harvestfestival.npc.liara.gift.awesome=정말로 고마워요, 이건 영원히 기억할게요.
+harvestfestival.npc.liara.gift.good=정말 고마워요.
+harvestfestival.npc.liara.gift.decent=고마워요.
+harvestfestival.npc.liara.gift.dislike=사양할게요.
+harvestfestival.npc.liara.gift.bad=이건 즐길 수 없어요.
+harvestfestival.npc.liara.gift.terrible=고마워요, 하지만 당신은 나에게 줄 수 있는 최악의 것을 주었어요. 잘가요.
+
+#제이드
+harvestfestival.npc.jade.greeting1=세상 밖으로 나가서, 양들을 돌보는 것 만큼 즐거운 일도 없죠.
+harvestfestival.npc.jade.greeting2=농장 일은 어때요? 하루하루가 즐겁지 않나요?
+harvestfestival.npc.jade.greeting3=저만의 농장을 갖는게 제 꿈이지만, 제 오빠는 저를 못미더워해요…
+harvestfestival.npc.jade.greeting4=주변 사람들은 저를 나쁜년으로 생각하지만, 사실 전 좋은 여자에요. 정말로요..
+harvestfestival.npc.jade.greeting5=저는 고양이를 기르고 싶지만, 유리프가 고양이를 싫어해요.
+harvestfestival.npc.jade.greeting6=제 집은 너무 좁아서 저만의 방을 가질수가 없어요.
+harvestfestival.npc.jade.greeting7=저는 꽃을 팔고싶어요. 그런데, 제가 듣기로는 나중에 업데이트가 된다고 하는데, 이게 무슨뜻이죠?
+harvestfestival.npc.jade.greeting8=지금 살고있는 집은 너무 비좁아요.
+harvestfestival.npc.jade.greeting9=돌아다니면서 돌이나 암석 잡초, 나뭇가지를 발견할 수 있을거에요. 이것을 부숴 바닐라 돌이나 원목으로 만들 수 있어요. 부수기 위해서는 등급에 맞는 망치나 도끼가 필요할 거에요.
+harvestfestival.npc.jade.greeting10=당신에 몇몇 사람과 대화할 때 나오는 하트는, 그들이 당신을 얼마나 좋아하는지 나타내는 호감도 수치에요. 그들이 당신을 충분히 좋아한다면 결혼할 수도 있지요.
+harvestfestival.npc.jade.greeting11=호감도를 올리는 가장 빠른 방법은 그들에게 선물을 주는것이죠. 사실, 당신을 충분히 좋아한다면 그들이 당신을 위해 무언가 해줄수도 있을거에요!
+harvestfestival.npc.jade.greeting12=숙면을 취하는게 농작물을 가장 빠르게 키우는 방법이죠.
+harvestfestival.npc.jade.greeting13=왜 당신이 작물에 비료를 줄 수 없는지 모르겠네요. 언젠가는 가능하겠죠?
+harvestfestival.npc.jade.greeting14=잔디와 밀을 수확하려면 낫을 이용해야 한다는것을 기억하세요.
+harvestfestival.npc.jade.marriage.reject=결혼은 아직 이른 것 같네요.
+harvestfestival.npc.jade.marriage.accept=결혼에 필요한 준비가 되었으므로, 받아드리죠.
+harvestfestival.npc.jade.gift.awesome=이건 정말 대단한 선물이네요!
+harvestfestival.npc.jade.gift.good=멋진 선물이에요!
+harvestfestival.npc.jade.gift.decent=감사히 받겠습니다.
+harvestfestival.npc.jade.gift.dislike=감사히 받지 못하겠습니다.
+harvestfestival.npc.jade.gift.bad=선물이라 하기에는 나쁘군요!
+harvestfestival.npc.jade.gift.terrible=이건 정말 끔찍한 선물이에요!
+
+#제니
+harvestfestival.npc.jenni.shop= 안녕, 나의 친구 %4$s! 우리는 수요일과 일요일을 제외하고 오전 9시부터 오후 5시까지 매일 문을 열어. 아, 토요일은 11시부터 5시까지만 해.
+harvestfestival.npc.jenni.greeting1=안녕, %4$s! 언제나 나에게 와줘! 물론, 필요한 물건이 있을때 말이야!
+harvestfestival.npc.jenni.greeting2=내가 고객을 사랑하는 만큼, 예술은 더 좋아해.
+harvestfestival.npc.jenni.greeting3=아무에게도 말하지 마. 난 사실 벨리 댄스를 굉장히 좋아해.
+harvestfestival.npc.jenni.greeting4=가끔 일요일에 문을 열면 좋겠다 싶어. 일요일에 쉬는것보다 일하는게 좋아서 그러냐구? 물론 거짓말이야.
+harvestfestival.npc.jenni.greeting5=케이틀린은 분명 수프에 무슨 짓을 한게 틀림 없어!
+harvestfestival.npc.jenni.greeting6=내가 제공하는 가격은 마을 최고야, 누구도 나보다 싸게 팔 수는 없을걸?
+harvestfestival.npc.jenni.greeting7=너 일본 출신이니? 아, 아니야? 그렇구나.
+harvestfestival.npc.jenni.greeting8=이 상점은 내가 성취한 것 중, 제일 자랑스러워 하는거야.
+harvestfestival.npc.jenni.greeting9=캔디스와 나는 예전에는 엄청 가까웠어, 하지만 상황이 변했지. 그렇지만 아직 같이 살고 있어. 왜냐하면 집세를 나 혼자서 감당할 수 없거든.
+harvestfestival.npc.jenni.greeting10=한가한 시간에 나는 예술활동과 공예품을 만들어.
+harvestfestival.npc.jenni.greeting11=내가 좋아하는 동물은 돼지야. 그리고 좋아하는 과일은 체리!
+harvestfestival.npc.jenni.greeting12=내가 팔 물건의 수량은 한정되어 있지만, 너가 필요한 만큼은 충분히 있을거야!
+harvestfestival.npc.jenni.marriage.reject=우린 아직 서로가 그곳에 있는것 같지는 않아.
+harvestfestival.npc.jenni.marriage.accept=나의 친구 %4$s, 이제 난 당신의 아내가 되겠어.
+harvestfestival.npc.jenni.gift.awesome=내 친구는 역시 완벽해! 마음에 들어.
+harvestfestival.npc.jenni.gift.good=넌 정말 훌륭한 친구야!
+harvestfestival.npc.jenni.gift.decent=좋은 친구를 뒀네.
+harvestfestival.npc.jenni.gift.dislike=고마워, 친구.
+harvestfestival.npc.jenni.gift.bad=넌 좀 더 잘할 수 있었지만, 이정도는 괜찮아.
+harvestfestival.npc.jenni.gift.terrible=너가 날 화나게 만들거라고 생각하지는 않아, 그렇지만 지금 그렇게 되었어. 왜일까?
+
+#지미
+harvestfestival.npc.jamie.greeting1=여긴 내 동네고, 넌 그걸 기억해야 할거야.
+harvestfestival.npc.jamie.greeting2=우리 가족은 지난 100년간 마을선거에서 이겨왔어.
+harvestfestival.npc.jamie.greeting3=두 딸은 나의 소중한 보물이야. 만약 너가 둘 중 하나라도 다치게 한다면 각오해야 할거야.
+harvestfestival.npc.jamie.greeting4=사람들이 시장인 나보다 널 더 좋아하고 있어.
+harvestfestival.npc.jamie.greeting5=이봐 %4$s, 내 집 본적 있어? 꽤 작지?
+harvestfestival.npc.jamie.greeting6=나중에는 마을에 몇몇 대회를 열 생각이야. 하지만, 지금은 이 마을의 운영을 맡게 되서 기쁘군.
+harvestfestival.npc.jamie.greeting7=그동안 누가 이 마을을 책임졌는지 모르겠지만, 훨씬 더 나은 일을 했어야지.
+harvestfestival.npc.jamie.greeting8=아버지는 항상 나에게 말씀하셨지, 내가 모든것을 할 거라고. 지금의 날 봐봐.
+harvestfestival.npc.jamie.greeting9=너에게 말 했던가? 케이틀린이 어떻게 토마스의 마음을 부쉈는지 말이야. 그녀는 얼음장같이 차가운 마음씨를 가졌지. 이 이상 말할것도 없어.
+harvestfestival.npc.jamie.greeting10=우리 집안은 수많은 세대의 시장을 역임했고, 누구도 이보다 일을 잘할수는 없었지.
+harvestfestival.npc.jamie.greeting11=왜 모든것에 내가 돈을 내야하는건지 모르겠어. 그것들은 내 돈인데 말이야.
+harvestfestival.npc.jamie.greeting12=클로에가 빨리 자랐으면 좋겠어. 우리 가족을 엉망으로 만들고 있거든.
+harvestfestival.npc.jamie.gift.awesome=마침내 내가 받을만한 물건을 주는구나.
+harvestfestival.npc.jamie.gift.good=그럴거라 생각했어.
+harvestfestival.npc.jamie.gift.decent=내가 이걸 좋아할 거 같아?
+harvestfestival.npc.jamie.gift.dislike=넌 내 가족을 이 선물로 모욕했어.
+harvestfestival.npc.jamie.gift.bad=이건 너가 나에게 줄 수 있는 최악의 것중 하나야.
+harvestfestival.npc.jamie.gift.terrible=충분해. 내가 충분한 권한이 있다면, 널 이 마을에서 추방시킬거야. 넌 나를 모욕하고, 내 가족을 모욕했고, 너의 가문에 먹칠을 하고 있어. 만나서 반가웠고, 다시는 보지 말자.
+
+#이비
+harvestfestival.npc.abi.greeting1=우와아앙 너무 기여웡!! 이게 뭐에여? 세상에!
+harvestfestival.npc.abi.greeting2=안녕하세요 거대한 사람! 오늘 어때여?
+harvestfestival.npc.abi.greeting3=당신이 그리웠어여!
+harvestfestival.npc.abi.greeting4=우왕 당신 되게 커여!
+harvestfestival.npc.abi.greeting5=울엄마는 너무 인색해여 :(
+harvestfestival.npc.abi.greeting6=난 공주가 될거에여!
+harvestfestival.npc.abi.greeting7=펜은 날 봐주지 않아여. 펜이 날 사랑해 줫으면 좋겠어여!
+harvestfestival.npc.abi.greeting8=아빠가 내가 착한아이가 되면 조랑말을 사준다고 했어여!
+harvestfestival.npc.abi.greeting9=나는 클로에 언니를 사랑해여!
+harvestfestival.npc.abi.greeting10=어른이 되고싶지 않아여!
+harvestfestival.npc.abi.greeting11=나랑 가치 놀아여!
+harvestfestival.npc.abi.greeting12=난 토끼를 원해여! 너무 기여워여!
+harvestfestival.npc.abi.greeting13=우왕 당신 데게 커여!
+harvestfestival.npc.abi.greeting14=저랑 놀아주실거에여?
+harvestfestival.npc.abi.greeting15=울 엄마 아빠가 절대 낯선 사람에게 말을 걸지 말라 했어여…!
+harvestfestival.npc.abi.gift.awesome=나 이거 좋아여! 좋아여!! 고마워여!
+harvestfestival.npc.abi.gift.good=우왕 이거 맘에 들어여!
+harvestfestival.npc.abi.gift.decent=오옹 좋아여!
+harvestfestival.npc.abi.gift.dislike=흥.. 별로에여..
+harvestfestival.npc.abi.gift.bad=우웅.. 나 이런거 원하지 않아여…
+harvestfestival.npc.abi.gift.terrible=뭐에여? 나 싫어! 나 싫어! 너무 짖궃어요!!
+
+#Tiberius/WayofTime
+harvestfestival.npc.tiberius.time=네가 이 마을에 정착한지가 %s년차가 되었어.
+harvestfestival.npc.tiberius.first=올해 마을에 들어왔잖아. 그런건 왜 물어보는 거니?
+harvestfestival.npc.tiberius.greeting1=시간이란건 아주 매혹적이지. 일초는 느리지만. 다음 시간은 빛보다 더 빠르지!
+harvestfestival.npc.tiberius.greeting2=내가 어렸을 때 나는 시계에 관련된 동요는 다 좋아했었지.
+harvestfestival.npc.tiberius.greeting3=지금 몇시야?
+harvestfestival.npc.tiberius.greeting4=내가 가장 좋아하는 계절은 봄이야. 새로운 해의 시작이지!
+harvestfestival.npc.tiberius.greeting5=난 왜 사람들이 피를 두려워하는지 모르겠어. 내가 전에 피의 주술에 빠진 친구를 사귄 적이 있어, 그 녀석은 세상을 거의 지배할 뻔했었지. 하지만 그 녀석은 그전에 붙잡히고 말았어. 때가 아니었나 봐.
+harvestfestival.npc.tiberius.greeting6=내가 무슨일을 하고있는지 네가 안다면 분명 충격받을걸?
+harvestfestival.npc.tiberius.greeting7=난 이따금 펜이 아기였을 적을 생각해, 참 오래전 일이야.
+harvestfestival.npc.tiberius.greeting8=내 아들 녀석은 사고뭉치야, 좀 말릴필요가 있겠어.
+harvestfestival.npc.tiberius.greeting9=내가 조언하자면, 누군가 생일일 때 생일 선물을 주면 매우 좋아할 거야.
+harvestfestival.npc.tiberius.greeting10=이 마을에서 얼마나 오래 살았니?
+harvestfestival.npc.tiberius.greeting11=나는 고대 이집트 시기의 시간 셈법이 가장 짜증나는것 같아.
+harvestfestival.npc.tiberius.greeting12=내 남동생이 이 마을로 이사온다면 좋겠어, 그녀석은 양봉에 열정을 바친 녀석이야.
+harvestfestival.npc.tiberius.marriage.reject=아직 결혼할 준비가 안됐어.
+harvestfestival.npc.tiberius.marriage.accept=너의 남편이 될 준비가 됐어.
+harvestfestival.npc.tiberius.gift.awesome=이건 훌륭한 선물이라 생각해. 세상에서 최고의 선물이야.
+harvestfestival.npc.tiberius.gift.good=이런 선물은 좋아해.
+harvestfestival.npc.tiberius.gift.decent=너 좋은 녀석이구나.
+harvestfestival.npc.tiberius.gift.dislike=너 좋은 녀석이 아니구나.
+harvestfestival.npc.tiberius.gift.bad=이런 선물은 좋지 않아.
+harvestfestival.npc.tiberius.gift.terrible=이건 끔찍한 선물이라 생각해. 세상에서 최악의 선물이야.
+
+#제이콥
+harvestfestival.npc.jacob.shop=낚시가게는 화-금요일 오후 1시부터 저녁 7시까지 열어두지.
+harvestfestival.npc.jacob.greeting1=낚시는 내 인생이고 제이콥은 내 이름이여.
+harvestfestival.npc.jacob.greeting2=언젠가 내가 꼭 그 까다롭다는 흰동가리를 잡을껴
+harvestfestival.npc.jacob.greeting3=앉아서 입질이 오기를 기다리는 것처럼 훨씬 편안한 건 없당께
+harvestfestival.npc.jacob.greeting4=비가 왔으면 좋겠구먼. 근데 지금 오려나?
+harvestfestival.npc.jacob.greeting5=양식업 말여 그걸 해야할지 참 궁금하당께.
+harvestfestival.npc.jacob.greeting6=여어 혹여나 낚시용품 찾고 있거든, 난 아직 준비 안 됬으니 그렇게 알어.
+harvestfestival.npc.jacob.greeting7=우리 할아부지는 강태공이였지. 덕분에 내가 영향을 받아 이렇게 장사하는 거라구.
+harvestfestival.npc.jacob.greeting8=내 인생을 낚시로 하얗게 불태울 거랑께.
+harvestfestival.npc.jacob.greeting9=내 천직은 낚시꾼이랑께.
+harvestfestival.npc.jacob.greeting10=내 생각에 한 몇 달 내로 새로운 물고기들을 잡을 수 있을꺼라 기대한다구.
+harvestfestival.npc.jacob.greeting11=계속 수영 하라구...
+harvestfestival.npc.jacob.marriage.reject=난 다른 바다 물고기 하나를 계속해서 찾고있다구.
+harvestfestival.npc.jacob.marriage.accept=넌 마치 나의 불가사리야, 빨리 너의 남편이 되길 원해.
+harvestfestival.npc.jacob.gift.awesome=내 천직은 낚시꾼이지 그리고 너는 그것을 밀고 나가길 허락했고! 니가 최고다잉.
+harvestfestival.npc.jacob.gift.good=물과 관련된 것들은 다 좋아. 고맙다구.
+harvestfestival.npc.jacob.gift.decent=선물 고맙다구.
+harvestfestival.npc.jacob.gift.dislike=이거 참...음 글쎄다.
+harvestfestival.npc.jacob.gift.bad=이거 정말 영 좋지않은데.
+harvestfestival.npc.jacob.gift.terrible=니 미칬나. 내가 이거 좋아할 거 같어?
+
+#Pokefenn
+harvestfestival.npc.fenn.greeting1=언젠간 내가 기른 덩쿨나무에 나랑 같이 올라갈 날이 올꺼야!
+harvestfestival.npc.fenn.greeting2=무서워 말라구, 아직 난 어리지만 다 알아! 토템도 다 알아!
+harvestfestival.npc.fenn.greeting3=아빠가 겁 안먹었으면 좋겠어.
+harvestfestival.npc.fenn.greeting4=마인크래프트 라고 알어? 내가 젤 좋아하는 게임임!
+harvestfestival.npc.fenn.greeting5=힘세고 강한 하루!
+harvestfestival.npc.fenn.greeting6=이비는 날 무서워 해, 걔 만나본 적 있어?
+harvestfestival.npc.fenn.greeting7=밖에 좀 나가게, 아빠가 날 놔줬으면 해!
+harvestfestival.npc.fenn.greeting8=그 뭐였지 암튼 내가 크면 아마 미확인선태수목민족실용식물원예학자가 될꺼야!
+harvestfestival.npc.fenn.greeting9=내가 가장 좋아하는 포켓몬은 이상해씨야.
+harvestfestival.npc.fenn.greeting10=작은 벌레 갖고 노는거 꿀잼임!
+harvestfestival.npc.fenn.greeting11=우어, 내가 자라면 나무가 되고 싶다고 생각해!
+harvestfestival.npc.fenn.greeting12=아빠가 날 위해 나무집을 지어 줬으면 좋겠어
+harvestfestival.npc.fenn.gift.awesome=우와아아!!!!!!!! 이거.....짱이야!
+harvestfestival.npc.fenn.gift.good=내가 좋아하는거! 고마워!
+harvestfestival.npc.fenn.gift.decent=호, 좋아좋아
+harvestfestival.npc.fenn.gift.dislike=흐으음, 왜애
+harvestfestival.npc.fenn.gift.bad=아니 왜애, 이거 별로..
+harvestfestival.npc.fenn.gift.terrible=아냐아냐아냐  아냐! 아냐! 아니야! 이건 아니야! 싫어!
+
+#짐
+harvestfestival.npc.jim.shop=동물 농장 운영시간은 오전 10시 에서 오후 3시 까지 운영하고 일요일은 쉬어.
+harvestfestival.npc.jim.greeting1=넌 어떤 동물이 좋니? 난 여우가 좋아. 닭들에게 짓궂거든.
+harvestfestival.npc.jim.greeting2=키우는 동물에 새끼를 갖게 하려면, 언제든지 나에게 찾아와!
+harvestfestival.npc.jim.greeting3=내가 닭에게 얼마나 많은 양의 모이를 먹이고 있는지 최근에 받은 교육에서 배우게 됐어. 그외 다른것도 많이 배웠지.
+harvestfestival.npc.jim.greeting4=너도 알다시피 이 세상은 가끔 우스꽝스러워, 며칠전에는 다람쥐가 벤치를 공격하는걸 봤다구.
+harvestfestival.npc.jim.greeting5=너 그거 알어? 소를끌고 너무 높은곳에 올라가면 목줄이 끊어질 수도 있어.
+harvestfestival.npc.jim.greeting6=내가 가게를 그만둬도, 내 삶이 더 나아지진 않겠지.
+harvestfestival.npc.jim.greeting7=구유는 3개까지 한 줄로 둘 수 있어, 그리고 너가 사료를 채워두면 소와 양은 배고플 때 구유에서 사료를 꺼내먹을 거야.
+harvestfestival.npc.jim.greeting8=소나 양은 기르고 있는 풀을 다 자라기 전에도 먹을 수 있다는걸 알고 있니?
+harvestfestival.npc.jim.greeting9=만약 니가 동물에게 특식을 준다면 동물들은 너를 더 잘 따를거야.
+harvestfestival.npc.jim.marriage.reject=난 아직 결혼하고 싶지 않아.
+harvestfestival.npc.jim.marriage.accept=이때만을 오랫동안 기다려왔어. 너와 무조건 결혼할거야!
+harvestfestival.npc.jim.gift.awesome=넌 참 특별해. 이런 놀라운 선물을 주다니 말이야.
+harvestfestival.npc.jim.gift.good=난 미리 밝히는건 별로 안좋아하지만 이건 내가 필요로 하던거야!
+harvestfestival.npc.jim.gift.decent=어 뭐.. 괜찮은 선물이네.
+harvestfestival.npc.jim.gift.dislike=이 선물을 좋다고는 말 못하겠어..
+harvestfestival.npc.jim.gift.bad=너 선물 고르는 감각이 꽝이구나?..
+harvestfestival.npc.jim.gift.terrible=니가 나에 대해서 안다면, 이딴걸 선물이라 줄 생각은 못했을거야. 안그래?
+
+#Brandon/Cricket
+harvestfestival.npc.brandon.shop=광산 관련 물품이 필요하다면, 월요일에서 토요일 사이 오전 11시에서 오후 4시 사이에 와야 할거야.
+harvestfestival.npc.brandon.greeting1=내가 광산에 내려가 있어도 널 도와줄 순 없어. 하지만, 광산에서 다이아몬드 사이를 지날때는 참 짜릿하지 않아?
+harvestfestival.npc.brandon.greeting2=요즘 불면증을 앓고있어.. 매일 밤마다 잠을 잘 수가 없거든… 밤마다 망할 짤그락 거리는 소리가 들려..
+harvestfestival.npc.brandon.greeting3=넌 어떤 아이스크림을 좋아해? 난 바닐라 플러스를 좋아했었어 누가 훔쳐가기 전까지는...
+harvestfestival.npc.brandon.greeting4=광산에서 일하느라 지쳤니? 난 절대 지치지 않아. 네가 지치더라도 난 기꺼이 거래할거야.
+harvestfestival.npc.brandon.greeting5=어둠이 무섭다는 사람들이 이해가 안가. 광산에서 일하면 항상 그렇잖아?
+harvestfestival.npc.brandon.greeting6=내가 광산에서 일하던 어느날, 불을 닮은 생물을 봤어. 도대체 뭐였을까?
+harvestfestival.npc.brandon.greeting7=광산에서 좀 더 효율적으로 일하는 방법을 알려줄까? 점프해서 바위를 망치로 내려쳐. 그럼 광석이나 바위를 바로 깨부술 수 있을거야. 나무나 경작지도 마찬가지야.
+harvestfestival.npc.brandon.greeting8=만약 광산 깊은곳에서 막힌다면 탈출용 밧줄을 사용해.
+harvestfestival.npc.brandon.greeting9=내가 광산에서 일을 하지 않을때는 3개의 돌을 다듬고 있을거야. 왜 3개냐고? 나도 몰라.
+harvestfestival.npc.brandon.greeting10=날 좋아하는 사람이 없는거 같아. 왜일까?
+harvestfestival.npc.brandon.greeting11=난 이 마을 사람들에게 지쳤어..  이젠 떠나고 싶어...
+harvestfestival.npc.brandon.greeting12=광산에 들어갈 땐 조심해. 광산에는 위험한 동물들이 있어.
+harvestfestival.npc.brandon.marriage.reject=내가 너같은 사람이랑 결혼할거라 생각해?
+harvestfestival.npc.brandon.marriage.accept=좀 더 좋은 사람과 결혼하고 싶었지만, 너와 결혼할게.
+harvestfestival.npc.brandon.gift.awesome=뭐라 감사해야 할지 모르겠어. 오랫동안 새로운걸 찾고 있었거든!
+harvestfestival.npc.brandon.gift.good=광산 장비는 언제나 받아도 좋아.
+harvestfestival.npc.brandon.gift.decent=고마워, 멋지네.
+harvestfestival.npc.brandon.gift.dislike=그게 너에게는 멋진 거란 건 알겠어.
+harvestfestival.npc.brandon.gift.bad=내가 자연을 싫어 하는 건, 알고 있니?
+harvestfestival.npc.brandon.gift.terrible=저리 꺼져. 그런 선물로 나를 놀리려 하다니.
+
+#토마스
+harvestfestival.npc.thomas.greeting1= 여신께서 당신을 원죄로부터 구원할지니...
+harvestfestival.npc.thomas.greeting2=만약 저주받은 도구의 정화가 필요하다면 잊지말고 찾아오게나.
+harvestfestival.npc.thomas.greeting3=여신만이 당신을 구원할지니.
+harvestfestival.npc.thomas.greeting4=신의 은총이 당신과 함께하는구려.
+harvestfestival.npc.thomas.greeting5=만약 그대가 저주받은 도구를 구한다면 나에게 가져오구려. 내가 10000골드로 축복을 걸어줄 터이니.
+harvestfestival.npc.thomas.greeting6=나는 1000골드로 자네의 축복받은 도구를 수리할 수 있다네.
+harvestfestival.npc.thomas.greeting7=여신의 자비가 함께하기를.
+harvestfestival.npc.thomas.greeting8=♩I believe I can fly♬.
+harvestfestival.npc.thomas.greeting9=내가 왜 마녀같은 여자랑 결혼했었지? 케이틀린 말이네.
+harvestfestival.npc.thomas.greeting10=일요일마다 교회에 오게나. 그러면 교회에 사람들이 많이 있을 걸세.
+harvestfestival.npc.thomas.greeting11=이비는 하느님의 어린 자녀로서 자랑스럽다네. 클로에는 동생을 본받을 필요가 있어.
+harvestfestival.npc.thomas.greeting12=여신의 힘이 당신과 함께하기를!
+harvestfestival.npc.thomas.gift.awesome=어찌 이런 선물을! 고맙구려 신의 축복이 함께하기를 빌겠네.
+harvestfestival.npc.thomas.gift.good=이런 성스러운 선물을! 고맙네.
+harvestfestival.npc.thomas.gift.decent=축복이 함께하기를.
+harvestfestival.npc.thomas.gift.dislike=으으 고맙구려.
+harvestfestival.npc.thomas.gift.bad=선물로 신을 모독하려 하다니!
+harvestfestival.npc.thomas.gift.terrible=이런 선물은 비난받을 수밖에 없다 생각하네, 이런 건 옳지 않아!
+
+#캔디스
+harvestfestival.npc.candice.greeting1=난 내 일을 사랑하고, 친구와 공유하는것을 좋아해.
+harvestfestival.npc.candice.greeting2=몇몇 사람들은 정말 소같이 게을러.
+harvestfestival.npc.candice.greeting3=도대체 난 어디있는걸까? 이 세상이란 무엇일까?
+harvestfestival.npc.candice.greeting4=이리 와 봐, 내 눈에 뭔가 있어.
+harvestfestival.npc.candice.greeting5=안녕, %4$s! 너 오늘 너무 아름다워 보여!
+harvestfestival.npc.candice.greeting6=안녕 이쁜이, 오늘의 팁을 줄게. 잔디에는 물을 줄 필요가 없어, 어차피 그냥 자라거든!
+harvestfestival.npc.candice.greeting7=내가 짐이랑 같이 우유짜기를 하는거 알고있어?
+harvestfestival.npc.candice.greeting8=동물에게 특식을 줄 때는, 동물마다 특식 종류가 달라.
+harvestfestival.npc.candice.greeting9=난 우리가 예전에 만난적이 있는거 같아. 혼란스럽지?
+harvestfestival.npc.candice.greeting10=난 텍사스 출신이야, 넌 어디 출신이니?
+harvestfestival.npc.candice.greeting11=다양한 사람들과 대화를 걸어서 친구를 사귀어 봐!
+harvestfestival.npc.candice.greeting12=때때로 울고싶을 때가 있겠지만, 난 그러지 않아.
+harvestfestival.npc.candice.marriage.reject=기회는 없어, 난 결혼상대를 찾고있지 않거든.
+harvestfestival.npc.candice.marriage.accept=넌 너무 완벽해! 우리는 환상의 커플이 될거야, 너의 청혼을 받아들일게!
+harvestfestival.npc.candice.gift.awesome=세상에! 넌 아름다운 사람이야. 완벽하게 놀라워. 내가 딱 좋아하는 거야!
+harvestfestival.npc.candice.gift.good=넌 여자에게 웃음을 주는 방법을 알고있구나. 안그래?
+harvestfestival.npc.candice.gift.decent=아름다운 선물이야.
+harvestfestival.npc.candice.gift.dislike=흠, 잘받을게.
+harvestfestival.npc.candice.gift.bad=흠, 내가 이걸 원하는지는 잘 모르겠다.
+harvestfestival.npc.candice.gift.terrible=너가 나에게 줬다는게 믿기지가 않아. 너는 나를 좋아하지 않는거야?
+
+#유리프
+harvestfestival.npc.yulif.shop=새로운 건물의 설계도를 원하면 내가 일할 때 와. 난 토요일에 쉬어. 그리고 영업시간은 오전 9시에서 오후 5시 30분 까지야.
+harvestfestival.npc.yulif.greeting1=나혼자 건물을 다 짓는거 같은데, 이래서 언제 쉬겠어?
+harvestfestival.npc.yulif.greeting2=내가 노예야? 목수에게 휴식을 달라!
+harvestfestival.npc.yulif.greeting3=짐 봤어? 아직 여기에 없던가?
+harvestfestival.npc.yulif.greeting4=내가 이렇게 힘들게 일하는데, 넌 내 노력을 알고 있어?
+harvestfestival.npc.yulif.greeting5=나 혼자 너무 힘들게 일하는거 아니야? 과로사로 죽어가고 있는거 같아.
+harvestfestival.npc.yulif.greeting6=내가 짓는 건물에는 재활용 따위는 하지 않아. 항상 새 재료만을 이용한다고!
+harvestfestival.npc.yulif.greeting7=내가 파는 목재랑 돌 가격이 너무 비싸다는 말을 들었어. 재료를 구해오는 노력에 대한 대가로 그정도는 공평하다고 생각하는데 말이야.
+harvestfestival.npc.yulif.greeting8=%4$s 요즘 어떻게 지내?
+harvestfestival.npc.yulif.greeting9=만약 내가 영영 사라져 버리면 새로운 목공소 건물을 지어, 그러면 날 다시 부를 수 있을거야.
+harvestfestival.npc.yulif.greeting10=마을이 커질수록 더 많은 건물을 내가 지을 수 있을거야.
+harvestfestival.npc.yulif.greeting11=새로운 건물에 누군가 나타난다면, 그냥 대화를 걸어봐.
+harvestfestival.npc.yulif.greeting12=가끔씩 무리하게 많은 일을 받아들이는 것 같아.
+harvestfestival.npc.yulif.greeting13=제이드는 내가 간섭하는걸 싫어하는 것 같아. 하지만, 너도 너의 여동생이라면 소중히 하고 싶잖아. 안그래?
+harvestfestival.npc.yulif.marriage.reject=에에에…. 미안하지만 난 아직, 결혼할 준비가 안됐어.
+harvestfestival.npc.yulif.marriage.accept=너 엄청 친절하구나? 기꺼이 너의 남편이 되어주지.
+harvestfestival.npc.yulif.gift.awesome=이거 내가 좋아하는건데, 어떻게 알았어? 고맙다!
+harvestfestival.npc.yulif.gift.good=좋은 선물 주는 법을 잘 알고있구나?
+harvestfestival.npc.yulif.gift.decent=고맙다!
+harvestfestival.npc.yulif.gift.dislike=에에.. 고..마워?
+harvestfestival.npc.yulif.gift.bad=에엑.. 뭐야? 왜 내가 이런걸 원할거라 생각하는거야?
+harvestfestival.npc.yulif.gift.terrible=씨발, 정말 내가 이런걸 원한다고 생각해? 나한테 말 걸지 말아줄래?
+
+harvestfestival.npc.builder.build=내가 %s 짓는걸 방해하지 마.
+harvestfestival.npc.builder.paint=지금 %s에 페인트 작업중이야.
+harvestfestival.npc.builder.decorate=%s 마감을 위해 열심히 일하고 있는 중이야.
+harvestfestival.npc.builder.movein=신경쓰지 마, 지금 모두를 %s에 이사하도록 도와주는 중이야.
+harvestfestival.npc.builder.basement.build=미친놈처럼 보일까 싶어 말하는데, 지금 %s를 위한 기반을 작업하고 있는거야
+harvestfestival.npc.builder.basement.paint=%s 지하에 모든 페인트 작업을 하는중이야.
+harvestfestival.npc.builder.basement.decorate=단지, %s의 지하실 마감을 진행하는 중이야.
+harvestfestival.npc.builder.basement.movein=신경쓰지 마, 지금 모두를 %s에 이사하도록 도와주는 중이야.
+
+#에슐리
+harvestfestival.npc.ashlee.shop=만약 필요한게 있다면 물어봐요, 하지만 일요일을 제외한 오전 5시부터 11시 사이에만 가능해요.
+harvestfestival.npc.ashlee.greeting1=전 닭을 기르는걸 사랑해요!
+harvestfestival.npc.ashlee.greeting2=닭을 돌보느라 지쳤어요 이건 상당히 고된일 이에요!
+harvestfestival.npc.ashlee.greeting3=휴일에는 편하게 잘 수 있을 거라 생각해요.
+harvestfestival.npc.ashlee.greeting4=대부분의 닭 기르는 사람들은 여우를 싫어해요, 하지만 난 좋아해요 복슬복슬 하잖아요!
+harvestfestival.npc.ashlee.greeting5=닭들이 둥지 가까이에 있는지 확인 하세요, 멀리 돌아다니지는 않을거에요.
+harvestfestival.npc.ashlee.greeting6=모이를 직접 주는걸 닭들은 좋아하지만 더 힘이 들 거에요.
+harvestfestival.npc.ashlee.greeting7=닭들은 특식과 닭 전용 특식 먹는걸 좋아해요.
+harvestfestival.npc.ashlee.greeting8=어렸을때는 남자애들이 절 괴롭히곤 했어요, 하지만 지금은 병아리들이 절 둘러싸고 있어요!
+harvestfestival.npc.ashlee.greeting9=인큐베이터는 비싸지만 투자금을 금방 회수할 수 있어요!
+harvestfestival.npc.ashlee.greeting10=특식을 자주 준다면 동물들은 당신을 더 잘 따를거에요.
+harvestfestival.npc.ashlee.marriage.reject=왜 나에게 프로포즈를 하지요?
+harvestfestival.npc.ashlee.marriage.accept=오, 당신은 나에게 여우같은 남자에요, 나와 결혼해요.
+harvestfestival.npc.ashlee.gift.awesome=당신은 나에게 여우같은 남자에요 내 마음에 쏙 들어요.
+harvestfestival.npc.ashlee.gift.good=여우같은 선물이내요 감사히 받을게요
+harvestfestival.npc.ashlee.gift.decent=선물 감사해요!
+harvestfestival.npc.ashlee.gift.dislike=나에게 이런걸 주지 말아요.
+harvestfestival.npc.ashlee.gift.bad=왜 이런걸 주려고 하는거죠?
+harvestfestival.npc.ashlee.gift.terrible=내가 받아본것중 최악의 선물이에요.
+
+#요한
+harvestfestival.npc.girafi.greeting1=안녕하쉐요. 나 겸손한 상인. 이곳 거래 하러 왔숴요. 당신 달걀, 우유, 양털 있어. 그러면 나 행복하게 내 고향 바닐라 월드 물건과 거래할거에요.
+harvestfestival.npc.girafi.greeting2=좋은 하루에요. 나 여행 생각하고 있숴요. 다음 목적지 덴마크 가요.
+harvestfestival.npc.girafi.greeting3=당신을 다시 보기 좋은 날이에요.
+harvestfestival.npc.girafi.greeting4=나 다닌 세상 여행이야기 많이 할 수 있숴요. 한번은 오징어를 내 목에 걸어봤던 적도 있숴요.
+harvestfestival.npc.girafi.greeting5=안녕하쉐요. 어뒤 가나요?
+harvestfestival.npc.girafi.greeting6=오, 다시 만나서 반가워요.
+harvestfestival.npc.girafi.greeting7=사람들은 나 좋은날로 만들 수 있고, 나쁜날로 만들 수 있숴요. 당신 나의 하루 좋은날로 만들어요.
+harvestfestival.npc.girafi.greeting8=나 기꺼이 달걀, 우유, 양털 거래 원해요. 잊지마!
+harvestfestival.npc.girafi.greeting9=나 바이옴 많이 여행해봤숴요. 사실 바이옴 종류 엄청 많다!
+harvestfestival.npc.girafi.greeting10=지금 더 이상 기쁠 수 없숴요.
+harvestfestival.npc.girafi.greeting11=이곳 양털, 달걀, 우유 품질 좋아요. 우리 고향 바닐라 여기 물건 좋아해요. 나 고향 물건도 좋아요. 거래 원해요.
+harvestfestival.npc.girafi.marriage.reject=당신 알게되서 기뻐요. 나 그러나 당신 그렇게 생각하지 않아요.
+harvestfestival.npc.girafi.marriage.accept=이거 매우 기뻐요. 나 기꺼이 당신 결혼해요. 그리고 당신 멀리 두고 갈 거에요.
+harvestfestival.npc.girafi.gift.awesome=말해요 나, 당신 절대적 센스 감각 있다. 깊게 감사합니다.
+harvestfestival.npc.girafi.gift.good=당신 대단한 사람. 감사합니다.
+harvestfestival.npc.girafi.gift.decent=이 선물 좋아요.
+harvestfestival.npc.girafi.gift.dislike=미안합니다. 이것들 별로 좋은 기분 만들지 않아요.
+harvestfestival.npc.girafi.gift.bad=이 선물 나라면 사지 않아요.
+harvestfestival.npc.girafi.gift.terrible=이것 지구상에서 나 마지막 소유자가 아닐까요. 당신 날 싫어하나요?
+
+###Shop greetings
+# WARNING FOR SHOP NAMES:
+# Using any character other than the following will change the renderer to use the vanilla font instead
+# So for best looks, if you can try to only use names with that, if the means you don't translate names
+# then sorry. It's not really feasible for me to support unicode with the custom font
+# Accepted characters for names
+# a-z A-Z 0-9 , . ' é
+
+#General Store
+harvestfestival.shop.general=잡화점
+harvestfestival.shop.general.greeting1=잡화점에 온걸 환영해, 찾는거 있어?
+harvestfestival.shop.general.greeting2=물건은 항상 준비되어 있어, 무엇을 도와줄까?
+harvestfestival.shop.general.greeting3=우리 상점은 이 마을에서 최고지! 뭐가 필요해?
+harvestfestival.shop.general.options=어떤 용건인가요?
+harvestfestival.shop.general.options.shop=@상점
+harvestfestival.shop.general.options.chat=@대화
+
+#Poultry Farm
+harvestfestival.shop.poultry=양계장
+harvestfestival.shop.poultry.greeting1=닭들은 우리에게 필요한 영양분들을 줄 수 있어요. 뭘 도와드릴까요?
+harvestfestival.shop.poultry.greeting2=양계장의 역사는 300년이 넘었어요, 음? 뭘 상상하시는 건가요?
+harvestfestival.shop.poultry.greeting3=닥치고 닭잡는 양계장에 어서와요, 뭘 도와드릴까요?
+
+#Cafe
+harvestfestival.shop.cafe=카페
+harvestfestival.shop.cafe.greeting1=와서 음식가져가요!ㆍㆍㆍ 네?
+harvestfestival.shop.cafe.greeting2=다 차려졌어요, 어서와요!
+harvestfestival.shop.cafe.greeting3=식사 준비 다 됬어요!
+
+#Animal Ranch
+harvestfestival.shop.barn=동물 농장
+harvestfestival.shop.barn.greeting1=난 동물이 아니라 강려크함을 팔지!
+harvestfestival.shop.barn.greeting2=동물 농장에 어서와 필요한건 있어?
+harvestfestival.shop.barn.greeting3=소나 양이있으면 누가 닭을 키우겠어!
+
+#Blacksmith
+harvestfestival.shop.blacksmith=대장간
+harvestfestival.shop.blacksmith.greeting1=어서와! 내가 만든 물건들좀 보라구!
+harvestfestival.shop.blacksmith.greeting2=이렇게 좋은 도구들을 팔 수 있어서 기뻐 너도 그렇지?
+harvestfestival.shop.blacksmith.greeting3=도구가 필요하다고? 들어와!
+
+#Carpenter
+harvestfestival.shop.carpenter=목공소
+harvestfestival.shop.carpenter.greeting1=새로운 건물을 찾고있어? 내가 도와줄게.
+harvestfestival.shop.carpenter.greeting2=최고의 설계도를 찾는다면 나에게 와.
+harvestfestival.shop.carpenter.greeting3=최고의 건물을 최고로 지어줄게!
+
+#Miner
+harvestfestival.shop.miner=광산 관리소
+harvestfestival.shop.miner.greeting1=난 이곳에서 생산되는 희귀 자원들을 팔지.
+harvestfestival.shop.miner.greeting2=이리 와서 희귀한 보석들을 보라구!
+harvestfestival.shop.miner.greeting3=광물이 여기 있어!
+
+#Blood Mage
+harvestfestival.shop.bloodmage=Blood Mage
+harvestfestival.shop.bloodmage.greeting1=[발견시 제보 바랍니다]Welcome dear child, to the darkest of places.
+harvestfestival.shop.bloodmage.greeting2=[발견시 제보 바랍니다]Prepare to have your eyes blown out of their sockets from the sight of my wares.
+harvestfestival.shop.bloodmage.greeting3=[발견시 제보 바랍니다]In this dark and mysterious night, I am happy to please your eyes with my goods.
+
+#Blood Mage
+harvestfestival.shop.baitshop=Tackle Shop
+harvestfestival.shop.baitshop.greeting1=[발견시 제보 바랍니다]We're actually open for business, but only with the help from others.
+harvestfestival.shop.baitshop.greeting2=[발견시 제보 바랍니다]If you want some fish, then come buy some of my rods.
+harvestfestival.shop.baitshop.greeting3=[발견시 제보 바랍니다]Come get your fishing rods here, if you please.
+
+#Miscellaneous
+harvestfestival.marriage=결혼 선물
+harvestfestival.marriage.locked=잠김
+harvestfestival.marriage.unlocked=풀림
+
+###Quests
+##Tutorial Quests
+#Intro
+harvestfestival.quest.tutorial.intro.hello=반가워요, 당신 저를 만난 적이 있나요? 기억이 확실하지 않아요.
+harvestfestival.quest.tutorial.intro.question=[하베스트 페스티벌을 처음 플레이하나요?]
+harvestfestival.quest.tutorial.intro.tutorial=@당신을 처음봐요!
+harvestfestival.quest.tutorial.intro.skip=@제가 뭘 해야 하는지 이미 알고 있어요
+harvestfestival.quest.tutorial.intro.completed=그럼 제가 깜박했나 봐요! 여기 약간의 꽃을 드릴게요, 바라건대 이 부끄러운 일을 당신이 잊어 주었으면 좋겠네요...
+harvestfestival.quest.tutorial.intro.backstory=그렇군요, 만나서 반가워요. 저는 수확의 여신이랍니다. 당신에게 짧은 이야기를 들려드릴게요. 오래전 이 땅은 떠들썩한 마을이었지만, 엄청난 폭풍이 사람들의 집을 앗아갔어요. 그래서 사람들은 훨씬 이전에 그들이 살던 곳으로 돌아갈 수밖에 없게 되었어요. 하지만 당신의 도움이 마을 사람들을 다시 이곳으로 돌아올 수 있게 해 줄 거에요. 아 참, 제가 갑자기 사라지더라도 당황하지 마세요, 당신이 저를 만나고 싶다면 여신의 꽃을 이용해서 절 언제나 부를 수 있어요. 당신에게 알려드릴 건 이게 전부랍니다. 그럼 다음에 또 만나요!
+
+#Carpenter
+harvestfestival.quest.tutorial.carpenter.wood.dozen=12개
+harvestfestival.quest.tutorial.carpenter.wood.dozentwo=24개
+harvestfestival.quest.tutorial.carpenter.wood.stack=64개
+harvestfestival.quest.tutorial.carpenter.wood.stackhalf=32개
+harvestfestival.quest.tutorial.carpenter.wood.stackquarter=16개
+harvestfestival.quest.tutorial.carpenter.welcome=당신, 다시 만났네요! 반가워요. 우리가 어떻게 마을을 시작할지 조금 생각을 해 봤어요. 유리프라는 훌륭한 목수에 대한 소문을 듣게 되었는데, 마침 그가 새로운 일거리를 찾고 있다고 하네요. 유리프는 그의 여동생인 제이드와 함께 살고 있는데, 그녀는 자연을 매우 사랑한다고 합니다. 그녀가 가지고 있는 성격은 우리가 마을을 재건을 시작하는데 큰 자산이 될 거에요. 우리가 그들을 우리 마을로 유인할 방법이 있어야겠어요. 당신이 %개의 원목을 가져와 준다면 그들을 유인할 적당한 준비가 될 것 같아요.
+harvestfestival.quest.tutorial.carpenter.reminder.wood=다시 만나서 반가워요. 당신, 혹시 첫 번째 정착자를 불러올 준비를 하는 것을 잊은 건 아니겠죠? 저에게 %s의 원목을 가져온다면 일을 시작하는데, 제가 도움을 줄 수 있어요.
+harvestfestival.quest.tutorial.carpenter.thanks.build=완벽해요! 딱 우리가 필요한 만큼 가져와 주었어요. 자 여기 당신에게 딱 필요한 것이 있어요. 이것은 당신이 건물을 원하는 곳에 지을 수 있도록 지정하는 설계도랍니다. 이것을 사용하면 미리보기가 나타나고, 원하는 곳을 찾았다면 우클릭으로 지정할 수 있어요. 설계도를 사용하면 유리프가 와서 건설을 바로 시작할 거랍니다! 유리프가 일을 하는 동안 새로운 설계도를 이용해 다른 건설을 예약할 수 있어요. 하지만 한 번에 한 가지의 건물만 짓게 되니 일은 차례로 진행될 거에요. 만약 그가 비극적인 사고로 죽게 되더라도 걱정하지 마세요! 그의 일과가 끝나고 다시 출근할 시간이 되었을 때, 게임의 법칙으로 되살아날 거에요! 제가 당신에게 알려드릴 것은 이것이 전부인 것 같네요. 이제 당신은 가서 목공소를 지으세요! 아 참, 잊기 전에 한 가지 더, 유리프의 동생은 보통 목공소 2층에 있어요. 저는 당신이 그녀에게 꽃을 주는 것이 어떨까 해요. 그녀는 꽃을 좋아하고, 꽃의 답례로 씨앗을 줄 거에요.
+harvestfestival.quest.tutorial.carpenter.reminder.carpenter=당신, 제가 아니라 제이드를 만나러 가야죠! 아직 목공소를 짓지 않았다면 짓고선, 그녀를 만나러 위층으로 올라가세요! 당신이 만약 설계도를 잊어버렸다면 저에게 원목 %s를 가져오면 다시 드릴게요.
+harvestfestival.quest.tutorial.carpenter.reminder.give=원목을 다시 가져오셨군요. 어서 제이드를 만나러 가세요!
+harvestfestival.quest.tutorial.carpenter.reminder.flowers=반가워요, 전 제이드에요. 지금 꽃으…ㅡ….ㄹ 찾고 있는 중이에요.
+harvestfestival.quest.tutorial.carpenter.thanks.flowers=이봐요! 나에게 줄 꽃을 갖고 있는 것 같네요! 여신이 나에게 당신에 대한 모든 것을 말해 줬어요, 마을이 빨리 커졌으면 좋겠네요. 내 생각에는 여신이 우리를 많이 도와주는 것 같은데, 여신을 한번 보러 가는 게 어때요? 그리고, 당신에게 보여줄 것이 있으니 여신을 만나고 다시 날 찾아오세요!
+harvestfestival.quest.tutorial.carpenter.thanks.finish=잘했어요, 이 마을은 앞으로 당신과 함께할 것입니다. 일을 시작하기 위해서는 자본금이 필요할 것이니, 여기 당신에게 1,000골드를 드릴게요. 당신이 이 돈을 현명하게 쓰길 바랄게요. 제이드가 저를 만난 뒤 자신을 찾아오라고 하지 않았나요? 어서 그녀를 만나러 가세요!
+
+#Crops Tutorial
+harvestfestival.quest.tutorial.crops.intro=이봐요! 약속한 대로 당신에게 말해줄 것이 있어요! 농작물 재배방법이죠. 전에 배운 적 있어요?
+harvestfestival.quest.tutorial.crops.question=작물 재배법을 알고 있습니까?
+harvestfestival.quest.tutorial.crops.tutorial=@작물을 어떻게 재배하지?
+harvestfestival.quest.tutorial.crops.skip=@어떻게 하는지 알고 있어.
+harvestfestival.quest.tutorial.crops.completed=음.. 당신이 이미 알고 있다면, 여기 시작하기 위한 물건들을 가져가세요.
+harvestfestival.quest.tutorial.crops.start=좋아요, 제가 당신을 가르쳐 드리죠! 작물 재배의 가장 기초는 작물을 심을 땅이 필요해요. 작물을 심을 땅은 3x3만큼이 필요하니 기억해 두세요. 당신은 작물에 매일 물을 줘야 하고, 계절에 알맞은 작물을 키워야 해요. 그렇지 않으면 작물은 자라지 않을 거예요(멀티플레이 환경의 특성상 작물이 죽지는 않습니다). 괭이를 사용하는 방법은 간단해요. 흙에다 대고선 우클릭을 하면 흙이 경작돼요. 또, 물뿌리개를 사용하기 전에 물을 채우는 것 잊지 마세요. 참고로 바닐라처럼 경작한 땅 옆에 물을 두어도 물을 주는 효과가 나지 않으니 주의하세요! 자, 이 씨앗들을 드릴게요. 이것들을 재배해서 9개의 억센 순무가 다 자랐을 때, 저에게 가져와 보여주세요. 마지막으로, 농작물을 빠른 속도로 자라게 하는 가장 좋은 방법은 잠을 자는 거예요. 농작물은 날짜가 바뀔 때마다 자라거든요!
+harvestfestival.quest.tutorial.crops.reminder.turnips=이봐요! 다시 만났군요. 내게 보여줄 9개의 억센 순무가 아직 준비되지 않았군요? 만약 괭이를 잃어버렸다면 저에게 돌 괭이를 가져오세요. 새로 바꿔드리죠. 물뿌리개가 필요하다면 양동이를 가져오면 바꿔드려요. 또, 씨앗이 필요하다면 꽃 5송이를 가져와 주세요.
+harvestfestival.quest.tutorial.crops.thanks.flowers=와! 정말 예뻐요! 고마워요. 여기 억센 순무 씨앗을 드릴게요.
+harvestfestival.quest.tutorial.crops.thanks.hoe=좋아요, 여기 새로운 괭이로 바꿔드리죠.
+harvestfestival.quest.tutorial.crops.thanks.bucket=자 여기요, 여분의 물뿌리개를 드릴게요.
+harvestfestival.quest.tutorial.crops.complete=와! 억센 순무를 훌륭하게 재배했군요! 제가 그 순무들을 가져가고 싶을 정도예요. 하지만 당신이 키워낸 것이니 당신 것이에요. 나에게 시간을 낭비하지 말고, 그 순무를 팔아서 골드를 버세요. 작물을 팔기 위해선 판매상자가 필요할 거예요. 판매 상자는 제 오빠에게 구매할 수 있어요. 판매 상자는 판매할 아이템을 들고선 마우스 우클릭을 하면 돼요. 아침이 되면 상자에 넣은 아이템들이 판매되면서 골드를 벌게 되죠. 일일이 팔 물건을 손으로 넣고 싶지 않다면, 판매상자 옆에 깔때기를 놓아서 넣을 수도 있어요. 어느 판매 상자에 넣어도 판매 이익은 넣은 사람에게 돌아가요. 알아둘 것이 있는데, 지금 당신이 팔 억센 순무는 그리 가치가 있는 물품이 아니에요. 돈을 벌기 위해서는 다양한 농작물을 재배해야 할 거예요. 많이는 없지만, 당신이 저에게 꽃을 5송이 가져올 때마다 씨앗을 드리도록 하죠. 잡화점에서는 제가 준비할 수 있는 것보다 다양한 것을 팔고 있으니까, 가능한 한 빨리 잡화점을 지을 수 있도록 오빠에게 전해 놓을게요. 마지막으로, 보상으로 이 낫을 드릴게요. 농작물을 수확하는 데 필요할 거고, 죽은 사람들을 한 번 더 죽이는데 꽤 효과적이거든요!
+
+#Chicken Care
+harvestfestival.quest.tutorial.chicken.reminder.talk=양계장을 만들었군요. 양계장에 있는 에슐리에게 말을 걸어 보세요.
+harvestfestival.quest.tutorial.chicken.reminder.poultry=당신, 양계장을 만들 수 있다는걸 아셨으면 좋겠네요.
+harvestfestival.quest.tutorial.chicken.start=난 이곳이 좋아. 이곳 참 좋지 않아 여우 씨? 여기서 평생 살 수 있으면 좋겠어… 오 안녕하세요! 미안해요. 당신이 거기 있는걸 몰랐네요. 으으… 신경 쓰지 마세요. 어찌 되었든 나의 양계장에 오신 걸 환영합니다! 내 이름은 에슐리에요.
+harvestfestival.quest.tutorial.chicken.question=닭을 돌보는 방법은 알고 있나요?
+harvestfestival.quest.tutorial.chicken.tutorial=@방법을 알려줘요!
+harvestfestival.quest.tutorial.chicken.skip=@그냥 물품만 줘도 돼요!
+harvestfestival.quest.tutorial.chicken.completed=오 잘 되었군요. 여기 닭과 사육용 도구들이에요.
+harvestfestival.quest.tutorial.chicken.throw=아… 모른다고요? 그럼 첫 번째로는 닭에게 매일 먹이를 줘야 해요! 만약 먹이를 주지 않으면 병이 들고 알을 낳지 않을 거예요. 모이는 손으로 주거나 모이통에 넣어둘 수 있어요. 그리고 두 번째로는 닭들에게 애정을 줘야 합니다. 매일 오른쪽 클릭으로 들었다가 다시 오른쪽 클릭으로 내려주면 좋아할 겁니다. 그리고 매일 손으로 모이를 준다면 닭들은 더 좋아할 겁니다. 애정을 주며 기르는 닭은 더욱 크고 좋은 달걀을 낳을 겁니다. 여기 모이가 있으니 닭에게 모이를 주고 다시 저에게 오세요.
+harvestfestival.quest.tutorial.chicken.reminder.throw=닭에게 모이를 주라고 말한 건 기억하죠?
+harvestfestival.quest.tutorial.chicken.egg=잘하셨어요. 닭을 돌보는 기본적인 방법은 이제 아시겠군요. 다시 강조하지만, 닭에게 애정을 가지고 대한다면 닭은 더 큰 달걀을 낳을 겁니다. 그런데 달걀은 어떻게 얻는지는 아직 모르시죠? 방법은 간단해요. 둥지를 닭 근처에 설치하시면 닭이 그곳에 알을 낳을 거예요. 닭들은 하루에 달걀 하나씩 낳고 식사를 하지 않았다면 달걀을 낳지 않을 겁니다. 달걀을 얻었다면 돈을 벌기 위해서는 판매 상자에 넣어야 합니다. 닭이 낳은 달걀을 얻고 나면 나에게 다시 한번 들려주세요.
+harvestfestival.quest.tutorial.chicken.reminder.egg=닭이 낳은 달걀을 얻으면 오라 한 건 기억하시죠? 둥지가 더 필요하다면 제가 팔고 있어요.
+harvestfestival.quest.tutorial.chicken.complete=열심히 따라온 보답으로 희귀한 달걀을 드릴게요! 만약 이 달걀을 더 얻고 싶다면 닭을 잘 돌보아야 할 거예요. 아참! 아직 알려드리지 못한 게 있었군요, 닭들은 비가 올 때는 실내에서 키우시고 날씨가 좋을 때는 닭들을 야외에 산책시키세요. 하나 더 알려드리자면 부화기를 잘 활용하세요. 부화기에 달걀을 넣어두고 며칠 기다리면 병아리가 태어날 거예요. 이때 병아리는 행복도가 절반 정도 계승이 되니 새로 닭을 사는 것보다 키우기 편할 거에요. 아! 그리고 이곳에 제 가게를 열어줘서 고마워요!
+
+#Cow Care
+harvestfestival.quest.tutorial.cow.reminder.intro=동물 농장을 만들고선 짐이랑 이야기를 해보는게 어때?
+harvestfestival.quest.tutorial.cow.reminder.barn=동물 농장을 만들어 보는게 어때? 너가 소랑 양에 대한걸 배우는게 좋을 것 같아.
+harvestfestival.quest.tutorial.cow.start=이곳에 초대해 줘서 고마워. 나는 짐이야 동물 농장을 운영하지. 자! 이 소를 선물로 줄게.
+harvestfestival.quest.tutorial.cow.question=소 키우는 방법은 알고 있니?
+harvestfestival.quest.tutorial.cow.tutorial=@방법을 알려줘요
+harvestfestival.quest.tutorial.cow.skip=@이미 알고 있어요
+harvestfestival.quest.tutorial.cow.completed=그래? 자 소는 여기있어 그리고 이 물건들은 소를 키울때 도움이 될거야.
+harvestfestival.quest.tutorial.cow.info=그래? 그러면 내가 자세히 알려줄게. 기초는 쉬워 잘 먹이고 잘 돌봐주면 되 그리고 자주 씻겨 줘야 해. 사료를 손으로 직접 준다면 소가 좋아할 거야, 하지만 구유에 사료를 담아둘 수도 있어. 자! 소가 좋아할 때까지 이 털빗을 가지고 닦아줘.
+harvestfestival.quest.tutorial.cow.reminder.talk=소에게 손으로 먹이를 주고 털빗으로 닦아 주는건 잊지 않았지?
+harvestfestival.quest.tutorial.cow.milk=잘했어, 이제 소를 다루는 법은 아는 걸로 보이네. 소들에게 매일 우유를 얻을 수 있어 착유기를 들고 오른쪽 클릭을 하고 있으면 우유를 짜낼 수 있어. 소들에게 애정을 주고 키운다면 더 큰 우유를 얻을 수 있을 거야. 이제 소에게서 우유를 짜봐.
+harvestfestival.quest.tutorial.cow.reminder.milk=우유 짜는걸 잊어버린건 아니지? 우유를 짜낸 다음에 다시 와.
+harvestfestival.quest.tutorial.cow.complete=잘했어! 그리고 날이 좋을 때는 산책시키고 비 내릴 때는 건물로 들여놓는 걸 잊지 마. 그리고 새끼동물을 낳게 하고 싶을 때는 미라클 포션을 구입해서 주면 돼. 내가 알려줄 건 여기까지야, 다음에 또 와~.
+
+#General Store Introduction
+harvestfestival.quest.tutorial.supermarket.reminder.talk=캔디스나 제니에게 대화를 해 보세요, 지금 잡화점에 있을 거에요.
+harvestfestival.quest.tutorial.supermarket.reminder.supermarket=당신이 더 많은 씨앗을 구하려면, 잡화점을 만드는것이 좋아요!
+harvestfestival.quest.tutorial.supermarket.welcome.owner=안녕, 난 잡화점의 오너야. 이곳으로 이사 오길 잘한 것 같아. 난 씨앗부터 초콜릿까지 없는 것 빼고 다 팔아. 물건이 필요하면 나에게 찾아와! 상점문은 금요일과 일요일을 제외한 매주 오전 9시부터 오후 5시까지 열어. 토요일에는 오전 11시부터 3시까지 4시간만 영업하니까 알아둬. 이 마을로 이사 오고 너가 첫 손님이니까 여기 선물을 줄게!
+harvestfestival.quest.tutorial.supermarket.welcome.guest=누군가를 계속 찾고 있었는데, 마침 너가 와줬구나. 안녕, 너가 이 마을에서 제일 귀여울 것 같진 않구나! 난 캔디스라고 해. 아래층의 제니는 이곳의 오너야. 난 그냥 이곳의 세입자일 뿐이야. 무언가 필요하면 제니를 만나러 가, 그녀는 수요일과 일요일을 뺀 매일 오전 9시에서 오후 5시까지 영업을 해. 그리고, 토요일에는 오전 11시에서 오후 3시까지 문을 열고 있어. 제니가 너에게 이것을 주라고 부탁했어.
+
+#Cafe Cooking Lesson
+harvestfestival.quest.tutorial.cafe.welcome=카페에 오신걸 환영해요. 전 이곳의 오너인 리아라 입니다. 우리는 요리에 대한 진정한 열정을 쏟아 여러분들께 최고의 요리를 선사합니다. 당신이 요리를 어떻게 하는지 모른다면 기쁘게 가르쳐 드릴게요.
+harvestfestival.quest.tutorial.cafe.question=요리하는 법을 배우시겠습니까?
+harvestfestival.quest.tutorial.cafe.tutorial=@요리를 가르쳐 주세요.
+harvestfestival.quest.tutorial.cafe.skip=@요리하는 방법은 알고 있어요.
+harvestfestival.quest.tutorial.cafe.completed=그건 멋진 일이에요! 기쁘게 당신께 시작하기 위한 물건을 드릴게요.
+harvestfestival.quest.tutorial.cafe.explain=멋진 일이군요! 당신을 기쁘게 가르쳐 드릴게요. 시작하기 위해서는 몇가지 유형의 기구가 필요해요. 가장 기본적인 것은 식칼과 쌍을 이루는  부엌 조리대에요. 레시피를 준비하는 방법을 알아야 겠죠? 다양한 레시피를 저에게 살 수 있지만 일단 여기 순무 피클 레시피를 드릴게요. 레시피를 사용하는 방법은 레시피를 들고 마우스 우클릭을 하면 되요. 레시피를 보려면 레시피 모음집을 펴고 기구를 선택한 뒤 조리법을 선택하세요. 그러면 오른쪽에 필요한 재료가 나올거에요. 만약 재료와 기구가 준비되어 있다면, 재료를 기구에 넣으세요. 그러면 요리가 시작될 거에요. 물론, 당신이 부엌 조리대 앞에 있다면 말이죠! 그다음에 식칼을 들고 오른쪽 클릭을 해서 재료를 썰면 되요. 만약 새로운 조리 기구가 필요하다면, 당신께 기꺼이 팔아 드릴게요. 하지만, 조리 기구는 일요일에만 팔고 있어요. 마지막으로 한가지 더, 책에 있는 레시피는 매우 기본적인 방법이에요. 다양한 재료를 추가해서 시도를 해보고 더 나은 조리방법을 찾을 수 있어요. 다양한 시도를 해 보세요. 시간 내주셔서 감사해요.
+
+#Upgrading Tools Tutorial
+harvestfestival.quest.tutorial.upgrading.reminder.blacksmith.yulif=너 대장간 가서 대장장이를 좀 만나봐.
+harvestfestival.quest.tutorial.upgrading.reminder.blacksmith.goddess=당신, 제가 듣기로 대장장이가 당신을 만나길 희망한다고 해요.
+harvestfestival.quest.tutorial.upgrading.reminder.blacksmith.jim=다니엘이 너에게 관심 있다고 나한테 말하던데?
+harvestfestival.quest.tutorial.upgrading.reminder.blacksmith.jenni=다니엘에게 가서 대화를 걸어봐.
+harvestfestival.quest.tutorial.upgrading.reminder.blacksmith.candice=거기 멋쟁이! 다니엘이 자기를 보고싶어 하더라.
+harvestfestival.quest.tutorial.upgrading.reminder.blacksmith.jade=제가 소문을 들었는데, 대장장이가 당신에게 무언가 할 말이 있어서 찾는다고 들었어요.
+harvestfestival.quest.tutorial.upgrading.reminder.blacksmith.brandon=너에게 줄게 있긴 한데 다니엘부터 만나고 와.
+harvestfestival.quest.tutorial.upgrading.blacksmith.yulif=너 대장간이랑 광산 관리소에 좀 가보는게 좋을거 같은데?
+harvestfestival.quest.tutorial.upgrading.blacksmith.goddess=당신, 광산 관리소와 대장간을 짓는것을 권유드리죠.
+harvestfestival.quest.tutorial.upgrading.blacksmith.jim=대장장이와 광산은 매우 중요한 투자가 될거야.
+harvestfestival.quest.tutorial.upgrading.blacksmith.jenni=대장간과 광산 관리소를 만들 필요가 있을거야.
+harvestfestival.quest.tutorial.upgrading.blacksmith.candice=나도 광산의 깊은곳으로 가서 딱딱한 물건을 위한 작업을 해보고 싶어. 저기, 날위해서 대장간과 광산을 만들 수 있을까?
+harvestfestival.quest.tutorial.upgrading.blacksmith.jade=제가 소문을 들었는데, 대장장이와 광부가 우리 마을로 이사오길 원한다는 이야기를 들었어요.
+harvestfestival.quest.tutorial.upgrading.blacksmith.brandon=여기에 올 수 있어서 기뻐. 근데 대장장이인 다니엘도 이곳에 초대하는건 어떨까?
+harvestfestival.quest.tutorial.upgrading.intro=내가 모험해봤던 엔더를 빼고는, 여기보다 나은 장소는 없어 보이는군. 난 다니엘이라 해 대장장이지. 도움이 필요하면 말해.
+harvestfestival.quest.tutorial.upgrading.question=도구를 강화하는 방법은 알고있어?
+harvestfestival.quest.tutorial.upgrading.tutorial=@아무것도 몰라.
+harvestfestival.quest.tutorial.upgrading.skip=@모든 방법을 알고있어.
+harvestfestival.quest.tutorial.upgrading.completed=좋아! 너에게 약간의 광물과 망치를 줄게.
+harvestfestival.quest.tutorial.upgrading.explain=좋아! 너에게 강화하는 방법을 알려주지. 일단 숙련도를 100%%로 올려, 만약 숙련도가 100%%가 되었다면 도구를 가지고 나한테 와. 물론 강화에는 광석과 수수료가 필요해. 필요한 걸 모두 준다면 바로 강화를 시작할 거야. 강화하는 데는 며칠이 걸릴 거야. 그리고 강화 전에 필요한 물품을 모른다면, 나에게 물어봐. 광물을 구하려면 광산에 들어갈 필요가 있고, 망치를 챙겨야 할 거야. 광맥을 찾아서 망치로 부수면 광물을 얻을 수 있어. 아참, 광부인 브랜던이 너에게 줄 선물이 있다고 하더군. 만나러 가보는 게 좋을 거야.
+harvestfestival.quest.tutorial.upgrading.reminder.visit=기억하고 있지? 광부인 브랜던이 너를 만나고 싶다고 했어.
+harvestfestival.quest.tutorial.upgrading.complete=휴우.. 방금 광산을 다녀왔는데, 끔찍한 경험을 했어. 너가 날 이 마을로 올 수 있게 도와줬으니, 내가 아래서 찾은 걸 줄게. 난 별로 갖고 싶지 않아.
+
+#Building the Goddess a Home
+harvestfestival.quest.tutorial.pond.please=당신은 이 마을을 재건하는데 놀라운 일을 해 주었습니다. 마을이 성장하는 모습을 보니 정말로 기뻐요! 저도 이곳에 영구적인 집을 갖고 싶답니다. 만일 당신이 저를 위해 지어주신다면, 당신에게 사례를 해 드리겠습니다.
+harvestfestival.quest.tutorial.pond.thanks=이 마을을 다시 지키는 노고에 이 이상으로 감사를 드릴 수가 없겠어요. 감사의 말 대신에 당신에게 환상적인 딸기를 선물로 드릴게요. 이건 제가 제일 좋아하는 것이에요! 다음에 만나요!
+
+##Trading Quests
+# Priest Blessing Quest
+harvestfestival.quest.trade.cursed.accept=젊은이 고마워, 이제 자네의 도구를 축복할 수 있겠어. 축복에는 시간이 걸리니 3일 후에 다시 오게나.
+harvestfestival.quest.trade.cursed.gold=아하, 저주받은 도구를 가지고 있구먼 10000골드만 내면 저주를 풀어주겠네.
+harvestfestival.quest.trade.cursed.wait=오랜만이군, 도구의 축복은 순조로워. %s일 후 다시 방문하게나.
+harvestfestival.quest.trade.cursed.done=%s의 축복이 완료되었으니 가져가게나.
+
+# Priest Repair Quests
+harvestfestival.quest.trade.bless.repair.gold=축복받은 도구를 가지고 있군, 500골드만 주면 수리해주겠네.
+harvestfestival.quest.trade.bless.repair.done=전능하신 여신님, 여신님의 능력으로 이 도구를 다시한번 축복하고 회복시켜 주시길 바라옵니다.
+
+# Trader Johan Quests
+harvestfestival.quest.trade.vanilla.egg=달걀 고맙다. 여기 고향의 것입니다. 기쁘게 무역 하게 됐숴요.
+harvestfestival.quest.trade.vanilla.milk=맛있어 보이는 우유 입니다. 여기 우리 고향 우유 한 양동이 있숴요.
+harvestfestival.quest.trade.vanilla.wool=이 양털 옷 만들기 좋겠숴요. 여기 우리 고향 양털 드리겠숴요.
+
+# Blacksmith Upgrades
+harvestfestival.quest.trade.upgrade.level=도구의 숙련도가 100%%가 아니군 숙련도부터 채우고 다시오도록!
+harvestfestival.quest.trade.upgrade.gold=이 도구를 강화 하려면 %s가 필요해, 충분히 챙겨서 다시 와!
+harvestfestival.quest.trade.upgrade.material=이 도구를 강화하려면 %1s가 %2s개 필요해.
+harvestfestival.quest.trade.upgrade.accept=내가 할 일을 할 테니 3일뒤에 다시와.
+harvestfestival.quest.trade.upgrade.done=자 여기 %s. 열심히 일해봐.
+harvestfestival.quest.trade.upgrade.wait=아직 강화가 안끝났으니 %s일뒤 다시와.
+harvestfestival.quest.trade.upgrade.repair.gold=이 도구를 수리하려면 %s골드가 필요해 돈좀 벌어와.
+harvestfestival.quest.trade.upgrade.repair.material=이 도구를 수리하려면 %s가 필요해.
+harvestfestival.quest.trade.upgrade.repair.start=지금부터 수리할거니까 내일 다시 와.
+
+# Jade Seed Trades
+harvestfestival.quest.trade.seeds.reminder=씨앗이 필요하면, 저에게 꽃 5송이만 가져오세요. 씨앗을 드리죠.
+harvestfestival.quest.trade.seeds.complete.yes=꽃 고마워요. 여기 씨앗이에요.
+harvestfestival.quest.trade.seeds.complete.no=미안하지만 올해를 위해 준비한 씨앗이 더이상 없어요.
+
+# Jade Tools Trades
+harvestfestival.quest.trade.tools.hoe=돌 괭이를 가져왔군요! 여기 당신을 위한 새로운 괭이가 있어요.
+harvestfestival.quest.trade.tools.wateringcan=양동이 고마워요, 여기 물뿌리개를 받으세요!
+harvestfestival.quest.trade.tools.sickle=가위를 가져와 주었군요! 낫으로 바꿔드리죠.
+harvestfestival.quest.trade.tools.reminder=다시한번 알려드리죠, 저에게는 여분의 물뿌리개와 괭이, 낫이 있어요. 만약 필요하다면 양동이를 물뿌리개로, 돌 괭이를 괭이로, 가위를 낫으로 바꿔드리죠.
+
+# Goddess Free Carpenter
+harvestfestival.quest.trade.carpenter.thanks=고마워요 당신, 여기 여분의 목공소 설계도에요.
+
+## Recipe Quests
+harvestfestival.quest.recipe.corn.baked.text=[누가주는 퀘스트인지 제보 바랍니다]넌 날 정말 편하게 해줬어, 너에게는 나의 비밀 레시피인 구운 옥수수 레시피를 줄게.
+harvestfestival.quest.recipe.butter.text=[누가주는 퀘스트인지 제보 바랍니다]내 도구들이 왜 그리 성능이 좋은지 알려줄게, 나는 내 도구에 약간 버터를 발라서 코팅을 해.
+harvestfestival.quest.recipe.potato.candied.text=[누가주는 퀘스트인지 제보 바랍니다]Why sir, it has been just splending getting to know you. I am happy to share with you a family recipe.
+harvestfestival.quest.recipe.cake.chocolate.text=[누가주는 퀘스트인지 제보 바랍니다]It's been great getting to know, really has. Now this one is a sure winner, have a slice of cake.
+harvestfestival.quest.recipe.cookies.chocolate.text=[누가주는 퀘스트인지 제보 바랍니다]You know what makes cookies even better? A little bit of chocolate.
+harvestfestival.quest.recipe.dinnerroll.text=[누가주는 퀘스트인지 제보 바랍니다]It's been a real pleasure getting to know. I've got a recipe for you that Fenn just loves.
+harvestfestival.quest.recipe.doughnut.text=[누가주는 퀘스트인지 제보 바랍니다]Without a doubt you are now one of my favourite people, I've another recipe, this time it's my favourite.
+harvestfestival.quest.recipe.dumplings.text=[누가주는 퀘스트인지 제보 바랍니다]The spirit has been kind to you. For that I would like to award you with Dumplings.
+harvestfestival.quest.recipe.fish.stew.text=[누가주는 퀘스트인지 제보 바랍니다]Did you ever think what I do with my fish. Well I tend to have them in a stew. Here's how I do it.
+harvestfestival.quest.recipe.fishsticks.text=[누가주는 퀘스트인지 제보 바랍니다]I like to keep things simple when I'm cooking. How about some Fish Fingers?
+harvestfestival.quest.recipe.fries.french.text=[누가주는 퀘스트인지 제보 바랍니다]My my, we really have gotten to know each other haven't we. I've travelled many places. But I've yet to see anywhere that has such a recipe as I am about to give you.
+harvestfestival.quest.recipe.toast.french.text=[누가주는 퀘스트인지 제보 바랍니다]Oh my dear, Getting to know you has been lovely. I've actually been practicing my cooking, and am happy to share with you the next level of toast.
+harvestfestival.quest.recipe.fish.grilled.text=[누가주는 퀘스트인지 제보 바랍니다]Stews are nice, but when I really want to get something, I like to grill my fish, just like this.
+harvestfestival.quest.recipe.chocolate.hot.text=[누가주는 퀘스트인지 제보 바랍니다]Thanks for spending your time getting to know me. I'm happy to give you one of my recipes I've been working on.
+harvestfestival.quest.recipe.milk.hot.text=[누가주는 퀘스트인지 제보 바랍니다]Well then, You've really brought a shine to my life with your gorgeousness. I love my milk for sure, but even more when it's hot. Just like you!
+harvestfestival.quest.recipe.noodles.text=[누가주는 퀘스트인지 제보 바랍니다]Ehh, I guess you're my friend now. I only really know how to make noodles though.
+harvestfestival.quest.recipe.omelet.rice.text=[누가주는 퀘스트인지 제보 바랍니다]It seems like you've really saw past what all the others think. I can now call you a friend. And friends share Omelette Rice.
+harvestfestival.quest.recipe.pancake.savoury.text=[누가주는 퀘스트인지 제보 바랍니다]You may like your pancakes sweet, but I've always preferred them savoury. If you don't know how to make them like that, here's a guide.
+harvestfestival.quest.recipe.juice.pineapple.text=널 알게된건 달콤한 일이야. 여기 달콤한 레시피를 줄게.
+harvestfestival.quest.recipe.popcorn.text=[누가주는 퀘스트인지 제보 바랍니다]Nothing I love a bit more than heading to the movies, watching the latest fox film and snacking on popcorn.
+harvestfestival.quest.recipe.porridge.text=[누가주는 퀘스트인지 제보 바랍니다]This porridge recipe is something my mother used to make me. And now as we've grown closer, I'm happy to share it with you, my sweet.
+harvestfestival.quest.recipe.potsticker.text=[누가주는 퀘스트인지 제보 바랍니다]For being such a wonderful friend. And staying beside me through thick and fin, I'd love to give you this gift.
+harvestfestival.quest.recipe.risotto.text=[누가주는 퀘스트인지 제보 바랍니다]You know how I said I only know noodles. Well I've been learning now, this is what I've been practicing.
+harvestfestival.quest.recipe.salad.text=[누가주는 퀘스트인지 제보 바랍니다]You've been a good friend, so take this.
+harvestfestival.quest.recipe.egg.scrambled.text=[누가주는 퀘스트인지 제보 바랍니다]My mind is so confused on who to choose, you could say it's scrambled.
+harvestfestival.quest.recipe.soup.rice.text=[누가주는 퀘스트인지 제보 바랍니다]I am obligated to give you this.
+harvestfestival.quest.recipe.stew.text=[누가주는 퀘스트인지 제보 바랍니다]Looking after Liara was a real chore. She was a troublesome child. I couldn't find anything to calm her down. Until one day, I decided to just make a stew. And well since then she's been an angel. Perhaps sharing this recipe with others, will relax them too.
+harvestfestival.quest.recipe.milk.strawberry.text=[누가주는 퀘스트인지 제보 바랍니다]무엇이 우유를 더 근사하게 만들어 줄까요?
+harvestfestival.quest.recipe.toast.text=유리프는 제게 아직도 요리하는 법을 가르쳐 주려고 하지 않아요. 그렇지만 토스트를 만드는 방법쯤은 알고 있죠.
+harvestfestival.quest.recipe.latte.vegetable.text=[누가주는 퀘스트인지 제보 바랍니다]나는이 불경한 물건을 빨리 치워야겠어. 가져가.
+
+
+###Achievements
+achievement.harvestfestival.summon=여신의 대리
+achievement.harvestfestival.summon.desc=여신의 꽃 소환하기
+achievement.harvestfestival.visitor=새로운 시작
+achievement.harvestfestival.visitor.desc=제이드와 대화하기
+achievement.harvestfestival.harvest=이제 시작이야!
+achievement.harvestfestival.harvest.desc=첫 번째 순무를 수확하기
+achievement.harvestfestival.onion=여름
+achievement.harvestfestival.onion.desc=And I'll be doing whatever snow does
+achievement.harvestfestival.spinach=뽀빠이
+achievement.harvestfestival.spinach.desc=시금치를 먹어서 강려크해졌다
+achievement.harvestfestival.milker=모모 우유
+achievement.harvestfestival.milker.desc=소한테 첫번째 우유 얻기
+achievement.harvestfestival.milkerLarge=Gallon Load
+achievement.harvestfestival.milkerLarge.desc=소한테 대용량 우유 얻기
+achievement.harvestfestival.egger=에그몽(Kinder Egg)
+achievement.harvestfestival.egger.desc=닭한테 첫번째 달걀 얻기
+achievement.harvestfestival.eggerLarge=부활절 달걀(Easter Egg)
+achievement.harvestfestival.eggerLarge.desc=그런 이스터 에그 아닙니다
+achievement.harvestfestival.firstShipping=요! 거기 보트 여기!
+achievement.harvestfestival.firstShipping.desc=첫번째 물건 출하 하기
+achievement.harvestfestival.millionaire=트럼프의 대출금
+achievement.harvestfestival.millionaire.desc=누구 백만장자 될 사람?
+achievement.harvestfestival.theMine=아래로 갑세
+achievement.harvestfestival.theMine.desc=광산 들어가기...
+achievement.harvestfestival.killChick=이거 받아라!
+achievement.harvestfestival.killChick.desc=그거 기이하구만...
+achievement.harvestfestival.killChicken=모두 다 자랐어
+achievement.harvestfestival.killChicken.desc=닭들이 은근 사납다 생각했었지
+achievement.harvestfestival.killSheep=미안 숀!
+achievement.harvestfestival.killSheep.desc=적어도 담요 하나 정도 만들 순 있겠군
+achievement.harvestfestival.killCow=음뭬에에
+achievement.harvestfestival.killCow.desc=누가 이 동물들을 감염시켰나?
+achievement.harvestfestival.firstChristmas=메리 크리스마스!
+achievement.harvestfestival.firstChristmas.desc=그 누구도 방해받지 않았지 심지어 쥐들도
+achievement.harvestfestival.birthday=생일 축하!
+achievement.harvestfestival.birthday.desc=넌 밖으로 더 많이 나아가야 해
+achievement.harvestfestival.friend= 친구들
+achievement.harvestfestival.friend.desc=널 위해 거기 있을게
+achievement.harvestfestival.marriage=사랑과 결혼
+achievement.harvestfestival.marriage.desc=둘이 타는 자전거
+achievement.harvestfestival.junk=임시변통
+achievement.harvestfestival.junk.desc=우리 모두 어디가 됐든 시작해야 해
+achievement.harvestfestival.copper=Cu later
+achievement.harvestfestival.copper.desc=주석이 어딨더라?
+achievement.harvestfestival.silver=은 수저
+achievement.harvestfestival.silver.desc=이제 늑대인간만 있으면 되겠네
+achievement.harvestfestival.gold=골든게이트
+achievement.harvestfestival.gold.desc=금레기 라고?
+achievement.harvestfestival.mystril=눈부셔
+achievement.harvestfestival.mystril.desc=미스릴이야 완전 쩔어
+achievement.harvestfestival.cooking=첫 식사
+achievement.harvestfestival.cooking.desc=첫번째 식사 만들어보기
+achievement.harvestfestival.recipes=마스터 쉐프
+achievement.harvestfestival.recipes.desc=요리법 50개 배우기
+
+###Sounds
+harvestfestival.subtitle.fryingpan=지글지글
+harvestfestival.subtitle.counter=싹둑싹둑
+harvestfestival.subtitle.fridge=냉장고 문
+harvestfestival.subtitle.mixer=위이이잉
+harvestfestival.subtitle.oven=오븐 작동음
+harvestfestival.subtitle.ovendoor=오븐 덮개
+harvestfestival.subtitle.ovendone=오븐 완료음
+harvestfestival.subtitle.pot=부글부글
+harvestfestival.subtitle.smashrock=돌 내리치는 소리
+harvestfestival.subtitle.smashwood=나무 패는 소리
+harvestfestival.subtitle.blessing=천상의 소리
+harvestfestival.subtitle.godddess=여신의 기척
+harvestfestival.subtitle.recipe=요리법을 알았다!
+
+#Config
+harvestfestival.config.tooltip=

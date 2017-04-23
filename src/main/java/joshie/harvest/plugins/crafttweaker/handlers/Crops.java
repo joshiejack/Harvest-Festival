@@ -18,6 +18,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.common.EnumPlantType;
 import stanhebben.zenscript.annotations.ZenClass;
@@ -36,15 +37,22 @@ public class Crops {
     @ZenMethod
     @SuppressWarnings("unused")
     public static void addCrop(String name) {
-        MineTweakerAPI.apply(new Add(name));
+        MineTweakerAPI.apply(new Add(name, name));
+    }
+
+    @ZenMethod
+    @SuppressWarnings("unused")
+    public static void addCrop(String name, String localised) {
+        MineTweakerAPI.apply(new Add(name, localised));
     }
 
     private static class Add extends BaseOnce {
         private final ResourceLocation resource;
+        private final String localised;
 
-
-        public Add(String name) {
+        public Add(String name, String localised) {
             this.resource = new ResourceLocation(MODID, name);
+            this.localised = localised;
         }
 
         @Override
@@ -59,7 +67,19 @@ public class Crops {
 
         @Override
         public void applyOnce() {
-            new Crop(resource).setSkipRender();
+            new Crop(resource) {
+                @Override
+                public String getLocalizedName(boolean isItem) {
+                    return localised;
+                }
+
+                @Override
+                public String getSeedsName() {
+                    String seeds = I18n.translateToLocal("harvestfestival.crop.seeds");
+                    String format = I18n.translateToLocal("harvestfestival.crop.seeds.format");
+                    return String.format(format, getLocalizedName(true), seeds);
+                }
+            }.setSkipRender();
         }
     }
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

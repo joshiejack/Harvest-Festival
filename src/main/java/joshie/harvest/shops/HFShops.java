@@ -336,7 +336,7 @@ public class HFShops {
             CARPENTER.addPurchasable(new PurchasableDestroy(-15000L, HFBuildings.CHURCH));
             CARPENTER.addPurchasable(new PurchasableDestroy(-30000L, HFBuildings.TOWNHALL));
         }
-        
+
         CARPENTER.setSpecialRules(new SpecialRulesQuest(Quests.YULIF_MEET));
         CARPENTER.addOpening(MONDAY, 9000, 17500).addOpening(TUESDAY, 9000, 17500).addOpening(WEDNESDAY, 9000, 17500);
         CARPENTER.addOpening(THURSDAY, 9000, 17500).addOpening(FRIDAY, 9000, 17500).addOpening(SUNDAY, 9000, 17500);

@@ -33,6 +33,7 @@
 * You will now unlock the church when you have nine npcs in town
 * You will now unlock the townhall when you have built nine buildings
 * Added the "park building", can be purchased as soon as you have built poultry farm or animal ranch or general store, it's intended to be used for festivals
+* Added demolish to the carpenters 'sell' menu. Will destroy that building.
 
 ###CraftTweaker
 * Add support for blacklisting hoes/seeds/items being giftable

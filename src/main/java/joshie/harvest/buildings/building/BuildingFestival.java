@@ -34,7 +34,7 @@ public class BuildingFestival extends Building {
     }
 
     private void removeOldFestival(Festival oldFestival, World world, BlockPos pos, Rotation rotation, TownDataServer town) {
-        if (oldFestival.affectsFestivalGrounds()) getFestivalTemplateFromFestival(oldFestival).removeBlocks(world, pos, rotation, Blocks.AIR.getDefaultState()); //Remove the old festival
+        if (oldFestival.affectsFestivalGrounds()) getFestivalTemplateFromFestival(oldFestival).removeBlocks(world, pos, rotation, Blocks.AIR.getDefaultState(), false); //Remove the old festival
         if (oldFestival.getQuest() != null) town.getQuests().removeAsCurrent(world, oldFestival.getQuest());
     }
 
@@ -43,7 +43,7 @@ public class BuildingFestival extends Building {
         if (newFestival.getQuest() != null) town.getQuests().startQuest(newFestival.getQuest(), true, null);
     }
 
-    private HFTemplate getFestivalTemplateFromFestival(Festival festival) {
+    public static HFTemplate getFestivalTemplateFromFestival(Festival festival) {
         return (getGson().fromJson(ResourceLoader.getJSONResource(festival.getResource(), "festivals"), HFTemplate.class));
     }
 }

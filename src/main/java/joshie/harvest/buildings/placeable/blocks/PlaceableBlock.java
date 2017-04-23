@@ -64,7 +64,7 @@ public class PlaceableBlock extends Placeable {
     }
 
     @Override
-    public final void remove(World world, BlockPos pos, Rotation rotation, ConstructionStage stage, IBlockState state) {
+    public void remove(World world, BlockPos pos, Rotation rotation, ConstructionStage stage, IBlockState state) {
         if (canPlace(stage)) {
             BlockPos transformed = getTransformedPosition(pos, rotation);
             world.setBlockState(transformed, state);

@@ -272,6 +272,7 @@ public class HFShops {
     }
 
     private static void registerCarpenter() {
+        CARPENTER.addPurchasable(new PurchasableBuilding(0L, HFBuildings.CARPENTER, Logs.of(24)));
         CARPENTER.addPurchasable(new PurchasableBuilding(5000L, HFBuildings.SUPERMARKET, Logs.of(96), Stone.of(32)));
         CARPENTER.addPurchasable(new PurchasableBuilding(4000L, HFBuildings.BARN, Logs.of(96)));
         CARPENTER.addPurchasable(new PurchasableBuilding(3000L, HFBuildings.POULTRY_FARM, Logs.of(96)));
@@ -318,6 +319,24 @@ public class HFShops {
         //Selling things to the carpenter
         CARPENTER.addPurchasable(-1, new ItemStack(Blocks.LOG));
         CARPENTER.addPurchasable(-1, new ItemStack(Blocks.STONE));
+        if (HFBuildings.ENABLE_DEMOLITION) {
+            //Selling buildings
+            CARPENTER.addPurchasable(new PurchasableDestroy(-10L, HFBuildings.CARPENTER));
+            CARPENTER.addPurchasable(new PurchasableDestroy(-3000L, HFBuildings.SUPERMARKET));
+            CARPENTER.addPurchasable(new PurchasableDestroy(-2000L, HFBuildings.BARN));
+            CARPENTER.addPurchasable(new PurchasableDestroy(-2000L, HFBuildings.POULTRY_FARM));
+            CARPENTER.addPurchasable(new PurchasableDestroy(-500L, HFBuildings.FESTIVAL_GROUNDS));
+            CARPENTER.addPurchasable(new PurchasableDestroy(-2000L, HFBuildings.MINING_HILL));
+            CARPENTER.addPurchasable(new PurchasableDestroy(-5000L, HFBuildings.BLACKSMITH));
+            CARPENTER.addPurchasable(new PurchasableDestroy(-6000L, HFBuildings.FISHING_HUT));
+            CARPENTER.addPurchasable(new PurchasableDestroy(-2000L, HFBuildings.FISHING_HOLE));
+            CARPENTER.addPurchasable(new PurchasableDestroy(-5000L, HFBuildings.CAFE));
+            CARPENTER.addPurchasable(new PurchasableDestroy(-10000L, HFBuildings.CLOCKMAKER));
+            CARPENTER.addPurchasable(new PurchasableDestroy(-5000L, HFBuildings.GODDESS_POND));
+            CARPENTER.addPurchasable(new PurchasableDestroy(-15000L, HFBuildings.CHURCH));
+            CARPENTER.addPurchasable(new PurchasableDestroy(-30000L, HFBuildings.TOWNHALL));
+        }
+        
         CARPENTER.setSpecialRules(new SpecialRulesQuest(Quests.YULIF_MEET));
         CARPENTER.addOpening(MONDAY, 9000, 17500).addOpening(TUESDAY, 9000, 17500).addOpening(WEDNESDAY, 9000, 17500);
         CARPENTER.addOpening(THURSDAY, 9000, 17500).addOpening(FRIDAY, 9000, 17500).addOpening(SUNDAY, 9000, 17500);

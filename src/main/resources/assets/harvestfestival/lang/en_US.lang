@@ -78,6 +78,10 @@ harvestfestival.structures.townhall.tooltip=The ultimate hub, unlocks some event
 harvestfestival.structures.festivals=Park
 harvestfestival.structures.festivals.tooltip=This is where festivals will take place. Don't place anything on the grounds as it will get removed whenever a festival is near.
 harvestfestival.structures.null=Invalid
+harvestfestival.structures.demolish=Demolish %s
+harvestfestival.structures.warning1=WARNING! Destroys all blocks!
+harvestfestival.structures.warning2=WARNING! Destroys all frames/paintings!
+harvestfestival.structures.warning3=WARNING! Kills all npcs that live here!
 
 #Cheat Items (Translators don't bother tranlating these, I just use them to help with dev)
 harvestfestival.cheat.coord.setter=[BuildingGen] Coordinate Setter
@@ -591,7 +595,7 @@ harvestfestival.cookware.steamer=Steamer
 harvestfestival.storage.shipping=Shipment Box
 harvestfestival.storage.shipping.tooltip=Every day at 6am the powers that be drop by and collect any items you place in here, along with payment.
 harvestfestival.storage.mailbox=Mailbox
-harvestfestival.storage.mailbox.tooltip=With a mailbox you will receive invites to special events. You can also sometimes receive gifts in the mail.
+harvestfestival.storage.mailbox.tooltip=With a mailbox you will receive invites to special events.
 harvestfestival.storage.basket=Shipping Basket
 harvestfestival.storage.basket.tooltip=If you place the basket on your head, it will automatically ship anything that you pickup. It also allows you to harvest crops in a 1x3 area.
 harvestfestival.sized.incubator=Incubator

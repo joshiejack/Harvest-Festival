@@ -70,6 +70,17 @@ public class TownDataServer extends TownData<QuestDataServer, LetterDataServer> 
         this.birthday = date.copy();
     }
 
+    public void removeBuilding(TownBuilding theBuilding) {
+        buildings.remove(theBuilding.building.getResource());
+        inhabitants.removeAll(theBuilding.building.getInhabitants());
+        for (NPC npc: theBuilding.building.getInhabitants()) {
+            deadVillagers.remove(npc.getResource());
+        }
+
+        HFTrackers.markTownsDirty();
+        PacketHandler.sendToEveryone(new PacketRemoveBuilding(getID(), theBuilding.building));
+    }
+
     @Override
     public QuestDataServer getQuests() {
         return quests;

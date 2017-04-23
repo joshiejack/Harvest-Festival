@@ -61,9 +61,11 @@ public class HFTemplate {
         return components;
     }
 
-    public void removeBlocks(World world, BlockPos pos, Rotation rotation, IBlockState state) {
+    public void removeBlocks(World world, BlockPos pos, Rotation rotation, IBlockState state, boolean removeEntities) {
         if (!world.isRemote) {
             if (components != null) {
+                if (removeEntities) for (int i = components.length - 1; i >= 0; i--) components[i].remove(world, pos, rotation, ConstructionStage.MOVEIN, state);
+                if (removeEntities) for (int i = components.length - 1; i >= 0; i--) components[i].remove(world, pos, rotation, ConstructionStage.PAINT, state);
                 for (int i = components.length - 1; i >= 0; i--) components[i].remove(world, pos, rotation, ConstructionStage.DECORATE, state);
                 for (int i = components.length - 1; i >= 0; i--) components[i].remove(world, pos, rotation, ConstructionStage.BUILD, state);
                 MCServerHelper.markForUpdate(world, pos);

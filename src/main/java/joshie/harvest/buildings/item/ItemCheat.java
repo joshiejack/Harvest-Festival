@@ -155,13 +155,15 @@ public class ItemCheat extends ItemHFEnum<ItemCheat, Cheat> {
             }
 
             HFTemplate template = BuildingRegistry.INSTANCE.getTemplateForBuilding(HFBuildings.FESTIVAL_GROUNDS);
-            template.removeBlocks(world, pos, Rotation.NONE, Blocks.END_STONE.getDefaultState());
-            for (Pair<BlockPos, IBlockState> pair: states) {
-                world.setBlockState(pair.getLeft(), pair.getRight());
-            }
+            if (template != null) {
+                template.removeBlocks(world, pos, Rotation.NONE, Blocks.END_STONE.getDefaultState(), false);
+                for (Pair<BlockPos, IBlockState> pair : states) {
+                    world.setBlockState(pair.getLeft(), pair.getRight());
+                }
 
-            world.setBlockState(pos, Blocks.END_STONE.getDefaultState());
-            world.setBlockState(pos.south(30).east(37).up(9), Blocks.END_STONE.getDefaultState());
+                world.setBlockState(pos, Blocks.END_STONE.getDefaultState());
+                world.setBlockState(pos.south(30).east(37).up(9), Blocks.END_STONE.getDefaultState());
+            }
         } else if (damage == PARK_LOCATIONS_GENERATOR.ordinal() && pos1 != null && pos2 != null) {
             new CodeGeneratorBuildings(world, pos1.getX(), pos1.getY(), pos1.getZ(), pos2.getX(), pos2.getY(), pos2.getZ(), true).getCode();
             return EnumActionResult.SUCCESS;

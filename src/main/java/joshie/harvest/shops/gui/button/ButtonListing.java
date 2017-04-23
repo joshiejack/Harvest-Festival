@@ -75,10 +75,12 @@ public class ButtonListing<I extends IPurchasable> extends GuiButton {
             drawForeground(mc, fontrenderer, j);
             GlStateManager.color(1.0F, 1.0F, 1.0F);
 
-            if (originalState == HOVER && purchasable.getCost() >= 0) {
+            if (originalState == HOVER) {
                 List<String> list = new ArrayList<>();
                 purchasable.addTooltip(list);
-                shop.addTooltip(list);
+                if (purchasable.getCost() >= 0) {
+                    shop.addTooltip(list);
+                }
             }
         }
     }

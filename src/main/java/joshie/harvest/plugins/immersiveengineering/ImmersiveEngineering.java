@@ -1,8 +1,19 @@
 package joshie.harvest.plugins.immersiveengineering;
 
-/*@HFLoader(mods = "immersiveengineering", priority = -1)
+import joshie.harvest.core.util.annotations.HFLoader;
+import joshie.harvest.crops.HFCrops;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.FluidStack;
+
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
+@HFLoader(mods = "immersiveengineering", priority = -1)
 @SuppressWarnings("unused")
 public class ImmersiveEngineering {
+    /*
     private static Crop HEMP;
 
     @ItemStackHolder(value = "immersiveengineering:material", meta = 4)
@@ -23,7 +34,7 @@ public class ImmersiveEngineering {
     public static void init() {
         HEMP.setDropHandler(new DropHandlerHemp(hemp.getItem())).setItem(hemp);
         HFApi.crops.registerSeedForBlacklisting(hemp_seeds);
-    }
+    } */
 
     @SuppressWarnings("unchecked, unused")
     public static void postInit() throws ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException {
@@ -31,4 +42,4 @@ public class ImmersiveEngineering {
         Method method = clazz.getMethod("addRecipe", FluidStack.class, ItemStack.class, Object.class, int.class);
         method.invoke(null, FluidRegistry.getFluidStack("plantoil", 750), new ItemStack(Blocks.WOOL), HFCrops.SEEDS, 6400);
     }
-}*/
+}

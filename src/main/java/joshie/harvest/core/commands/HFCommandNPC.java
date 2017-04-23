@@ -27,6 +27,6 @@ public class HFCommandNPC extends AbstractHFCommand {
 
     @Override
     public String getUsage() {
-        return "";
+        return "/hf npclist";
     }
 }

@@ -71,7 +71,7 @@ public class InventoryHelper {
     private static <T> void takeItems(EntityPlayer player, T taking, int amount, Matcher<T> matcher) {
         int toTake = amount;
         ItemStack offhand = player.inventory.offHandInventory.get(0);
-        if (offhand != null && matcher.matches(offhand, taking)) {
+        if (matcher.matches(offhand, taking)) {
             ItemStack taken = offhand.splitStack(toTake);
             toTake -= taken.stackSize;
             if (offhand.stackSize <= 0) player.inventory.offHandInventory[0] = null; //Clear

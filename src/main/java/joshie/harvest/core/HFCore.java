@@ -46,6 +46,7 @@ import static net.minecraft.block.BlockDoublePlant.EnumPlantType.*;
 import static net.minecraftforge.fml.common.registry.EntityRegistry.registerModEntity;
 
 @HFLoader(priority = HFCORE)
+@SuppressWarnings("unused")
 public class HFCore {
     public static final Fluid GODDESS = registerFluid(new Fluid("goddess_water", new ResourceLocation(MODID, "blocks/goddess_still"), new ResourceLocation(MODID, "blocks/goddess_flow")).setRarity(EnumRarity.RARE));
     public static final BlockGoddessWater GODDESS_WATER = new BlockGoddessWater(GODDESS).register("goddess_water");
@@ -61,7 +62,7 @@ public class HFCore {
         LootFunctionManager.registerFunction(new SetEnum.Serializer());
         LootFunctionManager.registerFunction(new SetSizeable.Serializer());
         RegistryHelper.registerTiles(TileShipping.class, TileMailbox.class, TilePlate.class, TileBasket.class, TileFestivalPot.class);
-        registerModEntity(EntityBasket.class, "basket", EntityIDs.BASKET, HarvestFestival.instance, 150, 3, true);
+        registerModEntity(new ResourceLocation(MODID, "basket"), EntityBasket.class, "basket", EntityIDs.BASKET, HarvestFestival.instance, 150, 3, true);
         registerSounds("kerching");
         GODDESS.setBlock(GODDESS_WATER);
 
@@ -141,6 +142,6 @@ public class HFCore {
         NO_TICK_OFFLINE = getBoolean("Server doesn't update time when no players online", false);
         DISPLAY_SHIPPED_LIST = getBoolean("Shipped items list > Enabled", true, "Will display a list of items and how much they were sold for when they day changes. Needs to be enabled on the client and the server to work");
         DISPLAY_SHIPPED_TICKS_ON_SCREEN = getInteger("Shipped items list > Ticks Displayed", 500, "This is the number of ticks the list will stay on the screen for, before scrolling off");
-        MOBS_ONLY_SPAWN_UNDERGROUND_IN_OVERWORLD = getInteger("Mobs in overworld only spawn under Y value", 50, "Set to 0, or less for no mob spawns. Set to 256 or greater to disable.");
+        MOBS_ONLY_SPAWN_UNDERGROUND_IN_OVERWORLD = getInteger("Mobs in overworld only spawn under Y value", 60, "Set to 0, or less for no mob spawns. Set to 256 or greater to disable.");
     }
 }

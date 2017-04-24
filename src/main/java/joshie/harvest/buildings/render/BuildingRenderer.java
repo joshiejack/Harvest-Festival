@@ -17,6 +17,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.Map.Entry;
 
 @SideOnly(Side.CLIENT)
+@SuppressWarnings("WeakerAccess")
 public class BuildingRenderer {
     protected final RegionRenderCacheBuilder renderer;
     private final BuildingKey key;
@@ -39,7 +40,7 @@ public class BuildingRenderer {
         }
     }
 
-    protected void addRender(IBlockAccess world, IBlockState state, BlockPos pos, BlockRenderLayer layer, VertexBuffer buffer) {
+    void addRender(IBlockAccess world, IBlockState state, BlockPos pos, BlockRenderLayer layer, VertexBuffer buffer) {
         if (state.getBlock().canRenderInLayer(state, layer)) {
             Minecraft.getMinecraft().getBlockRendererDispatcher().renderBlock(state, pos, world, buffer);
         }

@@ -95,9 +95,9 @@ public class PurchasableEntity implements IPurchasable {
 
     @Override
     public void onPurchased(EntityPlayer aPlayer) {
-        if (!aPlayer.worldObj.isRemote) {
+        if (!aPlayer.world.isRemote) {
             EntityPlayerMP player = (EntityPlayerMP)aPlayer;
-            EntityAnimal theEntity = createEntity(player.worldObj);
+            EntityAnimal theEntity = createEntity(player.world);
             if (theEntity != null) {
 
                 theEntity.setPosition(player.posX, player.posY, player.posZ);
@@ -109,7 +109,7 @@ public class PurchasableEntity implements IPurchasable {
                 }
 
                 //Spawn the entity
-                player.worldObj.spawnEntityInWorld(theEntity);
+                player.world.spawnEntity(theEntity);
 
                 //Notify the client
                 if (stats != null) {

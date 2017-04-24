@@ -45,7 +45,7 @@ public class CommandManager extends CommandBase {
 
     private World getWorld(ICommandSender sender) {
         if (sender instanceof EntityPlayer) {
-            return ((EntityPlayer) sender).worldObj;
+            return ((EntityPlayer) sender).world;
         }
 
         if (FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER) {

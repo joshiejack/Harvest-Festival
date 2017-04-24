@@ -40,7 +40,7 @@ public class StackRenderHelper {
         net.minecraft.client.renderer.RenderHelper.enableGUIStandardItemLighting();
         Minecraft mc = MCClientHelper.getMinecraft();
         mc.getRenderItem().renderItemAndEffectIntoGUI(stack, (int) (left / size), (int) (top / size));
-        String display = stack.stackSize > 1 ? stack.stackSize + "" : "";
+        String display = stack.getCount() > 1 ? stack.getCount() + "" : "";
         mc.getRenderItem().renderItemOverlayIntoGUI(mc.fontRendererObj, stack, (int) (left / size), (int) (top / size), display);
         net.minecraft.client.renderer.RenderHelper.disableStandardItemLighting();
         GlStateManager.disableLighting();
@@ -61,7 +61,7 @@ public class StackRenderHelper {
         net.minecraft.client.renderer.RenderHelper.enableGUIStandardItemLighting();
         Minecraft mc = MCClientHelper.getMinecraft();
         renderItemAndEffectIntoGUI(mc.getRenderItem(), MCClientHelper.getPlayer(), stack, (int) (left / size), (int) (top / size));
-        String display = stack.stackSize > 1 ? stack.stackSize + "" : "";
+        String display = stack.getCount() > 1 ? stack.getCount() + "" : "";
         mc.getRenderItem().renderItemOverlayIntoGUI(mc.fontRendererObj, stack, (int) (left / size), (int) (top / size), display);
         net.minecraft.client.renderer.RenderHelper.disableStandardItemLighting();
         GlStateManager.disableLighting();

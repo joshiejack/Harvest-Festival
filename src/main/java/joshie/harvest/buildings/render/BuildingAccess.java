@@ -20,10 +20,12 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.WorldType;
 import net.minecraft.world.biome.Biome;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.Map;
 
+@SuppressWarnings("WeakerAccess")
 public class BuildingAccess implements IBlockAccess {
     private final Map<BlockPos, IBlockState> mapping = new HashMap<>();
 
@@ -70,39 +72,42 @@ public class BuildingAccess implements IBlockAccess {
     }
 
     @Override
-    public int getCombinedLight(BlockPos pos, int lightValue) {
+    public int getCombinedLight(@Nonnull BlockPos pos, int lightValue) {
         return 15;
     }
 
     @Override
-    public IBlockState getBlockState(BlockPos pos) {
+    @Nonnull
+    public IBlockState getBlockState(@Nonnull BlockPos pos) {
         IBlockState state = mapping.get(pos);
         return state != null ? state : Blocks.AIR.getDefaultState();
     }
 
     @Override
-    public boolean isAirBlock(BlockPos pos) {
+    public boolean isAirBlock(@Nonnull BlockPos pos) {
         IBlockState state = mapping.get(pos);
         return state != null && state.getBlock() == Blocks.AIR;
     }
 
     @Override
-    public Biome getBiome(BlockPos pos) {
+    @Nonnull
+    public Biome getBiome(@Nonnull BlockPos pos) {
         return Biomes.PLAINS;
     }
 
     @Override
-    public int getStrongPower(BlockPos pos, EnumFacing direction) {
+    public int getStrongPower(@Nonnull BlockPos pos, @Nonnull EnumFacing direction) {
         return 0;
     }
 
     @Override
+    @Nonnull
     public WorldType getWorldType() {
         return WorldType.DEFAULT;
     }
 
     @Override
-    public boolean isSideSolid(BlockPos pos, EnumFacing side, boolean _default) {
+    public boolean isSideSolid(@Nonnull BlockPos pos, @Nonnull EnumFacing side, boolean _default) {
         IBlockState state = mapping.get(pos);
         return state != null && state.isSideSolid(this, pos, side);
     }

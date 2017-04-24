@@ -33,6 +33,7 @@ import static joshie.harvest.api.knowledge.Category.*;
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 
 @HFLoader
+@SuppressWarnings("unused")
 public class HFNotes {
     public static final Note BLUEPRINTS = registerNote(TOWNSHIP, "blueprints");
     public static final Note SHOPPING = registerNote(TOWNSHIP, "shops");
@@ -75,7 +76,6 @@ public class HFNotes {
     }
 
     @SideOnly(Side.CLIENT)
-    @SuppressWarnings("unused")
     public static void postInitClient() {
         BLUEPRINTS.setIcon(HFBuildings.BLUEPRINTS.getStackFromObject(HFBuildings.CARPENTER));
         CROP_FARMING.setIcon(new ItemStack(Items.CARROT));

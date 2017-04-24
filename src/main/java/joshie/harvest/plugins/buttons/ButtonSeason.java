@@ -71,11 +71,11 @@ public class ButtonSeason extends ButtonMode<HFSeason> {
 
         @Override
         public void onServerClick(EntityPlayerMP player) {
-            World world = player.worldObj;
+            World world = player.world;
             CalendarServer calendar = HFTrackers.getCalendar(world);
             int day = calendar.getDate().getDay();
             int year = Math.max(1, calendar.getDate().getYear());
-            long leftover = player.worldObj.getWorldTime() % HFCalendar.TICKS_PER_DAY;
+            long leftover = player.world.getWorldTime() % HFCalendar.TICKS_PER_DAY;
             world.setWorldTime(CalendarHelper.getTime(day, season, year) + leftover);
             calendar.recalculateAndUpdate(world);
         }

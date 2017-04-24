@@ -31,6 +31,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
 import org.apache.commons.lang3.text.WordUtils;
 
+import javax.annotation.Nonnull;
 import java.util.Locale;
 
 import static joshie.harvest.core.HFTab.FARMING;
@@ -59,6 +60,7 @@ public class RegistryHelper {
         final ModelResourceLocation fluidLocation = new ModelResourceLocation(MODID + ":fluids", name);
         ModelLoader.setCustomStateMapper(block, new StateMapperBase() {
             @Override
+            @Nonnull
             protected ModelResourceLocation getModelResourceLocation(IBlockState state) {
                 return fluidLocation;
             }
@@ -79,7 +81,7 @@ public class RegistryHelper {
         return addHandlersToCrop(name, (Tree) new Tree(new ResourceLocation(MODID, name)).setDropHandler(new DropHandlerTree()));
     }
 
-    public static <C extends Crop> C addHandlersToCrop(String name, C crop) {
+    private static <C extends Crop> C addHandlersToCrop(String name, C crop) {
         //Atempt to add a drop handler
         try {
             DropHandler handler = (DropHandler) Class.forName(DROPHANDLERS + WordUtils.capitalizeFully(name.replace("_", " ")).replace(" ", "")).newInstance();

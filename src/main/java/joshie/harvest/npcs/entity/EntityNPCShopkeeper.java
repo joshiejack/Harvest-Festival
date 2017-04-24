@@ -28,10 +28,10 @@ public class EntityNPCShopkeeper extends EntityNPCHuman<EntityNPCShopkeeper> {
     public void onLivingUpdate() {
         super.onLivingUpdate();
 
-        if (!worldObj.isRemote) {
-            EntityNPCHuman human = new EntityNPCVillager(worldObj, npc);
+        if (!world.isRemote) {
+            EntityNPCHuman human = new EntityNPCVillager(world, npc);
             human.setPositionAndUpdate(posX, posY, posZ);
-            worldObj.spawnEntityInWorld(human);
+            world.spawnEntity(human);
             setDead(); //Kill this entity
         }
     }

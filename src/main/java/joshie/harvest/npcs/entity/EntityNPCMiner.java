@@ -22,7 +22,7 @@ public class EntityNPCMiner extends EntityNPCHuman<EntityNPCMiner> {
     }
 
     private EntityNPCMiner(EntityNPCMiner entity) {
-        this(entity.worldObj, entity.npc);
+        this(entity.world, entity.npc);
     }
 
     @Override

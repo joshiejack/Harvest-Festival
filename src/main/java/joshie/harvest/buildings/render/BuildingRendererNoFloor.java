@@ -7,6 +7,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
+@SuppressWarnings("WeakerAccess")
 public class BuildingRendererNoFloor extends BuildingRenderer {
 
     BuildingRendererNoFloor(BuildingAccess world, BuildingKey key) {

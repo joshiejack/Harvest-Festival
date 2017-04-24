@@ -36,7 +36,7 @@ import static net.minecraft.util.text.TextFormatting.AQUA;
 import static net.minecraftforge.common.EnumPlantType.Plains;
 
 public class BlockFlower extends BlockHFEnum<BlockFlower, FlowerType> implements IPlantable {
-    protected static final AxisAlignedBB FLOWER_AABB = new AxisAlignedBB(0.30000001192092896D, 0.0D, 0.30000001192092896D, 0.699999988079071D, 0.6000000238418579D, 0.699999988079071D);
+    private static final AxisAlignedBB FLOWER_AABB = new AxisAlignedBB(0.30000001192092896D, 0.0D, 0.30000001192092896D, 0.699999988079071D, 0.6000000238418579D, 0.699999988079071D);
 
     public BlockFlower() {
         super(Material.PLANTS, FlowerType.class, HFTab.GATHERING);
@@ -81,11 +81,11 @@ public class BlockFlower extends BlockHFEnum<BlockFlower, FlowerType> implements
     }
 
     @Override
-    public boolean canPlaceBlockAt(World world, BlockPos pos) {
+    public boolean canPlaceBlockAt(World world, @Nonnull BlockPos pos) {
         return super.canPlaceBlockAt(world, pos) && canBlockStay(world, pos, world.getBlockState(pos));
     }
 
-    protected boolean canSustainBush(IBlockState state) {
+    private boolean canSustainBush(IBlockState state) {
         return state.getMaterial() == Material.GROUND || state.getMaterial() == Material.GRASS;
     }
 
@@ -96,14 +96,14 @@ public class BlockFlower extends BlockHFEnum<BlockFlower, FlowerType> implements
         checkAndDropBlock(world, pos, state);
     }
 
-    protected void checkAndDropBlock(World world, BlockPos pos, IBlockState state) {
+    private void checkAndDropBlock(World world, BlockPos pos, IBlockState state) {
         if (!canBlockStay(world, pos, state)) {
             dropBlockAsItem(world, pos, state, 0);
             world.setBlockToAir(pos);
         }
     }
 
-    public boolean canBlockStay(World world, BlockPos pos, IBlockState state) {
+    private boolean canBlockStay(World world, BlockPos pos, IBlockState state) {
         if (state.getBlock() == this) {
             IBlockState soil = world.getBlockState(pos.down());
             return soil.getBlock().canSustainPlant(soil, world, pos.down(), net.minecraft.util.EnumFacing.UP, this);

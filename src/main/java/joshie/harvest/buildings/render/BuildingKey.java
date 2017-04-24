@@ -5,6 +5,7 @@ import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import org.apache.commons.lang3.ObjectUtils;
 
+@SuppressWarnings("WeakerAccess")
 public class BuildingKey {
     private final Rotation rotation;
     private final Building building;

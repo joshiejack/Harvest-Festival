@@ -1,12 +1,9 @@
 package joshie.harvest.core.helpers;
 
-import joshie.harvest.core.network.PenguinPacketLocation;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.multiplayer.PlayerControllerMP;
 import net.minecraft.entity.Entity;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.relauncher.Side;
@@ -21,22 +18,11 @@ public class MCClientHelper {
     }
 
     public static EntityPlayerSP getPlayer() {
-        return getMinecraft().thePlayer;
+        return getMinecraft().player;
     }
 
     public static World getWorld() {
-        return getPlayer().worldObj;
-    }
-
-    /** Update the block at the coordinates for re-rendering **/
-    public static void updateRender(BlockPos pos) {
-        refresh(getDimension(), pos);
-    }
-
-    public static void refresh(int dimension, BlockPos pos) {
-        if (getWorld().provider.getDimension() == dimension) {
-            getWorld().markBlockRangeForRenderUpdate(pos, pos);
-        }
+        return getPlayer().world;
     }
 
     /** Calls a for a re-render of all surrounding blocks **/
@@ -47,10 +33,6 @@ public class MCClientHelper {
     /** Returns the dimension the player is in **/
     public static int getDimension() {
         return getWorld().provider.getDimension();
-    }
-
-    public static TileEntity getTile(PenguinPacketLocation message) {
-        return getWorld().getTileEntity(message.pos);
     }
 
     public static void initGui() {

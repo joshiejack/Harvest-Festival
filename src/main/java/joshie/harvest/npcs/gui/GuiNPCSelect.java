@@ -36,7 +36,7 @@ public class GuiNPCSelect extends GuiNPCBase {
     @SuppressWarnings("unchecked")
     public GuiNPCSelect(EntityPlayer player, EntityNPC npc, int next, int selectionType) {
         super(new ContainerNull(), player, npc, next);
-        if (selectionType == NEXT_NONE) selection = NPCHelper.getShopSelection(player.worldObj, pos, npc.getNPC(), player);
+        if (selectionType == NEXT_NONE) selection = NPCHelper.getShopSelection(player.world, pos, npc.getNPC(), player);
         else {
             quest = QuestHelper.getSelectiomFromID(player, selectionType);
             selection = quest != null ? quest.getSelection(player, npc): null;

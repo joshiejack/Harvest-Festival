@@ -17,15 +17,13 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent.RightClickItem;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.HashMap;
 
 @HFEvents
 public class FishingHelper {
-    public static final HashMap<Pair<Season, WaterType>, ResourceLocation> FISHING_LOOT = new HashMap<>();
+    static final HashMap<Pair<Season, WaterType>, ResourceLocation> FISHING_LOOT = new HashMap<>();
 
     public static boolean isWater(World world, BlockPos... positions) {
         for (BlockPos pos: positions) {
@@ -41,7 +39,7 @@ public class FishingHelper {
         }
     }
 
-    public enum WaterType {
+    enum WaterType {
         OCEAN, LAKE, RIVER, POND
     }
 
@@ -64,10 +62,5 @@ public class FishingHelper {
 
     public static ResourceLocation getFishingTable(World world, BlockPos pos) {
         return FISHING_LOOT.get(getLocation(world, pos));
-    }
-
-    @SubscribeEvent
-    public void onItemRightClick(RightClickItem event) {
-
     }
 }

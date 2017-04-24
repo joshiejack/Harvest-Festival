@@ -168,7 +168,7 @@ public class QuestMeetJade extends QuestQuestion {
         }
 
         rewardItem(player, HFTools.SICKLE.getStack(BASIC));
-        Season season = HFApi.calendar.getDate(player.worldObj).getSeason();
+        Season season = HFApi.calendar.getDate(player.world).getSeason();
         if (season == SUMMER) rewardItem(player, HFCrops.ONION.getSeedStack(3));
         else if (season == AUTUMN) rewardItem(player, HFCrops.SPINACH.getSeedStack(3));
         else rewardItem(player, HFCrops.TURNIP.getSeedStack(3));

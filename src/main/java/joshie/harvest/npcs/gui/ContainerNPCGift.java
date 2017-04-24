@@ -29,10 +29,10 @@ public class ContainerNPCGift extends ContainerNPCChat {
     @Override
     public void onContainerClosed(EntityPlayer player) {
         npc.setTalking(null);
-        if (!player.worldObj.isRemote && hand != null) {
+        if (!player.world.isRemote && hand != null) {
             if (HFTrackers.getPlayerTrackerFromPlayer(player).getRelationships().gift(player, npc.getNPC(), 0)) {
                 ItemStack gift = player.getHeldItem(hand);
-                if (gift == null || NPCHelper.INSTANCE.getGifts().isBlacklisted(player.worldObj, player, gift)) return;
+                if (gift == null || NPCHelper.INSTANCE.getGifts().isBlacklisted(player.world, player, gift)) return;
 
                 NPC theNpc = npc.getNPC();
                 RelationshipDataServer relationships = HFTrackers.<PlayerTrackerServer>getPlayerTrackerFromPlayer(player).getRelationships();
@@ -40,7 +40,7 @@ public class ContainerNPCGift extends ContainerNPCChat {
                 /*if (ToolHelper.isBlueFeather(gift)) {
                     relationships.propose(player, theNpc.getUUID());
                 } else { */
-                CalendarDate today = HFApi.calendar.getDate(player.worldObj);
+                CalendarDate today = HFApi.calendar.getDate(player.world);
                 int points = theNpc.getGiftValue(gift).getRelationPoints();
                 if (!relationships.hasGivenGift(theNpc, RelationStatus.BIRTHDAY_GIFT) && theNpc.getBirthday().isSameDay(today)) {
                     relationships.setHasGivenGift(theNpc, RelationStatus.BIRTHDAY_GIFT);
@@ -63,7 +63,7 @@ public class ContainerNPCGift extends ContainerNPCChat {
 
             //On closure
             if (nextGui != GuiHandler.NEXT_NONE) {
-                player.openGui(HarvestFestival.instance, nextGui, player.worldObj, npc.getEntityId(), 0, -1);
+                player.openGui(HarvestFestival.instance, nextGui, player.world, npc.getEntityId(), 0, -1);
             }
         }
     }

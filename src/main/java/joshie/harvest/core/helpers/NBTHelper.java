@@ -182,7 +182,7 @@ public class NBTHelper {
         Item item = Item.getByNameOrId(nbt.getString("id"));
         if (item == null) return null; //DIE!
         ItemStack stack = new ItemStack(item);
-        stack.stackSize = nbt.getInteger("Count");
+        stack.setCount(nbt.getInteger("Count"));
         int damage = nbt.getShort("Damage");
 
         if (damage < 0){
@@ -201,7 +201,7 @@ public class NBTHelper {
     public static NBTTagCompound writeItemStack(ItemStack stack, NBTTagCompound nbt) {
         ResourceLocation resourcelocation = Item.REGISTRY.getNameForObject(stack.getItem());
         nbt.setString("id", resourcelocation == null ? "minecraft:air" : resourcelocation.toString());
-        nbt.setInteger("Count", stack.stackSize);
+        nbt.setInteger("Count", stack.getCount());
         nbt.setShort("Damage", (short)stack.getItemDamage());
 
         if (stack.getTagCompound() != null) {

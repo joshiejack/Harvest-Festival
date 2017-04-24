@@ -36,7 +36,7 @@ public class PacketSyncSold extends PacketNBT {
 
     @Override
     public void handlePacket(EntityPlayer player) {
-        TownData data = TownHelper.getTownByID(player.worldObj, uuid);
+        TownData data = TownHelper.getTownByID(player.world, uuid);
         if (data != null) {
             data.getShops().readFromNBT(tag);
         }

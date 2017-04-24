@@ -32,6 +32,6 @@ public class PacketQuestRemove extends PacketSharedSync {
 
     @Override
     public void handlePacket(EntityPlayer player) {
-        getQuestDataFromPlayer(player).removeAsCurrent(player.worldObj, quest);
+        getQuestDataFromPlayer(player).removeAsCurrent(player.world, quest);
     }
 }

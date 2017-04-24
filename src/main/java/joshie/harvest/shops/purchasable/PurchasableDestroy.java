@@ -58,9 +58,9 @@ public class PurchasableDestroy extends Purchasable {
         TownBuilding theBuilding = town.getBuilding(building);
         HFTemplate template = BuildingRegistry.INSTANCE.getTemplateForBuilding(building);
         if (template != null && theBuilding != null) {
-            template.removeBlocks(player.worldObj, theBuilding.pos, theBuilding.rotation, Blocks.AIR.getDefaultState(), true);
+            template.removeBlocks(player.world, theBuilding.pos, theBuilding.rotation, Blocks.AIR.getDefaultState(), true);
             if (theBuilding.building == HFBuildings.FESTIVAL_GROUNDS) {
-                BuildingFestival.getFestivalTemplateFromFestival(town.getFestival()).removeBlocks(player.worldObj, theBuilding.pos, theBuilding.rotation, Blocks.AIR.getDefaultState(), true);
+                BuildingFestival.getFestivalTemplateFromFestival(town.getFestival()).removeBlocks(player.world, theBuilding.pos, theBuilding.rotation, Blocks.AIR.getDefaultState(), true);
             }
 
             TownHelper.<TownDataServer>getClosestTownToEntity(player, false).removeBuilding(theBuilding);

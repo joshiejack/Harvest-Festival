@@ -17,6 +17,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 
+import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Locale;
 import java.util.WeakHashMap;
@@ -33,6 +34,7 @@ public class BuildingHelper {
         }
     }
 
+    @Nullable
     public static RayTraceResult rayTrace(EntityPlayer player, double blockReachDistance, float partialTicks) {
         Vec3d vec3d = getPositionEyes(player, partialTicks);
         Vec3d vec3d1 = player.getLook(partialTicks);

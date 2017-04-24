@@ -14,6 +14,7 @@ import static joshie.harvest.shops.HFShops.BLOODMAGE;
 
 @ObjectHolder("BloodMagic")
 @HFLoader(mods = "BloodMagic")
+@SuppressWarnings("unused")
 public class BloodMagic {
     public static final Item ItemSoulSnare = null;
     public static final Item ItemSoulGem = null;

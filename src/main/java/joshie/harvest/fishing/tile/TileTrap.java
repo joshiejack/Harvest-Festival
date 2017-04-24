@@ -78,7 +78,7 @@ public class TileTrap extends TileSingleStack {
     }
 
     private ResourceLocation getLootTable() {
-        return worldObj.rand.nextInt(4) == 0 ? FishingHelper.getFishingTable(worldObj, pos) : LootStrings.TRAP_JUNK;
+        return world.rand.nextInt(4) == 0 ? FishingHelper.getFishingTable(world, pos) : LootStrings.TRAP_JUNK;
     }
 
     private boolean isSurroundedByWater(World world, BlockPos pos) {

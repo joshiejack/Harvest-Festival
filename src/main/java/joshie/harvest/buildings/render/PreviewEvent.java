@@ -30,14 +30,15 @@ public class PreviewEvent {
     private ItemStack held; //Cache the held itemstack
     private Building building; //Cache the building value
 
+    @SuppressWarnings("ConstantConditions")
     private BuildingRenderer getRenderer(World world, EntityPlayerSP player) throws ExecutionException {
         if (player == null) return null;
         ItemStack stack = player.getHeldItemMainhand();
-        if (isInvalidStack(stack)) {
+        if (!isBuildingItem(stack)) {
             stack = player.getHeldItemOffhand();
         }
 
-        if (isInvalidStack(stack)) return null;
+        if (!isBuildingItem(stack)) return null;
         else {
             if (stack != held) {
                 if (stack.getItem() == HFBuildings.BLUEPRINTS) building = HFBuildings.BLUEPRINTS.getObjectFromStack(stack);
@@ -62,10 +63,6 @@ public class PreviewEvent {
 
     private boolean isBuildingItem(ItemStack stack) {
         return stack.getItem() == HFBuildings.BLUEPRINTS || stack.getItem() == HFBuildings.STRUCTURES;
-    }
-
-    private boolean isInvalidStack(ItemStack stack) {
-        return stack == null || stack.getItem() == null || !isBuildingItem(stack);
     }
 
     private void renderRenderer(EntityPlayerSP player, BuildingRenderer renderer, float partialTick) {

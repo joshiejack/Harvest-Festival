@@ -22,6 +22,7 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nonnull;
 import java.util.List;
 import java.util.Locale;
 
@@ -42,7 +43,7 @@ public class ItemAnimalSpawner extends ItemHFEnum<ItemAnimalSpawner, Spawner> {
         super(Spawner.class);
     }
 
-    public EntityAgeable getEntityFromEnum(World world, Spawner spawner) {
+    private EntityAgeable getEntityFromEnum(World world, Spawner spawner) {
         switch (spawner) {
             case COW:
                 return new EntityHarvestCow(world);
@@ -56,7 +57,9 @@ public class ItemAnimalSpawner extends ItemHFEnum<ItemAnimalSpawner, Spawner> {
     }
 
     @Override
-    public EnumActionResult onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+    @Nonnull
+    public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+        ItemStack stack = player.getHeldItem(hand);
         if (!world.isRemote) {
             EntityAgeable entity = getEntityFromEnum(world, getEnumFromStack(stack));
             if (entity != null) {
@@ -64,7 +67,7 @@ public class ItemAnimalSpawner extends ItemHFEnum<ItemAnimalSpawner, Spawner> {
                 entity.setPosition(pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5);
                 AnimalStats stats = EntityHelper.getStats(entity);
                 if (stats != null) {
-                    world.spawnEntityInWorld(entity);
+                    world.spawnEntity(entity);
                 }
             }
         }

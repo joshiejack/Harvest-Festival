@@ -1,7 +1,5 @@
 package joshie.harvest.npcs;
 
-import com.google.common.cache.Cache;
-import com.google.common.cache.CacheBuilder;
 import joshie.harvest.HarvestFestival;
 import joshie.harvest.api.buildings.BuildingLocation;
 import joshie.harvest.api.npc.INPCHelper;
@@ -30,24 +28,17 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
-import net.minecraftforge.fml.common.registry.IForgeRegistry;
-import net.minecraftforge.fml.common.registry.RegistryBuilder;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
 @HFApiImplementation
 public class NPCHelper implements INPCHelper {
-    //TODO: Remove in 0.7+
-    public static final IForgeRegistry<NPC> OLD_REGISTRY = new RegistryBuilder<NPC>().setName(new ResourceLocation("harvestfestival", "npcs")).setType(NPC.class).setIDRange(0, 32000).create();
-    private static final Cache<EntityPlayer, Map<Shop, ShopSelection>> selections = CacheBuilder.newBuilder().build();
     public static final NPCHelper INSTANCE = new NPCHelper();
     private final GiftRegistry gifts = new GiftRegistry();
 
@@ -73,15 +64,15 @@ public class NPCHelper implements INPCHelper {
 
     @Override
     public void forceScriptOpen(EntityPlayer player, EntityAgeable npc, Script script) {
-        player.openGui(HarvestFestival.instance, GuiHandler.FORCED_NPC, player.worldObj, npc.getEntityId(), Script.REGISTRY.getValues().indexOf(script), -1);
+        player.openGui(HarvestFestival.instance, GuiHandler.FORCED_NPC, player.world, npc.getEntityId(), Script.REGISTRY.getValues().indexOf(script), -1);
     }
 
     public static BlockPos getCoordinatesForLocation(EntityNPCHuman npc, @Nonnull BuildingLocation location) {
         return npc.getHomeTown().getCoordinatesFor(location);
     }
 
-    public static Selection getShopSelection(World worldObj, BlockPos pos, NPC npc, EntityPlayer player) {
-        return new ShopSelection(npc.getShop(worldObj, pos, player), player);
+    public static Selection getShopSelection(World world, BlockPos pos, NPC npc, EntityPlayer player) {
+        return new ShopSelection(npc.getShop(world, pos, player), player);
     }
 
     public static BlockPos getHomeForEntity(EntityNPC entity) {
@@ -112,7 +103,7 @@ public class NPCHelper implements INPCHelper {
     }
 
     private static boolean canPlayerOpenShop(NPC npc, Shop shop, @Nonnull EntityPlayer player) {
-        return (!player.worldObj.isRemote && HFTrackers.<PlayerTrackerServer>getPlayerTrackerFromPlayer(player).getRelationships().isStatusMet(npc, RelationStatus.MET) || player.worldObj.isRemote) && (shop.canBuyFromShop(player) || shop.canSellToShop(player));
+        return (!player.world.isRemote && HFTrackers.<PlayerTrackerServer>getPlayerTrackerFromPlayer(player).getRelationships().isStatusMet(npc, RelationStatus.MET) || player.world.isRemote) && (shop.canBuyFromShop(player) || shop.canSellToShop(player));
     }
 
     public static boolean isShopOpen(EntityNPC npc, World world, @Nonnull EntityPlayer player) {

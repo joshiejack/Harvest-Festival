@@ -64,7 +64,7 @@ public class EntityHarvestChicken extends EntityChicken implements IEntityAdditi
     @Override
     @Nonnull
     public EntityHarvestChicken createChild(EntityAgeable ageable) {
-        return new EntityHarvestChicken(worldObj);
+        return new EntityHarvestChicken(world);
     }
 
     @Override
@@ -74,7 +74,7 @@ public class EntityHarvestChicken extends EntityChicken implements IEntityAdditi
             if (toLoveTicker >= 0) toLoveTicker--;
             else {
                 if (!stats.performTest(AnimalTest.BEEN_LOVED)) {
-                    stats.performAction(worldObj, null, AnimalAction.PETTED); //Love <3
+                    stats.performAction(world, null, AnimalAction.PETTED); //Love <3
                 }
 
                 tickToLove = false;

@@ -44,7 +44,8 @@ public class ItemBook extends ItemHFEnum<ItemBook, Book> implements ICreativeSor
 
     @Override
     @Nonnull
-    public ActionResult<ItemStack> onItemRightClick(ItemStack stack, World world, EntityPlayer player, EnumHand hand) {
+    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, @Nonnull EnumHand hand) {
+        ItemStack stack = player.getHeldItem(hand);
         if (!player.isSneaking()) {
             player.openGui(HarvestFestival.instance, getEnumFromStack(stack).getGuiID(), world, 0, 0, 0);
             return new ActionResult<>(EnumActionResult.SUCCESS, stack);

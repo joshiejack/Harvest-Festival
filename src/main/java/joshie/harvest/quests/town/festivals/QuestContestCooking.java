@@ -91,7 +91,7 @@ public class QuestContestCooking extends QuestContest<CookingContestEntries> {
             if (entries.isEntered(player)) return getLocalized("start");
         }
 
-        return player.worldObj.rand.nextInt(4) == 0 ? getLocalized("wait") : null;
+        return player.world.rand.nextInt(4) == 0 ? getLocalized("wait") : null;
     }
 
 

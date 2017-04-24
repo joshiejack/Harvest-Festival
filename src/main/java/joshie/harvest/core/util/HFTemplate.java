@@ -80,10 +80,10 @@ public class HFTemplate {
     public EnumActionResult placeBlocks(World world, BlockPos pos, Rotation rotation, @Nullable Building building, @Nullable Replaceable replaceable) {
         if (!world.isRemote) {
             if (components != null) {
-                for (Placeable placeable : components) placeable.place(world, pos, rotation, ConstructionStage.BUILD, false);
-                for (Placeable placeable : components) placeable.place(world, pos, rotation, ConstructionStage.DECORATE, false);
-                for (Placeable placeable : components) placeable.place(world, pos, rotation, ConstructionStage.PAINT, false);
-                for (Placeable placeable : components) placeable.place(world, pos, rotation, ConstructionStage.MOVEIN, false);
+                for (Placeable placeable : components) placeable.place(world, pos, rotation, ConstructionStage.BUILD, false, replaceable);
+                for (Placeable placeable : components) placeable.place(world, pos, rotation, ConstructionStage.DECORATE, false, replaceable);
+                for (Placeable placeable : components) placeable.place(world, pos, rotation, ConstructionStage.PAINT, false, replaceable);
+                for (Placeable placeable : components) placeable.place(world, pos, rotation, ConstructionStage.MOVEIN, false, replaceable);
                 if (building != null) {
                     TownHelper.<TownDataServer>getClosestTownToBlockPos(world, pos, true).addBuilding(world, building, rotation, pos);
                 }

@@ -38,14 +38,14 @@ public abstract class TileFillableConnected<T extends TileFillableConnected> ext
     @SuppressWarnings("unchecked")
     public T getMaster() {
         BlockPos connection = pos.add(offsetX, 0, offsetZ);
-        return isValidConnection(connection) ? (T) worldObj.getTileEntity(connection) : (T) this;
+        return isValidConnection(connection) ? (T) world.getTileEntity(connection) : (T) this;
     }
 
     @SuppressWarnings("unchecked, ConstantConditions")
     private boolean updateMasterInDirection(EnumFacing facing) {
         BlockPos offset = pos.offset(facing);
         if (isValidConnection(offset)) {
-            TileFillableConnected master = ((TileFillableConnected)worldObj.getTileEntity(offset)).getMaster();
+            TileFillableConnected master = ((TileFillableConnected)world.getTileEntity(offset)).getMaster();
             if (master.getSize() < maxWidth) {
                 int offsetX = master.getPos().getX() - getPos().getX();
                 int offsetZ = master.getPos().getZ() - getPos().getZ();
@@ -84,7 +84,7 @@ public abstract class TileFillableConnected<T extends TileFillableConnected> ext
     public void onPlaced() {
         updateMaster();
         setFilled(getFillAmount());
-        if (!worldObj.isRemote) {
+        if (!world.isRemote) {
             MCServerHelper.sendTileUpdate(this, new PacketClearNeighbours(pos));
         }
     }
@@ -95,7 +95,7 @@ public abstract class TileFillableConnected<T extends TileFillableConnected> ext
             for (int z = -2; z <= 2; z++) {
                 BlockPos offset = pos.add(x, 0, z);
                 if (isValidConnection(offset)) {
-                    TileFillableConnected connected = ((TileFillableConnected)worldObj.getTileEntity(offset));
+                    TileFillableConnected connected = ((TileFillableConnected)world.getTileEntity(offset));
                     if (connected.getMaster() == this) {
                         return getPos().add(x, 0, z);
                     }
@@ -112,7 +112,7 @@ public abstract class TileFillableConnected<T extends TileFillableConnected> ext
             for (int z = -2; z <= 2; z++) {
                 BlockPos offset = pos.add(x, 0, z);
                 if (isValidConnection(offset)) {
-                    TileFillableConnected tile = ((TileFillableConnected)worldObj.getTileEntity(offset));
+                    TileFillableConnected tile = ((TileFillableConnected)world.getTileEntity(offset));
                     if (tile.getMaster() == this) {
                         tile.offsetX = pos.getX() - tile.getPos().getX();
                         tile.offsetZ = pos.getZ() - tile.getPos().getZ();
@@ -138,7 +138,7 @@ public abstract class TileFillableConnected<T extends TileFillableConnected> ext
         }
 
         //Copy the contents from one tile to the next
-        master = newMaster != null ? (TileFillableConnected) worldObj.getTileEntity(newMaster) : master;
+        master = newMaster != null ? (TileFillableConnected) world.getTileEntity(newMaster) : master;
         if (master != null) {
             master.size = size;
             master.facingX = facingX;
@@ -148,7 +148,7 @@ public abstract class TileFillableConnected<T extends TileFillableConnected> ext
         }
 
         //Reset everything
-        if (!worldObj.isRemote) {
+        if (!world.isRemote) {
             MCServerHelper.sendTileUpdate(this, new PacketClearNeighbours(pos));
         }
     }

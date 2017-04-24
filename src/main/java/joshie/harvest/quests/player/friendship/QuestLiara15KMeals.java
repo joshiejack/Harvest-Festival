@@ -39,7 +39,7 @@ public class QuestLiara15KMeals extends QuestFriendshipStore {
     protected List<ItemStack> getRewardStacks(EntityPlayer player) {
         List<ItemStack> stacks = new ArrayList<>();
         for (int i = 0; i < 3; i++) {
-            Random rand = new Random(HFApi.calendar.getDate(player.worldObj).hashCode() + i);
+            Random rand = new Random(HFApi.calendar.getDate(player.world).hashCode() + i);
             List<Recipe> list = new ArrayList<>(Recipe.REGISTRY.values());
             ItemStack stack = null;
             while (stack == null || !stack.hasTagCompound()) {

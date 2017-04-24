@@ -44,8 +44,8 @@ public class GuiNPCShop extends GuiNPCBase {
     public GuiNPCShop(EntityPlayer player, EntityNPC npc, int nextGui, boolean isSelling) {
         super(new ContainerNull(), player, npc, nextGui);
         client = player;
-        shop = npc.getNPC().getShop(player.worldObj, pos, player);
-        if (shop == null || !NPCHelper.isShopOpen(npc.worldObj, npc, player, npc.getNPC().getShop(npc.worldObj, pos, player))) player.closeScreen();
+        shop = npc.getNPC().getShop(player.world, pos, player);
+        if (shop == null || !NPCHelper.isShopOpen(npc.world, npc, player, npc.getNPC().getShop(npc.world, pos, player))) player.closeScreen();
         stats = HFTrackers.getClientPlayerTracker().getStats();
         selling = isSelling;
     }
@@ -86,7 +86,7 @@ public class GuiNPCShop extends GuiNPCBase {
         contents.clear();
         ShopData data = TownHelper.getClosestTownToEntity(MCClientHelper.getPlayer(), false).getShops();
         for (IPurchasable purchasable: shop.getContents()) {
-            if (isAllowedInShop(purchasable) && purchasable.canList(client.worldObj, client) && data.canList(shop, purchasable)) {
+            if (isAllowedInShop(purchasable) && purchasable.canList(client.world, client) && data.canList(shop, purchasable)) {
                 contents.add(purchasable);
             }
         }
@@ -147,7 +147,7 @@ public class GuiNPCShop extends GuiNPCBase {
         Iterator<IPurchasable> it = contents.iterator();
         while (it.hasNext() && position <= 180) {
             IPurchasable purchasable = it.next();
-            if (pPosition >= start && purchasable.canList(client.worldObj, client) && data.canList(shop, purchasable)) {
+            if (pPosition >= start && purchasable.canList(client.world, client) && data.canList(shop, purchasable)) {
                 if (purchasable.getCost() < 0) {
                     buttonList.add(new ButtonListing(this, purchasable, id + 2, guiLeft + 28, 38 + guiTop + position));
                     position += 20;

@@ -114,7 +114,7 @@ public class RenderBasket extends Render<EntityBasket> {
         GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
         GlStateManager.pushMatrix();
         GlStateManager.translate(0F, 2F, 0F);
-        IBakedModel ibakedmodel = this.itemRenderer.getItemModelWithOverrides(itemstack, entity.worldObj, null);
+        IBakedModel ibakedmodel = this.itemRenderer.getItemModelWithOverrides(itemstack, entity.world, null);
         int j = 3;
         boolean flag1 = ibakedmodel.isGui3d();
 

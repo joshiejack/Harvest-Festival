@@ -90,7 +90,7 @@ public class ItemToolChargeable<I extends ItemToolChargeable> extends ItemTool<I
     @Override
     public void onUsingTick(ItemStack stack, EntityLivingBase player, int count) {
         if (count != 32000 && count % 20 == 0) {
-            if (player.worldObj.isRemote) {
+            if (player.world.isRemote) {
                 String name =  getLevelName(stack, getCharges(count));
                 if (name != null) {
                     ChatHelper.displayChat(TextFormatting.GREEN + TextHelper.formatHF("tool.charge", name));

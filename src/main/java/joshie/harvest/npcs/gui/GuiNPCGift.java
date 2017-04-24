@@ -33,7 +33,7 @@ public class GuiNPCGift extends GuiNPCChat {
 
     @Override
     public String getScript() {
-        if (NPCHelper.INSTANCE.getGifts().isBlacklisted(player.worldObj, player, gift)) return TextHelper.getSpeech(npc, "gift.no");
+        if (NPCHelper.INSTANCE.getGifts().isBlacklisted(player.world, player, gift)) return TextHelper.getSpeech(npc, "gift.no");
         //TODO: Reenable in 1.0 when I readd marriage
         /*
         if (ToolHelper.isBlueFeather(gift)) {

@@ -76,7 +76,7 @@ public class BlockLadder extends BlockHFEnumRotatableMeta<BlockLadder, Ladder> {
     @Override
     public boolean isLadder(IBlockState state, IBlockAccess world, BlockPos pos, EntityLivingBase entity) {
         //TODO: Readd in 1.0 as well as adding elevators to the mine on every 5th floor
-        /*if (!entity.worldObj.isRemote && entity.worldObj.provider.getDimension() == HFMining.MINING_ID) {
+        /*if (!entity.world.isRemote && entity.world.provider.getDimension() == HFMining.MINING_ID) {
             if (entity instanceof EntityPlayer) {
                 HFTrackers.<PlayerTrackerServer>getPlayerTrackerFromPlayer(((EntityPlayer)entity)).getTracking().setMineFloorReached(MiningHelper.getFloor(pos));
             }

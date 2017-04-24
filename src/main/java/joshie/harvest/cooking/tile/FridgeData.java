@@ -104,7 +104,7 @@ public class FridgeData implements IInventory {
             players = 0;
         }
 
-        player.worldObj.addBlockEvent(tile.getPos(), tile.getBlockType(), 1, players);
+        player.world.addBlockEvent(tile.getPos(), tile.getBlockType(), 1, players);
         tile.getWorld().playSound(null, tile.getPos().getX(), tile.getPos().getY(), tile.getPos().getZ(), HFSounds.FRIDGE, SoundCategory.BLOCKS, 2F, tile.getWorld().rand.nextFloat() * 0.1F + 0.9F);
     }
 
@@ -115,7 +115,7 @@ public class FridgeData implements IInventory {
             players = 0;
         }
 
-        player.worldObj.addBlockEvent(tile.getPos(), tile.getBlockType(), 1, players);
+        player.world.addBlockEvent(tile.getPos(), tile.getBlockType(), 1, players);
         tile.getWorld().playSound(null, tile.getPos().getX(), tile.getPos().getY(), tile.getPos().getZ(), HFSounds.FRIDGE, SoundCategory.BLOCKS, 2F, tile.getWorld().rand.nextFloat() * 0.1F + 0.9F);
         tile.saveAndRefresh(); //Update the client about this
     }

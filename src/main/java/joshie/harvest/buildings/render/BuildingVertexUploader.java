@@ -15,6 +15,7 @@ import java.nio.ByteBuffer;
 import java.util.List;
 
 @SideOnly(Side.CLIENT)
+@SuppressWarnings("WeakerAccess")
 public class BuildingVertexUploader extends WorldVertexBufferUploader {
     @Override
     public void draw(VertexBuffer vertexBufferIn) {

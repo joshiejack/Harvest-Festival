@@ -91,7 +91,7 @@ public class HFNPCs {
         EntityRegistry.registerModEntity(EntityNPCVillager.class, "villager", EntityIDs.VILLAGER, HarvestFestival.instance, 80, 3, true);
         EntityRegistry.registerModEntity(EntityNPCBuilder.class, "builder", EntityIDs.BUILDER, HarvestFestival.instance, 80, 3, true);
         //TODO: Remove in 0.7+
-        EntityRegistry.registerModEntity(EntityNPCShopkeeper.class, "shopkeeper", EntityIDs.SHOPKEEPER, HarvestFestival.instance, 80, 3, true);
+        EntityRegistry.registerModEntity(EntityNPCShopkeeper.class, "shopkeeper", EntityIDs.UNUSED, HarvestFestival.instance, 80, 3, true);
         EntityRegistry.registerModEntity(EntityNPCGoddess.class, "goddess", EntityIDs.GODDESS, HarvestFestival.instance, 80, 3, true);
         EntityRegistry.registerModEntity(EntityNPCMiner.class, "miner", EntityIDs.MINER, HarvestFestival.instance, 80, 3, true);
         registerSounds("goddess", "blessing");

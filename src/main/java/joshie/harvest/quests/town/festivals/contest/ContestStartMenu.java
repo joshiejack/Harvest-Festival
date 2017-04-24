@@ -18,7 +18,7 @@ public class ContestStartMenu extends Selection<QuestContest> {
         if (option == 1) {
             quest.targetEntries(player, entity);
             quest.getEntries().startContest(player); //Spawn any relevant data
-            quest.getEntries().sort(quest, player.worldObj); //Sort the entries
+            quest.getEntries().sort(quest, player.world); //Sort the entries
             quest.setStage(QuestContest.START); //Mark as having started
             quest.syncData(player); //Sync up to the client
             quest.setTown(entity.getTown());

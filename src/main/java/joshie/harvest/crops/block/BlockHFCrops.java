@@ -451,7 +451,7 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
 
     @SideOnly(Side.CLIENT)
     @Override
-    public boolean addHitEffects(IBlockState state, World worldObj, RayTraceResult target, ParticleManager manager) {
+    public boolean addHitEffects(IBlockState state, World world, RayTraceResult target, ParticleManager manager) {
         return true;
     }
 

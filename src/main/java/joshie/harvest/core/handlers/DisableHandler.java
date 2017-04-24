@@ -36,11 +36,8 @@ public class DisableHandler {
 
         @SubscribeEvent
         public void onRightClickBlock(PlayerInteractEvent.RightClickBlock event) {
-            ItemStack held = event.getItemStack();
-            if (held != null) {
-                if (SEEDS_BLACKLIST.contains(held)) {
-                    event.setUseItem(Result.DENY);
-                }
+            if (SEEDS_BLACKLIST.contains(event.getItemStack())) {
+                event.setUseItem(Result.DENY);
             }
         }
     }
@@ -81,11 +78,8 @@ public class DisableHandler {
 
         @SubscribeEvent
         public void onRightClickItem(PlayerInteractEvent.RightClickItem event) {
-            ItemStack held = event.getItemStack();
-            if (held != null) {
-                if (held.getItem() == EGG) {
-                    event.setResult(Result.DENY);
-                }
+            if (event.getItemStack().getItem() == EGG) {
+                event.setResult(Result.DENY);
             }
         }
     }

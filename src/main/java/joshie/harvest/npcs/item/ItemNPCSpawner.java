@@ -41,12 +41,12 @@ public class ItemNPCSpawner extends ItemHFRegistry<ItemNPCSpawner, NPC> {
             entity.setUniqueId(TownHelper.getClosestTownToEntity(entity, true).getID());
         }
 
-        world.spawnEntityInWorld(entity);
+        world.spawnEntity(entity);
     }
 
     @Override
     @Nonnull
-    public EnumActionResult onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+    public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
         NPC npc = getObjectFromStack(stack);
         if (npc != null) {
             if (!world.isRemote) {

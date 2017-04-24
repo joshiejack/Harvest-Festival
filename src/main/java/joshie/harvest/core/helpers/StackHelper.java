@@ -6,13 +6,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.JsonToNBT;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class StackHelper {
@@ -29,8 +29,8 @@ public class StackHelper {
             str = str + " " + stack.getItemDamage();
         }
 
-        if (stack.stackSize > 1) {
-            str = str + " *" + stack.stackSize;
+        if (stack.getCount() > 1) {
+            str = str + " *" + stack.getCount();
         }
 
         if (stack.hasTagCompound()) {
@@ -93,7 +93,7 @@ public class StackHelper {
 
         ItemStack stack = new ItemStack(item, 1, meta);
         stack.setTagCompound(tag);
-        stack.stackSize = amount;
+        stack.setCount(amount);
         return stack;
     }
 
@@ -148,7 +148,7 @@ public class StackHelper {
         }
     }
 
-    private static final List<ItemStack> allStacks = new ArrayList<>();
+    private static final NonNullList<ItemStack> allStacks = NonNullList.create();
 
     @SideOnly(Side.CLIENT)
     public static List<ItemStack> getAllStacks() {
@@ -163,7 +163,7 @@ public class StackHelper {
 
     public static ItemStack toStack(ItemStack stack, int size) {
         ItemStack copy = stack.copy();
-        copy.stackSize = size;
+        copy.setCount(size);
         return copy;
     }
 }

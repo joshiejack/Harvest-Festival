@@ -49,7 +49,7 @@ import static joshie.harvest.core.lib.LoadOrder.HFBUILDING;
 import static joshie.harvest.npcs.HFNPCs.CLOCKMAKER_CHILD;
 
 @HFLoader(priority = HFBUILDING)
-@SuppressWarnings("unchecked")
+@SuppressWarnings("unchecked, unused")
 public class HFBuildings {
     public static final ItemBuilding STRUCTURES = new ItemBuilding().register("structures");
     public static final ItemBlueprint BLUEPRINTS = new ItemBlueprint().register("blueprint");
@@ -97,6 +97,7 @@ public class HFBuildings {
     }
 
     @SideOnly(Side.CLIENT)
+    @SuppressWarnings("deprecation")
     public static void initClient() {
         BuildingDefinition.registerEverything();
         if (HFCore.DEBUG_MODE) {
@@ -107,7 +108,7 @@ public class HFBuildings {
     }
 
     @SuppressWarnings("unchecked")
-    public static <B extends Building> B registerBuilding(String name, Class<B>... clazzes) {
+    private static <B extends Building> B registerBuilding(String name, Class<B>... clazzes) {
         Class<B> clazz = clazzes.length == 1 ? clazzes[0] : null;
         Building building = null;
         try {

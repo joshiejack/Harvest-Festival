@@ -77,10 +77,10 @@ public class QuestShipping extends QuestTown {
     public boolean isNPCUsed(EntityPlayer player, NPCEntity entity) {
         if (!super.isNPCUsed(player, entity)) return false;
         boolean ret = quest_stage >= FINISHED;
-        if (quest_stage == START && HFApi.calendar.getDate(player.worldObj).getSeason() == season) {
-            if (!player.worldObj.isRemote) {
+        if (quest_stage == START && HFApi.calendar.getDate(player.world).getSeason() == season) {
+            if (!player.world.isRemote) {
                 if (crops == null) rebuildCropSet();
-                int totalCrops = getTotalCrops(HFApi.calendar.getDate(player.worldObj), player);
+                int totalCrops = getTotalCrops(HFApi.calendar.getDate(player.world), player);
                 if (totalCrops >= required) {
                     player.addStat(achievement);
                     increaseStage(player);

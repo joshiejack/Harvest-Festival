@@ -38,7 +38,7 @@ public class EntityAILayEgg extends EntityAIAnimal {
     @Override
     public void updateTask() {
         super.updateTask();
-        World world = animal.worldObj;
+        World world = animal.world;
         if (getIsAboveDestination()) {
             if (eggTimer == 0) eggTimer = 100;
             else eggTimer--;
@@ -97,10 +97,10 @@ public class EntityAILayEgg extends EntityAIAnimal {
                 for (int z = -5; z <= 5; z++) {
                     for (int y = 0; y <= 3; y++) {
                         BlockPos position = new BlockPos(animal).add(x, y, z);
-                        IBlockState state = animal.worldObj.getBlockState(position);
+                        IBlockState state = animal.world.getBlockState(position);
                         Block block = state.getBlock();
                         if (block instanceof INest) {
-                            if (((INest) block).layEgg(getStats(), animal.worldObj, position, state)) {
+                            if (((INest) block).layEgg(getStats(), animal.world, position, state)) {
                                 wanderTick = 200;
                                 break check;
                             }
@@ -111,7 +111,7 @@ public class EntityAILayEgg extends EntityAIAnimal {
         }
 
         wanderTick--;
-        if (animal.worldObj.rand.nextDouble() < 0.005D || wanderTick <= Short.MIN_VALUE) {
+        if (animal.world.rand.nextDouble() < 0.005D || wanderTick <= Short.MIN_VALUE) {
             wanderTick = 200;
         }
     }

@@ -24,7 +24,7 @@ public class ConditionTime implements LootCondition {
 
     @Override
     public boolean testCondition(Random rand, LootContext context) {
-        return context.getLootedEntity() != null && CalendarHelper.isBetween(context.getLootedEntity().worldObj, from, to);
+        return context.getLootedEntity() != null && CalendarHelper.isBetween(context.getLootedEntity().world, from, to);
     }
 
     public static class Serializer extends LootCondition.Serializer<ConditionTime> {

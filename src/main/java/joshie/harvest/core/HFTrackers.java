@@ -2,17 +2,15 @@ package joshie.harvest.core;
 
 import gnu.trove.map.TIntObjectMap;
 import gnu.trove.map.hash.TIntObjectHashMap;
-import joshie.harvest.animals.tracker.AnimalTracker;
+import joshie.harvest.animals.tracker.AnimalTrackerServer;
 import joshie.harvest.calendar.data.Calendar;
 import joshie.harvest.calendar.data.CalendarClient;
 import joshie.harvest.calendar.data.CalendarSavedData;
 import joshie.harvest.calendar.data.CalendarServer;
-import joshie.harvest.core.handlers.ClientHandler;
 import joshie.harvest.core.handlers.DailyTickHandler;
 import joshie.harvest.core.handlers.ServerHandler;
 import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.core.lib.HFModInfo;
-import joshie.harvest.core.util.handlers.SideHandler;
 import joshie.harvest.mining.gen.MineManager;
 import joshie.harvest.player.PlayerLoader;
 import joshie.harvest.player.PlayerTracker;
@@ -23,7 +21,6 @@ import joshie.harvest.town.tracker.TownTracker;
 import joshie.harvest.town.tracker.TownTrackerClient;
 import joshie.harvest.town.tracker.TownTrackerServer;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -32,17 +29,12 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.UUID;
 
-import static joshie.harvest.mining.HFMining.MINE_WORLD;
-
 public class HFTrackers {
     /*####################World Based Trackers##########################*/
-    @SideOnly(Side.CLIENT)
-    private static TIntObjectMap<SideHandler> CLIENT_WORLDS;
     private static final TIntObjectMap<ServerHandler> SERVER_WORLDS = new TIntObjectHashMap<>();
 
     @SideOnly(Side.CLIENT)
     public static void resetClient() {
-        CLIENT_WORLDS = new TIntObjectHashMap<>();
         CLIENT_PLAYER = new PlayerTrackerClient();
         CLIENT_CALENDAR = new CalendarClient();
         CLIENT_TOWNS = new TownTrackerClient();
@@ -55,37 +47,19 @@ public class HFTrackers {
         MINE_MANAGER = null;
     }
 
-    @SideOnly(Side.CLIENT)
-    private static SideHandler getClient(World world) {
-        int dimension = world.provider.getDimension();
-        SideHandler handler = CLIENT_WORLDS.get(dimension);
-        if (handler == null) {
-            handler = new ClientHandler();
-            CLIENT_WORLDS.put(dimension, handler);
-            handler.setWorld(world);
-        }
-
-        return handler;
-    }
-
     private static ServerHandler getServer(World world) {
         ServerHandler handler = SERVER_WORLDS.get(world.provider.getDimension());
         if (handler == null) {
             handler = new ServerHandler(world); //Create a new handler
             SERVER_WORLDS.put(world.provider.getDimension(), handler);
-            handler.setWorld(world); //Mark the world for the handler
         }
 
         return handler;
     }
 
-    private static SideHandler getHandler(World world) {
-        return !world.isRemote ? getServer(world) : getClient(world);
-    }
-
     @SuppressWarnings("unchecked")
-    public static <A extends AnimalTracker> A getAnimalTracker(World world) {
-        return (A) getHandler(world).getAnimalTracker();
+    public static AnimalTrackerServer getAnimalTracker(World world) {
+        return getServer(world).getAnimalTracker();
     }
 
     public static DailyTickHandler getTickables(World world) {
@@ -162,14 +136,6 @@ public class HFTrackers {
             MINE_MANAGER = (MineManager) world.getPerWorldStorage().getOrLoadData(MineManager.class, MINING_NAME);
             if (MINE_MANAGER == null) {
                 MINE_MANAGER = new MineManager(MINING_NAME);
-
-                //TODO: Remove this legacy loading in
-                NBTTagCompound tag = world.getWorldInfo().getDimensionData(MINE_WORLD);
-                if (tag.hasKey("MineManager") && tag.getCompoundTag("MineManager").hasKey("PortalCoordinates")) {
-                    MINE_MANAGER.readFromNBT(tag.getCompoundTag("MineManager"));
-                    MINE_MANAGER.markDirty();
-                }
-
                 world.getPerWorldStorage().setData(MINING_NAME, MINE_MANAGER);
             }
         }
@@ -192,7 +158,7 @@ public class HFTrackers {
     }
 
     public static <P extends PlayerTracker> P getPlayerTrackerFromPlayer(EntityPlayer player) {
-        return getPlayerTracker(player.worldObj, EntityHelper.getPlayerUUID(player));
+        return getPlayerTracker(player.world, EntityHelper.getPlayerUUID(player));
     }
 
     @SuppressWarnings("unchecked")

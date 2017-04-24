@@ -56,9 +56,9 @@ public class QuestBlessing extends QuestTrade {
                 return getLocalized("accept");
             } else if (hasTool) {
                 return getLocalized("gold", cost);
-            } else return player.worldObj.rand.nextDouble() <= 0.05D ? getLocalized("reminder", cost) : null;
+            } else return player.world.rand.nextDouble() <= 0.05D ? getLocalized("reminder", cost) : null;
         } else {
-            CalendarDate today = HFApi.calendar.getDate(player.worldObj);
+            CalendarDate today = HFApi.calendar.getDate(player.world);
             if (CalendarHelper.getDays(date, today) >= 3) {
                 return getLocalized("done", tool.getDisplayName());
             }
@@ -76,7 +76,7 @@ public class QuestBlessing extends QuestTrade {
             boolean hasTool = isHolding(player);
             if (hasGold && hasTool) {
                 increaseStage(player);
-                date = HFApi.calendar.getDate(player.worldObj).copy();
+                date = HFApi.calendar.getDate(player.world).copy();
                 ItemStack stack = player.getHeldItemMainhand().copy();
                 tool = new ItemStack(stack.getItem(), 1, stack.getItemDamage() + 1);
                 tool.setTagCompound(stack.getTagCompound().copy());
@@ -84,13 +84,13 @@ public class QuestBlessing extends QuestTrade {
                 takeHeldStack(player, 1);
             }
         } else {
-            CalendarDate today = HFApi.calendar.getDate(player.worldObj);
+            CalendarDate today = HFApi.calendar.getDate(player.world);
             if (CalendarHelper.getDays(date, today) >= 3) {
                 complete(player);
-                player.worldObj.playSound(player, player.posX, player.posY, player.posZ, HFSounds.BLESS_TOOL, SoundCategory.NEUTRAL, 0.25F, 1F);
+                player.world.playSound(player, player.posX, player.posY, player.posZ, HFSounds.BLESS_TOOL, SoundCategory.NEUTRAL, 0.25F, 1F);
                 EntityLiving entity = npc.getAsEntity();
                 for (int i = 0; i < 32; i++) {
-                    player.worldObj.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, entity.posX + player.worldObj.rand.nextFloat() + player.worldObj.rand.nextFloat() - 1F, entity.posY + 0.25D + entity.worldObj.rand.nextFloat() + entity.worldObj.rand.nextFloat(), entity.posZ + player.worldObj.rand.nextFloat() + player.worldObj.rand.nextFloat() - 1F, 0, 0, 0);
+                    player.world.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, entity.posX + player.world.rand.nextFloat() + player.world.rand.nextFloat() - 1F, entity.posY + 0.25D + entity.world.rand.nextFloat() + entity.world.rand.nextFloat(), entity.posZ + player.world.rand.nextFloat() + player.world.rand.nextFloat() - 1F, 0, 0, 0);
                 }
             }
         }
@@ -100,7 +100,7 @@ public class QuestBlessing extends QuestTrade {
     public void onQuestCompleted(EntityPlayer player) {
         rewardItem(player, tool);
         HFTrackers.getPlayerTrackerFromPlayer(player).getTracking().addAsObtained(tool);
-        spawnXP(player.worldObj, (int)player.posX, (int)player.posY, (int)player.posZ, 5);
+        spawnXP(player.world, (int)player.posX, (int)player.posY, (int)player.posZ, 5);
     }
 
     @Override

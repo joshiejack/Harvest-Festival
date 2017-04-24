@@ -24,11 +24,11 @@ public class ContestTaskWinner extends TaskElement {
         if (quest != null) {
             ContestEntries entries = quest.getEntries();
             for (Place place: Place.VALUES) {
-                quest.reward(npc.getAsEntity().worldObj, place);
+                quest.reward(npc.getAsEntity().world, place);
             }
 
-            entries.complete(npc.getAsEntity().worldObj);
-            TownHelper.getClosestTownToEntity(npc.getAsEntity(), false).getQuests().markCompleted(npc.getAsEntity().worldObj, null, quest, false);
+            entries.complete(npc.getAsEntity().world);
+            TownHelper.getClosestTownToEntity(npc.getAsEntity(), false).getQuests().markCompleted(npc.getAsEntity().world, null, quest, false);
         }
     }
 

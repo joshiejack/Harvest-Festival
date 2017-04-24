@@ -42,7 +42,7 @@ public class CookingContestEntries extends ContestEntries<ItemStack, CookingCont
     @Override
     public List<Pair<ItemStack, Integer>> getAvailableEntries(EntityPlayer player) {
         //Validate the existing entries
-        validateExistingEntries(player.worldObj);
+        validateExistingEntries(player.world);
         List<Pair<ItemStack, Integer>> list = Lists.newArrayList();
         for (int i = 0; i < locations.length; i++) {
             BlockPos location = locations[i];
@@ -50,7 +50,7 @@ public class CookingContestEntries extends ContestEntries<ItemStack, CookingCont
             if (!isEntered(stall)) {
                 BlockPos target = HFApi.towns.getTownForEntity(player).getCoordinatesFromOffset(HFBuildings.FESTIVAL_GROUNDS, location);
                 if (target != null) {
-                    TileEntity tile = player.worldObj.getTileEntity(target);
+                    TileEntity tile = player.world.getTileEntity(target);
                     if (tile instanceof TilePlate) {
                         ItemStack stack = ((TilePlate) tile).getContents();
                         if (stack != null) {

@@ -125,7 +125,7 @@ public class MiningHelper {
     }
 
     public static boolean teleportToMine(@Nonnull Entity entity) {
-        int id = HFTrackers.getTowns(entity.worldObj).getMineIDFromCoordinates(new BlockPos(entity));
+        int id = HFTrackers.getTowns(entity.world).getMineIDFromCoordinates(new BlockPos(entity));
         return id != -1 && teleportToMine(entity, id);
     }
 
@@ -145,7 +145,7 @@ public class MiningHelper {
         TownTracker tracker = HFTrackers.getTowns(DimensionManager.getWorld(0));
         BlockPos spawn = tracker.getCoordinatesForOverworldMine(entity, mineID);
         Rotation rotation = tracker.getMineOrientation(mineID);
-        if (spawn == null) spawn = entity.worldObj.getSpawnPoint();
+        if (spawn == null) spawn = entity.world.getSpawnPoint();
         if (rotation == Rotation.NONE) {
             entity.rotationYaw = 270F;
         } else if (rotation == Rotation.CLOCKWISE_90) {

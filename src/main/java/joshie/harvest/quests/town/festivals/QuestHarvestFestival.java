@@ -114,7 +114,7 @@ public class QuestHarvestFestival extends QuestFestivalTimed {
     public static int getPotScore(NPCEntity npc) {
         BlockPos pos = TownHelper.getClosestTownToEntity(npc.getAsEntity(), false).getCoordinatesFromOffset(HFBuildings.FESTIVAL_GROUNDS, POT);
         if (pos != null) {
-            TileEntity tile = npc.getAsEntity().worldObj.getTileEntity(pos);
+            TileEntity tile = npc.getAsEntity().world.getTileEntity(pos);
             if (tile instanceof TileFestivalPot) {
                 return ((TileFestivalPot)tile).getScore();
             }
@@ -150,11 +150,11 @@ public class QuestHarvestFestival extends QuestFestivalTimed {
             //Complete this quest as well as
             QuestHarvestFestival quest = data.getQuests().getAQuest(HFFestivals.HARVEST_FESTIVAL.getQuest());
             if (quest != null) {
-                data.getQuests().markCompleted(npc.getAsEntity().worldObj, null, quest, false);
+                data.getQuests().markCompleted(npc.getAsEntity().world, null, quest, false);
                 int relationship = (getPotScore(npc) - 5) * 500;
                 for (UUID uuid: quest.data.keySet()) {
                     for (NPC inhabitant : data.getInhabitants()) {
-                        HFTrackers.getPlayerTracker(npc.getAsEntity().worldObj, uuid).getRelationships().affectRelationship(inhabitant, relationship);
+                        HFTrackers.getPlayerTracker(npc.getAsEntity().world, uuid).getRelationships().affectRelationship(inhabitant, relationship);
                     }
                 }
             }

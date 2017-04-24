@@ -47,7 +47,7 @@ public class QuestJenni15KWednesday extends QuestFriendshipStore {
 
     @Override
     protected List<ItemStack> getRewardStacks(EntityPlayer player) {
-        Season season = HFApi.calendar.getDate(player.worldObj).getSeason();
+        Season season = HFApi.calendar.getDate(player.world).getSeason();
         if (season == SUMMER) return Lists.newArrayList(HFCrops.PINEAPPLE.getSeedStack(2));
         else if (season == AUTUMN) return Lists.newArrayList(HFCrops.GREEN_PEPPER.getSeedStack(2));
         else return Lists.newArrayList(HFCrops.CABBAGE.getSeedStack(2));
@@ -67,7 +67,7 @@ public class QuestJenni15KWednesday extends QuestFriendshipStore {
             HFApi.quests.completeQuestConditionally(getQuest(), player);
             TownBuilding building = TownHelper.getClosestTownToEntity(player, false).getBuilding(HFBuildings.SUPERMARKET);
             if (building != null) {
-                World world = player.worldObj;
+                World world = player.world;
                 BlockPos pos = building.pos.up(2);
                 if (building.rotation == Rotation.CLOCKWISE_90) { //North
                     pos = pos.offset(EnumFacing.WEST, 12).offset(EnumFacing.SOUTH, 12);

@@ -46,7 +46,7 @@ public class EntityAIBuild extends EntityAIBase {
         Vec3d vec = RandomPositionGenerator.findRandomTargetBlockTowards(npc, 3, 32, new Vec3d((double) go.getX() + 0.5D, (double) go.getY() + 1D, (double) go.getZ() + 0.5D));
         if (vec != null) {
             BlockPos pos = new BlockPos(vec);
-            if (EntityHelper.isSpawnable(npc.worldObj, pos) && EntityHelper.isSpawnable(npc.worldObj, pos.up()) && npc.worldObj.getBlockState(pos.down()).isSideSolid(npc.worldObj, pos.down(), EnumFacing.UP)) {
+            if (EntityHelper.isSpawnable(npc.world, pos) && EntityHelper.isSpawnable(npc.world, pos.up()) && npc.world.getBlockState(pos.down()).isSideSolid(npc.world, pos.down(), EnumFacing.UP)) {
                 npc.setPositionAndUpdate(pos.getX() + 0.5D, pos.getY() + 1D, pos.getZ() + 0.5D);
             }
         }
@@ -88,7 +88,7 @@ public class EntityAIBuild extends EntityAIBase {
 
                 //If the NPC is close the where they need to build
                 if (!tooFar) {
-                    if (building.build(npc.worldObj)) {
+                    if (building.build(npc.world)) {
                         npc.getNavigator().setPath(npc.getNavigator().getPathToPos(go), 0.85D);
                         stuckTimer = 0;
                     } else {
@@ -101,17 +101,17 @@ public class EntityAIBuild extends EntityAIBase {
                         stuckTimer++;
                         if (stuckTimer >= 100) {
                             stuckTimer = 0;
-                            building.build(npc.worldObj);
+                            building.build(npc.world);
                             attemptToTeleportToSafety(go);
                         }
                     }
 
                     //Finish the building
                     if (building.isFinished()) {
-                        TownDataServer data = TownHelper.getClosestTownToBlockPos(npc.worldObj, new BlockPos(npc), false);
+                        TownDataServer data = TownHelper.getClosestTownToBlockPos(npc.world, new BlockPos(npc), false);
                         data.finishBuilding(); //Remove the building from the queue
-                        data.addBuilding(npc.worldObj, building.building, building.rotation, building.pos);
-                        data.syncBuildings(npc.worldObj);
+                        data.addBuilding(npc.world, building.building, building.rotation, building.pos);
+                        data.syncBuildings(npc.world);
                         npc.finishBuilding();
                     }
                 }
@@ -120,7 +120,7 @@ public class EntityAIBuild extends EntityAIBase {
                 BlockPos pos = new BlockPos(npc);
                 if (!npc.isInsideOfMaterial(Material.AIR)) {
                     attemptToTeleportToSafety(go);
-                } else if (npc.worldObj.getBlockState(pos).getBlock().isPassable(npc.worldObj, pos)) {
+                } else if (npc.world.getBlockState(pos).getBlock().isPassable(npc.world, pos)) {
                     npc.setJumping(true);
                 }
             }

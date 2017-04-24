@@ -19,7 +19,7 @@ public class GreetingWeather implements IInfoButton {
     @SuppressWarnings("deprecation")
     @SideOnly(Side.CLIENT)
     public String getLocalizedText(EntityPlayer player, EntityAgeable entity, NPC npc) {
-        String weather = HFTrackers.<CalendarClient>getCalendar(player.worldObj).getTomorrowsWeather().name().toLowerCase(Locale.ENGLISH);
+        String weather = HFTrackers.<CalendarClient>getCalendar(player.world).getTomorrowsWeather().name().toLowerCase(Locale.ENGLISH);
         return TextHelper.getRandomSpeech(npc, "harvestfestival.npc.goddess.weather." + weather, 32);
     }
 

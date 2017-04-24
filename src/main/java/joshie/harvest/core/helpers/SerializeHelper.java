@@ -13,7 +13,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 public class SerializeHelper {
-    public static final HashMap<Class, SerializeAdapter> ADAPTERS = new HashMap<>();
+    private static final HashMap<Class, SerializeAdapter> ADAPTERS = new HashMap<>();
     static {
         ADAPTERS.put(Quest.class, new QuestAdapter());
         ADAPTERS.put(CalendarDate.class, new CalendarAdapter());

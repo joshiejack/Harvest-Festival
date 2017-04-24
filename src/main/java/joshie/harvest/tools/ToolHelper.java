@@ -101,10 +101,10 @@ public class ToolHelper {
             PotionEffect effect = player.getActivePotionEffect(EXHAUSTION);
             if (effect != null && ((level == 0 && effect.getDuration() <= 1990) || (ENABLE_EARLY_FAINTING && effect.getDuration() <= 1500))) {
                 player.addPotionEffect(new PotionEffect(MobEffects.BLINDNESS, 100, 7));
-                if (!player.worldObj.isRemote && ENABLE_FAINTING) {
+                if (!player.world.isRemote && ENABLE_FAINTING) {
                     if (ENABLE_DEATH_FAINTING) player.attackEntityFrom(EXHAUSTED, 1000F);
                     else {
-                        int dimension = player.worldObj.provider.canRespawnHere() ? player.worldObj.provider.getDimension() : 0;
+                        int dimension = player.world.provider.canRespawnHere() ? player.world.provider.getDimension() : 0;
                         BlockPos spawn = player.getBedLocation(dimension) != null ? player.getBedLocation(dimension) : DimensionManager.getWorld(dimension).provider.getRandomizedSpawnPoint();
                         EntityHelper.teleport(player, dimension, spawn);
                         player.trySleep(spawn);
@@ -132,7 +132,7 @@ public class ToolHelper {
         @SubscribeEvent
         public void onWakeup(PlayerWakeUpEvent event) {
             EntityPlayer player = event.getEntityPlayer();
-            if (player.worldObj.getWorldTime() % TICKS_PER_DAY == 0) {
+            if (player.world.getWorldTime() % TICKS_PER_DAY == 0) {
                 if (player.isPotionActive(EXHAUSTION)) player.removePotionEffect(EXHAUSTION);
                 if (player.isPotionActive(FATIGUE)) player.removePotionEffect(FATIGUE);
                 restoreHunger(player);

@@ -23,7 +23,7 @@ public class EntityAIFindShelterOrSun extends EntityAIBase {
     public EntityAIFindShelterOrSun(EntityAnimal theCreatureIn) {
         this.theCreature = theCreatureIn;
         this.movementSpeed = 1D;
-        this.theWorld = theCreatureIn.worldObj;
+        this.theWorld = theCreatureIn.world;
         this.setMutexBits(1);
     }
 

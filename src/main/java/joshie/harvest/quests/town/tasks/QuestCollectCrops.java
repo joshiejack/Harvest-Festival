@@ -98,9 +98,9 @@ public class QuestCollectCrops extends QuestDaily {
     @Override
     public void onQuestCompleted(EntityPlayer player) {
         HFApi.player.getRelationsForPlayer(player).affectRelationship(HFNPCs.CAFE_GRANNY, 2500);
-        ItemStack stack = HFCooking.MEAL.getCreativeStack(ItemMeal.MEALS[player.worldObj.rand.nextInt(Meal.values().length)]);
+        ItemStack stack = HFCooking.MEAL.getCreativeStack(ItemMeal.MEALS[player.world.rand.nextInt(Meal.values().length)]);
         stack.stackSize = 3;
-        if (player.worldObj.rand.nextInt(10) == 0) {
+        if (player.world.rand.nextInt(10) == 0) {
             stack.stackSize = 10;
         }
 

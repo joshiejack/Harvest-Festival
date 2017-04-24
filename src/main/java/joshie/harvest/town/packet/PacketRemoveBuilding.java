@@ -39,6 +39,6 @@ public class PacketRemoveBuilding extends PenguinPacket {
 
     @Override
     public void handlePacket(EntityPlayer player) {
-        HFTrackers.<TownTrackerClient>getTowns(player.worldObj).getTownByID(uuid).removeBuilding(building);
+        HFTrackers.<TownTrackerClient>getTowns(player.world).getTownByID(uuid).removeBuilding(building);
     }
 }

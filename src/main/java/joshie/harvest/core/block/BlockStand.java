@@ -68,11 +68,12 @@ public class BlockStand extends BlockHFEnumRotatableTile<BlockStand, Stand> {
     }
 
     @Override
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack held, EnumFacing side, float hitX, float hitY, float hitZ) {
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
         TileEntity tile = world.getTileEntity(pos);
         if (tile instanceof TileStand) {
             TileStand stand = ((TileStand)tile);
-            if (stand.isEmpty() && held != null && stand.isItemValid(held) && stand.setContents(player, held)) {
+            ItemStack held = player.getHeldItem(hand);
+            if (stand.isEmpty() && stand.isItemValid(held) && stand.setContents(player, held)) {
                 return true;
             } else if (!stand.isEmpty()) {
                 ItemStack contents = stand.removeContents();

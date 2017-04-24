@@ -8,6 +8,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.renderer.GlStateManager;
 
+import javax.annotation.Nonnull;
+
 import static joshie.harvest.knowledge.gui.calendar.GuiCalendar.CALENDAR_TEXTURE;
 
 public class ButtonNext extends GuiButton {
@@ -21,7 +23,7 @@ public class ButtonNext extends GuiButton {
     }
 
     @Override
-    public void drawButton(Minecraft mc, int mouseX, int mouseY) {
+    public void drawButton(@Nonnull Minecraft mc, int mouseX, int mouseY) {
         if (visible) {
             mc.getTextureManager().bindTexture(CALENDAR_TEXTURE);
             GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);

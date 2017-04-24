@@ -34,17 +34,18 @@ public class ItemBlockStorage extends ItemBlockHF<BlockStorage> {
 
     @Override
     @Nonnull
-    public ActionResult<ItemStack> onItemRightClick(@Nonnull ItemStack stack, World worldIn, EntityPlayer playerIn, EnumHand hand) {
-        if (playerIn.isSneaking() && getBlock().getEnumFromStack(stack) == Storage.BASKET) {
+    public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand hand) {
+        if (playerIn.isSneaking() && getBlock().getEnumFromStack(playerIn.getHeldItem(hand)) == Storage.BASKET) {
             playerIn.openGui(HarvestFestival.instance, GuiHandler.BASKET, worldIn, 0, 0, hand.ordinal());
-            return new ActionResult<>(EnumActionResult.SUCCESS, stack);
-        } else return super.onItemRightClick(stack, worldIn, playerIn, hand);
+            return new ActionResult<>(EnumActionResult.SUCCESS, playerIn.getHeldItem(hand));
+        } else return super.onItemRightClick(worldIn, playerIn, hand);
     }
 
     @Override
     @Nonnull
     @SuppressWarnings("ConstantConditions")
-    public EnumActionResult onItemUse(@Nonnull ItemStack stack, @Nonnull EntityPlayer player, @Nonnull World world, @Nonnull BlockPos pos, @Nonnull EnumHand hand, @Nonnull EnumFacing facing, float hitX, float hitY, float hitZ) {
+    public EnumActionResult onItemUse(@Nonnull EntityPlayer player, @Nonnull World world, @Nonnull BlockPos pos, @Nonnull EnumHand hand, @Nonnull EnumFacing facing, float hitX, float hitY, float hitZ) {
+        ItemStack stack = player.getHeldItem(hand);
         if (getBlock().getEnumFromStack(stack) == Storage.BASKET) {
             if (player.isSneaking()) return EnumActionResult.PASS;
             else {
@@ -69,11 +70,11 @@ public class ItemBlockStorage extends ItemBlockHF<BlockStorage> {
             }
         }
 
-        return super.onItemUse(stack, player, world, pos, hand, facing, hitX, hitY, hitZ);
+        return super.onItemUse(player, world, pos, hand, facing, hitX, hitY, hitZ);
     }
 
     public TileEntity onBasketUsed(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-        EnumActionResult result = super.onItemUse(stack, playerIn, worldIn, pos, hand, facing, hitX, hitY, hitZ);
+        EnumActionResult result = super.onItemUse(playerIn, worldIn, pos, hand, facing, hitX, hitY, hitZ);
         return result == EnumActionResult.SUCCESS ? basket : null;
     }
 

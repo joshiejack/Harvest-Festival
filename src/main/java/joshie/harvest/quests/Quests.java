@@ -2,6 +2,7 @@ package joshie.harvest.quests;
 
 import joshie.harvest.api.quests.Quest;
 
+@SuppressWarnings("unused")
 public class Quests {
    //Quest order based on meeting npcs and relations
     public static final Quest ABI_MEET = QuestHelper.getQuest("meeting.abi");

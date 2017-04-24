@@ -24,7 +24,7 @@ public class MiningProvider extends WorldProvider {
     @Override
     @Nonnull
     public IChunkGenerator createChunkGenerator() {
-        return new MiningChunk(worldObj, worldObj.getSeed());
+        return new MiningChunk(world, world.getSeed());
     }
 
     @Override
@@ -34,15 +34,15 @@ public class MiningProvider extends WorldProvider {
     }
 
     public BlockPos getSpawnCoordinateForMine(int mineID, int floor) {
-        return HFTrackers.getMineManager(worldObj).getSpawnCoordinateForMine(worldObj, mineID, floor);
+        return HFTrackers.getMineManager(world).getSpawnCoordinateForMine(world, mineID, floor);
     }
 
     public boolean areCoordinatesGenerated(int mineID, int floor) {
-        return MineManager.areCoordinatesGenerated(worldObj, mineID, floor);
+        return MineManager.areCoordinatesGenerated(world, mineID, floor);
     }
 
     public void onTeleportToMine(int mineID) {
-        HFTrackers.getMineManager(worldObj).onTeleportToMine(worldObj, mineID);
+        HFTrackers.getMineManager(world).onTeleportToMine(world, mineID);
     }
 
     @SideOnly(Side.CLIENT)

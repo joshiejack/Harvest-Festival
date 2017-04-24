@@ -27,15 +27,15 @@ public class SetEnum extends LootFunction {
     public ItemStack apply(ItemStack stack, Random rand, LootContext context) {
         if (stack.getItem() instanceof ItemHFFoodEnum) {
             ItemStack ret = ((ItemHFFoodEnum)stack.getItem()).getStackFromEnumString(name);
-            ret.stackSize = stack.stackSize; ///Update the size
+            ret.setCount(stack.getCount()); ///Update the size
             return ret;
         } else if (stack.getItem() instanceof ItemHFEnum) {
             ItemStack ret = ((ItemHFEnum)stack.getItem()).getStackFromEnumString(name);
-            ret.stackSize = stack.stackSize; ///Update the size
+            ret.setCount(stack.getCount()); ///Update the size
             return ret;
         } else if (stack.getItem() instanceof ItemBlockHF && ((ItemBlockHF)stack.getItem()).getBlock() instanceof BlockHFEnum) {
             ItemStack ret = ((BlockHFEnum)((ItemBlockHF)stack.getItem()).getBlock()).getStackFromEnumString(name);
-            ret.stackSize = stack.stackSize;
+            ret.setCount(stack.getCount());
             return ret;
         }
 

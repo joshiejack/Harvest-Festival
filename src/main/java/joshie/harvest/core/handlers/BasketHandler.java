@@ -67,15 +67,15 @@ public class BasketHandler {
             if (entity instanceof EntityBasket) {
                 EntityPlayer player = event.player;
                 BlockPos pos = new BlockPos(player);
-                if (player.worldObj.isAirBlock(pos)) {
-                    setBasket(player.worldObj, pos, ((EntityBasket)entity).getEntityItem());
+                if (player.world.isAirBlock(pos)) {
+                    setBasket(player.world, pos, ((EntityBasket)entity).getEntityItem());
                 } else {
                     boolean placed = false;
                     int attempts = 0;
                     while (!placed && attempts < 512) {
-                        BlockPos placing = pos.add(player.worldObj.rand.nextInt(10) - 5, player.worldObj.rand.nextInt(3), player.worldObj.rand.nextInt(10) - 5);
-                        if (player.worldObj.isAirBlock(placing)) {
-                            setBasket(player.worldObj, placing, ((EntityBasket)entity).getEntityItem());
+                        BlockPos placing = pos.add(player.world.rand.nextInt(10) - 5, player.world.rand.nextInt(3), player.world.rand.nextInt(10) - 5);
+                        if (player.world.isAirBlock(placing)) {
+                            setBasket(player.world, placing, ((EntityBasket)entity).getEntityItem());
                             placed = true;
                         }
 
@@ -93,7 +93,7 @@ public class BasketHandler {
     private final Cache<EntityPlayer, Set<Entity>> droppedServer = CacheBuilder.newBuilder().expireAfterWrite(1L, TimeUnit.MINUTES).build();
     private Set<Entity> getSetFromPlayer(EntityPlayer player) {
         try {
-            return player.worldObj.isRemote ? droppedClient.get(player, HashSet::new) : droppedServer.get(player, HashSet::new);
+            return player.world.isRemote ? droppedClient.get(player, HashSet::new) : droppedServer.get(player, HashSet::new);
         } catch (ExecutionException ex) { return EMPTY; }
     }
 
@@ -106,7 +106,7 @@ public class BasketHandler {
             Set<Entity> set = getSetFromPlayer(player);
             player.getPassengers().stream().filter(entity -> entity instanceof EntityBasket && !set.contains(entity)).forEach(entity -> {
                 ItemStack basket = HFCore.STORAGE.getStackFromEnum(Storage.BASKET);
-                TileEntity tile = (((ItemBlockStorage)basket.getItem()).onBasketUsed(basket, player, player.worldObj, event.getPos(), EnumHand.MAIN_HAND, event.getFace(), 0F, 0F, 0F));
+                TileEntity tile = (((ItemBlockStorage)basket.getItem()).onBasketUsed(basket, player, player.world, event.getPos(), EnumHand.MAIN_HAND, event.getFace(), 0F, 0F, 0F));
                 if (tile instanceof TileBasket) {
                     ((TileBasket)tile).setAppearanceAndContents(((EntityBasket)entity).getEntityItem(), ((EntityBasket)entity).handler);
                     set.add(entity);

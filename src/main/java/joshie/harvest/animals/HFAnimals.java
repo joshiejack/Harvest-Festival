@@ -31,6 +31,9 @@ import joshie.harvest.core.util.annotations.HFLoader;
 import net.minecraft.client.model.ModelChicken;
 import net.minecraft.client.model.ModelCow;
 import net.minecraft.client.model.ModelSheep2;
+import net.minecraft.client.renderer.entity.RenderChicken;
+import net.minecraft.client.renderer.entity.RenderCow;
+import net.minecraft.client.renderer.entity.RenderSheep;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTBase;
@@ -53,6 +56,7 @@ import static joshie.harvest.core.helpers.ConfigHelper.getBoolean;
 import static joshie.harvest.core.helpers.ConfigHelper.getInteger;
 import static joshie.harvest.core.helpers.RegistryHelper.registerSounds;
 import static joshie.harvest.core.helpers.RegistryHelper.registerTiles;
+import static joshie.harvest.core.lib.HFModInfo.MODID;
 import static net.minecraftforge.fml.common.registry.EntityRegistry.registerModEntity;
 
 @HFLoader
@@ -77,9 +81,9 @@ public class HFAnimals {
     public static void preInit() {
         HFApi.shipping.registerSellable(new ItemStack(Items.FEATHER), 30);
         HFApi.shipping.registerSellable(new ItemStack(Items.LEATHER), 80);
-        registerModEntity(EntityHarvestCow.class, "cow", EntityIDs.COW, HarvestFestival.instance, 150, 3, true);
-        registerModEntity(EntityHarvestSheep.class, "sheep", EntityIDs.SHEEP, HarvestFestival.instance, 150, 3, true);
-        registerModEntity(EntityHarvestChicken.class, "chicken", EntityIDs.CHICKEN, HarvestFestival.instance, 150, 3, true);
+        registerModEntity(new ResourceLocation(MODID, "cow"), EntityHarvestCow.class, "cow", EntityIDs.COW, HarvestFestival.instance, 150, 3, true);
+        registerModEntity(new ResourceLocation(MODID, "sheep"), EntityHarvestSheep.class, "sheep", EntityIDs.SHEEP, HarvestFestival.instance, 150, 3, true);
+        registerModEntity(new ResourceLocation(MODID, "chicken"), EntityHarvestChicken.class, "chicken", EntityIDs.CHICKEN, HarvestFestival.instance, 150, 3, true);
         registerSounds("brush");
         registerFoodsAsType(CHICKEN, Items.CHICKEN, Items.COOKED_CHICKEN);
         registerFoodsAsType(FISH, Items.FISH, Items.COOKED_FISH);
@@ -124,9 +128,9 @@ public class HFAnimals {
             AnimalItemRenderer.INSTANCE.register(Spawner.COW, new ResourceLocation("textures/entity/cow/cow.png"), new ModelCow());
             AnimalItemRenderer.INSTANCE.register(Spawner.SHEEP, new ResourceLocation("textures/entity/sheep/sheep.png"), new ModelSheep2());
             AnimalItemRenderer.INSTANCE.register(Spawner.CHICKEN, new ResourceLocation("textures/entity/chicken.png"), new ModelChicken());
-            RenderingRegistry.registerEntityRenderingHandler(EntityHarvestCow.class, RenderVanillaCow::new);
-            RenderingRegistry.registerEntityRenderingHandler(EntityHarvestSheep.class, RenderVanillaSheep::new);
-            RenderingRegistry.registerEntityRenderingHandler(EntityHarvestChicken.class, RenderVanillaChicken::new);
+            RenderingRegistry.registerEntityRenderingHandler(EntityHarvestCow.class, RenderCow::new);
+            RenderingRegistry.registerEntityRenderingHandler(EntityHarvestSheep.class, RenderSheep::new);
+            RenderingRegistry.registerEntityRenderingHandler(EntityHarvestChicken.class, RenderChicken::new);
         }
     }
 

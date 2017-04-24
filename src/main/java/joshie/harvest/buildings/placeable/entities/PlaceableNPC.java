@@ -4,6 +4,7 @@ import com.google.gson.annotations.Expose;
 import joshie.harvest.api.npc.NPC;
 import joshie.harvest.npcs.NPCHelper;
 import joshie.harvest.npcs.entity.EntityNPC;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Rotation;
@@ -35,6 +36,15 @@ public class PlaceableNPC extends PlaceableEntity {
     @Override
     public boolean canPlace(ConstructionStage stage) {
         return stage == ConstructionStage.MOVEIN;
+    }
+
+    @Override
+    public void remove(World world, BlockPos pos, Rotation rotation, ConstructionStage stage, IBlockState replacement) {
+        NPC inpc = NPC.REGISTRY.get(new ResourceLocation(npc)); if (inpc == null) return;
+        Entity entity =  NPCHelper.getNPCIfExists((WorldServer)world, pos, inpc);
+        if (entity != null) {
+            entity.setDead();
+        }
     }
 
     @Override

@@ -51,7 +51,7 @@ public class ItemNPCSpawner extends ItemHFRegistry<ItemNPCSpawner, NPC> {
         if (npc != null) {
             if (!world.isRemote) {
                 Entity entity = NPCHelper.getNPCIfExists((WorldServer) world, pos, npc);
-                if (entity instanceof EntityNPC) {
+                if (entity instanceof EntityNPC && !entity.isDead) {
                     entity.setPosition(pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5);
                 } else spawnNPC(world, pos, npc);
             }

@@ -8,9 +8,6 @@ import joshie.harvest.core.util.HFTemplate;
 import joshie.harvest.core.util.ResourceLoader;
 import joshie.harvest.core.util.annotations.HFApiImplementation;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.common.registry.IForgeRegistry;
-import net.minecraftforge.fml.common.registry.RegistryBuilder;
 
 import javax.annotation.Nullable;
 import java.util.HashMap;
@@ -19,7 +16,6 @@ import static joshie.harvest.buildings.HFBuildings.getGson;
 
 @HFApiImplementation
 public class BuildingRegistry implements IBuildingRegistry {
-    public static final IForgeRegistry<Building> REGISTRY = new RegistryBuilder<Building>().setName(new ResourceLocation("harvestfestival", "buildings")).setType(Building.class).setIDRange(0, 32000).create();
     public static final BuildingRegistry INSTANCE = new BuildingRegistry();
     private final HashMap<Building, HFTemplate> instructions = new HashMap<>();
 

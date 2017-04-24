@@ -25,7 +25,7 @@ public class TownHelper implements ITownHelper {
     private static BlockPos getDefaultCoordinates(@Nullable Entity entity) {
         if (entity == null) return null;
         BlockPos pos = entity instanceof EntityPlayer ? ((EntityPlayer)entity).getBedLocation(0) : null;
-        return pos == null ? entity.worldObj.provider.getRandomizedSpawnPoint(): pos;
+        return pos == null ? entity.getEntityWorld().provider.getRandomizedSpawnPoint(): pos;
     }
 
     @SuppressWarnings("unchecked")
@@ -53,7 +53,7 @@ public class TownHelper implements ITownHelper {
     @SuppressWarnings("unchecked")
     @Nonnull
     public static <T extends TownData> T getClosestTownToEntity(@Nonnull Entity entity, boolean create) {
-        return getClosestTownToBlockPos(entity.worldObj, new BlockPos(entity), entity, create);
+        return getClosestTownToBlockPos(entity.getEntityWorld(), new BlockPos(entity), entity, create);
     }
 
     public static TownData getTownByID(World world, UUID townID) {

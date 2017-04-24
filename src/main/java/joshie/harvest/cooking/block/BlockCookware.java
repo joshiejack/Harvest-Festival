@@ -160,7 +160,7 @@ public class BlockCookware extends BlockHFEnumRotatableTile<BlockCookware, Cookw
     }
 
     @Override
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack held, EnumFacing side, float hitX, float hitY, float hitZ) {
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
         Cookware cookware = getEnumFromState(state);
         if (player.isSneaking()) return false;
         else if (cookware == FRIDGE || cookware == FRIDGE_TOP) {
@@ -178,15 +178,16 @@ public class BlockCookware extends BlockHFEnumRotatableTile<BlockCookware, Cookw
         }
 
         //Cooking System
+        ItemStack held = player.getHeldItem(hand);
         TileEntity tile = world.getTileEntity(pos);
         if (tile instanceof TileCooking) {
             TileCooking cooking = (TileCooking) tile;
             if (cooking.isFinishedCooking()) {
-                if (held == null || !HFApi.cooking.isKnife(held)) {
+                if (!HFApi.cooking.isKnife(held)) {
                     cooking.giveToPlayer(player);
                     return true;
                 }
-            }  else if (held != null) {
+            }  else if (!held.isEmpty()) {
                 if (HFApi.cooking.isKnife(held)) {
                     if (cookware == COUNTER || world.getTileEntity(pos.down()) instanceof TileCounter) {
                         cooking = cookware == COUNTER ? cooking : (TileCooking) world.getTileEntity(pos.down());

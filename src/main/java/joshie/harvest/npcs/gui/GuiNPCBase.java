@@ -2,6 +2,7 @@ package joshie.harvest.npcs.gui;
 
 import joshie.harvest.api.player.RelationshipType;
 import joshie.harvest.api.quests.Quest;
+import joshie.harvest.core.base.gui.ContainerBase;
 import joshie.harvest.core.base.gui.GuiBase;
 import joshie.harvest.core.helpers.TextHelper;
 import joshie.harvest.core.lib.HFModInfo;
@@ -40,8 +41,8 @@ public abstract class GuiNPCBase extends GuiBase {
     protected int npcMouseY;
     protected final BlockPos pos;
 
-    public GuiNPCBase(EntityPlayer ePlayer, EntityNPC eNpc, int next) {
-        super(new ContainerNPCChat(ePlayer, eNpc, next), "chat", 0);
+    public GuiNPCBase(ContainerBase container, EntityPlayer ePlayer, EntityNPC eNpc, int next) {
+        super(container, "chat", 0);
         quest = QuestHelper.getCurrentQuest(ePlayer, eNpc);
         nextGui = next;
         hasInventory = false;

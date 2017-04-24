@@ -22,8 +22,8 @@ public class PacketQuestStart extends PacketSyncData {
 
     @SuppressWarnings("unused")
     public PacketQuestStart() {}
-    public PacketQuestStart(BlockPos pos, Quest quest, NBTTagCompound tag) {
-        super(quest, tag);
+    public PacketQuestStart(BlockPos pos, Quest quest) {
+        super(quest, null);
         this.pos = pos;
     }
 
@@ -45,8 +45,9 @@ public class PacketQuestStart extends PacketSyncData {
         QuestData data = town.getQuests();
         Quest quest = getClosestTownToEntity(player, false).getDailyQuest();
         if (quest != null && !data.getCurrent().contains(quest)) {
-            data.startQuest(quest, true, quest.writeToNBT(new NBTTagCompound()));
+            data.startQuest(quest, true, town.getDailyQuest().writeToNBT(new NBTTagCompound()));
             player.openGui(HarvestFestival.instance, GuiHandler.QUEST_BOARD, player.worldObj, pos.getX(), pos.getY(), pos.getZ());
+            town.clearDailyQuest(player.worldObj);
             MCServerHelper.markTileForUpdate(player.worldObj, pos);
         }
     }

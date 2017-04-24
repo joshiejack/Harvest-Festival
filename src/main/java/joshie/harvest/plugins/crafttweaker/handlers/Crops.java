@@ -10,6 +10,7 @@ import joshie.harvest.crops.handlers.rules.SpecialRulesYear;
 import joshie.harvest.plugins.crafttweaker.CraftTweaker;
 import joshie.harvest.plugins.crafttweaker.base.BaseCrop;
 import joshie.harvest.plugins.crafttweaker.base.BaseOnce;
+import joshie.harvest.plugins.crafttweaker.wrappers.MultiDropHandler;
 import minetweaker.MineTweakerAPI;
 import minetweaker.api.item.IItemStack;
 import net.minecraft.block.Block;
@@ -17,11 +18,13 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.common.EnumPlantType;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 
+import java.util.Arrays;
 import java.util.Locale;
 
 import static joshie.harvest.core.lib.HFModInfo.MODID;
@@ -34,15 +37,22 @@ public class Crops {
     @ZenMethod
     @SuppressWarnings("unused")
     public static void addCrop(String name) {
-        MineTweakerAPI.apply(new Add(name));
+        MineTweakerAPI.apply(new Add(name, name));
+    }
+
+    @ZenMethod
+    @SuppressWarnings("unused")
+    public static void addCrop(String name, String localised) {
+        MineTweakerAPI.apply(new Add(name, localised));
     }
 
     private static class Add extends BaseOnce {
         private final ResourceLocation resource;
+        private final String localised;
 
-
-        public Add(String name) {
+        public Add(String name, String localised) {
             this.resource = new ResourceLocation(MODID, name);
+            this.localised = localised;
         }
 
         @Override
@@ -57,7 +67,19 @@ public class Crops {
 
         @Override
         public void applyOnce() {
-            new Crop(resource).setSkipRender();
+            new Crop(resource) {
+                @Override
+                public String getLocalizedName(boolean isItem) {
+                    return localised;
+                }
+
+                @Override
+                public String getSeedsName() {
+                    String seeds = I18n.translateToLocal("harvestfestival.crop.seeds");
+                    String format = I18n.translateToLocal("harvestfestival.crop.seeds.format");
+                    return String.format(format, getLocalizedName(true), seeds);
+                }
+            }.setSkipRender();
         }
     }
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -92,6 +114,53 @@ public class Crops {
 
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    @ZenMethod
+    @SuppressWarnings("unused")
+    public static void setDrops(String name, IItemStack[] drops, int[] amounts, int[] chances) {
+        if (drops.length != amounts.length || drops.length != chances.length) {
+            CraftTweaker.logError(String.format("Could not set the drop for %s as the drops, amounts and chances weren't the same length", name));
+        } else {
+            ItemStack[] theDrops = new ItemStack[drops.length];
+            for (int i = 0; i < drops.length; i++) {
+                theDrops[i] = asStack(drops[i]);
+                if (theDrops[i] == null) {
+                    CraftTweaker.logError(String.format("Could not set the drop for %s as the stack item was null", name));
+                    return;
+                }
+            }
+
+            MineTweakerAPI.apply(new SetDrops(name, theDrops, amounts, chances));
+        }
+    }
+
+    private static class SetDrops extends BaseCrop {
+        private final ItemStack[] drops;
+        private final int[] amounts;
+        private final int[] chances;
+
+        public SetDrops(String name, ItemStack[] drops, int[] amounts, int[] chances) {
+            super(name);
+            this.drops = drops;
+            this.amounts = amounts;
+            this.chances = chances;
+        }
+
+        @Override
+        public String getDescription() {
+            return "Setting drops for " + resource + " to " + Arrays.toString(drops);
+        }
+
+        @Override
+        protected void applyToCrop(Crop crop) {
+            crop.setItem(drops[0]);
+            HFApi.crops.registerCropProvider(crop.getCropStack(1), crop);
+            crop.setDropHandler(new MultiDropHandler(drops, amounts, chances));
+        }
+    }
+
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
     @ZenMethod
     @SuppressWarnings("unused, deprecation")
     public static void setStages(String name, int[] stages, IItemStack[] blocks, int[] meta) {
@@ -167,13 +236,12 @@ public class Crops {
 
         @Override
         protected void applyToCrop(Crop crop) {
-            if (block == null) crop.setStages(stages);
-            else {
-                if (states != null) {
-                    crop.setStages(stages[stages.length - 1]);
-                    crop.setStateHandler(new StateHandlerBlockWithStates(stages, states));
-                } else crop.setStages(block, stages);
-            }
+            if (states != null) {
+                crop.setStages(stages[stages.length - 1]);
+                crop.setStateHandler(new StateHandlerBlockWithStates(stages, states));
+            } else if (block == null) {
+                crop.setStages(stages);
+            } else crop.setStages(block, stages);
         }
     }
 

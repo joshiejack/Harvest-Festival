@@ -52,7 +52,7 @@ public abstract class EntityNPC<E extends EntityNPC> extends EntityAgeable imple
     }
 
     public EntityNPC(E entity) {
-        this(entity.worldObj, entity.npc);
+        this(entity.world, entity.npc);
         npc = entity.getNPC();
         lover = entity.lover;
     }
@@ -138,19 +138,17 @@ public abstract class EntityNPC<E extends EntityNPC> extends EntityAgeable imple
     }
 
     @Override
-    public boolean processInteract(@Nonnull EntityPlayer player, EnumHand hand, ItemStack stack) {
+    public boolean processInteract(@Nonnull EntityPlayer player, EnumHand hand) {
         ItemStack held = player.getHeldItem(hand);
-        boolean flag = held != null && held.getItem() == Items.SPAWN_EGG;
+        boolean flag = held.getItem() == Items.SPAWN_EGG;
         if (!flag && isEntityAlive()) {
-            if (!worldObj.isRemote) {
-                int guiID = NPCHelper.getGuiIDForNPC(this, worldObj, player);
-                player.openGui(HarvestFestival.instance, guiID, worldObj, getEntityId(), -1, -1);
+            if (!world.isRemote) {
+                int guiID = NPCHelper.getGuiIDForNPC(this, world, player);
+                player.openGui(HarvestFestival.instance, guiID, world, getEntityId(), -1, -1);
             }
 
             return true;
-        } else {
-            return super.processInteract(player, hand, stack);
-        }
+        } else return super.processInteract(player, hand);
     }
 
     @Override

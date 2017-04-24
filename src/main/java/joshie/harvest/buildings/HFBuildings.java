@@ -114,10 +114,8 @@ public class HFBuildings {
             if (clazz != null) building = clazz.getConstructor(ResourceLocation.class).newInstance(new ResourceLocation("harvestfestival", name));
         } catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException ex) { /**/}
 
-        if (building == null)  {
+        if (building == null) {
             building = new Building(new ResourceLocation("harvestfestival", name));
-            building.setRegistryName(new ResourceLocation("harvestfestival", name));
-            BuildingRegistry.REGISTRY.register(building);
         }
 
         return (B) building;
@@ -156,9 +154,11 @@ public class HFBuildings {
     //Configuration
     public static boolean FULL_BUILDING_RENDER;
     public static boolean CHEAT_BUILDINGS;
+    public static boolean ENABLE_DEMOLITION;
 
     public static void configure() {
         FULL_BUILDING_RENDER = getBoolean("Use Full Building Render", true);
         CHEAT_BUILDINGS = getBoolean("Use Cheat Buildings", false);
+        ENABLE_DEMOLITION = getBoolean("Enable demolition", true);
     }
 }

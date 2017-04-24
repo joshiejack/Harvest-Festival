@@ -8,6 +8,7 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.text.TextComponentString;
 
 @HFCommand
+@SuppressWarnings("unused")
 public class HFCommandNPC extends AbstractHFCommand {
     @Override
     public String getCommandName() {
@@ -27,6 +28,6 @@ public class HFCommandNPC extends AbstractHFCommand {
 
     @Override
     public String getUsage() {
-        return "";
+        return "/hf npclist";
     }
 }

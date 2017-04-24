@@ -3,6 +3,12 @@ package joshie.harvest.api.npc;
 public enum RelationStatus {
     GIFTED,
     TALKED,
+    CHRISTMAS_GIFT {
+        @Override
+        public boolean isSeasonal() {
+            return true;
+        }
+    },
     BIRTHDAY_GIFT {
         @Override
         public boolean isSeasonal() {

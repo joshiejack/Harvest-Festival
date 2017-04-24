@@ -7,7 +7,6 @@ import joshie.harvest.core.HFTab;
 import joshie.harvest.core.helpers.TextHelper;
 import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.core.util.interfaces.ICreativeSorted;
-import joshie.harvest.crops.CropRegistry;
 import joshie.harvest.crops.HFCrops;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
@@ -17,10 +16,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemSeeds;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
@@ -69,10 +65,11 @@ public class ItemHFSeeds extends ItemSeeds implements ICreativeSorted {
 
     @Override
     @Nonnull
-    public EnumActionResult onItemUse(@Nonnull ItemStack stack, @Nonnull EntityPlayer player, World world, @Nonnull BlockPos pos, EnumHand hand, @Nonnull EnumFacing facing, float hitX, float hitY, float hitZ) {
+    public EnumActionResult onItemUse(@Nonnull EntityPlayer player, World world, @Nonnull BlockPos pos, @Nonnull EnumHand hand, @Nonnull EnumFacing facing, float hitX, float hitY, float hitZ) {
         if (facing != EnumFacing.UP) {
             return EnumActionResult.FAIL;
         } else {
+            ItemStack stack = player.getHeldItem(hand);
             Crop crop = getCropFromStack(stack);
             if (crop != null) {
                 int planted = 0;
@@ -83,7 +80,7 @@ public class ItemHFSeeds extends ItemSeeds implements ICreativeSorted {
                 }
 
                 if (planted > 0) {
-                    --stack.stackSize;
+                    stack.shrink(1);
                     return EnumActionResult.SUCCESS;
                 } else {
                     return EnumActionResult.PASS;
@@ -108,7 +105,11 @@ public class ItemHFSeeds extends ItemSeeds implements ICreativeSorted {
     }
 
     public ItemStack getStackFromCrop(Crop crop) {
-        ItemStack stack = new ItemStack(this);
+        return getStackFromCrop(crop, 1);
+    }
+
+    public ItemStack getStackFromCrop(Crop crop, int amount) {
+        ItemStack stack = new ItemStack(this, amount);
         NBTTagCompound tag = new NBTTagCompound();
         tag.setString("Crop", crop.getResource().toString());
         stack.setTagCompound(tag);
@@ -116,21 +117,14 @@ public class ItemHFSeeds extends ItemSeeds implements ICreativeSorted {
     }
 
     public Crop getCropFromStack(ItemStack stack) {
-        //TODO: Remove in 0.7+
         if (stack.getTagCompound() == null || !stack.getTagCompound().hasKey("Crop")) {
-            int id = Math.max(0, Math.min(CropRegistry.REGISTRY.getValues().size() - 1, stack.getItemDamage()));
-            NBTTagCompound tag = stack.hasTagCompound() ? stack.getTagCompound() : new NBTTagCompound();
-            Crop crop = CropRegistry.REGISTRY.getValues().get(id);
-            if (crop == null) crop = Crop.NULL_CROP;
-            tag.setString("Crop", crop.getResource().toString());
-            stack.setTagCompound(tag);
-            return crop;
+            return Crop.NULL_CROP;
         } else return Crop.REGISTRY.get(new ResourceLocation(stack.getTagCompound().getString("Crop")));
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubItems(@Nonnull Item item, CreativeTabs tab, List<ItemStack> list) {
+    public void getSubItems(@Nonnull Item item, CreativeTabs tab, NonNullList<ItemStack> list) {
         list.addAll(Crop.REGISTRY.values().stream().filter(crop -> crop != Crop.NULL_CROP && crop.getCropStack(1).getItem() != Items.BRICK).map(this::getStackFromCrop).collect(Collectors.toList()));
     }
 

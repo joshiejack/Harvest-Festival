@@ -1,8 +1,12 @@
 package joshie.harvest.core.base.gui;
 
+import joshie.harvest.cooking.packet.PacketExpandedSlot;
+import joshie.harvest.core.network.PacketHandler;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ClickType;
+import net.minecraft.inventory.IContainerListener;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.Item;
@@ -16,6 +20,26 @@ public class ContainerExpanded extends ContainerBase {
     public static class SlotHF extends Slot {
         public SlotHF(IInventory invent, int slot, int x, int y) {
             super(invent, slot, x, y);
+        }
+    }
+
+    @Override
+    public void detectAndSendChanges() {
+        for (int i = 0; i < inventorySlots.size(); ++i) {
+            ItemStack itemstack = (inventorySlots.get(i)).getStack();
+            ItemStack itemstack1 = inventoryItemStacks.get(i);
+            if (!ItemStack.areItemStacksEqual(itemstack1, itemstack)) {
+                itemstack1 = itemstack == null ? null : itemstack.copy();
+                inventoryItemStacks.set(i, itemstack1);
+
+                for (IContainerListener listener : listeners) {
+                    if (listener instanceof EntityPlayerMP) {
+                        if (!((EntityPlayerMP) listener).isChangingQuantityOnly) {
+                            PacketHandler.sendToClient(new PacketExpandedSlot(windowId, i, itemstack1), (EntityPlayerMP) listener);
+                        }
+                    }
+                }
+            }
         }
     }
 
@@ -48,7 +72,6 @@ public class ContainerExpanded extends ContainerBase {
             while (stack.stackSize > 0 && (!reverseDirection && i < endIndex || reverseDirection && i >= startIndex)) {
                 Slot slot = inventorySlots.get(i);
                 ItemStack itemstack = slot.getStack();
-
                 if (itemstack != null && areItemStacksEqual(stack, itemstack)) {
                     int j = itemstack.stackSize + stack.stackSize;
                     if (j <= getMaxStackSize(stack, movingIn)) {
@@ -254,8 +277,8 @@ public class ContainerExpanded extends ContainerBase {
                         if (held == null) {
                             if (inSlot.stackSize > 0) {
                                 int k2 = dragType == 0 ? inSlot.stackSize : (inSlot.stackSize + 1) / 2;
-                                if (k2 > getMaxStackSize(inSlot, true)) {
-                                    k2 = getMaxStackSize(inSlot, true);
+                                if (k2 > getMaxStackSize(inSlot, false)) {
+                                    k2 = getMaxStackSize(inSlot, false);
                                 }
 
                                 inventoryplayer.setItemStack(slot7.decrStackSize(k2));

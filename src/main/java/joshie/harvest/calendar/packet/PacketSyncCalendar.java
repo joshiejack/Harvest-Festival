@@ -51,14 +51,14 @@ public class PacketSyncCalendar extends PenguinPacket {
     @Override
     public void handlePacket(EntityPlayer player) {
         CalendarDate.DAYS_PER_SEASON = daysPerSeason;
-        CalendarDate date = HFApi.calendar.getDate(player.worldObj);
+        CalendarDate date = HFApi.calendar.getDate(player.world);
         Season previous = date.getSeason();
         date.setDate(weekday, day, season, year);
 
         //Refresh all Blocks in Render range
         //If the seasons are not the same, re-render the client
         if (previous != season) {
-            HFTrackers.getCalendar(player.worldObj).onSeasonChanged();
+            HFTrackers.getCalendar(player.world).onSeasonChanged();
             MCClientHelper.refresh();
         }
     }

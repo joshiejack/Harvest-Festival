@@ -8,8 +8,8 @@ import joshie.harvest.core.achievements.HFAchievements;
 import joshie.harvest.core.base.tile.TileFaceable;
 import joshie.harvest.core.entity.EntityBasket;
 import joshie.harvest.core.helpers.MCServerHelper;
+import joshie.harvest.core.helpers.NBTHelper;
 import joshie.harvest.core.helpers.SpawnItemHelper;
-import joshie.harvest.core.helpers.StackHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -101,7 +101,7 @@ public abstract class TileCooking extends TileFaceable {
 
             SpawnItemHelper.addToPlayerInventory(player, stack);
             ingredients.remove(ingredients.size() - 1); //Remove the last stack
-            if (worldObj.isRemote) return;
+            if (world.isRemote) return;
             this.last = this.ingredients.size();
             this.cooking = true;
             this.cookTimer = 0;
@@ -118,7 +118,7 @@ public abstract class TileCooking extends TileFaceable {
     public void update() {
         if (isCooking()) animate();
         //If we are server side perform the actions
-        if (!worldObj.isRemote) {
+        if (!world.isRemote) {
             if (cooking) {
                 cookTimer++;
                 if (ingredients.size() == 0) {
@@ -147,9 +147,9 @@ public abstract class TileCooking extends TileFaceable {
         if (hasPrerequisites() != SUCCESS) return false;
         if (!HFApi.cooking.isIngredient(stack)) return false;
         else {
-            if (worldObj.isRemote) return true;
+            if (world.isRemote) return true;
             ItemStack clone = stack.copy();
-            clone.stackSize = 1;
+            clone.setCount(1);
             if (!clone.hasTagCompound()) {
                 clone.setTagCompound(new NBTTagCompound());
             }
@@ -184,20 +184,20 @@ public abstract class TileCooking extends TileFaceable {
 
     protected void doRenderUpdate() {
         if (cooking) {
-            rotations[last] = worldObj.rand.nextFloat() * 360F;
-            offset1[last] = 0.5F - worldObj.rand.nextFloat();
-            offset2[last] = worldObj.rand.nextFloat() / 1.75F;
+            rotations[last] = world.rand.nextFloat() * 360F;
+            offset1[last] = 0.5F - world.rand.nextFloat();
+            offset2[last] = world.rand.nextFloat() / 1.75F;
             heightOffset[last] = 0.5F + (ingredients.size() * 0.001F);
         }
 
-        worldObj.markBlockRangeForRenderUpdate(getPos(), getPos());
+        world.markBlockRangeForRenderUpdate(getPos(), getPos());
     }
 
     @Override
     public void markDirty() {
-        if (!worldObj.isRemote) {
-            MCServerHelper.markForUpdate(worldObj, getPos());
-            MCServerHelper.markForUpdate(worldObj, getPos().down());
+        if (!world.isRemote) {
+            MCServerHelper.markForUpdate(world, getPos());
+            MCServerHelper.markForUpdate(world, getPos().down());
         }
 
         super.markDirty();
@@ -213,7 +213,7 @@ public abstract class TileCooking extends TileFaceable {
         if (nbt.hasKey("IngredientsInside")) {
             NBTTagList is = nbt.getTagList("IngredientsInside", 10);
             for (int i = 0; i < is.tagCount(); i++) {
-                ingredients.add(StackHelper.getItemStackFromNBT(is.getCompoundTagAt(i)));
+                ingredients.add(NBTHelper.readItemStack(is.getCompoundTagAt(i)));
             }
         }
 
@@ -222,7 +222,7 @@ public abstract class TileCooking extends TileFaceable {
         if (nbt.hasKey("Result")) {
             NBTTagList is = nbt.getTagList("Result", 10);
             for (int i = 0; i < is.tagCount(); i++) {
-                result.add(StackHelper.getItemStackFromNBT(is.getCompoundTagAt(i)));
+                result.add(NBTHelper.readItemStack(is.getCompoundTagAt(i)));
             }
         }
     }
@@ -237,7 +237,7 @@ public abstract class TileCooking extends TileFaceable {
         if (ingredients.size() > 0) {
             NBTTagList is = new NBTTagList();
             for (ItemStack ingredient : ingredients) {
-                is.appendTag(StackHelper.writeItemStackToNBT(new NBTTagCompound(), ingredient));
+                is.appendTag(NBTHelper.writeItemStack(ingredient, new NBTTagCompound()));
             }
 
             nbt.setTag("IngredientsInside", is);
@@ -247,7 +247,7 @@ public abstract class TileCooking extends TileFaceable {
         if (result.size() > 0) {
             NBTTagList is = new NBTTagList();
             for (ItemStack ingredient : result) {
-                is.appendTag(StackHelper.writeItemStackToNBT(new NBTTagCompound(), ingredient));
+                is.appendTag(NBTHelper.writeItemStack(ingredient, new NBTTagCompound()));
             }
 
             nbt.setTag("Result", is);
@@ -257,7 +257,7 @@ public abstract class TileCooking extends TileFaceable {
     }
 
     boolean isAbove(Utensil utensil) {
-        TileEntity tile = worldObj.getTileEntity(pos.down());
+        TileEntity tile = world.getTileEntity(pos.down());
         return tile instanceof TileCooking && ((TileCooking)tile).getUtensil() == utensil;
     }
 }

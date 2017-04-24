@@ -127,7 +127,9 @@ public class CalendarHUD {
                     //Enlarge the Day
                     GlStateManager.pushMatrix();
                     GlStateManager.scale(1.4F, 1.4F, 1.4F);
-                    String header = inMine ? TextFormatting.GRAY + TextHelper.format("harvestfestival.mine.format", "" + MiningHelper.getFloor((int)mc.player.posX >> 4, (int) Math.min(247, Math.max(1, mc.thePlayer.posY)))) : TextHelper.format("harvestfestival.calendar.date", season.getDisplayName(), (date.getDay() + 1));
+                    String header = inMine ? TextFormatting.GRAY + TextHelper.format("harvestfestival.mine.format", "" +
+                            MiningHelper.getFloor((int)mc.player.posX >> 4, (int) Math.min(247, Math.max(1, mc.player.posY)))) :
+                            TextHelper.format("harvestfestival.calendar.date", season.getDisplayName(), (date.getDay() + 1));
                     mc.fontRendererObj.drawStringWithShadow(header, (adjustedX / 1.4F) + 30, (adjustedY / 1.4F) + 7, 0xFFFFFFFF);
                     GlStateManager.popMatrix();
 

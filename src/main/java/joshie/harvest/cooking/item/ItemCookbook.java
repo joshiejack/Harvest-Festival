@@ -21,11 +21,11 @@ public class ItemCookbook extends ItemHFBase<ItemCookbook> implements ICreativeS
 
     @Override
     @Nonnull
-    public ActionResult<ItemStack> onItemRightClick(@Nonnull ItemStack stack, World world, EntityPlayer player, EnumHand hand) {
+    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, @Nonnull EnumHand hand) {
         if (!player.isSneaking()) {
             player.openGui(HarvestFestival.instance, GuiHandler.COOKBOOK, world, 0, 0, 0);
-            return new ActionResult<>(EnumActionResult.SUCCESS, stack);
-        } else return new ActionResult<>(EnumActionResult.SUCCESS, stack);
+            return new ActionResult<>(EnumActionResult.SUCCESS, player.getHeldItem(hand));
+        } else return new ActionResult<>(EnumActionResult.SUCCESS, player.getHeldItem(hand));
     }
 
     @Override

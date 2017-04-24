@@ -81,15 +81,16 @@ public class BlockTray extends BlockHFEnum<BlockTray, Tray> implements IAnimalFe
     }
 
     @Override
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack held, EnumFacing side, float hitX, float hitY, float hitZ) {
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
         if (player.isSneaking()) return false;
         TileEntity tile = world.getTileEntity(pos);
-        if (held == null && tile instanceof TileNest) {
+        ItemStack held = player.getHeldItem(hand);
+        if (held.isEmpty() && tile instanceof TileNest) {
             TileNest nest = (TileNest) tile;
-            if (nest.getDrop() != null) {
+            if (!nest.getDrop().isEmpty()) {
                 ItemStack drop = nest.getDrop().copy();
                 int relationship = nest.getRelationship();
-                NBTTagCompound tag = drop.getSubCompound("Data", true);
+                NBTTagCompound tag = drop.getOrCreateSubCompound("Data");
                 tag.setInteger("Relationship", (relationship - (relationship % 2500)));
                 nest.clear();
 
@@ -108,7 +109,7 @@ public class BlockTray extends BlockHFEnum<BlockTray, Tray> implements IAnimalFe
 
                 return true;
             }
-        } else if (held != null && tile instanceof TileFillable) {
+        } else if (tile instanceof TileFillable) {
             return ((TileFillable)tile).onActivated(held);
         }
 
@@ -147,7 +148,7 @@ public class BlockTray extends BlockHFEnum<BlockTray, Tray> implements IAnimalFe
             }
 
             EntityAnimal animal = stats.getAnimal();
-            animal.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 1.0F, (animal.worldObj.rand.nextFloat() - animal.worldObj.rand.nextFloat()) * 0.2F + 1.0F);
+            animal.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 1.0F, (animal.world.rand.nextFloat() - animal.world.rand.nextFloat()) * 0.2F + 1.0F);
         }
     }
 

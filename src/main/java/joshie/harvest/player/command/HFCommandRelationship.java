@@ -43,8 +43,12 @@ public class HFCommandRelationship extends AbstractHFCommand {
                         return true;
                     default:
                         if (!npc.contains(":")) npc = "harvestfestival:" + npc;
-                        relationships.affectRelationship(NPC.REGISTRY.get(new ResourceLocation(npc)), value);
-                        return true;
+                        NPC theNPC = NPC.REGISTRY.get(new ResourceLocation(npc));
+                        if (theNPC == null) return false;
+                        else {
+                            relationships.affectRelationship(theNPC, value);
+                            return true;
+                        }
                 }
             } catch (NumberFormatException | PlayerNotFoundException ignored) {}
         }

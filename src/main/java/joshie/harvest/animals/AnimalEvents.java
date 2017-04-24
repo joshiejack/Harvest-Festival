@@ -40,7 +40,7 @@ public class AnimalEvents {
         Entity entity = event.getEntity();
         AnimalStats stats = EntityHelper.getStats(entity);
         if (stats != null && entity instanceof EntityAnimal) {
-            if (!entity.worldObj.isRemote) {
+            if (!entity.world.isRemote) {
                 stats.setEntity((EntityAnimal)entity);
                 HFTrackers.<AnimalTrackerServer>getAnimalTracker(event.getWorld()).add(stats);
             }
@@ -51,8 +51,8 @@ public class AnimalEvents {
     @SuppressWarnings("ConstantConditions")
     public void onEntityDeath(LivingDeathEvent event) {
         AnimalStats stats = EntityHelper.getStats(event.getEntityLiving());
-        if (stats != null && !event.getEntity().worldObj.isRemote) {
-            HFTrackers.<AnimalTrackerServer>getAnimalTracker(event.getEntityLiving().worldObj).onDeath(stats);
+        if (stats != null && !event.getEntity().world.isRemote) {
+            HFTrackers.<AnimalTrackerServer>getAnimalTracker(event.getEntityLiving().world).onDeath(stats);
         }
     }
 
@@ -60,7 +60,7 @@ public class AnimalEvents {
     public void onEntityInteract(EntityInteract event) {
         AnimalStats stats = EntityHelper.getStats(event.getTarget());
         ItemStack stack = event.getItemStack();
-        if (stats != null && stack != null) {
+        if (stats != null) {
             if (HFApi.animals.canEat(stack, stats.getType().getFoodTypes()) && stats.performAction(event.getWorld(), stack, AnimalAction.FEED)) {
                 stack.splitStack(1);
                 event.setCanceled(true);
@@ -146,7 +146,7 @@ public class AnimalEvents {
                         entity.rotationYaw = player.rotationYaw;
                         entity.moveRelative(0F, 0.1F, 1.05F);
                         entity.setEntityInvulnerable(false);
-                        stats.performAction(player.worldObj, null, AnimalAction.DISMOUNT);
+                        stats.performAction(player.world, null, AnimalAction.DISMOUNT);
                     }
                 }
             }

@@ -22,7 +22,6 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import javax.annotation.Nonnull;
 import java.util.List;
 import java.util.Locale;
 
@@ -57,17 +56,15 @@ public class ItemAnimalSpawner extends ItemHFEnum<ItemAnimalSpawner, Spawner> {
     }
 
     @Override
-    @Nonnull
     public EnumActionResult onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
         if (!world.isRemote) {
             EntityAgeable entity = getEntityFromEnum(world, getEnumFromStack(stack));
             if (entity != null) {
                 if (player.isSneaking()) entity.setGrowingAge(-(int)(TICKS_PER_DAY * HFAnimals.AGING_TIMER));
-                entity.getPosition()
                 entity.setPosition(pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5);
                 AnimalStats stats = EntityHelper.getStats(entity);
                 if (stats != null) {
-                    world.spawnEntity(entity);
+                    world.spawnEntityInWorld(entity);
                 }
             }
         }

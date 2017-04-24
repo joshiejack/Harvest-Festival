@@ -50,16 +50,11 @@ public class GuiHandler implements IGuiHandler {
     public Object getServerGuiElement(int ID, EntityPlayer player, World world, int entityID, int nextGui, int hand) {
 
         switch (ID) {
-            case FORCED_NPC:
-                return new ContainerNPCChat(player, (EntityNPC) world.getEntityByID(entityID), NEXT_NONE);
             case SELECTION:
+            case NPC:           return new ContainerNPCChat(player, (EntityNPC) world.getEntityByID(entityID), nextGui, false);
             case NPC_INFO:
-            case NPC: {
-                return new ContainerNPCChat(player, (EntityNPC) world.getEntityByID(entityID), nextGui);
-            }
-
-            case SHOP_WELCOME:  return new ContainerNPCChat(player, (EntityNPC) world.getEntityByID(entityID), SHOP_OPTIONS);
-            case SHOP_OPTIONS:  return new ContainerNPCChat(player, (EntityNPC) world.getEntityByID(entityID), nextGui);
+            case SHOP_OPTIONS:  return new ContainerNPCChat(player, (EntityNPC) world.getEntityByID(entityID), nextGui, true);
+            case SHOP_WELCOME:  return new ContainerNPCChat(player, (EntityNPC) world.getEntityByID(entityID), SHOP_OPTIONS, true);
             case SHOP_MENU:
             case SHOP_MENU_SELL:
                 HFApi.player.getTrackingForPlayer(player).learnNote(HFNotes.SHOPPING);
@@ -67,8 +62,10 @@ public class GuiHandler implements IGuiHandler {
             case GIFT:          return new ContainerNPCGift(player, (EntityNPC) world.getEntityByID(entityID), EnumHand.values()[hand], nextGui);
             case FRIDGE:        return new ContainerFridge(player, player.inventory, (TileFridge) world.getTileEntity(new BlockPos(entityID, nextGui, hand)));
             case MAILBOX:
+            case GIFT_GODDESS:
+            case FORCED_NPC:
             case QUEST_BOARD:   return new ContainerNull();
-            case BASKET:        return new ContainerBasket(player.inventory, player.getHeldItem( EnumHand.values()[hand]));
+            case BASKET:        return new ContainerBasket(player.inventory, player.getHeldItem(EnumHand.values()[hand]));
             default:            return null;
         }
     }
@@ -83,14 +80,14 @@ public class GuiHandler implements IGuiHandler {
             case NPC: {
                 EntityNPC npc = (EntityNPC) world.getEntityByID(entityID);
                 if (hand != -1) return new GuiNPCSelect(player, npc, nextGui, hand);
-                return new GuiNPCChat(player, (EntityNPC) world.getEntityByID(entityID), nextGui, false);
+                return new GuiNPCChat(player, (EntityNPC) world.getEntityByID(entityID), nextGui, false, false);
             }
             case NPC_INFO: {
                 EntityNPC npc = (EntityNPC) world.getEntityByID(entityID);
                 if (hand != -1) return new GuiNPCSelect(player, npc, nextGui, hand);
-                return new GuiNPCChat(player, (EntityNPC) world.getEntityByID(entityID), nextGui, true);
+                return new GuiNPCChat(player, (EntityNPC) world.getEntityByID(entityID), nextGui, true, true);
             }
-            case SHOP_WELCOME:  return new GuiNPCChat(player, (EntityNPC) world.getEntityByID(entityID), SHOP_OPTIONS, false);
+            case SHOP_WELCOME:  return new GuiNPCChat(player, (EntityNPC) world.getEntityByID(entityID), SHOP_OPTIONS, false, true);
             case SHOP_MENU_SELL:
             case SHOP_MENU:
                 HFApi.player.getTrackingForPlayer(player).learnNote(HFNotes.SHOPPING);
@@ -107,7 +104,7 @@ public class GuiHandler implements IGuiHandler {
                 EntityNPC npc = (EntityNPC) world.getEntityByID(entityID);
                 if (NPCHelper.isShopOpen(npc, world, player)) {
                     return new GuiNPCSelect(player, npc, nextGui, NEXT_NONE);
-                } else return new GuiNPCChat(player, npc, nextGui, false);
+                } else return new GuiNPCChat(player, npc, nextGui, false, true);
             }
 
             case BASKET:        return new GuiBasket(player.inventory, player.getHeldItem( EnumHand.values()[hand]));

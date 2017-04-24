@@ -142,7 +142,7 @@ public class ItemMeal extends ItemHFFoodEnum<ItemMeal, Meal> {
     public ItemStack onItemUseFinish(ItemStack stack, World world, EntityLivingBase entityLiving) {
         if (stack.hasTagCompound() && entityLiving instanceof EntityPlayer) {
             EntityPlayer player = (EntityPlayer) entityLiving;
-            if (!player.capabilities.isCreativeMode) --stack.stackSize;
+            if (!player.capabilities.isCreativeMode) stack.shrink(1);
             player.getFoodStats().addStats(this, stack);
             world.playSound(null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_PLAYER_BURP, SoundCategory.PLAYERS, 0.5F, world.rand.nextFloat() * 0.1F + 0.9F);
 
@@ -183,7 +183,7 @@ public class ItemMeal extends ItemHFFoodEnum<ItemMeal, Meal> {
             ArrayList<IngredientStack> stacks = new ArrayList<>();
             stacks.addAll(recipe.getRequired());
             ItemStack stack = RecipeMaker.BUILDER.build(recipe, stacks).get(0);
-            stack.stackSize = amount;
+            stack.setCount(amount);
             return stack;
         }
 

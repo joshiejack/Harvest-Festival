@@ -25,7 +25,6 @@ import joshie.harvest.mining.gen.MineManager;
 import joshie.harvest.mining.gen.MiningProvider;
 import joshie.harvest.npcs.HFNPCs;
 import joshie.harvest.npcs.NPCHelper;
-import joshie.harvest.npcs.entity.EntityNPC;
 import joshie.harvest.npcs.entity.EntityNPCBuilder;
 import joshie.harvest.npcs.entity.EntityNPCHuman;
 import joshie.harvest.npcs.entity.EntityNPCMiner;
@@ -69,6 +68,17 @@ public class TownDataServer extends TownData<QuestDataServer, LetterDataServer> 
         this.townCentre = townCentre;
         this.uuid = UUID.randomUUID();
         this.birthday = date.copy();
+    }
+
+    public void removeBuilding(TownBuilding theBuilding) {
+        buildings.remove(theBuilding.building.getResource());
+        inhabitants.removeAll(theBuilding.building.getInhabitants());
+        for (NPC npc: theBuilding.building.getInhabitants()) {
+            deadVillagers.remove(npc.getResource());
+        }
+
+        HFTrackers.markTownsDirty();
+        PacketHandler.sendToEveryone(new PacketRemoveBuilding(getID(), theBuilding.building));
     }
 
     @Override
@@ -167,8 +177,14 @@ public class TownDataServer extends TownData<QuestDataServer, LetterDataServer> 
 
         if (quests.size() > 0) {
             dailyQuest = quests.get(world.rand.nextInt(quests.size()));
+            dailyQuest.onSelectedAsDailyQuest(this, world, townCentre);
         } else dailyQuest = null;
 
+        PacketHandler.sendToDimension(world.provider.getDimension(), new PacketDailyQuest(uuid, dailyQuest));
+    }
+
+    public void clearDailyQuest(World world) {
+        dailyQuest = null; //Remove the current daily quest as it has been started in the town
         PacketHandler.sendToDimension(world.provider.getDimension(), new PacketDailyQuest(uuid, dailyQuest));
     }
 
@@ -195,7 +211,8 @@ public class TownDataServer extends TownData<QuestDataServer, LetterDataServer> 
                     entity.setHeldItem(EnumHand.OFF_HAND, new ItemStack(Items.IRON_PICKAXE));
                     server.spawnEntityInWorld(entity);
                 } else if (npc != HFNPCs.GODDESS) {
-                    if (!(NPCHelper.getNPCIfExists((WorldServer) world, townCentre, npc) instanceof EntityNPC)) {
+                    Entity theEntity = NPCHelper.getNPCIfExists((WorldServer) world, townCentre, npc);
+                    if (!(theEntity != null && !theEntity.isDead)) {
                         EntityNPCHuman entity = NPCHelper.getEntityForNPC(world, npc);
                         entity.setPosition(townCentre.getX(), townCentre.getY(), townCentre.getZ());
                         BlockPos home = NPCHelper.getHomeForEntity(entity);

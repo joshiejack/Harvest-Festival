@@ -1,7 +1,6 @@
 package joshie.harvest.cooking.item;
 
 import joshie.harvest.api.cooking.Recipe;
-import joshie.harvest.cooking.CookingAPI;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.base.item.ItemHFRegistry;
@@ -19,10 +18,9 @@ import javax.annotation.Nonnull;
 
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 
-//TODO in 0.7+ Remove ItemHFFML
 public class ItemRecipe extends ItemHFRegistry<ItemRecipe, Recipe> implements ICreativeSorted {
     public ItemRecipe() {
-        super("Recipe", CookingAPI.REGISTRY, Recipe.REGISTRY, HFTab.COOKING);
+        super("Recipe", Recipe.REGISTRY, HFTab.COOKING);
     }
 
     @Override
@@ -32,10 +30,11 @@ public class ItemRecipe extends ItemHFRegistry<ItemRecipe, Recipe> implements IC
 
     @Override
     @Nonnull
-    public ActionResult<ItemStack> onItemRightClick(@Nonnull ItemStack stack, World world, EntityPlayer player, EnumHand hand) {
+    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, @Nonnull EnumHand hand) {
+        ItemStack stack = player.getHeldItem(hand);
         Recipe recipe = getObjectFromStack(stack);
         if (recipe != null && HFTrackers.getPlayerTrackerFromPlayer(player).getTracking().learnRecipe(recipe)) {
-            if (!player.capabilities.isCreativeMode) stack.stackSize--; //Decrease the stack
+            if (!player.capabilities.isCreativeMode) stack.shrink(1); //Decrease the stack
             world.playSound(player.posX, player.posY, player.posZ, HFSounds.RECIPE, SoundCategory.NEUTRAL, 0.8F, 1F, true);
             if (world.isRemote) ChatHelper.displayChat(TextHelper.translate("meal.learnt") + " " + TextFormatting.YELLOW + recipe.getDisplayName());
             return new ActionResult<>(EnumActionResult.SUCCESS, stack);

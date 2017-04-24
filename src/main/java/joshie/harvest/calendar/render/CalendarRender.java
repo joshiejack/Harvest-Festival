@@ -25,6 +25,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 
 @HFEvents(Side.CLIENT)
+@SuppressWarnings("unused")
 public class CalendarRender {
     private static final BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
     public static volatile TIntIntMap grassToBlend = new TIntIntHashMap();
@@ -43,7 +44,7 @@ public class CalendarRender {
 
     @SubscribeEvent
     public void onFogRender(RenderFogEvent event) {
-        if (event.getEntity().getEntityWorld().provider.getDimension() == 0) {
+        if (event.getEntity().world.provider.getDimension() == 0) {
             if (!event.getState().getMaterial().isLiquid()) {
                 //Update the fog smoothly
                 if (fogTarget != fogStart) {

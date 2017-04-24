@@ -44,7 +44,7 @@ public class TileIncubator extends TileFillableSizedFaceable {
                             stats.copyHappiness(EntityHelper.getPlayerFromUUID(incubator.owner), incubator.relationship, 50D);
                         }
 
-                        world.spawnEntityInWorld(baby);
+                        world.spawnEntity(baby);
                     }
 
                     incubator.owner = null; //Clear out owner
@@ -69,7 +69,7 @@ public class TileIncubator extends TileFillableSizedFaceable {
         if (ToolHelper.isEgg(held)) {
             if (fillAmount == 0) {
                 setFilled(HFApi.sizeable.getSize(held), MAX_FILL);
-                NBTTagCompound tag = held.getSubCompound("Data", true);
+                NBTTagCompound tag = held.getOrCreateSubCompound("Data");
                 if (tag.hasKey("Relationship")) {
                     relationship = tag.getInteger("Relationship");
                 } else relationship = 0;
@@ -88,9 +88,9 @@ public class TileIncubator extends TileFillableSizedFaceable {
 
     private int getBabyAmount() {
         int amount = 1;
-        if (size == Size.MEDIUM && worldObj.rand.nextInt(20) == 0) amount++;
-        if (size == Size.LARGE && worldObj.rand.nextInt(10) == 0) amount++;
-        if (size == Size.LARGE && worldObj.rand.nextInt(50) == 0) amount++;
+        if (size == Size.MEDIUM && world.rand.nextInt(20) == 0) amount++;
+        if (size == Size.LARGE && world.rand.nextInt(10) == 0) amount++;
+        if (size == Size.LARGE && world.rand.nextInt(50) == 0) amount++;
         return amount;
     }
 

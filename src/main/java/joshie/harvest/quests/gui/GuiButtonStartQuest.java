@@ -6,7 +6,6 @@ import joshie.harvest.quests.packet.PacketQuestStart;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.BlockPos;
 
 public class GuiButtonStartQuest extends GuiButton {
@@ -24,7 +23,6 @@ public class GuiButtonStartQuest extends GuiButton {
     @Override
     public void drawButton(Minecraft mc, int mouseX, int mouseY) {
         if (visible) {
-            //mc.getTextureManager().bindTexture(TEXTURE);
             GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
             hovered = mouseX >= xPosition && mouseY >= yPosition && mouseX < xPosition + width && mouseY < yPosition + height;
             int state = getHoverState(hovered);
@@ -38,6 +36,6 @@ public class GuiButtonStartQuest extends GuiButton {
 
     @Override
     public void mouseReleased(int mouseX, int mouseY) {
-        PacketHandler.sendToServer(new PacketQuestStart(pos, quest, quest.writeToNBT(new NBTTagCompound())));
+        PacketHandler.sendToServer(new PacketQuestStart(pos, quest));
     }
 }

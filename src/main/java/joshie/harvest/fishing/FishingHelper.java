@@ -54,8 +54,8 @@ public class FishingHelper {
             type = WaterType.POND;
         } else {
             Biome biome = world.getBiome(pos);
-            if (BiomeDictionary.isBiomeOfType(biome, Type.OCEAN)) type = WaterType.OCEAN;
-            else if (BiomeDictionary.isBiomeOfType(biome, Type.RIVER)) type = WaterType.RIVER;
+            if (BiomeDictionary.hasType(biome, Type.OCEAN)) type = WaterType.OCEAN;
+            else if (BiomeDictionary.hasType(biome, Type.RIVER)) type = WaterType.RIVER;
             else type = WaterType.LAKE;
         }
 

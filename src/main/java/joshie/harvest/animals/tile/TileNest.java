@@ -35,6 +35,7 @@ public class TileNest extends TileHarvest {
         return relationship;
     }
 
+    @Nonnull
     public ItemStack getDrop() {
         return drop;
     }
@@ -46,19 +47,17 @@ public class TileNest extends TileHarvest {
     @Override
     public void readFromNBT(NBTTagCompound nbt) {
         super.readFromNBT(nbt);
-        if (nbt.hasKey("Relationship")) relationship = nbt.getInteger("Relationship");
-        if (nbt.hasKey("Size")) size = Size.valueOf(nbt.getString("Size"));
-        if (nbt.hasKey("Drop")) {
-            drop = ItemStack.loadItemStackFromNBT(nbt.getCompoundTag("Drop"));
-        }
+        relationship = nbt.getInteger("Relationship");
+        size = Size.valueOf(nbt.getString("Size"));
+        drop = new ItemStack(nbt.getCompoundTag("Drop"));
     }
 
     @Override
     @Nonnull
     public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
-        if (relationship != 0) nbt.setInteger("Relationship", relationship);
-        if (size != null) nbt.setString("Size", size.name());
-        if (drop != null) nbt.setTag("Drop", drop.writeToNBT(new NBTTagCompound()));
+        nbt.setInteger("Relationship", relationship);
+        nbt.setString("Size", size.name());
+        nbt.setTag("Drop", drop.writeToNBT(new NBTTagCompound()));
         return super.writeToNBT(nbt);
     }
 }

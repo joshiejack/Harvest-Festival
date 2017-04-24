@@ -93,6 +93,7 @@ public class ItemNPCTool extends ItemHFEnum<ItemNPCTool, NPCTool> {
                 }
             }
 
+            held.splitStack(1);
             return new ActionResult<>(EnumActionResult.SUCCESS, held);
         } else return super.onItemRightClick(held, world, player, hand);
     }

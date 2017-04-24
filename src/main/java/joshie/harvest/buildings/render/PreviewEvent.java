@@ -21,6 +21,7 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
 @HFEvents(Side.CLIENT)
+@SuppressWarnings("unused")
 public class PreviewEvent {
     //Cache Values
     public static final Cache<BuildingKey, BuildingRenderer> CACHE = CacheBuilder.newBuilder().expireAfterWrite(5L, TimeUnit.MINUTES).maximumSize(64).build();
@@ -85,7 +86,7 @@ public class PreviewEvent {
     @SubscribeEvent
     public void renderBuildingPreview(RenderWorldLastEvent event) throws ExecutionException {
         EntityPlayerSP player = MCClientHelper.getPlayer();
-        BuildingRenderer renderer = getRenderer(player.worldObj, player);
+        BuildingRenderer renderer = getRenderer(player.world, player);
         if (renderer != null) {
             renderRenderer(player, renderer, event.getPartialTicks());
         }

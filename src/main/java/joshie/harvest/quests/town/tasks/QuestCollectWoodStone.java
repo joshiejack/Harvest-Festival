@@ -4,6 +4,7 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.core.ITiered.ToolTier;
 import joshie.harvest.api.npc.NPCEntity;
 import joshie.harvest.api.quests.HFQuest;
+import joshie.harvest.api.town.Town;
 import joshie.harvest.core.helpers.InventoryHelper;
 import joshie.harvest.core.helpers.TextHelper;
 import joshie.harvest.npcs.HFNPCs;
@@ -11,6 +12,7 @@ import joshie.harvest.quests.base.QuestDaily;
 import joshie.harvest.tools.HFTools;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -21,21 +23,30 @@ import static joshie.harvest.core.helpers.InventoryHelper.ORE_DICTIONARY;
 
 @HFQuest("collect.materials")
 public class QuestCollectWoodStone extends QuestDaily {
+    private boolean silver;
+    private boolean wood;
+    private int amount = 1;
+
     public QuestCollectWoodStone() {
         super(HFNPCs.CARPENTER);
     }
 
-    private boolean wood;
-    private int amount = 1;
-
     @Override
     public String getDescription(World world, @Nullable EntityPlayer player) {
         if (player != null) return getLocalized("desc", amount, (wood ? getLocalized("wood") : getLocalized("stone")));
-        else {
-            rand.setSeed(HFApi.calendar.getDate(world).hashCode());
-            wood = rand.nextBoolean();
-            amount = 8 * (1 + rand.nextInt(8));
-            return getLocalized("task", amount, (wood ? getLocalized("wood") : getLocalized("stone")), (wood ? getLocalized("axe") : getLocalized("pick")), amount * 10);
+        else return getLocalized("task", amount, (wood ? getLocalized("wood") : getLocalized("stone")),
+                (wood ? (silver ? getLocalized("axe.silver") : getLocalized("axe")) :
+                        (silver ? getLocalized("pick.silver") : getLocalized("pick"))), (wood ? amount * 10 : amount * 20));
+    }
+
+    @Override
+    public void onSelectedAsDailyQuest(Town town, World world, BlockPos pos) {
+        rand.setSeed(HFApi.calendar.getDate(world).hashCode());
+        wood = rand.nextBoolean();
+        amount = (8 * (1 + rand.nextInt(16))) + rand.nextInt(16);
+        if (amount >= 128 && rand.nextInt(30) == 0) {
+            silver = true;
+            amount *= 4.5;
         }
     }
 
@@ -60,22 +71,24 @@ public class QuestCollectWoodStone extends QuestDaily {
 
     @Override
     public void onQuestCompleted(EntityPlayer player) {
-        HFApi.player.getRelationsForPlayer(player).affectRelationship(HFNPCs.CARPENTER, 500);
-        rewardGold(player, 10 * amount);
-        rewardItem(player, (wood ? HFTools.AXE.getStack(ToolTier.COPPER) : HFTools.HAMMER.getStack(ToolTier.COPPER)));
+        HFApi.player.getRelationsForPlayer(player).affectRelationship(HFNPCs.CARPENTER, 2500);
+        rewardGold(player, (wood ? amount * 10 : amount * 20));
+        rewardItem(player, (wood ? HFTools.AXE.getStack((silver ? ToolTier.SILVER : ToolTier.COPPER)) : HFTools.HAMMER.getStack((silver ? ToolTier.SILVER : ToolTier.COPPER))));
     }
 
     @Override
     public void readFromNBT(NBTTagCompound nbt) {
         super.readFromNBT(nbt);
-        amount = nbt.getByte("Amount");
+        amount = nbt.getShort("Amount");
         wood = nbt.getBoolean("Wood");
+        silver = nbt.getBoolean("Silver");
     }
 
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
-        nbt.setByte("Amount", (byte) amount);
+        nbt.setShort("Amount", (short) amount);
         nbt.setBoolean("Wood", wood);
+        nbt.setBoolean("Silver", silver);
         return super.writeToNBT(nbt);
     }
 }

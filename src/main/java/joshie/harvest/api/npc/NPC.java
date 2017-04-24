@@ -32,9 +32,6 @@ import static joshie.harvest.api.HFApi.npc;
 import static joshie.harvest.api.npc.INPCHelper.Age.ADULT;
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 
-//TODO: Remove forge registry in 0.7+
-//Do not call setRegistryName or anything
-//This is only extending the old forge registry for 0.5 > 0.6 compatability reason
 public class NPC extends HFRegistry<NPC> implements CalendarEntry {
     public static final Map<ResourceLocation, NPC> REGISTRY = Maps.newHashMap();
     private final Set<NPC> family = new HashSet<>();
@@ -247,7 +244,7 @@ public class NPC extends HFRegistry<NPC> implements CalendarEntry {
     public String getGreeting(EntityPlayer player, EntityAgeable entity) {
         Collections.shuffle(conditionals);
         for (IConditionalGreeting greeting : conditionals) {
-            if (greeting.canDisplay(player, entity, this) && player.worldObj.rand.nextDouble() * 100D < greeting.getDisplayChance()) {
+            if (greeting.canDisplay(player, entity, this) && player.world.rand.nextDouble() * 100D < greeting.getDisplayChance()) {
                 return greeting.getLocalizedText(player, entity, this);
             }
         }

@@ -10,6 +10,7 @@ import joshie.harvest.town.TownHelper;
 import joshie.harvest.town.data.TownData;
 import joshie.harvest.town.tracker.TownTrackerClient;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 
@@ -33,6 +34,7 @@ public class PacketDailyQuest extends PenguinPacket {
         buf.writeBoolean(quest != null);
         if (quest != null) {
             ByteBufUtils.writeUTF8String(buf, quest.getRegistryName().toString());
+            ByteBufUtils.writeTag(buf, quest.writeToNBT(new NBTTagCompound()));
         }
     }
 
@@ -41,6 +43,7 @@ public class PacketDailyQuest extends PenguinPacket {
         uuid = UUID.fromString(ByteBufUtils.readUTF8String(buf));
         if (buf.readBoolean()) {
             quest = Quest.REGISTRY.getValue(new ResourceLocation(ByteBufUtils.readUTF8String(buf)));
+            quest.readFromNBT(ByteBufUtils.readTag(buf));
         }
     }
 

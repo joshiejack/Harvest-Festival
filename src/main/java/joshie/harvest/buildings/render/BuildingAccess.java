@@ -29,7 +29,6 @@ public class BuildingAccess implements IBlockAccess {
 
     @SuppressWarnings("deprecation")
     public BuildingAccess(Building building, Rotation rotation) {
-        //HFBuildings.loadBuilding(building);
         HFTemplate template = BuildingRegistry.INSTANCE.getTemplateForBuilding(building);
         if (template == null || template.getComponents() == null) return;
         for (Placeable placeable : template.getComponents()) {

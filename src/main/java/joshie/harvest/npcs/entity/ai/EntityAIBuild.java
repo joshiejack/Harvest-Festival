@@ -63,7 +63,8 @@ public class EntityAIBuild extends EntityAIBase {
                 boolean tooFar = distance >= building.getDistance(placeable);
                 if (tooFar) {
                     //Teleportation
-                    if (teleportTimer >= 200 || distance >= 4096D) {
+                    if (teleportTimer >= 200 || distance >= 4096D || npc.fallDistance > 32) {
+                        npc.fallDistance = 0F;
                         teleportTimer = 0;
                         npc.attemptTeleport(go.getX() + 0.5D, go.getY() + 1D, go.getZ() + 0.5D);
                         tooFar = false; //Force the placement of the block

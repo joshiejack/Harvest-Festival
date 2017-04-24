@@ -9,19 +9,18 @@ import joshie.harvest.core.util.holders.HolderRegistryMulti;
 import joshie.harvest.core.util.holders.ItemStackHolder;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.common.registry.IForgeRegistry;
-import net.minecraftforge.fml.common.registry.RegistryBuilder;
 import net.minecraftforge.oredict.OreDictionary;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 
 @HFApiImplementation
 public class CookingAPI implements CookingManager {
-    //TODO: Remove in 0.7+
-    public static final IForgeRegistry<Recipe> REGISTRY = new RegistryBuilder<Recipe>().setName(new ResourceLocation("harvestfestival", "meals")).setType(Recipe.class).setIDRange(0, 32000).create();
     public static final CookingAPI INSTANCE = new CookingAPI();
     private final Set<ItemStackHolder> knives = new HashSet<>();
     private final Set<CookingHandler> cookingHandlers = new HashSet<>();

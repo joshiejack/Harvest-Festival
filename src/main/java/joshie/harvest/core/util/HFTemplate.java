@@ -61,9 +61,11 @@ public class HFTemplate {
         return components;
     }
 
-    public void removeBlocks(World world, BlockPos pos, Rotation rotation, IBlockState state) {
+    public void removeBlocks(World world, BlockPos pos, Rotation rotation, IBlockState state, boolean removeEntities) {
         if (!world.isRemote) {
             if (components != null) {
+                if (removeEntities) for (int i = components.length - 1; i >= 0; i--) components[i].remove(world, pos, rotation, ConstructionStage.MOVEIN, state);
+                if (removeEntities) for (int i = components.length - 1; i >= 0; i--) components[i].remove(world, pos, rotation, ConstructionStage.PAINT, state);
                 for (int i = components.length - 1; i >= 0; i--) components[i].remove(world, pos, rotation, ConstructionStage.DECORATE, state);
                 for (int i = components.length - 1; i >= 0; i--) components[i].remove(world, pos, rotation, ConstructionStage.BUILD, state);
                 MCServerHelper.markForUpdate(world, pos);
@@ -72,6 +74,10 @@ public class HFTemplate {
     }
 
     public EnumActionResult placeBlocks(World world, BlockPos pos, Rotation rotation, @Nullable Building building) {
+        return placeBlocks(world, pos, rotation, building, Placeable.DEFAULT);
+    }
+
+    public EnumActionResult placeBlocks(World world, BlockPos pos, Rotation rotation, @Nullable Building building, @Nullable Replaceable replaceable) {
         if (!world.isRemote) {
             if (components != null) {
                 for (Placeable placeable : components) placeable.place(world, pos, rotation, ConstructionStage.BUILD, false);
@@ -92,5 +98,11 @@ public class HFTemplate {
 
     public PlaceableNPC getNPCOffset(String npc_location) {
         return npc_offsets.get(npc_location);
+    }
+
+    public static class Replaceable {
+        public boolean cantReplace(World world, BlockPos transformed) {
+            return world.getBlockState(transformed).getBlockHardness(world, transformed) == -1F;
+        }
     }
 }

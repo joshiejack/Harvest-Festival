@@ -14,7 +14,6 @@ public class HFSavedData extends WorldSavedData {
     public static final String DATA_NAME = HFModInfo.CAPNAME + "-Data";
     private final AnimalTrackerServer animals = new AnimalTrackerServer();
     private final DailyTickHandler ticking = new DailyTickHandler();
-    private final TownTrackerServer towns = new TownTrackerServer();
     //TODO: Remove in 0.7+
     private NBTTagCompound temp;
 
@@ -25,7 +24,6 @@ public class HFSavedData extends WorldSavedData {
     public void setWorld(World world) {
         animals.setWorld(world);
         ticking.setWorld(world);
-        towns.setWorld(world);
         //TODO: Remove in 0.7+
         if (temp != null && world.provider.getDimension() == 0) {
             HFTrackers.<TownTrackerServer>getTowns(world).readFromNBT(temp);
@@ -40,10 +38,6 @@ public class HFSavedData extends WorldSavedData {
 
     public DailyTickHandler getTickables() {
         return ticking;
-    }
-
-    public TownTrackerServer getTownTracker() {
-        return towns;
     }
 
     @Override

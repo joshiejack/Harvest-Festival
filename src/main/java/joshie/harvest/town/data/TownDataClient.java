@@ -1,5 +1,6 @@
 package joshie.harvest.town.data;
 
+import joshie.harvest.api.buildings.Building;
 import joshie.harvest.api.calendar.Festival;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.buildings.BuildingStage;
@@ -21,6 +22,11 @@ public class TownDataClient extends TownData<QuestDataClient, LetterDataClient> 
     @Override
     public LetterDataClient getLetters() {
         return letters;
+    }
+
+    public void removeBuilding(Building building) {
+        buildings.remove(building.getResource());
+        inhabitants.removeAll(building.getInhabitants());
     }
 
     public void addBuilding(TownBuilding building) {

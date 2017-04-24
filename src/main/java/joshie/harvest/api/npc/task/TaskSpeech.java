@@ -25,7 +25,7 @@ public class TaskSpeech extends TaskElement {
     @Override
     public void execute(NPCEntity npc) {
         BlockPos pos = new BlockPos(npc.getAsEntity());
-        WorldServer server = (WorldServer) npc.getAsEntity().worldObj;
+        WorldServer server = (WorldServer) npc.getAsEntity().world;
         for (EntityPlayer player : server.playerEntities) {
             EntityPlayerMP mp = ((EntityPlayerMP) player);
             if (mp.getDistanceSq(pos) < 64 * 64) {

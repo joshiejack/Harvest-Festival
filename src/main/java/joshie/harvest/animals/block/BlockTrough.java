@@ -99,12 +99,12 @@ public class BlockTrough extends BlockHFEnumRotatableMeta<BlockTrough, Trough> i
     }
 
     @Override
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack held, EnumFacing side, float hitX, float hitY, float hitZ) {
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
         if (player.isSneaking()) return false;
-        else if (held != null) {
+        else {
             TileEntity tile = world.getTileEntity(pos);
             if (tile instanceof TileFillable) {
-                return ((TileFillable)tile).onActivated(held);
+                return ((TileFillable)tile).onActivated(player.getHeldItem(hand));
             }
         }
 

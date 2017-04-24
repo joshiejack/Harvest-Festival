@@ -9,8 +9,8 @@ import joshie.harvest.api.animals.AnimalAction;
 import joshie.harvest.api.animals.AnimalStats;
 import joshie.harvest.api.animals.AnimalTest;
 import joshie.harvest.api.animals.IAnimalType;
+import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.player.RelationshipType;
-import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.core.network.PacketHandler;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.passive.EntityAnimal;
@@ -29,7 +29,6 @@ import javax.annotation.Nullable;
 import java.lang.ref.WeakReference;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Random;
-import java.util.UUID;
 
 import static joshie.harvest.core.network.PacketHandler.sendToEveryone;
 
@@ -38,12 +37,8 @@ public class AnimalStatsHF implements AnimalStats<NBTTagCompound> {
     private WeakReference<EntityPlayer> owner;
     protected EntityAnimal animal;
     protected IAnimalType type;
-    //TODO: Remove in 0.7+
-    protected UUID o_uuid;
-
     private int currentLifespan = 0; //How many days this animal has lived for
     private int daysNotFed; //How many subsequent days that this animal has not been fed
-    private boolean loadHappiness = false; //TODO: Remove in 0.7+
     private boolean beenLoved; //If the animal has received love today
     private int happiness; //How happy this animal is
 
@@ -76,16 +71,6 @@ public class AnimalStatsHF implements AnimalStats<NBTTagCompound> {
      *  @param animal the entity **/
     public AnimalStatsHF setEntity(EntityAnimal animal) {
         this.animal = animal;
-        //TODO: Remove in 0.7+
-        //Loads the happiness based on the entity
-        if (loadHappiness) {
-            EntityPlayer owner = getOwner();
-            if (owner != null) {
-                loadHappiness = false; //Reset the happiness loading
-                happiness = RelationshipType.ANIMAL.getMaximumRP() / 2;
-            }
-        }
-
         return this;
     }
 
@@ -100,9 +85,6 @@ public class AnimalStatsHF implements AnimalStats<NBTTagCompound> {
     }
 
     private int getDeathChance() {
-        //If the owner is offline, have a low chance of death
-        EntityPlayer owner = getOwner();
-        if (owner == null) return Integer.MAX_VALUE;
         //If the animal has not been fed, give it a fix changed of dying
         if (daysNotFed > 0) {
             return Math.max(1, 45 - daysNotFed * 3);
@@ -128,13 +110,12 @@ public class AnimalStatsHF implements AnimalStats<NBTTagCompound> {
 
     @Override
     public void onBihourlyTick() {
-        World world = animal.worldObj;
+        World world = animal.world;
         boolean dayTime = world.isDaytime();
         boolean isRaining = world.isRaining();
         boolean isOutside = world.canBlockSeeSky(new BlockPos(animal));
-        boolean isOutsideInSun = !isRaining && isOutside && dayTime;
-        EntityPlayer owner = getOwner();
-        if (owner != null && isOutsideInSun && wasOutsideInSun) {
+        boolean isOutsideInSun = !isRaining && isOutside && dayTime && HFApi.calendar.getDate(world).getSeason() != Season.WINTER;;
+        if (isOutsideInSun && wasOutsideInSun) {
             affectHappiness(type.getRelationshipBonus(AnimalAction.OUTSIDE));
         }
 
@@ -218,33 +199,6 @@ public class AnimalStatsHF implements AnimalStats<NBTTagCompound> {
             sendToEveryone(new PacketSyncAnimal(animal.getEntityId(), this));
             return true;
         } else return false;
-    }
-
-    //TODO: Remove in 0.7+
-    private EntityPlayer getAndCreateOwner() {
-        if (owner != null) return owner.get();
-        else {
-            if (o_uuid != null) {
-                owner = new WeakReference<>(EntityHelper.getPlayerFromUUID(o_uuid));
-                return owner.get();
-            }
-        }
-
-        return null;
-    }
-
-    //TODO: Remove in 0.7+
-    public EntityPlayer getOwner() {
-        EntityPlayer owner = getAndCreateOwner();
-        if (owner != null && animal != null) {
-            if (animal.worldObj.provider.getDimension() == owner.worldObj.provider.getDimension()) {
-                if (animal.getDistanceToEntity(owner) <= 178D) {
-                    return owner;
-                }
-            }
-        }
-
-        return null;
     }
 
     @Override
@@ -340,10 +294,10 @@ public class AnimalStatsHF implements AnimalStats<NBTTagCompound> {
     public void affectHappiness(int amount) {
         if (amount != 0) {
             happiness = Math.max(0, Math.min(RelationshipType.ANIMAL.getMaximumRP(), happiness + amount));
-            if (animal != null && !animal.worldObj.isRemote) {
+            if (animal != null && !animal.world.isRemote) {
                 if (amount < 0) {
                     try {
-                        ReflectionHelper.findMethod(EntityLivingBase.class, null, new String[]{ "playHurtSound", "func_184581_c" }, DamageSource.class).invoke(animal, DamageSource.starve);
+                        ReflectionHelper.findMethod(EntityLivingBase.class, null, new String[]{ "playHurtSound", "func_184581_c" }, DamageSource.class).invoke(animal, DamageSource.STARVE);
                     } catch (IllegalAccessException | InvocationTargetException ex) {
                         ex.printStackTrace();
                     }
@@ -399,11 +353,6 @@ public class AnimalStatsHF implements AnimalStats<NBTTagCompound> {
 
     @Override
     public void deserializeNBT(NBTTagCompound nbt) {
-        //TODO: Remove in 0.7+
-        if (nbt.hasKey("Owner")) {
-            o_uuid = UUID.fromString(nbt.getString("Owner"));
-        }
-
         currentLifespan = nbt.getShort("CurrentLifespan");
         daysNotFed = nbt.getByte("DaysNotFed");
         daysPassed = nbt.getByte("DaysPassed");
@@ -420,20 +369,13 @@ public class AnimalStatsHF implements AnimalStats<NBTTagCompound> {
             producedProducts = nbt.getByte("ProducedProducts");
         }
 
-        if (nbt.hasKey("Happiness")) {
-            beenLoved = nbt.getBoolean("BeenLoved");
-            happiness = nbt.getShort("Happiness");
-        } else loadHappiness = true;
+        beenLoved = nbt.getBoolean("BeenLoved");
+        happiness = nbt.getShort("Happiness");
     }
 
     @Override
     public NBTTagCompound serializeNBT() {
         NBTTagCompound tag = new NBTTagCompound();
-        //TODO: Remove in 0.7+
-        if (o_uuid != null) {
-            tag.setString("Owner", o_uuid.toString());
-        }
-
         tag.setShort("CurrentLifespan", (short) currentLifespan);
         tag.setByte("DaysNotFed", (byte) daysNotFed);
         tag.setByte("DaysPassed", (byte) daysPassed);
@@ -453,7 +395,6 @@ public class AnimalStatsHF implements AnimalStats<NBTTagCompound> {
 
         tag.setBoolean("BeenLoved", beenLoved);
         tag.setShort("Happiness", (short) happiness);
-
         return tag;
     }
 }

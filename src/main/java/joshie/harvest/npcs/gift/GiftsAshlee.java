@@ -1,5 +1,7 @@
 package joshie.harvest.npcs.gift;
 
+import joshie.harvest.animals.HFAnimals;
+import joshie.harvest.animals.item.ItemAnimalTool.Tool;
 import joshie.harvest.api.core.Ore;
 import joshie.harvest.cooking.item.ItemMeal.Meal;
 import net.minecraft.init.Items;
@@ -12,8 +14,10 @@ public class GiftsAshlee extends Gifts {
     public GiftsAshlee() {
         stackRegistry.register(Ore.of("cropBanana"), Quality.AWESOME);
         stackRegistry.register(Ore.of("cropCorn"), Quality.AWESOME);
+        stackRegistry.register(MEAL.getStackFromEnum(Meal.CORN_BAKED), Quality.AWESOME);
         categoryRegistry.put(EGG, Quality.GOOD);
         categoryRegistry.put(FRUIT, Quality.GOOD);
+        stackRegistry.register(HFAnimals.TOOLS.getStackFromEnum(Tool.CHICKEN_FEED), Quality.DECENT);
         stackRegistry.register(MEAL.getStackFromEnum(Meal.KETCHUP), Quality.BAD);
         stackRegistry.register(MEAL.getStackFromEnum(Meal.FRIES_FRENCH), Quality.BAD);
         stackRegistry.register(MEAL.getStackFromEnum(Meal.DOUGHNUT), Quality.BAD);

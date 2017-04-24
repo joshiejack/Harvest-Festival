@@ -2,6 +2,7 @@ package joshie.harvest.npcs.gui;
 
 import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.npc.greeting.Script;
+import joshie.harvest.core.base.gui.ContainerNull;
 import joshie.harvest.npcs.entity.EntityNPC;
 import net.minecraft.entity.player.EntityPlayer;
 
@@ -12,7 +13,7 @@ public class GuiNPCMask extends GuiNPCChat {
     private final NPC posingAs;
 
     public GuiNPCMask(EntityPlayer player, EntityNPC npc, int scriptID) {
-        super(player, npc, -1, false);
+        super(new ContainerNull(), player, npc);
         script = Script.REGISTRY.getValues().get(scriptID);
         posingAs = script.getNPC() != null ? script.getNPC() : npc.getNPC();
         inside = posingAs.getInsideColor();

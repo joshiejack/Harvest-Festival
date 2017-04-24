@@ -49,7 +49,7 @@ public class EntityHelper {
     /** Gets the player from the uuid **/
     public static EntityPlayerMP getPlayerFromUUID(UUID uuid) {
         //Loops through every single player
-        for (EntityPlayer player : FMLCommonHandler.instance().getMinecraftServerInstance().getPlayerList().getPlayerList()) {
+        for (EntityPlayer player : FMLCommonHandler.instance().getMinecraftServerInstance().getPlayerList().getPlayers()) {
             if (getPlayerUUID(player).equals(uuid)) {
                 return (EntityPlayerMP) player;
             }
@@ -74,7 +74,7 @@ public class EntityHelper {
     }
 
     public static <T extends Entity> List<T> getEntities(Class<? extends T> t, Entity entity, double size) {
-        return entity.worldObj.getEntitiesWithinAABB(t, new AxisAlignedBB(entity.posX - 0.5F, entity.posY - 0.5F, entity.posZ, entity.posX + 0.5F, entity.posY + 0.5F, entity.posZ + 0.5F).expand(size, 3D, size));
+        return entity.world.getEntitiesWithinAABB(t, new AxisAlignedBB(entity.posX - 0.5F, entity.posY - 0.5F, entity.posZ, entity.posX + 0.5F, entity.posY + 0.5F, entity.posZ + 0.5F).expand(size, 3D, size));
     }
 
     @SuppressWarnings("ConstantConditions")
@@ -85,14 +85,14 @@ public class EntityHelper {
         if (oldWorld != newWorld) {
             if (entity instanceof EntityPlayer) {
                 EntityPlayerMP player = (EntityPlayerMP) entity;
-                if (!player.worldObj.isRemote) {
+                if (!player.world.isRemote) {
                     ReflectionHelper.setPrivateValue(EntityPlayerMP.class, player, true, "invulnerableDimensionChange", "field_184851_cj");
                     newWorld.getMinecraftServer().getPlayerList().transferPlayerToDimension(player, dimension, new HFTeleporter(newWorld, spawn));
                     player.setPositionAndUpdate(spawn.getX(), spawn.getY(), spawn.getZ());
-                    player.worldObj.updateEntityWithOptionalForce(player, false);
+                    player.world.updateEntityWithOptionalForce(player, false);
                     player.connection.sendPacket(new SPacketUpdateHealth(player.getHealth(), player.getFoodStats().getFoodLevel(), player.getFoodStats().getSaturationLevel()));
                 }
-            } else if (!entity.worldObj.isRemote) {
+            } else if (!entity.world.isRemote) {
                 NBTTagCompound tag = new NBTTagCompound();
                 entity.writeToNBTOptional(tag);
                 entity.setDead();
@@ -100,7 +100,7 @@ public class EntityHelper {
                 if (teleportedEntity != null) {
                     teleportedEntity.setPositionAndUpdate(spawn.getX(), spawn.getY(), spawn.getZ());
                     teleportedEntity.forceSpawn = true;
-                    newWorld.spawnEntityInWorld(teleportedEntity);
+                    newWorld.spawnEntity(teleportedEntity);
                     teleportedEntity.setWorld(newWorld);
                     teleportedEntity.timeUntilPortal = teleportedEntity instanceof EntityPlayer ? 150 : 20;
                 }
@@ -120,7 +120,7 @@ public class EntityHelper {
     }
 
     public static EnumFacing getFacingFromEntity(EntityLivingBase entity) {
-        int facing = MathHelper.floor_double(entity.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
+        int facing = MathHelper.floor(entity.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
         EnumFacing dir = EnumFacing.NORTH;
         if (facing == 0) return EnumFacing.NORTH;
         if (facing == 1) return EnumFacing.EAST;

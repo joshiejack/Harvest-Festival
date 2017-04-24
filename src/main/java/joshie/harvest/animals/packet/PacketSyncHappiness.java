@@ -45,17 +45,17 @@ public class PacketSyncHappiness extends PenguinPacket {
                 stats.affectHappiness(happiness);
                 if (happiness > 0) {
                     for (int j = 0; j < 3D; j++) {
-                        double x = (animal.posX - 0.5D) + animal.worldObj.rand.nextFloat();
-                        double y = (animal.posY - 0.5D) + animal.worldObj.rand.nextFloat();
-                        double z = (animal.posZ - 0.5D) + animal.worldObj.rand.nextFloat();
-                        animal.worldObj.spawnParticle(EnumParticleTypes.HEART, x, 1D + y - 0.125D, z, 0, 0, 0);
+                        double x = (animal.posX - 0.5D) + animal.world.rand.nextFloat();
+                        double y = (animal.posY - 0.5D) + animal.world.rand.nextFloat();
+                        double z = (animal.posZ - 0.5D) + animal.world.rand.nextFloat();
+                        animal.world.spawnParticle(EnumParticleTypes.HEART, x, 1D + y - 0.125D, z, 0, 0, 0);
                     }
                 } else if (happiness < 0) {
                     for (int j = 0; j < 16D; j++) {
-                        double x = (animal.posX - 0.5D) + animal.worldObj.rand.nextFloat();
-                        double y = (animal.posY - 0.5D) + animal.worldObj.rand.nextFloat();
-                        double z = (animal.posZ - 0.5D) + animal.worldObj.rand.nextFloat();
-                        animal.worldObj.spawnParticle(EnumParticleTypes.DAMAGE_INDICATOR, x, 1 + y, z, 0, 0, 0);
+                        double x = (animal.posX - 0.5D) + animal.world.rand.nextFloat();
+                        double y = (animal.posY - 0.5D) + animal.world.rand.nextFloat();
+                        double z = (animal.posZ - 0.5D) + animal.world.rand.nextFloat();
+                        animal.world.spawnParticle(EnumParticleTypes.DAMAGE_INDICATOR, x, 1 + y, z, 0, 0, 0);
                     }
                 }
             }

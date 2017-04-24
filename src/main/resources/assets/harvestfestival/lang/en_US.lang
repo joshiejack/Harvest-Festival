@@ -78,6 +78,10 @@ harvestfestival.structures.townhall.tooltip=The ultimate hub, unlocks some event
 harvestfestival.structures.festivals=Park
 harvestfestival.structures.festivals.tooltip=This is where festivals will take place. Don't place anything on the grounds as it will get removed whenever a festival is near.
 harvestfestival.structures.null=Invalid
+harvestfestival.structures.demolish=Demolish %s
+harvestfestival.structures.warning1=WARNING! Destroys all blocks!
+harvestfestival.structures.warning2=WARNING! Destroys all frames/paintings!
+harvestfestival.structures.warning3=WARNING! Kills all npcs that live here!
 
 #Cheat Items (Translators don't bother tranlating these, I just use them to help with dev)
 harvestfestival.cheat.coord.setter=[BuildingGen] Coordinate Setter
@@ -133,6 +137,7 @@ harvestfestival.crop.orange=Orange
 harvestfestival.crop.peach=Peach
 harvestfestival.crop.grape=Grape
 harvestfestival.crop.hemp.tooltip=Requires light level 12+
+harvestfestival.tree.area=Requires %sx%s area
 
 #Trees
 ##Fruit
@@ -590,7 +595,7 @@ harvestfestival.cookware.steamer=Steamer
 harvestfestival.storage.shipping=Shipment Box
 harvestfestival.storage.shipping.tooltip=Every day at 6am the powers that be drop by and collect any items you place in here, along with payment.
 harvestfestival.storage.mailbox=Mailbox
-harvestfestival.storage.mailbox.tooltip=With a mailbox you will receive invites to special events. You can also sometimes receive gifts in the mail.
+harvestfestival.storage.mailbox.tooltip=With a mailbox you will receive invites to special events.
 harvestfestival.storage.basket=Shipping Basket
 harvestfestival.storage.basket.tooltip=If you place the basket on your head, it will automatically ship anything that you pickup. It also allows you to harvest crops in a 1x3 area.
 harvestfestival.sized.incubator=Incubator
@@ -2043,7 +2048,7 @@ harvestfestival.quest.friendship.abii.town.text=I have some fantastic news for y
 harvestfestival.quest.friendship.fenn.salad.text=My dad and me been working in da kitchen all day, you should try some of these yummy foods.
 harvestfestival.quest.friendship.fenn.parents.text=Dad's been smiling so much lately, He's so glad I foundly found a friend in you.
 harvestfestival.quest.friendship.fenn.plants.text=Guess what!!!! I went foraging today with Dad, and look what we found! You should have some!!
-harvestfestival.quest.tomas.cheaper.text=You've become a wonderful human towards me. For your sanctity I am now happy to grace you with a much cheaper price for a blessing.
+harvestfestival.quest.friendship.tomas.cheaper.text=You've become a wonderful human towards me. For your sanctity I am now happy to grace you with a much cheaper price for a blessing.
 
 ## Meeting Quests
 harvestfestival.quest.meeting.jacob.title=Finding Jakob
@@ -2131,6 +2136,8 @@ harvestfestival.quest.collect.materials.wood=Wood
 harvestfestival.quest.collect.materials.stone=Stone
 harvestfestival.quest.collect.materials.axe=Copper Axe
 harvestfestival.quest.collect.materials.pick=Copper Hammer
+harvestfestival.quest.collect.materials.axe.silver=Silver Axe
+harvestfestival.quest.collect.materials.pick.silver=Silver Hammer
 harvestfestival.quest.collect.materials.task=Looking to construct a building for a friend but am short on %2$s by %1$s. Can ya help?. \n- Yulif\n\n- %4$sG reward\n- %3$s\n- Yulif will be grateful
 harvestfestival.quest.collect.materials.complete1=Thank yer. Will be great to get the building started.
 harvestfestival.quest.collect.materials.complete2=Ya done a good job there. The building will be built in no time.

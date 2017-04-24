@@ -34,6 +34,6 @@ public class PacketSyncForecast extends PenguinPacket {
 
     @Override
     public void handlePacket(EntityPlayer player) {
-        HFTrackers.<CalendarClient>getCalendar(player.worldObj).setForecast(forecast);
+        HFTrackers.<CalendarClient>getCalendar(player.world).setForecast(forecast);
     }
 }

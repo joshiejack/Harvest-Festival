@@ -407,7 +407,7 @@ public class Crop extends HFRegistry<Crop> implements IPlantable {
     public ItemStack getCropStack(int amount) {
         if (item != null) {
             ItemStack copy = item.copy();
-            copy.stackSize = amount;
+            copy.setCount(amount);
             return copy;
         } else return new ItemStack(Items.BRICK);
     }

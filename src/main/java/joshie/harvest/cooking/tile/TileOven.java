@@ -28,8 +28,8 @@ public class TileOven extends TileCookingTicking {
     @Override
     public void giveToPlayer(EntityPlayer player) {
         if (givePlayer == null) { //Play the sound if we can remove an ingredient
-            worldObj.playSound(null, getPos().getX(), getPos().getY() + 0.5D, getPos().getZ(), HFSounds.OVEN_DOOR, SoundCategory.BLOCKS, 2F, worldObj.rand.nextFloat() * 0.1F + 0.9F);
-            if (worldObj.isRemote) animating = true;
+            world.playSound(null, getPos().getX(), getPos().getY() + 0.5D, getPos().getZ(), HFSounds.OVEN_DOOR, SoundCategory.BLOCKS, 2F, world.rand.nextFloat() * 0.1F + 0.9F);
+            if (world.isRemote) animating = true;
             givePlayer = player;
             giveTimer = 15;
         }
@@ -39,8 +39,8 @@ public class TileOven extends TileCookingTicking {
     public boolean addIngredient(ItemStack stack) {
         boolean ret = super.addIngredient(stack);
         if (ret) { //Play the sound if we add an ingredient
-            worldObj.playSound(null, getPos().getX(), getPos().getY() + 0.5D, getPos().getZ(), HFSounds.OVEN_DOOR, SoundCategory.BLOCKS, 2F, worldObj.rand.nextFloat() * 0.1F + 0.9F);
-            if (worldObj.isRemote) animating = true;
+            world.playSound(null, getPos().getX(), getPos().getY() + 0.5D, getPos().getZ(), HFSounds.OVEN_DOOR, SoundCategory.BLOCKS, 2F, world.rand.nextFloat() * 0.1F + 0.9F);
+            if (world.isRemote) animating = true;
             return true;
         } else return false;
     }
@@ -67,7 +67,7 @@ public class TileOven extends TileCookingTicking {
         }
 
         //Only do render updates on the client
-        if (worldObj.isRemote) {
+        if (world.isRemote) {
             prevLidAngle = lidAngle;
             float f1 = 0.025F;
             if (animating) {
@@ -95,9 +95,9 @@ public class TileOven extends TileCookingTicking {
     public void animate() {
         super.animate();
 
-        if (getCookTimer() == 1) worldObj.playSound(null, getPos(), HFSounds.OVEN, SoundCategory.BLOCKS, 2F, 1F);
+        if (getCookTimer() == 1) world.playSound(null, getPos(), HFSounds.OVEN, SoundCategory.BLOCKS, 2F, 1F);
         else if (getCookTimer() >= getCookingTime() - 1) {
-            worldObj.playSound(null, getPos(), HFSounds.OVEN_DONE, SoundCategory.BLOCKS, 2F, 1F);
+            world.playSound(null, getPos(), HFSounds.OVEN_DONE, SoundCategory.BLOCKS, 2F, 1F);
         }
     }
 }

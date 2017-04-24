@@ -15,17 +15,20 @@ public class GuiNPCGift extends GuiNPCChat {
     public static ItemStack GODDESS_GIFT;
     private final ItemStack gift;
     private final Quality value;
+    private final EntityNPC npc;
 
     public GuiNPCGift(EntityPlayer player, EntityNPC npc, EnumHand hand) {
-        super(player, npc, -1, false);
-        gift = player.getHeldItem(hand).copy();
-        value = npc.getNPC().getGiftValue(gift);
+        super(new ContainerNPCGift(player, npc, hand, -1), player, npc);
+        this.gift = player.getHeldItem(hand).copy();
+        this.value = npc.getNPC().getGiftValue(gift);
+        this.npc = npc;
     }
 
     public GuiNPCGift(EntityPlayer player, EntityNPC npc, ItemStack gift) {
-        super(player, npc, -1, false);
+        super(new ContainerNPCGift(player, npc, null, -1), player, npc);
         this.gift = gift;
         this.value = npc.getNPC().getGiftValue(gift);
+        this.npc = npc;
     }
 
     @Override
@@ -47,5 +50,6 @@ public class GuiNPCGift extends GuiNPCChat {
     public void endChat() {
         player.closeScreen();
         GODDESS_GIFT = null; //Reset
+        npc.setTalking(null);
     }
 }

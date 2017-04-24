@@ -2,7 +2,8 @@ package joshie.harvest.quests.player.friendship;
 
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.Quest;
-import joshie.harvest.cooking.CookingHelper;
+import joshie.harvest.cooking.HFCooking;
+import joshie.harvest.cooking.item.ItemMeal.Meal;
 import joshie.harvest.npcs.HFNPCs;
 import joshie.harvest.quests.Quests;
 import joshie.harvest.quests.base.QuestFriendship;
@@ -31,17 +32,17 @@ public class QuestFenn5KSalad extends QuestFriendship {
     protected List<ItemStack> getRewardStacks(EntityPlayer player) {
         List<ItemStack> stacks = new ArrayList<>();
         //Salad
-        ItemStack stack = CookingHelper.getRecipe("salad");
+        ItemStack stack = HFCooking.MEAL.getCreativeStack(Meal.SALAD);
         stack.getTagCompound().setLong(SELL_VALUE, 0L);
         stacks.add(stack);
 
         //Pickled Cucumber
-        stack = CookingHelper.getRecipe("cucumber_pickled");
+        stack = HFCooking.MEAL.getCreativeStack(Meal.CUCUMBER_PICKLED);
         stack.getTagCompound().setLong(SELL_VALUE, 0L);
         stacks.add(stack);
 
         //Boiled Spinach
-        stack = CookingHelper.getRecipe("spinach_boiled");
+        stack = HFCooking.MEAL.getCreativeStack(Meal.SPINACH_BOILED);
         stack.getTagCompound().setLong(SELL_VALUE, 0L);
         stacks.add(stack);
         return stacks;

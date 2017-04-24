@@ -40,7 +40,7 @@ public class TileFridge extends TileFaceable implements ITickable, IFridge {
 
     @Override
     public void update() {
-        if (worldObj.isRemote) {
+        if (world.isRemote) {
             if (lidAngleTop >= 0.1F && data.getFieldCount() <= 0) {
                 animatingTop = true;
                 openTop = false;

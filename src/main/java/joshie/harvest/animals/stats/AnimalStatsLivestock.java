@@ -123,7 +123,7 @@ public class AnimalStatsLivestock extends AnimalStatsHF {
                 stats.copyHappiness(getOwner(), getHappiness(), 50D);
             }
 
-            animal.worldObj.spawnEntityInWorld(baby);
+            animal.world.spawnEntity(baby);
         }
     }
 

@@ -5,7 +5,6 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.core.Ore;
 import joshie.harvest.core.lib.EntityIDs;
-import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.util.annotations.HFLoader;
 import joshie.harvest.fishing.FishingHelper.WaterType;
 import joshie.harvest.fishing.block.BlockAquatic;
@@ -42,9 +41,11 @@ import static joshie.harvest.api.calendar.Season.*;
 import static joshie.harvest.cooking.HFCooking.COOKING_SELL_MODIFIER;
 import static joshie.harvest.core.helpers.RegistryHelper.registerOreIfNotExists;
 import static joshie.harvest.core.helpers.RegistryHelper.registerTiles;
+import static joshie.harvest.core.lib.HFModInfo.MODID;
 import static joshie.harvest.fishing.FishingHelper.WaterType.*;
 
 @HFLoader
+@SuppressWarnings("unused")
 public class HFFishing {
     public static final ItemFish FISH = new ItemFish().register("fish");
     public static final ItemJunk JUNK = new ItemJunk().register("junk");
@@ -52,12 +53,12 @@ public class HFFishing {
     public static final BlockAquatic AQUATIC_BLOCKS = new BlockAquatic().register("aquatic");
     public static final BlockFloating FLOATING_BLOCKS = new BlockFloating().register("floating");
 
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings("unchecked, ConstantConditions")
     public static void preInit(){
         LootFunctionManager.registerFunction(new SetWeight.Serializer());
         LootConditionManager.registerCondition(new ConditionTime.Serializer());
         LootConditionManager.registerCondition(new ConditionTier.Serializer());
-        EntityRegistry.registerModEntity(EntityFishHookHF.class, "hook", EntityIDs.FISHING, HarvestFestival.instance, 64, 5, true);
+        EntityRegistry.registerModEntity(new ResourceLocation(MODID, "hook"), EntityFishHookHF.class, "hook", EntityIDs.FISHING, HarvestFestival.instance, 64, 5, true);
         EntityRegistry.instance().lookupModSpawn(EntityFishHookHF.class, false).setCustomSpawning(null, true);
         HFApi.shipping.registerSellable(new ItemStack(Items.FISH, 1, 0), 10L);
         HFApi.shipping.registerSellable(new ItemStack(Items.FISH, 1, 1), 30L);
@@ -111,6 +112,6 @@ public class HFFishing {
     }
 
     private static void registerLootTable(String id, WaterType type, Season season) {
-        FishingHelper.FISHING_LOOT.put(Pair.of(season, type), LootTableList.register(new ResourceLocation(HFModInfo.MODID, "gameplay/fishing/" + id)));
+        FishingHelper.FISHING_LOOT.put(Pair.of(season, type), LootTableList.register(new ResourceLocation(MODID, "gameplay/fishing/" + id)));
     }
 }

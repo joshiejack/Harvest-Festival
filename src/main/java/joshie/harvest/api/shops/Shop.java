@@ -64,12 +64,12 @@ public class Shop {
 
     @SuppressWarnings("unchecked")
     public boolean canBuyFromShop(@Nullable EntityPlayer player) {
-        return canBuy && (player == null || rulesBuying.canDo(player.worldObj, player, 1));
+        return canBuy && (player == null || rulesBuying.canDo(player.world, player, 1));
     }
 
     @SuppressWarnings("unchecked")
     public boolean canSellToShop(@Nullable EntityPlayer player) {
-        return canSell && (player == null || rulesSelling.canDo(player.worldObj, player, 1));
+        return canSell && (player == null || rulesSelling.canDo(player.world, player, 1));
     }
 
     public void removeItem(IPurchasable item) {

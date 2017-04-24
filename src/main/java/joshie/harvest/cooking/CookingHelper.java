@@ -98,7 +98,7 @@ public class CookingHelper {
         for (IInventory inventory: fridges) {
             for (int i = 0; i < inventory.getSizeInventory(); i++) {
                 ItemStack stack = inventory.getStackInSlot(i);
-                if (stack != null && isIngredient(ingredient, CookingAPI.INSTANCE.getCookingComponents(stack))) {
+                if (isIngredient(ingredient, CookingAPI.INSTANCE.getCookingComponents(stack))) {
                     return inventory.decrStackSize(i, 1);
                 }
             }

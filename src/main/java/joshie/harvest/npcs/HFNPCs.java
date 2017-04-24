@@ -50,7 +50,7 @@ import static joshie.harvest.town.BuildingLocations.FISHING_POND_PIER;
 @HFLoader(priority = HFNPCS)
 @SuppressWarnings("unchecked")
 public class HFNPCs {
-    public static final NPC GODDESS = register("goddess", FEMALE, ADULT, 8, SPRING, 0x8CEED3, 0x4EC485).setHeight(1.2F, 0.6F).setUninvitable();
+    public static final NPC GODDESS = register("goddess", FEMALE, ADULT, 8, SPRING, 0x8CEED3, 0x4EC485).setHeight(1.2F, 0.6F).setUninvitable().setNoRespawn();
     public static final NPCSpecialSeller CARPENTER = register("yulif", MALE, ADULT, 19, SUMMER, 0x313857, 0x121421, NPCSpecialSeller.class);
     public static final NPCSpecialSeller FLOWER_GIRL = register("jade", FEMALE, ADULT, 14, SPRING, 0x653081, 0x361840, NPCSpecialSeller.class);
     public static final NPCSpecialSeller GS_OWNER = register("jenni", FEMALE, ADULT, 7, WINTER, 0xDDD0AD, 0xE79043, NPCSpecialOpener.class).setNPC(GODDESS);

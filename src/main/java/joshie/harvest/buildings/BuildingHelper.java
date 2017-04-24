@@ -37,7 +37,7 @@ public class BuildingHelper {
         Vec3d vec3d = getPositionEyes(player, partialTicks);
         Vec3d vec3d1 = player.getLook(partialTicks);
         Vec3d vec3d2 = vec3d.addVector(vec3d1.xCoord * blockReachDistance, vec3d1.yCoord * blockReachDistance, vec3d1.zCoord * blockReachDistance);
-        RayTraceResult result = player.getEntityWorld().rayTraceBlocks(vec3d, vec3d2, false, false, true);
+        RayTraceResult result = player.world.rayTraceBlocks(vec3d, vec3d2, false, false, true);
         return result == null ? null : result;
     }
 
@@ -53,7 +53,7 @@ public class BuildingHelper {
     private static ItemStack STACK_CLIENT;
 
     private static void validateOrInvalidateStack(ItemStack stack, EntityPlayer player) {
-        if (player.getEntityWorld().isRemote) {
+        if (player.world.isRemote) {
             if (STACK_CLIENT != stack) {
                 STACK_CLIENT = stack;
                 POSITION_CLIENT = null;
@@ -67,12 +67,12 @@ public class BuildingHelper {
     }
 
     private static void setPositionForPlayer(EntityPlayer player, BuildingKey pos) {
-        if (player.getEntityWorld().isRemote) POSITION_CLIENT = pos;
+        if (player.world.isRemote) POSITION_CLIENT = pos;
         else POSITIONS_SERVER.put(player, pos);
     }
 
     private static BuildingKey getPositionForPlayer(EntityPlayer player) {
-        if (player.getEntityWorld().isRemote) return POSITION_CLIENT;
+        if (player.world.isRemote) return POSITION_CLIENT;
         else return POSITIONS_SERVER.get(player);
     }
 

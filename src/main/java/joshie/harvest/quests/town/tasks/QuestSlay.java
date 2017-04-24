@@ -4,6 +4,7 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.npc.NPCEntity;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.Quest;
+import joshie.harvest.api.town.Town;
 import joshie.harvest.core.helpers.TextHelper;
 import joshie.harvest.npcs.HFNPCs;
 import joshie.harvest.quests.base.QuestDaily;
@@ -14,6 +15,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
@@ -27,7 +29,6 @@ import java.util.List;
 @HFQuest("slay")
 public class QuestSlay extends QuestDaily {
     private static final String[] list = new String[] { "harvestfestival.dark_chick", "harvestfestival.dark_chicken", "harvestfestival.dark_sheep", "harvestfestival.dark_cow" };
-
     private int targetAmount = 1;
     private String targetMob = "harvestfestival.dark_chick";
     private int counter;
@@ -79,16 +80,16 @@ public class QuestSlay extends QuestDaily {
     public String getDescription(World world, @Nullable EntityPlayer player) {
         if (player != null) {
             if (targetAmount - counter == 0) return getLocalized("talk");
-            String translated = "entity." + targetMob + ".name";
-            return getLocalized("desc", targetAmount - counter, TextHelper.localize(translated));
-        } else {
-            rand.setSeed(HFApi.calendar.getDate(world).hashCode());
-            int position = rand.nextInt(list.length);
-            targetMob = list[position];
-            targetAmount = 1 + rand.nextInt(10);
-            String translated = "entity." + targetMob + ".name";
-            return getLocalized("task", targetAmount, TextHelper.localize(translated), targetAmount * (position + 1));
-        }
+            return getLocalized("desc", targetAmount - counter, TextHelper.localize("entity." + targetMob + ".name"));
+        } else return getLocalized("task", targetAmount, TextHelper.localize("entity." + targetMob + ".name"), 1000L * targetAmount);
+    }
+
+    @Override
+    public void onSelectedAsDailyQuest(Town town, World world, BlockPos pos) {
+        rand.setSeed(HFApi.calendar.getDate(world).hashCode());
+        int position = rand.nextInt(list.length);
+        targetMob = list[position];
+        targetAmount = 1 + rand.nextInt(10);
     }
 
     @Override
@@ -110,7 +111,7 @@ public class QuestSlay extends QuestDaily {
 
     @Override
     public void onQuestCompleted(EntityPlayer player) {
-        HFApi.player.getRelationsForPlayer(player).affectRelationship(HFNPCs.MINER, 500);
+        HFApi.player.getRelationsForPlayer(player).affectRelationship(HFNPCs.MINER, 2500);
         rewardGold(player, 1000L * targetAmount);
     }
 

@@ -4,7 +4,6 @@ import joshie.harvest.api.cooking.Ingredient;
 import joshie.harvest.api.cooking.IngredientStack;
 import joshie.harvest.api.cooking.Recipe;
 import joshie.harvest.api.cooking.Utensil;
-import joshie.harvest.cooking.CookingAPI;
 import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.cooking.item.ItemMeal.Meal;
 import net.minecraft.item.ItemStack;
@@ -40,23 +39,11 @@ public class RecipeHelper {
         saturation = Math.min(1F, Math.max(0.2F, saturation * modifier));
 
         //Add the recipe
-        ResourceLocation resource = new ResourceLocation(MODID, mealname);
-        Recipe recipe = new RecipeHF(resource, utensil, hunger, saturation, toIngredientStacks(ingredients)).setEatTimer(eatTimer);
-        //TODO: Remove in 0.7+
-        recipe.setRegistryName(resource);
-        //TODO: Remove in 0.7+
-        CookingAPI.REGISTRY.register(recipe);
-        return recipe;
+        return new RecipeHF(new ResourceLocation(MODID, mealname), utensil, hunger, saturation, toIngredientStacks(ingredients)).setEatTimer(eatTimer);
     }
 
     private static Recipe addRecipe(String name, ItemStack result, Utensil utensil, Ingredient... ingredients) {
-        ResourceLocation resource = new ResourceLocation(MODID, name);
-        Recipe recipe = new RecipeVanilla(resource, result, utensil, toIngredientStacks(ingredients));
-        //TODO: Remove in 0.7+
-        recipe.setRegistryName(resource);
-        //TODO: Remove in 0.7+
-        CookingAPI.REGISTRY.register(recipe);
-        return recipe;
+        return new RecipeVanilla(new ResourceLocation(MODID, name), result, utensil, toIngredientStacks(ingredients));
     }
 
     public static IngredientStack[] toIngredientStacks(Ingredient[] ingredients) {

@@ -1,7 +1,6 @@
 package joshie.harvest.api.animals;
 
 import net.minecraft.entity.passive.EntityAnimal;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.world.World;
@@ -49,10 +48,9 @@ public interface AnimalStats<N extends NBTBase> extends INBTSerializable<N> {
     void affectHappiness(int happiness);
 
     /** Copy happiness, from adult to child
-     *  @param player               a player if they're available
      *  @param parentHappiness      the parent animal current happiness
      *  @param percentage           the percentage of the stats to copy **/
-    void copyHappiness(@Nullable EntityPlayer player, int parentHappiness, double percentage);
+    void copyHappiness(int parentHappiness, double percentage);
 
     /** Perform an action on this animal
      *  @param world    the world object, should never be null

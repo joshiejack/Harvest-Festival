@@ -65,9 +65,9 @@ public class EntityBasket extends Entity {
             ItemStack stack = it.next();
             if (HFApi.shipping.getSellValue(stack) > 0) {
                 ItemStack remainder = ItemHandlerHelper.insertItemStacked(handler, stack, false);
-                if (remainder == null) it.remove();
+                if (remainder.isEmpty()) it.remove();
                 else {
-                    stack.stackSize = remainder.stackSize; //Update the internal contents
+                    stack.setCount(remainder.getCount()); //Update the internal contents
                 }
             }
         }

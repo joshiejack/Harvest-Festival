@@ -45,7 +45,7 @@ public class PurchasableTrade extends PurchasableMaterials {
         purchased = this.stack.copy();
         int amount = requirement.getPurchased(player);
         if (amount != 0) {
-            purchased.stackSize = amount;
+            purchased.setCount(amount);
             SpawnItemHelper.addToPlayerInventory(player, purchased);
         }
     }

@@ -90,14 +90,14 @@ public class EntityHarvestChicken extends EntityChicken implements IEntityAdditi
 
     @Override
     @SuppressWarnings("ConstantConditions")
-    public boolean hasCapability(@Nonnull Capability<?> capability, @Nonnull EnumFacing facing) {
+    public boolean hasCapability(@Nonnull Capability<?> capability, @Nullable EnumFacing facing) {
         return capability == ANIMAL_STATS_CAPABILITY || super.hasCapability(capability, facing);
     }
 
     @Override
     @SuppressWarnings("ConstantConditions, unchecked")
     @Nonnull
-    public <T> T getCapability(@Nonnull Capability<T> capability, @Nonnull EnumFacing facing) {
+    public <T> T getCapability(@Nonnull Capability<T> capability, @Nullable EnumFacing facing) {
         return capability == ANIMAL_STATS_CAPABILITY ? (T) stats : super.getCapability(capability, facing);
     }
 

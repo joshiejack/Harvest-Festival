@@ -1,26 +1,6 @@
 package joshie.harvest.plugins.buttons;
 
-import joshie.harvest.api.calendar.Weather;
-import joshie.harvest.calendar.data.CalendarServer;
-import joshie.harvest.core.HFTrackers;
-import joshie.harvest.plugins.buttons.ButtonWeather.WeatherModes;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextComponentTranslation;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-import tehnut.buttons.api.WidgetTexture;
-import tehnut.buttons.api.button.utility.ButtonMode;
-import tehnut.buttons.api.button.utility.IMode;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import java.util.Collections;
-import java.util.List;
-import java.util.Locale;
-
+/* //TODO: Re-enable Buttons support
 public class ButtonWeather extends ButtonMode<WeatherModes> {
     private final String name;
 
@@ -79,4 +59,4 @@ public class ButtonWeather extends ButtonMode<WeatherModes> {
             HFTrackers.<CalendarServer>getCalendar(player.world).setTodaysWeather(weather);
         }
     }
-}
+} */

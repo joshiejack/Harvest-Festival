@@ -190,7 +190,7 @@ public class PageRecipe extends Page {
             if (stacks.size() > 0) {
                 if (ticker % 128 == 0 || stack == null) {
                     stack = stacks.get(index); //Pick out the stack
-                    stack.stackSize = ingredient.getStackSize();
+                    stack.setCount(ingredient.getStackSize());
                     index++;
                     if (index >= stacks.size()) {
                         index = 0; //Reset the index

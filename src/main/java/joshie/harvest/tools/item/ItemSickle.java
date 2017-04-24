@@ -113,7 +113,7 @@ public class ItemSickle extends ItemToolChargeable<ItemSickle> {
                             }
                         }
 
-                        stack.getSubCompound("Data", true).setInteger("Damage", getDamageForDisplay(stack) + 1);
+                        stack.getOrCreateSubCompound("Data").setInteger("Damage", getDamageForDisplay(stack) + 1);
                     }
                 }
             }

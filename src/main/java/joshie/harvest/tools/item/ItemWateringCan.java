@@ -121,7 +121,8 @@ public class ItemWateringCan extends ItemTool<ItemWateringCan> {
 
     @Override
     @Nonnull
-    public ActionResult<ItemStack> onItemRightClick(@Nonnull ItemStack stack, World world, EntityPlayer player, EnumHand hand) {
+    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, @Nonnull EnumHand hand) {
+        ItemStack stack = player.getHeldItem(hand);
         if(attemptToFill(world, player, stack)) return new ActionResult<>(EnumActionResult.SUCCESS, stack);
         else {
             waterCrops(world, player, getMovingObjectPositionFromPlayer(world, player), stack, getTier(stack));

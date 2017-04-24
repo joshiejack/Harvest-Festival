@@ -8,7 +8,8 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public abstract class TileSingleStack extends TileHarvest {
-    protected ItemStack stack = null;
+    @Nonnull
+    protected ItemStack stack = ItemStack.EMPTY;
 
     public abstract boolean onRightClicked(EntityPlayer player, ItemStack place);
 
@@ -20,18 +21,13 @@ public abstract class TileSingleStack extends TileHarvest {
     @Override
     public void readFromNBT(NBTTagCompound nbt) {
         super.readFromNBT(nbt);
-        if (nbt.hasKey("Stack")) {
-            stack = ItemStack.loadItemStackFromNBT(nbt.getCompoundTag("Stack"));
-        }
+        stack = new ItemStack(nbt.getCompoundTag("Stack"));
     }
 
     @Override
     @Nonnull
     public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
-        if (stack != null) {
-            nbt.setTag("Stack", stack.writeToNBT(new NBTTagCompound()));
-        }
-
+        nbt.setTag("Stack", stack.writeToNBT(new NBTTagCompound()));
         return super.writeToNBT(nbt);
     }
 }

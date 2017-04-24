@@ -46,8 +46,8 @@ public class ItemFishingRod extends ItemTool<ItemFishingRod> {
     boolean addBait(ItemStack rod, ItemStack bait) {
         NBTTagCompound tag = rod.hasTagCompound() ? rod.getTagCompound() : new NBTTagCompound();
         int existing = tag.getInteger("Bait");
-        if (existing + bait.stackSize > 999) return false;
-        tag.setInteger("Bait", existing + bait.stackSize);
+        if (existing + bait.getCount() > 999) return false;
+        tag.setInteger("Bait", existing + bait.getCount());
         rod.setTagCompound(tag); //Reset the tag
         return true;
     }
@@ -75,11 +75,12 @@ public class ItemFishingRod extends ItemTool<ItemFishingRod> {
     @Override
     @Nonnull
     @SuppressWarnings("ConstantConditions")
-    public ActionResult<ItemStack> onItemRightClick(@Nonnull ItemStack stack, @Nonnull World world, EntityPlayer player, @Nonnull EnumHand hand) {
+    public ActionResult<ItemStack> onItemRightClick(@Nonnull World world, EntityPlayer player, @Nonnull EnumHand hand) {
+        ItemStack stack = player.getHeldItem(hand);
         if (player.fishEntity != null) {
             if (player.fishEntity.handleHookRetraction() != 0) removeBait(player, stack, 1, false);
             ToolHelper.performTask(player, stack, this);
-            stack.getSubCompound("Data", true).setInteger("Damage", getDamageForDisplay(stack) + 1);
+            stack.getOrCreateSubCompound("Data").setInteger("Damage", getDamageForDisplay(stack) + 1);
             player.swingArm(hand);
             return new ActionResult<>(EnumActionResult.SUCCESS, stack);
         } else if (canUse(stack)) {

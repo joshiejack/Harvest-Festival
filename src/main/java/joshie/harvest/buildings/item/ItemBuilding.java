@@ -32,14 +32,15 @@ import java.util.List;
 
 public class ItemBuilding extends ItemHFRegistry<ItemBuilding, Building> implements ICreativeSorted {
     public ItemBuilding() {
-        super("Building", BuildingRegistry.REGISTRY, Building.REGISTRY, HFTab.TOWN);
+        super("Building", Building.REGISTRY, HFTab.TOWN);
         setMaxStackSize(1);
     }
 
     @Override
     @Nonnull
-    public ActionResult<ItemStack> onItemRightClick(@Nonnull ItemStack stack, World world, EntityPlayer player, EnumHand hand) {
+    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, @Nonnull EnumHand hand) {
         List<BuildingError> errors = new ArrayList<>();
+        ItemStack stack = player.getHeldItem(hand);
         if (world.provider.getDimension() != 0) errors.add(BuildingError.DIMENSION);
         else {
             Building building = getObjectFromStack(stack);

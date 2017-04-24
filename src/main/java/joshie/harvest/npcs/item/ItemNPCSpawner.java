@@ -21,7 +21,7 @@ import javax.annotation.Nonnull;
 
 public class ItemNPCSpawner extends ItemHFRegistry<ItemNPCSpawner, NPC> {
     public ItemNPCSpawner() {
-        super("NPC", NPCHelper.OLD_REGISTRY, NPC.REGISTRY, HFTab.TOWN);
+        super("NPC", NPC.REGISTRY, HFTab.TOWN);
     }
 
     @Override
@@ -47,6 +47,7 @@ public class ItemNPCSpawner extends ItemHFRegistry<ItemNPCSpawner, NPC> {
     @Override
     @Nonnull
     public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+        ItemStack stack = player.getHeldItem(hand);
         NPC npc = getObjectFromStack(stack);
         if (npc != null) {
             if (!world.isRemote) {
@@ -56,7 +57,7 @@ public class ItemNPCSpawner extends ItemHFRegistry<ItemNPCSpawner, NPC> {
                 } else spawnNPC(world, pos, npc);
             }
 
-            stack.splitStack(1);
+            stack.shrink(1);
             return EnumActionResult.SUCCESS;
         }
 

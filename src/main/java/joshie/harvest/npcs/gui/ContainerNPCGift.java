@@ -53,12 +53,7 @@ public class ContainerNPCGift extends ContainerNPCChat {
                 relationships.gift(player, theNpc, points);
                 //}
 
-                ItemStack gifted = gift.splitStack(1);
-                if (gift.stackSize <= 0) {
-                    player.setHeldItem(hand, null);
-                }
-
-                npc.setHeldItem(EnumHand.OFF_HAND, gifted);
+                npc.setHeldItem(EnumHand.OFF_HAND, gift.splitStack(1));
             }
 
             //On closure

@@ -57,7 +57,8 @@ public class ItemBlockElevator extends ItemBlockHF {
 
     @Override
     @Nonnull
-    public ActionResult<ItemStack> onItemRightClick(@Nonnull ItemStack stack, World world, EntityPlayer player, EnumHand hand) {
+    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, @Nonnull EnumHand hand) {
+        ItemStack stack = player.getHeldItem(hand);
         if (world.provider.getDimension() == HFMining.MINING_ID) {
             RayTraceResult raytrace = BuildingHelper.rayTrace(player, 5D, 0F);
             if (raytrace == null || (raytrace.sideHit == EnumFacing.DOWN || raytrace.sideHit == EnumFacing.UP)) return new ActionResult<>(EnumActionResult.PASS, stack); //We didn't ind what we want
@@ -84,7 +85,7 @@ public class ItemBlockElevator extends ItemBlockHF {
                     }
                 }
 
-                stack.splitStack(1); //Reduce the stack size
+                stack.shrink(1); //Reduce the stack size
             }
         }
 
@@ -93,7 +94,7 @@ public class ItemBlockElevator extends ItemBlockHF {
 
     @Override
     @Nonnull
-    public EnumActionResult onItemUse(@Nonnull ItemStack stack, @Nonnull EntityPlayer playerIn, @Nonnull World worldIn, @Nonnull BlockPos pos, @Nonnull EnumHand hand, @Nonnull EnumFacing facing, float hitX, float hitY, float hitZ) {
+    public EnumActionResult onItemUse(@Nonnull EntityPlayer playerIn, @Nonnull World worldIn, @Nonnull BlockPos pos, @Nonnull EnumHand hand, @Nonnull EnumFacing facing, float hitX, float hitY, float hitZ) {
         return EnumActionResult.PASS;
     }
 

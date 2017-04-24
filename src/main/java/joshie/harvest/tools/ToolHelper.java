@@ -82,7 +82,7 @@ public class ToolHelper {
             int max = tool.getMaximumToolDamage(stack);
             int current = tool.getDamageForDisplay(stack);
             if (current + 1 >= max) player.renderBrokenItemStack(stack);
-            stack.getSubCompound("Data", true).setInteger("Damage", current + 1);
+            stack.getOrCreateSubCompound("Data").setInteger("Damage", current + 1);
         }
     }
 

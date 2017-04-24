@@ -87,7 +87,7 @@ public class ItemAxe extends ItemToolSmashing<ItemAxe> {
     }
 
     private boolean canChopTree(EntityPlayer player, ItemStack stack, BlockPos pos) {
-        NBTTagCompound tag = stack.getSubCompound("Chopping", true);
+        NBTTagCompound tag = stack.getOrCreateSubCompound("Chopping");
         if (tag.hasKey("Block")) {
             BlockPos internal = BlockPos.fromLong(tag.getLong("Block"));
             if (internal.equals(pos)) {
@@ -106,7 +106,7 @@ public class ItemAxe extends ItemToolSmashing<ItemAxe> {
     }
 
     private boolean chopTree(BlockPos pos, EntityPlayer player, ItemStack stack) {
-        NBTTagCompound tag = stack.getSubCompound("Chopping", true);
+        NBTTagCompound tag = stack.getOrCreateSubCompound("Chopping");
         tag.removeTag("Block"); //Remove the data now we're chopping
         tag.removeTag("Times"); //Remove the data now we're chopping
         if(player.world.isRemote) return true;

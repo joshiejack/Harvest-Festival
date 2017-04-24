@@ -24,7 +24,8 @@ public class ItemBlockFishing extends ItemBlockHF<BlockFloating> {
     @Override
     @Nonnull
     @SuppressWarnings({"ConstantConditions", "deprecation"})
-    public ActionResult<ItemStack> onItemRightClick(@Nonnull ItemStack stack, World world, EntityPlayer player, EnumHand hand) {
+    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
+        ItemStack stack = player.getHeldItem(hand);
         IBlockState state = getBlock().getStateFromMeta(stack.getItemDamage());
         RayTraceResult raytraceresult = rayTrace(world, player, true);
         if (raytraceresult == null) {
@@ -50,7 +51,7 @@ public class ItemBlockFishing extends ItemBlockHF<BlockFloating> {
                     world.setBlockState(blockpos1, state, 11);
 
                     if (!player.capabilities.isCreativeMode) {
-                        --stack.stackSize;
+                        stack.shrink(1);
                     }
 
                     player.addStat(StatList.getObjectUseStats(this));
@@ -65,7 +66,7 @@ public class ItemBlockFishing extends ItemBlockHF<BlockFloating> {
 
     @Override
     @Nonnull
-    public EnumActionResult onItemUse(@Nonnull ItemStack stack, @Nonnull EntityPlayer playerIn, @Nonnull World worldIn, @Nonnull BlockPos pos, @Nonnull EnumHand hand, @Nonnull EnumFacing facing, float hitX, float hitY, float hitZ) {
+    public EnumActionResult onItemUse(@Nonnull EntityPlayer playerIn, @Nonnull World worldIn, @Nonnull BlockPos pos, @Nonnull EnumHand hand, @Nonnull EnumFacing facing, float hitX, float hitY, float hitZ) {
         return EnumActionResult.PASS;
     }
 }

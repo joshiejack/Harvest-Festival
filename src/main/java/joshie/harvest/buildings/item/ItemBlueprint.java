@@ -3,7 +3,6 @@ package joshie.harvest.buildings.item;
 import joshie.harvest.api.buildings.Building;
 import joshie.harvest.buildings.BuildingError;
 import joshie.harvest.buildings.BuildingHelper;
-import joshie.harvest.buildings.BuildingRegistry;
 import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.buildings.render.BuildingKey;
 import joshie.harvest.core.HFTab;
@@ -30,14 +29,15 @@ import java.util.List;
 
 public class ItemBlueprint extends ItemHFRegistry<ItemBlueprint, Building> implements ICreativeSorted {
     public ItemBlueprint() {
-        super("Building", BuildingRegistry.REGISTRY, Building.REGISTRY, HFTab.TOWN);
+        super("Building", Building.REGISTRY, HFTab.TOWN);
         setMaxStackSize(1);
     }
 
     @Override
     @Nonnull
-    public ActionResult<ItemStack> onItemRightClick(@Nonnull ItemStack stack, World world, EntityPlayer player, EnumHand hand) {
+    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, @Nonnull EnumHand hand) {
         List<BuildingError> errors = new ArrayList<>();
+        ItemStack stack = player.getHeldItem(hand);
         if (world.provider.getDimension() != 0) errors.add(BuildingError.DIMENSION);
         else {
             Building building = getObjectFromStack(stack);

@@ -203,8 +203,8 @@ public class BlockStorage extends BlockHFEnumRotatableTile<BlockStorage, Storage
                 long sell = shipping.getSellValue(stack);
                 if (sell > 0) {
                     HFTrackers.<PlayerTrackerServer>getPlayerTracker(world, uuid).getTracking().addForShipping(StackHelper.toStack(stack, 1));
-                    stack.splitStack(1);
-                    if (stack.stackSize <= 0) {
+                    stack.shrink(1);
+                    if (stack.getCount() <= 0) {
                         item.setDead();
                     }
                 }
@@ -221,7 +221,7 @@ public class BlockStorage extends BlockHFEnumRotatableTile<BlockStorage, Storage
         } else if (tile instanceof TileBasket)  {
             if (stack.hasTagCompound() && stack.getTagCompound().hasKey("inventory")) {
                 ((TileBasket)tile).setAppearanceAndContents(
-                        ItemStack.loadItemStackFromNBT(stack.getTagCompound().getCompoundTag("item")),
+                        new ItemStack(stack.getTagCompound().getCompoundTag("item")),
                         stack.getTagCompound().getCompoundTag("inventory"));
             }
         } else if (tile instanceof IFaceable) {

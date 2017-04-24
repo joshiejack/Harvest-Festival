@@ -63,7 +63,7 @@ public class ItemCheat extends ItemHFEnum<ItemCheat, Cheat> {
     @Override
     @Nonnull
     public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-        int damage = stack.getItemDamage();
+        int damage = player.getHeldItem(hand).getItemDamage();
         if (damage == COORD_SETTER.ordinal()) {
             if (player.isSneaking()) {
                 pos2 = pos;

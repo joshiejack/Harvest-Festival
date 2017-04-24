@@ -61,7 +61,7 @@ public class Purchasable implements IPurchasable {
 
     @Override
     public boolean canDo(@Nonnull World world, @Nonnull EntityPlayer player, int amount) {
-        return getCost() >= 0 || InventoryHelper.hasInInventory(player, ITEM_STACK, getDisplayStack(), (getDisplayStack().stackSize * amount));
+        return getCost() >= 0 || InventoryHelper.hasInInventory(player, ITEM_STACK, getDisplayStack(), (getDisplayStack().getCount() * amount));
     }
 
     @Override
@@ -86,7 +86,7 @@ public class Purchasable implements IPurchasable {
     @Override
     public void onPurchased(EntityPlayer player) {
         if (getCost() < 0) {
-            InventoryHelper.takeItemsInInventory(player, ITEM_STACK, getPurchasedStack(), getPurchasedStack().stackSize);
+            InventoryHelper.takeItemsInInventory(player, ITEM_STACK, getPurchasedStack(), getPurchasedStack().getCount());
         } else {
             SpawnItemHelper.addToPlayerInventory(player, getPurchasedStack().copy());
         }

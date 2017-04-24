@@ -1,13 +1,6 @@
 package joshie.harvest.plugins.buttons;
 
-import net.minecraft.util.ResourceLocation;
-import tehnut.buttons.api.ButtonsPlugin;
-import tehnut.buttons.api.IWidgetPlugin;
-import tehnut.buttons.api.IWidgetRegistry;
-import tehnut.buttons.api.WidgetTexture;
-
-import static joshie.harvest.core.lib.HFModInfo.MODID;
-
+/* //TODO: Re-enable Buttons support
 @ButtonsPlugin
 public class Buttons extends IWidgetPlugin.Base {
     public static final ResourceLocation RESOURCE = new ResourceLocation(MODID, "textures/gui/gui_widgets.png");
@@ -24,4 +17,4 @@ public class Buttons extends IWidgetPlugin.Base {
         registry.addUtilityButton(new ButtonSeason());
         registry.addUtilityButton(new ButtonWeather());
     }
-}
+} */

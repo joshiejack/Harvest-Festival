@@ -16,7 +16,7 @@ public class OfflineTickHandler {
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public void onWorldTickEvent(WorldTickEvent event) {
         if (event.phase == Phase.END) {
-            BLOCKED = FMLCommonHandler.instance().getMinecraftServerInstance().getPlayerList().getPlayerList().size() <= 0;
+            BLOCKED = FMLCommonHandler.instance().getMinecraftServerInstance().getPlayerList().getPlayers().size() <= 0;
             if (BLOCKED) {
                 event.world.setWorldTime(event.world.getWorldTime() - 1L);
             }

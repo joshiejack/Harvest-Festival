@@ -9,8 +9,11 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+
+import javax.annotation.Nonnull;
 
 public class GiftRegistry implements IGiftRegistry {
     private final HolderRegistrySet blacklist = new HolderRegistrySet();
@@ -20,10 +23,15 @@ public class GiftRegistry implements IGiftRegistry {
         return registry;
     }
 
-    public boolean isBlacklisted(World world, EntityPlayer player, ItemStack stack) {
+    public boolean isBlacklisted(World world, EntityPlayer player, @Nonnull ItemStack stack) {
         if (stack.getItem() instanceof ItemBlock) {
             Block block = ((ItemBlock)stack.getItem()).getBlock();
-            if (block.hasTileEntity(block.getStateForPlacement(world, BlockPos.ORIGIN, EnumFacing.DOWN, 0F, 0F, 0F, stack.getItemDamage(), player, stack))) return true;
+            ItemStack held = player.getHeldItem(EnumHand.MAIN_HAND).copy();
+            player.setHeldItem(EnumHand.MAIN_HAND, stack);
+            if (block.hasTileEntity(block.getStateForPlacement(world, BlockPos.ORIGIN, EnumFacing.DOWN, 0F, 0F, 0F, stack.getItemDamage(), player, EnumHand.MAIN_HAND))) {
+                player.setHeldItem(EnumHand.MAIN_HAND, held);
+                return true;
+            }
         }
 
         return registry.getValueOf(stack) == null && (stack.getItem().isDamageable() || blacklist.contains(stack));

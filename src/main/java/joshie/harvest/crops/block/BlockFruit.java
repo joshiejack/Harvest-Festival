@@ -66,7 +66,7 @@ public class BlockFruit extends BlockHFEnum<BlockFruit, Fruit> {
     }
 
     @Override
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
         Fruit fruit = getEnumFromState(state);
         world.setBlockToAir(pos);
         spawnAsEntity(world, pos, fruit.getCrop().getCropStack(1));

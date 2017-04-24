@@ -52,11 +52,9 @@ public class GuiCookbook extends GuiScreen {
         for (IInventory inventory: fridges) {
             for (int i = 0; i < inventory.getSizeInventory(); i++) {
                 ItemStack stack = inventory.getStackInSlot(i);
-                if (stack != null) {
-                    Ingredient ingredient = CookingAPI.INSTANCE.getCookingComponents(stack);
-                    if (ingredient != null) {
-                        ingredients.add(new IngredientStack(ingredient, stack.stackSize));
-                    }
+                Ingredient ingredient = CookingAPI.INSTANCE.getCookingComponents(stack);
+                if (ingredient != null) {
+                    ingredients.add(new IngredientStack(ingredient, stack.getCount()));
                 }
             }
         }

@@ -29,7 +29,7 @@ public class SleepHandler {
 
     @SubscribeEvent
     public void onDamage(LivingAttackEvent event) {
-        if (event.getSource() == DamageSource.starve && event.getEntityLiving() instanceof EntityPlayer) {
+        if (event.getSource() == DamageSource.STARVE && event.getEntityLiving() instanceof EntityPlayer) {
             EntityPlayer player = ((EntityPlayer)event.getEntityLiving());
             if (player.isPlayerSleeping()) {
                 event.setCanceled(true);

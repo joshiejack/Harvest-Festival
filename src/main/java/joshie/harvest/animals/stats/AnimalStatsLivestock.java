@@ -120,7 +120,7 @@ public class AnimalStatsLivestock extends AnimalStatsHF {
             baby.setLocationAndAngles(animal.posX, animal.posY, animal.posZ, 0.0F, 0.0F);
             AnimalStats stats = EntityHelper.getStats(baby);
             if (stats != null) {
-                stats.copyHappiness(getOwner(), getHappiness(), 50D);
+                stats.copyHappiness(getHappiness(), 50D);
             }
 
             animal.world.spawnEntity(baby);

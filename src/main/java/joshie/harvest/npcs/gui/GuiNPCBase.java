@@ -200,7 +200,7 @@ public abstract class GuiNPCBase extends GuiBase {
     }
 
     public void endChat() {
-        mc.thePlayer.closeScreen();
+        mc.player.closeScreen();
     }
 
     @Override
@@ -213,7 +213,7 @@ public abstract class GuiNPCBase extends GuiBase {
     //Tooltip
     @Override
     protected void renderToolTip(@Nonnull ItemStack stack, int x, int y) {
-        List<String> textLines = stack.getTooltip(this.mc.thePlayer, false);
+        List<String> textLines = stack.getTooltip(mc.player, false);
         for (int i = 0; i < textLines.size(); ++i) {
             if (i == 0) {
                 textLines.set(i, stack.getRarity().rarityColor + textLines.get(i));

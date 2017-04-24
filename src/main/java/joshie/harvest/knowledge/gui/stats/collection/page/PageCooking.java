@@ -66,7 +66,7 @@ public class PageCooking extends PageCollection {
         for (int i = start * 112; added < start * 112 + 112 && i < list.size(); i++) {
             Recipe recipe = list.get(i);
             ItemStack stack = RecipeMaker.BUILDER.build(recipe, Lists.newArrayList(recipe.getRequired())).get(0);
-            stack.stackSize = 1; //Force a stacksize of one for rendering purposes
+            stack.setCount(1); //Force a stacksize of one for rendering purposes
             long value = HFApi.shipping.getSellValue(stack);
             boolean obtained = hasObtainedStack(stack);
             if (k == 7) {

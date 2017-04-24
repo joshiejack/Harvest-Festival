@@ -309,7 +309,7 @@ public class AnimalStatsHF implements AnimalStats<NBTTagCompound> {
     }
 
     @Override
-    public void copyHappiness(@Nullable EntityPlayer player, int parentHappiness, double percentage) {
+    public void copyHappiness(int parentHappiness, double percentage) {
         happiness = (int)(parentHappiness * (percentage / 100D));
         if (getAnimal() != null) {
             HFApi.animals.syncAnimalStats(getAnimal());

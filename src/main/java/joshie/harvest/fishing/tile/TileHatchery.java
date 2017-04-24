@@ -38,13 +38,13 @@ public class TileHatchery extends TileSingleStack implements ITickable {
             TileHatchery hatchery = (TileHatchery) world.getTileEntity(pos);
             if (hatchery.isOnWaterSurface(world, pos.down())) {
                 ItemStack stack = hatchery.stack;
-                if (stack != null && stack.stackSize < 10) {
+                if (stack != null && stack.getCount() < 10) {
                     int daysRequired = FishingAPI.INSTANCE.getDaysFor(stack);
                     if (daysRequired >= 1) {
                         hatchery.daysPassed++;
                         if (hatchery.daysPassed >= FishingAPI.INSTANCE.getDaysFor(stack)) {
                             hatchery.daysPassed = 0;
-                            stack.stackSize++;
+                            stack.grow(1);
                             hatchery.saveAndRefresh();
                         }
                     }
@@ -79,14 +79,14 @@ public class TileHatchery extends TileSingleStack implements ITickable {
 
     @Override
     public boolean onRightClicked(EntityPlayer player, ItemStack place) {
-        int daysRequired = place == null ? 0 : FishingAPI.INSTANCE.getDaysFor(place);
+        int daysRequired = place.isEmpty() ? 0 : FishingAPI.INSTANCE.getDaysFor(place);
         if (daysRequired <= 0) return removeFish(player);
-        if (stack != null && (!stack.isItemEqual(place) || stack.stackSize >= 10)) return false;
+        if (!stack.isItemEqual(place) || stack.getCount() >= 10) return false;
         else {
             ItemStack single = place.splitStack(1);
-            if (stack == null) {
+            if (stack.isEmpty()) {
                 stack = single.copy();
-            } else stack.stackSize++;
+            } else stack.grow(1);
 
             saveAndRefresh();
             return true;
@@ -94,7 +94,7 @@ public class TileHatchery extends TileSingleStack implements ITickable {
     }
 
     private boolean removeFish(EntityPlayer player) {
-        if (stack != null) {
+        if (!stack.isEmpty()) {
             if (!world.isRemote) {
                 boolean broke = false;
                 if (world.rand.nextInt(100) > breakChance) {
@@ -108,12 +108,12 @@ public class TileHatchery extends TileSingleStack implements ITickable {
                 } else breakChance -= 25;
 
                 if (breakChance <= 0) breakChance = 0;
-                if (stack.stackSize > 1 && !broke) {
-                    SpawnItemHelper.spawnByEntity(player, StackHelper.toStack(stack, stack.stackSize - 1));
-                    stack.stackSize = 1;
+                if (stack.getCount() > 1 && !broke) {
+                    SpawnItemHelper.spawnByEntity(player, StackHelper.toStack(stack, stack.getCount() - 1));
+                    stack.setCount(1);
                 } else {
                     SpawnItemHelper.spawnByEntity(player, stack);
-                    stack = null;
+                    stack = ItemStack.EMPTY;
                 }
 
                 saveAndRefresh();
@@ -126,7 +126,7 @@ public class TileHatchery extends TileSingleStack implements ITickable {
     private void onFishChanged() {
         renderStacks.clear();
         if (stack != null) {
-            for (int i = 0; i < stack.stackSize; i++) {
+            for (int i = 0; i < stack.getCount(); i++) {
                 renderStacks.add(StackHelper.toStack(stack, 1));
             }
         }

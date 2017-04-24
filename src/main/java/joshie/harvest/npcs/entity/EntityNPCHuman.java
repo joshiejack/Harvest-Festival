@@ -104,13 +104,13 @@ public abstract class EntityNPCHuman<E extends EntityNPCHuman> extends EntityNPC
 
     @Override
     public boolean attackEntityFrom(@Nonnull DamageSource source, float amount) {
-        if (source != DamageSource.outOfWorld) {
+        if (source != DamageSource.OUT_OF_WORLD) {
             addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 200, 0, true, false));
             if (source.getSourceOfDamage() instanceof EntityPlayer) {
                 HFApi.player.getRelationsForPlayer(((EntityPlayer) source.getSourceOfDamage())).affectRelationship(npc, -10);
             }
 
-            if (source == DamageSource.inWall) {
+            if (source == DamageSource.IN_WALL) {
                 attemptTeleport(posX + world.rand.nextInt(20) - 10D, posY + world.rand.nextInt(3), posZ + world.rand.nextInt(20) - 10D);
             }
         }

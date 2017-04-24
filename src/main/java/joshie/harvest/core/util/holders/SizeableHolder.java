@@ -44,7 +44,7 @@ public class SizeableHolder extends AbstractItemHolder {
     }
 
     public static SizeableHolder readFromNBT(NBTTagCompound tag) {
-        return new SizeableHolder(ItemStack.loadItemStackFromNBT(tag));
+        return new SizeableHolder(new ItemStack(tag));
     }
 
     @Override

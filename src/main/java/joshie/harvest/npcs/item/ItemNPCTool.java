@@ -85,7 +85,8 @@ public class ItemNPCTool extends ItemHFEnum<ItemNPCTool, NPCTool> {
     @Override
     @Nonnull
     @SuppressWarnings("ConstantConditions")
-    public ActionResult<ItemStack> onItemRightClick(@Nonnull ItemStack held, World world, EntityPlayer player, EnumHand hand) {
+    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, @Nonnull EnumHand hand) {
+        ItemStack held = player.getHeldItem(hand);
         if (held.hasTagCompound() && held.getTagCompound().hasKey(SPECIAL)) {
             if (!world.isRemote) {
                 for (ItemStack stack: MiningHelper.getLoot(MINING_GEMS, world, player, 3F)) {
@@ -93,8 +94,8 @@ public class ItemNPCTool extends ItemHFEnum<ItemNPCTool, NPCTool> {
                 }
             }
 
-            held.splitStack(1);
+            held.shrink(1);
             return new ActionResult<>(EnumActionResult.SUCCESS, held);
-        } else return super.onItemRightClick(held, world, player, hand);
+        } else return super.onItemRightClick(world, player, hand);
     }
 }

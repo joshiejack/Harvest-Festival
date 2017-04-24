@@ -25,9 +25,7 @@ public class PlaceableFlowerPot extends PlaceableDecorative {
     public void postPlace(World world, BlockPos pos, Rotation rotation) {
         TileEntity tile = world.getTileEntity(pos);
         if (tile instanceof TileEntityFlowerPot) {
-            TileEntityFlowerPot pot = (TileEntityFlowerPot) tile;
-            ItemStack random = getRandomPlant(world.rand);
-            pot.setFlowerPotData(random.getItem(), random.getItemDamage());
+            ((TileEntityFlowerPot) tile).setItemStack(getRandomPlant(world.rand));
         }
     }
 

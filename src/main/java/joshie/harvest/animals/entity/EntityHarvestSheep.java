@@ -25,6 +25,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
@@ -81,10 +82,11 @@ public class EntityHarvestSheep extends EntitySheep implements IEntityAdditional
     }
 
     @Override
-    public boolean processInteract(@Nullable EntityPlayer player, @Nullable EnumHand hand, ItemStack stack) {
+    public boolean processInteract(@Nullable EntityPlayer player, @Nullable EnumHand hand) {
         if (player == null) return false;
+        ItemStack stack = player.getHeldItem(hand);
         boolean special = ITEM_STACK.matchesAny(stack, getStacks()) || ITEM.matchesAny(stack, HFAnimals.TREATS, Items.SHEARS);
-        if (stack == null || !special) {
+        if (stack.isEmpty() || !special) {
             if (!stats.performTest(AnimalTest.BEEN_LOVED)) {
                 stats.performAction(world, null, AnimalAction.PETTED); //Love <3
                 SoundEvent s = getAmbientSound();
@@ -99,7 +101,7 @@ public class EntityHarvestSheep extends EntitySheep implements IEntityAdditional
 
     @Override
     @Nonnull
-    public List<ItemStack> onSheared(ItemStack item, net.minecraft.world.IBlockAccess world, BlockPos pos, int fortune) {
+    public List<ItemStack> onSheared(ItemStack item, IBlockAccess access, BlockPos pos, int fortune) {
         List<ItemStack> ret = new ArrayList<>();
         EntityPlayer player = world.getClosestPlayerToEntity(this, 178D);
         if (!isChild()) {
@@ -129,14 +131,14 @@ public class EntityHarvestSheep extends EntitySheep implements IEntityAdditional
 
     @Override
     @SuppressWarnings("ConstantConditions")
-    public boolean hasCapability(@Nonnull Capability<?> capability, @Nonnull EnumFacing facing) {
+    public boolean hasCapability(@Nonnull Capability<?> capability, @Nullable EnumFacing facing) {
         return capability == ANIMAL_STATS_CAPABILITY || super.hasCapability(capability, facing);
     }
 
     @Override
     @SuppressWarnings("unchecked, ConstantConditions")
     @Nonnull
-    public <T> T getCapability(@Nonnull Capability<T> capability, @Nonnull EnumFacing facing) {
+    public <T> T getCapability(@Nonnull Capability<T> capability, @Nullable EnumFacing facing) {
         return capability == ANIMAL_STATS_CAPABILITY ? (T) stats : super.getCapability(capability, facing);
     }
 

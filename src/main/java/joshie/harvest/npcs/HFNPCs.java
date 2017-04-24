@@ -48,7 +48,7 @@ import static joshie.harvest.core.lib.LoadOrder.HFNPCS;
 import static joshie.harvest.town.BuildingLocations.FISHING_POND_PIER;
 
 @HFLoader(priority = HFNPCS)
-@SuppressWarnings("unchecked")
+@SuppressWarnings("unchecked, unused")
 public class HFNPCs {
     public static final NPC GODDESS = register("goddess", FEMALE, ADULT, 8, SPRING, 0x8CEED3, 0x4EC485).setHeight(1.2F, 0.6F).setUninvitable().setNoRespawn();
     public static final NPCSpecialSeller CARPENTER = register("yulif", MALE, ADULT, 19, SUMMER, 0x313857, 0x121421, NPCSpecialSeller.class);
@@ -88,12 +88,10 @@ public class HFNPCs {
         TRADER.addFamily(MILKMAID, GS_OWNER);
         BLACKSMITH.addFamily(GS_OWNER, CARPENTER);
         DAUGHTER_ADULT.addFamily(MAYOR, DAUGHTER_CHILD);
-        EntityRegistry.registerModEntity(EntityNPCVillager.class, "villager", EntityIDs.VILLAGER, HarvestFestival.instance, 80, 3, true);
-        EntityRegistry.registerModEntity(EntityNPCBuilder.class, "builder", EntityIDs.BUILDER, HarvestFestival.instance, 80, 3, true);
-        //TODO: Remove in 0.7+
-        EntityRegistry.registerModEntity(EntityNPCShopkeeper.class, "shopkeeper", EntityIDs.UNUSED, HarvestFestival.instance, 80, 3, true);
-        EntityRegistry.registerModEntity(EntityNPCGoddess.class, "goddess", EntityIDs.GODDESS, HarvestFestival.instance, 80, 3, true);
-        EntityRegistry.registerModEntity(EntityNPCMiner.class, "miner", EntityIDs.MINER, HarvestFestival.instance, 80, 3, true);
+        EntityRegistry.registerModEntity(new ResourceLocation(MODID, "villager"), EntityNPCVillager.class, "villager", EntityIDs.VILLAGER, HarvestFestival.instance, 80, 3, true);
+        EntityRegistry.registerModEntity(new ResourceLocation(MODID, "builder"), EntityNPCBuilder.class, "builder", EntityIDs.BUILDER, HarvestFestival.instance, 80, 3, true);
+        EntityRegistry.registerModEntity(new ResourceLocation(MODID, "goddess"), EntityNPCGoddess.class, "goddess", EntityIDs.GODDESS, HarvestFestival.instance, 80, 3, true);
+        EntityRegistry.registerModEntity(new ResourceLocation(MODID, "miner"), EntityNPCMiner.class, "miner", EntityIDs.MINER, HarvestFestival.instance, 80, 3, true);
         registerSounds("goddess", "blessing");
     }
 
@@ -175,12 +173,7 @@ public class HFNPCs {
                                 .newInstance(new ResourceLocation("harvestfestival", name), gender, age, new CalendarDate(dayOfBirth, seasonOfBirth, 1), insideColor, outsideColor);
         } catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException ex) { /**/}
 
-        if (npc == null) {
-            npc = new NPC(new ResourceLocation(MODID, name), gender, age, new CalendarDate(dayOfBirth, seasonOfBirth, 1), insideColor, outsideColor);
-            npc.setRegistryName(new ResourceLocation(MODID, name));
-            NPCHelper.OLD_REGISTRY.register(npc);
-        }
-        return (N) npc;
+        return npc != null ? (N) npc : (N) new NPC(new ResourceLocation(MODID, name), gender, age, new CalendarDate(dayOfBirth, seasonOfBirth, 1), insideColor, outsideColor);
     }
 
     private static <E extends EntityNPC> void registerNPCRendering(Class<E> entityClass) {

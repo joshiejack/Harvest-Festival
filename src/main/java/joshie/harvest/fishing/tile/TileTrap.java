@@ -55,17 +55,17 @@ public class TileTrap extends TileSingleStack {
     }
 
     @Override
-    public boolean onRightClicked(EntityPlayer player, ItemStack place) {
-        if (stack == null && place != null && FishingAPI.INSTANCE.isBait(place)) {
+    public boolean onRightClicked(EntityPlayer player, @Nonnull ItemStack place) {
+        if (FishingAPI.INSTANCE.isBait(place)) {
             stack = place.splitStack(1);
             baited = true;
             saveAndRefresh();
             return true;
-        } else if (stack != null && !FishingAPI.INSTANCE.isBait(stack)) {
+        } else if (!FishingAPI.INSTANCE.isBait(stack)) {
             FishingHelper.track(stack, player);
             SpawnItemHelper.addToPlayerInventory(player, stack);
             baited = false;
-            stack = null;
+            stack = ItemStack.EMPTY;
             saveAndRefresh();
             return true;
         }

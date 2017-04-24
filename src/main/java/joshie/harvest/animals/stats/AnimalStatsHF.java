@@ -9,6 +9,7 @@ import joshie.harvest.api.animals.AnimalAction;
 import joshie.harvest.api.animals.AnimalStats;
 import joshie.harvest.api.animals.AnimalTest;
 import joshie.harvest.api.animals.IAnimalType;
+import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.player.RelationshipType;
 import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.core.network.PacketHandler;
@@ -100,9 +101,6 @@ public class AnimalStatsHF implements AnimalStats<NBTTagCompound> {
     }
 
     private int getDeathChance() {
-        //If the owner is offline, have a low chance of death
-        EntityPlayer owner = getOwner();
-        if (owner == null) return Integer.MAX_VALUE;
         //If the animal has not been fed, give it a fix changed of dying
         if (daysNotFed > 0) {
             return Math.max(1, 45 - daysNotFed * 3);
@@ -132,9 +130,8 @@ public class AnimalStatsHF implements AnimalStats<NBTTagCompound> {
         boolean dayTime = world.isDaytime();
         boolean isRaining = world.isRaining();
         boolean isOutside = world.canBlockSeeSky(new BlockPos(animal));
-        boolean isOutsideInSun = !isRaining && isOutside && dayTime;
-        EntityPlayer owner = getOwner();
-        if (owner != null && isOutsideInSun && wasOutsideInSun) {
+        boolean isOutsideInSun = !isRaining && isOutside && dayTime && HFApi.calendar.getDate(world).getSeason() != Season.WINTER;
+        if (isOutsideInSun && wasOutsideInSun) {
             affectHappiness(type.getRelationshipBonus(AnimalAction.OUTSIDE));
         }
 

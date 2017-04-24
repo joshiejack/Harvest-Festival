@@ -11,6 +11,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.server.MinecraftServer;
 
 @HFCommand
+@SuppressWarnings("unused")
 public class HFCommandMine extends AbstractHFCommand {
     @Override
     public String getCommandName() {

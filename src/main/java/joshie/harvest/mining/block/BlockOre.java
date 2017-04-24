@@ -63,8 +63,9 @@ public class BlockOre extends BlockHFSmashable<BlockOre, Ore> implements ISmasha
     @Override
     @SuppressWarnings("deprecation")
     public float getPlayerRelativeBlockHardness(IBlockState state, @Nonnull EntityPlayer player, @Nonnull World world, @Nonnull BlockPos pos) {
-        return (player.getHeldItemMainhand() != null && player.getHeldItemMainhand().getItem() == HFTools.HAMMER)
-                ? ((HFTools.HAMMER.getTier(player.getHeldItemMainhand()).ordinal() + 2) - getToolLevel(getEnumFromState(state))) * 0.025F: -1F;
+        return (player.getHeldItemMainhand().getItem() == HFTools.HAMMER)
+                ? ((HFTools.HAMMER.getTier(player.getHeldItemMainhand()).ordinal() + 2)
+                - getToolLevel(getEnumFromState(state))) * 0.025F: -1F;
     }
 
     @SuppressWarnings("deprecation")
@@ -112,7 +113,7 @@ public class BlockOre extends BlockHFSmashable<BlockOre, Ore> implements ISmasha
     public void dropBlockAsItemWithChance(World worldIn, BlockPos pos, IBlockState state, float chance, int fortune)  {
         if (!worldIn.isRemote && !worldIn.restoringBlockSnapshots)  {
             EntityPlayer player = harvesters.get();
-            if (player != null && player.getHeldItemMainhand() != null && player.getHeldItemMainhand().getItem() == getTool()) {
+            if (player != null && player.getHeldItemMainhand().getItem() == getTool()) {
                 smashBlock(harvesters.get(), worldIn, pos, state, getTool().getTier(player.getHeldItemMainhand()));
             }
         }

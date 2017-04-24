@@ -90,10 +90,10 @@ public class BlockElevator extends BlockHFEnumRotatableTile<BlockElevator, Eleva
     }
 
     @Override
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
         TileElevator elevator = getElevator(world, pos, state);
         if (elevator != null) {
-            if (heldItem != null && heldItem.getItem() == HFMining.MINING_TOOL) return false;
+            if (player.getHeldItem(hand).getItem() == HFMining.MINING_TOOL) return false;
             BlockPos twin = elevator.getTwin();
             if (twin == null) {
                 if (world.isRemote) ChatHelper.displayChat(TextHelper.translate("elevator.link"));

@@ -119,7 +119,8 @@ public class ItemMiningTool extends ItemHFEnum<ItemMiningTool, MiningTool> {
 
     @Override
     @Nonnull
-    public ActionResult<ItemStack> onItemRightClick(@Nonnull ItemStack stack, World world, EntityPlayer player, EnumHand hand) {
+    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, @Nonnull EnumHand hand) {
+        ItemStack stack = player.getHeldItem(hand);
         if (world.provider.getDimension() == HFMining.MINING_ID) {
             MiningTool tool = getEnumFromStack(stack);
             if (tool == MiningTool.ELEVATOR_CABLE) {
@@ -137,7 +138,7 @@ public class ItemMiningTool extends ItemHFEnum<ItemMiningTool, MiningTool> {
 
                 return new ActionResult<>(EnumActionResult.SUCCESS, stack);
             } else if (tool == MiningTool.ESCAPE_ROPE) {
-                    stack.splitStack(1);
+                    stack.shrink(1);
                     if (!world.isRemote) {
                         MiningHelper.teleportToOverworld(player); //Back we go!
                     }

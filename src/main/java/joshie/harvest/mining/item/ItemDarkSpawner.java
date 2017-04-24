@@ -19,6 +19,7 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nonnull;
 import java.util.Locale;
 
 import static joshie.harvest.core.lib.HFModInfo.MODID;
@@ -37,7 +38,7 @@ public class ItemDarkSpawner extends ItemHFEnum<ItemDarkSpawner, DarkSpawner> {
         super(HFTab.MINING, DarkSpawner.class);
     }
 
-    public EntityMob getEntityFromEnum(World world, DarkSpawner spawner) {
+    private EntityMob getEntityFromEnum(World world, DarkSpawner spawner) {
         switch (spawner) {
             case COW:
                 return new EntityDarkCow(world);
@@ -53,7 +54,9 @@ public class ItemDarkSpawner extends ItemHFEnum<ItemDarkSpawner, DarkSpawner> {
     }
 
     @Override
+    @Nonnull
     public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+        ItemStack stack = player.getHeldItem(hand);
         if (!world.isRemote) {
             EntityMob entity = getEntityFromEnum(world, getEnumFromStack(stack));
             if (entity != null) {
@@ -62,9 +65,8 @@ public class ItemDarkSpawner extends ItemHFEnum<ItemDarkSpawner, DarkSpawner> {
             }
         }
 
-        stack.splitStack(1);
-
-        return EnumActionResult.FAIL;
+        stack.shrink(1);
+        return EnumActionResult.SUCCESS;
     }
 
     @SideOnly(Side.CLIENT)

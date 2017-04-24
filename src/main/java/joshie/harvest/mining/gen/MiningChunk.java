@@ -561,14 +561,13 @@ public class MiningChunk implements IChunkGenerator {
 
     @Override
     @Nonnull
-    public List<Biome.SpawnListEntry> getPossibleCreatures(@Nonnull EnumCreatureType creatureType, @Nonnull BlockPos pos) {
-        if (creatureType == EnumCreatureType.MONSTER) {
-            return MONSTERS;
-        } else return this.world.getBiome(pos).getSpawnableList(creatureType);
+    public List<Biome.SpawnListEntry> getPossibleCreatures(@Nonnull EnumCreatureType type, @Nonnull BlockPos pos) {
+        return type == EnumCreatureType.MONSTER ? MONSTERS: world.getBiome(pos).getSpawnableList(type);
     }
 
     @Nullable
-    public BlockPos getStrongholdGen(@Nonnull World worldIn, @Nonnull String structureName, @Nonnull BlockPos position) {
+    @Override
+    public BlockPos getStrongholdGen(@Nonnull World worldIn, @Nonnull String structureName, @Nonnull BlockPos position, boolean p_180513_4_) {
         return null;
     }
 

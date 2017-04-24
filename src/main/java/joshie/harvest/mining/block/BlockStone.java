@@ -31,7 +31,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -97,11 +96,12 @@ public class BlockStone extends BlockHFEnumCube<BlockStone, Type> {
     }
 
     @Override
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
         if (getEnumFromState(state) == LADDER_HOLE) {
-            if (heldItem != null && heldItem.getItem() == Item.getItemFromBlock(HFMining.LADDER)) {
+            ItemStack heldItem = player.getHeldItem(hand);
+            if (heldItem.getItem() == Item.getItemFromBlock(HFMining.LADDER)) {
                 world.setBlockState(pos, world.getBlockState(pos.down()));
-                heldItem.splitStack(1);
+                heldItem.shrink(1);
                 return true;
             } else if (world.isRemote) ChatHelper.displayChat(ChatFormatting.ITALIC + TextHelper.translate("stone.ladder.hole.whisper"));
         }

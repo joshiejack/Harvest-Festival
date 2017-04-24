@@ -23,6 +23,7 @@ import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
@@ -117,6 +118,7 @@ public class BakedDirt extends BakedHF {
         }
 
         @Override
+        @Nonnull
         public Map<IBlockState, ModelResourceLocation> putStateModelLocations(Block block) {
             if (block == HFMining.DIRT) {
                 mapStateModelLocations.put(new BlockStateContainer(block).getBaseState(), new ModelResourceLocation(block.getRegistryName(), "overlay"));

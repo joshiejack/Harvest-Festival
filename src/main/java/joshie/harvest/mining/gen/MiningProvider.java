@@ -16,7 +16,7 @@ import static joshie.harvest.mining.HFMining.MINE_WORLD;
 
 public class MiningProvider extends WorldProvider {
     @Override
-    public void createBiomeProvider() {
+    public void init() {
         biomeProvider = new BiomeProviderSingle(Biomes.VOID);
         hasNoSky = true;
     }

@@ -61,7 +61,7 @@ public class EntityDarkCow extends EntityMob {
     }
 
     @Override
-    public void onDeath(DamageSource cause) {
+    public void onDeath(@Nonnull DamageSource cause) {
         super.onDeath(cause);
         EntityPlayer player = EntityHelper.getPlayerFromSource(cause);
         if (player != null) {

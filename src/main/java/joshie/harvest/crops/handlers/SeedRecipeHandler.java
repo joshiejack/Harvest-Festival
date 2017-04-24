@@ -19,7 +19,7 @@ public class SeedRecipeHandler extends ShapelessOreRecipe {
         ArrayList<Object> required = new ArrayList<>(input);
         for (int x = 0; x < var1.getSizeInventory(); x++) {
             ItemStack slot = var1.getStackInSlot(x);
-            if (slot != null) {
+            if (!slot.isEmpty()) {
                 boolean inRecipe = false;
 
                 for (Object aRequired : required) {

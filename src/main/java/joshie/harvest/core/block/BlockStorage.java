@@ -137,14 +137,13 @@ public class BlockStorage extends BlockHFEnumRotatableTile<BlockStorage, Storage
     }
 
     @Override
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack held, EnumFacing side, float hitX, float hitY, float hitZ) {
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
         Storage storage = getEnumFromState(state);
+        ItemStack held = player.getHeldItem(hand);
         if (player.isSneaking()) return false;
-        else if (storage == SHIPPING && held != null) {
-            if (hasShippedItem(world, player, held)) {
-                held.splitStack(1);
-                return true;
-            }
+        else if (storage == SHIPPING && hasShippedItem(world, player, held)) {
+            held.splitStack(1);
+            return true;
         } else if (storage == MAILBOX) {
             if (!world.isRemote && LetterHelper.hasUnreadLetters(player)) {
                 player.openGui(HarvestFestival.instance, GuiHandler.MAILBOX, world, 0, 0, 0);

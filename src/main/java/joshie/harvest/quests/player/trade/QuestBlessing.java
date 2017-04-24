@@ -108,7 +108,7 @@ public class QuestBlessing extends QuestTrade {
         super.readFromNBT(nbt);
         if (nbt.hasKey("Date")) {
             date = CalendarDate.fromNBT(nbt.getCompoundTag("Date"));
-            tool = ItemStack.loadItemStackFromNBT(nbt.getCompoundTag("Item"));
+            tool = new ItemStack(nbt.getCompoundTag("Item"));
         }
     }
 

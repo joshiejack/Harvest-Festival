@@ -24,14 +24,12 @@ public abstract class TileFillable extends TileHarvest {
     }
 
     public boolean onActivated(@Nonnull ItemStack held) {
-        if (HFApi.animals.canEat(held, foodType)) {
-            if (held.stackSize >= 1) {
-                TileFillable fillable = getTile();
-                if (fillable != null) {
-                    if (fillable.getFillAmount() + fillPer <= fillable.getMaximumFill() && fillable.setFilled(fillable.getFillAmount() + fillPer)) {
-                        held.splitStack(1);
-                        return true;
-                    }
+        if (HFApi.animals.canEat(held, foodType) && held.getCount() > 0) {
+            TileFillable fillable = getTile();
+            if (fillable != null) {
+                if (fillable.getFillAmount() + fillPer <= fillable.getMaximumFill() && fillable.setFilled(fillable.getFillAmount() + fillPer)) {
+                    held.splitStack(1);
+                    return true;
                 }
             }
         }

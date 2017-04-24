@@ -35,7 +35,7 @@ public class CommandManager extends CommandBase {
     }
 
     List<AbstractHFCommand> getPossibleCommands(ICommandSender sender) {
-        return commands.values().stream().filter(command -> sender.canCommandSenderUseCommand(command.getPermissionLevel().ordinal(), command.getCommandName())).collect(Collectors.toCollection(ArrayList::new));
+        return commands.values().stream().filter(command -> sender.canUseCommand(command.getPermissionLevel().ordinal(), command.getCommandName())).collect(Collectors.toCollection(ArrayList::new));
     }
 
     @Override
@@ -57,8 +57,8 @@ public class CommandManager extends CommandBase {
     @SubscribeEvent
     public void onCommandSend(CommandEvent event) throws CommandException {
         //Update the calendar
-        if (VanillaCommands.isHandled(event.getCommand().getCommandName())) {
-            String name = event.getCommand().getCommandName();
+        if (VanillaCommands.isHandled(event.getCommand().getName())) {
+            String name = event.getCommand().getName();
             try {
                 if (name.equals("time") && VanillaCommands.executeVanillaTime(FMLCommonHandler.instance().getMinecraftServerInstance(), event.getSender(), event.getParameters())) {
                     event.setCanceled(true);
@@ -75,7 +75,7 @@ public class CommandManager extends CommandBase {
                 else {
                     String commandName = event.getParameters()[0];
                     AbstractHFCommand command = commands.get(commandName);
-                    if (command == null || !event.getSender().canCommandSenderUseCommand(command.getPermissionLevel().ordinal(), commandName)) {
+                    if (command == null || !event.getSender().canUseCommand(command.getPermissionLevel().ordinal(), commandName)) {
                         event.setCanceled(true);
                     } else {
                         processCommand(event, command);

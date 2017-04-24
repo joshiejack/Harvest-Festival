@@ -121,11 +121,11 @@ public class ButtonListing<I extends IPurchasable> extends GuiButton {
                     stackSize += 10;
                     StatsClient stats = HFTrackers.getClientPlayerTracker().getStats();
                     stats.setGoldValue(stats.getGold() - (data.getSellValue(shop.getShop(), purchasable) * 10));
-                    if (purchasable.getCost() >= 0) shop.updatePurchased(StackHelper.toStack(purchasable.getDisplayStack(), 10 * purchasable.getDisplayStack().stackSize), 10 * purchasable.getDisplayStack().stackSize);
+                    if (purchasable.getCost() >= 0) shop.updatePurchased(StackHelper.toStack(purchasable.getDisplayStack(), 10 * purchasable.getDisplayStack().getCount()), 10 * purchasable.getDisplayStack().getCount());
                     if (hoverTimer %40 == 1) playPressSound(mc.getSoundHandler());
                 } else if (canPurchaseX(stackSize + 1)) {
                     stackSize++;
-                    if (purchasable.getCost() >= 0) shop.updatePurchased(purchasable.getDisplayStack(), purchasable.getDisplayStack().stackSize);
+                    if (purchasable.getCost() >= 0) shop.updatePurchased(purchasable.getDisplayStack(), purchasable.getDisplayStack().getCount());
                     StatsClient stats = HFTrackers.getClientPlayerTracker().getStats();
                     stats.setGoldValue(stats.getGold() - data.getSellValue(shop.getShop(), purchasable));
                     if (hoverTimer %40 == 1) playPressSound(mc.getSoundHandler());

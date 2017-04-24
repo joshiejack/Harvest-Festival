@@ -18,10 +18,7 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumParticleTypes;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvent;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
@@ -31,6 +28,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
@@ -64,29 +62,30 @@ public abstract class ItemTool<I extends ItemTool> extends ItemHFBase<I> impleme
     }
 
     @Override
-    public String getItemStackDisplayName(ItemStack stack) {
+    @Nonnull
+    public String getItemStackDisplayName(@Nonnull ItemStack stack) {
         String text = TextHelper.localize(super.getUnlocalizedName().replace("item.", "") + "." + getTier(stack).name().toLowerCase(Locale.ENGLISH));
         return !canUse(stack) ? TextHelper.translate("tool.broken") + " " + text : text;
     }
 
     @Override
     public double getLevel(ItemStack stack) {
-        return stack.getSubCompound("Data", true).getDouble("Level");
+        return stack.getOrCreateSubCompound("Data").getDouble("Level");
     }
 
     @Override
     public void levelTool(ItemStack stack) {
-        double level = stack.getSubCompound("Data", true).getDouble("Level");
+        double level = stack.getOrCreateSubCompound("Data").getDouble("Level");
         double increase = getLevelIncrease(stack);
         double newLevel = Math.min(100D, level + increase);
-        stack.getSubCompound("Data", true).setDouble("Level", newLevel);
+        stack.getOrCreateSubCompound("Data").setDouble("Level", newLevel);
     }
 
     @Override
     public boolean setLevel(ItemStack stack, double newLevel) {
         if (newLevel < 0D || newLevel > 100D) return false;
         else {
-            stack.getSubCompound("Data", true).setDouble("Level", newLevel);
+            stack.getOrCreateSubCompound("Data").setDouble("Level", newLevel);
             return true;
         }
     }
@@ -112,10 +111,10 @@ public abstract class ItemTool<I extends ItemTool> extends ItemHFBase<I> impleme
     }
 
     public int getDamageForDisplay(ItemStack stack) {
-        int display = stack.getSubCompound("Data", true).getInteger("Damage");
+        int display = stack.getOrCreateSubCompound("Data").getInteger("Damage");
         int max = getMaximumToolDamage(stack);
         if (display > max) {
-            stack.getSubCompound("Data", true).setInteger("Damage", max);
+            stack.getOrCreateSubCompound("Data").setInteger("Damage", max);
             return max;
         } else return display;
     }
@@ -140,7 +139,7 @@ public abstract class ItemTool<I extends ItemTool> extends ItemHFBase<I> impleme
                 ToolHelper.levelTool(stack);
             }
 
-            stack.getSubCompound("Data", true).setInteger("Damage", getDamageForDisplay(stack) + 1);
+            stack.getOrCreateSubCompound("Data").setInteger("Damage", getDamageForDisplay(stack) + 1);
         }
 
         return true;
@@ -266,7 +265,7 @@ public abstract class ItemTool<I extends ItemTool> extends ItemHFBase<I> impleme
 
     @Override
     @SuppressWarnings("deprecation")
-    public int getHarvestLevel(ItemStack stack, @Nonnull String toolClass) {
+    public int getHarvestLevel(@Nonnull ItemStack stack, @Nonnull String toolClass, @Nullable EntityPlayer player, @Nullable IBlockState blockState) {
         if (!toolClass.equals(this.toolClass)) return 0;
         if (!canUse(stack)) return 0;
         ToolTier tier = getTier(stack);
@@ -345,10 +344,10 @@ public abstract class ItemTool<I extends ItemTool> extends ItemHFBase<I> impleme
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubItems(@Nonnull Item item, CreativeTabs tab, List<ItemStack> list) {
+    public void getSubItems(@Nonnull Item item, CreativeTabs tab, NonNullList<ItemStack> list) {
         for (int i = 0; i < ToolTier.values().length; i++) {
             ItemStack stack = new ItemStack(item, 1, i);
-            stack.getSubCompound("Data", true).setInteger("Damage", 0);
+            stack.getOrCreateSubCompound("Data").setInteger("Damage", 0);
             list.add(stack);
         }
     }

@@ -4,8 +4,8 @@ import joshie.harvest.api.core.ITiered;
 import joshie.harvest.core.commands.AbstractHFCommand;
 import joshie.harvest.core.commands.HFCommand;
 import net.minecraft.command.CommandBase;
+import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
-import net.minecraft.command.PlayerNotFoundException;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
@@ -34,7 +34,7 @@ public class HFCommandTool extends AbstractHFCommand {
                 double level = Double.parseDouble(parameters[parameters.length - 1]);
                 EntityPlayerMP player = parameters.length == 1 ? CommandBase.getCommandSenderAsPlayer(sender) : CommandBase.getPlayer(server, sender, parameters[0]);
                 return applyLevel(player.getHeldItemOffhand(), level) || applyLevel(player.getHeldItemMainhand(), level);
-            } catch (NumberFormatException | PlayerNotFoundException ignored) {}
+            } catch (NumberFormatException | CommandException ignored) {}
         }
 
         return false;

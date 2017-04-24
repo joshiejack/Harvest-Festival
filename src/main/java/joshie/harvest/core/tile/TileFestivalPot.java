@@ -15,8 +15,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.UUID;
 
-import static tehnut.buttons.config.ConfigHandler.categories;
-
 public class TileFestivalPot extends TileStand {
     private final Map<UUID, ItemStack> data = new HashMap<>();
 
@@ -91,7 +89,7 @@ public class TileFestivalPot extends TileStand {
         for (int i = 0; i < list.tagCount(); i++) {
             NBTTagCompound tag = list.getCompoundTagAt(i);
             UUID uuid = UUID.fromString(tag.getString("UUID"));
-            ItemStack stack = ItemStack.loadItemStackFromNBT(tag.getCompoundTag("Data"));
+            ItemStack stack = new ItemStack(tag.getCompoundTag("Data"));
             data.put(uuid, stack);
         }
     }

@@ -2,21 +2,21 @@ package joshie.harvest.core.base.item;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.core.HFTab;
+import joshie.harvest.core.helpers.TextHelper;
 import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.core.util.interfaces.ICreativeSorted;
-import joshie.harvest.core.helpers.TextHelper;
 import joshie.harvest.core.util.interfaces.ISellable;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.NonNullList;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nonnull;
-import java.util.List;
 import java.util.Locale;
 
 public abstract class ItemHFEnum<I extends ItemHFEnum, E extends Enum<E> & IStringSerializable> extends ItemHFBase<I> implements ICreativeSorted {
@@ -104,7 +104,7 @@ public abstract class ItemHFEnum<I extends ItemHFEnum, E extends Enum<E> & IStri
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubItems(Item item, CreativeTabs tab, List<ItemStack> list) {
+    public void getSubItems(Item item, CreativeTabs tab, NonNullList<ItemStack> list) {
         for (E e: values) {
             if (shouldDisplayInCreative(e)) {
                 list.add(new ItemStack(item, 1, e.ordinal()));

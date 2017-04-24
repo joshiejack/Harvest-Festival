@@ -178,7 +178,7 @@ public class QuestBlacksmithing extends QuestTrade {
 
                 ItemStack material = new ItemStack(HFMining.MATERIALS, getRequired(holding), getMaterial(holding));
                 boolean hasMaterial = InventoryHelper.hasInInventory(player, ITEM_STACK, material, getRequired(holding));
-                if (!hasMaterial) return getLocalized("material", material.stackSize, material.getDisplayName());
+                if (!hasMaterial) return getLocalized("material", material.getCount(), material.getDisplayName());
 
                 //The blacksmith thanks the player for the gold, and their tool
                 //He informs them he will have it upgraded within three days
@@ -209,8 +209,8 @@ public class QuestBlacksmithing extends QuestTrade {
                 if (InventoryHelper.takeItemsInInventory(player, ITEM_STACK, material)) {
                     date = HFApi.calendar.getDate(player.world).copy();
                     tool = player.getHeldItemMainhand().copy();
-                    tool.getSubCompound("Data", true).setInteger("Damage", 0);
-                    tool.getSubCompound("Data", true).setDouble("Level", tool.getSubCompound("Data", true).getDouble("Level"));
+                    tool.getOrCreateSubCompound("Data").setInteger("Damage", 0);
+                    tool.getOrCreateSubCompound("Data").setDouble("Level", tool.getOrCreateSubCompound("Data").getDouble("Level"));
                     days = today.getWeekday() == Weekday.WEDNESDAY ? 2: 1; //Takes 1 day to repair
                     increaseStage(player);
                     rewardGold(player, -required);
@@ -261,7 +261,7 @@ public class QuestBlacksmithing extends QuestTrade {
         super.readFromNBT(nbt);
         if (nbt.hasKey("Date")) {
             date = CalendarDate.fromNBT(nbt.getCompoundTag("Date"));
-            tool = ItemStack.loadItemStackFromNBT(nbt.getCompoundTag("Item"));
+            tool = new ItemStack(nbt.getCompoundTag("Item"));
             days = nbt.getByte("Days");
         }
     }

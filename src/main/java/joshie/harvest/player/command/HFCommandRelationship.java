@@ -7,8 +7,8 @@ import joshie.harvest.core.commands.HFCommand;
 import joshie.harvest.player.PlayerTrackerServer;
 import joshie.harvest.player.relationships.RelationshipDataServer;
 import net.minecraft.command.CommandBase;
+import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
-import net.minecraft.command.PlayerNotFoundException;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ResourceLocation;
@@ -50,7 +50,7 @@ public class HFCommandRelationship extends AbstractHFCommand {
                             return true;
                         }
                 }
-            } catch (NumberFormatException | PlayerNotFoundException ignored) {}
+            } catch (NumberFormatException | CommandException ignored) {}
         }
 
         return false;

@@ -11,7 +11,6 @@ import joshie.harvest.town.data.TownData;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -25,7 +24,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import java.util.Locale;
 
 public class BlockQuestBoard extends BlockHFEnumRotatableMeta<BlockQuestBoard, QuestBlock> {
@@ -84,7 +82,7 @@ public class BlockQuestBoard extends BlockHFEnumRotatableMeta<BlockQuestBoard, Q
     }
 
     @Override
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
         player.openGui(HarvestFestival.instance, GuiHandler.QUEST_BOARD, world, pos.getX(), pos.getY(), pos.getZ()); //Open the GUI
         return true;
     }

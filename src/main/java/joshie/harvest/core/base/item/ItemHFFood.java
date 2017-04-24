@@ -1,8 +1,8 @@
 package joshie.harvest.core.base.item;
 
 import joshie.harvest.core.HFTab;
-import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.helpers.TextHelper;
+import joshie.harvest.core.lib.HFModInfo;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
@@ -20,8 +20,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.util.ArrayList;
-import java.util.List;
+import javax.annotation.Nonnull;
 
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 
@@ -36,11 +35,13 @@ public class ItemHFFood<I extends ItemHFFood> extends ItemFood {
     }
 
     @Override
-    public String getItemStackDisplayName(ItemStack stack) {
+    @Nonnull
+    public String getItemStackDisplayName(@Nonnull ItemStack stack) {
         return TextHelper.localize(getUnlocalizedName());
     }
 
     @Override
+    @Nonnull
     public String getUnlocalizedName() {
         return HFModInfo.MODID + "." + super.getUnlocalizedName().replace("item.", "");
     }
@@ -51,12 +52,15 @@ public class ItemHFFood<I extends ItemHFFood> extends ItemFood {
     }
 
     @Override
+    @Nonnull
     public EnumAction getItemUseAction(ItemStack stack) {
         return EnumAction.EAT;
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(ItemStack stack, World world, EntityPlayer player, EnumHand hand) {
+    @Nonnull
+    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, @Nonnull EnumHand hand) {
+        ItemStack stack = player.getHeldItem(hand);
         if (player.canEat(false) && getHealAmount(stack) > 0) {
             player.setActiveHand(hand);
             return new ActionResult<>(EnumActionResult.SUCCESS, stack);
@@ -66,10 +70,11 @@ public class ItemHFFood<I extends ItemHFFood> extends ItemFood {
     }
 
     @Override
-    public ItemStack onItemUseFinish(ItemStack stack, World world, EntityLivingBase entityLiving) {
+    @Nonnull
+    public ItemStack onItemUseFinish(ItemStack stack, @Nonnull World world, EntityLivingBase entityLiving) {
         if (entityLiving instanceof EntityPlayer) {
             EntityPlayer player = (EntityPlayer) entityLiving;
-            if (!player.capabilities.isCreativeMode) --stack.stackSize;
+            if (!player.capabilities.isCreativeMode) stack.shrink(1);
             player.getFoodStats().addStats(this, stack);
             world.playSound(null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_PLAYER_BURP, SoundCategory.PLAYERS, 0.5F, world.rand.nextFloat() * 0.1F + 0.9F);
 
@@ -94,7 +99,7 @@ public class ItemHFFood<I extends ItemHFFood> extends ItemFood {
     @SideOnly(Side.CLIENT)
     public void registerModels(Item item, String name) {
         if (item.getHasSubtypes()) {
-            List<ItemStack> subItems = new ArrayList<>();
+            NonNullList<ItemStack> subItems = NonNullList.create();
             if (item.getCreativeTabs().length > 0) {
                 for (CreativeTabs tab : item.getCreativeTabs()) {
                     item.getSubItems(item, tab, subItems);

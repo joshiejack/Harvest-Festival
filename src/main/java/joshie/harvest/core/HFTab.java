@@ -17,17 +17,18 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nonnull;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.List;
 
 import static joshie.harvest.mining.item.ItemMaterial.Material.ADAMANTITE;
 
-
 @HFLoader(priority = 0)
+@SuppressWarnings("unused")
 public class HFTab extends CreativeTabs {
     public static final HFTab TOWN = new HFTab("town");
     public static final HFTab MINING = new HFTab("mining");
@@ -46,18 +47,15 @@ public class HFTab extends CreativeTabs {
 
     @Override
     @SideOnly(Side.CLIENT)
+    @Nonnull
     public String getTranslatedTabLabel() {
         return HFModInfo.MODID + ".tab." + this.getTabLabel();
     }
 
     @Override
-    public ItemStack getIconItemStack() {
+    @Nonnull
+    public ItemStack getTabIconItem() {
         return icon;
-    }
-
-    @Override
-    public Item getTabIconItem() {
-        return icon.getItem();
     }
 
     @Override
@@ -72,7 +70,7 @@ public class HFTab extends CreativeTabs {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void displayAllRelevantItems(List<ItemStack> list) {
+    public void displayAllRelevantItems(NonNullList<ItemStack> list) {
         super.displayAllRelevantItems(list);
         Collections.sort(list, new Alphabetical());
     }

@@ -1,13 +1,13 @@
 package joshie.harvest.player.command;
 
+import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.commands.AbstractHFCommand;
 import joshie.harvest.core.commands.HFCommand;
-import joshie.harvest.core.HFTrackers;
 import joshie.harvest.player.PlayerTrackerServer;
 import joshie.harvest.player.stats.StatsServer;
 import net.minecraft.command.CommandBase;
+import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
-import net.minecraft.command.PlayerNotFoundException;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
 
@@ -37,7 +37,7 @@ public class HFCommandGold extends AbstractHFCommand {
                 } else stats.addGold(player, amount);
 
                 return true; //After succesfully completing the command, return to avoid throwing an error
-            } catch (NumberFormatException | PlayerNotFoundException ignored) {}
+            } catch (NumberFormatException | CommandException ignored) {}
         }
         return false;
     }

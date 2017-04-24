@@ -67,15 +67,15 @@ public class ContainerBase extends Container {
                 if (!mergeItemStack(stack, low, high, false)) return null;
             } else if (slotID >= low && slotID < high && !mergeItemStack(stack, size, low, false)) return null;
 
-            if (stack.stackSize == 0) {
+            if (stack.getCount() == 0) {
                 slot.putStack(null);
             } else {
                 slot.onSlotChanged();
             }
 
-            if (stack.stackSize == newStack.stackSize) return null;
+            if (stack.getCount() == newStack.getCount()) return null;
 
-            slot.onPickupFromSlot(player, stack);
+            slot.onTake(player, stack);
         }
 
         return newStack;

@@ -8,7 +8,6 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
@@ -16,11 +15,12 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Set;
 
 public class ItemToolChargeable<I extends ItemToolChargeable> extends ItemTool<I> {
-    public static final TIntObjectMap<ToolTier> LEVEL_TO_TIER = new TIntObjectHashMap<>();
+    protected static final TIntObjectMap<ToolTier> LEVEL_TO_TIER = new TIntObjectHashMap<>();
     static {
         for (ToolTier tier: ToolTier.values()) {
             if (tier == ToolTier.BLESSED) continue;
@@ -36,26 +36,18 @@ public class ItemToolChargeable<I extends ItemToolChargeable> extends ItemTool<I
         return getTier(stack).getToolLevel();
     }
 
-    protected boolean canCharge(ItemStack stack) {
-        NBTTagCompound tag = stack.getSubCompound("Data", true);
-        int amount = tag.getInteger("Charge");
-        return amount < getMaxCharge(stack);
-    }
-
     protected int getCharge(ItemStack stack) {
-        return stack.getSubCompound("Data", true).getInteger("Charge");
+        return stack.getOrCreateSubCompound("Data").getInteger("Charge");
     }
 
-    protected void setCharge(ItemStack stack, int amount) {
-        stack.getSubCompound("Data", true).setInteger("Charge", amount);
-    }
-
-    protected void increaseCharge(ItemStack stack, int amount) {
-        setCharge(stack, getCharge(stack) + amount);
+    private void setCharge(ItemStack stack, int amount) {
+        stack.getOrCreateSubCompound("Data").setInteger("Charge", amount);
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(ItemStack stack, World world, EntityPlayer playerIn, EnumHand hand) {
+    @Nonnull
+    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer playerIn, @Nonnull EnumHand hand) {
+        ItemStack stack = playerIn.getHeldItem(hand);
         ToolTier tier = getTier(stack);
         if (tier != ToolTier.BASIC && canUse(stack)) {
             if (playerIn.isSneaking()) {
@@ -68,11 +60,6 @@ public class ItemToolChargeable<I extends ItemToolChargeable> extends ItemTool<I
             onPlayerStoppedUsing(stack, world, playerIn, 32000);
             return new ActionResult<>(EnumActionResult.SUCCESS, stack);
         } else return new ActionResult<>(EnumActionResult.PASS, stack);
-    }
-
-    @Override
-    public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged) {
-        return super.shouldCauseReequipAnimation(oldStack, newStack, slotChanged);
     }
 
     private int getCharges(int count) {

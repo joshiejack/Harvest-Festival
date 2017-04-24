@@ -74,11 +74,11 @@ public class QuestPriestRepair extends QuestTrade {
 
     @Override
     public void onQuestCompleted(EntityPlayer player) {
-        if (player.getHeldItemMainhand() != null) {
+        if (!player.getHeldItemMainhand().isEmpty()) {
             long cost = HFApi.quests.hasCompleted(Quests.TOMAS_15K, player) ? 1000 : 2500;
             ItemStack stack = player.getHeldItemMainhand().copy();
             ItemStack tool = new ItemStack(stack.getItem(), 1, stack.getItemDamage());
-            tool.getSubCompound("Data", true).setDouble("Level", stack.getSubCompound("Data", true).getDouble("Level"));
+            tool.getOrCreateSubCompound("Data").setDouble("Level", stack.getOrCreateSubCompound("Data").getDouble("Level"));
             rewardGold(player, -cost);
             takeHeldStack(player, 1);
             rewardItem(player, tool);

@@ -98,9 +98,9 @@ public class BlockFloating extends BlockHFEnum<BlockFloating, Floating> {
         if (tile instanceof TileHatchery) {
             ItemStack stack = (((TileHatchery) tile).getStack());
             if (stack != null) {
-                for (int i = 0; i < stack.stackSize; i++) {
+                for (int i = 0; i < stack.getCount(); i++) {
                     ItemStack stack2 = stack.copy();
-                    stack2.stackSize = 1;
+                    stack2.setCount(1);
                     stack2.setTagCompound(new NBTTagCompound());
                     stack2.getTagCompound().setLong("Rand", world.rand.nextLong());
                     EntityItem item = new EntityItem(world, pos.getX() + 0.5D, pos.getY() - 1.5D, pos.getZ() + 0.5D, stack2);

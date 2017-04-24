@@ -197,7 +197,7 @@ public class GuiNPCShop extends GuiNPCBase {
     public void updatePurchased(ItemStack stack, int amount) {
         if (stack == null) purchased = null;
         else if (purchased == null || !ItemStack.areItemsEqual(purchased, stack)) purchased = stack.copy();
-        else purchased.stackSize += amount;
+        else purchased.setCount(purchased.getCount() + amount);
     }
 
     @Override

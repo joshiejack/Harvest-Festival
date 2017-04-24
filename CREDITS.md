@@ -5,6 +5,7 @@ Dust Overlays > Balduran (http://balduranne.deviantart.com/)
 Fossil, Wine > Poppy
 Chamomile, Mint, Lavender, Matsutake, Moondrop, Magic Flowers > Willi_Zinger
 Seasons HUD > CyanideX
+Ice Cream, Tempura, Apple Souffle, Sweet Potatoes > Demmers
 
 ## Buildings
 Harvest Goddess Pond - http://www.planetminecraft.com/project/waterfall-pond-d/
@@ -33,3 +34,6 @@ Items Shipped: http://www.freesound.org/people/Benboncan/sounds/91924/
 Meal Descriptions (0.5) > DivineAspect
 Meal Descriptions (0.6), Festival Greetings > ZephyrWindSpirit
 Simplified Chinese Translation > Neko. 一只猫neko倾情汉化 =w=
+German Translation > ctonhaeu
+Korean Translation > SPRiA, DarkFate & Kaidaki
+Brazilian Portuguese Translation > Brittahplay

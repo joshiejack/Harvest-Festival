@@ -4,9 +4,8 @@ import joshie.harvest.api.crops.Crop;
 import joshie.harvest.api.crops.DropHandler;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 public class DropHandlerHemp extends DropHandler {
@@ -17,8 +16,8 @@ public class DropHandlerHemp extends DropHandler {
     }
 
     @Override
-    public List<ItemStack> getDrops(Crop crop, int stage, Random rand) {
-        List<ItemStack> ret = new ArrayList<>();
+    public NonNullList<ItemStack> getDrops(Crop crop, int stage, Random rand) {
+        NonNullList<ItemStack> ret = NonNullList.create();
         if (stage < crop.getStages()) return null;
         for (int i = 0; i < 3; i++) {
             if (rand.nextInt(8) <= StateHandlerHemp.getMetaFromStage(stage)) {

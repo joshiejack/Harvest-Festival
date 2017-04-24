@@ -7,6 +7,7 @@ import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.FMLCommonHandler;
@@ -15,8 +16,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nonnull;
-import java.util.ArrayList;
-import java.util.List;
 
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 
@@ -30,7 +29,8 @@ public abstract class ItemHFBase<I extends ItemHFBase> extends Item {
     }
 
     @Override
-    public String getItemStackDisplayName(ItemStack stack) {
+    @Nonnull
+    public String getItemStackDisplayName(@Nonnull ItemStack stack) {
         return TextHelper.localize(getUnlocalizedName());
     }
 
@@ -55,7 +55,7 @@ public abstract class ItemHFBase<I extends ItemHFBase> extends Item {
     @SideOnly(Side.CLIENT)
     public void registerModels(Item item, String name) {
         if (item.getHasSubtypes()) {
-            List<ItemStack> subItems = new ArrayList<>();
+            NonNullList<ItemStack> subItems = NonNullList.create();
             if (item.getCreativeTabs().length > 0) {
                 for (CreativeTabs tab : item.getCreativeTabs()) {
                     item.getSubItems(item, tab, subItems);

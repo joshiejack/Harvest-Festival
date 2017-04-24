@@ -34,15 +34,11 @@ public class QuestFlowerBuyingDo extends QuestDummyTown {
 
     @Override
     public void onQuestCompleted(EntityPlayer player) {
-        EnumHand hand = player.getHeldItemOffhand() != null ? EnumHand.OFF_HAND : player.getHeldItemMainhand() != null ? EnumHand.MAIN_HAND : null;
+        EnumHand hand = !player.getHeldItemOffhand().isEmpty() ? EnumHand.OFF_HAND : !player.getHeldItemMainhand().isEmpty() ? EnumHand.MAIN_HAND : null;
         if (hand != null) {
             ItemStack held = player.getHeldItem(hand);
-            if (held != null && InventoryHelper.startsWith(held, "flower") && held.stackSize >= 1) {
-                held.splitStack(1); //Reduce the stack size by one
-                if (held.stackSize <= 0) {
-                    player.setHeldItem(hand, null);
-                }
-
+            if (InventoryHelper.startsWith(held, "flower") && held.getCount() >= 1) {
+                held.shrink(1); //Reduce the stack size by one
                 rewardGold(player, getValue(HFApi.calendar.getDate(player.world), player.world.rand));
             }
         }

@@ -39,8 +39,8 @@ public class QuestCollectFish extends QuestDaily {
 
     @Override
     public String getDescription(World world, @Nullable EntityPlayer player) {
-        if (player != null) return getLocalized("desc", fish.stackSize, fish.getDisplayName());
-        else return getLocalized("task", fish.stackSize, fish.getDisplayName(), reward);
+        if (player != null) return getLocalized("desc", fish.getCount(), fish.getDisplayName());
+        else return getLocalized("task", fish.getCount(), fish.getDisplayName(), reward);
     }
 
     @Override
@@ -55,7 +55,7 @@ public class QuestCollectFish extends QuestDaily {
 
     @Override
     public boolean isNPCUsed(EntityPlayer player, NPCEntity entity) {
-        return super.isNPCUsed(player, entity) && InventoryHelper.getHandItemIsIn(player, ITEM_STACK, fish, fish.stackSize) != null;
+        return super.isNPCUsed(player, entity) && InventoryHelper.getHandItemIsIn(player, ITEM_STACK, fish, fish.getCount()) != null;
     }
 
     @Override
@@ -67,7 +67,7 @@ public class QuestCollectFish extends QuestDaily {
 
     @Override
     public void onChatClosed(EntityPlayer player, NPCEntity entity, boolean wasSneaking) {
-        if (InventoryHelper.takeItemsIfHeld(player, ITEM_STACK, fish, fish.stackSize) != null) {
+        if (InventoryHelper.takeItemsIfHeld(player, ITEM_STACK, fish, fish.getCount()) != null) {
             complete(player);
         }
     }
@@ -81,7 +81,7 @@ public class QuestCollectFish extends QuestDaily {
     @Override
     public void readFromNBT(NBTTagCompound nbt) {
         super.readFromNBT(nbt);
-        if (nbt.hasKey("Stack")) fish = ItemStack.loadItemStackFromNBT(nbt.getCompoundTag("Stack"));
+        if (nbt.hasKey("Stack")) fish = new ItemStack(nbt.getCompoundTag("Stack"));
         reward = nbt.getLong("Reward");
     }
 

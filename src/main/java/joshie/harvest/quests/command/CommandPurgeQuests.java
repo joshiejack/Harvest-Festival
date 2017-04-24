@@ -7,8 +7,8 @@ import joshie.harvest.player.PlayerTrackerServer;
 import joshie.harvest.town.TownHelper;
 import joshie.harvest.town.data.TownDataServer;
 import net.minecraft.command.CommandBase;
+import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
-import net.minecraft.command.PlayerNotFoundException;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
 
@@ -32,7 +32,7 @@ public class CommandPurgeQuests extends AbstractHFCommand {
                 HFTrackers.<PlayerTrackerServer>getPlayerTrackerFromPlayer(player).getQuests().purge(player);
                 TownHelper.<TownDataServer>getClosestTownToEntity(player, false).getQuests().purge(player);
                 return true; //After succesfully completing the command, return to avoid throwing an error
-            } catch (NumberFormatException | PlayerNotFoundException ignored) {}
+            } catch (NumberFormatException | CommandException ignored) {}
         }
         return false;
     }

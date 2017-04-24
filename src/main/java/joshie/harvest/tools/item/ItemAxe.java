@@ -179,8 +179,8 @@ public class ItemAxe extends ItemToolSmashing<ItemAxe> {
         Multimap<String, AttributeModifier> multimap = super.getAttributeModifiers(slot, stack);
         ToolTier tier = getTier(stack);
         if (slot == EntityEquipmentSlot.MAINHAND) {
-            multimap.put(SharedMonsterAttributes.ATTACK_DAMAGE.getAttributeUnlocalizedName(), new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Tool modifier", (double)(tier == BASIC ? 6F : 8F), 0));
-            multimap.put(SharedMonsterAttributes.ATTACK_SPEED.getAttributeUnlocalizedName(), new AttributeModifier(ATTACK_SPEED_MODIFIER, "Tool modifier", (double)ATTACK_SPEEDS[tier.ordinal()], 0));
+            multimap.put(SharedMonsterAttributes.ATTACK_DAMAGE.getName(), new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Tool modifier", (double)(tier == BASIC ? 6F : 8F), 0));
+            multimap.put(SharedMonsterAttributes.ATTACK_SPEED.getName(), new AttributeModifier(ATTACK_SPEED_MODIFIER, "Tool modifier", (double)ATTACK_SPEEDS[tier.ordinal()], 0));
         }
 
         return multimap;

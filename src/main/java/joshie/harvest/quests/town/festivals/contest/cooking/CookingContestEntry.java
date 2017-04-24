@@ -109,7 +109,7 @@ public class CookingContestEntry extends ContestEntry<QuestContestCooking> {
 
     @Nullable
     public static CookingContestEntry fromNBT(NBTTagCompound tag) {
-        ItemStack stack = ItemStack.loadItemStackFromNBT(tag.getCompoundTag("Stack"));
+        ItemStack stack = new ItemStack(tag.getCompoundTag("Stack"));
         BlockPos pos = BlockPos.fromLong(tag.getLong("Pos"));
         Integer stall = tag.getInteger("Stall");
         if (tag.hasKey("Player")) {

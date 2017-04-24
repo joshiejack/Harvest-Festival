@@ -12,7 +12,7 @@ public class MobHandler {
     public static boolean register() { return HFCore.MOBS_ONLY_SPAWN_UNDERGROUND_IN_OVERWORLD < 256; }
 
     @SubscribeEvent
-    public void onEntitySpawned(WorldEvent.PotentialSpawns event) {
+    public void onEntitySpawnsGenerated(WorldEvent.PotentialSpawns event) {
         if (event.getWorld().provider.getDimension() == 0 && event.getPos().getY() > HFCore.MOBS_ONLY_SPAWN_UNDERGROUND_IN_OVERWORLD) {
             event.getList().removeIf(e -> IMob.class.isAssignableFrom(e.entityClass));
         }

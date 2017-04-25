@@ -51,7 +51,7 @@ public abstract class Placeable {
 
     public boolean place(World world, BlockPos pos, Rotation rotation, ConstructionStage stage, boolean playSound, Replaceable replaceable) {
         BlockPos transformed = getTransformedPosition(pos, rotation);
-        if (replaceable.cantReplace(world, transformed)) return true;
+        if (!replaceable.canReplace(world, transformed)) return true;
         if (canPlace(stage)) {
             if (stage == ConstructionStage.BUILD) clearBushes(world, transformed.up());
             return place(world, transformed, rotation, playSound);

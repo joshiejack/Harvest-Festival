@@ -28,8 +28,12 @@ import static joshie.harvest.core.lib.HFModInfo.MODID;
 public abstract class GrowthHandlerHFTree extends GrowthHandlerTree {
     private static final Replaceable ONLY_AIR = new Replaceable() {
         @Override
-        public boolean cantReplace(World world, BlockPos transformed) {
-            return super.cantReplace(world, transformed) || !world.isAirBlock(transformed);
+        public boolean canReplace(World world, BlockPos transformed) {
+            if (!super.canReplace(world, transformed)) return false;
+            else {
+                IBlockState state = world.getBlockState(transformed);
+                return state.getBlock().canBeReplacedByLeaves(state, world, transformed);
+            }
         }
     };
 

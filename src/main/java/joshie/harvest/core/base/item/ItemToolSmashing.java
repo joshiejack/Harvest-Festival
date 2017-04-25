@@ -124,7 +124,7 @@ public abstract class ItemToolSmashing<I extends ItemToolSmashing> extends ItemT
 
     public void smashBlock(World world, EntityPlayer player, BlockPos position, ItemStack stack, boolean jump) {
         ToolTier tier = jump ? getTier(stack) : ToolTier.BASIC;
-        int harvestLevel = getHarvestLevel(stack, toolClass);
+        int harvestLevel = getHarvestLevel(stack, toolClass, player, world.getBlockState(position));
         boolean smashed = false;
         EnumFacing front = EntityHelper.getFacingFromEntity(player);
         for (int x = getXMinus(tier, front, position.getX()); x <= getXPlus(tier, front, position.getX()); x++) {

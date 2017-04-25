@@ -25,8 +25,8 @@ public class TrackingClient extends Tracking {
     @Override
     public boolean learnNote(Note note) {
         if (super.learnNote(note)) {
-            if (note.isSecret()) MCClientHelper.getPlayer().addChatComponentMessage(new TextComponentString(TextHelper.translate("note.discovered") + " " + TextFormatting.AQUA + note.getTitle()));
-            else MCClientHelper.getPlayer().addChatComponentMessage(new TextComponentString(TextHelper.translate("note.learnt") + " " + TextFormatting.YELLOW + note.getTitle()));
+            if (note.isSecret()) MCClientHelper.getPlayer().sendMessage(new TextComponentString(TextHelper.translate("note.discovered") + " " + TextFormatting.AQUA + note.getTitle()));
+            else MCClientHelper.getPlayer().sendMessage(new TextComponentString(TextHelper.translate("note.learnt") + " " + TextFormatting.YELLOW + note.getTitle()));
             return true;
         } else return false;
     }

@@ -13,6 +13,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.world.World;
 
+import javax.annotation.Nonnull;
 import java.util.Locale;
 
 public class ItemIngredients extends ItemHFFoodEnum<ItemIngredients, Ingredient> {
@@ -102,7 +103,9 @@ public class ItemIngredients extends ItemHFFoodEnum<ItemIngredients, Ingredient>
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(ItemStack stack, World world, EntityPlayer player, EnumHand hand) {
+    @Nonnull
+    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, @Nonnull EnumHand hand) {
+        ItemStack stack = player.getHeldItem(hand);
         if (player.canEat(false) && getHealAmount(stack) > 0) {
             player.setActiveHand(hand);
             return new ActionResult<>(EnumActionResult.SUCCESS, stack);

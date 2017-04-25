@@ -91,7 +91,7 @@ public class EntityNPCGoddess extends EntityNPC<EntityNPCGoddess> {
             float f = 0.91F;
 
             if (onGround) {
-                f = world.getBlockState(new BlockPos(MathHelper.floor_double(posX), MathHelper.floor_double(getEntityBoundingBox().minY) - 1, MathHelper.floor_double(posZ))).getBlock().slipperiness * 0.91F;
+                f = world.getBlockState(new BlockPos(MathHelper.floor(posX), MathHelper.floor(getEntityBoundingBox().minY) - 1, MathHelper.floor(posZ))).getBlock().slipperiness * 0.91F;
             }
 
             float f1 = 0.16277136F / (f * f * f);
@@ -99,7 +99,7 @@ public class EntityNPCGoddess extends EntityNPC<EntityNPCGoddess> {
             f = 0.91F;
 
             if (onGround) {
-                f = world.getBlockState(new BlockPos(MathHelper.floor_double(posX), MathHelper.floor_double(getEntityBoundingBox().minY) - 1, MathHelper.floor_double(posZ))).getBlock().slipperiness * 0.91F;
+                f = world.getBlockState(new BlockPos(MathHelper.floor(posX), MathHelper.floor(getEntityBoundingBox().minY) - 1, MathHelper.floor(posZ))).getBlock().slipperiness * 0.91F;
             }
 
             moveEntity(motionX, motionY, motionZ);

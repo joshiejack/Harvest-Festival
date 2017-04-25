@@ -86,8 +86,8 @@ public class BlockNature extends BlockHFEnum<BlockNature, NaturalBlock> implemen
 
     @SuppressWarnings("deprecation")
     @Override
-    public void neighborChanged(IBlockState state, World world, BlockPos pos, Block neighborBlock) {
-        super.neighborChanged(state, world, pos, neighborBlock);
+    public void neighborChanged(IBlockState state, World world, BlockPos pos, Block blockIn, BlockPos fromPos) {
+        super.neighborChanged(state, world, pos, blockIn, fromPos);
         checkAndDropBlock(world, pos, state);
     }
 
@@ -116,7 +116,7 @@ public class BlockNature extends BlockHFEnum<BlockNature, NaturalBlock> implemen
 
     @SuppressWarnings("deprecation")
     @Override
-    public AxisAlignedBB getCollisionBoundingBox(IBlockState state, @Nonnull World world, @Nonnull BlockPos pos) {
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState state, @Nonnull IBlockAccess world, @Nonnull BlockPos pos) {
         return NULL_AABB;
     }
 

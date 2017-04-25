@@ -15,6 +15,8 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -39,7 +41,8 @@ public class CommandManager extends CommandBase {
     }
 
     @Override
-    public String getCommandName() {
+    @Nonnull
+    public String getName() {
         return HFModInfo.COMMANDNAME;
     }
 
@@ -97,7 +100,7 @@ public class CommandManager extends CommandBase {
     static void throwError(ICommandSender sender, AbstractHFCommand command) {
         TextComponentTranslation textComponents = new TextComponentTranslation(getUsage(command), 0);
         textComponents.getStyle().setColor(TextFormatting.RED);
-        sender.addChatMessage(textComponents);
+        sender.sendMessage(textComponents);
     }
 
     static String getUsage(AbstractHFCommand command) {
@@ -105,17 +108,19 @@ public class CommandManager extends CommandBase {
     }
 
     @Override
-    public List<String> getTabCompletionOptions(MinecraftServer server, ICommandSender sender, String[] parameters, BlockPos pos) {
+    @Nonnull
+    public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] parameters, @Nullable BlockPos pos) {
         return new ArrayList<>();
     }
 
     @Override
-    public String getCommandUsage(ICommandSender sender) {
-        return "/" + getCommandName() + " help";
+    @Nonnull
+    public String getUsage(@Nonnull ICommandSender sender) {
+        return "/" + getName() + " help";
     }
 
     @Override
-    public void execute(MinecraftServer server, ICommandSender sender, String[] values) {
+    public void execute(@Nonnull MinecraftServer server, @Nonnull ICommandSender sender, @Nonnull String[] values) {
         if (values.length == 0) {
             throwError(sender, new HFCommandHelp());
         }

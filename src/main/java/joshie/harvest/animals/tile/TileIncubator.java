@@ -18,7 +18,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
-import java.util.UUID;
 
 public class TileIncubator extends TileFillableSizedFaceable {
     private static final int MAX_FILL = 7;
@@ -32,7 +31,7 @@ public class TileIncubator extends TileFillableSizedFaceable {
         @SuppressWarnings("ConstantConditions")
         public void newDay(World world, BlockPos pos, IBlockState state) {
             TileIncubator incubator = (TileIncubator) world.getTileEntity(pos);
-            if (incubator.fillAmount > 0 && incubator.owner != null) {
+            if (incubator.activated && incubator.fillAmount > 0) {
                 incubator.fillAmount--;
                 if (incubator.fillAmount == 0) {
                     for (int i = 0; i < incubator.getBabyAmount(); i++) {
@@ -41,13 +40,11 @@ public class TileIncubator extends TileFillableSizedFaceable {
                         baby.setGrowingAge(-(24000 * HFAnimals.AGING_TIMER));
                         AnimalStats stats = EntityHelper.getStats(baby);
                         if (stats != null) {
-                            stats.copyHappiness(EntityHelper.getPlayerFromUUID(incubator.owner), incubator.relationship, 50D);
+                            stats.copyHappiness(incubator.relationship, 50D);
                         }
 
                         world.spawnEntity(baby);
                     }
-
-                    incubator.owner = null; //Clear out owner
                 }
 
                 incubator.saveAndRefresh();
@@ -55,8 +52,7 @@ public class TileIncubator extends TileFillableSizedFaceable {
         }
     };
 
-
-    private UUID owner;
+    private boolean activated;
     private int relationship;
 
     @Override
@@ -74,10 +70,7 @@ public class TileIncubator extends TileFillableSizedFaceable {
                     relationship = tag.getInteger("Relationship");
                 } else relationship = 0;
 
-                if (tag.hasKey("Owner")) {
-                    owner = UUID.fromString(tag.getString("Owner"));
-                } else owner = EntityHelper.getPlayerUUID(player);
-
+                activated = true;
                 held.splitStack(1);
                 return true;
             }
@@ -98,19 +91,14 @@ public class TileIncubator extends TileFillableSizedFaceable {
     public void readFromNBT(NBTTagCompound nbt) {
         super.readFromNBT(nbt);
         relationship = nbt.getInteger("Relationship");
-        if (nbt.hasKey("Owner")) {
-            owner = UUID.fromString(nbt.getString("Owner"));
-        }
+        activated = nbt.getBoolean("Activated");
     }
 
     @Override
     @Nonnull
     public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
         nbt.setInteger("Relationship", relationship);
-        if (owner != null) {
-            nbt.setString("Owner", owner.toString());
-        }
-
+        nbt.setBoolean("Activated", activated);
         return super.writeToNBT(nbt);
     }
 }

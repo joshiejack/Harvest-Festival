@@ -90,7 +90,7 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
 
     @Override
     public int getMetaFromState(IBlockState state) {
-        if (state.getPropertyNames().contains(property)) return (state.getValue(property)).ordinal();
+        if (state.getPropertyKeys().contains(property)) return (state.getValue(property)).ordinal();
         else return 0;
     }
 
@@ -202,7 +202,7 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
     }
 
     @Override
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
         CropType stage = getEnumFromState(state);
         if (stage == CropType.WITHERED || stage == CropType.WITHERED_DOUBLE) return false; //If Withered with suck!
         if (player.isSneaking()) return false;
@@ -237,7 +237,7 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
 
     @SuppressWarnings("deprecation")
     @Override
-    public void neighborChanged(IBlockState state, World world, BlockPos pos, Block neighborBlock) {
+    public void neighborChanged(IBlockState state, World world, BlockPos pos, Block neighborBlock, Block fromBLock) {
         if (!world.isRemote) {
             if (!canStay(world, pos)) {
                 world.setBlockToAir(pos);
@@ -254,7 +254,7 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
         }
 
         ItemStack held = player.getHeldItemMainhand();
-        if (held != null && HFApi.crops.isSickle(held)) {
+        if (HFApi.crops.isSickle(held)) {
             return player.getDigSpeed(state, pos) / hardness / 10F;
         } else {
             return player.getDigSpeed(state, pos) / hardness / 100F;
@@ -335,7 +335,7 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
 
     @Override
     @SuppressWarnings("deprecation, unchecked")
-    public AxisAlignedBB getCollisionBoundingBox(IBlockState state, @Nonnull World world, @Nonnull BlockPos pos) {
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState state, @Nonnull IBlockAccess world, @Nonnull BlockPos pos) {
         CropType stage = getEnumFromState(state);
         CropData data = CropHelper.getCropDataAt(world, pos);
         return data != null ? data.getCrop().getStateHandler().getCollisionBoundingBox(world, pos, stage.getSection(), data.getCrop(), data.getStage(), stage.isWithered()) : NULL_AABB;

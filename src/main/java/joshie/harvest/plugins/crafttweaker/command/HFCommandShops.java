@@ -29,8 +29,7 @@ public class HFCommandShops extends AbstractHFCommand {
     @Override
     public boolean execute(MinecraftServer server, ICommandSender sender, String[] parameters) throws CommandException {
         MineTweakerAPI.logCommand("Shops: \n" + this.getShopList().toString().replace("[", "").replace("]", "").replace(", ", "\n"));
-        sender.addChatMessage(new TextComponentString("List generated; see minetweaker.log in your minecraft dir"));
-
+        sender.sendMessage(new TextComponentString("List generated; see minetweaker.log in your minecraft dir"));
         return true;
     }
 

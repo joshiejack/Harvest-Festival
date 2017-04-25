@@ -210,7 +210,7 @@ public class ItemWateringCan extends ItemTool<ItemWateringCan> {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubItems(@Nonnull Item item, CreativeTabs tab, List<ItemStack> list) {
+    public void getSubItems(@Nonnull Item item, CreativeTabs tab, NonNullList<ItemStack> list) {
         for (int i = 0; i < ToolTier.values().length; i++) {
             ItemStack unleveled = new ItemStack(item, 1, i);
             getCapability(unleveled).fill(new FluidStack(FluidRegistry.WATER, 128), true);

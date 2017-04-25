@@ -28,15 +28,15 @@ public abstract class BlockHFSmashable<B extends BlockHFSmashable, E extends Enu
 
     @SuppressWarnings("deprecation")
     @Override
-    public void addCollisionBoxToList(IBlockState state, @Nonnull World worldIn, @Nonnull BlockPos pos, @Nonnull AxisAlignedBB entityBox, @Nonnull List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn) {
+    public void addCollisionBoxToList(IBlockState state, @Nonnull World worldIn, @Nonnull BlockPos pos, @Nonnull AxisAlignedBB entityBox, @Nonnull List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn, boolean bool) {
         if (entityIn instanceof EntityAnimal) addCollisionBoxToList(pos, entityBox, collidingBoxes, HFCore.FENCE_COLLISION);
-        else super.addCollisionBoxToList(state, worldIn, pos, entityBox, collidingBoxes, entityIn);
+        else super.addCollisionBoxToList(state, worldIn, pos, entityBox, collidingBoxes, entityIn, bool);
     }
 
     @Override
     public void onBlockClicked(World world, BlockPos pos, EntityPlayer player) {
         ItemToolSmashing tool = getTool();
-        if (player.getHeldItemMainhand() != null && player.getHeldItemMainhand().getItem() == tool) {
+        if (player.getHeldItemMainhand().getItem() == tool) {
             if (player.motionY <= -0.1F) {
                 tool.smashBlock(world, player, pos, player.getHeldItemMainhand(), true);
             }
@@ -47,7 +47,7 @@ public abstract class BlockHFSmashable<B extends BlockHFSmashable, E extends Enu
     public void dropBlockAsItemWithChance(World worldIn, BlockPos pos, IBlockState state, float chance, int fortune)  {
         if (!worldIn.isRemote && !worldIn.restoringBlockSnapshots)  {
             EntityPlayer player = harvesters.get();
-            if (player != null && player.getHeldItemMainhand() != null && player.getHeldItemMainhand().getItem() == getTool()) {
+            if (player != null && player.getHeldItemMainhand().getItem() == getTool()) {
                 if (smashBlock(harvesters.get(), worldIn, pos, state, getTool().getTier(player.getHeldItemMainhand()))) return;
             }
 

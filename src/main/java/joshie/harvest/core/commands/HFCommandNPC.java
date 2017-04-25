@@ -20,7 +20,7 @@ public class HFCommandNPC extends AbstractHFCommand {
         sender.getEntityWorld().loadedEntityList.stream().filter(entity -> entity instanceof EntityNPC).forEach(entity -> {
             EntityNPC npc = (EntityNPC) entity;
             TextComponentString componentTranslation = new TextComponentString(npc.getNPC().getLocalizedName() + " is hiding at the coordinates " + (int) npc.posX + " " + (int) npc.posY + " " + (int) npc.posZ);
-            sender.addChatMessage(componentTranslation);
+            sender.sendMessage(componentTranslation);
         });
 
         return true;

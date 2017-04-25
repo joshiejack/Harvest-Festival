@@ -22,6 +22,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nonnull;
 import java.util.*;
 
 import static joshie.harvest.cooking.recipe.RecipeBuilder.FOOD_LEVEL;
@@ -160,6 +161,7 @@ public class ItemMeal extends ItemHFFoodEnum<ItemMeal, Meal> {
     }
 
     @Override
+    @Nonnull
     public EnumAction getItemUseAction(ItemStack stack) {
         if (stack.hasTagCompound()) {
             Recipe recipe = getRecipeFromMeal(getEnumFromStack(stack));
@@ -168,7 +170,9 @@ public class ItemMeal extends ItemHFFoodEnum<ItemMeal, Meal> {
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(ItemStack stack, World world, EntityPlayer player, EnumHand hand) {
+    @Nonnull
+    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, @Nonnull EnumHand hand) {
+        ItemStack stack = player.getHeldItem(hand);
         if (player.canEat(false)) {
             player.setActiveHand(hand);
             return new ActionResult<>(EnumActionResult.SUCCESS, stack);

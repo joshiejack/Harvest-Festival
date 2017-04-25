@@ -15,6 +15,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
@@ -26,11 +27,16 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import javax.annotation.Nullable;
 import java.util.List;
 
+import static joshie.harvest.core.lib.HFModInfo.MODID;
+
 @HFQuest("slay")
 public class QuestSlay extends QuestDaily {
-    private static final String[] list = new String[] { "harvestfestival.dark_chick", "harvestfestival.dark_chicken", "harvestfestival.dark_sheep", "harvestfestival.dark_cow" };
+    private static final ResourceLocation[] list = new ResourceLocation[] { new ResourceLocation(MODID, "dark_chick"),
+                                                                            new ResourceLocation(MODID, "dark_chicken"),
+                                                                            new ResourceLocation(MODID, "dark_sheep"),
+                                                                            new ResourceLocation(MODID, "dark_cow") };
     private int targetAmount = 1;
-    private String targetMob = "harvestfestival.dark_chick";
+    private ResourceLocation targetMob = new ResourceLocation(MODID, "dark_chick");
     private int counter;
 
     public QuestSlay() {
@@ -73,7 +79,7 @@ public class QuestSlay extends QuestDaily {
     }
 
     private boolean isValidKill(EntityLivingBase entity) {
-        return EntityList.isStringEntityName(entity, targetMob);
+        return EntityList.isMatchingName(entity, targetMob);
     }
 
     @Override
@@ -120,13 +126,13 @@ public class QuestSlay extends QuestDaily {
         super.readFromNBT(nbt);
         counter = nbt.getByte("Counter");
         targetAmount = nbt.getByte("TargetAmount");
-        targetMob = nbt.getString("TargetMob");
+        targetMob = new ResourceLocation(nbt.getString("TargetMob"));
     }
 
     public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
         nbt.setByte("Counter", (byte) counter);
         nbt.setByte("TargetAmount", (byte) targetAmount);
-        nbt.setString("TargetMob", targetMob);
+        nbt.setString("TargetMob", targetMob.toString());
         return super.writeToNBT(nbt);
     }
 }

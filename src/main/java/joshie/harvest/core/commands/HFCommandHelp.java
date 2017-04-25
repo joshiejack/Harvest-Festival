@@ -53,13 +53,13 @@ public class HFCommandHelp extends AbstractHFCommand {
         int j = Math.min((k + 1) * i0, list.size());
         TextComponentTranslation componentTranslation1 = new TextComponentTranslation("hf.commands.help.header", k + 1, i + 1);
         componentTranslation1.getStyle().setColor(TextFormatting.DARK_GREEN);
-        sender.addChatMessage(componentTranslation1);
+        sender.sendMessage(componentTranslation1);
 
         for (int l = k * i0; l < j; ++l) {
             AbstractHFCommand icommand1 = list.get(l);
             TextComponentTranslation componentTranslation = new TextComponentTranslation(CommandManager.getUsage(icommand1));
             componentTranslation.getStyle().setClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/" + icommand1.getCommandName() + " "));
-            sender.addChatMessage(componentTranslation);
+            sender.sendMessage(componentTranslation);
         }
 
         return true;

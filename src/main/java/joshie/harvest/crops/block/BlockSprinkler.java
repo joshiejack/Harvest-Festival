@@ -52,14 +52,15 @@ public class BlockSprinkler extends BlockHFEnum<BlockSprinkler, Sprinkler> {
 
     @SuppressWarnings("deprecation")
     @Override
-    public AxisAlignedBB getCollisionBoundingBox(IBlockState state, World world, BlockPos pos) {
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos) {
         return NULL_AABB;
     }
 
     @Override
-    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
+    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
         if (SPRINKLER_DRAIN_RATE <= 0) return false;
-        if (heldItem != null) {
+        ItemStack heldItem = player.getHeldItem(hand);
+        if (!heldItem.isEmpty()) {
             TileEntity tile = worldIn.getTileEntity(pos);
             if (tile instanceof TileSprinkler) {
                 TileSprinkler sprinkler = ((TileSprinkler)tile);

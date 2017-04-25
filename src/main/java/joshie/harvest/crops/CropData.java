@@ -35,16 +35,16 @@ public class CropData {
     @SuppressWarnings("unchecked")
     public boolean newDay(World world, BlockPos pos) {
         //Stage 1, Check how long the plant has been without water, If it's more than 2 days kill it
-        if (isDead || crop == null || (crop.requiresWater() && daysWithoutWater > 2) || !crop.getGrowthHandler().canGrow(world, pos, crop)) {
-            isDead = HFCrops.CROPS_SHOULD_DIE;
+        if (isDead || crop == Crop.NULL_CROP ||
+                (HFCrops.CROPS_SHOULD_DIE && crop.requiresWater() && daysWithoutWater > 2)
+                || !crop.getGrowthHandler().canGrow(world, pos, crop)) {
+
+            isDead = true;
             return false;
-        } else { //Stage 2: Now that we know, it has been watered, Update it's stage
+        } else if (HFCrops.GROWS_DAILY && (daysWithoutWater == 0 || !crop.requiresWater())) {
+            //Stage 2: Now that we know, it has been watered, Update it's stage
             //If we aren't ticking randomly, Then increase the stage
-            if (HFCrops.GROWS_DAILY) {
-                if (daysWithoutWater == 0 || !crop.requiresWater()) {
-                    grow(world, pos);
-                }
-            }
+            grow(world, pos);
         }
 
         //Stage 6, Reset the water counter and fertilising

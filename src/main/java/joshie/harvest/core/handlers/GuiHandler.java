@@ -42,6 +42,7 @@ public class GuiHandler implements IGuiHandler {
     public static final int SELECTION = 14;
     public static final int CALENDAR_GUI = 15;
     public static final int BASKET = 16;
+    public static final int BASKET_ENTITY = 17;
 
     //Open no gui after this one
     public static final int NEXT_NONE = -1;
@@ -65,7 +66,8 @@ public class GuiHandler implements IGuiHandler {
             case GIFT_GODDESS:
             case FORCED_NPC:
             case QUEST_BOARD:   return new ContainerNull();
-            case BASKET:        return new ContainerBasket(player.inventory, player.getHeldItem(EnumHand.values()[hand]));
+            case BASKET:        return new ContainerBasket(player.inventory, player.getHeldItem(EnumHand.values()[hand]), null);
+            case BASKET_ENTITY: return new ContainerBasket(player.inventory, null, BasketHandler.getWearingBasket(player));
             default:            return null;
         }
     }
@@ -107,7 +109,8 @@ public class GuiHandler implements IGuiHandler {
                 } else return new GuiNPCChat(player, npc, nextGui, false, true);
             }
 
-            case BASKET:        return new GuiBasket(player.inventory, player.getHeldItem( EnumHand.values()[hand]));
+            case BASKET:               return new GuiBasket(player.inventory, player.getHeldItem( EnumHand.values()[hand]), null);
+            case BASKET_ENTITY:        return new GuiBasket(player.inventory, null, BasketHandler.getWearingBasket(player));
             default:            return null;
         }
     }

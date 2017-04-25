@@ -12,7 +12,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public class TileBasket extends TileSingleStack {
-    public static final int BASKET_INVENTORY = 54;
+    public static final int BASKET_INVENTORY = 27;
     public static final Item STONE = Item.getItemFromBlock(Blocks.STONE);
     public final ItemStackHandler handler = new ItemStackHandler(BASKET_INVENTORY);
 

@@ -7,6 +7,7 @@ import joshie.harvest.core.base.block.BlockHFEnumRotatableTile;
 import joshie.harvest.core.base.item.ItemBlockHF;
 import joshie.harvest.core.block.BlockStorage.Storage;
 import joshie.harvest.core.entity.EntityBasket;
+import joshie.harvest.core.handlers.BasketHandler;
 import joshie.harvest.core.handlers.GuiHandler;
 import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.core.helpers.StackHelper;
@@ -141,8 +142,29 @@ public class BlockStorage extends BlockHFEnumRotatableTile<BlockStorage, Storage
         Storage storage = getEnumFromState(state);
         ItemStack held = player.getHeldItem(hand);
         if (player.isSneaking()) return false;
-        else if (storage == SHIPPING && hasShippedItem(world, player, held)) {
-            held.splitStack(1);
+        else if (storage == SHIPPING) {
+            if (held.isEmpty()) {
+                EntityBasket basket = BasketHandler.getWearingBasket(player);
+                if (basket != null) {
+                    boolean shipped = false;
+                    for (int i = 0; i < basket.handler.getSlots(); i++) {
+                        if (!basket.handler.getStackInSlot(i).isEmpty()) {
+                            if (!world.isRemote) {
+                                HFTrackers.<PlayerTrackerServer>getPlayerTrackerFromPlayer(player).getTracking().addForShipping(basket.handler.getStackInSlot(i));
+                            }
+
+                            shipped = true;
+                            basket.handler.setStackInSlot(i, ItemStack.EMPTY); //Remove the items from the inventory
+                        }
+                    }
+
+                    return shipped;
+                }
+            }else if (hasShippedItem(world, player, held)) {
+                held.shrink(1);
+                return true;
+            }
+
             return true;
         } else if (storage == MAILBOX) {
             if (!world.isRemote && LetterHelper.hasUnreadLetters(player)) {

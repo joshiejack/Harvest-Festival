@@ -9,6 +9,8 @@ import joshie.harvest.core.block.BlockStorage;
 import joshie.harvest.core.block.BlockStorage.Storage;
 import joshie.harvest.core.entity.EntityBasket;
 import joshie.harvest.core.item.ItemBlockStorage;
+import joshie.harvest.core.network.PacketHandler;
+import joshie.harvest.core.network.PacketOpenBasket;
 import joshie.harvest.core.tile.TileBasket;
 import joshie.harvest.core.util.annotations.HFEvents;
 import joshie.harvest.crops.block.BlockHFCrops;
@@ -97,6 +99,26 @@ public class BasketHandler {
         } catch (ExecutionException ex) { return EMPTY; }
     }
 
+    public static EntityBasket getWearingBasket(EntityPlayer player) {
+        for (Entity entity: player.getPassengers()) {
+            if (entity instanceof EntityBasket) return (EntityBasket) entity;
+        }
+
+        return null;
+    }
+
+    @SubscribeEvent
+    @SuppressWarnings("ConstantConditions")
+    public void onRightClickEmpty(PlayerInteractEvent.RightClickEmpty event) {
+        EntityPlayer player = event.getEntityPlayer();
+        if (player.isSneaking()) {
+            EntityBasket basket = getWearingBasket(player);
+            if (basket != null) {
+                PacketHandler.sendToServer(new PacketOpenBasket());
+            }
+        }
+    }
+
     @SubscribeEvent
     @SuppressWarnings("ConstantConditions")
     public void onRightClickGround(PlayerInteractEvent.RightClickBlock event) {
@@ -113,6 +135,11 @@ public class BasketHandler {
                     entity.setDead();
                 }
             });
+        } else if (player.isSneaking() && player.world.isRemote) {
+            EntityBasket basket = getWearingBasket(player);
+            if (basket != null) {
+                PacketHandler.sendToServer(new PacketOpenBasket());
+            }
         }
     }
 }

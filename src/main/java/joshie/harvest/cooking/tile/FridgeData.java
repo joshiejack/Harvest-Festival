@@ -2,72 +2,88 @@ package joshie.harvest.cooking.tile;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.core.helpers.NBTHelper;
-import joshie.harvest.core.lib.HFSounds;
 import joshie.harvest.core.helpers.TextHelper;
+import joshie.harvest.core.lib.HFSounds;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 
+import javax.annotation.Nonnull;
+
 public class FridgeData implements IInventory {
-    protected final ItemStack[] inventory;
+    protected final NonNullList<ItemStack> inventory = NonNullList.withSize(54, ItemStack.EMPTY);
     private final TileFridge tile;
     private int players;
 
     public FridgeData(TileFridge tile) {
-        inventory = new ItemStack[54];
         this.tile = tile;
     }
 
     @Override
     public int getSizeInventory() {
-        return inventory.length;
+        return inventory.size();
     }
 
     @Override
+    public boolean isEmpty() {
+        for (ItemStack stack : this.inventory) {
+            if (!stack.isEmpty()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    @Override
+    @Nonnull
     public ItemStack getStackInSlot(int index) {
-        return inventory[index];
+        return inventory.get(index);
     }
 
     @Override
+    @Nonnull
     public ItemStack decrStackSize(int index, int count) {
-        ItemStack itemstack = ItemStackHelper.getAndSplit(this.inventory, index, count);
+        ItemStack stack = ItemStackHelper.getAndSplit(this.inventory, index, count);
 
-        if (itemstack != null) {
+        if (!stack.isEmpty()) {
             this.markDirty();
         }
 
-        return itemstack;
+        return stack;
     }
 
     @Override
+    @Nonnull
     public ItemStack removeStackFromSlot(int index) {
-        if (inventory[index] != null) {
-            ItemStack stack = inventory[index];
-            inventory[index] = null;
+        if (!inventory.get(index).isEmpty()) {
+            ItemStack stack = inventory.get(index);
+            inventory.get(index).isEmpty();
             return stack;
         }
 
-        return null;
+        return ItemStack.EMPTY;
     }
 
     @Override
-    public void setInventorySlotContents(int slot, ItemStack stack) {
-        inventory[slot] = stack;
+    public void setInventorySlotContents(int slot, @Nonnull ItemStack stack) {
+        inventory.set(slot, stack);
 
-        if (stack != null && stack.stackSize > getInventoryStackLimit()) {
-            stack.stackSize = getInventoryStackLimit();
+        if (!stack.isEmpty() && stack.getCount() > getInventoryStackLimit()) {
+            stack.setCount(getInventoryStackLimit());
         }
 
         markDirty();
     }
 
     @Override
+    @Nonnull
     public String getName() {
         return TextHelper.translate("cookware.fridge");
     }
@@ -78,6 +94,7 @@ public class FridgeData implements IInventory {
     }
 
     @Override
+    @Nonnull
     public ITextComponent getDisplayName() {
         return new TextComponentString("hi");
     }
@@ -93,12 +110,12 @@ public class FridgeData implements IInventory {
     }
 
     @Override
-    public boolean isUseableByPlayer(EntityPlayer player) {
+    public boolean isUsableByPlayer(@Nonnull EntityPlayer player) {
         return true;
     }
 
     @Override
-    public void openInventory(EntityPlayer player) {
+    public void openInventory(@Nonnull EntityPlayer player) {
         players++;
         if (players < 0) {
             players = 0;
@@ -109,7 +126,7 @@ public class FridgeData implements IInventory {
     }
 
     @Override
-    public void closeInventory(EntityPlayer player) {
+    public void closeInventory(@Nonnull EntityPlayer player) {
         players--;
         if (players < 0) {
             players = 0;
@@ -121,7 +138,7 @@ public class FridgeData implements IInventory {
     }
 
     @Override
-    public boolean isItemValidForSlot(int slot, ItemStack stack) {
+    public boolean isItemValidForSlot(int slot, @Nonnull ItemStack stack) {
         return HFApi.cooking.isIngredient(stack);
     }
 
@@ -143,24 +160,26 @@ public class FridgeData implements IInventory {
     }
 
     @Override
-    public void clear() {}
+    public void clear() {
+        inventory.clear();
+    }
 
     public void readFromNBT(NBTTagCompound nbt) {
         NBTTagList tagList = nbt.getTagList("FridgeContents", 10);
         for (int i = 0; i < tagList.tagCount(); i++) {
             NBTTagCompound tag = tagList.getCompoundTagAt(i);
             byte slot = tag.getByte("Slot");
-            if (slot >= 0 && slot < inventory.length) {
-                inventory[slot] = NBTHelper.readItemStack(tag);
+            if (slot >= 0 && slot < inventory.size()) {
+                inventory.set(slot, NBTHelper.readItemStack(tag));
             }
         }
     }
 
     public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
         NBTTagList itemList = new NBTTagList();
-        for (int i = 0; i < inventory.length; i++) {
-            ItemStack stack = inventory[i];
-            if (stack != null) {
+        for (int i = 0; i < inventory.size(); i++) {
+            ItemStack stack = inventory.get(i);
+            if (!stack.isEmpty()) {
                 NBTTagCompound tag = new NBTTagCompound();
                 tag.setByte("Slot", (byte) i);
                 NBTHelper.writeItemStack(stack, tag);

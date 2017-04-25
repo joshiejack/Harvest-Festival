@@ -25,6 +25,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ChunkCache;
@@ -94,7 +95,7 @@ public class BlockTray extends BlockHFEnum<BlockTray, Tray> implements IAnimalFe
                 tag.setInteger("Relationship", (relationship - (relationship % 2500)));
                 nest.clear();
 
-                if (!EntityBasket.findBasketAndShip(player, Lists.newArrayList(drop))) {
+                if (!EntityBasket.findBasketAndShip(player, NonNullList.withSize(1, drop))) {
                     SpawnItemHelper.addToPlayerInventory(player, drop);
                 }
 

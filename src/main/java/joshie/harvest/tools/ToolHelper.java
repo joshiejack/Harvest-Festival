@@ -152,7 +152,7 @@ public class ToolHelper {
         List<ItemStack> blockDrops = new ArrayList<>();
         if (block.canSilkHarvest(world, pos, state, player)) {
             try {
-                Method method = ReflectionHelper.findMethod(Block.class, null, new String[] { "createStackedBlock", "func_180643_i" } , IBlockState.class);
+                Method method = ReflectionHelper.findMethod(Block.class, null, new String[] { "getSilkTouchDrop", "func_180643_i" } , IBlockState.class);
                 ItemStack stack = (ItemStack) method.invoke(block, state);
                 if (stack != null) {
                     blockDrops.add(stack);

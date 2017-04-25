@@ -8,6 +8,7 @@ import joshie.harvest.api.animals.AnimalStats;
 import joshie.harvest.core.helpers.SizeableHelper;
 import net.minecraft.item.ItemStack;
 
+import javax.annotation.Nonnull;
 import java.util.List;
 
 import static joshie.harvest.api.animals.AnimalFoodType.SEED;
@@ -18,6 +19,7 @@ public class AnimalChicken extends AnimalAbstract {
     }
 
     @Override
+    @Nonnull
     public ItemStack getIcon() {
         return HFAnimals.ANIMAL.getStackFromEnum(Spawner.CHICKEN);
     }
@@ -33,6 +35,7 @@ public class AnimalChicken extends AnimalAbstract {
     }
 
     @Override
+    @Nonnull
     public ItemStack getProduct(AnimalStats stats) {
         return SizeableHelper.getEgg(stats);
     }

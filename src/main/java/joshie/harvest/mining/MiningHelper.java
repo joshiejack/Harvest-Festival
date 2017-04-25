@@ -14,6 +14,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
@@ -64,7 +65,7 @@ public class MiningHelper {
         HOLE_FLOORS.addAll(ints);
     }
 
-    public static List<ItemStack> getLoot(ResourceLocation loot, World world, EntityPlayer player, float luck) {
+    public static NonNullList<ItemStack> getLoot(ResourceLocation loot, World world, EntityPlayer player, float luck) {
         LootContext.Builder lootcontext$builder = new LootContext.Builder((WorldServer) world);
         lootcontext$builder.withLuck(player.getLuck() + luck);
         lootcontext$builder.withPlayer(player);

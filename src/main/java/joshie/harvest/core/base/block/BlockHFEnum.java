@@ -67,6 +67,7 @@ public abstract class BlockHFEnum<B extends BlockHFEnum, E extends Enum<E> & ISt
     }
 
     @Override
+    @Nonnull
     protected BlockStateContainer createBlockState() {
         if(property == null) return new BlockStateContainer(this, temporary);
         return new BlockStateContainer(this, property);
@@ -74,6 +75,7 @@ public abstract class BlockHFEnum<B extends BlockHFEnum, E extends Enum<E> & ISt
 
     @SuppressWarnings("deprecation")
     @Override
+    @Nonnull
     public IBlockState getStateFromMeta(int meta) {
         return getDefaultState().withProperty(property, getEnumFromMeta(meta));
     }
@@ -98,14 +100,16 @@ public abstract class BlockHFEnum<B extends BlockHFEnum, E extends Enum<E> & ISt
         return values[meta];
     }
 
-    public E getEnumFromStack(ItemStack stack) {
+    public E getEnumFromStack(@Nonnull ItemStack stack) {
         return getEnumFromMeta(stack.getItemDamage());
     }
 
+    @Nonnull
     public ItemStack getStackFromEnum(E e) {
         return new ItemStack(this, 1, e.ordinal());
     }
 
+    @Nonnull
     public ItemStack getStackFromEnumString(String name) {
         return getStackFromEnum(Enum.valueOf(enumClass, name.toUpperCase()));
     }
@@ -131,6 +135,7 @@ public abstract class BlockHFEnum<B extends BlockHFEnum, E extends Enum<E> & ISt
     }
 
     @Override
+    @Nonnull
     public Item getItemDropped(IBlockState state, Random rand, int side) {
         return !doesDrop(state) ? null : super.getItemDropped(state, rand, side);
     }
@@ -159,7 +164,7 @@ public abstract class BlockHFEnum<B extends BlockHFEnum, E extends Enum<E> & ISt
     }
 
     @Override
-    public String getUnlocalizedName(ItemStack stack) {
+    public String getUnlocalizedName(@Nonnull ItemStack stack) {
         return getEnumFromMeta(stack.getItemDamage()).name().toLowerCase(Locale.ENGLISH);
     }
 

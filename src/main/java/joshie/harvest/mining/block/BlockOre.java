@@ -1,6 +1,5 @@
 package joshie.harvest.mining.block;
 
-import com.google.common.collect.Lists;
 import joshie.harvest.api.gathering.ISmashable;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.HFTrackers;
@@ -23,6 +22,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -30,7 +30,6 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 
 import javax.annotation.Nonnull;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -65,7 +64,7 @@ public class BlockOre extends BlockHFSmashable<BlockOre, Ore> implements ISmasha
     public float getPlayerRelativeBlockHardness(IBlockState state, @Nonnull EntityPlayer player, @Nonnull World world, @Nonnull BlockPos pos) {
         return (player.getHeldItemMainhand().getItem() == HFTools.HAMMER)
                 ? ((HFTools.HAMMER.getTier(player.getHeldItemMainhand()).ordinal() + 2)
-                - getToolLevel(getEnumFromState(state))) * 0.025F: -1F;
+                - getToolLevel(getEnumFromState(state))) * 0.025F : -1F;
     }
 
     @SuppressWarnings("deprecation")
@@ -110,8 +109,8 @@ public class BlockOre extends BlockHFSmashable<BlockOre, Ore> implements ISmasha
     }
 
     @Override
-    public void dropBlockAsItemWithChance(World worldIn, BlockPos pos, IBlockState state, float chance, int fortune)  {
-        if (!worldIn.isRemote && !worldIn.restoringBlockSnapshots)  {
+    public void dropBlockAsItemWithChance(World worldIn, BlockPos pos, IBlockState state, float chance, int fortune) {
+        if (!worldIn.isRemote && !worldIn.restoringBlockSnapshots) {
             EntityPlayer player = harvesters.get();
             if (player != null && player.getHeldItemMainhand().getItem() == getTool()) {
                 smashBlock(harvesters.get(), worldIn, pos, state, getTool().getTier(player.getHeldItemMainhand()));
@@ -119,33 +118,33 @@ public class BlockOre extends BlockHFSmashable<BlockOre, Ore> implements ISmasha
         }
     }
 
-    private static List<ItemStack> getRandomStack(World world, Material material, int bonus) {
+    private static NonNullList<ItemStack> getRandomStack(World world, Material material, int bonus) {
         while (bonus > 0) {
             if (world.rand.nextInt(bonus) == 0)
-                return Lists.newArrayList(HFMining.MATERIALS.getStackFromEnum(material, 1 + world.rand.nextInt(bonus)));
+                return NonNullList.withSize(1, HFMining.MATERIALS.getStackFromEnum(material, 1 + world.rand.nextInt(bonus)));
             bonus--;
         }
 
-        return Lists.newArrayList(HFMining.MATERIALS.getStackFromEnum(material, 1));
+        return NonNullList.withSize(1, HFMining.MATERIALS.getStackFromEnum(material, 1));
     }
 
-    private static List<ItemStack> getRandomStack(World world, Item item, int bonus) {
-        return Lists.newArrayList(new ItemStack(item, 1 + world.rand.nextInt(bonus)));
+    private static NonNullList<ItemStack> getRandomStack(World world, Item item, int bonus) {
+        return NonNullList.withSize(1, new ItemStack(item, 1 + world.rand.nextInt(bonus)));
     }
 
     @Override
-    public List<ItemStack> getDrops(EntityPlayer player, World world, BlockPos pos, IBlockState state, float luck) {
+    public NonNullList<ItemStack> getDrops(EntityPlayer player, World world, BlockPos pos, IBlockState state, float luck) {
         Ore ore = getEnumFromState(state);
 
         if (world instanceof WorldServer) {
-            WorldServer server = ((WorldServer)world);
+            WorldServer server = ((WorldServer) world);
             server.spawnParticle(EnumParticleTypes.BLOCK_CRACK, pos.getX(), pos.getY(), pos.getZ(), 10, 0.5D, 0.5D, 0.5D, 0.0D, Block.getStateId(Blocks.DIRT.getDefaultState()));
         }
 
-        List<ItemStack> drops;
+        NonNullList<ItemStack> drops;
         switch (ore) {
             case ROCK:
-                drops = world.isRemote ? Lists.newArrayList(new ItemStack(this)): MiningHelper.getLoot(MINING, world, player, luck);
+                drops = world.isRemote ? NonNullList.withSize(1, new ItemStack(this)) : MiningHelper.getLoot(MINING, world, player, luck);
                 break;
             case COPPER:
                 drops = getRandomStack(world, Material.COPPER, 5);
@@ -178,15 +177,15 @@ public class BlockOre extends BlockHFSmashable<BlockOre, Ore> implements ISmasha
                 drops = getRandomStack(world, Material.TOPAZ, 4);
                 break;
             case GEM:
-                drops = world.isRemote ? Lists.newArrayList(new ItemStack(this)) : MiningHelper.getLoot(MINING_GEMS, world, player, luck);
+                drops = world.isRemote ? NonNullList.withSize(1, new ItemStack(this)) : MiningHelper.getLoot(MINING_GEMS, world, player, luck);
                 break;
             default:
-                drops = new ArrayList<>();
+                drops = NonNullList.create();
         }
 
         EntityBasket.findBasketAndShip(player, drops);
         if (!world.isRemote) {
-            for (ItemStack stack: drops) {
+            for (ItemStack stack : drops) {
                 HFTrackers.getPlayerTrackerFromPlayer(player).getTracking().addAsObtained(stack);
             }
         }
@@ -195,7 +194,7 @@ public class BlockOre extends BlockHFSmashable<BlockOre, Ore> implements ISmasha
     }
 
     @Override
-    public int getSortValue(ItemStack stack) {
+    public int getSortValue(@Nonnull ItemStack stack) {
         return CreativeSort.TOOLS - 20 + stack.getItemDamage();
     }
 }

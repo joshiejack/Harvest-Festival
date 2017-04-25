@@ -44,9 +44,10 @@ public class InventoryHelper {
         @Override
         public boolean matches(@Nonnull ItemStack stack, SearchType type) {
             if (type.equals(FLOWER)) {
-                if(stack.getItem() == Item.getItemFromBlock(Blocks.RED_FLOWER) || stack.getItem() == Item.getItemFromBlock(Blocks.YELLOW_FLOWER)) return true;
+                if (stack.getItem() == Item.getItemFromBlock(Blocks.RED_FLOWER) || stack.getItem() == Item.getItemFromBlock(Blocks.YELLOW_FLOWER))
+                    return true;
                 else {
-                    for (String name: getOreNames(stack)) {
+                    for (String name : getOreNames(stack)) {
                         if (name.startsWith("flower")) return true;
                     }
 
@@ -73,18 +74,18 @@ public class InventoryHelper {
         ItemStack offhand = player.inventory.offHandInventory.get(0);
         if (matcher.matches(offhand, taking)) {
             ItemStack taken = offhand.splitStack(toTake);
-            toTake -= taken.stackSize;
-            if (offhand.stackSize <= 0) player.inventory.offHandInventory[0] = null; //Clear
+            toTake -= taken.getCount();
+            player.inventory.offHandInventory.get(0).isEmpty(); //Clear
             if (toTake <= 0) return; //No further processing neccessary
         }
 
         //Main Inventory
-        for (int i = 0; i < player.inventory.mainInventory.length && toTake > 0; i++) {
-            ItemStack stack = player.inventory.mainInventory[i];
-            if (stack != null && matcher.matches(stack, taking)) {
+        for (int i = 0; i < player.inventory.mainInventory.size() && toTake > 0; i++) {
+            ItemStack stack = player.inventory.mainInventory.get(i);
+            if (!stack.isEmpty() && matcher.matches(stack, taking)) {
                 ItemStack taken = stack.splitStack(toTake);
-                toTake -= taken.stackSize;
-                if (stack.stackSize <= 0) player.inventory.mainInventory[i] = null; //Clear
+                toTake -= taken.getCount();
+                player.inventory.mainInventory.get(i).isEmpty(); //Clear
                 if (toTake <= 0) return; //No further processing neccessary
             }
         }
@@ -110,15 +111,15 @@ public class InventoryHelper {
     @SuppressWarnings("unchecked")
     private static <S> int getStackSizeOfHand(EntityPlayer player, Matcher<S> matcher, S search, EnumHand hand) {
         ItemStack held = player.getHeldItem(hand);
-        if (held != null && matcher.matches(held, search)) {
-            return held.stackSize;
+        if (!held.isEmpty() && matcher.matches(held, search)) {
+            return held.getCount();
         } else return 0;
     }
 
     @SuppressWarnings("unchecked")
     public static <S> EnumHand getHandItemIsIn(EntityPlayer player, Matcher<S> matcher, S search, int... amount) {
         int count = amount == null || amount.length == 0 ? 1 : amount[0];
-        for (EnumHand hand: EnumHand.values()) {
+        for (EnumHand hand : EnumHand.values()) {
             if (getStackSizeOfHand(player, matcher, search, hand) != 0) {
                 if (getCount(player, search, matcher) >= count) {
                     return hand;
@@ -132,9 +133,9 @@ public class InventoryHelper {
     @SuppressWarnings("ConstantConditions")
     private static int reduceHeld(EntityPlayer player, EnumHand hand, int amount) {
         ItemStack held = player.getHeldItem(hand);
-        if (held.stackSize <= amount) {
-            int ret = held.stackSize;
-            player.setHeldItem(hand, null);
+        if (held.getCount() <= amount) {
+            int ret = held.getCount();
+            player.setHeldItem(hand, ItemStack.EMPTY);
             return ret;
         } else {
             held.stackSize -= amount;
@@ -157,44 +158,44 @@ public class InventoryHelper {
 
     public static <T> int getCount(EntityPlayer player, T taking, Matcher<T> matcher) {
         int count = 0;
-        for (ItemStack item: player.inventory.mainInventory) {
+        for (ItemStack item : player.inventory.mainInventory) {
             if (item == null) continue;
             if (matcher.matches(item, taking)) {
-                count += item.stackSize;
+                count += item.getCount();
             }
         }
 
-        ItemStack offhand = player.inventory.offHandInventory[0];
-        if (offhand != null && matcher.matches(offhand, taking)) {
-            count += offhand.stackSize;
+        ItemStack offhand = player.inventory.offHandInventory.get(0);
+        if (!offhand.isEmpty() && matcher.matches(offhand, taking)) {
+            count += offhand.getCount();
         }
 
         return count;
     }
 
-    public static boolean isOreName(ItemStack stack, String... ore) {
-        for (String name: ore) {
+    public static boolean isOreName(@Nonnull ItemStack stack, String... ore) {
+        for (String name : ore) {
             if (isOreName(stack, name)) return true;
         }
 
         return false;
     }
 
-    public static boolean isOreName(ItemStack stack, String ore) {
+    public static boolean isOreName(@Nonnull ItemStack stack, String ore) {
         int[] ids = OreDictionary.getOreIDs(stack);
-        for (int i: ids) {
+        for (int i : ids) {
             String name = OreDictionary.getOreName(i);
             if (name.equals(ore)) {
                 return true;
             }
         }
-        
+
         return false;
     }
 
     public static List<ItemStack> getStarts(String ore) {
         List<ItemStack> list = new ArrayList<>();
-        for (String name: OreDictionary.getOreNames()) {
+        for (String name : OreDictionary.getOreNames()) {
             if (name.startsWith(ore)) list.addAll(OreDictionary.getOres(name));
         }
 
@@ -203,7 +204,7 @@ public class InventoryHelper {
 
     public static List<ItemStack> getEnds(String ore) {
         List<ItemStack> list = new ArrayList<>();
-        for (String name: OreDictionary.getOreNames()) {
+        for (String name : OreDictionary.getOreNames()) {
             if (name.endsWith(ore)) list.addAll(OreDictionary.getOres(name));
         }
 
@@ -212,24 +213,24 @@ public class InventoryHelper {
 
     public static List<ItemStack> getContains(String ore) {
         List<ItemStack> list = new ArrayList<>();
-        for (String name: OreDictionary.getOreNames()) {
+        for (String name : OreDictionary.getOreNames()) {
             if (name.contains(ore)) list.addAll(OreDictionary.getOres(name));
         }
 
         return list;
     }
 
-    public static boolean startsWith(ItemStack stack, String... ore) {
-        for (String name: ore) {
+    public static boolean startsWith(@Nonnull ItemStack stack, String... ore) {
+        for (String name : ore) {
             if (startsWith(stack, name)) return true;
         }
 
         return false;
     }
 
-    public static boolean endsWith(ItemStack stack, String ore) {
+    public static boolean endsWith(@Nonnull ItemStack stack, String ore) {
         int[] ids = OreDictionary.getOreIDs(stack);
-        for (int i: ids) {
+        for (int i : ids) {
             String name = OreDictionary.getOreName(i);
             if (name.endsWith(ore)) {
                 return true;
@@ -239,9 +240,9 @@ public class InventoryHelper {
         return false;
     }
 
-    public static boolean contains(ItemStack stack, String ore) {
+    public static boolean contains(@Nonnull ItemStack stack, String ore) {
         int[] ids = OreDictionary.getOreIDs(stack);
-        for (int i: ids) {
+        for (int i : ids) {
             String name = OreDictionary.getOreName(i);
             if (name.contains(ore)) {
                 return true;
@@ -251,9 +252,9 @@ public class InventoryHelper {
         return false;
     }
 
-    public static boolean startsWith(ItemStack stack, String ore) {
+    public static boolean startsWith(@Nonnull ItemStack stack, String ore) {
         int[] ids = OreDictionary.getOreIDs(stack);
-        for (int i: ids) {
+        for (int i : ids) {
             String name = OreDictionary.getOreName(i);
             if (name.startsWith(ore)) {
                 return true;
@@ -263,7 +264,7 @@ public class InventoryHelper {
         return false;
     }
 
-    public static String[] getOreNames(ItemStack stack) {
+    public static String[] getOreNames(@Nonnull ItemStack stack) {
         int[] ids = OreDictionary.getOreIDs(stack);
         String[] names = new String[ids.length];
         for (int i = 0; i < ids.length; i++) {
@@ -278,9 +279,8 @@ public class InventoryHelper {
 
 
         @SafeVarargs
-        public final boolean matchesAny(@Nullable ItemStack stack, T... t) {
-            if (stack == null) return false;
-            for (T value: t) {
+        public final boolean matchesAny(@Nonnull ItemStack stack, T... t) {
+            for (T value : t) {
                 if (matches(stack, value)) return true;
             }
 

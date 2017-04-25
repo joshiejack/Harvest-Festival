@@ -16,6 +16,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+import javax.annotation.Nonnull;
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 
@@ -178,9 +179,10 @@ public class NBTHelper {
         nbt.setTag(name, list);
     }
 
+    @Nonnull
     public static ItemStack readItemStack(NBTTagCompound nbt) {
         Item item = Item.getByNameOrId(nbt.getString("id"));
-        if (item == null) return null; //DIE!
+        if (item == null) return ItemStack.EMPTY; //DIE!
         ItemStack stack = new ItemStack(item);
         stack.setCount(nbt.getInteger("Count"));
         int damage = nbt.getShort("Damage");

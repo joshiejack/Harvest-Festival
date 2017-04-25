@@ -16,6 +16,8 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.SlotItemHandler;
 
+import javax.annotation.Nonnull;
+
 import static joshie.harvest.core.entity.EntityBasket.ITEM;
 import static joshie.harvest.core.tile.TileBasket.BASKET_INVENTORY;
 
@@ -23,10 +25,10 @@ public class ContainerBasket extends ContainerBase {
     private final ItemStackHandler handler;
     private final ItemStack basketItem;
 
-    public ContainerBasket(InventoryPlayer inventory, ItemStack basketItem, EntityBasket basketEntity) {
-        this.handler = basketItem != null ? new ItemStackHandler(BASKET_INVENTORY) : basketEntity.handler;
+    public ContainerBasket(InventoryPlayer inventory, @Nonnull ItemStack basketItem, EntityBasket basketEntity) {
+        this.handler = !basketItem.isEmpty() ? new ItemStackHandler(BASKET_INVENTORY) : basketEntity.handler;
         this.basketItem = basketItem;
-        if (basketItem != null && basketItem.getTagCompound() != null) {
+        if (!basketItem.isEmpty() && basketItem.getTagCompound() != null) {
             this.handler.deserializeNBT(basketItem.getTagCompound().getCompoundTag("inventory"));
         }
 
@@ -42,7 +44,7 @@ public class ContainerBasket extends ContainerBase {
     @Override
     public void onContainerClosed(EntityPlayer playerIn) {
         super.onContainerClosed(playerIn);
-        if (basketItem != null) {
+        if (!basketItem.isEmpty()) {
             NBTTagCompound tag = basketItem.getTagCompound();
             if (tag == null) {
                 tag = new NBTTagCompound();
@@ -59,7 +61,7 @@ public class ContainerBasket extends ContainerBase {
     }
 
     @Override
-    protected boolean isValid(ItemStack stack) {
+    protected boolean isValid(@Nonnull ItemStack stack) {
         return HFApi.shipping.getSellValue(stack) > 0;
     }
 
@@ -85,12 +87,12 @@ public class ContainerBasket extends ContainerBase {
         public void onSlotChanged() {
             super.onSlotChanged();
             if (basketEntity != null && !getStack().isEmpty()) {
-                basketEntity.getDataManager().set(ITEM, Optional.of(getStack()));
+                basketEntity.getDataManager().set(ITEM, getStack());
             }
         }
 
         @Override
-        public boolean isItemValid(ItemStack stack) {
+        public boolean isItemValid(@Nonnull ItemStack stack) {
             return HFApi.shipping.getSellValue(stack) > 0;
         }
     }

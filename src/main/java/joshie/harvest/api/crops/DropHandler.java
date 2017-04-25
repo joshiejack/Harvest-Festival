@@ -21,7 +21,7 @@ public class DropHandler<C extends Crop> {
     public NonNullList<ItemStack> getDrops(C crop, int stage, Random rand) {
         NonNullList<ItemStack> list = NonNullList.create();
         ItemStack stack = getDrop(crop, stage, rand);
-        if (stack != null) list.add(stack);
+        if (!stack.isEmpty()) list.add(stack);
         return list;
     }
 }

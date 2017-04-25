@@ -160,7 +160,7 @@ public abstract class BlockHFLeaves<B extends BlockHFLeaves, E extends Enum<E> &
     }
 
     @Override
-    protected ItemStack createStackedBlock(@Nonnull IBlockState state) {
+    protected ItemStack getSilkTouchDrop(@Nonnull IBlockState state) {
         return new ItemStack(this, 1, getEnumFromState(state).ordinal());
     }
 
@@ -224,7 +224,7 @@ public abstract class BlockHFLeaves<B extends BlockHFLeaves, E extends Enum<E> &
     }
 
     @Override
-    public boolean isVisuallyOpaque() {
+    public boolean causesSuffocation(IBlockState state) {
         return false;
     }
 

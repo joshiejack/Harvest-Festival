@@ -57,7 +57,7 @@ public class BlockInternalAir extends BlockHFBase<BlockInternalAir> {
     }
 
     @Override
-    public boolean isVisuallyOpaque() {
+    public boolean causesSuffocation(IBlockState state) {
         return false;
     }
 

@@ -17,6 +17,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -71,7 +72,7 @@ public class BlockFlower extends BlockHFEnum<BlockFlower, FlowerType> implements
     @Override
     @Nonnull
     public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, @Nonnull IBlockState state, int fortune) {
-        List<ItemStack> ret = super.getDrops(world, pos, state, fortune);
+        NonNullList<ItemStack> ret = super.getDrops(world, pos, state, fortune);
         EntityPlayer player = harvesters.get();
         if (player != null) {
             EntityBasket.findBasketAndShip(player, ret);
@@ -136,25 +137,25 @@ public class BlockFlower extends BlockHFEnum<BlockFlower, FlowerType> implements
     }
 
     @Override
-    public int getEntityLifeSpan(ItemStack stack, World world) {
+    public int getEntityLifeSpan(@Nonnull ItemStack stack, World world) {
         return stack.getItemDamage() == FlowerType.GODDESS.ordinal() ? 50: 6000;
     }
 
     @Override
-    public String getItemStackDisplayName(ItemStack stack) {
+    public String getItemStackDisplayName(@Nonnull ItemStack stack) {
         return getEnumFromMeta(stack.getItemDamage()) == FlowerType.GODDESS ? AQUA + super.getItemStackDisplayName(stack) : super.getItemStackDisplayName(stack);
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean flag) {
+    public void addInformation(@Nonnull ItemStack stack, EntityPlayer player, List<String> list, boolean flag) {
         if (getEnumFromMeta(stack.getItemDamage()) == FlowerType.GODDESS) {
             list.add(TextHelper.translate("tooltip.flower"));
         }
     }
 
     @Override
-    public int getSortValue(ItemStack stack) {
+    public int getSortValue(@Nonnull ItemStack stack) {
         if (getEnumFromStack(stack) == FlowerType.GODDESS) return CreativeSort.TOOLS - 200;
         return CreativeSort.TOOLS - 100;
     }

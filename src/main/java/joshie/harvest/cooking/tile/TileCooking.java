@@ -18,6 +18,7 @@ import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.NonNullList;
 
 import javax.annotation.Nonnull;
 import java.util.ArrayList;
@@ -38,7 +39,7 @@ public abstract class TileCooking extends TileFaceable {
     private boolean cooking;
     private short cookTimer = 0;
     private ArrayList<ItemStack> ingredients = new ArrayList<>();
-    protected List<ItemStack> result = new ArrayList<>();
+    protected NonNullList<ItemStack> result = NonNullList.create();
     private int last;
 
     public final float[] rotations = new float[20];
@@ -66,7 +67,7 @@ public abstract class TileCooking extends TileFaceable {
         return result.size() > 0;
     }
 
-    public List<ItemStack> getResult() {
+    public NonNullList<ItemStack> getResult() {
         return result;
     }
 
@@ -76,7 +77,7 @@ public abstract class TileCooking extends TileFaceable {
 
     //reset everything ready for the next cooking batch
     public void giveToPlayer(EntityPlayer player) {
-        List<ItemStack> theItems = getResult();
+        NonNullList<ItemStack> theItems = getResult();
         EntityBasket.findBasketAndShip(player, theItems);
         for (ItemStack theItem: theItems) {
             if (theItem.hasTagCompound()) {
@@ -218,7 +219,7 @@ public abstract class TileCooking extends TileFaceable {
         }
 
         //Resulting item
-        result = new ArrayList<>();
+        result = NonNullList.create();
         if (nbt.hasKey("Result")) {
             NBTTagList is = nbt.getTagList("Result", 10);
             for (int i = 0; i < is.tagCount(); i++) {

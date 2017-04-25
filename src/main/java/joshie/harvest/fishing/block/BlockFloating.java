@@ -42,7 +42,7 @@ public class BlockFloating extends BlockHFEnum<BlockFloating, Floating> {
     }
 
     @Override
-    public boolean isVisuallyOpaque() {
+    public boolean causesSuffocation(IBlockState state) {
         return false;
     }
 

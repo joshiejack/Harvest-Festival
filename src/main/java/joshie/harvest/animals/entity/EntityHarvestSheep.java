@@ -23,6 +23,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -33,7 +34,6 @@ import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.util.ArrayList;
 import java.util.List;
 
 import static joshie.harvest.api.animals.IAnimalHandler.ANIMAL_STATS_CAPABILITY;
@@ -102,7 +102,7 @@ public class EntityHarvestSheep extends EntitySheep implements IEntityAdditional
     @Override
     @Nonnull
     public List<ItemStack> onSheared(ItemStack item, IBlockAccess access, BlockPos pos, int fortune) {
-        List<ItemStack> ret = new ArrayList<>();
+        NonNullList<ItemStack> ret = NonNullList.create();
         EntityPlayer player = world.getClosestPlayerToEntity(this, 178D);
         if (!isChild()) {
             if (player != null) {

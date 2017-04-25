@@ -1,6 +1,5 @@
 package joshie.harvest.core.block;
 
-import com.google.common.collect.Lists;
 import joshie.harvest.HarvestFestival;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.base.block.BlockHFEnumRotatableTile;
@@ -36,6 +35,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -124,7 +124,7 @@ public class BlockStorage extends BlockHFEnumRotatableTile<BlockStorage, Storage
         }
     }
 
-    private static boolean hasShippedItem(World world, EntityPlayer player, ItemStack stack) {
+    private static boolean hasShippedItem(World world, EntityPlayer player, @Nonnull ItemStack stack) {
         long sell = shipping.getSellValue(stack);
         if (sell > 0) {
             if (!world.isRemote) {
@@ -234,7 +234,7 @@ public class BlockStorage extends BlockHFEnumRotatableTile<BlockStorage, Storage
     }
 
     @SuppressWarnings("ConstantConditions")
-    public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase entity, ItemStack stack, EnumFacing facing) {
+    public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase entity, @Nonnull ItemStack stack, EnumFacing facing) {
         TileEntity tile = world.getTileEntity(pos);
         if (entity instanceof EntityPlayer & tile instanceof TileShipping) {
             super.onBlockPlacedBy(world, pos, state, entity, stack);
@@ -251,7 +251,7 @@ public class BlockStorage extends BlockHFEnumRotatableTile<BlockStorage, Storage
     }
 
     @Override
-    public boolean canReplace(@Nonnull World worldIn, @Nonnull BlockPos pos, @Nonnull EnumFacing side, @Nullable ItemStack stack) {
+    public boolean canReplace(@Nonnull World worldIn, @Nonnull BlockPos pos, @Nonnull EnumFacing side, @Nonnull ItemStack stack) {
         Storage storage = getEnumFromStack(stack);
         if (storage == MAILBOX) {
             IBlockState state = worldIn.getBlockState(pos.offset(side.getOpposite()));
@@ -267,17 +267,17 @@ public class BlockStorage extends BlockHFEnumRotatableTile<BlockStorage, Storage
             TileEntity tile = world.getTileEntity(pos);
             ItemStack stack = getStackFromEnum(BASKET);
             if (tile instanceof TileBasket) {
-                TileBasket basket = ((TileBasket)tile);
+                TileBasket basket = ((TileBasket) tile);
                 NBTTagCompound tag = new NBTTagCompound();
                 tag.setTag("inventory", basket.handler.serializeNBT());
-                if (basket.getStack() != null){
+                if (basket.getStack() != null) {
                     tag.setTag("item", basket.getStack().serializeNBT());
                 }
 
                 stack.setTagCompound(tag);
             }
 
-            return Lists.newArrayList(stack);
+            return NonNullList.withSize(1, stack);
         }
 
         return super.getDrops(world, pos, state, fortune);
@@ -315,14 +315,14 @@ public class BlockStorage extends BlockHFEnumRotatableTile<BlockStorage, Storage
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean flag) {
+    public void addInformation(@Nonnull ItemStack stack, EntityPlayer player, List<String> list, boolean flag) {
         if (getEnumFromMeta(stack.getItemDamage()) == Storage.MAILBOX) {
             list.add(TextHelper.translate("tooltip.mailbox"));
         }
     }
 
     @Override
-    public int getSortValue(ItemStack stack) {
+    public int getSortValue(@Nonnull ItemStack stack) {
         return CreativeSort.TROUGH;
     }
 }

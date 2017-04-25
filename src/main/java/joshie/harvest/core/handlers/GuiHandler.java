@@ -19,6 +19,7 @@ import joshie.harvest.quests.gui.GuiQuestBoard;
 import joshie.harvest.shops.gui.ContainerNPCShop;
 import joshie.harvest.shops.gui.GuiNPCShop;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -67,7 +68,7 @@ public class GuiHandler implements IGuiHandler {
             case FORCED_NPC:
             case QUEST_BOARD:   return new ContainerNull();
             case BASKET:        return new ContainerBasket(player.inventory, player.getHeldItem(EnumHand.values()[hand]), null);
-            case BASKET_ENTITY: return new ContainerBasket(player.inventory, null, BasketHandler.getWearingBasket(player));
+            case BASKET_ENTITY: return new ContainerBasket(player.inventory, ItemStack.EMPTY, BasketHandler.getWearingBasket(player));
             default:            return null;
         }
     }
@@ -110,7 +111,7 @@ public class GuiHandler implements IGuiHandler {
             }
 
             case BASKET:               return new GuiBasket(player.inventory, player.getHeldItem( EnumHand.values()[hand]), null);
-            case BASKET_ENTITY:        return new GuiBasket(player.inventory, null, BasketHandler.getWearingBasket(player));
+            case BASKET_ENTITY:        return new GuiBasket(player.inventory, ItemStack.EMPTY, BasketHandler.getWearingBasket(player));
             default:            return null;
         }
     }

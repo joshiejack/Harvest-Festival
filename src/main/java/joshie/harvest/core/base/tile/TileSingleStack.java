@@ -11,9 +11,9 @@ public abstract class TileSingleStack extends TileHarvest {
     @Nonnull
     protected ItemStack stack = ItemStack.EMPTY;
 
-    public abstract boolean onRightClicked(EntityPlayer player, ItemStack place);
+    public abstract boolean onRightClicked(EntityPlayer player, @Nonnull ItemStack place);
 
-    @Nullable
+    @Nonnull
     public ItemStack getStack() {
         return stack;
     }

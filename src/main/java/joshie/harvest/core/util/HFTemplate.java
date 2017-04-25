@@ -101,8 +101,8 @@ public class HFTemplate {
     }
 
     public static class Replaceable {
-        public boolean cantReplace(World world, BlockPos transformed) {
-            return world.getBlockState(transformed).getBlockHardness(world, transformed) == -1F;
+        public boolean canReplace(World world, BlockPos transformed) {
+            return world.getBlockState(transformed).getBlockHardness(world, transformed) != -1F;
         }
     }
 }

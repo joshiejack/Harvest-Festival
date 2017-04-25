@@ -36,22 +36,20 @@ public class TileCrop extends TileWithered {
 
             //If we were unable to survive the new day, let's destroy some things
             if (!data.newDay(world, pos)) {
-                if (HFCrops.CROPS_SHOULD_DIE) {
-                    if (world.rand.nextInt(4) == 0) {
-                        if (crop.getData().getCrop().isCurrentlyDouble(crop.getData().getStage())) world.setBlockToAir(pos);
-                        if (world.rand.nextInt(5) <= 1)
-                            world.setBlockState(pos, HFGathering.WOOD.getStateFromMeta(world.rand.nextInt(6)));
-                        else if (world.rand.nextInt(5) == 0)
-                            world.setBlockState(pos, HFGathering.ROCK.getStateFromMeta(world.rand.nextInt(6)));
-                        else world.setBlockState(pos, HFCore.FLOWERS.getStateFromEnum(FlowerType.WEED));
-                    } else {
-                        if (crop.getData().getCrop().isCurrentlyDouble(crop.getData().getStage())) {
-                            world.setBlockState(soil.up(), HFCrops.CROPS.getStateFromEnum(CropType.WITHERED_DOUBLE), 2);
-                        }
-
-                        //Prepare to save old data
-                        NBTHelper.copyTileData(crop, world, pos, HFCrops.CROPS.getStateFromEnum(CropType.WITHERED));
+                if (world.rand.nextInt(4) == 0) {
+                    if (crop.getData().getCrop().isCurrentlyDouble(crop.getData().getStage())) world.setBlockToAir(pos);
+                    if (world.rand.nextInt(5) <= 1)
+                        world.setBlockState(pos, HFGathering.WOOD.getStateFromMeta(world.rand.nextInt(6)));
+                    else if (world.rand.nextInt(5) == 0)
+                        world.setBlockState(pos, HFGathering.ROCK.getStateFromMeta(world.rand.nextInt(6)));
+                    else world.setBlockState(pos, HFCore.FLOWERS.getStateFromEnum(FlowerType.WEED));
+                } else {
+                    if (crop.getData().getCrop().isCurrentlyDouble(crop.getData().getStage())) {
+                        world.setBlockState(soil.up(), HFCrops.CROPS.getStateFromEnum(CropType.WITHERED_DOUBLE), 2);
                     }
+
+                    //Prepare to save old data
+                    NBTHelper.copyTileData(crop, world, pos, HFCrops.CROPS.getStateFromEnum(CropType.WITHERED));
                 }
             } else markTileForUpdate(crop);
 

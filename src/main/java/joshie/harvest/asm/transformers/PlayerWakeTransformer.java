@@ -17,7 +17,7 @@ import java.util.Set;
 public class PlayerWakeTransformer extends AbstractASM {
     @Override
     public boolean isClass(String name) {
-        return name.equals("net.minecraft.entity.player.EntityPlayer") || name.equals("zs");
+        return name.equals("net.minecraft.entity.player.EntityPlayer") || name.equals("aax");
     }
 
     @Override

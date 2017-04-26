@@ -13,7 +13,7 @@ public class RenderItemTransformer extends AbstractASM {
 
     @Override
     public boolean isClass(String name) {
-        return name.equals("net.minecraft.client.renderer.tileentity.TileEntityItemStackRenderer") || name.equals("bnx");
+        return name.equals("net.minecraft.client.renderer.tileentity.TileEntityItemStackRenderer") || name.equals("bqa");
     }
 
     @Override

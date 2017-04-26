@@ -9,9 +9,7 @@ import static org.objectweb.asm.Opcodes.*;
 public class RenderRainTransformer extends AbstractASM {
     @Override
     public boolean isClass(String name) {
-        return name.equals("net.minecraft.client.renderer.EntityRenderer") ||
-                (MC_VERSION.equals("1.9.4") && name.equals("bnd")) ||
-                (MC_VERSION.equals("1.10.2") && name.equals("bnz"));
+        return name.equals("net.minecraft.client.renderer.EntityRenderer") || name.equals("bqc");
     }
 
     @Override

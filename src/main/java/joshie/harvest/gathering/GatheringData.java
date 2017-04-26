@@ -2,6 +2,7 @@ package joshie.harvest.gathering;
 
 import com.google.common.cache.Cache;
 import joshie.harvest.api.HFApi;
+import joshie.harvest.api.calendar.CalendarDate;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.town.data.TownBuilding;
 import net.minecraft.block.state.IBlockState;
@@ -12,10 +13,14 @@ import net.minecraft.world.World;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Random;
 import java.util.Set;
 import java.util.concurrent.ExecutionException;
 
+import static joshie.harvest.gathering.HFGathering.*;
+
 public class GatheringData {
+    private final Random random = new Random();
     private Set<GatheringLocation> locations = new HashSet<>();
 
     public void newDay(World world, BlockPos townCentre, Collection<TownBuilding> buildings, Cache<BlockPos, Boolean> isFar) {
@@ -26,22 +31,22 @@ public class GatheringData {
             if (world.isBlockLoaded(location.pos)) {
                 IBlockState state = world.getBlockState(location.pos);
                 if (state.getBlock() == location.block && state.getBlock().getMetaFromState(state) == location.meta) {
-                    if (state.getBlock().getMetaFromState(state) == location.meta) {
-                        world.setBlockToAir(location.pos);
-                    }
+                    world.setBlockToAir(location.pos);
                 }
             } else locations.add(location); //Add them back
         }
 
         //Create some new spawn spots based on where we have buildings
-        Season season = HFApi.calendar.getDate(world).getSeason();
+        CalendarDate date = HFApi.calendar.getDate(world);
+        Season season = date.getSeason();
+        random.setSeed(date.hashCode());
         int placed = 0;
 
-        for (int i = 0; i < 2048 && placed < 256; i++) {
-            BlockPos pos = world.getTopSolidOrLiquidBlock(townCentre.add(128 - world.rand.nextInt(256), 64, 128 - world.rand.nextInt(256)));
+        for (int i = 0; i < 2048 && placed < GATHERING_ATTEMPTS; i++) {
+            BlockPos pos = world.getTopSolidOrLiquidBlock(townCentre.add(GATHERING_MAX_HALF - random.nextInt(GATHERING_MAXIMUM), 64, GATHERING_MAX_HALF - random.nextInt(GATHERING_MAXIMUM)));
             if (world.isBlockLoaded(pos) && GatheringRegistry.INSTANCE.isValidGatheringSpawn(world.getBlockState(pos.down()).getBlock()) && world.isAirBlock(pos) && world.canBlockSeeSky(pos) &&
                     isAtLeast32BlocksAwayFromEverything(isFar, buildings, pos)) {
-                IBlockState random = HFApi.gathering.getRandomStateForSeason(world, season);
+                IBlockState random = HFApi.gathering.getRandomStateForSeason(season);
                 if (random != null && world.setBlockState(pos, random, 2)) {
                     locations.add(new GatheringLocation(random, pos));
                     placed++;
@@ -54,7 +59,7 @@ public class GatheringData {
         try {
             return isFar.get(pos, () -> {
                 for (TownBuilding building: buildings) {
-                    if (building.pos.getDistance(pos.getX(), pos.getY(), pos.getZ()) < 32) return false;
+                    if (building.pos.getDistance(pos.getX(), pos.getY(), pos.getZ()) < GATHERING_MINIMUM) return false;
                 }
 
                 return true;

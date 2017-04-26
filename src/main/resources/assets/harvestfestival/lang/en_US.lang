@@ -1935,9 +1935,9 @@ harvestfestival.quest.trade.cursed.wait=It's nice to see you, the blessing of yo
 harvestfestival.quest.trade.cursed.done=Your %s is now ready! All blessed for you! Here take it!
 
 # Priest Repair Quests
-harvestfestival.quest.trade.bless.repair.reminder=I can repair blessed tools for %s gold.
-harvestfestival.quest.trade.bless.repair.gold=Looks like you have a blessed tool. I can repair this for a small sum of %s Gold.
-harvestfestival.quest.trade.bless.repair.done=And with all the almighty power I hearby bless your %s once again and restore it's powers.
+harvestfestival.quest.trade.bless.reminder=I can repair blessed tools for %s gold.
+harvestfestival.quest.trade.bless.gold=Looks like you have a blessed tool. I can repair this for a small sum of %s Gold.
+harvestfestival.quest.trade.bless.done=And with all the almighty power I hearby bless your %s once again and restore it's powers.
 
 # Blacksmith Upgrades
 harvestfestival.quest.trade.upgrade.closed.start=I'm afraid I can only work on your tools during business hours.
@@ -2499,6 +2499,10 @@ harvestfestival.note.axe.title=Axe
 harvestfestival.note.axe.description=The axe is used for collecting wood. It can turn the branches and stumps you see in to logs at different tiers. You can also use the axes to fell whole trees. You will need to break the bottom block of a tree various time depending on the axe tier. Then eventually it will chop the entire tree down for you. You can sneak if you wish to chop just down one piece of wood.
 harvestfestival.note.elevator.title=Elevators
 harvestfestival.note.elevator.description=Elevators allow you to warp between floors of the mine. They aren't so simple as they require a bit of setup. Place two elevators on the floors you wish to travel between. (On the walls). Work out how many cables you will need, this is based on the distance between the floors. Then simply right click the cable on the first elevator, then on the second. They will then be linked and you can move between floors.
+harvestfestival.note.shipping.basket.title=Shipping Basket
+harvestfestival.note.shipping.basket.description=The shipping basket is a convenient item for shipping multiple items at once. To use it simply place it on the ground, then right click it. This will place it on your head. With it on your head you can then harvest crops, fish or mine and the items will go directly in to the basket. When harvesting crops it will also harvest the crops to the side of you. Once your items are collected, simply right click on a shipping bin with an empty hand and the contents will be removed and shipped.\nYou can also open the inventory of a shipping basket by shift right clicking with an empty hand, here you can put things in or take them out. To place the basket down again you will need to right click with an empty hand.
+harvestfestival.note.trees.title=Fruit Trees
+harvestfestival.note.trees.description=Unlike other crops fruit trees will only place one seed. They will also need a certain amount of room around them in order to grow. They do not need water and will grow in spring, summer or autumn but will only bear fruit once fully grown in their respective seasons. They won't die in winter but will go dormant.
 
 #Secret Notes
 harvestfestival.note.secret.cursed.title=Secret of the Cursed Tools?

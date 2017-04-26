@@ -64,7 +64,8 @@ public abstract class GrowthHandlerHFTree extends GrowthHandlerTree {
             for (int z = -radius; z <= radius; z++) {
                 if (x == 0 && z == 0) continue;
                 BlockPos target = pos.add(x, 1, z);
-                if (!world.isAirBlock(target)) return false;
+                IBlockState state = world.getBlockState(target);
+                if (!state.getBlock().canBeReplacedByLeaves(state, world, target)) return false;
             }
         }
 

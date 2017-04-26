@@ -111,7 +111,7 @@ public class ItemAxe extends ItemToolSmashing<ItemAxe> {
         tag.removeTag("Times"); //Remove the data now we're chopping
         if(player.worldObj.isRemote) return true;
         MinecraftForge.EVENT_BUS.register(new ChopTree(pos, player, stack));
-        player.worldObj.playSound(null, pos, HFSounds.TREE_FALL, SoundCategory.BLOCKS, player.worldObj.rand.nextFloat() * 0.25F + 6F, player.worldObj.rand.nextFloat() * 1.0F + 0.5F);
+        player.worldObj.playSound(null, pos, HFSounds.TREE_FALL, SoundCategory.BLOCKS, player.worldObj.rand.nextFloat() * 0.25F, player.worldObj.rand.nextFloat() * 1.0F + 0.5F);
         return true;
     }
 
@@ -128,7 +128,7 @@ public class ItemAxe extends ItemToolSmashing<ItemAxe> {
         candidates.add(origin);
         while(!candidates.isEmpty()) {
             BlockPos candidate = candidates.pop();
-            if((pos == null || candidate.getY() > pos.getY()) && world.getBlockState(candidate).getBlock().isWood(world, pos)) {
+            if((pos == null || candidate.getY() > pos.getY()) && world.getBlockState(candidate).getBlock().isWood(world, candidate)) {
                 pos = candidate.up();
                 while(world.getBlockState(pos).getBlock().isWood(world, pos)) {
                     pos = pos.up();
@@ -162,7 +162,7 @@ public class ItemAxe extends ItemToolSmashing<ItemAxe> {
 
     @Override
     public void playSound(World world, BlockPos pos) {
-        world.playSound(null, pos, HFSounds.SMASH_WOOD, SoundCategory.BLOCKS, world.rand.nextFloat() * 0.25F + 6F, world.rand.nextFloat() * 1.0F + 0.5F);
+        world.playSound(null, pos, HFSounds.SMASH_WOOD, SoundCategory.BLOCKS, world.rand.nextFloat() * 0.25F, world.rand.nextFloat() * 1.0F + 0.5F);
     }
 
     @Override

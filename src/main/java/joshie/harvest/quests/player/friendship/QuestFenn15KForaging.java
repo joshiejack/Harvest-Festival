@@ -31,7 +31,7 @@ public class QuestFenn15KForaging extends QuestFriendship {
     public void onQuestCompleted(EntityPlayer player) {
         Season season = HFApi.calendar.getDate(player.worldObj).getSeason();
         for (int i = 0; i < 7; i++) {
-            IBlockState state = GatheringRegistry.INSTANCE.getRandomStateForSeason(player.worldObj, season);
+            IBlockState state = GatheringRegistry.INSTANCE.getRandomStateForSeason(season);
             if (state != null) {
                 SpawnItemHelper.spawnByEntity(player, state.getBlock().getItem(player.worldObj, new BlockPos(player), state));
             }

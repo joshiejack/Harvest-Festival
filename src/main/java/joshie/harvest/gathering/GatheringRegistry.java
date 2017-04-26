@@ -9,7 +9,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 
-import javax.annotation.Nullable;
+import javax.annotation.Nonnull;
 import java.util.*;
 
 import static joshie.harvest.api.calendar.Season.*;
@@ -40,9 +40,8 @@ public class GatheringRegistry implements IGatheringRegistry {
     }
 
     @Override
-    public IBlockState getRandomStateForSeason(World world, @Nullable Season season) {
-        if (season == null) return null;
-        return gatherings.get(season).get(world);
+    public IBlockState getRandomStateForSeason(@Nonnull Season season) {
+        return gatherings.get(season).get();
     }
 
     @Override
@@ -56,6 +55,7 @@ public class GatheringRegistry implements IGatheringRegistry {
 
     private class WeightedState {
         private final NavigableMap<Double, IBlockState> map = new TreeMap<>();
+        private final Random random = new Random();
         private double total = 0;
 
         public void add(IBlockState state, double weight) {
@@ -64,8 +64,8 @@ public class GatheringRegistry implements IGatheringRegistry {
             map.put(total, state);
         }
 
-        public IBlockState get(World world) {
-            return map.ceilingEntry((world.rand.nextDouble() * total)).getValue();
+        public IBlockState get() {
+            return map.ceilingEntry((random.nextDouble() * total)).getValue();
         }
     }
 }

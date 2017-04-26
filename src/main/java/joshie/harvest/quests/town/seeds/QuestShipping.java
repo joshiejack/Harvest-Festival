@@ -23,6 +23,7 @@ import java.util.Set;
 public class QuestShipping extends QuestTown {
     private static final int START = 0;
     private static final int FINISHED = 1;
+    private static final int FINISHED2 = 2;
     private CalendarDate lastCheck;
     private Set<StackSold> crops;
     private Season season;
@@ -96,11 +97,12 @@ public class QuestShipping extends QuestTown {
     @Nullable
     @SideOnly(Side.CLIENT)
     public String getLocalizedScript(EntityPlayer player, NPCEntity entity) {
-        return getLocalized("complete");
+        return quest_stage == FINISHED2 ? getLocalized("complete") : null;
     }
 
     @Override
     public void onChatClosed(EntityPlayer player, NPCEntity entity, boolean wasSneaking) {
-        complete(player);
+        if (quest_stage == FINISHED2) complete(player);
+        else if (quest_stage == FINISHED) increaseStage(player);
     }
 }

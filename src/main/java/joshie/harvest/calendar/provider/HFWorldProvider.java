@@ -182,7 +182,7 @@ public class HFWorldProvider extends WorldProviderSurface {
     public float calculateCelestialAngle(long worldTime, float partialTicks) {
         Calendar calendar = HFTrackers.getCalendar(worldObj);
         if (calendar != null) {
-            return calendar.getSeasonData().getCelestialAngle((int) (worldTime % TICKS_PER_DAY) + 6000);
+            return calendar.getSeasonData().getCelestialAngle(worldTime % TICKS_PER_DAY);
         }
 
         return 1F;

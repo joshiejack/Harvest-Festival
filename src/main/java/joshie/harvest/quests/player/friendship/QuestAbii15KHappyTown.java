@@ -25,6 +25,6 @@ public class QuestAbii15KHappyTown extends QuestFriendship {
     @Override
     public void onQuestCompleted(EntityPlayer player) {
         NPC.REGISTRY.values().stream().filter(npc -> player.worldObj.rand.nextInt(3) <= 1)
-                .forEach(npc -> HFApi.player.getRelationsForPlayer(player).affectRelationship(npc, 1000));
+                .forEach(npc -> HFApi.player.getRelationsForPlayer(player).affectRelationship(npc, 5000));
     }
 }

@@ -4,7 +4,7 @@ public class Category {
     public static final Category ACTIVITIES = new Category("activities");
     public static final Category FARMING = new Category("farming");
     public static final Category TOWNSHIP = new Category("town");
-    public static final Category OTHER = new Category("other");
+    //public static final Category OTHER = new Category("other");
 
     private final String unlocalized;
 

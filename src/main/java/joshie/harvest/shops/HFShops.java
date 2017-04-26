@@ -467,7 +467,7 @@ public class HFShops {
     }
 
     private static void registerCooking() {
-        COOKING_FESTIVAL_FOOD.addPurchasable(5000L, HFCore.STORAGE.getStackFromEnum(Storage.BASKET));
+        COOKING_FESTIVAL_FOOD.addPurchasable(new Purchasable(5000L, HFCore.STORAGE.getStackFromEnum(Storage.BASKET)).setNote(HFNotes.SHIPPING_BASKET));
         COOKING_FESTIVAL_FOOD.addPurchasable(50, new ItemStack(Items.FISH));
         COOKING_FESTIVAL_FOOD.addPurchasable(100, HFGathering.NATURE.getStackFromEnum(NaturalBlock.MINT));
         COOKING_FESTIVAL_FOOD.addPurchasable(150, HFGathering.NATURE.getStackFromEnum(NaturalBlock.CHAMOMILE));

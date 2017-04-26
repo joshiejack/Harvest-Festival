@@ -67,7 +67,6 @@ public class PlaceableFlowerPot extends PlaceableDecorative {
                 break;
             case 9:
                 block = Blocks.CACTUS;
-                meta = 5;
                 break;
             case 10:
                 block = Blocks.DEADBUSH;
@@ -84,6 +83,7 @@ public class PlaceableFlowerPot extends PlaceableDecorative {
                 block = Blocks.SAPLING;
                 meta = 5;
         }
+
         return new ItemStack(Item.getItemFromBlock(block), 1, meta);
     }
 }

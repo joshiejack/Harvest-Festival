@@ -22,24 +22,26 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
 import java.util.UUID;
 
 @SuppressWarnings("WeakerAccess")
 public class CookingContestEntry extends ContestEntry<QuestContestCooking> {
+    @Nonnull
     private final ItemStack stack;
     private final BlockPos pos;
     private final Utensil category;
 
-    public CookingContestEntry(UUID player, BlockPos pos, ItemStack stack, int stall) {
+    public CookingContestEntry(UUID player, BlockPos pos, @Nonnull ItemStack stack, int stall) {
         super(player, stall);
         this.stack = stack;
         this.pos = pos;
         this.category = getUtensilFromStack(stack);
     }
 
-    public CookingContestEntry(NPC npc, BlockPos pos, ItemStack stack, int stall) {
+    public CookingContestEntry(NPC npc, BlockPos pos, @Nonnull ItemStack stack, int stall) {
         super(npc, stall);
         this.stack = stack;
         this.pos = pos;
@@ -81,7 +83,7 @@ public class CookingContestEntry extends ContestEntry<QuestContestCooking> {
     }
 
     @Override
-    public void reward(World world, Place place, NPC[] npcs, ItemStack reward) {
+    public void reward(World world, Place place, NPC[] npcs, @Nonnull ItemStack reward) {
         EntityPlayer player = getPlayer(world);
         if (player != null) { //Give the rewards for this
             SpawnItemHelper.addToPlayerInventory(player, reward);

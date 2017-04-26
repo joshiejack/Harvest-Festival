@@ -25,7 +25,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import java.lang.ref.WeakReference;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Random;

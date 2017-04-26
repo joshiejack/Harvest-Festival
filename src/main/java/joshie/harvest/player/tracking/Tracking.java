@@ -7,6 +7,7 @@ import joshie.harvest.core.util.holders.ItemStackHolder;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
+import javax.annotation.Nonnull;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -45,11 +46,11 @@ public class Tracking implements IPlayerTracking {
     }
 
     @Override
-    public void addAsObtained(ItemStack stack) {
+    public void addAsObtained(@Nonnull ItemStack stack) {
         obtained.add(ItemStackHolder.of(stack));
     }
 
-    public boolean hasObtainedItem(ItemStack stack) {
+    public boolean hasObtainedItem(@Nonnull ItemStack stack) {
         for (ItemStackHolder holder: obtained) {
             if (holder.matches(stack)) return true;
         }

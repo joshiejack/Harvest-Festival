@@ -20,6 +20,7 @@ import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 
+import javax.annotation.Nonnull;
 import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
@@ -62,14 +63,15 @@ public class CraftTweaker {
 
     public static Block asBlock(IItemStack ingredient) {
         ItemStack stack = asStack(ingredient);
-        if (stack != null && stack.getItem() instanceof ItemBlock) {
+        if (stack.getItem() instanceof ItemBlock) {
             return ((ItemBlock)stack.getItem()).getBlock();
         } else return null;
     }
 
     //Helpers
+    @Nonnull
     public static ItemStack asStack(IIngredient ingredient) {
-        return ingredient != null && ingredient.getInternal() instanceof ItemStack ? (ItemStack) ingredient.getInternal() : null;
+        return ingredient != null && ingredient.getInternal() instanceof ItemStack ? (ItemStack) ingredient.getInternal() : ItemStack.EMPTY;
     }
 
     public static String asOre(IIngredient ingredient) {

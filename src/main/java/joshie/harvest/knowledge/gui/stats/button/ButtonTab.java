@@ -8,6 +8,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.item.ItemStack;
 
+import javax.annotation.Nonnull;
+
 public class ButtonTab extends ButtonBook<GuiStats> {
     protected final BookPage page;
     private final ItemStack icon;
@@ -29,12 +31,13 @@ public class ButtonTab extends ButtonBook<GuiStats> {
         StackRenderHelper.drawStack(getIcon(), xStack, yPosition + 8, 1F);
     }
 
+    @Nonnull
     public ItemStack getIcon() {
         return icon;
     }
 
     @Override
-    public void drawButton(Minecraft mc, int mouseX, int mouseY) {
+    public void drawButton(@Nonnull Minecraft mc, int mouseX, int mouseY) {
         if (visible) {
             mc.getTextureManager().bindTexture(TEXTURE);
             GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);

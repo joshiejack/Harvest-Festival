@@ -8,12 +8,15 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 
+import javax.annotation.Nonnull;
+
 @Packet(Packet.Side.CLIENT)
 public class PacketSyncObtained extends PenguinPacket {
+    @Nonnull
     private ItemStack stack;
 
     public PacketSyncObtained() { }
-    public PacketSyncObtained(ItemStack stack) {
+    public PacketSyncObtained(@Nonnull ItemStack stack) {
         this.stack = stack;
     }
 

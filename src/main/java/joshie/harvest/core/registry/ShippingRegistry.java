@@ -6,6 +6,8 @@ import joshie.harvest.core.util.annotations.HFApiImplementation;
 import joshie.harvest.core.util.holders.HolderRegistry;
 import net.minecraft.item.ItemStack;
 
+import javax.annotation.Nonnull;
+
 @HFApiImplementation
 public class ShippingRegistry implements IShippingRegistry {
     public static final ShippingRegistry INSTANCE = new ShippingRegistry();
@@ -19,7 +21,7 @@ public class ShippingRegistry implements IShippingRegistry {
     }
 
     @Override
-    public void registerSellable(ItemStack stack, long value) {
+    public void registerSellable(@Nonnull ItemStack stack, long value) {
         registry.register(stack, value);
     }
 
@@ -30,7 +32,7 @@ public class ShippingRegistry implements IShippingRegistry {
 
     @Override
     @SuppressWarnings("ConstantConditions, deprecation")
-    public long getSellValue(ItemStack stack) {
+    public long getSellValue(@Nonnull ItemStack stack) {
         //Per item override
         if (stack.hasTagCompound() && stack.getTagCompound().hasKey(SELL_VALUE)) {
             return stack.getTagCompound().getLong(SELL_VALUE);

@@ -16,8 +16,8 @@ import net.minecraft.client.gui.GuiLabel;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextFormatting;
 
+import javax.annotation.Nonnull;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,7 +26,7 @@ public class PageNotes extends BookPage<GuiStats> {
     public static Note note = HFNotes.BLUEPRINTS;
     private final List<Note> list;
 
-    PageNotes(Category category, ItemStack stack) {
+    PageNotes(Category category, @Nonnull ItemStack stack) {
         super("note", category.getUnlocalizedName(), stack);
         this.list = new ArrayList<>();
         this.list.addAll(Note.REGISTRY.values().stream().filter(note -> note.getCategory() == category).collect(Collectors.toList()));
@@ -47,13 +47,7 @@ public class PageNotes extends BookPage<GuiStats> {
 
         //Remove secret notes that we haven't discovered from even showing up
         List<Note> list = new ArrayList<>(this.list);
-        Iterator<Note> it = list.iterator();
-        while (it.hasNext()) {
-            Note note = it.next();
-            if (note.isSecret() && !HFTrackers.getClientPlayerTracker().getTracking().getLearntNotes().contains(note.getResource())) {
-                it.remove();
-            }
-        }
+        list.removeIf(note -> note.isSecret() && !HFTrackers.getClientPlayerTracker().getTracking().getLearntNotes().contains(note.getResource()));
 
         int j = 0;
         int k = 0;

@@ -38,7 +38,7 @@ public class ItemHFSeeds extends ItemSeeds implements ICreativeSorted {
     }
 
     @Override
-    public int getSortValue(ItemStack stack) {
+    public int getSortValue(@Nonnull ItemStack stack) {
         return CreativeSort.SEEDS;
     }
 
@@ -52,7 +52,7 @@ public class ItemHFSeeds extends ItemSeeds implements ICreativeSorted {
     @Override
     @SideOnly(Side.CLIENT)
     @SuppressWarnings("unchecked")
-    public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean debug) {
+    public void addInformation(@Nonnull ItemStack stack, EntityPlayer player, List<String> list, boolean debug) {
         Crop crop = getCropFromStack(stack);
         if (crop != null) {
             if (crop.requiresSickle()) list.add("" + TextFormatting.AQUA + TextFormatting.ITALIC + TextHelper.translate("crop.sickle"));
@@ -92,7 +92,7 @@ public class ItemHFSeeds extends ItemSeeds implements ICreativeSorted {
     }
 
     @SuppressWarnings("unchecked")
-    private int plantSeedAt(EntityPlayer player, ItemStack stack, World world, BlockPos pos, EnumFacing facing, Crop crop, int planted, BlockPos original) {
+    private int plantSeedAt(EntityPlayer player, @Nonnull ItemStack stack, World world, BlockPos pos, EnumFacing facing, Crop crop, int planted, BlockPos original) {
         if (player.canPlayerEdit(pos, facing, stack) && player.canPlayerEdit(pos.up(), facing, stack) && world.isAirBlock(pos)) {
             IBlockState down = world.getBlockState(pos.down());
             if (crop.getGrowthHandler().canPlantSeedAt(world, pos, down, crop, original)) {
@@ -104,10 +104,12 @@ public class ItemHFSeeds extends ItemSeeds implements ICreativeSorted {
         return planted;
     }
 
+    @Nonnull
     public ItemStack getStackFromCrop(Crop crop) {
         return getStackFromCrop(crop, 1);
     }
 
+    @Nonnull
     public ItemStack getStackFromCrop(Crop crop, int amount) {
         ItemStack stack = new ItemStack(this, amount);
         NBTTagCompound tag = new NBTTagCompound();
@@ -116,7 +118,7 @@ public class ItemHFSeeds extends ItemSeeds implements ICreativeSorted {
         return stack;
     }
 
-    public Crop getCropFromStack(ItemStack stack) {
+    public Crop getCropFromStack(@Nonnull ItemStack stack) {
         if (stack.getTagCompound() == null || !stack.getTagCompound().hasKey("Crop")) {
             return Crop.NULL_CROP;
         } else return Crop.REGISTRY.get(new ResourceLocation(stack.getTagCompound().getString("Crop")));

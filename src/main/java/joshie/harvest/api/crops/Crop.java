@@ -440,7 +440,7 @@ public class Crop extends HFRegistry<Crop> implements IPlantable {
     /**
      * If the stack is this crop
      **/
-    public boolean matches(ItemStack stack) {
+    public boolean matches(@Nonnull ItemStack stack) {
         return HFApi.crops.getCropFromStack(stack) == this;
     }
 

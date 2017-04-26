@@ -28,6 +28,7 @@ public class TileWithered extends TileHarvest {
     }
 
     @Override
+    @Nonnull
     public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
         nbt.setTag("CropData", data.writeToNBT(new NBTTagCompound()));
         return super.writeToNBT(nbt);

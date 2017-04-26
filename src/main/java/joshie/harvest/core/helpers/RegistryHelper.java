@@ -109,7 +109,7 @@ public class RegistryHelper {
         return crop;
     }
 
-    private static void addSeeds(Crop crop, ItemStack seeds) {
+    private static void addSeeds(Crop crop, @Nonnull ItemStack seeds) {
         if (DISABLE_VANILLA_WHEAT_SEEDS || DISABLE_VANILLA_SEEDS) {
             SEEDS_BLACKLIST.register(seeds.getItem()); //Disable the item
         }
@@ -120,7 +120,7 @@ public class RegistryHelper {
         }
     }
 
-    public static void registerVanillaCrop(Block cropBlock, ItemStack item, ItemStack seeds, Crop crop) {
+    public static void registerVanillaCrop(Block cropBlock, @Nonnull ItemStack item, @Nonnull ItemStack seeds, Crop crop) {
         addSeeds(crop, seeds);
         HFApi.crops.registerCropProvider(item, crop);
         crop.setSkipRender();
@@ -131,7 +131,7 @@ public class RegistryHelper {
         }
     }
 
-    private static boolean isInDictionary(String name, ItemStack stack) {
+    private static boolean isInDictionary(String name, @Nonnull ItemStack stack) {
         for (ItemStack check: OreDictionary.getOres(name)) {
             if (check.getItem() == stack.getItem() && (check.getItemDamage() == OreDictionary.WILDCARD_VALUE || check.getItemDamage() == stack.getItemDamage())) {
                 return true;
@@ -141,7 +141,7 @@ public class RegistryHelper {
         return false;
     }
 
-    public static void registerOreIfNotExists(String name, ItemStack clone) {
+    public static void registerOreIfNotExists(String name, @Nonnull ItemStack clone) {
         if (!isInDictionary(name, clone)) {
             OreDictionary.registerOre(name, clone);
         }

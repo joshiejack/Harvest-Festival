@@ -4,10 +4,10 @@ import joshie.harvest.api.core.MatchType;
 import joshie.harvest.core.helpers.InventoryHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.NonNullList;
 import net.minecraftforge.oredict.OreDictionary;
 
-import java.util.ArrayList;
-import java.util.List;
+import javax.annotation.Nonnull;
 
 public class OreHolder extends AbstractItemHolder {
     private final String ore;
@@ -23,7 +23,7 @@ public class OreHolder extends AbstractItemHolder {
     }
 
     @Override
-    public List<ItemStack> getMatchingStacks() {
+    public NonNullList<ItemStack> getMatchingStacks() {
         switch (type) {
             case FULL:
                 return OreDictionary.getOres(ore);
@@ -34,12 +34,12 @@ public class OreHolder extends AbstractItemHolder {
             case CONTAINS:
                 return InventoryHelper.getContains(ore);
             default:
-                return new ArrayList<>();
+                return NonNullList.create();
         }
     }
 
     @Override
-    public boolean matches(ItemStack stack) {
+    public boolean matches(@Nonnull ItemStack stack) {
         switch (type) {
             case FULL:
                 return InventoryHelper.ORE_DICTIONARY.matches(stack, ore);

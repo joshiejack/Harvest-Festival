@@ -39,6 +39,7 @@ public class BlockAquatic extends BlockHFEnum<BlockAquatic, Aquatic> {
     }
 
     @Override
+    @Nonnull
     protected BlockStateContainer createBlockState() {
         if(property == null) return new BlockStateContainer(this, LEVEL, temporary);
         return new BlockStateContainer(this, LEVEL, property);

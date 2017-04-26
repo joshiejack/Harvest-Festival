@@ -10,8 +10,11 @@ import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+import javax.annotation.Nonnull;
+
 public class PlaceableStand extends PlaceableIFaceable {
     @Expose
+    @Nonnull
     private ItemStack stack;
 
     @SuppressWarnings("unused")
@@ -30,7 +33,7 @@ public class PlaceableStand extends PlaceableIFaceable {
     public void postPlace(World world, BlockPos pos, Rotation rotation) {
         super.postPlace(world, pos, rotation); //SUPERGIRL!!!!!!!
         TileEntity tile = world.getTileEntity(pos);
-        if (stack != null && tile instanceof TileStand) {
+        if (!stack.isEmpty() && tile instanceof TileStand) {
             ((TileStand)tile).setContents(stack);
         }
     }

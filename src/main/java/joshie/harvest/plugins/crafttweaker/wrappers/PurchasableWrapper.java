@@ -38,6 +38,7 @@ public class PurchasableWrapper implements IPurchasable {
     }
 
     @Override
+    @Nonnull
     public ItemStack getDisplayStack() {
         return original.getDisplayStack();
     }

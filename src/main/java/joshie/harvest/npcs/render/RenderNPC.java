@@ -13,6 +13,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nonnull;
+
 @SideOnly(Side.CLIENT)
 public class RenderNPC extends RenderLiving<EntityNPC> {
     private static final ModelNPC STEVE = new ModelNPC(false);
@@ -27,11 +29,12 @@ public class RenderNPC extends RenderLiving<EntityNPC> {
     }
 
     @Override
-    protected ResourceLocation getEntityTexture(EntityNPC npc) {
+    protected ResourceLocation getEntityTexture(@Nonnull EntityNPC npc) {
         return npc.getNPC().getSkin();
     }
 
     @Override
+    @Nonnull
     public ModelNPC  getMainModel() {
         return (ModelNPC ) super.getMainModel();
     }
@@ -48,7 +51,7 @@ public class RenderNPC extends RenderLiving<EntityNPC> {
 
     //Renders the Entity
     @Override
-    public void doRender(EntityNPC npc, double x, double y, double z, float entityYaw, float partialTicks) {
+    public void doRender(@Nonnull EntityNPC npc, double x, double y, double z, float entityYaw, float partialTicks) {
         updateModel(npc);
         GlStateManager.pushMatrix();
         if (npc.getNPC().getAge() == INPCHelper.Age.CHILD) {

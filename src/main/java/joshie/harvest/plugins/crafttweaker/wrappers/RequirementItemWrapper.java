@@ -6,10 +6,12 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
+import javax.annotation.Nonnull;
+
 import static joshie.harvest.core.helpers.InventoryHelper.ITEM_STACK;
 
 public class RequirementItemWrapper extends AbstractRequirement {
-    public RequirementItemWrapper(ItemStack stack, int cost) {
+    public RequirementItemWrapper(@Nonnull ItemStack stack, int cost) {
         super(stack, cost);
     }
 

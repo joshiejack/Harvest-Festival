@@ -13,6 +13,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
+import javax.annotation.Nonnull;
 import java.util.Set;
 
 import static joshie.harvest.npcs.HFNPCs.GODDESS;
@@ -44,6 +45,7 @@ public class QuestGoddessPond extends QuestTown {
     }
 
     @Override
+    @Nonnull
     public ItemStack getCurrentIcon(World world, EntityPlayer player) {
         return HFApi.towns.getTownForEntity(player).hasBuilding(HFBuildings.GODDESS_POND) ? primary : BUILDING;
     }

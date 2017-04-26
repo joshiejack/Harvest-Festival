@@ -20,10 +20,11 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
 
-import java.util.List;
+import javax.annotation.Nonnull;
 
 public class ButtonRelationsAnimal extends ButtonBook<GuiStats> {
     private static final ResourceLocation HEARTS = new ResourceLocation("textures/gui/icons.png");
@@ -37,7 +38,7 @@ public class ButtonRelationsAnimal extends ButtonBook<GuiStats> {
     private static final ItemStack BEEF = new ItemStack(Items.BEEF);
     private static final ItemStack CHICKEN = new ItemStack(Items.CHICKEN);
     private static final ItemStack FISH = new ItemStack(Items.FISH);
-    private final List<ItemStack> products;
+    private final NonNullList<ItemStack> products;
     private final boolean collected;
     private final IAnimalType type;
     private final int relationship;
@@ -48,6 +49,7 @@ public class ButtonRelationsAnimal extends ButtonBook<GuiStats> {
     private final boolean isTreated;
     private final boolean isSick;
     private final boolean isPregnant;
+    @Nonnull
     private final ItemStack stack;
 
     private final boolean doProductTick;
@@ -77,7 +79,7 @@ public class ButtonRelationsAnimal extends ButtonBook<GuiStats> {
     }
 
     @Override
-    public void drawButton(Minecraft mc, int mouseX, int mouseY) {
+    public void drawButton(@Nonnull Minecraft mc, int mouseX, int mouseY) {
         if (visible) {
             GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
             hovered = mouseX >= xPosition && mouseY >= yPosition && mouseX < xPosition + width && mouseY < yPosition + height;
@@ -125,15 +127,16 @@ public class ButtonRelationsAnimal extends ButtonBook<GuiStats> {
         StackRenderHelper.drawStack(stack, xPosition + 4, yPosition + 1, 1F);
     }
 
-    private void drawStack(boolean value, ItemStack icon, int x, int y) {
+    private void drawStack(boolean value, @Nonnull ItemStack icon, int x, int y) {
         drawStack(value, icon, x, y, 0.5F);
     }
 
-    private void drawStack(boolean value, ItemStack icon, int x, int y, float scale) {
+    private void drawStack(boolean value, @Nonnull ItemStack icon, int x, int y, float scale) {
         if (!value) StackRenderHelper.drawGreyStack(icon, xPosition + x, yPosition + y, scale);
         else StackRenderHelper.drawStack(icon, xPosition + x, yPosition + y, scale);
     }
 
+    @Nonnull
     private ItemStack getFoodForAnimal(IAnimalType type) {
         AnimalFoodType food = type.getFoodTypes()[0];
         switch (food) {

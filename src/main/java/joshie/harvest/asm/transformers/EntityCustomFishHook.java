@@ -26,6 +26,7 @@ import net.minecraftforge.fml.common.registry.IThrowableEntity;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nonnull;
 import java.util.List;
 
 public class EntityCustomFishHook extends EntityFishHook implements IThrowableEntity { //TODO
@@ -182,7 +183,7 @@ public class EntityCustomFishHook extends EntityFishHook implements IThrowableEn
         this.velocityZ = this.motionZ = par5;
     }
 
-    public boolean isFishingRod(ItemStack stack) {
+    public boolean isFishingRod(@Nonnull ItemStack stack) {
         return true;
     }
 

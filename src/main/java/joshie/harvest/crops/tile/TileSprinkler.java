@@ -23,6 +23,7 @@ import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 import static joshie.harvest.crops.HFCrops.SPRINKLER_DRAIN_RATE;
 
@@ -121,6 +122,7 @@ public class TileSprinkler extends TileHarvest implements ITickable {
     }
 
     @Override
+    @Nonnull
     public NBTTagCompound writeToNBT(NBTTagCompound tag) {
         tank.writeToNBT(tag);
         return super.writeToNBT(tag);
@@ -139,14 +141,14 @@ public class TileSprinkler extends TileHarvest implements ITickable {
     }
 
     @Override
-    public boolean hasCapability(@Nonnull Capability<?> capability, @Nonnull EnumFacing facing) {
+    public boolean hasCapability(@Nonnull Capability<?> capability, @Nullable EnumFacing facing) {
         return capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY || super.hasCapability(capability, facing);
     }
 
     @SuppressWarnings("unchecked")
     @Override
     @Nonnull
-    public <T> T getCapability(@Nonnull Capability<T> capability, @Nonnull EnumFacing facing) {
+    public <T> T getCapability(@Nonnull Capability<T> capability, @Nullable EnumFacing facing) {
         if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY)
             return (T) tank;
         return super.getCapability(capability, facing);

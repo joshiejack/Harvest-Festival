@@ -46,7 +46,8 @@ public abstract class ItemHFEnum<I extends ItemHFEnum, E extends Enum<E> & IStri
 
     @Override
     @SuppressWarnings("unchecked")
-    public I setUnlocalizedName(String name) {
+    @Nonnull
+    public I setUnlocalizedName(@Nonnull String name) {
         super.setUnlocalizedName(name);
         return (I) this;
     }
@@ -56,7 +57,7 @@ public abstract class ItemHFEnum<I extends ItemHFEnum, E extends Enum<E> & IStri
         return damage;
     }
 
-    public E getEnumFromStack(ItemStack stack) {
+    public E getEnumFromStack(@Nonnull ItemStack stack) {
         if (stack.getItem() != this) return null;
 
         return getEnumFromMeta(stack.getItemDamage());
@@ -70,14 +71,17 @@ public abstract class ItemHFEnum<I extends ItemHFEnum, E extends Enum<E> & IStri
         return values[meta];
     }
 
+    @Nonnull
     public ItemStack getStackFromEnum(E e) {
         return new ItemStack(this, 1, e.ordinal());
     }
 
+    @Nonnull
     public ItemStack getStackFromEnum(E e, int size) {
         return new ItemStack(this, size, e.ordinal());
     }
 
+    @Nonnull
     public ItemStack getStackFromEnumString(String name) {
         return getStackFromEnum(Enum.valueOf(enumClass, name.toUpperCase()));
     }
@@ -89,12 +93,13 @@ public abstract class ItemHFEnum<I extends ItemHFEnum, E extends Enum<E> & IStri
     }
 
     @Override
-    public String getItemStackDisplayName(ItemStack stack) {
+    @Nonnull
+    public String getItemStackDisplayName(@Nonnull ItemStack stack) {
         return TextHelper.translate(getUnlocalizedName(stack).replaceAll("(.)([A-Z])", "$1$2").toLowerCase(Locale.ENGLISH).replace("_", "."));
     }
 
     @Override
-    public int getSortValue(ItemStack stack) {
+    public int getSortValue(@Nonnull ItemStack stack) {
         return CreativeSort.NONE;
     }
 
@@ -104,7 +109,7 @@ public abstract class ItemHFEnum<I extends ItemHFEnum, E extends Enum<E> & IStri
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubItems(Item item, CreativeTabs tab, NonNullList<ItemStack> list) {
+    public void getSubItems(@Nonnull Item item, CreativeTabs tab, NonNullList<ItemStack> list) {
         for (E e: values) {
             if (shouldDisplayInCreative(e)) {
                 list.add(new ItemStack(item, 1, e.ordinal()));

@@ -20,6 +20,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.stats.Achievement;
 import net.minecraftforge.common.AchievementPage;
 
+import javax.annotation.Nonnull;
+
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 import static joshie.harvest.core.lib.HFModInfo.MODNAME;
 
@@ -103,7 +105,7 @@ public class HFAchievements {
         recipes = addAchievement("recipes", -4, 0, CookingHelper.getRecipe("turnip_pickled"), summon);
     }
 
-    private static Achievement addAchievement(String name, int column, int row, ItemStack stack, Achievement parent) {
+    private static Achievement addAchievement(String name, int column, int row, @Nonnull ItemStack stack, Achievement parent) {
         Achievement achievement = new Achievement(MODID + ".achievement." + name.replace("_", "."), MODID + "." + name, column, row, stack, parent);
         achievement.registerStat();
         PAGE.getAchievements().add(achievement);

@@ -138,7 +138,7 @@ public abstract class EntityNPC<E extends EntityNPC> extends EntityAgeable imple
     }
 
     @Override
-    public boolean processInteract(@Nonnull EntityPlayer player, EnumHand hand) {
+    public boolean processInteract(@Nonnull EntityPlayer player, @Nullable EnumHand hand) {
         ItemStack held = player.getHeldItem(hand);
         boolean flag = held.getItem() == Items.SPAWN_EGG;
         if (!flag && isEntityAlive()) {

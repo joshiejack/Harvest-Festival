@@ -24,12 +24,12 @@ public abstract class ItemToolSmashing<I extends ItemToolSmashing> extends ItemT
 
     @Override
     @Nonnull
-    public EnumAction getItemUseAction(ItemStack stack) {
+    public EnumAction getItemUseAction(@Nonnull ItemStack stack) {
         return EnumAction.NONE;
     }
 
     @Override
-    public float getExhaustionRate(ItemStack stack) {
+    public float getExhaustionRate(@Nonnull ItemStack stack) {
         ToolTier tier = getTier(stack);
         switch (tier) {
             case BASIC:

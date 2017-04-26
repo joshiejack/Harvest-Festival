@@ -14,6 +14,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.IStringSerializable;
 
+import javax.annotation.Nonnull;
 import java.util.Locale;
 
 public class ItemAnimalTreat extends ItemHFEnum<ItemAnimalTreat, Treat> {
@@ -42,7 +43,7 @@ public class ItemAnimalTreat extends ItemHFEnum<ItemAnimalTreat, Treat> {
 
     @Override
     @SuppressWarnings("ConstantConditions")
-    public boolean itemInteractionForEntity(ItemStack stack, EntityPlayer player, EntityLivingBase target, EnumHand hand) {
+    public boolean itemInteractionForEntity(@Nonnull ItemStack stack, EntityPlayer player, EntityLivingBase target, EnumHand hand) {
         AnimalStats stats = EntityHelper.getStats(target);
         AnimalAction action = getEnumFromStack(stack).getType() != null ? AnimalAction.TREAT_SPECIAL : AnimalAction.TREAT_GENERIC;
         if (stats != null && stats.performAction(player.world, stack, action)) {
@@ -52,7 +53,7 @@ public class ItemAnimalTreat extends ItemHFEnum<ItemAnimalTreat, Treat> {
     }
 
     @Override
-    public int getSortValue(ItemStack stack) {
+    public int getSortValue(@Nonnull ItemStack stack) {
         return CreativeSort.ANIMAL_TREAT;
     }
 }

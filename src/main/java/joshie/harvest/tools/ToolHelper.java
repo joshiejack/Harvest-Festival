@@ -16,6 +16,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.FoodStats;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentTranslation;
@@ -45,27 +46,27 @@ public class ToolHelper {
             return new TextComponentTranslation(s, entityLivingBaseIn.getDisplayName());
         }
     }.setDamageBypassesArmor().setDamageIsAbsolute();
-    public static boolean isBrush(ItemStack stack) {
+    public static boolean isBrush(@Nonnull ItemStack stack) {
         return HFAnimals.TOOLS.getEnumFromStack(stack) == BRUSH;
     }
 
     //TODO: Reenable in 1.0 when I readd marriage
     @SuppressWarnings("unused")
-    public static boolean isBlueFeather(ItemStack stack) {
+    public static boolean isBlueFeather(@Nonnull ItemStack stack) {
         return false;
         //return HFNPCs.TOOLS.getEnumFromStack(stack) == BLUE_FEATHER;
     }
 
-    public static boolean isEgg(ItemStack stack) {
+    public static boolean isEgg(@Nonnull ItemStack stack) {
         return stack.getItem() == HFAnimals.ANIMAL_PRODUCT && HFAnimals.ANIMAL_PRODUCT.getEnumFromStack(stack) == Sizeable.EGG;
     }
 
-    public static boolean isWool(ItemStack stack) {
+    public static boolean isWool(@Nonnull ItemStack stack) {
         return stack.getItem() == HFAnimals.ANIMAL_PRODUCT && HFAnimals.ANIMAL_PRODUCT.getEnumFromStack(stack) == Sizeable.WOOL;
     }
 
-    public static void levelTool(ItemStack stack) {
-        if (stack == null) return;
+    public static void levelTool(@Nonnull ItemStack stack) {
+        if (stack.isEmpty()) return;
         if (stack.getItem() instanceof ITiered) {
             ((ITiered)stack.getItem()).levelTool(stack);
         }
@@ -74,7 +75,7 @@ public class ToolHelper {
     /**
      * Should always be called client and server side
      **/
-    public static void performTask(EntityPlayer player, ItemStack stack, ItemTool tool) {
+    public static void performTask(EntityPlayer player, @Nonnull ItemStack stack, @Nonnull ItemTool tool) {
         levelTool(stack); //Level up the tool
         if (player.capabilities.isCreativeMode || !HFTools.HF_CONSUME_HUNGER) return; //If the player is in creative don't exhaust them
         consumeHunger(player, tool.getExhaustionRate(stack));
@@ -147,7 +148,7 @@ public class ToolHelper {
         ReflectionHelper.setPrivateValue(FoodStats.class, player.getFoodStats(), 0, "foodTimer", "field_75123_d");
     }
 
-    public static void collectDrops(World world, BlockPos pos, IBlockState state, EntityPlayer player, List<ItemStack> drops) {
+    public static void collectDrops(World world, BlockPos pos, IBlockState state, EntityPlayer player, NonNullList<ItemStack> drops) {
         Block block = state.getBlock();
         List<ItemStack> blockDrops = new ArrayList<>();
         if (block.canSilkHarvest(world, pos, state, player)) {
@@ -167,10 +168,11 @@ public class ToolHelper {
         }
     }
 
+    @Nonnull
     public static ItemStack getStackFromBlockState(IBlockState state) {
         Item item = Item.getItemFromBlock(state.getBlock());
         if (item == null) {
-            return null;
+            return ItemStack.EMPTY;
         } else {
             int i = 0;
             if (item.getHasSubtypes())  {

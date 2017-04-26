@@ -27,6 +27,8 @@ import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedOutEvent;
 
+import javax.annotation.Nonnull;
+
 import static joshie.harvest.core.handlers.BasketHandler.forbidsDrop;
 import static joshie.harvest.core.helpers.InventoryHelper.ITEM;
 import static joshie.harvest.core.helpers.InventoryHelper.ITEM_STACK;
@@ -100,7 +102,7 @@ public class AnimalEvents {
             return stacks;
         }
 
-        private boolean isHolding(ItemStack stack) {
+        private boolean isHolding(@Nonnull ItemStack stack) {
             return ITEM_STACK.matchesAny(stack, getStacks()) || ITEM.matchesAny(stack, HFAnimals.TREATS, Items.NAME_TAG);
         }
 

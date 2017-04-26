@@ -46,7 +46,7 @@ public class ItemNPCTool extends ItemHFEnum<ItemNPCTool, NPCTool> {
     }
 
     @Override
-    public boolean onLeftClickEntity(ItemStack stack, EntityPlayer player, Entity entity) {
+    public boolean onLeftClickEntity(@Nonnull ItemStack stack, EntityPlayer player, Entity entity) {
         if (getEnumFromStack(stack) == NPC_KILLER) {
             entity.setDead();
             return true;
@@ -61,13 +61,14 @@ public class ItemNPCTool extends ItemHFEnum<ItemNPCTool, NPCTool> {
     }
 
     @Override
-    public int getSortValue(ItemStack stack) {
+    public int getSortValue(@Nonnull ItemStack stack) {
         return 1;
     }
 
     @Override
     @SuppressWarnings("ConstantConditions")
-    public String getItemStackDisplayName(ItemStack stack) {
+    @Nonnull
+    public String getItemStackDisplayName(@Nonnull ItemStack stack) {
         if (stack.hasTagCompound() && stack.getTagCompound().hasKey(SPECIAL)) return GOLD + TextHelper.translate("npctool.gift.special");
         else if (getEnumFromStack(stack).isReal()) return AQUA + super.getItemStackDisplayName(stack);
         else return super.getItemStackDisplayName(stack);
@@ -76,7 +77,7 @@ public class ItemNPCTool extends ItemHFEnum<ItemNPCTool, NPCTool> {
     @SideOnly(Side.CLIENT)
     @Override
     @SuppressWarnings("ConstantConditions")
-    public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
+    public void addInformation(@Nonnull ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
         if (stack.hasTagCompound() && stack.getTagCompound().hasKey(SPECIAL)) {
             tooltip.add(TextHelper.translate("npctool.gift.special.tooltip"));
         }

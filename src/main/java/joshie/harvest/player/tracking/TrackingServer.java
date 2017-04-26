@@ -16,6 +16,7 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
+import javax.annotation.Nonnull;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
@@ -62,12 +63,12 @@ public class TrackingServer extends Tracking {
     }
 
     @Override
-    public void addAsObtained(ItemStack stack) {
+    public void addAsObtained(@Nonnull ItemStack stack) {
         obtained.add(ItemStackHolder.of(stack));
         PacketHandler.sendToClient(new PacketSyncObtained(stack), master.getAndCreatePlayer());
     }
 
-    public boolean addForShipping(ItemStack item) {
+    public boolean addForShipping(@Nonnull ItemStack item) {
         long sell = HFApi.shipping.getSellValue(item) * item.getCount();
         if (hasWonCookingContest && CollectionHelper.isInCookingCollection(item)) {
             sell *= 1.1;

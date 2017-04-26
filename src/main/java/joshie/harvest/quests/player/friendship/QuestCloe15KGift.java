@@ -10,6 +10,7 @@ import joshie.harvest.quests.base.QuestFriendship;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
+import javax.annotation.Nonnull;
 import java.util.Set;
 
 @HFQuest("friendship.cloe.gift")
@@ -25,6 +26,7 @@ public class QuestCloe15KGift extends QuestFriendship {
 
     @Override
     @SuppressWarnings("ConstantConditions")
+    @Nonnull
     protected ItemStack getRewardStack() {
         ItemStack stack = HFNPCs.TOOLS.getStackFromEnum(NPCTool.GIFT);
         stack.setTagCompound(new NBTTagCompound());

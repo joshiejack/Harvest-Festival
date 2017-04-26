@@ -5,7 +5,6 @@ import joshie.harvest.core.util.holders.HolderRegistrySet;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemHoe;
-import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.UseHoeEvent;
 import net.minecraftforge.event.world.BlockEvent;
@@ -13,7 +12,6 @@ import net.minecraftforge.fml.common.eventhandler.Event.Result;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Set;
 
 import static joshie.harvest.animals.HFAnimals.DISABLE_SPAWN_CHICKEN;
@@ -107,13 +105,7 @@ public class DisableHandler {
         @SubscribeEvent
         public void onItemDropping(BlockEvent.HarvestDropsEvent event) {
             if (event.getState().getBlock() == Blocks.TALLGRASS || event.getState().getBlock() == Blocks.DOUBLE_PLANT || GRASS.contains(event.getState().getBlock())) {
-                Iterator<ItemStack> it = event.getDrops().iterator();
-                while (it.hasNext()) {
-                    ItemStack stack = it.next();
-                    if (stack != null && SEEDS_BLACKLIST.contains(stack)) {
-                        it.remove();
-                    }
-                }
+                event.getDrops().removeIf(stack -> stack != null && SEEDS_BLACKLIST.contains(stack));
             }
         }
     }

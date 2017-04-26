@@ -34,7 +34,7 @@ public class ItemBlockStorage extends ItemBlockHF<BlockStorage> {
 
     @Override
     @Nonnull
-    public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand hand) {
+    public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, @Nonnull EnumHand hand) {
         if (playerIn.isSneaking() && getBlock().getEnumFromStack(playerIn.getHeldItem(hand)) == Storage.BASKET) {
             playerIn.openGui(HarvestFestival.instance, GuiHandler.BASKET, worldIn, 0, 0, hand.ordinal());
             return new ActionResult<>(EnumActionResult.SUCCESS, playerIn.getHeldItem(hand));
@@ -73,7 +73,7 @@ public class ItemBlockStorage extends ItemBlockHF<BlockStorage> {
         return super.onItemUse(player, world, pos, hand, facing, hitX, hitY, hitZ);
     }
 
-    public TileEntity onBasketUsed(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+    public TileEntity onBasketUsed(@Nonnull ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
         EnumActionResult result = super.onItemUse(playerIn, worldIn, pos, hand, facing, hitX, hitY, hitZ);
         return result == EnumActionResult.SUCCESS ? basket : null;
     }

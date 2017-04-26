@@ -9,6 +9,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nonnull;
+
 @SideOnly(Side.CLIENT)
 public class RenderHarvestAnimal<T extends EntityLiving> extends RenderLiving<T> {
     protected final ResourceLocation texture_child;
@@ -23,7 +25,7 @@ public class RenderHarvestAnimal<T extends EntityLiving> extends RenderLiving<T>
     }
 
     @Override
-    protected ResourceLocation getEntityTexture(EntityLiving entityLiving) {
+    protected ResourceLocation getEntityTexture(@Nonnull EntityLiving entityLiving) {
         return entityLiving.isChild() ? texture_child : texture_adult;
     }
 }

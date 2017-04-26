@@ -7,10 +7,11 @@ import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiLabel;
 import net.minecraft.item.ItemStack;
 
+import javax.annotation.Nonnull;
 import java.util.List;
 
 public class PageRelationship extends BookPage<GuiStats> {
-    PageRelationship(String string, ItemStack stack) {
+    PageRelationship(String string, @Nonnull ItemStack stack) {
         super("relationships", string, stack);
     }
 

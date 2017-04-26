@@ -14,6 +14,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import static joshie.harvest.core.lib.HFModInfo.MODID;
@@ -55,7 +56,7 @@ public class FakeEntityRenderer extends TileEntitySpecialRenderer<EntityItemRend
         protected final TIntObjectMap<RenderPair> map = new TIntObjectHashMap<>();
         public RenderPair render;
 
-        public void setStack(ItemStack stack) {
+        public void setStack(@Nonnull ItemStack stack) {
             this.render = map.get(stack.getItemDamage());
         }
     }

@@ -8,6 +8,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
+import javax.annotation.Nonnull;
+
 @HFQuest("meeting.tomas")
 public class QuestMeetTomas extends QuestMeeting {
     public QuestMeetTomas() {
@@ -23,6 +25,7 @@ public class QuestMeetTomas extends QuestMeeting {
     }
 
     @Override
+    @Nonnull
     public ItemStack getCurrentIcon(World world, EntityPlayer player) {
         return hasBuilding(player) ? primary : buildingStack;
     }

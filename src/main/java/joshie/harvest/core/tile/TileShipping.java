@@ -52,8 +52,9 @@ public class TileShipping extends TileFaceable {
 
         @Override
         @SuppressWarnings("ConstantConditions")
-        public ItemStack insertItem(int slot, ItemStack stack, boolean simulate) {
-            if (stack == null || stack.getItem() == null || owner == null) return stack;
+        @Nonnull
+        public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
+            if (stack.isEmpty() || stack.getItem() == null || owner == null) return stack;
             long sell = shipping.getSellValue(stack);
             if (sell > 0) {
                 if (!simulate && !getWorld().isRemote) {
@@ -73,14 +74,14 @@ public class TileShipping extends TileFaceable {
     };
 
     @Override
-    public boolean hasCapability(@Nonnull Capability<?> capability, @Nonnull EnumFacing facing) {
+    public boolean hasCapability(@Nonnull Capability<?> capability, EnumFacing facing) {
         return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY || super.hasCapability(capability, facing);
     }
 
     @SuppressWarnings("unchecked")
     @Override
     @Nonnull
-    public <T> T getCapability(@Nonnull Capability<T> capability, @Nonnull EnumFacing facing)
+    public <T> T getCapability(@Nonnull Capability<T> capability, EnumFacing facing)
     {
         if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
             return (T) handler;

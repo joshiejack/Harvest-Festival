@@ -11,12 +11,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatAllowedCharacters;
 import net.minecraft.util.text.TextFormatting;
 
+import javax.annotation.Nonnull;
 import java.util.List;
 
 public class PageCollection extends BookPage<GuiStats> {
     public String search = "";
 
-    PageCollection(String string, ItemStack stack) {
+    PageCollection(String string, @Nonnull ItemStack stack) {
         super("collection", string, stack);
     }
 

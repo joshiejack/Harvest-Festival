@@ -14,10 +14,13 @@ import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+import javax.annotation.Nonnull;
+
 public class PlaceableItemFrame extends PlaceableHanging {
     @Expose
     private ResourceLocation chestType;
     @Expose
+    @Nonnull
     private ItemStack stack;
     @Expose
     private int rotation;
@@ -43,7 +46,7 @@ public class PlaceableItemFrame extends PlaceableHanging {
         EntityItemFrame frame = new EntityItemFrame(world, new BlockPos(pos.getX(), pos.getY(), pos.getZ()), facing);
         ItemStack loot = ItemStack.EMPTY;
 
-        if (stack != null) loot = stack.copy();
+        if (!stack.isEmpty()) loot = stack.copy();
         if (chestType != null) {
             loot = LootHelper.getStack(world, null, chestType);
         }
@@ -59,7 +62,7 @@ public class PlaceableItemFrame extends PlaceableHanging {
 
         ResourceLocation chestType = null;
         ItemStack stack = frame.getDisplayedItem();
-        if (stack != null && stack.hasDisplayName()) {
+        if (!stack.isEmpty() && stack.hasDisplayName()) {
             chestType = new ResourceLocation("harvestfestival", "frames/" + stack.getDisplayName());
             stack = new ItemStack(stack.getItem(), 1, stack.getItemDamage());
         }

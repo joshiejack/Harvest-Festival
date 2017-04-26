@@ -30,6 +30,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.List;
 
 public class ItemBlockElevator extends ItemBlockHF {
@@ -99,12 +100,12 @@ public class ItemBlockElevator extends ItemBlockHF {
     }
 
     @Override
-    public int getSortValue(ItemStack stack) {
+    public int getSortValue(@Nonnull ItemStack stack) {
         return CreativeSort.LAST;
     }
 
     @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
+    public void addInformation(@Nonnull ItemStack stack, @Nullable EntityPlayer player, @Nullable List<String> tooltip, boolean advanced) {
         tooltip.add(TextFormatting.AQUA + TextHelper.translate("elevator.place"));
     }
 }

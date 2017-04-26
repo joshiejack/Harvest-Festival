@@ -88,7 +88,7 @@ public class QuestPriestRepair extends QuestTrade {
 
     private boolean isHolding(EntityPlayer player) {
         ItemStack held = player.getHeldItemMainhand();
-        if (held != null) {
+        if (!held.isEmpty()) {
             if (held.getItem() instanceof ItemTool) {
                 ItemTool tool = ((ItemTool)held.getItem());
                 ToolTier tier = tool.getTier(held);

@@ -3,7 +3,6 @@ package joshie.harvest.asm.transformers;
 import joshie.harvest.asm.HFTransformer;
 import org.objectweb.asm.*;
 
-import static net.minecraftforge.fml.common.Loader.MC_VERSION;
 import static org.objectweb.asm.Opcodes.*;
 
 public class RenderRainTransformer extends AbstractASM {

@@ -235,7 +235,7 @@ public abstract class Quest extends IForgeRegistryEntry.Impl<Quest> {
     }
 
     /** Call this to reward the player with an item **/
-    public final void rewardItem(EntityPlayer player, ItemStack stack) {
+    public final void rewardItem(EntityPlayer player, @Nonnull ItemStack stack) {
         HFApi.quests.rewardItem(this, player, stack);
     }
 

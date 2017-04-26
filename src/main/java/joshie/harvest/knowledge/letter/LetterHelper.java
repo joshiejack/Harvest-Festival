@@ -10,6 +10,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class LetterHelper {
@@ -30,7 +31,7 @@ public class LetterHelper {
         letterList.addAll(HFTrackers.getPlayerTrackerFromPlayer(player).getLetters().getLetters());
         letterList.addAll(TownHelper.getClosestTownToEntity(player, false).getLetters().getLetters());
         if (letterList.size() == 0) return Letter.NONE;
-        Collections.sort(letterList, ((o1, o2) ->  o1.getPriority().compareTo(o2.getPriority())));
+        Collections.sort(letterList, (Comparator.comparing(Letter::getPriority)));
         return letterList.get(0);
     }
 }

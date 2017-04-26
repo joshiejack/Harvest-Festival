@@ -6,10 +6,13 @@ import joshie.harvest.api.cooking.Utensil;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
+import javax.annotation.Nonnull;
+
 public class RecipeVanilla extends Recipe {
+    @Nonnull
     private final ItemStack stack;
 
-    public RecipeVanilla(ResourceLocation resource, ItemStack result, Utensil utensil, IngredientStack... required) {
+    public RecipeVanilla(ResourceLocation resource, @Nonnull ItemStack result, Utensil utensil, IngredientStack... required) {
         super(resource, utensil, required);
         this.stack = result;
     }
@@ -25,6 +28,7 @@ public class RecipeVanilla extends Recipe {
     }
 
     @Override
+    @Nonnull
     public ItemStack getStack() {
         return stack;
     }

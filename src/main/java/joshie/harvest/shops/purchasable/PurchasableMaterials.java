@@ -17,14 +17,14 @@ public class PurchasableMaterials extends Purchasable implements IPurchaseableMa
         this.requirements = requirements;
     }
 
-    public PurchasableMaterials(long cost, int logs, int stone, ItemStack stack) {
+    public PurchasableMaterials(long cost, int logs, int stone, @Nonnull ItemStack stack) {
         super(cost, stack);
-        if (logs != 0 && stone == 0) requirements = new IRequirement[] { Logs.of(logs) };
-        else if (logs == 0 && stone != 0) requirements = new IRequirement[] { Stone.of(stone) };
-        else requirements = new IRequirement[] { Logs.of(logs), Stone.of(stone) };
+        if (logs != 0 && stone == 0) requirements = new IRequirement[]{Logs.of(logs)};
+        else if (logs == 0 && stone != 0) requirements = new IRequirement[]{Stone.of(stone)};
+        else requirements = new IRequirement[]{Logs.of(logs), Stone.of(stone)};
     }
 
-    public PurchasableMaterials(long cost, ItemStack stack, IRequirement... requirements) {
+    public PurchasableMaterials(long cost, @Nonnull ItemStack stack, IRequirement... requirements) {
         super(cost, stack);
         this.requirements = requirements;
     }
@@ -36,7 +36,7 @@ public class PurchasableMaterials extends Purchasable implements IPurchaseableMa
 
     @Override
     public boolean canDo(@Nonnull World world, @Nonnull EntityPlayer player, int amount) {
-        for (IRequirement requirement: requirements) {
+        for (IRequirement requirement : requirements) {
             if (!requirement.isFulfilled(world, player, amount)) return false;
         }
 
@@ -49,13 +49,14 @@ public class PurchasableMaterials extends Purchasable implements IPurchaseableMa
     }
 
     @Override
+    @Nonnull
     public ItemStack getDisplayStack() {
         return stack;
     }
 
     @Override
     public void onPurchased(EntityPlayer player) {
-        for (IRequirement requirement: requirements) {
+        for (IRequirement requirement : requirements) {
             requirement.onPurchased(player);
         }
 
@@ -68,6 +69,6 @@ public class PurchasableMaterials extends Purchasable implements IPurchaseableMa
 
     @Override
     public String getDisplayName() {
-        return stack != null ? stack.getDisplayName() : getDisplayStack().getDisplayName();
+        return !stack.isEmpty() ? stack.getDisplayName() : getDisplayStack().getDisplayName();
     }
 }

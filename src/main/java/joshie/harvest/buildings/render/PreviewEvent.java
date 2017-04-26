@@ -17,6 +17,7 @@ import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 
+import javax.annotation.Nonnull;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
@@ -61,7 +62,7 @@ public class PreviewEvent {
         return null;
     }
 
-    private boolean isBuildingItem(ItemStack stack) {
+    private boolean isBuildingItem(@Nonnull ItemStack stack) {
         return stack.getItem() == HFBuildings.BLUEPRINTS || stack.getItem() == HFBuildings.STRUCTURES;
     }
 

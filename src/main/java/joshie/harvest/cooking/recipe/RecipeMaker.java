@@ -5,6 +5,7 @@ import joshie.harvest.api.cooking.IngredientStack;
 import joshie.harvest.api.cooking.Recipe;
 import joshie.harvest.api.cooking.Utensil;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 
 import javax.annotation.Nullable;
 import java.util.Collection;
@@ -16,10 +17,10 @@ public class RecipeMaker implements CookingHandler {
 
     @Nullable
     @Override
-    public List<ItemStack> getResult(Utensil utensil, List<ItemStack> stacks, List<IngredientStack> ingredients) {
+    public NonNullList<ItemStack> getResult(Utensil utensil, NonNullList<ItemStack> stacks, List<IngredientStack> ingredients) {
         //Loop the recipes once, checking if we only have the allowed
         for (Recipe recipe: Recipe.REGISTRY.values()) {
-            List<ItemStack> ret = findRecipe(utensil, recipe, ingredients, true);
+            NonNullList<ItemStack> ret = findRecipe(utensil, recipe, ingredients, true);
             if (ret != null) {
                 return ret;
             }
@@ -27,7 +28,7 @@ public class RecipeMaker implements CookingHandler {
 
         //Next loop again, this time allowing for other ingredients
         for (Recipe recipe: Recipe.REGISTRY.values()) {
-            List<ItemStack> ret = findRecipe(utensil, recipe, ingredients, false);
+            NonNullList<ItemStack> ret = findRecipe(utensil, recipe, ingredients, false);
             if (ret != null) {
                 return ret;
             }
@@ -36,7 +37,7 @@ public class RecipeMaker implements CookingHandler {
         return null;
     }
 
-    private List<ItemStack> findRecipe(Utensil utensil, Recipe recipe, List<IngredientStack> ingredients, boolean onlyRequiredAllowed) {
+    private NonNullList<ItemStack> findRecipe(Utensil utensil, Recipe recipe, List<IngredientStack> ingredients, boolean onlyRequiredAllowed) {
         if (recipe.getUtensil() != utensil) return null;
         if (onlyRequiredAllowed && areOnlyRequiredInRecipe(recipe.getRequired(), ingredients)) return null;
         if (!areIngredientsAllowedInRecipe(recipe, ingredients)) return null;

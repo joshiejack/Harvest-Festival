@@ -53,7 +53,7 @@ public class ItemAxe extends ItemToolSmashing<ItemAxe> {
     }
 
     @Override
-    public boolean onBlockStartBreak(ItemStack stack, BlockPos pos, EntityPlayer player) {
+    public boolean onBlockStartBreak(@Nonnull ItemStack stack, BlockPos pos, EntityPlayer player) {
         if (!player.isSneaking() && findTree(player.world, pos)) {
             if (canChopTree(player, stack, pos))
                 return chopTree(pos, player, stack);
@@ -64,7 +64,7 @@ public class ItemAxe extends ItemToolSmashing<ItemAxe> {
         return false;
     }
 
-    private int getHitsRequired(ItemStack stack) {
+    private int getHitsRequired(@Nonnull ItemStack stack) {
         switch (getTier(stack)) {
             case BASIC:
                 return 6;
@@ -86,7 +86,7 @@ public class ItemAxe extends ItemToolSmashing<ItemAxe> {
         }
     }
 
-    private boolean canChopTree(EntityPlayer player, ItemStack stack, BlockPos pos) {
+    private boolean canChopTree(EntityPlayer player, @Nonnull ItemStack stack, BlockPos pos) {
         NBTTagCompound tag = stack.getOrCreateSubCompound("Chopping");
         if (tag.hasKey("Block")) {
             BlockPos internal = BlockPos.fromLong(tag.getLong("Block"));
@@ -105,7 +105,7 @@ public class ItemAxe extends ItemToolSmashing<ItemAxe> {
         return times > getHitsRequired(stack);
     }
 
-    private boolean chopTree(BlockPos pos, EntityPlayer player, ItemStack stack) {
+    private boolean chopTree(BlockPos pos, EntityPlayer player, @Nonnull ItemStack stack) {
         NBTTagCompound tag = stack.getOrCreateSubCompound("Chopping");
         tag.removeTag("Block"); //Remove the data now we're chopping
         tag.removeTag("Times"); //Remove the data now we're chopping
@@ -166,7 +166,7 @@ public class ItemAxe extends ItemToolSmashing<ItemAxe> {
     }
 
     @Override
-    public float getStrVsBlock(ItemStack stack, IBlockState state) {
+    public float getStrVsBlock(@Nonnull ItemStack stack, IBlockState state) {
         if (canUse(stack)) {
             Material material = state.getMaterial();
             return material != Material.WOOD && material != Material.PLANTS && material != Material.VINE ? super.getStrVsBlock(stack, state) : this.getEffiency(stack);
@@ -188,7 +188,7 @@ public class ItemAxe extends ItemToolSmashing<ItemAxe> {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean flag) {
+    public void addInformation(@Nonnull ItemStack stack, EntityPlayer player, List<String> list, boolean flag) {
         super.addInformation(stack, player, list, flag);
         list.add(TextFormatting.AQUA + "" + TextFormatting.ITALIC + TextHelper.translate("axe.tooltip.sneak"));
         list.add(TextFormatting.GREEN + TextHelper.formatHF("axe.tooltip.chops", getHitsRequired(stack) + 1));

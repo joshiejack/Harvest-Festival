@@ -12,6 +12,7 @@ import net.minecraft.world.storage.loot.LootContext;
 import net.minecraft.world.storage.loot.conditions.LootCondition;
 import net.minecraft.world.storage.loot.functions.LootFunction;
 
+import javax.annotation.Nonnull;
 import java.util.Random;
 
 import static joshie.harvest.core.registry.ShippingRegistry.SELL_VALUE;
@@ -22,11 +23,12 @@ public class SetWeight extends LootFunction {
         super(conditionsIn);
     }
 
-    public ItemStack apply(ItemStack stack, Random rand, LootContext context) {
+    @Nonnull
+    public ItemStack apply(@Nonnull ItemStack stack, @Nonnull Random rand, @Nonnull LootContext context) {
         if (context.getKillerPlayer() instanceof EntityPlayer && stack.getItem() == HFFishing.FISH) {
             EntityPlayer player = (EntityPlayer)context.getKillerPlayer();
             ItemStack held = player.getHeldItemMainhand();
-            if (held != null && held.getItem() == HFFishing.FISHING_ROD) {
+            if (held.getItem() == HFFishing.FISHING_ROD) {
                 return applyFishSizeData(rand, held, stack);
             }
         }
@@ -54,9 +56,10 @@ public class SetWeight extends LootFunction {
             super(new ResourceLocation("hf_set_weight"), SetWeight.class);
         }
 
-        public void serialize(JsonObject object, SetWeight functionClazz, JsonSerializationContext serializationContext) {}
+        public void serialize(@Nonnull JsonObject object, @Nonnull SetWeight functionClazz, @Nonnull JsonSerializationContext serializationContext) {}
 
-        public SetWeight deserialize(JsonObject object, JsonDeserializationContext deserializationContext, LootCondition[] conditionsIn) {
+        @Nonnull
+        public SetWeight deserialize(@Nonnull JsonObject object, @Nonnull JsonDeserializationContext deserializationContext, @Nonnull LootCondition[] conditionsIn) {
             return new SetWeight(conditionsIn);
         }
     }

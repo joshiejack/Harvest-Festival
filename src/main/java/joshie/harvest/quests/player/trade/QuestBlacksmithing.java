@@ -39,7 +39,8 @@ import static joshie.harvest.quests.Quests.DANIERU_MEET;
 public class QuestBlacksmithing extends QuestTrade {
     private static final int TEST = 0;
     private CalendarDate date;
-    private ItemStack tool;
+    @Nonnull
+    private ItemStack tool = ItemStack.EMPTY;
     private int days;
 
     @Override
@@ -49,7 +50,7 @@ public class QuestBlacksmithing extends QuestTrade {
 
     @Override
     public boolean isNPCUsed(EntityPlayer player, NPCEntity entity) {
-        return entity.getNPC() == HFNPCs.BLACKSMITH && (isHolding(player) != null || isHoldingBrokenTool(player) != null || tool != null);
+        return entity.getNPC() == HFNPCs.BLACKSMITH && (isHolding(player) != null || isHoldingBrokenTool(player) != null || !tool.isEmpty());
     }
 
     private int getDifference(CalendarDate then, CalendarDate now) {
@@ -132,7 +133,7 @@ public class QuestBlacksmithing extends QuestTrade {
 
     private double getLevel(EntityPlayer player) {
         ItemStack held = player.getHeldItemMainhand();
-        if (held == null) return 0D;
+        if (held.isEmpty()) return 0D;
         if (held.getItem() instanceof ITiered) {
             return ((ITiered)held.getItem()).getLevel(held);
         } else return 0D;
@@ -281,13 +282,13 @@ public class QuestBlacksmithing extends QuestTrade {
         return nbt;
     }
 
-    private boolean isRepairable(ItemStack stack, ToolTier tier) {
+    private boolean isRepairable(@Nonnull ItemStack stack, ToolTier tier) {
         return !(tier == ToolTier.CURSED || tier == ToolTier.BLESSED) && HFTools.HAMMER.getDamageForDisplay(stack) != 0;
     }
 
     private ToolTier isHoldingBrokenTool(EntityPlayer player) {
         ItemStack held = player.getHeldItemMainhand();
-        if (held != null) {
+        if (!held.isEmpty()) {
             if (held.getItem() instanceof ItemTool) {
                 ItemTool tool = ((ItemTool)held.getItem());
                 ToolTier tier = tool.getTier(held);
@@ -301,7 +302,7 @@ public class QuestBlacksmithing extends QuestTrade {
 
     private ToolTier isHolding(EntityPlayer player) {
         ItemStack held = player.getHeldItemMainhand();
-        if (held != null) {
+        if (!held.isEmpty()) {
             if (held.getItem() instanceof ItemTool) {
                 ItemTool tool = ((ItemTool)held.getItem());
                 ToolTier tier = tool.getTier(held);

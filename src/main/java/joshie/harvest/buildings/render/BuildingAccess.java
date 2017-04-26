@@ -67,7 +67,7 @@ public class BuildingAccess implements IBlockAccess {
 
     @Nullable
     @Override
-    public TileEntity getTileEntity(BlockPos pos) {
+    public TileEntity getTileEntity(@Nonnull BlockPos pos) {
         return null;
     }
 

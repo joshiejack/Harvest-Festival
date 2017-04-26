@@ -5,6 +5,8 @@ import joshie.harvest.mining.HFMining;
 import joshie.harvest.mining.item.ItemMaterial.Material;
 import net.minecraft.item.ItemStack;
 
+import javax.annotation.Nonnull;
+
 import static joshie.harvest.knowledge.gui.stats.CollectionHelper.isInMiningCollection;
 
 public class PageMining extends PageShipping {
@@ -15,7 +17,7 @@ public class PageMining extends PageShipping {
     }
 
     @Override
-    boolean qualifies(ItemStack stack) {
+    boolean qualifies(@Nonnull ItemStack stack) {
         return isInMiningCollection(stack);
     }
 }

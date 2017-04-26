@@ -6,6 +6,8 @@ import net.minecraft.util.JsonUtils;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.storage.loot.conditions.LootCondition;
 
+import javax.annotation.Nonnull;
+
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 
 public class From extends FloorCondition {
@@ -25,11 +27,12 @@ public class From extends FloorCondition {
             super(new ResourceLocation(MODID, "from"), From.class);
         }
 
-        public void serialize(JsonObject json, From value, JsonSerializationContext context) {
+        public void serialize(@Nonnull JsonObject json, @Nonnull From value, @Nonnull JsonSerializationContext context) {
             json.addProperty("from", value.from);
         }
 
-        public From deserialize(JsonObject json, JsonDeserializationContext context) {
+        @Nonnull
+        public From deserialize(@Nonnull JsonObject json, @Nonnull JsonDeserializationContext context) {
             return new From(JsonUtils.getInt(json, "from", 0));
         }
     }

@@ -12,7 +12,7 @@ import javax.annotation.Nonnull;
 public class PurchasableWeekend extends Purchasable {
     private final ItemStack[] required;
 
-    public PurchasableWeekend(long cost, ItemStack stack, ItemStack... required) {
+    public PurchasableWeekend(long cost, @Nonnull ItemStack stack, ItemStack... required) {
         super(cost, stack);
         this.required = required;
     }
@@ -20,7 +20,7 @@ public class PurchasableWeekend extends Purchasable {
     private boolean hasRequiredItem(EntityPlayer player) {
         if (required == null || required.length == 0) return true;
         else {
-            for (ItemStack stack: required) {
+            for (ItemStack stack : required) {
                 if (!HFTrackers.getPlayerTrackerFromPlayer(player).getTracking().hasObtainedItem(stack)) return false;
             }
 

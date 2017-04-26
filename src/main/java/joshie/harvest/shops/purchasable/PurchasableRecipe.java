@@ -45,6 +45,7 @@ public class PurchasableRecipe extends PurchasableMeal {
     }
 
     @Override
+    @Nonnull
     public ItemStack getDisplayStack() {
         return HFCooking.RECIPE.getStackFromObject(recipe);
     }

@@ -11,6 +11,7 @@ import net.minecraft.world.World;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 public abstract class QuestData {
@@ -83,7 +84,7 @@ public abstract class QuestData {
         nbt.setTag("CurrentQuests", quests);
 
         NBTTagList done = new NBTTagList();
-        finished.stream().filter(s -> s != null).forEachOrdered(s -> done.appendTag(new NBTTagString(s.getRegistryName().toString())));
+        finished.stream().filter(Objects::nonNull).forEachOrdered(s -> done.appendTag(new NBTTagString(s.getRegistryName().toString())));
         nbt.setTag("FinishedQuests", done);
         return nbt;
     }

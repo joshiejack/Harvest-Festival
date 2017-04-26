@@ -51,25 +51,26 @@ public abstract class BlockHFLeaves<B extends BlockHFLeaves, E extends Enum<E> &
     }
 
     @Override
+    @Nonnull
     protected BlockStateContainer createBlockState() {
         if(property == null) return new BlockStateContainer(this, temporary, CHECK_DECAY, DECAYABLE);
         return new BlockStateContainer(this, property, CHECK_DECAY, DECAYABLE);
     }
 
     @Override
-    public void breakBlock(@Nonnull World worldIn, @Nonnull BlockPos pos, @Nonnull IBlockState state) {
+    public void breakBlock(@Nonnull World world, @Nonnull BlockPos pos, @Nonnull IBlockState state) {
         int k = pos.getX();
         int l = pos.getY();
         int i1 = pos.getZ();
 
-        if (worldIn.isAreaLoaded(new BlockPos(k - 2, l - 2, i1 - 2), new BlockPos(k + 2, l + 2, i1 + 2))) {
+        if (world.isAreaLoaded(new BlockPos(k - 2, l - 2, i1 - 2), new BlockPos(k + 2, l + 2, i1 + 2))) {
             for (int j1 = -1; j1 <= 1; ++j1) {
                 for (int k1 = -1; k1 <= 1; ++k1) {
                     for (int l1 = -1; l1 <= 1; ++l1) {
                         BlockPos blockpos = pos.add(j1, k1, l1);
-                        IBlockState iblockstate = worldIn.getBlockState(blockpos);
-                        if (iblockstate.getBlock().isLeaves(iblockstate, worldIn, blockpos)) {
-                            iblockstate.getBlock().beginLeavesDecay(iblockstate, worldIn, blockpos);
+                        IBlockState iblockstate = world.getBlockState(blockpos);
+                        if (iblockstate.getBlock().isLeaves(iblockstate, world, blockpos)) {
+                            iblockstate.getBlock().beginLeavesDecay(iblockstate, world, blockpos);
                         }
                     }
                 }
@@ -160,11 +161,13 @@ public abstract class BlockHFLeaves<B extends BlockHFLeaves, E extends Enum<E> &
     }
 
     @Override
+    @Nonnull
     protected ItemStack getSilkTouchDrop(@Nonnull IBlockState state) {
         return new ItemStack(this, 1, getEnumFromState(state).ordinal());
     }
 
     @Override
+    @Nonnull
     public IBlockState getStateFromMeta(int meta) {
         return this.getDefaultState().withProperty(property, getEnumFromMeta(meta)).withProperty(DECAYABLE, (meta & 4) == 0).withProperty(CHECK_DECAY, (meta & 8) > 0);
     }
@@ -208,7 +211,7 @@ public abstract class BlockHFLeaves<B extends BlockHFLeaves, E extends Enum<E> &
     }
 
     @Override
-    @Nullable
+    @Nonnull
     public Item getItemDropped(IBlockState state, Random rand, int fortune) {
         return Item.getItemFromBlock(Blocks.SAPLING);
     }
@@ -219,6 +222,7 @@ public abstract class BlockHFLeaves<B extends BlockHFLeaves, E extends Enum<E> &
     }
 
     @SideOnly(Side.CLIENT)
+    @Nonnull
     public BlockRenderLayer getBlockLayer() {
         return BlockRenderLayer.CUTOUT_MIPPED;
     }
@@ -229,7 +233,7 @@ public abstract class BlockHFLeaves<B extends BlockHFLeaves, E extends Enum<E> &
     }
 
     @Override
-    public boolean isShearable(ItemStack item, IBlockAccess world, BlockPos pos) {
+    public boolean isShearable(@Nonnull ItemStack item, IBlockAccess world, BlockPos pos) {
         return true;
     }
 
@@ -253,7 +257,7 @@ public abstract class BlockHFLeaves<B extends BlockHFLeaves, E extends Enum<E> &
     }
 
     @Override
-    public List<ItemStack> onSheared(ItemStack item, IBlockAccess world, BlockPos pos, int fortune) {
+    public List<ItemStack> onSheared(@Nonnull ItemStack item, IBlockAccess world, BlockPos pos, int fortune) {
         return Lists.newArrayList(new ItemStack(this, 1, super.getMetaFromState(world.getBlockState(pos))));
     }
 

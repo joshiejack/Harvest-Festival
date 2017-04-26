@@ -1,16 +1,16 @@
 package joshie.harvest.quests.base;
 
-import com.google.common.collect.Lists;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.npc.NPCEntity;
 import joshie.harvest.api.quests.Quest;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.util.List;
+import javax.annotation.Nonnull;
 import java.util.Set;
 
 public abstract class QuestFriendship extends Quest {
@@ -49,7 +49,7 @@ public abstract class QuestFriendship extends Quest {
 
     @Override
     public void onQuestCompleted(EntityPlayer player) {
-        List<ItemStack> stacks = getRewardStacks(player);
+        NonNullList<ItemStack> stacks = getRewardStacks(player);
         if (stacks != null) {
             for (ItemStack stack: stacks) {
                 rewardItem(player, stack);
@@ -57,9 +57,10 @@ public abstract class QuestFriendship extends Quest {
         }
     }
 
-    protected List<ItemStack> getRewardStacks(EntityPlayer player) {
-        return getRewardStack() != null ? Lists.newArrayList(getRewardStack()) : null;
+    protected NonNullList<ItemStack> getRewardStacks(EntityPlayer player) {
+        return !getRewardStack().isEmpty() ? NonNullList.withSize(1, getRewardStack()) : null;
     }
 
-    protected ItemStack getRewardStack() { return null; }
+    @Nonnull
+    protected ItemStack getRewardStack() { return ItemStack.EMPTY; }
 }

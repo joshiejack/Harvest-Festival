@@ -27,7 +27,7 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedOutEvent;
 
-import javax.annotation.Nullable;
+import javax.annotation.Nonnull;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.ExecutionException;
@@ -52,9 +52,9 @@ public class BasketHandler {
         }
     }
 
-    private void setBasket(World world, BlockPos pos, @Nullable ItemStack stack) {
+    private void setBasket(World world, BlockPos pos, @Nonnull ItemStack stack) {
         world.setBlockState(pos, HFCore.STORAGE.getStateFromEnum(Storage.BASKET));
-        if (stack != null) {
+        if (!stack.isEmpty()) {
             TileEntity tile = world.getTileEntity(pos);
             if (tile instanceof TileBasket) {
                 ((TileBasket)tile).onRightClicked(null, stack);

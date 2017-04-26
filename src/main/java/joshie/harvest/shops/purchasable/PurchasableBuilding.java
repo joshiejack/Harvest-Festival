@@ -33,11 +33,13 @@ public class PurchasableBuilding extends PurchasableMaterials {
     }
 
     @Override
+    @Nonnull
     public ItemStack getDisplayStack() {
         return building.getSpawner();
     }
 
     @Override
+    @Nonnull
     protected ItemStack getPurchasedStack() {
         return HFBuildings.CHEAT_BUILDINGS ? building.getSpawner() : building.getBlueprint();
     }

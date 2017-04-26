@@ -3,6 +3,8 @@ package joshie.harvest.calendar.data;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.WorldSavedData;
 
+import javax.annotation.Nonnull;
+
 public class CalendarSavedData extends WorldSavedData {
     private final CalendarServer server = new CalendarServer();
 
@@ -15,12 +17,13 @@ public class CalendarSavedData extends WorldSavedData {
     }
 
     @Override
-    public void readFromNBT(NBTTagCompound nbt) {
+    public void readFromNBT(@Nonnull NBTTagCompound nbt) {
         server.readFromNBT(nbt);
     }
 
     @Override
-    public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
+    @Nonnull
+    public NBTTagCompound writeToNBT(@Nonnull NBTTagCompound nbt) {
         return server.writeToNBT(nbt);
     }
 }

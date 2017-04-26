@@ -14,6 +14,8 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL14;
 
+import javax.annotation.Nonnull;
+
 import static net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType.FIXED;
 import static net.minecraft.client.renderer.texture.TextureMap.LOCATION_BLOCKS_TEXTURE;
 import static net.minecraft.client.renderer.vertex.DefaultVertexFormats.POSITION_TEX;
@@ -21,7 +23,7 @@ import static net.minecraft.client.renderer.vertex.DefaultVertexFormats.POSITION
 public class TileSpecialRendererItem<T extends TileEntity> extends TileEntitySpecialRenderer<T> {
     protected static final Minecraft MINECRAFT = Minecraft.getMinecraft();
 
-    protected void renderItem(ItemStack stack, RenderData render, int i) {
+    protected void renderItem(@Nonnull ItemStack stack, RenderData render, int i) {
         renderItem(stack, render.heightOffset[i], render.rotations[i], render.offset1[i], render.offset2[i]);
     }
 
@@ -39,7 +41,7 @@ public class TileSpecialRendererItem<T extends TileEntity> extends TileEntitySpe
         }
     }
 
-    protected void renderItem(ItemStack stack, float position, float rotation, float offset1, float offset2) {
+    protected void renderItem(@Nonnull ItemStack stack, float position, float rotation, float offset1, float offset2) {
         GlStateManager.pushMatrix();
         RenderHelper.disableStandardItemLighting();
         GlStateManager.enableBlend();

@@ -35,6 +35,7 @@ import net.minecraftforge.fml.common.eventhandler.Event.Result;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Random;
 
@@ -100,6 +101,7 @@ public class QuestNewYearsEve extends QuestFestival {
         private static final String tag = "{LifeTime:30,FireworksItem:{id:fireworks,Count:1,tag:{Fireworks:{Explosions:[{Type:%s,Flicker:%s,Trail:%s,Colors:[%s],FadeColors:[%s]}]}}}}";
 
         @SuppressWarnings("ConstantConditions")
+        @Nonnull
         private static ItemStack getRandomFireworks(Random rand) {
             ItemStack stack = new ItemStack(Items.FIREWORKS);
             stack.setTagCompound(StackHelper.getTag("{LifeTime:60,FireworksItem:{id:fireworks,Count:1,tag:{Fireworks:{Explosions:[{Type:1,Flicker:0,Trail:1,Colors:[11743532,14602026],FadeColors:[]}]}}}}"));

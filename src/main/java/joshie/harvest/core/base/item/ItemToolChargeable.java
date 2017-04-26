@@ -32,15 +32,15 @@ public class ItemToolChargeable<I extends ItemToolChargeable> extends ItemTool<I
         super(toolClass, effective);
     }
 
-    protected int getMaxCharge(ItemStack stack) {
+    protected int getMaxCharge(@Nonnull ItemStack stack) {
         return getTier(stack).getToolLevel();
     }
 
-    protected int getCharge(ItemStack stack) {
+    protected int getCharge(@Nonnull ItemStack stack) {
         return stack.getOrCreateSubCompound("Data").getInteger("Charge");
     }
 
-    private void setCharge(ItemStack stack, int amount) {
+    private void setCharge(@Nonnull ItemStack stack, int amount) {
         stack.getOrCreateSubCompound("Data").setInteger("Charge", amount);
     }
 
@@ -67,7 +67,7 @@ public class ItemToolChargeable<I extends ItemToolChargeable> extends ItemTool<I
         return passed / 20;
     }
 
-    protected String getLevelName(ItemStack stack, int charges) {
+    protected String getLevelName(@Nonnull ItemStack stack, int charges) {
         int maximum = getMaxCharge(stack);
         int charge = getCharge(stack);
         int newCharge = Math.min(maximum, charge + charges);
@@ -75,7 +75,7 @@ public class ItemToolChargeable<I extends ItemToolChargeable> extends ItemTool<I
     }
 
     @Override
-    public void onUsingTick(ItemStack stack, EntityLivingBase player, int count) {
+    public void onUsingTick(@Nonnull ItemStack stack, EntityLivingBase player, int count) {
         if (count != 32000 && count % 20 == 0) {
             if (player.world.isRemote) {
                 String name =  getLevelName(stack, getCharges(count));
@@ -91,7 +91,7 @@ public class ItemToolChargeable<I extends ItemToolChargeable> extends ItemTool<I
     }
 
     @Override
-    public void onPlayerStoppedUsing(ItemStack stack, World world, EntityLivingBase entity, int timeLeft) {
+    public void onPlayerStoppedUsing(@Nonnull ItemStack stack, World world, EntityLivingBase entity, int timeLeft) {
         int maximum = getMaxCharge(stack);
         int charge = getCharge(stack);
         int newCharge = Math.min(maximum, charge + getCharges(timeLeft));
@@ -102,5 +102,5 @@ public class ItemToolChargeable<I extends ItemToolChargeable> extends ItemTool<I
         onFinishedCharging(world, entity, getMovingObjectPositionFromPlayer(world, entity), stack, getChargeTier(newCharge));
     }
 
-    protected void onFinishedCharging(World world, EntityLivingBase entity, @Nullable RayTraceResult result, ItemStack stack, ToolTier toolTier) {}
+    protected void onFinishedCharging(World world, EntityLivingBase entity, @Nullable RayTraceResult result, @Nonnull ItemStack stack, ToolTier toolTier) {}
 }

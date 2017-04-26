@@ -9,6 +9,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.Map;
@@ -31,11 +32,12 @@ public class TileFestivalPot extends TileStand {
     }
 
     @Override
+    @Nonnull
     public ItemStack removeContents() {
-        return null; //Can't remove what you put in
+        return ItemStack.EMPTY; //Can't remove what you put in
     }
 
-    private int getScoreFromStack(ItemStack stack) {
+    private int getScoreFromStack(@Nonnull ItemStack stack) {
         GiftCategory primary = NPCHelper.INSTANCE.getGifts().getRegistry().getValueOf(stack);
         if (primary != null) {
             switch (primary) {
@@ -95,7 +97,8 @@ public class TileFestivalPot extends TileStand {
     }
 
     @Override
-    public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
+    @Nonnull
+    public NBTTagCompound writeToNBT(@Nonnull NBTTagCompound nbt) {
         super.writeToNBT(nbt);
         NBTTagList list = new NBTTagList();
         for (Entry<UUID, ItemStack> entry: data.entrySet()) {

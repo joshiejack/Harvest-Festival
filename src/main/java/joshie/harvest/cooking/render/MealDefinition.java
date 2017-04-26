@@ -11,6 +11,8 @@ import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
+import javax.annotation.Nonnull;
+
 import static joshie.harvest.cooking.tile.TileCooking.IN_UTENSIL;
 
 public class MealDefinition implements ItemMeshDefinition {
@@ -34,7 +36,7 @@ public class MealDefinition implements ItemMeshDefinition {
         }
     }
 
-    private int getMealMetaFromStack(ItemStack stack) {
+    private int getMealMetaFromStack(@Nonnull ItemStack stack) {
         if (stack.getItemDamage() >= 0 && stack.getItemDamage() < ItemMeal.MEALS.length) {
             return stack.getItemDamage();
         }
@@ -44,7 +46,8 @@ public class MealDefinition implements ItemMeshDefinition {
 
     @Override
     @SuppressWarnings("ConstantConditions")
-    public ModelResourceLocation getModelLocation(ItemStack stack) {
+    @Nonnull
+    public ModelResourceLocation getModelLocation(@Nonnull ItemStack stack) {
         if (stack.hasTagCompound()) {
             Meal meal = HFCooking.MEAL.getEnumFromStack(stack);
             if (meal.hasAltTexture()) {

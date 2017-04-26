@@ -59,6 +59,7 @@ public class PurchasableEntity implements IPurchasable {
     }
 
     @Override
+    @Nonnull
     public ItemStack getDisplayStack() {
         return product;
     }

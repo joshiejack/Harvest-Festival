@@ -26,6 +26,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
@@ -35,7 +36,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nonnull;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -89,12 +89,12 @@ public class ItemHammer extends ItemToolSmashing<ItemHammer> {
     }
 
     @Override
-    public boolean onBlockDestroyed(ItemStack stack, World worldIn, IBlockState state, BlockPos position, EntityLivingBase entityLiving) {
+    public boolean onBlockDestroyed(@Nonnull ItemStack stack, World worldIn, IBlockState state, BlockPos position, EntityLivingBase entityLiving) {
         if (entityLiving instanceof EntityPlayer) {
             EntityPlayer player = (EntityPlayer) entityLiving;
             if (canUse(stack) && canBeDamaged()) {
                 if (canLevel(stack, state)) ToolHelper.levelTool(stack);
-                ArrayList<ItemStack> drops = new ArrayList<>();
+                NonNullList<ItemStack> drops = NonNullList.create();
                 for (BlockPos pos : getBlocks(worldIn, position, player, stack)) {
                     if (canUse(stack) && canBeDamaged()) {
                         ToolHelper.performTask(player, stack, this);
@@ -164,7 +164,7 @@ public class ItemHammer extends ItemToolSmashing<ItemHammer> {
     }
 
     @Override
-    public float getStrVsBlock(ItemStack stack, IBlockState state) {
+    public float getStrVsBlock(@Nonnull ItemStack stack, IBlockState state) {
         if (canUse(stack)) {
             Material material = state.getMaterial();
             return material != Material.IRON && material != Material.ANVIL && material != Material.ROCK ? super.getStrVsBlock(stack, state) : this.getEffiency(stack);
@@ -172,7 +172,7 @@ public class ItemHammer extends ItemToolSmashing<ItemHammer> {
     }
 
     @Override
-    public boolean onSmashed(EntityPlayer player, ItemStack stack, ToolTier tier, int harvestLevel, World world, BlockPos pos, IBlockState state) {
+    public boolean onSmashed(EntityPlayer player, @Nonnull ItemStack stack, ToolTier tier, int harvestLevel, World world, BlockPos pos, IBlockState state) {
         if (canUse(stack)) {
             WateringHandler handler = CropHelper.getWateringHandler(world, pos, state);
             if (handler != null) {
@@ -193,7 +193,7 @@ public class ItemHammer extends ItemToolSmashing<ItemHammer> {
 
     @Override
     @Nonnull
-    public Multimap<String, AttributeModifier> getAttributeModifiers(@Nonnull EntityEquipmentSlot slot, ItemStack stack) {
+    public Multimap<String, AttributeModifier> getAttributeModifiers(@Nonnull EntityEquipmentSlot slot, @Nonnull ItemStack stack) {
         Multimap<String, AttributeModifier> multimap = super.getAttributeModifiers(slot, stack);
         ToolTier tier = getTier(stack);
         if (slot == EntityEquipmentSlot.MAINHAND) {
@@ -206,7 +206,7 @@ public class ItemHammer extends ItemToolSmashing<ItemHammer> {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean flag) {
+    public void addInformation(@Nonnull ItemStack stack, EntityPlayer player, List<String> list, boolean flag) {
         super.addInformation(stack, player, list, flag);
         ToolTier tier = getTier(stack);
         if (getFront(tier) > 0) {

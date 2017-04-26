@@ -9,6 +9,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.storage.loot.LootContext;
 import net.minecraft.world.storage.loot.conditions.LootCondition;
 
+import javax.annotation.Nonnull;
 import java.util.Random;
 
 import static joshie.harvest.core.lib.HFModInfo.MODID;
@@ -23,7 +24,7 @@ public class ConditionTime implements LootCondition {
     }
 
     @Override
-    public boolean testCondition(Random rand, LootContext context) {
+    public boolean testCondition(@Nonnull Random rand, @Nonnull LootContext context) {
         return context.getLootedEntity() != null && CalendarHelper.isBetween(context.getLootedEntity().world, from, to);
     }
 
@@ -32,12 +33,13 @@ public class ConditionTime implements LootCondition {
             super(new ResourceLocation(MODID, "time"), ConditionTime.class);
         }
 
-        public void serialize(JsonObject json, ConditionTime value, JsonSerializationContext context) {
+        public void serialize(@Nonnull JsonObject json, @Nonnull ConditionTime value, @Nonnull JsonSerializationContext context) {
             json.addProperty("from", value.from);
             json.addProperty("to", value.to);
         }
 
-        public ConditionTime deserialize(JsonObject json, JsonDeserializationContext context) {
+        @Nonnull
+        public ConditionTime deserialize(@Nonnull JsonObject json, @Nonnull JsonDeserializationContext context) {
             return new ConditionTime(JsonUtils.getInt(json, "from", 0), JsonUtils.getInt(json, "to", 24000));
         }
     }

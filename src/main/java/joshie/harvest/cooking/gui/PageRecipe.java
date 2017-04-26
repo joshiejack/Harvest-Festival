@@ -15,9 +15,11 @@ import joshie.harvest.core.network.PacketHandler;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
 
+import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -43,6 +45,7 @@ public class PageRecipe extends Page {
     private final Recipe recipe;
     private final List<CyclingStack> list = new ArrayList<>();
     private final String description;
+    @Nonnull
     private final ItemStack stack;
     private boolean can;
     private int hash;
@@ -62,6 +65,7 @@ public class PageRecipe extends Page {
         return recipe.getDisplayName();
     }
 
+    @Nonnull
     public ItemStack getItem() {
         return stack;
     }
@@ -176,7 +180,8 @@ public class PageRecipe extends Page {
         private final int x;
         private final int y;
         private final IngredientStack ingredient;
-        private List<ItemStack> stacks;
+        private NonNullList<ItemStack> stacks;
+        @Nonnull
         private ItemStack stack;
         private int ticker;
         private int index;
@@ -191,7 +196,7 @@ public class PageRecipe extends Page {
 
         public void render(GuiCookbook gui, int mouseX, int mouseY) {
             if (stacks.size() > 0) {
-                if (ticker % 128 == 0 || stack == null) {
+                if (ticker % 128 == 0 || stack.isEmpty()) {
                     stack = stacks.get(index); //Pick out the stack
                     stack.setCount(ingredient.getStackSize());
                     index++;

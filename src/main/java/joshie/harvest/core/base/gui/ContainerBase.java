@@ -7,11 +7,13 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
+import javax.annotation.Nonnull;
+
 public class ContainerBase extends Container {
     public ContainerBase() {}
 
     @Override
-    public boolean canInteractWith(EntityPlayer player) {
+    public boolean canInteractWith(@Nonnull EntityPlayer player) {
         return true;
     }
 
@@ -35,7 +37,7 @@ public class ContainerBase extends Container {
         return new Slot(inventory, id, x, y);
     }
 
-    protected boolean isValid(ItemStack stack) {
+    protected boolean isValid(@Nonnull ItemStack stack) {
         return true;
     }
 
@@ -49,31 +51,32 @@ public class ContainerBase extends Container {
     }
 
     @Override
+    @Nonnull
     public ItemStack transferStackInSlot(EntityPlayer player, int slotID) {
         int size = getInventorySize();
         int low = size + 27;
         int high = low + 9;
-        ItemStack newStack = null;
+        ItemStack newStack = ItemStack.EMPTY;
         final Slot slot = inventorySlots.get(slotID);
 
         if (slot != null && slot.getHasStack()) {
             ItemStack stack = slot.getStack();
             newStack = stack.copy();
             if (slotID < size) {
-                if (!mergeItemStack(stack, size, high, true)) return null;
+                if (!mergeItemStack(stack, size, high, true)) return ItemStack.EMPTY;
             } else if (isValid(stack)) {
-                if (!mergeItemStack(stack, 0, size, false)) return null;
+                if (!mergeItemStack(stack, 0, size, false)) return ItemStack.EMPTY;
             } else if (slotID >= size && slotID < low) {
-                if (!mergeItemStack(stack, low, high, false)) return null;
-            } else if (slotID >= low && slotID < high && !mergeItemStack(stack, size, low, false)) return null;
+                if (!mergeItemStack(stack, low, high, false)) return ItemStack.EMPTY;
+            } else if (slotID >= low && slotID < high && !mergeItemStack(stack, size, low, false)) return ItemStack.EMPTY;
 
             if (stack.getCount() == 0) {
-                slot.putStack(null);
+                slot.putStack(ItemStack.EMPTY);
             } else {
                 slot.onSlotChanged();
             }
 
-            if (stack.getCount() == newStack.getCount()) return null;
+            if (stack.getCount() == newStack.getCount()) return ItemStack.EMPTY;
 
             slot.onTake(player, stack);
         }

@@ -29,7 +29,7 @@ public class ItemBlockHF<B extends BlockHFBase> extends ItemBlock implements ICr
 
     @Override
     @Nonnull
-    public String getItemStackDisplayName(ItemStack stack) {
+    public String getItemStackDisplayName(@Nonnull ItemStack stack) {
         return block.getItemStackDisplayName(stack);
     }
 
@@ -45,18 +45,18 @@ public class ItemBlockHF<B extends BlockHFBase> extends ItemBlock implements ICr
     }
 
     @Override
-    public int getEntityLifespan(ItemStack itemStack, World world)  {
+    public int getEntityLifespan(@Nonnull ItemStack itemStack, World world)  {
         return block.getEntityLifeSpan(itemStack, world);
     }
 
     @Override
     @Nonnull
-    public String getUnlocalizedName(ItemStack stack) {
+    public String getUnlocalizedName(@Nonnull ItemStack stack) {
         return block.getUnlocalizedName(stack);
     }
 
     @Override
-    public int getSortValue(ItemStack stack) {
+    public int getSortValue(@Nonnull ItemStack stack) {
         return block.getSortValue(stack);
     }
 

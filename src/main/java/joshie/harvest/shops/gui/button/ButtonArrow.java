@@ -6,6 +6,8 @@ import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.GlStateManager;
 
+import javax.annotation.Nonnull;
+
 import static joshie.harvest.shops.gui.GuiNPCShop.SHOP_EXTRA;
 
 public abstract class ButtonArrow extends GuiButton {
@@ -23,7 +25,7 @@ public abstract class ButtonArrow extends GuiButton {
     }
 
     @Override
-    public void drawButton(Minecraft mc, int mouseX, int mouseY) {
+    public void drawButton(@Nonnull Minecraft mc, int mouseX, int mouseY) {
         updateVisiblity();
         if (visible) {
             mc.getTextureManager().bindTexture(SHOP_EXTRA);

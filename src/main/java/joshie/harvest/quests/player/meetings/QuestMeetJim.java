@@ -30,6 +30,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Set;
 
@@ -87,6 +88,7 @@ public class QuestMeetJim extends QuestMeetingTutorial {
     }
 
     @Override
+    @Nonnull
     public ItemStack getCurrentIcon(World world, EntityPlayer player) {
         if (!hasBuilding(player)) return buildingStack;
         else if (quest_stage == START) return primary;

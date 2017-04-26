@@ -24,7 +24,8 @@ public class ItemRecipe extends ItemHFRegistry<ItemRecipe, Recipe> implements IC
     }
 
     @Override
-    public String getItemStackDisplayName(ItemStack stack) {
+    @Nonnull
+    public String getItemStackDisplayName(@Nonnull ItemStack stack) {
         return TextHelper.format(MODID + ".recipe.format", getObjectFromStack(stack).getDisplayName());
     }
 
@@ -49,7 +50,7 @@ public class ItemRecipe extends ItemHFRegistry<ItemRecipe, Recipe> implements IC
     }
 
     @Override
-    public int getSortValue(ItemStack stack) {
+    public int getSortValue(@Nonnull ItemStack stack) {
         return 5000;
     }
 }

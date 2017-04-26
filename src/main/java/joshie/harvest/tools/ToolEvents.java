@@ -59,7 +59,7 @@ public class ToolEvents {
                 int level = 0;
                 Set<Item> added = new HashSet<>();
                 for (ItemStack stack : event.player.inventory.mainInventory) {
-                    if (stack != null && !added.contains(stack.getItem()) && stack.getItem() instanceof ItemTool) {
+                    if (!stack.isEmpty() && !added.contains(stack.getItem()) && stack.getItem() instanceof ItemTool) {
                         if (((ItemTool) stack.getItem()).getTier(stack) == ToolTier.CURSED) {
                             added.add(stack.getItem());
                             level++;
@@ -81,7 +81,7 @@ public class ToolEvents {
     public void onClick(PlayerInteractEvent.LeftClickBlock event) {
         EntityPlayer player =  event.getEntityPlayer();
         if (player.motionY <= -0.1F) {
-            if (player.getHeldItemMainhand() != null && player.getHeldItemMainhand().getItem() == HFTools.HAMMER) {
+            if (player.getHeldItemMainhand().getItem() == HFTools.HAMMER) {
                 if (CropHelper.getWateringHandler(event.getWorld(), event.getPos(), event.getWorld().getBlockState(event.getPos())) != null) {
                     HFTools.HAMMER.smashBlock(event.getWorld(), player, event.getPos(), player.getHeldItemMainhand(), true);
                 }

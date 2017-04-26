@@ -29,7 +29,7 @@ public class ItemCookbook extends ItemHFBase<ItemCookbook> implements ICreativeS
     }
 
     @Override
-    public int getSortValue(ItemStack stack) {
+    public int getSortValue(@Nonnull ItemStack stack) {
         return 1000;
     }
 }

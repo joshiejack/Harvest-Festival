@@ -21,6 +21,7 @@ import net.minecraft.client.gui.GuiLabel;
 import net.minecraft.item.ItemStack;
 import org.lwjgl.input.Keyboard;
 
+import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -91,7 +92,7 @@ public class PageCooking extends PageCollection {
         buttonList.add(new ButtonSearch(gui, this, buttonList.size(), 186, 201));
     }
 
-    private boolean hasObtainedStack(ItemStack stack) {
+    private boolean hasObtainedStack(@Nonnull ItemStack stack) {
         return HFTrackers.getClientPlayerTracker().getTracking().hasObtainedItem(stack);
     }
 }

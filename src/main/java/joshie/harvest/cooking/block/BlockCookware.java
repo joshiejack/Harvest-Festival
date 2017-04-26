@@ -67,6 +67,7 @@ public class BlockCookware extends BlockHFEnumRotatableTile<BlockCookware, Cookw
     }
 
     @Override
+    @Nonnull
     protected BlockStateContainer createBlockState() {
         if(property == null) return new BlockStateContainer(this, temporary, FACING);
         return new BlockStateContainer(this, property, FACING);
@@ -215,7 +216,7 @@ public class BlockCookware extends BlockHFEnumRotatableTile<BlockCookware, Cookw
         return false;
     }
 
-    private static boolean isCookware(ItemStack stack) {
+    private static boolean isCookware(@Nonnull ItemStack stack) {
         if (cookware == null) cookware = Item.getItemFromBlock(HFCooking.COOKWARE);
         return stack.getItem() == cookware;
     }
@@ -263,7 +264,8 @@ public class BlockCookware extends BlockHFEnumRotatableTile<BlockCookware, Cookw
     }
 
     @Override
-    public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos) {
+    @Nonnull
+    public IBlockState getActualState(@Nonnull IBlockState state, IBlockAccess world, BlockPos pos) {
         IBlockState ret = super.getActualState(state, world, pos);
         Cookware cookware = getEnumFromState(ret);
         if (cookware == OVEN_OFF || cookware == OVEN_ON) {
@@ -331,7 +333,7 @@ public class BlockCookware extends BlockHFEnumRotatableTile<BlockCookware, Cookw
     }
 
     @Override
-    public int getSortValue(ItemStack stack) {
+    public int getSortValue(@Nonnull ItemStack stack) {
         return 99;
     }
 

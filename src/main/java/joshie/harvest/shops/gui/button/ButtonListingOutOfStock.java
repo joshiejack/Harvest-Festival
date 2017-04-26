@@ -7,6 +7,8 @@ import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.renderer.GlStateManager;
 
+import javax.annotation.Nonnull;
+
 import static joshie.harvest.shops.gui.GuiNPCShop.SHOP_EXTRA;
 
 public class ButtonListingOutOfStock extends GuiButton {
@@ -20,7 +22,7 @@ public class ButtonListingOutOfStock extends GuiButton {
     }
 
     @Override
-    public void drawButton(Minecraft mc, int mouseX, int mouseY) {
+    public void drawButton(@Nonnull Minecraft mc, int mouseX, int mouseY) {
         if (visible) {
             FontRenderer fontrenderer = mc.fontRendererObj;
             mc.getTextureManager().bindTexture(SHOP_EXTRA);

@@ -65,18 +65,18 @@ public class ItemAnimalTool extends ItemHFEnum<ItemAnimalTool, Tool> {
     }
 
     @Override
-    public int getItemStackLimit(ItemStack stack) {
+    public int getItemStackLimit(@Nonnull ItemStack stack) {
         return getEnumFromStack(stack).isDamageable ? 1: 64;
     }
 
     @Override
-    public int getMaxItemUseDuration(ItemStack stack) {
+    public int getMaxItemUseDuration(@Nonnull ItemStack stack) {
         return getEnumFromStack(stack) == MILKER ? 32 : 0;
     }
 
     @Override
     @Nonnull
-    public EnumAction getItemUseAction(ItemStack stack) {
+    public EnumAction getItemUseAction(@Nonnull ItemStack stack) {
         return getEnumFromStack(stack) == MILKER ? EnumAction.BOW : EnumAction.NONE;
     }
 
@@ -128,14 +128,14 @@ public class ItemAnimalTool extends ItemHFEnum<ItemAnimalTool, Tool> {
         return false;
     }
 
-    private boolean impregnate(EntityPlayer player, AnimalStats stats, ItemStack stack) {
+    private boolean impregnate(EntityPlayer player, AnimalStats stats, @Nonnull ItemStack stack) {
         if (stats.performAction(player.world, stack, AnimalAction.IMPREGNATE)) {
             stack.splitStack(1);
             return true;
         } else return false;
     }
 
-    private boolean heal(EntityPlayer player, AnimalStats stats, ItemStack stack) {
+    private boolean heal(EntityPlayer player, AnimalStats stats, @Nonnull ItemStack stack) {
         if (stats.performAction(player.world, stack, AnimalAction.HEAL)) {
             stack.splitStack(1);
             ToolHelper.consumeHunger(player, 5F);
@@ -194,25 +194,26 @@ public class ItemAnimalTool extends ItemHFEnum<ItemAnimalTool, Tool> {
     }
 
     @Override
-    public boolean showDurabilityBar(ItemStack stack) {
+    public boolean showDurabilityBar(@Nonnull ItemStack stack) {
         return getDurabilityForDisplay(stack) > 0D;
     }
 
     @Override
-    public double getDurabilityForDisplay(ItemStack stack)  {
+    public double getDurabilityForDisplay(@Nonnull ItemStack stack)  {
         return canBeDamaged(stack) ? ((double) getDamageForDisplay(stack) / MAX_DAMAGE) : 0;
     }
 
-    private int getDamageForDisplay(ItemStack stack) {
+    private int getDamageForDisplay(@Nonnull ItemStack stack) {
         return stack.getOrCreateSubCompound("Data").getInteger("Damage");
     }
 
-    private boolean canBeDamaged(ItemStack stack) {
+    private boolean canBeDamaged(@Nonnull ItemStack stack) {
         return getEnumFromStack(stack).isDamageable;
     }
 
     @Override
-    public String getItemStackDisplayName(ItemStack stack) {
+    @Nonnull
+    public String getItemStackDisplayName(@Nonnull ItemStack stack) {
         return (getEnumFromStack(stack) == MIRACLE_POTION ? AQUA : "") + super.getItemStackDisplayName(stack);
     }
 
@@ -222,7 +223,7 @@ public class ItemAnimalTool extends ItemHFEnum<ItemAnimalTool, Tool> {
     }
 
     @Override
-    public int getSortValue(ItemStack stack) {
+    public int getSortValue(@Nonnull ItemStack stack) {
         return CreativeSort.GENERAL_ITEM;
     }
 }

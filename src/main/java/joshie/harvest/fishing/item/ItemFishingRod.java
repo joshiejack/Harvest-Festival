@@ -38,12 +38,12 @@ public class ItemFishingRod extends ItemTool<ItemFishingRod> {
     }
 
     @SuppressWarnings("ConstantConditions")
-    public int getBaitAmount(ItemStack stack) {
+    public int getBaitAmount(@Nonnull ItemStack stack) {
         return stack.hasTagCompound() ? stack.getTagCompound().getInteger("Bait") : 0;
     }
 
     @SuppressWarnings("ConstantConditions")
-    boolean addBait(ItemStack rod, ItemStack bait) {
+    boolean addBait(@Nonnull ItemStack rod, ItemStack bait) {
         NBTTagCompound tag = rod.hasTagCompound() ? rod.getTagCompound() : new NBTTagCompound();
         int existing = tag.getInteger("Bait");
         if (existing + bait.getCount() > 999) return false;
@@ -101,7 +101,7 @@ public class ItemFishingRod extends ItemTool<ItemFishingRod> {
         return new ActionResult<>(EnumActionResult.FAIL, stack);
     }
 
-    public int getMinimumFishSize(ItemStack held) {
+    public int getMinimumFishSize(@Nonnull ItemStack held) {
         switch (getTier(held)) {
             case BASIC:
             case COPPER:
@@ -120,7 +120,7 @@ public class ItemFishingRod extends ItemTool<ItemFishingRod> {
         }
     }
 
-    public int getMaximumFishSize(ItemStack held) {
+    public int getMaximumFishSize(@Nonnull ItemStack held) {
         switch (getTier(held)) {
             case BASIC:
                 return SMALL_FISH;

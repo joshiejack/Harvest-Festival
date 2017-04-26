@@ -21,6 +21,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidActionResult;
 import net.minecraftforge.fluids.FluidUtil;
 
+import javax.annotation.Nonnull;
 import java.util.Locale;
 
 import static joshie.harvest.crops.HFCrops.SPRINKLER_DRAIN_RATE;
@@ -45,6 +46,7 @@ public class BlockSprinkler extends BlockHFEnum<BlockSprinkler, Sprinkler> {
 
     @SuppressWarnings("deprecation")
     @Override
+    @Nonnull
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
         if (getEnumFromState(state) == Sprinkler.IRON) return IRON_AABB;
         else return OLD_AABB;
@@ -52,7 +54,7 @@ public class BlockSprinkler extends BlockHFEnum<BlockSprinkler, Sprinkler> {
 
     @SuppressWarnings("deprecation")
     @Override
-    public AxisAlignedBB getCollisionBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos) {
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState state, @Nonnull IBlockAccess world, @Nonnull BlockPos pos) {
         return NULL_AABB;
     }
 
@@ -81,12 +83,12 @@ public class BlockSprinkler extends BlockHFEnum<BlockSprinkler, Sprinkler> {
     }
 
     @Override
-    public TileEntity createTileEntity(World world, IBlockState state) {
+    public TileEntity createTileEntity(@Nonnull World world, @Nonnull IBlockState state) {
         return getEnumFromState(state) == Sprinkler.IRON ? new TileSprinkler() : new TileSprinklerOld();
     }
 
     @Override
-    public int getSortValue(ItemStack stack) {
+    public int getSortValue(@Nonnull ItemStack stack) {
         return CreativeSort.TROUGH;
     }
 }

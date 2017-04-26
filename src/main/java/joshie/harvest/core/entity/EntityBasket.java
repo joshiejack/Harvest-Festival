@@ -41,6 +41,7 @@ public class EntityBasket extends Entity {
         }
     }
 
+    @Nonnull
     public ItemStack getEntityItem()  {
         return getDataManager().get(ITEM);
     }

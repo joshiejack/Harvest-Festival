@@ -51,7 +51,7 @@ public class BakedLeaves extends BakedHF {
     @Override
     public List<BakedQuad> getQuads(final @Nullable IBlockState state, final @Nullable EnumFacing side, final long rand) {
         List<BakedQuad> quads = new ArrayList<>();
-        if (MCClientHelper.getMinecraft().gameSettings.fancyGraphics) base.getQuads(state, side, rand).stream().forEachOrdered(quads::add);
+        if (MCClientHelper.getMinecraft().gameSettings.fancyGraphics) quads.addAll(base.getQuads(state, side, rand));
         else base.getQuads(state, side, rand).stream().map(quad -> new BakedQuadRetextured(quad, sprite)).forEachOrdered(quads::add);
         if (HFApi.calendar.getDate(MCClientHelper.getWorld()).getSeason() == Season.SPRING) {
             BakedLeaves.super.getQuads(state, side, rand).stream().map(BakedTintedQuad :: new).forEachOrdered(quads::add);

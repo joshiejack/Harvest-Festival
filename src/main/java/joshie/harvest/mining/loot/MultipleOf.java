@@ -6,6 +6,8 @@ import net.minecraft.util.JsonUtils;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.storage.loot.conditions.LootCondition;
 
+import javax.annotation.Nonnull;
+
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 
 public class MultipleOf extends FloorCondition {
@@ -28,14 +30,15 @@ public class MultipleOf extends FloorCondition {
             super(new ResourceLocation(MODID, "multiple"), MultipleOf.class);
         }
 
-        public void serialize(JsonObject json, MultipleOf value, JsonSerializationContext context) {
+        public void serialize(@Nonnull JsonObject json, @Nonnull MultipleOf value, @Nonnull JsonSerializationContext context) {
             json.addProperty("of", value.multiple);
             if (value.reverse) {
                 json.addProperty("reverse", true);
             }
         }
 
-        public MultipleOf deserialize(JsonObject json, JsonDeserializationContext context) {
+        @Nonnull
+        public MultipleOf deserialize(@Nonnull JsonObject json, @Nonnull JsonDeserializationContext context) {
             return new MultipleOf(JsonUtils.getInt(json, "of", 0), JsonUtils.getBoolean(json, "reverse", false));
         }
     }

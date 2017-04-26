@@ -6,6 +6,7 @@ import joshie.harvest.core.util.interfaces.ISizeable;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
 
+import javax.annotation.Nonnull;
 import java.util.Locale;
 
 public class ItemAnimalProduct extends ItemHFSizeable<ItemAnimalProduct, Sizeable> {
@@ -14,7 +15,7 @@ public class ItemAnimalProduct extends ItemHFSizeable<ItemAnimalProduct, Sizeabl
     }
 
     @Override
-    public int getHealAmount(ItemStack stack) {
+    public int getHealAmount(@Nonnull ItemStack stack) {
         switch (getEnumFromStack(stack)) {
             case EGG:
             case MAYONNAISE:
@@ -27,7 +28,7 @@ public class ItemAnimalProduct extends ItemHFSizeable<ItemAnimalProduct, Sizeabl
     }
 
     @Override
-    public float getSaturationModifier(ItemStack stack) {
+    public float getSaturationModifier(@Nonnull ItemStack stack) {
         switch (getEnumFromStack(stack)) {
             case EGG:
                 return 0.8F;

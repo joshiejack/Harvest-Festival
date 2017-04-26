@@ -50,7 +50,8 @@ public abstract class ItemHFFoodEnum<I extends ItemHFFoodEnum, E extends Enum<E>
 
     @Override
     @SuppressWarnings("unchecked")
-    public I setUnlocalizedName(String name) {
+    @Nonnull
+    public I setUnlocalizedName(@Nonnull String name) {
         super.setUnlocalizedName(name);
         return (I) this;
     }
@@ -60,7 +61,7 @@ public abstract class ItemHFFoodEnum<I extends ItemHFFoodEnum, E extends Enum<E>
         return damage;
     }
 
-    public E getEnumFromStack(ItemStack stack) {
+    public E getEnumFromStack(@Nonnull ItemStack stack) {
         if (stack.getItem() != this) return null;
 
         return getEnumFromMeta(stack.getItemDamage());
@@ -74,25 +75,30 @@ public abstract class ItemHFFoodEnum<I extends ItemHFFoodEnum, E extends Enum<E>
         return values[meta];
     }
 
+    @Nonnull
     public ItemStack getStackFromEnum(E e) {
         return new ItemStack(this, 1, e.ordinal());
     }
 
+    @Nonnull
     public ItemStack getStackFromEnum(E e, int size) {
         return new ItemStack(this, size, e.ordinal());
     }
 
+    @Nonnull
     public ItemStack getStackFromEnumString(String name) {
         return getStackFromEnum(Enum.valueOf(enumClass, name.toUpperCase()));
     }
 
     @Override
+    @Nonnull
     public String getUnlocalizedName(ItemStack stack) {
         return prefix + "_" + getEnumFromStack(stack).name().toLowerCase(Locale.ENGLISH);
     }
 
     @Override
-    public String getItemStackDisplayName(ItemStack stack) {
+    @Nonnull
+    public String getItemStackDisplayName(@Nonnull ItemStack stack) {
         return TextHelper.translate(getUnlocalizedName(stack).replaceAll("(.)([A-Z])", "$1$2").toLowerCase(Locale.ENGLISH).replace("_", "."));
     }
 
@@ -101,6 +107,7 @@ public abstract class ItemHFFoodEnum<I extends ItemHFFoodEnum, E extends Enum<E>
         return CreativeSort.NONE;
     }
 
+    @Nonnull
     protected ItemStack getCreativeStack(E e) {
         return new ItemStack(this, 1, e.ordinal());
     }
@@ -110,7 +117,7 @@ public abstract class ItemHFFoodEnum<I extends ItemHFFoodEnum, E extends Enum<E>
     public void getSubItems(@Nonnull Item item, CreativeTabs tab, NonNullList<ItemStack> list) {
         for (E e: values) {
             ItemStack stack = getCreativeStack(e);
-            if (stack != null) list.add(stack);
+            if (!stack.isEmpty()) list.add(stack);
         }
     }
 

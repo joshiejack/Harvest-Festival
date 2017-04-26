@@ -14,6 +14,7 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 /** Just a way to interact with the fridge inventory, the fridge inventory is global though, not stored in this block **/
 public class TileFridge extends TileFaceable implements ITickable, IFridge {
@@ -29,7 +30,7 @@ public class TileFridge extends TileFaceable implements ITickable, IFridge {
     protected final FridgeData data = new FridgeData(this);
     protected final InvWrapper handler = new InvWrapper(data);
 
-    public static boolean isValid(ItemStack stack) {
+    public static boolean isValid(@Nonnull ItemStack stack) {
         return stack.getItem() == HFCooking.MEAL || HFApi.cooking.isIngredient(stack) || (stack.getItem() instanceof ItemFood && ((ItemFood)stack.getItem()).getHealAmount(stack) > 0);
     }
 
@@ -98,14 +99,14 @@ public class TileFridge extends TileFaceable implements ITickable, IFridge {
     }
 
     @Override
-    public boolean hasCapability(@Nonnull Capability<?> capability, @Nonnull EnumFacing facing) {
+    public boolean hasCapability(@Nonnull Capability<?> capability, @Nullable EnumFacing facing) {
         return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY || super.hasCapability(capability, facing);
     }
 
     @SuppressWarnings("unchecked")
     @Override
     @Nonnull
-    public <T> T getCapability(@Nonnull Capability<T> capability, @Nonnull EnumFacing facing) {
+    public <T> T getCapability(@Nonnull Capability<T> capability, @Nullable EnumFacing facing) {
         if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
             return (T) handler;
         return super.getCapability(capability, facing);

@@ -8,6 +8,8 @@ import joshie.harvest.fishing.item.ItemJunk.Junk;
 import joshie.harvest.mining.HFMining;
 import net.minecraft.item.ItemStack;
 
+import javax.annotation.Nonnull;
+
 import static joshie.harvest.api.core.MatchType.PREFIX;
 
 public class CollectionHelper {
@@ -24,15 +26,15 @@ public class CollectionHelper {
         ORE.register(Ore.of("gem").setType(PREFIX));
     }
 
-    public static boolean isInFishCollection(ItemStack stack) {
+    public static boolean isInFishCollection(@Nonnull ItemStack stack) {
         return FISH.contains(stack);
     }
 
-    public static boolean isInMiningCollection(ItemStack stack) {
+    public static boolean isInMiningCollection(@Nonnull ItemStack stack) {
         return ORE.contains(stack);
     }
 
-    public static boolean isInCookingCollection(ItemStack stack) {
+    public static boolean isInCookingCollection(@Nonnull ItemStack stack) {
         for (Recipe recipe: Recipe.REGISTRY.values()) {
                 if (stack.isItemEqual(recipe.getStack())) return true;
         }
@@ -40,7 +42,7 @@ public class CollectionHelper {
         return false;
     }
 
-    public static boolean isInShippingCollection(ItemStack stack) {
+    public static boolean isInShippingCollection(@Nonnull ItemStack stack) {
         return !isInFishCollection(stack) && !isInMiningCollection(stack) && !isInCookingCollection(stack);
     }
 }

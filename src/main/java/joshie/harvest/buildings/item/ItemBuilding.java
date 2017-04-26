@@ -80,12 +80,13 @@ public class ItemBuilding extends ItemHFRegistry<ItemBuilding, Building> impleme
     }
 
     @Override
-    public String getItemStackDisplayName(ItemStack stack) {
+    @Nonnull
+    public String getItemStackDisplayName(@Nonnull ItemStack stack) {
         return TextHelper.format("harvestfestival.structures.spawn", getObjectFromStack(stack).getLocalisedName());
     }
 
     @Override
-    public int getSortValue(ItemStack stack) {
+    public int getSortValue(@Nonnull ItemStack stack) {
         return 200;
     }
 }

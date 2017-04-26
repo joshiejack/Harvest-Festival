@@ -6,6 +6,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 
+import javax.annotation.Nonnull;
+
 public class StackSold extends AbstractDataHolder<StackSold> {
     private final Item item;
     private final int meta;
@@ -19,10 +21,11 @@ public class StackSold extends AbstractDataHolder<StackSold> {
         this.sell = sell;
     }
 
-    public static StackSold of(ItemStack stack, long sell) {
+    public static StackSold of(@Nonnull ItemStack stack, long sell) {
         return new StackSold(stack.getItem(), stack.getItemDamage(), stack.getCount(), sell);
     }
 
+    @Nonnull
     public ItemStack getStack() {
         return new ItemStack(item, amount, meta);
     }

@@ -18,6 +18,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+import javax.annotation.Nonnull;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -148,7 +149,7 @@ public class GuiCookbook extends GuiScreen {
         fontRendererObj.drawSplitString(text, centreX + x, centreY + y, 120, 4210752);
     }
 
-    void drawStack(int x, int y, ItemStack stack, float scale) {
+    void drawStack(int x, int y, @Nonnull ItemStack stack, float scale) {
         StackRenderHelper.drawStack(stack, centreX + x, centreY + y, scale);
     }
 

@@ -3,10 +3,10 @@ package joshie.harvest.core.util.holders;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 
-import java.util.ArrayList;
-import java.util.List;
+import javax.annotation.Nonnull;
 
 public class ItemHolder extends AbstractItemHolder {
     private final Item item;
@@ -20,15 +20,15 @@ public class ItemHolder extends AbstractItemHolder {
     }
 
     @Override
-    public boolean matches(ItemStack stack) {
+    public boolean matches(@Nonnull ItemStack stack) {
         return stack.getItem() == item;
     }
 
     @Override
-    public List<ItemStack> getMatchingStacks() {
+    public NonNullList<ItemStack> getMatchingStacks() {
         if (matchingStacks != null && matchingStacks.size() > 0) return matchingStacks;
         else {
-            matchingStacks = new ArrayList<>();
+            matchingStacks = NonNullList.create();
             matchingStacks.add(new ItemStack(item));
             return matchingStacks;
         }

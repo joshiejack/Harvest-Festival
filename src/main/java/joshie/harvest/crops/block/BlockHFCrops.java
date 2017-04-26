@@ -28,6 +28,7 @@ import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -105,6 +106,7 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
     }
 
     @SideOnly(Side.CLIENT)
+    @Nonnull
     public BlockRenderLayer getBlockLayer() {
         return BlockRenderLayer.CUTOUT;
     }
@@ -167,8 +169,9 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
     }
 
     @Override
+    @Nonnull
     public Item getItemDropped(IBlockState state, Random rand, int fortune) {
-        return null;
+        return Items.AIR;
     }
 
     @SuppressWarnings("unchecked")

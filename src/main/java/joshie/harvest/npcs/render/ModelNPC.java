@@ -7,6 +7,9 @@ import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.EnumHandSide;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
 public class ModelNPC extends ModelBiped {
     private final boolean smallArms;
 
@@ -30,7 +33,7 @@ public class ModelNPC extends ModelBiped {
     }
 
     @Override
-    public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity) {
+    public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, @Nullable Entity entity) {
         super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
         setAnglesBasedOnMode((EntityNPC) entity);
     }
@@ -44,7 +47,7 @@ public class ModelNPC extends ModelBiped {
     }
 
     @Override
-    public void postRenderArm(float scale, EnumHandSide side) {
+    public void postRenderArm(float scale, @Nonnull EnumHandSide side) {
         ModelRenderer modelrenderer = this.getArmForSide(side);
 
         if (smallArms) {

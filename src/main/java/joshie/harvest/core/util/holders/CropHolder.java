@@ -5,10 +5,10 @@ import joshie.harvest.api.crops.Crop;
 import joshie.harvest.crops.CropRegistry;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 
-import java.util.ArrayList;
-import java.util.List;
+import javax.annotation.Nonnull;
 
 public class CropHolder extends AbstractItemHolder {
     private final Crop crop;
@@ -22,14 +22,14 @@ public class CropHolder extends AbstractItemHolder {
     }
 
     @Override
-    public List<ItemStack> getMatchingStacks() {
-        matchingStacks = new ArrayList<>();
+    public NonNullList<ItemStack> getMatchingStacks() {
+        matchingStacks = NonNullList.create();
         matchingStacks.addAll(CropRegistry.INSTANCE.getStacksForCrop(crop));
         return matchingStacks;
     }
 
     @Override
-    public boolean matches(ItemStack stack) {
+    public boolean matches(@Nonnull ItemStack stack) {
         Crop container = HFApi.crops.getCropFromStack(stack);
         return container != null && container == crop;
     }

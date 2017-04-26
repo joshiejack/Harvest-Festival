@@ -22,6 +22,7 @@ import net.minecraft.item.ItemStack;
 import org.apache.logging.log4j.Level;
 import org.lwjgl.input.Keyboard;
 
+import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -37,11 +38,11 @@ public class PageShipping extends PageCollection {
         super("shipping", HFCrops.CROP.getStackFromEnum(Crops.STRAWBERRY));
     }
 
-    PageShipping(String string, ItemStack stack) {
+    PageShipping(String string, @Nonnull ItemStack stack) {
         super(string, stack);
     }
 
-    boolean qualifies(ItemStack stack) {
+    boolean qualifies(@Nonnull ItemStack stack) {
         return isInShippingCollection(stack);
     }
 

@@ -11,6 +11,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
+import javax.annotation.Nonnull;
 import java.util.Collection;
 
 public class HolderRegistrySet {
@@ -75,7 +76,7 @@ public class HolderRegistrySet {
         }
     }
 
-    public boolean contains(ItemStack stack) {
+    public boolean contains(@Nonnull ItemStack stack) {
         Collection<AbstractItemHolder> holders = setMap.get(stack.getItem());
         for (AbstractItemHolder holder: holders) {
             if (holder.matches(stack)) {
@@ -86,7 +87,7 @@ public class HolderRegistrySet {
         return false;
     }
 
-    private AbstractItemHolder getHolder(ItemStack stack) {
+    private AbstractItemHolder getHolder(@Nonnull ItemStack stack) {
         if (stack.getItemDamage() == OreDictionary.WILDCARD_VALUE) return ItemHolder.of(stack.getItem());
         else if (stack.getItem() instanceof ItemHFSizeable) return SizeableHolder.of(stack);
         else if (HFApi.crops.getCropFromStack(stack) != null) return CropHolder.of(HFApi.crops.getCropFromStack(stack));

@@ -11,6 +11,8 @@ import net.minecraft.item.ItemStack;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 
+import javax.annotation.Nonnull;
+
 import static joshie.harvest.plugins.crafttweaker.CraftTweaker.asStack;
 
 @ZenClass("mods.harvestfestival.Blacklist")
@@ -19,14 +21,15 @@ public class Blacklist {
     @SuppressWarnings("unused")
     public static void blacklistSeeds(IItemStack drop) {
         ItemStack stack = asStack(drop);
-        if (stack == null) CraftTweaker.logError("Could not blacklist seeds as the item was null");
+        if (stack.isEmpty()) CraftTweaker.logError("Could not blacklist seeds as the item was null");
         else MineTweakerAPI.apply(new BlacklistSeeds(stack));
     }
 
     private static class BlacklistSeeds extends BaseUndoable {
+        @Nonnull
         private final ItemStack item;
 
-        BlacklistSeeds(ItemStack drop) {
+        BlacklistSeeds(@Nonnull ItemStack drop) {
             this.item = drop;
         }
 
@@ -53,14 +56,15 @@ public class Blacklist {
     @SuppressWarnings("unused")
     public static void blacklistHoe(IItemStack drop) {
         ItemStack stack = asStack(drop);
-        if (stack == null) CraftTweaker.logError("Could not blacklist seeds as the item was null");
+        if (stack.isEmpty()) CraftTweaker.logError("Could not blacklist seeds as the item was null");
         else MineTweakerAPI.apply(new BlacklistHoe(stack));
     }
 
     private static class BlacklistHoe extends BaseUndoable {
+        @Nonnull
         private final ItemStack item;
 
-        BlacklistHoe(ItemStack drop) {
+        BlacklistHoe(@Nonnull ItemStack drop) {
             this.item = drop;
         }
 
@@ -86,14 +90,15 @@ public class Blacklist {
     @SuppressWarnings("unused")
     public static void blacklistGiftable(IItemStack drop) {
         ItemStack stack = asStack(drop);
-        if (stack == null) CraftTweaker.logError("Could not prevent an item from being gifted as it was null");
+        if (stack.isEmpty()) CraftTweaker.logError("Could not prevent an item from being gifted as it was null");
         else MineTweakerAPI.apply(new BlacklistGifted(stack));
     }
 
     private static class BlacklistGifted extends BaseOnce {
+        @Nonnull
         private final ItemStack item;
 
-        BlacklistGifted(ItemStack drop) {
+        BlacklistGifted(@Nonnull ItemStack drop) {
             this.item = drop;
         }
 

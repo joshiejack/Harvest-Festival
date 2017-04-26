@@ -6,6 +6,8 @@ import net.minecraft.util.JsonUtils;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.storage.loot.conditions.LootCondition;
 
+import javax.annotation.Nonnull;
+
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 
 public class EndsIn extends FloorCondition {
@@ -25,11 +27,12 @@ public class EndsIn extends FloorCondition {
             super(new ResourceLocation(MODID, "ends"), EndsIn.class);
         }
 
-        public void serialize(JsonObject json, EndsIn value, JsonSerializationContext context) {
+        public void serialize(@Nonnull JsonObject json, @Nonnull EndsIn value, @Nonnull JsonSerializationContext context) {
             json.addProperty("in", value.in);
         }
 
-        public EndsIn deserialize(JsonObject json, JsonDeserializationContext context) {
+        @Nonnull
+        public EndsIn deserialize(@Nonnull JsonObject json, @Nonnull JsonDeserializationContext context) {
             return new EndsIn(JsonUtils.getInt(json, "in", 0));
         }
     }

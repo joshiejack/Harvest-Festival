@@ -12,6 +12,7 @@ import net.minecraft.world.storage.loot.LootContext;
 import net.minecraft.world.storage.loot.conditions.LootCondition;
 import net.minecraft.world.storage.loot.functions.LootFunction;
 
+import javax.annotation.Nonnull;
 import java.util.Locale;
 import java.util.Random;
 
@@ -31,7 +32,8 @@ public class SetSizeable extends LootFunction {
 
     @Override
     @SuppressWarnings("unchecked")
-    public ItemStack apply(ItemStack stack, Random rand, LootContext context) {
+    @Nonnull
+    public ItemStack apply(@Nonnull ItemStack stack, @Nonnull Random rand, @Nonnull LootContext context) {
         if (stack.getItem() instanceof ISizedProvider) {
             ISizedProvider provider = (ISizedProvider)stack.getItem();
             return provider.getStackOfSize(object, size, 1);
@@ -43,13 +45,14 @@ public class SetSizeable extends LootFunction {
             super(new ResourceLocation("hf_set_sizeable"), SetSizeable.class);
         }
 
-        public void serialize(JsonObject object, SetSizeable functionClazz, JsonSerializationContext serializationContext) {
+        public void serialize(@Nonnull JsonObject object, @Nonnull SetSizeable functionClazz, @Nonnull JsonSerializationContext serializationContext) {
             object.addProperty("item", ((Item)functionClazz.provider).getRegistryName().toString());
             object.addProperty("object", functionClazz.object.toString());
             object.addProperty("size", functionClazz.size.name());
         }
 
-        public SetSizeable deserialize(JsonObject object, JsonDeserializationContext deserializationContext, LootCondition[] conditionsIn) {
+        @Nonnull
+        public SetSizeable deserialize(@Nonnull JsonObject object, @Nonnull JsonDeserializationContext deserializationContext, @Nonnull LootCondition[] conditionsIn) {
             return new SetSizeable(conditionsIn, object.get("item").getAsString(), object.get("object").getAsString(), object.get("size").getAsString());
         }
     }

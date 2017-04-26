@@ -16,6 +16,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
+import javax.annotation.Nonnull;
 import java.util.Set;
 
 import static joshie.harvest.api.calendar.Season.AUTUMN;
@@ -37,6 +38,7 @@ public class QuestMeetJenni extends QuestMeeting {
     }
 
     @Override
+    @Nonnull
     public ItemStack getCurrentIcon(World world, EntityPlayer player) {
         if (!hasBuilding(player)) return buildingStack;
         else return super.getCurrentIcon(world, player);

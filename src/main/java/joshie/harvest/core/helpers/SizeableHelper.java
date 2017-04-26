@@ -1,6 +1,5 @@
 package joshie.harvest.core.helpers;
 
-import com.google.common.collect.Lists;
 import joshie.harvest.animals.HFAnimals;
 import joshie.harvest.animals.item.ItemAnimalProduct.Sizeable;
 import joshie.harvest.api.animals.AnimalStats;
@@ -9,15 +8,16 @@ import joshie.harvest.api.core.Size;
 import joshie.harvest.api.player.RelationshipType;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.util.List;
 import java.util.NavigableMap;
 import java.util.TreeMap;
 
 public class SizeableHelper {
-    public static List<ItemStack> getSizeablesForDisplay(AnimalStats stats, Sizeable type) {
-        List<ItemStack> list = Lists.newArrayList();
+    public static NonNullList<ItemStack> getSizeablesForDisplay(AnimalStats stats, Sizeable type) {
+        NonNullList<ItemStack> list = NonNullList.create();
         for (Size size: Size.values()) {
             int value = RelationshipType.ANIMAL.getMaximumRP() -(RelationshipType.ANIMAL.getMaximumRP() -(stats.getHappiness() - size.getRelationshipRequirement()));
             if (value > 0 || (size == Size.LARGE && stats.performTest(AnimalTest.WON_CONTEST) && stats.getHappiness() >= (Size.LARGE.getRelationshipRequirement() + 3000))) {
@@ -33,18 +33,22 @@ public class SizeableHelper {
         return list;
     }
 
+    @Nonnull
     public static ItemStack getMilk(AnimalStats stats) {
         return SizeableHelper.getSizeable(stats, Sizeable.MILK, stats.getProductsPerDay());
     }
 
+    @Nonnull
     public static ItemStack getWool(AnimalStats stats) {
         return SizeableHelper.getSizeable(stats, Sizeable.WOOL, stats.getProductsPerDay());
     }
 
+    @Nonnull
     public static ItemStack getEgg(AnimalStats stats) {
         return SizeableHelper.getSizeable(stats, Sizeable.EGG, 1);
     }
 
+    @Nonnull
     private static ItemStack getSizeable(AnimalStats stats, Sizeable sizeable, int size) {
         if (stats.performTest(AnimalTest.WON_CONTEST) && stats.getHappiness() >= (Size.LARGE.getRelationshipRequirement() + 3000) && stats.getAnimal().world.rand.nextInt(100) == 0) {
             return sizeable.getStackOfSize(HFAnimals.ANIMAL_PRODUCT, Size.LARGE, size);

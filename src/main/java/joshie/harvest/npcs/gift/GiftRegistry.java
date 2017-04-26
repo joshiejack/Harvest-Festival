@@ -48,7 +48,7 @@ public class GiftRegistry implements IGiftRegistry {
     }
 
     @Override
-    public boolean isGiftType(ItemStack stack, GiftCategory categories) {
+    public boolean isGiftType(@Nonnull ItemStack stack, GiftCategory categories) {
         return registry.matches(stack, categories);
     }
 }

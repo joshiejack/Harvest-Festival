@@ -200,7 +200,7 @@ public class NBTHelper {
         return stack;
     }
 
-    public static NBTTagCompound writeItemStack(ItemStack stack, NBTTagCompound nbt) {
+    public static NBTTagCompound writeItemStack(@Nonnull ItemStack stack, NBTTagCompound nbt) {
         ResourceLocation resourcelocation = Item.REGISTRY.getNameForObject(stack.getItem());
         nbt.setString("id", resourcelocation == null ? "minecraft:air" : resourcelocation.toString());
         nbt.setInteger("Count", stack.getCount());
@@ -224,7 +224,7 @@ public class NBTHelper {
                     object.deserializeNBT(tag);
                     object.buildMap(map);
                 }
-            } catch (InstantiationException | IllegalAccessException ex) {}
+            } catch (InstantiationException | IllegalAccessException ignored) {}
         }
     }
 

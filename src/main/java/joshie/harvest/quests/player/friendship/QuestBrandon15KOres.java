@@ -8,6 +8,7 @@ import joshie.harvest.quests.base.QuestFriendshipStore;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
+import javax.annotation.Nonnull;
 import java.util.Set;
 
 @HFQuest("friendship.brandon.ore")
@@ -27,6 +28,7 @@ public class QuestBrandon15KOres extends QuestFriendshipStore {
     }
 
     @Override
+    @Nonnull
     protected ItemStack getRewardStack() {
         return new ItemStack(Items.DIAMOND, 1, 3);
     }

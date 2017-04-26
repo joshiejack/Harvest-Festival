@@ -2,14 +2,14 @@ package joshie.harvest.core.util.holders;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.NonNullList;
 
 import javax.annotation.Nonnull;
-import java.util.List;
 
 public abstract class AbstractItemHolder extends AbstractHolder implements Comparable<AbstractItemHolder> {
-    protected List<ItemStack> matchingStacks;
-    public abstract List<ItemStack> getMatchingStacks();
-    public abstract boolean matches(ItemStack stack);
+    protected NonNullList<ItemStack> matchingStacks;
+    public abstract NonNullList<ItemStack> getMatchingStacks();
+    public abstract boolean matches(@Nonnull ItemStack stack);
     public abstract NBTTagCompound writeToNBT(NBTTagCompound tag);
 
     @Override

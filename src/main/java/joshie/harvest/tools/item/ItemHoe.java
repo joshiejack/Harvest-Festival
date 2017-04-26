@@ -87,7 +87,7 @@ public class ItemHoe extends ItemToolChargeable<ItemHoe> {
 
     @Override
     @Nonnull
-    public Multimap<String, AttributeModifier> getAttributeModifiers(EntityEquipmentSlot slot, ItemStack stack) {
+    public Multimap<String, AttributeModifier> getAttributeModifiers(@Nonnull EntityEquipmentSlot slot, @Nonnull ItemStack stack) {
         Multimap<String, AttributeModifier> multimap = super.getAttributeModifiers(slot, stack);
         ToolTier tier = getTier(stack);
         if (slot == EntityEquipmentSlot.MAINHAND) {
@@ -98,14 +98,14 @@ public class ItemHoe extends ItemToolChargeable<ItemHoe> {
         return multimap;
     }
 
-    protected void setBlock(ItemStack stack, EntityPlayer player, World world, BlockPos pos, IBlockState state) {
+    protected void setBlock(@Nonnull ItemStack stack, EntityPlayer player, World world, BlockPos pos, IBlockState state) {
         doParticles(stack, player, world, pos);
         if (!world.isRemote) {
             world.setBlockState(pos, state, 11);
         }
     }
 
-    private int onHoeUse(ItemStack stack, EntityPlayer player, World worldIn, BlockPos pos) {
+    private int onHoeUse(@Nonnull ItemStack stack, EntityPlayer player, World worldIn, BlockPos pos) {
         UseHoeEvent event = new UseHoeEvent(player, stack, worldIn, pos);
         if (MinecraftForge.EVENT_BUS.post(event)) return -1;
         if (event.getResult() == Result.ALLOW) {
@@ -118,7 +118,7 @@ public class ItemHoe extends ItemToolChargeable<ItemHoe> {
         return 0;
     }
 
-    public EnumActionResult getHoeResult(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumFacing facing) {
+    public EnumActionResult getHoeResult(@Nonnull ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumFacing facing) {
         if (!playerIn.canPlayerEdit(pos.offset(facing), facing, stack)) {
             return EnumActionResult.FAIL;
         } else {
@@ -155,7 +155,7 @@ public class ItemHoe extends ItemToolChargeable<ItemHoe> {
     }
 
     @SuppressWarnings("ConstantConditions")
-    public ImmutableList<BlockPos> getBlocks(World world, BlockPos pos, EntityPlayer player, ItemStack tool) {
+    public ImmutableList<BlockPos> getBlocks(World world, BlockPos pos, EntityPlayer player, @Nonnull ItemStack tool) {
         ToolTier tier = getTier(tool);
         if (tier == ToolTier.BASIC || player.isSneaking()) return ImmutableList.of(pos);
 
@@ -183,7 +183,7 @@ public class ItemHoe extends ItemToolChargeable<ItemHoe> {
     }
 
     @Override
-    protected void onFinishedCharging(World world, EntityLivingBase entity, @Nullable RayTraceResult result, ItemStack stack, ToolTier tier) {
+    protected void onFinishedCharging(World world, EntityLivingBase entity, @Nullable RayTraceResult result, @Nonnull ItemStack stack, ToolTier tier) {
         if (result != null && entity instanceof EntityPlayer) {
             EntityPlayer player = (EntityPlayer) entity;
             BlockPos pos = result.getBlockPos();
@@ -212,7 +212,7 @@ public class ItemHoe extends ItemToolChargeable<ItemHoe> {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean flag) {
+    public void addInformation(@Nonnull ItemStack stack, EntityPlayer player, List<String> list, boolean flag) {
         super.addInformation(stack, player, list, flag);
         int charge = getCharge(stack);
         ToolTier thisTier = getTier(stack);
@@ -228,7 +228,7 @@ public class ItemHoe extends ItemToolChargeable<ItemHoe> {
     }
 
     @Override
-    protected String getLevelName(ItemStack stack, int charges) {
+    protected String getLevelName(@Nonnull ItemStack stack, int charges) {
         int maximum = getMaxCharge(stack);
         int charge = getCharge(stack);
         int newCharge = Math.min(maximum, charge + charges);

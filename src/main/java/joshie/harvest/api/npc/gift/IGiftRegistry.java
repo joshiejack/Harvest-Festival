@@ -2,6 +2,8 @@ package joshie.harvest.api.npc.gift;
 
 import net.minecraft.item.ItemStack;
 
+import javax.annotation.Nonnull;
+
 public interface IGiftRegistry {
     /** Blacklist an item, this means it cannot be gifted
      * @param object the objects
@@ -29,5 +31,5 @@ public interface IGiftRegistry {
      *  @param categories     the categories to check
      *  @param stack         the item to check
      *  @return true if the stack is of the category */
-    boolean isGiftType(ItemStack stack, GiftCategory categories);
+    boolean isGiftType(@Nonnull ItemStack stack, GiftCategory categories);
 }

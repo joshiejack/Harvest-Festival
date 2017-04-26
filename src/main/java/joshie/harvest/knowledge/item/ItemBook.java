@@ -53,7 +53,7 @@ public class ItemBook extends ItemHFEnum<ItemBook, Book> implements ICreativeSor
     }
 
     @Override
-    public int getSortValue(ItemStack stack) {
+    public int getSortValue(@Nonnull ItemStack stack) {
         return 1000;
     }
 }

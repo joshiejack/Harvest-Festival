@@ -1,6 +1,5 @@
 package joshie.harvest.cooking.recipe;
 
-import com.google.common.collect.Lists;
 import gnu.trove.map.TObjectIntMap;
 import gnu.trove.map.hash.TObjectIntHashMap;
 import joshie.harvest.api.cooking.Ingredient;
@@ -9,7 +8,9 @@ import joshie.harvest.api.cooking.Recipe;
 import joshie.harvest.core.helpers.StackHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.NonNullList;
 
+import javax.annotation.Nonnull;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -26,7 +27,7 @@ public class RecipeBuilder {
     private int stackSize;
     private long cost;
 
-    public List<ItemStack> build(Recipe recipe, List<IngredientStack> ingredients) {
+    public NonNullList<ItemStack> build(Recipe recipe, List<IngredientStack> ingredients) {
         //We can and will end up with recipes in the required and optional list
         required = toRequired.toList(recipe, ingredients);
         optional = toOptional.toList(recipe, ingredients);
@@ -55,7 +56,7 @@ public class RecipeBuilder {
         if (required.size() == 0 || !recipe.supportsNBTData()) return build(recipe.getStack(), recipe.supportsNBTData());
         else {
             //Now we need to work out the additional stats for the last bit of food
-            List<ItemStack> ret = new ArrayList<>();
+            NonNullList<ItemStack> ret = NonNullList.create();
             if (stackSize > 1) ret.add(setFoodStats(StackHelper.toStack(recipe.getStack(), stackSize - 1), hunger, saturation, cost));
             //Added the basic recipes, now we need to work out the final oddball stack to add
             float multiplier = 1F;
@@ -71,13 +72,14 @@ public class RecipeBuilder {
         }
     }
 
-    private List<ItemStack> build(ItemStack basicStack, boolean supportsNBTData) {
-        if (!supportsNBTData) return Lists.newArrayList(StackHelper.toStack(basicStack, basicStack.getCount() * stackSize));
-        else return Lists.newArrayList(setFoodStats(StackHelper.toStack(basicStack, stackSize), hunger, saturation, cost));
+    private NonNullList<ItemStack> build(ItemStack basicStack, boolean supportsNBTData) {
+        if (!supportsNBTData) return NonNullList.withSize(1, StackHelper.toStack(basicStack, basicStack.getCount() * stackSize));
+        else return NonNullList.withSize(1, setFoodStats(StackHelper.toStack(basicStack, stackSize), hunger, saturation, cost));
     }
 
     @SuppressWarnings("ConstantConditions")
-    public static ItemStack setFoodStats(ItemStack stack, int hunger, float saturation, long cost) {
+    @Nonnull
+    public static ItemStack setFoodStats(@Nonnull ItemStack stack, int hunger, float saturation, long cost) {
         if (!stack.hasTagCompound()) stack.setTagCompound(new NBTTagCompound());
         NBTTagCompound tag = stack.getTagCompound();
         tag.setInteger(FOOD_LEVEL, hunger);

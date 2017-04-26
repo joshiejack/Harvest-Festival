@@ -48,6 +48,7 @@ public class NPCHelper implements INPCHelper {
     }
 
     @Override
+    @Nonnull
     public ItemStack getStackForNPC(NPC npc) {
         return HFNPCs.SPAWNER_NPC.getStackFromObject(npc);
     }
@@ -115,7 +116,7 @@ public class NPCHelper implements INPCHelper {
         return !npc.isBusy() && isShopOpen(npc, world, player) ? GuiHandler.SHOP_WELCOME: GuiHandler.NPC;
     }
 
-    public static Quality getGiftValue(NPC npc, ItemStack stack) {
+    public static Quality getGiftValue(NPC npc, @Nonnull ItemStack stack) {
         if (stack.getItem() == HFCooking.MEAL && !stack.hasTagCompound()) return Quality.DISLIKE;
         else return npc.getGiftValue(stack);
     }

@@ -17,7 +17,9 @@ import javax.annotation.Nonnull;
 
 @SideOnly(Side.CLIENT)
 public class SpecialRendererTrap extends TileSpecialRendererItem<TileTrap> {
+    @Nonnull
     private static final ItemStack SPEECH = HFNPCs.TOOLS.getStackFromEnum(NPCTool.SPEECH);
+    @Nonnull
     private static final ItemStack STICK = new ItemStack(Items.STICK);
     private static final Item WOOD = Item.getItemFromBlock(HFGathering.WOOD);
 
@@ -25,7 +27,7 @@ public class SpecialRendererTrap extends TileSpecialRendererItem<TileTrap> {
     public void renderTileEntityAt(@Nonnull TileTrap tile, double x, double y, double z, float tick, int destroyStage) {
         if (!tile.isBaited()) {
             ItemStack stack = tile.getStack();
-            if (stack != null) {
+            if (!stack.isEmpty()) {
                 GlStateManager.pushMatrix();
                 GlStateManager.translate(x, y, z);
                 renderItem(SPEECH, 0F, 0F, 0F, 0F);

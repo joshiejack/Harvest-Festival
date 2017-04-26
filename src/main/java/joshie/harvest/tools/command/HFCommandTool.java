@@ -10,6 +10,8 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
 
+import javax.annotation.Nonnull;
+
 @HFCommand
 @SuppressWarnings("unused")
 public class HFCommandTool extends AbstractHFCommand {
@@ -23,8 +25,8 @@ public class HFCommandTool extends AbstractHFCommand {
         return "/hf tool [player] <value>";
     }
 
-    private boolean applyLevel(ItemStack stack, double level) {
-        return !(stack == null || !(stack.getItem() instanceof ITiered)) && ((ITiered) stack.getItem()).setLevel(stack, level);
+    private boolean applyLevel(@Nonnull ItemStack stack, double level) {
+        return !(stack.isEmpty() || !(stack.getItem() instanceof ITiered)) && ((ITiered) stack.getItem()).setLevel(stack, level);
     }
 
     @Override
@@ -34,7 +36,8 @@ public class HFCommandTool extends AbstractHFCommand {
                 double level = Double.parseDouble(parameters[parameters.length - 1]);
                 EntityPlayerMP player = parameters.length == 1 ? CommandBase.getCommandSenderAsPlayer(sender) : CommandBase.getPlayer(server, sender, parameters[0]);
                 return applyLevel(player.getHeldItemOffhand(), level) || applyLevel(player.getHeldItemMainhand(), level);
-            } catch (NumberFormatException | CommandException ignored) {}
+            } catch (NumberFormatException | CommandException ignored) {
+            }
         }
 
         return false;

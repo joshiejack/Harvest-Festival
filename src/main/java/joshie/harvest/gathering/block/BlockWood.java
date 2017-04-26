@@ -1,6 +1,5 @@
 package joshie.harvest.gathering.block;
 
-import com.google.common.collect.Lists;
 import joshie.harvest.api.core.ITiered.ToolTier;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.block.BlockHFSmashable;
@@ -16,14 +15,13 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Locale;
 
 import static joshie.harvest.api.core.ITiered.ToolTier.*;
@@ -95,16 +93,16 @@ public class BlockWood extends BlockHFSmashable<BlockWood, Wood> {
     }
 
     @Override
-    public List<ItemStack> getDrops(EntityPlayer player, World world, BlockPos pos, IBlockState state, float luck) {
+    public NonNullList<ItemStack> getDrops(EntityPlayer player, World world, BlockPos pos, IBlockState state, float luck) {
         Wood type = getEnumFromState(state);
         switch (type) {
-            case BRANCH_SMALL: return Lists.newArrayList(new ItemStack(Blocks.LOG, 1));
-            case BRANCH_MEDIUM: return Lists.newArrayList(new ItemStack(Blocks.LOG, 2));
-            case BRANCH_LARGE: return Lists.newArrayList(new ItemStack(Blocks.LOG, 6));
-            case STUMP_SMALL: return Lists.newArrayList(new ItemStack(Blocks.LOG, 3));
-            case STUMP_MEDIUM: return Lists.newArrayList(new ItemStack(Blocks.LOG, 4));
-            case STUMP_LARGE: return Lists.newArrayList(new ItemStack(Blocks.LOG, 12));
-            default: return new ArrayList<>();
+            case BRANCH_SMALL: return NonNullList.withSize(1, new ItemStack(Blocks.LOG, 1));
+            case BRANCH_MEDIUM: return NonNullList.withSize(1, new ItemStack(Blocks.LOG, 2));
+            case BRANCH_LARGE: return NonNullList.withSize(1, new ItemStack(Blocks.LOG, 6));
+            case STUMP_SMALL: return NonNullList.withSize(1, new ItemStack(Blocks.LOG, 3));
+            case STUMP_MEDIUM: return NonNullList.withSize(1, new ItemStack(Blocks.LOG, 4));
+            case STUMP_LARGE: return NonNullList.withSize(1, new ItemStack(Blocks.LOG, 12));
+            default: return NonNullList.create();
         }
     }
 
@@ -128,7 +126,7 @@ public class BlockWood extends BlockHFSmashable<BlockWood, Wood> {
     }
 
     @Override
-    public int getSortValue(ItemStack stack) {
+    public int getSortValue(@Nonnull ItemStack stack) {
         return CreativeSort.TOOLS - 50 + stack.getItemDamage();
     }
 }

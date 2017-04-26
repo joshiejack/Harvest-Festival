@@ -66,7 +66,8 @@ public class ButtonDate extends GuiButton {
         private final int y;
         private final List<CalendarEntry> entries;
         private List<String> tooltip;
-        private ItemStack stack;
+        @Nonnull
+        private ItemStack stack = ItemStack.EMPTY;
         private int ticker;
         private int index;
 
@@ -79,7 +80,7 @@ public class ButtonDate extends GuiButton {
 
         public void render(GuiCalendar gui, int mouseX, int mouseY) {
             if (entries.size() > 0) {
-                if (ticker % 128 == 0 || stack == null) {
+                if (ticker % 128 == 0 || stack.isEmpty()) {
                     stack = entries.get(index).getStackRepresentation(); //Pick out the stack
                     tooltip = new ArrayList<>();
                     entries.get(index).addTooltipForCalendarEntry(tooltip);

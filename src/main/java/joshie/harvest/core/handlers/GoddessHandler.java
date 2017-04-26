@@ -28,13 +28,14 @@ import net.minecraftforge.event.entity.item.ItemExpireEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
+import javax.annotation.Nonnull;
 import java.util.List;
 
 @HFEvents
 public class GoddessHandler {
     private static Item goddess;
 
-    private static boolean isGoddessFlower(ItemStack stack) {
+    private static boolean isGoddessFlower(@Nonnull ItemStack stack) {
         if (goddess == null) goddess = Item.getItemFromBlock(HFCore.FLOWERS);
         return stack.getItem() == goddess && stack.getItemDamage() == FlowerType.GODDESS.ordinal();
     }
@@ -86,7 +87,7 @@ public class GoddessHandler {
             World world = event.getWorld();
             BlockPos pos = event.getPos();
             ItemStack held = event.getItemStack();
-            if (held != null && held.getItem() == Items.STICK) {
+            if (held.getItem() == Items.STICK) {
                 if (world.getBlockState(pos).getBlock() == Blocks.FLOWER_POT) {
                     TileEntityFlowerPot tile = (TileEntityFlowerPot) world.getTileEntity(pos);
                     if (tile != null && tile.getFlowerPotItem() != null) {

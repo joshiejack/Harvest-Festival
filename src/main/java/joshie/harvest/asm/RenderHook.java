@@ -18,6 +18,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 
+import javax.annotation.Nonnull;
 import java.util.Random;
 
 @SuppressWarnings("unused")
@@ -25,7 +26,7 @@ public class RenderHook {
     /**
      * Added at the start of renderByItem to render my special renderers
      **/
-    public static boolean render(ItemStack stack) {
+    public static boolean render(@Nonnull ItemStack stack) {
         EntityItemRenderer tile = HFClientProxy.RENDER_MAP.get(stack.getItem());
         if (tile == null) return false;
         else {

@@ -25,12 +25,13 @@ public class ItemNPCSpawner extends ItemHFRegistry<ItemNPCSpawner, NPC> {
     }
 
     @Override
-    public boolean showDurabilityBar(ItemStack stack) {
+    public boolean showDurabilityBar(@Nonnull ItemStack stack) {
         return false;
     }
 
     @Override
-    public String getItemStackDisplayName(ItemStack stack) {
+    @Nonnull
+    public String getItemStackDisplayName(@Nonnull ItemStack stack) {
         return getObjectFromStack(stack).getLocalizedName();
     }
 

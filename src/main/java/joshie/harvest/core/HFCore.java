@@ -40,6 +40,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
 import org.apache.commons.lang3.text.WordUtils;
 
+import javax.annotation.Nonnull;
+
 import static joshie.harvest.core.helpers.ConfigHelper.getBoolean;
 import static joshie.harvest.core.helpers.ConfigHelper.getInteger;
 import static joshie.harvest.core.helpers.RegistryHelper.registerSounds;
@@ -85,7 +87,7 @@ public class HFCore {
         }
     }
 
-    private static void registerIfNotRegistered(String string, ItemStack stack) {
+    private static void registerIfNotRegistered(String string, @Nonnull ItemStack stack) {
         if (!InventoryHelper.isOreName(stack, string)) {
             OreDictionary.registerOre(string, stack);
         }

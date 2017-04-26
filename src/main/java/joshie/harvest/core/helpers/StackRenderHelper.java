@@ -17,6 +17,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import static joshie.harvest.core.lib.HFModInfo.MODID;
@@ -28,7 +29,7 @@ public class StackRenderHelper {
     public static boolean renderShadow;
 
     @SideOnly(Side.CLIENT)
-    public static void drawStack(ItemStack stack, int left, int top, float size) {
+    public static void drawStack(@Nonnull ItemStack stack, int left, int top, float size) {
         GlStateManager.disableAlpha();
         GlStateManager.pushMatrix();
         GlStateManager.scale(size, size, size);
@@ -49,7 +50,7 @@ public class StackRenderHelper {
     }
 
     @SideOnly(Side.CLIENT)
-    public static void drawGreyStack(ItemStack stack, int left, int top, float size) {
+    public static void drawGreyStack(@Nonnull ItemStack stack, int left, int top, float size) {
         GlStateManager.disableAlpha();
         GlStateManager.pushMatrix();
         GlStateManager.scale(size, size, size);
@@ -70,23 +71,23 @@ public class StackRenderHelper {
     }
 
     @SideOnly(Side.CLIENT)
-    private static void renderItemAndEffectIntoGUI(RenderItem render, @Nullable EntityLivingBase p_184391_1_, final ItemStack p_184391_2_, int p_184391_3_, int p_184391_4_) {
-        if (p_184391_2_ != null && p_184391_2_.getItem() != null)
+    private static void renderItemAndEffectIntoGUI(RenderItem render, @Nullable EntityLivingBase p_184391_1_, @Nonnull final ItemStack stack, int p_184391_3_, int p_184391_4_) {
+        if (!stack.isEmpty())
         {
             render.zLevel += 50.0F;
 
             try
             {
-                renderItemModelIntoGUI(render, p_184391_2_, p_184391_3_, p_184391_4_, render.getItemModelWithOverrides(p_184391_2_, null, p_184391_1_));
+                renderItemModelIntoGUI(render, stack, p_184391_3_, p_184391_4_, render.getItemModelWithOverrides(stack, null, p_184391_1_));
             }
             catch (Throwable throwable)
             {
                 CrashReport crashreport = CrashReport.makeCrashReport(throwable, "Rendering item");
                 CrashReportCategory crashreportcategory = crashreport.makeCategory("Item being rendered");
-                crashreportcategory.setDetail("Item Type", () -> String.valueOf(p_184391_2_.getItem()));
-                crashreportcategory.setDetail("Item Aux", () -> String.valueOf(p_184391_2_.getMetadata()));
-                crashreportcategory.setDetail("Item NBT", () -> String.valueOf(p_184391_2_.getTagCompound()));
-                crashreportcategory.setDetail("Item Foil", () -> String.valueOf(p_184391_2_.hasEffect()));
+                crashreportcategory.setDetail("Item Type", () -> String.valueOf(stack.getItem()));
+                crashreportcategory.setDetail("Item Aux", () -> String.valueOf(stack.getMetadata()));
+                crashreportcategory.setDetail("Item NBT", () -> String.valueOf(stack.getTagCompound()));
+                crashreportcategory.setDetail("Item Foil", () -> String.valueOf(stack.hasEffect()));
                 throw new ReportedException(crashreport);
             }
 
@@ -95,7 +96,7 @@ public class StackRenderHelper {
     }
 
     @SideOnly(Side.CLIENT)
-    private static void renderItemModelIntoGUI(RenderItem render, ItemStack stack, int x, int y, IBakedModel bakedmodel) {
+    private static void renderItemModelIntoGUI(RenderItem render, @Nonnull ItemStack stack, int x, int y, IBakedModel bakedmodel) {
         GlStateManager.pushMatrix();
         textureManager.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
         textureManager.getTexture(TextureMap.LOCATION_BLOCKS_TEXTURE).setBlurMipmap(false, false);
@@ -117,9 +118,9 @@ public class StackRenderHelper {
     }
 
     @SideOnly(Side.CLIENT)
-    private static void renderItem(RenderItem render, ItemStack stack, IBakedModel model)
+    private static void renderItem(RenderItem render, @Nonnull ItemStack stack, IBakedModel model)
     {
-        if (stack != null)
+        if (!stack.isEmpty())
         {
             GlStateManager.pushMatrix();
             GlStateManager.translate(-0.5F, -0.5F, -0.5F);

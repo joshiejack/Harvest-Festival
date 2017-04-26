@@ -7,9 +7,9 @@ import joshie.harvest.api.animals.AnimalAction;
 import joshie.harvest.api.animals.AnimalStats;
 import joshie.harvest.core.helpers.SizeableHelper;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 
 import javax.annotation.Nonnull;
-import java.util.List;
 
 import static joshie.harvest.api.animals.AnimalFoodType.SEED;
 
@@ -41,7 +41,7 @@ public class AnimalChicken extends AnimalAbstract {
     }
 
     @Override
-    public List<ItemStack> getProductsForDisplay(AnimalStats stats) {
+    public NonNullList<ItemStack> getProductsForDisplay(AnimalStats stats) {
         return SizeableHelper.getSizeablesForDisplay(stats, Sizeable.EGG);
     }
 

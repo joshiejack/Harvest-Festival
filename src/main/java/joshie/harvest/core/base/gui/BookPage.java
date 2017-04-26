@@ -7,6 +7,7 @@ import net.minecraft.client.gui.GuiLabel;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextFormatting;
 
+import javax.annotation.Nonnull;
 import java.util.List;
 
 public class BookPage<G extends GuiBaseBook> {
@@ -17,7 +18,7 @@ public class BookPage<G extends GuiBaseBook> {
     protected G gui;
     public int start;
 
-    public BookPage (String category, String name, ItemStack stack) {
+    public BookPage (String category, String name, @Nonnull ItemStack stack) {
         this.category = "harvestfestival.stats." + category;
         this.name = "harvestfestival.stats." + name;
         this.icon = stack;

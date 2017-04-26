@@ -33,6 +33,7 @@ public abstract class ItemHFRegistry<I extends ItemHFRegistry, E extends HFRegis
     @Override
     public void registerModels(Item item, String name) {}
 
+    @Nonnull
     public ItemStack getStackFromObject(E e) {
         ItemStack stack = new ItemStack(this);
         NBTTagCompound tag = new NBTTagCompound();
@@ -41,7 +42,7 @@ public abstract class ItemHFRegistry<I extends ItemHFRegistry, E extends HFRegis
         return stack;
     }
 
-    public E getObjectFromStack(ItemStack stack) {
+    public E getObjectFromStack(@Nonnull ItemStack stack) {
         if (stack.getTagCompound() == null || !stack.getTagCompound().hasKey(nbt)) {
             return getDefaultValue();
         } else return newRegistry.get(new ResourceLocation(stack.getTagCompound().getString(nbt)));

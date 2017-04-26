@@ -70,6 +70,7 @@ public class BlockSizedStorage extends BlockHFEnumRotatableTile<BlockSizedStorag
     }
 
     @Override
+    @Nonnull
     protected BlockStateContainer createBlockState() {
         if(property == null) return new BlockStateContainer(this, temporary, FACING, FILL);
         return new BlockStateContainer(this, property, FACING, FILL);
@@ -115,12 +116,13 @@ public class BlockSizedStorage extends BlockHFEnumRotatableTile<BlockSizedStorag
     }
 
     @Override
-    public TileEntity createTileEntity(World world, IBlockState state) {
+    public TileEntity createTileEntity(@Nonnull World world, @Nonnull IBlockState state) {
         return new TileIncubator();
     }
 
     @Override
-    public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos) {
+    @Nonnull
+    public IBlockState getActualState(@Nonnull IBlockState state, IBlockAccess world, BlockPos pos) {
         TileEntity tile = world instanceof ChunkCache ? ((ChunkCache)world).getTileEntity(pos, Chunk.EnumCreateEntityType.CHECK) : world.getTileEntity(pos);
         if (tile instanceof TileFillableSized) {
             TileFillableSized sized = (TileFillableSized) tile;

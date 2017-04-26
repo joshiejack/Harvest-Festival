@@ -9,6 +9,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.ResourceLocation;
 
+import javax.annotation.Nonnull;
 import java.util.Locale;
 
 import static joshie.harvest.core.lib.HFModInfo.MODID;
@@ -19,29 +20,31 @@ public class ItemCrop extends ItemHFFoodEnum<ItemCrop, Crops> {
     }
 
     @Override
-    public int getSortValue(ItemStack stack) {
+    public int getSortValue(@Nonnull ItemStack stack) {
         return CreativeSort.CROPS;
     }
 
     @Override
-    public int getHealAmount(ItemStack stack) {
+    public int getHealAmount(@Nonnull ItemStack stack) {
         return getEnumFromStack(stack).getHunger();
     }
 
     @Override
-    public float getSaturationModifier(ItemStack stack) {
+    public float getSaturationModifier(@Nonnull ItemStack stack) {
         return getEnumFromStack(stack).getSaturation();
     }
 
     @Override
-    public String getItemStackDisplayName(ItemStack stack) {
+    @Nonnull
+    public String getItemStackDisplayName(@Nonnull ItemStack stack) {
         Crop crop = HFApi.crops.getCropFromStack(stack);
         return crop != null ? crop.getLocalizedName(true) : super.getItemStackDisplayName(stack);
     }
 
     @Override
+    @Nonnull
     protected ItemStack getCreativeStack(Crops crop) {
-        return crop.getCrop().getCropStack(1).getItem() == this ? getStackFromEnum(crop) : null;
+        return crop.getCrop().getCropStack(1).getItem() == this ? getStackFromEnum(crop) : ItemStack.EMPTY;
     }
 
     public enum Crops implements IStringSerializable {

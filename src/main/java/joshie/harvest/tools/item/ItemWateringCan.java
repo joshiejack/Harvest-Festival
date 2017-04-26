@@ -109,12 +109,12 @@ public class ItemWateringCan extends ItemTool<ItemWateringCan> {
     }
 
     @Override
-    public boolean showDurabilityBar(ItemStack stack) {
+    public boolean showDurabilityBar(@Nonnull ItemStack stack) {
         return true;
     }
 
     @Override
-    public double getDurabilityForDisplay(ItemStack stack) {
+    public double getDurabilityForDisplay(@Nonnull ItemStack stack) {
         int water = getCapacity(stack);
         return (MAX_WATER - water) / MAX_WATER;
     }
@@ -130,7 +130,7 @@ public class ItemWateringCan extends ItemTool<ItemWateringCan> {
         }
     }
 
-    private EnumActionResult hydrate(EntityPlayer player, ItemStack stack, World world, BlockPos pos) {
+    private EnumActionResult hydrate(EntityPlayer player, @Nonnull ItemStack stack, World world, BlockPos pos) {
         if (HFApi.crops.hydrateSoil(player, world, pos)) {
             displayParticle(world, pos, EnumParticleTypes.WATER_SPLASH, Blocks.WATER.getDefaultState());
             playSound(world, pos, SoundEvents.ENTITY_GENERIC_SWIM, SoundCategory.NEUTRAL);
@@ -143,7 +143,7 @@ public class ItemWateringCan extends ItemTool<ItemWateringCan> {
     }
 
     @SuppressWarnings("ConstantConditions")
-    private boolean attemptToFill(World world, EntityPlayer player, ItemStack stack) {
+    private boolean attemptToFill(World world, EntityPlayer player, @Nonnull ItemStack stack) {
         RayTraceResult rayTraceResult = this.rayTrace(world, player, true);
         if (rayTraceResult != null && rayTraceResult.typeOfHit == RayTraceResult.Type.BLOCK) {
             IBlockState state = world.getBlockState(rayTraceResult.getBlockPos());
@@ -155,11 +155,11 @@ public class ItemWateringCan extends ItemTool<ItemWateringCan> {
         return false;
     }
 
-    private IFluidHandler getCapability(ItemStack stack) {
+    private IFluidHandler getCapability(@Nonnull ItemStack stack) {
         return stack.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, EnumFacing.DOWN);
     }
 
-    private int getCapacity(ItemStack stack) {
+    private int getCapacity(@Nonnull ItemStack stack) {
         IFluidTankProperties properties = getCapability(stack).getTankProperties()[0];
         if (properties.getContents() == null) return 0;
         else return properties.getContents().amount;
@@ -196,7 +196,7 @@ public class ItemWateringCan extends ItemTool<ItemWateringCan> {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack stack, EntityPlayer player, List<String> tooltip, boolean advanced) {
+    public void addInformation(@Nonnull ItemStack stack, EntityPlayer player, List<String> tooltip, boolean advanced) {
         ToolTier tier = getTier(stack);
         int width = 1 + (2 * getSides(tier));
         int depth = 1 + getFront(tier);

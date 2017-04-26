@@ -17,6 +17,7 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nonnull;
 import java.util.Locale;
 
 public class ItemHFSizeable<I extends ItemHFFoodEnum, E extends Enum<E> & IStringSerializable & ISizeable> extends ItemHFFoodEnum<I, E> implements ISizedProvider<E> {
@@ -37,38 +38,42 @@ public class ItemHFSizeable<I extends ItemHFFoodEnum, E extends Enum<E> & IStrin
     }
 
     @Override
-    public E getEnumFromStack(ItemStack stack) {
+    public E getEnumFromStack(@Nonnull ItemStack stack) {
         int real = (int)Math.floor(stack.getItemDamage() / 3);
         int id = Math.max(0, Math.min(values.length - 1, real));
         return values[id];
     }
 
     @Override
+    @Nonnull
     public ItemStack getStackFromEnum(E e) {
         return e.getStack(this, Size.SMALL);
     }
 
     @Override
+    @Nonnull
     public ItemStack getStackFromEnum(E e, int amount) {
         return e.getStackOfSize(this, Size.SMALL, amount);
     }
 
+    @Nonnull
     public ItemStack getStack(E e, Size size) {
         return e.getStack(this, size);
     }
 
     @Override
+    @Nonnull
     public ItemStack getStackOfSize(E e, Size size, int amount) {
         return e.getStackOfSize(this, size, amount);
     }
 
     @Override
-    public Size getSize(ItemStack stack) {
+    public Size getSize(@Nonnull ItemStack stack) {
         return Size.values()[Math.min(2, stack.getItemDamage() % 3)];
     }
 
     @Override
-    public E getObject(ItemStack stack) {
+    public E getObject(@Nonnull ItemStack stack) {
         return getEnumFromStack(stack);
     }
 
@@ -82,7 +87,8 @@ public class ItemHFSizeable<I extends ItemHFFoodEnum, E extends Enum<E> & IStrin
     }
 
     @Override
-    public String getItemStackDisplayName(ItemStack stack) {
+    @Nonnull
+    public String getItemStackDisplayName(@Nonnull ItemStack stack) {
         String size = TextHelper.translate("sizeable." + getSize(stack).name().toLowerCase(Locale.ENGLISH));
         String name = TextHelper.translate(prefix + "." + getEnumFromStack(stack).getName());
         String format = TextHelper.translate("sizeable.format");
@@ -90,13 +96,13 @@ public class ItemHFSizeable<I extends ItemHFFoodEnum, E extends Enum<E> & IStrin
     }
 
     @Override
-    public int getSortValue(ItemStack stack) {
+    public int getSortValue(@Nonnull ItemStack stack) {
         return CreativeSort.SIZEABLE + stack.getItemDamage() + (getEnumFromStack(stack).ordinal() * 4);
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubItems(Item item, CreativeTabs tab, NonNullList<ItemStack> list) {
+    public void getSubItems(@Nonnull Item item, CreativeTabs tab, NonNullList<ItemStack> list) {
         for (E e: values) {
             for (Size size: Size.values()) {
                 list.add(e.getStack(item, size));

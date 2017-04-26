@@ -8,6 +8,7 @@ import joshie.harvest.mining.item.ItemDarkDrop.DarkDrop;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
 
+import javax.annotation.Nonnull;
 import java.util.Locale;
 
 public class ItemDarkDrop extends ItemHFEnum<ItemDarkDrop, DarkDrop> {
@@ -36,7 +37,7 @@ public class ItemDarkDrop extends ItemHFEnum<ItemDarkDrop, DarkDrop> {
     }
 
     @Override
-    public int getSortValue(ItemStack stack) {
+    public int getSortValue(@Nonnull ItemStack stack) {
         return CreativeSort.NONE;
     }
 }

@@ -13,6 +13,7 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.item.ItemStack;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import static joshie.harvest.core.base.render.FakeEntityRenderer.SHADOW;
@@ -91,7 +92,7 @@ public class NPCItemRenderer extends TileEntitySpecialRenderer<NPCTile> {
         public NPC npc;
 
         @Override
-        public void setStack(ItemStack stack) {
+        public void setStack(@Nonnull ItemStack stack) {
             this.npc = HFNPCs.SPAWNER_NPC.getObjectFromStack(stack);
         }
     }

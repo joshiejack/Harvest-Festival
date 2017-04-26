@@ -11,6 +11,8 @@ import net.minecraft.item.ItemStack;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 
+import javax.annotation.Nonnull;
+
 import static joshie.harvest.plugins.crafttweaker.CraftTweaker.asOre;
 import static joshie.harvest.plugins.crafttweaker.CraftTweaker.asStack;
 
@@ -26,6 +28,7 @@ public class Shipping {
 
     private static class Add extends BaseOnce {
         private final long sellValue;
+        @Nonnull
         private ItemStack stack;
         private Ore ore;
 
@@ -39,13 +42,13 @@ public class Shipping {
         @Override
         public String getDescription() {
             if (ore != null) return "Added " + ore.getOre() + " as shippable";
-            else if (stack != null) return "Added " + stack.getDisplayName() + " as shippable";
+            else if (!stack.isEmpty()) return "Added " + stack.getDisplayName() + " as shippable";
             else return "Added nothing";
         }
 
         @Override
         public void applyOnce() {
-            if (stack != null) HFApi.shipping.registerSellable(stack, sellValue);
+            if (!stack.isEmpty()) HFApi.shipping.registerSellable(stack, sellValue);
             if (ore != null) HFApi.shipping.registerSellable(ore, sellValue);
         }
     }

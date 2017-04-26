@@ -8,15 +8,21 @@ import joshie.harvest.shops.requirement.RequirementSizeable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 
+import javax.annotation.Nonnull;
+
 public class PurchasableTrade extends PurchasableMaterials {
     private RequirementSizeable requirement;
+    @Nonnull
     private ItemStack purchased;
+    @Nonnull
     private ItemStack large;
+    @Nonnull
     private ItemStack medium;
+    @Nonnull
     private ItemStack small;
     public static int ticker;
 
-    public PurchasableTrade(ItemStack stack, Sizeable sizeable) {
+    public PurchasableTrade(@Nonnull ItemStack stack, Sizeable sizeable) {
         super(0, stack);
         this.requirement = new RequirementSizeable(this, sizeable);
         this.requirements = new IRequirement[] { requirement };
@@ -26,6 +32,7 @@ public class PurchasableTrade extends PurchasableMaterials {
     }
 
     @Override
+    @Nonnull
     public ItemStack getDisplayStack() {
         ticker++;
 
@@ -36,6 +43,7 @@ public class PurchasableTrade extends PurchasableMaterials {
     }
 
     @Override
+    @Nonnull
     protected ItemStack getPurchasedStack() {
         return purchased;
     }

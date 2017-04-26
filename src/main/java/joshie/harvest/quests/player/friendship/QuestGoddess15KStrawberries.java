@@ -8,6 +8,7 @@ import joshie.harvest.quests.Quests;
 import joshie.harvest.quests.base.QuestFriendship;
 import net.minecraft.item.ItemStack;
 
+import javax.annotation.Nonnull;
 import java.util.Set;
 
 @HFQuest("friendship.goddess.strawberry")
@@ -22,6 +23,7 @@ public class QuestGoddess15KStrawberries extends QuestFriendship {
     }
 
     @Override
+    @Nonnull
     protected ItemStack getRewardStack() {
         return HFCrops.STRAWBERRY.getCropStack(64);
     }

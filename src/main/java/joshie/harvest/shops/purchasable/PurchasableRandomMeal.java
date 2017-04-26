@@ -20,7 +20,8 @@ import static joshie.harvest.core.registry.ShippingRegistry.SELL_VALUE;
 public class PurchasableRandomMeal extends PurchasableMeal {
     private final int seedAdjustment;
     private long adjustableCost;
-    private ItemStack stack;
+    @Nonnull
+    private ItemStack stack = ItemStack.EMPTY;
 
     public PurchasableRandomMeal(int seedAdjustment) {
         super(0, new ResourceLocation(MODID, "ice_cream"));
@@ -47,8 +48,8 @@ public class PurchasableRandomMeal extends PurchasableMeal {
     public boolean canDo(@Nonnull World world, @Nonnull EntityPlayer player, int amount) {
         Random rand = new Random(HFApi.calendar.getDate(world).hashCode() + seedAdjustment);
         List<Recipe> list = new ArrayList<>(Recipe.REGISTRY.values());
-        stack = null; //Reset the stack
-        while(stack == null || !stack.hasTagCompound()) {
+        stack = ItemStack.EMPTY; //Reset the stack
+        while (stack == null || !stack.hasTagCompound()) {
             stack = CookingHelper.makeRecipe(list.get(rand.nextInt(list.size())));
         }
 
@@ -62,14 +63,14 @@ public class PurchasableRandomMeal extends PurchasableMeal {
     }
 
     @Override
+    @Nonnull
     public ItemStack getDisplayStack() {
-        if (stack == null) {
+        if (stack.isEmpty()) {
             stack = CookingHelper.makeRecipe(recipe);
             if (stack.getTagCompound() != null) {
                 stack.getTagCompound().setLong(SELL_VALUE, 0L);
             }
         }
-
         return stack;
     }
 }

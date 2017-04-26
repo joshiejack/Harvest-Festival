@@ -23,6 +23,7 @@ import stanhebben.zenscript.annotations.Optional;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Locale;
 
@@ -126,12 +127,13 @@ public class Shops {
 
     private static class AddPurchasable extends BaseUndoable {
         protected final Shop shop;
+        @Nonnull
         protected final ItemStack stack;
         protected final long cost;
         protected final IRequirement[] required;
         protected IPurchasable purchasable;
 
-        AddPurchasable(Shop shop, ItemStack stack, long cost, @Nullable IRequirement[] stacks) {
+        AddPurchasable(Shop shop, @Nonnull ItemStack stack, long cost, @Nullable IRequirement[] stacks) {
             this.shop = shop;
             this.stack = stack;
             this.cost = cost;
@@ -172,7 +174,7 @@ public class Shops {
         protected final int stone;
         protected final int wood;
 
-        AddBuilderPurchasable(ItemStack stack, int stone, int wood, long cost) {
+        AddBuilderPurchasable(@Nonnull ItemStack stack, int stone, int wood, long cost) {
             super(HFShops.CARPENTER, stack, cost, null);
             this.stone = stone;
             this.wood = wood;

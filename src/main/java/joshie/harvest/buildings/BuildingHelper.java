@@ -17,6 +17,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Locale;
@@ -52,9 +53,10 @@ public class BuildingHelper {
     private static final WeakHashMap<EntityPlayer, BuildingKey> POSITIONS_SERVER = new WeakHashMap<>();
     private static final WeakHashMap<EntityPlayer, ItemStack> STACKS_SERVER = new WeakHashMap<>();
     private static BuildingKey POSITION_CLIENT;
+    @Nonnull
     private static ItemStack STACK_CLIENT;
 
-    private static void validateOrInvalidateStack(ItemStack stack, EntityPlayer player) {
+    private static void validateOrInvalidateStack(@Nonnull ItemStack stack, EntityPlayer player) {
         if (player.world.isRemote) {
             if (STACK_CLIENT != stack) {
                 STACK_CLIENT = stack;
@@ -105,7 +107,7 @@ public class BuildingHelper {
     }
 
     @SuppressWarnings("deprecation")
-    public static BuildingKey getPositioning(ItemStack stack, World world, RayTraceResult raytrace, Building building, EntityPlayer player, boolean clicked) {
+    public static BuildingKey getPositioning(@Nonnull ItemStack stack, World world, RayTraceResult raytrace, Building building, EntityPlayer player, boolean clicked) {
         validateOrInvalidateStack(stack, player);
         BlockPos pos = raytrace.getBlockPos().offset(raytrace.sideHit).up(building.getOffsetY());
         //Load the saved position
@@ -137,7 +139,7 @@ public class BuildingHelper {
         return key == null ? raytrace.sideHit != EnumFacing.UP ? null : getCachedKey(player, pos, building) : key;
     }
 
-    public static ActionResult<ItemStack> displayErrors(World world, ItemStack stack, List<BuildingError> errors) {
+    public static ActionResult<ItemStack> displayErrors(World world, @Nonnull ItemStack stack, List<BuildingError> errors) {
         if (world.isRemote) {
             StringBuilder builder = new StringBuilder();
             for (int i = 0; i < errors.size(); i++) {

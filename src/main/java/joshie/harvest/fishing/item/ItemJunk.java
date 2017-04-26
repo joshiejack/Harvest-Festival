@@ -57,6 +57,7 @@ public class ItemJunk extends ItemHFEnum<ItemJunk, Junk> {
         return -1;
     }
 
+    @Nonnull
     private ItemStack getClosest(NonNullList<ItemStack> mainInventory, int slot) {
         //Check to the right first
         int check = slot == 8 ? 0 : slot + 1;

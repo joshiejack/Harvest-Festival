@@ -25,6 +25,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import static joshie.harvest.core.lib.HFModInfo.MODID;
@@ -89,7 +90,7 @@ public class QuestHelper implements IQuestHelper {
      * REWARDS
      *****************************/
     @Override
-    public void rewardItem(Quest quest, EntityPlayer player, ItemStack stack) {
+    public void rewardItem(Quest quest, EntityPlayer player, @Nonnull ItemStack stack) {
         SpawnItemHelper.addToPlayerInventory(player, stack);
     }
 
@@ -124,8 +125,8 @@ public class QuestHelper implements IQuestHelper {
         List<Quest> all = new ArrayList<>();
         all.addAll(HFTrackers.getPlayerTrackerFromPlayer(player).getQuests().getCurrent());
         all.addAll(TownHelper.getClosestTownToEntity(player, false).getQuests().getCurrent());
-        Collections.sort(all, ((o1, o2) ->  o1.getRegistryName().toString().compareTo(o2.getRegistryName().toString())));
-        Collections.sort(all, ((o1, o2) ->  o1.getPriority().compareTo(o2.getPriority())));
+        Collections.sort(all, (Comparator.comparing(o -> o.getRegistryName().toString())));
+        Collections.sort(all, (Comparator.comparing(Quest::getPriority)));
         return all;
     }
 

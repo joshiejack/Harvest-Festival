@@ -43,12 +43,12 @@ public class RenderBasket extends Render<EntityBasket> {
 
     @Override
     @Nonnull
-    protected ResourceLocation getEntityTexture(EntityBasket entity) {
+    protected ResourceLocation getEntityTexture(@Nonnull EntityBasket entity) {
         return TextureMap.LOCATION_BLOCKS_TEXTURE;
     }
 
     @Override
-    public void doRender(EntityBasket entity, double x, double y, double z, float entityYaw, float partialTicks) {
+    public void doRender(@Nonnull EntityBasket entity, double x, double y, double z, float entityYaw, float partialTicks) {
         if (state.getRenderType() == EnumBlockRenderType.MODEL) {
             World world = entity.getEntityWorld();
             if (state != world.getBlockState(new BlockPos(entity)) && state.getRenderType() != EnumBlockRenderType.INVISIBLE) {
@@ -80,7 +80,7 @@ public class RenderBasket extends Render<EntityBasket> {
             }
         }
 
-        if (entity.getEntityItem() != null && entity.getEntityItem().getItem() != TileBasket.STONE) {
+        if (entity.getEntityItem().getItem() != TileBasket.STONE) {
             renderItem(entity, x, y, z);
         }
     }
@@ -89,7 +89,7 @@ public class RenderBasket extends Render<EntityBasket> {
         ItemStack itemstack = entity.getEntityItem();
         int i;
 
-        if (itemstack != null && itemstack.getItem() != null)
+        if (!itemstack.isEmpty())
         {
             i = Item.getIdFromItem(itemstack.getItem()) + itemstack.getMetadata();
         }

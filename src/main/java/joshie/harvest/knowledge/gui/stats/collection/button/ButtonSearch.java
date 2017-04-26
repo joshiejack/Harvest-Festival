@@ -41,7 +41,7 @@ public class ButtonSearch extends ButtonBook<GuiStats> {
         }
     }
 
-    public static boolean matchesFilter(ItemStack stack, String search) {
+    public static boolean matchesFilter(@Nonnull ItemStack stack, String search) {
         if (search.startsWith("=")) {
             long value = shipping.getSellValue(stack);
             try {

@@ -9,9 +9,8 @@ import joshie.harvest.quests.Quests;
 import joshie.harvest.quests.base.QuestFriendship;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Set;
 
 import static joshie.harvest.core.registry.ShippingRegistry.SELL_VALUE;
@@ -29,8 +28,8 @@ public class QuestFenn5KSalad extends QuestFriendship {
 
     @Override
     @SuppressWarnings("ConstantConditions")
-    protected List<ItemStack> getRewardStacks(EntityPlayer player) {
-        List<ItemStack> stacks = new ArrayList<>();
+    protected NonNullList<ItemStack> getRewardStacks(EntityPlayer player) {
+        NonNullList<ItemStack> stacks = NonNullList.create();
         //Salad
         ItemStack stack = HFCooking.MEAL.getCreativeStack(Meal.SALAD);
         stack.getTagCompound().setLong(SELL_VALUE, 0L);

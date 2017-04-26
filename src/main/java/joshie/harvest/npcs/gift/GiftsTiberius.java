@@ -15,6 +15,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.potion.PotionUtils;
 
+import javax.annotation.Nonnull;
+
 import static joshie.harvest.api.npc.gift.GiftCategory.*;
 import static joshie.harvest.api.npc.gift.IGiftHandler.Quality.AWESOME;
 import static joshie.harvest.api.npc.gift.IGiftHandler.Quality.GOOD;
@@ -46,7 +48,7 @@ public class GiftsTiberius extends Gifts {
 
 
     @Override
-    public Quality getQuality(ItemStack stack) {
+    public Quality getQuality(@Nonnull ItemStack stack) {
         if (stack.getItem() instanceof ItemPotion) {
             for (PotionEffect effect: PotionUtils.getEffectsFromStack(stack)) {
                 if (effect.getPotion() == MobEffects.REGENERATION) return AWESOME;

@@ -1,14 +1,13 @@
 package joshie.harvest.quests.base;
 
-import com.google.common.collect.Lists;
 import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.cooking.CookingHelper;
 import joshie.harvest.quests.Quests;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 
-import java.util.List;
 import java.util.Set;
 
 public class QuestRecipe extends QuestFriendship {
@@ -16,7 +15,7 @@ public class QuestRecipe extends QuestFriendship {
 
     public QuestRecipe(String recipe, NPC npc, int relationship) {
         super(npc, relationship);
-        this.recipe = new String[] { recipe };
+        this.recipe = new String[]{recipe};
     }
 
     public QuestRecipe(NPC npc, int relationship, String... recipes) {
@@ -30,12 +29,12 @@ public class QuestRecipe extends QuestFriendship {
     }
 
     @Override
-    protected List<ItemStack> getRewardStacks(EntityPlayer player) {
-        ItemStack[] stacks = new ItemStack[recipe.length];
-        for (int i = 0; i < stacks.length; i++) {
-            stacks[i] = CookingHelper.getRecipe(recipe[i]);
+    protected NonNullList<ItemStack> getRewardStacks(EntityPlayer player) {
+        NonNullList<ItemStack> stacks = NonNullList.withSize(recipe.length, ItemStack.EMPTY);
+        for (int i = 0; i < stacks.size(); i++) {
+            stacks.set(i, CookingHelper.getRecipe(recipe[i]));
         }
 
-        return Lists.newArrayList(stacks);
+        return stacks;
     }
 }

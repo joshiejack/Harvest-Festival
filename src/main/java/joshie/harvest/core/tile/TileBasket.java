@@ -17,7 +17,7 @@ public class TileBasket extends TileSingleStack {
     public final ItemStackHandler handler = new ItemStackHandler(BASKET_INVENTORY);
 
     @Override
-    public boolean onRightClicked(EntityPlayer player, ItemStack place) {
+    public boolean onRightClicked(EntityPlayer player, @Nonnull ItemStack place) {
         return false;
     }
 

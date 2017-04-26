@@ -131,12 +131,12 @@ public class BlockNature extends BlockHFEnum<BlockNature, NaturalBlock> implemen
     }
 
     @Override
-    public int getEntityLifeSpan(ItemStack stack, World world) {
+    public int getEntityLifeSpan(@Nonnull ItemStack stack, World world) {
         return stack.getItemDamage() == FlowerType.GODDESS.ordinal() ? 50: 6000;
     }
 
     @Override
-    public int getSortValue(ItemStack stack) {
+    public int getSortValue(@Nonnull ItemStack stack) {
         return CreativeSort.TOOLS - 100;
     }
 

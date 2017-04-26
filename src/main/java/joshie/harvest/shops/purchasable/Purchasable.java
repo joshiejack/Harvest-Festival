@@ -23,6 +23,7 @@ import static joshie.harvest.core.helpers.InventoryHelper.ITEM_STACK;
 
 public class Purchasable implements IPurchasable {
     protected String resource;
+    @Nonnull
     protected ItemStack stack;
     protected long cost;
     private String tooltip;
@@ -30,7 +31,7 @@ public class Purchasable implements IPurchasable {
     private Note note;
 
     public Purchasable(){}
-    public Purchasable(long cost, ItemStack stack) {
+    public Purchasable(long cost, @Nonnull ItemStack stack) {
         this.cost = cost;
         this.stack = stack;
         this.resource = ((cost >= 0) ? "buy:" : "sell:") + stackToString(stack);
@@ -51,8 +52,8 @@ public class Purchasable implements IPurchasable {
         return this;
     }
 
-    private static String stackToString(ItemStack stack) {
-        if (stack == null) return "null";
+    private static String stackToString(@Nonnull ItemStack stack) {
+        if (stack.isEmpty()) return "null";
         String string = stack.getItem().getRegistryName().toString().replace(":", "_");
         if (stack.getItemDamage() != 0) string = string + "_" + stack.getItemDamage();
         if (stack.getTagCompound() != null) string = string + "_" + stack.getTagCompound().hashCode();
@@ -75,10 +76,12 @@ public class Purchasable implements IPurchasable {
     }
 
     @Override
+    @Nonnull
     public ItemStack getDisplayStack() {
         return stack;
     }
 
+    @Nonnull
     protected ItemStack getPurchasedStack() {
         return getDisplayStack();
     }

@@ -7,6 +7,8 @@ import joshie.harvest.core.util.holders.HolderRegistrySet;
 import joshie.harvest.knowledge.gui.stats.CollectionHelper;
 import net.minecraft.item.ItemStack;
 
+import javax.annotation.Nonnull;
+
 @HFApiImplementation
 public class FishingAPI implements FishingManager {
     public static final FishingAPI INSTANCE = new FishingAPI();
@@ -19,20 +21,20 @@ public class FishingAPI implements FishingManager {
     }
 
     @Override
-    public void registerBait(ItemStack stack) {
+    public void registerBait(@Nonnull ItemStack stack) {
         baits.register(stack);
     }
 
     @Override
-    public void registerAsBreedable(ItemStack stack, int days) {
+    public void registerAsBreedable(@Nonnull ItemStack stack, int days) {
         breeding.register(stack, days);
     }
 
-    public boolean isBait(ItemStack stack) {
+    public boolean isBait(@Nonnull ItemStack stack) {
         return baits.contains(stack);
     }
 
-    public int getDaysFor(ItemStack stack) {
+    public int getDaysFor(@Nonnull ItemStack stack) {
         Integer days = breeding.getValueOf(stack);
         return days == null ? -1 : days;
     }

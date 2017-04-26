@@ -14,6 +14,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -24,6 +25,7 @@ import static joshie.harvest.cooking.CookingHelper.PlaceIngredientResult.SUCCESS
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 
 public class CookingHelper {
+    @Nonnull
     public static ItemStack getRecipe(String name) {
         return HFCooking.RECIPE.getStackFromObject(Recipe.REGISTRY.get(new ResourceLocation(MODID, name)));
     }
@@ -86,6 +88,7 @@ public class CookingHelper {
         return FAILURE;
     }
 
+    @Nonnull
     public static ItemStack makeRecipe(Recipe recipe) {
         return RecipeMaker.BUILDER.build(recipe, new ArrayList<>(recipe.getRequired())).get(0);
     }
@@ -94,6 +97,7 @@ public class CookingHelper {
         return check != null && ingredient.isSame(new IngredientStack(check));
     }
 
+    @Nonnull
     private static ItemStack getAndRemoveIngredient(IngredientStack ingredient, List<IInventory> fridges) {
         for (IInventory inventory: fridges) {
             for (int i = 0; i < inventory.getSizeInventory(); i++) {
@@ -104,7 +108,7 @@ public class CookingHelper {
             }
         }
 
-        return null;
+        return ItemStack.EMPTY;
     }
 
     private static boolean cook(TileCooking cooking, Recipe selected, List<IInventory> fridges) {
@@ -113,7 +117,7 @@ public class CookingHelper {
             else {
                 for (IngredientStack ingredient : selected.getRequired()) {
                     ItemStack ret = getAndRemoveIngredient(ingredient, fridges);
-                    if (ret == null) return false;
+                    if (ret.isEmpty()) return false;
                     else cooking.addIngredient(ret);
                 }
 

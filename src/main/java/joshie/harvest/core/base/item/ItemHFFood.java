@@ -47,13 +47,13 @@ public class ItemHFFood<I extends ItemHFFood> extends ItemFood {
     }
 
     @Override
-    public int getMaxItemUseDuration(ItemStack stack) {
+    public int getMaxItemUseDuration(@Nonnull ItemStack stack) {
         return 32;
     }
 
     @Override
     @Nonnull
-    public EnumAction getItemUseAction(ItemStack stack) {
+    public EnumAction getItemUseAction(@Nonnull ItemStack stack) {
         return EnumAction.EAT;
     }
 
@@ -71,7 +71,7 @@ public class ItemHFFood<I extends ItemHFFood> extends ItemFood {
 
     @Override
     @Nonnull
-    public ItemStack onItemUseFinish(ItemStack stack, @Nonnull World world, EntityLivingBase entityLiving) {
+    public ItemStack onItemUseFinish(@Nonnull ItemStack stack, @Nonnull World world, EntityLivingBase entityLiving) {
         if (entityLiving instanceof EntityPlayer) {
             EntityPlayer player = (EntityPlayer) entityLiving;
             if (!player.capabilities.isCreativeMode) stack.shrink(1);

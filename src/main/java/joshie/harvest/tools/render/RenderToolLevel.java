@@ -20,10 +20,11 @@ public class RenderToolLevel {
     @SubscribeEvent
     @SuppressWarnings("ConstantConditions")
     public void onTooltipRender(RenderTooltipEvent.PostText event) {
-        if (event.getStack() == null || Minecraft.getMinecraft().currentScreen == null) return; //Do nothing if stack is null
+        if (event.getStack().isEmpty() || Minecraft.getMinecraft().currentScreen == null)
+            return; //Do nothing if stack is null
         ItemStack stack = event.getStack();
         if (stack.getItem() instanceof ITiered) {
-            ITiered tiered = ((ITiered)stack.getItem());
+            ITiered tiered = ((ITiered) stack.getItem());
             double level = tiered.getLevel(stack);
             ToolTier tier = tiered.getTier(stack);
             GuiScreen gui = Minecraft.getMinecraft().currentScreen;
@@ -63,13 +64,13 @@ public class RenderToolLevel {
             gui.mc.renderEngine.bindTexture(HFModInfo.TOOLELEMENTS);
             gui.drawTexturedModalRect(i1 - 1, j1 - 1, 0, 8, 52, 9);
             int posY = tier != null && tier.ordinal() >= ToolTier.MYSTRIL.ordinal() ? 26 : 17;
-            int width = ((int)level >> 1) + 2;
+            int width = ((int) level >> 1) + 2;
             gui.drawTexturedModalRect(i1 - 1, j1 - 1, 0, posY, width, 9);
 
             GlStateManager.pushMatrix();
             GlStateManager.disableBlend();
             GlStateManager.translate(53F, 0F, 0F);
-            gui.mc.fontRendererObj.drawString((int)level + "%", i1, j1, 0xFFFFFF);
+            gui.mc.fontRendererObj.drawString((int) level + "%", i1, j1, 0xFFFFFF);
             GlStateManager.enableBlend();
             GlStateManager.popMatrix();
 

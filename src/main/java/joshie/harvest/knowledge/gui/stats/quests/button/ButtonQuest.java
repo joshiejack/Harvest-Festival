@@ -16,6 +16,7 @@ import org.apache.commons.lang3.StringEscapeUtils;
 import javax.annotation.Nonnull;
 
 public class ButtonQuest extends ButtonBook<GuiStats> {
+    @Nonnull
     private final ItemStack stack;
     private final String description;
 

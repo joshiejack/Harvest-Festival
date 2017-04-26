@@ -76,7 +76,7 @@ public class ItemSickle extends ItemToolChargeable<ItemSickle> {
     }
 
     @Override
-    public boolean canLevel(ItemStack stack, IBlockState state) {
+    public boolean canLevel(@Nonnull ItemStack stack, IBlockState state) {
         for (String type : getToolClasses(stack)) {
             if (state.getBlock().isToolEffective(type, state))
                 return true;
@@ -86,7 +86,7 @@ public class ItemSickle extends ItemToolChargeable<ItemSickle> {
     }
 
     @Override
-    public boolean onBlockDestroyed(ItemStack stack, World worldIn, IBlockState state, BlockPos startPos, EntityLivingBase entityLiving) {
+    public boolean onBlockDestroyed(@Nonnull ItemStack stack, World worldIn, IBlockState state, BlockPos startPos, EntityLivingBase entityLiving) {
         if (entityLiving instanceof EntityPlayer) {
             EntityPlayer player = ((EntityPlayer)entityLiving);
             EnumFacing front = EntityHelper.getFacingFromEntity(player);
@@ -123,7 +123,7 @@ public class ItemSickle extends ItemToolChargeable<ItemSickle> {
     }
 
     @Override
-    public float getStrVsBlock(ItemStack stack, IBlockState state) {
+    public float getStrVsBlock(@Nonnull ItemStack stack, IBlockState state) {
         if (canUse(stack)) {
             Material material = state.getMaterial();
             return (state.getBlock() != Blocks.GRASS && material == Material.GRASS) || material == Material.LEAVES || material == Material.VINE ? 10F : super.getStrVsBlock(stack, state);
@@ -145,7 +145,7 @@ public class ItemSickle extends ItemToolChargeable<ItemSickle> {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean flag) {
+    public void addInformation(@Nonnull ItemStack stack, EntityPlayer player, List<String> list, boolean flag) {
         super.addInformation(stack, player, list, flag);
         int charge = getCharge(stack);
         ToolTier thisTier = getTier(stack);
@@ -161,7 +161,7 @@ public class ItemSickle extends ItemToolChargeable<ItemSickle> {
     }
 
     @Override
-    protected String getLevelName(ItemStack stack, int charges) {
+    protected String getLevelName(@Nonnull ItemStack stack, int charges) {
         int maximum = getMaxCharge(stack);
         int charge = getCharge(stack);
         int newCharge = Math.min(maximum, charge + charges);

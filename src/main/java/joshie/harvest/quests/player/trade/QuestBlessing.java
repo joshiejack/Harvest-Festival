@@ -22,6 +22,7 @@ import net.minecraft.util.SoundCategory;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nonnull;
 import java.util.Set;
 
 import static joshie.harvest.api.core.ITiered.ToolTier.CURSED;
@@ -33,7 +34,8 @@ import static joshie.harvest.quests.Quests.TOMAS_MEET;
 public class QuestBlessing extends QuestTrade {
     private static final int TEST = 0;
     private CalendarDate date;
-    private ItemStack tool;
+    @Nonnull
+    private ItemStack tool = ItemStack.EMPTY;
 
     @Override
     public boolean canStartQuest(Set<Quest> active, Set<Quest> finished) {
@@ -42,7 +44,7 @@ public class QuestBlessing extends QuestTrade {
 
     @Override
     public boolean isNPCUsed(EntityPlayer player, NPCEntity entity) {
-        return entity.getNPC() == HFNPCs.PRIEST && (isHolding(player) || tool != null);
+        return entity.getNPC() == HFNPCs.PRIEST && (isHolding(player) || !tool.isEmpty());
     }
 
     @SideOnly(Side.CLIENT)
@@ -127,7 +129,7 @@ public class QuestBlessing extends QuestTrade {
 
     private boolean isHolding(EntityPlayer player) {
         ItemStack held = player.getHeldItemMainhand();
-        if (held != null) {
+        if (!held.isEmpty()) {
             if (held.getItem() instanceof ItemTool) {
                 ItemTool tool = ((ItemTool)held.getItem());
                 ToolTier tier = tool.getTier(held);

@@ -22,6 +22,8 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nonnull;
+
 public abstract class BlockHFEnumRotatableMeta<B extends BlockHFEnumRotatableMeta, E extends Enum<E> & IStringSerializable> extends BlockHFEnum<B, E> {
     public static final PropertyDirection FACING = BlockHorizontal.FACING;
     //Main Constructor
@@ -36,21 +38,25 @@ public abstract class BlockHFEnumRotatableMeta<B extends BlockHFEnumRotatableMet
     }
 
     @Override
+    @Nonnull
     protected BlockStateContainer createBlockState() {
         if(property == null) return new BlockStateContainer(this, temporary, FACING);
         return new BlockStateContainer(this, property, FACING);
     }
 
     @Override
+    @Nonnull
     public ItemStack getStackFromEnum(E e) {
         return new ItemStack(this, 1, e.ordinal());
     }
 
+    @Nonnull
     public ItemStack getStackFromEnum(E e, int amount) {
         return new ItemStack(this, amount, e.ordinal());
     }
 
     @Override
+    @Nonnull
     public IBlockState getStateFromMeta(int meta) {
         return getDefaultState().withProperty(property, getEnumFromMeta(meta)).withProperty(FACING, getFacingFromMeta(meta));
     }
@@ -72,20 +78,22 @@ public abstract class BlockHFEnumRotatableMeta<B extends BlockHFEnumRotatableMet
     }
 
     @Override
-    public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
+    public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, @Nonnull ItemStack stack) {
         EnumFacing facing = EntityHelper.getFacingFromEntity(placer);
         world.setBlockState(pos, state.withProperty(FACING, facing));
     }
 
     @SuppressWarnings("deprecation")
     @Override
-    public IBlockState withRotation(IBlockState state, Rotation rot) {
+    @Nonnull
+    public IBlockState withRotation(@Nonnull IBlockState state, Rotation rot) {
         return state.withProperty(FACING, rot.rotate(state.getValue(FACING)));
     }
 
     @SuppressWarnings("deprecation")
     @Override
-    public IBlockState withMirror(IBlockState state, Mirror mirrorIn) {
+    @Nonnull
+    public IBlockState withMirror(@Nonnull IBlockState state, Mirror mirrorIn) {
         return state.withRotation(mirrorIn.toRotation(state.getValue(FACING)));
     }
 

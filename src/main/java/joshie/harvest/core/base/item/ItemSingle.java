@@ -5,6 +5,8 @@ import joshie.harvest.core.helpers.TextHelper;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 
+import javax.annotation.Nonnull;
+
 public class ItemSingle<I extends ItemSingle> extends ItemHFBase<I> {
     public ItemSingle() {
         setCreativeTab(HFTab.FARMING);
@@ -15,7 +17,8 @@ public class ItemSingle<I extends ItemSingle> extends ItemHFBase<I> {
     }
 
     @Override
-    public String getItemStackDisplayName(ItemStack stack) {
+    @Nonnull
+    public String getItemStackDisplayName(@Nonnull ItemStack stack) {
         return TextHelper.translate(super.getUnlocalizedName().replace("item.", ""));
     }
 }

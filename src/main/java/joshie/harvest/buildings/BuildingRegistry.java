@@ -9,6 +9,7 @@ import joshie.harvest.core.util.ResourceLoader;
 import joshie.harvest.core.util.annotations.HFApiImplementation;
 import net.minecraft.item.ItemStack;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.HashMap;
 
@@ -22,11 +23,13 @@ public class BuildingRegistry implements IBuildingRegistry {
     private BuildingRegistry() {}
 
     @Override
+    @Nonnull
     public ItemStack getBlueprint(Building building) {
         return HFBuildings.BLUEPRINTS.getStackFromObject(building);
     }
 
     @Override
+    @Nonnull
     public ItemStack getSpawner(Building building) {
         return HFBuildings.STRUCTURES.getStackFromObject(building);
     }

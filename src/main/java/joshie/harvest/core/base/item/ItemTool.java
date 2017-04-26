@@ -51,13 +51,13 @@ public abstract class ItemTool<I extends ItemTool> extends ItemHFBase<I> impleme
     }
 
     @Override
-    public int getSortValue(ItemStack stack) {
+    public int getSortValue(@Nonnull ItemStack stack) {
         return CreativeSort.TOOLS + getTier(stack).ordinal();
     }
 
     @Override
     @Nonnull
-    public String getUnlocalizedName(ItemStack stack) {
+    public String getUnlocalizedName(@Nonnull ItemStack stack) {
         return super.getUnlocalizedName(stack) + "_" + getTier(stack).name().toLowerCase(Locale.ENGLISH);
     }
 
@@ -69,12 +69,12 @@ public abstract class ItemTool<I extends ItemTool> extends ItemHFBase<I> impleme
     }
 
     @Override
-    public double getLevel(ItemStack stack) {
+    public double getLevel(@Nonnull ItemStack stack) {
         return stack.getOrCreateSubCompound("Data").getDouble("Level");
     }
 
     @Override
-    public void levelTool(ItemStack stack) {
+    public void levelTool(@Nonnull ItemStack stack) {
         double level = stack.getOrCreateSubCompound("Data").getDouble("Level");
         double increase = getLevelIncrease(stack);
         double newLevel = Math.min(100D, level + increase);
@@ -82,7 +82,7 @@ public abstract class ItemTool<I extends ItemTool> extends ItemHFBase<I> impleme
     }
 
     @Override
-    public boolean setLevel(ItemStack stack, double newLevel) {
+    public boolean setLevel(@Nonnull ItemStack stack, double newLevel) {
         if (newLevel < 0D || newLevel > 100D) return false;
         else {
             stack.getOrCreateSubCompound("Data").setDouble("Level", newLevel);
@@ -91,18 +91,18 @@ public abstract class ItemTool<I extends ItemTool> extends ItemHFBase<I> impleme
     }
 
     @Override
-    public ToolTier getTier(ItemStack stack) {
+    public ToolTier getTier(@Nonnull ItemStack stack) {
         int safe = Math.min(Math.max(0, stack.getItemDamage()), (ToolTier.values().length - 1));
         return ToolTier.values()[safe];
     }
 
     @Override
-    public boolean showDurabilityBar(ItemStack stack) {
+    public boolean showDurabilityBar(@Nonnull ItemStack stack) {
         return getDurabilityForDisplay(stack) > 0D;
     }
 
     @Override
-    public double getDurabilityForDisplay(ItemStack stack)  {
+    public double getDurabilityForDisplay(@Nonnull ItemStack stack)  {
         return (double) getDamageForDisplay(stack) / (double)getMaximumToolDamage(stack);
     }
 
@@ -110,7 +110,7 @@ public abstract class ItemTool<I extends ItemTool> extends ItemHFBase<I> impleme
         return true;
     }
 
-    public int getDamageForDisplay(ItemStack stack) {
+    public int getDamageForDisplay(@Nonnull ItemStack stack) {
         int display = stack.getOrCreateSubCompound("Data").getInteger("Damage");
         int max = getMaximumToolDamage(stack);
         if (display > max) {
@@ -119,11 +119,11 @@ public abstract class ItemTool<I extends ItemTool> extends ItemHFBase<I> impleme
         } else return display;
     }
 
-    public boolean canUse(ItemStack stack) {
+    public boolean canUse(@Nonnull ItemStack stack) {
         return getDamageForDisplay(stack) + 1 <= getMaximumToolDamage(stack) || !canBeDamaged();
     }
 
-    public boolean canLevel(ItemStack stack, IBlockState state) {
+    public boolean canLevel(@Nonnull ItemStack stack, IBlockState state) {
         for (String type : getToolClasses(stack)) {
             if (state.getBlock().isToolEffective(type, state))
                 return true;
@@ -133,7 +133,7 @@ public abstract class ItemTool<I extends ItemTool> extends ItemHFBase<I> impleme
     }
 
     @Override
-    public boolean onBlockDestroyed(ItemStack stack, World worldIn, IBlockState state, BlockPos pos, EntityLivingBase entityLiving) {
+    public boolean onBlockDestroyed(@Nonnull ItemStack stack, World worldIn, IBlockState state, BlockPos pos, EntityLivingBase entityLiving) {
         if (canUse(stack) && canBeDamaged()) {
             if (canLevel(stack, state)) {
                 ToolHelper.levelTool(stack);
@@ -147,12 +147,12 @@ public abstract class ItemTool<I extends ItemTool> extends ItemHFBase<I> impleme
 
     @Override
     @Nonnull
-    public EnumAction getItemUseAction(ItemStack stack) {
+    public EnumAction getItemUseAction(@Nonnull ItemStack stack) {
         return EnumAction.BOW;
     }
 
     @Override
-    public int getMaxItemUseDuration(ItemStack stack) {
+    public int getMaxItemUseDuration(@Nonnull ItemStack stack) {
         return 32000;
     }
 
@@ -164,7 +164,7 @@ public abstract class ItemTool<I extends ItemTool> extends ItemHFBase<I> impleme
         return 0;
     }
 
-    public float getExhaustionRate(ItemStack stack) {
+    public float getExhaustionRate(@Nonnull ItemStack stack) {
         ToolTier tier = getTier(stack);
         switch (tier) {
             case BASIC:
@@ -187,7 +187,7 @@ public abstract class ItemTool<I extends ItemTool> extends ItemHFBase<I> impleme
         }
     }
 
-    private double getLevelIncrease(ItemStack stack) {
+    private double getLevelIncrease(@Nonnull ItemStack stack) {
         ToolTier tier = getTier(stack);
         switch (tier) {
             case BASIC:
@@ -209,7 +209,7 @@ public abstract class ItemTool<I extends ItemTool> extends ItemHFBase<I> impleme
         }
     }
 
-    public int getMaximumToolDamage(ItemStack stack) {
+    public int getMaximumToolDamage(@Nonnull ItemStack stack) {
         ToolTier tier = getTier(stack);
         switch (tier) {
             case BASIC:
@@ -232,7 +232,7 @@ public abstract class ItemTool<I extends ItemTool> extends ItemHFBase<I> impleme
         }
     }
 
-    protected float getEffiency(ItemStack stack) {
+    protected float getEffiency(@Nonnull ItemStack stack) {
         ToolTier tier = getTier(stack);
         float effiency = 0F;
         switch (tier) {
@@ -381,7 +381,7 @@ public abstract class ItemTool<I extends ItemTool> extends ItemHFBase<I> impleme
 
     //Tools
     @Override
-    public boolean getIsRepairable(ItemStack toRepair, ItemStack repair) {
+    public boolean getIsRepairable(@Nonnull ItemStack toRepair, @Nonnull ItemStack repair) {
         switch(getTier(toRepair)) {
             case BASIC: return InventoryHelper.ORE_DICTIONARY.matches(repair, "stone");
             case COPPER: return InventoryHelper.ITEM_STACK.matches(repair, HFMining.MATERIALS.getStackFromEnum(Material.COPPER));
@@ -395,12 +395,12 @@ public abstract class ItemTool<I extends ItemTool> extends ItemHFBase<I> impleme
 
     @Override
     @Nonnull
-    public Set<String> getToolClasses(ItemStack stack) {
+    public Set<String> getToolClasses(@Nonnull ItemStack stack) {
         return toolClass != null ? com.google.common.collect.ImmutableSet.of(toolClass) : super.getToolClasses(stack);
     }
 
     @Override
-    public float getStrVsBlock(ItemStack stack, IBlockState state) {
+    public float getStrVsBlock(@Nonnull ItemStack stack, IBlockState state) {
         for (String type : getToolClasses(stack)) {
             if (state.getBlock().isToolEffective(type, state))
                 return getEffiency(stack);
@@ -411,7 +411,7 @@ public abstract class ItemTool<I extends ItemTool> extends ItemHFBase<I> impleme
 
     @SideOnly(Side.CLIENT)
     @Override
-    public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
+    public void addInformation(@Nonnull ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
         if (HFCore.DEBUG_MODE && advanced) {
             tooltip.add("Damage: " + getDamageForDisplay(stack) + "/" + getMaximumToolDamage(stack));
             tooltip.add("Level: " + getLevel(stack));

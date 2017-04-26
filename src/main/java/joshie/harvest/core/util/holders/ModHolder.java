@@ -3,10 +3,10 @@ package joshie.harvest.core.util.holders;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 
-import java.util.ArrayList;
-import java.util.List;
+import javax.annotation.Nonnull;
 
 public class ModHolder extends AbstractItemHolder {
     private final String mod;
@@ -20,12 +20,12 @@ public class ModHolder extends AbstractItemHolder {
     }
 
     @Override
-    public List<ItemStack> getMatchingStacks() {
-        return new ArrayList<>();
+    public NonNullList<ItemStack> getMatchingStacks() {
+        return NonNullList.create();
     }
 
     @Override
-    public boolean matches(ItemStack stack) {
+    public boolean matches(@Nonnull ItemStack stack) {
         ResourceLocation resource = Item.REGISTRY.getNameForObject(stack.getItem());
         return resource != null && resource.getResourceDomain().equals(mod);
     }

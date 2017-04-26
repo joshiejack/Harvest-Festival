@@ -9,6 +9,8 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
+import javax.annotation.Nonnull;
+
 public class ContainerFridge extends ContainerExpanded {
     private final TileFridge fridge;
 
@@ -30,7 +32,7 @@ public class ContainerFridge extends ContainerExpanded {
     }
 
     @Override
-    public boolean canInteractWith(EntityPlayer player) {
+    public boolean canInteractWith(@Nonnull EntityPlayer player) {
         return fridge.getContents().isUsableByPlayer(player);
     }
 
@@ -41,11 +43,12 @@ public class ContainerFridge extends ContainerExpanded {
     }
 
     @Override
+    @Nonnull
     public ItemStack transferStackInSlot(EntityPlayer player, int slotID) {
         int size = fridge.getContents().getSizeInventory();
         int low = size + 27;
         int high = low + 9;
-        ItemStack newStack = null;
+        ItemStack newStack = ItemStack.EMPTY;
         final Slot slot = inventorySlots.get(slotID);
 
         if (slot != null && slot.getHasStack()) {
@@ -53,20 +56,20 @@ public class ContainerFridge extends ContainerExpanded {
             newStack = stack.copy();
 
             if (slotID < size) {
-                if (!mergeItemStack(stack, size, high, true)) return null;
+                if (!mergeItemStack(stack, size, high, true)) return ItemStack.EMPTY;
             } else if (TileFridge.isValid(stack)) {
-                if (!mergeItemStack(stack, 0, fridge.getContents().getSizeInventory(), false)) return null;
+                if (!mergeItemStack(stack, 0, fridge.getContents().getSizeInventory(), false)) return ItemStack.EMPTY;
             } else if (slotID >= size && slotID < low) {
-                if (!mergeItemStack(stack, low, high, false)) return null;
-            } else if (slotID >= low && slotID < high && !mergeItemStack(stack, size, low, false)) return null;
+                if (!mergeItemStack(stack, low, high, false)) return ItemStack.EMPTY;
+            } else if (slotID >= low && slotID < high && !mergeItemStack(stack, size, low, false)) return ItemStack.EMPTY;
 
             if (stack.getCount() == 0) {
-                slot.putStack(null);
+                slot.putStack(ItemStack.EMPTY);
             } else {
                 slot.onSlotChanged();
             }
 
-            if (stack.getCount() == newStack.getCount()) return null;
+            if (stack.getCount() == newStack.getCount()) return ItemStack.EMPTY;
 
             slot.onTake(player, stack);
         }
@@ -85,7 +88,7 @@ public class ContainerFridge extends ContainerExpanded {
         }
 
         @Override
-        public boolean isItemValid(ItemStack stack) {
+        public boolean isItemValid(@Nonnull ItemStack stack) {
             return TileFridge.isValid(stack);
         }
     }

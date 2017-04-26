@@ -21,6 +21,8 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
+import javax.annotation.Nonnull;
+
 import static joshie.harvest.animals.HFAnimals.ANIMAL_PRODUCT;
 import static joshie.harvest.cooking.HFCooking.INGREDIENTS;
 import static joshie.harvest.cooking.HFCooking.MEAL;
@@ -143,7 +145,7 @@ public class HFIngredients {
         EGG.add(SMALL_EGG, MEDIUM_EGG, LARGE_EGG);
     }
 
-    private static String getPrimaryCropName(ItemStack stack) {
+    private static String getPrimaryCropName(@Nonnull ItemStack stack) {
         String[] names = InventoryHelper.getOreNames(stack);
         for (String name: names) {
             if (name.startsWith("crop")) return name;

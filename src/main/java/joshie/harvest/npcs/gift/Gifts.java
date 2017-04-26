@@ -6,6 +6,7 @@ import joshie.harvest.core.util.holders.HolderRegistry;
 import joshie.harvest.npcs.NPCHelper;
 import net.minecraft.item.ItemStack;
 
+import javax.annotation.Nonnull;
 import java.util.EnumMap;
 
 import static joshie.harvest.api.npc.gift.GiftCategory.*;
@@ -38,7 +39,7 @@ public class Gifts implements IGiftHandler {
         categoryRegistry.put(JUNK, Quality.BAD);
     }
 
-    public Quality getQuality(ItemStack stack) {
+    public Quality getQuality(@Nonnull ItemStack stack) {
         Quality itemQuality = stackRegistry.getValueOf(stack);
         if (itemQuality != null) return itemQuality;
         GiftCategory category = NPCHelper.INSTANCE.getGifts().getRegistry().getValueOf(stack);

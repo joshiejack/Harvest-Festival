@@ -25,18 +25,20 @@ public class PurchasableDestroy extends Purchasable {
     private final Building building;
 
     public PurchasableDestroy(long cost, Building building) {
-        super(cost, null);
+        super(cost, ItemStack.EMPTY);
         this.building = building;
         this.cost = cost;
         this.resource = ((cost >= 0) ? "buy:" : "sell:") + building.getResource().toString().replace(":", "_");
     }
 
     @Override
+    @Nonnull
     public ItemStack getDisplayStack() {
         return building.getSpawner();
     }
 
     @Override
+    @Nonnull
     protected ItemStack getPurchasedStack() {
         return building.getSpawner();
     }

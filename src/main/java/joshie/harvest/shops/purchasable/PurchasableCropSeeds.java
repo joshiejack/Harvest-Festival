@@ -47,6 +47,7 @@ public class PurchasableCropSeeds implements IPurchasable {
     }
 
     @Override
+    @Nonnull
     public ItemStack getDisplayStack() {
         return crop.getSeedStack(1);
     }

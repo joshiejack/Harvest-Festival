@@ -21,8 +21,6 @@ import net.minecraft.util.ITickable;
 import net.minecraft.util.NonNullList;
 
 import javax.annotation.Nonnull;
-import java.util.ArrayList;
-import java.util.List;
 
 import static joshie.harvest.cooking.CookingHelper.PlaceIngredientResult.SUCCESS;
 
@@ -38,7 +36,7 @@ public abstract class TileCooking extends TileFaceable {
     private static final int COOK_TIMER = 100;
     private boolean cooking;
     private short cookTimer = 0;
-    private ArrayList<ItemStack> ingredients = new ArrayList<>();
+    private NonNullList<ItemStack> ingredients = NonNullList.create();
     protected NonNullList<ItemStack> result = NonNullList.create();
     private int last;
 
@@ -71,7 +69,7 @@ public abstract class TileCooking extends TileFaceable {
         return result;
     }
 
-    public List<ItemStack> getIngredients() {
+    public NonNullList<ItemStack> getIngredients() {
         return ingredients;
     }
 
@@ -128,7 +126,7 @@ public abstract class TileCooking extends TileFaceable {
                 } else if (cookTimer >= getCookingTime()) {
                     result.addAll(HFApi.cooking.getCookingResult(getUtensil(), ingredients));
                     cooking = false;
-                    ingredients = new ArrayList<>();
+                    ingredients = NonNullList.create();
                     cookTimer = 0;
                     markDirty();
                 }
@@ -143,7 +141,7 @@ public abstract class TileCooking extends TileFaceable {
 
     //Returns true if this was a valid ingredient to add
     @SuppressWarnings("ConstantConditions")
-    public boolean addIngredient(ItemStack stack) {
+    public boolean addIngredient(@Nonnull ItemStack stack) {
         if (ingredients.size() >= 20) return false;
         if (hasPrerequisites() != SUCCESS) return false;
         if (!HFApi.cooking.isIngredient(stack)) return false;
@@ -210,7 +208,7 @@ public abstract class TileCooking extends TileFaceable {
         cooking = nbt.getBoolean("IsCooking");
         cookTimer = nbt.getShort("CookingTimer");
         last = nbt.getByte("Last");
-        ingredients = new ArrayList<>();
+        ingredients = NonNullList.create();
         if (nbt.hasKey("IngredientsInside")) {
             NBTTagList is = nbt.getTagList("IngredientsInside", 10);
             for (int i = 0; i < is.tagCount(); i++) {

@@ -70,7 +70,7 @@ public class HFTab extends CreativeTabs {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void displayAllRelevantItems(NonNullList<ItemStack> list) {
+    public void displayAllRelevantItems(@Nonnull NonNullList<ItemStack> list) {
         super.displayAllRelevantItems(list);
         Collections.sort(list, new Alphabetical());
     }
@@ -104,7 +104,7 @@ public class HFTab extends CreativeTabs {
         }
     }
 
-    public void setStack(ItemStack stack) {
+    public void setStack(@Nonnull ItemStack stack) {
         this.icon = stack;
     }
 

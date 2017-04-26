@@ -17,10 +17,7 @@ import net.minecraft.entity.EntityLiving.SpawnPlacementType;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.IStringSerializable;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.Explosion;
@@ -31,7 +28,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nonnull;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -86,8 +82,8 @@ public class BlockStone extends BlockHFEnumCube<BlockStone, Type> {
 
     @Override
     @Nonnull
-    public List<ItemStack> getDrops(@Nonnull IBlockAccess world, @Nonnull BlockPos pos, @Nonnull IBlockState state, int fortune) {
-        ArrayList<ItemStack> ret = new ArrayList<>();
+    public NonNullList<ItemStack> getDrops(@Nonnull IBlockAccess world, @Nonnull BlockPos pos, @Nonnull IBlockState state, int fortune) {
+        NonNullList<ItemStack> ret = NonNullList.create();
         if (getEnumFromState(world.getBlockState(pos)).isFake()) {
             ret.add(new ItemStack(HFMining.STONE, 1, getEnumFromState(world.getBlockState(pos)).ordinal()));
         }
@@ -120,7 +116,7 @@ public class BlockStone extends BlockHFEnumCube<BlockStone, Type> {
     }
 
     @Override
-    public String getItemStackDisplayName(ItemStack stack) {
+    public String getItemStackDisplayName(@Nonnull ItemStack stack) {
         String unlocalized = getUnlocalizedName();
         String name = getEnumFromStack(stack).isFake() ? "decorative" : stack.getItem().getUnlocalizedName(stack);
         return TextHelper.localizeFully(unlocalized + "." + name);
@@ -128,7 +124,7 @@ public class BlockStone extends BlockHFEnumCube<BlockStone, Type> {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean flag) {
+    public void addInformation(@Nonnull ItemStack stack, EntityPlayer player, List<String> list, boolean flag) {
         int adjusted = Math.max(0, Math.min(Type.values().length, stack.getItemDamage()));
         Type type = Type.values()[adjusted];
         if (type.isFake()) {

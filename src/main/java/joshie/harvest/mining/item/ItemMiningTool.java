@@ -78,7 +78,7 @@ public class ItemMiningTool extends ItemHFEnum<ItemMiningTool, MiningTool> {
     }
 
     @SuppressWarnings("ConstantConditions")
-    private void link(EntityPlayer player, World world, BlockPos pos, ItemStack stack) {
+    private void link(EntityPlayer player, World world, BlockPos pos, @Nonnull ItemStack stack) {
         NBTTagCompound link = getLinkData(player);
         if (!link.hasKey("Link1")) {
             link.setLong("Link1", pos.toLong());
@@ -150,12 +150,12 @@ public class ItemMiningTool extends ItemHFEnum<ItemMiningTool, MiningTool> {
     }
 
     @Override
-    public int getSortValue(ItemStack stack) {
+    public int getSortValue(@Nonnull ItemStack stack) {
         return CreativeSort.LAST;
     }
 
     @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
+    public void addInformation(@Nonnull ItemStack stack, EntityPlayer player, List<String> tooltip, boolean advanced) {
         if (getEnumFromStack(stack) == MiningTool.ELEVATOR_CABLE) tooltip.add(TextFormatting.AQUA + TextHelper.translate("elevator.tooltip"));
     }
 }

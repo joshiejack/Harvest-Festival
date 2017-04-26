@@ -5,7 +5,6 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 
 import javax.annotation.Nonnull;
-import java.util.List;
 
 public interface CookingManager {
     /** Registers this item as a cooking component type

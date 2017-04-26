@@ -5,11 +5,10 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.*;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.NonNullList;
 import net.minecraftforge.oredict.OreDictionary;
 
 import javax.annotation.Nonnull;
-import java.util.ArrayList;
-import java.util.List;
 
 import static joshie.harvest.core.helpers.InventoryHelper.SearchType.*;
 
@@ -192,8 +191,8 @@ public class InventoryHelper {
         return false;
     }
 
-    public static List<ItemStack> getStarts(String ore) {
-        List<ItemStack> list = new ArrayList<>();
+    public static NonNullList<ItemStack> getStarts(String ore) {
+        NonNullList<ItemStack> list = NonNullList.create();
         for (String name : OreDictionary.getOreNames()) {
             if (name.startsWith(ore)) list.addAll(OreDictionary.getOres(name));
         }
@@ -201,8 +200,8 @@ public class InventoryHelper {
         return list;
     }
 
-    public static List<ItemStack> getEnds(String ore) {
-        List<ItemStack> list = new ArrayList<>();
+    public static NonNullList<ItemStack> getEnds(String ore) {
+        NonNullList<ItemStack> list = NonNullList.create();
         for (String name : OreDictionary.getOreNames()) {
             if (name.endsWith(ore)) list.addAll(OreDictionary.getOres(name));
         }
@@ -210,8 +209,8 @@ public class InventoryHelper {
         return list;
     }
 
-    public static List<ItemStack> getContains(String ore) {
-        List<ItemStack> list = new ArrayList<>();
+    public static NonNullList<ItemStack> getContains(String ore) {
+        NonNullList<ItemStack> list = NonNullList.create();
         for (String name : OreDictionary.getOreNames()) {
             if (name.contains(ore)) list.addAll(OreDictionary.getOres(name));
         }

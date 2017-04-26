@@ -38,7 +38,7 @@ public class BlockInternalAir extends BlockHFBase<BlockInternalAir> {
     }
 
     @Override
-    public String getItemStackDisplayName(ItemStack stack) {
+    public String getItemStackDisplayName(@Nonnull ItemStack stack) {
         return TextHelper.localizeFully(getUnlocalizedName());
     }
 
@@ -81,7 +81,7 @@ public class BlockInternalAir extends BlockHFBase<BlockInternalAir> {
     }
 
     @Override
-    public int getSortValue(ItemStack stack) {
+    public int getSortValue(@Nonnull ItemStack stack) {
         return CreativeSort.LAST - 1;
     }
 

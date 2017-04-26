@@ -7,6 +7,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nonnull;
+
 @SideOnly(Side.CLIENT)
 public class RenderHarvestSheep extends RenderHarvestAnimal<EntityHarvestSheep> {
     private final ResourceLocation texture_sheared;
@@ -17,7 +19,7 @@ public class RenderHarvestSheep extends RenderHarvestAnimal<EntityHarvestSheep> 
     }
 
     @Override
-    protected ResourceLocation getEntityTexture(EntityHarvestSheep sheep) {
+    protected ResourceLocation getEntityTexture(@Nonnull EntityHarvestSheep sheep) {
         if (sheep.isChild()) return texture_child;
         else if (sheep.getSheared()) return texture_sheared;
         else return texture_adult;

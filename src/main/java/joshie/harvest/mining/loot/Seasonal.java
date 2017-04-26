@@ -11,6 +11,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.storage.loot.LootContext;
 import net.minecraft.world.storage.loot.conditions.LootCondition;
 
+import javax.annotation.Nonnull;
 import java.util.Locale;
 import java.util.Random;
 
@@ -24,7 +25,7 @@ public class Seasonal implements LootCondition {
     }
 
     @Override
-    public boolean testCondition(Random rand, LootContext context) {
+    public boolean testCondition(@Nonnull Random rand, @Nonnull LootContext context) {
         if (context.getKillerPlayer() instanceof EntityPlayer) {
             EntityPlayer player = (EntityPlayer) context.getKillerPlayer();
             return HFTrackers.getCalendar(player.world).getDate().getSeason() == season;
@@ -38,11 +39,12 @@ public class Seasonal implements LootCondition {
             super(new ResourceLocation(MODID, "season"), Seasonal.class);
         }
 
-        public void serialize(JsonObject json, Seasonal value, JsonSerializationContext context) {
+        public void serialize(@Nonnull JsonObject json, @Nonnull Seasonal value, @Nonnull JsonSerializationContext context) {
             json.addProperty("season", value.season.name().toLowerCase(Locale.ENGLISH));
         }
 
-        public Seasonal deserialize(JsonObject json, JsonDeserializationContext context) {
+        @Nonnull
+        public Seasonal deserialize(@Nonnull JsonObject json, @Nonnull JsonDeserializationContext context) {
             return new Seasonal(Season.valueOf(JsonUtils.getString(json, "season").toUpperCase(Locale.ENGLISH)));
         }
     }

@@ -5,6 +5,8 @@ import joshie.harvest.cooking.CookingHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
+import javax.annotation.Nonnull;
+
 import static joshie.harvest.core.registry.ShippingRegistry.SELL_VALUE;
 
 public class PurchasableMeal extends Purchasable {
@@ -17,8 +19,9 @@ public class PurchasableMeal extends Purchasable {
     }
 
     @Override
+    @Nonnull
     public ItemStack getDisplayStack() {
-        if (stack == null) {
+        if (stack.isEmpty()) {
             stack = CookingHelper.makeRecipe(recipe);
             if (stack.getTagCompound() != null) {
                 stack.getTagCompound().setLong(SELL_VALUE, 0L);

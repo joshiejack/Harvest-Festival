@@ -75,6 +75,7 @@ public class BlockTrough extends BlockHFEnumRotatableMeta<BlockTrough, Trough> i
     }
 
     @Override
+    @Nonnull
     protected BlockStateContainer createBlockState() {
         if(property == null) return new BlockStateContainer(this, temporary, FACING, SECTION);
         return new BlockStateContainer(this, property, FACING, SECTION);
@@ -184,7 +185,7 @@ public class BlockTrough extends BlockHFEnumRotatableMeta<BlockTrough, Trough> i
 
     @Override
     @SuppressWarnings("ConstantConditions")
-    public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
+    public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, @Nonnull ItemStack stack) {
         super.onBlockPlacedBy(world, pos, state, placer, stack);
         if (getEnumFromState(state) == WOOD) {
             ((TileTrough)world.getTileEntity(pos)).onPlaced();
@@ -202,7 +203,7 @@ public class BlockTrough extends BlockHFEnumRotatableMeta<BlockTrough, Trough> i
     }
 
     @Override
-    public int getSortValue(ItemStack stack) {
+    public int getSortValue(@Nonnull ItemStack stack) {
         return CreativeSort.TROUGH;
     }
 

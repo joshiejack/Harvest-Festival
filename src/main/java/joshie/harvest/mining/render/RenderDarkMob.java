@@ -7,6 +7,8 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.util.ResourceLocation;
 
+import javax.annotation.Nonnull;
+
 public class RenderDarkMob<T extends EntityLiving> extends RenderLiving<T> {
     protected final ResourceLocation texture;
 
@@ -16,7 +18,7 @@ public class RenderDarkMob<T extends EntityLiving> extends RenderLiving<T> {
     }
 
     @Override
-    protected ResourceLocation getEntityTexture(EntityLiving entityLiving) {
+    protected ResourceLocation getEntityTexture(@Nonnull EntityLiving entityLiving) {
         return texture;
     }
 }

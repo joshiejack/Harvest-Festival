@@ -65,13 +65,13 @@ public class BlockDirt extends BlockHFBase<BlockDirt> {
     }
 
     @Override
-    public String getItemStackDisplayName(ItemStack stack) {
+    public String getItemStackDisplayName(@Nonnull ItemStack stack) {
         return TextHelper.localizeFully(getUnlocalizedName());
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean flag) {
+    public void addInformation(@Nonnull ItemStack stack, EntityPlayer player, List<String> list, boolean flag) {
         if (stack.getItem() == Item.getItemFromBlock(HFMining.DIRT_DECORATIVE)) list.add(TextFormatting.YELLOW + TextHelper.translate("tooltip.cosmetic"));
     }
 

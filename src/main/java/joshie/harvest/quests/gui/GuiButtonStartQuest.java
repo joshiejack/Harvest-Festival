@@ -8,6 +8,8 @@ import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.math.BlockPos;
 
+import javax.annotation.Nonnull;
+
 public class GuiButtonStartQuest extends GuiButton {
     private final BlockPos pos;
     private final Quest quest;
@@ -21,7 +23,7 @@ public class GuiButtonStartQuest extends GuiButton {
     }
 
     @Override
-    public void drawButton(Minecraft mc, int mouseX, int mouseY) {
+    public void drawButton(@Nonnull Minecraft mc, int mouseX, int mouseY) {
         if (visible) {
             GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
             hovered = mouseX >= xPosition && mouseY >= yPosition && mouseX < xPosition + width && mouseY < yPosition + height;

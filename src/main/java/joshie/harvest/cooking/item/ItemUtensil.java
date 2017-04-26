@@ -10,6 +10,7 @@ import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
 
+import javax.annotation.Nonnull;
 import java.util.Locale;
 
 import static joshie.harvest.cooking.item.ItemUtensil.Utensil.KNIFE;
@@ -35,7 +36,8 @@ public class ItemUtensil extends ItemHFEnum<ItemUtensil, Utensil> {
 
     @Override
     @SuppressWarnings("deprecation")
-    public Multimap<String, AttributeModifier> getAttributeModifiers(EntityEquipmentSlot slot, ItemStack stack) {
+    @Nonnull
+    public Multimap<String, AttributeModifier> getAttributeModifiers(@Nonnull EntityEquipmentSlot slot, @Nonnull ItemStack stack) {
         if (getEnumFromStack(stack) != KNIFE) {
             return super.getAttributeModifiers(slot, stack);
         } else {

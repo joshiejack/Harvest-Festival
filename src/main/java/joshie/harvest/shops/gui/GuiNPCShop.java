@@ -23,6 +23,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
+import javax.annotation.Nonnull;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -39,7 +40,8 @@ public class GuiNPCShop extends GuiNPCBase {
     public final boolean selling;
     protected int start;
     private int maxSize;
-    private ItemStack purchased;
+    @Nonnull
+    private ItemStack purchased = ItemStack.EMPTY;
 
     public GuiNPCShop(EntityPlayer player, EntityNPC npc, int nextGui, boolean isSelling) {
         super(new ContainerNull(), player, npc, nextGui);
@@ -115,7 +117,7 @@ public class GuiNPCShop extends GuiNPCBase {
     protected void mouseClicked(int x, int y, int mouseButton) throws IOException {
         super.mouseClicked(x, y, mouseButton);
         if (selectedButton == null) {
-            updatePurchased(null, 0);
+            updatePurchased(ItemStack.EMPTY, 0);
         }
     }
 
@@ -194,15 +196,15 @@ public class GuiNPCShop extends GuiNPCBase {
         } else drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
     }
 
-    public void updatePurchased(ItemStack stack, int amount) {
-        if (stack == null) purchased = null;
-        else if (purchased == null || !ItemStack.areItemsEqual(purchased, stack)) purchased = stack.copy();
+    public void updatePurchased(@Nonnull ItemStack stack, int amount) {
+        if (stack.isEmpty()) purchased = ItemStack.EMPTY;
+        else if (purchased.isEmpty() || !ItemStack.areItemsEqual(purchased, stack)) purchased = stack.copy();
         else purchased.setCount(purchased.getCount() + amount);
     }
 
     @Override
     protected void drawTooltip(List<String> list, int x, int y) {
-        if (purchased == null) super.drawTooltip(list, x, y);
+        if (purchased.isEmpty()) super.drawTooltip(list, x, y);
         else super.drawTooltip(list, x + 16, y + 16);
     }
 
@@ -267,7 +269,7 @@ public class GuiNPCShop extends GuiNPCBase {
 
     @Override
     public void drawForeground(int x, int y) {
-        if (purchased != null) {
+        if (!purchased.isEmpty()) {
             StackRenderHelper.drawStack(purchased, mouseX, mouseY, 1F);
         }
     }

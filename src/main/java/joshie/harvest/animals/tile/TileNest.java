@@ -12,10 +12,11 @@ import static joshie.harvest.core.helpers.MCServerHelper.markTileForUpdate;
 
 public class TileNest extends TileHarvest {
     private int relationship;
+    @Nonnull
     private ItemStack drop;
     private Size size;
 
-    public void setDrop(int mother, ItemStack stack) {
+    public void setDrop(int mother, @Nonnull ItemStack stack) {
         this.relationship = mother;
         this.drop = stack;
         this.size = HFApi.sizeable.getSize(stack);
@@ -25,7 +26,7 @@ public class TileNest extends TileHarvest {
 
     public void clear() {
         this.relationship = 0;
-        this.drop = null;
+        this.drop = ItemStack.EMPTY;
         this.size = null;
         this.markDirty();
         markTileForUpdate(this);

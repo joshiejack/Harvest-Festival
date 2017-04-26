@@ -16,12 +16,12 @@ public class PurchasableWrapperMaterials extends PurchasableMaterials {
     public IPurchasable original;
 
     public PurchasableWrapperMaterials(PurchasableMaterials purchasable, int wood, int stone, long cost) {
-        super(cost, wood, stone, null);
+        super(cost, wood, stone, ItemStack.EMPTY);
         this.original = purchasable;
     }
 
     public PurchasableWrapperMaterials(IPurchasable purchasable, long cost, IRequirement... requirements) {
-        super(cost, null, requirements);
+        super(cost, ItemStack.EMPTY, requirements);
         this.original = purchasable;
     }
 
@@ -41,6 +41,7 @@ public class PurchasableWrapperMaterials extends PurchasableMaterials {
     }
 
     @Override
+    @Nonnull
     public ItemStack getDisplayStack() {
         return original.getDisplayStack();
     }

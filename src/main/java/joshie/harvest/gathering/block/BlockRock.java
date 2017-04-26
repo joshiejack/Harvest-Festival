@@ -1,6 +1,5 @@
 package joshie.harvest.gathering.block;
 
-import com.google.common.collect.Lists;
 import joshie.harvest.api.core.ITiered.ToolTier;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.block.BlockHFSmashable;
@@ -16,14 +15,13 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Locale;
 
 import static joshie.harvest.api.gathering.ISmashable.ToolType.HAMMER;
@@ -88,15 +86,15 @@ public class BlockRock extends BlockHFSmashable<BlockRock, Rock> {
     }
 
     @Override
-    public List<ItemStack> getDrops(EntityPlayer player, World world, BlockPos pos, IBlockState state, float luck) {
+    public NonNullList<ItemStack> getDrops(EntityPlayer player, World world, BlockPos pos, IBlockState state, float luck) {
         switch (getEnumFromState(state)) {
-            case STONE_SMALL: return Lists.newArrayList(new ItemStack(Blocks.STONE, 1));
-            case STONE_MEDIUM: return Lists.newArrayList(new ItemStack(Blocks.STONE, 2));
-            case STONE_LARGE: return Lists.newArrayList(new ItemStack(Blocks.STONE, 4));
-            case BOULDER_SMALL: return Lists.newArrayList(new ItemStack(Blocks.STONE, 3));
-            case BOULDER_MEDIUM: return Lists.newArrayList(new ItemStack(Blocks.STONE, 6));
-            case BOULDER_LARGE: return Lists.newArrayList(new ItemStack(Blocks.STONE, 12));
-            default: return new ArrayList<>();
+            case STONE_SMALL: return NonNullList.withSize(1, new ItemStack(Blocks.STONE, 1));
+            case STONE_MEDIUM: return NonNullList.withSize(1, new ItemStack(Blocks.STONE, 2));
+            case STONE_LARGE: return NonNullList.withSize(1, new ItemStack(Blocks.STONE, 4));
+            case BOULDER_SMALL: return NonNullList.withSize(1, new ItemStack(Blocks.STONE, 3));
+            case BOULDER_MEDIUM: return NonNullList.withSize(1, new ItemStack(Blocks.STONE, 6));
+            case BOULDER_LARGE: return NonNullList.withSize(1, new ItemStack(Blocks.STONE, 12));
+            default: return NonNullList.create();
         }
     }
 
@@ -112,7 +110,7 @@ public class BlockRock extends BlockHFSmashable<BlockRock, Rock> {
     }
 
     @Override
-    public int getSortValue(ItemStack stack) {
+    public int getSortValue(@Nonnull ItemStack stack) {
         return CreativeSort.TOOLS - 30 + stack.getItemDamage();
     }
 }

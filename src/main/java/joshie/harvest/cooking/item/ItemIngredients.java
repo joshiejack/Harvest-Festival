@@ -57,22 +57,24 @@ public class ItemIngredients extends ItemHFFoodEnum<ItemIngredients, Ingredient>
     }
 
     @Override
+    @Nonnull
     protected ItemStack getCreativeStack(Ingredient ingredient) {
-        return ingredient.getSellValue() > 0L ? getStackFromEnum(ingredient) : null;
+        return ingredient.getSellValue() > 0L ? getStackFromEnum(ingredient) : ItemStack.EMPTY;
     }
 
     @Override
-    public int getMaxItemUseDuration(ItemStack stack) {
+    public int getMaxItemUseDuration(@Nonnull ItemStack stack) {
         return 16;
     }
 
     @Override
-    public EnumAction getItemUseAction(ItemStack stack) {
+    @Nonnull
+    public EnumAction getItemUseAction(@Nonnull ItemStack stack) {
         return getEnumFromStack(stack).isDrink() ? EnumAction.DRINK : EnumAction.EAT;
     }
 
     @Override
-    public int getHealAmount(ItemStack stack) {
+    public int getHealAmount(@Nonnull ItemStack stack) {
         switch (getEnumFromStack(stack)) {
             case CURRY_POWDER:
             case DUMPLING_POWDER:
@@ -87,7 +89,7 @@ public class ItemIngredients extends ItemHFFoodEnum<ItemIngredients, Ingredient>
     }
 
     @Override
-    public float getSaturationModifier(ItemStack stack) {
+    public float getSaturationModifier(@Nonnull ItemStack stack) {
         switch (getEnumFromStack(stack)) {
             case RICEBALL: return 0.25F;
             case CHOCOLATE: return 0.5F;

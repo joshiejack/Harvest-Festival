@@ -14,13 +14,16 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 
+import javax.annotation.Nonnull;
+
 @Packet(Side.CLIENT)
 public class PacketGoddessGift extends PenguinPacket {
     private int npcID;
+    @Nonnull
     private ItemStack stack;
 
     public PacketGoddessGift() {}
-    public PacketGoddessGift(EntityNPC npc, ItemStack stack) {
+    public PacketGoddessGift(EntityNPC npc, @Nonnull ItemStack stack) {
         this.npcID = npc.getEntityId();
         this.stack = stack;
     }

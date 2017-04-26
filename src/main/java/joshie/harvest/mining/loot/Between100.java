@@ -6,6 +6,8 @@ import net.minecraft.util.JsonUtils;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.storage.loot.conditions.LootCondition;
 
+import javax.annotation.Nonnull;
+
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 
 public class Between100 extends FloorCondition {
@@ -28,12 +30,13 @@ public class Between100 extends FloorCondition {
             super(new ResourceLocation(MODID, "between100"), Between100.class);
         }
 
-        public void serialize(JsonObject json, Between100 value, JsonSerializationContext context) {
+        public void serialize(@Nonnull JsonObject json, @Nonnull Between100 value, @Nonnull JsonSerializationContext context) {
             json.addProperty("from", value.from);
             json.addProperty("to", value.to);
         }
 
-        public Between100 deserialize(JsonObject json, JsonDeserializationContext context) {
+        @Nonnull
+        public Between100 deserialize(@Nonnull JsonObject json, @Nonnull JsonDeserializationContext context) {
             return new Between100(JsonUtils.getInt(json, "from", 0), JsonUtils.getInt(json, "to", 0));
         }
     }

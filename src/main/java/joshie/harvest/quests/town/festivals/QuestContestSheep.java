@@ -22,6 +22,8 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 
+import javax.annotation.Nonnull;
+
 import static joshie.harvest.core.registry.ShippingRegistry.SELL_VALUE;
 import static joshie.harvest.town.BuildingLocations.PARK_SHEEP_JUDGE;
 
@@ -57,6 +59,7 @@ public class QuestContestSheep extends QuestAnimalContest<EntityHarvestSheep> {
     }
 
     @Override
+    @Nonnull
     public ItemStack getReward(Place place) {
         switch (place) {
             case FIRST: {

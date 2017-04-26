@@ -13,6 +13,7 @@ import net.minecraft.world.storage.loot.LootContext;
 import net.minecraft.world.storage.loot.conditions.LootCondition;
 import net.minecraft.world.storage.loot.functions.LootFunction;
 
+import javax.annotation.Nonnull;
 import java.util.Random;
 
 
@@ -24,7 +25,8 @@ public class SetEnum extends LootFunction {
         this.name = name;
     }
 
-    public ItemStack apply(ItemStack stack, Random rand, LootContext context) {
+    @Nonnull
+    public ItemStack apply(@Nonnull ItemStack stack, @Nonnull Random rand, @Nonnull LootContext context) {
         if (stack.getItem() instanceof ItemHFFoodEnum) {
             ItemStack ret = ((ItemHFFoodEnum)stack.getItem()).getStackFromEnumString(name);
             ret.setCount(stack.getCount()); ///Update the size
@@ -47,11 +49,12 @@ public class SetEnum extends LootFunction {
             super(new ResourceLocation("hf_set_enum"), SetEnum.class);
         }
 
-        public void serialize(JsonObject object, SetEnum functionClazz, JsonSerializationContext serializationContext) {
+        public void serialize(@Nonnull JsonObject object, @Nonnull SetEnum functionClazz, @Nonnull JsonSerializationContext serializationContext) {
             object.addProperty("enum", functionClazz.name);
         }
 
-        public SetEnum deserialize(JsonObject object, JsonDeserializationContext deserializationContext, LootCondition[] conditionsIn) {
+        @Nonnull
+        public SetEnum deserialize(@Nonnull JsonObject object, @Nonnull JsonDeserializationContext deserializationContext, @Nonnull LootCondition[] conditionsIn) {
             return new SetEnum(conditionsIn, object.get("enum").getAsString());
         }
     }

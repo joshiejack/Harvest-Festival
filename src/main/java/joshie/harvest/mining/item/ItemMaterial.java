@@ -8,6 +8,7 @@ import joshie.harvest.mining.item.ItemMaterial.Material;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
 
+import javax.annotation.Nonnull;
 import java.util.Locale;
 
 import static net.minecraft.util.text.TextFormatting.GREEN;
@@ -46,7 +47,8 @@ public class ItemMaterial extends ItemHFEnum<ItemMaterial, Material> {
     }
 
     @Override
-    public String getItemStackDisplayName(ItemStack stack) {
+    @Nonnull
+    public String getItemStackDisplayName(@Nonnull ItemStack stack) {
         switch (getEnumFromStack(stack)) {
             case MYTHIC:
                 return GREEN + super.getItemStackDisplayName(stack);
@@ -56,7 +58,7 @@ public class ItemMaterial extends ItemHFEnum<ItemMaterial, Material> {
     }
 
     @Override
-    public int getSortValue(ItemStack stack) {
+    public int getSortValue(@Nonnull ItemStack stack) {
         return CreativeSort.NONE + stack.getItemDamage();
     }
 }

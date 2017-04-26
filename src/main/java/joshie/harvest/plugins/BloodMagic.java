@@ -10,6 +10,8 @@ import net.minecraft.potion.PotionUtils;
 import net.minecraftforge.fml.common.event.FMLInterModComms;
 import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
 
+import javax.annotation.Nonnull;
+
 import static joshie.harvest.shops.HFShops.BLOODMAGE;
 
 @ObjectHolder("BloodMagic")
@@ -40,6 +42,7 @@ public class BloodMagic {
     }
 
     @SuppressWarnings("ConstantConditions")
+    @Nonnull
     private static ItemStack getSoulGem(int amount) {
         ItemStack stack = new ItemStack(ItemSoulGem);
         stack.setTagCompound(new NBTTagCompound());

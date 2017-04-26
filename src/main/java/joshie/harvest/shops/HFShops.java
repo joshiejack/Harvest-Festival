@@ -565,6 +565,7 @@ public class HFShops {
         SHEEP_FESTIVAL_SALE.addPurchasable(100, new ItemStack(Items.NAME_TAG));
     }
 
+    @Nonnull
     public static ItemStack getWoolyArmor(Item item, java.lang.String name) {
         ItemStack stack = new ItemStack(item);
         stack.setStackDisplayName(name);

@@ -10,6 +10,7 @@ import joshie.harvest.quests.Quests;
 import joshie.harvest.quests.base.QuestFriendshipStore;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,13 +37,13 @@ public class QuestLiara15KMeals extends QuestFriendshipStore {
 
     @Override
     @SuppressWarnings("ConstantConditions")
-    protected List<ItemStack> getRewardStacks(EntityPlayer player) {
-        List<ItemStack> stacks = new ArrayList<>();
+    protected NonNullList<ItemStack> getRewardStacks(EntityPlayer player) {
+        NonNullList<ItemStack> stacks = NonNullList.create();
         for (int i = 0; i < 3; i++) {
             Random rand = new Random(HFApi.calendar.getDate(player.world).hashCode() + i);
             List<Recipe> list = new ArrayList<>(Recipe.REGISTRY.values());
-            ItemStack stack = null;
-            while (stack == null || !stack.hasTagCompound()) {
+            ItemStack stack = ItemStack.EMPTY;
+            while (stack.isEmpty() || !stack.hasTagCompound()) {
                 stack = CookingHelper.makeRecipe(list.get(rand.nextInt(list.size())));
             }
 

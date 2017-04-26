@@ -1,6 +1,5 @@
 package joshie.harvest.quests.player.friendship;
 
-import com.google.common.collect.Lists;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.quests.HFQuest;
@@ -18,6 +17,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntitySign;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
@@ -46,11 +46,11 @@ public class QuestJenni15KWednesday extends QuestFriendshipStore {
     }
 
     @Override
-    protected List<ItemStack> getRewardStacks(EntityPlayer player) {
+    protected NonNullList<ItemStack> getRewardStacks(EntityPlayer player) {
         Season season = HFApi.calendar.getDate(player.world).getSeason();
-        if (season == SUMMER) return Lists.newArrayList(HFCrops.PINEAPPLE.getSeedStack(2));
-        else if (season == AUTUMN) return Lists.newArrayList(HFCrops.GREEN_PEPPER.getSeedStack(2));
-        else return Lists.newArrayList(HFCrops.CABBAGE.getSeedStack(2));
+        if (season == SUMMER) return NonNullList.withSize(1, HFCrops.PINEAPPLE.getSeedStack(2));
+        else if (season == AUTUMN) return NonNullList.withSize(1, HFCrops.GREEN_PEPPER.getSeedStack(2));
+        else return NonNullList.withSize(1, HFCrops.CABBAGE.getSeedStack(2));
     }
 
     @Override

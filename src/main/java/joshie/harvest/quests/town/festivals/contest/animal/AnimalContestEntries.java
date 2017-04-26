@@ -59,13 +59,7 @@ public class AnimalContestEntries<E extends EntityAnimal> extends ContestEntries
         UUID playerUUID = EntityHelper.getPlayerUUID(player);
         UUID animalUUID = EntityHelper.getEntityUUID(animal);
         //Wipe out any entries that match the exist
-        Iterator<AnimalContestEntry> it = entries.iterator();
-        while (it.hasNext()) {
-            AnimalContestEntry entry = it.next();
-            if (entry.getStall() == stall || playerUUID.equals(entry.getPlayerUUID()) || animalUUID.equals(entry.getAnimalUUID())) {
-                it.remove();
-            }
-        }
+        entries.removeIf(entry -> entry.getStall() == stall || playerUUID.equals(entry.getPlayerUUID()) || animalUUID.equals(entry.getAnimalUUID()));
 
         entries.add(new AnimalContestEntry(playerUUID, animalUUID, stall));
         selecting.remove(playerUUID);

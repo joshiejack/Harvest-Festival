@@ -13,17 +13,18 @@ import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.util.List;
+import javax.annotation.Nonnull;
 
 public class StackHelper {
 
+    @Nonnull
     public static ItemStack getStackFromString(String str) {
-        if (str == null || str.equals("")) return null;
+        if (str == null || str.equals("")) return ItemStack.EMPTY;
         return getStackFromArray(str.trim().split(" "));
     }
 
     @SuppressWarnings("ConstantConditions")
-    public static String getStringFromStack(ItemStack stack) {
+    public static String getStringFromStack(@Nonnull ItemStack stack) {
         String str = Item.REGISTRY.getNameForObject(stack.getItem()).toString().replace(" ", "%20");
         if (stack.getHasSubtypes() || stack.isItemStackDamageable()) {
             str = str + " " + stack.getItemDamage();
@@ -75,9 +76,10 @@ public class StackHelper {
     }
 
     @SuppressWarnings("ConstantConditions")
+    @Nonnull
     private static ItemStack getStackFromArray(String[] str) {
         Item item = getItemByText(str[0]);
-        if (item == null) return null;
+        if (item == null) return ItemStack.EMPTY;
 
         int meta = 0;
         int amount = 1;
@@ -104,7 +106,7 @@ public class StackHelper {
         if (item == null) {
             try {
                 item = Item.getItemById(Integer.parseInt(str));
-            } catch (NumberFormatException numberformatexception) {}
+            } catch (NumberFormatException ignored) {}
         }
 
         return item;
@@ -151,7 +153,7 @@ public class StackHelper {
     private static final NonNullList<ItemStack> allStacks = NonNullList.create();
 
     @SideOnly(Side.CLIENT)
-    public static List<ItemStack> getAllStacks() {
+    public static NonNullList<ItemStack> getAllStacks() {
         if (allStacks.size() == 0) {
             for (CreativeTabs tab: CreativeTabs.CREATIVE_TAB_ARRAY) {
                 tab.displayAllRelevantItems(allStacks);
@@ -161,7 +163,8 @@ public class StackHelper {
         return allStacks;
     }
 
-    public static ItemStack toStack(ItemStack stack, int size) {
+    @Nonnull
+    public static ItemStack toStack(@Nonnull ItemStack stack, int size) {
         ItemStack copy = stack.copy();
         copy.setCount(size);
         return copy;

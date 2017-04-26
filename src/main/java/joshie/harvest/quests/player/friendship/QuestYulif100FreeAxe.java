@@ -12,6 +12,7 @@ import joshie.harvest.quests.base.QuestFriendship;
 import joshie.harvest.tools.HFTools;
 import net.minecraft.item.ItemStack;
 
+import javax.annotation.Nonnull;
 import java.util.Set;
 
 @HFQuest("friendship.yulif.axe")
@@ -32,6 +33,7 @@ public class QuestYulif100FreeAxe extends QuestFriendship {
 
     @Override
     @SuppressWarnings("ConstantConditions")
+    @Nonnull
     protected ItemStack getRewardStack() {
         return HFTools.AXE.getStack(ToolTier.BASIC);
     }

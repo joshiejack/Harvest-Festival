@@ -11,6 +11,7 @@ import javax.annotation.Nullable;
 import java.util.UUID;
 
 public abstract class TileStand extends TileFaceable {
+    @Nonnull
     protected ItemStack stack;
     private UUID uuid;
 
@@ -34,16 +35,18 @@ public abstract class TileStand extends TileFaceable {
         return true;
     }
 
+    @Nonnull
     public ItemStack removeContents() {
-        if (stack == null) return null;
+        if (stack.isEmpty()) return ItemStack.EMPTY;
         else {
             ItemStack stack = this.stack.copy();
-            this.stack = null;
+            this.stack = ItemStack.EMPTY;
             saveAndRefresh();
             return stack;
         }
     }
 
+    @Nonnull
     public ItemStack getContents() {
         return stack;
     }

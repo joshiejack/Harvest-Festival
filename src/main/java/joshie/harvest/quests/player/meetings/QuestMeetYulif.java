@@ -16,6 +16,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
+import javax.annotation.Nonnull;
 import java.util.Set;
 
 import static joshie.harvest.api.HFApi.npc;
@@ -54,6 +55,7 @@ public class QuestMeetYulif extends Quest {
     }
 
     @Override
+    @Nonnull
     public ItemStack getCurrentIcon(World world, EntityPlayer player) {
         if (quest_stage == LOGS || quest_stage == FINISHED) return GODDESS_STACK;
         else if (quest_stage == SEED_CHAT) return FLOWER_GIRL_STACK;

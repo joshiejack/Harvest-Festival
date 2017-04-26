@@ -218,7 +218,7 @@ public class ItemCheat extends ItemHFEnum<ItemCheat, Cheat> {
     }
 
     @Override
-    public int getSortValue(ItemStack stack) {
+    public int getSortValue(@Nonnull ItemStack stack) {
         return CreativeSort.LAST;
     }
 

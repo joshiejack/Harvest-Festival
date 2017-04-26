@@ -12,11 +12,13 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.storage.loot.LootContext;
 import net.minecraft.world.storage.loot.conditions.LootCondition;
 
+import javax.annotation.Nonnull;
 import java.util.Random;
 
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 
 public class Obtained implements LootCondition {
+    @Nonnull
     private final ItemStack stack;
 
     public Obtained(Item item, int meta) {
@@ -24,7 +26,7 @@ public class Obtained implements LootCondition {
     }
 
     @Override
-    public boolean testCondition(Random rand, LootContext context) {
+    public boolean testCondition(@Nonnull Random rand, @Nonnull LootContext context) {
         EntityPlayer player = (EntityPlayer) context.getKillerPlayer();
         return player != null && HFTrackers.getPlayerTrackerFromPlayer(player).getTracking().hasObtainedItem(stack);
     }
@@ -34,12 +36,13 @@ public class Obtained implements LootCondition {
             super(new ResourceLocation(MODID, "obtained"), Obtained.class);
         }
 
-        public void serialize(JsonObject json, Obtained value, JsonSerializationContext context) {
+        public void serialize(@Nonnull JsonObject json, @Nonnull Obtained value, @Nonnull JsonSerializationContext context) {
             json.addProperty("item", value.stack.getItem().getRegistryName().toString());
             json.addProperty("meta", value.stack.getItemDamage());
         }
 
-        public Obtained deserialize(JsonObject json, JsonDeserializationContext context) {
+        @Nonnull
+        public Obtained deserialize(@Nonnull JsonObject json, @Nonnull JsonDeserializationContext context) {
             return new Obtained(JsonUtils.getItem(json, "item"), JsonUtils.getInt(json, "meta", 0));
         }
     }

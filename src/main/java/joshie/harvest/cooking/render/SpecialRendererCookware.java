@@ -18,6 +18,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL14;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
 
@@ -69,7 +70,7 @@ public abstract class SpecialRendererCookware<T extends TileCooking> extends Til
         translateResult(isBlock);
     }
 
-    void renderIngredient(ItemStack stack, float position, float rotation, float offset1, float offset2) {
+    void renderIngredient(@Nonnull ItemStack stack, float position, float rotation, float offset1, float offset2) {
         GlStateManager.pushMatrix();
         RenderHelper.disableStandardItemLighting();
         GlStateManager.enableBlend();
@@ -91,7 +92,7 @@ public abstract class SpecialRendererCookware<T extends TileCooking> extends Til
         GlStateManager.popMatrix();
     }
 
-    void renderResult(T t, ItemStack stack) {
+    void renderResult(T t, @Nonnull ItemStack stack) {
         GlStateManager.pushMatrix();
         RenderHelper.disableStandardItemLighting();
         GlStateManager.enableBlend();

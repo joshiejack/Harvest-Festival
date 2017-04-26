@@ -174,7 +174,7 @@ public class BlockTray extends BlockHFEnum<BlockTray, Tray> implements IAnimalFe
             else return getStateFromEnum(Tray.FEEDER_EMPTY);
         } else if (tile instanceof TileNest) {
             TileNest nest = ((TileNest)tile);
-            if (nest.getDrop() == null) return getStateFromEnum(Tray.NEST_EMPTY);
+            if (nest.getDrop().isEmpty()) return getStateFromEnum(Tray.NEST_EMPTY);
             else {
                 Size size = nest.getSize();
                 if (size == null || size == Size.SMALL) return getStateFromEnum(Tray.SMALL_CHICKEN);
@@ -192,7 +192,7 @@ public class BlockTray extends BlockHFEnum<BlockTray, Tray> implements IAnimalFe
     }
 
     @Override
-    public int getSortValue(ItemStack stack) {
+    public int getSortValue(@Nonnull ItemStack stack) {
         return CreativeSort.TROUGH;
     }
 }

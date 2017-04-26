@@ -8,14 +8,14 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.WorldTickEvent;
 
-import java.util.ArrayList;
-import java.util.List;
+import javax.annotation.Nonnull;
 import java.util.Queue;
 import java.util.Set;
 
@@ -51,10 +51,11 @@ class TreeTasks {
     public static class ChopTree {
         private final World world;
         private final EntityPlayer player;
+        @Nonnull
         private final ItemStack stack;
         private final Queue<BlockPos> blocks = Lists.newLinkedList();
         private final Set<BlockPos> visited = new THashSet<>();
-        private final List<ItemStack> drops = new ArrayList<>();
+        private final NonNullList<ItemStack> drops = NonNullList.create();
 
         ChopTree(BlockPos start, EntityPlayer player, ItemStack stack) {
             this.world = player.getEntityWorld();

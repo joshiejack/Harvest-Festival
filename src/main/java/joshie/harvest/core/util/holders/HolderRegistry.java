@@ -6,8 +6,10 @@ import joshie.harvest.api.core.Ore;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 import net.minecraftforge.oredict.OreDictionary;
 
+import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -30,7 +32,7 @@ public class HolderRegistry<R> {
         }
     }
 
-    public boolean matches(ItemStack stack, R type) {
+    public boolean matches(@Nonnull ItemStack stack, R type) {
         R value = getValueOf(stack);
         return value != null && matches(value, type);
     }
@@ -39,7 +41,7 @@ public class HolderRegistry<R> {
         return registry.get(holder);
     }
 
-    public R getValueOf(ItemStack stack) {
+    public R getValueOf(@Nonnull ItemStack stack) {
         for (Entry<AbstractItemHolder, R> entry: registry.entrySet()) {
             if (entry.getKey().matches(stack)) return entry.getValue();
         }
@@ -47,8 +49,8 @@ public class HolderRegistry<R> {
         return null;
     }
 
-    public List<ItemStack> getStacksFor(R ingredient) {
-        ArrayList<ItemStack> result = new ArrayList<>();
+    public NonNullList<ItemStack> getStacksFor(R ingredient) {
+        NonNullList<ItemStack> result = NonNullList.create();
         registry.entrySet().stream().filter(entry -> matches(ingredient, entry.getValue())).forEach(entry -> result.addAll(entry.getKey().getMatchingStacks()));
         return result;
     }
@@ -61,7 +63,7 @@ public class HolderRegistry<R> {
         return external == internal;
     }
 
-    private AbstractItemHolder getHolder(ItemStack stack) {
+    private AbstractItemHolder getHolder(@Nonnull ItemStack stack) {
         if (stack.getItemDamage() == OreDictionary.WILDCARD_VALUE) return ItemHolder.of(stack.getItem());
         else if (HFApi.crops.getCropFromStack(stack) != null) return CropHolder.of(HFApi.crops.getCropFromStack(stack));
         else return ItemStackHolder.of(stack);

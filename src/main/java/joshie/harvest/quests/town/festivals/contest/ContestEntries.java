@@ -63,13 +63,8 @@ public abstract class ContestEntries<O, E extends ContestEntry, Q extends QuestC
     }
 
     protected void validateExistingEntries(World world) {
-        Iterator<E> it = entries.iterator();
-        while (it.hasNext()) {
-            E entry = it.next();
-            if (entry.isInvalid(world)) {
-                it.remove(); //Remove the entries as they are no longer valid
-            }
-        }
+        //Remove the entries as they are no longer valid
+        entries.removeIf(entry -> entry.isInvalid(world));
     }
 
     @Nullable

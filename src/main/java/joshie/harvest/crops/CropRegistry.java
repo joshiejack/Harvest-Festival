@@ -18,6 +18,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.oredict.OreDictionary;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -40,12 +41,13 @@ public class CropRegistry implements ICropRegistry {
     }
 
     @Override
+    @Nonnull
     public ItemStack getSeedStack(Crop crop, int amount) {
         return HFCrops.SEEDS.getStackFromCrop(crop, amount);
     }
 
     @Override
-    public void registerSeedForBlacklisting(ItemStack item) {
+    public void registerSeedForBlacklisting(@Nonnull ItemStack item) {
         DisableHandler.SEEDS_BLACKLIST.register(item);
     }
 
@@ -55,17 +57,17 @@ public class CropRegistry implements ICropRegistry {
     }
 
     @Override
-    public void registerCropProvider(ItemStack stack, Crop crop) {
+    public void registerCropProvider(@Nonnull ItemStack stack, Crop crop) {
         providers.put(ItemStackHolder.of(stack), crop);
     }
 
     @Override
-    public void registerSickle(ItemStack stack) {
+    public void registerSickle(@Nonnull ItemStack stack) {
         sickles.add(ItemStackHolder.of(stack));
     }
 
     @Override
-    public boolean isSickle(ItemStack stack) {
+    public boolean isSickle(@Nonnull ItemStack stack) {
         return sickles.contains(ItemStackHolder.of(stack)) || sickles.contains(ItemStackHolder.of(stack.getItem(), OreDictionary.WILDCARD_VALUE));
     }
 
@@ -80,7 +82,7 @@ public class CropRegistry implements ICropRegistry {
 
     @Override
     @SuppressWarnings("deprecation")
-    public Crop getCropFromStack(ItemStack stack) {
+    public Crop getCropFromStack(@Nonnull ItemStack stack) {
         Crop crop = providers.get(ItemStackHolder.of(stack.getItem(), OreDictionary.WILDCARD_VALUE));
         return crop != null ? crop : providers.get(ItemStackHolder.of(stack));
     }

@@ -85,6 +85,7 @@ public class ItemMeal extends ItemHFFoodEnum<ItemMeal, Meal> {
         }
     }
 
+    @Nonnull
     public ItemStack getRandomMeal(Random rand) {
         boolean first = rand.nextBoolean();
         if (first) return getCreativeStack(MEALS[rand.nextInt(50)]);
@@ -101,13 +102,15 @@ public class ItemMeal extends ItemHFFoodEnum<ItemMeal, Meal> {
         return MEAL_TO_RECIPE.get(meal);
     }
 
+    @Nonnull
     public ItemStack getStackFromRecipe(RecipeHF recipeHF) {
         Meal meal = Meal.valueOf(recipeHF.getResource().getResourcePath().toUpperCase(Locale.ENGLISH));
         return new ItemStack(this, 1, meal.ordinal());
     }
 
     @Override
-    public String getItemStackDisplayName(ItemStack stack) {
+    @Nonnull
+    public String getItemStackDisplayName(@Nonnull ItemStack stack) {
         Meal meal = getEnumFromStack(stack);
         if (meal.getUtensil() != null) return DARK_GRAY + meal.getUtensil().getBurntName();
         Recipe impl = getRecipeFromMeal(meal);
@@ -116,20 +119,20 @@ public class ItemMeal extends ItemHFFoodEnum<ItemMeal, Meal> {
 
     @Override
     @SuppressWarnings("ConstantConditions")
-    public int getHealAmount(ItemStack stack) {
+    public int getHealAmount(@Nonnull ItemStack stack) {
         return stack.hasTagCompound() ? stack.getTagCompound().getInteger(FOOD_LEVEL) : 0;
     }
 
     @Override
     @SuppressWarnings("ConstantConditions")
-    public float getSaturationModifier(ItemStack stack) {
+    public float getSaturationModifier(@Nonnull ItemStack stack) {
         return stack.hasTagCompound() ? stack.getTagCompound().getFloat(SATURATION_LEVEL) : 0;
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     @SuppressWarnings("ConstantConditions")
-    public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean debug) {
+    public void addInformation(@Nonnull ItemStack stack, EntityPlayer player, List<String> list, boolean debug) {
         if (HFCore.DEBUG_MODE && debug) {
             if (stack.hasTagCompound()) {
                 list.add(TextHelper.translate("meal.hunger") + " : " + stack.getTagCompound().getInteger(FOOD_LEVEL));
@@ -140,7 +143,8 @@ public class ItemMeal extends ItemHFFoodEnum<ItemMeal, Meal> {
     }
 
     @Override
-    public ItemStack onItemUseFinish(ItemStack stack, World world, EntityLivingBase entityLiving) {
+    @Nonnull
+    public ItemStack onItemUseFinish(@Nonnull ItemStack stack, @Nonnull World world, EntityLivingBase entityLiving) {
         if (stack.hasTagCompound() && entityLiving instanceof EntityPlayer) {
             EntityPlayer player = (EntityPlayer) entityLiving;
             if (!player.capabilities.isCreativeMode) stack.shrink(1);
@@ -153,7 +157,7 @@ public class ItemMeal extends ItemHFFoodEnum<ItemMeal, Meal> {
     }
 
     @Override
-    public int getMaxItemUseDuration(ItemStack stack) {
+    public int getMaxItemUseDuration(@Nonnull ItemStack stack) {
         if (stack.hasTagCompound()) {
             Recipe recipe = getRecipeFromMeal(getEnumFromStack(stack));
             return recipe == null ? 32 : recipe.getEatTimer();
@@ -162,7 +166,7 @@ public class ItemMeal extends ItemHFFoodEnum<ItemMeal, Meal> {
 
     @Override
     @Nonnull
-    public EnumAction getItemUseAction(ItemStack stack) {
+    public EnumAction getItemUseAction(@Nonnull ItemStack stack) {
         if (stack.hasTagCompound()) {
             Recipe recipe = getRecipeFromMeal(getEnumFromStack(stack));
             return recipe == null ? EnumAction.NONE : recipe.getAction();
@@ -195,6 +199,7 @@ public class ItemMeal extends ItemHFFoodEnum<ItemMeal, Meal> {
     }
 
     @Override
+    @Nonnull
     public ItemStack getCreativeStack(Meal meal) {
         return getCreativeStack(meal, 1);
     }

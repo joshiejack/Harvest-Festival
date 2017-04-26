@@ -6,9 +6,6 @@ import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.passive.EntityCow;
 import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.Biome.SpawnListEntry;
-
-import java.util.Iterator;
 
 @HFLoader
 public class AnimalRemover {
@@ -16,13 +13,7 @@ public class AnimalRemover {
     public static void complete() {
         if (!HFAnimals.CAN_SPAWN) {
             for (Biome biome: Biome.REGISTRY) {
-                Iterator<SpawnListEntry> it = biome.getSpawnableList(EnumCreatureType.CREATURE).iterator();
-                while (it.hasNext()) {
-                    SpawnListEntry entry = it.next();
-                    if (entry.entityClass == EntityCow.class || entry.entityClass == EntityChicken.class || entry.entityClass == EntitySheep.class) {
-                        it.remove();
-                    }
-                }
+                biome.getSpawnableList(EnumCreatureType.CREATURE).removeIf(entry -> entry.entityClass == EntityCow.class || entry.entityClass == EntityChicken.class || entry.entityClass == EntitySheep.class);
             }
         }
     }

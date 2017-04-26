@@ -6,31 +6,32 @@ import joshie.harvest.core.base.item.ItemHFSizeable;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.NonNullList;
 
-import java.util.ArrayList;
-import java.util.List;
+import javax.annotation.Nonnull;
 
 public class SizeableHolder extends AbstractItemHolder {
+    @Nonnull
     private final ItemStack stack;
     private final ISizedProvider item;
     private final Object object;
 
-    private SizeableHolder(ItemStack stack) {
+    private SizeableHolder(@Nonnull ItemStack stack) {
         this.stack = stack;
         this.item = (ItemHFSizeable) stack.getItem();
         this.object = this.item.getObject(stack);
     }
 
-    public static SizeableHolder of(ItemStack stack) {
+    public static SizeableHolder of(@Nonnull ItemStack stack) {
         return new SizeableHolder(stack);
     }
 
     @Override
     @SuppressWarnings("unchecked")
-    public List<ItemStack> getMatchingStacks() {
+    public NonNullList<ItemStack> getMatchingStacks() {
         if (matchingStacks != null && matchingStacks.size() > 0) return matchingStacks;
         else {
-            matchingStacks = new ArrayList<>();
+            matchingStacks = NonNullList.create();
             matchingStacks.add(item.getStackOfSize(object, Size.SMALL, 1));
             matchingStacks.add(item.getStackOfSize(object, Size.MEDIUM, 1));
             matchingStacks.add(item.getStackOfSize(object, Size.LARGE, 1));
@@ -39,7 +40,7 @@ public class SizeableHolder extends AbstractItemHolder {
     }
 
     @Override
-    public boolean matches(ItemStack stack) {
+    public boolean matches(@Nonnull ItemStack stack) {
         return stack.getItem() == this.stack.getItem() && item.getObject(stack) == item.getObject(this.stack);
     }
 
@@ -54,7 +55,7 @@ public class SizeableHolder extends AbstractItemHolder {
 
     @Override
     public String toString() {
-        return "SizeableHolder:" + (stack != null ? stack.getItem().getRegistryName() + " " + stack.getItemDamage() + " item: " + (item != null ? ((Item)item).getRegistryName() : "null") : "null");
+        return "SizeableHolder:" + (!stack.isEmpty() ? stack.getItem().getRegistryName() + " " + stack.getItemDamage() + " item: " + (item != null ? ((Item)item).getRegistryName() : "null") : "null");
     }
 
     @Override

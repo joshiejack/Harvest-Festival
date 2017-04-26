@@ -9,6 +9,7 @@ import joshie.harvest.quests.Quests;
 import joshie.harvest.quests.base.QuestFriendshipStore;
 import net.minecraft.item.ItemStack;
 
+import javax.annotation.Nonnull;
 import java.util.Set;
 
 @HFQuest("friendship.yulif.sprinkler")
@@ -28,6 +29,7 @@ public class QuestYulif15KSprinkler extends QuestFriendshipStore {
     }
 
     @Override
+    @Nonnull
     protected ItemStack getRewardStack() {
         return HFCrops.SPRINKLER.getStackFromEnum(Sprinkler.IRON);
     }

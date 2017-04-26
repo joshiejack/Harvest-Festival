@@ -16,7 +16,6 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-import java.util.Iterator;
 import java.util.List;
 
 public class PageQuests extends BookPage<GuiStats> {
@@ -33,11 +32,7 @@ public class PageQuests extends BookPage<GuiStats> {
         World world = MCClientHelper.getWorld();
         EntityPlayer player = MCClientHelper.getPlayer();
         List<Quest> list = QuestHelper.INSTANCE.getCurrentQuests(player);
-        Iterator<Quest> it = list.iterator();
-        while (it.hasNext()) {
-            Quest quest = it.next();
-            if (quest.getDescription(world, player) == null) it.remove();
-        }
+        list.removeIf(quest -> quest.getDescription(world, player) == null);
 
         int x = 0, y = 0;
         for (int i = start * 12; i < 12 + start * 12 && i < list.size(); i++) {

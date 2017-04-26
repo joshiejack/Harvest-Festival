@@ -10,6 +10,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
+import javax.annotation.Nonnull;
+
 import static joshie.harvest.core.helpers.InventoryHelper.ITEM_STACK;
 
 public class RequirementSizeable implements IRequirement {
@@ -47,6 +49,7 @@ public class RequirementSizeable implements IRequirement {
     }
 
     @Override
+    @Nonnull
     public ItemStack getIcon() {
         int num = PurchasableTrade.ticker %1800;
         if (num < 600) return small;

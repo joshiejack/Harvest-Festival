@@ -11,6 +11,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.SoundCategory;
 
+import javax.annotation.Nonnull;
+
 public class TileOven extends TileCookingTicking {
     public float prevLidAngle;
     public float lidAngle;
@@ -36,7 +38,7 @@ public class TileOven extends TileCookingTicking {
     }
 
     @Override
-    public boolean addIngredient(ItemStack stack) {
+    public boolean addIngredient(@Nonnull ItemStack stack) {
         boolean ret = super.addIngredient(stack);
         if (ret) { //Play the sound if we add an ingredient
             world.playSound(null, getPos().getX(), getPos().getY() + 0.5D, getPos().getZ(), HFSounds.OVEN_DOOR, SoundCategory.BLOCKS, 2F, world.rand.nextFloat() * 0.1F + 0.9F);

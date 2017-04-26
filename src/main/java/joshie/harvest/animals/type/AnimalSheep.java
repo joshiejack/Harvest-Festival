@@ -8,8 +8,9 @@ import joshie.harvest.api.animals.AnimalStats;
 import joshie.harvest.core.helpers.SizeableHelper;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 
-import java.util.List;
+import javax.annotation.Nonnull;
 
 import static joshie.harvest.api.animals.AnimalFoodType.GRASS;
 
@@ -19,6 +20,7 @@ public class AnimalSheep extends AnimalLivestock {
     }
 
     @Override
+    @Nonnull
     public ItemStack getIcon() {
         return HFAnimals.ANIMAL.getStackFromEnum(Spawner.SHEEP);
     }
@@ -49,12 +51,13 @@ public class AnimalSheep extends AnimalLivestock {
     }
 
     @Override
+    @Nonnull
     public ItemStack getProduct(AnimalStats stats) {
         return SizeableHelper.getWool(stats);
     }
 
     @Override
-    public List<ItemStack> getProductsForDisplay(AnimalStats stats) {
+    public NonNullList<ItemStack> getProductsForDisplay(AnimalStats stats) {
         return SizeableHelper.getSizeablesForDisplay(stats, Sizeable.WOOL);
     }
 

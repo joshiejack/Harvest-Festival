@@ -18,12 +18,11 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
-import java.util.ArrayList;
-import java.util.List;
 
 public class TileHatchery extends TileSingleStack implements ITickable {
     private static final DailyTickableBlock TICKABLE = new DailyTickableBlock(Phases.MAIN) {
@@ -53,7 +52,7 @@ public class TileHatchery extends TileSingleStack implements ITickable {
         }
     };
     public final RenderData render = new RenderData();
-    private List<ItemStack> renderStacks = new ArrayList<>();
+    private NonNullList<ItemStack> renderStacks = NonNullList.create();
     private int daysPassed = 0;
     private int breakChance = 100;
     private int last;
@@ -78,7 +77,7 @@ public class TileHatchery extends TileSingleStack implements ITickable {
     }
 
     @Override
-    public boolean onRightClicked(EntityPlayer player, ItemStack place) {
+    public boolean onRightClicked(EntityPlayer player, @Nonnull ItemStack place) {
         int daysRequired = place.isEmpty() ? 0 : FishingAPI.INSTANCE.getDaysFor(place);
         if (daysRequired <= 0) return removeFish(player);
         if (!stack.isItemEqual(place) || stack.getCount() >= 10) return false;
@@ -125,7 +124,7 @@ public class TileHatchery extends TileSingleStack implements ITickable {
 
     private void onFishChanged() {
         renderStacks.clear();
-        if (stack != null) {
+        if (!stack.isEmpty()) {
             for (int i = 0; i < stack.getCount(); i++) {
                 renderStacks.add(StackHelper.toStack(stack, 1));
             }
@@ -134,7 +133,7 @@ public class TileHatchery extends TileSingleStack implements ITickable {
         last = renderStacks.size();
     }
 
-    public List<ItemStack> getFish() {
+    public NonNullList<ItemStack> getFish() {
         return renderStacks;
     }
 

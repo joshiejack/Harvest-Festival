@@ -73,12 +73,13 @@ public class ItemBlueprint extends ItemHFRegistry<ItemBlueprint, Building> imple
     }
 
     @Override
-    public String getItemStackDisplayName(ItemStack stack) {
+    @Nonnull
+    public String getItemStackDisplayName(@Nonnull ItemStack stack) {
         return TextHelper.format("harvestfestival.structures.blueprint", getObjectFromStack(stack).getLocalisedName());
     }
 
     @Override
-    public int getSortValue(ItemStack stack) {
+    public int getSortValue(@Nonnull ItemStack stack) {
         return 105;
     }
 }

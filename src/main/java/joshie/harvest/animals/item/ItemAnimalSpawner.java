@@ -78,7 +78,7 @@ public class ItemAnimalSpawner extends ItemHFEnum<ItemAnimalSpawner, Spawner> {
 
     @SideOnly(Side.CLIENT)
     @Override
-    public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
+    public void addInformation(@Nonnull ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
             tooltip.add(TextFormatting.AQUA + TextHelper.translate("spawner.tooltip"));
     }
 

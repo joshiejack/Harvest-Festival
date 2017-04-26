@@ -24,6 +24,7 @@ import net.minecraftforge.common.EnumPlantType;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 
+import javax.annotation.Nonnull;
 import java.util.Arrays;
 import java.util.Locale;
 
@@ -88,14 +89,14 @@ public class Crops {
     @SuppressWarnings("unused")
     public static void setDrop(String name, IItemStack drop) {
         ItemStack stack = asStack(drop);
-        if (stack == null) CraftTweaker.logError(String.format("Could not set the drop for %s as the stack item was null", name));
+        if (stack.isEmpty()) CraftTweaker.logError(String.format("Could not set the drop for %s as the stack item was null", name));
         else MineTweakerAPI.apply(new SetDrop(name, stack));
     }
 
     private static class SetDrop extends BaseCrop {
         private final ItemStack drop;
 
-        public SetDrop(String name, ItemStack drop) {
+        public SetDrop(String name, @Nonnull ItemStack drop) {
             super(name);
             this.drop = drop;
         }

@@ -9,6 +9,8 @@ import net.minecraft.util.IStringSerializable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nonnull;
+
 public abstract class BlockHFEnumCube<B extends BlockHFEnumCube, E extends Enum<E> & IStringSerializable> extends BlockHFEnum<B, E> {
     //Main Constructor
     public BlockHFEnumCube(Material material, Class<E> clazz, CreativeTabs tab) {
@@ -22,6 +24,7 @@ public abstract class BlockHFEnumCube<B extends BlockHFEnumCube, E extends Enum<
 
     @Override
     @SideOnly(Side.CLIENT)
+    @Nonnull
     public BlockRenderLayer getBlockLayer() {
         return BlockRenderLayer.SOLID;
     }

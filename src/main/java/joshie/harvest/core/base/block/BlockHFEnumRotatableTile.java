@@ -44,6 +44,7 @@ public abstract class BlockHFEnumRotatableTile<B extends BlockHFEnumRotatableTil
     }
 
     @Override
+    @Nonnull
     protected BlockStateContainer createBlockState() {
         if(property == null) return new BlockStateContainer(this, temporary, FACING);
         return new BlockStateContainer(this, property, FACING);
@@ -94,7 +95,7 @@ public abstract class BlockHFEnumRotatableTile<B extends BlockHFEnumRotatableTil
     }
 
     @Override
-    public int getSortValue(ItemStack stack) {
+    public int getSortValue(@Nonnull ItemStack stack) {
         return CreativeSort.TROUGH;
     }
 

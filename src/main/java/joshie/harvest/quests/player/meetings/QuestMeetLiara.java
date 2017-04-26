@@ -19,6 +19,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
+import javax.annotation.Nonnull;
 import java.util.Set;
 
 @HFQuest("tutorial.cafe")
@@ -37,6 +38,7 @@ public class QuestMeetLiara extends QuestMeetingTutorial {
     }
 
     @Override
+    @Nonnull
     public ItemStack getCurrentIcon(World world, EntityPlayer player) {
         return hasBuilding(player) ? primary : buildingStack;
     }

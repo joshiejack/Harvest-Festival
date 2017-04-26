@@ -17,6 +17,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nonnull;
 import java.util.List;
 import java.util.Locale;
 
@@ -33,7 +34,7 @@ public class ItemFish extends ItemHFFoodEnum<ItemFish, Fish> {
     @Override
     @SideOnly(Side.CLIENT)
     @SuppressWarnings("ConstantConditions")
-    public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
+    public void addInformation(@Nonnull ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
         Fish fish = getEnumFromStack(stack);
         double weight = stack.hasTagCompound() ? stack.getTagCompound().getDouble(SIZE) : fish.getLengthFromSizeOfFish(SMALL_FISH);
         tooltip.add("Length: " + weight + "cm");
@@ -44,17 +45,17 @@ public class ItemFish extends ItemHFFoodEnum<ItemFish, Fish> {
     }
 
     @Override
-    public int getHealAmount(ItemStack stack) {
+    public int getHealAmount(@Nonnull ItemStack stack) {
         return getEnumFromStack(stack).getFoodAmount();
     }
 
     @Override
-    public float getSaturationModifier(ItemStack stack) {
+    public float getSaturationModifier(@Nonnull ItemStack stack) {
         return 0.6F;
     }
 
     @Override
-    protected void onFoodEaten(ItemStack stack, World worldIn, EntityPlayer player) {
+    protected void onFoodEaten(@Nonnull ItemStack stack, World worldIn, @Nonnull EntityPlayer player) {
         if (getEnumFromStack(stack).isPoisonous()) {
             player.addPotionEffect(new PotionEffect(MobEffects.POISON, 1200, 3));
             player.addPotionEffect(new PotionEffect(MobEffects.HUNGER, 300, 2));
@@ -65,7 +66,7 @@ public class ItemFish extends ItemHFFoodEnum<ItemFish, Fish> {
     }
 
     @Override
-    public int getSortValue(ItemStack stack) {
+    public int getSortValue(@Nonnull ItemStack stack) {
         return CreativeSort.LAST;
     }
 

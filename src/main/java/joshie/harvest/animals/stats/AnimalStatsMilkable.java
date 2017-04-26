@@ -7,7 +7,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 public class AnimalStatsMilkable extends AnimalStatsLivestock {
     public AnimalStatsMilkable() {

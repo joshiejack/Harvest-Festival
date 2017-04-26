@@ -253,7 +253,7 @@ public class NPC extends HFRegistry<NPC> implements CalendarEntry {
         return npc.getRandomSpeech(this, multipleLocalizationKey, 100);
     }
 
-    public Quality getGiftValue(ItemStack stack) {
+    public Quality getGiftValue(@Nonnull ItemStack stack) {
         return gifts == null ? Quality.DECENT : gifts.getQuality(stack);
     }
 

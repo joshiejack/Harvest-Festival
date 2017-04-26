@@ -136,6 +136,7 @@ public class BakedDirt extends BakedHF {
         }
 
         @Override
+        @Nonnull
         protected ModelResourceLocation getModelResourceLocation(IBlockState state) {
             String properties = this.getPropertyString(state.getProperties());
             if (!isValidState(properties)) return null;

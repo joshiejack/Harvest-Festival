@@ -70,21 +70,21 @@ public abstract class BlockHFBase<B extends BlockHFBase> extends Block {
         return 0;
     }
 
-    public String getUnlocalizedName(ItemStack stack) {
+    public String getUnlocalizedName(@Nonnull ItemStack stack) {
         return getUnlocalizedName();
     }
 
-    public String getItemStackDisplayName(ItemStack stack) {
+    public String getItemStackDisplayName(@Nonnull ItemStack stack) {
         String unlocalized = getUnlocalizedName();
         String name = stack.getItem().getUnlocalizedName(stack);
         return TextHelper.localizeFully(unlocalized + "." + name);
     }
 
-    public int getEntityLifeSpan(ItemStack itemStack, World world) {
+    public int getEntityLifeSpan(@Nonnull ItemStack itemStack, World world) {
         return 6000;
     }
 
-    public int getSortValue(ItemStack stack) {
+    public int getSortValue(@Nonnull ItemStack stack) {
         return 0;
     }
 

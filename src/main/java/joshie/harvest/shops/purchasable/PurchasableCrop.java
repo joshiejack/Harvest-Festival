@@ -3,6 +3,8 @@ package joshie.harvest.shops.purchasable;
 import joshie.harvest.api.crops.Crop;
 import net.minecraft.item.ItemStack;
 
+import javax.annotation.Nonnull;
+
 public class PurchasableCrop extends Purchasable {
     private final Crop crop;
 
@@ -13,8 +15,9 @@ public class PurchasableCrop extends Purchasable {
     }
 
     @Override
+    @Nonnull
     public ItemStack getDisplayStack() {
-        if (stack == null) {
+        if (stack.isEmpty()) {
             stack = crop.getCropStack(1);
         }
 

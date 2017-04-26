@@ -9,13 +9,16 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextFormatting;
 
+import javax.annotation.Nonnull;
+
 public class ButtonShipped extends ButtonBook<GuiStats> {
     private final GuiStats gui;
     protected final AbstractItemHolder holder;
     private final long value;
     private final boolean obtained;
     private int hoverTimer;
-    private ItemStack stack;
+    @Nonnull
+    private ItemStack stack = ItemStack.EMPTY;
     private int index = -1;
 
     @SuppressWarnings("unchecked")
@@ -41,7 +44,7 @@ public class ButtonShipped extends ButtonBook<GuiStats> {
     }
 
     @Override
-    public void drawButton(Minecraft mc, int mouseX, int mouseY) {
+    public void drawButton(@Nonnull Minecraft mc, int mouseX, int mouseY) {
         if (visible) {
             GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
             hovered = mouseX >= xPosition && mouseY >= yPosition && mouseX < xPosition + width && mouseY < yPosition + height;
@@ -70,7 +73,7 @@ public class ButtonShipped extends ButtonBook<GuiStats> {
     }
 
     private void drawForeground() {
-        if (stack == null || hoverTimer %100 == 0) updateStack();
+        if (stack.isEmpty() || hoverTimer %100 == 0) updateStack();
         hoverTimer++;
         if (!obtained) {
             StackRenderHelper.drawGreyStack(stack, xPosition, yPosition, 1F);
@@ -84,7 +87,7 @@ public class ButtonShipped extends ButtonBook<GuiStats> {
 
     @Override
     protected void mouseDragged(Minecraft mc, int mouseX, int mouseY) {
-        if (obtained && hovered && stack != null) {
+        if (obtained && hovered && !stack.isEmpty()) {
             gui.addTooltip(TextFormatting.GREEN + stack.getDisplayName());
             if (value > 0L) gui.addTooltip(value + "G");
         }

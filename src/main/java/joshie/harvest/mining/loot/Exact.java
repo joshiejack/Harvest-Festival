@@ -4,6 +4,8 @@ import net.minecraft.util.JsonUtils;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.storage.loot.conditions.LootCondition;
 
+import javax.annotation.Nonnull;
+
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 
 public class Exact extends FloorCondition {
@@ -15,7 +17,7 @@ public class Exact extends FloorCondition {
 
     @Override
     public boolean testFloor(int floor) {
-        for (int value: values) {
+        for (int value : values) {
             if (value == floor) return true;
         }
 
@@ -27,7 +29,7 @@ public class Exact extends FloorCondition {
             super(new ResourceLocation(MODID, "exact"), Exact.class);
         }
 
-        public void serialize(JsonObject json, Exact value, JsonSerializationContext context) {
+        public void serialize(@Nonnull JsonObject json, @Nonnull Exact value, @Nonnull JsonSerializationContext context) {
             if (value.values.length == 1) {
                 json.addProperty("value", value.values[0]);
             } else {
@@ -40,7 +42,8 @@ public class Exact extends FloorCondition {
             }
         }
 
-        public Exact deserialize(JsonObject json, JsonDeserializationContext context) {
+        @Nonnull
+        public Exact deserialize(@Nonnull JsonObject json, @Nonnull JsonDeserializationContext context) {
             if (json.has("values")) {
                 JsonArray array = json.getAsJsonArray("values");
                 int[] values = new int[array.size()];

@@ -25,6 +25,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.*;
 
@@ -290,6 +291,7 @@ public class NPC extends HFRegistry<NPC> implements CalendarEntry {
     }
 
     @Override
+    @Nonnull
     public ItemStack getStackRepresentation() {
         return npc.getStackForNPC(this);
     }

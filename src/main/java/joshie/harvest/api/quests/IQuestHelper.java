@@ -3,6 +3,7 @@ package joshie.harvest.api.quests;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 
+import javax.annotation.Nonnull;
 import java.util.List;
 
 public interface IQuestHelper {
@@ -34,7 +35,7 @@ public interface IQuestHelper {
      *  @param quest    the quest we're taking from, so it can be validated
      *  @param player   the player
      *  @param stack    the item you want to give the player **/
-    void rewardItem(Quest quest, EntityPlayer player, ItemStack stack);
+    void rewardItem(Quest quest, EntityPlayer player, @Nonnull ItemStack stack);
 
     /** Rewards a player with gold, SERVER SIDE ONLY
      *  If you try to call it on the client, an exception will be thrown

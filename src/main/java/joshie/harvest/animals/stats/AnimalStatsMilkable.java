@@ -21,7 +21,7 @@ public class AnimalStatsMilkable extends AnimalStatsLivestock {
     }
 
     @Override
-    public boolean performAction(@Nonnull World world, @Nullable ItemStack stack, AnimalAction action) {
+    public boolean performAction(@Nonnull World world, @Nonnull ItemStack stack, AnimalAction action) {
         if (action == AnimalAction.CLAIM_PRODUCT) return milk(world);
         else return super.performAction(world, stack, action);
     }

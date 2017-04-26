@@ -10,26 +10,28 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public interface ICropRegistry {
     /** Alternative if you don't want to implement ICropProvider
      * @param stack     the item
      * @param crop      the crop this provides**/
-    void registerCropProvider(ItemStack stack, Crop crop);
+    void registerCropProvider(@Nonnull ItemStack stack, Crop crop);
 
     /** Return this crop this stack provides, or null if it provides none
      *  @param stack the item stack to check
      *  @return the ICrop**/
-    Crop getCropFromStack(ItemStack stack);
+    Crop getCropFromStack(@Nonnull ItemStack stack);
 
     /** Returns the crop as seeds **/
+    @Nonnull
     ItemStack getSeedStack(Crop crop, int amount);
 
     /** Register a seed, so that if the config disables it
      *  the seed cannot be right clicked
      *  @param item     the seeds */
-    void registerSeedForBlacklisting(ItemStack item);
+    void registerSeedForBlacklisting(@Nonnull ItemStack item);
 
     /** Register a block, that would normally drop seeds
      *  In order to prevent it from dropping any blacklisted seeds
@@ -86,10 +88,10 @@ public interface ICropRegistry {
 
     /** Register the item as being considered a sickle for harvesting crops
      * @param stack the item, use OreDictionary.WILDCARD_VALUE if the damage shouldn't matter */
-    void registerSickle(ItemStack stack);
+    void registerSickle(@Nonnull ItemStack stack);
 
     /** If the stack is registered as a sickle
      *  @param stack    the stack to check
      *  @return if the item is a sickle **/
-    boolean isSickle(ItemStack stack);
+    boolean isSickle(@Nonnull ItemStack stack);
 }

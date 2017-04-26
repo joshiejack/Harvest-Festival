@@ -31,6 +31,7 @@ public interface IPurchasable extends ISpecialRules {
     default String getDisplayName() { return getDisplayStack().getDisplayName(); }
 
     /** This is what this will be displayed as in the store **/
+    @Nonnull
     ItemStack getDisplayStack();
 
     /** Add tooltip information for this item **/

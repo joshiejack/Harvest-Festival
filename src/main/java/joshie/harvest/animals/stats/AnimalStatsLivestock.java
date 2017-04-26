@@ -12,7 +12,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 import static joshie.harvest.calendar.HFCalendar.TICKS_PER_DAY;
 
@@ -71,7 +70,7 @@ public class AnimalStatsLivestock extends AnimalStatsHF {
     }
 
     @Override
-    public boolean performAction(@Nonnull World world, @Nullable ItemStack stack, AnimalAction action) {
+    public boolean performAction(@Nonnull World world, @Nonnull ItemStack stack, AnimalAction action) {
         if (action == AnimalAction.CLEAN) return clean(world);
         else if (action == AnimalAction.IMPREGNATE) return impregnate();
         else return super.performAction(world, stack, action);

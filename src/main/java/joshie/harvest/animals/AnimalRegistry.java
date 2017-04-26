@@ -19,6 +19,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.oredict.OreDictionary;
 
+import javax.annotation.Nonnull;
+
 @HFApiImplementation
 public class AnimalRegistry implements IAnimalHandler {
     public static final AnimalRegistry INSTANCE = new AnimalRegistry();
@@ -34,7 +36,7 @@ public class AnimalRegistry implements IAnimalHandler {
     }
 
     @Override
-    public void registerFoodAsType(ItemStack stack, AnimalFoodType type) {
+    public void registerFoodAsType(@Nonnull ItemStack stack, AnimalFoodType type) {
         registry.register(stack, type);
     }
 
@@ -48,7 +50,7 @@ public class AnimalRegistry implements IAnimalHandler {
     }
 
     @Override
-    public boolean canEat(ItemStack stack, AnimalFoodType... types) {
+    public boolean canEat(@Nonnull ItemStack stack, AnimalFoodType... types) {
         for (AnimalFoodType type: types) {
             if (registry.matches(stack, type)) return true;
         }

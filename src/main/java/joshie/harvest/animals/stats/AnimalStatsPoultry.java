@@ -9,7 +9,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 public class AnimalStatsPoultry extends AnimalStatsHF {
     private boolean thrown; //Whether this animal has been thrown or not today, only affects chickens
@@ -35,7 +34,7 @@ public class AnimalStatsPoultry extends AnimalStatsHF {
     }
 
     @Override
-    public boolean performAction(@Nonnull World world, @Nullable ItemStack stack, AnimalAction action) {
+    public boolean performAction(@Nonnull World world, @Nonnull ItemStack stack, AnimalAction action) {
         if (action == AnimalAction.DISMOUNT) return dismount();
         else return super.performAction(world, stack, action);
     }

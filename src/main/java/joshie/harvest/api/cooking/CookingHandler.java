@@ -1,6 +1,7 @@
 package joshie.harvest.api.cooking;
 
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -12,5 +13,5 @@ public interface CookingHandler {
      * @param ingredients   the list of ingredients
      * @return the resulting item */
     @Nullable
-    List<ItemStack> getResult(Utensil utensil, List<ItemStack> stacks, List<IngredientStack> ingredients);
+    NonNullList<ItemStack> getResult(Utensil utensil, NonNullList<ItemStack> stacks, List<IngredientStack> ingredients);
 }

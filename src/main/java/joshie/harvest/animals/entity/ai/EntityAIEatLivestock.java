@@ -8,6 +8,7 @@ import net.minecraft.block.BlockDoublePlant.EnumPlantType;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 
 public class EntityAIEatLivestock extends EntityAIEat {
@@ -28,10 +29,10 @@ public class EntityAIEatLivestock extends EntityAIEat {
     protected void eat(BlockPos pos, IBlockState state) {
         Block block = state.getBlock();
         if (block == Blocks.TALLGRASS) {
-            getStats().performAction(animal.world, null, AnimalAction.FEED);
+            getStats().performAction(animal.world, ItemStack.EMPTY, AnimalAction.FEED);
             animal.world.setBlockToAir(pos);
         } else if (block == Blocks.TALLGRASS && state.getValue(BlockDoublePlant.VARIANT) == EnumPlantType.GRASS) {
-            getStats().performAction(animal.world, null, AnimalAction.FEED);
+            getStats().performAction(animal.world, ItemStack.EMPTY, AnimalAction.FEED);
             animal.world.setBlockToAir(pos);
             if (state.getValue(BlockDoublePlant.HALF) == EnumBlockHalf.LOWER) {
                 animal.world.setBlockToAir(pos.up());

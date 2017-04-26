@@ -8,6 +8,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.commons.lang3.StringEscapeUtils;
 
+import javax.annotation.Nonnull;
 import java.util.LinkedHashMap;
 
 public class Note {
@@ -41,7 +42,7 @@ public class Note {
 
     /** Set the icon for this note
      *  @param icon     the stack to reprsent this note **/
-    public Note setIcon(ItemStack icon) {
+    public Note setIcon(@Nonnull ItemStack icon) {
         this.icon = icon;
         return this;
     }
@@ -72,6 +73,7 @@ public class Note {
     }
 
     /** Returns the stack that this note displays as **/
+    @Nonnull
     public ItemStack getIcon() {
         return icon;
     }

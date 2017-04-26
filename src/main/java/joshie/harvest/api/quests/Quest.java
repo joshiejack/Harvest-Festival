@@ -22,6 +22,7 @@ import net.minecraftforge.fml.common.registry.RegistryBuilder;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Collections;
 import java.util.HashSet;
@@ -31,6 +32,7 @@ public abstract class Quest extends IForgeRegistryEntry.Impl<Quest> {
     /** DO NOT MODIFY THE ENTRIES IN THE OLD_REGISTRY, ALWAYS MAKE A COPY OF THE QUESTS **/
     public static final IForgeRegistry<Quest> REGISTRY = new RegistryBuilder<Quest>().setName(new ResourceLocation("harvestfestival", "quests")).setType(Quest.class).setIDRange(0, 32000).create();
     private Set<NPC> npcs = new HashSet<>();
+    @Nonnull
     protected ItemStack primary;
     protected int quest_stage;
     private TargetType type;
@@ -170,6 +172,7 @@ public abstract class Quest extends IForgeRegistryEntry.Impl<Quest> {
 
     /** Which npc the player is supposed to be interacting with at this point **/
     @SideOnly(Side.CLIENT)
+    @Nonnull
     public ItemStack getCurrentIcon(World world, EntityPlayer player) {
         return primary;
     }

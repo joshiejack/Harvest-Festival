@@ -8,12 +8,12 @@ import joshie.harvest.api.core.Ore;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 import net.minecraftforge.oredict.OreDictionary;
 
-import java.util.ArrayList;
+import javax.annotation.Nonnull;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.List;
 
 public class HolderRegistryMulti<R> {
     private final HashMap<AbstractItemHolder, R> registry = new HashMap<>();
@@ -29,16 +29,16 @@ public class HolderRegistryMulti<R> {
     }
 
     public void register(Object object, R r) {
-        if (object instanceof Item) registerHolder((Item)object, ItemHolder.of((Item)object), r);
+        if (object instanceof Item) registerHolder((Item) object, ItemHolder.of((Item) object), r);
         if (object instanceof Block) {
-            ItemStack stack = new ItemStack((Block)object);
+            ItemStack stack = new ItemStack((Block) object);
             registerHolder(stack.getItem(), ItemHolder.of(stack.getItem()), r);
         } else if (object instanceof ItemStack) {
-            registerHolder(((ItemStack)object).getItem(), getHolder((ItemStack)object), r);
+            registerHolder(((ItemStack) object).getItem(), getHolder((ItemStack) object), r);
         } else if (object instanceof Mod) {
             Mod mod = (Mod) object;
             ModHolder holder = ModHolder.of(mod.getMod());
-            for (Item item: Item.REGISTRY) {
+            for (Item item : Item.REGISTRY) {
                 if (item.getRegistryName().getResourceDomain().equals(mod.getMod())) {
                     registerHolder(item, holder, r);
                 }
@@ -46,15 +46,15 @@ public class HolderRegistryMulti<R> {
         } else if (object instanceof Ore) {
             Ore ore = (Ore) object;
             OreHolder holder = OreHolder.of(ore.getOre(), ore.getType());
-            for (ItemStack stack: OreDictionary.getOres(ore.getOre())) {
+            for (ItemStack stack : OreDictionary.getOres(ore.getOre())) {
                 registerHolder(stack.getItem(), holder, r);
             }
         }
     }
 
-    public boolean matches(ItemStack stack, R type) {
+    public boolean matches(@Nonnull ItemStack stack, R type) {
         Collection<AbstractItemHolder> holders = keyMap.get(stack.getItem());
-        for (AbstractItemHolder holder: holders) {
+        for (AbstractItemHolder holder : holders) {
             if (holder.matches(stack) && matches(registry.get(holder), type)) {
                 return true;
             }
@@ -63,9 +63,9 @@ public class HolderRegistryMulti<R> {
         return false;
     }
 
-    public R getValueOf(ItemStack stack) {
+    public R getValueOf(@Nonnull ItemStack stack) {
         Collection<AbstractItemHolder> holders = keyMap.get(stack.getItem());
-        for (AbstractItemHolder holder: holders) {
+        for (AbstractItemHolder holder : holders) {
             if (holder.matches(stack)) {
                 return registry.get(holder);
             }
@@ -74,8 +74,8 @@ public class HolderRegistryMulti<R> {
         return null;
     }
 
-    public List<ItemStack> getStacksFor(R ingredient) {
-        ArrayList<ItemStack> result = new ArrayList<>();
+    public NonNullList<ItemStack> getStacksFor(R ingredient) {
+        NonNullList<ItemStack> result = NonNullList.create();
         registry.entrySet().stream().filter(entry -> isEqual(ingredient, entry.getValue())).forEach(entry -> result.addAll(entry.getKey().getMatchingStacks()));
         return result;
     }
@@ -88,7 +88,7 @@ public class HolderRegistryMulti<R> {
         return internal == external;
     }
 
-    private AbstractItemHolder getHolder(ItemStack stack) {
+    private AbstractItemHolder getHolder(@Nonnull ItemStack stack) {
         if (stack.getItemDamage() == OreDictionary.WILDCARD_VALUE) return ItemHolder.of(stack.getItem());
         else if (HFApi.crops.getCropFromStack(stack) != null) return CropHolder.of(HFApi.crops.getCropFromStack(stack));
         else return ItemStackHolder.of(stack);

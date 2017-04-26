@@ -8,6 +8,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.EnumPlantType;
 
+import javax.annotation.Nonnull;
+
 public class Tree extends Crop {
     public static final GrowthHandler TREE_GROWTH = new GrowthHandlerTree();
     private IBlockState log = Blocks.LOG.getDefaultState();
@@ -48,6 +50,7 @@ public class Tree extends Crop {
     /**
      * Returns what this crop drops when it's actually a log
      * **/
+    @Nonnull
     public ItemStack getWoodStack() {
         return new ItemStack(log.getBlock(), 1, log.getBlock().getMetaFromState(log));
     }

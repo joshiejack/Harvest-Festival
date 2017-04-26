@@ -2,14 +2,16 @@ package joshie.harvest.api.animals;
 
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 
-import java.util.List;
+import javax.annotation.Nonnull;
 
 public interface IAnimalType {
     /** Return a simple name for this animal type **/
     String getName();
 
     /** Return a stack to represent this animal in the relationships panel **/
+    @Nonnull
     ItemStack getIcon();
     
     /** @return an array of food type this animal can consume **/
@@ -39,11 +41,12 @@ public interface IAnimalType {
 
     /** @return the product that this animal produces
      *  @param stats    the animals stats **/
+    @Nonnull
     ItemStack getProduct(AnimalStats stats);
 
     /** @return a list of stacks to use for display purposes of what this animal can produce
      *  @param stats    the animals stats **/
-    List<ItemStack> getProductsForDisplay(AnimalStats stats);
+    NonNullList<ItemStack> getProductsForDisplay(AnimalStats stats);
 
     /** Called whenever an animal is reset to being able to produce again
      * @param stats     the stats

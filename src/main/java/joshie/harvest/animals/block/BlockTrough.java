@@ -173,7 +173,7 @@ public class BlockTrough extends BlockHFEnumRotatableMeta<BlockTrough, Trough> i
             if (master.getFillAmount() > 0) {
                 if (simulate) return true;
                 master.adjustFill(-1);
-                stats.performAction(world, null, AnimalAction.FEED);
+                stats.performAction(world, ItemStack.EMPTY, AnimalAction.FEED);
                 //Good ol master block
                 return true;
             }

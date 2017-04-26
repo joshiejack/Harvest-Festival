@@ -4,6 +4,7 @@ import joshie.harvest.api.core.ITiered.ToolTier;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -39,7 +40,7 @@ public interface ISmashable {
         ToolTier required = getRequiredTier(state);
         if (required != null && tier.isGreaterThanOrEqualTo(required)) {
             float luck = tier.ordinal() * 0.25F;
-            List<ItemStack> drops = getDrops(player, world, pos, state, luck);
+            NonNullList<ItemStack> drops = getDrops(player, world, pos, state, luck);
             world.setBlockToAir(pos); //Clear out the block
             if (drops.size() > 0) {
                 if (!world.isRemote) {
@@ -68,5 +69,5 @@ public interface ISmashable {
      * @param state     the block state
      * @param luck      the luck to apply
      * @return the drops */
-    List<ItemStack> getDrops(EntityPlayer player, World world, BlockPos pos, IBlockState state, float luck);
+    NonNullList<ItemStack> getDrops(EntityPlayer player, World world, BlockPos pos, IBlockState state, float luck);
 }

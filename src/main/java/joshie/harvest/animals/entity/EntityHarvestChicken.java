@@ -17,6 +17,7 @@ import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
@@ -74,7 +75,7 @@ public class EntityHarvestChicken extends EntityChicken implements IEntityAdditi
             if (toLoveTicker >= 0) toLoveTicker--;
             else {
                 if (!stats.performTest(AnimalTest.BEEN_LOVED)) {
-                    stats.performAction(world, null, AnimalAction.PETTED); //Love <3
+                    stats.performAction(world, ItemStack.EMPTY, AnimalAction.PETTED); //Love <3
                 }
 
                 tickToLove = false;

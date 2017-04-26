@@ -7,7 +7,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.util.INBTSerializable;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 /** Extra data for animal **/
 public interface AnimalStats<N extends NBTBase> extends INBTSerializable<N> {
@@ -57,7 +56,7 @@ public interface AnimalStats<N extends NBTBase> extends INBTSerializable<N> {
      *  @param stack    the stack performing the action
      *  @param action   the action itself
      *  @return true if it was successfully performed **/
-    boolean performAction(@Nonnull World world, @Nullable ItemStack stack, AnimalAction action);
+    boolean performAction(@Nonnull World world, @Nonnull ItemStack stack, AnimalAction action);
 
     /** Performs a test on the animal
      *  @param test     the test to perform**/
@@ -66,4 +65,3 @@ public interface AnimalStats<N extends NBTBase> extends INBTSerializable<N> {
     /** Marks the animal as dead, ready to be removed next turn **/
     void setDead();
 }
-

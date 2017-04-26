@@ -14,6 +14,7 @@ import joshie.harvest.core.base.tile.TileFillableConnected;
 import joshie.harvest.core.helpers.EntityHelper;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.passive.EntityAnimal;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -36,7 +37,7 @@ public class TileTrough extends TileFillableConnected<TileTrough> {
                     AnimalStats stats = EntityHelper.getStats(animal);
                     if (stats != null && trough.fillAmount > 0 && HFApi.animals.canAnimalEatFoodType(stats, GRASS) &&
                             !stats.performTest(AnimalTest.HAS_EATEN) && trough.setFilled(trough.getFillAmount() - 1)) {
-                        stats.performAction(world, null, AnimalAction.FEED);
+                        stats.performAction(world, ItemStack.EMPTY, AnimalAction.FEED);
                     }
                 }
             }

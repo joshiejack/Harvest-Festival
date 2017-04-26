@@ -7,6 +7,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.translation.I18n;
 
+import javax.annotation.Nonnull;
 import java.util.*;
 
 //TODO: Remove forge registry in 0.7+
@@ -124,6 +125,7 @@ public class Recipe extends HFRegistry<Recipe> {
         return eatTimer;
     }
 
+    @Nonnull
     public ItemStack getStack() {
         return new ItemStack(Items.CAKE);
     }

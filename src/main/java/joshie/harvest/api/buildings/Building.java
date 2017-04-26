@@ -112,10 +112,12 @@ public class Building extends HFRegistry<Building> {
         return true;
     }
 
+    @Nonnull
     public ItemStack getBlueprint() {
         return HFApi.buildings.getBlueprint(this);
     }
 
+    @Nonnull
     public ItemStack getSpawner() {
         return HFApi.buildings.getSpawner(this);
     }

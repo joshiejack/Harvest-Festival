@@ -3,6 +3,7 @@ package joshie.harvest.api.crops;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 
+import javax.annotation.Nonnull;
 import java.util.Random;
 
 public class DropHandler<C extends Crop> {
@@ -10,6 +11,7 @@ public class DropHandler<C extends Crop> {
      * @param crop      the crop
      * @param stage     the stage
      * @param rand      the rand**/
+    @Nonnull
     public ItemStack getDrop(C crop, int stage, Random rand) {
         return stage >= crop.getStages() ? crop.getCropStack(1): ItemStack.EMPTY;
     }

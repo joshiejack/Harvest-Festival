@@ -4,8 +4,11 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
+import javax.annotation.Nonnull;
+
 public interface IRequirement {
     /** Return the stack this requirement is represented by **/
+    @Nonnull
     ItemStack getIcon();
 
     /** Return how many items this requirement needs **/

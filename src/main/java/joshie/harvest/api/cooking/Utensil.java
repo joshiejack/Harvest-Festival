@@ -7,6 +7,7 @@ import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nonnull;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -24,11 +25,12 @@ public class Utensil {
         REGISTRY.put(resource, this);
     }
 
-    public Utensil setBurntItem(ItemStack burntItem) {
+    public Utensil setBurntItem(@Nonnull ItemStack burntItem) {
         this.burntItem = burntItem;
         return this;
     }
 
+    @Nonnull
     public ItemStack getBurntItem() {
         return burntItem;
     }

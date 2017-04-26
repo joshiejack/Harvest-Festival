@@ -42,7 +42,7 @@ public final class Festival implements CalendarEntry {
 
     /** Set the icon for this festival
      *  @param stack    the representative icon **/
-    public Festival setIcon(ItemStack stack) {
+    public Festival setIcon(@Nonnull ItemStack stack) {
         this.icon = stack;
         if (this.note.getIcon() == Note.PAPER) {
             this.note.setIcon(stack);
@@ -137,6 +137,7 @@ public final class Festival implements CalendarEntry {
     }
 
     @Override
+    @Nonnull
     public ItemStack getStackRepresentation() {
         return icon;
     }

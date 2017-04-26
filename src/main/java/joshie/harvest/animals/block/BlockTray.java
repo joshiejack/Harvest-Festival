@@ -123,7 +123,7 @@ public class BlockTray extends BlockHFEnum<BlockTray, Tray> implements IAnimalFe
             if (feeder != null && feeder.getFillAmount() > 0) {
                 if (!simulate) {
                     feeder.adjustFill(-1);
-                    stats.performAction(world, null, AnimalAction.FEED);
+                    stats.performAction(world, ItemStack.EMPTY, AnimalAction.FEED);
                 }
 
                 return true;

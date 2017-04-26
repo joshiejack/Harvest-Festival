@@ -9,6 +9,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.translation.I18n;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Collection;
 import java.util.HashMap;
@@ -109,11 +110,11 @@ public class Shop {
         return item;
     }
 
-    public IPurchasable addPurchasable(long cost, ItemStack stack) {
+    public IPurchasable addPurchasable(long cost, @Nonnull ItemStack stack) {
         return addPurchasable(HFApi.shops.createDefaultPurchasable(cost, stack));
     }
 
-    public IPurchasable addPurchasable(long cost, ItemStack stack, int stock) {
+    public IPurchasable addPurchasable(long cost, @Nonnull ItemStack stack, int stock) {
         return addPurchasable(HFApi.shops.createDefaultPurchasableWithLimitedStock(cost, stack, stock));
     }
 

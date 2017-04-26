@@ -223,7 +223,7 @@ public class AnimalStatsHF implements AnimalStats<NBTTagCompound> {
     }
 
     @Override
-    public boolean performAction(@Nonnull World world, @Nullable ItemStack stack, AnimalAction action) {
+    public boolean performAction(@Nonnull World world, @Nonnull ItemStack stack, AnimalAction action) {
         if (action == AnimalAction.FEED) return feed(world);
         else if (action == AnimalAction.HEAL) return heal(world);
         else if (action == AnimalAction.MAKE_GOLDEN) return golden(world);
@@ -322,8 +322,7 @@ public class AnimalStatsHF implements AnimalStats<NBTTagCompound> {
         HFApi.animals.syncAnimalStats(animal);
     }
 
-    private boolean treat(@Nonnull World world, @Nullable ItemStack stack) {
-        if (stack == null) return false;
+    private boolean treat(@Nonnull World world, @Nonnull ItemStack stack) {
         if (!treated) {
             if (HFAnimals.TREATS.getEnumFromStack(stack) == Treat.GENERIC) {
                 if (!world.isRemote) {

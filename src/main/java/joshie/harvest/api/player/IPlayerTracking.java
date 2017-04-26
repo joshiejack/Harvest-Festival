@@ -3,6 +3,8 @@ package joshie.harvest.api.player;
 import joshie.harvest.api.knowledge.Note;
 import net.minecraft.item.ItemStack;
 
+import javax.annotation.Nonnull;
+
 public interface IPlayerTracking {
     /** Call on the client and server, as this is NOT synced
      *
@@ -12,5 +14,5 @@ public interface IPlayerTracking {
 
     /** Mark an item as having been "collected"
      * @param stack the stack */
-    void addAsObtained(ItemStack stack);
+    void addAsObtained(@Nonnull ItemStack stack);
 }

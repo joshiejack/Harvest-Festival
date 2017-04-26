@@ -6,6 +6,8 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;
 
+import javax.annotation.Nonnull;
+
 public interface IAnimalHandler {
     @CapabilityInject(AnimalStats.class)
     Capability<AnimalStats> ANIMAL_STATS_CAPABILITY = null;
@@ -20,12 +22,12 @@ public interface IAnimalHandler {
      *  @param held the item
      *  @param types the types
      *  @return true if it matches **/
-    boolean canEat(ItemStack held, AnimalFoodType... types);
+    boolean canEat(@Nonnull ItemStack held, AnimalFoodType... types);
 
     /** Register an item as a specific food type
      *  @param stack    the item
      *  @param type     the type**/
-    void registerFoodAsType(ItemStack stack, AnimalFoodType type);
+    void registerFoodAsType(@Nonnull ItemStack stack, AnimalFoodType type);
 
     /** Returns an animal stats based on animal type
      *  If your animal should behave the same as these,

@@ -7,6 +7,8 @@ import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 
+import javax.annotation.Nonnull;
+
 /** For registering and manipulating npcs **/
 public interface INPCHelper {
     /** This will return the instance of the gift registry
@@ -15,6 +17,7 @@ public interface INPCHelper {
 
     /** Will return a stack representation of this npc
      *  @param npc the npc **/
+    @Nonnull
     ItemStack getStackForNPC(NPC npc);
 
     /** Speech helper

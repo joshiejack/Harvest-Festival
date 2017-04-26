@@ -21,6 +21,7 @@ import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.IPlantable;
 import org.apache.commons.lang3.StringUtils;
 
+import javax.annotation.Nonnull;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -45,6 +46,7 @@ public class Crop extends HFRegistry<Crop> implements IPlantable {
     private boolean needsWatering;
     private boolean alternativeName;
     private boolean requiresSickle;
+    @Nonnull
     private ItemStack item;
     private Season[] seasons;
     private long cost;
@@ -122,9 +124,9 @@ public class Crop extends HFRegistry<Crop> implements IPlantable {
 
     /** Set the item for this crop
      *  @param item     the item to set this as**/
-    public Crop setItem(ItemStack item) {
+    public Crop setItem(@Nonnull ItemStack item) {
         this.item = item;
-        if (this.item != null && this.item.getItem() instanceof ItemFood) {
+        if (this.item.getItem() instanceof ItemFood) {
             ItemFood food = (ItemFood)this.item.getItem();
             setIngredient(food.getHealAmount(item), food.getSaturationModifier(item));
         }
@@ -397,6 +399,7 @@ public class Crop extends HFRegistry<Crop> implements IPlantable {
     /**
      * This crop as a seed stack
      **/
+    @Nonnull
     public ItemStack getSeedStack(int amount) {
         return HFApi.crops.getSeedStack(this, amount);
     }
@@ -404,8 +407,9 @@ public class Crop extends HFRegistry<Crop> implements IPlantable {
     /**
      *  This crop as a stack
      **/
+    @Nonnull
     public ItemStack getCropStack(int amount) {
-        if (item != null) {
+        if (!item.isEmpty()) {
             ItemStack copy = item.copy();
             copy.setCount(amount);
             return copy;

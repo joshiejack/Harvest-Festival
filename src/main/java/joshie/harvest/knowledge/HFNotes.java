@@ -39,7 +39,7 @@ public class HFNotes {
     public static final Note SHOPPING = registerNote(TOWNSHIP, "shops");
     public static final Note CROP_FARMING = registerNote(FARMING, "farming");
     public static final Note SICKLE = registerNote(FARMING, "sickle");
-    public static final Note SHIPPING = registerNote(OTHER, "shipping");
+    public static final Note SHIPPING = registerNote(TOWNSHIP, "shipping");
     public static final Note MAILBOX = registerNote(TOWNSHIP, "mailbox");
     public static final Note SUPERMARKET = registerNote(TOWNSHIP, "supermarket");
     public static final Note CHICKEN_CARE = registerNote(FARMING, "care.chickens");
@@ -61,6 +61,8 @@ public class HFNotes {
     public static final Note MIXER = registerNote(ACTIVITIES, "mixer");
     public static final Note POTPAN = registerNote(ACTIVITIES, "potpan");
     public static final Note ELEVATOR = registerNote(ACTIVITIES, "elevator");
+    public static final Note SHIPPING_BASKET = registerNote(TOWNSHIP, "shipping.basket");
+    public static final Note TREES = registerNote(FARMING, "trees");
 
     public static final Note REPAIRING = registerNote(TOWNSHIP, "repairing");
     public static final Note SECRET_CURSED_TOOLS = registerNote(ACTIVITIES, "secret.cursed").setSecretNote();
@@ -103,6 +105,8 @@ public class HFNotes {
         SECRET_CURSED_TOOLS.setIcon(HFTools.SICKLE.getStack(ToolTier.CURSED));
         SECRET_LIVESTOCK.setIcon(HFAnimals.TREATS.getStackFromEnum(Treat.COW));
         SECRET_CHICKENS.setIcon(HFAnimals.TREATS.getStackFromEnum(Treat.CHICKEN));
+        SHIPPING_BASKET.setIcon(HFCore.STORAGE.getStackFromEnum(Storage.BASKET));
+        TREES.setIcon(HFModInfo.ICONS, 0, 64);
     }
 
     public static Note registerNote(Category category, String name) {

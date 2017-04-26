@@ -251,6 +251,7 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
     @SuppressWarnings("deprecation")
     @Override
     public float getPlayerRelativeBlockHardness(IBlockState state, @Nonnull EntityPlayer player, @Nonnull World world, @Nonnull BlockPos pos) {
+        if (isWood(world, pos)) return super.getPlayerRelativeBlockHardness(state, player, world, pos);
         float hardness = state.getBlockHardness(world, pos);
         if (hardness < 0.0F) {
             return 0.0F;

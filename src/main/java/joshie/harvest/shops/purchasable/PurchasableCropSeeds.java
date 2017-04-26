@@ -9,6 +9,7 @@ import joshie.harvest.api.trees.Tree;
 import joshie.harvest.core.helpers.MCClientHelper;
 import joshie.harvest.core.helpers.SpawnItemHelper;
 import joshie.harvest.core.helpers.TextHelper;
+import joshie.harvest.knowledge.HFNotes;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -67,6 +68,10 @@ public class PurchasableCropSeeds implements IPurchasable {
     public void onPurchased(EntityPlayer player) {
         ItemStack seeds = crop.getSeedStack(1);
         SpawnItemHelper.addToPlayerInventory(player, seeds.copy());
+
+        if (crop instanceof Tree) {
+            HFApi.player.getTrackingForPlayer(player).learnNote(HFNotes.TREES);
+        }
     }
 
     @Override

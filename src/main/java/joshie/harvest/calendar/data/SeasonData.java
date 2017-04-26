@@ -9,6 +9,7 @@ import java.util.NavigableMap;
 import java.util.Random;
 import java.util.TreeMap;
 
+import static joshie.harvest.calendar.HFCalendar.TICKS_PER_DAY;
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 
 public class SeasonData {
@@ -64,7 +65,8 @@ public class SeasonData {
         }
     }
 
-    public float getCelestialAngle(int time) {
+    public float getCelestialAngle(long time) {
+        time = TICKS_PER_DAY == 24000 ? time + 6000 : (long) convertRange(0, TICKS_PER_DAY - 1, 0, 23999, time) + 6000;
         if (time < sunrise) time += 24000;
         if (time >= sunrise && time < midday) return convertRange(sunrise, midday - 1, 0.757F, 1F, time);
         else if (time >= midday && time < sunset) return convertRange(midday, sunset - 1, 0F, 0.2425F, time);

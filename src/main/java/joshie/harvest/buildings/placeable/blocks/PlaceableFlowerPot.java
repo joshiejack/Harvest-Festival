@@ -65,7 +65,6 @@ public class PlaceableFlowerPot extends PlaceableDecorative {
                 break;
             case 9:
                 block = Blocks.CACTUS;
-                meta = 5;
                 break;
             case 10:
                 block = Blocks.DEADBUSH;

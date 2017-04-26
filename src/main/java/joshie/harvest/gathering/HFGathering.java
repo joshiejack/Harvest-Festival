@@ -9,6 +9,7 @@ import joshie.harvest.gathering.block.BlockWood;
 import static joshie.harvest.api.calendar.Season.*;
 import static joshie.harvest.core.HFCore.FLOWERS;
 import static joshie.harvest.core.block.BlockFlower.FlowerType.*;
+import static joshie.harvest.core.helpers.ConfigHelper.getInteger;
 import static joshie.harvest.gathering.block.BlockNature.NaturalBlock.*;
 import static joshie.harvest.gathering.block.BlockRock.Rock.*;
 import static joshie.harvest.gathering.block.BlockWood.Wood.*;
@@ -66,5 +67,18 @@ public class HFGathering {
         HFApi.gathering.registerGathering(ROCK.getStateFromEnum(BOULDER_SMALL), 28D);
         HFApi.gathering.registerGathering(ROCK.getStateFromEnum(BOULDER_MEDIUM), 12D);
         HFApi.gathering.registerGathering(ROCK.getStateFromEnum(BOULDER_LARGE), 5D);
+    }
+
+    //Configure
+    static int GATHERING_MINIMUM;
+    static int GATHERING_MAXIMUM;
+    static int GATHERING_ATTEMPTS;
+    static int GATHERING_MAX_HALF;
+
+    public static void configure() {
+        GATHERING_MINIMUM = getInteger("Minimum distance for wilderness", 48, "The minimum distance at which stuff will spawn like flowers/junk around towns");
+        GATHERING_MAXIMUM = getInteger("Maximum distance for wilderness", 512, "The maximum distance at which stuff will spawn like flowers/junk around towns");
+        GATHERING_ATTEMPTS = getInteger("Wilderness spawns amount", 256, "The number of blocks to spawn around an individual town in the wilderness");
+        GATHERING_MAX_HALF = GATHERING_MAXIMUM / 2;
     }
 }

@@ -4,15 +4,13 @@ import joshie.harvest.cooking.packet.PacketExpandedSlot;
 import joshie.harvest.core.network.PacketHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ClickType;
 import net.minecraft.inventory.IContainerListener;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-import javax.annotation.Nullable;
+import javax.annotation.Nonnull;
 
 public class ContainerExpanded extends ContainerBase {
     public ContainerExpanded() {}
@@ -26,16 +24,16 @@ public class ContainerExpanded extends ContainerBase {
     @Override
     public void detectAndSendChanges() {
         for (int i = 0; i < inventorySlots.size(); ++i) {
-            ItemStack itemstack = (inventorySlots.get(i)).getStack();
-            ItemStack itemstack1 = inventoryItemStacks.get(i);
-            if (!ItemStack.areItemStacksEqual(itemstack1, itemstack)) {
-                itemstack1 = itemstack == null ? null : itemstack.copy();
-                inventoryItemStacks.set(i, itemstack1);
+            ItemStack stack = (inventorySlots.get(i)).getStack();
+            ItemStack stack1 = inventoryItemStacks.get(i);
+            if (!ItemStack.areItemStacksEqual(stack1, stack)) {
+                stack1 = stack.isEmpty() ? ItemStack.EMPTY : stack.copy();
+                inventoryItemStacks.set(i, stack1);
 
                 for (IContainerListener listener : listeners) {
                     if (listener instanceof EntityPlayerMP) {
                         if (!((EntityPlayerMP) listener).isChangingQuantityOnly) {
-                            PacketHandler.sendToClient(new PacketExpandedSlot(windowId, i, itemstack1), (EntityPlayerMP) listener);
+                            PacketHandler.sendToClient(new PacketExpandedSlot(windowId, i, stack1), (EntityPlayerMP) listener);
                         }
                     }
                 }
@@ -44,6 +42,7 @@ public class ContainerExpanded extends ContainerBase {
     }
 
     @Override
+    @Nonnull
     public ItemStack slotClick(int slotID, int dragType, ClickType clickTypeIn, EntityPlayer player) {
         Slot slot = slotID < 0 || slotID > inventorySlots.size() ? null : inventorySlots.get(slotID);
         return slot instanceof SlotHF ? specialClick(slotID, dragType, clickTypeIn, player) : super.slotClick(slotID, dragType, clickTypeIn, player);
@@ -53,13 +52,13 @@ public class ContainerExpanded extends ContainerBase {
         return size;
     }
 
-    private int getMaxStackSize(ItemStack stack, boolean reverse) {
+    private int getMaxStackSize(@Nonnull ItemStack stack, boolean reverse) {
         if (reverse) return getMaximumStorage(stack.getMaxStackSize());
         return stack.getMaxStackSize();
     }
 
     @Override
-    protected boolean mergeItemStack(ItemStack stack, int startIndex, int endIndex, boolean reverseDirection) {
+    protected boolean mergeItemStack(@Nonnull ItemStack stack, int startIndex, int endIndex, boolean reverseDirection) {
         boolean movingIn = startIndex == 0;
         boolean flag = false;
         int i = startIndex;
@@ -69,19 +68,30 @@ public class ContainerExpanded extends ContainerBase {
         }
 
         if (stack.isStackable()) {
-            while (stack.stackSize > 0 && (!reverseDirection && i < endIndex || reverseDirection && i >= startIndex)) {
+            while (!stack.isEmpty()) {
+                if (reverseDirection) {
+                    if (i < startIndex) {
+                        break;
+                    }
+                } else if (i >= endIndex) {
+                    break;
+                }
+
                 Slot slot = inventorySlots.get(i);
                 ItemStack itemstack = slot.getStack();
-                if (itemstack != null && areItemStacksEqual(stack, itemstack)) {
-                    int j = itemstack.stackSize + stack.stackSize;
-                    if (j <= getMaxStackSize(stack, movingIn)) {
-                        stack.stackSize = 0;
-                        itemstack.stackSize = j;
+
+                if (areItemStacksEqual(stack, itemstack)) {
+                    int j = itemstack.getCount() + stack.getCount();
+                    int maxSize = getMaxStackSize(stack, movingIn);
+
+                    if (j <= maxSize) {
+                        stack.setCount(0);
+                        itemstack.setCount(j);
                         slot.onSlotChanged();
                         flag = true;
-                    } else if (itemstack.stackSize < getMaxStackSize(stack, movingIn)) {
-                        stack.stackSize -= getMaxStackSize(stack, movingIn) - itemstack.stackSize;
-                        itemstack.stackSize = getMaxStackSize(stack, movingIn);
+                    } else if (itemstack.getCount() < maxSize) {
+                        stack.shrink(maxSize - itemstack.getCount());
+                        itemstack.setCount(maxSize);
                         slot.onSlotChanged();
                         flag = true;
                     }
@@ -95,26 +105,33 @@ public class ContainerExpanded extends ContainerBase {
             }
         }
 
-        if (stack.stackSize > 0) {
+        if (!stack.isEmpty()) {
             if (reverseDirection) {
                 i = endIndex - 1;
             } else {
                 i = startIndex;
             }
 
-            while (!reverseDirection && i < endIndex || reverseDirection && i >= startIndex) {
+            while (true) {
+                if (reverseDirection) {
+                    if (i < startIndex) {
+                        break;
+                    }
+                } else if (i >= endIndex) {
+                    break;
+                }
+
                 Slot slot1 = inventorySlots.get(i);
                 ItemStack itemstack1 = slot1.getStack();
 
-                if (itemstack1 == null && slot1.isItemValid(stack)) {
-                    ItemStack clone = stack.copy();
-                    if (stack.stackSize >= stack.getMaxStackSize()) {
-                        clone.stackSize = stack.getMaxStackSize();
+                if (itemstack1.isEmpty() && slot1.isItemValid(stack)) {
+                    if (stack.getCount() >= slot1.getSlotStackLimit()) {
+                        slot1.putStack(stack.splitStack(slot1.getSlotStackLimit()));
+                    } else {
+                        slot1.putStack(stack.splitStack(stack.getCount()));
                     }
 
-                    slot1.putStack(clone);
                     slot1.onSlotChanged();
-                    stack.stackSize = stack.stackSize - clone.stackSize;
                     flag = true;
                     break;
                 }
@@ -130,15 +147,15 @@ public class ContainerExpanded extends ContainerBase {
         return flag;
     }
 
-    private static boolean areItemStacksEqual(ItemStack stackA, ItemStack stackB) {
+    private static boolean areItemStacksEqual(@Nonnull ItemStack stackA, @Nonnull ItemStack stackB) {
         return stackB.getItem() == stackA.getItem() && (!stackA.getHasSubtypes() || stackA.getMetadata() == stackB.getMetadata()) && ItemStack.areItemStackTagsEqual(stackA, stackB);
     }
 
     //From vanilla
-    @Nullable
-    public ItemStack specialClick(int slotId, int dragType, ClickType clickTypeIn, EntityPlayer player) {
-        ItemStack itemstack = null;
-        InventoryPlayer inventoryplayer = player.inventory;
+    @Nonnull
+    public ItemStack specialClick(int slotId, int dragType, ClickType clickTypeIn, EntityPlayer player) { //TODO
+        ItemStack itemstack = ItemStack.EMPTY;
+        /*InventoryPlayer inventoryplayer = player.inventory;
 
         if (clickTypeIn == ClickType.QUICK_CRAFT) {
             int i = dragEvent;
@@ -427,7 +444,7 @@ public class ContainerExpanded extends ContainerBase {
             }
 
             detectAndSendChanges();
-        }
+        }*/
 
         return itemstack;
     }

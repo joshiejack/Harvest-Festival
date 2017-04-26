@@ -18,9 +18,9 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.fluids.FluidActionResult;
 import net.minecraftforge.fluids.FluidUtil;
 
-import javax.annotation.Nullable;
 import java.util.Locale;
 
 import static joshie.harvest.crops.HFCrops.SPRINKLER_DRAIN_RATE;
@@ -63,18 +63,12 @@ public class BlockSprinkler extends BlockHFEnum<BlockSprinkler, Sprinkler> {
         if (!heldItem.isEmpty()) {
             TileEntity tile = worldIn.getTileEntity(pos);
             if (tile instanceof TileSprinkler) {
-                TileSprinkler sprinkler = ((TileSprinkler)tile);
-                ItemStack result = FluidUtil.tryEmptyContainer(heldItem, sprinkler.getTank(), 1000, player, true);
-                if (result != null) {
-                    if (result.stackSize > 0) {
-                        player.setHeldItem(hand, result);
-                    }
+                TileSprinkler sprinkler = ((TileSprinkler) tile);
+                FluidActionResult result = FluidUtil.tryEmptyContainer(heldItem, sprinkler.getTank(), 1000, player, true);
 
-                    sprinkler.saveAndRefresh();
-                    return true;
-                }
-
-                return false;
+                player.setHeldItem(hand, result.getResult());
+                sprinkler.saveAndRefresh();
+                return true;
             }
         }
 

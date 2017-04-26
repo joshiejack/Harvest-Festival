@@ -1,16 +1,17 @@
 package joshie.harvest.npcs.entity;
 
 import io.netty.buffer.ByteBuf;
+import joshie.harvest.api.npc.NPC;
 import joshie.harvest.core.HFCore;
 import joshie.harvest.core.block.BlockFlower.FlowerType;
 import joshie.harvest.core.helpers.SpawnItemHelper;
 import joshie.harvest.core.lib.HFSounds;
 import joshie.harvest.npcs.HFNPCs;
-import joshie.harvest.api.npc.NPC;
 import joshie.harvest.npcs.entity.ai.EntityAISwim;
 import joshie.harvest.npcs.entity.ai.EntityAITalkingTo;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.MoverType;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
@@ -77,13 +78,13 @@ public class EntityNPCGoddess extends EntityNPC<EntityNPCGoddess> {
     public void moveEntityWithHeading(float strafe, float forward) {
         if (isInWater()) {
             moveRelative(strafe, forward, 0.02F);
-            moveEntity(motionX, motionY, motionZ);
+            move(MoverType.SELF, motionX, motionY, motionZ);
             motionX *= 0.800000011920929D;
             motionY *= 0.800000011920929D;
             motionZ *= 0.800000011920929D;
         } else if (isInLava()) {
             moveRelative(strafe, forward, 0.02F);
-            moveEntity(motionX, motionY, motionZ);
+            move(MoverType.SELF, motionX, motionY, motionZ);
             motionX *= 0.5D;
             motionY *= 0.5D;
             motionZ *= 0.5D;
@@ -102,7 +103,7 @@ public class EntityNPCGoddess extends EntityNPC<EntityNPCGoddess> {
                 f = world.getBlockState(new BlockPos(MathHelper.floor(posX), MathHelper.floor(getEntityBoundingBox().minY) - 1, MathHelper.floor(posZ))).getBlock().slipperiness * 0.91F;
             }
 
-            moveEntity(motionX, motionY, motionZ);
+            move(MoverType.SELF, motionX, motionY, motionZ);
             motionX *= (double) f;
             motionY *= (double) f;
             motionZ *= (double) f;

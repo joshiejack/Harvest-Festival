@@ -13,6 +13,7 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.oredict.OreDictionary;
@@ -31,7 +32,7 @@ public class CropRegistry implements ICropRegistry {
     public final HashMap<IBlockState, IBlockState> farmlandToDirtMap = new HashMap<>();
     private final HashMap<ItemStackHolder, Crop> providers = new HashMap<>();
     private final Set<ItemStackHolder> sickles = new HashSet<>();
-    private static final List<ItemStack> EMPTY = new ArrayList<>();
+    private static final NonNullList<ItemStack> EMPTY = NonNullList.create();
 
     @Override
     public BlockStateContainer getStateContainer(PropertyInteger stages) {
@@ -105,11 +106,11 @@ public class CropRegistry implements ICropRegistry {
     }
 
     @Override
-    public List<ItemStack> harvestCrop(@Nullable EntityPlayer player, World world, BlockPos pos) {
+    public NonNullList<ItemStack> harvestCrop(@Nullable EntityPlayer player, World world, BlockPos pos) {
         TileWithered tile = world.getTileEntity(pos) instanceof TileWithered ? (TileWithered) world.getTileEntity(pos) : null;
         if (tile != null) {
             CropData data = tile.getData();
-            List<ItemStack> harvest = data.harvest(player, true);
+            NonNullList<ItemStack> harvest = data.harvest(player, true);
             if (harvest != null) {
                 if (data.getCrop().getRegrowStage() <= 0) {
                     if (!world.isRemote) {

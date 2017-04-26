@@ -6,11 +6,11 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
-import java.util.List;
 
 public interface ICropRegistry {
     /** Alternative if you don't want to implement ICropProvider
@@ -59,7 +59,7 @@ public interface ICropRegistry {
      * @param world the world object
      * @param pos the crop position
      * @return the result of harvesting this crop */
-    List<ItemStack> harvestCrop(@Nullable EntityPlayer player, World world, BlockPos pos);
+    NonNullList<ItemStack> harvestCrop(@Nullable EntityPlayer player, World world, BlockPos pos);
 
     /** Call this on blocks of soil to hydrate the soil, and the plant. Make sure you pass in the position of the soil
      * @param player  the player making the soil wet, can be null

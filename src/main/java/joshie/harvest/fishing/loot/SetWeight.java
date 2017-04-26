@@ -15,7 +15,7 @@ import net.minecraft.world.storage.loot.functions.LootFunction;
 import java.util.Random;
 
 import static joshie.harvest.core.registry.ShippingRegistry.SELL_VALUE;
-import static joshie.harvest.fishing.item.ItemFish.*;
+import static joshie.harvest.fishing.item.ItemFish.SIZE;
 
 public class SetWeight extends LootFunction {
     public SetWeight(LootCondition[] conditionsIn) {

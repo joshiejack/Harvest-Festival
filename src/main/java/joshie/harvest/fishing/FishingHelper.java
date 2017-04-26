@@ -19,6 +19,7 @@ import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import org.apache.commons.lang3.tuple.Pair;
 
+import javax.annotation.Nonnull;
 import java.util.HashMap;
 
 @HFEvents
@@ -33,9 +34,9 @@ public class FishingHelper {
         return true;
     }
 
-    public static void track(ItemStack itemstack, EntityPlayer angler) {
-        if (CollectionHelper.isInFishCollection(itemstack)) {
-            HFTrackers.getPlayerTrackerFromPlayer(angler).getTracking().addAsObtained(itemstack);
+    public static void track(@Nonnull ItemStack stack, EntityPlayer angler) {
+        if (CollectionHelper.isInFishCollection(stack)) {
+            HFTrackers.getPlayerTrackerFromPlayer(angler).getTracking().addAsObtained(stack);
         }
     }
 

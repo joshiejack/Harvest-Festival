@@ -251,18 +251,18 @@ public class BlockStorage extends BlockHFEnumRotatableTile<BlockStorage, Storage
     }
 
     @Override
-    public boolean canReplace(@Nonnull World worldIn, @Nonnull BlockPos pos, @Nonnull EnumFacing side, @Nonnull ItemStack stack) {
-        Storage storage = getEnumFromStack(stack);
+    public boolean canPlaceBlockOnSide(@Nonnull World world, @Nonnull BlockPos pos, @Nonnull EnumFacing side) {
+        Storage storage = getEnumFromState(world.getBlockState(pos));
         if (storage == MAILBOX) {
-            IBlockState state = worldIn.getBlockState(pos.offset(side.getOpposite()));
+            IBlockState state = world.getBlockState(pos.offset(side.getOpposite()));
             return side.getAxis() != EnumFacing.Axis.Y && state.getBlock() instanceof BlockFence;
-        } else return super.canReplace(worldIn, pos, side, stack);
+        } else return super.canPlaceBlockOnSide(world, pos, side);
     }
 
     @Nonnull
     @Override
     @SuppressWarnings("ConstantConditions")
-    public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, @Nonnull IBlockState state, int fortune) {
+    public NonNullList<ItemStack> getDrops(IBlockAccess world, BlockPos pos, @Nonnull IBlockState state, int fortune) {
         if (getEnumFromState(state) == BASKET) {
             TileEntity tile = world.getTileEntity(pos);
             ItemStack stack = getStackFromEnum(BASKET);
@@ -280,7 +280,7 @@ public class BlockStorage extends BlockHFEnumRotatableTile<BlockStorage, Storage
             return NonNullList.withSize(1, stack);
         }
 
-        return super.getDrops(world, pos, state, fortune);
+        return (NonNullList<ItemStack>) super.getDrops(world, pos, state, fortune);
     }
 
     @Override

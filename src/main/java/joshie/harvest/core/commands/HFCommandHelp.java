@@ -43,7 +43,7 @@ public class HFCommandHelp extends AbstractHFCommand {
                 return true;
             }
 
-            if (MathHelper.parseIntWithDefault(parameters[0], -1) != -1) {
+            if (MathHelper.getInt(parameters[0], -1) != -1) {
                 throw numberinvalidexception;
             }
 

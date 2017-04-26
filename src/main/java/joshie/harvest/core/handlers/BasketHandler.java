@@ -2,7 +2,6 @@ package joshie.harvest.core.handlers;
 
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
-import com.google.common.collect.Lists;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.core.HFCore;
 import joshie.harvest.core.block.BlockStorage;
@@ -20,6 +19,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
@@ -29,7 +29,6 @@ import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedOutEvent;
 
 import javax.annotation.Nullable;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
@@ -45,7 +44,7 @@ public class BasketHandler {
     public void onItemPickup(EntityItemPickupEvent event) {
         ItemStack stack = event.getItem().getEntityItem();
         if (HFApi.shipping.getSellValue(stack) > 0) {
-            List<ItemStack> list = Lists.newArrayList(stack);
+            NonNullList<ItemStack> list = NonNullList.withSize(1, stack);
             if (EntityBasket.findBasketAndShip(event.getEntityPlayer(), list)) {
                 event.getItem().setDead();
                 event.setCanceled(true);

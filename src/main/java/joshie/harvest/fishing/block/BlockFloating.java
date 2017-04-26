@@ -42,6 +42,7 @@ public class BlockFloating extends BlockHFEnum<BlockFloating, Floating> {
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public boolean causesSuffocation(IBlockState state) {
         return false;
     }
@@ -61,15 +62,15 @@ public class BlockFloating extends BlockHFEnum<BlockFloating, Floating> {
 
     @Override
     @SuppressWarnings("deprecation, unchecked")
-    public AxisAlignedBB getCollisionBoundingBox(IBlockState state, @Nonnull World world, @Nonnull BlockPos pos) {
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState state, @Nonnull IBlockAccess world, @Nonnull BlockPos pos) {
         return new AxisAlignedBB(0.0D, -0.9D, 0.0D, 1.0D, 0.001D, 1.0D);
     }
 
     @Override
     @SuppressWarnings("deprecation")
-    public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn) {
-        super.neighborChanged(state, worldIn, pos, blockIn);
-        checkAndDropBlock(worldIn, pos, state);
+    public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block, BlockPos fromPos) {
+        super.neighborChanged(state, world, pos, block, fromPos);
+        checkAndDropBlock(world, pos, state);
     }
 
     @Override
@@ -97,7 +98,7 @@ public class BlockFloating extends BlockHFEnum<BlockFloating, Floating> {
         TileEntity tile = world.getTileEntity(pos);
         if (tile instanceof TileHatchery) {
             ItemStack stack = (((TileHatchery) tile).getStack());
-            if (stack != null) {
+            if (!stack.isEmpty()) {
                 for (int i = 0; i < stack.getCount(); i++) {
                     ItemStack stack2 = stack.copy();
                     stack2.setCount(1);
@@ -124,8 +125,10 @@ public class BlockFloating extends BlockHFEnum<BlockFloating, Floating> {
     @Nonnull
     public TileEntity createTileEntity(@Nonnull World world, @Nonnull IBlockState state) {
         switch (getEnumFromState(state)) {
-            case HATCHERY:      return new TileHatchery();
-            default:            return null;
+            case HATCHERY:
+                return new TileHatchery();
+            default:
+                return null;
         }
     }
 

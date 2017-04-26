@@ -15,6 +15,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ChunkCache;
 import net.minecraft.world.IBlockAccess;
@@ -23,7 +24,6 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.Chunk;
 
 import javax.annotation.Nullable;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import static joshie.harvest.api.crops.IStateHandler.PlantSection.BOTTOM;
@@ -65,7 +65,7 @@ public class CropHelper {
 
     //Harvests the crop at this location
     public static boolean harvestCrop(EntityPlayer player, World world, BlockPos pos) {
-        List<ItemStack> list = HFApi.crops.harvestCrop(player, world, pos);
+        NonNullList<ItemStack> list = HFApi.crops.harvestCrop(player, world, pos);
         if (!world.isRemote && !list.isEmpty()) {
             EntityBasket.findBasketAndShip(player, list);
             //Spawn them items

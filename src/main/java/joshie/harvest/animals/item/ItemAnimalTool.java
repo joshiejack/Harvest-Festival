@@ -1,6 +1,5 @@
 package joshie.harvest.animals.item;
 
-import com.google.common.collect.Lists;
 import joshie.harvest.animals.HFAnimals;
 import joshie.harvest.animals.entity.EntityHarvestCow;
 import joshie.harvest.animals.item.ItemAnimalTool.Tool;
@@ -21,10 +20,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.EnumParticleTypes;
-import net.minecraft.util.IStringSerializable;
-import net.minecraft.util.SoundCategory;
+import net.minecraft.util.*;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -87,6 +83,7 @@ public class ItemAnimalTool extends ItemHFEnum<ItemAnimalTool, Tool> {
     private final HashMap<EntityPlayer, AnimalStats> milkables = new HashMap<>();
 
     @Override
+    @Nonnull
     public ItemStack onItemUseFinish(@Nonnull ItemStack held, World world, EntityLivingBase entityLiving) {
         if (entityLiving instanceof EntityPlayer && getEnumFromStack(held) == MILKER) {
             EntityPlayer player = (EntityPlayer) entityLiving;
@@ -102,7 +99,7 @@ public class ItemAnimalTool extends ItemHFEnum<ItemAnimalTool, Tool> {
                         }
                     }
 
-                    if (!EntityBasket.findBasketAndShip(player, Lists.newArrayList(product))) {
+                    if (!EntityBasket.findBasketAndShip(player, NonNullList.withSize(1, product))) {
                         SpawnItemHelper.addToPlayerInventory(player, product);
                     }
 

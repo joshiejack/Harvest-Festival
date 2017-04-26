@@ -1,13 +1,13 @@
 package joshie.harvest.knowledge.gui.stats.relations.button;
 
+import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.npc.RelationStatus;
 import joshie.harvest.api.player.RelationshipType;
 import joshie.harvest.core.HFTrackers;
+import joshie.harvest.core.base.gui.ButtonBook;
 import joshie.harvest.core.helpers.StackRenderHelper;
 import joshie.harvest.knowledge.gui.stats.GuiStats;
-import joshie.harvest.core.base.gui.ButtonBook;
 import joshie.harvest.npcs.HFNPCs;
-import joshie.harvest.api.npc.NPC;
 import joshie.harvest.npcs.item.ItemNPCTool.NPCTool;
 import joshie.harvest.player.relationships.RelationshipDataClient;
 import net.minecraft.client.Minecraft;

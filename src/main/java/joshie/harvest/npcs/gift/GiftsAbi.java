@@ -6,7 +6,8 @@ import joshie.harvest.cooking.item.ItemIngredients.Ingredient;
 import joshie.harvest.cooking.item.ItemMeal.Meal;
 import net.minecraft.init.Items;
 
-import static joshie.harvest.api.npc.gift.GiftCategory.*;
+import static joshie.harvest.api.npc.gift.GiftCategory.MUSHROOM;
+import static joshie.harvest.api.npc.gift.GiftCategory.VEGETABLE;
 import static joshie.harvest.cooking.HFCooking.MEAL;
 
 @SuppressWarnings("unused")

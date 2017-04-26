@@ -1,6 +1,5 @@
 package joshie.harvest.animals.block;
 
-import com.google.common.collect.Lists;
 import joshie.harvest.animals.block.BlockTray.Tray;
 import joshie.harvest.animals.tile.TileFeeder;
 import joshie.harvest.animals.tile.TileNest;

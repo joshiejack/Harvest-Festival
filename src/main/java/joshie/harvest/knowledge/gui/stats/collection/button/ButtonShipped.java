@@ -1,9 +1,9 @@
 package joshie.harvest.knowledge.gui.stats.collection.button;
 
-import joshie.harvest.knowledge.gui.stats.GuiStats;
 import joshie.harvest.core.base.gui.ButtonBook;
 import joshie.harvest.core.helpers.StackRenderHelper;
 import joshie.harvest.core.util.holders.AbstractItemHolder;
+import joshie.harvest.knowledge.gui.stats.GuiStats;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.item.ItemStack;

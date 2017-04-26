@@ -6,13 +6,13 @@ import joshie.harvest.crops.block.BlockHFCrops.CropType;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.util.List;
 import java.util.Random;
 
 public class CropData {
@@ -92,7 +92,7 @@ public class CropData {
     }
 
     @SuppressWarnings("unchecked, unused")
-    public List<ItemStack> harvest(@Nullable EntityPlayer player, boolean doHarvest) {
+    public NonNullList<ItemStack> harvest(@Nullable EntityPlayer player, boolean doHarvest) {
         if (crop != null && crop.getGrowthHandler().canHarvest(crop, stage)) {
             if (crop.getGrowthHandler().canHarvest(crop, stage)) {
                 int originalStage = stage;

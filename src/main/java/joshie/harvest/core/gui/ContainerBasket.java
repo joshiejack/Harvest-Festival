@@ -1,6 +1,5 @@
 package joshie.harvest.core.gui;
 
-import com.google.common.base.Optional;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.core.HFCore;
 import joshie.harvest.core.base.gui.ContainerBase;

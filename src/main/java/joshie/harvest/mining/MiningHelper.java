@@ -27,7 +27,6 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
 
 import javax.annotation.Nonnull;
-import java.util.List;
 import java.util.Random;
 
 import static joshie.harvest.api.calendar.Season.WINTER;
@@ -66,10 +65,10 @@ public class MiningHelper {
     }
 
     public static NonNullList<ItemStack> getLoot(ResourceLocation loot, World world, EntityPlayer player, float luck) {
-        LootContext.Builder lootcontext$builder = new LootContext.Builder((WorldServer) world);
-        lootcontext$builder.withLuck(player.getLuck() + luck);
-        lootcontext$builder.withPlayer(player);
-        return world.getLootTableManager().getLootTableFromLocation(loot).generateLootForPools(world.rand, lootcontext$builder.build());
+        LootContext.Builder builder = new LootContext.Builder((WorldServer) world);
+        builder.withLuck(player.getLuck() + luck);
+        builder.withPlayer(player);
+        return (NonNullList<ItemStack>) world.getLootTableManager().getLootTableFromLocation(loot).generateLootForPools(world.rand, builder.build());
     }
 
     public static int getMineID(BlockPos pos) {

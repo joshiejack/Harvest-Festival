@@ -28,7 +28,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 
-public class EntityCustomFishHook extends EntityFishHook implements IThrowableEntity {
+public class EntityCustomFishHook extends EntityFishHook implements IThrowableEntity { //TODO
     public int shake;
     public EntityPlayer angler;
     public Entity bobber;
@@ -57,12 +57,12 @@ public class EntityCustomFishHook extends EntityFishHook implements IThrowableEn
     private boolean isAdmin = false;
 
     @SideOnly(Side.CLIENT)
-    public EntityCustomFishHook(World par1World, double par2, double par4, double par6, EntityPlayer par8EntityPlayer) {
-        super(par1World, par2, par4, par6, par8EntityPlayer);
-        this.setPosition(par2, par4, par6);
+    public EntityCustomFishHook(World world, double x, double y, double z, EntityPlayer player) {
+        super(world, player, x, y, z);
+        this.setPosition(x, y, z);
         this.ignoreFrustumCheck = true;
-        this.angler = par8EntityPlayer;
-        par8EntityPlayer.fishEntity = this;
+        this.angler = player;
+        player.fishEntity = this;
 
         this.xTile = -1;
         this.yTile = -1;
@@ -76,8 +76,8 @@ public class EntityCustomFishHook extends EntityFishHook implements IThrowableEn
         this.ignoreFrustumCheck = true;
     }
 
-    public EntityCustomFishHook(World par1World, EntityPlayer par2EntityPlayer) {
-        super(par1World, par2EntityPlayer);
+    public EntityCustomFishHook(World world, EntityPlayer player) {
+        super(world, player);
         this.xTile = -1;
         this.yTile = -1;
         this.zTile = -1;
@@ -87,10 +87,10 @@ public class EntityCustomFishHook extends EntityFishHook implements IThrowableEn
         this.ticksCatchable = 0;
         this.bobber = null;
         this.ignoreFrustumCheck = true;
-        this.angler = par2EntityPlayer;
+        this.angler = player;
         this.angler.fishEntity = this;
         this.setSize(0.25F, 0.25F);
-        this.setLocationAndAngles(par2EntityPlayer.posX, par2EntityPlayer.posY + par2EntityPlayer.getEyeHeight(), par2EntityPlayer.posZ, par2EntityPlayer.rotationYaw, par2EntityPlayer.rotationPitch);
+        this.setLocationAndAngles(player.posX, player.posY + player.getEyeHeight(), player.posZ, player.rotationYaw, player.rotationPitch);
         this.posX -= MathHelper.cos(this.rotationYaw / 180.0F * (float) Math.PI) * 0.16F;
         this.posY -= 0.10000000149011612D;
         this.posZ -= MathHelper.sin(this.rotationYaw / 180.0F * (float) Math.PI) * 0.16F;

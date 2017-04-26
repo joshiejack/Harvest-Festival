@@ -2,17 +2,23 @@ package joshie.harvest.fishing.entity;
 
 import joshie.harvest.fishing.FishingHelper;
 import joshie.harvest.fishing.HFFishing;
+import joshie.harvest.fishing.item.ItemFish;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.MoverType;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityFishHook;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemFishFood;
 import net.minecraft.item.ItemStack;
+import net.minecraft.stats.StatList;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.*;
 import net.minecraft.world.World;
@@ -21,7 +27,7 @@ import net.minecraft.world.storage.loot.LootContext;
 
 import java.util.List;
 
-public class EntityFishHookHF extends EntityFishHook {
+public class EntityFishHookHF extends EntityFishHook { //TODO
     //Line changed by me
     private int tickTimer;
     private int tier;
@@ -30,19 +36,14 @@ public class EntityFishHookHF extends EntityFishHook {
     //Line changed by me
     public EntityFishHookHF(World world, EntityPlayer player, int tier, int bait) {
         super(world, player);
-        this.tickTimer = (tier + 1) * (bait > 0 ? 2: 1);
+        this.tickTimer = (tier + 1) * (bait > 0 ? 2 : 1);
         this.tier = tier;
-    }
-
-    @SuppressWarnings("unused")
-    public EntityFishHookHF(World world) {
-        super(world);
     }
 
     @Override
     @SuppressWarnings("empty")
     public void onUpdate() {
-        if (!world.isRemote)  {
+        if (!world.isRemote) {
             setFlag(6, isGlowing());
         }
 
@@ -53,11 +54,11 @@ public class EntityFishHookHF extends EntityFishHook {
                 caughtEntity = world.getEntityByID(i - 1);
             }
         } else {
-            ItemStack itemstack = angler.getHeldItemMainhand();
-                                                                                                    //TODO: Line changed by me
-            if (angler.isDead || !angler.isEntityAlive() || itemstack == null || itemstack.getItem() != HFFishing.FISHING_ROD || getDistanceSqToEntity(angler) > 1024.0D) {
+            ItemStack itemstack = getAngler().getHeldItemMainhand();
+            //TODO: Line changed by me
+            if (getAngler().isDead || !getAngler().isEntityAlive() || itemstack.isEmpty() || itemstack.getItem() != HFFishing.FISHING_ROD || getDistanceSqToEntity(getAngler()) > 1024.0D) {
                 setDead();
-                angler.fishEntity = null;
+                getAngler().fishEntity = null;
                 return;
             }
         }
@@ -119,8 +120,8 @@ public class EntityFishHookHF extends EntityFishHook {
                 List<Entity> list = world.getEntitiesWithinAABBExcludingEntity(this, getEntityBoundingBox().addCoord(motionX, motionY, motionZ).expandXyz(1.0D));
                 double d0 = 0.0D;
 
-                for (Entity entity1: list) {
-                    if (canBeHooked(entity1) && (entity1 != angler || ticksInAir >= 5)) {
+                for (Entity entity1 : list) {
+                    if (canBeHooked(entity1) && (entity1 != getAngler() || ticksInAir >= 5)) {
                         AxisAlignedBB axisalignedbb1 = entity1.getEntityBoundingBox().expandXyz(0.30000001192092896D);
                         RayTraceResult raytraceresult1 = axisalignedbb1.calculateIntercept(vec3d1, vec3d);
                         if (raytraceresult1 != null) {
@@ -148,8 +149,8 @@ public class EntityFishHookHF extends EntityFishHook {
             }
 
             if (!inGround) {
-                moveEntity(motionX, motionY, motionZ);
-                float f2 = MathHelper.sqrt_double(motionX * motionX + motionZ * motionZ);
+                move(MoverType.SELF, motionX, motionY, motionZ);
+                float f2 = MathHelper.sqrt(motionX * motionX + motionZ * motionZ);
                 rotationYaw = (float) (MathHelper.atan2(motionX, motionZ) * (180D / Math.PI));
 
 
@@ -186,7 +187,7 @@ public class EntityFishHookHF extends EntityFishHook {
                     double d11 = axisalignedbb.minY + d9 * (double) (l + 1) / 5.0D;
                     AxisAlignedBB axisalignedbb2 = new AxisAlignedBB(axisalignedbb.minX, d10, axisalignedbb.minZ, axisalignedbb.maxX, d11, axisalignedbb.maxZ);
 
-                    if (world.isAABBInMaterial(axisalignedbb2, Material.WATER)) {
+                    if (world.isMaterialInBB(axisalignedbb2, Material.WATER)) {
                         d5 += 0.2D;
                     }
                 }
@@ -217,17 +218,17 @@ public class EntityFishHookHF extends EntityFishHook {
                         if (ticksCatchableDelay <= 0) {
                             motionY -= 0.20000000298023224D;
                             playSound(SoundEvents.ENTITY_BOBBER_SPLASH, 0.25F, 1.0F + (rand.nextFloat() - rand.nextFloat()) * 0.4F);
-                            float f6 = (float) MathHelper.floor_double(getEntityBoundingBox().minY);
+                            float f6 = (float) MathHelper.floor(getEntityBoundingBox().minY);
                             worldserver.spawnParticle(EnumParticleTypes.WATER_BUBBLE, posX, (double) (f6 + 1.0F), posZ, (int) (1.0F + width * 20.0F), (double) width, 0.0D, (double) width, 0.20000000298023224D);
                             worldserver.spawnParticle(EnumParticleTypes.WATER_WAKE, posX, (double) (f6 + 1.0F), posZ, (int) (1.0F + width * 20.0F), (double) width, 0.0D, (double) width, 0.20000000298023224D);
-                            ticksCatchable = MathHelper.getRandomIntegerInRange(rand, 10, 30);
+                            ticksCatchable = MathHelper.getInt(rand, 10, 30);
                         } else {
                             fishApproachAngle = (float) ((double) fishApproachAngle + rand.nextGaussian() * 4.0D);
                             float f5 = fishApproachAngle * 0.017453292F;
                             float f8 = MathHelper.sin(f5);
                             float f10 = MathHelper.cos(f5);
                             double d13 = posX + (double) (f8 * (float) ticksCatchableDelay * 0.1F);
-                            double d15 = (double) ((float) MathHelper.floor_double(getEntityBoundingBox().minY) + 1.0F);
+                            double d15 = (double) ((float) MathHelper.floor(getEntityBoundingBox().minY) + 1.0F);
                             double d16 = posZ + (double) (f10 * (float) ticksCatchableDelay * 0.1F);
                             Block block1 = worldserver.getBlockState(new BlockPos((int) d13, (int) d15 - 1, (int) d16)).getBlock();
                             if (block1 == Blocks.WATER || block1 == Blocks.FLOWING_WATER) {
@@ -253,10 +254,10 @@ public class EntityFishHookHF extends EntityFishHook {
                         }
 
                         if (rand.nextFloat() < f4) {
-                            float f7 = MathHelper.randomFloatClamp(rand, 0.0F, 360.0F) * 0.017453292F;
-                            float f9 = MathHelper.randomFloatClamp(rand, 25.0F, 60.0F);
+                            float f7 = MathHelper.nextFloat(rand, 0.0F, 360.0F) * 0.017453292F;
+                            float f9 = MathHelper.nextFloat(rand, 25.0F, 60.0F);
                             double d12 = posX + (double) (MathHelper.sin(f7) * f9 * 0.1F);
-                            double d14 = (double) ((float) MathHelper.floor_double(getEntityBoundingBox().minY) + 1.0F);
+                            double d14 = (double) ((float) MathHelper.floor(getEntityBoundingBox().minY) + 1.0F);
                             double d2 = posZ + (double) (MathHelper.cos(f7) * f9 * 0.1F);
                             Block block = worldserver.getBlockState(new BlockPos((int) d12, (int) d14 - 1, (int) d2)).getBlock();
                             if (block == Blocks.WATER || block == Blocks.FLOWING_WATER) {
@@ -265,12 +266,12 @@ public class EntityFishHookHF extends EntityFishHook {
                         }
 
                         if (ticksCaughtDelay <= 0) {
-                            fishApproachAngle = MathHelper.randomFloatClamp(rand, 0.0F, 360.0F);
-                            ticksCatchableDelay = MathHelper.getRandomIntegerInRange(rand, 20, 80);
+                            fishApproachAngle = MathHelper.nextFloat(rand, 0.0F, 360.0F);
+                            ticksCatchableDelay = MathHelper.getInt(rand, 20, 80);
                         }
                     } else {
-                        ticksCaughtDelay = MathHelper.getRandomIntegerInRange(rand, 100, 900);
-                        ticksCaughtDelay -= EnchantmentHelper.getLureModifier(angler) * 20 * 5;
+                        ticksCaughtDelay = MathHelper.getInt(rand, 100, 900);
+                        ticksCaughtDelay -= EnchantmentHelper.getLureModifier(getAngler()) * 20 * 5;
                     }
 
                     if (ticksCatchable > 0) {
@@ -297,48 +298,49 @@ public class EntityFishHookHF extends EntityFishHook {
     @Override
     @SuppressWarnings("ConstantConditions")
     public int handleHookRetraction() {
-        if (world.isRemote) {
-            return 0;
-        } else {
+        if (!this.world.isRemote && getAngler() != null) {
             int i = 0;
-
             if (caughtEntity != null) {
                 bringInHookedEntity();
                 world.setEntityState(this, (byte) 31);
                 i = caughtEntity instanceof EntityItem ? 3 : 5;
             } else if (ticksCatchable > 0) {
                 //Line changed by me
-                LootContext.Builder lootcontext$builder = new LootContext.Builder((WorldServer) world);
-                lootcontext$builder.withLuck((float) EnchantmentHelper.getLuckOfSeaModifier(angler) + angler.getLuck() + tier);
-                lootcontext$builder.withLootedEntity(this);
-                lootcontext$builder.withPlayer(angler);
+                LootContext.Builder builder = new LootContext.Builder((WorldServer) world);
+                builder.withLuck((float) this.field_191518_aw + getAngler().getLuck() + tier);
+                builder.withLootedEntity(this);
+                builder.withPlayer(getAngler());
                 //Line changed by me
-                for (ItemStack itemstack : world.getLootTableManager().getLootTableFromLocation(FishingHelper.getFishingTable(world, new BlockPos(this))).generateLootForPools(rand, lootcontext$builder.build())) {
+                for (ItemStack stack : world.getLootTableManager().getLootTableFromLocation(FishingHelper.getFishingTable(world, new BlockPos(this))).generateLootForPools(rand, builder.build())) {
                     //Line changed by me
-                    FishingHelper.track(itemstack, angler); //Add to the tracking
-                    EntityItem entityitem = new EntityItem(world, posX, posY, posZ, itemstack);
-                    double d0 = angler.posX - posX;
-                    double d1 = angler.posY - posY;
-                    double d2 = angler.posZ - posZ;
-                    double d3 = (double) MathHelper.sqrt_double(d0 * d0 + d1 * d1 + d2 * d2);
-                    entityitem.motionX = d0 * 0.1D;
-                    entityitem.motionY = d1 * 0.1D + (double) MathHelper.sqrt_double(d3) * 0.08D;
-                    entityitem.motionZ = d2 * 0.1D;
-                    world.spawnEntity(entityitem);
-                    angler.world.spawnEntity(new EntityXPOrb(angler.world, angler.posX, angler.posY + 0.5D, angler.posZ + 0.5D, rand.nextInt(6) + 1));
-                }
+                    FishingHelper.track(stack, getAngler()); //Add to the tracking
+                    EntityItem entityItem = new EntityItem(world, posX, posY, posZ, stack);
+                    double d0 = getAngler().posX - posX;
+                    double d1 = getAngler().posY - posY;
+                    double d2 = getAngler().posZ - posZ;
+                    double d3 = (double) MathHelper.sqrt(d0 * d0 + d1 * d1 + d2 * d2);
+                    entityItem.motionX = d0 * 0.1D;
+                    entityItem.motionY = d1 * 0.1D + (double) MathHelper.sqrt(d3) * 0.08D;
+                    entityItem.motionZ = d2 * 0.1D;
+                    world.spawnEntity(entityItem);
+                    getAngler().world.spawnEntity(new EntityXPOrb(getAngler().world, getAngler().posX, getAngler().posY + 0.5D, getAngler().posZ + 0.5D, rand.nextInt(6) + 1));
 
+                    Item item = stack.getItem();
+                    //Line changed by me
+                    if (item instanceof ItemFish || item instanceof ItemFishFood || item == Items.FISH || item == Items.COOKED_FISH) {
+                        getAngler().addStat(StatList.FISH_CAUGHT, 1);
+                    }
+                }
                 i = 1;
             }
 
             if (inGround) {
                 i = 2;
             }
-
             setDead();
-            angler.fishEntity = null;
             return i;
+        } else {
+            return 0;
         }
     }
 }
-

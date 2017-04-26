@@ -17,6 +17,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -29,7 +30,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nonnull;
-import java.util.List;
 import java.util.Locale;
 
 import static net.minecraftforge.common.EnumPlantType.Plains;
@@ -64,8 +64,8 @@ public class BlockNature extends BlockHFEnum<BlockNature, NaturalBlock> implemen
 
     @Override
     @Nonnull
-    public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, @Nonnull IBlockState state, int fortune) {
-        List<ItemStack> ret = super.getDrops(world, pos, state, fortune);
+    public NonNullList<ItemStack> getDrops(IBlockAccess world, BlockPos pos, @Nonnull IBlockState state, int fortune) {
+        NonNullList<ItemStack> ret = (NonNullList<ItemStack>) super.getDrops(world, pos, state, fortune);
         EntityPlayer player = harvesters.get();
         if (player != null) {
             EntityBasket.findBasketAndShip(player, ret);

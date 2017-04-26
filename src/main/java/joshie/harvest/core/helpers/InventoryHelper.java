@@ -8,7 +8,6 @@ import net.minecraft.util.EnumHand;
 import net.minecraftforge.oredict.OreDictionary;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -138,7 +137,7 @@ public class InventoryHelper {
             player.setHeldItem(hand, ItemStack.EMPTY);
             return ret;
         } else {
-            held.stackSize -= amount;
+            held.shrink(amount);
             return amount;
         }
     }

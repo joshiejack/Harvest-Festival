@@ -30,7 +30,6 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 
 import javax.annotation.Nonnull;
-import java.util.List;
 import java.util.Locale;
 
 import static joshie.harvest.api.gathering.ISmashable.ToolType.HAMMER;

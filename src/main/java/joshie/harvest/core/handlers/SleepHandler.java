@@ -8,6 +8,7 @@ import joshie.harvest.calendar.data.SeasonData;
 import joshie.harvest.core.HFCore;
 import joshie.harvest.core.util.annotations.HFEvents;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.MoverType;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayer.SleepResult;
@@ -25,12 +26,14 @@ import java.util.List;
 @HFEvents
 @SuppressWarnings("unused")
 public class SleepHandler {
-    public static boolean register() { return HFCore.SLEEP_ANYTIME || HFCore.SLEEP_ONLY_AT_NIGHT; }
+    public static boolean register() {
+        return HFCore.SLEEP_ANYTIME || HFCore.SLEEP_ONLY_AT_NIGHT;
+    }
 
     @SubscribeEvent
     public void onDamage(LivingAttackEvent event) {
         if (event.getSource() == DamageSource.STARVE && event.getEntityLiving() instanceof EntityPlayer) {
-            EntityPlayer player = ((EntityPlayer)event.getEntityLiving());
+            EntityPlayer player = ((EntityPlayer) event.getEntityLiving());
             if (player.isPlayerSleeping()) {
                 event.setCanceled(true);
             }
@@ -130,7 +133,7 @@ public class SleepHandler {
             player.setEntityBoundingBox(new AxisAlignedBB(axisalignedbb.minX, axisalignedbb.minY, axisalignedbb.minZ, axisalignedbb.minX + (double) player.width, axisalignedbb.minY + (double) player.height, axisalignedbb.minZ + (double) player.width));
 
             if (player.width > f && !player.firstUpdate && !player.world.isRemote) {
-                player.moveEntity((double) (f - player.width), 0.0D, (double) (f - player.width));
+                player.move(MoverType.SELF, (double) (f - player.width), 0.0D, (double) (f - player.width));
             }
         }
     }

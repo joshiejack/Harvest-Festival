@@ -9,7 +9,8 @@ import joshie.harvest.api.npc.gift.GiftCategory;
 import joshie.harvest.core.util.annotations.HFLoader;
 import org.apache.commons.lang3.text.WordUtils;
 
-import static joshie.harvest.animals.HFAnimals.*;
+import static joshie.harvest.animals.HFAnimals.ANIMAL_PRODUCT;
+import static joshie.harvest.animals.HFAnimals.TREATS;
 import static joshie.harvest.api.npc.gift.GiftCategory.*;
 
 @HFLoader(priority = 0)

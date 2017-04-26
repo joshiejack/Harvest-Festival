@@ -3,11 +3,10 @@ package joshie.harvest.core.util;
 import joshie.harvest.HarvestFestival;
 import joshie.harvest.core.helpers.ConfigHelper;
 import joshie.harvest.core.util.annotations.HFEvents;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraftforge.common.config.ConfigElement;
 import net.minecraftforge.common.config.Configuration;
-import net.minecraftforge.fml.client.IModGuiFactory;
+import net.minecraftforge.fml.client.DefaultGuiFactory;
 import net.minecraftforge.fml.client.config.DummyConfigElement;
 import net.minecraftforge.fml.client.config.GuiConfig;
 import net.minecraftforge.fml.client.config.IConfigElement;
@@ -18,59 +17,43 @@ import net.minecraftforge.fml.relauncher.Side;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
-import java.util.Set;
 
 import static joshie.harvest.core.lib.HFModInfo.MODID;
+import static joshie.harvest.core.lib.HFModInfo.MODNAME;
 
 @HFEvents(Side.CLIENT)
-public class HFGuiFactory implements IModGuiFactory {
-    @Override
-    public void initialize(Minecraft minecraftInstance) {
+public class HFGuiFactory extends DefaultGuiFactory {
+
+    protected HFGuiFactory() {
+        super(MODID, MODNAME);
     }
 
     @Override
-    public Class<? extends GuiScreen> mainConfigGuiClass() {
-        return GuiHFConfig.class;
+    public GuiScreen createConfigGui(GuiScreen parentScreen) {
+        return new GuiConfig(parentScreen, getConfigElements(), MODID, false, true, GuiConfig.getAbridgedConfigPath(ConfigHelper.getConfig().toString()));
     }
 
-    @Override
-    public Set<RuntimeOptionCategoryElement> runtimeGuiCategories() {
-        return null;
-    }
+    private static List<IConfigElement> getConfigElements() {
+        List<IConfigElement> list = new ArrayList<>();
 
-    @Override
-    @SuppressWarnings("deprecation")
-    public RuntimeOptionGuiHandler getHandlerFor(RuntimeOptionCategoryElement element) {
-        return null;
-    }
+        List<Class> configsList = new ArrayList<>(HarvestFestival.proxy.getList());
+        Collections.sort(configsList, Comparator.comparing(Class::getSimpleName));
+        for (Class c : configsList) {
+            try {
+                Method configure = c.getMethod("configure");
+                if (configure != null) {
+                    String categoryName = c.getSimpleName().replace("HF", "");
+                    List<IConfigElement> configElements = new ConfigElement(ConfigHelper.getConfig().getCategory(categoryName)).getChildElements();
 
-    public static class GuiHFConfig extends GuiConfig {
-        public GuiHFConfig(GuiScreen parentScreen) {
-            super(parentScreen, getConfigElements(), MODID, false, true, GuiConfig.getAbridgedConfigPath(ConfigHelper.getConfig().toString()));
-        }
-
-        @SuppressWarnings("unchecked")
-        private static List<IConfigElement> getConfigElements() {
-            List<IConfigElement> list = new ArrayList<>();
-
-            List<Class> configsList = new ArrayList<>(HarvestFestival.proxy.getList());
-            Collections.sort(configsList, (c1, c2) -> c1.getSimpleName().compareTo(c2.getSimpleName()));
-            for (Class c : configsList) {
-                try {
-                    Method configure = c.getMethod("configure");
-                    if (configure != null) {
-                        String categoryName = c.getSimpleName().replace("HF", "");
-                        List<IConfigElement> configElements = new ConfigElement(ConfigHelper.getConfig().getCategory(categoryName)).getChildElements();
-
-                        list.add(new DummyConfigElement.DummyCategoryElement(categoryName, MODID + ".config", configElements));
-                    }
-
-                } catch (Exception ignored) {
+                    list.add(new DummyConfigElement.DummyCategoryElement(categoryName, MODID + ".config", configElements));
                 }
+
+            } catch (Exception ignored) {
             }
-            return list;
         }
+        return list;
     }
 
     @SubscribeEvent

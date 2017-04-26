@@ -10,7 +10,8 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.util.*;
+import java.util.HashSet;
+import java.util.Set;
 
 public abstract class QuestData {
     protected final Set<Quest> current = new HashSet<>();

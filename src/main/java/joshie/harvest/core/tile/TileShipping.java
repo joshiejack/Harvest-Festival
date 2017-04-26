@@ -1,7 +1,7 @@
 package joshie.harvest.core.tile;
 
-import joshie.harvest.core.base.tile.TileFaceable;
 import joshie.harvest.core.HFTrackers;
+import joshie.harvest.core.base.tile.TileFaceable;
 import joshie.harvest.core.helpers.StackHelper;
 import joshie.harvest.player.PlayerTrackerServer;
 import net.minecraft.item.ItemStack;

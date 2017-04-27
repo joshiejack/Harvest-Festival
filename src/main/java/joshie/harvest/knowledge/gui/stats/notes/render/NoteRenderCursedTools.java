@@ -7,11 +7,11 @@ import joshie.harvest.tools.HFTools;
 public class NoteRenderCursedTools extends NoteRenderHF {
     @Override
     public void drawScreen(int x, int y) {
-        drawStack(HFFishing.FISHING_ROD.getStack(ToolTier.CURSED), 1, 130);
-        drawStack(HFTools.HOE.getStack(ToolTier.CURSED), 21, 130);
-        drawStack(HFTools.AXE.getStack(ToolTier.CURSED), 41, 130);
-        drawStack(HFTools.HAMMER.getStack(ToolTier.CURSED), 61, 130);
-        drawStack(HFTools.WATERING_CAN.getStack(ToolTier.CURSED), 81, 130);
-        drawStack(HFTools.SICKLE.getStack(ToolTier.CURSED), 101, 130);
+        drawStack(HFFishing.FISHING_RODS.get(ToolTier.CURSED).getStack(), 1, 130);
+        drawStack(HFTools.HOES.get(ToolTier.CURSED).getStack(), 21, 130);
+        drawStack(HFTools.AXES.get(ToolTier.CURSED).getStack(), 41, 130);
+        drawStack(HFTools.HAMMERS.get(ToolTier.CURSED).getStack(), 61, 130);
+        drawStack(HFTools.WATERING_CANS.get(ToolTier.CURSED).getStack(), 81, 130);
+        drawStack(HFTools.SICKLES.get(ToolTier.CURSED).getStack(), 101, 130);
     }
 }

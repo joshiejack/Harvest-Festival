@@ -130,8 +130,8 @@ public class QuestMeetJade extends QuestQuestion {
     public void onChatClosed(EntityPlayer player, NPC npc) {
         if (!TownHelper.getClosestTownToEntity(player, false).hasBuilding(HFBuildings.CARPENTER)) return;
         if (quest_stage == START) {
-            rewardItem(player, HFTools.HOE.getStack(BASIC));
-            rewardItem(player, HFTools.WATERING_CAN.getStack(BASIC));
+            rewardItem(player, HFTools.HOES.get(BASIC).getStack());
+            rewardItem(player, HFTools.WATERING_CANS.get(BASIC).getStack());
             HFApi.player.getTrackingForPlayer(player).learnNote(HFNotes.CROP_FARMING);
             rewardItem(player, HFCrops.TUTORIAL.getSeedStack(3));
             increaseStage(player);
@@ -144,9 +144,9 @@ public class QuestMeetJade extends QuestQuestion {
                 if (InventoryHelper.takeItemsIfHeld(player, SPECIAL, SearchType.FLOWER, 5) != null) {
                     rewardItem(player, HFCrops.TUTORIAL.getSeedStack(1));
                 } else if (InventoryHelper.takeItemsIfHeld(player, SPECIAL, SearchType.HOE) != null) {
-                    rewardItem(player, HFTools.HOE.getStack(BASIC));
+                    rewardItem(player, HFTools.HOES.get(BASIC).getStack());
                 } else if (InventoryHelper.takeItemsIfHeld(player, SPECIAL, SearchType.BUCKET) != null) {
-                    rewardItem(player, HFTools.WATERING_CAN.getStack(BASIC));
+                    rewardItem(player, HFTools.WATERING_CANS.get(BASIC).getStack());
                 }
             }
 
@@ -163,11 +163,11 @@ public class QuestMeetJade extends QuestQuestion {
     public void onQuestCompleted(EntityPlayer player) {
         //If we finished early
         if (isCompletedEarly()) {
-            rewardItem(player, HFTools.HOE.getStack(BASIC));
-            rewardItem(player, HFTools.WATERING_CAN.getStack(BASIC));
+            rewardItem(player, HFTools.HOES.get(BASIC).getStack());
+            rewardItem(player, HFTools.WATERING_CANS.get(BASIC).getStack());
         }
 
-        rewardItem(player, HFTools.SICKLE.getStack(BASIC));
+        rewardItem(player, HFTools.SICKLES.get(BASIC).getStack());
         Season season = HFApi.calendar.getDate(player.world).getSeason();
         if (season == SUMMER) rewardItem(player, HFCrops.ONION.getSeedStack(3));
         else if (season == AUTUMN) rewardItem(player, HFCrops.SPINACH.getSeedStack(3));

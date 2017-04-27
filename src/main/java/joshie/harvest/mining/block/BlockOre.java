@@ -4,14 +4,13 @@ import joshie.harvest.api.gathering.ISmashable;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.base.block.BlockHFSmashable;
-import joshie.harvest.core.base.item.ItemToolSmashing;
 import joshie.harvest.core.entity.EntityBasket;
 import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.mining.HFMining;
 import joshie.harvest.mining.MiningHelper;
 import joshie.harvest.mining.block.BlockOre.Ore;
 import joshie.harvest.mining.item.ItemMaterial.Material;
-import joshie.harvest.tools.HFTools;
+import joshie.harvest.tools.item.ItemHammer;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
@@ -61,8 +60,8 @@ public class BlockOre extends BlockHFSmashable<BlockOre, Ore> implements ISmasha
     @Override
     @SuppressWarnings("deprecation")
     public float getPlayerRelativeBlockHardness(IBlockState state, @Nonnull EntityPlayer player, @Nonnull World world, @Nonnull BlockPos pos) {
-        return (player.getHeldItemMainhand().getItem() == HFTools.HAMMER)
-                ? ((HFTools.HAMMER.getTier(player.getHeldItemMainhand()).ordinal() + 2)
+        return (player.getHeldItemMainhand().getItem() instanceof ItemHammer)
+                ? ((((ItemHammer)player.getHeldItemMainhand().getItem()).getTier(player.getHeldItemMainhand()).ordinal() + 2)
                 - getToolLevel(getEnumFromState(state))) * 0.025F : -1F;
     }
 
@@ -79,8 +78,8 @@ public class BlockOre extends BlockHFSmashable<BlockOre, Ore> implements ISmasha
     }
 
     @Override
-    public ItemToolSmashing getTool() {
-        return HFTools.HAMMER;
+    public boolean isValidTool(ItemStack stack) {
+        return stack.getItem() instanceof ItemHammer;
     }
 
     @Override
@@ -104,16 +103,6 @@ public class BlockOre extends BlockHFSmashable<BlockOre, Ore> implements ISmasha
                 return 4;
             default:
                 return 0;
-        }
-    }
-
-    @Override
-    public void dropBlockAsItemWithChance(World worldIn, BlockPos pos, IBlockState state, float chance, int fortune) {
-        if (!worldIn.isRemote && !worldIn.restoringBlockSnapshots) {
-            EntityPlayer player = harvesters.get();
-            if (player != null && player.getHeldItemMainhand().getItem() == getTool()) {
-                smashBlock(harvesters.get(), worldIn, pos, state, getTool().getTier(player.getHeldItemMainhand()));
-            }
         }
     }
 

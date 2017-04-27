@@ -3,6 +3,7 @@ package joshie.harvest.fishing.render;
 import joshie.harvest.core.helpers.StackRenderHelper;
 import joshie.harvest.core.util.annotations.HFEvents;
 import joshie.harvest.fishing.HFFishing;
+import joshie.harvest.fishing.item.ItemFishingRod;
 import joshie.harvest.fishing.item.ItemJunk.Junk;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
@@ -21,8 +22,8 @@ public class RenderBait {
     public void onTooltipRender(RenderTooltipEvent.PostText event) {
         if (event.getStack() == null || Minecraft.getMinecraft().currentScreen == null) return; //Do nothing if stack is null
         ItemStack stack = event.getStack();
-        if (stack.getItem() == HFFishing.FISHING_ROD) {
-            int amount = HFFishing.FISHING_ROD.getBaitAmount(stack);
+        if (stack.getItem() instanceof ItemFishingRod) {
+            int amount = ((ItemFishingRod)stack.getItem()).getBaitAmount(stack);
             if (amount > 0) {
                 GuiScreen gui = Minecraft.getMinecraft().currentScreen;
                 GlStateManager.disableRescaleNormal();

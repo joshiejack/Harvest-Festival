@@ -35,6 +35,6 @@ public class QuestYulif100FreeAxe extends QuestFriendship {
     @SuppressWarnings("ConstantConditions")
     @Nonnull
     protected ItemStack getRewardStack() {
-        return HFTools.AXE.getStack(ToolTier.BASIC);
+        return HFTools.AXES.get(ToolTier.BASIC).getStack();
     }
 }

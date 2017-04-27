@@ -1,5 +1,6 @@
 package joshie.harvest.core.base.block;
 
+import joshie.harvest.api.core.ITiered;
 import joshie.harvest.api.gathering.ISmashable;
 import joshie.harvest.core.HFCore;
 import joshie.harvest.core.base.item.ItemToolSmashing;
@@ -9,6 +10,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -24,7 +26,7 @@ public abstract class BlockHFSmashable<B extends BlockHFSmashable, E extends Enu
         super(material, clazz, tab);
     }
 
-    public abstract ItemToolSmashing getTool();
+    public abstract boolean isValidTool(ItemStack stack);
 
     @SuppressWarnings("deprecation")
     @Override
@@ -33,12 +35,12 @@ public abstract class BlockHFSmashable<B extends BlockHFSmashable, E extends Enu
         else super.addCollisionBoxToList(state, worldIn, pos, entityBox, collidingBoxes, entityIn, bool);
     }
 
+
     @Override
     public void onBlockClicked(World world, BlockPos pos, EntityPlayer player) {
-        ItemToolSmashing tool = getTool();
-        if (player.getHeldItemMainhand().getItem() == tool) {
+        if (isValidTool(player.getHeldItemMainhand())) {
             if (player.motionY <= -0.1F) {
-                tool.smashBlock(world, player, pos, player.getHeldItemMainhand(), true);
+                ((ItemToolSmashing)player.getHeldItemMainhand().getItem()).smashBlock(world, player, pos, player.getHeldItemMainhand(), true);
             }
         }
     }
@@ -47,8 +49,8 @@ public abstract class BlockHFSmashable<B extends BlockHFSmashable, E extends Enu
     public void dropBlockAsItemWithChance(World worldIn, @Nonnull BlockPos pos, @Nonnull IBlockState state, float chance, int fortune)  {
         if (!worldIn.isRemote && !worldIn.restoringBlockSnapshots)  {
             EntityPlayer player = harvesters.get();
-            if (player != null && player.getHeldItemMainhand().getItem() == getTool()) {
-                if (smashBlock(harvesters.get(), worldIn, pos, state, getTool().getTier(player.getHeldItemMainhand()))) return;
+            if (player != null && player.getHeldItemMainhand().getItem() instanceof ITiered && isValidTool(player.getHeldItemMainhand())) {
+                if (smashBlock(harvesters.get(), worldIn, pos, state, ((ITiered)player.getHeldItemMainhand().getItem()).getTier(player.getHeldItemMainhand()))) return;
             }
 
             super.dropBlockAsItemWithChance(worldIn, pos, state, chance, fortune);

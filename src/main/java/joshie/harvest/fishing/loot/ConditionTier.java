@@ -3,7 +3,7 @@ package joshie.harvest.fishing.loot;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSerializationContext;
-import joshie.harvest.fishing.HFFishing;
+import joshie.harvest.fishing.item.ItemFishingRod;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.JsonUtils;
@@ -28,8 +28,8 @@ public class ConditionTier implements LootCondition {
         if (context.getKillerPlayer() instanceof EntityPlayer) {
             EntityPlayer player = (EntityPlayer)context.getKillerPlayer();
             ItemStack held = player.getHeldItemMainhand();
-            if (held.getItem() == HFFishing.FISHING_ROD) {
-                return HFFishing.FISHING_ROD.getTier(held).getToolLevel() >= level;
+            if (held.getItem() instanceof ItemFishingRod) {
+                return ((ItemFishingRod)held.getItem()).getTier(held).getToolLevel() >= level;
             }
         }
 

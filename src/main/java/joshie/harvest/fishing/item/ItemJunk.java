@@ -3,7 +3,6 @@ package joshie.harvest.fishing.item;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.item.ItemHFEnum;
 import joshie.harvest.core.util.interfaces.ISellable;
-import joshie.harvest.fishing.HFFishing;
 import joshie.harvest.fishing.item.ItemJunk.Junk;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -62,11 +61,11 @@ public class ItemJunk extends ItemHFEnum<ItemJunk, Junk> {
         //Check to the right first
         int check = slot == 8 ? 0 : slot + 1;
         ItemStack stack = mainInventory.get(check);
-        if (stack.getItem() == HFFishing.FISHING_ROD) return stack;
+        if (stack.getItem() instanceof ItemFishingRod) return stack;
         else {
             check = slot == 0 ? 8 : slot + -1;
             stack = mainInventory.get(check);
-            if (stack.getItem() == HFFishing.FISHING_ROD) return stack;
+            if (stack.getItem() instanceof ItemFishingRod) return stack;
             else return ItemStack.EMPTY;
         }
     }
@@ -79,7 +78,7 @@ public class ItemJunk extends ItemHFEnum<ItemJunk, Junk> {
             int slot = getSlotStackIsIn(playerIn.inventory.mainInventory, stack);
             if (slot != -1) {
                 ItemStack rod = getClosest(playerIn.inventory.mainInventory, slot);
-                if (!rod.isEmpty() && HFFishing.FISHING_ROD.addBait(rod, stack)) {
+                if (!rod.isEmpty() && ((ItemFishingRod)rod.getItem()).addBait(rod, stack)) {
                     stack.setCount(0); //Clear out this stack
                     return new ActionResult<>(EnumActionResult.SUCCESS, stack);
                 }

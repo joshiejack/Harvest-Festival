@@ -86,9 +86,9 @@ public class HFNotes {
         CHICKEN_CARE.setIcon(HFAnimals.ANIMAL.getStackFromEnum(Spawner.CHICKEN));
         COW_CARE.setIcon(HFAnimals.ANIMAL.getStackFromEnum(Spawner.COW));
         SHEEP_CARE.setIcon(HFAnimals.ANIMAL.getStackFromEnum(Spawner.SHEEP));
-        HAMMER.setIcon(HFTools.HAMMER.getStack(ToolTier.BASIC));
-        AXE.setIcon(HFTools.AXE.getStack(ToolTier.BASIC));
-        SICKLE.setIcon(HFTools.SICKLE.getStack(ToolTier.BASIC));
+        HAMMER.setIcon(HFTools.HAMMERS.get(ToolTier.BASIC).getStack());
+        AXE.setIcon(HFTools.AXES.get(ToolTier.BASIC).getStack());
+        SICKLE.setIcon(HFTools.SICKLES.get(ToolTier.BASIC).getStack());
         MINING.setIcon(HFMining.ORE.getStackFromEnum(Ore.COPPER));
         COOKING.setIcon(HFCooking.MEAL.getStackFromEnum(Meal.SALAD));
         RECIPES.setIcon(CookingHelper.getRecipe("salad"));
@@ -102,7 +102,7 @@ public class HFNotes {
         SUPERMARKET.setIcon(HFBuildings.STRUCTURES.getStackFromObject(HFBuildings.SUPERMARKET));
         REPAIRING.setIcon(new ItemStack(Blocks.ANVIL));
         UPGRADING.setIcon(HFModInfo.ICONS, 0, 48);
-        SECRET_CURSED_TOOLS.setIcon(HFTools.SICKLE.getStack(ToolTier.CURSED));
+        SECRET_CURSED_TOOLS.setIcon(HFTools.SICKLES.get(ToolTier.CURSED).getStack());
         SECRET_LIVESTOCK.setIcon(HFAnimals.TREATS.getStackFromEnum(Treat.COW));
         SECRET_CHICKENS.setIcon(HFAnimals.TREATS.getStackFromEnum(Treat.CHICKEN));
         SHIPPING_BASKET.setIcon(HFCore.STORAGE.getStackFromEnum(Storage.BASKET));

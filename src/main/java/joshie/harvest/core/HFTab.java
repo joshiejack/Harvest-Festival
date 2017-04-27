@@ -1,6 +1,7 @@
 package joshie.harvest.core;
 
 import joshie.harvest.api.HFApi;
+import joshie.harvest.api.core.ITiered.ToolTier;
 import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.cooking.item.ItemMeal.Meal;
@@ -113,7 +114,7 @@ public class HFTab extends CreativeTabs {
         HFTab.MINING.setStack(HFMining.MATERIALS.getStackFromEnum(ADAMANTITE));
         HFTab.FARMING.setStack(HFCrops.STRAWBERRY.getCropStack(1));
         HFTab.COOKING.setStack(HFCooking.MEAL.getStackFromEnum(Meal.SALAD));
-        HFTab.GATHERING.setStack(new ItemStack(HFTools.AXE, 1, 0));
+        HFTab.GATHERING.setStack(HFTools.AXES.get(ToolTier.BASIC).getStack());
         HFTab.FISHING.setStack(HFFishing.FISH.getStackFromEnum(Fish.PUPFISH));
     }
 }

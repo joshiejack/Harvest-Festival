@@ -29,7 +29,7 @@ import static joshie.harvest.fishing.item.ItemFish.FISH_LOCATIONS;
 
 @HFQuest("collect.fish")
 public class QuestCollectFish extends QuestDaily {
-    private static final ItemStack rod = HFFishing.FISHING_ROD.getStack(ToolTier.BASIC);
+    private static final ItemStack rod = HFFishing.FISHING_RODS.get(ToolTier.BASIC).getStack();
     private ItemStack fish = HFFishing.FISH.getStackFromEnum(Fish.COD);
     private long reward = 1L;
 

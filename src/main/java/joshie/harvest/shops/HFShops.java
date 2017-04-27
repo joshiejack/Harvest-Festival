@@ -394,11 +394,11 @@ public class HFShops {
         Crop.REGISTRY.values().stream().filter(crop -> crop != Crop.NULL_CROP && crop.getSeedCost() > 0)
                 .forEachOrdered(crop -> SUPERMARKET.addPurchasable(new PurchasableCropSeeds(crop)));
 
-        SUPERMARKET.addPurchasable(500, HFTools.HOE.getStack(ToolTier.BASIC), 1);
-        SUPERMARKET.addPurchasable(500, HFTools.SICKLE.getStack(ToolTier.BASIC), 1);
-        SUPERMARKET.addPurchasable(750, HFTools.WATERING_CAN.getStack(ToolTier.BASIC), 1);
-        SUPERMARKET.addPurchasable(new Purchasable(1000, HFTools.AXE.getStack(ToolTier.BASIC)).setStock(1).setNote(HFNotes.AXE));
-        SUPERMARKET.addPurchasable(new Purchasable(1000, HFTools.HAMMER.getStack(ToolTier.BASIC)).setStock(1).setNote(HFNotes.HAMMER));
+        SUPERMARKET.addPurchasable(500, HFTools.HOES.get(ToolTier.BASIC).getStack(), 1);
+        SUPERMARKET.addPurchasable(500, HFTools.SICKLES.get(ToolTier.BASIC).getStack(), 1);
+        SUPERMARKET.addPurchasable(750, HFTools.WATERING_CANS.get(ToolTier.BASIC).getStack(), 1);
+        SUPERMARKET.addPurchasable(new Purchasable(1000, HFTools.AXES.get(ToolTier.BASIC).getStack()).setStock(1).setNote(HFNotes.AXE));
+        SUPERMARKET.addPurchasable(new Purchasable(1000, HFTools.HAMMERS.get(ToolTier.BASIC).getStack()).setStock(1).setNote(HFNotes.HAMMER));
 
         //TODO: Reenable in 1.0 when I readd marriage
         //SUPERMARKET.addPurchasable(new PurchasableBlueFeather(1000, HFNPCs.TOOLS.getStackFromEnum(BLUE_FEATHER)));
@@ -419,7 +419,7 @@ public class HFShops {
 
     private static void registerTackleshop() {
         BAITSHOP.addPurchasable(new Purchasable(Junk.BAIT.getCost(), HFFishing.JUNK.getStackFromEnum(Junk.BAIT)).addTooltip("junk.bait"));
-        BAITSHOP.addPurchasable(1000L, HFFishing.FISHING_ROD.getStack(ToolTier.BASIC), 1);
+        BAITSHOP.addPurchasable(1000L, HFFishing.FISHING_RODS.get(ToolTier.BASIC).getStack(), 1);
         BAITSHOP.addPurchasable(new Purchasable(500L, HFFishing.AQUATIC_BLOCKS.getStackFromEnum(Aquatic.TRAP)).setStock(10).addTooltip("aquatic.trap"));
         BAITSHOP.addPurchasable(new PurchasableMaterials(0L, HFFishing.FLOATING_BLOCKS.getStackFromEnum(Floating.HATCHERY), Logs.of(8), String.of(6)) {
             @Override

@@ -3,11 +3,10 @@ package joshie.harvest.gathering.block;
 import joshie.harvest.api.core.ITiered.ToolTier;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.block.BlockHFSmashable;
-import joshie.harvest.core.base.item.ItemToolSmashing;
 import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.core.util.interfaces.ISellable;
 import joshie.harvest.gathering.block.BlockRock.Rock;
-import joshie.harvest.tools.HFTools;
+import joshie.harvest.tools.item.ItemHammer;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -81,8 +80,8 @@ public class BlockRock extends BlockHFSmashable<BlockRock, Rock> {
     }
 
     @Override
-    public ItemToolSmashing getTool() {
-        return HFTools.HAMMER;
+    public boolean isValidTool(ItemStack stack) {
+        return stack.getItem() instanceof ItemHammer;
     }
 
     @Override

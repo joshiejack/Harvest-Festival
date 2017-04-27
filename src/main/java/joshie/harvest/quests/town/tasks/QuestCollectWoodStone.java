@@ -22,6 +22,7 @@ import javax.annotation.Nullable;
 import static joshie.harvest.core.helpers.InventoryHelper.ORE_DICTIONARY;
 
 @HFQuest("collect.materials")
+@SuppressWarnings("unused")
 public class QuestCollectWoodStone extends QuestDaily {
     private boolean silver;
     private boolean wood;
@@ -73,7 +74,8 @@ public class QuestCollectWoodStone extends QuestDaily {
     public void onQuestCompleted(EntityPlayer player) {
         HFApi.player.getRelationsForPlayer(player).affectRelationship(HFNPCs.CARPENTER, 2500);
         rewardGold(player, (wood ? amount * 10 : amount * 20));
-        rewardItem(player, (wood ? HFTools.AXE.getStack((silver ? ToolTier.SILVER : ToolTier.COPPER)) : HFTools.HAMMER.getStack((silver ? ToolTier.SILVER : ToolTier.COPPER))));
+        rewardItem(player, (wood ? HFTools.AXES.get((silver ? ToolTier.SILVER : ToolTier.COPPER)).getStack() :
+                                    HFTools.HAMMERS.get((silver ? ToolTier.SILVER : ToolTier.COPPER)).getStack()));
     }
 
     @Override

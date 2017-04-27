@@ -11,7 +11,6 @@ import joshie.harvest.core.lib.HFSounds;
 import joshie.harvest.npcs.HFNPCs;
 import joshie.harvest.quests.Quests;
 import joshie.harvest.quests.base.QuestTrade;
-import joshie.harvest.tools.HFTools;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -92,7 +91,7 @@ public class QuestPriestRepair extends QuestTrade {
             if (held.getItem() instanceof ItemTool) {
                 ItemTool tool = ((ItemTool)held.getItem());
                 ToolTier tier = tool.getTier(held);
-                return held.getItem() != HFTools.WATERING_CAN && tier == BLESSED;
+                return tool.canBeDamaged() && tier == BLESSED;
             }
         }
 

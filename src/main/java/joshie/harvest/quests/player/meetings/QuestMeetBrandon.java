@@ -70,7 +70,7 @@ public class QuestMeetBrandon extends QuestMeetingTutorial {
     @Override
     public void onChatClosed(EntityPlayer player, NPC npc) {
         if (quest_stage == EXPLAIN) {
-            rewardItem(player, HFTools.HAMMER.getStack(ToolTier.BASIC));
+            rewardItem(player, HFTools.HAMMERS.get(ToolTier.BASIC).getStack());
             increaseStage(player);
         } else if ((quest_stage == ORE && InventoryHelper.getHandItemIsIn(player, ITEM_STACK, HFMining.MATERIALS.getStackFromEnum(Material.JUNK), 3) != null)) {
             complete(player);
@@ -86,7 +86,7 @@ public class QuestMeetBrandon extends QuestMeetingTutorial {
     public void onQuestCompleted(EntityPlayer player) {
         //Early finishes
         if (isCompletedEarly()) {
-            rewardItem(player, HFTools.HAMMER.getStack(ToolTier.BASIC));
+            rewardItem(player, HFTools.HAMMERS.get(ToolTier.BASIC).getStack());
         }
 
         rewardItem(player, new ItemStack(HFMining.MATERIALS, 10, Material.JUNK.ordinal()));

@@ -2,7 +2,6 @@ package joshie.harvest.tools.item;
 
 import com.google.common.collect.Lists;
 import gnu.trove.set.hash.THashSet;
-import joshie.harvest.tools.HFTools;
 import joshie.harvest.tools.ToolHelper;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -56,12 +55,14 @@ class TreeTasks {
         private final Queue<BlockPos> blocks = Lists.newLinkedList();
         private final Set<BlockPos> visited = new THashSet<>();
         private final NonNullList<ItemStack> drops = NonNullList.create();
+        private final ItemAxe axe;
 
         ChopTree(BlockPos start, EntityPlayer player, ItemStack stack) {
             this.world = player.getEntityWorld();
             this.player = player;
             this.stack = stack;
             this.blocks.add(start);
+            this.axe = (ItemAxe) stack.getItem();
         }
 
         private void finishChoppingTree() {
@@ -75,7 +76,7 @@ class TreeTasks {
             if(event.world.provider.getDimension() != world.provider.getDimension()) return;
             int remaining = 4;
             while(remaining > 0) {
-                if (blocks.isEmpty() || !HFTools.AXE.canUse(stack)) {
+                if (blocks.isEmpty() || !axe.canUse(stack)) {
                     finishChoppingTree(); //Finish the dropping
                     return;
                 }
@@ -100,7 +101,7 @@ class TreeTasks {
                 }
 
                 //Break the extra blocks
-                ToolHelper.performTask(player, stack, HFTools.AXE);
+                ToolHelper.performTask(player, stack, axe);
                 ToolHelper.collectDrops(world, pos, state, player, drops);
                 world.setBlockToAir(pos); //No particles
                 remaining--;

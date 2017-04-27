@@ -54,7 +54,7 @@ public abstract class ItemTool<I extends ItemTool> extends ItemHFBase<I> impleme
         return tier;
     }
 
-    public ItemStack getStack(ToolTier tier) {
+    public ItemStack getStack() {
         return new ItemStack(this);
     }
 

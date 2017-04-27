@@ -3,7 +3,8 @@ package joshie.harvest.tools.render;
 import com.google.common.collect.ImmutableList;
 import joshie.harvest.core.helpers.MCClientHelper;
 import joshie.harvest.core.util.annotations.HFEvents;
-import joshie.harvest.tools.HFTools;
+import joshie.harvest.tools.item.ItemHammer;
+import joshie.harvest.tools.item.ItemHoe;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -42,21 +43,29 @@ public class RenderToolBreak {
         EntityPlayer player = MCClientHelper.getPlayer();
         World world = player.world;
         ItemStack tool = player.getHeldItemMainhand();
-        if (tool != null && (tool.getItem() == HFTools.HAMMER || tool.getItem() == HFTools.HOE)) {
+        boolean isHammer = tool.getItem() instanceof ItemHammer;
+        boolean isHoe = !isHammer && tool.getItem() instanceof ItemHoe;
+        if (isHammer || isHoe) {
             Entity renderEntity = MCClientHelper.getRenderViewEntity();
             double distance = controller.getBlockReachDistance();
             RayTraceResult rayTraceResult = renderEntity.rayTrace(distance, event.getPartialTicks());
             if (rayTraceResult != null) {
-                if (tool.getItem() == HFTools.HAMMER && HFTools.HAMMER.canUse(tool)) {
-                    ImmutableList<BlockPos> extraBlocks = HFTools.HAMMER.getBlocks(world, rayTraceResult.getBlockPos(), player, tool);
-                    drawSelection(event.getContext(), extraBlocks, player, event.getPartialTicks());
-                    if (controller.getIsHittingBlock()) {
-                        drawBlockDamageTexture(MCClientHelper.getMinecraft().renderGlobal, controller,
-                                Tessellator.getInstance(), Tessellator.getInstance().getBuffer(),
-                                player, event.getPartialTicks(), world, extraBlocks);
+                if (isHammer) {
+                    ItemHammer hammer = ((ItemHammer)tool.getItem());
+                    if (hammer.canUse(tool)) {
+                        ImmutableList<BlockPos> extraBlocks = hammer.getBlocks(world, rayTraceResult.getBlockPos(), player, tool);
+                        drawSelection(event.getContext(), extraBlocks, player, event.getPartialTicks());
+                        if (controller.getIsHittingBlock()) {
+                            drawBlockDamageTexture(MCClientHelper.getMinecraft().renderGlobal, controller,
+                                    Tessellator.getInstance(), Tessellator.getInstance().getBuffer(),
+                                    player, event.getPartialTicks(), world, extraBlocks);
+                        }
                     }
-                } else if (tool.getItem() == HFTools.HOE && HFTools.HOE.canUse(tool)) {
-                    drawSelection(event.getContext(), HFTools.HOE.getBlocks(world, rayTraceResult.getBlockPos(), player, tool), player, event.getPartialTicks());
+                } else if (isHoe) {
+                    ItemHoe hoe = ((ItemHoe) tool.getItem());
+                    if (hoe.canUse(tool)) {
+                        drawSelection(event.getContext(), hoe.getBlocks(world, rayTraceResult.getBlockPos(), player, tool), player, event.getPartialTicks());
+                    }
                 }
             }
         }

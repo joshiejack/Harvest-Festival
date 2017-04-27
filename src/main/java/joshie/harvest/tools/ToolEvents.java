@@ -5,6 +5,7 @@ import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.base.item.ItemTool;
 import joshie.harvest.core.util.annotations.HFEvents;
 import joshie.harvest.crops.CropHelper;
+import joshie.harvest.tools.item.ItemHammer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.Item;
@@ -81,9 +82,9 @@ public class ToolEvents {
     public void onClick(PlayerInteractEvent.LeftClickBlock event) {
         EntityPlayer player =  event.getEntityPlayer();
         if (player.motionY <= -0.1F) {
-            if (player.getHeldItemMainhand().getItem() == HFTools.HAMMER) {
+            if (player.getHeldItemMainhand().getItem() instanceof ItemHammer) {
                 if (CropHelper.getWateringHandler(event.getWorld(), event.getPos(), event.getWorld().getBlockState(event.getPos())) != null) {
-                    HFTools.HAMMER.smashBlock(event.getWorld(), player, event.getPos(), player.getHeldItemMainhand(), true);
+                    ((ItemHammer)player.getHeldItemMainhand().getItem()).smashBlock(event.getWorld(), player, event.getPos(), player.getHeldItemMainhand(), true);
                 }
             }
         }

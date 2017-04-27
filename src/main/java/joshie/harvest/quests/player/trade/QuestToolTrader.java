@@ -50,11 +50,11 @@ public class QuestToolTrader extends QuestTrade {
     @Override
     public void onQuestCompleted(EntityPlayer player) {
         if (takeHeldType(player, SearchType.HOE)) {
-            rewardItem(player, HFTools.HOE.getStack(BASIC));
+            rewardItem(player, HFTools.HOES.get(BASIC).getStack());
         } else if (takeHeldType(player, SearchType.BUCKET)) {
-            rewardItem(player, HFTools.WATERING_CAN.getStack(BASIC));
+            rewardItem(player, HFTools.WATERING_CANS.get(BASIC).getStack());
         } else if (takeHeldType(player, SearchType.SHEARS)) {
-            rewardItem(player, HFTools.SICKLE.getStack(BASIC));
+            rewardItem(player, HFTools.SICKLES.get(BASIC).getStack());
         }
     }
 

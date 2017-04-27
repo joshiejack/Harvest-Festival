@@ -25,6 +25,6 @@ public class QuestMeetJacob extends QuestMeeting {
 
     @Override
     public void onQuestCompleted(EntityPlayer player) {
-        rewardItem(player, HFFishing.FISHING_ROD.getStack(ToolTier.BASIC));
+        rewardItem(player, HFFishing.FISHING_RODS.get(ToolTier.BASIC).getStack());
     }
 }

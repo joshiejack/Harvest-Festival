@@ -4,6 +4,7 @@ import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSerializationContext;
 import joshie.harvest.fishing.HFFishing;
+import joshie.harvest.fishing.item.ItemFishingRod;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -28,7 +29,7 @@ public class SetWeight extends LootFunction {
         if (context.getKillerPlayer() instanceof EntityPlayer && stack.getItem() == HFFishing.FISH) {
             EntityPlayer player = (EntityPlayer)context.getKillerPlayer();
             ItemStack held = player.getHeldItemMainhand();
-            if (held.getItem() == HFFishing.FISHING_ROD) {
+            if (held.getItem() instanceof ItemFishingRod) {
                 return applyFishSizeData(rand, held, stack);
             }
         }
@@ -39,8 +40,9 @@ public class SetWeight extends LootFunction {
     @SuppressWarnings("ConstantConditions")
     public static ItemStack applyFishSizeData(Random rand, ItemStack held, ItemStack stack) {
         if (!stack.hasTagCompound()) stack.setTagCompound(new NBTTagCompound());
-        int min = HFFishing.FISHING_ROD.getMinimumFishSize(held);
-        int max = HFFishing.FISHING_ROD.getMaximumFishSize(held);
+        ItemFishingRod rod = (ItemFishingRod) held.getItem();
+        int min = rod.getMinimumFishSize(held);
+        int max = rod.getMaximumFishSize(held);
 
         int size;
         if (min == max) size = min;

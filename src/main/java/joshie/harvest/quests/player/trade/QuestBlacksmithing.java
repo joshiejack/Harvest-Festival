@@ -16,7 +16,6 @@ import joshie.harvest.mining.HFMining;
 import joshie.harvest.mining.item.ItemMaterial.Material;
 import joshie.harvest.npcs.HFNPCs;
 import joshie.harvest.quests.base.QuestTrade;
-import joshie.harvest.tools.HFTools;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
@@ -283,7 +282,7 @@ public class QuestBlacksmithing extends QuestTrade {
     }
 
     private boolean isRepairable(@Nonnull ItemStack stack, ToolTier tier) {
-        return !(tier == ToolTier.CURSED || tier == ToolTier.BLESSED) && HFTools.HAMMER.getDamageForDisplay(stack) != 0;
+        return !(tier == ToolTier.CURSED || tier == ToolTier.BLESSED) && stack.getItemDamage() != 0;
     }
 
     private ToolTier isHoldingBrokenTool(EntityPlayer player) {
@@ -292,7 +291,7 @@ public class QuestBlacksmithing extends QuestTrade {
             if (held.getItem() instanceof ItemTool) {
                 ItemTool tool = ((ItemTool)held.getItem());
                 ToolTier tier = tool.getTier(held);
-                if (tool == HFTools.WATERING_CAN) return null;
+                if (!tool.canBeDamaged()) return null;
                 return isRepairable(held, tier) ? tier : null;
             }
         }

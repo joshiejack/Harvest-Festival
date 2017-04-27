@@ -28,8 +28,8 @@ import java.util.List;
 import java.util.Locale;
 
 public class ItemSickle extends ItemToolChargeable<ItemSickle> {
-    public ItemSickle() {
-        super("sickle", new HashSet<>());
+    public ItemSickle(ToolTier tier) {
+        super(tier, "sickle", new HashSet<>());
     }
 
     @Override
@@ -95,7 +95,7 @@ public class ItemSickle extends ItemToolChargeable<ItemSickle> {
             //Facing North, We Want East and West to be 1, left * this.left
             for (int x2 = getXMinus(tier, front, startPos.getX()); x2 <= getXPlus(tier, front, startPos.getX()); x2++) {
                 for (int z2 = getZMinus(tier, front, startPos.getZ()); z2 <= getZPlus(tier, front, startPos.getZ()); z2++) {
-                    if (canUse(stack) && canBeDamaged()) {
+                    if (canUse(stack)) {
                         BlockPos newPos = new BlockPos(x2, startPos.getY(), z2);
                         state = worldIn.getBlockState(newPos);
                         if (canLevel(stack, state)) { //Break the block and collect the drops
@@ -112,8 +112,6 @@ public class ItemSickle extends ItemToolChargeable<ItemSickle> {
                                 }
                             }
                         }
-
-                        stack.getOrCreateSubCompound("Data").setInteger("Damage", getDamageForDisplay(stack) + 1);
                     }
                 }
             }

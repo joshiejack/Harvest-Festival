@@ -28,8 +28,8 @@ public class ItemToolChargeable<I extends ItemToolChargeable> extends ItemTool<I
         }
     }
 
-    public ItemToolChargeable(String toolClass, Set<Block> effective) {
-        super(toolClass, effective);
+    public ItemToolChargeable(ToolTier tier, String toolClass, Set<Block> effective) {
+        super(tier, toolClass, effective);
     }
 
     protected int getMaxCharge(@Nonnull ItemStack stack) {

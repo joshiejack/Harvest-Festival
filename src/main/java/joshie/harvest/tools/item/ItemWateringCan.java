@@ -43,8 +43,8 @@ import java.util.List;
 public class ItemWateringCan extends ItemTool<ItemWateringCan> {
     private static final double MAX_WATER = 128D;
 
-    public ItemWateringCan() {
-        super("watering_can", new HashSet<>());
+    public ItemWateringCan(ToolTier tier) {
+        super(tier, "watering_can", new HashSet<>());
     }
 
     @Override
@@ -109,15 +109,12 @@ public class ItemWateringCan extends ItemTool<ItemWateringCan> {
     }
 
     @Override
-    public boolean showDurabilityBar(@Nonnull ItemStack stack) {
-        return true;
-    }
-
-    @Override
     public double getDurabilityForDisplay(@Nonnull ItemStack stack) {
         int water = getCapacity(stack);
         return (MAX_WATER - water) / MAX_WATER;
     }
+
+    //TODO: Make the damage bar render as blue
 
     @Override
     @Nonnull

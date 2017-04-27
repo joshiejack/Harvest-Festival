@@ -35,24 +35,32 @@ import java.util.Set;
 
 public abstract class ItemTool<I extends ItemTool> extends ItemHFBase<I> implements ITiered, ICreativeSorted {
     private final Set<Block> effectiveBlocks;
+    private final ToolTier tier;
     final String toolClass;
     /**
      * Create a tool
      */
-    public ItemTool(String toolClass, Set<Block> effective) {
+    public ItemTool(ToolTier tier, String toolClass, Set<Block> effective) {
         setMaxStackSize(1);
         setHasSubtypes(true);
+        setMaxDamage(tier.getMaximumDamage());
         this.effectiveBlocks = effective;
         this.toolClass = toolClass;
+        this.tier = tier;
+    }
+
+    @Override
+    public ToolTier getTier(ItemStack stack) {
+        return tier;
     }
 
     public ItemStack getStack(ToolTier tier) {
-        return new ItemStack(this, 1, tier.ordinal());
+        return new ItemStack(this);
     }
 
     @Override
     public int getSortValue(@Nonnull ItemStack stack) {
-        return CreativeSort.TOOLS + getTier(stack).ordinal();
+        return CreativeSort.TOOLS + tier.ordinal();
     }
 
     @Override
@@ -91,36 +99,16 @@ public abstract class ItemTool<I extends ItemTool> extends ItemHFBase<I> impleme
     }
 
     @Override
-    public ToolTier getTier(@Nonnull ItemStack stack) {
-        int safe = Math.min(Math.max(0, stack.getItemDamage()), (ToolTier.values().length - 1));
-        return ToolTier.values()[safe];
-    }
-
-    @Override
     public boolean showDurabilityBar(@Nonnull ItemStack stack) {
-        return getDurabilityForDisplay(stack) > 0D;
-    }
-
-    @Override
-    public double getDurabilityForDisplay(@Nonnull ItemStack stack)  {
-        return (double) getDamageForDisplay(stack) / (double)getMaximumToolDamage(stack);
+        return true;
     }
 
     public boolean canBeDamaged() {
         return true;
     }
 
-    public int getDamageForDisplay(@Nonnull ItemStack stack) {
-        int display = stack.getOrCreateSubCompound("Data").getInteger("Damage");
-        int max = getMaximumToolDamage(stack);
-        if (display > max) {
-            stack.getOrCreateSubCompound("Data").setInteger("Damage", max);
-            return max;
-        } else return display;
-    }
-
     public boolean canUse(@Nonnull ItemStack stack) {
-        return getDamageForDisplay(stack) + 1 <= getMaximumToolDamage(stack) || !canBeDamaged();
+        return getDamage(stack) + 1 <= getMaxDamage(stack) || !canBeDamaged();
     }
 
     public boolean canLevel(@Nonnull ItemStack stack, IBlockState state) {
@@ -139,7 +127,7 @@ public abstract class ItemTool<I extends ItemTool> extends ItemHFBase<I> impleme
                 ToolHelper.levelTool(stack);
             }
 
-            stack.getOrCreateSubCompound("Data").setInteger("Damage", getDamageForDisplay(stack) + 1);
+            stack.damageItem(1, entityLiving);
         }
 
         return true;
@@ -204,29 +192,6 @@ public abstract class ItemTool<I extends ItemTool> extends ItemHFBase<I> impleme
                 return 0.0784313725490196D;
             case MYTHIC:
                 return 0.0392156862745098D;
-            default:
-                return 0;
-        }
-    }
-
-    public int getMaximumToolDamage(@Nonnull ItemStack stack) {
-        ToolTier tier = getTier(stack);
-        switch (tier) {
-            case BASIC:
-                return 128;
-            case COPPER:
-                return 256;
-            case SILVER:
-                return 768;
-            case GOLD:
-                return 1152;
-            case MYSTRIL:
-                return 3456;
-            case CURSED:
-            case BLESSED:
-                return 6912;
-            case MYTHIC:
-                return 13824;
             default:
                 return 0;
         }
@@ -413,7 +378,6 @@ public abstract class ItemTool<I extends ItemTool> extends ItemHFBase<I> impleme
     @Override
     public void addInformation(@Nonnull ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
         if (HFCore.DEBUG_MODE && advanced) {
-            tooltip.add("Damage: " + getDamageForDisplay(stack) + "/" + getMaximumToolDamage(stack));
             tooltip.add("Level: " + getLevel(stack));
         }
     }

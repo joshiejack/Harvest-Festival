@@ -79,11 +79,11 @@ public class ToolHelper {
         levelTool(stack); //Level up the tool
         if (player.capabilities.isCreativeMode || !HFTools.HF_CONSUME_HUNGER) return; //If the player is in creative don't exhaust them
         consumeHunger(player, tool.getExhaustionRate(stack));
-        if (tool != HFTools.WATERING_CAN) {
-            int max = tool.getMaximumToolDamage(stack);
-            int current = tool.getDamageForDisplay(stack);
+        if (tool.canBeDamaged()) {
+            int max = tool.getMaxDamage(stack);
+            int current = tool.getDamage(stack);
             if (current + 1 >= max) player.renderBrokenItemStack(stack);
-            stack.getOrCreateSubCompound("Data").setInteger("Damage", current + 1);
+            stack.damageItem(1, player);
         }
     }
 

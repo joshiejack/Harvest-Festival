@@ -46,8 +46,8 @@ public class ItemHammer extends ItemToolSmashing<ItemHammer> {
     private static final double[] ATTACK_DAMAGES = new double[] { 3D, 3.5D, 4D, 4.5D, 5D, 5.5D, 5.5D, 6D};
     private final HolderRegistrySet blocks = new HolderRegistrySet();
 
-    public ItemHammer() {
-        super("pickaxe", EFFECTIVE_ON);
+    public ItemHammer(ToolTier tier) {
+        super(tier, "pickaxe", EFFECTIVE_ON);
         setCreativeTab(HFTab.MINING);
         blocks.register(Ore.of("stone"));
         blocks.register(Ore.of("blockLimestone"));

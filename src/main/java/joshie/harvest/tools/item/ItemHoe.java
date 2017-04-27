@@ -39,8 +39,8 @@ import java.util.List;
 import java.util.Locale;
 
 public class ItemHoe extends ItemToolChargeable<ItemHoe> {
-    public ItemHoe() {
-        super("hoe", new HashSet<>());
+    public ItemHoe(ToolTier tier) {
+        super(tier, "hoe", new HashSet<>());
     }
 
     @Override

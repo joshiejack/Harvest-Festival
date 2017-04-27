@@ -38,8 +38,8 @@ public class ItemAxe extends ItemToolSmashing<ItemAxe> {
     private static final Set<Block> EFFECTIVE_ON = Sets.newHashSet(Blocks.PLANKS, Blocks.BOOKSHELF, Blocks.LOG, Blocks.LOG2, Blocks.CHEST, Blocks.PUMPKIN, Blocks.LIT_PUMPKIN, Blocks.MELON_BLOCK, Blocks.LADDER, Blocks.WOODEN_BUTTON, Blocks.WOODEN_PRESSURE_PLATE);
     private static final float[] ATTACK_SPEEDS = new float[] { -3.2F, -3.1F, -3.1F, -3.0F, -3.0F, -2.9F, -2.9F, -2.8F};
 
-    public ItemAxe() {
-        super("axe", EFFECTIVE_ON);
+    public ItemAxe(ToolTier tier) {
+        super(tier, "axe", EFFECTIVE_ON);
         setCreativeTab(HFTab.GATHERING);
     }
 

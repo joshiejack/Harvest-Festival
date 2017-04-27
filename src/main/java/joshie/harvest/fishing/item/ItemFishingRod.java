@@ -26,8 +26,8 @@ import java.util.HashSet;
 import static joshie.harvest.fishing.item.ItemFish.*;
 
 public class ItemFishingRod extends ItemTool<ItemFishingRod> {
-    public ItemFishingRod() {
-        super("fishing_rod", new HashSet<>());
+    public ItemFishingRod(ToolTier tier) {
+        super(tier, "fishing_rod", new HashSet<>());
         setCreativeTab(HFTab.FISHING);
         addPropertyOverride(new ResourceLocation("cast"), new IItemPropertyGetter() {
             @SideOnly(Side.CLIENT)
@@ -80,7 +80,6 @@ public class ItemFishingRod extends ItemTool<ItemFishingRod> {
         if (player.fishEntity != null) {
             if (player.fishEntity.handleHookRetraction() != 0) removeBait(player, stack, 1, false);
             ToolHelper.performTask(player, stack, this);
-            stack.getOrCreateSubCompound("Data").setInteger("Damage", getDamageForDisplay(stack) + 1);
             player.swingArm(hand);
             return new ActionResult<>(EnumActionResult.SUCCESS, stack);
         } else if (canUse(stack)) {

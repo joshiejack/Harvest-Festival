@@ -18,8 +18,8 @@ import javax.annotation.Nonnull;
 import java.util.Set;
 
 public abstract class ItemToolSmashing<I extends ItemToolSmashing> extends ItemTool<I> {
-    public ItemToolSmashing(String toolClass, Set<Block> effective) {
-        super(toolClass, effective);
+    public ItemToolSmashing(ToolTier tier, String toolClass, Set<Block> effective) {
+        super(tier, toolClass, effective);
     }
 
     @Override

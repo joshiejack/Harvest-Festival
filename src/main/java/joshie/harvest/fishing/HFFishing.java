@@ -3,6 +3,7 @@ package joshie.harvest.fishing;
 import joshie.harvest.HarvestFestival;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.Season;
+import joshie.harvest.api.core.ITiered.ToolTier;
 import joshie.harvest.api.core.Ore;
 import joshie.harvest.core.lib.EntityIDs;
 import joshie.harvest.core.util.annotations.HFLoader;
@@ -37,6 +38,9 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.commons.lang3.tuple.Pair;
 
+import java.util.EnumMap;
+import java.util.Locale;
+
 import static joshie.harvest.api.calendar.Season.*;
 import static joshie.harvest.cooking.HFCooking.COOKING_SELL_MODIFIER;
 import static joshie.harvest.core.helpers.RegistryHelper.registerOreIfNotExists;
@@ -47,9 +51,9 @@ import static joshie.harvest.fishing.FishingHelper.WaterType.*;
 @HFLoader
 @SuppressWarnings("unused")
 public class HFFishing {
+    public static final EnumMap<ToolTier, ItemFishingRod> FISHING_RODS = new EnumMap<>(ToolTier.class);
     public static final ItemFish FISH = new ItemFish().register("fish");
     public static final ItemJunk JUNK = new ItemJunk().register("junk");
-    public static final ItemFishingRod FISHING_ROD = new ItemFishingRod().register("fishing_rod");
     public static final BlockAquatic AQUATIC_BLOCKS = new BlockAquatic().register("aquatic");
     public static final BlockFloating FLOATING_BLOCKS = new BlockFloating().register("floating");
 
@@ -68,6 +72,10 @@ public class HFFishing {
         HFApi.shipping.registerSellable(new ItemStack(Items.COOKED_FISH, 1, 1), (long) (30 * COOKING_SELL_MODIFIER));
         HFApi.fishing.registerBait(JUNK.getStackFromEnum(Junk.BAIT));
         registerTiles(TileTrap.class, TileHatchery.class);
+        for (ToolTier tier: ToolTier.values()) {
+            FISHING_RODS.put(tier, new ItemFishingRod(tier).register("fishing_rod" + tier.name().toLowerCase(Locale.ENGLISH)));
+        }
+
         FishingAPI.INSTANCE.breeding.register(Ore.of("fish"), 3);
         //Register vanilla fish
         for (FishType fish: FishType.values()) {
@@ -86,7 +94,10 @@ public class HFFishing {
     }
 
     public static void init() {
-        HFApi.npc.getGifts().addToBlacklist(FISHING_ROD);
+        for (ToolTier tier: ToolTier.values()) {
+            HFApi.npc.getGifts().addToBlacklist(FISHING_RODS.get(tier));
+        }
+
         registerLootTable("lake_spring", LAKE, SPRING);
         registerLootTable("lake_summer", LAKE, SUMMER);
         registerLootTable("lake_autumn", LAKE, AUTUMN);

@@ -30,16 +30,22 @@ public interface ITiered {
     ToolTier getTier(@Nonnull ItemStack stack);
 
     enum ToolTier {
-        BASIC(0), COPPER(1), SILVER(2), GOLD(3), MYSTRIL(4), CURSED(5), BLESSED(5), MYTHIC(6);
+        BASIC(0, 128), COPPER(1, 256), SILVER(2, 768), GOLD(3, 1152), MYSTRIL(4, 3456), CURSED(5, 6912), BLESSED(5, 6912), MYTHIC(6, 13824);
 
         private final int level;
+        private final int maxDamage;
 
-        ToolTier(int level) {
+        ToolTier(int level, int maxDamage) {
             this.level = level;
+            this.maxDamage = maxDamage;
         }
 
         public int getToolLevel() {
             return level;
+        }
+
+        public int getMaximumDamage() {
+            return maxDamage;
         }
 
         public boolean isGreaterThanOrEqualTo(ToolTier tier) {

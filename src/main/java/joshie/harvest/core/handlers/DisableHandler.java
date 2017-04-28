@@ -105,7 +105,7 @@ public class DisableHandler {
         @SubscribeEvent
         public void onItemDropping(BlockEvent.HarvestDropsEvent event) {
             if (event.getState().getBlock() == Blocks.TALLGRASS || event.getState().getBlock() == Blocks.DOUBLE_PLANT || GRASS.contains(event.getState().getBlock())) {
-                event.getDrops().removeIf(stack -> !stack.isEmpty() && SEEDS_BLACKLIST.contains(stack));
+                event.getDrops().removeIf(SEEDS_BLACKLIST::contains);
             }
         }
     }

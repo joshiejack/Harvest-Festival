@@ -35,8 +35,7 @@ public class RequirementSizeable implements IRequirement {
     }
 
     @Override
-    public void onPurchased(EntityPlayer player) {
-    }
+    public void onPurchased(EntityPlayer player) {}
 
     @Override
     public int getCost() {

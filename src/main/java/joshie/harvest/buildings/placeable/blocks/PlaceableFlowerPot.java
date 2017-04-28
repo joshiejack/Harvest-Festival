@@ -18,8 +18,7 @@ import java.util.Random;
 
 public class PlaceableFlowerPot extends PlaceableDecorative {
     @SuppressWarnings("unused")
-    public PlaceableFlowerPot() {
-    }
+    public PlaceableFlowerPot() {}
 
     public PlaceableFlowerPot(IBlockState state, int x, int y, int z) {
         super(state, x, y, z);

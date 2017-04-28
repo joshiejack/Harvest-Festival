@@ -43,9 +43,7 @@ public class TileShipping extends TileFaceable {
         return super.writeToNBT(nbt);
     }
 
-    /**
-     * Capabilities
-     **/
+    /** Capabilities **/
     private final IItemHandler handler = new EmptyHandler() {
         @Override
         public int getSlots() {

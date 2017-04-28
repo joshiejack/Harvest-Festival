@@ -40,13 +40,16 @@ public class GatheringData {
         int placed = 0;
 
         for (int i = 0; i < 2048 && placed < GATHERING_ATTEMPTS; i++) {
-            BlockPos pos = world.getTopSolidOrLiquidBlock(townCentre.add(GATHERING_MAX_HALF - random.nextInt(GATHERING_MAXIMUM), 64, GATHERING_MAX_HALF - random.nextInt(GATHERING_MAXIMUM)));
-            if (world.isBlockLoaded(pos) && GatheringRegistry.INSTANCE.isValidGatheringSpawn(world.getBlockState(pos.down()).getBlock()) &&
-                    world.isAirBlock(pos) && world.canBlockSeeSky(pos) && isNotTooClose(isFar, buildings, pos)) {
-                IBlockState random = HFApi.gathering.getRandomStateForSeason(season);
-                if (world.setBlockState(pos, random, 2)) {
-                    locations.add(new GatheringLocation(random, pos));
-                    placed++;
+            BlockPos original = townCentre.add(GATHERING_MAX_HALF - random.nextInt(GATHERING_MAXIMUM), 64, GATHERING_MAX_HALF - random.nextInt(GATHERING_MAXIMUM));
+            if (world.isBlockLoaded(original)) {
+                BlockPos pos = world.getTopSolidOrLiquidBlock(original);
+                if (GatheringRegistry.INSTANCE.isValidGatheringSpawn(world.getBlockState(pos.down()).getBlock()) &&
+                        world.isAirBlock(pos) && world.canBlockSeeSky(pos) && isNotTooClose(isFar, buildings, pos)) {
+                    IBlockState random = HFApi.gathering.getRandomStateForSeason(season);
+                    if (world.setBlockState(pos, random, 2)) {
+                        locations.add(new GatheringLocation(random, pos));
+                        placed++;
+                    }
                 }
             }
         }

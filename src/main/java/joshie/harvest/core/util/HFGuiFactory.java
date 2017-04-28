@@ -25,7 +25,7 @@ import static joshie.harvest.core.lib.HFModInfo.MODNAME;
 @HFEvents(Side.CLIENT)
 public class HFGuiFactory extends DefaultGuiFactory {
 
-    protected HFGuiFactory() {
+    public HFGuiFactory() {
         super(MODID, MODNAME);
     }
 

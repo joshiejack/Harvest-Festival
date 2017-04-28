@@ -46,7 +46,7 @@ public class ItemRecipe extends ItemHFRegistry<ItemRecipe, Recipe> implements IC
 
     @Override
     public Recipe getDefaultValue() {
-        return Recipe.REGISTRY.get(new ResourceLocation("pancake_savoury"));
+        return Recipe.REGISTRY.get(new ResourceLocation(MODID, "pancake_savoury"));
     }
 
     @Override

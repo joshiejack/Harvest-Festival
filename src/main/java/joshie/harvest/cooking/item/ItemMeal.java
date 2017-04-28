@@ -185,6 +185,7 @@ public class ItemMeal extends ItemHFFoodEnum<ItemMeal, Meal> {
         }
     }
 
+    @Nonnull
     public ItemStack getCreativeStack(Meal meal, int amount) {
         Recipe recipe = getRecipeFromMeal(meal);
         if (recipe != null) {
@@ -195,7 +196,7 @@ public class ItemMeal extends ItemHFFoodEnum<ItemMeal, Meal> {
             return stack;
         }
 
-        return null;
+        return ItemStack.EMPTY;
     }
 
     @Override

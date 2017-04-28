@@ -12,7 +12,7 @@ import java.util.UUID;
 
 public abstract class TileStand extends TileFaceable {
     @Nonnull
-    protected ItemStack stack;
+    protected ItemStack stack = ItemStack.EMPTY;
     private UUID uuid;
 
     public boolean isItemValid(@Nonnull ItemStack held) {

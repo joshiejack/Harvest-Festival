@@ -157,7 +157,7 @@ public class InventoryHelper {
     public static <T> int getCount(EntityPlayer player, T taking, Matcher<T> matcher) {
         int count = 0;
         for (ItemStack item : player.inventory.mainInventory) {
-            if (item == null) continue;
+            if (item.isEmpty()) continue;
             if (matcher.matches(item, taking)) {
                 count += item.getCount();
             }

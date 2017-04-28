@@ -26,6 +26,15 @@ public class HFTools {
     public static final EnumMap<ToolTier, ItemSickle> SICKLES = new EnumMap<>(ToolTier.class);
     public static final EnumMap<ToolTier, ItemHoe> HOES = new EnumMap<>(ToolTier.class);
     public static final EnumMap<ToolTier, ItemWateringCan> WATERING_CANS = new EnumMap<>(ToolTier.class);
+    static {
+        for (ToolTier tier: ToolTier.values()) {
+            HAMMERS.put(tier, new ItemHammer(tier).register("hammer_" + tier.name().toLowerCase(Locale.ENGLISH)));
+            AXES.put(tier, new ItemAxe(tier).register("axe_" + tier.name().toLowerCase(Locale.ENGLISH)));
+            SICKLES.put(tier, new ItemSickle(tier).register("sickle_" + tier.name().toLowerCase(Locale.ENGLISH)));
+            HOES.put(tier, new ItemHoe(tier).register("hoe_" + tier.name().toLowerCase(Locale.ENGLISH)));
+            WATERING_CANS.put(tier, new ItemWateringCan(tier).register("watering_can_" + tier.name().toLowerCase(Locale.ENGLISH)));
+        }
+    }
 
     //Potion Effects
     public static final Potion FATIGUE = registerPotion("fatigue", 0xD9D900, 0, 0).registerPotionAttributeModifier(MOVEMENT_SPEED, "8107BC5E-7CF8-4030-440C-514C1F160890", -0.10000000596046448D, 2);
@@ -39,13 +48,6 @@ public class HFTools {
 
     public static void preInit() {
         registerSounds("smash_rock", "smash_wood", "tree_chop", "tree_fall");
-        for (ToolTier tier: ToolTier.values()) {
-            HAMMERS.put(tier, new ItemHammer(tier).register("hammer_" + tier.name().toLowerCase(Locale.ENGLISH)));
-            AXES.put(tier, new ItemAxe(tier).register("axe_" + tier.name().toLowerCase(Locale.ENGLISH)));
-            SICKLES.put(tier, new ItemSickle(tier).register("sickle_" + tier.name().toLowerCase(Locale.ENGLISH)));
-            HOES.put(tier, new ItemHoe(tier).register("hoe_" + tier.name().toLowerCase(Locale.ENGLISH)));
-            WATERING_CANS.put(tier, new ItemWateringCan(tier).register("watering_can_" + tier.name().toLowerCase(Locale.ENGLISH)));
-        }
     }
 
     public static void init() {

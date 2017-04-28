@@ -49,13 +49,7 @@ public class ItemWateringCan extends ItemTool<ItemWateringCan> {
 
     @Override
     public ICapabilityProvider initCapabilities(ItemStack stack, NBTTagCompound nbt) {
-        SingleFluidHandler handler = new SingleFluidHandler(stack, FluidRegistry.WATER, (int) MAX_WATER);
-        //TODO: Remove in 0.7+
-        if (stack.hasTagCompound() && stack.getTagCompound().hasKey("Water")) {
-            handler.fill(new FluidStack(FluidRegistry.WATER, stack.getTagCompound().getByte("Water")), true);
-        }
-
-        return handler;
+        return new SingleFluidHandler(stack, FluidRegistry.WATER, (int) MAX_WATER);
     }
 
     @Override
@@ -153,7 +147,7 @@ public class ItemWateringCan extends ItemTool<ItemWateringCan> {
     }
 
     private IFluidHandler getCapability(@Nonnull ItemStack stack) {
-        return stack.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, EnumFacing.DOWN);
+        return stack.getCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY, EnumFacing.DOWN);
     }
 
     private int getCapacity(@Nonnull ItemStack stack) {
@@ -208,10 +202,8 @@ public class ItemWateringCan extends ItemTool<ItemWateringCan> {
     @Override
     @SideOnly(Side.CLIENT)
     public void getSubItems(@Nonnull Item item, CreativeTabs tab, NonNullList<ItemStack> list) {
-        for (int i = 0; i < ToolTier.values().length; i++) {
-            ItemStack unleveled = new ItemStack(item, 1, i);
+            ItemStack unleveled = new ItemStack(item);
             getCapability(unleveled).fill(new FluidStack(FluidRegistry.WATER, 128), true);
             list.add(unleveled);
-        }
     }
 }

@@ -56,6 +56,11 @@ public class HFFishing {
     public static final ItemJunk JUNK = new ItemJunk().register("junk");
     public static final BlockAquatic AQUATIC_BLOCKS = new BlockAquatic().register("aquatic");
     public static final BlockFloating FLOATING_BLOCKS = new BlockFloating().register("floating");
+    static {
+        for (ToolTier tier: ToolTier.values()) {
+            FISHING_RODS.put(tier, new ItemFishingRod(tier).register("fishing_rod" + tier.name().toLowerCase(Locale.ENGLISH)));
+        }
+    }
 
     @SuppressWarnings("unchecked, ConstantConditions")
     public static void preInit(){
@@ -72,9 +77,6 @@ public class HFFishing {
         HFApi.shipping.registerSellable(new ItemStack(Items.COOKED_FISH, 1, 1), (long) (30 * COOKING_SELL_MODIFIER));
         HFApi.fishing.registerBait(JUNK.getStackFromEnum(Junk.BAIT));
         registerTiles(TileTrap.class, TileHatchery.class);
-        for (ToolTier tier: ToolTier.values()) {
-            FISHING_RODS.put(tier, new ItemFishingRod(tier).register("fishing_rod" + tier.name().toLowerCase(Locale.ENGLISH)));
-        }
 
         FishingAPI.INSTANCE.breeding.register(Ore.of("fish"), 3);
         //Register vanilla fish

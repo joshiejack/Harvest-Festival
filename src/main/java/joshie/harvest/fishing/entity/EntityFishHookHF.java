@@ -19,6 +19,7 @@ import net.minecraft.world.WorldServer;
 import net.minecraft.world.storage.loot.LootContext;
 
 public class EntityFishHookHF extends EntityFishHook {
+    public EntityFishHookHF(World world) { this(world, null);}
     public EntityFishHookHF(World world, EntityPlayer player) {
         super(world, player);
     }

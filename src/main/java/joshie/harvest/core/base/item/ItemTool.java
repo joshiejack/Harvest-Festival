@@ -307,16 +307,6 @@ public abstract class ItemTool<I extends ItemTool> extends ItemHFBase<I> impleme
         world.playSound(null, pos, sound, category, world.rand.nextFloat() * 0.25F + 0.75F, world.rand.nextFloat() * 1.0F + 0.5F);
     }
 
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void getSubItems(@Nonnull Item item, CreativeTabs tab, NonNullList<ItemStack> list) {
-        for (int i = 0; i < ToolTier.values().length; i++) {
-            ItemStack stack = new ItemStack(item, 1, i);
-            stack.getOrCreateSubCompound("Data").setInteger("Damage", 0);
-            list.add(stack);
-        }
-    }
-
     @SideOnly(Side.CLIENT)
     public boolean isFull3D() {
         return true;

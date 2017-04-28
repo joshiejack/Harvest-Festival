@@ -46,11 +46,13 @@ public class Utensil {
         return new ModelResourceLocation(getResource().getResourceDomain() + ":meal", "burnt_" + getResource().getResourcePath());
     }
 
+    @SuppressWarnings("deprecation")
     public String getLocalizedName() {
         return I18n.translateToLocal(unlocalized);
     }
 
     /** Return the unlocalized name for this utensil when it's burnt **/
+    @SuppressWarnings("deprecation")
     public String getBurntName() {
         return I18n.translateToLocal(burntName);
     }

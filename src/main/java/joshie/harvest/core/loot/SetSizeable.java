@@ -25,7 +25,7 @@ public class SetSizeable extends LootFunction {
     @SuppressWarnings("ConstantConditions")
     public SetSizeable(LootCondition[] conditionsIn, String sizeable, String object, String size) {
         super(conditionsIn);
-        provider = (ISizedProvider)Item.REGISTRY.getObject(new ResourceLocation(sizeable));
+        provider = (ISizedProvider) Item.REGISTRY.getObject(new ResourceLocation(sizeable));
         this.object = provider.getObjectFromString(object);
         this.size = Size.valueOf(size.toUpperCase(Locale.ENGLISH));
     }
@@ -35,7 +35,7 @@ public class SetSizeable extends LootFunction {
     @Nonnull
     public ItemStack apply(@Nonnull ItemStack stack, @Nonnull Random rand, @Nonnull LootContext context) {
         if (stack.getItem() instanceof ISizedProvider) {
-            ISizedProvider provider = (ISizedProvider)stack.getItem();
+            ISizedProvider provider = (ISizedProvider) stack.getItem();
             return provider.getStackOfSize(object, size, 1);
         } else return stack;
     }
@@ -46,7 +46,7 @@ public class SetSizeable extends LootFunction {
         }
 
         public void serialize(@Nonnull JsonObject object, @Nonnull SetSizeable functionClazz, @Nonnull JsonSerializationContext serializationContext) {
-            object.addProperty("item", ((Item)functionClazz.provider).getRegistryName().toString());
+            object.addProperty("item", String.valueOf(((Item) functionClazz.provider).getRegistryName()));
             object.addProperty("object", functionClazz.object.toString());
             object.addProperty("size", functionClazz.size.name());
         }

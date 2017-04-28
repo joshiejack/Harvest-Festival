@@ -19,6 +19,7 @@ public class GrowthHandlerNether extends GrowthHandler<Crop> {
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public int grow(World world, BlockPos pos, Crop crop, int stage) {
         int newStage = super.grow(world, pos, crop, stage);
         world.setBlockState(pos, Blocks.NETHER_WART.getStateFromMeta(newStage), 2);

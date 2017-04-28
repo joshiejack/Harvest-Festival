@@ -48,9 +48,9 @@ public class GuiCalendar extends GuiBase {
         year = date.getYear();
         xSize = 226;
 
-        CalendarAPI.INSTANCE.getFestivals().entrySet().forEach((entry) -> {
-            if (!entry.getValue().isHidden()) {
-                entries.get(getNextDay(entry.getKey())).add(entry.getValue());
+        CalendarAPI.INSTANCE.getFestivals().forEach((key, value) -> {
+            if (!value.isHidden()) {
+                entries.get(getNextDay(key)).add(value);
             }
         });
 

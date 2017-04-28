@@ -49,6 +49,7 @@ public class BakedLeaves extends BakedHF {
     }
 
     @Override
+    @Nonnull
     public List<BakedQuad> getQuads(final @Nullable IBlockState state, final @Nullable EnumFacing side, final long rand) {
         List<BakedQuad> quads = new ArrayList<>();
         if (MCClientHelper.getMinecraft().gameSettings.fancyGraphics) quads.addAll(base.getQuads(state, side, rand));

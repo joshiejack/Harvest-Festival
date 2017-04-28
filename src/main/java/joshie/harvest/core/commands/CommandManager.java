@@ -72,7 +72,7 @@ public class CommandManager extends CommandBase {
                 } else if (name.equals("toggledownfall") && VanillaCommands.executeToggleDownfall(FMLCommonHandler.instance().getMinecraftServerInstance(), event.getSender(), event.getParameters())) {
                     event.setCanceled(true);
                 }
-            } catch (Exception e) {}
+            } catch (Exception ignored) {}
         } else {
             //Otherwise process the command
             if (event.getCommand() == this && event.getParameters().length > 0) {

@@ -18,12 +18,12 @@ public abstract class AbstractHFCommand implements Comparable<Object> {
     }
 
     /** Execute this command
-     * @param server        the minecraft server
+     * @param server        the Minecraft server
      * @param sender        the sender
-     * @param parameters    additional paramaters
+     * @param parameters    additional parameters
      * @return true if the command was executed
-     * @throws CommandNotFoundException
-     * @throws NumberInvalidException */
+     * @throws CommandNotFoundException thrown when command was not found
+     * @throws NumberInvalidException thrown when a invalid number is parsed */
     public abstract boolean execute(MinecraftServer server, ICommandSender sender, String[] parameters) throws CommandException;
 
     /** Return the permission level **/

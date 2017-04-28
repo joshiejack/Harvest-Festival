@@ -24,7 +24,6 @@ import net.minecraftforge.common.util.FakePlayer;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -125,8 +124,8 @@ public class QuestHelper implements IQuestHelper {
         List<Quest> all = new ArrayList<>();
         all.addAll(HFTrackers.getPlayerTrackerFromPlayer(player).getQuests().getCurrent());
         all.addAll(TownHelper.getClosestTownToEntity(player, false).getQuests().getCurrent());
-        Collections.sort(all, (Comparator.comparing(o -> o.getRegistryName().toString())));
-        Collections.sort(all, (Comparator.comparing(Quest::getPriority)));
+        all.sort((Comparator.comparing(o -> String.valueOf(o.getRegistryName()))));
+        all.sort((Comparator.comparing(Quest::getPriority)));
         return all;
     }
 

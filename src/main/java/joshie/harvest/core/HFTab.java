@@ -23,7 +23,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nonnull;
-import java.util.Collections;
 import java.util.Comparator;
 
 import static joshie.harvest.mining.item.ItemMaterial.Material.ADAMANTITE;
@@ -73,7 +72,7 @@ public class HFTab extends CreativeTabs {
     @SideOnly(Side.CLIENT)
     public void displayAllRelevantItems(@Nonnull NonNullList<ItemStack> list) {
         super.displayAllRelevantItems(list);
-        Collections.sort(list, new Alphabetical());
+        list.sort(new Alphabetical());
     }
 
     private static class Alphabetical implements Comparator<Object> {

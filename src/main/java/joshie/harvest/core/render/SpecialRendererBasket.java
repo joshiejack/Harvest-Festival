@@ -14,7 +14,7 @@ public class SpecialRendererBasket extends TileSpecialRendererItem<TileBasket> {
     public void renderTileEntityAt(@Nonnull TileBasket tile, double x, double y, double z, float tick, int destroyStage) {
         GlStateManager.pushMatrix();
         GlStateManager.translate(x, y, z);
-        if (tile.getStack() != null) {
+        if (!tile.getStack().isEmpty()) {
             renderItem(tile.getStack(), 0F, 0F, 0F, 0F);
             renderItem(tile.getStack(), 1F, 0F, 0F, 0F);
             renderItem(tile.getStack(), 2F, 0F, 0F, 0F);

@@ -26,7 +26,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Random;
 
@@ -228,6 +227,7 @@ public abstract class BlockHFLeaves<B extends BlockHFLeaves, E extends Enum<E> &
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public boolean causesSuffocation(IBlockState state) {
         return false;
     }

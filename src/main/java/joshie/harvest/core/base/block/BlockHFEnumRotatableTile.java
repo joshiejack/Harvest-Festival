@@ -58,6 +58,7 @@ public abstract class BlockHFEnumRotatableTile<B extends BlockHFEnumRotatableTil
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public boolean causesSuffocation(IBlockState state) {
         return false;
     }

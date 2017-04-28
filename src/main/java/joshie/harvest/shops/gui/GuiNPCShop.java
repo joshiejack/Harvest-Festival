@@ -230,7 +230,7 @@ public class GuiNPCShop extends GuiNPCBase {
         boolean first = true;
         ShopFontRenderer.render(this, guiLeft + 240, guiTop + 44, "Inventory", false);
         for (ItemStack stack: MCClientHelper.getPlayer().inventory.mainInventory) {
-            if (stack != null) {
+            if (!stack.isEmpty()) {
                 StackRenderHelper.drawStack(stack, guiLeft + 253 + y2, guiTop + 61 + x2 * 18, 1F);
             }
             x2++;

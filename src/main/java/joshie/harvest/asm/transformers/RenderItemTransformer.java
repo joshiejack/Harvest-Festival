@@ -33,7 +33,7 @@ public class RenderItemTransformer extends AbstractASM {
                 return new MethodVisitor(Opcodes.ASM4, visitor) {
                     @Override
                     public void visitCode() {
-                        /** Calls render transformer for the item **/
+                        /* Calls render transformer for the item **/
                         Label l0 = new Label();
                         mv.visitLabel(l0);
                         mv.visitVarInsn(ALOAD, 1);

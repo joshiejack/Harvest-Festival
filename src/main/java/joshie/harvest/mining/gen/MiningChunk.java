@@ -242,7 +242,7 @@ public class MiningChunk implements IChunkGenerator {
         setBlockState(primer, x, y + 1, z, PORTAL, chunkX);
         setBlockState(primer, x - 1, y + 1, z, PORTAL, chunkX);
         setBlockState(primer, x + 1, y + 1, z, PORTAL, chunkX);
-        /** Torches
+        /* Torches
         for (int r = -2; r <= 2; r++) {
             for (int s = -2; s <= 2; s++) {
                 for (int t = 0; t <= 2; t++) {
@@ -251,7 +251,7 @@ public class MiningChunk implements IChunkGenerator {
                     }
                 }
             }
-        } **/
+        } */
 
         HFTrackers.getMineManager(world).setSpawnForMine(MiningHelper.getMineID(chunkZ), floor, realX, y, realZ);
     }
@@ -265,7 +265,7 @@ public class MiningChunk implements IChunkGenerator {
         setBlockState(primer, x, y + 1, z, PORTAL, chunkX);
         setBlockState(primer, x, y + 1, z - 1, PORTAL, chunkX);
         setBlockState(primer, x, y + 1, z + 1, PORTAL, chunkX);
-        /** Torches
+        /* Torches
         for (int r = -2; r <= 2; r++) {
             for (int s = -2; s <= 2; s++) {
                 for (int t = 0; t <= 2; t++) {

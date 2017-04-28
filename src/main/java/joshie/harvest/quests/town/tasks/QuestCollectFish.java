@@ -29,7 +29,7 @@ import static joshie.harvest.fishing.item.ItemFish.FISH_LOCATIONS;
 
 @HFQuest("collect.fish")
 public class QuestCollectFish extends QuestDaily {
-    private static final ItemStack rod = HFFishing.FISHING_RODS.get(ToolTier.BASIC).getStack();
+    private static final ItemStack ROD = HFFishing.FISHING_RODS.get(ToolTier.BASIC).getStack();
     private ItemStack fish = HFFishing.FISH.getStackFromEnum(Fish.COD);
     private long reward = 1L;
 
@@ -49,7 +49,7 @@ public class QuestCollectFish extends QuestDaily {
         int amount = 1 + rand.nextInt(3);
         List<Fish> list = Lists.newArrayList(FISH_LOCATIONS.get(HFApi.calendar.getDate(world).getSeason()));
         Fish fishy = list.get(rand.nextInt(list.size()));
-        fish = SetWeight.applyFishSizeData(rand, rod, HFFishing.FISH.getStackFromEnum(fishy, amount));
+        fish = SetWeight.applyFishSizeData(rand, ROD, HFFishing.FISH.getStackFromEnum(fishy, amount));
         reward = HFApi.shipping.getSellValue(fish) * 10;
     }
 

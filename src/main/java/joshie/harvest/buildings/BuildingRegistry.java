@@ -20,7 +20,8 @@ public class BuildingRegistry implements IBuildingRegistry {
     public static final BuildingRegistry INSTANCE = new BuildingRegistry();
     private final HashMap<Building, HFTemplate> instructions = new HashMap<>();
 
-    private BuildingRegistry() {}
+    private BuildingRegistry() {
+    }
 
     @Override
     @Nonnull
@@ -43,12 +44,6 @@ public class BuildingRegistry implements IBuildingRegistry {
             return template; //Merged yo!
         }
 
-        HFTemplate template = instructions.get(building);
-        if (template == null) {
-            template = (getGson().fromJson(ResourceLoader.getJSONResource(building.getResource(), "buildings"), HFTemplate.class));
-            instructions.put(building, template);
-        }
-
-        return template;
+        return instructions.computeIfAbsent(building, b -> (getGson().fromJson(ResourceLoader.getJSONResource(b.getResource(), "buildings"), HFTemplate.class)));
     }
 }

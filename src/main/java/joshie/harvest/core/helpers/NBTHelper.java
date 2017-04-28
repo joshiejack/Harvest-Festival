@@ -102,15 +102,13 @@ public class NBTHelper {
         return ret;
     }
 
-    public static TIntObjectMap<TIntObjectMap<BlockPos>> readPositionCollection(NBTTagList list) {
+    public static TIntObjectMap<TIntObjectMap<BlockPos>> readPositionCollection(NBTTagList list) throws Exception {
         TIntObjectMap<TIntObjectMap<BlockPos>> mapMap = new TIntObjectHashMap<>();
         for (int j = 0; j < list.tagCount(); j++) {
             NBTTagCompound tag = list.getCompoundTagAt(j);
-            try {
-                int key = tag.getInteger("Key");
-                TIntObjectMap<BlockPos> map = readPositionMap(tag.getTagList("Value", 10));
-                mapMap.put(key, map);
-            } catch (Exception e) {}
+            int key = tag.getInteger("Key");
+            TIntObjectMap<BlockPos> map = readPositionMap(tag.getTagList("Value", 10));
+            mapMap.put(key, map);
         }
 
         return mapMap;

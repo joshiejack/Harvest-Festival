@@ -40,6 +40,7 @@ public abstract class BlockHFEnumCube<B extends BlockHFEnumCube, E extends Enum<
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public boolean causesSuffocation(IBlockState state) {
         return true;
     }

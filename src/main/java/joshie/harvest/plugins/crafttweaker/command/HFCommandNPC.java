@@ -8,7 +8,6 @@ import net.minecraft.command.ICommandSender;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.text.TextComponentString;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -33,7 +32,7 @@ public class HFCommandNPC extends AbstractHFCommand {
 
     private List<String> getShopList() {
         List<String> list = NPC.REGISTRY.values().stream().map(npc -> npc.getLocalizedName() + " = " + npc.getResource()).collect(Collectors.toList());
-        Collections.sort(list, String::compareTo);
+        list.sort(String::compareTo);
         return list;
     }
 }

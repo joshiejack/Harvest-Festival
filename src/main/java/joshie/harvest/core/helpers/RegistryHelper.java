@@ -61,7 +61,7 @@ public class RegistryHelper {
         ModelLoader.setCustomStateMapper(block, new StateMapperBase() {
             @Override
             @Nonnull
-            protected ModelResourceLocation getModelResourceLocation(IBlockState state) {
+            protected ModelResourceLocation getModelResourceLocation(@Nonnull IBlockState state) {
                 return fluidLocation;
             }
         });

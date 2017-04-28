@@ -30,18 +30,13 @@ public class RequirementSizeable implements IRequirement {
 
     @Override
     public boolean isFulfilled(World world, EntityPlayer player, int amount) {
-        if (amount != 1) return false;
-        if (InventoryHelper.hasInInventory(player, ITEM_STACK, small, amount)
-                || InventoryHelper.hasInInventory(player, ITEM_STACK, medium, amount)
-                || InventoryHelper.hasInInventory(player, ITEM_STACK, large, amount)) {
-            return true;
-        }
+        return amount == 1 && (InventoryHelper.hasInInventory(player, ITEM_STACK, small, amount) || InventoryHelper.hasInInventory(player, ITEM_STACK, medium, amount) || InventoryHelper.hasInInventory(player, ITEM_STACK, large, amount));
 
-        return false;
     }
 
     @Override
-    public void onPurchased(EntityPlayer player) {}
+    public void onPurchased(EntityPlayer player) {
+    }
 
     @Override
     public int getCost() {
@@ -51,7 +46,7 @@ public class RequirementSizeable implements IRequirement {
     @Override
     @Nonnull
     public ItemStack getIcon() {
-        int num = PurchasableTrade.ticker %1800;
+        int num = PurchasableTrade.ticker % 1800;
         if (num < 600) return small;
         else if (num < 1200) return medium;
         else return large;

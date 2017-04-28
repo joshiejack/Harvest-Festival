@@ -58,14 +58,14 @@ public abstract class TileStand extends TileFaceable {
     @Override
     public void readFromNBT(NBTTagCompound nbt) {
         super.readFromNBT(nbt);
-        stack = nbt.hasKey("Stack") ? NBTHelper.readItemStack(nbt.getCompoundTag("Stack")) : null;
+        stack = nbt.hasKey("Stack") ? NBTHelper.readItemStack(nbt.getCompoundTag("Stack")) : ItemStack.EMPTY;
         uuid = nbt.hasKey("UUID") ? UUID.fromString(nbt.getString("UUID")) : null;
     }
 
     @Override
     @Nonnull
     public NBTTagCompound writeToNBT(@Nonnull NBTTagCompound nbt) {
-        if (stack != null) nbt.setTag("Stack", NBTHelper.writeItemStack(stack, new NBTTagCompound()));
+        if (!stack.isEmpty()) nbt.setTag("Stack", NBTHelper.writeItemStack(stack, new NBTTagCompound()));
         if (uuid != null) nbt.setString("UUID", uuid.toString());
         return super.writeToNBT(nbt);
     }

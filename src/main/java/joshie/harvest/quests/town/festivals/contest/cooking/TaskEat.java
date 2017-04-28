@@ -4,6 +4,7 @@ import joshie.harvest.api.npc.NPCEntity;
 import joshie.harvest.api.npc.task.HFTask;
 import joshie.harvest.api.npc.task.TaskElement;
 import joshie.harvest.core.tile.TilePlate;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
@@ -20,7 +21,7 @@ public class TaskEat extends TaskElement {
     public void execute(NPCEntity npc) {
         TileEntity tile = npc.getAsEntity().world.getTileEntity(target);
         if (tile instanceof TilePlate) {
-            ((TilePlate)tile).setContents(null);
+            ((TilePlate)tile).setContents(ItemStack.EMPTY);
         }
 
         satisfied = true;

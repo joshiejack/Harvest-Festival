@@ -28,11 +28,7 @@ public class GatheringRegistry implements IGatheringRegistry {
     public void registerGathering(IBlockState state, double weight, Season... seasons) {
         if (seasons == null || seasons.length == 0) seasons = new Season[] { SPRING, SUMMER, AUTUMN, WINTER };
         for (Season season: seasons) {
-            WeightedState weightedState = gatherings.get(season);
-            if (weightedState == null) {
-                weightedState = new WeightedState();
-                gatherings.put(season, weightedState);
-            }
+            WeightedState weightedState = gatherings.computeIfAbsent(season, k -> new WeightedState());
 
             weightedState.add(state, weight);
         }

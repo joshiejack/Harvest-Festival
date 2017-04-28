@@ -15,6 +15,7 @@ public class ScriptHarvestDecide extends Script {
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public String getLocalized(NPCEntity entity) {
         int score = QuestHarvestFestival.getPotScore(entity);
         return I18n.translateToLocalFormatted(unlocalised + score);

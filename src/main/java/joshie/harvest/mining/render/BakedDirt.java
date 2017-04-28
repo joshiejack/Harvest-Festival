@@ -49,6 +49,7 @@ public class BakedDirt extends BakedHF {
     }
 
     @Override
+    @Nonnull
     public List<BakedQuad> getQuads(final @Nullable IBlockState state, final @Nullable EnumFacing side, final long rand) {
         List<BakedQuad> quads = new ArrayList<>(BakedDirt.super.getQuads(state, side, rand));
         overlay.getQuads(state, side, rand).stream().map(quad -> new BakedQuadRetextured(quad, getRandomTexture(rand))).forEachOrdered(quads::add);
@@ -136,7 +137,6 @@ public class BakedDirt extends BakedHF {
         }
 
         @Override
-        @Nonnull
         protected ModelResourceLocation getModelResourceLocation(IBlockState state) {
             String properties = this.getPropertyString(state.getProperties());
             if (!isValidState(properties)) return null;

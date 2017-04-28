@@ -43,7 +43,9 @@ public class TileShipping extends TileFaceable {
         return super.writeToNBT(nbt);
     }
 
-    /** Capabilities **/
+    /**
+     * Capabilities
+     **/
     private final IItemHandler handler = new EmptyHandler() {
         @Override
         public int getSlots() {
@@ -80,9 +82,7 @@ public class TileShipping extends TileFaceable {
 
     @SuppressWarnings("unchecked")
     @Override
-    @Nonnull
-    public <T> T getCapability(@Nonnull Capability<T> capability, EnumFacing facing)
-    {
+    public <T> T getCapability(@Nonnull Capability<T> capability, EnumFacing facing) {
         if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
             return (T) handler;
         return super.getCapability(capability, facing);

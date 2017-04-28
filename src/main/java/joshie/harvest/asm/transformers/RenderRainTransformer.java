@@ -28,7 +28,7 @@ public class RenderRainTransformer extends AbstractASM {
                 return new MethodVisitor(Opcodes.ASM4, visitor) {
                     @Override
                     public void visitCode() {
-                        /** Redirects addRainParticles to mine if it's raining, otherwise cancels the effect **/
+                        /* Redirects addRainParticles to mine if it's raining, otherwise cancels the effect **/
                         String mc = !HFTransformer.isObfuscated ? "mc" : "field_78531_r";
                         String theWorld = !HFTransformer.isObfuscated ? "theWorld" : "field_71441_e";
                         String random = !HFTransformer.isObfuscated? "random" : "field_78537_ab";

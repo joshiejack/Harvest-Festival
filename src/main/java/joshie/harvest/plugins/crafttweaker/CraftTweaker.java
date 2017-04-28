@@ -36,7 +36,7 @@ public class CraftTweaker {
     }
 
     public static void init() throws ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
-        /** Attempt to load in the crops before world **/
+        /* Attempt to load in the crops before world */
         File directory = new File("scripts", "harvestfestival");
         boolean exists = directory.exists();
         if (!exists){

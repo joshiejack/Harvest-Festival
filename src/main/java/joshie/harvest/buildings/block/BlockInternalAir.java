@@ -56,6 +56,7 @@ public class BlockInternalAir extends BlockHFBase<BlockInternalAir> {
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public boolean causesSuffocation(IBlockState state) {
         return false;
     }

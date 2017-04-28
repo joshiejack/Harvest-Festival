@@ -16,7 +16,6 @@ import net.minecraftforge.fml.relauncher.Side;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -39,7 +38,7 @@ public class HFGuiFactory extends DefaultGuiFactory {
         List<IConfigElement> list = new ArrayList<>();
 
         List<Class> configsList = new ArrayList<>(HarvestFestival.proxy.getList());
-        Collections.sort(configsList, Comparator.comparing(Class::getSimpleName));
+        configsList.sort(Comparator.comparing(Class::getSimpleName));
         for (Class c : configsList) {
             try {
                 Method configure = c.getMethod("configure");

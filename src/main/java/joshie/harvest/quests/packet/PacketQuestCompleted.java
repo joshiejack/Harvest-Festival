@@ -23,7 +23,7 @@ public class PacketQuestCompleted extends PacketSharedSync {
     @Override
     public void toBytes(ByteBuf buf) {
         super.toBytes(buf);
-        ByteBufUtils.writeUTF8String(buf, quest.getRegistryName().toString());
+        ByteBufUtils.writeUTF8String(buf, String.valueOf(quest.getRegistryName()));
         buf.writeBoolean(rewards);
     }
 

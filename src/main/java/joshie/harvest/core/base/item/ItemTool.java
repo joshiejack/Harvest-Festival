@@ -50,7 +50,7 @@ public abstract class ItemTool<I extends ItemTool> extends ItemHFBase<I> impleme
     }
 
     @Override
-    public ToolTier getTier(ItemStack stack) {
+    public ToolTier getTier(@Nonnull ItemStack stack) {
         return tier;
     }
 

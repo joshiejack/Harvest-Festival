@@ -113,7 +113,7 @@ public class AnimalStatsHF implements AnimalStats<NBTTagCompound> {
         boolean dayTime = world.isDaytime();
         boolean isRaining = world.isRaining();
         boolean isOutside = world.canBlockSeeSky(new BlockPos(animal));
-        boolean isOutsideInSun = !isRaining && isOutside && dayTime && HFApi.calendar.getDate(world).getSeason() != Season.WINTER;;
+        boolean isOutsideInSun = !isRaining && isOutside && dayTime && HFApi.calendar.getDate(world).getSeason() != Season.WINTER;
         if (isOutsideInSun && wasOutsideInSun) {
             affectHappiness(type.getRelationshipBonus(AnimalAction.OUTSIDE));
         }
@@ -290,6 +290,7 @@ public class AnimalStatsHF implements AnimalStats<NBTTagCompound> {
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public void affectHappiness(int amount) {
         if (amount != 0) {
             happiness = Math.max(0, Math.min(RelationshipType.ANIMAL.getMaximumRP(), happiness + amount));

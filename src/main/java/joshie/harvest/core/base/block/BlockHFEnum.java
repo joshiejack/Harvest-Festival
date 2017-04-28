@@ -10,6 +10,7 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
@@ -137,7 +138,7 @@ public abstract class BlockHFEnum<B extends BlockHFEnum, E extends Enum<E> & ISt
     @Override
     @Nonnull
     public Item getItemDropped(IBlockState state, Random rand, int side) {
-        return !doesDrop(state) ? null : super.getItemDropped(state, rand, side);
+        return !doesDrop(state) ? Items.AIR : super.getItemDropped(state, rand, side);
     }
 
     protected boolean doesDrop(IBlockState state) {

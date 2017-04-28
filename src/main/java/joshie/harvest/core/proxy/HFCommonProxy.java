@@ -42,7 +42,7 @@ public class HFCommonProxy {
 
         //Now that we have gathered all the classes, let's sort them by priority
         Comparator<Triple<Integer, String, String>> priority = (str1, str2) -> str1.getLeft() < str2.getLeft() ? 1: str1.getLeft() > str2.getLeft() ? -1 : 0;
-        Collections.sort(unsorted, priority);
+        unsorted.sort(priority);
 
         //Add Everything to the real LIST
         triple:
@@ -97,7 +97,7 @@ public class HFCommonProxy {
         for (Class c : LIST) {
             try { //Attempt to load default
                 c.getMethod(stage).invoke(null);
-            } catch (NoClassDefFoundError | NoSuchMethodException e) { }
+            } catch (NoClassDefFoundError | NoSuchMethodException ignored) { }
               catch (Exception e) {
                  if (ENABLE_LOGGING) e.printStackTrace();
              }
@@ -106,7 +106,7 @@ public class HFCommonProxy {
             if (isClient()) {
                 try { //Attempt to load default
                     c.getMethod(stage + "Client").invoke(null);
-                } catch (NoClassDefFoundError | NoSuchMethodException e) { }
+                } catch (NoClassDefFoundError | NoSuchMethodException ignored) { }
                 catch (Exception e) {
                     if (ENABLE_LOGGING) e.printStackTrace();
                 }

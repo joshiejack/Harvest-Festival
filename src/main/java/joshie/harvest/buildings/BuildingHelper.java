@@ -41,7 +41,7 @@ public class BuildingHelper {
         Vec3d vec3d1 = player.getLook(partialTicks);
         Vec3d vec3d2 = vec3d.addVector(vec3d1.xCoord * blockReachDistance, vec3d1.yCoord * blockReachDistance, vec3d1.zCoord * blockReachDistance);
         RayTraceResult result = player.world.rayTraceBlocks(vec3d, vec3d2, false, false, true);
-        return result == null ? null : result;
+        return result;
     }
 
     @SuppressWarnings("all")
@@ -54,7 +54,7 @@ public class BuildingHelper {
     private static final WeakHashMap<EntityPlayer, ItemStack> STACKS_SERVER = new WeakHashMap<>();
     private static BuildingKey POSITION_CLIENT;
     @Nonnull
-    private static ItemStack STACK_CLIENT;
+    private static ItemStack STACK_CLIENT = ItemStack.EMPTY;
 
     private static void validateOrInvalidateStack(@Nonnull ItemStack stack, EntityPlayer player) {
         if (player.world.isRemote) {
@@ -117,8 +117,8 @@ public class BuildingHelper {
                 if (!isAir(world, raytrace.getBlockPos()) && raytrace.sideHit == EnumFacing.UP) {
                     setPositionForPlayer(player, getCachedKey(player, pos, building));
                     if (world.isRemote) {
-                        ChatHelper.displayChat(TextFormatting.YELLOW + building.getLocalisedName() + TextFormatting.RESET + " " + TextHelper.translate("town.preview") +  "\n-"
-                                + TextHelper.translate("town.sneak") +" " +  TextFormatting.GREEN + "" + TextHelper.translate("town.confirm") + "\n-"
+                        ChatHelper.displayChat(TextFormatting.YELLOW + building.getLocalisedName() + TextFormatting.RESET + " " + TextHelper.translate("town.preview") + "\n-"
+                                + TextHelper.translate("town.sneak") + " " + TextFormatting.GREEN + "" + TextHelper.translate("town.confirm") + "\n-"
                                 + TextFormatting.RESET + TextHelper.translate("town.click") + " " + TextFormatting.RED + TextHelper.translate("town.cancel"));
                     }
                 }

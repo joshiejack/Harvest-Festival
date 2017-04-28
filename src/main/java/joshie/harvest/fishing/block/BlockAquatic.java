@@ -57,6 +57,7 @@ public class BlockAquatic extends BlockHFEnum<BlockAquatic, Aquatic> {
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public boolean causesSuffocation(IBlockState state) {
         return false;
     }

@@ -49,7 +49,7 @@ public class PurchasableRandomMeal extends PurchasableMeal {
         Random rand = new Random(HFApi.calendar.getDate(world).hashCode() + seedAdjustment);
         List<Recipe> list = new ArrayList<>(Recipe.REGISTRY.values());
         stack = ItemStack.EMPTY; //Reset the stack
-        while (stack == null || !stack.hasTagCompound()) {
+        while (stack.isEmpty() || !stack.hasTagCompound()) {
             stack = CookingHelper.makeRecipe(list.get(rand.nextInt(list.size())));
         }
 

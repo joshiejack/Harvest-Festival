@@ -33,7 +33,7 @@ public abstract class Quest extends IForgeRegistryEntry.Impl<Quest> {
     public static final IForgeRegistry<Quest> REGISTRY = new RegistryBuilder<Quest>().setName(new ResourceLocation("harvestfestival", "quests")).setType(Quest.class).setIDRange(0, 32000).create();
     private Set<NPC> npcs = new HashSet<>();
     @Nonnull
-    protected ItemStack primary;
+    protected ItemStack primary = ItemStack.EMPTY;
     protected int quest_stage;
     private TargetType type;
 

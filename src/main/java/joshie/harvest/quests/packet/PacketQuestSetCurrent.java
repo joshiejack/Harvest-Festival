@@ -24,7 +24,7 @@ public class PacketQuestSetCurrent extends PacketSharedSync {
         super.toBytes(buf);
         buf.writeBoolean(quest == null);
         if (quest != null) {
-            ByteBufUtils.writeUTF8String(buf, quest.getRegistryName().toString());
+            ByteBufUtils.writeUTF8String(buf, String.valueOf(quest.getRegistryName()));
             ByteBufUtils.writeTag(buf, quest.writeToNBT(new NBTTagCompound()));
         }
     }
@@ -38,7 +38,7 @@ public class PacketQuestSetCurrent extends PacketSharedSync {
             try {
                 quest = q.getClass().newInstance().setRegistryName(q.getRegistryName());
                 quest.readFromNBT(ByteBufUtils.readTag(buf));
-            } catch (Exception e) {}
+            } catch (Exception ignored) {}
         }
     }
 

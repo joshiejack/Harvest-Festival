@@ -30,7 +30,7 @@ public class SpecialRendererStand<T extends TileStand> extends TileSpecialRender
     public void renderTileEntityAt(@Nonnull T tile, double x, double y, double z, float tick, int destroyStage) {
         GlStateManager.pushMatrix();
         GlStateManager.translate(x, y, z);
-        if (tile.getContents() != null) {
+        if (!tile.getContents().isEmpty()) {
             renderItem(tile.getContents(), 0F, getRotationFromFacing(tile.getFacing()), 0F, 0F);
         }
 

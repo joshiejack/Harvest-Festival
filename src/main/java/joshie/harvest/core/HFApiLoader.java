@@ -189,9 +189,9 @@ public class HFApiLoader {
 
         //Sort the sided and unsided packets
         List<String> namesSided = Lists.newArrayList(sidedPackets.keySet());
-        Collections.sort(namesSided, alphabetical);
+        namesSided.sort(alphabetical);
         List<String> namesUnsided = Lists.newArrayList(unsidedPackets.keySet());
-        Collections.sort(namesUnsided, alphabetical);
+        namesUnsided.sort(alphabetical);
 
         //Register sided packets
         for (String sided: namesSided) {
@@ -199,7 +199,7 @@ public class HFApiLoader {
             try {
                 Class<?> asmClass = Class.forName(sided);
                 registerPacket(asmClass, side);
-            } catch (Exception e) {}
+            } catch (Exception ignored) {}
         }
 
         //Register unsided packets

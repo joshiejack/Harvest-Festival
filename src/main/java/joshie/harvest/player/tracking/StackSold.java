@@ -65,7 +65,7 @@ public class StackSold extends AbstractDataHolder<StackSold> {
 
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound tag) {
-        tag.setString("ItemName", Item.REGISTRY.getNameForObject(item).toString());
+        tag.setString("ItemName", String.valueOf(Item.REGISTRY.getNameForObject(item)));
         tag.setInteger("ItemMeta", meta);
         tag.setInteger("SellAmount", amount);
         tag.setLong("SellTotal", sell);

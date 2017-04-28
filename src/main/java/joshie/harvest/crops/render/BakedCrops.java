@@ -13,6 +13,7 @@ import net.minecraft.util.registry.IRegistry;
 import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +25,7 @@ public class BakedCrops extends BakedHF {
     }
 
     @Override
+    @Nonnull
     public List<BakedQuad> getQuads(final @Nullable IBlockState state, final @Nullable EnumFacing side, final long rand) {
         List<BakedQuad> quads = new ArrayList<>();
         BakedCrops.super.getQuads(state, side, rand).stream().map(BakedTintedQuad :: new).forEachOrdered(quads::add);

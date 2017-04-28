@@ -32,7 +32,7 @@ public class TileTrap extends TileSingleStack {
         @SuppressWarnings("ConstantConditions")
         public void newDay(World world, BlockPos pos, IBlockState state) {
             TileTrap trap = (TileTrap) world.getTileEntity(pos);
-            if (trap.stack != null && FishingAPI.INSTANCE.isBait(trap.stack)) {
+            if (!trap.stack.isEmpty() && FishingAPI.INSTANCE.isBait(trap.stack)) {
                 if (trap.isSurroundedByWater(world, pos)) {
                     LootContext.Builder lootcontext$builder = new LootContext.Builder((WorldServer) world);
                     lootcontext$builder.withLootedEntity(FakePlayerHelper.getFakePlayerWithPosition((WorldServer) world, pos));

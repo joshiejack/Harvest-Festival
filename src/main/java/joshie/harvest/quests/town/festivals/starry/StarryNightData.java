@@ -20,6 +20,7 @@ import joshie.harvest.quests.town.festivals.contest.ContestEntries;
 import joshie.harvest.town.TownHelper;
 import joshie.harvest.town.data.TownData;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
@@ -143,7 +144,7 @@ public class StarryNightData extends Selection<QuestStarryNight> {
                 else {
                     TileEntity tile = npc.getAsEntity().world.getTileEntity(pos);
                     if (tile instanceof TilePlate) {
-                        ((TilePlate) tile).setContents(null);
+                        ((TilePlate) tile).setContents(ItemStack.EMPTY);
                     }
                 }
             }

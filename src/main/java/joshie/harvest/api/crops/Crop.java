@@ -47,7 +47,7 @@ public class Crop extends HFRegistry<Crop> implements IPlantable {
     private boolean alternativeName;
     private boolean requiresSickle;
     @Nonnull
-    private ItemStack item;
+    private ItemStack item = ItemStack.EMPTY;
     private Season[] seasons;
     private long cost;
     private long sell;
@@ -475,7 +475,7 @@ public class Crop extends HFRegistry<Crop> implements IPlantable {
      */
     @SuppressWarnings("deprecation")
     public String getSeedsName() {
-        String name = alternativeName ? I18n.translateToLocalFormatted((getResource().getResourceDomain() + ".crop." + StringUtils.replace(getResource().getResourcePath(), "_", ".") + ".block")) : item == null ? "NULL" : item.getDisplayName();
+        String name = alternativeName ? I18n.translateToLocalFormatted((getResource().getResourceDomain() + ".crop." + StringUtils.replace(getResource().getResourcePath(), "_", ".") + ".block")) : item.isEmpty() ? "NULL" : item.getDisplayName();
         String seeds = I18n.translateToLocal("harvestfestival.crop.seeds");
         String format = I18n.translateToLocal("harvestfestival.crop.seeds.format");
         return String.format(format, name, seeds);

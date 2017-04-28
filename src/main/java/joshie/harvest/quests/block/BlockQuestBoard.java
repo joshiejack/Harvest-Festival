@@ -63,7 +63,8 @@ public class BlockQuestBoard extends BlockHFEnumRotatableMeta<BlockQuestBoard, Q
 
     @SuppressWarnings("deprecation")
     @Override
-    public IBlockState withRotation(IBlockState state, Rotation rot) {
+    @Nonnull
+    public IBlockState withRotation(@Nonnull IBlockState state, Rotation rot) {
         return state.withProperty(FACING, rot.rotate(state.getValue(FACING)).getOpposite());
     }
 

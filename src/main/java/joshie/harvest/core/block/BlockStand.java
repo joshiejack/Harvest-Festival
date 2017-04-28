@@ -77,7 +77,7 @@ public class BlockStand extends BlockHFEnumRotatableTile<BlockStand, Stand> {
                 return true;
             } else if (!stand.isEmpty()) {
                 ItemStack contents = stand.removeContents();
-                if (contents != null) {
+                if (!contents.isEmpty()) {
                     SpawnItemHelper.addToPlayerInventory(player, contents);
                     return true;
                 }
@@ -98,7 +98,7 @@ public class BlockStand extends BlockHFEnumRotatableTile<BlockStand, Stand> {
         TileEntity tile = world.getTileEntity(pos);
         if (tile instanceof TileStand) {
             TileStand stand = ((TileStand)tile);
-            if (stand.getContents() != null) {
+            if (!stand.getContents().isEmpty()) {
                 InventoryHelper.spawnItemStack(world, pos.getX(), pos.getY(), pos.getZ(), stand.getContents());
             }
         }

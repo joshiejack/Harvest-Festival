@@ -54,7 +54,7 @@ public class Purchasable implements IPurchasable {
 
     private static String stackToString(@Nonnull ItemStack stack) {
         if (stack.isEmpty()) return "null";
-        String string = stack.getItem().getRegistryName().toString().replace(":", "_");
+        String string = String.valueOf(stack.getItem().getRegistryName()).replace(":", "_");
         if (stack.getItemDamage() != 0) string = string + "_" + stack.getItemDamage();
         if (stack.getTagCompound() != null) string = string + "_" + stack.getTagCompound().hashCode();
         return string;

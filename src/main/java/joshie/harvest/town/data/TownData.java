@@ -166,7 +166,7 @@ public abstract class TownData<Q extends QuestData, L extends LetterData> implem
         NBTHelper.writeMap("TownBuildingList", nbt, buildings);
         NBTHelper.writeList("CurrentlyBuilding", nbt, buildingQueue);
         if (dailyQuest != null) {
-            nbt.setString("DailyQuest", dailyQuest.getRegistryName().toString());
+            nbt.setString("DailyQuest", String.valueOf(dailyQuest.getRegistryName()));
             nbt.setTag("DailyQuestData", dailyQuest.writeToNBT(new NBTTagCompound()));
         }
 

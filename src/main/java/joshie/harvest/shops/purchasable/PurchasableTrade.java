@@ -13,7 +13,7 @@ import javax.annotation.Nonnull;
 public class PurchasableTrade extends PurchasableMaterials {
     private RequirementSizeable requirement;
     @Nonnull
-    private ItemStack purchased;
+    private ItemStack purchased = ItemStack.EMPTY;
     @Nonnull
     private ItemStack large;
     @Nonnull

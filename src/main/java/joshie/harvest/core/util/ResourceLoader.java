@@ -14,7 +14,7 @@ public class ResourceLoader {
         try {
             inputstream = ResourceLoader.class.getResourceAsStream("/assets/" + s + "/" + directory + "/" + s1 + ".json");
             return IOUtils.toString(inputstream);
-        } catch (Throwable var10) {} finally {
+        } catch (Throwable ignored) {} finally {
             IOUtils.closeQuietly(inputstream);
         }
 

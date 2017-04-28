@@ -128,11 +128,11 @@ public abstract class GuiNPCBase extends GuiBase {
         boolean originalFlag = fontRendererObj.getUnicodeFlag();
         fontRendererObj.setUnicodeFlag(true);
         //TODO: Readd when doing marriage
-        /**
+        /*
         mc.renderEngine.bindTexture(HFModInfo.ELEMENTS);
         if (npc.getNPC().isMarriageCandidate()) {
             drawHeart(HFApi.player.getRelationsForPlayer(player).getRelationship(npc.getNPC()));
-        } **/
+        } */
 
         GlStateManager.color(1F, 1F, 1F);
         RenderHelper.enableGUIStandardItemLighting();

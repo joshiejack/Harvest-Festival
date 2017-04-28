@@ -14,6 +14,7 @@ public class ScriptStarry extends Script {
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public String getLocalized(NPCEntity entity) {
         return I18n.translateToLocalFormatted(unlocalised, entity.getNPC().getResource().getResourceDomain(), entity.getNPC().getResource().getResourcePath());
     }

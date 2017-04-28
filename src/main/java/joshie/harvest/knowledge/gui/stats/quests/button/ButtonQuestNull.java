@@ -6,6 +6,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.text.TextFormatting;
 
+import javax.annotation.Nonnull;
+
 public class ButtonQuestNull extends ButtonBook<GuiStats> {
     public ButtonQuestNull(GuiStats gui, int buttonId, int x, int y) {
         super(gui, buttonId, x, y, "No Active Quests!");
@@ -15,7 +17,7 @@ public class ButtonQuestNull extends ButtonBook<GuiStats> {
     }
 
     @Override
-    public void drawButton(Minecraft mc, int mouseX, int mouseY) {
+    public void drawButton(@Nonnull Minecraft mc, int mouseX, int mouseY) {
         if (visible) {
             GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
             hovered = mouseX >= xPosition && mouseY >= yPosition && mouseX < xPosition + width && mouseY < yPosition + height;

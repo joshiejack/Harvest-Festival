@@ -105,7 +105,6 @@ public class TileFridge extends TileFaceable implements ITickable, IFridge {
 
     @SuppressWarnings("unchecked")
     @Override
-    @Nonnull
     public <T> T getCapability(@Nonnull Capability<T> capability, @Nullable EnumFacing facing) {
         if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
             return (T) handler;

@@ -43,7 +43,7 @@ public class TaskSpeech extends TaskElement {
 
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound tag) {
-        tag.setString("Script", script.getRegistryName().toString());
+        tag.setString("Script", String.valueOf(script.getRegistryName()));
         return tag;
     }
 }

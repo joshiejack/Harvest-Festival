@@ -11,7 +11,6 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
@@ -41,11 +40,12 @@ public class ToolHelper {
     private static final DamageSource EXHAUSTED = new DamageSource("exhausted") {
         @Override
         @Nonnull
-        public ITextComponent getDeathMessage(EntityLivingBase entityLivingBaseIn)  {
+        public ITextComponent getDeathMessage(EntityLivingBase entityLivingBaseIn) {
             String s = "harvestfestival.death.attack." + this.damageType;
             return new TextComponentTranslation(s, entityLivingBaseIn.getDisplayName());
         }
     }.setDamageBypassesArmor().setDamageIsAbsolute();
+
     public static boolean isBrush(@Nonnull ItemStack stack) {
         return HFAnimals.TOOLS.getEnumFromStack(stack) == BRUSH;
     }
@@ -68,7 +68,7 @@ public class ToolHelper {
     public static void levelTool(@Nonnull ItemStack stack) {
         if (stack.isEmpty()) return;
         if (stack.getItem() instanceof ITiered) {
-            ((ITiered)stack.getItem()).levelTool(stack);
+            ((ITiered) stack.getItem()).levelTool(stack);
         }
     }
 
@@ -77,7 +77,8 @@ public class ToolHelper {
      **/
     public static void performTask(EntityPlayer player, @Nonnull ItemStack stack, @Nonnull ItemTool tool) {
         levelTool(stack); //Level up the tool
-        if (player.capabilities.isCreativeMode || !HFTools.HF_CONSUME_HUNGER) return; //If the player is in creative don't exhaust them
+        if (player.capabilities.isCreativeMode || !HFTools.HF_CONSUME_HUNGER)
+            return; //If the player is in creative don't exhaust them
         consumeHunger(player, tool.getExhaustionRate(stack));
         if (tool.canBeDamaged()) {
             int max = tool.getMaxDamage(stack);
@@ -128,7 +129,9 @@ public class ToolHelper {
     @HFEvents
     @SuppressWarnings("unused")
     public static class RestoreHungerOnSleep {
-        public static boolean register() { return HFTools.RESTORE_HUNGER_ON_SLEEP; }
+        public static boolean register() {
+            return HFTools.RESTORE_HUNGER_ON_SLEEP;
+        }
 
         @SubscribeEvent
         public void onWakeup(PlayerWakeUpEvent event) {
@@ -148,14 +151,15 @@ public class ToolHelper {
         ReflectionHelper.setPrivateValue(FoodStats.class, player.getFoodStats(), 0, "foodTimer", "field_75123_d");
     }
 
+    @SuppressWarnings("deprecation")
     public static void collectDrops(World world, BlockPos pos, IBlockState state, EntityPlayer player, NonNullList<ItemStack> drops) {
         Block block = state.getBlock();
         List<ItemStack> blockDrops = new ArrayList<>();
         if (block.canSilkHarvest(world, pos, state, player)) {
             try {
-                Method method = ReflectionHelper.findMethod(Block.class, null, new String[] { "getSilkTouchDrop", "func_180643_i" } , IBlockState.class);
+                Method method = ReflectionHelper.findMethod(Block.class, null, new String[]{"getSilkTouchDrop", "func_180643_i"}, IBlockState.class);
                 ItemStack stack = (ItemStack) method.invoke(block, state);
-                if (stack != null) {
+                if (!stack.isEmpty()) {
                     blockDrops.add(stack);
                     ForgeEventFactory.fireBlockHarvesting(blockDrops, world, pos, state, 0, 1F, true, player);
                     drops.addAll(blockDrops); //Add all the drops to our list
@@ -170,16 +174,12 @@ public class ToolHelper {
 
     @Nonnull
     public static ItemStack getStackFromBlockState(IBlockState state) {
-        Item item = Item.getItemFromBlock(state.getBlock());
-        if (item == null) {
-            return ItemStack.EMPTY;
-        } else {
-            int i = 0;
-            if (item.getHasSubtypes())  {
-                i = state.getBlock().getMetaFromState(state);
-            }
-
-            return new ItemStack(item, 1, i);
+        ItemStack stack = ItemStack.EMPTY;
+        try {
+            Method method = ReflectionHelper.findMethod(Block.class, null, new String[] { "createStackedBlock", "func_180643_i" } , IBlockState.class);
+            stack = (ItemStack) method.invoke(state.getBlock(), state);
+        } catch (IllegalAccessException | InvocationTargetException ignored) {
         }
+        return stack;
     }
 }

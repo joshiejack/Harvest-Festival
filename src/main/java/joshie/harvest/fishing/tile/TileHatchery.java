@@ -37,7 +37,7 @@ public class TileHatchery extends TileSingleStack implements ITickable {
             TileHatchery hatchery = (TileHatchery) world.getTileEntity(pos);
             if (hatchery.isOnWaterSurface(world, pos.down())) {
                 ItemStack stack = hatchery.stack;
-                if (stack != null && stack.getCount() < 10) {
+                if (!stack.isEmpty() && stack.getCount() < 10) {
                     int daysRequired = FishingAPI.INSTANCE.getDaysFor(stack);
                     if (daysRequired >= 1) {
                         hatchery.daysPassed++;

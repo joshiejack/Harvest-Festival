@@ -33,7 +33,7 @@ public class PacketDailyQuest extends PenguinPacket {
         ByteBufUtils.writeUTF8String(buf, uuid.toString());
         buf.writeBoolean(quest != null);
         if (quest != null) {
-            ByteBufUtils.writeUTF8String(buf, quest.getRegistryName().toString());
+            ByteBufUtils.writeUTF8String(buf, String.valueOf(quest.getRegistryName()));
             ByteBufUtils.writeTag(buf, quest.writeToNBT(new NBTTagCompound()));
         }
     }

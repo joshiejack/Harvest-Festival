@@ -147,7 +147,6 @@ public class TileSprinkler extends TileHarvest implements ITickable {
 
     @SuppressWarnings("unchecked")
     @Override
-    @Nonnull
     public <T> T getCapability(@Nonnull Capability<T> capability, @Nullable EnumFacing facing) {
         if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY)
             return (T) tank;

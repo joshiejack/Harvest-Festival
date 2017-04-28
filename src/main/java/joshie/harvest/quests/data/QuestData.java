@@ -76,7 +76,7 @@ public abstract class QuestData {
         NBTTagList quests = new NBTTagList();
         for (Quest s : current) {
             NBTTagCompound tag = new NBTTagCompound();
-            tag.setString("QuestID", s.getRegistryName().toString());
+            tag.setString("QuestID", String.valueOf(s.getRegistryName()));
             s.writeToNBT(tag);
             quests.appendTag(tag);
         }
@@ -84,7 +84,7 @@ public abstract class QuestData {
         nbt.setTag("CurrentQuests", quests);
 
         NBTTagList done = new NBTTagList();
-        finished.stream().filter(Objects::nonNull).forEachOrdered(s -> done.appendTag(new NBTTagString(s.getRegistryName().toString())));
+        finished.stream().filter(Objects::nonNull).forEachOrdered(s -> done.appendTag(new NBTTagString(String.valueOf(s.getRegistryName()))));
         nbt.setTag("FinishedQuests", done);
         return nbt;
     }

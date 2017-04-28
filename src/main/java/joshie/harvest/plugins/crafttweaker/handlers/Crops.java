@@ -67,6 +67,7 @@ public class Crops {
         }
 
         @Override
+        @SuppressWarnings("deprecation")
         public void applyOnce() {
             new Crop(resource) {
                 @Override

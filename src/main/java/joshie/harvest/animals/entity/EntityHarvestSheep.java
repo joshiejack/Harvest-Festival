@@ -88,7 +88,7 @@ public class EntityHarvestSheep extends EntitySheep implements IEntityAdditional
         boolean special = ITEM_STACK.matchesAny(stack, getStacks()) || ITEM.matchesAny(stack, HFAnimals.TREATS, Items.SHEARS);
         if (stack.isEmpty() || !special) {
             if (!stats.performTest(AnimalTest.BEEN_LOVED)) {
-                stats.performAction(world, null, AnimalAction.PETTED); //Love <3
+                stats.performAction(world, ItemStack.EMPTY, AnimalAction.PETTED); //Love <3
                 SoundEvent s = getAmbientSound();
                 if (s != null) {
                     playSound(s, 2F, getSoundPitch());

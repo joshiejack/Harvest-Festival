@@ -279,7 +279,7 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
 
         Crop crop = data.getCrop();
         int originalStage = data.getStage();
-        boolean isSickle = player.getHeldItemMainhand() != null && HFApi.crops.isSickle(player.getHeldItemMainhand());
+        boolean isSickle = !player.getHeldItemMainhand().isEmpty() && HFApi.crops.isSickle(player.getHeldItemMainhand());
         if (isSickle || !crop.requiresSickle()) {
             if (section == BOTTOM) {
                 harvestCrop(player, world, pos);

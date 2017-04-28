@@ -7,6 +7,8 @@ import joshie.harvest.knowledge.gui.stats.notes.page.PageNotes;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 
+import javax.annotation.Nonnull;
+
 public class ButtonNoteNext extends ButtonBook<GuiStats> {
     public ButtonNoteNext(GuiStats gui, int buttonId, int x, int y) {
         super(gui, buttonId, x, y, "");
@@ -15,7 +17,7 @@ public class ButtonNoteNext extends ButtonBook<GuiStats> {
     }
 
     @Override
-    public void drawButton(Minecraft mc, int mouseX, int mouseY) {
+    public void drawButton(@Nonnull Minecraft mc, int mouseX, int mouseY) {
         if (visible) {
             mc.getTextureManager().bindTexture(TEXTURE);
             GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);

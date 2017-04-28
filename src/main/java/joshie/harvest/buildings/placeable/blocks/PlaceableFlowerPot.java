@@ -3,6 +3,7 @@ package joshie.harvest.buildings.placeable.blocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -11,12 +12,15 @@ import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+import javax.annotation.Nonnull;
 import java.util.Random;
 
 
 public class PlaceableFlowerPot extends PlaceableDecorative {
     @SuppressWarnings("unused")
-    public PlaceableFlowerPot() {}
+    public PlaceableFlowerPot() {
+    }
+
     public PlaceableFlowerPot(IBlockState state, int x, int y, int z) {
         super(state, x, y, z);
     }
@@ -29,8 +33,9 @@ public class PlaceableFlowerPot extends PlaceableDecorative {
         }
     }
 
+    @Nonnull
     private ItemStack getRandomPlant(Random rand) {
-        Block block = null;
+        Block block = Block.getBlockFromItem(Items.AIR);
         int meta = 0;
         int what = rand.nextInt(13) + 1;
         switch (what) {

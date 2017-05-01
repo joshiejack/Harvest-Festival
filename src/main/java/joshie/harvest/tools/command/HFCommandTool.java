@@ -1,26 +1,33 @@
 package joshie.harvest.tools.command;
 
 import joshie.harvest.api.core.ITiered;
-import joshie.harvest.core.commands.AbstractHFCommand;
+import joshie.harvest.core.commands.CommandManager.CommandLevel;
 import joshie.harvest.core.commands.HFCommand;
-import net.minecraft.command.CommandBase;
-import net.minecraft.command.ICommandSender;
-import net.minecraft.command.PlayerNotFoundException;
+import net.minecraft.command.*;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
 
+import javax.annotation.Nonnull;
+
 @HFCommand
 @SuppressWarnings("unused")
-public class HFCommandTool extends AbstractHFCommand {
+public class HFCommandTool extends CommandBase {
     @Override
+    @Nonnull
     public String getCommandName() {
         return "tool";
     }
 
     @Override
-    public String getUsage() {
+    @Nonnull
+    public String getCommandUsage(@Nonnull ICommandSender sender) {
         return "/hf tool [player] <value>";
+    }
+
+    @Override
+    public int getRequiredPermissionLevel() {
+        return CommandLevel.OP_AFFECT_GAMEPLAY.ordinal();
     }
 
     private boolean applyLevel(ItemStack stack, double level) {
@@ -28,15 +35,11 @@ public class HFCommandTool extends AbstractHFCommand {
     }
 
     @Override
-    public boolean execute(MinecraftServer server, ICommandSender sender, String[] parameters) {
-        if (parameters != null && (parameters.length == 1 || parameters.length == 2)) {
-            try {
-                double level = Double.parseDouble(parameters[parameters.length - 1]);
-                EntityPlayerMP player = parameters.length == 1 ? CommandBase.getCommandSenderAsPlayer(sender) : CommandBase.getPlayer(server, sender, parameters[0]);
-                return applyLevel(player.getHeldItemOffhand(), level) || applyLevel(player.getHeldItemMainhand(), level);
-            } catch (NumberFormatException | PlayerNotFoundException ignored) {}
-        }
-
-        return false;
+    public void execute(@Nonnull MinecraftServer server, @Nonnull ICommandSender sender, @Nonnull String[] parameters) throws CommandException {
+        if (parameters.length == 1 || parameters.length == 2) {
+            double level = Double.parseDouble(parameters[parameters.length - 1]);
+            EntityPlayerMP player = parameters.length == 1 ? CommandBase.getCommandSenderAsPlayer(sender) : CommandBase.getPlayer(server, sender, parameters[0]);
+            if (!applyLevel(player.getHeldItemOffhand(), level)) applyLevel(player.getHeldItemMainhand(), level);
+        } else throw new WrongUsageException(getCommandUsage(sender));
     }
 }

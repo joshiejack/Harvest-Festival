@@ -1,33 +1,38 @@
 package joshie.harvest.core.commands;
 
-import net.minecraft.command.CommandNotFoundException;
-import net.minecraft.command.ICommandSender;
-import net.minecraft.command.NumberInvalidException;
+import net.minecraft.command.*;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.event.ClickEvent;
 
-import java.util.Collections;
+import javax.annotation.Nonnull;
 import java.util.List;
 import java.util.Map;
 
 @HFCommand
-public class HFCommandHelp extends AbstractHFCommand {
+public class HFCommandHelp extends CommandBase {
     @Override
+    @Nonnull
     public String getCommandName() {
         return "help";
     }
 
     @Override
-    public CommandLevel getPermissionLevel() {
-        return CommandLevel.ANYONE;
+    @Nonnull
+    public String getCommandUsage(@Nonnull ICommandSender sender) {
+        return "/hf help";
     }
 
     @Override
-    public boolean execute(MinecraftServer server, ICommandSender sender, String[] parameters) throws CommandNotFoundException, NumberInvalidException {
-        List<AbstractHFCommand> list = this.getSortedPossibleCommands(sender);
+    public int getRequiredPermissionLevel() {
+        return CommandManager.CommandLevel.ANYONE.ordinal();
+    }
+
+    @Override
+    public void execute(@Nonnull MinecraftServer server, @Nonnull ICommandSender sender, @Nonnull String[] parameters) throws CommandException {
+        List<ICommand> list = CommandManager.INSTANCE.getSortedCommandList();
         int i0 = 7;
         int i = (list.size() - 1) / i0;
         int k;
@@ -35,12 +40,10 @@ public class HFCommandHelp extends AbstractHFCommand {
         try {
             k = parameters.length == 0 ? 0 : net.minecraft.command.CommandBase.parseInt(parameters[0], 1, i + 1) - 1;
         } catch (NumberInvalidException numberinvalidexception) {
-            Map<String, AbstractHFCommand> map = this.getCommands();
-            AbstractHFCommand icommand = map.get(parameters[0]);
-
+            Map<String, ICommand> map = CommandManager.INSTANCE.getCommandMap();
+            ICommand icommand = map.get(parameters[0]);
             if (icommand != null) {
-                CommandManager.throwError(sender, icommand);
-                return true;
+                throw new WrongUsageException(icommand.getCommandUsage(sender));
             }
 
             if (MathHelper.parseIntWithDefault(parameters[0], -1) != -1) {
@@ -56,27 +59,10 @@ public class HFCommandHelp extends AbstractHFCommand {
         sender.addChatMessage(componentTranslation1);
 
         for (int l = k * i0; l < j; ++l) {
-            AbstractHFCommand icommand1 = list.get(l);
-            TextComponentTranslation componentTranslation = new TextComponentTranslation(CommandManager.getUsage(icommand1));
+            ICommand icommand1 = list.get(l);
+            TextComponentTranslation componentTranslation = new TextComponentTranslation(icommand1.getCommandUsage(sender));
             componentTranslation.getStyle().setClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/" + icommand1.getCommandName() + " "));
             sender.addChatMessage(componentTranslation);
         }
-
-        return true;
-    }
-
-    private Map<String, AbstractHFCommand> getCommands() {
-        return CommandManager.INSTANCE.getCommands();
-    }
-
-    private List<AbstractHFCommand> getSortedPossibleCommands(ICommandSender sender) {
-        List<AbstractHFCommand> list = CommandManager.INSTANCE.getPossibleCommands(sender);
-        Collections.sort(list);
-        return list;
-    }
-
-    @Override
-    public String getUsage() {
-        return "/hf help";
     }
 }

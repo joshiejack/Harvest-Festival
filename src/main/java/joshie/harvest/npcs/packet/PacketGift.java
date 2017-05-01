@@ -50,9 +50,7 @@ public class PacketGift extends PenguinPacket {
                 SpawnItemHelper.addToPlayerInventory(player, HFKnowledge.BOOK.getStackFromEnum(Book.STATISTICS));
 
             } else if (!player.worldObj.isRemote) {
-                if (player.getHeldItemOffhand() != null) {
-                    player.openGui(HarvestFestival.instance, GuiHandler.GIFT, player.worldObj, npc.getEntityId(), -1, EnumHand.OFF_HAND.ordinal());
-                } else if (player.getHeldItemMainhand() != null) {
+                if (player.getHeldItemMainhand() != null) {
                     player.openGui(HarvestFestival.instance, GuiHandler.GIFT, player.worldObj, npc.getEntityId(), -1, EnumHand.MAIN_HAND.ordinal());
                 }
             }

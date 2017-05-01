@@ -56,6 +56,7 @@ public abstract class QuestData {
                     try {
                         Quest quest = q.getClass().newInstance().setRegistryName(q.getRegistryName());
                         quest.readFromNBT(tag);
+                        quest.onQuestActivated();
                         current.add(quest);
                     } catch (InstantiationException | IllegalAccessException e) { /**/}
                 }

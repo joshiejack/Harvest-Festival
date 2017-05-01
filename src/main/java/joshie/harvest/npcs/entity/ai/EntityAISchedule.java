@@ -52,6 +52,7 @@ public class EntityAISchedule extends EntityAIBase {
             distanceRequired = location.distance;
             ticksBeforeTeleport = location.updatesBeforeTeleport;
             blockTarget = NPCHelper.getCoordinatesForLocation(npc, location);
+            if (blockTarget != null) blockTarget = blockTarget.down();
         }
     }
 

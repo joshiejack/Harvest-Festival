@@ -12,7 +12,7 @@ harvestfestival.check.lead=On lead after purchase.
 harvestfestival.death.attack.exhausted=%1$s worked themselves to death
 
 #Commands
-hf.commands.help.header=--- Showing hf.help page %d of %d (/hf.help <page>) ---
+hf.commands.help.header=--- Showing hf help page %d of %d (/hf help <page>) ---
 
 #Tooltips
 harvestfestival.tooltip.cosmetic=Cosmetic
@@ -377,7 +377,7 @@ harvestfestival.meal.cooked.rabbit.description=Don't you dare start making rabbi
 harvestfestival.meal.cooked.cod.description=Take your pick on choice of seasoning. Blackened. Grilled. Deep-fried. Baked. Broiled. Sashimi'd. Wait, thats raw. Darn it!
 harvestfestival.meal.cooked.salmon.description=Delicious with dill butter in the oven. Not recommended for consumers watching their salt content! Contains bones.
 harvestfestival.meal.pumpkin.pie.description=Thanksgiving's tradition. A seasonal favorite. Some american wholesales make a great pie. Who puts pumpkin in a can, and why?
-harvestfestival.meal.brown.mushroom.description=You can find a boost of wild flavours in this wonderful mushroom dish. Pick the best mushrooms you can find for a meal like never before.s
+harvestfestival.meal.brown.mushroom.description=You can find a boost of wild flavours in this wonderful mushroom dish. Pick the best mushrooms you can find for a meal like never before.
 harvestfestival.meal.rabbit.stew.description=Succulent chunks of rabbit are stewed. It's the perfect winter warmer. Serve with mashed potatoes or hunks of crusty bread.
 harvestfestival.meal.beetroot.soup.description=Looks like blood in a bowl. I hope it tastes better then it looks. Ew... Uh... I mean... hm. A vampire's favorite dish. Try it chilled or heated.
 
@@ -1941,7 +1941,7 @@ harvestfestival.quest.trade.bless.done=And with all the almighty power I hearby 
 
 # Blacksmith Upgrades
 harvestfestival.quest.trade.upgrade.closed.start=I'm afraid I can only work on your tools during business hours.
-harvestfestival.quest.trade.upgrade.closed.finish=I finished working on your %s. It's my time off but it's no work to hand it back to you.w
+harvestfestival.quest.trade.upgrade.closed.finish=I finished working on your %s. It's my time off but it's no work to hand it back to you.
 harvestfestival.quest.trade.upgrade.level=Your tool is not at 100%%! Please come back when it is.
 harvestfestival.quest.trade.upgrade.gold=To upgrade this tool it will cost you %s, please come back when you have enough.
 harvestfestival.quest.trade.upgrade.material=To upgrade this tool I'm going to need %1s %2s.

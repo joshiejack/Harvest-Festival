@@ -6,13 +6,13 @@ import joshie.harvest.api.npc.task.HFTask;
 import joshie.harvest.api.npc.task.TaskElement;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.Quest;
-import joshie.harvest.core.commands.AbstractHFCommand;
 import joshie.harvest.core.commands.CommandManager;
 import joshie.harvest.core.commands.HFCommand;
 import joshie.harvest.core.commands.HFDebugCommand;
 import joshie.harvest.core.network.Packet;
 import joshie.harvest.core.util.annotations.HFApiImplementation;
 import joshie.harvest.core.util.annotations.HFEvents;
+import net.minecraft.command.ICommand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.discovery.ASMDataTable;
@@ -110,8 +110,8 @@ public class HFApiLoader {
         for (ASMDataTable.ASMData asmData : asmDatas) {
             try {
                 Class clazz = Class.forName(asmData.getClassName());
-                if (AbstractHFCommand.class.isAssignableFrom(clazz)) {
-                    CommandManager.INSTANCE.registerCommand((AbstractHFCommand) clazz.newInstance());
+                if (ICommand.class.isAssignableFrom(clazz)) {
+                    CommandManager.INSTANCE.addSubcommand((ICommand) clazz.newInstance());
                 }
             } catch (Exception e) { e.printStackTrace(); }
         }
@@ -128,8 +128,8 @@ public class HFApiLoader {
                 Boolean sub = data.get("value") != null ? (Boolean) data.get("value") : false;
                 Class clazz = Class.forName(asmData.getClassName());
                 if (!sub) {
-                    if (AbstractHFCommand.class.isAssignableFrom(clazz)) {
-                        CommandManager.INSTANCE.registerCommand((AbstractHFCommand) clazz.newInstance());
+                    if (ICommand.class.isAssignableFrom(clazz)) {
+                        CommandManager.INSTANCE.addSubcommand((ICommand) clazz.newInstance());
                     }
                 } else {
                     List list = (List) Class.forName("joshie.harvest.debug.CommandExportBuilder").getField("commands").get(null);

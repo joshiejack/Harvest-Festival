@@ -177,7 +177,7 @@ public class ItemHammer extends ItemToolSmashing<ItemHammer> {
             WateringHandler handler = CropHelper.getWateringHandler(world, pos, state);
             if (handler != null) {
                 ToolHelper.performTask(player, stack, this);
-                handler.dehydrate(world, pos, state);
+                handler.dehydrate(world, pos, state, true);
                 return true;
             }
         }

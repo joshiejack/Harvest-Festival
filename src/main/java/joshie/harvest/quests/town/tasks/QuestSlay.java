@@ -3,12 +3,10 @@ package joshie.harvest.quests.town.tasks;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.npc.NPCEntity;
 import joshie.harvest.api.quests.HFQuest;
-import joshie.harvest.api.quests.Quest;
 import joshie.harvest.api.town.Town;
 import joshie.harvest.core.helpers.TextHelper;
 import joshie.harvest.npcs.HFNPCs;
 import joshie.harvest.quests.base.QuestDaily;
-import joshie.harvest.town.TownHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLivingBase;
@@ -24,7 +22,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
-import java.util.List;
 
 @HFQuest("slay")
 public class QuestSlay extends QuestDaily {
@@ -38,26 +35,22 @@ public class QuestSlay extends QuestDaily {
     }
 
     @Override
-    public void onRegistered() {
-        MinecraftForge.EVENT_BUS.register(this);
+    public int getDaysBetween() {
+        return 3;
     }
 
     @Override
-    public int getDaysBetween() {
-        return 3;
+    public void onQuestActivated() {
+        MinecraftForge.EVENT_BUS.register(this);
     }
 
     @SubscribeEvent
     public void onDeath(LivingDeathEvent event) {
         EntityPlayer player = getPlayerFromSource(event.getSource());
         if (player != null) {
-            List<Quest> quests = HFApi.quests.getCurrentQuests(player);
-            if (quests.contains(this)) {
-                QuestSlay quest = TownHelper.getClosestTownToEntity(player, false).getQuests().getAQuest(this);
-                if (quest != null && quest.counter < quest.targetAmount && quest.isValidKill(event.getEntityLiving())) {
-                    quest.counter++;
-                    quest.syncData(player);
-                }
+            if (counter < targetAmount && isValidKill(event.getEntityLiving())) {
+                counter++; //Increase the counter
+                syncData(player);
             }
         }
     }
@@ -113,6 +106,7 @@ public class QuestSlay extends QuestDaily {
     public void onQuestCompleted(EntityPlayer player) {
         HFApi.player.getRelationsForPlayer(player).affectRelationship(HFNPCs.MINER, 2500);
         rewardGold(player, 1000L * targetAmount);
+        MinecraftForge.EVENT_BUS.unregister(this);
     }
 
     @Override

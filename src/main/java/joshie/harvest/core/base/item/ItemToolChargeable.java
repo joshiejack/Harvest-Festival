@@ -3,6 +3,7 @@ package joshie.harvest.core.base.item;
 import gnu.trove.map.TIntObjectMap;
 import gnu.trove.map.hash.TIntObjectHashMap;
 import joshie.harvest.core.helpers.ChatHelper;
+import joshie.harvest.core.helpers.MCClientHelper;
 import joshie.harvest.core.helpers.TextHelper;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
@@ -16,6 +17,7 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Set;
 
@@ -50,17 +52,14 @@ public class ItemToolChargeable<I extends ItemToolChargeable> extends ItemTool<I
         stack.getSubCompound("Data", true).setInteger("Charge", amount);
     }
 
-    protected void increaseCharge(ItemStack stack, int amount) {
-        setCharge(stack, getCharge(stack) + amount);
-    }
-
     @Override
-    public ActionResult<ItemStack> onItemRightClick(ItemStack stack, World world, EntityPlayer playerIn, EnumHand hand) {
+    @Nonnull
+    public ActionResult<ItemStack> onItemRightClick(@Nonnull ItemStack stack, World world, EntityPlayer playerIn, EnumHand hand) {
         ToolTier tier = getTier(stack);
         if (tier != ToolTier.BASIC && canUse(stack)) {
             if (playerIn.isSneaking()) {
                 setCharge(stack, 0);
-                if (world.isRemote) ChatHelper.displayChat(TextFormatting.RED + TextHelper.translate("tool.discharge"));
+                if (world.isRemote && MCClientHelper.isClient(playerIn)) ChatHelper.displayChat(TextFormatting.RED + TextHelper.translate("tool.discharge"));
             } else if (getCharge(stack) < getMaxCharge(stack)) playerIn.setActiveHand(hand);
             else onPlayerStoppedUsing(stack, world, playerIn, 32000);
             return new ActionResult<>(EnumActionResult.SUCCESS, stack);

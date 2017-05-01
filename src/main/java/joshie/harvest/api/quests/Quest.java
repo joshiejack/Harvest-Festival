@@ -211,6 +211,9 @@ public abstract class Quest extends IForgeRegistryEntry.Impl<Quest> {
      *  @param npc       the npc**/
     public void onChatClosed(EntityPlayer player, NPCEntity npc, boolean wasSneaking) {}
 
+    /** Called when a quest is started **/
+    public void onQuestActivated() {}
+
     /** Called when the quest is completed
      *  @param player       the player that completed the quest **/
     public void onQuestCompleted(EntityPlayer player) {}

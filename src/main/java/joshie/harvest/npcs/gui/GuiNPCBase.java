@@ -179,7 +179,7 @@ public abstract class GuiNPCBase extends GuiBase {
     }
 
     boolean isHoldingItem() {
-        return player.getHeldItemMainhand() != null || player.getHeldItemOffhand() != null;
+        return player.getHeldItemMainhand() != null;
     }
 
     boolean hoveringInfo() {

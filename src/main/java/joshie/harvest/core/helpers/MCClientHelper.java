@@ -5,7 +5,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.multiplayer.PlayerControllerMP;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -72,7 +72,7 @@ public class MCClientHelper {
         return Minecraft.getMinecraft().getRenderViewEntity();
     }
 
-    public static boolean isClient(EntityPlayer playerIn) {
+    public static boolean isClient(EntityLivingBase playerIn) {
         return playerIn == getPlayer();
     }
 }

@@ -173,7 +173,7 @@ public class ItemHammer extends ItemToolSmashing<ItemHammer> {
 
     @Override
     public boolean onSmashed(EntityPlayer player, ItemStack stack, ToolTier tier, int harvestLevel, World world, BlockPos pos, IBlockState state) {
-        if (canUse(stack)) {
+        if (canUse(stack) && !world.isRemote) {
             WateringHandler handler = CropHelper.getWateringHandler(world, pos, state);
             if (handler != null) {
                 ToolHelper.performTask(player, stack, this);

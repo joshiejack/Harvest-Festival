@@ -22,6 +22,7 @@ public class CropData {
     private int daysWithoutWater; //The number of days this crop has gone without water
     private boolean safe;
     private boolean isDead;
+    private int harvests;
 
     @SuppressWarnings("WeakerAccess")
     public CropData setCrop(Crop crop, int stage) {
@@ -91,6 +92,11 @@ public class CropData {
         else return world.setBlockToAir(pos);
     }
 
+    public boolean hasCompletedMaxHarvests() {
+        harvests++;
+        return harvests >= crop.getMaxHarvests();
+    }
+
     @SuppressWarnings("unchecked, unused")
     public List<ItemStack> harvest(@Nullable EntityPlayer player, boolean doHarvest) {
         if (crop != null && crop.getGrowthHandler().canHarvest(crop, stage)) {
@@ -123,6 +129,7 @@ public class CropData {
             crop = Crop.REGISTRY.get(new ResourceLocation(nbt.getString("CropResource")));
             stage = nbt.getByte("CurrentStage");
             daysWithoutWater = nbt.getShort("DaysWithoutWater");
+            harvests = nbt.getShort("TotalHarvests");
         }
 
         if (crop == null) crop = Crop.NULL_CROP;
@@ -134,6 +141,7 @@ public class CropData {
             nbt.setString("CropResource", crop.getResource().toString());
             nbt.setByte("CurrentStage", (byte) stage);
             nbt.setShort("DaysWithoutWater", (short) daysWithoutWater);
+            nbt.setShort("TotalHarvests", (short) harvests);
         }
 
         return nbt;

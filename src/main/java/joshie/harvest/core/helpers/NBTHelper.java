@@ -255,4 +255,13 @@ public class NBTHelper {
 
         nbt.setTag(name, list);
     }
+
+    public static NBTTagCompound getLastTickData(NBTTagCompound tag) {
+        if (tag.hasKey("LastTickData")) return tag.getCompoundTag("LastTickData");
+        else {
+            NBTTagCompound data = new NBTTagCompound();
+            tag.setTag("LastTickData", data);
+            return data;
+        }
+    }
 }

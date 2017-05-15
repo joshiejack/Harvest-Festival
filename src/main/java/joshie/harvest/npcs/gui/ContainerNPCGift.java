@@ -5,6 +5,7 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.CalendarDate;
 import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.npc.RelationStatus;
+import joshie.harvest.calendar.CalendarHelper;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.handlers.GuiHandler;
 import joshie.harvest.npcs.NPCHelper;
@@ -18,7 +19,7 @@ import net.minecraft.util.EnumHand;
 import static joshie.harvest.api.calendar.Season.WINTER;
 
 public class ContainerNPCGift extends ContainerNPCChat {
-    private static final CalendarDate CHRISTMAS = new CalendarDate(25, WINTER, 0);
+    public static final CalendarDate CHRISTMAS = new CalendarDate(25, WINTER, 0);
     private final EnumHand hand;
 
     public ContainerNPCGift(EntityPlayer player, EntityNPC npc, EnumHand hand, int nextGui) {
@@ -42,10 +43,10 @@ public class ContainerNPCGift extends ContainerNPCChat {
                 } else { */
                 CalendarDate today = HFApi.calendar.getDate(player.worldObj);
                 int points = theNpc.getGiftValue(gift).getRelationPoints();
-                if (!relationships.hasGivenGift(theNpc, RelationStatus.BIRTHDAY_GIFT) && theNpc.getBirthday().isSameDay(today)) {
+                if (!relationships.hasGivenGift(theNpc, RelationStatus.BIRTHDAY_GIFT) && CalendarHelper.isDateSame(today, theNpc.getBirthday())) {
                     relationships.setHasGivenGift(theNpc, RelationStatus.BIRTHDAY_GIFT);
                     points *= 10;
-                } else if (!relationships.hasGivenGift(theNpc, RelationStatus.CHRISTMAS_GIFT) && CHRISTMAS.isSameDay(today)) {
+                } else if (!relationships.hasGivenGift(theNpc, RelationStatus.CHRISTMAS_GIFT) && CalendarHelper.isDateSame(today, CHRISTMAS)) {
                     relationships.setHasGivenGift(theNpc, RelationStatus.CHRISTMAS_GIFT);
                     points *= 5;
                 }

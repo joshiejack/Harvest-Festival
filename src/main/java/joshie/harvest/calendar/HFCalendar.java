@@ -3,8 +3,10 @@ package joshie.harvest.calendar;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.CalendarDate;
 import joshie.harvest.api.calendar.SeasonProvider;
+import joshie.harvest.calendar.data.CalendarServer;
 import joshie.harvest.calendar.provider.HFWorldProvider;
 import joshie.harvest.calendar.provider.SeasonProviderHidden;
+import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.helpers.ConfigHelper;
 import joshie.harvest.core.util.annotations.HFLoader;
 import net.minecraft.server.MinecraftServer;
@@ -91,5 +93,7 @@ public class HFCalendar {
         if (server.isDedicatedServer()) {
             CalendarDate.DAYS_PER_SEASON = DAYS_PER_SEASON_DEDICATED;
         } else CalendarDate.DAYS_PER_SEASON = DAYS_PER_SEASON_INTEGRATED;
+
+        HFTrackers.<CalendarServer>getCalendar(server.getEntityWorld()).recalculate(server.getEntityWorld());
     }
 }

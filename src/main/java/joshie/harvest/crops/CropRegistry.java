@@ -118,7 +118,7 @@ public class CropRegistry implements ICropRegistry {
             CropData data = tile.getData();
             List<ItemStack> harvest = data.harvest(player, true);
             if (harvest != null) {
-                if (data.getCrop().getRegrowStage() <= 0) {
+                if (data.hasCompletedMaxHarvests()) {
                     if (!world.isRemote) {
                         world.setBlockToAir(pos);
                     }

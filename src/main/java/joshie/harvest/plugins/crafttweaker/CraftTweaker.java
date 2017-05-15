@@ -47,13 +47,13 @@ public class CraftTweaker {
             MineTweakerAPI.registerBracketHandler(handler);
             rebuildItemRegistry(handler);
             MineTweakerAPI.registerClass(Crops.class);
+            MineTweakerAPI.registerClass(Shops.class);
             MineTweakerImplementationAPI.setScriptProvider(new ScriptProviderDirectory(directory));
             MineTweakerImplementationAPI.reload();
         }
 
         MineTweakerAPI.registerClass(Blacklist.class);
         MineTweakerAPI.registerClass(Shipping.class);
-        MineTweakerAPI.registerClass(Shops.class);
         MineTweakerAPI.registerClass(Gifting.class);
         CommandManager.INSTANCE.addSubcommand(new HFCommandNPC());
         CommandManager.INSTANCE.addSubcommand(new HFCommandPurchasable());

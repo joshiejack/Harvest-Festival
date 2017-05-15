@@ -1,7 +1,9 @@
 package joshie.harvest.mining.gen;
 
 import gnu.trove.map.TIntObjectMap;
+import gnu.trove.map.TLongObjectMap;
 import gnu.trove.map.hash.TIntObjectHashMap;
+import gnu.trove.map.hash.TLongObjectHashMap;
 import gnu.trove.set.TIntSet;
 import gnu.trove.set.hash.TIntHashSet;
 import joshie.harvest.core.HFTrackers;
@@ -42,8 +44,8 @@ import static joshie.harvest.mining.MiningHelper.getFloor;
 @HFEvents
 public class MineManager extends WorldSavedData {
     public static final int CHUNK_BOUNDARY = 10;
-    private static final TIntObjectMap<TIntObjectMap<IBlockState[][]>> generation = new TIntObjectHashMap<>();
-    private static final TIntObjectMap<int[]> coordinates = new TIntObjectHashMap<>();
+    private static final TLongObjectMap<TIntObjectMap<IBlockState[][]>> generation = new TLongObjectHashMap<>();
+    private static final TLongObjectMap<int[]> coordinates = new TLongObjectHashMap<>();
     private TIntObjectMap<TIntObjectMap<BlockPos>> portalCoordinates = new TIntObjectHashMap<>();
     private TIntSet generated = new TIntHashSet();
 
@@ -177,27 +179,27 @@ public class MineManager extends WorldSavedData {
         markDirty();
     }
 
-    static TIntObjectMap<IBlockState[][]> getStateMap(int mapIndex) {
+    static TIntObjectMap<IBlockState[][]> getStateMap(long mapIndex) {
         return MineManager.generation.get(mapIndex);
     }
 
-     static void putStateMap(int mapIndex, TIntObjectMap<IBlockState[][]>  map) {
+     static void putStateMap(long mapIndex, TIntObjectMap<IBlockState[][]>  map) {
          MineManager.generation.put(mapIndex, map);
     }
 
-    static boolean containsStateKey(int mapIndex) {
+    static boolean containsStateKey(long mapIndex) {
         return MineManager.generation.containsKey(mapIndex);
     }
 
-    static boolean containsCoordinatesKey(int mapIndex) {
+    static boolean containsCoordinatesKey(long mapIndex) {
         return MineManager.coordinates.containsKey(mapIndex);
     }
 
-    static void putCoordinates(int mapIndex, int[] coordinates) {
+    static void putCoordinates(long mapIndex, int[] coordinates) {
         MineManager.coordinates.put(mapIndex, coordinates);
     }
 
-    static int getCoordinates(int mapIndex, int position) {
+    static int getCoordinates(long mapIndex, int position) {
         return MineManager.coordinates.get(mapIndex)[position];
     }
 }

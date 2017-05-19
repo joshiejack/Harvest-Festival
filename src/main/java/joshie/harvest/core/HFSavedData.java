@@ -29,6 +29,7 @@ public class HFSavedData extends WorldSavedData {
             HFTrackers.<TownTrackerServer>getTowns(world).readFromNBT(temp);
             HFTrackers.markTownsDirty();
             temp = null; //Reset the world
+            markDirty(); //Mark this as dirty, as we changed
         }
     }
 

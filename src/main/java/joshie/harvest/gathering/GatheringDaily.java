@@ -1,18 +1,7 @@
 package joshie.harvest.gathering;
 
-import com.google.common.cache.CacheBuilder;
-import joshie.harvest.calendar.CalendarHelper;
-import joshie.harvest.core.HFTrackers;
-import joshie.harvest.core.helpers.NBTHelper;
-import joshie.harvest.core.util.annotations.HFEvents;
-import joshie.harvest.town.TownHelper;
-import joshie.harvest.town.data.TownDataServer;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.ChunkPos;
-import net.minecraftforge.event.world.ChunkDataEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-
+//TODO: Re-enable this
+/*
 @HFEvents
 @SuppressWarnings("unused")
 public class GatheringDaily {
@@ -43,4 +32,4 @@ public class GatheringDaily {
             tag.setInteger("" + chunk, days);
         }
     }
-}
+} */

@@ -196,6 +196,7 @@ public class TownDataServer extends TownData<QuestDataServer, LetterDataServer> 
     public void newDay(World world, Cache<BlockPos, Boolean> isFar, CalendarDate yesterday, CalendarDate today) {
         if (world.isBlockLoaded(getTownCentre())) {
             shops.newDay(world, uuid);
+            //TODO: Disable this again
             gathering.newDay(world, townCentre, buildings.values(), isFar);
             generateNewDailyQuest(world);
             for (Entry<ResourceLocation, BlockPos> entry: deadVillagers.entrySet()) {

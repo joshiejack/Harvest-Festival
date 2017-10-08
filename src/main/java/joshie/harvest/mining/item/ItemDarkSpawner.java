@@ -58,7 +58,7 @@ public class ItemDarkSpawner extends ItemHFEnum<ItemDarkSpawner, DarkSpawner> {
             EntityMob entity = getEntityFromEnum(world, getEnumFromStack(stack));
             if (entity != null) {
                 entity.setPosition(pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5);
-                world.spawnEntityInWorld(entity);
+                world.spawnEntity(entity);
             }
         }
 

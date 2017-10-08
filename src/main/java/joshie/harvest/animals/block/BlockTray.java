@@ -147,7 +147,7 @@ public class BlockTray extends BlockHFEnum<BlockTray, Tray> implements IAnimalFe
             }
 
             EntityAnimal animal = stats.getAnimal();
-            animal.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 1.0F, (animal.worldObj.rand.nextFloat() - animal.worldObj.rand.nextFloat()) * 0.2F + 1.0F);
+            animal.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 1.0F, (animal.world.rand.nextFloat() - animal.world.rand.nextFloat()) * 0.2F + 1.0F);
         }
     }
 

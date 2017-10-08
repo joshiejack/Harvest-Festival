@@ -32,7 +32,7 @@ public class AnimalContestEntries<E extends EntityAnimal> extends ContestEntries
     @Override
     public List<Pair<E, Integer>> getAvailableEntries(EntityPlayer player) {
         //Validate the existing entries
-        validateExistingEntries(player.worldObj);
+        validateExistingEntries(player.world);
 
         //Grab the list of closest
         List<Pair<E, Integer>> list = Lists.newArrayList();
@@ -41,7 +41,7 @@ public class AnimalContestEntries<E extends EntityAnimal> extends ContestEntries
             int stall = i + 1;
             if (!isEntered(stall)) {
                 BlockPos target = HFApi.towns.getTownForEntity(player).getCoordinatesFromOffset(HFBuildings.FESTIVAL_GROUNDS, location);
-                E animal = getClosestAnimal(player.worldObj, target);
+                E animal = getClosestAnimal(player.world, target);
                 if (animal != null) {
                     Pair<E, Integer> pair = Pair.of(animal, stall);
                     if (!list.contains(pair)) {
@@ -97,7 +97,7 @@ public class AnimalContestEntries<E extends EntityAnimal> extends ContestEntries
         E animal = createEntity(world);
         animal.setPositionAndUpdate(pos.getX(), pos.getY(), pos.getZ());
         animal.setCustomNameTag(getNextEntry(player, used, names));
-        world.spawnEntityInWorld(animal);
+        world.spawnEntity(animal);
         AnimalStats stats = EntityHelper.getStats(animal);
         if (stats != null) {
             animal.setEntityInvulnerable(true);
@@ -113,7 +113,7 @@ public class AnimalContestEntries<E extends EntityAnimal> extends ContestEntries
     //After this is called, we need to sync up the entries to the clients
     @Override
     public void startContest(EntityPlayer player) {
-        World world = player.worldObj;
+        World world = player.world;
         if (entries.size() < 4) {
             used = new HashSet<>();
             entries.stream().forEach(e -> used.add(e.getName(world)));

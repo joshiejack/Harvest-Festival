@@ -112,7 +112,7 @@ public class TownDataServer extends TownData<QuestDataServer, LetterDataServer> 
             EntityNPCBuilder creator = new EntityNPCBuilder(world);
             creator.setPositionAndUpdate(pos.getX(), pos.getY() + 1.5D, pos.getZ());
             creator.setUniqueId(getID()); //Marking the builder as having the same data
-            world.spawnEntityInWorld(creator); //Towns owner now spawned
+            world.spawnEntity(creator); //Towns owner now spawned
         }
     }
 
@@ -204,13 +204,13 @@ public class TownDataServer extends TownData<QuestDataServer, LetterDataServer> 
                 if (npc == HFNPCs.MINER) {
                     WorldServer server = FMLCommonHandler.instance().getMinecraftServerInstance().worldServerForDimension(MINING_ID);
                     EntityNPCMiner entity = NPCHelper.getEntityForNPC(server, HFNPCs.MINER);
-                    int id = HFTrackers.getTowns(entity.worldObj).getMineIDFromCoordinates(getTownCentre());
+                    int id = HFTrackers.getTowns(entity.world).getMineIDFromCoordinates(getTownCentre());
                     MiningProvider provider = ((MiningProvider) server.provider);
                     BlockPos pos = MineManager.modifyNPCPosition(server, provider.getSpawnCoordinateForMine(id, 1), entity);
                     entity.setPosition(pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5);
                     entity.setHeldItem(EnumHand.MAIN_HAND, new ItemStack(Blocks.TORCH));
                     entity.setHeldItem(EnumHand.OFF_HAND, new ItemStack(Items.IRON_PICKAXE));
-                    server.spawnEntityInWorld(entity);
+                    server.spawnEntity(entity);
                 } else if (npc != HFNPCs.GODDESS) {
                     Entity theEntity = NPCHelper.getNPCIfExists((WorldServer) world, townCentre, npc);
                     if (!(theEntity != null && !theEntity.isDead)) {
@@ -226,7 +226,7 @@ public class TownDataServer extends TownData<QuestDataServer, LetterDataServer> 
 
                         entity.setPositionAndUpdate(pos.getX(), pos.getY(), pos.getZ());
                         if (npc == HFNPCs.CARPENTER) entity.setUniqueId(getID()); //Keep the Unique ID the same
-                        world.spawnEntityInWorld(entity);
+                        world.spawnEntity(entity);
                     }
                 }
             }

@@ -23,7 +23,7 @@ public class QuestProgress extends QuestTown {
     @Override
     public boolean isNPCUsed(EntityPlayer player, NPCEntity entity) {
         Town data = entity.getTown();
-        Season season = HFApi.calendar.getDate(player.worldObj).getSeason();
+        Season season = HFApi.calendar.getDate(player.world).getSeason();
         return super.isNPCUsed(player, entity)
                 && (season == Season.SUMMER || season == Season.AUTUMN) && data.hasBuilding(HFBuildings.CAFE) && data.hasBuilding(HFBuildings.BLACKSMITH) && data.hasBuilding(HFBuildings.FISHING_HUT) && data.hasBuilding(HFBuildings.FESTIVAL_GROUNDS);
     }

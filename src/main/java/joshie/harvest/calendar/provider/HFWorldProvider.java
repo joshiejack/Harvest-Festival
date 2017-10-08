@@ -55,7 +55,7 @@ public class HFWorldProvider extends WorldProviderSurface {
     @SideOnly(Side.CLIENT)
     @Override
     public float getSunBrightness(float f) {
-        float brightness = worldObj.getSunBrightnessBody(f);
+        float brightness = world.getSunBrightnessBody(f);
         return HFTrackers.getCalendar(MCClientHelper.getWorld()).getDate().getSeason() == Season.SUMMER ? brightness * 1.25F : brightness;
     }
 
@@ -120,7 +120,7 @@ public class HFWorldProvider extends WorldProviderSurface {
     @Override
     @Nonnull
     public Vec3d getSkyColor(@Nonnull Entity cameraEntity, float partialTicks) {
-        float f1 = worldObj.getCelestialAngle(partialTicks);
+        float f1 = world.getCelestialAngle(partialTicks);
         float f2 = MathHelper.cos(f1 * (float) Math.PI * 2.0F) * 2.0F + 0.5F;
 
         if (f2 < 0.0F) {
@@ -132,14 +132,14 @@ public class HFWorldProvider extends WorldProviderSurface {
         }
 
 
-        int l = getSkyBlendColour(worldObj, new BlockPos(cameraEntity));
+        int l = getSkyBlendColour(world, new BlockPos(cameraEntity));
         float f4 = (float) (l >> 16 & 255) / 255.0F;
         float f5 = (float) (l >> 8 & 255) / 255.0F;
         float f6 = (float) (l & 255) / 255.0F;
         f4 *= f2;
         f5 *= f2;
         f6 *= f2;
-        float f7 = Math.min(1F, worldObj.getRainStrength(partialTicks));
+        float f7 = Math.min(1F, world.getRainStrength(partialTicks));
         float f8;
         float f9;
 
@@ -151,7 +151,7 @@ public class HFWorldProvider extends WorldProviderSurface {
             f6 = f6 * f9 + f8 * (1.0F - f9);
         }
 
-        f8 = worldObj.getThunderStrength(partialTicks);
+        f8 = world.getThunderStrength(partialTicks);
 
         if (f8 > 0.0F) {
             f8 /= 10F;
@@ -162,8 +162,8 @@ public class HFWorldProvider extends WorldProviderSurface {
             f6 = f6 * f10 + f9 * (1.0F - f10);
         }
 
-        if (worldObj.getLastLightningBolt() > 0) {
-            f9 = (float) worldObj.getLastLightningBolt() - partialTicks;
+        if (world.getLastLightningBolt() > 0) {
+            f9 = (float) world.getLastLightningBolt() - partialTicks;
 
             if (f9 > 1.0F) {
                 f9 = 1.0F;
@@ -180,7 +180,7 @@ public class HFWorldProvider extends WorldProviderSurface {
 
     @Override
     public float calculateCelestialAngle(long worldTime, float partialTicks) {
-        Calendar calendar = HFTrackers.getCalendar(worldObj);
+        Calendar calendar = HFTrackers.getCalendar(world);
         if (calendar != null) {
             return calendar.getSeasonData().getCelestialAngle(worldTime % TICKS_PER_DAY);
         }
@@ -190,37 +190,37 @@ public class HFWorldProvider extends WorldProviderSurface {
 
     @Override
     public boolean isBlockHighHumidity(@Nonnull BlockPos pos) {
-        return HFApi.calendar.getDate(worldObj).getSeason() != Season.SUMMER && super.isBlockHighHumidity(pos);
+        return HFApi.calendar.getDate(world).getSeason() != Season.SUMMER && super.isBlockHighHumidity(pos);
     }
 
     private boolean isWater(BlockPos pos) {
-        return worldObj.getBlockState(pos).getMaterial() == Material.WATER;
+        return world.getBlockState(pos).getMaterial() == Material.WATER;
     }
 
     @Override
     public boolean canBlockFreeze(@Nonnull BlockPos pos, boolean byWater) {
-        Biome biome = worldObj.getBiome(pos);
+        Biome biome = world.getBiome(pos);
         if (!biome.canRain() || biome.isHighHumidity()) {
             return super.canBlockFreeze(pos, byWater);
         } else if (biome.isSnowyBiome()) {
-            Weather weather = HFApi.calendar.getWeather(worldObj);
+            Weather weather = HFApi.calendar.getWeather(world);
             return !weather.isRain() && super.canBlockFreeze(pos, byWater);
         } else {
-            Weather weather = HFApi.calendar.getWeather(worldObj);
+            Weather weather = HFApi.calendar.getWeather(world);
             float f = biome.getFloatTemperature(pos);
             if (weather.isSnow() && f > 0.15F) {
-                if (pos.getY() >= 0 && pos.getY() < 256 && worldObj.getLightFor(EnumSkyBlock.BLOCK, pos) < 10) {
-                    IBlockState iblockstate = worldObj.getBlockState(pos);
+                if (pos.getY() >= 0 && pos.getY() < 256 && world.getLightFor(EnumSkyBlock.BLOCK, pos) < 10) {
+                    IBlockState iblockstate = world.getBlockState(pos);
                     Block block = iblockstate.getBlock();
                     if ((block == Blocks.WATER || block == Blocks.FLOWING_WATER) && iblockstate.getValue(BlockLiquid.LEVEL) == 0) {
                         if (!byWater) {
-                            HFApi.tickable.addTickable(worldObj, pos, SnowLoader.INSTANCE);
+                            HFApi.tickable.addTickable(world, pos, SnowLoader.INSTANCE);
                             return true;
                         }
 
                         boolean flag = isWater(pos.west()) && isWater(pos.east()) && isWater(pos.north()) && isWater(pos.south());
                         if (!flag) {
-                            HFApi.tickable.addTickable(worldObj, pos, SnowLoader.INSTANCE);
+                            HFApi.tickable.addTickable(world, pos, SnowLoader.INSTANCE);
                             return true;
                         }
                     }
@@ -233,23 +233,23 @@ public class HFWorldProvider extends WorldProviderSurface {
 
     @Override
     public boolean canSnowAt(@Nonnull BlockPos pos, boolean checkLight) {
-        Biome biome = worldObj.getBiome(pos);
+        Biome biome = world.getBiome(pos);
         if (!biome.canRain() || biome.isHighHumidity()) {
             return super.canSnowAt(pos, checkLight);
         } else if (biome.isSnowyBiome()) {
-            Weather weather = HFApi.calendar.getWeather(worldObj);
+            Weather weather = HFApi.calendar.getWeather(world);
             return !weather.isRain() && super.canSnowAt(pos, checkLight);
         } else {
-            Weather weather = HFApi.calendar.getWeather(worldObj);
+            Weather weather = HFApi.calendar.getWeather(world);
             float f = biome.getFloatTemperature(pos);
             if (weather.isSnow() && f > 0.15F) {
                 if (!checkLight) {
                     return true;
                 } else {
-                    if (pos.getY() >= 0 && pos.getY() < 256 && worldObj.getLightFor(EnumSkyBlock.BLOCK, pos) < 10) {
-                        IBlockState iblockstate = worldObj.getBlockState(pos);
-                        if (iblockstate.getBlock() != Blocks.SNOW_LAYER && iblockstate.getBlock().isReplaceable(worldObj, pos) && Blocks.SNOW_LAYER.canPlaceBlockAt(worldObj, pos)) {
-                            HFApi.tickable.addTickable(worldObj, pos, SnowLoader.INSTANCE);
+                    if (pos.getY() >= 0 && pos.getY() < 256 && world.getLightFor(EnumSkyBlock.BLOCK, pos) < 10) {
+                        IBlockState iblockstate = world.getBlockState(pos);
+                        if (iblockstate.getBlock() != Blocks.SNOW_LAYER && iblockstate.getBlock().isReplaceable(world, pos) && Blocks.SNOW_LAYER.canPlaceBlockAt(world, pos)) {
+                            HFApi.tickable.addTickable(world, pos, SnowLoader.INSTANCE);
                             return true;
                         }
                     }
@@ -262,21 +262,21 @@ public class HFWorldProvider extends WorldProviderSurface {
 
     @Override
     public void updateWeather() {
-        Calendar calendar = HFTrackers.getCalendar(worldObj);
+        Calendar calendar = HFTrackers.getCalendar(world);
         int targetRain = calendar.getTodaysRainStrength();
         int targetStorm = calendar.getTodaysStormStrength();
-        int rainStrength = (int) (worldObj.rainingStrength * 100);
+        int rainStrength = (int) (world.rainingStrength * 100);
         if (rainStrength > targetRain) {
-            worldObj.rainingStrength -= 0.01F;
+            world.rainingStrength -= 0.01F;
         } else if (rainStrength < targetRain) {
-            worldObj.rainingStrength += 0.01F;
+            world.rainingStrength += 0.01F;
         }
 
-        int thunderStrength = (int) (worldObj.thunderingStrength * 100);
+        int thunderStrength = (int) (world.thunderingStrength * 100);
         if (thunderStrength > targetStorm) {
-            worldObj.thunderingStrength -= 0.1F;
+            world.thunderingStrength -= 0.1F;
         } else if (thunderStrength < targetStorm) {
-            worldObj.thunderingStrength += 0.01F;
+            world.thunderingStrength += 0.01F;
         }
     }
 }

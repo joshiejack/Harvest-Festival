@@ -37,9 +37,9 @@ public class SyncHandler {
     public void onPlayerLogin(PlayerLoggedInEvent event) {
         if (event.player instanceof EntityPlayerMP) {
             EntityPlayerMP player = (EntityPlayerMP) event.player;
-            HFTrackers.<PlayerTrackerServer>getPlayerTrackerFromPlayer(player).getStats().setBirthday(player.worldObj); //Set birthday to overworld date
-            HFTrackers.<CalendarServer>getCalendar(player.worldObj).syncToPlayer(player);
-            HFTrackers.<TownTrackerServer>getTowns(event.player.worldObj).syncToPlayer(player);
+            HFTrackers.<PlayerTrackerServer>getPlayerTrackerFromPlayer(player).getStats().setBirthday(player.world); //Set birthday to overworld date
+            HFTrackers.<CalendarServer>getCalendar(player.world).syncToPlayer(player);
+            HFTrackers.<TownTrackerServer>getTowns(event.player.world).syncToPlayer(player);
             HFTrackers.<PlayerTrackerServer>getPlayerTrackerFromPlayer(player).syncPlayerStats(player);
         }
     }

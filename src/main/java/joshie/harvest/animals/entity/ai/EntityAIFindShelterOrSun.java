@@ -18,20 +18,20 @@ public class EntityAIFindShelterOrSun extends EntityAIBase {
     private double shelterY;
     private double shelterZ;
     private final double movementSpeed;
-    private final World theWorld;
+    private final World world;
 
     public EntityAIFindShelterOrSun(EntityAnimal theCreatureIn) {
         this.theCreature = theCreatureIn;
         this.movementSpeed = 1D;
-        this.theWorld = theCreatureIn.worldObj;
+        this.world = theCreatureIn.world;
         this.setMutexBits(1);
     }
 
     @Override
     public boolean shouldExecute() {
-        boolean outside = theWorld.canSeeSky(new BlockPos(theCreature.posX, theCreature.getEntityBoundingBox().minY, theCreature.posZ));
-        CalendarDate date = HFApi.calendar.getDate(theWorld);
-        if (outside && (!theWorld.isDaytime() || theWorld.isRaining() || date.getSeason() == Season.WINTER)) {
+        boolean outside = world.canSeeSky(new BlockPos(theCreature.posX, theCreature.getEntityBoundingBox().minY, theCreature.posZ));
+        CalendarDate date = HFApi.calendar.getDate(world);
+        if (outside && (!world.isDaytime() || world.isRaining() || date.getSeason() == Season.WINTER)) {
             Vec3d vec3d = findLocation(false);
             if (vec3d == null) {
                 return false;
@@ -42,7 +42,7 @@ public class EntityAIFindShelterOrSun extends EntityAIBase {
                 return true;
             }
         }
-        else if (!outside && (theWorld.isDaytime() && !theWorld.isRaining() && date.getSeason() != Season.WINTER)) {
+        else if (!outside && (world.isDaytime() && !world.isRaining() && date.getSeason() != Season.WINTER)) {
             Vec3d vec3d = findLocation(true);
             if (vec3d == null) {
                 return false;
@@ -73,7 +73,7 @@ public class EntityAIFindShelterOrSun extends EntityAIBase {
         for (int i = 0; i < 10; ++i) {
             BlockPos blockpos1 = blockpos.add(random.nextInt(20) - 10, random.nextInt(6) - 3, random.nextInt(20) - 10);
 
-            if (theWorld.canSeeSky(blockpos1) == outside && theCreature.getBlockPathWeight(blockpos1) < 0.0F) {
+            if (world.canSeeSky(blockpos1) == outside && theCreature.getBlockPathWeight(blockpos1) < 0.0F) {
                 return new Vec3d((double)blockpos1.getX(), (double)blockpos1.getY(), (double)blockpos1.getZ());
             }
         }

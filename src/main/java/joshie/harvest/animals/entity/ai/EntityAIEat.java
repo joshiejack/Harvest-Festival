@@ -37,7 +37,7 @@ public class EntityAIEat extends EntityAIAnimal {
     @Override
     public void updateTask() {
         super.updateTask();
-        World world = animal.worldObj;
+        World world = animal.world;
         if (animal.getDistance(destinationBlock.getX(), destinationBlock.getY(), destinationBlock.getZ()) <= 1D) {
             animal.getLookHelper().setLookPosition((double)destinationBlock.getX() + 0.5D, (double)(destinationBlock.getY()), (double)destinationBlock.getZ() + 0.5D, 10.0F, (float)animal.getVerticalFaceSpeed());
             if (eatTimer == 0) eatTimer = 50;
@@ -69,10 +69,10 @@ public class EntityAIEat extends EntityAIAnimal {
     }
 
     boolean isEdible(BlockPos pos, IBlockState state) {
-        return state.getBlock() instanceof IAnimalFeeder && ((IAnimalFeeder) state.getBlock()).feedAnimal(getStats(), animal.worldObj, pos, state, true);
+        return state.getBlock() instanceof IAnimalFeeder && ((IAnimalFeeder) state.getBlock()).feedAnimal(getStats(), animal.world, pos, state, true);
     }
 
     protected void eat(BlockPos pos, IBlockState state) {
-        ((IAnimalFeeder) state.getBlock()).feedAnimal(getStats(), animal.worldObj, pos, state, false);
+        ((IAnimalFeeder) state.getBlock()).feedAnimal(getStats(), animal.world, pos, state, false);
     }
 }

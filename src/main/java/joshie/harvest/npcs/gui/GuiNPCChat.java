@@ -180,8 +180,8 @@ public class GuiNPCChat extends GuiNPCBase {
     @SuppressWarnings("unchecked")
     public String getScript() {
         //Shops
-        if (NPCHelper.isShopOpen(npc, player.worldObj, player) && nextGui == GuiHandler.SHOP_OPTIONS) {
-            return npc.getNPC().getShop(player.worldObj, pos, player).getWelcome(npc.getNPC());
+        if (NPCHelper.isShopOpen(npc, player.world, player) && nextGui == GuiHandler.SHOP_OPTIONS) {
+            return npc.getNPC().getShop(player.world, pos, player).getWelcome(npc.getNPC());
         }
 
         //Info Greeting

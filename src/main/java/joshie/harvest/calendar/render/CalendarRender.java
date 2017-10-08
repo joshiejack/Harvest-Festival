@@ -43,7 +43,7 @@ public class CalendarRender {
 
     @SubscribeEvent
     public void onFogRender(RenderFogEvent event) {
-        if (event.getEntity().worldObj.provider.getDimension() == 0) {
+        if (event.getEntity().world.provider.getDimension() == 0) {
             if (!event.getState().getMaterial().isLiquid()) {
                 //Update the fog smoothly
                 if (fogTarget != fogStart) {
@@ -55,10 +55,10 @@ public class CalendarRender {
                 }
 
                 Minecraft mc = MCClientHelper.getMinecraft();
-                blockpos$mutableblockpos.setPos(mc.thePlayer.posX, mc.thePlayer.posY, mc.thePlayer.posZ);
+                blockpos$mutableblockpos.setPos(mc.player.posX, mc.player.posY, mc.player.posZ);
                 int i1 = mc.gameSettings.fancyGraphics ? 10 : 5;
-                int j = MathHelper.floor_double(mc.thePlayer.posY);
-                int j2 = mc.theWorld.getPrecipitationHeight(blockpos$mutableblockpos).getY();
+                int j = MathHelper.floor(mc.player.posY);
+                int j2 = mc.world.getPrecipitationHeight(blockpos$mutableblockpos).getY();
                 int k2 = j - i1;
                 int l2 = j + i1;
 
@@ -70,9 +70,9 @@ public class CalendarRender {
                     l2 = j2;
                 }
 
-                Weather weather = HFApi.calendar.getWeather(mc.theWorld);
+                Weather weather = HFApi.calendar.getWeather(mc.world);
                 if (k2 != l2) {
-                    Biome biome = mc.theWorld.getBiome(blockpos$mutableblockpos);
+                    Biome biome = mc.world.getBiome(blockpos$mutableblockpos);
                     if (biome.canRain() && !biome.isHighHumidity()) {
                         if (weather == Weather.BLIZZARD) {
                             fogTarget = -20000;
@@ -97,7 +97,7 @@ public class CalendarRender {
 
     @SubscribeEvent
     public void onFogColor(FogColors event) {
-        if (event.getEntity().worldObj.provider.getDimension() == 0) {
+        if (event.getEntity().world.provider.getDimension() == 0) {
             if (!event.getState().getMaterial().isLiquid()) {
                 Weather weather = HFApi.calendar.getWeather(MCClientHelper.getWorld());
                 if (weather == Weather.SNOW || weather == Weather.BLIZZARD) {

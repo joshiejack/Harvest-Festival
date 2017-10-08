@@ -19,13 +19,13 @@ import javax.annotation.Nonnull;
 public class HFCommandWeather extends CommandBase {
     @Override
     @Nonnull
-    public String getCommandName() {
+    public String getName() {
         return "weather";
     }
 
     @Override
     @Nonnull
-    public String getCommandUsage(@Nonnull ICommandSender sender) {
+    public String getUsage(@Nonnull ICommandSender sender) {
         return "/hf weather <sunny|rain|snow|typhoon|blizzard>";
     }
 
@@ -42,6 +42,6 @@ public class HFCommandWeather extends CommandBase {
                     HFTrackers.<CalendarServer>getCalendar(sender.getEntityWorld()).setTodaysWeather(weather);
                 }
             }
-        } else throw new WrongUsageException(getCommandUsage(sender));
+        } else throw new WrongUsageException(getUsage(sender));
     }
 }

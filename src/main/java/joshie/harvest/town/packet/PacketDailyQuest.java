@@ -49,9 +49,9 @@ public class PacketDailyQuest extends PenguinPacket {
 
     @Override
     public void handlePacket(EntityPlayer player) {
-        TownData data = TownHelper.getTownByID(player.worldObj, uuid);
+        TownData data = TownHelper.getTownByID(player.world, uuid);
         if (data != null) {
-            HFTrackers.<TownTrackerClient>getTowns(player.worldObj).getTownByID(uuid).setDailyQuest(quest);
+            HFTrackers.<TownTrackerClient>getTowns(player.world).getTownByID(uuid).setDailyQuest(quest);
         }
     }
 }

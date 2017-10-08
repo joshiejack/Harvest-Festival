@@ -147,7 +147,7 @@ public class  BlockPortal extends BlockHFEnum<BlockPortal, Portal> {
 
     private int getDimension(IBlockAccess access) {
         if (access instanceof World) return ((World)access).provider.getDimension();
-        else if (access instanceof ChunkCache) return ((ChunkCache)access).worldObj.provider.getDimension();
+        else if (access instanceof ChunkCache) return ((ChunkCache)access).world.provider.getDimension();
         else return 0;
     }
 

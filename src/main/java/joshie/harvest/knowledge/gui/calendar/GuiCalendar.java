@@ -41,7 +41,7 @@ public class GuiCalendar extends GuiBase {
 
     public GuiCalendar(EntityPlayer player) {
         super(new ContainerNull(), "calendar", 36);
-        date = HFApi.calendar.getDate(player.worldObj);
+        date = HFApi.calendar.getDate(player.world);
         season = date.getSeason();
         year = date.getYear();
         xSize = 226;

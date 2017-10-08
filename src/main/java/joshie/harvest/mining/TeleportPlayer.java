@@ -20,7 +20,7 @@ public class TeleportPlayer {
     private static TeleportTicker CLIENT_TICKER;
 
     public static boolean isTeleportTargetSetTo(EntityPlayer player, BlockPos target) {
-        if (!player.worldObj.isRemote) {
+        if (!player.world.isRemote) {
             TeleportTicker teleport = SERVER_TICKER.get(player);
             return teleport != null && teleport.location.equals(target);
         } else return CLIENT_TICKER != null && CLIENT_TICKER.location.equals(target);
@@ -28,7 +28,7 @@ public class TeleportPlayer {
 
     public static void setTeleportTargetTo(EntityPlayer player, BlockPos twin, TileEntity target, BlockPos origin) {
         TeleportTicker ticker = new TeleportTicker(player, twin, target, origin);
-        if (!player.worldObj.isRemote) {
+        if (!player.world.isRemote) {
             SERVER_TICKER.put(player, ticker);
         } else CLIENT_TICKER = ticker;
 
@@ -37,7 +37,7 @@ public class TeleportPlayer {
     }
 
     private static void clearTeleportTarget(EntityPlayer player) {
-        if (!player.worldObj.isRemote) SERVER_TICKER.remove(player);
+        if (!player.world.isRemote) SERVER_TICKER.remove(player);
         else CLIENT_TICKER = null;
     }
 
@@ -61,7 +61,7 @@ public class TeleportPlayer {
         private void finishOrCancelTeleport() {
             MinecraftForge.EVENT_BUS.unregister(this);
             clearTeleportTarget(player);
-            if (counter <= 30 && player.worldObj.isRemote) {
+            if (counter <= 30 && player.world.isRemote) {
                 ChatHelper.displayChat(TextHelper.translate("elevator.done"));
             }
         }
@@ -69,17 +69,17 @@ public class TeleportPlayer {
         @SubscribeEvent
         public void onWorldTick(WorldTickEvent event) {
             if (isCollidingWithOrigin()) {
-                if (worldTime != 0 && player.worldObj.getTotalWorldTime() == worldTime) return;
-                else worldTime = player.worldObj.getTotalWorldTime();
+                if (worldTime != 0 && player.world.getTotalWorldTime() == worldTime) return;
+                else worldTime = player.world.getTotalWorldTime();
 
                 counter--;
-                if (counter > 0 && player.worldObj.isRemote && counter %20 == 0) {
+                if (counter > 0 && player.world.isRemote && counter %20 == 0) {
                     ChatHelper.displayChat(TextHelper.formatHF("elevator.wait", (int) Math.floor(counter / 20)));
                 }
 
                 if (counter <= 0) {
                     finishOrCancelTeleport();
-                    if (!player.worldObj.isRemote) {
+                    if (!player.world.isRemote) {
                         if (target != null) {
                             EnumFacing facing = target.getFacing();
                             float yaw = facing == EnumFacing.WEST ? 90F : facing == EnumFacing.EAST ? -90F : facing == EnumFacing.NORTH ? 180F : 0F;
@@ -95,7 +95,7 @@ public class TeleportPlayer {
             BlockPos.PooledMutableBlockPos blockpos$pooledmutableblockpos = BlockPos.PooledMutableBlockPos.retain(axisalignedbb.minX + 0.001D, axisalignedbb.minY + 0.001D, axisalignedbb.minZ + 0.001D);
             BlockPos.PooledMutableBlockPos blockpos$pooledmutableblockpos1 = BlockPos.PooledMutableBlockPos.retain(axisalignedbb.maxX - 0.001D, axisalignedbb.maxY - 0.001D, axisalignedbb.maxZ - 0.001D);
             BlockPos.PooledMutableBlockPos blockpos$pooledmutableblockpos2 = BlockPos.PooledMutableBlockPos.retain();
-            if (player.worldObj.isAreaLoaded(blockpos$pooledmutableblockpos, blockpos$pooledmutableblockpos1)) {
+            if (player.world.isAreaLoaded(blockpos$pooledmutableblockpos, blockpos$pooledmutableblockpos1)) {
                 for (int i = blockpos$pooledmutableblockpos.getX(); i <= blockpos$pooledmutableblockpos1.getX(); ++i) {
                     for (int j = blockpos$pooledmutableblockpos.getY(); j <= blockpos$pooledmutableblockpos1.getY(); ++j) {
                         for (int k = blockpos$pooledmutableblockpos.getZ(); k <= blockpos$pooledmutableblockpos1.getZ(); ++k) {

@@ -15,13 +15,13 @@ import java.util.Map;
 public class HFCommandHelp extends CommandBase {
     @Override
     @Nonnull
-    public String getCommandName() {
+    public String getName() {
         return "help";
     }
 
     @Override
     @Nonnull
-    public String getCommandUsage(@Nonnull ICommandSender sender) {
+    public String getUsage(@Nonnull ICommandSender sender) {
         return "/hf help";
     }
 
@@ -43,10 +43,10 @@ public class HFCommandHelp extends CommandBase {
             Map<String, ICommand> map = CommandManager.INSTANCE.getCommandMap();
             ICommand icommand = map.get(parameters[0]);
             if (icommand != null) {
-                throw new WrongUsageException(icommand.getCommandUsage(sender));
+                throw new WrongUsageException(icommand.getUsage(sender));
             }
 
-            if (MathHelper.parseIntWithDefault(parameters[0], -1) != -1) {
+            if (MathHelper.getInt(parameters[0], -1) != -1) {
                 throw numberinvalidexception;
             }
 
@@ -56,13 +56,13 @@ public class HFCommandHelp extends CommandBase {
         int j = Math.min((k + 1) * i0, list.size());
         TextComponentTranslation componentTranslation1 = new TextComponentTranslation("hf.commands.help.header", k + 1, i + 1);
         componentTranslation1.getStyle().setColor(TextFormatting.DARK_GREEN);
-        sender.addChatMessage(componentTranslation1);
+        sender.sendMessage(componentTranslation1);
 
         for (int l = k * i0; l < j; ++l) {
             ICommand icommand1 = list.get(l);
-            TextComponentTranslation componentTranslation = new TextComponentTranslation(icommand1.getCommandUsage(sender));
-            componentTranslation.getStyle().setClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/" + icommand1.getCommandName() + " "));
-            sender.addChatMessage(componentTranslation);
+            TextComponentTranslation componentTranslation = new TextComponentTranslation(icommand1.getUsage(sender));
+            componentTranslation.getStyle().setClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/" + icommand1.getName() + " "));
+            sender.sendMessage(componentTranslation);
         }
     }
 }

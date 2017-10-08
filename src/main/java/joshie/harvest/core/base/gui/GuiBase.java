@@ -47,7 +47,7 @@ public abstract class GuiBase extends GuiScreen {
 
     @Override
     public void initGui() {
-        mc.thePlayer.openContainer = container;
+        mc.player.openContainer = container;
         guiLeft = (width - xSize) / 2;
         guiTop = (height - ySize) / 2;
     }

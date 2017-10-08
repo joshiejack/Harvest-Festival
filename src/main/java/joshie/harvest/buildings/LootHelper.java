@@ -55,7 +55,7 @@ public class LootHelper {
         public void markDirty() {}
 
         @Override
-        public boolean isUseableByPlayer(EntityPlayer player) {
+        public boolean isUsableByPlayer(EntityPlayer player) {
             return false;
         }
 

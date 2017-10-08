@@ -46,9 +46,9 @@ public class PacketQuestStart extends PacketSyncData {
         Quest quest = getClosestTownToEntity(player, false).getDailyQuest();
         if (quest != null && !data.getCurrent().contains(quest)) {
             data.startQuest(quest, true, town.getDailyQuest().writeToNBT(new NBTTagCompound()));
-            player.openGui(HarvestFestival.instance, GuiHandler.QUEST_BOARD, player.worldObj, pos.getX(), pos.getY(), pos.getZ());
-            town.clearDailyQuest(player.worldObj);
-            MCServerHelper.markTileForUpdate(player.worldObj, pos);
+            player.openGui(HarvestFestival.instance, GuiHandler.QUEST_BOARD, player.world, pos.getX(), pos.getY(), pos.getZ());
+            town.clearDailyQuest(player.world);
+            MCServerHelper.markTileForUpdate(player.world, pos);
         }
     }
 }

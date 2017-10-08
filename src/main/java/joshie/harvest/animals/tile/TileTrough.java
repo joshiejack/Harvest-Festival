@@ -57,7 +57,7 @@ public class TileTrough extends TileFillableConnected<TileTrough> {
 
     @Override
     protected boolean isValidConnection(BlockPos pos) {
-        return worldObj.getTileEntity(pos) instanceof TileTrough;
+        return world.getTileEntity(pos) instanceof TileTrough;
     }
 
     @Override
@@ -69,8 +69,8 @@ public class TileTrough extends TileFillableConnected<TileTrough> {
     public Section getSection() {
         if (section != null) return section;
         else {
-            IBlockState state = worldObj.getBlockState(pos);
-            IBlockState actualState = state.getActualState(worldObj, pos);
+            IBlockState state = world.getBlockState(pos);
+            IBlockState actualState = state.getActualState(world, pos);
             section = actualState.getValue(BlockTrough.SECTION);
         }
 
@@ -80,8 +80,8 @@ public class TileTrough extends TileFillableConnected<TileTrough> {
     public EnumFacing getFacing() {
         if (facing != null) return facing;
         else {
-            IBlockState state = worldObj.getBlockState(pos);
-            IBlockState actualState = state.getActualState(worldObj, pos);
+            IBlockState state = world.getBlockState(pos);
+            IBlockState actualState = state.getActualState(world, pos);
             facing = actualState.getValue(BlockTrough.FACING);
         }
 

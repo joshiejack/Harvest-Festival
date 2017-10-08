@@ -73,15 +73,15 @@ public class NPCHelper implements INPCHelper {
 
     @Override
     public void forceScriptOpen(EntityPlayer player, EntityAgeable npc, Script script) {
-        player.openGui(HarvestFestival.instance, GuiHandler.FORCED_NPC, player.worldObj, npc.getEntityId(), Script.REGISTRY.getValues().indexOf(script), -1);
+        player.openGui(HarvestFestival.instance, GuiHandler.FORCED_NPC, player.world, npc.getEntityId(), Script.REGISTRY.getValues().indexOf(script), -1);
     }
 
     public static BlockPos getCoordinatesForLocation(EntityNPCHuman npc, @Nonnull BuildingLocation location) {
         return npc.getHomeTown().getCoordinatesFor(location);
     }
 
-    public static Selection getShopSelection(World worldObj, BlockPos pos, NPC npc, EntityPlayer player) {
-        return new ShopSelection(npc.getShop(worldObj, pos, player), player);
+    public static Selection getShopSelection(World world, BlockPos pos, NPC npc, EntityPlayer player) {
+        return new ShopSelection(npc.getShop(world, pos, player), player);
     }
 
     public static BlockPos getHomeForEntity(EntityNPC entity) {
@@ -112,7 +112,7 @@ public class NPCHelper implements INPCHelper {
     }
 
     private static boolean canPlayerOpenShop(NPC npc, Shop shop, @Nonnull EntityPlayer player) {
-        return (!player.worldObj.isRemote && HFTrackers.<PlayerTrackerServer>getPlayerTrackerFromPlayer(player).getRelationships().isStatusMet(npc, RelationStatus.MET) || player.worldObj.isRemote) && (shop.canBuyFromShop(player) || shop.canSellToShop(player));
+        return (!player.world.isRemote && HFTrackers.<PlayerTrackerServer>getPlayerTrackerFromPlayer(player).getRelationships().isStatusMet(npc, RelationStatus.MET) || player.world.isRemote) && (shop.canBuyFromShop(player) || shop.canSellToShop(player));
     }
 
     public static boolean isShopOpen(EntityNPC npc, World world, @Nonnull EntityPlayer player) {

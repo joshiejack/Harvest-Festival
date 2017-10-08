@@ -44,7 +44,7 @@ public class TileIncubator extends TileFillableSizedFaceable {
                             stats.copyHappiness(EntityHelper.getPlayerFromUUID(incubator.owner), incubator.relationship, 50D);
                         }
 
-                        world.spawnEntityInWorld(baby);
+                        world.spawnEntity(baby);
                     }
 
                     incubator.owner = null; //Clear out owner
@@ -88,9 +88,9 @@ public class TileIncubator extends TileFillableSizedFaceable {
 
     private int getBabyAmount() {
         int amount = 1;
-        if (size == Size.MEDIUM && worldObj.rand.nextInt(20) == 0) amount++;
-        if (size == Size.LARGE && worldObj.rand.nextInt(10) == 0) amount++;
-        if (size == Size.LARGE && worldObj.rand.nextInt(50) == 0) amount++;
+        if (size == Size.MEDIUM && world.rand.nextInt(20) == 0) amount++;
+        if (size == Size.LARGE && world.rand.nextInt(10) == 0) amount++;
+        if (size == Size.LARGE && world.rand.nextInt(50) == 0) amount++;
         return amount;
     }
 

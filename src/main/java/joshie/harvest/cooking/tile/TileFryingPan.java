@@ -16,6 +16,6 @@ public class TileFryingPan extends TileHeatable {
         super.animate();
 
         //Play the sound effect
-        if (getCookTimer() == 1) worldObj.playSound(null, getPos(), HFSounds.FRYING_PAN, SoundCategory.BLOCKS, 1F, 1F);
+        if (getCookTimer() == 1) world.playSound(null, getPos(), HFSounds.FRYING_PAN, SoundCategory.BLOCKS, 1F, 1F);
     }
 }

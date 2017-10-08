@@ -55,7 +55,7 @@ public class ToolEvents {
     public static class CursedTools {
         @SubscribeEvent
         public void openContainer(PlayerTickEvent event) {
-            if (!event.player.capabilities.isCreativeMode && event.player.worldObj.getTotalWorldTime() % 200 == 0) {
+            if (!event.player.capabilities.isCreativeMode && event.player.world.getTotalWorldTime() % 200 == 0) {
                 int level = 0;
                 Set<Item> added = new HashSet<>();
                 for (ItemStack stack : event.player.inventory.mainInventory) {
@@ -91,9 +91,9 @@ public class ToolEvents {
 
     @SubscribeEvent
     public void onPlayerTick(PlayerTickEvent event) {
-        if (event.phase == Phase.END || event.player.worldObj.getTotalWorldTime() %20 == 0) {
+        if (event.phase == Phase.END || event.player.world.getTotalWorldTime() %20 == 0) {
             if (event.player.isPotionActive(EXHAUSTION)) {
-                if (event.player.worldObj.rand.nextInt(256) == 0) {
+                if (event.player.world.rand.nextInt(256) == 0) {
                     event.player.addPotionEffect(new PotionEffect(MobEffects.BLINDNESS, 300, 0, true, false));
                 }
             }

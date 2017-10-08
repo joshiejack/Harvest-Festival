@@ -45,7 +45,7 @@ public class GuiCookbook extends GuiScreen {
         setPage(page == null ? MASTER : page);
         ingredients.clear();
         EntityPlayer player = MCClientHelper.getPlayer();
-        World world = player.worldObj;
+        World world = player.world;
         BlockPos pos = new BlockPos(player);
         int reach = player.capabilities.isCreativeMode ? 5 : 4;
         List<IInventory> fridges = CookingHelper.getAllFridges(player, world, pos, reach);

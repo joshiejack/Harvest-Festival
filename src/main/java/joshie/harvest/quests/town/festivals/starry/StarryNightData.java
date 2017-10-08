@@ -114,7 +114,7 @@ public class StarryNightData extends Selection<QuestStarryNight> {
             if (pos != null) positions.add(pos);
         }
 
-        positions.stream().forEach(pos -> spawnPlateAtLocation(player, player.worldObj, used, pos));
+        positions.stream().forEach(pos -> spawnPlateAtLocation(player, player.world, used, pos));
         HFApi.player.getRelationsForPlayer(player).affectRelationship(entity.getNPC(), 5000);
         for (NPC npc: family) {
             HFApi.player.getRelationsForPlayer(player).affectRelationship(npc, 2500);
@@ -139,9 +139,9 @@ public class StarryNightData extends Selection<QuestStarryNight> {
         public void execute(NPCEntity npc) {
             super.execute(npc);
             for (BlockPos pos: positions) {
-                if (destroy) npc.getAsEntity().worldObj.setBlockToAir(pos);
+                if (destroy) npc.getAsEntity().world.setBlockToAir(pos);
                 else {
-                    TileEntity tile = npc.getAsEntity().worldObj.getTileEntity(pos);
+                    TileEntity tile = npc.getAsEntity().world.getTileEntity(pos);
                     if (tile instanceof TilePlate) {
                         ((TilePlate) tile).setContents(null);
                     }
@@ -152,7 +152,7 @@ public class StarryNightData extends Selection<QuestStarryNight> {
             if (destroy) { //Complete this quest too
                 QuestStarryNight quest = TownHelper.getClosestTownToEntity(npc, false).getQuests().getAQuest(HFFestivals.STARRY_NIGHT.getQuest());
                 if (quest != null) {
-                    TownHelper.getClosestTownToEntity(npc, false).getQuests().markCompleted(npc.worldObj, null, quest, false);
+                    TownHelper.getClosestTownToEntity(npc, false).getQuests().markCompleted(npc.world, null, quest, false);
                 }
             } */
         }

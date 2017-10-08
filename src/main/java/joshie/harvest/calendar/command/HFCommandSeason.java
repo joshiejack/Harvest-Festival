@@ -21,13 +21,13 @@ import javax.annotation.Nonnull;
 public class HFCommandSeason extends CommandBase {
     @Override
     @Nonnull
-    public String getCommandName() {
+    public String getName() {
         return "season";
     }
 
     @Override
     @Nonnull
-    public String getCommandUsage(@Nonnull ICommandSender sender) {
+    public String getUsage(@Nonnull ICommandSender sender) {
         return "/hf season <spring|summer|autumn|winter>";
     }
 
@@ -44,10 +44,10 @@ public class HFCommandSeason extends CommandBase {
                     CalendarServer calendar = HFTrackers.getCalendar(sender.getEntityWorld());
                     int day = calendar.getDate().getDay();
                     int year = calendar.getDate().getYear() + 1;
-                    long leftover = server.worldServers[0].getWorldTime() % HFCalendar.TICKS_PER_DAY;
+                    long leftover = server.worlds[0].getWorldTime() % HFCalendar.TICKS_PER_DAY;
                     CalendarHelper.setWorldTime(server, CalendarHelper.getTime(day, season, year) + leftover);
                 }
             }
-        } else throw new WrongUsageException(getCommandUsage(sender));
+        } else throw new WrongUsageException(getUsage(sender));
     }
 }

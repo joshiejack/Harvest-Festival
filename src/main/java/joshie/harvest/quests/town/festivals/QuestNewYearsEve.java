@@ -73,7 +73,7 @@ public class QuestNewYearsEve extends QuestFestival {
 
     @Override
     public void onQuestSelectedForDisplay(EntityPlayer player, NPCEntity entity) {
-        time = CalendarHelper.getTime(player.worldObj);
+        time = CalendarHelper.getTime(player.world);
     }
 
     private boolean isCorrectTime() {
@@ -90,7 +90,7 @@ public class QuestNewYearsEve extends QuestFestival {
     @Nullable
     @SideOnly(Side.CLIENT)
     public String getLocalizedScript(EntityPlayer player, NPCEntity entity) {
-        CalendarDate date = calendar.getDate(player.worldObj);
+        CalendarDate date = calendar.getDate(player.world);
         if (!isCorrectTime() || date.getSeason() != Season.WINTER) return null;
         return getLocalized("start");
     }
@@ -112,8 +112,8 @@ public class QuestNewYearsEve extends QuestFestival {
             //Spawn the fireworks first
             for (int x = -10; x <= 10; x++) {
                 for (int z = -10; z <= 10; z++) {
-                    if (npc.worldObj.rand.nextBoolean()) {
-                        npc.worldObj.spawnEntityInWorld(new EntityFireworkRocket(npc.worldObj, npc.posX + x, npc.posY + npc.worldObj.rand.nextInt(15), npc.posZ + z, getRandomFireworks(npc.worldObj.rand)));
+                    if (npc.world.rand.nextBoolean()) {
+                        npc.world.spawnEntity(new EntityFireworkRocket(npc.world, npc.posX + x, npc.posY + npc.world.rand.nextInt(15), npc.posZ + z, getRandomFireworks(npc.world.rand)));
                     }
                 }
             }
@@ -121,11 +121,11 @@ public class QuestNewYearsEve extends QuestFestival {
             MinecraftServer server = FMLCommonHandler.instance().getMinecraftServerInstance();
             server.getCommandManager().executeCommand(npc, "/summon fireworks_rocket ~ ~ ~ {LifeTime:60,FireworksItem:{id:fireworks,Count:1,tag:{Fireworks:{Explosions:[{Type:1,Flicker:0,Trail:1,Colors:[11743532,14602026],FadeColors:[]}]}}}}");
             //Set the world time to one tick before the new year!
-            CalendarServer calendar = HFTrackers.getCalendar(npc.worldObj);
+            CalendarServer calendar = HFTrackers.getCalendar(npc.world);
             CalendarHelper.setWorldTime(server, CalendarHelper.getTime(0, Season.SPRING, calendar.getDate().getYear() + 1) - 1);
 
             //Add 500RP to all the npcs for any players that are in range
-            for (EntityPlayer player : EntityHelper.getEntities(EntityPlayer.class, npc.worldObj, new BlockPos(npc), 64, 64)) {
+            for (EntityPlayer player : EntityHelper.getEntities(EntityPlayer.class, npc.world, new BlockPos(npc), 64, 64)) {
                 NPC.REGISTRY.values().stream().filter(aNPC -> HFApi.player.getRelationsForPlayer(player).isStatusMet(aNPC, RelationStatus.MET))
                         .forEach(aNPC -> HFApi.player.getRelationsForPlayer(player).affectRelationship(aNPC, 500));
             }

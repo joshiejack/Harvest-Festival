@@ -25,6 +25,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
@@ -86,7 +87,7 @@ public class EntityHarvestSheep extends EntitySheep implements IEntityAdditional
         boolean special = ITEM_STACK.matchesAny(stack, getStacks()) || ITEM.matchesAny(stack, HFAnimals.TREATS, Items.SHEARS);
         if (stack == null || !special) {
             if (!stats.performTest(AnimalTest.BEEN_LOVED)) {
-                stats.performAction(worldObj, null, AnimalAction.PETTED); //Love <3
+                stats.performAction(world, null, AnimalAction.PETTED); //Love <3
                 SoundEvent s = getAmbientSound();
                 if (s != null) {
                     playSound(s, 2F, getSoundPitch());
@@ -99,13 +100,13 @@ public class EntityHarvestSheep extends EntitySheep implements IEntityAdditional
 
     @Override
     @Nonnull
-    public List<ItemStack> onSheared(ItemStack item, net.minecraft.world.IBlockAccess world, BlockPos pos, int fortune) {
+    public List<ItemStack> onSheared(ItemStack item, IBlockAccess blockAccess, BlockPos pos, int fortune) {
         List<ItemStack> ret = new ArrayList<>();
-        EntityPlayer player = worldObj.getClosestPlayerToEntity(this, 178D);
+        EntityPlayer player = world.getClosestPlayerToEntity(this, 178D);
         if (!isChild()) {
             if (player != null) {
                 ret.add(stats.getType().getProduct(stats));
-                if (!worldObj.isRemote) {
+                if (!world.isRemote) {
                     setSheared(true);
                     stats.setProduced(stats.getProductsPerDay());
                 }
@@ -124,7 +125,7 @@ public class EntityHarvestSheep extends EntitySheep implements IEntityAdditional
     @Override
     @Nonnull
     public EntitySheep createChild(EntityAgeable ageable) {
-        return new EntityHarvestSheep(worldObj);
+        return new EntityHarvestSheep(world);
     }
 
     @Override

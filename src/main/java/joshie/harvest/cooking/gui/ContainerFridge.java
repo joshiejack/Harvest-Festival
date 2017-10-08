@@ -31,7 +31,7 @@ public class ContainerFridge extends ContainerExpanded {
 
     @Override
     public boolean canInteractWith(EntityPlayer player) {
-        return fridge.getContents().isUseableByPlayer(player);
+        return fridge.getContents().isUsableByPlayer(player);
     }
 
     @Override

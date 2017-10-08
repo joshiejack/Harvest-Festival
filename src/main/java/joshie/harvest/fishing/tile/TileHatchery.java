@@ -67,14 +67,14 @@ public class TileHatchery extends TileSingleStack implements ITickable {
     public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity packet) {
         super.onDataPacket(net, packet);
         onFishChanged(); //Update the stack size
-        render.doRenderUpdate(worldObj, pos, last);
+        render.doRenderUpdate(world, pos, last);
     }
 
     @Override
     public void handleUpdateTag(@Nonnull NBTTagCompound tag) {
         super.handleUpdateTag(tag);
         onFishChanged(); //Update the stack size
-        render.doRenderUpdate(worldObj, pos, last);
+        render.doRenderUpdate(world, pos, last);
     }
 
     @Override
@@ -95,15 +95,15 @@ public class TileHatchery extends TileSingleStack implements ITickable {
 
     private boolean removeFish(EntityPlayer player) {
         if (stack != null) {
-            if (!worldObj.isRemote) {
+            if (!world.isRemote) {
                 boolean broke = false;
-                if (worldObj.rand.nextInt(100) > breakChance) {
+                if (world.rand.nextInt(100) > breakChance) {
 
 
-                    IBlockState state = worldObj.getBlockState(getPos());
-                    if (worldObj.setBlockToAir(getPos())) {
+                    IBlockState state = world.getBlockState(getPos());
+                    if (world.setBlockToAir(getPos())) {
                         broke = true;
-                        worldObj.playEvent(null, 2001, getPos(), Block.getStateId(state));
+                        world.playEvent(null, 2001, getPos(), Block.getStateId(state));
                     }
                 } else breakChance -= 25;
 
@@ -140,8 +140,8 @@ public class TileHatchery extends TileSingleStack implements ITickable {
 
     @Override
     public void update() {
-        if (worldObj.isRemote) {
-            render.rotate(worldObj);
+        if (world.isRemote) {
+            render.rotate(world);
         }
     }
 

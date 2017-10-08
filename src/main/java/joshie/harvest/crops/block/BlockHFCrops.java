@@ -90,7 +90,7 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
 
     @Override
     public int getMetaFromState(IBlockState state) {
-        if (state.getPropertyNames().contains(property)) return (state.getValue(property)).ordinal();
+        if (state.getPropertyKeys().contains(property)) return (state.getValue(property)).ordinal();
         else return 0;
     }
 
@@ -452,7 +452,7 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
 
     @SideOnly(Side.CLIENT)
     @Override
-    public boolean addHitEffects(IBlockState state, World worldObj, RayTraceResult target, ParticleManager manager) {
+    public boolean addHitEffects(IBlockState state, World world, RayTraceResult target, ParticleManager manager) {
         return true;
     }
 

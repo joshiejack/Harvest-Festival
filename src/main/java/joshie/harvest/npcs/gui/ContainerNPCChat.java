@@ -48,13 +48,13 @@ public class ContainerNPCChat extends ContainerBase {
             if (nextGui == GuiHandler.NEXT_NONE) {
                 if (quest != null) quest.onChatClosed(player, npc, sneaking);
             } else if (nextGui == SHOP_OPTIONS) {
-                player.openGui(HarvestFestival.instance, SHOP_OPTIONS, player.worldObj, npc.getEntityId(), 0, NEXT_NONE);
+                player.openGui(HarvestFestival.instance, SHOP_OPTIONS, player.world, npc.getEntityId(), 0, NEXT_NONE);
             } else if (quest != null) {
-                player.openGui(HarvestFestival.instance, SELECTION, player.worldObj, npc.getEntityId(), 0, Quest.REGISTRY.getValues().indexOf(Quest.REGISTRY.getValue(quest.getRegistryName())));
+                player.openGui(HarvestFestival.instance, SELECTION, player.world, npc.getEntityId(), 0, Quest.REGISTRY.getValues().indexOf(Quest.REGISTRY.getValue(quest.getRegistryName())));
             }
 
             //Add the bonus RP after doing quest based stuff.
-            if (!player.worldObj.isRemote) {
+            if (!player.world.isRemote) {
                 HFTrackers.<PlayerTrackerServer>getPlayerTrackerFromPlayer(player).getRelationships().talkTo(player, npc.getNPC());
             }
         }

@@ -104,7 +104,7 @@ public abstract class ContestEntries<O, E extends ContestEntry, Q extends QuestC
     }
 
     public void startContest(EntityPlayer player) {
-        World world = player.worldObj;
+        World world = player.world;
         if (entries.size() < 4) {
             usedNPCS = new HashSet<>();
             for (int i = 1; i <= 4 && entries.size() < 4; i++) {

@@ -53,8 +53,8 @@ public abstract class QuestContest<E extends ContestEntries> extends QuestFestiv
     @Override
     @SuppressWarnings("unchecked")
     public void onQuestSelectedForDisplay(EntityPlayer player, NPCEntity npc) {
-        time = CalendarHelper.getTime(player.worldObj);
-        if (!player.worldObj.isRemote) { //Sync up the animal names and stuff
+        time = CalendarHelper.getTime(player.world);
+        if (!player.world.isRemote) { //Sync up the animal names and stuff
             entries.setEntryNames(entries.getAvailableEntryNames(player));
             PacketHandler.sendToClient(new PacketQuestUpdateNames(getEntries().getNames()), player);
         }
@@ -82,7 +82,7 @@ public abstract class QuestContest<E extends ContestEntries> extends QuestFestiv
 
     void targetEntries(EntityPlayer player, NPCEntity entity) {
         Town town = entity.getTown();
-        List<EntityNPCHuman> npcs = EntityHelper.getEntities(EntityNPCHuman.class, player.worldObj, entity.getPos(), 64D, 10D);
+        List<EntityNPCHuman> npcs = EntityHelper.getEntities(EntityNPCHuman.class, player.world, entity.getPos(), 64D, 10D);
         for (EntityNPCHuman theNPC: npcs) {
             BlockPos building = entries.getLocationFromNPC(theNPC.getNPC());
             if (building != null) {
@@ -132,7 +132,7 @@ public abstract class QuestContest<E extends ContestEntries> extends QuestFestiv
             if (entries.isEntered(player)) return getLocalized("start");
         }
 
-        return player.worldObj.rand.nextInt(4) == 0 ? getLocalized("wait") : null;
+        return player.world.rand.nextInt(4) == 0 ? getLocalized("wait") : null;
     }
 
     @Override

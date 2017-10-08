@@ -32,6 +32,6 @@ public class PacketSyncStrength extends PenguinPacket {
 
     @Override
     public void handlePacket(EntityPlayer player) {
-        HFTrackers.<CalendarClient>getCalendar(player.worldObj).setStrength(rain, storm);
+        HFTrackers.<CalendarClient>getCalendar(player.world).setStrength(rain, storm);
     }
 }

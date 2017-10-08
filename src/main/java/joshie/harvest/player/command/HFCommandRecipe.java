@@ -18,13 +18,13 @@ import javax.annotation.Nonnull;
 public class HFCommandRecipe extends CommandBase {
     @Override
     @Nonnull
-    public String getCommandName() {
+    public String getName() {
         return "recipe";
     }
 
     @Override
     @Nonnull
-    public String getCommandUsage(@Nonnull ICommandSender sender) {
+    public String getUsage(@Nonnull ICommandSender sender) {
         return "/hf recipe [player] <value|all|clear>";
     }
 
@@ -56,6 +56,6 @@ public class HFCommandRecipe extends CommandBase {
                         break;
                 }
             } catch (NumberFormatException | PlayerNotFoundException ignored) {}
-        } else throw new WrongUsageException(getCommandUsage(sender));
+        } else throw new WrongUsageException(getUsage(sender));
     }
 }

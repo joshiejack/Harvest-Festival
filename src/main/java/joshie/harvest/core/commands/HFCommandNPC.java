@@ -12,13 +12,13 @@ import javax.annotation.Nonnull;
 public class HFCommandNPC extends CommandBase {
     @Override
     @Nonnull
-    public String getCommandName() {
+    public String getName() {
         return "npclist";
     }
 
     @Override
     @Nonnull
-    public String getCommandUsage(@Nonnull ICommandSender sender) {
+    public String getUsage(@Nonnull ICommandSender sender) {
         return "/hf npclist";
     }
 
@@ -32,7 +32,7 @@ public class HFCommandNPC extends CommandBase {
         sender.getEntityWorld().loadedEntityList.stream().filter(entity -> entity instanceof EntityNPC).forEach(entity -> {
             EntityNPC npc = (EntityNPC) entity;
             TextComponentString componentTranslation = new TextComponentString(npc.getNPC().getLocalizedName() + " is hiding at the coordinates " + (int) npc.posX + " " + (int) npc.posY + " " + (int) npc.posZ);
-            sender.addChatMessage(componentTranslation);
+            sender.sendMessage(componentTranslation);
         });
     }
 }

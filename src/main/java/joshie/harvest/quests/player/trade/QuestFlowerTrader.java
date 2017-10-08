@@ -43,15 +43,15 @@ public class QuestFlowerTrader extends QuestTrade {
     @SideOnly(Side.CLIENT)
     @Override
     public String getLocalizedScript(EntityPlayer player, NPCEntity entity) {
-        CalendarDate today = HFApi.calendar.getDate(player.worldObj);
+        CalendarDate today = HFApi.calendar.getDate(player.world);
         int days = date == null ? 5 : CalendarHelper.getDays(date, today);
         if (received > 0 && days >= 5) received = 0;
         if (received < 10) {
-            Season season = HFApi.calendar.getDate(player.worldObj).getSeason();
+            Season season = HFApi.calendar.getDate(player.world).getSeason();
             if (season == SPRING || season == SUMMER || season == AUTUMN) {
                 //Jade informs the player that she will happily trade flowers
                 //For a bag of seeds
-                int chance = player.worldObj.rand.nextInt(3);
+                int chance = player.world.rand.nextInt(3);
                 return chance == 0 ? getLocalized("complete.yes1"): chance == 1 ? getLocalized("complete.yes2") : getLocalized("complete.yes3");
                 //Jade Informs the player that she doesn't have in stock this time of year
             } else return getLocalized("complete.no");
@@ -60,7 +60,7 @@ public class QuestFlowerTrader extends QuestTrade {
 
     @Override
     public void onChatClosed(EntityPlayer player, NPCEntity entity, boolean wasSneaking) {
-        CalendarDate today = HFApi.calendar.getDate(player.worldObj);
+        CalendarDate today = HFApi.calendar.getDate(player.world);
         int days = date == null ? 5 : CalendarHelper.getDays(date, today);
         if (date != null && received > 0 && days >= 5) {
             date = null;
@@ -71,14 +71,14 @@ public class QuestFlowerTrader extends QuestTrade {
         for (int i = 0; i < (wasSneaking ? 10: 1); i++) {
             if (received < 10) {
                 if (InventoryHelper.takeItemsIfHeld(player, SPECIAL, SearchType.FLOWER, 5) != null) {
-                    Season season = HFApi.calendar.getDate(player.worldObj).getSeason();
+                    Season season = HFApi.calendar.getDate(player.world).getSeason();
                     if (season == SPRING || season == SUMMER || season == AUTUMN) {
                         rand.setSeed(today.hashCode());
                         if (rand.nextInt(30) == 0) rewardItem(player, HFCrops.TUTORIAL.getSeedStack(1));
                         else if (season == SPRING) rewardItem(player, HFCrops.TURNIP.getSeedStack(1));
                         else if (season == SUMMER) rewardItem(player, HFCrops.ONION.getSeedStack(1));
                         else rewardItem(player, HFCrops.SPINACH.getSeedStack(1));
-                        if (!player.worldObj.isRemote) {
+                        if (!player.world.isRemote) {
                             received++; //Increase the amount we've received
                             if (received >= 10) {
                                 received = 10; //Max it out

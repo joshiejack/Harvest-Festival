@@ -247,7 +247,7 @@ public class NPC extends HFRegistry<NPC> implements CalendarEntry {
     public String getGreeting(EntityPlayer player, EntityAgeable entity) {
         Collections.shuffle(conditionals);
         for (IConditionalGreeting greeting : conditionals) {
-            if (greeting.canDisplay(player, entity, this) && player.worldObj.rand.nextDouble() * 100D < greeting.getDisplayChance()) {
+            if (greeting.canDisplay(player, entity, this) && player.world.rand.nextDouble() * 100D < greeting.getDisplayChance()) {
                 return greeting.getLocalizedText(player, entity, this);
             }
         }

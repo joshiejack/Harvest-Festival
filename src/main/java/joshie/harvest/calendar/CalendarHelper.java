@@ -114,14 +114,14 @@ public class CalendarHelper {
 
     public static void setWorldTime(MinecraftServer server, long worldTime) {
         worldTime = Math.max(0L, worldTime);
-        for (int j = 0; j < server.worldServers.length; ++j) {
-            WorldServer worldserver = server.worldServers[j];
+        for (int j = 0; j < server.worlds.length; ++j) {
+            WorldServer worldserver = server.worlds[j];
             worldserver.setWorldTime(worldTime);
         }
 
         if (worldTime % TICKS_PER_DAY != 23999) {
-            CalendarServer calendar = HFTrackers.getCalendar(server.worldServers[0]);
-            calendar.recalculateAndUpdate(server.worldServers[0]);
+            CalendarServer calendar = HFTrackers.getCalendar(server.worlds[0]);
+            calendar.recalculateAndUpdate(server.worlds[0]);
         }
     }
 

@@ -20,7 +20,7 @@ public class VanillaCommands {
     public static boolean executeVanillaTime(MinecraftServer server, ICommandSender sender, String[] args) throws NumberInvalidException {
         if (args.length > 1) {
             if (args[0].equals("set")) {
-                long time = CalendarHelper.getElapsedDays(server.worldServers[0].getWorldTime()) * HFCalendar.TICKS_PER_DAY;
+                long time = CalendarHelper.getElapsedDays(server.worlds[0].getWorldTime()) * HFCalendar.TICKS_PER_DAY;
                 switch (args[1]) {
                     case "force-day":
                         time = 1000;
@@ -53,15 +53,15 @@ public class VanillaCommands {
     public static boolean executeVanillaWeather(MinecraftServer server, ICommandSender sender, String[] args) throws WrongUsageException {
         if (args.length >= 1 && args.length <= 2) {
             if ("clear".equalsIgnoreCase(args[0])) {
-                HFTrackers.<CalendarServer>getCalendar(server.worldServers[0]).setTodaysWeather(Weather.SUNNY);
+                HFTrackers.<CalendarServer>getCalendar(server.worlds[0]).setTodaysWeather(Weather.SUNNY);
             } else if ("rain".equalsIgnoreCase(args[0])) {
-                HFTrackers.<CalendarServer>getCalendar(server.worldServers[0]).setTodaysWeather(Weather.RAIN);
+                HFTrackers.<CalendarServer>getCalendar(server.worlds[0]).setTodaysWeather(Weather.RAIN);
             } else {
                 if (!"thunder".equalsIgnoreCase(args[0])) {
                     throw new WrongUsageException("commands.weather.usage");
                 }
 
-                HFTrackers.<CalendarServer>getCalendar(server.worldServers[0]).setTodaysWeather(Weather.TYPHOON);
+                HFTrackers.<CalendarServer>getCalendar(server.worlds[0]).setTodaysWeather(Weather.TYPHOON);
             }
 
             return true;
@@ -71,11 +71,11 @@ public class VanillaCommands {
     }
 
     public static boolean executeToggleDownfall(MinecraftServer server, ICommandSender sender, String[] args) throws WrongUsageException {
-        if (HFApi.calendar.getWeather(server.worldServers[0]).isSunny()) {
-            HFTrackers.<CalendarServer>getCalendar(server.worldServers[0]).setTodaysWeather(Weather.RAIN);
+        if (HFApi.calendar.getWeather(server.worlds[0]).isSunny()) {
+            HFTrackers.<CalendarServer>getCalendar(server.worlds[0]).setTodaysWeather(Weather.RAIN);
             return true;
         } else {
-            HFTrackers.<CalendarServer>getCalendar(server.worldServers[0]).setTodaysWeather(Weather.SUNNY);
+            HFTrackers.<CalendarServer>getCalendar(server.worlds[0]).setTodaysWeather(Weather.SUNNY);
             return true;
         }
     }

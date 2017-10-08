@@ -57,7 +57,7 @@ public abstract class BlockHFEnumRotatableTile<B extends BlockHFEnumRotatableTil
     }
 
     @Override
-    public boolean isVisuallyOpaque() {
+    public boolean causesSuffocation() {
         return false;
     }
 

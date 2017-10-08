@@ -30,7 +30,7 @@ public class EntityAISchedule extends EntityAIBase {
 
     @Nullable
     private BuildingLocation getBuildingTarget(CalendarDate date) {
-        return npc.getNPC().getScheduler().getTarget(npc.worldObj, npc, date.getSeason(), date.getWeekday(), CalendarHelper.getTime(npc.worldObj));
+        return npc.getNPC().getScheduler().getTarget(npc.world, npc, date.getSeason(), date.getWeekday(), CalendarHelper.getTime(npc.world));
     }
 
     @Override
@@ -46,7 +46,7 @@ public class EntityAISchedule extends EntityAIBase {
     }
 
     private void updateTarget() {
-        CalendarDate date = HFApi.calendar.getDate(npc.worldObj);
+        CalendarDate date = HFApi.calendar.getDate(npc.world);
         BuildingLocation location = getBuildingTarget(date);
         if (location != null) {
             distanceRequired = location.distance;

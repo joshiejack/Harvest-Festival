@@ -17,15 +17,15 @@ public class CommandManager extends CommandTreeBase {
 
     @Override
     @Nonnull
-    public String getCommandName() {
+    public String getName() {
         return HFModInfo.COMMANDNAME;
     }
 
     @SubscribeEvent
     public void onCommandSend(CommandEvent event) throws CommandException {
         //Update the calendar
-        if (VanillaCommands.isHandled(event.getCommand().getCommandName())) {
-            String name = event.getCommand().getCommandName();
+        if (VanillaCommands.isHandled(event.getCommand().getName())) {
+            String name = event.getCommand().getName();
             try {
                 if (name.equals("time") && VanillaCommands.executeVanillaTime(FMLCommonHandler.instance().getMinecraftServerInstance(), event.getSender(), event.getParameters())) {
                     event.setCanceled(true);
@@ -40,8 +40,8 @@ public class CommandManager extends CommandTreeBase {
 
     @Override
     @Nonnull
-    public String getCommandUsage(@Nonnull ICommandSender sender) {
-        return "/" + getCommandName() + " help";
+    public String getUsage(@Nonnull ICommandSender sender) {
+        return "/" + getName() + " help";
     }
 
     public enum CommandLevel {

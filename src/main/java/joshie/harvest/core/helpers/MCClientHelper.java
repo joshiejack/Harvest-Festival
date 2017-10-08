@@ -22,11 +22,11 @@ public class MCClientHelper {
     }
 
     public static EntityPlayerSP getPlayer() {
-        return getMinecraft().thePlayer;
+        return getMinecraft().player;
     }
 
     public static World getWorld() {
-        return getPlayer().worldObj;
+        return getPlayer().world;
     }
 
     /** Update the block at the coordinates for re-rendering **/

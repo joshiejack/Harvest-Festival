@@ -23,7 +23,7 @@ public class TileCounter extends TileCooking {
         super.animate();
 
         long thisHit = System.currentTimeMillis();
-        if (thisHit - lastHit >= 201 || getCookTimer() %3 == 0) worldObj.playSound(null, getPos(), HFSounds.COUNTER, SoundCategory.BLOCKS, 1F, 1F);
+        if (thisHit - lastHit >= 201 || getCookTimer() %3 == 0) world.playSound(null, getPos(), HFSounds.COUNTER, SoundCategory.BLOCKS, 1F, 1F);
         lastHit = System.currentTimeMillis();
     }
 }

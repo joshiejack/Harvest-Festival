@@ -40,12 +40,12 @@ public class PacketSharedSync extends PenguinPacket {
     @SuppressWarnings("unchecked")
    public <Q extends QuestData> Q getQuestDataFromPlayer(EntityPlayer player) {
         if (uuid == null) return (Q) HFTrackers.getPlayerTrackerFromPlayer(player).getQuests();
-        else return (Q) HFTrackers.getTowns(player.worldObj).getTownByID(uuid).getQuests();
+        else return (Q) HFTrackers.getTowns(player.world).getTownByID(uuid).getQuests();
     }
 
     @SuppressWarnings("unchecked")
     public <L extends LetterData> L getLetterDataFromPlayer(EntityPlayer player) {
         if (uuid == null) return (L) HFTrackers.getPlayerTrackerFromPlayer(player).getLetters();
-        else return (L) HFTrackers.getTowns(player.worldObj).getTownByID(uuid).getLetters();
+        else return (L) HFTrackers.getTowns(player.world).getTownByID(uuid).getLetters();
     }
 }

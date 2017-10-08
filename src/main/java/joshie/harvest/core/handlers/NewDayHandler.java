@@ -43,7 +43,7 @@ public class NewDayHandler {
     public void onTick(ServerTickEvent event) {
         if (!OfflineTickHandler.BLOCKED) {
             if (event.phase != Phase.END) return;
-            World overworld = FMLCommonHandler.instance().getMinecraftServerInstance().worldServers[0];
+            World overworld = FMLCommonHandler.instance().getMinecraftServerInstance().worlds[0];
             if (overworld.getWorldTime() % TICKS_PER_DAY == 1) {
                 CalendarServer calendar = HFTrackers.getCalendar(overworld);
                 CalendarDate yesterday = calendar.getDate().copy();
@@ -53,14 +53,14 @@ public class NewDayHandler {
                     player.newDay(yesterday, today);
                 }
 
-                for (World world : FMLCommonHandler.instance().getMinecraftServerInstance().worldServers) {
+                for (World world : FMLCommonHandler.instance().getMinecraftServerInstance().worlds) {
                     newDay(world, yesterday, today);
                 }
             }
 
             //Bihourly Tick
             if (HFAnimals.OUTDOOR_HAPPINESS && overworld.getWorldTime() %TWO_HOURS == 0) {
-                for (World world : FMLCommonHandler.instance().getMinecraftServerInstance().worldServers) {
+                for (World world : FMLCommonHandler.instance().getMinecraftServerInstance().worlds) {
                     HFTrackers.<AnimalTrackerServer>getAnimalTracker(world).biHourly();
                 }
             }

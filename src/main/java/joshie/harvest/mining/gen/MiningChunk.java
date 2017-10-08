@@ -50,7 +50,7 @@ public class MiningChunk implements IChunkGenerator {
     private static final IBlockState LADDER_HOLE = HFMining.STONE.getStateFromEnum(Type.LADDER_HOLE);
     private static final List<Biome.SpawnListEntry> MONSTERS = Lists.newArrayList();
     private static final List<Block> IRREPLACABLE = Lists.newArrayList();
-    private static final int NUM_X_BITS = 1 + MathHelper.calculateLogBaseTwo(MathHelper.roundUpToPowerOfTwo(30000000));
+    private static final int NUM_X_BITS = 1 + MathHelper.log2(MathHelper.smallestEncompassingPowerOfTwo(30000000));
     private static final int NUM_Z_BITS = NUM_X_BITS;
     private static final int NUM_Y_BITS = 64 - NUM_X_BITS - NUM_Z_BITS;
     private static final int Y_SHIFT = 0 + NUM_Z_BITS;
@@ -70,12 +70,12 @@ public class MiningChunk implements IChunkGenerator {
         IRREPLACABLE.add(HFMining.PORTAL);
     }
     
-    private final World worldObj;
+    private final World world;
     private Biome[] biomesForGeneration;
     private Season season;
 
     public MiningChunk(World world, long seed) {
-        this.worldObj = world;
+        this.world = world;
         this.rand = new Random(seed);
     }
 
@@ -89,7 +89,7 @@ public class MiningChunk implements IChunkGenerator {
             if (primer.getBlockState(x, y, z).getBlock() != Blocks.LADDER && primer.getBlockState(x, y, z).getBlock() != PORTAL.getBlock()) {
                 primer.setBlockState(x, y, z, FLOORS);
                 if (primer.getBlockState(x, y + 1, z).getBlock() != Blocks.LADDER) {
-                    IBlockState theState = MiningRegistry.INSTANCE.getRandomStateForSeason(worldObj, MiningHelper.getFloor(chunkX, y), season);
+                    IBlockState theState = MiningRegistry.INSTANCE.getRandomStateForSeason(world, MiningHelper.getFloor(chunkX, y), season);
                     if (theState != null) {
                         primer.setBlockState(x, y + 1, z, theState);
                     }
@@ -129,7 +129,7 @@ public class MiningChunk implements IChunkGenerator {
             int been = 0;
             for (int chunkY = 0; chunkY < MAX_LOOP; chunkY += MiningHelper.FLOOR_HEIGHT) {
                 IBlockState[][] states = getMineGeneration(chunkX, chunkY, chunkZ);
-                rand.setSeed(getIndex(chunkX, chunkY, chunkZ) * worldObj.getSeed());
+                rand.setSeed(getIndex(chunkX, chunkY, chunkZ) * world.getSeed());
 
                 //Set the floor blocks
                 int height = rand.nextInt(3);
@@ -220,14 +220,14 @@ public class MiningChunk implements IChunkGenerator {
         for (int chunkY = 0; chunkY < MAX_LOOP; chunkY += MiningHelper.FLOOR_HEIGHT) {
             int mineID = MiningHelper.getMineID(chunkZ);
             int floor = MiningHelper.getFloor(chunkX, chunkY);
-            if (floor != 0 && isFloorWithPortal(floor) && !MineManager.areCoordinatesGenerated(worldObj, mineID, floor)) {
+            if (floor != 0 && isFloorWithPortal(floor) && !MineManager.areCoordinatesGenerated(world, mineID, floor)) {
                 placePortals(primer, mineID, floor, chunkX, chunkY, chunkZ);
             }
         }
     }
 
     private void placePortals(ChunkPrimer primer, int mineID, int floor, int chunkX, int chunkY, int chunkZ) {
-        if (isFloorWithPortal(floor) && !MineManager.areCoordinatesGenerated(worldObj, mineID, floor)) {
+        if (isFloorWithPortal(floor) && !MineManager.areCoordinatesGenerated(world, mineID, floor)) {
             for (int x = 0; x < 16; x++) {
                 for (int z = 0; z < 16; z++) {
                     if (isXLineWall(primer, x, chunkY + 1, z) && isXLineAir(primer, x, chunkY + 1, z)) {
@@ -262,7 +262,7 @@ public class MiningChunk implements IChunkGenerator {
             }
         } **/
 
-        HFTrackers.getMineManager(worldObj).setSpawnForMine(MiningHelper.getMineID(chunkZ), floor, realX, y, realZ);
+        HFTrackers.getMineManager(world).setSpawnForMine(MiningHelper.getMineID(chunkZ), floor, realX, y, realZ);
     }
 
     private void setZSpawn(int floor, ChunkPrimer primer, int x, int y, int z, int chunkX, int chunkZ) {
@@ -285,7 +285,7 @@ public class MiningChunk implements IChunkGenerator {
             }
         } */
 
-        HFTrackers.getMineManager(worldObj).setSpawnForMine(MiningHelper.getMineID(chunkZ), floor, realX, y, realZ);
+        HFTrackers.getMineManager(world).setSpawnForMine(MiningHelper.getMineID(chunkZ), floor, realX, y, realZ);
     }
 
     private boolean isXLineWall(ChunkPrimer primer, int x, int y, int z) {
@@ -334,7 +334,7 @@ public class MiningChunk implements IChunkGenerator {
         if (!MineManager.containsStateKey(mapIndex)) {
             IBlockState[][] blockStateMap = new IBlockState[CHUNK_BOUNDARY * 16][CHUNK_BOUNDARY * 16];
             boolean first = true;
-            rand.setSeed(mapIndex * worldObj.getSeed());
+            rand.setSeed(mapIndex * world.getSeed());
             int startX = 15 + rand.nextInt(75);
             int endX = 15 + rand.nextInt(75);
             int startZ = 15 + rand.nextInt(75);
@@ -543,11 +543,11 @@ public class MiningChunk implements IChunkGenerator {
     public Chunk provideChunk(int x, int z) {
         rand.setSeed((long) x * 341873128712L + (long) z * 132897987541L);
         ChunkPrimer chunkprimer = new ChunkPrimer();
-        biomesForGeneration = this.worldObj.getBiomeProvider().getBiomes(biomesForGeneration, x * 16, z * 16, 16, 16);
-        season = HFApi.calendar.getDate(worldObj).getSeason();
+        biomesForGeneration = this.world.getBiomeProvider().getBiomes(biomesForGeneration, x * 16, z * 16, 16, 16);
+        season = HFApi.calendar.getDate(world).getSeason();
         if (season == null) season = Season.SPRING;
         setBlocksInChunk(x, z, chunkprimer);
-        Chunk chunk = new Chunk(worldObj, chunkprimer, x, z);
+        Chunk chunk = new Chunk(world, chunkprimer, x, z);
         byte[] abyte = chunk.getBiomeArray();
         for (int i = 0; i < abyte.length; ++i) {
             abyte[i] = (byte) Biome.getIdForBiome(biomesForGeneration[i]);
@@ -570,7 +570,7 @@ public class MiningChunk implements IChunkGenerator {
     public List<Biome.SpawnListEntry> getPossibleCreatures(@Nonnull EnumCreatureType creatureType, @Nonnull BlockPos pos) {
         if (creatureType == EnumCreatureType.MONSTER) {
             return MONSTERS;
-        } else return this.worldObj.getBiome(pos).getSpawnableList(creatureType);
+        } else return this.world.getBiome(pos).getSpawnableList(creatureType);
     }
 
     @Nullable

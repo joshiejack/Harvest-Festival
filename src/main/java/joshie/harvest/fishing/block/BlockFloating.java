@@ -42,7 +42,7 @@ public class BlockFloating extends BlockHFEnum<BlockFloating, Floating> {
     }
 
     @Override
-    public boolean isVisuallyOpaque() {
+    public boolean causesSuffocation() {
         return false;
     }
 
@@ -107,7 +107,7 @@ public class BlockFloating extends BlockHFEnum<BlockFloating, Floating> {
                     item.setPickupDelay(Integer.MAX_VALUE);
                     item.lifespan = 20;
                     item.addVelocity((-0.5D + world.rand.nextDouble()), 0D, (-0.5D + world.rand.nextDouble()));
-                    world.spawnEntityInWorld(item);
+                    world.spawnEntity(item);
                 }
             }
         }

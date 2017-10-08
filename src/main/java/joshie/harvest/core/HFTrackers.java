@@ -192,7 +192,7 @@ public class HFTrackers {
     }
 
     public static <P extends PlayerTracker> P getPlayerTrackerFromPlayer(EntityPlayer player) {
-        return getPlayerTracker(player.worldObj, EntityHelper.getPlayerUUID(player));
+        return getPlayerTracker(player.world, EntityHelper.getPlayerUUID(player));
     }
 
     @SuppressWarnings("unchecked")

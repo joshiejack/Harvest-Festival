@@ -40,7 +40,7 @@ public class SleepHandler {
     @SubscribeEvent
     public void onPlayerSleep(PlayerSleepInBedEvent event) {
         if (HFCore.SLEEP_ONLY_AT_NIGHT) {
-            World world = event.getEntityPlayer().worldObj;
+            World world = event.getEntityPlayer().world;
             long time = CalendarHelper.getTime(world);
             Season season = HFApi.calendar.getDate(world).getSeason();
             SeasonData data = CalendarAPI.INSTANCE.getDataForSeason(season);
@@ -54,12 +54,12 @@ public class SleepHandler {
     }
 
     private SleepResult trySleep(EntityPlayer player, BlockPos bedLocation) {
-        if (!player.worldObj.isRemote) {
+        if (!player.world.isRemote) {
             if (player.isPlayerSleeping() || !player.isEntityAlive()) {
                 return EntityPlayer.SleepResult.OTHER_PROBLEM;
             }
 
-            if (!player.worldObj.provider.isSurfaceWorld()) {
+            if (!player.world.provider.isSurfaceWorld()) {
                 return EntityPlayer.SleepResult.NOT_POSSIBLE_HERE;
             }
 
@@ -67,7 +67,7 @@ public class SleepHandler {
                 return EntityPlayer.SleepResult.TOO_FAR_AWAY;
             }
 
-            List<EntityMob> list = player.worldObj.getEntitiesWithinAABB(EntityMob.class, new AxisAlignedBB((double) bedLocation.getX() - 8.0D, (double) bedLocation.getY() - 5.0D, (double) bedLocation.getZ() - 8.0D, (double) bedLocation.getX() + 8.0D, (double) bedLocation.getY() + 5.0D, (double) bedLocation.getZ() + 8.0D));
+            List<EntityMob> list = player.world.getEntitiesWithinAABB(EntityMob.class, new AxisAlignedBB((double) bedLocation.getX() - 8.0D, (double) bedLocation.getY() - 5.0D, (double) bedLocation.getZ() - 8.0D, (double) bedLocation.getX() + 8.0D, (double) bedLocation.getY() + 5.0D, (double) bedLocation.getZ() + 8.0D));
 
             if (!list.isEmpty()) {
                 return EntityPlayer.SleepResult.NOT_SAFE;
@@ -81,9 +81,9 @@ public class SleepHandler {
         setSize(player, 0.2F, 0.2F);
 
         IBlockState state = null;
-        if (player.worldObj.isBlockLoaded(bedLocation)) state = player.worldObj.getBlockState(bedLocation);
-        if (state != null && state.getBlock().isBed(state, player.worldObj, bedLocation, player)) {
-            EnumFacing enumfacing = state.getBlock().getBedDirection(state, player.worldObj, bedLocation);
+        if (player.world.isBlockLoaded(bedLocation)) state = player.world.getBlockState(bedLocation);
+        if (state != null && state.getBlock().isBed(state, player.world, bedLocation, player)) {
+            EnumFacing enumfacing = state.getBlock().getBedDirection(state, player.world, bedLocation);
             float f = 0.5F;
             float f1 = 0.5F;
 
@@ -114,8 +114,8 @@ public class SleepHandler {
         player.motionY = 0.0D;
         player.motionZ = 0.0D;
 
-        if (!player.worldObj.isRemote) {
-            player.worldObj.updateAllPlayersSleepingFlag();
+        if (!player.world.isRemote) {
+            player.world.updateAllPlayersSleepingFlag();
         }
 
         return EntityPlayer.SleepResult.OK;
@@ -129,8 +129,8 @@ public class SleepHandler {
             AxisAlignedBB axisalignedbb = player.getEntityBoundingBox();
             player.setEntityBoundingBox(new AxisAlignedBB(axisalignedbb.minX, axisalignedbb.minY, axisalignedbb.minZ, axisalignedbb.minX + (double) player.width, axisalignedbb.minY + (double) player.height, axisalignedbb.minZ + (double) player.width));
 
-            if (player.width > f && !player.firstUpdate && !player.worldObj.isRemote) {
-                player.moveEntity((double) (f - player.width), 0.0D, (double) (f - player.width));
+            if (player.width > f && !player.firstUpdate && !player.world.isRemote) {
+                player.move((double) (f - player.width), 0.0D, (double) (f - player.width));
             }
         }
     }

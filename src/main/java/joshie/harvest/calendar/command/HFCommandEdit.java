@@ -18,13 +18,13 @@ import javax.annotation.Nonnull;
 public class HFCommandEdit extends CommandBase {
     @Override
     @Nonnull
-    public String getCommandName() {
+    public String getName() {
         return "edit";
     }
 
     @Override
     @Nonnull
-    public String getCommandUsage(@Nonnull ICommandSender sender) {
+    public String getUsage(@Nonnull ICommandSender sender) {
         return "/hf edit <gold|date>";
     }
 
@@ -41,6 +41,6 @@ public class HFCommandEdit extends CommandBase {
             } else if (parameters[0].equals("date")) {
                 PacketHandler.sendToClient(new PacketEdit(false), (EntityPlayer) sender);
             }
-        } else throw new WrongUsageException(getCommandUsage(sender));
+        } else throw new WrongUsageException(getUsage(sender));
     }
 }

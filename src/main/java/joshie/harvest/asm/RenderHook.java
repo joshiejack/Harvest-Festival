@@ -40,7 +40,7 @@ public class RenderHook {
      *  Add rain sound when it's raining in snowy biomes */
     @SuppressWarnings("unused")
     public static void addRainParticles(Minecraft mc, EntityRenderer renderer, Random random) {
-        float f = mc.theWorld.getRainStrength(1.0F);
+        float f = mc.world.getRainStrength(1.0F);
 
         if (!mc.gameSettings.fancyGraphics) {
             f /= 2.0F;
@@ -49,7 +49,7 @@ public class RenderHook {
         if (f != 0.0F) {
             random.setSeed((long) renderer.rendererUpdateCount * 312987231L);
             Entity entity = mc.getRenderViewEntity();
-            World world = mc.theWorld;
+            World world = mc.world;
             BlockPos blockpos = new BlockPos(entity);
             double d0 = 0.0D;
             double d1 = 0.0D;
@@ -84,10 +84,10 @@ public class RenderHook {
                                 d2 = (double) blockpos2.getZ() + d4;
                             }
 
-                            mc.theWorld.spawnParticle(EnumParticleTypes.WATER_DROP, (double) blockpos2.getX() + d3, (double) ((float) blockpos2.getY() + 0.1F) + axisalignedbb.maxY, (double) blockpos2.getZ() + d4, 0.0D, 0.0D, 0.0D);
+                            mc.world.spawnParticle(EnumParticleTypes.WATER_DROP, (double) blockpos2.getX() + d3, (double) ((float) blockpos2.getY() + 0.1F) + axisalignedbb.maxY, (double) blockpos2.getZ() + d4, 0.0D, 0.0D, 0.0D);
                         }
                     } else {
-                        mc.theWorld.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, (double) blockpos1.getX() + d3, (double) ((float) blockpos1.getY() + 0.1F) - axisalignedbb.minY, (double) blockpos1.getZ() + d4, 0.0D, 0.0D, 0.0D);
+                        mc.world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, (double) blockpos1.getX() + d3, (double) ((float) blockpos1.getY() + 0.1F) - axisalignedbb.minY, (double) blockpos1.getZ() + d4, 0.0D, 0.0D, 0.0D);
                     }
                 }
             }
@@ -95,9 +95,9 @@ public class RenderHook {
             if (j > 0 && random.nextInt(3) < renderer.rainSoundCounter++) {
                 renderer.rainSoundCounter = 0;
                 if (d1 > (double) (blockpos.getY() + 1)) {
-                    mc.theWorld.playSound(d0, d1, d2, SoundEvents.WEATHER_RAIN_ABOVE, SoundCategory.WEATHER, 0.1F, 0.5F, false);
+                    mc.world.playSound(d0, d1, d2, SoundEvents.WEATHER_RAIN_ABOVE, SoundCategory.WEATHER, 0.1F, 0.5F, false);
                 } else {
-                    mc.theWorld.playSound(d0, d1, d2, SoundEvents.WEATHER_RAIN, SoundCategory.WEATHER, 0.2F, 1.0F, false);
+                    mc.world.playSound(d0, d1, d2, SoundEvents.WEATHER_RAIN, SoundCategory.WEATHER, 0.2F, 1.0F, false);
                 }
             }
         }

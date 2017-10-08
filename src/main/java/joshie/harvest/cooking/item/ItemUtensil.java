@@ -41,8 +41,8 @@ public class ItemUtensil extends ItemHFEnum<ItemUtensil, Utensil> {
         } else {
             Multimap<String, AttributeModifier> multimap = super.getItemAttributeModifiers(slot);
             if (slot == EntityEquipmentSlot.MAINHAND) {
-                multimap.put(SharedMonsterAttributes.ATTACK_DAMAGE.getAttributeUnlocalizedName(), new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Tool modifier", 2.0D, 0));
-                multimap.put(SharedMonsterAttributes.ATTACK_SPEED.getAttributeUnlocalizedName(), new AttributeModifier(ATTACK_SPEED_MODIFIER, "Tool modifier", -1D, 0));
+                multimap.put(SharedMonsterAttributes.ATTACK_DAMAGE.getName(), new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Tool modifier", 2.0D, 0));
+                multimap.put(SharedMonsterAttributes.ATTACK_SPEED.getName(), new AttributeModifier(ATTACK_SPEED_MODIFIER, "Tool modifier", -1D, 0));
             }
 
             return multimap;

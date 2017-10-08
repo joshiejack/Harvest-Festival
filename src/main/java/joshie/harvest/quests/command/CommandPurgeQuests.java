@@ -16,13 +16,13 @@ import javax.annotation.Nonnull;
 public class CommandPurgeQuests extends CommandBase {
     @Override
     @Nonnull
-    public String getCommandName() {
+    public String getName() {
         return "purge";
     }
 
     @Override
     @Nonnull
-    public String getCommandUsage(@Nonnull ICommandSender sender) {
+    public String getUsage(@Nonnull ICommandSender sender) {
         return "/hf purge [player]";
     }
 
@@ -37,6 +37,6 @@ public class CommandPurgeQuests extends CommandBase {
             EntityPlayerMP player = parameters.length == 0? CommandBase.getCommandSenderAsPlayer(sender) : CommandBase.getPlayer(server, sender, parameters[0]);
             HFTrackers.<PlayerTrackerServer>getPlayerTrackerFromPlayer(player).getQuests().purge(player);
             TownHelper.<TownDataServer>getClosestTownToEntity(player, false).getQuests().purge(player);
-        } else throw new WrongUsageException(getCommandUsage(sender));
+        } else throw new WrongUsageException(getUsage(sender));
     }
 }

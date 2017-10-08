@@ -111,7 +111,7 @@ public class CalendarHUD {
             if (HFCalendar.ENABLE_DATE_HUD && isHUDVisible()) {
                 Calendar calendar = HFTrackers.getCalendar(MCClientHelper.getWorld());
                 CalendarDate date = calendar.getDate();
-                boolean inMine = mc.theWorld.provider.getDimension() == HFMining.MINING_ID;
+                boolean inMine = mc.world.provider.getDimension() == HFMining.MINING_ID;
                 Season season = HFApi.calendar.getSeasonAtCoordinates(MCClientHelper.getWorld(), new BlockPos(MCClientHelper.getPlayer()));
                 if (season != null) {
                     SeasonData data = CalendarAPI.INSTANCE.getDataForSeason(season);
@@ -127,7 +127,7 @@ public class CalendarHUD {
                     //Enlarge the Day
                     GlStateManager.pushMatrix();
                     GlStateManager.scale(1.4F, 1.4F, 1.4F);
-                    String header = inMine ? TextFormatting.GRAY + TextHelper.format("harvestfestival.mine.format", "" + MiningHelper.getFloor((int)mc.thePlayer.posX >> 4, (int) Math.min(247, Math.max(1, mc.thePlayer.posY)))) : TextHelper.format("harvestfestival.calendar.date", season.getDisplayName(), (date.getDay() + 1));
+                    String header = inMine ? TextFormatting.GRAY + TextHelper.format("harvestfestival.mine.format", "" + MiningHelper.getFloor((int)mc.player.posX >> 4, (int) Math.min(247, Math.max(1, mc.player.posY)))) : TextHelper.format("harvestfestival.calendar.date", season.getDisplayName(), (date.getDay() + 1));
                     mc.fontRendererObj.drawStringWithShadow(header, (adjustedX / 1.4F) + 30, (adjustedY / 1.4F) + 7, 0xFFFFFFFF);
                     GlStateManager.popMatrix();
 

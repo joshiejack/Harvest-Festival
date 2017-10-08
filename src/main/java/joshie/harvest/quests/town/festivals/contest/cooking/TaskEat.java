@@ -18,7 +18,7 @@ public class TaskEat extends TaskElement {
 
     @Override
     public void execute(NPCEntity npc) {
-        TileEntity tile = npc.getAsEntity().worldObj.getTileEntity(target);
+        TileEntity tile = npc.getAsEntity().world.getTileEntity(target);
         if (tile instanceof TilePlate) {
             ((TilePlate)tile).setContents(null);
         }

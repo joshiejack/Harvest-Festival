@@ -7,6 +7,6 @@ public class TileSprinklerOld extends TileSprinkler {
 
     @Override
     protected double getRandomDouble() {
-        return (worldObj.rand.nextDouble() - 0.5D) / 3;
+        return (world.rand.nextDouble() - 0.5D) / 3;
     }
 }

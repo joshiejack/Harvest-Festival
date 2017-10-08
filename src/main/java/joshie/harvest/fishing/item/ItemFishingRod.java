@@ -88,7 +88,7 @@ public class ItemFishingRod extends ItemTool<ItemFishingRod> {
             } else {
                 world.playSound(null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_BOBBER_THROW, SoundCategory.NEUTRAL, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
                 if (!world.isRemote) {
-                    world.spawnEntityInWorld(new EntityFishHookHF(world, player, getTier(stack).getToolLevel(), getBaitAmount(stack)));
+                    world.spawnEntity(new EntityFishHookHF(world, player, getTier(stack).getToolLevel(), getBaitAmount(stack)));
                 }
 
                 player.swingArm(hand);

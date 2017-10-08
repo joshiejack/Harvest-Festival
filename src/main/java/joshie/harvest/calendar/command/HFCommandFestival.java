@@ -24,13 +24,13 @@ import static joshie.harvest.core.lib.HFModInfo.MODID;
 public class HFCommandFestival extends CommandBase {
     @Override
     @Nonnull
-    public String getCommandName() {
+    public String getName() {
         return "festival";
     }
 
     @Override
     @Nonnull
-    public String getCommandUsage(@Nonnull ICommandSender sender) {
+    public String getUsage(@Nonnull ICommandSender sender) {
         return "/hf festival <value>";
     }
 
@@ -49,6 +49,6 @@ public class HFCommandFestival extends CommandBase {
                 long i = sender.getEntityWorld().getWorldTime() + TICKS_PER_DAY;
                 CalendarHelper.setWorldTime(server, (i - i % TICKS_PER_DAY) - 1);
             } catch (NumberFormatException ignored) {}
-        } else throw new WrongUsageException(getCommandUsage(sender));
+        } else throw new WrongUsageException(getUsage(sender));
     }
 }

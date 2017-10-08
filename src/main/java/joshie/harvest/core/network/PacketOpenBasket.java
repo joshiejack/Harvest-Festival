@@ -22,7 +22,7 @@ public class PacketOpenBasket extends PenguinPacket {
     public void handlePacket(EntityPlayer player) {
         EntityBasket basket = BasketHandler.getWearingBasket(player);
         if (basket != null) {
-            player.openGui(HarvestFestival.instance, GuiHandler.BASKET_ENTITY, player.worldObj, 0, 0, 0);
+            player.openGui(HarvestFestival.instance, GuiHandler.BASKET_ENTITY, player.world, 0, 0, 0);
         }
     }
 }

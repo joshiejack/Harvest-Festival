@@ -66,23 +66,23 @@ public class TileSprinkler extends TileHarvest implements ITickable {
     }
 
     protected double getRandomDouble() {
-        return worldObj.rand.nextDouble() - 0.5D;
+        return world.rand.nextDouble() - 0.5D;
     }
 
     @Override
     public void update() {
-        if (worldObj.isRemote) {
-            if (tick % 15 == 0 && (SPRINKLER_DRAIN_RATE <= 0 || tank.getFluidAmount() > 1) && CalendarHelper.isBetween(worldObj, 6000, 6250) && !worldObj.isRaining()) {
+        if (world.isRemote) {
+            if (tick % 15 == 0 && (SPRINKLER_DRAIN_RATE <= 0 || tank.getFluidAmount() > 1) && CalendarHelper.isBetween(world, 6000, 6250) && !world.isRaining()) {
                 int setting = (2 - Minecraft.getMinecraft().gameSettings.particleSetting);
                 for (int i = 0; i < setting * 32; i++) {
                     double one = getRandomDouble();
                     double two = getRandomDouble();
 
-                    worldObj.spawnParticle(EnumParticleTypes.WATER_SPLASH, getPos().getX() + 0.5D, getPos().getY() + height, getPos().getZ() + 0.5D, one, 0D, two);
-                    worldObj.spawnParticle(EnumParticleTypes.WATER_SPLASH, getPos().getX() + 0.5D, getPos().getY() + height, getPos().getZ() + 0.5D, one - 0.05D, 0D, two - 0.05D);
-                    worldObj.spawnParticle(EnumParticleTypes.WATER_SPLASH, getPos().getX() + 0.5D, getPos().getY() + height, getPos().getZ() + 0.5D, one - 0.05D, 0D, two + 0.05D);
-                    worldObj.spawnParticle(EnumParticleTypes.WATER_SPLASH, getPos().getX() + 0.5D, getPos().getY() + height, getPos().getZ() + 0.5D, one + 0.05D, 0D, two - 0.05D);
-                    worldObj.spawnParticle(EnumParticleTypes.WATER_SPLASH, getPos().getX() + 0.5D, getPos().getY() + height, getPos().getZ() + 0.5D, one + 0.05D, 0D, two + 0.05D);
+                    world.spawnParticle(EnumParticleTypes.WATER_SPLASH, getPos().getX() + 0.5D, getPos().getY() + height, getPos().getZ() + 0.5D, one, 0D, two);
+                    world.spawnParticle(EnumParticleTypes.WATER_SPLASH, getPos().getX() + 0.5D, getPos().getY() + height, getPos().getZ() + 0.5D, one - 0.05D, 0D, two - 0.05D);
+                    world.spawnParticle(EnumParticleTypes.WATER_SPLASH, getPos().getX() + 0.5D, getPos().getY() + height, getPos().getZ() + 0.5D, one - 0.05D, 0D, two + 0.05D);
+                    world.spawnParticle(EnumParticleTypes.WATER_SPLASH, getPos().getX() + 0.5D, getPos().getY() + height, getPos().getZ() + 0.5D, one + 0.05D, 0D, two - 0.05D);
+                    world.spawnParticle(EnumParticleTypes.WATER_SPLASH, getPos().getX() + 0.5D, getPos().getY() + height, getPos().getZ() + 0.5D, one + 0.05D, 0D, two + 0.05D);
                 }
             }
 
@@ -111,7 +111,7 @@ public class TileSprinkler extends TileHarvest implements ITickable {
     @Override
     public void validate() {
         tileEntityInvalid = false;
-        HFApi.tickable.addTickable(worldObj, pos, TICKABLE);
+        HFApi.tickable.addTickable(world, pos, TICKABLE);
     }
 
     @Override

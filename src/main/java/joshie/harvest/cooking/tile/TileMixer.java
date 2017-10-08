@@ -24,15 +24,15 @@ public class TileMixer extends TileCookingTicking {
         }
 
         for (int k = 0; k < offset1.length; k++) {
-            if (worldObj.rand.nextFloat() < 0.1F) {
-                offset1[k] = clampOffset1(offset1[k] + (worldObj.rand.nextBoolean() ? 0.05F : -0.05F));
-                offset2[k] = clampOffset2(offset2[k] + (worldObj.rand.nextBoolean() ? 0.05F : -0.05F));
+            if (world.rand.nextFloat() < 0.1F) {
+                offset1[k] = clampOffset1(offset1[k] + (world.rand.nextBoolean() ? 0.05F : -0.05F));
+                offset2[k] = clampOffset2(offset2[k] + (world.rand.nextBoolean() ? 0.05F : -0.05F));
             }
         }
 
         blade += 100F;
         //Play the sound effect
-        if (getCookTimer() == 1) worldObj.playSound(null, getPos(), HFSounds.MIXER, SoundCategory.BLOCKS, 0.9F, 1F);
+        if (getCookTimer() == 1) world.playSound(null, getPos(), HFSounds.MIXER, SoundCategory.BLOCKS, 0.9F, 1F);
     }
 
     private float clampOffset1(float f) {

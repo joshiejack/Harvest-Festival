@@ -21,13 +21,13 @@ import javax.annotation.Nonnull;
 public class HFCommandNote extends CommandBase {
     @Override
     @Nonnull
-    public String getCommandName() {
+    public String getName() {
         return "note";
     }
 
     @Override
     @Nonnull
-    public String getCommandUsage(@Nonnull ICommandSender sender) {
+    public String getUsage(@Nonnull ICommandSender sender) {
         return "/hf note [player] <value|all|clear>";
     }
 
@@ -57,6 +57,6 @@ public class HFCommandNote extends CommandBase {
                     tracking.sync(player);
                     break;
             }
-        } else throw new WrongUsageException(getCommandUsage(sender));
+        } else throw new WrongUsageException(getUsage(sender));
     }
 }

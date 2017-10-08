@@ -19,13 +19,13 @@ import javax.annotation.Nonnull;
 public class HFCommandGold extends CommandBase {
     @Override
     @Nonnull
-    public String getCommandName() {
+    public String getName() {
         return "gold";
     }
 
     @Override
     @Nonnull
-    public String getCommandUsage(@Nonnull ICommandSender sender) {
+    public String getUsage(@Nonnull ICommandSender sender) {
         return "/hf gold [player] <add|set> <value>";
     }
 
@@ -44,6 +44,6 @@ public class HFCommandGold extends CommandBase {
             if (set) {
                 stats.setGold(player, amount);
             } else stats.addGold(player, amount);
-        } else throw new WrongUsageException(getCommandUsage(sender));
+        } else throw new WrongUsageException(getUsage(sender));
     }
 }

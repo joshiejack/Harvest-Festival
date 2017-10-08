@@ -42,7 +42,7 @@ public abstract class EntityAIAnimal extends EntityAIMoveToBlock {
                 for (int i1 = 0; i1 <= l; i1 = i1 > 0 ? -i1 : 1 - i1)  {
                     for (int j1 = i1 < l && i1 > -l ? l : 0; j1 <= l; j1 = j1 > 0 ? -j1 : 1 - j1) {
                         BlockPos blockpos1 = blockpos.add(i1, k - 1, j1);
-                        if (animal.isWithinHomeDistanceFromPosition(blockpos1) && shouldMoveTo(animal.worldObj, blockpos1)) {
+                        if (animal.isWithinHomeDistanceFromPosition(blockpos1) && shouldMoveTo(animal.world, blockpos1)) {
                             destinationBlock = blockpos1;
                             return true;
                         }

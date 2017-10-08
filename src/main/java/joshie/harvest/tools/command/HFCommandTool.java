@@ -15,13 +15,13 @@ import javax.annotation.Nonnull;
 public class HFCommandTool extends CommandBase {
     @Override
     @Nonnull
-    public String getCommandName() {
+    public String getName() {
         return "tool";
     }
 
     @Override
     @Nonnull
-    public String getCommandUsage(@Nonnull ICommandSender sender) {
+    public String getUsage(@Nonnull ICommandSender sender) {
         return "/hf tool [player] <value>";
     }
 
@@ -40,6 +40,6 @@ public class HFCommandTool extends CommandBase {
             double level = Double.parseDouble(parameters[parameters.length - 1]);
             EntityPlayerMP player = parameters.length == 1 ? CommandBase.getCommandSenderAsPlayer(sender) : CommandBase.getPlayer(server, sender, parameters[0]);
             if (!applyLevel(player.getHeldItemOffhand(), level)) applyLevel(player.getHeldItemMainhand(), level);
-        } else throw new WrongUsageException(getCommandUsage(sender));
+        } else throw new WrongUsageException(getUsage(sender));
     }
 }

@@ -22,13 +22,13 @@ import static joshie.harvest.api.calendar.CalendarDate.DAYS_PER_SEASON;
 public class HFCommandDay extends CommandBase {
     @Override
     @Nonnull
-    public String getCommandName() {
+    public String getName() {
         return "day";
     }
 
     @Override
     @Nonnull
-    public String getCommandUsage(@Nonnull ICommandSender sender) {
+    public String getUsage(@Nonnull ICommandSender sender) {
         return "/hf day <value>";
     }
 
@@ -44,8 +44,8 @@ public class HFCommandDay extends CommandBase {
             int day = Math.min(DAYS_PER_SEASON, Math.max(1, parseInt(parameters[0]))) - 1;
             Season season = calendar.getDate().getSeason();
             int year = calendar.getDate().getYear() + 1;
-            long leftover = server.worldServers[0].getWorldTime() % HFCalendar.TICKS_PER_DAY;
+            long leftover = server.worlds[0].getWorldTime() % HFCalendar.TICKS_PER_DAY;
             CalendarHelper.setWorldTime(server, CalendarHelper.getTime(day, season, year) + leftover);
-        } else throw new WrongUsageException(getCommandUsage(sender));
+        } else throw new WrongUsageException(getUsage(sender));
     }
 }

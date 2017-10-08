@@ -193,7 +193,7 @@ public class EntityCustomFishHook extends EntityFishHook implements IThrowableEn
     public void onUpdate() {
         // super.onUpdate();
 
-        if (!worldObj.isRemote && this.angler == null)
+        if (!world.isRemote && this.angler == null)
             this.setDead();
 
         this.onEntityUpdate();
@@ -209,7 +209,7 @@ public class EntityCustomFishHook extends EntityFishHook implements IThrowableEn
             this.setPosition(d0, d1, d2);
             this.setRotation(this.rotationYaw, this.rotationPitch);
         } else {
-            if (!this.worldObj.isRemote && this.angler != null) {
+            if (!this.world.isRemote && this.angler != null) {
                 ItemStack itemstack = this.angler.getHeldItemMainhand();
 
                 if (this.angler.isDead || !this.angler.isEntityAlive() || itemstack == null || !this.isFishingRod(itemstack) || this.getDistanceSqToEntity(this.angler) > 4 * 1024.0D) {
@@ -235,7 +235,7 @@ public class EntityCustomFishHook extends EntityFishHook implements IThrowableEn
             }
 
             if (this.inGround) {
-                Block block = this.worldObj.getBlockState(new BlockPos(this.xTile, this.yTile, this.zTile)).getBlock();
+                Block block = this.world.getBlockState(new BlockPos(this.xTile, this.yTile, this.zTile)).getBlock();
 
                 if (block == this.inTile) {
                     ++this.ticksInGround;
@@ -259,7 +259,7 @@ public class EntityCustomFishHook extends EntityFishHook implements IThrowableEn
 
             Vec3d vec3 = new Vec3d(this.posX, this.posY, this.posZ);
             Vec3d vec31 = new Vec3d(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
-            RayTraceResult rayTraceResult = this.worldObj.rayTraceBlocks(vec3, vec31);
+            RayTraceResult rayTraceResult = this.world.rayTraceBlocks(vec3, vec31);
             vec31 = new Vec3d(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
 
             if (rayTraceResult != null) {
@@ -267,7 +267,7 @@ public class EntityCustomFishHook extends EntityFishHook implements IThrowableEn
             }
 
             Entity entity = null;
-            List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().addCoord(this.motionX, this.motionY, this.motionZ).expand(1.0D, 1.0D, 1.0D));
+            List<Entity> list = this.world.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().addCoord(this.motionX, this.motionY, this.motionZ).expand(1.0D, 1.0D, 1.0D));
             double d4 = 0.0D;
             double d5;
 
@@ -344,7 +344,7 @@ public class EntityCustomFishHook extends EntityFishHook implements IThrowableEn
                     double d8 = boundingBox.minY + (boundingBox.maxY - boundingBox.minY) * (k + 1) / b0 - 0.125D + 0.125D;
                     AxisAlignedBB axisalignedbb1 = new AxisAlignedBB(boundingBox.minX, d7, boundingBox.minZ, boundingBox.maxX, d8, boundingBox.maxZ);
 
-                    if (this.worldObj.isMaterialInBB(axisalignedbb1, Material.WATER)) {
+                    if (this.world.isMaterialInBB(axisalignedbb1, Material.WATER)) {
                         d6 += 1.0D / b0;
                     }
                 }
@@ -356,7 +356,7 @@ public class EntityCustomFishHook extends EntityFishHook implements IThrowableEn
                         BlockPos blockpos = (new BlockPos(this)).up();
                         short biteChance = (short) (baseCatchTime / 4);
 
-                        if (this.worldObj.isRainingAt(blockpos)) {
+                        if (this.world.isRainingAt(blockpos)) {
                             biteChance = (short) (biteChance * 0.5);
                         }
 
@@ -383,7 +383,7 @@ public class EntityCustomFishHook extends EntityFishHook implements IThrowableEn
                             // this.playSound("note.harp", 0.55F, 1.0F + (this.rand.nextFloat() - this.rand.nextFloat()) * 0.4F);
 
                             // this.playSoundEffect((double)par2 + 0.5D, (double)par3 + 0.5D, (double)par4 + 0.5D, "note." + "harp", 3.0F, 1);
-                            // this.worldObj.spawnParticle("note", posX, posY + 1.2D, posZ, (double)16 / 24.0D, 0.0D, 0.0D);
+                            // this.world.spawnParticle("note", posX, posY + 1.2D, posZ, (double)16 / 24.0D, 0.0D, 0.0D);
 
                             float f3 = 1;
                             int l;
@@ -393,13 +393,13 @@ public class EntityCustomFishHook extends EntityFishHook implements IThrowableEn
                             for (l = 0; l < 1.0F + this.width * 20.0F; ++l) {
                                 f5 = (this.rand.nextFloat() * 2.0F - 1.0F) * this.width;
                                 f4 = (this.rand.nextFloat() * 2.0F - 1.0F) * this.width;
-                                this.worldObj.spawnParticle(EnumParticleTypes.WATER_BUBBLE, this.posX + f5, f3 + 1.0F, this.posZ + f4, this.motionX, this.motionY - this.rand.nextFloat() * 0.2F, this.motionZ);
+                                this.world.spawnParticle(EnumParticleTypes.WATER_BUBBLE, this.posX + f5, f3 + 1.0F, this.posZ + f4, this.motionX, this.motionY - this.rand.nextFloat() * 0.2F, this.motionZ);
                             }
 
                             for (l = 0; l < 1.0F + this.width * 20.0F; ++l) {
                                 f5 = (this.rand.nextFloat() * 2.0F - 1.0F) * this.width;
                                 f4 = (this.rand.nextFloat() * 2.0F - 1.0F) * this.width;
-                                this.worldObj.spawnParticle(EnumParticleTypes.WATER_WAKE, this.posX + f5, f3 + 1.0F, this.posZ + f4, this.motionX, this.motionY, this.motionZ);
+                                this.world.spawnParticle(EnumParticleTypes.WATER_WAKE, this.posX + f5, f3 + 1.0F, this.posZ + f4, this.motionX, this.motionY, this.motionZ);
                             }
                         }
                     }
@@ -461,7 +461,7 @@ public class EntityCustomFishHook extends EntityFishHook implements IThrowableEn
 
     @Override
     public int handleHookRetraction() {
-        if (this.worldObj.isRemote) {
+        if (this.world.isRemote) {
             return 0;
         } else {
             byte b0 = 0;
@@ -477,7 +477,7 @@ public class EntityCustomFishHook extends EntityFishHook implements IThrowableEn
                 this.bobber.motionZ += d2 * d4;
                 b0 = 3;
             } else if (this.ticksCatchable > 0 || isAdmin) {
-                Biome currentBiome = worldObj.getBiome(new BlockPos(1, 0, 2));
+                Biome currentBiome = world.getBiome(new BlockPos(1, 0, 2));
 
                 ItemStack fishLoot;
                 int count = 1;
@@ -523,7 +523,7 @@ public class EntityCustomFishHook extends EntityFishHook implements IThrowableEn
 
                     if (fishLoot != null) {
                         FishingHelper.track(fishLoot, angler);
-                        EntityItem entityitem = new EntityItem(worldObj, posX, posY, posZ, fishLoot);
+                        EntityItem entityitem = new EntityItem(world, posX, posY, posZ, fishLoot);
 
                         double d5 = this.angler.posX - this.posX;
                         double d6 = this.angler.posY - this.posY;
@@ -533,9 +533,9 @@ public class EntityCustomFishHook extends EntityFishHook implements IThrowableEn
                         entityitem.motionX = d5 * d9;
                         entityitem.motionY = d6 * d9 + 1;
                         entityitem.motionZ = d7 * d9;
-                        this.worldObj.spawnEntityInWorld(entityitem);
+                        this.world.spawnEntity(entityitem);
                         this.angler.addStat(StatList.FISH_CAUGHT, 1);
-                        this.angler.worldObj.spawnEntityInWorld(new EntityXPOrb(this.angler.worldObj, this.angler.posX, this.angler.posY + 0.5D, this.angler.posZ + 0.5D, this.rand.nextInt(6) + 1));
+                        this.angler.world.spawnEntity(new EntityXPOrb(this.angler.world, this.angler.posX, this.angler.posY + 0.5D, this.angler.posZ + 0.5D, this.rand.nextInt(6) + 1));
                         b0 = 1;
                     }
 

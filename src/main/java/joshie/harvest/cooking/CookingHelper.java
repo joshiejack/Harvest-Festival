@@ -65,7 +65,7 @@ public class CookingHelper {
     }
 
     public static PlaceIngredientResult tryPlaceIngredients(EntityPlayer player, Recipe recipe) {
-        World world = player.worldObj;
+        World world = player.world;
         BlockPos pos = new BlockPos(player);
         int reach = player.capabilities.isCreativeMode ? 5 : 4;
         List<IInventory> fridges = getAllFridges(player, world, pos, reach);

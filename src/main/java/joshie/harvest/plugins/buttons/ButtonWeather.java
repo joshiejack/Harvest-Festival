@@ -76,7 +76,7 @@ public class ButtonWeather extends ButtonMode<WeatherModes> {
 
         @Override
         public void onServerClick(EntityPlayerMP player) {
-            HFTrackers.<CalendarServer>getCalendar(player.worldObj).setTodaysWeather(weather);
+            HFTrackers.<CalendarServer>getCalendar(player.world).setTodaysWeather(weather);
         }
     }
 }

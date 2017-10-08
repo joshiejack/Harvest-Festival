@@ -91,7 +91,7 @@ public abstract class EntityNPCHuman<E extends EntityNPCHuman> extends EntityNPC
 
     @Override
     public void onDeath(@Nonnull DamageSource cause) {
-        if (!worldObj.isRemote) {
+        if (!world.isRemote) {
             //Respawn a new bugger
             if (npc.respawns()) {
                 this.<TownDataServer>getHomeTown().markNPCDead(getNPC().getResource(), new BlockPos(this));
@@ -111,7 +111,7 @@ public abstract class EntityNPCHuman<E extends EntityNPCHuman> extends EntityNPC
             }
 
             if (source == DamageSource.inWall) {
-                attemptTeleport(posX + worldObj.rand.nextInt(20) - 10D, posY + worldObj.rand.nextInt(3), posZ + worldObj.rand.nextInt(20) - 10D);
+                attemptTeleport(posX + world.rand.nextInt(20) - 10D, posY + world.rand.nextInt(3), posZ + world.rand.nextInt(20) - 10D);
             }
         }
 

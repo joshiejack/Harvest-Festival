@@ -37,7 +37,7 @@ public abstract class BlockHFEnumCube<B extends BlockHFEnumCube, E extends Enum<
     }
 
     @Override
-    public boolean isVisuallyOpaque() {
+    public boolean causesSuffocation() {
         return true;
     }
 }

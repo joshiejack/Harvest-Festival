@@ -181,7 +181,7 @@ public class BlockStorage extends BlockHFEnumRotatableTile<BlockStorage, Storage
                         basket.setAppearanceAndContents(((TileBasket)tile).getStack(), ((TileBasket)tile).handler);
                     }
 
-                    world.spawnEntityInWorld(basket);
+                    world.spawnEntity(basket);
                     ((EntityPlayerMP)player).connection.sendPacket(new SPacketSetPassengers(player));
                     world.setBlockToAir(pos); //Remove the basket
                 }

@@ -17,13 +17,13 @@ import static joshie.harvest.calendar.HFCalendar.TICKS_PER_DAY;
 public class HFCommandNewDay extends CommandBase {
     @Override
     @Nonnull
-    public String getCommandName() {
+    public String getName() {
         return "newDay";
     }
 
     @Override
     @Nonnull
-    public String getCommandUsage(@Nonnull ICommandSender sender) {
+    public String getUsage(@Nonnull ICommandSender sender) {
         return "/hf newDay";
     }
 

@@ -57,7 +57,7 @@ public class BlockAquatic extends BlockHFEnum<BlockAquatic, Aquatic> {
     }
 
     @Override
-    public boolean isVisuallyOpaque() {
+    public boolean causesSuffocation() {
         return false;
     }
 

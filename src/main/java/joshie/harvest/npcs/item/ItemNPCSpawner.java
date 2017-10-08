@@ -41,7 +41,7 @@ public class ItemNPCSpawner extends ItemHFRegistry<ItemNPCSpawner, NPC> {
             entity.setUniqueId(TownHelper.getClosestTownToEntity(entity, true).getID());
         }
 
-        world.spawnEntityInWorld(entity);
+        world.spawnEntity(entity);
     }
 
     @Override

@@ -40,16 +40,16 @@ public class QuestHelper implements IQuestHelper {
     @Override
     public void completeQuestConditionally(Quest quest, EntityPlayer player) {
         if (!hasCompleted(quest, player)) {
-            if (quest.getQuestType() == TargetType.PLAYER) HFTrackers.getPlayerTrackerFromPlayer(player).getQuests().markCompleted(player.worldObj, player, quest, false);
-            else TownHelper.getClosestTownToEntity(player, false).getQuests().markCompleted(player.worldObj, player, quest, false);
+            if (quest.getQuestType() == TargetType.PLAYER) HFTrackers.getPlayerTrackerFromPlayer(player).getQuests().markCompleted(player.world, player, quest, false);
+            else TownHelper.getClosestTownToEntity(player, false).getQuests().markCompleted(player.world, player, quest, false);
         }
     }
 
     @Override
     public void completeQuest(Quest quest, EntityPlayer player) {
-        if (!player.worldObj.isRemote) {
-            if (quest.getQuestType() == TargetType.PLAYER) HFTrackers.getPlayerTrackerFromPlayer(player).getQuests().markCompleted(player.worldObj, player, quest, true);
-            else TownHelper.getClosestTownToEntity(player, false).getQuests().markCompleted(player.worldObj, player, quest, true);
+        if (!player.world.isRemote) {
+            if (quest.getQuestType() == TargetType.PLAYER) HFTrackers.getPlayerTrackerFromPlayer(player).getQuests().markCompleted(player.world, player, quest, true);
+            else TownHelper.getClosestTownToEntity(player, false).getQuests().markCompleted(player.world, player, quest, true);
         }
     }
 
@@ -62,12 +62,12 @@ public class QuestHelper implements IQuestHelper {
 
     @Override
     public void increaseStage(Quest quest, EntityPlayer player) {
-        if (!player.worldObj.isRemote) {
+        if (!player.world.isRemote) {
             quest.setStage(quest.getStage() + 1);
             if (quest.getQuestType() == TargetType.PLAYER) sendToClient(new PacketSyncData(quest, quest.writeToNBT(new NBTTagCompound())), player);
             else {
                 TownDataServer data = TownHelper.getClosestTownToEntity(player, false);
-                sendToDimension(player.worldObj.provider.getDimension(), new PacketSyncData(quest, quest.writeToNBT(new NBTTagCompound())).setUUID(data.getID()));
+                sendToDimension(player.world.provider.getDimension(), new PacketSyncData(quest, quest.writeToNBT(new NBTTagCompound())).setUUID(data.getID()));
                 HFTrackers.markTownsDirty();
             }
         }
@@ -75,11 +75,11 @@ public class QuestHelper implements IQuestHelper {
 
     @Override
     public void syncData(Quest quest, EntityPlayer player) {
-        if (!player.worldObj.isRemote) {
+        if (!player.world.isRemote) {
             if (quest.getQuestType() == TargetType.PLAYER) sendToClient(new PacketSyncData(quest, quest.writeToNBT(new NBTTagCompound())), player);
             else {
                 TownDataServer data = TownHelper.getClosestTownToEntity(player, false);
-                sendToDimension(player.worldObj.provider.getDimension(), new PacketSyncData(quest, quest.writeToNBT(new NBTTagCompound())).setUUID(data.getID()));
+                sendToDimension(player.world.provider.getDimension(), new PacketSyncData(quest, quest.writeToNBT(new NBTTagCompound())).setUUID(data.getID()));
                 HFTrackers.markTownsDirty();
             }
         }
@@ -95,18 +95,18 @@ public class QuestHelper implements IQuestHelper {
 
     @Override
     public void rewardGold(EntityPlayer player, long amount) {
-        if (!player.worldObj.isRemote) {
+        if (!player.world.isRemote) {
             HFTrackers.<PlayerTrackerServer>getPlayerTrackerFromPlayer(player).getStats().addGold((EntityPlayerMP) player, amount);
         }
     }
 
     @Override
     public void rewardEntity(Quest quest, EntityPlayer player, String entity) {
-        if (!player.worldObj.isRemote) {
-            Entity theEntity = EntityList.createEntityByIDFromName(entity, player.worldObj);
+        if (!player.world.isRemote) {
+            Entity theEntity = EntityList.createEntityByIDFromName(entity, player.world);
             if (theEntity != null) {
                 theEntity.setPosition(player.posX, player.posY, player.posZ);
-                player.worldObj.spawnEntityInWorld(theEntity);
+                player.world.spawnEntity(theEntity);
             }
         }
     }

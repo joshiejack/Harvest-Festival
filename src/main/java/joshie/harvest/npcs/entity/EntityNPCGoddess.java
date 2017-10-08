@@ -38,7 +38,7 @@ public class EntityNPCGoddess extends EntityNPC<EntityNPCGoddess> {
     }
 
     private EntityNPCGoddess(EntityNPCGoddess entity) {
-        this(entity.worldObj, entity.npc);
+        this(entity.world, entity.npc);
         npc = entity.getNPC();
         lover = entity.lover;
     }
@@ -77,13 +77,13 @@ public class EntityNPCGoddess extends EntityNPC<EntityNPCGoddess> {
     public void moveEntityWithHeading(float strafe, float forward) {
         if (isInWater()) {
             moveRelative(strafe, forward, 0.02F);
-            moveEntity(motionX, motionY, motionZ);
+            move(motionX, motionY, motionZ);
             motionX *= 0.800000011920929D;
             motionY *= 0.800000011920929D;
             motionZ *= 0.800000011920929D;
         } else if (isInLava()) {
             moveRelative(strafe, forward, 0.02F);
-            moveEntity(motionX, motionY, motionZ);
+            move(motionX, motionY, motionZ);
             motionX *= 0.5D;
             motionY *= 0.5D;
             motionZ *= 0.5D;
@@ -91,7 +91,7 @@ public class EntityNPCGoddess extends EntityNPC<EntityNPCGoddess> {
             float f = 0.91F;
 
             if (onGround) {
-                f = worldObj.getBlockState(new BlockPos(MathHelper.floor_double(posX), MathHelper.floor_double(getEntityBoundingBox().minY) - 1, MathHelper.floor_double(posZ))).getBlock().slipperiness * 0.91F;
+                f = world.getBlockState(new BlockPos(MathHelper.floor(posX), MathHelper.floor(getEntityBoundingBox().minY) - 1, MathHelper.floor(posZ))).getBlock().slipperiness * 0.91F;
             }
 
             float f1 = 0.16277136F / (f * f * f);
@@ -99,10 +99,10 @@ public class EntityNPCGoddess extends EntityNPC<EntityNPCGoddess> {
             f = 0.91F;
 
             if (onGround) {
-                f = worldObj.getBlockState(new BlockPos(MathHelper.floor_double(posX), MathHelper.floor_double(getEntityBoundingBox().minY) - 1, MathHelper.floor_double(posZ))).getBlock().slipperiness * 0.91F;
+                f = world.getBlockState(new BlockPos(MathHelper.floor(posX), MathHelper.floor(getEntityBoundingBox().minY) - 1, MathHelper.floor(posZ))).getBlock().slipperiness * 0.91F;
             }
 
-            moveEntity(motionX, motionY, motionZ);
+            move(motionX, motionY, motionZ);
             motionX *= (double) f;
             motionY *= (double) f;
             motionZ *= (double) f;
@@ -128,10 +128,10 @@ public class EntityNPCGoddess extends EntityNPC<EntityNPCGoddess> {
         super.onLivingUpdate();
         //Spawn Particles around the goddess
         for (int i = 0; i < 16; i++) {
-            worldObj.spawnParticle(EnumParticleTypes.EXPLOSION_NORMAL, posX + 0.1 * rand.nextFloat(), posY + 0.2 * rand.nextFloat(), posZ + 0.1 * rand.nextFloat(), 0, -0.05, 0);
+            world.spawnParticle(EnumParticleTypes.EXPLOSION_NORMAL, posX + 0.1 * rand.nextFloat(), posY + 0.2 * rand.nextFloat(), posZ + 0.1 * rand.nextFloat(), 0, -0.05, 0);
         }
 
-        if (!worldObj.isRemote) {
+        if (!world.isRemote) {
             if (!isTalking() && lastTalk > 0) {
                 lastTalk--;
 
@@ -170,9 +170,9 @@ public class EntityNPCGoddess extends EntityNPC<EntityNPCGoddess> {
         flower = buf.readBoolean();
 
         for (int i = 0; i < 16; i++) {
-            worldObj.spawnParticle(EnumParticleTypes.ENCHANTMENT_TABLE, posX * 0.2 * rand.nextFloat(), posY + 0.5 + 0.2 * rand.nextFloat(), posZ + 0.2 * rand.nextFloat(), 0, 0, 0);
+            world.spawnParticle(EnumParticleTypes.ENCHANTMENT_TABLE, posX * 0.2 * rand.nextFloat(), posY + 0.5 + 0.2 * rand.nextFloat(), posZ + 0.2 * rand.nextFloat(), 0, 0, 0);
         }
 
-        worldObj.playSound(posX, posY, posZ, HFSounds.GODDESS_SPAWN, SoundCategory.NEUTRAL, 0.5F, 1.1F, true);
+        world.playSound(posX, posY, posZ, HFSounds.GODDESS_SPAWN, SoundCategory.NEUTRAL, 0.5F, 1.1F, true);
     }
 }

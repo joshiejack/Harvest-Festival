@@ -85,7 +85,7 @@ public class PreviewEvent {
     @SubscribeEvent
     public void renderBuildingPreview(RenderWorldLastEvent event) throws ExecutionException {
         EntityPlayerSP player = MCClientHelper.getPlayer();
-        BuildingRenderer renderer = getRenderer(player.worldObj, player);
+        BuildingRenderer renderer = getRenderer(player.world, player);
         if (renderer != null) {
             renderRenderer(player, renderer, event.getPartialTicks());
         }

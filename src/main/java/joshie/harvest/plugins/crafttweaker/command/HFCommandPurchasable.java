@@ -16,13 +16,13 @@ import javax.annotation.Nonnull;
 public class HFCommandPurchasable extends CommandBase {
     @Override
     @Nonnull
-    public String getCommandName() {
+    public String getName() {
         return "items";
     }
 
     @Override
     @Nonnull
-    public String getCommandUsage(@Nonnull ICommandSender sender) {
+    public String getUsage(@Nonnull ICommandSender sender) {
         return "/hf items [shopid]";
     }
 
@@ -33,8 +33,8 @@ public class HFCommandPurchasable extends CommandBase {
 
     @Override
     public void execute(@Nonnull MinecraftServer server, @Nonnull ICommandSender sender, @Nonnull String[] parameters) throws CommandException {
-        if (parameters.length != 1) throw new WrongUsageException(getCommandUsage(sender));
+        if (parameters.length != 1) throw new WrongUsageException(getUsage(sender));
         MineTweakerAPI.logCommand("Items: \n" + Shop.REGISTRY.get(new ResourceLocation(parameters[0])).getPurchasableIDs().toString().replace("[", "").replace("]", "").replace(", ", "\n"));
-        sender.addChatMessage(new TextComponentString("List generated; see minetweaker.log in your minecraft dir"));
+        sender.sendMessage(new TextComponentString("List generated; see minetweaker.log in your minecraft dir"));
     }
 }

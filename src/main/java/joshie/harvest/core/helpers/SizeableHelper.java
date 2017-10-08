@@ -46,7 +46,7 @@ public class SizeableHelper {
     }
 
     private static ItemStack getSizeable(AnimalStats stats, Sizeable sizeable, int size) {
-        if (stats.performTest(AnimalTest.WON_CONTEST) && stats.getHappiness() >= (Size.LARGE.getRelationshipRequirement() + 3000) && stats.getAnimal().worldObj.rand.nextInt(100) == 0) {
+        if (stats.performTest(AnimalTest.WON_CONTEST) && stats.getHappiness() >= (Size.LARGE.getRelationshipRequirement() + 3000) && stats.getAnimal().world.rand.nextInt(100) == 0) {
             return sizeable.getStackOfSize(HFAnimals.ANIMAL_PRODUCT, Size.LARGE, size);
         }
 
@@ -78,7 +78,7 @@ public class SizeableHelper {
         @Nullable
         public Size get(EntityAnimal animal) {
             if (map.size() == 0) return Size.SMALL;
-            return map.ceilingEntry((animal.worldObj.rand.nextDouble() * total)).getValue();
+            return map.ceilingEntry((animal.world.rand.nextDouble() * total)).getValue();
         }
     }
 }

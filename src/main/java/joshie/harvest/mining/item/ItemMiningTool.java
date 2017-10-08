@@ -51,7 +51,7 @@ public class ItemMiningTool extends ItemHFEnum<ItemMiningTool, MiningTool> {
     @Nullable
     private NBTTagCompound getLinkData(EntityPlayer player) {
         try {
-            return player.worldObj.isRemote ? linkDataClient.get(player, NBTTagCompound::new) : linkDataServer.get(player, NBTTagCompound::new);
+            return player.world.isRemote ? linkDataClient.get(player, NBTTagCompound::new) : linkDataServer.get(player, NBTTagCompound::new);
         } catch (ExecutionException ex) { return null; }
     }
 

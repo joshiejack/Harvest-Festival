@@ -36,7 +36,7 @@ public class PurchasableWeekend extends Purchasable {
     @Override
     public void onPurchased(EntityPlayer player) {
         HFTrackers.getPlayerTrackerFromPlayer(player).getTracking().addAsObtained(stack);
-        if (player.worldObj.isRemote) MCClientHelper.initGui();
+        if (player.world.isRemote) MCClientHelper.initGui();
         super.onPurchased(player);
     }
 }

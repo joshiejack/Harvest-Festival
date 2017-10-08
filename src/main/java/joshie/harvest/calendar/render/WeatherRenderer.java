@@ -21,15 +21,15 @@ import static net.minecraft.client.renderer.EntityRenderer.SNOW_TEXTURES;
 public class WeatherRenderer extends IRenderHandler {
     @Override
     public void render(float rain, WorldClient worldClient, Minecraft mc) {
-        float f = mc.theWorld.getRainStrength(rain);
+        float f = mc.world.getRainStrength(rain);
         EntityRenderer renderer = mc.entityRenderer;
         if (f > 0.0F) {
             renderer.enableLightmap();
             Entity entity = mc.getRenderViewEntity();
-            World world = mc.theWorld;
-            int i = MathHelper.floor_double(entity.posX);
-            int j = MathHelper.floor_double(entity.posY);
-            int k = MathHelper.floor_double(entity.posZ);
+            World world = mc.world;
+            int i = MathHelper.floor(entity.posX);
+            int j = MathHelper.floor(entity.posY);
+            int k = MathHelper.floor(entity.posZ);
             Tessellator tessellator = Tessellator.getInstance();
             VertexBuffer vertexbuffer = tessellator.getBuffer();
             GlStateManager.disableCull();
@@ -40,7 +40,7 @@ public class WeatherRenderer extends IRenderHandler {
             double d0 = entity.lastTickPosX + (entity.posX - entity.lastTickPosX) * (double)rain;
             double d1 = entity.lastTickPosY + (entity.posY - entity.lastTickPosY) * (double)rain;
             double d2 = entity.lastTickPosZ + (entity.posZ - entity.lastTickPosZ) * (double)rain;
-            int l = MathHelper.floor_double(d1);
+            int l = MathHelper.floor(d1);
             int i1 = 5;
 
             if (mc.gameSettings.fancyGraphics) {
@@ -98,7 +98,7 @@ public class WeatherRenderer extends IRenderHandler {
                                 double d5 = -((double)(renderer.rendererUpdateCount + l1 * l1 * 3121 + l1 * 45238971 + k1 * k1 * 418711 + k1 * 13761 & 31) + (double)rain) / 32.0D * (3.0D + renderer.random.nextDouble());
                                 double d6 = (double)((float)l1 + 0.5F) - entity.posX;
                                 double d7 = (double)((float)k1 + 0.5F) - entity.posZ;
-                                float f3 = MathHelper.sqrt_double(d6 * d6 + d7 * d7) / (float)i1;
+                                float f3 = MathHelper.sqrt(d6 * d6 + d7 * d7) / (float)i1;
                                 float f4 = ((1.0F - f3 * f3) * 0.5F + 0.5F) * f;
                                 blockpos$mutableblockpos.setPos(l1, i3, k1);
                                 int j3 = world.getCombinedLight(blockpos$mutableblockpos, 0);
@@ -124,7 +124,7 @@ public class WeatherRenderer extends IRenderHandler {
                                 double d10 = renderer.random.nextDouble() + (double)(f1 * (float)renderer.random.nextGaussian()) * 0.001D;
                                 double d11 = (double)((float)l1 + 0.5F) - entity.posX;
                                 double d12 = (double)((float)k1 + 0.5F) - entity.posZ;
-                                float f6 = MathHelper.sqrt_double(d11 * d11 + d12 * d12) / (float)i1;
+                                float f6 = MathHelper.sqrt(d11 * d11 + d12 * d12) / (float)i1;
                                 float f5 = ((1.0F - f6 * f6) * 0.3F + 0.5F) * f;
                                 blockpos$mutableblockpos.setPos(l1, i3, k1);
                                 int i4 = (world.getCombinedLight(blockpos$mutableblockpos, 0) * 3 + 15728880) / 4;

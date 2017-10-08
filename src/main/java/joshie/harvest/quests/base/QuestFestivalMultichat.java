@@ -28,7 +28,7 @@ public abstract class QuestFestivalMultichat extends QuestFestival {
     @Nullable
     @SideOnly(Side.CLIENT)
     public String getLocalizedScript(EntityPlayer player, NPCEntity entity) {
-        if (!isCorrectTime(CalendarHelper.getTime(player.worldObj)) || received.get(EntityHelper.getPlayerUUID(player)).contains(entity.getNPC())) return null; //Don't process
+        if (!isCorrectTime(CalendarHelper.getTime(player.world)) || received.get(EntityHelper.getPlayerUUID(player)).contains(entity.getNPC())) return null; //Don't process
         return getLocalizedScript(player, entity.getNPC());
     }
 
@@ -37,7 +37,7 @@ public abstract class QuestFestivalMultichat extends QuestFestival {
 
     @Override
     public void onChatClosed(EntityPlayer player, NPCEntity entity, boolean wasSneaking) {
-        if (isCorrectTime(CalendarHelper.getTime(player.worldObj))) {
+        if (isCorrectTime(CalendarHelper.getTime(player.world))) {
             UUID uuid = EntityHelper.getPlayerUUID(player);
             if (received.get(uuid).contains(entity.getNPC())) return;
             received.get(uuid).add(entity.getNPC()); //Mark this npc as talked to

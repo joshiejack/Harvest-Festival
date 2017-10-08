@@ -132,14 +132,14 @@ public class ItemAnimalTool extends ItemHFEnum<ItemAnimalTool, Tool> {
     }
 
     private boolean impregnate(EntityPlayer player, AnimalStats stats, ItemStack stack) {
-        if (stats.performAction(player.worldObj, stack, AnimalAction.IMPREGNATE)) {
+        if (stats.performAction(player.world, stack, AnimalAction.IMPREGNATE)) {
             stack.splitStack(1);
             return true;
         } else return false;
     }
 
     private boolean heal(EntityPlayer player, AnimalStats stats, ItemStack stack) {
-        if (stats.performAction(player.worldObj, stack, AnimalAction.HEAL)) {
+        if (stats.performAction(player.world, stack, AnimalAction.HEAL)) {
             stack.splitStack(1);
             ToolHelper.consumeHunger(player, 5F);
             return true;
@@ -148,18 +148,18 @@ public class ItemAnimalTool extends ItemHFEnum<ItemAnimalTool, Tool> {
 
     private boolean clean(EntityPlayer player, ItemStack held, EntityLivingBase animal, AnimalStats stats) {
         if (stats.performTest(AnimalTest.CAN_CLEAN)) {
-            boolean cleaned = stats.performAction(player.worldObj, held, AnimalAction.CLEAN);
+            boolean cleaned = stats.performAction(player.world, held, AnimalAction.CLEAN);
             if (cleaned) {
-                if (player.worldObj.isRemote) {
+                if (player.world.isRemote) {
                     for (int j = 0; j < 30D; j++) {
-                        double d7 = (animal.posY - 0.5D) + animal.worldObj.rand.nextFloat();
-                        double d8 = (animal.posX - 0.5D) + animal.worldObj.rand.nextFloat();
-                        double d9 = (animal.posZ - 0.5D) + animal.worldObj.rand.nextFloat();
-                        animal.worldObj.spawnParticle(EnumParticleTypes.TOWN_AURA, d8, 1.0D + d7 - 0.125D, d9, 0, 0, 0);
+                        double d7 = (animal.posY - 0.5D) + animal.world.rand.nextFloat();
+                        double d8 = (animal.posX - 0.5D) + animal.world.rand.nextFloat();
+                        double d9 = (animal.posZ - 0.5D) + animal.world.rand.nextFloat();
+                        animal.world.spawnParticle(EnumParticleTypes.TOWN_AURA, d8, 1.0D + d7 - 0.125D, d9, 0, 0, 0);
                     }
                 }
 
-                player.worldObj.playSound(player, player.posX, player.posY, player.posZ, HFSounds.BRUSH, SoundCategory.PLAYERS, 1.5F, 1F);
+                player.world.playSound(player, player.posX, player.posY, player.posZ, HFSounds.BRUSH, SoundCategory.PLAYERS, 1.5F, 1F);
                 if (stats.performTest(AnimalTest.IS_CLEAN)) {
                     int damage = getDamageForDisplay(held) + 1;
                     if (damage >= MAX_DAMAGE) {

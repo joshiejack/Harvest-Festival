@@ -15,7 +15,7 @@ public abstract class QuestFestivalTimed extends QuestFestival {
 
     @Override
     public void onQuestSelectedForDisplay(EntityPlayer player, NPCEntity entity) {
-        time = CalendarHelper.getTime(player.worldObj);
+        time = CalendarHelper.getTime(player.world);
     }
 
     @Nullable

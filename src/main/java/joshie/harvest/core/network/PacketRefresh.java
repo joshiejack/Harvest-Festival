@@ -34,10 +34,10 @@ public class PacketRefresh extends PenguinPacket {
 
     @Override
     public void handlePacket(EntityPlayer player) {
-        TileEntity tile = player.worldObj.getTileEntity(pos);
+        TileEntity tile = player.world.getTileEntity(pos);
         if (tile != null) {
             tile.handleUpdateTag(tag);
-            player.worldObj.markBlockRangeForRenderUpdate(pos, pos);
+            player.world.markBlockRangeForRenderUpdate(pos, pos);
         }
     }
 }

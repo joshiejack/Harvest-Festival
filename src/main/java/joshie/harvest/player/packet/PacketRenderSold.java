@@ -43,7 +43,7 @@ public class PacketRenderSold extends PenguinPacket {
     @Override
     public void handlePacket(EntityPlayer player) {
         if (HFCore.DISPLAY_SHIPPED_LIST) {
-            player.worldObj.playSound(player, new BlockPos(player), HFSounds.SHIPPED, SoundCategory.PLAYERS, player.worldObj.rand.nextFloat() * 0.25F + 6F, player.worldObj.rand.nextFloat() * 1.0F + 0.5F);
+            player.world.playSound(player, new BlockPos(player), HFSounds.SHIPPED, SoundCategory.PLAYERS, player.world.rand.nextFloat() * 0.25F + 6F, player.world.rand.nextFloat() * 1.0F + 0.5F);
             MinecraftForge.EVENT_BUS.register(new TrackingRenderer(sold));
         }
     }

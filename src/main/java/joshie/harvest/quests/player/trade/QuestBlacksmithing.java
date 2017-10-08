@@ -143,8 +143,8 @@ public class QuestBlacksmithing extends QuestTrade {
 
     @Override
     public void onQuestSelectedForDisplay(EntityPlayer player, NPCEntity entity) {
-        today = HFApi.calendar.getDate(player.worldObj);
-        daytime = CalendarHelper.getTime(player.worldObj);
+        today = HFApi.calendar.getDate(player.world);
+        daytime = CalendarHelper.getTime(player.world);
     }
 
     @SideOnly(Side.CLIENT)
@@ -207,7 +207,7 @@ public class QuestBlacksmithing extends QuestTrade {
                 if (HFTrackers.getPlayerTrackerFromPlayer(player).getStats().getGold() < required) return;
                 ItemStack material = getRepairMaterial(broken);
                 if (InventoryHelper.takeItemsInInventory(player, ITEM_STACK, material)) {
-                    date = HFApi.calendar.getDate(player.worldObj).copy();
+                    date = HFApi.calendar.getDate(player.world).copy();
                     tool = player.getHeldItemMainhand().copy();
                     tool.getSubCompound("Data", true).setInteger("Damage", 0);
                     tool.getSubCompound("Data", true).setDouble("Level", tool.getSubCompound("Data", true).getDouble("Level"));
@@ -227,7 +227,7 @@ public class QuestBlacksmithing extends QuestTrade {
                 long required = getCost(holding);
                 if (HFTrackers.getPlayerTrackerFromPlayer(player).getStats().getGold() < required) return;
                 if(InventoryHelper.takeItemsInInventory(player, ITEM_STACK, new ItemStack(HFMining.MATERIALS, 1, getMaterial(holding)), getRequired(holding))) {
-                    date = HFApi.calendar.getDate(player.worldObj).copy();
+                    date = HFApi.calendar.getDate(player.world).copy();
                     tool = player.getHeldItemMainhand().copy();
                     tool.setTagCompound(null);
                     tool.setItemDamage(tool.getItemDamage() + 1);
@@ -240,10 +240,10 @@ public class QuestBlacksmithing extends QuestTrade {
         } else {
             if (getDifference(date, today) >= days) {
                 complete(player);
-                player.worldObj.playSound(player, player.posX, player.posY, player.posZ, SoundEvents.BLOCK_ANVIL_HIT, SoundCategory.NEUTRAL, 0.25F, 1F);
+                player.world.playSound(player, player.posX, player.posY, player.posZ, SoundEvents.BLOCK_ANVIL_HIT, SoundCategory.NEUTRAL, 0.25F, 1F);
                 EntityLiving living = entity.getAsEntity();
                 for (int i = 0; i < 32; i++) {
-                    player.worldObj.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, living.posX + player.worldObj.rand.nextFloat() + player.worldObj.rand.nextFloat() - 1F, living.posY + 0.25D + living.getEntityWorld().rand.nextFloat() + living.getEntityWorld().rand.nextFloat(), living.posZ + player.worldObj.rand.nextFloat() + player.worldObj.rand.nextFloat() - 1F, 0, 0, 0);
+                    player.world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, living.posX + player.world.rand.nextFloat() + player.world.rand.nextFloat() - 1F, living.posY + 0.25D + living.getEntityWorld().rand.nextFloat() + living.getEntityWorld().rand.nextFloat(), living.posZ + player.world.rand.nextFloat() + player.world.rand.nextFloat() - 1F, 0, 0, 0);
                 }
             }
         }
@@ -253,7 +253,7 @@ public class QuestBlacksmithing extends QuestTrade {
     public void onQuestCompleted(EntityPlayer player) {
         rewardItem(player, tool);
         HFTrackers.getPlayerTrackerFromPlayer(player).getTracking().addAsObtained(tool);
-        spawnXP(player.worldObj, (int)player.posX, (int)player.posY, (int)player.posZ, 5);
+        spawnXP(player.world, (int)player.posX, (int)player.posY, (int)player.posZ, 5);
     }
 
     @Override

@@ -19,13 +19,13 @@ import java.util.stream.Collectors;
 public class HFCommandShops extends CommandBase {
     @Override
     @Nonnull
-    public String getCommandName() {
+    public String getName() {
         return "shops";
     }
 
     @Override
     @Nonnull
-    public String getCommandUsage(@Nonnull ICommandSender sender) {
+    public String getUsage(@Nonnull ICommandSender sender) {
         return "/hf shops";
     }
 
@@ -37,7 +37,7 @@ public class HFCommandShops extends CommandBase {
     @Override
     public void execute(@Nonnull MinecraftServer server, @Nonnull ICommandSender sender, @Nonnull String[] parameters) throws CommandException {
         MineTweakerAPI.logCommand("Shops: \n" + this.getShopList().toString().replace("[", "").replace("]", "").replace(", ", "\n"));
-        sender.addChatMessage(new TextComponentString("List generated; see minetweaker.log in your minecraft dir"));
+        sender.sendMessage(new TextComponentString("List generated; see minetweaker.log in your minecraft dir"));
     }
 
     private List<ResourceLocation> getShopList() {

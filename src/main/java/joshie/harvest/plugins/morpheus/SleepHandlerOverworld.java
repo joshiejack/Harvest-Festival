@@ -13,8 +13,8 @@ public class SleepHandlerOverworld implements INewDayHandler {
     public void startNewDay()  {
         MinecraftServer server = FMLCommonHandler.instance().getMinecraftServerInstance();
         long i = server.worldServerForDimension(0).getWorldTime() + TICKS_PER_DAY;
-        for (int j = 0; j < server.worldServers.length; ++j) {
-            WorldServer world = server.worldServers[j];
+        for (int j = 0; j < server.worlds.length; ++j) {
+            WorldServer world = server.worlds[j];
             world.setWorldTime((i - i % TICKS_PER_DAY) - 1);
             world.playerEntities.stream().filter(EntityPlayer::isPlayerSleeping).forEach(entityplayer -> entityplayer.wakeUpPlayer(false, false, true));
         }

@@ -50,7 +50,7 @@ public class GoddessHandler {
         if (flower) goddess.setFlower();
         if (move || (goddess.posX == 0 && goddess.posY == 0 && goddess.posZ == 0)) goddess.setPosition(x, y + 1, z);
         if (newGoddess) {
-            world.spawnEntityInWorld(goddess);
+            world.spawnEntity(goddess);
         }
 
         return !newGoddess;
@@ -60,7 +60,7 @@ public class GoddessHandler {
     @SubscribeEvent
     @SuppressWarnings("ConstantConditions")
     public void onItemExpire(ItemExpireEvent event) {
-        World world = event.getEntityItem().worldObj;
+        World world = event.getEntityItem().world;
         if (!world.isRemote) {
             ItemStack stack = event.getEntityItem().getEntityItem();
             if (isGoddessFlower(stack)) {

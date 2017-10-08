@@ -25,10 +25,10 @@ public class ShopSelection extends Selection {
     public Result onSelected(EntityPlayer player, NPCEntity entity, Quest quest, int option) {
         //If we are able to buy from this shop
         if(shop.canBuyFromShop(player) && option == 1) {
-            player.openGui(HarvestFestival.instance, GuiHandler.SHOP_MENU, player.worldObj, entity.getAsEntity().getEntityId(), 0, 0);
+            player.openGui(HarvestFestival.instance, GuiHandler.SHOP_MENU, player.world, entity.getAsEntity().getEntityId(), 0, 0);
             return Result.DEFAULT;
         } else if ((!shop.canBuyFromShop(player) && shop.canSellToShop(player) && option == 1) || (shop.canBuyFromShop(player) && shop.canSellToShop(player) && option == 2)) {
-            player.openGui(HarvestFestival.instance, GuiHandler.SHOP_MENU_SELL, player.worldObj, entity.getAsEntity().getEntityId(), 0, 0);
+            player.openGui(HarvestFestival.instance, GuiHandler.SHOP_MENU_SELL, player.world, entity.getAsEntity().getEntityId(), 0, 0);
             return Result.DEFAULT;
         } else return Result.ALLOW;
     }

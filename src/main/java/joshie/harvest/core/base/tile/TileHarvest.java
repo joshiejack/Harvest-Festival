@@ -40,7 +40,7 @@ public abstract class TileHarvest extends TileEntity {
         super.validate();
         DailyTickableBlock tickable = getTickableForTile();
         if (tickable != null) {
-            HFApi.tickable.addTickable(worldObj, pos, tickable);
+            HFApi.tickable.addTickable(world, pos, tickable);
         }
     }
 
@@ -48,7 +48,7 @@ public abstract class TileHarvest extends TileEntity {
     public void readFromNBT(NBTTagCompound nbt) {
         super.readFromNBT(nbt);
         if (nbt.hasKey("HasChanged")) {
-            worldObj.markBlockRangeForRenderUpdate(getPos(), getPos());
+            world.markBlockRangeForRenderUpdate(getPos(), getPos());
         }
     }
 
@@ -64,8 +64,8 @@ public abstract class TileHarvest extends TileEntity {
     }
 
     public void saveAndRefresh() {
-        MCServerHelper.markForUpdate(worldObj, pos, 3);
-        if (!worldObj.isRemote) {
+        MCServerHelper.markForUpdate(world, pos, 3);
+        if (!world.isRemote) {
             MCServerHelper.markTileForUpdate(this);
         }
 

@@ -38,7 +38,7 @@ public class PacketGift extends PenguinPacket {
     @Override
     @SuppressWarnings("unchecked")
     public void handlePacket(EntityPlayer player) {
-        EntityNPC npc = (EntityNPC) player.worldObj.getEntityByID(npcID);
+        EntityNPC npc = (EntityNPC) player.world.getEntityByID(npcID);
         if (npc != null) {
             handleGifting(player, npc);
         }
@@ -49,9 +49,9 @@ public class PacketGift extends PenguinPacket {
             if (npc.getNPC() == HFNPCs.GODDESS) {
                 SpawnItemHelper.addToPlayerInventory(player, HFKnowledge.BOOK.getStackFromEnum(Book.STATISTICS));
 
-            } else if (!player.worldObj.isRemote) {
+            } else if (!player.world.isRemote) {
                 if (player.getHeldItemMainhand() != null) {
-                    player.openGui(HarvestFestival.instance, GuiHandler.GIFT, player.worldObj, npc.getEntityId(), -1, EnumHand.MAIN_HAND.ordinal());
+                    player.openGui(HarvestFestival.instance, GuiHandler.GIFT, player.world, npc.getEntityId(), -1, EnumHand.MAIN_HAND.ordinal());
                 }
             }
 

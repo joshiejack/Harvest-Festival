@@ -126,7 +126,7 @@ public class AnimalStatsHF implements AnimalStats<NBTTagCompound> {
 
     @Override
     public void onBihourlyTick() {
-        World world = animal.worldObj;
+        World world = animal.world;
         boolean dayTime = world.isDaytime();
         boolean isRaining = world.isRaining();
         boolean isOutside = world.canBlockSeeSky(new BlockPos(animal));
@@ -234,7 +234,7 @@ public class AnimalStatsHF implements AnimalStats<NBTTagCompound> {
     public EntityPlayer getOwner() {
         EntityPlayer owner = getAndCreateOwner();
         if (owner != null && animal != null) {
-            if (animal.worldObj.provider.getDimension() == owner.worldObj.provider.getDimension()) {
+            if (animal.world.provider.getDimension() == owner.world.provider.getDimension()) {
                 if (animal.getDistanceToEntity(owner) <= 178D) {
                     return owner;
                 }
@@ -337,7 +337,7 @@ public class AnimalStatsHF implements AnimalStats<NBTTagCompound> {
     public void affectHappiness(int amount) {
         if (amount != 0) {
             happiness = Math.max(0, Math.min(RelationshipType.ANIMAL.getMaximumRP(), happiness + amount));
-            if (animal != null && !animal.worldObj.isRemote) {
+            if (animal != null && !animal.world.isRemote) {
                 if (amount < 0) {
                     try {
                         ReflectionHelper.findMethod(EntityLivingBase.class, null, new String[]{ "playHurtSound", "func_184581_c" }, DamageSource.class).invoke(animal, DamageSource.starve);

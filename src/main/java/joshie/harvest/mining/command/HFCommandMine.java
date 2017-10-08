@@ -13,13 +13,13 @@ import javax.annotation.Nonnull;
 public class HFCommandMine extends CommandBase {
     @Override
     @Nonnull
-    public String getCommandName() {
+    public String getName() {
         return "mine";
     }
 
     @Override
     @Nonnull
-    public String getCommandUsage(@Nonnull ICommandSender sender) {
+    public String getUsage(@Nonnull ICommandSender sender) {
         return "/hf mine [player] <mineID>";
     }
 
@@ -38,6 +38,6 @@ public class HFCommandMine extends CommandBase {
                 else entity = getEntity(server, sender, parameters[0]);
                 MiningHelper.teleportToMine(entity, mineID);
             } catch (EntityNotFoundException ex) { /* Do nothing*/ }
-        } else throw new WrongUsageException(getCommandUsage(sender));
+        } else throw new WrongUsageException(getUsage(sender));
     }
 }

@@ -42,8 +42,8 @@ public class QuestKatlinSundayBakingFreeCake extends Quest  {
     @Override
     public boolean isNPCUsed(EntityPlayer player, NPCEntity entity) {
         if (entity.getNPC() != HFNPCs.CAFE_GRANNY || !TownHelper.getClosestTownToEntity(player, false).hasBuilding(HFBuildings.CHURCH)) return false;
-        CalendarDate today = HFApi.calendar.getDate(player.worldObj);
-        long daytime = CalendarHelper.getTime(player.worldObj);
+        CalendarDate today = HFApi.calendar.getDate(player.world);
+        long daytime = CalendarHelper.getTime(player.world);
         if (today.getWeekday() == Weekday.SUNDAY && daytime >= 7000L && daytime <= 17000L) {
             if (date == null || CalendarHelper.getDays(date, today) >= 7) {
                 return true;
@@ -67,10 +67,10 @@ public class QuestKatlinSundayBakingFreeCake extends Quest  {
 
     @Override
     public void onChatClosed(EntityPlayer player, NPCEntity entity, boolean wasSneaking) {
-        CalendarDate today = HFApi.calendar.getDate(player.worldObj);
+        CalendarDate today = HFApi.calendar.getDate(player.world);
         date = today.copy(); //Save the date we received this
         syncData(player); //Sync the new data
-        rewardItem(player, getRandomBakedGoods(player.worldObj.rand));
+        rewardItem(player, getRandomBakedGoods(player.world.rand));
     }
 
     @Override

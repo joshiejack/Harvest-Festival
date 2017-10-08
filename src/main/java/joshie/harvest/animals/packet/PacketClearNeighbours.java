@@ -33,7 +33,7 @@ public class PacketClearNeighbours extends PenguinPacket {
         for (int x = -2; x <= 2; x++) {
             for (int z = -2; z <= 2; z++) {
                 BlockPos offset = pos.add(x, 0, z);
-                TileEntity tile = player.worldObj.getTileEntity(offset);
+                TileEntity tile = player.world.getTileEntity(offset);
                 if (tile instanceof TileFillableConnected) {
                     (((TileFillableConnected)tile)).resetClientData();
                 }

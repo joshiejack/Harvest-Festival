@@ -19,13 +19,13 @@ public class SpawnItemHelper {
     
     //Items Spawned by entities last 1 day
     public static void spawnByEntity(Entity entity, ItemStack stack) {
-        spawnItem(entity.worldObj, entity.posX, entity.posY, entity.posZ, stack, false, (int) HFCalendar.TICKS_PER_DAY, 0, 0);
+        spawnItem(entity.world, entity.posX, entity.posY, entity.posZ, stack, false, (int) HFCalendar.TICKS_PER_DAY, 0, 0);
     }
 
    public static void spawnXP(World world, int x, int y, int z, int amount) {
         if (!world.isRemote) {
             EntityXPOrb orb = new EntityXPOrb(world, x, y, z, amount);
-            world.spawnEntityInWorld(orb);
+            world.spawnEntity(orb);
         }
     }
     
@@ -47,7 +47,7 @@ public class SpawnItemHelper {
             }
 
             entityitem.setPickupDelay(delay);
-            world.spawnEntityInWorld(entityitem);
+            world.spawnEntity(entityitem);
         }
 
         return null;
@@ -61,7 +61,7 @@ public class SpawnItemHelper {
             double d2 = (double) (world.rand.nextFloat() * f) + (double) (1.0F - f) * 0.5D;
             EntityItem entityitem = new EntityItem(world, (double) x + d0, (double) y + d1, (double) z + d2, stack);
             entityitem.setPickupDelay(10);
-            world.spawnEntityInWorld(entityitem);
+            world.spawnEntity(entityitem);
         }
     }
 

@@ -15,6 +15,6 @@ public class TilePot extends TileHeatable {
     public void animate() {
         super.animate();
 
-        if (getCookTimer() == 1) worldObj.playSound(null, getPos(), HFSounds.POT, SoundCategory.BLOCKS, 1F, 1F);
+        if (getCookTimer() == 1) world.playSound(null, getPos(), HFSounds.POT, SoundCategory.BLOCKS, 1F, 1F);
     }
 }

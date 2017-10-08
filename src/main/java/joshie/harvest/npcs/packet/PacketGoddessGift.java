@@ -40,12 +40,12 @@ public class PacketGoddessGift extends PenguinPacket {
     @Override
     @SuppressWarnings("unchecked")
     public void handlePacket(EntityPlayer player) {
-        EntityNPC npc = (EntityNPC) player.worldObj.getEntityByID(npcID);
+        EntityNPC npc = (EntityNPC) player.world.getEntityByID(npcID);
         if (npc != null) {
             if (npc.isEntityAlive()) {
                 if (npc.getNPC() == HFNPCs.GODDESS) {
                     GuiNPCGift.GODDESS_GIFT = stack;
-                    player.openGui(HarvestFestival.instance, GuiHandler.GIFT_GODDESS, player.worldObj, npcID, -1, EnumHand.MAIN_HAND.ordinal());
+                    player.openGui(HarvestFestival.instance, GuiHandler.GIFT_GODDESS, player.world, npcID, -1, EnumHand.MAIN_HAND.ordinal());
                 }
 
                 npc.setTalking(player);

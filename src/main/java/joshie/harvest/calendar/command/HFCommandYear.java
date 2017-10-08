@@ -20,13 +20,13 @@ import javax.annotation.Nonnull;
 public class HFCommandYear extends CommandBase {
     @Override
     @Nonnull
-    public String getCommandName() {
+    public String getName() {
         return "year";
     }
 
     @Override
     @Nonnull
-    public String getCommandUsage(@Nonnull ICommandSender sender) {
+    public String getUsage(@Nonnull ICommandSender sender) {
         return "/hf year <value>";
     }
 
@@ -42,8 +42,8 @@ public class HFCommandYear extends CommandBase {
             int day = calendar.getDate().getDay();
             Season season = calendar.getDate().getSeason();
             int year = Math.min(Integer.MAX_VALUE, Math.max(1, Integer.parseInt(parameters[0])));
-            long leftover = server.worldServers[0].getWorldTime() % HFCalendar.TICKS_PER_DAY;
+            long leftover = server.worlds[0].getWorldTime() % HFCalendar.TICKS_PER_DAY;
             CalendarHelper.setWorldTime(server, CalendarHelper.getTime(day, season, year) + leftover);
-        } else throw new WrongUsageException(getCommandUsage(sender));
+        } else throw new WrongUsageException(getUsage(sender));
     }
 }

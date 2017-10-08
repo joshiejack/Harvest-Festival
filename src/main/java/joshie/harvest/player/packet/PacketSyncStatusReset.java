@@ -16,6 +16,6 @@ public class PacketSyncStatusReset extends PacketNBT {
 
     @Override
     public void handlePacket(EntityPlayer player) {
-        HFTrackers.getClientPlayerTracker().getRelationships().newDay(CalendarDate.fromNBT(tag), HFApi.calendar.getDate(player.worldObj));
+        HFTrackers.getClientPlayerTracker().getRelationships().newDay(CalendarDate.fromNBT(tag), HFApi.calendar.getDate(player.world));
     }
 }

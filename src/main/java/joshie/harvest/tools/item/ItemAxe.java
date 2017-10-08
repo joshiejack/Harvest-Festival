@@ -54,10 +54,10 @@ public class ItemAxe extends ItemToolSmashing<ItemAxe> {
 
     @Override
     public boolean onBlockStartBreak(ItemStack stack, BlockPos pos, EntityPlayer player) {
-        if (!player.isSneaking() && findTree(player.worldObj, pos)) {
+        if (!player.isSneaking() && findTree(player.world, pos)) {
             if (canChopTree(player, stack, pos))
                 return chopTree(pos, player, stack);
-             else if (isWood(player.worldObj, pos))
+             else if (isWood(player.world, pos))
                 return replaceTree(pos, player);
         }
 
@@ -93,7 +93,7 @@ public class ItemAxe extends ItemToolSmashing<ItemAxe> {
             if (internal.equals(pos)) {
                 int times = tag.getInteger("Times");
                 tag.setInteger("Times", times + 1);
-                player.worldObj.playSound(null, pos, HFSounds.TREE_CHOP, SoundCategory.BLOCKS, (player.worldObj.rand.nextFloat() * 0.25F) * times * 10F, player.worldObj.rand.nextFloat() * 1.0F + 0.5F);
+                player.world.playSound(null, pos, HFSounds.TREE_CHOP, SoundCategory.BLOCKS, (player.world.rand.nextFloat() * 0.25F) * times * 10F, player.world.rand.nextFloat() * 1.0F + 0.5F);
                 return times >= getHitsRequired(stack);
             }
         }
@@ -101,7 +101,7 @@ public class ItemAxe extends ItemToolSmashing<ItemAxe> {
         int times = 1;
         tag.setLong("Block", pos.toLong());
         tag.setInteger("Times", times);
-        player.worldObj.playSound(null, pos, HFSounds.TREE_CHOP, SoundCategory.BLOCKS, (player.worldObj.rand.nextFloat() * 0.25F) * times * 10F, player.worldObj.rand.nextFloat() * 1.0F + 0.5F);
+        player.world.playSound(null, pos, HFSounds.TREE_CHOP, SoundCategory.BLOCKS, (player.world.rand.nextFloat() * 0.25F) * times * 10F, player.world.rand.nextFloat() * 1.0F + 0.5F);
         return times > getHitsRequired(stack);
     }
 
@@ -109,15 +109,15 @@ public class ItemAxe extends ItemToolSmashing<ItemAxe> {
         NBTTagCompound tag = stack.getSubCompound("Chopping", true);
         tag.removeTag("Block"); //Remove the data now we're chopping
         tag.removeTag("Times"); //Remove the data now we're chopping
-        if(player.worldObj.isRemote) return true;
+        if(player.world.isRemote) return true;
         MinecraftForge.EVENT_BUS.register(new ChopTree(pos, player, stack));
-        player.worldObj.playSound(null, pos, HFSounds.TREE_FALL, SoundCategory.BLOCKS, player.worldObj.rand.nextFloat() * 0.25F, player.worldObj.rand.nextFloat() * 1.0F + 0.5F);
+        player.world.playSound(null, pos, HFSounds.TREE_FALL, SoundCategory.BLOCKS, player.world.rand.nextFloat() * 0.25F, player.world.rand.nextFloat() * 1.0F + 0.5F);
         return true;
     }
 
     private boolean replaceTree(BlockPos pos, EntityPlayer player) {
-        if(player.worldObj.isRemote) return true;
-        MinecraftForge.EVENT_BUS.register(new TreeReplace(player.worldObj, pos, player.worldObj.getBlockState(pos)));
+        if(player.world.isRemote) return true;
+        MinecraftForge.EVENT_BUS.register(new TreeReplace(player.world, pos, player.world.getBlockState(pos)));
         return true;
     }
 
@@ -179,8 +179,8 @@ public class ItemAxe extends ItemToolSmashing<ItemAxe> {
         Multimap<String, AttributeModifier> multimap = super.getAttributeModifiers(slot, stack);
         ToolTier tier = getTier(stack);
         if (slot == EntityEquipmentSlot.MAINHAND) {
-            multimap.put(SharedMonsterAttributes.ATTACK_DAMAGE.getAttributeUnlocalizedName(), new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Tool modifier", (double)(tier == BASIC ? 6F : 8F), 0));
-            multimap.put(SharedMonsterAttributes.ATTACK_SPEED.getAttributeUnlocalizedName(), new AttributeModifier(ATTACK_SPEED_MODIFIER, "Tool modifier", (double)ATTACK_SPEEDS[tier.ordinal()], 0));
+            multimap.put(SharedMonsterAttributes.ATTACK_DAMAGE.getName(), new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Tool modifier", (double)(tier == BASIC ? 6F : 8F), 0));
+            multimap.put(SharedMonsterAttributes.ATTACK_SPEED.getName(), new AttributeModifier(ATTACK_SPEED_MODIFIER, "Tool modifier", (double)ATTACK_SPEEDS[tier.ordinal()], 0));
         }
 
         return multimap;

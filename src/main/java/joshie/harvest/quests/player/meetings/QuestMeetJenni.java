@@ -64,7 +64,7 @@ public class QuestMeetJenni extends QuestMeeting {
 
     @Override
     public void onQuestCompleted(EntityPlayer player) {
-        Season season = HFApi.calendar.getDate(player.worldObj).getSeason();
+        Season season = HFApi.calendar.getDate(player.world).getSeason();
         if (season == SUMMER) rewardItem(player, HFCrops.TOMATO.getSeedStack(4));
         else if (season == AUTUMN) rewardItem(player, HFCrops.EGGPLANT.getSeedStack(4));
         else rewardItem(player, HFCrops.CUCUMBER.getSeedStack(4));

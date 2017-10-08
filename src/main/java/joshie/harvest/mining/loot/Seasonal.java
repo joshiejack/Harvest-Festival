@@ -27,7 +27,7 @@ public class Seasonal implements LootCondition {
     public boolean testCondition(Random rand, LootContext context) {
         if (context.getKillerPlayer() instanceof EntityPlayer) {
             EntityPlayer player = (EntityPlayer) context.getKillerPlayer();
-            return HFTrackers.getCalendar(player.worldObj).getDate().getSeason() == season;
+            return HFTrackers.getCalendar(player.world).getDate().getSeason() == season;
         }
 
         return false;

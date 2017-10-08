@@ -43,7 +43,7 @@ public class QuestFlowerBuyingDo extends QuestDummyTown {
                     player.setHeldItem(hand, null);
                 }
 
-                rewardGold(player, getValue(HFApi.calendar.getDate(player.worldObj), player.worldObj.rand));
+                rewardGold(player, getValue(HFApi.calendar.getDate(player.world), player.world.rand));
             }
         }
     }

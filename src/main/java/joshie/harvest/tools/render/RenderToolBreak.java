@@ -40,7 +40,7 @@ public class RenderToolBreak {
     public void renderExtraBlockBreak(RenderWorldLastEvent event) {
         PlayerControllerMP controller = MCClientHelper.getPlayerController();
         EntityPlayer player = MCClientHelper.getPlayer();
-        World world = player.worldObj;
+        World world = player.world;
         ItemStack tool = player.getHeldItemMainhand();
         if (tool != null && (tool.getItem() == HFTools.HAMMER || tool.getItem() == HFTools.HOE)) {
             Entity renderEntity = MCClientHelper.getRenderViewEntity();

@@ -17,13 +17,13 @@ import javax.annotation.Nonnull;
 public class HFCommandTime extends CommandBase {
     @Override
     @Nonnull
-    public String getCommandName() {
+    public String getName() {
         return "time";
     }
 
     @Override
     @Nonnull
-    public String getCommandUsage(@Nonnull ICommandSender sender) {
+    public String getUsage(@Nonnull ICommandSender sender) {
         return "/hf time <set|add> <value>";
     }
 
@@ -36,7 +36,7 @@ public class HFCommandTime extends CommandBase {
     public void execute(@Nonnull MinecraftServer server, @Nonnull ICommandSender sender, @Nonnull String[] parameters) throws CommandException {
         if (parameters.length > 1) {
             if (parameters[0].equals("set")) {
-                long time = CalendarHelper.getElapsedDays(server.worldServers[0].getWorldTime()) * HFCalendar.TICKS_PER_DAY;
+                long time = CalendarHelper.getElapsedDays(server.worlds[0].getWorldTime()) * HFCalendar.TICKS_PER_DAY;
                 switch (parameters[1]) {
                     case "day":
                         time += 3000;
@@ -54,8 +54,8 @@ public class HFCommandTime extends CommandBase {
 
             if (parameters[0].equals("add")) {
                 int l = parseInt(parameters[1]);
-                CalendarHelper.setWorldTime(server, server.worldServers[0].getWorldTime() + l);
+                CalendarHelper.setWorldTime(server, server.worlds[0].getWorldTime() + l);
             }
-        } else throw new WrongUsageException(getCommandUsage(sender));
+        } else throw new WrongUsageException(getUsage(sender));
     }
 }

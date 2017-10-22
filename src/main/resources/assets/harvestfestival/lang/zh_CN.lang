@@ -381,7 +381,6 @@ harvestfestival.meal.brown.mushroom.description=You can find a boost of wild fla
 harvestfestival.meal.rabbit.stew.description=Succulent chunks of rabbit are stewed. It's the perfect winter warmer. Serve with mashed potatoes or hunks of crusty bread.
 harvestfestival.meal.beetroot.soup.description=Looks like blood in a bowl. I hope it tastes better then it looks. Ew... Uh... I mean... hm. A vampire's favorite dish. Try it chilled or heated.
 
-
 #Ingredients
 harvestfestival.ingredient.butter=黄油
 harvestfestival.ingredient.cookies=曲奇
@@ -476,7 +475,18 @@ harvestfestival.fishing.block.hatchery.tooltip=放在水的表面, 确保周围8
 
 #Tools
 harvestfestival.tool.broken=[损坏]
+harvestfestival.tool.discharge=请将工具修复为正常使用水平!
+harvestfestival.tool.charge=将工具等级提升到 %s
 #Hoe
+harvestfestival.hoe.tooltip.charge.basic=标准耕种范围(1x1)
+harvestfestival.hoe.tooltip.charge.copper=铜制耕种范围(1x2)
+harvestfestival.hoe.tooltip.charge.silver=银制耕种范围(1x3)
+harvestfestival.hoe.tooltip.charge.gold=金制耕种范围(1x4)
+harvestfestival.hoe.tooltip.charge.mystril=秘银制耕种范围(1x6)
+harvestfestival.hoe.tooltip.charge.cursed=诅咒/祝福耕种范围(3x12)
+harvestfestival.hoe.tooltip.charge.mythic=贤者耕种范围(5x18)
+harvestfestival.hoe.tooltip.charge=按住右键进行修改
+harvestfestival.hoe.tooltip.discharge=潜行 + 右击重置
 harvestfestival.hoe.basic=锄头
 harvestfestival.hoe.copper=铜制锄头
 harvestfestival.hoe.silver=银制锄头
@@ -487,6 +497,15 @@ harvestfestival.hoe.blessed=祝福锄头
 harvestfestival.hoe.mythic=贤者锄头
 
 #Sickle
+harvestfestival.sickle.tooltip.charge.basic=标准收割范围(1x1)
+harvestfestival.sickle.tooltip.charge.copper=铜制收割范围(3x1)
+harvestfestival.sickle.tooltip.charge.silver=银制收割范围(3x2)
+harvestfestival.sickle.tooltip.charge.gold=金制收割范围(3x3)
+harvestfestival.sickle.tooltip.charge.mystril=秘银制收割范围(5x5)
+harvestfestival.sickle.tooltip.charge.cursed=诅咒/祝福收割范围(9x9)
+harvestfestival.sickle.tooltip.charge.mythic=贤者收割范围(15x15)
+harvestfestival.sickle.tooltip.charge=按住右键进行修改
+harvestfestival.sickle.tooltip.discharge=潜行 + 右击重置
 harvestfestival.sickle.basic=镰刀
 harvestfestival.sickle.copper=铜制镰刀
 harvestfestival.sickle.silver=银制镰刀
@@ -497,6 +516,7 @@ harvestfestival.sickle.blessed=祝福镰刀
 harvestfestival.sickle.mythic=贤者镰刀
 
 #Watering Can
+harvestfestival.wateringcan.tooltip.dimensions=浇灌%sx%s区域
 harvestfestival.wateringcan.basic=水壶
 harvestfestival.wateringcan.copper=铜制水壶
 harvestfestival.wateringcan.silver=银制水壶
@@ -507,6 +527,9 @@ harvestfestival.wateringcan.blessed=祝福水壶
 harvestfestival.wateringcan.mythic=贤者水壶
 
 #Hammer
+harvestfestival.hammer.tooltip.dimensions=挖掘%sx%sx%s单位面积
+harvestfestival.hammer.tooltip.smash=粉碎%sx%s区域
+harvestfestival.hammer.tooltip.titles=(宽度，高度，深度)
 harvestfestival.hammer.basic=锤子
 harvestfestival.hammer.copper=铜制锤子
 harvestfestival.hammer.silver=银制锤子
@@ -517,6 +540,9 @@ harvestfestival.hammer.blessed=祝福锤子
 harvestfestival.hammer.mythic=贤者锤子
 
 #Axe
+harvestfestival.axe.chop=一键砍树
+harvestfestival.axe.tooltip.sneak=潜行正常砍伐
+harvestfestival.axe.tooltip.chops=Chops a Tree in %s hits
 harvestfestival.axe.basic=斧头
 harvestfestival.axe.copper=铜制斧头
 harvestfestival.axe.silver=银制斧头
@@ -560,6 +586,7 @@ harvestfestival.cookware.frying.pan=平底锅
 harvestfestival.cookware.mixer=搅拌机
 harvestfestival.cookware.oven.off=炉灶
 harvestfestival.cookware.oven.on=炉灶
+harvestfestival.cookware.oven=烤箱
 harvestfestival.cookware.chopping.board=砧板
 harvestfestival.cookware.mixing.bowl=搅拌盆
 harvestfestival.cookware.baking=烤盘
@@ -567,6 +594,10 @@ harvestfestival.cookware.steamer=蒸锅
 
 harvestfestival.storage.shipping=出货箱
 harvestfestival.storage.shipping.tooltip=每天六点, 你可以来这卖东西.
+harvestfestival.storage.mailbox=Mailbox
+harvestfestival.storage.mailbox.tooltip=With a mailbox you will receive invites to special events.
+harvestfestival.storage.basket=Shipping Basket
+harvestfestival.storage.basket.tooltip=If you place the basket on your head, it will automatically ship anything that you pickup. It also allows you to harvest crops in a 1x3 area.
 harvestfestival.sized.incubator=孵化器
 harvestfestival.trough.wood=饲料槽
 harvestfestival.sprinkler.iron=洒水器
@@ -606,16 +637,15 @@ harvestfestival.rock.boulder.large=大石块
 #Other Gathering Items
 harvestfestival.nature.bamboo=竹笋
 harvestfestival.nature.matsutake=松茸
-harvestfestival.nature.mint=Mint
-harvestfestival.nature.chamomile=Chamomile
-harvestfestival.nature.lavender=Lavender
+harvestfestival.nature.mint=薄荷
+harvestfestival.nature.chamomile=洋甘菊
+harvestfestival.nature.lavender=薰衣草
 
 #Mine Blocks
 harvestfestival.dirt=采矿场地板
 harvestfestival.dirt.winter=采矿场地板
 harvestfestival.dirt.decorative=采矿场地板
 harvestfestival.dirt.decorative.winter=采矿场地板
-
 harvestfestival.stone.real=采矿场墙壁
 harvestfestival.stone.decorative=采矿场墙壁
 harvestfestival.stone.ladder.hole=秘密通道? ? ?
@@ -632,6 +662,7 @@ harvestfestival.ore.emerald=翡翠堆
 harvestfestival.ore.ruby=红宝石堆
 harvestfestival.ore.topaz=黄晶玉堆
 harvestfestival.ore.amethyst=紫水晶堆
+harvestfestival.ore.jade=玉石堆
 harvestfestival.portal=采矿场入口
 harvestfestival.mine.format=层 %s
 
@@ -654,6 +685,10 @@ harvestfestival.material.pink.diamond=粉红钻石
 harvestfestival.material.ruby=红宝石
 harvestfestival.material.sand.rose=沙漠玫瑰石
 harvestfestival.material.topaz=黄晶玉
+harvestfestival.material.jade=玉石
+harvestfestival.material.coin.gold=金币
+harvestfestival.material.coin.silver=银币
+harvestfestival.material.coin.copper=铜币
 
 #Mine Mobs
 harvestfestival.darkspawner.cow=暗黑牛
@@ -664,9 +699,28 @@ entity.harvestfestival.dark_cow.name=暗黑牛
 entity.harvestfestival.dark_sheep.name=暗黑羊
 entity.harvestfestival.dark_chicken.name=暗黑鸡
 entity.harvestfestival.dark_chick.name=暗黑小鸡
+harvestfestival.darkdrop.feather=暗黑羽毛
+harvestfestival.darkdrop.leather=暗黑皮革
 
 #Mine Tools
 harvestfestival.miningtool.escape.rope=逃生绳
+harvestfestival.miningtool.elevator.cable=Elevator Cable
+harvestfestival.elevator.tooltip=Used to link elevators together
+harvestfestival.elevator.place=Only placeable on bottom of walls
+harvestfestival.elevator.empty=Elevator
+harvestfestival.elevator.junk=Elevator
+harvestfestival.elevator.to=Elevator to
+harvestfestival.elevator.none=NOWHERE
+harvestfestival.elevator.done=You have reached your destination!
+harvestfestival.elevator.wait=Please wait for roughly %s seconds...
+harvestfestival.elevator.start=Started link from floor %s
+harvestfestival.elevator.success=Successfully linked elevator from floor %1$s to %2$s
+harvestfestival.elevator.cost=You need %s cables to link these elevators
+harvestfestival.elevator.link=This elevator is not currently linked to another one
+harvestfestival.elevator.go=This elevator will take you to floor %s
+harvestfestival.elevator.cannot.floor=Elevators cannot be linked to the same floor
+harvestfestival.elevator.cannot.mine=Elevators will only work in the same mine
+harvestfestival.elevator.cannot.self=Elevators cannot be linked to themselves
 
 #Goddess Water
 tile.goddess.water.name=女神之泉
@@ -701,6 +755,24 @@ harvestfestival.npctool.calendar=年份
 harvestfestival.npctool.clock=营业时间
 harvestfestival.npctool.weather=天气情况
 harvestfestival.npctool.gift=送礼
+
+#Quest Baoard
+harvestfestival.quest.block.board=Quest Board
+harvestfestival.quest.block.active=Quest Board
+
+#Contest Blocks
+harvestfestival.decorative.cooking=Cooking Stand
+harvestfestival.stand.plate=Dinner Plate
+harvestfestival.stand.pot=Harvest Festival Pot
+
+#NPC Tooltips
+harvestfestival.npc.tooltip.calendar=How many years?
+harvestfestival.npc.tooltip.clock=Shop opens when?
+harvestfestival.npc.tooltip.weather=Weather, tomorrow?
+harvestfestival.npc.tooltip.gift=Gift held item!
+harvestfestival.npc.tooltip.flower=Sell Flower!
+harvestfestival.npc.tooltip.book=Ask for knowledge?
+harvestfestival.npc.tooltip.birthday=%s's Birthday
 
 # NPC Names
 ## NOTE FOR TRANSLATORS, READ
@@ -750,103 +822,137 @@ harvestfestival.npc.girafi.name=Johan
 #Error
 harvestfestival.npc.error=找不到汉化关键字: %s 或者关键字 %s
 #Generic - Weather
-harvestfestival.npc.generic.weather.good=今天天气不错啊!
-harvestfestival.npc.generic.weather.bad=这天气真是糟糕!
+harvestfestival.npc.generic.weather.good=今天天气不错啊！
+harvestfestival.npc.generic.weather.bad=这天气真是糟糕！
 
 #Generic Adult Thanks
-harvestfestival.npc.generic.adult.gift.awesome=哇! 谢谢你给我这么棒的礼物! 我爱死它了!
-harvestfestival.npc.generic.adult.gift.good=真是一件不错的礼物啊, 谢谢!
-harvestfestival.npc.generic.adult.gift.decent=谢谢你的礼物.
-harvestfestival.npc.generic.adult.gift.dislike=哦, 谢谢.
-harvestfestival.npc.generic.adult.gift.bad=你想什么呢? 我要它何用?
-harvestfestival.npc.generic.adult.gift.terrible=你有没有搞错啊, 你为什么觉得我会想要这么糟糕的礼物?
+harvestfestival.npc.generic.adult.gift.awesome=哇！谢谢你给我这么棒的礼物！我爱死它了！
+harvestfestival.npc.generic.adult.gift.good=真是一件不错的礼物啊，谢谢！
+harvestfestival.npc.generic.adult.gift.decent=谢谢你的礼物。
+harvestfestival.npc.generic.adult.gift.dislike=哦，谢谢。
+harvestfestival.npc.generic.adult.gift.bad=你想什么呢？我要它何用？
+harvestfestival.npc.generic.adult.gift.terrible=你有没有搞错啊，你为什么觉得我会想要这么糟糕的礼物？
 #No Thanks
-harvestfestival.npc.generic.adult.gift.reject=非常感谢, 不过我觉得我今天不能再接受你的礼物了.
-harvestfestival.npc.generic.adult.gift.no=这个东西太贵重了, 我不能收下它!
+harvestfestival.npc.generic.adult.gift.reject=非常感谢，不过我觉得我今天不能再接受你的礼物了。
+harvestfestival.npc.generic.adult.gift.no=这个东西太贵重了，我不能收下它！
 
 #Generic Child Thanks
-harvestfestival.npc.generic.child.gift.awesome=我的天! 棒, 太棒了, 非~常~感谢! 太赞啦!
-harvestfestival.npc.generic.child.gift.good=厉害了! 谢谢你可爱的小礼物.
-harvestfestival.npc.generic.child.gift.decent=不错, 谢谢!
-harvestfestival.npc.generic.child.gift.dislike=嗯, 我觉得我应该不喜欢它.
-harvestfestival.npc.generic.child.gift.bad=你为什么这么对我? :(
-harvestfestival.npc.generic.child.gift.terrible=我讨厌你! 你走! 带上你的礼物!!!
+harvestfestival.npc.generic.child.gift.awesome=我的天！棒，太棒了，非~常~感谢！太赞啦！
+harvestfestival.npc.generic.child.gift.good=厉害了！谢谢你可爱的小礼物。
+harvestfestival.npc.generic.child.gift.decent=不错，谢谢！
+harvestfestival.npc.generic.child.gift.dislike=嗯，我觉得我应该不喜欢它。
+harvestfestival.npc.generic.child.gift.bad=你为什么这么对我？：(
+harvestfestival.npc.generic.child.gift.terrible=我讨厌你！你走！带上你的礼物！！！
 #No Thanks
-harvestfestival.npc.generic.child.gift.reject=谢谢! 明天再给我吧 :D
+harvestfestival.npc.generic.child.gift.reject=谢谢！明天再给我吧 ：D
+harvestfestival.npc.generic.child.gift.no=Oh my. I think you like that item too much for me to accept it!
 
 #Generic Elder Thanks
-harvestfestival.npc.generic.elder.gift.awesome=我活了这么久, 都没有收到这么棒的礼物. 真心谢谢你.
-harvestfestival.npc.generic.elder.gift.good=你给我的东西真是太棒啦. 谢谢.
-harvestfestival.npc.generic.elder.gift.decent=谢谢你让我微笑.
-harvestfestival.npc.generic.elder.gift.dislike=这不是个好主意啊.
-harvestfestival.npc.generic.elder.gift.bad=你在侮辱我?
-harvestfestival.npc.generic.elder.gift.terrible=你不要再给我送这么糟糕的东西.
+harvestfestival.npc.generic.elder.gift.awesome=我活了这么久，都没有收到这么棒的礼物。真心谢谢你。
+harvestfestival.npc.generic.elder.gift.good=你给我的东西真是太棒啦。谢谢！
+harvestfestival.npc.generic.elder.gift.decent=谢谢你让我微笑。
+harvestfestival.npc.generic.elder.gift.dislike=这不是个好主意啊。
+harvestfestival.npc.generic.elder.gift.bad=你在侮辱我？
+harvestfestival.npc.generic.elder.gift.terrible=你不要再给我送这么糟糕的东西。
 #No Thanks
-harvestfestival.npc.generic.elder.gift.reject=不好意思啊年轻人, 但是我今天真的不能再收你的礼物了.
+harvestfestival.npc.generic.elder.gift.reject=不好意思啊年轻人，但是我今天真的不能再收你的礼物了。
+harvestfestival.npc.generic.elder.gift.no=这件礼物对我来说太有价值了。
 
 #Goddess
-harvestfestival.npc.goddess.greeting1=你好吗, 小宝贝?
-harvestfestival.npc.goddess.greeting2=今天真是适合下地干活!
-harvestfestival.npc.goddess.greeting3=我能为你做点什么吗, 小宝贝?
-harvestfestival.npc.goddess.greeting4=不要花我太多时间哦, 我不能待太久.
-harvestfestival.npc.goddess.greeting5=你需要什么呢?
-harvestfestival.npc.goddess.greeting6=如果你不小心丢失了木工小屋图纸, 又想要一张新的, 只要再砍一点木头给我就行.
-harvestfestival.npc.goddess.greeting7=嗨, 我们又见面啦 %4$s!
-harvestfestival.npc.goddess.greeting8=宝贝儿, 最近怎么样?
-harvestfestival.npc.goddess.greeting9=我保证总有一天精灵会回来的, 他们太孤单了.
-harvestfestival.npc.goddess.greeting10=我真的觉得你应该种一下花, 只种菜太不公平了.
-harvestfestival.npc.goddess.greeting11=最近去哪儿啦, 再见到你太开心了.
-harvestfestival.npc.goddess.greeting12=%4$s, 别来无恙啊?
-harvestfestival.npc.goddess.greeting13=大自然真是如诗如画啊, 不是吗?
-harvestfestival.npc.goddess.greeting14=如果你想给我送礼物, 最简单的方法就是把东西丢进我的池塘!
-harvestfestival.npc.goddess.marriage.reject=小宝贝, 我还不想成为你的宝宝.
-harvestfestival.npc.goddess.marriage.accept=这算个惊喜吗宝贝. 今天我就嫁给你!
-harvestfestival.npc.goddess.gift.awesome=这件礼物让我我非常高兴.
-harvestfestival.npc.goddess.gift.good=这件礼物让我挺开心的.
-harvestfestival.npc.goddess.gift.decent=这件礼物让我开心.
-harvestfestival.npc.goddess.gift.dislike=这件礼物并不能让我开心.
-harvestfestival.npc.goddess.gift.bad=这礼物是在侮辱我.
+harvestfestival.npc.goddess.greeting1=你好吗，小宝贝？
+harvestfestival.npc.goddess.greeting2=今天真是适合下地干活！
+harvestfestival.npc.goddess.greeting3=我能为你做点什么吗，小宝贝？
+harvestfestival.npc.goddess.greeting4=不要花我太多时间哦，我不能待太久。
+harvestfestival.npc.goddess.greeting5=你需要什么呢？
+harvestfestival.npc.goddess.greeting6=如果你不小心丢失了木工小屋图纸，又想要一张新的，只要再砍一点木头给我就行。
+harvestfestival.npc.goddess.greeting7=嗨，我们又见面啦 %4$s！
+harvestfestival.npc.goddess.greeting8=宝贝儿，最近怎么样？
+harvestfestival.npc.goddess.greeting9=我保证总有一天精灵会回来的，他们太孤单了。
+harvestfestival.npc.goddess.greeting10=我真的觉得你应该种一下花，只种菜太不公平了。
+harvestfestival.npc.goddess.greeting11=最近去哪儿啦，再见到你太开心了。
+harvestfestival.npc.goddess.greeting12=%4$s，别来无恙啊？
+harvestfestival.npc.goddess.greeting13=大自然真是如诗如画啊，不是吗？
+harvestfestival.npc.goddess.greeting14=如果你想给我送礼物，最简单的方法就是把东西丢进我的池塘！
+harvestfestival.npc.goddess.marriage.reject=小宝贝, 我还不想成为你的宝宝。
+harvestfestival.npc.goddess.marriage.accept=这算个惊喜吗宝贝，今天我就嫁给你！
+harvestfestival.npc.goddess.gift.awesome=这件礼物让我我非常高兴。
+harvestfestival.npc.goddess.gift.good=这件礼物让我挺开心的。
+harvestfestival.npc.goddess.gift.decent=这件礼物让我开心。
+harvestfestival.npc.goddess.gift.dislike=这件礼物并不能让我开心。
+harvestfestival.npc.goddess.gift.bad=这礼物是在侮辱我。
 harvestfestival.npc.goddess.gift.terrible=你为什么要这样侮辱我.
-harvestfestival.npc.goddess.gift.no=恐怕我不适合接受这份礼物, 它太珍贵了!
-harvestfestival.npc.goddess.gift.reject=亲爱的, 我很喜欢它. 但是我今天实在不能接受礼物了.
+harvestfestival.npc.goddess.gift.no=恐怕我不适合接受这份礼物，它太珍贵了！
+harvestfestival.npc.goddess.gift.reject=亲爱的，我很喜欢它，但是我今天实在不能接受礼物了。
+harvestfestival.npc.goddess.festival.chicken1=Are you entering the Chicken Festival my sweet?
+harvestfestival.npc.goddess.festival.chicken2=If you plan to enter the Chicken Festival, go to the park and talk to Ashlee.
+harvestfestival.npc.goddess.festival.cooking1=I wish the cooking festival would put the winning dish as an offering to my pond. I'd love to taste it.
+harvestfestival.npc.goddess.festival.cooking2=There's a festival all about cooking in the park today dear, go give it a try!
+harvestfestival.npc.goddess.festival.cow1=Are you entering the Cow Festival today dear?
+harvestfestival.npc.goddess.festival.cow2=Talk to Jim, if you want to enter, I heard.
+harvestfestival.npc.goddess.festival.harvest1=Today is the Harvest Festival. I'm tickled that they celebrate the harvest!
+harvestfestival.npc.goddess.festival.harvest2=Be sure to bring food to add to a community pot in the park. Its different every year.
+harvestfestival.npc.goddess.festival.new.years.eve1=Another year come and gone. The town is looking so much more lively, and its all thanks to you.
+harvestfestival.npc.goddess.festival.new.years.eve2=There's noodles being served in the park tonight to close out the year. If you please, float a bowl of noodles in my pond. I do so enjoy these events, though I cannot attend myself.
+harvestfestival.npc.goddess.festival.new.years1=A Happy New Year to you dear.
+harvestfestival.npc.goddess.festival.new.years2=If you visit the park today, you get some riceballs. Be sure to bring me one!
+harvestfestival.npc.goddess.festival.sheep1=This is exciting. The Sheep Festival is today!
+harvestfestival.npc.goddess.festival.sheep2=Go ahead and talk to Jim about the festival today darling.
+harvestfestival.npc.goddess.festival.starry.night1=Oh the solstice. Quite a sight with all this snow.
+harvestfestival.npc.goddess.festival.starry.night2=I'm sort of sad I cannot go join the town for dinner in the park. Do go in my place, would you dear?
 
 # Goddess Weather
-harvestfestival.npc.goddess.weather.sunny1=哦, 宝贝儿, 明天晴空万里哦!
-harvestfestival.npc.goddess.weather.sunny2=明天会是阳光充足的一天!
-harvestfestival.npc.goddess.weather.sunny3=明天一整天都能沐浴在阳光之下, 真的太棒啦.
-harvestfestival.npc.goddess.weather.rain1=明天会湿漉漉的, 不用去给你的植物浇水了!
-harvestfestival.npc.goddess.weather.rain2=明天的天空灰蒙蒙的呢, 准备好一场小雨吧.
-harvestfestival.npc.goddess.weather.rain3=滴, 滴答, 四月的春雨, 还有什么比这更令人期待呢!!
-harvestfestival.npc.goddess.weather.typhoon1=啊呀明天天气似乎很可怕, 一阵台风正在路上!
-harvestfestival.npc.goddess.weather.typhoon2=看起来不太好, 明天你应该宅在屋子里, 不然可能会被台风吹飞吧.
-harvestfestival.npc.goddess.weather.typhoon3=明天将会有一场暴风雨, 强烈的台风将会袭击镇子!
-harvestfestival.npc.goddess.weather.snow1=明天会变的超超超超级冷, 最好多穿点衣服以防感冒!
-harvestfestival.npc.goddess.weather.snow2=我想明天可能会被冻僵, 如果你想出去堆雪人的话?
-harvestfestival.npc.goddess.weather.snow3=接下来播报一则明天的天气预报, 明天天气有大雪, 天寒地冻, 注意保暖!
-harvestfestival.npc.goddess.weather.blizzard1=明天的天气太可怕了, 一场暴风雪即将袭来!
-harvestfestival.npc.goddess.weather.blizzard2=或许你可以准备好大师球, 以便捕捉自带暴风雪的暴雪王!
-harvestfestival.npc.goddess.weather.blizzard3=哇, 明天有暴风雪, 照顾好自己哦.
+harvestfestival.npc.goddess.weather.sunny1=哦，宝贝儿，明天晴空万里哦！
+harvestfestival.npc.goddess.weather.sunny2=明天会是阳光充足的一天！
+harvestfestival.npc.goddess.weather.sunny3=明天一整天都能沐浴在阳光之下，真的太棒啦。
+harvestfestival.npc.goddess.weather.rain1=明天会湿漉漉的，不用去给你的植物浇水了！
+harvestfestival.npc.goddess.weather.rain2=明天的天空灰蒙蒙的呢，准备好一场小雨吧。
+harvestfestival.npc.goddess.weather.rain3=滴，滴答，四月的春雨，还有什么比这更令人期待呢！
+harvestfestival.npc.goddess.weather.typhoon1=啊呀明天天气似乎很可怕，一阵台风正在路上！
+harvestfestival.npc.goddess.weather.typhoon2=看起来不太好，明天你应该宅在屋子里，不然可能会被台风吹飞吧。
+harvestfestival.npc.goddess.weather.typhoon3=明天将会有一场暴风雨，强烈的台风将会袭击镇子！
+harvestfestival.npc.goddess.weather.snow1=明天会变的超超超超级冷，最好多穿点衣服以防感冒！
+harvestfestival.npc.goddess.weather.snow2=我想明天可能会被冻僵，如果你想出去堆雪人的话？
+harvestfestival.npc.goddess.weather.snow3=接下来播报一则明天的天气预报，明天天气有大雪, 天寒地冻, 注意保暖！
+harvestfestival.npc.goddess.weather.blizzard1=明天的天气太可怕了，一场暴风雪即将袭来！
+harvestfestival.npc.goddess.weather.blizzard2=或许你可以准备好大师球，以便捕捉自带暴风雪的暴雪王！
+harvestfestival.npc.goddess.weather.blizzard3=哇, 明天有暴风雪，照顾好自己哦。
 
 #Katlin
-harvestfestival.npc.katlin.greeting1=最近过得怎么样?
-harvestfestival.npc.katlin.greeting2=想当年... 啊, 你听腻了吗. 那么, 今天过得怎么样?
-harvestfestival.npc.katlin.greeting3=年轻人, 有些日子没见到你了. 你好呀.
-harvestfestival.npc.katlin.greeting4=现在我跟Tomas已经没有任何关系了, 我觉得开心多了.
-harvestfestival.npc.katlin.greeting5=星期天早上从教堂礼拜回来之后, 我整个晚上都在织毯子.
-harvestfestival.npc.katlin.greeting6=想想当初啊, 现在可比以前, 好多了.
-harvestfestival.npc.katlin.greeting7=Liara从小父母双亡, 所以我抚养了她.
-harvestfestival.npc.katlin.greeting8=Tomas和我做了33年的夫妻, 有时候还真挺想他的.
-harvestfestival.npc.katlin.greeting9=当我还是个小姑娘的时候, 我母亲曾经... 算了, 我还是不说了.
+harvestfestival.npc.katlin.greeting1=最近过得怎么样？
+harvestfestival.npc.katlin.greeting2=想当年...啊，你听腻了吗。那么，今天过得怎么样？
+harvestfestival.npc.katlin.greeting3=年轻人，有些日子没见到你了，你好呀。
+harvestfestival.npc.katlin.greeting4=现在我跟Tomas已经没有任何关系了，我觉得开心多了。
+harvestfestival.npc.katlin.greeting5=星期天早上从教堂礼拜回来之后，我整个晚上都在织毯子。
+harvestfestival.npc.katlin.greeting6=想想当初啊，现在可比以前，好多了。
+harvestfestival.npc.katlin.greeting7=Liara从小父母双亡，所以我抚养了她。
+harvestfestival.npc.katlin.greeting8=Tomas和我做了33年的夫妻，有时候还真挺想他的。
+harvestfestival.npc.katlin.greeting9=当我还是个小姑娘的时候，我母亲曾经...算了，我还是不说了。
 harvestfestival.npc.katlin.greeting10=总有一天我会拿出你从未见过的好毯子.
-harvestfestival.npc.katlin.greeting11=你好啊年轻人, 最近都在忙些啥呢?
-harvestfestival.npc.katlin.gift.awesome=你还真是懂我们这些老家伙的心啊. 这就是我想要的.
-harvestfestival.npc.katlin.gift.good=年轻人, 你给了一件不错的礼物啊.
-harvestfestival.npc.katlin.gift.decent=这礼物还能接受.
-harvestfestival.npc.katlin.gift.dislike=这礼物不能接受.
-harvestfestival.npc.katlin.gift.bad=我们那个年代啊, 我们会给人们好礼物.
-harvestfestival.npc.katlin.gift.terrible=你这是要气死我啊? 真是一件可怕的礼物.
-harvestfestival.npc.katlin.gift.no=我不能收下它, 它太珍贵了.
-harvestfestival.npc.katlin.gift.reject=你今天已经送过我礼物了, 年轻人.
+harvestfestival.npc.katlin.greeting11=你好啊年轻人，最近都在忙些啥呢？
+harvestfestival.npc.katlin.gift.awesome=你还真是懂我们这些老家伙的心啊。这就是我想要的。
+harvestfestival.npc.katlin.gift.good=年轻人，你给了一件不错的礼物啊。
+harvestfestival.npc.katlin.gift.decent=这礼物还能接受。
+harvestfestival.npc.katlin.gift.dislike=这礼物不能接受。
+harvestfestival.npc.katlin.gift.bad=我们那个年代啊，我们会给人们好礼物。
+harvestfestival.npc.katlin.gift.terrible=你这是要气死我啊？真是一件可怕的礼物。
+harvestfestival.npc.katlin.gift.no=我不能收下它，它太珍贵了。
+harvestfestival.npc.katlin.gift.reject=你今天已经送过我礼物了，年轻人。
+harvestfestival.npc.katlin.festival.chicken1=A happy chicken makes a happy home. Or was it a happy wife makes a happy life?
+harvestfestival.npc.katlin.festival.chicken2=I remember someone telling me once that chickens like to roost on a pole off the ground. I wonder why that is...
+harvestfestival.npc.katlin.festival.cooking1=Each year is always the same. I hear the young'ns quibbling about what to cook to impress the town.
+harvestfestival.npc.katlin.festival.cooking2=You know what wins each year? I'll never tell you.
+harvestfestival.npc.katlin.festival.cow1=In my day, you made your butter and cream with a hand churn.
+harvestfestival.npc.katlin.festival.cow2=Milk didn't used to be processed before selling. Some of us would drink it right from the bucket.
+harvestfestival.npc.katlin.festival.harvest1=For as long as I can remember, the harvest festival takes place in the autumn, and it always includes food. Its not for the Goddess's birthday though.
+harvestfestival.npc.katlin.festival.harvest2=Its getting colder. I should knit a new scarf and a pair of mittens.
+harvestfestival.npc.katlin.festival.new.years.eve1=When the new year comes, open the front door. When the old year leaves, open the back door and close it after it leaves.
+harvestfestival.npc.katlin.festival.new.years.eve2=Its traditional to do a toast at midnight. To good health, long life, and happiness dearie.
+harvestfestival.npc.katlin.festival.new.years1=Open the front door to let in the new year, open the back door to let out the old year.
+harvestfestival.npc.katlin.festival.new.years2=Happy New Year dear. I wish you wealth, good health, and happiness.
+harvestfestival.npc.katlin.festival.sheep1=You can tell the quality of a sheep's wool by touching them, you know. Same way you get the feeling of a good yarn, its by touching them. Feeling it between your fingers.
+harvestfestival.npc.katlin.festival.sheep2=If they shear the prize winning sheep, I might buy some wool to spin for a project. A nice autumnal dye...
+harvestfestival.npc.katlin.festival.starry.night1=I remember when Tomas invited me to dinner one Starry Night. I'm sad to say he chose that night to ask for a divorce. This festival is not my favorite for that reason. Brings a tear to my eye every now and than each year.
+harvestfestival.npc.katlin.festival.starry.night2=Do consider inviting Liara to dinner though. She enjoys this season so much.
 
 #Danieuru/Chylex
 harvestfestival.npc.daniel.shop=我周四休息, 其余时间每天10:00到16:00都在这.
@@ -871,6 +977,22 @@ harvestfestival.npc.daniel.gift.decent=这礼物还不错.
 harvestfestival.npc.daniel.gift.dislike=这礼物并不好.
 harvestfestival.npc.daniel.gift.bad=你给了我一件糟糕的礼物.
 harvestfestival.npc.daniel.gift.terrible=我觉得从Yulif那里拿到的礼物已经够差劲了, 现在你给我这个?
+harvestfestival.npc.daniel.festival.chicken1=Chickens and I have one thing in common; we both hate water and being out in the rain.
+harvestfestival.npc.daniel.festival.chicken2=Stories say in other places, there are chickens out there who lay ender pearls. Where can I get a chicken like that?
+harvestfestival.npc.daniel.festival.cooking1=I tried crushing an ender pearl on the anvil once to experiment with if it was edible as a powder or not. ...I ended up with food poisoning and problems with glass shards.
+harvestfestival.npc.daniel.festival.cooking2=Its put me off of doing any sort of cooking experiments since.
+harvestfestival.npc.daniel.festival.cow1=Jim needs to sell his own animal supplies. I can supply more tools that way.
+harvestfestival.npc.daniel.festival.cow2=A dragon's favorite meal is a cow. Or a sheep. Usually sheep though.
+harvestfestival.npc.daniel.festival.harvest1=Is there any more food?
+harvestfestival.npc.daniel.festival.harvest2=I'm not a farmer, but the soup cauldron is quality iron. I can see it from here.
+harvestfestival.npc.daniel.festival.new.years.eve1=This next year will be the year I track down the elusive end portal. Nobody will call me a fool when I bring back that loot in the cities in the End.
+harvestfestival.npc.daniel.festival.new.years.eve2=Rumor has it the End people have come up with propelled flight. An ‘elytra', and you can fly with rockets and fireworks to propel you around. Or a bow with punch? Do some research, get back to me.
+harvestfestival.npc.daniel.festival.new.years1=Dragons are good luck on New years. Will they visit our town?
+harvestfestival.npc.daniel.festival.new.years2=I don't think anyone would approve of putting a sheep out at midnight in front of that dog statue to attract one though.
+harvestfestival.npc.daniel.festival.sheep1=I did sell shears in my shop once, but Jim decided to finally sell his own supplies. I don't repair shears though.
+harvestfestival.npc.daniel.festival.sheep2=Its smart to sharpen your shears before shearing your animal, it makes for a smoother cut, and a cleaner shear.
+harvestfestival.npc.daniel.festival.starry.night1=Should I ask Yulif or Jenni to dinner? They aren't very interested... -sigh-
+harvestfestival.npc.daniel.festival.starry.night2=You keep finding me at the cafe in the mornings, but I'm happier just remaining at the forge.
 
 #Cloe
 harvestfestival.npc.cloe.greeting1=一本好书,可以让一个女孩开心.
@@ -893,6 +1015,22 @@ harvestfestival.npc.cloe.gift.decent=谢谢.
 harvestfestival.npc.cloe.gift.dislike=额, 什么?
 harvestfestival.npc.cloe.gift.bad=额, 不要了, 谢谢...
 harvestfestival.npc.cloe.gift.terrible=我现在觉得我爸妈不是最差劲的了, 而是你.
+harvestfestival.npc.cloe.festival.chicken1=Have you ever peeled a chicken's foot? Its very difficult to do.
+harvestfestival.npc.cloe.festival.chicken2=You can eat almost every part of a chicken, except for the beak, I believe. Why you would want to though... don't ask me.
+harvestfestival.npc.cloe.festival.cooking1=Did you know bone marrow is what gelatin is made of?
+harvestfestival.npc.cloe.festival.cooking2=I've got a few moulds to make jiggly gelatin shapes for Abii. She loves them.
+harvestfestival.npc.cloe.festival.cow1=Some breeds of cows grow these massive sets of bone horns right out of their heads.
+harvestfestival.npc.cloe.festival.cow2=All the cows Jim's ranch sells have no horns though. I wonder why.
+harvestfestival.npc.cloe.festival.harvest1=You can boil down bones to make a decent soup stock.
+harvestfestival.npc.cloe.festival.harvest2=Jade makes the soup each year. She never says what her secret ingredient is that she adds. I add a bone every now and than, but it has to be fished out.
+harvestfestival.npc.cloe.festival.new.years.eve1=Mm, didn't get too good of marks on my civic service exam. New Year's isn't exactly interesting anyways. Go get noodles, stay up late... whatever.
+harvestfestival.npc.cloe.festival.new.years.eve2=We should get something more interesting to do, like watch scary movies till midnight.
+harvestfestival.npc.cloe.festival.new.years1=The world didn't end when the calendar turned over. I guess thats good.
+harvestfestival.npc.cloe.festival.new.years2=It took a whole pot of coffee to be able to come outside with it this cold.
+harvestfestival.npc.cloe.festival.sheep1=Sheep horns curl around their ears. But they're made of bone and hollow.
+harvestfestival.npc.cloe.festival.sheep2=Baaaah, humbug. I'm going back to sleep. There's no dark sheep to be seen.
+harvestfestival.npc.cloe.festival.starry.night1=Uh... hello.
+harvestfestival.npc.cloe.festival.starry.night2=Don't forget whomever you ended up inviting is bringing their family along.
 
 #Liara/ApsciLiara
 harvestfestival.npc.liara.shop=虽然我们咖啡店只在9:30到17:00营业, 但是我们每天都营业!
@@ -910,7 +1048,6 @@ harvestfestival.npc.liara.greeting11=如果你需要我的建议，就读读食�
 harvestfestival.npc.liara.greeting12=我还在烹饪学校学习的时候，认识一个名字以P开头的女孩,  她的料理真是太难吃了.
 harvestfestival.npc.liara.greeting13=我真的非常想念我的父母, 但是失去他们却让我更想专注于我的烹饪事业.
 harvestfestival.npc.liara.greeting14=我平生都对烹饪非常持有热情， 我记得我十岁的时候, 我通过卖蛋糕在一个星期内赚了1000G. 而现在能经营自己喜欢的事业真的非常开心.
-harvestfestival.npc.liara.greeting15=咖啡店每天都营业! 从早上9:30到晚上17:00.
 harvestfestival.npc.liara.marriage.reject=咖啡店是我家. 不过我想一个人住.
 harvestfestival.npc.liara.marriage.accept=谢谢, 我愿意, 我会每天给你做好吃的料理.
 harvestfestival.npc.liara.gift.awesome=非常谢谢你, 我会永远记得的.
@@ -919,6 +1056,22 @@ harvestfestival.npc.liara.gift.decent=谢谢.
 harvestfestival.npc.liara.gift.dislike=不, 谢了.
 harvestfestival.npc.liara.gift.bad=我不喜欢这东西.
 harvestfestival.npc.liara.gift.terrible=我很想谢谢你, 但是你给了我这世上最差的东西. 再见.
+harvestfestival.npc.liara.festival.chicken1=You can keep your eggs on the counter as long as they aren't washed with soap. It takes off the protective coating on the eggshells and they go bad much quicker.
+harvestfestival.npc.liara.festival.chicken2=Chickens fed different choices of feed and let outside each day produce better eggs, I've found. Nice rich yellow yolks. Best omelettes I've ever made.
+harvestfestival.npc.liara.festival.cooking1=Can you believe how few people know how to hold a knife properly when slicing or chopping?!
+harvestfestival.npc.liara.festival.cooking2=A light lemon cream sauce is going to make whatever dish I make. Lemon is strong, but delicious. The juice makes a good addition to dishes too.
+harvestfestival.npc.liara.festival.cow1=Not every chocolate has milk in it, did you know? Its not considered chocolate in my book without milk in it.
+harvestfestival.npc.liara.festival.cow2=I wonder what you need to feed a cow in order for her to produce chocolate milk...
+harvestfestival.npc.liara.festival.harvest1=It isn't just a lunch, it is a harvest meal. It would go well with a freshly picked salad from the cafe.
+harvestfestival.npc.liara.festival.harvest2=There's just no telling whether or not the soup turns out well until we taste it. I always add the same thing though.
+harvestfestival.npc.liara.festival.new.years.eve1=I'd love to hold a cooking class next year. Even for something as simple as cupcakes. Would you be interested in that %4$s?
+harvestfestival.npc.liara.festival.new.years.eve2=Plain noodles are very boring; I'm trying mine with a light lemon cream sauce. It goes well against heavier dishes, like chicken picatta and eggplant parmasan.
+harvestfestival.npc.liara.festival.new.years1=Mm mmm! I'm in the mood to make some new year food. Dumplings, wonton soup, rice soup, rice pudding...
+harvestfestival.npc.liara.festival.new.years2=Only downside to spring, the lack of winter berries.
+harvestfestival.npc.liara.festival.sheep1=The one festival I'd rather sleep through, or work in the cafe. Nothing but sheep, wool, and yarn. And a lot of baaabling.
+harvestfestival.npc.liara.festival.sheep2=Now if you want to talk about dishes made with lamb, or with mutton, I'm all ears.
+harvestfestival.npc.liara.festival.starry.night1=Winter calls for a nice hearty stew. Plenty of root vegetables and meats... I'm getting hungry thinking about it.
+harvestfestival.npc.liara.festival.starry.night2=You know %4$s, you can invite someone to the park to have dinner. They might invite their family. Like... if you invited me, I would invite Granny Katlin, see?
 
 #Jade
 harvestfestival.npc.jade.buy1=这些花太美了, 收下我的感谢礼吧.
@@ -940,7 +1093,6 @@ harvestfestival.npc.jade.greeting10=当你和人对话的时候, 你可以看到
 harvestfestival.npc.jade.greeting11=跟一个人搞好关系最快的方式就是给他们送礼物.  事实上如果你能让他们足够喜欢你, 他们还会给你一些也许你用得上的东西!
 harvestfestival.npc.jade.greeting12=睡觉是种植庄稼最快的方法.
 harvestfestival.npc.jade.greeting13=我真的不知道为什么你不能给你的作物施肥. 也许将来有一天可以?
-harvestfestival.npc.jade.greeting14=要记住, 牧草和小麦需要镰刀才能收割.
 harvestfestival.npc.jade.marriage.reject=我现在还不想考虑婚姻的问题.
 harvestfestival.npc.jade.marriage.accept=我考虑好了, 我愿意.
 harvestfestival.npc.jade.gift.awesome=这真的是一件超棒的礼物!
@@ -949,6 +1101,23 @@ harvestfestival.npc.jade.gift.decent=我收下了.
 harvestfestival.npc.jade.gift.dislike=我不想收下他.
 harvestfestival.npc.jade.gift.bad=这礼物太差了!
 harvestfestival.npc.jade.gift.terrible=这礼物真是太糟糕了!
+harvestfestival.npc.jade.festival.chicken1=Chicken is good to eat, the original white meat.
+harvestfestival.npc.jade.festival.chicken2=Our town's birds are more bred for egg production than meat though. Johan might have meat bird eggs if you trade him some of your small, medium or large eggs.
+harvestfestival.npc.jade.festival.cooking1=I love cooking, %4$s! Are you going to enter the Cooking Festival?
+harvestfestival.npc.jade.festival.cooking2=A hot dish, a cold dish, something sweet, something savoury... so many choices. Then there's the type of meal!
+harvestfestival.npc.jade.festival.cow1=I keep going out in the pastures to pick any flowers I see before the cows come out to graze. They have no appreciation of flowers like I do. Or cats.
+harvestfestival.npc.jade.festival.cow2=We need a cat festival. Than the milk would have more use.
+harvestfestival.npc.jade.festival.harvest1=What a  beautiful day it is today. Do you intend to add to our community soup?
+harvestfestival.npc.jade.festival.harvest2=Its a little different each year, so I can't guarantee the flavor. Only edible items though. No cobblestone, or wood, or seeds.
+harvestfestival.npc.jade.festival.new.years.eve1=I've been making paper flowers to float on the water of the goddess pond. Each flower someone will write a new year's wish on, and they'll float away. Would you like to write down a wish?
+harvestfestival.npc.jade.festival.new.years.eve2=I hope the next year is profitable for you!
+harvestfestival.npc.jade.festival.new.years1=Ooooh, Happy New Year! Have a riceball! Try it with some soy sauce!
+harvestfestival.npc.jade.festival.new.years2=Its so nice to see flowers blooming.
+harvestfestival.npc.jade.festival.sheep1=Sheep take such a long time to regrow their wool before you can shear them again. I wonder if they ever produce more than one item ever per shearing?
+harvestfestival.npc.jade.festival.sheep2=Don't mention copper to Jim when he's around his sheep. I don't remember why.
+harvestfestival.npc.jade.festival.starry.night1=I might be able to get some mistletoe if I go exploring in the forest. The poor trees though don't like mistletoe.
+harvestfestival.npc.jade.festival.starry.night2=Have you seen any snowberries about?
+
 
 #Jenni/Othlon
 harvestfestival.npc.jenni.shop=嗨呀朋友, 只是个小提醒, 我们除了星期三和星期日每天都营业，每天早上9点到下午5点. 除了星期六是早上11点到下午3点.
@@ -972,6 +1141,22 @@ harvestfestival.npc.jenni.gift.decent=不错的朋友啊, 你是.
 harvestfestival.npc.jenni.gift.dislike=谢谢你, 朋友.
 harvestfestival.npc.jenni.gift.bad=你可以做得更好, 不过也还可以.
 harvestfestival.npc.jenni.gift.terrible=我还以为你不会得罪我, 但是现在你就得罪了, 为什么要这样做?
+harvestfestival.npc.jenni.festival.chicken1=Such good birdies. Spare feathers always add a bit of pizazz for a craft project.
+harvestfestival.npc.jenni.festival.chicken2=I love the taste of the food our town's eggs make. Liara's cakes especially.
+harvestfestival.npc.jenni.festival.cooking1=If you're in need of cooking supplies, the general store is your one stop shop.
+harvestfestival.npc.jenni.festival.cooking2=If you see Candice walking around offering out hot milk... don't take it. Its a trap.
+harvestfestival.npc.jenni.festival.cow1=I don't like how the cattle have to stand still so long while being milked. Isn't it stressful for them?
+harvestfestival.npc.jenni.festival.cow2=Candice always keeps the fridge supplied with fresh milk from the dairy. Claims to milk them herself.
+harvestfestival.npc.jenni.festival.harvest1=A pinch of this, a dash of that, and swish it all about...
+harvestfestival.npc.jenni.festival.harvest2=A splash of oil, a few sprigs of chamomile and voila, a beautiful soup. Oh hello!
+harvestfestival.npc.jenni.festival.new.years.eve1=It helps to use a flat edge to smooth out the folds in your paper flower. See that crisp edge? Its a bit sharp, but holds its shape while floating in the water. I can test a smaller flower in the well before going to make my actual flower.
+harvestfestival.npc.jenni.festival.new.years.eve2=My new year resolution is to grow my inventory of stock to sell to you and the town. Perhaps increase my choice of seeds.
+harvestfestival.npc.jenni.festival.new.years1=Happy New Year!
+harvestfestival.npc.jenni.festival.new.years2=If I had my way, we would be having a dumpling bar for lunch, and a beef pot for dinner. The mayor would have a fit for the price!
+harvestfestival.npc.jenni.festival.sheep1=Wool sells well alone, but there should be a way to spin it for yarn. Yarn sells very well. Granny Katlin would be your best customer.
+harvestfestival.npc.jenni.festival.sheep2=They're pickier than goats, but I've seen a flock of sheep mow down a hill of grass. It was like watching a baaing cloud.
+harvestfestival.npc.jenni.festival.starry.night1=Its too cold to grow any crops, so I don't carry any winter seeds yet in my shop.
+harvestfestival.npc.jenni.festival.starry.night2=As fall ended, I saw somewhere that someone wove a basket shaped like a horn and filled it with food. I wish I could've gotten a closer look.
 
 #Jaimii
 harvestfestival.npc.jamie.greeting1=这是我的地盘, 你给我记住了.
@@ -992,6 +1177,23 @@ harvestfestival.npc.jamie.gift.decent=你觉得我会喜欢这个?
 harvestfestival.npc.jamie.gift.dislike=你给我这件礼物简直是侮辱我家族的名字.
 harvestfestival.npc.jamie.gift.bad=这可能是你能给我的最差的礼物.
 harvestfestival.npc.jamie.gift.terrible=你送我这个, 如果我有那个权利我真想把你从我们镇开出. 你侮辱了我, 侮辱了我的家族, 侮辱了整个小镇. 别再这样做了啊.
+harvestfestival.npc.jamie.gift.no=You may not be the best person in this town. But even I cannot accept this gift. It is far too valuable.
+harvestfestival.npc.jamie.festival.chicken1=Ashlee pays good money for use of the festival grounds for this hideous festival. The money I make from the rental fee of the grounds is the ONLY good thing about it.
+harvestfestival.npc.jamie.festival.chicken2=Get that hideous feathered creature away from me!
+harvestfestival.npc.jamie.festival.cooking1=This festival is too early. The matsutake mushrooms are not in season yet.
+harvestfestival.npc.jamie.festival.cooking2=Cloe and Abii seem eager for this waste of a competition.
+harvestfestival.npc.jamie.festival.cow1=All these droppings. Yuck. And they are eating every bit of grass in the park.
+harvestfestival.npc.jamie.festival.cow2=All they do is eat, and chew, and have long purple tongues that eat anything. So inefficient.
+harvestfestival.npc.jamie.festival.harvest1=The town soup is never good. Something always spoils it. What did you add to it anyways.
+harvestfestival.npc.jamie.festival.harvest2=All thats ever added is vegetables. Can't there be more variety in this. -sniff-
+harvestfestival.npc.jamie.festival.new.years.eve1=Taxes are right around the corner. Than the money flows in, heh heh.
+harvestfestival.npc.jamie.festival.new.years.eve2=I only allow Abii and Cloe to stay up late if their school marks are acceptable to me.
+harvestfestival.npc.jamie.festival.new.years1=Its not worth my time to be out on such a festival. Paperwork is piling up as I stand here, I can feel it.
+harvestfestival.npc.jamie.festival.new.years2=The girls wanted to stay up late, so Tomas stayed up with them, bless his soul. If he has one.
+harvestfestival.npc.jamie.festival.sheep1=I noticed that nobody keeps their sheep around for very long. Do they only keep the lambs about?
+harvestfestival.npc.jamie.festival.sheep2=I've tasted rack of lamb before; a succulent and juicy cut of meat. Oh I'm sorry, I said that out loud.
+harvestfestival.npc.jamie.festival.starry.night1=Stay away from my Cloe, do you understand me?!
+harvestfestival.npc.jamie.festival.starry.night2=On the other hand, you can TRY to invite her. But don't get too sad when she dumps you on the pathway. Don't leave any bloodstains on my doorstep.
 
 #Abii
 harvestfestival.npc.abi.greeting1=哦哦哦~ 可爱死了. 这是什么啊? 天啊!

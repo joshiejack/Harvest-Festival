@@ -1,5 +1,4 @@
 #en_US.lang by joshie and Yulife ;)
-#zh_CN.lang by the result of the joint efforts of everyone involved, not belonging to the individual.（由参与其中的每个人共同努力的结果，不属于个人。）
 harvestfestival.tab.farming=丰收物语 - 农耕
 harvestfestival.tab.cooking=丰收物语 - 烹饪
 harvestfestival.tab.mining=丰收物语 - 采矿
@@ -10,7 +9,7 @@ harvestfestival.mode.true=丰收物语已设定为简单模式！
 harvestfestival.mode.false=丰收物语已设定为困难模式！
 harvestfestival.check.head=购买后在头顶。
 harvestfestival.check.lead=购买后在脚下。
-harvestfestival.death.attack.exhausted=%1$s worked themselves to death
+harvestfestival.death.attack.exhausted=%1$s由于工作疲倦而死。
 
 #Commands
 hf.commands.help.header=--- 显示丰收节日.帮助界面 %d of %d (/hf.help <page>) ---
@@ -103,8 +102,8 @@ harvestfestival.crop.water=不需要水源
 harvestfestival.crop.seeds.format=%1s %2s
 harvestfestival.crop.seeds=种子
 harvestfestival.crop.seeds.days=天
-harvestfestival.crop.seeds.shop.days=Takes %s days to grow
-harvestfestival.crop.seeds.shop.regrow=Regrows every %s days
+harvestfestival.crop.seeds.shop.days=需要%s天生长
+harvestfestival.crop.seeds.shop.regrow=每%s天恢复一次
 harvestfestival.crop.seeds.shop.cost=出售 %sG
 harvestfestival.crop.seeds.useless=没用的种子
 harvestfestival.crop.seeds.corrupted=腐坏的种子，哟！
@@ -138,7 +137,7 @@ harvestfestival.crop.orange=橘子
 harvestfestival.crop.peach=桃子
 harvestfestival.crop.grape=葡萄
 harvestfestival.crop.hemp.tooltip=需要光照等级 12+
-harvestfestival.tree.area=需要 %sx%s 区域
+harvestfestival.tree.area=需要%sx%s区域
 
 #Trees
 ##Fruit
@@ -529,7 +528,7 @@ harvestfestival.wateringcan.mythic=贤者水壶
 
 #Hammer
 harvestfestival.hammer.tooltip.dimensions=挖掘%sx%sx%s单位面积
-harvestfestival.hammer.tooltip.smash=粉碎%sx%s区域
+harvestfestival.hammer.tooltip.smash=摧毁%sx%s区域
 harvestfestival.hammer.tooltip.titles=(宽度，高度，深度)
 harvestfestival.hammer.basic=锤子
 harvestfestival.hammer.copper=铜制锤子
@@ -541,9 +540,9 @@ harvestfestival.hammer.blessed=祝福锤子
 harvestfestival.hammer.mythic=贤者锤子
 
 #Axe
-harvestfestival.axe.chop=一键砍树
+harvestfestival.axe.chop=砍树
 harvestfestival.axe.tooltip.sneak=潜行正常砍伐
-harvestfestival.axe.tooltip.chops=Chops a Tree in %s hits
+harvestfestival.axe.tooltip.chops=砍伐一颗树木需要%s下
 harvestfestival.axe.basic=斧头
 harvestfestival.axe.copper=铜制斧头
 harvestfestival.axe.silver=银制斧头
@@ -595,10 +594,10 @@ harvestfestival.cookware.steamer=蒸锅
 
 harvestfestival.storage.shipping=出货箱
 harvestfestival.storage.shipping.tooltip=每天六点, 你可以来这卖东西.
-harvestfestival.storage.mailbox=Mailbox
-harvestfestival.storage.mailbox.tooltip=With a mailbox you will receive invites to special events.
-harvestfestival.storage.basket=Shipping Basket
-harvestfestival.storage.basket.tooltip=If you place the basket on your head, it will automatically ship anything that you pickup. It also allows you to harvest crops in a 1x3 area.
+harvestfestival.storage.mailbox=邮箱
+harvestfestival.storage.mailbox.tooltip=有的时候你将通过邮箱获得某些特别邀请。
+harvestfestival.storage.basket=装运篮
+harvestfestival.storage.basket.tooltip=当你把篮子顶在头上时，它会自动拾取周围掉落的物品。它还允许你在1x3范围中收获作物。
 harvestfestival.sized.incubator=孵化器
 harvestfestival.trough.wood=饲料槽
 harvestfestival.sprinkler.iron=洒水器
@@ -705,23 +704,23 @@ harvestfestival.darkdrop.leather=暗黑皮革
 
 #Mine Tools
 harvestfestival.miningtool.escape.rope=逃生绳
-harvestfestival.miningtool.elevator.cable=Elevator Cable
-harvestfestival.elevator.tooltip=Used to link elevators together
-harvestfestival.elevator.place=Only placeable on bottom of walls
-harvestfestival.elevator.empty=Elevator
-harvestfestival.elevator.junk=Elevator
-harvestfestival.elevator.to=Elevator to
-harvestfestival.elevator.none=NOWHERE
-harvestfestival.elevator.done=You have reached your destination!
-harvestfestival.elevator.wait=Please wait for roughly %s seconds...
-harvestfestival.elevator.start=Started link from floor %s
-harvestfestival.elevator.success=Successfully linked elevator from floor %1$s to %2$s
-harvestfestival.elevator.cost=You need %s cables to link these elevators
-harvestfestival.elevator.link=This elevator is not currently linked to another one
-harvestfestival.elevator.go=This elevator will take you to floor %s
-harvestfestival.elevator.cannot.floor=Elevators cannot be linked to the same floor
-harvestfestival.elevator.cannot.mine=Elevators will only work in the same mine
-harvestfestival.elevator.cannot.self=Elevators cannot be linked to themselves
+harvestfestival.miningtool.elevator.cable=电梯线缆
+harvestfestival.elevator.tooltip=用于连接电梯
+harvestfestival.elevator.place=只能放在墙壁的底部
+harvestfestival.elevator.empty=电梯
+harvestfestival.elevator.junk=电梯
+harvestfestival.elevator.to=电梯从
+harvestfestival.elevator.none=无处
+harvestfestival.elevator.done=你已达到目的地！
+harvestfestival.elevator.wait=请等待大约%s秒...
+harvestfestival.elevator.start=从%s层开始连接
+harvestfestival.elevator.success=成功连接电梯从%1$s层到%2$s层
+harvestfestival.elevator.cost=你需要%s线缆来连接电梯
+harvestfestival.elevator.link=这个电梯当前没有连接到另一个电梯
+harvestfestival.elevator.go=此电梯将到达%s层
+harvestfestival.elevator.cannot.floor=电梯不能连接到同一楼层
+harvestfestival.elevator.cannot.mine=电梯只能在同一个矿井中工作
+harvestfestival.elevator.cannot.self=电梯之间不能相连
 
 #Goddess Water
 tile.goddess.water.name=女神之泉
@@ -758,22 +757,22 @@ harvestfestival.npctool.weather=天气情况
 harvestfestival.npctool.gift=送礼
 
 #Quest Baoard
-harvestfestival.quest.block.board=Quest Board
-harvestfestival.quest.block.active=Quest Board
+harvestfestival.quest.block.board=任务板
+harvestfestival.quest.block.active=任务板
 
 #Contest Blocks
-harvestfestival.decorative.cooking=Cooking Stand
-harvestfestival.stand.plate=Dinner Plate
-harvestfestival.stand.pot=Harvest Festival Pot
+harvestfestival.decorative.cooking=烹饪架
+harvestfestival.stand.plate=餐盘
+harvestfestival.stand.pot=丰收节水壶
 
 #NPC Tooltips
-harvestfestival.npc.tooltip.calendar=How many years?
-harvestfestival.npc.tooltip.clock=Shop opens when?
-harvestfestival.npc.tooltip.weather=Weather, tomorrow?
+harvestfestival.npc.tooltip.calendar=多少年？
+harvestfestival.npc.tooltip.clock=商店何时开门？
+harvestfestival.npc.tooltip.weather=天气，明天？
 harvestfestival.npc.tooltip.gift=Gift held item!
-harvestfestival.npc.tooltip.flower=Sell Flower!
+harvestfestival.npc.tooltip.flower=卖花！
 harvestfestival.npc.tooltip.book=Ask for knowledge?
-harvestfestival.npc.tooltip.birthday=%s's Birthday
+harvestfestival.npc.tooltip.birthday=%s's 的生日
 
 # NPC Names
 ## NOTE FOR TRANSLATORS, READ
@@ -784,7 +783,7 @@ harvestfestival.npc.tooltip.birthday=%s's Birthday
 # WARNING: Use of any NON a-Z character will change the renderer to use the vanilla font instead
 # So for best looks, if you can try to only use names with that, if the means you don't translate names
 # then sorry. It's not really feasible for me to support unicode with the custom font
-harvestfestival.npc.goddess.name=Harvest Goddess
+harvestfestival.npc.goddess.name=丰收女神
 harvestfestival.npc.katlin.name=Granny Katlin
 harvestfestival.npc.daniel.name=Danieru
 harvestfestival.npc.cloe.name=Cloe
@@ -842,11 +841,11 @@ harvestfestival.npc.generic.child.gift.awesome=我的天！棒，太棒了，非
 harvestfestival.npc.generic.child.gift.good=厉害了！谢谢你可爱的小礼物。
 harvestfestival.npc.generic.child.gift.decent=不错，谢谢！
 harvestfestival.npc.generic.child.gift.dislike=嗯，我觉得我应该不喜欢它。
-harvestfestival.npc.generic.child.gift.bad=你为什么这么对我？：(
+harvestfestival.npc.generic.child.gift.bad=你为什么这么对我？:(
 harvestfestival.npc.generic.child.gift.terrible=我讨厌你！你走！带上你的礼物！！！
 #No Thanks
 harvestfestival.npc.generic.child.gift.reject=谢谢！明天再给我吧 ：D
-harvestfestival.npc.generic.child.gift.no=Oh my. I think you like that item too much for me to accept it!
+harvestfestival.npc.generic.child.gift.no=天啊。我是多么喜欢这个礼物，我接收了！
 
 #Generic Elder Thanks
 harvestfestival.npc.generic.elder.gift.awesome=我活了这么久，都没有收到这么棒的礼物。真心谢谢你。
@@ -884,22 +883,22 @@ harvestfestival.npc.goddess.gift.bad=这礼物是在侮辱我。
 harvestfestival.npc.goddess.gift.terrible=你为什么要这样侮辱我.
 harvestfestival.npc.goddess.gift.no=恐怕我不适合接受这份礼物，它太珍贵了！
 harvestfestival.npc.goddess.gift.reject=亲爱的，我很喜欢它，但是我今天实在不能接受礼物了。
-harvestfestival.npc.goddess.festival.chicken1=Are you entering the Chicken Festival my sweet?
-harvestfestival.npc.goddess.festival.chicken2=If you plan to enter the Chicken Festival, go to the park and talk to Ashlee.
-harvestfestival.npc.goddess.festival.cooking1=I wish the cooking festival would put the winning dish as an offering to my pond. I'd love to taste it.
-harvestfestival.npc.goddess.festival.cooking2=There's a festival all about cooking in the park today dear, go give it a try!
-harvestfestival.npc.goddess.festival.cow1=Are you entering the Cow Festival today dear?
-harvestfestival.npc.goddess.festival.cow2=Talk to Jim, if you want to enter, I heard.
-harvestfestival.npc.goddess.festival.harvest1=Today is the Harvest Festival. I'm tickled that they celebrate the harvest!
-harvestfestival.npc.goddess.festival.harvest2=Be sure to bring food to add to a community pot in the park. Its different every year.
-harvestfestival.npc.goddess.festival.new.years.eve1=Another year come and gone. The town is looking so much more lively, and its all thanks to you.
-harvestfestival.npc.goddess.festival.new.years.eve2=There's noodles being served in the park tonight to close out the year. If you please, float a bowl of noodles in my pond. I do so enjoy these events, though I cannot attend myself.
-harvestfestival.npc.goddess.festival.new.years1=A Happy New Year to you dear.
-harvestfestival.npc.goddess.festival.new.years2=If you visit the park today, you get some riceballs. Be sure to bring me one!
-harvestfestival.npc.goddess.festival.sheep1=This is exciting. The Sheep Festival is today!
-harvestfestival.npc.goddess.festival.sheep2=Go ahead and talk to Jim about the festival today darling.
-harvestfestival.npc.goddess.festival.starry.night1=Oh the solstice. Quite a sight with all this snow.
-harvestfestival.npc.goddess.festival.starry.night2=I'm sort of sad I cannot go join the town for dinner in the park. Do go in my place, would you dear?
+harvestfestival.npc.goddess.festival.chicken1=你是否愿意参加一个与鸡有关的节日，我的宝贝？
+harvestfestival.npc.goddess.festival.chicken2=如果你打算参加，那就去和公园Ashlee的交谈下吧。
+harvestfestival.npc.goddess.festival.cooking1=我希望把我胜利的菜肴供奉在丰收池中，我真的是太喜欢它了。
+harvestfestival.npc.goddess.festival.cooking2=有一个节日需要在公园做饭进行对决，亲爱的，去试试看吧！
+harvestfestival.npc.goddess.festival.cow1=你今天照顾奶牛了吗？
+harvestfestival.npc.goddess.festival.cow2=那就去找Jim吧，如果你很想的话。
+harvestfestival.npc.goddess.festival.harvest1=今天是丰收节，我很高兴能与他们一起庆祝丰收！
+harvestfestival.npc.goddess.festival.harvest2=带上食材到公园去进行一次烹饪对决吧，我相信今年将与往年不同。
+harvestfestival.npc.goddess.festival.new.years.eve1=时间过得真快转眼间一年又过去了，这个城市看起来更加美好了。这都归功于你！
+harvestfestival.npc.goddess.festival.new.years.eve2=今天晚上，公园里一些面条供应都不够了。如果你愿意，请为我的池塘中放置一晚面条。虽然我很喜欢这些节日，但我却不能参加。
+harvestfestival.npc.goddess.festival.new.years1=亲爱的祝你新年快乐。
+harvestfestival.npc.goddess.festival.new.years2=如果你今天要去公园，你会得到一些米饭。请不要忘记带给我。
+harvestfestival.npc.goddess.festival.sheep1=真是多么令人兴奋的，羊是今天的主角！
+harvestfestival.npc.goddess.festival.sheep2=快去和Jim谈谈与它有关的节日活动，亲爱的。
+harvestfestival.npc.goddess.festival.starry.night1=哦，冬至到了。或许这一切都是一场景象。
+harvestfestival.npc.goddess.festival.starry.night2=我很伤心，我不能到公园去吃晚餐。你能给我带一份过来吗，亲爱的？
 
 # Goddess Weather
 harvestfestival.npc.goddess.weather.sunny1=哦，宝贝儿，明天晴空万里哦！
@@ -938,22 +937,22 @@ harvestfestival.npc.katlin.gift.bad=我们那个年代啊，我们会给人们�
 harvestfestival.npc.katlin.gift.terrible=你这是要气死我啊？真是一件可怕的礼物。
 harvestfestival.npc.katlin.gift.no=我不能收下它，它太珍贵了。
 harvestfestival.npc.katlin.gift.reject=你今天已经送过我礼物了，年轻人。
-harvestfestival.npc.katlin.festival.chicken1=A happy chicken makes a happy home. Or was it a happy wife makes a happy life?
-harvestfestival.npc.katlin.festival.chicken2=I remember someone telling me once that chickens like to roost on a pole off the ground. I wonder why that is...
-harvestfestival.npc.katlin.festival.cooking1=Each year is always the same. I hear the young'ns quibbling about what to cook to impress the town.
-harvestfestival.npc.katlin.festival.cooking2=You know what wins each year? I'll never tell you.
-harvestfestival.npc.katlin.festival.cow1=In my day, you made your butter and cream with a hand churn.
-harvestfestival.npc.katlin.festival.cow2=Milk didn't used to be processed before selling. Some of us would drink it right from the bucket.
-harvestfestival.npc.katlin.festival.harvest1=For as long as I can remember, the harvest festival takes place in the autumn, and it always includes food. Its not for the Goddess's birthday though.
-harvestfestival.npc.katlin.festival.harvest2=Its getting colder. I should knit a new scarf and a pair of mittens.
-harvestfestival.npc.katlin.festival.new.years.eve1=When the new year comes, open the front door. When the old year leaves, open the back door and close it after it leaves.
-harvestfestival.npc.katlin.festival.new.years.eve2=Its traditional to do a toast at midnight. To good health, long life, and happiness dearie.
-harvestfestival.npc.katlin.festival.new.years1=Open the front door to let in the new year, open the back door to let out the old year.
-harvestfestival.npc.katlin.festival.new.years2=Happy New Year dear. I wish you wealth, good health, and happiness.
-harvestfestival.npc.katlin.festival.sheep1=You can tell the quality of a sheep's wool by touching them, you know. Same way you get the feeling of a good yarn, its by touching them. Feeling it between your fingers.
-harvestfestival.npc.katlin.festival.sheep2=If they shear the prize winning sheep, I might buy some wool to spin for a project. A nice autumnal dye...
-harvestfestival.npc.katlin.festival.starry.night1=I remember when Tomas invited me to dinner one Starry Night. I'm sad to say he chose that night to ask for a divorce. This festival is not my favorite for that reason. Brings a tear to my eye every now and than each year.
-harvestfestival.npc.katlin.festival.starry.night2=Do consider inviting Liara to dinner though. She enjoys this season so much.
+harvestfestival.npc.katlin.festival.chicken1=一只幸福的小鸡住在庄园中过着幸福的生活，还是庄园主人的妻子过着幸福的生活？
+harvestfestival.npc.katlin.festival.chicken2=有一次，有人告诉我鸡喜欢栖息在一根杆上。但我缺不知道为什么...
+harvestfestival.npc.katlin.festival.cooking1=每天都是一样的，我听闻有些年轻人通过嘲笑烹饪来打动这座城镇。
+harvestfestival.npc.katlin.festival.cooking2=你知道如何每年都在丰收节这盛大的节日中取得胜利吗？不，我永远不会告诉你。
+harvestfestival.npc.katlin.festival.cow1=又是平常的一天，今天我要用手亲自搅拌黄油和奶油。
+harvestfestival.npc.katlin.festival.cow2=牛奶在出售以前并不会对它进行任何的加工，但我们中有些人却会将它与酒配合。
+harvestfestival.npc.katlin.festival.harvest1=我深刻的记着，丰收节在秋天发生。它总是代表这歌颂食物，但它不是为了丰收女神的生日。
+harvestfestival.npc.katlin.festival.harvest2=现在越来越冷，或许我应该编制一条围巾与一副手套。
+harvestfestival.npc.katlin.festival.new.years.eve1=当新年来临之际；打开前面，当年老将要离开之时，打开后门。离开后关闭...
+harvestfestival.npc.katlin.festival.new.years.eve2=它的传统在于午夜来临前烘焙烤制面包。它代表身体健康，长寿。
+harvestfestival.npc.katlin.festival.new.years1=打开前面迎接新春，在新的一年来临之际；打开后面放出旧年。
+harvestfestival.npc.katlin.festival.new.years2=新年快乐，亲爱的。祝你在新的一年中吉祥如意、福如东海、寿比南山！
+harvestfestival.npc.katlin.festival.sheep1=你知道可以通过触摸羊毛来得知它们的质量。相同的方式，当你得到一匹较好的毛纱；触摸它们，感觉在你的指尖涌出。
+harvestfestival.npc.katlin.festival.sheep2=假如它们剪去一些羊毛进行纺织，那我可能会去购买它。为这个漂亮的秋季染色....
+harvestfestival.npc.katlin.festival.starry.night1=我记得Tomas曾在一次夜晚邀请我，他当晚选择要离婚，我当时十分伤心。这就是为什么我不喜欢这个节日。直到现在，回首过去依旧会使我泪流满面。
+harvestfestival.npc.katlin.festival.starry.night2=请考虑邀请和Liara一起吃饭，她很喜欢这个节日。
 
 #Danieuru/Chylex
 harvestfestival.npc.daniel.shop=我周四休息, 其余时间每天10:00到16:00都在这.

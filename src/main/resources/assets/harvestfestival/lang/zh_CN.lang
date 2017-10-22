@@ -1,4 +1,5 @@
 #en_US.lang by joshie and Yulife ;)
+#zh_CN.lang by the result of the joint efforts of everyone involved, not belonging to the individual.（由参与其中的每个人共同努力的结果，不属于个人。）
 harvestfestival.tab.farming=丰收物语 - 农耕
 harvestfestival.tab.cooking=丰收物语 - 烹饪
 harvestfestival.tab.mining=丰收物语 - 采矿
@@ -1217,6 +1218,22 @@ harvestfestival.npc.abi.gift.decent=哇, 真好.
 harvestfestival.npc.abi.gift.dislike=嗯, 没有那么好.
 harvestfestival.npc.abi.gift.bad=啊, 这个我不想要.
 harvestfestival.npc.abi.gift.terrible=什么? 我讨厌这个, 我讨厌这个. 真差劲!
+harvestfestival.npc.abi.festival.chicken1=Chickies! So cute! How many chickies are coming to play today?
+harvestfestival.npc.abi.festival.chicken2=Mama hates animals, but I go out to see them when she's not looking. Mama gets so angry when I have feathers in my hair.
+harvestfestival.npc.abi.festival.cooking1=Its so fun, all the yummy food to poke your fingers in!
+harvestfestival.npc.abi.festival.cooking2=If I ask nice, Mr.Jakob makes me fishie fingers!
+harvestfestival.npc.abi.festival.cow1=Moo! Moo! I'm a cow!
+harvestfestival.npc.abi.festival.cow2=Cows are so big! Bigger than me! They like being patted though.
+harvestfestival.npc.abi.festival.harvest1=Mmm, soup smells yummy.
+harvestfestival.npc.abi.festival.harvest2=Can I put some candy in the soup?
+harvestfestival.npc.abi.festival.new.years.eve1=I get to stay up late... I get to stay up late...
+harvestfestival.npc.abi.festival.new.years.eve2=Do you get to make a wish with Jade's pretty flowers? I wished for a pretty dress!
+harvestfestival.npc.abi.festival.new.years1=New year, new year, have a happy new year!
+harvestfestival.npc.abi.festival.new.years2=Did you want to be taller when the year ended? I did!
+harvestfestival.npc.abi.festival.sheep1=OMG look at the cloud sheeps! One sheep, two sheep, three sheep, four sheep!
+harvestfestival.npc.abi.festival.sheep2=Your sheep's nose is so soft! Eek, it licked me!
+harvestfestival.npc.abi.festival.starry.night1=Look at my cute dress for dinner!
+harvestfestival.npc.abi.festival.starry.night2=Mama and Papa and sissy are all dressed up too. Are you going to come to dinner?
 
 #Tiberius/WayofTime
 harvestfestival.npc.tiberius.time=你来这个镇上已经%s年了.
@@ -1241,6 +1258,22 @@ harvestfestival.npc.tiberius.gift.decent=你真好.
 harvestfestival.npc.tiberius.gift.dislike=你没那么好.
 harvestfestival.npc.tiberius.gift.bad=这件礼物很差劲.
 harvestfestival.npc.tiberius.gift.terrible=我发现这是件很差的礼物. 这个世界上没有比这个更差的了.
+harvestfestival.npc.tiberius.festival.chicken1=Rise in the morning to the crow of the rooster.
+harvestfestival.npc.tiberius.festival.chicken2=I wonder how daylight savings time affects the roosters...
+harvestfestival.npc.tiberius.festival.cooking1=The cooking part of the festival itself is quite a sight. How much time and effort goes into each dish.
+harvestfestival.npc.tiberius.festival.cooking2=Oh, its unusual to be watching someone cook raw steaks?
+harvestfestival.npc.tiberius.festival.cow1=For such big animals, cows don't produce much blood.
+harvestfestival.npc.tiberius.festival.cow2=Apparently most of their blood flows through the udders.
+harvestfestival.npc.tiberius.festival.harvest1=The key to any good dish is time for cooking. Too little, and it doesn't finish cooking through. Too much, and the dish burns.
+harvestfestival.npc.tiberius.festival.harvest2=My clocks are not good for timers I'm afraid. I have heard of a mystical hourglass that can be calibrated though.
+harvestfestival.npc.tiberius.festival.new.years.eve1=The blood moon rarely comes out on New Years Eve. What is that, you ask? The moon turns orangey-red, its a kind of eclipse.
+harvestfestival.npc.tiberius.festival.new.years.eve2=This is the one night I allow my son to stay up late.
+harvestfestival.npc.tiberius.festival.new.years1=With each passing year, that wives tale of the end of the world when the calendar runs out is debunked.
+harvestfestival.npc.tiberius.festival.new.years2=Its difficult to get Fenn to go to bed before the New Year.
+harvestfestival.npc.tiberius.festival.sheep1=Throughout the history of time, sheep have been there. At least their wool has.
+harvestfestival.npc.tiberius.festival.sheep2=Though they are said to attract werewolves if left in front of a wolf altar on the night of the full moon. If one wants to catch the wolf, you have to set a specific silver-laid trap.
+harvestfestival.npc.tiberius.festival.starry.night1=This particular event is a bittersweet time for me, %4$s. Fenn enjoys a family meal, but he occasionally asks if his mother is coming too. She left me, see.
+harvestfestival.npc.tiberius.festival.starry.night2=If you wish, we would join you for the dinner in the park.
 
 #Jakob
 harvestfestival.npc.jacob.shop=如果你想要点渔具的话, 我们从周三到周五在下午开门, 一直到到晚上7点.
@@ -1263,6 +1296,22 @@ harvestfestival.npc.jacob.gift.decent=谢谢你的礼物.
 harvestfestival.npc.jacob.gift.dislike=我觉得我应该不喜欢这个.
 harvestfestival.npc.jacob.gift.bad=我真的不喜欢它就像我不喜欢地下一样.
 harvestfestival.npc.jacob.gift.terrible=你疯了吗? 我永远不会想要这个.
+harvestfestival.npc.jacob.festival.chicken1=Chicken manure is a good compost. So is fish, but it smells something awful apparently.
+harvestfestival.npc.jacob.festival.chicken2=If you feed your chickens oyster shells, I hear it improves their eggshells. Something about... calcium.
+harvestfestival.npc.jacob.festival.cooking1=A good fish and chips would make this festival grand.
+harvestfestival.npc.jacob.festival.cooking2=Cod is a good, flaky white fish that's popular for fried fish dishes.
+harvestfestival.npc.jacob.festival.cow1=We need a fishing festival. I should petition for a fishing festival.
+harvestfestival.npc.jacob.festival.cow2=I love the rain, but the livestock hate it. I dont' have the space to keep any.
+harvestfestival.npc.jacob.festival.harvest1=She didn't say I had to descale the fish before adding it to the soup... or remove the bones. Or even the eyes.
+harvestfestival.npc.jacob.festival.harvest2=Sardines do not make a good soup. I would not try that.
+harvestfestival.npc.jacob.festival.new.years.eve1=Its been my dream each year to fish up a larger fish than last year. There's that Legend fish that eluded every fisherman since forever.
+harvestfestival.npc.jacob.festival.new.years.eve2=You should do more business with me next year. Fishing is quite a profitable business if the biting is good.
+harvestfestival.npc.jacob.festival.new.years1=Ever tried pickled fish inside a riceball? Or red bean paste?
+harvestfestival.npc.jacob.festival.new.years2=I'm creating a poem for the new year. Would you like to hear it?
+harvestfestival.npc.jacob.festival.sheep1=Baa baa black sheep, have you any wool? Yes sir, yes sir, three bags full. One for the mayor, one for the wife, and one for the little ones who live down the lane... no thats not right.
+harvestfestival.npc.jacob.festival.sheep2=The fishing nets you can make with quality wool ropes hold a lot of water in them.
+harvestfestival.npc.jacob.festival.starry.night1=There's a rare fish called the Glacierfish that you could only catch in the Cindersap Forest River Delta, I heard once. It swims upstream from the ocean to spawn only in winter.
+harvestfestival.npc.jacob.festival.starry.night2=Certain fish come out only in winter.
 
 #Pokefenn
 harvestfestival.npc.fenn.greeting1=总有一天, 我会种下一些葡萄树, 到时候你要和我一起去爬树!
@@ -1283,6 +1332,22 @@ harvestfestival.npc.fenn.gift.decent=哦, 我喜欢它.
 harvestfestival.npc.fenn.gift.dislike=嗯, 为什么.
 harvestfestival.npc.fenn.gift.bad=为什么么么么, 我不喜欢它 :(
 harvestfestival.npc.fenn.gift.terrible=不, 不不, 不不不不!!!! 不要!! 就不要!
+harvestfestival.npc.fenn.festival.chicken1=I keep a handful of seeds in my pocket to feed the chickens in Ashlee's coop when she's not looking.
+harvestfestival.npc.fenn.festival.chicken2=They follow me around in a flock when I've got the seeds in my hand. Johan's vanilla chickens love wheat seeds. So much that they start burping hearts.
+harvestfestival.npc.fenn.festival.cooking1=I want to try Jade's new creation!
+harvestfestival.npc.fenn.festival.cooking2=Have you tried chewing on wild mint leaves? It makes my mouth all tingly.
+harvestfestival.npc.fenn.festival.cow1=Do you feed your cow by hand?
+harvestfestival.npc.fenn.festival.cow2=I like feeding Jim's cows treats when I'm outside. They lick my hands, and leave me all sticky.
+harvestfestival.npc.fenn.festival.harvest1=I'm hungry, when are we going to eat?
+harvestfestival.npc.fenn.festival.harvest2=Its really hot when you stand next to the soup pot. I'm not allowed to add anything, dad adds it for me.
+harvestfestival.npc.fenn.festival.new.years.eve1=Oh boy, I get to stay up late tonight! Dad's gonna let me!
+harvestfestival.npc.fenn.festival.new.years.eve2=Will Abi get to stay up late as well? Her mom's as strict as my dad, maybe worse.
+harvestfestival.npc.fenn.festival.new.years1=I stayed up late last night, and saw a shooting star! I made a wish for New Years, but I'm not telling.
+harvestfestival.npc.fenn.festival.new.years2=I wonder if Abi got to stay up late. Her mum is so strict, like my dad.
+harvestfestival.npc.fenn.festival.sheep1=Dad mentioned something once about a wolf in sheep's clothing. What does that mean?
+harvestfestival.npc.fenn.festival.sheep2=I see the wolves outside of town lurking around the pastures. Its scary to think that wolves like to eat sheep.
+harvestfestival.npc.fenn.festival.starry.night1=Is Mom coming to dinner Dad?
+harvestfestival.npc.fenn.festival.starry.night2=We have to get dressed all fancy to have dinner. I wonder why?
 
 #Jim/SpitefulFox
 harvestfestival.npc.jim.shop=养鸡场每周一到周六 10am 到 3pm 营业.
@@ -1303,6 +1368,22 @@ harvestfestival.npc.jim.gift.decent=这是件像样的礼物.
 harvestfestival.npc.jim.gift.dislike=我不能违背良心说我喜欢这件礼物.
 harvestfestival.npc.jim.gift.bad=这东西当成一件礼物并不是一个好的选择.
 harvestfestival.npc.jim.gift.terrible=如果你了解我, 你不会给我一件像这样的礼物.
+harvestfestival.npc.jim.festival.chicken1=I'll just wait until the cow and sheep festivals roll around.
+harvestfestival.npc.jim.festival.chicken2=That's when my animals will shine. Bessel's milk is first class.
+harvestfestival.npc.jim.festival.cooking1=I sometimes go out in the pasture while doing my herd's daily grooming, and pull up any gatherable herbs I find. Jade pays well for them if they aren't stomped flat.
+harvestfestival.npc.jim.festival.cooking2=Teas, salads, remedies, and just a decoration on a dish. So many uses for herbs. Flowers too, believe it or not.
+harvestfestival.npc.jim.festival.cow1=You're enterin' the festival, I'm going to assume.
+harvestfestival.npc.jim.festival.cow2=How's that cow doing lately? Feeding her lots of treats?
+harvestfestival.npc.jim.festival.harvest1=Only the finest milk for the soup from my ranch.
+harvestfestival.npc.jim.festival.harvest2=I tried to eat last year's soup with using wool for bread once. It wasn't very tasty at all. I haven't tried eating wool, or bread, since.
+harvestfestival.npc.jim.festival.new.years.eve1=My new year's resolution? Mmm, I'd love to have a herd of horses to sell to players. They don't produce anything, its true, but you can get around town much faster.
+harvestfestival.npc.jim.festival.new.years.eve2=Getting in touch with a leatherworker to increase my inventory for the ranch would be good. I'd love to sell saddles.
+harvestfestival.npc.jim.festival.new.years1=Ah, the first day of spring. Freshly trimmed grass wakes a man up in the morning, don't you agree?
+harvestfestival.npc.jim.festival.new.years2=The spring is a wonderful time to buy a miracle potion for your livestock, don't you agree %4$s?
+harvestfestival.npc.jim.festival.sheep1=Sheep are very sensitive to copper, you need to only feed them the proper diet. In this case, fodder bought from me or grown in your own farm.
+harvestfestival.npc.jim.festival.sheep2=Have you been feeding your sheep any treats? I hear it might do good things if you feed them lots.
+harvestfestival.npc.jim.festival.starry.night1=I hope you've stocked up on fodder for the winter %4$s. Its going to be a cold one.
+harvestfestival.npc.jim.festival.starry.night2=Make sure your sheep stay warm after you shear them. Its like going outside with just underwear on when they are sheared. COLD.
 
 #Brandon/Cricket
 harvestfestival.npc.brandon.shop=如果你需要一些挖掘材料，我从星期一到星期六营业，早上11点到下午4点.
@@ -1326,14 +1407,28 @@ harvestfestival.npc.brandon.gift.decent=谢谢, 礼物不错.
 harvestfestival.npc.brandon.gift.dislike=也许礼物不错.
 harvestfestival.npc.brandon.gift.bad=你不知道吗? 我讨厌自然.
 harvestfestival.npc.brandon.gift.terrible=离我远一点. 你为什么要用这礼物来侮辱我.
+harvestfestival.npc.brandon.festival.chicken1=I swear that chicken I've seen before.
+harvestfestival.npc.brandon.festival.chicken2=Black feathers, red eyes, straight out of the nether-region, I tell you! Came right for me!
+harvestfestival.npc.brandon.festival.cooking1=So, they're doing some sort of festival out there?
+harvestfestival.npc.brandon.festival.cooking2=There isn't much worth in the outside world now. The mines are home. No crickets.
+harvestfestival.npc.brandon.festival.cow1=That cow is staring at me. There's a reason I'm way over here, and not over there.
+harvestfestival.npc.brandon.festival.cow2=I'm headed back into the mines shortly. I'm not interested in watching someone walk a cow into a stage.
+harvestfestival.npc.brandon.festival.harvest1=Sitting in semidarkness, watching the glints of the eyes of monsters while sipping my thermos of nice hot soup. Nothing better.
+harvestfestival.npc.brandon.festival.harvest2=Pickaxes don't serve as good soup spoons apparently. I've got the burns to prove it.
+harvestfestival.npc.brandon.festival.new.years.eve1=There isn't a big difference between this year, and the next. You just get older. The mines get older too.
+harvestfestival.npc.brandon.festival.new.years.eve2=The rocks grow older and grow crystals eventually. Open up to reveal more ore... thats what I want to see. More ores. Diamonds. Emeralds. Avoiding monsters and such.
+harvestfestival.npc.brandon.festival.new.years1=High ho, high ho, its off to mine I go... Hm? Oh hello.
+harvestfestival.npc.brandon.festival.new.years2=Spring isn't as profitable for finding ore below ground than winter is, have you noticed? Copper seems quite findable at last, junk as it is.
+harvestfestival.npc.brandon.festival.sheep1=The shape of a sheep's eyeball makes me uneasy. Its so... flat.
+harvestfestival.npc.brandon.festival.sheep2=Like they've got no soul inside. Or are seeking to eat me in the depths of the mine.
+harvestfestival.npc.brandon.festival.starry.night1=A mining I shall go, a mining I shall go. Ores and rocks and cherry booms, a mining I shall go.
+harvestfestival.npc.brandon.festival.starry.night2=If someone actually cared, they can bring me leftovers in the mines. Hint hint.
 
 #Tomas
 harvestfestival.npc.thomas.greeting1=我将带你脱离罪恶.
 harvestfestival.npc.thomas.greeting2=如果你遇到了被诅咒的工具, 作为牧师的我乐意帮忙.
 harvestfestival.npc.thomas.greeting3=现在只有他能拯救你.
 harvestfestival.npc.thomas.greeting4=主的恩典正沐浴着你.
-harvestfestival.npc.thomas.greeting5=如果你遇到了被诅咒的工具, 把它带给我, 用10000G作为报酬, 我会给他祝福.
-harvestfestival.npc.thomas.greeting6=给我1000G我就帮能帮你修理祝福工具.
 harvestfestival.npc.thomas.greeting7=也许上帝对你仍有一丝悲悯.
 harvestfestival.npc.thomas.greeting8=我相信我能飞.
 harvestfestival.npc.thomas.greeting9=为什么我会跟那个老巫婆结婚, katlin.
@@ -1346,6 +1441,22 @@ harvestfestival.npc.thomas.gift.decent=祝福你孩子.
 harvestfestival.npc.thomas.gift.dislike=这, 额, 好吧.
 harvestfestival.npc.thomas.gift.bad=你在用你的礼物亵渎上帝!
 harvestfestival.npc.thomas.gift.terrible=收到这样的礼物简直让我想将你遣送至地狱, 这是不对的.
+harvestfestival.npc.thomas.festival.chicken1=Don't bring your chickens near Jaimii, she hates animals. Sleeps with earmuffs to avoid the crow of the rooster.
+harvestfestival.npc.thomas.festival.chicken2=Birds are able to reach the sky, something we cannot do without help. Chickens don't fly much though. Do they prefer the faith of the ground?
+harvestfestival.npc.thomas.festival.cooking1=For the next Sunday sermon, I shall present bread and grape juice on the altar.
+harvestfestival.npc.thomas.festival.cooking2=The more crackerlike the bread, the better.
+harvestfestival.npc.thomas.festival.cow1=I can bless your tools, but not your animals for a win.
+harvestfestival.npc.thomas.festival.cow2=A fine day for a festival. He is smiling upon this day.
+harvestfestival.npc.thomas.festival.harvest1=A tithe for the harvest to seal the deal for bountiful autumn?
+harvestfestival.npc.thomas.festival.harvest2=Pray that our veg grows big and strong.
+harvestfestival.npc.thomas.festival.new.years.eve1=A blessing for the new year to you, %4$s.
+harvestfestival.npc.thomas.festival.new.years.eve2=A tithe to the church is always appreciated. Our bell needs a new can of polish.
+harvestfestival.npc.thomas.festival.new.years1=May your soul be purified for the next year.
+harvestfestival.npc.thomas.festival.new.years2=Do not forget to make your tithe to the church.
+harvestfestival.npc.thomas.festival.sheep1=Sheep bring the wolf. The wolf is a bad omen. Carry silver on the full moon.
+harvestfestival.npc.thomas.festival.sheep2=Remember, I can bless your tools, but not your animals.
+harvestfestival.npc.thomas.festival.starry.night1=Jaimii is my dinner date, %4$s. I am unlikely to choose another.
+harvestfestival.npc.thomas.festival.starry.night2=When dinner is complete, some couples come to pray at the church before retiring.
 
 #Candice
 harvestfestival.npc.candice.greeting1=我很爱我的工作, 并且与我的朋友分享.
@@ -1368,6 +1479,22 @@ harvestfestival.npc.candice.gift.decent=谢谢你小美人.
 harvestfestival.npc.candice.gift.dislike=嗯, 我收下了.
 harvestfestival.npc.candice.gift.bad=嗯, 我不确定我要这个东西可以干嘛.
 harvestfestival.npc.candice.gift.terrible=我不敢相信我竟然送我这样得礼物. 你不喜欢我吗?
+harvestfestival.npc.candice.festival.chicken1=Why are you talking to me? Ashlee is the one to speak to about chickens!
+harvestfestival.npc.candice.festival.chicken2=Milk. Maid. Not chicken maid. Sheesh.
+harvestfestival.npc.candice.festival.cooking1=Yes, I KNOW milk is used in cooking, but don't you hate the smell while heating it?
+harvestfestival.npc.candice.festival.cooking2=The ranch should still be open for business while this stupid festival is going on, at least then I have an excuse to skip this.
+harvestfestival.npc.candice.festival.cow1=Nothing better than fresh milk straight from the cow.
+harvestfestival.npc.candice.festival.cow2=Butter, cheese, cream, ice cream, so many uses for milk.
+harvestfestival.npc.candice.festival.harvest1=Cream base soups are the best.
+harvestfestival.npc.candice.festival.harvest2=When I don't have to make them myself that is. I'll leave that to someone who actually LIKES to cook.
+harvestfestival.npc.candice.festival.new.years.eve1=A happy moo year to you, %4$s!
+harvestfestival.npc.candice.festival.new.years.eve2=I'm going to have a resolution for new year to work on finding myself a lover.
+harvestfestival.npc.candice.festival.new.years1=Happy New Year %4$s!
+harvestfestival.npc.candice.festival.new.years2=How're your cows doing? They should be really happy to not have snow underhoof anymore.
+harvestfestival.npc.candice.festival.sheep1=Jim is the one leading this festival.
+harvestfestival.npc.candice.festival.sheep2=Why don't you go talk to HIM about it?
+harvestfestival.npc.candice.festival.starry.night1=You gonna invite someone to the winter dinner thing %4$s? Its kinda romantic, don't you think?
+harvestfestival.npc.candice.festival.starry.night2=The animals aren't fond of snow, so keep your livestock inside and under cover.
 
 #Yulife
 harvestfestival.npc.yulif.shop=如果你是来找我盖房子, 很遗憾, 我只在周日到周五的每天上午9:00到下午5:30工作.
@@ -1392,7 +1519,22 @@ harvestfestival.npc.yulif.gift.decent=谢谢你.
 harvestfestival.npc.yulif.gift.dislike=额, 好吧, 谢谢?
 harvestfestival.npc.yulif.gift.bad=额, 什么? 我要这个何用?
 harvestfestival.npc.yulif.gift.terrible=该死, 你真的觉得我会喜欢这个? 请不要跟我说话.
-
+harvestfestival.npc.yulif.festival.chicken1=Animals are so pushy, and smelly. They keep knocking all the torches out of the barns and coops.
+harvestfestival.npc.yulif.festival.chicken2=If you didn't need the products to cook with, I wouldn't bother with working with animals myself.
+harvestfestival.npc.yulif.festival.cooking1=Depending on who enters the cooking festival, there's really good pastries to try.
+harvestfestival.npc.yulif.festival.cooking2=I do wish melons came into season sooner, a nice crisp melon salad or something... perhaps with mint... Hmm.
+harvestfestival.npc.yulif.festival.cow1=This is Jim's favorite festival. I'm not so interested.
+harvestfestival.npc.yulif.festival.cow2=The animal ranch needs a new blueprint, but Jim's so busy I haven't had the chance to show him any new ideas. He's always with his livestock.
+harvestfestival.npc.yulif.festival.harvest1=Don't talk to me. Talk to my sister if you want to add food to the pot.
+harvestfestival.npc.yulif.festival.harvest2=Jade yelled at me when I put melon slices into the pot one year. The rinds ruined the soup. Oh well, more melon for me. -chomp-
+harvestfestival.npc.yulif.festival.new.years.eve1=My new year's resolution is to create a fantastic new blueprint for the animal ranch.
+harvestfestival.npc.yulif.festival.new.years.eve2=When you cut down a tree in the forest in winter, who is around to hear it fall?
+harvestfestival.npc.yulif.festival.new.years1=Mm, Happy New Year, I ‘spose. *Sigh*
+harvestfestival.npc.yulif.festival.new.years2=Long life, wealth and happiness. From a riceball. Mm. Do you believe those things?
+harvestfestival.npc.yulif.festival.sheep1=If you spin wool thick enough, you can make ropes out of it. Sheep do have a use after all.
+harvestfestival.npc.yulif.festival.sheep2=They appear to be pickier about what they eat than cows do, by what I see Jim's flock do. They never eat mint, but cows do.
+harvestfestival.npc.yulif.festival.starry.night1=Its so quiet when building in the winter. Just the sound of construction when everything else is silent.
+harvestfestival.npc.yulif.festival.starry.night2=We're having a get together to celebrate the winter season. Its not much, but its tradition. Its also tradition to invite someone to dinner.
 harvestfestival.npc.builder.build=别疑惑, 我正在帮你盖 %s.
 harvestfestival.npc.builder.paint=我目前正在布置一些壁画, 比如这张 %s.
 harvestfestival.npc.builder.decorate=正努力工作着呢, 还差%s来收尾!
@@ -1423,8 +1565,25 @@ harvestfestival.npc.ashlee.gift.decent=不错的礼物!
 harvestfestival.npc.ashlee.gift.dislike=请别给我这个.
 harvestfestival.npc.ashlee.gift.bad=你为什么非要给我这个?
 harvestfestival.npc.ashlee.gift.terrible=这是我收到的最差的礼物.
+harvestfestival.npc.ashlee.festival.chicken1=Are you entering the Chicken Festival?! I need some competition!
+harvestfestival.npc.ashlee.festival.chicken2=Is it strange for foxes like me to enjoy chickens this much without eating them?
+harvestfestival.npc.ashlee.festival.cooking1=Don't ever eat raw eggs. I hear that some people will give their dogs and cats raw egg for coat improvements. Can that work for tamed wolves or foxes too? Maybe I should try raw egg for improving my hair...
+harvestfestival.npc.ashlee.festival.cooking2=A splash of oil works well when learning how to make a fried egg. Add the oil before you start heating the frying pan though, hot oil is a painful burn.
+harvestfestival.npc.ashlee.festival.cow1=I just don't like cows. They're too big.
+harvestfestival.npc.ashlee.festival.cow2=I bet the mayor's getting a kick of having all the cows messing up the festival grounds.
+harvestfestival.npc.ashlee.festival.harvest1=Boiled egg, scrambled egg, poached egg, raw egg, fried egg... oh so many choices to add to the soup.
+harvestfestival.npc.ashlee.festival.harvest2=Or I'll just throw in a freshly plucked chicken!
+harvestfestival.npc.ashlee.festival.new.years.eve1=I'm looking forward to doing some work with Yulif possibly to draft a chicken coop in the next year. My girls are a bit cramped in my barn, they could do with some free range space outside.
+harvestfestival.npc.ashlee.festival.new.years.eve2=Its not really a resolution, but on my to-do list. And get more fox stuff!
+harvestfestival.npc.ashlee.festival.new.years1=A furry scarf for a new year! Fox fur is so soft.
+harvestfestival.npc.ashlee.festival.new.years2=If my chicks didn't need so much care during the winter, I would've hibernated like any other fox.
+harvestfestival.npc.ashlee.festival.sheep1=I've got this itch to start chasing sheep all of a sudden. Its it because foxes like to chase sheep?
+harvestfestival.npc.ashlee.festival.sheep2=I've watched sheep herding trials before; its amazing what the shepherds and their dogs can do.
+harvestfestival.npc.ashlee.festival.starry.night1=There you go my chickies, nice and cozy warm in your nests...
+harvestfestival.npc.ashlee.festival.starry.night2=You inviting anyone to the winter dinner?
 
 #Girafi
+harvestfestival.npc.girafi.shop=If you're looking to trade with me I'm open every day from 6am to 10am.
 harvestfestival.npc.girafi.greeting1=你好啊同志, 我是个卑微的商人, 如果你身上有鸡蛋, 牛奶或者羊毛, 我很乐意跟你交换我身上的土特产!
 harvestfestival.npc.girafi.greeting2=你好先生, 我计划我的下一次旅行有些日子了, 也许我会去丹麦.
 harvestfestival.npc.girafi.greeting3=再次见到你真的太好啦!
@@ -1443,6 +1602,22 @@ harvestfestival.npc.girafi.gift.decent=这礼物不错.
 harvestfestival.npc.girafi.gift.dislike=对不起, 但是这个东西不太好.
 harvestfestival.npc.girafi.gift.bad=这个礼物绝对不是那种我会买给自己的东西.
 harvestfestival.npc.girafi.gift.terrible=这个世界上都没东西了你也不要送我这个. 你是不是讨厌我啊?
+harvestfestival.npc.girafi.festival.chicken1=I do have vanilla eggs, yes. Are you looking for a trade? Come find me after the festival.
+harvestfestival.npc.girafi.festival.chicken2=I warn you, I'm not a chicken person, so if your vanilla eggs are infertile, don't get angry at me.
+harvestfestival.npc.girafi.festival.cooking1=I travelled to a country called India once, and tried a fried wrapped potato called a samosa once. It was quite spicy, but potatoes are decent whatever you do to them.
+harvestfestival.npc.girafi.festival.cooking2=Have you tried potatoes on a stick to roast them with herbs? I tried to roast a potato on a spit once... but it shrivelled before I could eat it. I guess you can only roast pigs or larger meats.
+harvestfestival.npc.girafi.festival.cow1=A bottle for a bucket, life of a trader of milk. Its a decent trade, yes?
+harvestfestival.npc.girafi.festival.cow2=Like horses, one never stands right behind a cow. I like not having a hoofprint bruise on my gut, thank you.
+harvestfestival.npc.girafi.festival.harvest1=We celebrate the harvest in order to please our Goddess that we have a bountiful autumn each year. So far, we've done so-so, I'd say.
+harvestfestival.npc.girafi.festival.harvest2=I am more of a stew sort than a soup sort. Much richer, and good for warming from inside out.
+harvestfestival.npc.girafi.festival.new.years.eve1=I resolve to go back to Denmark next year. If not for a few weeks. See the family and such.
+harvestfestival.npc.girafi.festival.new.years.eve2=Noodles. What a strange choice of food. They look like pale snakes in a bowl. Just waiting to rear up and strike as you go at them with a fork or sticks.
+harvestfestival.npc.girafi.festival.new.years1=Godt nytår!
+harvestfestival.npc.girafi.festival.new.years2=This riceball is sticky, and keeps breaking apart when I take a bite.
+harvestfestival.npc.girafi.festival.sheep1=I've still got some vanilla wool if you're willing to trade those lumps of wool to me.
+harvestfestival.npc.girafi.festival.sheep2=This sweater is a bit itchy. Straight wool yarn makes me itchy.
+harvestfestival.npc.girafi.festival.starry.night1=If I got invited to dinner, I'd invite Jenni and Candice. Its a family event, sort of. And since I live here... yeah.
+harvestfestival.npc.girafi.festival.starry.night2=In Denmark in the winter, you rarely see the sun. Its almost always cloudy, and the sun sets really quickly.
 
 ###Shop greetings
 # WARNING FOR SHOP NAMES:
@@ -1452,8 +1627,16 @@ harvestfestival.npc.girafi.gift.terrible=这个世界上都没东西了你也不
 # Accepted characters for names
 # a-z A-Z 0-9 , . ' é
 
+#General
+harvestfestival.shop.outof.true=Out of gold! Please come back later!
+harvestfestival.shop.outof.false=Out of stock! Please try again later!
+harvestfestival.shop.free=Free!
+
 #General Store
 harvestfestival.shop.general=杂货店
+harvestfestival.shop.general.sign1=Mon-Tue Thu-Fri
+harvestfestival.shop.general.sign2=09:00-17:00
+harvestfestival.shop.general.sign3=Sat 11:00-15:00
 harvestfestival.shop.general.greeting1=欢迎光临, 有什么可以帮到您?
 harvestfestival.shop.general.greeting2=我们库存充盈, 要买点什么吗?
 harvestfestival.shop.general.greeting3=我们是镇上最好的杂货店! 您看看您需要什么?
@@ -1464,12 +1647,24 @@ harvestfestival.shop.general.options.chat=@闲聊
 
 #Poultry Farm
 harvestfestival.shop.poultry=养鸡场
+harvestfestival.shop.poultry.sign1=
+harvestfestival.shop.poultry.sign2=06:00 - 12:00
+harvestfestival.shop.poultry.sign3=Mon-Sat
 harvestfestival.shop.poultry.greeting1=鸡仔给我们提供了生活的必需品, 您要点什么?
 harvestfestival.shop.poultry.greeting2=这个养鸡场已经经营了300年了, 您来点什么呢?
 harvestfestival.shop.poultry.greeting3=欢迎来到叽叽叽喳喳喳喳派对. 要买点什么?
 
+#Blacksmith
+harvestfestival.shop.blacksmith=Blacksmith
+harvestfestival.shop.blacksmith.sign1=
+harvestfestival.shop.blacksmith.sign2=Fri-Wed
+harvestfestival.shop.blacksmith.sign3=10am-4pm
+
 #Cafe
 harvestfestival.shop.cafe=咖啡店
+harvestfestival.shop.cafe.sign1=We're open
+harvestfestival.shop.cafe.sign2=every day from
+harvestfestival.shop.cafe.sign3=9:30am to 5pm!
 harvestfestival.shop.cafe.greeting1=料理准备好了, 来买吧~
 harvestfestival.shop.cafe.greeting2=这是菜单, 欢迎光临!
 harvestfestival.shop.cafe.greeting3=用餐时间到!
@@ -1482,18 +1677,30 @@ harvestfestival.shop.kitchen.greeting3=我现在购买一些食物, 总会派上
 
 #Animal Ranch
 harvestfestival.shop.barn=饲养场
+harvestfestival.shop.barn.sign1=Open Monday to...
+harvestfestival.shop.barn.sign2=Saturday from...
+harvestfestival.shop.barn.sign3=10am to 3pm
 harvestfestival.shop.barn.greeting1=我们不止出售动物, 还有强有力的支持!
 harvestfestival.shop.barn.greeting2=欢迎光临, 您还需要点什么?
 harvestfestival.shop.barn.greeting3=如果能养牛和羊, 谁还想去养小鸡啊!
 
 #Carpenter
 harvestfestival.shop.carpenter=木工小屋
+harvestfestival.shop.carpenter.sign1=09:00-17:30
+harvestfestival.shop.carpenter.sign2=
+harvestfestival.shop.carpenter.sign3=Sun-Fri
 harvestfestival.shop.carpenter.greeting1=想要盖新房子? 找我准没错.
 harvestfestival.shop.carpenter.greeting2=我刚刚得到很棒的建筑图纸.
 harvestfestival.shop.carpenter.greeting3=为你盖最棒的屋子!
+harvestfestival.shop.carpenter.greeting4=The best buildings in town, right at your doorstep!
+harvestfestival.shop.carpenter.greeting5=Short on wood or stone? Yulif's got you covered.
+harvestfestival.shop.carpenter.greeting6=Get your buildings right here!
 
 #Miner
 harvestfestival.shop.miner=矿用商品
+harvestfestival.shop.miner.sign1=Selling goods
+harvestfestival.shop.miner.sign2=Monday-Saturday
+harvestfestival.shop.miner.sign3=11am to 4pm.
 harvestfestival.shop.miner.greeting1=我这有一些稀有材料!
 harvestfestival.shop.miner.greeting2=来买点宝石吧!
 harvestfestival.shop.miner.greeting3=我这有些材料!
@@ -1506,6 +1713,9 @@ harvestfestival.shop.bloodmage.greeting3=在这个黑暗又神秘的夜晚, 希�
 
 #Tackle Shop
 harvestfestival.shop.baitshop=装备商店
+harvestfestival.shop.baitshop.sign1=1pm-7pm
+harvestfestival.shop.baitshop.sign2=
+harvestfestival.shop.baitshop.sign3=Tuesday-Friday
 harvestfestival.shop.baitshop.greeting1=我们只是在做生意, 一切建立在互惠互利的基础上.
 harvestfestival.shop.baitshop.greeting2=如果你想钓鱼, 可以来我这边买点鱼竿.
 harvestfestival.shop.baitshop.greeting3=如果你需要的话, 我这有鱼竿出售.
@@ -1516,6 +1726,57 @@ harvestfestival.shop.trader.greeting1=早上好, 有什么我可以帮助你的�
 harvestfestival.shop.trader.greeting2=想出售一些羽毛或皮革吗, 那么我是你要找的人.
 harvestfestival.shop.trader.greeting3=欢迎, 请自便.
 
+#Recipe Shop - Cooking Festival
+harvestfestival.shop.recipes=Recipe Shack
+harvestfestival.shop.recipes.greeting1=Recipes from all the year in all one place!
+harvestfestival.shop.recipes.greeting2=Come get your recipes!
+harvestfestival.shop.recipes.greeting3=No exclusives here, just out of season recipes at cost!
+
+#Ingredients Shop - Cooking Festival
+harvestfestival.shop.cooking=Granny's Goodies
+harvestfestival.shop.cooking.greeting1=Are you missing any ingredients, then I think I can help you out.
+harvestfestival.shop.cooking.greeting2=If you need some ingredients, I'm here to help.
+harvestfestival.shop.cooking.greeting3=Get your missing ingredients right here from Granny.
+
+#Clockmaker
+harvestfestival.shop.clockmaker=Clockmaker
+harvestfestival.shop.clockmaker.greeting1=Hickory, dickery, dock. The player opened my shop.
+harvestfestival.shop.clockmaker.greeting2=Welcome to the Golden Compass.
+harvestfestival.shop.clockmaker.greeting3=Tick-tock. Tick-tock. Welcome!
+harvestfestival.shop.clockmaker.sign1=Eight till
+harvestfestival.shop.clockmaker.sign2=Three, \o/
+harvestfestival.shop.clockmaker.sign3=Monday-Friday
+
+#Cheap Cow - Cow Festival
+harvestfestival.shop.cow=Cheap Cow
+harvestfestival.shop.cow.greeting1=Get your 'Cheap Cow' goods here.
+harvestfestival.shop.cow.greeting2=Welcome to the 'Cheap Cow', do you need anything?
+harvestfestival.shop.cow.greeting3=Who needs sheep? When you can have crazy cows!
+
+#Dairy Queen - Cow Festival
+harvestfestival.shop.dairy=Dairy Queen
+harvestfestival.shop.dairy.greeting1=Greetings and good morning. Welcome to Dairy Queen!
+harvestfestival.shop.dairy.greeting2=If you feel like some filling treats, we got your back!
+harvestfestival.shop.dairy.greeting3=What's for lunch? It's moo moo time!
+
+#Sheep on Sale - Sheep Festival
+harvestfestival.shop.sheep=Sheep on Sale
+harvestfestival.shop.sheep.greeting1=Need a bargain for your sheepy treats, get them here!
+harvestfestival.shop.sheep.greeting2=Welcome to 'Sheep on Sale'. All the best deals right here!
+harvestfestival.shop.sheep.greeting3=Who needs cows? When you can have silly sheep!
+
+#Granny's Knits - Sheep Festival
+harvestfestival.shop.knitting=Lambshops
+harvestfestival.shop.knitting.greeting1=Looking for some wooly jumpers?
+harvestfestival.shop.knitting.greeting2=Baa Ram Ewe goods all right here!
+harvestfestival.shop.knitting.greeting3=Need something for the winter? Let's keep warm here.
+
+#Minecraft Fried Chicken - Chicken Festival
+harvestfestival.shop.mfc=MFC
+harvestfestival.shop.mfc.greeting1=Good morning and welcome to Minecraft Fried Chicken!
+harvestfestival.shop.mfc.greeting2=Get your fried chicken and eggs right here!
+harvestfestival.shop.mfc.greeting3=What's for lunch? It's time to cluck cluck cluck.
+
 #Miscellaneous
 harvestfestival.marriage=聘礼
 harvestfestival.marriage.locked=已锁定
@@ -1524,6 +1785,8 @@ harvestfestival.marriage.unlocked=未锁定
 ###Quests
 ##Tutorial Quests
 #Intro
+harvestfestival.quest.tutorial.intro.title=Harvest Goddess
+harvestfestival.quest.tutorial.intro.description=Summon and talk to the Harvest Goddess.
 harvestfestival.quest.tutorial.intro.hello=你好呀, 我认识你吗, 我们以前见过?
 harvestfestival.quest.tutorial.intro.question=[这是你第一次玩丰收物语吗?]
 harvestfestival.quest.tutorial.intro.tutorial=@是的!
@@ -1532,6 +1795,11 @@ harvestfestival.quest.tutorial.intro.completed=好吧, 那一定是我失忆了!
 harvestfestival.quest.tutorial.intro.backstory=好吧, 初次见面. 我是丰收女神. 跟你讲个小故事. 很久很久以前, 我们居住的土地上有一个繁华的小镇, 人们安居乐业, 四海升平, 直到那次风暴侵袭, 人们不得不离家出走, 背井离乡, 最近我听说他们归根落叶, 回到这里, 回到真正属于他们的地方, 但是他们需要帮助. 啊对了, 再过一阵我就会凭空消失, 不过没关系, 你可以随时用仙女花把我召唤出来. 每次我离开前都会给你留一朵. 就这样, 后会有期!
 
 #Carpenter
+harvestfestival.quest.tutorial.carpenter.title=Carpentry
+harvestfestival.quest.tutorial.carpenter.description.info=Talk to the Goddess for more information.
+harvestfestival.quest.tutorial.carpenter.description.logs=Show Harvest Goddess %s logs.
+harvestfestival.quest.tutorial.carpenter.description.jade=Build a Carpenter.\nShow Jade a flower.
+harvestfestival.quest.tutorial.carpenter.description.goddess=Talk to the Harvest Goddess.
 harvestfestival.quest.tutorial.carpenter.wood.dozen=12个
 harvestfestival.quest.tutorial.carpenter.wood.dozentwo=24个
 harvestfestival.quest.tutorial.carpenter.wood.stack=组
@@ -1547,6 +1815,10 @@ harvestfestival.quest.tutorial.carpenter.thanks.flowers=嘿, 看起来你有一�
 harvestfestival.quest.tutorial.carpenter.thanks.finish=做的好亲爱的, 我相信在你的帮助之下, 镇子的建设很快就会完成! 虽然完成建设可能需要花费你一些金币, 我很乐意给你这1000G作为你的起始资金, 希望你合理的消费它们. 另外,你该回去找Jade了, 再次感谢你的帮助.
 
 #Crops Tutorial
+harvestfestival.quest.tutorial.crops.title=Crop Farming
+harvestfestival.quest.tutorial.crops.title.what=Mystery Gift?
+harvestfestival.quest.tutorial.crops.description.jade=Talk to Jade.
+harvestfestival.quest.tutorial.crops.description.turnips=Grow nine Hardy Turnips.\nShow them to Jade.
 harvestfestival.quest.tutorial.crops.intro=嘿! 我之前和你提到过, 我有些事情要告诉你! 那就是种田! 这在这之前有没有人教过你这个?
 harvestfestival.quest.tutorial.crops.question=你知道要怎么种田吗?
 harvestfestival.quest.tutorial.crops.tutorial=@请教我怎么种!
@@ -1560,6 +1832,11 @@ harvestfestival.quest.tutorial.crops.thanks.bucket=这正是我要的 ,这个水
 harvestfestival.quest.tutorial.crops.complete=哇哦, 这些白萝卜被照顾的非常的好, 我真想把它们留下. 开玩笑的, 还给你. 我不想你把辛苦耕作的成果都浪费在我身上. 还有就是, 你可以出售你种植的作物来换取金币. 要卖东西的话需要一个出货箱. 你可以在我哥哥营业时间内找他买. 买东西的时候, 你只需要拿着你想出售货物对着它右键, 之后它们就会准备出售了. 第二天的早上你就会获得你应得的金币. 如果你不想用手一件一件的出售, 在出货箱上放一个漏斗, 把货物丢进漏斗它就会帮你放入出货箱了. 金币会付给安放漏斗的那个人! 如果你还需要种子, 我这里还有一些存货出售, 但我希望你能用五朵花跟我交换! 我建议你现在和我的哥哥聊一聊, 尽快建立起杂货店. 那里的商人可以提供比我更多的商品给你!
 
 #Chicken Care
+harvestfestival.quest.tutorial.chicken.title=Foxie's Fowls
+harvestfestival.quest.tutorial.chicken.description.talk=Talk to Ashlee.
+harvestfestival.quest.tutorial.chicken.description.build=Build the Poultry Farm.
+harvestfestival.quest.tutorial.chicken.description.throw=Throw and feed a chicken.
+harvestfestival.quest.tutorial.chicken.description.egg=Show Ashlee a small egg.
 harvestfestival.quest.tutorial.chicken.reminder.talk=看来你已经建好了一个养鸡场. 或许你应该去找Ashlee聊聊.
 harvestfestival.quest.tutorial.chicken.reminder.poultry=嘿, 亲爱哒, 别忘了把你的养鸡场投入使用.
 harvestfestival.quest.tutorial.chicken.start=我好喜欢这个地方, 这里真棒. 是吧, 狐狸先生?  我真想在这待久一点. 啊, 你好! 不好意思, 刚才没看到你在那, 我正在....额. 算了, 不要在意细节,  欢迎来到我的养鸡场! 我叫Ashlee.
@@ -1574,6 +1851,11 @@ harvestfestival.quest.tutorial.chicken.reminder.egg=别忘了, 我还在等你�
 harvestfestival.quest.tutorial.chicken.complete=为了奖励你的辛苦工作, 我要给你这些稀有的大蛋! 如果你想要更多稀有的大蛋的话, 就得好好照顾你的母鸡了. 啊对了, 可能还有些你不知道的事儿, 首先, 下雨的时候记得把你的母鸡送回养鸡场, 天气好的时候可以放他们出来玩耍, 另外有个东西叫孵蛋器. 有了孵蛋器你就可以孵养自己的小鸡了. 你需要做的就是把一枚鸡蛋放入孵蛋器, 几天之后就该孵化了! 它们会生出继承双亲一半的好感度的小鸡, 所以会比直接买的母鸡更好培养. 顺便一提, 谢谢你帮我在这里开店.
 
 #Cow Care
+harvestfestival.quest.tutorial.cow.title=Daisy Duke
+harvestfestival.quest.tutorial.cow.description.talk=Talk to Jim.
+harvestfestival.quest.tutorial.cow.description.build=Build the Animal Ranch.
+harvestfestival.quest.tutorial.cow.description.brush=Brush and feed a cow..
+harvestfestival.quest.tutorial.cow.description.milk=Show Jim a small milk.
 harvestfestival.quest.tutorial.cow.reminder.intro=看来你已经建好饲养场了, 该去找Jim谈谈了.
 harvestfestival.quest.tutorial.cow.reminder.barn=我发现你已经建好一个饲养场了, 你可以学习一些关于奶牛和绵羊的知识了.
 harvestfestival.quest.tutorial.cow.start=很高兴你邀请我来这里. 我叫Jim, 负责运营饲养场. 作为感谢, 我准备了一只奶牛送给你.
@@ -1588,12 +1870,17 @@ harvestfestival.quest.tutorial.cow.reminder.milk=你忘了吗? 我让你去从�
 harvestfestival.quest.tutorial.cow.complete=你做的很不错. 我有一些小建议. 首先, 下雨天你该让你的动物应该呆在棚里, 晴天放他们出去转转. 还有就是如果你想让他们生一些牛宝宝, 可以来找我买些奇迹药水. 给他们注射, 几天之后一只牛宝宝就会诞生, 同样的, 它也会继承父母一半的好感度. 目前要交代就这些了. 欢迎下次再来.
 
 #General Store Introduction
+harvestfestival.quest.tutorial.supermarket.title=Supermarket Sweep
+harvestfestival.quest.tutorial.supermarket.description.build=Build a General Store.
+harvestfestival.quest.tutorial.supermarket.description.visit=Introduce yourself to Jenni.
 harvestfestival.quest.tutorial.supermarket.reminder.talk=或许你应该去找Candice或者Jenni聊聊, 你已经建好了杂货店.
 harvestfestival.quest.tutorial.supermarket.reminder.supermarket=温馨提示, 如果你想要更多种种子, 去建一个杂货店吧!
 harvestfestival.quest.tutorial.supermarket.welcome.owner=嘿, 我是这个杂货店的老板. 能搬到这个镇子感觉真不错. 我卖各式各样的商品, 从种子到巧克力都有. 有什么需要就告诉我. 我们的营业时间是每天的09:00 到 17:00, 但是周三和周末我们不营业. 周六的营业时间是 11:00 到 15:00. 看来你是我们的第一个客户啊, 来, 给你一个小奖品!
-harvestfestival.quest.tutorial.supermarket.welcome.guest=我就说谁在那呢. 你好啊你小可爱. 我是Candice. 楼下的Jenni是这里的老板, 我只是这里的租客. 如果你需要商品除了周三和周末都可以找她, 09:00 到 17:00. 周六的 11:00 到 15:00 也开门. 对了, 她让我把这个交给你.
 
 #Cafe Cooking Lesson
+harvestfestival.quest.tutorial.cafe.title=Big Chef, Little Chef
+harvestfestival.quest.tutorial.cafe.description=Converse with Liara.
+harvestfestival.quest.tutorial.cafe.build=Build the Cafe.
 harvestfestival.quest.tutorial.cafe.welcome=欢迎来到我的咖啡店. 我是这儿的老板, 我叫Liara. 我保证你能在我们这找到最棒的美食. 如果你想学料理, 我也可以教你.
 harvestfestival.quest.tutorial.cafe.question=需要教你怎么做料理吗?
 harvestfestival.quest.tutorial.cafe.tutorial=@我很需要
@@ -1601,7 +1888,24 @@ harvestfestival.quest.tutorial.cafe.skip=@其实我会
 harvestfestival.quest.tutorial.cafe.completed=那真是太棒了! 拿着这些东西下厨去吧.
 harvestfestival.quest.tutorial.cafe.explain=那真是太好了! 能教你做料理我也很开心. 你需要一整套厨具来做料理. 最经典的就是橱柜加菜刀的组合啦. 你还需要知道怎么弄到一份食谱. 我这里就能买到很多食谱, 不过我们还是从简单的腌芜菁开始吧. 右键食谱来来学习食谱. 然后食谱就会加到料理全书里. 选好厨具和食谱. 然后你就可以在你的右手边看到你所需要东西的列表了. 如果你手头有材料和厨具的话, 把所有材料放在厨具上, 然后点击烹饪. 然后它就应该开始烹饪了. 如果你没有使用你的橱柜! 你就只能用右键来切材料了. 如果你需要别的厨具, 也可以从我这边买到, 不过厨具只在周末出售. 最后还有一件事要说, 书里的食谱非常基础, 你应该按照常识加入别的食材, 说不定可以做出更棒的料理. 就这些啦.
 
+#Mining Tutorial
+harvestfestival.quest.tutorial.mining.title=Miner's Delight
+harvestfestival.quest.tutorial.mining.build=Build the Mining Hill
+harvestfestival.quest.tutorial.mining.description=Enter the mining hill and talk to Brandon.
+harvestfestival.quest.tutorial.mining.description.ore=Show Brandon three Junk Ore
+harvestfestival.quest.tutorial.mining.intro=Ehh what are you doing here? The name's Brandon. I prefer to hang out here in the mines than in that town with those people. I guess it's nice to meet you. Do you need anything?
+harvestfestival.quest.tutorial.mining.explain=Well I should probably explain then if I must. I would explain it but all you have to do is to break the nodes you see hanging around the mine with a hammer. Although there are different kind of nodes such as copper or just plain rocks. I've had this old hammer of mine for a long time now, and it's just become a bit useless, I think you should have it. Prove to me that you can mine then I'll let you keep it. Go smash some plain rocks and bring me back three junk ore.
+harvestfestival.quest.tutorial.mining.complete=Ehhh, I guess that's a decent job you did there. I've got some more to give you but at least you understand the basics now. Should warn you that there are some rocks that are too strong for this hammer. You'll need better ones for that. I believe a Blacksmith could help you out with that. You may also find some blocked holes down in the mines. You can fill these holes with ladders from my store. That way you can travel down deeper.
+harvestfestival.quest.tutorial.mining.reminder=Just bring me three junk ore, to prove to me that you know how mining works.
+harvestfestival.quest.tutorial.mining.question=Got a clue about nodes and mining?
+harvestfestival.quest.tutorial.mining.tutorial=@Please help me!
+harvestfestival.quest.tutorial.mining.skip=@HAMMER TIME pls
+harvestfestival.quest.tutorial.mining.completed=Good for you. Take this hammer and junk then.
+
 #Upgrading Tools Tutorial
+harvestfestival.quest.tutorial.upgrading.title=Tinker's Construct
+harvestfestival.quest.tutorial.upgrading.description.build=Build a Blacksmith
+harvestfestival.quest.tutorial.upgrading.description.talk=Talk to Danieru
 harvestfestival.quest.tutorial.upgrading.reminder.blacksmith.yulif=也许你应该去见见铁匠了.
 harvestfestival.quest.tutorial.upgrading.reminder.blacksmith.goddess=嗨亲爱的, 我听说铁匠想见见你.
 harvestfestival.quest.tutorial.upgrading.reminder.blacksmith.jim=Danieru跟我说他挺想见见你的.
@@ -1622,26 +1926,23 @@ harvestfestival.quest.tutorial.upgrading.tutorial=@我啥都不知道.
 harvestfestival.quest.tutorial.upgrading.skip=@我都知道了.
 harvestfestival.quest.tutorial.upgrading.completed=那好吧. 这把锤子和这些矿石给你.
 harvestfestival.quest.tutorial.upgrading.explain=那也好. 能教你一些所学我也挺高兴的.首先你需要把你的工具练到它们可以升级的阶段. 留意观察工具, 你应该能它们有一个百分比条. 当百分比条达到 100%% 就可以把工具带给我. 同时我还需要一些矿物来作材料, 当然还有付我金币费用. 还需要花我几天的时间来完成它, 之后你就可以拿回你升级好的工具. 或许你会问我怎么获取我需要的材料. 这就需要你下矿洞了, 带好你的锤子. 在那里你可以发现一些可以用锤子杂碎的块状物来获得矿石. 大概就是这样了. 还有我听说矿工Brandon有些礼物给你.
-harvestfestival.quest.tutorial.upgrading.reminder.visit=记住, 矿工Brandon想见你.
-harvestfestival.quest.tutorial.upgrading.complete=额你好啊. 我刚刚下了矿, 那边真的是太糟糕了. 既然你邀请我来这个镇子, 那作为回报我也把我找到的这些废铜烂铁送给你. 拿着吧. 我不想留着它.
 
 ##Trading Quests
 # Priest Blessing Quest
+harvestfestival.quest.trade.cursed.reminder=If you ever come across a cursed tool, bring it to me and I can bless it for %s Gold.
 harvestfestival.quest.trade.cursed.accept=非常感谢, 年轻人, 我现在可以给你的工具进行祝福! 但这将花费一些时间, 三天之后回来找我.
 harvestfestival.quest.trade.cursed.gold=啊我看到你有一个工具被诅咒了! 只要收一点小钱 10000 金币我就可以帮你移除诅咒.
 harvestfestival.quest.trade.cursed.wait=真高兴见到你, 对你工具祝福的进度一切都顺利, 但是我还需要更多的时间, 请在 %s 天之后回来.
 harvestfestival.quest.trade.cursed.done=你的 %s 的祝福已经完成了! 愿上帝与你同在! 来拿上它!
 
 # Priest Repair Quests
+harvestfestival.quest.trade.bless.reminder=I can repair blessed tools for %s gold.
 harvestfestival.quest.trade.bless.repair.gold=看来你有把祝福工具. 只要 500 金币我就可以为你修理它.
 harvestfestival.quest.trade.bless.repair.done=借助全能神的力量你的 %s 已经被重塑并且恢复了它的力量.
 
-# Trader Johan Quests
-harvestfestival.quest.trade.vanilla.egg=谢谢你带给我这些鸡蛋. 我很乐意用我的一些家乡特产来交换他们.
-harvestfestival.quest.trade.vanilla.milk=这些牛奶看起来真的是太新鲜好喝了! 拿着这桶奶作为我对你的感谢.
-harvestfestival.quest.trade.vanilla.wool=你这的羊毛看起来真不错, 非常适合用来做一些布匹. 请拿上这些羊毛, 用来做建材当然更好!
-
 # Blacksmith Upgrades
+harvestfestival.quest.trade.upgrade.closed.start=I'm afraid I can only work on your tools during business hours.
+harvestfestival.quest.trade.upgrade.closed.finish=I finished working on your %s. It's my time off but it's no work to hand it back to you.
 harvestfestival.quest.trade.upgrade.level=你的工具没有达到 100%% 可强化状态! 等它可以强化了再来吧.
 harvestfestival.quest.trade.upgrade.gold=升级这个工具将要消耗 %s, 请带足够的材料来.
 harvestfestival.quest.trade.upgrade.material=升级这个工具需要 %1s %2s.
@@ -1651,11 +1952,15 @@ harvestfestival.quest.trade.upgrade.wait=抱歉你的工具还没有准备好, �
 harvestfestival.quest.trade.upgrade.repair.gold=修理这个工具将会花费你 %s 金币. 请带够足够的金币再来吧.
 harvestfestival.quest.trade.upgrade.repair.material=我需要 %s 来修复这个工具.
 harvestfestival.quest.trade.upgrade.repair.start=有了这些就没问题了, 你的工具一天之后就能修好了.
+harvestfestival.quest.trade.upgrade.repair.no=I'm afraid I don't know how to repair this.
 
 # Jade Seed Trades
 harvestfestival.quest.trade.seeds.reminder=如果你需要更多的种子, 就拿五朵花儿过来吧.
-harvestfestival.quest.trade.seeds.complete.yes=谢谢你的花儿, 这里是一袋种子.
+harvestfestival.quest.trade.seeds.complete.yes1=谢谢你的花儿, 这里是一袋种子.
+harvestfestival.quest.trade.seeds.complete.yes2=Your flower supplying skills are appreciated, have some more seeds.
+harvestfestival.quest.trade.seeds.complete.yes3=These flowers are perfect, take some seeds!
 harvestfestival.quest.trade.seeds.complete.no=不好意思, 这个季节我实在没有种子可以和你交换.
+harvestfestival.quest.trade.seeds.return=I'm so sorry but I'm out of stock of seeds for now. I should get a fresh supply in %s days.
 
 # Jade Tools Trades
 harvestfestival.quest.trade.tools.hoe=谢谢你的锄头! 来拿着我这把.
@@ -1664,7 +1969,7 @@ harvestfestival.quest.trade.tools.sickle=剪刀是个好东西, 可以跟我换�
 harvestfestival.quest.trade.tools.reminder=顺带说一下, 我有一些多余的水壶和锄头给你如果你需要的话. 带给我普通的锄头和一个桶! 我就很乐意和你交换啦.
 
 # Goddess Free Carpenter
-harvestfestival.quest.trade.carpenter.thanks=谢谢你亲爱的, 诺, 给你另一份木匠小屋图纸
+harvestfestival.quest.trade.carpenter.thanks=谢谢你亲爱的，诺，给你另一份木匠小屋图纸。
 
 ## Recipe Quests
 harvestfestival.quest.recipe.corn.baked.text=你真是暖心小天使, 我现在要传授你的我秘制烤玉米食谱.
@@ -1700,21 +2005,88 @@ harvestfestival.quest.recipe.milk.strawberry.text=是什么让牛奶更棒?
 harvestfestival.quest.recipe.toast.text=Yulif至今也没有怎么教过我做饭. 不过我还是知道怎么烤面包的.
 harvestfestival.quest.recipe.latte.vegetable.text=我得快点摆脱这个邪恶的东西. 求你拿着它.
 harvestfestival.quest.recipe.jam.apple.text=Yulif估计不同意, 但你知道吐司该放点什么吗? 当然是苹果酱的说!
+harvestfestival.quest.recipe.apple.text=Yulif may not approve, but you know what goes perfectly with toast? Double jam of course! Or perhaps some marmalade?
+harvestfestival.quest.recipe.curry.dry.text=Mr fox is feeling rather dry and appreciates your love, so the curry is on me tonight!
+harvestfestival.quest.recipe.cake.text=Thought I'd step my baking game up, been working really hard on this recipe, so I hope you like it.
+harvestfestival.quest.recipe.latte.mix.text=Every day you get more and more stunning it really is amazing, Please just come over here and give me a peck! Oh right, I found this in my drawer, I thought you should take it. It's my family recipe.
+harvestfestival.quest.recipe.souffle.apple.text=Getting to know you even more has been great again. I found this recipe hanging around, not sure I like it, but you can have it.
+harvestfestival.quest.recipe.bread.raisin.text=The dark arts have been keeping me busy, I have an experiment I am working I can't wait to show. In the mean time take this evil recipe.
+harvestfestival.quest.recipe.mayonnaise.text=You know that I love eggs as much as I like you? Well this should help you get much greater buck out of your eggs.
+harvestfestival.quest.recipe.bread.curry.text=A guide to the creation of the best curry bread is what I give you for being a fantastic friend.
+harvestfestival.quest.recipe.tempura.text=I've been practicing my cooking so much lately, really want to make this Cafe serve the best food I can. This is a new recipe I've been working on, as a good friend I'd love for you to check it out.
+harvestfestival.quest.recipe.tempura.rice.text=Do you remember the last recipe I gave you? Well I've been working hard and I've made a few improvements so I'd love for you to try this one out too.
+harvestfestival.quest.recipe.tempura.noodles.text=I really hope you've been enjoying my Tempura recipes. I've got another one for such a great friend!
+harvestfestival.quest.recipe.stir.fry.text=You've been really been stirring my heart up lately. Please enjoy this, my good friend.
+harvestfestival.quest.recipe.rice.bamboo.text=As friends things are going well. I'd really like to share with a new rice dish ^_^.
+harvestfestival.quest.recipe.noodles.thick.fried.text=I have really started to master this cooking thing? You know the noodles I started off with? Well I thought I'd improve upon that. Take a look!
+harvestfestival.quest.recipe.latte.fruit.text=I have discovered another unholy object. Take it from me now.
 
 ## Friendship Quests
 harvestfestival.quest.friendship.katlin.kitchen.text=你真的对我很好. 你知道的,最近,我们失去了我们的厨房供应商, 你可以接管吗? 周五咖啡馆不开放时来这, 清晨或傍晚都行, 你能帮我补充厨房的库存吗? 我们正需要诸如肉类、甜菜汤和蛋糕之类的. 
-harvestfestival.quest.friendship.yulif.sprinkler.text=你是我的好朋友. 正好我现在能出售洒水装置, 当你有空时可以看看我的商店.
+harvestfestival.quest.friendship.yulif.axe.text=Thank yer for helping me and my sister move here. I'm sure this could come in handy for yer. It'll allow you to chop whole trees down. Ya just need to have some patience and break it a few times before it'll fall. I've included a note for yer book too. Which ya should read if you want to know how to use it properly.
+harvestfestival.quest.friendship.yulif.sprinkler.text=Yer have been a really great friend lately. So great I'm able to sell ya sprinklers now, so take a look in ma store when you have a chance.
+harvestfestival.quest.friendship.yulif.sprinkler.item=你是我的好朋友. 正好我现在能出售洒水装置, 当你有空时可以看看我的商店.
 harvestfestival.quest.friendship.jacob.hatchery.text=为了让鱼儿幸福, 我想要弄点货物来看看.
+harvestfestival.quest.friendship.jacob.hatchery.item=For making a great fisher happy, I've got a spare hatchery for you to check out. Be kind to her.
 harvestfestival.quest.friendship.tiberius.dark.text=我信任你. 周三周六晚上来拜访我吧. 我想要买点东西...
 harvestfestival.quest.friendship.goddess.strawberry.text=亲爱的, 我们关系还不错, 所以我会让你了解草莓的秘密! 珍妮现在应该在这个小镇在出售草莓, 它们是春季作物,所以你可能需要等待.
 harvestfestival.quest.friendship.jade.flowers.text=你好哇%4$s 很高兴见到你, 我有些好消息要告诉你, 我要开一个花店了! 但我没货源啊! 你会帮我的吧, 只要我付得起, 你来多少我要多少.
 harvestfestival.quest.friendship.johan.vanilla.text=嗨! 我想买你一些动物产品. 但我只能在早上6点到早上10点间支付. 记清楚哦.
+harvestfestival.quest.friendship.danieru.notes.text=Becoming friends has been great, I've got some secrets to share with you about the rumoured cursed tools. Take this, I'll put it in your notebook for you.
+harvestfestival.quest.friendship.ashlee.notes.text=You've treated me like noone else has, despite my craziness. To thank you I'd like you to have these secret notes I've been working on.
+harvestfestival.quest.friendship.candice.notes.text=You just couldn't be more beautiful today. You know I'm the master of flirting right? Well I have some tips I'd love to share with such a gorgeous person like yourself!
+harvestfestival.quest.friendship.jim.notes.text=I've recently taken part in some research of my own to find out what it takes to make your livestock more productive. As a good friend of mine I am happy to share it with you.
+harvestfestival.quest.friendship.liara.meals.text=You've really been ever so kind, by becoming my friend you've encouraged me to try out new things. From now on I'll be selling three new dishes each day in the Cafe, so be sure to check them out!
+harvestfestival.quest.friendship.liara.meals.item=You've been really kind, so I'd really like to give you a few of my dishes to try out.
+harvestfestival.quest.friendship.jenni.wednesday.text=My good friend it has been astounding getting to know you. You've really helped keep my business open, and demand has grown so much that I am happy to announce that we will now be open on Wednesdays!
+harvestfestival.quest.friendship.jenni.wednesday.item=My good friend, you have really helped my business grow, I'd love for you to have a pair of some fantastic seeds for your services.
+harvestfestival.quest.friendship.brandon.ore.text=I guess you've been pretty decent to me, unlike everyone else. I should probably let you start buying things I've mined in the overworld.
+harvestfestival.quest.friendship.brandon.ore.item=You've been fairly decent. I recently went mining in the overworld, you should take this junk I found.
+harvestfestival.quest.friendship.cloe.gift.text=I'm really happy to have gotten to know you. My mother always told me to avoid hanging out with what she calls "riff-raff". She may seem to play well, but honestly I don't think she even likes you still. It's just her job you know, got to do what please the crowd. But thanks, you've made me understand humanity better, and how wrong she really is. To thank you I'd really like to give you this gift.
+harvestfestival.quest.friendship.abii.cookies.text=Wanna know what I got up today ^_^???? Welll I made COOOKIES!!!!!! Want some? They're so yummy!
+harvestfestival.quest.friendship.abii.parents.text=Oooo it's you! My family been really happy lately, you've made them all smile for being so nice to me :D
+harvestfestival.quest.friendship.abii.town.text=I have some fantastic news for you tall one! I went around and talked with everyone...... Wellll..... They all must like you more now, I said so many nices things :D
+harvestfestival.quest.friendship.fenn.salad.text=My dad and me been working in da kitchen all day, you should try some of these yummy foods.
+harvestfestival.quest.friendship.fenn.parents.text=Dad's been smiling so much lately, He's so glad I foundly found a friend in you.
+harvestfestival.quest.friendship.fenn.plants.text=Guess what!!!! I went foraging today with Dad, and look what we found! You should have some!!
+harvestfestival.quest.friendship.tomas.cheaper.text=You've become a wonderful human towards me. For your sanctity I am now happy to grace you with a much cheaper price for a blessing.
 
 ## Meeting Quests
+harvestfestival.quest.meeting.jacob.title=Finding Jakob
+harvestfestival.quest.meeting.jacob.build=Build the Tackle Shop.
 harvestfestival.quest.meeting.jacob.text=很高兴见到你啊 %4$s, 我是Jacob. 听说你喜欢钓鱼, 我最近给我自己买了个新钓竿. 我很高兴你能接受我的旧钓竿, 还烦请照顾好它. 这个装备店是我开的, 如果你有需要就过来看看吧.
+harvestfestival.quest.meeting.jacob.description=Converse with newbie Jakob.
+harvestfestival.quest.meeting.katlin.title=Granny's Goods
 harvestfestival.quest.meeting.katlin.text=年轻人你好啊. 我叫Katlin. 如果你愿意的话, 你可以叫我老奶奶. 我帮助我的孙女Liara, 但大多是在厨房里. 我必须谢谢你帮她开店, 这是她一生的梦想. 我只有这么些零钱, 但请收下它。
+harvestfestival.quest.meeting.katlin.description=Have first conversation with Granny Katlin.
+harvestfestival.quest.meeting.johan.title=Johan'nesburg
+harvestfestival.quest.meeting.johan.build=Build the Park.
 harvestfestival.quest.meeting.johan.text=多美好的一天. 很高兴见到你. 我的名字是约翰. 我通常每天都在, 但我会在晚上回到我的故乡. 如果你需要一桶牛奶,羊毛块或一些棕鸡蛋, 我将很高兴和你交易一些牛奶瓶、纯羊毛或白蛋.
+harvestfestival.quest.meeting.johan.description=Meet Johan.
+harvestfestival.quest.meeting.abi.title=Littlefoot
 harvestfestival.quest.meeting.abi.text=你好! 我是Abi!!!!! 想知道我今天得到什么了吗 ^_^????  哇哦,我做了曲奇诶!!!!!! 想要吗? 它们很美味哎!
+harvestfestival.quest.meeting.abi.description=Say hello to Abii.
+harvestfestival.quest.meeting.candice.title=Creepy Candice
+harvestfestival.quest.meeting.candice.text=I will surely find myself someone. Well hello there aren't you just the cutest. I'm Candice. Jenni downstairs is the owner here, I'm just a tenant. Nice to meet you! I'd love for you to have one of my favourite drinks!
+harvestfestival.quest.meeting.candice.description=Introduce yourself to Candice.
+harvestfestival.quest.meeting.fenn.title=Pokefenn
+harvestfestival.quest.meeting.fenn.text=Oooo hello there! Fenn's the name, vines are the game.
+harvestfestival.quest.meeting.fenn.description=Welcome Fenn to town.
+harvestfestival.quest.meeting.tiberius.title=Way too much time
+harvestfestival.quest.meeting.tiberius.build=Build the Clockmaker.
+harvestfestival.quest.meeting.tiberius.text=Hello, I feel grateful for your invite here. Maybe one day if we become friends I'll let you in on a secret of mine. For now, please take these as it may be of some help to you.
+harvestfestival.quest.meeting.tiberius.description=Visit Tiberius for the first time.
+harvestfestival.quest.meeting.cloe.title=Calamity Cloe
+harvestfestival.quest.meeting.cloe.text=Nice to meet you, I'm Cloe. I don't really have much else to say, but thanks for inviting us all here.
+harvestfestival.quest.meeting.cloe.description=Have your first conversation with Cloe.
+harvestfestival.quest.meeting.tomas.title=Notre Dame
+harvestfestival.quest.meeting.tomas.build=Build the Church.
+harvestfestival.quest.meeting.tomas.text=I am Tomas. With my powers as priest I am able to bless anything you may find that has become cursed, for a small fee. Thank you very inviting my congregation to your town.
+harvestfestival.quest.meeting.tomas.description=Have the Priest introduce himself.
+harvestfestival.quest.meeting.jeimmi.title=Mad Mayor
+harvestfestival.quest.meeting.jeimmi.build=Build the Townhall.
+harvestfestival.quest.meeting.jeimmi.text=All this time, you thought you were mayor. Well that's just hilarious. This town has been mine since the beginning, I will let noone else take it. Your Mayor Jeimmi. Why should I bother thanking you.
+harvestfestival.quest.meeting.jeimmi.description=Say hello to Mayor Jeimmi!
 
 ## Seed Quests
 harvestfestival.quest.seeds.cabbage.complete=你已经卖了1000个春季作物! 真令人惊叹. 我也有个好消息:我们现在供应白菜种子了!
@@ -1723,8 +2095,238 @@ harvestfestival.quest.seeds.greenpepper.complete=我实在不敢相信自己的�
 harvestfestival.quest.seeds.progress.complete=这个城市真的是越来发展得越好, 帮你做到这一步真是我的荣幸. 来了一些好消息, 我现在能在秋天卖甜菜和在夏天卖西瓜. 再次感谢你的努力工作.
 
 #Building the Goddess a Home
+harvestfestival.quest.building.goddess.title=Grateful Goddess
+harvestfestival.quest.building.goddess.build=Build the Goddess Pond.
+harvestfestival.quest.building.goddess.description=Talk to the Harvest Goddess.
 harvestfestival.quest.tutorial.pond.please=你已经为了这个镇子的复兴作出了巨大的贡献. 我真高兴看到了它的成长! 我想要在这里有个永远的家. 如果你能帮我建造一个的话, 我就会给你一份奖励.
 harvestfestival.quest.tutorial.pond.thanks=你对这个镇子恢复的贡献大家已经无法用语言来表达感谢. 对你给我建造家的事我也是. 所以为了表示我的感激, 我决定把这些草莓送给你. 这是我的最爱! 回见!
+
+##Schedule Quests
+#Sunday Baking!
+harvestfestival.quest.schedule.katlin.baking.cake=Youngun today is a graceful day, I've been hard at work baking, so I'd like for you to have some of my baked goods.
+
+## Help Wanted Quests
+#Crop Collecting
+harvestfestival.quest.collect.crops.title=Missing Ingredients
+harvestfestival.quest.collect.crops.desc=Bring Granny Katlin %1$s %2$s.
+harvestfestival.quest.collect.crops.task=I'm looking for an ingredient for something I'd love to cook. Could you bring me \n %1$s %2$s please.\n- Katlin\n\n- Free Meal\n- Katlin will be grateful
+harvestfestival.quest.collect.crops.complete1=Thanks youngun, this will make a great meal. As promised here's something I cooked recently.
+harvestfestival.quest.collect.crops.complete2=Youngun this is greatly appreciated. I've made a meal I've love to share with you.
+harvestfestival.quest.collect.crops.complete3=Take this home cooked meal as a thank you for delivering the ingredients I needed.
+#Slaying Mine
+## Help Wanted Quests
+harvestfestival.quest.none=No quests currently available\n\nTry again tomorrow
+harvestfestival.quest.slay.title=Dark Destruction
+harvestfestival.quest.slay.desc=Kill %1$s %2$s.
+harvestfestival.quest.slay.talk=Talk to Brandon
+harvestfestival.quest.slay.task=The mines have become infested lately. It's hard to work down there. Could you perhaps kill \n %1$s %2$s please.\n- Brandon\n\n- %3$s each\n- Brandon will be grateful
+harvestfestival.quest.slay.complete1=I guess that was helpful of you, here take a payment.
+harvestfestival.quest.slay.complete2=Good on you for clearing some mobs out of the mine. I've some gold to spare.
+harvestfestival.quest.slay.complete3=Thanks for helping clear the mine. Take this.
+#Fish Fillet
+harvestfestival.quest.collect.fish.title=Fish Fillet
+harvestfestival.quest.collect.fish.desc=Bring Jakob %1$s %2$s.
+harvestfestival.quest.collect.fish.task=%2$s have started to become uncontrollable. I think you should catch %1$s in order to reduce their stock. Come see me with the fish. \n- Jakob\n\n- %3$sG reward\n- Jakob will be grateful
+harvestfestival.quest.collect.fish.complete1=Thanks. Hopefully the other fish in the area will be able to compete better.
+harvestfestival.quest.collect.fish.complete2=Good job. We needed to cut down those numbers for a better chance for the other fish.
+harvestfestival.quest.collect.fish.complete3=Hopefully this reward will be enough for your hard work on reducing the number of this fish.
+#Carpenter's Collection
+harvestfestival.quest.collect.materials.title=Carpenter's Collection
+harvestfestival.quest.collect.materials.desc=Bring Yulif %1$s %2$s.
+harvestfestival.quest.collect.materials.wood=Wood
+harvestfestival.quest.collect.materials.stone=Stone
+harvestfestival.quest.collect.materials.axe=Copper Axe
+harvestfestival.quest.collect.materials.pick=Copper Hammer
+harvestfestival.quest.collect.materials.axe.silver=Silver Axe
+harvestfestival.quest.collect.materials.pick.silver=Silver Hammer
+harvestfestival.quest.collect.materials.task=Looking to construct a building for a friend but am short on %2$s by %1$s. Can ya help?. \n- Yulif\n\n- %4$sG reward\n- %3$s\n- Yulif will be grateful
+harvestfestival.quest.collect.materials.complete1=Thank yer. Will be great to get the building started.
+harvestfestival.quest.collect.materials.complete2=Ya done a good job there. The building will be built in no time.
+harvestfestival.quest.collect.materials.complete3=Yer hard work is always appreciated around ere. Thanks for yer help.
+
+## Festival Quests
+#New Years
+harvestfestival.quest.festival.new.years.riceballs=How yer doing? The new year's come around and well, yer know. We've been here since the beginning. For that I'm grateful as ever. It's a bit of a tradition for riceballs around these times. To thank ya for yer hard work, enjoy these. Happy New Year!
+harvestfestival.quest.festival.new.years.rice=Hey! It's been wonderful this past year. You've come along way. It's been really nice to see how things have changed. Yulif would be pretty upset at this, but I've decided to make some bamboo rice. Not quite what I should really be doing but you know. It makes me happier. Happy New Year to you!
+harvestfestival.quest.festival.new.years.gold=Ehh, being the mayor has been hard work this year. But I guess you've done an alright job of looking after things. Here's your yearly stipend. Don't waste it.
+harvestfestival.quest.festival.new.years.wine=Good day sir! I bring to you a most splendid VALUABLE treat that we love to drink in my homeland, don't squander it.
+
+#Cooking Festival
+harvestfestival.quest.festival.cooking.question=Want to enter the cooking festival?
+harvestfestival.quest.festival.cooking.ready=@I am ready!
+harvestfestival.quest.festival.cooking.cancel=@Give me a minute.
+harvestfestival.script.cooking=This was a great contest! Had a taste of everyone's meals... And well I think I've decided..... ...... ................... ..... ..... In third place is %1$s with their %2$s. ..... .. ... . .......... .... .. .. .. .. . In second place we jave %3$s with their %4$s... and finally...... without... further ado.... the winner of this year's cooking festival is........... %5$s with their amazing %6$s. Congratulations! For this years prize we have a gift of %7$s gold as well as a special recipe!
+
+#Cooking Festical
+harvestfestival.quest.festival.cooking.help=Welcome to the wonderful cooking festival! This year we'll be judging dishes made in the %s!
+harvestfestival.quest.festival.cooking.pick=Want to enter the cooking festival?
+harvestfestival.quest.festival.cooking.how=@How to enter?
+harvestfestival.quest.festival.cooking.ready=@Pick my dish!
+harvestfestival.quest.festival.cooking.cancel=@Give me a minute.
+harvestfestival.quest.festival.cooking.start=Ready to go?
+harvestfestival.quest.festival.cooking.yes=@I am ready!
+harvestfestival.quest.festival.cooking.change=@Change Entry.
+harvestfestival.quest.festival.cooking.no=@One more minute.
+harvestfestival.quest.festival.cooking.none=There are no additional meals.
+harvestfestival.quest.festival.cooking.explain=To enter simply place the meal you want to enter on one of the plates up on the stage. When you're done you can come to me and select your entry. You can then wait for others to join, or get the contest started right away by talking to me again. You can also change your entry if you like.
+harvestfestival.quest.festival.cooking.none=No meals have been placed on any of the plates!
+harvestfestival.quest.festival.cooking.select=Select the meal you would like to enter.
+harvestfestival.quest.festival.cooking.selected=Time for the judging to beging then! Watch your step or you may slow down the process.
+harvestfestival.quest.festival.cooking.judging=I'm judging right now.
+harvestfestival.quest.festival.cooking.nostalls=There are no meals on any of the stands!
+
+harvestfestival.script.cooking.judge=Time to stuff my face with %1$s. Hmm.... %2$s
+harvestfestival.script.cooking.judge.none=I can't see any meal right now...
+harvestfestival.script.cooking.judge.0=Yuck, this is absolutely vile!
+harvestfestival.script.cooking.judge.1=Who thought they could cook when they made this?
+harvestfestival.script.cooking.judge.2=What a bad dish.
+harvestfestival.script.cooking.judge.3=I guess this dish could pass as edible.
+harvestfestival.script.cooking.judge.4=Ehh, this one tastes alright.
+harvestfestival.script.cooking.judge.5=Hmm, the flavours, or lack thereof. But it tastes fine.
+harvestfestival.script.cooking.judge.6=You're really starting to make way here. It tastes relatively decent.
+harvestfestival.script.cooking.judge.7=Now this tastes good! Yummy!
+harvestfestival.script.cooking.judge.8=This has some wonderful flavours. It's a very good effort.
+harvestfestival.script.cooking.judge.9=Woah. I have never tasted something as amazing as this before.
+harvestfestival.script.cooking.winner=Well looks like I've decided. In third place is %1$s with nice dish of ''%2$s'. You can have some flour and 500G. \n\nIn second comes %3$s with their dish ''%4$s'. For your efforts you can have 2500G and a bottle of wine.\n\n\nAnd now to announce the winner of this years Cooking Festival... Well it's %5$s with their absolutely scrumptious dish of ''%6$s'!!!!!!!\n\Fantastic Work! You get a prize of 5000G and your cooked meals will ship more gold than before! In the meantime have some free seeds!\n\nThanks for taking part everyone. I look forward to next year!
+harvestfestival.script.cooking.finish=I've finished tasting. I just need a moment to collect my thoughts and make my final decisions.
+
+#Cow Festival
+harvestfestival.quest.festival.cow.help=Hello pretty! Welcome to the Cow Festival!
+harvestfestival.quest.festival.cow.pick=How may I help you?
+harvestfestival.quest.festival.cow.how=@How do I enter?
+harvestfestival.quest.festival.cow.ready=@Select the cow.
+harvestfestival.quest.festival.cow.cancel=@Nothing for now.
+harvestfestival.quest.festival.cow.start=Are you ready to start?
+harvestfestival.quest.festival.cow.yes=@Let's Begin!
+harvestfestival.quest.festival.cow.change=@Change Entry.
+harvestfestival.quest.festival.cow.no=@Not yet.
+harvestfestival.quest.festival.cow.none=There are no additional cows.
+harvestfestival.quest.festival.cow.explain=Just bring one of your cows, and put them inside one of the stalls. Then talk to me, to select which cow. You can then wait for any other players to join. Once ready come talk to me again to start the judging. I'll walk around and judge each cow.
+harvestfestival.quest.festival.cow.none=There are no cows in the stalls! Come back when you have some to pick.
+harvestfestival.quest.festival.cow.select=Please select the cow you would like to enter in the contest!
+harvestfestival.quest.festival.cow.selected=Well then let's get the judging started! Don't get in my way or it may delay the process.
+harvestfestival.quest.festival.cow.judging=Just give me a minute. I'm busy judging!
+harvestfestival.quest.festival.cow.nostalls=No cows in any of the stalls!
+
+harvestfestival.script.cow.judge=Let's take a look at %1$s. Well.... %2$s
+harvestfestival.script.cow.judge.none=There appears to be no cow at this stall...
+harvestfestival.script.cow.judge.0=This cow is looking awful, we need a vet!
+harvestfestival.script.cow.judge.1=This cow looks alright.
+harvestfestival.script.cow.judge.2=This cow seems decent.
+harvestfestival.script.cow.judge.3=This cow is starting to look good.
+harvestfestival.script.cow.judge.4=This cow is looking pretty good.
+harvestfestival.script.cow.judge.5=This cow is looking good, for sure!
+harvestfestival.script.cow.judge.6=This cow is very good! The owner should be proud
+harvestfestival.script.cow.judge.7=This cow doing incredibly well. They sure love their owner.
+harvestfestival.script.cow.judge.8=This cow is doing absolutely awesome. Their owner is wonderful.
+harvestfestival.script.cow.judge.9=This cow is aboslutely outstanding. Fantastic coat! Nothing can beat it.
+harvestfestival.script.cow.winner=It's time to announce the winner of the Cow Festival. In third place we have %1$s with their cow %2$s. Winning some Wheat. \n\nIn second we have %3$s with their cow %4$s. Their prize is a drink of Hot Milk.\n\n\nAnd finally without any further delay the winner of this year's Cow Festival is.... %5$s with their amazing cow %6$s!!!!!!!\n\nCongratulations! You win some strawberry milk and your cow will always produce large milks!\n\nThank you to everyone that participated. It was a wonderful contest. I hope to see you all back next year!
+harvestfestival.script.cow.finish=Well everyone that's all the cows judged! It was a good contest today. Time for me to announce the winners. Just a second, need to head back to the entry stand.
+
+#Sheep Festival
+harvestfestival.quest.festival.sheep.help=Howdy, welcome the the Sheep Festival!
+harvestfestival.quest.festival.sheep.pick=What do you need?
+harvestfestival.quest.festival.sheep.how=@How to participate?
+harvestfestival.quest.festival.sheep.ready=@Select my sheep.
+harvestfestival.quest.festival.sheep.cancel=@Nothing at the moment.
+harvestfestival.quest.festival.sheep.start=Ready to begin?
+harvestfestival.quest.festival.sheep.yes=@Yes I am!
+harvestfestival.quest.festival.sheep.change=@Select a different sheep.
+harvestfestival.quest.festival.sheep.no=@In a moment.
+harvestfestival.quest.festival.sheep.none=There are no additional sheep.
+harvestfestival.quest.festival.sheep.explain=The sheep contest is an easy one to take part in. Just bring your sheep to the festival and put her in one of the stalls. When you're ready come to me and select her. You can then wait for other people to join, or get started right away! I'll take a gander at all the sheep, then decide the winner at the end.
+harvestfestival.quest.festival.sheep.none=There are no sheep in the stalls! Come back when you have some to pick.
+harvestfestival.quest.festival.sheep.select=Please select the sheep you would like to enter in the contest!
+harvestfestival.quest.festival.sheep.selected=Time to get the judging start then! Please don't get in my way as it may slow down the judging.
+harvestfestival.quest.festival.sheep.judging=Can't you see I'm busy judging right now!?
+harvestfestival.quest.festival.sheep.nostalls=No sheep in any of the stalls!
+
+harvestfestival.script.sheep.judge=Let's giver %1$s a gander. Well.... %2$s
+harvestfestival.script.sheep.judge.none=I can't see any sheep at this stall.
+harvestfestival.script.sheep.judge.0=You should take this sheep to a vet right away.
+harvestfestival.script.sheep.judge.1=This sheep is looking alright.
+harvestfestival.script.sheep.judge.2=This sheep seems decent.
+harvestfestival.script.sheep.judge.3=This sheep is almost looking good.
+harvestfestival.script.sheep.judge.4=This sheep sure is looking pretty good.
+harvestfestival.script.sheep.judge.5=This sheep is looking good, that's for sure!
+harvestfestival.script.sheep.judge.6=The owner should be proud of this sheep. She's looking very good.
+harvestfestival.script.sheep.judge.7=This sheep sure loves their owner they are doing incredibly well.
+harvestfestival.script.sheep.judge.8=This sheep is looking fantastic, their owner has done an amazing job.
+harvestfestival.script.sheep.judge.9=This sheep is absolutely outstanding. The wool is the best I've ever seen.
+harvestfestival.script.sheep.winner=Well I guess that means it's time to announce the winner. In third we have %1$s with their sheep %2$s. Happy to give you some wheat. \n\nIn second place we have %3$s with their sheep %4$s. You get to win some stew.\n\n\nFinally time to announce the winner. This years winner of the Sheep Festival is.... %5$s with their wonderful sheep %6$s!!!!!!!\n\nCongrats! You receive a cashmere sweater. It should be worth a fair bit. Your sheep should also now always produce large wool!\n\nThank you to everyone that participated. It was a wonderful contest. I hope to see you all back next year!
+harvestfestival.script.sheep.finish=Well everyone that's all the cows judged! It was a good contest today. Time for me to announce the winners. Just a second, need to head back to the entry stand.
+
+#Chicken Festival
+harvestfestival.quest.festival.chicken.help=Hello and welcome to the Chicken Festival!
+harvestfestival.quest.festival.chicken.pick=How may I help?
+harvestfestival.quest.festival.chicken.how=@How does this work?
+harvestfestival.quest.festival.chicken.ready=@Select chicken.
+harvestfestival.quest.festival.chicken.cancel=@No need right now.
+harvestfestival.quest.festival.chicken.start=Ready to start?
+harvestfestival.quest.festival.chicken.yes=@Let's go!
+harvestfestival.quest.festival.chicken.change=@Select a different chicken.
+harvestfestival.quest.festival.chicken.no=@Not yet.
+harvestfestival.quest.festival.chicken.none=There are no additional chickens.
+harvestfestival.quest.festival.chicken.explain=Just place your chickens in one of the stalls for the chickens. When you're ready come to me and select the chicken you would like to enter. You can then start the contest, wait for others or change your entry.
+harvestfestival.quest.festival.chicken.none=There are no chickens in the stalls! Come back to me when there is.
+harvestfestival.quest.festival.chicken.select=Now you can select the chicken you would like to enter!
+harvestfestival.quest.festival.chicken.selected=That's great. Time for me to get to work. Don't walk in front of me as it will slow down the process.
+harvestfestival.quest.festival.chicken.judging=Hello. I'm currently busy judging.
+harvestfestival.quest.festival.chicken.nostalls=No chickens were found in any stalls!
+
+harvestfestival.script.chicken.judge=Time to look at %1$s. Hmm.... %2$s
+harvestfestival.script.chicken.judge.none=I think the chicken is invisible.
+harvestfestival.script.chicken.judge.0=This chicken has been severely mistreated.
+harvestfestival.script.chicken.judge.1=The chicken is looking alright.
+harvestfestival.script.chicken.judge.2=She looks decent.
+harvestfestival.script.chicken.judge.3=I'm thinking we've got the start of a good chicken here.
+harvestfestival.script.chicken.judge.4=I can see she's doing pretty good.
+harvestfestival.script.chicken.judge.5=Well this girl is looking really good!
+harvestfestival.script.chicken.judge.6=I've seen a bunch of good chickens, but this one is doing very well!
+harvestfestival.script.chicken.judge.7=Well I've got to say the owner has done a good job here. The chicken is looking incredible!
+harvestfestival.script.chicken.judge.8=This is just amazing. The chicken is very happy. The owner should be proud.
+harvestfestival.script.chicken.judge.9=I can't believe my eyes. This chicken is absolutely outstanding! And you can see the gleam in its eyes!
+harvestfestival.script.chicken.winner=Okay I've collected my thoughts and made my decisions. Third place goes to %1$s with their chicken %2$s. You can have this lovely boiled egg! \n\nSecond place goes to %3$s with their chicken %4$s. Please take this lovely homemade scrambled egg.\n\n\nNow who is the winner? Well after a tough contest this year's winner of the Chicken Festival is.... %5$s with their gorgeous chicken %6$s!!!!!!!\n\nWhat a wonderful job, please take this lovely omelette. And another thing your chicken will now always produce large eggs!\n\nThat concludes the festival. I hope you all enjoyed it as much as I did. See you all next year!
+harvestfestival.script.chicken.finish=I guess that's it! I've evaluated all the chickens. It's been a nice contest this year! I'll just need a short moment to think.
+
+#New Years Eve
+harvestfestival.quest.festival.new.years.eve.start=Evenin, the new year is coming. Are ya ready to celebrate until morning with us?
+harvestfestival.quest.festival.new.years.eve.question=Do you want to start the countdown?
+harvestfestival.quest.festival.new.years.eve.option1=@Bring on the New Year!
+harvestfestival.quest.festival.new.years.eve.option2=@Give me a minute.
+harvestfestival.script.new.years.eve.intro=It's time to start the countdown for new year!
+harvestfestival.script.new.years.eve.5=Five!!............
+harvestfestival.script.new.years.eve.4=Four! :D
+harvestfestival.script.new.years.eve.3=Three! :O
+harvestfestival.script.new.years.eve.2=Twooooooo!!!
+harvestfestival.script.new.years.eve.1=One :D :D :D
+harvestfestival.script.new.years.eve.0=Happy New Year ya'll!!!!!!!!!!!!!!!!!!
+
+#Starry Night
+harvestfestival.quest.festival.starry.night.what=What do you want to do?
+harvestfestival.quest.festival.starry.night.invite=@Invite to Starry Night
+harvestfestival.quest.festival.starry.night.chat=@Chat
+harvestfestival.quest.festival.starry.night.ready=Are you ready to eat?
+harvestfestival.quest.festival.starry.night.go=@Let's begin!
+harvestfestival.quest.festival.starry.night.no=@Not Yet!
+
+#Harvest Festival
+harvestfestival.quest.festival.harvest.ready=Are you ready to start the festival?
+harvestfestival.quest.festival.harvest.yes=@Yes, all ready!
+harvestfestival.quest.festival.harvest.no=@No, not yet.
+harvestfestival.quest.festival.harvest.welcome=Welcome, we're getting ready to get started. You should add something to the pot if you haven't already.
+harvestfestival.quest.festival.harvest.started=Well looks like we'll begin then!
+harvestfestival.quest.festival.harvest.decide.1=Blegghhhhh. This is the worst soup I've ever tasted. The festival was a disaster! Who was the cruel person who ruined it for everyone?
+harvestfestival.quest.festival.harvest.decide.2=Yuck, this a terrible soup. Who spoilt the soup? I'd like a word. The festival is over.
+harvestfestival.quest.festival.harvest.decide.3=Ehhh, this soup really isn't good. It's not dreadful but looks you didn't bring the best this year. Perhaps next year. Anyone want to try?
+harvestfestival.quest.festival.harvest.decide.4=Ehh this soup is almost edible, but not quite. It's not bad, but it's not good either. Would anyone else like to give it a go?
+harvestfestival.quest.festival.harvest.decide.5=... This soup is just soup. It's rather bland. Did someone forget to add something to the pot? I guess things went okay otherwise. Anyone else want to try the soup?
+harvestfestival.quest.festival.harvest.decide.6=Oh, well this is soup is okay. Nothing special really. Thanks for coming folks. Anyone else want some?
+harvestfestival.quest.festival.harvest.decide.7=Oooo, this is pretty good! Someone knows what they're doing! Good job everyone, you should all give it a try!
+harvestfestival.quest.festival.harvest.decide.8=!!! This is just very nice! It has a lovely flavour. It's not perfect but it is good soup alright! Come enjoy some soup everyone!
+harvestfestival.quest.festival.harvest.decide.9=Woaaaaah, This soup is soooooo yummy. It's just missing a little something but it is almost perfect! You have all done a fantastic job this year. You have to try it!
+harvestfestival.quest.festival.harvest.decide.10=!!! !!! !!! OMG!!! Wow. If this isn't the most delicious soup I have ever tasted. You have all done an outstanding job this year. The soup is incredible! You must give it a try or you'll never know what you're missing!
+harvestfestival.script.taste=Well everyone it's once again time to celebrate the harvest festival. I hope everyone added their best ingredients. Time to start the tasting...
 
 ###Achievements
 achievement.harvestfestival.summon=女神的恩赐
@@ -1737,6 +2339,24 @@ achievement.harvestfestival.onion=在夏天
 achievement.harvestfestival.onion.desc=而我会做所有雪人想做的事
 achievement.harvestfestival.spinach=大力水手
 achievement.harvestfestival.spinach.desc=我很强壮!因为我经常吃菠菜!
+achievement.harvestfestival.cucumber=Pickles
+achievement.harvestfestival.cucumber.desc=Reach spring year 2 to unlock cucumbers
+achievement.harvestfestival.cabbage=Cabbage Patch
+achievement.harvestfestival.cabbage.desc=Ship 1000 Spring crops to unlock cabbages
+achievement.harvestfestival.pineapple=Who lives in a pineapple?
+achievement.harvestfestival.pineapple.desc=Ship 1000 Summer crops to unlock pineapples
+achievement.harvestfestival.eggplant=Humpty Dumpty
+achievement.harvestfestival.eggplant.desc=Reach autumn year 2 to unlock eggplants
+achievement.harvestfestival.greenPepper=Pepper Ann
+achievement.harvestfestival.greenPepper.desc=Reach autumn year 3 to unlock green peppers
+achievement.harvestfestival.strawberries=Strawberry Jam
+achievement.harvestfestival.strawberries.desc=Reach spring year 3 to unlock strawberries
+achievement.harvestfestival.sweetPotatoes=Sweety Pie
+achievement.harvestfestival.sweetPotatoes.desc=Ship 1000 Autumn crops to unlock sweet potatoes
+achievement.harvestfestival.tomato=Tomato Ketchup
+achievement.harvestfestival.tomato.desc=Reach summer year 2 to unlock tomatoes
+achievement.harvestfestival.corn=So corny
+achievement.harvestfestival.corn.desc=Reach summer year 3 to unlock corn
 achievement.harvestfestival.milker=哞哞奶
 achievement.harvestfestival.milker.desc=从奶牛身上获得第一杯牛奶!
 achievement.harvestfestival.milkerLarge=装满一加仑
@@ -1796,6 +2416,130 @@ harvestfestival.subtitle.smashwood=木头摧毁
 harvestfestival.subtitle.blessing=祝福之音
 harvestfestival.subtitle.godddess=叮!!
 harvestfestival.subtitle.recipe=习得配方!
+harvestfestival.subtitle.brush=Brushing
+harvestfestival.subtitle.chop=Tree Chopping
+harvestfestival.subtitle.fall=Tree Falling
+harvestfestival.subtitle.kerching=Ka-ching!
 
 #Config
 harvestfestival.config.tooltip=
+
+#Stats book
+harvestfestival.book.statistics=Farming for Dummies
+harvestfestival.book.calendar=Calendar
+harvestfestival.stats.next=Next Page
+harvestfestival.stats.previous=Previous Page
+harvestfestival.stats.collection=Collections
+harvestfestival.stats.fishing=Fishing
+harvestfestival.stats.cooking=Cooking
+harvestfestival.stats.shipping=Shipping
+harvestfestival.stats.mining=Mining
+harvestfestival.stats.relationships=Relationships
+harvestfestival.stats.npc=NPCs
+harvestfestival.stats.animals=Animals
+harvestfestival.stats.farming=Farming
+harvestfestival.stats.activities=Activities
+harvestfestival.stats.town=Town & NPCs
+harvestfestival.stats.other=Other
+harvestfestival.stats.note=Notebook
+harvestfestival.stats.quests=Quests
+
+#Notes
+##Tutorial Notes
+harvestfestival.note.learnt=New Note Added!
+harvestfestival.note.discovered=Secret Note Discovered!
+harvestfestival.note.blueprints.title=Blueprints
+harvestfestival.note.blueprints.description=When looking at a block with a blueprint in hand, you will see a ghost image of a building. Upon right clicking, this image will be frozen in place. You can then walk around it, to see if you have it positioned correctly. Right click to cancel the building or shift + right click to confirm its position. A builder will appear if one isn't found nearby, they will then get to work on the building right away.
+harvestfestival.note.shops.title=Shops
+harvestfestival.note.shops.description=Different shops are only open at different times and on different days. You can ask shopkeepers when they're open when you chat to them, using the clock button in the lower right.\n\nYou can buy items from the shops by clicking the bar with the item you want, if you shift click you can purchase things in lots of 10. Holding ctrl and the mouse button down will rapidly purchase many items (combine with shift).
+harvestfestival.note.farming.title=Crop Farming
+harvestfestival.note.farming.description=To get started with farming crops use your hoe to till a 3x3 area of farmland. Next plant your seeds, clicking on the centre block. Now fill your watering can by right clicking any water source while holding it. Water your crops using a right click. Every day the crops will grow if they have been watered, so you'll need patience. You can sleep at any time to speed up their growth.
+harvestfestival.note.shipping.title=Shipping Basics
+harvestfestival.note.shipping.description=Every day at 6am, a mysterious invisible being will appear to take your items from the shipping box. They'll leave you a sum of gold, which you can then spend wisely.\nTo place items in to be shipped either right click or drop the stack on top. You can also make use of hoppers. In this case the profit will go to the player who placed the shipping box.
+harvestfestival.note.mailbox.title=Mailbox
+harvestfestival.note.mailbox.description=The mailbox is where you can ready letters from the townspeople. The main use is to be invited to festivals. You can accept an invite or reject it, skipping the festival entirely. You can also sometimes receive other kinds of letters, but that may be later down the line...
+harvestfestival.note.sickle.title=Sickle
+harvestfestival.note.sickle.description=The sickle is a tool that is very effective at destroying crops, and other plant like matter. It is especially effective at destroying any of your crops that may end up dying from lack of water or season changes. \n\nSome crops such as grass or wheat require the use of the sickle in order to harvest their drops.
+harvestfestival.note.supermarket.title=General Store
+harvestfestival.note.supermarket.description=The General Store is where you can buy tools, seeds and some special ingredients for cooking. You can only buy the seeds for your current season (none in winter!). And you will unlock different seeds as you progress. Some require shipping x items, and some are unlocked after the first year, and others have more nuanced ways to unlock them for purchase.
+harvestfestival.note.care.chickens.title=Chickens
+harvestfestival.note.care.chickens.description=To make use of chickens you are going to want to feed them every day as well as picking them and putting them down. Chickens will eat chicken feed from your hand or from feed trays. You'll need a nest box if you wish for your chickens to lay eggs. They're fussy and don't like laying them on the ground. The better you care for chickens, the larger eggs they'll make.
+harvestfestival.note.care.cows.title=Cows
+harvestfestival.note.care.cows.description=Cows are larger livestock animal that can be milked for milk every day. They need to be fed fodder or wheat every day either by hand or through the use of troughs. They also need to be brushed and talked to stay clean and happy. If you want milk you will need to use a milker. Cows that like you more will allow you to collect larger milks from them,
+harvestfestival.note.care.sheep.title=Sheep
+harvestfestival.note.care.sheep.description=Sheep are larger animals that will grow wool once a week. Sheep like to eat fodder or wheat, which you can do by hand or using a trough. To stay clean and happy you should also brush and talk to them every day. You will need to use a pair of shears to harvest the wool from your sheep. The more a sheep likes you, the more wool you can collect.
+harvestfestival.note.care.happiness.title=Animal Happiness
+harvestfestival.note.care.happiness.description=Each animal you interact with has a particular amount that they like you. You can see this amount from the relationships tab of this book. The more they like you, the larger products they produce. You can gain relationship from talking to animals, giving them treats, cleaning them as well as making sure they're outside on sunny days. Hitting them or feeding incorrect treats will suffer a relationship penalty.
+harvestfestival.note.care.stress.title=Animal Stress & Health
+harvestfestival.note.care.stress.description=If you do not supply your animals with food, or cause them to become too stressed they will get sick. When they are sick they will not produce any products for you. If you feed them again, they will slowly gain health or you can use an animal medicine to heal them right away. Animals gain stress when they are left outside in the rain, so makes sure to bring them in on rainy days.
+harvestfestival.note.mining.title=Mining
+harvestfestival.note.mining.description=The Mine is a special place accessed via the Mining Hill, inside you can find all sorts of nodes which can be smashed with a hammer to obtain yourself ores and gems which can be sold for gold. Some nodes require higher tiers of hammers. The deeper down the mine you climb, the rarer the materials you will find. But you will also find more danger in the likes of dark animals from little chicks to ferocious cows.
+harvestfestival.note.upgrading.title=Upgrading Tools
+harvestfestival.note.upgrading.description=The Blacksmith is able to upgrade tools for you. He will need three days as well as a small fee and a small supply of ore.
+harvestfestival.note.repairing.title=Repairing Tools
+harvestfestival.note.repairing.description=The Blacksmith can repair tools for you. He'll take one day and requires ore and payment.
+harvestfestival.note.recipes.title=Cooking Recipes
+harvestfestival.note.recipes.description=When cooking it is often easier to follow a recipe. These are items that you simply right click to learn. They will then be listed in the recipe book making them much easier to make. The cafe will sell different recipes based on the season and day of the week. You can also learn certain recipes by becoming friends with the towns people. Some recipes are even more secret!
+harvestfestival.note.counter.title=Kitchen Counter
+harvestfestival.note.counter.description=To use the counter place it down, then place an item on it for example a turnip. Then take the knife and hold down right click. You should hear some chopping sounds, after about 25 clicks the meal should be ready and done. Right click again to take the item out, ready to eat!
+harvestfestival.note.recipebook.title=Recipe Book
+harvestfestival.note.recipebook.description=The recipe book makes, making recipes much easier. Instead of placing each ingredients by hand there is a button that you can click which will do this for you. The book will even tell you if you have the required ingredients on hand, identifiable with the green check or red cross. It will only place the ingredients, so with counters you'll still need to chop!
+harvestfestival.note.cooking.title=Cooking
+harvestfestival.note.cooking.description=To cook with the utensils simply place items inside with a right click. When you have done everything you need, you may either have a success or a failure. You can experiment with ingredients, for example adding salt to pickled turnip will make a better meal than without. There's often hints available for extra ingredients that you can add.
+harvestfestival.note.fridge.title=Fridge
+harvestfestival.note.fridge.description=The fridge can be used to store all sorts of different foods from meals to crops and meat. It is about a double chest in size however it can store stacks up to a size of 512, allowing you to keep more of your food in one place. It's good idea to keep it near the rest of your kitchen utensils so you can access it easily when you need to cook anything.
+harvestfestival.note.oven.title=Oven
+harvestfestival.note.oven.description=The oven is one of the simplest utensils to use. All you have to do is place something inside, wait a short while then eventually the oven will make a sharp ping sound. This lets you know that is done. You can cook all your basic meats in the oven, as well as turning flour in to bread.
+harvestfestival.note.mixer.title=Mixer
+harvestfestival.note.mixer.description=The mixer needs to be placed on top of a counter space in order to function. It's mostly used to make all kinds of juices, so you should try experimenting placing in fruit or vegetables and seeing what you get out of it.
+harvestfestival.note.potpan.title=Pot & Frying Pan
+harvestfestival.note.potpan.description=In order to use either of the pot or the frying pan you are going to first need to get yourself an oven. They both need the oven to act as a heat source in order to function.
+harvestfestival.note.hammer.title=Hammer
+harvestfestival.note.hammer.description=Hammers are mainly used for breaking the rocks in the mine. The different tiers are able to break different levels of nodes. So be sure to upgrade when you can! Hammers can also break the rocks you find lying around, and sometimes turn them in to pure stone. You can also use hammers to mine through stone, where the higher tiers will have an area of effect, breaking more blocks for you.
+harvestfestival.note.axe.title=Axe
+harvestfestival.note.axe.description=The axe is used for collecting wood. It can turn the branches and stumps you see in to logs at different tiers. You can also use the axes to fell whole trees. You will need to break the bottom block of a tree various time depending on the axe tier. Then eventually it will chop the entire tree down for you. You can sneak if you wish to chop just down one piece of wood.
+harvestfestival.note.elevator.title=Elevators
+harvestfestival.note.elevator.description=Elevators allow you to warp between floors of the mine. They aren't so simple as they require a bit of setup. Place two elevators on the floors you wish to travel between. (On the walls). Work out how many cables you will need, this is based on the distance between the floors. Then simply right click the cable on the first elevator, then on the second. They will then be linked and you can move between floors.
+harvestfestival.note.shipping.basket.title=Shipping Basket
+harvestfestival.note.shipping.basket.description=The shipping basket is a convenient item for shipping multiple items at once. To use it simply place it on the ground, then right click it. This will place it on your head. With it on your head you can then harvest crops, fish or mine and the items will go directly in to the basket. When harvesting crops it will also harvest the crops to the side of you. Once your items are collected, simply right click on a shipping bin with an empty hand and the contents will be removed and shipped.\nYou can also open the inventory of a shipping basket by shift right clicking with an empty hand, here you can put things in or take them out. To place the basket down again you will need to right click with an empty hand.
+harvestfestival.note.trees.title=Fruit Trees
+harvestfestival.note.trees.description=Unlike other crops fruit trees will only place one seed. They will also need a certain amount of room around them in order to grow. They do not need water and will grow in spring, summer or autumn but will only bear fruit once fully grown in their respective seasons. They won't die in winter but will go dormant.
+
+#Secret Notes
+harvestfestival.note.secret.cursed.title=Secret of the Cursed Tools?
+harvestfestival.note.secret.cursed.description=There have been rumours that you can find these tools on the floors ending in 9 between 20 and 80 of the mines and only during the winter season. \n\nBut the rumours don't tell the whole story. Cursed Tools know what's going on, and will not trust themselves to anyone who does not own a full set of mystril tools.
+harvestfestival.note.secret.chickens.title=Secret Guide to Increasing Egg Production
+harvestfestival.note.secret.chickens.description=Dear diary, I have recently discovered a secret way in order to get my chickens to lay more eggs throughout the day. It all comes down to how many treats you feed them. I've learnt that the magic number is five generic treats and twenty-six chicken treats. Each time I've fed them this, they've produced an extra egg per day. The limit appears to be five. Please tell noone. Yours Ashlee.
+harvestfestival.note.secret.livestock.title=Improving your livestock
+harvestfestival.note.secret.livestock.description=Greatest sir it is with deepest pride and greatest pleasure that I am able to inform you of my research on the production habits of livestock. I have learnt in my research that it will take exactly 7 generic treats and 24 cow treats to make cows more productive, producing up to 5 milk a day, while sheep require 2 generic and 29 sheep treats to produce more wool.
+harvestfestival.note.secret.relationships.title=Secret Santa
+harvestfestival.note.secret.relationships.description=I've worked out the secrets to most peoples hearts, although there seems to be some sort of exceptions. I've discovered that most people seem to really like gems, flowers and cooked meals. Food and books also seem to be liked. Not many people like useless plants or fish though. Everyone seems to hate cheap junk, monsters and building materials though. I should use this information to my advantage.
+
+#Festival Notes
+harvestfestival.note.festival.new.years.title=New Years
+harvestfestival.note.festival.new.years.description=The New Year's Festival takes place in the park. It's a small get together of the town. Yulif hosts the event and from him you can receive a traditional riceball dish. Jade and Johan also like to contribute to the events. The mayor will also have a yearly stipend for you to receive. If she's moved in of course!
+harvestfestival.note.festival.new.years.eve.title=New Years Eve
+harvestfestival.note.festival.new.years.eve.description=This festival takes place in the park from 6pm onwards. It's a casual gathering where the town munches on some fresh noodles. The townsfolk will enjoy your attendance. If you want to start the countdown to new years, you should talk to Yulif or the Mayor if they're moved in.
+harvestfestival.note.festival.cooking.title=Cooking Festival
+harvestfestival.note.festival.cooking.description=The cooking festival is a widely celebrated event that occurs from 6am-6pm. There are some special shops that open up on this day, so be sure to visit them. To participate talk to Jenni she will let you know what utensil category will be judged. When you have your meal ready, place it on one of the cooking stands, then talk to Jenni to start the judging.
+harvestfestival.note.festival.chicken.title=Chicken Festival
+harvestfestival.note.festival.chicken.description=The chicken festival takes place in the park from 6am-6pm. It is lead by Ashlee. Bring your chosen chicken along, place them inside one of the contest pens then talk to Ashlee to get the festival started. Animals are judged on happiness and how valuable they are.
+harvestfestival.note.festival.cow.title=Cow Festival
+harvestfestival.note.festival.cow.description=The cow festival takes place in the park from 6am-6pm. It is lead by Candice. Bring your chosen cow along with a lead, right click the lead on to one of the livestock pens and the animal will be placed inside. Then talk to Candice to get the festival started. Animals are judged on happiness and how valuable they are.
+harvestfestival.note.festival.sheep.title=Sheep Festival
+harvestfestival.note.festival.sheep.description=The sheep festival takes place in the park from 6am-6pm. It is lead by Jim. Bring your chosen sheep along with a lead, right click the lead on to one of the livestock pens and the animal will be placed inside. Then talk to Jim to get the festival started. Animals are judged on happiness and how valuable they are.
+harvestfestival.note.festival.starry.night.title=Starry Night
+harvestfestival.note.festival.starry.night.description=Starry night is a night that the npcs spend with their loved ones. To start the festival, simply invite someone to dinner. You'll get the option when chatting to them. They'll tell you that they will be waiting at the park from 6pm. Then when you attend simply talk to the person you invited to finish the meal.
+harvestfestival.note.festival.harvest.title=Harvest Festival
+harvestfestival.note.festival.harvest.description=The Harvest Festival is when the whole town gathers in the park to contribute towards a communal soup. You'll be able to attend from 8am to 8pm. Throw an item in the pot to have the festival proceed.
+
+###Letters
+# Festival Letters
+harvestfestival.letter.new.years.eve=Alright there,\n\nWe're planning on taking part in some festivities to celebrate the coming new year tomorrow night. Jade and I'll be there for sure. I'd just love it if ya would attend. We'll be celebrating from 6pm!\n\n\n-Yulif
+harvestfestival.letter.new.years=Dear Sir/Madam, \n\nWe are preparing a fantastic showcase for you in the park to celebrate the new year from around 10am to 6pm. You are duly invited. Please RSVP.\n\n\n-Johan
+harvestfestival.letter.cooking=Dear Sir/Madam, \n\nI have plans for a cooking festival that I would like to setup for tomorrow. Please confirm if you would be happy to attend.\n\n\n-Jenni
+harvestfestival.letter.chicken=Hi, \n\nI'd like to begin setting up for a chicken festival. Where we'll be judging your chickens from 6am to 6pm, with a grand prize! Confirm if this will be good.\n\n\n-Ashlee
+harvestfestival.letter.cow=Hey lovely, \n\nI've plans to host a cow festival soon. It would operate from 6am to 6pm, be sure to bring your best. Let me know if you wish to attend.\n\n\n-Candice
+harvestfestival.letter.sheep=Good day, \n\nI would like to set up a sheep festival tomorrow, bring your best! We'll be judging from 6am to 6pm. Reply if you plan to attend.\n\n\n-Jim
+harvestfestival.letter.starry.night=Hi\n\nThe town is planning on celebrating starry night soon. It's a night to invite your loved ones to dinner. Let me know when you're ready.\n\n\n-Harvest Goddess
+harvestfestival.letter.harvest=Hello!\n\nTomorrow we're all going to be gathering to celebrate the harvest between 8am and 8pm. We'll be adding food to a communal pot, so bring your best!\n\n\n\-Jade

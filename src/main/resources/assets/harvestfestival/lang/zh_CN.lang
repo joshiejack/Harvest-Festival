@@ -12,7 +12,7 @@ harvestfestival.check.lead=购买后在脚下。
 harvestfestival.death.attack.exhausted=%1$s由于工作疲倦而死。
 
 #Commands
-hf.commands.help.header=--- 显示丰收节日.帮助界面 %d of %d (/hf.help <page>) ---
+hf.commands.help.header=--- 显示丰收物语.帮助界面 %d of %d (/hf.help <page>) ---
 
 #Tooltips
 harvestfestival.tooltip.cosmetic=装饰
@@ -1627,124 +1627,124 @@ harvestfestival.npc.girafi.festival.starry.night2=In Denmark in the winter, you 
 # a-z A-Z 0-9 , . ' é
 
 #General
-harvestfestival.shop.outof.true=Out of gold! Please come back later!
-harvestfestival.shop.outof.false=Out of stock! Please try again later!
-harvestfestival.shop.free=Free!
+harvestfestival.shop.outof.true=淘金？请过一会在来吧！
+harvestfestival.shop.outof.false=库存不足，请稍后在来吧！
+harvestfestival.shop.free=免费！
 
 #General Store
 harvestfestival.shop.general=杂货店
-harvestfestival.shop.general.sign1=Mon-Tue Thu-Fri
+harvestfestival.shop.general.sign1=周一/周二/周四/周五
 harvestfestival.shop.general.sign2=09:00-17:00
 harvestfestival.shop.general.sign3=Sat 11:00-15:00
-harvestfestival.shop.general.greeting1=欢迎光临, 有什么可以帮到您?
-harvestfestival.shop.general.greeting2=我们库存充盈, 要买点什么吗?
-harvestfestival.shop.general.greeting3=我们是镇上最好的杂货店! 您看看您需要什么?
-harvestfestival.shop.general.options=您想做什么?
+harvestfestival.shop.general.greeting1=欢迎光临，有什么可以帮到您？
+harvestfestival.shop.general.greeting2=我们库存充盈，要买点什么吗？
+harvestfestival.shop.general.greeting3=我们是镇上最好的杂货店！您看看您需要什么？
+harvestfestival.shop.general.options=您想做什么？
 harvestfestival.shop.general.options.shop=@购物
-harvestfestival.shop.general.options.sell=@Sell
+harvestfestival.shop.general.options.sell=@出售
 harvestfestival.shop.general.options.chat=@闲聊
 
 #Poultry Farm
 harvestfestival.shop.poultry=养鸡场
 harvestfestival.shop.poultry.sign1=
-harvestfestival.shop.poultry.sign2=06:00 - 12:00
-harvestfestival.shop.poultry.sign3=Mon-Sat
-harvestfestival.shop.poultry.greeting1=鸡仔给我们提供了生活的必需品, 您要点什么?
-harvestfestival.shop.poultry.greeting2=这个养鸡场已经经营了300年了, 您来点什么呢?
-harvestfestival.shop.poultry.greeting3=欢迎来到叽叽叽喳喳喳喳派对. 要买点什么?
+harvestfestival.shop.poultry.sign2=06:00-12:00
+harvestfestival.shop.poultry.sign3=周一至周六
+harvestfestival.shop.poultry.greeting1=鸡仔给我们提供了生活的必需品，您要点什么？
+harvestfestival.shop.poultry.greeting2=这个养鸡场已经经营了300年了，您来点什么呢？
+harvestfestival.shop.poultry.greeting3=欢迎来到叽叽叽喳喳喳喳派对。要买点什么？
 
 #Blacksmith
-harvestfestival.shop.blacksmith=Blacksmith
+harvestfestival.shop.blacksmith=铁匠铺
 harvestfestival.shop.blacksmith.sign1=
-harvestfestival.shop.blacksmith.sign2=Fri-Wed
-harvestfestival.shop.blacksmith.sign3=10am-4pm
+harvestfestival.shop.blacksmith.sign2=周五至周三
+harvestfestival.shop.blacksmith.sign3=10:00-16:00
 
 #Cafe
 harvestfestival.shop.cafe=咖啡店
-harvestfestival.shop.cafe.sign1=We're open
-harvestfestival.shop.cafe.sign2=every day from
-harvestfestival.shop.cafe.sign3=9:30am to 5pm!
-harvestfestival.shop.cafe.greeting1=料理准备好了, 来买吧~
-harvestfestival.shop.cafe.greeting2=这是菜单, 欢迎光临!
-harvestfestival.shop.cafe.greeting3=用餐时间到!
+harvestfestival.shop.cafe.sign1=开业了！
+harvestfestival.shop.cafe.sign2=全天营业！
+harvestfestival.shop.cafe.sign3=9:30-17:00
+harvestfestival.shop.cafe.greeting1=料理准备好了，来买吧~
+harvestfestival.shop.cafe.greeting2=这是菜单，欢迎光临！
+harvestfestival.shop.cafe.greeting3=用餐时间到！
 
 #Kitchen Supplies
 harvestfestival.shop.kitchen=厨房供应
-harvestfestival.shop.kitchen.greeting1=我在为厨房找一个供应商, 你有什么?
-harvestfestival.shop.kitchen.greeting2=周五我们也会为咖啡店置备一些东西
-harvestfestival.shop.kitchen.greeting3=我现在购买一些食物, 总会派上用场的.
+harvestfestival.shop.kitchen.greeting1=我在为厨房找一个供应商，你有什么？
+harvestfestival.shop.kitchen.greeting2=周五我们也会为咖啡店置备一些东西。
+harvestfestival.shop.kitchen.greeting3=我现在购买一些食物，总会派上用场的。
 
 #Animal Ranch
 harvestfestival.shop.barn=饲养场
-harvestfestival.shop.barn.sign1=Open Monday to...
-harvestfestival.shop.barn.sign2=Saturday from...
-harvestfestival.shop.barn.sign3=10am to 3pm
-harvestfestival.shop.barn.greeting1=我们不止出售动物, 还有强有力的支持!
-harvestfestival.shop.barn.greeting2=欢迎光临, 您还需要点什么?
-harvestfestival.shop.barn.greeting3=如果能养牛和羊, 谁还想去养小鸡啊!
+harvestfestival.shop.barn.sign1=周一开放至...
+harvestfestival.shop.barn.sign2=周六从...
+harvestfestival.shop.barn.sign3=10:00-15:00
+harvestfestival.shop.barn.greeting1=我们不止出售动物，还有强有力的支持！
+harvestfestival.shop.barn.greeting2=欢迎光临，您还需要点什么？
+harvestfestival.shop.barn.greeting3=如果能养牛和羊，谁还想去养小鸡啊！
 
 #Carpenter
 harvestfestival.shop.carpenter=木工小屋
 harvestfestival.shop.carpenter.sign1=09:00-17:30
 harvestfestival.shop.carpenter.sign2=
-harvestfestival.shop.carpenter.sign3=Sun-Fri
-harvestfestival.shop.carpenter.greeting1=想要盖新房子? 找我准没错.
-harvestfestival.shop.carpenter.greeting2=我刚刚得到很棒的建筑图纸.
-harvestfestival.shop.carpenter.greeting3=为你盖最棒的屋子!
-harvestfestival.shop.carpenter.greeting4=The best buildings in town, right at your doorstep!
-harvestfestival.shop.carpenter.greeting5=Short on wood or stone? Yulif's got you covered.
-harvestfestival.shop.carpenter.greeting6=Get your buildings right here!
+harvestfestival.shop.carpenter.sign3=周日至周五
+harvestfestival.shop.carpenter.greeting1=想要盖新房子？找我准没错。
+harvestfestival.shop.carpenter.greeting2=我刚刚得到很棒的建筑图纸。
+harvestfestival.shop.carpenter.greeting3=为你盖最棒的屋子！
+harvestfestival.shop.carpenter.greeting4=城镇上最好的建筑，就在你家门口！
+harvestfestival.shop.carpenter.greeting5=用石头还是木头？Yulif's已经在帮你建造了。
+harvestfestival.shop.carpenter.greeting6=把你的建筑物放这！
 
 #Miner
 harvestfestival.shop.miner=矿用商品
-harvestfestival.shop.miner.sign1=Selling goods
-harvestfestival.shop.miner.sign2=Monday-Saturday
-harvestfestival.shop.miner.sign3=11am to 4pm.
-harvestfestival.shop.miner.greeting1=我这有一些稀有材料!
-harvestfestival.shop.miner.greeting2=来买点宝石吧!
-harvestfestival.shop.miner.greeting3=我这有些材料!
+harvestfestival.shop.miner.sign1=销售货物
+harvestfestival.shop.miner.sign2=周一至周六
+harvestfestival.shop.miner.sign3=11:00-16:00
+harvestfestival.shop.miner.greeting1=我这有一些稀有材料！
+harvestfestival.shop.miner.greeting2=来买点宝石吧！
+harvestfestival.shop.miner.greeting3=我这有些材料！
 
 #Blood Mage
 harvestfestival.shop.bloodmage=血魔
-harvestfestival.shop.bloodmage.greeting1=小崽子, 欢迎来到幽暗深处.
-harvestfestival.shop.bloodmage.greeting2=准备好了就睁大眼睛好好看看我的商品吧.
-harvestfestival.shop.bloodmage.greeting3=在这个黑暗又神秘的夜晚, 希望我的商品能让你眼前一亮.
+harvestfestival.shop.bloodmage.greeting1=小崽子，欢迎来到幽暗深处。
+harvestfestival.shop.bloodmage.greeting2=准备好了就睁大眼睛好好看看我的商品吧。
+harvestfestival.shop.bloodmage.greeting3=在这个黑暗又神秘的夜晚，希望我的商品能让你眼前一亮。
 
 #Tackle Shop
 harvestfestival.shop.baitshop=装备商店
-harvestfestival.shop.baitshop.sign1=1pm-7pm
+harvestfestival.shop.baitshop.sign1=13:00-19:00
 harvestfestival.shop.baitshop.sign2=
-harvestfestival.shop.baitshop.sign3=Tuesday-Friday
-harvestfestival.shop.baitshop.greeting1=我们只是在做生意, 一切建立在互惠互利的基础上.
-harvestfestival.shop.baitshop.greeting2=如果你想钓鱼, 可以来我这边买点鱼竿.
-harvestfestival.shop.baitshop.greeting3=如果你需要的话, 我这有鱼竿出售.
+harvestfestival.shop.baitshop.sign3=周二至周五
+harvestfestival.shop.baitshop.greeting1=我们只是在做生意，一切建立在互惠互利的基础上。
+harvestfestival.shop.baitshop.greeting2=如果你想钓鱼，可以来我这边买把鱼竿。
+harvestfestival.shop.baitshop.greeting3=如果你需要的话，我这有鱼竿出售。
 
 #Trader
 harvestfestival.shop.trader=咖啡店供应
-harvestfestival.shop.trader.greeting1=早上好, 有什么我可以帮助你的地方吗?
-harvestfestival.shop.trader.greeting2=想出售一些羽毛或皮革吗, 那么我是你要找的人.
-harvestfestival.shop.trader.greeting3=欢迎, 请自便.
+harvestfestival.shop.trader.greeting1=早上好，有什么我可以帮助你的地方吗？
+harvestfestival.shop.trader.greeting2=想出售一些羽毛或皮革吗，那么我是你要找的人。
+harvestfestival.shop.trader.greeting3=欢迎，请自便。
 
 #Recipe Shop - Cooking Festival
-harvestfestival.shop.recipes=Recipe Shack
-harvestfestival.shop.recipes.greeting1=Recipes from all the year in all one place!
-harvestfestival.shop.recipes.greeting2=Come get your recipes!
-harvestfestival.shop.recipes.greeting3=No exclusives here, just out of season recipes at cost!
+harvestfestival.shop.recipes=食谱小屋
+harvestfestival.shop.recipes.greeting1=这里拥有全年所有菜肴的食谱！
+harvestfestival.shop.recipes.greeting2=来到这里以领取你的食谱！
+harvestfestival.shop.recipes.greeting3=这不是独家，并且这里只有过了季度的食谱！
 
 #Ingredients Shop - Cooking Festival
-harvestfestival.shop.cooking=Granny's Goodies
-harvestfestival.shop.cooking.greeting1=Are you missing any ingredients, then I think I can help you out.
-harvestfestival.shop.cooking.greeting2=If you need some ingredients, I'm here to help.
-harvestfestival.shop.cooking.greeting3=Get your missing ingredients right here from Granny.
+harvestfestival.shop.cooking=奶奶的材料店
+harvestfestival.shop.cooking.greeting1=你有没有漏掉什么材料，或许我可以帮你。
+harvestfestival.shop.cooking.greeting2=如果你需要一些食材，我或许可以帮忙。
+harvestfestival.shop.cooking.greeting3=你可以从奶奶那里获得你未所拥有的食材。
 
 #Clockmaker
-harvestfestival.shop.clockmaker=Clockmaker
-harvestfestival.shop.clockmaker.greeting1=Hickory, dickery, dock. The player opened my shop.
-harvestfestival.shop.clockmaker.greeting2=Welcome to the Golden Compass.
-harvestfestival.shop.clockmaker.greeting3=Tick-tock. Tick-tock. Welcome!
-harvestfestival.shop.clockmaker.sign1=Eight till
-harvestfestival.shop.clockmaker.sign2=Three, \o/
-harvestfestival.shop.clockmaker.sign3=Monday-Friday
+harvestfestival.shop.clockmaker=钟表匠
+harvestfestival.shop.clockmaker.greeting1=山核桃，炖肉，码头。玩家走进了我的店铺。
+harvestfestival.shop.clockmaker.greeting2=欢迎来到黄金罗盘。
+harvestfestival.shop.clockmaker.greeting3=滴答、滴答滴答，欢迎光临！
+harvestfestival.shop.clockmaker.sign1=8:00至
+harvestfestival.shop.clockmaker.sign2=15:00，\o/
+harvestfestival.shop.clockmaker.sign3=周一至周五
 
 #Cheap Cow - Cow Festival
 harvestfestival.shop.cow=Cheap Cow
@@ -1755,8 +1755,8 @@ harvestfestival.shop.cow.greeting3=Who needs sheep? When you can have crazy cows
 #Dairy Queen - Cow Festival
 harvestfestival.shop.dairy=Dairy Queen
 harvestfestival.shop.dairy.greeting1=Greetings and good morning. Welcome to Dairy Queen!
-harvestfestival.shop.dairy.greeting2=If you feel like some filling treats, we got your back!
-harvestfestival.shop.dairy.greeting3=What's for lunch? It's moo moo time!
+harvestfestival.shop.dairy.greeting2=如果你想要一些馅料，可能需要等到你回来！
+harvestfestival.shop.dairy.greeting3=午饭吃了吗？现在是哞、哞时间！
 
 #Sheep on Sale - Sheep Festival
 harvestfestival.shop.sheep=Sheep on Sale
@@ -1771,10 +1771,10 @@ harvestfestival.shop.knitting.greeting2=Baa Ram Ewe goods all right here!
 harvestfestival.shop.knitting.greeting3=Need something for the winter? Let's keep warm here.
 
 #Minecraft Fried Chicken - Chicken Festival
-harvestfestival.shop.mfc=MFC
+harvestfestival.shop.mfc=麦德基
 harvestfestival.shop.mfc.greeting1=Good morning and welcome to Minecraft Fried Chicken!
-harvestfestival.shop.mfc.greeting2=Get your fried chicken and eggs right here!
-harvestfestival.shop.mfc.greeting3=What's for lunch? It's time to cluck cluck cluck.
+harvestfestival.shop.mfc.greeting2=请把你的炸鸡和蛋放在这里！
+harvestfestival.shop.mfc.greeting3=午饭吃了吗？是时候咕咕咕的叫了！
 
 #Miscellaneous
 harvestfestival.marriage=聘礼
@@ -1784,8 +1784,8 @@ harvestfestival.marriage.unlocked=未锁定
 ###Quests
 ##Tutorial Quests
 #Intro
-harvestfestival.quest.tutorial.intro.title=Harvest Goddess
-harvestfestival.quest.tutorial.intro.description=Summon and talk to the Harvest Goddess.
+harvestfestival.quest.tutorial.intro.title=丰收女神
+harvestfestival.quest.tutorial.intro.description=召唤并与丰收女神进行交谈。
 harvestfestival.quest.tutorial.intro.hello=你好呀, 我认识你吗, 我们以前见过?
 harvestfestival.quest.tutorial.intro.question=[这是你第一次玩丰收物语吗?]
 harvestfestival.quest.tutorial.intro.tutorial=@是的!

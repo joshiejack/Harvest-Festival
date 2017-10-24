@@ -2505,8 +2505,8 @@ harvestfestival.note.trees.title=Fruit Trees
 harvestfestival.note.trees.description=Unlike other crops fruit trees will only place one seed. They will also need a certain amount of room around them in order to grow. They do not need water and will grow in spring, summer or autumn but will only bear fruit once fully grown in their respective seasons. They won't die in winter but will go dormant.
 
 #Secret Notes
-harvestfestival.note.secret.cursed.title=Secret of the Cursed Tools?
-harvestfestival.note.secret.cursed.description=There have been rumours that you can find these tools on the floors ending in 9 between 20 and 80 of the mines and only during the winter season. \n\nBut the rumours don't tell the whole story. Cursed Tools know what's going on, and will not trust themselves to anyone who does not own a full set of mystril tools.
+harvestfestival.note.secret.cursed.title=诅咒工具的秘密？
+harvestfestival.note.secret.cursed.description=相传有这么一个说法，在冬季的采矿场20至80层中，以9的倍数作为结尾的层数有概率可以找到它们。\n\n但这个传说并没有把后面那部分全部说出来。总之，诅咒工具都有各自的认知，它们不会被随意捡起。必须拥有完整的神秘工具的人才能获得到它。
 harvestfestival.note.secret.chickens.title=Secret Guide to Increasing Egg Production
 harvestfestival.note.secret.chickens.description=Dear diary, I have recently discovered a secret way in order to get my chickens to lay more eggs throughout the day. It all comes down to how many treats you feed them. I've learnt that the magic number is five generic treats and twenty-six chicken treats. Each time I've fed them this, they've produced an extra egg per day. The limit appears to be five. Please tell noone. Yours Ashlee.
 harvestfestival.note.secret.livestock.title=Improving your livestock
@@ -2515,22 +2515,22 @@ harvestfestival.note.secret.relationships.title=Secret Santa
 harvestfestival.note.secret.relationships.description=I've worked out the secrets to most peoples hearts, although there seems to be some sort of exceptions. I've discovered that most people seem to really like gems, flowers and cooked meals. Food and books also seem to be liked. Not many people like useless plants or fish though. Everyone seems to hate cheap junk, monsters and building materials though. I should use this information to my advantage.
 
 #Festival Notes
-harvestfestival.note.festival.new.years.title=New Years
-harvestfestival.note.festival.new.years.description=The New Year's Festival takes place in the park. It's a small get together of the town. Yulif hosts the event and from him you can receive a traditional riceball dish. Jade and Johan also like to contribute to the events. The mayor will also have a yearly stipend for you to receive. If she's moved in of course!
-harvestfestival.note.festival.new.years.eve.title=New Years Eve
-harvestfestival.note.festival.new.years.eve.description=This festival takes place in the park from 6pm onwards. It's a casual gathering where the town munches on some fresh noodles. The townsfolk will enjoy your attendance. If you want to start the countdown to new years, you should talk to Yulif or the Mayor if they're moved in.
-harvestfestival.note.festival.cooking.title=Cooking Festival
-harvestfestival.note.festival.cooking.description=The cooking festival is a widely celebrated event that occurs from 6am-6pm. There are some special shops that open up on this day, so be sure to visit them. To participate talk to Jenni she will let you know what utensil category will be judged. When you have your meal ready, place it on one of the cooking stands, then talk to Jenni to start the judging.
-harvestfestival.note.festival.chicken.title=Chicken Festival
-harvestfestival.note.festival.chicken.description=The chicken festival takes place in the park from 6am-6pm. It is lead by Ashlee. Bring your chosen chicken along, place them inside one of the contest pens then talk to Ashlee to get the festival started. Animals are judged on happiness and how valuable they are.
-harvestfestival.note.festival.cow.title=Cow Festival
-harvestfestival.note.festival.cow.description=The cow festival takes place in the park from 6am-6pm. It is lead by Candice. Bring your chosen cow along with a lead, right click the lead on to one of the livestock pens and the animal will be placed inside. Then talk to Candice to get the festival started. Animals are judged on happiness and how valuable they are.
-harvestfestival.note.festival.sheep.title=Sheep Festival
-harvestfestival.note.festival.sheep.description=The sheep festival takes place in the park from 6am-6pm. It is lead by Jim. Bring your chosen sheep along with a lead, right click the lead on to one of the livestock pens and the animal will be placed inside. Then talk to Jim to get the festival started. Animals are judged on happiness and how valuable they are.
-harvestfestival.note.festival.starry.night.title=Starry Night
-harvestfestival.note.festival.starry.night.description=Starry night is a night that the npcs spend with their loved ones. To start the festival, simply invite someone to dinner. You'll get the option when chatting to them. They'll tell you that they will be waiting at the park from 6pm. Then when you attend simply talk to the person you invited to finish the meal.
-harvestfestival.note.festival.harvest.title=Harvest Festival
-harvestfestival.note.festival.harvest.description=The Harvest Festival is when the whole town gathers in the park to contribute towards a communal soup. You'll be able to attend from 8am to 8pm. Throw an item in the pot to have the festival proceed.
+harvestfestival.note.festival.new.years.title=新年
+harvestfestival.note.festival.new.years.description=庆祝新年将在公园举行，这是小镇所有人聚集在一起一起举行的节日。Yulif将主持这次活动，从他那里你将会收到这个节日传统的年夜饭。Jade与Johan也很喜欢为这件事情做贡献，镇长也会为此发送津贴。当然，这必须在她搬过来以后。
+harvestfestival.note.festival.new.years.eve.title=除夕夜
+harvestfestival.note.festival.new.years.eve.description=这个节日将从下午6点后在公园举行。这是全镇一起吃面条的休闲聚会。镇民都希望你能够出席此次活动。如果你想要一起为新的一年倒数，可以跟Yulif或是镇长交谈，当然这必须在他们搬来以后。
+harvestfestival.note.festival.cooking.title=烹饪节
+harvestfestival.note.festival.cooking.description=烹饪节众所周知的活动之一，它将从上午6点到下午6点开始举行。这一天会有许多特别的商店进行营业，把握机会去参观吧。如果想要参与的话就继续与Jenni进行对话，她会告诉你今年的参赛用具是什么。当你完成了你的料理后，放在其中的一个料理台上。并在此与Jenni进行对话以对这次烹饪进行评分。
+harvestfestival.note.festival.chicken.title=母鸡节
+harvestfestival.note.festival.chicken.description=母鸡节将在早上6点到下午6点在公园举行。Ashlee将主持这次活动。用栓绳带上你最好的母鸡，右键将你的乳牛绑在其中一个参赛的兽栏上，它将会被牵引进去。再去跟Candice进行交谈以开始这次的节日。动物依照它们的价值跟快乐度来进行一次评比。
+harvestfestival.note.festival.cow.title=乳牛节
+harvestfestival.note.festival.cow.description=乳牛节将在早上6点到下午6点在公园举行。Candice将主持这次活动。用栓绳带上你最好的乳牛，右键将你的乳牛绑在其中一个参赛的兽栏上，它将会被牵引进去。再去跟Candice进行交谈以开始这次的节日。动物依照它们的价值跟快乐度来进行一次评比。
+harvestfestival.note.festival.sheep.title=绵羊节
+harvestfestival.note.festival.sheep.description=绵羊节将在早上6点到下午6点在公园举行。Jim将主持这次活动。用栓绳带上你最好的绵羊，右键将你的乳牛绑在其中一个参赛的兽栏上，它将会被牵引进去。再去跟Jim进行交谈以开始这次的节日。动物依照它们的价值跟快乐度来进行一次评比。
+harvestfestival.note.festival.starry.night.title=星空之夜
+harvestfestival.note.festival.starry.night.description=星空之夜是一个让城镇居民自主邀请自己所爱之人的夜晚。要开始这个节日，只需要邀请别人一起晚餐。当跟他们进行对话的时候，你便会多一个邀请的选项。他们将会告诉你在下午6点后，他们会在公园等待。当你抵达以后，跟你所邀请的人对话，就可以完成这次的宴席。
+harvestfestival.note.festival.harvest.title=丰收节
+harvestfestival.note.festival.harvest.description=丰收节是这个城镇最盛大的节日，每个人聚集在一起完成一个大汤锅。你可以在当天的早上8点到晚上8点时参加。并往锅中丢入一个食材后，以参加这盛大的活动。
 
 ###Letters
 # Festival Letters
@@ -2540,5 +2540,5 @@ harvestfestival.letter.cooking=尊敬的先生/女士，\n\n我现在有一个�
 harvestfestival.letter.chicken=嗨，\n\n我现在有一个想法，我想举办一个关于赞颂鸡的节日。我们将从上午6点到下午6点开始举行，到时候我们会选出最优质的鸡作为获胜者。\n\n\n-Ashlee
 harvestfestival.letter.cow=嘿，亲爱的。\n\n我计划举办一个以赞颂牛的节日。它将在上午6点到下午6点开始，到时候一定要带上你最好的牛哦！如果你愿意，请第一时间通知我。\n\n\n-Candice
 harvestfestival.letter.sheep=又是美好的一天，\n\n我将在明天举办一个以赞颂羊的节日。它将在上午6点到下午6点开始，到时候一定要带上你最好的羊哦！如果你计划参加，请第一时间回复我。\n\n\n-Jim
-harvestfestival.letter.starry.night=嗨\n\n这个城镇正计划这准备一次星空之夜，它是邀请你家人团圆的夜晚。如果你准备好参与这次派对的话，请第一时间告诉我。\n\n\n-丰收女神
+harvestfestival.letter.starry.night=嗨\n\n这个城镇正计划这准备一次星空之夜，它是邀请你所爱的人一起用餐的夜晚。如果你准备好参与这次派对的话，请第一时间告诉我。\n\n\n-丰收女神
 harvestfestival.letter.harvest=你好!\n\n明天我们将全部聚集在一起庆祝丰收，它将从上午8点到晚上8点开始。我们会把一些食物放置在一个公共的锅中，以供人们享用！所以，请带来你最好的菜肴！\n\n\n\-Jade

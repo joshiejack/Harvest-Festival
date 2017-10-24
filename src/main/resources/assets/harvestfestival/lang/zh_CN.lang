@@ -2506,11 +2506,11 @@ harvestfestival.note.trees.description=Unlike other crops fruit trees will only 
 
 #Secret Notes
 harvestfestival.note.secret.cursed.title=诅咒工具的秘密？
-harvestfestival.note.secret.cursed.description=相传有这么一个说法，在冬季的采矿场20至80层中，以9的倍数作为结尾的层数有概率可以找到它们。\n\n但这个传说并没有把后面那部分全部说出来。总之，诅咒工具都有各自的认知，它们不会被随意捡起。必须拥有完整的神秘工具的人才能获得到它。
-harvestfestival.note.secret.chickens.title=Secret Guide to Increasing Egg Production
-harvestfestival.note.secret.chickens.description=Dear diary, I have recently discovered a secret way in order to get my chickens to lay more eggs throughout the day. It all comes down to how many treats you feed them. I've learnt that the magic number is five generic treats and twenty-six chicken treats. Each time I've fed them this, they've produced an extra egg per day. The limit appears to be five. Please tell noone. Yours Ashlee.
+harvestfestival.note.secret.cursed.description=相传有这么一个说法，在冬季的采矿场20至80层中，以9的倍数作为结尾的层数有概率可以找到它们。\n\n但这个传说并没有把后面那部分全部说出来。总之，诅咒工具都有各自的认知，它们不会被随意捡起。必须拥有祝福工具的人才能获得到它。
+harvestfestival.note.secret.chickens.title=增加鸡蛋生产的秘密笔记
+harvestfestival.note.secret.chickens.description=亲爱的日记，我最近发现了一种方法可以让我的母鸡每天产出更多的鸡蛋。这一切都来自于你喂了多少的点心给它们我已经发现这个神秘的规律是5个通用点心跟26只鸡用点心，每次只要喂食它们这个数量，它们每天就会额外多生产一颗蛋。不过最多只能生产5颗蛋，请不要告诉他人喔！你的Ashlee。
 harvestfestival.note.secret.livestock.title=Improving your livestock
-harvestfestival.note.secret.livestock.description=Greatest sir it is with deepest pride and greatest pleasure that I am able to inform you of my research on the production habits of livestock. I have learnt in my research that it will take exactly 7 generic treats and 24 cow treats to make cows more productive, producing up to 5 milk a day, while sheep require 2 generic and 29 sheep treats to produce more wool.
+harvestfestival.note.secret.livestock.description=尊敬的先生/女士，在此对你献上最深的敬意以及最高的崇敬，来为你介绍我对于增加家畜的生产的研究成果我在研究中发现这是可行的，每7个通用点心跟24只牛用点心可以让奶牛生产更多的产物，一天最多可以生产5瓶牛奶。绵羊则是需要2个通用点心跟29个羊用点心来产出更多的羊毛。
 harvestfestival.note.secret.relationships.title=Secret Santa
 harvestfestival.note.secret.relationships.description=I've worked out the secrets to most peoples hearts, although there seems to be some sort of exceptions. I've discovered that most people seem to really like gems, flowers and cooked meals. Food and books also seem to be liked. Not many people like useless plants or fish though. Everyone seems to hate cheap junk, monsters and building materials though. I should use this information to my advantage.
 
@@ -2522,9 +2522,9 @@ harvestfestival.note.festival.new.years.eve.description=这个节日将从下午
 harvestfestival.note.festival.cooking.title=烹饪节
 harvestfestival.note.festival.cooking.description=烹饪节众所周知的活动之一，它将从上午6点到下午6点开始举行。这一天会有许多特别的商店进行营业，把握机会去参观吧。如果想要参与的话就继续与Jenni进行对话，她会告诉你今年的参赛用具是什么。当你完成了你的料理后，放在其中的一个料理台上。并在此与Jenni进行对话以对这次烹饪进行评分。
 harvestfestival.note.festival.chicken.title=母鸡节
-harvestfestival.note.festival.chicken.description=母鸡节将在早上6点到下午6点在公园举行。Ashlee将主持这次活动。用栓绳带上你最好的母鸡，右键将你的乳牛绑在其中一个参赛的兽栏上，它将会被牵引进去。再去跟Candice进行交谈以开始这次的节日。动物依照它们的价值跟快乐度来进行一次评比。
-harvestfestival.note.festival.cow.title=乳牛节
-harvestfestival.note.festival.cow.description=乳牛节将在早上6点到下午6点在公园举行。Candice将主持这次活动。用栓绳带上你最好的乳牛，右键将你的乳牛绑在其中一个参赛的兽栏上，它将会被牵引进去。再去跟Candice进行交谈以开始这次的节日。动物依照它们的价值跟快乐度来进行一次评比。
+harvestfestival.note.festival.chicken.description=母鸡节将在早上6点到下午6点在公园举行。Ashlee将主持这次活动。用栓绳带上你最好的母鸡，右键将你的母鸡绑在其中一个参赛的兽栏上，它将会被牵引进去。再去跟Candice进行交谈以开始这次的节日。动物依照它们的价值跟快乐度来进行一次评比。
+harvestfestival.note.festival.cow.title=奶牛节
+harvestfestival.note.festival.cow.description=奶牛节将在早上6点到下午6点在公园举行。Candice将主持这次活动。用栓绳带上你最好的奶牛，右键将你的奶牛绑在其中一个参赛的兽栏上，它将会被牵引进去。再去跟Candice进行交谈以开始这次的节日。动物依照它们的价值跟快乐度来进行一次评比。
 harvestfestival.note.festival.sheep.title=绵羊节
 harvestfestival.note.festival.sheep.description=绵羊节将在早上6点到下午6点在公园举行。Jim将主持这次活动。用栓绳带上你最好的绵羊，右键将你的乳牛绑在其中一个参赛的兽栏上，它将会被牵引进去。再去跟Jim进行交谈以开始这次的节日。动物依照它们的价值跟快乐度来进行一次评比。
 harvestfestival.note.festival.starry.night.title=星空之夜

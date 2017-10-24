@@ -1750,7 +1750,7 @@ harvestfestival.shop.clockmaker.sign3=周一至周五
 harvestfestival.shop.cow=Cheap Cow
 harvestfestival.shop.cow.greeting1=Get your 'Cheap Cow' goods here.
 harvestfestival.shop.cow.greeting2=Welcome to the 'Cheap Cow', do you need anything?
-harvestfestival.shop.cow.greeting3=Who needs sheep? When you can have crazy cows!
+harvestfestival.shop.cow.greeting3=谁还需要羊呢？当你有一头热情的奶牛的时候。
 
 #Dairy Queen - Cow Festival
 harvestfestival.shop.dairy=Dairy Queen
@@ -1760,15 +1760,15 @@ harvestfestival.shop.dairy.greeting3=午饭吃了吗？现在是哞、哞时间�
 
 #Sheep on Sale - Sheep Festival
 harvestfestival.shop.sheep=Sheep on Sale
-harvestfestival.shop.sheep.greeting1=Need a bargain for your sheepy treats, get them here!
-harvestfestival.shop.sheep.greeting2=Welcome to 'Sheep on Sale'. All the best deals right here!
+harvestfestival.shop.sheep.greeting1=如果需要便宜的羊用点心，来这里就对了。
+harvestfestival.shop.sheep.greeting2=欢迎来到'Sheep on Sale'，最廉价的东西就在这里！
 harvestfestival.shop.sheep.greeting3=Who needs cows? When you can have silly sheep!
 
 #Granny's Knits - Sheep Festival
 harvestfestival.shop.knitting=Lambshops
-harvestfestival.shop.knitting.greeting1=Looking for some wooly jumpers?
-harvestfestival.shop.knitting.greeting2=Baa Ram Ewe goods all right here!
-harvestfestival.shop.knitting.greeting3=Need something for the winter? Let's keep warm here.
+harvestfestival.shop.knitting.greeting1=你在寻找与绵羊有关的商品吗？
+harvestfestival.shop.knitting.greeting2=它们在这里！
+harvestfestival.shop.knitting.greeting3=需要御寒的东西吗？这里有很多。
 
 #Minecraft Fried Chicken - Chicken Festival
 harvestfestival.shop.mfc=麦德基
@@ -1794,29 +1794,29 @@ harvestfestival.quest.tutorial.intro.completed=好吧, 那一定是我失忆了!
 harvestfestival.quest.tutorial.intro.backstory=好吧, 初次见面. 我是丰收女神. 跟你讲个小故事. 很久很久以前, 我们居住的土地上有一个繁华的小镇, 人们安居乐业, 四海升平, 直到那次风暴侵袭, 人们不得不离家出走, 背井离乡, 最近我听说他们归根落叶, 回到这里, 回到真正属于他们的地方, 但是他们需要帮助. 啊对了, 再过一阵我就会凭空消失, 不过没关系, 你可以随时用仙女花把我召唤出来. 每次我离开前都会给你留一朵. 就这样, 后会有期!
 
 #Carpenter
-harvestfestival.quest.tutorial.carpenter.title=Carpentry
-harvestfestival.quest.tutorial.carpenter.description.info=Talk to the Goddess for more information.
-harvestfestival.quest.tutorial.carpenter.description.logs=Show Harvest Goddess %s logs.
-harvestfestival.quest.tutorial.carpenter.description.jade=Build a Carpenter.\nShow Jade a flower.
-harvestfestival.quest.tutorial.carpenter.description.goddess=Talk to the Harvest Goddess.
+harvestfestival.quest.tutorial.carpenter.title=木工小屋
+harvestfestival.quest.tutorial.carpenter.description.info=与女神交谈以获得更多资讯。
+harvestfestival.quest.tutorial.carpenter.description.logs=显示女神的%s日记。
+harvestfestival.quest.tutorial.carpenter.description.jade=建造木工小屋。\n并送给Jade一朵鲜花。
+harvestfestival.quest.tutorial.carpenter.description.goddess=与女神进行交谈。
 harvestfestival.quest.tutorial.carpenter.wood.dozen=12个
 harvestfestival.quest.tutorial.carpenter.wood.dozentwo=24个
 harvestfestival.quest.tutorial.carpenter.wood.stack=组
 harvestfestival.quest.tutorial.carpenter.wood.stackhalf=半组
 harvestfestival.quest.tutorial.carpenter.wood.stackquarter=四分之一组
-harvestfestival.quest.tutorial.carpenter.welcome=哦嗨亲爱的, 又见面啦. 我知道该怎么开始建设我们的镇子. 听说有个叫Yulif的很棒的木匠, 他和他的妹妹正在寻找项目承包, 他们要找的正是建筑相关的项目. Jade是一个热爱自然的妹子, 如果她能够作为助手来帮忙那简直完美. 不过我们现在需要一些东西来吸引他们, 或许你可以给我带来 %s 的原木, 我会给你一些有用的东西作为报酬.
-harvestfestival.quest.tutorial.carpenter.reminder.wood=你好啊, 你是不是忘了我们的任务? 我们要吸引我们的第一批居民来镇子里, 我现在需要%s的原木来启动我们的任务.
-harvestfestival.quest.tutorial.carpenter.thanks.build=完美! 这正是我需要的! 给你, 这是你需要的东西. 一张建筑的图纸, 选取一个区域, 选择图纸, 你就能看到一个建筑结构的建筑模型了. 如果Yulif还没有移居进镇子的话, 他就会出现并且立刻开始建设这所房子, 他可能需要花一点时间来完成. 还有, 你可以同时安排多个建筑的建设计划, 但是在建完前面的建筑之前,Yulif是不会去建设下一所建筑的. 如果Yulif不小心发生什么不幸的话, 没关系, 他将会在第二天重生并且重新投入工作! 我要交代的就这些了, 那么我走了, 去建设木匠小屋吧. 啊, 对了, 差点忘了, 一旦完成了建设, Jade就会搬进来, 她一般喜欢在楼上待着. 你可以带一些花花去看望她, 她有一些作物种子, 并且跟你用花做交换!
-harvestfestival.quest.tutorial.carpenter.reminder.carpenter=小宝贝, 我想你应该去见见Jade而不是我, 她在木工小屋的楼上, 带些花儿去. 如果你不小心丢掉了你木匠小屋的图纸, 那么就再带给我%s个原木, 我会给你另一张图纸.
-harvestfestival.quest.tutorial.carpenter.reminder.give=幸亏还有一张图纸, 带上花去见见Jade吧, 她在小屋的楼上!
-harvestfestival.quest.tutorial.carpenter.reminder.flowers=初次见面, 我是Jade, 我正在想办法找一些花儿呢!
-harvestfestival.quest.tutorial.carpenter.thanks.flowers=嘿, 看起来你有一些花要给我! 女神告诉了我很多关于你的事情, 我已经等不及要看看这个镇子是怎么发展起来的了! 我想女神很感激你帮助我们解围, 我觉得你应该去见见她. 但是稍后请记得回来找我, 我还有话要跟你说!
-harvestfestival.quest.tutorial.carpenter.thanks.finish=做的好亲爱的, 我相信在你的帮助之下, 镇子的建设很快就会完成! 虽然完成建设可能需要花费你一些金币, 我很乐意给你这1000G作为你的起始资金, 希望你合理的消费它们. 另外,你该回去找Jade了, 再次感谢你的帮助.
+harvestfestival.quest.tutorial.carpenter.welcome=哦嗨亲爱的，又见面啦。我知道该怎么开始建设我们的镇子。听说有个叫Yulif的很棒的木匠，他和他的妹妹正在寻找项目承包，他们要找的正是建筑相关的项目。Jade是一个热爱自然的妹子，如果她能够作为助手来帮忙那简直完美。不过我们现在需要一些东西来吸引他们，或许你可以给我带来 %s 的原木，我会给你一些有用的东西作为报酬。
+harvestfestival.quest.tutorial.carpenter.reminder.wood=你好啊, 你是不是忘了我们的任务？我们要吸引我们的第一批居民来镇子里，我现在需要%s的原木来启动我们的任务。
+harvestfestival.quest.tutorial.carpenter.thanks.build=完美！这正是我需要的！给你，这是你需要的东西。一张建筑的图纸，选取一个区域，选择图纸，你就能看到一个建筑结构的建筑模型了。如果Yulif还没有移居进镇子的话，他就会出现并且立刻开始建设这所房子，他可能需要花一点时间来完成。还有，你可以同时安排多个建筑的建设计划，但是在建完前面的建筑之前，Yulif是不会去建设下一所建筑的。如果Yulif不小心发生什么不幸的话，没关系，他将会在第二天重生并且重新投入工作！我要交代的就这些了，那么我走了，去建设木匠小屋吧。啊，对了，差点忘了，一旦完成了建设，Jade就会搬进来，她一般喜欢在楼上待着。你可以带一些花花去看望她，她有一些作物种子，并且跟你用花做交换！
+harvestfestival.quest.tutorial.carpenter.reminder.carpenter=亲爱的，我想你应该去见见Jade而不是我，她在木工小屋的楼上，带些花儿去。如果你不小心丢掉了你木匠小屋的图纸，那么就再带给我％s个原木，我会给你另一张图纸。
+harvestfestival.quest.tutorial.carpenter.reminder.give=幸亏还有一张图纸，带上花去见见Jade吧，她在小屋的楼上！
+harvestfestival.quest.tutorial.carpenter.reminder.flowers=初次见面，我是Jade，我正在想办法找一些花儿呢！
+harvestfestival.quest.tutorial.carpenter.thanks.flowers=嘿，看起来你有一些花要给我！女神告诉了我很多关于你的事情，我已经等不及要看看这个镇子是怎么发展起来的了！我想女神很感激你帮助我们解围，我觉得你应该去见见她但是稍后请记得回来找我，我还有话要跟你说！
+harvestfestival.quest.tutorial.carpenter.thanks.finish=做的好亲爱的，我相信在你的帮助之下，镇子的建设很快就会完成！虽然完成建设可能需要花费你一些金币，我很乐意给你这1000G作为你的起始资金，希望你合理的消费它们。另外，你该回去找Jade了，再次感谢你的帮助。
 
 #Crops Tutorial
 harvestfestival.quest.tutorial.crops.title=Crop Farming
-harvestfestival.quest.tutorial.crops.title.what=Mystery Gift?
-harvestfestival.quest.tutorial.crops.description.jade=Talk to Jade.
+harvestfestival.quest.tutorial.crops.title.what=神秘的礼物？
+harvestfestival.quest.tutorial.crops.description.jade=与Jade进行聊天。
 harvestfestival.quest.tutorial.crops.description.turnips=Grow nine Hardy Turnips.\nShow them to Jade.
 harvestfestival.quest.tutorial.crops.intro=嘿! 我之前和你提到过, 我有些事情要告诉你! 那就是种田! 这在这之前有没有人教过你这个?
 harvestfestival.quest.tutorial.crops.question=你知道要怎么种田吗?

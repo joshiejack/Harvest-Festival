@@ -1105,18 +1105,18 @@ harvestfestival.npc.jade.festival.chicken1=看着那白白胖胖的鸡肉，看�
 harvestfestival.npc.jade.festival.chicken2=我们城镇中的鸡下的蛋总要比肉类产出的快。如果你能把那些大的、中的、小的鸡蛋收集起来交给Johan。那么，Johan可能会开始重肉类向蛋类过渡。
 harvestfestival.npc.jade.festival.cooking1=我喜欢烹饪！%4$s，你想要参加烹饪节吗？
 harvestfestival.npc.jade.festival.cooking2=一道热菜、一个冷盘、一种美味的东西...生活处处充满了选择，不过现在这难道不是开饭的预兆吗？
-harvestfestival.npc.jade.festival.cow1=I keep going out in the pastures to pick any flowers I see before the cows come out to graze. They have no appreciation of flowers like I do. Or cats.
-harvestfestival.npc.jade.festival.cow2=We need a cat festival. Than the milk would have more use.
-harvestfestival.npc.jade.festival.harvest1=What a  beautiful day it is today. Do you intend to add to our community soup?
-harvestfestival.npc.jade.festival.harvest2=Its a little different each year, so I can't guarantee the flavor. Only edible items though. No cobblestone, or wood, or seeds.
-harvestfestival.npc.jade.festival.new.years.eve1=I've been making paper flowers to float on the water of the goddess pond. Each flower someone will write a new year's wish on, and they'll float away. Would you like to write down a wish?
-harvestfestival.npc.jade.festival.new.years.eve2=I hope the next year is profitable for you!
-harvestfestival.npc.jade.festival.new.years1=Ooooh, Happy New Year! Have a riceball! Try it with some soy sauce!
-harvestfestival.npc.jade.festival.new.years2=Its so nice to see flowers blooming.
-harvestfestival.npc.jade.festival.sheep1=Sheep take such a long time to regrow their wool before you can shear them again. I wonder if they ever produce more than one item ever per shearing?
-harvestfestival.npc.jade.festival.sheep2=Don't mention copper to Jim when he's around his sheep. I don't remember why.
-harvestfestival.npc.jade.festival.starry.night1=I might be able to get some mistletoe if I go exploring in the forest. The poor trees though don't like mistletoe.
-harvestfestival.npc.jade.festival.starry.night2=Have you seen any snowberries about?
+harvestfestival.npc.jade.festival.cow1=我一直在外面放牧，直到牛吃草回来之前。我都会在周围欣赏花朵。
+harvestfestival.npc.jade.festival.cow2=我们需要指定一个有关赞颂猫的节日，它将比牛奶更有用处。
+harvestfestival.npc.jade.festival.harvest1=今天真是美好的一天，你打算增加一些动物来为这个牧场社区添砖加瓦吗？
+harvestfestival.npc.jade.festival.harvest2=每年都有所不同，今年也不一样。
+harvestfestival.npc.jade.festival.new.years.eve1=我一直在折着千纸鹤并将它们放置在女神池中让它们静静的漂浮，每一只千纸鹤都寄托着不同的人对新的一年的愿望。你也想写一份吗？
+harvestfestival.npc.jade.festival.new.years.eve2=希望明年能为你带来丰收的收入！
+harvestfestival.npc.jade.festival.new.years1=噢，新年快乐！我现在有一份年夜饭，想想如果沾上酱油应该会得到最好的搭配。
+harvestfestival.npc.jade.festival.new.years2=很高兴看到鲜花盛开。
+harvestfestival.npc.jade.festival.sheep1=羊需要很长时间才能重新长满羊毛，然后才能继续修剪。
+harvestfestival.npc.jade.festival.sheep2=Jim告诉我当他在羊群周围的时候不要叫喊他，我不记得这是为什么了。
+harvestfestival.npc.jade.festival.starry.night1=如果我在森林里探索，我可能会得到一些槲寄生。可怜的树显然不喜欢它们。
+harvestfestival.npc.jade.festival.starry.night2=你有没有看过雪花？
 
 
 #Jenni/Othlon
@@ -1141,8 +1141,8 @@ harvestfestival.npc.jenni.gift.decent=不错的朋友啊, 你是.
 harvestfestival.npc.jenni.gift.dislike=谢谢你, 朋友.
 harvestfestival.npc.jenni.gift.bad=你可以做得更好, 不过也还可以.
 harvestfestival.npc.jenni.gift.terrible=我还以为你不会得罪我, 但是现在你就得罪了, 为什么要这样做?
-harvestfestival.npc.jenni.festival.chicken1=Such good birdies. Spare feathers always add a bit of pizazz for a craft project.
-harvestfestival.npc.jenni.festival.chicken2=I love the taste of the food our town's eggs make. Liara's cakes especially.
+harvestfestival.npc.jenni.festival.chicken1=多么漂亮的小鸟，它的羽毛总是光彩耀人。
+harvestfestival.npc.jenni.festival.chicken2=我喜欢在城镇中使用蛋作物原料制作食物，Liara的蛋糕也是如此。
 harvestfestival.npc.jenni.festival.cooking1=If you're in need of cooking supplies, the general store is your one stop shop.
 harvestfestival.npc.jenni.festival.cooking2=If you see Candice walking around offering out hot milk... don't take it. Its a trap.
 harvestfestival.npc.jenni.festival.cow1=I don't like how the cattle have to stand still so long while being milked. Isn't it stressful for them?
@@ -1151,12 +1151,12 @@ harvestfestival.npc.jenni.festival.harvest1=A pinch of this, a dash of that, and
 harvestfestival.npc.jenni.festival.harvest2=A splash of oil, a few sprigs of chamomile and voila, a beautiful soup. Oh hello!
 harvestfestival.npc.jenni.festival.new.years.eve1=It helps to use a flat edge to smooth out the folds in your paper flower. See that crisp edge? Its a bit sharp, but holds its shape while floating in the water. I can test a smaller flower in the well before going to make my actual flower.
 harvestfestival.npc.jenni.festival.new.years.eve2=My new year resolution is to grow my inventory of stock to sell to you and the town. Perhaps increase my choice of seeds.
-harvestfestival.npc.jenni.festival.new.years1=Happy New Year!
+harvestfestival.npc.jenni.festival.new.years1=新年快乐！
 harvestfestival.npc.jenni.festival.new.years2=If I had my way, we would be having a dumpling bar for lunch, and a beef pot for dinner. The mayor would have a fit for the price!
 harvestfestival.npc.jenni.festival.sheep1=Wool sells well alone, but there should be a way to spin it for yarn. Yarn sells very well. Granny Katlin would be your best customer.
 harvestfestival.npc.jenni.festival.sheep2=They're pickier than goats, but I've seen a flock of sheep mow down a hill of grass. It was like watching a baaing cloud.
-harvestfestival.npc.jenni.festival.starry.night1=Its too cold to grow any crops, so I don't carry any winter seeds yet in my shop.
-harvestfestival.npc.jenni.festival.starry.night2=As fall ended, I saw somewhere that someone wove a basket shaped like a horn and filled it with food. I wish I could've gotten a closer look.
+harvestfestival.npc.jenni.festival.starry.night1=天气实在是太冷了，无能耕种农作物！所以我的店里都没有冬季作物储备。
+harvestfestival.npc.jenni.festival.starry.night2=记得有一年冬季结束，我似乎看到有一个人背着篮子。里面满载着一年里收获的作物。
 
 #Jaimii
 harvestfestival.npc.jamie.greeting1=这是我的地盘, 你给我记住了.
@@ -1772,7 +1772,7 @@ harvestfestival.shop.knitting.greeting3=Need something for the winter? Let's kee
 
 #Minecraft Fried Chicken - Chicken Festival
 harvestfestival.shop.mfc=麦德基
-harvestfestival.shop.mfc.greeting1=Good morning and welcome to Minecraft Fried Chicken!
+harvestfestival.shop.mfc.greeting1=早上好，欢迎来到麦德基！
 harvestfestival.shop.mfc.greeting2=请把你的炸鸡和蛋放在这里！
 harvestfestival.shop.mfc.greeting3=午饭吃了吗？是时候咕咕咕的叫了！
 

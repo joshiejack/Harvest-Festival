@@ -10,6 +10,7 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
@@ -121,7 +122,7 @@ public class  BlockPortal extends BlockHFEnum<BlockPortal, Portal> {
     @Override
     public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity) {
         if (!world.isRemote) {
-            if (entity.timeUntilPortal == 0 && !(entity instanceof EntityNPC)) {
+            if (entity.timeUntilPortal == 0 && !(entity instanceof EntityNPC) && !(entity instanceof EntityItem)) {
                 IBlockState actual = getActualState(state, world, pos);
                 if (actual.getBlock() == this) {
                     Portal portal = getEnumFromState(actual);

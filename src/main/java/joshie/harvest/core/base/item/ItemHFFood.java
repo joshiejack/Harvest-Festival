@@ -1,8 +1,8 @@
 package joshie.harvest.core.base.item;
 
 import joshie.harvest.core.HFTab;
-import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.helpers.TextHelper;
+import joshie.harvest.core.lib.HFModInfo;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;

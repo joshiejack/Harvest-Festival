@@ -1,12 +1,12 @@
 package joshie.harvest.npcs.entity;
 
 import io.netty.buffer.ByteBuf;
+import joshie.harvest.api.npc.NPC;
 import joshie.harvest.core.HFCore;
 import joshie.harvest.core.block.BlockFlower.FlowerType;
 import joshie.harvest.core.helpers.SpawnItemHelper;
 import joshie.harvest.core.lib.HFSounds;
 import joshie.harvest.npcs.HFNPCs;
-import joshie.harvest.api.npc.NPC;
 import joshie.harvest.npcs.entity.ai.EntityAISwim;
 import joshie.harvest.npcs.entity.ai.EntityAITalkingTo;
 import net.minecraft.block.state.IBlockState;

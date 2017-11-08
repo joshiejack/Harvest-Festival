@@ -1,8 +1,8 @@
 package joshie.harvest.knowledge.gui.stats.button;
 
 import joshie.harvest.core.base.gui.ButtonBook;
-import joshie.harvest.knowledge.gui.stats.GuiStats;
 import joshie.harvest.core.helpers.TextHelper;
+import joshie.harvest.knowledge.gui.stats.GuiStats;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 

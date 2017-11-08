@@ -15,8 +15,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.UUID;
 
-import static tehnut.buttons.config.ConfigHandler.categories;
-
 public class TileFestivalPot extends TileStand {
     private final Map<UUID, ItemStack> data = new HashMap<>();
 

@@ -2,7 +2,9 @@ package joshie.harvest.core.commands;
 
 import joshie.harvest.core.commands.CommandManager.CommandLevel;
 import joshie.harvest.npcs.entity.EntityNPC;
-import net.minecraft.command.*;
+import net.minecraft.command.CommandBase;
+import net.minecraft.command.CommandException;
+import net.minecraft.command.ICommandSender;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.text.TextComponentString;
 

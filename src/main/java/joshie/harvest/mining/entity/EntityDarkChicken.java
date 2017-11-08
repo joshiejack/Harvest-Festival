@@ -22,7 +22,8 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import static joshie.harvest.mining.HFMining.ANIMALS_ON_EVERY_FLOOR;
-import static joshie.harvest.mining.MiningHelper.*;
+import static joshie.harvest.mining.MiningHelper.CHICKEN_FLOORS;
+import static joshie.harvest.mining.MiningHelper.SILVER_FLOOR;
 
 public class EntityDarkChicken extends EntityMob {
     public float wingRotation;

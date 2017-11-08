@@ -1,7 +1,7 @@
 package joshie.harvest.npcs.entity;
 
-import joshie.harvest.npcs.HFNPCs;
 import joshie.harvest.api.npc.NPC;
+import joshie.harvest.npcs.HFNPCs;
 import net.minecraft.world.World;
 
 public class EntityNPCVillager extends EntityNPCHuman<EntityNPCVillager> {

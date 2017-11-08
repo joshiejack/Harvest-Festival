@@ -2,8 +2,8 @@ package joshie.harvest.cooking.tile;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.core.helpers.NBTHelper;
-import joshie.harvest.core.lib.HFSounds;
 import joshie.harvest.core.helpers.TextHelper;
+import joshie.harvest.core.lib.HFSounds;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ItemStackHelper;

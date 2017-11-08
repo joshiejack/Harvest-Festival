@@ -18,7 +18,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
 
 import static joshie.harvest.cooking.gui.GuiCookbook.LEFT_GUI;
 import static joshie.harvest.cooking.gui.GuiCookbook.ingredients;

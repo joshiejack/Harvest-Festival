@@ -1,6 +1,5 @@
 package joshie.harvest.npcs.gift.init;
 
-import joshie.harvest.api.core.Ore;
 import joshie.harvest.core.util.annotations.HFLoader;
 import joshie.harvest.fishing.HFFishing;
 import joshie.harvest.fishing.item.ItemJunk.Junk;

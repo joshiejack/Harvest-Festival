@@ -7,7 +7,6 @@ import joshie.harvest.core.util.annotations.HFEvents;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
-import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
 import java.util.*;

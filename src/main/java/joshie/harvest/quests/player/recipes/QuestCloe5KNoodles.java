@@ -7,7 +7,7 @@ import joshie.harvest.quests.base.QuestRecipe;
 
 import java.util.Set;
 
-import static joshie.harvest.quests.Quests.*;
+import static joshie.harvest.quests.Quests.CLOE_MEET;
 
 @HFQuest("recipe.noodles")
 public class QuestCloe5KNoodles extends QuestRecipe {

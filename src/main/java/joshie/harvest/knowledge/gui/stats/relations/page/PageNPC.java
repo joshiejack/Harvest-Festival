@@ -1,12 +1,12 @@
 package joshie.harvest.knowledge.gui.stats.relations.page;
 
+import joshie.harvest.api.npc.NPC;
 import joshie.harvest.core.base.gui.BookPage;
 import joshie.harvest.knowledge.gui.stats.GuiStats;
 import joshie.harvest.knowledge.gui.stats.button.ButtonNext;
 import joshie.harvest.knowledge.gui.stats.button.ButtonPrevious;
 import joshie.harvest.knowledge.gui.stats.relations.button.ButtonRelationsNPC;
 import joshie.harvest.npcs.HFNPCs;
-import joshie.harvest.api.npc.NPC;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiLabel;
 

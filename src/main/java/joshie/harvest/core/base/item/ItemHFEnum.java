@@ -2,9 +2,9 @@ package joshie.harvest.core.base.item;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.core.HFTab;
+import joshie.harvest.core.helpers.TextHelper;
 import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.core.util.interfaces.ICreativeSorted;
-import joshie.harvest.core.helpers.TextHelper;
 import joshie.harvest.core.util.interfaces.ISellable;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;

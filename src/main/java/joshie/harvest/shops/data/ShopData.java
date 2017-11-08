@@ -1,9 +1,9 @@
 package joshie.harvest.shops.data;
 
 import joshie.harvest.api.shops.IPurchasable;
+import joshie.harvest.api.shops.Shop;
 import joshie.harvest.core.helpers.NBTHelper;
 import joshie.harvest.core.network.PacketHandler;
-import joshie.harvest.api.shops.Shop;
 import joshie.harvest.shops.packet.PacketSyncSold;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;

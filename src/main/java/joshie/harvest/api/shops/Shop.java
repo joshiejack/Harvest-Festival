@@ -10,7 +10,10 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.translation.I18n;
 
 import javax.annotation.Nullable;
-import java.util.*;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Set;
 
 public class Shop {
     public static final HashMap<ResourceLocation, Shop> REGISTRY = new HashMap<>();

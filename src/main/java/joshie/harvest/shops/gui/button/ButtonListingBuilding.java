@@ -2,8 +2,8 @@ package joshie.harvest.shops.gui.button;
 
 import joshie.harvest.api.shops.IPurchaseableMaterials;
 import joshie.harvest.api.shops.IRequirement;
-import joshie.harvest.core.helpers.StackRenderHelper;
 import joshie.harvest.core.helpers.StackHelper;
+import joshie.harvest.core.helpers.StackRenderHelper;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.shops.gui.GuiNPCShop;
 import net.minecraft.client.Minecraft;

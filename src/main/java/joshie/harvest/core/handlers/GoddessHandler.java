@@ -1,12 +1,12 @@
 package joshie.harvest.core.handlers;
 
+import joshie.harvest.api.npc.NPC;
 import joshie.harvest.core.HFCore;
 import joshie.harvest.core.achievements.HFAchievements;
 import joshie.harvest.core.block.BlockFlower.FlowerType;
 import joshie.harvest.core.lib.HFSounds;
 import joshie.harvest.core.util.annotations.HFEvents;
 import joshie.harvest.npcs.HFNPCs;
-import joshie.harvest.api.npc.NPC;
 import joshie.harvest.npcs.NPCHelper;
 import joshie.harvest.npcs.entity.EntityNPCGoddess;
 import net.minecraft.block.Block;

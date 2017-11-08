@@ -1,9 +1,9 @@
 package joshie.harvest;
 
 import joshie.harvest.core.HFApiLoader;
-import joshie.harvest.core.proxy.HFCommonProxy;
-import joshie.harvest.core.commands.CommandManager;
 import joshie.harvest.core.HFTrackers;
+import joshie.harvest.core.commands.CommandManager;
+import joshie.harvest.core.proxy.HFCommonProxy;
 import net.minecraft.command.ICommandManager;
 import net.minecraft.command.ServerCommandManager;
 import net.minecraftforge.fml.common.Mod;

@@ -26,4 +26,4 @@ dependencies {
 }
 ```
 
-`${mc_version}` & `${hf_version}` can be found [here](http://girafi.dk/maven/uk/joshiejack/harvest/Harvest-Festival/), check the file name of the version you want.
+`${mc_version}` & `${hf_version}` can be found [here](http://girafi.dk/maven/uk/joshiejack/harvest/), check the file name of the version you want.

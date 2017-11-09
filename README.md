@@ -16,14 +16,14 @@ Add to your build.gradle:
 repositories {
   maven {
     // url of the maven that hosts Harvest Festival files
-    url "http://joshiejack.uk/maven/"
+    url "http://girafi.dk/maven/"
   }
 }
 
 dependencies {
   // compile against Harvest Festival
-  deobfCompile "uk.joshiejack.harvest:Harvest-Festival:${mc_version}-${hf_version}"
+  deobfCompile "uk.joshiejack.harvest:harvest_festival_${mc_version}:${mc_version}-${hf_version}"
 }
 ```
 
-`${mc_version}` & `${hf_version}` can be found [here](http://joshiejack.uk/maven/uk/joshiejack/harvest/Harvest-Festival/), check the file name of the version you want.
+`${mc_version}` & `${hf_version}` can be found [here](http://girafi.dk/maven/uk/joshiejack/harvest/Harvest-Festival/), check the file name of the version you want.

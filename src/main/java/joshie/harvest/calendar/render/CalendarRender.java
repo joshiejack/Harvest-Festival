@@ -100,7 +100,7 @@ public class CalendarRender {
         if (event.getEntity().world.provider.getDimension() == 0) {
             if (!event.getState().getMaterial().isLiquid()) {
                 Weather weather = HFApi.calendar.getWeather(MCClientHelper.getWorld());
-                if (weather == Weather.SNOW || weather == Weather.BLIZZARD) {
+                if (weather != null && (weather == Weather.SNOW || weather == Weather.BLIZZARD)) {
                     event.setRed(1F);
                     event.setBlue(1F);
                     event.setGreen(1F);

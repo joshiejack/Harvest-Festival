@@ -40,7 +40,7 @@ public class ItemHolder extends AbstractItemHolder {
 
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound tag) {
-        tag.setString("ItemName", Item.REGISTRY.getNameForObject(item).toString());
+        tag.setString("ItemName", String.valueOf(Item.REGISTRY.getNameForObject(item)));
         return tag;
     }
 

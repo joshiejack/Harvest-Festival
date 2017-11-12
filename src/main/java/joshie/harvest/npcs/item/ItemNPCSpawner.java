@@ -34,7 +34,7 @@ public class ItemNPCSpawner extends ItemHFRegistry<ItemNPCSpawner, NPC> {
         return getObjectFromStack(stack).getLocalizedName();
     }
 
-    private void spawnNPC(World world, BlockPos pos, NPC npc) {
+    public static void spawnNPC(World world, BlockPos pos, NPC npc) {
         EntityNPC entity = NPCHelper.getEntityForNPC(world, npc);
         entity.setPosition(pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5);
         if (npc == HFNPCs.CARPENTER) {

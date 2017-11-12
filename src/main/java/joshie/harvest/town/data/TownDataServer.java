@@ -28,6 +28,7 @@ import joshie.harvest.npcs.NPCHelper;
 import joshie.harvest.npcs.entity.EntityNPCBuilder;
 import joshie.harvest.npcs.entity.EntityNPCHuman;
 import joshie.harvest.npcs.entity.EntityNPCMiner;
+import joshie.harvest.npcs.item.ItemNPCSpawner;
 import joshie.harvest.quests.data.QuestDataServer;
 import joshie.harvest.quests.packet.PacketSharedSync;
 import joshie.harvest.town.packet.*;
@@ -73,7 +74,7 @@ public class TownDataServer extends TownData<QuestDataServer, LetterDataServer> 
     public void removeBuilding(TownBuilding theBuilding) {
         buildings.remove(theBuilding.building.getResource());
         inhabitants.removeAll(theBuilding.building.getInhabitants());
-        for (NPC npc: theBuilding.building.getInhabitants()) {
+        for (NPC npc : theBuilding.building.getInhabitants()) {
             deadVillagers.remove(npc.getResource());
         }
 
@@ -165,7 +166,7 @@ public class TownDataServer extends TownData<QuestDataServer, LetterDataServer> 
 
     private void generateNewDailyQuest(World world) {
         List<Quest> quests = new ArrayList<>();
-        for (Quest quest: Quest.REGISTRY) {
+        for (Quest quest : Quest.REGISTRY) {
             if (isRepeatable(world, quest) || !getQuests().getFinished().contains(quest)) {
                 if (!getQuests().getCurrent().contains(quest)) {
                     if (quest.canStartDailyQuest(this, world, townCentre)) {
@@ -199,7 +200,7 @@ public class TownDataServer extends TownData<QuestDataServer, LetterDataServer> 
             //TODO: Disable this again
             gathering.newDay(world, townCentre, buildings.values(), isFar);
             generateNewDailyQuest(world);
-            for (Entry<ResourceLocation, BlockPos> entry: deadVillagers.entrySet()) {
+            for (Entry<ResourceLocation, BlockPos> entry : deadVillagers.entrySet()) {
                 NPC npc = NPC.REGISTRY.get(entry.getKey());
                 if (npc == HFNPCs.MINER) {
                     WorldServer server = FMLCommonHandler.instance().getMinecraftServerInstance().worldServerForDimension(MINING_ID);
@@ -213,21 +214,18 @@ public class TownDataServer extends TownData<QuestDataServer, LetterDataServer> 
                     server.spawnEntity(entity);
                 } else if (npc != HFNPCs.GODDESS) {
                     Entity theEntity = NPCHelper.getNPCIfExists((WorldServer) world, townCentre, npc);
-                    if (!(theEntity != null && !theEntity.isDead)) {
-                        EntityNPCHuman entity = NPCHelper.getEntityForNPC(world, npc);
-                        entity.setPosition(townCentre.getX(), townCentre.getY(), townCentre.getZ());
-                        BlockPos home = NPCHelper.getHomeForEntity(entity);
-                        BlockPos pos = home != null ? home : entry.getValue();
-                        int attempts = 0;
-                        while (!EntityHelper.isSpawnable(world, pos) && attempts < 64) {
-                            pos = pos.add(world.rand.nextInt(16) - 8, world.rand.nextInt(8), world.rand.nextInt(16) - 8);
-                            attempts++;
-                        }
+                    if (theEntity != null && !theEntity.isDead) return;
 
-                        entity.setPositionAndUpdate(pos.getX(), pos.getY(), pos.getZ());
-                        if (npc == HFNPCs.CARPENTER) entity.setUniqueId(getID()); //Keep the Unique ID the same
-                        world.spawnEntity(entity);
+                    EntityNPCHuman entity = NPCHelper.getEntityForNPC(world, npc);
+                    entity.setPosition(townCentre.getX(), townCentre.getY(), townCentre.getZ());
+                    BlockPos home = NPCHelper.getHomeForEntity(entity);
+                    BlockPos pos = home != null ? home : entry.getValue();
+                    int attempts = 0;
+                    while (!EntityHelper.isSpawnable(world, pos) && attempts < 64) {
+                        pos = pos.add(world.rand.nextInt(16) - 8, world.rand.nextInt(8), world.rand.nextInt(16) - 8);
+                        attempts++;
                     }
+                    ItemNPCSpawner.spawnNPC(world, pos, npc);
                 }
             }
 
@@ -328,7 +326,7 @@ public class TownDataServer extends TownData<QuestDataServer, LetterDataServer> 
         gathering.writeToNBT(nbt);
         nbt.setInteger("Dimension", dimension);
         NBTTagList list = new NBTTagList();
-        for (Entry<ResourceLocation, BlockPos> entry: deadVillagers.entrySet()) {
+        for (Entry<ResourceLocation, BlockPos> entry : deadVillagers.entrySet()) {
             NBTTagCompound tag = new NBTTagCompound();
             tag.setString("Resource", entry.getKey().toString());
             tag.setLong("Position", entry.getValue().toLong());

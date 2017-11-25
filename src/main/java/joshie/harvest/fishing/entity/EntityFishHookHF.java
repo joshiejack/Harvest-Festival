@@ -53,6 +53,7 @@ public class EntityFishHookHF extends EntityFishHook {
                 caughtEntity = world.getEntityByID(i - 1);
             }
         } else {
+            if (angler == null) return;
             ItemStack itemstack = angler.getHeldItemMainhand();
                                                                                                     //TODO: Line changed by me
             if (angler.isDead || !angler.isEntityAlive() || itemstack == null || itemstack.getItem() != HFFishing.FISHING_ROD || getDistanceSqToEntity(angler) > 1024.0D) {

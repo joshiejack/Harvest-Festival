@@ -8,8 +8,7 @@ Also adding seasons that affect day length, daily weather, cooking and a new way
 
 More information about Harvest Festival and downloads can be found on [CurseForge](https://minecraft.curseforge.com/projects/harvest-festival)
 
-If you have any questions, feel free to join the [Harvest Festival Discord](https://discord.gg/MRZAyze/)
-
+If you have any questions, feel free to join the [Harvest Festival Discord](https://discord.gg/MRZAyze)
 
 Adding Harvest Festival to your buildscript
 ---

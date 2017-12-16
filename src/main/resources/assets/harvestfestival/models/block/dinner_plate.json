@@ -2,8 +2,8 @@
 	"credit": "Made with Blockbench, a free, modern block model editor by JannisX11",
 	"parent": "block/block",
 	"textures": {
-		"texture": "models/plate",
-		"particle": "models/plate"
+		"texture": "harvestfestival:models/plate",
+		"particle": "harvestfestival:models/plate"
 	},
 	"elements": [
 		{

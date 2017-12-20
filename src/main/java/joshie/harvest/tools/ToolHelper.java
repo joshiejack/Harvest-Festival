@@ -140,7 +140,7 @@ public class ToolHelper {
         }
     }
 
-    private static void restoreHunger(EntityPlayer player) {
+    public static void restoreHunger(EntityPlayer player) {
         ReflectionHelper.setPrivateValue(FoodStats.class, player.getFoodStats(), 20, "foodLevel", "field_75127_a");
         ReflectionHelper.setPrivateValue(FoodStats.class, player.getFoodStats(), 5F, "foodSaturationLevel", "field_75125_b");
         ReflectionHelper.setPrivateValue(FoodStats.class, player.getFoodStats(), 0, "foodExhaustionLevel", "field_75126_c");

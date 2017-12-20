@@ -6,6 +6,7 @@ import joshie.harvest.tools.item.*;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 
@@ -51,8 +52,10 @@ public class HFTools {
     }
 
     //Configuration
+    private static boolean MORPHEUS_LOADED = Loader.isModLoaded("Morpheus"); //TODO 1.12, change to lowercase
     static float EXHAUSTION_AMOUNT;
-    static boolean RESTORE_HUNGER_ON_SLEEP;
+    public static boolean RESTORE_HUNGER_ON_SLEEP;
+    public static boolean RESTORE_HUNGER_FOR_SLEEPERS_ONLY;
     static boolean RESTORE_HUNGER_ON_FAINTING;
     static boolean HF_CONSUME_HUNGER;
     static boolean ENABLE_FAINTING;
@@ -65,7 +68,8 @@ public class HFTools {
     public static void configure() {
         EXHAUSTION_AMOUNT = 4F / getInteger("Actions per half haunch", 27);
         RESTORE_HUNGER_ON_SLEEP = getBoolean("Restore hunger on sleep", true);
-        RESTORE_HUNGER_ON_SLEEP = getBoolean("Restore hunger on fainting", true);
+        if (MORPHEUS_LOADED) RESTORE_HUNGER_FOR_SLEEPERS_ONLY = getBoolean("Restore hunger on sleep for sleeping players only (Morpheus)", true);
+        RESTORE_HUNGER_ON_FAINTING = getBoolean("Restore hunger on fainting", true);
         HF_CONSUME_HUNGER = getBoolean("Performing Harvest Festival actions consumes hunger", true);
         ENABLE_FAINTING = getBoolean("Enable fainting when low on food", true);
         ENABLE_EARLY_FAINTING = getBoolean("Enable fainting when exhausted and timer is three quarters way", false);

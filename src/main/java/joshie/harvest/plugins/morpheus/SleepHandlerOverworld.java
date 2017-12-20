@@ -18,10 +18,12 @@ public class SleepHandlerOverworld implements INewDayHandler {
         for (int j = 0; j < server.worlds.length; ++j) {
             WorldServer world = server.worlds[j];
             world.setWorldTime((i - i % TICKS_PER_DAY) - 1);
-            if (HFTools.RESTORE_HUNGER_FOR_SLEEPERS_ONLY) {
-                world.playerEntities.stream().filter(EntityPlayer::isPlayerSleeping).forEach(ToolHelper::restoreHunger);
-            } else {
-                world.playerEntities.forEach(ToolHelper::restoreHunger);
+            if (HFTools.RESTORE_HUNGER_ON_SLEEP) {
+                if (HFTools.RESTORE_HUNGER_FOR_SLEEPERS_ONLY) {
+                    world.playerEntities.stream().filter(EntityPlayer::isPlayerSleeping).forEach(ToolHelper::restoreHunger);
+                } else {
+                    world.playerEntities.forEach(ToolHelper::restoreHunger);
+                }
             }
             world.playerEntities.stream().filter(EntityPlayer::isPlayerSleeping).forEach(player -> player.wakeUpPlayer(false, false, true));
         }

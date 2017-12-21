@@ -31,6 +31,7 @@ public class HFCalendar {
     public static boolean ENABLE_TYPHOON;
     public static boolean ENABLE_SNOW;
     public static boolean ENABLE_BLIZZARD;
+    public static boolean ENABLE_SNOW_FOG;
     public static boolean ENABLE_DATE_HUD;
     public static boolean ENABLE_GOLD_HUD;
     public static boolean SNOW_TICKER;
@@ -75,6 +76,7 @@ public class HFCalendar {
         ENABLE_TYPHOON = getBoolean("Weather > Enable typhoon", true);
         ENABLE_SNOW = getBoolean("Weather > Enable snow", true);
         ENABLE_BLIZZARD = getBoolean("Weather > Enable blizzard", true);
+        ENABLE_SNOW_FOG = getBoolean("Weather -> Enable snow fog", true);
         HIDE_CALENDAR_TEXTURE = getBoolean("HUD > Calendar Hide Texture", false);
         X_CALENDAR = getInteger("HUD > Calendar X", 0);
         Y_CALENDAR = getInteger("HUD > Calendar Y", 0);

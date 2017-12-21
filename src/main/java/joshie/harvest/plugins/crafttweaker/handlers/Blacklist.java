@@ -53,7 +53,7 @@ public class Blacklist {
     @SuppressWarnings("unused")
     public static void blacklistHoe(IItemStack drop) {
         ItemStack stack = asStack(drop);
-        if (stack == null) CraftTweaker.logError("Could not blacklist seeds as the item was null");
+        if (stack == null) CraftTweaker.logError("Could not blacklist the hoe as the item was null");
         else MineTweakerAPI.apply(new BlacklistHoe(stack));
     }
 

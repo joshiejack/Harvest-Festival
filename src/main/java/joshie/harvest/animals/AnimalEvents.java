@@ -105,7 +105,7 @@ public class AnimalEvents {
         }
 
         boolean blocksPickup(EntityPlayer player) {
-            return isHolding(player.getHeldItemMainhand()) || isHolding(player.getHeldItemOffhand());
+            return isHolding(player.getHeldItemMainhand()) || isHolding(player.getHeldItemOffhand()) || player.isSneaking();
         }
 
         @SubscribeEvent

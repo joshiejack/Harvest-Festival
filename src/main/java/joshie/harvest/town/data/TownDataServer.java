@@ -31,6 +31,7 @@ import joshie.harvest.npcs.entity.EntityNPCMiner;
 import joshie.harvest.npcs.item.ItemNPCSpawner;
 import joshie.harvest.quests.data.QuestDataServer;
 import joshie.harvest.quests.packet.PacketSharedSync;
+import joshie.harvest.town.TownHelper;
 import joshie.harvest.town.packet.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -219,7 +220,7 @@ public class TownDataServer extends TownData<QuestDataServer, LetterDataServer> 
                     EntityNPCHuman entity = NPCHelper.getEntityForNPC(world, npc);
                     entity.setPosition(townCentre.getX(), townCentre.getY(), townCentre.getZ());
                     BlockPos home = NPCHelper.getHomeForEntity(entity);
-                    BlockPos pos = home != null ? home : entry.getValue();
+                    BlockPos pos = home != null ? home : TownHelper.getClosestTownToBlockPos(world, entry.getValue(), false).townCentre;
                     int attempts = 0;
                     while (!EntityHelper.isSpawnable(world, pos) && attempts < 64) {
                         pos = pos.add(world.rand.nextInt(16) - 8, world.rand.nextInt(8), world.rand.nextInt(16) - 8);

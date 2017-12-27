@@ -222,6 +222,10 @@ public class TownDataServer extends TownData<QuestDataServer, LetterDataServer> 
                     BlockPos home = NPCHelper.getHomeForEntity(entity);
                     BlockPos pos = home != null ? home : TownHelper.getClosestTownToBlockPos(world, entry.getValue(), false).townCentre;
                     int attempts = 0;
+                    if (pos == null) {
+                        pos = new BlockPos(0, 70, 0);
+                    }
+
                     while (!EntityHelper.isSpawnable(world, pos) && attempts < 64) {
                         pos = pos.add(world.rand.nextInt(16) - 8, world.rand.nextInt(8), world.rand.nextInt(16) - 8);
                         attempts++;

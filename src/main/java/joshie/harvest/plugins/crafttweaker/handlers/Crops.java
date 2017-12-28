@@ -387,6 +387,33 @@ public class Crops {
 
     @ZenMethod
     @SuppressWarnings("unused")
+    public static void setMaxHarvests(String name, int stage) {
+        MineTweakerAPI.apply(new SetMaxHarvests(name, stage));
+    }
+
+    private static class SetMaxHarvests extends BaseCrop {
+        private final int harvestTimes;
+
+        public SetMaxHarvests(String name, int maxHarvests) {
+            super(name);
+            this.harvestTimes = maxHarvests;
+        }
+
+        @Override
+        public String getDescription() {
+            return "Setting max number of harvests for " + resource + " to " + harvestTimes;
+        }
+
+        @Override
+        protected void applyToCrop(Crop crop) {
+            crop.setMaxHarvests(harvestTimes);
+        }
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    @ZenMethod
+    @SuppressWarnings("unused")
     public static void setFoodType(String name, String type) {
         MineTweakerAPI.apply(new SetFoodType(name, type));
     }

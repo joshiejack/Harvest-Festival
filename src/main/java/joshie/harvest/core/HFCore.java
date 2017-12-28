@@ -11,10 +11,7 @@ import joshie.harvest.core.helpers.RegistryHelper;
 import joshie.harvest.core.lib.EntityIDs;
 import joshie.harvest.core.loot.SetEnum;
 import joshie.harvest.core.loot.SetSizeable;
-import joshie.harvest.core.render.RenderBasket;
-import joshie.harvest.core.render.SpecialRendererBasket;
-import joshie.harvest.core.render.SpecialRendererMailbox;
-import joshie.harvest.core.render.SpecialRendererPlate;
+import joshie.harvest.core.render.*;
 import joshie.harvest.core.tile.*;
 import joshie.harvest.core.util.annotations.HFLoader;
 import net.minecraft.block.BlockFlower.EnumFlowerColor;
@@ -106,6 +103,7 @@ public class HFCore {
     public static void initClient() {
         ClientRegistry.bindTileEntitySpecialRenderer(TileBasket.class, new SpecialRendererBasket());
         ClientRegistry.bindTileEntitySpecialRenderer(TilePlate.class, new SpecialRendererPlate());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileFestivalPot.class, new SpecialRendererFestivalPot());
         Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler((state, worldIn, pos, tintIndex) -> {
                 FlowerType type = HFCore.FLOWERS.getEnumFromState(state);
                 if (!type.isColored()) return -1;

@@ -22,6 +22,8 @@ public abstract class TileStand extends TileFaceable {
         return stack == null;
     }
 
+    public boolean canEmpty() { return true; }
+
     public void setContents(ItemStack stack) {
         this.stack = stack;
         saveAndRefresh();

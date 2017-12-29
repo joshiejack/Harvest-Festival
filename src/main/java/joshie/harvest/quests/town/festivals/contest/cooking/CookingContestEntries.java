@@ -32,7 +32,7 @@ public class CookingContestEntries extends ContestEntries<ItemStack, CookingCont
         TileEntity tile = world.getTileEntity(pos);
         ItemStack meal = HFCooking.MEAL.getRandomMeal(world.rand);
         if (tile instanceof TilePlate) {
-            TilePlate plate = ((TilePlate)tile);
+            TilePlate plate = ((TilePlate) tile);
             plate.setContents(meal.copy());
         }
 
@@ -68,7 +68,7 @@ public class CookingContestEntries extends ContestEntries<ItemStack, CookingCont
     @Override
     public List<Pair<String, Integer>> getAvailableEntryNames(EntityPlayer player) {
         List<Pair<String, Integer>> list = new ArrayList<>();
-        for (Pair<ItemStack, Integer> pair: getAvailableEntries(player)) {
+        for (Pair<ItemStack, Integer> pair : getAvailableEntries(player)) {
             list.add(Pair.of(pair.getKey().getDisplayName(), pair.getValue()));
         }
 
@@ -87,10 +87,11 @@ public class CookingContestEntries extends ContestEntries<ItemStack, CookingCont
             }
         }
 
-        BlockPos target = HFApi.towns.getTownForEntity(player).getCoordinatesFromOffset(HFBuildings.FESTIVAL_GROUNDS, locations[stall]);
+        BlockPos target = HFApi.towns.getTownForEntity(player).getCoordinatesFromOffset(HFBuildings.FESTIVAL_GROUNDS, locations[stall-1]);
         entries.add(new CookingContestEntry(playerUUID, target, stack, stall));
         selecting.remove(playerUUID);
     }
+
     @Override
     protected CookingContestEntry fromNBT(NBTTagCompound tag) {
         return CookingContestEntry.fromNBT(tag);

@@ -41,8 +41,7 @@ import static joshie.harvest.town.BuildingLocations.PARK_COW_JUDGE;
 @HFQuest("festival.cooking")
 public class QuestContestCooking extends QuestContest<CookingContestEntries> {
     private static final String PREFIX = "cooking";
-    //TODO: Add the stand positions for plates based on serious's setup
-    private static final BlockPos[] LOCATIONS = new BlockPos[] { new BlockPos(8, 3, 21), new BlockPos(9, 3, 21), new BlockPos(10, 3, 21), new BlockPos(11, 3, 21) };
+    private static final BlockPos[] LOCATIONS = new BlockPos[] { new BlockPos(8, 3, 22), new BlockPos(9, 3, 22), new BlockPos(10, 3, 22), new BlockPos(11, 3, 22) };
     private static final NPC[] NPCS = new NPC[] { HFNPCs.FLOWER_GIRL, HFNPCs.MILKMAID, HFNPCs.TRADER, HFNPCs.CARPENTER, HFNPCs.DAUGHTER_ADULT, HFNPCs.CLOCKMAKER, HFNPCs.BLACKSMITH, HFNPCs.FISHERMAN, HFNPCs.POULTRY, HFNPCs.PRIEST, HFNPCs.BARN_OWNER };
     private static final Script FINISH = new HFScript(PREFIX + "_finish");
     private static final Script JUDGE_1 = new ContestJudgingScript(PREFIX, 1).setNPC(GS_OWNER);
@@ -50,14 +49,10 @@ public class QuestContestCooking extends QuestContest<CookingContestEntries> {
     private static final Script JUDGE_3 = new ContestJudgingScript(PREFIX, 3).setNPC(GS_OWNER);
     private static final Script JUDGE_4 = new ContestJudgingScript(PREFIX, 4).setNPC(GS_OWNER);
     private static final Script WINNER = new ContestWinningScript(PREFIX).setNPC(GS_OWNER);
-    //TODO: Add the stand positions for walking based on serious setup
-    private static final BlockPos STAND1 = new BlockPos(12, 1, 13);
-    //TODO: Add the stand positions for walking based on serious setup
-    private static final BlockPos STAND2 = new BlockPos(17, 1, 10);
-    //TODO: Add the stand positions for walking based on serious setup
-    private static final BlockPos STAND3 = new BlockPos(23, 1, 17);
-    //TODO: Add the stand positions for walking based on serious setup
-    private static final BlockPos STAND4 = new BlockPos(27, 1, 20);
+    private static final BlockPos STAND1 = new BlockPos(8, 2, 21);
+    private static final BlockPos STAND2 = new BlockPos(9, 2, 21);
+    private static final BlockPos STAND3 = new BlockPos(10, 2, 21);
+    private static final BlockPos STAND4 = new BlockPos(11, 2, 21);
     private Utensil category;
 
     public QuestContestCooking() {
@@ -75,6 +70,7 @@ public class QuestContestCooking extends QuestContest<CookingContestEntries> {
     public Utensil getCategory() {
         return category;
     }
+
     @Override
     @Nullable
     @SideOnly(Side.CLIENT)
@@ -150,7 +146,6 @@ public class QuestContestCooking extends QuestContest<CookingContestEntries> {
         if (category != null) {
             nbt.setString("Utensil", category.getResource().toString());
         }
-
         return nbt;
     }
 }

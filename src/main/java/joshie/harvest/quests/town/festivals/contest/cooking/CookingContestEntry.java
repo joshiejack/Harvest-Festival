@@ -76,7 +76,7 @@ public class CookingContestEntry extends ContestEntry<QuestContestCooking> {
         TileEntity tile = world.getTileEntity(pos);
         if (tile instanceof TilePlate) {
             ItemStack contents = ((TilePlate)tile).getContents();
-            return !contents.isItemEqual(stack);
+            return contents != null && !contents.isItemEqual(stack);
         } else return true;
     }
 

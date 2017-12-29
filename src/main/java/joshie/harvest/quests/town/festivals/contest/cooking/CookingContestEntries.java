@@ -87,7 +87,7 @@ public class CookingContestEntries extends ContestEntries<ItemStack, CookingCont
             }
         }
 
-        BlockPos target = HFApi.towns.getTownForEntity(player).getCoordinatesFromOffset(HFBuildings.FESTIVAL_GROUNDS, locations[stall-1]);
+        BlockPos target = HFApi.towns.getTownForEntity(player).getCoordinatesFromOffset(HFBuildings.FESTIVAL_GROUNDS, locations[stall - 1]);
         entries.add(new CookingContestEntry(playerUUID, target, stack, stall));
         selecting.remove(playerUUID);
     }

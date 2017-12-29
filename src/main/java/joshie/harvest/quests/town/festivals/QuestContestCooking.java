@@ -116,10 +116,8 @@ public class QuestContestCooking extends QuestContest<CookingContestEntries> {
     public ItemStack getReward(Place place) {
         switch (place) {
             case FIRST:
-                return HFCooking.INGREDIENTS.getStackFromEnum(Ingredient.FLOUR, 8);
-            case SECOND:
                 return HFCooking.INGREDIENTS.getStackFromEnum(Ingredient.WINE, 1);
-            case THIRD:
+            case SECOND:
                 return HFCooking.INGREDIENTS.getStackFromEnum(Ingredient.FLOUR, 8);
             default:
                 return new ItemStack(Items.WHEAT);

@@ -7,22 +7,23 @@ import joshie.harvest.core.tile.TilePlate;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.WorldServer;
 
 @HFTask("eat")
 public class TaskEat extends TaskElement {
-    private BlockPos target;
+    private BlockPos worldPos;
 
-    public TaskEat(BlockPos target) {
-        this.target = target;
+    public TaskEat(BlockPos worldPos) {
+        this.worldPos = worldPos;
     }
 
     @Override
     public void execute(NPCEntity npc) {
-        TileEntity tile = npc.getAsEntity().world.getTileEntity(target);
+        WorldServer worldServer = (WorldServer) npc.getAsEntity().world;
+        TileEntity tile = worldServer.getTileEntity(worldPos);
         if (tile instanceof TilePlate) {
-            ((TilePlate)tile).setContents(null);
+            ((TilePlate) tile).setContents(null);
         }
-
         satisfied = true;
     }
 

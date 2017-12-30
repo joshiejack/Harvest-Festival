@@ -7,6 +7,7 @@ import joshie.harvest.api.npc.NPCEntity;
 import joshie.harvest.api.npc.greeting.Script;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.town.Town;
+import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.calendar.HFFestivals;
 import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.cooking.item.ItemIngredients.Ingredient;
@@ -21,6 +22,7 @@ import joshie.harvest.quests.town.festivals.contest.ContestWinningScript;
 import joshie.harvest.quests.town.festivals.contest.QuestContest;
 import joshie.harvest.quests.town.festivals.contest.cooking.CookingContestEntries;
 import joshie.harvest.quests.town.festivals.contest.cooking.CookingContestEntry;
+import joshie.harvest.quests.town.festivals.contest.cooking.TaskEat;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -41,8 +43,8 @@ import static joshie.harvest.town.BuildingLocations.PARK_COW_JUDGE;
 @HFQuest("festival.cooking")
 public class QuestContestCooking extends QuestContest<CookingContestEntries> {
     private static final String PREFIX = "cooking";
-    private static final BlockPos[] LOCATIONS = new BlockPos[] { new BlockPos(8, 3, 22), new BlockPos(9, 3, 22), new BlockPos(10, 3, 22), new BlockPos(11, 3, 22) };
-    private static final NPC[] NPCS = new NPC[] { HFNPCs.FLOWER_GIRL, HFNPCs.MILKMAID, HFNPCs.TRADER, HFNPCs.CARPENTER, HFNPCs.DAUGHTER_ADULT, HFNPCs.CLOCKMAKER, HFNPCs.BLACKSMITH, HFNPCs.FISHERMAN, HFNPCs.POULTRY, HFNPCs.PRIEST, HFNPCs.BARN_OWNER };
+    private static final BlockPos[] LOCATIONS = new BlockPos[]{new BlockPos(8, 3, 22), new BlockPos(9, 3, 22), new BlockPos(10, 3, 22), new BlockPos(11, 3, 22)};
+    private static final NPC[] NPCS = new NPC[]{HFNPCs.FLOWER_GIRL, HFNPCs.MILKMAID, HFNPCs.TRADER, HFNPCs.CARPENTER, HFNPCs.DAUGHTER_ADULT, HFNPCs.CLOCKMAKER, HFNPCs.BLACKSMITH, HFNPCs.FISHERMAN, HFNPCs.POULTRY, HFNPCs.PRIEST, HFNPCs.BARN_OWNER};
     private static final Script FINISH = new HFScript(PREFIX + "_finish");
     private static final Script JUDGE_1 = new ContestJudgingScript(PREFIX, 1).setNPC(GS_OWNER);
     private static final Script JUDGE_2 = new ContestJudgingScript(PREFIX, 2).setNPC(GS_OWNER);
@@ -83,7 +85,8 @@ public class QuestContestCooking extends QuestContest<CookingContestEntries> {
                 return entries.getNames().size() > 0 ? getLocalized("select") : getLocalized("none");
             }
 
-            if (!entries.isEntered(player)) return getLocalized("help", TextHelper.localize(getCategory().getLocalizedName()));
+            if (!entries.isEntered(player))
+                return getLocalized("help", TextHelper.localize(getCategory().getLocalizedName()));
             if (entries.isEntered(player)) return getLocalized("start");
         }
 
@@ -126,8 +129,12 @@ public class QuestContestCooking extends QuestContest<CookingContestEntries> {
 
     @Override
     public void execute(Town town, EntityPlayer player, NPCEntity npc) {
-        npc.setPath(move(STAND1), speech(JUDGE_1), move(STAND2), speech(JUDGE_2), move(STAND3), speech(JUDGE_3), move(STAND4), speech(JUDGE_4),
+        npc.setPath(move(STAND1), new TaskEat(getLocation(town, LOCATIONS[0])), speech(JUDGE_1), move(STAND2), new TaskEat(getLocation(town, LOCATIONS[1])), speech(JUDGE_2), move(STAND3), new TaskEat(getLocation(town, LOCATIONS[2])), speech(JUDGE_3), move(STAND4), new TaskEat(getLocation(town, LOCATIONS[3])), speech(JUDGE_4),
                 wait(1), speech(FINISH), move(PARK_COW_JUDGE), speech(WINNER), new ContestTaskWinner(HFFestivals.COOKING_CONTEST));
+    }
+
+    private BlockPos getLocation(Town town, BlockPos pos) {
+        return town.getCoordinatesFromOffset(HFBuildings.FESTIVAL_GROUNDS, pos);
     }
 
     @Override

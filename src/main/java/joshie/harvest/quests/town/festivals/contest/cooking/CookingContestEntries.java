@@ -30,7 +30,7 @@ public class CookingContestEntries extends ContestEntries<ItemStack, CookingCont
     @Override
     protected void createEntry(EntityPlayer player, World world, BlockPos pos, int stall) {
         TileEntity tile = world.getTileEntity(pos);
-        ItemStack meal = HFCooking.MEAL.getRandomMeal(world.rand);
+        ItemStack meal = HFCooking.MEAL.getRandomMealFromUtensil(QuestContestCooking.getCategory());
         if (tile instanceof TilePlate) {
             TilePlate plate = ((TilePlate) tile);
             plate.setContents(meal.copy());

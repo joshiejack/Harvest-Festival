@@ -11,6 +11,7 @@ import joshie.harvest.core.HFCore;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.item.ItemHFFoodEnum;
 import joshie.harvest.core.helpers.TextHelper;
+import joshie.harvest.quests.town.festivals.contest.cooking.CookingContestEntry;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
@@ -33,6 +34,7 @@ import static net.minecraft.util.text.TextFormatting.DARK_GRAY;
 public class ItemMeal extends ItemHFFoodEnum<ItemMeal, Meal> {
     private static final EnumMap<Meal, Recipe> MEAL_TO_RECIPE = new EnumMap<>(Meal.class);
     public static final Meal[] MEALS = Meal.values();
+
     public ItemMeal() {
         super(HFTab.COOKING, Meal.class);
     }
@@ -65,7 +67,7 @@ public class ItemMeal extends ItemHFFoodEnum<ItemMeal, Meal> {
             this.utensil = null;
         }
 
-        Meal (Utensil utensil) {
+        Meal(Utensil utensil) {
             this.hasAltTexture = false;
             this.utensil = utensil;
         }
@@ -90,13 +92,25 @@ public class ItemMeal extends ItemHFFoodEnum<ItemMeal, Meal> {
         else return getCreativeStack(MEALS[55 + rand.nextInt(35)]);
     }
 
-    private Recipe getRecipeFromMeal(Meal meal) {
+    public ItemStack getRandomMealFromUtensil(Utensil utensil) {
+        List<ItemStack> meals = new ArrayList<>();
+        for (Meal meal : MEALS) {
+            ItemStack randomMeal = getCreativeStack(meal);
+            Utensil stackUtensil = CookingContestEntry.getUtensilFromStack(randomMeal);
+            if (stackUtensil != null && stackUtensil.getResource() == utensil.getResource()) {
+                meals.add(randomMeal);
+            }
+        }
+        Collections.shuffle(meals);
+        return meals.get(0).copy();
+    }
+
+    private static Recipe getRecipeFromMeal(Meal meal) {
         if (MEAL_TO_RECIPE.size() == 0) {
             for (Meal ameal: MEALS) {
                 MEAL_TO_RECIPE.put(ameal, Recipe.REGISTRY.get(new ResourceLocation(MODID, ameal.getName())));
             }
         }
-
         return MEAL_TO_RECIPE.get(meal);
     }
 

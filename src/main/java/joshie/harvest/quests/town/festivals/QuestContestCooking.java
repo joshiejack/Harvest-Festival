@@ -55,7 +55,7 @@ public class QuestContestCooking extends QuestContest<CookingContestEntries> {
     private static final BlockPos STAND2 = new BlockPos(9, 2, 21);
     private static final BlockPos STAND3 = new BlockPos(10, 2, 21);
     private static final BlockPos STAND4 = new BlockPos(11, 2, 21);
-    private Utensil category;
+    private static Utensil category;
 
     public QuestContestCooking() {
         super(GS_OWNER, PREFIX);
@@ -69,7 +69,7 @@ public class QuestContestCooking extends QuestContest<CookingContestEntries> {
         return new CookingContestEntries(LOCATIONS, NPCS);
     }
 
-    public Utensil getCategory() {
+    public static Utensil getCategory() {
         return category;
     }
 

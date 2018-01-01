@@ -45,6 +45,11 @@ public class BlockStand extends BlockHFEnumRotatableTile<BlockStand, Stand> {
         setSoundType(SoundType.WOOD);
     }
 
+    @Override
+    protected boolean shouldDisplayInCreative(Stand stand) {
+        return stand != BlockStand.Stand.POT;
+    }
+
     @SuppressWarnings("deprecation")
     @Override
     @Nonnull
@@ -74,7 +79,7 @@ public class BlockStand extends BlockHFEnumRotatableTile<BlockStand, Stand> {
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack held, EnumFacing side, float hitX, float hitY, float hitZ) {
         TileEntity tile = world.getTileEntity(pos);
         if (tile instanceof TileStand) {
-            TileStand stand = ((TileStand)tile);
+            TileStand stand = ((TileStand) tile);
             if (stand.isEmpty() && held != null && stand.isItemValid(held) && stand.setContents(player, held)) {
                 return true;
             } else if (!stand.isEmpty() && stand.canEmpty()) {
@@ -99,7 +104,7 @@ public class BlockStand extends BlockHFEnumRotatableTile<BlockStand, Stand> {
     public void breakBlock(@Nonnull World world, @Nonnull BlockPos pos, @Nonnull IBlockState state) {
         TileEntity tile = world.getTileEntity(pos);
         if (tile instanceof TileStand) {
-            TileStand stand = ((TileStand)tile);
+            TileStand stand = ((TileStand) tile);
             if (stand.getContents() != null && stand.canEmpty()) {
                 InventoryHelper.spawnItemStack(world, pos.getX(), pos.getY(), pos.getZ(), stand.getContents());
             }

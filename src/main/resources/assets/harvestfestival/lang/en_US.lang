@@ -2240,7 +2240,7 @@ harvestfestival.quest.festival.sheep.selected=Time to get the judging start then
 harvestfestival.quest.festival.sheep.judging=Can't you see I'm busy judging right now!?
 harvestfestival.quest.festival.sheep.nostalls=No sheep in any of the stalls!
 
-harvestfestival.script.sheep.judge=Let's giver %1$s a gander. Well.... %2$s
+harvestfestival.script.sheep.judge=Let's give %1$s a gander. Well.... %2$s
 harvestfestival.script.sheep.judge.none=I can't see any sheep at this stall.
 harvestfestival.script.sheep.judge.0=You should take this sheep to a vet right away.
 harvestfestival.script.sheep.judge.1=This sheep is looking alright.

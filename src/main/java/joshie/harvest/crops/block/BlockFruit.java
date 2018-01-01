@@ -7,9 +7,7 @@ import joshie.harvest.crops.tile.TileFruit;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
@@ -20,8 +18,6 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -64,6 +60,11 @@ public class BlockFruit extends BlockHFEnum<BlockFruit, Fruit> {
     }
 
     @Override
+    protected boolean shouldDisplayInCreative(Fruit fruit) {
+        return false;
+    }
+
+    @Override
     @SuppressWarnings("deprecation, unchecked")
     public AxisAlignedBB getCollisionBoundingBox(IBlockState state, @Nonnull World world, @Nonnull BlockPos pos) {
         return NULL_AABB;
@@ -76,10 +77,6 @@ public class BlockFruit extends BlockHFEnum<BlockFruit, Fruit> {
         spawnAsEntity(world, pos, fruit.getCrop().getCropStack(1));
         return true;
     }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list) {}
 
     @Override
     @Nonnull

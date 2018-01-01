@@ -28,7 +28,6 @@ import static joshie.harvest.town.BuildingLocations.PARK_SHEEP_JUDGE;
 @HFQuest("festival.sheep")
 public class QuestContestSheep extends QuestAnimalContest<EntityHarvestSheep> {
     private static final String PREFIX = "sheep";
-    //TODO: Add the stall positions for walking based on serious setup
     private static final BlockPos[] STALLS = new BlockPos[] { new BlockPos(6, 1, 12), new BlockPos(10, 1, 21), new BlockPos(27, 1, 20), new BlockPos(27, 1, 5) };
     private static final NPC[] NPCS = new NPC[] { HFNPCs.CAFE_GRANNY, HFNPCs.FLOWER_GIRL, HFNPCs.MILKMAID, HFNPCs.DAUGHTER_ADULT, HFNPCs.TRADER, HFNPCs.GS_OWNER };
     private static final String[] NAMES = new String[] { "Fluffy", "Flaafy", "Maisy", "Mareep", "Shaggy", "Fae", "Emma", "Dolly", "Sally", "Larry", "Shaun"};
@@ -38,13 +37,9 @@ public class QuestContestSheep extends QuestAnimalContest<EntityHarvestSheep> {
     private static final Script JUDGE_3 = new ContestJudgingScript(PREFIX, 3).setNPC(HFNPCs.BARN_OWNER);
     private static final Script JUDGE_4 = new ContestJudgingScript(PREFIX, 4).setNPC(HFNPCs.BARN_OWNER);
     private static final Script WINNER = new ContestWinningScript(PREFIX).setNPC(HFNPCs.BARN_OWNER);
-    //TODO: Add the stand positions for walking based on serious setup
     private static final BlockPos STAND1 = new BlockPos(8, 1, 12);
-    //TODO: Add the stand positions for walking based on serious setup
     private static final BlockPos STAND2 = new BlockPos(10, 1, 18);
-    //TODO: Add the stand positions for walking based on serious setup
     private static final BlockPos STAND3 = new BlockPos(27, 1, 16);
-    //TODO: Add the stand positions for walking based on serious setup
     private static final BlockPos STAND4 = new BlockPos(23, 1, 6);
 
     public QuestContestSheep() {

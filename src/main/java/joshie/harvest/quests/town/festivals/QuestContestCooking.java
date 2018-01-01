@@ -7,7 +7,6 @@ import joshie.harvest.api.npc.NPCEntity;
 import joshie.harvest.api.npc.greeting.Script;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.town.Town;
-import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.calendar.HFFestivals;
 import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.cooking.item.ItemIngredients.Ingredient;
@@ -129,12 +128,8 @@ public class QuestContestCooking extends QuestContest<CookingContestEntries> {
 
     @Override
     public void execute(Town town, EntityPlayer player, NPCEntity npc) {
-        npc.setPath(move(STAND1), new TaskEat(getLocation(town, LOCATIONS[0])), speech(JUDGE_1), move(STAND2), new TaskEat(getLocation(town, LOCATIONS[1])), speech(JUDGE_2), move(STAND3), new TaskEat(getLocation(town, LOCATIONS[2])), speech(JUDGE_3), move(STAND4), new TaskEat(getLocation(town, LOCATIONS[3])), speech(JUDGE_4),
+        npc.setPath(move(STAND1), new TaskEat(town, LOCATIONS[0]), speech(JUDGE_1), move(STAND2), new TaskEat(town, LOCATIONS[1]), speech(JUDGE_2), move(STAND3), new TaskEat(town, LOCATIONS[2]), speech(JUDGE_3), move(STAND4), new TaskEat(town, LOCATIONS[3]), speech(JUDGE_4),
                 wait(1), speech(FINISH), move(PARK_COW_JUDGE), speech(WINNER), new ContestTaskWinner(HFFestivals.COOKING_CONTEST));
-    }
-
-    private BlockPos getLocation(Town town, BlockPos pos) {
-        return town.getCoordinatesFromOffset(HFBuildings.FESTIVAL_GROUNDS, pos);
     }
 
     @Override

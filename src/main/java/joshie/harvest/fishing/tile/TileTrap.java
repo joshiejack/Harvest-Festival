@@ -63,7 +63,7 @@ public class TileTrap extends TileSingleStack {
             return true;
         } else if (!FishingAPI.INSTANCE.isBait(stack)) {
             FishingHelper.track(stack, player);
-            SpawnItemHelper.addToPlayerInventory(player, stack);
+            SpawnItemHelper.spawnByEntity(player, stack);
             baited = false;
             stack = ItemStack.EMPTY;
             saveAndRefresh();

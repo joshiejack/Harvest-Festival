@@ -160,8 +160,8 @@ public class BlockStorage extends BlockHFEnumRotatableTile<BlockStorage, Storage
 
                     return shipped;
                 }
-            }else if (hasShippedItem(world, player, held)) {
-                held.shrink(1);
+            } else if (hasShippedItem(world, player, held)) {
+                held.splitStack(1);
                 return true;
             }
 

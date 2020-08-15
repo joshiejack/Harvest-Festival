@@ -1,6 +1,5 @@
 package joshie.harvest.core.network;
 
-
 import io.netty.buffer.ByteBuf;
 import joshie.harvest.HarvestFestival;
 import joshie.harvest.core.entity.EntityBasket;

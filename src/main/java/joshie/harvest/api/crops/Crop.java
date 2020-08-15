@@ -53,6 +53,7 @@ public class Crop extends HFRegistry<Crop> implements IPlantable {
     private long sell;
     private int stages;
     private int regrow;
+    private int maxHarvests;
     private int bagColor;
     private int doubleStage;
     private int minCut;
@@ -75,6 +76,7 @@ public class Crop extends HFRegistry<Crop> implements IPlantable {
         this.needsWatering = true;
         this.doubleStage = Integer.MAX_VALUE;
         this.type = EnumPlantType.Crop;
+        this.maxHarvests = 1;
     }
 
     /** Set how much this tree costs to buy and sell
@@ -111,6 +113,14 @@ public class Crop extends HFRegistry<Crop> implements IPlantable {
      **/
     public Crop setRegrow(int regrow) {
         this.regrow = regrow;
+        return this;
+    }
+
+    /**
+     * Set the maximum amount of harvests this crop can have
+     **/
+    public Crop setMaxHarvests(int maxHarvests) {
+        this.maxHarvests = maxHarvests;
         return this;
     }
 
@@ -329,6 +339,16 @@ public class Crop extends HFRegistry<Crop> implements IPlantable {
      */
     public int getRegrowStage() {
         return regrow;
+    }
+
+    /**
+     * This is the maximum amount of times this crop can be harvested
+     * Once it's reached, the crop will be destroyed instead
+     *
+     * @return the max harvests
+     */
+    public int getMaxHarvests() {
+        return maxHarvests;
     }
 
     /** Used when a crop requires the sickle,

@@ -1,74 +1,80 @@
 {
-    "parent": "block/block",
-    "textures": {
-        "particle": "harvestfestival:models/plate",
-        "texture": "harvestfestival:models/plate"
-    },
-    "elements": [
-        {
-            "__comment": "base",
-            "from": [ 1, 0, 1 ],
-            "to": [ 15, 1, 15 ],
-            "faces": {
-                "down":  { "uv": [ 1, 1, 15, 15 ], "texture": "#texture" },
-                "up":    { "uv": [ 1, 1, 15, 15 ], "texture": "#texture" },
-                "north": { "uv": [ 1, 15, 15, 16 ], "texture": "#texture" },
-                "south": { "uv": [ 1, 15, 15, 16 ], "texture": "#texture" },
-                "west":  { "uv": [ 1, 15, 15, 16 ], "texture": "#texture" },
-                "east":  { "uv": [ 1, 15, 15, 16 ], "texture": "#texture" }
-            }
-        },
-        {
-            "__comment": "east",
-            "from": [ 15, 1, 1 ],
-            "to": [ 16, 2, 15 ],
-            "faces": {
-                "down":  { "uv": [ 15, 1, 16, 15 ], "texture": "#texture" },
-                "up":    { "uv": [ 15, 1, 16, 15 ], "texture": "#texture" },
-                "north": { "uv": [ 15, 14, 16, 15 ], "texture": "#texture" },
-                "south": { "uv": [ 15, 14, 16, 15 ], "texture": "#texture" },
-                "west":  { "uv": [ 1, 15, 15, 16 ], "texture": "#texture" },
-                "east":  { "uv": [ 1, 15, 15, 16 ], "texture": "#texture" }
-            }
-        },
-        {
-            "__comment": "west",
-            "from": [ 0, 1, 1 ],
-            "to": [ 1, 2, 15 ],
-            "faces": {
-                "down":  { "uv": [ 0, 1, 1, 15 ], "texture": "#texture" },
-                "up":    { "uv": [ 0, 1, 1, 15 ], "texture": "#texture" },
-                "north": { "uv": [ 0, 14, 1, 15 ], "texture": "#texture" },
-                "south": { "uv": [ 0, 14, 1, 15 ], "texture": "#texture" },
-                "west":  { "uv": [ 1, 15, 15, 16 ], "texture": "#texture" },
-                "east":  { "uv": [ 1, 15, 15, 16 ], "texture": "#texture" }
-            }
-        },
-        {
-            "__comment": "north",
-            "from": [ 1, 1, 0 ],
-            "to": [ 15, 2, 1 ],
-            "faces": {
-                "down":  { "uv": [ 1, 0, 15, 1 ], "texture": "#texture" },
-                "up":    { "uv": [ 1, 0, 15, 1 ], "texture": "#texture" },
-                "north": { "uv": [ 1, 15, 15, 16 ], "texture": "#texture" },
-                "south": { "uv": [ 1, 15, 15, 16 ], "texture": "#texture" },
-                "west":  { "uv": [ 0, 14, 1, 15 ], "texture": "#texture" },
-                "east":  { "uv": [ 0, 14, 1, 15 ], "texture": "#texture" }
-            }
-        },
-        {
-            "__comment": "south",
-            "from": [ 1, 1, 15 ],
-            "to": [ 15, 2, 16 ],
-            "faces": {
-                "down":  { "uv": [ 1, 15, 15, 16 ], "texture": "#texture" },
-                "up":    { "uv": [ 1, 15, 15, 16 ], "texture": "#texture" },
-                "north": { "uv": [ 1, 15, 15, 16 ], "texture": "#texture" },
-                "south": { "uv": [ 1, 15, 15, 16 ], "texture": "#texture" },
-                "west":  { "uv": [ 15, 14, 16, 15 ], "texture": "#texture" },
-                "east":  { "uv": [ 15, 14, 16, 15 ], "texture": "#texture" }
-            }
-        }
-    ]
+	"credit": "Made with Blockbench, a free, modern block model editor by JannisX11",
+	"parent": "block/block",
+	"textures": {
+		"texture": "harvestfestival:models/plate",
+		"particle": "harvestfestival:models/plate"
+	},
+	"elements": [
+		{
+			"name": "base",
+			"from": [4.5, 0, 4.5],
+			"to": [11.5, 1, 11.5],
+			"shade": true,
+			"faces": {
+				"north": {"uv": [0, 0, 6, 1], "texture": "#texture"},
+				"east": {"uv": [0, 0, 6, 1], "texture": "#texture"},
+				"south": {"uv": [0, 0, 6, 1], "texture": "#texture"},
+				"west": {"uv": [0, 0, 7, 1], "texture": "#texture"},
+				"up": {"uv": [5, 5, 12, 12], "texture": "#texture"},
+				"down": {"uv": [10, 10, 16, 16], "texture": "#texture"}
+			}
+		},
+		{
+			"name": "rim1",
+			"from": [4.5, 0.5, 3.5],
+			"to": [11.5, 1.5, 4.5],
+			"shade": true,
+			"faces": {
+				"north": {"uv": [0, 0, 7, 1], "texture": "#texture"},
+				"east": {"uv": [0, 0, 1, 1], "texture": "#texture"},
+				"south": {"uv": [0, 0, 7, 1], "texture": "#texture"},
+				"west": {"uv": [0, 0, 1, 1], "texture": "#texture"},
+				"up": {"uv": [0, 0, 6, 1], "texture": "#texture"},
+				"down": {"uv": [0, 0, 7, 1], "texture": "#texture"}
+			}
+		},
+		{
+			"name": "rim3",
+			"from": [3.5, 0.5, 4.5],
+			"to": [4.5, 1.5, 11.5],
+			"shade": true,
+			"faces": {
+				"north": {"uv": [0, 0, 1, 1], "texture": "#texture"},
+				"east": {"uv": [0, 0, 7, 1], "texture": "#texture"},
+				"south": {"uv": [0, 0, 1, 1], "texture": "#texture"},
+				"west": {"uv": [0, 0, 7, 1], "texture": "#texture"},
+				"up": {"uv": [0, 0, 1, 7], "texture": "#texture"},
+				"down": {"uv": [0, 0, 1, 7], "texture": "#texture"}
+			}
+		},
+		{
+			"name": "rim1",
+			"from": [4.5, 0.5, 11.5],
+			"to": [11.5, 1.5, 12.5],
+			"shade": true,
+			"faces": {
+				"north": {"uv": [0, 0, 7, 1], "texture": "#texture"},
+				"east": {"uv": [0, 0, 1, 1], "texture": "#texture"},
+				"south": {"uv": [0, 0, 7, 1], "texture": "#texture"},
+				"west": {"uv": [0, 0, 1, 1], "texture": "#texture"},
+				"up": {"uv": [0, 1, 6, 2], "texture": "#texture"},
+				"down": {"uv": [0, 0, 7, 1], "texture": "#texture"}
+			}
+		},
+		{
+			"name": "rim3",
+			"from": [11.5, 0.5, 4.5],
+			"to": [12.5, 1.5, 11.5],
+			"shade": true,
+			"faces": {
+				"north": {"uv": [0, 0, 1, 1], "texture": "#texture"},
+				"east": {"uv": [0, 0, 7, 1], "texture": "#texture"},
+				"south": {"uv": [0, 0, 1, 1], "texture": "#texture"},
+				"west": {"uv": [0, 0, 7, 1], "texture": "#texture"},
+				"up": {"uv": [1, 0, 2, 7], "texture": "#texture"},
+				"down": {"uv": [0, 0, 1, 7], "texture": "#texture"}
+			}
+		}
+	]
 }

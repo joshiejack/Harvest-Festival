@@ -45,13 +45,14 @@ public class WateringHandler {
     /** Called every morning, to dehydrate this soil
      *
      * @param   world   the world object
-     * @param    pos    the position being watered
-     * @param    state  the current state **/
-    public void dehydrate(World world, BlockPos pos, IBlockState state) {
+     * @param   pos    the position being watered
+     * @param   state  the current state
+     * @param   forceDirt set this to true to force the dirt instead of the staged dehydration**/
+    public void dehydrate(World world, BlockPos pos, IBlockState state, boolean forceDirt) {
         int moisture = state.getValue(BlockFarmland.MOISTURE);
-        if (moisture == WET_SOIL) world.setBlockState(pos, state.withProperty(BlockFarmland.MOISTURE, DRYING_SOIL), 2);
-        else if (moisture == DRYING_SOIL) world.setBlockState(pos, state.withProperty(BlockFarmland.MOISTURE, DRY_SOIL), 2);
-        else if (moisture == DRY_SOIL && hasNoCrops(world, pos)) {
+        if (!forceDirt && moisture == WET_SOIL) world.setBlockState(pos, state.withProperty(BlockFarmland.MOISTURE, DRYING_SOIL), 2);
+        else if (!forceDirt && moisture == DRYING_SOIL) world.setBlockState(pos, state.withProperty(BlockFarmland.MOISTURE, DRY_SOIL), 2);
+        else if ((forceDirt || moisture == DRY_SOIL) && hasNoCrops(world, pos)) {
             IBlockState dirt = CropRegistry.INSTANCE.farmlandToDirtMap.get(state);
             world.setBlockState(pos, dirt != null ? dirt : Blocks.DIRT.getDefaultState(), 2);
         }

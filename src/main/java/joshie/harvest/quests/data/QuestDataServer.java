@@ -52,6 +52,7 @@ public class QuestDataServer extends QuestData {
                     quest.readFromNBT(tag);
                 }
 
+                quest.onQuestActivated();
                 current.add(quest);
                 if (sync ) {
                     master.sync(null, new PacketQuestSetCurrent(quest));

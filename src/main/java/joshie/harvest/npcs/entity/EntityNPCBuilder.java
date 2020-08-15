@@ -41,6 +41,5 @@ public class EntityNPCBuilder extends EntityNPCHuman<EntityNPCBuilder> {
     protected void initEntityAI() {
         super.initEntityAI();
         tasks.addTask(5, new EntityAIBuild(this));
-        //tasks.addTask(7, new EntityAIWork(this));
     }
 }

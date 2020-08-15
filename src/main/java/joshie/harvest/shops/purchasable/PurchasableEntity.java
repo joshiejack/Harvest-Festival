@@ -100,13 +100,12 @@ public class PurchasableEntity implements IPurchasable {
             EntityPlayerMP player = (EntityPlayerMP)aPlayer;
             EntityAnimal theEntity = createEntity(player.world);
             if (theEntity != null) {
-
                 theEntity.setPosition(player.posX, player.posY, player.posZ);
                 AnimalStats stats = EntityHelper.getStats(theEntity);
                 if (stats != null) {
                     if (stats.performTest(AnimalTest.CAN_CARRY)) {
                         if (player.getPassengers().size() == 0) theEntity.startRiding(player, true);
-                    } else theEntity.setLeashedToEntity(theEntity, true);
+                    } else theEntity.setLeashedToEntity(player, true);
                 }
 
                 //Spawn the entity

@@ -23,6 +23,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.Chunk;
@@ -49,6 +50,14 @@ public class MiningChunk implements IChunkGenerator {
     private static final IBlockState LADDER_HOLE = HFMining.STONE.getStateFromEnum(Type.LADDER_HOLE);
     private static final List<Biome.SpawnListEntry> MONSTERS = Lists.newArrayList();
     private static final List<Block> IRREPLACABLE = Lists.newArrayList();
+    private static final int NUM_X_BITS = 1 + MathHelper.log2(MathHelper.smallestEncompassingPowerOfTwo(30000000));
+    private static final int NUM_Z_BITS = NUM_X_BITS;
+    private static final int NUM_Y_BITS = 64 - NUM_X_BITS - NUM_Z_BITS;
+    private static final int Y_SHIFT = 0 + NUM_Z_BITS;
+    private static final int X_SHIFT = Y_SHIFT + NUM_Y_BITS;
+    private static final long X_MASK = (1L << NUM_X_BITS) - 1L;
+    private static final long Y_MASK = (1L << NUM_Y_BITS) - 1L;
+    private static final long Z_MASK = (1L << NUM_Z_BITS) - 1L;
 
     static {
         MONSTERS.add(new Biome.SpawnListEntry(EntityDarkChick.class, 26, 1, 1));
@@ -310,20 +319,17 @@ public class MiningChunk implements IChunkGenerator {
         return map.get(index);
     }
 
-    private int getIndex(int chunkX, int chunkY, int chunkZ) {
+    private long getIndex(int chunkX, int chunkY, int chunkZ) {
         int x = (int) Math.floor(chunkX / CHUNK_BOUNDARY); //3x3 Chunks
         int y = (int) Math.floor(chunkY / MiningHelper.FLOOR_HEIGHT); // Height
         int z = (int) Math.floor(chunkZ / CHUNK_BOUNDARY); //3x3 Chunks
-        int result = x;
-        result = 31 * result + z;
-        result = 31 * result + y;
-        return result;
+        return new BlockPos(x, y, z).toLong();
     }
 
     @SuppressWarnings("complexity")
     @Nonnull
     private IBlockState[][] getMineGeneration(int chunkX, int chunkY, int chunkZ) {
-        int mapIndex = getIndex(chunkX, chunkY, chunkZ);
+        long mapIndex = getIndex(chunkX, chunkY, chunkZ);
         //Put if absent
         if (!MineManager.containsStateKey(mapIndex)) {
             IBlockState[][] blockStateMap = new IBlockState[CHUNK_BOUNDARY * 16][CHUNK_BOUNDARY * 16];
@@ -365,7 +371,7 @@ public class MiningChunk implements IChunkGenerator {
                 }
 
                 if (chunkY != 0 && MineManager.containsCoordinatesKey(getIndex(chunkX, chunkY - MiningHelper.FLOOR_HEIGHT, chunkZ))) {
-                    int below = getIndex(chunkX, chunkY - MiningHelper.FLOOR_HEIGHT, chunkZ);
+                    long below = getIndex(chunkX, chunkY - MiningHelper.FLOOR_HEIGHT, chunkZ);
                     startX = MineManager.getCoordinates(below, 0);
                     startZ = MineManager.getCoordinates(below, 1);
                 }

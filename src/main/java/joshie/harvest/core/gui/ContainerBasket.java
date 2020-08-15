@@ -43,13 +43,13 @@ public class ContainerBasket extends ContainerBase {
     @Override
     public void onContainerClosed(EntityPlayer playerIn) {
         super.onContainerClosed(playerIn);
+
         if (!basketItem.isEmpty()) {
             NBTTagCompound tag = basketItem.getTagCompound();
             if (tag == null) {
                 tag = new NBTTagCompound();
                 basketItem.setTagCompound(tag);
             }
-
             tag.setTag("inventory", handler.serializeNBT());
         }
     }

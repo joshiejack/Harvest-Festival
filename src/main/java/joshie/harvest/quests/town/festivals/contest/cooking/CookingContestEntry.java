@@ -20,6 +20,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
@@ -32,7 +33,7 @@ public class CookingContestEntry extends ContestEntry<QuestContestCooking> {
     @Nonnull
     private final ItemStack stack;
     private final BlockPos pos;
-    private final Utensil category;
+    public final Utensil category;
 
     public CookingContestEntry(UUID player, BlockPos pos, @Nonnull ItemStack stack, int stall) {
         super(player, stall);
@@ -48,7 +49,7 @@ public class CookingContestEntry extends ContestEntry<QuestContestCooking> {
         this.category = getUtensilFromStack(stack);
     }
 
-    private Utensil getUtensilFromStack(ItemStack stack) {
+    public static Utensil getUtensilFromStack(ItemStack stack) {
         for (Recipe recipe: Recipe.REGISTRY.values()) {
             if (recipe.getStack().isItemEqual(stack)) return recipe.getUtensil();
         }
@@ -58,10 +59,10 @@ public class CookingContestEntry extends ContestEntry<QuestContestCooking> {
 
     @Override
     public int getScore(QuestContestCooking quest, World world) {
-        int hunger = ((ItemFood)stack.getItem()).getHealAmount(stack);
-        float saturation = ((ItemFood)stack.getItem()).getSaturationModifier(stack);
+        int hunger = ((ItemFood) stack.getItem()).getHealAmount(stack);
+        float saturation = ((ItemFood) stack.getItem()).getSaturationModifier(stack);
         long gold = HFApi.shipping.getSellValue(stack);
-        return (int)(hunger * saturation + gold) - ((category == quest.getCategory()) ? 0: 1000);
+        return (int) (hunger * saturation + gold) - (category == quest.getCategory() ? 0 : 1000);
     }
 
     @Override
@@ -71,14 +72,14 @@ public class CookingContestEntry extends ContestEntry<QuestContestCooking> {
 
     @Override
     public String getTextFromScore(String unlocalised, int score) {
-        return TextHelper.localize(unlocalised + "." + Math.max(0, Math.min(9, (int)Math.floor(((double)score) / 1000))));
+        return TextHelper.localize(unlocalised + "." + Math.max(0, Math.min(9, MathHelper.ceil(score / 50))));
     }
 
     public boolean isInvalid(World world) {
         TileEntity tile = world.getTileEntity(pos);
         if (tile instanceof TilePlate) {
             ItemStack contents = ((TilePlate)tile).getContents();
-            return !contents.isItemEqual(stack);
+            return contents != null && !contents.isItemEqual(stack);
         } else return true;
     }
 

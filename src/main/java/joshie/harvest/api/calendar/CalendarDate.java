@@ -18,16 +18,6 @@ public class CalendarDate {
         this.weekday = Weekday.MONDAY;
     }
 
-    /** The day gets scaled to fit in to the 30 scale mark
-     *  For example use something like npc.getBirthday().isSameDay(date);
-     *  1 is added to the passed in date, as birthdays and festivals are stored as 1, summer for the 1st of summer
-     *  while the actual date system uses 0 to mean day 1
-     *  @param date     the date to compare **/
-    public boolean isSameDay(CalendarDate date) {
-        int day = 1 + (int)Math.ceil(((double)date.getDay() / DAYS_PER_SEASON) * 30);
-        return day == this.getDay() && date.getSeason() == this.getSeason();
-    }
-
     /** Make a copy of this date **/
     public CalendarDate copy() {
         return new CalendarDate().setDate(weekday, day, season, year);

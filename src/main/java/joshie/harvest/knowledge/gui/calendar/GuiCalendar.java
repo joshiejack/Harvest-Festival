@@ -43,7 +43,7 @@ public class GuiCalendar extends GuiBase {
         super(new ContainerNull(), "calendar", 36);
         CalendarDate local = HFApi.calendar.getDate(player.world);
         int day = (local.getDay() - 1) / (DAYS_PER_SEASON / 30);
-        date = new CalendarDate(day, local.getSeason(), local.getYear());
+        date = HFApi.calendar.getDate(player.world);
         season = date.getSeason();
         year = date.getYear();
         xSize = 226;
@@ -91,7 +91,7 @@ public class GuiCalendar extends GuiBase {
     }
 
     private List<CalendarEntry> getStacksForDate(CalendarDate date) {
-        return entries.entries().stream().filter(entry -> entry.getKey().isSameDay(date)).map(Entry::getValue).collect(Collectors.toList());
+        return entries.entries().stream().filter(entry -> CalendarHelper.isDateSame(date, entry.getKey())).map(Entry::getValue).collect(Collectors.toList());
     }
 
     private int getNumberOfRows() {

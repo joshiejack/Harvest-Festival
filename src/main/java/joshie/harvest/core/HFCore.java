@@ -109,6 +109,7 @@ public class HFCore {
     public static void initClient() {
         ClientRegistry.bindTileEntitySpecialRenderer(TileBasket.class, new SpecialRendererBasket());
         ClientRegistry.bindTileEntitySpecialRenderer(TilePlate.class, new SpecialRendererPlate());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileFestivalPot.class, new SpecialRendererFestivalPot());
         Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler((state, worldIn, pos, tintIndex) -> {
                 FlowerType type = HFCore.FLOWERS.getEnumFromState(state);
                 if (!type.isColored()) return -1;

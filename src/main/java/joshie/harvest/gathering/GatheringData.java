@@ -2,6 +2,7 @@ package joshie.harvest.gathering;
 
 import com.google.common.cache.Cache;
 import joshie.harvest.api.HFApi;
+import joshie.harvest.api.calendar.CalendarDate;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.town.data.TownBuilding;
 import net.minecraft.block.state.IBlockState;
@@ -36,7 +37,9 @@ public class GatheringData {
         }
 
         //Create some new spawn spots based on where we have buildings
-        Season season = HFApi.calendar.getDate(world).getSeason();
+        CalendarDate date = HFApi.calendar.getDate(world);
+        Season season = date.getSeason();
+        random.setSeed(date.hashCode());
         int placed = 0;
 
         for (int i = 0; i < 2048 && placed < GATHERING_ATTEMPTS; i++) {

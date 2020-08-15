@@ -85,6 +85,7 @@ public class PlaceableFlowerPot extends PlaceableDecorative {
                 block = Blocks.SAPLING;
                 meta = 5;
         }
+
         return new ItemStack(Item.getItemFromBlock(block), 1, meta);
     }
 }

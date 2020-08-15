@@ -1,5 +1,6 @@
 package joshie.harvest.npcs.greeting;
 
+import joshie.harvest.api.calendar.CalendarDate;
 import joshie.harvest.api.npc.IInfoButton;
 import joshie.harvest.api.npc.NPC;
 import joshie.harvest.calendar.CalendarHelper;
@@ -18,9 +19,12 @@ public class GreetingTime implements IInfoButton {
     @Override
     @SuppressWarnings("deprecation")
     public String getLocalizedText(EntityPlayer player, EntityAgeable ageable, NPC npc) {
-        int years = CalendarHelper.getYearsPassed(HFTrackers.getClientPlayerTracker().getStats().getBirthday(), HFTrackers.getCalendar(MCClientHelper.getWorld()).getDate());
-        if (years <= 0) return I18n.translateToLocal("harvestfestival.npc.tiberius.first");
-        return I18n.translateToLocalFormatted("harvestfestival.npc.tiberius.time", years);
+        CalendarDate birthday = HFTrackers.getClientPlayerTracker().getStats().getBirthday();
+        if (birthday != null) {
+            int years = CalendarHelper.getYearsPassed(birthday, HFTrackers.getCalendar(MCClientHelper.getWorld()).getDate());
+            if (years <= 0) return I18n.translateToLocal("harvestfestival.npc.tiberius.first");
+            return I18n.translateToLocalFormatted("harvestfestival.npc.tiberius.time", years);
+        } else return I18n.translateToLocal("harvestfestival.npc.tiberius.first");
     }
 
     @Override

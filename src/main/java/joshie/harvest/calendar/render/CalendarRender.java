@@ -6,6 +6,7 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.calendar.Weather;
 import joshie.harvest.calendar.CalendarHelper;
+import joshie.harvest.calendar.HFCalendar;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.helpers.MCClientHelper;
 import joshie.harvest.core.util.annotations.HFEvents;
@@ -44,7 +45,7 @@ public class CalendarRender {
 
     @SubscribeEvent
     public void onFogRender(RenderFogEvent event) {
-        if (event.getEntity().world.provider.getDimension() == 0) {
+        if (HFCalendar.ENABLE_SNOW_FOG && event.getEntity().world.provider.getDimension() == 0) {
             if (!event.getState().getMaterial().isLiquid()) {
                 //Update the fog smoothly
                 if (fogTarget != fogStart) {
@@ -98,10 +99,10 @@ public class CalendarRender {
 
     @SubscribeEvent
     public void onFogColor(FogColors event) {
-        if (event.getEntity().world.provider.getDimension() == 0) {
+        if (HFCalendar.ENABLE_SNOW_FOG && event.getEntity().world.provider.getDimension() == 0) {
             if (!event.getState().getMaterial().isLiquid()) {
                 Weather weather = HFApi.calendar.getWeather(MCClientHelper.getWorld());
-                if (weather == Weather.SNOW || weather == Weather.BLIZZARD) {
+                if (weather != null && (weather == Weather.SNOW || weather == Weather.BLIZZARD)) {
                     event.setRed(1F);
                     event.setBlue(1F);
                     event.setGreen(1F);

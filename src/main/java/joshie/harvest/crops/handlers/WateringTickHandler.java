@@ -103,7 +103,7 @@ public class WateringTickHandler extends DailyTickableBlock {
                 if (!handler.isWet(world, pos, state)) {
                     world.setBlockState(pos, handler.hydrate(world, pos, state));
                 }
-            } else handler.dehydrate(world, pos, state);
+            } else handler.dehydrate(world, pos, state, false);
         }
     }
 }

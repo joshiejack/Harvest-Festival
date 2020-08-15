@@ -23,6 +23,24 @@ public class CalendarHelper {
         DAYS = Weekday.class.getEnumConstants();
     }
 
+    //Dates are 0-29
+    public static boolean isDateSame(CalendarDate today, CalendarDate dateOffByOne) {
+        int dayToCompareAgainst = dateOffByOne.getDay() - 1;
+        int compareMin = getMinDay(dayToCompareAgainst);
+        int compareMax = getMaxDay(dayToCompareAgainst);
+        return today.getDay() >= compareMin && today.getDay() <= compareMax && today.getSeason() == dateOffByOne.getSeason();
+    }
+
+    //Returns 0-29
+    public static int getMinDay(int day) {
+        return (int) (((double)(day) / 30D) * CalendarDate.DAYS_PER_SEASON);
+    }
+
+    //Returns 0-29
+    public static int getMaxDay(int day) {
+        return (int) (((double)(day + 1) / 30D) * CalendarDate.DAYS_PER_SEASON) - 1;
+    }
+
     private static Weekday getWeekday(int days) {
         int modulus = days % 7;
         if (modulus < 0) modulus = 0;

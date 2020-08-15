@@ -177,7 +177,7 @@ public class NPC extends HFRegistry<NPC> implements CalendarEntry {
     }
 
     public boolean canInvite() {
-        return canInvite;
+        return getAge() == Age.ADULT && canInvite;
     }
 
     public boolean isMarriageCandidate() {

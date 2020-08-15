@@ -107,7 +107,7 @@ public class AnimalEvents {
         }
 
         boolean blocksPickup(EntityPlayer player) {
-            return isHolding(player.getHeldItemMainhand()) || isHolding(player.getHeldItemOffhand());
+            return isHolding(player.getHeldItemMainhand()) || isHolding(player.getHeldItemOffhand()) || player.isSneaking();
         }
 
         @SubscribeEvent
@@ -148,7 +148,7 @@ public class AnimalEvents {
                         entity.rotationYaw = player.rotationYaw;
                         entity.moveRelative(0F, 0.1F, 1.05F);
                         entity.setEntityInvulnerable(false);
-                        stats.performAction(player.world, ItemStack.EMPTY, AnimalAction.DISMOUNT);
+                        stats.performAction(player.world, null, AnimalAction.DISMOUNT);
                     }
                 }
             }

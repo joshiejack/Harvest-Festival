@@ -33,7 +33,7 @@ public class HFTools {
             AXES.put(tier, new ItemAxe(tier).register("axe_" + tier.name().toLowerCase(Locale.ENGLISH)));
             SICKLES.put(tier, new ItemSickle(tier).register("sickle_" + tier.name().toLowerCase(Locale.ENGLISH)));
             HOES.put(tier, new ItemHoe(tier).register("hoe_" + tier.name().toLowerCase(Locale.ENGLISH)));
-            WATERING_CANS.put(tier, new ItemWateringCan(tier).register("watering_can_" + tier.name().toLowerCase(Locale.ENGLISH)));
+            WATERING_CANS.put(tier, new ItemWateringCan(tier).register("wateringcan_" + tier.name().toLowerCase(Locale.ENGLISH)));
         }
     }
 

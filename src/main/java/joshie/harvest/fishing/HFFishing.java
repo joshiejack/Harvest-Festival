@@ -58,7 +58,7 @@ public class HFFishing {
     public static final BlockFloating FLOATING_BLOCKS = new BlockFloating().register("floating");
     static {
         for (ToolTier tier: ToolTier.values()) {
-            FISHING_RODS.put(tier, new ItemFishingRod(tier).register("fishing_rod" + tier.name().toLowerCase(Locale.ENGLISH)));
+            FISHING_RODS.put(tier, new ItemFishingRod(tier).register("fishing_rod_" + tier.name().toLowerCase(Locale.ENGLISH)));
         }
     }
 

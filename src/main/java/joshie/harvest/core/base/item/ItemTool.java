@@ -67,13 +67,13 @@ public abstract class ItemTool<I extends ItemTool> extends ItemHFBase<I> impleme
     @Override
     @Nonnull
     public String getUnlocalizedName(@Nonnull ItemStack stack) {
-        return super.getUnlocalizedName(stack) + "_" + getTier(stack).name().toLowerCase(Locale.ENGLISH);
+        return super.getUnlocalizedName(stack);
     }
 
     @Override
     @Nonnull
     public String getItemStackDisplayName(@Nonnull ItemStack stack) {
-        String text = TextHelper.localize(super.getUnlocalizedName().replace("item.", "") + "." + getTier(stack).name().toLowerCase(Locale.ENGLISH));
+        String text = TextHelper.localize(super.getUnlocalizedName().replace("item.", ""));
         return !canUse(stack) ? TextHelper.translate("tool.broken") + " " + text : text;
     }
 

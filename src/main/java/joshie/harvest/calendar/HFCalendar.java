@@ -3,8 +3,10 @@ package joshie.harvest.calendar;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.CalendarDate;
 import joshie.harvest.api.calendar.SeasonProvider;
+import joshie.harvest.calendar.data.CalendarServer;
 import joshie.harvest.calendar.provider.HFWorldProvider;
 import joshie.harvest.calendar.provider.SeasonProviderHidden;
+import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.helpers.ConfigHelper;
 import joshie.harvest.core.util.annotations.HFLoader;
 import net.minecraft.server.MinecraftServer;
@@ -29,6 +31,7 @@ public class HFCalendar {
     public static boolean ENABLE_TYPHOON;
     public static boolean ENABLE_SNOW;
     public static boolean ENABLE_BLIZZARD;
+    public static boolean ENABLE_SNOW_FOG;
     public static boolean ENABLE_DATE_HUD;
     public static boolean ENABLE_GOLD_HUD;
     public static boolean SNOW_TICKER;
@@ -73,6 +76,7 @@ public class HFCalendar {
         ENABLE_TYPHOON = getBoolean("Weather > Enable typhoon", true);
         ENABLE_SNOW = getBoolean("Weather > Enable snow", true);
         ENABLE_BLIZZARD = getBoolean("Weather > Enable blizzard", true);
+        ENABLE_SNOW_FOG = getBoolean("Weather -> Enable snow fog", true);
         HIDE_CALENDAR_TEXTURE = getBoolean("HUD > Calendar Hide Texture", false);
         X_CALENDAR = getInteger("HUD > Calendar X", 0);
         Y_CALENDAR = getInteger("HUD > Calendar Y", 0);
@@ -91,5 +95,7 @@ public class HFCalendar {
         if (server.isDedicatedServer()) {
             CalendarDate.DAYS_PER_SEASON = DAYS_PER_SEASON_DEDICATED;
         } else CalendarDate.DAYS_PER_SEASON = DAYS_PER_SEASON_INTEGRATED;
+
+        HFTrackers.<CalendarServer>getCalendar(server.getEntityWorld()).recalculate(server.getEntityWorld());
     }
 }

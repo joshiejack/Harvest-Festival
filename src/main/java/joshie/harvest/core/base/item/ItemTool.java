@@ -11,14 +11,15 @@ import joshie.harvest.mining.item.ItemMaterial.Material;
 import joshie.harvest.tools.ToolHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.EnumAction;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.*;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
@@ -66,13 +67,13 @@ public abstract class ItemTool<I extends ItemTool> extends ItemHFBase<I> impleme
     @Override
     @Nonnull
     public String getUnlocalizedName(@Nonnull ItemStack stack) {
-        return super.getUnlocalizedName(stack) + "_" + getTier(stack).name().toLowerCase(Locale.ENGLISH);
+        return super.getUnlocalizedName(stack);
     }
 
     @Override
     @Nonnull
     public String getItemStackDisplayName(@Nonnull ItemStack stack) {
-        String text = TextHelper.localize(super.getUnlocalizedName().replace("item.", "") + "." + getTier(stack).name().toLowerCase(Locale.ENGLISH));
+        String text = TextHelper.localize(super.getUnlocalizedName().replace("item.", ""));
         return !canUse(stack) ? TextHelper.translate("tool.broken") + " " + text : text;
     }
 

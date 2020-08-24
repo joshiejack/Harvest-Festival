@@ -30,22 +30,22 @@ public class ButtonListingBuilding extends ButtonListing<IPurchaseableMaterials>
     @Override
     public void drawForeground(Minecraft mc, FontRenderer fontrenderer, int j) {
         //Names
-        drawString(fontrenderer, StringUtils.left(displayString, 18), xPosition + 20, yPosition + (height - 8) / 2, j);
+        drawString(fontrenderer, StringUtils.left(displayString, 18), x + 20, y + (height - 8) / 2, j);
         GlStateManager.color(1.0F, 1.0F, 1.0F);
-        StackRenderHelper.drawStack(purchasable.getDisplayStack(), xPosition + 2, yPosition + 1, 1F);
+        StackRenderHelper.drawStack(purchasable.getDisplayStack(), x + 2, y + 1, 1F);
         //Draw the cost
         if (purchasable.getCost() > 0) {
             String cost = shop.getCostAsString(purchasable.getCost());
             int width = fontrenderer.getStringWidth(cost);
             mc.renderEngine.bindTexture(HFModInfo.ELEMENTS);
-            drawTexturedModalRect(xPosition + 184, (yPosition + (height - 8) / 2) - 2, 244, 0, 12, 12);
-            drawString(fontrenderer, cost, xPosition + 180 - width, yPosition + (height - 8) / 2, j);
+            drawTexturedModalRect(x + 184, (y + (height - 8) / 2) - 2, 244, 0, 12, 12);
+            drawString(fontrenderer, cost, x + 180 - width, y + (height - 8) / 2, j);
         }
 
         //Draw the requirements
         int index = 0;
         for (int i = theStacks.length - 1; i >= 0; i--) {
-            StackRenderHelper.drawStack(theStacks[i], xPosition + 135 - (index * 18), yPosition + 3, 0.75F);
+            StackRenderHelper.drawStack(theStacks[i], x + 135 - (index * 18), y + 3, 0.75F);
             index++;
         }
     }

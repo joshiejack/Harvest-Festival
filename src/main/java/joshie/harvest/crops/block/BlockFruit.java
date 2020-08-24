@@ -59,6 +59,11 @@ public class BlockFruit extends BlockHFEnum<BlockFruit, Fruit> {
     }
 
     @Override
+    protected boolean shouldDisplayInCreative(Fruit fruit) {
+        return false;
+    }
+
+    @Override
     @SuppressWarnings("deprecation, unchecked")
     public AxisAlignedBB getCollisionBoundingBox(IBlockState state, @Nonnull IBlockAccess world, @Nonnull BlockPos pos) {
         return NULL_AABB;

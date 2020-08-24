@@ -20,7 +20,7 @@ import static joshie.harvest.plugins.crafttweaker.CraftTweaker.asStack;
 public class Gifting {
     @ZenMethod
     @SuppressWarnings("unused")
-    public static void addShipping(IIngredient ingredient, String category) {
+    public static void addGift(IIngredient ingredient, String category) {
         if (ingredient instanceof IItemStack || ingredient instanceof IOreDictEntry) {
             try {
                 GiftCategory theCategory = GiftCategory.valueOf(category.toUpperCase());

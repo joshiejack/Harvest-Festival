@@ -24,7 +24,7 @@ public class ShopFontRenderer {
         };
 
         if (mc.getLanguageManager() != null) {
-            INSTANCE.setUnicodeFlag(mc.fontRendererObj.getUnicodeFlag());
+            INSTANCE.setUnicodeFlag(mc.fontRenderer.getUnicodeFlag());
             INSTANCE.setBidiFlag(mc.getLanguageManager().isCurrentLanguageBidirectional());
         }
 

@@ -47,10 +47,10 @@ public class ButtonListing<I extends IPurchasable> extends GuiButton {
     @Override
     public void drawButton(@Nonnull Minecraft mc, int mouseX, int mouseY) {
         if (visible) {
-            FontRenderer fontrenderer = mc.fontRendererObj;
+            FontRenderer fontrenderer = mc.fontRenderer;
             mc.getTextureManager().bindTexture(SHOP_EXTRA);
             GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-            hovered = mouseX >= xPosition && mouseY >= yPosition && mouseX < xPosition + width && mouseY < yPosition + height;
+            hovered = mouseX >= x && mouseY >= y && mouseX < x + width && mouseY < y + height;
             int originalState = getHoverState(hovered);
             state = originalState;
             if (state == HOVER && !canPurchase1()) {
@@ -84,24 +84,24 @@ public class ButtonListing<I extends IPurchasable> extends GuiButton {
     }
 
     private void drawBackground() {
-        drawTexturedModalRect(xPosition, yPosition, 0, state * 18, width / 2, height);
-        drawTexturedModalRect(xPosition + width / 2, yPosition, 200 - width / 2, state * 18, width / 2, height);
+        drawTexturedModalRect(x, y, 0, state * 18, width / 2, height);
+        drawTexturedModalRect(x + width / 2, y, 200 - width / 2, state * 18, width / 2, height);
     }
 
     protected void drawForeground(Minecraft mc, FontRenderer fontrenderer, int j) {
-        StackRenderHelper.drawStack(purchasable.getDisplayStack(), xPosition + 2, yPosition + 1, 1F);
-        drawString(fontrenderer, displayString, xPosition + 20, yPosition + (height - 8) / 2, j);
+        StackRenderHelper.drawStack(purchasable.getDisplayStack(), x + 2, y + 1, 1F);
+        drawString(fontrenderer, displayString, x + 20, y + (height - 8) / 2, j);
         GlStateManager.color(1.0F, 1.0F, 1.0F);
         //Draw the cost
         String cost = shop.getCostAsString(data.getSellValue(shop.getShop(), purchasable));
         if (purchasable.getCost() != 0) {
             int width = fontrenderer.getStringWidth(cost);
-            drawString(fontrenderer, cost, xPosition + 180 - width, yPosition + (height - 8) / 2, j);
+            drawString(fontrenderer, cost, x + 180 - width, y + (height - 8) / 2, j);
             mc.renderEngine.bindTexture(HFModInfo.ELEMENTS);
-            drawTexturedModalRect(xPosition + 184, (yPosition + (height - 8) / 2) - 2, 244, 0, 12, 12);
+            drawTexturedModalRect(x + 184, (y + (height - 8) / 2) - 2, 244, 0, 12, 12);
         } else {
             int width = fontrenderer.getStringWidth(cost);
-            drawString(fontrenderer, cost, xPosition + 194 - width, yPosition + (height - 8) / 2, j);
+            drawString(fontrenderer, cost, x + 194 - width, y + (height - 8) / 2, j);
         }
     }
 

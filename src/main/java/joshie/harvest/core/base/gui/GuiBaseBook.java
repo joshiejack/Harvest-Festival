@@ -98,7 +98,7 @@ public abstract class GuiBaseBook extends GuiScreen {
             int k = 0;
 
             for (String s : list) {
-                int l = fontRendererObj.getStringWidth(s);
+                int l = fontRenderer.getStringWidth(s);
                 if (l > k) {
                     k = l;
                 }
@@ -137,7 +137,7 @@ public abstract class GuiBaseBook extends GuiScreen {
 
             for (int i2 = 0; i2 < list.size(); ++i2) {
                 String s1 = list.get(i2);
-                fontRendererObj.drawStringWithShadow(s1, j2, k2, -1);
+                fontRenderer.drawStringWithShadow(s1, j2, k2, -1);
 
                 if (i2 == 0) {
                     k2 += 2;

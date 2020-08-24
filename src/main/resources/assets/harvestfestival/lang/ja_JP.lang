@@ -1,0 +1,2543 @@
+#ja_JP.lang by unhappychoice
+harvestfestival.tab.farming=Harvest Festival - Farming
+harvestfestival.tab.cooking=Harvest Festival - Cooking
+harvestfestival.tab.mining=Harvest Festival - Mining
+harvestfestival.tab.town=Harvest Festival - Township
+harvestfestival.tab.gathering=Harvest Festival - Foraging
+harvestfestival.tab.fishing=Harvest Festival - Fishing
+harvestfestival.mode.true=Harvest Festival was set to easy mode!
+harvestfestival.mode.false=Harvest Festival was set to hard mode!
+harvestfestival.check.head=On head after purchase.
+harvestfestival.check.lead=On lead after purchase.
+harvestfestival.death.attack.exhausted=%1$s worked themselves to death
+
+#Commands
+hf.commands.help.header=--- Showing hf help page %d of %d (/hf help <page>) ---
+
+#Tooltips
+harvestfestival.tooltip.cosmetic=装備
+harvestfestival.tooltip.flower=女神様を呼び出す
+harvestfestival.tooltip.mailbox=スニーク + フェンスの横の面に設置
+
+#Animals
+harvestfestival.spawner.tooltip=Shiftキー長押しで赤ちゃんが生まれます。
+harvestfestival.spawner.cow=ウシ
+harvestfestival.spawner.sheep=ヒツジ
+harvestfestival.spawner.chicken=ニワトリ
+entity.harvestfestival.cow.name=ウシ
+entity.harvestfestival.sheep.name=ヒツジ
+entity.harvestfestival.chicken.name=ニワトリ
+#Animal Related Items
+harvestfestival.tool.milker=搾乳機
+harvestfestival.tool.brush=動物用ブラシ
+harvestfestival.tool.medicine=動物用医薬品
+harvestfestival.tool.chicken.feed=ニワトリの餌
+harvestfestival.tool.chicken.feed.tooltip=エサ箱に入れると、10日間餌を与えます
+harvestfestival.tool.miracle.potion=ミラクルポーション
+
+#Buildings
+harvestfestival.town.failure=ここではない!
+harvestfestival.town.dimension=町は Overworld でのみ建築できます。
+harvestfestival.town.distance=同じ施設は1つの町に1つしか建設できません。距離を離して試してください！
+harvestfestival.town.building=この施設はすでに建築中です。同じ施設は1つの町に1つしか建築できません！
+harvestfestival.town.permission=ここに建築する権限がありません。
+harvestfestival.town.preview=プレビューを表示しました
+harvestfestival.town.sneak=スニークキー + 右クリックで
+harvestfestival.town.click=右クリックで
+harvestfestival.town.confirm=決定
+harvestfestival.town.cancel=キャンセル
+harvestfestival.town.cancelled=キャンセルされました
+harvestfestival.structures.blueprint=設計図: %s
+harvestfestival.structures.spawn=[SPAWN] %s
+harvestfestival.structures.barn=飼育小屋
+harvestfestival.structures.barn.tooltip=飼育小屋を建てると、ウシとヒツジが手に入れられるようになります。オーナーと話してウシをもらいましょう。
+harvestfestival.structures.blacksmith=鍛冶屋
+harvestfestival.structures.blacksmith.tooltip=鍛冶屋はツールの修理とアップグレードができます。
+harvestfestival.structures.cafe=カフェ
+harvestfestival.structures.cafe.tooltip=カフェではたくさんの食材とレシピを販売していて、週末には調理器具も販売しています。
+harvestfestival.structures.carpenter=大工
+harvestfestival.structures.carpenter.tooltip=これを購入はできません。が、とにもかくにもツールチップ！
+harvestfestival.structures.church=教会
+harvestfestival.structures.church.tooltip=NPCたちが集まる場所で、神父様が呪われたツールを祝福してくれます。
+harvestfestival.structures.clockmaker=時計職人
+harvestfestival.structures.clockmaker.tooltip=時間の番人、少なくとも彼が言うには、ですが...
+harvestfestival.structures.fishinghole=釣り堀
+harvestfestival.structures.fishinghole.tooltip=魚を捕まえられる唯一の場所魚を捕まえられる唯一の場所！
+harvestfestival.structures.fishinghut=釣り具店
+harvestfestival.structures.fishinghut.tooltip=もし魚釣りで稼ぎたいのであれば、これが必要です。
+harvestfestival.structures.goddesspond=女神の泉
+harvestfestival.structures.goddesspond.tooltip=女神様が住んでいる場所で、作物や植物を投げ入れると女神様が現れて、贈り物として受け取ってくれるでしょう。
+harvestfestival.structures.mininghill=採掘場
+harvestfestival.structures.mininghill.tooltip=売ってお金にできる、あらゆる鉱石が見つかる場所！
+harvestfestival.structures.poultryfarm=養鶏場
+harvestfestival.structures.poultryfarm.tooltip=ニワトリを育てたい？ならこの建物です。オーナーと話してニワトリをもらいましょう。
+harvestfestival.structures.supermarket=雑貨店
+harvestfestival.structures.supermarket.tooltip=様々なグッズやツール、種、料理の材料が揃っています。
+harvestfestival.structures.townhall=町役場
+harvestfestival.structures.townhall.tooltip=町の最上の建物で、いくつかのイベントやごちそうを手に入れることがます。
+harvestfestival.structures.festivals=公園
+harvestfestival.structures.festivals.tooltip=フェスティバルが行われる場所です。フェスティバルの開催が近づくと、消えてしまうため、地面には何も置かないように！
+harvestfestival.structures.null=無効
+harvestfestival.structures.demolish=解体: %s
+harvestfestival.structures.warning1=注意！ すべてのブロックを破壊します！
+harvestfestival.structures.warning2=注意！ すべての額縁、絵画を破壊します！
+harvestfestival.structures.warning3=注意！ ここにいるすべてのNPCを消去します！
+
+#Cheat Items (Translators don't bother tranlating these, I just use them to help with dev)
+harvestfestival.cheat.coord.setter=[BuildingGen] Coordinate Setter
+harvestfestival.cheat.code.generator=[BuildingGen] Code Generator
+harvestfestival.air=[BuildingGen] Internal Air
+harvestfestival.cheat.air.placer=[BuildingGen] Internal Air Placer
+harvestfestival.cheat.air.remover=[BuildingGen] Internal Air Remover
+harvestfestival.cheat.park.placer=[FestivalGen] Park Placer
+harvestfestival.cheat.park.endstone=[FestivalGen] Park Clearer
+harvestfestival.cheat.park.locations.generator=[FestivalGen] Park Locations
+harvestfestival.cheat.building.preview=[BuildingPreviewGen] Building Previewer
+harvestfestival.cheat.ore.checker=[MineGen] Ore Counter
+
+#Crops
+harvestfestival.crop.wild=野生の%s
+harvestfestival.crop.sickle=カマが必要
+harvestfestival.crop.water=水やり不要
+harvestfestival.crop.seeds.format=%1sの%2s
+harvestfestival.crop.seeds=種
+harvestfestival.crop.seeds.days=日後
+harvestfestival.crop.seeds.shop.days=%s日後に成熟
+harvestfestival.crop.seeds.shop.regrow=%s日ごとに再び成熟
+harvestfestival.crop.seeds.shop.cost=%sG
+harvestfestival.crop.seeds.useless=割れてしまった種
+harvestfestival.crop.seeds.corrupted=種が壊れてしまいました！
+harvestfestival.crop.null.crop=Any
+harvestfestival.crop.beetroot=ビートルート
+harvestfestival.crop.cabbage=キャベツ
+harvestfestival.crop.carrot=ニンジン
+harvestfestival.crop.corn=トウモロコシ
+harvestfestival.crop.cucumber=キュウリ
+harvestfestival.crop.eggplant=ナス
+harvestfestival.crop.grass.block=草
+harvestfestival.crop.grass.item=干し草
+harvestfestival.crop.grass.item.tooltip=飼料箱にいれると、5日間餌を与えます。
+harvestfestival.crop.green.pepper=ピーマン
+harvestfestival.crop.onion=タマネギ
+harvestfestival.crop.pineapple=パイナップル
+harvestfestival.crop.potato=ジャガイモ
+harvestfestival.crop.pumpkin=カボチャ
+harvestfestival.crop.spinach=ホウレンソウ
+harvestfestival.crop.strawberry=ストロベリー
+harvestfestival.crop.sweet.potato=サツマイモ
+harvestfestival.crop.tomato=トマト
+harvestfestival.crop.turnip=カブ
+harvestfestival.crop.watermelon=スイカ
+harvestfestival.crop.wheat=小麦
+harvestfestival.crop.nether.wart=ネザーウォート
+harvestfestival.crop.tutorial.turnip=カブ
+harvestfestival.crop.apple=りんご
+harvestfestival.crop.banana=バナナ
+harvestfestival.crop.orange=オレンジ
+harvestfestival.crop.peach=もも
+harvestfestival.crop.grape=ぶどう
+harvestfestival.crop.hemp.tooltip=明るさレベル12以上が必要です。
+harvestfestival.tree.area=%sx%sの範囲が必要です。
+
+#Trees
+##Fruit
+harvestfestival.fruit.apple=収穫できるりんご
+harvestfestival.fruit.banana=収穫できるバナナ
+harvestfestival.fruit.grape=収穫できるぶどう
+harvestfestival.fruit.orange=収穫できるオレンジ
+harvestfestival.fruit.peach=収穫できるもも
+##Leaves
+harvestfestival.leaves.fruit.apple=りんごの葉
+harvestfestival.leaves.fruit.apple.harvestable=花の咲いたりんごの葉
+harvestfestival.leaves.tropical.banana=バナナの葉
+harvestfestival.leaves.tropical.banana.harvestable=花の咲いたバナナの葉
+harvestfestival.leaves.fruit.grape=ぶどうの葉
+harvestfestival.leaves.fruit.grape.harvestable=花の咲いたぶどうの葉
+harvestfestival.leaves.fruit.orange=オレンジの葉
+harvestfestival.leaves.fruit.orange.harvestable=花の咲いたオレンジの葉
+harvestfestival.leaves.fruit.peach=ももの葉
+harvestfestival.leaves.fruit.peach.harvestable=花の咲いたももの葉
+
+#Cookbook
+harvestfestival.utensils=調理器具
+harvestfestival.cookbook=レシピ本
+harvestfestival.recipe.format=レシピ: %s
+harvestfestival.recipe.invalid=無効なレシピ
+harvestfestival.cook=料理する
+
+#Meals
+harvestfestival.meal.learnt=新しいレシピを習得しました！
+harvestfestival.meal.intro=自分だけのレシピ本へようこそ。初めて開いたときには、まだレシピを持っていないかもしれません。まずはカフェでいくつかレシピを購入してみましょう。町の人々が隠しレシピを知っているというウワサも？...
+harvestfestival.meal.missing=覚えることができません
+harvestfestival.meal.missing.description=まだ幾つかの素材が足りません。
+harvestfestival.meal.success=成功！
+harvestfestival.meal.success.description=%1sに%2sの材料をセットしてください。
+harvestfestival.meal.failure=失敗！
+harvestfestival.meal.failure.description=%2sを作るための%1sがありません。
+harvestfestival.meal.missing_oven=オーブンがありません！
+harvestfestival.meal.missing_oven.description=%1sの下にオーブンを配置してください。
+harvestfestival.meal.missing_counter=カウンターがありません！
+harvestfestival.meal.missing_counter.description=%1sの下にカウンターを配置してください。
+harvestfestival.meal.description=説明:
+harvestfestival.meal.recipe=レシピ
+harvestfestival.meal.hunger=回復量
+harvestfestival.meal.sell=販売:
+harvestfestival.meal.sat=満タン
+harvestfestival.meal.exhaust=空
+harvestfestival.meal.rice.fried=炒飯
+harvestfestival.meal.rice.fried.description=簡単で美味しい炒めもの。油を少しまとったご飯、カンペキ。野菜とたまごとハーブを入れて試してみるのがオススメです。
+harvestfestival.meal.pancake.savoury=お好み焼き
+harvestfestival.meal.pancake.savoury.description=外はカリカリ、中はふわっと。色んな味が入っています。小ネギを添えるかどうかはお好みで。
+harvestfestival.meal.fries.french=フライドポテト
+harvestfestival.meal.fries.french.description=柱状のポテト。それは炭水化物の究極の姿。素揚げに塩を振れば最高の食事のお供になります。
+harvestfestival.meal.popcorn=ポップコーン
+harvestfestival.meal.popcorn.description=爆発で作る数少ない食べ物の一つで、一般的に手づかみで食べられます。
+harvestfestival.meal.cornflakes=コーンフレーク
+harvestfestival.meal.cornflakes.description=ほのかな甘みが一日の始めに元気をくれます。
+harvestfestival.meal.egg.scrambled=スクランブルエッグ
+harvestfestival.meal.egg.scrambled.description=ふわふわのスクランブルエッグを作るコツは、調理の前に塩を加えて2分間寝かせること。火を通す前ならどんなトッピングを加えてもOKです。
+harvestfestival.meal.omelet=オムレツ
+harvestfestival.meal.omelet.description=昔から朝食として食べられていた卵料理ですが、中身の具次第ではいつでも食べられます。
+harvestfestival.meal.omelet.rice=オムライス
+harvestfestival.meal.omelet.rice.description=オムレツをご飯の上に乗せた料理。普通のオムレツよりも幅広いアレンジができます。
+harvestfestival.meal.pancake=パンケーキ
+harvestfestival.meal.pancake.description=パンケーキ、フラップジャック、グリドルケーキ、これらは全て西イスタンブール発祥の朝食の名前です。
+harvestfestival.meal.potsticker=餃子
+harvestfestival.meal.potsticker.description=豪華で香ばしい野菜を生地に包んで、外はカリカリ、中は柔らかになるまで。
+harvestfestival.meal.risotto=リゾット
+harvestfestival.meal.risotto.description=トマトとタマネギ、そして米をベースにしたなめらかな食感の伝統的なイタリア料理です。
+harvestfestival.meal.juice.pineapple=パインジュース
+harvestfestival.meal.juice.pineapple.description=甘酸っぱく、喉の渇きを癒すと同時にビタミンも摂取。人によっては甘さや酸っぱさが足りないと感じるようです。
+harvestfestival.meal.juice.tomato=トマトジュース
+harvestfestival.meal.juice.tomato.description=オレンジジュースが枯渇したときの代替として発明されました。現代では前菜などに使われています。
+harvestfestival.meal.milk.strawberry=いちごミルク
+harvestfestival.meal.milk.strawberry.description=この練乳とイチゴによって作られた飲み物は胃のむかつきや便通を和らげてくれます。人によっては甘さが足りないと感じるようです。
+harvestfestival.meal.juice.vegetable=野菜ジュース
+harvestfestival.meal.juice.vegetable.description=野菜のみで作られたジュース。多くのものはトマトや味を良くするためのひと手間が加えられます。使用される野菜の多くは水分が多く、ジュースに適しています。
+harvestfestival.meal.latte.vegetable=野菜ラテ
+harvestfestival.meal.latte.vegetable.description=野菜のオイルと乳酸を混ぜたもの。野菜の栄養が消化のしやすい形で沢山とれます。味についてはコメントしないでおくことにします。
+harvestfestival.meal.ketchup=ケチャップ
+harvestfestival.meal.ketchup.description=濃く濃厚なこの調味料は昔からあります。人の好みによって様々な味で作られます。
+harvestfestival.meal.butter=バター
+harvestfestival.meal.butter.description=生クリームを撹拌して分けられた油と脂肪がバターです。防腐剤として使われ良い風味を付けます。
+harvestfestival.meal.fishsticks=白身魚のフライ
+harvestfestival.meal.fishsticks.description=つみれで作る料理。棒状やハンバーグにすることもあり、おやつや食事として食べられます。
+harvestfestival.meal.salad=サラダ
+harvestfestival.meal.salad.description=新鮮でシャキシャキ。脂っこいものと合わせるにはピッタリ。様々な具をのせることができ、まるで庭を食べているかのようです。味付けにも好みが出てきます。
+harvestfestival.meal.sandwich=サンドイッチ
+harvestfestival.meal.sandwich.description=典型的な携帯食。これを考えた人はギャンブルや残業の合間に食べたのでしょう。しっとり派かシャキシャキ派で別れます。
+harvestfestival.meal.turnip.pickled=かぶのピクルス
+harvestfestival.meal.turnip.pickled.description=漬け込んだカブは、世界で最も一般的なスパイス。
+harvestfestival.meal.cucumber.pickled=胡瓜のピクルス
+harvestfestival.meal.cucumber.pickled.description=典型的なピクルス。薬味にも使えますが、そのまま食べてもいける。独特の歯触りと爽やかさが持ち味。
+harvestfestival.meal.sushi=鮨
+harvestfestival.meal.sushi.description=酢飯と魚を合わせた独特の軽食。もはや芸術的なフォルムを持つに至ります。
+harvestfestival.meal.sashimi=刺身
+harvestfestival.meal.sashimi.description=魚のシンプルな食べ方。一切の調理を行わず、ただ繊細なカットのみを施して供されます。
+harvestfestival.meal.sashimi.chirashi=ちらし寿司
+harvestfestival.meal.sashimi.chirashi.description=丼1杯のご飯の上に薄く切った魚を乗せたもので、何種類もの魚の異なる風味が、単純な料理に多くの組み合わせを生み出します。
+harvestfestival.meal.milk.hot=ホットミルク
+harvestfestival.meal.milk.hot.description=さっと沸かした牛乳。ぐっすり眠れる。胃にもやさしい。
+harvestfestival.meal.chocolate.hot=ホットココア
+harvestfestival.meal.chocolate.hot.description=神の飲み物、その名もあつあつココアにクリームたっぷり、神と人とに最上の飲料なり。もうちょっと甘いのが好みだという人もいます。
+harvestfestival.meal.stew.pumpkin=かぼちゃのシチュー
+harvestfestival.meal.stew.pumpkin.description=かぼちゃの中身だけを液状になるまで煮込んだ濃厚なスープ。
+harvestfestival.meal.stew.fish=煮魚
+harvestfestival.meal.stew.fish.description=煮魚や魚介スープは魚に含まれる水分を利用しています。
+harvestfestival.meal.egg.boiled=ゆでたまご
+harvestfestival.meal.egg.boiled.description=卵を水に入れ、弱火で沸騰させるだけで出来る簡単な料理。
+harvestfestival.meal.spinach.boiled=ほうれんそうのおひたし
+harvestfestival.meal.spinach.boiled.description=この料理の独特の酸味は大人向きで、子供向きではありません。
+harvestfestival.meal.potato.candied=大学イモ
+harvestfestival.meal.potato.candied.description=栄養価の高く、おいしいサツマイモを甘く味付けした料理。病み付きになります。
+harvestfestival.meal.dumplings=ダンプリング
+harvestfestival.meal.dumplings.description=シャキシャキでおいしい野菜を皮に包み、さっと揚げることで、おいしく作る事ができます。
+harvestfestival.meal.noodles=ラーメン
+harvestfestival.meal.noodles.description=粉末にした小麦を麺状、シート状、その他の形状にしたものは多くの食事や料理の主食に。
+harvestfestival.meal.soup.rice=おかゆ
+harvestfestival.meal.soup.rice.description=おにぎりを液状にしたもの。この調理品は他の液体を含まないが、基本のスープストックとして利用できそうです。
+harvestfestival.meal.porridge=オートミール
+harvestfestival.meal.porridge.description=下処理をした穀物を牛乳でゆっくり煮込むことで、栄養が溶け込んだオートミールに。
+harvestfestival.meal.egg.overrice=雑炊
+harvestfestival.meal.egg.overrice.description=おにぎりの上に卵を割り入れ鍋で20分じっくりと加熱することで、ご飯の間に卵が絡まり美味しいタンパク質と結びつきます。
+harvestfestival.meal.stew=シチュー
+harvestfestival.meal.stew.description=加熱した牛乳にゆっくりと小麦粉を足していくことで、様々な食材の旨味を移しサポートする素晴らしいシチュー・ベースになります。
+harvestfestival.meal.corn.baked=焼きもろこし
+harvestfestival.meal.corn.baked.description=トウモロコシは焼くと甘みが増し、バターがそれを引き立ててくれます。
+harvestfestival.meal.riceballs.toasted=焼きおにぎり
+harvestfestival.meal.riceballs.toasted.description=おにぎりの表面をカリッとこんがり香ばしく焼き上げ。携帯にも便利です。
+harvestfestival.meal.toast=トースト
+harvestfestival.meal.toast.description=昔はクリスプブレッドをワインのような苦い飲み物に合わせて食されていたことから、”トースト(焦げた)”と名付けられましたが、今はトーストがおいしいことは知っての通り。
+harvestfestival.meal.dinnerroll=ロールパン
+harvestfestival.meal.dinnerroll.description=牛乳と塩を入れて焼いた卵のロールからオムレツのように作られて、おいしいです。
+harvestfestival.meal.doria=ドリア
+harvestfestival.meal.doria.description=一つの器に、甘くておいしい炒めた玉ねぎとふわふわしたお米が入って焼かれた主食の一つです。
+harvestfestival.meal.cookies=クッキー
+harvestfestival.meal.cookies.description=持ち運べて、甘くて、サクサクで、おいしい、神ってるお菓子。 これ以上の物がありますか？
+harvestfestival.meal.cookies.chocolate=チョコレートクッキー
+harvestfestival.meal.cookies.chocolate.description=クッキーにチョコレートを入れることでチョコ風味に。チョコは小さく砕きましょう。
+harvestfestival.meal.cake.chocolate=チョコレートケーキ
+harvestfestival.meal.cake.chocolate.description=ケーキにチョコを入れると、おいしいチョコレートケーキに。我慢できるなら、焼いてもいいですよ？
+harvestfestival.meal.toast.french=フレンチトースト
+harvestfestival.meal.toast.french.description=揚げる前に、よく浸すことで、ダブルパンを発明。よりおいしくするために足りないものを加えましょう。
+harvestfestival.meal.doughnut=ドーナツ
+harvestfestival.meal.doughnut.description=神秘と栄光に包まれた輪。空腹を癒してくれる。紅茶、コーヒーなどの苦めの飲み物によく合います。
+harvestfestival.meal.fish.grilled=焼き魚
+harvestfestival.meal.fish.grilled.description=魚を焼くと新しい世界が開ける。カリカリかフワフワか、辛めにするかコクを出すか、全ては貴方の準備次第です。
+harvestfestival.meal.eggplant.happy=揚げ茄子
+harvestfestival.meal.eggplant.happy.description=三日月型に切って炒めたナスは、人々に笑顔をもたらし、ナスも笑うでしょう。
+harvestfestival.meal.burnt.counter=失敗した手作り料理
+harvestfestival.meal.burnt.pot=失敗した鍋料理
+harvestfestival.meal.burnt.frying.pan=失敗した炒め物料理
+harvestfestival.meal.burnt.mixer=失敗したミキサー料理
+harvestfestival.meal.burnt.oven=失敗したオーブン料理
+#0.6+ Meals
+harvestfestival.meal.jam.apple=りんごジャム
+harvestfestival.meal.jam.apple.description=りんごから作られたジャム。おいしい。焼きたてのトーストに塗って。ほんの少しアルコールを加えるともっと良くなります。
+harvestfestival.meal.jam.grape=ぶどうジャム
+harvestfestival.meal.jam.grape.description=フルーツサンドイッチの最高の友達。甘くてネバネバ、 駆け出しシェフや子供のいる夫婦には欠かせない食品でです。他のぶどう製品と組み合わせると、もっと良くなるかも？
+harvestfestival.meal.jam.strawberry=いちごジャム
+harvestfestival.meal.jam.strawberry.description=いちごからつくられるネバネバで甘い保存食。種入り！ワインを一振りするともっと良くなります。
+harvestfestival.meal.marmalade=マーマレード
+harvestfestival.meal.marmalade.description=マーマレード...バターもジャムもない？のであれば、トーストに塗るそれら保存食の代わりになります。フランスNo.1を平らげましょう！
+harvestfestival.meal.noodles.tempura=てんぷらラーメン
+harvestfestival.meal.noodles.tempura.description=てんぷらラーメン。とナルトを忘れずに！
+harvestfestival.meal.rice.tempura=天ぷらごはん
+harvestfestival.meal.rice.tempura.description=ごはんの中にてんぷら。ん〜他に何か必要ですか？醤油？
+harvestfestival.meal.juice.orange=オレンジジュース
+harvestfestival.meal.juice.orange.description=新鮮なしぼりたてオレンジジュース！スクランブルエッグ、ハッシュドポテト、燻製ハムのお供に
+harvestfestival.meal.juice.apple=りんごジュース
+harvestfestival.meal.juice.apple.description=秘密のスペシャルりんごジュース。絞った後には冷やして。 どんな温度でも。冷蔵庫で冷やすかチェストにしまって
+harvestfestival.meal.juice.banana=バナナジュース
+harvestfestival.meal.juice.banana.description=甘くてなめらかジュースにすることで、よりバナナの風味を引き出しています。そのままでカンペキ
+harvestfestival.meal.juice.peach=ももジュース
+harvestfestival.meal.juice.peach.description=ん〜、甘いネクター。生または缶詰のもものスムージーにピッタリ
+harvestfestival.meal.juice.grape=ぶどうジュース
+harvestfestival.meal.juice.grape.description=一日の始まりにピッタリ。今日はノンアルコールワインを友達におごってあげましょう。
+harvestfestival.meal.juice.fruit=フルーツジュース
+harvestfestival.meal.juice.fruit.description=もしジュースに出来なかったら？ジュースにしましょう。フルーツジュースは残り物で出来ています。
+harvestfestival.meal.juice.mix=ミックスジュース
+harvestfestival.meal.juice.mix.description=野菜とフルーツの組み合わせは最高（か、最高ではない）とにかく試してみるべきです。
+harvestfestival.meal.latte.mix=ミックスラテ
+harvestfestival.meal.latte.mix.description=ミックスした飲み物にはいつでも少しのミルクが必要です。飲めるかどうかは分からないですが。
+harvestfestival.meal.latte.fruit=フルーツラテ
+harvestfestival.meal.latte.fruit.description=フルーツジュースに少しの牛乳でより満足に。当然おいしいよね？
+harvestfestival.meal.sandwich.fruit=フルーツサンドイッチ
+harvestfestival.meal.sandwich.fruit.description=ん〜フルーツ... のサンドイッチ。ベジタリアンかトーストで挟まれたフルーツが好きな人に。
+harvestfestival.meal.bread.raisin=レーズンパン
+harvestfestival.meal.bread.raisin.description=簡単なパンのレシピとして、レーズンパンはいかが？いつでもおいしい。紅茶にもよくあいます。
+harvestfestival.meal.bun.jam=ジャムパン
+harvestfestival.meal.bun.jam.description=柔らかなバター風味の革に隠れるシェフのお気に入りジャムという甘い驚き。りんご、ストロベリー、ぶどう、マーマレードの香りが広がります。
+harvestfestival.meal.cake=ケーキ
+harvestfestival.meal.cake.description=すこしのフルーツをあしらった一般的なケーキ。なんだろう、誕生日？いろいろなフルーツを使うと、いっそう美味しくなります。
+harvestfestival.meal.ice.cream=アイスクリーム
+harvestfestival.meal.ice.cream.description=クリーミー、軽くて甘い。ペイストリーアラモードにすれば主食にも。おいしい！あなた好みのフルーツを載せて。
+harvestfestival.meal.rice.bamboo=たけのこごはん
+harvestfestival.meal.rice.bamboo.description=たけのことご飯を組合わせて、美味しい栄養満点の料理に。自然のくれた素晴らしい宝の一つです。
+harvestfestival.meal.rice.matsutake=まつたけごはん
+harvestfestival.meal.rice.matsutake.description=この美しい香ばしい香りの料理は、あなたの下をとろけさせるでしょう。エキゾチックな旅へと連れて行ってくれます。レシピは弄らなければ。
+harvestfestival.meal.rice.mushroom=きのこごはん
+harvestfestival.meal.rice.mushroom.description=手摘みのきのこで飾り付けられたごはん。最高に絶妙なバランスなので、これ以上いじってはいけません。
+harvestfestival.meal.bread.curry=カレーパン
+harvestfestival.meal.bread.curry.description=日本のカレーパンをマスターするのはマスターするのはとても簡単です。奇妙に聞こえる味の融合によって、探し求める最高のパンとなることでしょう。
+harvestfestival.meal.curry.dry=ドライカレー
+harvestfestival.meal.curry.dry.description=よだれが出てもっと欲しくなってしまう、スパイシーな一品。パン、油、カレー粉のシンプルな組み合わせですが、魚か野菜を加えてよりカンペキに。
+harvestfestival.meal.noodles.thick.fried=やきそば
+harvestfestival.meal.noodles.thick.fried.description=強火で炒めた素晴らしい料理。細い麺に油が絡みつく。野菜か魚をのせて、この美味しい料理は完成！
+harvestfestival.meal.souffle.apple=りんごスフレ
+harvestfestival.meal.souffle.apple.description=デザートにとっても最適。手に入れられる最高級のりんごで。下でその風味を味わって。
+harvestfestival.meal.stir.fry=野菜いため
+harvestfestival.meal.stir.fry.description=この香ばしいキャベツ炒め、ピリッとしてすぐ用意できます。少し野菜を足して挑戦してみても。マツタケを加えても良いという人も？
+harvestfestival.meal.tempura=てんぷら
+harvestfestival.meal.tempura.description=このサクサクしたごちそうは、メインにもおかずにも。野菜を加えるともっと健康的になります。
+harvestfestival.meal.pie.apple=アップルパイ
+harvestfestival.meal.pie.apple.description=この美味しいアップルパイは、よくお母さんが作ってくれました。大きな塊のりんごをサクサクしたパイ生地で包んだら、クリームで閉じ込めて。
+harvestfestival.meal.sweet.potatoes=やきいも
+harvestfestival.meal.sweet.potatoes.description=つぶして、あげて、切って、レンジであたためて、ぺしゃんこにして、皮をむいて、生で、ぶっとばして...
+harvestfestival.meal.salad.herb=ハーブサラダ
+harvestfestival.meal.salad.herb.description=お庭から来た新鮮なやつ！探して、選んで、集めてきたハーブで作られています。生け垣は食べないように！
+harvestfestival.meal.soup.herb=ハーブスープ
+harvestfestival.meal.soup.herb.description=ハーブと玉ねぎで作った新鮮なスープ。他のハーブを加えるともっとカンペキに。
+harvestfestival.meal.sandwich.herb=ハーブサンドイッチ
+harvestfestival.meal.sandwich.herb.description=フルーツや野菜を持て余している？この美しいサンドイッチをどうぞ！まるで緑の女神のよう
+harvestfestival.meal.flour.description=小麦か、なんでも好きなものを一緒につぶして。すり鉢でつぶしたら、納屋には置かないで。
+harvestfestival.meal.mayonnaise.small.description=酢と潰した卵を瓶に詰めて。この瓶はちょっと小さいけど、サンドイッチにぬれるかな？
+harvestfestival.meal.mayonnaise.medium.description=このニワトリはもっと大きい卵を産んだに違いない。マヨネーズも大きくなりました。
+harvestfestival.meal.mayonnaise.large.description=あのサンドイッチの店に電話してくれ！マヨネーズが間違ってここに届いている！この産業用の瓶の大きさは...冷蔵庫並み？
+#Default Meals
+harvestfestival.meal.vanilla.cookies.description=最高のバニラ環境の材料。ん〜小麦のクッキーだって？繊維を引き抜いてあげれば、とっても栄養満点です。
+harvestfestival.meal.vanilla.cake.description=バニラ環境の愛すべきケーキ。バニラ風。 変わらない美味しさ。
+harvestfestival.meal.bread.description=小麦を3つでパンになるなんて、一体誰のアイデア？小麦粉を作らないと！丸石で砕いて、水をかけて、混ぜて、300度で30分...めしあがれ！
+harvestfestival.meal.baked.potato.description=消費者が尋ねる全部のトッピングのためのまっさらなキャンバス。たまねぎ、チーズ、サワークリーム、バター、おきまりの... etc, etc。もしくは、ただただそのまま食べるんです。
+harvestfestival.meal.cooked.chicken.description=ファストフードの会社は新鮮な鳥の串焼きからは何も得られなかった...骨付き。
+harvestfestival.meal.cooked.beef.description=注文が入ってから調理。牧草地直送。牧草飼育、飼料飼育、毎日のブラッシング...放し飼い...いいからラベルを見るんだ、みんな。
+harvestfestival.meal.cooked.pork.description=過剰な豚は解禁期です。解禁期の豚を手に入れましょう！一頭ごとに X Gold...みんな肉に。
+harvestfestival.meal.cooked.mutton.description=ヒツジ、他の肉。十分な羊毛を生産しないヒツジの肉。そう、キミを見ているんだよキミを。そこのピンク色のヒツジ！
+harvestfestival.meal.cooked.rabbit.description=うさぎのジョークを作ろうなんてしないでね、エルマーファッド。あのうさぎがここにヒツジに変装しているから。
+harvestfestival.meal.cooked.cod.description=お好みの薬味を添えて。焦げ目を付けて。焼く。揚げる。オーブンで焼く。炙る。サシミにする。まって、これ生じゃないか、なんてこった。
+harvestfestival.meal.cooked.salmon.description=オーブンでディルバターと焼くととても美味しい。塩分量を気にされている方にはおすすめしません。骨入り。
+harvestfestival.meal.pumpkin.pie.description=昔からの感謝祭の習慣。アメリカ人は自分たちで大きなパイを作るらしい。誰がかぼちゃを缶に入れたんだ？そしてなぜ？
+harvestfestival.meal.brown.mushroom.description=このキノコ料理からは、野生の香りが一層味わえます。今までにないごはんのために最高のキノコをえらんで
+harvestfestival.meal.rabbit.stew.description=ウサギ肉のひとかたまりをシチューに。冬にあたたまるのに最適です。マッシュドポテトか、パンひとかたまりを添えて。
+harvestfestival.meal.beetroot.soup.description=ボウルの中の血液のよう。見た目より美味しいことを願う。ん、あぁ、えーと、うん。バンパイアの好きな料理ですね。冷やして、またはアツアツで試してみてください。
+
+#Ingredients
+harvestfestival.ingredient.butter=バター
+harvestfestival.ingredient.cookies=クッキー
+harvestfestival.ingredient.egg.scrambled=クッキー
+harvestfestival.ingredient.ketchup=ケチャップ
+harvestfestival.ingredient.sashimi=サシミ
+harvestfestival.ingredient.oil=調理油
+harvestfestival.ingredient.riceball=おにぎり
+harvestfestival.ingredient.salt=塩
+harvestfestival.ingredient.flour=小麦粉
+harvestfestival.ingredient.chocolate=チョコレート
+harvestfestival.ingredient.curry.powder=カレー粉
+harvestfestival.ingredient.dumpling.powder=小麦粉
+harvestfestival.ingredient.wine=ワイン
+
+
+#Utensils
+harvestfestival.utensil.blade=ミキサーの刃
+harvestfestival.utensil.knife=キッチンナイフ
+
+#Sizeables
+harvestfestival.sizeable.format=%1s %2s
+harvestfestival.sizeable.small=小
+harvestfestival.sizeable.medium=中
+harvestfestival.sizeable.large=大
+harvestfestival.sizeable.egg=卵
+harvestfestival.sizeable.milk=牛乳
+harvestfestival.sizeable.wool=羊毛
+harvestfestival.sizeable.fish=魚
+harvestfestival.sizeable.cheese=チーズ
+harvestfestival.sizeable.yoghurt=ヨーグルト
+harvestfestival.sizeable.mayonnaise=マヨネーズ
+harvestfestival.sizeable.matsutake=マツタケ
+harvestfestival.sizeable.toadstool=毒キノコ
+harvestfestival.sizeable.shiitake=しいたけ
+harvestfestival.sizeable.yarn=糸
+
+#Fish
+harvestfestival.fish.minnow=ミノウ
+harvestfestival.fish.salmon=サケ
+harvestfestival.fish.tetra=ネオンテトラ
+harvestfestival.fish.catfish=ナマズ
+harvestfestival.fish.piranha=ピラニア
+harvestfestival.fish.cod=タラ
+harvestfestival.fish.perch=パーチ
+harvestfestival.fish.tuna=マグロ
+harvestfestival.fish.stingray=アカエイ
+harvestfestival.fish.mantaray=マンタ
+harvestfestival.fish.electricray=シビレエイ
+harvestfestival.fish.damsel=スズメダイ
+harvestfestival.fish.angel=エンゼルフィッシュ
+harvestfestival.fish.puffer=フグ
+harvestfestival.fish.gold=キンギョ
+harvestfestival.fish.siamese=ベタ
+harvestfestival.fish.koi=ニシキゴイ
+harvestfestival.fish.butterfly=チョウチョウウオ
+harvestfestival.fish.tang=ナンヨウハギ
+harvestfestival.fish.clown=クマノミ
+harvestfestival.fish.lamprey=ヤツメウナギ
+harvestfestival.fish.stargazer=メガネウオ
+harvestfestival.fish.blaasop=センニンフグ
+harvestfestival.fish.angler=チョウチンアンコウ
+harvestfestival.fish.herring=ニシン
+harvestfestival.fish.trout=ニジマス
+harvestfestival.fish.pupfish=カダヤシ
+harvestfestival.fish.chub=チャブ
+harvestfestival.fish.bowfin=アミア・カルヴァ
+harvestfestival.fish.lungfish=ハイギョ
+harvestfestival.fish.pickerel=ピッカレル
+harvestfestival.fish.anchovy=カタクチイワシ
+harvestfestival.fish.bass=バス
+harvestfestival.fish.carp=コイ
+harvestfestival.fish.pike=カワカマス
+harvestfestival.fish.sardine=イワシ
+harvestfestival.fish.walleye=ウォールアイ
+
+#Junk
+harvestfestival.junk.bait=餌
+harvestfestival.junk.bait.tooltip=魚の罠に必要で、つりざおに取り付けて食いつく確率を上げることもできます。
+harvestfestival.junk.bones=魚の骨
+harvestfestival.junk.boot=ブーツ
+harvestfestival.junk.can=空き缶
+harvestfestival.junk.fossil=魚の化石
+harvestfestival.junk.treasure=海賊の宝
+
+#Blocks
+harvestfestival.aquatic.trap=魚の罠
+harvestfestival.aquatic.trap.tooltip=魚を簡単に捕まえる方法で、餌を入れて水に囲まれていることを確認したら、次の日にチェックしてみましょう。
+harvestfestival.aquatic.trap.baited=餌入りの魚の罠
+harvestfestival.floating.hatchery=孵化場
+harvestfestival.floating.hatchery.tooltip=8面すべて水に囲まれるように置きましょう。魚を中に入れ数日待つと、魚が増えてます。魚を取り出すと一定確率で壊れるので注意してください。
+
+#Tools
+harvestfestival.tool.broken=壊れた
+harvestfestival.tool.discharge=基本にリセットしました
+harvestfestival.tool.charge=溜めを%sに増やしています
+#Hoe
+harvestfestival.hoe.tooltip.charge.basic=基本 (1x1)
+harvestfestival.hoe.tooltip.charge.copper=銅 (1x2)
+harvestfestival.hoe.tooltip.charge.silver=銀 (1x3)
+harvestfestival.hoe.tooltip.charge.gold=金 (1x4)
+harvestfestival.hoe.tooltip.charge.mystril=ミスリル (1x6)
+harvestfestival.hoe.tooltip.charge.cursed=呪い/祝福 (3x12)
+harvestfestival.hoe.tooltip.charge.mythic=神秘 (5x18)
+harvestfestival.hoe.tooltip.charge=右クリックを押し続けて溜め
+harvestfestival.hoe.tooltip.discharge=スニーク + 右クリックでリセット
+harvestfestival.hoe.basic=クワ
+harvestfestival.hoe.copper=銅のクワ
+harvestfestival.hoe.silver=銀のクワ
+harvestfestival.hoe.gold=金のクワ
+harvestfestival.hoe.mystril=ミスリルのクワ
+harvestfestival.hoe.cursed=呪われたクワ
+harvestfestival.hoe.blessed=祝福されたクワ
+harvestfestival.hoe.mythic=神秘のクワ
+
+#Sickle
+harvestfestival.sickle.tooltip.charge.basic=基本 (1x1)
+harvestfestival.sickle.tooltip.charge.copper=銅 (3x1)
+harvestfestival.sickle.tooltip.charge.silver=銀 (3x2)
+harvestfestival.sickle.tooltip.charge.gold=金 (3x3)
+harvestfestival.sickle.tooltip.charge.mystril=ミスリル (5x5)
+harvestfestival.sickle.tooltip.charge.cursed=呪い/祝福 (9x9)
+harvestfestival.sickle.tooltip.charge.mythic=神秘 (15x15)
+harvestfestival.sickle.tooltip.charge=右クリックを押し続けて溜め
+harvestfestival.sickle.tooltip.discharge=スニーク + 右クリックでリセット
+harvestfestival.sickle.basic=カマ
+harvestfestival.sickle.copper=銅のカマ
+harvestfestival.sickle.silver=銀のカマ
+harvestfestival.sickle.gold=金のカマ
+harvestfestival.sickle.mystril=ミスリルのカマ
+harvestfestival.sickle.cursed=呪われたカマ
+harvestfestival.sickle.blessed=祝福されたカマ
+harvestfestival.sickle.mythic=神秘のカマ
+
+#Watering Can
+harvestfestival.wateringcan.tooltip.dimensions=%sx%sの範囲に水まき
+harvestfestival.wateringcan.basic=じょうろ
+harvestfestival.wateringcan.copper=銅のじょうろ
+harvestfestival.wateringcan.silver=銀のじょうろ
+harvestfestival.wateringcan.gold=金のじょうろ
+harvestfestival.wateringcan.mystril=ミスリルのじょうろ
+harvestfestival.wateringcan.cursed=呪われたじょうろ
+harvestfestival.wateringcan.blessed=祝福されたじょうろ
+harvestfestival.wateringcan.mythic=神秘のじょうろ
+
+#Hammer
+harvestfestival.hammer.tooltip.dimensions=%sx%sx%sの範囲の石を破壊
+harvestfestival.hammer.tooltip.smash=%sx%sの範囲を破壊
+harvestfestival.hammer.tooltip.titles=(幅, 高さ, 深さ)
+harvestfestival.hammer.basic=ハンマー
+harvestfestival.hammer.copper=銅のハンマー
+harvestfestival.hammer.silver=銀のハンマー
+harvestfestival.hammer.gold=金のハンマー
+harvestfestival.hammer.mystril=ミスリルのハンマー
+harvestfestival.hammer.cursed=呪われたハンマー
+harvestfestival.hammer.blessed=祝福されたハンマー
+harvestfestival.hammer.mythic=神秘のハンマー
+
+#Axe
+harvestfestival.axe.chop=木を切り倒す
+harvestfestival.axe.tooltip.sneak=スニークで通常のブロック破壊
+harvestfestival.axe.tooltip.chops=%s回で木全体を破壊
+harvestfestival.axe.basic=オノ
+harvestfestival.axe.copper=銅のオノ
+harvestfestival.axe.silver=銀のオノ
+harvestfestival.axe.gold=金のオノ
+harvestfestival.axe.mystril=ミスリルのオノ
+harvestfestival.axe.cursed=呪われたオノ
+harvestfestival.axe.blessed=祝福されたオノ
+harvestfestival.axe.mythic=神秘のオノ
+
+#Fishing Rod
+harvestfestival.fishing.rod.basic=つりざお
+harvestfestival.fishing.rod.copper=銅のつりざお
+harvestfestival.fishing.rod.silver=銀のつりざお
+harvestfestival.fishing.rod.gold=金のつりざお
+harvestfestival.fishing.rod.mystril=ミスリルのつりざお
+harvestfestival.fishing.rod.cursed=呪われたつりざお
+harvestfestival.fishing.rod.blessed=祝福されたつりざお
+harvestfestival.fishing.rod.mythic=神秘のつりざお
+
+#Effects
+harvestfestival.effect.fatigue=倦怠
+harvestfestival.effect.exhaustion=疲労
+harvestfestival.effect.cursed=呪い
+
+#Treats
+harvestfestival.treat.cow=ウシのおやつ
+harvestfestival.treat.sheep=ヒツジのおやつ
+harvestfestival.treat.chicken=ニワトリのおやつ
+harvestfestival.treat.horse=ウマのおやつ
+harvestfestival.treat.pig=ブタのおやつ
+harvestfestival.treat.cat=ネコのおやつ
+harvestfestival.treat.dog=イヌのおやつ
+harvestfestival.treat.generic=どうぶつのおやつ
+
+#Blocks
+harvestfestival.cookware.fridge=冷蔵庫
+harvestfestival.cookware.fridge.top=冷蔵庫
+harvestfestival.cookware.counter=キッチンカウンター
+harvestfestival.cookware.pot=調理鍋
+harvestfestival.cookware.frying.pan=フライパン
+harvestfestival.cookware.mixer=フードミキサー
+harvestfestival.cookware.oven.off=オーブン
+harvestfestival.cookware.oven.on=オーブン
+harvestfestival.cookware.oven=オーブン
+harvestfestival.cookware.chopping.board=まな板
+harvestfestival.cookware.mixing.bowl=ボウル
+harvestfestival.cookware.baking=ベーカリー
+harvestfestival.cookware.steamer=蒸し器
+
+harvestfestival.storage.shipping=出荷箱
+harvestfestival.storage.shipping.tooltip=集めたアイテムをこの中に入れると、毎朝6時にお金を受け取ることができます。
+harvestfestival.storage.mailbox=郵便受け
+harvestfestival.storage.mailbox.tooltip=特別なイベントの招待状が届きます。
+harvestfestival.storage.basket=バスケット
+harvestfestival.storage.basket.tooltip=バスケットをかぶると、拾ったものを自動で出荷します。また、1x3の範囲の作物を収穫できるようになります。
+harvestfestival.sized.incubator=孵化装置
+harvestfestival.trough.wood=エサ箱
+harvestfestival.sprinkler.iron=スプリンクラー
+harvestfestival.sprinkler.iron.tooltip=キラキラした新品のスプリンクラーは毎朝9x9の範囲に水をまきます。
+harvestfestival.sprinkler.old=古いスプリンクラー
+harvestfestival.sprinkler.old.tooltip=この古い装置は毎朝3x3の範囲に水をまきます。
+harvestfestival.tray.nest.empty=巣箱
+harvestfestival.tray.small.chicken=小さい卵がはいった巣箱
+harvestfestival.tray.medium.chicken=普通の卵がはいった巣箱
+harvestfestival.tray.large.chicken=大きな卵がはいった巣箱
+harvestfestival.tray.feeder.empty=餌箱
+harvestfestival.tray.feeder.full=餌の入った餌箱
+
+#Flowers
+harvestfestival.flowers.goddess=女神の花
+harvestfestival.flowers.weed=雑草
+harvestfestival.flowers.blue.magicgrass=青い魔法の花
+harvestfestival.flowers.red.magicgrass=赤い魔法の花
+harvestfestival.flowers.moondrop=月の花
+harvestfestival.flowers.toy=おもちゃの花
+harvestfestival.flowers.pinkcat=Pinkcat の花
+
+#Rocks and Branches
+harvestfestival.wood.branch.small=小さい枝
+harvestfestival.wood.branch.medium=普通の枝
+harvestfestival.wood.branch.large=大きい枝
+harvestfestival.wood.stump.small=小さい切り株
+harvestfestival.wood.stump.medium=通常の切り株
+harvestfestival.wood.stump.large=大きい切り株
+harvestfestival.rock.stone.small=小さい石ころ
+harvestfestival.rock.stone.medium=通常の石ころ
+harvestfestival.rock.stone.large=大きい石ころ
+harvestfestival.rock.boulder.small=小さな玉石
+harvestfestival.rock.boulder.medium=通常の玉石
+harvestfestival.rock.boulder.large=大きな玉石
+
+#Other Gathering Items
+harvestfestival.nature.bamboo=竹
+harvestfestival.nature.matsutake=マツタケ
+harvestfestival.nature.mint=ミント
+harvestfestival.nature.chamomile=カモミール
+harvestfestival.nature.lavender=ラベンダー
+
+#Mine Blocks
+harvestfestival.dirt=鉱山の床
+harvestfestival.dirt.winter=鉱山の床
+harvestfestival.dirt.decorative=鉱山の床
+harvestfestival.dirt.decorative.winter=鉱山の床
+harvestfestival.stone.real=鉱山の壁
+harvestfestival.stone.decorative=鉱山の壁
+harvestfestival.stone.ladder.hole=隠し通路???
+harvestfestival.stone.ladder.hole.whisper=うーん... 下への道がありそうだけど、はしごをおいてみるべきかな？
+harvestfestival.ladder.wood=鉱山のはしご
+harvestfestival.ore.rock=岩
+harvestfestival.ore.copper=銅の原石
+harvestfestival.ore.silver=銀の原石
+harvestfestival.ore.gold=金の原石
+harvestfestival.ore.mystril=ミスリルの原石
+harvestfestival.ore.gem=ジェムの原石
+harvestfestival.ore.diamond=ダイヤの原石
+harvestfestival.ore.emerald=エメラルドの原石
+harvestfestival.ore.ruby=ルビーの原石
+harvestfestival.ore.topaz=トパーズの原石
+harvestfestival.ore.amethyst=アメジストの原石
+harvestfestival.ore.jade=ジェイドの原石
+harvestfestival.portal=鉱山ポータル
+harvestfestival.mine.format=階数: %s
+
+#Mine Materials
+harvestfestival.material.junk=鉄くず
+harvestfestival.material.copper=銅鉱石
+harvestfestival.material.silver=銀鉱石
+harvestfestival.material.gold=金鉱石
+harvestfestival.material.mystril=ミスリル鉱石
+harvestfestival.material.mythic=神秘の鉱石
+harvestfestival.material.adamantite=アダマンタイト
+harvestfestival.material.agate=メノウ
+harvestfestival.material.alexandrite=アレキサンドライト
+harvestfestival.material.amethyst=アメジスト
+harvestfestival.material.fluorite=フルオライト
+harvestfestival.material.moon.stone=ムーンストーン
+harvestfestival.material.orichalc=オリハルコン
+harvestfestival.material.peridot=ペリドット
+harvestfestival.material.pink.diamond=ピンクダイヤモンド
+harvestfestival.material.ruby=ルビー
+harvestfestival.material.sand.rose=砂漠のバラ
+harvestfestival.material.topaz=トパーズ
+harvestfestival.material.jade=ジェイド
+harvestfestival.material.coin.gold=金のコイン
+harvestfestival.material.coin.silver=銀のコイン
+harvestfestival.material.coin.copper=銅のコイン
+
+#Mine Mobs
+harvestfestival.darkspawner.cow=闇のウシ
+harvestfestival.darkspawner.sheep=闇のヒツジ
+harvestfestival.darkspawner.chicken=闇のニワトリ
+harvestfestival.darkspawner.chick=闇のヒナ
+entity.harvestfestival.dark_cow.name=闇のウシ
+entity.harvestfestival.dark_sheep.name=闇のヒツジ
+entity.harvestfestival.dark_chicken.name=闇のニワトリ
+entity.harvestfestival.dark_chick.name=闇のヒナ
+harvestfestival.darkdrop.feather=黒い羽
+harvestfestival.darkdrop.leather=黒い革
+
+#Mine Tools
+harvestfestival.miningtool.escape.rope=脱出ロープ。
+harvestfestival.miningtool.elevator.cable=エレベーターケーブル。
+harvestfestival.elevator.tooltip=エレベーター同士をつなげるのに使います。
+harvestfestival.elevator.place=壁の下部にのみ設置できます。
+harvestfestival.elevator.empty=エレベーター
+harvestfestival.elevator.junk=エレベーター
+harvestfestival.elevator.to=行き先:
+harvestfestival.elevator.none=行き先なし
+harvestfestival.elevator.done=行き先に付きました！
+harvestfestival.elevator.wait=大体%s秒待ってください...
+harvestfestival.elevator.start=%s階からリンクを開始します。
+harvestfestival.elevator.success=%1$s 階から %2$s 階へのエレベーターを設置しました！
+harvestfestival.elevator.cost=リンクするには%s個のエレベーターケーブルが必要です。
+harvestfestival.elevator.link=このエレベータはリンクされていません。
+harvestfestival.elevator.go=このエレベーターで%s階へ行くことができます。
+harvestfestival.elevator.cannot.floor=同じ階ではエレベーターをリンクできません。
+harvestfestival.elevator.cannot.mine=同じ鉱山でしかエレベーターをリンクできません。
+harvestfestival.elevator.cannot.self=同一のエレベーターはリンクできません。
+
+#Goddess Water
+tile.goddess.water.name=女神の水
+fluid.goddess_water=女神の水
+
+#Seasons
+harvestfestival.season.spring=春
+harvestfestival.season.summer=夏
+harvestfestival.season.autumn=秋
+harvestfestival.season.winter=冬
+harvestfestival.calendar.date=%1$s %2$s
+harvestfestival.calendar.monday=月
+harvestfestival.calendar.tuesday=火
+harvestfestival.calendar.wednesday=水
+harvestfestival.calendar.thursday=木
+harvestfestival.calendar.friday=金
+harvestfestival.calendar.saturday=土
+harvestfestival.calendar.sunday=日
+harvestfestival.year=年
+
+#Weathers
+harvestfestival.weather.sunny.set=天候を晴れに変更
+harvestfestival.weather.rain.set=天候を雨に変更
+harvestfestival.weather.snow.set=天候を雪に変更
+harvestfestival.weather.typhoon.set=天候を台風に変更
+harvestfestival.weather.blizzard.set=天候を吹雪に変更
+
+#NPC Tools
+harvestfestival.npctool.blue.feather=青い羽
+harvestfestival.npctool.npc.killer=インスタントNPCキラー
+harvestfestival.npctool.gift.special=特別プレゼント！
+harvestfestival.npctool.gift.special.tooltip=Cloeのための特別なプレゼント
+harvestfestival.npctool.gift.mail=ラブレター
+harvestfestival.npctool.gift.upgrade=アップグレード
+
+#Quest Board
+harvestfestival.quest.block.board=クエストボード
+harvestfestival.quest.block.active=クエストボード
+
+#Contest Blocks
+harvestfestival.decorative.cooking=クッキングスタンド
+harvestfestival.stand.plate=ディナープレート
+harvestfestival.stand.pot=Harvest Festival ポット
+
+#NPC Tooltips
+harvestfestival.npc.tooltip.calendar=何年目？
+harvestfestival.npc.tooltip.clock=営業時間？
+harvestfestival.npc.tooltip.weather=明日の天気は？
+harvestfestival.npc.tooltip.gift=持っているアイテムをプレゼント！
+harvestfestival.npc.tooltip.flower=花を売る！
+harvestfestival.npc.tooltip.book=知恵を求める？
+harvestfestival.npc.tooltip.birthday=%sの誕生日
+
+# NPC Names
+## NOTE FOR TRANSLATORS, READ
+# For the Harvest Goddess, use the name that is used by the Harvest Festival Games
+# in your own language, as for the other characters, name them whatever you like!
+# can be your friends, yourself, hints at famous people in your language or whatever
+# the names don't need to be the same.
+# WARNING: Use of any NON a-Z character will change the renderer to use the vanilla font instead
+# So for best looks, if you can try to only use names with that, if the means you don't translate names
+# then sorry. It's not really feasible for me to support unicode with the custom font
+harvestfestival.npc.goddess.name=Harvest Goddess
+harvestfestival.npc.katlin.name=Granny Katlin
+harvestfestival.npc.daniel.name=Danieru
+harvestfestival.npc.cloe.name=Cloe
+harvestfestival.npc.liara.name=Liara
+harvestfestival.npc.jade.name=Jade
+harvestfestival.npc.jenni.name=Jenni
+harvestfestival.npc.jamie.name=Mayor Jeimmi
+harvestfestival.npc.abi.name=Abii
+harvestfestival.npc.tiberius.name=Tiberius
+harvestfestival.npc.jacob.name=Jakob
+harvestfestival.npc.fenn.name=Fenn
+harvestfestival.npc.jim.name=Jim
+harvestfestival.npc.brandon.name=Brandon
+harvestfestival.npc.thomas.name=Tomas
+harvestfestival.npc.candice.name=Candice
+harvestfestival.npc.yulif.name=Yulif
+harvestfestival.npc.ashlee.name=Ashlee
+harvestfestival.npc.girafi.name=Johan
+
+## NOTE FOR TRANSLATORS, READ
+# When translating these, do not directly translate, just come up with your own
+# funny, or generic greetings related to each character, things that work best
+# in your own language, as these are just generic, do translate the quests
+# semi-literally though, as they are important so the user knows what to do,
+# but take liberty there to, just make sure the user still knows what they
+# have to do in order to complete the quest in question. For many of the greetings you
+# can remove or add more, for the greetings like: harvestfestival.npc.goddess.greeting
+# you can add up to 32 greetings
+#Key-Codes for conversations
+# %1$s = Money - Player has
+# %2$s = Player's Romantic Interest's name
+# %3$s = Entity's Romantic Interest's name
+# %4$s = Players Name
+# %5$s = NPC Name
+#Conversations
+#Error
+harvestfestival.npc.error=対応するキーの翻訳が有りません: %s もしくは %s
+#Generic - Weather
+harvestfestival.npc.generic.weather.good=いい天気、だよね？
+harvestfestival.npc.generic.weather.bad=なんてひどい天気なんだ
+
+#Generic Adult Thanks
+harvestfestival.npc.generic.adult.gift.awesome=うわーすごい贈り物だ！ とっても気に入ったよ！
+harvestfestival.npc.generic.adult.gift.good=とってもとっても素敵な贈り物をありがとう！
+harvestfestival.npc.generic.adult.gift.decent=ありがとう、素敵な贈り物だ。
+harvestfestival.npc.generic.adult.gift.dislike=うーん...ありがとう。
+harvestfestival.npc.generic.adult.gift.bad=何を考えてるんだ？なぜ私にこれを？
+harvestfestival.npc.generic.adult.gift.terrible=いったいぜんたい何があったら、こんなに馬鹿げたものをほしがると思うんだ？
+#No Thanks
+harvestfestival.npc.generic.adult.gift.reject=とってもありがたいのだけれども、今日はもう受け取れないよ。
+harvestfestival.npc.generic.adult.gift.no=このアイテムは貴重すぎて、とても受け取ることができないよ。
+
+#Generic Child Thanks
+harvestfestival.npc.generic.child.gift.awesome=ほんとに？！そう、これだよこれ！ほんとおおおおおおおおおにありがとう！最高！
+harvestfestival.npc.generic.child.gift.good=わぁ！ 素敵なプレゼントをありがとう！
+harvestfestival.npc.generic.child.gift.decent=嬉しいよ、ありがとう！
+harvestfestival.npc.generic.child.gift.dislike=うーん、これは好きじゃないかも。
+harvestfestival.npc.generic.child.gift.bad=どうしてこんなものをぼくに？
+harvestfestival.npc.generic.child.gift.terrible=ぼくこれきらい！こんなのどっかやって！！
+#No Thanks
+harvestfestival.npc.generic.child.gift.reject=もういらない！また明日ちょうだい！
+harvestfestival.npc.generic.child.gift.no=本当に？でもこれ大事にしているみたいだから受け取れないや！
+
+#Generic Elder Thanks
+harvestfestival.npc.generic.elder.gift.awesome=今までの人生でこんなにも素晴らしいものを受け取ったことはなかったよ。心からありがとう。
+harvestfestival.npc.generic.elder.gift.good=とても素敵なものをいただいてしまったね。ありがとう。
+harvestfestival.npc.generic.elder.gift.decent=私を笑顔にしてくれてありがとう。
+harvestfestival.npc.generic.elder.gift.dislike=それはいいアイデアではないね。
+harvestfestival.npc.generic.elder.gift.bad=それは私への侮辱かな？
+harvestfestival.npc.generic.elder.gift.terrible=こんなものを送るなんて、頭がおかしくなったのか？
+#No Thanks
+harvestfestival.npc.generic.elder.gift.reject=すまないな、若い人。今日はもう受け取れないよ。
+harvestfestival.npc.generic.elder.gift.no=このプレゼントは貴重すぎるので受け取れないよ。
+
+#Goddess
+harvestfestival.npc.goddess.greeting1=ごきげんよう？
+harvestfestival.npc.goddess.greeting2=なんてすてきな農業日和なの！
+harvestfestival.npc.goddess.greeting3=他に何か必要ですか？
+harvestfestival.npc.goddess.greeting4=はぁ...こうやって姿を見せるのも大変なのですよ...で、どうしましたか？
+harvestfestival.npc.goddess.greeting5=何が望みですか？
+harvestfestival.npc.goddess.greeting6=もし失ってしまったり、他にも大工が必要な場合は、また木を持ってきてくだされば喜んでお手伝いできますわ。
+harvestfestival.npc.goddess.greeting7=あぁ、またあなたにあえてうれしいです。 %4$s!
+harvestfestival.npc.goddess.greeting8=あぁ、私の愛しい人、状況どうですか？
+harvestfestival.npc.goddess.greeting9=今まで一人でとても寂しかったです。でも今は違います...
+harvestfestival.npc.goddess.greeting10=私はあなたとなら共に花を育てていける...そう信じています。
+harvestfestival.npc.goddess.greeting11=あら、どこにいっていたの、また会えてうれしいわ。
+harvestfestival.npc.goddess.greeting12=こんにちは %4$s お仕事は順調ですか？
+harvestfestival.npc.goddess.greeting13=自然とは本当に美しいものですよね？
+harvestfestival.npc.goddess.greeting14=私に何か素敵なものをプレゼントしたい時は泉に投げ入れてね。後で回収しておきますから。
+harvestfestival.npc.goddess.marriage.reject=ごめんなさい、貴方とはそういう関係になるつもりはないのです...
+harvestfestival.npc.goddess.marriage.accept=...貴方は人で、私は女神。それでも私を求めるのならば私は貴方を受け入れましょう...
+harvestfestival.npc.goddess.gift.awesome=非常に良いプレゼントですね。
+harvestfestival.npc.goddess.gift.good=とても良いプレゼントです。
+harvestfestival.npc.goddess.gift.decent=良いプレゼントです。
+harvestfestival.npc.goddess.gift.dislike=あまり良いプレゼントではありませんね。
+harvestfestival.npc.goddess.gift.bad=こんなプレゼントを渡して、私を馬鹿にしているのですか?
+harvestfestival.npc.goddess.gift.terrible=よくもまぁ私をこうも侮辱できますね。
+harvestfestival.npc.goddess.gift.no=I'm afraid it would not be appropriate for me to accept this gift, it is far too valuable!
+harvestfestival.npc.goddess.gift.reject=Darling, I do appreciate but I cannot in good faith accept another gift today.
+harvestfestival.npc.goddess.festival.chicken1=Are you entering the Chicken Festival my sweet?
+harvestfestival.npc.goddess.festival.chicken2=If you plan to enter the Chicken Festival, go to the park and talk to Ashlee.
+harvestfestival.npc.goddess.festival.cooking1=I wish the cooking festival would put the winning dish as an offering to my pond. I'd love to taste it.
+harvestfestival.npc.goddess.festival.cooking2=There's a festival all about cooking in the park today dear, go give it a try!
+harvestfestival.npc.goddess.festival.cow1=Are you entering the Cow Festival today dear?
+harvestfestival.npc.goddess.festival.cow2=Talk to Jim, if you want to enter, I heard.
+harvestfestival.npc.goddess.festival.harvest1=Today is the Harvest Festival. I'm tickled that they celebrate the harvest!
+harvestfestival.npc.goddess.festival.harvest2=Be sure to bring food to add to a community pot in the park. Its different every year.
+harvestfestival.npc.goddess.festival.new.years.eve1=Another year come and gone. The town is looking so much more lively, and its all thanks to you.
+harvestfestival.npc.goddess.festival.new.years.eve2=There's noodles being served in the park tonight to close out the year. If you please, float a bowl of noodles in my pond. I do so enjoy these events, though I cannot attend myself.
+harvestfestival.npc.goddess.festival.new.years1=A Happy New Year to you dear.
+harvestfestival.npc.goddess.festival.new.years2=If you visit the park today, you get some riceballs. Be sure to bring me one!
+harvestfestival.npc.goddess.festival.sheep1=This is exciting. The Sheep Festival is today!
+harvestfestival.npc.goddess.festival.sheep2=Go ahead and talk to Jim about the festival today darling.
+harvestfestival.npc.goddess.festival.starry.night1=Oh the solstice. Quite a sight with all this snow.
+harvestfestival.npc.goddess.festival.starry.night2=I'm sort of sad I cannot go join the town for dinner in the park. Do go in my place, would you dear?
+
+# Goddess Weather
+harvestfestival.npc.goddess.weather.sunny1=明日はとても素晴らしい1日になりそうです。
+harvestfestival.npc.goddess.weather.sunny2=明日はきっと良い天気になるでしょう...
+harvestfestival.npc.goddess.weather.sunny3=明日は一日中晴れているでしょう。きっととても綺麗ですよ。
+harvestfestival.npc.goddess.weather.rain1=明日は雨です。きっと恵みの雨となるでしょう...
+harvestfestival.npc.goddess.weather.rain2=少し雲行きが怪しいですね...明日は雨...きっと雨になるでしょう...
+harvestfestival.npc.goddess.weather.rain3=（何か歌を歌っているようだ...）...あらごめんなさい。明日はたぶん雨かしら？
+harvestfestival.npc.goddess.weather.typhoon1=明日は酷いものになりそうですね。台風が接近しています。
+harvestfestival.npc.goddess.weather.typhoon2=酷い嵐になる事が予想されます。明日は家にいた方が良いでしょう。
+harvestfestival.npc.goddess.weather.typhoon3=台風が街に近づいてきています...明日は酷い嵐になるでしょう。
+harvestfestival.npc.goddess.weather.snow1=明日はとても寒い日になるでしょう...雪も降るかもしれません、雪に備えましょう。
+harvestfestival.npc.goddess.weather.snow2=全てが凍り付くような寒さがやってきます...明日は雪だるまを作りたいなんて考えないでください。
+harvestfestival.npc.goddess.weather.snow3=明日の天気は雪、とっても寒くなりそう...ほら見て！雪ですよ！
+harvestfestival.npc.goddess.weather.blizzard1=明日は吹雪になるでしょう。
+harvestfestival.npc.goddess.weather.blizzard2=明日は冬将軍の到来、猛吹雪になるでしょう。
+harvestfestival.npc.goddess.weather.blizzard3=明日一日酷い吹雪になりそうです。気を付けてくださいね。
+
+#Katlin
+harvestfestival.npc.katlin.greeting1=ごきげんよう。
+harvestfestival.npc.katlin.greeting2=私の若い頃は...あら、もう聞きたくないって？こんにちわ。
+harvestfestival.npc.katlin.greeting3=この頃の若い人は...あら、こんにちわ？
+harvestfestival.npc.katlin.greeting4=私はTomasと別れられてとっても幸せなの。
+harvestfestival.npc.katlin.greeting5=日曜日は午前中教会に行って、夜は編み物をして過ごしているわ。
+harvestfestival.npc.katlin.greeting6=今日は昔の事を思い出すのには良い日ね。
+harvestfestival.npc.katlin.greeting7=Liaraは幼い頃に両親を失ったから、彼女を育てることになったの。
+harvestfestival.npc.katlin.greeting8=Tomasとは33年も夫婦だったの。時々は寂しく思うわ。
+harvestfestival.npc.katlin.greeting9=小さい頃、よくお母さんはね...いや、これは言っちゃいけないわね。
+harvestfestival.npc.katlin.greeting10=いつか誰も見た事がない最高の毛布を編んで見せるわ。
+harvestfestival.npc.katlin.greeting11=こんにちわ、若い方。なにをしていたの？
+harvestfestival.npc.katlin.gift.awesome=年寄りのの気持ちをよく分かっているわね。ちょうど欲しかったの。
+harvestfestival.npc.katlin.gift.good=若い人にしてはとても良いプレゼントね。
+harvestfestival.npc.katlin.gift.decent=うん、まあまあだわ。
+harvestfestival.npc.katlin.gift.dislike=受け取りたくないわね。
+harvestfestival.npc.katlin.gift.bad=昔は人にはもっと良いものをあげていたのにねぇ。
+harvestfestival.npc.katlin.gift.terrible=年寄りを殺したいのかい？何てひどいプレゼントなの。
+harvestfestival.npc.katlin.gift.no=Youngun I cannot take this gift, it holds too much value.
+harvestfestival.npc.katlin.gift.reject=You've already given me something today youngun.
+harvestfestival.npc.katlin.festival.chicken1=A happy chicken makes a happy home. Or was it a happy wife makes a happy life?
+harvestfestival.npc.katlin.festival.chicken2=I remember someone telling me once that chickens like to roost on a pole off the ground. I wonder why that is...
+harvestfestival.npc.katlin.festival.cooking1=Each year is always the same. I hear the young'ns quibbling about what to cook to impress the town.
+harvestfestival.npc.katlin.festival.cooking2=You know what wins each year? I'll never tell you.
+harvestfestival.npc.katlin.festival.cow1=In my day, you made your butter and cream with a hand churn.
+harvestfestival.npc.katlin.festival.cow2=Milk didn't used to be processed before selling. Some of us would drink it right from the bucket.
+harvestfestival.npc.katlin.festival.harvest1=For as long as I can remember, the harvest festival takes place in the autumn, and it always includes food. Its not for the Goddess's birthday though.
+harvestfestival.npc.katlin.festival.harvest2=Its getting colder. I should knit a new scarf and a pair of mittens.
+harvestfestival.npc.katlin.festival.new.years.eve1=When the new year comes, open the front door. When the old year leaves, open the back door and close it after it leaves.
+harvestfestival.npc.katlin.festival.new.years.eve2=Its traditional to do a toast at midnight. To good health, long life, and happiness dearie.
+harvestfestival.npc.katlin.festival.new.years1=Open the front door to let in the new year, open the back door to let out the old year.
+harvestfestival.npc.katlin.festival.new.years2=Happy New Year dear. I wish you wealth, good health, and happiness.
+harvestfestival.npc.katlin.festival.sheep1=You can tell the quality of a sheep's wool by touching them, you know. Same way you get the feeling of a good yarn, its by touching them. Feeling it between your fingers.
+harvestfestival.npc.katlin.festival.sheep2=If they shear the prize winning sheep, I might buy some wool to spin for a project. A nice autumnal dye...
+harvestfestival.npc.katlin.festival.starry.night1=I remember when Tomas invited me to dinner one Starry Night. I'm sad to say he chose that night to ask for a divorce. This festival is not my favorite for that reason. Brings a tear to my eye every now and than each year.
+harvestfestival.npc.katlin.festival.starry.night2=Do consider inviting Liara to dinner though. She enjoys this season so much.
+
+#Danieuru/Chylex
+harvestfestival.npc.daniel.shop=木曜日以外は毎日10:00から16:00までやってるよ。
+harvestfestival.npc.daniel.greeting1=小さい頃からこいつを弄るのが大好きでな。
+harvestfestival.npc.daniel.greeting2=コイツらが俺の人生に目的と情熱を与えてくれたのさ！
+harvestfestival.npc.daniel.greeting3=周りの奴はオレの事をドラゴン狂いって呼ぶけどさ！今に見てろよ！
+harvestfestival.npc.daniel.greeting4=もし鍛冶屋をやってなかったら、ドラゴンスレイヤーになってただろうな！
+harvestfestival.npc.daniel.greeting5=知ってるか？実は若い頃はオリンピックの短距離選手だったのさ。マインクラフティアでは誰にも負けなかったんだぜ？
+harvestfestival.npc.daniel.greeting6=男？女？みんな好きだよ。多様性ってのは人生を豊かにするんだぜ。
+harvestfestival.npc.daniel.greeting7=ここ最近はJenniとYulifが気になるんだが、どっちも俺に興味がないみたいなんだ。
+harvestfestival.npc.daniel.greeting8=修理が必要な時は、材料と修理して欲しいツールをもってこいよ。
+harvestfestival.npc.daniel.greeting9=アップグレードして欲しい時は、材料とアップグレードして欲しいツールをもってこいよ。
+harvestfestival.npc.daniel.greeting10=オレはエンドに行ったことがあるんだぜ。お前はどうなんだ？
+harvestfestival.npc.daniel.greeting11=オレはエンドに行くのが人生の夢だった。そのために自分で使うツールを自分で作る必要があって鍛冶屋になったのさ。
+harvestfestival.npc.daniel.greeting12=もしもどこでも好きな国に行けたらだって？うーん、多分Ashleeと一緒にチェコに行ってみたいかな。
+harvestfestival.npc.daniel.greeting13=海より嫌いなものは無いんだ。エンダ―マンが好き過ぎて、影響を受けちまったかな。
+harvestfestival.npc.daniel.marriage.reject=お前と一緒に過ごすよりは、コイツらを磨いていたいかな。
+harvestfestival.npc.daniel.marriage.accept=仕事なんて後だ、いますぐ結婚しよう！
+harvestfestival.npc.daniel.gift.awesome=エンドに行った思い出が人生最高だと思ってたんだがな...そうではなかったかもしれん。
+harvestfestival.npc.daniel.gift.good=良いプレゼントだ。
+harvestfestival.npc.daniel.gift.decent=問題無い。
+harvestfestival.npc.daniel.gift.dislike=良くはない。
+harvestfestival.npc.daniel.gift.bad=良くないプレゼントだな。
+harvestfestival.npc.daniel.gift.terrible=Yulifに拒否された時が人生最悪だと思っていたんだが。これをくれるというのか？
+harvestfestival.npc.daniel.festival.chicken1=Chickens and I have one thing in common; we both hate water and being out in the rain.
+harvestfestival.npc.daniel.festival.chicken2=Stories say in other places, there are chickens out there who lay ender pearls. Where can I get a chicken like that?
+harvestfestival.npc.daniel.festival.cooking1=I tried crushing an ender pearl on the anvil once to experiment with if it was edible as a powder or not. ...I ended up with food poisoning and problems with glass shards.
+harvestfestival.npc.daniel.festival.cooking2=Its put me off of doing any sort of cooking experiments since.
+harvestfestival.npc.daniel.festival.cow1=Jim needs to sell his own animal supplies. I can supply more tools that way.
+harvestfestival.npc.daniel.festival.cow2=A dragon's favorite meal is a cow. Or a sheep. Usually sheep though.
+harvestfestival.npc.daniel.festival.harvest1=Is there any more food?
+harvestfestival.npc.daniel.festival.harvest2=I'm not a farmer, but the soup cauldron is quality iron. I can see it from here.
+harvestfestival.npc.daniel.festival.new.years.eve1=This next year will be the year I track down the elusive end portal. Nobody will call me a fool when I bring back that loot in the cities in the End.
+harvestfestival.npc.daniel.festival.new.years.eve2=Rumor has it the End people have come up with propelled flight. An ‘elytra', and you can fly with rockets and fireworks to propel you around. Or a bow with punch? Do some research, get back to me.
+harvestfestival.npc.daniel.festival.new.years1=Dragons are good luck on New years. Will they visit our town?
+harvestfestival.npc.daniel.festival.new.years2=I don't think anyone would approve of putting a sheep out at midnight in front of that dog statue to attract one though.
+harvestfestival.npc.daniel.festival.sheep1=I did sell shears in my shop once, but Jim decided to finally sell his own supplies. I don't repair shears though.
+harvestfestival.npc.daniel.festival.sheep2=Its smart to sharpen your shears before shearing your animal, it makes for a smoother cut, and a cleaner shear.
+harvestfestival.npc.daniel.festival.starry.night1=Should I ask Yulif or Jenni to dinner? They aren't very interested... -sigh-
+harvestfestival.npc.daniel.festival.starry.night2=You keep finding me at the cafe in the mornings, but I'm happier just remaining at the forge.
+
+#Cloe
+harvestfestival.npc.cloe.greeting1=素敵な本は女の子を幸せにしてくれるの。
+harvestfestival.npc.cloe.greeting2=私の父は厳しくて、とても息苦しい思いをしてきたの。
+harvestfestival.npc.cloe.greeting3=私は普通の女の子と言うのがわからないの。
+harvestfestival.npc.cloe.greeting4=ホラー映画以上に楽しいモノを知らないの。
+harvestfestival.npc.cloe.greeting5=この先の人生で何がしたいのか、本当にわからないの。
+harvestfestival.npc.cloe.greeting6=こんな退屈な世界なんてもう知らない。
+harvestfestival.npc.cloe.greeting7=5歳までに200冊は本を読んだわ。
+harvestfestival.npc.cloe.greeting8=Abiiがなぜあんなに可愛く我慢できているのかわからないの。嘘くさくて頭がおかしくなりそう。
+harvestfestival.npc.cloe.greeting9=私達なんて、ちっぽけな人間よ。
+harvestfestival.npc.cloe.greeting10=誰にも言わないでね。実は、私はペンギンが好きなの。うん、わかってる。
+harvestfestival.npc.cloe.greeting11=私のおじさんはちょっと変ね、机に向かってずっと何かの作業をしていて、何かはわからないんだけど。 MOD？についてなにか言っていたように思うわ。多分そのうちしっかりしてくれるんじゃないかしら。
+harvestfestival.npc.cloe.greeting12=お母さんが Team Valor を選んだなんて、信じられない。
+harvestfestival.npc.cloe.marriage.reject=どうして私が結婚たくないか？時間の無駄だからよ。
+harvestfestival.npc.cloe.marriage.accept=貴方と共に人生を歩んでいく準備は出来いるわ。
+harvestfestival.npc.cloe.gift.awesome=あなたは本当に私のことをわかってくれています、ね。
+harvestfestival.npc.cloe.gift.good=親切な贈り物に感謝しているわ。
+harvestfestival.npc.cloe.gift.decent=ありがとう。
+harvestfestival.npc.cloe.gift.dislike=え？なに？
+harvestfestival.npc.cloe.gift.bad=いや、いりません...
+harvestfestival.npc.cloe.gift.terrible=私の両親が最悪だと思っていたのに、本当に最悪なのはあなただったわ
+harvestfestival.npc.cloe.festival.chicken1=Have you ever peeled a chicken's foot? Its very difficult to do.
+harvestfestival.npc.cloe.festival.chicken2=You can eat almost every part of a chicken, except for the beak, I believe. Why you would want to though... don't ask me.
+harvestfestival.npc.cloe.festival.cooking1=Did you know bone marrow is what gelatin is made of?
+harvestfestival.npc.cloe.festival.cooking2=I've got a few moulds to make jiggly gelatin shapes for Abii. She loves them.
+harvestfestival.npc.cloe.festival.cow1=Some breeds of cows grow these massive sets of bone horns right out of their heads.
+harvestfestival.npc.cloe.festival.cow2=All the cows Jim's ranch sells have no horns though. I wonder why.
+harvestfestival.npc.cloe.festival.harvest1=You can boil down bones to make a decent soup stock.
+harvestfestival.npc.cloe.festival.harvest2=Jade makes the soup each year. She never says what her secret ingredient is that she adds. I add a bone every now and than, but it has to be fished out.
+harvestfestival.npc.cloe.festival.new.years.eve1=Mm, didn't get too good of marks on my civic service exam. New Year's isn't exactly interesting anyways. Go get noodles, stay up late... whatever.
+harvestfestival.npc.cloe.festival.new.years.eve2=We should get something more interesting to do, like watch scary movies till midnight.
+harvestfestival.npc.cloe.festival.new.years1=The world didn't end when the calendar turned over. I guess thats good.
+harvestfestival.npc.cloe.festival.new.years2=It took a whole pot of coffee to be able to come outside with it this cold.
+harvestfestival.npc.cloe.festival.sheep1=Sheep horns curl around their ears. But they're made of bone and hollow.
+harvestfestival.npc.cloe.festival.sheep2=Baaaah, humbug. I'm going back to sleep. There's no dark sheep to be seen.
+harvestfestival.npc.cloe.festival.starry.night1=Uh... hello.
+harvestfestival.npc.cloe.festival.starry.night2=Don't forget whomever you ended up inviting is bringing their family along.
+
+#Liara/ApsciLiara
+harvestfestival.npc.liara.shop=うちのカフェの営業時間は朝9:30から夜17:00まです。毎日やってるのよ。
+harvestfestival.npc.liara.greeting1=この天気大好き。ケーキを焼くのにぴったりだわ。
+harvestfestival.npc.liara.greeting2=料理が大好きなの！皆が私の料理を食べた瞬間に笑顔になるのを見るのが本当に好き！
+harvestfestival.npc.liara.greeting3=お腹空いてる？私はいつもお腹が空いているから、料理が好きなのも無理ないわよね...
+harvestfestival.npc.liara.greeting4=火曜日はカフェに寄るようにしてね？特別な何かを用意しているから。
+harvestfestival.npc.liara.greeting5=食べ物が世界を回して、私も目が回っちゃうの。
+harvestfestival.npc.liara.greeting6=女の子を幸せにしたいのなら、チョコレートが一番よ。
+harvestfestival.npc.liara.greeting7=信じられないでしょうけど、宇宙とか星とか、そういうのが凄く好きなの。
+harvestfestival.npc.liara.greeting8=調理器具なら、毎週日曜日に販売しているわ。
+harvestfestival.npc.liara.greeting9=毎週、毎季節違ったレシピを販売しているの。
+harvestfestival.npc.liara.greeting10=知ってる？オーブンでお肉を焼くことができるわ。
+harvestfestival.npc.liara.greeting11=もしアドバイスがほしければ、料理の場合はレシピ本を確認してね。きっとおいしい料理を作るヒントをくれるわ。
+harvestfestival.npc.liara.greeting12=調理師学校に通っていた時、彼女に出会ったの...。彼女の名前は確かPで始まったと思うけど、本当に酷い料理人だったわ...
+harvestfestival.npc.liara.greeting13=両親がいなくて本当に寂しいけれど、そのおかげで料理への道に集中することができたわ。
+harvestfestival.npc.liara.greeting14=料理に人生をささげてきたの。10歳の頃にカップケーキを売って週に 1000G 稼いでいたことを思い出すわ。でも、ついに自分の店を持つことが出来て、今とってもうれしいの。
+harvestfestival.npc.liara.marriage.reject=このカフェが私の家で、貴方と一緒にすみたくはないの。
+harvestfestival.npc.liara.marriage.accept=ありがとう！貴方の為に毎日美味しい料理を作るからね！
+harvestfestival.npc.liara.gift.awesome=本当に、本当にありがとう、このことはずっと忘れない。
+harvestfestival.npc.liara.gift.good=本当にありがとう。
+harvestfestival.npc.liara.gift.decent=ありがとう。
+harvestfestival.npc.liara.gift.dislike=いらないわ。
+harvestfestival.npc.liara.gift.bad=あまり良い物じゃないわね。
+harvestfestival.npc.liara.gift.terrible=感謝はするけど、人生最悪のプレゼントね。さようなら。
+harvestfestival.npc.liara.festival.chicken1=You can keep your eggs on the counter as long as they aren't washed with soap. It takes off the protective coating on the eggshells and they go bad much quicker.
+harvestfestival.npc.liara.festival.chicken2=Chickens fed different choices of feed and let outside each day produce better eggs, I've found. Nice rich yellow yolks. Best omelettes I've ever made.
+harvestfestival.npc.liara.festival.cooking1=Can you believe how few people know how to hold a knife properly when slicing or chopping?!
+harvestfestival.npc.liara.festival.cooking2=A light lemon cream sauce is going to make whatever dish I make. Lemon is strong, but delicious. The juice makes a good addition to dishes too.
+harvestfestival.npc.liara.festival.cow1=Not every chocolate has milk in it, did you know? Its not considered chocolate in my book without milk in it.
+harvestfestival.npc.liara.festival.cow2=I wonder what you need to feed a cow in order for her to produce chocolate milk...
+harvestfestival.npc.liara.festival.harvest1=It isn't just a lunch, it is a harvest meal. It would go well with a freshly picked salad from the cafe.
+harvestfestival.npc.liara.festival.harvest2=There's just no telling whether or not the soup turns out well until we taste it. I always add the same thing though.
+harvestfestival.npc.liara.festival.new.years.eve1=I'd love to hold a cooking class next year. Even for something as simple as cupcakes. Would you be interested in that %4$s?
+harvestfestival.npc.liara.festival.new.years.eve2=Plain noodles are very boring; I'm trying mine with a light lemon cream sauce. It goes well against heavier dishes, like chicken picatta and eggplant parmasan.
+harvestfestival.npc.liara.festival.new.years1=Mm mmm! I'm in the mood to make some new year food. Dumplings, wonton soup, rice soup, rice pudding...
+harvestfestival.npc.liara.festival.new.years2=Only downside to spring, the lack of winter berries.
+harvestfestival.npc.liara.festival.sheep1=The one festival I'd rather sleep through, or work in the cafe. Nothing but sheep, wool, and yarn. And a lot of baaabling.
+harvestfestival.npc.liara.festival.sheep2=Now if you want to talk about dishes made with lamb, or with mutton, I'm all ears.
+harvestfestival.npc.liara.festival.starry.night1=Winter calls for a nice hearty stew. Plenty of root vegetables and meats... I'm getting hungry thinking about it.
+harvestfestival.npc.liara.festival.starry.night2=You know %4$s, you can invite someone to the park to have dinner. They might invite their family. Like... if you invited me, I would invite Granny Katlin, see?
+
+#Jade
+harvestfestival.npc.jade.buy1=この花は私のコレクションにぴったりね。これを持っていって。
+harvestfestival.npc.jade.buy2=店を開くのに本当に助かったわ。
+harvestfestival.npc.jade.buy3=すごい！もっとたくさんのお花！
+harvestfestival.npc.jade.buyno1=んー、これ本当にお花？
+harvestfestival.npc.jade.buyno2=私のお店に探しているものじゃないみたいね。
+harvestfestival.npc.jade.buyno3=うん、これお花じゃないわね。
+harvestfestival.npc.jade.greeting1=私、旅をするのが好きなの。羊を見てないといけないけどね！
+harvestfestival.npc.jade.greeting2=この世の終わりだわ！
+harvestfestival.npc.jade.greeting3=この牧場は好きよ。でもYulifが仕切りたがりで！
+harvestfestival.npc.jade.greeting4=皆は私のことを悪魔だっていうけど、そんなことないのよ。
+harvestfestival.npc.jade.greeting5=猫を飼いたいんだけど、Yulifは猫が嫌いだから。
+harvestfestival.npc.jade.greeting6=私の家は動き回るには本当に狭いから。
+harvestfestival.npc.jade.greeting7=花の販売を始めたいの。でもそれは今後のアップデートだって、どういう意味かしら？
+harvestfestival.npc.jade.greeting8=私達の家って本当に窮屈。
+harvestfestival.npc.jade.greeting9=そこら中に落ちてる岩や草、木の枝は壊して石や原木にすることができるわ。でもそれにはハンマーやオノが必要よ。
+harvestfestival.npc.jade.greeting10=誰かと仲良くなりたいなら、贈り物をするのが一番。親密になればお返しがあるかもね。
+harvestfestival.npc.jade.greeting11=作物を育てるには寝るのが一番の近道よ。
+harvestfestival.npc.jade.greeting12=なぜ肥料で作物を成長させられないのか、全然わからないの。いつの日かできるようになるかも？
+harvestfestival.npc.jade.greeting13=草や小麦の収穫にはカマが必要なの。覚えておいて。
+harvestfestival.npc.jade.marriage.reject=まだ結婚する段階じゃないと思うの。
+harvestfestival.npc.jade.marriage.accept=準備はできてる。えぇ、結婚しましょう。
+harvestfestival.npc.jade.gift.awesome=最高のプレゼントね！
+harvestfestival.npc.jade.gift.good=何て良いプレゼントなの！
+harvestfestival.npc.jade.gift.decent=ありがとう。
+harvestfestival.npc.jade.gift.dislike=これの何がいいのかわからないわ。
+harvestfestival.npc.jade.gift.bad=嫌なプレゼントね！
+harvestfestival.npc.jade.gift.terrible=最悪のプレゼントよ！
+harvestfestival.npc.jade.festival.chicken1=Chicken is good to eat, the original white meat.
+harvestfestival.npc.jade.festival.chicken2=Our town's birds are more bred for egg production than meat though. Johan might have meat bird eggs if you trade him some of your small, medium or large eggs.
+harvestfestival.npc.jade.festival.cooking1=I love cooking, %4$s! Are you going to enter the Cooking Festival?
+harvestfestival.npc.jade.festival.cooking2=A hot dish, a cold dish, something sweet, something savoury... so many choices. Then there's the type of meal!
+harvestfestival.npc.jade.festival.cow1=I keep going out in the pastures to pick any flowers I see before the cows come out to graze. They have no appreciation of flowers like I do. Or cats.
+harvestfestival.npc.jade.festival.cow2=We need a cat festival. Than the milk would have more use.
+harvestfestival.npc.jade.festival.harvest1=What a  beautiful day it is today. Do you intend to add to our community soup?
+harvestfestival.npc.jade.festival.harvest2=Its a little different each year, so I can't guarantee the flavor. Only edible items though. No cobblestone, or wood, or seeds.
+harvestfestival.npc.jade.festival.new.years.eve1=I've been making paper flowers to float on the water of the goddess pond. Each flower someone will write a new year's wish on, and they'll float away. Would you like to write down a wish?
+harvestfestival.npc.jade.festival.new.years.eve2=I hope the next year is profitable for you!
+harvestfestival.npc.jade.festival.new.years1=Ooooh, Happy New Year! Have a riceball! Try it with some soy sauce!
+harvestfestival.npc.jade.festival.new.years2=Its so nice to see flowers blooming.
+harvestfestival.npc.jade.festival.sheep1=Sheep take such a long time to regrow their wool before you can shear them again. I wonder if they ever produce more than one item ever per shearing?
+harvestfestival.npc.jade.festival.sheep2=Don't mention copper to Jim when he's around his sheep. I don't remember why.
+harvestfestival.npc.jade.festival.starry.night1=I might be able to get some mistletoe if I go exploring in the forest. The poor trees though don't like mistletoe.
+harvestfestival.npc.jade.festival.starry.night2=Have you seen any snowberries about?
+
+#Jenni/Othlon
+harvestfestival.npc.jenni.shop=やぁ、知ってると思うけど、水曜と日曜以外毎日、午前9時から午後5時まで開いてるからね。あぁ、土曜日は午前11時から午後3時までね。
+harvestfestival.npc.jenni.shop.wednesday=やぁ、 知ってると思うけど、日曜以外毎日、午前9時から午後5時まで開いてるからね。あぁ、土曜日は午前11時から午後3時までね。
+harvestfestival.npc.jenni.greeting1=やぁ、必要な物があったらうちに買いに来てよ！
+harvestfestival.npc.jenni.greeting2=お客さんも好きだけど、同じくらいアートが好きなんだ。
+harvestfestival.npc.jenni.greeting3=誰にも言わないでほしいんだけど、実はベリーダンスの大ファンなんだ。
+harvestfestival.npc.jenni.greeting4=時々日曜日にも店を開けたいと思うんだけど、ついつい寝過ごしちゃってね。
+harvestfestival.npc.jenni.greeting5=Katlinおばあちゃんのスープは本当に最高だよ！
+harvestfestival.npc.jenni.greeting6=うちの店が一番安いよ。Jenniのバーゲンに敵うやつは誰もいないね。
+harvestfestival.npc.jenni.greeting7=オーストラリアから来たんだろ？え、違う？
+harvestfestival.npc.jenni.greeting8=私はこの店に誇りを持ってるんだ。私の集大成さ。
+harvestfestival.npc.jenni.greeting9=Candiceとは前はもっと仲が良かったんだけど、事情が変わったんだ。家賃を払う余裕が無いからまだ一緒に住んでるだけさ。
+harvestfestival.npc.jenni.greeting10=暇な時にちょっとしたアートや工芸をするのが好きなんだ。
+harvestfestival.npc.jenni.greeting11=豚が好きだな。あとサクランボも好きだ。
+harvestfestival.npc.jenni.greeting12=仕入れにちょっと限界があるけど、いつの日かもっとたくさん売れるようにならなきゃ。
+harvestfestival.npc.jenni.marriage.reject=私たちはまだそんな関係じゃないよ。
+harvestfestival.npc.jenni.marriage.accept=親愛なる友よ。今日から僕は君の妻だ。
+harvestfestival.npc.jenni.gift.awesome=良き友よ、これは完璧だ。とっても良いね。
+harvestfestival.npc.jenni.gift.good=君は本当にいい友人だ。
+harvestfestival.npc.jenni.gift.decent=君は良き友人だ。
+harvestfestival.npc.jenni.gift.dislike=ありがとう、けどもっと良い物があったと思うかな。
+harvestfestival.npc.jenni.gift.bad=君は良くても、これには動揺したよ。
+harvestfestival.npc.jenni.gift.terrible=君は今まで私を不快にさせたことは無かったと思うんだけど、君は今そうしているみたいだね。何故だい?
+harvestfestival.npc.jenni.festival.chicken1=Such good birdies. Spare feathers always add a bit of pizazz for a craft project.
+harvestfestival.npc.jenni.festival.chicken2=I love the taste of the food our town's eggs make. Liara's cakes especially.
+harvestfestival.npc.jenni.festival.cooking1=If you're in need of cooking supplies, the general store is your one stop shop.
+harvestfestival.npc.jenni.festival.cooking2=If you see Candice walking around offering out hot milk... don't take it. Its a trap.
+harvestfestival.npc.jenni.festival.cow1=I don't like how the cattle have to stand still so long while being milked. Isn't it stressful for them?
+harvestfestival.npc.jenni.festival.cow2=Candice always keeps the fridge supplied with fresh milk from the dairy. Claims to milk them herself.
+harvestfestival.npc.jenni.festival.harvest1=A pinch of this, a dash of that, and swish it all about...
+harvestfestival.npc.jenni.festival.harvest2=A splash of oil, a few sprigs of chamomile and voila, a beautiful soup. Oh hello!
+harvestfestival.npc.jenni.festival.new.years.eve1=It helps to use a flat edge to smooth out the folds in your paper flower. See that crisp edge? Its a bit sharp, but holds its shape while floating in the water. I can test a smaller flower in the well before going to make my actual flower.
+harvestfestival.npc.jenni.festival.new.years.eve2=My new year resolution is to grow my inventory of stock to sell to you and the town. Perhaps increase my choice of seeds.
+harvestfestival.npc.jenni.festival.new.years1=Happy New Year!
+harvestfestival.npc.jenni.festival.new.years2=If I had my way, we would be having a dumpling bar for lunch, and a beef pot for dinner. The mayor would have a fit for the price!
+harvestfestival.npc.jenni.festival.sheep1=Wool sells well alone, but there should be a way to spin it for yarn. Yarn sells very well. Granny Katlin would be your best customer.
+harvestfestival.npc.jenni.festival.sheep2=They're pickier than goats, but I've seen a flock of sheep mow down a hill of grass. It was like watching a baaing cloud.
+harvestfestival.npc.jenni.festival.starry.night1=Its too cold to grow any crops, so I don't carry any winter seeds yet in my shop.
+harvestfestival.npc.jenni.festival.starry.night2=As fall ended, I saw somewhere that someone wove a basket shaped like a horn and filled it with food. I wish I could've gotten a closer look.
+
+#Jaimii
+harvestfestival.npc.jamie.greeting1=ここは私の町。わかっていますよね。
+harvestfestival.npc.jamie.greeting2=私の一族は過去100年間ずっとこの町で選挙に勝ってきています。
+harvestfestival.npc.jamie.greeting3=君の身勝手で二人の愛娘を傷つけたら...後はわかるね？
+harvestfestival.npc.jamie.greeting4=町長でいることも大変だ。町の人々は君を愛しすぎている。
+harvestfestival.npc.jamie.greeting5=こんにちは %4$s、家を見たかね？...とても小さいんだ。
+harvestfestival.npc.jamie.greeting6=将来的には幾つかコンテスト開催してみたいと思ってはいるのだが...今はこの町を運営できて、ただ幸せだよ。
+harvestfestival.npc.jamie.greeting7=誰が君にこの町の建築を任せたのかは知らないが、私は君より良い仕事が出来たと思うね。
+harvestfestival.npc.jamie.greeting8=私の父はいつも言っていたよ。何にでもなれると。そして私を見るんだ。
+harvestfestival.npc.jamie.greeting9=KatlinがTomasをどうやって振ったのか、それを君に話すべきだとは思っているのだが... 彼女が薄情だった、それ以上言うことはないか。
+harvestfestival.npc.jamie.greeting10=私の一族はこの町で長年町長を続けているが、誰も私より仕事をこなせる者は居なかった。
+harvestfestival.npc.jamie.greeting11=私が何故町の発展にお金を支払わなきゃならないんだ？私のお金なのに？
+harvestfestival.npc.jamie.greeting12=Cloeの成長を私は心より願っている。だが彼女は家族の事を良く思っていない...
+harvestfestival.npc.jamie.gift.awesome=ついに、本当に私が満足するようなものをくれたね。
+harvestfestival.npc.jamie.gift.good=これは役に立つと思うよ。いいね。
+harvestfestival.npc.jamie.gift.decent=私がこれが好きだと思ったのかい?
+harvestfestival.npc.jamie.gift.dislike=君はこのプレゼントで私の家名を侮辱したよ。
+harvestfestival.npc.jamie.gift.bad=これは君がくれるものの中で最悪のものの一つだよ。
+harvestfestival.npc.jamie.gift.terrible=もういい。もし私が完全な権限を持っていたのなら、君をこの町から追放したかったよ。君は私を侮辱し、私の家族を侮辱し、この町を汚した。 二度としないでくれ。
+harvestfestival.npc.jamie.gift.no=You may not be the best person in this town. But even I cannot accept this gift. It is far too valuable.
+harvestfestival.npc.jamie.festival.chicken1=Ashlee pays good money for use of the festival grounds for this hideous festival. The money I make from the rental fee of the grounds is the ONLY good thing about it.
+harvestfestival.npc.jamie.festival.chicken2=Get that hideous feathered creature away from me!
+harvestfestival.npc.jamie.festival.cooking1=This festival is too early. The matsutake mushrooms are not in season yet.
+harvestfestival.npc.jamie.festival.cooking2=Cloe and Abii seem eager for this waste of a competition.
+harvestfestival.npc.jamie.festival.cow1=All these droppings. Yuck. And they are eating every bit of grass in the park.
+harvestfestival.npc.jamie.festival.cow2=All they do is eat, and chew, and have long purple tongues that eat anything. So inefficient.
+harvestfestival.npc.jamie.festival.harvest1=The town soup is never good. Something always spoils it. What did you add to it anyways.
+harvestfestival.npc.jamie.festival.harvest2=All thats ever added is vegetables. Can't there be more variety in this. -sniff-
+harvestfestival.npc.jamie.festival.new.years.eve1=Taxes are right around the corner. Than the money flows in, heh heh.
+harvestfestival.npc.jamie.festival.new.years.eve2=I only allow Abii and Cloe to stay up late if their school marks are acceptable to me.
+harvestfestival.npc.jamie.festival.new.years1=Its not worth my time to be out on such a festival. Paperwork is piling up as I stand here, I can feel it.
+harvestfestival.npc.jamie.festival.new.years2=The girls wanted to stay up late, so Tomas stayed up with them, bless his soul. If he has one.
+harvestfestival.npc.jamie.festival.sheep1=I noticed that nobody keeps their sheep around for very long. Do they only keep the lambs about?
+harvestfestival.npc.jamie.festival.sheep2=I've tasted rack of lamb before; a succulent and juicy cut of meat. Oh I'm sorry, I said that out loud.
+harvestfestival.npc.jamie.festival.starry.night1=Stay away from my Cloe, do you understand me?!
+harvestfestival.npc.jamie.festival.starry.night2=On the other hand, you can TRY to invite her. But don't get too sad when she dumps you on the pathway. Don't leave any bloodstains on my doorstep.
+
+#Abii
+harvestfestival.npc.abi.greeting1=神様、あれは何？妖精？天使？？
+harvestfestival.npc.abi.greeting2=こんにちは大きい人！どうしたの？
+harvestfestival.npc.abi.greeting3=会えなくて寂しかったよ！
+harvestfestival.npc.abi.greeting4=あなた本当におっきいね！
+harvestfestival.npc.abi.greeting5=ママはいつも私に意地悪な事を言うのよ！
+harvestfestival.npc.abi.greeting6=私はお姫様になりたい！
+harvestfestival.npc.abi.greeting7=Fennは気が付いてないと思うけど、きっと私の事が大好きなのよ！
+harvestfestival.npc.abi.greeting8=パパがいい子にしてたらポニーを買ってもいいって言ってたの！
+harvestfestival.npc.abi.greeting9=Cloeお姉ちゃんの事？凄く好き！大好き！！
+harvestfestival.npc.abi.greeting10=大人にはなりたくないなぁ...
+harvestfestival.npc.abi.greeting11=ねぇねぇ私とあそぼ！
+harvestfestival.npc.abi.greeting12=ウサギってふわふわしてカワイイから好き
+harvestfestival.npc.abi.greeting13=あなたって本当に背が高いのね！！
+harvestfestival.npc.abi.greeting14=私と一緒に遊んでくれる？
+harvestfestival.npc.abi.greeting15=パパとママが知らない人と話しちゃだめだって...！
+harvestfestival.npc.abi.gift.awesome=これ好き! 大好き! ありがとう!
+harvestfestival.npc.abi.gift.good=わぁ、これとっても好きよ。
+harvestfestival.npc.abi.gift.decent=すてき。
+harvestfestival.npc.abi.gift.dislike=んー、そんなに好きじゃないかも。
+harvestfestival.npc.abi.gift.bad=えー、こんなの欲しくないよ。
+harvestfestival.npc.abi.gift.terrible=何これ? こんなの嫌いよ、大っ嫌い! いじわる!
+harvestfestival.npc.abi.festival.chicken1=Chickies! So cute! How many chickies are coming to play today?
+harvestfestival.npc.abi.festival.chicken2=Mama hates animals, but I go out to see them when she's not looking. Mama gets so angry when I have feathers in my hair.
+harvestfestival.npc.abi.festival.cooking1=Its so fun, all the yummy food to poke your fingers in!
+harvestfestival.npc.abi.festival.cooking2=If I ask nice, Mr.Jakob makes me fishie fingers!
+harvestfestival.npc.abi.festival.cow1=Moo! Moo! I'm a cow!
+harvestfestival.npc.abi.festival.cow2=Cows are so big! Bigger than me! They like being patted though.
+harvestfestival.npc.abi.festival.harvest1=Mmm, soup smells yummy.
+harvestfestival.npc.abi.festival.harvest2=Can I put some candy in the soup?
+harvestfestival.npc.abi.festival.new.years.eve1=I get to stay up late... I get to stay up late...
+harvestfestival.npc.abi.festival.new.years.eve2=Do you get to make a wish with Jade's pretty flowers? I wished for a pretty dress!
+harvestfestival.npc.abi.festival.new.years1=New year, new year, have a happy new year!
+harvestfestival.npc.abi.festival.new.years2=Did you want to be taller when the year ended? I did!
+harvestfestival.npc.abi.festival.sheep1=OMG look at the cloud sheeps! One sheep, two sheep, three sheep, four sheep!
+harvestfestival.npc.abi.festival.sheep2=Your sheep's nose is so soft! Eek, it licked me!
+harvestfestival.npc.abi.festival.starry.night1=Look at my cute dress for dinner!
+harvestfestival.npc.abi.festival.starry.night2=Mama and Papa and sissy are all dressed up too. Are you going to come to dinner?
+
+#Tiberius/WayofTime
+harvestfestival.npc.tiberius.time=君がこの町に来てから%s年になるね。
+harvestfestival.npc.tiberius.first=この町に来てまだ最初の年だね。わざわざ尋ねる必要も無いだろう。
+harvestfestival.npc.tiberius.greeting1=時は非常に興味深い物だ。1秒はゆっくりと進むが光よりも速い！
+harvestfestival.npc.tiberius.greeting2=子供の頃、『Hickory Dickory Dock』という童謡がお気に入りだったんだ。
+harvestfestival.npc.tiberius.greeting3=今何時だい？
+harvestfestival.npc.tiberius.greeting4=私は春が好きだね。なぜなら一年の始まりだからさ！
+harvestfestival.npc.tiberius.greeting5=なぜ皆は血を恐れるのだろう。私には血占術に詳しい友人がいたんだが、あと少しで世界を征服できるというところで残念なことに現行犯で捕まってしまった。事を起こす時期ではなかったんだ。
+harvestfestival.npc.tiberius.greeting6=私に起こった事を知ったら、君はショックを受けるだろうな。
+harvestfestival.npc.tiberius.greeting7=この道を最後に通ったのはFennが赤ん坊のころだったかな。随分と久しぶりだ。
+harvestfestival.npc.tiberius.greeting8=Fennは実によく問題を起こす。あの子にはしつけが必要だ。
+harvestfestival.npc.tiberius.greeting9=時間と言えば...一つ教えてあげよう。誕生日に贈り物をすると、その人は君のことをさらに好きになるだろう。
+harvestfestival.npc.tiberius.greeting10=この町にはどのくらい居るんだい？
+harvestfestival.npc.tiberius.greeting11=いつも古代エジプト時代が一番面倒だと思ってるんだ。
+harvestfestival.npc.tiberius.greeting12=兄弟にいつの日かこの町に来てもらいたいものだな。彼はハチに興味があるんだよ。
+harvestfestival.npc.tiberius.marriage.reject=結婚の準備なんて、まだ全然できていないよ。
+harvestfestival.npc.tiberius.marriage.accept=君の夫になる用意はできている。
+harvestfestival.npc.tiberius.gift.awesome=これは素晴らしいものだな。世界一のプレゼントだよ。
+harvestfestival.npc.tiberius.gift.good=このプレゼントはとても良いね。
+harvestfestival.npc.tiberius.gift.decent=君は親切だな。
+harvestfestival.npc.tiberius.gift.dislike=こんなものをくれるとは、あまり親切とは言えないね。
+harvestfestival.npc.tiberius.gift.bad=このプレゼントは酷いものだな。
+harvestfestival.npc.tiberius.gift.terrible=これは最悪だな。世界最低と言ってもいい。
+harvestfestival.npc.tiberius.festival.chicken1=Rise in the morning to the crow of the rooster.
+harvestfestival.npc.tiberius.festival.chicken2=I wonder how daylight savings time affects the roosters...
+harvestfestival.npc.tiberius.festival.cooking1=The cooking part of the festival itself is quite a sight. How much time and effort goes into each dish.
+harvestfestival.npc.tiberius.festival.cooking2=Oh, its unusual to be watching someone cook raw steaks?
+harvestfestival.npc.tiberius.festival.cow1=For such big animals, cows don't produce much blood.
+harvestfestival.npc.tiberius.festival.cow2=Apparently most of their blood flows through the udders.
+harvestfestival.npc.tiberius.festival.harvest1=The key to any good dish is time for cooking. Too little, and it doesn't finish cooking through. Too much, and the dish burns.
+harvestfestival.npc.tiberius.festival.harvest2=My clocks are not good for timers I'm afraid. I have heard of a mystical hourglass that can be calibrated though.
+harvestfestival.npc.tiberius.festival.new.years.eve1=The blood moon rarely comes out on New Years Eve. What is that, you ask? The moon turns orangey-red, its a kind of eclipse.
+harvestfestival.npc.tiberius.festival.new.years.eve2=This is the one night I allow my son to stay up late.
+harvestfestival.npc.tiberius.festival.new.years1=With each passing year, that wives tale of the end of the world when the calendar runs out is debunked.
+harvestfestival.npc.tiberius.festival.new.years2=Its difficult to get Fenn to go to bed before the New Year.
+harvestfestival.npc.tiberius.festival.sheep1=Throughout the history of time, sheep have been there. At least their wool has.
+harvestfestival.npc.tiberius.festival.sheep2=Though they are said to attract werewolves if left in front of a wolf altar on the night of the full moon. If one wants to catch the wolf, you have to set a specific silver-laid trap.
+harvestfestival.npc.tiberius.festival.starry.night1=This particular event is a bittersweet time for me, %4$s. Fenn enjoys a family meal, but he occasionally asks if his mother is coming too. She left me, see.
+harvestfestival.npc.tiberius.festival.starry.night2=If you wish, we would join you for the dinner in the park.
+
+#Jakob
+harvestfestival.npc.jacob.shop=うちの釣具屋は火曜日と金曜日の13:00～19:00までオープンしてるぞ。
+harvestfestival.npc.jacob.greeting1=釣りはオレの人生さ！で、オレの名前はJakobだ！
+harvestfestival.npc.jacob.greeting2=オレはいつか幻のカクレクマノミを釣ってやるんだ。
+harvestfestival.npc.jacob.greeting3=釣りってただじっと座っているだけに見えるって？違うんだなこれが...
+harvestfestival.npc.jacob.greeting4=雨降らないかな...
+harvestfestival.npc.jacob.greeting5=海洋牧場...夢なんだよなぁ...うんうん。
+harvestfestival.npc.jacob.greeting6=釣具をお探しなら用意してやるぜ。
+harvestfestival.npc.jacob.greeting7=うちの爺さんは凄い漁師でな？この店だって爺さんが勢いで作っちまったんだよ。
+harvestfestival.npc.jacob.greeting8=一生釣りして過ごせたら、幸せだろうなあ。
+harvestfestival.npc.jacob.greeting9=今まで気づいてなかったかもしれんが、俺は釣りに熱中してるんだ。
+harvestfestival.npc.jacob.greeting10=近いうちにあんたは新しい魚を捕まえられると思うよ。
+harvestfestival.npc.jacob.greeting11=ただ泳ぎ続けろ...
+harvestfestival.npc.jacob.marriage.reject=海で別の魚を本気で探し回っているんだよ。
+harvestfestival.npc.jacob.marriage.accept=オレにとってアンタはヒトデ。結婚だ！我慢できねぇ！！
+harvestfestival.npc.jacob.gift.awesome=釣りこそオレの情熱だ。アンタはそれを続けることを許してくれた。最高だよ。
+harvestfestival.npc.jacob.gift.good=水気のあるもんはみんな良いもんだ。ありがとな。
+harvestfestival.npc.jacob.gift.decent=親切なプレゼントありがとよ。
+harvestfestival.npc.jacob.gift.dislike=こいつについてはあんまりわからんな。
+harvestfestival.npc.jacob.gift.bad=地下に行くのは好きじゃねえんだが。
+harvestfestival.npc.jacob.gift.terrible=おかしくなっちまったか? オレはこんなもの一度も欲しがったことないぜ。
+harvestfestival.npc.jacob.festival.chicken1=Chicken manure is a good compost. So is fish, but it smells something awful apparently.
+harvestfestival.npc.jacob.festival.chicken2=If you feed your chickens oyster shells, I hear it improves their eggshells. Something about... calcium.
+harvestfestival.npc.jacob.festival.cooking1=A good fish and chips would make this festival grand.
+harvestfestival.npc.jacob.festival.cooking2=Cod is a good, flaky white fish that's popular for fried fish dishes.
+harvestfestival.npc.jacob.festival.cow1=We need a fishing festival. I should petition for a fishing festival.
+harvestfestival.npc.jacob.festival.cow2=I love the rain, but the livestock hate it. I dont' have the space to keep any.
+harvestfestival.npc.jacob.festival.harvest1=She didn't say I had to descale the fish before adding it to the soup... or remove the bones. Or even the eyes.
+harvestfestival.npc.jacob.festival.harvest2=Sardines do not make a good soup. I would not try that.
+harvestfestival.npc.jacob.festival.new.years.eve1=Its been my dream each year to fish up a larger fish than last year. There's that Legend fish that eluded every fisherman since forever.
+harvestfestival.npc.jacob.festival.new.years.eve2=You should do more business with me next year. Fishing is quite a profitable business if the biting is good.
+harvestfestival.npc.jacob.festival.new.years1=Ever tried pickled fish inside a riceball? Or red bean paste?
+harvestfestival.npc.jacob.festival.new.years2=I'm creating a poem for the new year. Would you like to hear it?
+harvestfestival.npc.jacob.festival.sheep1=Baa baa black sheep, have you any wool? Yes sir, yes sir, three bags full. One for the mayor, one for the wife, and one for the little ones who live down the lane... no thats not right.
+harvestfestival.npc.jacob.festival.sheep2=The fishing nets you can make with quality wool ropes hold a lot of water in them.
+harvestfestival.npc.jacob.festival.starry.night1=There's a rare fish called the Glacierfish that you could only catch in the Cindersap Forest River Delta, I heard once. It swims upstream from the ocean to spawn only in winter.
+harvestfestival.npc.jacob.festival.starry.night2=Certain fish come out only in winter.
+
+#Pokefenn
+harvestfestival.npc.fenn.greeting1=ある日葡萄の木を育てようと思い立って...ほら葡萄の木に一緒に登ろう...な？
+harvestfestival.npc.fenn.greeting2=ボクは小さいけど植物には詳しいよ？トーテムの事とか詳しいよ？ほんとだよ？
+harvestfestival.npc.fenn.greeting3=うちのパパ怖すぎ...
+harvestfestival.npc.fenn.greeting4.greeting3=Minecraft って知っている？ Minecraft はいいぞ！
+harvestfestival.npc.fenn.greeting5=今日はいい日だねー
+harvestfestival.npc.fenn.greeting6=Abiは怖い、キミはAbiにあった事はある？
+harvestfestival.npc.fenn.greeting7=もっと外に出たいんだけどなぁ...パパが許してくれなくて...
+harvestfestival.npc.fenn.greeting8=大きくなったら植物を治す樹医さんになるんだ！
+harvestfestival.npc.fenn.greeting9=ボクの一番好きなポケモンはフシギダネだよ！
+harvestfestival.npc.fenn.greeting10=ボク、小さい虫と遊ぶのが大好きなんだ！
+harvestfestival.npc.fenn.greeting11=あぁ、ボクは大きくなったら木になりたいんだった！
+harvestfestival.npc.fenn.greeting12=パパがボクにツリーハウス作ってくれたらなあ...
+harvestfestival.npc.fenn.gift.awesome=うわぁぁ！！！！！ これは...最っっ...高だ！
+harvestfestival.npc.fenn.gift.good=ありがと！これ大好きだよ！
+harvestfestival.npc.fenn.gift.decent=ああ、これ好きだな
+harvestfestival.npc.fenn.gift.dislike=んー、なんで?
+harvestfestival.npc.fenn.gift.bad=どうして...これ好きじゃないよ(-_-)
+harvestfestival.npc.fenn.gift.terrible=イヤ、イヤイヤ、ヤだ、嫌イヤイヤイヤ―ッ!!! これは嫌だ! ひたすらヤだ！
+harvestfestival.npc.fenn.festival.chicken1=I keep a handful of seeds in my pocket to feed the chickens in Ashlee's coop when she's not looking.
+harvestfestival.npc.fenn.festival.chicken2=They follow me around in a flock when I've got the seeds in my hand. Johan's vanilla chickens love wheat seeds. So much that they start burping hearts.
+harvestfestival.npc.fenn.festival.cooking1=I want to try Jade's new creation!
+harvestfestival.npc.fenn.festival.cooking2=Have you tried chewing on wild mint leaves? It makes my mouth all tingly.
+harvestfestival.npc.fenn.festival.cow1=Do you feed your cow by hand?
+harvestfestival.npc.fenn.festival.cow2=I like feeding Jim's cows treats when I'm outside. They lick my hands, and leave me all sticky.
+harvestfestival.npc.fenn.festival.harvest1=I'm hungry, when are we going to eat?
+harvestfestival.npc.fenn.festival.harvest2=Its really hot when you stand next to the soup pot. I'm not allowed to add anything, dad adds it for me.
+harvestfestival.npc.fenn.festival.new.years.eve1=Oh boy, I get to stay up late tonight! Dad's gonna let me!
+harvestfestival.npc.fenn.festival.new.years.eve2=Will Abi get to stay up late as well? Her mom's as strict as my dad, maybe worse.
+harvestfestival.npc.fenn.festival.new.years1=I stayed up late last night, and saw a shooting star! I made a wish for New Years, but I'm not telling.
+harvestfestival.npc.fenn.festival.new.years2=I wonder if Abi got to stay up late. Her mum is so strict, like my dad.
+harvestfestival.npc.fenn.festival.sheep1=Dad mentioned something once about a wolf in sheep's clothing. What does that mean?
+harvestfestival.npc.fenn.festival.sheep2=I see the wolves outside of town lurking around the pastures. Its scary to think that wolves like to eat sheep.
+harvestfestival.npc.fenn.festival.starry.night1=Is Mom coming to dinner Dad?
+harvestfestival.npc.fenn.festival.starry.night2=We have to get dressed all fancy to have dinner. I wonder why?
+
+#Jim/SpitefulFox
+harvestfestival.npc.jim.shop=うちの養鶏場は月曜日から土曜日の午前10時から午後3時まで空いているよ。
+harvestfestival.npc.jim.greeting1=好きな動物は何だい? 私はキツネが好きだ。悪意に満ちた嫌な奴さ。
+harvestfestival.npc.jim.greeting2=もしあなたの動物に子供を持たせたいなら、いつでも私に会いに来てくれ!
+harvestfestival.npc.jim.greeting3=最近はうちで育ててる鶏への餌のあげ具合を調整してるんだけど、いい経験になるよ。
+harvestfestival.npc.jim.greeting4=知っての通り、この世界は時々ばかげてるよ。つい先日もベンチに攻撃しているリスを見たんだ。
+harvestfestival.npc.jim.greeting5=すべての単語に u をつける国があることに気づいたことがある？とってもおかしいよね。
+harvestfestival.npc.jim.greeting6=鞍の上にいない人生は、私にとってはあまり良いものではないね。
+harvestfestival.npc.jim.greeting7=飼料箱は3列まで並べて置けます。牛と羊はお腹がすいたら飼料を食べますので、飼料箱に飼料をいっぱい入れておいてください。
+harvestfestival.npc.jim.greeting8=知ってた？大きな動物は、刈り取り前でも草や作物を食べるんだ。
+harvestfestival.npc.jim.greeting9=ちゃんと餌をあげれば、それはあなたに返ってくるんだ。
+harvestfestival.npc.jim.marriage.reject=結婚はしたくない。
+harvestfestival.npc.jim.marriage.accept=この日をずっと願っていた。絶対結婚する。
+harvestfestival.npc.jim.gift.awesome=とんでもない。なんてすごい贈り物なんだ。
+harvestfestival.npc.jim.gift.good=私は甘やかされたくない、だからこれは素晴らしい贈り物です。
+harvestfestival.npc.jim.gift.decent=まあ、そこそこね。
+harvestfestival.npc.jim.gift.dislike=あんまり好きとは言えないね。
+harvestfestival.npc.jim.gift.bad=あまり良いチョイスじゃないね。
+harvestfestival.npc.jim.gift.terrible=私のことをよく知っていれば、あなたはこんなもの絶対に送らなかっただろうね。
+harvestfestival.npc.jim.festival.chicken1=I'll just wait until the cow and sheep festivals roll around.
+harvestfestival.npc.jim.festival.chicken2=That's when my animals will shine. Bessel's milk is first class.
+harvestfestival.npc.jim.festival.cooking1=I sometimes go out in the pasture while doing my herd's daily grooming, and pull up any gatherable herbs I find. Jade pays well for them if they aren't stomped flat.
+harvestfestival.npc.jim.festival.cooking2=Teas, salads, remedies, and just a decoration on a dish. So many uses for herbs. Flowers too, believe it or not.
+harvestfestival.npc.jim.festival.cow1=You're enterin' the festival, I'm going to assume.
+harvestfestival.npc.jim.festival.cow2=How's that cow doing lately? Feeding her lots of treats?
+harvestfestival.npc.jim.festival.harvest1=Only the finest milk for the soup from my ranch.
+harvestfestival.npc.jim.festival.harvest2=I tried to eat last year's soup with using wool for bread once. It wasn't very tasty at all. I haven't tried eating wool, or bread, since.
+harvestfestival.npc.jim.festival.new.years.eve1=My new year's resolution? Mmm, I'd love to have a herd of horses to sell to players. They don't produce anything, its true, but you can get around town much faster.
+harvestfestival.npc.jim.festival.new.years.eve2=Getting in touch with a leatherworker to increase my inventory for the ranch would be good. I'd love to sell saddles.
+harvestfestival.npc.jim.festival.new.years1=Ah, the first day of spring. Freshly trimmed grass wakes a man up in the morning, don't you agree?
+harvestfestival.npc.jim.festival.new.years2=The spring is a wonderful time to buy a miracle potion for your livestock, don't you agree %4$s?
+harvestfestival.npc.jim.festival.sheep1=Sheep are very sensitive to copper, you need to only feed them the proper diet. In this case, fodder bought from me or grown in your own farm.
+harvestfestival.npc.jim.festival.sheep2=Have you been feeding your sheep any treats? I hear it might do good things if you feed them lots.
+harvestfestival.npc.jim.festival.starry.night1=I hope you've stocked up on fodder for the winter %4$s. Its going to be a cold one.
+harvestfestival.npc.jim.festival.starry.night2=Make sure your sheep stay warm after you shear them. Its like going outside with just underwear on when they are sheared. COLD.
+
+#Brandon/Cricket
+harvestfestival.npc.brandon.shop=採掘道具が御入用かい？うちはいつも月曜から土曜、朝は11時から夕方4時までやってるよ。
+harvestfestival.npc.brandon.greeting1=いつも坑道にいるようなもんだけど、さすがにダイヤモンドに出くわすと興奮しちまうね。
+harvestfestival.npc.brandon.greeting2=おまえはどうだか知らないけど、俺は不眠症なんだ...毎晩、いつも嫌なコオロギの鳴き声がしやがる。
+harvestfestival.npc.brandon.greeting3=アイスは何が好きだい？俺はバニラを足したやつ。いつもそうしてた。...誰かに盗まれるまではな。
+harvestfestival.npc.brandon.greeting4=採掘に飽きたらいつでも道具を買い取ってやるぜ、俺はそんなこと無いけどな。
+harvestfestival.npc.brandon.greeting5=暗闇が怖いって気持ちが分かんねえよ。見えない道を掘り進んで行くのが最高なんじゃないか。
+harvestfestival.npc.brandon.greeting6=もし暗い穴を見つけて、表面にヒビが入ってればはしごをおろして行けるぜ。覚えとけよ。
+harvestfestival.npc.brandon.greeting7=内緒だぜ。ちょっとでも早く掘るコツ。ジャンプして頭をぶつけるような岩はさっさと壊しちまう。道の真ん中の邪魔なごつごつ野郎なんかも。だだっ広い畑の仕事と、要領はおんなじさ。
+harvestfestival.npc.brandon.greeting8=ロープは持っとけ。坑道の奥でにっちもさっちもいかなくなったら迷わずそれで戻るんだ。
+harvestfestival.npc.brandon.greeting9=もし鉱夫になってなかったら...そうだな、彫刻をやってたかな、岩を三つばかり...なんで三つかって？知るか。
+harvestfestival.npc.brandon.greeting10=ここには俺みたいなやつは他に誰もいない...なあ、何でだろうな？
+harvestfestival.npc.brandon.greeting11=坑道では気をつけろよ。ちょっとヤバい動物もいるからな。
+harvestfestival.npc.brandon.greeting12=この町の奴らには飽き飽きだ。どっかに行っちまいてえ。
+harvestfestival.npc.brandon.marriage.reject=なんでおまえみたいな奴と結婚なんかしなきゃならねえんだ？
+harvestfestival.npc.brandon.marriage.accept=ああ、まあ、おまえでもいいか。結婚しようぜ。
+harvestfestival.npc.brandon.gift.awesome=なんて言ったらいいか...ありがとよ！もう何年も探してたんだ、新しいツルハシ！
+harvestfestival.npc.brandon.gift.good=おう、お返しは期待してくれていいぜ。
+harvestfestival.npc.brandon.gift.decent=ありがと、よさそうだな。
+harvestfestival.npc.brandon.gift.dislike=まあ、いいんじゃね。
+harvestfestival.npc.brandon.gift.bad=言わなかったっけ、俺、昔っからこういうのダメなんだよ。
+harvestfestival.npc.brandon.gift.terrible=バカにしやがって！なんでわざわざこんなものを、どっか行っちまえ！
+harvestfestival.npc.brandon.festival.chicken1=I swear that chicken I've seen before.
+harvestfestival.npc.brandon.festival.chicken2=Black feathers, red eyes, straight out of the nether-region, I tell you! Came right for me!
+harvestfestival.npc.brandon.festival.cooking1=So, they're doing some sort of festival out there?
+harvestfestival.npc.brandon.festival.cooking2=There isn't much worth in the outside world now. The mines are home. No crickets.
+harvestfestival.npc.brandon.festival.cow1=That cow is staring at me. There's a reason I'm way over here, and not over there.
+harvestfestival.npc.brandon.festival.cow2=I'm headed back into the mines shortly. I'm not interested in watching someone walk a cow into a stage.
+harvestfestival.npc.brandon.festival.harvest1=Sitting in semidarkness, watching the glints of the eyes of monsters while sipping my thermos of nice hot soup. Nothing better.
+harvestfestival.npc.brandon.festival.harvest2=Pickaxes don't serve as good soup spoons apparently. I've got the burns to prove it.
+harvestfestival.npc.brandon.festival.new.years.eve1=There isn't a big difference between this year, and the next. You just get older. The mines get older too.
+harvestfestival.npc.brandon.festival.new.years.eve2=The rocks grow older and grow crystals eventually. Open up to reveal more ore... thats what I want to see. More ores. Diamonds. Emeralds. Avoiding monsters and such.
+harvestfestival.npc.brandon.festival.new.years1=High ho, high ho, its off to mine I go... Hm? Oh hello.
+harvestfestival.npc.brandon.festival.new.years2=Spring isn't as profitable for finding ore below ground than winter is, have you noticed? Copper seems quite findable at last, junk as it is.
+harvestfestival.npc.brandon.festival.sheep1=The shape of a sheep's eyeball makes me uneasy. Its so... flat.
+harvestfestival.npc.brandon.festival.sheep2=Like they've got no soul inside. Or are seeking to eat me in the depths of the mine.
+harvestfestival.npc.brandon.festival.starry.night1=A mining I shall go, a mining I shall go. Ores and rocks and cherry booms, a mining I shall go.
+harvestfestival.npc.brandon.festival.starry.night2=If someone actually cared, they can bring me leftovers in the mines. Hint hint.
+
+#Tomas
+harvestfestival.npc.thomas.greeting1=あなたを罪から救いましょう。
+harvestfestival.npc.thomas.greeting2=呪いを受けた時には思い出してください。喜んで祝福しましょう。
+harvestfestival.npc.thomas.greeting3=主こそがあなたを導くのです。
+harvestfestival.npc.thomas.greeting4=主の栄光はあなたの上に。
+harvestfestival.npc.thomas.greeting7=あなたに神の御慈悲があらんことを。
+harvestfestival.npc.thomas.greeting8=いつか空を飛べると信じています。
+harvestfestival.npc.thomas.greeting9=どうして私はKatlinみたいな魔女と結婚してしまったのでしょうか。
+harvestfestival.npc.thomas.greeting10=教会には日曜日にお越しください。満席ですよ。
+harvestfestival.npc.thomas.greeting11=私は娘のAbiiのことを大変誇りに思っています。CloeもAbiiを見習えばいいと思うのですが。
+harvestfestival.npc.thomas.greeting12=キリストの力があなたを屈服させる！
+harvestfestival.npc.thomas.gift.awesome=何て刺激的なプレゼントでしょう! まさに完璧です。 神があなたを愛さんことを、子よ。
+harvestfestival.npc.thomas.gift.good=最高のプレゼントです、ありがとう。
+harvestfestival.npc.thomas.gift.decent=子よ、神のお恵みがありますように。
+harvestfestival.npc.thomas.gift.dislike=何かの手違いでしょうか、まあ、よろしい。
+harvestfestival.npc.thomas.gift.bad=なんて冒涜的な！
+harvestfestival.npc.thomas.gift.terrible=地獄に堕ちよ！なんて酷いものを！
+harvestfestival.npc.thomas.festival.chicken1=Don't bring your chickens near Jaimii, she hates animals. Sleeps with earmuffs to avoid the crow of the rooster.
+harvestfestival.npc.thomas.festival.chicken2=Birds are able to reach the sky, something we cannot do without help. Chickens don't fly much though. Do they prefer the faith of the ground?
+harvestfestival.npc.thomas.festival.cooking1=For the next Sunday sermon, I shall present bread and grape juice on the altar.
+harvestfestival.npc.thomas.festival.cooking2=The more crackerlike the bread, the better.
+harvestfestival.npc.thomas.festival.cow1=I can bless your tools, but not your animals for a win.
+harvestfestival.npc.thomas.festival.cow2=A fine day for a festival. He is smiling upon this day.
+harvestfestival.npc.thomas.festival.harvest1=A tithe for the harvest to seal the deal for bountiful autumn?
+harvestfestival.npc.thomas.festival.harvest2=Pray that our veg grows big and strong.
+harvestfestival.npc.thomas.festival.new.years.eve1=A blessing for the new year to you, %4$s.
+harvestfestival.npc.thomas.festival.new.years.eve2=A tithe to the church is always appreciated. Our bell needs a new can of polish.
+harvestfestival.npc.thomas.festival.new.years1=May your soul be purified for the next year.
+harvestfestival.npc.thomas.festival.new.years2=Do not forget to make your tithe to the church.
+harvestfestival.npc.thomas.festival.sheep1=Sheep bring the wolf. The wolf is a bad omen. Carry silver on the full moon.
+harvestfestival.npc.thomas.festival.sheep2=Remember, I can bless your tools, but not your animals.
+harvestfestival.npc.thomas.festival.starry.night1=Jaimii is my dinner date, %4$s. I am unlikely to choose another.
+harvestfestival.npc.thomas.festival.starry.night2=When dinner is complete, some couples come to pray at the church before retiring.
+
+#Candice
+harvestfestival.npc.candice.greeting1=この仕事、好きよ。友達と一緒にやるのも好き。
+harvestfestival.npc.candice.greeting2=あのひとってば、まるっきり牛みたいなおばかさん！
+harvestfestival.npc.candice.greeting3=なんて場所！この世界はどうなっちゃってるの！？
+harvestfestival.npc.candice.greeting4=ねぇちょっと来て、目に何か入っちゃったみたい。
+harvestfestival.npc.candice.greeting5=ハイ%4$s!今日は一段と素敵ね、何か良いことでもあった？
+harvestfestival.npc.candice.greeting6=ね、あなたにいいこと教えてあげる。草に水なんてやらなくていいの、どこにでも茂ってるでしょ？
+harvestfestival.npc.candice.greeting7=話したっけ。あたし、Jimのところで乳搾りの仕事してるの。
+harvestfestival.npc.candice.greeting8=たまには家畜に別の餌もやってみたいってことかしら。
+harvestfestival.npc.candice.greeting9=どうかしたの？あたしたち前にも会ったはずでしょ。
+harvestfestival.npc.candice.greeting10=テキサス生まれよ。あなたは？
+harvestfestival.npc.candice.greeting11=友達のはじまりって、おしゃべりからだよね。
+harvestfestival.npc.candice.greeting12=泣きたくなる時だってあるわ、あんたには無いかもしれないけど。
+harvestfestival.npc.candice.marriage.reject=ないない、結婚なんてしたくないわ。
+harvestfestival.npc.candice.marriage.accept=あなたってほんと完璧！きっと最高のカップルになれるわ。えぇ、喜んで！
+harvestfestival.npc.candice.gift.awesome=最高！あなたってほんと素敵、愛してる！
+harvestfestival.npc.candice.gift.good=女の子が喜ぶやりかた、わかってるのね。
+harvestfestival.npc.candice.gift.decent=ありがと、すてきね。
+harvestfestival.npc.candice.gift.dislike=うーん。もらっておくね。
+harvestfestival.npc.candice.gift.bad=うーん。これはダメ。あたし、こういうの無理。
+harvestfestival.npc.candice.gift.terrible=信じらんない...あたしのこと嫌いなの？
+harvestfestival.npc.candice.festival.chicken1=Why are you talking to me? Ashlee is the one to speak to about chickens!
+harvestfestival.npc.candice.festival.chicken2=Milk. Maid. Not chicken maid. Sheesh.
+harvestfestival.npc.candice.festival.cooking1=Yes, I KNOW milk is used in cooking, but don't you hate the smell while heating it?
+harvestfestival.npc.candice.festival.cooking2=The ranch should still be open for business while this stupid festival is going on, at least then I have an excuse to skip this.
+harvestfestival.npc.candice.festival.cow1=Nothing better than fresh milk straight from the cow.
+harvestfestival.npc.candice.festival.cow2=Butter, cheese, cream, ice cream, so many uses for milk.
+harvestfestival.npc.candice.festival.harvest1=Cream base soups are the best.
+harvestfestival.npc.candice.festival.harvest2=When I don't have to make them myself that is. I'll leave that to someone who actually LIKES to cook.
+harvestfestival.npc.candice.festival.new.years.eve1=A happy moo year to you, %4$s!
+harvestfestival.npc.candice.festival.new.years.eve2=I'm going to have a resolution for new year to work on finding myself a lover.
+harvestfestival.npc.candice.festival.new.years1=Happy New Year %4$s!
+harvestfestival.npc.candice.festival.new.years2=How're your cows doing? They should be really happy to not have snow underhoof anymore.
+harvestfestival.npc.candice.festival.sheep1=Jim is the one leading this festival.
+harvestfestival.npc.candice.festival.sheep2=Why don't you go talk to HIM about it?
+harvestfestival.npc.candice.festival.starry.night1=You gonna invite someone to the winter dinner thing %4$s? Its kinda romantic, don't you think?
+harvestfestival.npc.candice.festival.starry.night2=The animals aren't fond of snow, so keep your livestock inside and under cover.
+
+#Yulife
+harvestfestival.npc.yulif.shop=建築の仕事かい。うちは日曜から金曜まで、朝の9時から夕方5時半までしかやってないんだ。
+harvestfestival.npc.yulif.greeting1=現場は長丁場だからな。ちょっと休ませてくれ。
+harvestfestival.npc.yulif.greeting2=みんな俺をこき使うんだ、大工に暇なしってな！
+harvestfestival.npc.yulif.greeting3=Jimを見なかったか？本当に？
+harvestfestival.npc.yulif.greeting4=まったく大仕事だったぜ。どうだ、いい建物だろ？わかるか？
+harvestfestival.npc.yulif.greeting5=動き回ってもうクタクタだ。死にそうだよ。
+harvestfestival.npc.yulif.greeting6=いつだって最新のいい建材を使ってるよ。
+harvestfestival.npc.yulif.greeting7=うちの木材と石の値段はおかしいなんて言われてるけど、俺はこれでいいと思うね。
+harvestfestival.npc.yulif.greeting8=よう、景気はどうだい、%4$s。
+harvestfestival.npc.yulif.greeting9=俺がどこにいるかわからなくなったら、新しい大工屋で呼んでくれればいいから。
+harvestfestival.npc.yulif.greeting10=もっともっと建ててやるぜ、そうして俺たちの街がでっかくなっていくんだ。
+harvestfestival.npc.yulif.greeting11=新しい店がいつ開くかってのは、俺に聞けばわかるよ。
+harvestfestival.npc.yulif.greeting12=仕事が立て込んでくると、つい頑張りすぎちまうのが悪い癖でな。
+harvestfestival.npc.yulif.greeting13=まあ、Jadeは難しいやつだよ。でも妹だしな、ほっとけないだろ？
+harvestfestival.npc.yulif.marriage.reject=いや、いや、結婚なんて考えたこともねえよ！
+harvestfestival.npc.yulif.marriage.accept=ああ、嬉しいよ。俺は今日からあんたの夫だ。
+harvestfestival.npc.yulif.gift.awesome=ああ、なんでわかったんだ、これ大好きなんだよ。ありがとな。
+harvestfestival.npc.yulif.gift.good=あんたはほんとに、モノの選び方ってものをしっているな。
+harvestfestival.npc.yulif.gift.decent=ありがとよ。
+harvestfestival.npc.yulif.gift.dislike=えっ、おう、ありがとな？
+harvestfestival.npc.yulif.gift.bad=なあ、なんでだ？なんでこんなものがいいと思ったんだ？
+harvestfestival.npc.yulif.gift.terrible=ちくしょう、マジで何だってこんなもの！うるせえ。てめえとは口もききたくない。
+harvestfestival.npc.yulif.festival.chicken1=Animals are so pushy, and smelly. They keep knocking all the torches out of the barns and coops.
+harvestfestival.npc.yulif.festival.chicken2=If you didn't need the products to cook with, I wouldn't bother with working with animals myself.
+harvestfestival.npc.yulif.festival.cooking1=Depending on who enters the cooking festival, there's really good pastries to try.
+harvestfestival.npc.yulif.festival.cooking2=I do wish melons came into season sooner, a nice crisp melon salad or something... perhaps with mint... Hmm.
+harvestfestival.npc.yulif.festival.cow1=This is Jim's favorite festival. I'm not so interested.
+harvestfestival.npc.yulif.festival.cow2=The animal ranch needs a new blueprint, but Jim's so busy I haven't had the chance to show him any new ideas. He's always with his livestock.
+harvestfestival.npc.yulif.festival.harvest1=Don't talk to me. Talk to my sister if you want to add food to the pot.
+harvestfestival.npc.yulif.festival.harvest2=Jade yelled at me when I put melon slices into the pot one year. The rinds ruined the soup. Oh well, more melon for me. -chomp-
+harvestfestival.npc.yulif.festival.new.years.eve1=My new year's resolution is to create a fantastic new blueprint for the animal ranch.
+harvestfestival.npc.yulif.festival.new.years.eve2=When you cut down a tree in the forest in winter, who is around to hear it fall?
+harvestfestival.npc.yulif.festival.new.years1=Mm, Happy New Year, I ‘spose. *Sigh*
+harvestfestival.npc.yulif.festival.new.years2=Long life, wealth and happiness. From a riceball. Mm. Do you believe those things?
+harvestfestival.npc.yulif.festival.sheep1=If you spin wool thick enough, you can make ropes out of it. Sheep do have a use after all.
+harvestfestival.npc.yulif.festival.sheep2=They appear to be pickier about what they eat than cows do, by what I see Jim's flock do. They never eat mint, but cows do.
+harvestfestival.npc.yulif.festival.starry.night1=Its so quiet when building in the winter. Just the sound of construction when everything else is silent.
+harvestfestival.npc.yulif.festival.starry.night2=We're having a get together to celebrate the winter season. Its not much, but its tradition. Its also tradition to invite someone to dinner.
+harvestfestival.npc.builder.build=今、%sのために建物の構造を考えているから邪魔しないでくれよな。
+harvestfestival.npc.builder.paint=%sのために絵画を配置してるぜ。
+harvestfestival.npc.builder.decorate=%sの仕上げをしているぜ。
+harvestfestival.npc.builder.movein=%sにみんなが入れるようにしているだけだから、気にしないでくれよな。
+harvestfestival.npc.builder.basement.build=%sの地下をつくっているぜ。
+harvestfestival.npc.builder.basement.paint=%sの地下に絵画を配置しているぜ置いています。
+harvestfestival.npc.builder.basement.decorate=%sの仕上げをしているぜ。
+harvestfestival.npc.builder.basement.movein=%sにみんなが入れるようにしているだけだから、気にしないでくれよな。
+
+#Ashlee
+harvestfestival.npc.ashlee.shop=用事があるなら何でも言ってよ。でも月曜から土曜の午前6時から午後12時までね。
+harvestfestival.npc.ashlee.greeting1=鶏の羽をむしるのがとっても好きなのよ！
+harvestfestival.npc.ashlee.greeting2=もう疲れちゃった。ニワトリを飼うのはほんと大変！
+harvestfestival.npc.ashlee.greeting3=今日からはよく眠れることを願うよ。
+harvestfestival.npc.ashlee.greeting4=大体の鶏飼いはキツネが嫌いだけどアタシは好きだよ。モッフモフだからね、アタシみたいに！
+harvestfestival.npc.ashlee.greeting5=コッコッコッコッ...ヒヨコを鳴き止ませるときはこうするのさ。
+harvestfestival.npc.ashlee.greeting6=ニワトリに手でエサをやると懐くんだ、めんどくさいけどね。
+harvestfestival.npc.ashlee.greeting7=おやつをもらってニワトリたちも幸せそうだね。
+harvestfestival.npc.ashlee.greeting8=あの子たち前は私をからかってきたんだけど、今はヒヨコに囲まれて私の方を見てるのよ!
+harvestfestival.npc.ashlee.greeting9=孵卵器はちょっと高いけど、それだけの価値はあるわよ。
+harvestfestival.npc.ashlee.greeting10=ニワトリは、世話をしてあげるほど1日にたくさん卵を産むようになるの。
+harvestfestival.npc.ashlee.greeting11=ニワトリが巣から離れて迷子にならないように気を付けてね。
+harvestfestival.npc.ashlee.marriage.reject=なんでアタシにプロポーズなんて？
+harvestfestival.npc.ashlee.marriage.accept=あぁ、アンタは今までで一番最高のキツネちゃんだよ！結婚しよ！
+harvestfestival.npc.ashlee.gift.awesome=アンタは最高のキツネちゃんだ! こいつは心から大好きだよ!
+harvestfestival.npc.ashlee.gift.good=キツネちゃんはこれを貰えてうれしいよ。
+harvestfestival.npc.ashlee.gift.decent=良い贈り物だね！
+harvestfestival.npc.ashlee.gift.dislike=これはいらないよ。
+harvestfestival.npc.ashlee.gift.bad=なんでこんなものをよこすんだい？
+harvestfestival.npc.ashlee.gift.terrible=これは今までもらった中で最低の贈り物だよ。
+harvestfestival.npc.ashlee.festival.chicken1=Are you entering the Chicken Festival?! I need some competition!
+harvestfestival.npc.ashlee.festival.chicken2=Is it strange for foxes like me to enjoy chickens this much without eating them?
+harvestfestival.npc.ashlee.festival.cooking1=Don't ever eat raw eggs. I hear that some people will give their dogs and cats raw egg for coat improvements. Can that work for tamed wolves or foxes too? Maybe I should try raw egg for improving my hair...
+harvestfestival.npc.ashlee.festival.cooking2=A splash of oil works well when learning how to make a fried egg. Add the oil before you start heating the frying pan though, hot oil is a painful burn.
+harvestfestival.npc.ashlee.festival.cow1=I just don't like cows. They're too big.
+harvestfestival.npc.ashlee.festival.cow2=I bet the mayor's getting a kick of having all the cows messing up the festival grounds.
+harvestfestival.npc.ashlee.festival.harvest1=Boiled egg, scrambled egg, poached egg, raw egg, fried egg... oh so many choices to add to the soup.
+harvestfestival.npc.ashlee.festival.harvest2=Or I'll just throw in a freshly plucked chicken!
+harvestfestival.npc.ashlee.festival.new.years.eve1=I'm looking forward to doing some work with Yulif possibly to draft a chicken coop in the next year. My girls are a bit cramped in my barn, they could do with some free range space outside.
+harvestfestival.npc.ashlee.festival.new.years.eve2=Its not really a resolution, but on my to-do list. And get more fox stuff!
+harvestfestival.npc.ashlee.festival.new.years1=A furry scarf for a new year! Fox fur is so soft.
+harvestfestival.npc.ashlee.festival.new.years2=If my chicks didn't need so much care during the winter, I would've hibernated like any other fox.
+harvestfestival.npc.ashlee.festival.sheep1=I've got this itch to start chasing sheep all of a sudden. Its it because foxes like to chase sheep?
+harvestfestival.npc.ashlee.festival.sheep2=I've watched sheep herding trials before; its amazing what the shepherds and their dogs can do.
+harvestfestival.npc.ashlee.festival.starry.night1=There you go my chickies, nice and cozy warm in your nests...
+harvestfestival.npc.ashlee.festival.starry.night2=You inviting anyone to the winter dinner?
+
+#Girafi
+harvestfestival.npc.girafi.shop=もし僕と取引したければ、毎日朝6:00から10:00まで受け付けてるよ
+harvestfestival.npc.girafi.greeting1=やぁ同胞、僕は謙虚な商人。君の卵や牛乳、羊毛なんかをバニラの物と交換してあげる！
+harvestfestival.npc.girafi.greeting2=や、どうも。ちょっと旅に出ようと考えてたんだよ。デンマークに行こうと思うんだ。
+harvestfestival.npc.girafi.greeting3=また会える日を楽しみにしてるよ！
+harvestfestival.npc.girafi.greeting4=僕の冒険譚を聞かせてあげよう。そう、あれはイカを絞め殺した時のことだった...
+harvestfestival.npc.girafi.greeting5=やぁ、景気はどう？ケーキだけに。なんちゃって！
+harvestfestival.npc.girafi.greeting6=あぁ、また会えるなんて感激だ！
+harvestfestival.npc.girafi.greeting7=誰にでも良い日、悪い日がある。君のおかげで今日は良い日さ。
+harvestfestival.npc.girafi.greeting8=いつでも卵、牛乳か羊毛をバニラのものと交換してあげるよ、お忘れなく!
+harvestfestival.npc.girafi.greeting9=とってもたくさんのバイオームを探検してきたんだ、本当にたくさんね！
+harvestfestival.npc.girafi.greeting10=今とっても幸せだよ。
+harvestfestival.npc.girafi.marriage.reject=君と知り合えたことは嬉しいけど、そういう風には思ってないんだ...
+harvestfestival.npc.girafi.marriage.accept=こいつは素敵だ！喜んで結婚しよう！そしてどこか遠い場所へ行こう...
+harvestfestival.npc.girafi.gift.awesome=センスのある紳士の喜ばせ方を本当によく知っているじゃないか。感謝してもしきれないよ。
+harvestfestival.npc.girafi.gift.good=君は素晴らしい人だな、ありがとう。
+harvestfestival.npc.girafi.gift.decent=良い贈り物だ。
+harvestfestival.npc.girafi.gift.dislike=すまないが、あんまりいい感じじゃないね。
+harvestfestival.npc.girafi.gift.bad=これは僕が自分に買ってきそうもないものだ。
+harvestfestival.npc.girafi.gift.terrible=これは僕が自分のものにしようとは決して思わないものだろうね。僕のこと嫌いなのかい？
+harvestfestival.npc.girafi.festival.chicken1=I do have vanilla eggs, yes. Are you looking for a trade? Come find me after the festival.
+harvestfestival.npc.girafi.festival.chicken2=I warn you, I'm not a chicken person, so if your vanilla eggs are infertile, don't get angry at me.
+harvestfestival.npc.girafi.festival.cooking1=I travelled to a country called India once, and tried a fried wrapped potato called a samosa once. It was quite spicy, but potatoes are decent whatever you do to them.
+harvestfestival.npc.girafi.festival.cooking2=Have you tried potatoes on a stick to roast them with herbs? I tried to roast a potato on a spit once... but it shrivelled before I could eat it. I guess you can only roast pigs or larger meats.
+harvestfestival.npc.girafi.festival.cow1=A bottle for a bucket, life of a trader of milk. Its a decent trade, yes?
+harvestfestival.npc.girafi.festival.cow2=Like horses, one never stands right behind a cow. I like not having a hoofprint bruise on my gut, thank you.
+harvestfestival.npc.girafi.festival.harvest1=We celebrate the harvest in order to please our Goddess that we have a bountiful autumn each year. So far, we've done so-so, I'd say.
+harvestfestival.npc.girafi.festival.harvest2=I am more of a stew sort than a soup sort. Much richer, and good for warming from inside out.
+harvestfestival.npc.girafi.festival.new.years.eve1=I resolve to go back to Denmark next year. If not for a few weeks. See the family and such.
+harvestfestival.npc.girafi.festival.new.years.eve2=Noodles. What a strange choice of food. They look like pale snakes in a bowl. Just waiting to rear up and strike as you go at them with a fork or sticks.
+harvestfestival.npc.girafi.festival.new.years1=Godt nytår!
+harvestfestival.npc.girafi.festival.new.years2=This riceball is sticky, and keeps breaking apart when I take a bite.
+harvestfestival.npc.girafi.festival.sheep1=I've still got some vanilla wool if you're willing to trade those lumps of wool to me.
+harvestfestival.npc.girafi.festival.sheep2=This sweater is a bit itchy. Straight wool yarn makes me itchy.
+harvestfestival.npc.girafi.festival.starry.night1=If I got invited to dinner, I'd invite Jenni and Candice. Its a family event, sort of. And since I live here... yeah.
+harvestfestival.npc.girafi.festival.starry.night2=In Denmark in the winter, you rarely see the sun. Its almost always cloudy, and the sun sets really quickly.
+
+###Shop greetings
+# WARNING FOR SHOP NAMES:
+# Using any character other than the following will change the renderer to use the vanilla font instead
+# So for best looks, if you can try to only use names with that, if the means you don't translate names
+# then sorry. It's not really feasible for me to support unicode with the custom font
+# Accepted characters for names
+# a-z A-Z 0-9 , . ' é
+
+#General
+harvestfestival.shop.outof.true=ゴールドが有りません！また来てください！
+harvestfestival.shop.outof.false=在庫がありません！また来てください！
+harvestfestival.shop.free=無料！
+
+#General Store
+harvestfestival.shop.general=Jenni's Bargains
+harvestfestival.shop.general.sign1=Mon-Tue Thu-Fri
+harvestfestival.shop.general.sign2=09:00-17:00
+harvestfestival.shop.general.sign3=Sat 11:00-15:00
+harvestfestival.shop.general.greeting1=Jenniの雑貨屋へようこそ、何をお探しですか？
+harvestfestival.shop.general.greeting2=いつも在庫を用意していますよ、どうされますか？
+harvestfestival.shop.general.greeting3=この店は町一番だよ。何か手伝えるかな？
+harvestfestival.shop.general.options=何をしたい？
+harvestfestival.shop.general.options.shop=@Buy
+harvestfestival.shop.general.options.sell=@Sell
+harvestfestival.shop.general.options.chat=@Chat
+
+#Poultry Farm
+harvestfestival.shop.poultry=Foxie's Fowls
+harvestfestival.shop.poultry.sign1=
+harvestfestival.shop.poultry.sign2=06:00 - 12:00
+harvestfestival.shop.poultry.sign3=Mon-Sat
+harvestfestival.shop.poultry.greeting1=養鶏に必要なものを提供するよ。何をお探し？
+harvestfestival.shop.poultry.greeting2=養鶏は300年以上前から行われているんだ。何が欲しい？
+harvestfestival.shop.poultry.greeting3=いらっしゃい、鶏が欲しいのかい？それとも牛？羊？
+
+#Blacksmith
+harvestfestival.shop.blacksmith=Blacksmith
+harvestfestival.shop.blacksmith.sign1=
+harvestfestival.shop.blacksmith.sign2=Fri-Wed
+harvestfestival.shop.blacksmith.sign3=10am-4pm
+
+#Cafe
+harvestfestival.shop.cafe=Liara's Cafe
+harvestfestival.shop.cafe.sign1=We're open
+harvestfestival.shop.cafe.sign2=every day from
+harvestfestival.shop.cafe.sign3=9:30am to 5pm!
+harvestfestival.shop.cafe.greeting1=さぁ食べていって！何にする？
+harvestfestival.shop.cafe.greeting2=歓迎するよ！
+harvestfestival.shop.cafe.greeting3=お待ちどうさま！
+
+#Kitchen Supplies
+harvestfestival.shop.kitchen=Cafe Supplies
+harvestfestival.shop.kitchen.greeting1=キッチン用品を探しているんだ。なにかお探し？
+harvestfestival.shop.kitchen.greeting2=金曜日はいつもカフェのためにキッチン用品を探しているんだ
+harvestfestival.shop.kitchen.greeting3=食料品を買う手助けができるよ。
+
+#Animal Ranch
+harvestfestival.shop.barn=Animal Ranch
+harvestfestival.shop.barn.sign1=Open Monday to...
+harvestfestival.shop.barn.sign2=Saturday from...
+harvestfestival.shop.barn.sign3=10am to 3pmo
+harvestfestival.shop.barn.greeting1=ただの動物は売らない。とびきり強いやつだ！
+harvestfestival.shop.barn.greeting2=飼育小屋へようこそ、何が必要かな？
+harvestfestival.shop.barn.greeting3=鶏にする？牛にする？それともヒ・ツ・ジ？
+
+#Carpenter
+harvestfestival.shop.carpenter=Carpenter
+harvestfestival.shop.carpenter.sign1=09:00-17:30
+harvestfestival.shop.carpenter.sign2=
+harvestfestival.shop.carpenter.sign3=Sun-Fri
+harvestfestival.shop.carpenter.greeting1=何を建てるんだ？手伝うよ。
+harvestfestival.shop.carpenter.greeting2=最高の設計図を揃えているぜ。
+harvestfestival.shop.carpenter.greeting3=あなたのための最高の建物！
+harvestfestival.shop.carpenter.greeting4=街で一番の建物、あなたの玄関横に。
+harvestfestival.shop.carpenter.greeting5=石と原木が足りない？Yulifが用意するぜ。
+harvestfestival.shop.carpenter.greeting6=ここにあなただけの建物を！
+
+#Miner
+harvestfestival.shop.miner=Miners' Wares
+harvestfestival.shop.miner.sign1=Selling goods
+harvestfestival.shop.miner.sign2=Monday-Saturday
+harvestfestival.shop.miner.sign3=11am to 4pm.
+harvestfestival.shop.miner.greeting1=いくつかの希少な材料があるぞ
+harvestfestival.shop.miner.greeting2=行き詰まったことないか？脱出用ロープはここだぜ。
+harvestfestival.shop.miner.greeting3=進めそうにない？助けになるはしごを売っているぞ。
+
+#Blood Mage
+harvestfestival.shop.bloodmage=Dark Arts
+harvestfestival.shop.bloodmage.greeting1=愛しき子よ。ようこそ深闇の世界へ
+harvestfestival.shop.bloodmage.greeting2=私の姿を見て目玉が飛び出すほど驚く覚悟はできているかね？
+harvestfestival.shop.bloodmage.greeting3=この暗く神秘的な夜に、我が品をお目に掛けることができたことを幸せに思うよ。
+
+#Tackle Shop
+harvestfestival.shop.baitshop=Tackle Shop
+harvestfestival.shop.baitshop.sign1=1pm-7pm
+harvestfestival.shop.baitshop.sign2=
+harvestfestival.shop.baitshop.sign3=Tuesday-Friday
+harvestfestival.shop.baitshop.greeting1=店をやっていけるのは、みんなのおかげさ。
+harvestfestival.shop.baitshop.greeting2=魚を釣りたいなら、うちでつり竿を買っていくといいぞ。
+harvestfestival.shop.baitshop.greeting3=つり竿を手に入れたければここだ。
+
+#Trader
+harvestfestival.shop.trader=Trader Johan's
+harvestfestival.shop.trader.greeting1=おはよう、何が必要かな？
+harvestfestival.shop.trader.greeting2=取引がしたい？なら僕におまかせ！
+harvestfestival.shop.trader.greeting3=ようこそ、どうぞご覧になって。
+
+#Recipe Shop - Cooking Festival
+harvestfestival.shop.recipes=Recipe Shack
+harvestfestival.shop.recipes.greeting1=世界中のレシピがここに！
+harvestfestival.shop.recipes.greeting2=あなたのレシピを手に入れよう！
+harvestfestival.shop.recipes.greeting3=例外はないです、季節外れのレシピも原価で！
+
+#Ingredients Shop - Cooking Festival
+harvestfestival.shop.cooking=Granny's Goodies
+harvestfestival.shop.cooking.greeting1=食材が足りないなら、お助けしますよ。
+harvestfestival.shop.cooking.greeting2=もし何か食材がほしければ、お助けします。
+harvestfestival.shop.cooking.greeting3=ここで足りない材料 Granny からを手に入れて！
+
+#Clockmaker
+harvestfestival.shop.clockmaker=Clockmaker
+harvestfestival.shop.clockmaker.greeting1=♪ ♫ ♪ プレーヤが店を開きました。
+harvestfestival.shop.clockmaker.greeting2=ゴールデンコンパスへようこそ。
+harvestfestival.shop.clockmaker.greeting3=チクタク チクタク ようこそ！
+harvestfestival.shop.clockmaker.sign1=Eight till
+harvestfestival.shop.clockmaker.sign2=Three, \o/
+harvestfestival.shop.clockmaker.sign3=Monday-Friday
+
+#Cheap Cow - Cow Festival
+harvestfestival.shop.cow=Cheap Cow
+harvestfestival.shop.cow.greeting1=Cheap Cow のグッズはコチラ！
+harvestfestival.shop.cow.greeting2=ようこそ Cheap Cow へ、なにかお探しですか？
+harvestfestival.shop.cow.greeting3=誰がヒツジが欲しくなるって？狂ったウシが最高！
+
+#Dairy Queen - Cow Festival
+harvestfestival.shop.dairy=Dairy Queen
+harvestfestival.shop.dairy.greeting1=こんにちは、おはようございます。ようこそ Dairy Queen へ！
+harvestfestival.shop.dairy.greeting2=おやつがほしければ、もどってきてね！
+harvestfestival.shop.dairy.greeting3=昼食はいかが？モーモータイムよ！
+
+#Sheep on Sale - Sheep Festival
+harvestfestival.shop.sheep=Sheep on Sale
+harvestfestival.shop.sheep.greeting1=ヒツジ用品が必要なら、どうぞコチラへ！
+harvestfestival.shop.sheep.greeting2=Sheep on Sale へようこそ！最高の品を揃えていますよ！
+harvestfestival.shop.sheep.greeting3=誰がウシをほしいって？馬鹿げたヒツジがいいよね！
+
+#Granny's Knits - Sheep Festival
+harvestfestival.shop.knitting=Lambshops
+harvestfestival.shop.knitting.greeting1=もこもこなジャンパーをお探し？
+harvestfestival.shop.knitting.greeting2=もこもこグッズはコチラ！
+harvestfestival.shop.knitting.greeting3=冬用をお探し？ここで温まりましょう！
+
+#Minecraft Fried Chicken - Chicken Festival
+harvestfestival.shop.mfc=MFC
+harvestfestival.shop.mfc.greeting1=おはよう！ようこそ Minecraft フライドチキンへ！
+harvestfestival.shop.mfc.greeting2=フライドチキンと卵はコチラ！
+harvestfestival.shop.mfc.greeting3=お昼は何にする？コケコッコーの時間だ！
+
+#Miscellaneous
+harvestfestival.marriage=結婚のプレゼント
+harvestfestival.marriage.locked=ロック中
+harvestfestival.marriage.unlocked=ロック解除中
+
+###Quests
+##Tutorial Quests
+#Intro
+harvestfestival.quest.tutorial.intro.title=収穫の女神
+harvestfestival.quest.tutorial.intro.description=女神を召喚して話をする
+harvestfestival.quest.tutorial.intro.hello=こんにちは。...ひょっとして、どこかでお会いしたことがありましたか？
+harvestfestival.quest.tutorial.intro.question=[初めてのプレイですか？]
+harvestfestival.quest.tutorial.intro.tutorial=@はい
+harvestfestival.quest.tutorial.intro.skip=@もう知ってる
+harvestfestival.quest.tutorial.intro.completed=そう、私が忘れていただけなのですね。ではこの花をどうぞ...きっと今までのことを忘れさせてくれますよ...
+harvestfestival.quest.tutorial.intro.backstory=そうですか、私は女神です。よろしくお願いしますね。ちょっとしたお話をお聞かせしましょう。昔々、私たちが住んでいるこの地は賑やかな村で埋め尽くされていました、ところが人々は恐ろしい嵐によって家を追われ、すっかりいなくなってしまいました。今、彼らの家へ戻りたがる声が聞こえました。彼らはあなたの助けを必要としているのです。あ、一応言っておくと、私はしばらくしたらいなくなりますが、いつでも女神の花を使って呼び戻すことができます。貴方のもとを去るときはいつでも、貴方を一人にしましょう。この本を差し上げます、詰まったときには、この本のクエストの章をチェックしてみてください。言っておくべきことはこれだけだと思います、また会いましょう!
+
+#Carpenter
+harvestfestival.quest.tutorial.carpenter.title=大工
+harvestfestival.quest.tutorial.carpenter.description.info=女神と話して情報を得る
+harvestfestival.quest.tutorial.carpenter.description.logs=女神に%s個の原木を渡す
+harvestfestival.quest.tutorial.carpenter.description.jade=大工の家を建てる\nJadeに花を見せる
+harvestfestival.quest.tutorial.carpenter.description.goddess=女神と話す
+harvestfestival.quest.tutorial.carpenter.wood.dozen=1ダースの
+harvestfestival.quest.tutorial.carpenter.wood.dozentwo=2ダースの
+harvestfestival.quest.tutorial.carpenter.wood.stack=1スタックの
+harvestfestival.quest.tutorial.carpenter.wood.stackhalf=半スタックの
+harvestfestival.quest.tutorial.carpenter.wood.stackquarter=4分の1スタックの
+harvestfestival.quest.tutorial.carpenter.welcome=こんにちは、もう一度お会いできてうれしいわ。 町を始める方法について少し考えたのですが、Yulifという名の男が優秀な大工であるという噂を聞いたことがあります。彼と妹はプロジェクトに参加しようとしていましたが、これは彼らにとってちょうどいいことかもしれません。Jadeも自然を愛しているので、プロジェクトを始めるきっかけにちょうどいいと思います。私は彼らの気を引く何かを持っているので、%s個の原木を持ってきてね。
+harvestfestival.quest.tutorial.carpenter.reminder.wood=最初の村人を町に連れて行くことを忘れてしまった場合は、私に%s個の原木を持ってきてね。
+harvestfestival.quest.tutorial.carpenter.thanks.build=カンペキ！ちょうどほしかった量よ。ここに必要なものが有るわ。これは設計図で、建築物を建てたい場所を選択するのに使います。建物を選択したときに建物のイメージが表示されるので、好きな場所で右クリックしてね。Yulifがすぐに行って作業を始めるので、しばらくの間待っていて。設計図を並べることは出来るけど、一度に一つしか作れないの。彼は何かしらで事故るかもしれないけど、心配しないで。一日経ったら復活して作業を再開するわ。大工の家を建てる前に私が言うことは以上です。あぁ、忘れる前に言っておくけど、建築が終わったら、Jadeは二階にいて取引が出来るから、花を持っていくといいと思わよ。
+harvestfestival.quest.tutorial.carpenter.reminder.carpenter=恥ずかしがらずにJadeに会いにいって！大工の家を建てて、2階に花を持って訪ねて。間違って設計図を無くした時は、%s個の原木を私に持ってきてね。設計図と交換するわ。
+harvestfestival.quest.tutorial.carpenter.reminder.give=他の設計図をありがとう。Jadeのところに行ってみて。
+harvestfestival.quest.tutorial.carpenter.reminder.flowers=あなたに会えてよかった、私はJadeです。ちょっと今、花を探しているの。
+harvestfestival.quest.tutorial.carpenter.thanks.flowers=ねえ！ その花は私のために持ってきてくれたのよね！？ 女神様からあなたのことを全部聞いたけど、町が出来るのがとっても楽しみ。 女神様が感謝していたので、会いに行ってみて。 そうしたら、あなたに見せたいものがあるので、また来てね！
+harvestfestival.quest.tutorial.carpenter.thanks.finish=よくできましたね。あなたのおかげで、この町はすぐに成長していくでしょう。ところで、何をするにもお金が必要になると思うので、まずは 1000Gold を差し上げます。有効に使ってね。そうしたら、もう一度Jadeに会いに行ってみて。助けてくれてありがとう。
+
+#Crops Tutorial
+harvestfestival.quest.tutorial.crops.title=農業
+harvestfestival.quest.tutorial.crops.title.what=Mystery Gift?
+harvestfestival.quest.tutorial.crops.description.jade=Jadeと話す
+harvestfestival.quest.tutorial.crops.description.turnips=カブを育てる\nJadeに見せる
+harvestfestival.quest.tutorial.crops.intro=こんにちは！約束通り、農作業について教えようと思うわ。今までに経験はある？
+harvestfestival.quest.tutorial.crops.question=作物を育てる方法を知っている？
+harvestfestival.quest.tutorial.crops.tutorial=@どうすればいいの？
+harvestfestival.quest.tutorial.crops.skip=@知ってる
+harvestfestival.quest.tutorial.crops.completed=そう、なら大丈夫ね。では道具を渡すから、さっそく始めよう！
+harvestfestival.quest.tutorial.crops.start=教えてしんぜよう！農業の基本は土を耕してそこに種を蒔くことね。種は3x3の範囲に蒔けるから、覚えておいて。そうしたら毎日水を撒くの。じゃないと作物は育たないわ。季節に合った作物かどうかも確認してね。クワを持って右クリックで土を耕すと、農地になるわね。じょうろは使う前に水を入れてね。カブを9個育ててから、また会いに来て。あぁ、最後に一つ。作物は1日ごとに育つの。つまり、作物の成長を早めたければ、眠ってしまって1日を終わらせるのが一番の近道よ！
+harvestfestival.quest.tutorial.crops.reminder.turnips=こんにちは、まだカブは育っていないみたいね。もしクワを無くして困ってたら、石のクワと交換してあげる。じょうろが欲しければ、バケツと交換。それと、もしまたカブの種が必要なら、お花5つと交換するわ。
+harvestfestival.quest.tutorial.crops.thanks.flowers=あら可愛い！ありがとう。じゃあ、お礼にカブの種をあげる。
+harvestfestival.quest.tutorial.crops.thanks.hoe=カンペキ。このクワをどうぞ！
+harvestfestival.quest.tutorial.crops.thanks.bucket=私のお古なんだけど、このジョウロをあげる。
+harvestfestival.quest.tutorial.crops.complete=立派なカブが育ったね！このまま貰っていきたいくらいだけど、これはあなたにあげるわ。あなたの時間を無駄にしたくないから。作物をお金に換える方法を教えるわ。出荷箱が必要で、兄さんの店で買えるわ。アイテムを持って出荷箱を右クリックをすると、準備完了。朝になれば出荷物に応じたお金が手に入るの。もし手で出荷するのが面倒なら、ホッパーを繋ぐと楽ね。お金もちゃんともわえるわ！とは言っても...実はカブってそこまでお金にならないのよね。もっとお金が欲しければ、他の作物の種を買って育てる必要があるわね。花を5つくれればいつでもあげるけど、あまり在庫がなくてね。それより、なるべく早く兄さんに雑貨店を建ててもらうよう言った方がいいかも。私よりももっと色々なものを売ってくれるから。最後に、お礼としてこのカマもどうぞ。いくつかの作物は収穫する時にそれが必要なの。あと、武器としても使えるけどね。
+
+#Chicken Care
+harvestfestival.quest.tutorial.chicken.title=Foxieのニワトリ
+harvestfestival.quest.tutorial.chicken.description.talk=Ashleeと話す
+harvestfestival.quest.tutorial.chicken.description.build=養鶏場を建てる
+harvestfestival.quest.tutorial.chicken.description.throw=ニワトリを投げる/餌を与える
+harvestfestival.quest.tutorial.chicken.description.egg=Ashleeに小さい卵を見せる
+harvestfestival.quest.tutorial.chicken.reminder.talk=どうやら鳥小屋を持っているようだね。Ashleeに会いに行ってごらん。
+harvestfestival.quest.tutorial.chicken.reminder.poultry=やあ。鳥小屋に何が必要か忘れてはいけないよ。
+harvestfestival.quest.tutorial.chicken.start=ここは素敵な所だ、君もそう思わないかい狐さん。ここでずっと暮らしていたいよ...。おや！ごきげんよう！君に気が付かなかったよ、すまないね。今さっき話していたのは...まあいいか。とにかく、私の養鶏場へようこそ！私はAshlee。
+harvestfestival.quest.tutorial.chicken.question=鶏の世話の仕方はわかるかい？
+harvestfestival.quest.tutorial.chicken.tutorial=@教えてください！
+harvestfestival.quest.tutorial.chicken.skip=@必要なものをください！
+harvestfestival.quest.tutorial.chicken.completed=良いでしょう。何羽かの鶏と必要なものを持っていきなさい。
+harvestfestival.quest.tutorial.chicken.throw=ああ、どうすればいいのかわからないのね？まずは鶏に餌をやらなくちゃね！餌をやらなければ病気になって鶏から何ももらえなくなっちゃうわ。餌は手であげれるし、トレイを使ってもあげれるわ。あと私たちと同じように愛情も添えてね。鶏に愛情を伝えるには毎日抱えてあげるといいわ。右クリックで抱えることができて、鶏たちも喜ぶわ！腕から下ろすには地面を右クリックしなさい。手で餌をあげるのも愛情を伝えるのにわいいわね。鶏は愛情を感じれば感じるほど良い卵を産むわ。ほらこれが餌よ。これでそこの鶏に餌をあげて愛情を示してごらんなさい。そしたら私のもとに戻ってきてちょうだい。
+harvestfestival.quest.tutorial.chicken.reminder.throw=覚えてる？鶏を抱えてあげて、鶏の餌をいくらかあげてと頼んだはずよ。
+harvestfestival.quest.tutorial.chicken.egg=おつかれさま。どうやら鶏の世話の仕方は分かったようね。前にも言ったけど、愛情をたくさんもらった鶏は良い卵を産むわ。あら、卵の取り方がわからない？夫は巣箱を近くに設置しているわ。そしたら鶏はそこに卵を産むはずよ。一日に一つの卵を産むわ。餌をもらわないと卵も産まないから気を付けてね。一度卵を回収したら売りに出すのを忘れちゃだめよ。あなたのために巣箱を用意したわ。あなたの鶏から卵が取れたら私のもとに戻ってきてちょうだいね。
+harvestfestival.quest.tutorial.chicken.reminder.egg=覚えてる？自分で鶏の卵を取ってくるのよ。言ってくれれば新しい巣箱を売るわ。
+harvestfestival.quest.tutorial.chicken.complete=あなたに貴重な卵をあげるわ。もっとほしかったら自分で鶏の世話をしてね。知らないかもしれないけど、雨が降ったら鶏を小屋の中に入れて、晴れたら外に出してあげてね。他には孵化器かな。孵化器は卵の孵化が出来るの。孵化器に卵を置いて、数日待てば孵化するわ。買うより効率がいいわ。そうそう、お店を開いてくれてありがとうね。
+
+#Cow Care
+harvestfestival.quest.tutorial.cow.title=デイジーデューク
+harvestfestival.quest.tutorial.cow.description.talk=Jimと話す
+harvestfestival.quest.tutorial.cow.description.build=飼育小屋を建てる
+harvestfestival.quest.tutorial.cow.description.brush=ウシをブラッシングする/餌を与える
+harvestfestival.quest.tutorial.cow.description.milk=Jimに小さいミルクを見せる
+harvestfestival.quest.tutorial.cow.reminder.intro=飼育小屋を建てたのね。Jimとお話をしてきて。
+harvestfestival.quest.tutorial.cow.reminder.barn=飼育小屋を建てるべきだな。そうすれば、牛と羊について学べるぞ。
+harvestfestival.quest.tutorial.cow.start=招待してくれてありがとう。私がJimです。ちなみに飼育小屋をやっていてね。だからたくさん牛がいるんだ。
+harvestfestival.quest.tutorial.cow.question=牛の飼い方、知ってる？
+harvestfestival.quest.tutorial.cow.tutorial=@教えてほしい
+harvestfestival.quest.tutorial.cow.skip=@知ってる
+harvestfestival.quest.tutorial.cow.completed=そうか？彼女もいることだし、手伝ってやってくれよ。
+harvestfestival.quest.tutorial.cow.info=そうかな？もう一度教えた方がいいよな。基本は簡単。大きな動物に餌をあげて愛してあげるんだ。健康のために清潔にして。あとは、餌が大好き。手で直接あげてもいいし、エサ箱を使ってもいいぞ。右クリックで話しかけて愛を伝えてあげると、彼らも信頼信頼してくれる。ブラシをかけるときも同じように話しかけてあげるんだ。今は手でブラッシングしてあげて。わかったらほら、さっさとご飯をあげて、きれいにしてやってくれ。
+harvestfestival.quest.tutorial.cow.reminder.talk=ブラシできれいにするだけじゃなくて、話しかけることも教えたはずだ。忘れずに。
+harvestfestival.quest.tutorial.cow.milk=どうすればウシが幸せにになるか、知っているはず。牛は毎日牛乳を作る。牛乳がほしかったら、搾乳器をもって、右クリックしつづけるんだ。覚えておいてほしいんだが、彼らと仲良くすれば、より大きな物を与えてくれるはずだ。さぁ行った。牛乳を私に持ってきてくれ。
+harvestfestival.quest.tutorial.cow.reminder.milk=どうした？牛乳をもってきてくれとお願いしたはずだ。
+harvestfestival.quest.tutorial.cow.complete=いい仕事だな。そこでアドバイス。晴れていたら外に出して、雨が降っていたら中に入れてあげるんだ。ウシを繁殖させるために、ミラクルポーションをを売っているぞ。それを動物にあたえると妊娠して、数日で赤ちゃんを産み、赤ちゃんは両親の半分づつの関係値を持っている。とりあえずはこんなもん。また来いよ。
+
+#General Store Introduction
+harvestfestival.quest.tutorial.supermarket.title=雑貨屋あさり
+harvestfestival.quest.tutorial.supermarket.description.build=雑貨屋を建てる
+harvestfestival.quest.tutorial.supermarket.description.visit=Jenniに自己紹介をする
+harvestfestival.quest.tutorial.supermarket.reminder.talk=CandiceやJenniに話してみて。雑貨店が完成したと思うわ。
+harvestfestival.quest.tutorial.supermarket.reminder.supermarket=種がほしかったら、雑貨店を建ててね。
+harvestfestival.quest.tutorial.supermarket.welcome.owner=やあ、私はこの雑貨店のオーナーだよ。この町はいいね。このお店は種からチョコレートまで、どんなものでも販売しているよ。もし何かが必要なら、私に聞いて。営業時間は平日（09：00〜17：00）、水曜日と日曜日は定休日だよ。土曜日は午前11時から午後5時までの6時間営業。初めての来店だと思うから、いいものをあげるよ！
+
+#Cafe Cooking Lesson
+harvestfestival.quest.tutorial.cafe.title=大きいシェフと、小さいシェフ
+harvestfestival.quest.tutorial.cafe.description=Liaraと話す
+harvestfestival.quest.tutorial.cafe.build=カフェを建設する
+harvestfestival.quest.tutorial.cafe.welcome=私のカフェへようこそ。オーナーのLiaraです。ここでは、料理愛を伝え、最高の料理をお届けします。調理方法がわからなかったら、料理の仕方を教えてあげるわ。
+harvestfestival.quest.tutorial.cafe.question=調理方法を知りたい？
+harvestfestival.quest.tutorial.cafe.tutorial=@知りたい！
+harvestfestival.quest.tutorial.cafe.skip=@知ってる
+harvestfestival.quest.tutorial.cafe.completed=そう、素晴らしい！教えてあげたかったんだけどね。
+harvestfestival.quest.tutorial.cafe.explain=そう、素晴らしい！教えてあげられてうれしい。まずは、専用の料理器具が必要なの。基本はナイフとキッチンカウンターの組み合わせね。レシピの用意の仕方も覚えないとね。私からたくさん買えるんだけど、まずはカブの漬物から初めてみましょう。右クリックでレシピを覚えることができるの。一度覚えたら、レシピブックで確認することができるわ。調理器具とレシピを選んでね。必要な食材は右側に一覧として表示されているわ。もし食材と調理器具をもっていれば、クリックすることで食材を調理器具に入れられるわ。そうしたら、調理が始まるの。もちろん、カウンターを使っていなければの話ね！カウンターを使っているなら、右クリックで材料を切る必要があるわ。もっと調理器具が必要なら、喜んで売ってあげるんだけど、週末にしか売っていないわ。最後に一つ。レシピブックには基本的な作り方しか載っていないから、さらに食材を追加してみたりすると、もっといいものができるかもしれないわ。聞いてくれてありがとう。
+
+#Mining Tutorial
+harvestfestival.quest.tutorial.mining.title=採掘屋の喜び
+harvestfestival.quest.tutorial.mining.build=採掘場を建てる
+harvestfestival.quest.tutorial.mining.description=採掘場に入ってBrandonと話をする
+harvestfestival.quest.tutorial.mining.description.ore=Brandonに3個の鉄くずを見せる
+harvestfestival.quest.tutorial.mining.intro=んぁ？ここでなにをしているんだ？オレはBrandon。アイツラと一緒の町の中よりは、この鉱山の中のほうが好きなんだ。あぁ、よろしく。なにか必要か？
+harvestfestival.quest.tutorial.mining.explain=えーと、説明しなきゃいけないなら説明しよう。といっても、そこらに散らばっている鉱石の原石をハンマーで壊していくだけなんだがな。普通の石だったり、銅だったり、もちろんいろいろな種類の功績があるんだけどな。オレはこの古いハンマーをずっと使ってきて、ちょっともう物足りなくてさ、お前が持ってくべきだろ。鉱石を掘れるって証明してくれたら、ずっとつかってもいいぜ。そこらの普通の石を砕いて、鉄くずを3つ持ってきてくれ。
+harvestfestival.quest.tutorial.mining.complete=あー、まともな仕事をしてきたみたいだな。基本がわかったって言うなら、もう少し説明できることがあるぞ。このハンマーだと砕くには硬すぎる鉱石があるってことには注意するといい。もっといいやつが必要なんだ。鍛冶屋のやつが手を貸してくれるはずさ。もう一つ、ふさがれた穴を鉱山では見かけるかもしれない。俺の店のはしごをおろしてやれば、もっと深くに潜ることができるぜ。
+harvestfestival.quest.tutorial.mining.reminder=3つの鉄くずを持ってきてくれ。どうやって鉱石掘りをするのかわかっていると証明してくれよな。
+harvestfestival.quest.tutorial.mining.question=鉱石掘りについて手がかりは得られたか？
+harvestfestival.quest.tutorial.mining.tutorial=@知りたい！
+harvestfestival.quest.tutorial.mining.skip=@ハンマータイムだ
+harvestfestival.quest.tutorial.mining.completed=よし、いいだろう。このハンマーと鉄くずをもっていけ。
+
+#Upgrading Tools Tutorial
+harvestfestival.quest.tutorial.upgrading.title=Tinker's Construct
+harvestfestival.quest.tutorial.upgrading.description.build=鍛冶屋を建てる
+harvestfestival.quest.tutorial.upgrading.description.talk=Danieruと話す
+harvestfestival.quest.tutorial.upgrading.reminder.blacksmith.yulif=鍛冶屋に挨拶しといた方がいいと思うぜ。
+harvestfestival.quest.tutorial.upgrading.reminder.blacksmith.goddess=鍛冶屋さんがあなたに会いたいと言っていますよ。
+harvestfestival.quest.tutorial.upgrading.reminder.blacksmith.jim=Danieruがあんたに会うのを楽しみにしてるってさ。
+harvestfestival.quest.tutorial.upgrading.reminder.blacksmith.jenni=Danieruに挨拶しておいた方がいいよ。
+harvestfestival.quest.tutorial.upgrading.reminder.blacksmith.candice=Danieruが会いたがってたよ。
+harvestfestival.quest.tutorial.upgrading.reminder.blacksmith.jade=鍛冶屋があなたに相談があるって聞いたわ。
+harvestfestival.quest.tutorial.upgrading.reminder.blacksmith.brandon=君にあげたい物があるんだが、まずDanieruに会ってくれ。
+harvestfestival.quest.tutorial.upgrading.blacksmith.yulif=鍛冶屋と採掘場を建てなきゃな。
+harvestfestival.quest.tutorial.upgrading.blacksmith.goddess=次は採掘場と鍛冶屋さんが欲しいですね...
+harvestfestival.quest.tutorial.upgrading.blacksmith.jim=鍛冶屋と採掘場は最高の投資になるよ。
+harvestfestival.quest.tutorial.upgrading.blacksmith.jenni=鍛冶屋と採掘場を建てるべきだよ。
+harvestfestival.quest.tutorial.upgrading.blacksmith.candice=採掘場深くまで潜ったり、金属関係の仕事がしたいな。ねぇ、私のために鍛冶屋と採掘場を造ってくれない？
+harvestfestival.quest.tutorial.upgrading.blacksmith.jade=ここに移り住みたい鍛冶屋と鉱夫がいるって噂を聞いたわ。
+harvestfestival.quest.tutorial.upgrading.blacksmith.brandon=これはいいことを聞いたぞ。鍛冶屋のDanieruも呼んでくれ。
+harvestfestival.quest.tutorial.upgrading.intro=ここより良い場所はエンドくらいのものだな。オレの冒険譚を聞かせようか。あぁ自己紹介がまだだったな、オレはDanieru。鍛冶屋だ。何か力になれる事は？
+harvestfestival.quest.tutorial.upgrading.question=ツールをアップグレードする方法を知ってるか？
+harvestfestival.quest.tutorial.upgrading.tutorial=@知らない
+harvestfestival.quest.tutorial.upgrading.skip=@知ってる
+harvestfestival.quest.tutorial.upgrading.completed=そいつは良かった。鉱石とハンマーをアンタにやるよ。
+harvestfestival.quest.tutorial.upgrading.explain=そいつは良かった。じゃあ教えてやるよ。まずはアップグレードができるツールを用意する。ゲージがある奴だ。それが100%%になったらオレに渡してくれ。仕事をするには鉱石も必要になる。お金もな。仕上げには何日か掛かるが、完璧にアップグレードしてやるよ。必要な材料はどこから手に入れるかって？鉱山に入って採掘するんだ。ハンマーで砕くと鉱石が採掘できるポイントがある。ま、そんなところかな。そういや、鉱夫のBrandonがアンタに贈り物があるそうだ。
+
+##Trading Quests
+# Priest Blessing Quest
+harvestfestival.quest.trade.cursed.reminder=もし呪われたツールをお持ちなら、%sGoldで祝福して差し上げます。
+harvestfestival.quest.trade.cursed.accept=感謝します、若者よ。あなたのツールに祝福を授けましょう！少し時間がかかるので、3日後にまたおいでなさい。
+harvestfestival.quest.trade.cursed.gold=あぁ、呪われたツールをお持ちですね！今ならたったの %sGoldで解呪の祝福を授けてあげましょう。
+harvestfestival.quest.trade.cursed.wait=やぁ、祝福の儀式は順調ですよ。ただ、あともうちょっとかかるので%s日後にまたおいでなさい。
+harvestfestival.quest.trade.cursed.done=%sの祝福が完了しました。さぁどうぞ！
+
+# Priest Repair Quests
+harvestfestival.quest.trade.bless.reminder=%sGoldで修理いたします。
+harvestfestival.quest.trade.bless.gold=祝福されたツールをお持ちですね。たったの %sGoldで修理いたしますよ。
+harvestfestival.quest.trade.bless.done=私の聖なる力の全てをもってあなたの%sを祝福し直しました。
+
+# Blacksmith Upgrades
+harvestfestival.quest.trade.upgrade.closed.start=すまねぇが、営業時間中にしか受け付けてないんだ。
+harvestfestival.quest.trade.upgrade.closed.finish=%sが完成したぜ。 受け取ってくれ。
+harvestfestival.quest.trade.upgrade.level=アンタの道具はまだ100%%になっていないな！もっと使い込んでからまた来てくれ。
+harvestfestival.quest.trade.upgrade.gold=その道具をアップグレードするには%sが要るぜ、必要なアイテムをそろえてからまた来てくれ。
+harvestfestival.quest.trade.upgrade.material=このツールをアップグレードするには、%1s%2sが必要だな。
+harvestfestival.quest.trade.upgrade.accept=アップグレードするんだな。よし、まかせとけ！3日後にアップグレードしたツールを取りに来てくれ。
+harvestfestival.quest.trade.upgrade.done=%sの作業が終わったぜ。楽しい仕事だった！
+harvestfestival.quest.trade.upgrade.wait=すまねぇな。アンタのツールはまだ完成してないぜ。%s日後に取りに来てくれ。
+harvestfestival.quest.trade.upgrade.repair.gold=このツールを修復するには%sGかかるぞ。 金が貯まったらまた来てくれ。
+harvestfestival.quest.trade.upgrade.repair.material=このツールを修復するには%sが必要だ。
+harvestfestival.quest.trade.upgrade.repair.start=修理だな、まかせろ！1日で終わらせるから、また明日来てくれ。
+harvestfestival.quest.trade.upgrade.repair.no=これをどうやって修理すれば良いのかはわからないな。
+
+# Jade Seed Trades
+harvestfestival.quest.trade.seeds.reminder=もっと種がほしいなら、あと5本の花を持って来てね。
+harvestfestival.quest.trade.seeds.complete.yes1=花をありがとう、ここに種の袋があるわ。
+harvestfestival.quest.trade.seeds.complete.yes2=花を集めるスキルがあるのね、種を持っていって。
+harvestfestival.quest.trade.seeds.complete.yes3=この花たちはカンペキね。さあ種を持っていって。
+harvestfestival.quest.trade.seeds.complete.no=ごめんなさい、今年のこの時期に種の余りはないの。
+harvestfestival.quest.trade.seeds.return=ごめんなさい、種がもうないの。%s日後にまたきてね。
+
+# Jade Tools Trades
+harvestfestival.quest.trade.tools.hoe=クワをありがとう！私の持っていたのをあげるわ
+harvestfestival.quest.trade.tools.wateringcan=このバケツは素晴らしいわね、別のじょうろを持っていって！
+harvestfestival.quest.trade.tools.sickle=このハサミ素敵、代わりにこのカマ持ってって！
+harvestfestival.quest.trade.tools.reminder=言いたかったことがあるの。余分にじょうろやクワやカマを持ってるのよね。バニラのクワかバケツかハサミをもってきてくれたら、喜んで交換するわ。
+
+# Goddess Free Carpenter
+harvestfestival.quest.trade.carpenter.thanks=ありがとうございます。とても嬉しいので、もう一つ大工の設計図をあげましょう。
+
+## Recipe Quests
+harvestfestival.quest.recipe.corn.baked.text=君は本当に私を喜ばせてくれた。そんな君に僕の秘密の焼きトウモロコシをごちそうできるのは嬉しいね。
+harvestfestival.quest.recipe.butter.text=ツールを最高の状態にするちょっとした秘密を教えてあげよう...バターを少し塗るといいんだよ。
+harvestfestival.quest.recipe.potato.candied.text=あなたに知ってほしかったの。家族のレシピを教えられてうれしいわ。
+harvestfestival.quest.recipe.cake.chocolate.text=知っているとはすばらしい。切ったケーキがある。これは勝ち組だわ。
+harvestfestival.quest.recipe.cookies.chocolate.text=クッキーをもっとおいしくする方法を知ってる？ちょっとのチョコレートよ。
+harvestfestival.quest.recipe.cookies.text=Cookies are a great source of happiness, so I'd like to let you know how to make some.
+harvestfestival.quest.recipe.dinnerroll.text=知り合えてうれしいわ。Fennが好きなあなたのためのレシピを持っているわ。
+harvestfestival.quest.recipe.doughnut.text=疑いもなく、今あなたは私が好きな人の一人。もう一つレシピがあって、これは私のお気に入り。
+harvestfestival.quest.recipe.dumplings.text=あなたは親切ですね。ダンプリングをプレゼントします。
+harvestfestival.quest.recipe.fish.stew.text=この魚で何をすると思う？まぁ、煮るよね。こうやってね
+harvestfestival.quest.recipe.fishsticks.text=料理をするとき、シンプルにするほうが好きだわ。魚のフライなんてどう？
+harvestfestival.quest.recipe.fries.french.text=お互いをとても良く知り合えたよね。たくさんの旅をしたわ。でもこれからあなたに教えようとしているレシピは、どこにもなかったわ。
+harvestfestival.quest.recipe.toast.french.text=おお、親愛なるあなたは美しい。私は料理の練習をしてきました。よりよいトーストをあなたと共有できて幸せよ。
+harvestfestival.quest.recipe.fish.grilled.text=煮るのもいいけど、本当にいいものは、このように焼くのが好きよ。
+harvestfestival.quest.recipe.chocolate.hot.text=とてもいい時間を過ごせたわ。あなたに私のレシピの一つを教えられてうれしいわ。
+harvestfestival.quest.recipe.milk.hot.text=あなたの華やかさで私の人生に輝きをもたらしたわ。私は牛乳を愛し、暑いときにはもっとね。まさに、あなたのように！
+harvestfestival.quest.recipe.noodles.text=あなたは友達よ。 私は麺を作る方法しか知らないんだけどね。
+harvestfestival.quest.recipe.omelet.rice.text=諸般の事情を鑑みるに、もはや私は君を友人と呼んでしかるべきであろう。友人には、このオムライスのレシピを伝達することにしている。
+harvestfestival.quest.recipe.pancake.savoury.text=パンケーキは甘くするのが好きかもしれないけど、私はいつも香ばしく焼く派なんだ。もしわからなければ、どうぞ、これがレシピ。
+harvestfestival.quest.recipe.juice.pineapple.text=これこそが甘い分け前、さあどうぞ。
+harvestfestival.quest.recipe.popcorn.text=頭使わない映画が好き。最新のFOX映画を、ポップコーン食べながら観るの。
+harvestfestival.quest.recipe.porridge.text=このおかゆのレシピは、母さんが作ってくれてたものなんだ。お近づきのしるしに、受け取ってくれ。かわいこちゃん。
+harvestfestival.quest.recipe.potsticker.text=素晴らしい友達であるために。どんな時も私のそばにいてくれるあなたに、この贈り物をしたいと思います。
+harvestfestival.quest.recipe.risotto.text=私が麺しか知らないって言ったことを覚えてる？今勉強してきたけど、これが練習してたやつ。
+harvestfestival.quest.recipe.salad.text=友達であるあなたに、これをあげよう。
+harvestfestival.quest.recipe.egg.scrambled.text=誰を選ぶべきかとっても混乱していて、それはスクランブルだよと言われてしまうかも？。
+harvestfestival.quest.recipe.soup.rice.text=あなたにこれをあげる義務があるんだ。
+harvestfestival.quest.recipe.stew.text=Liaraの世話は骨折り仕事だった。本当に手のかかる子だったの。うまくあやしてやれなくて。それがいつか、シチューを作ってやったら、その日からまるで天使みたいな子になって！たぶん、このレシピのおかげだわ。一緒に作っていると落ち着くのよ。
+harvestfestival.quest.recipe.icecream.text=どうやってミルクをこんなにいいものにしたんだ？
+harvestfestival.quest.recipe.jam.strawberry.text=本当ににあなたはおだてるのね、他に何がパンに合うって？もちろんいちごジャム！
+harvestfestival.quest.recipe.milk.strawberry.text=あなたはとっても優しいので、この神の飲み物をごちそうしてあげるわ。
+harvestfestival.quest.recipe.toast.text=Yulifは料理について何も教えてくれなくて...トーストを焼く方法だけは知っているんだけどね。
+harvestfestival.quest.recipe.latte.vegetable.text=この忌々しいものを早くどこかにやってしまわねば。わかってくれ。
+harvestfestival.quest.recipe.apple.text=Yulif認めないだろうけど、トーストと合わせると最高って知ってる？もちろん、たっぷりのジャムをのせてね！マーマレードもいいわね。
+harvestfestival.quest.recipe.curry.dry.text=キツネさんは幾分乾いたと感じて、感謝していたわ。今夜はカレーをおごるね！
+harvestfestival.quest.recipe.cake.text=私はこれを焼くのに失敗しちゃったけど、このレシピには情熱を注いできたから、気に入ってくれると思うわ。
+harvestfestival.quest.recipe.latte.mix.text=毎日どんどん魅力的になるなんて、君はとってもすごいよ。こっちに来てキスしてくれないか。ああそうだ、これを家の引き出して見つけたんだが、君が持っていくべきかな。家族のレシピなんだ。
+harvestfestival.quest.recipe.souffle.apple.text=あなたをもっと知れることが、また素晴らしいことに思えるよ。ちょっとそこでレシピを見つけたんだけど、どうも気に入らなくて、持ってくといいよ。
+harvestfestival.quest.recipe.bread.raisin.text=闇のアートで忙しくて、実は見せたくてたまらないある実験があるんだ。とにかくこの悪魔のレシピを持っていくといいよ。
+harvestfestival.quest.recipe.mayonnaise.text=キミと同じくらい私も卵が好きなのを知っているか？これでもっと卵で稼げるようになるんじゃないかな。
+harvestfestival.quest.recipe.bread.curry.text=最高のカレーパンの作り方は、すてきな友だちにあげるもの。
+harvestfestival.quest.recipe.tempura.text=最近料理を練習しているんだけど、できる限り最高の食事をこのカフェで提供できるようになりたいのよね。これが新しく作ったレシピで、良い友達のあなたに見てほしいの。
+harvestfestival.quest.recipe.tempura.rice.text=最後に上げたレシピを覚えてる？あれからちょっと頑張って改良を加えてみたの。これもちょっと試してみて。
+harvestfestival.quest.recipe.tempura.noodles.text=天ぷらのレシピたちに満足してくれてるよう願うわ。とっても素敵なおともだちに、もう一つレシピがあるの。
+harvestfestival.quest.recipe.stir.fry.text=最近キミにはとても気分を上げられるよ。これを楽しんでね、トモダチ。
+harvestfestival.quest.recipe.rice.bamboo.text=トモダチでいられて、とってもいい感じ！新しいご飯のレシピを上げるよ！
+harvestfestival.quest.recipe.noodles.thick.fried.text=この料理をマスターしたのかな？初めにあげたレシピを覚えてるよね？更に改良したんだ、みてみて！
+harvestfestival.quest.recipe.latte.fruit.text=汚れた物体をまた見つけてしまいました...はやく持ち出してください。
+
+## Friendship Quests
+harvestfestival.quest.friendship.katlin.kitchen.text=あなたはとても優しいのね。どういうふうに感じばいいかわからないの。ねぇ、最近キッチンの仕入れ業者と切れてしまってね、もしかあしたらその仕事をやってもらえないかしら。朝か夜、金曜のカフェが空いていない時間に、ただ来てもらうだけでいいの、そうしたらキッチンの補充を手伝って。肉やビートルートのスープ、それからケーキなんかを探しているわ。
+harvestfestival.quest.friendship.yulif.axe.text=オレと妹がここに引っ越すのを助けてくれてありがとう。これがあんたの助けになると思うんだ。木全体を切り倒せるぜ。切り倒せるまで、何回か根本を根本を壊す必要があるけど。使い方が分からなかったら読んでみなよ。
+harvestfestival.quest.friendship.yulif.sprinkler.text=最近、オレらとってもいい友達だよな。スプリンクラーを売れる様になったぜ。もしチャンスが有れば、オレの店を覗いてみてよ。
+harvestfestival.quest.friendship.yulif.sprinkler.item=あんたはとってもいい友達だ。うちのスプリンクラーをやるぜ。
+harvestfestival.quest.friendship.jacob.hatchery.text=釣り人の幸せのために、最近新しい在庫を見せに用意したんだ。チェックしてくれよな。
+harvestfestival.quest.friendship.jacob.hatchery.item=釣り人の幸せのために、スペアの孵化場をあんたに用意したぜ。優しく扱ってくれよな。
+harvestfestival.quest.friendship.tiberius.dark.text=そろそろあなたを信用しても良いと思いました。水溶化土曜日の夜に来ると良いでしょう。あるものを買いたいのです...
+harvestfestival.quest.friendship.goddess.strawberry.text=あなたとの関係はとても良くなってきています。そのため...あなたにたくさんのいちごを差し上げましょう！わたし、これが好きなの。
+harvestfestival.quest.friendship.jade.flowers.text=やぁ、こんにちは、%4$s。あえて嬉しい。実はすごいニュースがあるの。わたし、花屋を開くことに決めたわ！でも、在庫を用意するのにちょっと問題があってね。あなたから花をよろこんで買うので、ただ私に見せて頂戴？その日の限度分は支払いするわ。
+harvestfestival.quest.friendship.johan.vanilla.text=こんにちは！キミを知れて本当に良かったよ。そんな素敵な人の為に、特別な動物のグッズの買取をすることにしたよ。午前6時から午前10時までしか買取できないから、できたら覚えておいて！
+harvestfestival.quest.friendship.danieru.notes.text=友だちになれてとても良かった。あんたには、噂されてる呪われたツールのついての秘密を教えたいと思うよ。これを持っていってくれ。あんたのノートに挟んでおくぜ。
+harvestfestival.quest.friendship.ashlee.notes.text=今までの誰とも違って、私の悪い部分を抜きにして扱ってくれるのね。お礼に、私が取り組んでたこの秘密のノートをあげるわ。
+harvestfestival.quest.friendship.candice.notes.text=これ以上ないくらい今日はきれいね。ねぇ、私って浮気者よね？それはそうと、あなたみたいな素敵な人に、このコツを教えてあげるわ！
+harvestfestival.quest.friendship.jim.notes.text=最近、家畜たちをもっと生産的にする研究に加わってたんだ。良き友には、よろこんでその成果を教えよう。
+harvestfestival.quest.friendship.liara.meals.text=とっても優しいのね、友だちになれたおかげで、新しいものに挑戦しようと思わせてもらったわ。今日から毎日カフェで３つづつ新しい料理を売ることにしたわ。チェックしてみてね！
+harvestfestival.quest.friendship.liara.meals.item=とっても優しいのね、いくつか料理をあげるから、試してみて。
+harvestfestival.quest.friendship.jenni.wednesday.text=トモダチ！あなたには驚き！新しい店を始めるのを手伝ってくれたおかげで、お客さんもとっても増えたので、水曜日にも店を開くことをお知らせするわ！
+harvestfestival.quest.friendship.jenni.wednesday.item=トモダチ！お店を成長させるのを、本当に助けてくれたので、すごい種のペアをあなたにあげるわ！
+harvestfestival.quest.friendship.brandon.ore.text=オレにも礼儀正しいんだな、他の奴らと違って。多分overworldで見つけたやつを、あんたに売ったほうがいいのかも。
+harvestfestival.quest.friendship.brandon.ore.item=キミはとってもフェアだな。最近overworldに採掘に行ったんだが、そのときに見つけたこのガラクタを持ってってくれないか？
+harvestfestival.quest.friendship.cloe.gift.text=あなたと知り合えて本当に嬉しいの。お母さんは、ろくでもない人たちと遊んじゃいけませんっていつも言うの。見かけはよく振る舞っているかも知れないけど、実際あなたを好きだとは思わないわ。知っての通り、それが仕事なんだけど、みんなを喜ばせられるから。でもありがとう。お母さんが本当は間違っていることや、あの人達をよく理解させてくれたわ。お礼に、このプレゼントを受け取って。
+harvestfestival.quest.friendship.abii.cookies.text=ねー今日したこと知りたい？？えーとね、たーーーくさんクッキーを作ったの！ほしい？とってもおいしいよ！！
+harvestfestival.quest.friendship.abii.parents.text=わー！わたしの家族、最近とても楽しくて、あなたがみんなをニコニコさせてくれて、わたしも楽しい！
+harvestfestival.quest.friendship.abii.town.text=おっきい人！ニュースがあるの！みんなと話してきたんだけどね...えーと...みんなあなたが好きで、わたしもたくさん褒めたの！
+harvestfestival.quest.friendship.fenn.salad.text=一日中お父さんとキッチンで料理していたんだけど、この美味しいやつ食べてみてよ！
+harvestfestival.quest.friendship.fenn.parents.text=最近お父さんすごく笑顔なんだ、僕に友だちができてとっても嬉しいみたい。
+harvestfestival.quest.friendship.fenn.plants.text=ねぇ！！！！お父さんと今日採集にいったんだけど、これを見て！いくつか持っていっていいよ！
+harvestfestival.quest.friendship.tomas.cheaper.text=私にとって素晴らしい人となりましたね。あなたの気高さに、祝福をより安く行いましょう。
+
+## Meeting Quests
+harvestfestival.quest.meeting.jacob.title=Jakobを探せ
+harvestfestival.quest.meeting.jacob.build=釣具店を建てる
+harvestfestival.quest.meeting.jacob.text=こんにちわ%4$s、オレはJakob。最近新しい釣り竿をかったんだけどさ、実は前使ってた釣り竿がここにあって、どうもあんた魚釣りに興味あるらしいって聞いたから、これ持っていってよ。オレはここで釣具店を開いてるから、なにか欲しい物があればよっていってね。
+harvestfestival.quest.meeting.jacob.description=新入りのJakobとお話する
+harvestfestival.quest.meeting.katlin.title=おばあちゃんのグッズ
+harvestfestival.quest.meeting.katlin.text=いい日ね、若い人。私はKatlin、おばあちゃんって呼んでもいいわよ。孫のLiaraの手伝いでキッチンによくいるわ。店を開いてくれて、ありがとう。これは彼女の長い夢だったのよ。ちょっとだけだけど、お礼のお金を用意したから、もっていって。
+harvestfestival.quest.meeting.katlin.description=Katlinおばあちゃんと初めてのお喋りをする
+harvestfestival.quest.meeting.johan.title=Johanの町
+harvestfestival.quest.meeting.johan.build=公園を建設する
+harvestfestival.quest.meeting.johan.text=こんにちは！会えて嬉しいよ。僕はJohan、大したこと無いトレーダーさ。バケツに入ったミルクや、ブロックの羊毛、茶色の卵がほしければ教えてね。喜んでボトル入りのミルク、アイテムの羊毛、白い卵と喜んで交換するから。じゃぁまた。
+harvestfestival.quest.meeting.johan.description=Johanに会う
+harvestfestival.quest.meeting.abi.title=リトルフット
+harvestfestival.quest.meeting.abi.text=おはよう！！！大きい人！私はAbii！！！！はじめまして！！
+harvestfestival.quest.meeting.abi.description=Abiiに挨拶をする
+harvestfestival.quest.meeting.candice.title=気味の悪いCandice
+harvestfestival.quest.meeting.candice.text=私は実は違う誰かだときっと分かると思うの...あら、こんにちわ、可愛い人ね。私はCandice。下の階にいるJenniはここのオーナーで、私はただの同居人。よろしくね。私の大好きな飲み物をどうぞ！
+harvestfestival.quest.meeting.candice.description=Candiceに自己紹介をする
+harvestfestival.quest.meeting.fenn.title=Pokefenn
+harvestfestival.quest.meeting.fenn.text=おぉーーこんにちわ！Fennが僕の名前！つるのゲームだよ！
+harvestfestival.quest.meeting.fenn.description=Fennを町に迎え入れる
+harvestfestival.quest.meeting.tiberius.title=手遅れな時間
+harvestfestival.quest.meeting.tiberius.build=時計屋を建てる
+harvestfestival.quest.meeting.tiberius.text=こんにちわ、招待されて嬉しいですよ。もしいつか友だちになれたら、わたしの秘密をお教えしましょう。とりあえず今は、こちらをどうぞ。きっと助けになるでしょう。
+harvestfestival.quest.meeting.tiberius.description=Tiberiusを初めて訪ねる
+harvestfestival.quest.meeting.cloe.title=災害のCloe
+harvestfestival.quest.meeting.cloe.text=はじめまして、私はCloe。特に言うこともないけど、私達を招いてくれてありがとう。
+harvestfestival.quest.meeting.cloe.description=Cloeと初めてのお喋りをする
+harvestfestival.quest.meeting.tomas.title=ノートルダム
+harvestfestival.quest.meeting.tomas.build=教会を建てる
+harvestfestival.quest.meeting.tomas.text=Tomasです。神父としての力を使って、呪われたものを祝福することが出来ます。少々のお代はいただきますが。教会を町に招いてくださって、とても感謝しています。
+harvestfestival.quest.meeting.tomas.description=神父様の自己紹介を聞く
+harvestfestival.quest.meeting.jeimmi.title=狂った町長
+harvestfestival.quest.meeting.jeimmi.build=町役場を建てる
+harvestfestival.quest.meeting.jeimmi.text=いままであなたがこの町の町長だと思っていたでしょう？それはとっても滑稽なことです。はじめからこの町は私のもので、だれにも奪わせはしません。あなたの町の町長Jeimmiです。なぜあなたに感謝しなければいけないのか。
+harvestfestival.quest.meeting.jeimmi.description=町長のJeimmiに挨拶する
+
+## Seed Quests
+harvestfestival.quest.seeds.cabbage.complete=わーすごい！1000個の春の作物を出荷したみたいだね！素晴らしい！実はいい知らせがあるんだけど、キャベツの種を仕入れられる業者を最近見つけたんだ。次に来るときには来るときに、お店をチェックしてみて！
+harvestfestival.quest.seeds.pineapple.complete=見違えたね！1000個の夏の作物を出荷したみたいじゃないか！なんてすごいんだ。関係ないけど、スポンジボブがうちのスポンサーになってね、パイナップルを売ることができるようになったんだ！
+harvestfestival.quest.seeds.sweetpotato.complete=自分の目が信じられないよ。1000個の秋の作物を出荷するなんて！やばすぎる！忘れる前に、最近とっても調子が良くてね、さつまいもの仕入れ業者を見つけることが出来たんだ。すぐにうちで売れるようにするよ！
+harvestfestival.quest.seeds.progress.complete=この町はとっても大きくなってるね。これを成し遂げることの手伝いができるなんて、誇りに思うよ。そのおかげで最高なニュースがあってね、ビートルートを秋に、スイカを夏に売ることができるようになったんだ。本当にありがとう！
+
+#Building the Goddess a Home
+harvestfestival.quest.building.goddess.title=女神の感謝
+harvestfestival.quest.building.goddess.build=女神の泉を建てる
+harvestfestival.quest.building.goddess.description=女神に話しかける
+harvestfestival.quest.building.goddess.please=あなたはこの町を復興するという素晴らしい仕事をやり遂げました。私もこの繁栄ぶりをとても嬉しく思います...私も...ここに住みたくなりました。私の家...建てていただけますか？報酬は差し上げます。
+harvestfestival.quest.building.goddess.thanks=あなたの復興にかける努力には感謝してもしきれません。私の家まで建ててくださるなんて...。感謝の証として、あなたにこの素晴らしい苺と少しばかりのお金を授けましょう。これ、私の大好物なんです...！それでは！
+
+##Schedule Quests
+#Sunday Baking!
+harvestfestival.quest.schedule.katlin.baking.cake=若い人、今日はとっても良い日ね。今日はずっとオーブンで焼き物をしていたから、あなたにもあげるわ。
+
+## Help Wanted Quests
+#Crop Collecting
+harvestfestival.quest.collect.crops.title=足りない食材
+harvestfestival.quest.collect.crops.desc=Katlinおばあちゃんに %1$s %2$s を持っていく。
+harvestfestival.quest.collect.crops.task=料理に必要な食材を探しているわ。%1$s %2$s \nを持ってきてくれないかしら。\n- Katlin\n\n- 無料のご飯\n- Katlinが喜ぶだろう
+harvestfestival.quest.collect.crops.complete1=若い人、ありがとう。これで美味しいご飯が作れるわ。実は最近作った料理がここにあるの。
+harvestfestival.quest.collect.crops.complete2=若い人、本当にありがとう。あなたに分けたいご飯があるの。
+harvestfestival.quest.collect.crops.complete3=食材を運んできてありがとう、このご飯を持っていって。
+#Slaying Mine
+## Help Wanted Quests
+harvestfestival.quest.none=利用可能なクエストは有りません\n\n明日また来てください
+harvestfestival.quest.slay.title=闇の破壊
+harvestfestival.quest.slay.desc=%1$s %2$sをやっつけろ
+harvestfestival.quest.slay.talk=Brandonと話す
+harvestfestival.quest.slay.task=最近鉱山が荒らされているんだ。潜っていくのが最近大変でな。%1$s %2$s をやっつけてくれないか？\n- Brandon\n\n- それぞれ %3$s\n- Brandonが喜ぶだろう
+harvestfestival.quest.slay.complete1=これが支払いだ、あんたの助けになると思うぜ。
+harvestfestival.quest.slay.complete2=よくやった、鉱山からモンスターを一層したな。これが報酬だ。
+harvestfestival.quest.slay.complete3=鉱山を綺麗にしてくれてありがとう、もっていけ。
+#Fish Fillet
+harvestfestival.quest.collect.fish.title=魚のヒレ
+harvestfestival.quest.collect.fish.desc=Jakobに %1$s %2$s を持っていく
+harvestfestival.quest.collect.fish.task=%2$s にはちょっと飽きちまってね。数を調整するために、%1$s捕まえてくれないかな。魚とともに会おう\n- Jakob\n\n- %3$sG\n- Jakobが喜ぶだろう
+harvestfestival.quest.collect.fish.complete1=ありがとう。周りの他の魚が住みやすくなると思うよ。
+harvestfestival.quest.collect.fish.complete2=いい仕事だ。他の魚のために、ちょっと数を減らしてやらないとな。
+harvestfestival.quest.collect.fish.complete3=魚の数を減らしてくれたあんたの仕事に対して、この報酬で十分だと祈っているよ。
+#Carpenter's Collection
+harvestfestival.quest.collect.materials.title=大工のコレクション
+harvestfestival.quest.collect.materials.desc=Yulifに %1$s %2$sを持っていく
+harvestfestival.quest.collect.materials.wood=原木
+harvestfestival.quest.collect.materials.stone=石
+harvestfestival.quest.collect.materials.axe=銅のオノ
+harvestfestival.quest.collect.materials.pick=銅のハンマ−
+harvestfestival.quest.collect.materials.axe.silver=銀のオノ
+harvestfestival.quest.collect.materials.pick.silver=銀のハンマー
+harvestfestival.quest.collect.materials.task=友達のために建築をしているんだが、%2$sが%1$s足りなくてな。助けてくれないか？\n- Yulif\n\n- %4$sG\n- %3$s\n- Yulifが喜ぶだろう
+harvestfestival.quest.collect.materials.complete1=ありがとうよ。これで建築が始められるぜ。
+harvestfestival.quest.collect.materials.complete2=いい仕事したなぁ。すぐに建物が建つだろうよ。
+harvestfestival.quest.collect.materials.complete3=あんたの仕事にはいつも感謝してるぜ。協力ありがとう！
+
+## Festival Quests
+#New Years
+harvestfestival.quest.festival.new.years.riceballs=How yer doing? The new year's come around and well, yer know. We've been here since the beginning. For that I'm grateful as ever. It's a bit of a tradition for riceballs around these times. To thank ya for yer hard work, enjoy these. Happy New Year!
+harvestfestival.quest.festival.new.years.rice=Hey! It's been wonderful this past year. You've come along way. It's been really nice to see how things have changed. Yulif would be pretty upset at this, but I've decided to make some bamboo rice. Not quite what I should really be doing but you know. It makes me happier. Happy New Year to you!
+harvestfestival.quest.festival.new.years.gold=Ehh, being the mayor has been hard work this year. But I guess you've done an alright job of looking after things. Here's your yearly stipend. Don't waste it.
+harvestfestival.quest.festival.new.years.wine=Good day sir! I bring to you a most splendid VALUABLE treat that we love to drink in my homeland, don't squander it.
+
+#Cooking Festival
+harvestfestival.quest.festival.cooking.question=Want to enter the cooking festival?
+harvestfestival.quest.festival.cooking.ready=@I am ready!
+harvestfestival.quest.festival.cooking.cancel=@Give me a minute.
+harvestfestival.script.cooking=This was a great contest! Had a taste of everyone's meals... And well I think I've decided..... ...... ................... ..... ..... In third place is %1$s with their %2$s. ..... .. ... . .......... .... .. .. .. .. . In second place we jave %3$s with their %4$s... and finally...... without... further ado.... the winner of this year's cooking festival is........... %5$s with their amazing %6$s. Congratulations! For this years prize we have a gift of %7$s gold as well as a special recipe!
+
+#Cooking Festical
+harvestfestival.quest.festival.cooking.help=Welcome to the wonderful cooking festival! This year we'll be judging dishes made in the %s!
+harvestfestival.quest.festival.cooking.pick=Want to enter the cooking festival?
+harvestfestival.quest.festival.cooking.how=@How to enter?
+harvestfestival.quest.festival.cooking.ready=@Pick my dish!
+harvestfestival.quest.festival.cooking.cancel=@Give me a minute.
+harvestfestival.quest.festival.cooking.start=Ready to go?
+harvestfestival.quest.festival.cooking.yes=@I am ready!
+harvestfestival.quest.festival.cooking.change=@Change Entry.
+harvestfestival.quest.festival.cooking.no=@One more minute.
+harvestfestival.quest.festival.cooking.none=There are no additional meals.
+harvestfestival.quest.festival.cooking.explain=To enter simply place the meal you want to enter on one of the plates up on the stage. When you're done you can come to me and select your entry. You can then wait for others to join, or get the contest started right away by talking to me again. You can also change your entry if you like.
+harvestfestival.quest.festival.cooking.none=No meals have been placed on any of the plates!
+harvestfestival.quest.festival.cooking.select=Select the meal you would like to enter.
+harvestfestival.quest.festival.cooking.selected=Time for the judging to beging then! Watch your step or you may slow down the process.
+harvestfestival.quest.festival.cooking.judging=I'm judging right now.
+harvestfestival.quest.festival.cooking.nostalls=There are no meals on any of the stands!
+
+harvestfestival.script.cooking.judge=Time to stuff my face with %1$s. Hmm.... %2$s
+harvestfestival.script.cooking.judge.none=I can't see any meal right now...
+harvestfestival.script.cooking.judge.0=Yuck, this is absolutely vile!
+harvestfestival.script.cooking.judge.1=Who thought they could cook when they made this?
+harvestfestival.script.cooking.judge.2=What a bad dish.
+harvestfestival.script.cooking.judge.3=I guess this dish could pass as edible.
+harvestfestival.script.cooking.judge.4=Ehh, this one tastes alright.
+harvestfestival.script.cooking.judge.5=Hmm, the flavours, or lack thereof. But it tastes fine.
+harvestfestival.script.cooking.judge.6=You're really starting to make way here. It tastes relatively decent.
+harvestfestival.script.cooking.judge.7=Now this tastes good! Yummy!
+harvestfestival.script.cooking.judge.8=This has some wonderful flavours. It's a very good effort.
+harvestfestival.script.cooking.judge.9=Woah. I have never tasted something as amazing as this before.
+harvestfestival.script.cooking.winner=Well looks like I've decided. In third place is %1$s with nice dish of ''%2$s'. You can have some flour and 500G. \n\nIn second comes %3$s with their dish ''%4$s'. For your efforts you can have 2500G and a bottle of wine.\n\n\nAnd now to announce the winner of this years Cooking Festival... Well it's %5$s with their absolutely scrumptious dish of ''%6$s'!!!!!!!\n\Fantastic Work! You get a prize of 5000G and your cooked meals will ship more gold than before! In the meantime have some free seeds!\n\nThanks for taking part everyone. I look forward to next year!
+harvestfestival.script.cooking.finish=I've finished tasting. I just need a moment to collect my thoughts and make my final decisions.
+
+#Cow Festival
+harvestfestival.quest.festival.cow.help=Hello pretty! Welcome to the Cow Festival!
+harvestfestival.quest.festival.cow.pick=How may I help you?
+harvestfestival.quest.festival.cow.how=@How do I enter?
+harvestfestival.quest.festival.cow.ready=@Select the cow.
+harvestfestival.quest.festival.cow.cancel=@Nothing for now.
+harvestfestival.quest.festival.cow.start=Are you ready to start?
+harvestfestival.quest.festival.cow.yes=@Let's Begin!
+harvestfestival.quest.festival.cow.change=@Change Entry.
+harvestfestival.quest.festival.cow.no=@Not yet.
+harvestfestival.quest.festival.cow.none=There are no additional cows.
+harvestfestival.quest.festival.cow.explain=Just bring one of your cows, and put them inside one of the stalls. Then talk to me, to select which cow. You can then wait for any other players to join. Once ready come talk to me again to start the judging. I'll walk around and judge each cow.
+harvestfestival.quest.festival.cow.none=There are no cows in the stalls! Come back when you have some to pick.
+harvestfestival.quest.festival.cow.select=Please select the cow you would like to enter in the contest!
+harvestfestival.quest.festival.cow.selected=Well then let's get the judging started! Don't get in my way or it may delay the process.
+harvestfestival.quest.festival.cow.judging=Just give me a minute. I'm busy judging!
+harvestfestival.quest.festival.cow.nostalls=No cows in any of the stalls!
+
+harvestfestival.script.cow.judge=Let's take a look at %1$s. Well.... %2$s
+harvestfestival.script.cow.judge.none=There appears to be no cow at this stall...
+harvestfestival.script.cow.judge.0=This cow is looking awful, we need a vet!
+harvestfestival.script.cow.judge.1=This cow looks alright.
+harvestfestival.script.cow.judge.2=This cow seems decent.
+harvestfestival.script.cow.judge.3=This cow is starting to look good.
+harvestfestival.script.cow.judge.4=This cow is looking pretty good.
+harvestfestival.script.cow.judge.5=This cow is looking good, for sure!
+harvestfestival.script.cow.judge.6=This cow is very good! The owner should be proud
+harvestfestival.script.cow.judge.7=This cow doing incredibly well. They sure love their owner.
+harvestfestival.script.cow.judge.8=This cow is doing absolutely awesome. Their owner is wonderful.
+harvestfestival.script.cow.judge.9=This cow is aboslutely outstanding. Fantastic coat! Nothing can beat it.
+harvestfestival.script.cow.winner=It's time to announce the winner of the Cow Festival. In third place we have %1$s with their cow %2$s. Winning some Wheat. \n\nIn second we have %3$s with their cow %4$s. Their prize is a drink of Hot Milk.\n\n\nAnd finally without any further delay the winner of this year's Cow Festival is.... %5$s with their amazing cow %6$s!!!!!!!\n\nCongratulations! You win some strawberry milk and your cow will always produce large milks!\n\nThank you to everyone that participated. It was a wonderful contest. I hope to see you all back next year!
+harvestfestival.script.cow.finish=Well everyone that's all the cows judged! It was a good contest today. Time for me to announce the winners. Just a second, need to head back to the entry stand.
+
+#Sheep Festival
+harvestfestival.quest.festival.sheep.help=Howdy, welcome the the Sheep Festival!
+harvestfestival.quest.festival.sheep.pick=What do you need?
+harvestfestival.quest.festival.sheep.how=@How to participate?
+harvestfestival.quest.festival.sheep.ready=@Select my sheep.
+harvestfestival.quest.festival.sheep.cancel=@Nothing at the moment.
+harvestfestival.quest.festival.sheep.start=Ready to begin?
+harvestfestival.quest.festival.sheep.yes=@Yes I am!
+harvestfestival.quest.festival.sheep.change=@Select a different sheep.
+harvestfestival.quest.festival.sheep.no=@In a moment.
+harvestfestival.quest.festival.sheep.none=There are no additional sheep.
+harvestfestival.quest.festival.sheep.explain=The sheep contest is an easy one to take part in. Just bring your sheep to the festival and put her in one of the stalls. When you're ready come to me and select her. You can then wait for other people to join, or get started right away! I'll take a gander at all the sheep, then decide the winner at the end.
+harvestfestival.quest.festival.sheep.none=There are no sheep in the stalls! Come back when you have some to pick.
+harvestfestival.quest.festival.sheep.select=Please select the sheep you would like to enter in the contest!
+harvestfestival.quest.festival.sheep.selected=Time to get the judging start then! Please don't get in my way as it may slow down the judging.
+harvestfestival.quest.festival.sheep.judging=Can't you see I'm busy judging right now!?
+harvestfestival.quest.festival.sheep.nostalls=No sheep in any of the stalls!
+
+harvestfestival.script.sheep.judge=Let's give %1$s a gander. Well.... %2$s
+harvestfestival.script.sheep.judge.none=I can't see any sheep at this stall.
+harvestfestival.script.sheep.judge.0=You should take this sheep to a vet right away.
+harvestfestival.script.sheep.judge.1=This sheep is looking alright.
+harvestfestival.script.sheep.judge.2=This sheep seems decent.
+harvestfestival.script.sheep.judge.3=This sheep is almost looking good.
+harvestfestival.script.sheep.judge.4=This sheep sure is looking pretty good.
+harvestfestival.script.sheep.judge.5=This sheep is looking good, that's for sure!
+harvestfestival.script.sheep.judge.6=The owner should be proud of this sheep. She's looking very good.
+harvestfestival.script.sheep.judge.7=This sheep sure loves their owner they are doing incredibly well.
+harvestfestival.script.sheep.judge.8=This sheep is looking fantastic, their owner has done an amazing job.
+harvestfestival.script.sheep.judge.9=This sheep is absolutely outstanding. The wool is the best I've ever seen.
+harvestfestival.script.sheep.winner=Well I guess that means it's time to announce the winner. In third we have %1$s with their sheep %2$s. Happy to give you some wheat. \n\nIn second place we have %3$s with their sheep %4$s. You get to win some stew.\n\n\nFinally time to announce the winner. This years winner of the Sheep Festival is.... %5$s with their wonderful sheep %6$s!!!!!!!\n\nCongrats! You receive a cashmere sweater. It should be worth a fair bit. Your sheep should also now always produce large wool!\n\nThank you to everyone that participated. It was a wonderful contest. I hope to see you all back next year!
+harvestfestival.script.sheep.finish=Well everyone that's all the sheep judged! It was a good contest today. Time for me to announce the winners. Just a second, need to head back to the entry stand.
+
+#Chicken Festival
+harvestfestival.quest.festival.chicken.help=Hello and welcome to the Chicken Festival!
+harvestfestival.quest.festival.chicken.pick=How may I help?
+harvestfestival.quest.festival.chicken.how=@How does this work?
+harvestfestival.quest.festival.chicken.ready=@Select chicken.
+harvestfestival.quest.festival.chicken.cancel=@No need right now.
+harvestfestival.quest.festival.chicken.start=Ready to start?
+harvestfestival.quest.festival.chicken.yes=@Let's go!
+harvestfestival.quest.festival.chicken.change=@Select a different chicken.
+harvestfestival.quest.festival.chicken.no=@Not yet.
+harvestfestival.quest.festival.chicken.none=There are no additional chickens.
+harvestfestival.quest.festival.chicken.explain=Just place your chickens in one of the stalls for the chickens. When you're ready come to me and select the chicken you would like to enter. You can then start the contest, wait for others or change your entry.
+harvestfestival.quest.festival.chicken.none=There are no chickens in the stalls! Come back to me when there is.
+harvestfestival.quest.festival.chicken.select=Now you can select the chicken you would like to enter!
+harvestfestival.quest.festival.chicken.selected=That's great. Time for me to get to work. Don't walk in front of me as it will slow down the process.
+harvestfestival.quest.festival.chicken.judging=Hello. I'm currently busy judging.
+harvestfestival.quest.festival.chicken.nostalls=No chickens were found in any stalls!
+
+harvestfestival.script.chicken.judge=Time to look at %1$s. Hmm.... %2$s
+harvestfestival.script.chicken.judge.none=I think the chicken is invisible.
+harvestfestival.script.chicken.judge.0=This chicken has been severely mistreated.
+harvestfestival.script.chicken.judge.1=The chicken is looking alright.
+harvestfestival.script.chicken.judge.2=She looks decent.
+harvestfestival.script.chicken.judge.3=I'm thinking we've got the start of a good chicken here.
+harvestfestival.script.chicken.judge.4=I can see she's doing pretty good.
+harvestfestival.script.chicken.judge.5=Well this girl is looking really good!
+harvestfestival.script.chicken.judge.6=I've seen a bunch of good chickens, but this one is doing very well!
+harvestfestival.script.chicken.judge.7=Well I've got to say the owner has done a good job here. The chicken is looking incredible!
+harvestfestival.script.chicken.judge.8=This is just amazing. The chicken is very happy. The owner should be proud.
+harvestfestival.script.chicken.judge.9=I can't believe my eyes. This chicken is absolutely outstanding! And you can see the gleam in its eyes!
+harvestfestival.script.chicken.winner=Okay I've collected my thoughts and made my decisions. Third place goes to %1$s with their chicken %2$s. You can have this lovely boiled egg! \n\nSecond place goes to %3$s with their chicken %4$s. Please take this lovely homemade scrambled egg.\n\n\nNow who is the winner? Well after a tough contest this year's winner of the Chicken Festival is.... %5$s with their gorgeous chicken %6$s!!!!!!!\n\nWhat a wonderful job, please take this lovely omelette. And another thing your chicken will now always produce large eggs!\n\nThat concludes the festival. I hope you all enjoyed it as much as I did. See you all next year!
+harvestfestival.script.chicken.finish=I guess that's it! I've evaluated all the chickens. It's been a nice contest this year! I'll just need a short moment to think.
+
+#New Years Eve
+harvestfestival.quest.festival.new.years.eve.start=Evenin, the new year is coming. Are ya ready to celebrate until morning with us?
+harvestfestival.quest.festival.new.years.eve.question=Do you want to start the countdown?
+harvestfestival.quest.festival.new.years.eve.option1=@Bring on the New Year!
+harvestfestival.quest.festival.new.years.eve.option2=@Give me a minute.
+harvestfestival.script.new.years.eve.intro=It's time to start the countdown for new year!
+harvestfestival.script.new.years.eve.5=Five!!............
+harvestfestival.script.new.years.eve.4=Four! :D
+harvestfestival.script.new.years.eve.3=Three! :O
+harvestfestival.script.new.years.eve.2=Twooooooo!!!
+harvestfestival.script.new.years.eve.1=One :D :D :D
+harvestfestival.script.new.years.eve.0=Happy New Year ya'll!!!!!!!!!!!!!!!!!!
+
+#Starry Night
+harvestfestival.quest.festival.starry.night.what=What do you want to do?
+harvestfestival.quest.festival.starry.night.invite=@Invite to Starry Night
+harvestfestival.quest.festival.starry.night.chat=@Chat
+harvestfestival.quest.festival.starry.night.ready=Are you ready to eat?
+harvestfestival.quest.festival.starry.night.go=@Let's begin!
+harvestfestival.quest.festival.starry.night.no=@Not Yet!
+
+#Harvest Festival
+harvestfestival.quest.festival.harvest.ready=Are you ready to start the festival?
+harvestfestival.quest.festival.harvest.yes=@Yes, all ready!
+harvestfestival.quest.festival.harvest.no=@No, not yet.
+harvestfestival.quest.festival.harvest.welcome=Welcome, we're getting ready to get started. You should add something to the pot if you haven't already.
+harvestfestival.quest.festival.harvest.started=Well looks like we'll begin then!
+harvestfestival.quest.festival.harvest.decide.1=Blegghhhhh. This is the worst soup I've ever tasted. The festival was a disaster! Who was the cruel person who ruined it for everyone?
+harvestfestival.quest.festival.harvest.decide.2=Yuck, this a terrible soup. Who spoilt the soup? I'd like a word. The festival is over.
+harvestfestival.quest.festival.harvest.decide.3=Ehhh, this soup really isn't good. It's not dreadful but looks you didn't bring the best this year. Perhaps next year. Anyone want to try?
+harvestfestival.quest.festival.harvest.decide.4=Ehh this soup is almost edible, but not quite. It's not bad, but it's not good either. Would anyone else like to give it a go?
+harvestfestival.quest.festival.harvest.decide.5=... This soup is just soup. It's rather bland. Did someone forget to add something to the pot? I guess things went okay otherwise. Anyone else want to try the soup?
+harvestfestival.quest.festival.harvest.decide.6=Oh, well this is soup is okay. Nothing special really. Thanks for coming folks. Anyone else want some?
+harvestfestival.quest.festival.harvest.decide.7=Oooo, this is pretty good! Someone knows what they're doing! Good job everyone, you should all give it a try!
+harvestfestival.quest.festival.harvest.decide.8=!!! This is just very nice! It has a lovely flavour. It's not perfect but it is good soup alright! Come enjoy some soup everyone!
+harvestfestival.quest.festival.harvest.decide.9=Woaaaaah, This soup is soooooo yummy. It's just missing a little something but it is almost perfect! You have all done a fantastic job this year. You have to try it!
+harvestfestival.quest.festival.harvest.decide.10=!!! !!! !!! OMG!!! Wow. If this isn't the most delicious soup I have ever tasted. You have all done an outstanding job this year. The soup is incredible! You must give it a try or you'll never know what you're missing!
+harvestfestival.script.taste=Well everyone it's once again time to celebrate the harvest festival. I hope everyone added their best ingredients. Time to start the tasting...
+
+###Achievements
+achievement.harvestfestival.summon=女神の恵み
+achievement.harvestfestival.summon.desc=女神の花を召喚した
+achievement.harvestfestival.visitor=はじまり
+achievement.harvestfestival.visitor.desc=Jadeとおしゃべり
+achievement.harvestfestival.harvest=でっかく！
+achievement.harvestfestival.harvest.desc=はじめてのカブ
+achievement.harvestfestival.onion=夏に
+achievement.harvestfestival.onion.desc=雪が夏にやること、何でもやってみたいんだ
+achievement.harvestfestival.spinach=ポパイ・ザ・セーラーマン
+achievement.harvestfestival.spinach.desc=強さの秘密はホウレンソウ！
+achievement.harvestfestival.cucumber=ピクルス
+achievement.harvestfestival.cucumber.desc=2年目の春に到達してきゅうりをアンロック
+achievement.harvestfestival.cabbage=キャベツ人形
+achievement.harvestfestival.cabbage.desc=1000個の春野菜を出荷してキャベツをアンロック
+achievement.harvestfestival.pineapple=誰がパイナップの中に住んでいるだって？
+achievement.harvestfestival.pineapple.desc=1000個の夏野菜を出荷してパイナップルをアンロック
+achievement.harvestfestival.eggplant=ハンプティダンプティ
+achievement.harvestfestival.eggplant.desc=2年目の秋に到達してナスをアンロック
+achievement.harvestfestival.greenPepper=ペッパーアン
+achievement.harvestfestival.greenPepper.desc=3年目の秋に到達してピーマンをアンロック
+achievement.harvestfestival.strawberries=いちごジャム
+achievement.harvestfestival.strawberries.desc=3年目の春に到達していちごをアンロック
+achievement.harvestfestival.sweetPotatoes=あまいあまい君
+achievement.harvestfestival.sweetPotatoes.desc=1000個の秋野菜を出荷してさつまいもをアンロック
+achievement.harvestfestival.tomato=トマトケチャップ
+achievement.harvestfestival.tomato.desc=2年目の夏に到達してトマトをアンロック
+achievement.harvestfestival.corn=芋っぽい
+achievement.harvestfestival.corn.desc=3年目の夏に到達してとうもろこしをアンロック
+achievement.harvestfestival.milker=モーモーミルク
+achievement.harvestfestival.milker.desc=はじめての乳搾り
+achievement.harvestfestival.milkerLarge=Gallon Load
+achievement.harvestfestival.milkerLarge.desc=バケツいっぱいの牛乳
+achievement.harvestfestival.egger=キンダーエッグ
+achievement.harvestfestival.egger.desc=はじめてのうみたてたまご
+achievement.harvestfestival.eggerLarge=イースターエッグ
+achievement.harvestfestival.eggerLarge.desc=イースターエッグじゃなかった
+achievement.harvestfestival.firstShipping=船だ、船だ！
+achievement.harvestfestival.firstShipping.desc=初めての出荷
+achievement.harvestfestival.millionaire=トランプの貸し
+achievement.harvestfestival.millionaire.desc=ファイナルアンサー？
+achievement.harvestfestival.theMine=降りていこう
+achievement.harvestfestival.theMine.desc=いざ採掘へ...
+achievement.harvestfestival.killChick=これでも喰らえ！
+achievement.harvestfestival.killChick.desc=不思議な感じだ...
+achievement.harvestfestival.killChicken=みんな大きくなった
+achievement.harvestfestival.killChicken.desc=案外丈夫だな、と思った
+achievement.harvestfestival.killSheep=ごめんねショーン
+achievement.harvestfestival.killSheep.desc=少なくとも毛布は作れるな...
+achievement.harvestfestival.killCow=モーモー
+achievement.harvestfestival.killCow.desc=誰が感染させたんだ？
+achievement.harvestfestival.firstChristmas=メリー・クリスマス！
+achievement.harvestfestival.firstChristmas.desc=ネズミさえ音をたてず待っている
+achievement.harvestfestival.birthday=ハッピーバースデイ！
+achievement.harvestfestival.birthday.desc=出かけようよ！
+achievement.harvestfestival.friend=フレンズ
+achievement.harvestfestival.friend.desc=きみのために
+achievement.harvestfestival.marriage=愛と結婚
+achievement.harvestfestival.marriage.desc=タンデムで行こう
+achievement.harvestfestival.junk=これでも充分
+achievement.harvestfestival.junk.desc=全てはここから
+achievement.harvestfestival.copper=またね
+achievement.harvestfestival.copper.desc=さて錫はどこかな...あれ？
+achievement.harvestfestival.silver=銀のスプーン
+achievement.harvestfestival.silver.desc=狼男は居ないかな
+achievement.harvestfestival.gold=ゴールデンゲート
+achievement.harvestfestival.gold.desc=金ってちょっと扱いが不遇じゃない？
+achievement.harvestfestival.mystril=輝き
+achievement.harvestfestival.mystril.desc=ミスリル、すてきなもの
+achievement.harvestfestival.cooking=はじめてのごはん
+achievement.harvestfestival.cooking.desc=はじめての料理
+achievement.harvestfestival.recipes=料理長
+achievement.harvestfestival.recipes.desc=50のレシピを身につけた
+
+###Sounds
+harvestfestival.subtitle.fryingpan=Sizzle
+harvestfestival.subtitle.counter=Chopping
+harvestfestival.subtitle.fridge=Fridge Door
+harvestfestival.subtitle.mixer=Whirring
+harvestfestival.subtitle.oven=Oven Hum
+harvestfestival.subtitle.ovendoor=Oven Door
+harvestfestival.subtitle.ovendone=Oven Done Ping
+harvestfestival.subtitle.pot=Bubbling
+harvestfestival.subtitle.smashrock=Rock Smash
+harvestfestival.subtitle.smashwood=Wood Smash
+harvestfestival.subtitle.blessing=Heavenly Noise
+harvestfestival.subtitle.godddess=Goddess Ding
+harvestfestival.subtitle.recipe=Recipe Learnt!
+harvestfestival.subtitle.brush=Brushing
+harvestfestival.subtitle.chop=Tree Chopping
+harvestfestival.subtitle.fall=Tree Falling
+harvestfestival.subtitle.kerching=Ka-ching!
+
+#Config
+harvestfestival.config.tooltip=
+
+#Stats book
+harvestfestival.book.statistics=農業の参考書
+harvestfestival.book.calendar=カレンダー
+harvestfestival.stats.next=次のページ
+harvestfestival.stats.previous=前のページ
+harvestfestival.stats.collection=コレクション
+harvestfestival.stats.fishing=釣り
+harvestfestival.stats.cooking=料理
+harvestfestival.stats.shipping=出荷
+harvestfestival.stats.mining=鉱石
+harvestfestival.stats.relationships=関係
+harvestfestival.stats.npc=NPC
+harvestfestival.stats.animals=動物
+harvestfestival.stats.farming=農業
+harvestfestival.stats.activities=活動
+harvestfestival.stats.town=町 & NPC
+harvestfestival.stats.other=その他
+harvestfestival.stats.note=ノート
+harvestfestival.stats.quests=クエスト
+
+#Notes
+##Tutorial Notes
+harvestfestival.note.learnt=新しいノートが追加されました！
+harvestfestival.note.discovered=隠されたノートを発見しました！
+harvestfestival.note.blueprints.title=設計図
+harvestfestival.note.blueprints.description=設計図を持ってブロックに視線を合わせると、透明な建物の像が見えるでしょう。右クリックをすることで、この像はその場所に固定されます。周りを歩き回り、位置が正確かどうか確かめてみてください。再度右クリックでキャンセル、または Shift + 右クリックで場所を決定します。大工が現れ、建物の建設に取り掛かってくれるでしょう。
+harvestfestival.note.shops.title=お店
+harvestfestival.note.shops.description=それぞれのお店は、異なる時間、異なる曜日にオープンしています。いつオープンしているのかは、時計のアイコンのブタンを押すことで、お店の人に尋ねることができます\n\n欲しいアイテムをクリックすることで購入することが出来、Shif + クリックで10小筒購入することが出来ます。 Ctrl キーとマウスのホイールで多くのアイテムをとても速く購入できます(Shift と組み合わせて)。
+harvestfestival.note.farming.title=作物を育てる
+harvestfestival.note.farming.description=作物を育てるにはまず、クワで3x3の範囲を農地にしましょう。次に、真ん中のブロックを右クリックして種を植えましょう。そうしたら、じょうろを持ち水源を右クリックして水を汲みましょう。右クリックで水をまくことが出来ます。水をやっていれば毎日作物は成長しますが、我慢も必要になるでしょう。早く成長させるために、いつでも寝ることが出来ます。
+harvestfestival.note.shipping.title=出荷する
+harvestfestival.note.shipping.description=毎日朝6時、不思議な見えない存在が、出荷箱のからアイテムを回収するために現れるでしょう。彼らはアイテムの総額分のお金をおいていき、受け取ったお金は賢く使う事ができます。\nアイテムを出荷するためには右クリックをするか、上に投げ落とします。ホッパーも利用することが出来、この場合出荷箱を設置したプレーヤーにお金が入ります。
+harvestfestival.note.mailbox.title=メールボックス
+harvestfestival.note.mailbox.description=メールボックスで街の人からの手紙を受け取ることができます。フェスティバルへの招待を受けることが、主な使い方です。招待を受けるか、辞退するか選ぶことが出来、フェスティバルを完全にスキップできます。また、違う種類の手紙を受け取ることも？...遠い将来になるかもしれませんが。
+harvestfestival.note.sickle.title=カマ
+harvestfestival.note.sickle.description=カマは作物や他の植物をを破壊するのにとても良いツールです。季節の移り変わりや、水が足りずに枯れてしまった作物を破壊するのに特に効果的です。\n\n草や小麦のような作物は、収穫をするのにカマが必要です。
+harvestfestival.note.supermarket.title=雑貨店
+harvestfestival.note.supermarket.description=雑貨店ではツールや、種、料理の特別な材料を購入できます。現在の季節 (冬は何もなし）ごとに対応する種飲みを買うことが出来ます。また、進行度合いによって異なる種がアンロックされることもあるでしょう。アイテムの出荷数だったり、1年が経過することだったり、他にはもっと細かい条件でアンロックが必要となります。
+harvestfestival.note.care.chickens.title=ニワトリ
+harvestfestival.note.care.chickens.description=ニワトリを役に立たせるには、毎日餌を上げ、抱えておろしたりをする必要があります。ニワトリには、エサ箱か手で直接餌をあげることが出来ます。もし卵がほしいのなら、巣箱が必要です。鶏たちはこだわりがあり、地面には卵を生みません。ニワトリを可愛がれば可愛がるほど、大きな卵を産むようになるでしょう。
+harvestfestival.note.care.cows.title=ウシ
+harvestfestival.note.care.cows.description=ウシは大きな動物で、毎日ミルクを絞ることが出来ます。小麦もしくは飼料を毎日エサ箱または手で直接与える必要があります。また毎日、清潔に保つためブラッシング、ストレスがたまらないように話しかけてあげる必要があります。ミルクがほしいのであれば搾乳機が必要です。ウシたちがあなたを好きになるほど、たくさんのミルクを得られるようになります。
+harvestfestival.note.care.sheep.title=ヒツジ
+harvestfestival.note.care.sheep.description=ヒツジは大きな動物で、週に一度羊毛をはやします。小麦もしくは飼料がよく食べ、エサ箱か手で直接揚げることが出来ます。また毎日、清潔に保つためブラッシング、ストレスがたまらないように話しかけてあげる必要があります。ヒツジたちから羊毛を回収するには、ハサミが必要でしょう。ヒツジたちがあなたを好きになるほど、たくさんの羊毛を得られるようになります。
+harvestfestival.note.care.happiness.title=動物たちの幸せ
+harvestfestival.note.care.happiness.description=動物たちと触れ合うたび、少しづつあなたを好きになります。この本の関係の欄でその程度を確認することが出来ます。あなたを好きになればなるほど、より多くのアイテムを生成することでしょう。面倒を見る、餌を与える、綺麗にしてあげる、晴れの日に外に出してあげることで関係を良くすることが出来ます。たたいてしまったり、違う種類のおやつをあげると、関係は悪くなってしまいます。
+harvestfestival.note.care.stress.title=動物のストレスと健康
+harvestfestival.note.care.stress.description=動物たちにエサを上げなかったりストレスを溜めすぎてしまうと、病気になってしまいます。病気になると、どのアイテムも生成されません。餌を再び与えると、少しづつ健康を回復し、もしくは薬を与えると、すぐに良くなります。雨の中外に放置したりすることで、動物たちはストレスを貯めてしまいます。そのため、雨の日は屋根のある場所へ入れてあげる必要があります。
+harvestfestival.note.mining.title=鉱業
+harvestfestival.note.mining.description=坑道は採掘場から入れる特別な場所で、その中では、ハンマーで壊して鉱石や宝石を手に入れ、お金にすることができるすべての原石を見つけることができるでしょう。高いランクのハンマーが必要な鉱石もあります。深く潜っていくにつれ、希少な鉱石を見つけることができるでしょう。小さなヒナから獰猛なウシまでの、危険な闇の動物たちが待ち構えています。
+harvestfestival.note.upgrading.title=ツールのアップグレード
+harvestfestival.note.upgrading.description=鍛冶屋はツールをアップグレードすることが出来ます。3日の時間と少しの鉱石、手数料が必要でしょう。
+harvestfestival.note.repairing.title=ツールの修理
+harvestfestival.note.repairing.description=鍛冶屋はツールを修理することが出来ます。1日の時間と鉱石、お金が必要でしょう。
+harvestfestival.note.recipes.title=料理のレシピ
+harvestfestival.note.recipes.description=普通料理をするには、レシピに従うのが簡単です。レシピのアイテムを持ち、右クリックでおぼえることが出来ます。そうすることで、レシピ本に載り、簡単に料理をすることができるようになるでしょう。カフェでは季節や、曜日、週によって異なるレシピを販売しています。街の人々と友だちになることでも、有るレシピを覚えることが出来ます。さらにいくつかのレシピの獲得には、より隠された条件があります。
+harvestfestival.note.counter.title=キッチンカウンター
+harvestfestival.note.counter.description=カウンターを使うには、まず設置をし、例えばカブをその上に置きます。そして、ナイフを手に取り、右クリックを押し続けます。トントンと25回音が聞こえたら、作業は完了し、右クリックでアイテムを取得したら、食べられる状態です！
+harvestfestival.note.recipebook.title=レシピ本
+harvestfestival.note.recipebook.description=レシピ本はレシピを作るのをもっと簡単にします。材料をそれぞれ手で置かなくても、クリックすればすべてをやってくれるボタンがあります。材料を持っているかどうかを緑のチェックマークか赤色のバツ印で教えてくれるでしょう。材料を置いてくれますが、カウンターで切る作業は依然として必要です。
+harvestfestival.note.cooking.title=料理
+harvestfestival.note.cooking.description=調理器具で調理するためには、右クリックでアイテムを中に入れる必要があります。必要なものすべてを入れたら、成功または失敗となります。食材で実験することが出来、例えばカブの漬物に塩を加えるとより良い食事となります。加えられる食材に関しては、たいていたくさんのヒントがあります。
+harvestfestival.note.fridge.title=冷蔵
+harvestfestival.note.fridge.description=冷蔵庫は作物から肉まで、すべての種類の食品を保管することが出来ます。ラージチェストと同じサイズですが、1箇所でもっと多くの量を管理できるよう、512個までスタックすることが出来ます。なにか料理をしたくなったときに簡単に取り出せるよう、他の調理器具の近くにおいておくのが良いでしょう。
+harvestfestival.note.oven.title=オーブン
+harvestfestival.note.oven.description=オーブンは使用が簡単な調理器具の一つです。中に何かを置き、鋭いピーンという音が調理完了を知らせるまで、少しの時間待つだけです。基本的な肉のすべてを調理することが出来、小麦粉をパンにすることも出来ます。
+harvestfestival.note.mixer.title=ミキサー
+harvestfestival.note.mixer.description=ミキサーを利用するには、カウンターの上においてある必要があります。すべてのジュースを作るために必要で、フルーツや野菜を入れて何ができるか実験してみるべきでしょう。
+harvestfestival.note.potpan.title=ポットとフライパン
+harvestfestival.note.potpan.description=ポットもしくはフライパンを使うためには、まずはオーブンを手に入れることが必要です。オーブンがこれらを使用させるための熱源となる必要があるためです。
+harvestfestival.note.hammer.title=ハンマー
+harvestfestival.note.hammer.description=ハンマーは主に採掘場で岩を砕くために使われます。ハンマーのランクにより、異なる種類の鉱石を砕くことが出来ます。そのため、なるべくアップグレードをするようにしましょう！ハンマーはあたりに転がっている岩を砕くことも出来、砕いた後には石へと変化するでしょう。石のトンネルを掘っていく際にもハンマーを使うことが出来ます。ランクによって範囲が異なり、ランクが高いほど多く掘れます。
+harvestfestival.note.axe.title=オノ
+harvestfestival.note.axe.description=オノは木を集めるために使われます。ランクに応じて、枝や切り株を原木にすることも出来ます。木をまるごと切り倒すことも出来、木を構成する一番下のブロックをオノのランクにより指定の回数壊す必要があるでしょう。そうすることで、木全体が破壊されます。切り倒したくない場合には、スニークすることで通常のオノと同様に1つづつのブロックを壊せるようになります。
+harvestfestival.note.elevator.title=エレベーター
+harvestfestival.note.elevator.description=エレベーターは採掘場にて階層どうしでのワープを可能にしますが、少し単純ではないセットアップを必要とします。2つのエレベーターを移動したい階層のそれぞれの壁に設置します。階層同士の距離に応じて、必要なエレベーターケーブルの数を用意してください。1つ目のエレベーターを右クリックした後、2つめも右クリックをします。するとリンクされ、階層同士を移動できるようになるでしょう。
+harvestfestival.note.shipping.basket.title=バスケット
+harvestfestival.note.shipping.basket.description=バスケットは便利な道具で、複数の複数のアイテムを同時に出荷できます。使うためには、単に地面に置き右クリックをします。すると、バスケットを頭にのせるようになります。頭に乗った状態で作物や魚、宝石を収穫すると、バスケットの中に直接入ります。作物を収穫すると、その隣の範囲も同時に収穫されます。アイテムが集まったら、出荷箱を素手で右クリックすることで、中身を出荷することが出来ます\nまた、素手で右クリックすることでバスケットのインベントリを開くことが出来、アイテムを入れたり取り出したりすることが出来ます。バスケットを頭から下ろすには、もう一度素手で右クリックをする必要があります。
+harvestfestival.note.trees.title=果樹
+harvestfestival.note.trees.description=他の作物とは違い、果樹は一つのみの種を設置します。周りには一定の広さの空間が成長するために必要です。水は必要なく、春、夏、秋に成長しますが、それぞれの種類に対応した季節に、果実を実らせるでしょう。冬に枯れたりはしませんが、冬眠状態になります。
+
+#Secret Notes
+harvestfestival.note.secret.cursed.title=呪われたツールの秘密？
+harvestfestival.note.secret.cursed.description=冬、20階から80階の間の、9で終わる階でそれらのツールが見つけられるという噂があります。\n\nでも、噂はすべての真実を語っていません。呪われたツールは何が起こっているかをわかっていて、ミスリルのツールをすべて揃えた者しか信用しないでしょう...
+harvestfestival.note.secret.chickens.title=卵の生産量をあげる秘密
+harvestfestival.note.secret.chickens.description=ニワトリたちにもっと多くの卵を産ませる秘密の方法を、最近発見したのです。その魔法の数字は、5つのおやつ、26のニワトリのおやつです。この餌を食べさせるたびに、1日に余分な卵を生むようになりました。その限度は5つのようです。このことは誰にも教えないでください。草々。Ashlee
+harvestfestival.note.secret.livestock.title=家畜の改良
+harvestfestival.note.secret.livestock.description=動物たちの生産性に関する私の研究結果をお知らせできること、何よりの光栄であると謹んで感謝いたします。ちょうど7つのおやつと24つのウシのおやつがウシの生産性をより向上させ、ヒツジに関しては2つのおやつと29のヒツジのおやつであり、5つのミルクを生産することを、研究結果から学びました。
+harvestfestival.note.secret.relationships.title=サンタ
+harvestfestival.note.secret.relationships.description=多くの人々にとっての秘密を明かしてきましたが、どうやら例外が有るようです。多くの人は本当に宝石や花、ご飯が好きなことを発見しました。食料や本も好かれているようです。使いみちのない苗木や魚が好きな人は少ないようです。そして、みんな安いジャンクやモンスター、建築資材が嫌いなようです。有利になれるようこの情報を利用すべきですね。
+
+#Festival Notes
+harvestfestival.note.festival.new.years.title=ニューイヤーフェスティバル
+harvestfestival.note.festival.new.years.description=ニューイヤーフェスティバルは公園で開かれます。この町の小さな集まりで、Yulifが主催していて、伝統的なおにぎりの料理をいただけるでしょう。JadeとJohanもこのイベントに貢献したいと考えています。町長もあなたに年俸をくれることでしょう、もちろん、感謝していれば、ですが！
+harvestfestival.note.festival.new.years.eve.title=おおみそか
+harvestfestival.note.festival.new.years.eve.description=このお祭りは午後6時以降に公園で開催されます。新鮮な麺ををむしゃむしゃ食べるためのカジュアルな集まりです。町のみんなはあなたの参加を喜ぶでしょう。新年のカウントダウンを始めたいなら、Yulifか町長に話しかけてみてください。
+harvestfestival.note.festival.cooking.title=クッキングフェスティバル
+harvestfestival.note.festival.cooking.description=クッキングフェスティバルは午前6時から午後6時まで開かれる、お祝いのイベントです。この日開かれる特別なお店にぜひ立ち寄ってみてください。どの調理器具のカテゴリが審査の対象になるのか、Jenniに話しかけて確認してみてください。ごはんを作り、料理台の上に置いたら、Jenniに話しかけて審査を開始します。
+harvestfestival.note.festival.chicken.title=ニワトリフェスティバル
+harvestfestival.note.festival.chicken.description=ニワトリフェスティバルは午前6時から午後6時まで公園で開かれます。Ashleeが主催しています。持参した代表のニワトリを、コンテストの囲いの一つに入れて、Ashleeに話しかけることでコンテストを開始します。ニワトリたちの幸福度と、その価値によって審査が行われます。
+harvestfestival.note.festival.cow.title=ウシフェスティバル
+harvestfestival.note.festival.cow.description=ウシフェスティバルは午前6時から午後6時まで公園で開かれます。Candiceが主催しています。代表のウシをリードで囲いの一つを右クリックして結びつけ、Candiceに話しかけてコンテストを開始します。ウシたちの幸福度と、その価値によって審査が行われます。
+harvestfestival.note.festival.sheep.title=ヒツジフェスティバル
+harvestfestival.note.festival.sheep.description=ウシフェスティバルは午前6時から午後6時まで公園で開かれます。Jimが主催しています。代表のヒツジをリードで囲いの一つを右クリックして結びつけ、Jimに話しかけてコンテストを開始します。ヒツジたちの幸福度と、その価値によって審査が行われます。
+harvestfestival.note.festival.starry.night.title=スターリーナイト
+harvestfestival.note.festival.starry.night.description=スターリーナイトは町のみんなが愛する人達と過ごす夜です。誰かをディナーに誘うことによって始めることが出来ます。話しかけたときには選択肢が現れます。午後6時に公園で待つように言われるので、公園では会話を楽しみご飯をたべましょう。
+harvestfestival.note.festival.harvest.title=収穫祭
+harvestfestival.note.festival.harvest.description=収穫祭では、みんなでスープを作るために、町のみんなが集められます。午前8時から午後8時まで開かれています。収穫祭を進めるためには、ポットにアイテムを投げ入れましょう。
+
+###Letters
+# Festival Letters
+harvestfestival.letter.new.years.eve=よう、\n\n明日の夜に新しい年を言わるためのお祭りを公園で開こうとしているんだ。とりあえず、Jadeとオレは絶対いるぜ。もし参加してくれるとうれしいよ。午後6時からお祭り騒ぎだぜ！\n\n\n-Yulif
+harvestfestival.letter.new.years=前略\n\n新年のお祝いをするために、午前10時から午後6時まで、公園で最高の展示をしようと思っているんだ。つまり、これが正式な招待ってわけ。返事をよろしく\n\n\n-Johan
+harvestfestival.letter.cooking=前略\n\nクッキングフェスティバルを開こうと思うんだけど、実は明日にしたいの。もし参加してくれるなら、返事をよろしく！\n\n\n-Jenni
+harvestfestival.letter.chicken=やぁ\n\nニワトリフェスティバルの開催の準備をしているんだ。最高の賞品をかけて、朝6時から夕方6時までコンテストを開くよ！もしよければ、確認してね\n\n\n-Ashlee
+harvestfestival.letter.cow=ごきげんよう\n\n実はウシフェスティバルを近々開催しようと思うの。朝6時から夕方6時まで開催しているので、最高の子を連れてくるのを忘れないでね。もし参加したかったら教えてね\n\n\n-Candice
+harvestfestival.letter.sheep=いい日だね、\n\n実はヒツジフェスティバルを明日開催しようと思っているんだ。最高のヒツジをつれてきてくれ！朝6時から夕方6時まで開催をしているよ。もし参加するのであれば、返事をよろしく\n\n\n-Jim
+harvestfestival.letter.starry.night=こんにちわ\n\nこの町でスターリーナイトをお祝いする計画をしているわ。愛している人を食事に誘う夜なのよ。もし準備ができていたら教えてね。\n\n\n-Harvest Goddess

@@ -90,7 +90,7 @@ public abstract class BlockHFEnum<B extends BlockHFEnum, E extends Enum<E> & ISt
     }
 
     public E getEnumFromState(IBlockState state) {
-        return state.getValue(property);
+        return state.getBlock() == this ? state.getValue(property) : getDefaultState().getValue(property);
     }
 
     public E getEnumFromMeta(int meta) {

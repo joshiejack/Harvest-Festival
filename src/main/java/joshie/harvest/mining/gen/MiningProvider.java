@@ -18,7 +18,7 @@ public class MiningProvider extends WorldProvider {
     @Override
     public void init() {
         biomeProvider = new BiomeProviderSingle(Biomes.VOID);
-        hasNoSky = true;
+        hasSkyLight = false;
     }
 
     @Override

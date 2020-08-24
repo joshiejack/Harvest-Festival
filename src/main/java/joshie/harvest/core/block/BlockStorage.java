@@ -160,8 +160,8 @@ public class BlockStorage extends BlockHFEnumRotatableTile<BlockStorage, Storage
 
                     return shipped;
                 }
-            }else if (hasShippedItem(world, player, held)) {
-                held.shrink(1);
+            } else if (hasShippedItem(world, player, held)) {
+                held.splitStack(1);
                 return true;
             }
 
@@ -220,7 +220,7 @@ public class BlockStorage extends BlockHFEnumRotatableTile<BlockStorage, Storage
             EntityItem item = ((EntityItem)entity);
             UUID uuid = getPlayer(item, world, pos);
             if (uuid != null) {
-                ItemStack stack = item.getEntityItem();
+                ItemStack stack = item.getItem();
                 long sell = shipping.getSellValue(stack);
                 if (sell > 0) {
                     HFTrackers.<PlayerTrackerServer>getPlayerTracker(world, uuid).getTracking().addForShipping(StackHelper.toStack(stack, 1));
@@ -236,7 +236,7 @@ public class BlockStorage extends BlockHFEnumRotatableTile<BlockStorage, Storage
     @SuppressWarnings("ConstantConditions")
     public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase entity, @Nonnull ItemStack stack, EnumFacing facing) {
         TileEntity tile = world.getTileEntity(pos);
-        if (entity instanceof EntityPlayer & tile instanceof TileShipping) {
+        if (entity instanceof EntityPlayer && tile instanceof TileShipping) {
             super.onBlockPlacedBy(world, pos, state, entity, stack);
             ((TileShipping) tile).setOwner(EntityHelper.getPlayerUUID((EntityPlayer) entity));
         } else if (tile instanceof TileBasket)  {

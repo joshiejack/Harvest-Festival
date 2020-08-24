@@ -74,23 +74,25 @@ public class HFCrops {
     //Spring Crops
     public static final Crop TURNIP = registerCrop("turnip").setItem(getCropStack(Crops.TURNIP)).setValue(300, 60).setStages(2, 4, 5).setSeedColours(0xFFFFFF);
     public static final Crop POTATO = registerCrop("potato").setItem(Items.POTATO).setValue(350, 80).setStages(Blocks.POTATOES, 1, 2, 3, 4, 5, 6, 7, 8).setSeedColours(0xBE8D2B);
-    public static final Crop CUCUMBER = registerCrop("cucumber").setItem(getCropStack(Crops.CUCUMBER)).setValue(400, 40).setStages(3, 6, 9, 10).setRegrow(7).setSeedColours(0x36B313)
-                                            .setAnimalFoodType(FRUIT).setPurchaseRules(YEAR2);
-    public static final Crop STRAWBERRY = registerCrop("strawberry").setItem(getCropStack(Crops.STRAWBERRY)).setValue(800, 50).setStages(3, 6, 8, 9).setRegrow(7).setSeedColours(0xFF7BEA)
-                                            .setAnimalFoodType(FRUIT).setPurchaseRules(YEAR3);
+    public static final Crop CUCUMBER = registerCrop("cucumber").setItem(getCropStack(Crops.CUCUMBER)).setValue(400, 40).setStages(3, 6, 9, 10).setRegrow(7).setMaxHarvests(8)
+                                            .setSeedColours(0x36B313).setAnimalFoodType(FRUIT).setPurchaseRules(YEAR2);
+    public static final Crop STRAWBERRY = registerCrop("strawberry").setItem(getCropStack(Crops.STRAWBERRY)).setValue(800, 50).setStages(3, 6, 8, 9).setRegrow(7).setMaxHarvests(12)
+                                            .setSeedColours(0xFF7BEA).setAnimalFoodType(FRUIT).setPurchaseRules(YEAR3);
     public static final Crop CABBAGE = registerCrop("cabbage").setItem(getCropStack(Crops.CABBAGE)).setValue(1500, 450).setStages(4, 9, 14, 15).setSeedColours(0x8FFF40)
                                             .setPurchaseRules(new SpecialRulesQuest("cabbage"));
 
     private static final SpecialRulesQuest TOWN_PROGRESS = new SpecialRulesQuest("progress");
     //Summer Crops
     public static final Crop ONION = registerCrop("onion").setItem(getCropStack(Crops.ONION)).setValue(350, 100).setStages(3, 7, 8).setSeedColours(0XDCC307).setSeasons(SUMMER);
-    public static final Crop TOMATO = registerCrop("tomato").setItem(getCropStack(Crops.TOMATO)).setValue(500, 70).setStages(2, 4, 6, 9, 10).setRegrow(7).setSeedColours(0XE60820)
-                                        .setSeasons(SUMMER).setAnimalFoodType(FRUIT).setPurchaseRules(YEAR2);
+    public static final Crop TOMATO = registerCrop("tomato").setItem(getCropStack(Crops.TOMATO)).setValue(500, 70).setStages(2, 4, 6, 9, 10).setRegrow(7).setMaxHarvests(8)
+                                        .setSeedColours(0XE60820).setSeasons(SUMMER).setAnimalFoodType(FRUIT).setPurchaseRules(YEAR2);
     public static final Crop PUMPKIN = registerCrop("pumpkin").setItem(new ItemStack(Blocks.PUMPKIN)).setValue(450, 220).setStages(15).setSeedColours(0XE09A39).setSeasons(SUMMER).setIngredient(2, 0.3F);
-    public static final Crop PINEAPPLE = registerCrop("pineapple").setItem(getCropStack(Crops.PINEAPPLE)).setValue(2000, 420).setStages(5, 10, 15, 20, 21).setRegrow(16).setSeedColours(0XD7CF00)
-                                        .setSeasons(SUMMER).setAnimalFoodType(FRUIT).setPurchaseRules(new SpecialRulesQuest("pineapple"));
+    public static final Crop PINEAPPLE = registerCrop("pineapple").setItem(getCropStack(Crops.PINEAPPLE)).setValue(2000, 420).setStages(5, 10, 15, 20, 21).setRegrow(16).setMaxHarvests(3)
+                                            .setSeedColours(0XD7CF00).setSeasons(SUMMER).setAnimalFoodType(FRUIT).setPurchaseRules(new SpecialRulesQuest("pineapple"));
     public static final Crop WATERMELON = registerCrop("watermelon").setItem(Items.MELON).setValue(250, 20).setStages(11).setSeedColours(0xc92b3e)
-                                        .setSeasons(SUMMER).setAnimalFoodType(FRUIT).setGrowthHandler(new GrowthHandlerSide(Blocks.MELON_BLOCK)).setPurchaseRules(TOWN_PROGRESS);
+                                            .setSeasons(SUMMER).setAnimalFoodType(FRUIT).setGrowthHandler(new GrowthHandlerSide(Blocks.MELON_BLOCK)).setPurchaseRules(TOWN_PROGRESS);
+    public static final Crop CORN = registerCrop("corn").setItem(getCropStack(Crops.CORN)).setValue(850, 110).setStages(3, 8, 12, 14, 15).setRegrow(12).setMaxHarvests(7)
+                                     .setSeedColours(0XD4BD45).setSeasons(SUMMER).setPurchaseRules(YEAR3);
     //Summer Trees
     public static final Crop BANANA = registerTree("banana").setLogs(Blocks.LOG.getDefaultState().withProperty(BlockOldLog.VARIANT, EnumType.JUNGLE)).setStageLength(15, 15, 25).setFruitRegrow(4)
                                         .setItem(getCropStack(Crops.BANANA)).setValue(2500, 300).setSeedColours(0xFFEF6A)
@@ -99,18 +101,15 @@ public class HFCrops {
                                         .setSeasons(SUMMER).setPurchaseRules(YEAR2).setAnimalFoodType(AnimalFoodType.FRUIT);
     public static final Crop PEACH = registerTree("peach").setStageLength(6, 15, 15).setItem(getCropStack(Crops.PEACH)).setValue(3000, 250).setSeedColours(0xFFB0A5)
                                         .setSeasons(SUMMER).setPurchaseRules(YEAR3).setAnimalFoodType(AnimalFoodType.FRUIT);
-    public static final Crop CORN = registerCrop("corn").setItem(getCropStack(Crops.CORN)).setValue(850, 110).setStages(3, 8, 12, 14, 15).setRegrow(12).setSeedColours(0XD4BD45)
-                                        .setSeasons(SUMMER).setPurchaseRules(YEAR3);
-
     //Autumn Crops
-    public static final Crop EGGPLANT = registerCrop("eggplant").setItem(getCropStack(Crops.EGGPLANT)).setValue(600, 80).setStages(3, 6, 9, 10).setRegrow(7).setSeedColours(0XA25CC4)
-                                        .setSeasons(AUTUMN).setPurchaseRules(YEAR2);
+    public static final Crop EGGPLANT = registerCrop("eggplant").setItem(getCropStack(Crops.EGGPLANT)).setValue(600, 80).setStages(3, 6, 9, 10).setRegrow(7).setMaxHarvests(8)
+                                        .setSeedColours(0XA25CC4).setSeasons(AUTUMN).setPurchaseRules(YEAR2);
     public static final Crop SPINACH = registerCrop("spinach").setItem(getCropStack(Crops.SPINACH)).setValue(350, 100).setStages(2, 5, 6).setSeedColours(0X90AE15).setSeasons(AUTUMN);
     public static final Crop CARROT = registerCrop("carrot").setItem(Items.CARROT).setValue(500, 160).setStages(Blocks.CARROTS, 1, 2, 3, 4, 5, 6, 7, 8).setSeedColours(0XF8AC33).setSeasons(AUTUMN);
-    public static final Crop SWEET_POTATO = registerCrop("sweet_potato").setItem(getCropStack(Crops.SWEET_POTATO)).setValue(1000, 60).setStages(3, 5, 6).setRegrow(4).setSeedColours(0XD82AAC)
-                                            .setSeasons(AUTUMN).setPurchaseRules(new SpecialRulesQuest("sweetpotato"));
-    public static final Crop GREEN_PEPPER = registerCrop("green_pepper").setItem(getCropStack(Crops.GREEN_PEPPER)).setValue(900, 80).setStages(1, 3, 4, 7, 8).setRegrow(5).setSeedColours(0x56D213)
-                                            .setSeasons(AUTUMN).setPurchaseRules(YEAR3);
+    public static final Crop SWEET_POTATO = registerCrop("sweet_potato").setItem(getCropStack(Crops.SWEET_POTATO)).setValue(1000, 60).setStages(3, 5, 6).setRegrow(4).setMaxHarvests(14)
+                                            .setSeedColours(0XD82AAC).setSeasons(AUTUMN).setPurchaseRules(new SpecialRulesQuest("sweetpotato"));
+    public static final Crop GREEN_PEPPER = registerCrop("green_pepper").setItem(getCropStack(Crops.GREEN_PEPPER)).setValue(900, 80).setStages(1, 3, 4, 7, 8).setRegrow(5).setMaxHarvests(9)
+                                            .setSeedColours(0x56D213).setSeasons(AUTUMN).setPurchaseRules(YEAR3);
     public static final Crop BEETROOT = registerCrop("beetroot").setItem(Items.BEETROOT).setValue(550, 120).setStages(Blocks.BEETROOTS, 1, 2, 3, 4).setSeedColours(0x690000)
                                             .setSeasons(AUTUMN).setPurchaseRules(TOWN_PROGRESS);
 

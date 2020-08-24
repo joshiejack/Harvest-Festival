@@ -5,12 +5,18 @@ buildscript {
             name = "forge"
             url = "http://files.minecraftforge.net/maven"
         }
+
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
     }
     dependencies {
         classpath 'net.minecraftforge.gradle:ForgeGradle:2.2-SNAPSHOT'
+        classpath "gradle.plugin.com.matthewprenger:CurseGradle:1.0.8"
     }
 }
 
+apply plugin: "com.matthewprenger.cursegradle"
 apply plugin: 'net.minecraftforge.gradle.forge'
 apply plugin: 'maven-publish'
 
@@ -19,7 +25,6 @@ targetCompatibility = JavaVersion.VERSION_1_8
 
 repositories {
   maven { url "http://dvs1.progwml6.com/files/maven" }
-  //maven { url "http://tehnut.info/maven" }
   maven { url "http://maven.blamejared.com/" }
 }
 
@@ -44,7 +49,6 @@ minecraft {
 
 dependencies {
   deobfCompile "mezz.jei:jei_${minecraft_version}:${jei_version}"
-  //deobfCompile "info.tehnut.buttons:Buttons:${minecraft_version}-${buttons_version}"
   deobfCompile "MineTweaker3:MineTweaker3-API:${minetweaker_version}"
 }
 
@@ -82,11 +86,25 @@ task apiJar(type: Jar) {
 
 tasks.build.dependsOn apiJar
 
+//curseforge {
+//    if (System.getenv().CURSE_API) {
+//        apiKey = System.getenv().CURSE_API
+//    }
+//
+//    project {
+//        id = "${curse_id}"
+//        releaseType = 'alpha'
+//        changelog = 'WARNING! This is highly experimental, with missing textures so use at your own risk!'
+//        addGameVersion "${minecraft_version}"
+//        addArtifact(apiJar)
+//    }
+//}
+
 publishing {
     tasks.publish.dependsOn 'build'
     publications {
         mavenJava(MavenPublication) {
-            artifactId 'Harvest-Festival'
+            artifactId "harvest_festival_${minecraft_version}"
             artifact jar
             artifact apiJar
         }

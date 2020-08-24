@@ -15,7 +15,7 @@ import javax.annotation.Nonnull;
 public class PlaceableStand extends PlaceableIFaceable {
     @Expose
     @Nonnull
-    private ItemStack stack;
+    private ItemStack stack = ItemStack.EMPTY;
 
     @SuppressWarnings("unused")
     public PlaceableStand() {}

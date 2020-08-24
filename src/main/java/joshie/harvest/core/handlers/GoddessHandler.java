@@ -63,7 +63,7 @@ public class GoddessHandler {
     public void onItemExpire(ItemExpireEvent event) {
         World world = event.getEntityItem().world;
         if (!world.isRemote) {
-            ItemStack stack = event.getEntityItem().getEntityItem();
+            ItemStack stack = event.getEntityItem().getItem();
             if (isGoddessFlower(stack)) {
                 if (event.getEntityItem().isInsideOfMaterial(Material.WATER)) {
                     spawnGoddess(world, event.getEntityItem(), true, true);

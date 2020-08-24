@@ -35,7 +35,7 @@ public class GuiQuestBoard extends GuiBaseContainer {
     @Override
     public void drawForeground(int x, int y) {
         if (quest != null) {
-            fontRendererObj.drawSplitString(StringEscapeUtils.unescapeJava(quest.getDescription(world, null)), 42, 38, 142, 4210752);
-        } else fontRendererObj.drawSplitString(StringEscapeUtils.unescapeJava(TextHelper.translate("quest.none")), 42, 38, 142, 4210752);
+            fontRenderer.drawSplitString(StringEscapeUtils.unescapeJava(quest.getDescription(world, null)), 42, 38, 142, 4210752);
+        } else fontRenderer.drawSplitString(StringEscapeUtils.unescapeJava(TextHelper.translate("quest.none")), 42, 38, 142, 4210752);
     }
 }

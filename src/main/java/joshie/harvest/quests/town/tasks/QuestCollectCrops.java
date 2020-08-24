@@ -117,7 +117,7 @@ public class QuestCollectCrops extends QuestDaily {
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
         nbt.setByte("TargetAmount", (byte) amount);
-        nbt.setString("TargetCrop", crop.getResource().toString());
+        if (crop != null) nbt.setString("TargetCrop", crop.getResource().toString());
         return super.writeToNBT(nbt);
     }
 }

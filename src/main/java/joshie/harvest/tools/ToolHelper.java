@@ -144,7 +144,7 @@ public class ToolHelper {
         }
     }
 
-    private static void restoreHunger(EntityPlayer player) {
+    public static void restoreHunger(EntityPlayer player) {
         ReflectionHelper.setPrivateValue(FoodStats.class, player.getFoodStats(), 20, "foodLevel", "field_75127_a");
         ReflectionHelper.setPrivateValue(FoodStats.class, player.getFoodStats(), 5F, "foodSaturationLevel", "field_75125_b");
         ReflectionHelper.setPrivateValue(FoodStats.class, player.getFoodStats(), 0, "foodExhaustionLevel", "field_75126_c");
@@ -157,7 +157,7 @@ public class ToolHelper {
         List<ItemStack> blockDrops = new ArrayList<>();
         if (block.canSilkHarvest(world, pos, state, player)) {
             try {
-                Method method = ReflectionHelper.findMethod(Block.class, null, new String[]{"getSilkTouchDrop", "func_180643_i"}, IBlockState.class);
+                Method method = ReflectionHelper.findMethod(Block.class, null, new String[]{ "getSilkTouchDrop", "func_180643_i" }, IBlockState.class);
                 ItemStack stack = (ItemStack) method.invoke(block, state);
                 if (!stack.isEmpty()) {
                     blockDrops.add(stack);
@@ -178,7 +178,7 @@ public class ToolHelper {
         try {
             Method method = ReflectionHelper.findMethod(Block.class, null, new String[] { "createStackedBlock", "func_180643_i" } , IBlockState.class);
             stack = (ItemStack) method.invoke(state.getBlock(), state);
-        } catch (IllegalAccessException | InvocationTargetException ignored) {
+        } catch (IllegalAccessException | InvocationTargetException | ReflectionHelper.UnableToFindMethodException ignored) {
         }
         return stack;
     }

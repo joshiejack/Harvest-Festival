@@ -42,7 +42,7 @@ public abstract class GuiBase extends GuiScreen {
     }
 
     public FontRenderer getFont() {
-        return fontRendererObj;
+        return fontRenderer;
     }
 
     @Override
@@ -84,8 +84,8 @@ public abstract class GuiBase extends GuiScreen {
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         drawForeground(mouseX, mouseY);
         if (hasInventory) {
-            fontRendererObj.drawString(getName(), getX(), nameHeight, 4210752);
-            fontRendererObj.drawString(I18n.format("container.inventory"), 8, ySize - 96 + inventOffset, 4210752);
+            fontRenderer.drawString(getName(), getX(), nameHeight, 4210752);
+            fontRenderer.drawString(I18n.format("container.inventory"), 8, ySize - 96 + inventOffset, 4210752);
         }
 
         tooltip.clear();
@@ -130,7 +130,7 @@ public abstract class GuiBase extends GuiScreen {
             int k = 0;
 
             for (String s : list) {
-                int l = fontRendererObj.getStringWidth(s);
+                int l = fontRenderer.getStringWidth(s);
                 if (l > k) {
                     k = l;
                 }
@@ -169,7 +169,7 @@ public abstract class GuiBase extends GuiScreen {
 
             for (int i2 = 0; i2 < list.size(); ++i2) {
                 String s1 = list.get(i2);
-                fontRendererObj.drawStringWithShadow(s1, j2, k2, -1);
+                fontRenderer.drawStringWithShadow(s1, j2, k2, -1);
 
                 if (i2 == 0) {
                     k2 += 2;

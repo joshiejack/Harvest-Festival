@@ -13,6 +13,7 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.wrapper.EmptyHandler;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.UUID;
 
 import static joshie.harvest.api.HFApi.shipping;
@@ -80,6 +81,7 @@ public class TileShipping extends TileFaceable {
 
     @SuppressWarnings("unchecked")
     @Override
+    @Nullable
     public <T> T getCapability(@Nonnull Capability<T> capability, EnumFacing facing) {
         if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
             return (T) handler;

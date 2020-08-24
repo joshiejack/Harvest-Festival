@@ -46,24 +46,24 @@ public class ButtonRelationsNPC extends ButtonBook<GuiStats> {
     public void drawButton(@Nonnull Minecraft mc, int mouseX, int mouseY) {
         if (visible) {
             GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-            hovered = mouseX >= xPosition && mouseY >= yPosition && mouseX < xPosition + width && mouseY < yPosition + height;
+            hovered = mouseX >= x && mouseY >= y && mouseX < x + width && mouseY < y + height;
             mouseDragged(mc, mouseX, mouseY);
             drawForeground();
-            boolean flag = mc.fontRendererObj.getUnicodeFlag();
-            mc.fontRendererObj.setUnicodeFlag(true);
+            boolean flag = mc.fontRenderer.getUnicodeFlag();
+            mc.fontRenderer.setUnicodeFlag(true);
             String text = met ? displayString : "???????";
-            mc.fontRendererObj.drawString(TextFormatting.BOLD + text, xPosition + 15, yPosition - 3, 0x857754);
-            mc.fontRendererObj.setUnicodeFlag(flag);
-            drawRect(xPosition + 4, yPosition + 17, xPosition + 120, yPosition + 18, 0xFF857754);
+            mc.fontRenderer.drawString(TextFormatting.BOLD + text, x + 15, y - 3, 0x857754);
+            mc.fontRenderer.setUnicodeFlag(flag);
+            drawRect(x + 4, y + 17, x + 120, y + 18, 0xFF857754);
             GlStateManager.color(1.0F, 1.0F, 1.0F);
 
             //Draw hearts
             int hearts = (int)((((double)relationship)/ RelationshipType.NPC.getMaximumRP()) * 10);
             mc.getTextureManager().bindTexture(HEARTS);
             for (int i = 0; i < 10; i++) {
-                drawTexturedModalRect(xPosition + 15 + 10 * i, yPosition + 6, 16, 0, 9, 9);
+                drawTexturedModalRect(x + 15 + 10 * i, y + 6, 16, 0, 9, 9);
                 if (i < hearts) {
-                    drawTexturedModalRect(xPosition + 15 + 10 * i, yPosition + 6, 52, 0, 9, 9);
+                    drawTexturedModalRect(x + 15 + 10 * i, y + 6, 52, 0, 9, 9);
                 }
             }
         }
@@ -71,16 +71,16 @@ public class ButtonRelationsNPC extends ButtonBook<GuiStats> {
 
     private void drawForeground() {
         if (!talked) {
-            StackRenderHelper.drawGreyStack(TALK, xPosition + 100, yPosition - 2, 0.5F);
-        } else StackRenderHelper.drawStack(TALK, xPosition + 100, yPosition - 2, 0.5F);
+            StackRenderHelper.drawGreyStack(TALK, x + 100, y - 2, 0.5F);
+        } else StackRenderHelper.drawStack(TALK, x + 100, y - 2, 0.5F);
 
         if (!gifted) {
-            StackRenderHelper.drawGreyStack(GIFT, xPosition + 110, yPosition - 2, 0.5F);
-        } else StackRenderHelper.drawStack(GIFT, xPosition + 110, yPosition - 2, 0.5F);
+            StackRenderHelper.drawGreyStack(GIFT, x + 110, y - 2, 0.5F);
+        } else StackRenderHelper.drawStack(GIFT, x + 110, y - 2, 0.5F);
 
         if (!met) {
-            StackRenderHelper.drawGreyStack(stack, xPosition, yPosition, 1F);
-        } else StackRenderHelper.drawStack(stack, xPosition, yPosition, 1F);
+            StackRenderHelper.drawGreyStack(stack, x, y, 1F);
+        } else StackRenderHelper.drawStack(stack, x, y, 1F);
     }
 
     @Override

@@ -35,7 +35,7 @@ public class EntityAIBuild extends EntityAIBase {
     }
 
     @Override
-    public boolean continueExecuting() {
+    public boolean shouldContinueExecuting() {
         if (npc.getBuilding() == null) {
             teleportTimer = 0;
             return false;

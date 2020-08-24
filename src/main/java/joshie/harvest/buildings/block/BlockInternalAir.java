@@ -108,7 +108,7 @@ public class BlockInternalAir extends BlockHFBase<BlockInternalAir> {
                     world.setBlockToAir(pos);
                     try {
                         MinecraftForge.EVENT_BUS.unregister(this);
-                    } catch (Exception e) {/**/}
+                    } catch (Exception ignored) {}
                 }
             }
         }

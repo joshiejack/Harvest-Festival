@@ -29,14 +29,14 @@ public class ButtonSearch extends ButtonBook<GuiStats> {
     public void drawButton(@Nonnull Minecraft mc, int mouseX, int mouseY) {
         if (visible) {
             GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-            hovered = mouseX >= xPosition && mouseY >= yPosition && mouseX < xPosition + width && mouseY < yPosition + height;
+            hovered = mouseX >= x && mouseY >= y && mouseX < x + width && mouseY < y + height;
             mouseDragged(mc, mouseX, mouseY);
             mc.getTextureManager().bindTexture(TEXTURE);
             GlStateManager.enableBlend();
             GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
             GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
-            drawTexturedModalRect(xPosition, yPosition, 0, 169, width, height);
-            mc.fontRendererObj.drawString(TextFormatting.ITALIC + collection.search + (inFocus ? "_": ""), xPosition + 8, yPosition + 8, 0x391312);
+            drawTexturedModalRect(x, y, 0, 169, width, height);
+            mc.fontRenderer.drawString(TextFormatting.ITALIC + collection.search + (inFocus ? "_": ""), x + 8, y + 8, 0x391312);
             GlStateManager.color(1.0F, 1.0F, 1.0F);
         }
     }

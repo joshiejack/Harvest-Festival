@@ -41,7 +41,7 @@ public class EntityAISchedule extends EntityAIBase {
     }
 
     @Override
-    public boolean continueExecuting() {
+    public boolean shouldContinueExecuting() {
         return blockTarget != null && !npc.isTalking();
     }
 
@@ -52,6 +52,7 @@ public class EntityAISchedule extends EntityAIBase {
             distanceRequired = location.distance;
             ticksBeforeTeleport = location.updatesBeforeTeleport;
             blockTarget = NPCHelper.getCoordinatesForLocation(npc, location);
+            if (blockTarget != null) blockTarget = blockTarget.down();
         }
     }
 

@@ -41,11 +41,11 @@ public class ButtonNote extends ButtonBook {
     public void drawButton(@Nonnull Minecraft mc, int mouseX, int mouseY) {
         if (visible) {
             GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-            hovered = mouseX >= xPosition && mouseY >= yPosition && mouseX < xPosition + width && mouseY < yPosition + height;
+            hovered = mouseX >= x && mouseY >= y && mouseX < x + width && mouseY < y + height;
             mouseDragged(mc, mouseX, mouseY);
-            if (PageNotes.note.equals(note)) drawRect(xPosition, yPosition, xPosition + width, yPosition + height, 0x559C8C63);
-            else if (!hovered || !unlocked) drawRect(xPosition, yPosition, xPosition + width, yPosition + height, 0x55B0A483);
-            else drawRect(xPosition, yPosition, xPosition + width, yPosition + height, 0x55C4B9A2);
+            if (PageNotes.note.equals(note)) drawRect(x, y, x + width, y + height, 0x559C8C63);
+            else if (!hovered || !unlocked) drawRect(x, y, x + width, y + height, 0x55B0A483);
+            else drawRect(x, y, x + width, y + height, 0x55C4B9A2);
             drawForeground(mc);
             GlStateManager.color(1.0F, 1.0F, 1.0F);
         }
@@ -60,25 +60,25 @@ public class ButtonNote extends ButtonBook {
         if (note.getGuiResource() != null) {
             GlStateManager.color(1F, 1F, 1F);
             gui.mc.getTextureManager().bindTexture(note.getGuiResource());
-            if (unlocked) gui.drawTexturedModalRect(xPosition, yPosition, note.getGuiX(), note.getGuiY(), 16, 16);
-            else gui.drawTexturedModalRect(xPosition, yPosition, note.getGuiX() + 16, note.getGuiY(), 16, 16);
+            if (unlocked) gui.drawTexturedModalRect(x, y, note.getGuiX(), note.getGuiY(), 16, 16);
+            else gui.drawTexturedModalRect(x, y, note.getGuiX() + 16, note.getGuiY(), 16, 16);
         } else if (note.getIcon() == Note.PAPER) {
             GlStateManager.color(1F, 1F, 1F);
             gui.mc.getTextureManager().bindTexture(HFModInfo.ICONS);
             int xNote = !unlocked ? 32: note.isSecret() ? 16 : 0;
-            gui.drawTexturedModalRect(xPosition, yPosition, xNote, 32, 16, 16);
+            gui.drawTexturedModalRect(x, y, xNote, 32, 16, 16);
         } else {
-            if (unlocked) StackRenderHelper.drawStack(note.getIcon(), xPosition, yPosition, 1F);
-            else StackRenderHelper.drawGreyStack(note.getIcon(), xPosition, yPosition, 1F);
+            if (unlocked) StackRenderHelper.drawStack(note.getIcon(), x, y, 1F);
+            else StackRenderHelper.drawGreyStack(note.getIcon(), x, y, 1F);
         }
 
         GlStateManager.clear(GL11.GL_DEPTH_BUFFER_BIT);
         //Draw new over the icon
         if (unlocked && !read) {
-            boolean unicode = mc.fontRendererObj.getUnicodeFlag();
-            mc.fontRendererObj.setUnicodeFlag(true);
-            gui.drawString(mc.fontRendererObj, TextFormatting.BOLD + "NEW", xPosition + 1, yPosition, 0xFFFFFF);
-            mc.fontRendererObj.setUnicodeFlag(unicode);
+            boolean unicode = mc.fontRenderer.getUnicodeFlag();
+            mc.fontRenderer.setUnicodeFlag(true);
+            gui.drawString(mc.fontRenderer, TextFormatting.BOLD + "NEW", x + 1, y, 0xFFFFFF);
+            mc.fontRenderer.setUnicodeFlag(unicode);
         }
     }
 

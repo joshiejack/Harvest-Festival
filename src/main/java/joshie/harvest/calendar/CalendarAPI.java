@@ -37,7 +37,7 @@ public class CalendarAPI implements CalendarManager {
 
     public Festival getFestivalFromDate(TownData data, CalendarDate date) {
         for (Entry<CalendarDate, Festival> entry: festivals.entrySet()) {
-            if (entry.getKey().isSameDay(date)) {
+            if (CalendarHelper.isDateSame(date, entry.getKey())) {
                 Festival festival = entry.getValue();
                 if (festival.getRequirement() == null || data.hasBuilding(festival.getRequirement())) {
                     return festival;

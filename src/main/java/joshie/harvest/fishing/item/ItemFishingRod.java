@@ -91,9 +91,9 @@ public class ItemFishingRod extends ItemTool<ItemFishingRod> {
                     EntityFishHookHF entityfishhook = new EntityFishHookHF(world, player);
                     ToolTier tier = getTier(stack);
                     //Lure replacement
-                    int j = (tier.getToolLevel() + 1) * (getBaitAmount(stack) > 0 ? 2 : 1);
+                    int j = (tier.getToolLevel() + 1) * (getBaitAmount(stack) > 0 ? 2 : 1) / 4;
                     if (j > 0) {
-                        entityfishhook.func_191516_a(j);
+                        entityfishhook.func_191516_a(Math.min(j, 6));
                     }
 
                     //Luck of the sea replacement

@@ -22,7 +22,11 @@ import net.minecraft.nbt.NBTTagCompound;
 import javax.annotation.Nullable;
 import java.util.UUID;
 
+import static joshie.harvest.api.calendar.Season.WINTER;
+
 public class PlayerTrackerServer extends PlayerTracker implements ISyncMaster {
+    private static final CalendarDate CHRISTMAS = new CalendarDate(25, WINTER, 0);
+
     private final QuestDataServer quests;
     private final RelationshipDataServer relationships;
     private final StatsServer stats;
@@ -111,8 +115,8 @@ public class PlayerTrackerServer extends PlayerTracker implements ISyncMaster {
             if (stats.getGold() >= 1000000) player.addStat(HFAchievements.millionaire);
             relationships.resetStatus(yesterday, player); //Reset the relationship status
             stats.syncGold(player); //Resync the players gold
-            if (today.getSeason() == Season.WINTER && today.getDay() == 25) player.addStat(HFAchievements.firstChristmas);
-            if (today.isSameDay(stats.getBirthday())) {
+            if (CalendarHelper.isDateSame(today, CHRISTMAS)) player.addStat(HFAchievements.firstChristmas);
+            if (CalendarHelper.isDateSame(today, stats.getBirthday())) {
                 player.addStat(HFAchievements.birthday);
             }
 

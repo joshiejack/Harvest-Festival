@@ -42,7 +42,7 @@ public class BasketHandler {
 
     @SubscribeEvent //TODO: Check that picking up partial items
     public void onItemPickup(EntityItemPickupEvent event) {
-        ItemStack stack = event.getItem().getEntityItem();
+        ItemStack stack = event.getItem().getItem();
         if (HFApi.shipping.getSellValue(stack) > 0) {
             NonNullList<ItemStack> list = NonNullList.withSize(1, stack);
             if (EntityBasket.findBasketAndShip(event.getEntityPlayer(), list)) {
@@ -122,17 +122,19 @@ public class BasketHandler {
     @SuppressWarnings("ConstantConditions")
     public void onRightClickGround(PlayerInteractEvent.RightClickBlock event) {
         EntityPlayer player = event.getEntityPlayer();
-        if (!player.isSneaking() && player.getHeldItemMainhand() == null && player.getHeldItemOffhand() == null
+        if (event.getHand() == EnumHand.MAIN_HAND && !player.isSneaking() && player.getHeldItemMainhand().isEmpty() && player.getHeldItemOffhand().isEmpty()
                 && !forbidsDrop(event.getWorld().getBlockState(event.getPos()).getBlock())) {
             Set<Entity> set = getSetFromPlayer(player);
             player.getPassengers().stream().filter(entity -> entity instanceof EntityBasket && !set.contains(entity)).forEach(entity -> {
                 ItemStack basket = HFCore.STORAGE.getStackFromEnum(Storage.BASKET);
+                player.setHeldItem(EnumHand.MAIN_HAND, basket);
                 TileEntity tile = (((ItemBlockStorage)basket.getItem()).onBasketUsed(basket, player, player.world, event.getPos(), EnumHand.MAIN_HAND, event.getFace(), 0F, 0F, 0F));
                 if (tile instanceof TileBasket) {
                     ((TileBasket)tile).setAppearanceAndContents(((EntityBasket)entity).getEntityItem(), ((EntityBasket)entity).handler);
                     set.add(entity);
                     entity.setDead();
                 }
+                player.setHeldItem(EnumHand.MAIN_HAND, ItemStack.EMPTY);
             });
         } else if (player.isSneaking() && player.world.isRemote) {
             EntityBasket basket = getWearingBasket(player);

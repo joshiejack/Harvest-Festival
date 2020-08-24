@@ -22,7 +22,22 @@ import static joshie.harvest.core.tile.TileBasket.BASKET_INVENTORY;
 
 public class EntityBasket extends Entity {
     public static final DataParameter<ItemStack> ITEM = EntityDataManager.createKey(EntityItem.class, DataSerializers.OPTIONAL_ITEM_STACK);
-    public final ItemStackHandler handler = new ItemStackHandler(BASKET_INVENTORY);
+    public final ItemStackHandler handler = new ItemStackHandler(BASKET_INVENTORY) {
+        @Override
+        protected void onContentsChanged(int slot) {
+            if (!getStackInSlot(slot).isEmpty()) {
+                getDataManager().set(ITEM, getStackInSlot(slot));
+                return;
+            }
+            for (ItemStack stack2 : stacks) {
+                if (!stack2.isEmpty()) {
+                    getDataManager().set(ITEM, stack2);
+                    return;
+                }
+            }
+            getDataManager().set(ITEM, ItemStack.EMPTY);
+        }
+    };
 
     public EntityBasket(World worldIn) {
         super(worldIn);

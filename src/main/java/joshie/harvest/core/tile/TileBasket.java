@@ -13,7 +13,6 @@ import javax.annotation.Nullable;
 
 public class TileBasket extends TileSingleStack {
     public static final int BASKET_INVENTORY = 27;
-    public static final Item STONE = Item.getItemFromBlock(Blocks.STONE);
     public final ItemStackHandler handler = new ItemStackHandler(BASKET_INVENTORY);
 
     @Override
@@ -22,7 +21,7 @@ public class TileBasket extends TileSingleStack {
     }
 
     public boolean setAppearanceAndContents(@Nullable ItemStack place, ItemStackHandler handler) {
-        if (place != null && place.getItem() != STONE) stack = place;
+        if (place != null) stack = place;
         for (int i = 0; i < handler.getSlots(); i++) {
             this.handler.setStackInSlot(i, handler.getStackInSlot(i));
         }

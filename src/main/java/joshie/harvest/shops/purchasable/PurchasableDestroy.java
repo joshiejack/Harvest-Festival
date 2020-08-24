@@ -32,13 +32,11 @@ public class PurchasableDestroy extends Purchasable {
     }
 
     @Override
-    @Nonnull
     public ItemStack getDisplayStack() {
         return building.getSpawner();
     }
 
     @Override
-    @Nonnull
     protected ItemStack getPurchasedStack() {
         return building.getSpawner();
     }

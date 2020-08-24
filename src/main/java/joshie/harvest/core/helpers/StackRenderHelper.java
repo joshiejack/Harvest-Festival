@@ -42,7 +42,7 @@ public class StackRenderHelper {
         Minecraft mc = MCClientHelper.getMinecraft();
         mc.getRenderItem().renderItemAndEffectIntoGUI(stack, (int) (left / size), (int) (top / size));
         String display = stack.getCount() > 1 ? stack.getCount() + "" : "";
-        mc.getRenderItem().renderItemOverlayIntoGUI(mc.fontRendererObj, stack, (int) (left / size), (int) (top / size), display);
+        mc.getRenderItem().renderItemOverlayIntoGUI(mc.fontRenderer, stack, (int) (left / size), (int) (top / size), display);
         net.minecraft.client.renderer.RenderHelper.disableStandardItemLighting();
         GlStateManager.disableLighting();
         GlStateManager.popMatrix();
@@ -63,7 +63,7 @@ public class StackRenderHelper {
         Minecraft mc = MCClientHelper.getMinecraft();
         renderItemAndEffectIntoGUI(mc.getRenderItem(), MCClientHelper.getPlayer(), stack, (int) (left / size), (int) (top / size));
         String display = stack.getCount() > 1 ? stack.getCount() + "" : "";
-        mc.getRenderItem().renderItemOverlayIntoGUI(mc.fontRendererObj, stack, (int) (left / size), (int) (top / size), display);
+        mc.getRenderItem().renderItemOverlayIntoGUI(mc.fontRenderer, stack, (int) (left / size), (int) (top / size), display);
         net.minecraft.client.renderer.RenderHelper.disableStandardItemLighting();
         GlStateManager.disableLighting();
         GlStateManager.popMatrix();
@@ -84,10 +84,10 @@ public class StackRenderHelper {
             {
                 CrashReport crashreport = CrashReport.makeCrashReport(throwable, "Rendering item");
                 CrashReportCategory crashreportcategory = crashreport.makeCategory("Item being rendered");
-                crashreportcategory.setDetail("Item Type", () -> String.valueOf(stack.getItem()));
-                crashreportcategory.setDetail("Item Aux", () -> String.valueOf(stack.getMetadata()));
-                crashreportcategory.setDetail("Item NBT", () -> String.valueOf(stack.getTagCompound()));
-                crashreportcategory.setDetail("Item Foil", () -> String.valueOf(stack.hasEffect()));
+                crashreportcategory.addDetail("Item Type", () -> String.valueOf(stack.getItem()));
+                crashreportcategory.addDetail("Item Aux", () -> String.valueOf(stack.getMetadata()));
+                crashreportcategory.addDetail("Item NBT", () -> String.valueOf(stack.getTagCompound()));
+                crashreportcategory.addDetail("Item Foil", () -> String.valueOf(stack.hasEffect()));
                 throw new ReportedException(crashreport);
             }
 

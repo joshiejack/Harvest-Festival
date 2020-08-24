@@ -71,14 +71,16 @@ public class BlockFlower extends BlockHFEnum<BlockFlower, FlowerType> implements
 
     @Override
     @Nonnull
-    public NonNullList<ItemStack> getDrops(IBlockAccess world, BlockPos pos, @Nonnull IBlockState state, int fortune) {
-        NonNullList<ItemStack> ret = (NonNullList<ItemStack>) super.getDrops(world, pos, state, fortune);
+    public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, @Nonnull IBlockState state, int fortune) {
+        NonNullList<ItemStack> list = NonNullList.create();
+        list.addAll(super.getDrops(world, pos, state, fortune));
+
         EntityPlayer player = harvesters.get();
         if (player != null) {
-            EntityBasket.findBasketAndShip(player, ret);
+            EntityBasket.findBasketAndShip(player, list);
         }
 
-        return ret;
+        return list;
     }
 
     @Override

@@ -1,6 +1,7 @@
 package joshie.harvest.knowledge.gui.calendar.button;
 
 import joshie.harvest.api.calendar.CalendarEntry;
+import joshie.harvest.calendar.CalendarHelper;
 import joshie.harvest.core.helpers.StackRenderHelper;
 import joshie.harvest.knowledge.gui.calendar.GuiCalendar;
 import net.minecraft.client.Minecraft;
@@ -16,8 +17,11 @@ import java.util.List;
 import static joshie.harvest.api.calendar.CalendarDate.DAYS_PER_SEASON;
 
 public class ButtonDate extends GuiButton {
+    private final boolean highlighted;
     private final GuiCalendar gui;
     private final CyclingStack icons;
+    private int start = 5000;
+    private int end = 0;
 
     public ButtonDate(GuiCalendar gui, int number, List<CalendarEntry> entries, int x, int y) {
         super(number, x, y, "");
@@ -25,35 +29,35 @@ public class ButtonDate extends GuiButton {
         this.icons = new CyclingStack(x + 8, y + 6, entries);
         this.width = 26;
         this.height = 26;
+        this.start = CalendarHelper.getMinDay(number) + 1;
+        this.end = CalendarHelper.getMaxDay(number) + 1;
+        this.highlighted = GuiCalendar.date.getDay() >= (start - 1) && GuiCalendar.date.getDay() <= (end - 1) && GuiCalendar.season == GuiCalendar.date.getSeason() && GuiCalendar.year == GuiCalendar.date.getYear();
     }
 
     @Override
     public void drawButton(@Nonnull Minecraft mc, int mouseX, int mouseY) {
         if (visible) {
             GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-            hovered = mouseX >= xPosition && mouseY >= yPosition && mouseX < xPosition + width && mouseY < yPosition + height;
+            hovered = mouseX >= x && mouseY >= y && mouseX < x + width && mouseY < y + height;
             GlStateManager.enableBlend();
             GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
             GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
 
             //If it's the same date, draw the highlight
             mc.getTextureManager().bindTexture(GuiCalendar.CALENDAR_TEXTURE);
-            if (id == GuiCalendar.date.getDay() && GuiCalendar.season == GuiCalendar.date.getSeason() && GuiCalendar.year == GuiCalendar.date.getYear()) {
-                drawTexturedModalRect(xPosition - 2, yPosition - 2, 10, 54, 26, 26);
+            if (highlighted) {
+                drawTexturedModalRect(x - 2, y - 2, 10, 54, 26, 26);
             }
 
-            boolean prev = mc.fontRendererObj.getUnicodeFlag();
-            mc.fontRendererObj.setUnicodeFlag(true);
-            gui.drawString(mc.fontRendererObj, TextFormatting.BOLD + "" + (id + 1), xPosition + 2, yPosition, 0xFFFFFF);
+            boolean prev = mc.fontRenderer.getUnicodeFlag();
+            mc.fontRenderer.setUnicodeFlag(true);
+            gui.drawString(mc.fontRenderer, TextFormatting.BOLD + "" + (id + 1), x + 2, y, 0xFFFFFF);
 
-            mc.fontRendererObj.setUnicodeFlag(prev);
+            mc.fontRenderer.setUnicodeFlag(prev);
             mouseDragged(mc, mouseX, mouseY);
             icons.render(gui, mouseX, mouseY);
             if (DAYS_PER_SEASON != 30 && hovered) {
-                int modifier = DAYS_PER_SEASON / 30;
-                int min = (id * modifier) + 1;
-                int max = (id * modifier) + modifier;
-                gui.addTooltip(min + "-" + max);
+                gui.addTooltip(start + "-" + end);
             }
         }
     }

@@ -68,7 +68,10 @@ public class MiningHelper {
         LootContext.Builder builder = new LootContext.Builder((WorldServer) world);
         builder.withLuck(player.getLuck() + luck);
         builder.withPlayer(player);
-        return (NonNullList<ItemStack>) world.getLootTableManager().getLootTableFromLocation(loot).generateLootForPools(world.rand, builder.build());
+
+        NonNullList<ItemStack> list = NonNullList.create();
+        list.addAll(world.getLootTableManager().getLootTableFromLocation(loot).generateLootForPools(world.rand, builder.build()));
+        return list;
     }
 
     public static int getMineID(BlockPos pos) {
@@ -131,7 +134,7 @@ public class MiningHelper {
 
     public static boolean teleportToMine(Entity entity, int mineID) {
         MinecraftServer server = FMLCommonHandler.instance().getMinecraftServerInstance();
-        WorldServer newWorld = server.worldServerForDimension(MINING_ID);
+        WorldServer newWorld = server.getWorld(MINING_ID);
         preloadChunks(newWorld, mineID, 1);
         MiningProvider provider = ((MiningProvider) newWorld.provider);
         provider.onTeleportToMine(mineID); //Called to initiate after chunks are loaded
@@ -174,7 +177,7 @@ public class MiningHelper {
         boolean top = floor % MAX_FLOORS == 1;
         int newFloor = top ? floor - 1 : floor + 1;
         MinecraftServer server = FMLCommonHandler.instance().getMinecraftServerInstance();
-        WorldServer newWorld = server.worldServerForDimension(MINING_ID);
+        WorldServer newWorld = server.getWorld(MINING_ID);
         preloadChunks(newWorld, mineID, newFloor);
         MiningProvider provider = ((MiningProvider) newWorld.provider);
         provider.onTeleportToMine(mineID); //Called to initiate after chunks are loaded

@@ -1,36 +1,43 @@
 package joshie.harvest.plugins.crafttweaker.command;
 
 import joshie.harvest.api.shops.Shop;
-import joshie.harvest.core.commands.AbstractHFCommand;
+import joshie.harvest.core.commands.CommandManager.CommandLevel;
 import minetweaker.MineTweakerAPI;
+import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextComponentString;
 
+import javax.annotation.Nonnull;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
-public class HFCommandShops extends AbstractHFCommand {
-
+public class HFCommandShops extends CommandBase {
     @Override
-    public String getCommandName() {
+    @Nonnull
+    public String getName() {
         return "shops";
     }
 
     @Override
-    public String getUsage() {
+    @Nonnull
+    public String getUsage(@Nonnull ICommandSender sender) {
         return "/hf shops";
     }
 
     @Override
-    public boolean execute(MinecraftServer server, ICommandSender sender, String[] parameters) throws CommandException {
+    public int getRequiredPermissionLevel() {
+        return CommandLevel.ANYONE.ordinal();
+    }
+
+    @Override
+    public void execute(@Nonnull MinecraftServer server, @Nonnull ICommandSender sender, @Nonnull String[] parameters) throws CommandException {
         MineTweakerAPI.logCommand("Shops: \n" + this.getShopList().toString().replace("[", "").replace("]", "").replace(", ", "\n"));
         sender.sendMessage(new TextComponentString("List generated; see minetweaker.log in your minecraft dir"));
-        return true;
     }
 
     private List<ResourceLocation> getShopList() {

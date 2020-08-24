@@ -80,7 +80,7 @@ public class RenderBasket extends Render<EntityBasket> {
             }
         }
 
-        if (entity.getEntityItem().getItem() != TileBasket.STONE) {
+        if (!entity.getEntityItem().isEmpty()) {
             renderItem(entity, x, y, z);
         }
     }
@@ -115,7 +115,7 @@ public class RenderBasket extends Render<EntityBasket> {
         GlStateManager.pushMatrix();
         GlStateManager.translate(0F, 2F, 0F);
         IBakedModel ibakedmodel = this.itemRenderer.getItemModelWithOverrides(itemstack, entity.world, null);
-        int j = 3;
+        int j = Math.min(3, itemstack.getCount());
         boolean flag1 = ibakedmodel.isGui3d();
 
         if (!flag1)

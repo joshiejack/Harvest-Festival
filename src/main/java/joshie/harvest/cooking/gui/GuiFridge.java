@@ -23,16 +23,16 @@ public class GuiFridge extends GuiBaseContainer {
     @Override
     public void setWorldAndResolution(Minecraft mc, int width, int height) {
         super.setWorldAndResolution(mc, width, height);
-        this.font = new FridgeFont(fontRendererObj);
+        this.font = new FridgeFont(fontRenderer);
     }
 
     @Override
     public void drawSlot(@Nonnull Slot slot) {
         if (slot instanceof SlotHF) {
-            FontRenderer temp = fontRendererObj;
-            fontRendererObj = font;
+            FontRenderer temp = fontRenderer;
+            fontRenderer = font;
             super.drawSlot(slot);
-            fontRendererObj = temp;
+            fontRenderer = temp;
         } else super.drawSlot(slot);
     }
 

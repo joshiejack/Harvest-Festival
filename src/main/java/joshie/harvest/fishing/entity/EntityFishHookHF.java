@@ -18,6 +18,8 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraft.world.storage.loot.LootContext;
 
+import java.util.List;
+
 public class EntityFishHookHF extends EntityFishHook {
     public EntityFishHookHF(World world) { this(world, null);}
     public EntityFishHookHF(World world, EntityPlayer player) {
@@ -47,18 +49,23 @@ public class EntityFishHookHF extends EntityFishHook {
         EntityPlayer angler = getAngler();
         if (!world.isRemote && angler != null) {
             int i = 0;
+            net.minecraftforge.event.entity.player.ItemFishedEvent event = null;
             if (caughtEntity != null) {
                 bringInHookedEntity();
                 world.setEntityState(this, (byte) 31);
                 i = caughtEntity instanceof EntityItem ? 3 : 5;
             } else if (ticksCatchable > 0) {
+                LootContext.Builder lootcontext$builder = new LootContext.Builder((WorldServer) world);
+                lootcontext$builder.withLuck((float)this.field_191518_aw + getAngler().getLuck());
                 //Line changed by me
-                LootContext.Builder builder = new LootContext.Builder((WorldServer) world);
-                builder.withLuck((float)this.field_191518_aw + getAngler().getLuck());
-                builder.withLootedEntity(this);
-                builder.withPlayer(getAngler());
-                //Line changed by me
-                for (ItemStack stack : world.getLootTableManager().getLootTableFromLocation(FishingHelper.getFishingTable(world, new BlockPos(this))).generateLootForPools(rand, builder.build())) {
+                List<ItemStack> result = world.getLootTableManager().getLootTableFromLocation(FishingHelper.getFishingTable(world, new BlockPos(this))).generateLootForPools(rand, lootcontext$builder.build());
+                event = new net.minecraftforge.event.entity.player.ItemFishedEvent(result, this.inGround ? 2 : 1, this);
+                net.minecraftforge.common.MinecraftForge.EVENT_BUS.post(event);
+                if (event.isCanceled()) {
+                    this.setDead();
+                    return event.getRodDamage();
+                }
+                for (ItemStack stack : result) {
                     //Line changed by me
                     FishingHelper.track(stack, angler); //Add to the tracking
                     EntityItem entityItem = new EntityItem(world, posX, posY, posZ, stack);
@@ -86,7 +93,7 @@ public class EntityFishHookHF extends EntityFishHook {
             }
 
             setDead();
-            return i;
+            return event == null ? i : event.getRodDamage();
         } else {
             return 0;
         }

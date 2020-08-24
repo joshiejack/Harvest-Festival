@@ -856,12 +856,10 @@
       "pos": "7 2 20"
     },
     {
-      "facing": "north",
-      "state": "harvestfestival:stand",
-      "pos": "8 2 21",
-      "type": "blocks.Stand"
+      "pos": "8 2 21"
     },
     {
+      "state": "harvestfestival:decorative 1",
       "pos": "8 2 22"
     },
     {
@@ -871,21 +869,17 @@
       "pos": "9 2 23"
     },
     {
+      "state": "harvestfestival:decorative 1",
       "pos": "9 2 22"
     },
     {
-      "facing": "north",
-      "state": "harvestfestival:stand",
-      "pos": "9 2 21",
-      "type": "blocks.Stand"
+      "pos": "9 2 21"
     },
     {
-      "facing": "north",
-      "state": "harvestfestival:stand",
-      "pos": "10 2 21",
-      "type": "blocks.Stand"
+      "pos": "10 2 21"
     },
     {
+      "state": "harvestfestival:decorative 1",
       "pos": "10 2 22"
     },
     {
@@ -895,13 +889,11 @@
       "pos": "11 2 23"
     },
     {
+      "state": "harvestfestival:decorative 1",
       "pos": "11 2 22"
     },
     {
-      "facing": "north",
-      "state": "harvestfestival:stand",
-      "pos": "11 2 21",
-      "type": "blocks.Stand"
+      "pos": "11 2 21"
     },
     {
       "pos": "12 2 20"
@@ -1226,7 +1218,13 @@
       "pos": "8 3 21"
     },
     {
-      "pos": "8 3 22"
+      "pos": "8 3 21"
+    },
+    {
+      "facing": "north",
+      "state": "harvestfestival:stand 1",
+      "pos": "8 3 22",
+      "type": "blocks.Stand"
     },
     {
       "pos": "8 3 23"
@@ -1235,7 +1233,10 @@
       "pos": "9 3 23"
     },
     {
-      "pos": "9 3 22"
+      "facing": "north",
+      "state": "harvestfestival:stand 1",
+      "pos": "9 3 22",
+      "type": "blocks.Stand"
     },
     {
       "pos": "9 3 21"
@@ -1244,7 +1245,10 @@
       "pos": "10 3 21"
     },
     {
-      "pos": "10 3 22"
+      "facing": "north",
+      "state": "harvestfestival:stand 1",
+      "pos": "10 3 22",
+      "type": "blocks.Stand"
     },
     {
       "pos": "10 3 23"
@@ -1253,7 +1257,10 @@
       "pos": "11 3 23"
     },
     {
-      "pos": "11 3 22"
+      "facing": "north",
+      "state": "harvestfestival:stand 1",
+      "pos": "11 3 22",
+      "type": "blocks.Stand"
     },
     {
       "pos": "11 3 21"

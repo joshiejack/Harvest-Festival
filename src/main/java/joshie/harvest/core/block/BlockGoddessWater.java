@@ -51,7 +51,7 @@ public class BlockGoddessWater extends BlockFluidClassic {
     public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity) {
         if (!world.isRemote && entity instanceof EntityItem) {
             EntityItem item = ((EntityItem)entity);
-            ItemStack stack = item.getEntityItem();
+            ItemStack stack = item.getItem();
             if (!NPCHelper.INSTANCE.getGifts().isBlacklisted(world, FakePlayerHelper.getFakePlayerWithPosition((WorldServer) world, pos), stack)) {
                 if (!GoddessHandler.spawnGoddess(world, entity, false, false)) {
                     if (item.getThrower() != null) {

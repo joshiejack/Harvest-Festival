@@ -17,18 +17,18 @@ public class ButtonTab extends ButtonBook<GuiStats> {
     protected final int xStack;
 
     @SuppressWarnings("unchecked")
-    public ButtonTab(GuiStats gui, BookPage page, int buttonId, int x, int y, String string, int xTexture, int xStack) {
-        super(gui, buttonId, x, y, string);
+    public ButtonTab(GuiStats gui, BookPage page, int buttonId, int xPos, int yPos, String string, int xTexture, int xStack) {
+        super(gui, buttonId, xPos, yPos, string);
         this.icon = page.getIcon();
         this.page = page;
         this.width = 26;
         this.height = 32;
         this.xTexture = xTexture;
-        this.xStack = xPosition + xStack;
+        this.xStack = x + xStack;
     }
 
     public void drawIcon() {
-        StackRenderHelper.drawStack(getIcon(), xStack, yPosition + 8, 1F);
+        StackRenderHelper.drawStack(getIcon(), xStack, y + 8, 1F);
     }
 
     @Nonnull
@@ -41,12 +41,12 @@ public class ButtonTab extends ButtonBook<GuiStats> {
         if (visible) {
             mc.getTextureManager().bindTexture(TEXTURE);
             GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-            hovered = mouseX >= xPosition && mouseY >= yPosition && mouseX < xPosition + width && mouseY < yPosition + height;
+            hovered = mouseX >= x && mouseY >= y && mouseX < x + width && mouseY < y + height;
             int state = getHoverState(hovered);
             GlStateManager.enableBlend();
             GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
             GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
-            drawTexturedModalRect(xPosition, yPosition, xTexture, state * 32, width, height);
+            drawTexturedModalRect(x, y, xTexture, state * 32, width, height);
             drawIcon();
             if (hovered) gui.addTooltip(displayString);
             GlStateManager.color(1.0F, 1.0F, 1.0F);

@@ -4,6 +4,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.multiplayer.PlayerControllerMP;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.relauncher.Side;
@@ -23,6 +25,17 @@ public class MCClientHelper {
 
     public static World getWorld() {
         return getPlayer().world;
+    }
+
+    /** Update the block at the coordinates for re-rendering **/
+    public static void updateRender(BlockPos pos) {
+        refresh(getDimension(), pos);
+    }
+
+    public static void refresh(int dimension, BlockPos pos) {
+        if (getWorld().provider.getDimension() == dimension) {
+            getWorld().markBlockRangeForRenderUpdate(pos, pos);
+        }
     }
 
     /** Calls a for a re-render of all surrounding blocks **/
@@ -51,5 +64,9 @@ public class MCClientHelper {
     @SuppressWarnings("ConstantConditions")
     public static Entity getRenderViewEntity() {
         return Minecraft.getMinecraft().getRenderViewEntity();
+    }
+
+    public static boolean isClient(EntityLivingBase playerIn) {
+        return playerIn == getPlayer();
     }
 }

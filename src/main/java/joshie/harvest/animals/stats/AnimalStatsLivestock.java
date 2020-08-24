@@ -93,7 +93,7 @@ public class AnimalStatsLivestock extends AnimalStatsHF {
     }
 
     private boolean impregnate() {
-        if (animal.getAge() < 0) return false;
+        if (animal.getGrowingAge() < 0) return false;
         if (isPregnant) return false;
         daysPregnant = 0;
         isPregnant = true;

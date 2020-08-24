@@ -97,7 +97,7 @@ public class NPCHelper implements INPCHelper {
         UUID uuid = TownHelper.getClosestTownToBlockPos(server, pos, false).getID();
         List<EntityNPC> npcs = EntityHelper.getEntities(EntityNPC.class, server, pos, 128D, 256D);
         for (EntityNPC entity: npcs) {
-            if (entity.getNPC() == npc && entity.getHome().equals(uuid)) return entity;
+            if (entity.getNPC() == npc && (entity.getHome() != null && entity.getHome().equals(uuid))) return entity;
         }
 
         return npc == HFNPCs.CARPENTER ? server.getEntityFromUuid(uuid) : null;

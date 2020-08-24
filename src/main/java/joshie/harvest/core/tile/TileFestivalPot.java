@@ -19,10 +19,15 @@ import java.util.UUID;
 public class TileFestivalPot extends TileStand {
     private final Map<UUID, ItemStack> data = new HashMap<>();
 
+    @Override
+    public boolean canEmpty() { return false; }
+
+    @Override
     public boolean setContents(@Nullable EntityPlayer player, ItemStack stack) {
         if (player == null || data.containsKey(EntityHelper.getPlayerUUID(player))) return false;
         ItemStack insert = stack.splitStack(1);
         data.put(EntityHelper.getPlayerUUID(player), insert);
+        super.stack = data.get(EntityHelper.getPlayerUUID(player));
         saveAndRefresh();
         return true;
     }

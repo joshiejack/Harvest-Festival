@@ -22,12 +22,12 @@ public abstract class ButtonTextured extends GuiButton {
     public void drawButton(@Nonnull Minecraft mc, int mouseX, int mouseY) {
         if (visible) {
             GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-            hovered = mouseX >= xPosition && mouseY >= yPosition && mouseX < xPosition + width && mouseY < yPosition + height;
+            hovered = mouseX >= x && mouseY >= y && mouseX < x + width && mouseY < y + height;
             GlStateManager.enableBlend();
             GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
             GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
             mc.getTextureManager().bindTexture(getResource());
-            drawTexturedModalRect(xPosition, yPosition, getPositionX(), getPositionY(), width, height);
+            drawTexturedModalRect(x, y, getPositionX(), getPositionY(), width, height);
             mouseDragged(mc, mouseX, mouseY);
         }
     }

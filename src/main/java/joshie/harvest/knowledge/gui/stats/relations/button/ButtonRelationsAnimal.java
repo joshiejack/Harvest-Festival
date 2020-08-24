@@ -82,23 +82,23 @@ public class ButtonRelationsAnimal extends ButtonBook<GuiStats> {
     public void drawButton(@Nonnull Minecraft mc, int mouseX, int mouseY) {
         if (visible) {
             GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-            hovered = mouseX >= xPosition && mouseY >= yPosition && mouseX < xPosition + width && mouseY < yPosition + height;
+            hovered = mouseX >= x && mouseY >= y && mouseX < x + width && mouseY < y + height;
             mouseDragged(mc, mouseX, mouseY);
             drawForeground();
-            boolean flag = mc.fontRendererObj.getUnicodeFlag();
-            mc.fontRendererObj.setUnicodeFlag(true);
-            mc.fontRendererObj.drawString(TextFormatting.BOLD + displayString, xPosition + 4, yPosition - 7, 0x857754);
-            mc.fontRendererObj.setUnicodeFlag(flag);
-            drawRect(xPosition + 4, yPosition + 17, xPosition + 120, yPosition + 18, 0xFF857754);
+            boolean flag = mc.fontRenderer.getUnicodeFlag();
+            mc.fontRenderer.setUnicodeFlag(true);
+            mc.fontRenderer.drawString(TextFormatting.BOLD + displayString, x + 4, y - 7, 0x857754);
+            mc.fontRenderer.setUnicodeFlag(flag);
+            drawRect(x + 4, y + 17, x + 120, y + 18, 0xFF857754);
             GlStateManager.color(1.0F, 1.0F, 1.0F);
 
             //Draw hearts
             int hearts = (int)((((double)relationship)/ RelationshipType.ANIMAL.getMaximumRP()) * 9);
             mc.getTextureManager().bindTexture(HEARTS);
             for (int i = 0; i < 9; i++) {
-                drawTexturedModalRect(xPosition + 24 + 10 * i, yPosition + 6, 16, 0, 9, 9);
+                drawTexturedModalRect(x + 24 + 10 * i, y + 6, 16, 0, 9, 9);
                 if (i < hearts) {
-                    drawTexturedModalRect(xPosition + 24 + + 10 * i, yPosition + 6, 52, 0, 9, 9);
+                    drawTexturedModalRect(x + 24 + + 10 * i, y + 6, 52, 0, 9, 9);
                 }
             }
         }
@@ -124,16 +124,16 @@ public class ButtonRelationsAnimal extends ButtonBook<GuiStats> {
         }
 
         drawStack(collected, product, 114, 4, 0.75F);
-        StackRenderHelper.drawStack(stack, xPosition + 4, yPosition + 1, 1F);
+        StackRenderHelper.drawStack(stack, x + 4, y + 1, 1F);
     }
 
     private void drawStack(boolean value, @Nonnull ItemStack icon, int x, int y) {
         drawStack(value, icon, x, y, 0.5F);
     }
 
-    private void drawStack(boolean value, @Nonnull ItemStack icon, int x, int y, float scale) {
-        if (!value) StackRenderHelper.drawGreyStack(icon, xPosition + x, yPosition + y, scale);
-        else StackRenderHelper.drawStack(icon, xPosition + x, yPosition + y, scale);
+    private void drawStack(boolean value, @Nonnull ItemStack icon, int posX, int posY, float scale) {
+        if (!value) StackRenderHelper.drawGreyStack(icon, x + posX, y + posY, scale);
+        else StackRenderHelper.drawStack(icon, x + posX, y + posY, scale);
     }
 
     @Nonnull

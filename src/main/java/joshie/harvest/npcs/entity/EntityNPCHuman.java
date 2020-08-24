@@ -106,8 +106,8 @@ public abstract class EntityNPCHuman<E extends EntityNPCHuman> extends EntityNPC
     public boolean attackEntityFrom(@Nonnull DamageSource source, float amount) {
         if (source != DamageSource.OUT_OF_WORLD) {
             addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 200, 0, true, false));
-            if (source.getSourceOfDamage() instanceof EntityPlayer) {
-                HFApi.player.getRelationsForPlayer(((EntityPlayer) source.getSourceOfDamage())).affectRelationship(npc, -10);
+            if (source.getTrueSource() instanceof EntityPlayer) {
+                HFApi.player.getRelationsForPlayer(((EntityPlayer) source.getTrueSource())).affectRelationship(npc, -10);
             }
 
             if (source == DamageSource.IN_WALL) {

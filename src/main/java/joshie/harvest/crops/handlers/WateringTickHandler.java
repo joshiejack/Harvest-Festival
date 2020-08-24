@@ -40,7 +40,7 @@ public class WateringTickHandler extends DailyTickableBlock {
                     ExtendedBlockStorage extendedblockstorage = array[y >> 4];
                     if (extendedblockstorage != NULL_BLOCK_STORAGE) {
                         IBlockState state = extendedblockstorage.get(x, y & 15, z);
-                        BlockPos pos = new BlockPos((chunk.xPosition * 16) + x, y, (chunk.zPosition * 16) + z);
+                        BlockPos pos = new BlockPos((chunk.x * 16) + x, y, (chunk.z * 16) + z);
                         WateringHandler handler = CropHelper.getWateringHandler(world, pos, state);
                         if (handler != null) {
                             HFApi.tickable.addTickable(world, pos, this);
@@ -103,7 +103,7 @@ public class WateringTickHandler extends DailyTickableBlock {
                 if (!handler.isWet(world, pos, state)) {
                     world.setBlockState(pos, handler.hydrate(world, pos, state));
                 }
-            } else handler.dehydrate(world, pos, state);
+            } else handler.dehydrate(world, pos, state, false);
         }
     }
 }

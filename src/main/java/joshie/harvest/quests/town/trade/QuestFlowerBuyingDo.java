@@ -38,7 +38,7 @@ public class QuestFlowerBuyingDo extends QuestDummyTown {
         if (hand != null) {
             ItemStack held = player.getHeldItem(hand);
             if (InventoryHelper.startsWith(held, "flower") && held.getCount() >= 1) {
-                held.shrink(1); //Reduce the stack size by one
+                held.splitStack(1); //Reduce the stack size by one
                 rewardGold(player, getValue(HFApi.calendar.getDate(player.world), player.world.rand));
             }
         }

@@ -2,33 +2,43 @@ package joshie.harvest.player.command;
 
 import joshie.harvest.api.cooking.Recipe;
 import joshie.harvest.core.HFTrackers;
-import joshie.harvest.core.commands.AbstractHFCommand;
+import joshie.harvest.core.commands.CommandManager.CommandLevel;
 import joshie.harvest.core.commands.HFCommand;
 import joshie.harvest.player.PlayerTrackerServer;
 import joshie.harvest.player.tracking.TrackingServer;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
+import net.minecraft.command.WrongUsageException;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ResourceLocation;
 
+import javax.annotation.Nonnull;
+
 @HFCommand
 @SuppressWarnings("unused")
-public class HFCommandRecipe extends AbstractHFCommand {
+public class HFCommandRecipe extends CommandBase {
     @Override
-    public String getCommandName() {
+    @Nonnull
+    public String getName() {
         return "recipe";
     }
 
     @Override
-    public String getUsage() {
+    @Nonnull
+    public String getUsage(@Nonnull ICommandSender sender) {
         return "/hf recipe [player] <value|all|clear>";
     }
 
     @Override
-    public boolean execute(MinecraftServer server, ICommandSender sender, String[] parameters) {
-        if (parameters != null && (parameters.length == 1 || parameters.length == 2)) {
+    public int getRequiredPermissionLevel() {
+        return CommandLevel.OP_AFFECT_GAMEPLAY.ordinal();
+    }
+
+    @Override
+    public void execute(@Nonnull MinecraftServer server, @Nonnull ICommandSender sender, @Nonnull String[] parameters) throws CommandException {
+        if (parameters.length == 1 || parameters.length == 2) {
             try {
                 EntityPlayerMP player = parameters.length == 1? CommandBase.getCommandSenderAsPlayer(sender) : CommandBase.getPlayer(server, sender, parameters[0]);
                 TrackingServer tracking = HFTrackers.<PlayerTrackerServer>getPlayerTrackerFromPlayer(player).getTracking();
@@ -37,20 +47,18 @@ public class HFCommandRecipe extends AbstractHFCommand {
                     case "all":
                         Recipe.REGISTRY.values().forEach(tracking::learnRecipe);
                         tracking.sync(player);
-                        return true;
+                        break;
                     case "clear":
                         tracking.learnRecipe(null);
                         tracking.sync(player);
-                        return true;
+                        break;
                     default:
                         if (!recipe.contains(":")) recipe = "harvestfestival:" + recipe;
                         tracking.learnRecipe(Recipe.REGISTRY.get(new ResourceLocation(recipe)));
                         tracking.sync(player);
-                        return true;
+                        break;
                 }
             } catch (NumberFormatException | CommandException ignored) {}
-        }
-
-        return false;
+        } else throw new WrongUsageException(getUsage(sender));
     }
 }

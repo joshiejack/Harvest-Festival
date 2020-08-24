@@ -3,6 +3,7 @@ package joshie.harvest.mining.gen;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.calendar.CalendarHelper;
+import joshie.harvest.core.helpers.NBTHelper;
 import joshie.harvest.core.util.annotations.HFEvents;
 import joshie.harvest.mining.HFMining;
 import joshie.harvest.mining.MiningHelper;
@@ -43,7 +44,7 @@ public class MiningDaily {
         //Add new ores
         Season season = HFApi.calendar.getDate(world).getSeason();
         for (int loopY = 0; loopY < MAX_LOOP; loopY += MiningHelper.FLOOR_HEIGHT) {
-            int floor = MiningHelper.getFloor(chunk.xPosition, loopY);
+            int floor = MiningHelper.getFloor(chunk.x, loopY);
             int oreChance = MiningHelper.getOreChance(season, floor, world.rand);
             int y = loopY + 1;
             for (int x = 0; x < 16; x++) {
@@ -68,8 +69,8 @@ public class MiningDaily {
     @SubscribeEvent
     public void onChunkLoad(ChunkDataEvent.Load event) {
         if (event.getWorld().provider.getDimension() == HFMining.MINING_ID) {
-            NBTTagCompound tag = getCompoundTag(event.getData());
-            long chunk = ChunkPos.asLong(event.getChunk().xPosition, event.getChunk().zPosition);
+            NBTTagCompound tag = NBTHelper.getLastTickData(event.getData());
+            long chunk = ChunkPos.asLong(event.getChunk().x, event.getChunk().z);
             if (tag.hasKey("" + chunk)) {
                 int days = CalendarHelper.getElapsedDays(event.getWorld().getWorldTime());
                 int lastDay = tag.getInteger("" + chunk);
@@ -83,19 +84,10 @@ public class MiningDaily {
     @SubscribeEvent
     public void onChunkSave(ChunkDataEvent.Save event) {
         if (event.getWorld().provider.getDimension() == HFMining.MINING_ID) {
-            NBTTagCompound tag = getCompoundTag(event.getData());
-            long chunk = ChunkPos.asLong(event.getChunk().xPosition, event.getChunk().zPosition);
+            NBTTagCompound tag = NBTHelper.getLastTickData(event.getData());
+            long chunk = ChunkPos.asLong(event.getChunk().x, event.getChunk().z);
             int days = CalendarHelper.getElapsedDays(event.getWorld().getWorldTime());
             tag.setInteger("" + chunk, days);
-        }
-    }
-
-    private NBTTagCompound getCompoundTag(NBTTagCompound tag) {
-        if (tag.hasKey("LastTickData")) return tag.getCompoundTag("LastTickData");
-        else {
-            NBTTagCompound data = new NBTTagCompound();
-            tag.setTag("LastTickData", data);
-            return data;
         }
     }
 }

@@ -70,7 +70,7 @@ public class RenderToolLevel {
             GlStateManager.pushMatrix();
             GlStateManager.disableBlend();
             GlStateManager.translate(53F, 0F, 0F);
-            gui.mc.fontRendererObj.drawString((int) level + "%", i1, j1, 0xFFFFFF);
+            gui.mc.fontRenderer.drawString((int) level + "%", i1, j1, 0xFFFFFF);
             GlStateManager.enableBlend();
             GlStateManager.popMatrix();
 

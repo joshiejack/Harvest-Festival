@@ -69,6 +69,11 @@ public class EntityHarvestChicken extends EntityChicken implements IEntityAdditi
     }
 
     @Override
+    public double getYOffset() {
+        return isRiding() ? 0.5 : super.getYOffset();
+    }
+
+    @Override
     public void onLivingUpdate() {
         super.onLivingUpdate();
         if (tickToLove) {

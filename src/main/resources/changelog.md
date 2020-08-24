@@ -33,6 +33,7 @@
 * You will now unlock the church when you have nine npcs in town
 * You will now unlock the townhall when you have built nine buildings
 * Added the "park building", can be purchased as soon as you have built poultry farm or animal ranch or general store, it's intended to be used for festivals
+* Added demolish to the carpenters 'sell' menu. Will destroy that building.
 
 ###CraftTweaker
 * Add support for blacklisting hoes/seeds/items being giftable
@@ -76,12 +77,21 @@
 * Added new years eve festival, celebrate with a meal then watch some fireworks to bring in the new year
 
 ###Fishing - NEW!
-* Added fishing rods, obtainable when you meet jakob for the first time
+* Added fishing rods, obtainable when you meet Jakob for the first time
 * Added various fish and junk that can be caught
 * Different fish per season and water type (OCEAN, RIVER, LAKE, POND)
 * Added bait, attach to your rods to increase speed
 * Added fish trap, seed with bait to catch fish/junk
 * Added hatchery, will duplicate fish
+
+###Fruit Trees - NEW!
+* Added fruit trees. The ones added are:
+  * Apple (Unlocks Autumn year 2)
+  * Banana (Unlocks Summer year 3)
+  * Grape (Unlocks Autumn year 3)
+  * Orange (Unlocks Summer year 2)
+  * Peach (Unlocks Summer year 3)
+* Fruit tree seeds can be bought in the general store
 
 ###Gathering
 * More items will now spawn around the world (that sell for more than 1 gold!)
@@ -195,6 +205,11 @@
 * Fix chicks spawning in random locations around the incubator
 * Fix milkers and brushes being stackable
 * You'll know spawn at the bottom of the mining hill stairs
+* Fixed NPC spawner
+* Fixed NPCs not always respawning next day, if they died
+* Fixed mouseover in shops showing the wrong item just bought, in certain cases
+* Fixed hunger not being refilled when sleeping, when Morpheus is installed on a server
+* Other minor fixes and changes
 
 ##0.5.11
 * Fixed a crash with the shipping bin when loading worlds when a hopper is inserting items

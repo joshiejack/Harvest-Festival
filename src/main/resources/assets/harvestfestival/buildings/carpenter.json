@@ -1090,9 +1090,7 @@
       "pos": "6 4 2"
     },
     {
-      "state": "flower_pot",
-      "pos": "6 4 3",
-      "type": "blocks.FlowerPot"
+      "pos": "6 4 3"
     },
     {
       "state": "carpet",

@@ -68,7 +68,10 @@ public class MiningHelper {
         LootContext.Builder builder = new LootContext.Builder((WorldServer) world);
         builder.withLuck(player.getLuck() + luck);
         builder.withPlayer(player);
-        return (NonNullList<ItemStack>) world.getLootTableManager().getLootTableFromLocation(loot).generateLootForPools(world.rand, builder.build());
+
+        NonNullList<ItemStack> list = NonNullList.create();
+        list.addAll(world.getLootTableManager().getLootTableFromLocation(loot).generateLootForPools(world.rand, builder.build()));
+        return list;
     }
 
     public static int getMineID(BlockPos pos) {

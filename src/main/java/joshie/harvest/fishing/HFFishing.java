@@ -19,11 +19,12 @@ import joshie.harvest.fishing.item.ItemJunk.Junk;
 import joshie.harvest.fishing.loot.ConditionTier;
 import joshie.harvest.fishing.loot.ConditionTime;
 import joshie.harvest.fishing.loot.SetWeight;
+import joshie.harvest.fishing.render.RenderFishHook;
 import joshie.harvest.fishing.render.SpecialRendererHatchery;
 import joshie.harvest.fishing.render.SpecialRendererTrap;
 import joshie.harvest.fishing.tile.TileHatchery;
 import joshie.harvest.fishing.tile.TileTrap;
-import net.minecraft.client.renderer.entity.RenderFish;
+import net.minecraft.entity.projectile.EntityFishHook;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemFishFood.FishType;
 import net.minecraft.item.ItemStack;
@@ -92,7 +93,7 @@ public class HFFishing {
 
     @SideOnly(Side.CLIENT)
     public static void preInitClient() throws Exception {
-        RenderingRegistry.registerEntityRenderingHandler(EntityFishHookHF.class, RenderFish::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityFishHook.class, RenderFishHook::new);
     }
 
     public static void init() {

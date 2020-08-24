@@ -20,7 +20,7 @@ public class HFTransformer implements IFMLLoadingPlugin, IClassTransformer {
         asm.add(new PlayerWakeTransformer());
         asm.add(new RenderRainTransformer());
         asm.add(new RenderItemTransformer());
-        asm.add(new FishingTransformer(4, "net.minecraft.entity.projectile.EntityFishHook", "zc"));
+        // asm.add(new FishingTransformer(4, "net.minecraft.entity.projectile.EntityFishHook", "zc"));
         asm.add(new FishingTransformer(3, "com.teammetallurgy.aquaculture.handlers.EntityCustomFishHook"));
     }
 

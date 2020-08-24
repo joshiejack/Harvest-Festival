@@ -169,33 +169,27 @@
             },
             {
               "condition": "harvestfestival:obtained",
-              "item": "harvestfestival:hoe",
-              "meta": 6
+              "item": "harvestfestival:hoe_mythic"
             },
             {
               "condition": "harvestfestival:obtained",
-              "item": "harvestfestival:axe",
-              "meta": 6
+              "item": "harvestfestival:axe_mythic"
             },
             {
               "condition": "harvestfestival:obtained",
-              "item": "harvestfestival:hammer",
-              "meta": 6
+              "item": "harvestfestival:hammer_mythic"
             },
             {
               "condition": "harvestfestival:obtained",
-              "item": "harvestfestival:wateringcan",
-              "meta": 6
+              "item": "harvestfestival:wateringcan_mythic"
             },
             {
               "condition": "harvestfestival:obtained",
-              "item": "harvestfestival:sickle",
-              "meta": 6
+              "item": "harvestfestival:sickle_mythic"
             },
             {
               "condition": "harvestfestival:obtained",
-              "item": "harvestfestival:fishing_rod",
-              "meta": 6
+              "item": "harvestfestival:fishing_rod_mythic"
             }
           ]
         },
@@ -229,33 +223,27 @@
             },
             {
               "condition": "harvestfestival:obtained",
-              "item": "harvestfestival:hoe",
-              "meta": 6
+              "item": "harvestfestival:hoe_mythic"
             },
             {
               "condition": "harvestfestival:obtained",
-              "item": "harvestfestival:axe",
-              "meta": 6
+              "item": "harvestfestival:axe_mythic"
             },
             {
               "condition": "harvestfestival:obtained",
-              "item": "harvestfestival:hammer",
-              "meta": 6
+              "item": "harvestfestival:hammer_mythic"
             },
             {
               "condition": "harvestfestival:obtained",
-              "item": "harvestfestival:wateringcan",
-              "meta": 6
+              "item": "harvestfestival:wateringcan_mythic"
             },
             {
               "condition": "harvestfestival:obtained",
-              "item": "harvestfestival:sickle",
-              "meta": 6
+              "item": "harvestfestival:sickle_mythic"
             },
             {
               "condition": "harvestfestival:obtained",
-              "item": "harvestfestival:fishing_rod",
-              "meta": 6
+              "item": "harvestfestival:fishing_rod_mythic"
             }
           ]
         },
@@ -289,33 +277,27 @@
             },
             {
               "condition": "harvestfestival:obtained",
-              "item": "harvestfestival:hoe",
-              "meta": 6
+              "item": "harvestfestival:hoe_mythic"
             },
             {
               "condition": "harvestfestival:obtained",
-              "item": "harvestfestival:axe",
-              "meta": 6
+              "item": "harvestfestival:axe_mythic"
             },
             {
               "condition": "harvestfestival:obtained",
-              "item": "harvestfestival:hammer",
-              "meta": 6
+              "item": "harvestfestival:hammer_mythic"
             },
             {
               "condition": "harvestfestival:obtained",
-              "item": "harvestfestival:wateringcan",
-              "meta": 6
+              "item": "harvestfestival:wateringcan_mythic"
             },
             {
               "condition": "harvestfestival:obtained",
-              "item": "harvestfestival:sickle",
-              "meta": 6
+              "item": "harvestfestival:sickle_mythic"
             },
             {
               "condition": "harvestfestival:obtained",
-              "item": "harvestfestival:fishing_rod",
-              "meta": 6
+              "item": "harvestfestival:fishing_rod_mythic"
             }
           ]
         },
@@ -349,33 +331,27 @@
             },
             {
               "condition": "harvestfestival:obtained",
-              "item": "harvestfestival:hoe",
-              "meta": 6
+              "item": "harvestfestival:hoe_mythic"
             },
             {
               "condition": "harvestfestival:obtained",
-              "item": "harvestfestival:axe",
-              "meta": 6
+              "item": "harvestfestival:axe_mythic"
             },
             {
               "condition": "harvestfestival:obtained",
-              "item": "harvestfestival:hammer",
-              "meta": 6
+              "item": "harvestfestival:hammer_mythic"
             },
             {
               "condition": "harvestfestival:obtained",
-              "item": "harvestfestival:wateringcan",
-              "meta": 6
+              "item": "harvestfestival:wateringcan_mythic"
             },
             {
               "condition": "harvestfestival:obtained",
-              "item": "harvestfestival:sickle",
-              "meta": 6
+              "item": "harvestfestival:sickle_mythic"
             },
             {
               "condition": "harvestfestival:obtained",
-              "item": "harvestfestival:fishing_rod",
-              "meta": 6
+              "item": "harvestfestival:fishing_rod_mythic"
             }
           ]
         },
@@ -409,33 +385,27 @@
             },
             {
               "condition": "harvestfestival:obtained",
-              "item": "harvestfestival:hoe",
-              "meta": 6
+              "item": "harvestfestival:hoe_mythic"
             },
             {
               "condition": "harvestfestival:obtained",
-              "item": "harvestfestival:axe",
-              "meta": 6
+              "item": "harvestfestival:axe_mythic"
             },
             {
               "condition": "harvestfestival:obtained",
-              "item": "harvestfestival:hammer",
-              "meta": 6
+              "item": "harvestfestival:hammer_mythic"
             },
             {
               "condition": "harvestfestival:obtained",
-              "item": "harvestfestival:wateringcan",
-              "meta": 6
+              "item": "harvestfestival:wateringcan_mythic"
             },
             {
               "condition": "harvestfestival:obtained",
-              "item": "harvestfestival:sickle",
-              "meta": 6
+              "item": "harvestfestival:sickle_mythic"
             },
             {
               "condition": "harvestfestival:obtained",
-              "item": "harvestfestival:fishing_rod",
-              "meta": 6
+              "item": "harvestfestival:fishing_rod_mythic"
             }
           ]
         },
@@ -469,33 +439,27 @@
             },
             {
               "condition": "harvestfestival:obtained",
-              "item": "harvestfestival:hoe",
-              "meta": 6
+              "item": "harvestfestival:hoe_mythic"
             },
             {
               "condition": "harvestfestival:obtained",
-              "item": "harvestfestival:axe",
-              "meta": 6
+              "item": "harvestfestival:axe_mythic"
             },
             {
               "condition": "harvestfestival:obtained",
-              "item": "harvestfestival:hammer",
-              "meta": 6
+              "item": "harvestfestival:hammer_mythic"
             },
             {
               "condition": "harvestfestival:obtained",
-              "item": "harvestfestival:wateringcan",
-              "meta": 6
+              "item": "harvestfestival:wateringcan_mythic"
             },
             {
               "condition": "harvestfestival:obtained",
-              "item": "harvestfestival:sickle",
-              "meta": 6
+              "item": "harvestfestival:sickle_mythic"
             },
             {
               "condition": "harvestfestival:obtained",
-              "item": "harvestfestival:fishing_rod",
-              "meta": 6
+              "item": "harvestfestival:fishing_rod_mythic"
             }
           ]
         },
@@ -524,46 +488,36 @@
             },
             {
               "condition": "harvestfestival:obtained",
-              "item": "harvestfestival:hoe",
-              "meta": 6
+              "item": "harvestfestival:hoe_mythic"
             },
             {
               "condition": "harvestfestival:obtained",
-              "item": "harvestfestival:axe",
-              "meta": 6
+              "item": "harvestfestival:axe_mythic"
             },
             {
               "condition": "harvestfestival:obtained",
-              "item": "harvestfestival:hammer",
-              "meta": 6
+              "item": "harvestfestival:hammer_mythic"
             },
             {
               "condition": "harvestfestival:obtained",
-              "item": "harvestfestival:wateringcan",
-              "meta": 6
+              "item": "harvestfestival:wateringcan_mythic"
             },
             {
               "condition": "harvestfestival:obtained",
-              "item": "harvestfestival:sickle",
-              "meta": 6
+              "item": "harvestfestival:sickle_mythic"
             },
             {
               "condition": "harvestfestival:obtained",
-              "item": "harvestfestival:fishing_rod",
-              "meta": 6
+              "item": "harvestfestival:fishing_rod_mythic"
             }
           ]
         },
         {
           "type": "item",
-          "name": "harvestfestival:hoe",
+          "name": "harvestfestival:hoe_cursed",
           "entryName": "cursed_hoe",
           "weight": 1,
           "functions": [
-            {
-              "function": "set_data",
-              "data": 5
-            },
             {
               "function": "set_count",
               "count": {
@@ -583,46 +537,36 @@
             },
             {
               "condition": "harvestfestival:obtained",
-              "item": "harvestfestival:hoe",
-              "meta": 4
+              "item": "harvestfestival:hoe_mystril"
             },
             {
               "condition": "harvestfestival:obtained",
-              "item": "harvestfestival:axe",
-              "meta": 4
+              "item": "harvestfestival:axe_mystril"
             },
             {
               "condition": "harvestfestival:obtained",
-              "item": "harvestfestival:hammer",
-              "meta": 4
+              "item": "harvestfestival:hammer_mystril"
             },
             {
               "condition": "harvestfestival:obtained",
-              "item": "harvestfestival:wateringcan",
-              "meta": 4
+              "item": "harvestfestival:wateringcan_mystril"
             },
             {
               "condition": "harvestfestival:obtained",
-              "item": "harvestfestival:sickle",
-              "meta": 4
+              "item": "harvestfestival:sickle_mystril"
             },
             {
               "condition": "harvestfestival:obtained",
-              "item": "harvestfestival:fishing_rod",
-              "meta": 4
+              "item": "harvestfestival:fishing_rod_mystril"
             }
           ]
         },
         {
           "type": "item",
-          "name": "harvestfestival:axe",
+          "name": "harvestfestival:axe_cursed",
           "entryName": "cursed_axe",
           "weight": 1,
           "functions": [
-            {
-              "function": "set_data",
-              "data": 5
-            },
             {
               "function": "set_count",
               "count": {
@@ -642,46 +586,36 @@
             },
             {
               "condition": "harvestfestival:obtained",
-              "item": "harvestfestival:hoe",
-              "meta": 4
+              "item": "harvestfestival:hoe_mystril"
             },
             {
               "condition": "harvestfestival:obtained",
-              "item": "harvestfestival:axe",
-              "meta": 4
+              "item": "harvestfestival:axe_mystril"
             },
             {
               "condition": "harvestfestival:obtained",
-              "item": "harvestfestival:hammer",
-              "meta": 4
+              "item": "harvestfestival:hammer_mystril"
             },
             {
               "condition": "harvestfestival:obtained",
-              "item": "harvestfestival:wateringcan",
-              "meta": 4
+              "item": "harvestfestival:wateringcan_mystril"
             },
             {
               "condition": "harvestfestival:obtained",
-              "item": "harvestfestival:sickle",
-              "meta": 4
+              "item": "harvestfestival:sickle_mystril"
             },
             {
               "condition": "harvestfestival:obtained",
-              "item": "harvestfestival:fishing_rod",
-              "meta": 4
+              "item": "harvestfestival:fishing_rod_mystril"
             }
           ]
         },
         {
           "type": "item",
-          "name": "harvestfestival:hammer",
+          "name": "harvestfestival:hammer_cursed",
           "entryName": "cursed_hammer",
           "weight": 1,
           "functions": [
-            {
-              "function": "set_data",
-              "data": 5
-            },
             {
               "function": "set_count",
               "count": {
@@ -701,46 +635,36 @@
             },
             {
               "condition": "harvestfestival:obtained",
-              "item": "harvestfestival:hoe",
-              "meta": 4
+              "item": "harvestfestival:hoe_mystril"
             },
             {
               "condition": "harvestfestival:obtained",
-              "item": "harvestfestival:axe",
-              "meta": 4
+              "item": "harvestfestival:axe_mystril"
             },
             {
               "condition": "harvestfestival:obtained",
-              "item": "harvestfestival:hammer",
-              "meta": 4
+              "item": "harvestfestival:hammer_mystril"
             },
             {
               "condition": "harvestfestival:obtained",
-              "item": "harvestfestival:wateringcan",
-              "meta": 4
+              "item": "harvestfestival:wateringcan_mystril"
             },
             {
               "condition": "harvestfestival:obtained",
-              "item": "harvestfestival:sickle",
-              "meta": 4
+              "item": "harvestfestival:sickle_mystril"
             },
             {
               "condition": "harvestfestival:obtained",
-              "item": "harvestfestival:fishing_rod",
-              "meta": 4
+              "item": "harvestfestival:fishing_rod_mystril"
             }
           ]
         },
         {
           "type": "item",
-          "name": "harvestfestival:wateringcan",
+          "name": "harvestfestival:wateringcan_cursed",
           "entryName": "cursed_wateringcan",
           "weight": 1,
           "functions": [
-            {
-              "function": "set_data",
-              "data": 5
-            },
             {
               "function": "set_count",
               "count": {
@@ -760,46 +684,36 @@
             },
             {
               "condition": "harvestfestival:obtained",
-              "item": "harvestfestival:hoe",
-              "meta": 4
+              "item": "harvestfestival:hoe_mystril"
             },
             {
               "condition": "harvestfestival:obtained",
-              "item": "harvestfestival:axe",
-              "meta": 4
+              "item": "harvestfestival:axe_mystril"
             },
             {
               "condition": "harvestfestival:obtained",
-              "item": "harvestfestival:hammer",
-              "meta": 4
+              "item": "harvestfestival:hammer_mystril"
             },
             {
               "condition": "harvestfestival:obtained",
-              "item": "harvestfestival:wateringcan",
-              "meta": 4
+              "item": "harvestfestival:wateringcan_mystril"
             },
             {
               "condition": "harvestfestival:obtained",
-              "item": "harvestfestival:sickle",
-              "meta": 4
+              "item": "harvestfestival:sickle_mystril"
             },
             {
               "condition": "harvestfestival:obtained",
-              "item": "harvestfestival:fishing_rod",
-              "meta": 4
+              "item": "harvestfestival:fishing_rod_mystril"
             }
           ]
         },
         {
           "type": "item",
-          "name": "harvestfestival:sickle",
+          "name": "harvestfestival:sickle_cursed",
           "entryName": "cursed_sickle",
           "weight": 1,
           "functions": [
-            {
-              "function": "set_data",
-              "data": 5
-            },
             {
               "function": "set_count",
               "count": {
@@ -819,46 +733,36 @@
             },
             {
               "condition": "harvestfestival:obtained",
-              "item": "harvestfestival:hoe",
-              "meta": 4
+              "item": "harvestfestival:hoe_mystril"
             },
             {
               "condition": "harvestfestival:obtained",
-              "item": "harvestfestival:axe",
-              "meta": 4
+              "item": "harvestfestival:axe_mystril"
             },
             {
               "condition": "harvestfestival:obtained",
-              "item": "harvestfestival:hammer",
-              "meta": 4
+              "item": "harvestfestival:hammer_mystril"
             },
             {
               "condition": "harvestfestival:obtained",
-              "item": "harvestfestival:wateringcan",
-              "meta": 4
+              "item": "harvestfestival:wateringcan_mystril"
             },
             {
               "condition": "harvestfestival:obtained",
-              "item": "harvestfestival:sickle",
-              "meta": 4
+              "item": "harvestfestival:sickle_mystril"
             },
             {
               "condition": "harvestfestival:obtained",
-              "item": "harvestfestival:fishing_rod",
-              "meta": 4
+              "item": "harvestfestival:fishing_rod_mystril"
             }
           ]
         },
         {
           "type": "item",
-          "name": "harvestfestival:fishing_rod",
+          "name": "harvestfestival:fishing_rod_cursed",
           "entryName": "cursed_fishing_rod",
           "weight": 1,
           "functions": [
-            {
-              "function": "set_data",
-              "data": 5
-            },
             {
               "function": "set_count",
               "count": {
@@ -878,33 +782,27 @@
             },
             {
               "condition": "harvestfestival:obtained",
-              "item": "harvestfestival:hoe",
-              "meta": 4
+              "item": "harvestfestival:hoe_mystril"
             },
             {
               "condition": "harvestfestival:obtained",
-              "item": "harvestfestival:axe",
-              "meta": 4
+              "item": "harvestfestival:axe_mystril"
             },
             {
               "condition": "harvestfestival:obtained",
-              "item": "harvestfestival:hammer",
-              "meta": 4
+              "item": "harvestfestival:hammer_mystril"
             },
             {
               "condition": "harvestfestival:obtained",
-              "item": "harvestfestival:wateringcan",
-              "meta": 4
+              "item": "harvestfestival:wateringcan_mystril"
             },
             {
               "condition": "harvestfestival:obtained",
-              "item": "harvestfestival:sickle",
-              "meta": 4
+              "item": "harvestfestival:sickle_mystril"
             },
             {
               "condition": "harvestfestival:obtained",
-              "item": "harvestfestival:fishing_rod",
-              "meta": 4
+              "item": "harvestfestival:fishing_rod_mystril"
             }
           ]
         }

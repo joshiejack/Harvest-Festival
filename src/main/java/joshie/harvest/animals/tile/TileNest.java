@@ -13,7 +13,7 @@ import static joshie.harvest.core.helpers.MCServerHelper.markTileForUpdate;
 public class TileNest extends TileHarvest {
     private int relationship;
     @Nonnull
-    private ItemStack drop;
+    private ItemStack drop = ItemStack.EMPTY;
     private Size size;
 
     public void setDrop(int mother, @Nonnull ItemStack stack) {

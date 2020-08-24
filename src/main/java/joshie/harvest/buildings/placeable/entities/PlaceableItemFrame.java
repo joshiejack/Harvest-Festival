@@ -21,7 +21,7 @@ public class PlaceableItemFrame extends PlaceableHanging {
     private ResourceLocation chestType;
     @Expose
     @Nonnull
-    private ItemStack stack;
+    private ItemStack stack = ItemStack.EMPTY;
     @Expose
     private int rotation;
 

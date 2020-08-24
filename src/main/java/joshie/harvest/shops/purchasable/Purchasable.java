@@ -24,7 +24,7 @@ import static joshie.harvest.core.helpers.InventoryHelper.ITEM_STACK;
 public class Purchasable implements IPurchasable {
     protected String resource;
     @Nonnull
-    protected ItemStack stack;
+    protected ItemStack stack = ItemStack.EMPTY;
     protected long cost;
     private String tooltip;
     private int stock;

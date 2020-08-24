@@ -48,6 +48,16 @@ public interface ITiered {
             return maxDamage;
         }
 
+        public ToolTier getNext() {
+            int next = level + 1;
+            for (ToolTier tier : values()) {
+                if (tier.level == next) {
+                    return tier;
+                }
+            }
+            return this;
+        }
+
         public boolean isGreaterThanOrEqualTo(ToolTier tier) {
             return this.ordinal() >= tier.ordinal() || ((tier == CURSED || tier == BLESSED) && (this == CURSED || this == BLESSED));
         }

@@ -12,10 +12,14 @@ import joshie.harvest.calendar.CalendarHelper;
 import joshie.harvest.core.HFTrackers;
 import joshie.harvest.core.base.item.ItemTool;
 import joshie.harvest.core.helpers.InventoryHelper;
+import joshie.harvest.fishing.HFFishing;
+import joshie.harvest.fishing.item.ItemFishingRod;
 import joshie.harvest.mining.HFMining;
 import joshie.harvest.mining.item.ItemMaterial.Material;
 import joshie.harvest.npcs.HFNPCs;
 import joshie.harvest.quests.base.QuestTrade;
+import joshie.harvest.tools.HFTools;
+import joshie.harvest.tools.item.*;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
@@ -209,8 +213,7 @@ public class QuestBlacksmithing extends QuestTrade {
                 if (InventoryHelper.takeItemsInInventory(player, ITEM_STACK, material)) {
                     date = HFApi.calendar.getDate(player.world).copy();
                     tool = player.getHeldItemMainhand().copy();
-                    tool.getOrCreateSubCompound("Data").setInteger("Damage", 0);
-                    tool.getOrCreateSubCompound("Data").setDouble("Level", tool.getOrCreateSubCompound("Data").getDouble("Level"));
+                    tool.setItemDamage(0);
                     days = today.getWeekday() == Weekday.WEDNESDAY ? 2: 1; //Takes 1 day to repair
                     increaseStage(player);
                     rewardGold(player, -required);
@@ -229,8 +232,8 @@ public class QuestBlacksmithing extends QuestTrade {
                 if(InventoryHelper.takeItemsInInventory(player, ITEM_STACK, new ItemStack(HFMining.MATERIALS, 1, getMaterial(holding)), getRequired(holding))) {
                     date = HFApi.calendar.getDate(player.world).copy();
                     tool = player.getHeldItemMainhand().copy();
-                    tool.setTagCompound(null);
-                    tool.setItemDamage(tool.getItemDamage() + 1);
+                    ItemTool itemTool = getNextTierTool(tool, (ItemTool) tool.getItem());
+                    tool = itemTool == null ? tool : new ItemStack(itemTool);
                     days = today.getWeekday() == Weekday.TUESDAY || today.getWeekday() == Weekday.WEDNESDAY ? 4: 3; //Takes three days
                     increaseStage(player);
                     rewardGold(player, -required);
@@ -307,6 +310,24 @@ public class QuestBlacksmithing extends QuestTrade {
                 ToolTier tier = tool.getTier(held);
                 return getRequired(tier) > 0 ? tier : null;
             }
+        }
+
+        return null;
+    }
+
+    private ItemTool getNextTierTool(@Nonnull ItemStack stack, @Nonnull ItemTool itemTool) {
+        if (itemTool instanceof ItemHammer) {
+            return HFTools.HAMMERS.get(itemTool.getTier(stack).getNext());
+        } else if (itemTool instanceof ItemAxe) {
+            return HFTools.AXES.get(itemTool.getTier(stack).getNext());
+        } else if (itemTool instanceof ItemSickle) {
+            return HFTools.SICKLES.get(itemTool.getTier(stack).getNext());
+        } else if (itemTool instanceof ItemHoe) {
+            return HFTools.HOES.get(itemTool.getTier(stack).getNext());
+        } else if (itemTool instanceof ItemWateringCan) {
+            return HFTools.WATERING_CANS.get(itemTool.getTier(stack).getNext());
+        } else if (itemTool instanceof ItemFishingRod) {
+            return HFFishing.FISHING_RODS.get(itemTool.getTier(stack).getNext());
         }
 
         return null;

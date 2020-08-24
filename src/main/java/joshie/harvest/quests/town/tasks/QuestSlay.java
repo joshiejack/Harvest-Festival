@@ -63,11 +63,7 @@ public class QuestSlay extends QuestDaily {
 
     @Nullable
     private EntityPlayer getPlayerFromSource(DamageSource damage) {
-        Entity source = damage.getSourceOfDamage();
-        if (!(source instanceof EntityPlayer)) {
-            source = damage.getEntity();
-        }
-
+        Entity source = damage.getTrueSource();
         return source instanceof EntityPlayer ? (EntityPlayer) source : null;
     }
 

@@ -35,7 +35,7 @@ public class TrackingRenderer {
         mc.getTextureManager().bindTexture(HFModInfo.ELEMENTS);
         mc.ingameGUI.drawTexturedModalRect(x + 30, y - 16, 244, 0, 12, 12);
         String text = NumberFormat.getNumberInstance(Locale.ENGLISH).format(stack.getSellValue());
-        mc.fontRendererObj.drawStringWithShadow(text, x + 44, y - 13, 0xFFFFFFFF);
+        mc.fontRenderer.drawStringWithShadow(text, x + 44, y - 13, 0xFFFFFFFF);
     }
 
     private boolean hasFinishedOrUpdateTickerUp() {

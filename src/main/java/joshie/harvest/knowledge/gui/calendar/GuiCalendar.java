@@ -135,7 +135,7 @@ public class GuiCalendar extends GuiBase {
         }
 
         drawTexturedModalRect(guiLeft + 10, guiTop + 18 + 30 * rows, 8, 52, 210, 2);
-        drawCenteredString(fontRendererObj, season.getDisplayName() + TextFormatting.RESET + " - Year " + (year + 1), guiLeft + 113, guiTop - 10, 0xFFFFFF);
+        drawCenteredString(fontRenderer, season.getDisplayName() + TextFormatting.RESET + " - Year " + (year + 1), guiLeft + 113, guiTop - 10, 0xFFFFFF);
     }
 
     @Override

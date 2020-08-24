@@ -37,7 +37,7 @@ public class BookPage<G extends GuiBaseBook> {
     }
 
     protected GuiLabel createLabel(String title, int id, int x, int y, int width, int height) {
-        GuiLabel label = new GuiLabel(gui.mc.fontRendererObj, id, x, y, width, height, 0xFFFFFFFF);
+        GuiLabel label = new GuiLabel(gui.mc.fontRenderer, id, x, y, width, height, 0xFFFFFFFF);
         label.addLine(title);
         label.setCentered();
         return label;
@@ -52,7 +52,7 @@ public class BookPage<G extends GuiBaseBook> {
 
     public void initGui(G gui, List<GuiButton> buttonList, List<GuiLabel> labelList) {
         this.gui = gui;
-        this.fontRenderer = gui.mc.fontRendererObj;
+        this.fontRenderer = gui.mc.fontRenderer;
     }
 
     public void drawScreen(int x, int y) {

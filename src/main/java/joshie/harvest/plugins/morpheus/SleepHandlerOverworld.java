@@ -14,7 +14,7 @@ public class SleepHandlerOverworld implements INewDayHandler {
     @Override
     public void startNewDay() {
         MinecraftServer server = FMLCommonHandler.instance().getMinecraftServerInstance();
-        long i = server.worldServerForDimension(0).getWorldTime() + TICKS_PER_DAY;
+        long i = server.getWorld(0).getWorldTime() + TICKS_PER_DAY;
         for (int j = 0; j < server.worlds.length; ++j) {
             WorldServer world = server.worlds[j];
             world.setWorldTime((i - i % TICKS_PER_DAY) - 1);

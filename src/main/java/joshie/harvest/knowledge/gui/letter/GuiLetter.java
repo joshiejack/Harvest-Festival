@@ -28,6 +28,6 @@ public class GuiLetter extends GuiBase {
 
     @Override
     public void drawForeground(int x, int y) {
-        letter.renderLetter(this, this.fontRendererObj, x, y);
+        letter.renderLetter(this, this.fontRenderer, x, y);
     }
 }

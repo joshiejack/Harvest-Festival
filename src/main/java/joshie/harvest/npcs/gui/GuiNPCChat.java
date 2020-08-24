@@ -50,7 +50,7 @@ public class GuiNPCChat extends GuiNPCBase {
     }
 
     private boolean buildScript() {
-        List<String> formatted = fontRendererObj.listFormattedStringToWidth(format(getScript()), 171);
+        List<String> formatted = fontRenderer.listFormattedStringToWidth(format(getScript()), 171);
         String[] original = formatted.toArray(new String[formatted.size()]);
         int size = original.length / MAX_LINES_PER_PAGE;
         boolean isRemainder = original.length % MAX_LINES_PER_PAGE == 0;
@@ -92,7 +92,7 @@ public class GuiNPCChat extends GuiNPCBase {
         for (int i = 0; i < line; i++) {
             String text = script[page][i];
             if (text != null) {
-                fontRendererObj.drawString(TextFormatting.BOLD + text, 20, 157 + (i * 10), 0xFFFFFF);
+                fontRenderer.drawString(TextFormatting.BOLD + text, 20, 157 + (i * 10), 0xFFFFFF);
             }
         }
 
@@ -120,7 +120,7 @@ public class GuiNPCChat extends GuiNPCBase {
                 }
 
                 //Draw the characters as we go.
-                fontRendererObj.drawString(TextFormatting.BOLD + new String(fordisplay), 20, 157 + (line * 10), 0xFFFFFF);
+                fontRenderer.drawString(TextFormatting.BOLD + new String(fordisplay), 20, 157 + (line * 10), 0xFFFFFF);
 
                 //Now if we have completed the entire array, let's reset the position and increase the line
                 if (fordisplay.length >= todisplay.length) {

@@ -540,7 +540,7 @@ public class MiningChunk implements IChunkGenerator {
 
     @Override
     @Nonnull
-    public Chunk provideChunk(int x, int z) {
+    public Chunk generateChunk(int x, int z) {
         rand.setSeed((long) x * 341873128712L + (long) z * 132897987541L);
         ChunkPrimer chunkprimer = new ChunkPrimer();
         biomesForGeneration = this.world.getBiomeProvider().getBiomes(biomesForGeneration, x * 16, z * 16, 16, 16);
@@ -571,12 +571,11 @@ public class MiningChunk implements IChunkGenerator {
         return type == EnumCreatureType.MONSTER ? MONSTERS: world.getBiome(pos).getSpawnableList(type);
     }
 
-    @Nullable
-    @Override
-    public BlockPos getStrongholdGen(@Nonnull World worldIn, @Nonnull String structureName, @Nonnull BlockPos position, boolean p_180513_4_) {
-        return null;
-    }
-
     @Override
     public void recreateStructures(@Nonnull Chunk chunkIn, int x, int z) {}
+
+    @Override
+    public BlockPos getNearestStructurePos(World worldIn, String structureName, BlockPos position, boolean findUnexplored) {
+        return null;
+    }
 }

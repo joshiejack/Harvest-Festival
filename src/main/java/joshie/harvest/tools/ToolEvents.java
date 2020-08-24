@@ -113,7 +113,7 @@ public class ToolEvents {
 
     @SubscribeEvent
     public void onItemPickup(ItemPickupEvent event) {
-        ItemStack stack = event.pickedUp.getEntityItem();
+        ItemStack stack = event.pickedUp.getItem();
         if (stack.getItem() instanceof ItemTool) {
             HFTrackers.getPlayerTrackerFromPlayer(event.player).getTracking().addAsObtained(stack);
         }

@@ -15,7 +15,7 @@ public abstract class FloorCondition implements LootCondition {
     public boolean testCondition(@Nonnull Random rand, @Nonnull LootContext context) {
         if (context.getKillerPlayer() instanceof EntityPlayer) {
             EntityPlayer player = (EntityPlayer) context.getKillerPlayer();
-            return testFloor(MiningHelper.getFloor(player.world.getChunkFromBlockCoords(new BlockPos(player)).xPosition, (int) player.posY));
+            return testFloor(MiningHelper.getFloor(player.world.getChunkFromBlockCoords(new BlockPos(player)).x, (int) player.posY));
         }
 
         return false;

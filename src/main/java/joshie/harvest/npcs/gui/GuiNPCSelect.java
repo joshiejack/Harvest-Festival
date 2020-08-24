@@ -72,7 +72,7 @@ public class GuiNPCSelect extends GuiNPCBase {
     public void drawOverlay(int x, int y) {
         if (text != null) {
             for (int i = 0; i < text.length; i++) {
-                fontRendererObj.drawString(TextFormatting.BOLD + text[i], 22, 156 + (i * 10), 0xFFFFFF);
+                fontRenderer.drawString(TextFormatting.BOLD + text[i], 22, 156 + (i * 10), 0xFFFFFF);
             }
 
             GlStateManager.color(1F, 1F, 1F);

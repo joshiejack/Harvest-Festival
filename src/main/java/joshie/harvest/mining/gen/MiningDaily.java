@@ -44,7 +44,7 @@ public class MiningDaily {
         //Add new ores
         Season season = HFApi.calendar.getDate(world).getSeason();
         for (int loopY = 0; loopY < MAX_LOOP; loopY += MiningHelper.FLOOR_HEIGHT) {
-            int floor = MiningHelper.getFloor(chunk.xPosition, loopY);
+            int floor = MiningHelper.getFloor(chunk.x, loopY);
             int oreChance = MiningHelper.getOreChance(season, floor, world.rand);
             int y = loopY + 1;
             for (int x = 0; x < 16; x++) {
@@ -70,7 +70,7 @@ public class MiningDaily {
     public void onChunkLoad(ChunkDataEvent.Load event) {
         if (event.getWorld().provider.getDimension() == HFMining.MINING_ID) {
             NBTTagCompound tag = NBTHelper.getLastTickData(event.getData());
-            long chunk = ChunkPos.asLong(event.getChunk().xPosition, event.getChunk().zPosition);
+            long chunk = ChunkPos.asLong(event.getChunk().x, event.getChunk().z);
             if (tag.hasKey("" + chunk)) {
                 int days = CalendarHelper.getElapsedDays(event.getWorld().getWorldTime());
                 int lastDay = tag.getInteger("" + chunk);
@@ -85,7 +85,7 @@ public class MiningDaily {
     public void onChunkSave(ChunkDataEvent.Save event) {
         if (event.getWorld().provider.getDimension() == HFMining.MINING_ID) {
             NBTTagCompound tag = NBTHelper.getLastTickData(event.getData());
-            long chunk = ChunkPos.asLong(event.getChunk().xPosition, event.getChunk().zPosition);
+            long chunk = ChunkPos.asLong(event.getChunk().x, event.getChunk().z);
             int days = CalendarHelper.getElapsedDays(event.getWorld().getWorldTime());
             tag.setInteger("" + chunk, days);
         }

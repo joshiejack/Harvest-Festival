@@ -67,9 +67,9 @@ public abstract class NoteRender {
      * @param x     x position
      * @param y     y position*/
     protected void drawString(String string, int x, int y) {
-        boolean flag = mc.fontRendererObj.getUnicodeFlag();
-        mc.fontRendererObj.setUnicodeFlag(true);
-        mc.fontRendererObj.drawString(TextFormatting.BOLD + string, guiLeft + x, guiTop + y, 0x857754);
-        mc.fontRendererObj.setUnicodeFlag(flag);
+        boolean flag = mc.fontRenderer.getUnicodeFlag();
+        mc.fontRenderer.setUnicodeFlag(true);
+        mc.fontRenderer.drawString(TextFormatting.BOLD + string, guiLeft + x, guiTop + y, 0x857754);
+        mc.fontRenderer.setUnicodeFlag(flag);
     }
 }

@@ -36,7 +36,7 @@ public class EntityAIPathing extends EntityAIBase {
     }
 
     @Override
-    public boolean continueExecuting() {
+    public boolean shouldContinueExecuting() {
         return getPath() != null && target != null;
     }
 

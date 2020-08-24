@@ -47,7 +47,7 @@ public class ButtonShipped extends ButtonBook<GuiStats> {
     public void drawButton(@Nonnull Minecraft mc, int mouseX, int mouseY) {
         if (visible) {
             GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-            hovered = mouseX >= xPosition && mouseY >= yPosition && mouseX < xPosition + width && mouseY < yPosition + height;
+            hovered = mouseX >= x && mouseY >= y && mouseX < x + width && mouseY < y + height;
             mouseDragged(mc, mouseX, mouseY);
             drawForeground();
             GlStateManager.color(1.0F, 1.0F, 1.0F);
@@ -76,8 +76,8 @@ public class ButtonShipped extends ButtonBook<GuiStats> {
         if (stack.isEmpty() || hoverTimer %100 == 0) updateStack();
         hoverTimer++;
         if (!obtained) {
-            StackRenderHelper.drawGreyStack(stack, xPosition, yPosition, 1F);
-        } else StackRenderHelper.drawStack(stack, xPosition, yPosition, 1F);
+            StackRenderHelper.drawGreyStack(stack, x, y, 1F);
+        } else StackRenderHelper.drawStack(stack, x, y, 1F);
     }
 
     @Override

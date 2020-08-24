@@ -220,7 +220,7 @@ public class BlockStorage extends BlockHFEnumRotatableTile<BlockStorage, Storage
             EntityItem item = ((EntityItem)entity);
             UUID uuid = getPlayer(item, world, pos);
             if (uuid != null) {
-                ItemStack stack = item.getEntityItem();
+                ItemStack stack = item.getItem();
                 long sell = shipping.getSellValue(stack);
                 if (sell > 0) {
                     HFTrackers.<PlayerTrackerServer>getPlayerTracker(world, uuid).getTracking().addForShipping(StackHelper.toStack(stack, 1));

@@ -42,7 +42,7 @@ public class BasketHandler {
 
     @SubscribeEvent //TODO: Check that picking up partial items
     public void onItemPickup(EntityItemPickupEvent event) {
-        ItemStack stack = event.getItem().getEntityItem();
+        ItemStack stack = event.getItem().getItem();
         if (HFApi.shipping.getSellValue(stack) > 0) {
             NonNullList<ItemStack> list = NonNullList.withSize(1, stack);
             if (EntityBasket.findBasketAndShip(event.getEntityPlayer(), list)) {

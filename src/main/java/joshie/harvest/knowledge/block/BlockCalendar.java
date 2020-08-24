@@ -50,7 +50,7 @@ public class BlockCalendar extends BlockHFBase<BlockCalendar> {
     }
 
     @Override
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
         if (!player.isSneaking()) {
             player.openGui(HarvestFestival.instance, GuiHandler.CALENDAR_GUI, world, 0, 0, 0);
             return true;
@@ -81,9 +81,7 @@ public class BlockCalendar extends BlockHFBase<BlockCalendar> {
     }
 
     @Override
-    @Nullable
-    @SuppressWarnings("deprecation")
-    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, World world, BlockPos pos) {
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos) {
         return NULL_AABB;
     }
 
@@ -106,14 +104,14 @@ public class BlockCalendar extends BlockHFBase<BlockCalendar> {
 
     @Override
     @SuppressWarnings("deprecation")
-    public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block) {
+    public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block, BlockPos changedBlockPos) {
         EnumFacing facing = state.getValue(FACING);
 
         if (!world.getBlockState(pos.offset(facing.getOpposite())).getMaterial().isSolid()) {
             this.dropBlockAsItem(world, pos, state, 0);
             world.setBlockToAir(pos);
         }
-        super.neighborChanged(state, world, pos, block);
+        super.neighborChanged(state, world, pos, block, changedBlockPos);
     }
 
     @Override
@@ -153,7 +151,7 @@ public class BlockCalendar extends BlockHFBase<BlockCalendar> {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list) { }
+    public void getSubBlocks(Item itemIn, CreativeTabs tab, NonNullList<ItemStack> list) {}
 
     @Override
     @Nonnull

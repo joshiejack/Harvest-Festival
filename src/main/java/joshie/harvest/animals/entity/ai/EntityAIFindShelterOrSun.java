@@ -36,9 +36,9 @@ public class EntityAIFindShelterOrSun extends EntityAIBase {
             if (vec3d == null) {
                 return false;
             } else {
-                shelterX = vec3d.xCoord;
-                shelterY = vec3d.yCoord;
-                shelterZ = vec3d.zCoord;
+                shelterX = vec3d.x;
+                shelterY = vec3d.y;
+                shelterZ = vec3d.z;
                 return true;
             }
         }
@@ -47,16 +47,16 @@ public class EntityAIFindShelterOrSun extends EntityAIBase {
             if (vec3d == null) {
                 return false;
             } else {
-                shelterX = vec3d.xCoord;
-                shelterY = vec3d.yCoord;
-                shelterZ = vec3d.zCoord;
+                shelterX = vec3d.x;
+                shelterY = vec3d.y;
+                shelterZ = vec3d.z;
                 return true;
             }
         } else return false;
     }
 
     @Override
-    public boolean continueExecuting() {
+    public boolean shouldContinueExecuting() {
         return !theCreature.getNavigator().noPath();
     }
 

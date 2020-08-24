@@ -31,8 +31,8 @@ public class EntityAILayEgg extends EntityAIAnimal {
     }
 
     @Override
-    public boolean continueExecuting() {
-        return currentTask >= 0 && super.continueExecuting();
+    public boolean shouldContinueExecuting() {
+        return currentTask >= 0 && super.shouldContinueExecuting();
     }
 
     @Override

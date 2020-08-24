@@ -75,7 +75,7 @@ public class SnowLoader extends DailyTickableBlock {
                     ExtendedBlockStorage extendedblockstorage = array[y >> 4];
                     if (extendedblockstorage != NULL_BLOCK_STORAGE) {
                         if (extendedblockstorage.get(x, y & 15, z).getBlock() == SNOW_LAYER || extendedblockstorage.get(x, y & 15, z).getBlock() == Blocks.ICE) {
-                            BlockPos pos = new BlockPos((chunk.xPosition * 16) + x, y, (chunk.zPosition * 16) + z);
+                            BlockPos pos = new BlockPos((chunk.x * 16) + x, y, (chunk.z * 16) + z);
                             if (!chunk.getBiome(pos, world.provider.getBiomeProvider()).isSnowyBiome()) {
                                 HFApi.tickable.addTickable(world, pos, this);
                             }

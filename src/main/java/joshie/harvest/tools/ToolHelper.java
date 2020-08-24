@@ -178,7 +178,7 @@ public class ToolHelper {
         try {
             Method method = ReflectionHelper.findMethod(Block.class, null, new String[] { "createStackedBlock", "func_180643_i" } , IBlockState.class);
             stack = (ItemStack) method.invoke(state.getBlock(), state);
-        } catch (IllegalAccessException | InvocationTargetException ignored) {
+        } catch (IllegalAccessException | InvocationTargetException | ReflectionHelper.UnableToFindMethodException ignored) {
         }
         return stack;
     }

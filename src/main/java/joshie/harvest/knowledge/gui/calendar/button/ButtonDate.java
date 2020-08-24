@@ -38,7 +38,7 @@ public class ButtonDate extends GuiButton {
     public void drawButton(@Nonnull Minecraft mc, int mouseX, int mouseY) {
         if (visible) {
             GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-            hovered = mouseX >= xPosition && mouseY >= yPosition && mouseX < xPosition + width && mouseY < yPosition + height;
+            hovered = mouseX >= x && mouseY >= y && mouseX < x + width && mouseY < y + height;
             GlStateManager.enableBlend();
             GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
             GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
@@ -46,14 +46,14 @@ public class ButtonDate extends GuiButton {
             //If it's the same date, draw the highlight
             mc.getTextureManager().bindTexture(GuiCalendar.CALENDAR_TEXTURE);
             if (highlighted) {
-                drawTexturedModalRect(xPosition - 2, yPosition - 2, 10, 54, 26, 26);
+                drawTexturedModalRect(x - 2, y - 2, 10, 54, 26, 26);
             }
 
-            boolean prev = mc.fontRendererObj.getUnicodeFlag();
-            mc.fontRendererObj.setUnicodeFlag(true);
-            gui.drawString(mc.fontRendererObj, TextFormatting.BOLD + "" + (id + 1), xPosition + 2, yPosition, 0xFFFFFF);
+            boolean prev = mc.fontRenderer.getUnicodeFlag();
+            mc.fontRenderer.setUnicodeFlag(true);
+            gui.drawString(mc.fontRenderer, TextFormatting.BOLD + "" + (id + 1), x + 2, y, 0xFFFFFF);
 
-            mc.fontRendererObj.setUnicodeFlag(prev);
+            mc.fontRenderer.setUnicodeFlag(prev);
             mouseDragged(mc, mouseX, mouseY);
             icons.render(gui, mouseX, mouseY);
             if (DAYS_PER_SEASON != 30 && hovered) {

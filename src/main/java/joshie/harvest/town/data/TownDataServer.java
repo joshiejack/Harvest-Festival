@@ -204,7 +204,7 @@ public class TownDataServer extends TownData<QuestDataServer, LetterDataServer> 
             for (Entry<ResourceLocation, BlockPos> entry : deadVillagers.entrySet()) {
                 NPC npc = NPC.REGISTRY.get(entry.getKey());
                 if (npc == HFNPCs.MINER) {
-                    WorldServer server = FMLCommonHandler.instance().getMinecraftServerInstance().worldServerForDimension(MINING_ID);
+                    WorldServer server = FMLCommonHandler.instance().getMinecraftServerInstance().getWorld(MINING_ID);
                     EntityNPCMiner entity = NPCHelper.getEntityForNPC(server, HFNPCs.MINER);
                     int id = HFTrackers.getTowns(entity.world).getMineIDFromCoordinates(getTownCentre());
                     MiningProvider provider = ((MiningProvider) server.provider);

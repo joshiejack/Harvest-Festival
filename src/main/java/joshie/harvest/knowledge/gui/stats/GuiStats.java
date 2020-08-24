@@ -36,7 +36,7 @@ public class GuiStats extends GuiBaseBook {
             @Override
             public void drawIcon() {
                 gui.mc.getTextureManager().bindTexture(HFModInfo.ICONS);
-                gui.drawTexturedModalRect(xStack, yPosition + 8, 0, 16, 16, 16);
+                gui.drawTexturedModalRect(xStack, y + 8, 0, 16, 16, 16);
             }
         });
 
@@ -47,7 +47,7 @@ public class GuiStats extends GuiBaseBook {
             @Override
             public void drawIcon() {
                 gui.mc.getTextureManager().bindTexture(HFModInfo.ICONS);
-                gui.drawTexturedModalRect(xStack, yPosition + 8, 16, 16, 16, 16);
+                gui.drawTexturedModalRect(xStack, y + 8, 16, 16, 16, 16);
             }
         });
 
@@ -58,7 +58,7 @@ public class GuiStats extends GuiBaseBook {
             @Override
             public void drawIcon() {
                 gui.mc.getTextureManager().bindTexture(HFModInfo.ICONS);
-                gui.drawTexturedModalRect(xStack, yPosition + 8, 0, 32, 16, 16);
+                gui.drawTexturedModalRect(xStack, y + 8, 0, 32, 16, 16);
             }
         });
 

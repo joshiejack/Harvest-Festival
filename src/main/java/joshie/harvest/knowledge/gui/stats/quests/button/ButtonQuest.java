@@ -36,21 +36,21 @@ public class ButtonQuest extends ButtonBook<GuiStats> {
     public void drawButton(@Nonnull Minecraft mc, int mouseX, int mouseY) {
         if (visible) {
             GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-            hovered = mouseX >= xPosition && mouseY >= yPosition && mouseX < xPosition + width && mouseY < yPosition + height;
+            hovered = mouseX >= x && mouseY >= y && mouseX < x + width && mouseY < y + height;
             mouseDragged(mc, mouseX, mouseY);
             drawForeground();
-            boolean flag = mc.fontRendererObj.getUnicodeFlag();
-            mc.fontRendererObj.setUnicodeFlag(true);
-            mc.fontRendererObj.drawString(TextFormatting.BOLD + displayString, xPosition + 4, yPosition - 8, 0x857754);
-            mc.fontRendererObj.drawSplitString(description, xPosition + 20, yPosition - 1, 100, 0x857754);
-            mc.fontRendererObj.setUnicodeFlag(flag);
-            drawRect(xPosition + 4, yPosition + 17, xPosition + 120, yPosition + 18, 0xFF857754);
+            boolean flag = mc.fontRenderer.getUnicodeFlag();
+            mc.fontRenderer.setUnicodeFlag(true);
+            mc.fontRenderer.drawString(TextFormatting.BOLD + displayString, x + 4, y - 8, 0x857754);
+            mc.fontRenderer.drawSplitString(description, x + 20, y - 1, 100, 0x857754);
+            mc.fontRenderer.setUnicodeFlag(flag);
+            drawRect(x + 4, y + 17, x + 120, y + 18, 0xFF857754);
             GlStateManager.color(1.0F, 1.0F, 1.0F);
         }
     }
 
     private void drawForeground() {
-        StackRenderHelper.drawStack(stack, xPosition + 2, yPosition + 1, 1F);
+        StackRenderHelper.drawStack(stack, x + 2, y + 1, 1F);
     }
 
     @Override

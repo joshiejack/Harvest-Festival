@@ -146,7 +146,7 @@ public class GuiCookbook extends GuiScreen {
     }
 
     void drawString(int x, int y, String text) {
-        fontRendererObj.drawSplitString(text, centreX + x, centreY + y, 120, 4210752);
+        fontRenderer.drawSplitString(text, centreX + x, centreY + y, 120, 4210752);
     }
 
     void drawStack(int x, int y, @Nonnull ItemStack stack, float scale) {

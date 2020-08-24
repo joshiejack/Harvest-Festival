@@ -54,9 +54,11 @@ public class ItemBook extends ItemHFEnum<ItemBook, Book> implements ICreativeSor
         return new ActionResult<>(EnumActionResult.PASS, stack);
     }
 
+
     @Override
     @Nonnull
-    public EnumActionResult onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+    public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+        ItemStack stack = player.getHeldItem(hand);
         IBlockState state = world.getBlockState(pos);
         boolean replaceable = state.getBlock().isReplaceable(world, pos);
 
@@ -69,7 +71,7 @@ public class ItemBook extends ItemHFEnum<ItemBook, Book> implements ICreativeSor
                 } else {
                     world.setBlockState(pos, HFKnowledge.CALENDAR.getDefaultState().withProperty(BlockWallSign.FACING, facing), 11);
 
-                    --stack.stackSize;
+                    stack.setCount(stack.getCount() - 1);
                     return EnumActionResult.SUCCESS;
                 }
             } else {

@@ -125,8 +125,8 @@ public abstract class GuiNPCBase extends GuiBase {
 
     @Override
     public void drawForeground(int x, int y) {
-        boolean originalFlag = fontRendererObj.getUnicodeFlag();
-        fontRendererObj.setUnicodeFlag(true);
+        boolean originalFlag = fontRenderer.getUnicodeFlag();
+        fontRenderer.setUnicodeFlag(true);
         //TODO: Readd when doing marriage
         /*
         mc.renderEngine.bindTexture(HFModInfo.ELEMENTS);
@@ -137,7 +137,7 @@ public abstract class GuiNPCBase extends GuiBase {
         GlStateManager.color(1F, 1F, 1F);
         RenderHelper.enableGUIStandardItemLighting();
         drawOverlay(x, y);
-        fontRendererObj.setUnicodeFlag(originalFlag);
+        fontRenderer.setUnicodeFlag(originalFlag);
     }
 
     @Override
@@ -224,7 +224,7 @@ public abstract class GuiNPCBase extends GuiBase {
 
         net.minecraftforge.fml.client.config.GuiUtils.preItemToolTip(stack);
         if (!textLines.isEmpty()) {
-            RenderTooltipEvent.Pre event = new RenderTooltipEvent.Pre(stack, textLines, x, y, width, height, -1, fontRendererObj);
+            RenderTooltipEvent.Pre event = new RenderTooltipEvent.Pre(stack, textLines, x, y, width, height, -1, fontRenderer);
             if (MinecraftForge.EVENT_BUS.post(event)) {
                 return;
             }
@@ -233,7 +233,7 @@ public abstract class GuiNPCBase extends GuiBase {
             int screenWidth = event.getScreenWidth();
             int screenHeight = event.getScreenHeight();
             int maxTextWidth = event.getMaxWidth();
-            fontRendererObj = event.getFontRenderer();
+            fontRenderer = event.getFontRenderer();
 
             GlStateManager.disableRescaleNormal();
             RenderHelper.disableStandardItemLighting();
@@ -242,7 +242,7 @@ public abstract class GuiNPCBase extends GuiBase {
             int tooltipTextWidth = 0;
 
             for (String textLine : textLines) {
-                int textLineWidth = fontRendererObj.getStringWidth(textLine);
+                int textLineWidth = fontRenderer.getStringWidth(textLine);
 
                 if (textLineWidth > tooltipTextWidth) {
                     tooltipTextWidth = textLineWidth;
@@ -276,13 +276,13 @@ public abstract class GuiNPCBase extends GuiBase {
                 List<String> wrappedTextLines = new ArrayList<>();
                 for (int i = 0; i < textLines.size(); i++) {
                     String textLine = textLines.get(i);
-                    List<String> wrappedLine = fontRendererObj.listFormattedStringToWidth(textLine, tooltipTextWidth);
+                    List<String> wrappedLine = fontRenderer.listFormattedStringToWidth(textLine, tooltipTextWidth);
                     if (i == 0) {
                         titleLinesCount = wrappedLine.size();
                     }
 
                     for (String line : wrappedLine) {
-                        int lineWidth = fontRendererObj.getStringWidth(line);
+                        int lineWidth = fontRenderer.getStringWidth(line);
                         if (lineWidth > wrappedTooltipWidth) {
                             wrappedTooltipWidth = lineWidth;
                         }
@@ -326,12 +326,12 @@ public abstract class GuiNPCBase extends GuiBase {
             GuiUtils.drawGradientRect(zLevel, tooltipX - 3, tooltipY - 3, tooltipX + tooltipTextWidth + 3, tooltipY - 3 + 1, borderColor, borderColor);
             GuiUtils.drawGradientRect(zLevel, tooltipX - 3, tooltipY + tooltipHeight + 2, tooltipX + tooltipTextWidth + 3, tooltipY + tooltipHeight + 3, borderColor, borderColor);
 
-            MinecraftForge.EVENT_BUS.post(new RenderTooltipEvent.PostBackground(stack, textLines, tooltipX, tooltipY, fontRendererObj, tooltipTextWidth, tooltipHeight));
+            MinecraftForge.EVENT_BUS.post(new RenderTooltipEvent.PostBackground(stack, textLines, tooltipX, tooltipY, fontRenderer, tooltipTextWidth, tooltipHeight));
             int tooltipTop = tooltipY;
 
             for (int lineNumber = 0; lineNumber < textLines.size(); ++lineNumber) {
                 String line = textLines.get(lineNumber);
-                fontRendererObj.drawStringWithShadow(line, (float) tooltipX, (float) tooltipY, -1);
+                fontRenderer.drawStringWithShadow(line, (float) tooltipX, (float) tooltipY, -1);
 
                 if (lineNumber + 1 == titleLinesCount) {
                     tooltipY += 2;
@@ -340,7 +340,7 @@ public abstract class GuiNPCBase extends GuiBase {
                 tooltipY += 10;
             }
 
-            MinecraftForge.EVENT_BUS.post(new RenderTooltipEvent.PostText(stack, textLines, tooltipX, tooltipTop, fontRendererObj, tooltipTextWidth, tooltipHeight));
+            MinecraftForge.EVENT_BUS.post(new RenderTooltipEvent.PostText(stack, textLines, tooltipX, tooltipTop, fontRenderer, tooltipTextWidth, tooltipHeight));
 
             GlStateManager.enableLighting();
             GlStateManager.enableDepth();

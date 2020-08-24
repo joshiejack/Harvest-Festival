@@ -16,7 +16,7 @@ import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerChangedDimensio
 public class AchievementEvents {
     @SubscribeEvent
     public void onItemPickup(PlayerEvent.ItemPickupEvent event) {
-        ItemStack stack = event.pickedUp.getEntityItem();
+        ItemStack stack = event.pickedUp.getItem();
         EntityPlayer player = event.player;
         if (InventoryHelper.ITEM_STACK.matches(stack, HFCrops.ONION.getCropStack(1))) {
             player.addStat(HFAchievements.onion);

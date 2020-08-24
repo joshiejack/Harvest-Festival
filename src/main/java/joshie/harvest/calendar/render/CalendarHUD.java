@@ -130,13 +130,13 @@ public class CalendarHUD {
                     String header = inMine ? TextFormatting.GRAY + TextHelper.format("harvestfestival.mine.format", "" +
                             MiningHelper.getFloor((int)mc.player.posX >> 4, (int) Math.min(247, Math.max(1, mc.player.posY)))) :
                             TextHelper.format("harvestfestival.calendar.date", season.getDisplayName(), (date.getDay() + 1));
-                    mc.fontRendererObj.drawStringWithShadow(header, (adjustedX / 1.4F) + 30, (adjustedY / 1.4F) + 7, 0xFFFFFFFF);
+                    mc.fontRenderer.drawStringWithShadow(header, (adjustedX / 1.4F) + 30, (adjustedY / 1.4F) + 7, 0xFFFFFFFF);
                     GlStateManager.popMatrix();
 
                     //Draw the time
                     GlStateManager.pushMatrix();
                     String time = formatTime(CalendarHelper.getScaledTime((int) CalendarHelper.getTime(MCClientHelper.getWorld())));
-                    mc.fontRendererObj.drawStringWithShadow("(" + date.getWeekday().getLocalizedName() + ")" + "  " + time, adjustedX + 42, adjustedY + 23, 0xFFFFFFFF);
+                    mc.fontRenderer.drawStringWithShadow("(" + date.getWeekday().getLocalizedName() + ")" + "  " + time, adjustedX + 42, adjustedY + 23, 0xFFFFFFFF);
                     GlStateManager.popMatrix();
                 }
             }
@@ -147,11 +147,11 @@ public class CalendarHUD {
                 float adjustedY = ((HFCalendar.Y_GOLD / 100F) * maxHeight);
                 if (!HIDE_GOLD_TEXTURE) {
                     mc.getTextureManager().bindTexture(HFModInfo.ELEMENTS);
-                    mc.ingameGUI.drawTexturedModalRect(maxWidth - mc.fontRendererObj.getStringWidth(text) - 20 + adjustedX, 2 + adjustedY, 244, 0, 12, 12);
+                    mc.ingameGUI.drawTexturedModalRect(maxWidth - mc.fontRenderer.getStringWidth(text) - 20 + adjustedX, 2 + adjustedY, 244, 0, 12, 12);
                 }
 
-                int coinWidth = maxWidth - mc.fontRendererObj.getStringWidth(text) - 5 + (int) adjustedX;
-                mc.fontRendererObj.drawStringWithShadow(text, coinWidth, 5 + adjustedY, 0xFFFFFFFF);
+                int coinWidth = maxWidth - mc.fontRenderer.getStringWidth(text) - 5 + (int) adjustedX;
+                mc.fontRenderer.drawStringWithShadow(text, coinWidth, 5 + adjustedY, 0xFFFFFFFF);
             }
 
             GlStateManager.disableBlend();

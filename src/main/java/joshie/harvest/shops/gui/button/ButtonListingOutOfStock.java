@@ -24,7 +24,7 @@ public class ButtonListingOutOfStock extends GuiButton {
     @Override
     public void drawButton(@Nonnull Minecraft mc, int mouseX, int mouseY) {
         if (visible) {
-            FontRenderer fontrenderer = mc.fontRendererObj;
+            FontRenderer fontrenderer = mc.fontRenderer;
             mc.getTextureManager().bindTexture(SHOP_EXTRA);
             GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
             GlStateManager.enableBlend();
@@ -37,12 +37,12 @@ public class ButtonListingOutOfStock extends GuiButton {
     }
 
     private void drawBackground() {
-        drawTexturedModalRect(xPosition, yPosition, 0, 18, width / 2, height);
-        drawTexturedModalRect(xPosition + width / 2, yPosition, 200 - width / 2, 18, width / 2, height);
+        drawTexturedModalRect(x, y, 0, 18, width / 2, height);
+        drawTexturedModalRect(x + width / 2, y, 200 - width / 2, 18, width / 2, height);
     }
 
     private void drawForeground(FontRenderer fontrenderer, int j) {
-        drawString(fontrenderer, displayString, xPosition + 10, yPosition + (height - 8) / 2, j);
+        drawString(fontrenderer, displayString, x + 10, y + (height - 8) / 2, j);
         GlStateManager.color(1.0F, 1.0F, 1.0F);
     }
 }

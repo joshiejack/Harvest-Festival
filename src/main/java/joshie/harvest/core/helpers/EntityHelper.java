@@ -80,8 +80,8 @@ public class EntityHelper {
     @SuppressWarnings("ConstantConditions")
     public static boolean teleport(Entity entity, int dimension, BlockPos spawn) {
         MinecraftServer server = FMLCommonHandler.instance().getMinecraftServerInstance();
-        WorldServer oldWorld = server.worldServerForDimension(entity.getEntityWorld().provider.getDimension());
-        WorldServer newWorld = server.worldServerForDimension(dimension);
+        WorldServer oldWorld = server.getWorld(entity.getEntityWorld().provider.getDimension());
+        WorldServer newWorld = server.getWorld(dimension);
         if (oldWorld != newWorld) {
             if (entity instanceof EntityPlayer) {
                 EntityPlayerMP player = (EntityPlayerMP) entity;
@@ -153,8 +153,8 @@ public class EntityHelper {
     }
 
     public static EntityPlayer getPlayerFromSource(DamageSource source) {
-        if (source.getEntity() instanceof EntityPlayer) return ((EntityPlayer)source.getEntity());
-        else if (source.getSourceOfDamage() instanceof EntityPlayer) return ((EntityPlayer)source.getSourceOfDamage());
+        if (source.getTrueSource() instanceof EntityPlayer) return ((EntityPlayer)source.getTrueSource());
+        else if (source.getImmediateSource() instanceof EntityPlayer) return ((EntityPlayer)source.getImmediateSource());
         else return null;
     }
 

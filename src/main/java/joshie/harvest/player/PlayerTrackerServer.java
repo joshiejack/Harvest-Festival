@@ -22,9 +22,11 @@ import net.minecraft.nbt.NBTTagCompound;
 import javax.annotation.Nullable;
 import java.util.UUID;
 
-import static joshie.harvest.npcs.gui.ContainerNPCGift.CHRISTMAS;
+import static joshie.harvest.api.calendar.Season.WINTER;
 
 public class PlayerTrackerServer extends PlayerTracker implements ISyncMaster {
+    private static final CalendarDate CHRISTMAS = new CalendarDate(25, WINTER, 0);
+
     private final QuestDataServer quests;
     private final RelationshipDataServer relationships;
     private final StatsServer stats;

@@ -9,7 +9,7 @@ import javax.annotation.Nonnull;
 
 public class SpecialRendererTrough extends TileSpecialRendererItem<TileTrough> {
     @Override
-    public void renderTileEntityAt(@Nonnull TileTrough tile, double x, double y, double z, float tick, int destroyStage) {
+    public void render(@Nonnull TileTrough tile, double x, double y, double z, float tick, int destroyStage, float alpha) {
         TileTrough master = tile.getMaster();
         if (master.getFillAmount() > 0) {
             float height = 0.25F + ((float) master.getFillAmount() / (40 * master.getSize())) * 0.45F;

@@ -41,7 +41,7 @@ public class SpecialRendererOven extends SpecialRendererCookware<TileOven> {
     }
 
     @Override
-    public void renderTileEntityAt(TileOven oven, double x, double y, double z, float partialTicks, int destroyStage) {
+    public void render(TileOven oven, double x, double y, double z, float partialTicks, int destroyStage, float alpha) {
         if (destroyStage >= 0) {
             bindTexture(DESTROY_STAGES[destroyStage]);
             GlStateManager.matrixMode(5890);
@@ -82,6 +82,6 @@ public class SpecialRendererOven extends SpecialRendererCookware<TileOven> {
         }
 
         //Only render the internals if the oven is open
-        if (oven.lidAngle != 0F) super.renderTileEntityAt(oven, x, y, z, partialTicks, destroyStage);
+        if (oven.lidAngle != 0F) super.render(oven, x, y, z, partialTicks, destroyStage, alpha);
     }
 }

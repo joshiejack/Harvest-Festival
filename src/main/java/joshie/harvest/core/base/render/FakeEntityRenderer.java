@@ -24,7 +24,7 @@ public class FakeEntityRenderer extends TileEntitySpecialRenderer<EntityItemRend
     public static final FakeEntityRenderer INSTANCE = new FakeEntityRenderer();
 
     @Override
-    public void renderTileEntityAt(@Nullable EntityItemRenderer fake, double x, double y, double z, float partialTicks, int destroyStage) {
+    public void render(@Nullable EntityItemRenderer fake, double x, double y, double z, float partialTicks, int destroyStage, float alpha) {
          if (fake != null) {
              GlStateManager.pushMatrix();
              GlStateManager.translate(fake.render.translation, -0.05F, 0.5F);

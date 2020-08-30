@@ -9,6 +9,7 @@ import joshie.harvest.npcs.HFNPCs;
 import joshie.harvest.npcs.entity.EntityNPC;
 import joshie.harvest.npcs.entity.EntityNPCVillager;
 import joshie.harvest.npcs.render.NPCItemRenderer.NPCTile;
+import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.item.ItemStack;
@@ -30,7 +31,7 @@ public class NPCItemRenderer extends TileEntitySpecialRenderer<NPCTile> {
     }
 
     @Override
-    public void renderTileEntityAt(@Nullable NPCTile fake, double x, double y, double z, float partialTicks, int destroyStage) {
+    public void render(@Nullable NPCTile fake, double x, double y, double z, float partialTicks, int destroyStage, float alpha) {
         if (fake != null) { //DEBUG
             /*GlStateManager.pushMatrix();
             GlStateManager.enableLighting();

@@ -27,7 +27,7 @@ public class SpecialRendererStand<T extends TileStand> extends TileSpecialRender
     }
 
     @Override
-    public void renderTileEntityAt(@Nonnull T tile, double x, double y, double z, float tick, int destroyStage) {
+    public void render(@Nonnull T tile, double x, double y, double z, float tick, int destroyStage, float alpha) {
         GlStateManager.pushMatrix();
         GlStateManager.translate(x, y, z);
         if (!tile.getContents().isEmpty()) {

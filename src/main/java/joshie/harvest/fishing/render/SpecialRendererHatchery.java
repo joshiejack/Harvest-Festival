@@ -13,7 +13,7 @@ import java.util.List;
 @SideOnly(Side.CLIENT)
 public class SpecialRendererHatchery extends TileSpecialRendererItem<TileHatchery> {
     @Override
-    public void renderTileEntityAt(@Nonnull TileHatchery tile, double x, double y, double z, float tick, int destroyStage) {
+    public void render(@Nonnull TileHatchery tile, double x, double y, double z, float tick, int destroyStage, float alpha) {
         GlStateManager.pushMatrix();
         GlStateManager.translate(x, y, z);
         List<ItemStack> fish = tile.getFish();

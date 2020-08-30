@@ -20,7 +20,7 @@ public class SpecialRendererMailbox extends TileSpecialRendererItem<TileMailbox>
     private static final ItemStack MAIL = HFNPCs.TOOLS.getStackFromEnum(NPCTool.MAIL);
 
     @Override
-    public void renderTileEntityAt(@Nonnull TileMailbox tile, double x, double y, double z, float tick, int destroyStage) {
+    public void render(@Nonnull TileMailbox tile, double x, double y, double z, float tick, int destroyStage, float alpha) {
         if (LetterHelper.hasUnreadLetters(MCClientHelper.getPlayer())) {
             GlStateManager.pushMatrix();
             GlStateManager.translate(x, y, z);

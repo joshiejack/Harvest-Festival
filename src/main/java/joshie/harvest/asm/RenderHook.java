@@ -31,7 +31,7 @@ public class RenderHook {
         if (tile == null) return false;
         else {
             tile.setStack(stack); //Set the id and render the tile
-            TileEntityRendererDispatcher.instance.renderTileEntityAt(tile, 0.0D, 0.0D, 0.0D, 0.0F);
+            TileEntityRendererDispatcher.instance.render(tile, 0.0D, 0.0D, 0.0D, 0.0F, 0.0F);
             return true;
         }
     }

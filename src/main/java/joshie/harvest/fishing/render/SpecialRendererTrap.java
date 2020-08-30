@@ -24,7 +24,7 @@ public class SpecialRendererTrap extends TileSpecialRendererItem<TileTrap> {
     private static final Item WOOD = Item.getItemFromBlock(HFGathering.WOOD);
 
     @Override
-    public void renderTileEntityAt(@Nonnull TileTrap tile, double x, double y, double z, float tick, int destroyStage) {
+    public void render(@Nonnull TileTrap tile, double x, double y, double z, float tick, int destroyStage, float alpha) {
         if (!tile.isBaited()) {
             ItemStack stack = tile.getStack();
             if (!stack.isEmpty()) {

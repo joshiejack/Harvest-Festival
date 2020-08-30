@@ -19,7 +19,7 @@ public class SpecialRendererFridge extends TileEntitySpecialRenderer<TileFridge>
     private final ModelFridgeDoor ovenModel = new ModelFridgeDoor();
 
     @Override
-    public final void renderTileEntityAt(@Nonnull TileFridge fridge, double x, double y, double z, float partialTicks, int destroyStage) {
+    public final void render(@Nonnull TileFridge fridge, double x, double y, double z, float partialTicks, int destroyStage, float alpha) {
         if (destroyStage >= 0) {
             bindTexture(DESTROY_STAGES[destroyStage]);
             GlStateManager.matrixMode(5890);

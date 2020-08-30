@@ -24,7 +24,7 @@ public class BuildingItemRenderer extends TileEntitySpecialRenderer<BuildingTile
     }
 
     @Override
-    public void renderTileEntityAt(@Nullable BuildingTile fake, double x, double y, double z, float partialTicks, int destroyStage) {
+    public void render(@Nullable BuildingTile fake, double x, double y, double z, float partialTicks, int destroyStage, float alpha) {
         try {
             if (fake != null) {
                 Building building = HFBuildings.TOWNHALL;

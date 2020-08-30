@@ -11,7 +11,7 @@ import javax.annotation.Nonnull;
 @SideOnly(Side.CLIENT)
 public class SpecialRendererBasket extends TileSpecialRendererItem<TileBasket> {
     @Override
-    public void renderTileEntityAt(@Nonnull TileBasket tile, double x, double y, double z, float tick, int destroyStage) {
+    public void render(@Nonnull TileBasket tile, double x, double y, double z, float tick, int destroyStage, float alpha) {
         GlStateManager.pushMatrix();
         GlStateManager.translate(x, y, z);
         if (!tile.getStack().isEmpty()) {

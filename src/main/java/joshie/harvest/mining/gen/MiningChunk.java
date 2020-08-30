@@ -28,7 +28,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
-import net.minecraft.world.chunk.IChunkGenerator;
+import net.minecraft.world.gen.IChunkGenerator;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -577,5 +577,10 @@ public class MiningChunk implements IChunkGenerator {
     @Override
     public BlockPos getNearestStructurePos(World worldIn, String structureName, BlockPos position, boolean findUnexplored) {
         return null;
+    }
+
+    @Override
+    public boolean isInsideStructure(World world, String s, BlockPos blockPos) {
+        return false;
     }
 }

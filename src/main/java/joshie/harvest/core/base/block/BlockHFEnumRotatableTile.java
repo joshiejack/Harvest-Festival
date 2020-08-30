@@ -53,7 +53,7 @@ public abstract class BlockHFEnumRotatableTile<B extends BlockHFEnumRotatableTil
     @Override
     @SideOnly(Side.CLIENT)
     @Nonnull
-    public BlockRenderLayer getBlockLayer() {
+    public BlockRenderLayer getRenderLayer() {
         return BlockRenderLayer.CUTOUT_MIPPED;
     }
 

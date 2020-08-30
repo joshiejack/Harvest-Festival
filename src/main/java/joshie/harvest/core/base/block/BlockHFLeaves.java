@@ -222,7 +222,7 @@ public abstract class BlockHFLeaves<B extends BlockHFLeaves, E extends Enum<E> &
 
     @SideOnly(Side.CLIENT)
     @Nonnull
-    public BlockRenderLayer getBlockLayer() {
+    public BlockRenderLayer getRenderLayer() {
         return BlockRenderLayer.CUTOUT_MIPPED;
     }
 

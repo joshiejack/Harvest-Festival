@@ -107,7 +107,7 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
 
     @SideOnly(Side.CLIENT)
     @Nonnull
-    public BlockRenderLayer getBlockLayer() {
+    public BlockRenderLayer getRenderLayer() {
         return BlockRenderLayer.CUTOUT;
     }
 

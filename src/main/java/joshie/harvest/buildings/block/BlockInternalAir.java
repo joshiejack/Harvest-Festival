@@ -69,7 +69,7 @@ public class BlockInternalAir extends BlockHFBase<BlockInternalAir> {
     @Override
     @SideOnly(Side.CLIENT)
     @Nonnull
-    public BlockRenderLayer getBlockLayer() {
+    public BlockRenderLayer getRenderLayer() {
         return BlockRenderLayer.CUTOUT_MIPPED;
     }
 

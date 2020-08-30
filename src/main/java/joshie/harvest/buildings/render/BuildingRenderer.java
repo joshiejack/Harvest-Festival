@@ -3,9 +3,9 @@ package joshie.harvest.buildings.render;
 import joshie.harvest.api.buildings.Building;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RegionRenderCacheBuilder;
-import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.BlockRenderLayer;
@@ -32,7 +32,7 @@ public class BuildingRenderer {
 
     protected void setupRender(BuildingAccess world) {
         for (BlockRenderLayer layer: BlockRenderLayer.values()) {
-            VertexBuffer buffer = renderer.getWorldRendererByLayer(layer);
+            BufferBuilder buffer = renderer.getWorldRendererByLayer(layer);
             buffer.begin(7, DefaultVertexFormats.BLOCK);
             for (Entry<BlockPos, IBlockState> placeable: world.getBlockMap().entrySet()) {
                 addRender(world, placeable.getValue(), placeable.getKey(), layer, buffer);
@@ -40,7 +40,7 @@ public class BuildingRenderer {
         }
     }
 
-    void addRender(IBlockAccess world, IBlockState state, BlockPos pos, BlockRenderLayer layer, VertexBuffer buffer) {
+    void addRender(IBlockAccess world, IBlockState state, BlockPos pos, BlockRenderLayer layer, BufferBuilder buffer) {
         if (state.getBlock().canRenderInLayer(state, layer)) {
             Minecraft.getMinecraft().getBlockRendererDispatcher().renderBlock(state, pos, world, buffer);
         }

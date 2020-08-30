@@ -1,9 +1,9 @@
 package joshie.harvest.buildings.render;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
-import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.WorldVertexBufferUploader;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.vertex.VertexFormat;
@@ -18,7 +18,7 @@ import java.util.List;
 @SuppressWarnings("WeakerAccess")
 public class BuildingVertexUploader extends WorldVertexBufferUploader {
     @Override
-    public void draw(VertexBuffer vertexBufferIn) {
+    public void draw(BufferBuilder vertexBufferIn) {
         if (vertexBufferIn.getVertexCount() > 0) {
             GlStateManager.enableTexture2D();
             OpenGlHelper.setActiveTexture(OpenGlHelper.defaultTexUnit);

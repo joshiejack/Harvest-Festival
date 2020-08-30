@@ -1,6 +1,6 @@
 package joshie.harvest.buildings.render;
 
-import net.minecraft.client.renderer.VertexBuffer;
+import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraftforge.fml.relauncher.Side;
@@ -17,7 +17,7 @@ public class BuildingRendererNoFloor extends BuildingRenderer {
     @Override
     protected void setupRender(BuildingAccess world) {
         for (BlockRenderLayer layer: BlockRenderLayer.values()) {
-            VertexBuffer buffer = renderer.getWorldRendererByLayer(layer);
+            BufferBuilder buffer = renderer.getWorldRendererByLayer(layer);
             buffer.begin(7, DefaultVertexFormats.BLOCK);
             world.getBlockMap().entrySet().stream().filter(placeable -> placeable.getKey().getY() != 0)
                     .forEach(placeable -> addRender(world, placeable.getValue(), placeable.getKey(), layer, buffer));

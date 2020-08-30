@@ -56,7 +56,7 @@ public class RenderBasket extends Render<EntityBasket> {
                 GlStateManager.pushMatrix();
                 GlStateManager.disableLighting();
                 Tessellator tessellator = Tessellator.getInstance();
-                VertexBuffer vertexbuffer = tessellator.getBuffer();
+                BufferBuilder vertexbuffer = tessellator.getBuffer();
 
                 if (renderOutlines) {
                     GlStateManager.enableColorMaterial();

@@ -1,0 +1,22 @@
+{
+    "display": {
+        "icon": {
+            "item": "minecraft:cake"
+        },
+        "title": {
+            "translate": "advancement.harvestfestival.birthday"
+        },
+        "description": {
+            "translate": "advancement.harvestfestival.birthday.desc"
+        }
+    },
+    "parent": "harvestfestival:tasks/first_christmas",
+    "criteria": {
+        "event": {
+            "trigger": "harvestfestival:event",
+            "conditions": {
+              "name": "birthday"
+            }
+        }
+    }
+}

@@ -4,7 +4,7 @@ import joshie.harvest.api.calendar.CalendarDate;
 import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.npc.RelationStatus;
 import joshie.harvest.api.player.RelationshipType;
-import joshie.harvest.core.achievements.HFAchievements;
+import joshie.harvest.core.advancements.EventTrigger;
 import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.player.PlayerTrackerServer;
 import joshie.harvest.player.packet.PacketSyncGifted;
@@ -68,7 +68,7 @@ public class RelationshipDataServer extends RelationshipData {
         relationships.put(npc, newValue);
         EntityPlayerMP player = master.getAndCreatePlayer();
         if (player != null) {
-            if (newValue >= 5000) player.addStat(HFAchievements.friend);
+            if (newValue >= 5000) EventTrigger.INSTANCE.trigger(player, "make_friend");
             PacketHandler.sendToClient(new PacketSyncRelationship(npc, newValue), player);
         }
     }

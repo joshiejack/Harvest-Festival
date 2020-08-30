@@ -1,0 +1,23 @@
+{
+    "display": {
+        "icon": {
+            "item": "harvestfestival:crops",
+            "data": 2
+        },
+        "title": {
+            "translate": "advancement.harvestfestival.cucumber"
+        },
+        "description": {
+            "translate": "advancement.harvestfestival.cucumber.desc"
+        }
+    },
+    "parent": "harvestfestival:tasks/harvest",
+    "criteria": {
+        "event": {
+            "trigger": "harvestfestival:event",
+            "conditions": {
+              "name": "cucumber"
+            }
+        }
+    }
+}

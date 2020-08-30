@@ -1,0 +1,29 @@
+{
+    "display": {
+        "icon": {
+            "item": "harvestfestival:sizeable",
+            "data": 2
+        },
+        "title": {
+            "translate": "advancement.harvestfestival.eggerLarge"
+        },
+        "description": {
+            "translate": "advancement.harvestfestival.eggerLarge.desc"
+        },
+        "frame": "goal"
+    },
+    "parent": "harvestfestival:tasks/egger",
+    "criteria": {
+        "item": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "harvestfestival:sizeable",
+                        "data": 2
+                    }
+                ]
+            }
+        }
+    }
+}

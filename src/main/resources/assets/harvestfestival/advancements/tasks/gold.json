@@ -1,0 +1,28 @@
+{
+    "display": {
+        "icon": {
+            "item": "harvestfestival:materials",
+            "data": 3
+        },
+        "title": {
+            "translate": "advancement.harvestfestival.gold"
+        },
+        "description": {
+            "translate": "advancement.harvestfestival.gold.desc"
+        }
+    },
+    "parent": "harvestfestival:tasks/silver",
+    "criteria": {
+        "item": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "harvestfestival:materials",
+                        "data": 3
+                    }
+                ]
+            }
+        }
+    }
+}

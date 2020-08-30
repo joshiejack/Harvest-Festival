@@ -1,0 +1,29 @@
+{
+    "display": {
+        "icon": {
+            "item": "harvestfestival:hoe_basic"
+        },
+        "title": {
+            "translate": "advancement.harvestfestival.root"
+        },
+        "description": {
+            "translate": "advancement.harvestfestival.root.desc"
+        },
+        "background": "harvestfestival:textures/blocks/mine/mine_wall.png",
+        "show_toast": false,
+        "announce_to_chat": false
+    },
+    "criteria": {
+        "item": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "harvestfestival:flowers",
+                        "data": 0
+                    }
+                ]
+            }
+        }
+    }
+}

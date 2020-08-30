@@ -8,11 +8,12 @@ import joshie.harvest.api.npc.NPC;
 import joshie.harvest.api.npc.NPCEntity;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.core.HFTrackers;
+import joshie.harvest.core.advancements.EventTrigger;
 import joshie.harvest.player.PlayerTrackerServer;
 import joshie.harvest.player.tracking.StackSold;
 import joshie.harvest.quests.base.QuestTown;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.stats.Achievement;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -27,13 +28,13 @@ public class QuestShipping extends QuestTown {
     private CalendarDate lastCheck;
     private Set<StackSold> crops;
     private Season season;
-    private Achievement achievement;
+    private String event;
     private int required;
     private int total;
 
-    QuestShipping(Achievement achievement, NPC npc, Season season, int required) {
+    QuestShipping(String event, NPC npc, Season season, int required) {
         this.setNPCs(npc);
-        this.achievement = achievement;
+        this.event = event;
         this.season = season;
         this.required = required;
     }
@@ -83,7 +84,9 @@ public class QuestShipping extends QuestTown {
                 if (crops == null) rebuildCropSet();
                 int totalCrops = getTotalCrops(HFApi.calendar.getDate(player.world), player);
                 if (totalCrops >= required) {
-                    player.addStat(achievement);
+                    if (player instanceof EntityPlayerMP) {
+                        EventTrigger.INSTANCE.trigger((EntityPlayerMP) player, event);
+                    }
                     increaseStage(player);
                 }
             }

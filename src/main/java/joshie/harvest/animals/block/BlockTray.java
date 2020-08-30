@@ -6,7 +6,6 @@ import joshie.harvest.animals.tile.TileNest;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.*;
 import joshie.harvest.api.core.Size;
-import joshie.harvest.core.achievements.HFAchievements;
 import joshie.harvest.core.base.block.BlockHFEnum;
 import joshie.harvest.core.base.tile.TileFillable;
 import joshie.harvest.core.entity.EntityBasket;
@@ -100,11 +99,6 @@ public class BlockTray extends BlockHFEnum<BlockTray, Tray> implements IAnimalFe
 
                 if (!world.isRemote) {
                     world.setBlockState(pos, getStateFromEnum(NEST_EMPTY));
-                }
-
-                player.addStat(HFAchievements.egger);
-                if (HFApi.sizeable.getSize(drop) == Size.LARGE) {
-                    player.addStat(HFAchievements.eggerLarge);
                 }
 
                 return true;

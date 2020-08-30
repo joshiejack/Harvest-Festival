@@ -1,0 +1,23 @@
+{
+    "display": {
+        "icon": {
+            "item": "minecraft:gold_ingot"
+        },
+        "title": {
+            "translate": "advancement.harvestfestival.millionaire"
+        },
+        "description": {
+            "translate": "advancement.harvestfestival.millionaire.desc"
+        },
+        "frame": "challenge"
+    },
+    "parent": "harvestfestival:tasks/first_shipping",
+    "criteria": {
+        "event": {
+            "trigger": "harvestfestival:event",
+            "conditions": {
+              "name": "millionaire"
+            }
+        }
+    }
+}

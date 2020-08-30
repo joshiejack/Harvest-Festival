@@ -1,0 +1,29 @@
+{
+    "display": {
+        "icon": {
+            "item": "harvestfestival:sizeable",
+            "data": 5
+        },
+        "title": {
+            "translate": "advancement.harvestfestival.milkerLarge"
+        },
+        "description": {
+            "translate": "advancement.harvestfestival.milkerLarge.desc"
+        },
+        "frame": "goal"
+    },
+    "parent": "harvestfestival:tasks/milker",
+    "criteria": {
+        "item": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "harvestfestival:sizeable",
+                        "data": 5
+                    }
+                ]
+            }
+        }
+    }
+}

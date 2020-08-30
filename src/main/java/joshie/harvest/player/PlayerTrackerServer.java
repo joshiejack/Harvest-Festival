@@ -4,7 +4,7 @@ import joshie.harvest.api.calendar.CalendarDate;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.quests.TargetType;
 import joshie.harvest.calendar.CalendarHelper;
-import joshie.harvest.core.achievements.HFAchievements;
+import joshie.harvest.core.advancements.EventTrigger;
 import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.core.util.interfaces.ISyncMaster;
@@ -110,26 +110,26 @@ public class PlayerTrackerServer extends PlayerTracker implements ISyncMaster {
         EntityPlayerMP player = getAndCreatePlayer();
         if (player != null) {
             long gold = tracking.newDay();
-            if (gold > 0) player.addStat(HFAchievements.firstShipping);
+            if (gold > 0) EventTrigger.INSTANCE.trigger(player, "first_shipping");
             stats.addGold(null, gold);
-            if (stats.getGold() >= 1000000) player.addStat(HFAchievements.millionaire);
+            if (stats.getGold() >= 1000000) EventTrigger.INSTANCE.trigger(player, "millionaire");
             relationships.resetStatus(yesterday, player); //Reset the relationship status
             stats.syncGold(player); //Resync the players gold
-            if (CalendarHelper.isDateSame(today, CHRISTMAS)) player.addStat(HFAchievements.firstChristmas);
+            if (CalendarHelper.isDateSame(today, CHRISTMAS)) EventTrigger.INSTANCE.trigger(player, "first_christmas");
             if (CalendarHelper.isDateSame(today, stats.getBirthday())) {
-                player.addStat(HFAchievements.birthday);
+                EventTrigger.INSTANCE.trigger(player, "birthday");
             }
 
             //Achievements!!!!!!!!!!!!!!!!!!!!!!!!!!!! ? yey??
             int yearsPassed = CalendarHelper.getYearsPassed(TownHelper.getClosestTownToEntity(player, false).getBirthday(), today);
             if (yearsPassed >= 2) {
-                if (today.getSeason() == Season.SPRING) player.addStat(HFAchievements.strawberries);
-                else if (today.getSeason() == Season.SUMMER) player.addStat(HFAchievements.corn);
-                else if (today.getSeason() == Season.AUTUMN) player.addStat(HFAchievements.greenPepper);
+                if (today.getSeason() == Season.SPRING) EventTrigger.INSTANCE.trigger(player, "strawberry");
+                else if (today.getSeason() == Season.SUMMER) EventTrigger.INSTANCE.trigger(player, "corn");
+                else if (today.getSeason() == Season.AUTUMN) EventTrigger.INSTANCE.trigger(player, "green_pepper");
             } else if (yearsPassed >= 1) {
-                if (today.getSeason() == Season.SPRING) player.addStat(HFAchievements.cucumbers);
-                else if (today.getSeason() == Season.SUMMER) player.addStat(HFAchievements.tomatoes);
-                else if (today.getSeason() == Season.AUTUMN) player.addStat(HFAchievements.eggplants);
+                if (today.getSeason() == Season.SPRING) EventTrigger.INSTANCE.trigger(player, "cucumber");
+                else if (today.getSeason() == Season.SUMMER) EventTrigger.INSTANCE.trigger(player, "tomato");
+                else if (today.getSeason() == Season.AUTUMN) EventTrigger.INSTANCE.trigger(player, "eggplant");
             }
         }
     }

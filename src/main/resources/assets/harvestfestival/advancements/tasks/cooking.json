@@ -1,0 +1,23 @@
+{
+    "display": {
+        "icon": {
+            "item": "harvestfestival:meal",
+            "data": 22
+        },
+        "title": {
+            "translate": "advancement.harvestfestival.cooking"
+        },
+        "description": {
+            "translate": "advancement.harvestfestival.cooking.desc"
+        }
+    },
+    "parent": "harvestfestival:tasks/summon",
+    "criteria": {
+        "event": {
+            "trigger": "harvestfestival:event",
+            "conditions": {
+              "name": "cooking"
+            }
+        }
+    }
+}

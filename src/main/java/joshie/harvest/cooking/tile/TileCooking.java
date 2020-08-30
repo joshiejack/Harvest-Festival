@@ -4,13 +4,14 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.cooking.Utensil;
 import joshie.harvest.cooking.CookingHelper.PlaceIngredientResult;
 import joshie.harvest.core.HFTrackers;
-import joshie.harvest.core.achievements.HFAchievements;
+import joshie.harvest.core.advancements.EventTrigger;
 import joshie.harvest.core.base.tile.TileFaceable;
 import joshie.harvest.core.entity.EntityBasket;
 import joshie.harvest.core.helpers.MCServerHelper;
 import joshie.harvest.core.helpers.NBTHelper;
 import joshie.harvest.core.helpers.SpawnItemHelper;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -78,8 +79,8 @@ public abstract class TileCooking extends TileFaceable {
         NonNullList<ItemStack> theItems = getResult();
         EntityBasket.findBasketAndShip(player, theItems);
         for (ItemStack theItem: theItems) {
-            if (theItem.hasTagCompound()) {
-                player.addStat(HFAchievements.cooking);
+            if (theItem.hasTagCompound() && player instanceof EntityPlayerMP) {
+                EventTrigger.INSTANCE.trigger((EntityPlayerMP) player, "cooking");
             }
 
             HFTrackers.getPlayerTrackerFromPlayer(player).getTracking().addAsObtained(theItem);

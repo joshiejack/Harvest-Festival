@@ -4,10 +4,11 @@ import joshie.harvest.api.cooking.Utensil;
 import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.cooking.tile.TileCooking.TileCookingTicking;
 import joshie.harvest.core.HFTrackers;
-import joshie.harvest.core.achievements.HFAchievements;
+import joshie.harvest.core.advancements.EventTrigger;
 import joshie.harvest.core.helpers.SpawnItemHelper;
 import joshie.harvest.core.lib.HFSounds;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.SoundCategory;
 
@@ -54,8 +55,8 @@ public class TileOven extends TileCookingTicking {
             giveTimer--;
             if (giveTimer <= 0) {
                 for (ItemStack stack: getResult()) {
-                    if (stack.hasTagCompound()) {
-                        givePlayer.addStat(HFAchievements.cooking);
+                    if (stack.hasTagCompound() && givePlayer instanceof EntityPlayerMP) {
+                        EventTrigger.INSTANCE.trigger((EntityPlayerMP) givePlayer, "cooking");
                     }
 
                     HFTrackers.getPlayerTrackerFromPlayer(givePlayer).getTracking().addAsObtained(stack);

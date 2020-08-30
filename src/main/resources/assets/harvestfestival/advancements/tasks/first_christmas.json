@@ -1,0 +1,23 @@
+{
+    "display": {
+        "icon": {
+            "item": "minecraft:sapling",
+            "data": 1
+        },
+        "title": {
+            "translate": "advancement.harvestfestival.firstChristmas"
+        },
+        "description": {
+            "translate": "advancement.harvestfestival.firstChristmas.desc"
+        }
+    },
+    "parent": "harvestfestival:tasks/summon",
+    "criteria": {
+        "event": {
+            "trigger": "harvestfestival:event",
+            "conditions": {
+              "name": "first_christmas"
+            }
+        }
+    }
+}

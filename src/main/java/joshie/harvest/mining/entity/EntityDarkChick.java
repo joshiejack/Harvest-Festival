@@ -1,6 +1,5 @@
 package joshie.harvest.mining.entity;
 
-import joshie.harvest.core.achievements.HFAchievements;
 import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.core.lib.LootStrings;
 import joshie.harvest.mining.MiningHelper;
@@ -64,15 +63,6 @@ public class EntityDarkChick extends EntityMob {
         this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
         this.tasks.addTask(8, new EntityAILookIdle(this));
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
-    }
-
-    @Override
-    public void onDeath(@Nonnull DamageSource cause) {
-        super.onDeath(cause);
-        EntityPlayer player = EntityHelper.getPlayerFromSource(cause);
-        if (player != null) {
-            player.addStat(HFAchievements.killChick);
-        }
     }
 
     @Override

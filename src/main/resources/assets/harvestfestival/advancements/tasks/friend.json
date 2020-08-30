@@ -1,0 +1,23 @@
+{
+    "display": {
+        "icon": {
+            "item": "minecraft:cookie"
+        },
+        "title": {
+            "translate": "advancement.harvestfestival.friend"
+        },
+        "description": {
+            "translate": "advancement.harvestfestival.friend.desc"
+        },
+        "frame": "goal"
+    },
+    "parent": "harvestfestival:tasks/summon",
+    "criteria": {
+        "event": {
+            "trigger": "harvestfestival:event",
+            "conditions": {
+              "name": "make_friend"
+            }
+        }
+    }
+}

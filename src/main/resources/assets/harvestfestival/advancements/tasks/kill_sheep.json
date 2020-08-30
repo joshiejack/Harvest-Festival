@@ -1,0 +1,25 @@
+{
+    "display": {
+        "icon": {
+            "item": "harvestfestival:dark_spawner",
+            "data": 1
+        },
+        "title": {
+            "translate": "advancement.harvestfestival.killSheep"
+        },
+        "description": {
+            "translate": "advancement.harvestfestival.killSheep.desc"
+        }
+    },
+    "parent": "harvestfestival:tasks/kill_chicken",
+    "criteria": {
+        "kill": {
+            "trigger": "minecraft:player_killed_entity",
+            "conditions": {
+                "entity": {
+                    "type": "harvestfestival:dark_sheep"
+                }
+            }
+        }
+    }
+}

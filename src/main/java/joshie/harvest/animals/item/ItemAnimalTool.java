@@ -7,7 +7,6 @@ import joshie.harvest.api.animals.AnimalAction;
 import joshie.harvest.api.animals.AnimalStats;
 import joshie.harvest.api.animals.AnimalTest;
 import joshie.harvest.api.core.Size;
-import joshie.harvest.core.achievements.HFAchievements;
 import joshie.harvest.core.base.item.ItemHFEnum;
 import joshie.harvest.core.entity.EntityBasket;
 import joshie.harvest.core.helpers.EntityHelper;
@@ -91,13 +90,6 @@ public class ItemAnimalTool extends ItemHFEnum<ItemAnimalTool, Tool> {
             if (stats != null) {
                 if (stats.performAction(world, held, AnimalAction.CLAIM_PRODUCT)) {
                     ItemStack product = stats.getType().getProduct(stats);
-                    //Achievements
-                    if (product.getItem() == HFAnimals.ANIMAL_PRODUCT && stats.getAnimal() instanceof EntityHarvestCow) {
-                        player.addStat(HFAchievements.milker);
-                        if (HFAnimals.ANIMAL_PRODUCT.getSize(product) == Size.LARGE) {
-                            player.addStat(HFAchievements.milkerLarge);
-                        }
-                    }
 
                     if (!EntityBasket.findBasketAndShip(player, NonNullList.withSize(1, product))) {
                         SpawnItemHelper.addToPlayerInventory(player, product);

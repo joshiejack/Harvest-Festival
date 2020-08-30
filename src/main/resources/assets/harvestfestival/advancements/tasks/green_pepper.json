@@ -1,0 +1,24 @@
+{
+    "display": {
+        "icon": {
+            "item": "harvestfestival:crops",
+            "data": 15
+        },
+        "title": {
+            "translate": "advancement.harvestfestival.greenPepper"
+        },
+        "description": {
+            "translate": "advancement.harvestfestival.greenPepper.desc"
+        },
+        "frame": "goal"
+    },
+    "parent": "harvestfestival:tasks/eggplant",
+    "criteria": {
+        "event": {
+            "trigger": "harvestfestival:event",
+            "conditions": {
+              "name": "green_pepper"
+            }
+        }
+    }
+}

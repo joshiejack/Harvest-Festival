@@ -1,0 +1,23 @@
+{
+    "display": {
+        "icon": {
+            "item": "harvestfestival:crops",
+            "data": 9
+        },
+        "title": {
+            "translate": "advancement.harvestfestival.pineapple"
+        },
+        "description": {
+            "translate": "advancement.harvestfestival.pineapple.desc"
+        }
+    },
+    "parent": "harvestfestival:tasks/onion",
+    "criteria": {
+        "event": {
+            "trigger": "harvestfestival:event",
+            "conditions": {
+              "name": "pineapple"
+            }
+        }
+    }
+}

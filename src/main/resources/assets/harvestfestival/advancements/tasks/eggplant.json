@@ -1,0 +1,24 @@
+{
+    "display": {
+        "icon": {
+            "item": "harvestfestival:crops",
+            "data": 11
+        },
+        "title": {
+            "translate": "advancement.harvestfestival.eggplant"
+        },
+        "description": {
+            "translate": "advancement.harvestfestival.eggplant.desc"
+        },
+        "frame": "goal"
+    },
+    "parent": "harvestfestival:tasks/spinach",
+    "criteria": {
+        "event": {
+            "trigger": "harvestfestival:event",
+            "conditions": {
+              "name": "eggplant"
+            }
+        }
+    }
+}

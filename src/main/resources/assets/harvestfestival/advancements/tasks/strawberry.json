@@ -1,0 +1,24 @@
+{
+    "display": {
+        "icon": {
+            "item": "harvestfestival:crops",
+            "data": 3
+        },
+        "title": {
+            "translate": "advancement.harvestfestival.strawberries"
+        },
+        "description": {
+            "translate": "advancement.harvestfestival.strawberries.desc"
+        },
+        "frame": "goal"
+    },
+    "parent": "harvestfestival:tasks/cucumber",
+    "criteria": {
+        "event": {
+            "trigger": "harvestfestival:event",
+            "conditions": {
+              "name": "strawberry"
+            }
+        }
+    }
+}

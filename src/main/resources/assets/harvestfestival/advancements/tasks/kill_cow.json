@@ -1,0 +1,26 @@
+{
+    "display": {
+        "icon": {
+            "item": "harvestfestival:dark_spawner",
+            "data": 0
+        },
+        "title": {
+            "translate": "advancement.harvestfestival.killCow"
+        },
+        "description": {
+            "translate": "advancement.harvestfestival.killCow.desc"
+        },
+        "frame": "goal"
+    },
+    "parent": "harvestfestival:tasks/kill_sheep",
+    "criteria": {
+        "kill": {
+            "trigger": "minecraft:player_killed_entity",
+            "conditions": {
+                "entity": {
+                    "type": "harvestfestival:dark_cow"
+                }
+            }
+        }
+    }
+}

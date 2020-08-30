@@ -1,0 +1,24 @@
+{
+    "display": {
+        "icon": {
+            "item": "harvestfestival:crops",
+            "data": 7
+        },
+        "title": {
+            "translate": "advancement.harvestfestival.corn"
+        },
+        "description": {
+            "translate": "advancement.harvestfestival.corn.desc"
+        },
+        "frame": "goal"
+    },
+    "parent": "harvestfestival:tasks/tomato",
+    "criteria": {
+        "event": {
+            "trigger": "harvestfestival:event",
+            "conditions": {
+              "name": "corn"
+            }
+        }
+    }
+}

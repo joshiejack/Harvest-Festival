@@ -1,0 +1,23 @@
+{
+    "display": {
+        "icon": {
+            "item": "harvestfestival:ore",
+            "data": 0
+        },
+        "title": {
+            "translate": "advancement.harvestfestival.theMine"
+        },
+        "description": {
+            "translate": "advancement.harvestfestival.theMine.desc"
+        }
+    },
+    "parent": "harvestfestival:tasks/summon",
+    "criteria": {
+        "entered_dim": {
+            "trigger": "minecraft:changed_dimension",
+            "conditions": {
+                "to": "The Mine"
+            }
+        }
+    }
+}

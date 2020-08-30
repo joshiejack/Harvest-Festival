@@ -1,0 +1,28 @@
+{
+    "display": {
+        "icon": {
+            "item": "harvestfestival:flowers",
+            "data": 3
+        },
+        "title": {
+            "translate": "advancement.harvestfestival.summon"
+        },
+        "description": {
+            "translate": "advancement.harvestfestival.summon.desc"
+        }
+    },
+    "parent": "harvestfestival:tasks/root",
+    "criteria": {
+        "item": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "harvestfestival:flowers",
+                        "data": 0
+                    }
+                ]
+            }
+        }
+    }
+}

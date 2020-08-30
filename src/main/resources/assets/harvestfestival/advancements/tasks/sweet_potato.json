@@ -1,0 +1,24 @@
+{
+    "display": {
+        "icon": {
+            "item": "harvestfestival:crops",
+            "data": 14
+        },
+        "title": {
+            "translate": "advancement.harvestfestival.sweetPotatoes"
+        },
+        "description": {
+            "translate": "advancement.harvestfestival.sweetPotatoes.desc"
+        },
+        "frame": "goal"
+    },
+    "parent": "harvestfestival:tasks/spinach",
+    "criteria": {
+        "event": {
+            "trigger": "harvestfestival:event",
+            "conditions": {
+              "name": "sweet_potato"
+            }
+        }
+    }
+}

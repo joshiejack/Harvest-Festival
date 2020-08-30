@@ -1,0 +1,25 @@
+{
+    "display": {
+        "icon": {
+            "item": "harvestfestival:dark_spawner",
+            "data": 2
+        },
+        "title": {
+            "translate": "advancement.harvestfestival.killChicken"
+        },
+        "description": {
+            "translate": "advancement.harvestfestival.killChicken.desc"
+        }
+    },
+    "parent": "harvestfestival:tasks/kill_chick",
+    "criteria": {
+        "kill": {
+            "trigger": "minecraft:player_killed_entity",
+            "conditions": {
+                "entity": {
+                    "type": "harvestfestival:dark_chicken"
+                }
+            }
+        }
+    }
+}

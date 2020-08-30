@@ -1,0 +1,28 @@
+{
+    "display": {
+        "icon": {
+            "item": "harvestfestival:crops",
+            "data": 12
+        },
+        "title": {
+            "translate": "advancement.harvestfestival.spinach"
+        },
+        "description": {
+            "translate": "advancement.harvestfestival.spinach.desc"
+        }
+    },
+    "parent": "harvestfestival:tasks/onion",
+    "criteria": {
+        "item": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "harvestfestival:crops",
+                        "data": 12
+                    }
+                ]
+            }
+        }
+    }
+}

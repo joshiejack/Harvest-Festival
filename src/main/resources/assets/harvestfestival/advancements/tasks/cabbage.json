@@ -1,0 +1,23 @@
+{
+    "display": {
+        "icon": {
+            "item": "harvestfestival:crops",
+            "data": 4
+        },
+        "title": {
+            "translate": "advancement.harvestfestival.cabbage"
+        },
+        "description": {
+            "translate": "advancement.harvestfestival.cabbage.desc"
+        }
+    },
+    "parent": "harvestfestival:tasks/harvest",
+    "criteria": {
+        "event": {
+            "trigger": "harvestfestival:event",
+            "conditions": {
+              "name": "cabbage"
+            }
+        }
+    }
+}

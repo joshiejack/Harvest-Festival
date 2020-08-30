@@ -1,0 +1,23 @@
+{
+    "display": {
+        "icon": {
+            "item": "harvestfestival:recipe"
+        },
+        "title": {
+            "translate": "advancement.harvestfestival.recipes"
+        },
+        "description": {
+            "translate": "advancement.harvestfestival.recipes.desc"
+        },
+        "frame": "challenge"
+    },
+    "parent": "harvestfestival:tasks/summon",
+    "criteria": {
+        "event": {
+            "trigger": "harvestfestival:event",
+            "conditions": {
+              "name": "recipes"
+            }
+        }
+    }
+}

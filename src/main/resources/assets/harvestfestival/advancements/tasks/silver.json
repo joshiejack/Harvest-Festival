@@ -1,0 +1,28 @@
+{
+    "display": {
+        "icon": {
+            "item": "harvestfestival:materials",
+            "data": 2
+        },
+        "title": {
+            "translate": "advancement.harvestfestival.silver"
+        },
+        "description": {
+            "translate": "advancement.harvestfestival.silver.desc"
+        }
+    },
+    "parent": "harvestfestival:tasks/copper",
+    "criteria": {
+        "item": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "harvestfestival:materials",
+                        "data": 2
+                    }
+                ]
+            }
+        }
+    }
+}

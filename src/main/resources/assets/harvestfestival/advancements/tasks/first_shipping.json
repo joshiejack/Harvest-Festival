@@ -1,0 +1,23 @@
+{
+    "display": {
+        "icon": {
+            "item": "harvestfestival:storage",
+            "data": 0
+        },
+        "title": {
+            "translate": "advancement.harvestfestival.firstShipping"
+        },
+        "description": {
+            "translate": "advancement.harvestfestival.firstShipping.desc"
+        }
+    },
+    "parent": "harvestfestival:tasks/summon",
+    "criteria": {
+        "event": {
+            "trigger": "harvestfestival:event",
+            "conditions": {
+              "name": "first_shipping"
+            }
+        }
+    }
+}

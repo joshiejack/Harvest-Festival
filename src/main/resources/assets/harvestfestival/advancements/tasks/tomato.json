@@ -1,0 +1,23 @@
+{
+    "display": {
+        "icon": {
+            "item": "harvestfestival:crops",
+            "data": 6
+        },
+        "title": {
+            "translate": "advancement.harvestfestival.tomato"
+        },
+        "description": {
+            "translate": "advancement.harvestfestival.tomato.desc"
+        }
+    },
+    "parent": "harvestfestival:tasks/onion",
+    "criteria": {
+        "event": {
+            "trigger": "harvestfestival:event",
+            "conditions": {
+              "name": "tomato"
+            }
+        }
+    }
+}

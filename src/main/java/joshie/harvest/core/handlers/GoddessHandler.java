@@ -2,7 +2,6 @@ package joshie.harvest.core.handlers;
 
 import joshie.harvest.api.npc.NPC;
 import joshie.harvest.core.HFCore;
-import joshie.harvest.core.achievements.HFAchievements;
 import joshie.harvest.core.block.BlockFlower.FlowerType;
 import joshie.harvest.core.lib.HFSounds;
 import joshie.harvest.core.util.annotations.HFEvents;
@@ -133,7 +132,6 @@ public class GoddessHandler {
                 if (world.rand.nextInt(9) == 0) {
                     world.setBlockState(pos, HFCore.FLOWERS.getStateFromEnum(FlowerType.GODDESS));
                     world.playSound(null, player.posX, player.posY, player.posZ, HFSounds.GODDESS_SPAWN, SoundCategory.NEUTRAL, 0.5F, 1.1F);
-                    player.addStat(HFAchievements.summon);
                     lastGoddess = System.currentTimeMillis();
                 }
             }

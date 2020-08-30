@@ -1,0 +1,28 @@
+{
+    "display": {
+        "icon": {
+            "item": "harvestfestival:crops",
+            "data": 0
+        },
+        "title": {
+            "translate": "advancement.harvestfestival.harvest"
+        },
+        "description": {
+            "translate": "advancement.harvestfestival.harvest.desc"
+        }
+    },
+    "parent": "harvestfestival:tasks/summon",
+    "criteria": {
+        "item": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "harvestfestival:crops",
+                        "data": 0
+                    }
+                ]
+            }
+        }
+    }
+}

@@ -130,7 +130,7 @@ public class AnimalEvents {
                 entity.dismountRidingEntity();
                 entity.rotationPitch = event.player.rotationPitch;
                 entity.rotationYaw = event.player.rotationYaw;
-                entity.moveRelative(0F, 0.1F, 0);
+                entity.moveRelative(0F, 0.1F, 0, 0);
                 entity.setEntityInvulnerable(false);
             });
         }
@@ -146,7 +146,7 @@ public class AnimalEvents {
                         entity.dismountRidingEntity();
                         entity.rotationPitch = player.rotationPitch;
                         entity.rotationYaw = player.rotationYaw;
-                        entity.moveRelative(0F, 0.1F, 0);
+                        entity.moveRelative(0F, 0.1F, 0, 0);
                         entity.setEntityInvulnerable(false);
                         stats.performAction(player.world, null, AnimalAction.DISMOUNT);
                     }

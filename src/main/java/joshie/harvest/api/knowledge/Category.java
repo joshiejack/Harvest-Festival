@@ -12,7 +12,7 @@ public class Category {
         this.unlocalized = unlocalized;
     }
 
-    public String getUnlocalizedName() {
+    public String getTranslationKey() {
         return unlocalized;
     }
 }

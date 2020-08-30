@@ -144,7 +144,7 @@ public class BlockCalendar extends BlockHFBase<BlockCalendar> {
 
     @Override
     public BlockCalendar register(String name) {
-        setUnlocalizedName(name.replace("_", "."));
+        setTranslationKey(name.replace("_", "."));
         setRegistryName(new ResourceLocation(MODID, name));
         GameRegistry.register(this);
         return this;

@@ -100,7 +100,7 @@ public class  BlockPortal extends BlockHFEnum<BlockPortal, Portal> {
 
     @Override
     public String getItemStackDisplayName(@Nonnull ItemStack stack) {
-        return TextHelper.localizeFully(getUnlocalizedName());
+        return TextHelper.localizeFully(getTranslationKey());
     }
 
     @SuppressWarnings("deprecation")

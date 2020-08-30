@@ -77,7 +77,7 @@ public class BlockGoddessWater extends BlockFluidClassic {
     }
 
     public BlockGoddessWater register(String name) {
-        setUnlocalizedName(name.replace("_", "."));
+        setTranslationKey(name.replace("_", "."));
         setRegistryName(new ResourceLocation(MODID, name));
         GameRegistry.register(this);
         return this;

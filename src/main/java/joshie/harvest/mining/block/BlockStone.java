@@ -117,8 +117,8 @@ public class BlockStone extends BlockHFEnumCube<BlockStone, Type> {
 
     @Override
     public String getItemStackDisplayName(@Nonnull ItemStack stack) {
-        String unlocalized = getUnlocalizedName();
-        String name = getEnumFromStack(stack).isFake() ? "decorative" : stack.getItem().getUnlocalizedName(stack);
+        String unlocalized = getTranslationKey();
+        String name = getEnumFromStack(stack).isFake() ? "decorative" : stack.getItem().getTranslationKey(stack);
         return TextHelper.localizeFully(unlocalized + "." + name);
     }
 

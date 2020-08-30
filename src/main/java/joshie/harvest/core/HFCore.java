@@ -83,7 +83,7 @@ public class HFCore {
         registerIfNotRegistered("flowerPeony", new ItemStack(Blocks.DOUBLE_PLANT, 1, PAEONIA.getMeta()));
         registerIfNotRegistered("flowerDandelion", new ItemStack(Blocks.YELLOW_FLOWER));
         for (EnumFlowerType type: getTypes(EnumFlowerColor.RED)) {
-            registerIfNotRegistered("flower" + WordUtils.capitalize(type.getUnlocalizedName()), new ItemStack(Blocks.RED_FLOWER, 1, type.getMeta()));
+            registerIfNotRegistered("flower" + WordUtils.capitalize(type.getTranslationKey()), new ItemStack(Blocks.RED_FLOWER, 1, type.getMeta()));
         }
     }
 

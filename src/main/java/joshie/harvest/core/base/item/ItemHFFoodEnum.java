@@ -51,8 +51,8 @@ public abstract class ItemHFFoodEnum<I extends ItemHFFoodEnum, E extends Enum<E>
     @Override
     @SuppressWarnings("unchecked")
     @Nonnull
-    public I setUnlocalizedName(@Nonnull String name) {
-        super.setUnlocalizedName(name);
+    public I setTranslationKey(@Nonnull String name) {
+        super.setTranslationKey(name);
         return (I) this;
     }
 
@@ -92,14 +92,14 @@ public abstract class ItemHFFoodEnum<I extends ItemHFFoodEnum, E extends Enum<E>
 
     @Override
     @Nonnull
-    public String getUnlocalizedName(ItemStack stack) {
+    public String getTranslationKey(ItemStack stack) {
         return prefix + "_" + getEnumFromStack(stack).name().toLowerCase(Locale.ENGLISH);
     }
 
     @Override
     @Nonnull
     public String getItemStackDisplayName(@Nonnull ItemStack stack) {
-        return TextHelper.translate(getUnlocalizedName(stack).replaceAll("(.)([A-Z])", "$1$2").toLowerCase(Locale.ENGLISH).replace("_", "."));
+        return TextHelper.translate(getTranslationKey(stack).replaceAll("(.)([A-Z])", "$1$2").toLowerCase(Locale.ENGLISH).replace("_", "."));
     }
 
     @Override

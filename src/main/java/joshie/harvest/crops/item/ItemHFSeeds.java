@@ -131,7 +131,7 @@ public class ItemHFSeeds extends ItemSeeds implements ICreativeSorted {
     }
 
     public ItemHFSeeds register(String name) {
-        setUnlocalizedName(name.replace("_", "."));
+        setTranslationKey(name.replace("_", "."));
         setRegistryName(new ResourceLocation(MODID, name));
         GameRegistry.register(this);
         return this;

@@ -19,6 +19,6 @@ public class ItemSingle<I extends ItemSingle> extends ItemHFBase<I> {
     @Override
     @Nonnull
     public String getItemStackDisplayName(@Nonnull ItemStack stack) {
-        return TextHelper.translate(super.getUnlocalizedName().replace("item.", ""));
+        return TextHelper.translate(super.getTranslationKey().replace("item.", ""));
     }
 }

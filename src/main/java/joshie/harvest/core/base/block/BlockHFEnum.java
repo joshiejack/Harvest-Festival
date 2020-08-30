@@ -165,7 +165,7 @@ public abstract class BlockHFEnum<B extends BlockHFEnum, E extends Enum<E> & ISt
     }
 
     @Override
-    public String getUnlocalizedName(@Nonnull ItemStack stack) {
+    public String getTranslationKey(@Nonnull ItemStack stack) {
         return getEnumFromMeta(stack.getItemDamage()).name().toLowerCase(Locale.ENGLISH);
     }
 

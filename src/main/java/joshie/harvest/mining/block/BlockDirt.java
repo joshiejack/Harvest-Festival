@@ -66,7 +66,7 @@ public class BlockDirt extends BlockHFBase<BlockDirt> {
 
     @Override
     public String getItemStackDisplayName(@Nonnull ItemStack stack) {
-        return TextHelper.localizeFully(getUnlocalizedName());
+        return TextHelper.localizeFully(getTranslationKey());
     }
 
     @Override

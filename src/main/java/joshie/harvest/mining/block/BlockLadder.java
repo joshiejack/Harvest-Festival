@@ -64,7 +64,7 @@ public class BlockLadder extends BlockHFEnumRotatableMeta<BlockLadder, Ladder> {
 
     @Override
     public String getItemStackDisplayName(@Nonnull ItemStack stack) {
-        String unlocalized = getUnlocalizedName();
+        String unlocalized = getTranslationKey();
         return TextHelper.localizeFully(unlocalized + ".wood");
     }
 

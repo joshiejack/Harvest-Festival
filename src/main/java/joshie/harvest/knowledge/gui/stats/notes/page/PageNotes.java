@@ -33,7 +33,7 @@ public class PageNotes extends BookPage<GuiStats> {
     private final List<Note> list;
 
     PageNotes(Category category, @Nonnull ItemStack stack) {
-        super("note", category.getUnlocalizedName(), stack);
+        super("note", category.getTranslationKey(), stack);
         this.list = new ArrayList<>();
         this.list.addAll(Note.REGISTRY.values().stream().filter(note -> note.getCategory() == category).collect(Collectors.toList()));
     }

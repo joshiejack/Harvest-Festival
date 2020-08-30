@@ -1,8 +1,8 @@
 package joshie.harvest.plugins.crafttweaker.command;
 
+import crafttweaker.CraftTweakerAPI;
 import joshie.harvest.api.shops.Shop;
 import joshie.harvest.core.commands.CommandManager.CommandLevel;
-import minetweaker.MineTweakerAPI;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
@@ -34,7 +34,7 @@ public class HFCommandPurchasable extends CommandBase {
     @Override
     public void execute(@Nonnull MinecraftServer server, @Nonnull ICommandSender sender, @Nonnull String[] parameters) throws CommandException {
         if (parameters.length != 1) throw new WrongUsageException(getUsage(sender));
-        MineTweakerAPI.logCommand("Items: \n" + Shop.REGISTRY.get(new ResourceLocation(parameters[0])).getPurchasableIDs().toString().replace("[", "").replace("]", "").replace(", ", "\n"));
+        CraftTweakerAPI.logCommand("Items: \n" + Shop.REGISTRY.get(new ResourceLocation(parameters[0])).getPurchasableIDs().toString().replace("[", "").replace("]", "").replace(", ", "\n"));
         sender.sendMessage(new TextComponentString("List generated; see minetweaker.log in your minecraft dir"));
     }
 }

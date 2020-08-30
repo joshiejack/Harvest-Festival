@@ -1,17 +1,9 @@
 package joshie.harvest.plugins.crafttweaker.base;
 
-import minetweaker.IUndoableAction;
+import crafttweaker.IAction;
 
-public abstract class BaseOnce implements IUndoableAction {
+public abstract class BaseOnce implements IAction {
     private boolean applied;
-
-    @Override
-    public boolean canUndo() {
-        return true;
-    }
-
-    @Override
-    public void undo() {}
 
     public abstract String getDescription();
 
@@ -32,15 +24,5 @@ public abstract class BaseOnce implements IUndoableAction {
     @Override
     public String describe() {
         return "[Harvest Festival] " + getDescription();
-    }
-
-    @Override
-    public String describeUndo() {
-        return "";
-    }
-
-    @Override
-    public Object getOverrideKey() {
-        return null;
     }
 }

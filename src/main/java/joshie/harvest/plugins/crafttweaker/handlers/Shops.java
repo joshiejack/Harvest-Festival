@@ -1,5 +1,8 @@
 package joshie.harvest.plugins.crafttweaker.handlers;
 
+import crafttweaker.CraftTweakerAPI;
+import crafttweaker.api.item.IIngredient;
+import crafttweaker.api.item.IItemStack;
 import joshie.harvest.api.calendar.Weekday;
 import joshie.harvest.api.npc.IInfoButton;
 import joshie.harvest.api.npc.NPC;
@@ -14,9 +17,6 @@ import joshie.harvest.plugins.crafttweaker.wrappers.PurchasableWrapperMaterials;
 import joshie.harvest.shops.HFShops;
 import joshie.harvest.shops.purchasable.Purchasable;
 import joshie.harvest.shops.purchasable.PurchasableMaterials;
-import minetweaker.MineTweakerAPI;
-import minetweaker.api.item.IIngredient;
-import minetweaker.api.item.IItemStack;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import stanhebben.zenscript.annotations.Optional;
@@ -43,7 +43,7 @@ public class Shops {
         if (theNPC == null) CraftTweaker.logError(String.format("No NPC with the id %s could be found. Use /hf npclist for a list of ids", npc));
         else if (theNPC.isShopkeeper()) CraftTweaker.logError(String.format("Attempted to add a shop to %s when they already have a shop", theNPC.getLocalizedName()));
         else if (Shop.REGISTRY.containsKey(new ResourceLocation("MineTweaker3", shop.toLowerCase()))) CraftTweaker.logError(String.format("Attempted to add a shop with a duplicate id: %s", "MineTweaker3:" + shop.toLowerCase()));
-        else MineTweakerAPI.apply(new AddShop(theNPC, shop, greeting, openinghours, hoursText));
+        else CraftTweakerAPI.apply(new AddShop(theNPC, shop, greeting, openinghours, hoursText));
     }
 
     private static class AddShop extends BaseUndoable {
@@ -100,18 +100,6 @@ public class Shops {
             String[] hours = openinghours.replace(" ", "").split(";");
             for (String time: hours) processTimeString(time);
         }
-
-        @Override
-        public boolean canUndo() {
-            return shop != null;
-        }
-
-        @Override
-        public void undo() {
-            npc.setShop(null);
-            npc.setHasInfo(null);
-            Shop.REGISTRY.remove(resource);
-        }
     }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////Adding Items//////////////////////////////////////////////////////////////////////////////////////////////////////                                                                                             ///////
@@ -122,7 +110,7 @@ public class Shops {
     public static void addPurchasable(String shop, IItemStack sellable, long cost, @Optional IIngredient[] materials) {
         Shop theShop = Shop.REGISTRY.get(new ResourceLocation(shop));
         if (theShop == null) CraftTweaker.logError(String.format("No shop with the id %s could be found. Use /hf shoplist for a list of ids", shop));
-        MineTweakerAPI.apply(new AddPurchasable(theShop, asStack(sellable), cost, CraftTweaker.asRequirements(materials)));
+        CraftTweakerAPI.apply(new AddPurchasable(theShop, asStack(sellable), cost, CraftTweaker.asRequirements(materials)));
     }
 
     private static class AddPurchasable extends BaseUndoable {
@@ -150,23 +138,13 @@ public class Shops {
             purchasable = required != null ? purchasable = new PurchasableMaterials(cost, stack, required) : new Purchasable(cost, stack);
             shop.addItem(purchasable);
         }
-
-        @Override
-        public boolean canUndo() {
-            return purchasable != null;
-        }
-
-        @Override
-        public void undo() {
-            shop.removeItem(purchasable);
-        }
     }
 
     @ZenMethod
     @SuppressWarnings("unused, deprecation")
     @Deprecated //TODO: Remove in 0.7+
     public static void addPurchasableToBuilder(IItemStack sellable, int wood, int stone, long cost) {
-        MineTweakerAPI.apply(new AddBuilderPurchasable(asStack(sellable), wood, stone, cost));
+        CraftTweakerAPI.apply(new AddBuilderPurchasable(asStack(sellable), wood, stone, cost));
     }
 
     @Deprecated //TODO: Remove in 0.7+
@@ -197,7 +175,7 @@ public class Shops {
         String id = fixPurchasableID(input);
         if (theShop == null) CraftTweaker.logError(String.format("No shop with the id %s could be found. Use /hf shoplist for a list of ids", shop));
         else if (theShop.getPurchasableFromID(id) == null) CraftTweaker.logError(String.format("No purchasable with the id %s could be found in " + theShop.getLocalizedName(), id));
-        else MineTweakerAPI.apply(new RemovePurchasable(theShop, theShop.getPurchasableFromID(id)));
+        else CraftTweakerAPI.apply(new RemovePurchasable(theShop, theShop.getPurchasableFromID(id)));
     }
 
     private static class RemovePurchasable extends BaseUndoable {
@@ -218,11 +196,6 @@ public class Shops {
         public void apply() {
             shop.removeItem(purchasable);
         }
-
-        @Override
-        public void undo() {
-            shop.addItem(purchasable);
-        }
     }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -236,7 +209,7 @@ public class Shops {
         String id = fixPurchasableID(input);
         if (theShop == null) CraftTweaker.logError(String.format("No shop with the id %s could be found. Use /hf shoplist for a list of ids", shop));
         else if (theShop.getPurchasableFromID(id) == null) CraftTweaker.logError(String.format("No purchasable with the id %s could be found in " + theShop.getLocalizedName(), id));
-        else MineTweakerAPI.apply(new AdjustPurchasable(theShop, theShop.getPurchasableFromID(id), cost, CraftTweaker.asRequirements(materials)));
+        else CraftTweakerAPI.apply(new AdjustPurchasable(theShop, theShop.getPurchasableFromID(id), cost, CraftTweaker.asRequirements(materials)));
     }
 
     private static class AdjustPurchasable extends BaseUndoable {
@@ -266,17 +239,6 @@ public class Shops {
             wrapper = required != null ? new PurchasableWrapperMaterials(purchasable, cost, required) : new PurchasableWrapper(purchasable, cost);
             shop.addItem(wrapper);
         }
-
-        @Override
-        public boolean canUndo() {
-            return wrapper != null;
-        }
-
-        @Override
-        public void undo() {
-            shop.removeItem(wrapper);
-            shop.addItem(purchasable);
-        }
     }
 
     @ZenMethod
@@ -286,7 +248,7 @@ public class Shops {
         String id = fixPurchasableID(input);
         if (HFShops.CARPENTER.getPurchasableFromID(id) == null) CraftTweaker.logError(String.format("No purchasable with the id %s could be found in " + HFShops.CARPENTER, id));
         else if (!(HFShops.CARPENTER.getPurchasableFromID(id) instanceof PurchasableMaterials)) CraftTweaker.logError(String.format("The item %s did not originally accept materials, you cannot adjust the values", id));
-        else MineTweakerAPI.apply(new AdjustCarpenter(HFShops.CARPENTER.getPurchasableFromID(id), cost, logs, stone));
+        else CraftTweakerAPI.apply(new AdjustCarpenter(HFShops.CARPENTER.getPurchasableFromID(id), cost, logs, stone));
     }
 
     private static class AdjustCarpenter extends AdjustPurchasable {

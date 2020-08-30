@@ -1,5 +1,12 @@
 package joshie.harvest.plugins.crafttweaker;
 
+import crafttweaker.CraftTweakerAPI;
+import crafttweaker.CrafttweakerImplementationAPI;
+import crafttweaker.api.item.IIngredient;
+import crafttweaker.api.item.IItemStack;
+import crafttweaker.api.oredict.IOreDictEntry;
+import crafttweaker.runtime.providers.ScriptProviderDirectory;
+import crafttweaker.zenscript.IBracketHandler;
 import joshie.harvest.api.shops.IRequirement;
 import joshie.harvest.core.commands.CommandManager;
 import joshie.harvest.core.util.annotations.HFLoader;
@@ -9,13 +16,6 @@ import joshie.harvest.plugins.crafttweaker.command.HFCommandShops;
 import joshie.harvest.plugins.crafttweaker.handlers.*;
 import joshie.harvest.plugins.crafttweaker.wrappers.RequirementItemWrapper;
 import joshie.harvest.plugins.crafttweaker.wrappers.RequirementOreWrapper;
-import minetweaker.IBracketHandler;
-import minetweaker.MineTweakerAPI;
-import minetweaker.MineTweakerImplementationAPI;
-import minetweaker.api.item.IIngredient;
-import minetweaker.api.item.IItemStack;
-import minetweaker.api.oredict.IOreDictEntry;
-import minetweaker.runtime.providers.ScriptProviderDirectory;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
@@ -45,17 +45,17 @@ public class CraftTweaker {
 
         if (exists) {
             IBracketHandler handler = getItemBracketHandler();
-            MineTweakerAPI.registerBracketHandler(handler);
+            CraftTweakerAPI.registerBracketHandler(handler);
             rebuildItemRegistry(handler);
-            MineTweakerAPI.registerClass(Crops.class);
-            MineTweakerAPI.registerClass(Shops.class);
-            MineTweakerImplementationAPI.setScriptProvider(new ScriptProviderDirectory(directory));
-            MineTweakerImplementationAPI.reload();
+            CraftTweakerAPI.registerClass(Crops.class);
+            CraftTweakerAPI.registerClass(Shops.class);
+            CrafttweakerImplementationAPI.setScriptProvider(new ScriptProviderDirectory(directory));
+            CrafttweakerImplementationAPI.load();
         }
 
-        MineTweakerAPI.registerClass(Blacklist.class);
-        MineTweakerAPI.registerClass(Shipping.class);
-        MineTweakerAPI.registerClass(Gifting.class);
+        CraftTweakerAPI.registerClass(Blacklist.class);
+        CraftTweakerAPI.registerClass(Shipping.class);
+        CraftTweakerAPI.registerClass(Gifting.class);
         CommandManager.INSTANCE.addSubcommand(new HFCommandNPC());
         CommandManager.INSTANCE.addSubcommand(new HFCommandPurchasable());
         CommandManager.INSTANCE.addSubcommand(new HFCommandShops());
@@ -93,6 +93,6 @@ public class CraftTweaker {
     }
 
     public static void logError(String message) {
-        MineTweakerAPI.logError(message);
+        CraftTweakerAPI.logError(message);
     }
 }

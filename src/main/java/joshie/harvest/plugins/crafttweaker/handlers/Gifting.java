@@ -1,14 +1,14 @@
 package joshie.harvest.plugins.crafttweaker.handlers;
 
+import crafttweaker.CraftTweakerAPI;
+import crafttweaker.api.item.IIngredient;
+import crafttweaker.api.item.IItemStack;
+import crafttweaker.api.oredict.IOreDictEntry;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.core.Ore;
 import joshie.harvest.api.npc.gift.GiftCategory;
 import joshie.harvest.plugins.crafttweaker.CraftTweaker;
 import joshie.harvest.plugins.crafttweaker.base.BaseOnce;
-import minetweaker.MineTweakerAPI;
-import minetweaker.api.item.IIngredient;
-import minetweaker.api.item.IItemStack;
-import minetweaker.api.oredict.IOreDictEntry;
 import net.minecraft.item.ItemStack;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
@@ -24,7 +24,7 @@ public class Gifting {
         if (ingredient instanceof IItemStack || ingredient instanceof IOreDictEntry) {
             try {
                 GiftCategory theCategory = GiftCategory.valueOf(category.toUpperCase());
-                MineTweakerAPI.apply(new Add(ingredient, theCategory));
+                CraftTweakerAPI.apply(new Add(ingredient, theCategory));
             } catch (IllegalArgumentException ex) { CraftTweaker.logError(String.format("No category with the name %s could be found", category)); }
         }
     }

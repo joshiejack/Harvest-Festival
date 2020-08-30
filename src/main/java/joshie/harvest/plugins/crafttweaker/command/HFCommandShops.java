@@ -1,8 +1,8 @@
 package joshie.harvest.plugins.crafttweaker.command;
 
+import crafttweaker.CraftTweakerAPI;
 import joshie.harvest.api.shops.Shop;
 import joshie.harvest.core.commands.CommandManager.CommandLevel;
-import minetweaker.MineTweakerAPI;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
@@ -36,7 +36,7 @@ public class HFCommandShops extends CommandBase {
 
     @Override
     public void execute(@Nonnull MinecraftServer server, @Nonnull ICommandSender sender, @Nonnull String[] parameters) throws CommandException {
-        MineTweakerAPI.logCommand("Shops: \n" + this.getShopList().toString().replace("[", "").replace("]", "").replace(", ", "\n"));
+        CraftTweakerAPI.logCommand("Shops: \n" + this.getShopList().toString().replace("[", "").replace("]", "").replace(", ", "\n"));
         sender.sendMessage(new TextComponentString("List generated; see minetweaker.log in your minecraft dir"));
     }
 

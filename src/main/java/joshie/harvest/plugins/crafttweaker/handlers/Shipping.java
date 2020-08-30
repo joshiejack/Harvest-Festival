@@ -1,12 +1,12 @@
 package joshie.harvest.plugins.crafttweaker.handlers;
 
+import crafttweaker.CraftTweakerAPI;
+import crafttweaker.api.item.IIngredient;
+import crafttweaker.api.item.IItemStack;
+import crafttweaker.api.oredict.IOreDictEntry;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.core.Ore;
 import joshie.harvest.plugins.crafttweaker.base.BaseOnce;
-import minetweaker.MineTweakerAPI;
-import minetweaker.api.item.IIngredient;
-import minetweaker.api.item.IItemStack;
-import minetweaker.api.oredict.IOreDictEntry;
 import net.minecraft.item.ItemStack;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
@@ -22,7 +22,7 @@ public class Shipping {
     @SuppressWarnings("unused")
     public static void addShipping(IIngredient ingredient, long sellValue) {
         if (ingredient instanceof IItemStack || ingredient instanceof IOreDictEntry) {
-            MineTweakerAPI.apply(new Add(ingredient, sellValue));
+            CraftTweakerAPI.apply(new Add(ingredient, sellValue));
         }
     }
 

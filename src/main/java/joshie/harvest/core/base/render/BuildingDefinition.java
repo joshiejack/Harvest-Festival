@@ -28,7 +28,7 @@ public class BuildingDefinition implements ItemMeshDefinition {
 
     public static void registerEverything() {
         for (Building building : Building.REGISTRY.values()) {
-            ModelResourceLocation model = new ModelResourceLocation(new ResourceLocation(building.getResource().getResourceDomain(), "buildings/" + building.getResource().getResourcePath()), "inventory");
+            ModelResourceLocation model = new ModelResourceLocation(new ResourceLocation(building.getResource().getNamespace(), "buildings/" + building.getResource().getPath()), "inventory");
             ModelBakery.registerItemVariants(HFBuildings.STRUCTURES, model);
             INSTANCE.models.put(building, model);
         }

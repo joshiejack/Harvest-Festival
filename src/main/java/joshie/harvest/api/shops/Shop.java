@@ -31,7 +31,7 @@ public class Shop {
     /** Create a new shop with this id **/
     public Shop(ResourceLocation resource) {
         resourceLocation = resource;
-        unlocalizedName = resource.getResourceDomain() + ".shop." + resource.getResourcePath();
+        unlocalizedName = resource.getNamespace() + ".shop." + resource.getPath();
         rulesBuying = DEFAULT_TRUE;
         rulesSelling = DEFAULT_TRUE;
         openings = HFApi.shops.createDefaultOpeningHandler();

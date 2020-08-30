@@ -76,7 +76,7 @@ public class QuestCollectCrops extends QuestDaily {
     @Override
     public boolean isNPCUsed(EntityPlayer player, NPCEntity entity) {
         if (!super.isNPCUsed(player, entity)) return false;
-        String name = "crop" + WordUtils.capitalizeFully(crop.getResource().getResourcePath(), '_').replace("_", "");
+        String name = "crop" + WordUtils.capitalizeFully(crop.getResource().getPath(), '_').replace("_", "");
         return InventoryHelper.getHandItemIsIn(player, ORE_DICTIONARY, name, amount) != null;
     }
 
@@ -89,7 +89,7 @@ public class QuestCollectCrops extends QuestDaily {
 
     @Override
     public void onChatClosed(EntityPlayer player, NPCEntity entity, boolean wasSneaking) {
-        String name = "crop" + WordUtils.capitalizeFully(crop.getResource().getResourcePath(), '_').replace("_", "");
+        String name = "crop" + WordUtils.capitalizeFully(crop.getResource().getPath(), '_').replace("_", "");
         if (InventoryHelper.takeItemsIfHeld(player, ORE_DICTIONARY, name, amount) != null) {
             complete(player);
         }

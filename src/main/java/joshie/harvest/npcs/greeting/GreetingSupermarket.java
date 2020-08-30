@@ -20,8 +20,8 @@ public class GreetingSupermarket implements IInfoButton {
 
     public GreetingSupermarket(NPC npc) {
         ResourceLocation resourceLocation = npc.getResource();
-        this.text = resourceLocation.getResourceDomain() + ".npc." + resourceLocation.getResourcePath() + ".shop";
-        this.text2 = resourceLocation.getResourceDomain() + ".npc." + resourceLocation.getResourcePath() + ".shop.wednesday";
+        this.text = resourceLocation.getNamespace() + ".npc." + resourceLocation.getPath() + ".shop";
+        this.text2 = resourceLocation.getNamespace() + ".npc." + resourceLocation.getPath() + ".shop.wednesday";
     }
 
     @Override

@@ -29,8 +29,8 @@ public class Note {
         this.category = category;
         this.resource = resource;
         this.icon = PAPER;
-        this.title = resource.getResourceDomain() + ".note." + resource.getResourcePath() + ".title";
-        this.description = resource.getResourceDomain() + ".note." + resource.getResourcePath() + ".description";
+        this.title = resource.getNamespace() + ".note." + resource.getPath() + ".title";
+        this.description = resource.getNamespace() + ".note." + resource.getPath() + ".description";
         REGISTRY.put(resource, this);
     }
 

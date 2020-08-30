@@ -145,9 +145,9 @@ public class HFNPCs {
 
     private static void setupGifts(NPC npc) {
         npc.setGiftHandler(new IGiftHandler() {});
-        if (npc.getResource().getResourceDomain().equals(MODID)) {
+        if (npc.getResource().getNamespace().equals(MODID)) {
             try {
-                IGiftHandler handler = (IGiftHandler) Class.forName(GIFTPATH + WordUtils.capitalize(npc.getResource().getResourcePath())).newInstance();
+                IGiftHandler handler = (IGiftHandler) Class.forName(GIFTPATH + WordUtils.capitalize(npc.getResource().getPath())).newInstance();
                 if (handler != null) npc.setGiftHandler(handler);
             } catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {/**/}
         }

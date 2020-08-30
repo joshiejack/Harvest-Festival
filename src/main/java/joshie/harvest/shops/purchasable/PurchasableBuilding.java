@@ -28,7 +28,7 @@ public class PurchasableBuilding extends PurchasableMaterials {
         super(requirements);
         this.building = building;
         this.cost = cost;
-        this.tooltip = building.getResource().getResourceDomain() + ".structures." + building.getResource().getResourcePath() + ".tooltip";
+        this.tooltip = building.getResource().getNamespace() + ".structures." + building.getResource().getPath() + ".tooltip";
         this.resource = ((cost >= 0) ? "buy:" : "sell:") + building.getResource().toString().replace(":", "_");
     }
 

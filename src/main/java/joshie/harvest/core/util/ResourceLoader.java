@@ -7,8 +7,8 @@ import java.io.InputStream;
 
 public class ResourceLoader {
     public static String getJSONResource(ResourceLocation id, String directory) {
-        String s = id.getResourceDomain();
-        String s1 = id.getResourcePath();
+        String s = id.getNamespace();
+        String s1 = id.getPath();
         InputStream inputstream = null;
 
         try {

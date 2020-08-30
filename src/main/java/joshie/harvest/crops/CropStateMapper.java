@@ -36,6 +36,6 @@ public class CropStateMapper extends StateMapperBase {
     private ModelResourceLocation getCropResourceLocation(Crop crop, IBlockState state) {
         Map <IProperty<?>, Comparable<? >> map = Maps.newLinkedHashMap(state.getProperties());
         map.remove(HFCrops.CROPS.property); //Remove the base property for rendering purposes
-        return new ModelResourceLocation(crop.getResource().getResourceDomain() + ":crops_" + crop.getResource().getResourcePath(), this.getPropertyString(map));
+        return new ModelResourceLocation(crop.getResource().getNamespace() + ":crops_" + crop.getResource().getPath(), this.getPropertyString(map));
     }
 }

@@ -218,7 +218,7 @@ public class Crop extends HFRegistry<Crop> implements IPlantable {
      * Set the ingredient stats for this crop
      **/
     public Crop setIngredient(int hunger, float saturation) {
-        String name = getResource().getResourcePath();
+        String name = getResource().getPath();
         if (Ingredient.INGREDIENTS.containsKey(name)) {
             this.ingredient = Ingredient.INGREDIENTS.get(name);
         } else this.ingredient = new Ingredient(name, hunger, saturation);
@@ -485,7 +485,7 @@ public class Crop extends HFRegistry<Crop> implements IPlantable {
     @SuppressWarnings("deprecation")
     public String getLocalizedName(boolean isItem) {
         String suffix = alternativeName ? ((isItem) ? ".item" : ".block") : "";
-        return I18n.translateToLocal((getResource().getResourceDomain() + ".crop." + StringUtils.replace(getResource().getResourcePath(), "_", ".") + suffix));
+        return I18n.translateToLocal((getResource().getNamespace() + ".crop." + StringUtils.replace(getResource().getPath(), "_", ".") + suffix));
     }
 
     /**
@@ -495,7 +495,7 @@ public class Crop extends HFRegistry<Crop> implements IPlantable {
      */
     @SuppressWarnings("deprecation")
     public String getSeedsName() {
-        String name = alternativeName ? I18n.translateToLocalFormatted((getResource().getResourceDomain() + ".crop." + StringUtils.replace(getResource().getResourcePath(), "_", ".") + ".block")) : item.isEmpty() ? "NULL" : item.getDisplayName();
+        String name = alternativeName ? I18n.translateToLocalFormatted((getResource().getNamespace() + ".crop." + StringUtils.replace(getResource().getPath(), "_", ".") + ".block")) : item.isEmpty() ? "NULL" : item.getDisplayName();
         String seeds = I18n.translateToLocal("harvestfestival.crop.seeds");
         String format = I18n.translateToLocal("harvestfestival.crop.seeds.format");
         return String.format(format, name, seeds);

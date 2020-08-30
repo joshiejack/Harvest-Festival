@@ -86,7 +86,7 @@ public class Recipe extends HFRegistry<Recipe> {
 
     @SuppressWarnings("deprecation")
     public String getDisplayName() {
-        return I18n.translateToLocal(getResource().getResourceDomain() + ".meal." + getResource().getResourcePath().replace("_", "."));
+        return I18n.translateToLocal(getResource().getNamespace() + ".meal." + getResource().getPath().replace("_", "."));
     }
 
     public boolean isDefault() {

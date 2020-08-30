@@ -32,7 +32,7 @@ public class HFGiftsFarming extends HFGiftsAbstract {
 
     public static void postInit() {
         Crop.REGISTRY.values().stream().filter(crop -> crop != Crop.NULL_CROP)
-                .forEachOrdered(crop -> assignGeneric(Ore.of("crop" + WordUtils.capitalizeFully(crop.getResource().getResourcePath(), '_').replace("_", "")),
+                .forEachOrdered(crop -> assignGeneric(Ore.of("crop" + WordUtils.capitalizeFully(crop.getResource().getPath(), '_').replace("_", "")),
                         crop.getFoodType() == AnimalFoodType.FRUIT ? FRUIT :
                                 crop.getFoodType() == AnimalFoodType.VEGETABLE ? VEGETABLE : PLANT));
     }

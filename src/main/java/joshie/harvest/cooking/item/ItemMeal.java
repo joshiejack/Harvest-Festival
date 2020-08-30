@@ -118,7 +118,7 @@ public class ItemMeal extends ItemHFFoodEnum<ItemMeal, Meal> {
 
     @Nonnull
     public ItemStack getStackFromRecipe(RecipeHF recipeHF) {
-        Meal meal = Meal.valueOf(recipeHF.getResource().getResourcePath().toUpperCase(Locale.ENGLISH));
+        Meal meal = Meal.valueOf(recipeHF.getResource().getPath().toUpperCase(Locale.ENGLISH));
         return new ItemStack(this, 1, meal.ordinal());
     }
 

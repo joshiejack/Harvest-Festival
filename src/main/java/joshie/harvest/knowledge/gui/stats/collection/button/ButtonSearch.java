@@ -68,7 +68,7 @@ public class ButtonSearch extends ButtonBook<GuiStats> {
                 return value > Long.valueOf(search.substring(1).trim());
             } catch (Exception ignored) {}
         } else if (search.startsWith("@")) {
-            String modid = stack.getItem().getRegistryName().getResourceDomain().toLowerCase();
+            String modid = stack.getItem().getRegistryName().getNamespace().toLowerCase();
             return modid.contains(search.substring(1));
         }
 

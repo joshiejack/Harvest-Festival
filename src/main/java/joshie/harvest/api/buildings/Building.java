@@ -32,7 +32,7 @@ public class Building extends HFRegistry<Building> {
 
     public Building(ResourceLocation resource){
         super(resource);
-        toLocalise = resource.getResourceDomain().toLowerCase(Locale.ENGLISH) + ".structures." + resource.getResourcePath().toLowerCase(Locale.ENGLISH);
+        toLocalise = resource.getNamespace().toLowerCase(Locale.ENGLISH) + ".structures." + resource.getPath().toLowerCase(Locale.ENGLISH);
     }
     /** Set the requirements for this building from string values
      * @param requirements  the buildings required in format "modid:building".
@@ -101,7 +101,7 @@ public class Building extends HFRegistry<Building> {
     @SuppressWarnings("deprecation")
     public String getLocalisedName() {
         if (StringUtils.isNullOrEmpty(toLocalise)) {
-            toLocalise = getResource().getResourceDomain().toLowerCase(Locale.ENGLISH) + ".structures." + getResource().getResourcePath().toLowerCase(Locale.ENGLISH);
+            toLocalise = getResource().getNamespace().toLowerCase(Locale.ENGLISH) + ".structures." + getResource().getPath().toLowerCase(Locale.ENGLISH);
         }
 
         return I18n.translateToLocal(toLocalise);

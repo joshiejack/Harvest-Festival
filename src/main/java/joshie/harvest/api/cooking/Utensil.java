@@ -20,8 +20,8 @@ public class Utensil {
 
     public Utensil(ResourceLocation resource) {
         this.resource = resource;
-        this.unlocalized = resource.getResourceDomain() + ".cookware." + resource.getResourcePath().replace("_", ".");
-        this.burntName = resource.getResourceDomain() + ".meal.burnt." + resource.getResourcePath().replace("_", ".");
+        this.unlocalized = resource.getNamespace() + ".cookware." + resource.getPath().replace("_", ".");
+        this.burntName = resource.getNamespace() + ".meal.burnt." + resource.getPath().replace("_", ".");
         REGISTRY.put(resource, this);
     }
 
@@ -43,7 +43,7 @@ public class Utensil {
      *  when a recipe is burnt */
     @SideOnly(Side.CLIENT)
     public ModelResourceLocation getModelForMeal() {
-        return new ModelResourceLocation(getResource().getResourceDomain() + ":meal", "burnt_" + getResource().getResourcePath());
+        return new ModelResourceLocation(getResource().getNamespace() + ":meal", "burnt_" + getResource().getPath());
     }
 
     @SuppressWarnings("deprecation")

@@ -19,7 +19,7 @@ public class GreetingShop implements IInfoButton {
     }
 
     public GreetingShop(ResourceLocation resourceLocation) {
-        this.text = resourceLocation.getResourceDomain() + ".npc." + resourceLocation.getResourcePath() + ".shop";
+        this.text = resourceLocation.getNamespace() + ".npc." + resourceLocation.getPath() + ".shop";
     }
 
     @SuppressWarnings("deprecation")

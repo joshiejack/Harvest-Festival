@@ -27,7 +27,7 @@ public class ModHolder extends AbstractItemHolder {
     @Override
     public boolean matches(@Nonnull ItemStack stack) {
         ResourceLocation resource = Item.REGISTRY.getNameForObject(stack.getItem());
-        return resource != null && resource.getResourceDomain().equals(mod);
+        return resource != null && resource.getNamespace().equals(mod);
     }
 
     public static ModHolder readFromNBT(NBTTagCompound tag) {

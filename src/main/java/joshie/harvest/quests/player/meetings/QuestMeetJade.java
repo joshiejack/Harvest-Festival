@@ -58,8 +58,8 @@ public class QuestMeetJade extends QuestQuestion {
     @Override
     @SuppressWarnings("deprecation")
     public String getTitle() {
-        if (quest_stage == INTRO) return I18n.translateToLocal(getRegistryName().getResourceDomain() + ".quest." + getRegistryName().getResourcePath() + ".title.what");
-        else return I18n.translateToLocal(getRegistryName().getResourceDomain() + ".quest." + getRegistryName().getResourcePath() + ".title");
+        if (quest_stage == INTRO) return I18n.translateToLocal(getRegistryName().getNamespace() + ".quest." + getRegistryName().getPath() + ".title.what");
+        else return I18n.translateToLocal(getRegistryName().getNamespace() + ".quest." + getRegistryName().getPath() + ".title");
     }
 
     @Override

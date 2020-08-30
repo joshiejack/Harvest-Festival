@@ -39,7 +39,7 @@ public class HolderRegistryMulti<R> {
             Mod mod = (Mod) object;
             ModHolder holder = ModHolder.of(mod.getMod());
             for (Item item : Item.REGISTRY) {
-                if (item.getRegistryName().getResourceDomain().equals(mod.getMod())) {
+                if (item.getRegistryName().getNamespace().equals(mod.getMod())) {
                     registerHolder(item, holder, r);
                 }
             }

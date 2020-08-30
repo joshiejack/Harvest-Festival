@@ -43,7 +43,7 @@ public class HFFestivals {
 
     public static void init() {
         for (Festival festival: TEMP_REGISTRY.keySet()) {
-            String name = "festival." + festival.getResource().getResourcePath().replace("_", ".");
+            String name = "festival." + festival.getResource().getPath().replace("_", ".");
             festival.setQuest(QuestHelper.getQuest(name)).setNote(registerNote(TOWNSHIP, name)).setLetter(new LetterFestival(festival, TEMP_REGISTRY.get(festival), festival.getResource()));
         }
 

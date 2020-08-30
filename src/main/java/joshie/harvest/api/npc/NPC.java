@@ -76,8 +76,8 @@ public class NPC extends HFRegistry<NPC> implements CalendarEntry {
      * @param outsideColor  this is the outer border colour of the npcs chat box **/
     public NPC(ResourceLocation resource, Gender gender, Age age, CalendarDate birthday, int insideColor, int outsideColor) {
         super(resource);
-        String MODID = resource.getResourceDomain();
-        String name = resource.getResourcePath();
+        String MODID = resource.getNamespace();
+        String name = resource.getPath();
         this.age = age;
         this.canInvite = true;
         this.gender = gender;
@@ -217,7 +217,7 @@ public class NPC extends HFRegistry<NPC> implements CalendarEntry {
 
     @SuppressWarnings("deprecation")
     public String getLocalizedName() {
-        return I18n.translateToLocal(getResource().getResourceDomain() + ".npc." + getResource().getResourcePath() + ".name");
+        return I18n.translateToLocal(getResource().getNamespace() + ".npc." + getResource().getPath() + ".name");
     }
 
     public IInfoButton getInfoButton() {

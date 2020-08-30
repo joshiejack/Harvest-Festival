@@ -53,7 +53,7 @@ public class PageRecipe extends Page {
     private PageRecipe(Recipe recipe) {
         this.recipe = recipe;
         this.stack = CookingHelper.makeRecipe(recipe);
-        this.description = recipe.getResource().getResourceDomain() + ".meal." + recipe.getResource().getResourcePath().replace("_", ".") + ".description";
+        this.description = recipe.getResource().getNamespace() + ".meal." + recipe.getResource().getPath().replace("_", ".") + ".description";
     }
 
     @Override

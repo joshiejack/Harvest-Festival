@@ -18,7 +18,7 @@ public class GreetingLocation implements IConditionalGreeting {
     private final String text;
 
     public GreetingLocation(@Nonnull BuildingLocation location) {
-        this.text = MODID + ".npc.location." + location.getBuilding().getResource().getResourceDomain() + "." + location.getBuilding().getResource().getResourcePath() + ".greeting";
+        this.text = MODID + ".npc.location." + location.getBuilding().getResource().getNamespace() + "." + location.getBuilding().getResource().getPath() + ".greeting";
         this.location = location;
     }
 

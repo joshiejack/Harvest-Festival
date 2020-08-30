@@ -9,6 +9,7 @@ import joshie.harvest.tools.ToolHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirt;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
@@ -212,8 +213,8 @@ public class ItemHoe extends ItemToolChargeable<ItemHoe> {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void addInformation(@Nonnull ItemStack stack, EntityPlayer player, List<String> list, boolean flag) {
-        super.addInformation(stack, player, list, flag);
+    public void addInformation(@Nonnull ItemStack stack, World world, List<String> list, ITooltipFlag flag) {
+        super.addInformation(stack, world, list, flag);
         int charge = getCharge(stack);
         ToolTier thisTier = getTier(stack);
         if (thisTier != ToolTier.BASIC) {

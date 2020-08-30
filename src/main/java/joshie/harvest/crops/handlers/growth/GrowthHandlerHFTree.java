@@ -11,6 +11,7 @@ import joshie.harvest.crops.HFCrops;
 import joshie.harvest.crops.block.BlockFruit.Fruit;
 import joshie.harvest.crops.block.BlockHFCrops.CropType;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
@@ -51,7 +52,7 @@ public abstract class GrowthHandlerHFTree extends GrowthHandlerTree {
 
     @SideOnly(Side.CLIENT)
     @Override
-    public void addInformation(List<String> list, Tree tree, boolean debug) {
+    public void addInformation(List<String> list, Tree tree, ITooltipFlag debug) {
         list.add(TextFormatting.DARK_GREEN + "" + TextFormatting.ITALIC + TextHelper.formatHF("tree.area", number, number));
         for (Season season : tree.getSeasons()) {
             list.add(season.getDisplayName());

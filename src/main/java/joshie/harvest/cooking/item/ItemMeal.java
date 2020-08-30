@@ -12,6 +12,7 @@ import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.item.ItemHFFoodEnum;
 import joshie.harvest.core.helpers.TextHelper;
 import joshie.harvest.quests.town.festivals.contest.cooking.CookingContestEntry;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
@@ -146,8 +147,8 @@ public class ItemMeal extends ItemHFFoodEnum<ItemMeal, Meal> {
     @Override
     @SideOnly(Side.CLIENT)
     @SuppressWarnings("ConstantConditions")
-    public void addInformation(@Nonnull ItemStack stack, EntityPlayer player, List<String> list, boolean debug) {
-        if (HFCore.DEBUG_MODE && debug) {
+    public void addInformation(@Nonnull ItemStack stack, World world, List<String> list, ITooltipFlag debug) {
+        if (HFCore.DEBUG_MODE && debug.isAdvanced()) {
             if (stack.hasTagCompound()) {
                 list.add(TextHelper.translate("meal.hunger") + " : " + stack.getTagCompound().getInteger(FOOD_LEVEL));
                 list.add(TextHelper.translate("meal.sat") + " : " + stack.getTagCompound().getFloat(SATURATION_LEVEL));

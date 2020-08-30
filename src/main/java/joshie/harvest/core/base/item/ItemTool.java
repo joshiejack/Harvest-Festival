@@ -11,6 +11,7 @@ import joshie.harvest.mining.item.ItemMaterial.Material;
 import joshie.harvest.tools.ToolHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -367,8 +368,8 @@ public abstract class ItemTool<I extends ItemTool> extends ItemHFBase<I> impleme
 
     @SideOnly(Side.CLIENT)
     @Override
-    public void addInformation(@Nonnull ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
-        if (HFCore.DEBUG_MODE && advanced) {
+    public void addInformation(@Nonnull ItemStack stack, World world, List<String> tooltip, ITooltipFlag advanced) {
+        if (HFCore.DEBUG_MODE && advanced.isAdvanced()) {
             tooltip.add("Level: " + getLevel(stack));
         }
     }

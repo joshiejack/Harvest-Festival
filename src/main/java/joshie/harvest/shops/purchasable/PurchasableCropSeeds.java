@@ -10,6 +10,7 @@ import joshie.harvest.core.helpers.MCClientHelper;
 import joshie.harvest.core.helpers.SpawnItemHelper;
 import joshie.harvest.core.helpers.TextHelper;
 import joshie.harvest.knowledge.HFNotes;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -56,7 +57,7 @@ public class PurchasableCropSeeds implements IPurchasable {
     @SideOnly(Side.CLIENT)
     @Override
     public void addTooltip(List<String> list) {
-        list.addAll(getDisplayStack().getTooltip(MCClientHelper.getPlayer(), false));
+        list.addAll(getDisplayStack().getTooltip(MCClientHelper.getPlayer(), ITooltipFlag.TooltipFlags.NORMAL));
         list.remove(list.size() - 1); //Remove info about days
         list.add("--------------------");
         int amount = crop instanceof Tree ? ((Tree)crop).getStagesToMaturity() : crop.getStages();

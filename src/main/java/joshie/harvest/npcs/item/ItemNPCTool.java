@@ -6,6 +6,7 @@ import joshie.harvest.core.helpers.SpawnItemHelper;
 import joshie.harvest.core.helpers.TextHelper;
 import joshie.harvest.mining.MiningHelper;
 import joshie.harvest.npcs.item.ItemNPCTool.NPCTool;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -77,7 +78,7 @@ public class ItemNPCTool extends ItemHFEnum<ItemNPCTool, NPCTool> {
     @SideOnly(Side.CLIENT)
     @Override
     @SuppressWarnings("ConstantConditions")
-    public void addInformation(@Nonnull ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
+    public void addInformation(@Nonnull ItemStack stack, World world, @Nonnull List<String> tooltip, @Nonnull ITooltipFlag advanced) {
         if (stack.hasTagCompound() && stack.getTagCompound().hasKey(SPECIAL)) {
             tooltip.add(TextHelper.translate("npctool.gift.special.tooltip"));
         }

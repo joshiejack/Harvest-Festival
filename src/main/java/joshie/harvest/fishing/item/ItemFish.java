@@ -8,6 +8,7 @@ import joshie.harvest.core.base.item.ItemHFFoodEnum;
 import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.core.util.interfaces.ISellable;
 import joshie.harvest.fishing.item.ItemFish.Fish;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemStack;
@@ -34,7 +35,7 @@ public class ItemFish extends ItemHFFoodEnum<ItemFish, Fish> {
     @Override
     @SideOnly(Side.CLIENT)
     @SuppressWarnings("ConstantConditions")
-    public void addInformation(@Nonnull ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
+    public void addInformation(@Nonnull ItemStack stack, World world, List<String> tooltip, @Nonnull ITooltipFlag advanced) {
         Fish fish = getEnumFromStack(stack);
         double weight = stack.hasTagCompound() ? stack.getTagCompound().getDouble(SIZE) : fish.getLengthFromSizeOfFish(SMALL_FISH);
         tooltip.add("Length: " + weight + "cm");

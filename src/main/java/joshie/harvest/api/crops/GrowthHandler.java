@@ -3,6 +3,7 @@ package joshie.harvest.api.crops;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.Season;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
@@ -18,7 +19,7 @@ public abstract class GrowthHandler<C extends Crop> {
      *  @param crop         the crop
      *  @param debug        debug mode? **/
     @SideOnly(Side.CLIENT)
-    public void addInformation(List<String> list, C crop, boolean debug) {
+    public void addInformation(List<String> list, C crop, ITooltipFlag debug) {
         for (Season season : crop.getSeasons()) {
             list.add(season.getDisplayName());
         }

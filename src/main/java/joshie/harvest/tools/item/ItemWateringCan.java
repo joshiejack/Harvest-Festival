@@ -13,6 +13,7 @@ import joshie.harvest.tools.ToolHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -187,13 +188,13 @@ public class ItemWateringCan extends ItemTool<ItemWateringCan> {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void addInformation(@Nonnull ItemStack stack, EntityPlayer player, List<String> tooltip, boolean advanced) {
+    public void addInformation(@Nonnull ItemStack stack, World world, List<String> tooltip, ITooltipFlag advanced) {
         ToolTier tier = getTier(stack);
         int width = 1 + (2 * getSides(tier));
         int depth = 1 + getFront(tier);
         tooltip.add(TextFormatting.AQUA + TextHelper.formatHF("wateringcan.tooltip.dimensions", width, depth));
 
-        if (HFCore.DEBUG_MODE && advanced) {
+        if (HFCore.DEBUG_MODE && advanced.isAdvanced()) {
             tooltip.add("Water: " + getCapacity(stack));
             tooltip.add("Level: " + getLevel(stack));
         }

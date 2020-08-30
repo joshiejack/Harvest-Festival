@@ -23,6 +23,7 @@ import net.minecraft.block.BlockFence;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
@@ -315,7 +316,7 @@ public class BlockStorage extends BlockHFEnumRotatableTile<BlockStorage, Storage
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void addInformation(@Nonnull ItemStack stack, EntityPlayer player, List<String> list, boolean flag) {
+    public void addInformation(@Nonnull ItemStack stack, World world, @Nonnull List<String> list, @Nonnull ITooltipFlag flag) {
         if (getEnumFromMeta(stack.getItemDamage()) == Storage.MAILBOX) {
             list.add(TextHelper.translate("tooltip.mailbox"));
         }

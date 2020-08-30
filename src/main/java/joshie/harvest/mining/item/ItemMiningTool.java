@@ -13,6 +13,7 @@ import joshie.harvest.mining.HFMining;
 import joshie.harvest.mining.MiningHelper;
 import joshie.harvest.mining.item.ItemMiningTool.MiningTool;
 import joshie.harvest.mining.tile.TileElevator;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -155,7 +156,7 @@ public class ItemMiningTool extends ItemHFEnum<ItemMiningTool, MiningTool> {
     }
 
     @SideOnly(Side.CLIENT)
-    public void addInformation(@Nonnull ItemStack stack, EntityPlayer player, List<String> tooltip, boolean advanced) {
+    public void addInformation(@Nonnull ItemStack stack, World world, @Nonnull List<String> tooltip, @Nonnull ITooltipFlag advanced) {
         if (getEnumFromStack(stack) == MiningTool.ELEVATOR_CABLE) tooltip.add(TextFormatting.AQUA + TextHelper.translate("elevator.tooltip"));
     }
 }

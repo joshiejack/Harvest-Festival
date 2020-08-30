@@ -14,6 +14,7 @@ import joshie.harvest.npcs.packet.PacketInfo;
 import joshie.harvest.quests.QuestHelper;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -213,7 +214,7 @@ public abstract class GuiNPCBase extends GuiBase {
     //Tooltip
     @Override
     protected void renderToolTip(@Nonnull ItemStack stack, int x, int y) {
-        List<String> textLines = stack.getTooltip(mc.player, false);
+        List<String> textLines = stack.getTooltip(mc.player, ITooltipFlag.TooltipFlags.NORMAL);
         for (int i = 0; i < textLines.size(); ++i) {
             if (i == 0) {
                 textLines.set(i, stack.getRarity().rarityColor + textLines.get(i));

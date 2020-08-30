@@ -17,6 +17,7 @@ import joshie.harvest.tools.ToolHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -206,8 +207,8 @@ public class ItemHammer extends ItemToolSmashing<ItemHammer> {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void addInformation(@Nonnull ItemStack stack, EntityPlayer player, List<String> list, boolean flag) {
-        super.addInformation(stack, player, list, flag);
+    public void addInformation(@Nonnull ItemStack stack, World world, List<String> list, ITooltipFlag flag) {
+        super.addInformation(stack, world, list, flag);
         ToolTier tier = getTier(stack);
         if (getFront(tier) > 0) {
             int area = (1 + (getFront(tier) * 2));

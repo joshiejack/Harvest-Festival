@@ -12,6 +12,7 @@ import joshie.harvest.tools.item.TreeTasks.TreeReplace;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.player.EntityPlayer;
@@ -188,8 +189,8 @@ public class ItemAxe extends ItemToolSmashing<ItemAxe> {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void addInformation(@Nonnull ItemStack stack, EntityPlayer player, List<String> list, boolean flag) {
-        super.addInformation(stack, player, list, flag);
+    public void addInformation(@Nonnull ItemStack stack, World world, List<String> list, ITooltipFlag flag) {
+        super.addInformation(stack, world, list, flag);
         list.add(TextFormatting.AQUA + "" + TextFormatting.ITALIC + TextHelper.translate("axe.tooltip.sneak"));
         list.add(TextFormatting.GREEN + TextHelper.formatHF("axe.tooltip.chops", getHitsRequired(stack) + 1));
     }

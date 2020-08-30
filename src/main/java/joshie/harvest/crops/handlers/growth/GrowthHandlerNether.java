@@ -2,6 +2,7 @@ package joshie.harvest.crops.handlers.growth;
 
 import joshie.harvest.api.crops.Crop;
 import joshie.harvest.api.crops.GrowthHandler;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextFormatting;
@@ -14,7 +15,7 @@ import java.util.List;
 public class GrowthHandlerNether extends GrowthHandler<Crop> {
     @SideOnly(Side.CLIENT)
     @Override
-    public void addInformation(List<String> list, Crop crop, boolean debug) {
+    public void addInformation(List<String> list, Crop crop, ITooltipFlag debug) {
         list.add(TextFormatting.RED + "Nether");
     }
 

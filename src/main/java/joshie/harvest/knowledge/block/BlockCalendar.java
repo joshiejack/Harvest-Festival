@@ -25,9 +25,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.registries.GameData;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -146,7 +146,7 @@ public class BlockCalendar extends BlockHFBase<BlockCalendar> {
     public BlockCalendar register(String name) {
         setTranslationKey(name.replace("_", "."));
         setRegistryName(new ResourceLocation(MODID, name));
-        GameRegistry.register(this);
+        GameData.register_impl(this);
         return this;
     }
 

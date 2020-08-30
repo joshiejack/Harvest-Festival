@@ -11,9 +11,9 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.FMLCommonHandler;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.registries.GameData;
 
 import javax.annotation.Nonnull;
 
@@ -44,7 +44,7 @@ public abstract class ItemHFBase<I extends ItemHFBase> extends Item {
     public I register(String name) {
         setTranslationKey(name.replace("_", "."));
         setRegistryName(new ResourceLocation(MODID, name));
-        GameRegistry.register(this);
+        GameData.register_impl(this);
         if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT) {
             registerModels(this, name);
         }

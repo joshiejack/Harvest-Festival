@@ -8,8 +8,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.FMLCommonHandler;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.registries.GameData;
 
 import javax.annotation.Nonnull;
 
@@ -63,7 +63,7 @@ public class ItemBlockHF<B extends BlockHFBase> extends ItemBlock implements ICr
     public void register(String name) {
         setTranslationKey(name.replace("_", "."));
         setRegistryName(new ResourceLocation(MODID, name));
-        GameRegistry.register(this);
+        GameData.register_impl(this);
         if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT) {
             block.registerModels(this, name);
         }

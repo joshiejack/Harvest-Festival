@@ -27,9 +27,9 @@ import net.minecraft.world.WorldServer;
 import net.minecraftforge.fluids.BlockFluidClassic;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.registries.GameData;
 
 import javax.annotation.Nonnull;
 import java.util.List;
@@ -79,7 +79,7 @@ public class BlockGoddessWater extends BlockFluidClassic {
     public BlockGoddessWater register(String name) {
         setTranslationKey(name.replace("_", "."));
         setRegistryName(new ResourceLocation(MODID, name));
-        GameRegistry.register(this);
+        GameData.register_impl(this);
         return this;
     }
 

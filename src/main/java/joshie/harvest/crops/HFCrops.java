@@ -34,7 +34,9 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.ColorizerFoliage;
 import net.minecraft.world.biome.BiomeColorHelper;
 import net.minecraft.world.storage.loot.functions.LootFunctionManager;
@@ -135,15 +137,9 @@ public class HFCrops {
         //Register the crop serializer
         LootFunctionManager.registerFunction(new SetCropType.Serializer());
         RecipeSorter.register("harvestfestival:seeds", SeedRecipeHandler.class, Category.SHAPELESS, "after:minecraft:shapeless");
-        registerVanillaCrop(Blocks.WHEAT, new ItemStack(Items.WHEAT), new ItemStack(Items.WHEAT_SEEDS, 9), WHEAT);
-        registerVanillaCrop(Blocks.CARROTS, new ItemStack(Items.CARROT), new ItemStack(Items.CARROT), CARROT);
-        registerVanillaCrop(Blocks.POTATOES, new ItemStack(Items.POTATO), new ItemStack(Items.POTATO), POTATO);
-        registerVanillaCrop(Blocks.BEETROOTS, new ItemStack(Items.BEETROOT), new ItemStack(Items.BEETROOT_SEEDS, 9), BEETROOT);
-        registerVanillaCrop(Blocks.MELON_STEM, new ItemStack(Items.MELON), new ItemStack(Items.MELON_SEEDS, 9), WATERMELON);
-        registerVanillaCrop(Blocks.PUMPKIN_STEM, new ItemStack(Blocks.PUMPKIN), new ItemStack(Items.PUMPKIN_SEEDS, 9), PUMPKIN);
-        GameRegistry.addShapelessRecipe(new ItemStack(Items.MELON, 9), Blocks.MELON_BLOCK);
-        GameRegistry.addShapelessRecipe(new ItemStack(Items.WHEAT_SEEDS), Items.WHEAT);
-        GameRegistry.addShapelessRecipe(new ItemStack(Items.BEETROOT_SEEDS, 2), Items.BEETROOT, Items.BEETROOT);
+        GameRegistry.addShapedRecipe(new ResourceLocation("harvestfestival", "melon"), null, new ItemStack(Items.MELON, 9), "*", '*', Blocks.MELON_BLOCK);
+        GameRegistry.addShapedRecipe(new ResourceLocation("harvestfestival", "_wheat_seeds"), null, new ItemStack(Items.WHEAT_SEEDS), "*", '*', Items.WHEAT);
+        GameRegistry.addShapelessRecipe(new ResourceLocation("harvestfestival", "_beetroot_seeds"), null, new ItemStack(Items.BEETROOT_SEEDS, 2), Ingredient.fromItem(Items.BEETROOT), Ingredient.fromItem(Items.BEETROOT));
         HFApi.crops.registerCropProvider(new ItemStack(Items.NETHER_WART), NETHER_WART);
         //registerVanillaCrop(Blocks.NETHER_WART, Items.NETHER_WART, NETHER_WART);
         HFApi.crops.registerWateringHandler(new WateringHandler());
@@ -176,6 +172,12 @@ public class HFCrops {
     }
 
     public static void init() {
+        registerVanillaCrop(Blocks.WHEAT, new ItemStack(Items.WHEAT), new ItemStack(Items.WHEAT_SEEDS, 9), WHEAT);
+        registerVanillaCrop(Blocks.CARROTS, new ItemStack(Items.CARROT), new ItemStack(Items.CARROT), CARROT);
+        registerVanillaCrop(Blocks.POTATOES, new ItemStack(Items.POTATO), new ItemStack(Items.POTATO), POTATO);
+        registerVanillaCrop(Blocks.BEETROOTS, new ItemStack(Items.BEETROOT), new ItemStack(Items.BEETROOT_SEEDS, 9), BEETROOT);
+        registerVanillaCrop(Blocks.MELON_STEM, new ItemStack(Items.MELON), new ItemStack(Items.MELON_SEEDS, 9), WATERMELON);
+        registerVanillaCrop(Blocks.PUMPKIN_STEM, new ItemStack(Blocks.PUMPKIN), new ItemStack(Items.PUMPKIN_SEEDS, 9), PUMPKIN);
         HFApi.npc.getGifts().addToBlacklist(SEEDS);
     }
 

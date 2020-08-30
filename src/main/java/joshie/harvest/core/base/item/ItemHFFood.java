@@ -16,9 +16,9 @@ import net.minecraft.util.*;
 import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.FMLCommonHandler;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.registries.GameData;
 
 import javax.annotation.Nonnull;
 
@@ -88,7 +88,7 @@ public class ItemHFFood<I extends ItemHFFood> extends ItemFood {
     public I register(String name) {
         setTranslationKey(name.replace("_", "."));
         setRegistryName(new ResourceLocation(MODID, name));
-        GameRegistry.register(this);
+        GameData.register_impl(this);
         if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT) {
             registerModels(this, name);
         }

@@ -8,8 +8,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.Loader;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
+import net.minecraftforge.registries.GameData;
 
 import java.util.EnumMap;
 import java.util.Locale;
@@ -64,7 +64,7 @@ public class HFTools {
     private static Potion registerPotion(String name, int color, int x, int y) {
         ResourceLocation location = new ResourceLocation(MODID, name);
         Potion potion = new HFPotion(MODID + ".effect." + name, color, x, y).setRegistryName(location);
-        return GameRegistry.register(potion);
+        return GameData.register_impl(potion);
     }
 
     //Configuration

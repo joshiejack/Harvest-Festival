@@ -29,6 +29,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
+import net.minecraftforge.registries.GameData;
 import org.apache.commons.lang3.text.WordUtils;
 
 import javax.annotation.Nonnull;
@@ -44,7 +45,7 @@ public class RegistryHelper {
     public static void registerSounds(String... sounds) {
         for (String sound : sounds) {
             ResourceLocation resource = new ResourceLocation(MODID, sound);
-            GameRegistry.register(new SoundEvent(resource), resource);
+            GameData.register_impl(new SoundEvent(resource).setRegistryName(resource));
         }
     }
 
@@ -116,7 +117,7 @@ public class RegistryHelper {
 
         //Add a bag > seed recipe
         if (crop.getCropStack(1).getItem() != seeds.getItem()) {
-            GameRegistry.addRecipe(new SeedRecipeHandler(seeds, crop.getSeedStack(1)));
+            GameData.register_impl(new SeedRecipeHandler(seeds, crop).setRegistryName("harvestfestival", seeds.getItem().getRegistryName().getPath()));
         }
     }
 

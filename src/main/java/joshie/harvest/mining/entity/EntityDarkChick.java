@@ -102,7 +102,7 @@ public class EntityDarkChick extends EntityMob {
     }
 
     @Override
-    protected SoundEvent getHurtSound() {
+    protected SoundEvent getHurtSound(@Nonnull DamageSource damageSourceIn) {
         return SoundEvents.ENTITY_CHICKEN_HURT;
     }
 

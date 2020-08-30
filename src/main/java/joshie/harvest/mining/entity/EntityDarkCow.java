@@ -72,7 +72,7 @@ public class EntityDarkCow extends EntityMob {
     }
 
     @Override
-    protected SoundEvent getHurtSound() {
+    protected SoundEvent getHurtSound(@Nonnull DamageSource damageSourceIn) {
         return SoundEvents.ENTITY_COW_HURT;
     }
 

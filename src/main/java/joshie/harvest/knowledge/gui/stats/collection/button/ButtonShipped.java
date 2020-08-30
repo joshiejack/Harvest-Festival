@@ -44,7 +44,7 @@ public class ButtonShipped extends ButtonBook<GuiStats> {
     }
 
     @Override
-    public void drawButton(@Nonnull Minecraft mc, int mouseX, int mouseY) {
+    public void drawButton(@Nonnull Minecraft mc, int mouseX, int mouseY, float partialTicks) {
         if (visible) {
             GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
             hovered = mouseX >= x && mouseY >= y && mouseX < x + width && mouseY < y + height;

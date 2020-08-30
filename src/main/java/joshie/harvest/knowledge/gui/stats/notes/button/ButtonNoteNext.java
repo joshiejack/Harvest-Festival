@@ -17,7 +17,7 @@ public class ButtonNoteNext extends ButtonBook<GuiStats> {
     }
 
     @Override
-    public void drawButton(@Nonnull Minecraft mc, int mouseX, int mouseY) {
+    public void drawButton(@Nonnull Minecraft mc, int mouseX, int mouseY, float partialTicks) {
         if (visible) {
             mc.getTextureManager().bindTexture(TEXTURE);
             GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);

@@ -18,7 +18,7 @@ public class TaskWait extends TaskElement {
 
     @Override
     public void execute(NPCEntity npc) {
-        npc.getAsEntity().getNavigator().clearPathEntity();
+        npc.getAsEntity().getNavigator().clearPath();
         ticker++; //Continue Executing
     }
 

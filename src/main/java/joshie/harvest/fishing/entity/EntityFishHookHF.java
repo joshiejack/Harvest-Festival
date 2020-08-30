@@ -16,8 +16,12 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
-import net.minecraft.world.storage.loot.LootContext;
+import net.minecraft.world.storage.loot.LootContext.Builder;
+import net.minecraft.world.storage.loot.LootTableList;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.entity.player.ItemFishedEvent;
 
+import java.util.Iterator;
 import java.util.List;
 
 public class EntityFishHookHF extends EntityFishHook {
@@ -35,7 +39,7 @@ public class EntityFishHookHF extends EntityFishHook {
         boolean flag = itemstack.getItem() instanceof ItemFishingRod;
         boolean flag1 = itemstack1.getItem() instanceof ItemFishingRod;
 
-        if (!angler.isDead && angler.isEntityAlive() && (flag || flag1) && getDistanceSqToEntity(angler) <= 1024.0D) {
+        if (!angler.isDead && angler.isEntityAlive() && (flag || flag1) && getDistanceSq(angler) <= 1024.0D) {
             return false;
         } else {
             this.setDead();
@@ -46,53 +50,59 @@ public class EntityFishHookHF extends EntityFishHook {
     @Override
     @SuppressWarnings("ConstantConditions")
     public int handleHookRetraction() {
-        EntityPlayer angler = getAngler();
-        if (!world.isRemote && angler != null) {
+        if (!this.world.isRemote && getAngler() != null) {
             int i = 0;
-            net.minecraftforge.event.entity.player.ItemFishedEvent event = null;
-            if (caughtEntity != null) {
-                bringInHookedEntity();
-                world.setEntityState(this, (byte) 31);
-                i = caughtEntity instanceof EntityItem ? 3 : 5;
-            } else if (ticksCatchable > 0) {
-                LootContext.Builder lootcontext$builder = new LootContext.Builder((WorldServer) world);
-                lootcontext$builder.withLuck((float)this.field_191518_aw + getAngler().getLuck());
-                //Line changed by me
-                List<ItemStack> result = world.getLootTableManager().getLootTableFromLocation(FishingHelper.getFishingTable(world, new BlockPos(this))).generateLootForPools(rand, lootcontext$builder.build());
-                event = new net.minecraftforge.event.entity.player.ItemFishedEvent(result, this.inGround ? 2 : 1, this);
-                net.minecraftforge.common.MinecraftForge.EVENT_BUS.post(event);
+            ItemFishedEvent event = null;
+            if (this.caughtEntity != null) {
+                this.bringInHookedEntity();
+                this.world.setEntityState(this, (byte)31);
+                i = this.caughtEntity instanceof EntityItem ? 3 : 5;
+            } else if (this.ticksCatchable > 0) {
+                Builder lootcontext$builder = new Builder((WorldServer)this.world);
+                lootcontext$builder.withLuck((float)this.luck + this.getAngler().getLuck()).withPlayer(this.getAngler()).withLootedEntity(this);
+                List<ItemStack> result = this.world.getLootTableManager().getLootTableFromLocation(LootTableList.GAMEPLAY_FISHING).generateLootForPools(this.rand, lootcontext$builder.build());
+                event = new ItemFishedEvent(result, this.inGround ? 2 : 1, this);
+                MinecraftForge.EVENT_BUS.post(event);
                 if (event.isCanceled()) {
                     this.setDead();
                     return event.getRodDamage();
                 }
-                for (ItemStack stack : result) {
-                    //Line changed by me
-                    FishingHelper.track(stack, angler); //Add to the tracking
-                    EntityItem entityItem = new EntityItem(world, posX, posY, posZ, stack);
-                    double d0 = angler.posX - posX;
-                    double d1 = angler.posY - posY;
-                    double d2 = angler.posZ - posZ;
-                    double d3 = (double) MathHelper.sqrt(d0 * d0 + d1 * d1 + d2 * d2);
-                    entityItem.motionX = d0 * 0.1D;
-                    entityItem.motionY = d1 * 0.1D + (double) MathHelper.sqrt(d3) * 0.08D;
-                    entityItem.motionZ = d2 * 0.1D;
-                    world.spawnEntity(entityItem);
-                    angler.world.spawnEntity(new EntityXPOrb(angler.world, angler.posX, angler.posY + 0.5D, angler.posZ + 0.5D, rand.nextInt(6) + 1));
 
-                    Item item = stack.getItem();
-                    //Line changed by me
-                    if (item instanceof ItemFish || item instanceof ItemFishFood || item == Items.FISH || item == Items.COOKED_FISH) {
-                        angler.addStat(StatList.FISH_CAUGHT, 1);
-                    }
+                Iterator var5 = result.iterator();
+
+                label50:
+                while(true) {
+                    Item item;
+                    do {
+                        if (!var5.hasNext()) {
+                            i = 1;
+                            break label50;
+                        }
+
+                        ItemStack itemstack = (ItemStack)var5.next();
+                        EntityItem entityitem = new EntityItem(this.world, this.posX, this.posY, this.posZ, itemstack);
+                        double d0 = getAngler().posX - this.posX;
+                        double d1 = getAngler().posY - this.posY;
+                        double d2 = getAngler().posZ - this.posZ;
+                        double d3 = (double)MathHelper.sqrt(d0 * d0 + d1 * d1 + d2 * d2);
+                        double d4 = 0.1D;
+                        entityitem.motionX = d0 * 0.1D;
+                        entityitem.motionY = d1 * 0.1D + (double)MathHelper.sqrt(d3) * 0.08D;
+                        entityitem.motionZ = d2 * 0.1D;
+                        this.world.spawnEntity(entityitem);
+                        this.getAngler().world.spawnEntity(new EntityXPOrb(this.getAngler().world, this.getAngler().posX, this.getAngler().posY + 0.5D, this.getAngler().posZ + 0.5D, this.rand.nextInt(6) + 1));
+                        item = itemstack.getItem();
+                    } while(item != Items.FISH && item != Items.COOKED_FISH);
+
+                    this.getAngler().addStat(StatList.FISH_CAUGHT, 1);
                 }
-                i = 1;
             }
 
-            if (inGround) {
+            if (this.inGround) {
                 i = 2;
             }
 
-            setDead();
+            this.setDead();
             return event == null ? i : event.getRodDamage();
         } else {
             return 0;

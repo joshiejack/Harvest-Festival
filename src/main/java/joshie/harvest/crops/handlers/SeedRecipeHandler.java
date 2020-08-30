@@ -3,6 +3,7 @@ package joshie.harvest.crops.handlers;
 import joshie.harvest.crops.HFCrops;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 
@@ -10,7 +11,7 @@ import java.util.ArrayList;
 
 public class SeedRecipeHandler extends ShapelessOreRecipe {
     public SeedRecipeHandler(ItemStack result, Object... recipe) {
-        super(result, recipe);
+        super(null, result, recipe);
     }
 
     @SuppressWarnings("unchecked")

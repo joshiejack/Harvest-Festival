@@ -158,7 +158,7 @@ public class BlockCalendar extends BlockHFBase<BlockCalendar> {
     @Nonnull
     @SuppressWarnings("deprecation")
     public IBlockState getStateFromMeta(int meta) {
-        EnumFacing facing = EnumFacing.getFront(meta);
+        EnumFacing facing = EnumFacing.byIndex(meta);
 
         if (facing.getAxis() == EnumFacing.Axis.Y) {
             facing = EnumFacing.NORTH;

@@ -106,7 +106,7 @@ public class ItemSickle extends ItemToolChargeable<ItemSickle> {
                                     if (state.getBlock().canHarvestBlock(worldIn, newPos, player)) {
                                         boolean flag = state.getBlock().removedByPlayer(state, worldIn, newPos, player, true);
                                         if (flag) {
-                                            state.getBlock().onBlockDestroyedByPlayer(worldIn, newPos, state);
+                                            state.getBlock().onPlayerDestroy(worldIn, newPos, state);
                                             state.getBlock().harvestBlock(worldIn, player, newPos, state, worldIn.getTileEntity(newPos), stack);
                                         }
                                     }
@@ -122,10 +122,10 @@ public class ItemSickle extends ItemToolChargeable<ItemSickle> {
     }
 
     @Override
-    public float getStrVsBlock(@Nonnull ItemStack stack, IBlockState state) {
+    public float getDestroySpeed(@Nonnull ItemStack stack, @Nonnull IBlockState state) {
         if (canUse(stack)) {
             Material material = state.getMaterial();
-            return (state.getBlock() != Blocks.GRASS && material == Material.GRASS) || material == Material.LEAVES || material == Material.VINE ? 10F : super.getStrVsBlock(stack, state);
+            return (state.getBlock() != Blocks.GRASS && material == Material.GRASS) || material == Material.LEAVES || material == Material.VINE ? 10F : super.getDestroySpeed(stack, state);
         } else return 0.05F;
     }
 

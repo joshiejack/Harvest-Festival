@@ -148,7 +148,7 @@ public abstract class BlockHFEnum<B extends BlockHFEnum, E extends Enum<E> & ISt
     @Override
     @SideOnly(Side.CLIENT)
     @Nonnull
-    public BlockRenderLayer getBlockLayer() {
+    public BlockRenderLayer getRenderLayer() {
         return BlockRenderLayer.CUTOUT;
     }
 
@@ -175,10 +175,10 @@ public abstract class BlockHFEnum<B extends BlockHFEnum, E extends Enum<E> & ISt
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(@Nonnull Item item, CreativeTabs tab, NonNullList<ItemStack> list) {
+    public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> list) {
         for (E e : values) {
             if (shouldDisplayInCreative(e)) {
-                list.add(new ItemStack(item, 1, e.ordinal()));
+                list.add(new ItemStack(this, 1, e.ordinal()));
             }
         }
     }

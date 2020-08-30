@@ -297,7 +297,7 @@ public class AnimalStatsHF implements AnimalStats<NBTTagCompound> {
             if (animal != null && !animal.world.isRemote) {
                 if (amount < 0) {
                     try {
-                        ReflectionHelper.findMethod(EntityLivingBase.class, null, new String[]{ "playHurtSound", "func_184581_c" }, DamageSource.class).invoke(animal, DamageSource.STARVE);
+                        ReflectionHelper.findMethod(EntityLivingBase.class, "playHurtSound", "func_184581_c", DamageSource.class).invoke(animal, DamageSource.STARVE);
                     } catch (IllegalAccessException | InvocationTargetException ex) {
                         ex.printStackTrace();
                     }

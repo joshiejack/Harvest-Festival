@@ -84,8 +84,7 @@ public class BlockGoddessWater extends BlockFluidClassic {
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
-    public void getSubBlocks(@Nonnull Item item, CreativeTabs tab, NonNullList<ItemStack> list) {
-        list.add(new ItemStack(item));
+    public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> list) {
+        list.add(new ItemStack(this));
     }
 }

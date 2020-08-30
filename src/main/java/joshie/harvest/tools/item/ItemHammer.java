@@ -165,10 +165,10 @@ public class ItemHammer extends ItemToolSmashing<ItemHammer> {
     }
 
     @Override
-    public float getStrVsBlock(@Nonnull ItemStack stack, IBlockState state) {
+    public float getDestroySpeed(@Nonnull ItemStack stack, @Nonnull IBlockState state) {
         if (canUse(stack)) {
             Material material = state.getMaterial();
-            return material != Material.IRON && material != Material.ANVIL && material != Material.ROCK ? super.getStrVsBlock(stack, state) : this.getEffiency(stack);
+            return material != Material.IRON && material != Material.ANVIL && material != Material.ROCK ? super.getDestroySpeed(stack, state) : this.getEffiency(stack);
         } else return 0.05F;
     }
 

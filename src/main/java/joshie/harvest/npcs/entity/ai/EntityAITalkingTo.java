@@ -24,12 +24,12 @@ public class EntityAITalkingTo extends EntityAIBase {
             return false;
         } else {
             EntityPlayer entityplayer = npc.getTalkingTo();
-            return entityplayer != null && npc.getDistanceSqToEntity(entityplayer) < 3.0D && entityplayer.openContainer != null;
+            return entityplayer != null && npc.getDistanceSq(entityplayer) < 3.0D && entityplayer.openContainer != null;
         }
     }
 
     @Override
     public void startExecuting() {
-        npc.getNavigator().clearPathEntity();
+        npc.getNavigator().clearPath();
     }
 }

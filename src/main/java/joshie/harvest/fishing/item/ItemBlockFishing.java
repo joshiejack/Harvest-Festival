@@ -43,7 +43,7 @@ public class ItemBlockFishing extends ItemBlockHF<BlockFloating> {
                     // special case for handling block placement with water lilies
                     net.minecraftforge.common.util.BlockSnapshot blocksnapshot = net.minecraftforge.common.util.BlockSnapshot.getBlockSnapshot(world, blockpos1);
                     world.setBlockState(blockpos1, state);
-                    if (net.minecraftforge.event.ForgeEventFactory.onPlayerBlockPlace(player, blocksnapshot, net.minecraft.util.EnumFacing.UP).isCanceled()) {
+                    if (net.minecraftforge.event.ForgeEventFactory.onPlayerBlockPlace(player, blocksnapshot, net.minecraft.util.EnumFacing.UP, hand).isCanceled()) {
                         blocksnapshot.restore(true, false);
                         return new ActionResult<>(EnumActionResult.FAIL, stack);
                     }

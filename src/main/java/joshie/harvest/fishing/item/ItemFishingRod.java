@@ -93,14 +93,14 @@ public class ItemFishingRod extends ItemTool<ItemFishingRod> {
                     //Lure replacement
                     int j = (tier.getToolLevel() + 1) * (getBaitAmount(stack) > 0 ? 2 : 1) / 4;
                     if (j > 0) {
-                        entityfishhook.func_191516_a(Math.min(j, 6));
+                        entityfishhook.setLureSpeed(Math.min(j, 6));
                     }
 
                     //Luck of the sea replacement
                     int k = tier == ToolTier.CURSED ? 1 : 0;
 
                     if (k > 0)  {
-                        entityfishhook.func_191517_b(k);
+                        entityfishhook.setLuck(k);
                     }
 
                     world.spawnEntity(entityfishhook);

@@ -95,7 +95,7 @@ public abstract class TileCooking extends TileFaceable {
         if (ingredients.size() > 0) {
             ItemStack stack = ingredients.get(ingredients.size() - 1);
             if (stack.hasTagCompound()) stack.getTagCompound().removeTag(IN_UTENSIL);
-            if (stack.hasTagCompound() && stack.getTagCompound().hasNoTags()) {
+            if (stack.hasTagCompound() && stack.getTagCompound().isEmpty()) {
                 stack.setTagCompound(null);
             }
 

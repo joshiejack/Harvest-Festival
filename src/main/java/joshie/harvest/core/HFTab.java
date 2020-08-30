@@ -46,15 +46,21 @@ public class HFTab extends CreativeTabs {
     }
 
     @Override
+    @Nonnull
+    public ItemStack createIcon() {
+        return icon;
+    }
+
+    @Override
     @SideOnly(Side.CLIENT)
     @Nonnull
-    public String getTranslatedTabLabel() {
-        return HFModInfo.MODID + ".tab." + this.getTabLabel();
+    public String getTabLabel() {
+        return HFModInfo.MODID + ".tab." + super.getTabLabel();
     }
 
     @Override
     @Nonnull
-    public ItemStack getTabIconItem() {
+    public ItemStack getIcon() {
         return icon;
     }
 

@@ -157,7 +157,7 @@ public class ToolHelper {
         List<ItemStack> blockDrops = new ArrayList<>();
         if (block.canSilkHarvest(world, pos, state, player)) {
             try {
-                Method method = ReflectionHelper.findMethod(Block.class, null, new String[]{ "getSilkTouchDrop", "func_180643_i" }, IBlockState.class);
+                Method method = ReflectionHelper.findMethod(Block.class, "getSilkTouchDrop", "func_180643_i", IBlockState.class);
                 ItemStack stack = (ItemStack) method.invoke(block, state);
                 if (!stack.isEmpty()) {
                     blockDrops.add(stack);
@@ -176,7 +176,7 @@ public class ToolHelper {
     public static ItemStack getStackFromBlockState(IBlockState state) {
         ItemStack stack = ItemStack.EMPTY;
         try {
-            Method method = ReflectionHelper.findMethod(Block.class, null, new String[] { "createStackedBlock", "func_180643_i" } , IBlockState.class);
+            Method method = ReflectionHelper.findMethod(Block.class, "createStackedBlock", "func_180643_i", IBlockState.class);
             stack = (ItemStack) method.invoke(state.getBlock(), state);
         } catch (IllegalAccessException | InvocationTargetException | ReflectionHelper.UnableToFindMethodException ignored) {
         }

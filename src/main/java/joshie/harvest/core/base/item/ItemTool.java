@@ -332,7 +332,7 @@ public abstract class ItemTool<I extends ItemTool> extends ItemHFBase<I> impleme
             d3 = ((EntityPlayerMP) entity).interactionManager.getBlockReachDistance();
         }
 
-        Vec3d vec31 = vec3.addVector((double)f6 * d3, (double)f5 * d3, (double)f7 * d3);
+        Vec3d vec31 = vec3.add((double)f6 * d3, (double)f5 * d3, (double)f7 * d3);
         return world.rayTraceBlocks(vec3, vec31, false, false, false);
     }
 
@@ -357,7 +357,7 @@ public abstract class ItemTool<I extends ItemTool> extends ItemHFBase<I> impleme
     }
 
     @Override
-    public float getStrVsBlock(@Nonnull ItemStack stack, IBlockState state) {
+    public float getDestroySpeed(@Nonnull ItemStack stack, @Nonnull IBlockState state) {
         for (String type : getToolClasses(stack)) {
             if (state.getBlock().isToolEffective(type, state))
                 return getEffiency(stack);

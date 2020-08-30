@@ -97,7 +97,7 @@ public class HFWorldProvider extends WorldProviderSurface {
             for (int z = -distance; z <= distance; ++z) {
                 BlockPos pos = center.add(x, 0, z);
                 Biome biome = world.getBiome(pos);
-                int colour = biome.getSkyColorByTemp(biome.getFloatTemperature(pos));
+                int colour = biome.getSkyColorByTemp(biome.getTemperature(pos));
                 r += (colour & 0xFF0000) >> 16;
                 g += (colour & 0x00FF00) >> 8;
                 b += colour & 0x0000FF;
@@ -207,7 +207,7 @@ public class HFWorldProvider extends WorldProviderSurface {
             return !weather.isRain() && super.canBlockFreeze(pos, byWater);
         } else {
             Weather weather = HFApi.calendar.getWeather(world);
-            float f = biome.getFloatTemperature(pos);
+            float f = biome.getTemperature(pos);
             if (weather.isSnow() && f > 0.15F) {
                 if (pos.getY() >= 0 && pos.getY() < 256 && world.getLightFor(EnumSkyBlock.BLOCK, pos) < 10) {
                     IBlockState iblockstate = world.getBlockState(pos);
@@ -241,7 +241,7 @@ public class HFWorldProvider extends WorldProviderSurface {
             return !weather.isRain() && super.canSnowAt(pos, checkLight);
         } else {
             Weather weather = HFApi.calendar.getWeather(world);
-            float f = biome.getFloatTemperature(pos);
+            float f = biome.getTemperature(pos);
             if (weather.isSnow() && f > 0.15F) {
                 if (!checkLight) {
                     return true;

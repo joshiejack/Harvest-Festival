@@ -39,6 +39,7 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.registries.IForgeRegistryEntry;
 import org.apache.logging.log4j.Level;
 
 import java.lang.reflect.InvocationTargetException;
@@ -147,7 +148,7 @@ public class HFBuildings {
 
         @Override
         public boolean shouldSkipField(FieldAttributes field) {
-            return field.getDeclaringClass().equals(Impl.class);
+            return field.getDeclaringClass().equals(IForgeRegistryEntry.Impl.class);
         }
     }
 

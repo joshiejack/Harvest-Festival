@@ -102,7 +102,7 @@ public class ItemHFFood<I extends ItemHFFood> extends ItemFood {
             NonNullList<ItemStack> subItems = NonNullList.create();
             if (item.getCreativeTabs().length > 0) {
                 for (CreativeTabs tab : item.getCreativeTabs()) {
-                    item.getSubItems(item, tab, subItems);
+                    item.getSubItems(tab, subItems);
                 }
             }
 

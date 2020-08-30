@@ -109,10 +109,10 @@ public abstract class ItemHFEnum<I extends ItemHFEnum, E extends Enum<E> & IStri
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubItems(@Nonnull Item item, CreativeTabs tab, NonNullList<ItemStack> list) {
+    public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> list) {
         for (E e: values) {
             if (shouldDisplayInCreative(e)) {
-                list.add(new ItemStack(item, 1, e.ordinal()));
+                list.add(new ItemStack(this, 1, e.ordinal()));
             }
         }
     }

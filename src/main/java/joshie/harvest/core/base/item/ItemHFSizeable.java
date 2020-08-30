@@ -102,10 +102,10 @@ public class ItemHFSizeable<I extends ItemHFFoodEnum, E extends Enum<E> & IStrin
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubItems(@Nonnull Item item, CreativeTabs tab, NonNullList<ItemStack> list) {
+    public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> list) {
         for (E e: values) {
             for (Size size: Size.values()) {
-                list.add(e.getStack(item, size));
+                list.add(e.getStack(this, size));
             }
         }
     }

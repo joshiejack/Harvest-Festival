@@ -50,7 +50,7 @@ public abstract class ItemHFRegistry<I extends ItemHFRegistry, E extends HFRegis
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubItems(@Nonnull Item item, CreativeTabs tab, NonNullList<ItemStack> list) {
+    public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> list) {
         list.addAll(newRegistry.values().stream().map(this::getStackFromObject).collect(Collectors.toList()));
     }
 

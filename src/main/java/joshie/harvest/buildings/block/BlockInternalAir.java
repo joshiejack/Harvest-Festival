@@ -75,9 +75,9 @@ public class BlockInternalAir extends BlockHFBase<BlockInternalAir> {
 
     @SideOnly(Side.CLIENT)
     @Override
-    public void getSubBlocks(@Nonnull Item itemIn, CreativeTabs tab, NonNullList<ItemStack> list) {
+    public void getSubBlocks(@Nonnull CreativeTabs tab, @Nonnull NonNullList<ItemStack> list) {
         if (HFCore.DEBUG_MODE) {
-            super.getSubBlocks(itemIn, tab, list);
+            super.getSubBlocks(tab, list);
         }
     }
 

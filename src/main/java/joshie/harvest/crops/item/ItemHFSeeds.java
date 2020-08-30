@@ -126,7 +126,7 @@ public class ItemHFSeeds extends ItemSeeds implements ICreativeSorted {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubItems(@Nonnull Item item, CreativeTabs tab, NonNullList<ItemStack> list) {
+    public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> list) {
         list.addAll(Crop.REGISTRY.values().stream().filter(crop -> crop != Crop.NULL_CROP && crop.getCropStack(1).getItem() != Items.BRICK).map(this::getStackFromCrop).collect(Collectors.toList()));
     }
 

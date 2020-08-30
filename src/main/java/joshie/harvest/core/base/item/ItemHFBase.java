@@ -58,7 +58,7 @@ public abstract class ItemHFBase<I extends ItemHFBase> extends Item {
             NonNullList<ItemStack> subItems = NonNullList.create();
             if (item.getCreativeTabs().length > 0) {
                 for (CreativeTabs tab : item.getCreativeTabs()) {
-                    item.getSubItems(item, tab, subItems);
+                    item.getSubItems(tab, subItems);
                 }
             }
 

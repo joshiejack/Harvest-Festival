@@ -114,7 +114,7 @@ public abstract class ItemHFFoodEnum<I extends ItemHFFoodEnum, E extends Enum<E>
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubItems(@Nonnull Item item, CreativeTabs tab, NonNullList<ItemStack> list) {
+    public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> list) {
         for (E e: values) {
             ItemStack stack = getCreativeStack(e);
             if (!stack.isEmpty()) list.add(stack);

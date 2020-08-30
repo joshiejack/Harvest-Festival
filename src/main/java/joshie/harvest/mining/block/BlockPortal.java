@@ -120,7 +120,7 @@ public class  BlockPortal extends BlockHFEnum<BlockPortal, Portal> {
     }
 
     @Override
-    public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity) {
+    public void onEntityCollision(World world, @Nonnull BlockPos pos, @Nonnull IBlockState state, @Nonnull Entity entity) {
         if (!world.isRemote) {
             if (entity.timeUntilPortal == 0 && !(entity instanceof EntityNPC) && !(entity instanceof EntityItem)) {
                 IBlockState actual = getActualState(state, world, pos);

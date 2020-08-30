@@ -48,7 +48,7 @@ public class BlockGoddessWater extends BlockFluidClassic {
 
     @Override
     @SuppressWarnings("ConstantConditions")
-    public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity) {
+    public void onEntityCollision(World world, @Nonnull BlockPos pos, @Nonnull IBlockState state, @Nonnull Entity entity) {
         if (!world.isRemote && entity instanceof EntityItem) {
             EntityItem item = ((EntityItem)entity);
             ItemStack stack = item.getItem();

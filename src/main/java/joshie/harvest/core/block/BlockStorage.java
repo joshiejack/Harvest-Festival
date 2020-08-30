@@ -215,7 +215,7 @@ public class BlockStorage extends BlockHFEnumRotatableTile<BlockStorage, Storage
 
     @Override
     @SuppressWarnings("ConstantConditions")
-    public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity) {
+    public void onEntityCollision(@Nonnull World world, @Nonnull BlockPos pos, @Nonnull IBlockState state, @Nonnull Entity entity) {
         Storage storage = getEnumFromState(state);
         if (storage == SHIPPING && entity instanceof EntityItem && !world.isRemote) {
             EntityItem item = ((EntityItem)entity);

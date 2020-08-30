@@ -72,7 +72,7 @@ public class BlockElevator extends BlockHFEnumRotatableTile<BlockElevator, Eleva
     }
 
     @Override
-    public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity) {
+    public void onEntityCollision(World world, @Nonnull BlockPos pos, @Nonnull IBlockState state, @Nonnull Entity entity) {
         TileEntity tile = world.getTileEntity(pos);
         if (entity instanceof EntityPlayer && tile instanceof TileElevator) {
             TileElevator elevator = (TileElevator) tile;

@@ -31,8 +31,8 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldSavedData;
 import net.minecraft.world.WorldServer;
+import net.minecraft.world.storage.WorldSavedData;
 
 import javax.annotation.Nonnull;
 import java.util.Random;

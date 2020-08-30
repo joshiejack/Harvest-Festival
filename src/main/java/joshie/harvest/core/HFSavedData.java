@@ -6,7 +6,7 @@ import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.town.tracker.TownTrackerServer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldSavedData;
+import net.minecraft.world.storage.WorldSavedData;
 
 import javax.annotation.Nonnull;
 

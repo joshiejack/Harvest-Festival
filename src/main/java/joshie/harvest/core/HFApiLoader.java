@@ -18,10 +18,10 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.discovery.ASMDataTable;
 import net.minecraftforge.fml.common.discovery.ASMDataTable.ASMData;
 import net.minecraftforge.fml.common.discovery.asm.ModAnnotation;
-import net.minecraftforge.fml.common.registry.IForgeRegistry;
-import net.minecraftforge.fml.common.registry.IForgeRegistryEntry.Impl;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.registries.IForgeRegistry;
+import net.minecraftforge.registries.IForgeRegistryEntry;
 
 import javax.annotation.Nonnull;
 import java.lang.reflect.Field;
@@ -53,7 +53,7 @@ public class HFApiLoader {
     }
 
     @SuppressWarnings("unchecked")
-    private static <I extends Impl> void load(Class type, IForgeRegistry registry, ResourceLocation resource, Class<I> clazz) {
+    private static <I extends IForgeRegistryEntry.Impl> void load(Class type, IForgeRegistry registry, ResourceLocation resource, Class<I> clazz) {
         try {
             if (type.isAssignableFrom(clazz)) {
                 registry.register(clazz.newInstance().setRegistryName(resource));

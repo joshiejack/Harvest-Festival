@@ -3,7 +3,7 @@ buildscript {
         jcenter()
         maven {
             name = "forge"
-            url = "http://files.minecraftforge.net/maven"
+            url = "https://files.minecraftforge.net/maven"
         }
 
         maven {
@@ -11,8 +11,8 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:2.2-SNAPSHOT'
-        classpath "gradle.plugin.com.matthewprenger:CurseGradle:1.0.8"
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
+        classpath "gradle.plugin.com.matthewprenger:CurseGradle:1.0.9"
     }
 }
 
@@ -49,7 +49,7 @@ minecraft {
 
 dependencies {
   deobfCompile "mezz.jei:jei_${minecraft_version}:${jei_version}"
-  deobfCompile "MineTweaker3:MineTweaker3-API:${minetweaker_version}"
+  deobfCompile "CraftTweaker2:CraftTweaker2-MC1120-Main:${crafttweaker_version}"
 }
 
 processResources
@@ -60,7 +60,7 @@ processResources
     from(sourceSets.main.resources.srcDirs) {
         include 'mcmod.info'
                 
-        expand 'version':project.version, 'mcversion':project.minecraft.version
+        expand 'version': project.version, 'mcversion': project.minecraft.version
     }
         
     from(sourceSets.main.resources.srcDirs) {
@@ -117,5 +117,3 @@ publishing {
         }
     }
 }
-
-idea { module { inheritOutputDirs = true } }

@@ -1,0 +1,17 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "transform": "forge:default-item",
+    "model": "forge:item-layer"
+  },
+  "variants": {
+    "coordinates": [{ "textures": { "layer0": "penguinlib:items/coordinates_setter" }}],
+    "building": [{ "textures": { "layer0": "penguinlib:items/building_code_generator" }}],
+    "air_placer": [{ "textures": { "layer0": "penguinlib:items/air_placer" }}],
+    "air_remover": [{ "textures": { "layer0": "penguinlib:items/air_remover" }}],
+    "green_screen": [{ "textures": { "layer0": "penguinlib:items/green_screen" }}],
+    "block_state": [{ "textures": { "layer0": "penguinlib:items/block_state" }}],
+    "new_day": [{ "textures": { "layer0": "penguinlib:items/new_day" }}],
+    "difference": [{ "textures": { "layer0": "penguinlib:items/difference" }}]
+  }
+}

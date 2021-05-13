@@ -1,0 +1,5 @@
+id,or_condition
+general_store_hours,general_store_hours_normal
+general_store_hours,general_store_wednesday
+market_stall_hours,market_stall_hours_normal
+market_stall_hours,sunday_market_open

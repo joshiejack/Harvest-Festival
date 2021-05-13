@@ -1,0 +1,16 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "transform": "forge:default-item",
+    "model": "minecraft:cross"
+  },
+  "variants": {
+    "nature": {
+      "matsutake": { "textures": { "cross": "gastronomy:blocks/nature/matsutake" }},
+      "bamboo": { "textures": { "cross": "gastronomy:blocks/nature/bamboo" }},
+      "mint": { "textures": { "cross": "gastronomy:blocks/nature/mint" }},
+      "chamomile": { "textures": { "cross": "gastronomy:blocks/nature/chamomile" }},
+      "lavender": { "textures": { "cross": "gastronomy:blocks/nature/lavender" }}
+    }
+  }
+}

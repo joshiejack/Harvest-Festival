@@ -1,0 +1,27 @@
+{
+	"registryName": "harvestfestival:fertilizer",
+	"type": "item:fertilizer",
+	"defaults": {},
+	"data": [
+		{
+			"name": "basic",
+			"speed": 0,
+			"quality": 30
+		},
+		{
+			"name": "quality",
+			"speed": 0,
+			"quality": 40
+		},
+		{
+			"name": "speed",
+			"speed": 10,
+			"quality": 0
+		},
+		{
+			"name": "turbo",
+			"speed": 25,
+			"quality": 0
+		}
+	]
+}

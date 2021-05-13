@@ -1,0 +1,50 @@
+{
+	"registryName": "harvestfestival:seedling",
+	"type": "block:bush",
+	"defaults": {
+		"hardness": "0",
+		"propertyName": "seedling"
+	},
+	"data": [
+		{
+			"name": "oak",
+			"lootTable": "harvestfestival:blocks/seedling_oak"
+		},
+		{
+			"name": "spruce",
+			"lootTable": "harvestfestival:blocks/seedling_spruce"
+		},
+		{
+			"name": "birch",
+			"lootTable": "harvestfestival:blocks/seedling_birch"
+		},
+		{
+			"name": "jungle",
+			"lootTable": "harvestfestival:blocks/seedling_jungle"
+		},
+		{
+			"name": "acacia",
+			"lootTable": "harvestfestival:blocks/seedling_acacia"
+		},
+		{
+			"name": "dark_oak",
+			"lootTable": "harvestfestival:blocks/seedling_dark_oak"
+		},
+		{
+			"name": "apple",
+			"lootTable": "harvestfestival:blocks/seedling_apple"
+		},
+		{
+			"name": "banana",
+			"lootTable": "harvestfestival:blocks/seedling_banana"
+		},
+		{
+			"name": "orange",
+			"lootTable": "harvestfestival:blocks/seedling_orange"
+		},
+		{
+			"name": "peach",
+			"lootTable": "harvestfestival:blocks/seedling_peach"
+		}
+	]
+}

@@ -1,0 +1,24 @@
+{
+  "registryName": "harvestfestival:equipment",
+  "type": "tab:standard",
+  "data": {
+    "icon": "harvestfestival:mystril_hoe",
+    "items": ["harvestfestival:basic_sword", "harvestfestival:basic_shovel", "harvestfestival:basic_hammer", "harvestfestival:basic_axe",
+              "husbandry:sickle", "harvestfestival:basic_hoe", "horticulture:watering_can", "piscary:fishing_rod",
+              "harvestfestival:copper_sword", "harvestfestival:copper_shovel", "harvestfestival:copper_hammer", "harvestfestival:copper_axe",
+              "harvestfestival:copper_sickle", "harvestfestival:copper_hoe", "harvestfestival:copper_watering_can", "harvestfestival:copper_fishing_rod",
+              "harvestfestival:silver_sword", "harvestfestival:silver_shovel", "harvestfestival:silver_hammer", "harvestfestival:silver_axe",
+              "harvestfestival:silver_sickle", "harvestfestival:silver_hoe", "harvestfestival:silver_watering_can", "harvestfestival:silver_fishing_rod",
+              "harvestfestival:gold_sword", "harvestfestival:gold_shovel", "harvestfestival:gold_hammer", "harvestfestival:gold_axe",
+              "harvestfestival:gold_sickle", "harvestfestival:gold_hoe", "harvestfestival:gold_watering_can", "harvestfestival:gold_fishing_rod",
+              "harvestfestival:mystril_sword", "harvestfestival:mystril_shovel", "harvestfestival:mystril_hammer", "harvestfestival:mystril_axe",
+              "harvestfestival:mystril_sickle", "harvestfestival:mystril_hoe", "harvestfestival:mystril_watering_can", "harvestfestival:mystril_fishing_rod",
+              "harvestfestival:cursed_sword", "harvestfestival:cursed_shovel", "harvestfestival:cursed_hammer", "harvestfestival:cursed_axe",
+              "harvestfestival:cursed_sickle", "harvestfestival:cursed_hoe", "harvestfestival:cursed_watering_can", "harvestfestival:cursed_fishing_rod",
+              "harvestfestival:blessed_sword", "harvestfestival:blessed_shovel", "harvestfestival:blessed_hammer", "harvestfestival:blessed_axe",
+              "harvestfestival:blessed_sickle", "harvestfestival:blessed_hoe", "harvestfestival:blessed_watering_can", "harvestfestival:blessed_fishing_rod",
+              "harvestfestival:mythic_sword", "harvestfestival:mythic_shovel", "harvestfestival:mythic_hammer", "harvestfestival:mythic_axe",
+              "harvestfestival:mythic_sickle", "harvestfestival:mythic_hoe", "harvestfestival:mythic_watering_can", "harvestfestival:mythic_fishing_rod",
+              "harvestfestival:cursed_boots", "harvestfestival:blessed_boots"]
+  }
+}

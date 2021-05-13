@@ -1,0 +1,6 @@
+{
+  "tree_chop": { "category": "players", "sounds":[
+    "penguinlib:tree1", "penguinlib:tree2", "penguinlib:tree3"
+  ], "subtitle": "penguinlib.subtitle.chop" },
+  "tree_fall": { "category": "neutral", "sounds":["penguinlib:tree_fall"], "subtitle": "penguinlib.subtitle.fall" }
+}

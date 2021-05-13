@@ -1,0 +1,18 @@
+{
+  "registryName": "harvestfestival:milker",
+  "type": "blueprint:standard",
+  "data": {
+    "category": "tool",
+    "result": "husbandry:tool 1",
+    "ingredients": [
+      {
+        "item": "nuggetIron",
+        "count": 8
+      },
+      {
+        "item": "stickWood",
+        "count": 4
+      }
+    ]
+  }
+}

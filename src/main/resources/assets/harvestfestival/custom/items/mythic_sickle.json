@@ -1,0 +1,8 @@
+{
+  "registryName": "harvestfestival:mythic_sickle",
+  "type": "item:sickle",
+  "data": {
+    "toolMaterial": "mythic",
+    "area": 15
+  }
+}

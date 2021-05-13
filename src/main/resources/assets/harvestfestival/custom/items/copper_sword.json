@@ -1,0 +1,7 @@
+{
+  "registryName": "harvestfestival:copper_sword",
+  "type": "item:sword",
+  "data": {
+    "toolMaterial": "copper"
+  }
+}

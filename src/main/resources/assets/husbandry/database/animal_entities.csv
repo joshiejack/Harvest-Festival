@@ -1,0 +1,13 @@
+Animal,Entity
+cow,minecraft:cow
+chicken,minecraft:chicken
+pig,minecraft:pig
+sheep,minecraft:sheep
+horse,minecraft:horse
+llama,minecraft:llama
+rabbit,minecraft:rabbit
+cat,minecraft:ocelot
+dog,minecraft:wolf
+donkey,minecraft:donkey
+parrot,minecraft:parrot
+duck,husbandry:duck

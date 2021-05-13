@@ -1,0 +1,22 @@
+{
+  "registryName": "harvestfestival:recycler",
+  "type": "blueprint:standard",
+  "data": {
+    "category": "machine",
+    "result": "piscary:machine",
+    "ingredients": [
+      {
+        "item": "gemAdamantite",
+        "count": 1
+      },
+      {
+        "item": "stone",
+        "count": 10
+      },
+      {
+        "item": "logWood",
+        "count": 10
+      }
+    ]
+  }
+}

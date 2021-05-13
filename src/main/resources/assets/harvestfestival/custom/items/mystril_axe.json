@@ -1,0 +1,9 @@
+{
+  "registryName": "harvestfestival:mystril_axe",
+  "type": "item:lumber_axe",
+  "data": {
+    "toolMaterial": "mystril",
+    "hits": 2,
+    "area": 5
+  }
+}

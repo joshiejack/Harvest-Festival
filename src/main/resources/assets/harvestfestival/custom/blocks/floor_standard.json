@@ -1,0 +1,63 @@
+{
+	"registryName": "harvestfestival:floor_standard",
+	"type": "block:overlayed_floor",
+	"data": {
+		"hardness": "-1.0F",
+		"soundType": "ground",
+		"material": "ground",
+		"overlays": [
+			{
+				"texture": "harvestfestival:blocks/mine/overlays/blank",
+				"weight": 200
+			},
+			{
+				"texture": "harvestfestival:blocks/mine/overlays/leaves1",
+				"weight": 2
+			},
+			{
+				"texture": "harvestfestival:blocks/mine/overlays/leaves2",
+				"weight": 2
+			},
+			{
+				"texture": "harvestfestival:blocks/mine/overlays/leaves3",
+				"weight": 2
+			},
+			{
+				"texture": "harvestfestival:blocks/mine/overlays/leaves4",
+				"weight": 2
+			},
+			{
+				"texture": "harvestfestival:blocks/mine/overlays/pebble1",
+				"weight": 4
+			},
+			{
+				"texture": "harvestfestival:blocks/mine/overlays/pebble2",
+				"weight": 4
+			},
+			{
+				"texture": "harvestfestival:blocks/mine/overlays/pebble3",
+				"weight": 4
+			},
+			{
+				"texture": "harvestfestival:blocks/mine/overlays/pebble4",
+				"weight": 4
+			},
+			{
+				"texture": "harvestfestival:blocks/mine/overlays/pebble5",
+				"weight": 4
+			},
+			{
+				"texture": "harvestfestival:blocks/mine/overlays/pebble6",
+				"weight": 4
+			},
+			{
+				"texture": "harvestfestival:blocks/mine/overlays/rock1",
+				"weight": 3
+			},
+			{
+				"texture": "harvestfestival:blocks/mine/overlays/rock2",
+				"weight": 3
+			}
+		]
+	}
+}

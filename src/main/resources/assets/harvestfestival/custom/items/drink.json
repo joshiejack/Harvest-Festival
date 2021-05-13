@@ -1,0 +1,20 @@
+{
+	"registryName": "harvestfestival:drink",
+	"type": "item:edible",
+	"defaults": {
+		"action": "drink",
+		"alwaysEdible": true,
+		"hunger": 0,
+		"saturation": 0
+	},
+	"data": [
+		{
+			"name": "tea",
+			"script": "harvestfestival:items/tea"
+		},
+		{
+			"name": "coffee",
+			"script": "harvestfestival:items/coffee"
+		}
+	]
+}

@@ -1,0 +1,14 @@
+{
+  "registryName": "harvestfestival:mushroom_log_oak",
+  "type": "blueprint:standard",
+  "data": {
+    "category": "machine",
+    "result": "horticulture:stump 0",
+    "ingredients": [
+      {
+        "item": "minecraft:log 0",
+        "count": 5
+      }
+    ]
+  }
+}

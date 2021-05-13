@@ -1,0 +1,18 @@
+{
+  "registryName": "harvestfestival:hatchery",
+  "type": "blueprint:standard",
+  "data": {
+    "category": "machine",
+    "result": "piscary:hatchery",
+    "ingredients": [
+      {
+        "item": "logWood",
+        "count": 5
+      },
+      {
+        "item": "yarn",
+        "count": 1
+      }
+    ]
+  }
+}

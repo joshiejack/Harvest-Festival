@@ -1,0 +1,8 @@
+Input,Output,Fill
+minecraft:egg,minecraft:chicken,medium
+small_egg,minecraft:chicken,small
+medium_egg,minecraft:chicken,medium
+large_egg,minecraft:chicken,large
+small_duck_egg,husbandry:duck,small
+medium_duck_egg,husbandry:duck,medium
+large_duck_egg,husbandry:duck,large

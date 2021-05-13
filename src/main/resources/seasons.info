@@ -1,0 +1,16 @@
+[
+{
+  "modid": "seasons",
+  "name": "Seasons",
+  "description": "",
+  "version": "${seasons_version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["joshie"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

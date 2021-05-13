@@ -1,0 +1,222 @@
+{
+  "registryName": "harvestfestival:frozen",
+  "hud": "harvestfestival:textures/gui/mine_frozen.png",
+  "biome": "harvestfestival:caves_frozen",
+  "floor": "harvestfestival:floor_frozen",
+  "wall": "harvestfestival:wall,decortype=frozen",
+  "ladder": "harvestfestival:mine_ladder,facing=north,ladder=frozen",
+  "upper_portal": "harvestfestival:portal,ew=true,portal=frozen,section=tl",
+  "lower_portal": "harvestfestival:portal,ew=true,portal=frozen_brick,section=tl",
+  "decorators": [
+    {
+      "type": "leaves",
+      "ranges": [
+        "overgrowth"
+      ],
+      "state": "leaves,check_decay=false,decayable=true,variant=spruce",
+      "passes": 18
+    },
+    {
+      "type": "pillar",
+      "ranges": [
+        "overgrowth"
+      ],
+      "state": "log,axis=y,variant=spruce",
+      "passes": 6
+    },
+    {
+      "type": "grass",
+      "ranges": [
+        "overgrowth"
+      ],
+      "state": "tallgrass,type=tall_grass",
+      "passes": 12
+    },
+    {
+      "type": "floor",
+      "ranges": [
+        "overgrowth",
+        "snowcover"
+      ],
+      "state": "snow",
+      "passes": 2,
+      "number": 48
+    },
+    {
+      "type": "floor",
+      "ranges": [
+        "icefields"
+      ],
+      "state": "packed_ice",
+      "passes": 2,
+      "number": 48
+    },
+    {
+      "type": "icycles",
+      "ranges": [
+        "icefields"
+      ]
+    },
+    {
+      "type": "carpet",
+      "ranges": [
+        "overgrowth",
+        "snowcover",
+        "icefields"
+      ],
+      "state": "harvestfestival:cobblestone,decortype=frozen,ew=true"
+    },
+    {
+      "type": "carpet",
+      "ranges": [
+        "fortress"
+      ],
+      "state": "harvestfestival:cobblestone,decortype=frozen_brick,ew=true"
+    },
+    {
+      "type": "snow_layer",
+      "ranges": [
+        "overgrowth",
+        "snowcover",
+        "icefields"
+      ]
+    },
+    {
+      "type": "floor",
+      "ranges": [
+        "overgrowth"
+      ],
+      "state": "grass,snowy=true",
+      "passes": 2,
+      "number": 48
+    }
+  ],
+  "loot": [
+    {
+      "state": "deadbush",
+      "max_floor": 10,
+      "cluster_distance": 8,
+      "cluster_amount": 8,
+      "weight": 32
+    },
+    {
+      "state": "harvestfestival:rock,rock=ice",
+      "weight": 85
+    },
+    {
+      "state": "harvestfestival:rock,rock=ice_crystal",
+      "weight": 48
+    },
+    {
+      "state": "harvestfestival:crate,crate=frozen_barrel",
+      "weight": 4
+    },
+    {
+      "state": "harvestfestival:crate,crate=frozen_barrel",
+      "cluster_distance": 3,
+      "cluster_amount": 8,
+      "weight": 1
+    },
+    {
+      "state": "harvestfestival:node,node=silver",
+      "weight": 8
+    },
+    {
+      "state": "harvestfestival:node,node=copper",
+      "weight": 6
+    },
+    {
+      "state": "harvestfestival:node,node=amethyst",
+      "weight": 5
+    },
+    {
+      "state": "harvestfestival:node,node=topaz",
+      "weight": 6
+    },
+    {
+      "state": "harvestfestival:node,node=gem",
+      "weight": 0.075
+    },
+    {
+      "state": "harvestfestival:node,node=silver",
+      "min_floor": 30,
+      "weight": 2
+    }
+  ],
+  "entities": [
+    {
+      "entity": "penguinlib:slime",
+      "type": "monster",
+      "ranges": [
+        "overgrowth",
+        "snowcover"
+      ],
+      "weight": 60,
+      "min_group": 3,
+      "max_group": 4
+    },
+    {
+      "entity": "minecraft:stray",
+      "type": "monster",
+      "ranges": [
+        "snowcover",
+        "icefields",
+        "fortress"
+      ],
+      "weight": 40,
+      "min_group": 4,
+      "max_group": 4
+    },
+    {
+      "entity": "minecraft:rabbit",
+      "type": "ambient",
+      "ranges": [
+        "overgrowth"
+      ],
+      "weight": 10,
+      "min_group": 2,
+      "max_group": 3
+    },
+    {
+      "entity": "minecraft:polar_bear",
+      "type": "creature",
+      "ranges": [
+        "icefields"
+      ],
+      "weight": 25,
+      "min_group": 1,
+      "max_group": 2
+    }
+  ],
+  "generators": [
+    "harvestcore:circle",
+    "harvestfestival:sprites",
+    "harvestfestival:star",
+    "harvestfestival:snowflake",
+    "harvestcore:tunnel"
+  ],
+  "ranges": [
+    {
+      "name": "overgrowth",
+      "min_floor": 1,
+      "max_floor": 10
+    },
+    {
+      "name": "snowcover",
+      "min_floor": 11,
+      "max_floor": 20
+    },
+    {
+      "name": "icefields",
+      "min_floor": 21,
+      "max_floor": 30
+    },
+    {
+      "name": "fortress",
+      "min_floor": 31,
+      "max_floor": 40,
+      "wall": "harvestfestival:wall,decortype=frozen_brick"
+    }
+  ],
+  "order": 1
+}

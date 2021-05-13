@@ -1,0 +1,62 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "cube_all"
+  },
+  "variants": {
+    "wood=jungle_small_branch": [
+      { "model": "harvestfestival:wilderness/branch_small", "textures": { "side": "blocks/log_jungle", "top": "blocks/log_jungle_top" }, "weight": 1 },
+      { "model": "harvestfestival:wilderness/branch_small", "textures": { "side": "blocks/log_jungle", "top": "blocks/log_jungle_top"}, "weight": 1, "y": 90 },
+      { "model": "harvestfestival:wilderness/branch_small", "textures": { "side": "blocks/log_jungle", "top": "blocks/log_jungle_top"}, "weight": 1, "y": 180 },
+      { "model": "harvestfestival:wilderness/branch_small", "textures": { "side": "blocks/log_jungle", "top": "blocks/log_jungle_top"}, "weight": 1, "y": 270 }
+    ],
+    "wood=acacia_small_branch": [
+      { "model": "harvestfestival:wilderness/branch_small", "textures": { "side": "blocks/log_acacia", "top": "blocks/log_acacia_top"}, "weight": 1 },
+      { "model": "harvestfestival:wilderness/branch_small", "textures": { "side": "blocks/log_acacia", "top": "blocks/log_acacia_top"}, "weight": 1, "y": 90 },
+      { "model": "harvestfestival:wilderness/branch_small", "textures": { "side": "blocks/log_acacia", "top": "blocks/log_acacia_top"}, "weight": 1, "y": 180 },
+      { "model": "harvestfestival:wilderness/branch_small", "textures": { "side": "blocks/log_acacia", "top": "blocks/log_acacia_top"}, "weight": 1, "y": 270 }
+    ],
+    "wood=dark_oak_small_branch": [
+      { "model": "harvestfestival:wilderness/branch_small", "textures": { "side": "blocks/log_big_oak", "top": "blocks/log_big_oak_top"}, "weight": 1 },
+      { "model": "harvestfestival:wilderness/branch_small", "textures": { "side": "blocks/log_big_oak", "top": "blocks/log_big_oak_top"}, "weight": 1, "y": 90 },
+      { "model": "harvestfestival:wilderness/branch_small", "textures": { "side": "blocks/log_big_oak", "top": "blocks/log_big_oak_top"}, "weight": 1, "y": 180 },
+      { "model": "harvestfestival:wilderness/branch_small", "textures": { "side": "blocks/log_big_oak", "top": "blocks/log_big_oak_top"}, "weight": 1, "y": 270 }
+    ],
+    "wood=jungle_medium_branch": [
+      { "model": "harvestfestival:wilderness/branch_medium", "textures": { "side": "blocks/log_jungle", "top": "blocks/log_jungle_top"}, "weight": 1 },
+      { "model": "harvestfestival:wilderness/branch_medium", "textures": { "side": "blocks/log_jungle", "top": "blocks/log_jungle_top"}, "weight": 1, "y": 90 },
+      { "model": "harvestfestival:wilderness/branch_medium", "textures": { "side": "blocks/log_jungle", "top": "blocks/log_jungle_top"}, "weight": 1, "y": 180 },
+      { "model": "harvestfestival:wilderness/branch_medium", "textures": { "side": "blocks/log_jungle", "top": "blocks/log_jungle_top"}, "weight": 1, "y": 270 }
+    ],
+    "wood=acacia_medium_branch": [
+      { "model": "harvestfestival:wilderness/branch_medium", "textures": { "side": "blocks/log_acacia", "top": "blocks/log_acacia_top"}, "weight": 1 },
+      { "model": "harvestfestival:wilderness/branch_medium", "textures": { "side": "blocks/log_acacia", "top": "blocks/log_acacia_top"}, "weight": 1, "y": 90 },
+      { "model": "harvestfestival:wilderness/branch_medium", "textures": { "side": "blocks/log_acacia", "top": "blocks/log_acacia_top"}, "weight": 1, "y": 180 },
+      { "model": "harvestfestival:wilderness/branch_medium", "textures": { "side": "blocks/log_acacia", "top": "blocks/log_acacia_top"}, "weight": 1, "y": 270 }
+    ],
+    "wood=dark_oak_medium_branch": [
+      { "model": "harvestfestival:wilderness/branch_medium", "textures": { "side": "blocks/log_big_oak", "top": "blocks/log_big_oak_top"}, "weight": 1 },
+      { "model": "harvestfestival:wilderness/branch_medium", "textures": { "side": "blocks/log_big_oak", "top": "blocks/log_big_oak_top"}, "weight": 1, "y": 90 },
+      { "model": "harvestfestival:wilderness/branch_medium", "textures": { "side": "blocks/log_big_oak", "top": "blocks/log_big_oak_top"}, "weight": 1, "y": 180 },
+      { "model": "harvestfestival:wilderness/branch_medium", "textures": { "side": "blocks/log_big_oak", "top": "blocks/log_big_oak_top"}, "weight": 1, "y": 270 }
+    ],
+    "wood=jungle_large_branch": [
+      { "model": "harvestfestival:wilderness/branch_large", "textures": { "side": "blocks/log_jungle", "top": "blocks/log_jungle_top"}, "weight": 1 },
+      { "model": "harvestfestival:wilderness/branch_large", "textures": { "side": "blocks/log_jungle", "top": "blocks/log_jungle_top"}, "weight": 1, "y": 90 },
+      { "model": "harvestfestival:wilderness/branch_large", "textures": { "side": "blocks/log_jungle", "top": "blocks/log_jungle_top"}, "weight": 1, "y": 180 },
+      { "model": "harvestfestival:wilderness/branch_large", "textures": { "side": "blocks/log_jungle", "top": "blocks/log_jungle_top"}, "weight": 1, "y": 270 }
+    ],
+    "wood=acacia_large_branch": [
+      { "model": "harvestfestival:wilderness/branch_large", "textures": { "side": "blocks/log_acacia", "top": "blocks/log_acacia_top"}, "weight": 1 },
+      { "model": "harvestfestival:wilderness/branch_large", "textures": { "side": "blocks/log_acacia", "top": "blocks/log_acacia_top"}, "weight": 1, "y": 90 },
+      { "model": "harvestfestival:wilderness/branch_large", "textures": { "side": "blocks/log_acacia", "top": "blocks/log_acacia_top"}, "weight": 1, "y": 180 },
+      { "model": "harvestfestival:wilderness/branch_large", "textures": { "side": "blocks/log_acacia", "top": "blocks/log_acacia_top"}, "weight": 1, "y": 270 }
+    ],
+    "wood=dark_oak_large_branch": [
+      { "model": "harvestfestival:wilderness/branch_large", "textures": { "side": "blocks/log_big_oak", "top": "blocks/log_big_oak_top"}, "weight": 1 },
+      { "model": "harvestfestival:wilderness/branch_large", "textures": { "side": "blocks/log_big_oak", "top": "blocks/log_big_oak_top"}, "weight": 1, "y": 90 },
+      { "model": "harvestfestival:wilderness/branch_large", "textures": { "side": "blocks/log_big_oak", "top": "blocks/log_big_oak_top"}, "weight": 1, "y": 180 },
+      { "model": "harvestfestival:wilderness/branch_large", "textures": { "side": "blocks/log_big_oak", "top": "blocks/log_big_oak_top"}, "weight": 1, "y": 270 }
+    ]
+  }
+}

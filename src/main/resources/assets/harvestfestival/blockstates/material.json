@@ -1,0 +1,11 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "transform": "forge:default-item",
+    "model": "forge:item-layer"
+  },
+  "variants": {
+    "junk": [{ "textures": { "layer0": "harvestfestival:items/mining/materials/junk" }}],
+    "mythic_stone": [{ "textures": { "layer0": "harvestfestival:items/mining/materials/mythic_stone" }}]
+  }
+}

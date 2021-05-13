@@ -1,0 +1,1518 @@
+{
+  "registryName": "harvestfestival:blacksmith",
+  "type": "building:standard",
+  "data": {
+    "offset": "3 -2 6",
+    "limit": 1,
+    "components": [
+      {
+        "state": "stonebrick,variant=cracked_stonebrick",
+        "pos": "2 1 0"
+      },
+      {
+        "state": "stonebrick,variant=mossy_stonebrick",
+        "pos": "5 1 0"
+      },
+      {
+        "state": "cobblestone_wall,east=false,north=false,south=false,up=false,variant=cobblestone,west=false",
+        "pos": "2 2 0"
+      },
+      {
+        "state": "cobblestone_wall,east=false,north=false,south=false,up=false,variant=cobblestone,west=false",
+        "pos": "5 2 0"
+      },
+      {
+        "state": "cobblestone_wall,east=false,north=false,south=false,up=false,variant=cobblestone,west=false",
+        "pos": "2 3 0"
+      },
+      {
+        "state": "cobblestone_wall,east=false,north=false,south=false,up=false,variant=cobblestone,west=false",
+        "pos": "5 3 0"
+      },
+      {
+        "state": "wooden_slab,half=top,variant=dark_oak",
+        "pos": "1 4 0"
+      },
+      {
+        "state": "cobblestone_wall,east=false,north=false,south=false,up=false,variant=cobblestone,west=false",
+        "pos": "2 4 0"
+      },
+      {
+        "state": "cobblestone_wall,east=false,north=false,south=false,up=false,variant=cobblestone,west=false",
+        "pos": "5 4 0"
+      },
+      {
+        "state": "wooden_slab,half=top,variant=dark_oak",
+        "pos": "6 4 0"
+      },
+      {
+        "state": "wooden_slab,half=bottom,variant=dark_oak",
+        "pos": "2 5 0"
+      },
+      {
+        "state": "wooden_slab,half=top,variant=dark_oak",
+        "pos": "3 5 0"
+      },
+      {
+        "state": "wooden_slab,half=top,variant=dark_oak",
+        "pos": "4 5 0"
+      },
+      {
+        "state": "wooden_slab,half=bottom,variant=dark_oak",
+        "pos": "5 5 0"
+      },
+      {
+        "state": "stonebrick,variant=mossy_stonebrick",
+        "pos": "1 1 1"
+      },
+      {
+        "state": "stonebrick,variant=mossy_stonebrick",
+        "pos": "2 1 1"
+      },
+      {
+        "state": "stonebrick,variant=stonebrick",
+        "pos": "3 1 1"
+      },
+      {
+        "state": "stonebrick,variant=stonebrick",
+        "pos": "4 1 1"
+      },
+      {
+        "state": "stonebrick,variant=cracked_stonebrick",
+        "pos": "5 1 1"
+      },
+      {
+        "state": "stonebrick,variant=stonebrick",
+        "pos": "6 1 1"
+      },
+      {
+        "state": "cobblestone_wall,east=false,north=false,south=false,up=false,variant=cobblestone,west=false",
+        "pos": "1 2 1"
+      },
+      {
+        "state": "double_stone_slab,seamless=false,variant=stone",
+        "pos": "2 2 1"
+      },
+      {
+        "state": "stone_brick_stairs,facing=south,half=bottom,shape=straight",
+        "pos": "3 2 1"
+      },
+      {
+        "state": "stone_brick_stairs,facing=south,half=bottom,shape=straight",
+        "pos": "4 2 1"
+      },
+      {
+        "state": "double_stone_slab,seamless=false,variant=stone",
+        "pos": "5 2 1"
+      },
+      {
+        "state": "cobblestone_wall,east=false,north=false,south=false,up=false,variant=cobblestone,west=false",
+        "pos": "6 2 1"
+      },
+      {
+        "state": "cobblestone_wall,east=false,north=false,south=false,up=false,variant=cobblestone,west=false",
+        "pos": "1 3 1"
+      },
+      {
+        "state": "double_stone_slab,seamless=false,variant=stone",
+        "pos": "2 3 1"
+      },
+      {
+        "state": "stone_brick_stairs,facing=west,half=bottom,shape=straight",
+        "pos": "3 3 1"
+      },
+      {
+        "state": "stone_brick_stairs,facing=east,half=bottom,shape=straight",
+        "pos": "4 3 1"
+      },
+      {
+        "state": "double_stone_slab,seamless=false,variant=stone",
+        "pos": "5 3 1"
+      },
+      {
+        "state": "cobblestone_wall,east=false,north=false,south=false,up=false,variant=cobblestone,west=false",
+        "pos": "6 3 1"
+      },
+      {
+        "state": "cobblestone_wall,east=false,north=false,south=false,up=false,variant=cobblestone,west=false",
+        "pos": "1 4 1"
+      },
+      {
+        "state": "double_stone_slab,seamless=false,variant=stone",
+        "pos": "2 4 1"
+      },
+      {
+        "state": "stone_brick_stairs,facing=west,half=top,shape=straight",
+        "pos": "3 4 1"
+      },
+      {
+        "state": "stone_brick_stairs,facing=east,half=top,shape=straight",
+        "pos": "4 4 1"
+      },
+      {
+        "state": "double_stone_slab,seamless=false,variant=stone",
+        "pos": "5 4 1"
+      },
+      {
+        "state": "cobblestone_wall,east=false,north=false,south=false,up=false,variant=cobblestone,west=false",
+        "pos": "6 4 1"
+      },
+      {
+        "state": "wooden_slab,half=bottom,variant=dark_oak",
+        "pos": "1 5 1"
+      },
+      {
+        "state": "wooden_slab,half=top,variant=dark_oak",
+        "pos": "2 5 1"
+      },
+      {
+        "state": "double_wooden_slab,variant=spruce",
+        "pos": "3 5 1"
+      },
+      {
+        "state": "double_wooden_slab,variant=spruce",
+        "pos": "4 5 1"
+      },
+      {
+        "state": "wooden_slab,half=top,variant=dark_oak",
+        "pos": "5 5 1"
+      },
+      {
+        "state": "wooden_slab,half=bottom,variant=dark_oak",
+        "pos": "6 5 1"
+      },
+      {
+        "state": "wooden_slab,half=bottom,variant=dark_oak",
+        "pos": "3 6 1"
+      },
+      {
+        "state": "wooden_slab,half=bottom,variant=dark_oak",
+        "pos": "4 6 1"
+      },
+      {
+        "state": "stonebrick,variant=stonebrick",
+        "pos": "2 1 2"
+      },
+      {
+        "state": "planks,variant=dark_oak",
+        "pos": "3 1 2"
+      },
+      {
+        "state": "planks,variant=dark_oak",
+        "pos": "4 1 2"
+      },
+      {
+        "state": "stonebrick,variant=stonebrick",
+        "pos": "5 1 2"
+      },
+      {
+        "state": "stone_brick_stairs,facing=east,half=bottom,shape=straight",
+        "pos": "2 2 2"
+      },
+      {
+        "state": "spruce_stairs,facing=west,half=bottom,shape=straight",
+        "pos": "3 2 2"
+      },
+      {
+        "state": "fence,east=false,north=false,south=false,west=false",
+        "pos": "4 2 2"
+      },
+      {
+        "state": "stone_brick_stairs,facing=west,half=bottom,shape=straight",
+        "pos": "5 2 2"
+      },
+      {
+        "state": "stone_brick_stairs,facing=north,half=bottom,shape=straight",
+        "pos": "2 3 2"
+      },
+      {
+        "pos": "3 3 2"
+      },
+      {
+        "state": "carpet,color=brown",
+        "pos": "4 3 2"
+      },
+      {
+        "state": "stonebrick,variant=stonebrick",
+        "pos": "5 3 2"
+      },
+      {
+        "state": "wooden_button,facing=east,powered=false",
+        "pos": "6 3 2",
+        "type": "decorative"
+      },
+      {
+        "state": "stone_brick_stairs,facing=north,half=top,shape=straight",
+        "pos": "2 4 2"
+      },
+      {
+        "pos": "3 4 2"
+      },
+      {
+        "pos": "4 4 2"
+      },
+      {
+        "state": "stone_brick_stairs,facing=north,half=top,shape=straight",
+        "pos": "5 4 2"
+      },
+      {
+        "state": "wooden_slab,half=bottom,variant=dark_oak",
+        "pos": "1 5 2"
+      },
+      {
+        "state": "wooden_slab,half=top,variant=spruce",
+        "pos": "2 5 2"
+      },
+      {
+        "state": "spruce_stairs,facing=west,half=top,shape=straight",
+        "pos": "3 5 2"
+      },
+      {
+        "state": "spruce_stairs,facing=north,half=top,shape=straight",
+        "pos": "4 5 2"
+      },
+      {
+        "state": "wooden_slab,half=top,variant=spruce",
+        "pos": "5 5 2"
+      },
+      {
+        "state": "wooden_slab,half=bottom,variant=dark_oak",
+        "pos": "6 5 2"
+      },
+      {
+        "state": "wooden_slab,half=bottom,variant=dark_oak",
+        "pos": "3 6 2"
+      },
+      {
+        "state": "wooden_slab,half=bottom,variant=dark_oak",
+        "pos": "4 6 2"
+      },
+      {
+        "state": "stonebrick,variant=mossy_stonebrick",
+        "pos": "2 1 3"
+      },
+      {
+        "state": "planks,variant=dark_oak",
+        "pos": "3 1 3"
+      },
+      {
+        "state": "planks,variant=dark_oak",
+        "pos": "4 1 3"
+      },
+      {
+        "state": "stonebrick,variant=stonebrick",
+        "pos": "5 1 3"
+      },
+      {
+        "state": "stone_brick_stairs,facing=east,half=bottom,shape=straight",
+        "pos": "2 2 3"
+      },
+      {
+        "color": 12,
+        "state": "bed,facing=south,occupied=false,part=foot",
+        "pos": "3 2 3",
+        "type": "bed"
+      },
+      {
+        "pos": "4 2 3"
+      },
+      {
+        "state": "wooden_door,facing=east,half=lower,hinge=left,open=false,powered=false",
+        "pos": "5 2 3",
+        "type": "double"
+      },
+      {
+        "state": "stone_slab,half=bottom,variant=stone",
+        "pos": "2 3 3"
+      },
+      {
+        "pos": "3 3 3"
+      },
+      {
+        "pos": "4 3 3"
+      },
+      {
+        "state": "stone_slab,half=top,variant=stone",
+        "pos": "2 4 3"
+      },
+      {
+        "pos": "3 4 3"
+      },
+      {
+        "state": "wooden_button,facing=west,powered=false",
+        "pos": "4 4 3",
+        "type": "decorative"
+      },
+      {
+        "state": "stone_brick_stairs,facing=west,half=top,shape=straight",
+        "pos": "5 4 3"
+      },
+      {
+        "text": [
+          "translate:harvestfestival.shop.blacksmith",
+          "translate:harvestfestival.shop.blacksmith.sign1",
+          "translate:harvestfestival.shop.blacksmith.sign2",
+          "translate:harvestfestival.shop.blacksmith.sign3"
+        ],
+        "state": "wall_sign,facing=east",
+        "pos": "6 4 3",
+        "type": "sign"
+      },
+      {
+        "state": "wooden_slab,half=bottom,variant=dark_oak",
+        "pos": "1 5 3"
+      },
+      {
+        "state": "double_wooden_slab,variant=spruce",
+        "pos": "2 5 3"
+      },
+      {
+        "state": "spruce_stairs,facing=west,half=top,shape=straight",
+        "pos": "3 5 3"
+      },
+      {
+        "state": "spruce_stairs,facing=east,half=top,shape=straight",
+        "pos": "4 5 3"
+      },
+      {
+        "state": "double_wooden_slab,variant=spruce",
+        "pos": "5 5 3"
+      },
+      {
+        "state": "wooden_slab,half=bottom,variant=dark_oak",
+        "pos": "6 5 3"
+      },
+      {
+        "state": "wooden_slab,half=bottom,variant=dark_oak",
+        "pos": "3 6 3"
+      },
+      {
+        "state": "wooden_slab,half=bottom,variant=dark_oak",
+        "pos": "4 6 3"
+      },
+      {
+        "state": "stonebrick,variant=mossy_stonebrick",
+        "pos": "2 1 4"
+      },
+      {
+        "state": "planks,variant=dark_oak",
+        "pos": "3 1 4"
+      },
+      {
+        "state": "planks,variant=dark_oak",
+        "pos": "4 1 4"
+      },
+      {
+        "state": "stonebrick,variant=mossy_stonebrick",
+        "pos": "5 1 4"
+      },
+      {
+        "state": "stone_brick_stairs,facing=east,half=bottom,shape=straight",
+        "pos": "2 2 4"
+      },
+      {
+        "color": 12,
+        "state": "bed,facing=south,occupied=false,part=head",
+        "pos": "3 2 4",
+        "type": "bed"
+      },
+      {
+        "pos": "4 2 4"
+      },
+      {
+        "state": "stone_brick_stairs,facing=west,half=bottom,shape=straight",
+        "pos": "5 2 4"
+      },
+      {
+        "state": "stone_brick_stairs,facing=south,half=bottom,shape=straight",
+        "pos": "2 3 4"
+      },
+      {
+        "pos": "3 3 4"
+      },
+      {
+        "pos": "4 3 4"
+      },
+      {
+        "state": "stonebrick,variant=mossy_stonebrick",
+        "pos": "5 3 4"
+      },
+      {
+        "state": "wooden_button,facing=east,powered=false",
+        "pos": "6 3 4",
+        "type": "decorative"
+      },
+      {
+        "state": "stone_brick_stairs,facing=south,half=top,shape=straight",
+        "pos": "2 4 4"
+      },
+      {
+        "pos": "3 4 4"
+      },
+      {
+        "pos": "4 4 4"
+      },
+      {
+        "state": "stone_brick_stairs,facing=south,half=top,shape=straight",
+        "pos": "5 4 4"
+      },
+      {
+        "state": "wooden_slab,half=bottom,variant=dark_oak",
+        "pos": "1 5 4"
+      },
+      {
+        "state": "wooden_slab,half=top,variant=spruce",
+        "pos": "2 5 4"
+      },
+      {
+        "state": "spruce_stairs,facing=west,half=top,shape=straight",
+        "pos": "3 5 4"
+      },
+      {
+        "state": "spruce_stairs,facing=east,half=top,shape=straight",
+        "pos": "4 5 4"
+      },
+      {
+        "state": "wooden_slab,half=top,variant=spruce",
+        "pos": "5 5 4"
+      },
+      {
+        "state": "wooden_slab,half=bottom,variant=dark_oak",
+        "pos": "6 5 4"
+      },
+      {
+        "state": "wooden_slab,half=bottom,variant=dark_oak",
+        "pos": "3 6 4"
+      },
+      {
+        "state": "wooden_slab,half=bottom,variant=dark_oak",
+        "pos": "4 6 4"
+      },
+      {
+        "state": "stonebrick,variant=stonebrick",
+        "pos": "1 1 5"
+      },
+      {
+        "state": "stonebrick,variant=cracked_stonebrick",
+        "pos": "2 1 5"
+      },
+      {
+        "state": "planks,variant=dark_oak",
+        "pos": "3 1 5"
+      },
+      {
+        "state": "planks,variant=dark_oak",
+        "pos": "4 1 5"
+      },
+      {
+        "state": "stonebrick,variant=stonebrick",
+        "pos": "5 1 5"
+      },
+      {
+        "state": "stonebrick,variant=stonebrick",
+        "pos": "6 1 5"
+      },
+      {
+        "state": "cobblestone_wall,east=false,north=false,south=false,up=false,variant=cobblestone,west=false",
+        "pos": "1 2 5"
+      },
+      {
+        "state": "double_stone_slab,seamless=false,variant=stone",
+        "pos": "2 2 5"
+      },
+      {
+        "state": "dark_oak_stairs,facing=west,half=top,shape=straight",
+        "pos": "3 2 5"
+      },
+      {
+        "pos": "4 2 5"
+      },
+      {
+        "state": "double_stone_slab,seamless=false,variant=stone",
+        "pos": "5 2 5"
+      },
+      {
+        "state": "cobblestone_wall,east=false,north=false,south=false,up=false,variant=cobblestone,west=false",
+        "pos": "6 2 5"
+      },
+      {
+        "state": "cobblestone_wall,east=false,north=false,south=false,up=false,variant=cobblestone,west=false",
+        "pos": "1 3 5"
+      },
+      {
+        "state": "double_stone_slab,seamless=false,variant=stone",
+        "pos": "2 3 5"
+      },
+      {
+        "state": "flower_pot,contents=empty,legacy_data=0",
+        "pos": "3 3 5",
+        "type": "flowerpot"
+      },
+      {
+        "pos": "4 3 5"
+      },
+      {
+        "state": "double_stone_slab,seamless=false,variant=stone",
+        "pos": "5 3 5"
+      },
+      {
+        "state": "cobblestone_wall,east=false,north=false,south=false,up=false,variant=cobblestone,west=false",
+        "pos": "6 3 5"
+      },
+      {
+        "state": "cobblestone_wall,east=false,north=false,south=false,up=false,variant=cobblestone,west=false",
+        "pos": "1 4 5"
+      },
+      {
+        "state": "double_stone_slab,seamless=false,variant=stone",
+        "pos": "2 4 5"
+      },
+      {
+        "state": "torch,facing=north",
+        "pos": "3 4 5",
+        "type": "decorative"
+      },
+      {
+        "stack": "trapdoor",
+        "rotation": 0,
+        "facing": "north",
+        "pos": "3 4 5",
+        "type": "item_frame"
+      },
+      {
+        "state": "torch,facing=north",
+        "pos": "4 4 5",
+        "type": "decorative"
+      },
+      {
+        "stack": "trapdoor",
+        "rotation": 0,
+        "facing": "north",
+        "pos": "4 4 5",
+        "type": "item_frame"
+      },
+      {
+        "state": "double_stone_slab,seamless=false,variant=stone",
+        "pos": "5 4 5"
+      },
+      {
+        "state": "cobblestone_wall,east=false,north=false,south=false,up=false,variant=cobblestone,west=false",
+        "pos": "6 4 5"
+      },
+      {
+        "state": "wooden_slab,half=bottom,variant=dark_oak",
+        "pos": "1 5 5"
+      },
+      {
+        "state": "wooden_slab,half=top,variant=dark_oak",
+        "pos": "2 5 5"
+      },
+      {
+        "state": "spruce_stairs,facing=south,half=top,shape=straight",
+        "pos": "3 5 5"
+      },
+      {
+        "state": "spruce_stairs,facing=east,half=top,shape=straight",
+        "pos": "4 5 5"
+      },
+      {
+        "state": "wooden_slab,half=top,variant=dark_oak",
+        "pos": "5 5 5"
+      },
+      {
+        "state": "wooden_slab,half=bottom,variant=dark_oak",
+        "pos": "6 5 5"
+      },
+      {
+        "state": "wooden_slab,half=bottom,variant=dark_oak",
+        "pos": "3 6 5"
+      },
+      {
+        "state": "wooden_slab,half=bottom,variant=dark_oak",
+        "pos": "4 6 5"
+      },
+      {
+        "state": "stone_slab,half=top,variant=stone",
+        "pos": "3 7 5"
+      },
+      {
+        "state": "stone_slab,half=top,variant=stone",
+        "pos": "4 7 5"
+      },
+      {
+        "state": "stonebrick,variant=stonebrick",
+        "pos": "2 1 6"
+      },
+      {
+        "state": "planks,variant=dark_oak",
+        "pos": "3 1 6"
+      },
+      {
+        "state": "planks,variant=dark_oak",
+        "pos": "4 1 6"
+      },
+      {
+        "state": "stonebrick,variant=mossy_stonebrick",
+        "pos": "5 1 6"
+      },
+      {
+        "state": "stone_brick_stairs,facing=east,half=bottom,shape=straight",
+        "pos": "2 2 6"
+      },
+      {
+        "state": "trapdoor,facing=east,half=top,open=true",
+        "pos": "3 2 6",
+        "type": "decorative"
+      },
+      {
+        "state": "trapdoor,facing=west,half=top,open=true",
+        "pos": "4 2 6",
+        "type": "decorative"
+      },
+      {
+        "state": "stone_brick_stairs,facing=west,half=bottom,shape=straight",
+        "pos": "5 2 6"
+      },
+      {
+        "state": "stone_brick_stairs,facing=east,half=top,shape=straight",
+        "pos": "2 3 6"
+      },
+      {
+        "state": "trapdoor,facing=east,half=top,open=true",
+        "pos": "3 3 6",
+        "type": "decorative"
+      },
+      {
+        "state": "trapdoor,facing=west,half=top,open=true",
+        "pos": "4 3 6",
+        "type": "decorative"
+      },
+      {
+        "state": "stone_brick_stairs,facing=west,half=top,shape=straight",
+        "pos": "5 3 6"
+      },
+      {
+        "state": "wooden_slab,half=top,variant=dark_oak",
+        "pos": "1 4 6"
+      },
+      {
+        "state": "stonebrick,variant=stonebrick",
+        "pos": "2 4 6"
+      },
+      {
+        "state": "stonebrick,variant=stonebrick",
+        "pos": "3 4 6"
+      },
+      {
+        "state": "stonebrick,variant=mossy_stonebrick",
+        "pos": "4 4 6"
+      },
+      {
+        "state": "stonebrick,variant=mossy_stonebrick",
+        "pos": "5 4 6"
+      },
+      {
+        "state": "wooden_slab,half=top,variant=dark_oak",
+        "pos": "6 4 6"
+      },
+      {
+        "state": "wooden_slab,half=bottom,variant=dark_oak",
+        "pos": "2 5 6"
+      },
+      {
+        "state": "planks,variant=dark_oak",
+        "pos": "3 5 6"
+      },
+      {
+        "state": "planks,variant=dark_oak",
+        "pos": "4 5 6"
+      },
+      {
+        "state": "wooden_slab,half=bottom,variant=dark_oak",
+        "pos": "5 5 6"
+      },
+      {
+        "state": "wooden_button,facing=north,powered=false",
+        "pos": "2 6 6",
+        "type": "decorative"
+      },
+      {
+        "state": "stonebrick,variant=cracked_stonebrick",
+        "pos": "3 6 6"
+      },
+      {
+        "state": "stonebrick,variant=stonebrick",
+        "pos": "4 6 6"
+      },
+      {
+        "state": "wooden_button,facing=north,powered=false",
+        "pos": "5 6 6",
+        "type": "decorative"
+      },
+      {
+        "state": "stone_slab,half=top,variant=stone",
+        "pos": "2 7 6"
+      },
+      {
+        "state": "stonebrick,variant=stonebrick",
+        "pos": "3 7 6"
+      },
+      {
+        "state": "stonebrick,variant=stonebrick",
+        "pos": "4 7 6"
+      },
+      {
+        "state": "stone_slab,half=top,variant=stone",
+        "pos": "5 7 6"
+      },
+      {
+        "state": "stone_slab,half=bottom,variant=stone",
+        "pos": "3 8 6"
+      },
+      {
+        "state": "stone_slab,half=bottom,variant=stone",
+        "pos": "4 8 6"
+      },
+      {
+        "state": "stonebrick,variant=mossy_stonebrick",
+        "pos": "1 1 7"
+      },
+      {
+        "state": "stonebrick,variant=cracked_stonebrick",
+        "pos": "2 1 7"
+      },
+      {
+        "state": "stonebrick,variant=stonebrick",
+        "pos": "3 1 7"
+      },
+      {
+        "state": "stonebrick,variant=stonebrick",
+        "pos": "4 1 7"
+      },
+      {
+        "state": "stonebrick,variant=mossy_stonebrick",
+        "pos": "5 1 7"
+      },
+      {
+        "state": "stonebrick,variant=stonebrick",
+        "pos": "6 1 7"
+      },
+      {
+        "state": "stone_brick_stairs,facing=east,half=bottom,shape=straight",
+        "pos": "1 2 7"
+      },
+      {
+        "state": "stone_brick_stairs,facing=west,half=bottom,shape=straight",
+        "pos": "2 2 7"
+      },
+      {
+        "state": "stone_brick_stairs,facing=east,half=bottom,shape=straight",
+        "pos": "5 2 7"
+      },
+      {
+        "state": "stone_brick_stairs,facing=west,half=bottom,shape=straight",
+        "pos": "6 2 7"
+      },
+      {
+        "state": "wooden_button,facing=west,powered=false",
+        "pos": "1 3 7",
+        "type": "decorative"
+      },
+      {
+        "state": "stone_brick_stairs,facing=west,half=top,shape=straight",
+        "pos": "2 3 7"
+      },
+      {
+        "state": "stone_brick_stairs,facing=east,half=top,shape=straight",
+        "pos": "5 3 7"
+      },
+      {
+        "state": "wooden_button,facing=east,powered=false",
+        "pos": "6 3 7",
+        "type": "decorative"
+      },
+      {
+        "state": "stonebrick,variant=stonebrick",
+        "pos": "2 4 7"
+      },
+      {
+        "state": "torch,facing=south",
+        "pos": "3 4 7",
+        "type": "decorative"
+      },
+      {
+        "stack": "trapdoor",
+        "rotation": 0,
+        "facing": "south",
+        "pos": "3 4 7",
+        "type": "item_frame"
+      },
+      {
+        "state": "torch,facing=south",
+        "pos": "4 4 7",
+        "type": "decorative"
+      },
+      {
+        "stack": "trapdoor",
+        "rotation": 0,
+        "facing": "south",
+        "pos": "4 4 7",
+        "type": "item_frame"
+      },
+      {
+        "state": "stonebrick,variant=mossy_stonebrick",
+        "pos": "5 4 7"
+      },
+      {
+        "state": "stonebrick,variant=stonebrick",
+        "pos": "2 5 7"
+      },
+      {
+        "state": "stone_brick_stairs,facing=north,half=top,shape=straight",
+        "pos": "3 5 7"
+      },
+      {
+        "state": "stone_brick_stairs,facing=north,half=top,shape=straight",
+        "pos": "4 5 7"
+      },
+      {
+        "state": "stonebrick,variant=mossy_stonebrick",
+        "pos": "5 5 7"
+      },
+      {
+        "state": "wooden_button,facing=west,powered=false",
+        "pos": "1 6 7",
+        "type": "decorative"
+      },
+      {
+        "state": "stonebrick,variant=cracked_stonebrick",
+        "pos": "2 6 7"
+      },
+      {
+        "state": "stone_brick_stairs,facing=north,half=bottom,shape=straight",
+        "pos": "3 6 7"
+      },
+      {
+        "state": "stone_brick_stairs,facing=north,half=bottom,shape=straight",
+        "pos": "4 6 7"
+      },
+      {
+        "state": "stonebrick,variant=cracked_stonebrick",
+        "pos": "5 6 7"
+      },
+      {
+        "state": "wooden_button,facing=east,powered=false",
+        "pos": "6 6 7",
+        "type": "decorative"
+      },
+      {
+        "state": "stone_slab,half=top,variant=stone",
+        "pos": "1 7 7"
+      },
+      {
+        "state": "stonebrick,variant=mossy_stonebrick",
+        "pos": "2 7 7"
+      },
+      {
+        "state": "stone_brick_stairs,facing=north,half=top,shape=straight",
+        "pos": "3 7 7"
+      },
+      {
+        "state": "stone_brick_stairs,facing=north,half=top,shape=straight",
+        "pos": "4 7 7"
+      },
+      {
+        "state": "stonebrick,variant=stonebrick",
+        "pos": "5 7 7"
+      },
+      {
+        "state": "stone_slab,half=top,variant=stone",
+        "pos": "6 7 7"
+      },
+      {
+        "state": "stone_slab,half=bottom,variant=stone",
+        "pos": "2 8 7"
+      },
+      {
+        "state": "double_stone_slab,seamless=false,variant=stone",
+        "pos": "3 8 7"
+      },
+      {
+        "state": "double_stone_slab,seamless=false,variant=stone",
+        "pos": "4 8 7"
+      },
+      {
+        "state": "stone_slab,half=bottom,variant=stone",
+        "pos": "5 8 7"
+      },
+      {
+        "state": "stonebrick,variant=stonebrick",
+        "pos": "1 1 8"
+      },
+      {
+        "state": "stonebrick,variant=stonebrick",
+        "pos": "2 1 8"
+      },
+      {
+        "state": "stonebrick,variant=cracked_stonebrick",
+        "pos": "3 1 8"
+      },
+      {
+        "state": "stonebrick,variant=mossy_stonebrick",
+        "pos": "4 1 8"
+      },
+      {
+        "state": "stonebrick,variant=stonebrick",
+        "pos": "5 1 8"
+      },
+      {
+        "state": "stonebrick,variant=stonebrick",
+        "pos": "6 1 8"
+      },
+      {
+        "state": "stone_brick_stairs,facing=west,half=bottom,shape=straight",
+        "pos": "1 2 8"
+      },
+      {
+        "state": "anvil,damage=0,facing=north",
+        "pos": "2 2 8",
+        "type": "decorative"
+      },
+      {
+        "pos": "4 2 8"
+      },
+      {
+        "entityName": "settlements:npc",
+        "data": "{NPC:\"harvestfestival:daniel\"}",
+        "pos": "4 2 8",
+        "type": "living"
+      },
+      {
+        "state": "chest,facing=west",
+        "pos": "5 2 8"
+      },
+      {
+        "state": "stone_brick_stairs,facing=east,half=bottom,shape=straight",
+        "pos": "6 2 8"
+      },
+      {
+        "state": "stone_brick_stairs,facing=north,half=bottom,shape=straight",
+        "pos": "1 3 8"
+      },
+      {
+        "pos": "4 3 8"
+      },
+      {
+        "pos": "5 3 8"
+      },
+      {
+        "state": "stone_brick_stairs,facing=north,half=bottom,shape=straight",
+        "pos": "6 3 8"
+      },
+      {
+        "state": "stone_brick_stairs,facing=north,half=bottom,shape=straight",
+        "pos": "1 4 8"
+      },
+      {
+        "state": "stone_brick_stairs,facing=north,half=bottom,shape=straight",
+        "pos": "6 4 8"
+      },
+      {
+        "state": "stone_brick_stairs,facing=north,half=bottom,shape=straight",
+        "pos": "1 5 8"
+      },
+      {
+        "state": "stone_brick_stairs,facing=north,half=bottom,shape=straight",
+        "pos": "6 5 8"
+      },
+      {
+        "state": "stone_brick_stairs,facing=north,half=bottom,shape=straight",
+        "pos": "1 6 8"
+      },
+      {
+        "state": "web",
+        "pos": "2 6 8",
+        "type": "web"
+      },
+      {
+        "state": "stone_brick_stairs,facing=north,half=bottom,shape=straight",
+        "pos": "6 6 8"
+      },
+      {
+        "state": "stone_slab,half=top,variant=stone",
+        "pos": "0 7 8"
+      },
+      {
+        "state": "stonebrick,variant=cracked_stonebrick",
+        "pos": "1 7 8"
+      },
+      {
+        "state": "stonebrick,variant=stonebrick",
+        "pos": "6 7 8"
+      },
+      {
+        "state": "stone_slab,half=top,variant=stone",
+        "pos": "7 7 8"
+      },
+      {
+        "state": "stone_slab,half=bottom,variant=stone",
+        "pos": "1 8 8"
+      },
+      {
+        "state": "double_stone_slab,seamless=false,variant=stone",
+        "pos": "2 8 8"
+      },
+      {
+        "state": "double_stone_slab,seamless=false,variant=stone",
+        "pos": "5 8 8"
+      },
+      {
+        "state": "stone_slab,half=bottom,variant=stone",
+        "pos": "6 8 8"
+      },
+      {
+        "state": "stone_slab,half=bottom,variant=stone",
+        "pos": "3 9 8"
+      },
+      {
+        "state": "stone_slab,half=bottom,variant=stone",
+        "pos": "4 9 8"
+      },
+      {
+        "state": "stonebrick,variant=cracked_stonebrick",
+        "pos": "1 1 9"
+      },
+      {
+        "state": "stonebrick,variant=stonebrick",
+        "pos": "2 1 9"
+      },
+      {
+        "state": "stonebrick,variant=cracked_stonebrick",
+        "pos": "3 1 9"
+      },
+      {
+        "state": "stonebrick,variant=cracked_stonebrick",
+        "pos": "4 1 9"
+      },
+      {
+        "state": "stonebrick,variant=cracked_stonebrick",
+        "pos": "5 1 9"
+      },
+      {
+        "state": "stonebrick,variant=stonebrick",
+        "pos": "6 1 9"
+      },
+      {
+        "state": "stone_brick_stairs,facing=west,half=bottom,shape=straight",
+        "pos": "1 2 9"
+      },
+      {
+        "facing": "east",
+        "state": "harvestcore:machine,facing=north,machine=furnace,top=false",
+        "pos": "2 2 9",
+        "type": "rotatable"
+      },
+      {
+        "facing": "west",
+        "state": "harvestcore:machine,facing=north,machine=furnace,top=false",
+        "pos": "5 2 9",
+        "type": "rotatable"
+      },
+      {
+        "state": "stone_brick_stairs,facing=east,half=bottom,shape=straight",
+        "pos": "6 2 9"
+      },
+      {
+        "state": "stone_brick_stairs,facing=south,half=bottom,shape=straight",
+        "pos": "1 3 9"
+      },
+      {
+        "state": "harvestcore:machine,facing=north,machine=furnace,top=true",
+        "pos": "2 3 9"
+      },
+      {
+        "state": "harvestcore:machine,facing=north,machine=furnace,top=true",
+        "pos": "5 3 9"
+      },
+      {
+        "state": "stone_brick_stairs,facing=south,half=bottom,shape=straight",
+        "pos": "6 3 9"
+      },
+      {
+        "state": "stone_brick_stairs,facing=south,half=bottom,shape=straight",
+        "pos": "1 4 9"
+      },
+      {
+        "state": "stone_brick_stairs,facing=south,half=bottom,shape=straight",
+        "pos": "6 4 9"
+      },
+      {
+        "state": "stone_brick_stairs,facing=south,half=bottom,shape=straight",
+        "pos": "1 5 9"
+      },
+      {
+        "state": "wooden_button,facing=north,powered=false",
+        "pos": "2 5 9",
+        "type": "decorative"
+      },
+      {
+        "state": "wooden_button,facing=north,powered=false",
+        "pos": "5 5 9",
+        "type": "decorative"
+      },
+      {
+        "state": "stone_brick_stairs,facing=south,half=bottom,shape=straight",
+        "pos": "6 5 9"
+      },
+      {
+        "state": "stone_brick_stairs,facing=south,half=bottom,shape=straight",
+        "pos": "1 6 9"
+      },
+      {
+        "state": "stone_brick_stairs,facing=south,half=bottom,shape=straight",
+        "pos": "6 6 9"
+      },
+      {
+        "state": "stone_slab,half=top,variant=stone",
+        "pos": "0 7 9"
+      },
+      {
+        "state": "stonebrick,variant=mossy_stonebrick",
+        "pos": "1 7 9"
+      },
+      {
+        "state": "wooden_button,facing=north,powered=false",
+        "pos": "2 7 9",
+        "type": "decorative"
+      },
+      {
+        "state": "wooden_button,facing=north,powered=false",
+        "pos": "5 7 9",
+        "type": "decorative"
+      },
+      {
+        "state": "stonebrick,variant=stonebrick",
+        "pos": "6 7 9"
+      },
+      {
+        "state": "stone_slab,half=top,variant=stone",
+        "pos": "7 7 9"
+      },
+      {
+        "state": "stone_slab,half=bottom,variant=stone",
+        "pos": "1 8 9"
+      },
+      {
+        "state": "double_stone_slab,seamless=false,variant=stone",
+        "pos": "2 8 9"
+      },
+      {
+        "state": "web",
+        "pos": "3 8 9",
+        "type": "web"
+      },
+      {
+        "state": "double_stone_slab,seamless=false,variant=stone",
+        "pos": "5 8 9"
+      },
+      {
+        "state": "stone_slab,half=bottom,variant=stone",
+        "pos": "6 8 9"
+      },
+      {
+        "state": "stone_slab,half=bottom,variant=stone",
+        "pos": "3 9 9"
+      },
+      {
+        "state": "stone_slab,half=bottom,variant=stone",
+        "pos": "4 9 9"
+      },
+      {
+        "state": "stonebrick,variant=stonebrick",
+        "pos": "2 0 10"
+      },
+      {
+        "state": "stonebrick,variant=stonebrick",
+        "pos": "5 0 10"
+      },
+      {
+        "state": "stonebrick,variant=stonebrick",
+        "pos": "1 1 10"
+      },
+      {
+        "state": "lava,level=0",
+        "pos": "2 1 10",
+        "type": "decorative"
+      },
+      {
+        "state": "stonebrick,variant=stonebrick",
+        "pos": "3 1 10"
+      },
+      {
+        "state": "stonebrick,variant=stonebrick",
+        "pos": "4 1 10"
+      },
+      {
+        "state": "lava,level=0",
+        "pos": "5 1 10",
+        "type": "decorative"
+      },
+      {
+        "state": "stonebrick,variant=stonebrick",
+        "pos": "6 1 10"
+      },
+      {
+        "state": "stone_brick_stairs,facing=east,half=bottom,shape=straight",
+        "pos": "1 2 10"
+      },
+      {
+        "state": "lit_furnace,facing=north",
+        "pos": "3 2 10"
+      },
+      {
+        "state": "lit_furnace,facing=north",
+        "pos": "4 2 10"
+      },
+      {
+        "state": "stone_brick_stairs,facing=west,half=bottom,shape=straight",
+        "pos": "6 2 10"
+      },
+      {
+        "state": "wooden_button,facing=west,powered=false",
+        "pos": "1 3 10",
+        "type": "decorative"
+      },
+      {
+        "state": "stonebrick,variant=stonebrick",
+        "pos": "2 3 10"
+      },
+      {
+        "state": "wooden_button,facing=east,powered=false",
+        "pos": "3 3 10",
+        "type": "decorative"
+      },
+      {
+        "stack": "iron_sword",
+        "rotation": 0,
+        "facing": "north",
+        "pos": "3 3 10",
+        "type": "item_frame"
+      },
+      {
+        "state": "wooden_button,facing=west,powered=false",
+        "pos": "4 3 10",
+        "type": "decorative"
+      },
+      {
+        "stack": "iron_sword",
+        "rotation": 0,
+        "facing": "north",
+        "pos": "4 3 10",
+        "type": "item_frame"
+      },
+      {
+        "state": "stonebrick,variant=cracked_stonebrick",
+        "pos": "5 3 10"
+      },
+      {
+        "state": "wooden_button,facing=east,powered=false",
+        "pos": "6 3 10",
+        "type": "decorative"
+      },
+      {
+        "state": "stonebrick,variant=cracked_stonebrick",
+        "pos": "2 4 10"
+      },
+      {
+        "state": "stonebrick,variant=stonebrick",
+        "pos": "5 4 10"
+      },
+      {
+        "state": "stonebrick,variant=stonebrick",
+        "pos": "2 5 10"
+      },
+      {
+        "state": "wooden_button,facing=east,powered=false",
+        "pos": "3 5 10",
+        "type": "decorative"
+      },
+      {
+        "state": "wooden_button,facing=west,powered=false",
+        "pos": "4 5 10",
+        "type": "decorative"
+      },
+      {
+        "state": "stonebrick,variant=cracked_stonebrick",
+        "pos": "5 5 10"
+      },
+      {
+        "state": "wooden_button,facing=west,powered=false",
+        "pos": "1 6 10",
+        "type": "decorative"
+      },
+      {
+        "state": "stonebrick,variant=stonebrick",
+        "pos": "2 6 10"
+      },
+      {
+        "state": "stonebrick,variant=stonebrick",
+        "pos": "5 6 10"
+      },
+      {
+        "state": "wooden_button,facing=east,powered=false",
+        "pos": "6 6 10",
+        "type": "decorative"
+      },
+      {
+        "state": "stone_slab,half=top,variant=stone",
+        "pos": "1 7 10"
+      },
+      {
+        "state": "stonebrick,variant=stonebrick",
+        "pos": "2 7 10"
+      },
+      {
+        "state": "wooden_button,facing=east,powered=false",
+        "pos": "3 7 10",
+        "type": "decorative"
+      },
+      {
+        "state": "wooden_button,facing=west,powered=false",
+        "pos": "4 7 10",
+        "type": "decorative"
+      },
+      {
+        "state": "stonebrick,variant=stonebrick",
+        "pos": "5 7 10"
+      },
+      {
+        "state": "stone_slab,half=top,variant=stone",
+        "pos": "6 7 10"
+      },
+      {
+        "state": "stone_slab,half=bottom,variant=stone",
+        "pos": "2 8 10"
+      },
+      {
+        "state": "double_stone_slab,seamless=false,variant=stone",
+        "pos": "3 8 10"
+      },
+      {
+        "state": "double_stone_slab,seamless=false,variant=stone",
+        "pos": "4 8 10"
+      },
+      {
+        "state": "stone_slab,half=bottom,variant=stone",
+        "pos": "5 8 10"
+      },
+      {
+        "state": "stonebrick,variant=stonebrick",
+        "pos": "2 1 11"
+      },
+      {
+        "state": "stonebrick,variant=stonebrick",
+        "pos": "3 1 11"
+      },
+      {
+        "state": "stonebrick,variant=stonebrick",
+        "pos": "4 1 11"
+      },
+      {
+        "state": "stonebrick,variant=cracked_stonebrick",
+        "pos": "5 1 11"
+      },
+      {
+        "state": "stone_brick_stairs,facing=north,half=bottom,shape=straight",
+        "pos": "2 2 11"
+      },
+      {
+        "state": "stone_brick_stairs,facing=south,half=bottom,shape=straight",
+        "pos": "3 2 11"
+      },
+      {
+        "state": "stone_brick_stairs,facing=south,half=bottom,shape=straight",
+        "pos": "4 2 11"
+      },
+      {
+        "state": "stone_brick_stairs,facing=north,half=bottom,shape=straight",
+        "pos": "5 2 11"
+      },
+      {
+        "state": "wooden_button,facing=south,powered=false",
+        "pos": "2 3 11",
+        "type": "decorative"
+      },
+      {
+        "state": "stone_brick_stairs,facing=west,half=bottom,shape=straight",
+        "pos": "3 3 11"
+      },
+      {
+        "state": "stone_brick_stairs,facing=east,half=bottom,shape=straight",
+        "pos": "4 3 11"
+      },
+      {
+        "state": "wooden_button,facing=south,powered=false",
+        "pos": "5 3 11",
+        "type": "decorative"
+      },
+      {
+        "state": "stone_brick_stairs,facing=west,half=bottom,shape=straight",
+        "pos": "3 4 11"
+      },
+      {
+        "state": "stone_brick_stairs,facing=east,half=bottom,shape=straight",
+        "pos": "4 4 11"
+      },
+      {
+        "state": "stone_brick_stairs,facing=west,half=bottom,shape=straight",
+        "pos": "3 5 11"
+      },
+      {
+        "state": "stone_brick_stairs,facing=east,half=bottom,shape=straight",
+        "pos": "4 5 11"
+      },
+      {
+        "state": "wooden_button,facing=south,powered=false",
+        "pos": "2 6 11",
+        "type": "decorative"
+      },
+      {
+        "state": "stone_brick_stairs,facing=west,half=bottom,shape=straight",
+        "pos": "3 6 11"
+      },
+      {
+        "state": "stone_brick_stairs,facing=east,half=bottom,shape=straight",
+        "pos": "4 6 11"
+      },
+      {
+        "state": "wooden_button,facing=south,powered=false",
+        "pos": "5 6 11",
+        "type": "decorative"
+      },
+      {
+        "state": "stone_slab,half=top,variant=stone",
+        "pos": "2 7 11"
+      },
+      {
+        "state": "stonebrick,variant=stonebrick",
+        "pos": "3 7 11"
+      },
+      {
+        "state": "stonebrick,variant=stonebrick",
+        "pos": "4 7 11"
+      },
+      {
+        "state": "stone_slab,half=top,variant=stone",
+        "pos": "5 7 11"
+      },
+      {
+        "state": "stone_slab,half=bottom,variant=stone",
+        "pos": "3 8 11"
+      },
+      {
+        "state": "stone_slab,half=bottom,variant=stone",
+        "pos": "4 8 11"
+      }
+    ]
+  }
+}

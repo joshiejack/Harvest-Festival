@@ -1,0 +1,25 @@
+{
+	"registryName": "harvestfestival:mine_ladder",
+	"type": "block:ladder",
+	"defaults": {
+		"propertyName": "ladder",
+		"hardness": "-1F",
+		"soundType": "wood",
+		"material": "wood",
+		"script": "harvestfestival:blocks/mine_ladder"
+	},
+	"data": [
+		{
+			"name": "wood",
+			"lootTable": "harvestfestival:blocks/mine_ladder_wood"
+		},
+		{
+			"name": "frozen",
+			"lootTable": "harvestfestival:blocks/mine_ladder_frozen"
+		},
+		{
+			"name": "hell",
+			"lootTable": "harvestfestival:blocks/mine_ladder_hell"
+		}
+	]
+}

@@ -1,0 +1,16 @@
+Item,Dish,Ingredients
+pickled_turnip,plate,"turnip,salt"
+pickled_cucumber,pickling_jar,"cucumber,salt"
+salad,deep_bowl,"category:salad_ingredient 3"
+sandwich,plate,"bread,butter,category:sandwich_ingredient"
+sushi,plate,"sashimi,riceball"
+sashimi,plate,category:fish
+chirashi_sushi,deep_bowl,"sashimi,scrambled_egg,riceball,category:sashimi_ingredient"
+fruit_sandwich,plate,"bread,butter,category:sandwich_fruit"
+bamboo_rice,deep_bowl,"bamboo,riceball"
+matsutake_rice,deep_bowl,"matsutake_mushroom,riceball"
+mushroom_rice,deep_bowl,"brown_mushroom,riceball"
+raisin_bread,,"bread,grapes"
+ice_cream,deep_bowl,"milk,egg"
+herb_salad,deep_bowl,"mint,chamomile,lavender"
+herb_sandwich,plate,"bread,butter,mint,chamomile,lavender"

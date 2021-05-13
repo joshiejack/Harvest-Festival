@@ -1,0 +1,5 @@
+ID,Name,Texture,X,Y,Script
+achievements,harvestfestival.collection.achievements,harvestfestival:textures/gui/icons.png,0,16,harvestfestival:collections/achievements,false
+fishing,harvestfestival.collection.fishing,harvestfestival:textures/gui/icons.png,32,16,harvestfestival:collections/fishing,true
+mining,harvestfestival.collection.mining,harvestfestival:textures/gui/icons.png,48,16,harvestfestival:collections/mining,true
+shipping,harvestfestival.collection.shipping,harvestfestival:textures/gui/icons.png,16,16,harvestfestival:collections/shipping,true

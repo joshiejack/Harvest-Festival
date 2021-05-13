@@ -1,0 +1,9 @@
+{
+	"registryName": "harvestfestival:power_berry",
+	"type": "item:edible_singular",
+	"data": {
+		"alwaysEdible": true,
+		"saturation": 1,
+		"script": "harvestfestival:items/power_berry"
+	}
+}

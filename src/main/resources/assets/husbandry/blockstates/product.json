@@ -1,0 +1,15 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "transform": "forge:default-block",
+    "model": "cube_all"
+  },
+  "variants": {
+    "product=small_truffle":  { "model": "husbandry:small_truffle" },
+    "product=medium_truffle":  { "model": "husbandry:medium_truffle" },
+    "product=large_truffle": { "model": "husbandry:large_truffle" },
+    "product=small_rabbit_wool": { "model": "husbandry:small_rabbit_wool" },
+    "product=medium_rabbit_wool":  { "model": "husbandry:medium_rabbit_wool" },
+    "product=large_rabbit_wool":  { "model": "husbandry:large_rabbit_wool" }
+  }
+}

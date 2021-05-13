@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north,machine=recycler":  { "model": "piscary:recycler" },
+    "facing=south,machine=recycler":  { "model": "piscary:recycler", "y": 180 },
+    "facing=east,machine=recycler": { "model": "piscary:recycler", "y": 90 },
+    "facing=west,machine=recycler": { "model": "piscary:recycler", "y": 270 }
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "registryName": "harvestfestival:mystril_sword",
+  "type": "item:sword",
+  "data": {
+    "toolMaterial": "mystril"
+  }
+}

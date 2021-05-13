@@ -1,0 +1,17 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "transform": "forge:default-block"
+  },
+  "variants": {
+    "crate=barrel": { "model": "harvestfestival:mine/barrel", "textures": { "particle": "harvestfestival:blocks/mine/crates/barrel", "lid": "harvestfestival:blocks/mine/crates/barrel_lid" }},
+    "crate=frozen_barrel": { "model": "harvestfestival:mine/barrel", "textures": { "particle": "harvestfestival:blocks/mine/crates/frozen_barrel", "lid": "harvestfestival:blocks/mine/crates/frozen_barrel_lid"}},
+    "crate=square": { "model": "cube_all", "textures": { "all": "harvestfestival:blocks/mine/crates/square"}},
+    "crate=hell_chest": [
+      { "model": "harvestfestival:mine/hell_chest", "textures": { "particle": "harvestfestival:blocks/mine/crates/hell_chest"}},
+      { "model": "harvestfestival:mine/hell_chest", "textures": { "particle": "harvestfestival:blocks/mine/crates/hell_chest"}, "y": 90},
+      { "model": "harvestfestival:mine/hell_chest", "textures": { "particle": "harvestfestival:blocks/mine/crates/hell_chest"}, "y": 180},
+      { "model": "harvestfestival:mine/hell_chest", "textures": { "particle": "harvestfestival:blocks/mine/crates/hell_chest"}, "y": 270}
+      ]
+  }
+}

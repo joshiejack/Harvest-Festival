@@ -1,0 +1,16 @@
+id,name,vendor_id,opening_method
+carpenter,harvestfestival:carpenter,npc,script
+market_stall,harvestfestival:market_stall,npc,script
+general_store,harvestfestival:general_store,npc,script
+animal_ranch,harvestfestival:animal_ranch,npc,script
+poultry_farm,harvestfestival:poultry_farm,npc,script
+cafe,harvestfestival:cafe,npc,script
+tackle_shop,harvestfestival:tackle_shop,npc,script
+clinic,harvestfestival:clinic,npc,script
+pet_shop,harvestfestival:pet_shop,npc,script
+engineers_workshop,harvestfestival:engineers_workshop,npc,script
+witching_wares,harvestfestival:witching_wares,npc,script
+#Sunday Markets
+flower_market,harvestfestival:flower_market,npc,script
+baked_goods,harvestfestival:baked_goods,npc,script
+blacksmith,harvestfestival:blacksmith,npc,script

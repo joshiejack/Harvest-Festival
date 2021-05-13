@@ -1,0 +1,14 @@
+{
+  "registryName": "harvestfestival:mushroom_log_spruce",
+  "type": "blueprint:standard",
+  "data": {
+    "category": "machine",
+    "result": "horticulture:stump 1",
+    "ingredients": [
+      {
+        "item": "minecraft:log 1",
+        "count": 5
+      }
+    ]
+  }
+}

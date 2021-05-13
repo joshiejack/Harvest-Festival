@@ -1,0 +1,16 @@
+{
+	"textures": {
+		"particle": "furniture:blocks/equipment/television",
+		"texture": "furniture:blocks/equipment/television"
+	},
+	"elements": [
+		{
+			"__comment": "screen",
+			"from": [ 3, 6, 5.95 ],
+			"to": [ 13, 14, 6.95 ],
+			"faces": {
+				"north": { "uv": [ 0, 1.5, 16, 14.5 ], "texture": "#screen" }
+			}
+		}
+	]
+}

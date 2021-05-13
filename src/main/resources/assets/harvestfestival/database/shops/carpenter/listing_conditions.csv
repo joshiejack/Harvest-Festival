@@ -1,0 +1,9 @@
+department_id,listing_id,condition_id
+#Starter Items
+carpenter_blueprints,enchanting_table,has_library
+carpenter_blueprints,bookshelf,has_library
+carpenter_buildings,village_green,has_cafe
+carpenter_buildings,village_green,has_village_field
+carpenter_buildings,village_park,has_village_green
+carpenter_buildings,village_park,has_animal_ranch
+carpenter_buildings,village_park,has_poultry_farm

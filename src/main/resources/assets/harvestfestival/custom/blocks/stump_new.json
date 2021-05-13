@@ -1,0 +1,61 @@
+{
+	"registryName": "harvestfestival:stump_new",
+	"type": "block:standard",
+	"defaults": {
+		"propertyName": "wood",
+		"hardness": "0.8F",
+		"soundType": "wood",
+		"material": "wood",
+		"toolType": "lumber_axe&axe",
+		"toolLevel": 0,
+		"silkHarvest": true,
+		"offset": "xz"
+	},
+	"data": [
+		{
+			"name": "jungle_small_stump",
+			"boundingBox": "0.15 0 0.15 0.85 0.15 0.85",
+			"lootTable": "harvestfestival:blocks/jungle_small_stump"
+		},
+		{
+			"name": "acacia_small_stump",
+			"boundingBox": "0.15 0 0.15 0.85 0.15 0.85",
+			"lootTable": "harvestfestival:blocks/acacia_small_stump"
+		},
+		{
+			"name": "dark_oak_small_stump",
+			"boundingBox": "0.15 0 0.15 0.85 0.15 0.85",
+			"lootTable": "harvestfestival:blocks/dark_oak_small_stump"
+		},
+		{
+			"name": "jungle_medium_stump",
+			"boundingBox": "0.15 0 0.15 0.85 0.25 0.85",
+			"lootTable": "harvestfestival:blocks/jungle_medium_stump"
+		},
+		{
+			"name": "acacia_medium_stump",
+			"boundingBox": "0.15 0 0.15 0.85 0.25 0.85",
+			"lootTable": "harvestfestival:blocks/acacia_medium_stump"
+		},
+		{
+			"name": "dark_oak_medium_stump",
+			"boundingBox": "0.15 0 0.15 0.85 0.25 0.85",
+			"lootTable": "harvestfestival:blocks/dark_oak_medium_stump"
+		},
+		{
+			"name": "jungle_large_stump",
+			"boundingBox": "0 0 0 1 0.9 1",
+			"lootTable": "harvestfestival:blocks/jungle_large_stump"
+		},
+		{
+			"name": "acacia_large_stump",
+			"boundingBox": "0 0 0 1 0.9 1",
+			"lootTable": "harvestfestival:blocks/acacia_large_stump"
+		},
+		{
+			"name": "dark_oak_large_stump",
+			"boundingBox": "0 0 0 1 0.9 1",
+			"lootTable": "harvestfestival:blocks/dark_oak_large_stump"
+		}
+	]
+}

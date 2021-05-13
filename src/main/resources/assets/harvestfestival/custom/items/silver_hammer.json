@@ -1,0 +1,10 @@
+{
+  "registryName": "harvestfestival:silver_hammer",
+  "type": "item:hammer",
+  "data": {
+    "toolMaterial": "silver",
+    "area": 2,
+    "widthAndHeight": 0,
+    "depth": 2
+  }
+}

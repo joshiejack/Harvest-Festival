@@ -1,0 +1,22 @@
+{
+	"registryName": "harvestfestival:achievement",
+	"type": "item:achievement",
+	"defaults": {
+		"script": "harvestfestival:items/achievements"
+	},
+	"data": [
+		{ "name": "earn_10k", "script": "harvestfestival:achievements/earn_10k" },
+		{ "name": "earn_50k", "script": "harvestfestival:achievements/earn_50k" },
+		{ "name": "earn_250k", "script": "harvestfestival:achievements/earn_250k" },
+		{ "name": "earn_1000k", "script": "harvestfestival:achievements/earn_1000k" },
+		{ "name": "relationship_5_hearts", "script": "harvestfestival:achievements/relationship_5_hearts" },
+		{ "name": "relationship_10_hearts", "script": "harvestfestival:achievements/relationship_10_hearts" },
+		{ "name": "complete_shipping_collection", "script": "harvestfestival:achievements/complete_shipping_collection" },
+		{ "name": "ship_1000_crops", "script": "harvestfestival:achievements/ship_1000_crops" },
+		{ "name": "complete_fishing_collection", "script": "harvestfestival:achievements/complete_fishing_collection" },
+		{ "name": "catch_100_fish", "script": "harvestfestival:achievements/catch_100_fish" },
+		{ "name": "complete_cooking_collection", "script": "harvestfestival:achievements/complete_cooking_collection" },
+		{ "name": "complete_mining_collection", "script": "harvestfestival:achievements/complete_fishing_collection" },
+		{ "name": "kill_10_slimes", "script": "harvestfestival:achievements/kill_10_slimes" }
+	]
+}

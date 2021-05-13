@@ -1,0 +1,20 @@
+name,type,days
+default_4,default,3
+default_8,default,7
+default_16,default,15
+wheat,patterned,"false, false, false, true, false, false, false, true, false, false, false, false, true, false, false, false, true, false, false, false, true, false, false, true, false, false, false, true"
+texture_3_days_5,patterned,"false,false,true,false,true"
+texture_3_days_6,patterned,"false,false,true,false,false,true"
+texture_3_days_8,patterned,"false,false,false,true,false,false,false,true"
+texture_4_days_7,patterned,"false,true,false,true,false,false,true"
+texture_4_days_9,patterned,"false,false,true,false,false,true,false,false,true"
+texture_4_days_10,patterned,"false,false,true,false,false,false,true false,false,true"
+texture_4_days_15,patterned,"false,false,false,false,true,false,false,false,false,true,false,false,false,false,true"
+texture_5_days_10,patterned,"false,true,false,false,true,false,false,true,false,true"
+tomato,numbered,"2,4,6,9"
+pineapple,numbered,"5,10,15,20"
+corn,numbered,"3,8,12,14"
+pumpkin,patterned,"true,true,true,false,true,false,true,false,true,false,false,true,false,true"
+sweet_potato,numbered,"3,5"
+green_pepper,numbered,"1,3,4,7"
+melon,patterned,"true,true,true,false,true,true,true,false,true,true"

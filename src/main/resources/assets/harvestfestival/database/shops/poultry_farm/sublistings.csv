@@ -1,0 +1,11 @@
+department_id,listing_id,id,type,data,gold,weight
+poultry_farm,bird_feed,default,item,bird_feed,25,1
+poultry_farm,rabbit_food,default,item,rabbit_food,50,1
+poultry_farm,generic_treat,default,item,generic_treat,10,1
+poultry_farm,chicken_treat,default,item,chicken_treat,25,1
+poultry_farm,duck_treat,default,item,duck_treat,20,1
+poultry_farm,rabbit_treat,default,item,rabbit_treat,40,1
+poultry_farm,chicken,default,entity,chicken,1500,1
+poultry_farm,duck,default,entity,husbandry:duck,2000,1
+poultry_farm,rabbit,default,entity,rabbit,5000,1
+poultry_farm,name_tag,default,item,name_tag,250,1

@@ -1,0 +1,7 @@
+{
+  "parent": "block/cube_all",
+  "ambientocclusion": false,
+  "textures": {
+    "all": "piscary:blocks/fish_trap_baited_vanilla"
+  }
+}

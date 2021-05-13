@@ -1,0 +1,25 @@
+input,output
+minecraft:red_flower 3,spring_seed_bag
+minecraft:red_flower 4,spring_seed_bag
+minecraft:red_flower 5,spring_seed_bag
+minecraft:red_flower 6,spring_seed_bag
+minecraft:red_flower 7,spring_seed_bag
+minecraft:double_plant 1,spring_seed_bag
+minecraft:double_plant 5,spring_seed_bag
+moondrop_flower,spring_seed_bag
+toy_flower,spring_seed_bag
+bamboo,spring_seed_bag
+minecraft:red_flower 0,summer_seed_bag
+minecraft:red_flower 1,summer_seed_bag
+minecraft:red_flower 2,summer_seed_bag
+minecraft:red_flower 8,summer_seed_bag
+minecraft:double_plant 0,summer_seed_bag
+minecraft:double_plant 4,summer_seed_bag
+pink_cat_flower,summer_seed_bag
+chamomile,summer_seed_bag
+mint,summer_seed_bag
+minecraft:yellow_flower,autumn_seed_bag
+blue_magic_flower,autumn_seed_bag
+red_magic_flower,autumn_seed_bag
+matsutake,autumn_seed_bag
+lavender,winter_seed_bag

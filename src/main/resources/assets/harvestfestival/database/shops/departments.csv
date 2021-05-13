@@ -1,0 +1,26 @@
+shop_id,id,icon,name
+carpenter,carpenter_blueprints,harvestcore:blueprint,harvestfestival:blueprints
+carpenter,carpenter_furniture,harvestcore:mailbox 0,harvestfestival:furniture
+carpenter,carpenter_materials,minecraft:log 0,harvestfestival:materials
+carpenter,carpenter_buildings,"settlements:building 0 {Resource:""harvestfestival:general_store""}",harvestfestival:buildings
+market_stall,market_stall,none,none
+general_store,general_store_tools,harvestfestival:basic_hoe,harvestfestival:tools
+general_store,general_store_seeds,turnip_seed_bag,harvestfestival:seeds
+general_store,general_store_general,flour,harvestfestival:general
+animal_ranch,animal_ranch_tools,husbandry:tool 1,harvestfestival:tools
+animal_ranch,animal_ranch_animals,"penguinlib:entity {Entity:""minecraft:cow""}",harvestfestival:animals
+poultry_farm,poultry_farm,none,none
+cafe,cafe_menu,hot_chocolate,harvestfestival:menu
+cafe,cafe_recipes,gastronomy:cookbook,harvestfestival:recipes
+tackle_shop,tackle_shop,none,none
+clinic,clinic,none,none
+pet_shop,pet_shop_animals,none,harvestfestival:animals
+pet_shop,pet_shop_items,cat_treat,harvestfestival:items
+engineers_workshop,engineers_workshop_machines,minecraft:piston,harvestfestival:machines
+engineers_workshop,engineers_workshop_blueprints,harvestcore:blueprint,harvestfestival:blueprints
+witching_wares,witching_wares,none,none
+blacksmith,blacksmith_blueprints,harvestcore:blueprint,harvestfestival:blueprints
+blacksmith,blacksmith_upgrades,harvestfestival:copper_hammer,harvestfestival:upgrades
+#Sunday Market
+flower_market,flower_market,none,none
+baked_goods,baked_goods,none,none

@@ -1,0 +1,8 @@
+{
+  "registryName": "settlements:null",
+  "type": "building:standard",
+  "data": {
+    "offset": "0 0 0",
+    "components": []
+  }
+}

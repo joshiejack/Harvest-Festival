@@ -1,0 +1,22 @@
+item,quality
+harvestfestival:drink 0,awesome
+dinnerroll,awesome
+cat#mushroom,good
+cat#herb,good
+pancake,decent
+apple_pie,decent
+fruit_sandwich,decent
+apple_souffle,decent
+cat#money,dislike
+cat#fruit,dislike
+cornflakes,dislike
+ice_cream,dislike
+sugar,dislike
+cat#magic,bad
+cat#machine,bad
+minecraft:cake,bad
+cake,bad
+chocolate_cake,bad
+cookie,terrible
+cookies,terrible
+chocolate_cookies,terrible

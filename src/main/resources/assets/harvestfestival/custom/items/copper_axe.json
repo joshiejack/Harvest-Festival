@@ -1,0 +1,9 @@
+{
+  "registryName": "harvestfestival:copper_axe",
+  "type": "item:lumber_axe",
+  "data": {
+    "toolMaterial": "copper",
+    "hits": 5,
+    "area": 1
+  }
+}

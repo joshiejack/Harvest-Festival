@@ -1,0 +1,9 @@
+{
+  "registryName": "harvestfestival:mythic_watering_can",
+  "type": "item:watering_can",
+  "data": {
+    "toolMaterial": "mythic",
+    "width": 11,
+    "depth": 10
+  }
+}

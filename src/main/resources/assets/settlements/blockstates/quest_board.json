@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north,material=default":  { "model": "settlements:quest_board" },
+    "facing=south,material=default":  { "model": "settlements:quest_board", "y": 180 },
+    "facing=east,material=default": { "model": "settlements:quest_board", "y": 90 },
+    "facing=west,material=default": { "model": "settlements:quest_board", "y": 270 }
+  }
+}

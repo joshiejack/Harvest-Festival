@@ -1,0 +1,9 @@
+{
+  "registryName": "harvestfestival:silver_hoe",
+  "type": "item:hoe",
+  "data": {
+    "toolMaterial": "silver",
+    "width": 2,
+    "depth": 0
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "registryName": "harvestfestival:mythic_shovel",
+  "type": "item:shovel",
+  "data": {
+    "toolMaterial": "mythic",
+    "width": 3,
+    "depth": 6
+  }
+}

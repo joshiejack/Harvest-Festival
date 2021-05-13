@@ -1,0 +1,10 @@
+{
+  "registryName": "harvestfestival:copper_hammer",
+  "type": "item:hammer",
+  "data": {
+    "toolMaterial": "copper",
+    "area": 1,
+    "widthAndHeight": 0,
+    "depth": 0
+  }
+}

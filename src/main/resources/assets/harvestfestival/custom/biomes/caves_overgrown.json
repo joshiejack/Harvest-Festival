@@ -1,0 +1,9 @@
+{
+  "registryName": "harvestfestival:caves_overgrown",
+  "type": "biome:standard",
+  "data": {
+    "name": "Overgrown Caves",
+    "temperature": 0.2,
+    "rainfall": 0
+  }
+}

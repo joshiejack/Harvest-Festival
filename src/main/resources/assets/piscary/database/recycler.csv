@@ -1,0 +1,5 @@
+Input,Output
+bones,minecraft:dye 15 *2
+boot,minecraft:leather
+can,minecraft:iron_nugget *3
+fossil,minecraft:coal

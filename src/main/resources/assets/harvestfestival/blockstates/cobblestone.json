@@ -1,0 +1,19 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "transform": "forge:default-block",
+    "model": "harvestfestival:mine/flooring"
+  },
+  "variants": {
+    "decortype=standard,ew=false": { "model": "harvestfestival:mine/cobblestone", "textures": { "particle": "harvestfestival:blocks/mine/interior/standard/wall" }},
+    "decortype=standard,ew=true": { "model": "harvestfestival:mine/cobblestone", "textures": { "particle": "harvestfestival:blocks/mine/interior/standard/wall" }, "y": 90 },
+    "decortype=frozen,ew=false": { "model": "harvestfestival:mine/cobblestone", "textures": { "particle": "harvestfestival:blocks/mine/interior/frozen/wall" }},
+    "decortype=frozen,ew=true": { "model": "harvestfestival:mine/cobblestone", "textures": { "particle": "harvestfestival:blocks/mine/interior/frozen/wall" }, "y": 90 },
+    "decortype=hell,ew=false": { "model": "harvestfestival:mine/cobblestone", "textures": { "particle": "harvestfestival:blocks/mine/interior/hell/wall" }},
+    "decortype=hell,ew=true": { "model": "harvestfestival:mine/cobblestone", "textures": { "particle": "harvestfestival:blocks/mine/interior/hell/wall" }, "y": 90 },
+    "decortype=frozen_brick,ew=false": { "model": "harvestfestival:mine/cobblestone", "textures": { "particle": "harvestfestival:blocks/mine/interior/frozen/brick" }},
+    "decortype=frozen_brick,ew=true": { "model": "harvestfestival:mine/cobblestone", "textures": { "particle": "harvestfestival:blocks/mine/interior/frozen/brick" }, "y": 90 },
+    "decortype=hell_brick,ew=false": { "model": "harvestfestival:mine/cobblestone", "textures": { "particle": "harvestfestival:blocks/mine/interior/hell/brick" }},
+    "decortype=hell_brick,ew=true": { "model": "harvestfestival:mine/cobblestone", "textures": { "particle": "harvestfestival:blocks/mine/interior/hell/brick" }, "y": 90 }
+  }
+}

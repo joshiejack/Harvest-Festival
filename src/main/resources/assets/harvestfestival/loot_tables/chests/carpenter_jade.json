@@ -7,12 +7,61 @@
         {
           "type": "item",
           "name": "minecraft:apple",
-          "weight": 8
+          "weight": 8,
+          "functions": [
+            {
+              "function": "harvestcore:set_quality",
+              "quality": "harvestfestival:rotten"
+            },
+            {
+              "function": "economy:cap_value",
+              "cap": 120
+            }
+          ]
         },
         {
           "type": "item",
           "name": "minecraft:carrot",
-          "weight": 8
+          "weight": 8,
+          "functions": [
+            {
+              "function": "harvestcore:set_quality",
+              "quality": "harvestfestival:rotten"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "minecraft:potato",
+          "weight": 8,
+          "functions": [
+            {
+              "function": "harvestcore:set_quality",
+              "quality": "harvestfestival:rotten"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "minecraft:beetroot",
+          "weight": 4,
+          "functions": [
+            {
+              "function": "harvestcore:set_quality",
+              "quality": "harvestfestival:rotten"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "minecraft:melon",
+          "weight": 12,
+          "functions": [
+            {
+              "function": "harvestcore:set_quality",
+              "quality": "harvestfestival:rotten"
+            }
+          ]
         },
         {
           "type": "item",
@@ -22,8 +71,15 @@
             {
               "function": "set_count",
               "count": {
-                "min": 1,
-                "max": 3
+                "min": 2,
+                "max": 5
+              }
+            },
+            {
+              "function": "set_data",
+              "data": {
+                "min": 0,
+                "max": 8
               }
             }
           ]
@@ -44,18 +100,18 @@
         },
         {
           "type": "item",
-          "name": "harvestfestival:crops_seeds",
+          "name": "harvestcore:seed_bag",
           "weight": 3,
           "functions": [
             {
-              "function": "hf_set_crop",
-              "crop": "randomSeed"
+              "function": "harvestcore:set_crop",
+              "crop": "random"
             }
           ]
         },
         {
           "type": "item",
-          "name": "harvestfestival:crops",
+          "name": "horticulture:crop",
           "weight": 5,
           "functions": [
             {
@@ -66,8 +122,19 @@
               }
             },
             {
-              "function": "hf_set_crop",
-              "crop": "randomCrop"
+              "function": "set_data",
+              "data": {
+                "min": 0,
+                "max": 15
+              }
+            },
+            {
+              "function": "harvestcore:set_quality",
+              "quality": "harvestfestival:rotten"
+            },
+            {
+              "function": "economy:cap_value",
+              "cap": 120
             }
           ]
         }

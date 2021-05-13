@@ -1,0 +1,9 @@
+{
+  "registryName": "harvestfestival:silver_shovel",
+  "type": "item:shovel",
+  "data": {
+    "toolMaterial": "silver",
+    "width": 2,
+    "depth": 0
+  }
+}

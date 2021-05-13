@@ -1,0 +1,26 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "transform": "forge:default-item",
+    "model": "forge:item-layer"
+  },
+  "variants": {
+    "turnip": [{ "textures": { "layer0": "horticulture:items/seeds/turnip" }}],
+    "cucumber": [{ "textures": { "layer0": "horticulture:items/seeds/cucumber" }}],
+    "strawberry": [{ "textures": { "layer0": "horticulture:items/seeds/strawberry" }}],
+    "cabbage": [{ "textures": { "layer0": "horticulture:items/seeds/cabbage" }}],
+    "onion": [{ "textures": { "layer0": "horticulture:items/seeds/onion" }}],
+    "tomato": [{ "textures": { "layer0": "horticulture:items/seeds/tomato" }}],
+    "corn": [{ "textures": { "layer0": "horticulture:items/seeds/corn" }}],
+    "pineapple": [{ "textures": { "layer0": "horticulture:items/seeds/pineapple" }}],
+    "eggplant": [{ "textures": { "layer0": "horticulture:items/seeds/eggplant" }}],
+    "spinach": [{ "textures": { "layer0": "horticulture:items/seeds/spinach" }}],
+    "sweet_potato": [{ "textures": { "layer0": "horticulture:items/seeds/sweet_potato" }}],
+    "green_pepper": [{ "textures": { "layer0": "horticulture:items/seeds/green_pepper" }}],
+    "white_turnip": [{ "textures": { "layer0": "horticulture:items/seeds/white_turnip" }}],
+    "orange": [{ "textures": { "layer0": "horticulture:items/seeds/orange" }}],
+    "peach": [{ "textures": { "layer0": "horticulture:items/seeds/peach" }}],
+    "banana": [{ "textures": { "layer0": "horticulture:items/seeds/banana" }}],
+    "grape": [{ "textures": { "layer0": "horticulture:items/seeds/grapes" }}]
+  }
+}

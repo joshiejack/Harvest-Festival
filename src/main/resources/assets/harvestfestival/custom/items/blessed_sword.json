@@ -1,0 +1,7 @@
+{
+  "registryName": "harvestfestival:blessed_sword",
+  "type": "item:sword",
+  "data": {
+    "toolMaterial": "blessed"
+  }
+}

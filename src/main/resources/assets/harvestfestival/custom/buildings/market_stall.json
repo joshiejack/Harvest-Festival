@@ -1,0 +1,223 @@
+{
+  "registryName": "harvestfestival:market_stall",
+  "type": "building:upgrade",
+  "data": {
+    "requirement": "harvestfestival:park_small",
+    "overrides": false,
+    "offset": "14 -8 32",
+    "limit": 1,
+    "components": [
+      {
+        "state": "wooden_slab,half=bottom,variant=dark_oak",
+        "pos": "12 11 11"
+      },
+      {
+        "state": "wooden_slab,half=bottom,variant=dark_oak",
+        "pos": "13 11 11"
+      },
+      {
+        "state": "wooden_slab,half=bottom,variant=dark_oak",
+        "pos": "14 11 11"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "12 8 12"
+      },
+      {
+        "state": "dark_oak_stairs,facing=south,half=top,shape=straight",
+        "pos": "14 8 12"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "12 9 12"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "14 9 12"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "12 10 12"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "14 10 12"
+      },
+      {
+        "state": "wooden_slab,half=bottom,variant=dark_oak",
+        "pos": "11 11 12"
+      },
+      {
+        "state": "wool,color=red",
+        "pos": "12 11 12"
+      },
+      {
+        "state": "wool,color=white",
+        "pos": "13 11 12"
+      },
+      {
+        "state": "wool,color=red",
+        "pos": "14 11 12"
+      },
+      {
+        "state": "wooden_slab,half=bottom,variant=dark_oak",
+        "pos": "15 11 12"
+      },
+      {
+        "state": "log,axis=z,variant=spruce",
+        "pos": "12 8 13"
+      },
+      {
+        "state": "trapdoor,facing=south,half=top,open=false",
+        "pos": "14 8 13",
+        "type": "decorative"
+      },
+      {
+        "state": "log,axis=z,variant=spruce",
+        "pos": "12 10 13"
+      },
+      {
+        "state": "wooden_slab,half=bottom,variant=dark_oak",
+        "pos": "11 11 13"
+      },
+      {
+        "state": "wool,color=red",
+        "pos": "12 11 13"
+      },
+      {
+        "state": "wool,color=white",
+        "pos": "13 11 13"
+      },
+      {
+        "state": "wool,color=red",
+        "pos": "14 11 13"
+      },
+      {
+        "state": "wooden_slab,half=bottom,variant=dark_oak",
+        "pos": "15 11 13"
+      },
+      {
+        "state": "log,axis=z,variant=spruce",
+        "pos": "12 8 14"
+      },
+      {
+        "state": "trapdoor,facing=south,half=top,open=false",
+        "pos": "14 8 14",
+        "type": "decorative"
+      },
+      {
+        "state": "log,axis=z,variant=spruce",
+        "pos": "12 10 14"
+      },
+      {
+        "state": "wooden_slab,half=bottom,variant=dark_oak",
+        "pos": "11 11 14"
+      },
+      {
+        "state": "wool,color=red",
+        "pos": "12 11 14"
+      },
+      {
+        "state": "wool,color=white",
+        "pos": "13 11 14"
+      },
+      {
+        "state": "wool,color=red",
+        "pos": "14 11 14"
+      },
+      {
+        "state": "wooden_slab,half=bottom,variant=dark_oak",
+        "pos": "15 11 14"
+      },
+      {
+        "state": "log,axis=z,variant=spruce",
+        "pos": "12 8 15"
+      },
+      {
+        "state": "trapdoor,facing=north,half=top,open=false",
+        "pos": "14 8 15",
+        "type": "decorative"
+      },
+      {
+        "state": "log,axis=z,variant=spruce",
+        "pos": "12 10 15"
+      },
+      {
+        "state": "wooden_slab,half=bottom,variant=dark_oak",
+        "pos": "11 11 15"
+      },
+      {
+        "state": "wool,color=white",
+        "pos": "12 11 15"
+      },
+      {
+        "state": "wool,color=white",
+        "pos": "13 11 15"
+      },
+      {
+        "state": "wool,color=white",
+        "pos": "14 11 15"
+      },
+      {
+        "state": "wooden_slab,half=bottom,variant=dark_oak",
+        "pos": "15 11 15"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "12 8 16"
+      },
+      {
+        "state": "dark_oak_stairs,facing=north,half=top,shape=straight",
+        "pos": "14 8 16"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "12 9 16"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "14 9 16"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "12 10 16"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "14 10 16"
+      },
+      {
+        "state": "wooden_slab,half=bottom,variant=dark_oak",
+        "pos": "11 11 16"
+      },
+      {
+        "state": "wool,color=red",
+        "pos": "12 11 16"
+      },
+      {
+        "state": "wool,color=white",
+        "pos": "13 11 16"
+      },
+      {
+        "state": "wool,color=red",
+        "pos": "14 11 16"
+      },
+      {
+        "state": "wooden_slab,half=bottom,variant=dark_oak",
+        "pos": "15 11 16"
+      },
+      {
+        "state": "wooden_slab,half=bottom,variant=dark_oak",
+        "pos": "12 11 17"
+      },
+      {
+        "state": "wooden_slab,half=bottom,variant=dark_oak",
+        "pos": "13 11 17"
+      },
+      {
+        "state": "wooden_slab,half=bottom,variant=dark_oak",
+        "pos": "14 11 17"
+      }
+    ]
+  }
+}

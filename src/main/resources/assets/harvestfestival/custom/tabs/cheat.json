@@ -1,0 +1,8 @@
+{
+  "registryName": "harvestfestival:cheat",
+  "type": "tab:standard",
+  "data": {
+    "icon": "harvestfestival:achievement",
+    "items": ["harvestfestival:achievement", "harvestcore:blueprint", "harvestcore:note"]
+  }
+}

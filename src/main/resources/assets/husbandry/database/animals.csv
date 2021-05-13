@@ -1,0 +1,13 @@
+Name,Min Age,Max Age,Treat Item,Generic Treats,Type Treats,Days to Birth,Days to Maturity,Products
+cow,12,20,cow_treat,7,24,9,14,milk
+chicken,3,10,chicken_treat,5,26,3,3,egg
+pig,6,10,pig_treat,20,10,4,4,truffle
+sheep,8,12,sheep_treat,2,29,5,4,wool
+horse,25,30,horse_treat,22,10,24,12,none
+llama,15,25,sheep_treat,7,24,11,10,wool
+rabbit,8,12,rabbit_treat,14,14,4,3,rabbit_wool
+cat,10,20,cat_treat,3,24,5,7,none
+dog,10,13,dog_treat,24,3,5,7,none
+donkey,25,30,horse_treat,22,11,24,12,none
+duck,5,10,duck_treat,9,23,4,4,duck_egg
+parrot,25,50,parrot_treat,3,24,4,36,none

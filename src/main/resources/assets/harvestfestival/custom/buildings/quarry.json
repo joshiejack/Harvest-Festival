@@ -1,0 +1,3316 @@
+{
+  "registryName": "harvestfestival:quarry",
+  "type": "building:standard",
+  "data": {
+    "offset": "0 0 0",
+    "limit": 1,
+    "script": "harvestfestival:buildings/quarry",
+    "components": [
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "0 0 0"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "1 0 0"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "2 0 0"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "3 0 0"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "4 0 0"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "5 0 0"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "6 0 0"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "7 0 0"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "8 0 0"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "9 0 0"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "10 0 0"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "11 0 0"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "12 0 0"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "13 0 0"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "14 0 0"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "15 0 0"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "16 0 0"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "17 0 0"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "18 0 0"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "19 0 0"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "20 0 0"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "21 0 0"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "22 0 0"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "23 0 0"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "24 0 0"
+      },
+      {
+        "name": "node",
+        "pos": "0 1 0",
+        "type": "waypoint"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "0 0 1"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "1 0 1"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "2 0 1"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "3 0 1"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "4 0 1"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "5 0 1"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "6 0 1"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "7 0 1"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "8 0 1"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "9 0 1"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "10 0 1"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "11 0 1"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "12 0 1"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "13 0 1"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "14 0 1"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "15 0 1"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "16 0 1"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "17 0 1"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "18 0 1"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "19 0 1"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "20 0 1"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "21 0 1"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "22 0 1"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "23 0 1"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "24 0 1"
+      },
+      {
+        "name": "node",
+        "pos": "3 1 1",
+        "type": "waypoint"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "0 0 2"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "1 0 2"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "2 0 2"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "3 0 2"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "4 0 2"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "5 0 2"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "6 0 2"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "7 0 2"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "8 0 2"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "9 0 2"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "10 0 2"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "11 0 2"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "12 0 2"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "13 0 2"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "14 0 2"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "15 0 2"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "16 0 2"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "17 0 2"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "18 0 2"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "19 0 2"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "20 0 2"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "21 0 2"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "22 0 2"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "23 0 2"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "24 0 2"
+      },
+      {
+        "name": "node",
+        "pos": "1 1 2",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "2 1 2",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "3 1 2",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "4 1 2",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "5 1 2",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "6 1 2",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "19 1 2",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "20 1 2",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "23 1 2",
+        "type": "waypoint"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "0 0 3"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "1 0 3"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "2 0 3"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "3 0 3"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "4 0 3"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "5 0 3"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "6 0 3"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "7 0 3"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "8 0 3"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "9 0 3"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "10 0 3"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "11 0 3"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "12 0 3"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "13 0 3"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "14 0 3"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "15 0 3"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "16 0 3"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "17 0 3"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "18 0 3"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "19 0 3"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "20 0 3"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "21 0 3"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "22 0 3"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "23 0 3"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "24 0 3"
+      },
+      {
+        "name": "node",
+        "pos": "1 1 3",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "2 1 3",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "3 1 3",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "11 1 3",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "16 1 3",
+        "type": "waypoint"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "0 0 4"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "1 0 4"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "2 0 4"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "3 0 4"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "4 0 4"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "5 0 4"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "6 0 4"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "7 0 4"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "8 0 4"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "9 0 4"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "10 0 4"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "11 0 4"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "12 0 4"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "13 0 4"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "14 0 4"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "15 0 4"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "16 0 4"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "17 0 4"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "18 0 4"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "19 0 4"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "20 0 4"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "22 0 4"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "23 0 4"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "24 0 4"
+      },
+      {
+        "name": "node",
+        "pos": "2 1 4",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "3 1 4",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "5 1 4",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "6 1 4",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "8 1 4",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "12 1 4",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "15 1 4",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "17 1 4",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "19 1 4",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "23 1 4",
+        "type": "waypoint"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "0 0 5"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "1 0 5"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "2 0 5"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "3 0 5"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "4 0 5"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "5 0 5"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "6 0 5"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "7 0 5"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "8 0 5"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "9 0 5"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "10 0 5"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "11 0 5"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "12 0 5"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "13 0 5"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "14 0 5"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "15 0 5"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "16 0 5"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "17 0 5"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "18 0 5"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "19 0 5"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "20 0 5"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "21 0 5"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "22 0 5"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "23 0 5"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "24 0 5"
+      },
+      {
+        "name": "node",
+        "pos": "2 1 5",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "9 1 5",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "18 1 5",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "20 1 5",
+        "type": "waypoint"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "0 0 6"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "1 0 6"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "2 0 6"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "3 0 6"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "4 0 6"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "5 0 6"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "6 0 6"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "7 0 6"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "8 0 6"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "9 0 6"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "10 0 6"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "11 0 6"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "12 0 6"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "13 0 6"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "14 0 6"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "15 0 6"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "16 0 6"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "17 0 6"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "18 0 6"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "19 0 6"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "20 0 6"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "21 0 6"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "22 0 6"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "23 0 6"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "24 0 6"
+      },
+      {
+        "name": "node",
+        "pos": "1 1 6",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "2 1 6",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "3 1 6",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "9 1 6",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "11 1 6",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "12 1 6",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "14 1 6",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "17 1 6",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "22 1 6",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "23 1 6",
+        "type": "waypoint"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "0 0 7"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "1 0 7"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "2 0 7"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "3 0 7"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "4 0 7"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "5 0 7"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "6 0 7"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "7 0 7"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "8 0 7"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "9 0 7"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "10 0 7"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "11 0 7"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "12 0 7"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "13 0 7"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "14 0 7"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "15 0 7"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "16 0 7"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "17 0 7"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "18 0 7"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "19 0 7"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "20 0 7"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "21 0 7"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "22 0 7"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "23 0 7"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "24 0 7"
+      },
+      {
+        "name": "node",
+        "pos": "1 1 7",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "2 1 7",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "3 1 7",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "6 1 7",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "8 1 7",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "15 1 7",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "17 1 7",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "19 1 7",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "20 1 7",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "22 1 7",
+        "type": "waypoint"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "0 0 8"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "1 0 8"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "2 0 8"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "3 0 8"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "4 0 8"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "5 0 8"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "6 0 8"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "7 0 8"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "8 0 8"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "9 0 8"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "10 0 8"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "11 0 8"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "12 0 8"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "13 0 8"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "14 0 8"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "15 0 8"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "16 0 8"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "17 0 8"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "18 0 8"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "19 0 8"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "20 0 8"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "21 0 8"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "22 0 8"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "23 0 8"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "24 0 8"
+      },
+      {
+        "name": "node",
+        "pos": "1 1 8",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "2 1 8",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "9 1 8",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "13 1 8",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "20 1 8",
+        "type": "waypoint"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "0 0 9"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "1 0 9"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "2 0 9"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "3 0 9"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "4 0 9"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "5 0 9"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "6 0 9"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "7 0 9"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "8 0 9"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "9 0 9"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "10 0 9"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "11 0 9"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "12 0 9"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "13 0 9"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "14 0 9"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "15 0 9"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "16 0 9"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "17 0 9"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "18 0 9"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "19 0 9"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "20 0 9"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "21 0 9"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "22 0 9"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "23 0 9"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "24 0 9"
+      },
+      {
+        "name": "node",
+        "pos": "1 1 9",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "2 1 9",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "3 1 9",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "4 1 9",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "11 1 9",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "13 1 9",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "14 1 9",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "20 1 9",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "22 1 9",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "23 1 9",
+        "type": "waypoint"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "0 0 10"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "1 0 10"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "2 0 10"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "3 0 10"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "4 0 10"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "5 0 10"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "6 0 10"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "7 0 10"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "8 0 10"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "9 0 10"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "10 0 10"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "11 0 10"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "12 0 10"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "13 0 10"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "14 0 10"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "15 0 10"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "16 0 10"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "17 0 10"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "18 0 10"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "19 0 10"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "20 0 10"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "21 0 10"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "22 0 10"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "23 0 10"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "24 0 10"
+      },
+      {
+        "name": "node",
+        "pos": "2 1 10",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "7 1 10",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "8 1 10",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "11 1 10",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "12 1 10",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "19 1 10",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "22 1 10",
+        "type": "waypoint"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "0 0 11"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "1 0 11"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "2 0 11"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "3 0 11"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "4 0 11"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "5 0 11"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "6 0 11"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "7 0 11"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "8 0 11"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "9 0 11"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "10 0 11"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "11 0 11"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "12 0 11"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "13 0 11"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "14 0 11"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "15 0 11"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "16 0 11"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "17 0 11"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "18 0 11"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "19 0 11"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "20 0 11"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "21 0 11"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "22 0 11"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "23 0 11"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "24 0 11"
+      },
+      {
+        "name": "node",
+        "pos": "2 1 11",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "4 1 11",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "9 1 11",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "13 1 11",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "17 1 11",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "18 1 11",
+        "type": "waypoint"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "0 0 12"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "1 0 12"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "2 0 12"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "3 0 12"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "4 0 12"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "5 0 12"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "6 0 12"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "7 0 12"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "8 0 12"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "9 0 12"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "10 0 12"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "11 0 12"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "12 0 12"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "13 0 12"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "14 0 12"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "15 0 12"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "16 0 12"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "17 0 12"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "18 0 12"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "19 0 12"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "20 0 12"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "22 0 12"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "23 0 12"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "24 0 12"
+      },
+      {
+        "name": "node",
+        "pos": "1 1 12",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "2 1 12",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "7 1 12",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "8 1 12",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "10 1 12",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "11 1 12",
+        "type": "waypoint"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "0 0 13"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "1 0 13"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "2 0 13"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "3 0 13"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "4 0 13"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "5 0 13"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "6 0 13"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "7 0 13"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "8 0 13"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "9 0 13"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "10 0 13"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "11 0 13"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "12 0 13"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "13 0 13"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "14 0 13"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "15 0 13"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "16 0 13"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "17 0 13"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "18 0 13"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "19 0 13"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "20 0 13"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "21 0 13"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "22 0 13"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "23 0 13"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "24 0 13"
+      },
+      {
+        "name": "node",
+        "pos": "2 1 13",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "3 1 13",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "9 1 13",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "19 1 13",
+        "type": "waypoint"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "0 0 14"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "1 0 14"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "2 0 14"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "3 0 14"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "4 0 14"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "5 0 14"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "6 0 14"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "7 0 14"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "8 0 14"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "9 0 14"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "10 0 14"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "11 0 14"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "12 0 14"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "13 0 14"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "14 0 14"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "15 0 14"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "16 0 14"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "17 0 14"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "18 0 14"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "19 0 14"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "20 0 14"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "21 0 14"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "22 0 14"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "23 0 14"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "24 0 14"
+      },
+      {
+        "name": "node",
+        "pos": "1 1 14",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "6 1 14",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "9 1 14",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "14 1 14",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "15 1 14",
+        "type": "waypoint"
+      },
+      {
+        "state": "minecraft:dispenser[facing=east,triggered=false]",
+        "pos": "22 1 14"
+      },
+      {
+        "state": "minecraft:dispenser[facing=east,triggered=false]",
+        "pos": "23 1 14"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "0 0 15"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "1 0 15"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "2 0 15"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "3 0 15"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "4 0 15"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "5 0 15"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "6 0 15"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "7 0 15"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "8 0 15"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "9 0 15"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "10 0 15"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "11 0 15"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "12 0 15"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "13 0 15"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "14 0 15"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "15 0 15"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "16 0 15"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "17 0 15"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "18 0 15"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "19 0 15"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "20 0 15"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "21 0 15"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "22 0 15"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "23 0 15"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "24 0 15"
+      },
+      {
+        "name": "node",
+        "pos": "1 1 15",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "2 1 15",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "3 1 15",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "8 1 15",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "14 1 15",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "15 1 15",
+        "type": "waypoint"
+      },
+      {
+        "state": "minecraft:dispenser[facing=east,triggered=false]",
+        "pos": "22 1 15"
+      },
+      {
+        "state": "minecraft:dispenser[facing=north,triggered=false]",
+        "pos": "23 1 15"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "0 0 16"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "1 0 16"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "2 0 16"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "3 0 16"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "4 0 16"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "5 0 16"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "6 0 16"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "7 0 16"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "8 0 16"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "9 0 16"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "10 0 16"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "11 0 16"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "12 0 16"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "13 0 16"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "14 0 16"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "15 0 16"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "16 0 16"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "17 0 16"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "18 0 16"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "19 0 16"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "20 0 16"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "21 0 16"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "22 0 16"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "23 0 16"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "24 0 16"
+      },
+      {
+        "name": "node",
+        "pos": "2 1 16",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "4 1 16",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "14 1 16",
+        "type": "waypoint"
+      },
+      {
+        "state": "minecraft:dispenser[facing=east,triggered=false]",
+        "pos": "22 1 16"
+      },
+      {
+        "state": "minecraft:dispenser[facing=north,triggered=false]",
+        "pos": "23 1 16"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "0 0 17"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "1 0 17"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "2 0 17"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "3 0 17"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "4 0 17"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "5 0 17"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "6 0 17"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "7 0 17"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "8 0 17"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "9 0 17"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "10 0 17"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "11 0 17"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "12 0 17"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "13 0 17"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "14 0 17"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "15 0 17"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "16 0 17"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "17 0 17"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "18 0 17"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "19 0 17"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "20 0 17"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "21 0 17"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "22 0 17"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "23 0 17"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "24 0 17"
+      },
+      {
+        "name": "node",
+        "pos": "2 1 17",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "3 1 17",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "4 1 17",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "5 1 17",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "6 1 17",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "11 1 17",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "12 1 17",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "17 1 17",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "20 1 17",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "22 1 17",
+        "type": "waypoint"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "0 0 18"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "1 0 18"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "2 0 18"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "3 0 18"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "4 0 18"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "5 0 18"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "6 0 18"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "7 0 18"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "8 0 18"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "9 0 18"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "10 0 18"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "11 0 18"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "12 0 18"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "13 0 18"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "14 0 18"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "15 0 18"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "16 0 18"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "17 0 18"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "18 0 18"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "19 0 18"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "20 0 18"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "21 0 18"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "22 0 18"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "23 0 18"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "24 0 18"
+      },
+      {
+        "name": "node",
+        "pos": "0 1 18",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "3 1 18",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "6 1 18",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "19 1 18",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "20 1 18",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "22 1 18",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "23 1 18",
+        "type": "waypoint"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "0 0 19"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "1 0 19"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "2 0 19"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "3 0 19"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "4 0 19"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "5 0 19"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "6 0 19"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "7 0 19"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "8 0 19"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "9 0 19"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "10 0 19"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "11 0 19"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "12 0 19"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "13 0 19"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "14 0 19"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "15 0 19"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "16 0 19"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "17 0 19"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "18 0 19"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "19 0 19"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "20 0 19"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "21 0 19"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "22 0 19"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "23 0 19"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "24 0 19"
+      },
+      {
+        "name": "node",
+        "pos": "1 1 19",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "3 1 19",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "4 1 19",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "5 1 19",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "6 1 19",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "9 1 19",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "12 1 19",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "14 1 19",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "15 1 19",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "20 1 19",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "21 1 19",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "22 1 19",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "23 1 19",
+        "type": "waypoint"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "0 0 20"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "1 0 20"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "2 0 20"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "3 0 20"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "4 0 20"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "5 0 20"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "6 0 20"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "7 0 20"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "8 0 20"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "9 0 20"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "10 0 20"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "11 0 20"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "12 0 20"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "13 0 20"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "14 0 20"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "15 0 20"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "16 0 20"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "17 0 20"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "18 0 20"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "19 0 20"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "20 0 20"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "21 0 20"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "22 0 20"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "23 0 20"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "24 0 20"
+      },
+      {
+        "name": "node",
+        "pos": "2 1 20",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "6 1 20",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "7 1 20",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "10 1 20",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "18 1 20",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "20 1 20",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "21 1 20",
+        "type": "waypoint"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "0 0 21"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "1 0 21"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "2 0 21"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "3 0 21"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "4 0 21"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "5 0 21"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "6 0 21"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "7 0 21"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "8 0 21"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "9 0 21"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "10 0 21"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "11 0 21"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "12 0 21"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "13 0 21"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "14 0 21"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "15 0 21"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "16 0 21"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "17 0 21"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "18 0 21"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "19 0 21"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "20 0 21"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "21 0 21"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "22 0 21"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "23 0 21"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "24 0 21"
+      },
+      {
+        "name": "node",
+        "pos": "1 1 21",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "2 1 21",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "4 1 21",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "5 1 21",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "6 1 21",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "7 1 21",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "8 1 21",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "9 1 21",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "11 1 21",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "13 1 21",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "15 1 21",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "16 1 21",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "17 1 21",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "20 1 21",
+        "type": "waypoint"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "0 0 22"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "1 0 22"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "2 0 22"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "3 0 22"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "4 0 22"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "5 0 22"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "6 0 22"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "7 0 22"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "8 0 22"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "9 0 22"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "10 0 22"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "11 0 22"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "12 0 22"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "13 0 22"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "14 0 22"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "15 0 22"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "16 0 22"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "17 0 22"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "18 0 22"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "19 0 22"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "20 0 22"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "21 0 22"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "22 0 22"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "23 0 22"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "24 0 22"
+      },
+      {
+        "name": "node",
+        "pos": "2 1 22",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "6 1 22",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "11 1 22",
+        "type": "waypoint"
+      },
+      {
+        "name": "node",
+        "pos": "16 1 22",
+        "type": "waypoint"
+      },
+      {
+        "state": "minecraft:snow_layer[layers=1]",
+        "pos": "24 1 22"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "0 0 23"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "1 0 23"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "2 0 23"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "3 0 23"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "4 0 23"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "5 0 23"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "6 0 23"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "7 0 23"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "8 0 23"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "9 0 23"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "10 0 23"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "11 0 23"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "12 0 23"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "13 0 23"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "14 0 23"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "15 0 23"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "16 0 23"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "17 0 23"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "18 0 23"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "19 0 23"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "20 0 23"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "21 0 23"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "22 0 23"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "23 0 23"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "24 0 23"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "0 0 24"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "1 0 24"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "2 0 24"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "3 0 24"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "4 0 24"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "5 0 24"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "6 0 24"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "7 0 24"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "8 0 24"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "9 0 24"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "10 0 24"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "11 0 24"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "12 0 24"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "13 0 24"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "14 0 24"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "15 0 24"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "16 0 24"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "17 0 24"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "18 0 24"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "19 0 24"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "20 0 24"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "21 0 24"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "22 0 24"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "23 0 24"
+      },
+      {
+        "state": "minecraft:stone[variant=stone]",
+        "pos": "24 0 24"
+      }
+    ]
+  }
+}

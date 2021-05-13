@@ -1,0 +1,5 @@
+department_id,listing_id,condition_id
+tackle_shop,fish_trap_blueprint,one_per_player
+tackle_shop,hatchery,is_summer
+tackle_shop,hatchery_blueprint,is_summer
+tackle_shop,hatchery_blueprint,one_per_player

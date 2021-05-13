@@ -1,0 +1,41 @@
+{
+  "pools": [
+    {
+      "name": "main",
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "item",
+          "name": "minecraft:log",
+          "entryName": "log",
+          "weight": 1
+        }
+      ]
+    },
+    {
+      "name": "seedling",
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "item",
+          "name": "harvestfestival:seedling",
+          "entryName": "drop",
+          "weight": 1,
+          "functions": [
+            {
+              "function": "penguinlib:set_string",
+              "string": "oak"
+            },
+            {
+              "function": "set_count",
+              "count": {
+                "min": 0,
+                "max": 1
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

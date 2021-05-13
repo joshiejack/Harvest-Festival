@@ -1,0 +1,21 @@
+{
+	"registryName": "harvestfestival:shipping_bin",
+	"type": "block:inventory_rotatable",
+	"defaults": {
+		"propertyName": "wood",
+		"hardness": "1.5F",
+		"soundType": "wood",
+		"material": "wood",
+		"toolType": "axe",
+		"boundingBox": "0 0 0 1 0.6 1",
+		"toolLevel": 0,
+		"inventorySize": 1,
+		"script": "harvestfestival:blocks/shipping_bin"
+	},
+	"data": [
+		{
+			"name": "standard",
+			"lootTable": "harvestfestival:blocks/shipping_bin"
+		}
+	]
+}

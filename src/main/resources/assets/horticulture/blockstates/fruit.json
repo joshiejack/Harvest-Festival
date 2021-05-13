@@ -1,0 +1,24 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "minecraft:cross"
+  },
+  "variants": {
+    "fruit=apple,stage=0": [{ "textures": { "cross": "horticulture:blocks/crops/apple_0" }}],
+    "fruit=apple,stage=1": [{ "textures": { "cross": "horticulture:blocks/crops/apple_1" }}],
+    "fruit=apple,stage=2": [{ "textures": { "cross": "horticulture:blocks/crops/apple_2" }}],
+    "fruit=apple,stage=3": [{ "textures": { "cross": "horticulture:blocks/crops/apple_3" }}],
+    "fruit=orange,stage=0": [{ "textures": { "cross": "horticulture:blocks/crops/orange_0" }}],
+    "fruit=orange,stage=1": [{ "textures": { "cross": "horticulture:blocks/crops/orange_1" }}],
+    "fruit=orange,stage=2": [{ "textures": { "cross": "horticulture:blocks/crops/orange_2" }}],
+    "fruit=orange,stage=3": [{ "textures": { "cross": "horticulture:blocks/crops/orange_3" }}],
+    "fruit=peach,stage=0": [{ "textures": { "cross": "horticulture:blocks/crops/peach_0" }}],
+    "fruit=peach,stage=1": [{ "textures": { "cross": "horticulture:blocks/crops/peach_1" }}],
+    "fruit=peach,stage=2": [{ "textures": { "cross": "horticulture:blocks/crops/peach_2" }}],
+    "fruit=peach,stage=3": [{ "textures": { "cross": "horticulture:blocks/crops/peach_3" }}],
+    "fruit=banana,stage=0": [{ "textures": { "cross": "horticulture:blocks/crops/banana_0" }}],
+    "fruit=banana,stage=1": [{ "textures": { "cross": "horticulture:blocks/crops/banana_1" }}],
+    "fruit=banana,stage=2": [{ "textures": { "cross": "horticulture:blocks/crops/banana_2" }}],
+    "fruit=banana,stage=3": [{ "textures": { "cross": "horticulture:blocks/crops/banana_3" }}]
+  }
+}

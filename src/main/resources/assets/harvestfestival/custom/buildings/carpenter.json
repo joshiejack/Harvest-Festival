@@ -1,0 +1,1615 @@
+{
+  "registryName": "harvestfestival:carpenter",
+  "type": "building:standard",
+  "data": {
+    "offset": "3 -1 8",
+    "limit": 1,
+    "components": [
+      {
+        "state": "planks,variant=dark_oak",
+        "pos": "1 0 0"
+      },
+      {
+        "state": "planks,variant=dark_oak",
+        "pos": "4 0 0"
+      },
+      {
+        "state": "planks,variant=dark_oak",
+        "pos": "7 0 0"
+      },
+      {
+        "state": "planks,variant=dark_oak",
+        "pos": "0 0 1"
+      },
+      {
+        "state": "log,axis=y,variant=spruce",
+        "pos": "1 0 1"
+      },
+      {
+        "state": "planks,variant=spruce",
+        "pos": "2 0 1"
+      },
+      {
+        "state": "planks,variant=spruce",
+        "pos": "3 0 1"
+      },
+      {
+        "state": "log,axis=y,variant=spruce",
+        "pos": "4 0 1"
+      },
+      {
+        "state": "planks,variant=spruce",
+        "pos": "5 0 1"
+      },
+      {
+        "state": "planks,variant=spruce",
+        "pos": "6 0 1"
+      },
+      {
+        "state": "log,axis=y,variant=spruce",
+        "pos": "7 0 1"
+      },
+      {
+        "state": "planks,variant=dark_oak",
+        "pos": "8 0 1"
+      },
+      {
+        "state": "planks,variant=spruce",
+        "pos": "1 0 2"
+      },
+      {
+        "state": "planks,variant=jungle",
+        "pos": "2 0 2"
+      },
+      {
+        "state": "planks,variant=jungle",
+        "pos": "3 0 2"
+      },
+      {
+        "state": "planks,variant=jungle",
+        "pos": "4 0 2"
+      },
+      {
+        "state": "planks,variant=jungle",
+        "pos": "5 0 2"
+      },
+      {
+        "state": "planks,variant=jungle",
+        "pos": "6 0 2"
+      },
+      {
+        "state": "planks,variant=spruce",
+        "pos": "7 0 2"
+      },
+      {
+        "state": "planks,variant=spruce",
+        "pos": "1 0 3"
+      },
+      {
+        "state": "planks,variant=jungle",
+        "pos": "2 0 3"
+      },
+      {
+        "state": "planks,variant=spruce",
+        "pos": "3 0 3"
+      },
+      {
+        "state": "planks,variant=spruce",
+        "pos": "4 0 3"
+      },
+      {
+        "state": "planks,variant=spruce",
+        "pos": "5 0 3"
+      },
+      {
+        "state": "planks,variant=jungle",
+        "pos": "6 0 3"
+      },
+      {
+        "state": "planks,variant=spruce",
+        "pos": "7 0 3"
+      },
+      {
+        "state": "planks,variant=spruce",
+        "pos": "1 0 4"
+      },
+      {
+        "state": "planks,variant=jungle",
+        "pos": "2 0 4"
+      },
+      {
+        "state": "planks,variant=jungle",
+        "pos": "3 0 4"
+      },
+      {
+        "state": "planks,variant=spruce",
+        "pos": "4 0 4"
+      },
+      {
+        "state": "planks,variant=jungle",
+        "pos": "5 0 4"
+      },
+      {
+        "state": "planks,variant=jungle",
+        "pos": "6 0 4"
+      },
+      {
+        "state": "planks,variant=spruce",
+        "pos": "7 0 4"
+      },
+      {
+        "state": "planks,variant=dark_oak",
+        "pos": "0 0 5"
+      },
+      {
+        "state": "log,axis=y,variant=spruce",
+        "pos": "1 0 5"
+      },
+      {
+        "state": "planks,variant=spruce",
+        "pos": "2 0 5"
+      },
+      {
+        "state": "planks,variant=spruce",
+        "pos": "3 0 5"
+      },
+      {
+        "state": "log,axis=y,variant=spruce",
+        "pos": "4 0 5"
+      },
+      {
+        "state": "planks,variant=spruce",
+        "pos": "5 0 5"
+      },
+      {
+        "state": "planks,variant=spruce",
+        "pos": "6 0 5"
+      },
+      {
+        "state": "log,axis=y,variant=spruce",
+        "pos": "7 0 5"
+      },
+      {
+        "state": "planks,variant=dark_oak",
+        "pos": "8 0 5"
+      },
+      {
+        "state": "planks,variant=dark_oak",
+        "pos": "1 0 6"
+      },
+      {
+        "state": "planks,variant=dark_oak",
+        "pos": "4 0 6"
+      },
+      {
+        "state": "planks,variant=dark_oak",
+        "pos": "7 0 6"
+      },
+      {
+        "state": "dark_oak_stairs,facing=south,half=bottom,shape=straight",
+        "pos": "1 1 0"
+      },
+      {
+        "state": "trapdoor,facing=north,half=top,open=true",
+        "pos": "2 1 0",
+        "type": "decorative"
+      },
+      {
+        "state": "trapdoor,facing=north,half=top,open=true",
+        "pos": "3 1 0",
+        "type": "decorative"
+      },
+      {
+        "state": "dark_oak_stairs,facing=south,half=bottom,shape=straight",
+        "pos": "4 1 0"
+      },
+      {
+        "state": "trapdoor,facing=north,half=top,open=true",
+        "pos": "5 1 0",
+        "type": "decorative"
+      },
+      {
+        "state": "trapdoor,facing=north,half=top,open=true",
+        "pos": "6 1 0",
+        "type": "decorative"
+      },
+      {
+        "state": "dark_oak_stairs,facing=south,half=bottom,shape=straight",
+        "pos": "7 1 0"
+      },
+      {
+        "state": "dark_oak_stairs,facing=east,half=bottom,shape=straight",
+        "pos": "0 1 1"
+      },
+      {
+        "state": "log,axis=y,variant=spruce",
+        "pos": "1 1 1"
+      },
+      {
+        "state": "planks,variant=jungle",
+        "pos": "2 1 1"
+      },
+      {
+        "state": "planks,variant=jungle",
+        "pos": "3 1 1"
+      },
+      {
+        "state": "log,axis=y,variant=spruce",
+        "pos": "4 1 1"
+      },
+      {
+        "state": "planks,variant=jungle",
+        "pos": "5 1 1"
+      },
+      {
+        "state": "planks,variant=jungle",
+        "pos": "6 1 1"
+      },
+      {
+        "state": "log,axis=y,variant=spruce",
+        "pos": "7 1 1"
+      },
+      {
+        "state": "dark_oak_stairs,facing=west,half=bottom,shape=straight",
+        "pos": "8 1 1"
+      },
+      {
+        "state": "trapdoor,facing=west,half=top,open=true",
+        "pos": "0 1 2",
+        "type": "decorative"
+      },
+      {
+        "state": "planks,variant=jungle",
+        "pos": "1 1 2"
+      },
+      {
+        "state": "fence,east=false,north=false,south=false,west=false",
+        "pos": "2 1 2"
+      },
+      {
+        "state": "spruce_stairs,facing=west,half=bottom,shape=straight",
+        "pos": "3 1 2"
+      },
+      {
+        "state": "trapdoor,facing=south,half=top,open=false",
+        "pos": "4 1 2",
+        "type": "decorative"
+      },
+      {
+        "state": "spruce_stairs,facing=east,half=bottom,shape=straight",
+        "pos": "5 1 2"
+      },
+      {
+        "state": "fence,east=false,north=false,south=false,west=false",
+        "pos": "6 1 2"
+      },
+      {
+        "state": "planks,variant=jungle",
+        "pos": "7 1 2"
+      },
+      {
+        "state": "trapdoor,facing=east,half=top,open=true",
+        "pos": "8 1 2",
+        "type": "decorative"
+      },
+      {
+        "state": "trapdoor,facing=west,half=top,open=true",
+        "pos": "0 1 3",
+        "type": "decorative"
+      },
+      {
+        "state": "planks,variant=jungle",
+        "pos": "1 1 3"
+      },
+      {
+        "state": "ladder,facing=east",
+        "pos": "2 1 3",
+        "type": "decorative"
+      },
+      {
+        "pos": "3 1 3"
+      },
+      {
+        "stack": "air",
+        "rotation": 0,
+        "facing": "south",
+        "pos": "3 1 3",
+        "type": "item_frame"
+      },
+      {
+        "pos": "4 1 3"
+      },
+      {
+        "entityName": "settlements:npc",
+        "data": "{NPC:\"harvestfestival:yulif\"}",
+        "pos": "4 1 3",
+        "type": "living"
+      },
+      {
+        "pos": "5 1 3"
+      },
+      {
+        "stack": "air",
+        "rotation": 0,
+        "facing": "south",
+        "pos": "5 1 3",
+        "type": "item_frame"
+      },
+      {
+        "pos": "6 1 3"
+      },
+      {
+        "state": "wooden_door,facing=east,half=lower,hinge=right,open=false,powered=false",
+        "pos": "7 1 3",
+        "type": "double"
+      },
+      {
+        "pos": "8 1 3"
+      },
+      {
+        "state": "trapdoor,facing=west,half=top,open=true",
+        "pos": "0 1 4",
+        "type": "decorative"
+      },
+      {
+        "state": "planks,variant=jungle",
+        "pos": "1 1 4"
+      },
+      {
+        "state": "fence,east=false,north=false,south=false,west=false",
+        "pos": "2 1 4"
+      },
+      {
+        "state": "spruce_stairs,facing=west,half=top,shape=straight",
+        "pos": "3 1 4"
+      },
+      {
+        "chestType": "harvestfestival:chests/carpenter_downstairs",
+        "state": "chest,facing=north",
+        "pos": "4 1 4",
+        "type": "chest"
+      },
+      {
+        "state": "spruce_stairs,facing=east,half=top,shape=straight",
+        "pos": "5 1 4"
+      },
+      {
+        "state": "fence,east=false,north=false,south=false,west=false",
+        "pos": "6 1 4"
+      },
+      {
+        "state": "planks,variant=jungle",
+        "pos": "7 1 4"
+      },
+      {
+        "state": "trapdoor,facing=east,half=top,open=true",
+        "pos": "8 1 4",
+        "type": "decorative"
+      },
+      {
+        "state": "dark_oak_stairs,facing=east,half=bottom,shape=straight",
+        "pos": "0 1 5"
+      },
+      {
+        "state": "log,axis=y,variant=spruce",
+        "pos": "1 1 5"
+      },
+      {
+        "state": "planks,variant=jungle",
+        "pos": "2 1 5"
+      },
+      {
+        "state": "planks,variant=jungle",
+        "pos": "3 1 5"
+      },
+      {
+        "state": "log,axis=y,variant=spruce",
+        "pos": "4 1 5"
+      },
+      {
+        "state": "planks,variant=jungle",
+        "pos": "5 1 5"
+      },
+      {
+        "state": "planks,variant=jungle",
+        "pos": "6 1 5"
+      },
+      {
+        "state": "log,axis=y,variant=spruce",
+        "pos": "7 1 5"
+      },
+      {
+        "state": "dark_oak_stairs,facing=west,half=bottom,shape=straight",
+        "pos": "8 1 5"
+      },
+      {
+        "state": "dark_oak_stairs,facing=north,half=bottom,shape=straight",
+        "pos": "1 1 6"
+      },
+      {
+        "state": "trapdoor,facing=south,half=top,open=true",
+        "pos": "2 1 6",
+        "type": "decorative"
+      },
+      {
+        "state": "trapdoor,facing=south,half=top,open=true",
+        "pos": "3 1 6",
+        "type": "decorative"
+      },
+      {
+        "state": "dark_oak_stairs,facing=north,half=bottom,shape=straight",
+        "pos": "4 1 6"
+      },
+      {
+        "state": "trapdoor,facing=south,half=top,open=true",
+        "pos": "5 1 6",
+        "type": "decorative"
+      },
+      {
+        "state": "trapdoor,facing=south,half=top,open=true",
+        "pos": "6 1 6",
+        "type": "decorative"
+      },
+      {
+        "state": "dark_oak_stairs,facing=north,half=bottom,shape=straight",
+        "pos": "7 1 6"
+      },
+      {
+        "facing": "east",
+        "state": "harvestfestival:shipping_bin,facing=north,wood=standard",
+        "pos": "8 1 6",
+        "type": "rotatable"
+      },
+      {
+        "state": "wooden_button,facing=north,powered=false",
+        "pos": "1 2 0",
+        "type": "decorative"
+      },
+      {
+        "state": "wooden_button,facing=north,powered=false",
+        "pos": "4 2 0",
+        "type": "decorative"
+      },
+      {
+        "state": "wooden_button,facing=north,powered=false",
+        "pos": "7 2 0",
+        "type": "decorative"
+      },
+      {
+        "state": "wooden_button,facing=west,powered=false",
+        "pos": "0 2 1",
+        "type": "decorative"
+      },
+      {
+        "state": "log,axis=y,variant=spruce",
+        "pos": "1 2 1"
+      },
+      {
+        "state": "spruce_stairs,facing=south,half=bottom,shape=straight",
+        "pos": "2 2 1"
+      },
+      {
+        "state": "spruce_stairs,facing=south,half=bottom,shape=straight",
+        "pos": "3 2 1"
+      },
+      {
+        "state": "log,axis=y,variant=spruce",
+        "pos": "4 2 1"
+      },
+      {
+        "state": "spruce_stairs,facing=south,half=bottom,shape=straight",
+        "pos": "5 2 1"
+      },
+      {
+        "state": "spruce_stairs,facing=south,half=bottom,shape=straight",
+        "pos": "6 2 1"
+      },
+      {
+        "state": "log,axis=y,variant=spruce",
+        "pos": "7 2 1"
+      },
+      {
+        "state": "wooden_button,facing=east,powered=false",
+        "pos": "8 2 1",
+        "type": "decorative"
+      },
+      {
+        "state": "spruce_stairs,facing=east,half=bottom,shape=straight",
+        "pos": "1 2 2"
+      },
+      {
+        "state": "fence,east=false,north=false,south=false,west=false",
+        "pos": "2 2 2"
+      },
+      {
+        "state": "wooden_button,facing=south,powered=false",
+        "pos": "3 2 2",
+        "type": "decorative"
+      },
+      {
+        "state": "torch,facing=south",
+        "pos": "4 2 2",
+        "type": "decorative"
+      },
+      {
+        "stack": "trapdoor",
+        "rotation": 0,
+        "facing": "south",
+        "pos": "4 2 2",
+        "type": "item_frame"
+      },
+      {
+        "pos": "5 2 2"
+      },
+      {
+        "state": "fence,east=false,north=false,south=false,west=false",
+        "pos": "6 2 2"
+      },
+      {
+        "state": "spruce_stairs,facing=west,half=bottom,shape=straight",
+        "pos": "7 2 2"
+      },
+      {
+        "text": [
+          "translate:harvestfestival.shop.carpenter.name",
+          "translate:harvestfestival.shop.carpenter.sign1",
+          "translate:harvestfestival.shop.carpenter.sign2",
+          "translate:harvestfestival.shop.carpenter.sign3"
+        ],
+        "state": "wall_sign,facing=east",
+        "pos": "8 2 2",
+        "type": "sign"
+      },
+      {
+        "state": "spruce_stairs,facing=east,half=bottom,shape=straight",
+        "pos": "1 2 3"
+      },
+      {
+        "state": "ladder,facing=east",
+        "pos": "2 2 3",
+        "type": "decorative"
+      },
+      {
+        "pos": "3 2 3"
+      },
+      {
+        "pos": "4 2 3"
+      },
+      {
+        "pos": "5 2 3"
+      },
+      {
+        "pos": "6 2 3"
+      },
+      {
+        "pos": "8 2 3"
+      },
+      {
+        "state": "spruce_stairs,facing=east,half=bottom,shape=straight",
+        "pos": "1 2 4"
+      },
+      {
+        "state": "fence,east=false,north=false,south=false,west=false",
+        "pos": "2 2 4"
+      },
+      {
+        "state": "flower_pot,contents=empty,legacy_data=0",
+        "pos": "3 2 4",
+        "type": "flowerpot"
+      },
+      {
+        "pos": "4 2 4"
+      },
+      {
+        "stack": "clock",
+        "rotation": 0,
+        "facing": "north",
+        "pos": "4 2 4",
+        "type": "item_frame"
+      },
+      {
+        "state": "flower_pot,contents=empty,legacy_data=0",
+        "pos": "5 2 4",
+        "type": "flowerpot"
+      },
+      {
+        "state": "fence,east=false,north=false,south=false,west=false",
+        "pos": "6 2 4"
+      },
+      {
+        "state": "spruce_stairs,facing=west,half=bottom,shape=straight",
+        "pos": "7 2 4"
+      },
+      {
+        "pos": "8 2 4"
+      },
+      {
+        "state": "wooden_button,facing=west,powered=false",
+        "pos": "0 2 5",
+        "type": "decorative"
+      },
+      {
+        "state": "log,axis=y,variant=spruce",
+        "pos": "1 2 5"
+      },
+      {
+        "state": "spruce_stairs,facing=north,half=bottom,shape=straight",
+        "pos": "2 2 5"
+      },
+      {
+        "state": "spruce_stairs,facing=north,half=bottom,shape=straight",
+        "pos": "3 2 5"
+      },
+      {
+        "state": "log,axis=y,variant=spruce",
+        "pos": "4 2 5"
+      },
+      {
+        "state": "spruce_stairs,facing=north,half=bottom,shape=straight",
+        "pos": "5 2 5"
+      },
+      {
+        "state": "spruce_stairs,facing=north,half=bottom,shape=straight",
+        "pos": "6 2 5"
+      },
+      {
+        "state": "log,axis=y,variant=spruce",
+        "pos": "7 2 5"
+      },
+      {
+        "state": "wooden_button,facing=east,powered=false",
+        "pos": "8 2 5",
+        "type": "decorative"
+      },
+      {
+        "state": "wooden_button,facing=south,powered=false",
+        "pos": "1 2 6",
+        "type": "decorative"
+      },
+      {
+        "state": "wooden_button,facing=south,powered=false",
+        "pos": "4 2 6",
+        "type": "decorative"
+      },
+      {
+        "state": "wooden_button,facing=south,powered=false",
+        "pos": "7 2 6",
+        "type": "decorative"
+      },
+      {
+        "state": "dark_oak_stairs,facing=south,half=top,shape=straight",
+        "pos": "1 3 0"
+      },
+      {
+        "state": "wooden_slab,half=top,variant=spruce",
+        "pos": "2 3 0"
+      },
+      {
+        "state": "wooden_slab,half=top,variant=spruce",
+        "pos": "3 3 0"
+      },
+      {
+        "state": "dark_oak_stairs,facing=south,half=top,shape=straight",
+        "pos": "4 3 0"
+      },
+      {
+        "state": "wooden_slab,half=top,variant=spruce",
+        "pos": "5 3 0"
+      },
+      {
+        "state": "wooden_slab,half=top,variant=spruce",
+        "pos": "6 3 0"
+      },
+      {
+        "state": "dark_oak_stairs,facing=south,half=top,shape=straight",
+        "pos": "7 3 0"
+      },
+      {
+        "state": "dark_oak_stairs,facing=east,half=top,shape=straight",
+        "pos": "0 3 1"
+      },
+      {
+        "state": "log,axis=y,variant=spruce",
+        "pos": "1 3 1"
+      },
+      {
+        "state": "spruce_stairs,facing=south,half=top,shape=straight",
+        "pos": "2 3 1"
+      },
+      {
+        "state": "spruce_stairs,facing=south,half=top,shape=straight",
+        "pos": "3 3 1"
+      },
+      {
+        "state": "log,axis=y,variant=spruce",
+        "pos": "4 3 1"
+      },
+      {
+        "state": "spruce_stairs,facing=south,half=top,shape=straight",
+        "pos": "5 3 1"
+      },
+      {
+        "state": "spruce_stairs,facing=south,half=top,shape=straight",
+        "pos": "6 3 1"
+      },
+      {
+        "state": "log,axis=y,variant=spruce",
+        "pos": "7 3 1"
+      },
+      {
+        "state": "dark_oak_stairs,facing=west,half=top,shape=straight",
+        "pos": "8 3 1"
+      },
+      {
+        "state": "spruce_stairs,facing=east,half=top,shape=straight",
+        "pos": "1 3 2"
+      },
+      {
+        "state": "planks,variant=spruce",
+        "pos": "2 3 2"
+      },
+      {
+        "state": "wooden_slab,half=bottom,variant=spruce",
+        "pos": "3 3 2"
+      },
+      {
+        "state": "wooden_slab,half=bottom,variant=spruce",
+        "pos": "4 3 2"
+      },
+      {
+        "color": 10,
+        "state": "bed,facing=east,occupied=false,part=foot",
+        "pos": "5 3 2",
+        "type": "bed"
+      },
+      {
+        "color": 10,
+        "state": "bed,facing=east,occupied=false,part=head",
+        "pos": "6 3 2",
+        "type": "bed"
+      },
+      {
+        "state": "spruce_stairs,facing=west,half=top,shape=straight",
+        "pos": "7 3 2"
+      },
+      {
+        "state": "wooden_button,facing=west,powered=false",
+        "pos": "0 3 3",
+        "type": "decorative"
+      },
+      {
+        "state": "log,axis=z,variant=spruce",
+        "pos": "1 3 3"
+      },
+      {
+        "state": "trapdoor,facing=east,half=bottom,open=true",
+        "interactable": true,
+        "pos": "2 3 3",
+        "type": "decorative"
+      },
+      {
+        "state": "wooden_slab,half=bottom,variant=spruce",
+        "pos": "3 3 3"
+      },
+      {
+        "state": "wooden_slab,half=bottom,variant=spruce",
+        "pos": "4 3 3"
+      },
+      {
+        "entityName": "settlements:npc",
+        "data": "{NPC:\"harvestfestival:jade\"}",
+        "pos": "4 3 3",
+        "type": "living"
+      },
+      {
+        "state": "double_wooden_slab,variant=spruce",
+        "pos": "5 3 3"
+      },
+      {
+        "state": "double_wooden_slab,variant=spruce",
+        "pos": "6 3 3"
+      },
+      {
+        "state": "log,axis=z,variant=spruce",
+        "pos": "7 3 3"
+      },
+      {
+        "state": "wooden_button,facing=east,powered=false",
+        "pos": "8 3 3",
+        "type": "decorative"
+      },
+      {
+        "state": "spruce_stairs,facing=east,half=top,shape=straight",
+        "pos": "1 3 4"
+      },
+      {
+        "state": "planks,variant=spruce",
+        "pos": "2 3 4"
+      },
+      {
+        "state": "wooden_slab,half=bottom,variant=spruce",
+        "pos": "3 3 4"
+      },
+      {
+        "state": "wooden_slab,half=bottom,variant=spruce",
+        "pos": "4 3 4"
+      },
+      {
+        "color": 7,
+        "state": "bed,facing=east,occupied=false,part=foot",
+        "pos": "5 3 4",
+        "type": "bed"
+      },
+      {
+        "color": 7,
+        "state": "bed,facing=east,occupied=false,part=head",
+        "pos": "6 3 4",
+        "type": "bed"
+      },
+      {
+        "state": "spruce_stairs,facing=west,half=top,shape=straight",
+        "pos": "7 3 4"
+      },
+      {
+        "state": "dark_oak_stairs,facing=east,half=top,shape=straight",
+        "pos": "0 3 5"
+      },
+      {
+        "state": "log,axis=y,variant=spruce",
+        "pos": "1 3 5"
+      },
+      {
+        "state": "spruce_stairs,facing=north,half=top,shape=straight",
+        "pos": "2 3 5"
+      },
+      {
+        "state": "spruce_stairs,facing=north,half=top,shape=straight",
+        "pos": "3 3 5"
+      },
+      {
+        "state": "log,axis=y,variant=spruce",
+        "pos": "4 3 5"
+      },
+      {
+        "state": "spruce_stairs,facing=north,half=top,shape=straight",
+        "pos": "5 3 5"
+      },
+      {
+        "state": "spruce_stairs,facing=north,half=top,shape=straight",
+        "pos": "6 3 5"
+      },
+      {
+        "state": "log,axis=y,variant=spruce",
+        "pos": "7 3 5"
+      },
+      {
+        "state": "dark_oak_stairs,facing=west,half=top,shape=straight",
+        "pos": "8 3 5"
+      },
+      {
+        "state": "dark_oak_stairs,facing=north,half=top,shape=straight",
+        "pos": "1 3 6"
+      },
+      {
+        "state": "wooden_slab,half=top,variant=spruce",
+        "pos": "2 3 6"
+      },
+      {
+        "state": "wooden_slab,half=top,variant=spruce",
+        "pos": "3 3 6"
+      },
+      {
+        "state": "dark_oak_stairs,facing=north,half=top,shape=straight",
+        "pos": "4 3 6"
+      },
+      {
+        "state": "wooden_slab,half=top,variant=spruce",
+        "pos": "5 3 6"
+      },
+      {
+        "state": "wooden_slab,half=top,variant=spruce",
+        "pos": "6 3 6"
+      },
+      {
+        "state": "dark_oak_stairs,facing=north,half=top,shape=straight",
+        "pos": "7 3 6"
+      },
+      {
+        "state": "fence,east=false,north=false,south=false,west=false",
+        "pos": "1 4 0"
+      },
+      {
+        "state": "trapdoor,facing=north,half=top,open=true",
+        "pos": "2 4 0",
+        "type": "decorative"
+      },
+      {
+        "state": "trapdoor,facing=north,half=top,open=true",
+        "pos": "3 4 0",
+        "type": "decorative"
+      },
+      {
+        "state": "fence,east=false,north=false,south=false,west=false",
+        "pos": "4 4 0"
+      },
+      {
+        "state": "trapdoor,facing=north,half=top,open=true",
+        "pos": "5 4 0",
+        "type": "decorative"
+      },
+      {
+        "state": "trapdoor,facing=north,half=bottom,open=true",
+        "pos": "6 4 0",
+        "type": "decorative"
+      },
+      {
+        "state": "fence,east=false,north=false,south=false,west=false",
+        "pos": "7 4 0"
+      },
+      {
+        "state": "fence,east=false,north=false,south=false,west=false",
+        "pos": "0 4 1"
+      },
+      {
+        "state": "planks,variant=jungle",
+        "pos": "1 4 1"
+      },
+      {
+        "state": "log,axis=x,variant=spruce",
+        "pos": "2 4 1"
+      },
+      {
+        "state": "log,axis=x,variant=spruce",
+        "pos": "3 4 1"
+      },
+      {
+        "state": "planks,variant=jungle",
+        "pos": "4 4 1"
+      },
+      {
+        "state": "log,axis=x,variant=spruce",
+        "pos": "5 4 1"
+      },
+      {
+        "state": "log,axis=x,variant=spruce",
+        "pos": "6 4 1"
+      },
+      {
+        "state": "planks,variant=jungle",
+        "pos": "7 4 1"
+      },
+      {
+        "state": "fence,east=false,north=false,south=false,west=false",
+        "pos": "8 4 1"
+      },
+      {
+        "state": "wooden_button,facing=west,powered=false",
+        "pos": "0 4 2",
+        "type": "decorative"
+      },
+      {
+        "state": "log,axis=z,variant=spruce",
+        "pos": "1 4 2"
+      },
+      {
+        "chestType": "harvestfestival:chests/carpenter_jade",
+        "state": "chest,facing=east",
+        "pos": "2 4 2",
+        "type": "chest"
+      },
+      {
+        "state": "wooden_button,facing=south,powered=false",
+        "pos": "3 4 2",
+        "type": "decorative"
+      },
+      {
+        "state": "trapdoor,facing=south,half=bottom,open=true",
+        "pos": "4 4 2",
+        "type": "decorative"
+      },
+      {
+        "pos": "5 4 2"
+      },
+      {
+        "state": "wooden_button,facing=south,powered=false",
+        "pos": "6 4 2",
+        "type": "decorative"
+      },
+      {
+        "state": "log,axis=z,variant=spruce",
+        "pos": "7 4 2"
+      },
+      {
+        "state": "wooden_button,facing=east,powered=false",
+        "pos": "8 4 2",
+        "type": "decorative"
+      },
+      {
+        "state": "fence,east=false,north=false,south=false,west=false",
+        "pos": "1 4 3"
+      },
+      {
+        "pos": "2 4 3"
+      },
+      {
+        "pos": "3 4 3"
+      },
+      {
+        "pos": "4 4 3"
+      },
+      {
+        "pos": "5 4 3"
+      },
+      {
+        "pos": "6 4 3"
+      },
+      {
+        "state": "fence,east=false,north=false,south=false,west=false",
+        "pos": "7 4 3"
+      },
+      {
+        "state": "wooden_button,facing=west,powered=false",
+        "pos": "0 4 4",
+        "type": "decorative"
+      },
+      {
+        "state": "log,axis=z,variant=spruce",
+        "pos": "1 4 4"
+      },
+      {
+        "chestType": "harvestfestival:chests/carpenter_yulif",
+        "state": "chest,facing=east",
+        "pos": "2 4 4",
+        "type": "chest"
+      },
+      {
+        "state": "wooden_button,facing=north,powered=false",
+        "pos": "3 4 4",
+        "type": "decorative"
+      },
+      {
+        "state": "trapdoor,facing=north,half=bottom,open=true",
+        "pos": "4 4 4",
+        "type": "decorative"
+      },
+      {
+        "pos": "5 4 4"
+      },
+      {
+        "state": "wooden_button,facing=north,powered=false",
+        "pos": "6 4 4",
+        "type": "decorative"
+      },
+      {
+        "state": "log,axis=z,variant=spruce",
+        "pos": "7 4 4"
+      },
+      {
+        "state": "wooden_button,facing=east,powered=false",
+        "pos": "8 4 4",
+        "type": "decorative"
+      },
+      {
+        "state": "fence,east=false,north=false,south=false,west=false",
+        "pos": "0 4 5"
+      },
+      {
+        "state": "planks,variant=jungle",
+        "pos": "1 4 5"
+      },
+      {
+        "state": "log,axis=x,variant=spruce",
+        "pos": "2 4 5"
+      },
+      {
+        "state": "log,axis=x,variant=spruce",
+        "pos": "3 4 5"
+      },
+      {
+        "state": "planks,variant=jungle",
+        "pos": "4 4 5"
+      },
+      {
+        "state": "log,axis=x,variant=spruce",
+        "pos": "5 4 5"
+      },
+      {
+        "state": "log,axis=x,variant=spruce",
+        "pos": "6 4 5"
+      },
+      {
+        "state": "planks,variant=dark_oak",
+        "pos": "7 4 5"
+      },
+      {
+        "state": "fence,east=false,north=false,south=false,west=false",
+        "pos": "8 4 5"
+      },
+      {
+        "state": "fence,east=false,north=false,south=false,west=false",
+        "pos": "1 4 6"
+      },
+      {
+        "state": "trapdoor,facing=south,half=top,open=true",
+        "pos": "2 4 6",
+        "type": "decorative"
+      },
+      {
+        "state": "trapdoor,facing=south,half=top,open=true",
+        "pos": "3 4 6",
+        "type": "decorative"
+      },
+      {
+        "state": "fence,east=false,north=false,south=false,west=false",
+        "pos": "4 4 6"
+      },
+      {
+        "state": "trapdoor,facing=south,half=top,open=true",
+        "pos": "5 4 6",
+        "type": "decorative"
+      },
+      {
+        "state": "trapdoor,facing=south,half=top,open=true",
+        "pos": "6 4 6",
+        "type": "decorative"
+      },
+      {
+        "state": "fence,east=false,north=false,south=false,west=false",
+        "pos": "7 4 6"
+      },
+      {
+        "state": "dark_oak_stairs,facing=south,half=bottom,shape=straight",
+        "pos": "1 5 0"
+      },
+      {
+        "state": "wooden_slab,half=bottom,variant=dark_oak",
+        "pos": "2 5 0"
+      },
+      {
+        "state": "wooden_slab,half=bottom,variant=dark_oak",
+        "pos": "3 5 0"
+      },
+      {
+        "state": "dark_oak_stairs,facing=south,half=bottom,shape=straight",
+        "pos": "4 5 0"
+      },
+      {
+        "state": "wooden_slab,half=bottom,variant=dark_oak",
+        "pos": "5 5 0"
+      },
+      {
+        "state": "wooden_slab,half=bottom,variant=dark_oak",
+        "pos": "6 5 0"
+      },
+      {
+        "state": "dark_oak_stairs,facing=south,half=bottom,shape=straight",
+        "pos": "7 5 0"
+      },
+      {
+        "state": "dark_oak_stairs,facing=south,half=bottom,shape=straight",
+        "pos": "0 5 1"
+      },
+      {
+        "state": "planks,variant=dark_oak",
+        "pos": "1 5 1"
+      },
+      {
+        "state": "spruce_stairs,facing=south,half=bottom,shape=straight",
+        "pos": "2 5 1"
+      },
+      {
+        "state": "spruce_stairs,facing=south,half=bottom,shape=straight",
+        "pos": "3 5 1"
+      },
+      {
+        "state": "planks,variant=dark_oak",
+        "pos": "4 5 1"
+      },
+      {
+        "state": "spruce_stairs,facing=south,half=bottom,shape=straight",
+        "pos": "5 5 1"
+      },
+      {
+        "state": "spruce_stairs,facing=south,half=bottom,shape=straight",
+        "pos": "6 5 1"
+      },
+      {
+        "state": "planks,variant=dark_oak",
+        "pos": "7 5 1"
+      },
+      {
+        "state": "dark_oak_stairs,facing=south,half=bottom,shape=straight",
+        "pos": "8 5 1"
+      },
+      {
+        "state": "dark_oak_stairs,facing=north,half=top,shape=straight",
+        "pos": "0 5 2"
+      },
+      {
+        "state": "planks,variant=jungle",
+        "pos": "1 5 2"
+      },
+      {
+        "state": "spruce_stairs,facing=north,half=top,shape=straight",
+        "pos": "2 5 2"
+      },
+      {
+        "state": "spruce_stairs,facing=north,half=top,shape=straight",
+        "pos": "3 5 2"
+      },
+      {
+        "state": "wooden_button,facing=south,powered=false",
+        "pos": "4 5 2",
+        "type": "decorative"
+      },
+      {
+        "state": "wooden_slab,half=top,variant=dark_oak",
+        "pos": "5 5 2"
+      },
+      {
+        "state": "dark_oak_stairs,facing=east,half=top,shape=straight",
+        "pos": "6 5 2"
+      },
+      {
+        "state": "planks,variant=jungle",
+        "pos": "7 5 2"
+      },
+      {
+        "state": "dark_oak_stairs,facing=north,half=top,shape=straight",
+        "pos": "8 5 2"
+      },
+      {
+        "state": "wooden_button,facing=west,powered=false",
+        "pos": "0 5 3",
+        "type": "decorative"
+      },
+      {
+        "state": "log,axis=z,variant=spruce",
+        "pos": "1 5 3"
+      },
+      {
+        "pos": "2 5 3"
+      },
+      {
+        "painting": "Wasteland",
+        "facing": "east",
+        "pos": "2 5 3",
+        "type": "painting"
+      },
+      {
+        "pos": "3 5 3"
+      },
+      {
+        "pos": "4 5 3"
+      },
+      {
+        "pos": "5 5 3"
+      },
+      {
+        "state": "torch,facing=west",
+        "pos": "6 5 3",
+        "type": "decorative"
+      },
+      {
+        "stack": "trapdoor",
+        "rotation": 0,
+        "facing": "west",
+        "pos": "6 5 3",
+        "type": "item_frame"
+      },
+      {
+        "state": "log,axis=z,variant=spruce",
+        "pos": "7 5 3"
+      },
+      {
+        "state": "wooden_button,facing=east,powered=false",
+        "pos": "8 5 3",
+        "type": "decorative"
+      },
+      {
+        "state": "dark_oak_stairs,facing=south,half=top,shape=straight",
+        "pos": "0 5 4"
+      },
+      {
+        "state": "planks,variant=jungle",
+        "pos": "1 5 4"
+      },
+      {
+        "state": "spruce_stairs,facing=south,half=top,shape=straight",
+        "pos": "2 5 4"
+      },
+      {
+        "state": "spruce_stairs,facing=south,half=top,shape=straight",
+        "pos": "3 5 4"
+      },
+      {
+        "state": "wooden_button,facing=north,powered=false",
+        "pos": "4 5 4",
+        "type": "decorative"
+      },
+      {
+        "state": "wooden_slab,half=top,variant=dark_oak",
+        "pos": "5 5 4"
+      },
+      {
+        "state": "dark_oak_stairs,facing=east,half=top,shape=straight",
+        "pos": "6 5 4"
+      },
+      {
+        "state": "planks,variant=jungle",
+        "pos": "7 5 4"
+      },
+      {
+        "state": "dark_oak_stairs,facing=south,half=top,shape=straight",
+        "pos": "8 5 4"
+      },
+      {
+        "state": "dark_oak_stairs,facing=north,half=bottom,shape=straight",
+        "pos": "0 5 5"
+      },
+      {
+        "state": "planks,variant=dark_oak",
+        "pos": "1 5 5"
+      },
+      {
+        "state": "spruce_stairs,facing=north,half=bottom,shape=straight",
+        "pos": "2 5 5"
+      },
+      {
+        "state": "spruce_stairs,facing=north,half=bottom,shape=straight",
+        "pos": "3 5 5"
+      },
+      {
+        "state": "planks,variant=dark_oak",
+        "pos": "4 5 5"
+      },
+      {
+        "state": "spruce_stairs,facing=north,half=bottom,shape=straight",
+        "pos": "5 5 5"
+      },
+      {
+        "state": "spruce_stairs,facing=north,half=bottom,shape=straight",
+        "pos": "6 5 5"
+      },
+      {
+        "state": "planks,variant=dark_oak",
+        "pos": "7 5 5"
+      },
+      {
+        "state": "dark_oak_stairs,facing=north,half=bottom,shape=straight",
+        "pos": "8 5 5"
+      },
+      {
+        "state": "dark_oak_stairs,facing=north,half=bottom,shape=straight",
+        "pos": "1 5 6"
+      },
+      {
+        "state": "wooden_slab,half=bottom,variant=dark_oak",
+        "pos": "2 5 6"
+      },
+      {
+        "state": "wooden_slab,half=bottom,variant=dark_oak",
+        "pos": "3 5 6"
+      },
+      {
+        "state": "dark_oak_stairs,facing=north,half=bottom,shape=straight",
+        "pos": "4 5 6"
+      },
+      {
+        "state": "wooden_slab,half=bottom,variant=dark_oak",
+        "pos": "5 5 6"
+      },
+      {
+        "state": "wooden_slab,half=bottom,variant=dark_oak",
+        "pos": "6 5 6"
+      },
+      {
+        "state": "dark_oak_stairs,facing=north,half=bottom,shape=straight",
+        "pos": "7 5 6"
+      },
+      {
+        "state": "dark_oak_stairs,facing=south,half=bottom,shape=straight",
+        "pos": "1 6 1"
+      },
+      {
+        "state": "dark_oak_stairs,facing=south,half=bottom,shape=straight",
+        "pos": "4 6 1"
+      },
+      {
+        "state": "dark_oak_stairs,facing=south,half=bottom,shape=straight",
+        "pos": "7 6 1"
+      },
+      {
+        "state": "dark_oak_stairs,facing=south,half=bottom,shape=straight",
+        "pos": "0 6 2"
+      },
+      {
+        "state": "dark_oak_stairs,facing=north,half=top,shape=straight",
+        "pos": "1 6 2"
+      },
+      {
+        "state": "spruce_stairs,facing=south,half=bottom,shape=straight",
+        "pos": "2 6 2"
+      },
+      {
+        "state": "spruce_stairs,facing=south,half=bottom,shape=straight",
+        "pos": "3 6 2"
+      },
+      {
+        "state": "dark_oak_stairs,facing=north,half=top,shape=straight",
+        "pos": "4 6 2"
+      },
+      {
+        "state": "spruce_stairs,facing=south,half=bottom,shape=straight",
+        "pos": "5 6 2"
+      },
+      {
+        "state": "spruce_stairs,facing=south,half=bottom,shape=straight",
+        "pos": "6 6 2"
+      },
+      {
+        "state": "dark_oak_stairs,facing=north,half=top,shape=straight",
+        "pos": "7 6 2"
+      },
+      {
+        "state": "dark_oak_stairs,facing=south,half=bottom,shape=straight",
+        "pos": "8 6 2"
+      },
+      {
+        "state": "double_wooden_slab,variant=dark_oak",
+        "pos": "0 6 3"
+      },
+      {
+        "state": "planks,variant=jungle",
+        "pos": "1 6 3"
+      },
+      {
+        "state": "double_wooden_slab,variant=spruce",
+        "pos": "2 6 3"
+      },
+      {
+        "state": "double_wooden_slab,variant=spruce",
+        "pos": "3 6 3"
+      },
+      {
+        "pos": "4 6 3"
+      },
+      {
+        "state": "double_wooden_slab,variant=spruce",
+        "pos": "5 6 3"
+      },
+      {
+        "state": "double_wooden_slab,variant=spruce",
+        "pos": "6 6 3"
+      },
+      {
+        "state": "planks,variant=jungle",
+        "pos": "7 6 3"
+      },
+      {
+        "state": "planks,variant=dark_oak",
+        "pos": "8 6 3"
+      },
+      {
+        "state": "dark_oak_stairs,facing=north,half=bottom,shape=straight",
+        "pos": "0 6 4"
+      },
+      {
+        "state": "dark_oak_stairs,facing=south,half=top,shape=straight",
+        "pos": "1 6 4"
+      },
+      {
+        "state": "spruce_stairs,facing=north,half=bottom,shape=straight",
+        "pos": "2 6 4"
+      },
+      {
+        "state": "spruce_stairs,facing=north,half=bottom,shape=straight",
+        "pos": "3 6 4"
+      },
+      {
+        "state": "dark_oak_stairs,facing=south,half=top,shape=straight",
+        "pos": "4 6 4"
+      },
+      {
+        "state": "spruce_stairs,facing=north,half=bottom,shape=straight",
+        "pos": "5 6 4"
+      },
+      {
+        "state": "spruce_stairs,facing=north,half=bottom,shape=straight",
+        "pos": "6 6 4"
+      },
+      {
+        "state": "dark_oak_stairs,facing=south,half=top,shape=straight",
+        "pos": "7 6 4"
+      },
+      {
+        "state": "dark_oak_stairs,facing=north,half=bottom,shape=straight",
+        "pos": "8 6 4"
+      },
+      {
+        "state": "dark_oak_stairs,facing=north,half=bottom,shape=straight",
+        "pos": "1 6 5"
+      },
+      {
+        "state": "dark_oak_stairs,facing=north,half=bottom,shape=straight",
+        "pos": "4 6 5"
+      },
+      {
+        "state": "dark_oak_stairs,facing=north,half=bottom,shape=straight",
+        "pos": "7 6 5"
+      },
+      {
+        "state": "dark_oak_stairs,facing=south,half=bottom,shape=straight",
+        "pos": "1 7 2"
+      },
+      {
+        "state": "dark_oak_stairs,facing=south,half=bottom,shape=straight",
+        "pos": "4 7 2"
+      },
+      {
+        "state": "dark_oak_stairs,facing=south,half=bottom,shape=straight",
+        "pos": "7 7 2"
+      },
+      {
+        "state": "wooden_slab,half=bottom,variant=dark_oak",
+        "pos": "0 7 3"
+      },
+      {
+        "state": "planks,variant=dark_oak",
+        "pos": "1 7 3"
+      },
+      {
+        "state": "wooden_slab,half=bottom,variant=spruce",
+        "pos": "2 7 3"
+      },
+      {
+        "state": "wooden_slab,half=bottom,variant=spruce",
+        "pos": "3 7 3"
+      },
+      {
+        "state": "planks,variant=dark_oak",
+        "pos": "4 7 3"
+      },
+      {
+        "state": "wooden_slab,half=bottom,variant=spruce",
+        "pos": "5 7 3"
+      },
+      {
+        "state": "wooden_slab,half=bottom,variant=spruce",
+        "pos": "6 7 3"
+      },
+      {
+        "state": "planks,variant=dark_oak",
+        "pos": "7 7 3"
+      },
+      {
+        "state": "wooden_slab,half=bottom,variant=dark_oak",
+        "pos": "8 7 3"
+      },
+      {
+        "state": "dark_oak_stairs,facing=north,half=bottom,shape=straight",
+        "pos": "1 7 4"
+      },
+      {
+        "state": "dark_oak_stairs,facing=north,half=bottom,shape=straight",
+        "pos": "4 7 4"
+      },
+      {
+        "state": "dark_oak_stairs,facing=north,half=bottom,shape=straight",
+        "pos": "7 7 4"
+      },
+      {
+        "state": "dark_oak_stairs,facing=west,half=bottom,shape=straight",
+        "pos": "1 8 3"
+      },
+      {
+        "state": "wooden_slab,half=bottom,variant=dark_oak",
+        "pos": "4 8 3"
+      },
+      {
+        "state": "dark_oak_stairs,facing=east,half=bottom,shape=straight",
+        "pos": "7 8 3"
+      }
+    ]
+  }
+}

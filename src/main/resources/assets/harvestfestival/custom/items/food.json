@@ -1,0 +1,41 @@
+{
+	"registryName": "harvestfestival:food",
+	"type": "item:edible",
+	"defaults": {
+		"action": "eat",
+		"hunger": 0,
+		"saturation": 0
+	},
+	"data": [
+		{
+			"name": "apple_jam",
+			"hunger": 3,
+			"saturation": 0.4
+		},
+		{
+			"name": "grape_jam",
+			"hunger": 4,
+			"saturation": 0.6
+		},
+		{
+			"name": "marmalade",
+			"hunger": 4,
+			"saturation": 0.4
+		},
+		{
+			"name": "strawberry_jam",
+			"hunger": 3,
+			"saturation": 0.7
+		},
+		{
+			"name": "jam_bun",
+			"hunger": 3,
+			"saturation": 0.7
+		},
+		{
+			"name": "wild_grapes",
+			"hunger": 3,
+			"saturation": 0.5
+		}
+	]
+}

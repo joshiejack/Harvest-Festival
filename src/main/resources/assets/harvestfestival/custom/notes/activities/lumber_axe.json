@@ -1,0 +1,10 @@
+{
+  "registryName": "harvestfestival:lumber_axe",
+  "type": "note:standard",
+  "data": {
+    "category": "activities",
+    "icon": {
+      "item": "harvestfestival:basic_axe"
+    }
+  }
+}

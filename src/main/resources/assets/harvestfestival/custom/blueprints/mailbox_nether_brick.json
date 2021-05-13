@@ -1,0 +1,18 @@
+{
+  "registryName": "harvestfestival:mailbox_nether_brick",
+  "type": "blueprint:standard",
+  "data": {
+    "category": "machine",
+    "result": "harvestcore:mailbox 7",
+    "ingredients": [
+      {
+        "item": "minecraft:nether_brick",
+        "count": 1
+      },
+      {
+        "item": "minecraft:nether_brick_fence",
+        "count": 1
+      }
+    ]
+  }
+}

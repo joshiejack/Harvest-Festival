@@ -1,0 +1,18 @@
+{
+  "registryName": "harvestfestival:mailbox_oak",
+  "type": "blueprint:standard",
+  "data": {
+    "category": "machine",
+    "result": "harvestcore:mailbox 1",
+    "ingredients": [
+      {
+        "item": "minecraft:planks 0",
+        "count": 1
+      },
+      {
+        "item": "minecraft:fence",
+        "count": 1
+      }
+    ]
+  }
+}

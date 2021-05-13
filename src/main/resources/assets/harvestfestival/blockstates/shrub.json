@@ -1,0 +1,17 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "transform": "forge:default-item",
+    "model": "minecraft:cross"
+  },
+  "variants": {
+    "shrub=weed": [
+      { "model": "minecraft:tinted_cross", "textures": { "cross": "harvestfestival:blocks/wilderness/shrubs/weed" }},
+      { "model": "minecraft:tinted_cross", "textures": { "cross": "harvestfestival:blocks/wilderness/shrubs/weed1" }},
+      { "model": "minecraft:tinted_cross", "textures": { "cross": "harvestfestival:blocks/wilderness/shrubs/weed2" }},
+      { "model": "minecraft:tinted_cross", "textures": { "cross": "harvestfestival:blocks/wilderness/shrubs/weed3" }}
+    ],
+    "shrub=wild_grapes": [{ "model": "minecraft:cross", "textures": { "cross": "harvestfestival:blocks/wilderness/shrubs/wild_grapes" }}],
+    "shrub=toadstool": [{ "model": "minecraft:cross", "textures": { "cross": "harvestfestival:blocks/wilderness/shrubs/toadstool" }}]
+  }
+}

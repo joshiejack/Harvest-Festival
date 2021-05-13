@@ -1,0 +1,23 @@
+{
+	"registryName": "harvestfestival:shrub",
+	"type": "block:bush",
+	"defaults": {
+		"hardness": 0,
+		"propertyName": "shrub"
+	},
+	"data": [
+		{
+			"name": "weed",
+			"color": 0,
+			"lootTable": "harvestfestival:blocks/weed"
+		},
+		{
+			"name": "wild_grapes",
+			"lootTable": "harvestfestival:blocks/wild_grapes"
+		},
+		{
+			"name": "toadstool",
+			"lootTable": "harvestfestival:blocks/toadstool"
+		}
+	]
+}

@@ -1,0 +1,10 @@
+department_id,listing_id,condition_id
+animal_ranch_tools,shears,has_medium_barn
+animal_ranch_animals,slop,has_large_barn
+animal_ranch_animals,sheep_treat,has_medium_barn
+animal_ranch_animals,pig_treat,has_large_barn
+animal_ranch_animals,cow,has_space_in_barn
+animal_ranch_animals,sheep,has_space_in_barn
+animal_ranch_animals,sheep,has_medium_barn
+animal_ranch_animals,pig,has_space_in_barn
+animal_ranch_animals,pig,has_large_barn

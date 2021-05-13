@@ -1,0 +1,12 @@
+{
+  "registryName": "harvestfestival:mining",
+  "type": "tab:standard",
+  "data": {
+    "icon": "harvestfestival:gem#adamantite",
+    "items": ["harvestfestival:escape_rope",
+              "harvestfestival:gem", "harvestfestival:coin", "harvestfestival:material", "harvestfestival:metal", "harvestfestival:ingot",
+              "harvestfestival:mushroom", "harvestfestival:rock","harvestfestival:node", "harvestfestival:crate", "harvestcore:elevator",
+              "harvestfestival:cobblestone", "harvestfestival:floor_standard", "harvestfestival:floor_frozen", "harvestfestival:floor_hell",
+              "harvestfestival:wall", "harvestfestival:portal", "harvestfestival:mine_ladder"]
+  }
+}

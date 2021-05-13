@@ -1,0 +1,14 @@
+harvestcore.tab=Harvest Festival - Misc
+harvestcore.item.starter=%s Starter
+harvestcore.block.elevator.basic.name=Elevator
+harvestcore.block.mailbox.default.name=Mailbox
+harvestcore.block.mailbox.oak.name=Oak Mailbox
+harvestcore.block.mailbox.spruce.name=Spruce Mailbox
+harvestcore.block.mailbox.birch.name=Birch Mailbox
+harvestcore.block.mailbox.jungle.name=Jungle Mailbox
+harvestcore.block.mailbox.acacia.name=Acacia Mailbox
+harvestcore.block.mailbox.dark_oak.name=Dark Oak Mailbox
+harvestcore.block.mailbox.nether_brick.name=Nether Brick Mailbox
+harvestcore.block.mailbox.iron.name=Iron Mailbox
+harvestcore.block.machine.furnace.name=Furnace
+harvestcore.block.machine.kiln.name=Kiln

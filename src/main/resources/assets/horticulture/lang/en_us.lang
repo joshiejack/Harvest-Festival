@@ -1,0 +1,68 @@
+#Other
+horticulture.tab=Horticulture
+horticulture.item.watering_can.name=Watering Can
+horticulture.item.seeds.name=%s Seeds
+horticulture.item.slips.name=%s Slips
+horticulture.item.starter.name=%s Starter
+#Crops
+horticulture.item.crop.green_pepper.name=Green Pepper
+horticulture.item.crop.onion.name=Onion
+horticulture.item.crop.pineapple.name=Pineapple
+horticulture.item.crop.spinach.name=Spinach
+horticulture.item.crop.strawberry.name=Strawberry
+horticulture.item.crop.sweet_potato.name=Sweet Potato
+horticulture.item.crop.tomato.name=Tomato
+horticulture.item.crop.turnip.name=Turnip
+horticulture.item.crop.banana.name=Banana
+horticulture.item.crop.orange.name=Orange
+horticulture.item.crop.peach.name=Peach
+horticulture.item.crop.grape.name=Grapes
+horticulture.item.crop.eggplant.name=Eggplant
+horticulture.item.crop.corn.name=Corn
+horticulture.item.crop.cabbage.name=Cabbage
+horticulture.item.crop.cucumber.name=Cucumber
+#Drinks
+horticulture.item.drink.tomato_juice.name=Tomato Juice
+horticulture.item.drink.pineapple_juice.name=Pineapple Juice
+horticulture.item.drink.strawberry_milk.name=Strawberry Milk
+horticulture.item.drink.grape_juice.name=Grape Juice
+horticulture.item.drink.peach_juice.name=Peach Juice
+horticulture.item.drink.banana_juice.name=Banana Juice
+horticulture.item.drink.orange_juice.name=Orange Juice
+horticulture.item.drink.apple_juice.name=Apple Juice
+#Meals
+horticulture.item.meal.cornflakes.name=Cornflakes
+horticulture.item.meal.happy_eggplant.name=Happy Eggplant
+horticulture.item.meal.baked_corn.name=Baked Corn
+horticulture.item.meal.pickled_turnip.name=Pickled Turnip
+horticulture.item.meal.pickled_cucumber.name=Pickled Cucumber
+horticulture.item.meal.salad.name=Salad
+horticulture.item.meal.boiled_spinach.name=Boiled Spinach
+horticulture.item.meal.candied_potato.name=Candied Potato
+horticulture.item.meal.pumpkin_stew.name=Pumpkin Stew
+horticulture.item.meal.stir_fry.name=Stir Fry
+#Saplings
+horticulture.block.sapling.apple.name=Apple Sapling
+horticulture.block.sapling.banana.name=Banana Sapling
+horticulture.block.sapling.peach.name=Peach Sapling
+horticulture.block.sapling.orange.name=Orange Sapling
+#Leaves
+horticulture.block.leaves_temperate.apple.name=Apple Leaves
+horticulture.block.leaves_temperate.orange.name=Orange Leaves
+horticulture.block.leaves_temperate.peach.name=Peach Leaves
+horticulture.block.leaves_tropical.banana.name=Banana Leaves
+#Fruits
+horticulture.block.fruit.apple.name=Apple Fruit
+horticulture.block.fruit.orange.name=Orange Fruit
+horticulture.block.fruit.peach.name=Peach Fruit
+horticulture.block.fruit.banana.name=Banana Fruit
+#Machines
+horticulture.block.sprinkler.old.name=Old Sprinkler
+horticulture.block.sprinkler.iron.name=Sprinkler
+horticulture.block.machine.seed_maker.name=Seed Maker
+horticulture.block.stump.oak.name=Oak Mushroom Log
+horticulture.block.stump.spruce.name=Spruce Mushroom Log
+horticulture.block.stump.birch.name=Birch Mushroom Log
+horticulture.block.stump.jungle.name=Jungle Mushroom Log
+horticulture.block.stump.acacia.name=Acacia Mushroom Log
+horticulture.block.stump.dark_oak.name=Dark Oak Mushroom Log

@@ -1,0 +1,8 @@
+{
+  "registryName": "harvestfestival:blessed_sickle",
+  "type": "item:sickle",
+  "data": {
+    "toolMaterial": "blessed",
+    "area": 7
+  }
+}

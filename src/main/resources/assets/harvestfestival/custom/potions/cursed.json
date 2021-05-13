@@ -1,0 +1,31 @@
+{
+  "registryName": "harvestfestival:cursed",
+  "type": "potion:standard",
+  "data": {
+    "color": "0x660000",
+    "x": 2,
+    "y": 0,
+    "attributes": [
+      {
+        "name": "max_health",
+        "amount": -0.33,
+        "operation": 2
+      },
+      {
+        "name": "movement_speed",
+        "amount": -0.03,
+        "operation": 2
+      },
+      {
+        "name": "attack_speed",
+        "amount": -0.03,
+        "operation": 2
+      },
+      {
+        "name": "attack_damage",
+        "amount": -0.2,
+        "operation": 2
+      }
+    ]
+  }
+}

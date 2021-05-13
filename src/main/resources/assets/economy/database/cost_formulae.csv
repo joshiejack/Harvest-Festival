@@ -1,0 +1,5 @@
+ID,Script
+default,economy:original_value
+shipping_value,economy:shipping_value
+increasing_cost,economy:increasing_cost
+decreasing_cost,economy:decreasing_cost

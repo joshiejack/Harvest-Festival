@@ -1,0 +1,9 @@
+Input,Count,Duration,Output
+copper_metal,5,half_hour,copper_ingot
+silver_metal,5,two_hours,silver_ingot
+gold_metal,5,five_hours,gold_ingot
+mystril_metal,5,eight_hours,mystril_ingot
+#Basic vanilla furnace recipes
+cobblestone,8,five_minutes,minecraft:stone 0 *8
+sand,8,five_minutes,minecraft:glass 0 *8
+clay,8,five_minutes,minecraft:brick *8

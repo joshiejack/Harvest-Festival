@@ -1,0 +1,75 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "transform": "forge:default-block",
+    "model": "cube_all"
+  },
+  "variants": {
+    "node=copper": [
+      { "model": "harvestfestival:mine/ore_copper", "weight": 1 },
+      { "model": "harvestfestival:mine/ore_copper", "weight": 1, "y": 90 },
+      { "model": "harvestfestival:mine/ore_copper", "weight": 1, "y": 180 },
+      { "model": "harvestfestival:mine/ore_copper", "weight": 1, "y": 270 }
+    ],
+    "node=silver": [
+      { "model": "harvestfestival:mine/ore_silver", "weight": 1 },
+      { "model": "harvestfestival:mine/ore_silver", "weight": 1, "y": 90 },
+      { "model": "harvestfestival:mine/ore_silver", "weight": 1, "y": 180 },
+      { "model": "harvestfestival:mine/ore_silver", "weight": 1, "y": 270 }
+    ],
+    "node=gold": [
+      { "model": "harvestfestival:mine/ore_gold", "weight": 1 },
+      { "model": "harvestfestival:mine/ore_gold", "weight": 1, "y": 90 },
+      { "model": "harvestfestival:mine/ore_gold", "weight": 1, "y": 180 },
+      { "model": "harvestfestival:mine/ore_gold", "weight": 1, "y": 270 }
+    ],
+    "node=mystril": [
+      { "model": "harvestfestival:mine/ore_mystril", "weight": 1 },
+      { "model": "harvestfestival:mine/ore_mystril", "weight": 1, "y": 90 },
+      { "model": "harvestfestival:mine/ore_mystril", "weight": 1, "y": 180 },
+      { "model": "harvestfestival:mine/ore_mystril", "weight": 1, "y": 270 }
+    ],
+    "node=diamond": [
+      { "model": "harvestfestival:mine/ore_diamond", "weight": 1 },
+      { "model": "harvestfestival:mine/ore_diamond", "weight": 1, "y": 90 },
+      { "model": "harvestfestival:mine/ore_diamond", "weight": 1, "y": 180 },
+      { "model": "harvestfestival:mine/ore_diamond", "weight": 1, "y": 270 }
+    ],
+    "node=emerald": [
+      { "model": "harvestfestival:mine/ore_emerald", "weight": 1 },
+      { "model": "harvestfestival:mine/ore_emerald", "weight": 1, "y": 90 },
+      { "model": "harvestfestival:mine/ore_emerald", "weight": 1, "y": 180 },
+      { "model": "harvestfestival:mine/ore_emerald", "weight": 1, "y": 270 }
+    ],
+    "node=ruby": [
+      { "model": "harvestfestival:mine/ore_ruby", "weight": 1 },
+      { "model": "harvestfestival:mine/ore_ruby", "weight": 1, "y": 90 },
+      { "model": "harvestfestival:mine/ore_ruby", "weight": 1, "y": 180 },
+      { "model": "harvestfestival:mine/ore_ruby", "weight": 1, "y": 270 }
+    ],
+    "node=amethyst": [
+      { "model": "harvestfestival:mine/ore_amethyst", "weight": 1 },
+      { "model": "harvestfestival:mine/ore_amethyst", "weight": 1, "y": 90 },
+      { "model": "harvestfestival:mine/ore_amethyst", "weight": 1, "y": 180 },
+      { "model": "harvestfestival:mine/ore_amethyst", "weight": 1, "y": 270 }
+    ],
+    "node=topaz": [
+      { "model": "harvestfestival:mine/ore_topaz", "weight": 1 },
+      { "model": "harvestfestival:mine/ore_topaz", "weight": 1, "y": 90 },
+      { "model": "harvestfestival:mine/ore_topaz", "weight": 1, "y": 180 },
+      { "model": "harvestfestival:mine/ore_topaz", "weight": 1, "y": 270 }
+    ],
+    "node=gem": [
+      { "model": "harvestfestival:mine/ore_gem", "weight": 1 },
+      { "model": "harvestfestival:mine/ore_gem", "weight": 1, "y": 90 },
+      { "model": "harvestfestival:mine/ore_gem", "weight": 1, "y": 180 },
+      { "model": "harvestfestival:mine/ore_gem", "weight": 1, "y": 270 }
+    ],
+    "node=jade": [
+      { "model": "harvestfestival:mine/ore_jade", "weight": 1 },
+      { "model": "harvestfestival:mine/ore_jade", "weight": 1, "y": 90 },
+      { "model": "harvestfestival:mine/ore_jade", "weight": 1, "y": 180 },
+      { "model": "harvestfestival:mine/ore_jade", "weight": 1, "y": 270 }
+    ]
+  }
+}

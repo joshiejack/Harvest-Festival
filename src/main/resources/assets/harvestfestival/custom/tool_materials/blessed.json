@@ -1,0 +1,10 @@
+{
+	"registryName": "blessed",
+	"type": "tool_material:standard",
+	"data": {
+		"harvestLevel": 5,
+		"maxUses": 4096,
+		"efficiency": 9,
+		"damage": 3.5
+	}
+}

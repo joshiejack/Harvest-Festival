@@ -1,0 +1,16 @@
+{
+  "parent": "block/block",
+  "textures": {
+    "particle": "harvestcore:blocks/bonemeal"
+  },
+  "elements": [
+    {
+      "from": [ 0, 15, 0 ],
+      "to": [ 16, 15.001, 16 ],
+      "faces": {
+        "down": { "uv": [ 0, 0, 16, 16 ], "texture": "#particle" },
+        "up": { "uv": [ 0, 0, 16, 16 ], "texture": "#particle" }
+      }
+    }
+  ]
+}

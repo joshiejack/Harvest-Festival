@@ -1,0 +1,10 @@
+{
+	"registryName": "mystril",
+	"type": "tool_material:standard",
+	"data": {
+		"harvestLevel": 4,
+		"maxUses": 2048,
+		"efficiency": 8,
+		"damage": 3
+	}
+}

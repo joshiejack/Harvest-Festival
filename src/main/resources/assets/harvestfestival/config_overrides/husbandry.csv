@@ -1,0 +1,11 @@
+Key,Value
+enableToolRecipes,false
+enableFoodRecipes,false
+enableFeedRecipes,false
+enableMachineRecipes,false
+enableTreatRecipes,false
+enableGenericTreatRecipe,false
+enableTreatTrades,false
+enableFeederRecipes,false
+enableNestRecipe,false
+enableNoDamageSickle,true

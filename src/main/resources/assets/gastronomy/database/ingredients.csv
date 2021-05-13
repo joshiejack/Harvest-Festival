@@ -1,0 +1,78 @@
+Item,Ingredient
+cropCarrot,carrot
+cropPotato,potato
+cropBeet,beetroot
+cropWheat,wheat
+minecraft:apple,apple
+minecraft:cookie,cookies
+minecraft:bread,bread
+minecraft:sugar,sugar
+minecraft:chicken,chicken
+minecraft:beef,beef
+minecraft:porkchop,pork
+minecraft:mutton,mutton
+minecraft:rabbit,rabbit
+minecraft:fish 0,cod
+minecraft:fish 1,salmon
+minecraft:egg,egg
+minecraft:pumpkin,pumpkin
+minecraft:baked_potato,baked_potato
+minecraft:cooked_rabbit,cooked_rabbit
+minecraft:melon,watermelon
+minecraft:brown_mushroom,brown_mushroom
+minecraft:red_mushroom,red_mushroom
+minecraft:chorus_fruit,chorus_fruit
+minecraft:dye 3,cocoa_beans
+fishRaw,fish
+cropTurnip,turnip
+cropCucumber,cucumber
+cropStrawberry,strawberry
+cropCabbage,cabbage
+cropOnion,onion
+cropTomato,tomato
+cropCorn,corn
+cropPineapple,pineapple
+cropEggplant,eggplant
+cropSpinach,spinach
+cropSweetPotato,sweet_potato
+cropGreenPepper,green_pepper
+cropBanana,banana
+cropGrape,grapes
+cropOrange,orange
+cropPeach,peach
+foodCurrypowder,curry_powder
+gastronomy:ingredient 1,dumpling_powder
+foodFlour,flour
+gastronomy:ingredient 3,salt
+riceball,riceball
+chocolate,chocolate
+cookies,cookies
+noodles,noodles
+tempura,tempura
+sashimi,sashimi
+scrambled_egg,scrambled_egg
+foodButter,butter
+gastronomy:nature 0,matsutake_mushroom
+gastronomy:nature 1,bamboo
+gastronomy:nature 2,mint
+gastronomy:nature 3,chamomile
+gastronomy:nature 4,lavender
+small_egg,egg
+medium_egg,egg
+large_egg,egg
+small_duck_egg,egg
+medium_duck_egg,egg
+large_duck_egg,egg
+small_milk,milk
+medium_milk,milk
+large_milk,milk
+minecraft:milk_bucket,milk
+listAllmilk,milk
+fluid,cooking_oil
+fluid,milk
+small_mayonnaise,mayonnaise
+medium_mayonnaise,mayonnaise
+large_mayonnaise,mayonnaise
+small_duck_mayonnaise,mayonnaise
+medium_duck_mayonnaise,mayonnaise
+large_duck_mayonnaise,mayonnaise

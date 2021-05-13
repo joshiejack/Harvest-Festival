@@ -1,0 +1,9 @@
+{
+  "registryName": "harvestfestival:mystril_hoe",
+  "type": "item:hoe",
+  "data": {
+    "toolMaterial": "mystril",
+    "width": 5,
+    "depth": 0
+  }
+}

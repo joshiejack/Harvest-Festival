@@ -1,0 +1,18 @@
+{
+  "registryName": "harvestfestival:kiln",
+  "type": "blueprint:standard",
+  "data": {
+    "category": "machine",
+    "result": "harvestcore:machine 1",
+    "ingredients": [
+      {
+        "item": "cobblestone",
+        "count": 20
+      },
+      {
+        "item": "logWood",
+        "count": 10
+      }
+    ]
+  }
+}

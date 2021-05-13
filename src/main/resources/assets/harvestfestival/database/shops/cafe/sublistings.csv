@@ -1,0 +1,87 @@
+department_id,listing_id,id,type,data,gold,weight
+#Cafe - Menu [All Day],,
+cafe_menu,water,default,item,"potion {Potion:""minecraft:water""}",0,1
+cafe_menu,tea,default,item,harvestfestival:drink#tea,300,1
+cafe_menu,coffee,default,item,harvestfestival:drink#coffee,500,1
+#Cafe - Menu [Breakfast],,
+cafe_menu,cornflakes,default,item,cornflakes,450,1
+cafe_menu,scrambled_egg,default,item,scrambled_egg,330,1
+cafe_menu,pancake,default,item,pancake,800,1
+cafe_menu,toast,default,item,toast,180,1
+cafe_menu,omelet,default,item,omelet,550,1
+cafe_menu,porridge,default,item,porridge,630,1
+cafe_menu,apple_juice,default,item,apple_juice,500,1
+cafe_menu,orange_juice,default,item,orange_juice,1130,1
+cafe_menu,juice_of_the_day,banana,item,banana_juice,1650,2
+cafe_menu,juice_of_the_day,peach,item,peach_juice,1400,2
+cafe_menu,juice_of_the_day,grape,item,grape_juice,1120,3
+cafe_menu,juice_of_the_day,pineapple,item,pineapple_juice,1500,1
+#Cafe - Menu [Lunch],,
+cafe_menu,soup_of_the_day,rice,item,rice_soup,500,2
+cafe_menu,soup_of_the_day,herb,item,herb_soup,400,2
+cafe_menu,soup_of_the_day,beetroot,item,beetroot_soup,960,3
+cafe_menu,stew_of_the_day,fish,item,fish_stew,150,3
+cafe_menu,stew_of_the_day,default,item,stew,750,3
+cafe_menu,stew_of_the_day,pumpkin,item,pumpkin_stew,720,2
+cafe_menu,grilled_fish,default,item,grilled_fish,420,1
+cafe_menu,risotto,default,item,risotto,1140,1
+cafe_menu,curry_rice,default,item,curry_rice,500,1
+cafe_menu,cake_of_the_day,vanilla,item,cake,800,3
+cafe_menu,cake_of_the_day,chocolate,item,chocolate_cake,600,2
+cafe_menu,ice_cream,default,item,ice_cream,500,1
+#Cafe - Menu [Sunday Lunch],,
+cafe_menu,jam_bun,default,item,harvestfestival:food#jam_bun,720,1
+cafe_menu,salad_of_the_day,normal,item,salad,130,3
+cafe_menu,salad_of_the_day,herb,item,herb_salad,300,2
+cafe_menu,hot_milk,default,item,hot_milk,550,1
+cafe_menu,sandwich_of_the_day,vegetable,item,sandwich,300,3
+cafe_menu,sandwich_of_the_day,herb,item,herb_sandwich,450,2
+cafe_menu,sandwich_of_the_day,fruit,item,fruit_sandwich,225,3
+cafe_menu,stir_fry,default,item,stir_fry,1600,1
+cafe_menu,tempura,default,item,tempura,350,1
+cafe_menu,apple_pie,default,item,apple_pie,1000,1
+cafe_menu,apple_souffle,default,item,apple_souffle,450,1
+#Cafe - Menu [Dinner],,
+cafe_menu,herb_soup,default,item,herb_soup,450,1
+cafe_menu,salad,default,item,salad,150,1
+cafe_menu,hot_chocolate,default,item,hot_chocolate,1000,1
+cafe_menu,happy_eggplant,default,item,happy_eggplant,270,1
+cafe_menu,sweet_potatoes,default,item,sweet_potatoes,670,1
+cafe_menu,mushroom_rice,default,item,mushroom_rice,335,1
+cafe_menu,curry_noodles,default,item,curry_noodles,350,1
+cafe_menu,evening_ice_cream,default,item,ice_cream,500,1
+cafe_menu,evening_souffle,default,item,apple_souffle,450,1
+#Cafe - Cooking,,
+cafe_recipes,frying_pan,default,letter,harvestfestival:frying_pan,1500,1
+cafe_recipes,mixer,default,letter,harvestfestival:mixer,1200,1
+cafe_recipes,cooking_pot,default,letter,harvestfestival:cooking_pot,1000,1
+cafe_recipes,power_berry,default,letter,harvestfestival:power_berry,10000,1
+cafe_recipes,cookbook,default,item,gastronomy:cookbook,25,1
+cafe_recipes,vegetable_juice_recipe,default,item,vegetable_juice_recipe,150,1
+cafe_recipes,sushi_recipe,default,item,sushi_recipe,150,1
+cafe_recipes,sashimi_recipe,default,item,sashimi_recipe,150,1
+cafe_recipes,chirashi_sushi_recipe,default,item,chirashi_sushi_recipe,150,1
+cafe_recipes,pickled_cucumber_recipe,default,item,pickled_cucumber_recipe,150,1
+cafe_recipes,herb_salad_recipe,default,item,herb_salad_recipe,150,1
+cafe_recipes,herb_soup_recipe,default,item,herb_soup_recipe,150,1
+cafe_recipes,ketchup_recipe,default,item,ketchup_recipe,150,1
+cafe_recipes,pumpkin_stew_recipe,default,item,pumpkin_stew_recipe,150,1
+cafe_recipes,fried_rice_recipe,default,item,fried_rice_recipe,150,1
+cafe_recipes,doria_recipe,default,item,doria_recipe,150,1
+cafe_recipes,fruit_juice_recipe,default,item,fruit_juice_recipe,150,1
+cafe_recipes,tomato_juice_recipe,default,item,tomato_juice_recipe,150,1
+cafe_recipes,cornflakes_recipe,default,item,cornflakes_recipe,150,1
+cafe_recipes,herb_sandwich_recipe,default,item,herb_sandwich_recipe,150,1
+cafe_recipes,sweet_potatoes_recipe,default,item,sweet_potatoes_recipe,150,1
+cafe_recipes,happy_eggplant_recipe,default,item,happy_eggplant_recipe,150,1
+cafe_recipes,sandwich_recipe,default,item,sandwich_recipe,150,1
+cafe_recipes,fruit_sandwich_recipe,default,item,fruit_sandwich_recipe,150,1
+cafe_recipes,boiled_spinach_recipe,default,item,boiled_spinach_recipe,150,1
+cafe_recipes,toasted_riceballs_recipe,default,item,toasted_riceballs_recipe,150,1
+cafe_recipes,omelet_recipe,default,item,omelet_recipe,150,1
+cafe_recipes,boiled_egg_recipe,default,item,boiled_egg_recipe,150,1
+cafe_recipes,egg_overrice_recipe,default,item,egg_overrice_recipe,150,1
+cafe_recipes,mix_juice_recipe,default,item,mix_juice_recipe,150,1
+cafe_recipes,pancake_recipe,default,item,pancake_recipe,150,1
+cafe_recipes,matsutake_rice_recipe,default,item,matsutake_rice_recipe,150,1
+cafe_recipes,mushroom_rice_recipe,default,item,mushroom_rice_recipe,150,1

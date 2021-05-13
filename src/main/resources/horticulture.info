@@ -1,0 +1,16 @@
+[
+{
+  "modid": "horticulture",
+  "name": "Horticulture",
+  "description": "",
+  "version": "${horiculture_version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["joshie"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

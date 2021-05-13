@@ -1,0 +1,234 @@
+{
+  "pools": [
+    {
+      "name": "main",
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "loot_table",
+          "name": "harvestcore:gameplay/fishing/lake_spring",
+          "conditions": [
+            {
+              "condition": "seasons:season",
+              "season": "spring"
+            },
+            {
+              "condition": "harvestcore:water",
+              "water": "lake"
+            }
+          ]
+        },
+        {
+          "type": "loot_table",
+          "name": "harvestcore:gameplay/fishing/lake_summer",
+          "conditions": [
+            {
+              "condition": "seasons:season",
+              "season": "summer"
+            },
+            {
+              "condition": "harvestcore:water",
+              "water": "lake"
+            }
+          ]
+        },
+        {
+          "type": "loot_table",
+          "name": "harvestcore:gameplay/fishing/lake_autumn",
+          "conditions": [
+            {
+              "condition": "seasons:season",
+              "season": "autumn"
+            },
+            {
+              "condition": "harvestcore:water",
+              "water": "lake"
+            }
+          ]
+        },
+        {
+          "type": "loot_table",
+          "name": "harvestcore:gameplay/fishing/lake_winter",
+          "conditions": [
+            {
+              "condition": "seasons:season",
+              "season": "winter"
+            },
+            {
+              "condition": "harvestcore:water",
+              "water": "lake"
+            }
+          ]
+        },
+        {
+          "type": "loot_table",
+          "name": "harvestcore:gameplay/fishing/ocean_spring",
+          "conditions": [
+            {
+              "condition": "seasons:season",
+              "season": "spring"
+            },
+            {
+              "condition": "harvestcore:water",
+              "water": "ocean"
+            }
+          ]
+        },
+        {
+          "type": "loot_table",
+          "name": "harvestcore:gameplay/fishing/ocean_summer",
+          "conditions": [
+            {
+              "condition": "seasons:season",
+              "season": "summer"
+            },
+            {
+              "condition": "harvestcore:water",
+              "water": "ocean"
+            }
+          ]
+        },
+        {
+          "type": "loot_table",
+          "name": "harvestcore:gameplay/fishing/ocean_autumn",
+          "conditions": [
+            {
+              "condition": "seasons:season",
+              "season": "autumn"
+            },
+            {
+              "condition": "harvestcore:water",
+              "water": "ocean"
+            }
+          ]
+        },
+        {
+          "type": "loot_table",
+          "name": "harvestcore:gameplay/fishing/ocean_winter",
+          "conditions": [
+            {
+              "condition": "seasons:season",
+              "season": "winter"
+            },
+            {
+              "condition": "harvestcore:water",
+              "water": "ocean"
+            }
+          ]
+        },
+        {
+          "type": "loot_table",
+          "name": "harvestcore:gameplay/fishing/pond_spring",
+          "conditions": [
+            {
+              "condition": "seasons:season",
+              "season": "spring"
+            },
+            {
+              "condition": "harvestcore:water",
+              "water": "pond"
+            }
+          ]
+        },
+        {
+          "type": "loot_table",
+          "name": "harvestcore:gameplay/fishing/pond_summer",
+          "conditions": [
+            {
+              "condition": "seasons:season",
+              "season": "summer"
+            },
+            {
+              "condition": "harvestcore:water",
+              "water": "pond"
+            }
+          ]
+        },
+        {
+          "type": "loot_table",
+          "name": "harvestcore:gameplay/fishing/pond_autumn",
+          "conditions": [
+            {
+              "condition": "seasons:season",
+              "season": "autumn"
+            },
+            {
+              "condition": "harvestcore:water",
+              "water": "pond"
+            }
+          ]
+        },
+        {
+          "type": "loot_table",
+          "name": "harvestcore:gameplay/fishing/pond_winter",
+          "conditions": [
+            {
+              "condition": "seasons:season",
+              "season": "winter"
+            },
+            {
+              "condition": "harvestcore:water",
+              "water": "pond"
+            }
+          ]
+        },
+        {
+          "type": "loot_table",
+          "name": "harvestcore:gameplay/fishing/river_spring",
+          "conditions": [
+            {
+              "condition": "seasons:season",
+              "season": "spring"
+            },
+            {
+              "condition": "harvestcore:water",
+              "water": "river"
+            }
+          ]
+        },
+        {
+          "type": "loot_table",
+          "name": "harvestcore:gameplay/fishing/river_summer",
+          "conditions": [
+            {
+              "condition": "seasons:season",
+              "season": "summer"
+            },
+            {
+              "condition": "harvestcore:water",
+              "water": "river"
+            }
+          ]
+        },
+        {
+          "type": "loot_table",
+          "name": "harvestcore:gameplay/fishing/river_autumn",
+          "conditions": [
+            {
+              "condition": "seasons:season",
+              "season": "autumn"
+            },
+            {
+              "condition": "harvestcore:water",
+              "water": "river"
+            }
+          ]
+        },
+        {
+          "type": "loot_table",
+          "name": "harvestcore:gameplay/fishing/river_winter",
+          "conditions": [
+            {
+              "condition": "seasons:season",
+              "season": "winter"
+            },
+            {
+              "condition": "harvestcore:water",
+              "water": "river"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

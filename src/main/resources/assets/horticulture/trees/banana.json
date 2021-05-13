@@ -1,0 +1,232 @@
+{
+  "components": [
+    {
+      "state": "log 3",
+      "pos": "4 0 4"
+    },
+    {
+      "state": "log 3",
+      "pos": "4 1 4"
+    },
+    {
+      "state": "log 3",
+      "pos": "4 2 4"
+    },
+    {
+      "state": "log 3",
+      "pos": "4 3 4"
+    },
+    {
+      "state": "horticulture:leaves_tropical",
+      "pos": "2 4 7"
+    },
+    {
+      "state": "horticulture:leaves_tropical",
+      "pos": "3 4 2"
+    },
+    {
+      "state": "log 3",
+      "pos": "4 4 4"
+    },
+    {
+      "state": "horticulture:leaves_tropical",
+      "pos": "0 5 4"
+    },
+    {
+      "state": "horticulture:leaves_tropical",
+      "pos": "2 5 5"
+    },
+    {
+      "state": "horticulture:leaves_tropical",
+      "pos": "2 5 6"
+    },
+    {
+      "state": "horticulture:leaves_tropical",
+      "pos": "2 5 7"
+    },
+    {
+      "state": "horticulture:leaves_tropical",
+      "pos": "3 5 5"
+    },
+    {
+      "state": "horticulture:leaves_tropical",
+      "pos": "3 5 4"
+    },
+    {
+      "state": "horticulture:leaves_tropical",
+      "pos": "3 5 3"
+    },
+    {
+      "state": "horticulture:leaves_tropical",
+      "pos": "3 5 2"
+    },
+    {
+      "state": "horticulture:leaves_tropical",
+      "pos": "4 5 0"
+    },
+    {
+      "state": "horticulture:leaves_tropical",
+      "pos": "4 5 3"
+    },
+    {
+      "state": "log 3",
+      "pos": "4 5 4"
+    },
+    {
+      "state": "horticulture:leaves_tropical",
+      "pos": "4 5 5"
+    },
+    {
+      "state": "horticulture:leaves_tropical",
+      "pos": "4 5 8"
+    },
+    {
+      "state": "horticulture:leaves_tropical",
+      "pos": "5 5 4"
+    },
+    {
+      "state": "horticulture:leaves_tropical",
+      "pos": "7 5 7"
+    },
+    {
+      "state": "horticulture:leaves_tropical",
+      "pos": "7 5 2"
+    },
+    {
+      "state": "horticulture:leaves_tropical",
+      "pos": "8 5 4"
+    },
+    {
+      "state": "horticulture:leaves_tropical",
+      "pos": "1 6 4"
+    },
+    {
+      "state": "horticulture:leaves_tropical",
+      "pos": "2 6 4"
+    },
+    {
+      "state": "horticulture:leaves_tropical",
+      "pos": "3 6 5"
+    },
+    {
+      "state": "log 7",
+      "pos": "3 6 4"
+    },
+    {
+      "state": "horticulture:leaves_tropical",
+      "pos": "3 6 3"
+    },
+    {
+      "state": "horticulture:leaves_tropical",
+      "pos": "4 6 1"
+    },
+    {
+      "state": "horticulture:leaves_tropical",
+      "pos": "4 6 2"
+    },
+    {
+      "state": "log 11",
+      "pos": "4 6 3"
+    },
+    {
+      "state": "log 3",
+      "pos": "4 6 4"
+    },
+    {
+      "state": "log 11",
+      "pos": "4 6 5"
+    },
+    {
+      "state": "horticulture:leaves_tropical",
+      "pos": "4 6 6"
+    },
+    {
+      "state": "horticulture:leaves_tropical",
+      "pos": "4 6 7"
+    },
+    {
+      "state": "horticulture:leaves_tropical",
+      "pos": "5 6 5"
+    },
+    {
+      "state": "log 7",
+      "pos": "5 6 4"
+    },
+    {
+      "state": "horticulture:leaves_tropical",
+      "pos": "5 6 3"
+    },
+    {
+      "state": "horticulture:leaves_tropical",
+      "pos": "6 6 2"
+    },
+    {
+      "state": "horticulture:leaves_tropical",
+      "pos": "6 6 4"
+    },
+    {
+      "state": "horticulture:leaves_tropical",
+      "pos": "6 6 6"
+    },
+    {
+      "state": "horticulture:leaves_tropical",
+      "pos": "7 6 4"
+    },
+    {
+      "state": "horticulture:leaves_tropical",
+      "pos": "2 7 4"
+    },
+    {
+      "state": "horticulture:leaves_tropical",
+      "pos": "3 7 4"
+    },
+    {
+      "state": "horticulture:leaves_tropical",
+      "pos": "4 7 2"
+    },
+    {
+      "state": "horticulture:leaves_tropical",
+      "pos": "4 7 3"
+    },
+    {
+      "state": "horticulture:leaves_tropical",
+      "pos": "4 7 4"
+    },
+    {
+      "state": "horticulture:leaves_tropical",
+      "pos": "4 7 5"
+    },
+    {
+      "state": "horticulture:leaves_tropical",
+      "pos": "4 7 6"
+    },
+    {
+      "state": "horticulture:leaves_tropical",
+      "pos": "5 7 5"
+    },
+    {
+      "state": "horticulture:leaves_tropical",
+      "pos": "5 7 4"
+    },
+    {
+      "state": "horticulture:leaves_tropical",
+      "pos": "5 7 3"
+    },
+    {
+      "state": "horticulture:leaves_tropical",
+      "pos": "6 7 4"
+    },
+    {
+      "state": "horticulture:leaves_tropical",
+      "pos": "4 8 4"
+    },
+    {
+      "state": "horticulture:leaves_tropical",
+      "pos": "5 8 4"
+    },
+    {
+      "state": "horticulture:leaves_tropical",
+      "pos": "5 8 3"
+    }
+  ]
+}

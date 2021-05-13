@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north,machine=fermenter":  { "model": "husbandry:fermenter" },
+    "facing=south,machine=fermenter":  { "model": "husbandry:fermenter", "y": 180 },
+    "facing=east,machine=fermenter": { "model": "husbandry:fermenter", "y": 90 },
+    "facing=west,machine=fermenter": { "model": "husbandry:fermenter", "y": 270 }
+  }
+}

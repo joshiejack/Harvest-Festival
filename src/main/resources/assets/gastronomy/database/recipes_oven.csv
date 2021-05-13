@@ -1,0 +1,25 @@
+Item,Dish,Ingredients
+minecraft:cookie *4,bowl,"flour,chocolate"
+minecraft:cake,,"milk,egg,sugar,flour"
+minecraft:bread,,flour
+minecraft:baked_potato,,potato
+minecraft:cooked_chicken,,chicken
+minecraft:cooked_beef,,beef
+minecraft:cooked_porkchop,,pork
+minecraft:cooked_mutton,,mutton
+minecraft:cooked_rabbit,,rabbit
+minecraft:cooked_fish 0,,cod
+minecraft:cooked_fish 1,,salmon
+minecraft:pumpkin_pie,,"pumpkin,sugar,egg"
+minecraft:chorus_fruit_popped,,chorus_fruit
+cake,plate,"egg,flour,butter,category:cake_fruit"
+chocolate_cake,plate,"egg,flour,butter,chocolate"
+cookies,plate,"egg,flour,butter"
+chocolate_cookies,plate,"cookies,chocolate"
+baked_corn,plate,corn
+dinnerroll,,"egg,milk,butter"
+doria,deep_bowl,"onion,butter,milk,riceball,flour"
+apple_pie,plate,"apple,egg,butter,flour"
+toasted_riceballs,plate,riceball
+sweet_potatoes,plate,"egg,butter,sweet_potato"
+toast,plate,bread

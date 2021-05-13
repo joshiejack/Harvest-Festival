@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north,wood=standard":  { "model": "harvestfestival:equipment/shipping_bin" },
+    "facing=south,wood=standard":  { "model": "harvestfestival:equipment/shipping_bin", "y": 180 },
+    "facing=east,wood=standard": { "model": "harvestfestival:equipment/shipping_bin", "y": 90 },
+    "facing=west,wood=standard": { "model": "harvestfestival:equipment/shipping_bin", "y": 270 }
+  }
+}

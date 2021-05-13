@@ -1,0 +1,247 @@
+{
+  "registryName": "harvestfestival:community_centre_lounge",
+  "type": "building:upgrade",
+  "data": {
+    "requirement": "harvestfestival:community_centre",
+    "overrides": false,
+    "offset": "10 -1 17",
+    "limit": 1,
+    "components": [
+      {
+        "state": "flower_pot,contents=empty,legacy_data=0",
+        "pos": "11 1 7",
+        "type": "flowerpot"
+      },
+      {
+        "text": [
+          "",
+          "",
+          "",
+          ""
+        ],
+        "state": "wall_sign,facing=west",
+        "pos": "12 1 7",
+        "type": "sign"
+      },
+      {
+        "state": "spruce_stairs,facing=north,half=bottom,shape=straight",
+        "pos": "13 1 7"
+      },
+      {
+        "state": "spruce_stairs,facing=north,half=bottom,shape=straight",
+        "pos": "14 1 7"
+      },
+      {
+        "pos": "12 2 7"
+      },
+      {
+        "stack": "record_13",
+        "rotation": 0,
+        "facing": "south",
+        "pos": "12 2 7",
+        "type": "item_frame"
+      },
+      {
+        "state": "planks,variant=dark_oak",
+        "pos": "8 0 8"
+      },
+      {
+        "state": "planks,variant=dark_oak",
+        "pos": "9 0 8"
+      },
+      {
+        "state": "planks,variant=dark_oak",
+        "pos": "11 0 8"
+      },
+      {
+        "state": "planks,variant=dark_oak",
+        "pos": "12 0 8"
+      },
+      {
+        "state": "planks,variant=dark_oak",
+        "pos": "13 0 8"
+      },
+      {
+        "state": "spruce_stairs,facing=east,half=bottom,shape=straight",
+        "pos": "14 1 8"
+      },
+      {
+        "pos": "14 2 8"
+      },
+      {
+        "stack": "record_wait",
+        "rotation": 0,
+        "facing": "west",
+        "pos": "14 2 8",
+        "type": "item_frame"
+      },
+      {
+        "state": "planks,variant=dark_oak",
+        "pos": "8 0 9"
+      },
+      {
+        "state": "planks,variant=dark_oak",
+        "pos": "9 0 9"
+      },
+      {
+        "state": "planks,variant=dark_oak",
+        "pos": "11 0 9"
+      },
+      {
+        "state": "planks,variant=dark_oak",
+        "pos": "13 0 9"
+      },
+      {
+        "state": "planks,variant=dark_oak",
+        "pos": "14 0 9"
+      },
+      {
+        "state": "carpet,color=green",
+        "pos": "9 1 9"
+      },
+      {
+        "state": "carpet,color=green",
+        "pos": "10 1 9"
+      },
+      {
+        "state": "carpet,color=green",
+        "pos": "11 1 9"
+      },
+      {
+        "state": "carpet,color=green",
+        "pos": "12 1 9"
+      },
+      {
+        "state": "carpet,color=green",
+        "pos": "13 1 9"
+      },
+      {
+        "text": [
+          "",
+          "",
+          "",
+          ""
+        ],
+        "state": "wall_sign,facing=south",
+        "pos": "14 1 9",
+        "type": "sign"
+      },
+      {
+        "state": "planks,variant=dark_oak",
+        "pos": "9 0 10"
+      },
+      {
+        "state": "planks,variant=dark_oak",
+        "pos": "10 0 10"
+      },
+      {
+        "state": "planks,variant=dark_oak",
+        "pos": "11 0 10"
+      },
+      {
+        "state": "carpet,color=green",
+        "pos": "9 1 10"
+      },
+      {
+        "state": "carpet,color=green",
+        "pos": "10 1 10"
+      },
+      {
+        "state": "carpet,color=green",
+        "pos": "11 1 10"
+      },
+      {
+        "state": "carpet,color=green",
+        "pos": "12 1 10"
+      },
+      {
+        "state": "carpet,color=green",
+        "pos": "13 1 10"
+      },
+      {
+        "state": "planks,variant=dark_oak",
+        "pos": "8 0 11"
+      },
+      {
+        "state": "planks,variant=dark_oak",
+        "pos": "9 0 11"
+      },
+      {
+        "state": "planks,variant=dark_oak",
+        "pos": "11 0 11"
+      },
+      {
+        "state": "planks,variant=dark_oak",
+        "pos": "13 0 11"
+      },
+      {
+        "state": "planks,variant=dark_oak",
+        "pos": "14 0 11"
+      },
+      {
+        "state": "carpet,color=green",
+        "pos": "9 1 11"
+      },
+      {
+        "state": "carpet,color=green",
+        "pos": "10 1 11"
+      },
+      {
+        "state": "carpet,color=green",
+        "pos": "11 1 11"
+      },
+      {
+        "state": "carpet,color=green",
+        "pos": "12 1 11"
+      },
+      {
+        "state": "carpet,color=green",
+        "pos": "13 1 11"
+      },
+      {
+        "pos": "14 2 11"
+      },
+      {
+        "stack": "record_mellohi",
+        "rotation": 0,
+        "facing": "west",
+        "pos": "14 2 11",
+        "type": "item_frame"
+      },
+      {
+        "state": "planks,variant=dark_oak",
+        "pos": "11 0 12"
+      },
+      {
+        "state": "planks,variant=dark_oak",
+        "pos": "12 0 12"
+      },
+      {
+        "state": "planks,variant=dark_oak",
+        "pos": "13 0 12"
+      },
+      {
+        "facing": "north",
+        "state": "furniture:television,facing=north,model=standard",
+        "pos": "13 1 12",
+        "type": "rotatable"
+      },
+      {
+        "state": "chest,facing=north",
+        "pos": "11 1 13"
+      },
+      {
+        "state": "bookshelf",
+        "pos": "12 1 13"
+      },
+      {
+        "state": "jukebox,has_record=false",
+        "pos": "13 1 13"
+      },
+      {
+        "state": "bookshelf",
+        "pos": "12 2 13"
+      }
+    ]
+  }
+}

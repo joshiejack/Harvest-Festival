@@ -1,0 +1,10 @@
+{
+  "registryName": "harvestfestival:cursed_axe",
+  "type": "item:lumber_axe",
+  "data": {
+    "script": "harvestfestival:items/cursed",
+    "toolMaterial": "blessed",
+    "hits": 1,
+    "area": 7
+  }
+}

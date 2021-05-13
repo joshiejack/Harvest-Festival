@@ -1,0 +1,12 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "transform": "forge:default-item",
+    "model": "forge:item-layer"
+  },
+  "variants": {
+    "brush": [{ "textures": { "layer0": "husbandry:items/tools/brush" }}],
+    "milker": [{ "textures": { "layer0": "husbandry:items/tools/milker" }}],
+    "miracle_potion": [{ "textures": { "layer0": "husbandry:items/tools/miracle_potion" }}]
+  }
+}

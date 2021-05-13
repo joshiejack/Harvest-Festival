@@ -1,0 +1,11 @@
+{
+	"registryName": "harvestfestival:starter",
+	"type": "item:starter",
+	"defaults": {},
+	"data": [
+		{
+			"name": "grass",
+			"state": "minecraft:tallgrass[type=tall_grass]"
+		}
+	]
+}

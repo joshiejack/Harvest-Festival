@@ -1,0 +1,1579 @@
+{
+  "registryName": "harvestfestival:park_pond",
+  "type": "building:upgrade",
+  "data": {
+    "requirement": "harvestfestival:park_medium",
+    "overrides": false,
+    "offset": "14 -8 32",
+    "limit": 1,
+    "components": [
+      {
+        "state": "grass,snowy=false",
+        "pos": "28 7 0"
+      },
+      {
+        "state": "grass,snowy=false",
+        "pos": "29 7 0"
+      },
+      {
+        "state": "grass,snowy=false",
+        "pos": "30 7 0"
+      },
+      {
+        "state": "grass,snowy=false",
+        "pos": "31 7 0"
+      },
+      {
+        "state": "grass,snowy=false",
+        "pos": "32 7 0"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "27 8 0"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "28 8 0"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "29 8 0"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "30 8 0"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "31 8 0"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "32 8 0"
+      },
+      {
+        "state": "torch,facing=up",
+        "pos": "27 9 0",
+        "type": "decorative"
+      },
+      {
+        "state": "torch,facing=up",
+        "pos": "32 9 0",
+        "type": "decorative"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=true,variant=spruce",
+        "pos": "29 11 0"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=true,variant=spruce",
+        "pos": "30 11 0"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=true,variant=spruce",
+        "pos": "31 11 0"
+      },
+      {
+        "state": "sandstone,type=sandstone",
+        "pos": "30 5 1"
+      },
+      {
+        "state": "sand,variant=sand",
+        "pos": "30 6 1"
+      },
+      {
+        "state": "grass,snowy=false",
+        "pos": "32 7 1"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "26 8 1"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "27 8 1"
+      },
+      {
+        "pos": "28 8 1"
+      },
+      {
+        "state": "red_flower,type=blue_orchid",
+        "pos": "29 8 1",
+        "type": "decorative"
+      },
+      {
+        "state": "tallgrass,type=tall_grass",
+        "pos": "30 8 1"
+      },
+      {
+        "state": "double_plant,facing=north,half=lower,variant=double_rose",
+        "pos": "31 8 1",
+        "type": "double"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "32 8 1"
+      },
+      {
+        "pos": "27 9 1"
+      },
+      {
+        "pos": "29 9 1"
+      },
+      {
+        "pos": "30 9 1"
+      },
+      {
+        "pos": "32 9 1"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=true,variant=spruce",
+        "pos": "30 10 1"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=true,variant=spruce",
+        "pos": "28 11 1"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=true,variant=spruce",
+        "pos": "29 11 1"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=true,variant=spruce",
+        "pos": "31 11 1"
+      },
+      {
+        "state": "sandstone,type=sandstone",
+        "pos": "26 5 2"
+      },
+      {
+        "state": "sandstone,type=sandstone",
+        "pos": "27 5 2"
+      },
+      {
+        "state": "sandstone,type=sandstone",
+        "pos": "28 5 2"
+      },
+      {
+        "state": "sandstone,type=sandstone",
+        "pos": "29 5 2"
+      },
+      {
+        "state": "sandstone,type=sandstone",
+        "pos": "30 5 2"
+      },
+      {
+        "state": "sandstone,type=sandstone",
+        "pos": "31 5 2"
+      },
+      {
+        "state": "sand,variant=sand",
+        "pos": "26 6 2"
+      },
+      {
+        "state": "sand,variant=sand",
+        "pos": "27 6 2"
+      },
+      {
+        "state": "sand,variant=sand",
+        "pos": "28 6 2"
+      },
+      {
+        "state": "sand,variant=sand",
+        "pos": "29 6 2"
+      },
+      {
+        "state": "log,axis=y,variant=spruce",
+        "pos": "30 6 2"
+      },
+      {
+        "state": "sand,variant=sand",
+        "pos": "31 6 2"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "27 7 2",
+        "type": "decorative"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "28 7 2",
+        "type": "decorative"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "29 7 2",
+        "type": "decorative"
+      },
+      {
+        "state": "log,axis=y,variant=spruce",
+        "pos": "30 7 2"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "31 7 2",
+        "type": "decorative"
+      },
+      {
+        "state": "grass,snowy=false",
+        "pos": "33 7 2"
+      },
+      {
+        "pos": "25 8 2"
+      },
+      {
+        "state": "red_flower,type=white_tulip",
+        "pos": "26 8 2",
+        "type": "decorative"
+      },
+      {
+        "pos": "27 8 2"
+      },
+      {
+        "pos": "28 8 2"
+      },
+      {
+        "pos": "29 8 2"
+      },
+      {
+        "pos": "31 8 2"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "33 8 2"
+      },
+      {
+        "pos": "26 9 2"
+      },
+      {
+        "pos": "27 9 2"
+      },
+      {
+        "pos": "28 9 2"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=birch",
+        "pos": "29 9 2"
+      },
+      {
+        "pos": "31 9 2"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=true,variant=spruce",
+        "pos": "29 10 2"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=true,variant=spruce",
+        "pos": "31 10 2"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=true,variant=spruce",
+        "pos": "28 11 2"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=true,variant=spruce",
+        "pos": "31 11 2"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=true,variant=spruce",
+        "pos": "32 11 2"
+      },
+      {
+        "state": "sandstone,type=sandstone",
+        "pos": "27 4 3"
+      },
+      {
+        "state": "sandstone,type=sandstone",
+        "pos": "28 4 3"
+      },
+      {
+        "state": "sandstone,type=sandstone",
+        "pos": "29 4 3"
+      },
+      {
+        "state": "sandstone,type=sandstone",
+        "pos": "30 4 3"
+      },
+      {
+        "state": "sandstone,type=sandstone",
+        "pos": "31 4 3"
+      },
+      {
+        "state": "sandstone,type=sandstone",
+        "pos": "25 5 3"
+      },
+      {
+        "state": "sandstone,type=sandstone",
+        "pos": "26 5 3"
+      },
+      {
+        "state": "sand,variant=sand",
+        "pos": "27 5 3"
+      },
+      {
+        "state": "sand,variant=sand",
+        "pos": "28 5 3"
+      },
+      {
+        "state": "sand,variant=sand",
+        "pos": "29 5 3"
+      },
+      {
+        "state": "sand,variant=sand",
+        "pos": "30 5 3"
+      },
+      {
+        "state": "sand,variant=sand",
+        "pos": "31 5 3"
+      },
+      {
+        "state": "sandstone,type=sandstone",
+        "pos": "32 5 3"
+      },
+      {
+        "state": "sand,variant=sand",
+        "pos": "25 6 3"
+      },
+      {
+        "state": "sand,variant=sand",
+        "pos": "26 6 3"
+      },
+      {
+        "state": "sand,variant=sand",
+        "pos": "27 6 3"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "28 6 3",
+        "type": "decorative"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "29 6 3",
+        "type": "decorative"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "30 6 3",
+        "type": "decorative"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "31 6 3",
+        "type": "decorative"
+      },
+      {
+        "state": "sand,variant=sand",
+        "pos": "32 6 3"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "26 7 3",
+        "type": "decorative"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "27 7 3",
+        "type": "decorative"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "28 7 3",
+        "type": "decorative"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "29 7 3",
+        "type": "decorative"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "30 7 3",
+        "type": "decorative"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "31 7 3",
+        "type": "decorative"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "32 7 3",
+        "type": "decorative"
+      },
+      {
+        "state": "grass,snowy=false",
+        "pos": "34 7 3"
+      },
+      {
+        "pos": "24 8 3"
+      },
+      {
+        "state": "double_plant,facing=north,half=lower,variant=paeonia",
+        "pos": "25 8 3",
+        "type": "double"
+      },
+      {
+        "pos": "30 8 3"
+      },
+      {
+        "pos": "31 8 3"
+      },
+      {
+        "pos": "32 8 3"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "34 8 3"
+      },
+      {
+        "pos": "30 9 3"
+      },
+      {
+        "pos": "32 9 3"
+      },
+      {
+        "state": "torch,facing=up",
+        "pos": "34 9 3",
+        "type": "decorative"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=true,variant=spruce",
+        "pos": "30 10 3"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=true,variant=spruce",
+        "pos": "28 11 3"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=true,variant=spruce",
+        "pos": "31 11 3"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=true,variant=spruce",
+        "pos": "32 11 3"
+      },
+      {
+        "state": "sandstone,type=sandstone",
+        "pos": "27 3 4"
+      },
+      {
+        "state": "sandstone,type=sandstone",
+        "pos": "28 3 4"
+      },
+      {
+        "state": "sandstone,type=sandstone",
+        "pos": "29 3 4"
+      },
+      {
+        "state": "sandstone,type=sandstone",
+        "pos": "30 3 4"
+      },
+      {
+        "state": "sandstone,type=sandstone",
+        "pos": "26 4 4"
+      },
+      {
+        "state": "sand,variant=sand",
+        "pos": "27 4 4"
+      },
+      {
+        "state": "sand,variant=sand",
+        "pos": "28 4 4"
+      },
+      {
+        "state": "sand,variant=sand",
+        "pos": "29 4 4"
+      },
+      {
+        "state": "sand,variant=sand",
+        "pos": "30 4 4"
+      },
+      {
+        "state": "sandstone,type=sandstone",
+        "pos": "31 4 4"
+      },
+      {
+        "state": "sandstone,type=sandstone",
+        "pos": "25 5 4"
+      },
+      {
+        "state": "sand,variant=sand",
+        "pos": "26 5 4"
+      },
+      {
+        "state": "sand,variant=sand",
+        "pos": "27 5 4"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "28 5 4",
+        "type": "decorative"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "29 5 4",
+        "type": "decorative"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "30 5 4",
+        "type": "decorative"
+      },
+      {
+        "state": "sand,variant=sand",
+        "pos": "31 5 4"
+      },
+      {
+        "state": "sandstone,type=sandstone",
+        "pos": "32 5 4"
+      },
+      {
+        "state": "sand,variant=sand",
+        "pos": "25 6 4"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "26 6 4",
+        "type": "decorative"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "27 6 4",
+        "type": "decorative"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "28 6 4",
+        "type": "decorative"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "29 6 4",
+        "type": "decorative"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "30 6 4",
+        "type": "decorative"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "31 6 4",
+        "type": "decorative"
+      },
+      {
+        "state": "sand,variant=sand",
+        "pos": "32 6 4"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "25 7 4",
+        "type": "decorative"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "26 7 4",
+        "type": "decorative"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "27 7 4",
+        "type": "decorative"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "28 7 4",
+        "type": "decorative"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "29 7 4",
+        "type": "decorative"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "30 7 4",
+        "type": "decorative"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "31 7 4",
+        "type": "decorative"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "32 7 4",
+        "type": "decorative"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "24 8 4"
+      },
+      {
+        "pos": "25 8 4"
+      },
+      {
+        "state": "waterlily",
+        "pos": "27 8 4",
+        "type": "decorative"
+      },
+      {
+        "state": "waterlily",
+        "pos": "31 8 4",
+        "type": "decorative"
+      },
+      {
+        "pos": "32 8 4"
+      },
+      {
+        "state": "double_plant,facing=north,half=lower,variant=paeonia",
+        "pos": "33 8 4",
+        "type": "double"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "24 9 4"
+      },
+      {
+        "pos": "25 9 4"
+      },
+      {
+        "state": "wooden_slab,half=bottom,variant=spruce",
+        "pos": "24 10 4"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=true,variant=spruce",
+        "pos": "29 11 4"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=true,variant=spruce",
+        "pos": "30 11 4"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=true,variant=spruce",
+        "pos": "31 11 4"
+      },
+      {
+        "state": "sandstone,type=sandstone",
+        "pos": "27 3 5"
+      },
+      {
+        "state": "sandstone,type=sandstone",
+        "pos": "28 3 5"
+      },
+      {
+        "state": "sandstone,type=sandstone",
+        "pos": "29 3 5"
+      },
+      {
+        "state": "sandstone,type=sandstone",
+        "pos": "30 3 5"
+      },
+      {
+        "state": "sandstone,type=sandstone",
+        "pos": "26 4 5"
+      },
+      {
+        "state": "sand,variant=sand",
+        "pos": "27 4 5"
+      },
+      {
+        "state": "sand,variant=sand",
+        "pos": "28 4 5"
+      },
+      {
+        "state": "sand,variant=sand",
+        "pos": "29 4 5"
+      },
+      {
+        "state": "sand,variant=sand",
+        "pos": "30 4 5"
+      },
+      {
+        "state": "sandstone,type=sandstone",
+        "pos": "31 4 5"
+      },
+      {
+        "state": "sandstone,type=sandstone",
+        "pos": "25 5 5"
+      },
+      {
+        "state": "sand,variant=sand",
+        "pos": "26 5 5"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "27 5 5",
+        "type": "decorative"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "28 5 5",
+        "type": "decorative"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "29 5 5",
+        "type": "decorative"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "30 5 5",
+        "type": "decorative"
+      },
+      {
+        "state": "sand,variant=sand",
+        "pos": "31 5 5"
+      },
+      {
+        "state": "sandstone,type=sandstone",
+        "pos": "32 5 5"
+      },
+      {
+        "state": "sand,variant=sand",
+        "pos": "25 6 5"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "26 6 5",
+        "type": "decorative"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "27 6 5",
+        "type": "decorative"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "28 6 5",
+        "type": "decorative"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "29 6 5",
+        "type": "decorative"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "30 6 5",
+        "type": "decorative"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "31 6 5",
+        "type": "decorative"
+      },
+      {
+        "state": "sand,variant=sand",
+        "pos": "32 6 5"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "25 7 5",
+        "type": "decorative"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "26 7 5",
+        "type": "decorative"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "27 7 5",
+        "type": "decorative"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "28 7 5",
+        "type": "decorative"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "29 7 5",
+        "type": "decorative"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "30 7 5",
+        "type": "decorative"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "31 7 5",
+        "type": "decorative"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "32 7 5",
+        "type": "decorative"
+      },
+      {
+        "pos": "22 8 5"
+      },
+      {
+        "pos": "23 8 5"
+      },
+      {
+        "state": "reeds,age=0",
+        "pos": "24 8 5",
+        "type": "decorative"
+      },
+      {
+        "pos": "25 8 5"
+      },
+      {
+        "state": "red_flower,type=blue_orchid",
+        "pos": "33 8 5",
+        "type": "decorative"
+      },
+      {
+        "state": "reeds,age=0",
+        "pos": "24 9 5",
+        "type": "decorative"
+      },
+      {
+        "pos": "25 9 5"
+      },
+      {
+        "state": "wooden_slab,half=bottom,variant=spruce",
+        "pos": "24 10 5"
+      },
+      {
+        "state": "sandstone,type=sandstone",
+        "pos": "27 3 6"
+      },
+      {
+        "state": "sandstone,type=sandstone",
+        "pos": "28 3 6"
+      },
+      {
+        "state": "sandstone,type=sandstone",
+        "pos": "29 3 6"
+      },
+      {
+        "state": "sandstone,type=sandstone",
+        "pos": "30 3 6"
+      },
+      {
+        "state": "sandstone,type=sandstone",
+        "pos": "26 4 6"
+      },
+      {
+        "state": "sand,variant=sand",
+        "pos": "27 4 6"
+      },
+      {
+        "state": "sand,variant=sand",
+        "pos": "28 4 6"
+      },
+      {
+        "state": "sand,variant=sand",
+        "pos": "29 4 6"
+      },
+      {
+        "state": "sand,variant=sand",
+        "pos": "30 4 6"
+      },
+      {
+        "state": "sandstone,type=sandstone",
+        "pos": "31 4 6"
+      },
+      {
+        "state": "sandstone,type=sandstone",
+        "pos": "25 5 6"
+      },
+      {
+        "state": "sand,variant=sand",
+        "pos": "26 5 6"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "27 5 6",
+        "type": "decorative"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "28 5 6",
+        "type": "decorative"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "29 5 6",
+        "type": "decorative"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "30 5 6",
+        "type": "decorative"
+      },
+      {
+        "state": "sand,variant=sand",
+        "pos": "31 5 6"
+      },
+      {
+        "state": "sandstone,type=sandstone",
+        "pos": "32 5 6"
+      },
+      {
+        "state": "sand,variant=sand",
+        "pos": "25 6 6"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "26 6 6",
+        "type": "decorative"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "27 6 6",
+        "type": "decorative"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "28 6 6",
+        "type": "decorative"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "29 6 6",
+        "type": "decorative"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "30 6 6",
+        "type": "decorative"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "31 6 6",
+        "type": "decorative"
+      },
+      {
+        "state": "sand,variant=sand",
+        "pos": "32 6 6"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "25 7 6",
+        "type": "decorative"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "26 7 6",
+        "type": "decorative"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "27 7 6",
+        "type": "decorative"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "28 7 6",
+        "type": "decorative"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "29 7 6",
+        "type": "decorative"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "30 7 6",
+        "type": "decorative"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "31 7 6",
+        "type": "decorative"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "32 7 6",
+        "type": "decorative"
+      },
+      {
+        "state": "double_plant,facing=north,half=lower,variant=double_rose",
+        "pos": "23 8 6",
+        "type": "double"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "24 8 6"
+      },
+      {
+        "state": "waterlily",
+        "pos": "25 8 6",
+        "type": "decorative"
+      },
+      {
+        "state": "tallgrass,type=tall_grass",
+        "pos": "33 8 6"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "24 9 6"
+      },
+      {
+        "pos": "25 9 6"
+      },
+      {
+        "pos": "35 9 6"
+      },
+      {
+        "state": "wooden_slab,half=bottom,variant=spruce",
+        "pos": "24 10 6"
+      },
+      {
+        "state": "sandstone,type=sandstone",
+        "pos": "28 3 7"
+      },
+      {
+        "state": "sandstone,type=sandstone",
+        "pos": "29 3 7"
+      },
+      {
+        "state": "sandstone,type=sandstone",
+        "pos": "26 4 7"
+      },
+      {
+        "state": "sandstone,type=sandstone",
+        "pos": "27 4 7"
+      },
+      {
+        "state": "sand,variant=sand",
+        "pos": "28 4 7"
+      },
+      {
+        "state": "sand,variant=sand",
+        "pos": "29 4 7"
+      },
+      {
+        "state": "sandstone,type=sandstone",
+        "pos": "30 4 7"
+      },
+      {
+        "state": "sandstone,type=sandstone",
+        "pos": "31 4 7"
+      },
+      {
+        "state": "sandstone,type=sandstone",
+        "pos": "25 5 7"
+      },
+      {
+        "state": "sand,variant=sand",
+        "pos": "26 5 7"
+      },
+      {
+        "state": "sand,variant=sand",
+        "pos": "27 5 7"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "28 5 7",
+        "type": "decorative"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "29 5 7",
+        "type": "decorative"
+      },
+      {
+        "state": "sand,variant=sand",
+        "pos": "30 5 7"
+      },
+      {
+        "state": "sand,variant=sand",
+        "pos": "31 5 7"
+      },
+      {
+        "state": "sandstone,type=sandstone",
+        "pos": "32 5 7"
+      },
+      {
+        "state": "sand,variant=sand",
+        "pos": "25 6 7"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "26 6 7",
+        "type": "decorative"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "27 6 7",
+        "type": "decorative"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "28 6 7",
+        "type": "decorative"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "29 6 7",
+        "type": "decorative"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "30 6 7",
+        "type": "decorative"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "31 6 7",
+        "type": "decorative"
+      },
+      {
+        "state": "sand,variant=sand",
+        "pos": "32 6 7"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "25 7 7",
+        "type": "decorative"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "26 7 7",
+        "type": "decorative"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "27 7 7",
+        "type": "decorative"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "28 7 7",
+        "type": "decorative"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "29 7 7",
+        "type": "decorative"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "30 7 7",
+        "type": "decorative"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "31 7 7",
+        "type": "decorative"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "32 7 7",
+        "type": "decorative"
+      },
+      {
+        "state": "grass,snowy=false",
+        "pos": "34 7 7"
+      },
+      {
+        "pos": "24 8 7"
+      },
+      {
+        "pos": "25 8 7"
+      },
+      {
+        "state": "waterlily",
+        "pos": "30 8 7",
+        "type": "decorative"
+      },
+      {
+        "state": "red_flower,type=houstonia",
+        "pos": "33 8 7",
+        "type": "decorative"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "34 8 7"
+      },
+      {
+        "state": "torch,facing=up",
+        "pos": "34 9 7",
+        "type": "decorative"
+      },
+      {
+        "pos": "35 9 7"
+      },
+      {
+        "state": "sandstone,type=sandstone",
+        "pos": "28 4 8"
+      },
+      {
+        "state": "sandstone,type=sandstone",
+        "pos": "29 4 8"
+      },
+      {
+        "state": "sandstone,type=sandstone",
+        "pos": "30 4 8"
+      },
+      {
+        "state": "sandstone,type=sandstone",
+        "pos": "26 5 8"
+      },
+      {
+        "state": "sandstone,type=sandstone",
+        "pos": "27 5 8"
+      },
+      {
+        "state": "sand,variant=sand",
+        "pos": "28 5 8"
+      },
+      {
+        "state": "sand,variant=sand",
+        "pos": "29 5 8"
+      },
+      {
+        "state": "sand,variant=sand",
+        "pos": "30 5 8"
+      },
+      {
+        "state": "sandstone,type=sandstone",
+        "pos": "31 5 8"
+      },
+      {
+        "state": "sand,variant=sand",
+        "pos": "26 6 8"
+      },
+      {
+        "state": "sand,variant=sand",
+        "pos": "27 6 8"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "28 6 8",
+        "type": "decorative"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "29 6 8",
+        "type": "decorative"
+      },
+      {
+        "state": "sand,variant=sand",
+        "pos": "30 6 8"
+      },
+      {
+        "state": "sand,variant=sand",
+        "pos": "31 6 8"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "26 7 8",
+        "type": "decorative"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "27 7 8",
+        "type": "decorative"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "28 7 8",
+        "type": "decorative"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "29 7 8",
+        "type": "decorative"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "30 7 8",
+        "type": "decorative"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "31 7 8",
+        "type": "decorative"
+      },
+      {
+        "state": "red_flower,type=white_tulip",
+        "pos": "24 8 8",
+        "type": "decorative"
+      },
+      {
+        "state": "red_flower,type=blue_orchid",
+        "pos": "25 8 8",
+        "type": "decorative"
+      },
+      {
+        "pos": "26 8 8"
+      },
+      {
+        "state": "waterlily",
+        "pos": "28 8 8",
+        "type": "decorative"
+      },
+      {
+        "state": "double_plant,facing=north,half=lower,variant=double_rose",
+        "pos": "33 8 8",
+        "type": "double"
+      },
+      {
+        "pos": "24 9 8"
+      },
+      {
+        "pos": "25 9 8"
+      },
+      {
+        "state": "sandstone,type=sandstone",
+        "pos": "28 5 9"
+      },
+      {
+        "state": "sandstone,type=sandstone",
+        "pos": "29 5 9"
+      },
+      {
+        "state": "sandstone,type=sandstone",
+        "pos": "30 5 9"
+      },
+      {
+        "state": "sand,variant=sand",
+        "pos": "28 6 9"
+      },
+      {
+        "state": "sand,variant=sand",
+        "pos": "29 6 9"
+      },
+      {
+        "state": "sand,variant=sand",
+        "pos": "30 6 9"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "28 7 9",
+        "type": "decorative"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "29 7 9",
+        "type": "decorative"
+      },
+      {
+        "state": "water,level=0",
+        "pos": "30 7 9",
+        "type": "decorative"
+      },
+      {
+        "state": "grass,snowy=false",
+        "pos": "33 7 9"
+      },
+      {
+        "pos": "25 8 9"
+      },
+      {
+        "state": "red_flower,type=houstonia",
+        "pos": "26 8 9",
+        "type": "decorative"
+      },
+      {
+        "state": "tallgrass,type=tall_grass",
+        "pos": "27 8 9"
+      },
+      {
+        "text": [
+          "",
+          "",
+          "",
+          ""
+        ],
+        "state": "wall_sign,facing=west",
+        "pos": "28 8 9",
+        "type": "sign"
+      },
+      {
+        "state": "wooden_slab,half=top,variant=spruce",
+        "pos": "29 8 9"
+      },
+      {
+        "text": [
+          "",
+          "",
+          "",
+          ""
+        ],
+        "state": "wall_sign,facing=east",
+        "pos": "30 8 9",
+        "type": "sign"
+      },
+      {
+        "state": "tallgrass,type=tall_grass",
+        "pos": "31 8 9"
+      },
+      {
+        "state": "red_flower,type=blue_orchid",
+        "pos": "32 8 9",
+        "type": "decorative"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "33 8 9"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=birch",
+        "pos": "37 8 9"
+      },
+      {
+        "pos": "26 9 9"
+      },
+      {
+        "pos": "33 9 9"
+      },
+      {
+        "pos": "34 9 9"
+      },
+      {
+        "state": "grass,snowy=false",
+        "pos": "27 7 10"
+      },
+      {
+        "pos": "26 8 10"
+      },
+      {
+        "pos": "27 8 10"
+      },
+      {
+        "text": [
+          "",
+          "",
+          "",
+          ""
+        ],
+        "state": "wall_sign,facing=west",
+        "pos": "28 8 10",
+        "type": "sign"
+      },
+      {
+        "state": "spruce_stairs,facing=south,half=top,shape=straight",
+        "pos": "29 8 10"
+      },
+      {
+        "text": [
+          "",
+          "",
+          "",
+          ""
+        ],
+        "state": "wall_sign,facing=east",
+        "pos": "30 8 10",
+        "type": "sign"
+      },
+      {
+        "state": "double_plant,facing=north,half=lower,variant=double_rose",
+        "pos": "31 8 10",
+        "type": "double"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "27 8 11"
+      },
+      {
+        "text": [
+          "",
+          "",
+          "",
+          ""
+        ],
+        "state": "wall_sign,facing=west",
+        "pos": "28 8 11",
+        "type": "sign"
+      },
+      {
+        "state": "spruce_stairs,facing=south,half=top,shape=straight",
+        "pos": "29 8 11"
+      },
+      {
+        "text": [
+          "",
+          "",
+          "",
+          ""
+        ],
+        "state": "wall_sign,facing=east",
+        "pos": "30 8 11",
+        "type": "sign"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "27 9 11"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "31 9 11"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "27 10 11"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "31 10 11"
+      },
+      {
+        "state": "wooden_slab,half=bottom,variant=spruce",
+        "pos": "27 11 11"
+      },
+      {
+        "state": "wooden_slab,half=top,variant=spruce",
+        "pos": "28 11 11"
+      },
+      {
+        "state": "wooden_slab,half=top,variant=spruce",
+        "pos": "29 11 11"
+      },
+      {
+        "state": "wooden_slab,half=top,variant=spruce",
+        "pos": "30 11 11"
+      },
+      {
+        "state": "wooden_slab,half=bottom,variant=spruce",
+        "pos": "31 11 11"
+      },
+      {
+        "state": "spruce_stairs,facing=north,half=bottom,shape=straight",
+        "pos": "29 8 12"
+      },
+      {
+        "text": [
+          "~~~~~~~~~~~~",
+          "Fishing Pond",
+          "",
+          "~~~~~~~~~~~~"
+        ],
+        "state": "wall_sign,facing=south",
+        "pos": "29 11 12",
+        "type": "sign"
+      },
+      {
+        "state": "grass_path",
+        "pos": "29 7 13"
+      },
+      {
+        "state": "grass_path",
+        "pos": "30 7 13"
+      },
+      {
+        "pos": "27 9 9"
+      },
+      {
+        "pos": "26 9 10"
+      },
+      {
+        "pos": "27 9 10"
+      },
+      {
+        "pos": "28 9 10"
+      },
+      {
+        "pos": "28 9 11"
+      }
+    ]
+  }
+}

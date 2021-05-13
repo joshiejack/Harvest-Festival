@@ -1,0 +1,43 @@
+{
+  "pools": [
+    {
+      "name": "main",
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "item",
+          "name": "minecraft:diamond",
+          "entryName": "drop",
+          "weight": 511,
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 1,
+                "max": 3
+              }
+            },
+            {
+              "function": "penguinlib:apply_fortune"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "harvestfestival:gem",
+          "entryName": "pink_diamond",
+          "weight": 1,
+          "functions": [
+            {
+              "function": "penguinlib:set_string",
+              "string": "pink_diamond"
+            },
+            {
+              "function": "penguinlib:apply_fortune"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

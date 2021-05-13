@@ -1,0 +1,15 @@
+department_id,listing_id,id,type,data,gold,weight
+#Buildings
+carpenter_buildings,village_field,default,building_blueprint,harvestfestival:park_small,0,0
+carpenter_buildings,village_green,default,building_blueprint,harvestfestival:park_medium,1000,0
+carpenter_buildings,village_park,default,building_blueprint,harvestfestival:park_large,10000,0
+#Materials
+carpenter_materials,wood,default,item,minecraft:log 0,10,1
+carpenter_materials,stone,default,item,minecraft:cobblestone 0,20,1
+carpenter_materials,glass,default,item,minecraft:glass,25,1
+#Furniture
+carpenter_furniture,mailbox,default,item,harvestcore:mailbox 0,500,1
+#Blueprints
+carpenter_blueprints,mailbox_blueprint,default,bundle,mailbox_blueprint,800,1
+carpenter_blueprints,enchanting_table,default,blueprint,minecraft:enchanting_table,30000,1
+carpenter_blueprints,bookshelf,default,blueprint,minecraft:bookshelf,1500,1

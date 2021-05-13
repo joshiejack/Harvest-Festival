@@ -1,0 +1,16 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "transform": "forge:default-block"
+  },
+  "variants": {
+    "facing=north,machine=furnace":  { "model": "harvestcore:furnace" },
+    "facing=south,machine=furnace":  { "model": "harvestcore:furnace", "y": 180 },
+    "facing=east,machine=furnace": { "model": "harvestcore:furnace", "y": 90 },
+    "facing=west,machine=furnace": { "model": "harvestcore:furnace", "y": 270 },
+    "facing=north,machine=kiln":  { "model": "harvestcore:kiln" },
+    "facing=south,machine=kiln":  { "model": "harvestcore:kiln", "y": 180 },
+    "facing=east,machine=kiln": { "model": "harvestcore:kiln", "y": 90 },
+    "facing=west,machine=kiln": { "model": "harvestcore:kiln", "y": 270 }
+  }
+}

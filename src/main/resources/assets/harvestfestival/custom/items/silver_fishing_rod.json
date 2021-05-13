@@ -1,0 +1,7 @@
+{
+  "registryName": "harvestfestival:silver_fishing_rod",
+  "type": "item:fishing_rod",
+  "data": {
+    "toolMaterial": "silver"
+  }
+}

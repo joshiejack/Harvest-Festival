@@ -1,0 +1,18 @@
+department_id,listing_id,id,type,data,gold,weight
+#Animals
+pet_shop_animals,cat,default,entity,ocelot,3000,1
+pet_shop_animals,dog,default,entity,wolf,3000,1
+pet_shop_animals,parrot,default,entity,parrot,6000,1
+pet_shop_animals,horse,default,entity,horse,10000,1
+#Tools
+pet_shop_items,bowl,default,item,husbandry:tray 7,250,1
+pet_shop_items,cat_food,default,item,rabbit_food,30,1
+pet_shop_items,dog_food,default,item,dog_food,30,1
+pet_shop_items,parrot_food,default,item,bird_feed,25,1
+pet_shop_items,horse_food,default,item,fodder,50,1
+pet_shop_items,cat_treat,default,item,cat_treat,25,1
+pet_shop_items,dog_treat,default,item,dog_treat,25,1
+pet_shop_items,horse_treat,default,item,horse_treat,30,1
+pet_shop_items,name_tag,default,item,name_tag,250,1
+pet_shop_items,lead,default,item,lead,150,1
+pet_shop_items,brush,default,item,brush,1000,1

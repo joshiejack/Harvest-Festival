@@ -1,0 +1,15 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "minecraft:crop"
+  },
+  "variants": {
+    "stage": {
+      "0": { "textures": { "crop": "horticulture:blocks/crops/pineapple_1" }},
+      "1": { "textures": { "crop": "horticulture:blocks/crops/pineapple_2" }},
+      "2": { "textures": { "crop": "horticulture:blocks/crops/pineapple_3" }},
+      "3": { "textures": { "crop": "horticulture:blocks/crops/pineapple_4" }},
+      "4": { "textures": { "crop": "horticulture:blocks/crops/pineapple_5" }}
+    }
+  }
+}

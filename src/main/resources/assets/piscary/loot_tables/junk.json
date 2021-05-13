@@ -1,0 +1,52 @@
+{
+  "pools": [
+    {
+      "name": "main",
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "item",
+          "name": "minecraft:stick",
+          "entryName": "stick",
+          "weight": 255
+        },
+        {
+          "type": "item",
+          "name": "piscary:loot",
+          "entryName": "can",
+          "weight": 160,
+          "functions": [
+            {
+              "function": "penguinlib:set_enum",
+              "enum": "can"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "piscary:loot",
+          "entryName": "bones",
+          "weight": 169,
+          "functions": [
+            {
+              "function": "penguinlib:set_enum",
+              "enum": "bones"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "piscary:loot",
+          "entryName": "boot",
+          "weight": 139,
+          "functions": [
+            {
+              "function": "penguinlib:set_enum",
+              "enum": "boot"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

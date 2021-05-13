@@ -1,0 +1,5 @@
+{
+  "yawn": { "category": "players", "sounds":[
+    "energy:yawn1", "energy:yawn2"
+  ], "subtitle": "harvestfestival.subtitle.brush" }
+}

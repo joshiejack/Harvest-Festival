@@ -1,0 +1,13 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "transform": "forge:default-item",
+    "model": "forge:item-layer"
+  },
+  "variants": {
+    "curry_powder": [{ "textures": { "layer0": "gastronomy:items/ingredients/curry_powder" }}],
+    "dumpling_powder": [{ "textures": { "layer0": "gastronomy:items/ingredients/dumpling_powder" }}],
+    "flour": [{ "textures": { "layer0": "gastronomy:items/ingredients/flour" }}],
+    "salt": [{ "textures": { "layer0": "gastronomy:items/ingredients/salt" }}],
+    "cooking_oil": [{ "textures": { "layer0": "gastronomy:items/ingredients/oil" }}]}
+}

@@ -1,0 +1,18 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "transform": "forge:default-item",
+    "model": "forge:item-layer"
+  },
+  "variants": {
+    "small_wool": [{ "textures": { "layer0": "husbandry:items/fabrics/wool_small" }}],
+    "medium_wool": [{ "textures": { "layer0": "husbandry:items/fabrics/wool_medium" }}],
+    "large_wool": [{ "textures": { "layer0": "husbandry:items/fabrics/wool_large" }}],
+    "small_yarn": [{ "textures": { "layer0": "husbandry:items/fabrics/yarn_small" }}],
+    "medium_yarn": [{ "textures": { "layer0": "husbandry:items/fabrics/yarn_medium" }}],
+    "large_yarn": [{ "textures": { "layer0": "husbandry:items/fabrics/yarn_large" }}],
+    "small_fine_yarn": [{ "textures": { "layer0": "husbandry:items/fabrics/small_fine_yarn" }}],
+    "medium_fine_yarn": [{ "textures": { "layer0": "husbandry:items/fabrics/medium_fine_yarn" }}],
+    "large_fine_yarn": [{ "textures": { "layer0": "husbandry:items/fabrics/large_fine_yarn" }}]
+  }
+}

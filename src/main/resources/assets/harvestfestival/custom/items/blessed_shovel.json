@@ -1,0 +1,9 @@
+{
+  "registryName": "harvestfestival:blessed_shovel",
+  "type": "item:shovel",
+  "data": {
+    "toolMaterial": "blessed",
+    "width": 3,
+    "depth": 4
+  }
+}

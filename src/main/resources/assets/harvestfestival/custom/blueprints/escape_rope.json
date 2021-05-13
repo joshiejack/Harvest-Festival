@@ -1,0 +1,18 @@
+{
+  "registryName": "harvestfestival:escape_rope",
+  "type": "blueprint:standard",
+  "data": {
+    "category": "tool",
+    "result": "harvestfestival:escape_rope",
+    "ingredients": [
+      {
+        "item": "string",
+        "count": 9
+      },
+      {
+        "item": "gemAdamantite",
+        "count": 3
+      }
+    ]
+  }
+}

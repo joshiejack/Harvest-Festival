@@ -1,0 +1,9 @@
+{
+  "registryName": "harvestfestival:township",
+  "type": "tab:standard",
+  "data": {
+    "icon": "harvestfestival:blue_feather",
+    "items": ["harvestfestival:shipping_bin", "harvestcore:mailbox", "harvestcore:machine",
+              "harvestfestival:drink", "harvestfestival:food", "harvestfestival:blue_feather", "harvestcore:power_berry"]
+  }
+}

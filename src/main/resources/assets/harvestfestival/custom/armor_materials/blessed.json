@@ -1,0 +1,12 @@
+{
+	"registryName": "blessed",
+	"type": "armor_material:standard",
+	"data": {
+		"texture": "harvestfestival:blessed",
+		"reductions": [5, 5, 5, 5],
+		"durability": 4096,
+		"enchantability": 25,
+		"sound": "harvestfestival:blessed",
+		"toughness": 3.0
+	}
+}

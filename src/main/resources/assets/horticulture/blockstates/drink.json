@@ -1,0 +1,17 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "transform": "forge:default-item",
+    "model": "forge:item-layer"
+  },
+  "variants": {
+    "pineapple_juice": [{ "textures": { "layer0": "horticulture:items/drinks/juice_pineapple" }}],
+    "tomato_juice": [{ "textures": { "layer0": "horticulture:items/drinks/juice_tomato" }}],
+    "strawberry_milk": [{ "textures": { "layer0": "horticulture:items/drinks/milk_strawberry" }}],
+    "grape_juice": [{ "textures": { "layer0": "horticulture:items/drinks/juice_grape" }}],
+    "peach_juice": [{ "textures": { "layer0": "horticulture:items/drinks/juice_peach" }}],
+    "banana_juice": [{ "textures": { "layer0": "horticulture:items/drinks/juice_banana" }}],
+    "orange_juice": [{ "textures": { "layer0": "horticulture:items/drinks/juice_orange" }}],
+    "apple_juice": [{ "textures": { "layer0": "horticulture:items/drinks/juice_apple" }}]
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "registryName": "harvestfestival:copper_hoe",
+  "type": "item:hoe",
+  "data": {
+    "toolMaterial": "copper",
+    "width": 1,
+    "depth": 0
+  }
+}

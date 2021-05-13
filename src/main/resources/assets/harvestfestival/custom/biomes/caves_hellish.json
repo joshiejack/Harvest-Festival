@@ -1,0 +1,13 @@
+{
+  "registryName": "harvestfestival:caves_hellish",
+  "type": "biome:standard",
+  "name": "Hellish Caves",
+  "data": {
+    "temperature": 2,
+    "rainfall": 0,
+    "colors": {
+      "grass": "0x2E1F33",
+      "foliage": "0x2E1F33"
+    }
+  }
+}

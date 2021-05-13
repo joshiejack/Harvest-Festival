@@ -1,0 +1,236 @@
+department_id,listing_id,id,type,data,gold,weight
+#Starter Items
+market_stall,turnip_seeds,default,item,turnip_seed_bag,40,1
+market_stall,onion_seeds,default,item,onion_seed_bag,55,1
+market_stall,spinach_seeds,default,item,spinach_seed_bag,55,1
+market_stall,basic_watering_can,default,item,horticulture:watering_can,1000,1
+market_stall,basic_hoe,default,item,harvestfestival:basic_hoe,750,1
+market_stall,basic_axe,default,item,harvestfestival:basic_axe,1250,1
+market_stall,basic_hammer,default,item,harvestfestival:basic_hammer,1250,1
+market_stall,basic_shovel,default,item,harvestfestival:basic_shovel,1250,1
+#Special Items
+market_stall,1000g_string,default,item,minecraft:string,1000,1
+#Random Items - fish
+market_stall,random_item,vanilla_cod,item,minecraft:fish 0,0,1
+market_stall,random_item,vanilla_salmon,item,minecraft:fish 1,0,1
+market_stall,random_item,vanilla_puffer,item,minecraft:fish 2,0,0.75
+market_stall,random_item,vanilla_clown,item,minecraft:fish 3,0,0.5
+market_stall,random_item,angel,item,anchovy,0,1
+market_stall,random_item,angel,item,angel,0,0.25
+market_stall,random_item,angler,item,angler,0,0.125
+market_stall,random_item,bass,item,bass,0,1
+market_stall,random_item,blaasop,item,blaasop,0,0.125
+market_stall,random_item,bowfin,item,bowfin,0,0.5
+market_stall,random_item,butterfly,item,butterfly,0,0.25
+market_stall,random_item,carp,item,carp,0,0.75
+market_stall,random_item,catfish,item,catfish,0,0.5
+market_stall,random_item,chub,item,chub,0,1
+market_stall,random_item,clown,item,clown,0,0.5
+market_stall,random_item,cod,item,cod,0,0.75
+market_stall,random_item,damsel,item,damsel,0,0.5
+market_stall,random_item,electricray,item,electricray,0,0.25
+market_stall,random_item,gold,item,gold,0,1
+market_stall,random_item,herring,item,herring,0,1
+market_stall,random_item,koi,item,koi,0,0.25
+market_stall,random_item,lamprey,item,lamprey,0,0.5
+market_stall,random_item,lungfish,item,lungfish,0,0.25
+market_stall,random_item,mantaray,item,mantaray,0,0.125
+market_stall,random_item,minnow,item,minnow,0,1
+market_stall,random_item,perch,item,perch,0,0.75
+market_stall,random_item,pickerel,item,pickerel,0,0.5
+market_stall,random_item,pike,item,pike,0,0.25
+market_stall,random_item,piranha,item,piranha,0,0.125
+market_stall,random_item,puffer,item,puffer,0,0.125
+market_stall,random_item,pupfish,item,pupfish,0,0.5
+market_stall,random_item,salmon,item,salmon,0,0.75
+market_stall,random_item,sardine,item,sardine,0,1
+market_stall,random_item,siamese,item,siamese,0,1
+market_stall,random_item,stargazer,item,stargazer,0,0.5
+market_stall,random_item,stingray,item,stingray,0,0.25
+market_stall,random_item,tang,item,tang,0,0.25
+market_stall,random_item,tetra,item,tetra,0,0.5
+market_stall,random_item,trout,item,trout,0,0.75
+market_stall,random_item,tuna,item,tuna,0,0.5
+market_stall,random_item,walleye,item,walleye,0,0.5
+#Random Items - crops
+market_stall,random_item,apple,item,minecraft:apple,0,1
+market_stall,random_item,carrot,item,minecraft:carrot,0,1
+market_stall,random_item,potato,item,minecraft:potato,0,1
+market_stall,random_item,beetroot,item,minecraft:beetroot,0,1
+market_stall,random_item,pumpkin,item,minecraft:pumpkin,0,1
+market_stall,random_item,wheat,item,minecraft:wheat,0,1
+market_stall,random_item,melon,item,minecraft:melon,0,1
+market_stall,random_item,turnip,item,turnip,0,1
+market_stall,random_item,cucumber,item,cucumber,0,1
+market_stall,random_item,strawberry,item,strawberry,0,0.9
+market_stall,random_item,cabbage,item,cabbage,0,0.75
+market_stall,random_item,onion,item,onion,0,1
+market_stall,random_item,tomato,item,tomato,0,1
+market_stall,random_item,corn,item,corn,0,0.9
+market_stall,random_item,pineapple,item,pineapple,0,0.75
+market_stall,random_item,eggplant,item,eggplant,0,1
+market_stall,random_item,spinach,item,spinach,0,1
+market_stall,random_item,sweet_potato,item,sweet_potato,0,0.8
+market_stall,random_item,green_pepper,item,green_pepper,0,0.75
+market_stall,random_item,banana,item,banana,0,0.9
+market_stall,random_item,grape,item,grape,0,1
+market_stall,random_item,orange,item,orange,0,1
+market_stall,random_item,peach,item,peach,0,0.9
+#Random Items - seeds
+market_stall,random_item,turnip_seeds,item,turnip_seed_bag,0,1
+market_stall,random_item,potato_seeds,item,potato_seed_bag,0,1
+market_stall,random_item,cucumber_seeds,item,cucumber_seed_bag,0,1
+market_stall,random_item,strawberry_seeds,item,strawberry_seed_bag,0,1
+market_stall,random_item,cabbage_seeds,item,cabbage_seed_bag,0,1
+market_stall,random_item,onion_seeds,item,onion_seed_bag,0,1
+market_stall,random_item,pumpkin_seeds,item,pumpkin_seed_bag,0,1
+market_stall,random_item,tomato_seeds,item,tomato_seed_bag,0,1
+market_stall,random_item,melon_seeds,item,melon_seed_bag,0,1
+market_stall,random_item,pineapple_seeds,item,pineapple_seed_bag,0,1
+market_stall,random_item,corn_seeds,item,corn_seed_bag,0,1
+market_stall,random_item,spinach_seeds,item,spinach_seed_bag,0,1
+market_stall,random_item,eggplant_seeds,item,eggplant_seed_bag,0,1
+market_stall,random_item,carrot_seeds,item,carrot_seed_bag,0,1
+market_stall,random_item,beetroot_seeds,item,beetroot_seed_bag,0,1
+market_stall,random_item,sweet_potato_seeds,item,sweet_potato_seed_bag,0,1
+market_stall,random_item,green_pepper_seeds,item,green_pepper_seed_bag,0,1
+market_stall,random_item,nether_wart_seeds,item,nether_wart_seed_bag,0,1
+market_stall,random_item,wheat_seeds,item,wheat_seed_bag,0,1
+market_stall,random_item,spring_seeds,item,spring_seed_bag,0,1.5
+market_stall,random_item,summer_seeds,item,summer_seed_bag,0,1.5
+market_stall,random_item,autumn_seeds,item,autumn_seed_bag,0,1.5
+market_stall,random_item,winter_seeds,item,winter_seed_bag,0,2
+#Random Items - mining
+market_stall,random_item,coal,item,minecraft:coal,0,1
+market_stall,random_item,charcoal,item,minecraft:coal 1,0,1
+market_stall,random_item,clay_ball,item,clay_ball,0,1
+market_stall,random_item,flint,item,flint,0,1
+market_stall,random_item,copper_coin,item,copper_coin,0,1.25
+market_stall,random_item,silver_coin,item,silver_coin,0,1.125
+market_stall,random_item,gold_coin,item,gold_coin,0,1.0075
+market_stall,random_item,junk_material,item,junk_material,0,1
+market_stall,random_item,mythic_stone,item,mythic_stone,0,0.125
+market_stall,random_item,copper_metal,item,copper_metal,0,0.9
+market_stall,random_item,silver_metal,item,silver_metal,0,0.7
+market_stall,random_item,gold_metal,item,gold_metal,0,0.5
+market_stall,random_item,mystril_metal,item,mystril_metal,0,0.25
+market_stall,random_item,orichalc_metal,item,orichalc_metal,0,0.5
+market_stall,random_item,diamond,item,diamond,0,1,0.25
+market_stall,random_item,emerald,item,emerald,0,1,0.25
+market_stall,random_item,lapis,item,minecraft:dye 4,0,1
+market_stall,random_item,redstone,item,redstone,0,1
+market_stall,random_item,prismarine,item,prismarine_shard,0,1
+market_stall,random_item,adamantite,item,harvestfestival:gem#adamantite,0,1
+market_stall,random_item,agate,item,harvestfestival:gem#agate,0,1
+market_stall,random_item,alexandrite,item,harvestfestival:gem#alexandrite,0,1
+market_stall,random_item,amethyst,item,harvestfestival:gem#amethyst,0,1
+market_stall,random_item,fluorite,item,harvestfestival:gem#fluorite,0,1
+market_stall,random_item,moon_stone,item,harvestfestival:gem#moon_stone,0,1
+market_stall,random_item,peridot,item,harvestfestival:gem#peridot,0,1
+market_stall,random_item,sapphire,item,harvestfestival:gem#sapphire,0,1
+market_stall,random_item,pink_diamond,item,harvestfestival:gem#pink_diamond,0,1,0.125
+market_stall,random_item,ruby,item,harvestfestival:gem#ruby,0,1
+market_stall,random_item,sand_rose,item,harvestfestival:gem#sand_rose,0,1
+market_stall,random_item,topaz,item,harvestfestival:gem#topaz,0,1
+market_stall,random_item,jade,item,harvestfestival:gem#jade,0,1
+market_stall,random_item,quartz,item,quartz,0,1
+#Random Items - monster drops
+market_stall,random_item,slimeball,item,slime_ball,0,1
+market_stall,random_item,bone,item,bone,0,1
+market_stall,random_item,rotten_flesh,item,rotten_flesh,0,1
+market_stall,random_item,arrow,item,arrow,0,1.25
+market_stall,random_item,ender_pearl,item,ender_pearl,0,1
+market_stall,random_item,blaze_powder,item,blaze_powder,0,1
+market_stall,random_item,blaze_rod,item,blaze_rod,0,1
+market_stall,random_item,rotten_flesh,item,rotten_flesh,0,1
+market_stall,random_item,magma_cream,item,magma_cream,0,1
+#Random Items - animal products
+market_stall,random_item,feather,item,feather,0,1.75
+market_stall,random_item,milk_bucket,item,milk_bucket,0,1.5
+market_stall,random_item,egg,item,egg,0,1.75
+market_stall,random_item,wool_0,item,wool 0,0,1.5
+market_stall,random_item,wool_1,item,wool 1,0,1.25
+market_stall,random_item,wool_2,item,wool 2,0,1.25
+market_stall,random_item,wool_3,item,wool 3,0,1.25
+market_stall,random_item,wool_4,item,wool 4,0,1.25
+market_stall,random_item,wool_5,item,wool 5,0,1.25
+market_stall,random_item,wool_6,item,wool 6,0,1.25
+market_stall,random_item,wool_7,item,wool 7,0,1.25
+market_stall,random_item,wool_8,item,wool 8,0,1.25
+market_stall,random_item,wool_9,item,wool 9,0,1.25
+market_stall,random_item,wool_10,item,wool 10,0,1.25
+market_stall,random_item,wool_11,item,wool 11,0,1.25
+market_stall,random_item,wool_12,item,wool 12,0,1.25
+market_stall,random_item,wool_13,item,wool 13,0,1.25
+market_stall,random_item,wool_14,item,wool 14,0,1.25
+market_stall,random_item,wool_15,item,wool 15,0,1.25
+market_stall,random_item,small_egg,item,small_egg,0,1.2
+market_stall,random_item,medium_egg,item,medium_egg,0,1.1
+market_stall,random_item,large_egg,item,large_egg,0,1
+market_stall,random_item,small_milk,item,small_milk,0,1.2
+market_stall,random_item,medium_milk,item,medium_milk,0,1.1
+market_stall,random_item,large_milk,item,large_milk,0,1
+market_stall,random_item,small_duck_egg,item,small_duck_egg,0,1.2
+market_stall,random_item,medium_duck_egg,item,medium_duck_egg,0,1.1
+market_stall,random_item,large_duck_egg,item,large_duck_egg,0,1
+market_stall,random_item,small_mayonnaise,item,small_mayonnaise,0,1.15
+market_stall,random_item,medium_mayonnaise,item,medium_mayonnaise,0,1.1
+market_stall,random_item,large_mayonnaise,item,large_mayonnaise,0,1
+market_stall,random_item,small_cheese,item,small_cheese,0,1.15
+market_stall,random_item,medium_cheese,item,medium_cheese,0,1.1
+market_stall,random_item,large_cheese,item,large_cheese,0,1
+market_stall,random_item,small_duck_mayonnaise,item,small_duck_mayonnaise,0,1.15
+market_stall,random_item,medium_duck_mayonnaise,item,medium_duck_mayonnaise,0,1.1
+market_stall,random_item,large_duck_mayonnaise,item,large_duck_mayonnaise,0,1
+market_stall,random_item,small_truffle,item,small_truffle,0,1.2
+market_stall,random_item,medium_truffle,item,medium_truffle,0,1.1
+market_stall,random_item,large_truffle,item,large_truffle,0,1
+market_stall,random_item,small_truffle_oil,item,small_truffle_oil,0,1.15
+market_stall,random_item,medium_truffle_oil,item,medium_truffle_oil,0,1.1
+market_stall,random_item,large_truffle_oil,item,large_truffle_oil,0,1
+market_stall,random_item,small_wool,item,small_wool,0,1.2
+market_stall,random_item,medium_wool,item,medium_wool,0,1.1
+market_stall,random_item,large_wool,item,large_wool,0,1
+market_stall,random_item,small_rabbit_wool,item,small_rabbit_wool,0,1.2
+market_stall,random_item,medium_rabbit_wool,item,medium_rabbit_wool,0,1.1
+market_stall,random_item,large_rabbit_wool,item,large_rabbit_wool,0,1
+market_stall,random_item,small_yarn,item,small_yarn,0,1.15
+market_stall,random_item,medium_yarn,item,medium_yarn,0,1.1
+market_stall,random_item,large_yarn,item,large_yarn,0,1
+market_stall,random_item,small_fine_yarn,item,small_fine_yarn,0,1.15
+market_stall,random_item,medium_fine_yarn,item,medium_fine_yarn,0,1.1
+market_stall,random_item,large_fine_yarn,item,large_fine_yarn,0,1
+#Random Items - meals/plants, omg!
+market_stall,random_item,tea,item,harvestfestival:drink#tea,0,1
+market_stall,random_item,coffee,item,harvestfestival:drink#coffee,0,1
+market_stall,random_item,cooked_meal,item_builder,cooked,0,1
+market_stall,random_item,beef,item,beef,0,3
+market_stall,random_item,porkchop,item,porkchop,0,2
+market_stall,random_item,chicken,item,chicken,0,5
+market_stall,random_item,rabbit,item,rabbit,0,1.5
+market_stall,random_item,mutton,item,mutton,0,2
+market_stall,random_item,chorus_fruit,item,chorus_fruit,0,1
+#Random Items - wild shit
+market_stall,random_item,blue_magic_flower,item,blue_magic_flower,0,1
+market_stall,random_item,moondrop_flower,item,moondrop_flower,0,1
+market_stall,random_item,pink_cat_flower,item,pink_cat_flower,0,1
+market_stall,random_item,red_magic_flower,item,red_magic_flower,0,1
+market_stall,random_item,toy_flower,item,toy_flower,0,1
+market_stall,random_item,yellow_flower,item,minecraft:yellow_flower,0,1
+market_stall,random_item,flower_0,item,minecraft:red_flower 0,0,1
+market_stall,random_item,flower_1,item,minecraft:red_flower 1,0,1
+market_stall,random_item,flower_2,item,minecraft:red_flower 2,0,1
+market_stall,random_item,flower_3,item,minecraft:red_flower 3,0,1
+market_stall,random_item,flower_4,item,minecraft:red_flower 4,0,1
+market_stall,random_item,flower_5,item,minecraft:red_flower 5,0,1
+market_stall,random_item,flower_6,item,minecraft:red_flower 6,0,1
+market_stall,random_item,flower_7,item,minecraft:red_flower 7,0,1
+market_stall,random_item,flower_8,item,minecraft:red_flower 8,0,1
+market_stall,random_item,flower_9,item,minecraft:double_plant 0,0,1
+market_stall,random_item,flower_10,item,minecraft:double_plant 1,0,1
+market_stall,random_item,flower_11,item,minecraft:double_plant 4,0,1
+market_stall,random_item,flower_12,item,minecraft:double_plant 5,0,1
+market_stall,random_item,mushroom_1,item,minecraft:brown_mushroom,0,1
+market_stall,random_item,mushroom_2,item,minecraft:red_mushroom,0,1
+#Random Items - other
+market_stall,random_item,book,item,minecraft:book,0,1

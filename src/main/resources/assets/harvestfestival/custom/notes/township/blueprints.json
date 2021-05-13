@@ -1,0 +1,10 @@
+{
+  "registryName": "harvestfestival:blueprints",
+  "type": "note:standard",
+  "data": {
+    "category": "activities",
+    "icon": {
+      "item": "settlements:blueprint"
+    }
+  }
+}

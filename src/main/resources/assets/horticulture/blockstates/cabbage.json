@@ -1,0 +1,14 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "minecraft:crop"
+  },
+  "variants": {
+    "stage": {
+      "0": { "textures": { "crop": "horticulture:blocks/crops/cabbage_1" }},
+      "1": { "textures": { "crop": "horticulture:blocks/crops/cabbage_2" }},
+      "2": { "textures": { "crop": "horticulture:blocks/crops/cabbage_3" }},
+      "3": { "textures": { "crop": "horticulture:blocks/crops/cabbage_4" }}
+    }
+  }
+}

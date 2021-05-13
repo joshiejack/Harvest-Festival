@@ -1,0 +1,11 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "cube_all"
+  },
+  "variants": {
+    "trap=empty":  {"model": "piscary:fish_trap" },
+    "trap=baited":  { "model": "piscary:fish_trap_baited" },
+    "trap=baited_vanilla":  { "model": "piscary:fish_trap_baited_vanilla" }
+  }
+}

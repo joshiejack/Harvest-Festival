@@ -1,0 +1,16 @@
+{
+	"registryName": "harvestfestival:coin",
+	"type": "item:multi",
+	"defaults": {},
+	"data": [
+		{
+			"name": "copper"
+		},
+		{
+			"name": "silver"
+		},
+		{
+			"name": "gold"
+		}
+	]
+}

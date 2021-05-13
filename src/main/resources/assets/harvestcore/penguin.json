@@ -1,0 +1,6 @@
+{
+  "penguin_lib": [
+    "database",
+    "custom/items"
+  ]
+}

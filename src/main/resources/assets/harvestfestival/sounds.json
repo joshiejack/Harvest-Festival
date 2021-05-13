@@ -1,26 +1,6 @@
 {
-  "counter": { "category": "block", "sounds":[
-      "harvestfestival:counter1", "harvestfestival:counter2", "harvestfestival:counter3", "harvestfestival:counter4", "harvestfestival:counter5",
-      "harvestfestival:counter6", "harvestfestival:counter7", "harvestfestival:counter8", "harvestfestival:counter9", "harvestfestival:counter10"
-  ], "subtitle": "harvestfestival.subtitle.counter" },
-  "fridge": { "category": "block", "sounds":["harvestfestival:fridge"], "subtitle": "harvestfestival.subtitle.fridge" },
-  "frying_pan": { "category": "block", "sounds":["harvestfestival:frying_pan"], "subtitle": "harvestfestival.subtitle.fryingpan" },
-  "mixer": { "category": "block", "sounds":["harvestfestival:mixer"], "subtitle": "harvestfestival.subtitle.mixer" },
-  "oven": { "category": "block", "sounds":["harvestfestival:oven"], "subtitle": "harvestfestival.subtitle.oven" },
-  "oven_door": { "category": "block", "sounds":["harvestfestival:oven_door"], "subtitle": "harvestfestival.subtitle.ovendoor" },
-  "oven_done": { "category": "block", "sounds":["harvestfestival:oven_done"], "subtitle": "harvestfestival.subtitle.ovendone" },
-  "pot": { "category": "block", "sounds":["harvestfestival:pot"], "subtitle": "harvestfestival.subtitle.pot" },
   "smash_rock": { "category": "block", "sounds":["harvestfestival:smash_rock"], "subtitle": "harvestfestival.subtitle.smashrock" },
   "smash_wood": { "category": "block", "sounds":["harvestfestival:smash_wood"], "subtitle": "harvestfestival.subtitle.smashwood" },
   "blessing": { "category": "neutral", "sounds":["harvestfestival:blessing"], "subtitle": "harvestfestival.subtitle.blessing" },
-  "goddess": { "category": "neutral", "sounds":["harvestfestival:goddess"], "subtitle": "harvestfestival.subtitle.godddess" },
-  "recipe": { "category": "neutral", "sounds":["harvestfestival:recipe"], "subtitle": "harvestfestival.subtitle.recipe" },
-  "brush": { "category": "players", "sounds":[
-    "harvestfestival:brush1", "harvestfestival:brush2", "harvestfestival:brush3"
-  ], "subtitle": "harvestfestival.subtitle.brush" },
-  "tree_chop": { "category": "players", "sounds":[
-    "harvestfestival:tree1", "harvestfestival:tree2", "harvestfestival:tree3"
-  ], "subtitle": "harvestfestival.subtitle.chop" },
-  "tree_fall": { "category": "neutral", "sounds":["harvestfestival:tree_fall"], "subtitle": "harvestfestival.subtitle.fall" },
-  "kerching": { "category": "player", "sounds":["harvestfestival:kerching"], "subtitle": "harvestfestival.subtitle.kerching" }
+  "goddess": { "category": "neutral", "sounds":["harvestfestival:goddess"], "subtitle": "harvestfestival.subtitle.godddess" }
 }

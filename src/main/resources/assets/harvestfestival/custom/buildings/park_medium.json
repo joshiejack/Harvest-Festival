@@ -1,0 +1,1168 @@
+{
+  "registryName": "harvestfestival:park_medium",
+  "type": "building:upgrade",
+  "data": {
+    "requirement": "harvestfestival:park_small",
+    "overrides": false,
+    "offset": "14 -8 32",
+    "limit": 1,
+    "script": "harvestfestival:buildings/sunday_market",
+    "components": [
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=birch",
+        "pos": "23 8 0"
+      },
+      {
+        "state": "leaves,check_decay=false,decayable=false,variant=birch",
+        "pos": "27 8 0"
+      },
+      {
+        "state": "grass_path",
+        "pos": "16 7 1"
+      },
+      {
+        "state": "grass_path",
+        "pos": "17 7 1"
+      },
+      {
+        "state": "dirt,snowy=false,variant=dirt",
+        "pos": "23 7 1"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=birch",
+        "pos": "12 8 1"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "13 8 1"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "14 8 1"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "15 8 1"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "18 8 1"
+      },
+      {
+        "state": "log,axis=y,variant=spruce",
+        "pos": "23 8 1"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=spruce",
+        "pos": "24 8 1"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=birch",
+        "pos": "25 8 1"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=birch",
+        "pos": "26 8 1"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=birch",
+        "pos": "27 8 1"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=birch",
+        "pos": "28 8 1"
+      },
+      {
+        "state": "leaves,check_decay=false,decayable=false,variant=birch",
+        "pos": "23 9 1"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=spruce",
+        "pos": "27 9 1"
+      },
+      {
+        "state": "grass_path",
+        "pos": "16 7 2"
+      },
+      {
+        "state": "grass_path",
+        "pos": "17 7 2"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "12 8 2"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "13 8 2"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "18 8 2"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "19 8 2"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=spruce",
+        "pos": "23 8 2"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=spruce",
+        "pos": "24 8 2"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=birch",
+        "pos": "27 8 2"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "31 8 2"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "32 8 2"
+      },
+      {
+        "state": "torch,facing=up",
+        "pos": "13 9 2",
+        "type": "decorative"
+      },
+      {
+        "state": "leaves,check_decay=false,decayable=false,variant=birch",
+        "pos": "29 9 2"
+      },
+      {
+        "state": "grass_path",
+        "pos": "17 7 3"
+      },
+      {
+        "state": "grass_path",
+        "pos": "18 7 3"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "11 8 3"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "12 8 3"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "19 8 3"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "20 8 3"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "32 8 3"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "33 8 3"
+      },
+      {
+        "state": "grass_path",
+        "pos": "17 7 4"
+      },
+      {
+        "state": "grass_path",
+        "pos": "18 7 4"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "33 8 4"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "34 8 4"
+      },
+      {
+        "state": "torch,facing=up",
+        "pos": "33 9 4",
+        "type": "decorative"
+      },
+      {
+        "state": "grass_path",
+        "pos": "18 7 5"
+      },
+      {
+        "state": "grass_path",
+        "pos": "19 7 5"
+      },
+      {
+        "state": "grass_path",
+        "pos": "20 7 5"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=spruce",
+        "pos": "21 8 5"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "34 8 5"
+      },
+      {
+        "state": "grass_path",
+        "pos": "20 7 6"
+      },
+      {
+        "state": "grass_path",
+        "pos": "21 7 6"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=birch",
+        "pos": "6 8 6"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=birch",
+        "pos": "7 8 6"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=birch",
+        "pos": "8 8 6"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=birch",
+        "pos": "9 8 6"
+      },
+      {
+        "state": "leaves,check_decay=false,decayable=false,variant=birch",
+        "pos": "13 8 6"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "34 8 6"
+      },
+      {
+        "state": "leaves,check_decay=false,decayable=false,variant=birch",
+        "pos": "11 9 6"
+      },
+      {
+        "state": "grass_path",
+        "pos": "21 7 7"
+      },
+      {
+        "state": "grass_path",
+        "pos": "22 7 7"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=birch",
+        "pos": "5 8 7"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=spruce",
+        "pos": "6 8 7"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=birch",
+        "pos": "7 8 7"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=spruce",
+        "pos": "8 8 7"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=birch",
+        "pos": "9 8 7"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=birch",
+        "pos": "12 8 7"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=spruce",
+        "pos": "25 8 7"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=birch",
+        "pos": "6 9 7"
+      },
+      {
+        "state": "leaves,check_decay=false,decayable=false,variant=birch",
+        "pos": "7 9 7"
+      },
+      {
+        "state": "grass_path",
+        "pos": "21 7 8"
+      },
+      {
+        "state": "grass_path",
+        "pos": "22 7 8"
+      },
+      {
+        "state": "grass_path",
+        "pos": "23 7 8"
+      },
+      {
+        "state": "leaves,check_decay=false,decayable=false,variant=spruce",
+        "pos": "2 8 8"
+      },
+      {
+        "state": "leaves,check_decay=false,decayable=false,variant=birch",
+        "pos": "3 8 8"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=spruce",
+        "pos": "4 8 8"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=spruce",
+        "pos": "5 8 8"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=birch",
+        "pos": "6 8 8"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=spruce",
+        "pos": "7 8 8"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=birch",
+        "pos": "11 8 8"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=spruce",
+        "pos": "12 8 8"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=spruce",
+        "pos": "24 8 8"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=birch",
+        "pos": "25 8 8"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=birch",
+        "pos": "26 8 8"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=birch",
+        "pos": "6 9 8"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=birch",
+        "pos": "7 9 8"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=birch",
+        "pos": "25 9 8"
+      },
+      {
+        "state": "grass_path",
+        "pos": "22 7 9"
+      },
+      {
+        "state": "grass_path",
+        "pos": "23 7 9"
+      },
+      {
+        "state": "leaves,check_decay=false,decayable=false,variant=birch",
+        "pos": "2 8 9"
+      },
+      {
+        "state": "leaves,check_decay=false,decayable=false,variant=birch",
+        "pos": "3 8 9"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=birch",
+        "pos": "5 8 9"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "6 8 9"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=birch",
+        "pos": "25 8 9"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=oak",
+        "pos": "26 8 9"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=birch",
+        "pos": "27 8 9"
+      },
+      {
+        "state": "torch,facing=up",
+        "pos": "6 9 9",
+        "type": "decorative"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=spruce",
+        "pos": "26 9 9"
+      },
+      {
+        "state": "grass_path",
+        "pos": "22 7 10"
+      },
+      {
+        "state": "grass_path",
+        "pos": "23 7 10"
+      },
+      {
+        "state": "grass_path",
+        "pos": "24 7 10"
+      },
+      {
+        "state": "grass_path",
+        "pos": "25 7 10"
+      },
+      {
+        "state": "dirt,snowy=false,variant=dirt",
+        "pos": "27 7 10"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=birch",
+        "pos": "0 8 10"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=spruce",
+        "pos": "1 8 10"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=birch",
+        "pos": "2 8 10"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=spruce",
+        "pos": "3 8 10"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=birch",
+        "pos": "26 8 10"
+      },
+      {
+        "state": "log,axis=y,variant=spruce",
+        "pos": "27 8 10"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=birch",
+        "pos": "28 8 10"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "32 8 10"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "33 8 10"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=spruce",
+        "pos": "2 9 10"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=spruce",
+        "pos": "27 9 10"
+      },
+      {
+        "state": "grass_path",
+        "pos": "21 7 11"
+      },
+      {
+        "state": "grass_path",
+        "pos": "22 7 11"
+      },
+      {
+        "state": "grass_path",
+        "pos": "23 7 11"
+      },
+      {
+        "state": "grass_path",
+        "pos": "24 7 11"
+      },
+      {
+        "state": "grass_path",
+        "pos": "25 7 11"
+      },
+      {
+        "state": "grass_path",
+        "pos": "26 7 11"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=birch",
+        "pos": "0 8 11"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=birch",
+        "pos": "1 8 11"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=birch",
+        "pos": "2 8 11"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=birch",
+        "pos": "27 8 11"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=spruce",
+        "pos": "28 8 11"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "31 8 11"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "32 8 11"
+      },
+      {
+        "state": "leaves,check_decay=false,decayable=false,variant=birch",
+        "pos": "1 9 11"
+      },
+      {
+        "state": "torch,facing=up",
+        "pos": "32 9 11",
+        "type": "decorative"
+      },
+      {
+        "state": "grass_path",
+        "pos": "18 7 12"
+      },
+      {
+        "state": "grass_path",
+        "pos": "19 7 12"
+      },
+      {
+        "state": "grass_path",
+        "pos": "20 7 12"
+      },
+      {
+        "state": "grass_path",
+        "pos": "21 7 12"
+      },
+      {
+        "state": "grass_path",
+        "pos": "24 7 12"
+      },
+      {
+        "state": "grass_path",
+        "pos": "25 7 12"
+      },
+      {
+        "state": "grass_path",
+        "pos": "26 7 12"
+      },
+      {
+        "state": "grass_path",
+        "pos": "27 7 12"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=spruce",
+        "pos": "1 8 12"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=birch",
+        "pos": "2 8 12"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=spruce",
+        "pos": "3 8 12"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "31 8 12"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=spruce",
+        "pos": "2 9 12"
+      },
+      {
+        "state": "grass_path",
+        "pos": "15 7 13"
+      },
+      {
+        "state": "grass_path",
+        "pos": "16 7 13"
+      },
+      {
+        "state": "grass_path",
+        "pos": "17 7 13"
+      },
+      {
+        "state": "grass_path",
+        "pos": "18 7 13"
+      },
+      {
+        "state": "grass_path",
+        "pos": "19 7 13"
+      },
+      {
+        "state": "grass_path",
+        "pos": "26 7 13"
+      },
+      {
+        "state": "grass_path",
+        "pos": "27 7 13"
+      },
+      {
+        "state": "grass_path",
+        "pos": "28 7 13"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=birch",
+        "pos": "1 8 13"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=spruce",
+        "pos": "2 8 13"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "31 8 13"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=spruce",
+        "pos": "2 9 13"
+      },
+      {
+        "state": "grass_path",
+        "pos": "15 7 14"
+      },
+      {
+        "state": "grass_path",
+        "pos": "16 7 14"
+      },
+      {
+        "state": "grass_path",
+        "pos": "17 7 14"
+      },
+      {
+        "state": "grass_path",
+        "pos": "27 7 14"
+      },
+      {
+        "state": "grass_path",
+        "pos": "28 7 14"
+      },
+      {
+        "state": "grass_path",
+        "pos": "29 7 14"
+      },
+      {
+        "state": "grass_path",
+        "pos": "30 7 14"
+      },
+      {
+        "state": "grass_path",
+        "pos": "31 7 14"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=birch",
+        "pos": "2 8 14"
+      },
+      {
+        "state": "grass_path",
+        "pos": "15 7 15"
+      },
+      {
+        "state": "grass_path",
+        "pos": "16 7 15"
+      },
+      {
+        "state": "grass_path",
+        "pos": "29 7 15"
+      },
+      {
+        "state": "grass_path",
+        "pos": "30 7 15"
+      },
+      {
+        "state": "grass_path",
+        "pos": "31 7 15"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=birch",
+        "pos": "3 8 15"
+      },
+      {
+        "state": "leaves,check_decay=false,decayable=false,variant=birch",
+        "pos": "2 8 16"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=birch",
+        "pos": "4 8 16"
+      },
+      {
+        "state": "leaves,check_decay=false,decayable=false,variant=spruce",
+        "pos": "31 8 16"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=spruce",
+        "pos": "32 8 16"
+      },
+      {
+        "state": "torch,facing=east",
+        "pos": "4 10 16",
+        "type": "decorative"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=birch",
+        "pos": "4 11 16"
+      },
+      {
+        "state": "dirt,snowy=false,variant=dirt",
+        "pos": "32 7 17"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=spruce",
+        "pos": "2 8 17"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "3 8 17"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=birch",
+        "pos": "4 8 17"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=birch",
+        "pos": "5 8 17"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=birch",
+        "pos": "30 8 17"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=birch",
+        "pos": "31 8 17"
+      },
+      {
+        "state": "log,axis=z,variant=spruce",
+        "pos": "32 8 17"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=birch",
+        "pos": "33 8 17"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=spruce",
+        "pos": "3 9 17"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=spruce",
+        "pos": "31 9 17"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=spruce",
+        "pos": "32 9 17"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=spruce",
+        "pos": "3 11 17"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "3 8 18"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "32 8 18"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=spruce",
+        "pos": "3 9 18"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "3 8 19"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "31 8 19"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "32 8 19"
+      },
+      {
+        "state": "torch,facing=up",
+        "pos": "3 9 19",
+        "type": "decorative"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "3 8 20"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=birch",
+        "pos": "4 8 20"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=spruce",
+        "pos": "18 8 20"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "31 8 20"
+      },
+      {
+        "state": "torch,facing=up",
+        "pos": "31 9 20",
+        "type": "decorative"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=birch",
+        "pos": "16 11 20"
+      },
+      {
+        "state": "dirt,snowy=false,variant=dirt",
+        "pos": "31 7 21"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=birch",
+        "pos": "2 8 21"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "3 8 21"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=birch",
+        "pos": "4 8 21"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=spruce",
+        "pos": "5 8 21"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=spruce",
+        "pos": "19 8 21"
+      },
+      {
+        "state": "log,axis=y,variant=spruce",
+        "pos": "31 8 21"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=birch",
+        "pos": "3 9 21"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=birch",
+        "pos": "4 9 21"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=spruce",
+        "pos": "31 9 21"
+      },
+      {
+        "state": "torch,facing=north",
+        "pos": "16 10 21",
+        "type": "decorative"
+      },
+      {
+        "state": "dirt,snowy=false,variant=dirt",
+        "pos": "3 7 22"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=spruce",
+        "pos": "2 8 22"
+      },
+      {
+        "state": "log,axis=y,variant=spruce",
+        "pos": "3 8 22"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=spruce",
+        "pos": "4 8 22"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=spruce",
+        "pos": "5 8 22"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=birch",
+        "pos": "31 8 22"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=birch",
+        "pos": "2 9 22"
+      },
+      {
+        "state": "log,axis=y,variant=spruce",
+        "pos": "3 9 22"
+      },
+      {
+        "state": "leaves,check_decay=false,decayable=false,variant=birch",
+        "pos": "4 9 22"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=birch",
+        "pos": "3 10 22"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=birch",
+        "pos": "3 8 23"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=birch",
+        "pos": "4 8 23"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=birch",
+        "pos": "20 8 23"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=birch",
+        "pos": "21 8 23"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=birch",
+        "pos": "22 8 23"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=birch",
+        "pos": "23 8 23"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=spruce",
+        "pos": "24 8 23"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=birch",
+        "pos": "31 8 23"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=spruce",
+        "pos": "23 9 23"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=spruce",
+        "pos": "31 9 23"
+      },
+      {
+        "state": "dirt,snowy=false,variant=dirt",
+        "pos": "31 7 24"
+      },
+      {
+        "state": "leaves,check_decay=false,decayable=false,variant=birch",
+        "pos": "4 8 24"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=birch",
+        "pos": "14 8 24"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=birch",
+        "pos": "22 8 24"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=birch",
+        "pos": "23 8 24"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=spruce",
+        "pos": "29 8 24"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=spruce",
+        "pos": "30 8 24"
+      },
+      {
+        "state": "log,axis=y,variant=spruce",
+        "pos": "31 8 24"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=birch",
+        "pos": "32 8 24"
+      },
+      {
+        "state": "leaves,check_decay=false,decayable=false,variant=spruce",
+        "pos": "4 9 24"
+      },
+      {
+        "state": "leaves,check_decay=false,decayable=false,variant=birch",
+        "pos": "30 9 24"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=birch",
+        "pos": "31 9 24"
+      },
+      {
+        "state": "dirt,snowy=false,variant=dirt",
+        "pos": "14 7 25"
+      },
+      {
+        "state": "leaves,check_decay=false,decayable=false,variant=spruce",
+        "pos": "4 8 25"
+      },
+      {
+        "state": "leaves,check_decay=false,decayable=false,variant=birch",
+        "pos": "5 8 25"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=spruce",
+        "pos": "13 8 25"
+      },
+      {
+        "state": "log,axis=y,variant=spruce",
+        "pos": "14 8 25"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=birch",
+        "pos": "15 8 25"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=birch",
+        "pos": "23 8 25"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "24 8 25"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=oak",
+        "pos": "30 8 25"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=birch",
+        "pos": "31 8 25"
+      },
+      {
+        "state": "leaves,check_decay=false,decayable=false,variant=birch",
+        "pos": "14 9 25"
+      },
+      {
+        "state": "torch,facing=up",
+        "pos": "24 9 25",
+        "type": "decorative"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "13 8 26"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "14 8 26"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=spruce",
+        "pos": "15 8 26"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=birch",
+        "pos": "24 8 26"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=birch",
+        "pos": "25 8 26"
+      },
+      {
+        "state": "leaves,check_decay=false,decayable=false,variant=birch",
+        "pos": "31 8 26"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=birch",
+        "pos": "32 8 26"
+      },
+      {
+        "state": "torch,facing=up",
+        "pos": "13 9 26",
+        "type": "decorative"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "12 8 27"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "13 8 27"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=oak",
+        "pos": "24 8 27"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=birch",
+        "pos": "25 8 27"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=birch",
+        "pos": "31 8 27"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "7 8 28"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "8 8 28"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "9 8 28"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "10 8 28"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "11 8 28"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "12 8 28"
+      },
+      {
+        "state": "leaves,check_decay=false,decayable=false,variant=birch",
+        "pos": "25 8 28"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=birch",
+        "pos": "26 8 28"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=birch",
+        "pos": "31 8 28"
+      },
+      {
+        "state": "leaves,check_decay=false,decayable=false,variant=birch",
+        "pos": "32 8 28"
+      },
+      {
+        "state": "torch,facing=up",
+        "pos": "10 9 28",
+        "type": "decorative"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=birch",
+        "pos": "25 9 28"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=birch",
+        "pos": "26 8 29"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=birch",
+        "pos": "27 8 29"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=birch",
+        "pos": "28 8 29"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=birch",
+        "pos": "27 8 30"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=birch",
+        "pos": "28 8 30"
+      },
+      {
+        "state": "leaves,check_decay=true,decayable=false,variant=birch",
+        "pos": "28 9 30"
+      }
+    ]
+  }
+}

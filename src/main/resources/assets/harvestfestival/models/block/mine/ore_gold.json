@@ -1,9 +1,9 @@
 {
   "parent": "block/cube_all",
   "textures": {
-    "particle": "harvestfestival:blocks/mine/ore_gold",
-    "base": "harvestfestival:blocks/mine/rock_gold",
-    "ore": "harvestfestival:blocks/mine/ore_gold"
+    "particle": "harvestfestival:blocks/mine/nodes/ore_gold",
+    "base": "harvestfestival:blocks/mine/nodes/rock_gold",
+    "ore": "harvestfestival:blocks/mine/nodes/ore_gold"
   },
   "elements": [
     {

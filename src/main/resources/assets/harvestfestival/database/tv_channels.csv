@@ -1,0 +1,6 @@
+ID,Screenshot,ScreenshotX,ScreenshotY,Script,Hidden
+harvestfestival:weather,harvestfestival:television,0,0,harvestfestival:tv_channels/weather,false
+harvestfestival:cooking,harvestfestival:television,124,0,harvestfestival:tv_channels/cooking,false
+harvestfestival:farming,harvestfestival:television,186,0,harvestfestival:tv_channels/farming,false
+harvestfestival:fishing,harvestfestival:television,0,46,harvestfestival:tv_channels/fishing,false
+harvestfestival:adult,harvestfestival:television,62,46,harvestfestival:tv_channels/adult,true

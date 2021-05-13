@@ -1,0 +1,183 @@
+Item,Value
+### Vanilla Shizz
+## Farmer
+cropPumpkin,220
+melon_block,180
+blockCactus,50
+sugarcane,30
+cropApple,100
+melon,20
+poisonous_potato,1
+cropPotato,80
+cropCarrot,160
+chorus_fruit,20
+cropBeetroot,120
+cropWheat,100
+egg,60
+feather,125
+chicken,40
+porkchop,60
+milk_bucket,460
+beef,60
+leather,150
+rabbit,40
+rabbit_foot,400
+rabbit_hide,120
+mutton,80
+wool,250
+#Cocoa Beans
+minecraft:dye 3,25
+cropNetherWart,10
+## Miner
+ore#cobblestone,1
+ore#stone,2
+stoneGranite,3
+stoneDiorite,3
+stoneAndesite,3
+ingotGold,250
+ingotIron,120
+gemDiamond,750
+gemEmerald,250
+coal 0,15
+gemLapis,45
+dustRedstone,20
+gemQuartz,35
+flint,5
+dustGlowstone,10
+nuggetGold,25
+nuggetIron,10
+## Lumberjack
+stickWood,1
+logWood,2
+treeSapling,5
+minecraft:coal 1,5
+## Fisherman
+minecraft:fish 0,10
+minecraft:fish 1,30
+minecraft:fish 2,50
+minecraft:fish 3,100
+## Hunter
+string,5
+gunpowder,25
+slimeball,5
+#Inksac
+minecraft:dye 0,3
+bone,5
+rotten_flesh,5
+ender_pearl,15
+blaze_rod,10
+ghast_tear,30
+spider_eye,10
+magma_cream,10
+gemPrismarine,30
+dustPrismarine,50
+arrow,10
+tipped_arrow,15
+snowball,3
+shulker_shell,25
+record_13,500
+record_cat,500
+record_blocks,500
+record_chirp,500
+record_far,500
+record_mall,500
+record_mellohi,500
+record_stal,500
+record_strad,500
+record_ward,500
+record_11,500
+record_wait,500
+totem_of_undying,3000
+nether_star,5000
+dragon_egg,50000
+## Gatherer
+#Vanilla
+clay_ball,5
+minecraft:deadbush,1
+minecraft:fern,1
+minecraft:brown_mushroom,15
+minecraft:red_mushroom,20
+minecraft:yellow_flower,10
+minecraft:red_flower 0,10
+minecraft:red_flower 1,25
+minecraft:red_flower 2,30
+minecraft:red_flower 3,20
+minecraft:red_flower 4,15
+minecraft:red_flower 5,15
+minecraft:red_flower 6,15
+minecraft:red_flower 7,15
+minecraft:red_flower 8,15
+minecraft:double_plant 0,45
+minecraft:double_plant 1,40
+minecraft:double_plant 4,35
+minecraft:double_plant 5,30
+waterlily,10
+## Chef
+bread,60
+cooked_porkchop,70
+golden_apple 0,2500
+golden_apple 1,25000
+sugar,5
+cookie,40
+cooked_beef,70
+cooked_chicken,45
+minecraft:cake,235
+baked_potato,90
+golden_carrot,400
+pumpkin_pie,315
+cooked_rabbit,45
+rabbit_stew,360
+cooked_mutton,90
+chorus_fruit_popped,20
+beetroot_soup,320
+minecraft:cooked_fish 0,15
+minecraft:cooked_fish 1,35
+mushroom_stew,80
+###HF Stuff
+#Flowers
+blue_magic_flower,80
+moondrop_flower,60
+pink_cat_flower,70
+red_magic_flower,200
+toy_flower,130
+weed,1
+toadstool,100
+dwarfen_shroom,250
+#Coins
+copper_coin,10
+silver_coin,100
+gold_coin,1000
+#Materials
+junk_material,1
+mythic_stone,20000
+copper_metal,5
+silver_metal,15
+gold_metal,25
+mystril_metal,40
+orichalc_metal,50
+#Ingots
+copper_ingot,50
+silver_ingot,150
+mystril_ingot,500
+#Gems
+gemPrismarine,30
+gemAdamantite,100
+gemAgate,110
+gemAlexandrite,10000
+gemAmethyst,80
+gemFluorite,40
+gemMoonStone,50
+gemPeridot,70
+gemPinkDiamond,10000
+gemRuby,140
+gemSandRose,60
+gemSapphire,200
+gemTopaz,130
+gemJade,150
+#Food
+harvestfestival:food#apple_jam,130
+harvestfestival:food#jam_bun,240
+harvestfestival:food#marmalade,260
+harvestfestival:food#grape_jam,260
+harvestfestival:food#strawberry_jam,65
+harvestfestival:food#wild_grapes,50

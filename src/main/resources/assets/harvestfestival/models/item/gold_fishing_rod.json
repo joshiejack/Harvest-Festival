@@ -1,0 +1,14 @@
+{
+  "parent": "item/handheld_rod",
+  "textures": {
+    "layer0": "harvestfestival:items/tools/fishing_rod_gold_uncast"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "cast": 1
+      },
+      "model": "harvestfestival:item/gold_fishing_rod_cast"
+    }
+  ]
+}

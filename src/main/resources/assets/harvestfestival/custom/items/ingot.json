@@ -1,0 +1,19 @@
+{
+	"registryName": "harvestfestival:ingot",
+	"type": "item:multi",
+	"defaults": {},
+	"data": [
+		{
+			"name": "copper",
+			"ores": [ "ingotCopper"]
+		},
+		{
+			"name": "silver",
+			"ores": [ "ingotSilver"]
+		},
+		{
+			"name": "mystril",
+			"ores": [ "ingotMystril"]
+		}
+	]
+}

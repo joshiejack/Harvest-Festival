@@ -1,0 +1,12 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "transform": "forge:default-item",
+    "model": "forge:item-layer"
+  },
+  "variants": {
+    "fishsticks": [{ "textures": { "layer0": "piscary:items/meals/fishsticks" }}],
+    "sashimi": [{ "textures": { "layer0": "piscary:items/meals/sashimi" }}],
+    "fish_stew": [{ "textures": { "layer0": "piscary:items/meals/stew_fish" }}]
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "registryName": "harvestfestival:mushroom_log_acacia",
+  "type": "blueprint:standard",
+  "data": {
+    "category": "machine",
+    "result": "horticulture:stump 4",
+    "ingredients": [
+      {
+        "item": "minecraft:log2 0",
+        "count": 5
+      }
+    ]
+  }
+}

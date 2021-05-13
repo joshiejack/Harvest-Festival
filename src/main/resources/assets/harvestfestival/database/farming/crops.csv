@@ -1,0 +1,24 @@
+name,season_handler,color,growth_pattern,block,seeds,needs_water,seeds_name
+turnip,spring,FFFFFF,texture_3_days_5,horticulture:turnip,horticulture:seeds 0,true,default
+potato,spring,BE8D2B,default_8,minecraft:potatoes,minecraft:potato,true,harvestfestival.item.seeds.potato.name
+cucumber,spring,36B313,texture_4_days_10,horticulture:cucumber,horticulture:seeds 1,true,default
+strawberry,spring,FF7BEA,texture_4_days_9,horticulture:strawberry,horticulture:seeds 2,true,default
+cabbage,spring,8FFF40,texture_4_days_15,horticulture:cabbage,horticulture:seeds 3,true,default
+onion,summer,DCC307,texture_3_days_8,horticulture:onion,horticulture:seeds 4,true,default
+pumpkin,summer,E09A39,pumpkin,minecraft:pumpkin_stem,minecraft:pumpkin_seeds 0,true,default
+tomato,summer,E60820,tomato,horticulture:tomato,horticulture:seeds 5,true,default
+melon,summer,C92B3E,melon,minecraft:melon_stem,minecraft:melon_seeds 0,true,default
+pineapple,summer,D7CF00,pineapple,horticulture:pineapple,horticulture:seeds 7,true,default
+corn,summer,D4BD45,corn,horticulture:corn,horticulture:seeds 6,true,default
+spinach,autumn,90AE15,texture_3_days_6,horticulture:spinach,horticulture:seeds 9,true,default
+eggplant,autumn,A25CC4,texture_4_days_10,horticulture:eggplant,horticulture:seeds 8,true,default
+carrot,autumn,F8AC33,default_8,minecraft:carrots,minecraft:carrot,true,harvestfestival.item.seeds.carrot.name
+beetroot,autumn,690000,default_4,minecraft:beetroots,minecraft:beetroot_seeds,true,default
+sweet_potato,autumn,D82AAC,sweet_potato,horticulture:sweet_potato,horticulture:seeds 10,true,default
+green_pepper,autumn,56D213,green_pepper,horticulture:green_pepper,horticulture:seeds 11,true,default
+nether_wart,all_year,8B0000,default_4,minecraft:nether_wart,minecraft:nether_wart,false,default
+wheat,not_winter,EAC715,wheat,minecraft:wheat,minecraft:wheat_seeds,true,harvestfestival.item.seeds.wheat.name
+spring,spring,6DDB6D,texture_4_days_7,harvestcore:wild_crop_spring,none,false,harvestfestival.item.seeds.spring.name
+summer,summer,FF9494,texture_4_days_7,harvestcore:wild_crop_summer,none,false,harvestfestival.item.seeds.summer.name
+autumn,autumn,C65914,texture_4_days_7,harvestcore:wild_crop_autumn,none,false,harvestfestival.item.seeds.autumn.name
+winter,winter,2EC8E5,texture_4_days_7,harvestcore:wild_crop_winter,none,false,harvestfestival.item.seeds.winter.name

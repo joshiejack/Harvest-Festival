@@ -1,0 +1,15 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "transform": "forge:default-item",
+    "model": "forge:item-layer"
+  },
+  "variants": {
+    "bird_feed": [{ "textures": { "layer0": "husbandry:items/feed/feed" }}],
+    "fodder": [{ "textures": { "layer0": "husbandry:items/feed/fodder" }}],
+    "dog_food": [{ "textures": { "layer0": "husbandry:items/feed/dog_food" }}],
+    "cat_food": [{ "textures": { "layer0": "husbandry:items/feed/cat_food" }}],
+    "rabbit_food": [{ "textures": { "layer0": "husbandry:items/feed/rabbit_food" }}],
+    "slop": [{ "textures": { "layer0": "husbandry:items/feed/slop" }}]
+  }
+}

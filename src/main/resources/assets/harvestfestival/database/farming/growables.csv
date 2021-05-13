@@ -1,0 +1,8 @@
+name,block,type,season_handler
+vines,minecraft:vines,growth,all_year
+cactus,minecraft:cactus,growth,desert
+reeds,minecraft:reeds,growth,jungle
+cocoa,minecraft:cocoa,growth,jungle
+chorus,minecraft:chorus_plant,growth,all_year
+short_grass,minecraft:tallgrass 1,spreadable,not_winter
+tall_grass,minecraft:double_plant 2,spreadable,not_winter

@@ -1,0 +1,7 @@
+department_id,id,stock_mechanic,cost_formula
+tackle_shop,bait,unlimited,default
+tackle_shop,fishing_rod,limited_1,default
+tackle_shop,fish_trap,limited_5,default
+tackle_shop,hatchery,limited_3,default
+tackle_shop,fish_trap_blueprint,limited_1,default
+tackle_shop,hatchery_blueprint,limited_1,default

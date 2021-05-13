@@ -1,0 +1,11 @@
+Season,Weather,Weight
+spring,clear,70
+spring,rain,30
+summer,clear,95
+summer,storm,3
+summer,rain,2
+autumn,clear,55
+autumn,rain,45
+winter,clear,50
+winter,rain,45
+winter,storm,5

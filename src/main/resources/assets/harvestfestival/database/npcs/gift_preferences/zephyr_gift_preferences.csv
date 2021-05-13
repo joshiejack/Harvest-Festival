@@ -1,0 +1,26 @@
+item,quality
+lit_pumpkin,awesome
+curry_rice,awesome
+curry_noodles,awesome
+cat#magic,good
+cat#herb,good
+cat#mushroom,good
+nuggetGold,good
+ingotGold,good
+cat#flower,decent
+cat#plant,decent
+cat#mineral,decent
+cat#gem,dislike
+minecraft:double_plant 1,dislike
+minecraft:red_flower 2,dislike
+gastronomy:nature 4,dislike
+gemPinkDiamond,dislike
+gemSandrose,dislike
+cropTurnip,dislike
+ingotIron,bad
+nuggetIron,bad
+treeSapling,bad
+copper_metal,terrible
+copper_coin,terrible
+ingotCopper,terrible
+salt,terrible

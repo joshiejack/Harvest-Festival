@@ -1,0 +1,22 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "transform": "forge:default-item",
+    "model": "forge:item-layer"
+  },
+  "variants": {
+    "earn_10k": [{ "textures": { "layer0": "harvestfestival:items/achievements/earn_10k" }}],
+    "earn_50k": [{ "textures": { "layer0": "harvestfestival:items/achievements/earn_50k" }}],
+    "earn_250k": [{ "textures": { "layer0": "harvestfestival:items/achievements/earn_250k" }}],
+    "earn_1000k": [{ "textures": { "layer0": "harvestfestival:items/achievements/earn_1000k" }}],
+    "relationship_5_hearts": [{ "textures": { "layer0": "harvestfestival:items/achievements/relationship_5_hearts" }}],
+    "relationship_10_hearts": [{ "textures": { "layer0": "harvestfestival:items/achievements/relationship_10_hearts" }}],
+    "catch_100_fish": [{ "textures": { "layer0": "harvestfestival:items/achievements/catch_100_fish" }}],
+    "ship_1000_crops": [{ "textures": { "layer0": "harvestfestival:items/achievements/ship_1000_crops" }}],
+    "complete_shipping_collection": [{ "textures": { "layer0": "harvestfestival:items/achievements/complete_shipping_collection" }}],
+    "complete_fishing_collection": [{ "textures": { "layer0": "harvestfestival:items/achievements/complete_fishing_collection" }}],
+    "complete_cooking_collection": [{ "textures": { "layer0": "harvestfestival:items/achievements/complete_cooking_collection" }}],
+    "complete_mining_collection": [{ "textures": { "layer0": "harvestfestival:items/achievements/complete_mining_collection" }}],
+    "kill_10_slimes": [{ "textures": { "layer0": "harvestfestival:items/achievements/kill_10_slimes" }}]
+  }
+}

@@ -1,0 +1,98 @@
+husbandry.tab=Animal Husbandry
+#Tools
+husbandry.item.tool.brush.name=Brush
+husbandry.item.tool.milker.name=Milker
+husbandry.item.tool.miracle_potion.name=Miracle Potion
+husbandry.item.sickle.name=Sickle
+husbandry.item.tracker.name=Animal Data Tracker
+husbandry.tracker.stats=Animals
+husbandry.tracker.stats.empty=There are no animals that can be tracked nearby.
+#Feed
+husbandry.item.feed.fodder.name=Fodder
+husbandry.item.feed.bird_feed.name=Bird Feed
+husbandry.item.feed.cat_food.name=Cat Food
+husbandry.item.feed.dog_food.name=Dog Food
+husbandry.item.feed.rabbit_food.name=Rabbit Food
+husbandry.item.feed.slop.name=Slop
+#Drink
+husbandry.item.drink.hot_milk.name=Hot Milk
+husbandry.item.drink.small_milk.name=Small Milk
+husbandry.item.drink.medium_milk.name=Medium Milk
+husbandry.item.drink.large_milk.name=Large Milk
+husbandry.item.drink.small_truffle_oil.name=Small Truffle Oil
+husbandry.item.drink.medium_truffle_oil.name=Medium Truffle Oil
+husbandry.item.drink.large_truffle_oil.name=Large Truffle Oil
+#Food
+husbandry.item.food.small_mayonnaise.name=Small Mayonnaise
+husbandry.item.food.medium_mayonnaise.name=Medium Mayonnaise
+husbandry.item.food.large_mayonnaise.name=Large Mayonnaise
+husbandry.item.food.butter.name=Butter
+husbandry.item.food.dinnerroll.name=Dinner Roll
+husbandry.item.food.boiled_egg.name=Boiled Egg
+husbandry.item.food.ice_cream.name=Ice Cream
+husbandry.item.food.small_cheese.name=Small Cheese
+husbandry.item.food.medium_cheese.name=Medium Cheese
+husbandry.item.food.large_cheese.name=Large Cheese
+husbandry.item.food.small_egg.name=Small Egg
+husbandry.item.food.medium_egg.name=Medium Egg
+husbandry.item.food.large_egg.name=Large Egg
+husbandry.item.food.honey.name=Honey
+husbandry.item.food.small_duck_egg.name=Small Duck Egg
+husbandry.item.food.medium_duck_egg.name=Medium Duck Egg
+husbandry.item.food.large_duck_egg.name=Large Duck Egg
+husbandry.item.food.small_duck_mayonnaise.name=Small Duck Mayonnaise
+husbandry.item.food.medium_duck_mayonnaise.name=Medium Duck Mayonnaise
+husbandry.item.food.large_duck_mayonnaise.name=Large Duck Mayonnaise
+#Fabric
+husbandry.item.fabric.small_wool.name=Small Wool
+husbandry.item.fabric.medium_wool.name=Medium Wool
+husbandry.item.fabric.large_wool.name=Large Wool
+husbandry.item.fabric.small_yarn.name=Small Yarn
+husbandry.item.fabric.medium_yarn.name=Medium Yarn
+husbandry.item.fabric.large_yarn.name=Large Yarn
+husbandry.item.fabric.small_fine_yarn.name=Small Fine Yarn
+husbandry.item.fabric.medium_fine_yarn.name=Medium Fine Yarn
+husbandry.item.fabric.large_fine_yarn.name=Large Fine Yarn
+#Treats
+husbandry.item.treat.generic.name=Treat
+husbandry.item.treat.cat.name=Cat Treat
+husbandry.item.treat.chicken.name=Chicken Treat
+husbandry.item.treat.cow.name=Cow Treat
+husbandry.item.treat.dog.name=Dog Treat
+husbandry.item.treat.horse.name=Horse Treat
+husbandry.item.treat.pig.name=Pig Treat
+husbandry.item.treat.rabbit.name=Rabbit Treat
+husbandry.item.treat.sheep.name=Sheep Treat
+husbandry.item.treat.duck.name=Duck Treat
+husbandry.item.treat.parrot.name=Parrot Treat
+#Blocks
+husbandry.block.tray.nest_empty.name=Nest
+husbandry.block.tray.nest_small.name=Nest With Small Egg
+husbandry.block.tray.nest_medium.name=Nest With Medium Egg
+husbandry.block.tray.nest_large.name=Nest With Large Egg
+husbandry.block.tray.feeder_empty.name=Feeding Tray
+husbandry.block.tray.feeder_semi.name=Semi-Filled Feeding Tray
+husbandry.block.tray.feeder_full.name=Full Feeding Tray
+husbandry.block.tray.bowl_empty.name=Food Bowl
+husbandry.block.tray.bowl_cat.name=Food Bowl Filled With Cat Food
+husbandry.block.tray.bowl_dog.name=Food Bowl Filled With Dog Food
+husbandry.block.tray.bowl_rabbit.name=Food Bowl Filled With Rabbit Food
+husbandry.block.trough.single.name=Trough
+husbandry.block.trough.middle.name=Trough
+husbandry.block.trough.end.name=Trough
+#Machines
+husbandry.block.machine.spinning_wheel.name=Spinning Wheel
+husbandry.block.machine.oil_maker.name=Oil Maker
+husbandry.block.machine.hive.name=Bee Hive
+husbandry.block.double_machine.fermenter.name=Fermenter
+husbandry.block.incubator.empty.name=Incubator
+husbandry.block.incubator.small.name=Incubator With Small Egg
+husbandry.block.incubator.medium.name=Incubator With Medium Egg
+husbandry.block.incubator.large.name=Incubator With Large Egg
+#Products
+husbandry.block.product.small_truffle.name=Small Truffle
+husbandry.block.product.medium_truffle.name=Medium Truffle
+husbandry.block.product.large_truffle.name=Large Truffle
+husbandry.block.product.small_rabbit_wool.name=Small Rabbit Wool
+husbandry.block.product.medium_rabbit_wool.name=Medium Rabbit Wool
+husbandry.block.product.large_rabbit_wool.name=Large Rabbit Wool

@@ -1,0 +1,10 @@
+{
+	"registryName": "silver",
+	"type": "tool_material:standard",
+	"data": {
+		"harvestLevel": 2,
+		"maxUses": 512,
+		"efficiency": 6,
+		"damage": 2
+	}
+}

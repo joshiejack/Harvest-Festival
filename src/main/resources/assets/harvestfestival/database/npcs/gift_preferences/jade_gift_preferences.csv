@@ -1,0 +1,17 @@
+item,quality
+cropGrape,awesome
+red_flower 2,awesome
+gastronomy:nature 4,awesome
+gemAmethyst,awesome
+rabbit_foot,good
+flower_pot,good
+cat#flower,good
+cat#plant,good
+cat#herb,good
+cat#money,decent
+cat#mineral,bad
+ore#stone,terrible
+ore#stoneGranite,terrible
+ore#stoneAndesite,terrible
+ore#stoneDiorite,terrible
+logWood,terrible

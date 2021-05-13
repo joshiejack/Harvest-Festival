@@ -1,0 +1,25 @@
+name,quality
+#You must always include a none category
+none,decent
+gem,good
+flower,good
+cooking,good
+money,good
+meat,decent
+vegetable,decent
+fruit,decent
+herb,decent
+milk,decent
+egg,decent
+wool,decent
+art,decent
+knowledge,decent
+mushroom,decent
+magic,decent
+machine,dislike
+fish,dislike
+plant,dislike
+mineral,bad
+building,bad
+monster,bad
+junk,bad

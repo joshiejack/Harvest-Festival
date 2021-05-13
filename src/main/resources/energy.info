@@ -1,0 +1,16 @@
+[
+{
+  "modid": "energy",
+  "name": "Energy",
+  "description": "",
+  "version": "${energy_version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["joshie"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

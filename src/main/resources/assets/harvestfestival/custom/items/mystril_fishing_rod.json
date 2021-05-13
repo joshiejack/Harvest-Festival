@@ -1,0 +1,7 @@
+{
+  "registryName": "harvestfestival:mystril_fishing_rod",
+  "type": "item:fishing_rod",
+  "data": {
+    "toolMaterial": "mystril"
+  }
+}

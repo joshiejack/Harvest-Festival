@@ -1,0 +1,204 @@
+{
+  "registryName": "harvestfestival:hell",
+  "hud": "harvestfestival:textures/gui/mine_hell.png",
+  "biome": "harvestfestival:caves_hellish",
+  "floor": "harvestfestival:floor_hell",
+  "wall": "harvestfestival:wall,decortype=hell",
+  "ladder": "harvestfestival:mine_ladder,facing=north,ladder=hell",
+  "upper_portal": "harvestfestival:portal,ew=true,portal=hell,section=tl",
+  "lower_portal": "harvestfestival:portal,ew=true,portal=hell_brick,section=tl",
+  "decorators": [
+    {
+      "type": "leaves",
+      "ranges": [
+        "overgrowth"
+      ],
+      "state": "leaves,check_decay=false,decayable=true,variant=spruce",
+      "passes": 11,
+      "floorMultiplier": 6
+    },
+    {
+      "type": "grass",
+      "ranges": [
+        "overgrowth"
+      ],
+      "state": "tallgrass,type=tall_grass",
+      "passes": 1
+    },
+    {
+      "type": "floor",
+      "ranges": [
+        "overgrowth"
+      ],
+      "state": "grass,snowy=false",
+      "passes": 2,
+      "number": 24
+    },
+    {
+      "type": "floor",
+      "ranges": [
+        "lavafields",
+        "glowstone"
+      ],
+      "state": "lava",
+      "passes": 2,
+      "number": 48
+    },
+    {
+      "type": "glowstone",
+      "chance": 5,
+      "ranges": [
+        "glowstone"
+      ]
+    },
+    {
+      "type": "carpet",
+      "ranges": [
+        "overgrowth",
+        "lavafields",
+        "glowstone"
+      ],
+      "state": "harvestfestival:cobblestone,decortype=hell,ew=true"
+    },
+    {
+      "type": "carpet",
+      "ranges": [
+        "basement"
+      ],
+      "state": "harvestfestival:cobblestone,decortype=hell_brick,ew=true"
+    }
+  ],
+  "loot": [
+    {
+      "state": "harvestfestival:shrub,shrub=weed",
+      "max_floor": 30,
+      "cluster_distance": 8,
+      "cluster_amount": 8,
+      "weight": 32
+    },
+    {
+      "state": "harvestfestival:rock,rock=hell",
+      "weight": 144
+    },
+    {
+      "state": "harvestfestival:crate,crate=hell_chest",
+      "cluster_distance": 2,
+      "cluster_amount": 2,
+      "weight": 4
+    },
+    {
+      "state": "harvestfestival:node,node=gold",
+      "weight": 8
+    },
+    {
+      "state": "harvestfestival:node,node=silver",
+      "weight": 7
+    },
+    {
+      "state": "harvestfestival:node,node=copper",
+      "weight": 6
+    },
+    {
+      "state": "harvestfestival:node,node=amethyst",
+      "weight": 4
+    },
+    {
+      "state": "harvestfestival:node,node=topaz",
+      "weight": 5
+    },
+    {
+      "state": "harvestfestival:node,node=jade",
+      "weight": 5.5
+    },
+    {
+      "state": "harvestfestival:node,node=ruby",
+      "weight": 6
+    },
+    {
+      "state": "harvestfestival:node,node=gem",
+      "weight": 2.5
+    },
+    {
+      "state": "harvestfestival:node,node=silver",
+      "min_floor": 30,
+      "weight": 2
+    }
+  ],
+  "entities": [
+    {
+      "entity": "minecraft:magma_cube",
+      "type": "monster",
+      "ranges": [
+        "overgrowth",
+        "lavafields",
+        "glowstone",
+        "basement"
+      ],
+      "weight": 50,
+      "min_group": 4,
+      "max_group": 4
+    },
+    {
+      "entity": "minecraft:zombie_pigman",
+      "type": "monster",
+      "ranges": [
+        "lavafields",
+        "glowstone"
+      ],
+      "weight": 100,
+      "min_group": 4,
+      "max_group": 4
+    },
+    {
+      "entity": "minecraft:wither_skeleton",
+      "type": "monster",
+      "ranges": [
+        "basement"
+      ],
+      "weight": 20,
+      "min_group": 4,
+      "max_group": 4
+    },
+    {
+      "entity": "minecraft:blaze",
+      "type": "monster",
+      "ranges": [
+        "basement"
+      ],
+      "weight": 30,
+      "min_group": 4,
+      "max_group": 4
+    }
+  ],
+  "generators": [
+    "harvestcore:tunnel_multi",
+    "harvestcore:tunnel",
+    "harvestfestival:spiral",
+    "harvestfestival:hexagon",
+    "harvestfestival:triangle"
+  ],
+  "ranges": [
+    {
+      "name": "overgrowth",
+      "min_floor": 1,
+      "max_floor": 10
+    },
+    {
+      "name": "lavafields",
+      "min_floor": 11,
+      "max_floor": 20
+    },
+    {
+      "name": "glowstone",
+      "min_floor": 21,
+      "max_floor": 30
+    },
+    {
+      "name": "basement",
+      "min_floor": 31,
+      "max_floor": 40,
+      "wall": "harvestfestival:wall,decortype=hell_brick"
+    }
+  ],
+  "order": 2
+}

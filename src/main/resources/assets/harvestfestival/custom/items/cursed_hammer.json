@@ -1,0 +1,11 @@
+{
+  "registryName": "harvestfestival:cursed_hammer",
+  "type": "item:hammer",
+  "data": {
+    "script": "harvestfestival:items/cursed",
+    "toolMaterial": "blessed",
+    "area": 7,
+    "widthAndHeight": 1,
+    "depth": 5
+  }
+}

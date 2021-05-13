@@ -1,0 +1,15 @@
+department_id,id,stock_mechanic,cost_formula
+#Buildings
+carpenter_buildings,village_field,limited_1,default
+carpenter_buildings,village_green,limited_1,default
+carpenter_buildings,village_park,limited_1,default
+#Materials
+carpenter_materials,wood,unlimited,default
+carpenter_materials,stone,unlimited,default
+carpenter_materials,glass,unlimited,default
+#Furniture
+carpenter_furniture,mailbox,unlimited,default
+#Blueprints
+carpenter_blueprints,mailbox_blueprint,limited_1,default
+carpenter_blueprints,enchanting_table,limited_1,default
+carpenter_blueprints,bookshelf,limited_1,default

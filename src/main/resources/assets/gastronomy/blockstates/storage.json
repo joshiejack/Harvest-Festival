@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "facing=north,storage=fridge":  { "model": "gastronomy:fridge" },
+    "facing=south,storage=fridge":  { "model": "gastronomy:fridge", "y": 180 },
+    "facing=east,storage=fridge": { "model": "gastronomy:fridge", "y": 90 },
+    "facing=west,storage=fridge": { "model": "gastronomy:fridge", "y": 270 },
+    "facing=north,storage=top":  { "model": "gastronomy:fridge" },
+    "facing=south,storage=top":  { "model": "gastronomy:fridge", "y": 180 },
+    "facing=east,storage=top": { "model": "gastronomy:fridge", "y": 90 },
+    "facing=west,storage=top": { "model": "gastronomy:fridge", "y": 270 },
+    "inventory_fridge": { "model": "gastronomy:fridge_inventory" }
+  }
+}

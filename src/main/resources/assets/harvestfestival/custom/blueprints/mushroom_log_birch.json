@@ -1,0 +1,14 @@
+{
+  "registryName": "harvestfestival:mushroom_log_birch",
+  "type": "blueprint:standard",
+  "data": {
+    "category": "machine",
+    "result": "horticulture:stump 2",
+    "ingredients": [
+      {
+        "item": "minecraft:log 2",
+        "count": 5
+      }
+    ]
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "registryName": "harvestfestival:mailbox_acacia",
+  "type": "blueprint:standard",
+  "data": {
+    "category": "machine",
+    "result": "harvestcore:mailbox 5",
+    "ingredients": [
+      {
+        "item": "minecraft:planks 4",
+        "count": 1
+      },
+      {
+        "item": "minecraft:acacia_fence",
+        "count": 1
+      }
+    ]
+  }
+}

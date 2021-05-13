@@ -1,0 +1,14 @@
+{
+  "registryName": "harvestfestival:farmhouse_4",
+  "type": "building:standard",
+  "data": {
+    "offset": "0 0 0",
+    "limit": 1,
+    "components": [
+      {
+        "state": "log 1",
+        "pos": "1 0 11"
+      }
+    ]
+  }
+}

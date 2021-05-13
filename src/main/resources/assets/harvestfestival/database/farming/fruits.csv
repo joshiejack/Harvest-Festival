@@ -1,0 +1,5 @@
+name,fruit,fruit_handler,season_handler
+apple,"horticulture:fruit 0,horticulture:fruit 4,horticulture:fruit 8,horticulture:fruit 12",tree_fruit_3,autumn
+orange,"horticulture:fruit 2,horticulture:fruit 6,horticulture:fruit 10,horticulture:fruit 14",tree_fruit_3,summer
+peach,"horticulture:fruit 3,horticulture:fruit 7,horticulture:fruit 11,horticulture:fruit 15",tree_fruit_3,summer
+banana,"horticulture:fruit 1,horticulture:fruit 5,horticulture:fruit 9,horticulture:fruit 13",tree_fruit_4,summer

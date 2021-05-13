@@ -1,0 +1,10 @@
+ID,Max Stock,Replenish Rate
+limited_3,3,3
+limited_4,4,4
+limited_5,5,5
+limited_8,8,8
+limited_10,10,10
+limited_10_slow_replenish,10,1
+limited_30_slow_replenish,30,3
+limited_50_slow_replenish,50,5
+unlimited_no_replenish,2147483647,0

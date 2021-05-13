@@ -1,0 +1,30 @@
+{
+	"registryName": "harvestfestival:crate",
+	"type": "block:standard",
+	"defaults": {
+		"propertyName": "crate",
+		"hardness": "2F",
+		"soundType": "wood",
+		"material": "wood",
+		"toolType": "axe",
+		"boundingBox": "0 0 0 1 1 1"
+	},
+	"data": [
+		{
+			"name": "square",
+			"lootTable": "harvestfestival:blocks/square"
+		},
+		{
+			"name": "barrel",
+			"lootTable": "harvestfestival:blocks/barrel"
+		},
+		{
+			"name": "frozen_barrel",
+			"lootTable": "harvestfestival:blocks/frozen_barrel"
+		},
+		{
+			"name": "hell_chest",
+			"lootTable": "harvestfestival:blocks/hell_chest"
+		}
+	]
+}

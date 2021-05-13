@@ -1,0 +1,9 @@
+{
+  "registryName": "harvestfestival:blessed_hoe",
+  "type": "item:hoe",
+  "data": {
+    "toolMaterial": "blessed",
+    "width": 11,
+    "depth": 1
+  }
+}

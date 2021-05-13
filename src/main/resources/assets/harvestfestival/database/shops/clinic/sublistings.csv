@@ -1,0 +1,10 @@
+department_id,listing_id,id,type,data,gold,weight
+clinic,repair,default,script,harvestfestival:shops_health_restore,3000,1
+clinic,super_apple,default,item,golden_apple 1,30000,1
+clinic,golden_apple,default,item,golden_apple 0,3000,1
+clinic,golden_carrot,default,item,golden_carrot,500,1
+clinic,healing_potion,default,item,"potion {Potion:""minecraft:healing""}",500,1
+clinic,healing_potion_2,default,item,"potion {Potion:""minecraft:strong_healing""}",600,1
+clinic,healing_potion_3,default,item,"potion {Potion:""minecraft:regeneration""}",300,1
+clinic,healing_potion_4,default,item,"potion {Potion:""minecraft:long_regeneration""}",400,1
+clinic,healing_potion_5,default,item,"potion {Potion:""minecraft:strong_regeneration""}",350,1

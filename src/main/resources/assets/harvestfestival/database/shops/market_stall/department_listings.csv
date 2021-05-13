@@ -1,0 +1,20 @@
+department_id,id,stock_mechanic,cost_formula
+#Starter Items
+market_stall,turnip_seeds,unlimited,default
+market_stall,onion_seeds,unlimited,default
+market_stall,spinach_seeds,unlimited,default
+market_stall,basic_watering_can,limited_1,default
+market_stall,basic_hoe,limited_1,default
+market_stall,basic_axe,limited_1,default
+market_stall,basic_hammer,limited_1,default
+market_stall,basic_shovel,limited_1,default
+market_stall,1000g_string,limited_1,default
+#Random Items
+market_stall,random_item$0,limited_8,market_stall_item
+market_stall,random_item$1,limited_1,market_stall_item
+market_stall,random_item$2,limited_3,market_stall_item
+market_stall,random_item$3,limited_3,market_stall_item
+market_stall,random_item$4,limited_3,market_stall_item
+market_stall,random_item$5,limited_5,market_stall_item
+market_stall,random_item$6,limited_5,market_stall_item
+market_stall,random_item$7,limited_5,market_stall_item

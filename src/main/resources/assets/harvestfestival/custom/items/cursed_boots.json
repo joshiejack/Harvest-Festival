@@ -1,0 +1,16 @@
+{
+  "registryName": "harvestfestival:cursed_boots",
+  "type": "item:armor",
+  "data": {
+    "script": "harvestfestival:items/cursed",
+    "armorMaterial": "harvestfestival:cursed",
+    "equipmentSlot": "feet",
+    "attributes": [
+      {
+        "name": "movement_speed",
+        "amount": -0.025,
+        "operation": 0
+      }
+    ]
+  }
+}

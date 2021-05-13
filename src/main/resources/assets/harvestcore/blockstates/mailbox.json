@@ -1,0 +1,40 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "transform": "forge:default-block"
+  },
+  "variants": {
+    "facing=north,material=default":  { "model": "harvestcore:mailbox" },
+    "facing=south,material=default":  { "model": "harvestcore:mailbox", "y": 180 },
+    "facing=east,material=default": { "model": "harvestcore:mailbox", "y": 90 },
+    "facing=west,material=default": { "model": "harvestcore:mailbox", "y": 270 },
+    "facing=north,material=oak":  { "model": "harvestcore:mailbox", "textures": { "particle": "harvestcore:blocks/oak_mailbox2", "texture": "harvestcore:blocks/oak_mailbox1" } },
+    "facing=south,material=oak":  { "model": "harvestcore:mailbox", "textures": { "particle": "harvestcore:blocks/oak_mailbox2", "texture": "harvestcore:blocks/oak_mailbox1" }, "y": 180 },
+    "facing=east,material=oak": { "model": "harvestcore:mailbox", "textures": { "particle": "harvestcore:blocks/oak_mailbox2", "texture": "harvestcore:blocks/oak_mailbox1" }, "y": 90 },
+    "facing=west,material=oak": { "model": "harvestcore:mailbox", "textures": { "particle": "harvestcore:blocks/oak_mailbox2", "texture": "harvestcore:blocks/oak_mailbox1" }, "y": 270 },
+    "facing=north,material=spruce":  { "model": "harvestcore:mailbox", "textures": { "particle": "harvestcore:blocks/spruce_mailbox2", "texture": "harvestcore:blocks/spruce_mailbox1" } },
+    "facing=south,material=spruce":  { "model": "harvestcore:mailbox", "textures": { "particle": "harvestcore:blocks/spruce_mailbox2", "texture": "harvestcore:blocks/spruce_mailbox1" }, "y": 180 },
+    "facing=east,material=spruce": { "model": "harvestcore:mailbox", "textures": { "particle": "harvestcore:blocks/spruce_mailbox2", "texture": "harvestcore:blocks/spruce_mailbox1" }, "y": 90 },
+    "facing=west,material=spruce": { "model": "harvestcore:mailbox", "textures": { "particle": "harvestcore:blocks/spruce_mailbox2", "texture": "harvestcore:blocks/spruce_mailbox1" }, "y": 270 },
+    "facing=north,material=birch":  { "model": "harvestcore:mailbox", "textures": { "particle": "harvestcore:blocks/birch_mailbox2", "texture": "harvestcore:blocks/birch_mailbox1" } },
+    "facing=south,material=birch":  { "model": "harvestcore:mailbox", "textures": { "particle": "harvestcore:blocks/birch_mailbox2", "texture": "harvestcore:blocks/birch_mailbox1" }, "y": 180 },
+    "facing=east,material=birch": { "model": "harvestcore:mailbox", "textures": { "particle": "harvestcore:blocks/birch_mailbox2", "texture": "harvestcore:blocks/birch_mailbox1" }, "y": 90 },
+    "facing=west,material=birch": { "model": "harvestcore:mailbox", "textures": { "particle": "harvestcore:blocks/birch_mailbox2", "texture": "harvestcore:blocks/birch_mailbox1" }, "y": 270 },
+    "facing=north,material=jungle":  { "model": "harvestcore:mailbox", "textures": { "particle": "harvestcore:blocks/jungle_mailbox2", "texture": "harvestcore:blocks/jungle_mailbox1" } },
+    "facing=south,material=jungle":  { "model": "harvestcore:mailbox", "textures": { "particle": "harvestcore:blocks/jungle_mailbox2", "texture": "harvestcore:blocks/jungle_mailbox1" }, "y": 180 },
+    "facing=east,material=jungle": { "model": "harvestcore:mailbox", "textures": { "particle": "harvestcore:blocks/jungle_mailbox2", "texture": "harvestcore:blocks/jungle_mailbox1" }, "y": 90 },
+    "facing=west,material=jungle": { "model": "harvestcore:mailbox", "textures": { "particle": "harvestcore:blocks/jungle_mailbox2", "texture": "harvestcore:blocks/jungle_mailbox1" }, "y": 270 },
+    "facing=north,material=acacia":  { "model": "harvestcore:mailbox", "textures": { "particle": "harvestcore:blocks/acacia_mailbox2", "texture": "harvestcore:blocks/acacia_mailbox1" } },
+    "facing=south,material=acacia":  { "model": "harvestcore:mailbox", "textures": { "particle": "harvestcore:blocks/acacia_mailbox2", "texture": "harvestcore:blocks/acacia_mailbox1" }, "y": 180 },
+    "facing=east,material=acacia": { "model": "harvestcore:mailbox", "textures": { "particle": "harvestcore:blocks/acacia_mailbox2", "texture": "harvestcore:blocks/acacia_mailbox1" }, "y": 90 },
+    "facing=west,material=acacia": { "model": "harvestcore:mailbox", "textures": { "particle": "harvestcore:blocks/acacia_mailbox2", "texture": "harvestcore:blocks/acacia_mailbox1" }, "y": 270 },
+    "facing=north,material=dark_oak":  { "model": "harvestcore:mailbox", "textures": { "particle": "harvestcore:blocks/dark_oak_mailbox2", "texture": "harvestcore:blocks/dark_oak_mailbox1" } },
+    "facing=south,material=dark_oak":  { "model": "harvestcore:mailbox", "textures": { "particle": "harvestcore:blocks/dark_oak_mailbox2", "texture": "harvestcore:blocks/dark_oak_mailbox1" }, "y": 180 },
+    "facing=east,material=dark_oak": { "model": "harvestcore:mailbox", "textures": { "particle": "harvestcore:blocks/dark_oak_mailbox2", "texture": "harvestcore:blocks/dark_oak_mailbox1" }, "y": 90 },
+    "facing=west,material=dark_oak": { "model": "harvestcore:mailbox", "textures": { "particle": "harvestcore:blocks/dark_oak_mailbox2", "texture": "harvestcore:blocks/dark_oak_mailbox1" }, "y": 270 },
+    "facing=north,material=nether_brick":  { "model": "harvestcore:mailbox", "textures": { "particle": "harvestcore:blocks/nether_brick_mailbox2", "texture": "harvestcore:blocks/nether_brick_mailbox1" } },
+    "facing=south,material=nether_brick":  { "model": "harvestcore:mailbox", "textures": { "particle": "harvestcore:blocks/nether_brick_mailbox2", "texture": "harvestcore:blocks/nether_brick_mailbox1" }, "y": 180 },
+    "facing=east,material=nether_brick": { "model": "harvestcore:mailbox", "textures": { "particle": "harvestcore:blocks/nether_brick_mailbox2", "texture": "harvestcore:blocks/nether_brick_mailbox1" }, "y": 90 },
+    "facing=west,material=nether_brick": { "model": "harvestcore:mailbox", "textures": { "particle": "harvestcore:blocks/nether_brick_mailbox2", "texture": "harvestcore:blocks/nether_brick_mailbox1" }, "y": 270 }
+  }
+}

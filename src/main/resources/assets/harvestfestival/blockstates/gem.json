@@ -1,0 +1,22 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "transform": "forge:default-item",
+    "model": "forge:item-layer"
+  },
+  "variants": {
+    "adamantite": [{ "textures": { "layer0": "harvestfestival:items/mining/gems/adamantite" }}],
+    "agate": [{ "textures": { "layer0": "harvestfestival:items/mining/gems/agate" }}],
+    "alexandrite": [{ "textures": { "layer0": "harvestfestival:items/mining/gems/alexandrite" }}],
+    "amethyst": [{ "textures": { "layer0": "harvestfestival:items/mining/gems/amethyst" }}],
+    "fluorite": [{ "textures": { "layer0": "harvestfestival:items/mining/gems/fluorite" }}],
+    "jade": [{ "textures": { "layer0": "harvestfestival:items/mining/gems/jade" }}],
+    "moon_stone": [{ "textures": { "layer0": "harvestfestival:items/mining/gems/moon_stone" }}],
+    "peridot": [{ "textures": { "layer0": "harvestfestival:items/mining/gems/peridot" }}],
+    "pink_diamond": [{ "textures": { "layer0": "harvestfestival:items/mining/gems/pink_diamond" }}],
+    "ruby": [{ "textures": { "layer0": "harvestfestival:items/mining/gems/ruby" }}],
+    "sand_rose": [{ "textures": { "layer0": "harvestfestival:items/mining/gems/sand_rose" }}],
+    "sapphire": [{ "textures": { "layer0": "harvestfestival:items/mining/gems/sapphire" }}],
+    "topaz": [{ "textures": { "layer0": "harvestfestival:items/mining/gems/topaz" }}]
+  }
+}

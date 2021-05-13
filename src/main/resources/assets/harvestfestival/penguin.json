@@ -1,0 +1,23 @@
+{
+  "penguin_lib": [
+    "custom/armor_materials",
+    "custom/biomes",
+    "custom/blocks",
+    "custom/blueprints",
+    "custom/buildings",
+    "custom/entities",
+    "custom/items",
+    "custom/letters",
+    "custom/loot_tables",
+    "custom/notes",
+    "custom/potions",
+    "custom/sounds",
+    "custom/tabs",
+    "custom/tiers",
+    "custom/tool_materials",
+    "config_overrides",
+    "database",
+    "quests",
+    "scripts"
+  ]
+}

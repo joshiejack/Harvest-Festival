@@ -1,0 +1,7 @@
+department_id,listing_id,sub_id,item,amount
+carpenter_buildings,open_field,default,treeSapling,8
+carpenter_buildings,village_green,default,treeSapling,24
+carpenter_buildings,village_green,default,logWood,16
+carpenter_buildings,village_green,default,coal,2
+carpenter_buildings,village_park,default,logWood,16
+carpenter_buildings,village_park,default,dustGlowstone,16

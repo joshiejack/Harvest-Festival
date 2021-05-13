@@ -1,0 +1,22 @@
+{
+  "registryName": "minecraft:enchanting_table",
+  "type": "blueprint:standard",
+  "data": {
+    "category": "machine",
+    "result": "minecraft:enchanting_table",
+    "ingredients": [
+      {
+        "item": "book",
+        "count": 1
+      },
+      {
+        "item": "gemDiamond",
+        "count": 2
+      },
+      {
+        "item": "obsidian",
+        "count": 4
+      }
+    ]
+  }
+}

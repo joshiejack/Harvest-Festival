@@ -1,0 +1,13 @@
+Name,Type
+quarry,loot_state
+fishing,list
+mining,list
+crops,list
+market_stall_animal,loot_item
+market_stall_crops,loot_item
+market_stall_fish,loot_item
+market_stall_gathering,loot_item
+market_stall_gems,loot_item
+market_stall_meals,loot_item
+market_stall_seeds,loot_item
+market_stall,loot_table

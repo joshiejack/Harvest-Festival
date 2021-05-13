@@ -1,0 +1,10 @@
+{
+	"registryName": "basic",
+	"type": "tool_material:standard",
+	"data": {
+		"harvestLevel": 0,
+		"maxUses": 128,
+		"efficiency": 4,
+		"damage": 1
+	}
+}

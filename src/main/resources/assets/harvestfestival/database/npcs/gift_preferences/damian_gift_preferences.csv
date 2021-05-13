@@ -1,0 +1,19 @@
+item,quality
+gastronomy:nature 3,awesome
+fossil,awesome
+silver_coin,awesome
+cat#herb,good
+cat#vegetable,good
+cat#knowledge,good
+ingotSilver,good
+silver_metal,decent
+piscary:fish 4,decent
+cat#meat,dislike
+cat#milk,dislike
+cat#egg,dislike
+golden_carrot,bad
+piscary:fish 14,bad
+golden_apple,bad
+gold_coin,terrible
+gemPrismarine,terrible
+dustPrismarine,terrible

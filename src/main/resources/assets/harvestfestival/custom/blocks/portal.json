@@ -1,0 +1,37 @@
+{
+	"registryName": "harvestfestival:portal",
+	"type": "block:doorway",
+	"defaults": {
+		"propertyName": "portal",
+		"hardness": "-1.0F",
+		"explosionResistance": "60000000F",
+		"silkHarvest": false,
+		"soundType": "stone",
+		"material": "rock",
+		"collisionBox": "0.0625 0.0 0.0625 0.9375 1.0 0.9375",
+		"script": "harvestfestival:blocks/portal"
+	},
+	"data": [
+		{
+			"name": "external"
+		},
+		{
+			"name": "internal"
+		},
+		{
+			"name": "stone"
+		},
+		{
+			"name": "frozen"
+		},
+		{
+			"name": "hell"
+		},
+		{
+			"name": "frozen_brick"
+		},
+		{
+			"name": "hell_brick"
+		}
+	]
+}

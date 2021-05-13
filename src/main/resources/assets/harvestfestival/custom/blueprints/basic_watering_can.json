@@ -1,0 +1,14 @@
+{
+  "registryName": "harvestfestival:basic_watering_can",
+  "type": "blueprint:standard",
+  "data": {
+    "category": "tool",
+    "result": "horticulture:watering_can {Unbreakable:1}",
+    "ingredients": [
+      {
+        "item": "flint",
+        "count": 5
+      }
+    ]
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "forge_marker": 1,
+  "variants": {
+    "milk": {
+      "model": "forge:fluid",
+      "custom": { "fluid": "milk" }
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+	"registryName": "harvestfestival:mushroom",
+	"type": "block:mushroom",
+	"defaults": {
+		"propertyName": "mushroom",
+		"hardness": 0
+	},
+	"data": [
+		{
+			"name": "dwarfen_shroom",
+			"lootTable": "harvestfestival:blocks/dwarfen_shroom"
+		}
+	]
+}

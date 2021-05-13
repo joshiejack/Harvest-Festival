@@ -1,0 +1,26 @@
+item,quality
+minecraft:double_plant 0,awesome
+small_cheese,awesome
+medium_cheese,awesome
+large_cheese,awesome
+cat#milk,good
+cooked_mutton,good
+cooked_porkchop,good
+cooked_beef,good
+gemTopaz,good
+cat#monster,decent
+gemAgate,decent
+cat#gem,dislike
+book,dislike
+writable_book,dislike
+enchanted_book,dislike
+written_book,dislike
+cat#money,bad
+gemEmerald,bad
+gemFluorite,bad
+gemJade,bad
+gemPeridot,bad
+gemSapphire,bad
+slimeball,terrible
+gemAlexandrite,terrible
+piscary:loot 4,terrible

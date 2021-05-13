@@ -1,0 +1,14 @@
+{
+  "registryName": "harvestfestival:fish_trap",
+  "type": "blueprint:standard",
+  "data": {
+    "category": "machine",
+    "result": "piscary:fish_trap",
+    "ingredients": [
+      {
+        "item": "stickWood",
+        "count": 5
+      }
+    ]
+  }
+}

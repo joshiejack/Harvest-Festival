@@ -1,0 +1,18 @@
+{
+  "registryName": "minecraft:bookshelf",
+  "type": "blueprint:standard",
+  "data": {
+    "category": "decorative",
+    "result": "minecraft:bookshelf",
+    "ingredients": [
+      {
+        "item": "book",
+        "count": 3
+      },
+      {
+        "item": "plankWood",
+        "count": 6
+      }
+    ]
+  }
+}

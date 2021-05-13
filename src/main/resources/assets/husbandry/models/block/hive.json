@@ -1,0 +1,19 @@
+{
+  "textures": {
+    "particle": "penguinlib:blocks/wip"
+  },
+  "elements": [
+    {
+      "from": [ 1, 0, 1 ],
+      "to": [ 15, 15, 15 ],
+      "faces": {
+        "down": { "uv": [ 1, 1, 15, 15 ], "texture": "#particle" },
+        "up": { "uv": [ 1, 1, 15, 15 ], "texture": "#particle" },
+        "north": { "uv": [ 1, 1, 15, 16 ], "texture": "#particle" },
+        "south": { "uv": [ 1, 1, 15, 16 ], "texture": "#particle" },
+        "west": { "uv": [ 1, 1, 15, 16 ], "texture": "#particle" },
+        "east": { "uv": [ 1, 1, 15, 16 ], "texture": "#particle" }
+      }
+    }
+  ]
+}

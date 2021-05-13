@@ -1,0 +1,1 @@
+function newDay(world, town, building) {}

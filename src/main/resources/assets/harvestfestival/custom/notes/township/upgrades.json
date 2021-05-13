@@ -1,0 +1,13 @@
+{
+  "registryName": "harvestfestival:blueprints",
+  "type": "note:standard",
+  "data": {
+    "category": "activities",
+    "script": "harvestfestival:notes/upgrades",
+    "icon": {
+      "gui": "harvestfestival:textures/gui/icons.png",
+      "x": 0,
+      "y": 48
+    }
+  }
+}

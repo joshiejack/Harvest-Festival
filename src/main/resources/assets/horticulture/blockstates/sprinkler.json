@@ -1,0 +1,6 @@
+{
+  "variants": {
+    "sprinkler=iron":  { "model": "horticulture:sprinkler" },
+    "sprinkler=old":  { "model": "horticulture:sprinkler_old" }
+  }
+}

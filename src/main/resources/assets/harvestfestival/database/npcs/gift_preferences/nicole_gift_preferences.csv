@@ -1,0 +1,22 @@
+item,quality
+mushroom_stew,awesome
+gastronomy:nature 1,awesome
+cat#mushroom,good
+cat#herb,good
+cat#vegetable,good
+cat#knowledge,good
+dustRedstone,good
+cat#plant,decent
+cat#machine,decent
+cat#building,decent
+cat#fruit,dislike
+apple_pie,dislike
+apple_souffle,dislike
+apple_juice,dislike
+apple_jam,dislike
+cat#meat,bad
+cropApple,bad
+golden_apple,bad
+chicken,terrible
+beetroot_soup,terrible
+cropBeetroot,terrible

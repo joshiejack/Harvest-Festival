@@ -1,0 +1,7 @@
+{
+  "registryName": "harvestfestival:gameplay/fishing",
+  "type": "loot_table:override",
+  "data": {
+    "target": "minecraft:gameplay/fishing"
+  }
+}

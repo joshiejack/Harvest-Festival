@@ -1,0 +1,10 @@
+Block,SeasonHandler
+minecraft:wheat,not_winter
+minecraft:carrot,not_winter
+minecraft:potato,not_winter
+minecraft:beetroot,not_winter
+minecraft:melon_stem,late
+minecraft:pumpkin_stem,late
+minecraft:cocoa,jungle
+minecraft:reed,jungle
+minecraft:cactus,desert

@@ -1,0 +1,5 @@
+Name,Type,Data
+pond,building,harvestfestival:pond;16
+ocean,biome_dictionary,ocean
+river,biome_dictionary,river
+lake,biome_dictionary,!water

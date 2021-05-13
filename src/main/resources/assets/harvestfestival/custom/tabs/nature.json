@@ -1,0 +1,10 @@
+{
+  "registryName": "harvestfestival:nature",
+  "type": "tab:standard",
+  "data": {
+    "icon": "turnip_seed_bag",
+    "items": ["harvestcore:seed_bag", "harvestcore:seedling_bag", "harvestcore:starter", "harvestcore:fertilizer",
+              "harvestfestival:stone", "harvestfestival:branch_old", "harvestfestival:branch_new",
+              "harvestfestival:stump_old", "harvestfestival:stump_new","harvestfestival:shrub", "harvestfestival:flower"]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "transform": "forge:default-item",
+    "model": "forge:item-layer"
+  },
+  "variants": {
+    "butter": [{ "textures": { "layer0": "husbandry:items/food/butter" }}],
+    "dinnerroll": [{ "textures": { "layer0": "husbandry:items/food/dinnerroll" }}],
+    "boiled_egg": [{ "textures": { "layer0": "husbandry:items/food/egg_boiled" }}],
+    "ice_cream": [{ "textures": { "layer0": "husbandry:items/food/ice_cream" }}],
+    "small_mayonnaise": [{ "textures": { "layer0": "husbandry:items/food/mayonnaise_small" }}],
+    "medium_mayonnaise": [{ "textures": { "layer0": "husbandry:items/food/mayonnaise_medium" }}],
+    "large_mayonnaise": [{ "textures": { "layer0": "husbandry:items/food/mayonnaise_large" }}],
+    "small_egg": [{ "textures": { "layer0": "husbandry:items/food/egg_small" }}],
+    "medium_egg": [{ "textures": { "layer0": "husbandry:items/food/egg_medium" }}],
+    "large_egg": [{ "textures": { "layer0": "husbandry:items/food/egg_large" }}],
+    "small_cheese": [{ "textures": { "layer0": "husbandry:items/food/cheese_small" }}],
+    "medium_cheese": [{ "textures": { "layer0": "husbandry:items/food/cheese_medium" }}],
+    "large_cheese": [{ "textures": { "layer0": "husbandry:items/food/cheese_large" }}],
+    "honey": [{ "textures": { "layer0": "husbandry:items/food/honey" }}],
+    "small_duck_mayonnaise": [{ "textures": { "layer0": "husbandry:items/food/duck_mayonnaise_small" }}],
+    "medium_duck_mayonnaise": [{ "textures": { "layer0": "husbandry:items/food/duck_mayonnaise_medium" }}],
+    "large_duck_mayonnaise": [{ "textures": { "layer0": "husbandry:items/food/duck_mayonnaise_large" }}],
+    "small_duck_egg": [{ "textures": { "layer0": "husbandry:items/food/duck_egg_small" }}],
+    "medium_duck_egg": [{ "textures": { "layer0": "husbandry:items/food/duck_egg_medium" }}],
+    "large_duck_egg": [{ "textures": { "layer0": "husbandry:items/food/duck_egg_large" }}]
+  }
+}

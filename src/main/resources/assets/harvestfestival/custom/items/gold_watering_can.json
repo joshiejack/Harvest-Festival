@@ -1,0 +1,9 @@
+{
+  "registryName": "harvestfestival:gold_watering_can",
+  "type": "item:watering_can",
+  "data": {
+    "toolMaterial": "gold",
+    "width": 2,
+    "depth": 2
+  }
+}

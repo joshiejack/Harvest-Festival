@@ -1,0 +1,5 @@
+Key,Value
+addKitchenRecipes,false
+vanillaRecipes,false
+enableWorldGen,false
+enableDishRequirement,false

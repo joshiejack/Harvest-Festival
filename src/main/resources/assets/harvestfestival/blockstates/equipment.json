@@ -1,0 +1,20 @@
+{
+  "variants": {
+    "equipment=shipping,facing=north":  { "model": "harvestfestival:equipment/shipping_bin" },
+    "equipment=shipping,facing=south":  { "model": "harvestfestival:equipment/shipping_bin", "y": 180 },
+    "equipment=shipping,facing=east": { "model": "harvestfestival:equipment/shipping_bin", "y": 90 },
+    "equipment=shipping,facing=west": { "model": "harvestfestival:equipment/shipping_bin", "y": 270 },
+    "equipment=mailbox,facing=north":  { "model": "harvestfestival:equipment/mailbox" },
+    "equipment=mailbox,facing=south":  { "model": "harvestfestival:equipment/mailbox", "y": 180 },
+    "equipment=mailbox,facing=east": { "model": "harvestfestival:equipment/mailbox", "y": 90 },
+    "equipment=mailbox,facing=west": { "model": "harvestfestival:equipment/mailbox", "y": 270 },
+    "equipment=basket,facing=north":  { "model": "harvestfestival:equipment/basket" },
+    "equipment=basket,facing=south":  { "model": "harvestfestival:equipment/basket", "y": 180 },
+    "equipment=basket,facing=east": { "model": "harvestfestival:equipment/basket", "y": 90 },
+    "equipment=basket,facing=west": { "model": "harvestfestival:equipment/basket", "y": 270 },
+    "equipment=television,facing=north":  { "model": "harvestfestival:equipment/television" },
+    "equipment=television,facing=south":  { "model": "harvestfestival:equipment/television", "y": 180 },
+    "equipment=television,facing=east": { "model": "harvestfestival:equipment/television", "y": 90 },
+    "equipment=television,facing=west": { "model": "harvestfestival:equipment/television", "y": 270 }
+  }
+}

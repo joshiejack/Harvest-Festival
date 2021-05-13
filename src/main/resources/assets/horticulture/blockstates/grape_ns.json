@@ -1,0 +1,14 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "horticulture:trellis"
+  },
+  "variants": {
+    "stage": {
+      "0": { "textures": { "crop": "horticulture:blocks/crops/grapes_1" }},
+      "1": { "textures": { "crop": "horticulture:blocks/crops/grapes_2" }},
+      "2": { "textures": { "crop": "horticulture:blocks/crops/grapes_3" }},
+      "3": { "textures": { "crop": "horticulture:blocks/crops/grapes_4" }}
+    }
+  }
+}

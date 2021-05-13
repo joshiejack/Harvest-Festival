@@ -1,0 +1,9 @@
+{
+  "registryName": "harvestfestival:copper_shovel",
+  "type": "item:shovel",
+  "data": {
+    "toolMaterial": "copper",
+    "width": 1,
+    "depth": 0
+  }
+}

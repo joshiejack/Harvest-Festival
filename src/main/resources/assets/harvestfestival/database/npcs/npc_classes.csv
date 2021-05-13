@@ -1,0 +1,3 @@
+Name,Is Child,Has Small Arms,Render Height,Render Offset,Is Invulnerable,Is Immovable,Can Breathe Underwater,Floats out of Water,Is Invitable,Lifespan,Hide Hearts
+god,false,false,1.25,0.25,true,true,true,true,false,400,true
+dwarf,false,true,0.75,0,false,false,true,false,true,0,true

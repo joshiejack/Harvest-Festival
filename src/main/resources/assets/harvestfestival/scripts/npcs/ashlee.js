@@ -1,0 +1,1 @@
+function onNPCScheduleUpdate(npc, time) {}

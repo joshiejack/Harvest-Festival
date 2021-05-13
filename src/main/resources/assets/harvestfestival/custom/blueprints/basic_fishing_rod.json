@@ -1,0 +1,18 @@
+{
+  "registryName": "harvestfestival:basic_fishing_rod",
+  "type": "blueprint:standard",
+  "data": {
+    "category": "tool",
+    "result": "piscary:fishing_rod {Unbreakable:1}",
+    "ingredients": [
+      {
+        "item": "stickWood",
+        "count": 3
+      },
+      {
+        "item": "string",
+        "count": 2
+      }
+    ]
+  }
+}

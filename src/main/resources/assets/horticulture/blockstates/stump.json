@@ -1,0 +1,18 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "cube_all"
+  },
+  "variants": {
+    "mushroom_0": { "model": "horticulture:mushroom_0" },
+    "mushroom_1": { "model": "horticulture:mushroom_1" },
+    "mushroom_2": { "model": "horticulture:mushroom_2" },
+    "mushroom_3": { "model": "horticulture:mushroom_3" },
+    "type=oak":  { "model": "horticulture:mushroom_log" },
+    "type=spruce":  { "model": "horticulture:mushroom_log", "textures": { "side": "blocks/log_spruce", "top": "blocks/log_spruce_top" }},
+    "type=birch": { "model": "horticulture:mushroom_log", "textures": { "side": "blocks/log_birch", "top": "blocks/log_birch_top" }},
+    "type=jungle": { "model": "horticulture:mushroom_log", "textures": { "side": "blocks/log_jungle", "top": "blocks/log_jungle_top" }},
+    "type=acacia": { "model": "horticulture:mushroom_log", "textures": { "side": "blocks/log_acacia", "top": "blocks/log_acacia_top" }},
+    "type=dark_oak": { "model": "horticulture:mushroom_log", "textures": { "side": "blocks/log_big_oak", "top": "blocks/log_big_oak_top" }}
+  }
+}

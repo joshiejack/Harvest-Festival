@@ -1,0 +1,2 @@
+ID,Name,Texture,X,Y,Script
+cooking,gastronomy.collection.cooking,gastronomy:textures/gui/icons.png,0,0,gastronomy:collections/cooking,true

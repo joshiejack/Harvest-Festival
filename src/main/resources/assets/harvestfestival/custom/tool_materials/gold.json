@@ -1,0 +1,10 @@
+{
+	"registryName": "gold",
+	"type": "tool_material:standard",
+	"data": {
+		"harvestLevel": 3,
+		"maxUses": 1024,
+		"efficiency": 7,
+		"damage": 2.5
+	}
+}

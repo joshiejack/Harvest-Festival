@@ -1,0 +1,6 @@
+ID,Status
+has_watched_frying_pan,frying_pan
+has_watched_cooking_pot,cooking_pot
+has_watched_mixer,mixer
+has_watched_power_berry,power_berry
+get_upgrading_status,is_upgrading

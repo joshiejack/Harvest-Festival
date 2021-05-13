@@ -1,0 +1,20 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "transform": "forge:default-block"
+  },
+  "variants": {
+    "facing=north,ladder=wood":  { "model": "penguinlib:ladder", "textures": { "particle": "harvestfestival:blocks/mine/ladders/wood" }},
+    "facing=south,ladder=wood":  { "model": "penguinlib:ladder", "textures": { "particle": "harvestfestival:blocks/mine/ladders/wood" }, "y": 180 },
+    "facing=east,ladder=wood": { "model": "penguinlib:ladder", "textures": { "particle": "harvestfestival:blocks/mine/ladders/wood" }, "y": 90 },
+    "facing=west,ladder=wood": { "model": "penguinlib:ladder", "textures": { "particle": "harvestfestival:blocks/mine/ladders/wood" }, "y": 270 },
+    "facing=north,ladder=frozen":  { "model": "penguinlib:ladder", "textures": { "particle": "harvestfestival:blocks/mine/ladders/frozen" }},
+    "facing=south,ladder=frozen":  { "model": "penguinlib:ladder", "textures": { "particle": "harvestfestival:blocks/mine/ladders/frozen" }, "y": 180 },
+    "facing=east,ladder=frozen": { "model": "penguinlib:ladder", "textures": { "particle": "harvestfestival:blocks/mine/ladders/frozen" }, "y": 90 },
+    "facing=west,ladder=frozen": { "model": "penguinlib:ladder", "textures": { "particle": "harvestfestival:blocks/mine/ladders/frozen" }, "y": 270 },
+    "facing=north,ladder=hell":  { "model": "penguinlib:ladder", "textures": { "particle": "harvestfestival:blocks/mine/ladders/hell" }},
+    "facing=south,ladder=hell":  { "model": "penguinlib:ladder", "textures": { "particle": "harvestfestival:blocks/mine/ladders/hell" }, "y": 180 },
+    "facing=east,ladder=hell": { "model": "penguinlib:ladder", "textures": { "particle": "harvestfestival:blocks/mine/ladders/hell" }, "y": 90 },
+    "facing=west,ladder=hell": { "model": "penguinlib:ladder", "textures": { "particle": "harvestfestival:blocks/mine/ladders/hell" }, "y": 270 }
+  }
+}

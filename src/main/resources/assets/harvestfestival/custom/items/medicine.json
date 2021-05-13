@@ -1,0 +1,30 @@
+{
+	"registryName": "harvestfestival:medicine",
+	"type": "item:edible",
+	"defaults": {
+		"action": "drink",
+		"alwaysEdible": true,
+		"hunger": 0,
+		"saturation": 0
+	},
+	"data": [
+		{
+			"name": "energizer",
+			"hunger": 20,
+			"saturation": 0.5
+		},
+		{
+			"name": "energizer_xl",
+			"hunger": 20,
+			"saturation": 1
+		},
+		{
+			"name": "turbojolt",
+			"script": "harvestfestival:items/turbojolt"
+		},
+		{
+			"name": "turbojolt_xl",
+			"script": "harvestfestival:items/turbojolt_xl"
+		}
+	]
+}

@@ -1,0 +1,91 @@
+{
+  "pools": [
+    {
+      "name": "main",
+      "rolls": 3,
+      "entries": [
+        {
+          "type": "item",
+          "name": "minecraft:air",
+          "entryName": "nothing",
+          "weight": 290,
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 0,
+                "max": 0
+              }
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "harvestfestival:coin",
+          "entryName": "silver_coin",
+          "weight": 4,
+          "functions": [
+            {
+              "function": "penguinlib:set_string",
+              "string": "silver"
+            },
+            {
+              "function": "set_count",
+              "count": {
+                "min": 0,
+                "max": 1
+              }
+            },
+            {
+              "function": "penguinlib:apply_fortune"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "harvestfestival:gem",
+          "entryName": "adamantite",
+          "weight": 5,
+          "functions": [
+            {
+              "function": "penguinlib:set_string",
+              "string": "adamantite"
+            },
+            {
+              "function": "set_count",
+              "count": {
+                "min": 0,
+                "max": 1
+              }
+            },
+            {
+              "function": "penguinlib:apply_fortune"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "harvestfestival:gem",
+          "entryName": "moon_stone",
+          "weight": 1,
+          "functions": [
+            {
+              "function": "penguinlib:set_string",
+              "string": "moon_stone"
+            },
+            {
+              "function": "set_count",
+              "count": {
+                "min": 0,
+                "max": 1
+              }
+            },
+            {
+              "function": "penguinlib:apply_fortune"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

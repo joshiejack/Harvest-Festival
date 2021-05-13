@@ -1,0 +1,7 @@
+Season,HUD,Temperature,Leaves,Grass,Sky,Sunrise,Sunset
+spring,green,0,0x80B76C,0,0x87CEFA,6000,20500
+summer,yellow,0.1,0,0x4A9C2E,0x79a7ff,5000,21500
+autumn,gold,-0.1,0xB25900,0xFF9900,0x8CBED6,7000,19000
+winter,gray,-0.7,0xFFFFFF,0xE6E6E6,0xBFFFFF,8000,16500
+wet,blue,-0.1,0,0x55FF1C,0x334873,0,0
+dry,gold,0,0,0,0x638DBF,0,0

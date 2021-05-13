@@ -1,0 +1,471 @@
+{
+  "registryName": "harvestfestival:community_centre_library",
+  "type": "building:upgrade",
+  "data": {
+    "requirement": "harvestfestival:community_centre",
+    "overrides": false,
+    "offset": "10 -1 17",
+    "limit": 1,
+    "components": [
+      {
+        "state": "bookshelf",
+        "pos": "2 5 6"
+      },
+      {
+        "state": "bookshelf",
+        "pos": "3 5 6"
+      },
+      {
+        "state": "bookshelf",
+        "pos": "4 5 6"
+      },
+      {
+        "state": "bookshelf",
+        "pos": "5 5 6"
+      },
+      {
+        "state": "double_wooden_slab,variant=dark_oak",
+        "pos": "2 6 6"
+      },
+      {
+        "state": "double_wooden_slab,variant=dark_oak",
+        "pos": "3 6 6"
+      },
+      {
+        "state": "double_wooden_slab,variant=dark_oak",
+        "pos": "4 6 6"
+      },
+      {
+        "state": "bookshelf",
+        "pos": "2 7 6"
+      },
+      {
+        "state": "bookshelf",
+        "pos": "3 7 6"
+      },
+      {
+        "state": "bookshelf",
+        "pos": "4 7 6"
+      },
+      {
+        "state": "wooden_slab,half=bottom,variant=dark_oak",
+        "pos": "2 8 6"
+      },
+      {
+        "state": "wooden_slab,half=bottom,variant=dark_oak",
+        "pos": "3 8 6"
+      },
+      {
+        "state": "wooden_slab,half=bottom,variant=dark_oak",
+        "pos": "4 8 6"
+      },
+      {
+        "state": "double_wooden_slab,variant=dark_oak",
+        "pos": "2 4 7"
+      },
+      {
+        "state": "double_wooden_slab,variant=dark_oak",
+        "pos": "3 4 7"
+      },
+      {
+        "state": "double_wooden_slab,variant=dark_oak",
+        "pos": "4 4 7"
+      },
+      {
+        "state": "bookshelf",
+        "pos": "5 5 7"
+      },
+      {
+        "state": "torch,facing=south",
+        "pos": "3 6 7",
+        "type": "decorative"
+      },
+      {
+        "state": "bookshelf",
+        "pos": "5 6 7"
+      },
+      {
+        "state": "wooden_slab,half=top,variant=dark_oak",
+        "pos": "2 8 7"
+      },
+      {
+        "state": "wooden_slab,half=top,variant=dark_oak",
+        "pos": "3 8 7"
+      },
+      {
+        "state": "wooden_slab,half=top,variant=dark_oak",
+        "pos": "4 8 7"
+      },
+      {
+        "state": "wooden_slab,half=bottom,variant=dark_oak",
+        "pos": "5 8 7"
+      },
+      {
+        "state": "double_wooden_slab,variant=dark_oak",
+        "pos": "2 4 8"
+      },
+      {
+        "state": "double_wooden_slab,variant=dark_oak",
+        "pos": "3 4 8"
+      },
+      {
+        "state": "double_wooden_slab,variant=dark_oak",
+        "pos": "4 4 8"
+      },
+      {
+        "state": "double_wooden_slab,variant=dark_oak",
+        "pos": "6 4 8"
+      },
+      {
+        "state": "double_wooden_slab,variant=dark_oak",
+        "pos": "7 4 8"
+      },
+      {
+        "state": "brewing_stand,has_bottle_0=false,has_bottle_1=false,has_bottle_2=false",
+        "pos": "2 5 8"
+      },
+      {
+        "state": "bookshelf",
+        "pos": "6 5 8"
+      },
+      {
+        "state": "bookshelf",
+        "pos": "7 5 8"
+      },
+      {
+        "state": "bookshelf",
+        "pos": "8 5 8"
+      },
+      {
+        "pos": "2 6 8"
+      },
+      {
+        "state": "bookshelf",
+        "pos": "6 6 8"
+      },
+      {
+        "state": "bookshelf",
+        "pos": "8 6 8"
+      },
+      {
+        "state": "bookshelf",
+        "pos": "6 7 8"
+      },
+      {
+        "state": "bookshelf",
+        "pos": "8 7 8"
+      },
+      {
+        "state": "spruce_stairs,facing=south,half=bottom,shape=straight",
+        "pos": "6 8 8"
+      },
+      {
+        "state": "wooden_slab,half=bottom,variant=dark_oak",
+        "pos": "8 8 8"
+      },
+      {
+        "state": "double_wooden_slab,variant=dark_oak",
+        "pos": "2 4 9"
+      },
+      {
+        "state": "double_wooden_slab,variant=dark_oak",
+        "pos": "3 4 9"
+      },
+      {
+        "state": "double_wooden_slab,variant=dark_oak",
+        "pos": "4 4 9"
+      },
+      {
+        "state": "double_wooden_slab,variant=dark_oak",
+        "pos": "5 4 9"
+      },
+      {
+        "state": "double_wooden_slab,variant=dark_oak",
+        "pos": "6 4 9"
+      },
+      {
+        "state": "double_wooden_slab,variant=dark_oak",
+        "pos": "7 4 9"
+      },
+      {
+        "state": "chest,facing=east",
+        "pos": "2 5 9"
+      },
+      {
+        "state": "bookshelf",
+        "pos": "8 5 9"
+      },
+      {
+        "pos": "2 7 9"
+      },
+      {
+        "painting": "Wasteland",
+        "facing": "east",
+        "pos": "2 7 9",
+        "type": "painting"
+      },
+      {
+        "state": "double_wooden_slab,variant=dark_oak",
+        "pos": "2 4 10"
+      },
+      {
+        "state": "double_wooden_slab,variant=dark_oak",
+        "pos": "3 4 10"
+      },
+      {
+        "state": "double_wooden_slab,variant=dark_oak",
+        "pos": "4 4 10"
+      },
+      {
+        "state": "double_wooden_slab,variant=dark_oak",
+        "pos": "5 4 10"
+      },
+      {
+        "state": "double_wooden_slab,variant=dark_oak",
+        "pos": "6 4 10"
+      },
+      {
+        "state": "double_wooden_slab,variant=dark_oak",
+        "pos": "7 4 10"
+      },
+      {
+        "text": [
+          "",
+          "",
+          "",
+          ""
+        ],
+        "state": "wall_sign,facing=north",
+        "pos": "2 5 10",
+        "type": "sign"
+      },
+      {
+        "state": "enchanting_table",
+        "pos": "6 5 10"
+      },
+      {
+        "state": "bookshelf",
+        "pos": "8 5 10"
+      },
+      {
+        "state": "bookshelf",
+        "pos": "8 6 10"
+      },
+      {
+        "state": "bookshelf",
+        "pos": "8 7 10"
+      },
+      {
+        "state": "torch,facing=east",
+        "pos": "6 8 10",
+        "type": "decorative"
+      },
+      {
+        "state": "spruce_stairs,facing=east,half=bottom,shape=straight",
+        "pos": "8 8 10"
+      },
+      {
+        "state": "oak_stairs,facing=east,half=top,shape=straight",
+        "pos": "6 1 11"
+      },
+      {
+        "state": "oak_stairs,facing=west,half=bottom,shape=straight",
+        "pos": "7 1 11"
+      },
+      {
+        "state": "oak_stairs,facing=east,half=top,shape=straight",
+        "pos": "5 2 11"
+      },
+      {
+        "state": "oak_stairs,facing=west,half=bottom,shape=straight",
+        "pos": "6 2 11"
+      },
+      {
+        "state": "oak_stairs,facing=west,half=bottom,shape=straight",
+        "pos": "5 3 11"
+      },
+      {
+        "state": "double_wooden_slab,variant=dark_oak",
+        "pos": "2 4 11"
+      },
+      {
+        "state": "double_wooden_slab,variant=dark_oak",
+        "pos": "3 4 11"
+      },
+      {
+        "state": "oak_stairs,facing=west,half=bottom,shape=straight",
+        "pos": "4 4 11"
+      },
+      {
+        "state": "spruce_stairs,facing=west,half=bottom,shape=straight",
+        "pos": "2 5 11"
+      },
+      {
+        "state": "bookshelf",
+        "pos": "8 5 11"
+      },
+      {
+        "state": "bookshelf",
+        "pos": "8 6 11"
+      },
+      {
+        "pos": "2 7 11"
+      },
+      {
+        "stack": "writable_book",
+        "rotation": 0,
+        "facing": "east",
+        "pos": "2 7 11",
+        "type": "item_frame"
+      },
+      {
+        "state": "bookshelf",
+        "pos": "8 7 11"
+      },
+      {
+        "state": "double_wooden_slab,variant=dark_oak",
+        "pos": "2 4 12"
+      },
+      {
+        "state": "double_wooden_slab,variant=dark_oak",
+        "pos": "3 4 12"
+      },
+      {
+        "state": "double_wooden_slab,variant=dark_oak",
+        "pos": "4 4 12"
+      },
+      {
+        "state": "spruce_stairs,facing=west,half=bottom,shape=straight",
+        "pos": "2 5 12"
+      },
+      {
+        "state": "bookshelf",
+        "pos": "6 5 12"
+      },
+      {
+        "state": "bookshelf",
+        "pos": "7 5 12"
+      },
+      {
+        "state": "bookshelf",
+        "pos": "8 5 12"
+      },
+      {
+        "state": "double_wooden_slab,variant=dark_oak",
+        "pos": "6 6 12"
+      },
+      {
+        "state": "bookshelf",
+        "pos": "7 6 12"
+      },
+      {
+        "state": "bookshelf",
+        "pos": "8 6 12"
+      },
+      {
+        "state": "double_wooden_slab,variant=dark_oak",
+        "pos": "2 4 13"
+      },
+      {
+        "state": "wooden_slab,half=top,variant=dark_oak",
+        "pos": "3 4 13"
+      },
+      {
+        "state": "wooden_slab,half=top,variant=dark_oak",
+        "pos": "4 4 13"
+      },
+      {
+        "text": [
+          "",
+          "",
+          "",
+          ""
+        ],
+        "state": "wall_sign,facing=south",
+        "pos": "2 5 13",
+        "type": "sign"
+      },
+      {
+        "state": "bookshelf",
+        "pos": "5 5 13"
+      },
+      {
+        "state": "torch,facing=north",
+        "pos": "3 6 13",
+        "type": "decorative"
+      },
+      {
+        "state": "bookshelf",
+        "pos": "5 6 13"
+      },
+      {
+        "state": "wooden_slab,half=top,variant=dark_oak",
+        "pos": "2 8 13"
+      },
+      {
+        "state": "wooden_slab,half=top,variant=dark_oak",
+        "pos": "3 8 13"
+      },
+      {
+        "state": "wooden_slab,half=top,variant=dark_oak",
+        "pos": "4 8 13"
+      },
+      {
+        "state": "wooden_slab,half=bottom,variant=dark_oak",
+        "pos": "5 8 13"
+      },
+      {
+        "state": "bookshelf",
+        "pos": "2 5 14"
+      },
+      {
+        "state": "bookshelf",
+        "pos": "3 5 14"
+      },
+      {
+        "state": "bookshelf",
+        "pos": "4 5 14"
+      },
+      {
+        "state": "bookshelf",
+        "pos": "5 5 14"
+      },
+      {
+        "state": "double_wooden_slab,variant=dark_oak",
+        "pos": "2 6 14"
+      },
+      {
+        "state": "double_wooden_slab,variant=dark_oak",
+        "pos": "3 6 14"
+      },
+      {
+        "state": "double_wooden_slab,variant=dark_oak",
+        "pos": "4 6 14"
+      },
+      {
+        "state": "bookshelf",
+        "pos": "2 7 14"
+      },
+      {
+        "state": "bookshelf",
+        "pos": "3 7 14"
+      },
+      {
+        "state": "bookshelf",
+        "pos": "4 7 14"
+      },
+      {
+        "state": "double_wooden_slab,variant=dark_oak",
+        "pos": "2 8 14"
+      },
+      {
+        "state": "wooden_slab,half=bottom,variant=dark_oak",
+        "pos": "3 8 14"
+      },
+      {
+        "state": "wooden_slab,half=bottom,variant=dark_oak",
+        "pos": "4 8 14"
+      }
+    ]
+  }
+}

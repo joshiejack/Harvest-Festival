@@ -1,0 +1,21 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "transform": "forge:default-item",
+    "model": "minecraft:cross"
+  },
+  "variants": {
+    "seedling": {
+      "oak": { "textures": { "cross": "harvestfestival:blocks/trees/oak_seedling" }},
+      "spruce": { "textures": { "cross": "harvestfestival:blocks/trees/spruce_seedling" }},
+      "birch": { "textures": { "cross": "harvestfestival:blocks/trees/birch_seedling" }},
+      "jungle": { "textures": { "cross": "harvestfestival:blocks/trees/jungle_seedling" }},
+      "acacia": { "textures": { "cross": "harvestfestival:blocks/trees/acacia_seedling" }},
+      "dark_oak": { "textures": { "cross": "harvestfestival:blocks/trees/dark_oak_seedling" }},
+      "apple": { "textures": { "cross": "harvestfestival:blocks/trees/apple_seedling" }},
+      "banana": { "textures": { "cross": "harvestfestival:blocks/trees/banana_seedling" }},
+      "orange": { "textures": { "cross": "harvestfestival:blocks/trees/orange_seedling" }},
+      "peach": { "textures": { "cross": "harvestfestival:blocks/trees/peach_seedling" }}
+    }
+  }
+}

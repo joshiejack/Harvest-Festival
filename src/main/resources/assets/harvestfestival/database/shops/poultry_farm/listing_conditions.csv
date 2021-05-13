@@ -1,0 +1,10 @@
+department_id,listing_id,condition_id
+poultry_farm,shears,has_medium_barn
+poultry_farm,rabbit_food,has_large_coop
+poultry_farm,duck_treat,has_medium_coop
+poultry_farm,rabbit_treat,has_large_coop
+poultry_farm,chicken,has_space_in_coop
+poultry_farm,duck,has_space_in_coop
+poultry_farm,duck,has_medium_coop
+poultry_farm,rabbit,has_space_in_coop
+poultry_farm,rabbit,has_large_coop

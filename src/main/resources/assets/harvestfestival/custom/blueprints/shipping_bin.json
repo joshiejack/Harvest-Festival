@@ -1,0 +1,22 @@
+{
+  "registryName": "harvestfestival:shipping_bin",
+  "type": "blueprint:standard",
+  "data": {
+    "category": "machine",
+    "result": "harvestfestival:shipping_bin",
+    "ingredients": [
+      {
+        "item": "logWood",
+        "count": 4
+      },
+      {
+        "item": "plankWood",
+        "count": 4
+      },
+      {
+        "item": "flint",
+        "count": 1
+      }
+    ]
+  }
+}

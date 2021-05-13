@@ -1,0 +1,13 @@
+{
+  "registryName": "harvestcore:fertilizer",
+  "type": "item:fertilizer",
+  "defaults": {},
+  "data": [
+    {
+      "name": "bonemeal",
+      "texture": "blocks/fertilizer/bonemeal",
+      "speed": 1,
+      "quality": 5
+    }
+  ]
+}

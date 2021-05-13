@@ -1,0 +1,10 @@
+{
+  "registryName": "harvestfestival:basic_hammer",
+  "type": "item:hammer",
+  "data": {
+    "toolMaterial": "basic",
+    "area": 0,
+    "widthAndHeight": 0,
+    "depth": 0
+  }
+}

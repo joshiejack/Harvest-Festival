@@ -5,61 +5,61 @@
   },
   "variants": {
     "wood=branch_small": [
-      { "model": "harvestfestival:gathering/branch_small", "textures": { "side": "blocks/log_oak", "top": "blocks/log_oak_top" }, "weight": 1 },
-      { "model": "harvestfestival:gathering/branch_small", "textures": { "side": "blocks/log_spruce", "top": "blocks/log_spruce_top"}, "weight": 1 },
-      { "model": "harvestfestival:gathering/branch_small", "textures": { "side": "blocks/log_big_oak", "top": "blocks/log_big_oak_top"}, "weight": 1 },
-      { "model": "harvestfestival:gathering/branch_small", "textures": { "side": "blocks/log_oak", "top": "blocks/log_oak_top"}, "weight": 1, "y": 90 },
-      { "model": "harvestfestival:gathering/branch_small", "textures": { "side": "blocks/log_spruce", "top": "blocks/log_spruce_top"}, "weight": 1, "y": 90 },
-      { "model": "harvestfestival:gathering/branch_small", "textures": { "side": "blocks/log_big_oak", "top": "blocks/log_big_oak_top"}, "weight": 1, "y": 90 },
-      { "model": "harvestfestival:gathering/branch_small", "textures": { "side": "blocks/log_oak", "top": "blocks/log_oak_top"}, "weight": 1, "y": 180 },
-      { "model": "harvestfestival:gathering/branch_small", "textures": { "side": "blocks/log_spruce", "top": "blocks/log_spruce_top"}, "weight": 1, "y": 180 },
-      { "model": "harvestfestival:gathering/branch_small", "textures": { "side": "blocks/log_big_oak", "top": "blocks/log_big_oak_top"}, "weight": 1, "y": 180 },
-      { "model": "harvestfestival:gathering/branch_small", "textures": { "side": "blocks/log_oak", "top": "blocks/log_oak_top"}, "weight": 1, "y": 270 },
-      { "model": "harvestfestival:gathering/branch_small", "textures": { "side": "blocks/log_spruce", "top": "blocks/log_spruce_top"}, "weight": 1, "y": 270 },
-      { "model": "harvestfestival:gathering/branch_small", "textures": { "side": "blocks/log_big_oak", "top": "blocks/log_big_oak_top"}, "weight": 1, "y": 270 }
+      { "model": "harvestfestival:wilderness/branch_small", "textures": { "side": "blocks/log_oak", "top": "blocks/log_oak_top" }, "weight": 1 },
+      { "model": "harvestfestival:wilderness/branch_small", "textures": { "side": "blocks/log_spruce", "top": "blocks/log_spruce_top"}, "weight": 1 },
+      { "model": "harvestfestival:wilderness/branch_small", "textures": { "side": "blocks/log_big_oak", "top": "blocks/log_big_oak_top"}, "weight": 1 },
+      { "model": "harvestfestival:wilderness/branch_small", "textures": { "side": "blocks/log_oak", "top": "blocks/log_oak_top"}, "weight": 1, "y": 90 },
+      { "model": "harvestfestival:wilderness/branch_small", "textures": { "side": "blocks/log_spruce", "top": "blocks/log_spruce_top"}, "weight": 1, "y": 90 },
+      { "model": "harvestfestival:wilderness/branch_small", "textures": { "side": "blocks/log_big_oak", "top": "blocks/log_big_oak_top"}, "weight": 1, "y": 90 },
+      { "model": "harvestfestival:wilderness/branch_small", "textures": { "side": "blocks/log_oak", "top": "blocks/log_oak_top"}, "weight": 1, "y": 180 },
+      { "model": "harvestfestival:wilderness/branch_small", "textures": { "side": "blocks/log_spruce", "top": "blocks/log_spruce_top"}, "weight": 1, "y": 180 },
+      { "model": "harvestfestival:wilderness/branch_small", "textures": { "side": "blocks/log_big_oak", "top": "blocks/log_big_oak_top"}, "weight": 1, "y": 180 },
+      { "model": "harvestfestival:wilderness/branch_small", "textures": { "side": "blocks/log_oak", "top": "blocks/log_oak_top"}, "weight": 1, "y": 270 },
+      { "model": "harvestfestival:wilderness/branch_small", "textures": { "side": "blocks/log_spruce", "top": "blocks/log_spruce_top"}, "weight": 1, "y": 270 },
+      { "model": "harvestfestival:wilderness/branch_small", "textures": { "side": "blocks/log_big_oak", "top": "blocks/log_big_oak_top"}, "weight": 1, "y": 270 }
     ],
     "wood=branch_medium": [
-      { "model": "harvestfestival:gathering/branch_medium", "textures": { "side": "blocks/log_oak", "top": "blocks/log_oak_top"}, "weight": 1 },
-      { "model": "harvestfestival:gathering/branch_medium", "textures": { "side": "blocks/log_spruce", "top": "blocks/log_spruce_top"}, "weight": 1 },
-      { "model": "harvestfestival:gathering/branch_medium", "textures": { "side": "blocks/log_big_oak", "top": "blocks/log_big_oak_top"}, "weight": 1 },
-      { "model": "harvestfestival:gathering/branch_medium", "textures": { "side": "blocks/log_oak", "top": "blocks/log_oak_top"}, "weight": 1, "y": 90 },
-      { "model": "harvestfestival:gathering/branch_medium", "textures": { "side": "blocks/log_spruce", "top": "blocks/log_spruce_top"}, "weight": 1, "y": 90 },
-      { "model": "harvestfestival:gathering/branch_medium", "textures": { "side": "blocks/log_big_oak", "top": "blocks/log_big_oak_top"}, "weight": 1, "y": 90 },
-      { "model": "harvestfestival:gathering/branch_medium", "textures": { "side": "blocks/log_oak", "top": "blocks/log_oak_top"}, "weight": 1, "y": 180 },
-      { "model": "harvestfestival:gathering/branch_medium", "textures": { "side": "blocks/log_spruce", "top": "blocks/log_spruce_top"}, "weight": 1, "y": 180 },
-      { "model": "harvestfestival:gathering/branch_medium", "textures": { "side": "blocks/log_big_oak", "top": "blocks/log_big_oak_top"}, "weight": 1, "y": 180 },
-      { "model": "harvestfestival:gathering/branch_medium", "textures": { "side": "blocks/log_oak", "top": "blocks/log_oak_top"}, "weight": 1, "y": 270 },
-      { "model": "harvestfestival:gathering/branch_medium", "textures": { "side": "blocks/log_spruce", "top": "blocks/log_spruce_top"}, "weight": 1, "y": 270 },
-      { "model": "harvestfestival:gathering/branch_medium", "textures": { "side": "blocks/log_big_oak", "top": "blocks/log_big_oak_top"}, "weight": 1, "y": 270 }
+      { "model": "harvestfestival:wilderness/branch_medium", "textures": { "side": "blocks/log_oak", "top": "blocks/log_oak_top"}, "weight": 1 },
+      { "model": "harvestfestival:wilderness/branch_medium", "textures": { "side": "blocks/log_spruce", "top": "blocks/log_spruce_top"}, "weight": 1 },
+      { "model": "harvestfestival:wilderness/branch_medium", "textures": { "side": "blocks/log_big_oak", "top": "blocks/log_big_oak_top"}, "weight": 1 },
+      { "model": "harvestfestival:wilderness/branch_medium", "textures": { "side": "blocks/log_oak", "top": "blocks/log_oak_top"}, "weight": 1, "y": 90 },
+      { "model": "harvestfestival:wilderness/branch_medium", "textures": { "side": "blocks/log_spruce", "top": "blocks/log_spruce_top"}, "weight": 1, "y": 90 },
+      { "model": "harvestfestival:wilderness/branch_medium", "textures": { "side": "blocks/log_big_oak", "top": "blocks/log_big_oak_top"}, "weight": 1, "y": 90 },
+      { "model": "harvestfestival:wilderness/branch_medium", "textures": { "side": "blocks/log_oak", "top": "blocks/log_oak_top"}, "weight": 1, "y": 180 },
+      { "model": "harvestfestival:wilderness/branch_medium", "textures": { "side": "blocks/log_spruce", "top": "blocks/log_spruce_top"}, "weight": 1, "y": 180 },
+      { "model": "harvestfestival:wilderness/branch_medium", "textures": { "side": "blocks/log_big_oak", "top": "blocks/log_big_oak_top"}, "weight": 1, "y": 180 },
+      { "model": "harvestfestival:wilderness/branch_medium", "textures": { "side": "blocks/log_oak", "top": "blocks/log_oak_top"}, "weight": 1, "y": 270 },
+      { "model": "harvestfestival:wilderness/branch_medium", "textures": { "side": "blocks/log_spruce", "top": "blocks/log_spruce_top"}, "weight": 1, "y": 270 },
+      { "model": "harvestfestival:wilderness/branch_medium", "textures": { "side": "blocks/log_big_oak", "top": "blocks/log_big_oak_top"}, "weight": 1, "y": 270 }
     ],
     "wood=branch_large": [
-      { "model": "harvestfestival:gathering/branch_large", "textures": { "side": "blocks/log_oak", "top": "blocks/log_oak_top"}, "weight": 1 },
-      { "model": "harvestfestival:gathering/branch_large", "textures": { "side": "blocks/log_spruce", "top": "blocks/log_spruce_top"}, "weight": 1 },
-      { "model": "harvestfestival:gathering/branch_large", "textures": { "side": "blocks/log_big_oak", "top": "blocks/log_big_oak_top"}, "weight": 1 },
-      { "model": "harvestfestival:gathering/branch_large", "textures": { "side": "blocks/log_oak", "top": "blocks/log_oak_top"}, "weight": 1, "y": 90 },
-      { "model": "harvestfestival:gathering/branch_large", "textures": { "side": "blocks/log_spruce", "top": "blocks/log_spruce_top"}, "weight": 1, "y": 90 },
-      { "model": "harvestfestival:gathering/branch_large", "textures": { "side": "blocks/log_big_oak", "top": "blocks/log_big_oak_top"}, "weight": 1, "y": 90 },
-      { "model": "harvestfestival:gathering/branch_large", "textures": { "side": "blocks/log_oak", "top": "blocks/log_oak_top"}, "weight": 1, "y": 180 },
-      { "model": "harvestfestival:gathering/branch_large", "textures": { "side": "blocks/log_spruce", "top": "blocks/log_spruce_top"}, "weight": 1, "y": 180 },
-      { "model": "harvestfestival:gathering/branch_large", "textures": { "side": "blocks/log_big_oak", "top": "blocks/log_big_oak_top"}, "weight": 1, "y": 180 },
-      { "model": "harvestfestival:gathering/branch_large", "textures": { "side": "blocks/log_oak", "top": "blocks/log_oak_top"}, "weight": 1, "y": 270 },
-      { "model": "harvestfestival:gathering/branch_large", "textures": { "side": "blocks/log_spruce", "top": "blocks/log_spruce_top"}, "weight": 1, "y": 270 },
-      { "model": "harvestfestival:gathering/branch_large", "textures": { "side": "blocks/log_big_oak", "top": "blocks/log_big_oak_top"}, "weight": 1, "y": 270 }
+      { "model": "harvestfestival:wilderness/branch_large", "textures": { "side": "blocks/log_oak", "top": "blocks/log_oak_top"}, "weight": 1 },
+      { "model": "harvestfestival:wilderness/branch_large", "textures": { "side": "blocks/log_spruce", "top": "blocks/log_spruce_top"}, "weight": 1 },
+      { "model": "harvestfestival:wilderness/branch_large", "textures": { "side": "blocks/log_big_oak", "top": "blocks/log_big_oak_top"}, "weight": 1 },
+      { "model": "harvestfestival:wilderness/branch_large", "textures": { "side": "blocks/log_oak", "top": "blocks/log_oak_top"}, "weight": 1, "y": 90 },
+      { "model": "harvestfestival:wilderness/branch_large", "textures": { "side": "blocks/log_spruce", "top": "blocks/log_spruce_top"}, "weight": 1, "y": 90 },
+      { "model": "harvestfestival:wilderness/branch_large", "textures": { "side": "blocks/log_big_oak", "top": "blocks/log_big_oak_top"}, "weight": 1, "y": 90 },
+      { "model": "harvestfestival:wilderness/branch_large", "textures": { "side": "blocks/log_oak", "top": "blocks/log_oak_top"}, "weight": 1, "y": 180 },
+      { "model": "harvestfestival:wilderness/branch_large", "textures": { "side": "blocks/log_spruce", "top": "blocks/log_spruce_top"}, "weight": 1, "y": 180 },
+      { "model": "harvestfestival:wilderness/branch_large", "textures": { "side": "blocks/log_big_oak", "top": "blocks/log_big_oak_top"}, "weight": 1, "y": 180 },
+      { "model": "harvestfestival:wilderness/branch_large", "textures": { "side": "blocks/log_oak", "top": "blocks/log_oak_top"}, "weight": 1, "y": 270 },
+      { "model": "harvestfestival:wilderness/branch_large", "textures": { "side": "blocks/log_spruce", "top": "blocks/log_spruce_top"}, "weight": 1, "y": 270 },
+      { "model": "harvestfestival:wilderness/branch_large", "textures": { "side": "blocks/log_big_oak", "top": "blocks/log_big_oak_top"}, "weight": 1, "y": 270 }
     ],
     "wood=stump_small": [
-      { "model": "harvestfestival:gathering/stump_small", "textures": { "side": "blocks/log_oak", "top": "blocks/log_oak_top"}, "weight": 1 },
-      { "model": "harvestfestival:gathering/stump_small", "textures": { "side": "blocks/log_spruce", "top": "blocks/log_spruce_top"}, "weight": 1 },
-      { "model": "harvestfestival:gathering/stump_small", "textures": { "side": "blocks/log_big_oak", "top": "blocks/log_big_oak_top"}, "weight": 1 }
+      { "model": "harvestfestival:wilderness/stump_small", "textures": { "side": "blocks/log_oak", "top": "blocks/log_oak_top"}, "weight": 1 },
+      { "model": "harvestfestival:wilderness/stump_small", "textures": { "side": "blocks/log_spruce", "top": "blocks/log_spruce_top"}, "weight": 1 },
+      { "model": "harvestfestival:wilderness/stump_small", "textures": { "side": "blocks/log_big_oak", "top": "blocks/log_big_oak_top"}, "weight": 1 }
     ],
     "wood=stump_medium": [
-      { "model": "harvestfestival:gathering/stump_medium", "textures": { "side": "blocks/log_oak", "top": "blocks/log_oak_top"}, "weight": 1 },
-      { "model": "harvestfestival:gathering/stump_medium", "textures": { "side": "blocks/log_spruce", "top": "blocks/log_spruce_top"}, "weight": 1 },
-      { "model": "harvestfestival:gathering/stump_medium", "textures": { "side": "blocks/log_big_oak", "top": "blocks/log_big_oak_top"}, "weight": 1 }
+      { "model": "harvestfestival:wilderness/stump_medium", "textures": { "side": "blocks/log_oak", "top": "blocks/log_oak_top"}, "weight": 1 },
+      { "model": "harvestfestival:wilderness/stump_medium", "textures": { "side": "blocks/log_spruce", "top": "blocks/log_spruce_top"}, "weight": 1 },
+      { "model": "harvestfestival:wilderness/stump_medium", "textures": { "side": "blocks/log_big_oak", "top": "blocks/log_big_oak_top"}, "weight": 1 }
     ],
     "wood=stump_large": [
-      { "model": "harvestfestival:gathering/stump_large", "textures": { "side": "blocks/log_oak", "top": "blocks/log_oak_top"}, "weight": 1 },
-      { "model": "harvestfestival:gathering/stump_large", "textures": { "side": "blocks/log_spruce", "top": "blocks/log_spruce_top"}, "weight": 1 },
-      { "model": "harvestfestival:gathering/stump_large", "textures": { "side": "blocks/log_big_oak", "top": "blocks/log_big_oak_top"}, "weight": 1 }
+      { "model": "harvestfestival:wilderness/stump_large", "textures": { "side": "blocks/log_oak", "top": "blocks/log_oak_top"}, "weight": 1 },
+      { "model": "harvestfestival:wilderness/stump_large", "textures": { "side": "blocks/log_spruce", "top": "blocks/log_spruce_top"}, "weight": 1 },
+      { "model": "harvestfestival:wilderness/stump_large", "textures": { "side": "blocks/log_big_oak", "top": "blocks/log_big_oak_top"}, "weight": 1 }
     ]
   }
 }

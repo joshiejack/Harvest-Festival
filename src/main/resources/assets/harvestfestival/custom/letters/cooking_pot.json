@@ -1,0 +1,9 @@
+{
+  "registryName": "harvestfestival:cooking_pot",
+  "type": "letter:gift",
+  "data": {
+    "deliveryTime": 3,
+    "isRepeatable": true,
+    "items": [ "gastronomy:cookware 7"]
+  }
+}

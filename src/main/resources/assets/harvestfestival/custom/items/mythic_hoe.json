@@ -1,0 +1,9 @@
+{
+  "registryName": "harvestfestival:mythic_hoe",
+  "type": "item:hoe",
+  "data": {
+    "toolMaterial": "mythic",
+    "width": 17,
+    "depth": 2
+  }
+}

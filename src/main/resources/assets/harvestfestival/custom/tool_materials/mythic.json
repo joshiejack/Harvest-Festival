@@ -1,0 +1,10 @@
+{
+	"registryName": "mythic",
+	"type": "tool_material:standard",
+	"data": {
+		"harvestLevel": 6,
+		"maxUses": 8192,
+		"efficiency": 10,
+		"damage": 4
+	}
+}

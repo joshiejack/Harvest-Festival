@@ -1,0 +1,48 @@
+Item,Value
+#Raw
+small_egg,50
+medium_egg,60
+large_egg,80
+small_duck_egg,80
+medium_duck_egg,100
+large_duck_egg,150
+small_milk,100
+medium_milk,150
+large_milk,200
+#Manufactured
+small_mayonnaise,70
+medium_mayonnaise,80
+large_mayonnaise,100
+small_duck_mayonnaise,110
+medium_duck_mayonnaise,130
+large_duck_mayonnaise,180
+small_cheese,300
+medium_cheese,400
+large_cheese,500
+#Cooked Food
+boiled_egg,56
+butter,112
+hot_milk,112
+ice_cream,168
+dinnerroll,295
+honey,100
+#Materials
+small_wool,500
+medium_wool,750
+large_wool,1000
+small_yarn,700
+medium_yarn,1000
+large_yarn,1500
+small_fine_yarn,400
+medium_fine_yarn,550
+large_fine_yarn,850
+husbandry:product 3,275
+husbandry:product 4,420
+husbandry:product 5,550
+#Truffles and Oil
+husbandry:product 0,600
+husbandry:product 1,750
+husbandry:product 2,950
+small_truffle_oil,1000
+medium_truffle_oil,1300
+large_truffle_oil,1600

@@ -1,0 +1,13 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "minecraft:leaves"
+  },
+  "variants": {
+    "fruit": {
+      "apple": { "textures": { "all": "horticulture:blocks/leaves/apple" }},
+      "orange": { "textures": { "all": "horticulture:blocks/leaves/orange" }},
+      "peach": { "textures": { "all": "horticulture:blocks/leaves/peach" }}
+    }
+  }
+}

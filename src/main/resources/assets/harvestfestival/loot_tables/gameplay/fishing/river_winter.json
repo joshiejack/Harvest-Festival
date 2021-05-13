@@ -6,117 +6,102 @@
       "entries": [
         {
           "type": "item",
-          "name": "harvestfestival:fish",
+          "name": "piscary:fish",
           "entryName": "chub",
           "weight": 75,
           "functions": [
             {
-              "function": "hf_set_enum",
+              "function": "penguinlib:set_enum",
               "enum": "chub"
-            },
-            {
-              "function": "hf_set_weight"
             }
           ]
         },
         {
           "type": "item",
-          "name": "harvestfestival:fish",
+          "name": "piscary:fish",
           "entryName": "perch",
           "weight": 58,
           "functions": [
             {
-              "function": "hf_set_enum",
+              "function": "penguinlib:set_enum",
               "enum": "perch"
-            },
-            {
-              "function": "hf_set_weight"
             }
           ]
         },
         {
           "type": "item",
-          "name": "harvestfestival:fish",
+          "name": "piscary:fish",
           "entryName": "trout",
           "weight": 46,
           "functions": [
             {
-              "function": "hf_set_enum",
+              "function": "penguinlib:set_enum",
               "enum": "trout"
-            },
-            {
-              "function": "hf_set_weight"
             }
           ]
         },
         {
           "type": "item",
-          "name": "harvestfestival:fish",
+          "name": "piscary:fish",
           "entryName": "catfish",
           "weight": 16,
           "functions": [
             {
-              "function": "hf_set_enum",
+              "function": "penguinlib:set_enum",
               "enum": "catfish"
-            },
-            {
-              "function": "hf_set_weight"
             }
           ]
         },
         {
           "type": "item",
-          "name": "harvestfestival:fish",
+          "name": "piscary:fish",
           "entryName": "pike",
           "weight": 5,
           "functions": [
             {
-              "function": "hf_set_enum",
+              "function": "penguinlib:set_enum",
               "enum": "angel"
-            },
-            {
-              "function": "hf_set_weight"
             }
           ]
         },
         {
           "type": "item",
-          "name": "harvestfestival:wood",
+          "name": "minecraft:stick",
           "entryName": "stick",
           "weight": 20
         },
         {
           "type": "item",
-          "name": "harvestfestival:junk",
+          "name": "piscary:loot",
           "entryName": "can",
           "weight": 5,
           "functions": [
             {
-              "function": "hf_set_enum",
+              "function": "penguinlib:set_enum",
               "enum": "can"
             }
           ]
         },
         {
           "type": "item",
-          "name": "harvestfestival:junk",
+          "name": "piscary:loot",
           "entryName": "bones",
           "weight": 10,
           "functions": [
             {
-              "function": "hf_set_enum",
+              "function": "penguinlib:set_enum",
               "enum": "bones"
             }
           ]
         },
         {
           "type": "item",
-          "name": "harvestfestival:junk",
+          "name": "piscary:loot",
           "entryName": "boot",
           "weight": 15,
           "functions": [
             {
-              "function": "hf_set_enum",
+              "function": "penguinlib:set_enum",
               "enum": "boot"
             }
           ]

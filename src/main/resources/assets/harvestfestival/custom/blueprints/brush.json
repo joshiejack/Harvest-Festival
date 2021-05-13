@@ -1,0 +1,22 @@
+{
+  "registryName": "harvestfestival:brush",
+  "type": "blueprint:standard",
+  "data": {
+    "category": "tool",
+    "result": "husbandry:tool 0",
+    "ingredients": [
+      {
+        "item": "yarn",
+        "count": 1
+      },
+      {
+        "item": "logWood",
+        "count": 1
+      },
+      {
+        "item": "stickWood",
+        "count": 1
+      }
+    ]
+  }
+}

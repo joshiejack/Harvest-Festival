@@ -1,0 +1,13 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "transform": "forge:default-item",
+    "model": "forge:item-layer"
+  },
+  "variants": {
+    "rotten": [{ "textures": { "layer0": "harvestfestival:items/quality/rotten" }}],
+    "silver": [{ "textures": { "layer0": "harvestfestival:items/quality/silver" }}],
+    "gold": [{ "textures": { "layer0": "harvestfestival:items/quality/gold" }}],
+    "mystril": [{ "textures": { "layer0": "harvestfestival:items/quality/mystril" }}]
+  }
+}

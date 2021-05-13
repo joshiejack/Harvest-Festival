@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north,machine=seed_maker":  { "model": "horticulture:seed_maker" },
+    "facing=south,machine=seed_maker":  { "model": "horticulture:seed_maker", "y": 180 },
+    "facing=east,machine=seed_maker": { "model": "horticulture:seed_maker", "y": 90 },
+    "facing=west,machine=seed_maker": { "model": "horticulture:seed_maker", "y": 270 }
+  }
+}

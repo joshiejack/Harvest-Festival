@@ -1,0 +1,22 @@
+{
+  "registryName": "harvestfestival:furnace",
+  "type": "blueprint:standard",
+  "data": {
+    "category": "machine",
+    "result": "harvestcore:machine 0",
+    "ingredients": [
+      {
+        "item": "gemAdamantite",
+        "count": 1
+      },
+      {
+        "item": "copper_metal",
+        "count": 5
+      },
+      {
+        "item": "stone",
+        "count": 20
+      }
+    ]
+  }
+}

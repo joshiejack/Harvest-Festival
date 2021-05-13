@@ -1,0 +1,59 @@
+{
+	"registryName": "harvestfestival:gem",
+	"type": "item:multi",
+	"defaults": {},
+	"data": [
+		{
+			"name": "adamantite",
+			"ores": [ "gemAdamantite" ]
+		},
+		{
+			"name": "agate",
+			"ores": [ "gemAgate" ]
+		},
+		{
+			"name": "alexandrite",
+			"ores": [ "gemAlexandrite" ]
+		},
+		{
+			"name": "amethyst",
+			"ores": [ "gemAmethyst" ]
+		},
+		{
+			"name": "fluorite",
+			"ores": [ "gemFluorite" ]
+		},
+		{
+			"name": "jade",
+			"ores": [ "gemJade" ]
+		},
+		{
+			"name": "moon_stone",
+			"ores": [ "gemMoonStone" ]
+		},
+		{
+			"name": "peridot",
+			"ores": [ "gemPeridot" ]
+		},
+		{
+			"name": "pink_diamond",
+			"ores": [ "gemPinkDiamond" ]
+		},
+		{
+			"name": "ruby",
+			"ores": [ "gemRuby" ]
+		},
+		{
+			"name": "sand_rose",
+			"ores": [ "gemSandRose" ]
+		},
+		{
+			"name": "sapphire",
+			"ores": [ "gemSapphire" ]
+		},
+		{
+			"name": "topaz",
+			"ores": [ "gemTopaz" ]
+		}
+	]
+}

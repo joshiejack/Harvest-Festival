@@ -1,0 +1,9 @@
+{
+  "registryName": "harvestfestival:goddess_water",
+  "type": "block:fluid",
+  "data": {
+    "script": "harvestfestival:blocks/goddess_water",
+    "still": "harvestfestival:blocks/fluids/goddess_water_still",
+    "flow": "harvestfestival:blocks/fluids/goddess_water_flow"
+  }
+}

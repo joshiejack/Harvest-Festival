@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "elevator=basic,facing=north":  { "model": "harvestcore:elevator" },
+    "elevator=basic,facing=south":  { "model": "harvestcore:elevator", "y": 180 },
+    "elevator=basic,facing=east": { "model": "harvestcore:elevator", "y": 90 },
+    "elevator=basic,facing=west": { "model": "harvestcore:elevator", "y": 270 }
+  }
+}

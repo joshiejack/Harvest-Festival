@@ -1,0 +1,10 @@
+Name,Duration
+three_minutes,50
+five_minutes,100
+quarter_hour,250
+half_hour,500
+hour,1000
+half_day,12000
+day,24000
+week,168000
+year,2880000

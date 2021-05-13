@@ -1,0 +1,8 @@
+{
+  "registryName": "harvestfestival:cursed_sword",
+  "type": "item:sword",
+  "data": {
+    "script": "harvestfestival:items/cursed",
+    "toolMaterial": "blessed"
+  }
+}

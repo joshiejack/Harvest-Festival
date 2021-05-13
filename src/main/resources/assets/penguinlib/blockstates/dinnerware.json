@@ -1,0 +1,17 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "transform": "forge:default-item",
+    "model": "forge:item-layer"
+  },
+  "variants": {
+    "bowl": [{ "textures": { "layer0": "penguinlib:items/dinnerware/empty_bowl" }}],
+    "glass": [{ "textures": { "layer0": "penguinlib:items/dinnerware/empty_glass" }}],
+    "pickling_jar": [{ "textures": { "layer0": "penguinlib:items/dinnerware/empty_jar" }}],
+    "plate_fired": [{ "textures": { "layer0": "penguinlib:items/dinnerware/empty_plate" }}],
+    "plate_unfired": [{ "textures": { "layer0": "penguinlib:items/dinnerware/unfired_plate" }}],
+    "mug_fired": [{ "textures": { "layer0": "penguinlib:items/dinnerware/empty_mug" }}],
+    "mug_unfired": [{ "textures": { "layer0": "penguinlib:items/dinnerware/unfired_mug" }}],
+    "jam_jar": [{ "textures": { "layer0": "penguinlib:items/dinnerware/jam_jar" }}]
+  }
+}

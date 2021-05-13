@@ -1,0 +1,11 @@
+name,season_handler,color,seedling,sapling_new,sapling_old,juvenile,seedling_days,sapling_days,juvenile_days
+orange,summer,EDB325,harvestfestival:seedling[seedling=orange],horticulture:sapling 0,horticulture:sapling 4,harvestfestival:juvenile[juvenile=orange],11,22,15
+apple,autumn,E73921,harvestfestival:seedling[seedling=apple],horticulture:sapling 1,horticulture:sapling 5,harvestfestival:juvenile[juvenile=apple],5,15,15
+banana,summer,FFEF6A,harvestfestival:seedling[seedling=banana],horticulture:sapling 2,horticulture:sapling 6,harvestfestival:juvenile[juvenile=banana],14,15,25
+peach,summer,FFB0A5,harvestfestival:seedling[seedling=peach],horticulture:sapling 3,horticulture:sapling 7,harvestfestival:juvenile[juvenile=peach],5,15,15
+oak,not_winter,#B18D57,harvestfestival:seedling[seedling=oak],minecraft:sapling 0,minecraft:sapling 8,harvestfestival:juvenile[juvenile=oak],5,5,10
+spruce,all_year,#826038,harvestfestival:seedling[seedling=spruce],minecraft:sapling 1,minecraft:sapling 9,harvestfestival:juvenile[juvenile=spruce],5,5,10
+birch,not_winter,#C5AD72,harvestfestival:seedling[seedling=birch],minecraft:sapling 2,minecraft:sapling 10,harvestfestival:juvenile[juvenile=birch],5,10,15
+jungle,not_winter,#AE8054,harvestfestival:seedling[seedling=jungle],minecraft:sapling 3,minecraft:sapling 11,harvestfestival:juvenile[juvenile=jungle],3,5,7
+acacia,desert,#AC5A3B,harvestfestival:seedling[seedling=acacia],minecraft:sapling 4,minecraft:sapling 12,harvestfestival:juvenile[juvenile=acacia],2,3,5
+dark_oak,not_winter,#50412C,harvestfestival:seedling[seedling=dark_oak],minecraft:sapling 5,minecraft:sapling 13,harvestfestival:juvenile[juvenile=dark_oak],5,5,10

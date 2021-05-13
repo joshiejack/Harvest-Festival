@@ -1,0 +1,16 @@
+department_id,listing_id,condition_id
+#Starter Items
+market_stall,turnip_seeds,no_general_store
+market_stall,turnip_seeds,is_spring
+market_stall,onion_seeds,no_general_store
+market_stall,onion_seeds,is_summer
+market_stall,spinach_seeds,no_general_store
+market_stall,spinach_seeds,is_autumn
+market_stall,basic_watering_can,no_general_store
+market_stall,basic_hoe,no_general_store
+market_stall,basic_axe,no_general_store
+market_stall,basic_hammer,no_general_store
+market_stall,basic_shovel,no_general_store
+market_stall,1000g_string,jakob_needs_string
+#Random Items
+market_stall,random_item,has_general_store

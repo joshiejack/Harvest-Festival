@@ -1,0 +1,8 @@
+{
+  "registryName": "harvestfestival:power_berry",
+  "type": "letter:gift",
+  "data": {
+    "deliveryTime": 3,
+    "items": [ "harvestfestival:power_berry"]
+  }
+}

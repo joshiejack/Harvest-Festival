@@ -1,0 +1,9 @@
+{
+  "registryName": "harvestfestival:basic_shovel",
+  "type": "item:shovel",
+  "data": {
+    "toolMaterial": "basic",
+    "width": 0,
+    "depth": 0
+  }
+}

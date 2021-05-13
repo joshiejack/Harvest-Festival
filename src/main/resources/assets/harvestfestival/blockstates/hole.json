@@ -1,0 +1,14 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "transform": "forge:default-block",
+    "model": "cube_all"
+  },
+  "variants": {
+    "decortype": {
+    "standard":  { "textures": { "all": "harvestfestival:blocks/mine/interior/standard/hole" }},
+    "frozen":  { "textures": { "all": "harvestfestival:blocks/mine/interior/frozen/hole" }},
+    "hell":  { "textures": { "all": "harvestfestival:blocks/mine/interior/hell/hole" }}
+    }
+  }
+}

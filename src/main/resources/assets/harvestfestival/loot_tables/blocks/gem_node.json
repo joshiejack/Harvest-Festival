@@ -1,0 +1,375 @@
+{
+  "pools": [
+    {
+      "name": "main",
+      "rolls": 5,
+      "entries": [
+        {
+          "type": "item",
+          "name": "harvestfestival:gem",
+          "entryName": "agate",
+          "weight": 190,
+          "functions": [
+            {
+              "function": "penguinlib:set_string",
+              "string": "agate"
+            },
+            {
+              "function": "set_count",
+              "count": {
+                "min": 0,
+                "max": 1
+              }
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "harvestcore:between_floors_scaled",
+              "from": 1,
+              "to": 50
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "harvestfestival:gem",
+          "entryName": "amethyst",
+          "weight": 200,
+          "functions": [
+            {
+              "function": "penguinlib:set_string",
+              "string": "amethyst"
+            },
+            {
+              "function": "set_count",
+              "count": {
+                "min": 0,
+                "max": 1
+              }
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "harvestcore:between_floors_scaled",
+              "from": 1,
+              "to": 40
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "harvestfestival:gem",
+          "entryName": "fluorite",
+          "weight": 175,
+          "functions": [
+            {
+              "function": "penguinlib:set_string",
+              "string": "fluorite"
+            },
+            {
+              "function": "set_count",
+              "count": {
+                "min": 0,
+                "max": 1
+              }
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "harvestcore:between_floors_scaled",
+              "from": 10,
+              "to": 60
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "harvestfestival:gem",
+          "entryName": "peridot",
+          "weight": 160,
+          "functions": [
+            {
+              "function": "penguinlib:set_string",
+              "string": "peridot"
+            },
+            {
+              "function": "set_count",
+              "count": {
+                "min": 0,
+                "max": 1
+              }
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "harvestcore:between_floors_scaled",
+              "from": 20,
+              "to": 70
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "harvestfestival:gem",
+          "entryName": "ruby",
+          "weight": 125,
+          "functions": [
+            {
+              "function": "penguinlib:set_string",
+              "string": "ruby"
+            },
+            {
+              "function": "set_count",
+              "count": {
+                "min": 0,
+                "max": 1
+              }
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "harvestcore:between_floors_scaled",
+              "from": 40,
+              "to": 100
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "harvestfestival:gem",
+          "entryName": "topaz",
+          "weight": 150,
+          "functions": [
+            {
+              "function": "penguinlib:set_string",
+              "string": "topaz"
+            },
+            {
+              "function": "set_count",
+              "count": {
+                "min": 0,
+                "max": 1
+              }
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "harvestcore:between_floors_scaled",
+              "from": 30,
+              "to": 80
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "harvestfestival:gem",
+          "entryName": "alexandrite",
+          "weight": 1,
+          "functions": [
+            {
+              "function": "penguinlib:set_string",
+              "string": "alexandrite"
+            },
+            {
+              "function": "set_count",
+              "count": {
+                "min": 0,
+                "max": 1
+              }
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "harvestcore:floor_multiple",
+              "of": 10
+            },
+            {
+              "condition": "harvestcore:from_floor",
+              "floor": 110
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "minecraft:diamond",
+          "entryName": "diamond",
+          "weight": 80,
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 0,
+                "max": 1
+              }
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "harvestcore:floor_multiple",
+              "of": 3
+            },
+            {
+              "condition": "harvestcore:from_floor",
+              "floor": 81
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "harvestfestival:gem",
+          "entryName": "sapphire",
+          "weight": 100,
+          "functions": [
+            {
+              "function": "penguinlib:set_string",
+              "string": "sapphire"
+            },
+            {
+              "function": "set_count",
+              "count": {
+                "min": 0,
+                "max": 1
+              }
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "harvestcore:between_floors_scaled",
+              "from": 30,
+              "to": 60
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "minecraft:emerald",
+          "entryName": "emerald",
+          "weight": 90,
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 0,
+                "max": 1
+              }
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "harvestcore:between_floors_scaled",
+              "from": 50,
+              "to": 100
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "harvestfestival:gem",
+          "entryName": "moon_stone",
+          "weight": 225,
+          "functions": [
+            {
+              "function": "penguinlib:set_string",
+              "string": "moon_stone"
+            },
+            {
+              "function": "set_count",
+              "count": {
+                "min": 0,
+                "max": 1
+              }
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "harvestcore:between_floors_scaled",
+              "from": 70,
+              "to": 100
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "harvestfestival:gem",
+          "entryName": "sand_rose",
+          "weight": 200,
+          "functions": [
+            {
+              "function": "penguinlib:set_string",
+              "string": "sand_rose"
+            },
+            {
+              "function": "set_count",
+              "count": {
+                "min": 0,
+                "max": 1
+              }
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "harvestcore:between_floors_scaled",
+              "from": 60,
+              "to": 100
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "harvestfestival:gem",
+          "entryName": "pink_diamond",
+          "weight": 1,
+          "functions": [
+            {
+              "function": "penguinlib:set_string",
+              "string": "pink_diamond"
+            },
+            {
+              "function": "set_count",
+              "count": {
+                "min": 0,
+                "max": 1
+              }
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "harvestcore:from_floor",
+              "floor": 102
+            },
+            {
+              "condition": "harvestcore:floor_multiple",
+              "of": 3
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "harvestfestival:gem",
+          "entryName": "jade",
+          "weight": 110,
+          "functions": [
+            {
+              "function": "penguinlib:set_string",
+              "string": "jade"
+            },
+            {
+              "function": "set_count",
+              "count": {
+                "min": 0,
+                "max": 1
+              }
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "harvestcore:between_floors_scaled",
+              "from": 50,
+              "to": 100
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

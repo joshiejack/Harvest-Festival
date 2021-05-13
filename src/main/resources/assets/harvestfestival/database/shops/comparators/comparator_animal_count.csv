@@ -1,0 +1,5 @@
+id,trait
+small_animal_count,carriable
+small_animal_count,!pet
+large_animal_count,pettable
+large_animal_count,!pet

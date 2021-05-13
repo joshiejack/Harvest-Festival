@@ -1,0 +1,8 @@
+department_id,listing_id,condition_id
+pet_shop_items,cat_food,has_cat
+pet_shop_items,dog_food,has_dog
+pet_shop_items,cat_treat,has_cat
+pet_shop_items,dog_treat,has_dog
+pet_shop_items,horse_treat,has_horse
+pet_shop_items,lead,has_horse
+pet_shop_items,brush,has_horse

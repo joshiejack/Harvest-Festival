@@ -1,0 +1,7 @@
+{
+  "registryName": "harvestfestival:basic_sword",
+  "type": "item:sword",
+  "data": {
+    "toolMaterial": "basic"
+  }
+}

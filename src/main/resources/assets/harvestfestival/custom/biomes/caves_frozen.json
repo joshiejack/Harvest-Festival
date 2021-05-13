@@ -1,0 +1,10 @@
+{
+  "registryName": "harvestfestival:caves_frozen",
+  "type": "biome:standard",
+  "data": {
+    "name": "Frozen Caves",
+    "temperature": 0,
+    "rainfall": 0,
+    "snow": true
+  }
+}

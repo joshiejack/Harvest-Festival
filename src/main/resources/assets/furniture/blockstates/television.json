@@ -1,0 +1,16 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "transform": "forge:default-block"
+  },
+  "variants": {
+    "screen=north":  { "model": "furniture:equipment/television_screen" },
+    "screen=south":  { "model": "furniture:equipment/television_screen", "y": 180 },
+    "screen=east":  { "model": "furniture:equipment/television_screen", "y": 90 },
+    "screen=west":  { "model": "furniture:equipment/television_screen", "y": 270 },
+    "facing=north,model=standard":  { "model": "furniture:equipment/television_base"},
+    "facing=south,model=standard":  { "model": "furniture:equipment/television_base", "y": 180 },
+    "facing=east,model=standard": { "model": "furniture:equipment/television_base", "y": 90 },
+    "facing=west,model=standard": { "model": "furniture:equipment/television_base", "y": 270 }
+  }
+}

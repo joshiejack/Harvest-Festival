@@ -1,0 +1,723 @@
+{
+  "pools": [
+    {
+      "name": "main",
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "item",
+          "name": "piscary:fish",
+          "entryName": "minnow",
+          "weight": 818,
+          "functions": [
+            {
+              "function": "penguinlib:set_enum",
+              "enum": "minnow"
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "piscary:biome_temp",
+              "types": "medium, warm, cold"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "piscary:fish",
+          "entryName": "chub",
+          "weight": 431,
+          "functions": [
+            {
+              "function": "penguinlib:set_enum",
+              "enum": "chub"
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "piscary:biome_temp",
+              "types": "medium, warm, cold"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "piscary:fish",
+          "entryName": "perch",
+          "weight": 170,
+          "functions": [
+            {
+              "function": "penguinlib:set_enum",
+              "enum": "perch"
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "piscary:biome_type",
+              "type": "river"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "piscary:fish",
+          "entryName": "walleye",
+          "weight": 71,
+          "functions": [
+            {
+              "function": "penguinlib:set_enum",
+              "enum": "walleye"
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "piscary:biome_temp",
+              "type": "medium"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "piscary:fish",
+          "entryName": "carp",
+          "weight": 318,
+          "functions": [
+            {
+              "function": "penguinlib:set_enum",
+              "enum": "carp"
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "piscary:biome_temp",
+              "types": "cold, medium, warm"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "piscary:fish",
+          "entryName": "koi",
+          "weight": 7,
+          "functions": [
+            {
+              "function": "penguinlib:set_enum",
+              "enum": "koi"
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "piscary:biome_temp",
+              "types": "medium, cold"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "piscary:fish",
+          "entryName": "siamese",
+          "weight": 13,
+          "functions": [
+            {
+              "function": "penguinlib:set_enum",
+              "enum": "siamese"
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "piscary:biome_temp",
+              "types": "cold, medium"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "piscary:fish",
+          "entryName": "bass",
+          "weight": 96,
+          "functions": [
+            {
+              "function": "penguinlib:set_enum",
+              "enum": "bass"
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "piscary:biome_temp",
+              "type": "medium"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "piscary:fish",
+          "entryName": "tetra",
+          "weight": 14,
+          "functions": [
+            {
+              "function": "penguinlib:set_enum",
+              "enum": "tetra"
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "piscary:biome_type",
+              "type": "jungle"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "piscary:fish",
+          "entryName": "angel",
+          "weight": 19,
+          "functions": [
+            {
+              "function": "penguinlib:set_enum",
+              "enum": "angel"
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "piscary:biome_type",
+              "type": "jungle"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "piscary:fish",
+          "entryName": "catfish",
+          "weight": 28,
+          "functions": [
+            {
+              "function": "penguinlib:set_enum",
+              "enum": "catfish"
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "piscary:biome_type",
+              "type": "river"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "piscary:fish",
+          "entryName": "piranha",
+          "weight": 1,
+          "functions": [
+            {
+              "function": "penguinlib:set_enum",
+              "enum": "piranha"
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "piscary:biome_type",
+              "type": "jungle"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "piscary:fish",
+          "entryName": "trout",
+          "weight": 108,
+          "functions": [
+            {
+              "function": "penguinlib:set_enum",
+              "enum": "trout"
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "piscary:biome_temp",
+              "types": "medium, cold, ocean"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "piscary:fish",
+          "entryName": "salmon",
+          "weight": 82,
+          "functions": [
+            {
+              "function": "penguinlib:set_enum",
+              "enum": "salmon"
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "piscary:biome_type",
+              "types": "river, cold, ocean"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "piscary:fish",
+          "entryName": "damsel",
+          "weight": 21,
+          "functions": [
+            {
+              "function": "penguinlib:set_enum",
+              "enum": "damsel"
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "piscary:biome_type",
+              "type": "ocean"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "piscary:fish",
+          "entryName": "stargazer",
+          "weight": 13,
+          "functions": [
+            {
+              "function": "penguinlib:set_enum",
+              "enum": "stargazer"
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "piscary:biome_type",
+              "type": "ocean"
+            },
+            {
+              "condition": "piscary:biome_type",
+              "type": "snowy",
+              "reverse": true
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "piscary:fish",
+          "entryName": "clown",
+          "weight": 9,
+          "functions": [
+            {
+              "function": "penguinlib:set_enum",
+              "enum": "clown"
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "piscary:biome_type",
+              "type": "ocean"
+            },
+            {
+              "condition": "piscary:biome_type",
+              "type": "snowy",
+              "reverse": true
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "piscary:fish",
+          "entryName": "butterfly",
+          "weight": 6,
+          "functions": [
+            {
+              "function": "penguinlib:set_enum",
+              "enum": "butterfly"
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "piscary:biome_type",
+              "type": "ocean"
+            },
+            {
+              "condition": "piscary:biome_type",
+              "type": "snowy",
+              "reverse": true
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "piscary:fish",
+          "entryName": "tang",
+          "weight": 4,
+          "functions": [
+            {
+              "function": "penguinlib:set_enum",
+              "enum": "tang"
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "piscary:biome_type",
+              "type": "ocean"
+            },
+            {
+              "condition": "piscary:biome_type",
+              "type": "snowy",
+              "reverse": true
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "piscary:fish",
+          "entryName": "stingray",
+          "weight": 3,
+          "functions": [
+            {
+              "function": "penguinlib:set_enum",
+              "enum": "stingray"
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "piscary:biome_type",
+              "type": "ocean"
+            },
+            {
+              "condition": "piscary:biome_type",
+              "type": "snowy",
+              "reverse": true
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "piscary:fish",
+          "entryName": "puffer",
+          "weight": 1,
+          "functions": [
+            {
+              "function": "penguinlib:set_enum",
+              "enum": "puffer"
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "piscary:biome_type",
+              "type": "ocean"
+            },
+            {
+              "condition": "piscary:biome_type",
+              "type": "snowy",
+              "reverse": true
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "piscary:fish",
+          "entryName": "anchovy",
+          "weight": 262,
+          "functions": [
+            {
+              "function": "penguinlib:set_enum",
+              "enum": "anchovy"
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "piscary:biome_type",
+              "type": "ocean"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "piscary:fish",
+          "entryName": "cod",
+          "weight": 115,
+          "functions": [
+            {
+              "function": "penguinlib:set_enum",
+              "enum": "cod"
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "piscary:biome_type",
+              "type": "ocean"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "piscary:fish",
+          "entryName": "herring",
+          "weight": 42,
+          "functions": [
+            {
+              "function": "penguinlib:set_enum",
+              "enum": "herring"
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "piscary:biome_type",
+              "type": "ocean"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "piscary:fish",
+          "entryName": "lamprey",
+          "weight": 23,
+          "functions": [
+            {
+              "function": "penguinlib:set_enum",
+              "enum": "lamprey"
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "piscary:biome_temp",
+              "types": "ocean, medium"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "piscary:fish",
+          "entryName": "pupfish",
+          "weight": 32,
+          "functions": [
+            {
+              "function": "penguinlib:set_enum",
+              "enum": "pupfish"
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "piscary:biome_temp",
+              "types": "medium, warm, cold"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "piscary:fish",
+          "entryName": "bowfin",
+          "weight": 20,
+          "functions": [
+            {
+              "function": "penguinlib:set_enum",
+              "enum": "bowfin"
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "piscary:biome_temp",
+              "types": "cold, medium, warm"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "piscary:fish",
+          "entryName": "pickerel",
+          "weight": 10,
+          "functions": [
+            {
+              "function": "penguinlib:set_enum",
+              "enum": "pickerel"
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "piscary:biome_temp",
+              "types": "warm, medium, cold"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "piscary:fish",
+          "entryName": "lungfish",
+          "weight": 1,
+          "functions": [
+            {
+              "function": "penguinlib:set_enum",
+              "enum": "lungfish"
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "piscary:biome_temp",
+              "type": "warm"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "piscary:fish",
+          "entryName": "tuna",
+          "weight": 7,
+          "functions": [
+            {
+              "function": "penguinlib:set_enum",
+              "enum": "tuna"
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "piscary:biome_type",
+              "type": "ocean"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "piscary:fish",
+          "entryName": "electricray",
+          "weight": 3,
+          "functions": [
+            {
+              "function": "penguinlib:set_enum",
+              "enum": "electricray"
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "piscary:biome_type",
+              "type": "ocean"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "piscary:fish",
+          "entryName": "sardine",
+          "weight": 240,
+          "functions": [
+            {
+              "function": "penguinlib:set_enum",
+              "enum": "sardine"
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "piscary:biome_type",
+              "type": "ocean"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "piscary:fish",
+          "entryName": "blaasop",
+          "weight": 1,
+          "functions": [
+            {
+              "function": "penguinlib:set_enum",
+              "enum": "blaasop"
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "piscary:biome_type",
+              "type": "ocean"
+            },
+            {
+              "condition": "piscary:biome_type",
+              "type": "snowy"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "piscary:fish",
+          "entryName": "angler",
+          "weight": 1,
+          "functions": [
+            {
+              "function": "penguinlib:set_enum",
+              "enum": "angler"
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "piscary:biome_type",
+              "type": "ocean"
+            },
+            {
+              "condition": "piscary:biome_type",
+              "type": "snowy"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "piscary:fish",
+          "entryName": "pike",
+          "weight": 5,
+          "functions": [
+            {
+              "function": "penguinlib:set_enum",
+              "enum": "pike"
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "piscary:biome_type",
+              "type": "river"
+            },
+            {
+              "condition": "piscary:biome_type",
+              "type": "snowy"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "piscary:fish",
+          "entryName": "mantaray",
+          "weight": 1,
+          "functions": [
+            {
+              "function": "penguinlib:set_enum",
+              "enum": "mantaray"
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "piscary:biome_type",
+              "type": "ocean"
+            },
+            {
+              "condition": "piscary:biome_type",
+              "type": "snowy",
+              "reverse": true
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "piscary:fish",
+          "entryName": "gold",
+          "weight": 294,
+          "functions": [
+            {
+              "function": "penguinlib:set_enum",
+              "enum": "gold"
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "piscary:biome_temp",
+              "types": "medium, cold"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

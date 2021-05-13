@@ -1,0 +1,10 @@
+{
+  "registryName": "harvestfestival:mystril_hammer",
+  "type": "item:hammer",
+  "data": {
+    "toolMaterial": "mystril",
+    "area": 5,
+    "widthAndHeight": 1,
+    "depth": 2
+  }
+}

@@ -1,0 +1,20 @@
+Item,Dish,Ingredients
+!minecraft:beetroot_soup,bowl,"beetroot,tomato,onion,cooking_oil"
+!pineapple_juice,glass,pineapple
+!tomato_juice,glass,tomato
+!grape_juice,glass,grapes
+!peach_juice,glass,peach
+!banana_juice,glass,banana
+!orange_juice,glass,orange
+!apple_juice,glass,apple
+!strawberry_milk,glass,"strawberry,milk"
+gastronomy:ingredient 2,,wheat
+vegetable_juice,glass,"category:juice_vegetable 3"
+vegetable_latte,glass,"category:juice_vegetable 2,milk"
+ketchup,glass_bottle,"tomato,onion,salt,sugar"
+butter,,"milk,salt"
+fishsticks,plate,"category:fish,bread,salt"
+fruit_juice,glass,"category:sandwich_fruit 3"
+fruit_latte,glass,"category:sandwich_fruit 2,milk"
+mix_juice,glass,"category:sandwich_fruit,category:juice_vegetable"
+latte_mix,glass,"category:sandwich_fruit,category:juice_vegetable,milk"

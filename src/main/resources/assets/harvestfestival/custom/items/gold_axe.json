@@ -1,0 +1,9 @@
+{
+  "registryName": "harvestfestival:gold_axe",
+  "type": "item:lumber_axe",
+  "data": {
+    "toolMaterial": "gold",
+    "hits": 3,
+    "area": 3
+  }
+}

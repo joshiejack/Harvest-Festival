@@ -1,0 +1,8 @@
+{
+  "registryName": "harvestfestival:blacksmith_reminder",
+  "type": "letter:info",
+  "data": {
+    "deliveryTime": 3,
+    "isRepeatable": true
+  }
+}

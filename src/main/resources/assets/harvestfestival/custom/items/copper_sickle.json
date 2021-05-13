@@ -1,0 +1,8 @@
+{
+  "registryName": "harvestfestival:copper_sickle",
+  "type": "item:sickle",
+  "data": {
+    "toolMaterial": "copper",
+    "area": 1
+  }
+}

@@ -1,0 +1,5 @@
+department_id,listing_id,id,type,data,gold,weight
+#Starter Items
+engineers_workshop_machines,piston,default,item,piston,80,1
+#Blueprints
+engineers_workshop_blueprints,mushroom_log_blueprint,default,bundle,mushroom_log_blueprint,800,1

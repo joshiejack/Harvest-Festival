@@ -1,123 +1,258 @@
 buildscript {
     repositories {
         jcenter()
-        maven {
-            name = "forge"
-            url = "http://files.minecraftforge.net/maven"
-        }
-
-        maven {
-            url "https://plugins.gradle.org/m2/"
-        }
+        maven { url = "http://files.minecraftforge.net/maven" }
     }
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:2.2-SNAPSHOT'
-        classpath "gradle.plugin.com.matthewprenger:CurseGradle:1.0.8"
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
     }
 }
-
-apply plugin: "com.matthewprenger.cursegradle"
 apply plugin: 'net.minecraftforge.gradle.forge'
-apply plugin: 'maven-publish'
-
-sourceCompatibility = JavaVersion.VERSION_1_8
-targetCompatibility = JavaVersion.VERSION_1_8
-
-repositories {
-  maven { url "http://dvs1.progwml6.com/files/maven" }
-  maven { url "http://tehnut.info/maven" }
-  maven { url "http://maven.blamejared.com/" }
-}
+//Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 
 ext.buildnumber=""
 if (System.getenv().BUILD_NUMBER) {
     ext.buildnumber="-" + System.getenv().BUILD_NUMBER
 }
 
-version = "${minecraft_version}-${mod_version}${buildnumber}"
-group= "uk.joshiejack.harvest"
-archivesBaseName = "Harvest-Festival"
+version = "${minecraft_version}-${harvestfestival_version}"
+group = "com.github.penguinsquad"
+archivesBaseName = "HarvestFestival"
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 minecraft {
     version = "${minecraft_version}-${forge_version}"
     runDir = "run"
     mappings = "${mappings_version}"
-    coreMod = "joshie.harvest.asm.HFTransformer"
+	
+    makeObfSourceJar = false
 
-    replace "@VERSION@", "${mod_version}"
-    replaceIn "HFModInfo.java"
+    replace "@ADVENTURE_VERSION@", "${settlements_version}"
+    replaceIn "Adventure.java"
+    replace "@ECONOMY_VERSION@", "${economy_version}"
+    replaceIn "Economy.java"
+    replace "@ENERGY_VERSION@", "${energy_version}"
+    replaceIn "Energy.java"
+    replace "@FURNITURE_VERSION@", "${furniture_version}"
+    replaceIn "Furniture.java"
+    replace "@GASTRONOMY_VERSION@", "${gastronomy_version}"
+    replaceIn "Gastronomy.java"
+    replace "@HC_VERSION@", "${harvestcore_version}"
+    replaceIn "HarvestCore.java"
+    replace "@HF_VERSION@", "${harvestfestival_version}"
+    replaceIn "HarvestFestival.java"
+    replace "@HORTICULTURE_VERSION@", "${horticulture_version}"
+    replaceIn "Horticulture.java"
+    replace "@HUSBANDRY_VERSION@", "${husbandry_version}"
+    replaceIn "Husbandry.java"
+    replace "@LIB_VERSION@", "${penguinlib_version}"
+    replaceIn "PenguinLib.java"
+    replace "@PISCARY_VERSION@", "${piscary_version}"
+    replaceIn "Piscary.java"
+    replace "@SEASONS_VERSION@", "${seasons_version}"
+    replaceIn "Seasons.java"
+}
+
+repositories {
+    maven {
+        url "http://dvs1.progwml6.com/files/maven"
+    }
 }
 
 dependencies {
-  deobfCompile "mezz.jei:jei_${minecraft_version}:${jei_version}"
-  deobfCompile "info.tehnut.buttons:Buttons:${minecraft_version}-${buttons_version}"
-  deobfCompile "MineTweaker3:MineTweaker3-API:${minetweaker_version}"
+    deobfCompile "mezz.jei:jei_${minecraft_version}:${jei_version}"
 }
 
-processResources
-{
-    inputs.property "version", project.version
-    inputs.property "mcversion", project.minecraft.version
+ext.jarFile = zipTree(jar.archivePath)
 
-    from(sourceSets.main.resources.srcDirs) {
-        include 'mcmod.info'
-                
-        expand 'version':project.version, 'mcversion':project.minecraft.version
+task settlementsJar(type: Jar, dependsOn: ['reobfJar', 'penguinLibJar']) {
+    archiveName = "Adventure-${minecraft_version}-${settlements_version}.jar"
+    from(project.ext.jarFile) {
+        includes.addAll(["assets/settlements/**", "uk/joshiejack/settlements/**"])
+        include "pack.mcmeta"
+        include "settlements.info"
+        rename("settlements.info", 'mcmod.info')
     }
-        
+}
+
+task economyJar(type: Jar, dependsOn: ['reobfJar', 'penguinLibJar']) {
+    archiveName = "Economy-${minecraft_version}-${economy_version}.jar"
+    from(project.ext.jarFile) {
+        includes.addAll(["assets/economy/**", "uk/joshiejack/economy/**"])
+        include "pack.mcmeta"
+        include "economy.info"
+        rename("economy.info", 'mcmod.info')
+    }
+}
+
+task energyJar(type: Jar, dependsOn: ['reobfJar', 'penguinLibJar']) {
+    archiveName = "Energy-${minecraft_version}-${energy_version}.jar"
+    from(project.ext.jarFile) {
+        includes.addAll(["assets/energy/**", "uk/joshiejack/energy/**"])
+        include "pack.mcmeta"
+        include "energy.info"
+        rename("energy.info", 'mcmod.info')
+    }
+}
+
+task furnitureJar(type: Jar, dependsOn: ['reobfJar', 'penguinLibJar']) {
+    archiveName = "Furniture-${minecraft_version}-${furniture_version}.jar"
+    from(project.ext.jarFile) {
+        includes.addAll(["assets/furniture/**", "uk/joshiejack/furniture/**"])
+        include "pack.mcmeta"
+        include "furniture.info"
+        rename("furniture.info", 'mcmod.info')
+    }
+}
+
+task gastronomyJar(type: Jar, dependsOn: ['reobfJar', 'penguinLibJar']) {
+    archiveName = "Gastronomy-${minecraft_version}-${gastronomy_version}.jar"
+    from(project.ext.jarFile) {
+        includes.addAll(["assets/gastronomy/**", "uk/joshiejack/gastronomy/**"])
+        include "pack.mcmeta"
+        include "gastronomy.info"
+        rename("gastronomy.info", 'mcmod.info')
+    }
+}
+
+task harvestCoreJar(type: Jar, dependsOn: ['reobfJar', 'penguinLibJar', 'seasonsJar']) {
+    archiveName = "HarvestCore-${minecraft_version}-${harvestcore_version}.jar"
+    from(project.ext.jarFile) {
+        includes.addAll(["assets/harvestcore/**", "uk/joshiejack/harvestcore/**"])
+        include "pack.mcmeta"
+        include "harvestcore.info"
+        rename("harvestcore.info", 'mcmod.info')
+    }
+}
+
+task horticultureJar(type: Jar, dependsOn: ['reobfJar', 'penguinLibJar']) {
+    archiveName = "Horticulture-${minecraft_version}-${horticulture_version}.jar"
+    from(project.ext.jarFile) {
+        includes.addAll(["assets/horticulture/**", "uk/joshiejack/horticulture/**"])
+        include "pack.mcmeta"
+        include "horticulture.info"
+        rename("horticulture.info", 'mcmod.info')
+    }
+}
+
+task husbandryJar(type: Jar, dependsOn: ['reobfJar', 'penguinLibJar']) {
+    archiveName = "Husbandry-${minecraft_version}-${husbandry_version}.jar"
+    from(project.ext.jarFile) {
+        includes.addAll(["assets/husbandry/**", "uk/joshiejack/husbandry/**"])
+        include "pack.mcmeta"
+        include "husbandry.info"
+        rename("husbandry.info", 'mcmod.info')
+    }
+}
+
+task penguinLibJar(type: Jar, dependsOn: reobfJar) {
+    archiveName = "PenguinLib-${minecraft_version}-${penguinlib_version}.jar"
+    from(project.ext.jarFile) {
+        includes.addAll(["assets/penguinlib/**", "uk/joshiejack/penguinlib/**"])
+        include "META-INF/penguinlib_at.cfg"
+        include "pack.mcmeta"
+        include "penguinlib.info"
+        rename("penguinlib.info", 'mcmod.info')
+    }
+    manifest {
+        attributes 'FMLAT': 'penguinlib_at.cfg'
+        attributes 'FMLCorePluginContainsFMLMod': 'true'
+        attributes 'FMLCorePlugin': "uk.joshiejack.penguinlib.asm.Transformer"
+    }
+}
+
+task piscaryJar(type: Jar, dependsOn: ['reobfJar', 'penguinLibJar']) {
+    archiveName = "Piscary-${minecraft_version}-${piscary_version}.jar"
+    from(project.ext.jarFile) {
+        includes.addAll(["assets/piscary/**", "uk/joshiejack/piscary/**"])
+        include "pack.mcmeta"
+        include "piscary.info"
+        rename("piscary.info", 'mcmod.info')
+    }
+}
+
+task seasonsJar(type: Jar, dependsOn: ['reobfJar', 'penguinLibJar']) {
+    archiveName = "Seasons-${minecraft_version}-${seasons_version}.jar"
+    from(project.ext.jarFile) {
+        includes.addAll(["assets/seasons/**", "uk/joshiejack/seasons/**"])
+        include "pack.mcmeta"
+        include "seasons.info"
+        rename("seasons.info", 'mcmod.info')
+    }
+}
+
+task hfmodJar(type: Jar, dependsOn: ['reobfJar', 'penguinLibJar']) {
+    archiveName = "HF-Assets-${minecraft_version}-${seasons_version}.jar"
+    from(project.ext.jarFile) {
+        includes.addAll(["assets/harvestfestival/**"])
+    }
+}
+
+processResources { //Inserts mod versions into mcmod.info's
+    from(sourceSets.main.resources.srcDirs) {
+        include 'settlements.info'
+        include 'economy.info'
+        include 'energy.info'
+        include 'furniture.info'
+        include 'gastronomy.info'
+        include 'harvestcore.info'
+        include 'husbandry.info'
+        include 'penguinlib.info'
+        include 'piscary.info'
+        include 'seasons.info'
+        include 'mcmod.info'
+        expand 'settlements_version': "${minecraft_version}-${settlements_version}",
+               'economy_version': "${minecraft_version}-${economy_version}",
+               'energy_version': "${minecraft_version}-${energy_version}",
+               'furniture_version': "${minecraft_version}-${furniture_version}",
+               'gastronomy_version': "${minecraft_version}-${gastronomy_version}",
+               'harvestcore_version': "${minecraft_version}-${harvestcore_version}",
+               'horticulture_version': "${minecraft_version}-${horticulture_version}",
+               'husbandry_version': "${minecraft_version}-${husbandry_version}",
+               'penguinlib_version': "${minecraft_version}-${penguinlib_version}",
+               'piscary_version': "${minecraft_version}-${piscary_version}",
+               'seasons_version': "${minecraft_version}-${seasons_version}",
+               'harvestfestival_version': project.version, 
+               'mcversion' : project.minecraft.version
+    }
+    
     from(sourceSets.main.resources.srcDirs) {
         exclude 'mcmod.info'
+        exclude 'settlements.info'
+        exclude 'economy.info'
+        exclude 'energy.info'
+        exclude 'furniture.info'
+        exclude 'gastronomy.info'
+        exclude 'harvestcore.info'
+        exclude 'husbandry.info'
+        exclude 'penguinlib.info'
+        exclude 'piscary.info'
+        exclude 'seasons.info'
     }
 }
 
 jar {
-    manifest {
-        attributes 'FMLAT': 'harvestfestival_at.cfg'
-        attributes 'FMLCorePlugin': 'joshie.harvest.asm.HFTransformer'
-        attributes 'FMLCorePluginContainsFMLMod': 'true'
+    manifest { //Needed to get included in main HF jar
+        attributes 'FMLAT': 'penguinlib_at.cfg'
+		attributes 'FMLCorePluginContainsFMLMod': 'true'
+        attributes 'FMLCorePlugin': "uk.joshiejack.penguinlib.asm.Transformer"
     }
-	exclude 'joshie/harvest/debug'
+    exclude "uk/joshiejack/data/**"
 }
 
-task apiJar(type: Jar) {
-    from sourceSets.main.allSource
-    from sourceSets.main.output
-    include 'joshie/harvest/api/**/*'
-    classifier = 'api'
+artifacts {
+    archives economyJar
+    archives energyJar
+    archives furnitureJar
+    archives gastronomyJar
+    archives harvestCoreJar
+    archives horticultureJar
+    archives husbandryJar
+    archives penguinLibJar
+    archives piscaryJar
+    archives seasonsJar
+    archives settlementsJar
+    archives hfmodJar
 }
-
-tasks.build.dependsOn apiJar
-
-//curseforge {
-//    if (System.getenv().CURSE_API) {
-//        apiKey = System.getenv().CURSE_API
-//    }
-//
-//    project {
-//        id = "${curse_id}"
-//        releaseType = 'alpha'
-//        changelog = 'WARNING! This is highly experimental, with missing textures so use at your own risk!'
-//        addGameVersion "${minecraft_version}"
-//        addArtifact(apiJar)
-//    }
-//}
-
-publishing {
-    tasks.publish.dependsOn 'build'
-    publications {
-        mavenJava(MavenPublication) {
-            artifactId "harvest_festival_${minecraft_version}"
-            artifact jar
-            artifact apiJar
-        }
-    }
-    repositories {
-        if (project.hasProperty('maven_repo')) {
-            maven { url maven_repo }
-        } else {
-            mavenLocal()
-        }
-    }
-}
-
-idea { module { inheritOutputDirs = true } }

@@ -1,0 +1,8 @@
+Key,Value
+addRecipes,false
+enableFishingRodRecipe,false
+enableTrapRecipe,false
+enableHatcheryRecipe,false
+enableBaitRecipes,false
+enableRecyclerRecipe,false
+enableNoDamageFishingRod,true

@@ -1,0 +1,14 @@
+{
+  "counter": { "category": "block", "sounds":[
+    "gastronomy:counter1", "gastronomy:counter2", "gastronomy:counter3", "gastronomy:counter4", "gastronomy:counter5",
+    "gastronomy:counter6", "gastronomy:counter7", "gastronomy:counter8", "gastronomy:counter9", "gastronomy:counter10"
+  ], "subtitle": "gastronomy.subtitle.counter" },
+  "fridge": { "category": "block", "sounds":["gastronomy:fridge"], "subtitle": "gastronomy.subtitle.fridge" },
+  "frying_pan": { "category": "block", "sounds":["gastronomy:frying_pan"], "subtitle": "gastronomy.subtitle.fryingpan" },
+  "mixer": { "category": "block", "sounds":["gastronomy:mixer"], "subtitle": "gastronomy.subtitle.mixer" },
+  "oven": { "category": "block", "sounds":["gastronomy:oven"], "subtitle": "gastronomy.subtitle.oven" },
+  "oven_door": { "category": "block", "sounds":["gastronomy:oven_door"], "subtitle": "gastronomy.subtitle.ovendoor" },
+  "oven_done": { "category": "block", "sounds":["gastronomy:oven_done"], "subtitle": "gastronomy.subtitle.ovendone" },
+  "pot": { "category": "block", "sounds":["gastronomy:pot"], "subtitle": "gastronomy.subtitle.pot" },
+  "recipe": { "category": "neutral", "sounds":["gastronomy:recipe"], "subtitle": "gastronomy.subtitle.recipe" }
+}

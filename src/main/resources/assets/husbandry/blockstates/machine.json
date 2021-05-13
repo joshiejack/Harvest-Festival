@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "facing=north,machine=spinning_wheel":  { "model": "husbandry:spinning_wheel" },
+    "facing=south,machine=spinning_wheel":  { "model": "husbandry:spinning_wheel", "y": 180 },
+    "facing=east,machine=spinning_wheel": { "model": "husbandry:spinning_wheel", "y": 90 },
+    "facing=west,machine=spinning_wheel": { "model": "husbandry:spinning_wheel", "y": 270 },
+    "facing=north,machine=oil_maker":  { "model": "husbandry:oil_maker" },
+    "facing=south,machine=oil_maker":  { "model": "husbandry:oil_maker", "y": 180 },
+    "facing=east,machine=oil_maker": { "model": "husbandry:oil_maker", "y": 90 },
+    "facing=west,machine=oil_maker": { "model": "husbandry:oil_maker", "y": 270 },
+    "facing=north,machine=hive":  { "model": "husbandry:hive" },
+    "facing=south,machine=hive":  { "model": "husbandry:hive", "y": 180 },
+    "facing=east,machine=hive": { "model": "husbandry:hive", "y": 90 },
+    "facing=west,machine=hive": { "model": "husbandry:hive", "y": 270 }
+  }
+}

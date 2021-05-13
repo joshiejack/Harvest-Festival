@@ -1,0 +1,23 @@
+#Dinnerware
+penguinlib.item.dinnerware.bowl.name=Deep Bowl
+penguinlib.item.dinnerware.jam_jar.name=Jam Jar
+penguinlib.item.dinnerware.pickling_jar.name=Pickling Jar
+penguinlib.item.dinnerware.glass.name=Glass
+penguinlib.item.dinnerware.plate_unfired.name=Unfired Plate
+penguinlib.item.dinnerware.plate_fired.name=Plate
+penguinlib.item.dinnerware.mug_unfired.name=Unfired Mug
+penguinlib.item.dinnerware.mug_fired.name=Mug
+
+#Other
+penguinlib.item.special.speech=Speech Bubble
+penguinlib.item.tools.broken=[Broken] %s
+penguinlib.item.tools.new_day.name=New Day
+penguinlib.item.tools.block_state.name=Block State Determiner
+penguinlib.item.tools.air_placer.name=Fake Air Placer
+penguinlib.item.tools.air_remover.name=Fake Air Remover
+penguinlib.item.tools.green_screen.name=Green Screen
+penguinlib.item.tools.coordinates.name=Coordinate Setter
+penguinlib.item.tools.building.name=Template Code Generator
+penguinlib.item.tools.difference.name=Template Difference Toggle
+penguinlib.block.internal_air.name=Internal Air
+penguinlib.tab=Penguin Lib

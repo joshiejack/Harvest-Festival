@@ -1,0 +1,165 @@
+{
+  "registryName": "harvestfestival:community_centre_meeting_hall",
+  "type": "building:upgrade",
+  "data": {
+    "requirement": "harvestfestival:community_centre",
+    "overrides": false,
+    "offset": "10 -1 17",
+    "limit": 1,
+    "components": [
+      {
+        "state": "stonebrick,variant=stonebrick",
+        "pos": "6 0 2"
+      },
+      {
+        "state": "oak_stairs,facing=west,half=bottom,shape=straight",
+        "pos": "3 1 2"
+      },
+      {
+        "state": "oak_stairs,facing=north,half=bottom,shape=straight",
+        "pos": "7 1 2"
+      },
+      {
+        "state": "oak_stairs,facing=north,half=bottom,shape=straight",
+        "pos": "8 1 2"
+      },
+      {
+        "state": "oak_stairs,facing=north,half=bottom,shape=straight",
+        "pos": "9 1 2"
+      },
+      {
+        "state": "planks,variant=dark_oak",
+        "pos": "5 0 3"
+      },
+      {
+        "state": "planks,variant=dark_oak",
+        "pos": "6 0 3"
+      },
+      {
+        "state": "planks,variant=dark_oak",
+        "pos": "7 0 3"
+      },
+      {
+        "state": "planks,variant=dark_oak",
+        "pos": "8 0 3"
+      },
+      {
+        "state": "wooden_slab,half=top,variant=oak",
+        "pos": "2 1 3"
+      },
+      {
+        "state": "oak_stairs,facing=west,half=top,shape=straight",
+        "pos": "3 1 3"
+      },
+      {
+        "state": "oak_stairs,facing=east,half=bottom,shape=straight",
+        "pos": "10 1 3"
+      },
+      {
+        "state": "stonebrick,variant=stonebrick",
+        "pos": "4 0 4"
+      },
+      {
+        "state": "wooden_slab,half=top,variant=oak",
+        "pos": "2 1 4"
+      },
+      {
+        "state": "oak_stairs,facing=west,half=top,shape=straight",
+        "pos": "3 1 4"
+      },
+      {
+        "state": "carpet,color=white",
+        "pos": "6 1 4"
+      },
+      {
+        "state": "carpet,color=white",
+        "pos": "7 1 4"
+      },
+      {
+        "state": "oak_stairs,facing=east,half=bottom,shape=straight",
+        "pos": "10 1 4"
+      },
+      {
+        "pos": "2 2 4"
+      },
+      {
+        "pos": "2 3 4"
+      },
+      {
+        "state": "stonebrick,variant=stonebrick",
+        "pos": "4 0 5"
+      },
+      {
+        "state": "wooden_slab,half=top,variant=oak",
+        "pos": "2 1 5"
+      },
+      {
+        "state": "oak_stairs,facing=west,half=top,shape=straight",
+        "pos": "3 1 5"
+      },
+      {
+        "state": "torch,facing=east",
+        "pos": "2 2 5",
+        "type": "decorative"
+      },
+      {
+        "pos": "2 3 5"
+      },
+      {
+        "state": "wooden_slab,half=bottom,variant=dark_oak",
+        "pos": "2 4 5"
+      },
+      {
+        "state": "stonebrick,variant=stonebrick",
+        "pos": "6 0 6"
+      },
+      {
+        "state": "stonebrick,variant=stonebrick",
+        "pos": "7 0 6"
+      },
+      {
+        "state": "wooden_slab,half=top,variant=oak",
+        "pos": "2 1 6"
+      },
+      {
+        "state": "oak_stairs,facing=west,half=bottom,shape=straight",
+        "pos": "3 1 6"
+      },
+      {
+        "pos": "2 2 6"
+      },
+      {
+        "pos": "2 3 6"
+      },
+      {
+        "state": "stonebrick,variant=stonebrick",
+        "pos": "6 0 7"
+      },
+      {
+        "state": "dark_oak_stairs,facing=west,half=top,shape=straight",
+        "pos": "5 1 7"
+      },
+      {
+        "state": "wooden_slab,half=top,variant=dark_oak",
+        "pos": "6 1 7"
+      },
+      {
+        "state": "dark_oak_stairs,facing=east,half=top,shape=straight",
+        "pos": "7 1 7"
+      },
+      {
+        "state": "flower_pot,contents=empty,legacy_data=0",
+        "pos": "6 2 7",
+        "type": "flowerpot"
+      },
+      {
+        "state": "wooden_slab,half=top,variant=dark_oak",
+        "pos": "5 4 7"
+      },
+      {
+        "state": "wooden_slab,half=bottom,variant=dark_oak",
+        "pos": "7 4 8"
+      }
+    ]
+  }
+}

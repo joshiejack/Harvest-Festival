@@ -1,0 +1,5 @@
+name,leaves,days,season_handler
+apple,"horticulture:leaves_temperate 0,horticulture:leaves_temperate 8",3,autumn
+orange,"horticulture:leaves_temperate 1,horticulture:leaves_temperate 9",3,autumn
+peach,"horticulture:leaves_temperate 2,horticulture:leaves_temperate 9",3,autumn
+banana,"horticulture:leaves_tropical 0,horticulture:leaves_tropical 8",4,summer

@@ -1,0 +1,28 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "transform": "forge:default-item"
+  },
+  "variants": {
+    "half=lower,juvenile=oak": { "model": "minecraft:cross", "textures": { "cross": "harvestfestival:blocks/trees/oak_juvenile_lower" }},
+    "half=upper,juvenile=oak": { "model": "minecraft:cross", "textures": { "cross": "harvestfestival:blocks/trees/oak_juvenile_upper" }},
+    "half=lower,juvenile=spruce": { "model": "minecraft:cross", "textures": { "cross": "harvestfestival:blocks/trees/spruce_juvenile_lower" }},
+    "half=upper,juvenile=spruce": { "model": "minecraft:cross", "textures": { "cross": "harvestfestival:blocks/trees/spruce_juvenile_upper" }},
+    "half=lower,juvenile=birch": { "model": "minecraft:cross", "textures": { "cross": "harvestfestival:blocks/trees/birch_juvenile_lower" }},
+    "half=upper,juvenile=birch": { "model": "minecraft:cross", "textures": { "cross": "harvestfestival:blocks/trees/birch_juvenile_upper" }},
+    "half=lower,juvenile=jungle": { "model": "minecraft:cross", "textures": { "cross": "harvestfestival:blocks/trees/jungle_juvenile_lower" }},
+    "half=upper,juvenile=jungle": { "model": "minecraft:cross", "textures": { "cross": "harvestfestival:blocks/trees/jungle_juvenile_upper" }},
+    "half=lower,juvenile=acacia": { "model": "minecraft:cross", "textures": { "cross": "harvestfestival:blocks/trees/acacia_juvenile_lower" }},
+    "half=upper,juvenile=acacia": { "model": "minecraft:cross", "textures": { "cross": "harvestfestival:blocks/trees/acacia_juvenile_upper" }},
+    "half=lower,juvenile=dark_oak": { "model": "minecraft:cross", "textures": { "cross": "harvestfestival:blocks/trees/dark_oak_juvenile_lower" }},
+    "half=upper,juvenile=dark_oak": { "model": "minecraft:cross", "textures": { "cross": "harvestfestival:blocks/trees/dark_oak_juvenile_upper" }},
+    "half=lower,juvenile=apple": { "model": "minecraft:cross", "textures": { "cross": "harvestfestival:blocks/trees/apple_juvenile_lower" }},
+    "half=upper,juvenile=apple": { "model": "minecraft:cross", "textures": { "cross": "harvestfestival:blocks/trees/apple_juvenile_upper" }},
+    "half=lower,juvenile=banana": { "model": "minecraft:cross", "textures": { "cross": "harvestfestival:blocks/trees/banana_juvenile_lower" }},
+    "half=upper,juvenile=banana": { "model": "minecraft:cross", "textures": { "cross": "harvestfestival:blocks/trees/banana_juvenile_upper" }},
+    "half=lower,juvenile=orange": { "model": "minecraft:cross", "textures": { "cross": "harvestfestival:blocks/trees/orange_juvenile_lower" }},
+    "half=upper,juvenile=orange": { "model": "minecraft:cross", "textures": { "cross": "harvestfestival:blocks/trees/orange_juvenile_upper" }},
+    "half=lower,juvenile=peach": { "model": "minecraft:cross", "textures": { "cross": "harvestfestival:blocks/trees/peach_juvenile_lower" }},
+    "half=upper,juvenile=peach": { "model": "minecraft:cross", "textures": { "cross": "harvestfestival:blocks/trees/peach_juvenile_upper" }}
+  }
+}

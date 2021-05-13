@@ -1,0 +1,10 @@
+{
+	"registryName": "copper",
+	"type": "tool_material:standard",
+	"data": {
+		"harvestLevel": 1,
+		"maxUses": 256,
+		"efficiency": 5,
+		"damage": 1.5
+	}
+}

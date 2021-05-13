@@ -1,0 +1,12 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "transform": "forge:default-item",
+    "model": "forge:item-layer"
+  },
+  "variants": {
+    "copper": [{ "textures": { "layer0": "harvestfestival:items/mining/ingots/copper" }}],
+    "silver": [{ "textures": { "layer0": "harvestfestival:items/mining/ingots/silver" }}],
+    "mystril": [{ "textures": { "layer0": "harvestfestival:items/mining/ingots/mystril" }}]
+  }
+}

@@ -1,0 +1,22 @@
+{
+	"registryName": "harvestfestival:metal",
+	"type": "item:multi",
+	"defaults": {},
+	"data": [
+		{
+			"name": "copper"
+		},
+		{
+			"name": "silver"
+		},
+		{
+			"name": "gold"
+		},
+		{
+			"name": "mystril"
+		},
+		{
+			"name": "orichalc"
+		}
+	]
+}

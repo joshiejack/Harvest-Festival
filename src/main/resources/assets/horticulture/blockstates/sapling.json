@@ -1,0 +1,15 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "minecraft:cross",
+    "transform": "forge:default-item"
+  },
+  "variants": {
+    "sapling": {
+      "apple": { "textures": { "cross": "horticulture:blocks/saplings/apple" }},
+      "banana": { "textures": { "cross": "horticulture:blocks/saplings/banana" }},
+      "orange": { "textures": { "cross": "horticulture:blocks/saplings/orange" }},
+      "peach": { "textures": { "cross": "horticulture:blocks/saplings/peach" }}
+    }
+  }
+}

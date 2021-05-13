@@ -1,0 +1,14 @@
+{
+  "registryName": "harvestfestival:barn_2",
+  "type": "building:standard",
+  "data": {
+    "offset": "0 0 0",
+    "limit": 3,
+    "components": [
+      {
+        "state": "log 1",
+        "pos": "1 0 11"
+      }
+    ]
+  }
+}

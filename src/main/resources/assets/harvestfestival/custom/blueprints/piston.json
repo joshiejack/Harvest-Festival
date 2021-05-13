@@ -1,0 +1,26 @@
+{
+  "registryName": "minecraft:piston",
+  "type": "blueprint:standard",
+  "data": {
+    "category": "machine",
+    "result": "minecraft:piston",
+    "ingredients": [
+	  {
+        "item": "plankWood",
+        "count": 4
+      },
+	  {
+        "item": "cobblestone",
+        "count": 3
+      },
+	  {
+        "item": "dustRedstone",
+        "count": 1
+      },
+      {
+        "item": "ingotIron",
+        "count": 1
+      }
+    ]
+  }
+}

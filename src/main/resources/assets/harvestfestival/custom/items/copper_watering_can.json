@@ -1,0 +1,9 @@
+{
+  "registryName": "harvestfestival:copper_watering_can",
+  "type": "item:watering_can",
+  "data": {
+    "toolMaterial": "copper",
+    "width": 0,
+    "depth": 1
+  }
+}

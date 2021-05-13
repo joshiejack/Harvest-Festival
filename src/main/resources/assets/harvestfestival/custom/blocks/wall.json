@@ -1,0 +1,27 @@
+{
+	"registryName": "harvestfestival:wall",
+	"type": "block:cube",
+	"defaults": {
+		"propertyName": "decortype",
+		"hardness": "-1F",
+		"soundType": "stone",
+		"material": "rock"
+	},
+	"data": [
+		{
+			"name": "standard"
+		},
+		{
+			"name": "frozen"
+		},
+		{
+			"name": "hell"
+		},
+		{
+			"name": "frozen_brick"
+		},
+		{
+			"name": "hell_brick"
+		}
+	]
+}

@@ -1,0 +1,35 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "transform": "forge:default-block",
+    "model": "cube_all"
+  },
+  "variants": {
+    "decortype=standard": [
+      { "textures": { "all": "harvestfestival:blocks/mine/interior/standard/wall" }, "weight": 30 },
+      { "textures": { "all": "harvestfestival:blocks/mine/interior/standard/wall1" }, "weight": 1 },
+      { "textures": { "all": "harvestfestival:blocks/mine/interior/standard/wall2" }, "weight": 1 },
+      { "textures": { "all": "harvestfestival:blocks/mine/interior/standard/wall3" }, "weight": 1 },
+      { "textures": { "all": "harvestfestival:blocks/mine/interior/standard/wall4" }, "weight": 1 },
+      { "textures": { "all": "harvestfestival:blocks/mine/interior/standard/wall5" }, "weight": 1 }
+    ],
+    "decortype=frozen": [
+      { "textures": { "all": "harvestfestival:blocks/mine/interior/frozen/wall" }, "weight": 30 },
+      { "textures": { "all": "harvestfestival:blocks/mine/interior/frozen/wall1" }, "weight": 1 },
+      { "textures": { "all": "harvestfestival:blocks/mine/interior/frozen/wall2" }, "weight": 1 },
+      { "textures": { "all": "harvestfestival:blocks/mine/interior/frozen/wall3" }, "weight": 1 },
+      { "textures": { "all": "harvestfestival:blocks/mine/interior/frozen/wall4" }, "weight": 1 },
+      { "textures": { "all": "harvestfestival:blocks/mine/interior/frozen/wall5" }, "weight": 1 }
+    ],
+    "decortype=hell": [
+      { "textures": { "all": "harvestfestival:blocks/mine/interior/hell/wall" }, "weight": 30 },
+      { "textures": { "all": "harvestfestival:blocks/mine/interior/hell/wall1" }, "weight": 1 },
+      { "textures": { "all": "harvestfestival:blocks/mine/interior/hell/wall2" }, "weight": 1 },
+      { "textures": { "all": "harvestfestival:blocks/mine/interior/hell/wall3" }, "weight": 1 },
+      { "textures": { "all": "harvestfestival:blocks/mine/interior/hell/wall4" }, "weight": 1 },
+      { "textures": { "all": "harvestfestival:blocks/mine/interior/hell/wall5" }, "weight": 1 }
+    ],
+    "decortype=frozen_brick": [{ "textures": { "all": "harvestfestival:blocks/mine/interior/frozen/brick" }}],
+    "decortype=hell_brick": [{ "textures": { "all": "harvestfestival:blocks/mine/interior/hell/brick" }}]
+  }
+}

@@ -1,0 +1,7 @@
+department_id,listing_id,id,type,data,gold,weight
+tackle_shop,bait,default,item,basic_bait,5,1
+tackle_shop,fishing_rod,default,item,piscary:fishing_rod,1000,1
+tackle_shop,fish_trap,default,item,piscary:fish_trap,200,1
+tackle_shop,hatchery,default,item,piscary:hatchery,500,1
+tackle_shop,fish_trap_blueprint,default,blueprint,harvestfestival:fish_trap,800,1
+tackle_shop,hatchery_blueprint,default,blueprint,harvestfestival:hatchery,1000,1

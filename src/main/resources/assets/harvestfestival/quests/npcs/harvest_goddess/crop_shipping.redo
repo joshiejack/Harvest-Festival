@@ -1,0 +1,46 @@
+var crops = ["cropTurnip", "cropPotato", "cropCucumber", "cropStrawberry", "cropCabbage",
+            "cropOnion", "cropTomato", "cropPumpkin", "cropPineapple", "cropCorn",
+            "cropEggplant", "cropSpinach", "cropCarrot", "cropSweetPotato", "cropGreenPepper"];
+var completed = [false, false, false, false, false,
+                 false, false, false, false, false,
+                 false, false, false, false, false];
+
+function canStart(player, scripts) {
+    return scripts.completed("harvest_goddess_0_hearts"); //Start counting crops once we've met the harvest goddess
+}
+
+function onItemShipped(world, team, item, gold) {
+    var status = player.status();
+    for (var i = 0 ; i < crops.length; i++) {
+        if (completed[i] == false && item.is(crops[i])) {
+            var id = crops[i] + "_count";
+            status.set(id, status.get(id) + item.count());
+            if (status.get(id) >= 100) {
+                completed[id] = true;
+            }
+
+            //Add 1000RP to the goddess for shipping 100 of this crop
+            settlements.status("harvestfestival:harvest_goddess").adjustWithRange(player, "relationship", 1000, 0, 50000);
+        }
+    }
+
+    //If we haven't completed something then exit this functio
+    for (var j = 0; j < completed.length; j++) {
+        if (completed[j] == false) return;
+    }
+
+    //Complete the script once we have shipped 100 of every crop
+    quest.complete(player);
+}
+
+function save(data) {
+    for (var i = 0 ; i < crops.length; i++) {
+        data.save(crops[i], completed[i]);
+    }
+}
+
+function load(data) {
+    for (var i = 0 ; i < crops.length; i++) {
+        completed[i] = data.load(crops[i], completed[i]);
+    }
+}

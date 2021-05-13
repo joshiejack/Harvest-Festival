@@ -1,0 +1,18 @@
+{
+  "registryName": "harvestfestival:knife",
+  "type": "blueprint:standard",
+  "data": {
+    "category": "tool",
+    "result": "gastronomy:utensil 0",
+    "ingredients": [
+      {
+        "item": "ingotIron",
+        "count": 1
+      },
+      {
+        "item": "stickWood",
+        "count": 1
+      }
+    ]
+  }
+}

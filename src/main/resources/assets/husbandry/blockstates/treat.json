@@ -1,0 +1,20 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "transform": "forge:default-item",
+    "model": "forge:item-layer"
+  },
+  "variants": {
+    "generic": [{ "textures": { "layer0": "husbandry:items/treats/generic" }}],
+    "cat": [{ "textures": { "layer0": "husbandry:items/treats/cat" }}],
+    "chicken": [{ "textures": { "layer0": "husbandry:items/treats/chicken" }}],
+    "cow": [{ "textures": { "layer0": "husbandry:items/treats/cow" }}],
+    "dog": [{ "textures": { "layer0": "husbandry:items/treats/dog" }}],
+    "horse": [{ "textures": { "layer0": "husbandry:items/treats/horse" }}],
+    "pig": [{ "textures": { "layer0": "husbandry:items/treats/pig" }}],
+    "rabbit": [{ "textures": { "layer0": "husbandry:items/treats/rabbit" }}],
+    "sheep": [{ "textures": { "layer0": "husbandry:items/treats/sheep" }}],
+    "duck": [{ "textures": { "layer0": "husbandry:items/treats/duck" }}],
+    "parrot": [{ "textures": { "layer0": "husbandry:items/treats/parrot" }}]
+  }
+}

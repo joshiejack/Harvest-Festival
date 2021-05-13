@@ -1,0 +1,75 @@
+{
+  "registryName": "harvestfestival:guide",
+  "type": "item:book",
+  "data": {
+    "tabs": [
+      {
+        "name": "harvestfestival.guide.info",
+        "icon": {
+          "gui": "harvestfestival:textures/gui/icons.png",
+          "x": 48,
+          "y": 80
+        },
+        "sub_tabs": [
+          "quests:all",
+          "notes:activities",
+          "notes:township",
+          "notes:farming"
+        ]
+      },
+      {
+        "name": "harvestfestival.guide.crafting",
+        "icon": {
+          "item": "minecraft:crafting_table",
+          "x": 16,
+          "y": 16
+        },
+        "sub_tabs": [
+          "blueprints:tool",
+          "blueprints:machine",
+          "blueprints:decorative",
+          "blueprints:misc"
+        ]
+      },
+      {
+        "name": "harvestfestival.guide.relationships",
+        "icon": {
+          "gui": "harvestfestival:textures/gui/icons.png",
+          "x": 32,
+          "y": 80
+        },
+        "sub_tabs": [
+          "relationships",
+          "animal_stats"
+        ]
+      },
+      {
+        "name": "harvestfestival.guide.collections",
+        "icon": {
+          "gui": "harvestfestival:textures/gui/icons.png",
+          "x": 0,
+          "y": 80
+        },
+        "sub_tabs": [
+          "collection:achievements",
+          "collection:shipping",
+          "collection:cooking",
+          "collection:mining",
+          "collection:fishing"
+        ]
+      },
+      {
+        "name": "harvestfestival.guide.settings",
+        "icon": {
+          "gui": "harvestfestival:textures/gui/icons.png",
+          "x": 64,
+          "y": 80
+        },
+        "sub_tabs": [
+          "town_manager",
+          "economy_manager"
+        ]
+      }
+    ]
+  }
+}

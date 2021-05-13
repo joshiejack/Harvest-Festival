@@ -1,0 +1,13 @@
+{
+	"registryName": "harvestfestival:material",
+	"type": "item:multi",
+	"defaults": {},
+	"data": [
+		{
+			"name": "junk"
+		},
+		{
+			"name": "mythic_stone"
+		}
+	]
+}

@@ -1,0 +1,2 @@
+shop_id,department_id,condition_id
+blacksmith,blacksmith_upgrades,is_not_upgrading

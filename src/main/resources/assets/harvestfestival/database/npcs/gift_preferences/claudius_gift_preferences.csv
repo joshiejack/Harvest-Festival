@@ -1,0 +1,28 @@
+item,quality
+cooked_beef,awesome
+cooked_mutton,awesome
+cooked_porkchop,awesome
+cat#meat,good
+cat#building,good
+rabbit_hide,good
+leather,good
+cat#plant,decent
+cat#fish,decent
+cat#mineral,decent
+cat#fruit,dislike
+cat#vegetable,dislike
+cat#magic,dislike
+cat#art,dislike
+cat#herb,dislike
+harvestfestival:drink 0,dislike
+cat#money,bad
+cat#wool,bad
+cat#knowledge,bad
+fruit_sandwich,bad
+pancake,bad
+savoury_pancake,bad
+omelet,bad
+omelet_rice,bad
+harvestfestival:drink 1,bad
+map,terrible
+writable_book,terrible

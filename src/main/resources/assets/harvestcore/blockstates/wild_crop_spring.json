@@ -1,0 +1,14 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "minecraft:crop"
+  },
+  "variants": {
+    "stage": {
+      "0": { "textures": { "crop": "harvestcore:blocks/crops/wild_spring_1" }},
+      "1": { "textures": { "crop": "harvestcore:blocks/crops/wild_spring_2" }},
+      "2": { "textures": { "crop": "harvestcore:blocks/crops/wild_spring_3" }},
+      "3": { "textures": { "crop": "harvestcore:blocks/crops/blank" }}
+    }
+  }
+}

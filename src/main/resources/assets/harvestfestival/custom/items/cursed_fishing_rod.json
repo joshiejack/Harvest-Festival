@@ -1,0 +1,8 @@
+{
+  "registryName": "harvestfestival:cursed_fishing_rod",
+  "type": "item:fishing_rod",
+  "data": {
+    "script": "harvestfestival:items/cursed",
+    "toolMaterial": "blessed"
+  }
+}

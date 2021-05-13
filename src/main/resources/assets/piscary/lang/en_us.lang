@@ -1,0 +1,60 @@
+#Other
+piscary.tab=Piscary
+piscary.item.fishing_rod.name=Fishing Rod
+#Fish
+piscary.item.fish.anchovy.name=Anchovy
+piscary.item.fish.angel.name=Angelfish
+piscary.item.fish.angler.name=Anglerfish
+piscary.item.fish.bass.name=Bass
+piscary.item.fish.blaasop.name=Silver-Stripe Blaasop
+piscary.item.fish.bowfin.name=Bowfin
+piscary.item.fish.butterfly.name=Butterflyfish
+piscary.item.fish.carp.name=Carp
+piscary.item.fish.catfish.name=Catfish
+piscary.item.fish.chub.name=Chub
+piscary.item.fish.clown.name=Clownfish
+piscary.item.fish.cod.name=Cod
+piscary.item.fish.damsel.name=Damselfish
+piscary.item.fish.electricray.name=Electric Ray
+piscary.item.fish.gold.name=Goldfish
+piscary.item.fish.herring.name=Herring
+piscary.item.fish.koi.name=Koi
+piscary.item.fish.lamprey.name=Lamprey
+piscary.item.fish.lungfish.name=Lungfish
+piscary.item.fish.mantaray.name=Manta Ray
+piscary.item.fish.minnow.name=Minnow
+piscary.item.fish.perch.name=Perch
+piscary.item.fish.pickerel.name=Pickerel
+piscary.item.fish.pike.name=Pike
+piscary.item.fish.piranha.name=Piranha
+piscary.item.fish.puffer.name=Pufferfish
+piscary.item.fish.pupfish.name=Pupfish
+piscary.item.fish.salmon.name=Salmon
+piscary.item.fish.sardine.name=Sardine
+piscary.item.fish.siamese.name=Siamese Fightin' Fish
+piscary.item.fish.stargazer.name=Whitemargin Stargazer
+piscary.item.fish.stingray.name=Sting Ray
+piscary.item.fish.tang.name=Blue Tang
+piscary.item.fish.tetra.name=Neon Tetra
+piscary.item.fish.trout.name=Trout
+piscary.item.fish.tuna.name=Tuna
+piscary.item.fish.walleye.name=Walleye
+#Loot
+piscary.item.loot.bones.name=Fish Bones
+piscary.item.loot.boot.name=Old Boot
+piscary.item.loot.can.name=Empty Can
+piscary.item.loot.fossil.name=Fish Fossil
+piscary.item.loot.treasure.name=Pirate Treasure
+#Meals
+piscary.item.meal.fishsticks.name=Fish Fingers
+piscary.item.meal.sashimi.name=Sashimi
+piscary.item.meal.fish_stew.name=Fish Stew
+#Bait
+piscary.item.bait.basic.name=Bait
+piscary.item.bait.vanilla.name=Native Bait
+#Blocks
+piscary.block.hatchery.fish.name=Hatchery
+piscary.block.fish_trap.empty.name=Fish Trap
+piscary.block.fish_trap.baited.name=Fish Trap
+piscary.block.fish_trap.baitedvanilla.name=Fish Trap
+piscary.block.machine.recycler.name=Recycler

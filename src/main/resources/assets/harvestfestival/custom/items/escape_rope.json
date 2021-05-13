@@ -1,0 +1,7 @@
+{
+	"registryName": "harvestfestival:escape_rope",
+	"type": "item:singular",
+	"data": {
+		"script": "harvestfestival:items/escape_rope"
+	}
+}

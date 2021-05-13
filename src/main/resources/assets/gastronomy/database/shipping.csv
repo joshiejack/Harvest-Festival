@@ -1,0 +1,72 @@
+Item,Value
+#Wild Items
+gastronomy:nature 0,350
+gastronomy:nature 1,50
+gastronomy:nature 2,20
+gastronomy:nature 3,30
+gastronomy:nature 4,40
+#Ingredients
+cooking_oil,15
+chocolate,25
+flour,15
+riceball,25
+curry_powder,50
+wine,150
+salt,5
+#Cooked Food
+apple_pie,336
+apple_souffle,112
+bamboo_rice,168
+cake,268
+chirashi_sushi,294
+chocolate_cake,202
+curry_noodles,118
+curry_rice,168
+dumplings,678
+egg_overrice,168
+fruit_sandwich,78
+grilled_fish,140
+herb_salad,100
+herb_sandwich,156
+herb_soup,134
+hot_chocolate,224
+matsutake_rice,504
+mushroom_rice,112
+noodles,56
+omelet,185
+porridge,224
+raisin_bread,280
+rice_soup,112
+risotto,380
+sandwich,100
+scrambled_egg,112
+stew,257
+sushi,124
+sweet_potatoes,224
+tempura,118
+tempura_noodles,194
+tempura_rice,244
+toast,63
+#Additional FOod
+curry_bread,140
+cookies,198
+chocolate_cookies,73
+doria,394
+doughnut,327
+fries_french,106
+omelet_rice,190
+pancake,202
+savoury_pancake,594
+popcorn,123
+potsticker,650
+fried_rice,101
+toasted_riceball,28
+french_toast,146
+ketchup,202
+fruit_juice,100
+mixed_juice,300
+vegetable_juice,200
+fruit_latte,150
+mixed_latte,350
+vegetable_latte,250
+stew_mountain,269

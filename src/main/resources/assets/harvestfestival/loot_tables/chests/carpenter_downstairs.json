@@ -1,0 +1,40 @@
+{
+  "pools": [
+    {
+      "name": "carpenter_yulif",
+      "rolls": 5,
+      "entries": [
+        {
+          "type": "item",
+          "name": "minecraft:stick",
+          "entryName": "stick",
+          "weight": 10,
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 1,
+                "max": 5
+              }
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "minecraft:flint",
+          "entryName": "flint",
+          "weight": 10,
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 1,
+                "max": 6
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

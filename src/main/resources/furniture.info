@@ -1,0 +1,16 @@
+[
+{
+  "modid": "furniture",
+  "name": "Furniture",
+  "description": "",
+  "version": "${furniture_version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["joshie"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

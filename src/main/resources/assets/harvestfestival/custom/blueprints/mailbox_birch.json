@@ -1,0 +1,18 @@
+{
+  "registryName": "harvestfestival:mailbox_birch",
+  "type": "blueprint:standard",
+  "data": {
+    "category": "machine",
+    "result": "harvestcore:mailbox 3",
+    "ingredients": [
+      {
+        "item": "minecraft:planks 2",
+        "count": 1
+      },
+      {
+        "item": "minecraft:birch_fence",
+        "count": 1
+      }
+    ]
+  }
+}

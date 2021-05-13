@@ -1,0 +1,48 @@
+department_id,listing_id,id,type,data,gold,weight
+#General Store - Tools
+general_store_tools,basic_hoe,default,item,harvestfestival:basic_hoe,500,1
+general_store_tools,basic_sickle,default,item,husbandry:sickle,500,1
+general_store_tools,basic_watering_can,default,item,horticulture:watering_can,750,1
+general_store_tools,basic_axe,default,item,harvestfestival:basic_axe,1000,1
+general_store_tools,basic_hammer,default,item,harvestfestival:basic_hammer,1000,1
+general_store_tools,basic_shovel,default,item,harvestfestival:basic_shovel,1000,1
+#General Store - Seeds
+general_store_seeds,grass_starter,default,item,grass_starter,100,1
+general_store_seeds,turnip_seeds,default,item,turnip_seed_bag,35,1
+general_store_seeds,potato_seeds,default,item,potato_seed_bag,40,1
+general_store_seeds,cucumber_seeds,default,item,cucumber_seed_bag,45,1
+general_store_seeds,strawberry_seeds,default,item,strawberry_seed_bag,90,1
+general_store_seeds,cabbage_seeds,default,item,cabbage_seed_bag,165,1
+general_store_seeds,onion_seeds,default,item,onion_seed_bag,40,1
+general_store_seeds,pumpkin_seeds,default,item,pumpkin_seed_bag,50,1
+general_store_seeds,melon_seeds,default,item,melon_seed_bag,30,1
+general_store_seeds,tomato_seeds,default,item,tomato_seed_bag,55,1
+general_store_seeds,corn_seeds,default,item,corn_seed_bag,95,1
+general_store_seeds,pineapple_seeds,default,item,pineapple_seed_bag,220,1
+general_store_seeds,spinach_seeds,default,item,spinach_seed_bag,40,1
+general_store_seeds,carrot_seeds,default,item,carrot_seed_bag,55,1
+general_store_seeds,beetroot_seeds,default,item,beetroot_seed_bag,60,1
+general_store_seeds,eggplant_seeds,default,item,eggplant_seed_bag,65,1
+general_store_seeds,green_pepper_seeds,default,item,green_pepper_seed_bag,100,1
+general_store_seeds,sweet_potato_seeds,default,item,sweet_potato_seed_bag,110,1
+general_store_seeds,grapes_starter,default,item,grape_seeds,200,1
+general_store_seeds,wheat_seeds,default,item,wheat_seed_bag,15,1
+general_store_seeds,nether_wart_seeds,default,item,nether_wart_seed_bag,55,1
+general_store_seeds,orange_sapling,default,item,horticulture:sapling 0,2800,1
+general_store_seeds,banana_sapling,default,item,horticulture:sapling 2,2500,1
+general_store_seeds,apple_sapling,default,item,horticulture:sapling 1,1500,1
+general_store_seeds,peach_sapling,default,item,horticulture:sapling 3,3000,1
+general_store_seeds,basic_fertilizer,default,item,"harvestcore:fertilizer 0 {Resource:""harvestfestival:basic""}",100,1
+general_store_seeds,quality_fertilizer,default,item,"harvestcore:fertilizer 0 {Resource:""harvestfestival:quality""}",150,1
+general_store_seeds,speed_fertilizer,default,item,"harvestcore:fertilizer 0 {Resource:""harvestfestival:speed""}",100,1
+general_store_seeds,turbo_fertlizer,default,item,"harvestcore:fertilizer 0 {Resource:""harvestfestival:turbo""}",150,1
+#General Store - General
+general_store_general,blue_feather,default,item,harvestfestival:blue_feather,1000,1
+general_store_general,riceball,default,item,riceball,100,1
+general_store_general,oil,default,item,cooking_oil,50,1
+general_store_general,flour,default,item,flour,50,1
+general_store_general,curry_powder,default,item,curry_powder,50,1
+general_store_general,chocolate,default,item,chocolate,100,1
+general_store_general,wine,default,item,wine,200,1
+general_store_general,salt,default,item,salt,25,1
+general_store_general,sugar,default,item,sugar,25,1

@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "facing=north,section=single":  { "model": "husbandry:trough_single" },
+    "facing=south,section=single":  { "model": "husbandry:trough_single", "y": 180 },
+    "facing=east,section=single": { "model": "husbandry:trough_single", "y": 90 },
+    "facing=west,section=single": { "model": "husbandry:trough_single", "y": 270 },
+    "facing=north,section=end":  { "model": "husbandry:trough_end" },
+    "facing=south,section=end":  { "model": "husbandry:trough_end", "y": 180 },
+    "facing=east,section=end": { "model": "husbandry:trough_end", "y": 90 },
+    "facing=west,section=end": { "model": "husbandry:trough_end", "y": 270 },
+    "facing=north,section=middle":  { "model": "husbandry:trough_middle" },
+    "facing=south,section=middle":  { "model": "husbandry:trough_middle", "y": 180 },
+    "facing=east,section=middle": { "model": "husbandry:trough_middle", "y": 90 },
+    "facing=west,section=middle": { "model": "husbandry:trough_middle", "y": 270 }
+  }
+}

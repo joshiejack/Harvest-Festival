@@ -1,7 +1,0 @@
-{
-  "parent": "block/cube_all",
-  "ambientocclusion": false,
-  "textures": {
-    "all": "harvestfestival:blocks/fish_trap_baited"
-  }
-}

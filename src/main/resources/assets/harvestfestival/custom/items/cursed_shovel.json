@@ -1,0 +1,10 @@
+{
+  "registryName": "harvestfestival:cursed_shovel",
+  "type": "item:shovel",
+  "data": {
+    "script": "harvestfestival:items/cursed",
+    "toolMaterial": "blessed",
+    "width": 3,
+    "depth": 4
+  }
+}

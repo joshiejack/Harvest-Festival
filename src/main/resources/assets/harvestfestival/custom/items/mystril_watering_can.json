@@ -1,0 +1,9 @@
+{
+  "registryName": "harvestfestival:mystril_watering_can",
+  "type": "item:watering_can",
+  "data": {
+    "toolMaterial": "mystril",
+    "width": 2,
+    "depth": 3
+  }
+}

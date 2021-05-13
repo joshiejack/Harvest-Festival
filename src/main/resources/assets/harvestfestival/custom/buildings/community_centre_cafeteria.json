@@ -1,0 +1,516 @@
+{
+  "registryName": "harvestfestival:community_centre_cafeteria",
+  "type": "building:upgrade",
+  "data": {
+    "requirement": "harvestfestival:community_centre",
+    "overrides": false,
+    "offset": "10 -1 17",
+    "limit": 1,
+    "components": [
+      {
+        "state": "log,axis=y,variant=spruce",
+        "pos": "2 1 11"
+      },
+      {
+        "state": "spruce_stairs,facing=south,half=bottom,shape=straight",
+        "pos": "3 1 11"
+      },
+      {
+        "state": "log,axis=y,variant=spruce",
+        "pos": "4 1 11"
+      },
+      {
+        "state": "log,axis=y,variant=spruce",
+        "pos": "2 2 11"
+      },
+      {
+        "state": "glass_pane,east=false,north=false,south=false,west=false",
+        "pos": "3 2 11"
+      },
+      {
+        "state": "log,axis=y,variant=spruce",
+        "pos": "4 2 11"
+      },
+      {
+        "state": "log,axis=y,variant=spruce",
+        "pos": "2 3 11"
+      },
+      {
+        "state": "spruce_stairs,facing=south,half=top,shape=straight",
+        "pos": "3 3 11"
+      },
+      {
+        "state": "log,axis=y,variant=spruce",
+        "pos": "4 3 11"
+      },
+      {
+        "state": "wooden_slab,half=bottom,variant=dark_oak",
+        "pos": "2 4 11"
+      },
+      {
+        "state": "wooden_slab,half=bottom,variant=dark_oak",
+        "pos": "3 4 11"
+      },
+      {
+        "state": "wooden_slab,half=bottom,variant=dark_oak",
+        "pos": "4 4 11"
+      },
+      {
+        "state": "double_stone_slab,seamless=false,variant=stone",
+        "pos": "2 0 12"
+      },
+      {
+        "state": "double_stone_slab,seamless=false,variant=stone",
+        "pos": "3 0 12"
+      },
+      {
+        "state": "double_stone_slab,seamless=false,variant=stone",
+        "pos": "4 0 12"
+      },
+      {
+        "facing": "south",
+        "state": "gastronomy:cookware,cookware=counter,facing=north",
+        "pos": "2 1 12",
+        "type": "rotatable"
+      },
+      {
+        "facing": "south",
+        "state": "gastronomy:cookware,cookware=counter,facing=north",
+        "pos": "3 1 12",
+        "type": "rotatable"
+      },
+      {
+        "facing": "south",
+        "state": "gastronomy:storage,facing=north,storage=fridge,top=false",
+        "pos": "4 1 12",
+        "type": "rotatable"
+      },
+      {
+        "state": "spruce_stairs,facing=north,half=bottom,shape=straight",
+        "pos": "6 1 12"
+      },
+      {
+        "state": "log,axis=y,variant=spruce",
+        "pos": "7 1 12"
+      },
+      {
+        "state": "wooden_door,facing=north,half=lower,hinge=left,open=false,powered=false",
+        "pos": "8 1 12",
+        "type": "double"
+      },
+      {
+        "state": "wooden_door,facing=north,half=lower,hinge=right,open=false,powered=false",
+        "pos": "9 1 12",
+        "type": "double"
+      },
+      {
+        "state": "log,axis=y,variant=spruce",
+        "pos": "10 1 12"
+      },
+      {
+        "state": "gastronomy:storage,facing=north,storage=fridge,top=true",
+        "pos": "4 2 12"
+      },
+      {
+        "state": "glass_pane,east=false,north=false,south=false,west=false",
+        "pos": "6 2 12"
+      },
+      {
+        "state": "log,axis=y,variant=spruce",
+        "pos": "7 2 12"
+      },
+      {
+        "state": "log,axis=y,variant=spruce",
+        "pos": "10 2 12"
+      },
+      {
+        "state": "spruce_stairs,facing=north,half=top,shape=straight",
+        "pos": "2 3 12"
+      },
+      {
+        "state": "spruce_stairs,facing=north,half=top,shape=straight",
+        "pos": "3 3 12"
+      },
+      {
+        "state": "spruce_stairs,facing=north,half=top,shape=straight",
+        "pos": "4 3 12"
+      },
+      {
+        "state": "glass_pane,east=false,north=false,south=false,west=false",
+        "pos": "6 3 12"
+      },
+      {
+        "state": "log,axis=y,variant=spruce",
+        "pos": "7 3 12"
+      },
+      {
+        "state": "log,axis=x,variant=spruce",
+        "pos": "8 3 12"
+      },
+      {
+        "state": "log,axis=x,variant=spruce",
+        "pos": "9 3 12"
+      },
+      {
+        "state": "log,axis=y,variant=spruce",
+        "pos": "10 3 12"
+      },
+      {
+        "state": "wooden_slab,half=bottom,variant=dark_oak",
+        "pos": "2 4 12"
+      },
+      {
+        "state": "wooden_slab,half=bottom,variant=dark_oak",
+        "pos": "3 4 12"
+      },
+      {
+        "state": "wooden_slab,half=bottom,variant=dark_oak",
+        "pos": "4 4 12"
+      },
+      {
+        "state": "spruce_stairs,facing=north,half=top,shape=straight",
+        "pos": "6 4 12"
+      },
+      {
+        "state": "log,axis=y,variant=spruce",
+        "pos": "7 4 12"
+      },
+      {
+        "state": "double_wooden_slab,variant=dark_oak",
+        "pos": "8 4 12"
+      },
+      {
+        "state": "wooden_slab,half=bottom,variant=dark_oak",
+        "pos": "9 4 12"
+      },
+      {
+        "state": "double_wooden_slab,variant=dark_oak",
+        "pos": "10 4 12"
+      },
+      {
+        "state": "double_stone_slab,seamless=false,variant=stone",
+        "pos": "2 0 13"
+      },
+      {
+        "state": "double_stone_slab,seamless=false,variant=stone",
+        "pos": "3 0 13"
+      },
+      {
+        "state": "double_stone_slab,seamless=false,variant=stone",
+        "pos": "4 0 13"
+      },
+      {
+        "state": "double_stone_slab,seamless=false,variant=stone",
+        "pos": "5 0 13"
+      },
+      {
+        "state": "planks,variant=dark_oak",
+        "pos": "7 0 13"
+      },
+      {
+        "facing": "east",
+        "state": "gastronomy:cookware,cookware=oven_off,facing=north",
+        "pos": "2 1 13",
+        "type": "rotatable"
+      },
+      {
+        "state": "spruce_stairs,facing=west,half=bottom,shape=straight",
+        "pos": "5 1 13"
+      },
+      {
+        "state": "dark_oak_fence,east=false,north=false,south=false,west=false",
+        "pos": "6 1 13"
+      },
+      {
+        "state": "spruce_stairs,facing=east,half=bottom,shape=straight",
+        "pos": "10 1 13"
+      },
+      {
+        "state": "glass_pane,east=false,north=false,south=false,west=false",
+        "pos": "5 2 13"
+      },
+      {
+        "state": "carpet,color=gray",
+        "pos": "6 2 13"
+      },
+      {
+        "state": "glass_pane,east=false,north=false,south=false,west=false",
+        "pos": "10 2 13"
+      },
+      {
+        "state": "spruce_stairs,facing=west,half=top,shape=straight",
+        "pos": "5 3 13"
+      },
+      {
+        "state": "spruce_stairs,facing=east,half=top,shape=straight",
+        "pos": "10 3 13"
+      },
+      {
+        "state": "wooden_slab,half=bottom,variant=dark_oak",
+        "pos": "2 4 13"
+      },
+      {
+        "state": "wooden_slab,half=top,variant=dark_oak",
+        "pos": "3 4 13"
+      },
+      {
+        "state": "wooden_slab,half=top,variant=dark_oak",
+        "pos": "4 4 13"
+      },
+      {
+        "state": "double_wooden_slab,variant=dark_oak",
+        "pos": "5 4 13"
+      },
+      {
+        "state": "double_wooden_slab,variant=dark_oak",
+        "pos": "8 4 13"
+      },
+      {
+        "state": "double_wooden_slab,variant=dark_oak",
+        "pos": "9 4 13"
+      },
+      {
+        "state": "double_stone_slab,seamless=false,variant=stone",
+        "pos": "2 0 14"
+      },
+      {
+        "state": "double_stone_slab,seamless=false,variant=stone",
+        "pos": "3 0 14"
+      },
+      {
+        "state": "double_stone_slab,seamless=false,variant=stone",
+        "pos": "4 0 14"
+      },
+      {
+        "state": "double_stone_slab,seamless=false,variant=stone",
+        "pos": "5 0 14"
+      },
+      {
+        "state": "planks,variant=dark_oak",
+        "pos": "7 0 14"
+      },
+      {
+        "state": "planks,variant=dark_oak",
+        "pos": "8 0 14"
+      },
+      {
+        "state": "planks,variant=dark_oak",
+        "pos": "9 0 14"
+      },
+      {
+        "facing": "east",
+        "state": "gastronomy:cookware,cookware=counter,facing=north",
+        "pos": "2 1 14",
+        "type": "rotatable"
+      },
+      {
+        "state": "log,axis=y,variant=spruce",
+        "pos": "5 1 14"
+      },
+      {
+        "state": "spruce_stairs,facing=north,half=bottom,shape=straight",
+        "pos": "6 1 14"
+      },
+      {
+        "state": "spruce_stairs,facing=east,half=bottom,shape=straight",
+        "pos": "10 1 14"
+      },
+      {
+        "state": "log,axis=y,variant=spruce",
+        "pos": "5 2 14"
+      },
+      {
+        "state": "glass_pane,east=false,north=false,south=false,west=false",
+        "pos": "10 2 14"
+      },
+      {
+        "state": "log,axis=y,variant=spruce",
+        "pos": "5 3 14"
+      },
+      {
+        "state": "spruce_stairs,facing=east,half=top,shape=straight",
+        "pos": "10 3 14"
+      },
+      {
+        "state": "double_wooden_slab,variant=dark_oak",
+        "pos": "5 4 14"
+      },
+      {
+        "state": "double_wooden_slab,variant=dark_oak",
+        "pos": "9 4 14"
+      },
+      {
+        "state": "double_stone_slab,seamless=false,variant=stone",
+        "pos": "3 0 15"
+      },
+      {
+        "state": "planks,variant=dark_oak",
+        "pos": "9 0 15"
+      },
+      {
+        "state": "log,axis=y,variant=spruce",
+        "pos": "4 1 15"
+      },
+      {
+        "state": "spruce_stairs,facing=west,half=bottom,shape=straight",
+        "pos": "5 1 15"
+      },
+      {
+        "state": "dark_oak_fence,east=false,north=false,south=false,west=false",
+        "pos": "6 1 15"
+      },
+      {
+        "state": "log,axis=y,variant=spruce",
+        "pos": "4 2 15"
+      },
+      {
+        "state": "carpet,color=gray",
+        "pos": "6 2 15"
+      },
+      {
+        "state": "log,axis=x,variant=spruce",
+        "pos": "3 3 15"
+      },
+      {
+        "state": "log,axis=y,variant=spruce",
+        "pos": "4 3 15"
+      },
+      {
+        "state": "double_wooden_slab,variant=dark_oak",
+        "pos": "4 4 15"
+      },
+      {
+        "state": "planks,variant=dark_oak",
+        "pos": "2 0 16"
+      },
+      {
+        "state": "planks,variant=dark_oak",
+        "pos": "3 0 16"
+      },
+      {
+        "state": "planks,variant=dark_oak",
+        "pos": "9 0 16"
+      },
+      {
+        "state": "planks,variant=dark_oak",
+        "pos": "10 0 16"
+      },
+      {
+        "state": "dark_oak_fence,east=false,north=false,south=false,west=false",
+        "pos": "9 1 16"
+      },
+      {
+        "state": "spruce_stairs,facing=east,half=bottom,shape=straight",
+        "pos": "10 1 16"
+      },
+      {
+        "state": "carpet,color=gray",
+        "pos": "9 2 16"
+      },
+      {
+        "state": "planks,variant=dark_oak",
+        "pos": "2 0 17"
+      },
+      {
+        "state": "planks,variant=dark_oak",
+        "pos": "3 0 17"
+      },
+      {
+        "state": "planks,variant=dark_oak",
+        "pos": "4 0 17"
+      },
+      {
+        "state": "planks,variant=dark_oak",
+        "pos": "5 0 17"
+      },
+      {
+        "state": "planks,variant=dark_oak",
+        "pos": "6 0 17"
+      },
+      {
+        "state": "planks,variant=dark_oak",
+        "pos": "7 0 17"
+      },
+      {
+        "state": "planks,variant=dark_oak",
+        "pos": "8 0 17"
+      },
+      {
+        "state": "planks,variant=dark_oak",
+        "pos": "9 0 17"
+      },
+      {
+        "state": "planks,variant=dark_oak",
+        "pos": "10 0 17"
+      },
+      {
+        "state": "dark_oak_fence,east=false,north=false,south=false,west=false",
+        "pos": "8 1 17"
+      },
+      {
+        "state": "dark_oak_fence,east=false,north=false,south=false,west=false",
+        "pos": "9 1 17"
+      },
+      {
+        "state": "spruce_stairs,facing=east,half=bottom,shape=straight",
+        "pos": "10 1 17"
+      },
+      {
+        "state": "carpet,color=gray",
+        "pos": "8 2 17"
+      },
+      {
+        "state": "carpet,color=gray",
+        "pos": "9 2 17"
+      },
+      {
+        "state": "planks,variant=dark_oak",
+        "pos": "3 0 18"
+      },
+      {
+        "state": "planks,variant=dark_oak",
+        "pos": "4 0 18"
+      },
+      {
+        "state": "planks,variant=dark_oak",
+        "pos": "5 0 18"
+      },
+      {
+        "state": "planks,variant=dark_oak",
+        "pos": "7 0 18"
+      },
+      {
+        "state": "planks,variant=dark_oak",
+        "pos": "8 0 18"
+      },
+      {
+        "state": "planks,variant=dark_oak",
+        "pos": "9 0 18"
+      },
+      {
+        "state": "spruce_stairs,facing=west,half=bottom,shape=straight",
+        "pos": "3 1 18"
+      },
+      {
+        "state": "dark_oak_fence,east=false,north=false,south=false,west=false",
+        "pos": "4 1 18"
+      },
+      {
+        "state": "spruce_stairs,facing=east,half=bottom,shape=straight",
+        "pos": "5 1 18"
+      },
+      {
+        "state": "spruce_stairs,facing=south,half=bottom,shape=straight",
+        "pos": "8 1 18"
+      },
+      {
+        "state": "spruce_stairs,facing=south,half=bottom,shape=straight",
+        "pos": "9 1 18"
+      },
+      {
+        "state": "carpet,color=gray",
+        "pos": "4 2 18"
+      }
+    ]
+  }
+}

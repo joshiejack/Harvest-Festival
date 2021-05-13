@@ -1,0 +1,18 @@
+{
+  "registryName": "harvestfestival:sickle",
+  "type": "blueprint:standard",
+  "data": {
+    "category": "tool",
+    "result": "husbandry:sickle {Unbreakable:1}",
+    "ingredients": [
+      {
+        "item": "flint",
+        "count": 4
+      },
+      {
+        "item": "stickWood",
+        "count": 2
+      }
+    ]
+  }
+}

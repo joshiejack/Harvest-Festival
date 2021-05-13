@@ -1,0 +1,4 @@
+ID,Max Stock,Replenish Rate
+unlimited,2147483647,2147483647
+limited_1,1,1
+only_1,1,0

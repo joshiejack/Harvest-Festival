@@ -1,0 +1,32 @@
+{
+	"registryName": "harvestfestival:rock",
+	"type": "block:standard",
+	"defaults": {
+		"propertyName": "rock",
+		"hardness": "2F",
+		"soundType": "stone",
+		"material": "rock",
+		"toolType": "hammer",
+		"toolLevel": 0,
+		"boundingBox": "0.1 0 0.1 0.9 0.8 0.9",
+		"lootTable": "harvestfestival:blocks/rock"
+	},
+	"data": [
+		{
+			"name": "standard"
+		},
+		{
+			"name": "ice"
+		},
+		{
+			"name": "hell"
+		},
+		{
+			"name": "ice_crystal",
+			"soundType": "glass",
+			"material": "ice",
+			"renderLayer": "translucent",
+			"lootTable": "harvestfestival:blocks/ice_crystal"
+		}
+	]
+}

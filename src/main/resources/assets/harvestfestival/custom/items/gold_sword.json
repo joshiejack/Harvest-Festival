@@ -1,0 +1,7 @@
+{
+  "registryName": "harvestfestival:gold_sword",
+  "type": "item:sword",
+  "data": {
+    "toolMaterial": "gold"
+  }
+}

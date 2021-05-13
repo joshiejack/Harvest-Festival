@@ -1,0 +1,18 @@
+{
+  "registryName": "harvestfestival:basic_hammer",
+  "type": "blueprint:standard",
+  "data": {
+    "category": "tool",
+    "result": "harvestfestival:basic_hammer {Unbreakable:1}",
+    "ingredients": [
+      {
+        "item": "flint",
+        "count": 6
+      },
+      {
+        "item": "stickWood",
+        "count": 2
+      }
+    ]
+  }
+}

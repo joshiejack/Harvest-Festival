@@ -1,0 +1,10 @@
+{
+  "registryName": "harvestfestival:cursed_watering_can",
+  "type": "item:watering_can",
+  "data": {
+    "script": "harvestfestival:items/cursed",
+    "toolMaterial": "blessed",
+    "width": 5,
+    "depth": 6
+  }
+}

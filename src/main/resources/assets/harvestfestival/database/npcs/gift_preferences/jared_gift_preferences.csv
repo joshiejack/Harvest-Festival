@@ -1,0 +1,22 @@
+item,quality
+cat_treat,awesome
+cat_food,awesome
+piscary:fish 8,awesome
+pink_cat_flower,awesome
+cat#milk,good
+cat#fruit,good
+rabbit_treat,decent
+horse_treat,decent
+saddle,decent
+lead,decent
+parrot_treat,decent
+cat#art,dislike
+cropCarrot,dislike
+golden_carrot,dislike
+piscary:fish 7,bad
+rabbit,bad
+cooked_rabbit,bad
+rabbit_stew,bad
+rabbit_foot,terrible
+dog_food,terrible
+dog_treat,terrible

@@ -1,0 +1,14 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "transform": "forge:default-item",
+    "model": "forge:item-layer"
+  },
+  "variants": {
+    "copper": [{ "textures": { "layer0": "harvestfestival:items/mining/metals/copper" }}],
+    "silver": [{ "textures": { "layer0": "harvestfestival:items/mining/metals/silver" }}],
+    "gold": [{ "textures": { "layer0": "harvestfestival:items/mining/metals/gold" }}],
+    "mystril": [{ "textures": { "layer0": "harvestfestival:items/mining/metals/mystril" }}],
+    "orichalc": [{ "textures": { "layer0": "harvestfestival:items/mining/metals/orichalc" }}]
+  }
+}

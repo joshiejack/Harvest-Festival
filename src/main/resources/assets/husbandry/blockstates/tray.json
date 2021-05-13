@@ -1,0 +1,20 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "transform": "forge:default-block",
+    "model": "cube_all"
+  },
+  "variants": {
+    "tray=nest_empty":  { "model": "husbandry:nest" },
+    "tray=nest_small":  { "model": "husbandry:nest_small" },
+    "tray=nest_medium": { "model": "husbandry:nest_medium" },
+    "tray=nest_large": { "model": "husbandry:nest_large" },
+    "tray=feeder_empty":  { "model": "husbandry:feeding_tray", "textures": { "texture": "husbandry:blocks/feeding_tray"} },
+    "tray=feeder_semi":  { "model": "husbandry:feeding_tray", "textures": { "texture": "husbandry:blocks/feeding_tray_semi"} },
+    "tray=feeder_full":  { "model": "husbandry:feeding_tray" },
+    "tray=bowl_empty":  { "model": "husbandry:bowl_empty" },
+    "tray=bowl_cat":  { "model": "husbandry:bowl_cat" },
+    "tray=bowl_dog":  { "model": "husbandry:bowl_dog" },
+    "tray=bowl_rabbit":  { "model": "husbandry:bowl_rabbit" }
+  }
+}

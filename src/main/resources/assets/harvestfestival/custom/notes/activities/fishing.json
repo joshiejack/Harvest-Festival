@@ -1,0 +1,10 @@
+{
+  "registryName": "harvestfestival:fishing",
+  "type": "note:standard",
+  "data": {
+    "category": "activities",
+    "icon": {
+      "item": "piscary:fishing_rod"
+    }
+  }
+}

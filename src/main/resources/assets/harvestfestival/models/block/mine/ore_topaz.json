@@ -1,9 +1,9 @@
 {
   "parent": "block/cube_all",
   "textures": {
-    "particle": "harvestfestival:blocks/mine/ore_topaz",
-    "base": "harvestfestival:blocks/mine/rock_topaz",
-    "ore": "harvestfestival:blocks/mine/ore_topaz"
+    "particle": "harvestfestival:blocks/mine/nodes/ore_topaz",
+    "base": "harvestfestival:blocks/mine/nodes/rock_topaz",
+    "ore": "harvestfestival:blocks/mine/nodes/ore_topaz"
   },
   "elements": [
     {

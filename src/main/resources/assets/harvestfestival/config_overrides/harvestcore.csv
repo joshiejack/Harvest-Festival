@@ -1,0 +1,9 @@
+Key,Value
+enableSpringWildernessCrops,true
+enableSummerWildernessCrops,true
+enableAutumnWildernessCrops,true
+enableWinterWildernessCrops,true
+vanillaVillagesGenerateWilderness,false
+disableVanillaVillages,true
+mobSpawnsMaxHeight,60
+disableOverworldAnimals,true

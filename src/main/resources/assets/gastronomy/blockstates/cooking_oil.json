@@ -1,0 +1,9 @@
+{
+  "forge_marker": 1,
+  "variants": {
+    "cooking_oil": {
+      "model": "forge:fluid",
+      "custom": { "fluid": "cooking_oil" }
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "registryName": "harvestfestival:mystril_shovel",
+  "type": "item:shovel",
+  "data": {
+    "toolMaterial": "mystril",
+    "width": 3,
+    "depth": 2
+  }
+}

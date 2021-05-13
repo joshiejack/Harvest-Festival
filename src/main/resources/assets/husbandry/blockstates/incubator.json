@@ -1,0 +1,20 @@
+{
+  "variants": {
+    "facing=north,fill=empty":  { "model": "husbandry:incubator" },
+    "facing=south,fill=empty":  { "model": "husbandry:incubator", "y": 180 },
+    "facing=east,fill=empty": { "model": "husbandry:incubator", "y": 90 },
+    "facing=west,fill=empty": { "model": "husbandry:incubator", "y": 270 },
+    "facing=north,fill=small":  { "model": "husbandry:incubator_small" },
+    "facing=south,fill=small":  { "model": "husbandry:incubator_small", "y": 180 },
+    "facing=east,fill=small": { "model": "husbandry:incubator_small", "y": 90 },
+    "facing=west,fill=small": { "model": "husbandry:incubator_small", "y": 270 },
+    "facing=north,fill=medium":  { "model": "husbandry:incubator_medium" },
+    "facing=south,fill=medium":  { "model": "husbandry:incubator_medium", "y": 180 },
+    "facing=east,fill=medium": { "model": "husbandry:incubator_medium", "y": 90 },
+    "facing=west,fill=medium": { "model": "husbandry:incubator_medium", "y": 270 },
+    "facing=north,fill=large":  { "model": "husbandry:incubator_large" },
+    "facing=south,fill=large":  { "model": "husbandry:incubator_large", "y": 180 },
+    "facing=east,fill=large": { "model": "husbandry:incubator_large", "y": 90 },
+    "facing=west,fill=large": { "model": "husbandry:incubator_large", "y": 270 }
+  }
+}

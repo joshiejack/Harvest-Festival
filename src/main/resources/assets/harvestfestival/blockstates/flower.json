@@ -1,0 +1,17 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "transform": "forge:default-item",
+    "model": "minecraft:cross"
+  },
+  "variants": {
+    "flower": {
+      "goddess": { "textures": { "cross": "harvestfestival:blocks/wilderness/flowers/goddess" }},
+      "blue_magic": { "textures": { "cross": "harvestfestival:blocks/wilderness/flowers/blue_magicgrass" }},
+      "moondrop": { "textures": { "cross": "harvestfestival:blocks/wilderness/flowers/moondrop" }},
+      "pink_cat": { "textures": { "cross": "harvestfestival:blocks/wilderness/flowers/pinkcat" }},
+      "red_magic": { "textures": { "cross": "harvestfestival:blocks/wilderness/flowers/red_magicgrass" }},
+      "toy": { "textures": { "cross": "harvestfestival:blocks/wilderness/flowers/toyflower" }}
+    }
+  }
+}

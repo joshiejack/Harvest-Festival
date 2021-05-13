@@ -1,0 +1,5 @@
+department_id,id,stock_mechanic,cost_formula
+#Machines
+engineers_workshop_machines,piston,unlimited,default
+#Blueprints
+engineers_workshop_blueprints,mushroom_log_blueprint,limited_1,default

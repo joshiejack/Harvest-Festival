@@ -1,0 +1,16 @@
+[
+{
+  "modid": "harvestcore",
+  "name": "Harvest Core",
+  "description": "",
+  "version": "${harvestcore_version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["joshie"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

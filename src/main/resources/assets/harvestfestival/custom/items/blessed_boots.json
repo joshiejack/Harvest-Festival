@@ -1,0 +1,15 @@
+{
+  "registryName": "harvestfestival:blessed_boots",
+  "type": "item:armor",
+  "data": {
+    "armorMaterial": "harvestfestival:blessed",
+    "equipmentSlot": "feet",
+    "attributes": [
+      {
+        "name": "movement_speed",
+        "amount": 0.1,
+        "operation": 0
+      }
+    ]
+  }
+}

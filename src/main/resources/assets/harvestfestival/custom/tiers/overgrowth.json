@@ -1,0 +1,322 @@
+{
+  "registryName": "harvestfestival:overgrowth",
+  "biome": "harvestfestival:caves_overgrown",
+  "floor": "harvestfestival:floor_standard",
+  "wall": "harvestfestival:wall,decortype=standard",
+  "ladder": "harvestfestival:mine_ladder,facing=north,ladder=wood",
+  "upper_portal": "harvestfestival:portal,ew=true,portal=external,section=tl",
+  "lower_portal": "harvestfestival:portal,ew=true,portal=internal,section=tl",
+  "decorators": [
+    {
+      "type": "pillar",
+      "ranges": [
+        "mushroom"
+      ],
+      "state": "log2,axis=y,variant=dark_oak",
+      "passes": 8
+    },
+    {
+      "type": "pillar",
+      "ranges": [
+        "forest"
+      ],
+      "state": "log,axis=y,variant=oak",
+      "passes": 8
+    },
+    {
+      "type": "mushroom",
+      "ranges": [
+        "mushroom"
+      ]
+    },
+    {
+      "type": "leaves",
+      "ranges": [
+        "mushroom"
+      ],
+      "state": "leaves2,check_decay=false,decayable=true,variant=dark_oak",
+      "passes": 24
+    },
+    {
+      "type": "leaves",
+      "ranges": [
+        "forest"
+      ],
+      "state": "leaves,check_decay=false,decayable=true,variant=oak",
+      "passes": 16
+    },
+    {
+      "type": "grass",
+      "ranges": [
+        "forest",
+        "mushroom"
+      ],
+      "state": "tallgrass,type=tall_grass",
+      "passes": 1
+    },
+    {
+      "type": "floor",
+      "ranges": [
+        "forest",
+        "mushroom"
+      ],
+      "state": "grass,snowy=false",
+      "passes": 2,
+      "number": 48
+    },
+    {
+      "type": "floor",
+      "ranges": [
+        "forest",
+        "mushroom",
+        "dirt",
+        "basement"
+      ],
+      "state": "planks,variant=dark_oak",
+      "number": 16,
+      "chance": 3
+    },
+    {
+      "type": "carpet",
+      "ranges": [
+        "forest",
+        "mushroom",
+        "dirt",
+        "basement"
+      ],
+      "state": "harvestfestival:cobblestone,decortype=standard,ew=true"
+    }
+  ],
+  "loot": [
+    {
+      "state": "brown_mushroom",
+      "min_floor": 10,
+      "max_floor": 30,
+      "weight": 24.0
+    },
+    {
+      "state": "red_mushroom",
+      "min_floor": 20,
+      "max_floor": 30,
+      "weight": 20.0
+    },
+    {
+      "state": "harvestfestival:shrub,shrub=weed",
+      "max_floor": 30,
+      "cluster_distance": 8,
+      "cluster_amount": 8,
+      "weight": 32.0
+    },
+    {
+      "state": "harvestfestival:crate,crate=barrel",
+      "min_floor": 1,
+      "cluster_distance": 4,
+      "cluster_amount": 3,
+      "weight": 4.0
+    },
+    {
+      "state": "harvestfestival:crate,crate=square",
+      "cluster_distance": 2,
+      "cluster_amount": 2,
+      "weight": 1.0
+    },
+    {
+      "state": "harvestfestival:branch_new,wood=dark_oak_small_branch",
+      "min_floor": 1,
+      "max_floor": 20,
+      "weight": 6.0
+    },
+    {
+      "state": "harvestfestival:branch_new,wood=dark_oak_medium_branch",
+      "min_floor": 3,
+      "max_floor": 20,
+      "weight": 5.0
+    },
+    {
+      "state": "harvestfestival:stump_new,wood=dark_oak_small_stump",
+      "min_floor": 5,
+      "max_floor": 20,
+      "weight": 4.0
+    },
+    {
+      "state": "harvestfestival:branch_new,wood=dark_oak_large_branch",
+      "min_floor": 9,
+      "max_floor": 20,
+      "weight": 3.0
+    },
+    {
+      "state": "harvestfestival:stump_new,wood=dark_oak_medium_stump",
+      "min_floor": 12,
+      "max_floor": 20,
+      "weight": 2.0
+    },
+    {
+      "state": "harvestfestival:stump_new,wood=dark_oak_large_stump",
+      "min_floor": 15,
+      "max_floor": 20,
+      "weight": 1.0
+    },
+    {
+      "state": "gastronomy:nature,nature=matsutake",
+      "min_floor": 15,
+      "max_floor": 30,
+      "weight": 5.0
+    },
+    {
+      "state": "harvestfestival:stone,stone=stone_small",
+      "min_floor": 31,
+      "weight": 6.0
+    },
+    {
+      "state": "harvestfestival:stone,stone=stone_medium",
+      "min_floor": 32,
+      "weight": 5.0
+    },
+    {
+      "state": "harvestfestival:stone,stone=boulder_small",
+      "min_floor": 33,
+      "weight": 4.0
+    },
+    {
+      "state": "harvestfestival:stone,stone=stone_large",
+      "min_floor": 34,
+      "weight": 3.0
+    },
+    {
+      "state": "harvestfestival:stone,stone=boulder_medium",
+      "min_floor": 36,
+      "weight": 2.0
+    },
+    {
+      "state": "harvestfestival:stone,stone=boulder_large",
+      "min_floor": 38,
+      "weight": 1.0
+    },
+    {
+      "state": "harvestfestival:rock,rock=standard",
+      "weight": 100.0
+    },
+    {
+      "state": "harvestfestival:node,node=copper",
+      "min_floor": 6,
+      "weight": 8.0
+    },
+    {
+      "state": "harvestfestival:node,node=amethyst",
+      "min_floor": 11,
+      "weight": 6.0
+    },
+    {
+      "state": "harvestfestival:node,node=copper",
+      "min_floor": 31,
+      "weight": 2.0
+    },
+    {
+      "state": "harvestfestival:mushroom,mushroom=dwarfen_shroom",
+      "min_floor": 31,
+      "weight": 1.0
+    }
+  ],
+  "entities": [
+    {
+      "entity": "minecraft:slime",
+      "type": "monster",
+      "ranges": [
+        "forest",
+        "mushroom"
+      ],
+      "weight": 20,
+      "min_group": 1,
+      "max_group": 1
+    },
+    {
+      "entity": "minecraft:spider",
+      "type": "monster",
+      "ranges": [
+        "basement"
+      ],
+      "weight": 100,
+      "min_group": 4,
+      "max_group": 4
+    },
+    {
+      "entity": "minecraft:zombie",
+      "type": "monster",
+      "ranges": [
+        "basement"
+      ],
+      "weight": 95,
+      "min_group": 4,
+      "max_group": 4
+    },
+    {
+      "entity": "minecraft:zombie_villager",
+      "type": "monster",
+      "ranges": [
+        "basement"
+      ],
+      "weight": 5,
+      "min_group": 1,
+      "max_group": 1
+    },
+    {
+      "entity": "minecraft:skeleton",
+      "type": "monster",
+      "ranges": [
+        "basement"
+      ],
+      "weight": 100,
+      "min_group": 4,
+      "max_group": 4
+    },
+    {
+      "entity": "minecraft:bat",
+      "type": "ambient",
+      "ranges": [
+        "basement"
+      ],
+      "weight": 10,
+      "min_group": 8,
+      "max_group": 8
+    },
+    {
+      "entity": "minecraft:mooshroom",
+      "type": "creature",
+      "ranges": [
+        "mushroom"
+      ],
+      "weight": 10,
+      "min_group": 1,
+      "max_group": 1
+    }
+  ],
+  "generators": [
+    "harvestcore:tunnel",
+    "harvestcore:circle",
+    "harvestfestival:hexagon"
+  ],
+  "ranges": [
+    {
+      "name": "mushroom",
+      "min_floor": 1,
+      "max_floor": 10
+    },
+    {
+      "name": "forest",
+      "min_floor": 11,
+      "max_floor": 20
+    },
+    {
+      "name": "dirt",
+      "min_floor": 21,
+      "max_floor": 30
+    },
+    {
+      "name": "basement",
+      "min_floor": 31,
+      "max_floor": 40,
+      "floor": "harvestfestival:wall,decortype=standard"
+    }
+  ],
+  "order": 0
+}

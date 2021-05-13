@@ -1,0 +1,9 @@
+{
+  "registryName": "harvestfestival:basic_hoe",
+  "type": "item:hoe",
+  "data": {
+    "toolMaterial": "basic",
+    "width": 0,
+    "depth": 0
+  }
+}

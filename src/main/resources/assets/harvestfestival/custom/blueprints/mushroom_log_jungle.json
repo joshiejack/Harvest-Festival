@@ -1,0 +1,14 @@
+{
+  "registryName": "harvestfestival:mushroom_log_jungle",
+  "type": "blueprint:standard",
+  "data": {
+    "category": "machine",
+    "result": "horticulture:stump 3",
+    "ingredients": [
+      {
+        "item": "minecraft:log 3",
+        "count": 5
+      }
+    ]
+  }
+}

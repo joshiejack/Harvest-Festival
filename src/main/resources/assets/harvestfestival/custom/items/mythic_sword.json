@@ -1,0 +1,7 @@
+{
+  "registryName": "harvestfestival:mythic_sword",
+  "type": "item:sword",
+  "data": {
+    "toolMaterial": "mythic"
+  }
+}

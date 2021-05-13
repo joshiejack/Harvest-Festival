@@ -1,0 +1,31 @@
+{
+	"ambientocclusion": false,
+	"textures": {
+		"particle": "#cross",
+		"cross": "blocks/mushroom_brown"
+	},
+	"elements": [ 	 
+		{
+			"__comment": "Element",
+			"from": [ 5.6024, 6.836, 8 ],
+			"to": [ 10.3976, 12.164, 8.000333 ],
+			"rotation": { "origin": [ 8, 9.5, 8 ], "axis": "y", "angle": 45, "rescale": true },
+			"shade": false,
+			"faces": {
+				"north": { "uv": [ 0, 0, 16, 16 ], "texture": "#cross" },
+				"south": { "uv": [ 0, 0, 16, 16 ], "texture": "#cross" }
+			}
+		},
+		{
+			"__comment": "Element",
+			"from": [ 8, 6.836, 5.6024 ],
+			"to": [ 8.000333, 12.164, 10.3976 ],
+			"rotation": { "origin": [ 8, 9.5, 8 ], "axis": "y", "angle": 45, "rescale": true },
+			"shade": false,
+			"faces": {
+				"west": { "uv": [ 0, 0, 16, 16 ], "texture": "#cross" },
+				"east": { "uv": [ 0, 0, 16, 16 ], "texture": "#cross" }
+			}
+		}
+	]
+}

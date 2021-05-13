@@ -1,0 +1,9 @@
+{
+  "registryName": "harvestfestival:caves_deep",
+  "type": "biome:standard",
+  "data": {
+    "name": "Deep Caves",
+    "temperature": 0.2,
+    "rainfall": 0
+  }
+}

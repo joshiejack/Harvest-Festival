@@ -1,0 +1,7 @@
+Name,Days Between Producing,Small,Medium,Large
+milk,1,small_milk,medium_milk,large_milk
+egg,1,small_egg,medium_egg,large_egg
+duck_egg,2,small_duck_egg,medium_duck_egg,large_duck_egg
+truffle,3,small_truffle,medium_truffle,large_truffle
+wool,7,small_wool,medium_wool,large_wool
+rabbit_wool,4,small_rabbit_wool,medium_rabbit_wool,large_rabbit_wool

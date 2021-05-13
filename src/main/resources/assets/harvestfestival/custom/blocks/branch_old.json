@@ -1,0 +1,61 @@
+{
+	"registryName": "harvestfestival:branch_old",
+	"type": "block:standard",
+	"defaults": {
+		"propertyName": "wood",
+		"hardness": "0.8F",
+		"soundType": "wood",
+		"material": "wood",
+		"toolType": "lumber_axe&axe",
+		"toolLevel": 0,
+		"silkHarvest": true,
+		"offset": "xz"
+	},
+	"data": [
+		{
+			"name": "oak_small_branch",
+			"boundingBox": "0.15 0 0.15 0.85 0.15 0.85",
+			"lootTable": "harvestfestival:blocks/oak_small_branch"
+		},
+		{
+			"name": "spruce_small_branch",
+			"boundingBox": "0.15 0 0.15 0.85 0.15 0.85",
+			"lootTable": "harvestfestival:blocks/spruce_small_branch"
+		},
+		{
+			"name": "birch_small_branch",
+			"boundingBox": "0.15 0 0.15 0.85 0.15 0.85",
+			"lootTable": "harvestfestival:blocks/birch_small_branch"
+		},
+		{
+			"name": "oak_medium_branch",
+			"boundingBox": "0.15 0 0.15 0.85 0.25 0.85",
+			"lootTable": "harvestfestival:blocks/oak_medium_branch"
+		},
+		{
+			"name": "spruce_medium_branch",
+			"boundingBox": "0.15 0 0.15 0.85 0.25 0.85",
+			"lootTable": "harvestfestival:blocks/spruce_medium_branch"
+		},
+		{
+			"name": "birch_medium_branch",
+			"boundingBox": "0.15 0 0.15 0.85 0.25 0.85",
+			"lootTable": "harvestfestival:blocks/birch_medium_branch"
+		},
+		{
+			"name": "oak_large_branch",
+			"boundingBox": "0 0 0 1 0.9 1",
+			"lootTable": "harvestfestival:blocks/oak_large_branch"
+		},
+		{
+			"name": "spruce_large_branch",
+			"boundingBox": "0 0 0 1 0.9 1",
+			"lootTable": "harvestfestival:blocks/spruce_large_branch"
+		},
+		{
+			"name": "birch_large_branch",
+			"boundingBox": "0 0 0 1 0.9 1",
+			"lootTable": "harvestfestival:blocks/birch_large_branch"
+		}
+	]
+}

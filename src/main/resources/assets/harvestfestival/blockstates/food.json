@@ -1,0 +1,15 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "transform": "forge:default-item",
+    "model": "forge:item-layer"
+  },
+  "variants": {
+    "apple_jam": [{ "textures": { "layer0": "harvestfestival:items/food/jam_apple" }}],
+    "grape_jam": [{ "textures": { "layer0": "harvestfestival:items/food/jam_grape" }}],
+    "marmalade": [{ "textures": { "layer0": "harvestfestival:items/food/marmalade" }}],
+    "strawberry_jam": [{ "textures": { "layer0": "harvestfestival:items/food/jam_strawberry" }}],
+    "jam_bun": [{ "textures": { "layer0": "harvestfestival:items/food/bun_jam" }}],
+    "wild_grapes": [{ "textures": { "layer0": "harvestfestival:items/food/wild_grapes" }}]
+  }
+}

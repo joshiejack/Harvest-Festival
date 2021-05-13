@@ -1,0 +1,4 @@
+id,type,data
+none,default,none
+npc,entity,settlements:npc
+pig,entity,minecraft:pig

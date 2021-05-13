@@ -1,0 +1,5 @@
+{
+  "brush": { "category": "players", "sounds":[
+    "husbandry:brush1", "husbandry:brush2", "husbandry:brush3"
+  ], "subtitle": "harvestfestival.subtitle.brush" }
+}

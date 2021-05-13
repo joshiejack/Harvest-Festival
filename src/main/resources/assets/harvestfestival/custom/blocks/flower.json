@@ -1,0 +1,35 @@
+{
+	"registryName": "harvestfestival:flower",
+	"type": "block:bush",
+	"defaults": {
+		"propertyName": "flower",
+		"hardness": 0
+	},
+	"data": [
+		{
+			"name": "goddess",
+			"lifespan": 50,
+			"lootTable": "harvestfestival:blocks/goddess_flower"
+		},
+		{
+			"name": "blue_magic",
+			"lootTable": "harvestfestival:blocks/blue_magic_flower"
+		},
+		{
+			"name": "moondrop",
+			"lootTable": "harvestfestival:blocks/moondrop_flower"
+		},
+		{
+			"name": "pink_cat",
+			"lootTable": "harvestfestival:blocks/pink_cat_flower"
+		},
+		{
+			"name": "red_magic",
+			"lootTable": "harvestfestival:blocks/red_magic_flower"
+		},
+		{
+			"name": "toy",
+			"lootTable": "harvestfestival:blocks/toy_flower"
+		}
+	]
+}

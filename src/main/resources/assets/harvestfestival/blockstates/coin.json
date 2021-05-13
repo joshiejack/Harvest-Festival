@@ -1,0 +1,12 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "transform": "forge:default-item",
+    "model": "forge:item-layer"
+  },
+  "variants": {
+    "copper": [{ "textures": { "layer0": "harvestfestival:items/mining/coins/copper" }}],
+    "silver": [{ "textures": { "layer0": "harvestfestival:items/mining/coins/silver" }}],
+    "gold": [{ "textures": { "layer0": "harvestfestival:items/mining/coins/gold" }}]
+  }
+}

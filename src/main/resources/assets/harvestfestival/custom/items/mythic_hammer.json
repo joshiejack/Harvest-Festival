@@ -1,0 +1,10 @@
+{
+  "registryName": "harvestfestival:mythic_hammer",
+  "type": "item:hammer",
+  "data": {
+    "toolMaterial": "mythic",
+    "area": 15,
+    "widthAndHeight": 1,
+    "depth": 11
+  }
+}

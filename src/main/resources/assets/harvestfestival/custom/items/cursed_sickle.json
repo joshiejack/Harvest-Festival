@@ -1,0 +1,9 @@
+{
+  "registryName": "harvestfestival:cursed_sickle",
+  "type": "item:sickle",
+  "data": {
+    "script": "harvestfestival:items/cursed",
+    "toolMaterial": "blessed",
+    "area": 7
+  }
+}

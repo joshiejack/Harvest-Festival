@@ -1,0 +1,39 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "harvestfestival:mine/connected_top_hell"
+  },
+  "variants": {
+    "overlay": {
+      "model": "harvestfestival:mine/connected_overlay"
+    },
+      "nw": {
+        "blank": { "textures": { "tl": "harvestfestival:blocks/mine/interior/hell/floor_blank" }} ,
+        "inner": { "textures": { "tl": "harvestfestival:blocks/mine/interior/hell/floor_inner" }},
+        "vertical": { "textures": { "tl": "harvestfestival:blocks/mine/interior/hell/floor_vertical" }},
+        "horizontal": { "textures": { "tl": "harvestfestival:blocks/mine/interior/hell/floor_horizontal" }},
+        "outer": { "textures": { "tl": "harvestfestival:blocks/mine/interior/hell/floor_outer" }}
+      },
+      "ne": {
+        "blank": { "textures": { "tr": "harvestfestival:blocks/mine/interior/hell/floor_blank" }},
+        "inner": { "textures": { "tr": "harvestfestival:blocks/mine/interior/hell/floor_inner" }},
+        "vertical": { "textures": { "tr": "harvestfestival:blocks/mine/interior/hell/floor_vertical" }},
+        "horizontal": { "textures": { "tr": "harvestfestival:blocks/mine/interior/hell/floor_horizontal" }},
+        "outer": { "textures": { "tr": "harvestfestival:blocks/mine/interior/hell/floor_outer" }}
+      },
+      "sw": {
+        "blank": { "textures": { "bl": "harvestfestival:blocks/mine/interior/hell/floor_blank" }},
+        "inner": { "textures": { "bl": "harvestfestival:blocks/mine/interior/hell/floor_inner" }},
+        "vertical": { "textures": { "bl": "harvestfestival:blocks/mine/interior/hell/floor_vertical" }},
+        "horizontal": { "textures": { "bl": "harvestfestival:blocks/mine/interior/hell/floor_horizontal" }},
+        "outer": { "textures": { "bl": "harvestfestival:blocks/mine/interior/hell/floor_outer" }}
+      },
+      "se": {
+        "blank": { "textures": { "br": "harvestfestival:blocks/mine/interior/hell/floor_blank" }},
+        "inner": { "textures": { "br": "harvestfestival:blocks/mine/interior/hell/floor_inner" }},
+        "vertical": { "textures": { "br": "harvestfestival:blocks/mine/interior/hell/floor_vertical" }},
+        "horizontal": { "textures": { "br": "harvestfestival:blocks/mine/interior/hell/floor_horizontal" }},
+        "outer": { "textures": { "br": "harvestfestival:blocks/mine/interior/hell/floor_outer" }}
+      }
+  }
+}

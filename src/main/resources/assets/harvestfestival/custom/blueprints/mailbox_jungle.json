@@ -1,0 +1,18 @@
+{
+  "registryName": "harvestfestival:mailbox_jungle",
+  "type": "blueprint:standard",
+  "data": {
+    "category": "machine",
+    "result": "harvestcore:mailbox 4",
+    "ingredients": [
+      {
+        "item": "minecraft:planks 3",
+        "count": 1
+      },
+      {
+        "item": "minecraft:jungle_fence",
+        "count": 1
+      }
+    ]
+  }
+}

@@ -1,0 +1,164 @@
+/*
+//TODO: Rewrite cow festival
+var locations = [[0,4,0], [10,4,0], [10,4,10], [0,4,10]];
+var started = false;
+var entries = [];
+
+function setup(settings) {
+    settings.setType("team"); //Festivals are localised to a team
+    settings.setDefault();
+}
+
+function onFestivalWon(npc, player, position) {
+    if (position == 0) { //if we won, call the power berry code?
+        player.scripts().call("festival", "onFestivalWon", player, "cow_festival_won");
+    }
+
+    //Give out the prizes
+
+}
+
+function onRightClickedNPC(player, npc) {
+    if (npc.is("candice")) {
+        if (!started) {
+            if (!isEntered(player)) {
+                if (entries.length < 4) {
+                    npc.say(player, "Welcome to the cow festival! How may I help?");
+                    npc.ask(player, this_id, "menu", "", "Enter Cow", "Information", "Nevermind");
+                } else {
+                    npc.say(player, "Welcome to the cow festival! It looks the festival has the maximum entrants so sorry!");
+                }
+            } else {
+                npc.say(player, "Looks like you've entered your cow, You can wait for others or start.");
+                npc.ask(player, this_id, "start", "What do you want to do?", "Start", "Wait");
+            }
+        } else npc.say(player, "The judging is in progress!");
+    }
+}
+
+function isEntered(player) {
+    for (var i = 0; i < entries.length; i++) {
+        var entry = entries[i];
+        if (entry[0] == player.getUUID()) {
+            return true;
+        }
+    }
+
+    return false;
+}
+function getUnusedPosition(world) {
+    for (var i = 0; i < locations.length; i++) {
+        var cow = world.getEntity("cow", locations[i][0], locations[i][1], locations[i][2], 10);
+        if (cow === null) {
+            return locations[i];
+        }
+    }
+
+    return locations[0];
+}
+
+function onQuestionAnswered(player, npc, id, option) {
+    if (id == "menu") {
+        if (option === 0) {
+
+            var cows = getCows(player.world());
+            var names = [];
+            for (var i = 0; i < cows.length; i++) {
+                names.push(cows[i].name());
+            }
+
+            print("names " + names.length);
+            print("cows " + cows.length);
+            if (names.length === 0) {
+                npc.say(player, "We could not find any cows in the pens!");
+            } else {
+                npc.say(player, "That is wonderful! Select which cow you would like to enter!");
+                npc.ask(player, this_id, "select", "", names);
+            }
+        } else if (option == 1) {
+            npc.say(player, "I am explaining how the cow festival works");
+        }
+    } else if (id == "select") {
+        //We know the cow names
+        var cows = getCows(player.world());
+        entries.push([player.getUUID(), cows[option].getUUID()]);
+        npc.say(player, "You have entered " + cows[option].name());
+    } else if (id == "start") {
+        if (option === 0) {
+            started = true;
+            //Generate additional cows
+            var generateAmount = 4 - entries.length;
+            var world = player.world();
+            print("Generating " + generateAmount + " cows");
+            if (generateAmount > 0) {
+                //Generate cows...
+                for (var i = 0; i < generateAmount; i++) {
+                    var position = getUnusedPosition(world);
+                    var animal = world.createEntity("cow", position[0], position[1], position[2]);
+                    animals.addHappiness(animal, Math.floor((Math.random() * 20000) + 10000));
+                    entries.push(["NPC", animal.getUUID()]);
+                }
+            }
+
+            //Add the sequence
+            for (var l = 0; l < 4; l++) {
+                print(entries[l]);
+            }
+
+            var scores = [];
+            for (var i = 0; i < 4; i++) {
+                npc.walk(locations[i][0], locations[i][1], locations[i][2]);
+                var cow = player.world().getEntityByUUID(entries[i][1]);
+                var hearts = animals.getHeartLevel(cow);
+                if (animals.isSick(cow)) {
+                    hearts = -1;
+                }
+
+                scores.push([i, hearts]);
+                var name = cow.name(); //For formatting purposes
+                npc.broadcast(locations[i][0], locations[i][1], locations[i][2], 32, "speech" + hearts);
+            }
+
+            scores.sort(function(a, b){ return a[1] - b[1]; });
+
+            npc.wait(1); //Wait a second
+            npc.broadcast(npc.position(), 32, "We finished, let me go back and collect some notes");
+            npc.walk(5, 5, 5); //Stand location
+            for (var i = 2; i >= 0; i--) {
+                var score = scores[i];
+                var winner = entries[score[0]][1];
+                var owner = entries[score[0]][0];
+                npc.broadcast(npc.position(), 32, "In a place is " + owner);
+                onFestivalWon(npc, npc.world().getPlayer(winner), i);
+            }
+        } else {
+            npc.say(player, "Ok then, come back when you're ready to start");
+        }
+    }
+}
+
+function getNameFromUUID(uuid) {
+
+}
+
+function getCows(world) {
+    var cows = [];
+    for (var i = 0; i < locations.length; i++) {
+        var cow = world.getEntity("cow", locations[i][0], locations[i][1], locations[i][2], 10);
+        if (cow !== null) {
+            cows.push(cow);
+        }
+    }
+
+    return cows;
+}
+
+function save(data) {
+    data.save("started", started);
+    //TODO: Save the entries
+}
+
+function load(data) {
+    started = data.load("started");
+    //TODO: Load the entries ? Although not neccessary
+} **/

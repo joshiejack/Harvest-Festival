@@ -1,0 +1,10 @@
+{
+  "registryName": "harvestfestival:frost_slime",
+  "type": "entity:slime",
+  "data": {
+    "texture": "harvestfestival:textures/entity/monsters/frost_slime.png",
+    "script": "harvestfestival:entities/frost_slime",
+    "item": "minecraft:snowball",
+    "lootTable": "harvestfestival:entities/frost_slime"
+  }
+}

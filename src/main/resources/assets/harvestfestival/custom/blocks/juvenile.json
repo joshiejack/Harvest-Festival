@@ -1,0 +1,53 @@
+{
+	"registryName": "harvestfestival:juvenile",
+	"type": "block:bush_double",
+	"defaults": {
+		"material": "wood",
+		"soundType": "wood",
+		"hardness": 1.8,
+		"collisionBox": "0.3 0.0D 0.3 0.7 1.0 0.7",
+		"propertyName": "juvenile"
+	},
+	"data": [
+		{
+			"name": "oak",
+			"lootTable": "harvestfestival:blocks/juvenile_oak"
+		},
+		{
+			"name": "spruce",
+			"lootTable": "harvestfestival:blocks/juvenile_spruce"
+		},
+		{
+			"name": "birch",
+			"lootTable": "harvestfestival:blocks/juvenile_birch"
+		},
+		{
+			"name": "jungle",
+			"lootTable": "harvestfestival:blocks/juvenile_jungle"
+		},
+		{
+			"name": "acacia",
+			"lootTable": "harvestfestival:blocks/juvenile_acacia"
+		},
+		{
+			"name": "dark_oak",
+			"lootTable": "harvestfestival:blocks/juvenile_dark_oak"
+		},
+		{
+			"name": "apple",
+			"lootTable": "harvestfestival:blocks/juvenile_apple"
+		},
+		{
+			"name": "banana",
+			"lootTable": "harvestfestival:blocks/juvenile_banana"
+		},
+		{
+			"name": "orange",
+			"lootTable": "harvestfestival:blocks/juvenile_orange"
+		},
+		{
+			"name": "peach",
+			"lootTable": "harvestfestival:blocks/juvenile_peach"
+		}
+	]
+}

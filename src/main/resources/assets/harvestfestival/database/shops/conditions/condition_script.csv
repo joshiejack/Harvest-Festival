@@ -1,0 +1,4 @@
+id,script
+can_propose,harvestfestival:conditions_can_propose
+is_hungry,harvestfestival:conditions_is_hungry
+is_damaged,harvestfestival:conditions_is_damaged

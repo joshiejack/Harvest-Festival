@@ -1,0 +1,140 @@
+{
+  "registryName": "harvestfestival:dark",
+  "biome": "harvestfestival:caves_deep",
+  "floor": "harvestfestival:floor_standard",
+  "wall": "harvestfestival:wall,decortype=standard",
+  "ladder": "harvestfestival:mine_ladder,facing=north,ladder=wood",
+  "upper_portal": "harvestfestival:portal,ew=true,portal=internal,section=tl",
+  "lower_portal": "harvestfestival:portal,ew=true,portal=internal,section=tl",
+  "special_loot": [
+    {
+      "state": "harvestfestival:node,node=mystril",
+      "negative": 141,
+      "divider": 1141
+    }
+  ],
+  "loot": [
+    {
+      "state": "harvestfestival:shrub,shrub=weed",
+      "cluster_distance": 8,
+      "cluster_amount": 8,
+      "weight": 32
+    },
+    {
+      "state": "harvestfestival:rock,rock=standard",
+      "weight": 150
+    },
+    {
+      "state": "harvestfestival:node,node=copper",
+      "weight": 5
+    },
+    {
+      "state": "harvestfestival:node,node=silver",
+      "weight": 6
+    },
+    {
+      "state": "harvestfestival:node,node=gold",
+      "weight": 7
+    },
+    {
+      "state": "harvestfestival:node,node=mystril",
+      "weight": 8
+    },
+    {
+      "state": "harvestfestival:node,node=amethyst",
+      "weight": 3
+    },
+    {
+      "state": "harvestfestival:node,node=topaz",
+      "weight": 4
+    },
+    {
+      "state": "harvestfestival:node,node=jade",
+      "weight": 5.5
+    },
+    {
+      "state": "harvestfestival:node,node=ruby",
+      "weight": 5
+    },
+    {
+      "state": "harvestfestival:node,node=diamond",
+      "weight": 3
+    },
+    {
+      "state": "harvestfestival:node,node=emerald",
+      "weight": 4
+    },
+    {
+      "state": "harvestfestival:node,node=gem",
+      "weight": 10
+    }
+  ],
+  "entities": [
+    {
+      "entity": "minecraft:spider",
+      "type": "monster",
+      "ranges": [
+        "all"
+      ],
+      "weight": 100,
+      "min_group": 4,
+      "max_group": 4
+    },
+    {
+      "entity": "minecraft:zombie",
+      "type": "monster",
+      "ranges": [
+        "all"
+      ],
+      "weight": 95,
+      "min_group": 4,
+      "max_group": 4
+    },
+    {
+      "entity": "minecraft:zombie_villager",
+      "type": "monster",
+      "ranges": [
+        "all"
+      ],
+      "weight": 5,
+      "min_group": 1,
+      "max_group": 1
+    },
+    {
+      "entity": "minecraft:skeleton",
+      "type": "monster",
+      "ranges": [
+        "all"
+      ],
+      "weight": 100,
+      "min_group": 4,
+      "max_group": 4
+    },
+    {
+      "entity": "minecraft:bat",
+      "type": "ambient",
+      "ranges": [
+        "all"
+      ],
+      "weight": 10,
+      "min_group": 8,
+      "max_group": 8
+    }
+  ],
+  "generators": [
+    "harvestcore:sprawl",
+    "harvestcore:tunnel_multi",
+    "harvestcore:circle",
+    "harvestfestival:sidewinder",
+    "harvestfestival:maze",
+    "harvestfestival:branches"
+  ],
+  "ranges": [
+    {
+      "name": "all",
+      "min_floor": 1,
+      "max_floor": 40
+    }
+  ],
+  "order": 4
+}

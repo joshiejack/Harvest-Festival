@@ -1,19 +1,65 @@
 {
+  "forge_marker": 1,
+  "defaults": {
+    "model": "cube_all"
+  },
   "variants": {
-    "type=real": [
-      { "model": "harvestfestival:mine/mine_wall", "weight": 30 },
-      { "model": "harvestfestival:mine/mine_wall1", "weight": 1 },
-      { "model": "harvestfestival:mine/mine_wall2", "weight": 1 },
-      { "model": "harvestfestival:mine/mine_wall3", "weight": 1 },
-      { "model": "harvestfestival:mine/mine_wall4", "weight": 1 },
-      { "model": "harvestfestival:mine/mine_wall5", "weight": 1 }
+    "stone=stone_small": [
+      { "model": "harvestfestival:wilderness/stone_small", "textures": { "particle": "harvestfestival:blocks/wilderness/stone0"}, "weight": 1 },
+      { "model": "harvestfestival:wilderness/stone_small", "textures": { "particle": "harvestfestival:blocks/wilderness/stone1"}, "weight": 1 },
+      { "model": "harvestfestival:wilderness/stone_small", "textures": { "particle": "harvestfestival:blocks/wilderness/stone2"}, "weight": 1 },
+      { "model": "harvestfestival:wilderness/stone_small", "textures": { "particle": "harvestfestival:blocks/wilderness/stone0"}, "weight": 1, "y": 90 },
+      { "model": "harvestfestival:wilderness/stone_small", "textures": { "particle": "harvestfestival:blocks/wilderness/stone1"}, "weight": 1, "y": 90 },
+      { "model": "harvestfestival:wilderness/stone_small", "textures": { "particle": "harvestfestival:blocks/wilderness/stone2"}, "weight": 1, "y": 90 },
+      { "model": "harvestfestival:wilderness/stone_small", "textures": { "particle": "harvestfestival:blocks/wilderness/stone0"}, "weight": 1, "y": 180 },
+      { "model": "harvestfestival:wilderness/stone_small", "textures": { "particle": "harvestfestival:blocks/wilderness/stone1"}, "weight": 1, "y": 180 },
+      { "model": "harvestfestival:wilderness/stone_small", "textures": { "particle": "harvestfestival:blocks/wilderness/stone2"}, "weight": 1, "y": 180 },
+      { "model": "harvestfestival:wilderness/stone_small", "textures": { "particle": "harvestfestival:blocks/wilderness/stone0"}, "weight": 1, "y": 270 },
+      { "model": "harvestfestival:wilderness/stone_small", "textures": { "particle": "harvestfestival:blocks/wilderness/stone1"}, "weight": 1, "y": 270 },
+      { "model": "harvestfestival:wilderness/stone_small", "textures": { "particle": "harvestfestival:blocks/wilderness/stone2"}, "weight": 1, "y": 270 }
     ],
-    "type=decorative_blank": { "model": "harvestfestival:mine/mine_wall" },
-    "type=decorative_purple": { "model": "harvestfestival:mine/mine_wall1" },
-    "type=decorative_silver": { "model": "harvestfestival:mine/mine_wall2" },
-    "type=decorative_green": { "model": "harvestfestival:mine/mine_wall3" },
-    "type=decorative_blue": { "model": "harvestfestival:mine/mine_wall4" },
-    "type=decorative_red": { "model": "harvestfestival:mine/mine_wall5" },
-    "type=ladder_hole": { "model": "harvestfestival:mine/mine_hole" }
+    "stone=stone_medium": [
+      { "model": "harvestfestival:wilderness/stone_medium", "textures": { "particle": "harvestfestival:blocks/wilderness/stone0"}, "weight": 1 },
+      { "model": "harvestfestival:wilderness/stone_medium", "textures": { "particle": "harvestfestival:blocks/wilderness/stone1"}, "weight": 1 },
+      { "model": "harvestfestival:wilderness/stone_medium", "textures": { "particle": "harvestfestival:blocks/wilderness/stone2"}, "weight": 1 },
+      { "model": "harvestfestival:wilderness/stone_medium", "textures": { "particle": "harvestfestival:blocks/wilderness/stone0"}, "weight": 1, "y": 90 },
+      { "model": "harvestfestival:wilderness/stone_medium", "textures": { "particle": "harvestfestival:blocks/wilderness/stone1"}, "weight": 1, "y": 90 },
+      { "model": "harvestfestival:wilderness/stone_medium", "textures": { "particle": "harvestfestival:blocks/wilderness/stone2"}, "weight": 1, "y": 90 },
+      { "model": "harvestfestival:wilderness/stone_medium", "textures": { "particle": "harvestfestival:blocks/wilderness/stone0"}, "weight": 1, "y": 180 },
+      { "model": "harvestfestival:wilderness/stone_medium", "textures": { "particle": "harvestfestival:blocks/wilderness/stone1"}, "weight": 1, "y": 180 },
+      { "model": "harvestfestival:wilderness/stone_medium", "textures": { "particle": "harvestfestival:blocks/wilderness/stone2"}, "weight": 1, "y": 180 },
+      { "model": "harvestfestival:wilderness/stone_medium", "textures": { "particle": "harvestfestival:blocks/wilderness/stone0"}, "weight": 1, "y": 270 },
+      { "model": "harvestfestival:wilderness/stone_medium", "textures": { "particle": "harvestfestival:blocks/wilderness/stone1"}, "weight": 1, "y": 270 },
+      { "model": "harvestfestival:wilderness/stone_medium", "textures": { "particle": "harvestfestival:blocks/wilderness/stone2"}, "weight": 1, "y": 270 }
+    ],
+    "stone=stone_large": [
+      { "model": "harvestfestival:wilderness/stone_large", "textures": { "particle": "harvestfestival:blocks/wilderness/stone0"}, "weight": 1 },
+      { "model": "harvestfestival:wilderness/stone_large", "textures": { "particle": "harvestfestival:blocks/wilderness/stone1"}, "weight": 1 },
+      { "model": "harvestfestival:wilderness/stone_large", "textures": { "particle": "harvestfestival:blocks/wilderness/stone2"}, "weight": 1 },
+      { "model": "harvestfestival:wilderness/stone_large", "textures": { "particle": "harvestfestival:blocks/wilderness/stone0"}, "weight": 1, "y": 90 },
+      { "model": "harvestfestival:wilderness/stone_large", "textures": { "particle": "harvestfestival:blocks/wilderness/stone1"}, "weight": 1, "y": 90 },
+      { "model": "harvestfestival:wilderness/stone_large", "textures": { "particle": "harvestfestival:blocks/wilderness/stone2"}, "weight": 1, "y": 90 },
+      { "model": "harvestfestival:wilderness/stone_large", "textures": { "particle": "harvestfestival:blocks/wilderness/stone0"}, "weight": 1, "y": 180 },
+      { "model": "harvestfestival:wilderness/stone_large", "textures": { "particle": "harvestfestival:blocks/wilderness/stone1"}, "weight": 1, "y": 180 },
+      { "model": "harvestfestival:wilderness/stone_large", "textures": { "particle": "harvestfestival:blocks/wilderness/stone2"}, "weight": 1, "y": 180 },
+      { "model": "harvestfestival:wilderness/stone_large", "textures": { "particle": "harvestfestival:blocks/wilderness/stone0"}, "weight": 1, "y": 270 },
+      { "model": "harvestfestival:wilderness/stone_large", "textures": { "particle": "harvestfestival:blocks/wilderness/stone1"}, "weight": 1, "y": 270 },
+      { "model": "harvestfestival:wilderness/stone_large", "textures": { "particle": "harvestfestival:blocks/wilderness/stone2"}, "weight": 1, "y": 270 }
+    ],
+    "stone=boulder_small": [
+      { "model": "harvestfestival:wilderness/boulder_small", "textures": { "particle": "harvestfestival:blocks/wilderness/stone0"}, "weight": 1 },
+      { "model": "harvestfestival:wilderness/boulder_small", "textures": { "particle": "harvestfestival:blocks/wilderness/stone1"}, "weight": 1 },
+      { "model": "harvestfestival:wilderness/boulder_small", "textures": { "particle": "harvestfestival:blocks/wilderness/stone2"}, "weight": 1 }
+    ],
+    "stone=boulder_medium": [
+      { "model": "harvestfestival:wilderness/boulder_medium", "textures": { "particle": "harvestfestival:blocks/wilderness/stone0"}, "weight": 1 },
+      { "model": "harvestfestival:wilderness/boulder_medium", "textures": { "particle": "harvestfestival:blocks/wilderness/stone1"}, "weight": 1 },
+      { "model": "harvestfestival:wilderness/boulder_medium", "textures": { "particle": "harvestfestival:blocks/wilderness/stone2"}, "weight": 1 }
+    ],
+    "stone=boulder_large": [
+      { "model": "harvestfestival:wilderness/boulder_large", "textures": { "particle": "harvestfestival:blocks/wilderness/stone0"}, "weight": 1 },
+      { "model": "harvestfestival:wilderness/boulder_large", "textures": { "particle": "harvestfestival:blocks/wilderness/stone1"}, "weight": 1 },
+      { "model": "harvestfestival:wilderness/boulder_large", "textures": { "particle": "harvestfestival:blocks/wilderness/stone2"}, "weight": 1 }
+    ]
   }
 }

@@ -1,0 +1,9 @@
+{
+  "registryName": "harvestfestival:frying_pan",
+  "type": "letter:gift",
+  "data": {
+    "deliveryTime": 3,
+    "isRepeatable": true,
+    "items": [ "gastronomy:cookware 3"]
+  }
+}

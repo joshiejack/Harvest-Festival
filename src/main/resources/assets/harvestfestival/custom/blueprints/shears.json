@@ -1,0 +1,14 @@
+{
+  "registryName": "minecraft:shears",
+  "type": "blueprint:standard",
+  "data": {
+    "category": "tool",
+    "result": "minecraft:shears",
+    "ingredients": [
+      {
+        "item": "ingotIron",
+        "count": 2
+      }
+    ]
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "transform": "forge:default-item",
+    "model": "forge:item-layer"
+  },
+  "variants": {
+    "wine": [{ "textures": { "layer0": "gastronomy:items/drinks/wine" }}],
+    "hot_chocolate": [{ "textures": { "layer0": "gastronomy:items/drinks/chocolate_hot" }}],
+    "fruit_juice": [{ "textures": { "layer0": "gastronomy:items/drinks/juice_fruit" }}],
+    "mix_juice": [{ "textures": { "layer0": "gastronomy:items/drinks/juice_mix" }}],
+    "vegetable_juice": [{ "textures": { "layer0": "gastronomy:items/drinks/juice_vegetable" }}],
+    "ketchup": [{ "textures": { "layer0": "gastronomy:items/drinks/ketchup" }}],
+    "fruit_latte": [{ "textures": { "layer0": "gastronomy:items/drinks/latte_fruit" }}],
+    "latte_mix": [{ "textures": { "layer0": "gastronomy:items/drinks/latte_mix" }}],
+    "vegetable_latte": [{ "textures": { "layer0": "gastronomy:items/drinks/latte_vegetable" }}]
+  }
+}

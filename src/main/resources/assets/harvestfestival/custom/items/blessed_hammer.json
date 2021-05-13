@@ -1,0 +1,10 @@
+{
+  "registryName": "harvestfestival:blessed_hammer",
+  "type": "item:hammer",
+  "data": {
+    "toolMaterial": "blessed",
+    "area": 7,
+    "widthAndHeight": 1,
+    "depth": 5
+  }
+}

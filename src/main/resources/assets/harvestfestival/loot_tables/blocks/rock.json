@@ -1,0 +1,668 @@
+{
+  "pools": [
+    {
+      "name": "main",
+      "rolls": 3,
+      "entries": [
+        {
+          "type": "item",
+          "name": "harvestfestival:material",
+          "entryName": "junk_ore",
+          "weight": 170,
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 0,
+                "max": 1
+              }
+            },
+            {
+              "function": "penguinlib:apply_fortune"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "harvestfestival:coin",
+          "entryName": "copper_coin",
+          "weight": 10,
+          "functions": [
+            {
+              "function": "penguinlib:set_string",
+              "string": "copper"
+            },
+            {
+              "function": "set_count",
+              "count": {
+                "min": 0,
+                "max": 1
+              }
+            },
+            {
+              "function": "penguinlib:apply_fortune"
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "harvestcore:from_floor",
+              "floor": 1
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "harvestfestival:gem",
+          "entryName": "adamantite",
+          "weight": 10,
+          "functions": [
+            {
+              "function": "penguinlib:set_string",
+              "string": "adamantite"
+            },
+            {
+              "function": "set_count",
+              "count": {
+                "min": 0,
+                "max": 1
+              }
+            },
+            {
+              "function": "penguinlib:apply_fortune"
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "harvestcore:from_floor",
+              "floor": 10
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "harvestfestival:metal",
+          "entryName": "orichalc",
+          "weight": 5,
+          "functions": [
+            {
+              "function": "penguinlib:set_string",
+              "string": "orichalc"
+            },
+            {
+              "function": "set_count",
+              "count": {
+                "min": 0,
+                "max": 1
+              }
+            },
+            {
+              "function": "penguinlib:apply_fortune"
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "harvestcore:from_floor",
+              "floor": 10
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "harvestfestival:coin",
+          "entryName": "silver_coin",
+          "weight": 5,
+          "functions": [
+            {
+              "function": "penguinlib:set_string",
+              "string": "silver"
+            },
+            {
+              "function": "set_count",
+              "count": {
+                "min": 0,
+                "max": 1
+              }
+            },
+            {
+              "function": "penguinlib:apply_fortune"
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "harvestcore:from_floor",
+              "floor": 41
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "harvestfestival:coin",
+          "entryName": "gold_coin",
+          "weight": 1,
+          "functions": [
+            {
+              "function": "penguinlib:set_string",
+              "string": "gold"
+            },
+            {
+              "function": "set_count",
+              "count": {
+                "min": 0,
+                "max": 1
+              }
+            },
+            {
+              "function": "penguinlib:apply_fortune"
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "harvestcore:from_floor",
+              "floor": 81
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "harvestfestival:material",
+          "entryName": "mythic_1",
+          "weight": 1,
+          "functions": [
+            {
+              "function": "penguinlib:set_string",
+              "string": "mythic_stone"
+            },
+            {
+              "function": "set_count",
+              "count": {
+                "min": 0,
+                "max": 1
+              }
+            },
+            {
+              "function": "penguinlib:apply_fortune"
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "harvestcore:floor_match",
+              "floor": 30
+            },
+            {
+              "condition": "penguinlib:obtained",
+              "listName": "obtained",
+              "stacks": "harvestfestival:hoe_blessed;harvestfestival:axe_blessed;harvestfestival:hammer_blessed;harvestfestival:watering_can_blessed;harvestfestival:sickle_blessed;harvestfestival:fishing_rod_blessed;harvestfestival:sword_blessed;harvestfestival:shovel_blessed"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "harvestfestival:material",
+          "entryName": "mythic_43",
+          "weight": 1,
+          "functions": [
+            {
+              "function": "penguinlib:set_string",
+              "string": "mythic_stone"
+            },
+            {
+              "function": "set_count",
+              "count": {
+                "min": 0,
+                "max": 1
+              }
+            },
+            {
+              "function": "penguinlib:apply_fortune"
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "harvestcore:between_floors",
+              "floor_start": 43,
+              "floor_end": 84
+            },
+            {
+              "condition": "harvestcore:floor_multiple",
+              "of": 20
+            },
+            {
+              "condition": "penguinlib:obtained",
+              "listName": "obtained",
+              "stacks": "harvestfestival:hoe_blessed;harvestfestival:axe_blessed;harvestfestival:hammer_blessed;harvestfestival:watering_can_blessed;harvestfestival:sickle_blessed;harvestfestival:fishing_rod_blessed;harvestfestival:sword_blessed;harvestfestival:shovel_blessed"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "harvestfestival:material",
+          "entryName": "mythic_85",
+          "weight": 2,
+          "functions": [
+            {
+              "function": "penguinlib:set_string",
+              "string": "mythic_stone"
+            },
+            {
+              "function": "set_count",
+              "count": {
+                "min": 0,
+                "max": 1
+              }
+            },
+            {
+              "function": "penguinlib:apply_fortune"
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "harvestcore:between_floors",
+              "floor_start": 85,
+              "floor_end": 126
+            },
+            {
+              "condition": "harvestcore:floor_multiple",
+              "of": 15
+            },
+            {
+              "condition": "penguinlib:obtained",
+              "listName": "obtained",
+              "stacks": "harvestfestival:hoe_blessed;harvestfestival:axe_blessed;harvestfestival:hammer_blessed;harvestfestival:watering_can_blessed;harvestfestival:sickle_blessed;harvestfestival:fishing_rod_blessed;harvestfestival:sword_blessed;harvestfestival:shovel_blessed"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "harvestfestival:material",
+          "entryName": "mythic_127",
+          "weight": 4,
+          "functions": [
+            {
+              "function": "penguinlib:set_string",
+              "string": "mythic_stone"
+            },
+            {
+              "function": "set_count",
+              "count": {
+                "min": 0,
+                "max": 1
+              }
+            },
+            {
+              "function": "penguinlib:apply_fortune"
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "harvestcore:between_floors",
+              "floor_start": 127,
+              "floor_end": 168
+            },
+            {
+              "condition": "harvestcore:floor_multiple",
+              "of": 10
+            },
+            {
+              "condition": "penguinlib:obtained",
+              "listName": "obtained",
+              "stacks": "harvestfestival:hoe_blessed;harvestfestival:axe_blessed;harvestfestival:hammer_blessed;harvestfestival:watering_can_blessed;harvestfestival:sickle_blessed;harvestfestival:fishing_rod_blessed;harvestfestival:sword_blessed;harvestfestival:shovel_blessed"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "harvestfestival:material",
+          "entryName": "mythic_169",
+          "weight": 8,
+          "functions": [
+            {
+              "function": "penguinlib:set_string",
+              "string": "mythic_stone"
+            },
+            {
+              "function": "set_count",
+              "count": {
+                "min": 0,
+                "max": 1
+              }
+            },
+            {
+              "function": "penguinlib:apply_fortune"
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "harvestcore:between_floors",
+              "floor_start": 169,
+              "floor_end": 211
+            },
+            {
+              "condition": "harvestcore:floor_multiple",
+              "of": 5
+            },
+            {
+              "condition": "penguinlib:obtained",
+              "listName": "obtained",
+              "stacks": "harvestfestival:hoe_blessed;harvestfestival:axe_blessed;harvestfestival:hammer_blessed;harvestfestival:watering_can_blessed;harvestfestival:sickle_blessed;harvestfestival:fishing_rod_blessed;harvestfestival:sword_blessed;harvestfestival:shovel_blessed"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "harvestfestival:material",
+          "entryName": "mythic_212",
+          "weight": 16,
+          "functions": [
+            {
+              "function": "penguinlib:set_string",
+              "string": "mythic_stone"
+            },
+            {
+              "function": "set_count",
+              "count": {
+                "min": 0,
+                "max": 1
+              }
+            },
+            {
+              "function": "penguinlib:apply_fortune"
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "harvestcore:between_floors",
+              "floor_start": 212,
+              "floor_end": 254
+            },
+            {
+              "condition": "harvestcore:floor_multiple",
+              "of": 3
+            },
+            {
+              "condition": "penguinlib:obtained",
+              "listName": "obtained",
+              "stacks": "harvestfestival:hoe_blessed;harvestfestival:axe_blessed;harvestfestival:hammer_blessed;harvestfestival:watering_can_blessed;harvestfestival:sickle_blessed;harvestfestival:fishing_rod_blessed;harvestfestival:sword_blessed;harvestfestival:shovel_blessed"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "harvestfestival:material",
+          "entryName": "mythic_295",
+          "weight": 32,
+          "functions": [
+            {
+              "function": "penguinlib:set_string",
+              "string": "mythic_stone"
+            },
+            {
+              "function": "set_count",
+              "count": {
+                "min": 0,
+                "max": 1
+              }
+            },
+            {
+              "function": "penguinlib:apply_fortune"
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "harvestcore:from_floor",
+              "floor": 255
+            },
+            {
+              "condition": "penguinlib:obtained",
+              "listName": "obtained",
+              "stacks": "harvestfestival:hoe_blessed;harvestfestival:axe_blessed;harvestfestival:hammer_blessed;harvestfestival:watering_can_blessed;harvestfestival:sickle_blessed;harvestfestival:fishing_rod_blessed;harvestfestival:sword_blessed;harvestfestival:shovel_blessed"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "harvestfestival:cursed_hoe",
+          "entryName": "cursed_hoe",
+          "weight": 1,
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 0,
+                "max": 1
+              }
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "seasons:season",
+              "season": "winter"
+            },
+            {
+              "condition": "harvestcore:floor_match",
+              "floor": 39
+            },
+            {
+              "condition": "penguinlib:obtained",
+              "listName": "obtained",
+              "stacks": "harvestfestival:mystril_hoe;harvestfestival:mystril_axe;harvestfestival:mystril_hammer;harvestfestival:mystril_watering_can;harvestfestival:mystril_sickle;harvestfestival:mystril_fishing_rod;harvestfestival:mystril_sword;harvestfestival:mystril_shovel"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "harvestfestival:cursed_axe",
+          "entryName": "cursed_axe",
+          "weight": 1,
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 0,
+                "max": 1
+              }
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "seasons:season",
+              "season": "winter"
+            },
+            {
+              "condition": "harvestcore:floor_match",
+              "floor": 49
+            },
+            {
+              "condition": "penguinlib:obtained",
+              "listName": "obtained",
+              "stacks": "harvestfestival:mystril_hoe;harvestfestival:mystril_axe;harvestfestival:mystril_hammer;harvestfestival:mystril_watering_can;harvestfestival:mystril_sickle;harvestfestival:mystril_fishing_rod;harvestfestival:mystril_sword;harvestfestival:mystril_shovel"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "harvestfestival:cursed_hammer",
+          "entryName": "cursed_hammer",
+          "weight": 1,
+          "functions": [
+
+            {
+              "function": "set_count",
+              "count": {
+                "min": 0,
+                "max": 1
+              }
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "seasons:season",
+              "season": "winter"
+            },
+            {
+              "condition": "harvestcore:floor_match",
+              "floor": 59
+            },
+            {
+              "condition": "penguinlib:obtained",
+              "listName": "obtained",
+              "stacks": "harvestfestival:mystril_hoe;harvestfestival:mystril_axe;harvestfestival:mystril_hammer;harvestfestival:mystril_watering_can;harvestfestival:mystril_sickle;harvestfestival:mystril_fishing_rod;harvestfestival:mystril_sword;harvestfestival:mystril_shovel"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "harvestfestival:cursed_watering_can",
+          "entryName": "cursed_wateringcan",
+          "weight": 1,
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 0,
+                "max": 1
+              }
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "seasons:season",
+              "season": "winter"
+            },
+            {
+              "condition": "harvestcore:floor_match",
+              "floor": 69
+            },
+            {
+              "condition": "penguinlib:obtained",
+              "listName": "obtained",
+              "stacks": "harvestfestival:mystril_hoe;harvestfestival:mystril_axe;harvestfestival:mystril_hammer;harvestfestival:mystril_watering_can;harvestfestival:mystril_sickle;harvestfestival:mystril_fishing_rod;harvestfestival:mystril_sword;harvestfestival:mystril_shovel"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "harvestfestival:cursed_sickle",
+          "entryName": "cursed_sickle",
+          "weight": 1,
+          "functions": [
+
+            {
+              "function": "set_count",
+              "count": {
+                "min": 0,
+                "max": 1
+              }
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "seasons:season",
+              "season": "winter"
+            },
+            {
+              "condition": "harvestcore:floor_match",
+              "floor": 79
+            },
+            {
+              "condition": "penguinlib:obtained",
+              "listName": "obtained",
+              "stacks": "harvestfestival:mystril_hoe;harvestfestival:mystril_axe;harvestfestival:mystril_hammer;harvestfestival:mystril_watering_can;harvestfestival:mystril_sickle;harvestfestival:mystril_fishing_rod;harvestfestival:mystril_sword;harvestfestival:mystril_shovel"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "harvestfestival:cursed_fishing_rod",
+          "entryName": "cursed_fishing_rod",
+          "weight": 1,
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 0,
+                "max": 1
+              }
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "seasons:season",
+              "season": "winter"
+            },
+            {
+              "condition": "harvestcore:floor_match",
+              "floor": 29
+            },
+            {
+              "condition": "penguinlib:obtained",
+              "listName": "obtained",
+              "stacks": "harvestfestival:mystril_hoe;harvestfestival:mystril_axe;harvestfestival:mystril_hammer;harvestfestival:mystril_watering_can;harvestfestival:mystril_sickle;harvestfestival:mystril_fishing_rod;harvestfestival:mystril_sword;harvestfestival:mystril_shovel"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "harvestfestival:cursed_shovel",
+          "entryName": "cursed_shovel",
+          "weight": 1,
+          "functions": [
+
+            {
+              "function": "set_count",
+              "count": {
+                "min": 0,
+                "max": 1
+              }
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "seasons:season",
+              "season": "winter"
+            },
+            {
+              "condition": "harvestcore:floor_match",
+              "floor": 89
+            },
+            {
+              "condition": "penguinlib:obtained",
+              "listName": "obtained",
+              "stacks": "harvestfestival:mystril_hoe;harvestfestival:mystril_axe;harvestfestival:mystril_hammer;harvestfestival:mystril_watering_can;harvestfestival:mystril_sickle;harvestfestival:mystril_fishing_rod;harvestfestival:mystril_sword;harvestfestival:mystril_shovel"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "harvestfestival:cursed_sword",
+          "entryName": "cursed_sword",
+          "weight": 1,
+          "functions": [
+
+            {
+              "function": "set_count",
+              "count": {
+                "min": 0,
+                "max": 1
+              }
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "seasons:season",
+              "season": "winter"
+            },
+            {
+              "condition": "harvestcore:floor_match",
+              "floor": 99
+            },
+            {
+              "condition": "penguinlib:obtained",
+              "listName": "obtained",
+              "stacks": "harvestfestival:mystril_hoe;harvestfestival:mystril_axe;harvestfestival:mystril_hammer;harvestfestival:mystril_watering_can;harvestfestival:mystril_sickle;harvestfestival:mystril_fishing_rod;harvestfestival:mystril_sword;harvestfestival:mystril_shovel"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

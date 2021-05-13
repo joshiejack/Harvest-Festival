@@ -1,0 +1,13 @@
+entry,weight
+harvestfestival:rock[rock=standard],255
+harvestfestival:node[node=copper],8
+harvestfestival:node[node=silver],5
+harvestfestival:node[node=gold],3
+harvestfestival:node[node=mystril],1
+harvestfestival:node[node=amethyst],7
+harvestfestival:node[node=gem],6
+harvestfestival:node[node=topaz],5
+harvestfestival:node[node=jade],4
+harvestfestival:node[node=ruby],3
+harvestfestival:node[node=emerald],2
+harvestfestival:node[node=diamond],1

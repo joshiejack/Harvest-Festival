@@ -1,0 +1,6 @@
+id,season_handler_id
+is_spring,spring
+is_summer,summer
+is_autumn,autumn
+is_winter,winter
+is_not_winter,not_winter

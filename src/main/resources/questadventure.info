@@ -1,0 +1,16 @@
+[
+{
+  "modid": "settlements",
+  "name": "Settlements",
+  "description": "",
+  "version": "${settlements_version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["joshie"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

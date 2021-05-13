@@ -1,0 +1,78 @@
+{
+	"registryName": "harvestfestival:node",
+	"type": "block:standard",
+	"defaults": {
+		"propertyName": "node",
+		"hardness": "2F",
+		"soundType": "stone",
+		"material": "rock",
+		"toolType": "hammer",
+		"boundingBox": "0.1 0 0.1 0.9 0.8 0.9"
+	},
+	"data": [
+		{
+			"name": "copper",
+			"toolLevel": 0,
+			"lootTable": "harvestfestival:blocks/copper_node"
+		},
+		{
+			"name": "silver",
+			"hardness": 3,
+			"toolLevel": 1,
+			"lootTable": "harvestfestival:blocks/silver_node"
+		},
+		{
+			"name": "gold",
+			"hardness": 3,
+			"toolLevel": 2,
+			"lootTable": "harvestfestival:blocks/gold_node"
+		},
+		{
+			"name": "mystril",
+			"hardness": 5,
+			"toolLevel": 3,
+			"lootTable": "harvestfestival:blocks/mystril_node"
+		},
+		{
+			"name": "emerald",
+			"hardness": 5,
+			"toolLevel": 3,
+			"lootTable": "harvestfestival:blocks/emerald_node"
+		},
+		{
+			"name": "diamond",
+			"hardness": 5,
+			"toolLevel": 3,
+			"lootTable": "harvestfestival:blocks/diamond_node"
+		},
+		{
+			"name": "ruby",
+			"hardness": 3,
+			"toolLevel": 2,
+			"lootTable": "harvestfestival:blocks/ruby_node"
+		},
+		{
+			"name": "jade",
+			"hardness": 3,
+			"toolLevel": 2,
+			"lootTable": "harvestfestival:blocks/jade_node"
+		},
+		{
+			"name": "amethyst",
+			"toolLevel": 0,
+			"lootTable": "harvestfestival:blocks/amethyst_node"
+		},
+		{
+			"name": "topaz",
+			"hardness": 3,
+			"toolLevel": 1,
+			"lootTable": "harvestfestival:blocks/topaz_node"
+		},
+		{
+			"name": "gem",
+			"hardness": 3,
+			"toolLevel": 0,
+			"lootTable": "harvestfestival:blocks/gem_node"
+		}
+	]
+}

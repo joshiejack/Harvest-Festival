@@ -1,0 +1,14 @@
+{
+  "registryName": "harvestfestival:cobblestone_stairs",
+  "type": "blueprint:standard",
+  "data": {
+    "category": "decorative",
+    "result": "minecraft:stone_stairs *4",
+    "ingredients": [
+      {
+        "item": "cobblestone",
+        "count": 6
+      }
+    ]
+  }
+}

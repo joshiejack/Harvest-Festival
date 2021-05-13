@@ -1,0 +1,33 @@
+{
+	"registryName": "harvestfestival:cobblestone",
+	"type": "block:bidirectional",
+	"defaults": {
+		"propertyName": "decortype",
+		"hardness": "1.5F",
+		"soundType": "stone",
+		"material": "rock",
+		"boundingBox": "0 0 0 1 0.03125 1"
+	},
+	"data": [
+		{
+			"name": "standard",
+			"lootTable": "harvestfestival:blocks/standard_cobblestone"
+		},
+		{
+			"name": "frozen",
+			"lootTable": "harvestfestival:blocks/frozen_cobblestone"
+		},
+		{
+			"name": "hell",
+			"lootTable": "harvestfestival:blocks/hell_cobblestone"
+		},
+		{
+			"name": "frozen_brick",
+			"lootTable": "harvestfestival:blocks/frozen_brick_cobblestone"
+		},
+		{
+			"name": "hell_brick",
+			"lootTable": "harvestfestival:blocks/hell_brick_cobblestone"
+		}
+	]
+}

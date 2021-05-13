@@ -1,0 +1,11 @@
+department_id,id,stock_mechanic,cost_formula
+poultry_farm,bird_feed,unlimited,default
+poultry_farm,rabbit_food,unlimited,default
+poultry_farm,generic_treat,unlimited,default
+poultry_farm,chicken_treat,unlimited,default
+poultry_farm,duck_treat,unlimited,default
+poultry_farm,rabbit_treat,unlimited,default
+poultry_farm,chicken,limited_4,default
+poultry_farm,duck,limited_4,default
+poultry_farm,rabbit,limited_4,default
+poultry_farm,name_tag,limited_4,default

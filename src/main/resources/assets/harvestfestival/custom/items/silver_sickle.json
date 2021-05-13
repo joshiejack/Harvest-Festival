@@ -1,0 +1,8 @@
+{
+  "registryName": "harvestfestival:silver_sickle",
+  "type": "item:sickle",
+  "data": {
+    "toolMaterial": "silver",
+    "area": 2
+  }
+}

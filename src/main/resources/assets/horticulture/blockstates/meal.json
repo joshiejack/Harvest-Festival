@@ -1,0 +1,19 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "transform": "forge:default-item",
+    "model": "forge:item-layer"
+  },
+  "variants": {
+    "cornflakes": [{ "textures": { "layer0": "horticulture:items/meals/cornflakes" }}],
+    "happy_eggplant": [{ "textures": { "layer0": "horticulture:items/meals/eggplant_happy" }}],
+    "pickled_turnip": [{ "textures": { "layer0": "horticulture:items/meals/turnip_pickled" }}],
+    "pickled_cucumber": [{ "textures": { "layer0": "horticulture:items/meals/cucumber_pickled" }}],
+    "salad": [{ "textures": { "layer0": "horticulture:items/meals/salad" }}],
+    "boiled_spinach": [{ "textures": { "layer0": "horticulture:items/meals/spinach_boiled" }}],
+    "candied_potato": [{ "textures": { "layer0": "horticulture:items/meals/potato_candied" }}],
+    "pumpkin_stew": [{ "textures": { "layer0": "horticulture:items/meals/stew_pumpkin" }}],
+    "baked_corn": [{ "textures": { "layer0": "horticulture:items/meals/corn_baked" }}],
+    "stir_fry": [{ "textures": { "layer0": "horticulture:items/meals/stir_fry" }}]
+  }
+}

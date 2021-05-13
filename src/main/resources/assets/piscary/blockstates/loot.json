@@ -1,0 +1,14 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "transform": "forge:default-item",
+    "model": "forge:item-layer"
+  },
+  "variants": {
+    "bones": [{ "textures": { "layer0": "piscary:items/loot/bones" }}],
+    "boot": [{ "textures": { "layer0": "piscary:items/loot/boot" }}],
+    "can": [{ "textures": { "layer0": "piscary:items/loot/can" }}],
+    "fossil": [{ "textures": { "layer0": "piscary:items/loot/fossil" }}],
+    "treasure": [{ "textures": { "layer0": "piscary:items/loot/treasure" }}]
+  }
+}

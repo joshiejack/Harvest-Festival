@@ -1,0 +1,18 @@
+{
+  "registryName": "harvestfestival:basic_sword",
+  "type": "blueprint:standard",
+  "data": {
+    "category": "tool",
+    "result": "harvestfestival:basic_sword {Unbreakable:1}",
+    "ingredients": [
+      {
+        "item": "flint",
+        "count": 2
+      },
+      {
+        "item": "stickWood",
+        "count": 1
+      }
+    ]
+  }
+}

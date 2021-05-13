@@ -1,0 +1,20 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "transform": "forge:default-block"
+  },
+  "variants": {
+    "facing=north,ladder=jungle":  { "model": "penguinlib:ladder", "textures": { "particle": "furniture:blocks/ladders/jungle" }},
+    "facing=south,ladder=jungle":  { "model": "penguinlib:ladder", "textures": { "particle": "furniture:blocks/ladders/jungle" }, "y": 180 },
+    "facing=east,ladder=jungle": { "model": "penguinlib:ladder", "textures": { "particle": "furniture:blocks/ladders/jungle" }, "y": 90 },
+    "facing=west,ladder=jungle": { "model": "penguinlib:ladder", "textures": { "particle": "furniture:blocks/ladders/jungle" }, "y": 270 },
+    "facing=north,ladder=acacia":  { "model": "penguinlib:ladder", "textures": { "particle": "furniture:blocks/ladders/acacia" }},
+    "facing=south,ladder=acacia":  { "model": "penguinlib:ladder", "textures": { "particle": "furniture:blocks/ladders/acacia" }, "y": 180 },
+    "facing=east,ladder=acacia": { "model": "penguinlib:ladder", "textures": { "particle": "furniture:blocks/ladders/acacia" }, "y": 90 },
+    "facing=west,ladder=acacia": { "model": "penguinlib:ladder", "textures": { "particle": "furniture:blocks/ladders/acacia" }, "y": 270 },
+    "facing=north,ladder=dark_oak":  { "model": "penguinlib:ladder", "textures": { "particle": "furniture:blocks/ladders/dark_oak" }},
+    "facing=south,ladder=dark_oak":  { "model": "penguinlib:ladder", "textures": { "particle": "furniture:blocks/ladders/dark_oak" }, "y": 180 },
+    "facing=east,ladder=dark_oak": { "model": "penguinlib:ladder", "textures": { "particle": "furniture:blocks/ladders/dark_oak" }, "y": 90 },
+    "facing=west,ladder=dark_oak": { "model": "penguinlib:ladder", "textures": { "particle": "furniture:blocks/ladders/dark_oak" }, "y": 270 }
+  }
+}

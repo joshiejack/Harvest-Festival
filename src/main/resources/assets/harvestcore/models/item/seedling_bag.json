@@ -1,0 +1,7 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "harvestcore:items/seedling_bag_neck",
+    "layer1": "harvestcore:items/seedling_bag_body"
+  }
+}

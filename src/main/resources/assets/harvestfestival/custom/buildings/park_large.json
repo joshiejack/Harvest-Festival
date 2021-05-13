@@ -1,0 +1,315 @@
+{
+  "registryName": "harvestfestival:park_large",
+  "type": "building:upgrade",
+  "data": {
+    "requirement": "harvestfestival:park_medium",
+    "overrides": false,
+    "offset": "14 -8 32",
+    "limit": 1,
+    "script": "harvestfestival:buildings/festivals",
+    "components": [
+      {
+        "state": "dirt,snowy=false,variant=dirt",
+        "pos": "15 7 1"
+      },
+      {
+        "state": "dirt,snowy=false,variant=dirt",
+        "pos": "18 7 1"
+      },
+      {
+        "state": "log,axis=y,variant=spruce",
+        "pos": "15 8 1"
+      },
+      {
+        "state": "log,axis=y,variant=spruce",
+        "pos": "18 8 1"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "15 9 1"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "18 9 1"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "15 10 1"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "18 10 1"
+      },
+      {
+        "state": "dark_oak_stairs,facing=east,half=bottom,shape=straight",
+        "pos": "14 11 1"
+      },
+      {
+        "state": "dark_oak_stairs,facing=west,half=top,shape=straight",
+        "pos": "15 11 1"
+      },
+      {
+        "state": "dark_oak_stairs,facing=east,half=top,shape=straight",
+        "pos": "18 11 1"
+      },
+      {
+        "state": "dark_oak_stairs,facing=west,half=bottom,shape=straight",
+        "pos": "19 11 1"
+      },
+      {
+        "state": "dark_oak_stairs,facing=east,half=bottom,shape=straight",
+        "pos": "15 12 1"
+      },
+      {
+        "state": "dark_oak_stairs,facing=west,half=top,shape=straight",
+        "pos": "16 12 1"
+      },
+      {
+        "state": "dark_oak_stairs,facing=east,half=top,shape=straight",
+        "pos": "17 12 1"
+      },
+      {
+        "state": "dark_oak_stairs,facing=west,half=bottom,shape=straight",
+        "pos": "18 12 1"
+      },
+      {
+        "state": "dark_oak_stairs,facing=east,half=bottom,shape=straight",
+        "pos": "16 13 1"
+      },
+      {
+        "state": "dark_oak_stairs,facing=west,half=bottom,shape=straight",
+        "pos": "17 13 1"
+      },
+      {
+        "state": "trapdoor,facing=north,half=top,open=true",
+        "pos": "6 12 8",
+        "type": "decorative"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "6 9 9"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "6 10 9"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "6 11 9"
+      },
+      {
+        "state": "trapdoor,facing=west,half=bottom,open=true",
+        "pos": "5 12 9",
+        "type": "decorative"
+      },
+      {
+        "state": "glowstone",
+        "pos": "6 12 9"
+      },
+      {
+        "state": "trapdoor,facing=east,half=bottom,open=true",
+        "pos": "7 12 9",
+        "type": "decorative"
+      },
+      {
+        "state": "trapdoor,facing=south,half=bottom,open=false",
+        "pos": "6 13 9",
+        "type": "decorative"
+      },
+      {
+        "state": "trapdoor,facing=south,half=bottom,open=true",
+        "pos": "6 12 10",
+        "type": "decorative"
+      },
+      {
+        "state": "dark_oak_stairs,facing=south,half=bottom,shape=straight",
+        "pos": "31 11 12"
+      },
+      {
+        "state": "dirt,snowy=false,variant=dirt",
+        "pos": "31 7 13"
+      },
+      {
+        "state": "log,axis=y,variant=spruce",
+        "pos": "31 8 13"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "31 9 13"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "31 10 13"
+      },
+      {
+        "state": "dark_oak_stairs,facing=north,half=top,shape=straight",
+        "pos": "31 11 13"
+      },
+      {
+        "state": "dark_oak_stairs,facing=south,half=bottom,shape=straight",
+        "pos": "31 12 13"
+      },
+      {
+        "state": "dark_oak_stairs,facing=north,half=top,shape=straight",
+        "pos": "31 12 14"
+      },
+      {
+        "state": "dark_oak_stairs,facing=south,half=bottom,shape=straight",
+        "pos": "31 13 14"
+      },
+      {
+        "state": "trapdoor,facing=north,half=top,open=true",
+        "pos": "4 10 15",
+        "type": "decorative"
+      },
+      {
+        "state": "dark_oak_stairs,facing=south,half=top,shape=straight",
+        "pos": "31 12 15"
+      },
+      {
+        "state": "dark_oak_stairs,facing=north,half=bottom,shape=straight",
+        "pos": "31 13 15"
+      },
+      {
+        "state": "dirt,snowy=false,variant=dirt",
+        "pos": "31 7 16"
+      },
+      {
+        "state": "log,axis=y,variant=spruce",
+        "pos": "31 8 16"
+      },
+      {
+        "state": "trapdoor,facing=east,half=top,open=false",
+        "pos": "4 9 16",
+        "type": "decorative"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "31 9 16"
+      },
+      {
+        "state": "glowstone",
+        "pos": "4 10 16"
+      },
+      {
+        "state": "trapdoor,facing=east,half=top,open=true",
+        "pos": "5 10 16",
+        "type": "decorative"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "31 10 16"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "4 11 16"
+      },
+      {
+        "state": "dark_oak_stairs,facing=south,half=top,shape=straight",
+        "pos": "31 11 16"
+      },
+      {
+        "state": "dark_oak_stairs,facing=north,half=bottom,shape=straight",
+        "pos": "31 12 16"
+      },
+      {
+        "state": "trapdoor,facing=south,half=top,open=true",
+        "pos": "4 10 17",
+        "type": "decorative"
+      },
+      {
+        "state": "dark_oak_stairs,facing=north,half=bottom,shape=straight",
+        "pos": "31 11 17"
+      },
+      {
+        "state": "trapdoor,facing=north,half=bottom,open=true",
+        "pos": "16 10 20",
+        "type": "decorative"
+      },
+      {
+        "state": "trapdoor,facing=west,half=top,open=false",
+        "pos": "16 9 21",
+        "type": "decorative"
+      },
+      {
+        "state": "trapdoor,facing=west,half=top,open=true",
+        "pos": "15 10 21",
+        "type": "decorative"
+      },
+      {
+        "state": "glowstone",
+        "pos": "16 10 21"
+      },
+      {
+        "state": "trapdoor,facing=east,half=bottom,open=true",
+        "pos": "17 10 21",
+        "type": "decorative"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "16 11 21"
+      },
+      {
+        "state": "dirt,snowy=false,variant=dirt",
+        "pos": "20 7 22"
+      },
+      {
+        "state": "dirt,snowy=false,variant=dirt",
+        "pos": "23 7 22"
+      },
+      {
+        "state": "log,axis=y,variant=spruce",
+        "pos": "20 8 22"
+      },
+      {
+        "state": "dark_oak_stairs,facing=south,half=bottom,shape=straight",
+        "pos": "21 8 22"
+      },
+      {
+        "state": "dark_oak_stairs,facing=south,half=bottom,shape=straight",
+        "pos": "22 8 22"
+      },
+      {
+        "state": "log,axis=y,variant=spruce",
+        "pos": "23 8 22"
+      },
+      {
+        "state": "trapdoor,facing=north,half=bottom,open=true",
+        "pos": "24 11 24",
+        "type": "decorative"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "24 9 25"
+      },
+      {
+        "state": "spruce_fence,east=false,north=false,south=false,west=false",
+        "pos": "24 10 25"
+      },
+      {
+        "state": "trapdoor,facing=west,half=bottom,open=true",
+        "pos": "23 11 25",
+        "type": "decorative"
+      },
+      {
+        "state": "glowstone",
+        "pos": "24 11 25"
+      },
+      {
+        "state": "trapdoor,facing=east,half=bottom,open=true",
+        "pos": "25 11 25",
+        "type": "decorative"
+      },
+      {
+        "state": "trapdoor,facing=north,half=bottom,open=false",
+        "pos": "24 12 25",
+        "type": "decorative"
+      },
+      {
+        "state": "trapdoor,facing=south,half=bottom,open=true",
+        "pos": "24 11 26",
+        "type": "decorative"
+      }
+    ]
+  }
+}

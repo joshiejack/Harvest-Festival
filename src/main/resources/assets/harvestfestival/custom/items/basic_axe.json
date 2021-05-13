@@ -1,0 +1,9 @@
+{
+  "registryName": "harvestfestival:basic_axe",
+  "type": "item:lumber_axe",
+  "data": {
+    "toolMaterial": "basic",
+    "hits": 6,
+    "area": 0
+  }
+}
